@@ -5,6 +5,7 @@ Usage:
     python3 live_scanner.py --once                # single scan now (testing)
     python3 live_scanner.py --symbols TSLA        # custom watchlist
     python3 live_scanner.py --window 09:30-11:00  # custom hours (ET)
+    python3 live_scanner.py --paper               # paper-trade sim (logs to journal/paper-trades.jsonl)
 """
 
 import os
@@ -53,6 +54,7 @@ def scan_once(
     feed: AlpacaFeed,
     symbols: List[str],
     seen_signal_keys: Set[str],
+    paper=None,  # PaperBook instance when --paper is set
 ) -> int:
     """Scan each symbol once, post novel signals, return count fired."""
     fired = 0
@@ -67,6 +69,13 @@ def scan_once(
             print(f"[{symbol}] only {len(candles)} bars, skipping")
             continue
 
+        # Mark/close any open paper positions against this fresh candle first.
+        if paper is not None:
+            last = candles[-1]
+            for ev in paper.mark(symbol, high=last.high, low=last.low, ts=last.timestamp):
+                print(f"   📕 PAPER CLOSE {ev['symbol']} {ev['direction'].upper()} "
+                      f"{ev['outcome'].upper()} P&L ${ev['pnl']:.2f}")
+
         runner.candles = candles
         signals = runner.detect_signals()
 
@@ -76,12 +85,14 @@ def scan_once(
                 continue
             seen_signal_keys.add(key)
             sig["reason"] = f"[{symbol}] {sig['reason']}"
-            _emit_signal(runner, feed, symbol, candles[-1], sig)
+            _emit_signal(runner, feed, symbol, candles[-1], sig, paper)
             fired += 1
+    if paper is not None:
+        print("   " + paper.summary())
     return fired
 
 
-def _emit_signal(runner: SignalRunner, feed: AlpacaFeed, symbol: str, candle, sig: dict) -> None:
+def _emit_signal(runner: SignalRunner, feed: AlpacaFeed, symbol: str, candle, sig: dict, paper=None) -> None:
     """Build OptionsPlan (live Alpaca premium if available) and post."""
     from options_sizer import build_options_plan
     if sig["entry"] == sig["stop"]:
@@ -98,8 +109,13 @@ def _emit_signal(runner: SignalRunner, feed: AlpacaFeed, symbol: str, candle, si
         print(f"  sizing skip: {e}")
         return
 
-    print(f"🚀 {sig['signal_type'].value.upper()} {sig['direction'].upper()}  {sig['reason']}")
+    tag = "[PAPER] " if paper is not None else ""
+    print(f"🚀 {tag}{sig['signal_type'].value.upper()} {sig['direction'].upper()}  {sig['reason']}")
     print(plan.format_discord())
+    if paper is not None:
+        pos = paper.open_from_plan(plan, ts=candle.timestamp)
+        print(f"   📗 PAPER OPEN {pos.contracts}x {pos.symbol} ${pos.strike:g} "
+              f"{pos.direction.upper()} @ ${pos.entry_premium:.2f}")
     if runner.post_to_discord and runner.discord:
         ok = runner.discord.post_signal(sig["signal_type"], candle, sig["reason"], plan)
         print("   ✓ Posted" if ok else "   ✗ Discord post failed")
@@ -114,6 +130,8 @@ def main():
     parser.add_argument("--once", action="store_true",
                         help="Run a single scan and exit (testing)")
     parser.add_argument("--no-discord", action="store_true", help="Skip Discord posting")
+    parser.add_argument("--paper", action="store_true",
+                        help="Paper-trade simulation: log fired signals + mark to stop/target in journal/paper-trades.jsonl")
     args = parser.parse_args()
 
     start, end = parse_window(args.window)
@@ -121,11 +139,17 @@ def main():
     runner = SignalRunner(post_to_discord=not args.no_discord)
     seen: Set[str] = set()
 
+    paper = None
+    if args.paper:
+        from paper_trader import PaperBook
+        paper = PaperBook()
+        print(f"📝 Paper mode ON → {paper.ledger_path}")
+
     print(f"Scanner armed. Symbols: {args.symbols}  Window (ET): {args.window}")
 
     if args.once:
         print(f"Single scan @ {now_et().strftime('%H:%M:%S')} ET")
-        fired = scan_once(runner, feed, args.symbols, seen)
+        fired = scan_once(runner, feed, args.symbols, seen, paper)
         print(f"Done. {fired} signals fired.")
         return
 
@@ -143,7 +167,7 @@ def main():
             continue
 
         print(f"\n=== {now.strftime('%H:%M:%S')} ET scan ===")
-        fired = scan_once(runner, feed, args.symbols, seen)
+        fired = scan_once(runner, feed, args.symbols, seen, paper)
         if fired == 0:
             print("  no new signals")
         time.sleep(POLL_INTERVAL_SECONDS)

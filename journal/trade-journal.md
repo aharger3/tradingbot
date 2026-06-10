@@ -7,8 +7,8 @@ description: Daily signal tracking + execution log for alpha feedback
 
 | Date | Time | Symbol | Signal Type | Direction | Entry Premium | Your Execution | Result (W/L/Scratch) | Notes | Missed Signals |
 |---|---|---|---|---|---|---|---|---|---|
-| 2026-05-27 | 10:51 | META | ONE_CANDLE_RULE | CALL | $13.59 | — | — | Did not run bot this morning | — |
-| 2026-05-27 | ~10:51 | META | REENTRY_84_RULE | CALL | $13.59 | — | — | Did not run bot this morning | — |
+| 2026-05-27 | 10:51 | META | ONE_CANDLE_RULE | CALL ❌ | $13.59 | — | WRONG | Bot fired CALL — should have been PUT. Direction inverted. See Known Issues. | — |
+| 2026-05-27 | ~10:51 | META | REENTRY_84_RULE | CALL ❌ | $13.59 | — | WRONG | Bot fired CALL — should have been PUT. Direction inverted. See Known Issues. | — |
 | 2026-05-28 | — | — | — | — | — | — | — | 0 signals in 9:30-11 window | Any you caught? |
 
 ## Instructions
@@ -25,4 +25,18 @@ description: Daily signal tracking + execution log for alpha feedback
 - L = Lost (hit stop)
 - Scratch = Closed flat
 - — = Not executed or still open
+
+## Known Issues
+
+### Put-side logic needs separate tuning (flagged 2026-06-10)
+The **2026-05-27 META 10:51 signal was wrong**: bot emitted CALL when the
+correct read was PUT. Call-side and put-side detection in
+`signal_runner.detect_signals()` are mirror images, but the put-side
+(B&R short / OneCandle short / 84% short re-entry) is **unvalidated and
+mis-firing direction**. Do NOT trust put signals yet.
+
+TODO:
+- Tune put-side thresholds independently from call-side (don't assume symmetry).
+- Backtest 2026-05-27 META window to confirm corrected PUT trigger.
+- Until validated, treat live PUT cards as informational only.
 

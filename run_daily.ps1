@@ -1,0 +1,21 @@
+# Daily Vanquish runner — launched by Task Scheduler at 9:25 AM ET.
+# Pulls Hermes's latest rule changes, then starts the live scanner.
+# Output tees to journal\scanner-YYYY-MM-DD.log for review.
+
+$ErrorActionPreference = "Continue"
+Set-Location $PSScriptRoot
+
+$python = "C:\Users\aharg\AppData\Local\hermes\hermes-agent\venv\Scripts\python.exe"
+if (-not (Test-Path $python)) { $python = "python" }
+
+$logDir = Join-Path $PSScriptRoot "journal"
+if (-not (Test-Path $logDir)) { New-Item -ItemType Directory -Path $logDir | Out-Null }
+$log = Join-Path $logDir ("scanner-" + (Get-Date -Format "yyyy-MM-dd") + ".log")
+
+"=== $(Get-Date -Format o) starting daily run ===" | Tee-Object -FilePath $log -Append
+
+# Pull latest rules from GitHub (Hermes commits here). Non-fatal on failure.
+git pull --rebase --autostash 2>&1 | Tee-Object -FilePath $log -Append
+
+# Run the live loop (self-exits outside 9:30-11:00 window logic; runs until stopped).
+& $python live_scanner.py 2>&1 | Tee-Object -FilePath $log -Append
