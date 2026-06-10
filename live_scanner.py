@@ -14,13 +14,14 @@ import time
 import argparse
 from datetime import datetime, time as dtime, timezone, timedelta
 from pathlib import Path
-from typing import List, Set, Tuple
+from typing import List, Optional, Set, Tuple
 
 from signal_runner import _load_env_file
 _load_env_file(Path(__file__).parent / ".env")
 
 from alpaca_feed import AlpacaFeed
 from signal_runner import SignalRunner
+from tastytrade_feed import TastytradeFeed
 
 
 DEFAULT_SYMBOLS = [
@@ -54,7 +55,8 @@ def scan_once(
     feed: AlpacaFeed,
     symbols: List[str],
     seen_signal_keys: Set[str],
-    paper=None,  # PaperBook instance when --paper is set
+    paper=None,
+    tasty_feed: Optional[TastytradeFeed] = None,
 ) -> int:
     """Scan each symbol once, post novel signals, return count fired."""
     fired = 0
@@ -85,15 +87,15 @@ def scan_once(
                 continue
             seen_signal_keys.add(key)
             sig["reason"] = f"[{symbol}] {sig['reason']}"
-            _emit_signal(runner, feed, symbol, candles[-1], sig, paper)
+            _emit_signal(runner, feed, symbol, candles[-1], sig, paper, tasty_feed)
             fired += 1
     if paper is not None:
         print("   " + paper.summary())
     return fired
 
 
-def _emit_signal(runner: SignalRunner, feed: AlpacaFeed, symbol: str, candle, sig: dict, paper=None) -> None:
-    """Build OptionsPlan (live Alpaca premium if available) and post."""
+def _emit_signal(runner: SignalRunner, feed: AlpacaFeed, symbol: str, candle, sig: dict, paper=None, tasty_feed=None) -> None:
+    """Build OptionsPlan (prefer Tastytrade premium, fallback Alpaca/estimate) and post."""
     from options_sizer import build_options_plan
     if sig["entry"] == sig["stop"]:
         return
@@ -104,6 +106,7 @@ def _emit_signal(runner: SignalRunner, feed: AlpacaFeed, symbol: str, candle, si
             stock_entry=sig["entry"],
             stock_stop=sig["stop"],
             alpaca_feed=feed,
+            tasty_feed=tasty_feed,
         )
     except ValueError as e:
         print(f"  sizing skip: {e}")
@@ -139,6 +142,14 @@ def main():
     runner = SignalRunner(post_to_discord=not args.no_discord)
     seen: Set[str] = set()
 
+    # Tastytrade feed for real-time option quotes
+    tasty_feed = None
+    try:
+        tasty_feed = TastytradeFeed()
+        tasty_feed.validate_credentials()
+    except Exception as e:
+        print(f"  Tastytrade init skipped: {e}")
+
     paper = None
     if args.paper:
         from paper_trader import PaperBook
@@ -149,7 +160,7 @@ def main():
 
     if args.once:
         print(f"Single scan @ {now_et().strftime('%H:%M:%S')} ET")
-        fired = scan_once(runner, feed, args.symbols, seen, paper)
+        fired = scan_once(runner, feed, args.symbols, seen, paper, tasty_feed=tasty_feed)
         print(f"Done. {fired} signals fired.")
         return
 
@@ -167,7 +178,7 @@ def main():
             continue
 
         print(f"\n=== {now.strftime('%H:%M:%S')} ET scan ===")
-        fired = scan_once(runner, feed, args.symbols, seen, paper)
+        fired = scan_once(runner, feed, args.symbols, seen, paper, tasty_feed=tasty_feed)
         if fired == 0:
             print("  no new signals")
         time.sleep(POLL_INTERVAL_SECONDS)

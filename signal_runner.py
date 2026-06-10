@@ -135,7 +135,10 @@ class SignalRunner:
         # 84% long re-entry: reclaim recent low with large lower wick.
         if len(self.candles) > 5:
             recent_low = min(c.low for c in self.candles[-6:-1])
-            if current.low <= recent_low * 1.01 and current.is_bullish:
+            # Require close back ABOVE the reclaimed low → true rejection +
+            # guarantees stop (recent_low) sits below entry (close).
+            if (current.low <= recent_low * 1.01 and current.close > recent_low
+                    and current.is_bullish):
                 if PriceActionAnalyzer.has_large_lower_wick(current):
                     signals.append({
                         "signal_type": SignalType.REENTRY_84_RULE,
@@ -175,7 +178,10 @@ class SignalRunner:
         # 84% short re-entry: rejection at recent high with large upper wick.
         if len(self.candles) > 5:
             recent_high = max(c.high for c in self.candles[-6:-1])
-            if current.high >= recent_high * 0.99 and current.is_bearish:
+            # Require close back BELOW the rejected high → true rejection +
+            # guarantees stop (recent_high) sits above entry (close).
+            if (current.high >= recent_high * 0.99 and current.close < recent_high
+                    and current.is_bearish):
                 if PriceActionAnalyzer.has_large_upper_wick(current):
                     signals.append({
                         "signal_type": SignalType.REENTRY_84_RULE,

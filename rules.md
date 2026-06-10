@@ -127,3 +127,18 @@ Screenshot from 2026-05-23:
 2. DX Trade API or CSV export confirmation for live data
 
 **Next**: Validate rules with TradeZella backtest → Build data connector → Hermes 24/7 runner
+
+---
+
+## Scarface Trades Refinements (2026-06-10)
+
+Full synthesis in `strategy-scarface-trades.md`. Highest-impact deltas vs current bot:
+1. **Displacement gate** — require a strong-momentum break before accepting a retest
+   (skip slow/hesitant breaks). Not yet measured by the bot.
+2. **Fair Value Gap (FVG)** — the displacement gap is a valid retest zone in addition
+   to the raw level. Missing today.
+3. **One Candle Rule** anchors to the *last opposite-close candle immediately before the
+   breakout* (bot currently scans the last 10 — looser).
+4. **Premarket high/low + prior-day high/low** as breakable levels (OR only today).
+5. **Session stop = 1 win / 2 attempts** (bot ends after 2 losses).
+6. Contract: first ATM *or* first OTM weekly (bot uses nearest ATM only).

@@ -116,6 +116,7 @@ def build_options_plan(
     stock_entry: float,
     stock_stop: float,
     alpaca_feed=None,           # AlpacaFeed instance, optional
+    tasty_feed=None,            # TastytradeFeed instance, optional (preferred)
     max_loss: float = DEFAULT_MAX_LOSS,
     rr: float = DEFAULT_RR,
     delta_estimate: float = DEFAULT_DELTA,
@@ -124,7 +125,7 @@ def build_options_plan(
 ) -> OptionsPlan:
     """Build full options trade card.
 
-    If alpaca_feed provided, fetches live mid premium. Else estimates from delta.
+    Premium sources (priority): Tastytrade (real-time) > Alpaca (15-min delayed) > delta estimate.
     """
     # 1. Stock-side risk/reward
     if direction == "call":
@@ -144,25 +145,35 @@ def build_options_plan(
     if expiration is None:
         expiration = nearest_expiration()
 
-    # 3. Entry premium: live from Alpaca, fallback to delta estimate
+    # 3. Entry premium: Tastytrade (real-time) > Alpaca (delayed) > delta estimate
     quote_source = "estimated_delta"
     entry_premium = None
     occ_symbol = ""
-    if alpaca_feed is not None:
+    if tasty_feed is not None:
+        try:
+            snap = tasty_feed.fetch_option_quote(symbol, expiration, strike, direction)
+            if snap and snap.get("mid"):
+                entry_premium = snap["mid"]
+                quote_source = "tastytrade_dxlink_realtime"
+                occ_symbol = snap.get("occ_symbol", "")
+                if snap.get("strike"):
+                    strike = snap["strike"]
+        except Exception as e:
+            print(f"  tasty quote failed: {e}")
+    if entry_premium is None and alpaca_feed is not None:
         try:
             snap = alpaca_feed.fetch_option_snapshot(symbol, expiration, strike, direction)
             if snap and snap.get("mid"):
                 entry_premium = snap["mid"]
                 quote_source = "alpaca_mid_15min_delayed"
                 occ_symbol = snap.get("occ_symbol", "")
-                # Parse the actual strike Alpaca returned (snapshot may use nearest available)
                 if occ_symbol:
                     try:
                         strike = int(occ_symbol[-8:]) / 1000.0
                     except ValueError:
                         pass
         except Exception as e:
-            print(f"  options snapshot failed: {e}, falling back to estimate")
+            print(f"  alpaca snapshot failed: {e}")
 
     if entry_premium is None:
         # Fallback: rough ATM 0DTE estimate.

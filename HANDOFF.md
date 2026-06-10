@@ -1,3 +1,54 @@
+# Session 2 (2026-06-10) — DXLink live quotes + put-side fix + Scarface
+
+## TL;DR
+Real-time option premiums now work. Put-side bug fixed. Scarface methodology documented.
+
+### Task 1 — DXLink real-time quotes: DONE ✅
+- **Root cause of the 403:** code hit the legacy `GET /quote-streamer-tokens`
+  (old CometD streamer) which returns `403 "Token has insufficient scopes"` for
+  OAuth bearer tokens. Verified live against both endpoints.
+- **Fix:** use `GET /api-quote-tokens` (the OAuth-compatible DXLink endpoint) →
+  returns `{token, dxlink-url, expires-at}` (valid ~24h). Confirmed 200 live.
+- New `dxlink.py`: minimal sync DXLink websocket client (SETUP→AUTH→CHANNEL→
+  FEED_SUBSCRIPTION→FEED_DATA, COMPACT Quote parsing). Needs `websocket-client`
+  (added to requirements.txt).
+- `tastytrade_feed.fetch_option_quote(symbol, expiration, strike, type)` resolves
+  the dxfeed streamer symbol from the nested chain and returns live bid/ask/mid.
+- `options_sizer.build_options_plan` now uses Tastytrade real-time premium first
+  (`quote_source="tastytrade_dxlink_realtime"`), Alpaca delayed second, estimate last.
+- **Verified live:** TSLA 2026-06-12 440C → bid 0.14 / ask 0.16 / mid 0.15.
+
+### Task 3 — Put-side detection: FIXED ✅
+- Reviewed all 3 bearish setups against the sizer's `stop > entry` invariant.
+- **Bug:** 84% short could fire with `stop ≤ entry` when a bearish candle wicked the
+  recent high but *closed above* it → sizer silently rejected the signal. Same latent
+  bug mirrored on call-side 84% (close below recent low).
+- **Fix (`signal_runner.py`):** require close back through the level on both —
+  `close > recent_low` (long), `close < recent_high` (short). Also = a *true*
+  rejection. B&R-short and One-Candle-short were already valid (stop = candle high).
+- Verified with synthetic candles: invalid case now yields 0 signals; valid
+  rejections fire with stop > entry.
+
+### Task 2 — Scarface Trades: DOCUMENTED ✅ (research, not code)
+- New `strategy-scarface-trades.md` + summary block in `rules.md`.
+- Channel: YouTube @ScarfaceTrades; community = "The Accelerator" (private Discord).
+- Confirmed-aligned: 5-min ORB, 1-min entries, 9:30–11:00 window, 2R, wick/absorption
+  confirmation.
+- **Gaps to implement next (priority):** (1) displacement gate on the break,
+  (2) Fair Value Gap retest zones, (3) One-Candle anchored to *last* opposite-close
+  before breakout, (4) premarket/prior-day levels, (5) session stop after 1 win,
+  (6) first-OTM contract option. All left as documented next steps (not coded) to
+  avoid destabilizing the validated detectors.
+
+### Also fixed
+- `live_scanner.py` pre-existing `NameError: Optional` (missing import) — scanner
+  couldn't start. Now runs. Production loop also now passes `tasty_feed` (was only
+  wired in `--once`).
+- Verified: `python live_scanner.py --once --no-discord` runs clean (0 signals
+  after-hours, expected — Alpaca returns no fresh bars).
+
+---
+
 # Session Handoff — read this first (Windows Claude Code)
 
 Context from the Mac session that doesn't auto-sync (Claude Code conversations + ~/.claude memory are per-machine). This file IS in the repo, so it reaches Windows.
