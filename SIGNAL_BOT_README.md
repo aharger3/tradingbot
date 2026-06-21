@@ -17,7 +17,8 @@ Loops 9:30-11:00 ET, polls every 60s, posts Discord on any signal. Ctrl+C to sto
 |---|---|
 | `live_scanner.py` | Main loop — fetches bars, runs detection, fires Discord |
 | `signal_runner.py` | Detection engine (3 setups, call + put) + manual-file CLI |
-| `alpaca_feed.py` | Alpaca data client — 1-min bars + options snapshots |
+| `tastytrade_feed.py` | Tastytrade data client — 1-min bars, real-time option quotes, account data |
+| `dxlink.py` | DXLink websocket client — Quote + Candle event streaming |
 | `options_sizer.py` | Builds options trade card from stock entry/stop |
 | `position_sizer.py` | Stock-side sizing (legacy, used by manual CLI) |
 | `discord_bot.py` | Webhook poster, embed formatter |
@@ -29,9 +30,10 @@ Loops 9:30-11:00 ET, polls every 60s, posts Discord on any signal. Ctrl+C to sto
 `.env` (gitignored) needs:
 ```
 DISCORD_WEBHOOK_URL=https://discord.com/api/webhooks/...
-ALPACA_API_KEY=PK...
-ALPACA_SECRET_KEY=...
 ```
+
+`.env.tastytrade` (gitignored) needs `CLIENT_ID`, `CLIENT_SECRET`,
+`REFRESH_TOKEN`, `ACCOUNT_NUMBER` — see `tastytrade_feed.py`.
 
 ## CLI Flags
 
@@ -49,7 +51,7 @@ Each signal posts an embed with:
 - Entry / Stop / Target premiums
 - Contract count (sized to $1K max loss)
 - Stock reference levels
-- Quote source (`alpaca_mid_15min_delayed` or `estimated_delta` fallback)
+- Quote source (`tastytrade_dxlink_realtime` or `estimated_delta` fallback)
 - Setup name + reason text
 
 ## Validation
@@ -63,8 +65,8 @@ Rules validated against TradeZella backtest of 320 trades:
 
 ## Known Limitations
 
-- Options quotes are **15-min delayed** on Alpaca free tier — real Vanquish premium may differ slightly. Verify before execution.
-- Strike rounding picks nearest available contract from Alpaca chain; may be ±$2.50 from true ATM on TSLA at high prices.
+- Options quotes are real-time via Tastytrade DXLink — falls back to a rough delta estimate if the quote fetch fails.
+- Strike rounding picks the nearest available contract from the Tastytrade chain; may be ±$2.50 from true ATM on TSLA at high prices.
 - No automatic kill-switch on 2-loss day rule yet — manual stop.
 - 0DTE only when scan runs before 14:30 ET; after that, picks next trading day.
 - Put-side detection mirrors call logic; tested at logic level, not validated against historical puts.

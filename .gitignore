@@ -1,3 +1,4 @@
 .env
+.env.tastytrade
 __pycache__/
 *.pyc

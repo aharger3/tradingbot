@@ -1,7 +1,8 @@
 """Tastytrade API feed for Vanquish signal bot.
 
-Provides real-time option quotes, account data, and market metrics.
-For 1-min candle bars, keeps Alpaca feed (free tier, 15-min delayed).
+Provides real-time option quotes, account data, market metrics, and 1-min
+candle bars (all via DXLink — see dxlink.py). Tastytrade is the sole
+data/broker integration as of 2026-06-13 (Alpaca removed).
 
 Loads creds from .env.tastytrade (KEY=VALUE format).
 
@@ -14,6 +15,7 @@ Usage:
 """
 
 import os
+import sys
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Optional, List
@@ -21,6 +23,13 @@ from typing import Optional, List
 import requests
 
 from vanquish_bot import Candle
+
+# Force UTF-8 stdout/stderr so emoji/checkmark output (✓✗) don't crash with
+# UnicodeEncodeError when run under Windows/PowerShell (cp1252 pipes).
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+if hasattr(sys.stderr, "reconfigure"):
+    sys.stderr.reconfigure(encoding="utf-8", errors="replace")
 
 
 def _load_tastytrade_env(path: Path) -> None:
@@ -281,17 +290,104 @@ class TastytradeFeed:
             print(f"  ✗ Tastytrade: {e}")
             return False
 
-    # ---- Candle History (via /market-data/history) ----
+    # ---- Candle History (via DXLink Candle events) ----
 
     def fetch_recent_bars(self, symbol: str, lookback_minutes: int = 60) -> List[Candle]:
-        """Fetch recent 1-min candles. Path TBD from tastytrade API.
+        """Fetch recent 1-min candles via DXLink Candle events.
 
-        Currently returns empty list since /market-data/history/{symbol}
-        requires specific params not yet confirmed. Falls back to Alpaca.
+        *** NEW / UNTESTED-AGAINST-LIVE-API (2026-06-13) ***
+        Replaces the old stub (which always returned [] and relied on
+        Alpaca as the real bar source — Alpaca is now removed entirely).
+        Uses dxlink.fetch_candles() with contract="HISTORY" and a
+        `fromTime` lookback window. See dxlink.py for protocol details
+        and caveats. The REST endpoint /market-data/history/{symbol}
+        previously returned 429s with unclear params, so this goes
+        through the same DXLink websocket used for option quotes.
+
+        Returns [] (not an exception) if the dxlink token can't be
+        obtained or no candle data comes back — caller logs
+        "only 0 bars, skipping" for the symbol in that case.
         """
-        # /market-data/history/{symbol} gave 429 — rate limited, need correct params
-        # For now, return empty so caller falls back to Alpaca
-        return []
+        tok = self.get_dxlink_token()
+        if not tok:
+            return []
+        from dxlink import fetch_candles
+        from_time_ms = int(
+            (datetime.now(timezone.utc) - timedelta(minutes=lookback_minutes)).timestamp() * 1000
+        )
+        try:
+            raw = fetch_candles(tok["url"], tok["token"], symbol.upper(), from_time_ms, timeout=10)
+        except Exception as e:
+            print(f"  [{symbol}] dxlink candle fetch failed: {e}")
+            return []
+
+        candles: List[Candle] = []
+        for c in raw:
+            ts = datetime.fromtimestamp(c["time"] / 1000, tz=timezone.utc) - timedelta(hours=4)  # approx ET
+            try:
+                candles.append(Candle(
+                    timestamp=ts.strftime("%H:%M:%S"),
+                    open=float(c["open"]),
+                    high=float(c["high"]),
+                    low=float(c["low"]),
+                    close=float(c["close"]),
+                    volume=int(c.get("volume") or 0),
+                ))
+            except (TypeError, ValueError):
+                continue
+        return candles
+
+    def fetch_bars_for_date(self, symbol: str, date_str: str, timeout: float = 10.0) -> List[Candle]:
+        """Fetch 1-min candles for a specific past session (YYYY-MM-DD, ET).
+
+        Unlike fetch_recent_bars (which fetches "last N minutes from now"),
+        this sets `fromTime` to midnight ET on `date_str` so the DXLink
+        Candle backfill actually covers that date, then keeps only the
+        candles whose (approx-ET) date matches `date_str` — discarding any
+        earlier/later days included in the backfill/live stream. Used by
+        backtest_window.py to replay a specific historical session.
+
+        Returns [] (not an exception) on bad date_str, missing token, or no
+        matching candles.
+        """
+        tok = self.get_dxlink_token()
+        if not tok:
+            return []
+        try:
+            target_date = datetime.strptime(date_str, "%Y-%m-%d").date()
+        except ValueError:
+            return []
+
+        from dxlink import fetch_candles
+        # Midnight ET on the target date, expressed as UTC epoch ms.
+        # (Same UTC-4/ET approximation used elsewhere in this file.)
+        from_dt = datetime(target_date.year, target_date.month, target_date.day,
+                            tzinfo=timezone.utc) + timedelta(hours=4)
+        from_time_ms = int(from_dt.timestamp() * 1000)
+
+        try:
+            raw = fetch_candles(tok["url"], tok["token"], symbol.upper(), from_time_ms, timeout=timeout)
+        except Exception as e:
+            print(f"  [{symbol}] dxlink candle fetch failed: {e}")
+            return []
+
+        candles: List[Candle] = []
+        for c in raw:
+            ts = datetime.fromtimestamp(c["time"] / 1000, tz=timezone.utc) - timedelta(hours=4)  # approx ET
+            if ts.date() != target_date:
+                continue
+            try:
+                candles.append(Candle(
+                    timestamp=ts.strftime("%H:%M:%S"),
+                    open=float(c["open"]),
+                    high=float(c["high"]),
+                    low=float(c["low"]),
+                    close=float(c["close"]),
+                    volume=int(c.get("volume") or 0),
+                ))
+            except (TypeError, ValueError):
+                continue
+        return candles
 
 
 if __name__ == "__main__":

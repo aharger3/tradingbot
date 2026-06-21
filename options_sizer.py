@@ -4,7 +4,7 @@ Workflow:
   1. Stock signal fires → stock_entry, stock_stop, direction
   2. Pick nearest expiration (0DTE if early in day, else next trading day)
   3. Pick nearest ATM strike (round to symbol's increment)
-  4. Fetch live option mid from Alpaca options snapshot (free tier = 15-min delayed)
+  4. Fetch live option mid from Tastytrade DXLink (real-time)
   5. Estimate stop premium = entry_premium - (stock_risk × delta_estimate)
   6. Contracts = floor(max_loss / ((entry - stop) × 100))
 """
@@ -55,7 +55,7 @@ class OptionsPlan:
     stock_stop: float
     stock_target: float
     # Quote quality
-    quote_source: str  # "alpaca_mid" or "estimated_delta"
+    quote_source: str  # "tastytrade_dxlink_realtime" or "estimated_delta"
     occ_symbol: str
 
     def format_discord(self) -> str:
@@ -115,7 +115,6 @@ def build_options_plan(
     direction: Literal["call", "put"],
     stock_entry: float,
     stock_stop: float,
-    alpaca_feed=None,           # AlpacaFeed instance, optional
     tasty_feed=None,            # TastytradeFeed instance, optional (preferred)
     max_loss: float = DEFAULT_MAX_LOSS,
     rr: float = DEFAULT_RR,
@@ -125,7 +124,7 @@ def build_options_plan(
 ) -> OptionsPlan:
     """Build full options trade card.
 
-    Premium sources (priority): Tastytrade (real-time) > Alpaca (15-min delayed) > delta estimate.
+    Premium sources (priority): Tastytrade (real-time) > delta estimate.
     """
     # 1. Stock-side risk/reward
     if direction == "call":
@@ -145,7 +144,7 @@ def build_options_plan(
     if expiration is None:
         expiration = nearest_expiration()
 
-    # 3. Entry premium: Tastytrade (real-time) > Alpaca (delayed) > delta estimate
+    # 3. Entry premium: Tastytrade (real-time) > delta estimate
     quote_source = "estimated_delta"
     entry_premium = None
     occ_symbol = ""
@@ -160,20 +159,6 @@ def build_options_plan(
                     strike = snap["strike"]
         except Exception as e:
             print(f"  tasty quote failed: {e}")
-    if entry_premium is None and alpaca_feed is not None:
-        try:
-            snap = alpaca_feed.fetch_option_snapshot(symbol, expiration, strike, direction)
-            if snap and snap.get("mid"):
-                entry_premium = snap["mid"]
-                quote_source = "alpaca_mid_15min_delayed"
-                occ_symbol = snap.get("occ_symbol", "")
-                if occ_symbol:
-                    try:
-                        strike = int(occ_symbol[-8:]) / 1000.0
-                    except ValueError:
-                        pass
-        except Exception as e:
-            print(f"  alpaca snapshot failed: {e}")
 
     if entry_premium is None:
         # Fallback: rough ATM 0DTE estimate.
@@ -215,7 +200,7 @@ def build_options_plan(
 
 
 if __name__ == "__main__":
-    # Test without Alpaca (estimation only)
+    # Test without Tastytrade (estimation only)
     plan = build_options_plan(
         symbol="TSLA",
         direction="call",

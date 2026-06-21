@@ -16,10 +16,16 @@ from datetime import datetime, time as dtime, timezone, timedelta
 from pathlib import Path
 from typing import List, Optional, Set, Tuple
 
+# Force UTF-8 stdout/stderr so emoji in signal output (📝🚀📕📗✓✗) don't crash
+# with UnicodeEncodeError when run under Windows/PowerShell (cp1252 pipes).
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+if hasattr(sys.stderr, "reconfigure"):
+    sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+
 from signal_runner import _load_env_file
 _load_env_file(Path(__file__).parent / ".env")
 
-from alpaca_feed import AlpacaFeed
 from signal_runner import SignalRunner
 from tastytrade_feed import TastytradeFeed
 
@@ -52,17 +58,16 @@ def in_window(now: datetime, start: dtime, end: dtime) -> bool:
 
 def scan_once(
     runner: SignalRunner,
-    feed: AlpacaFeed,
+    tasty_feed: TastytradeFeed,
     symbols: List[str],
     seen_signal_keys: Set[str],
     paper=None,
-    tasty_feed: Optional[TastytradeFeed] = None,
 ) -> int:
     """Scan each symbol once, post novel signals, return count fired."""
     fired = 0
     for symbol in symbols:
         try:
-            candles = feed.fetch_recent_bars(symbol, lookback_minutes=60)
+            candles = tasty_feed.fetch_recent_bars(symbol, lookback_minutes=60)
         except Exception as e:
             print(f"[{symbol}] fetch failed: {e}")
             continue
@@ -87,15 +92,15 @@ def scan_once(
                 continue
             seen_signal_keys.add(key)
             sig["reason"] = f"[{symbol}] {sig['reason']}"
-            _emit_signal(runner, feed, symbol, candles[-1], sig, paper, tasty_feed)
+            _emit_signal(runner, tasty_feed, symbol, candles[-1], sig, paper)
             fired += 1
     if paper is not None:
         print("   " + paper.summary())
     return fired
 
 
-def _emit_signal(runner: SignalRunner, feed: AlpacaFeed, symbol: str, candle, sig: dict, paper=None, tasty_feed=None) -> None:
-    """Build OptionsPlan (prefer Tastytrade premium, fallback Alpaca/estimate) and post."""
+def _emit_signal(runner: SignalRunner, tasty_feed: TastytradeFeed, symbol: str, candle, sig: dict, paper=None) -> None:
+    """Build OptionsPlan (Tastytrade real-time premium, fallback delta estimate) and post."""
     from options_sizer import build_options_plan
     if sig["entry"] == sig["stop"]:
         return
@@ -105,7 +110,6 @@ def _emit_signal(runner: SignalRunner, feed: AlpacaFeed, symbol: str, candle, si
             direction=sig["direction"],
             stock_entry=sig["entry"],
             stock_stop=sig["stop"],
-            alpaca_feed=feed,
             tasty_feed=tasty_feed,
         )
     except ValueError as e:
@@ -138,17 +142,20 @@ def main():
     args = parser.parse_args()
 
     start, end = parse_window(args.window)
-    feed = AlpacaFeed()
     runner = SignalRunner(post_to_discord=not args.no_discord)
     seen: Set[str] = set()
 
-    # Tastytrade feed for real-time option quotes
+    # Tastytrade is now the sole data feed (candles + real-time option quotes).
     tasty_feed = None
     try:
         tasty_feed = TastytradeFeed()
         tasty_feed.validate_credentials()
     except Exception as e:
-        print(f"  Tastytrade init skipped: {e}")
+        print(f"  Tastytrade init failed: {e}")
+
+    if tasty_feed is None:
+        print("No data feed available (Tastytrade init failed). Exiting.")
+        sys.exit(1)
 
     paper = None
     if args.paper:
@@ -160,7 +167,7 @@ def main():
 
     if args.once:
         print(f"Single scan @ {now_et().strftime('%H:%M:%S')} ET")
-        fired = scan_once(runner, feed, args.symbols, seen, paper, tasty_feed=tasty_feed)
+        fired = scan_once(runner, tasty_feed, args.symbols, seen, paper)
         print(f"Done. {fired} signals fired.")
         return
 
@@ -178,7 +185,7 @@ def main():
             continue
 
         print(f"\n=== {now.strftime('%H:%M:%S')} ET scan ===")
-        fired = scan_once(runner, feed, args.symbols, seen, paper, tasty_feed=tasty_feed)
+        fired = scan_once(runner, tasty_feed, args.symbols, seen, paper)
         if fired == 0:
             print("  no new signals")
         time.sleep(POLL_INTERVAL_SECONDS)

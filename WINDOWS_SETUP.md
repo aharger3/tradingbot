@@ -34,9 +34,9 @@ cd tradingbot
 pip install -r requirements.txt
 ```
 
-## 5. Create the .env file
+## 5. Create the .env files
 
-Copy the example and fill in your real keys (the .env is gitignored — never committed):
+Copy the example and fill in your real keys (both files are gitignored — never committed):
 
 ```powershell
 copy .env.example .env
@@ -45,12 +45,17 @@ notepad .env
 
 Fill in:
 ```
-DISCORD_WEBHOOK_URL=https://discord.com/api/webhooks/1509036583150420030/...
-ALPACA_API_KEY=PKC6UTGX5X4MEI7AWG36A66HGG
-ALPACA_SECRET_KEY=4E2MhZp7vwBnEdPdnKxoY4gL4UDPp93VzrJiUDm8sZHu
+DISCORD_WEBHOOK_URL=https://discord.com/api/webhooks/YOUR_WEBHOOK_ID/YOUR_WEBHOOK_TOKEN
 ```
 
-(Later, swap Alpaca for Tastytrade real-time when ready.)
+Tastytrade is the data/broker integration — create `.env.tastytrade` with:
+```
+CLIENT_ID=...
+CLIENT_SECRET=...
+REFRESH_TOKEN=...
+ACCOUNT_NUMBER=...
+```
+See `tastytrade_feed.py` for details on obtaining these.
 
 ## 6. Test it
 

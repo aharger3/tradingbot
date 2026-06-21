@@ -5,7 +5,7 @@ import sys
 from datetime import datetime, time as dtime, timezone, timedelta
 from pathlib import Path
 
-from alpaca_feed import AlpacaFeed
+from tastytrade_feed import TastytradeFeed
 from signal_runner import SignalRunner
 
 DEFAULT_SYMBOLS = [
@@ -19,7 +19,7 @@ def backtest_window(symbols, date_str="2026-05-27", start_et="09:30", end_et="11
     date_str: "YYYY-MM-DD"
     start_et, end_et: "HH:MM"
     """
-    feed = AlpacaFeed()
+    feed = TastytradeFeed()
     runner = SignalRunner(post_to_discord=False)
 
     # Parse times
@@ -34,8 +34,9 @@ def backtest_window(symbols, date_str="2026-05-27", start_et="09:30", end_et="11
     total_signals = 0
     for symbol in symbols:
         try:
-            # Fetch all bars for the day
-            candles = feed.fetch_recent_bars(symbol, lookback_minutes=1440)  # 1 day
+            # Fetch all bars for the requested date (not "last 1440 minutes
+            # from now" — that ignored date_str entirely).
+            candles = feed.fetch_bars_for_date(symbol, date_str)
         except Exception as e:
             print(f"[{symbol}] fetch failed: {e}")
             continue
@@ -81,7 +82,7 @@ def backtest_window(symbols, date_str="2026-05-27", start_et="09:30", end_et="11
                         direction=sig["direction"],
                         stock_entry=sig["entry"],
                         stock_stop=sig["stop"],
-                        alpaca_feed=feed,
+                        tasty_feed=feed,
                     )
                     print(f"      {plan.strike:g} {plan.direction.upper()} | entry ${plan.entry_premium:.2f} | stop ${plan.stop_premium:.2f} | target ${plan.target_premium:.2f} | {plan.contracts} contracts")
                 except Exception as e:

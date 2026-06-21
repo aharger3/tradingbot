@@ -71,13 +71,18 @@ Only external dependency: `requests`. Everything else is Python stdlib.
 
 ### .env values he needs (gitignored, never commit)
 ```
-DISCORD_WEBHOOK_URL=https://discord.com/api/webhooks/1509036583150420030/...  (he has full URL)
-ALPACA_API_KEY=PKC6UTGX5X4MEI7AWG36A66HGG
-ALPACA_SECRET_KEY=4E2MhZp7vwBnEdPdnKxoY4gL4UDPp93VzrJiUDm8sZHu
+DISCORD_WEBHOOK_URL=https://discord.com/api/webhooks/YOUR_WEBHOOK_ID/YOUR_WEBHOOK_TOKEN
 ```
+Tastytrade creds (CLIENT_ID, CLIENT_SECRET, REFRESH_TOKEN, ACCOUNT_NUMBER) go in
+`.env.tastytrade` (also gitignored, never commit) — see `tastytrade_feed.py`.
 
 ## Known open items
-- **Data feed is weak.** Alpaca free = 15-min delayed quotes, bad for 0DTE timing. Austin opened a **Tastytrade CASH account** (real-time, free, $0 balance) — PENDING APPROVAL. When approved, wire it into `alpaca_feed.py` to replace Alpaca. This is the next big fix after Windows is running.
+- **Data feed: Tastytrade is now primary (2026-06-13).** Alpaca integration
+  fully removed (`alpaca_feed.py` deprecated, all imports removed). Candle
+  bars now come from `tastytrade_feed.fetch_recent_bars()` via DXLink Candle
+  events — this is NEW and UNTESTED against the live API (no sandbox network
+  access to api.tastyworks.com). Verify it returns real bars before relying
+  on it for signals.
 - **Detection not yet trusted.** Austin has critiques he hasn't fully given yet — said "I don't know if the bot is thinking right" and "when would I actually have gotten the 10:51 signal live?" Needs a real critique/validation session before trusting signals. Put-side logic mirrors call-side but is unvalidated.
 - **Journal**: `journal/trade-journal.md` in this repo. Symlinked into vault `Areas/Trading Journal/` on Mac (shows in Finder, NOT Obsidian app — Obsidian skips symlinks).
 

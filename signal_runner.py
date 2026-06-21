@@ -7,6 +7,13 @@ import argparse
 from pathlib import Path
 from typing import List, Optional
 
+# Force UTF-8 stdout/stderr so emoji in signal output (⚠🚀✓✗) don't crash
+# with UnicodeEncodeError when run under Windows/PowerShell (cp1252 pipes).
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+if hasattr(sys.stderr, "reconfigure"):
+    sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+
 
 def _load_env_file(path: Path) -> None:
     """Minimal .env loader: KEY=VALUE per line, no quoting/expansion."""
