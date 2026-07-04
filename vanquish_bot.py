@@ -127,8 +127,32 @@ class PriceActionAnalyzer:
         or_high: float,
         or_low: float,
         is_long: bool,
+        htf_bias: Optional[str] = None,
     ) -> TradeGrade:
-        """Grade a potential signal A+ through D (D = skip)."""
+        """Grade a potential signal A+ through D (D = skip).
+
+        htf_bias ('bullish'/'bearish'/'neutral'/None) gates the top grades:
+        opposed trend = D (counter-trend, course says skip); neutral caps at
+        B (A+/A require HTF alignment per fable_rules); None = unknown,
+        grade on PA alone (pre-SPEC0 behavior).
+        """
+        if htf_bias in ("bullish", "bearish"):
+            aligned = (htf_bias == "bullish") == is_long
+            if not aligned:
+                return TradeGrade.D
+        base = PriceActionAnalyzer._grade_pa(candle, lookback_candles, or_high, or_low, is_long)
+        if htf_bias == "neutral" and base in (TradeGrade.A_PLUS, TradeGrade.A):
+            return TradeGrade.B
+        return base
+
+    @staticmethod
+    def _grade_pa(
+        candle: Candle,
+        lookback_candles: List[Candle],
+        or_high: float,
+        or_low: float,
+        is_long: bool,
+    ) -> TradeGrade:
         # Check if candle is at a key level (OR high for long, OR low for short)
         at_key_level = (candle.low <= or_high if is_long else candle.high >= or_low)
 

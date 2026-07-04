@@ -57,6 +57,27 @@ def in_window(now: datetime, start: dtime, end: dtime) -> bool:
     return start <= t <= end
 
 
+# symbol -> {"date", "pdh", "pdl", "bias", "bias_at"} — PDH/PDL cached per day,
+# HTF bias refreshed every 15 min (1h trend moves slowly; saves a ws call/scan)
+_daily_ctx: dict = {}
+
+
+def get_daily_context(tasty_feed, symbol: str):
+    """Returns (pdh, pdl, htf_bias); any element None when unavailable."""
+    import time as _time
+    today = __import__("datetime").date.today().isoformat()
+    ctx = _daily_ctx.get(symbol)
+    if ctx is None or ctx["date"] != today:
+        levels = tasty_feed.fetch_daily_levels(symbol)
+        ctx = {"date": today, "pdh": levels[0] if levels else None,
+               "pdl": levels[1] if levels else None, "bias": None, "bias_at": 0.0}
+        _daily_ctx[symbol] = ctx
+    if _time.time() - ctx["bias_at"] > 900:
+        ctx["bias"] = tasty_feed.fetch_htf_bias(symbol)
+        ctx["bias_at"] = _time.time()
+    return ctx["pdh"], ctx["pdl"], ctx["bias"]
+
+
 def scan_once(
     runner: SignalRunner,
     tasty_feed: TastytradeFeed,
@@ -99,6 +120,13 @@ def scan_once(
 
         runner.candles = candles
         runner.symbol = symbol  # so detect_signals logs correct ticker
+        try:
+            runner.pdh, runner.pdl, runner.htf_bias = get_daily_context(tasty_feed, symbol)
+        except Exception as e:
+            print(f"[{symbol}] daily context fetch failed: {e}")
+            runner.pdh = runner.pdl = runner.htf_bias = None
+        if runner.pdh:
+            print(f"[{symbol}] PDH {runner.pdh:.2f} / PDL {runner.pdl:.2f} / HTF {runner.htf_bias or 'unknown'}")
         signals = runner.detect_signals()
 
         for sig in signals:

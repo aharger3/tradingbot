@@ -103,11 +103,11 @@
       "key-level stops (SPEC1): B&R=OR level, order block=block extreme, 84%=reclaim level",
       "A-D grading with size scaling + C alert-only + 3/day cap (SPEC2)",
       "structural order blocks with retest classes + structure gate (SPEC3)",
-      "min-stop filter, consolidation skip, 2-loss halt, Tastytrade real-time"
+      "min-stop filter, consolidation skip, 2-loss halt, Tastytrade real-time",
+      "true prior-day PDH/PDL via daily DXLink candles as second B&R level pair (2026-07-04)",
+      "HTF 1h trend bias (close vs 20SMA) gating grades: opposed=D, neutral caps at B (2026-07-04)"
     ],
     "gaps_open": [
-      "PDH/PDL from PRIOR day (bot proxies with session high/low — needs prior-day bars)",
-      "HTF (1h/4h) trend alignment — grading assumes neutral",
       "displacement gate (body >= 1.5x avg) on B&R breaks",
       "FVG retest zones",
       "VWAP + daily 20SMA confluence",

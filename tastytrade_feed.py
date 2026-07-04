@@ -437,6 +437,64 @@ class TastytradeFeed:
                 continue
         return candles
 
+    # ---- Daily levels + HTF trend (SPEC0 gaps: true PDH/PDL, HTF alignment) ----
+
+    def fetch_daily_levels(self, symbol: str, timeout: float = 10.0):
+        """Prior completed session's high/low via daily DXLink candles.
+
+        Returns (pdh, pdl) or None. Uses the last daily candle whose date is
+        before today (ET) — i.e. the true previous-day levels, not the
+        session-so-far proxy signal_runner falls back to.
+        """
+        tok = self.get_dxlink_token()
+        if not tok:
+            return None
+        from dxlink import fetch_candles
+        from_time_ms = int((datetime.now(timezone.utc) - timedelta(days=10)).timestamp() * 1000)
+        try:
+            raw = fetch_candles(tok["url"], tok["token"], symbol.upper(),
+                                from_time_ms, period="d", timeout=timeout)
+        except Exception as e:
+            print(f"  [{symbol}] daily candle fetch failed: {e}")
+            return None
+        today_et = (datetime.now(timezone.utc) - timedelta(hours=4)).date()
+        prior = [c for c in raw
+                 if (datetime.fromtimestamp(c["time"] / 1000, tz=timezone.utc)
+                     - timedelta(hours=4)).date() < today_et
+                 and c.get("high") is not None and c.get("low") is not None]
+        if not prior:
+            return None
+        last = prior[-1]
+        return float(last["high"]), float(last["low"])
+
+    def fetch_htf_bias(self, symbol: str, timeout: float = 10.0):
+        """1h trend direction: 'bullish' / 'bearish' / 'neutral', or None.
+
+        Close vs 20-period SMA of hourly closes (fable_rules: 1h = scalper
+        direction timeframe). ±0.1% dead band = neutral.
+        """
+        tok = self.get_dxlink_token()
+        if not tok:
+            return None
+        from dxlink import fetch_candles
+        from_time_ms = int((datetime.now(timezone.utc) - timedelta(days=7)).timestamp() * 1000)
+        try:
+            raw = fetch_candles(tok["url"], tok["token"], symbol.upper(),
+                                from_time_ms, period="1h", timeout=timeout)
+        except Exception as e:
+            print(f"  [{symbol}] 1h candle fetch failed: {e}")
+            return None
+        closes = [float(c["close"]) for c in raw if c.get("close") is not None]
+        if len(closes) < 20:
+            return None
+        sma20 = sum(closes[-20:]) / 20
+        last = closes[-1]
+        if last > sma20 * 1.001:
+            return "bullish"
+        if last < sma20 * 0.999:
+            return "bearish"
+        return "neutral"
+
 
 if __name__ == "__main__":
     feed = TastytradeFeed()

@@ -48,6 +48,11 @@ class SignalRunner:
                  symbol: str = "UNKNOWN", log_signals: bool = True):
         self.session = TradingSession()
         self.candles: List[Candle] = []
+        # True prior-day levels + HTF trend, set by live_scanner per symbol
+        # (SPEC0 gaps). None = unavailable → session-proxy / PA-only grading.
+        self.pdh: Optional[float] = None
+        self.pdl: Optional[float] = None
+        self.htf_bias: Optional[str] = None
         self.discord = None
         self.post_to_discord = post_to_discord
         self.symbol = symbol
@@ -163,8 +168,12 @@ class SignalRunner:
         signals = []
         current = self.candles[-1]
         or_high, or_low = OpeningRangeAnalyzer.get_opening_range(self.candles)
-        pdh = max(c.high for c in self.candles)
-        pdl = min(c.low for c in self.candles)
+        # Session extremes (HOD/LOD) — used by 84% rule RR checks
+        hod = max(c.high for c in self.candles)
+        lod = min(c.low for c in self.candles)
+        # True prior-day levels when live_scanner provided them, else session proxy
+        pdh = self.pdh if self.pdh is not None else hod
+        pdl = self.pdl if self.pdl is not None else lod
 
         # Consolidation check → skip all
         if self._is_consolidation(or_high, or_low, pdh, pdl):
@@ -172,31 +181,40 @@ class SignalRunner:
 
         lookback = self.candles[-6:-1] if len(self.candles) >= 6 else self.candles[:-1]
 
+        # B&R reference levels: OR always; true PDH/PDL when available (SPEC0:
+        # both traders treat prior-day levels as the PRIMARY reference)
+        level_pairs = [("OR high", "OR low", or_high, or_low)]
+        if self.pdh is not None and self.pdl is not None:
+            level_pairs.append(("PDH", "PDL", self.pdh, self.pdl))
+
         # ---- CALL SIDE (bullish) ----
 
-        # B&R long: prior breakout of OR high, retest
-        prior_breakout = any(c.close > or_high for c in lookback)
-        if prior_breakout and current.low <= or_high and current.close > or_high:
-            stock_risk = current.close - or_high
-            grade = PriceActionAnalyzer.grade_trade(current, lookback, or_high, or_low, is_long=True)
-            if stock_risk < 0.50:
-                grade = TradeGrade.D
-            self._route(signals, {
-                    "signal_type": SignalType.BREAK_AND_RETEST,
-                    "reason": f"B&R long — prior breakout above ${or_high:.2f}, retest with {grade.value} PA",
-                    "entry": current.close,
-                    "stop": or_high,
-                    "direction": "call",
-                    "grade": grade.value,
-                    "stop_level_name": "OR high",
-                    "stop_width_pct": round(stock_risk / current.close * 100, 2),
-                })
+        # B&R long: prior breakout of a reference high, retest
+        for hi_name, _lo_name, level_hi, level_lo in level_pairs:
+            prior_breakout = any(c.close > level_hi for c in lookback)
+            if prior_breakout and current.low <= level_hi and current.close > level_hi:
+                stock_risk = current.close - level_hi
+                grade = PriceActionAnalyzer.grade_trade(current, lookback, level_hi, level_lo,
+                                                        is_long=True, htf_bias=self.htf_bias)
+                if stock_risk < 0.50:
+                    grade = TradeGrade.D
+                self._route(signals, {
+                        "signal_type": SignalType.BREAK_AND_RETEST,
+                        "reason": f"B&R long — prior breakout above {hi_name} ${level_hi:.2f}, retest with {grade.value} PA",
+                        "entry": current.close,
+                        "stop": level_hi,
+                        "direction": "call",
+                        "grade": grade.value,
+                        "stop_level_name": hi_name,
+                        "stop_width_pct": round(stock_risk / current.close * 100, 2),
+                    })
 
         # Order block long: last red candle before the structural HH (SPEC3)
         block, retest, note = detect_order_block_setup(self.candles, "bullish")
         if block is not None and retest in ("wick_only", "partial_body") and current.close > block.high:
             stock_risk = current.close - block.low
-            grade = PriceActionAnalyzer.grade_trade(current, lookback, or_high, or_low, is_long=True)
+            grade = PriceActionAnalyzer.grade_trade(current, lookback, or_high, or_low,
+                                                    is_long=True, htf_bias=self.htf_bias)
             if stock_risk < 0.50:
                 grade = TradeGrade.D
             self._route(signals, {
@@ -215,11 +233,12 @@ class SignalRunner:
                 and current.close >= self.session.entry_price
                 and current.is_bullish):
             # Skip if close near high of day (risk/reward gone)
-            day_range = pdh - pdl
-            if day_range > 0 and (pdh - current.close) / day_range > 0.2:  # not too close to HOD
+            day_range = hod - lod
+            if day_range > 0 and (hod - current.close) / day_range > 0.2:  # not too close to HOD
                 # Spec: stop at the exact reclaim level (prior entry), not day low
                 stock_risk = current.close - self.session.entry_price
-                grade = PriceActionAnalyzer.grade_trade(current, lookback, or_high, or_low, is_long=True)
+                grade = PriceActionAnalyzer.grade_trade(current, lookback, or_high, or_low,
+                                                        is_long=True, htf_bias=self.htf_bias)
                 self._route(signals, {
                         "signal_type": SignalType.REENTRY_84_RULE,
                         "reason": f"84% long — prior entry ${self.session.entry_price:.2f} reclaimed with {grade.value} PA",
@@ -233,29 +252,32 @@ class SignalRunner:
 
         # ---- PUT SIDE (bearish) ----
 
-        # B&R short: prior breakdown of OR low, retest
-        prior_breakdown = any(c.close < or_low for c in lookback)
-        if prior_breakdown and current.high >= or_low and current.close < or_low:
-            stock_risk = or_low - current.close
-            grade = PriceActionAnalyzer.grade_trade(current, lookback, or_high, or_low, is_long=False)
-            if stock_risk < 0.50:
-                grade = TradeGrade.D
-            self._route(signals, {
-                    "signal_type": SignalType.BREAK_AND_RETEST,
-                    "reason": f"B&R short — prior breakdown below ${or_low:.2f}, retest with {grade.value} PA",
-                    "entry": current.close,
-                    "stop": or_low,
-                    "direction": "put",
-                    "grade": grade.value,
-                    "stop_level_name": "OR low",
-                    "stop_width_pct": round(stock_risk / current.close * 100, 2),
-                })
+        # B&R short: prior breakdown of a reference low, retest
+        for _hi_name, lo_name, level_hi, level_lo in level_pairs:
+            prior_breakdown = any(c.close < level_lo for c in lookback)
+            if prior_breakdown and current.high >= level_lo and current.close < level_lo:
+                stock_risk = level_lo - current.close
+                grade = PriceActionAnalyzer.grade_trade(current, lookback, level_hi, level_lo,
+                                                        is_long=False, htf_bias=self.htf_bias)
+                if stock_risk < 0.50:
+                    grade = TradeGrade.D
+                self._route(signals, {
+                        "signal_type": SignalType.BREAK_AND_RETEST,
+                        "reason": f"B&R short — prior breakdown below {lo_name} ${level_lo:.2f}, retest with {grade.value} PA",
+                        "entry": current.close,
+                        "stop": level_lo,
+                        "direction": "put",
+                        "grade": grade.value,
+                        "stop_level_name": lo_name,
+                        "stop_width_pct": round(stock_risk / current.close * 100, 2),
+                    })
 
         # Order block short: last green candle before the structural LL (SPEC3)
         block, retest, note = detect_order_block_setup(self.candles, "bearish")
         if block is not None and retest in ("wick_only", "partial_body") and current.close < block.low:
             stock_risk = block.high - current.close
-            grade = PriceActionAnalyzer.grade_trade(current, lookback, or_high, or_low, is_long=False)
+            grade = PriceActionAnalyzer.grade_trade(current, lookback, or_high, or_low,
+                                                    is_long=False, htf_bias=self.htf_bias)
             if stock_risk < 0.50:
                 grade = TradeGrade.D
             self._route(signals, {
@@ -273,11 +295,12 @@ class SignalRunner:
         if (self.session.entry_price is not None
                 and current.close <= self.session.entry_price
                 and current.is_bearish):
-            day_range = pdh - pdl
-            if day_range > 0 and (current.close - pdl) / day_range > 0.2:
+            day_range = hod - lod
+            if day_range > 0 and (current.close - lod) / day_range > 0.2:
                 # Spec: stop at the exact rejection level (prior entry), not day high
                 stock_risk = self.session.entry_price - current.close
-                grade = PriceActionAnalyzer.grade_trade(current, lookback, or_high, or_low, is_long=False)
+                grade = PriceActionAnalyzer.grade_trade(current, lookback, or_high, or_low,
+                                                        is_long=False, htf_bias=self.htf_bias)
                 self._route(signals, {
                         "signal_type": SignalType.REENTRY_84_RULE,
                         "reason": f"84% short — prior entry ${self.session.entry_price:.2f} rejected with {grade.value} PA",
