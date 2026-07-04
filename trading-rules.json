@@ -1,0 +1,120 @@
+{
+  "meta": {
+    "generated": "2026-07-04",
+    "generator": "Fable SPEC0 content ingestion",
+    "sources": [
+      "circle_data/transcripts (Accelerator course, ~30 lessons + mastermind + bonus)",
+      "circle_data/a-setups/posts.json (390 community posts, 84 rule-bearing)",
+      "youtube_data (12 Scarface/JDub transcripts)",
+      "fable_rules.yaml (2026-07-03 synthesis)",
+      "scarface-jdub-strategy-audit.md, strategy-scarface-trades.md, rules.md"
+    ],
+    "session_window_et": "09:30-11:00",
+    "min_rr": 2.0
+  },
+  "reference_levels": {
+    "primary": ["PDH", "PDL", "premarket_high", "premarket_low"],
+    "secondary": ["opening_range_5min", "prior_week_low", "all_time_high", "prior_day_key_levels"],
+    "opening_range": {
+      "definition": "high/low of the first 5-minute candle (9:30-9:35 ET)",
+      "bot_note": "high/low over first 5 one-minute candles is mathematically identical — audit gap #9 was a false alarm"
+    },
+    "treatment": "levels are AREAS not lines; wicks may pierce, closes decide",
+    "principle": "wicks do the damage, bodies tell the story — use closes for structure, wicks for liquidity sweeps"
+  },
+  "confluence": {
+    "htf_direction": "1h (scalper) / 4h (day trade) trend must align before 1-min execution",
+    "daily_20_sma": "above=bullish bias, below=bearish",
+    "vwap": "above=bullish intraday, below=bearish",
+    "relative_strength": "symbol vs SPY/QQQ — community A-setups repeatedly cite RS as the deciding filter; skip longs when indices are weak",
+    "confluence_stack": "order block + PML/PDH coinciding = strongest zones (repeated in course + community posts)"
+  },
+  "strategies": {
+    "break_and_retest": {
+      "variants": ["opening_drive", "PDH_PDL", "order_block_retest", "opening_candle_range", "premarket_levels"],
+      "entry_conditions": [
+        "candle CLOSES through level with displacement (impulsive candle, body >= 1.5x avg of prior 5)",
+        "retest touches level or the FVG left by displacement",
+        "confirmation candle closes back in breakout direction",
+        "named pattern at retest: hammer/engulfing (bullish), shooting star/engulfing (bearish)"
+      ],
+      "stop_placement": "below breakout level (bot) / break of entry candle (Scarface video) — level stop is wider and survives wick noise",
+      "no_trade": "never inside the box/range; skip slow, hesitant breaks ('undecided candles' — community loss reports cite these)",
+      "targets": "2R fixed; scale 25-50% at HOD/first major level, trail runner behind new order blocks",
+      "a_plus_criteria": ["hammer at PDH/PDL retest", "HTF aligned", "lower wick > 2x body", "close in top 25% of range", "displacement on break"],
+      "claimed_stats": "69% WR, 2.58 PF (29 trades / 2 months, Scarface backtest)"
+    },
+    "order_block": {
+      "logic": "LAST opposite-close candle before the leg that breaks structure (HH for bullish, LL for bearish)",
+      "market_structure_context": "requires clear trend (HH/HL or LH/LL); invalid once any close through the block",
+      "entry_rules": [
+        "wait for retrace into block; wick-only touch = strongest, full body fill = weakest",
+        "entry models: top-of-block (aggressive), middle, confirmation-candle close back through (safest — community standard: 'confirmation candle entry with SL above/below block')",
+        "stop just beyond block extreme; trail stop behind each NEW order block as trade runs (course lesson 1450464)"
+      ]
+    },
+    "rule_of_84": {
+      "statistic": "identical setup re-presenting works ~84% of the time after a first stop-out",
+      "pre_check_questions": [
+        "Did the stop-out break the trend/structure?",
+        "Was the stop too tight in hindsight?",
+        "Would the exact same trade still work? (must be EXACT same conditions — course emphasizes repeatedly)"
+      ],
+      "re_entry_conditions": [
+        "candle CLOSE reclaims the exact original entry level",
+        "same stop, same target as first attempt",
+        "size: base + 50%",
+        "skip if price already near HOD/LOD (RR gone)"
+      ]
+    },
+    "opening_range": {
+      "method": "mark first 5-min candle (9:30-9:35) high/low; provides day's first S/R box",
+      "entry_rules": [
+        "trade edges only — break + retest of OR high (long) / OR low (short)",
+        "community pattern: 'wick retests 5min range, enter on 2nd confirming candle'",
+        "5min reclaim entry valid when clean retest never comes",
+        "never trade inside the box"
+      ]
+    }
+  },
+  "grading": {
+    "A+": {"criteria": "named pattern (hammer) at PDH/PDL-class level + HTF aligned + displacement context", "size_pct": 1.0},
+    "A":  {"criteria": "engulfing at key level + HTF aligned", "size_pct": 0.8},
+    "B":  {"criteria": "strong PA (large wick) at key level, HTF neutral", "size_pct": 0.6},
+    "C":  {"criteria": "weak PA but structure supports; alert-only, no auto-trade", "size_pct": 0.4},
+    "D":  {"criteria": "everything else — skip", "size_pct": 0.0}
+  },
+  "risk": {
+    "max_loss_per_trade_usd": 1000,
+    "rr_min": 2.0,
+    "min_stop_filter": "skip if stock risk < 0.5% of price AND est premium risk < $0.20",
+    "contract": "first ATM/OTM weekly; 0DTE before 14:30 ET",
+    "session": {"max_trades_per_day": 3, "halt_after_consecutive_losses": 2, "scarface_variant": "stop after 1 win — stricter, optional"},
+    "friday": "community practice: half size on Fridays"
+  },
+  "no_trade_zones": [
+    "middle of previous day range / inside opening-range box",
+    "all reference levels within 0.5% of each other (consolidation)",
+    "opening range tighter than 0.3%",
+    "slow/hesitant breaks without displacement"
+  ],
+  "bot_implementation_status": {
+    "implemented": [
+      "key-level stops (SPEC1): B&R=OR level, order block=block extreme, 84%=reclaim level",
+      "A-D grading with size scaling + C alert-only + 3/day cap (SPEC2)",
+      "structural order blocks with retest classes + structure gate (SPEC3)",
+      "min-stop filter, consolidation skip, 2-loss halt, Tastytrade real-time"
+    ],
+    "gaps_open": [
+      "PDH/PDL from PRIOR day (bot proxies with session high/low — needs prior-day bars)",
+      "HTF (1h/4h) trend alignment — grading assumes neutral",
+      "displacement gate (body >= 1.5x avg) on B&R breaks",
+      "FVG retest zones",
+      "VWAP + daily 20SMA confluence",
+      "relative strength vs SPY/QQQ filter",
+      "84% pre-check questions (bot only checks reclaim + not-near-HOD)",
+      "84% sizing base+50%",
+      "trail stops behind new order blocks (bot is signal-only, no management)"
+    ]
+  }
+}

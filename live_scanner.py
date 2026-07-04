@@ -129,6 +129,9 @@ def _emit_signal(runner: SignalRunner, tasty_feed: TastytradeFeed, symbol: str, 
         return False
     grade = sig.get("grade", "?")
     size_pct = GRADE_SIZE_PCT.get(grade, 0.6)
+    # 84% rule re-entries size base + 50% (course rule, SPEC0 ingestion)
+    if getattr(sig["signal_type"], "value", "") == "reentry_84_rule":
+        size_pct *= 1.5
     alert_only = grade == "C"
     try:
         plan = build_options_plan(
