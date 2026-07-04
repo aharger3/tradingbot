@@ -28,6 +28,7 @@ _load_env_file(Path(__file__).parent / ".env")
 
 from signal_runner import SignalRunner
 from tastytrade_feed import TastytradeFeed
+from signal_tracker import log_signal
 
 
 DEFAULT_SYMBOLS = [
@@ -62,9 +63,18 @@ def scan_once(
     symbols: List[str],
     seen_signal_keys: Set[str],
     paper=None,
+    max_trades: int = 3,
+    max_consecutive_losses: int = 2,
 ) -> int:
     """Scan each symbol once, post novel signals, return count fired."""
     fired = 0
+
+    # Check daily limits
+    if runner.session.day_ended():
+        print(f"  Session halted: {runner.session.signals_today}/{max_trades} signals, "
+              f"{runner.session.consecutive_losses}/{max_consecutive_losses} consecutive losses")
+        return 0
+
     for symbol in symbols:
         try:
             candles = tasty_feed.fetch_recent_bars(symbol, lookback_minutes=60)
@@ -82,28 +92,44 @@ def scan_once(
             for ev in paper.mark(symbol, high=last.high, low=last.low, ts=last.timestamp):
                 print(f"   📕 PAPER CLOSE {ev['symbol']} {ev['direction'].upper()} "
                       f"{ev['outcome'].upper()} P&L ${ev['pnl']:.2f}")
+                if ev["outcome"] == "stop":
+                    runner.session.record_loss()
+                else:
+                    runner.session.record_win()
 
         runner.candles = candles
+        runner.symbol = symbol  # so detect_signals logs correct ticker
         signals = runner.detect_signals()
 
         for sig in signals:
+            if runner.session.day_ended():
+                break
             key = f"{symbol}:{sig['signal_type'].value}:{sig['direction']}:{candles[-1].timestamp}"
             if key in seen_signal_keys:
                 continue
             seen_signal_keys.add(key)
             sig["reason"] = f"[{symbol}] {sig['reason']}"
-            _emit_signal(runner, tasty_feed, symbol, candles[-1], sig, paper)
+            executed = _emit_signal(runner, tasty_feed, symbol, candles[-1], sig, paper)
             fired += 1
+            if executed:  # C-grade alerts don't count toward the daily trade cap
+                runner.session.signals_today += 1
+
     if paper is not None:
         print("   " + paper.summary())
     return fired
 
 
-def _emit_signal(runner: SignalRunner, tasty_feed: TastytradeFeed, symbol: str, candle, sig: dict, paper=None) -> None:
-    """Build OptionsPlan (Tastytrade real-time premium, fallback delta estimate) and post."""
-    from options_sizer import build_options_plan
+def _emit_signal(runner: SignalRunner, tasty_feed: TastytradeFeed, symbol: str, candle, sig: dict, paper=None) -> bool:
+    """Build OptionsPlan (Tastytrade real-time premium, fallback delta estimate) and post.
+
+    Returns True if the signal is auto-tradeable (A+/A/B); False for C-grade
+    alert-only signals and skips (SPEC2)."""
+    from options_sizer import build_options_plan, GRADE_SIZE_PCT, DEFAULT_MAX_LOSS
     if sig["entry"] == sig["stop"]:
-        return
+        return False
+    grade = sig.get("grade", "?")
+    size_pct = GRADE_SIZE_PCT.get(grade, 0.6)
+    alert_only = grade == "C"
     try:
         plan = build_options_plan(
             symbol=symbol,
@@ -111,21 +137,48 @@ def _emit_signal(runner: SignalRunner, tasty_feed: TastytradeFeed, symbol: str, 
             stock_entry=sig["entry"],
             stock_stop=sig["stop"],
             tasty_feed=tasty_feed,
+            max_loss=DEFAULT_MAX_LOSS * size_pct,
         )
     except ValueError as e:
         print(f"  sizing skip: {e}")
-        return
+        return False
+
+    stop_level = sig.get("stop_level_name", "")
+    stop_width = sig.get("stop_width_pct", 0.0)
+    signal_type_val = sig["signal_type"].value if hasattr(sig["signal_type"], "value") else str(sig["signal_type"])
 
     tag = "[PAPER] " if paper is not None else ""
-    print(f"🚀 {tag}{sig['signal_type'].value.upper()} {sig['direction'].upper()}  {sig['reason']}")
+    icon = "⚠" if alert_only else "🚀"
+    print(f"{icon} {tag}{signal_type_val.upper()} {sig['direction'].upper()}  Grade: {grade}  Stop: {stop_level} ({stop_width}%)")
+    if alert_only:
+        print("   C GRADE — ALERT ONLY, manual review (not auto-traded)")
+    print(f"   {sig['reason']}")
     print(plan.format_discord())
-    if paper is not None:
+
+    # Log signal
+    log_signal(
+        symbol=symbol,
+        signal_type=signal_type_val,
+        direction=sig["direction"],
+        entry=sig["entry"],
+        stop=sig["stop"],
+        target=plan.stock_target if hasattr(plan, "stock_target") else 0,
+        grade=grade,
+        reason=sig["reason"],
+        stop_width_pct=stop_width,
+        quote_source=plan.quote_source if hasattr(plan, "quote_source") else "estimated",
+        status="alert" if alert_only else "fired",
+    )
+
+    if paper is not None and not alert_only:
         pos = paper.open_from_plan(plan, ts=candle.timestamp)
         print(f"   📗 PAPER OPEN {pos.contracts}x {pos.symbol} ${pos.strike:g} "
               f"{pos.direction.upper()} @ ${pos.entry_premium:.2f}")
     if runner.post_to_discord and runner.discord:
-        ok = runner.discord.post_signal(sig["signal_type"], candle, sig["reason"], plan)
+        ok = runner.discord.post_signal(sig["signal_type"], candle, sig["reason"], plan,
+                                         grade=grade, stop_level_name=stop_level, stop_width_pct=stop_width)
         print("   ✓ Posted" if ok else "   ✗ Discord post failed")
+    return not alert_only
 
 
 def main():
@@ -144,6 +197,9 @@ def main():
     start, end = parse_window(args.window)
     runner = SignalRunner(post_to_discord=not args.no_discord)
     seen: Set[str] = set()
+    max_trades = int(os.getenv("MAX_TRADES_PER_DAY", "3"))
+    max_losses = int(os.getenv("CONSECUTIVE_LOSS_HALT", "2"))
+    runner.session.max_signals_per_day = max_trades
 
     # Tastytrade is now the sole data feed (candles + real-time option quotes).
     tasty_feed = None
@@ -167,7 +223,8 @@ def main():
 
     if args.once:
         print(f"Single scan @ {now_et().strftime('%H:%M:%S')} ET")
-        fired = scan_once(runner, tasty_feed, args.symbols, seen, paper)
+        fired = scan_once(runner, tasty_feed, args.symbols, seen, paper,
+                            max_trades=max_trades, max_consecutive_losses=max_losses)
         print(f"Done. {fired} signals fired.")
         return
 
@@ -185,7 +242,8 @@ def main():
             continue
 
         print(f"\n=== {now.strftime('%H:%M:%S')} ET scan ===")
-        fired = scan_once(runner, tasty_feed, args.symbols, seen, paper)
+        fired = scan_once(runner, tasty_feed, args.symbols, seen, paper,
+                            max_trades=max_trades, max_consecutive_losses=max_losses)
         if fired == 0:
             print("  no new signals")
         time.sleep(POLL_INTERVAL_SECONDS)

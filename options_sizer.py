@@ -9,15 +9,18 @@ Workflow:
   6. Contracts = floor(max_loss / ((entry - stop) × 100))
 """
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from datetime import datetime, date, time, timedelta, timezone
-from typing import Optional, Literal
+from typing import Optional, Literal, List
 
 
 CONTRACT_MULTIPLIER = 100
 DEFAULT_MAX_LOSS = 1000.0
 DEFAULT_RR = 2.0
 DEFAULT_DELTA = 0.5  # ATM ≈ 0.5
+
+# Grade → fraction of max loss to risk (SPEC2). C = alert-only, D = filtered upstream.
+GRADE_SIZE_PCT = {"A+": 1.0, "A": 0.8, "B": 0.6, "C": 0.4, "D": 0.0}
 
 # Per-symbol strike increment (USD)
 # Initial-guess only — fetch_option_snapshot queries ±$5 range and picks closest
@@ -57,12 +60,14 @@ class OptionsPlan:
     # Quote quality
     quote_source: str  # "tastytrade_dxlink_realtime" or "estimated_delta"
     occ_symbol: str
+    bid_ask_spread: float = 0.0
+    option_warnings: List[str] = field(default_factory=list)
 
     def format_discord(self) -> str:
         arrow = "↑" if self.direction == "call" else "↓"
         right = "CALL" if self.direction == "call" else "PUT"
         dte = self._dte_label()
-        return (
+        lines = (
             f"**{self.symbol} {dte} ${self.strike:g} {right}** {arrow}\n"
             f"Expiration: {self.expiration}\n"
             f"Strike:     ${self.strike:g} (ATM)\n"
@@ -73,6 +78,11 @@ class OptionsPlan:
             f"Stock ref:  entry ${self.stock_entry:.2f} | stop ${self.stock_stop:.2f} | target ${self.stock_target:.2f}\n"
             f"Quote: {self.quote_source}"
         )
+        if self.bid_ask_spread > 0:
+            lines += f"\nSpread:     ${self.bid_ask_spread:.2f}"
+        if self.option_warnings:
+            lines += f"\n⚠ {', '.join(self.option_warnings)}"
+        return lines
 
     def _dte_label(self) -> str:
         try:
@@ -148,6 +158,8 @@ def build_options_plan(
     quote_source = "estimated_delta"
     entry_premium = None
     occ_symbol = ""
+    bid_ask_spread = 0.0
+    option_warnings = []
     if tasty_feed is not None:
         try:
             snap = tasty_feed.fetch_option_quote(symbol, expiration, strike, direction)
@@ -157,14 +169,25 @@ def build_options_plan(
                 occ_symbol = snap.get("occ_symbol", "")
                 if snap.get("strike"):
                     strike = snap["strike"]
+                # Spread check
+                bid = snap.get("bid", 0) or 0
+                ask = snap.get("ask", 0) or 0
+                if bid and ask:
+                    bid_ask_spread = round(ask - bid, 2)
+                    if bid_ask_spread > 0.50:
+                        option_warnings.append("wide spread")
         except Exception as e:
             print(f"  tasty quote failed: {e}")
 
     if entry_premium is None:
         # Fallback: rough ATM 0DTE estimate.
-        # ATM premium ≈ stock_price × 0.005 for 0DTE; scale up by delta + IV factor.
-        # Use a conservative $1-3 range for $400-stock 0DTE.
         entry_premium = max(round(stock_entry * 0.005, 2), 0.50)
+
+    # Post-premium filters
+    if entry_premium < 0.20:
+        option_warnings.append("too cheap")
+    if occ_symbol and occ_symbol.startswith(" "):
+        option_warnings.append("no liquidity")
 
     # 4. Stop + target in PREMIUM terms
     # Stop = entry - (stock_risk × delta × multiplier)
@@ -196,6 +219,8 @@ def build_options_plan(
         stock_target=round(stock_target, 2),
         quote_source=quote_source,
         occ_symbol=occ_symbol,
+        bid_ask_spread=bid_ask_spread,
+        option_warnings=option_warnings,
     )
 
 

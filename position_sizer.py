@@ -7,6 +7,7 @@ from typing import Literal
 CONTRACT_MULTIPLIER = 100  # 1 option contract = 100 shares
 DEFAULT_MAX_LOSS = 1000.0  # $1K risk per trade per rules.md
 DEFAULT_RR = 2.0           # 2:1 reward:risk target
+MIN_VIABLE_STOP_PCT = 0.005  # 0.5% min stop width — tighter rejected at signal level
 
 
 @dataclass
@@ -63,6 +64,9 @@ def compute_plan(
             raise ValueError(f"Put stop ({stock_stop}) must be above entry ({stock_entry})")
         risk = stock_stop - stock_entry
         target = stock_entry - rr * risk
+
+    if risk < 0.01:
+        raise ValueError(f"Risk ${risk:.4f}/share < $0.01 — stop too tight, skipping")
 
     reward = rr * risk
 

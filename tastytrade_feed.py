@@ -33,7 +33,7 @@ if hasattr(sys.stderr, "reconfigure"):
 
 
 def _load_tastytrade_env(path: Path) -> None:
-    """Load .env.tastytrade into os.environ."""
+    """Load .env.tastytrade or .env into os.environ."""
     if not path.exists():
         return
     for line in path.read_text().splitlines():
@@ -47,27 +47,39 @@ def _load_tastytrade_env(path: Path) -> None:
 
 
 _load_tastytrade_env(Path(__file__).parent / ".env.tastytrade")
+# Fallback: main .env may also have tastytrade creds
+_load_tastytrade_env(Path(__file__).parent / ".env")
 
 
-API_BASE = "https://api.tastyworks.com"
+API_BASE = "https://api.tastytrade.com"
+SESSION_ENDPOINT = f"{API_BASE}/sessions"
 TOKEN_ENDPOINT = f"{API_BASE}/oauth/token"
 USER_AGENT = "vanquish-trading-bot/1.0"
 
 
 class TastytradeFeed:
-    """Tastytrade market data + account info. Throws on auth failure."""
+    """Tastytrade market data + account info. Throws on auth failure.
+
+    Supports username/password session auth (primary) or OAuth refresh_token.
+    Loads USERNAME and PASSWORD from .env or .env.tastytrade.
+    """
 
     def __init__(
         self,
+        username: Optional[str] = None,
+        password: Optional[str] = None,
         client_id: Optional[str] = None,
         client_secret: Optional[str] = None,
         refresh_token: Optional[str] = None,
         account_number: Optional[str] = None,
     ):
+        self.username = username or os.getenv("TASTYTRADE_USERNAME") or os.getenv("USERNAME")
+        self.password = password or os.getenv("TASTYTRADE_PASSWORD") or os.getenv("PASSWORD")
         self.client_id = client_id or os.getenv("CLIENT_ID")
         self.client_secret = client_secret or os.getenv("CLIENT_SECRET")
         self.refresh_token = refresh_token or os.getenv("REFRESH_TOKEN")
         self.account_number = account_number or os.getenv("ACCOUNT_NUMBER")
+        self._session_token: Optional[str] = None
         self._access_token: Optional[str] = None
         self._access_token_expiry: Optional[datetime] = None
         self._dxlink_token: Optional[dict] = None
@@ -77,17 +89,53 @@ class TastytradeFeed:
     # ---- Auth ----
 
     def _get_access_token(self) -> str:
-        """Get valid access token, refreshing if expired."""
+        """Get valid access token using username/password or refresh_token."""
+        # Try cached token first
         if self._access_token and self._access_token_expiry:
             if datetime.now(timezone.utc) < self._access_token_expiry - timedelta(minutes=2):
                 return self._access_token
 
-        if not all([self.refresh_token, self.client_id, self.client_secret]):
-            raise ValueError(
-                "Tastytrade creds missing. Set CLIENT_ID, CLIENT_SECRET, "
-                "REFRESH_TOKEN in .env.tastytrade."
-            )
+        # Username/password session auth
+        if self.username and self.password:
+            return self._session_auth()
 
+        # Fallback: OAuth refresh_token
+        if self.refresh_token and self.client_id and self.client_secret:
+            return self._oauth_auth()
+
+        raise ValueError(
+            "Tastytrade creds missing. Set USERNAME/PASSWORD or "
+            "CLIENT_ID/CLIENT_SECRET/REFRESH_TOKEN in .env."
+        )
+
+    def _session_auth(self) -> str:
+        """POST /sessions with username+password — returns session-token."""
+        resp = requests.post(
+            SESSION_ENDPOINT,
+            json={"login": self.username, "password": self.password},
+            headers={"User-Agent": USER_AGENT},
+            timeout=10,
+        )
+        if resp.status_code == 201:
+            data = resp.json().get("data", {})
+            self._access_token = data.get("session-token")
+            self._access_token_expiry = datetime.now(timezone.utc) + timedelta(hours=12)
+            if not self.account_number:
+                # Try to grab first account from /customers/me/accounts
+                try:
+                    accts = self.get_accounts()
+                    if accts:
+                        self.account_number = accts[0].get("account", {}).get("account-number")
+                except Exception:
+                    pass
+            return self._access_token or ""
+
+        raise RuntimeError(
+            f"Tastytrade session auth failed: HTTP {resp.status_code} {resp.text[:200]}"
+        )
+
+    def _oauth_auth(self) -> str:
+        """OAuth refresh_token flow (legacy fallback)."""
         resp = requests.post(
             TOKEN_ENDPOINT,
             json={
@@ -108,12 +156,12 @@ class TastytradeFeed:
             return self._access_token
 
         raise RuntimeError(
-            f"Tastytrade token refresh failed: HTTP {resp.status_code}"
+            f"Tastytrade OAuth failed: HTTP {resp.status_code}"
         )
 
     def _headers(self) -> dict:
         return {
-            "Authorization": f"Bearer {self._get_access_token()}",
+            "Authorization": f"Token {self._get_access_token()}",
             "User-Agent": USER_AGENT,
             "Content-Type": "application/json",
         }

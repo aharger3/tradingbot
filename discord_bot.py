@@ -24,6 +24,9 @@ class DiscordSignalBot:
         candle: Candle,
         reason: str,
         plan=None,  # OptionsPlan (preferred) or legacy SizingPlan
+        grade: str = "",
+        stop_level_name: str = "",
+        stop_width_pct: float = 0.0,
     ) -> dict:
         """Format signal as Discord embed. plan may be OptionsPlan or SizingPlan."""
         color_map = {
@@ -32,25 +35,37 @@ class DiscordSignalBot:
             SignalType.REENTRY_84_RULE: 9109760,
             SignalType.NONE: 9807270,
         }
+        # Grade colors: A+ green, A teal, B blue, C yellow, D red
+        grade_colors = {"A+": 3066993, "A": 1752220, "B": 3447003, "C": 15844367, "D": 15158332}
+        if grade in grade_colors:
+            color_map = {k: grade_colors[grade] for k in color_map}
 
         if isinstance(plan, OptionsPlan):
-            return self._format_options_embed(signal_type, candle, reason, plan, color_map)
-        return self._format_stock_embed(signal_type, candle, reason, plan, color_map)
+            return self._format_options_embed(signal_type, candle, reason, plan, color_map,
+                                               grade, stop_level_name, stop_width_pct)
+        return self._format_stock_embed(signal_type, candle, reason, plan, color_map,
+                                         grade, stop_level_name, stop_width_pct)
 
-    def _format_options_embed(self, signal_type, candle, reason, plan: OptionsPlan, color_map) -> dict:
+    def _format_options_embed(self, signal_type, candle, reason, plan: OptionsPlan,
+                               color_map, grade="", stop_level_name="", stop_width_pct=0.0) -> dict:
         arrow = "↑ CALL" if plan.direction == "call" else "↓ PUT"
         dte = plan._dte_label()
         title = f"🚀 {plan.symbol} {dte} ${plan.strike:g} {arrow}"
         fields = [
             {"name": "Setup", "value": signal_type.value.replace("_", " ").title(), "inline": True},
+            {"name": "Grade", "value": grade or "N/A", "inline": True},
             {"name": "Time", "value": candle.timestamp, "inline": True},
             {"name": "Expiration", "value": plan.expiration, "inline": True},
             {"name": "Strike", "value": f"${plan.strike:g}", "inline": True},
             {"name": "Contracts", "value": f"{plan.contracts}", "inline": True},
-            {"name": "Quote", "value": plan.quote_source, "inline": True},
             {"name": "Entry", "value": f"${plan.entry_premium:.2f}", "inline": True},
             {"name": "Stop", "value": f"${plan.stop_premium:.2f}", "inline": True},
             {"name": "Target (2R)", "value": f"${plan.target_premium:.2f}", "inline": True},
+        ]
+        if stop_width_pct:
+            stop_label = f"{stop_level_name or 'N/A'} ({stop_width_pct}%)"
+            fields.append({"name": "Stop level", "value": stop_label, "inline": False})
+        fields += [
             {"name": "Max Loss / Reward",
              "value": f"-${plan.max_loss:.0f} / +${plan.max_reward:.0f}", "inline": False},
             {"name": "Reason", "value": reason, "inline": False},
@@ -58,17 +73,21 @@ class DiscordSignalBot:
              "value": f"entry ${plan.stock_entry:.2f} | stop ${plan.stock_stop:.2f} | target ${plan.stock_target:.2f}",
              "inline": False},
         ]
+        if plan.option_warnings:
+            fields.append({"name": "⚠ Warnings", "value": ", ".join(plan.option_warnings), "inline": False})
         return {
             "embeds": [{
                 "title": title,
                 "color": color_map.get(signal_type, 9807270),
                 "fields": fields,
-                "footer": {"text": f"Vanquish Signal Bot · {plan.occ_symbol or 'no OCC'}"},
+                "footer": {"text": f"Vanquish Signal Bot · Grade {grade} · {plan.occ_symbol or 'no OCC'}"},
             }]
         }
 
-    def _format_stock_embed(self, signal_type, candle, reason, plan, color_map) -> dict:
+    def _format_stock_embed(self, signal_type, candle, reason, plan, color_map,
+                             grade="", stop_level_name="", stop_width_pct=0.0) -> dict:
         fields = [
+            {"name": "Grade", "value": grade or "N/A", "inline": True},
             {"name": "Time", "value": candle.timestamp, "inline": True},
             {"name": "Reason", "value": reason, "inline": False},
         ]
@@ -126,10 +145,14 @@ class DiscordSignalBot:
         candle: Candle,
         reason: str,
         plan=None,  # OptionsPlan or SizingPlan
+        grade: str = "",
+        stop_level_name: str = "",
+        stop_width_pct: float = 0.0,
     ) -> bool:
         """Post signal to Discord. Returns True if successful."""
         try:
-            payload = self.format_signal_message(signal_type, candle, reason, plan)
+            payload = self.format_signal_message(signal_type, candle, reason, plan,
+                                                  grade, stop_level_name, stop_width_pct)
             resp = requests.post(self.webhook_url, json=payload, timeout=5)
             return resp.status_code in (200, 204)
         except Exception as e:

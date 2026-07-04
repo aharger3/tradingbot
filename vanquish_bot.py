@@ -12,6 +12,14 @@ class SignalType(Enum):
     NONE = "none"
 
 
+class TradeGrade(Enum):
+    A_PLUS = "A+"
+    A = "A"
+    B = "B"
+    C = "C"
+    D = "D"
+
+
 @dataclass
 class Candle:
     """Single 1-minute candle OHLCV data"""
@@ -99,6 +107,159 @@ class PriceActionAnalyzer:
             PriceActionAnalyzer.has_large_upper_wick(candle) or
             PriceActionAnalyzer.is_inverted_hammer(candle)
         )
+
+    @staticmethod
+    def is_bullish_engulfing(candle: Candle, prev: Candle) -> bool:
+        """Bullish engulfing: green body fully contains prior red body."""
+        return (candle.is_bullish and prev.is_bearish
+                and candle.open <= prev.close and candle.close >= prev.open)
+
+    @staticmethod
+    def is_bearish_engulfing(candle: Candle, prev: Candle) -> bool:
+        """Bearish engulfing: red body fully contains prior green body."""
+        return (candle.is_bearish and prev.is_bullish
+                and candle.open >= prev.close and candle.close <= prev.open)
+
+    @staticmethod
+    def grade_trade(
+        candle: Candle,
+        lookback_candles: List[Candle],
+        or_high: float,
+        or_low: float,
+        is_long: bool,
+    ) -> TradeGrade:
+        """Grade a potential signal A+ through D (D = skip)."""
+        # Check if candle is at a key level (OR high for long, OR low for short)
+        at_key_level = (candle.low <= or_high if is_long else candle.high >= or_low)
+
+        if is_long:
+            if not candle.is_bullish:
+                return TradeGrade.D
+            # A+: hammer at key level
+            if (at_key_level and PriceActionAnalyzer.is_hammer_stick(candle, lookback_candles)):
+                return TradeGrade.A_PLUS
+            # A: bullish engulfing at key level
+            if lookback_candles and PriceActionAnalyzer.is_bullish_engulfing(candle, lookback_candles[-1]) and at_key_level:
+                return TradeGrade.A
+            # B: strong PA at key level
+            if at_key_level and PriceActionAnalyzer.has_large_lower_wick(candle):
+                return TradeGrade.B
+            # C: any bullish retest
+            if candle.low <= or_high:
+                return TradeGrade.C
+            return TradeGrade.D
+        else:
+            if not candle.is_bearish:
+                return TradeGrade.D
+            # A+: inverted hammer at key level
+            if (at_key_level and PriceActionAnalyzer.is_inverted_hammer(candle)):
+                return TradeGrade.A_PLUS
+            # A: bearish engulfing at key level
+            if lookback_candles and PriceActionAnalyzer.is_bearish_engulfing(candle, lookback_candles[-1]) and at_key_level:
+                return TradeGrade.A
+            # B: strong bearish PA at key level
+            if at_key_level and PriceActionAnalyzer.has_large_upper_wick(candle):
+                return TradeGrade.B
+            # C: any bearish retest
+            if candle.high >= or_low:
+                return TradeGrade.C
+            return TradeGrade.D
+
+
+class MarketStructure:
+    """Track swing highs/lows across the session; locate structural order blocks.
+
+    Order block = the LAST opposite-close candle before the leg that broke
+    structure (made a higher high for bullish, lower low for bearish) — not
+    any random red/green candle in a lookback window (SPEC3).
+    """
+
+    def __init__(self):
+        self.swing_highs: List[tuple] = []  # (price, timestamp, index)
+        self.swing_lows: List[tuple] = []
+        self.last_hh: Optional[tuple] = None  # most recent swing high that broke a prior swing high
+        self.last_ll: Optional[tuple] = None  # most recent swing low that broke a prior swing low
+
+    def update(self, candles: List[Candle]) -> None:
+        self.swing_highs, self.swing_lows = [], []
+        self.last_hh, self.last_ll = None, None
+        for i in range(1, len(candles) - 1):
+            c = candles[i]
+            if c.high > candles[i - 1].high and c.high > candles[i + 1].high:
+                self.swing_highs.append((c.high, c.timestamp, i))
+            if c.low < candles[i - 1].low and c.low < candles[i + 1].low:
+                self.swing_lows.append((c.low, c.timestamp, i))
+        for prev, cur in zip(self.swing_highs, self.swing_highs[1:]):
+            if cur[0] > prev[0]:
+                self.last_hh = cur
+        for prev, cur in zip(self.swing_lows, self.swing_lows[1:]):
+            if cur[0] < prev[0]:
+                self.last_ll = cur
+
+    def get_valid_order_blocks(self, candles: List[Candle], direction: str = "bullish") -> List[Candle]:
+        """Most-recent-first order blocks whose structure is still intact."""
+        blocks = []
+        if direction == "bullish" and self.last_hh is not None:
+            hh_idx = self.last_hh[2]
+            for i in range(hh_idx - 1, -1, -1):
+                if candles[i].is_bearish:
+                    block = candles[i]
+                    # Structure intact: nothing after the block closed below its low
+                    if all(c.close >= block.low for c in candles[i + 1:]):
+                        blocks.append(block)
+                    break
+        elif direction == "bearish" and self.last_ll is not None:
+            ll_idx = self.last_ll[2]
+            for i in range(ll_idx - 1, -1, -1):
+                if candles[i].is_bullish:
+                    block = candles[i]
+                    if all(c.close <= block.high for c in candles[i + 1:]):
+                        blocks.append(block)
+                    break
+        return blocks
+
+    def is_structure_intact(self, candles: List[Candle], direction: str = "bullish") -> bool:
+        return bool(self.get_valid_order_blocks(candles, direction))
+
+
+def check_retest_type(block: Candle, candle: Candle, direction: str = "bullish") -> str:
+    """Classify how the current candle retests the order block zone.
+
+    wick_only is the strongest entry; full_body = weakest momentum (SPEC3).
+    Returns: 'wick_only', 'partial_body', 'full_body', 'not_retesting'.
+    """
+    body_lo = min(candle.open, candle.close)
+    body_hi = max(candle.open, candle.close)
+    if direction == "bullish":
+        if candle.low > block.high:
+            return "not_retesting"
+        if body_lo > block.high:
+            return "wick_only"
+        if body_hi > block.high:
+            return "partial_body"
+        return "full_body"
+    else:
+        if candle.high < block.low:
+            return "not_retesting"
+        if body_hi < block.low:
+            return "wick_only"
+        if body_lo < block.low:
+            return "partial_body"
+        return "full_body"
+
+
+def detect_order_block_setup(candles: List[Candle], direction: str = "bullish"):
+    """Return (block, retest_type, note). block is None when no valid setup."""
+    structure = MarketStructure()
+    structure.update(candles)
+    blocks = structure.get_valid_order_blocks(candles, direction)
+    if not blocks:
+        return None, None, "No valid order block (or structure broken)"
+    block = blocks[0]
+    retest = check_retest_type(block, candles[-1], direction)
+    if retest == "not_retesting":
+        return None, None, "Price not at order block"
+    return block, retest, f"Order block retest: {retest}"
 
 
 class BreakAndRetestDetector:
@@ -254,6 +415,9 @@ class TradingSession:
 
     def __init__(self):
         self.consecutive_losses = 0
+        self.consecutive_wins = 0
+        self.signals_today = 0
+        self.max_signals_per_day = 3
         self.entry_price: Optional[float] = None
         self.entry_time: Optional[str] = None
         self.is_active_trade = False
@@ -261,13 +425,16 @@ class TradingSession:
         self.take_profit_levels: List[float] = []
 
     def day_ended(self) -> bool:
-        """Trading day ends after 2 losses or 11 AM"""
-        return self.consecutive_losses >= 2
+        """Trading day ends after max losses, max signals, or 11 AM"""
+        return (self.consecutive_losses >= 2
+                or self.signals_today >= self.max_signals_per_day)
 
     def record_loss(self):
         self.consecutive_losses += 1
+        self.consecutive_wins = 0
 
     def record_win(self):
+        self.consecutive_wins += 1
         self.consecutive_losses = 0
 
     def start_trade(self, entry_price: float, entry_time: str, stop_loss: float):

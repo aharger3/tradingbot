@@ -32,21 +32,26 @@ def _load_env_file(path: Path) -> None:
 _load_env_file(Path(__file__).parent / ".env")
 
 from vanquish_bot import (
-    Candle, SignalType, OpeningRangeAnalyzer, TradingSession,
-    BreakAndRetestDetector, OneCandleRuleDetector, RuleOf84Detector, PriceActionAnalyzer
+    Candle, SignalType, TradeGrade, OpeningRangeAnalyzer, TradingSession,
+    BreakAndRetestDetector, RuleOf84Detector, PriceActionAnalyzer,
+    detect_order_block_setup
 )
 from discord_bot import DiscordSignalBot
 from position_sizer import compute_plan, SizingPlan
+from signal_tracker import log_signal
 
 
 class SignalRunner:
     """Monitor candles, detect signals, alert Discord"""
 
-    def __init__(self, webhook_url: Optional[str] = None, post_to_discord: bool = True):
+    def __init__(self, webhook_url: Optional[str] = None, post_to_discord: bool = True,
+                 symbol: str = "UNKNOWN", log_signals: bool = True):
         self.session = TradingSession()
         self.candles: List[Candle] = []
         self.discord = None
         self.post_to_discord = post_to_discord
+        self.symbol = symbol
+        self.log_signals = log_signals
 
         if post_to_discord:
             try:
@@ -98,12 +103,59 @@ class SignalRunner:
             print(f"Failed to parse CSV: {e}")
             return False
 
-    def detect_signals(self) -> List[dict]:
-        """Scan candles for all three signal types, both call and put side.
+    def _min_viable_stop(self, entry: float, stop: float, direction: str) -> bool:
+        """Skip only when BOTH stock risk < 0.5% of entry AND estimated premium
+        risk < $0.20 (spec: either one being wide enough makes it tradeable)."""
+        if entry == stop:
+            return False
+        stock_risk = abs(entry - stop)
+        risk_pct = stock_risk / entry
+        premium_risk = stock_risk * 0.5  # ATM delta ≈ 0.5 estimate
+        return risk_pct >= 0.005 or premium_risk >= 0.20
 
-        Returns list of dicts with: signal_type, reason, entry, stop, direction.
-        Entry = current close. Stop = setup-specific level.
-        Direction = 'call' (bullish) or 'put' (bearish).
+    def _is_consolidation(self, or_high: float, or_low: float, pdh: float, pdl: float) -> bool:
+        """All key levels within 0.5% = consolidation, skip all signals."""
+        levels = [pdh, pdl, or_high, or_low]
+        avg = sum(levels) / len(levels)
+        return all(abs(l - avg) / avg < 0.005 for l in levels)
+
+    def _log_record(self, sig: dict, status: str = "fired", skip_reason: Optional[str] = None) -> None:
+        if not self.log_signals:
+            return
+        risk = abs(sig["entry"] - sig["stop"])
+        target = sig["entry"] + 2 * risk if sig["direction"] == "call" else sig["entry"] - 2 * risk
+        try:
+            log_signal(
+                symbol=self.symbol,
+                signal_type=sig["signal_type"].value,
+                direction=sig["direction"],
+                entry=sig["entry"],
+                stop=sig["stop"],
+                target=target,
+                grade=sig["grade"],
+                reason=sig["reason"],
+                stop_width_pct=sig.get("stop_width_pct"),
+                status=status,
+                skip_reason=skip_reason,
+            )
+        except OSError as e:
+            print(f"⚠ signal log write failed: {e}")
+
+    def _route(self, signals: List[dict], sig: dict) -> None:
+        """Accept viable signals; log D-grade / tight-stop skips for post-session analysis."""
+        if sig["grade"] != TradeGrade.D.value:
+            if self._min_viable_stop(sig["entry"], sig["stop"], sig["direction"]):
+                signals.append(sig)
+                return
+            self._log_record(sig, status="skipped", skip_reason="stop too tight (<0.5% of entry and premium risk <$0.20)")
+            return
+        self._log_record(sig, status="skipped", skip_reason="D grade")
+
+    def detect_signals(self) -> List[dict]:
+        """Scan candles for signals, grade A-D, filter D.
+
+        Returns list of dicts with: signal_type, reason, entry, stop, direction,
+        grade, stop_level_name, stop_width_pct.
         """
         if len(self.candles) < 5:
             return []
@@ -111,92 +163,134 @@ class SignalRunner:
         signals = []
         current = self.candles[-1]
         or_high, or_low = OpeningRangeAnalyzer.get_opening_range(self.candles)
+        pdh = max(c.high for c in self.candles)
+        pdl = min(c.low for c in self.candles)
+
+        # Consolidation check → skip all
+        if self._is_consolidation(or_high, or_low, pdh, pdl):
+            return []
+
+        lookback = self.candles[-6:-1] if len(self.candles) >= 6 else self.candles[:-1]
 
         # ---- CALL SIDE (bullish) ----
 
-        # B&R long: retest of OR high with strong PA. Stop = low of retest candle.
-        if current.low <= or_high and current.close > or_high:
-            if PriceActionAnalyzer.is_strong_price_action(current):
-                signals.append({
+        # B&R long: prior breakout of OR high, retest
+        prior_breakout = any(c.close > or_high for c in lookback)
+        if prior_breakout and current.low <= or_high and current.close > or_high:
+            stock_risk = current.close - or_high
+            grade = PriceActionAnalyzer.grade_trade(current, lookback, or_high, or_low, is_long=True)
+            if stock_risk < 0.50:
+                grade = TradeGrade.D
+            self._route(signals, {
                     "signal_type": SignalType.BREAK_AND_RETEST,
-                    "reason": "Retest of OR high with strong price action",
+                    "reason": f"B&R long — prior breakout above ${or_high:.2f}, retest with {grade.value} PA",
                     "entry": current.close,
-                    "stop": current.low,
+                    "stop": or_high,
                     "direction": "call",
+                    "grade": grade.value,
+                    "stop_level_name": "OR high",
+                    "stop_width_pct": round(stock_risk / current.close * 100, 2),
                 })
 
-        # OneCandle long: retest of red support candle.
-        for i in range(max(0, len(self.candles) - 10), len(self.candles) - 1):
-            ref = self.candles[i]
-            if ref.is_bearish and current.low <= ref.low and current.close > ref.low:
-                if PriceActionAnalyzer.is_strong_price_action(current):
-                    signals.append({
-                        "signal_type": SignalType.ONE_CANDLE_RULE,
-                        "reason": f"Retest of red support ({ref.timestamp}) with strong PA",
-                        "entry": current.close,
-                        "stop": ref.low,
-                        "direction": "call",
-                    })
-                    break
+        # Order block long: last red candle before the structural HH (SPEC3)
+        block, retest, note = detect_order_block_setup(self.candles, "bullish")
+        if block is not None and retest in ("wick_only", "partial_body") and current.close > block.high:
+            stock_risk = current.close - block.low
+            grade = PriceActionAnalyzer.grade_trade(current, lookback, or_high, or_low, is_long=True)
+            if stock_risk < 0.50:
+                grade = TradeGrade.D
+            self._route(signals, {
+                    "signal_type": SignalType.ONE_CANDLE_RULE,
+                    "reason": f"Order block long — block ${block.low:.2f}-${block.high:.2f} (at {block.timestamp}), {retest} retest, {grade.value} PA",
+                    "entry": current.close,
+                    "stop": block.low,
+                    "direction": "call",
+                    "grade": grade.value,
+                    "stop_level_name": "Order block low",
+                    "stop_width_pct": round(stock_risk / current.close * 100, 2),
+                })
 
-        # 84% long re-entry: reclaim recent low with large lower wick.
-        if len(self.candles) > 5:
-            recent_low = min(c.low for c in self.candles[-6:-1])
-            # Require close back ABOVE the reclaimed low → true rejection +
-            # guarantees stop (recent_low) sits below entry (close).
-            if (current.low <= recent_low * 1.01 and current.close > recent_low
-                    and current.is_bullish):
-                if PriceActionAnalyzer.has_large_lower_wick(current):
-                    signals.append({
+        # 84% Rule long: prior stop-out at this level, reclaim
+        if (self.session.entry_price is not None
+                and current.close >= self.session.entry_price
+                and current.is_bullish):
+            # Skip if close near high of day (risk/reward gone)
+            day_range = pdh - pdl
+            if day_range > 0 and (pdh - current.close) / day_range > 0.2:  # not too close to HOD
+                # Spec: stop at the exact reclaim level (prior entry), not day low
+                stock_risk = current.close - self.session.entry_price
+                grade = PriceActionAnalyzer.grade_trade(current, lookback, or_high, or_low, is_long=True)
+                self._route(signals, {
                         "signal_type": SignalType.REENTRY_84_RULE,
-                        "reason": f"Reclaim ${recent_low:.2f} with large lower wick",
+                        "reason": f"84% long — prior entry ${self.session.entry_price:.2f} reclaimed with {grade.value} PA",
                         "entry": current.close,
-                        "stop": recent_low,
+                        "stop": self.session.entry_price,
                         "direction": "call",
+                        "grade": grade.value,
+                        "stop_level_name": "Reclaim level (prior entry)",
+                        "stop_width_pct": round(stock_risk / current.close * 100, 2),
                     })
 
         # ---- PUT SIDE (bearish) ----
 
-        # B&R short: retest of OR low with strong bearish PA. Stop = high of retest candle.
-        if current.high >= or_low and current.close < or_low:
-            if PriceActionAnalyzer.is_strong_bearish_price_action(current):
-                signals.append({
+        # B&R short: prior breakdown of OR low, retest
+        prior_breakdown = any(c.close < or_low for c in lookback)
+        if prior_breakdown and current.high >= or_low and current.close < or_low:
+            stock_risk = or_low - current.close
+            grade = PriceActionAnalyzer.grade_trade(current, lookback, or_high, or_low, is_long=False)
+            if stock_risk < 0.50:
+                grade = TradeGrade.D
+            self._route(signals, {
                     "signal_type": SignalType.BREAK_AND_RETEST,
-                    "reason": "Retest of OR low (rejected) with bearish PA",
+                    "reason": f"B&R short — prior breakdown below ${or_low:.2f}, retest with {grade.value} PA",
                     "entry": current.close,
-                    "stop": current.high,
+                    "stop": or_low,
                     "direction": "put",
+                    "grade": grade.value,
+                    "stop_level_name": "OR low",
+                    "stop_width_pct": round(stock_risk / current.close * 100, 2),
                 })
 
-        # OneCandle short: retest of green resistance candle.
-        for i in range(max(0, len(self.candles) - 10), len(self.candles) - 1):
-            ref = self.candles[i]
-            if ref.is_bullish and current.high >= ref.high and current.close < ref.high:
-                if PriceActionAnalyzer.is_strong_bearish_price_action(current):
-                    signals.append({
-                        "signal_type": SignalType.ONE_CANDLE_RULE,
-                        "reason": f"Retest of green resistance ({ref.timestamp}) with bearish PA",
-                        "entry": current.close,
-                        "stop": ref.high,
-                        "direction": "put",
-                    })
-                    break
+        # Order block short: last green candle before the structural LL (SPEC3)
+        block, retest, note = detect_order_block_setup(self.candles, "bearish")
+        if block is not None and retest in ("wick_only", "partial_body") and current.close < block.low:
+            stock_risk = block.high - current.close
+            grade = PriceActionAnalyzer.grade_trade(current, lookback, or_high, or_low, is_long=False)
+            if stock_risk < 0.50:
+                grade = TradeGrade.D
+            self._route(signals, {
+                    "signal_type": SignalType.ONE_CANDLE_RULE,
+                    "reason": f"Order block short — block ${block.low:.2f}-${block.high:.2f} (at {block.timestamp}), {retest} retest, {grade.value} PA",
+                    "entry": current.close,
+                    "stop": block.high,
+                    "direction": "put",
+                    "grade": grade.value,
+                    "stop_level_name": "Order block high",
+                    "stop_width_pct": round(stock_risk / current.close * 100, 2),
+                })
 
-        # 84% short re-entry: rejection at recent high with large upper wick.
-        if len(self.candles) > 5:
-            recent_high = max(c.high for c in self.candles[-6:-1])
-            # Require close back BELOW the rejected high → true rejection +
-            # guarantees stop (recent_high) sits above entry (close).
-            if (current.high >= recent_high * 0.99 and current.close < recent_high
-                    and current.is_bearish):
-                if PriceActionAnalyzer.has_large_upper_wick(current):
-                    signals.append({
+        # 84% Rule short
+        if (self.session.entry_price is not None
+                and current.close <= self.session.entry_price
+                and current.is_bearish):
+            day_range = pdh - pdl
+            if day_range > 0 and (current.close - pdl) / day_range > 0.2:
+                # Spec: stop at the exact rejection level (prior entry), not day high
+                stock_risk = self.session.entry_price - current.close
+                grade = PriceActionAnalyzer.grade_trade(current, lookback, or_high, or_low, is_long=False)
+                self._route(signals, {
                         "signal_type": SignalType.REENTRY_84_RULE,
-                        "reason": f"Rejection at ${recent_high:.2f} with large upper wick",
+                        "reason": f"84% short — prior entry ${self.session.entry_price:.2f} rejected with {grade.value} PA",
                         "entry": current.close,
-                        "stop": recent_high,
+                        "stop": self.session.entry_price,
                         "direction": "put",
+                        "grade": grade.value,
+                        "stop_level_name": "Rejection level (prior entry)",
+                        "stop_width_pct": round(stock_risk / current.close * 100, 2),
                     })
+
+        for sig in signals:
+            self._log_record(sig)
 
         return signals
 
@@ -237,10 +331,14 @@ class SignalRunner:
                     continue
 
                 print(f"🚀 {signal_type.value.upper()}")
+                print(f"   Grade: {sig.get('grade', '?')}")
+                print(f"   Stop level: {sig.get('stop_level_name', 'N/A')} (width {sig.get('stop_width_pct', '?')}%)")
                 print(f"   Reason: {sig['reason']}")
                 print(f"   Time: {self.candles[-1].timestamp}")
                 print(plan.format_discord())
                 print()
+
+                self.session.signals_today += 1
 
                 if self.post_to_discord and self.discord:
                     success = self.discord.post_signal(signal_type, self.candles[-1], sig["reason"], plan)
@@ -258,10 +356,13 @@ def main():
     parser.add_argument("--format", choices=["json", "csv"], default="json", help="Input format")
     parser.add_argument("--no-discord", action="store_true", help="Skip Discord posting")
     parser.add_argument("--webhook", help="Discord webhook URL (or set DISCORD_WEBHOOK_URL env var)")
+    parser.add_argument("--symbol", default="UNKNOWN", help="Ticker symbol for signal log records")
+    parser.add_argument("--no-log", action="store_true", help="Skip writing to journal/signal_log_*.jsonl")
 
     args = parser.parse_args()
 
-    runner = SignalRunner(webhook_url=args.webhook, post_to_discord=not args.no_discord)
+    runner = SignalRunner(webhook_url=args.webhook, post_to_discord=not args.no_discord,
+                          symbol=args.symbol, log_signals=not args.no_log)
 
     if args.file:
         print(f"Reading from {args.file}...")

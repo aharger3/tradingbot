@@ -2,3 +2,8 @@
 .env.tastytrade
 __pycache__/
 *.pyc
+circle_data/
+circle_videos/
+youtube_data/
+circle_*.html
+journal/signal_log_*.jsonl

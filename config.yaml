@@ -1,0 +1,8 @@
+max_loss: 1000
+rr_target: 2.0
+trading_hours: "09:30-11:00"
+watchlist: [TSLA, NVDA, AAPL, AMD, META, GOOG, AMZN, MSFT, PLTR, SPY, QQQ, INTC]
+max_trades_per_day: 3
+consecutive_loss_halt: 2
+data_feed: tastytrade
+alpaca_fallback: false

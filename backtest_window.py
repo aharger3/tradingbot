@@ -20,7 +20,7 @@ def backtest_window(symbols, date_str="2026-05-27", start_et="09:30", end_et="11
     start_et, end_et: "HH:MM"
     """
     feed = TastytradeFeed()
-    runner = SignalRunner(post_to_discord=False)
+    runner = SignalRunner(post_to_discord=False, log_signals=False)  # backtests stay out of live journal
 
     # Parse times
     sh, sm = map(int, start_et.split(":"))
