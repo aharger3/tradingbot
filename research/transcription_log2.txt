@@ -1,0 +1,4 @@
+Loading whisper medium model on cpu/int8...
+Model loaded. 89 files total, 0 already done.
+TRANSCRIBE: boot-camp-recordings_Day_10_Understanding_Liquidity.wav (183MB)
+  Audio: 5989s, Processed: 408.8x

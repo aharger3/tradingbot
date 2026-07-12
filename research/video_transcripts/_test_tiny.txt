@@ -1,0 +1,1273 @@
+# Transcription: test.wav
+# Duration: 5989s
+# Model: tiny
+
+[4s-13s] What's up everyone? Hope you guys are doing well. Yeah, I'm feeling a little I'm actually feeling a lot better, but I eat something earlier today
+[13s-18s] And I think I got something stuck in my throat. So I've been coughing all day, which is very unfortunate
+[19s-24s] Hopefully I can make it through this presentation that we have today
+[24s-34s] What's up everyone? Hope you guys are doing well. You guys taking a treat this week overall markets as you can see
+[34s-38s] I should just check out the spine cues really solid push
+[38s-42s] We talked about kind of in the pre-market prep not sure if you guys joined in
+[43s-45s] We mentioned Monday and Tuesday most likely get ahead higher
+[46s-49s] Right spine cues basically holding levels all day
+[50s-54s] bunch of other news events as well in video in Microsoft
+[56s-63s] Excited tomorrow. I don't expect actually too much probably pre-FOMC and maybe even after FOMC
+[63s-69s] Just because we're moving so much but we'll see what happens tomorrow at 2 p.m. Eastern Standard Time
+[69s-72s] And of course, we have a bunch of earnings as well
+[73s-80s] It's up everyone. Hope you guys are doing well. I do have this recorded, which is good
+[81s-83s] perfect
+[83s-86s] It's up everyone in video all time highs everyone's iron late
+[86s-90s] It's all good David. We're just starting right now. Took test of this morning nice David
+[91s-96s] Let's see get wetter soon appreciate it. It's up everyone Todd
+[97s-101s] Jay stew and as your voice it's getting a little bit better
+[101s-105s] Hopefully it should be fine. I always say it's fine, but hopefully by next week. It's all good
+[106s-108s] awesome
+[108s-109s] Sweet
+[109s-112s] Okay, so yeah today's presentation
+[112s-116s] We're gonna talk about one of my favorites. We're gonna dive right into the charts
+[117s-123s] We're gonna talk about liquidity and essentially drawn the quitting and wide zone part essentially looking for
+[124s-126s] targets and understanding
+[126s-128s] What we look for and kind of the foundation of
+[129s-136s] Right essentially what we look for every single day because the markets always move from internal liquidity to external liquidity
+[136s-138s] And that's what we always try and
+[138s-142s] Retry and figure out right. What does the market want to do? Does it want to take out a key level?
+[143s-147s] Does it want to range right? What is the reason why the markets doing what it's doing?
+[147s-156s] Okay, just making sure everything's good if I take a lot of breaks throughout this as I mentioned
+[157s-161s] voice is still a little bit raspy so I'm just drinking some water, but first things first
+[162s-168s] Right what is essentially the drawn liquidity right or what is liquidity in general?
+[168s-173s] Okay, guys type in the chat right what is the general definition of liquidity?
+[174s-191s] You guys can take your time
+[191s-194s] by and sell orders
+[195s-197s] resting orders
+[197s-199s] How fast it is in easy to buy an asset?
+[200s-202s] Where buyers and sellers are sitting?
+[203s-205s] orders left and filled
+[205s-211s] So you're sitting oh I guess I can hear myself
+[218s-221s] Oh, I guess I didn't change the permissions, but it should be all good now
+[222s-227s] Yes, open interest orders resting. Yes, so essentially what is liquidity?
+[227s-231s] liquidity is
+[231s-238s] this right the ease at which an asset
+[240s-242s] can be bought
+[242s-244s] or sold
+[244s-248s] This is the basic definition of what liquidity is right and
+[249s-256s] There's different ways we can look at liquidity right we can look at it based off of level two time and sales
+[257s-262s] You can look at it just based off of chart right understanding that right old highs and old lows
+[262s-266s] Right, there's good to be liquidity resting above and both of those levels
+[266s-271s] So do you guys right it simply is essentially understanding?
+[271s-277s] I was like to break it down into this right my thing that I always asked like where's the liquidity?
+[277s-286s] It's basically where is the money in the market right?
+[286s-292s] So understanding where liquidity is resting right basically where the money is flowing where where is the money in the markets?
+[294s-297s] Can I get out it it should be all good try it again?
+[298s-305s] Everything should be good. Okay, and it's basically understanding right the interaction between buyers
+[306s-308s] or sellers
+[308s-313s] So this is the very basic definition of what is liquidity and
+[314s-319s] Do you guys know the three different types of liquidity that can be deployed into the markets?
+[320s-328s] Right, so there's different types of orders that can be deployed right what is the three main ones that we look for if you guys understand or if you guys know the answer
+[328s-331s] He's guys type in the chat right there's different ways
+[334s-338s] There's different ways that liquidity essentially can't be deployed into the markets
+[340s-342s] You have range
+[342s-344s] Trin long liquidity
+[344s-346s] Market structure internal external liquidity
+[347s-349s] stops I guess you guys up
+[350s-352s] Guys are all saying the right stuff
+[352s-360s] Maybe I didn't refrains the question that well, but basically
+[361s-365s] There's three types of liquidity that can be deployed into the markets
+[365s-373s] So every single time you enter into something right you're either buying selling right stopping out right taking profits
+[374s-376s] There's three main ones right entries
+[377s-379s] stops and take profit
+[380s-387s] These are the main ones right here. So every single time you enter in the market
+[387s-390s] essentially you're providing liquidity stops
+[391s-393s] similar thing
+[393s-397s] Right your basically stopping out or taking liquidity from markets and they have take profits
+[398s-403s] So you're basically right you're selling your position right at key level. So these are the three
+[403s-407s] main forms of liquidity when it comes to the market
+[408s-410s] Does everyone understand this
+[410s-412s] Right super basic so far
+[413s-419s] type one in the chat one one one
+[421s-432s] Awesome okay, so with this being said right now we understand right if we want to deploy essentially
+[432s-435s] According to the markets right through entries stops take profits
+[436s-438s] How is this useful into our trading?
+[439s-442s] Well to give us a better understanding
+[442s-444s] Let's go into the higher time frames
+[446s-452s] All right, so something like let's not look at the keys since actually we can take a look at the keys here
+[452s-460s] So right here what we have here is the key key
+[460s-465s] Q and you see there's plenty of different candles. We talked about this in the first lesson
+[465s-467s] old highs all lows
+[468s-471s] Right there's so many different candles resting in the markets
+[472s-475s] What's essentially key here and where's the liquidity resting technically?
+[475s-482s] There's liquidity all over the markets right either interday liquidity external liquidity
+[482s-488s] But the main things that we're gonna be focusing on at least for us is what's called external liquidity
+[489s-491s] so
+[491s-494s] We have to understand the basics of liquidity is that
+[495s-499s] between every single old high sorry above every single old high and
+[499s-501s] Although there's gonna be liquidity resting
+[502s-509s] So in this case what we have here is your all-time highs if price was to trade
+[510s-512s] All the way back up into our all-time highs
+[513s-518s] Right, there's gonna be orders resting above this key level in terms of as I mentioned
+[519s-521s] right bi orders
+[521s-525s] Bi orders can be resting why because of let's say for example
+[526s-529s] Someone was short obviously this is not as realistic
+[529s-536s] But let's say someone was short here and they had a stop
+[537s-540s] Their stop can be all the way back at this all-time highs level
+[542s-549s] So that is in form of bi orders another possible scenario let's say
+[550s-552s] You buy for example long
+[553s-558s] Right there's also gonna be liquidity here. Why because people are gonna look to take profits
+[559s-561s] They're gonna have resting cell orders
+[562s-573s] So you can see there's a bunch of liquidity that's always gonna be deployed in the markets either right your short selling you're gonna have your stop here. Sir
+[574s-579s] Sure you're gonna have what's called by stops. So you have bi orders right because when your short selling
+[580s-583s] Right you need to buy in order to close your position
+[583s-587s] When you're buying long if you want to close your position you need to sell
+[588s-593s] So as I mentioned there's a bunch of different ways how low-quidd can be formed into the markets?
+[594s-616s] Does that make sense just the basic explanation there one one no someone said no
+[617s-626s] Most of you guys said yes, what do you not understand a dip T about liquidity right we're just understanding right buying sellers and why they're present
+[626s-629s] Can you type in the chat why you don't understand?
+[630s-640s] Maybe some other people have maybe other people are saying no as well type in the chat why you don't understand that
+[641s-655s] I didn't understand why sell order at all time highs so that's a good question. So let's say for example
+[656s-659s] Yeah, they they can be mentals well the reason why
+[660s-664s] Let's say for example this could be all-time highs this could be high of day
+[665s-670s] There's going to be orders resting above that key high why because let's say you're buying down here
+[671s-673s] Where's your major take profit level?
+[674s-679s] It's going to be at all-time highs so when price pushes higher
+[680s-682s] Let's say for example you're framing a train
+[684s-686s] Let's just say for example right here
+[687s-690s] If you were to put your take profit somewhere where would it be?
+[691s-693s] It would be at all-time highs in this case
+[694s-697s] Let's go on to another example
+[698s-702s] Let's say for Tesla
+[702s-704s] Let's go in today
+[705s-707s] Let's go in today yesterday
+[708s-713s] It's the same concept
+[713s-717s] So let's say for example, and our life's going to a better example here
+[717s-721s] Let's say for example this is in video
+[722s-725s] You have a nice pop coming to market open
+[725s-733s] Let's say for example you're taking a reversal trade right came back down to your low-day
+[734s-737s] Looking for a reversal trade and you're looking to trade this back towards upside
+[738s-743s] Where's your take profit going to be your take profit is going to be a key level?
+[743s-745s] Which in this case?
+[745s-748s] high-day
+[748s-752s] Right so there's different key levels to look for high-day
+[753s-755s] It always look for right previous day highs
+[757s-759s] Previous day lows
+[759s-765s] All-time highs there's a bunch of different levels to look for but high-day and low-day are going to be key
+[765s-768s] Especially for trading in your day so if you're buying here
+[769s-772s] Your major profit target is going to be high-day and you can see
+[773s-775s] Price came up
+[775s-780s] Rejected high-day perfectly and you can see signified by this upper work
+[782s-784s] Right seller stepped in
+[784s-787s] And that's exactly where you want to take profits you can see price came up
+[789s-791s] Back up into our time day plus this all-time highs
+[792s-794s] Rejected and came all the way back down
+[795s-798s] Just basically right take profit areas in forms of
+[799s-806s] Right in this case you're selling so a brew basically selling and that's a take profit right a sell limit
+[807s-820s] Does that make a little bit more sense?
+[820s-822s] Is liquidity and volume correlated?
+[822s-825s] Yep, so we mentioned before
+[826s-829s] What is liquidity liquidity is just understanding
+[830s-834s] Right buyers for sellers or understanding where is the money in the markets?
+[836s-842s] So in order for this to occur right we need volume right it's liquidity refers to the ease as
+[843s-846s] Which an asset can be bought or sold so in this case
+[847s-852s] liquidity is directly correlated to volume if there's lots of liquidity
+[852s-857s] That means there's lots of volume if there's a lack of liquidity and that means there's less volume
+[857s-865s] It's very similar and when people take profits they choose to have to sell exactly
+[865s-870s] All right someone mentioned right there sell market sell limit and sell ask
+[871s-876s] There's different forms of ways to sell by just understand right when you need to exit a position
+[877s-881s] You need to sell in some way when you need if you want to buy a position then you're gonna buy
+[882s-884s] All right similar thing it's offset so
+[886s-888s] Now that we have a basic understanding of liquidity
+[890s-893s] Can we see the amount of liquidity and trading view so this is where
+[894s-902s] If someone had something like volume not something that we use intro day as much
+[902s-907s] But you can see right if you had volume or some people use what's called
+[909s-915s] The volume profile
+[919s-928s] Or where they go so
+[928s-931s] As you can see here if you want to understand
+[931s-935s] Right the basics of how much liquidity there is at a certain level
+[935s-938s] Right some people like to use what's called the volume profile
+[939s-944s] But you don't really have to use this just because you can understand it by looking at a chart
+[945s-949s] This is in my opinion this is actually a really good indicator that a lot of people use
+[949s-953s] But as I mentioned you can see it just based off of the chart and itself and then other people
+[954s-955s] They like to use volume
+[956s-959s] This actually is a very big confidence as well
+[959s-964s] I primarily like looking at this on the higher time frames if you look at this on the lower time frames
+[964s-966s] My especially on the one minute
+[966s-972s] It's not gonna matter as much, but of course the higher time frames always holds more importance and you can see
+[973s-978s] At least for today for example the highest volume candles are gonna come within the first five minutes
+[979s-982s] All right, so that's why we always work market that five-minute range
+[984s-985s] Why is that the case?
+[985s-987s] It's because there's the most liquidity
+[988s-991s] Most liquidity volatility within that first five minutes
+[992s-999s] That's why that strategy and that setup is very good to determine the overall direction of the day if we break higher
+[999s-1003s] There's a good chance we continue towards upside at least within the first
+[1003s-1005s] 30 minutes to an hour we break lower
+[1006s-1011s] Potential continuation right some other thing within the first 30 minutes to an hour
+[1013s-1014s] We're
+[1014s-1022s] Are the other notable spikes here the other notable spikes
+[1022s-1024s] Game in
+[1024s-1028s] When there's actually news and also at the very end so today
+[1029s-1032s] Hopefully you guys can see this a little bit better, but let's do this
+[1043s-1048s] But you can see right here why are these big spikes occur
+[1048s-1053s] Right usually it has to do with maybe it's at a key level maybe it has news in this case
+[1054s-1056s] This was directly correlated to news
+[1056s-1060s] We had news on a video midday and you can see how much volume important
+[1061s-1066s] All right, so news events directly correlate to the overall market and how much liquidity there is
+[1067s-1073s] Right, that's why I always like trading a lot of people trying to avoid news events which is right it's smart too
+[1074s-1076s] Especially before
+[1076s-1078s] But we usually like trading news events
+[1078s-1082s] Specifically right after news events because there's a lot of volatility and liquidity
+[1083s-1086s] So you can see big spikes on a video
+[1086s-1091s] This happened to do with the news that we had and then we also had
+[1092s-1094s] Really nice continuation to end off the day, of course
+[1095s-1098s] Right huge volume bars right just because right you can see
+[1100s-1106s] Low volume didn't really move as much we had big volume and then we start having these really big moves in the market
+[1106s-1110s] So volume something we can touch up on potentially
+[1111s-1116s] We do touch touch up on the on the modules, but it is very important
+[1117s-1123s] Evolving plus liquidity and some other things as well, but strictly today we're gonna talk about liquidity and why that's important
+[1128s-1134s] All right, let me grab some water here real quick do you understand all that right now we're just talking about kind of the basics of
+[1135s-1136s] liquidity
+[1136s-1141s] Right how it can be deployed into the markets now we're gonna kind of dive a little bit deeper into
+[1142s-1156s] How we can actually use this within our strategy I love comparing the quiz owns with human motion such a fear and greed
+[1156s-1158s] The price comes to a heavy level of resistance that
+[1160s-1166s] By seller short sales by until proven otherwise exactly right just classic kind of support and resistance
+[1167s-1169s] Awesome, okay
+[1173s-1176s] So now let's kind of talk about some of the ways
+[1177s-1182s] What liquidity can look like and right some of the setups that we look for
+[1183s-1188s] What do you guys know the three let's say four four main
+[1188s-1193s] Forms of liquidity and that we look for on a daily basis
+[1202s-1204s] If you guys type in the chat if you guys know it
+[1205s-1208s] Right what does liquidity look like in the markets
+[1216s-1218s] Right previous day highs previous day lows
+[1221s-1223s] old highs old lows
+[1223s-1226s] very highs and lows
+[1226s-1228s] minute candle
+[1229s-1232s] Five minute right you guys are saying a lot of good stuff so
+[1233s-1234s] First things first
+[1234s-1244s] We usually like to focus in on the higher time frames someone mentioned order block and reclaim
+[1245s-1249s] That actually also is a form of liquidity more internal liquidity that we'll talk about but
+[1250s-1253s] The way to the way to look for liquidity sir
+[1261s-1265s] The way to look for liquidity is based off of the higher time frames
+[1266s-1269s] My opinion the higher time frames are always gonna hold more power
+[1270s-1272s] Right some easy ways to look for
+[1272s-1275s] Very key levels of liquidity just simply
+[1276s-1281s] Previous day highs and previous day lows
+[1283s-1288s] And you'll see this is the easiest form of liquidity be looking for a lot of times when we're looking for
+[1289s-1295s] Key targets key trades to be looking to frame around really happens around previous day highs and previous day lows
+[1296s-1299s] Other scenarios
+[1299s-1305s] All ties and all those
+[1307s-1309s] This is the easiest way to see liquidity
+[1310s-1313s] Someone mentioned premarket also as well
+[1314s-1316s] Do I use this as much not as often?
+[1317s-1324s] Why is it because there's less liquidity involved in volatility
+[1325s-1328s] So right if I was to choose a level of importance
+[1330s-1332s] For me
+[1332s-1335s] The previous day high is gonna be a lot more important than the premarket high and though
+[1336s-1341s] Why is that the case is because of one thing right there's more liquidity
+[1341s-1346s] Right there's also more volume
+[1346s-1350s] So that's why this is gonna play a lot more of an importance in my opinion
+[1351s-1353s] Then something like the premarket high and low
+[1355s-1357s] Right because very previously high and low
+[1358s-1361s] What is this session right if you just look at it on the chart?
+[1367s-1373s] Let's bring back up the volume
+[1373s-1377s] So just got rid of it
+[1377s-1379s] But you can see right here
+[1380s-1382s] And for just looking at this today
+[1383s-1386s] Look at the volume in the previous session
+[1388s-1395s] Compare to the premarket very little volume here or you can barely even see it
+[1397s-1398s] So of course
+[1398s-1403s] This right here the high and low of your previous day high and low is gonna play a lot more
+[1403s-1408s] Significance than something like the premarket high and low just based off of volume
+[1410s-1412s] That's why we always focus in
+[1412s-1414s] these highs and lows every single day
+[1415s-1416s] Well, it's mark up previous say highs
+[1417s-1420s] Improvers say lows if there's nothing to go off of
+[1421s-1424s] Then we'll use the premarket high and low just because there's nothing else
+[1425s-1427s] But right there's an order of importance
+[1427s-1433s] The one that has the most volume is what you want to be looking at
+[1434s-1436s] Does that actually make sense at least for
+[1437s-1438s] right
+[1438s-1446s] liquidity wise
+[1447s-1452s] When you're saying old highs and all those how how old are we talking about?
+[1453s-1456s] You can well actually talk about this that's a good question
+[1457s-1460s] Right normally will look to three to five sessions when we're day trading
+[1461s-1464s] Technically every single old high and old low has liquidity
+[1465s-1467s] Right this old high this old low
+[1467s-1469s] Right you can go on any time frame
+[1469s-1473s] But what are we gonna be looking for? I'll talk about that here in a second, but you can look at
+[1474s-1478s] Right old highs from three to five sessions, which we normally recommend for day trading
+[1479s-1481s] If you're swim trading maybe on the daily chart
+[1482s-1484s] You're looking at the past 20 to 40 sessions
+[1485s-1487s] If you're long term, maybe you're looking at the weekly chart
+[1488s-1491s] As I mentioned higher time frames are always gonna hold the more importance
+[1495s-1498s] see
+[1498s-1501s] Is in premarket all institutional trading yeah
+[1502s-1503s] I mean
+[1503s-1507s] If you're thinking about it from a market perspective majority that's a 90%
+[1507s-1509s] I think there's just statistic on it
+[1510s-1513s] 90% of volume is made up of institutional trading
+[1513s-1515s] I think it's 10%
+[1515s-1519s] Retail or maybe even less so majority regardless is based off institutions
+[1521s-1523s] And more importance yes as I mentioned I just
+[1524s-1527s] Talked about that so your previous say highs and previous say lows
+[1530s-1532s] Let's see
+[1532s-1536s] Deeper for old highs and all those on the 50 minute chart yeah, I'll talk about that in a second
+[1536s-1538s] I'll I you guys are talking about time frames
+[1539s-1545s] Which wants to use on five 15 you're looking at the different we'll kind of talk about what
+[1545s-1547s] Love us to look for in reality
+[1548s-1551s] Right you can use any time frame it's all based off personal preference
+[1552s-1554s] I like the one
+[1554s-1556s] Five minute for entries if you're just mark your charts
+[1557s-1560s] Ready you can be looking at the 50 minute and one hour time frame
+[1562s-1568s] Do you also consider volume when entering trades or areas of interest that's a conference we have not a main one
+[1568s-1576s] But we'll talk about that how about the five minute open high and low first pre-market high and low which one has more liquidity so that's a good question
+[1577s-1580s] In this case you can see that first five minutes of market open
+[1581s-1583s] It has a lot of volume so that's why we always market out
+[1585s-1587s] I kind of just talked about this earlier, but that first five minutes is key
+[1588s-1592s] If we can my break above it and hold above it you can see continuation you can see
+[1593s-1597s] Right try breaking above it holding at the start still held about later into the session
+[1598s-1601s] That's hold to this five-minute range high and then continuation higher
+[1602s-1608s] Basically it never closed below your five-minute range low, so I never seen the fight my repartage
+[1608s-1611s] I think this was yesterday
+[1611s-1616s] I'll show you exactly as well without pre-market levels of the other confluence is correct
+[1617s-1621s] Okay, so now that we have this out the way
+[1622s-1629s] Right what are some of the easiest right ways to see liquidity on the chart and we break it up into
+[1631s-1645s] Two four different forms of liquidity number one
+[1654s-1674s] Does anyone know what this is key type in the chat right what is this double top resistance
+[1676s-1680s] Equal highs it was a flag but broke
+[1681s-1688s] Support so-and-sort change a character. Okay, resist
+[1696s-1702s] Kind of it's all properly, but what we have in here is
+[1703s-1709s] Equal highs slash a double top and whatever this occurs
+[1711s-1713s] What is resting
+[1713s-1744s] above these highs yeah type in the chat? Okay, yes guys I mentioned liquidity so
+[1745s-1747s] This is very good
+[1747s-1749s] Basically what is resting above here is liquidity
+[1750s-1751s] All we know
+[1752s-1756s] As I mentioned earlier is that there's a lot of the Quissy liquidity
+[1756s-1761s] Basically all liquidity is gonna be resting above old highs in all those
+[1762s-1765s] So if price came up up let's say for example someone was short
+[1767s-1769s] Let's say you're short off this double top
+[1771s-1777s] They're gonna have your stop loss where above this old high
+[1778s-1783s] If maybe you're long it maybe there's a higher time frame thesis, but let's say you're long it
+[1784s-1786s] Maybe you want to long up in towards
+[1786s-1789s] This double top and this could be a sell limit
+[1790s-1792s] You could be taking profits or TP
+[1794s-1796s] Right you can be taking profits here
+[1797s-1799s] So this is one of the easiest
+[1799s-1803s] In my opinion one of the best ones to understand or when it comes to
+[1803s-1807s] Right finding liquidity actually my favorite you guys already know
+[1808s-1810s] We talked about this a few days ago
+[1811s-1821s] I may actually bring this back up and we go over here
+[1824s-1826s] Actually was it on this day where was it?
+[1827s-1842s] Where is it I guess I can't find it but
+[1843s-1848s] Basically what I had was a few higher time frame patterns that I love the most
+[1849s-1853s] Right what are let's just kind of briefly go over what are some of my favorite patterns
+[1854s-1869s] It's going to this right another one what is this right here right
+[1871s-1874s] Type in the chat what is this or what type of pattern is this
+[1877s-1879s] fly top
+[1879s-1885s] Centering triangle yes and why is this right right the pattern does a matter
+[1886s-1888s] Right what is the logic
+[1889s-1893s] And thesis on why this pattern is bullish right type in the chat
+[1894s-1919s] Why is this a bullish pattern right I sent an ascending triangle higher lows a lot of buying orders
+[1920s-1929s] Look who did he building up every time the top sit and little bit of sellers each time
+[1930s-1934s] Exactly so the way I like to think of it has
+[1935s-1941s] Right when a flat top occurs and it's kind of do this
+[1943s-1945s] oops
+[1945s-1949s] Every single time it taps into a key level of resistance
+[1953s-1956s] Think of it like this you have a nice push higher
+[1958s-1965s] And we reject sellers attempt to push it down and now we move back higher
+[1967s-1969s] Once again
+[1969s-1975s] Sellers try and push this down but at the same point right you guys mentioned creating higher lows
+[1978s-1982s] You drive back higher
+[1982s-1983s] Once again sellers try and push this down
+[1984s-1988s] So every single time we come up in towards this key level
+[1989s-1991s] Sellers try and push this down
+[1992s-1994s] But what's happening right it's not dropping
+[1995s-1998s] Right because we're building as I mentioned the higher lows
+[1999s-2001s] So
+[2001s-2003s] Basically think about it. I like this
+[2004s-2010s] The more times the sellers try and push this down
+[2012s-2016s] And we can't we can't for some reason where we try and push it down but it's not heading down
+[2017s-2021s] So what's most likely going to happen right there's a lot of liquidity building up
+[2021s-2024s] Because where is this thesis essentially going to be invalidated
+[2025s-2027s] Right every single time they short
+[2028s-2029s] Let me actually get rid of this
+[2031s-2033s] Every single time you short
+[2033s-2035s] Where you're going to put your stop loss
+[2036s-2036s] Right above here
+[2038s-2043s] Right so that's why flat top works because if it broke above and came down this would be a flat top
+[2044s-2049s] Because you already broke above but a flat top is when you right you can just draw this general area
+[2050s-2053s] So basically everyone has your stop loss right above
+[2055s-2058s] So the more times it fails to break lower
+[2059s-2062s] Right if it broke underneath it would look a little bit different
+[2063s-2071s] But currently higher lows are being built a lot of liquidity is now resting above because sellers are going to place their stop orders
+[2071s-2072s] above here
+[2073s-2075s] So if we break above
+[2076s-2079s] Almost likely going to have it really explosive moved towards upside
+[2081s-2083s] Of course
+[2083s-2089s] This is the exact same for the downside and there's more context that needs to be in place
+[2090s-2094s] But generally speaking right a flat top is one of the most bullish tickers
+[2094s-2096s] Some examples we already talked about this
+[2097s-2100s] Right Tesla
+[2100s-2102s] flat top
+[2102s-2104s] Huge push towards upside
+[2104s-2108s] Some other examples
+[2108s-2110s] Recently
+[2110s-2112s] video
+[2113s-2120s] Nice push higher
+[2120s-2121s] EMD
+[2121s-2125s] We can actually consider this a flat top here as well maybe if you go into the one hour chart
+[2129s-2131s] Right but can you guys see this on a chair
+[2132s-2134s] Right higher lows are being built
+[2135s-2137s] Might not be perfect
+[2138s-2140s] But you get a general understanding of what it looks like right
+[2141s-2147s] Push higher and then you have that big move
+[2150s-2153s] All right does this make sense at least for the flat top right this is as I mentioned
+[2154s-2156s] if you see this if you go back and watch my
+[2157s-2159s] Presentation last week
+[2160s-2162s] I mentioned if you ever see this on a chart
+[2162s-2166s] This is this will scream out to this will be like this is a very bullish setup
+[2167s-2172s] Especially in a bull market flat tops usually end up having really big move after
+[2179s-2182s] Let's see now also if you choose close more free
+[2183s-2185s] Also room up and though pressure exactly
+[2189s-2191s] Coimpan finally dropped yes, okay
+[2194s-2196s] Let's go back on to the daily chart
+[2198s-2200s] So we're kind of just going over explaining what my
+[2202s-2204s] Patterns or what my favorite charts were earlier
+[2205s-2209s] It's kind of go back on to I think it was on the I'm forget what chart I was on
+[2210s-2213s] But another one
+[2213s-2234s] Let's see if I can draw it out properly, but basically this would it looks like I didn't draw it out that well
+[2234s-2237s] But what is this?
+[2237s-2239s] Let me kind of do this instead
+[2244s-2251s] What is this
+[2257s-2259s] Think I'm already right out of water here
+[2259s-2261s] Cup in hand, oh
+[2261s-2264s] Trying to speak real quiet as well cup in hand look perfect
+[2265s-2267s] exactly
+[2267s-2271s] And why is a couple cup in hand or bullish it's the exact same reason
+[2272s-2275s] Right it's basically a double top
+[2277s-2280s] Right as push is higher rejects so seller step in
+[2281s-2283s] Comes up one more time and rejects
+[2284s-2285s] So sellers are stepping in again
+[2287s-2296s] So where's the stop loss going to be right stop losses right bi orders sellers are good to be resting above this high
+[2297s-2300s] So if price is in a bullish sentiment
+[2302s-2306s] Right this cup in hand though is very very bullish
+[2307s-2308s] Right you can be looking for the higher low
+[2310s-2311s] Right around here
+[2311s-2313s] Or if you really want to wait for confirmation
+[2314s-2316s] You can wait for the break above retest for continuation higher
+[2317s-2320s] Sometimes in a bullish market and might not come back for the retest
+[2320s-2322s] Right kind of similar to the flat top
+[2323s-2325s] We'd like to see the flat top come back for the retest
+[2329s-2334s] But sometimes the flat top is so bullish no, just break above and never come back
+[2335s-2339s] But it's just understanding right where liquidity is resting the market so the liquidity
+[2340s-2342s] Is gonna be resting above this old swing high
+[2342s-2344s] It's just used as essentially a target
+[2346s-2348s] Is everyone understand that
+[2349s-2355s] We actually get the hang of like understanding liquidity and it's more understanding the logic and thesis behind
+[2367s-2372s] Yes, that's who it matters right the logic what I try and explain here is the logic and
+[2372s-2378s] Beces and why it's bullish because most people understand that it's bullish but why is it bullish?
+[2379s-2382s] It's it's because right the liquidity is resting above
+[2383s-2385s] Right higher lows market structure
+[2385s-2388s] Right understand the draws what kind of talk about
+[2389s-2391s] Some other draws of liquidity here as well
+[2392s-2394s] Which is very important for us to understand
+[2395s-2400s] Can we use this thesis in the one minute chart with entry-day levels as these they moves?
+[2400s-2406s] I personally don't like using them on the one minute chart because they're can easily be fake outs. So
+[2407s-2409s] In a one minute chart sense
+[2410s-2420s] All right some people might look at this now. I'll actually kind of talk about this here. Right what are the two kind of
+[2422s-2424s] potential
+[2424s-2427s] Beceses that can form here on this flat top break
+[2430s-2432s] Right majority times love continu
+[2433s-2436s] Continuations strictly based off the higher time frames
+[2441s-2446s] Someone said break out a reject. Yeah, exactly. It's called it's called fake liquidity
+[2447s-2451s] So sometimes what you'll see what happened even though it's bullish
+[2452s-2454s] Right sometimes there can be a lot of fake outs
+[2456s-2461s] Who why might this be the case?
+[2463s-2466s] Because the overall context right for bearish
+[2468s-2470s] on
+[2472s-2474s] If we're bearish
+[2475s-2477s] I mean come up
+[2477s-2481s] Where this wouldn't be as good right even though it is a flat top
+[2482s-2485s] It could easily fake out and continue towards the downside
+[2486s-2490s] And this will happen a lot on what the one in five minute
+[2494s-2498s] Exactly the higher time frames will tell you but that's why we always try and recommend
+[2499s-2501s] Understanding the higher time frame thesis
+[2502s-2504s] I know a lot of our trades are on the one in five minute chart
+[2505s-2507s] But they're really always based off the higher time frames
+[2508s-2511s] Right that's what matters most if you can't understand the higher time frames
+[2512s-2519s] You have no business being on the one in five minute because you'll see you might get fake though quite often on the one in five just why
+[2520s-2522s] Because there's so much more let's go on
+[2523s-2526s] If I go on to let's say the AMD chart for example
+[2528s-2529s] Look at how many candles are forming here
+[2531s-2534s] Right there's hundreds of candles on the one minute chart
+[2535s-2537s] You can easily get right mixed up
+[2538s-2545s] You need to get confused because there's so many candles and sometimes you forget what matters the most which is
+[2546s-2552s] Or just look at the higher time frames this is gonna matter a lot more than something that happens on the one minute time frame right
+[2553s-2556s] If you're looking at this
+[2556s-2558s] Let's go back on to this
+[2560s-2572s] And then scroll let's actually move this right a one minute flat top break
+[2573s-2575s] Can easily be invalidated
+[2576s-2578s] Whereas
+[2578s-2580s] Right this can set up by the way
+[2581s-2582s] Within like 10 20 minutes
+[2583s-2585s] Right, so
+[2585s-2587s] This can easily be invalidate because it's not that hard
+[2588s-2592s] Right if it forms on a one minute break of structure it's very easy that it can just reverse
+[2594s-2603s] Whereas if you if this was looking like on the one-hour chart or something like Tesla if you go back here
+[2607s-2609s] or look at how many times
+[2610s-2612s] Or look how long this was forming
+[2613s-2616s] This was forming for a couple months
+[2618s-2622s] So if the higher time frames right usually have less fake oats
+[2624s-2628s] Higher time frames have fake oats as well, but usually they take longer to develop
+[2628s-2633s] So you have a lot more clear of a thesis and it can give you right more importance
+[2634s-2636s] And that's why right the bigger the base
+[2636s-2638s] The bigger the break up
+[2638s-2642s] Right could have Tesla rejected this and continue lower
+[2643s-2646s] It very much well could have but overall if you zoom out as I mentioned
+[2647s-2649s] Very higher time frames higher lows are being built up
+[2650s-2652s] But I've we had bullish market sentiment
+[2653s-2656s] Right there's a lot of signals pointing for Tesla to continue higher
+[2657s-2660s] And the reason why also as well is you talk with this
+[2661s-2664s] Markets are essentially designed to go up so
+[2665s-2667s] A lot of these setups cop in handels
+[2668s-2672s] Right flat top breaks they usually go higher because
+[2672s-2676s] The overall markets moving higher if we're in a bear market then we're gonna do the opposite
+[2677s-2680s] But we've been in a huge bull market the past couple years
+[2680s-2684s] So we're gonna be looking for these higher time frame breakouts for continuation higher
+[2688s-2690s] Okay, that was
+[2691s-2697s] The we talked about kind of the couple patterns that I like in the reason why they're bullish as well
+[2699s-2702s] Let's go back on to other forms of liquidity
+[2705s-2707s] Then it's going to this let's draw this out
+[2713s-2716s] This is also similar to kind of like a flat top break here as well
+[2717s-2721s] Oops
+[2721s-2726s] But have you ever seen this pattern play out sometimes it doesn't happen as often but
+[2728s-2729s] You guys know what this is called
+[2762s-2767s] Exactly walls put smaller time frame keeps you better entry and exit as long as the higher time frame is in
+[2767s-2769s] Clear direction exactly
+[2770s-2777s] Higher time frame for the thesis and then lower time frame for that essentially just really the only reason why you should be on the one minute is just to execute
+[2780s-2786s] Up trend line staircase pen in yeah, so I kind of drew it up pretty bad, but I consider this
+[2787s-2790s] Just a trend line
+[2790s-2795s] So as you can see here higher highs higher lows we just have a trend line form
+[2795s-2798s] High personally don't use trend lines as often
+[2799s-2801s] But this is also form of liquidity
+[2802s-2805s] My opinion a little bit more difficult
+[2806s-2822s] But if you know the basis of trend line the basic basically state right two to three touches and then sometimes you get that trend line break
+[2824s-2826s] You guys a probably seen this
+[2826s-2832s] Right where you have that trend line one touch two touch three touch and the break and then you have a little bit of continuation
+[2832s-2834s] Laura
+[2834s-2836s] Have you guys seen this before you guys right?
+[2836s-2840s] That's I think a lot of people when you first start trading kind of learn about trend lines
+[2848s-2851s] Or Mr Trump might invalid it that's actually a good point
+[2853s-2855s] This all this matters all this technical stuff
+[2856s-2859s] It's completely thrown out the window when we have news
+[2860s-2864s] Then we talked about it talk to buttered on last Tuesday
+[2864s-2870s] But news always Trump's technicals that's actually it's a little bit harder more discretionary to kind of digest but
+[2870s-2874s] Talk about it every single day in the pre-recoperates. That's what it's important because
+[2874s-2880s] Something like FOMC something when Trump treats that's actually gonna invalid it all technicals because
+[2881s-2885s] Essentially what that seeking actually is liquidity. It's also another form of liquidity
+[2885s-2888s] Because it usually just likes to take our both sides
+[2891s-2893s] Taking their step up elevated down yes, okay
+[2894s-2900s] So some of you guys have seen this basically trying on the quality we have multiple touches
+[2901s-2909s] Eventually once that trend line breaks you had lower and this is also a form of liquidity as well
+[2910s-2916s] We don't use this as much because we don't use trend lines as much and then right, so we have equal highs
+[2917s-2919s] equal lows
+[2919s-2922s] Right trend lines as well. We'll look for and then we also have
+[2923s-2926s] Not my favorite which is understanding this
+[2934s-2936s] Do you guys know what this is?
+[2936s-2938s] Let's just say this is for example
+[2939s-2945s] Never previous say highs in your previous say lows
+[2946s-2952s] Support a resistance see
+[2953s-2957s] Range jack the cup and handle and what time frame do you base your thesis on?
+[2957s-2961s] Where are our time frames hold my power if you look at the 15 minute and one hour that's really good
+[2962s-2964s] You don't want to be on the one minute
+[2964s-2967s] Right because it doesn't make sense if you have a one minute thesis
+[2970s-2975s] You also execute the trade and manage everything on the one minute if you have managed everything on the one minute
+[2976s-2978s] You enter the trade on the one minute you also right
+[2980s-2984s] Sorry you have a thesis on the one minute your buy some the one minute your narratives on the one minute
+[2985s-2987s] If everything's on the one minute then you have no higher time frame context
+[2988s-2993s] So if you're I ain't trying to enter on the one minute time frame you want to be on the minimum
+[2994s-2999s] Right at least 15 right five 15 minute as your higher time frame
+[3002s-3006s] Range liquidity exactly so right here what we have is range liquidity
+[3007s-3009s] Previous say highs and previous say lows
+[3010s-3012s] We kind of talked about this earlier
+[3012s-3017s] There's always liquidity resting above and below these levels
+[3018s-3020s] So if we're trading in between the range
+[3020s-3024s] We're gonna look to target or either your previous say highs or your previous say lows
+[3025s-3030s] If we're outside the range completely different and we're gonna be looking for other key bubbles
+[3030s-3033s] But to make it nice and easy for in between the range
+[3033s-3037s] That's why usually if we're in between the range you want to be a little more cautious because
+[3038s-3041s] Kind of far away from your previous say highs and your previous say lows
+[3042s-3045s] And that those are the levels we'd like to see the market crap take towards
+[3047s-3050s] Okay, so we talked about kind of the
+[3051s-3054s] Understanding liquidity right just understanding old highs and old lows
+[3055s-3057s] We also kind of just talked about
+[3057s-3060s] Right what does liquidity essentially look like
+[3060s-3065s] And the different forms of liquidity that can be implemented into the markets. Do you guys understand this?
+[3067s-3075s] We'll go over a bunch more examples here in Seoul. Yes
+[3084s-3086s] Well, one awesome
+[3090s-3093s] Okay, now
+[3093s-3097s] Let's actually just go into
+[3097s-3099s] We'll be only want to trade this if it's a reversion
+[3100s-3102s] I think you're talking by brainage liquidity
+[3103s-3106s] But there's difference between internal and external. What kind of talk about this here?
+[3107s-3109s] Price can essentially only do one of two things
+[3112s-3114s] Does anyone know what that is
+[3114s-3116s] All right price can only do one of two
+[3118s-3132s] One of two things in the market up or down. Yeah, that's honestly the best way to put it
+[3134s-3135s] Price can either move up or down
+[3136s-3140s] But the way I like to frame it is price can either do one of two things
+[3141s-3143s] It is either going to seek liquidity
+[3150s-3153s] I should just write this down instead of drawing it or
+[3153s-3155s] Rebalance price
+[3161s-3163s] Yeah, I definitely should have wrote this down, but
+[3164s-3166s] There's only one or two things that can happen
+[3166s-3170s] We kind of talked about this point which is seeking liquidity
+[3170s-3172s] What does this mean?
+[3172s-3175s] Our price is going to gravitate towards your old highs
+[3177s-3178s] old lows
+[3178s-3180s] or this can be your previous say has
+[3184s-3186s] previous say lows
+[3186s-3190s] And he's formed up right and he's basically any whole entire old loan the markets
+[3191s-3192s] Essentially seeking liquidity
+[3193s-3197s] And then what is rebalancing price does anyone know what rebalancing prices?
+[3208s-3212s] I love that quote as well. Yeah, if you don't understand the quote, you are the great for sure
+[3217s-3219s] Going back to unfilled orders correct
+[3220s-3222s] Basically rebalancing price is
+[3223s-3225s] usually pullbacks or
+[3226s-3228s] in this case
+[3228s-3232s] Right gap fills
+[3232s-3234s] Cap fills are internal liquidity, right
+[3235s-3237s] They're just rebalancing something that's
+[3238s-3242s] Right we gaped up the gap down we're looking to rebalance price
+[3243s-3246s] Something that happened today on the spy right off the bat
+[3247s-3249s] Where we had a big push higher
+[3249s-3253s] There was no other objectives so instead of seeking liquidity and what's a rebalance price
+[3254s-3256s] All right, so gap fills
+[3257s-3259s] Fugies
+[3259s-3261s] Order blocks
+[3262s-3266s] My pain the easiest and you can also say just a mean reversion price can just
+[3267s-3268s] Revert
+[3271s-3273s] Press can just revert back to the mean
+[3274s-3279s] That's usually what it likes to do oh my favorite
+[3280s-3282s] Is gonna be the gap fill
+[3282s-3286s] Basically if you guys don't know what the gap fill is we talked about it last Thursday
+[3287s-3289s] Just whenever there's an imbalance in price
+[3290s-3292s] Usually in between 4 p.m
+[3293s-3298s] I'll show you an example here to 9 30 a.m. in morning if there's a gap on the chart
+[3299s-3304s] Usually price likes to re fill those gaps I kind of talked about it for the 70%
+[3305s-3308s] You know 4 a.m. period usually the gaps are gonna fill
+[3309s-3310s] Sometimes
+[3310s-3313s] We have what's called a gap in goes which are my favorite setups
+[3314s-3317s] So the gap and go what's it doing it's seeking liquidity
+[3318s-3321s] They gap fill it's rebalancing price
+[3321s-3323s] Right
+[3323s-3325s] So I was in mention
+[3325s-3327s] If you understand this price can only do one or two things
+[3328s-3330s] Right, this is gonna help you out a lot
+[3330s-3337s] Right understanding what we're gonna be doing are we gonna be seeking liquidity or is price gonna look to rebalance
+[3339s-3344s] What do we like to trade and by the way it moves from one or the other right price can only do
+[3345s-3350s] If price seeks liquidity
+[3350s-3355s] This is actually good. This right here. Let me actually just go back to this
+[3357s-3361s] So price moves from
+[3361s-3366s] internal to external
+[3368s-3370s] And from external
+[3371s-3375s] To internal so basically
+[3377s-3379s] If you're seeking
+[3379s-3381s] External liquidity
+[3382s-3384s] That means you need an internal entry model
+[3386s-3387s] Right, let me kind of break this down
+[3388s-3395s] Let's say if you're looking for the previous day house as it may an objective
+[3396s-3400s] Your entry has to be an internal entry model which as I mentioned
+[3401s-3405s] maybe it's
+[3406s-3409s] Your previous day close or your gap fill
+[3410s-3412s] It could be like an FVG
+[3413s-3418s] Right on order block or it can even be like a five-minute range. I always
+[3418s-3420s] Majority times
+[3420s-3424s] Write your five-minute your first five-minute candle can actually be external
+[3424s-3428s] But sometimes the internals wall but basically in order to capture
+[3429s-3431s] Or trade up into what your previous day has
+[3432s-3434s] You're gonna need one of these entry models
+[3436s-3441s] And the exact same thing applies if let's say you're trading from external
+[3442s-3444s] to internal
+[3444s-3446s] This is more of a reversal trade
+[3447s-3449s] So let's say you're trying to target
+[3450s-3454s] A fair value gap or an order block or a previous day close for example
+[3455s-3458s] What are you gonna need? You're gonna need right maybe a
+[3459s-3460s] Previous let's say for example
+[3463s-3468s] This is your previous days range and in this case
+[3470s-3472s] Let's say we actually open up way above here
+[3475s-3480s] We're gonna need some sort of rejection this can maybe actually be an old higher old though
+[3481s-3483s] Burning we're gonna need some sort of rejection
+[3484s-3488s] To fill we're gonna basically have to go from external to internal and an easier examples
+[3489s-3490s] Let's say we open up in the middle of the range
+[3494s-3499s] In order for the previous day high for an internal move sorry for an external move into an internal move
+[3502s-3505s] Right we need like a previous day high reject for
+[3506s-3508s] Push right back down into our drug out fill or something
+[3509s-3510s] Hopefully
+[3510s-3516s] That makes a little bit of sense. I know that last one was confusing but majority of our trades go from internal
+[3517s-3521s] To external because we're always seeking some sort of liquidity on the higher time frames
+[3522s-3525s] That might have been a little bit confusing, but I'll show you some examples here in a second
+[3528s-3530s] F.E. G.Aps
+[3530s-3534s] Um, news earnings what is price make a big balance without touching any key levels
+[3535s-3539s] Sometimes it just has that's a good question. It basically is understanding liquidity
+[3540s-3545s] So sometimes price is in a very big rush because it's in very it wants to take on a key level
+[3547s-3549s] Is this iCT no it's just understanding liquidity
+[3551s-3556s] Some people iCT it's just basic kind of understanding liquidity just depends how you frame it
+[3556s-3562s] A fair value gap is technically from iCT but the rest just internal external that's just
+[3563s-3567s] I guess the the iCT concept there is gonna be your fair value gap
+[3568s-3575s] But they're just always right understanding old highs and all those okay
+[3576s-3578s] Let's go into a lot of examples here
+[3578s-3585s] It's going to the weekly chart if i was to mark this up
+[3586s-3588s] Obviously we know and hindsight what happens
+[3590s-3596s] But if i'm to mark out right old highs and all those in the chart and where the liquidity is resting
+[3597s-3599s] where
+[3599s-3601s] Let's say have this flat top break and
+[3602s-3604s] I'm expecting Tesla to break above
+[3605s-3609s] worse the targets based off this weekly timeframe
+[3610s-3633s] Can anyone tell me order blocks all-time eyes old highs
+[3634s-3637s] Previous higher pivot points on the left-hand side
+[3639s-3643s] Exactly we're just going to be looking left so let's go back on to this
+[3644s-3650s] It's kind of remove all these if i was to mark this chart out
+[3652s-3654s] it's marked with this why
+[3655s-3658s] 367 there's orders
+[3659s-3662s] Resting above every single old high and old low
+[3662s-3668s] Technically you can mark out every single old candle you can mark out this one in this case
+[3670s-3678s] What is this it's actually a double top
+[3679s-3685s] As I mentioned double top lot of liquidity it's fairly bullish you can mark out more
+[3686s-3689s] Whenever drawing these out as well I like to draw the wigs
+[3690s-3693s] You can mark out the body to the wigs because it's the whole area
+[3693s-3695s] But when I'm drawing out liquidity levels
+[3696s-3698s] Or usually it ends up taking out the wigs
+[3698s-3700s] Right sometimes it rejects off the body
+[3701s-3702s] What would draw it?
+[3703s-3706s] Adrody the times I'll gravitate towards the wigs
+[3707s-3710s] So every single old candle high
+[3711s-3721s] Can be used as liquidity right does this make sense
+[3722s-3724s] Right why I have every single candle high
+[3725s-3726s] Some have more importance than others
+[3727s-3729s] But you can see every single old high
+[3731s-3733s] There's going to be orders resting above these key levels
+[3734s-3737s] I'm going to use the wigs right some people might ask
+[3738s-3741s] Can I use these old highs you can
+[3742s-3744s] Where we're looking at the most recent price action
+[3745s-3746s] Right so on the way down
+[3747s-3750s] You can mark at these old highs and then we're we're we're trading on the way up
+[3752s-3753s] These are the levels that we're going to be using
+[3754s-3759s] And then if I was to where just strictly based off of these levels right here
+[3761s-3766s] Right there's a lot of the liquidity resting above and you can see like how nice the reactions
+[3766s-3769s] We have our off these levels. I just kind of playing it out
+[3770s-3775s] But these are very key right you can see touch here if I even go into lower time frames you can probably see
+[3775s-3777s] Right I'd even draw
+[3778s-3780s] I'd even refine the levels
+[3780s-3784s] But you can see just strictly based off those old higher time frame levels
+[3785s-3788s] Look at well price is respecting these levels right here
+[3789s-3791s] You can you can mark your level is just based
+[3793s-3795s] Just based off that right price trades higher
+[3796s-3799s] Couple rejections broke above nice retests higher
+[3799s-3803s] Right another rejection for 40 right these are just key levels on the chart
+[3805s-3808s] All right, I'm just talking with liquidity. I'm right in the time by drawing levels
+[3809s-3813s] But you can see how importance right these higher time frames the quality levels are
+[3814s-3815s] Right now
+[3816s-3836s] Let's see where Tesla is let's draw this chart so Tesla right
+[3837s-3845s] Where are our key liquidity levels here on Tesla towards the upside right because we have a bullish thesis
+[3845s-3848s] If you're trying towards the downside it's a little bit different
+[3848s-3851s] But where are liquidity levels here on Tesla?
+[3854s-3858s] It's amazing very easy and understand good old highs look left
+[3860s-3861s] exactly
+[3861s-3863s] wouldn't doubt
+[3863s-3865s] You just have to look left
+[3865s-3867s] Right look left
+[3867s-3870s] We always like to say as well when in doubt zoom out
+[3871s-3875s] In this case we look left and to see our most recent levels
+[3877s-3878s] Technically we're above this now
+[3880s-3882s] So the next levels
+[3882s-3886s] We can draw this is very far away very draw this high
+[3887s-3889s] Maybe if you think this high is too far away
+[3891s-3895s] You can zoom down onto lower time frames to mark up maybe this way Kai
+[3896s-3900s] But let's just say for now we're just gonna mark out this what you already hit
+[3900s-3902s] So now what is this used
+[3903s-3905s] Right we kind of want to use this level of support
+[3906s-3909s] broke above use that support for continuation
+[3910s-3912s] The next level
+[3912s-3914s] It's gonna be your 40
+[3914s-3916s] Why it's a very key level
+[3917s-3919s] Lot of sellers
+[3919s-3921s] or sorry a lot of orders
+[3922s-3925s] are waiting to be filled above here in terms of
+[3926s-3929s] Right sell limits
+[3929s-3932s] If you're gonna look to take profits it's gonna be here
+[3933s-3935s] Buy orders let's say maybe you're short
+[3936s-3943s] You can have a stop loss a buff here now what are our other levels?
+[3945s-3947s] Since we have no more information
+[3948s-3950s] Right cuz maybe we're trading above this here now
+[3954s-3957s] Now you're gonna be confused because they're like I don't have anything to go off of
+[3958s-3960s] You can see
+[3960s-3962s] Kind of break above it
+[3962s-3966s] What can we do if we're at all time highs then we have to use key cycle levels fives
+[3966s-3968s] But in this case we just look left
+[3969s-3972s] If there's still a little bit more levels left we can draw this
+[3973s-3975s] Which is gonna be your all time highs for you
+[3976s-3977s] If there's something like in video
+[3978s-3980s] Gonna be a little bit more difficult at least now
+[3981s-3985s] Because there's nothing to base it off of so you can just expect you to move higher
+[3986s-3988s] But at least for Tesla
+[3989s-3991s] The next major level 48
+[3991s-3995s] So that's kind of our thesis right if you look at this from the daily chart
+[3995s-3999s] Right
+[3999s-4001s] There's a very good chance for Tesla
+[4001s-4003s] to make all time highs
+[4004s-4006s] Right maybe it'd be
+[4013s-4015s] Maybe we had to all time highs this week
+[4016s-4019s] Maybe pull back but all we know
+[4019s-4023s] Is that eventually we're gonna gravitate towards this all-time highs level
+[4023s-4026s] Why just because of the Quities resting there as I mentioned
+[4027s-4030s] When markets are out all-time highs we're very bullish right higher lows
+[4031s-4035s] There's a better chance that Tesla is gonna move up and towards our all-time highs level
+[4035s-4037s] Just based off of right this higher time rent thesis
+[4039s-4041s] We look at some other names
+[4042s-4044s] In video is a good example today
+[4045s-4047s] Or let's go on to
+[4048s-4057s] The lower time firms right so coming into market open
+[4061s-4066s] Those are game plan here on in video or where is our key level of liquidity
+[4067s-4068s] All right, okay guys
+[4068s-4075s] Not sure if you guys can see the chart that well, but where is right in video most likely going to gravitate towards
+[4084s-4086s] We have gap we have
+[4087s-4089s] 196
+[4090s-4092s] Around 196 yeah, that's that makes sense
+[4093s-4096s] Right hopefully this makes sense right
+[4097s-4099s] This is what we have
+[4099s-4101s] We bought them
+[4101s-4103s] We're fairly bullish still we reclaim
+[4104s-4108s] Right it's most likely gonna gravitate back up into where's is high
+[4108s-4112s] Does that just make sense it's this kind of like a model where it's a reversal
+[4113s-4118s] Right price right here. It's a reversal in the one-hour chart but if you just zoom out look up bullish this is
+[4121s-4123s] essentially what is this
+[4124s-4127s] In validation of the head and shoulders on the daily chart
+[4128s-4130s] Daily chart as well
+[4130s-4134s] Still building up these higher lows
+[4134s-4136s] Right so there's a very good chance in video
+[4137s-4139s] gravitate back up into where's our all-time highs
+[4142s-4143s] So if you go on to right
+[4146s-4161s] Back on to sorry back on to the in video one-hour chart
+[4162s-4164s] There's a lot better chance that in video now
+[4165s-4171s] It's gonna move up into our all-time highs just based off the pre-market action just based off everything instead of
+[4172s-4174s] Right rejecting here
+[4174s-4176s] Because you gotta think about it when have you ever seen
+[4178s-4181s] a rejection without taking right a form of liquidity
+[4182s-4187s] Because as I mentioned what's resting above here basically
+[4188s-4190s] Right sure all-time highs number one
+[4191s-4194s] There's a lot of orders right resting here
+[4195s-4196s] So
+[4196s-4198s] if the market wants to
+[4199s-4203s] Potentially reverse right maybe push all the way back down in towards equilibrium
+[4205s-4208s] Usually what will happen is it will take this out
+[4209s-4211s] Reject and then head lower
+[4212s-4214s] Right very rarely will you see price
+[4215s-4217s] Reject
+[4218s-4221s] Before taking up the liquidity and head back towards the downside
+[4222s-4229s] Because it would just make sense right there's a lot of orders resting here if you want to push higher
+[4231s-4235s] Right it's gonna take the zone and continue higher if you want to reverse
+[4236s-4238s] It's gonna come up
+[4238s-4239s] reject
+[4239s-4241s] Take out this liquidity
+[4241s-4244s] Take out a bunch of stops and then send price back lower
+[4246s-4248s] Does that does that make sense?
+[4249s-4252s] At least from right a logic in decent standpoint
+[4261s-4267s] Would you explain it again sure on the one-hour time frame you see if I type right here make these stuff
+[4268s-4269s] Okay, let me explain this once again
+[4271s-4276s] So if I bring this back up her equal highs
+[4278s-4280s] All right, so if let's say
+[4281s-4283s] Price wants the reverse
+[4284s-4289s] This is kind of what it looks like here
+[4289s-4290s] You know this
+[4297s-4300s] Right, so this what we have here at least from in line in the sugar shins standpoint
+[4302s-4304s] Coming into this morning
+[4304s-4310s] I mean sipping polissa
+[4311s-4312s] Let's see
+[4312s-4329s] Something stuck in your throat you some hard-susset bread. Yeah, I'll actually do that later. I think I don't know what got stuck
+[4329s-4331s] but coming to today
+[4332s-4337s] As you can see is for the main watches most likely be for take due to continuation
+[4338s-4340s] Apple opening draft towards upside and video
+[4340s-4343s] Above previous day highs let's see if I say anything about Nvidia
+[4344s-4353s] What's up? It's going to in video above your previous day house for a push higher play towards the upside
+[4354s-4357s] Nvidia
+[4357s-4365s] You guys here the video
+[4365s-4366s] Yes, okay
+[4366s-4374s] All right, let me play this apple opening drive play towards the upside in video
+[4374s-4376s] I like this one
+[4376s-4378s] Nice hold the above your 190 yesterday
+[4379s-4381s] We like to see now just continuation
+[4382s-4384s] Above your previous day house for a push higher
+[4388s-4393s] Okay, I guess I didn't say too much but in video I mentioned above your previous day highs
+[4394s-4396s] The next level on the chart was
+[4397s-4400s] above your above your previous day highs was your old time highs
+[4402s-4403s] As you can see right here
+[4405s-4407s] All right, it's a little bit blurry, but as you can see
+[4408s-4410s] I don't have any other level mark don't on a chart
+[4411s-4417s] If your previous day highs and then we have our all-time highs
+[4421s-4426s] So the thesis coming to market open was that we're actually very bullish
+[4426s-4427s] We're very close to your all-time highs
+[4428s-4431s] So we're either going to look for kind of a trading opportunity up in toward your all-time highs
+[4432s-4434s] Maybe if you come pull back
+[4434s-4437s] Regardless we're very bullish and we're expecting in video
+[4437s-4440s] To gravitate up and towards this all-time highs level
+[4442s-4445s] Someone mentioned earlier what is the thesis once again?
+[4446s-4448s] Right, so you kind of draw this up
+[4450s-4452s] Right, there's a very good chance if you ever see out price moves
+[4452s-4456s] Is that this is gonna move higher before it's ever gonna head lower
+[4457s-4461s] Right if you're bearish right you would want to wait for
+[4462s-4464s] Right the reaction
+[4464s-4465s] Because no one
+[4465s-4467s] wants to short why would you short?
+[4468s-4470s] Especially in a bullish sense if you're gonna short
+[4471s-4477s] Before hitting your all-time highs right and just doesn't make sense maybe in a bull market right higher lows
+[4477s-4479s] But in this case there's a very good chance
+[4480s-4482s] Where are we continue higher?
+[4483s-4487s] Just based off understanding liquidity just based off understanding trends
+[4488s-4491s] Where you can see in an uptrend what happens?
+[4493s-4496s] We break struck we break struck your towards upside
+[4496s-4498s] All right, so think about it like this
+[4500s-4502s] It's just understanding essentially just trends
+[4503s-4505s] push higher
+[4506s-4508s] This is our swing point
+[4508s-4516s] And where we're gonna look to target let's say we buy a higher law if we buy here or is our target
+[4517s-4522s] High of day it's kind of I'm just saying hi day, but let's say we take an intro day trade
+[4523s-4525s] We just gotta think about this on the higher-time verbers back there
+[4526s-4529s] If we're buying a uptrend and just kind of like a break and retest
+[4533s-4535s] All right break of structure
+[4536s-4539s] Swing high and what's resting above here liquidity
+[4541s-4543s] We come back to retest
+[4544s-4546s] What's the next key level
+[4546s-4548s] You're swing high
+[4548s-4550s] All right whenever you trade
+[4552s-4555s] All right think about this whenever you look to trade this type of setup
+[4555s-4557s] Where's our take profit?
+[4558s-4559s] Is that high of day?
+[4560s-4562s] You just break it down into this sense
+[4563s-4567s] And we like to see continuation some of the thing trend upside
+[4567s-4572s] Right, but now we're just kind of breaking it down on to lower-time frames
+[4572s-4575s] But overall the concepts are the exact same
+[4576s-4578s] Right, this is what this kind of looks like
+[4581s-4587s] Right, let's do this. I might not look perfect, but as I mentioned right the church not always gonna look
+[4588s-4590s] Very perfect. It might look something like this
+[4592s-4594s] Very higher
+[4595s-4597s] Sometimes right this retest level
+[4597s-4599s] Kind of broke underneath
+[4600s-4605s] We're still bullish right reclaim back above but the overall underlying thesis still the same
+[4606s-4608s] Right, maybe it's like a reclaim
+[4609s-4612s] Reclame back above next logical level
+[4613s-4614s] All-time highs
+[4614s-4616s] Right one have you ever seen a
+[4616s-4620s] Reclame and it kind of just rejects and actually has done that but very rarely
+[4621s-4626s] Right once it reclines back above there's a much better chance we move up and towards all-time highs
+[4627s-4633s] Has there's been circumstances where we reject yes, but usually the context is more bearish like it'll be like this
+[4634s-4637s] And for an option we're most likely to get a gravitate higher
+[4639s-4642s] Does that make sense a little bit more sense
+[4644s-4651s] At least to why in this case right in video is bullish from a higher time for him perspective
+[4661s-4667s] Yes, one one one good good stuff awesome awesome
+[4668s-4674s] At least for the setup right the higher time frames in my opinion on a video was really clear
+[4674s-4676s] There actually wasn't too many in today's setup
+[4677s-4679s] Can you can see kind of right off the bat?
+[4680s-4682s] Push up in towards your all-time highs are very close
+[4683s-4685s] I think this the general area we had marked out
+[4688s-4690s] where you can see
+[4690s-4693s] Really strong push right up into our all-time highs
+[4693s-4695s] There actually wasn't too many traits setups in today
+[4696s-4702s] But you can see right off the bat and really strong push if you watch the live session coming to mark it open we mentioned
+[4704s-4708s] Right now you got to think about it. We'll be long up and towards your all-time highs
+[4708s-4710s] Right we much rather long
+[4710s-4714s] Intwards your all-time highs, but we're not gonna long at your all-time highs. Why does this make sense?
+[4715s-4718s] Because if you look at it from a higher time frame perspective
+[4723s-4725s] right the trade was
+[4726s-4729s] Up and towards your all-time highs if you remember right if I go back on to this
+[4734s-4739s] The trade was in towards your all-time highs in this case in videos actually really bullish
+[4740s-4742s] And already coming to market open
+[4743s-4747s] We already had such a big push and we already hit your main objective
+[4748s-4751s] Or why is this a main objective because I talked about it earlier
+[4753s-4755s] Let's say you're buying here
+[4756s-4757s] Or buying anywhere down here
+[4758s-4760s] Where you're gonna be taking profits
+[4761s-4764s] You're gonna be taking profits at your all-time highs
+[4765s-4767s] Think about this as a high of day
+[4768s-4775s] Right maybe sell half-reposition and maybe leave some trailers because you can see it continued after but regardless if you're buying here
+[4776s-4781s] A major level of tape profit is gonna be here or you can expect at least a reaction
+[4782s-4786s] Right why has it mentioned and then when that short
+[4787s-4790s] They're gonna have their stop loss or they're gonna have bi-orders by
+[4793s-4797s] Right resting by stops or you can just say this by stops
+[4798s-4800s] If you're long
+[4800s-4802s] You're gonna have your TP
+[4804s-4806s] Take profit at all-time highs
+[4806s-4811s] Ultimately, of course, in video when higher with news, but you can see right that would have been a good area too sell
+[4813s-4815s] Just because we hit a very key objective
+[4816s-4818s] Ultimately higher time frames whole mile a power
+[4819s-4824s] But on the lower time frames you can see rejected right off the bat and then eventually right regretted it higher
+[4825s-4827s] And if we're going to look long
+[4828s-4833s] What would that mean we'd much rather wait for the break and retest above your all-time highs
+[4834s-4845s] For that continuation higher my hair look I appreciate it appreciated junior
+[4846s-4852s] If we break and retest at all-time highs do not take yeah, so in this case right you'd be waiting for the break
+[4853s-4857s] If you're gonna take yes, right you wouldn't want to kind of long before
+[4858s-4860s] Usually like to wait for a confirmation in this case
+[4861s-4866s] See later into the session it would have been a little bit more difficult but you can see once you broke above it
+[4866s-4871s] Finally maybe a couple of fakeouts, but you can see once we're clearly broke above that's when we had nice continuation higher
+[4874s-4877s] Let's see yeah, there's a lot to address here. Let's see
+[4877s-4883s] Does that actually make does that make a little bit more sense? We'll go over some more examples here in a second, but they just kind of understanding
+[4884s-4885s] Right
+[4885s-4889s] Look who it is and how we can formulate that into or like our training
+[4889s-4896s] And as I mentioned if you think about it or you rewatch this one right where we always try and teach is the logic and thesis and why
+[4896s-4901s] Right things move the way they move right that's important because if you look at this
+[4902s-4906s] On the lower time frames and the one in five minute you can easily get fake though
+[4906s-4912s] But if you just stick to the higher time frames and kind of stick to the basics it's gonna make a lot more sense
+[4912s-4914s] Right something like Nvidia
+[4915s-4920s] Just look how bullish this is even if you zoom out onto like the weekly time frame
+[4921s-4925s] In video right you just kind of trade with the trend right that's like what we trying
+[4926s-4929s] Teach is like if you just trade with the trend there's a good chance
+[4930s-4933s] Especially in a bull market you're gonna make money towards the upside
+[4934s-4940s] Can you short yes you can but it's gonna be a lot more difficult just kind of break I consider this above
+[4941s-4943s] More like an 84% rule
+[4943s-4948s] You can kind of see this right 84% rule or what I talked about earlier
+[4949s-4954s] In validation of the head and shoulders is what one of the most bullish setups if you look back on it
+[4955s-4960s] In validation of the head and shoulders it wise is bullish is because
+[4962s-4964s] Kind of break down the thesis or the logic
+[4965s-4975s] Right what are sellers trying to do or let's do this it's faking out essentially sellers
+[4976s-4980s] Right because a lot of sellers they're gonna look for this right left shoulder
+[4982s-4983s] The head
+[4983s-4986s] Looking for the right shoulder to confirm the thesis lore
+[4987s-4989s] So if you're gonna take a short
+[4989s-4994s] Where's our stop where's their stop?
+[4994s-4995s] There's gonna be at this high
+[4996s-5003s] Where it's kind of the same as the 84% rule why does the 84% rule work so well and why does it usually have the most explosive move
+[5004s-5008s] Is because it's basically faking out right the sellers towards the downside
+[5008s-5013s] Reclaiming back above a key level and then usually it has a very explosive move higher
+[5014s-5016s] All right, so that's why a lot of the reclaims you always mention
+[5018s-5020s] We want to get in on the reclaim and not the retests is because
+[5021s-5026s] Right what's more important in this case is a little liquidity because everyone knows once it reclaims back above
+[5026s-5028s] This is gonna move quick
+[5028s-5034s] So sometimes it can come back for the retests and sometimes it'll just launch higher because it's in a quick hurry
+[5036s-5038s] To essentially take out this liquidity level
+[5040s-5042s] Hopefully that makes a little bit more sense
+[5043s-5045s] Let's see
+[5045s-5050s] I think I'll find an understanding what liquidity means
+[5051s-5053s] It's a price where people are willing to buy or sell
+[5054s-5056s] Don't more people willing to buy the price to buy the demand
+[5058s-5061s] There's too much supply to certain levels there may not be as many buyers
+[5062s-5064s] exactly
+[5064s-5072s] I saw an entry at 144 is that a valid entry break through high-day. I think this one had more to do with news as I mentioned
+[5073s-5075s] news is more important
+[5075s-5077s] than the overall ticker
+[5077s-5080s] Let's say you got in at 144
+[5080s-5084s] Yeah 144 was a good entry. I kind of retest off his news came to high
+[5088s-5090s] Stop maybe a break below this
+[5091s-5093s] one or two and kind of trail your position
+[5094s-5100s] I like this one. Let's see
+[5101s-5103s] above a head 84% roll
+[5104s-5107s] Meaning do you apply the 84% roll to the downside as you do upside yeah
+[5108s-5115s] We'll do that but as I mentioned overall market it's bullish so rarely will take 84% roll to the downside
+[5115s-5117s] Because overall higher time frame is bullish
+[5120s-5125s] Jack I like to ask you've been bullish a lot lately was there a time where you weren't in place a lot more puts
+[5125s-5129s] Only when the market is a bearish right really a trade as I mentioned within the trend
+[5130s-5134s] All right, it's a lot easier to trade with the trend than to trade against the trend
+[5134s-5136s] So when the market flips which
+[5136s-5141s] Earlier this year we were a little bit more bearish open to playing some more downside
+[5141s-5144s] Took Tesla punch other names, but you can see here
+[5145s-5147s] No reason to be bearish
+[5147s-5151s] Overall market's just been moving higher if you're gonna try and time the top
+[5152s-5155s] Very difficult if you try and ride the trend it's a lot more easier
+[5162s-5166s] 84 exactly I hope this comes under trend line liquidity in this case then price gravitate towards
+[5167s-5171s] Let's see
+[5171s-5175s] Yeah, this is a good you'd have to look at the higher time friends, but this is a good sign of
+[5176s-5185s] Right trend line liquidity and this let's go into the chair this
+[5186s-5189s] Look at this right if you're trying to at sure for example
+[5190s-5191s] Just looking at this trying to itself
+[5194s-5200s] Can you make money on the short side as I mentioned yes, but it would be very very difficult
+[5201s-5205s] Why because this one very bullish flat top continuation higher
+[5206s-5213s] Gap up with earnings every single dip has gone bought up could this reverse right off here very much well could
+[5215s-5217s] But there's a good chance
+[5217s-5220s] That we're end up gonna continue back up into our draw all-time highs
+[5221s-5228s] If you look at this kind of market with this general area you have this trend line marked out
+[5229s-5232s] Right shorts my opinion even if it does the thing about this short
+[5233s-5237s] Is that you got to think about momentum and wise if it drops
+[5239s-5242s] It potentially might have like a slow move back down towards or one-on-nine
+[5243s-5245s] But if it holds up
+[5245s-5247s] Right there's a good chance maybe it bases above here
+[5248s-5252s] Maybe a flat top forms and you can see a bigger push towards upside just based off the trend
+[5253s-5256s] But there's a lot of liquidity building up you can expect a little bit of a pullback
+[5257s-5262s] But the key level now is gonna be around 12 okay
+[5262s-5265s] Let's see do you guys have any other questions regarding
+[5266s-5270s] Could be I want to make sure everyone understands what it is if you guys do have any other questions
+[5271s-5273s] Maybe we can go over some more examples here as well
+[5274s-5278s] But you guys have any any questions regarding liquidity
+[5279s-5283s] Let's see
+[5283s-5298s] Can you summarize the session at the end with the two minute overview of points sure any time does this a five
+[5304s-5310s] Is any time the five 15 and pre-mark it always become irrelevant or can you use them throughout the entire you can use them throughout the entire trade
+[5310s-5313s] In session but you have to think about it
+[5314s-5317s] The five minute is gonna become a lot less relevant later into the session
+[5318s-5322s] The previous day highs we're always gonna have marked out because those are key levels on the chart
+[5323s-5325s] by really the five minute
+[5325s-5327s] is strictly designed to
+[5327s-5329s] look for
+[5329s-5333s] to understand where prices most likely going to head within the first
+[5333s-5335s] right 30 minutes
+[5335s-5336s] to an hour
+[5338s-5342s] right so this is specifically designed for this for at least the morning session
+[5343s-5345s] So I would use the five minute timeframe
+[5346s-5351s] Right more so within the first like 30 minutes to an hour and a half of market open after 11 o'clock
+[5351s-5354s] Right so not gonna have as much importance
+[5354s-5358s] But it's still gonna be a key level based off of chart. You're just gonna have to go into the five minute chart
+[5363s-5369s] That's also a question someone else as well is the book map right how do you know buyers or sellers are resting but
+[5370s-5371s] It's just
+[5371s-5377s] Right it's just understanding right there's always gonna be orders resting everywhere in the markets
+[5377s-5381s] Just the most orders are gonna occur right above your old highs and old lows
+[5382s-5386s] Right that's why if you go back on to when I mentioned earlier
+[5386s-5388s] right old highs old lows
+[5388s-5390s] right key draws are all time highs
+[5391s-5392s] why
+[5392s-5394s] is because
+[5394s-5396s] That's a very key level on a chart if price
+[5397s-5401s] if price pulls back
+[5401s-5403s] it means objective old times
+[5403s-5405s] right so every single ticker
+[5405s-5406s] that we've been looking at
+[5408s-5410s] That hasn't hit all time highs
+[5410s-5414s] something we can look for the markets to gravitate towards so apple
+[5415s-5419s] Once it popped out like all time highs is in play because overall market
+[5420s-5422s] right at all times these ones are lagging
+[5423s-5423s] right in AMD
+[5425s-5426s] Why was AMD so good?
+[5428s-5430s] This doesn't look perfect but
+[5431s-5435s] Yeah, clear all time highs objective this was like the only one that was good with your word
+[5435s-5439s] There's one I consider more based off fundamentals plus you had it news as well so
+[5440s-5442s] but all time highs is in play
+[5443s-5445s] every other ticker
+[5445s-5447s] you can see back at all time highs
+[5449s-5452s] Microsoft based
+[5452s-5455s] bullish on the higher time frames what's the next level all time highs
+[5456s-5458s] great example today look at this
+[5460s-5462s] all time highs
+[5463s-5466s] you can mark out your five 50 so your five five four
+[5467s-5474s] word it reject off perfectly push higher rejected right off in the
+[5474s-5475s] pre-market and now we're consolidating
+[5476s-5480s] but that's a key level of liquidity so people in the morning you can see
+[5481s-5482s] word it a push higher
+[5483s-5488s] push higher right into our draw time highs very little amount of resistance
+[5489s-5491s] where people selling at key levels
+[5492s-5493s] where the key levels
+[5496s-5498s] as you can see really above this key high
+[5500s-5502s] the next key high was your all time highs
+[5503s-5506s] so in between here there's actually not that much volume
+[5506s-5508s] so that's why you had such a big pop
+[5509s-5511s] and then where we're seller's taking place
+[5512s-5513s] right at this all time highs level
+[5514s-5516s] so that's exactly where
+[5516s-5519s] right people maybe had as mentioned orders resting
+[5521s-5525s] hmm in terms of by-stopps
+[5526s-5527s] or take profits
+[5528s-5530s] regardless very key level
+[5531s-5533s] right up in towards there and I can see
+[5535s-5537s] right a little bit of rejection as I should get example
+[5539s-5539s] other examples
+[5541s-5542s] right google
+[5543s-5545s] Amazon this is a really good example here as well
+[5546s-5547s] we'll get this
+[5549s-5552s] Amazon rush you setting up for something in my opinion pretty big
+[5553s-5555s] because we haven't hit your all time highs
+[5556s-5558s] maybe you can even draw this out as a flat top
+[5559s-5561s] this is forming here on the weekly timeframe
+[5562s-5565s] maybe you can get a pretty big move on Amazon finally
+[5565s-5567s] once you break above continuation higher
+[5568s-5571s] basically every chart you can see right form of liquidity,
+[5571s-5573s] palentier i think it all time highs today
+[5575s-5577s] right but it's just understanding where
+[5577s-5580s] liquidity is essentially resting in the markets
+[5580s-5587s] yeah kind of a steered off on the one question which was
+[5588s-5591s] how do you know buyers yourself it's basically yeah all ties in all those you can use
+[5591s-5594s] bookbap level 2 but all you have to understand is that
+[5594s-5597s] there's gonna be buyers in sellers resting above those all ties in all those
+[5603s-5604s] the four kinds of liquidity
+[5606s-5609s] the easiest as I mentioned is it'll be trendline
+[5614s-5615s] trendline liquidity
+[5616s-5617s] you have range liquidity
+[5620s-5622s] and then we have equal highs
+[5626s-5627s] and
+[5628s-5631s] equal lows
+[5633s-5634s] so this is
+[5635s-5638s] kind of the four main forms of liquidity that will be looking for
+[5643s-5647s] can you please draw it down side targets on daily timeframe yeah same thing
+[5647s-5649s] right if you're drawing it on the daily timeframe
+[5650s-5655s] there's a reason why at least right eventually we're gonna have a major pullback
+[5655s-5659s] not now but eventually if I was to draw it down side of the query targets
+[5661s-5663s] same thing here you'd see huge push higher
+[5664s-5667s] where would you mark out down close candles so you're just marked it underneath these
+[5667s-5670s] lows so you can see overall market
+[5671s-5674s] came down of course in a downtrend was taking out these key people
+[5674s-5677s] lows now you can see overall big extension
+[5678s-5682s] eventually we're not anytime soon but the market's gonna come back down
+[5685s-5688s] right I'm not sure when that's why I'm not trying to time the top
+[5689s-5692s] but eventually we're gonna come down take out this look take out this look take out this
+[5693s-5694s] and then we're gonna have back higher
+[5701s-5706s] in example of liquidity concepts they always work that's the thing it's like
+[5706s-5710s] because it's a concept where just understand internal tax turn of liquidity there's not
+[5711s-5714s] I wouldn't say when it fails because it's not something that is right or wrong
+[5715s-5720s] it's just it's just understanding what is liquidity and where's it essentially
+[5720s-5724s] right what is liquidity and basically the liquidity is just where buyers and sellers
+[5725s-5727s] where's the money in the market so I wouldn't say there's a writer
+[5727s-5730s] one when it comes to understanding liquidity
+[5733s-5736s] here you can keep you tried if you look at it on the 15-minute time frame you have levels
+[5736s-5740s] that go back days and weeks you just leave them there in this case for spine cues
+[5740s-5742s] let's go back into the levels that have drawn out
+[5743s-5747s] technically I've levels all the way back from a few weeks ago they're not that useful
+[5747s-5752s] the only levels that matter currently are just in today levels that we have drawn out
+[5752s-5754s] so as for today
+[5754s-5757s] right look at these levels and how they were specced
+[5758s-5760s] I drew at this here in the pre-market
+[5763s-5764s] and let's go into this
+[5766s-5769s] right they're just key levels kind of marked out your pre-market high
+[5770s-5772s] marked out right for 2950
+[5773s-5775s] got a couple other key levels marked out here as well
+[5778s-5781s] nice hold the buck so this one actually for the spy
+[5782s-5784s] nice kind of pushed down into our drug at fill
+[5784s-5786s] ultimately kind of held your gaffes you can see here so
+[5787s-5789s] this one more rebalancing coming to market open
+[5790s-5792s] and then we're going to take back up towards
+[5795s-5796s] right look at this big quick
+[5800s-5802s] why did this big quick occur where did
+[5802s-5805s] is because this was just a key level high of day
+[5805s-5808s] our pre-market highs so if anyone was looking to sell
+[5809s-5815s] right it would be right here take profits maybe you're trying to have a reversal
+[5815s-5820s] trade take profits as I mentioned old highs and old lows and eventually moved higher
+[5823s-5829s] okay um see I remember you guys didn't post it yeah I know we we
+[5829s-5833s] had a bunch of puts not as often we're a little bit more defensive
+[5833s-5835s] but we played putster in that time
+[5836s-5839s] would you say that the market is generally times of
+[5839s-5841s] be bullish like how do people with real estate because
+[5841s-5845s] yeah as I mentioned the past I'd say the past
+[5845s-5848s] couple of years ever since COVID we've had a very strong trend towards
+[5848s-5851s] upside so that's why you'll see majority of our trades are to
+[5852s-5854s] the upside is because the overall market is trending
+[5854s-5859s] if the market flips then we'll be more interested in shorts but besides them
+[5859s-5861s] where our job is traders is to trade with the trend
+[5862s-5864s] the easiest way to make money to trade with the trend if you
+[5864s-5868s] try and fight the trend can you make money yes but overall in the long term
+[5869s-5872s] if you're basing off the higher time frames or you want to be in line
+[5872s-5874s] with the overall higher time frames
+[5875s-5878s] is that a liquidity grab in the market exactly right a liquidity grab
+[5879s-5883s] broke above took up the liquidity and came right back down
+[5883s-5889s] so there's penny orders here that's happened with news as well
+[5889s-5893s] but big pop up took up the liquidity and came right back down
+[5894s-5896s] same thing with the video all these ones
+[5900s-5904s] big pop up took up the liquidity and came back down
+[5905s-5907s] awesome um do you guys have any more questions
+[5908s-5912s] regarding liquidity or understanding the liquidity
+[5913s-5916s] think those are pretty good session um at least
+[5916s-5920s] for understanding the liquidity just straight on the charts I think this was kind of
+[5920s-5925s] the best way to do it a lot of times um we have like power points but
+[5925s-5928s] power points I think it's a lot easier to explain and kind of just
+[5928s-5934s] straight off the trading view chart yeah we have a lot of videos explained in
+[5934s-5937s] the quotas well in the modules and everything else this is always going to be
+[5937s-5940s] here I think this is probably my best one that I recap by yeah
+[5941s-5948s] I saw it excellent awesome good job sweet perfect awesome yeah hopefully this
+[5948s-5953s] I should have this recorded but I'll have this live session uploader free guys
+[5953s-5957s] tomorrow it's going to be a really solid one as well we're going to hop into psychology
+[5957s-5961s] with Jared so make sure to bring your questions for that I'm going to be there for that
+[5961s-5966s] session and then on Thursday we're going to talk more about kind of features
+[5966s-5971s] how to trade features and then on Friday Tony's going to be going over time frames
+[5971s-5976s] awesome sweet I'm going to get some rest here actually my voice is actually
+[5976s-5980s] feeling a lot better now but yeah hope you guys enjoyed that I'll have a
+[5980s-5983s] slide share live session upload for you guys and then I will see you guys
+[5983s-5987s] all tomorrow alright take care everyone peace

@@ -241,3 +241,83 @@ if __name__ == "__main__":
         stock_stop=852.50,
     )
     print(plan_put.format_discord())
+
+
+# ---------------------------------------------------------------------------
+# Futures (Omen futures mode) — SPEC15
+# ---------------------------------------------------------------------------
+
+@dataclass
+class FuturesPlan:
+    """Concrete futures trade card for Discord. Price-level stops, no premium."""
+    contract: str              # "ES", "NQ", "RTY"
+    direction: Literal["long", "short"]
+    entry: float
+    stop: float
+    target: float
+    contracts: int
+    point_value: float
+    max_loss: float
+    max_reward: float
+
+    def format_discord(self) -> str:
+        arrow = "↑" if self.direction == "long" else "↓"
+        return (
+            f"**{self.contract} {self.direction.upper()}** {arrow} (futures)\n"
+            f"Entry:      {self.entry:g}\n"
+            f"Stop:       {self.stop:g}  ({abs(self.entry - self.stop):g} pts)\n"
+            f"Target:     {self.target:g}  (2R)\n"
+            f"Contracts:  {self.contracts}  → max loss ${self.max_loss:.0f} / max reward ${self.max_reward:.0f}\n"
+            f"Point val:  ${self.point_value:.0f}/pt per contract"
+        )
+
+
+def build_futures_plan(
+    contract: str,
+    direction: Literal["long", "short"],
+    entry: float,
+    stop: float,
+    grade: str = "A",
+    max_loss: float = DEFAULT_MAX_LOSS,
+    rr: float = DEFAULT_RR,
+) -> FuturesPlan:
+    """Size a futures trade: contracts = floor(grade-scaled max loss / $risk per contract).
+
+    ES $50/pt, NQ $20/pt, RTY $50/pt. Same A-D grade scaling as options
+    (C sizes at 40% but stays alert-only upstream; D never reaches here).
+    """
+    from futures_feed import POINT_VALUE, TICK_SIZE
+
+    contract = contract.upper()
+    point_value = POINT_VALUE[contract]
+    tick = TICK_SIZE[contract]
+
+    if direction == "long":
+        if stop >= entry:
+            raise ValueError(f"Long stop ({stop}) must be below entry ({entry})")
+        risk_pts = entry - stop
+        target = entry + rr * risk_pts
+    else:
+        if stop <= entry:
+            raise ValueError(f"Short stop ({stop}) must be above entry ({entry})")
+        risk_pts = stop - entry
+        target = entry - rr * risk_pts
+
+    if risk_pts < tick:
+        raise ValueError(f"Stop distance {risk_pts} under one tick ({tick})")
+
+    budget = max_loss * GRADE_SIZE_PCT.get(grade, 0.0)
+    per_contract_risk = risk_pts * point_value
+    contracts = int(budget // per_contract_risk)
+
+    return FuturesPlan(
+        contract=contract,
+        direction=direction,
+        entry=entry,
+        stop=stop,
+        target=round(target / tick) * tick,
+        contracts=contracts,
+        point_value=point_value,
+        max_loss=round(per_contract_risk * contracts, 2),
+        max_reward=round(per_contract_risk * contracts * rr, 2),
+    )

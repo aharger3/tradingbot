@@ -1,6 +1,6 @@
 """SPEC0 gaps verification: true PDH/PDL as B&R levels + HTF bias grade gating."""
 from signal_runner import SignalRunner
-from vanquish_bot import Candle, TradeGrade, PriceActionAnalyzer
+from omen_bot import Candle, TradeGrade, PriceActionAnalyzer
 
 
 def c(ts, o, h, l, cl):

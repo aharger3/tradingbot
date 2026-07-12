@@ -5,10 +5,10 @@ status: research → partially implemented
 source: Scarface Trades (YouTube @ScarfaceTrades, "The Accelerator" private Discord)
 ---
 
-# Scarface Trades Methodology — Synthesis for Vanquish
+# Scarface Trades Methodology — Synthesis for Omen
 
 Research synthesis from Scarface Trades public content (YouTube, TradeZella/FXReplay
-playbooks, X/@ScarfaceTrades_). Goal: tighten Vanquish detection to match the
+playbooks, X/@ScarfaceTrades_). Goal: tighten Omen detection to match the
 mechanical edge Scarface teaches. His approach is **90% mechanical, 10% discretionary**.
 
 Sources:
@@ -20,7 +20,7 @@ Sources:
 
 ---
 
-## Core Framework (matches Vanquish today)
+## Core Framework (matches Omen today)
 
 - **5-min Opening Range (ORB):** mark high/low of first five 1-min candles after 9:30 ET.
 - **Window:** trade only 9:30–11:00 AM ET (volume + momentum strongest).
@@ -52,20 +52,20 @@ Sources:
 ### 3. The 84% Rule (re-entry)
 - If a valid setup is taken and **does not work the first time**, when price returns
   to that exact level it works ~**84%** of the time on the second attempt.
-- Re-enter at the reclaimed level; size up (Vanquish uses base + 50%).
+- Re-enter at the reclaimed level; size up (Omen uses base + 50%).
 
 ## Risk / Session Rules (Scarface)
 - **A+ setups only.** 2 attempts max per session.
-- **Stop after one win** — bank the green, don't give it back. (Vanquish today ends
+- **Stop after one win** — bank the green, don't give it back. (Omen today ends
   after *2 losses*; Scarface's "1 win and done" is a different, stricter stop.)
 - Contract selection: **first ATM or first OTM** weekly. ATM = stability; OTM = bigger
   payoff on continuation. Next-week contracts only when volatility is unusually high.
 
 ---
 
-## Alignment vs current Vanquish bot
+## Alignment vs current Omen bot
 
-| Concept | Vanquish today | Scarface | Status |
+| Concept | Omen today | Scarface | Status |
 |---|---|---|---|
 | 5-min ORB, 1-min entries | yes | yes | ✅ aligned |
 | 9:30–11:00 ET window | yes | yes | ✅ aligned |

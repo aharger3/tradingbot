@@ -1,0 +1,22 @@
+[
+ {
+  "id": "1224065665577652379",
+  "ts": "2024-03-31T18:39:56",
+  "author": "TonyMontana",
+  "content": "My Trading View Chart in TOS: 👇\nHere is the ToS study for Tony's 9EMA Cloud System. I went through a few iterations of this, and I'm pretty sure this version matches exactly with Tony's charts. If you see any discrepancies between your charts using this study and Tony's charts in any trade reviews or workshops, let me know, and I'll try to see if I can figure out what the issue is. Also, if anyone else has experience with thinkScript, feel free to check my code and see if it all looks good to you, or let me know if you find any errors/issues\n\nAlthough I am fairly certain that this study matches with Tony's charts exactly, I do want to mention some DISCLAIMERS:\n\nI am a novice with using thinkScript, so some of the indicators may not calculate as intended. By using this study, you certify that you understand this and accept all responsibility for your own trades and any potential trading losses that may result\nTony uses TradingView, which may track price action differently from Thinkorswim. As such, the indicators may be calculated differently based on different price action\n\nFor anyone who is interested in the exact indicators used in the study, or anyone who uses a different charting platform and would like to replicate the set-up, these are the indicators in the study:\n \n9 EMA line using candle closes\n5/13 EMA Cloud and 8/9 EMA Cloud using HL2 calculations\nVWAP using HLC3 calculations (note: this is slightly different from the native ToS VWAP calculation, which I think uses the actual volume*price of individual orders)\nCourtesy of (Here4TheBeats) a previous student. <@&1219020123218645102>",
+  "attachments": [
+   "https://cdn.discordapp.com/attachments/1222375001332645899/1224065665284182016/Scarface_9EMACloud_SystemSTUDY_1_2.ts?ex=6a4bf67c&is=6a4aa4fc&hm=26da420db1414fd3884dad49e72f2e29bb9c87c3bec98100ddc7a7a5d885aafc&"
+  ],
+  "embeds": [],
+  "reply_to": null
+ },
+ {
+  "id": "1252279836496498839",
+  "ts": "2024-06-17T15:12:59",
+  "author": "TonyMontana",
+  "content": "HOW TO USE UNDERLYING TICKER AS HARD STOP FOR OPTIONS ON IBKR:\n\n1. right click on option position in portfolio\n2. select order ticket\n3. in the basic tab of the quote panel, choose action (buy or sell), quantity of contracts, and order type (market will execute as take profit or stop loss at market price of option)\n4. in the conditional tab, press the add button\n5. choose condition Price, next\n6. in the underlying text box, type the name of the ticker of the underlying stock (TSLA for example and press enter. this should bring up the security lookup screen. Select Stock (SMART)\n7. enter operator and Price. For example, for stop loss, enter the price of the stop and the\noperator ＜=\n8. press the FINISH button\n9. set the logic column to \"or\"\n10. repeat steps 6,7,8,9 entering the take profit price and using the\n>= operator\n11. Press the \"Accept\" button in the order ticket quote panel\n12. review the trade you just entered in the orders panel to ensure everything is correct\n13. press the transmit button\n\n<@&1219020123218645102>",
+  "attachments": [],
+  "embeds": [],
+  "reply_to": null
+ }
+]

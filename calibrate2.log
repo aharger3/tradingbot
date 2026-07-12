@@ -1,0 +1,204 @@
+134 labeled entries across 128 symbol-days
+[1/128] AAPL 2024-08-07: 20 captures, 0 taken
+[2/128] AAPL 2024-08-23: 59 captures, 2 taken
+[3/128] AAPL 2024-11-08: 49 captures, 0 taken
+[4/128] AAPL 2024-11-25: 33 captures, 0 taken
+[5/128] AAPL 2024-12-13: 36 captures, 0 taken
+[6/128] AAPL 2025-01-27: 15 captures, 0 taken
+[7/128] AAPL 2025-02-11: 9 captures, 0 taken
+[8/128] AAPL 2025-02-25: 61 captures, 0 taken
+[9/128] AAPL 2025-03-07: 14 captures, 3 taken
+[10/128] AAPL 2025-03-11: 42 captures, 0 taken
+[11/128] AAPL 2025-06-04: 9 captures, 0 taken
+[12/128] AAPL 2025-09-16: 17 captures, 7 taken
+[13/128] AAPL 2025-09-26: 31 captures, 0 taken
+[14/128] AAPL 2025-10-03: 61 captures, 5 taken
+[15/128] AAPL 2025-11-12: 25 captures, 0 taken
+[16/128] AAPL 2025-12-03: 58 captures, 2 taken
+[17/128] AAPL 2026-06-05: 66 captures, 8 taken
+[18] AMD 2024-07-05: polygon error 403 Client Error: Forbidden for url: https://api.polygon.io/v2/aggs/ticker/AMD/range/1/minute/2024-07-05/2024-07-05?adjusted=true&sort=asc&limit=50000&apiKey=6OoDQOfdUiVRicy9y5PE0MCQZ3MNjNj4
+[19/128] AMD 2025-01-21: 75 captures, 0 taken
+[20/128] AMD 2025-04-08: 28 captures, 0 taken
+[21/128] AMD 2025-05-21: 55 captures, 5 taken
+[22/128] AMD 2025-06-10: 43 captures, 8 taken
+[23/128] AMD 2025-06-17: 47 captures, 2 taken
+[24/128] AMD 2025-06-20: 45 captures, 0 taken
+[25/128] AMD 2025-07-15: 33 captures, 6 taken
+[26/128] AMD 2025-10-16: 73 captures, 0 taken
+[27/128] AMD 2025-10-24: 26 captures, 0 taken
+[28/128] AMD 2025-10-29: 48 captures, 3 taken
+[29/128] AMD 2025-11-05: 37 captures, 0 taken
+[30/128] AMD 2026-02-06: 18 captures, 0 taken
+[31/128] AMD 2026-03-09: 20 captures, 2 taken
+[32/128] AMD 2026-06-12: 8 captures, 4 taken
+[33] AMD 2026-07-06: polygon error ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+[34/128] AMZN 2026-01-07: 39 captures, 5 taken
+[35/128] GOOGL 2025-01-31: 36 captures, 0 taken
+[36/128] GOOGL 2025-10-22: 43 captures, 13 taken
+[37/128] GOOGL 2026-01-13: 26 captures, 0 taken
+[38/128] GOOGL 2026-07-06: 53 captures, 4 taken
+[39/128] INTC 2026-05-08: 19 captures, 2 taken
+[40/128] INTC 2026-06-12: 18 captures, 9 taken
+[41/128] META 2025-07-31: 12 captures, 3 taken
+[42/128] META 2026-07-06: 12 captures, 0 taken
+[43/128] NVDA 2024-09-10: 61 captures, 0 taken
+[44/128] NVDA 2024-10-16: 30 captures, 0 taken
+[45/128] NVDA 2024-12-06: 14 captures, 0 taken
+[46/128] NVDA 2025-01-02: 77 captures, 6 taken
+[47/128] NVDA 2025-01-22: 37 captures, 4 taken
+[48/128] NVDA 2025-02-05: 37 captures, 2 taken
+[49/128] NVDA 2025-03-11: 52 captures, 0 taken
+[50/128] NVDA 2025-03-31: 52 captures, 4 taken
+[51/128] NVDA 2025-04-24: 30 captures, 7 taken
+[52/128] NVDA 2025-05-19: 15 captures, 0 taken
+[53/128] NVDA 2025-06-25: 11 captures, 0 taken
+[54/128] NVDA 2025-06-27: 68 captures, 10 taken
+[55/128] NVDA 2025-07-02: 37 captures, 3 taken
+[56/128] NVDA 2025-07-08: 42 captures, 1 taken
+[57/128] NVDA 2025-07-11: 10 captures, 3 taken
+[58/128] NVDA 2025-08-14: 31 captures, 2 taken
+[59/128] NVDA 2025-08-29: 9 captures, 0 taken
+[60/128] NVDA 2025-09-03: 37 captures, 3 taken
+[61/128] NVDA 2025-09-29: 20 captures, 2 taken
+[62/128] NVDA 2025-10-10: 28 captures, 4 taken
+[63/128] NVDA 2025-10-24: 46 captures, 4 taken
+[64/128] NVDA 2025-10-29: 47 captures, 0 taken
+[65/128] NVDA 2025-12-08: 58 captures, 0 taken
+[66/128] NVDA 2025-12-26: 42 captures, 0 taken
+[67/128] NVDA 2025-12-31: 15 captures, 1 taken
+[68/128] NVDA 2026-01-16: 59 captures, 0 taken
+[69/128] NVDA 2026-02-13: 17 captures, 0 taken
+[70/128] NVDA 2026-04-10: 13 captures, 0 taken
+[71/128] NVDA 2026-04-17: 44 captures, 5 taken
+[72/128] NVDA 2026-04-24: 15 captures, 3 taken
+[73/128] NVDA 2026-07-06: 37 captures, 2 taken
+[74/128] PLTR 2025-09-18: 35 captures, 0 taken
+[75/128] PLTR 2025-09-23: 76 captures, 4 taken
+[76/128] PLTR 2026-03-12: 90 captures, 0 taken
+[77/128] PLTR 2026-05-01: 23 captures, 1 taken
+[78/128] QQQ 2024-08-14: 36 captures, 0 taken
+[79/128] QQQ 2025-07-21: 0 captures, 0 taken
+[80/128] SPY 2025-12-24: 0 captures, 0 taken
+[81/128] SPY 2026-03-12: 71 captures, 4 taken
+[82] TSLA 2024-05-30: polygon error 403 Client Error: Forbidden for url: https://api.polygon.io/v2/aggs/ticker/TSLA/range/1/minute/2024-05-30/2024-05-30?adjusted=true&sort=asc&limit=50000&apiKey=6OoDQOfdUiVRicy9y5PE0MCQZ3MNjNj4
+[83] TSLA 2024-06-05: polygon error 403 Client Error: Forbidden for url: https://api.polygon.io/v2/aggs/ticker/TSLA/range/1/minute/2024-06-05/2024-06-05?adjusted=true&sort=asc&limit=50000&apiKey=6OoDQOfdUiVRicy9y5PE0MCQZ3MNjNj4
+[84/128] TSLA 2024-07-15: 32 captures, 0 taken
+[85/128] TSLA 2024-07-25: 13 captures, 3 taken
+[86/128] TSLA 2024-11-15: 23 captures, 4 taken
+[87/128] TSLA 2024-11-22: 27 captures, 0 taken
+[88/128] TSLA 2025-01-17: 25 captures, 1 taken
+[89/128] TSLA 2025-02-04: 52 captures, 0 taken
+[90/128] TSLA 2025-02-19: 35 captures, 0 taken
+[91/128] TSLA 2025-03-13: 41 captures, 2 taken
+[92/128] TSLA 2025-03-18: 64 captures, 0 taken
+[93/128] TSLA 2025-03-21: 33 captures, 7 taken
+[94/128] TSLA 2025-03-24: 16 captures, 6 taken
+[95/128] TSLA 2025-03-28: 27 captures, 4 taken
+[96/128] TSLA 2025-04-04: 17 captures, 0 taken
+[97/128] TSLA 2025-04-15: 17 captures, 2 taken
+[98/128] TSLA 2025-04-25: 14 captures, 0 taken
+[99/128] TSLA 2025-04-28: 44 captures, 8 taken
+[100/128] TSLA 2025-05-01: 41 captures, 4 taken
+[101/128] TSLA 2025-05-13: 73 captures, 0 taken
+[102/128] TSLA 2025-05-16: 85 captures, 7 taken
+[103/128] TSLA 2025-06-03: 44 captures, 7 taken
+[104/128] TSLA 2025-06-13: 40 captures, 5 taken
+[105/128] TSLA 2025-07-08: 29 captures, 2 taken
+[106/128] TSLA 2025-07-18: 20 captures, 5 taken
+[107/128] TSLA 2025-08-08: 6 captures, 0 taken
+[108/128] TSLA 2025-08-19: 57 captures, 8 taken
+[109/128] TSLA 2025-08-22: 14 captures, 2 taken
+[110/128] TSLA 2025-08-26: 56 captures, 1 taken
+[111/128] TSLA 2025-09-05: 56 captures, 2 taken
+[112/128] TSLA 2025-09-12: 7 captures, 0 taken
+[113/128] TSLA 2025-09-17: 56 captures, 1 taken
+[114/128] TSLA 2025-10-16: 55 captures, 2 taken
+[115/128] TSLA 2025-10-17: 31 captures, 5 taken
+[116/128] TSLA 2025-10-31: 49 captures, 5 taken
+[117/128] TSLA 2025-11-07: 33 captures, 0 taken
+[118/128] TSLA 2025-11-14: 24 captures, 2 taken
+[119/128] TSLA 2025-11-19: 66 captures, 2 taken
+[120/128] TSLA 2025-12-05: 81 captures, 11 taken
+[121/128] TSLA 2025-12-12: 50 captures, 5 taken
+[122/128] TSLA 2026-03-03: 59 captures, 0 taken
+[123/128] TSLA 2026-03-06: 103 captures, 2 taken
+[124/128] TSLA 2026-03-27: 21 captures, 3 taken
+[125/128] TSLA 2026-05-08: 2 captures, 0 taken
+[126/128] TSLA 2026-05-15: 34 captures, 4 taken
+[127/128] TSLA 2026-06-12: 62 captures, 2 taken
+[128/128] TSLA 2026-07-06: 6 captures, 4 taken
+
+wrote 4581 rows -> calibration_features.csv
+
+4581 captures, 296 taken (6.5%)
+current grader on TAKEN: grades {'D': 150, 'C': 105, 'A+': 7, 'B': 29, 'A': 5} status {'skipped_d': 150, 'fired': 125, 'skipped_tight_stop': 21}
+current grader on SPRAY: grades {'B': 152, 'C': 991, 'D': 3047, 'A': 60, 'A+': 35} status {'fired': 1037, 'skipped_d': 3047, 'skipped_tight_stop': 201}
+
+=== tree depth 3 ===
+|--- min_since_open <= 87.50
+|   |--- min_since_open <= 26.50
+|   |   |--- dist_nearest_level_pct <= 0.77
+|   |   |   |--- class: 1
+|   |   |--- dist_nearest_level_pct >  0.77
+|   |   |   |--- class: 0
+|   |--- min_since_open >  26.50
+|   |   |--- open_pos_in_pd_range <= 0.94
+|   |   |   |--- class: 1
+|   |   |--- open_pos_in_pd_range >  0.94
+|   |   |   |--- class: 0
+|--- min_since_open >  87.50
+|   |--- min_since_open <= 108.50
+|   |   |--- displacement <= 1.88
+|   |   |   |--- class: 0
+|   |   |--- displacement >  1.88
+|   |   |   |--- class: 0
+|   |--- min_since_open >  108.50
+|   |   |--- open_pos_in_pd_range <= 0.41
+|   |   |   |--- class: 0
+|   |   |--- open_pos_in_pd_range >  0.41
+|   |   |   |--- class: 0
+
+importances: [('min_since_open', np.float64(0.945)), ('open_pos_in_pd_range', np.float64(0.031)), ('displacement', np.float64(0.016))]
+recall on taken: 91.6%  precision: 19.1%  flags 30.9% of all captures
+
+=== tree depth 4 ===
+|--- min_since_open <= 87.50
+|   |--- min_since_open <= 26.50
+|   |   |--- dist_nearest_level_pct <= 0.77
+|   |   |   |--- min_since_open <= 11.50
+|   |   |   |   |--- class: 1
+|   |   |   |--- min_since_open >  11.50
+|   |   |   |   |--- class: 1
+|   |   |--- dist_nearest_level_pct >  0.77
+|   |   |   |--- class: 0
+|   |--- min_since_open >  26.50
+|   |   |--- open_pos_in_pd_range <= 0.94
+|   |   |   |--- open_pos_in_pd_range <= -0.01
+|   |   |   |   |--- class: 0
+|   |   |   |--- open_pos_in_pd_range >  -0.01
+|   |   |   |   |--- class: 1
+|   |   |--- open_pos_in_pd_range >  0.94
+|   |   |   |--- open_pos_in_pd_range <= 1.52
+|   |   |   |   |--- class: 0
+|   |   |   |--- open_pos_in_pd_range >  1.52
+|   |   |   |   |--- class: 1
+|--- min_since_open >  87.50
+|   |--- min_since_open <= 108.50
+|   |   |--- displacement <= 1.88
+|   |   |   |--- capture_rank_dir <= 19.50
+|   |   |   |   |--- class: 0
+|   |   |   |--- capture_rank_dir >  19.50
+|   |   |   |   |--- class: 1
+|   |   |--- displacement >  1.88
+|   |   |   |--- class: 0
+|   |--- min_since_open >  108.50
+|   |   |--- open_pos_in_pd_range <= 0.41
+|   |   |   |--- open_pos_in_pd_range <= 0.34
+|   |   |   |   |--- class: 0
+|   |   |   |--- open_pos_in_pd_range >  0.34
+|   |   |   |   |--- class: 0
+|   |   |--- open_pos_in_pd_range >  0.41
+|   |   |   |--- class: 0
+
+importances: [('min_since_open', np.float64(0.883)), ('open_pos_in_pd_range', np.float64(0.084)), ('displacement', np.float64(0.015)), ('capture_rank_dir', np.float64(0.012))]
+recall on taken: 95.3%  precision: 20.2%  flags 30.5% of all captures

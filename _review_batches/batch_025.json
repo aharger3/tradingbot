@@ -1,0 +1,256 @@
+[
+  {
+    "channel": "backtesting",
+    "id": "1275884962377109575",
+    "ts": "2024-08-21T18:31:19",
+    "author": "mccain145",
+    "content": "Some Good trades to have taken today. Todays back testing",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "backtesting",
+    "id": "1276040072260489216",
+    "ts": "2024-08-22T04:47:40",
+    "author": "arshel",
+    "content": "Do you think it was a good entry?\nPersonally, I thought it would happen based on my analysis with the break and retest strategy",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "backtesting",
+    "id": "1357986215252725892",
+    "ts": "2025-04-05T07:52:23",
+    "author": "el Mav the bandido",
+    "content": "Yeah. I\u2019ve noticed my mental changes completely the second I click buy/sell. I go from complete confidence in my setup to \u201cI\u2019ll be happy with break even\u201d within a minute of being in the trade.\nIt\u2019s definitely something I need to work on, I also feel like I\u2019m getting my risk management down. I want to be able to appreciate a good loss rather than feeling like shit when my SL gets hit. But I guess that\u2019ll come with time and experience",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "SL"
+    ],
+    "reply_to": "1357849041546903804"
+  },
+  {
+    "channel": "backtesting",
+    "id": "1365776054802841630",
+    "ts": "2025-04-26T19:46:26",
+    "author": "Haseeb Rehman",
+    "content": "Right now, I'm on a back testing session on QQQ. This time I'm trying to use the 1-minute candle rule (Scarface new YouTube video) with my 5 min BnR setup. TBH, I'm still trying to figure out how to combine these two to make my first A+ setup, but so far, the result on the QQQ has been good. Took 11 trades with 8 winners. $11,712 Profit and $2,420 Loss.",
+    "score": 2,
+    "categories": [
+      "pnl-mention",
+      "polar-term"
+    ],
+    "tickers": [
+      "TBH",
+      "QQQ"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "backtesting",
+    "id": "1370382564375658589",
+    "ts": "2025-05-09T12:51:03",
+    "author": "Aleksandra Seliverstova",
+    "content": "Hi Kam, what would be your advice on \"intuitively bad setups\" during backtesting? \n\nFor example, if I feel like the ticker is choppy today, I get one loss in a long position during the first 30 min after market open, then it reverses and shows an entry into a short position. But I personally wouldn't take it based on my experience with this kind of choppy days. \n\nDo I have to still take it during backtesting, because this \"feeling\" of mine is barely repeatable?\nAnd what do I do if most of the losses in backtesting come from this kind of setups that somehow look bad but I don't always understand why.",
+    "score": 4,
+    "categories": [
+      "adj-trade",
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": "1369687511542009917"
+  },
+  {
+    "channel": "backtesting",
+    "id": "1370455758067470577",
+    "ts": "2025-05-09T17:41:54",
+    "author": "Aleksandra Seliverstova",
+    "content": "Thanks a lot Kam! That's very thorough. \n\nYeah that's kinda what I'm doing, trying to notice common traits in these \"off setups\" and create hypothesis based on them for further backtesting. Like, not taking setups under HoD / above LoD which filters most of the chop in range also killing some good setups, but overall more efficient.\n\nIt's harder with setups where I don't see anything objectively different. For example, if the structure is very stiff, still keeping it bullish or bearish, but the PA looks unnatural, popping and dropping very hard. It's like, I think to myself, that's not what I usually see when I get a good setup, but this is sooo subjective and also hard to repeat in real time trading.\n\nBut yeah, I got what you mean, thanks a lot!",
+    "score": 5,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [
+      "PA"
+    ],
+    "reply_to": "1370433361394532494"
+  },
+  {
+    "channel": "backtesting",
+    "id": "1395125706593144902",
+    "ts": "2025-07-16T19:31:28",
+    "author": "Lance Casanova",
+    "content": "You are right some trades do not have full blown displacement but as long as it broke on the 5 min and holds strong I find good r:r",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": "1395095729432694895"
+  },
+  {
+    "channel": "backtesting",
+    "id": "1445684201302261862",
+    "ts": "2025-12-03T07:52:53",
+    "author": "Hahdnf",
+    "content": "wondering if these results are good for a 10 month back test (jan 2025 to oct 2025). i used only the 1M b & r strategy. any feedback to improve these results. started with a $1200 ac. 2% risk/ $24. 3 symbols (nvda,amd,tsla)",
+    "score": 2,
+    "categories": [
+      "pnl-mention",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "backtesting",
+    "id": "1447792506518507652",
+    "ts": "2025-12-09T03:30:32",
+    "author": "DWalt Trades",
+    "content": "Opinion based answer:\n\nHi this was a good trade with a well managed risk \ud83d\ude42\ud83d\udc4d Technically, you were never invalidated, but I can totally see why you closed this one. Shorting QQQ (stronger index rn) right into a key level, with no new LOD, and looking like PML was gonna be defended while taking time decay, you cut the trade and there is nothing wrong with managing your risk because in real time you can only react to what is on the left, and not predict what is coming on the right. \n\nI agree with what you said in your review: Right Idea, Wrong Entry. \u2014 But this one could\u2019ve definitely been given a little more room potentially risking off that ORL reclaim \u2014 judging by the 5M chart.\n\nWhat you could have done differently IMO: Not shorting the stronger index. QQQ at the time of your entry had a LOT of intraday strength over the SPY. With that said you would be better off shorting SPY today and using QQQ as downside confluence.\n\nI added the chart of what this same trade would\u2019ve looked like on the weaker side with the SPY PUTS, which also offered a 2.48 RR @ LOD compared to QQQ\u2019s 1.63 RR @ LOD \u2014 based on your entry and exit here.",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [
+      "LOT",
+      "LOD",
+      "RR",
+      "ORL",
+      "QQQ",
+      "SPY",
+      "PUTS",
+      "PML",
+      "IMO"
+    ],
+    "reply_to": "1447731536924508273"
+  },
+  {
+    "channel": "backtesting",
+    "id": "1449275799780982844",
+    "ts": "2025-12-13T05:44:36",
+    "author": "Mike Y",
+    "content": "Hi Neto, Hope your doing well...  Since this week has been a losing week for me, I decided no trade day! Of course its on a huge TSLA day! Truly tested my endurance!  But I took paper in leu and these were my two trades.  I know TSLA 06:33am entry  pst and I remember in your review session you said no way would you take a trade within 3 min of opening bell especially on friday.  Also, on paper took 5\" Low SPY Puts, got stopped out, then 84% rule back in.  Should have held it longer.  I seem to always do better paper trading but during real trades, I seem to not be able to hold any longer.",
+    "score": 3,
+    "categories": [
+      "should-judgment",
+      "ticker-action"
+    ],
+    "tickers": [
+      "TSLA",
+      "SPY"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "backtesting",
+    "id": "1453464290647478272",
+    "ts": "2025-12-24T19:08:10",
+    "author": "Mike Y",
+    "content": "No Trade! No Trade! No Trade!  However, I have that need to practice edge and I papered AAPL with entry at 06:35. Got TP1and TP2 then flattened.  Upset as it hit all TP later.   Also took SPY and PLTR.  Great lesson to learn as all TP were hit on SPY and only 1 TP on PTLR until I flattened later.  Just a good time to not take on risk on 1/2 day, but just trying to practice edge and entry on 1 candle rule on Key Level.  No Trade but funny how psychology still effects but great to practice your edge.",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "PTLR",
+      "AAPL",
+      "SPY",
+      "TP",
+      "PLTR"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "backtesting",
+    "id": "1457770478365052990",
+    "ts": "2026-01-05T16:19:26",
+    "author": "blueclouds101",
+    "content": "Damn definitely missed HOOD tdy, good setup",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [
+      "HOOD"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "backtesting",
+    "id": "1475963786975252571",
+    "ts": "2026-02-24T21:13:08",
+    "author": "Luke",
+    "content": "When you start backtesting as a beginner to the system,  the first thing you want to do is backtest the specific setups to build confidence in the specific ones (Previous Day High, Premarket High, 5min high, 1 Candle Rule etc..); you probably have heard that there is no \"best setup\" in terms of the level, but instead it's all based on context and HTFs as well. But once you backtest the specific setups just to build confidence in them and to keep it simple, what I would do is start marking out levels like you would for one ticker and backtest that one for the day with any setup that sets-up. Then, this builds confidence in your edge... and helps you to know that your system actually wins, but also loses under certain conditions. This helps with getting to know personalities of tickers as well. What I currently do is go to random days, and mark out basic levels on all of the tickers on my watchlist, and play what looks best on the HTFs; I'll draw arrows like my Premarket Gameplan and treat it like real-time... if you use the 1 second interval on 1 second candles, it makes it very realistic to taking the trade in real time (of course emotions aren't there). One thing I highly recommend you do is go to the live trading on a day that you backtested and took a hypothetical trade, and see if Tony and Jack were looking at it, or even took it (then if they did you can go watch the trade review as well). Overall, these are super solid ways to boost your confidence, and help you to know especially on losing streaks that your edge works over a long period of time. Hope this all makes sense... let me know if you have any questions!",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "ticker-action"
+    ],
+    "tickers": [],
+    "reply_to": "1475951955468746856"
+  },
+  {
+    "channel": "backtesting",
+    "id": "1486938044811444327",
+    "ts": "2026-03-27T04:00:55",
+    "author": "Sean",
+    "content": "Decided to test out PDH/PDL on SPY for the month of Feb 2025. This is the result so far. \nThis is just looking for a Break of the PDH or PDL selling 50% at HOD/LOD or 1:1R and continued selling as price approached 2R+.\nStops are at points of invalidation. Usually a break above/below candle entry or PDH/L level. \nI'm also stopping out if 1st TP is hit and retraces back to BE. \nI'm going to continue backtesting this one strat on one ticker for the rest of the year and see how it goes. So far so good.",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "LOD",
+      "BE",
+      "SPY",
+      "PDL",
+      "TP",
+      "PDH",
+      "HOD"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "backtesting",
+    "id": "1522619379798511706",
+    "ts": "2026-07-03T15:05:49",
+    "author": "kalerv",
+    "content": "Hey, thanks for the detailed feedback \u2014 genuinely useful to hear how other traders are thinking about this.\n\nBefore jumping into building, I want to make sure anything added actually improves decisions rather than just adding more to look at. A few honest questions:\n\nOn multiple benchmarks: When SPY and QQQ are pointing in different directions on a given day, what do you actually do differently? Do you trade both signals, pick the stronger one, or sit out entirely? Asking because two RS columns that sometimes disagree might create more confusion than clarity \u2014 want to understand your actual process before wiring it in.\n\nOn ORB timeframe: What timeframe do you use and why that one specifically? And when price is sitting between the ORB high and low, do you pass on the trade or just note it as context? If it\u2019s a hard filter for you, that\u2019s worth building. If it\u2019s just nice to see, it probably doesn\u2019t need its own column.\n\nOn VWAP/EMA: Can you walk me through a recent trade where VWAP or an EMA specifically changed your decision \u2014 not just confirmed it, but actually changed it? The concern here is that these are session-anchor or HTF references, and this tool is designed to find intraday relative strength right now. Adding HTF filters risks answering a different question than the one the tool is built for.\n\nOn filtering: Agreed it sounds useful, but a stock that\u2019s \u201cInside\u201d at 9:40 and filtered out might be your best trade at 10:15. The color coding already lets you scan for what meets criteria without hiding names you might need later.\n\nThe core goal of this tool is one thing: at any point during the session, which names are genuinely leading or lagging the market right now \u2014 not just historically, not just structurally, but in the tape. Everything in scope needs to serve that question directly.\n\nWhat does your actual pre-trade checklist look like step by step? That would help figure out where this fits and what, if anything, is genuinely missing.",
+    "score": 2,
+    "categories": [
+      "adj-trade"
+    ],
+    "tickers": [
+      "ORB",
+      "EMA",
+      "RS",
+      "QQQ",
+      "SPY",
+      "HTF",
+      "VWAP"
+    ],
+    "reply_to": "1522610766778466417"
+  }
+]

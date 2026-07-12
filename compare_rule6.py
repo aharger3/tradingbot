@@ -30,7 +30,7 @@ def _parse_pnl(text: str) -> float:
 
 def _parse_wr(text: str) -> float:
     """Extract overall win rate from backtest report."""
-    m = re.search(r'Traded signals.*\| (\d+[\d.]*)%', text)
+    m = re.search(r'win rate (\d+[\d.]*)%', text)
     if m:
         return float(m.group(1))
     return 0.0

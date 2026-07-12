@@ -34,8 +34,24 @@ ORIGINAL = [
     "IKv5ha6aA2k", "ZiU4HVCpo10", "leLDZzyTNPs",
 ]
 
+def discord_youtube_ids():
+    """Video IDs harvested from the scraped #youtube Discord channel (every
+    upload is posted there) plus any other scraped channel's links."""
+    import json, re
+    ids = []
+    pat = re.compile(r"(?:youtu\.be/|youtube\.com/(?:watch\?v=|shorts/|live/))([\w-]{11})")
+    for f in Path("discord_data").glob("*.json"):
+        try:
+            for m in json.loads(f.read_text(encoding="utf-8")):
+                blob = m.get("content", "") + " " + " ".join(m.get("embeds", []))
+                ids += pat.findall(blob)
+        except Exception:
+            pass
+    return ids
+
+
 # Combine, deduplicate
-ALL_IDS = list(dict.fromkeys(JDUB + SCARFACE + ORIGINAL))
+ALL_IDS = list(dict.fromkeys(JDUB + SCARFACE + ORIGINAL + discord_youtube_ids()))
 
 
 def get_transcripts():

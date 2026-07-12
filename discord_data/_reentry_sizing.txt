@@ -1,0 +1,74 @@
+
+===== scarface-alerts (1 matches for re-entry sizing) =====
+
+--- [2026-06-03T18:47:05] TonyMontana
+INTC looks good but my cons are going to expire this week and this may take more time.
+
+I may sell today and look for re entry with more outdated cons.
+
+@everyone 
+
+Will watch and plan out.
+
+===== trade-feedback (5 matches for re-entry sizing) =====
+
+--- [2024-04-15T20:53:33] Jdub
+The answer is both. For apple wise since its consoldating you have to be able to give it a little bit more room. When the markets are in a range like that its hard to have precision entries and stops. Trading is a lot easier when its trending in one direction. So in this case you either have a tighter stop and look for a re entry or you have a wider stop and let the trade breath a little bit and have more risk.
+
+--- [2025-03-11T10:28:44] DWC2016
+Looks like a text book play in my opinion the only issues as you said was not holding until the actual candle close which you would have been good and not stopped. Looks perfect.
+
+It actually set up again right after for a reentry but not sure if that’s in your system. Good play just didn’t hold to conviction.
+
+Just have to hold through the wicks and wait for the close  and follow the plan next time or if you don’t and see you got wicked here.  I would have personally def reentered when it set up again.
+
+--- [2025-06-26T19:52:29] Kam
+Took a pretty lousy trade on PLTR this morning and wanted to share my review. Open to any thoughts or other feedback! 
+
+PLTR – 6/26/25
+Setup: BnR 1m OB Continuation + 5m OR Retest
+Result:  Loss (–1R)
+Confidence on Entry: 3/5
+Sizing: Base Size
+
+What Happened:
+Strong opening drive in PLTR with RS and news catalyst. Took an anticipatory reclaim entry off the 1m OB after visual strength near prior pivot, but skipped confirmation and entered on candle stretch. Market context was improving, 5m candle looked like a nice hammer, but pullback was steep and PLTR can be trappy. Trade hit stop shortly after entry. Earlier missed trade off PMH may have been a factor as well as pass on NVDA OB play prior day.
+
+Classification:
+False Form – Anticipatory Entry 
+Good structure idea, poor entry execution. Trade plan shifted from OB pullback to reclaim without re-evaluation.
+
+Primary Mistake:
+Premature Entry – No Reclaim Confirmation
+
+What Worked:
+- Avoided forced dip buys in semis
+- Honored stop and respected system
+- Solid structure read on RS and catalyst
+
+Needs Work:
+– Entry discipline on reclaims
+– Slight emotional residue from passing on NVDA prior day and PMH retest at the open
+– OB sequence clarity and reclaim filters need reinforcement
+
+--- [2026-02-13T20:56:23] Joebag009
+I had a big AHA that if it was my cash account I never would have risked subsequent NVDA trades, so I think I might be trading my cash account with 720 in it (and taking profit out each day) for a few days to build my psychology up with a fresh start. Another big aha is that with 0s and even generally the first trade is the best trade and unless I have a new thesis or proved continuation (preferably with divergence from the market), re-entering is a bad idea - looking at my trading notes I have had wins in the past on re-entering for continuation, especially in big dumps around key levels and in grinds but this week it has not worked out (as in net profit) and eaten my meagre profits. Instead of blaming the market, I am adding new habits of pausing between trades and to reload I will develop a quick checklist for myself - did it defend a key level and continue or is it just teasing me, or is it just teasing me as it mirrors qqq moves (hey, it got Jack with TSLA this week, I need to be kind to myself, but also prevent it next time), is it over-extended on the stock, and with qqq overall? What is the daily tf trend? Are Jack and Tony still in and either not at target or just tp1? Tp2 and “to the moon” are horrible places for re-entry, even if it is holding a key level or 1 minute timeframe. Reminder to myself that re-entries pay less, fail more often, and lose money more quickly than initial setups.
+
+--- [2026-03-26T20:22:08] Royal191
+Most of my trades are 1 min low/high and in this case would have been that consolidation low as well. So if I was focused on META today this would have probably been my entry with a possible second re-entry. still close to LOD but it now as more confluences. rejection of the most recent pivot high, retest/rejection of vwap and failure below the 1 min low again
+
+===== trading-floor (3 matches for re-entry sizing) =====
+
+--- [2025-01-27T15:34:59] BrokeAintNoJoke
+Stopped out on my last two cons. Looking for re-entry possibly at 50% - 61% fib retest.
+
+--- [2025-10-24T17:57:29] KCdaddy03
+Same - finding consistency and potential 'edge' with SPY daily. Allow minimum 30m (10am) for big institutions to step in and give me a direction before entry. No more FOMO if community crushes on other tickers or I miss an opening drive.
+
+--- [2025-11-06T06:58:02] jad111
+We can’t guess there entry as contracts move fast
+
+===== backtesting (1 matches for re-entry sizing) =====
+
+--- [2024-08-15T20:02:11] 👑 of Puts
+So this is 1st example. No displacement. Entry with no HOD target so for backtesting i simply take 1:2 RR. Did not exit qqq because of the SPY being much more bullish and holding (reason i watch both when i trade) QQQ body of that candle close right on the line too. 2nd example to the downside i look for hammer candle most of the time.a bit of chop before entry came. I TP at HOD/LOD when i backtest when there is a displacement but just to show that 1:2 still works in a lot of case

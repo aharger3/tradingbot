@@ -1,0 +1,1401 @@
+# Transcription: boot-camp-recordings_Day_3_Technical_Analysis.wav
+# Duration: 7403s
+# Model: tiny
+
+[0s-5s] So yeah, in today's presentation, it's going to be day number three.
+[5s-8s] And we're going to go over technical analysis,
+[8s-10s] right price action trends in the markets.
+[10s-13s] We're going to keep it very elementary for the first day.
+[13s-16s] And then, of course, we're going to go over to some more examples
+[16s-18s] and some more advanced concepts later into the presentation.
+[18s-23s] And then, of course, on Thursday, actually, is going to be one of my favorites,
+[23s-26s] which is understanding every single setup that we have.
+[26s-28s] And essentially, developing our playbook.
+[28s-30s] That one's actually going to be really special.
+[30s-34s] But at least for today, we're going to go over technical analysis.
+[34s-36s] In this session, what we're going to take a look at is
+[36s-41s] right understanding price action, right basics of candlesticks, how they form,
+[41s-44s] right understanding candlesticks in relation to trends and key levels.
+[44s-48s] Then, we're going to go over the basics of market trends.
+[48s-50s] And what we're looking for on the higher time frames.
+[50s-55s] And then, we're going to be taking a look at higher time frame chart patterns.
+[55s-57s] This is going to be one of my favorites, actually.
+[57s-60s] I've never really talked about higher time frame chart patterns.
+[60s-64s] We have a few that we look for that I always kind of mentioned in the pre-market.
+[64s-68s] But this is really something we're going to take a little bit of a deeper dive into,
+[68s-73s] specifically, in relation to the higher time frames, because higher time frames,
+[73s-74s] always hold more power.
+[74s-76s] And these ones are very important to understand.
+[76s-79s] Instead of always these lower time frames that we look at.
+[79s-82s] And then, we're going to go into entry confirmations,
+[82s-84s] which is always one of my favorite topics as well.
+[84s-87s] We'll go over through the three different types of entries.
+[87s-91s] And I'll go over some tips and tricks on exactly what to look for.
+[91s-94s] When we're looking to enter into a name,
+[94s-97s] because I know a lot of you guys, especially more beginner traders,
+[97s-101s] sometimes are a little bit confused on when we enter,
+[101s-103s] how do you enter a name?
+[103s-105s] We have a few different entries that we'll talk about,
+[105s-108s] so I'll take a look at that more depth in a bit.
+[108s-114s] As well, as I mentioned, right, this is going to be essentially building on to the foundation
+[114s-116s] for the one on Thursday.
+[116s-119s] So the one on the third, the presentation on Thursday,
+[119s-121s] as I mentioned, is essentially developing our playbook
+[121s-124s] and understanding every setup that we need in the market.
+[124s-127s] So that's actually one of my favorite presentations.
+[127s-130s] So this one is essentially building the foundation up
+[130s-132s] into the presentation on Thursday.
+[132s-136s] So make sure if you guys watch this one all the way through,
+[136s-138s] watch the one tomorrow with Tony,
+[138s-141s] which is his bread and butter break and retest.
+[141s-147s] And then on Thursday, I'll be going over every single setup that we have within our playbook.
+[147s-151s] And then that's the kind of the foundation where we can essentially build our playbook.
+[151s-154s] Right, have opening plays, have intraday setups.
+[154s-158s] And that really just is that whole break and retest system that we use.
+[158s-159s] And then you always hear us talk about,
+[159s-162s] right, opening drives, different reps, the different types of opening plays.
+[162s-166s] The one on Thursday is going to be about all the setups.
+[166s-170s] But at least for today, we're going to go over technical analysis and trends.
+[170s-174s] So first things first, what we're going to talk about here is right candlesticks.
+[174s-178s] So as you can see right here, there are so many different candlesticks on a chart.
+[178s-180s] Let me actually just move this out of the way.
+[181s-184s] As you can see here, this is just a basic chart that we have.
+[185s-189s] This is the daily chart here on the ES or sorry,
+[189s-190s] this is the weekly chart.
+[190s-195s] And as you can see, no matter what timeframe that chart on either be the daily chart,
+[195s-198s] the weekly chart, right, the one hour, the one minute.
+[198s-202s] There's so many different candlesticks on a chart.
+[202s-205s] And you can see right, as soon as you open up the chart on trading view,
+[205s-207s] no matter if you're beginner or experienced trader,
+[207s-209s] you're going to see so many different candles.
+[209s-211s] And what do these candles represent?
+[211s-215s] Essentially all these different candles represent buyers and sellers in the markets.
+[215s-218s] So when you're first starting, you'll see so many different candlesticks.
+[218s-220s] It might be a little bit confused.
+[220s-223s] But we're going to break it down into a single candle.
+[223s-226s] And then later, we're going to combine it into a higher time frame,
+[226s-228s] thesis, so we can understand right,
+[228s-231s] more logic and context behind what every single candle represents.
+[231s-234s] So based off this chart, as you can see here,
+[234s-237s] there are so many different candles where we have right hammered stick candles.
+[238s-239s] Sorry, I have a shooting star.
+[239s-241s] We have hammered stick candles.
+[241s-242s] We have bullish candles.
+[242s-242s] We have bearers candles.
+[242s-244s] We have engulfing candles.
+[244s-247s] We have wide range body candles.
+[247s-249s] We have narrow range body candles.
+[249s-251s] Right, we have so many different candlesticks on a chart.
+[251s-255s] And where what candlesticks matter is what we're going to talk about here.
+[255s-259s] So first things first, let's talk about candlestick anatomy.
+[259s-265s] So we're going down to the very basics of what a candlestick and how it forms.
+[265s-268s] So first things first, right here, what we have is the candlestick anatomy.
+[268s-273s] Basically every single candle represents, as I mentioned, buyers and sellers.
+[273s-279s] So in this case, what we have here on the left hand side is we actually have a bullish candle.
+[279s-281s] And what this represents here is the body.
+[282s-285s] So this is a bullish candle here and essentially how it can't
+[285s-287s] do forms. I actually have it wrong.
+[287s-290s] Sorry, let me actually change, I guess I won't change this.
+[290s-295s] But basically what we have for every single candle and how it represents is we have an open,
+[295s-297s] high low close.
+[297s-299s] In this case, I actually have it to opposite.
+[299s-301s] This is supposed to be your open.
+[301s-304s] And of course, this is supposed to be your close right here.
+[304s-307s] But every single candle has an open, high low close.
+[307s-309s] And that's exactly how a candle forms.
+[309s-312s] So we have an open price drives lower.
+[312s-317s] And a bullish candle price is going to push all the way back towards the upside.
+[317s-320s] And then we create a high and then we close at the very top.
+[320s-324s] Sorry if the labels are wrong, but it's just flipped.
+[324s-326s] This is kind of bothering me, but I'll just let it be for now.
+[326s-330s] But basically every single candle has an open, high low close.
+[330s-332s] And that's the basic anatomy of a bullish candle.
+[332s-337s] And then what we have on the right hand side is we have a bearish candle.
+[337s-338s] So this is our body.
+[338s-340s] And it's the exact same thing.
+[340s-342s] Every single candle is going to have an open.
+[342s-344s] Let me cross this off.
+[344s-346s] We're going to have an open.
+[346s-348s] A bearish candle is going to create a high in this case.
+[348s-351s] And then we're going to drive prices lower.
+[351s-352s] And then we're going to create a low.
+[354s-355s] And then we're going to close.
+[356s-358s] Most of you guys should be able to understand this.
+[358s-360s] So this is very basic of course.
+[360s-364s] And we're going to go into more events, concepts here in a second.
+[364s-365s] But do you guys understand?
+[365s-366s] Thank you guys just typing the chat really quick.
+[366s-367s] So we're on the same page.
+[367s-371s] Type one in the chat if you understand how a candlestick forms.
+[377s-378s] Awesome.
+[378s-379s] One all clear, perfect.
+[380s-382s] As I mentioned, this is like very basic.
+[382s-386s] We always just have to go over the basics just in case, right?
+[386s-387s] There are some beginners.
+[387s-390s] And then we're going to go into more events concepts.
+[390s-392s] So what else do we have now?
+[392s-395s] So we have different types of candles and how they form.
+[395s-398s] So we just talked about a regular candlestick, right?
+[398s-402s] Open high low clothes, and then for a bearish candlestick,
+[402s-404s] similar thing, open low high clothes.
+[404s-407s] And we have different types of candlestick formations.
+[407s-413s] So we have a big body which signifies that we have very bullish or bearish momentum.
+[413s-416s] So as you can see right here, what we have is a bullish candle.
+[417s-419s] Where there's very minimal wicks.
+[419s-420s] What does a big body candle mean?
+[420s-423s] It just means there's very minimal wicks to both sides.
+[423s-424s] And we have a big candle.
+[424s-427s] So as you can see, we open here, we push lower.
+[427s-431s] We have a huge candle that pushes higher, where we drive back towards the upside.
+[431s-433s] And we have a very minimal upper way.
+[433s-435s] So this is what it consider a big body.
+[435s-438s] We're in this case, where it buyers our in control.
+[438s-443s] Similar thing here to the downside, what we have is a big body red candle,
+[443s-445s] where we have price opens.
+[445s-449s] We create a high, and then we have low clothes.
+[449s-451s] So you can see price drives lower.
+[451s-456s] We have a big body signifying that sellers are in control.
+[456s-460s] So when we have a big body, that usually means buyers are in control or sellers are in control.
+[461s-464s] Next, what we have is a small body candle.
+[464s-470s] So in this case, a small body candle, right, means we have a small body and usually larger
+[470s-472s] wicks than the body themselves.
+[472s-474s] So as you can see here, the wicks are bigger.
+[474s-477s] When we, sorry, the wicks are smaller, when we have a bigger body.
+[477s-482s] And then when we have a small body, I consider a small body when the wicks are larger.
+[482s-484s] So in this case, as you can see, this is a bullish candle.
+[484s-489s] And by the way, the candle, the color of the candle does not matter as much.
+[489s-493s] Right, this can be green, this can be red, at least when it's neutral.
+[493s-498s] Right, the candle of the, sorry, the color of the candle state does not matter as much.
+[498s-502s] Of course, the color of the candlestick matters when we have a big body, but when we have a small body,
+[502s-505s] it does a matter as much because it's more neutral.
+[505s-509s] So in this case, what we have is a green body, and we have big upper wicks.
+[509s-512s] So essentially what this means is price opens right here.
+[513s-518s] We end up pushing lower, we create a low, then we end up driving all the way back towards the
+[518s-525s] upside. We create a high and then we close. So basically, price went from your open, low, high,
+[525s-530s] close. So it's fairly neutral. Right, we did a lot in this candle, but ultimately, we closed
+[530s-535s] in a very similar spot to where we opened that. So this is what's called a small body candle.
+[535s-541s] And then the exact same thing on the downside, we have our open, we create a new high.
+[541s-547s] And then we have a low, and then we have a close. So exact same thing, pretty small body here,
+[547s-551s] larger upper wicks and lower wicks. And this is what's called your small body. In this case,
+[551s-556s] if you have a big body, it's more bullish or bearish. We have a smaller body, it's more neutral.
+[557s-562s] And then on the right hand side, what we have here is large wicks. So we have a large wick in this
+[562s-569s] case, which can signify right one of two things. If we have a large wick towards the upside
+[569s-575s] in this case where we wick all the way down. So basically, we open here. We have a big push lower,
+[575s-581s] we create a brand new low, and then price pushes all the way back towards the upside. As you can
+[581s-587s] see here, creates a new high, and then we close at the very top. So we did a lot in this full
+[587s-592s] candle formation. Of course, the candle closed, but during the time, right, as this candle was
+[592s-597s] forming, we did quite a bit. We pushed all the way back towards the downside, and then we had
+[597s-602s] buyer stepped all the way in. We pushed price all the way back towards upside, and then we closed here.
+[602s-610s] So this is a strong form of buyers stepping into the market, just signified by this, what's called
+[610s-615s] a large wick candle. And then the exact same thing towards the downside. As you can see here,
+[615s-622s] where we open at, we drive all the way towards the upside. We create a brand new high in the market,
+[622s-627s] and then price pushes all the way back towards the downside. We create a new low, and then
+[627s-633s] price closes off fairly close to where it opened at. But you can see during this time period in
+[633s-638s] how this candle form, we pushed higher first, and then we pushed lower, right, seller stepped in,
+[638s-644s] pushed price all the way back towards the downside, creating this big, large wick. And this is
+[644s-652s] a sign of a lot of sellers stepping into the market. So this is the basic basics of candlesticks.
+[652s-657s] Right, we're not talking about right candlestick formation. We're not talking about candlestick patterns,
+[657s-662s] right context, confluences. This is just the bare bones of candlestick anatomy. We're going to go into
+[662s-668s] more death as I mentioned. Do you guys understand how candlesticks are formed? Right, the big
+[668s-674s] bodies compared to the small bodies versus the large wick candles. Do you guys type one in the chat?
+[682s-690s] I see a lot of ones. This is good. Okay, if I didn't see any ones, I'll be a little bit shocked.
+[690s-695s] But good that we're all on the same page. Okay, so now that we have candlesticks out of the way,
+[695s-702s] right here, what we have is a candlestick cheat sheet. So this is a cheat sheet that is gives us a
+[702s-708s] little bit more information. So as you can see here, we have different types of candlesticks. We have
+[708s-713s] bullish candlesticks and we have bearish candlesticks. I'm going to go a little bit more into depth
+[713s-718s] later in and I'm going to show you guys more examples here as well. But this is a candlestick cheat
+[718s-722s] cheat sheet that you guys can take a screenshot of. You can find this online. There's a bunch of
+[722s-728s] different kind of charts that people use just as a reference. But what I want you guys to understand
+[728s-735s] is that not one single candle without context is going to matter. So in this case, we have a bullish
+[735s-739s] candlestick here, which is a hammer stick candle, or an inverted hammer, or you, we have a bunch
+[739s-745s] of continuation type candlestick pattern here as well. This in the grand scheme of things, of course,
+[745s-750s] one candle is not going to matter as much. It's going to matter a lot more in the right context. And
+[750s-754s] that's kind of what I want to talk about here. So we kind of understand now the basics of candlesticks.
+[754s-758s] We have our bullish candlesticks. As I mentioned, our bearish candlesticks on the right. And then we
+[758s-763s] have more neutral candlesticks, which is our doji candlesticks. As you can see, where prices,
+[763s-769s] basically balance, where buyers or sellers are not in control. But now let's talk about the basics
+[769s-774s] of trends. And then let's go into a bunch of more examples. As I mentioned, candlesticks matter
+[774s-780s] in the right context. And that's what's most important. So what matters in this case and what is
+[780s-785s] also very important to understand, specifically is market trends. And now we're going to go over
+[785s-791s] to the very, very basics of market trends. So bear with us. Right, QQQ, right here. What we have
+[791s-796s] is an uptrend in the market. Most of you guys are able to see what's going on here. So what we have
+[796s-803s] is a clear trend on the daily timeframe, where price is what's called in an uptrend and we're creating
+[803s-808s] higher highs in higher lows. So as you can see right here, what we're doing is creating higher highs,
+[809s-816s] higher lows, higher highs, and higher lows. And we're pushing towards the upside. This is the
+[816s-823s] most basic and elementary term of an uptrend in the market. Right, when price moves in higher, when price
+[823s-829s] moves higher over time, forming higher highs and higher lows. This is very easy and most people will be
+[829s-835s] able to read this by looking at the chart. Right. If you can see this within like five to 10 seconds,
+[835s-839s] which you should be able to, right, it's very simple to see it. Of course, it's a lot easier to
+[839s-845s] see it in hindsight as well. So this is a very clear trend. When price makes higher highs and higher lows.
+[845s-850s] Right. And some people might ask, right. It doesn't always look as clear as this as well. Right.
+[850s-856s] With this also be considered a trend. So some people might ask if price pushes lower. So let's say,
+[856s-862s] for example, the clear is trending this case is going to occur when we build higher highs and higher
+[862s-867s] lows as I mentioned. Most people are able to see this, right. Previous resistance turned into support,
+[867s-872s] and we continue towards the upside. Right. Where some people might get a little bit confused in this
+[872s-880s] case is when price technically breaks underneath this swing high. So some people, as price comes
+[880s-886s] back down, right. Would you guys still technically consider this in a trend? Let's say, for example,
+[886s-891s] price bounces off here. Would you guys still consider this an uptrend in this case? Right. Say,
+[891s-907s] yes or no in the chat. Yes, yes, yes, yes, yes, yes, yes, I see if you know, yes, no. Okay.
+[908s-914s] It didn't break the load exactly. Okay. So in this case right here, a price is still in an uptrend.
+[914s-921s] The reason being is because we're maintaining above this higher low. So basically, how to determine
+[921s-928s] where we break structure is this impulsive move towards the upside. So this swing point towards the
+[928s-934s] upside or what I call an impulsive move is going to create our higher low swing point. So until we
+[934s-942s] invalidate this swing point right here, I would consider us still in a trend towards the upside.
+[942s-947s] Right. This is your key level, right. Even though technically it broke underneath our break and
+[947s-952s] retest level, that doesn't mean we're bearish, right? Because technically the market structure
+[952s-956s] is still intact. That's why we'll talk about this set up on Thursday, which is going to be that
+[956s-962s] 84% rule reclame. Of course, the best trends in the market will occur when we use this level
+[962s-967s] fairly nicely. Break and retest perfectly. But as I mentioned, it's not always going to be perfect.
+[967s-972s] Right. Sometimes it's going to hold that break and retest perfectly. Sometimes it's going to break
+[972s-977s] underneath it. Right. Still have market structure intact and it's going to push towards the upside.
+[977s-982s] So the way to determine if price is still in a trending market is when we have that impulsive
+[982s-987s] leg. Right. As I mentioned, that impulsive leg is key. So whenever price pulls back, we have that
+[987s-994s] impulsive move towards the upside. Right. This is our new swing low. So as you can see, that basically
+[994s-1000s] the impulsive leg towards the upside is now going to create this new low and any single time
+[1000s-1005s] it pulls back. That's going to be our higher low pivot point for continuation higher. So hopefully that
+[1005s-1009s] makes sense. It's going to be a lot easier to show in a chart. I'll show you guys some more examples
+[1009s-1014s] here in a bit. But this is what matters. Right. This impulsive move that takes out high of day is
+[1014s-1020s] going to be your new higher low key pivot level. Right. The key could cue. Now we're in a downtrend.
+[1020s-1025s] It's the exact same thing, but towards the downside. In this case, as you can see right here,
+[1025s-1034s] price, right, creates lower highs, pushes lower, creates lower lows, some are thing. Right.
+[1034s-1040s] price just isn't a clear downtrend in the markets. When price moves lower over time, forming
+[1040s-1046s] lower lows and lower highs. In the exact same thing occurs, right. What we like to see primarily
+[1046s-1052s] is this level would be used as a retest for continuation. This is the most clear and easy
+[1052s-1059s] form of a trend towards the downside. But as I mentioned earlier, price could technically
+[1059s-1064s] still be bearish. As long as it doesn't take out this lower high key pivot level. As I mentioned,
+[1064s-1070s] the impulsive move that breaks towards the downside is going to be used as your market structure point.
+[1070s-1076s] So in this case, price will still be bearish because we're still maintaining below this higher.
+[1076s-1081s] Sorry, this lower high key pivot level. Hopefully that makes sense. When it comes to trends,
+[1082s-1087s] just to make sure on the same page, do you guys understand right? If we're in a bullish trend or
+[1087s-1092s] if we're in a bearish trend and the difference between right, understanding market structure
+[1092s-1104s] and impulsive moves. Yes, yes. One, all clear? Good. Okay. Now let's go on to the actual
+[1104s-1110s] other scenario that we have is when prices just ranging in a market. So this is also another scenario
+[1110s-1115s] that can happen when we're not up trending or we're down trending. Right, what happens is we're in
+[1115s-1122s] range of markets. Essentially when prices in a flat or sideways range without clear higher highs or
+[1122s-1127s] this is a little bit more of an recent example. But basically we're ranging in between.
+[1127s-1132s] This was on ES kind of last Friday's highs and lows and then we had just a range in the market. So
+[1132s-1138s] whenever we're in a ranging market, we don't typically look for ranging markets as much. We'll
+[1138s-1143s] talk about the difference between right continuation markets and ranging markets. But all we look
+[1143s-1147s] for primarily is going to be something in a clear up trend or something in a clear downtrend.
+[1149s-1153s] And as you can see right here, we only have three scenarios. I'm sure you've got you guys
+[1153s-1159s] have seen this actually exact slide before. I just reused this exact one, but there's basically
+[1159s-1165s] three scenarios in this case. Right, up trend consolidation and downtrend. And the three primary,
+[1165s-1169s] sorry, the two primary trends that we want to be looking for as a mention, up trends and downtrends.
+[1169s-1174s] When we're consolidating, it's a lot more mean reversions, bounces off key levels,
+[1174s-1178s] rejections off key levels. It's a little bit harder to trade, whereas when you're trading in a
+[1178s-1183s] clear trend, that's where the best opportunities and that's when we have what's called continuation.
+[1184s-1189s] Okay. So with that out the way, right? So we understand trends in the markets, right, higher time
+[1189s-1193s] frame trends, right, either an up trend or a downtrend. What are we going to be looking for
+[1193s-1199s] primarily now? Right, the very basic bare bones of the strategy is just looking for key pivot points.
+[1199s-1204s] So Tony will touch up on this a little bit tomorrow. Just based off his bread and butter strategy,
+[1204s-1209s] but all we're looking for when we're in a clear trend, as we're looking for essentially
+[1209s-1214s] these old pivot points to be used now as key support and resistance levels. So as you can see,
+[1214s-1219s] price pushes towards upside. We create a higher low and now we're pulling back in towards our key
+[1219s-1224s] levels. So this is what's called their swing high. You can see if we have a nice impulsive move towards
+[1224s-1230s] upside. We also break structure now. So what we like to see is this general area essentially,
+[1230s-1236s] right, the basics of a break and retest is now we're breaking above it. Right, price comes back
+[1236s-1241s] down to retest and we're looking for continuation. We'll talk about right entry models. What to look
+[1241s-1246s] for on the lower time frames, but strictly speaking from a line illustration, right? What we want to
+[1246s-1252s] see here is this previous pivot point, which is resistance turned into support. And then we're
+[1252s-1257s] going to be looking for some sort of lower time frame confirmation to trade this back up
+[1257s-1263s] towards the upside. And we have one have a minimal stop, preferably right underneath our break and
+[1263s-1268s] retest point. Right. So this is what it looks like here. This is the very basic elementary definition
+[1268s-1273s] of essentially what the break and retest is and what our strategy and what we look for on a day-to-day
+[1273s-1278s] basis. If you go on to the downside, similar thing here. As you can see, price has lower, where
+[1278s-1284s] lower highs are built. We push lower. We break underneath this swing low. In pulse of move
+[1284s-1290s] towards the downside, now what we're looking for is essentially this level to be used as a retest
+[1290s-1295s] pivot point for continuation lower. And all we're doing is looking for right lower time frame
+[1295s-1300s] confirmations, right very tight stop, and we're looking for low of day and blow. So this is very,
+[1300s-1304s] very simple. Do you guys understand it now? You guys follow along. Type one in the chat.
+[1305s-1311s] Can we have the recordings? Yes. All the recordings by the way are always recorded. You can go into the
+[1311s-1315s] boot camp recordings. It's actually right above the members room. It takes a little bit longer for
+[1315s-1321s] these sessions to, yeah, it takes a little bit longer for these sessions to process because it is on
+[1321s-1327s] Zoom. So what will happen is it may be take a one to two hours to process and then once a process is,
+[1327s-1332s] I then can upload it into the recording. So it might take a couple hours for me to upload them.
+[1332s-1339s] Okay. With that out the way, right. Now we can go into a little bit more chart examples. So as you can see here,
+[1339s-1344s] right, it doesn't it might not look as clear, just based off that line illustration, but this is what
+[1344s-1349s] something will look like here on the NQ, right. It might not always be perfect, but you can see the
+[1349s-1355s] general idea, right. Price breaks above your key pivot high, right? Continue's higher. We have another
+[1355s-1359s] kind of retest right off our key pivot high. And then we end up continuing higher. We have a couple
+[1359s-1364s] other key pivot points here as well, right? You can see multiple touches, right? We have another
+[1364s-1370s] continue push higher. And then you can see right every single old high is now being used as a
+[1370s-1376s] retest level for continuation towards the upside. Also, see someone said, it's not as simple, but yeah,
+[1376s-1381s] we'll talk about this more right, of course, a line illustrations on easier. And then we'll go
+[1381s-1386s] over some more examples here as well. Someone's also drawing on my screen at that. I turned that off,
+[1386s-1391s] but let me get rid of that real quick. But that's what it looks like, it sounds oops. Let me do this.
+[1393s-1398s] So this is basically what it looks like here on a chart. So very simple, as you can see here,
+[1398s-1404s] now let's go on to the downside, right? We're all we're doing is looking for old key pivot points.
+[1404s-1410s] And it's a lot easier to identify as a mentioned in hindsight, but our job is to, right, see
+[1410s-1414s] it forming in real time, plus on the higher time for impatterns as well. So as you can see here for
+[1414s-1421s] the IQ, old pivot points are now being used as resistance for continuation lower. So previous levels
+[1421s-1425s] of support are now being used as resistance and we're driving lower. And now you can see right,
+[1425s-1430s] old key pivot levels here as well, right? Sometimes it might break above, but ultimately these levels
+[1430s-1436s] are using are being used nicely as retest levels. And you can see price respects these levels
+[1437s-1442s] nicely in a trend. I see some people talking about right different timeframes. We'll talk about that
+[1442s-1447s] a little bit more. This is just the basic concepts, as I mentioned, but this is the ANQ. I think
+[1447s-1451s] this was on the the hourly, sorry, this was on the four hour or the hourly chart. This was from
+[1451s-1457s] earlier of this year. So this is right, what it looks like here from a charting example, right,
+[1457s-1462s] for the upside, the downside, I'm not sure if I have another, yeah, I'm not sure if another example,
+[1462s-1469s] but do you guys understand this right, basics of a trend, right? Just uptrends, downtrends, and sideways
+[1469s-1479s] markets. Type one in the chat if you guys understand that. Let's see, have a couple questions here as well.
+[1479s-1482s] Yes, what timeframe for a break in retest? We'll talk about that. You can actually use the
+[1482s-1487s] break in retest. What's great about the break in retest is you can use it on any single timeframe.
+[1487s-1493s] Right, the one minute, the five minute, the 15 minute. Of course, the higher the timeframes,
+[1493s-1497s] hold more power. I personally really like higher timeframe break. Oh, patterns. I'll show you guys.
+[1497s-1503s] This is actually, I think it's later into the presentation, but I talk about what timeframes to look
+[1503s-1508s] for specifically for the entire timeframe patterns. Do you draw your shurn area like from the
+[1508s-1513s] cano to low swing? Exactly. So for the candle to the wick, I personally like what talk about
+[1513s-1519s] drawing key areas, Tony will talk about how he draws his key areas and along with levels. I personally
+[1519s-1524s] like drawing them from the wick to the body. I'll have, I think I'll talk about that more
+[1524s-1532s] later or Tony will talk about how he draws his levels. Okay. Awesome. All right. So with that being said,
+[1532s-1539s] right, what we want to do now is trade within the trend. So as you guys know, when you're trading
+[1539s-1545s] the break and retest, you want to be trading within the trend. Lately, there's been a lot more consolidation
+[1545s-1550s] on the higher timeframes. So at least the past week and half, we've actually been consolidating a
+[1550s-1556s] lot more in the markets. So we actually haven't had too many trends. Whereas before ever since we
+[1556s-1560s] had that Trump tweet with the news with the tears, we were in a clear trend towards the upside. So we
+[1560s-1565s] had a lot of opportunities on the higher timeframes on the lower timeframes just because the market
+[1565s-1571s] was in a clear trend towards the upside. And you can see whenever that's the case, right, that's
+[1571s-1576s] when the market is the easiest to trade. So whenever we're trading in a clear trend, right, we're
+[1576s-1582s] aligned with the higher timeframes. It's going to be a lot easier to trade whereas if we're ranging
+[1582s-1585s] or we don't have a clear higher time frame thesis, it's going to be a little bit harder because we're
+[1585s-1591s] not aligned with the higher timeframes. So as you can see right here, we have plenty of different
+[1591s-1597s] timeframes. Right. This is a question that I got asked earlier. It's what timeframes should be used.
+[1597s-1602s] We have the one, five. These are primary of the timeframes that I use on a daily basis. Some people
+[1602s-1607s] use right, the three minutes, some people use the two minutes, some people use the 10 minute. So
+[1607s-1613s] there's so many different timeframes you can use preferably, right, these are the ones that I
+[1613s-1617s] think are the best. It's all up to personal preference, but at the end of the day, these are the ones
+[1617s-1624s] that I like the best, right? One, five, 15 minute, one hour daily and weekly. If we're forming a
+[1624s-1629s] trade thesis, we're performing a narrative. I like this one, which is the 15 minute and the one
+[1629s-1634s] hour as for a narrative for entry timeframes. I like the one minute and five minute and then right
+[1634s-1640s] here on the daily and weekly, we can use this timeframe to form what's called their bias. So
+[1641s-1649s] let's go on to right higher timeframe patterns. So in this case, what we have here is understanding
+[1649s-1654s] right higher timeframe patterns and as I mentioned, what is the higher timeframes? I consider
+[1654s-1660s] higher timeframes right the 15 minute, one hour and you can also use the daily and weekly, but
+[1660s-1665s] these trades don't occur as often. So a lot of our timeframes are formed here, or a lot of our
+[1665s-1672s] trade narratives and thesis is coming into market open, are formed on the 15 minute and on the one
+[1672s-1676s] hour timeframe. So this is what the timeframe that we're going to be using to look for these
+[1676s-1682s] higher timeframe patterns. Right. If we have a one minute, let's say cup and handle. Right. It's not
+[1682s-1687s] going to be as bullish as let's say a one hour cup and handle because the one hour cup and handle
+[1687s-1692s] can ultimately fail and it could easily break back towards the downside. Whereas a one hour cup and
+[1692s-1701s] handle, it takes a full right one hour to form. Right. It takes basically 60 full one minute candles
+[1704s-1710s] that equates to right one one hour candle. So of course the higher timeframes are going to hold
+[1710s-1715s] more power. Right. If you have a higher timeframe set of forming in the market, it's going to hold
+[1715s-1721s] a lot more power than a one minute because a one minute set up can easily be invalidated compared
+[1721s-1726s] to something like a one hour timeframe where it would be a lot harder because it's in a clear
+[1726s-1732s] trend. So as you can see here, this is another kind of cheat sheet that we have. You can just
+[1732s-1736s] search this up. There's plenty of different kind of higher timeframe patterns that we have in the
+[1736s-1742s] markets. But what are some of my favorite higher timeframe patterns? Actually, before we do that,
+[1742s-1747s] you can see there's right. There's the flag patterns. There's flat top breaks. There is cup and
+[1747s-1753s] handles. There's a falling wedge. So there's so many different patterns and candlestick patterns.
+[1753s-1762s] But I primarily want to focus on continuation setups only. So there's some setups here.
+[1762s-1767s] They're like a double bottom where I'm not as bullish on because it's more of a reversal setup.
+[1767s-1774s] The five main setups that I look for strictly based off of the higher timeframe patterns
+[1774s-1781s] are as follows. Right. A flat top pattern. We have a cup and handle. We have a range break,
+[1781s-1787s] regular break and retests and another one was called a head and shoulders fail or a head and shoulders
+[1787s-1795s] invalidation. So during this, so this is basically the higher timeframe patterns that I look for
+[1795s-1801s] on a daily basis. Right. As I mentioned, specifically on the 15 minute in one hour timeframe.
+[1802s-1807s] If you ever see any of these patterns form on the 15 minute or one hour timeframe,
+[1807s-1811s] you want to be paying attention to these setups because if there's a higher timeframe,
+[1811s-1816s] potential, potential bullish setup forming, that means on the lower timeframes,
+[1816s-1821s] there's usually going to be some sort of setup that you can trade because of that higher timeframe
+[1821s-1827s] thesis. I'm going to show you guys some examples here. But let's go on to what these looks like
+[1827s-1837s] and why they're bullish in itself. Let me grab some water here. Let's see. It has the last two weeks
+[1837s-1843s] been harder because of exactly because if the break and retests, right, if we're not trending. So
+[1844s-1849s] this is what the past two weeks have looked like. And I'm going to show you why it's been a
+[1849s-1854s] little bit more trickier to trade the past two weeks is because the higher timeframes specifically
+[1854s-1862s] be 15 minute in the one hour chart looks like something like this. If this is what the 15 minute
+[1862s-1867s] and one hour chart looks like, then it's going to be a lot harder to trade on the one minute timeframe
+[1867s-1871s] because we're not really doing too much on the lower, sorry, we're not doing too much on the
+[1871s-1875s] higher timeframes. So if we can't expect the higher timeframes to do anything, if there's no
+[1875s-1881s] clear, you got to think about this, for example. If there's no clear objective on the higher timeframes
+[1881s-1885s] or there's nowhere for the higher timeframes to go specifically on the 15 minute and one hour,
+[1885s-1890s] if you're trading on the one minute timeframe, right, you're kind of trading with inside consolidation.
+[1891s-1895s] So it makes sense if the one minute timeframe is going to be a lot harder because there's
+[1896s-1901s] rejections at key levels of resistance. There's going to be bounces at key levels of support.
+[1901s-1906s] So that's why there's been a lot more mean reversions, right, bounces off supports, rejections
+[1906s-1911s] off resistance, a lot more kind of mean reversion types setups. Instead of the regular
+[1911s-1915s] continuation setups that we normally look for. So whenever the higher timeframe looks like this,
+[1915s-1920s] we want to be a little bit more cautious because it's going to be a lot harder to trade the
+[1920s-1925s] break and retire specifically on the lower timeframes. So that's exactly what I'm about to show you
+[1925s-1930s] right here is the different types of setups that we look for and they're going to be specifically
+[1930s-1935s] designed for continuation setups and the break and retire. So if you go back onto this cheat sheet,
+[1935s-1940s] you can see there's a lot of different types of setups here. We have bullish setups, we have bear
+[1940s-1946s] setups, we have neutral setups. What we wanted to be looking for is specifically bullish setups
+[1947s-1952s] here on the higher timeframes because that's when the break and retests works the best is where
+[1952s-1957s] when we're in continuation. So let's first talk about the first one here, which is the flat top.
+[1957s-1962s] This is actually one of my personal favorites is a flat top break on the higher timeframes. The
+[1962s-1968s] reason why it's so bullish is because we're essentially building up lots of liquidity.
+[1969s-1974s] So as you can see right here, what a flat top break looks like, most of you guys know what it looks like,
+[1974s-1981s] but basically what happens is we have higher lows being built and we have a clear level of
+[1981s-1988s] resistance. So as you can see here, we have a nice push towards upside. Now we're creating this
+[1988s-1994s] higher low. We push up again, a little bit of rejection here. We create another higher low.
+[1995s-2000s] Come up, rejection once again, another higher low and then we do we keep doing that. And what
+[2001s-2009s] happens right here is we usually have a big push towards upside. This is the most bullish pattern
+[2009s-2015s] on the higher timeframes. If you ever see this form, there's a lot of, by the way, there's a lot of
+[2015s-2021s] different names and variations where people will call it. I call it the flat top break, people
+[2021s-2026s] call it a sending triangle, some people, yeah, like a rising wedge. There's so many different names.
+[2026s-2030s] Let me ask you guys some water here. There's so many different names that people will call this.
+[2031s-2036s] What I call is the flat top break. You can call it whatever you like. It's just what matters
+[2036s-2048s] and you understand the logic and thesis on why it's very bullish. Okay. So as you can see here,
+[2048s-2053s] we're creating higher lows in the market and we're building up liquidity. So as you can see here,
+[2054s-2060s] if we've touched this level multiple times, right, preferably what I consider is two to three
+[2060s-2064s] touches. Right. That's always a good rule of thumb. Well, creates a pattern in my opinion,
+[2064s-2070s] or trend line, or a flat top break, or a ranging market is two to three touches. Right. If you have
+[2070s-2076s] two to three touches, then it's valid. It's just a kind of a small rule of thumb. So as you can see
+[2076s-2081s] here, one touch. We have another two touch, three touch, four touch. So as you can see here,
+[2082s-2088s] right, this is very bullish. Right. Majority times when we break outside of this flat top break,
+[2089s-2092s] right. What essentially is happening is we're building up liquidity. Every single time we touch
+[2092s-2098s] a level, right, sellers are stepping in here. So if you can break above this, there's a very good
+[2098s-2103s] chance we have continuation towards the upside. It's just the logic and thesis behind it. Does this
+[2103s-2108s] kind of make sense here, right, because we're building up higher lows, right, sellers are stepping in.
+[2108s-2113s] If you can break above this, we can see a pretty big explosive move towards the upside. Does it make
+[2113s-2118s] sense like kind of logic and the logic behind it? Some other people might say, oh, what happens
+[2118s-2124s] if it breaks above, right, kind of rejects off this key pivot level. Of course, that can also be
+[2124s-2129s] a scenario as well, but strictly, but just based off this information that we have, right, this is a
+[2129s-2136s] bullish set up, right, just based off this information. Let me look at the chat. Yes, make sense.
+[2136s-2141s] One, one, one. Well, this pattern, well, this pattern will be after you buy the break in retail,
+[2141s-2146s] or you're always waiting for the read test. So this is on the higher timeframe, David. So that is a
+[2146s-2151s] great question. We'll talk about that based off the lower time friends, but this will happen on the
+[2151s-2156s] higher time friends, preferably the 15 minute and one hour. So if you're on the 15 minute and one hour
+[2156s-2161s] time frame, you have what's called the flat top break, you really want to be trading, right,
+[2161s-2165s] really during this break. So when it breaks out, you could be looking for a day number one,
+[2165s-2169s] as it pushes higher or you could be looking for some sort of retests on the lower time frames
+[2170s-2174s] for a continuation higher here as well. So basically, you want to be essentially capturing
+[2174s-2178s] this leg in price towards the upside. Either that be on day number one, as it breaks out on the
+[2178s-2182s] higher time frames, or maybe if the higher time frame comes back to retests, you could also be looking
+[2182s-2186s] for that as well. So there's a few different scenarios I'll be looking for. Now that was a good question.
+[2186s-2192s] We'll have some more examples in a second. So this is my personal favorite, the flat top,
+[2193s-2198s] cup in handle, fairly similar thesis here in the logic and how a cup in handle works. So a cup in
+[2198s-2203s] handle is fairly similar. You have this kind of nice push towards upside. Let's say for example,
+[2204s-2213s] it looks something like this. Price pushes higher, we do something like this, and then it pulls back.
+[2214s-2219s] And we have a clear level of resistance. So cup in handle will look something like this.
+[2219s-2225s] Where price has a clear level of resistance, but now we're still bullish, right, as I mentioned,
+[2225s-2230s] we're creating higher lows in the markets. What this will look like is in a form of a cup.
+[2230s-2236s] Let me actually change the color. So this is basically what our cup is. And then we have our handle.
+[2237s-2242s] So it's actually fairly similar to a flat top break. As I mentioned, what matters here, it's a
+[2242s-2247s] logic in thesis, right, higher lows are being built. We have multiple touches. Right, what we're
+[2247s-2252s] looking for is to capture this leg in price. Either the higher low or we're essentially waiting for
+[2252s-2257s] the break above your key level of resistance. And now we're looking to capture this towards upside.
+[2257s-2261s] So this is a cup in handle pattern. As I mentioned, what we're going to be looking for is
+[2261s-2268s] primarily here on the 15 minute and one hour timeframe. And this is also a very bullish setup here as
+[2268s-2274s] well. Does this one also makes sense? Just based off of logic wise, right, the reason why it's bullish,
+[2274s-2279s] right, we have a clear level of resistance, where we form that candle. And then we're looking
+[2279s-2285s] to essentially capture this leg in price. Right, this push higher or we're going to capture
+[2285s-2291s] that retest that we like to look for as well for another continuation higher. Yes, yes, yes, one perfect.
+[2292s-2297s] Okay, so we have the flat top in the cup in handle, which are my personal favorites.
+[2297s-2301s] Actually, I always say my personal favorites. I like a lot of these ones. I don't really have a
+[2301s-2307s] personal preference. My favorites actually the flat top. Next we have is the range break.
+[2308s-2314s] So the range break here on the higher time frames is something that we look for. I don't
+[2314s-2320s] like this one as much because it's a little bit harder to anticipate. As you can see here,
+[2320s-2324s] what we have is a clear range of the markets. And I actually just said anticipate,
+[2324s-2328s] which is exactly what you don't want to do. If you try and anticipate a range break,
+[2328s-2331s] a lot of times what will happen is you'll end up getting freaked out.
+[2332s-2336s] So the last thing you want to do is try and anticipate the break. So that's why you want to wait for
+[2336s-2342s] the break and then you want to be looking for the retest for continuation higher. When we're stuck
+[2342s-2348s] inside of this range, you can expect right pops to be shorted and you can expect these dips to be
+[2348s-2353s] bought up and reverse back towards the upside. So this is what essentially the higher time frames.
+[2353s-2359s] And this is what the past, I'd say we can we can have it's been. A lot of these names are within
+[2359s-2364s] side of its range. So it's been a little bit more difficult to trade. What we want to look for
+[2364s-2371s] is essentially the break outside of the range. So you want to be looking for the break outside,
+[2371s-2376s] or we want to be looking for the break below our range. And once we break below our range,
+[2376s-2381s] that's when we can be looking for opportunities. Right. Once we break underneath, we can be looking
+[2381s-2387s] for a short for using this retest, this key level support, turning into resistance or to the
+[2387s-2392s] upside. We're going to be looking for the range break higher or the tight stop of break underneath.
+[2392s-2395s] And we're going to be looking to trade this back towards the highs. So this is what's called
+[2395s-2399s] their range break. This is, as I mentioned, a little bit more difficult because we're in
+[2399s-2404s] the side of range, but we're looking for the range to break. And when you ever try to anticipate it,
+[2404s-2408s] right, multiple touches, two to three touches, right. If you try to anticipate it a lot of times,
+[2408s-2413s] you'll get fake doubt whereas if you're in a clear trend, right, where it's a lot easier to see
+[2413s-2418s] something like the Copenh handouts, a lot easier to see something like the flat top break.
+[2418s-2422s] Those are the more bullish setups. And what we'll be primarily looking for, especially in a
+[2422s-2427s] training market. Does everyone understand this ranging market here? As I mentioned, specifically
+[2427s-2432s] on the 15 minute and one hour timeframe. And what we're going to be looking for, specifically the
+[2432s-2436s] criteria, especially on the higher timeframe. We're going to be looking for the range to break.
+[2444s-2451s] I see a lot of ones and yeses. Good, good, good. Okay. So this was the third higher timeframe pattern.
+[2451s-2456s] So we have the flat top. We have the Copenh handle. We have the range break. And then we have just
+[2456s-2460s] our classic break and retest. So this is something that we'll see on the higher timeframe
+[2460s-2465s] is a lot as well. And just your classic break and retest. So as you can see here, if we're in a
+[2465s-2470s] clear uptrend towards the highs, all we're essentially looking for is right, this previous pivot point
+[2470s-2477s] to be used as support now. So this will happen on the higher timeframe. It's a lot easier to see
+[2477s-2482s] if we're in a clear trend as I mentioned, right, this is when the break and retest looks the best.
+[2482s-2487s] When we have a nice clear trend, right, sometimes as I mentioned, it doesn't always look like this where
+[2487s-2492s] sometimes they'll kind of just look something more like this. Price will push higher, right,
+[2492s-2496s] come back down, maybe break above, get a little bit underneath, but still in a clear trend in
+[2496s-2501s] pulse of moves. The chart actually might look a lot more like this, right? Sometimes it's not always
+[2501s-2505s] perfect, right? Whenever it's in a perfect break and retest setting, that's when the best trading
+[2505s-2510s] environments are going to occur. And we have a very nice clear trend towards the upside. When I look
+[2510s-2515s] something a little bit more like on the right hand side, it's a little bit more difficult to trade.
+[2515s-2520s] And usually just means where we're in a trendy market, but it's not as strong. There's not as much
+[2520s-2525s] momentum, right? Momentum signifies right, how much continuation we have above its previous
+[2525s-2529s] time. If we have a lot of continuation and we have a very impulsive move higher, this is when we're
+[2529s-2534s] going to have nice trends. If it kind of just breaks above high of day or you're maybe all time
+[2535s-2539s] high, it's level of kind of pulls back. It's still bullish as I mentioned, but the best trades
+[2539s-2545s] in the best trends are going to occur when we have right impulsive moves and we use this level of
+[2545s-2551s] resistance to turn into support for continuation higher. And then finally, what we have is this
+[2551s-2559s] head and shoulders fail or invalidation. So this is one of my favorite favorite setups. I said it again.
+[2560s-2565s] That's funny. I said it again, but this is one of my favorite patterns specifically in a bullish
+[2565s-2571s] market. So when we have a clear trend towards the upside and let's say for example, we have this
+[2571s-2576s] break and retest or this level right here, which will be essentially your break and retest.
+[2577s-2583s] Right, so we have this key level. We also have another level here as well. What happens sometimes is that
+[2583s-2588s] price will kind of push higher. And they come right back down into words or key level support. So
+[2588s-2596s] might actually look a little bit more like this. Let me do this and push right back higher.
+[2597s-2604s] So some people might look at this and say that it can be bearish. In the right context,
+[2604s-2610s] this might be bearish. Right, ahead and shoulders. Specifically, if let's say for example,
+[2610s-2617s] price is in a downturn. If price is in a downturn, then we can expect this to actually
+[2617s-2622s] confirm and head lower. Right, this will make it more sense. If we have this big push down,
+[2622s-2626s] and then we start training because I would consider this in a downturn. Whereas if we're in an
+[2626s-2632s] uptrend, and you can see how context really matters in this case. If we're in a clear uptrend,
+[2632s-2639s] then this is very bullish. If you can invalidate this right shoulder. So as you can see right here,
+[2640s-2644s] what we have is a potential head and shoulders for it. So we have our left shoulder.
+[2645s-2654s] We have our head. And then we potentially have our right shoulder. So as you can see here,
+[2654s-2662s] price pushes higher creates the head and then comes right back down. As you can see right here,
+[2662s-2669s] if it invalidates this right shoulder, this is a good sign that price is going to continue higher.
+[2670s-2677s] Right. So the way price is bearish and confirms this right shoulder is if we break underneath
+[2677s-2683s] this swing low. Because as you mentioned before, as I mentioned before, right, what invalidates
+[2683s-2690s] this higher low or what invalidates this trend is this impulsive move higher? You can see price came
+[2690s-2696s] back down and had a double bottom. A double bottom doesn't invalidate, right? What invalidates it
+[2696s-2702s] if it is if it breaks underneath. If it wicks underneath and still holding, I consider this still
+[2702s-2707s] bullish, preferably even if it has higher lows, it's even more bullish. But as long as it can
+[2707s-2713s] maintain above this higher low pivot point, I consider this still bullish. So if it broke underneath,
+[2713s-2719s] then essentially confirms this inverse head and sorry, this head and shoulders. If it invalidates it,
+[2719s-2726s] which means right, we maintain above this higher low, we break back above right there can be
+[2726s-2735s] an explosive move higher. Why this technically also is our 84% rule or a reclaimed setup. So I'll
+[2735s-2740s] talk about this a little bit more on Thursday, but this is technically that reclaimed back above
+[2740s-2746s] this left shoulder. So this now is a very key pivot point, right? So this was our original
+[2746s-2751s] break and retest. This would have been the best for continuation higher. Ultimately, right,
+[2751s-2757s] we broke underneath maybe for whatever reason. It was an as bullish. But if we can reclaim back
+[2757s-2763s] above, this is very bullish and it signifies right continuation back towards the upside. This is a very
+[2763s-2768s] similar setup to what happened on AMD last week. It's actually an example. I'll talk about a little
+[2768s-2774s] bit later. But this is what's called our invalidation of a head and shoulders or a head and shoulders
+[2774s-2778s] fail pattern, which is very very bullish because it's just ultimately a reclaim. Right, on the higher
+[2778s-2783s] timeframes, I consider this right head and shoulders fail. On the lower timeframes, you can consider
+[2783s-2788s] this a reclaimed setup and it's very bullish because if we don't, it's sellers don't step in here.
+[2789s-2794s] That usually means that price is going to gravitate back up towards high of day and it's going
+[2794s-2800s] to happen very fast because right sellers were looking to step in here. Ultimately, that failed.
+[2800s-2805s] They usually either have a stop at high of day. And that's exactly where price is going to gravitate
+[2805s-2812s] towards to take out essentially those stops. So that is the head and shoulders fail or invalidation.
+[2812s-2817s] Do you guys understand that pattern in the rest of those higher time for embollish patterns?
+[2818s-2826s] Type one in the chat or yes. Also, as do you see someone mentioned, let's see for breaks of
+[2826s-2831s] structure. For break of structure, we do need to see a body, break below the previous higher low,
+[2831s-2835s] or the way to I personally like to see a body candle close. Some people just say,
+[2835s-2840s] oh, you need it's the wick. I personally like looking for the body. So if the body closes underneath,
+[2840s-2844s] then that's essentially going to validate it. If it wicks underneath, or I always go by,
+[2844s-2849s] right wicks through the damage, bodies to the store. Jack, all these are bullish patterns. Do you
+[2849s-2854s] primarily prefer bullmark? Exactly. So right now, I'm talking about bullish patterns. The exact
+[2854s-2860s] same thesis applies in bearish markets. But currently, right, we're at all time highs, we've been
+[2860s-2866s] in a bull market for the past few years. We've been primarily looking for bullish setups.
+[2866s-2871s] Right, earlier into the year when we had that drop from February with tears, we were looking for a
+[2871s-2876s] little bit more bear setups. But now with the market being on all time highs, right, we primarily
+[2876s-2879s] look for bullish setups. It's the same thing. If the market ends up flipping bearish,
+[2879s-2883s] then we'll look for bear setups. But right now, currently, we're just going to trade whatever
+[2883s-2886s] is on the higher timeframes. If the higher timeframes bullish, we're going to trade bull setups.
+[2887s-2891s] That is so great. It clears everything about the 84% rule. Yeah, I'll actually have a
+[2892s-2899s] in-depth one about the 84% rule on Thursday, Ken. So if you, if you make sure you watch the Thursday
+[2899s-2904s] live session, I talk about the 84% rule, a lot more depth in the different criteria,
+[2904s-2910s] is what we're looking for as well. Someone said, kind of, okay, if you have any questions regarding
+[2910s-2914s] that, let's see, with the wick, I think I answered that one. Can you do it on the daily time frame?
+[2914s-2918s] So as I mentioned here, the timeframes that we're primarily looking for is going to be on the
+[2918s-2923s] 15 minute and one hour. If you find one on the daily time frame, that is awesome. If you find a
+[2923s-2928s] flat top break, but they don't occur that often. We actually had a weekly and daily, five top
+[2928s-2935s] break on Tesla earlier this year. And we had an explosive move towards all time highs. But it's set up
+[2935s-2939s] for weeks and months, and it took quite a long time to set up. So these are usually normally
+[2940s-2947s] these will happen. Like a once a quarter trade, maybe two times a year type of opportunities.
+[2947s-2951s] If you have a weekly or daily flat top break, whereas if you have a 15 minute one hour,
+[2951s-2956s] these happen a lot more often. I'd say a couple of times a month on per ticker. And then even
+[2956s-2961s] other tickers where you can see these setups multiple times a week compared to a daily as I mentioned
+[2961s-2965s] in weekly, these might happen once a quarter or two times a year, something like Tesla.
+[2966s-2971s] How often do we know when we're in a bear market? Yeah, based on spy correction, based off
+[2971s-2977s] market sentiment, based off of the VIX. There's a bunch of different ways where you can determine
+[2977s-2982s] if we're in a bear market. Number one, the easiest, as well as understanding the trends. If we're
+[2982s-2986s] in a bullish trend, everything's intact, then we're still going to be on a bullish market.
+[2988s-2992s] If we flip all these patterns, then we have bearish patterns exactly. So if the exact same
+[2992s-2996s] thing applies, everything that I just mentioned there were bullish continuation setups.
+[2996s-3002s] As you can see here, the exact same thing applies to the downside for bearish continuation setups.
+[3002s-3007s] But primarily the market is essentially, I always say this, the market is designed to go up.
+[3008s-3013s] So even if we do happen to be in a bear market, we're going to be looking for maybe a little
+[3013s-3018s] bit more aggressive, right, a higher time for him setups instead of looking for the classic
+[3018s-3023s] continuations. Because we usually don't expect continuation towards the downside, whereas if we're
+[3023s-3027s] trading to the upside, we can expect continuation towards the upside because we're in old times.
+[3029s-3034s] How may I, how may I easily identify head and shoulders? Head and shoulders, as I mentioned,
+[3034s-3037s] is just, right, understanding, right, right, right, shoulder. I'll show you guys some more chart
+[3037s-3043s] examples here to show you guys how it looks like. It'll be a lot easier when I show you guys
+[3043s-3049s] chart examples. Let's see a couple more questions. Do you ever trade anything besides
+[3049s-3054s] blue chips stocks and others? Yes, so we trade other names as well, like gross stocks,
+[3054s-3061s] anything that's within, right, the S&P 500 or anything within primarily most names that are within the
+[3061s-3072s] NASDAQ. Okay, let's go on to the next slide. So the daily and weekly time friends are for
+[3072s-3077s] trying to the one hour exactly. So the daily and weekly are primarily to form our bias
+[3077s-3082s] and then the one hour and 50 minute are for our narrative. When we'll get the recordings for the
+[3082s-3088s] blue camp, you will get the recordings. As soon as I finish this, it's usually like two to three hours
+[3088s-3091s] later, just because it takes a little bit longer process. But they're all within the blue camp
+[3091s-3100s] recordings, all the recordings are sectioned off, so it's very easy to see. Okay, so with those
+[3100s-3107s] higher time frame patterns in mind, now we're going to talk about the entries. So we have a higher
+[3107s-3111s] time frame thesis. Now we're going to go into the lower time frames. We're going to look for some
+[3111s-3116s] lower time frames setup. I'll talk about all the different types of setups in our playbooks on Thursday.
+[3116s-3122s] But we're going to talk a little bit more on entries and what we look for specifically and how to
+[3122s-3129s] enter in a stock. So in this case, what we have is three different types of entries. So our first one
+[3129s-3135s] is essentially our limit order slash no confirmation. We don't use this one as much. There's very,
+[3136s-3142s] there needs to be a very clear trend and need to be very aggressive in order for me to take the first one.
+[3142s-3148s] The second one, strong price action slash buyers stepping in. This is something we look for every
+[3148s-3153s] single day. And then the third one here as well is also one of my favorites, strong price action
+[3153s-3158s] slash buyers stepping in plus the confirmation candle. This is key, right? The confirmation candle on the
+[3158s-3163s] third one essentially confirming price higher. So we'll touch up on three of these entry
+[3163s-3170s] confirmations. So as you can see here, what we have is your limit order slash no confirmation.
+[3170s-3174s] And as you can see right here, we just have a regular break and retest, right? Either it be your five
+[3174s-3179s] minute range. You can consider this your one minute range setup. Basically what we have in this case is your
+[3179s-3183s] five minute range setup, price breaks towards upside. And we're essentially looking for this key
+[3183s-3190s] pivot point. I think this is actually a very recent example, but six 11 72. Hopefully you guys
+[3190s-3194s] you guys can see my screen here as well. But basically what we're looking for here is essentially
+[3194s-3200s] this retest. And we're looking for this continued push towards upside. So as you can see here,
+[3200s-3204s] right? We're just going to have a limit order set, right? Essentially as soon as price taps into this
+[3204s-3210s] key level, no matter if the buyers are stepping in, we're just going to have a limit order set here.
+[3210s-3216s] And we're going to be looking to trade this towards upside. As you can see here, as was to say after,
+[3216s-3221s] but as you can see, price ends up pushing back towards a key level. If you just had a limit order
+[3221s-3226s] set and we didn't wait for any confirmation or any sort of buyers to step in, we would have
+[3226s-3231s] immediately got stopped out. All right. So as you can see here, price pushes higher. This was our
+[3231s-3237s] key level where our five minute opening range price comes back down, but ultimately just breaks right
+[3237s-3242s] back underneath and just continues lower. So this is the limit order slash no confirmation
+[3242s-3247s] entry model. This is something I was a mention we don't use as often. The reason being is because
+[3247s-3251s] usually we like to react to price. We want to see the price action around the key levels. That
+[3251s-3256s] also gives us an engine the market's an understanding right? The relative strength and weakness
+[3256s-3261s] right? If it's going to be a good entry or if it's not, if you just blindly enter on every single
+[3261s-3267s] break and retest, it's going to be a little bit lower probability. So what are the pros and
+[3267s-3271s] concepts? All right, we're going to talk about the second entry model, the third entry model,
+[3271s-3276s] which are my favorite, right? What are some pros and cons? The pros and cons is the pros you get in
+[3276s-3280s] every time. This can actually be a con as well because you might not want to get into every time.
+[3280s-3285s] Right? You also want the pro that you do have as you do get the best entry, right? Because if
+[3285s-3291s] prices coming down and you get no matter what, you're going to get in on the bid. So Tony
+[3291s-3296s] talked about the bid and ask yesterday, if you get filled on the bid, right? That's technically
+[3296s-3302s] a limit order. So we primarily use market orders, but if you have a limit order setting,
+[3302s-3306s] that means you're actually going to get the lowest possible entry, right? You're going to get
+[3306s-3310s] filled on the bid. So if price eventually actually does work out, you're actually going to get a
+[3310s-3315s] really solid entry because you're getting filled on the bid on a limit order and if price does end
+[3315s-3318s] up working out in your favor, right? You're actually going to have a really solid entry just
+[3319s-3322s] based off a limit order. As I mentioned, that's another pro getting filled on the bid.
+[3322s-3327s] Highest risk to reward towards high day. So in this case, if you get in a really solid entry,
+[3327s-3331s] right? You're going to have the highest risk to reward two high of days since you're getting
+[3331s-3337s] technically the lowest entry possible. But what are some cons? The cons in my opinion, away the pros.
+[3338s-3343s] If you get in every single break and retest possible, you're going to have a very low win rate.
+[3343s-3349s] Just because there's no edge, there's no red confirmations, confluence is that you're looking for.
+[3350s-3353s] You're going to have a fairly low win rate. In my opinion, around 30 to 40%.
+[3354s-3358s] You can be profitable with the 30 to 40% win rate. You're just going to need a high risk or
+[3358s-3365s] reward ratio. But in my opinion, a 30 to 40% win rate is going to be, it's going to be closer to
+[3365s-3370s] around the 30. If you get in every single retest possible. What also is a con, you're prone to a
+[3370s-3374s] lot of fake codes. If you're prone to a lot of fake codes, you want to be very cautious.
+[3375s-3379s] You want to, as I mentioned, wait for that confirmation or at least buyers to step in.
+[3379s-3383s] And then what happens a lot is you take unnecessary losses. So if you have a limit order every single
+[3383s-3388s] time sitting at your key level, you're going to take a lot of unnecessary losses where if you look
+[3388s-3393s] back on it and if you mentioned you would have waited for confirmation or you would have waited
+[3393s-3398s] for buyers to step in, right? You couldn't have avoided a lot of losses. I started to kind of
+[3398s-3404s] avoided taking a lot of losses and you can also increase your win rate if you just wait for,
+[3404s-3411s] right? Number two and number three. So let's go on to the two primary entry models that we look for.
+[3411s-3415s] So the two primary entry models that we look for in this case is what's called our
+[3415s-3419s] conservative entry and our most conservative entry, which is essentially this right here,
+[3419s-3424s] as I mentioned. Strong price action, slash buyers step in and then we also have strong price action
+[3425s-3429s] slash buyers step in plus the confirmation cano. So it's two and three. So these are the two
+[3429s-3435s] entry models that we use on a day-to-day basis. Right? We rarely will use the limit order.
+[3435s-3439s] We'll wait for the price action around the key levels and then sometimes we'll also wait for the
+[3439s-3443s] confirmation as candles well, which basically confirms that price is going to gravitate back to
+[3443s-3449s] its upside. So as you can see right here, we have two entries, right? They're all based off of the
+[3449s-3454s] break and retest price comes in. Essentially what this is is strong price action slash buyers stepping in.
+[3454s-3458s] What does this mean? And all that means is right once it taps into the key level,
+[3458s-3464s] you can see buyers are stepping in based off of red this candlestick formation. So as you can see here,
+[3464s-3470s] if price taps into it and you have a lower wick, right? It doesn't matter what candle color,
+[3470s-3474s] or so it doesn't matter what color the candle is as I talked about at the very beginning.
+[3474s-3478s] The color of the candle does not matter as much as right the price action around the key level.
+[3478s-3484s] So you can see here right lower wick. Nice kind of small body here. So this is I consider
+[3484s-3489s] kind of a small body candle. And then we have another candle, which is our long wood candle.
+[3489s-3492s] So as you can see buyers are clearly stepping in here, because how is this candle forming?
+[3492s-3499s] We have our open. We have our low price drives towards the downside.
+[3500s-3506s] So we have our open. We create our low in the market. Then price pushes all the way back higher.
+[3508s-3513s] And basically closes off at the high. So we start off at the open. We had lower first.
+[3513s-3517s] And then we had higher. So this signifies that buyers are stepping in.
+[3518s-3522s] So you guys can see this. Hopefully you guys can see this right off a key level here as well.
+[3523s-3526s] When you're looking for buyers to step in, I see someone asking,
+[3526s-3530s] right, based off of level two, or do you look at the candlestick formation?
+[3530s-3534s] Right? So there's different ways to look at it. So there's a couple different ways.
+[3534s-3538s] You can look at the candlestick formation in itself, which is what I like to do.
+[3538s-3543s] I like to look at the candlesticks. Right? Because the candlestick, especially specifically
+[3543s-3549s] how the candle is forming, Tony will talk about candlestick formation and how they form and
+[3549s-3553s] kind of the speed of the candle, right? As it's forming as well. Actually, you know, that's in,
+[3553s-3559s] I think he had the trader's lab session on that. I think he'll also touch up on this as well.
+[3559s-3564s] But basically you can look at the candle in itself. You can look at level two, order flow,
+[3564s-3568s] timing, sales. I personally think that's too much noise. So I'm strictly just going to be
+[3568s-3572s] looking at the candlestick themselves. So in this case, if it, if it,
+[3572s-3578s] the fires, right, buyers are stepping in it specifically, right off a key level.
+[3579s-3583s] And then what we have here is strong price action plus the confirmation candle.
+[3583s-3587s] What does this confirmation candle mean? This confirmation candle essentially confirms that
+[3587s-3592s] price wants to gravitate back towards the upside. I'll show you the pros and cons here in a second.
+[3592s-3597s] Basically, this candlestick confirmation is when this candle, which is the third candle,
+[3597s-3602s] it doesn't have to be the third candle. It's basically when this candle right here closes
+[3602s-3608s] above its previous candle. So as you can see right here, this candle closes above its previous
+[3608s-3613s] candle close. So this candle close right here, it closes above its previous candle close.
+[3613s-3619s] This is what's called confirmation. In this confirms that price is bullish based off this three
+[3619s-3625s] candle sequence and we can expect price to continue back towards the upside. So these are three
+[3625s-3629s] different entry models. I'll show you guys a lot of examples here in a second and what it looks
+[3629s-3634s] like in the actual real charts. But this is basically the two primary entry models that we'll look for.
+[3634s-3638s] Right? The conservative entry model and the most conservative, which is waiting for that confirmation
+[3638s-3646s] candle. All right, do you guys understand what we look for when it comes to the different types of
+[3646s-3651s] entry models? Right? Type one and type yes in the chat. If you guys have any questions,
+[3651s-3655s] right? You can also drop in the chat here as well. We scroll up just a little bit.
+[3657s-3661s] Jack, with the break and retest is a matter after the break above the key level,
+[3661s-3665s] if it retest right away or that's an immediate retest. So we'll talk about that more on the actual
+[3665s-3671s] setups and in-cells. Of course, the classic sense you want to see some displacement. There's also
+[3671s-3676s] different scenarios on when you want to look for an immediate retest. For the confirmation
+[3676s-3680s] candle, the always wait for the candle to close. Ernie, get in as soon as the candle close above this,
+[3680s-3685s] that's actually a really good question as well. So that is a good question and we'll talk
+[3685s-3689s] about how that candle stick form. So there's different types of nuances that you can be looking for,
+[3690s-3696s] that you can only see in real time. So right here, this is a candle that's already played out
+[3696s-3702s] that I showed you. But based off what you mentioned, I think it was David that asked the question,
+[3702s-3707s] that's a good question because that will only occur as the candle is stick is forming. So that's a
+[3707s-3712s] little bit more discretionary and based off reading the tape. I'll show you what it looks like and
+[3712s-3717s] how the candle's forming and you can really only see that during real time. And I'll show you
+[3718s-3723s] exactly where the enter is well, Daniela. Let's go on to, I think the next time, which is the
+[3724s-3740s] pros and cons. So we have sorry, I just had something stuck in my throat. Hard for confirmation,
+[3740s-3745s] when, okay, I'll show you guys, I'll have a lot of examples here. Confirmation because it
+[3745s-3749s] starts moving to feel like chasing, I'll show you guys exactly some examples as I mentioned and
+[3749s-3755s] the different pros and cons and when you should use each. So this is basically kind of a cheat sheet
+[3755s-3762s] that I came up with for the pros and cons of what to look for when you're trading the first
+[3762s-3766s] entry model, which is the limit order slash no confirmation. The second one,
+[3766s-3770s] strong price action slash buyers step in and the third one, which is right, strong price action slash
+[3770s-3776s] buyers step in plus the confirmation can do as well. Okay, so as you can see here, I already went over
+[3776s-3780s] the first one, which is the pros and cons, the second one, what is the pros? Right, your waiting
+[3780s-3785s] for buyers to step in, risk is closer to the swing low, risk reward is still get at high day, right,
+[3785s-3790s] can get in majority of the time. Cons, this is actually not a con, but it's just medium, when
+[3790s-3794s] right, medium or so reward, I wouldn't consider this a con. The cons are prone to fake out,
+[3794s-3799s] still sometimes you take unnecessary losses and the one con I'd say is it's a little bit more
+[3799s-3804s] discretionary. So it's a little bit more discretionary because you're kind of reading the tape,
+[3804s-3809s] you're seeing the price after I'm on the key level. So sometimes you are still prone to fake out,
+[3809s-3814s] just because maybe you're not understanding the higher time for him, contacts and sometimes
+[3814s-3819s] you can easily get fake out. Still. All right, what's number three? Number three is the confirmation
+[3819s-3825s] candle plus the strong price action plus buyer step in. As you can see here, this is the
+[3825s-3831s] highest one rate. This is primarily what Tony uses is the strong price action slash buyer step in
+[3831s-3835s] plus the confirmation candle. So this has the highest one rate possible, right, and these one rates
+[3835s-3841s] right, they'll be higher during night, a hotter market, they'll be slower during slower markets,
+[3841s-3846s] but normally speaking, if you wait for confirmation, right, on average around 60 to 70 percent,
+[3846s-3851s] right, what is the pro? You can also risk off of your swing low. Shortest time in a trade
+[3851s-3856s] towards high day, rarely any fake oats, and then what are some cons? Loist restore towards high
+[3856s-3860s] day, but normally speaking, if you're waiting for confirmation candle, you're going to be waiting for
+[3860s-3865s] continuation and above. So a lot of times, instead of looking for high day, you're going to be looking
+[3865s-3870s] for continuation above high day. Sometimes you miss the trade just based off of your restaurant
+[3870s-3874s] word, or you feel like you're kind of chasing. So this can be a con, another con is your buying
+[3875s-3879s] after your bullish candle, and then find that you're getting filled in the ass. So when you do buy
+[3879s-3885s] after a big bullish candle, or you're getting filled on the ask, right, your risk is going to be
+[3885s-3891s] a little bit larger because your buying ass price is going up, but that's why, right, if you have
+[3891s-3896s] a higher win rate, you're going to have a lower restore word. And of course, if you have a lower win rate,
+[3896s-3900s] right, you need a higher restore word. So there's always pros and cons in between both.
+[3901s-3906s] You can go back and you can kind of take a screenshot of this. I'm sure I think we'll probably
+[3906s-3911s] end up sharing the slides here as well. So you guys can look back on it. But this is basically
+[3911s-3915s] something you guys can take a screenshot of. As I mentioned, we primarily look for number two
+[3916s-3922s] in number three. All right, before we head on to the examples on number two and number three,
+[3922s-3928s] do you guys have any questions? Or do you guys understand kind of the differences between number two
+[3928s-3949s] and number three and what we look for? Which one do you prefer? I prefer number two and number three.
+[3949s-3953s] So these ones are fairly similar. I'll show you the difference between two and three,
+[3954s-3959s] but they're very similar to one another. Major the times if we were for buyers to step in and we
+[3959s-3964s] show any sort of bullish price action, it's basically you're you're getting in as this third
+[3964s-3968s] confirmation candle's forming. So it was basically that question David asked earlier,
+[3968s-3973s] is do you get, can you get in technically as a candle's forming? It would be a hybrid in between
+[3973s-3978s] two and three, which is essentially you're getting in on that third candle, which is that confirmation
+[3978s-3985s] candle. Is there any other particular additional factors that can help increase the 67%
+[3985s-3990s] when we're able to help beginners' confidence? That has to do with higher time frame context
+[3990s-3994s] and other things as well. But this is strictly just based off of the entry model. Right? If you have
+[3994s-3998s] hot market, right, higher time frame conditions, you're looking at relative strength of
+[3998s-4003s] the weakness. There's a lot of different other factors that play into the room, the wind rate,
+[4003s-4008s] and itself. But that is the based off other context I will end up talking about.
+[4010s-4014s] Do you always go for number two? It always seems like, yeah, it's always as I mentioned.
+[4014s-4018s] It's a hybrid in between two and three. I'll talk about that on some examples. You put different
+[4018s-4024s] risk models, both into the pro section. Could you explain that different risk model? So this is
+[4024s-4031s] the wind rate. We'll talk about where to risk off of, because they're different. If you're
+[4031s-4036s] waiting for the buyer to step in, you don't have to have wider risk, you can risk off of that key
+[4036s-4055s] swing pivot point. I may actually describe some of the water one more time. Okay. I see a few
+[4055s-4061s] other questions here as well. Explain the difference between a media retest with this, yeah, I'll
+[4061s-4066s] explain that a little bit later. Are you watching cues for the entry? Yeah, that's a whole
+[4066s-4071s] different other separate topic as well. Let's see, do you look for these in the pre-market?
+[4071s-4074s] No, these will be during the actual market sessions.
+[4077s-4082s] All right. So this is number two. So this is the strong
+[4082s-4087s] price action slash buyers are stepping in. So as you can feel right here, we have a nice
+[4087s-4094s] clear trend towards the upside. Price is now pushing higher. I have no clue what's happening to my
+[4094s-4105s] voice here. But all we're looking for now is the retest of this key swing pivot higher.
+[4106s-4110s] So as you can see here for a video, what we're essentially going to be looking for is the strong
+[4110s-4119s] price action, preferably right buyers to step in here for this continued mission higher. As you can see,
+[4120s-4126s] price comes back in. And now what we're going to be looking for is the buyers to step in off the
+[4127s-4132s] level. So as you can see here, right buyers are now stepping in, indicated by these lower
+[4132s-4137s] wicks, right? We don't really have any confirmation canals, but you can see clearly buyers are stepping
+[4137s-4143s] in off of your previous key pivot high, which is essentially where these down close canals are
+[4144s-4148s] and you can see buyers are stepping in. I think this is not your five-minute range high,
+[4148s-4153s] retest, but your down close candle and your key pivot level here as well. Well, we're now going
+[4153s-4161s] to be looking for is right basically an entry with a risk off this swing low. And we're going to be
+[4161s-4166s] looking for this continued push back up towards higher than above. Right? And there's no confirmation
+[4166s-4170s] here. This is basically just by reading the tape and seeing that the buyers are stepping in.
+[4170s-4178s] Based off of this, let me see if I can zoom in. Based off of these couple candles here, indicated
+[4178s-4184s] by buyers are stepping in. So you can see, right? This is a red candle here. We have a lower wick.
+[4185s-4191s] So you can see we have our open, low, high, close, and then we have another candle, smaller body,
+[4191s-4195s] but you can see so far buyers are stepping in here. This is actually a trade if I'm not
+[4195s-4201s] sticking, if I'm not mistaken, that we ended up taking. And we're essentially looking for a trade
+[4201s-4206s] back up into our time today. So this is just kind of a retest where we're looking for for
+[4206s-4212s] a continuation higher. And you can see, ultimately, right trade took a little bit of a while, but you
+[4212s-4217s] can see maintained above these higher lows. Right? As I mentioned, instead of risking all the way
+[4217s-4223s] down towards this key swing point, where can we risk off of? We can risk right off this swing
+[4223s-4234s] low here. So normally, if we had a regular limit order, I'll already should be better now.
+[4235s-4248s] Okay. Yeah, it sounds a lot better. All right. Yes. Okay. Where was I? Yeah. So exactly. This is an example
+[4248s-4256s] that we're looking for, which was essentially looking for strong price action, slash buyers to step in.
+[4256s-4261s] So as you can see here on Nvidia, where we end up having that nice push towards the upside
+[4261s-4267s] as I mentioned, normally, if we're looking for an entry, that was a limit order,
+[4268s-4274s] we would be looking for something like this. So as you can see right here, right? This would be our
+[4274s-4278s] normal kind of entry that would be looking for. Kind of this bounce off here, right?
+[4278s-4283s] Risk off this swing low, it would be looking for this push higher. Strictly, if we're looking at
+[4283s-4292s] the limit order specifically. But if we're looking for strong price action, slash buyers to step in,
+[4292s-4298s] what can we look for? Right. We can actually risk off of this swing low, because now we're
+[4298s-4304s] expecting the markets to create a higher low and push back to the highs. So if we're waiting for
+[4304s-4309s] confirmation or if we're waiting for buyers to step in, we don't need our risk to be all the
+[4309s-4315s] down at this swing low, because that would be fairly wide risk. We can actually just risk off of
+[4315s-4321s] this swing low and we can be looking for this continuing push back towards the upside. So after the
+[4321s-4326s] buyer step in, right up for key level, and specifically if we have our confirmation candle,
+[4326s-4330s] I'll talk about the confirmation candle in here. Second, I think it's very important. Right.
+[4330s-4335s] All we're looking for now for at least risk parameters. We can be risking off this swing low right
+[4335s-4343s] here, which this is our entry. Our stop can be at this point, because we're anticipating this to be
+[4343s-4347s] our higher low p. key pivot point now, and our targets, somewhere to think, back up into our
+[4347s-4357s] top. I see a lot of questions here. Someone said, let's see Google and this appear. I see a lot
+[4357s-4365s] of people talking as well. Let me go back down here. Jack, if I may ask right after the bear's candle,
+[4365s-4368s] you have a doji, and then you're given a green candle with a long way towards upside. Showing
+[4368s-4372s] us the sellers are pushing down while we go long after that candle could you explain for that
+[4372s-4377s] reasoning? Yeah. So at least for this example, this is just like a basic illustration of
+[4377s-4383s] out I was looking for, right. I'll show you some more examples. This was a trade if I'm not mistaken
+[4383s-4390s] that we did take in real time, but I'll show you a lot more clear of an example. If you're looking
+[4390s-4395s] every single as I mentioned, one to one minute candles, right, you would be waiting for confirmation
+[4395s-4399s] in this case, right? You want to see a candle close below its previous candle. I'm just going to show
+[4399s-4408s] you some more examples. Okay. Now what we have here is our three bar entry model. This is actually
+[4408s-4420s] my favorite. Let me get some water here before I lose my voice completely. But as you can see here,
+[4421s-4429s] what we have is this three bar entry model. And it's basically built up of three candles. So as you
+[4429s-4434s] can see here, what we have is some sort of higher time frame point of interest. Either be our previous
+[4435s-4440s] day highs, right? Maybe a five minute range high, right? Some sort of higher time frame key level.
+[4440s-4446s] What is this first candle? So this first candle is what's called our lead candle. Our lead
+[4446s-4454s] candle is what pushes towards the upside. Second candle, our reaction candle. This is very important
+[4454s-4461s] as well, right? Because this is technically the first two candles is our second entry model. Our third
+[4461s-4467s] candle is what confirms our third entry model, which is what's called the confirmation candle.
+[4467s-4473s] So this third candle is honestly in my opinion the most important candle, right? Because this
+[4473s-4478s] ultimately third candle is going to decide if this continues higher or if it's going to reject
+[4478s-4482s] and continue by towards the downside. Exactly the same thing. I'm going to show you guys here in the
+[4482s-4489s] candle formations. But basically the first candle here is our lead candle, our second candle reaction.
+[4489s-4493s] And by the way, it doesn't have to be specifically three candles. The best is going to be three
+[4493s-4498s] candles. Sometimes it could be four or five candles. But normally, right? We just call it the three
+[4498s-4503s] bar pattern because normally it's three candles. Sometimes it's a little bit more. But as you can see here,
+[4503s-4508s] first candle, lead candle, second candle, reaction candle, third candle. It's our confirmation candle.
+[4508s-4514s] That essentially confirms the back towards the upside. Let's bring on the trading view chart
+[4514s-4529s] and see exactly what this looks like. So let's take that. As you can see right here.
+[4530s-4539s] So what we have is what's called our bullish entry model continuation. So as you can see right here,
+[4540s-4545s] this third candle is very important. So generally speaking, if we're in a clear up trend, as you can
+[4547s-4552s] making higher highs and higher lows, what are we going to be looking for? We're essentially
+[4552s-4558s] going to be looking for the reaction off of our previous pivot high. So let's just mark on this
+[4558s-4568s] general area. Regular box. Draw this over. I can see price gravitates in towards, let's say for
+[4568s-4578s] example, our previous swing high. Most people can see this. Break, retest, and now we're looking
+[4578s-4585s] for continuation. Right? So most people can see this, right? You can see this technically can be our
+[4585s-4590s] second entry model confirmation if we like. But you can see this would be the general point of
+[4590s-4594s] interest. Can you guys see this, right? This would be the general point of interest of what we're
+[4594s-4600s] looking for for continuation back towards the upside. You can at least frame the potential
+[4600s-4608s] trading opportunity that we have. Right? Does this make sense? Yes, yes, yes, one, one, one. Right,
+[4608s-4612s] generally speaking, if we're just looking for a regular trading opportunity, it would be something
+[4612s-4618s] more like this. Right? Either the red scoffers swing low all the way down here, or you have kind of
+[4618s-4623s] it right off this one candle low, and you'd be looking for a push higher. So this is essentially
+[4623s-4629s] kind of our second entry model, which is essentially waiting for strong buyers to step in. You kind of
+[4629s-4634s] have one candle here. Maybe have your lead candle that tops into it. You have your reaction candle,
+[4634s-4638s] which you can see some buyers stepping in. But I'm going to show you why that third candle is our
+[4638s-4648s] most important candle here. So as you can see right here, this third candle right is very key,
+[4648s-4653s] because as this third candle is forming, right, it can do a lot of things here. Right? So let's say for
+[4653s-4658s] example, you see the buyer step in, but that doesn't mean it's guaranteed, going to move back
+[4658s-4666s] up towards high bid. Right? Just based off of this candle right here, right? This doesn't confirm anything.
+[4666s-4671s] This ultimately, as I mentioned, right? Based off of your third candle is basically our confirmation
+[4672s-4682s] candle, because this third candle can ultimately reject and look something like this. Right?
+[4684s-4689s] How many times have you guys seen this? Where you have this nice break and retest, you see some buyer
+[4689s-4696s] step in, and then ultimately that third candle just drops and breaks underneath your retest.
+[4701s-4705s] I noticed you're like drawing the key levels in areas and not exactly lines. I want to know, yeah,
+[4705s-4710s] I'll talk about that. That's more based off of areas of retest instead of levels,
+[4710s-4715s] because order blocks, privacy, has in privacy, loads, very similar. It's just right,
+[4715s-4719s] they're the exact same levels, either the areas in price or levels in price. I just like
+[4719s-4733s] drawing it from the wig to the body. So let's see a lot of people be like, yes, a lot of times,
+[4733s-4740s] too many times, one minutes, cameras or deceptive usually exactly. So it happens a lot of the time.
+[4740s-4745s] Right? This happens to me a lot of times as well, especially for strictly just looking at
+[4745s-4750s] from a woman and perspective. So as you can see here, price pushes higher, comes back down.
+[4750s-4756s] Right? You have that potential signifying that buyers are stepping in. Right? This would be a lot
+[4756s-4760s] more of an aggressive entry, right? Just kind of waiting for buyers to step in as a mention.
+[4761s-4768s] And if you go back onto the PowerPoint, you can see here. If we go all the way back here,
+[4770s-4775s] this, in my opinion, right? It brings in a little bit more discretion. Right? So this is basically
+[4775s-4780s] kind of waiting just for the buyers to step in. Right? I would say this has kind of a medium win-win.
+[4780s-4785s] So it's fairly neutral. It does around a 50% win rate. If you're just waiting for some sort of
+[4785s-4790s] buyers to step in, right? As I mentioned, your opponent's fake out still. So your opponent's fake
+[4790s-4796s] out, you can still take unnecessary losses. But that third candle is what's going to bump up your win
+[4796s-4800s] rate. If you're more interested in having a higher win rate, right? This is what's going to be key.
+[4800s-4805s] Is that third candle, which as I mentioned, that's there's a reason why it's called that
+[4805s-4809s] confirmation candle. Because it confirms that price is most likely to get ahead back towards the
+[4809s-4816s] upside. So if you bring this back up, as you can see, let me get rid of this, that third candle
+[4816s-4824s] is going to be key. As I mentioned, so that third candle, if you close back above, it's key pivot high.
+[4825s-4830s] Right? This is bullish. Mostly, guys, can see this, right? You can see price closes above
+[4830s-4836s] its previous candle high. Right? This signifies, if you're really bullish price, that it's most likely
+[4836s-4842s] going to continue back towards the highs. What's even more bullish is if it closes above that first
+[4842s-4848s] lead candle. This is technically the most bullish scenario is when that lead candle drops in
+[4848s-4853s] towards our key retest level. We have our second candle, which is our reaction candle. And that
+[4853s-4859s] third candle, which is our confirmation actually ends up closing above its first candle. If the
+[4859s-4864s] close above the second candle, that's bullish. If it closes above that first candle, even more bullish.
+[4864s-4869s] And then that would signify that price is most likely going to continue to back towards
+[4869s-4876s] high gain above. And where are our entries and stops be entry here? Stop a break underneath.
+[4876s-4880s] And you'll be looking for high day plus continuation. Right? And this candle usually confirms
+[4880s-4886s] that price is going to continue higher above high day. Right? So the reason why,
+[4886s-4890s] usually a lot of the times, if we wait for confirmation, you usually get to get more continuation
+[4890s-4898s] above high day. Because now look how bullish this looks. Right? You can see this. It looks a lot more bullish.
+[4898s-4905s] So the next couple of candles. Now you can expect to push up towards high day. And there's a better
+[4905s-4909s] chance, right? It's probably not going to reject off of high day and continue lower. It's most likely
+[4909s-4915s] this candle right here is going to end up continuing higher. So as you can see, just based off this
+[4916s-4921s] super star reaction, you have our confirmation pattern, right? It's most likely going to
+[4921s-4928s] continue higher. So this is right after that candle has closed. Right? This is like what I want to
+[4928s-4933s] teach is that candle closure, which is the easiest to see. Because as I mentioned, I think David
+[4933s-4938s] was talking about, right, can you get in as this candle is forming? Right? This candle right here
+[4938s-4942s] as it's forming, this can still be prone to fake. It's because as I mentioned, if the candle
+[4942s-4948s] doesn't close, it can go from being bullish all of a sudden to flipping bearish and potentially
+[4948s-4954s] wicking underneath. Right? So what is like kind of, if you get in as the candle is forming,
+[4954s-4959s] right? The number one you have to understand is the higher timeframes. So the higher timeframes
+[4959s-4963s] is going to be key. If you wait for confirmation, which is waiting for that candle to close,
+[4963s-4968s] it's going to give you a lot more of a clear picture. If you get in as the candle is forming,
+[4968s-4972s] it's just going to bring in a little bit more discretion. You have to be a little bit more cautious.
+[4972s-4977s] So we potentially might touch up on that a little bit later, which is more,
+[4977s-4981s] I consider tap reading, which is understanding, maybe as this candle is developing,
+[4981s-4985s] maybe see something in price, maybe you have more conviction that this is going to be more bullish
+[4985s-4989s] based off of maybe the spine cues, it may be the higher timeframes, because ultimately the
+[4989s-4994s] higher timeframes hold the most power. But as I mentioned, the third candle, right? It's bullish
+[4995s-4999s] if you can close above its second candle, right? Because look at the difference between this setup,
+[5000s-5004s] if it closes above its second candle, which is still bullish because you can see right buyers
+[5004s-5010s] are stepping in, compared to maybe if it closes above that first lead candle. If it closes above
+[5010s-5014s] that lead candle, then this is really bullish and you can expect it to continue higher. So there's two
+[5014s-5023s] different types of confirmation candles. If we go back onto this, right? It's basically this three
+[5023s-5031s] candle formation. So let me see if I can find it. Oh, it's right here. So it's right here. So as you
+[5031s-5037s] can see right here, right? It's bullish is if it closes above its second candle, but it's even more bullish,
+[5037s-5043s] if it can close above that first candle high, which is going to be that lead candle. So this third
+[5043s-5047s] candle, as I mentioned, very important, right? It can very much while it show weakness.
+[5049s-5055s] It can, right, close. So the candle closes that third one is very, very important. And the exact same
+[5055s-5062s] thing is to the downside. So if I bring this back up, the exact same thing occurs to the downside,
+[5063s-5068s] but it's the opposite. So if we were rejecting off a key pivot high, this is bearish.
+[5068s-5074s] And then actually a good tip as well is that for the downside, you can actually be a lot more aggressive.
+[5075s-5080s] Right? So this is one tip that I always mention is that right, stair step up elevator down.
+[5081s-5086s] Right? So if you ever see price move in an up, upwards line, right? When you're trading towards
+[5086s-5091s] upside, usually can wait for those candles to close, right? That's what I like to do. But if you're
+[5091s-5095s] trading the downside, sometimes you want to be a little bit more aggressive and you want to take
+[5095s-5100s] entry number two instead of entry number three, because sometimes if you wait for the confirmation
+[5100s-5105s] candle on the downside, it probably will already be a low of day and we could and we'll continue
+[5105s-5111s] lower just because it usually likes to have immediate rejections, because price usually likes to stay
+[5111s-5116s] heavy, right? The downside, it's usually a lot more aggressive. It likes to stay heavy. So usually
+[5116s-5120s] sometimes it might tap in once and then never come back and just stay heavy towards the downside.
+[5120s-5125s] So if you're trading towards the downside, you can even get in as soon as this candle starts
+[5125s-5130s] showing weakness, which is getting underneath its previous candle low, right? You can get in.
+[5130s-5135s] I consider the bearish entry model. I like to get in as it's kind of breaking underneath its
+[5135s-5139s] second candle, because sometimes if you wait for price to break underneath its first candle,
+[5139s-5144s] it's already gone and it's probably going to have a two big of a drop. So for the downside,
+[5144s-5149s] right, you can wait, you can be a little bit more aggressive. For the upside, usually I like waiting
+[5149s-5155s] for those candles to close. So this is what it looks like here. Let me go back onto this.
+[5163s-5165s] I see some questions here as well.
+[5165s-5182s] Let's see. You may miss a little bit of profit, but not taking number two. I like the confirmation
+[5182s-5187s] better. So yeah, the good thing about, as I mentioned, the confirmation candle is you technically
+[5187s-5190s] don't have to sell any off at high day, because usually there's going to be continuation of
+[5190s-5195s] above high day, because you're essentially waiting for confirmation, that price is going to have
+[5195s-5200s] continuation higher. So when we're waiting for confirmation, usually can sell a little bit above
+[5200s-5205s] high day or potentially at T.B. to even if it doesn't make too much sense, because usually we
+[5205s-5210s] will have confirmation higher. Couldn't figure out the last five seconds right before the candle
+[5210s-5216s] forms. Couldn't couldn't you kind of figure out exactly. So the closer to the candle's forming,
+[5216s-5220s] the better of a picture you're going to have. Like at the very beginning of a candle, I can do quite
+[5220s-5224s] a bit, but like closer to how the candle's forming plus more context that you have,
+[5224s-5227s] right, closer to that candle close, you can kind of determine if price is going to be bullish
+[5227s-5234s] at bear. So exact same thing. We have your bearish entry confirmation. So exact same thing here,
+[5234s-5240s] price swing low, breaks underneath. We have our lead candle, candle number one,
+[5242s-5247s] you have our candle number two, our reaction candle and then we have our third candle, which is our
+[5248s-5254s] confirmation candle. So as I mentioned, this third candle is very important. As is candle's forming,
+[5254s-5259s] it can easily close above and now it invalidate essentially this whole trade thesis. If it
+[5259s-5267s] close right above, if it closes underneath, let's say this flips red, this signifies that most
+[5267s-5271s] likely it's going to head towards the downside, just because now we're closing underneath this
+[5271s-5278s] previous candle. If it closes underneath that first candle and that second candle, right, this
+[5278s-5282s] basically confirms that price, there's a very good chance it's going to head down towards
+[5282s-5288s] low day. So this is why that third candle is what's called their confirmation candle. So as I mentioned,
+[5288s-5293s] different ways to enter on the downside, you want to be a little bit more aggressive. So if it shows
+[5293s-5298s] any sort of weak price action, if it closes underneath this or it doesn't even have to close,
+[5298s-5303s] if it gets underneath this candle and shows a little bit of weakness, right, maybe you can get in
+[5303s-5307s] as this candle's forming with this stop, just a break above, you be looking for a low of day.
+[5307s-5312s] If you're waiting for the candles to close, similar to the candle close, stop,
+[5312s-5316s] can just be a break above your essentially your confirmation candle. If you want to have a
+[5316s-5321s] little bit more of a protective stop, you can make it your second candle, which is going to be your
+[5321s-5325s] reaction candle. If you want to have a little bit of a tighter stop, you can make it that third candle,
+[5325s-5330s] which is going to be that confirmation candle. Usually I just like to put it at your second candle,
+[5330s-5334s] just to have a little bit more of a protective stop and then for entries, or as I mentioned,
+[5334s-5339s] you can get in on that candle close, depending on if it's breaking underneath your second candle
+[5339s-5344s] low, or maybe your first candle low, right, stop a break above and you're looking for low of
+[5344s-5349s] day plus continuation, right, so you're going to be looking for low of day plus maybe you have an
+[5349s-5353s] external level below, you're going to be looking for continuation underneath this and you're going
+[5353s-5359s] to be looking for that next level towards the downside. So this is what it looks like here as the
+[5359s-5363s] candle is forming. I thought this was very important because I can't really draw it here on
+[5364s-5368s] a kind of canva or use this drawing tool. You can see it a little bit better with trading view.
+[5369s-5374s] But basically that is your three bar pattern and shumato. This is our favorite. So this is basically
+[5374s-5379s] what's called a three bar pattern. In this case, what I like to call, or essentially our confirmation
+[5379s-5385s] candle, which is that third candle, which is very important. So hopefully you guys understand that.
+[5385s-5390s] I know you guys do have some questions, but do you guys understand that? If you type one in the
+[5390s-5395s] chat or yes, if that makes more sense, and if you guys can understand that a lot better now,
+[5395s-5411s] just based off that third candle. I see some more quite let's see Jack. So the entries on the
+[5411s-5415s] one minute, it may be on the fight. So that's based off of your personal wrist tolerance.
+[5415s-5421s] So you can manage it on the one minute. I personally like to manage trades on the one minute time
+[5421s-5425s] because I like tighter risk. If I have a hard time frame thesis, then I'm going to manage it on the
+[5425s-5429s] five. Do you suggest hard stops through your years? We'll talk about that a little bit more when it
+[5429s-5434s] comes to trading options. You really want when you're trading options, it's very difficult to have
+[5434s-5438s] a hard stop. So that's why we use mental stops, but normally speaking where you want to have
+[5438s-5443s] some sort of point of invalidation. So you basically wait for the previous candle to a good
+[5443s-5447s] engulf. Exactly. So that's our three bar confirmation. A lot of people won't look at it like that
+[5447s-5451s] way, but you'll understand, right, it's just an engulfing pattern. It's just a three bar pattern.
+[5451s-5457s] If you get engulfed, it's one of the most basic patterns, but I think it's very overlooked. Just because
+[5458s-5462s] there's so many different candles on a chart. And right, when you look at the, when you look at this
+[5462s-5468s] now the three bar pattern, it makes a lot more sense because you can see it very clearly when I only
+[5468s-5472s] have a couple key candles and I align it. But when you have so many different, kind of let's say,
+[5472s-5477s] for example, candles on a chart. Right, it can be very hard to understand what you're looking
+[5478s-5483s] but if you kind of break it down into very like elementary concepts and what we're looking for,
+[5483s-5488s] it makes a lot more sense. But I'll show you guys examples of what this looks like in actual real chart.
+[5488s-5493s] It'll make a lot more sense because you will see this form all the time and you'll see kind of
+[5493s-5498s] what we'll look for plus confirmation and right, it's not always going to look perfectly like this.
+[5498s-5504s] Right, so I'll go over some more examples as well. I see some other questions here as well.
+[5505s-5510s] Let me, I should have the chat pulled up. So anyone that's looking at the recording can also see this.
+[5511s-5513s] At least when I'm answering questions.
+[5515s-5521s] Let's see. One more question regarding the first question about getting the
+[5521s-5525s] tray while developing the candle developing. When you have an impulse of candle closer to the
+[5525s-5529s] leading candle, does it increase the chance of a retracement after the candle confirmation?
+[5530s-5537s] We have an impulse of candle closer to the leading candle. So basically, if you have that third
+[5537s-5542s] candle and if it's closer, the preferably, if you have a small leading candle, that's going to be the best.
+[5543s-5548s] So if you have a huge lead candle, then it's going to be a little bit more difficult.
+[5548s-5553s] But if you have a smaller lead candle, let's say for example, this was one full candle.
+[5555s-5558s] If this was one full candle, then it would be a little bit harder.
+[5561s-5565s] It still look good because you can see we have that confirmation above its previous candle.
+[5565s-5570s] But you can see if you have a very big impulse of candle towards the downside. This
+[5570s-5575s] technically could very much well fail. But if we have a smaller lead candle as I mentioned,
+[5575s-5579s] it's going to be a lot more bullish because, right, usually it signifies what?
+[5579s-5584s] Right, a lower volume pullback, right, just based off these couple candles, you can see it's
+[5584s-5589s] slowly coming back towards a retest level instead of impulsively moving down. And this is going to
+[5589s-5597s] be a lot higher probability than if it just happened in one single candle. You can scroll down here as well.
+[5597s-5605s] Okay, let's go on to some examples that we have. For the retest example that you showed,
+[5605s-5609s] sometimes press react above the bullish down moves up. Yeah, normally speaking, it's always going to
+[5609s-5616s] wait for our basically our retest level. Some instances, maybe it's a very bullish, it might not
+[5616s-5621s] come down to retest perfectly. When we enjoy the times, we're going to have that retest. So as you can
+[5621s-5628s] see here, bullish entry confirmation, right, price comes back down. As I mentioned, first candle,
+[5628s-5633s] lead candle, second candle reaction candle, third candle confirmation candle, right, somewhere
+[5633s-5638s] thing to the downside here, we have our order block drawn out basically the exact same thesis.
+[5638s-5643s] Right, we have our lead candle. I guess we don't have a lead candle in this case, but lead candle
+[5643s-5647s] is draw this out. We have our second candle, which is our reaction, third candle taps into the order
+[5647s-5651s] block, and then we have a nice continuation towards the downside. So as you can see in this case,
+[5651s-5657s] it might always not be perfect, but this is like the overall underlying thesis. Right, the lead
+[5657s-5661s] candle might not perfectly tap into it. Usually you like to see it, but sometimes it looks something
+[5661s-5667s] like this, where you have that push higher, but then you have this engulfing candle, which is basically
+[5667s-5670s] your confirmation candle that price wants to help over. So I actually might sometimes look like this.
+[5670s-5676s] Or it might not always be a three candle sequence perfectly. It might be like a two candle sequence,
+[5676s-5680s] right, sometimes it might be a four or five candle sequence. The best, of course, is if it's a
+[5680s-5684s] three candle sequence, but something like this, I would just consider it's an engulfing pattern.
+[5684s-5688s] So price pushes up and towards this down close candle. Sorry, up close candle,
+[5688s-5692s] right, breaks underneath engulfs this candle, right, somewhere thing what you're looking for.
+[5693s-5699s] Entries can be here. Stops can be a break above, and now you can be looking for
+[5699s-5704s] continuation towards low-damblo. So as you can see right here, right, this is basically our
+[5704s-5708s] bearish entry continuation model. I spelled entry wrong.
+[5709s-5714s] All right, what does this look like? So as you can see right here, what we have is our strong
+[5714s-5720s] price action slash buyer stepping in plus a confirmation candle. So you can see before price moves higher,
+[5721s-5725s] we have this general area marked out. I think I have some better examples in this one,
+[5725s-5728s] but you can see price pushes higher, right, specifically we're going to be looking for
+[5728s-5733s] most likely more confirmation just because right, not a clear level of displacement, so you can
+[5733s-5737s] see, yeah, not a clear level displacement. We usually want to be waiting for a little bit more
+[5737s-5743s] confirmation. If we have a very clear uptrend, then maybe you can be looking for number two,
+[5743s-5748s] and we can be a little bit more aggressive. So in this case, price kind of pushes lower,
+[5748s-5752s] comes back down, retests kind of this down close candle. And you can see if I zoomed in here.
+[5755s-5763s] Oops, let's see this. So as you can see right here, you kind of have this like three-part pattern.
+[5763s-5767s] This is a trade. If I'm not mistaken, took a while back, but you can see it, right, lead candle.
+[5769s-5773s] We have a reaction candle, which is very small, but we have this confirmation candle, which closes
+[5773s-5778s] above candle number two and also kind of number one. So you can be looking for entries,
+[5780s-5784s] stops, price does not need to come back down into words or key level, and we could be looking
+[5784s-5789s] for a right high day. In this case, I just made it nice and easy, just like a fixed one to two,
+[5789s-5794s] and then price ended up pushing back towards upside. I've better examples in this one,
+[5794s-5801s] but this is basically the bare bones of what we're looking for. Now let's go onto some examples.
+[5801s-5807s] So there's a lot of examples to go over. I think I have like four or five different higher
+[5807s-5813s] time frame examples to kind of put this all together. Let's see, I actually also ran on a haul
+[5813s-5820s] water as well, which is unfortunate. I did not quite get your response, please repeat. So the entry is
+[5820s-5826s] on five minutes, I'm going to change it on the one minute. No, so I'll go over, I have a whole kind of
+[5826s-5830s] entry PowerPoint in regards to how to manage your position as well, but basically you want to manage
+[5830s-5834s] your position in between your narrative and your entry model. That's going to be key.
+[5836s-5841s] What do you mean by displacement displacement? You can easily find by looking at a fair value gap,
+[5841s-5846s] or by looking at the volume. But the easiest way is to understand if there's displacement
+[5846s-5850s] by this impulsive move higher. So if you create a gap, what's called a fair value gap,
+[5850s-5855s] in between, candle number one, the high of candle number one and the low of candle three,
+[5855s-5861s] this is what's called a former displacement. If the wicks are overlapping, then there's no
+[5861s-5866s] displacement. Right, so displacement is not the overall determining factor of a breaking
+[5866s-5872s] retest is going to work or not, but there's an indication. Of course, the the more displacement,
+[5872s-5877s] the better a breaking retest is going to occur. All right, now let's go into some examples.
+[5882s-5888s] All right, AMD higher timeframes. So it's going to put this all together. We actually kind of
+[5888s-5895s] talked about quite a bit here. That entry models, we actually went over that quite a bit, but first,
+[5895s-5902s] we kind of talked about candlestick formation. So we talked about the very basic bare bones of candlesticks,
+[5902s-5907s] then we talked about trends in the markets, and then we also talked about some higher time frame setups.
+[5908s-5914s] And now we also went over kind of our entry confirmation. So now let's kind of put this all together
+[5914s-5919s] and show us some examples that essentially we used in real time. And of course, right, we're
+[5919s-5924s] going to go over our full playbook, which is going to be on Thursday. That one's going to be fairly
+[5924s-5930s] long as well. But first things first, as you can see here on AMD, this is on the higher timeframes.
+[5930s-5935s] So what we're making here, mostly you guys should be able to see this is,
+[5936s-5940s] hadn't shoulders potentially, right, before this day. Let's exclude this day right here. Right,
+[5940s-5944s] what we have is this potential hadn't shoulders. Hopefully you guys can see this,
+[5944s-5954s] I love shoulder, head, and a red shoulder. Can you guys see this? This was on AMD. This was on last week.
+[5964s-5970s] Okay, good. You guys can see this awesome. All right. So as you can see here,
+[5971s-5974s] right, this is a head and shoulders. But why were we essentially looking for
+[5975s-5980s] the break or the fail of this head and shoulders? Because AMD was very bullish.
+[5981s-5985s] If you go back onto the actual charts in itself, and we're going to AMD,
+[5987s-5992s] going to the one-art chart, AMD's very bullish here. Why? It's because we recently just
+[5992s-5998s] based off this price action. So based off of our trends, right. So number one,
+[5999s-6004s] we're understanding trends. Hopefully you guys are able to identify this, but we're bullish.
+[6004s-6009s] Just based off this swing high. All right. So you can see higher lows, big and positive
+[6009s-6017s] move higher, and then we form another higher low on the hourly chart. So mostly guys should be
+[6017s-6022s] able to tell that this is bullish. Just based off of this information that we have here.
+[6022s-6027s] Higher low, big push higher, recently hit our all-time highs. Now we're having a little bit of a
+[6027s-6031s] pullback after hitting our all-time highs, but we're still maintaining above this key level.
+[6031s-6037s] Right. This is essentially the first impulsive move higher. The second impulsive move
+[6037s-6043s] occurred right here. That pushed higher. So this is our higher low. Or if you really wanted to,
+[6043s-6046s] maybe you could even draw this up right here. And never broke underneath this key high,
+[6047s-6054s] higher low. So regardless, if you had this level marked out or this level marked out here at your 204,
+[6054s-6058s] we're still bullish and we're still maintaining higher lows. Until we can break on our
+[6058s-6062s] neater, right? That would essentially validate the head and shoulders. As I mentioned,
+[6062s-6066s] that's when you're going to flip a little bit more bullish. As long as you can maintain higher lows,
+[6066s-6072s] we're still going to maintain and bullish stance. So what were we looking for coming into this
+[6073s-6076s] morning? We're looking for the invalidation of this head and shoulders, a potential break towards
+[6076s-6083s] upside. Right off the bat here on AMB, right? We're breaking above its previous day highs. We also
+[6083s-6088s] had relative strength here as well. So right off the bat, you can see coming this consolidation,
+[6088s-6096s] we already had our higher timeframe thesis, which was bullish. So already coming to market open,
+[6096s-6101s] we were leaning more towards the upside just because of the higher timeframes and plus AMB,
+[6101s-6107s] had a potential head and shoulders. We recently had a huge news a couple weeks before
+[6107s-6111s] and we're just still holding higher timeframes key levels or expecting AMB to continue on. So
+[6112s-6115s] we're breaking above a key level where we also get a five minute can of closure. If we go
+[6115s-6120s] into the lower timeframes now, what are we looking for? We're essentially looking for
+[6121s-6125s] the break above your previous day highs. So in this case, it's your Tuesday's highs, as you can
+[6125s-6132s] see here. So essentially we're looking for the break above. Right off the bat, you can see
+[6133s-6136s] you're kind of break above pretty strong candle close. You kind of had this upper wick
+[6137s-6141s] comes back down. This would have been a fairly aggressive entry. Right here.
+[6142s-6146s] This would have been, we'll talk about entries more and kind of setups on Thursday. But right here,
+[6146s-6150s] right off the bat, potentially you could have been looking for the break. This was our thesis.
+[6150s-6154s] Right? Essentially break above previous day highs hold for continuation higher. Ultimately,
+[6155s-6159s] kind of broke underneath. But the higher timeframe was still very much in tact. You can see
+[6159s-6165s] higher lows are being built. We actually took an entry, which was the 84% role reclaim. But let's say
+[6165s-6170s] we didn't take that entry. And we're looking for kind of maybe a retest entry for continuation
+[6170s-6177s] higher. You can see now price breaks above. We're coming back to retest. What would be looking
+[6177s-6183s] for? We had essentially be looking for strong buyers to step in off of your previous day highs.
+[6184s-6188s] And be looking for maybe like a confirmation candle that price wants to continue back higher.
+[6188s-6192s] Or any sort of buyers to kind of step in for price to push this back towards upside.
+[6194s-6201s] So as you can see, we're kind of played out here. We personally took the 84% role. But as
+[6201s-6205s] you can see in here, you could have been looking for essentially the buyers to step in. Right?
+[6205s-6211s] Entry model number two to confirm our thesis towards, of course, our all-time highs in this case.
+[6211s-6220s] So for AMD, if I zoom in here, just a little bit, you can see price pushes higher.
+[6220s-6225s] Ultimately, it gets back underneath. But higher lows are still being built. Once we get that reclame,
+[6225s-6230s] we'll talk about the reclame entry more on Thursday. Now we get that whole. You can see clearly the
+[6230s-6236s] buyers are holding above your previous day highs. If we're going to the last slide, buyers are now
+[6236s-6241s] clearly stepping in. Right? You kind of have our EMAs here as well. Right? This is going to be our key
+[6241s-6247s] level for a hold for now and be to continue higher. You can see right higher lows are being built.
+[6247s-6251s] Right? Your above your previous day highs, context looks a lot better here now as well.
+[6251s-6255s] There's a good chance AMD is going to continue higher. That's why I opted in at least on this
+[6255s-6259s] day for a little bit more of an aggressive entry just because of the higher time for a thesis that
+[6259s-6263s] it had. But hopefully this makes a little bit more sense now when I'm explaining a little bit more
+[6263s-6268s] in hindsight. As you can see now here, we're essentially just looking for kind of scales up
+[6268s-6273s] in towards key levels. Five minute, you can see close above and then we end up having a super solid push.
+[6273s-6278s] So at least that was the thesis, at least for the entry model, right? You could either be looking
+[6278s-6283s] for the reclame. I didn't teach that today. I'll teach that more on Thursday. But at least for
+[6283s-6287s] the entry models today, it would have been off of your, let me pull this back up here.
+[6291s-6299s] Let's go into the womanature. So in this case, there's a couple of different entries that you
+[6299s-6305s] could have been looking for. Let's say we had our previous day at How's Mark Doe. Where are different
+[6305s-6312s] entries that we could have been looking for? Potentially on this candle, 948, right? Buyers are
+[6312s-6320s] stepping in. Clearly right, technically didn't close above its previous candle. But you could have been
+[6320s-6327s] looking for a couple of different entries. Maybe on this candle close here 948. You can see the
+[6327s-6333s] buyers are stepping in. Let's say you wanted to wait for a confirmation candle in this case. Technically
+[6333s-6338s] your confirmation candle, where it closed above its previous candle would have happened all the way
+[6338s-6344s] back at Howibet. So you can see there's sometimes like right, it's always a hybrid in between
+[6344s-6353s] two and three. Right? So two and three, which is our buyer stepping in slash, right, buyer stepping in
+[6355s-6361s] slash strong price action, or you're going to be waiting for confirmation. When do we use each
+[6361s-6365s] right dependent on my opinion? It's going to be based off the hard time friends. I'll be a
+[6365s-6369s] little bit more aggressive, right? In this case, I actually took an entry on the 84% rule. But why
+[6369s-6374s] was that more aggressive is because of higher time frame thesis? I can be more aggressive if I have
+[6374s-6378s] a hard time frame thesis. If I don't have a hard time frame thesis, then that means I'm going to
+[6378s-6384s] most likely wait for more extra confirmation. Right? Think about it this way. If you have a hard time
+[6384s-6390s] frame bias in your fairly bullish, right? All you need is like any sort of bullish price action to
+[6390s-6395s] confirm your hard time frame thesis. If you have no higher time frame thesis, then on the lower time
+[6395s-6400s] frames, you want to be extra cautious and you for sure want to wait for confirmation just because
+[6401s-6406s] right, it could easily fake you out. So think about that way. Right? If you want to be a little bit
+[6406s-6410s] more aggressive, you need a higher time frame thesis. If there's no hard time frames, you want to be a
+[6410s-6414s] lot more selective and a lot more patient, preferably waiting for that confirmation candle.
+[6415s-6419s] So at least our entry, I'll talk with a little bit more later on Thursday.
+[6420s-6426s] But this was the 84% or you could even wait in for their retest office down close candle here as well.
+[6427s-6431s] All right, that was our first trade. As for scaling, I'll probably talk about this more later as
+[6431s-6435s] well. But scaling, I'll talk about how to kind of manage your position. I was just kind of scaling
+[6435s-6441s] up into the premiums and then of course scaling on major kind of pops here as well. All right,
+[6441s-6445s] let's go on to the next one before we do that. I see some questions here as well. Does that at
+[6445s-6450s] at least EMD example make a little bit more sense now? Based off of right that higher time frames
+[6450s-6456s] that I talked about looking for that higher time frame pattern. At least for entry model,
+[6456s-6461s] it was it might not make as much sense because I kind of talked about that three bar entry that
+[6461s-6467s] confirmation or entry model was actually a reclaim entry. But I'll touch up on that a little bit more on
+[6467s-6478s] Thursday. All right, see some more questions here. I'll put back the zoom for anyone watching
+[6478s-6485s] their recording. Can we take into account the after hours candle movements? Yes, you can, but
+[6486s-6489s] the actual market hours has the most volume. So that's what you want to look for.
+[6491s-6496s] Why would that be 84% or else it's the first push-down up retest? It just, it doesn't technically
+[6496s-6501s] have to retest. It would have an immediate retest, but ultimately failed. So you can see it technically
+[6501s-6507s] had a retest as you can see here. But this retest failed. It was just your previous say high retest.
+[6507s-6511s] But this one failed. So this counts as a reclaimed because it's still intact.
+[6513s-6514s] It's just an immediate retest.
+[6518s-6521s] Oh, yeah, a lot of people are asking about the 84% of all talk about the 84%
+[6521s-6525s] role more on Thursday. Thought you just need a body can't, uh,
+[6525s-6529s] thought you need the body to close above the body for a reaction candle. So the body,
+[6530s-6535s] in this case, so you can choose the body or the wig. I personally like choosing the wig,
+[6535s-6541s] but you can also choose the body as well. Right, as I mentioned, there's three different,
+[6541s-6546s] right, depending on how bullish it is. If I go all the way back here,
+[6547s-6554s] and then I should just pull this up. I guess I got rid of it. But depending on how bullish the
+[6554s-6564s] candle is, I mean, I should get rid of this back up. Sorry, let me pull this up real quick.
+[6567s-6571s] So as you can see right here, what we have is this bullish entry model.
+[6572s-6578s] If we close above the body, right, it's still technically bullish because we're closing above the
+[6578s-6584s] body, but I like to see it, man, I'm above the wig. If it closes here, still fairly bullish,
+[6584s-6588s] close above the first candle kind of closing up into this area. But if it closes above the
+[6588s-6592s] wig in the candle, it would be a lot more bullish, as you can see here. So I usually like look at the
+[6592s-6598s] wicks, but you can also use the bodies as well. It's just going to be less bullish. Hopefully that
+[6598s-6609s] makes sense. Where's this chat? Okay, good. One, one, one. Awesome. All right. As a Candice form and
+[6609s-6615s] get brokers. Yes, I'll talk about all that more, but yes, brokers. Do have the charts. I have a
+[6615s-6620s] conscious pull-up right beside. Previous day highs and pretty slow. Those are the strongest levels.
+[6620s-6623s] Yes, those are the strongest levels. How do you decide the ticker to the best for the day?
+[6623s-6628s] Yeah, based off the higher time frames. We'll talk about that more in the pre-market. I
+[6628s-6631s] talk about that every single day in the pre-market prep. So that's what I look for.
+[6632s-6635s] What is a reclaimed? It's one of reclaimed back about the key level. So I talk about that. A lot of
+[6635s-6640s] people are actually asking about this. So let me, I have a really good, I'll go over really good
+[6640s-6647s] lesson on the 84% roll in Thursday. Okay. Let me go over some more examples here. We actually have
+[6647s-6651s] a couple more left. I actually probably just go over, I think I have like three more about probably
+[6651s-6657s] go over two more examples. Palantir, higher time frames, one hour chart, you can see this is I just
+[6657s-6661s] consider a range break or you can consider this a break and read test. We're going to base off our
+[6661s-6666s] higher time frame patterns that we talked about. Fairly bullish, at least coming to this day. Right now,
+[6666s-6671s] we'd be looking for a break above, retest continuation. So you can see based off the hourly chart,
+[6671s-6676s] where this one looks fairly bullish. If you can now use this previous pivot point as a retest for
+[6676s-6682s] continuation higher. As you can see coming to market open, we're breaking above the key level with
+[6682s-6686s] the strongk and a close. Breaking above this pre-market high within the first five minutes,
+[6686s-6690s] you're seeing the finding a lot of buyers stepping in. Right now, we're going to be doing waiting
+[6690s-6695s] for a retest entry for continuation. As you can see on the one-minute time frame, big push higher,
+[6695s-6699s] we're going to be looking for a retest off our key levels, pre-market highs, plus key levels,
+[6699s-6704s] for continuation higher. As you can see here, price pulls all the way back down
+[6704s-6709s] towards our key level. Now we're going to be doing since this one had a really big push higher
+[6709s-6714s] and now you can see price comes all the way back down. Right, I'm going to wait for a confirmation
+[6714s-6719s] candle. Since this is a, in my opinion, a little bit of a steeper pullback. So you can be aggressive,
+[6719s-6726s] but I don't expect it to write sometimes. It might just tap it perfectly and just head towards the
+[6726s-6732s] upside. Sometimes it will tap this level, consolidate, and head lower. So when we draw the times,
+[6732s-6736s] if it has a little bit of a steep pullback, right, there's no reason to be this aggressive,
+[6736s-6742s] because I don't expect it to write tap in and then just immediately shoot up without any sort of
+[6742s-6747s] very pullback whatsoever. So in this case, you can see price pulls back, you can clearly see the
+[6747s-6752s] buyers are stepping in, indicated by these lower wicks. All we're doing now is waiting for a confirmation
+[6752s-6758s] candle. So this was on Palantir. You can see strong confirmation candle, you can see lower wicks are
+[6758s-6763s] being put in. Right, once this candle closes, what is it close above? Close above its previous candle,
+[6763s-6767s] close above this candle, and actually close above multiple candles. So this is a very strong
+[6767s-6771s] confirmation candle that Palantir, there's a good chance price is going to continue higher.
+[6771s-6779s] So this is our candle here. This is exactly where we get in. As this candle formed, entry, stop,
+[6779s-6784s] doesn't have to be down here. So what's good about this entry model is that normally speaking, if you
+[6784s-6790s] buy here, you have to have a stop down here. If you buy on this candle close, your stop can be
+[6790s-6796s] at break underneath. So as you can see right here, entry, stop underneath this candle confirmation
+[6796s-6801s] candle low, entries, as our targets now can be high of day and above. You can see on the even on
+[6801s-6808s] the five-minute timeframe, super nice reaction and we had a continuation here. These are this
+[6808s-6815s] of my executions. God end candle close, actually scaled some kind of rate before high of day,
+[6815s-6821s] but then we end up having a nice push towards the upside. Does that example make sense? Let's see how
+[6821s-6831s] many people are still here. Yes, yes, yes, one, one, one. Why didn't you enter on the bullish
+[6831s-6836s] previous bullish candle? So you could answer, you could have entered on that one as well.
+[6837s-6844s] Right, if we're going back to this, I think you're talking with this candle right here. So there's two
+[6844s-6848s] candles. Right, you could have entered on this candle right here. But you can see this is your first
+[6848s-6852s] sign of bullish price action. As I mentioned, this could very much well do something like this.
+[6854s-6861s] So we actually had a pretty big move towards the downside. So it looks something like this.
+[6861s-6869s] Price pushes lower and it looks kind of like, actually this was a green candle formation.
+[6870s-6875s] So you're basically buying here on your reaction candle, which is fine. But we have a pretty steep
+[6875s-6880s] pullback. Right, if your price already has a big impulse of move higher and you have a pretty steep
+[6880s-6886s] pullback, you're kind of reaction candle. You don't have to wait for, you don't have to be that
+[6886s-6892s] aggressive. Just because, as I mentioned, you already have a pretty steep pullback. Maybe if price was
+[6892s-6896s] very bullish and you can see strong price action, maybe if you have for five in a range or something
+[6896s-6900s] like that, maybe if there's a reason to be aggressive, you can get in as soon as the taps,
+[6900s-6905s] you can get in on that second candle, which is your reaction candle. In this case, I opted for
+[6905s-6910s] the confirmation candle, just because I wanted to see if buyers are going to step in. Right, I can see
+[6910s-6915s] buyers are stepping in. But I just want to wait for action confirmation. Right, you can see the
+[6915s-6919s] buyers are stepping in, seeing the five of these lower works. I just want to wait for a little bit
+[6919s-6922s] extra confirmation that price wants to continue hard. There's a few different entries as a
+[6922s-6927s] mention. Either one is good, in my opinion, either you want to be aggressive, you want to get that low
+[6927s-6934s] risk entry. If you look at the actual contracts in itself, right, you can see it's fairly similar.
+[6934s-6940s] Right, if you're buying here, you're average around like 175, 180, you're risking,
+[6940s-6945s] right, 150 on the contract. So we're just going around 30 cents. If you buy here,
+[6946s-6951s] maybe you got a couple lower wicks, maybe get like a 150 average, and then you're risking,
+[6951s-6955s] kind of all the way back down here as well. So you're risking, somewhere, then kind of like 30
+[6955s-6960s] cents a contract. So either way, if you're risking, if I'm risking the exact same,
+[6960s-6965s] 50, 30 cents a contract, I'm going to opt in for something that's more higher probability,
+[6965s-6968s] as I mentioned. If I wait for the confirmation candle, then it's going to give me a lot more
+[6968s-6972s] conviction that price wants to move back towards the upside. So in this case,
+[6973s-6977s] it makes sense to wait for the confirmation candle, just because if I'm going to risk the same amount,
+[6977s-6981s] I'm going to make it a little bit higher probability, and I'm going to wait for that confirmation
+[6981s-6987s] candles. Hopefully that makes a little bit more sense. Right, and there's a reason why we usually
+[6988s-6992s] look for the confirmation, because especially when you're trading options, it's all bumble
+[6993s-6998s] right? If you're if you're trading stocks, features, you might want to wait, you might,
+[6998s-7003s] you can even do a limit order. You can do a the second entry model confirmation, but when you're
+[7003s-7007s] trading options, it's about speed and momentum a lot of times. If you wait for that confirmation,
+[7007s-7014s] there's a good chance we have a really impulsive move towards upside. Big confirmation's
+[7014s-7019s] candles get me because of the pullback a lot. The big confirmation candles get me because they pull back
+[7019s-7024s] a lot for me after entry, like I did today for me, did you just need trust? Yeah, and this,
+[7024s-7030s] like if you've been looking lately, the past, as I mentioned, we can have, there's a been a lot more
+[7030s-7035s] fake. So even when, like let's say an 84% rule doesn't work, or there's a lot of fake notes,
+[7035s-7040s] that just means the market's a lot more harder, specifically, right, the past week and a half.
+[7040s-7045s] Ever since we had that Trump news, there's been less continuation of the market. So it's not,
+[7045s-7050s] it's not, it's just market. It'll come in cycles. So in this case, right, when the market flips,
+[7050s-7053s] right, we'll have nice continuation higher when the market's choppy or it's a more thing.
+[7055s-7059s] All right, let me go over a couple. Let me go over the next example and then I'll answer questions,
+[7059s-7066s] and I will call it a day. Okay, Tesla hired timeframes. We talked about this example plenty of
+[7066s-7071s] times before, but very bullish, right, higher timeframes. It was actually a weekly timeframe break
+[7071s-7076s] as well, but this is specifically on the daily time frame. Plus, you had a couple of news catalysts
+[7076s-7081s] basing or even higher lows back here. So clear flat top break on Tesla. This was one of the
+[7081s-7086s] best trades that we take in this year. Another one, right, kind of cup and handle here on the
+[7086s-7091s] hourly. So we had a daily flat top break, cup and hand on the hourly. We're very bullish here on
+[7091s-7097s] Tesla. As you can see, what we have is five minute opening range break. If you go into the lower timeframes,
+[7098s-7101s] right, we are essentially waiting for confirmation. You can see the first kind of break above.
+[7101s-7105s] kind of rejected second time we closed above. We essentially waited for this confirmation canal.
+[7105s-7112s] The candle that I actually got on was this candle close. So actually, it's not exact this
+[7113s-7117s] illustration, but the candle that I got in was on this candle close. Let's see if I have. I
+[7117s-7124s] guess I don't have my executions. But I got in on this candle close. Stop loss was a break underneath
+[7124s-7128s] your five minute range high, and I was looking for this continuation back towards high band
+[7129s-7134s] but this basically was the higher timeframes was the flat top break. And then we actually had a
+[7134s-7140s] couple other trades the next couple of days, but that's basically the trade set that we had. I
+[7140s-7144s] think I had a couple more examples here. Tesla, another flat top break, some or anything. Right,
+[7144s-7151s] break above your key level with the shank handle close. In this case, we had no pre testing. This was
+[7151s-7156s] another example here on Tesla. A nice flat top break, strong price action right off the bat,
+[7156s-7161s] five minute candle close. You can see we marked out a five minute range high price now we're
+[7161s-7166s] bringing for that retest of a five minute range high. You can see price comes back down right
+[7166s-7172s] nice strong buyers. Right, in this case, right, you can wait for number two. Right, so you can wait for
+[7172s-7176s] number two or number three, which will be they're fairly similar if you look at this. Right,
+[7176s-7180s] retest with strong candle close price has a clear five minute range high, comes back and towards
+[7180s-7186s] a key level. If you wait for the buyers to step in, right, you can get in on this candle close.
+[7186s-7190s] If you wait for the confirmation candle, it's really just looking for that next candle. So it's very
+[7191s-7196s] very similar. I guess in this case, for a second entry model, to your third entry model,
+[7196s-7202s] right, very a minute skill difference, right, entry close to here, stop break underneath this key high,
+[7202s-7212s] and now you be looking for high data above. Okay. Sorry, kind of went pretty quick on those last few
+[7212s-7217s] examples, but hopefully I don't lose my full voice. Let's see, you guys have any questions here.
+[7217s-7223s] I see there's actually a decent amount of questions. Let me kind of answer these ones as well.
+[7224s-7230s] But yeah, that is actually do you think I have some more examples. But it's going to be for me today.
+[7230s-7236s] I'm going to answer some questions here. The one on Thursday is going to be that one's going to be
+[7236s-7240s] really good. It's basically developing our playbook and talking about all the setups that we have
+[7240s-7244s] that we trade within the break and retests. And it's going to be really good because it's after
+[7244s-7251s] Tony's. He talks about the bread and butter system. Okay. If you guys do have any questions.
+[7251s-7257s] Let's see. I'll answer a couple more of these ones. I think let's see. How do you know when you
+[7257s-7260s] should go long? If it gets out of prison itself, you have to get the queues as weak in the context
+[7260s-7264s] isn't there. So context is everything. So if the context isn't there, then you have to be a
+[7264s-7269s] lot more careful. You have to be a lot more cautious. The best trades will occur when the context is
+[7269s-7274s] the hiring time frames are lining as well. When the markets are ranging, or it's not behaving
+[7274s-7278s] as it should be, then that's assigned to be a little bit more cautious, or you should take a step back.
+[7281s-7285s] Let's see. Let me scroll down here as well. The recording. Yeah. The recordings will be, oh,
+[7285s-7288s] this one's a little bit longer. I think it's like, let's see what time it is. I think it might be
+[7288s-7293s] like two hours. So I might take a little bit longer to upload, but I'll upload it tonight.
+[7296s-7300s] I'm using trading view for your chart and not brokers for your entry exactly. So I'll use my trading
+[7301s-7307s] view as my chart, and then I'll use my TWICE for my entry, which is on, which is basically I'd be
+[7307s-7315s] care. We're all the slides be shared. I will, I'll see where I can upload them. But I'll upload this first,
+[7315s-7319s] and then maybe we can put all the slides together at the very end, and then we can upload those as well.
+[7322s-7325s] I think you so much to see get some rest or using, I think I answered that one.
+[7326s-7330s] Today, Apple on Apple, Tony kept waiting for the previous day. Hives was signifies that. Yeah,
+[7330s-7334s] so that one, we'll talk about that more on a whole of a trade recap as well.
+[7336s-7342s] Can the chart also be available in the recording? So yeah, I kind of put that later. So at the very
+[7342s-7347s] start, I think all the questions, you guys won't see the questions, but now from now on, I'll just have
+[7347s-7351s] the, whatever answer questions, I'll just drag down the Zoom meeting. So when you guys look back
+[7351s-7357s] at the recordings, you'll be able to see what questions are being asked. Learn so much, but warmly out, yes.
+[7357s-7364s] Let's see Apple and AMD. I'll talk about them more and like the trade recap on those ones. Let's see.
+[7366s-7369s] Develop a playbook as a more general. On Thursday, we're going to help us develop a playbook.
+[7369s-7374s] We're going over playbook syndrome. Developing a lot of the setups, we'll talk about kind of playbooks as well.
+[7374s-7378s] But more understanding the different types of setups that we have within our playbook.
+[7378s-7383s] And then maybe Neto has a good one on actually developing a playbook. At least for me, I'm going to go over
+[7383s-7390s] every single set within our playbook. Okay, we had a watch it awesome awesome awesome. Okay, yeah,
+[7390s-7395s] I am going to call it here. I'll have this session upload for you guys. I might take a couple of
+[7395s-7401s] hours, but I'll have it uploaded and I will see you guys all tomorrow morning. All right, take care everyone.

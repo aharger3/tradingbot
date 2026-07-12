@@ -1,0 +1,301 @@
+{
+  "tradeReviews": [
+    {
+      "ticker": "SPY",
+      "direction": "long",
+      "verdict": "bad",
+      "reason": "Sold SPY calls at 1.05 but contract went to 1.185 — exited way too early, left significant profits on the table for a small loss",
+      "pnl": "-$30",
+      "lesson": "Don't exit too early; let winning trades run to target",
+      "author": "Jasper -TP2 Trading",
+      "timestamp": "2024-10-18T15:31:11",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "AAPL",
+      "direction": "long",
+      "verdict": "bad",
+      "reason": "Entered wrong strike price — bought 237.5c at .54 instead of intended 235c, delta too low at 0.27 so underlying needs to move a lot to profit",
+      "pnl": "+$80",
+      "lesson": "Double-check strike price before entry; wrong strike kills probability",
+      "author": "Mike Y",
+      "timestamp": "2024-10-22T16:12:16",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "NVDA",
+      "direction": "long",
+      "verdict": "bad",
+      "reason": "Made $3k on NVDA in the morning but couldn't sit on hands, overtraded and gave almost all of it back, ending the day with only $100 total",
+      "pnl": "+$100 (from $3k peak)",
+      "lesson": "Sit on your hands after a big win; don't overtrade profits away",
+      "author": "Jasper -TP2 Trading",
+      "timestamp": "2024-10-22T20:06:03",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "NVDA",
+      "direction": "long",
+      "verdict": "bad",
+      "reason": "Lost $580 on NVDA and regrets exiting early — should have held the position longer for the full move",
+      "pnl": "-$580",
+      "lesson": "Trust your thesis and hold for the full move if the setup is still valid",
+      "author": "Jasper -TP2 Trading",
+      "timestamp": "2024-10-24T19:34:56",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "TSLA",
+      "direction": "long",
+      "verdict": "bad",
+      "reason": "Bad entry on TSLA 285 calls — poor entry price forced exit at breakeven, while intended entry of 280 calls at $5 would have doubled to $10",
+      "pnl": "$0 (breakeven)",
+      "lesson": "Precise entry is critical; a bad entry ruins the entire setup",
+      "author": "Heiken-Sushi",
+      "timestamp": "2024-11-06T17:15:15",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "NVDA",
+      "direction": "long",
+      "verdict": "mixed",
+      "reason": "Entered NVDA too early, was stressed the whole time, let it ride past stop loss to give breathing room — it eventually turned around and worked out but risk management was poor",
+      "pnl": "N/A",
+      "lesson": "Enter at the right time and respect your stop loss; don't rely on luck",
+      "author": "OptionPro",
+      "timestamp": "2024-12-04T17:28:39",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "AMZN",
+      "direction": "long",
+      "verdict": "bad",
+      "reason": "Got a good entry on AMZN at PMH test but got scared when it pulled back, sold prematurely for a small loss instead of holding",
+      "pnl": "-$1",
+      "lesson": "Trust your analysis; don't let fear make you exit good entries early",
+      "author": "demchy19",
+      "timestamp": "2024-12-03T16:29:03",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "TSLA",
+      "direction": "long",
+      "verdict": "bad",
+      "reason": "Blew through mental stop loss on Tesla, was down $700 — reckless risk management ignoring own stop levels",
+      "pnl": "-$700 (peak drawdown)",
+      "lesson": "Never blow through your stop losses; respect your risk limits",
+      "author": "Stella",
+      "timestamp": "2024-12-10T15:13:33",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "TSLA",
+      "direction": "long",
+      "verdict": "bad",
+      "reason": "Took TSLA $425 call but exited on a small loss due to inexperience, leaving significant profit on the table",
+      "pnl": "small loss (N/A)",
+      "lesson": "Inexperience leads to exiting too early; gain confidence to hold winners",
+      "author": "MAN786",
+      "timestamp": "2024-12-13T15:38:04",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "SPY",
+      "direction": "long",
+      "verdict": "mixed",
+      "reason": "Took 5min ORB break and retest on SPY, sized down due to already being up for the week (good risk management) but left a ton of money on the table after a strong bounce",
+      "pnl": "+10-15%",
+      "lesson": "Sizing down protects profits but can cap gains; balance risk management with opportunity",
+      "author": "Markellwhite16",
+      "timestamp": "2024-12-27T18:56:10",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "BGLC",
+      "direction": "unknown",
+      "verdict": "bad",
+      "reason": "Was too aggressive on the backside of the trade, leading to a $3k-$4k loss — turned a $10k potential day into roughly flat after a series of losses",
+      "pnl": "-$3,000 to -$4,000",
+      "lesson": "Don't get reckless after a win; one over-aggressive trade can wipe out gains",
+      "author": "Andy Pyramidoor (Biz._Decision)",
+      "timestamp": "2025-01-02T22:25:48",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "NVDA",
+      "direction": "long",
+      "verdict": "good",
+      "reason": "NVDA trade was a great trade but exited too early just above high of day while it kept pushing — still profitable but could have had 20%+ more",
+      "pnl": "profitable (N/A)",
+      "lesson": "Hold longer and wait for signs of weakness before exiting",
+      "author": "DWC2016",
+      "timestamp": "2025-01-21T18:03:27",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "NVDA",
+      "direction": "long",
+      "verdict": "mixed",
+      "reason": "Setup was right, entry was good, took first target, respected stop loss (good discipline) but didn't capture the full move and didn't re-enter when it consolidated — process good, result a loss",
+      "pnl": "loss (N/A)",
+      "lesson": "Good process doesn't always mean profit; consider re-entry if thesis is still valid after stop-out",
+      "author": "StevenP",
+      "timestamp": "2025-01-23T21:26:49",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "AMD",
+      "direction": "unknown",
+      "verdict": "bad",
+      "reason": "Had a bad entry on AMD — entry price was poor",
+      "pnl": "N/A",
+      "lesson": "Wait for a proper entry; don't force a trade at a bad price",
+      "author": "void",
+      "timestamp": "2025-01-29T16:01:29",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "GOOGL",
+      "direction": "unknown",
+      "verdict": "bad",
+      "reason": "Entered GOOGL 3 times on good setups but got stopped out on all 3 — market didn't follow through despite solid entries",
+      "pnl": "N/A (3 losses)",
+      "lesson": "Even good setups can fail; the market ultimately decides",
+      "author": "Viper",
+      "timestamp": "2025-01-30T16:25:51",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "GOOGL",
+      "direction": "unknown",
+      "verdict": "mixed",
+      "reason": "Stuck to original thesis through 4 trades — 3 losses on good entries but final trade worked out, ending breakeven. Persistence paid off but took many losses",
+      "pnl": "$0 (breakeven)",
+      "lesson": "Sticking to a thesis can eventually work, but multiple failed entries erode confidence and capital",
+      "author": "Viper",
+      "timestamp": "2025-01-30T21:24:40",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "AAPL",
+      "direction": "short",
+      "verdict": "bad",
+      "reason": "Had Apple puts that were solid, sold at $4.00/contract but they later went to $9.30 — sold way too early and left massive profits on the table",
+      "pnl": "profitable but far less than possible",
+      "lesson": "Hold for the bigger move instead of taking small profits early on winners",
+      "author": "Stella",
+      "timestamp": "2025-01-31T20:21:46",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "GOOG",
+      "direction": "long",
+      "verdict": "mixed",
+      "reason": "Quick scalp on GOOG — not the best entry but still worked out profitably",
+      "pnl": "profitable (N/A)",
+      "lesson": "N/A",
+      "author": "Mina",
+      "timestamp": "2025-02-05T04:19:35",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "NVDA",
+      "direction": "long",
+      "verdict": "bad",
+      "reason": "Took calls above VWAP at 6:50 candle, got stopped out next candle, then the move happened later — bad timing cost -$860 and wiped out weekly gains",
+      "pnl": "-$860",
+      "lesson": "Entry timing is critical; being too early on a move still loses money",
+      "author": "Mk",
+      "timestamp": "2025-02-06T18:12:52",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "QQQ",
+      "direction": "short",
+      "verdict": "bad",
+      "reason": "Had the perfect QQQ drop play drawn out but got distracted by an NVDA long play, still made money but missed 60% of potential profits",
+      "pnl": "profitable but -60% potential",
+      "lesson": "Stick to your plan; don't get distracted by other plays",
+      "author": "DWC2016",
+      "timestamp": "2025-02-07T15:35:15",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "NVDA",
+      "direction": "long",
+      "verdict": "bad",
+      "reason": "Was up $2k at $131 on NVDA, held on too long, gave back most profits to end with only $600 — didn't take profits when available",
+      "pnl": "+$600 (from $2k peak)",
+      "lesson": "Take partial profits along the way; don't get greedy holding for more",
+      "author": "Lauren (lakatrades)",
+      "timestamp": "2025-02-11T18:29:08",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "NVDA",
+      "direction": "long",
+      "verdict": "bad",
+      "reason": "Made bad trades that didn't fit the break-and-retest strategy, now holding NVDA long hoping for a bounce back — no plan, just hoping",
+      "pnl": "N/A",
+      "lesson": "Only trade your strategy; holding and hoping is not a plan",
+      "author": "Boat Hobo",
+      "timestamp": "2025-02-24T18:46:29",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "NQ",
+      "direction": "unknown",
+      "verdict": "bad",
+      "reason": "Lost $450 on NQ — tried to trade on the subway resulting in a bad entry in a poor trading environment",
+      "pnl": "-$450",
+      "lesson": "Don't trade in distracting environments; wait until you can focus",
+      "author": "TG",
+      "timestamp": "2025-02-26T18:21:31",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "QQQ",
+      "direction": "short",
+      "verdict": "mixed",
+      "reason": "QQQ hit PDL target but got stopped out before reaching it — followed rules and didn't crash out but left $240+ extra profit on the table",
+      "pnl": "+$64",
+      "lesson": "Following your rules is more important than maximizing every trade",
+      "author": "DWC2016",
+      "timestamp": "2025-02-21T15:47:26",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "QQQ",
+      "direction": "long",
+      "verdict": "mixed",
+      "reason": "Took QQQ, made only $185 after getting stopped out on last contract, should have been up $450-$500 but followed rules — good discipline despite leaving money on table",
+      "pnl": "+$185",
+      "lesson": "Following rules consistently matters more than any single day's result",
+      "author": "DWC2016",
+      "timestamp": "2025-02-13T15:38:37",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "QQQ",
+      "direction": "unknown",
+      "verdict": "good",
+      "reason": "Good trade, followed the plan, but couldn't scale properly with only 2 contracts — limited profit potential but executed discipline well",
+      "pnl": "moderate profit (N/A)",
+      "lesson": "Good risk management with position sizing that fits account size",
+      "author": "DWC2016",
+      "timestamp": "2025-02-27T15:14:41",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "QQQ",
+      "direction": "short",
+      "verdict": "bad",
+      "reason": "Traded 2 QQQ puts, took TP of $189, then got back in out of greed and gave back profits, ending with only $112 — couldn't walk away after hitting target",
+      "pnl": "+$112",
+      "lesson": "Walk away after hitting your target; greed to make more costs you",
+      "author": "TCTrader1",
+      "timestamp": "2025-02-27T15:59:27",
+      "channel": "trading-floor"
+    }
+  ]
+}

@@ -1,0 +1,1054 @@
+[
+  {
+    "channel": "trading-floor",
+    "id": "1412548667587428402",
+    "ts": "2025-09-02T21:24:06",
+    "author": "wakefieldcapital",
+    "content": "Quick question bro, how many cons do you trade then if your max loss is $20? and is the same for all tickers? \nAnother question is that, do you stop out of the trade the moment you hit your hard SL number? or do you go by the candle closure advice by Tony?",
+    "score": 2,
+    "categories": [
+      "pnl-mention",
+      "ticker-action"
+    ],
+    "tickers": [
+      "SL"
+    ],
+    "reply_to": "1412456055450894507"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1412631276040622182",
+    "ts": "2025-09-03T02:52:21",
+    "author": "305 Trader",
+    "content": "Hey wakefieldI I am doing something which is very hard but it is my challenge. I am rebuilding a $1,500 account that went down this year gradually to $28 recently about 3 weeks ago. I said I will not add anymore and trade 1x con until I hit $200-$300. I am half way now. So I only trade 0DTE in QQQ using NVDA as my benchmark and not the way around. Its been working. Loss aversion is now under control. I use a mechanical stop loss but I place a limit order on it that I drag slightly up or down to my chosen price level as the options momentum goes up or down. But always a $15-20 stop loss. Until I move to 2x cons. Then it will become $25-30.",
+    "score": 2,
+    "categories": [
+      "pnl-mention",
+      "ticker-action"
+    ],
+    "tickers": [
+      "QQQ",
+      "NVDA"
+    ],
+    "reply_to": "1412548667587428402"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1412798246413271192",
+    "ts": "2025-09-03T13:55:50",
+    "author": "healthiswealth",
+    "content": "I\u2019m in a similar boat, my $2k account is almost down to $1,000. I\u2019ve been taking only one contract this month. I took your advice today regarding your SL and cut the NVIDIA put I jumped in with Tony and lost $18.09 (a 7.60% loss). If I would have done my usual 20% loss, would have been a loss of $47.40.",
+    "score": 2,
+    "categories": [
+      "pnl-mention",
+      "ticker-action"
+    ],
+    "tickers": [
+      "NVIDI",
+      "SL"
+    ],
+    "reply_to": "1412631276040622182"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1413186473783726151",
+    "ts": "2025-09-04T15:38:31",
+    "author": "EeveeWinter",
+    "content": "Yes, JDub risks by dollar amount, not number of contracts. So as long as 2k is good for you in terms of risk, and your stop loss is 10% to 20% of that (depending on your risk tolerance), then that\u2019s the way to go.",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": "1413175263902044230"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1413513360686714901",
+    "ts": "2025-09-05T13:17:26",
+    "author": "Funkdamentalist",
+    "content": "Question for those with more experience... so looks like on the QQQ the opening will be about $5+ from yesterdays' close / previous day high... the ATR on the daily on the QQQ is about $6.5ish... would it be really dumb to open a short position at market open to play it to the downside to the the PDH / PDC....?   I know that jdub and Scarface usually wait for the first 10 - 15 minutes to see what the market does, but it seems these past couple of weeks the biggest plays have been on the open....\n\nI don't plan on doing this, but I just see this big gap forming from yesterday's close and today's open and it's close to the daily ATR.... thoughts on this? Feel free to tear me apart on this...",
+    "score": 2,
+    "categories": [
+      "pnl-mention",
+      "ticker-action"
+    ],
+    "tickers": [
+      "ATR",
+      "PDC",
+      "QQQ",
+      "PDH"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1413531807273717831",
+    "ts": "2025-09-05T14:30:45",
+    "author": "bluedog_sd#0001",
+    "content": "I'm trying to manage my expectations on my risk/reward and it's confusing seeing Tony's results.   Today I what seemed like a very solid trade on TSLA 350 calls.  My fill was $3.39 at 9:36.   Tony entered (on text) after me and the best possible fill could have been maybe 2.85 but probably closer to 3.00.   He posted a screenshot when the cons were $5.50 showing 40k profit.  If he took 100 cons which is what I think he takes, I don't get it.    FWIW the peak price on those cons was $6.85 which happened later than that and it seems that 40k/100 cons means  $4 profit for con.   For me my trade wound up being a 1:1.5 risk to reward, which seems to be generally what happens on upside trades for me.   My risk was $1 on the con, the bottom line is I don't know what I'm doing wrong, but I'm also confused at how to get this type of result when the math doesn't seem to make sense to me.",
+    "score": 4,
+    "categories": [
+      "adj-trade",
+      "pnl-mention",
+      "ticker-action"
+    ],
+    "tickers": [
+      "TSLA",
+      "FWIW"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1413538371107688458",
+    "ts": "2025-09-05T14:56:49",
+    "author": "bluedog_sd#0001",
+    "content": "<@1250595352092872866> yes, for sure, I mean that has to be the answer but I'm general I wish he could give on the trade reviews the entry/exit fills just to better help understand how it works.  I hardly ever get 2:1 R/R and I'm left confused - if it's bad fills, bad execution, etc.   having the post mortem would be so helpful",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1413587438445658235",
+    "ts": "2025-09-05T18:11:48",
+    "author": "EeveeWinter",
+    "content": "There\u2019s something wrong with your calculations. I made $900 on 3 contracts. He could have easily made 40k on whatever contracts he bought. Buying them yesterday? That\u2019s not even in his playbook. Why would he do that? Makes no sense. And I didn\u2019t even hold as long as he did",
+    "score": 2,
+    "categories": [
+      "pnl-mention",
+      "ticker-action"
+    ],
+    "tickers": [],
+    "reply_to": "1413587172459679775"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1415376373161398414",
+    "ts": "2025-09-10T16:40:23",
+    "author": "Cody Boyer",
+    "content": "Small Range Day \u2013 Low Probability\nJust like Mon/Tue \u2192 I didn\u2019t take a trade today (9/10).\n\nOnly solid setup (in hindsight): TSLA @ 10:40 on 1m TF\nBroke 8:30 news + 9:30 OR \u2192 retest \u2192 broke upside.\n~$5 move, 18\u201320 min run \u2192 target $355.40 (London High + Prev Fri High)\n\nTomorrow = Key News (8:30am): Core CPI, CPI m/m, CPI y/y , Unemployment... Should boost volatility.\nA large Range for Premarket + OR tomorrow will be crucial.\nEveryone seems to be  waiting on post-news volatility.",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "pnl-mention"
+    ],
+    "tickers": [
+      "TF",
+      "TSLA",
+      "CPI",
+      "OR"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1415718584784785512",
+    "ts": "2025-09-11T15:20:13",
+    "author": "Sean",
+    "content": "<@1014389514141184074> Piggy backing off this, ive been doing the same lately and curious about what would be important to know and focus on when it comes to only trading the SPY & Qs. Are you using the ES/NQ as confluence or just price action on those tickers? \n\nDoes the system that we learn here im the accelerator work best or would it be good to try and learn/ incorporate the newly named \" The BnR of the Support and Resistance Flip Zones!\"\n\nIf you can and are willing, provide some explanation on what we should know about those two amd trading 0dte and other short dated dte in today's trade review ?",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "SPY"
+    ],
+    "reply_to": "1415512445799370753"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1415754510885720084",
+    "ts": "2025-09-11T17:42:58",
+    "author": "Carve",
+    "content": "They usually state the contract (Call/put and strike price) they are looking at and wait for the entry point (this could take some time).  If they see a good entry and take it, they would announce it, ie. \"picked up 350 Tesla calls\".  The actual contract price depends on the entry point - but this is typically not noted from what I have observed.",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1416059749518151692",
+    "ts": "2025-09-12T13:55:53",
+    "author": "Markellwhite16",
+    "content": "GREAT PLAYOUT ESPEICALLY FOR 0DTES",
+    "score": 2,
+    "categories": [
+      "adj-trade"
+    ],
+    "tickers": [
+      "GREAT"
+    ],
+    "reply_to": "1415866505031057562"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1416809585439670362",
+    "ts": "2025-09-14T15:35:28",
+    "author": "Markellwhite16",
+    "content": "of coruse! for TSLA 401.7 is a clear Resistance level on the daily time frame so if we get a break and retest over that, TSLA has room to the upside , and next Resistance level is $415 . what i mean on the \"bull trap\" is if we break above that level 401.7 and fail to hold it that's a good bull trap and i would look to short off that level IF we get a break and retest back under it and  the overall market looks weak as well... I hope i explained that  well?",
+    "score": 3,
+    "categories": [
+      "pnl-mention",
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "IF",
+      "TSLA"
+    ],
+    "reply_to": "1416771283730960516"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1417163789023055942",
+    "ts": "2025-09-15T15:02:56",
+    "author": "Funkdamentalist",
+    "content": "real mad at myself... I had the right idea... broke the 5 min range, retested... and the trade went the way I wanted it to... but in a hurry I bought calls instead of puts \ud83e\udee3 \ud83e\udd2c    Luckily, got out quick and only had a small $5 loss... but man that could've been bad... but also left a lot on the table because of a dumb brain fart.",
+    "score": 2,
+    "categories": [
+      "pnl-mention",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1417261417240854579",
+    "ts": "2025-09-15T21:30:53",
+    "author": "Markellwhite16",
+    "content": "nothing more beautiful than seeing your key levels play out perfectly! going into tomorrow this is my game plan and of course TSLA being the main watch. what i love about TSLA is $427 & $401.7 are not only HTF key levels but the PDH & PDL perfect confluence IMO! if TSLA can break to the downside i really like this setup. straight up = straight down. TSLA has rallied and gapped up so there is a ton of thin volume that has to be filled. NVDA back in this \"NO TRADE ZONE\" (for me) . break to both sides looks really good, HTF context is bullish so if we can get over 178.8 clear shot to 180 . 4 days in a row this 178.8 has rejected , this excites me , tons of built up liquidity when this breaks and gives us our setup its going to ROCKET! AMD if we can get over 161.8 nothing in its way to the upside , if we fail under 160.4 i like shorts off this level , very strong level! as we can see 157.8 was the clear and clean key level today, a pull back long off this or a break and retest off this level looks solid too!",
+    "score": 3,
+    "categories": [
+      "pnl-mention",
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "ROCKE",
+      "AMD",
+      "TRADE",
+      "NVDA",
+      "PDL",
+      "NO",
+      "TSLA",
+      "HTF",
+      "ZONE",
+      "PDH",
+      "IMO"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1417273132691095572",
+    "ts": "2025-09-15T22:17:26",
+    "author": "Markellwhite16",
+    "content": "i have an alert set @ 229.3 as you can clear level of support here . held it today as well (price doesn't always fully pull back to the key level but on the HTF today it held this level) i like shorts under this 229.3 especially if it comes tomorrow that's a great setup because it'll also be under the PDL. if it gets under 229.3 that's a great RR trade as well IMO , nothing in its way until it approaches that weekly support level . if this is a stock you trade you can keep an eye on this 231.8 level as well to play off of as you can see it gave a nice break and retest to both the upside and downside today! hope this helps",
+    "score": 2,
+    "categories": [
+      "adj-trade"
+    ],
+    "tickers": [
+      "IMO",
+      "RR",
+      "HTF",
+      "PDL"
+    ],
+    "reply_to": "1417270994761941043"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1417859964197929094",
+    "ts": "2025-09-17T13:09:18",
+    "author": "Markellwhite16",
+    "content": "TOP 3 watches for market open , on AMD i no longer like the break and retest under PDL since we held this daily support level during the pre market  so the main trade i like on this is short under 157.8 clearly a level of support. NVDA pull back short off of 174.25 good ole \"pop and fade play\". really like this since were under the PDL and a weekly support level. good confluence there. and last TSLA break and retest under 415 , downside gap fill play and very over extended , healthy pull back IMO if we get it today but if we hold this 415 as support which we cleanly are during the pre market hopefully itll give it some juice!",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "AMD",
+      "NVDA",
+      "PDL",
+      "TOP",
+      "TSLA",
+      "IMO"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1417928053002211469",
+    "ts": "2025-09-17T17:39:51",
+    "author": "John H",
+    "content": "Long ORCL from 1:17 stop at BE. Like to see it hold $300",
+    "score": 2,
+    "categories": [
+      "pnl-mention",
+      "ticker-action"
+    ],
+    "tickers": [
+      "ORCL",
+      "BE"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1417936915318964436",
+    "ts": "2025-09-17T18:15:04",
+    "author": "John H",
+    "content": "yeah i took a $3k loss",
+    "score": 2,
+    "categories": [
+      "pnl-mention",
+      "ticker-action"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1417952421547610112",
+    "ts": "2025-09-17T19:16:41",
+    "author": "Alessandro",
+    "content": "Hi everyone!\nSorry, I hope I\u2019m not being too long-winded\u2026\nI\u2019m getting into options, and even though I went through the dedicated module, there\u2019s still something I don\u2019t fully understand.\nIn every video, Jack and Tony show a chart where a break & retest happens, followed by an R:R. For example, the one that just happened on Nvidia could have been a trade with an R:R of 1:9 \u2014 meaning with $100 risk I could\u2019ve made $900. I don\u2019t think I\u2019ve misunderstood up to this point, but please correct me if I have\u2026\nThat said, they apply the trade on options. I was looking at the puts, and the first OTM was the $170 strike (with the live price being just above $171 at that moment). I don\u2019t remember the exact BID and ASK, but they were around $2.00 per contract, let\u2019s round it for simplicity (so the premium to pay to enter the buy put was $200).\nThe trade on TradingView would\u2019ve closed at $169.50, and at that point the BID/ASK was around $2.85 per contract. So, assuming I bought 1 contract, I\u2019d have risked $200 to close the trade at $285. That\u2019s an $85 profit (after commissions, maybe around $80 net).\nAm I missing something here?\nWhere does the R:R from the videos come into play? Because this contract would\u2019ve ended up with an R:R of just 1.4 \nThank you",
+    "score": 2,
+    "categories": [
+      "pnl-mention",
+      "ticker-action"
+    ],
+    "tickers": [
+      "BID",
+      "OTM",
+      "ASK"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1418025786610552862",
+    "ts": "2025-09-18T00:08:13",
+    "author": "Markellwhite16",
+    "content": "tomorrow game plans : **TSLA **most likely will gap over 427 if so will be looking for pull back longs off this key level , next key level is 436.3 . **AMD **is cooking up something nice IMO just have to be patient and wait for a break to either side of this range, what i like about 157.8 support level is its being defended well , today we broke under it but if you look on the daily the candle closed above it trapping all those shorts \"wicks do the damage body tell the story\" . just waiting for a solid break and retest to either side.  **AAPL **this is a good one but tricky one , def in a uptrend on the HTF but 241.30 is a very strong key resistance level, if you zoom out to the daily we've been rejecting this level since 3/7 rejected again heavy on 9/5 and rejected again yesterday , risky to go long off the PDH into this level i would pass on it but def the A+ setup is over 241.3 if we break under PDL i like this as well. **NVDA **if tomorrow we open up dead smack in the middle of the range im hands off , the retest short off this weekly 174.25 would be a nice setup! if we can get over it i like it too . you can go long off the PDH for a scalp if it sets up , also a gap fill play but you are longing into a weekly level which can easily reject. so tomorrow 168.8 & 174.25 are the levels for me to watch / trade off of!  lets say we sweep the PDH during pre market and reject then i do like shorts off of 171.25 targeting PDL",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "AMD",
+      "PDH",
+      "AAPL",
+      "NVDA",
+      "PDL",
+      "TSLA",
+      "HTF",
+      "IMO"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1418336572725526620",
+    "ts": "2025-09-18T20:43:10",
+    "author": "Markellwhite16",
+    "content": "**Trading Game Plan for 9/19/2025**: **AAPL **setting up nicely as we can see the key levels here are 241.30 and bottom of the range 236.35. top of the range 241.30 rejected perfectly again, main watch is this level. tomorrow AAPL has its iPhone releases for pre order so hopefully that can get us over this level , really watching this one. **TSLA **interesting one here , i do hope we can get some downside to start to slide in now , it would be a healthy pull back and gap fill. in a range between 427 & 415 , anything going on in the middle of here im hands off. I've taken two long trades off of 415 this week going 2/2 on it but now there is clearly a key support level here under it on the 4hr which is 411.40 so i would be patient and wait for a break and retest under this level if TSLA wants to stay heavy , this is the A+ setup and a high RR trade to the downside , no longer interested in shorting off of 415. For the upside 427 is def a key level ,  i went long off this today but going into tomorrow i don't like going long off this level because youre going long into the  PDH , there is a lot of resistance sitting up here and right above the PDH is a daily R level. you can look to go long over the PDH into this daily R level 436.3 for a scalp , that's about a $4 move. TSLA moves VERY  well on the underline and that'll be a 0DTE so you can profit nicely off of that but too risky for my liking , the real A+ setup long is over this 436.3. the main 2 key levels for me to trade off for tomorrow are 411.40 to the downside and 436.3 to the upside if we get it.",
+    "score": 2,
+    "categories": [
+      "pnl-mention",
+      "ticker-action"
+    ],
+    "tickers": [
+      "VERY",
+      "RR",
+      "AAPL",
+      "TSLA",
+      "PDH"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1418336586784968704",
+    "ts": "2025-09-18T20:43:13",
+    "author": "Markellwhite16",
+    "content": "That'll also be a range break so I like it more if it occurs! AMD is A thing of beauty here just respecting its key levels perfectly! The plan for this is a break & retest still over the top of the range being 162.05 that's the A+ Trade . If we break over the PDH we do have tons of room to the upside, that's a good play  but as we can see it's sitting in a zone between 162.05 & 157.8 so I'm hands off anywhere in there. Now a game plan I do like is if we sweep PDH liquidity pre market , fail to hold above the PDH i really like the short off 157.8 , that's a clean setup to the downside! And of course a break and retest under 149.2 which is a weekly support (IF we get that) . NVDA as we can see here even on the HTF just consolidation so tomorrow if its an inside bar day i'm just hands off. Its now back in our \u201cno trade zone\u201d price got back into here today and you can see why that's the \u201cNo trade zone\u201d if we break under 174.25 i like this into PDL , really good setup is short under PDL there's nothing in its way if this breaks and it would now be under a weekly support level.",
+    "score": 8,
+    "categories": [
+      "adj-trade",
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "AMD",
+      "NVDA",
+      "PDL",
+      "IF",
+      "HTF",
+      "PDH"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1418603391457824858",
+    "ts": "2025-09-19T14:23:24",
+    "author": "Markellwhite16",
+    "content": "avoided the no trade zone here on TSLA went long over 427 target PDH , was looking for follow through never got it. trust your levels and yourself and the rest will take care of itself!! have a good weekend everyone!",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "TSLA",
+      "PDH"
+    ],
+    "reply_to": "1418336572725526620"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1418617046782185664",
+    "ts": "2025-09-19T15:17:40",
+    "author": "EeveeWinter",
+    "content": "It depends on how much you\u2019re willing to risk as part of your education. Consider doing longer than a week in paper trading. I wish I\u2019d done that myself. I started with 20K but took an early 10k loss before I broke even again. Painful. I\u2019d say minimum 1k to start trading, preferably $2500.",
+    "score": 2,
+    "categories": [
+      "pnl-mention",
+      "ticker-action"
+    ],
+    "tickers": [],
+    "reply_to": "1418611166522900541"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1418986540528570552",
+    "ts": "2025-09-20T15:45:54",
+    "author": "Markellwhite16",
+    "content": "**Game plan for 9/22/25** : **TSLA **still sitting in a range, i do like the B&R over the PDH & PDL due to it being a good RR. over PDH is a $6 move & under PDL is a $5 move. A+ LONG is over 436.3 & A+ SHORT is under 411.40. as you can see 411.4 & 415 are strong levels of support buyers defend. **AMD **still setting up on the HTF here , avoiding this no trade zone for good reason. i like shorts under $155 and A+ long is top of the range 162.05 , key level 157.8 gets respected very nicely so if we open up above it Mon i like a short off this level targeting PDL. **NVDA **just consolidating , nice recover after its sell off from CHINA news, headed back into this no trade zone im hands off there. A+ LONG is over 178.8 & A+ short is under 173.15 if we open up with an inside bar day im hands off this name , 176.4 is a key level to take trades off of if you like , clearly respected nicely. **AAPL **key level for the next long is over 247.3 if we fall under 244.05 i like this to the down side due to thin volume having to be filled. HTF context is bullish so I don't wanna trade against it but if this setups with good displacement i do like it. Another Main play i like and will watch  is a fail under 244.05 and a reclaim targting those HTF key levels",
+    "score": 3,
+    "categories": [
+      "pnl-mention",
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "AMD",
+      "RR",
+      "LONG",
+      "CHINA",
+      "AAPL",
+      "NVDA",
+      "PDL",
+      "TSLA",
+      "HTF",
+      "SHORT",
+      "PDH"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1419457407993511996",
+    "ts": "2025-09-21T22:56:58",
+    "author": "305 Trader",
+    "content": "<@993898827134292110> I have a slight different pov. You can always trade a pullback rejecting ATH, or a pullback in an uptrend. Only though with confirmation, descending lower highs, and with a target to the next pivot point. Neto catches great moves in p/b for puts and so does Lauren and Luke. \nYou just need to be quick and not have a short or long bias, just acting on pure intraday BOS. Anything is possible when you are a scalper,",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "ticker-action"
+    ],
+    "tickers": [
+      "ATH",
+      "BOS"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1419821604510240849",
+    "ts": "2025-09-22T23:04:09",
+    "author": "Markellwhite16",
+    "content": "**GAME PLAN FOR 9/23/2025** : **AMD **162.05 still being respected as a strong R level , A+ Long is still a B&R over this level , the bull trap today trapped a ton of shorts, lots of liquidity at this level if we can break over it this can take off. I like shorts under 157.8 also near PDL so if we break down under this level it can really flush. Between 162.05 & 157.8 still the no trade zone , clearly a chop fest / channel in here. **TSLA **, really wanted to see a daily close above 436.3 still the key level here , which we went off long today on. i like Longs over PDH and over 436.3 if we fall under 427 I'm hands off , don't want to trade in a channel which is clearly between 427 - 411.4 . TSLA moved $15 today , wouldn't be shocked if we have an inside bar day tomorrow. **NVDA ** beauty here respecting the levels on the dot rejecting this weekly key R level 184.48 nicely. A+ long is over 184.48 , i will look for pull back longs off of 180.25 & 178.8 these key levels broke and need a retest. i would not be surprised if we come back down due to thin volume that needs to be filled  (shown in 2nd SS).  If PA is weak can look to short off of  180.25 & 178.8 too. **AAPL **@ this point just looking for pull back longs due to it being bullish & trending on the HTF, tomorrow looking for longs over PDH targeting ATH or pull back longs off of key levels. **PLTR **, Longs over PDH targeting 184.5 A+ long is over 184.5 , if we fall under 177.9 i like shorts under it, nothing in its way if this melts downside and cant hold this daily level.",
+    "score": 2,
+    "categories": [
+      "pnl-mention",
+      "ticker-action"
+    ],
+    "tickers": [
+      "PLTR",
+      "PLAN",
+      "AMD",
+      "GAME",
+      "AAPL",
+      "NVDA",
+      "PDL",
+      "TSLA",
+      "HTF",
+      "PDH",
+      "ATH",
+      "PA",
+      "SS"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1420056923121778799",
+    "ts": "2025-09-23T14:39:13",
+    "author": "FraggDieb",
+    "content": "If you zoom out you see the ATH and its wigs between 166.80-167.40. So there sits sell side liquidity. Your \"break and retest\" were so tiny small candles that this for me would be no good Setup. But I am beginner myself so dont ask me too much \ud83d\ude04",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [
+      "ATH"
+    ],
+    "reply_to": "1420056355670200422"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1420105482844242021",
+    "ts": "2025-09-23T17:52:11",
+    "author": "Royal191",
+    "content": "still looks good as long as its  above 422 area. depends on your entry, if you locked in any profits and your pain tolerance lol",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": "1420103225888997436"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1420152087920115902",
+    "ts": "2025-09-23T20:57:22",
+    "author": "Markellwhite16",
+    "content": "\"wicks do the damage body tells the story\" good pull back IMO today on both SPY & QQQ , for SPY would love for this key level on the daily to hold @ $661.78 strong level of support and buyers stepped in  again here. Nice hold here for QQQ as well on the daily 597.7 wanna see this hold too going into tomorrow. market has been going straight up week after week some healthy pull backs are needed for those legs higher. overall we are still very bullish",
+    "score": 2,
+    "categories": [
+      "pnl-mention",
+      "polar-term"
+    ],
+    "tickers": [
+      "IMO",
+      "QQQ",
+      "SPY"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1420162739946389647",
+    "ts": "2025-09-23T21:39:42",
+    "author": "Markellwhite16",
+    "content": "**GAMEPLAN FOR 9/24/2025:** **TSLA ** Key levels being respected here nicely. I like shorts under PDL due to this being a big RR trade , worth the risk. as you can see here a bear flag setting up on the HTF.  Be cautious trading between 427 - 411.4 due to it being a consolidation zone , cant be surprised if the PA is bad in there. between 436.3 & 427 im hands off due to that being in the middle of the range and that would be an inside bar day = lower probability.  if we can break over 436.3 i like longs targeting PDH due to HTF context being bullish and of course Long over PDH. **AMD ** A+ long still over 162.05 on the daily we STILL haven't got a candle close over this level , i like longs off of this targeting PDH and hopefully move higher. I'm hands off taking  Longs off of PDH due to a weekly R level being right above @ 164.75 , not a good RR trade. Shorts under 157.8. **NVDA ** Respected its levels perfectly. Kind of hands off for now on this , moved a good amount today so not surprised if we have an inside bar day tomorrow. Clear reason to stay away from the 'NO TRADE ZONE\" just look left , nasty range i dont wanna trade in. IF we can get a B&R over 178.8 i like Longs off this level targeting PDH, due to HTF being bullish. like i mentioned yesterday wouldn't be shocked if it came down to fill its thin volume which it did today. I do like shorts under 176.4 this is a daily support & PDL , good confluence there BUT then again you will be trading into another channel so tread carefully. So only play im looking for on this name is B&R over 178.8 to the upside.",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "AMD",
+      "RR",
+      "STILL",
+      "TRADE",
+      "NVDA",
+      "PDL",
+      "NO",
+      "TSLA",
+      "IF",
+      "HTF",
+      "ZONE",
+      "PDH",
+      "PA"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1420165508560326666",
+    "ts": "2025-09-23T21:50:42",
+    "author": "Markellwhite16",
+    "content": "**AAPL **  Long over PDH , on a trending stock you can look for pull back longs off of PDL (These are liquidity pockets where buyers step in to continue the move higher) so i will see if PDL can hold as support , if we fail under it and reclaim i REALLY like it due to it being a bear trap , that squeezes them out and fuels the move higher. I don't wanna short this name due to HTF being bullish, only way i short under PDL is if SPY QQQ is heavy as well. **PLTR **sitting in this range, i like this, consolidation is good before it moves higher or lower. Longs over 184.5 (same trade i took today) Shorts under 177.9 **ORCL **Long over 321.5 targeting top of the range. A+ LONG over 331 targeting ATH . SHORT under 307.95 , nothing in its way if this fails it would also be under the PDL so  good RR trade,  be patient and READ PA at this level this can be a pull long off this support level.",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "PDH",
+      "RR",
+      "LONG",
+      "AAPL",
+      "QQQ",
+      "SPY",
+      "PDL",
+      "PA",
+      "READ",
+      "HTF",
+      "SHORT",
+      "REALL",
+      "ORCL",
+      "ATH",
+      "PLTR"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1420395076613439642",
+    "ts": "2025-09-24T13:02:55",
+    "author": "Beth1992",
+    "content": "thanks for your excellent trade idea, im eyeing for orcl put today as it is gonig down pre-market already!",
+    "score": 2,
+    "categories": [
+      "adj-trade"
+    ],
+    "tickers": [],
+    "reply_to": "1420165508560326666"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1420397639173800006",
+    "ts": "2025-09-24T13:13:06",
+    "author": "Markellwhite16",
+    "content": "NICE! thats on my close watch as well, NVDA perfect break and retest pre market off of 178.8 i want to see if this level holds for upside , and AMD also sitting at its key level $162.05 want to see if we can get a B&R off this level targeting PDH, if it fails...again lol. im hands off!",
+    "score": 2,
+    "categories": [
+      "pnl-mention",
+      "polar-term"
+    ],
+    "tickers": [
+      "NICE",
+      "NVDA",
+      "AMD",
+      "PDH"
+    ],
+    "reply_to": "1420395076613439642"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1420414582962393269",
+    "ts": "2025-09-24T14:20:26",
+    "author": "Markellwhite16",
+    "content": "super solid trade here on AAPL if you caught that PDL B&R",
+    "score": 2,
+    "categories": [
+      "adj-trade"
+    ],
+    "tickers": [
+      "AAPL",
+      "PDL"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1420424289265651853",
+    "ts": "2025-09-24T14:59:00",
+    "author": "Markellwhite16",
+    "content": "Its funny you say that because AMD is my bread and butter, ive made the most this year off that stock alone. People sleep on it because its  A \"slow mover\" but to each their own. Now TSLA i understand where you're coming from. I have a love hate relationship with it, i mainly like it because it moves so well on the underline & moves a decent dollar amount in the day. even if you scalp this it can give 10-20%+ in seconds. So TSLA can make your whole week with 1 solid trade. ... but then again its TSLA \ud83d\ude02",
+    "score": 2,
+    "categories": [
+      "adj-trade"
+    ],
+    "tickers": [
+      "TSLA",
+      "AMD"
+    ],
+    "reply_to": "1420423064486940805"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1420450193568043139",
+    "ts": "2025-09-24T16:41:56",
+    "author": "305 Trader",
+    "content": "Today I implemented what I think is the better location for a stop loss. Above the opening of the candle which broke through first my Key Level. I was stopped out. It was a zone of heavy consolidation yesterday but I wanted to test the power of this stop loss taking into account that the Qs my symbol was downtrending intraday. As the price structure above $598.75 was not brken I decided to re-enter for a 2nd PUT move. Boy was in for a ride. 1.5 hrs in it. 0DTE and further from the ATM ladder. Result 6 cts win in the 2nd PUT. Could not manage the emotions anymore and Loss aversion to Profits kicked in at the time of my exit. Then the Qs took off to my bottom KL. Sad, but positive on the teachings. Nobody said it was easier, right?",
+    "score": 2,
+    "categories": [
+      "pnl-mention",
+      "ticker-action"
+    ],
+    "tickers": [
+      "KL",
+      "ATM",
+      "PUT"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1420489521954422938",
+    "ts": "2025-09-24T19:18:13",
+    "author": "z6",
+    "content": "I'll have to check out neto's channel now, sounds like another good resource.\n\nWhat setups have you seen on indices? It's been the 100% opposite for me where all the good setups are seldom there, but plenty bountiful on stocks.",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1420504690772414614",
+    "ts": "2025-09-24T20:18:29",
+    "author": "z6",
+    "content": "Even though AMD failed, to me it was clear setup (even better if it held above priod day high)\n\nTSLA was a clean setup too IMO, clear displacement.\n\nAnyway, food for thought for me to review, thanks everyone for forcing me to circle back & re-evaluate.",
+    "score": 2,
+    "categories": [
+      "adj-trade"
+    ],
+    "tickers": [
+      "TSLA",
+      "IMO",
+      "AMD"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1420758907642712074",
+    "ts": "2025-09-25T13:08:40",
+    "author": "Markellwhite16",
+    "content": "Coming into today good amount of setups occurring pre market , PLTR looking for the pull back shot off of 177.05 , TSLA looking for this to break under 427 if market stays heavy , and AMD is now under 157.8 looking for a pull back short off of this level as well.",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "TSLA",
+      "AMD",
+      "PLTR"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1420781692892741815",
+    "ts": "2025-09-25T14:39:12",
+    "author": "Patel_Trades",
+    "content": "Dude we are in the SAME boat! sucks to only made $50-$75 then lose $200. Shakes your shit up good. Anyways. Take a breathe and go for a walk. We can all rebuild from here. Just need more patience and to have better risk management. Gotta journal and reveiw those trades!",
+    "score": 2,
+    "categories": [
+      "pnl-mention",
+      "polar-term"
+    ],
+    "tickers": [
+      "SAME"
+    ],
+    "reply_to": "1420781127999819819"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1420783036093562961",
+    "ts": "2025-09-25T14:44:32",
+    "author": "optionstms",
+    "content": "A good rule is to not short the market after good news and the market is already down.",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1420796421313138799",
+    "ts": "2025-09-25T15:37:43",
+    "author": "Markellwhite16",
+    "content": "Just a Reminder \u2764\ufe0f trading is all probability not certainties . EVREY trade we take we don\u2019t know if it\u2019s gonna be a loser or a winner. Wins and losses doesn\u2019t make you a good trader. What makes a great trader is someone who follow their rules , system , and stay discipline. You can\u2019t judge your performance off PnL but based off those things \u261d\ud83c\udffe. ALWAYS keep a long term mindset. Can\u2019t focus on one day. Focus on results at the end of the week , month , quarter , and year. Always keep the long term mindset! If you lost today . Journal & move on and come in ready tomorrow with a fresh mindset and don\u2019t brings today\u2019s outcomes and emotions into tomorrow! \ud83d\udcaa\ud83c\udffe",
+    "score": 6,
+    "categories": [
+      "adj-trade",
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "ALWAY",
+      "EVREY"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1420815237656870975",
+    "ts": "2025-09-25T16:52:30",
+    "author": "Jerry",
+    "content": "Hey guys,\n\nWanted to share my experience of going from struggling to profitable (just a few months so far, but still). Maybe it can be a good starting point for some of you\u2014it really changed the game for me.\nI struggled a lot before. At one point, I was trading 20 TSLA contracts, taking small wins but then wiping everything out with big losses. Ended up down almost $15k in just a few months. That\u2019s when I stopped and decided to really think.\nI built an Excel table with all of Tony\u2019s trades this year, split by symbol. Every row was a trade with entry (I added some delay since I\u2019m slower), stop loss, max potential win until SL was hit, etc. I kept adding parameters and I\u2019m still revisiting them, improving execution.\nFrom that analysis, I found the main thing that killed my profitability: scaling out too early. I used to sell 30% on the HOD pop, then more on the next big candle, and my RR was completely ruined.\nSo I made a script in Excel to simulate different scenarios and find the best monthly outcome. The result was simple: don\u2019t scale at all until TSLA moves at least $4 (around 2R), then exit. That\u2019s it.\nThat one change completely flipped my trading. Now I trade 10 contracts and make way more than I did before with 20. This is just the first step, of course. Next is working on dynamic sizing based on setup quality, scaling in/out properly, etc. But this shift was the key\u2014it stopped the bleeding and got me back to making money.\n\nHope it will help",
+    "score": 3,
+    "categories": [
+      "pnl-mention",
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "TSLA",
+      "SL",
+      "RR",
+      "HOD"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1420825792484606042",
+    "ts": "2025-09-25T17:34:26",
+    "author": "Jerry",
+    "content": "Yeah exactly. I did the same analysis for amd, Nvidia and appl. Found the profit targets for amd and Nvidia, decided to completely avoid appl, cause the results there (win rate and RR) are quite bad cause good entry and scaling out is essential with this ticker",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [
+      "RR"
+    ],
+    "reply_to": "1420824748354441439"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1420840978339729448",
+    "ts": "2025-09-25T18:34:47",
+    "author": "neverBackDown",
+    "content": "Anyone else looking at ORCL here? After that huge gap up and the mega run to $340+, it\u2019s been pulling back hard. I\u2019m thinking a swing short might make sense since there\u2019s still an open gap down to the $270\u2013280 area and momentum seems to be fading\u2014lots of red bars and selling pressure on the daily. Am I seeing this setup right or am I missing something? Would appreciate any thoughts!",
+    "score": 2,
+    "categories": [
+      "pnl-mention",
+      "ticker-action"
+    ],
+    "tickers": [
+      "ORCL"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1420874074246090772",
+    "ts": "2025-09-25T20:46:17",
+    "author": "Jerry",
+    "content": "I checked this and total profit with breakeven is smaller than with loss, cause sometimes you dont catch good trades because of that. And yes my account is 100k",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": "1420867995860734094"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1420942513866281171",
+    "ts": "2025-09-26T01:18:15",
+    "author": "Angel (az)",
+    "content": "Thanks so much for sharing this, that's super interesting and will be doing a similar analysis as soon as I get a chance! Been trying to finetune my own scaling and trying to figure out whether to change - in the past I typically sold one third at each TP, with TP being about $5 away on TSLA, really similar to what you mentioned, and those have been my best trades. But I was second-guessing my scaling lately because like you said, it's so difficult to lose all these trades where Tony/Jack are coming out green or breakeven, makes it feel like the losses are avoidable. And so many are scaling 60-70% at HOD (minus contextual) but I just don't see how that as a base scaling strategy can cover the losses over time and the RR just isn't working out on paper for me. Am super curious how Tony and others manage that, perhaps with the much sharper executions?",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "pnl-mention"
+    ],
+    "tickers": [
+      "TSLA",
+      "HOD",
+      "TP",
+      "RR"
+    ],
+    "reply_to": "1420815237656870975"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1420952578262302720",
+    "ts": "2025-09-26T01:58:14",
+    "author": "Jerry",
+    "content": "Yeah. Doing your own analysis is essential. Only that way you will get confidence. I simulated different appproaches.\n1. No scaling. That gives the best results - best RR and 50% win rate\n2. 1 scale. Again tried to find an optimum with simulation where and how many to scale to improve win rate at the price of RR. Managed to do it. Increased to 65% win rate with some combinations but it hit the total profit.\n3. 1 scale + runners. Same results as in second approach.\n\nSo after all simulations no scaling approach gives the best profit, though much more complicated from mental perspective. \n\nTo the question why Tony manages to have such great result - i see 3 points\n1. Much better entry so good RR on HOD\n2. Scaling based on good reading of price action like scaling out when several wicks as a sign of weakness\n3. Scaling out base on context and not on predefined structure.\n\nBut all these points come with experience. We will get there someday",
+    "score": 4,
+    "categories": [
+      "adj-trade",
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "HOD",
+      "RR"
+    ],
+    "reply_to": "1420942513866281171"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1420953753326059561",
+    "ts": "2025-09-26T02:02:54",
+    "author": "G Nice",
+    "content": "Hey guys, for small accounts (1-2k) or those just starting out. I would highly recommend trading shares instead of options until you have a solid setup/trading plan established. You will have far less anxiety trading shares as it doesn\u2019t move as fast as options (a $1 drop in share price will be a $1 P&L loss/share. where an ATM options contract is typically around $50 loss/con). You can still trade the B&R live with the group and practice your entry, scales and SL as if they are options except it will not blow your account. Do this until you are consistently profitable and have a solid trading plan. The point is not the amount of money you make in shares but mainly to establish a solid scalable trading plan that you can transfer over to options when you are ready. I hate to see/hear people blowing their accounts or losing more than they can manage so I hope this helps.",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "pnl-mention"
+    ],
+    "tickers": [
+      "ATM",
+      "SL"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1420958208536875009",
+    "ts": "2025-09-26T02:20:37",
+    "author": "Angel (az)",
+    "content": "Thanks for the details - when I was backtesting by myself quite a while back, I was always just around breakeven and I thought it was because I wasn\u2019t identifying the setups correctly but I\u2019ve realized over time it\u2019s most likely this scaling issue, because my win rate tends to match. So scaling is really my last (and big) missing piece. It\u2019s such a good idea to do this scaling analysis on their trades first to eliminate any concerns and variables about my own skill issues in identifying the setup though. \n\nI think you hit the nail on the head with how Tony can manage the large HOD scales. I\u2019ve been suspecting too that the thing we\u2019re missing is execution speed for better RR, discretion, context and experience. Which are very, very difficult things to quantify and aim to improve other than putting in the time and being patient and then having a bit of faith in our brains to figure it out. So this was a useful reminder that we simply might not be currently ready to scale the same way. \n\nThanks for all that, this exact problem has been at the back of my head and bothering me all week and this helped me clarify a lot!",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "RR",
+      "HOD"
+    ],
+    "reply_to": "1420952578262302720"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1421153087376195735",
+    "ts": "2025-09-26T15:14:59",
+    "author": "Ruslan /ru\u02c8slan/",
+    "content": "<@1062934985109160057> <@1014389514141184074> So as I understood, your main idea was to catch any retest after the change of structure and confirm the drop? And the first thing that came up was strike number 660? \nAnyway, well done \u2014 great trade!",
+    "score": 2,
+    "categories": [
+      "adj-trade"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1421247172778917970",
+    "ts": "2025-09-26T21:28:51",
+    "author": "305 Trader",
+    "content": "Every white arrow marks the best entry POI for a market as difficult as it was today. They all worked out. This is NVDA. 5 min TF.",
+    "score": 2,
+    "categories": [
+      "adj-trade"
+    ],
+    "tickers": [
+      "POI",
+      "TF",
+      "NVDA"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1421900591298511059",
+    "ts": "2025-09-28T16:45:18",
+    "author": "golden_dolphin365",
+    "content": "Great patience practice for me, waiting for great setup",
+    "score": 2,
+    "categories": [
+      "adj-trade"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1422592042722136234",
+    "ts": "2025-09-30T14:32:53",
+    "author": "Patel_Trades",
+    "content": "+$44 on the first two NVDA moves, but took a stupid AAPL move in between (emotional trade) that cost me -$53 so I'm down $9 for the day. I don't trade unsettled cash so I stop myself there. We live to trade another day. Get rest and water. New month and new quarter starts tmrw",
+    "score": 2,
+    "categories": [
+      "pnl-mention",
+      "ticker-action"
+    ],
+    "tickers": [
+      "AAPL",
+      "NVDA"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1423346235741442118",
+    "ts": "2025-10-02T16:29:47",
+    "author": "Markellwhite16",
+    "content": "Exactly! Just be mindful that\u2019s  all \u2026 even though today sucked today was a good day , we gapped up huge BUT filled the gaps.., balance is restored . Should set up some good PT tomorrow.",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "PT"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1423490569874968706",
+    "ts": "2025-10-03T02:03:19",
+    "author": "Markellwhite16",
+    "content": "AMD trade Recap and pre market game plan for tomrrow! overall solid day in the market loading up some good setups for tomorrow!  https://www.youtube.com/@KellyKell16",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [
+      "AMD"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1423503803575042060",
+    "ts": "2025-10-03T02:55:54",
+    "author": "Davis",
+    "content": "I just rewatched the day 3 summit, that nvda trade was such a beautiful play, I\u2019m glad it worked out for Tony in front of thousands of viewers. Shows the system works if u follow the rules",
+    "score": 2,
+    "categories": [
+      "adj-trade"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1423521084841398423",
+    "ts": "2025-10-03T04:04:34",
+    "author": "Alkanall",
+    "content": "Red day for me too, even though I caught PLTR bouncing off 184 for a good trade. Almost caught AMD when it finally went later in the day, had re-entered but decided I was tired and it might go sideways all day and exited. A few minutes later it went. I guess that's the way it is. \ud83d\ude42",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [
+      "AMD",
+      "PLTR"
+    ],
+    "reply_to": null
+  }
+]

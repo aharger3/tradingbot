@@ -1,0 +1,222 @@
+# Transcription: the-accelerator-course_ibkr-tws-live-example.wav
+# Duration: 665s
+# Model: tiny
+
+[0s-6s] All right guys, this is going to be a bonus video on IBKR setup slash executions.
+[6s-8s] This is a more updated version.
+[8s-12s] And it's basically showing guys exactly what I'm looking for in real time.
+[12s-15s] And then of course, I'm going to go over an example at the end of the video as well.
+[15s-23s] But basically, this video is going to be specifically for trader workstation, the TWS platform for IBKR.
+[23s-26s] So let's get right into exactly what my setup looks like.
+[26s-30s] So this is what my personal main trading layout looks like.
+[30s-33s] So this is the main page on the right hand side.
+[33s-36s] What I have here is what's called the options chain.
+[36s-39s] So this is where all the options prices are displayed.
+[39s-44s] So you can see right here, I have the option chain pulled up here on the right hand side.
+[44s-47s] I have the calls on the left.
+[47s-51s] I have the strike price right in the middle and then I have the puts on the right.
+[51s-54s] So basically this is where I can see all the options.
+[54s-55s] I have all the strike prices.
+[55s-62s] I can see the bid, the ask, the implied volatility, the delta, the volume, the open interest.
+[62s-64s] And then I also have the strike prices as well.
+[64s-69s] So basically, whenever I pull up a ticker, I can see the strike price, which is right in the middle.
+[69s-71s] And then on the right hand side, I have the puts.
+[71s-74s] So if I want to trade the puts, I'm looking on the right hand side.
+[74s-77s] If I want to trade the calls, I'm looking at the left hand side.
+[77s-78s] So this is fairly simple.
+[78s-80s] This is what's called the options chain.
+[80s-83s] Every single broker has this no matter what broker you trade with.
+[83s-86s] This is what it looks like on the TWS.
+[86s-89s] So now what we have is what's called the quote monitor.
+[89s-91s] Think of the quote monitor as a watch list.
+[91s-96s] So all the contracts that we're looking at, let's say Apple calls or Apple puts,
+[96s-101s] we're going to drag everything over into the quote monitor or you can use a watch list.
+[101s-102s] I personally use the quote monitor.
+[102s-107s] And in this case, I drag all the contracts that I'm looking for onto the quote monitor.
+[107s-110s] And this is basically where I store all my calls and puts.
+[110s-114s] So instead of having to click on the individual call at one time,
+[114s-116s] I can have a lot of these pull up already.
+[116s-120s] So I can quickly go in and out, depending on the strike price,
+[120s-122s] depending on if I'm looking at calls or puts.
+[122s-126s] I can quickly click on the actual contracts and have them already pre loaded.
+[126s-129s] So I don't have to go back and search up a ticker,
+[129s-132s] which might take me an extra 10 to 15 seconds.
+[132s-136s] And that could be the determining factor of me getting into and trade or missing a trade.
+[136s-138s] So essentially right here, what I have is the quote monitor.
+[138s-141s] And I have all the quotes that I'm looking for.
+[141s-145s] So in this case, I have the Apple pulled up, I have the Apple 210 puts,
+[145s-151s] I have the Apple 250 puts, I have the March 2125 calls.
+[151s-153s] I have the March 2075 calls.
+[153s-155s] I also have some 240 calls here on Tesla.
+[155s-157s] I have some 235 calls here on Tesla.
+[157s-163s] So you can see I have a lot of options pulled up already pre loaded just based off of my top
+[163s-164s] watches for the day.
+[164s-166s] So this is the quote monitor that I have.
+[166s-168s] And then the last thing that I have right here is at the bottom,
+[168s-170s] which is called the book trader.
+[170s-172s] And this is where I do all my executions.
+[172s-176s] I have a more in-depth explanation of what the book trader is.
+[176s-179s] But I essentially have all these button configurations already set up.
+[179s-181s] One for a market order.
+[181s-182s] I have by limit orders.
+[182s-183s] I have sell market orders.
+[183s-185s] I have sell limit orders.
+[185s-187s] I have a closed position button.
+[187s-189s] And all these buttons are configured.
+[189s-192s] So as soon as I click it, it's instantaneous.
+[192s-194s] So based off of the size that I'm willing to trade.
+[194s-198s] And I can do that by clicking on this button right here, which is the arm default size.
+[198s-203s] I can change my position to five contracts, 10 contracts very quickly.
+[203s-205s] And as soon as I click the buy market,
+[205s-209s] buy it, it's going to instantaneously transmit the order into the market.
+[209s-211s] And I'm going to get filled as soon as possible.
+[211s-213s] So now we're going to put it all together.
+[213s-216s] So the first thing that we're going to be looking for is the option chain.
+[216s-217s] Once I get the contracts pulled up,
+[217s-221s] I'm going to go over and drag them into what's called the quote monitor.
+[221s-223s] And after I click on the quote monitor,
+[223s-226s] it's going to bring me down to the book trader.
+[226s-228s] All of this is connected by the way.
+[228s-231s] So once you click on the actual options contract,
+[231s-233s] it's going to show up on the book trader.
+[233s-235s] And then you can quickly change your size.
+[235s-238s] And then you can just click the buy market button or the sell market.
+[238s-241s] And it's going to instantaneously transmit you the order.
+[241s-245s] So with this being said, let's go onto my personal setup.
+[245s-247s] So you can guys see what my actual setup looks like.
+[247s-252s] And then I'm going to go onto a real example that I did in real time to show you guys my
+[252s-254s] thought process and how I actually execute a real time.
+[254s-257s] So before I get into this I B.K.
+[257s-260s] Our video, you guys have to understand what my setup actually looks like.
+[260s-264s] So I have my main screen right here, which is the screen right in front of me.
+[264s-266s] This is the screen that I used to chart personally.
+[266s-269s] I have my top screen, which you guys usually see,
+[269s-273s] which is my top screen layout where you see the four charts.
+[273s-277s] And then on the left hand side, I have my interactive brokers, my I B.K.
+[277s-280s] I usually have this setup with my MacBook.
+[280s-282s] So currently, I'm on another account.
+[282s-287s] I'm sure you guys exactly how to set this up here and how I look to execute my trades.
+[287s-290s] Now, since you guys understand what my setup looks like,
+[290s-292s] let's go onto a live example.
+[292s-296s] And I'm going to commentate over exactly what I'm looking for on the charts,
+[296s-299s] as well as what I'm looking for while executing the trades.
+[299s-302s] So right here, you can see I have the chart pulled up right here.
+[302s-304s] And we're currently looking at Apple.
+[304s-307s] So you can see the chart that we have up right now.
+[307s-309s] What I'm going to be doing if I'm looking for puts towards the downside.
+[309s-312s] Let's say I'm looking for the retest of this 210.
+[312s-313s] For this continued push,
+[313s-316s] I'll go back down towards your previous day low, which is your tune out.
+[316s-317s] I'm going to be looking at the contract.
+[317s-320s] So you can see on the right hand side, what I have here is the options chain.
+[320s-323s] And on the left hand side, what I have here is my quote monitor.
+[323s-327s] So what I'm going to do is I'm going to be looking for the one out the money.
+[327s-331s] So in this case, I can drag over the 210 puts and put this in my quote monitor.
+[331s-336s] I can also drag over the 2075 puts and drag this over as well.
+[336s-340s] So you can see these are the two contracts that I'm looking for.
+[340s-342s] If I'm going to trade Apple towards the downside,
+[342s-344s] currently Apple as you can see is right around your 210.
+[344s-350s] So let's say for example, I want to choose the 2075 puts for the March 21st expiration.
+[350s-355s] So now I click on this and then I come down to what's called the book trader.
+[355s-357s] And now as you can see, the book trader I can change my side.
+[357s-361s] So if I want to change five, right, if I want to trade five contracts,
+[361s-361s] I can trade this.
+[361s-364s] If I want to trade two contracts, I can trade this.
+[364s-367s] And what I'm going to do is click this buy market order button.
+[367s-372s] And you can see right here what I just did was I clicked the buy market order button.
+[372s-375s] And I just filled me right here on Apple.
+[375s-377s] And now you can see the trade is working out in my favor.
+[377s-381s] If I go back onto the chart, you can see now we're breaking underneath this 210.
+[381s-384s] Let's say if I want to scale right now, you can see I have two positions.
+[384s-385s] What am I going to do?
+[385s-386s] I'm going to go over here, click one.
+[386s-389s] And I'm going to look to sell one position right here.
+[389s-390s] Let's click the sell market button.
+[390s-395s] So as you can see right there, I just quickly changed my default size back to one contract.
+[395s-398s] So I just scaled up 50% of my contract right there.
+[398s-405s] And now what it can do is let the rest of the contracts ride down into wars that 20950 level.
+[405s-409s] Now let's be patient and let's say if Apple can gravitate down towards that 20958,
+[409s-411s] which is your previous day lows.
+[411s-415s] As we're waiting for Apple, I kind of just drew out what I was looking for once again.
+[415s-418s] As I mentioned, this is the book trader.
+[418s-422s] There's a bunch of different ways you can look to execute on interactive brokers.
+[422s-425s] This is how I personally do it and you can see how quick it is.
+[425s-429s] All you have to do is drag your contracts, click the contracts that you want to trade.
+[429s-432s] And then instantaneously just click the buy market order button.
+[432s-435s] And it will instantaneously fill your order right away.
+[435s-438s] And that's how we can execute really quickly.
+[438s-442s] And you can see as I was scaling there, right all I have to do is just click sell market, buy market.
+[442s-443s] You can do buy limit.
+[443s-445s] You can do sell limit.
+[445s-447s] If you want to close your position, you can close that full position.
+[447s-451s] It's very easy to execute using this book trader.
+[451s-452s] And that's how we always do it.
+[454s-460s] So right here on Apple, all we're doing is just waiting for this 21047.
+[460s-465s] And we're looking for this hold of this 21047 for this continued push towards your 209.
+[465s-470s] So my stop now is just going to be a break back above your 210 and I'll cut my position.
+[470s-475s] As long as we maintain, I'll end up holding my position all the way down towards that 20958.
+[477s-481s] As you can see, Apple is coming back up and towards our 21047.
+[481s-485s] So that's going to be my key level where I'm going to be looking to take the rest of the contract off
+[485s-488s] if it closes above that level.
+[488s-490s] If it closes above that level, I'll cut my position.
+[490s-492s] If you hold that level, I'm going to maintain my position.
+[492s-495s] So as you can see right there, Apple is coming back up and towards my area.
+[495s-497s] This is the exact level I like to see it hold.
+[497s-499s] If it closes above this, I'll cut it.
+[499s-501s] If it holds this, I'll maintain my position.
+[501s-502s] Let's see what happens here on Apple.
+[502s-507s] So as you can see right here, what I do have is my most right on the self market order.
+[507s-512s] If it closes above it, I'll click this button and it'll instantaneously fill my order
+[512s-513s] to get out of a position.
+[513s-517s] So far, you can see on Apple, it's still maintaining this 21047.
+[517s-519s] So I'm still in my position.
+[521s-525s] So as we're waiting for this to play out, what I want to talk about is some tips that we can
+[525s-528s] look for if you want to quickly enter and exit your position.
+[528s-531s] The best way is to already have these contracts pulled up.
+[531s-534s] So whatever your top watches are, let's say for the day it's Apple,
+[534s-537s] where you already want to have these contracts pre pulled up.
+[537s-541s] So by the time the trade actually ends up going or it's coming towards a key level,
+[541s-543s] you don't have to be scrambling to look for the actual contracts.
+[543s-547s] So if you have these contracts already pre loaded up, it's going to make it a lot easier for you.
+[547s-549s] So let's say we have Apple.
+[549s-551s] Let's say we preload some Tesla contracts now.
+[551s-552s] Let's go into the Tesla.
+[552s-554s] You click Shift Enter.
+[554s-556s] Now we can preload some Tesla contracts.
+[556s-561s] So if it comes back into our key level, and we can quickly flip back into Tesla,
+[561s-563s] we can look to short this fairly quickly as well towards the downside.
+[563s-567s] Instead of having to scramble, find the tickers that you're looking for,
+[567s-569s] and then pull up the contracts by that time.
+[569s-571s] Sometimes one minute makes a big difference.
+[571s-573s] So that's why you have to have the contracts pulled up,
+[573s-575s] and it makes it a lot easier instead of just scramble it.
+[575s-578s] So right here you can see I can quickly flip back and forth.
+[578s-583s] As long as you have these linked, if I click Tesla, the March 21st, 235 calls.
+[583s-584s] Right, you can see it's getting pulled up.
+[584s-587s] If I click the 240, you can see it switches to the 240.
+[587s-590s] If I click Apple, switch it back to the 205.
+[590s-591s] Seven calls.
+[591s-593s] If I go into the actual position that I'm currently in,
+[593s-595s] it's just 2075 put.
+[595s-597s] And you can see it brings it back up into the book trader.
+[597s-599s] And I can quickly change my position sizes.
+[599s-602s] I can buy market, sell limit, close positions.
+[602s-605s] I can do a bunch of things that I'll really help me out,
+[605s-608s] and I can do this very quickly and effectively as well.
+[615s-619s] So you can see that Apple is coming up in towards my key area.
+[619s-621s] Once again, I have my hand on the trigger,
+[621s-625s] waiting to see if this candle is going to close above my stop,
+[625s-627s] which is 1 at 10, 44.
+[627s-630s] If I close the above, I'll click this sell market order button,
+[630s-633s] and then I'll kick me out the rest of my position.
+[636s-638s] Okay, right there, you can see that.
+[638s-642s] And end up closing above my stop, which is 1 at 10, 47.
+[642s-644s] I just quickly click the sell market button,
+[644s-646s] and now you can see I'm out of my position.
+[646s-650s] As you can see right there, that's how I execute on interactive brokers every single day.
+[650s-651s] It is fairly easy.
+[651s-652s] All I do is use the book trader.
+[652s-655s] There's not really too much to say when it comes to using the book trader.
+[655s-658s] But once you have the buttons and configurations set up,
+[658s-661s] I already have that in the actual interactive brokers modules.
+[661s-665s] You guys can set that up, and now you guys can execute exactly how we do.

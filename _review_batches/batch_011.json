@@ -1,0 +1,879 @@
+[
+  {
+    "channel": "trading-floor",
+    "id": "1333553141010137211",
+    "ts": "2025-01-27T21:44:05",
+    "author": "ErenTheExile",
+    "content": "Did the same move.  I sold for a L since my entry was bad and stop loss was wide.",
+    "score": 3,
+    "categories": [
+      "copula-judgment",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": "1333545987049783317"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1333828647584272406",
+    "ts": "2025-01-28T15:58:50",
+    "author": "Nines",
+    "content": "I only trade futures and forex, i been slowly getting back to options i took a paper options trade yesterday on tradingview to test out their new options feature. Not bad",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": "1333828341324845056"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1334191698707877951",
+    "ts": "2025-01-29T16:01:29",
+    "author": "void",
+    "content": "had a bad entry for AMD",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [
+      "AMD"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1334210311250509875",
+    "ts": "2025-01-29T17:15:26",
+    "author": "FromTheFuture",
+    "content": "Got in these good entry was PM high and that's my risk",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [
+      "PM"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1334215682908360714",
+    "ts": "2025-01-29T17:36:47",
+    "author": "FromTheFuture",
+    "content": "Wow NKE good move",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [
+      "NKE"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1334217282532151397",
+    "ts": "2025-01-29T17:43:08",
+    "author": "Mez",
+    "content": "a lot of the liquidity is sitting in the yellow box. Seeing if price will come down and touch 117.68/117.70 and go back to the upside. But if I dont see strong price action if it does come down to 117.68 and have a strong move to the upside, I'm done trading for the day. Today is just too risky.",
+    "score": 2,
+    "categories": [
+      "adj-trade"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1334226454942318696",
+    "ts": "2025-01-29T18:19:35",
+    "author": "Lauren (lakatrades)",
+    "content": "VWAP, EMA9, and EMA200 are consolidating on the 1-minute chart good news, in my opinion! Unless the overall market sentiment drops drastically, this could set up a solid move",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [
+      "VWAP"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1334230614676738058",
+    "ts": "2025-01-29T18:36:07",
+    "author": "FromTheFuture",
+    "content": "AMD round 2 117.5 good entry / risk 117.35",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [
+      "AMD"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1334242421558739004",
+    "ts": "2025-01-29T19:23:02",
+    "author": "PewSpatialPew",
+    "content": "as long as he's semi neutral today, and the mag7 earnings today are pretty good and their guidance is good, i could see a rally.",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1334242606908968961",
+    "ts": "2025-01-29T19:23:46",
+    "author": "PewSpatialPew",
+    "content": "well i would say, the market hasn't crashed very hard because nflx earnings were extremely good, as well as banks.",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1334242732344082474",
+    "ts": "2025-01-29T19:24:16",
+    "author": "PewSpatialPew",
+    "content": "so if today, meta / msft have decent + outlook, we're okay. As long as aapl tomorrow isn't bad either, then mostly in the clear.",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1334246998060044358",
+    "ts": "2025-01-29T19:41:13",
+    "author": "Lauren (lakatrades)",
+    "content": "lolfunny when powell say.. we're not going to \"overinterpret\".. .. smart move..",
+    "score": 2,
+    "categories": [
+      "adj-trade"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1334259573573554302",
+    "ts": "2025-01-29T20:31:11",
+    "author": "StevenP",
+    "content": "good call",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": "1334255040193495184"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1334554417705521153",
+    "ts": "2025-01-30T16:02:48",
+    "author": "Asad",
+    "content": "Wow interesting if you are  really a good trader it doesn\u2019t matter what you trade",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1334557377273397318",
+    "ts": "2025-01-30T16:14:33",
+    "author": "Syhem",
+    "content": "Think it was going to be an good trade but ended up getting smoked out , anyone have any pointers or was it just not my day",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1334558517436350574",
+    "ts": "2025-01-30T16:19:05",
+    "author": "Stella",
+    "content": "I took this trade this morning too. Confident it was gonna continue upwards and it didn\u2019t reach my PT\u2026. But ended up losing -$270 on this trade \ud83d\ude2d",
+    "score": 2,
+    "categories": [
+      "pnl-mention",
+      "ticker-action"
+    ],
+    "tickers": [
+      "PT"
+    ],
+    "reply_to": "1334557377273397318"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1334560222299033764",
+    "ts": "2025-01-30T16:25:51",
+    "author": "Viper",
+    "content": "Googl had me enter 3 times on good setups and stopped me out on all 3",
+    "score": 4,
+    "categories": [
+      "adj-trade",
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1334566789803147326",
+    "ts": "2025-01-30T16:51:57",
+    "author": "Stella",
+    "content": "So the \u201cbuy side\u201d gets taken off, and you short. Which you\u2019re referring to liquidity right? So for Tesla today, 10:06 would have been the sell side liquidity right? Where I should have sold. I saw this and ignored lol I\u2019m an idiot",
+    "score": 3,
+    "categories": [
+      "should-judgment",
+      "ticker-action"
+    ],
+    "tickers": [],
+    "reply_to": "1334565888426512475"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1334603429191876679",
+    "ts": "2025-01-30T19:17:33",
+    "author": "Lauren (lakatrades)",
+    "content": "Good Call",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1334635420717416512",
+    "ts": "2025-01-30T21:24:40",
+    "author": "Viper",
+    "content": "Stuck to my original thesis for googl, and it took 4 trades, all good entries, and even after 3 losses, the final trade ended up working out, and we ended breakeven.",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1334878142598217870",
+    "ts": "2025-01-31T13:29:10",
+    "author": "marzia1971",
+    "content": "ok ! nice to meet you guys! Have a good trade today.",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1334923666282123286",
+    "ts": "2025-01-31T16:30:03",
+    "author": "FromTheFuture",
+    "content": "ARM and any semis would have been great trade today .'",
+    "score": 2,
+    "categories": [
+      "adj-trade"
+    ],
+    "tickers": [
+      "ARM"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1334924878146437132",
+    "ts": "2025-01-31T16:34:52",
+    "author": "ErenTheExile",
+    "content": "Should've been zen and sold at sl then I'd be down tiny. Went from up 6% to down 6%. Lesson learned again",
+    "score": 2,
+    "categories": [
+      "should-judgment"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1334981977828360213",
+    "ts": "2025-01-31T20:21:46",
+    "author": "Stella",
+    "content": "I just took a nap and woke up and the market is bleeding?! I had Apple puts this morning that made me solid, but I sold them at $4.00/con and now they worth $9.30/con wtf",
+    "score": 2,
+    "categories": [
+      "pnl-mention",
+      "ticker-action"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1335591655365152779",
+    "ts": "2025-02-02T12:44:24",
+    "author": "DWC2016",
+    "content": "This dude low key weird. threw shade / hating on <@801169196015943731>  with disses disguised compliments. \u201cKeep in mind I this is just a replay homie is NOT trading live he\u2019s NOT that Fucking good.. or he would be making $2M a month\u201d \u201che was making $20 a month when I was making $20000\u201d these be the kinda internet \ud83d\udc0dweirdos you gotta watch out for. rather somebody just straight diss me and be real then try to make it seems like a complement when they clearly trying to lil bro you and diss. Also didn\u2019t tag Jdub I didn\u2019t like that at all \ud83e\udd37\u200d\u2642\ufe0f",
+    "score": 2,
+    "categories": [
+      "pnl-mention",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1335946863945322506",
+    "ts": "2025-02-03T12:15:53",
+    "author": "DWC2016",
+    "content": "<@1333105314018623600> the problem is right after giving a compliment, he says . \n\n\u201c**Keep in mind I this is just a replay homie is NOT trading live... he\u2019s NOT that Fucking good**..** or he would be making $2M a month\u201d **\n\n \u201che was making $20 a month when I was making $20000\u201d \n\nVery quite literally saying Jack \"isnt that good\" , or he would be making more money. \" saying jack isnt live trading\" which isnt true and also implies hes isnt actually making these trades he teachs for real. \n\nAlso directly compares himself to Jack saying he was making more money than Jack when Jack was making only $20 a month. Implying hes better / above Jack.\n\nThats called back handed compliments and its weird. You should def be careful when people display these kinds of behavior traits its a dark red flag when ppl do this. \n\nbut its the internet so everybody gonna talk part of the game. \ud83e\udd37\u200d\u2642\ufe0f",
+    "score": 3,
+    "categories": [
+      "pnl-mention",
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": "1335943086877966399"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1336047460019212451",
+    "ts": "2025-02-03T18:55:37",
+    "author": "Papa",
+    "content": "major rain in Northern Cali so it's not really a bad call to release a little water if it really helped those in need in Southern Cali",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1336422824193163274",
+    "ts": "2025-02-04T19:47:10",
+    "author": "StevenP",
+    "content": "the 119 is 1 otm since stock price is 118. 1 otm strikes are a good balance for day traders to take. usually they have a good delta and the cost is decent. so it makes for good profit compared to cost. if you look at 2 otm sometimes the volume and open interest paired with your thesis on thinking the stock will go to $120 from 118 can be more profitable with a strong move towards the strike price. its really all about your risk and thesis on where the stock will go",
+    "score": 4,
+    "categories": [
+      "adj-trade",
+      "pnl-mention",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1336551778325499924",
+    "ts": "2025-02-05T04:19:35",
+    "author": "Mina",
+    "content": "Quick scalp on GOOG, not the best entry worked well",
+    "score": 2,
+    "categories": [
+      "adj-trade"
+    ],
+    "tickers": [
+      "GOOG"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1336742469571838054",
+    "ts": "2025-02-05T16:57:20",
+    "author": "thamerb777",
+    "content": "I was so bad today on my own and took a big lose. Started working on my main mistake which is rushing into trades and not wait. So i called sick for work \ud83d\ude02\ud83d\ude02\ud83d\ude02",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1336776077665632276",
+    "ts": "2025-02-05T19:10:53",
+    "author": "void",
+    "content": "I was looking at it as well\nAnd was gonna ask that one too \ud83d\ude02 \nTurnout it was a good entry too",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": "1336773382758469683"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1337089686383886418",
+    "ts": "2025-02-06T15:57:03",
+    "author": "PewSpatialPew",
+    "content": "elf earnings today. if it has good earnings, it has a good move to the upside. its like really low due to tarrifs.",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1337123866840924261",
+    "ts": "2025-02-06T18:12:52",
+    "author": "Mk",
+    "content": "Took a big L on NVDA today. Took calls above VWAP at 6:50 candle.  Got stopped out very next candle, only for the move to happen later.  - $860 loss.\n\nWiped out my gains for the week. \ud83d\ude20",
+    "score": 2,
+    "categories": [
+      "pnl-mention",
+      "ticker-action"
+    ],
+    "tickers": [
+      "NVDA",
+      "VWAP"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1337127180307533896",
+    "ts": "2025-02-06T18:26:02",
+    "author": "Nines",
+    "content": "I had a horrible entry, i was down 2.7k ish",
+    "score": 2,
+    "categories": [
+      "adj-trade"
+    ],
+    "tickers": [],
+    "reply_to": "1337125872137801858"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1337159472702947388",
+    "ts": "2025-02-06T20:34:21",
+    "author": "StevenP",
+    "content": "it held the 127 on that drop and retrace. your entry is solid as well. so i dont blame you.",
+    "score": 2,
+    "categories": [
+      "copula-judgment"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1337446591430398112",
+    "ts": "2025-02-07T15:35:15",
+    "author": "DWC2016",
+    "content": "my dumbass literally had this exact Q's drop play drawn out perfectly as my main play to look for today , and I got distracted by the NVDA distacted by a NVDA long. \ud83d\ude2d\n\nStill made some money on the play but missed 60% of the profits, still a good day but super annoying gotta LOCK IN",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "IN",
+      "NVDA",
+      "LOCK"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1337473809120366602",
+    "ts": "2025-02-07T17:23:25",
+    "author": "Royal191",
+    "content": "perfect entry! do you take partials or do you hold your full position?",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": "1337473373529444414"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1337474255046053918",
+    "ts": "2025-02-07T17:25:11",
+    "author": "void",
+    "content": "perfect entry indeed \ud83e\udd79",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1337478373047406767",
+    "ts": "2025-02-07T17:41:33",
+    "author": "Luke",
+    "content": "super clean entry. That was my thesis coming into today on AAPL. I didn\u2019t really realize PDH was in that key level. I was so focused on longing AAPL rather than shorting it. That was a Pop & Fade entry right?",
+    "score": 2,
+    "categories": [
+      "adj-trade"
+    ],
+    "tickers": [
+      "AAPL",
+      "PDH"
+    ],
+    "reply_to": "1337473373529444414"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1337493515990466662",
+    "ts": "2025-02-07T18:41:43",
+    "author": "PewSpatialPew",
+    "content": "has a good move up to 400$ ish",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1337530270865297412",
+    "ts": "2025-02-07T21:07:46",
+    "author": "ace",
+    "content": "great trade ! what gave you the notion AAPL would be heavy to the downside today?",
+    "score": 2,
+    "categories": [
+      "adj-trade"
+    ],
+    "tickers": [
+      "AAPL"
+    ],
+    "reply_to": "1337498561113493645"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1337533818034458839",
+    "ts": "2025-02-07T21:21:52",
+    "author": "FarzinM",
+    "content": "Hey <@1121621751764369501> great trade on AAPL... I was looking at your chart and was wondering where your entry was?",
+    "score": 2,
+    "categories": [
+      "adj-trade"
+    ],
+    "tickers": [
+      "AAPL"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1338602191216181300",
+    "ts": "2025-02-10T20:07:12",
+    "author": "Gomo",
+    "content": "i looked into it myself with spx and ES\nSo I'll only go spx heavy on a good entry with a fixed stop\nand ill take profits on big moves\nwhereas es i am comfortable holding as long as it isnt going against me",
+    "score": 4,
+    "categories": [
+      "adj-trade",
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1338617918715592895",
+    "ts": "2025-02-10T21:09:42",
+    "author": "Nines",
+    "content": "I place my stop loss where break of structure is, so it depends on the setup if i get a bad fill my stop loss will be wider",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": "1338617512799109220"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1338894221691715677",
+    "ts": "2025-02-11T15:27:37",
+    "author": "StevenP",
+    "content": "i went in super small on apple. still gaining confidence in myself but a good trade",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1338939899352449064",
+    "ts": "2025-02-11T18:29:08",
+    "author": "Lauren (lakatrades)",
+    "content": "With NVDA, I was up 2K at $131.00, held on\u2026 and, well, it didn\u2019t quite go as planned, so I\u2019m down to $600. No worries I\u2019m good! \ud83d\ude06 Made some bucks with Apple on my second trade. I usually stretch things out\u2026 but with the first trade? Nope, not stretching at all.",
+    "score": 2,
+    "categories": [
+      "pnl-mention",
+      "polar-term"
+    ],
+    "tickers": [
+      "NVDA"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1338947653081370674",
+    "ts": "2025-02-11T18:59:56",
+    "author": "PewSpatialPew",
+    "content": "hmm stopped out of my last con. ran the trade up to $554 total. covers my initial loss of $200 ish",
+    "score": 2,
+    "categories": [
+      "pnl-mention",
+      "ticker-action"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1339265707254353982",
+    "ts": "2025-02-12T16:03:46",
+    "author": "Stella",
+    "content": "$342. But tbh, this was a dumb trade I shouldn\u2019t have taken. I took the first retest and sold it because I thought it was gonna reverse to drop. But the mfer popped instead and I got mad and got back in \ud83e\udd23\ud83e\udd23\ud83e\udd23\ud83e\udd23\ud83e\udd23\ud83e\udd23 UGH I\u2019ve been failing these past few weeks",
+    "score": 4,
+    "categories": [
+      "adj-trade",
+      "pnl-mention",
+      "ticker-action"
+    ],
+    "tickers": [
+      "UGH"
+    ],
+    "reply_to": "1339265377233801257"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1339274552739631186",
+    "ts": "2025-02-12T16:38:55",
+    "author": "Stella",
+    "content": "Cussing out these damn charts and asking the Lord for Tesla to hit my pt so I can be out this dumb trade",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "ticker-action"
+    ],
+    "tickers": [],
+    "reply_to": "1339274283834282065"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1339274656074432522",
+    "ts": "2025-02-12T16:39:20",
+    "author": "Stella",
+    "content": "I got a tag under my mistakes in my journal that says \u201chorrible trade\u201d \u2026. Now I gotta make one for \u201crevenge stupid trade\u201d",
+    "score": 4,
+    "categories": [
+      "adj-trade"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1339330372198203556",
+    "ts": "2025-02-12T20:20:44",
+    "author": "Lauren (lakatrades)",
+    "content": "As long as it stays above $345.00, tomorrow should be a solid day unless, of course, Trump decides to drop another tariff bombshell.",
+    "score": 2,
+    "categories": [
+      "pnl-mention",
+      "ticker-action"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1339344279574675548",
+    "ts": "2025-02-12T21:16:00",
+    "author": "macdaddydrew",
+    "content": "You a goat. What was your strike price? I took one contract at 340 and that was like $550.",
+    "score": 2,
+    "categories": [
+      "pnl-mention",
+      "ticker-action"
+    ],
+    "tickers": [],
+    "reply_to": "1339344134397231114"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1339345345251115070",
+    "ts": "2025-02-12T21:20:14",
+    "author": "macdaddydrew",
+    "content": "Oh wow. I said it wrong. I bought the 340 calls for $540. So you bought the 339 calls? Which is I think what Tony took. I believe he had over 30 cons",
+    "score": 2,
+    "categories": [
+      "pnl-mention",
+      "ticker-action"
+    ],
+    "tickers": [],
+    "reply_to": "1339345048432545812"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1339621762136281118",
+    "ts": "2025-02-13T15:38:37",
+    "author": "DWC2016",
+    "content": "I took Q's I only made $185 today got stopped out on my last con. Really I sould have been up like $450-$500 today but had to follow my rules is what it is.",
+    "score": 2,
+    "categories": [
+      "pnl-mention",
+      "ticker-action"
+    ],
+    "tickers": [],
+    "reply_to": "1339619888138031168"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1339634480243282014",
+    "ts": "2025-02-13T16:29:09",
+    "author": "Lauren (lakatrades)",
+    "content": "Usually, I aim for the best setups - for example, two days ago, I took trades on both Apple and NVDA at different time.",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "ticker-action"
+    ],
+    "tickers": [
+      "NVDA"
+    ],
+    "reply_to": "1339634091024191861"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1339645766733398096",
+    "ts": "2025-02-13T17:14:00",
+    "author": "G.K.",
+    "content": "Two losses were a good setup but stop out on SPY first time and then a stop out on AMZN put as well.",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [
+      "AMZN",
+      "SPY"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1339650013617328251",
+    "ts": "2025-02-13T17:30:52",
+    "author": "Luke",
+    "content": "imo that was an amazing setup on NVDA, I didn\u2019t see it happen but I would take that 10/10 times. Since it was right at PDH was good because we were looking for NVDA to dip down into the PDH and bounce off it",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [
+      "PDH",
+      "NVDA"
+    ],
+    "reply_to": "1339648989561098331"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1339965337168253011",
+    "ts": "2025-02-14T14:23:51",
+    "author": "Nines",
+    "content": "Fridays can provide excellent trades",
+    "score": 2,
+    "categories": [
+      "adj-trade"
+    ],
+    "tickers": [],
+    "reply_to": "1339965262262304839"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1339965920600391801",
+    "ts": "2025-02-14T14:26:10",
+    "author": "Nines",
+    "content": "Brings volatility, youll notice days like cpi will have amazing trade opportunities",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": "1339965805512626279"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1340082640723644486",
+    "ts": "2025-02-14T22:09:59",
+    "author": "Kam",
+    "content": "haha oh man, SMCI is a wild beast \ud83d\ude05  welcome to the team, i'm kind of jealous you found this place so early in your trading career \ud83d\ude02  Tony / Jack are amazing educators and there are some great traders to learn from here",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [
+      "SMCI"
+    ],
+    "reply_to": "1340080958938026178"
+  }
+]

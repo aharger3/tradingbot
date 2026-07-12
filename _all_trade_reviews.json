@@ -1,0 +1,2174 @@
+{
+  "summary": {
+    "total_reviews": 170,
+    "by_verdict": {
+      "good": 70,
+      "mixed": 38,
+      "bad": 62
+    },
+    "by_direction": {
+      "unknown": 41,
+      "short": 32,
+      "long": 96,
+      "both": 1
+    },
+    "top_tickers": [
+      [
+        "TSLA",
+        {
+          "good": 12,
+          "mixed": 9,
+          "bad": 13
+        },
+        34
+      ],
+      [
+        "NVDA",
+        {
+          "mixed": 7,
+          "good": 8,
+          "bad": 10
+        },
+        25
+      ],
+      [
+        "AMD",
+        {
+          "good": 6,
+          "mixed": 3,
+          "bad": 9
+        },
+        18
+      ],
+      [
+        "QQQ",
+        {
+          "mixed": 4,
+          "good": 5,
+          "bad": 6
+        },
+        15
+      ],
+      [
+        "AAPL",
+        {
+          "bad": 6,
+          "mixed": 4,
+          "good": 4
+        },
+        14
+      ],
+      [
+        "NQ",
+        {
+          "bad": 2,
+          "good": 7,
+          "mixed": 2
+        },
+        11
+      ],
+      [
+        "ES-NQ",
+        {
+          "good": 8
+        },
+        8
+      ],
+      [
+        "AMZN",
+        {
+          "bad": 2,
+          "good": 5
+        },
+        7
+      ],
+      [
+        "PLTR",
+        {
+          "good": 3,
+          "bad": 2,
+          "mixed": 2
+        },
+        7
+      ],
+      [
+        "SPY",
+        {
+          "mixed": 2,
+          "bad": 2,
+          "good": 2
+        },
+        6
+      ],
+      [
+        "GOOGL",
+        {
+          "bad": 2,
+          "mixed": 2,
+          "good": 1
+        },
+        5
+      ],
+      [
+        "MU",
+        {
+          "bad": 2,
+          "good": 2
+        },
+        4
+      ],
+      [
+        "GOOG",
+        {
+          "bad": 2,
+          "mixed": 1
+        },
+        3
+      ],
+      [
+        "META",
+        {
+          "bad": 1,
+          "mixed": 1
+        },
+        2
+      ],
+      [
+        "ES",
+        {
+          "good": 2
+        },
+        2
+      ],
+      [
+        "ORCL",
+        {
+          "good": 1,
+          "mixed": 1
+        },
+        2
+      ],
+      [
+        "INTC",
+        {
+          "bad": 1
+        },
+        1
+      ],
+      [
+        "MSFT",
+        {
+          "good": 1
+        },
+        1
+      ],
+      [
+        "BGLC",
+        {
+          "bad": 1
+        },
+        1
+      ],
+      [
+        "SPX",
+        {
+          "bad": 1
+        },
+        1
+      ],
+      [
+        "MNQ",
+        {
+          "good": 1
+        },
+        1
+      ],
+      [
+        "MES",
+        {
+          "good": 1
+        },
+        1
+      ],
+      [
+        "HOOD",
+        {
+          "good": 1
+        },
+        1
+      ]
+    ],
+    "top_authors": [
+      [
+        "TonyMontana",
+        23
+      ],
+      [
+        "MambaTrades",
+        19
+      ],
+      [
+        "Jdub",
+        7
+      ],
+      [
+        "DWC2016",
+        7
+      ],
+      [
+        "jwolfe29",
+        4
+      ],
+      [
+        "Luke",
+        4
+      ],
+      [
+        "Huy",
+        3
+      ],
+      [
+        "LifeWithMikey",
+        3
+      ],
+      [
+        "FierceTiger",
+        3
+      ],
+      [
+        "305 Trader",
+        3
+      ],
+      [
+        "Lauren (lakatrades)",
+        3
+      ],
+      [
+        "Jasper -TP2 Trading",
+        3
+      ],
+      [
+        "Markellwhite16",
+        3
+      ],
+      [
+        "Viper",
+        3
+      ],
+      [
+        "Patel_Trades",
+        3
+      ]
+    ],
+    "top_channels": [
+      [
+        "trading-floor",
+        86
+      ],
+      [
+        "trade-feedback",
+        27
+      ],
+      [
+        "scarface-alerts",
+        23
+      ],
+      [
+        "futures-alerts",
+        19
+      ],
+      [
+        "swing-ideas",
+        8
+      ],
+      [
+        "jdub-alerts",
+        5
+      ],
+      [
+        "options-trade-reviews",
+        1
+      ],
+      [
+        "backtesting",
+        1
+      ]
+    ],
+    "date_range": {
+      "earliest": "2024-04-04T19:00:16",
+      "latest": "2026-06-24T14:00:21"
+    }
+  },
+  "reviews": [
+    {
+      "ticker": "AMD",
+      "direction": "unknown",
+      "verdict": "good",
+      "reason": "Stuck to plan, executed properly, managed risk perfectly — solid setup that just didn't play out as hoped",
+      "pnl": "N/A",
+      "lesson": "N/A",
+      "author": "Hayden",
+      "timestamp": "2025-07-09T20:37:09",
+      "channel": "options-trade-reviews"
+    },
+    {
+      "ticker": "AMD",
+      "direction": "short",
+      "verdict": "mixed",
+      "reason": "Had the right idea that AMD was reversing, but best entry was at the 167 level (PDH/key level). Entry was suboptimal though trade was managed well otherwise",
+      "pnl": "N/A",
+      "lesson": "Be careful shorting in a downtrend if overextended; look for entries at key levels",
+      "author": "Jdub",
+      "timestamp": "2024-05-29T20:20:06",
+      "channel": "trade-feedback"
+    },
+    {
+      "ticker": "TSLA",
+      "direction": "long",
+      "verdict": "good",
+      "reason": "Great clean retest setup — a textbook entry for the strategy",
+      "pnl": "N/A",
+      "lesson": "N/A",
+      "author": "👑 of Puts",
+      "timestamp": "2024-07-19T17:57:30",
+      "channel": "trade-feedback"
+    },
+    {
+      "ticker": "NVDA",
+      "direction": "long",
+      "verdict": "mixed",
+      "reason": "Not a bad long, but there were better names to long (TSLA, AMZN, AAPL) showing more relative strength that day",
+      "pnl": "N/A",
+      "lesson": "N/A",
+      "author": "Jdub",
+      "timestamp": "2024-09-10T21:34:05",
+      "channel": "trade-feedback"
+    },
+    {
+      "ticker": "NVDA",
+      "direction": "long",
+      "verdict": "good",
+      "reason": "Re-tested $123.13 which was a prior turning point level from August 29 on the 30-min chart — a solid entry point",
+      "pnl": "N/A",
+      "lesson": "N/A",
+      "author": "RonDo",
+      "timestamp": "2024-09-26T00:58:09",
+      "channel": "trade-feedback"
+    },
+    {
+      "ticker": "NVDA",
+      "direction": "short",
+      "verdict": "mixed",
+      "reason": "Not a bad trade and would have worked out, but there were better setups like AAPL. By the time the premarket lows broke on NVDA most of the move was already done",
+      "pnl": "N/A",
+      "lesson": "N/A",
+      "author": "Mar",
+      "timestamp": "2025-01-10T23:53:39",
+      "channel": "trade-feedback"
+    },
+    {
+      "ticker": "QQQ",
+      "direction": "long",
+      "verdict": "mixed",
+      "reason": "Textbook 5-min low retest with a nice rejection candle, but stop was way too tight — stopped out just before the flush",
+      "pnl": "N/A",
+      "lesson": "Stop should be placed above the impulsive candle that broke the range",
+      "author": "Mar",
+      "timestamp": "2025-01-11T00:23:13",
+      "channel": "trade-feedback"
+    },
+    {
+      "ticker": "AAPL",
+      "direction": "long",
+      "verdict": "bad",
+      "reason": "Low probability trade — volume and price action did not provide confirmation for going long; some FOMO after hesitating",
+      "pnl": "N/A",
+      "lesson": "N/A",
+      "author": "BrokeAintNoJoke",
+      "timestamp": "2025-01-07T21:40:15",
+      "channel": "trade-feedback"
+    },
+    {
+      "ticker": "GOOG",
+      "direction": "unknown",
+      "verdict": "bad",
+      "reason": "No valid trade on GOOG until way late in the day — no key levels were retested per strict system using OBs and FVGs",
+      "pnl": "N/A",
+      "lesson": "N/A",
+      "author": "crunchybrewski",
+      "timestamp": "2024-08-23T17:54:49",
+      "channel": "trade-feedback"
+    },
+    {
+      "ticker": "QQQ",
+      "direction": "long",
+      "verdict": "good",
+      "reason": "Beautiful entry — retested the 5-min opening range low with confirmation",
+      "pnl": "N/A",
+      "lesson": "N/A",
+      "author": "crunchybrewski",
+      "timestamp": "2024-08-23T17:54:49",
+      "channel": "trade-feedback"
+    },
+    {
+      "ticker": "TSLA",
+      "direction": "long",
+      "verdict": "good",
+      "reason": "$250 on 1 contract is solid money",
+      "pnl": "+$250",
+      "lesson": "N/A",
+      "author": "EeveeWinter",
+      "timestamp": "2025-12-16T15:42:43",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "TSLA",
+      "direction": "long",
+      "verdict": "mixed",
+      "reason": "Sold too early after the first push, should have held longer for more profit",
+      "pnl": "N/A",
+      "lesson": "Let winners run after a good entry",
+      "author": "FraggDieb",
+      "timestamp": "2025-12-16T20:00:34",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "META",
+      "direction": "long",
+      "verdict": "bad",
+      "reason": "Took 2 PDH retest entries and both were losers",
+      "pnl": "N/A",
+      "lesson": "N/A",
+      "author": "Jason",
+      "timestamp": "2025-12-22T15:07:13",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "TSLA",
+      "direction": "long",
+      "verdict": "bad",
+      "reason": "No alignment with QQQ price action and poor volatility day",
+      "pnl": "N/A",
+      "lesson": "Check broader market alignment and volatility before taking a setup",
+      "author": "Stan",
+      "timestamp": "2025-12-22T18:31:58",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "TSLA",
+      "direction": "long",
+      "verdict": "good",
+      "reason": "Used strategy from the group and made a quick $350 on 2 contracts",
+      "pnl": "+$350",
+      "lesson": "N/A",
+      "author": "beyim99",
+      "timestamp": "2026-01-05T16:01:53",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "MU",
+      "direction": "long",
+      "verdict": "bad",
+      "reason": "Bought at the very top and lost $345 in less than 5 minutes",
+      "pnl": "-$345",
+      "lesson": "Don't buy at the top of a move — wait for pullback",
+      "author": "Manny.o",
+      "timestamp": "2026-01-12T19:08:42",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "GOOGL",
+      "direction": "long",
+      "verdict": "bad",
+      "reason": "Got $100 of slippage on 4 calls due to terrible fill",
+      "pnl": "-$100",
+      "lesson": "Watch fill quality — use limit orders",
+      "author": "jwolfe29",
+      "timestamp": "2026-01-13T14:48:55",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "MU",
+      "direction": "unknown",
+      "verdict": "good",
+      "reason": "Skipped when something didn't feel right, then watched it take off — good discipline",
+      "pnl": "N/A",
+      "lesson": "Trust intuition — skipping a trade that doesn't feel right is valid",
+      "author": "Huy",
+      "timestamp": "2026-01-29T00:30:19",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "NVDA",
+      "direction": "unknown",
+      "verdict": "good",
+      "reason": "Avoided NVDA which didn't work out — good discipline to pass",
+      "pnl": "N/A",
+      "lesson": "Sometimes not trading is the best trade",
+      "author": "Huy",
+      "timestamp": "2026-01-29T00:30:19",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "NVDA",
+      "direction": "long",
+      "verdict": "bad",
+      "reason": "Let it hit full stop even though could have cut earlier — poor active management",
+      "pnl": "-$400",
+      "lesson": "Cut losses early; don't wait for the stop to take you out",
+      "author": "ZTrades",
+      "timestamp": "2026-01-29T00:39:12",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "AMD",
+      "direction": "long",
+      "verdict": "bad",
+      "reason": "Broke one-trade-per-day rule after NVDA loss and revenge traded AMD — discipline breakdown",
+      "pnl": "N/A",
+      "lesson": "Stick to rules after a loss; don't revenge trade",
+      "author": "ZTrades",
+      "timestamp": "2026-01-29T00:39:12",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "AMZN",
+      "direction": "unknown",
+      "verdict": "bad",
+      "reason": "Forgot patience and entered a trade too tempting to pass up",
+      "pnl": "N/A",
+      "lesson": "Patience is key — don't let a tempting setup override discipline",
+      "author": "Royal191",
+      "timestamp": "2026-03-17T13:32:23",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "TSLA",
+      "direction": "unknown",
+      "verdict": "bad",
+      "reason": "Chased a good trade, broke rules, turned a $1500 loss into $3500 trying to make it back",
+      "pnl": "-$3,500",
+      "lesson": "Never revenge trade — accepting a loss is cheaper than chasing it",
+      "author": "Z33TRADES",
+      "timestamp": "2026-04-09T17:40:26",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "AMD",
+      "direction": "unknown",
+      "verdict": "bad",
+      "reason": "Chased and broke rules trying to recover TSLA loss, compounding damage",
+      "pnl": "N/A",
+      "lesson": "N/A",
+      "author": "Z33TRADES",
+      "timestamp": "2026-04-09T17:40:26",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "AMD",
+      "direction": "long",
+      "verdict": "bad",
+      "reason": "Got scared when price came back, sold 1 contract, bought back in, sold again — inconsistent management",
+      "pnl": "N/A",
+      "lesson": "Stick to plan; don't panic and flip mid-trade",
+      "author": "JP400",
+      "timestamp": "2026-04-22T01:48:06",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "INTC",
+      "direction": "long",
+      "verdict": "bad",
+      "reason": "Held through -$1200 drawdown then sold for only $100 profit",
+      "pnl": "-$240",
+      "lesson": "Hold to thesis or cut early — don't sit through massive drawdowns for tiny profits",
+      "author": "Austtinn",
+      "timestamp": "2026-05-01T14:25:54",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "NVDA",
+      "direction": "long",
+      "verdict": "good",
+      "reason": "PDH reclaim on 5min with unusually high premarket volume (7M vs typical 1.5-3M) signaling institutional buying",
+      "pnl": "N/A",
+      "lesson": "High premarket volume signals institutional interest",
+      "author": "Dice56",
+      "timestamp": "2026-05-13T15:02:23",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "NVDA",
+      "direction": "long",
+      "verdict": "bad",
+      "reason": "Entered emotionally, got stopped out right before price bounced off PDH for big recovery",
+      "pnl": "N/A",
+      "lesson": "Don't trade emotionally — wait for setup to develop",
+      "author": "JP400",
+      "timestamp": "2026-05-13T21:05:16",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "NVDA",
+      "direction": "short",
+      "verdict": "bad",
+      "reason": "Looked decent but hit a daily wick zone causing chop instead of continuation",
+      "pnl": "N/A",
+      "lesson": "Avoid daily wick zones — they produce chop",
+      "author": "Moe",
+      "timestamp": "2026-05-15T18:18:24",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "TSLA",
+      "direction": "short",
+      "verdict": "bad",
+      "reason": "Looked decent but hit a daily wick zone causing chop",
+      "pnl": "N/A",
+      "lesson": "N/A",
+      "author": "Moe",
+      "timestamp": "2026-05-15T18:18:24",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "AMZN",
+      "direction": "short",
+      "verdict": "good",
+      "reason": "Beautiful trade entry off previous day low (PDL)",
+      "pnl": "N/A",
+      "lesson": "N/A",
+      "author": "LifeWithMikey",
+      "timestamp": "2026-06-12T01:16:11",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "TSLA",
+      "direction": "long",
+      "verdict": "good",
+      "reason": "Beautiful trade, outlined in premarket prep, +$12K realized intraday plus trailers",
+      "pnl": "+$12,000",
+      "lesson": "N/A",
+      "author": "Jdub",
+      "timestamp": "2024-10-24T20:02:16",
+      "channel": "jdub-alerts"
+    },
+    {
+      "ticker": "TSLA",
+      "direction": "long",
+      "verdict": "good",
+      "reason": "Clear mind after $6K drawdown week, open to both sides, made $16K",
+      "pnl": "+$16,000",
+      "lesson": "Reset mentally after losing week",
+      "author": "Jdub",
+      "timestamp": "2025-02-25T16:59:17",
+      "channel": "jdub-alerts"
+    },
+    {
+      "ticker": "MU",
+      "direction": "unknown",
+      "verdict": "bad",
+      "reason": "Deep red in morning on MU trade",
+      "pnl": "N/A",
+      "lesson": "N/A",
+      "author": "Jdub",
+      "timestamp": "2026-01-29T16:36:38",
+      "channel": "jdub-alerts"
+    },
+    {
+      "ticker": "NVDA",
+      "direction": "unknown",
+      "verdict": "good",
+      "reason": "Solid trade that turned day from deep red to green",
+      "pnl": "N/A",
+      "lesson": "N/A",
+      "author": "Jdub",
+      "timestamp": "2026-01-29T16:36:38",
+      "channel": "jdub-alerts"
+    },
+    {
+      "ticker": "TSLA",
+      "direction": "unknown",
+      "verdict": "good",
+      "reason": "Solid trade that helped turn day from red to green",
+      "pnl": "N/A",
+      "lesson": "N/A",
+      "author": "Jdub",
+      "timestamp": "2026-01-29T16:36:38",
+      "channel": "jdub-alerts"
+    },
+    {
+      "ticker": "ES",
+      "direction": "long",
+      "verdict": "good",
+      "reason": "Clean level bounce when NQ swept overnight lows — textbook setup",
+      "pnl": "N/A",
+      "lesson": "N/A",
+      "author": "MambaTrades",
+      "timestamp": "2025-04-01T14:56:06",
+      "channel": "futures-alerts"
+    },
+    {
+      "ticker": "NQ",
+      "direction": "long",
+      "verdict": "bad",
+      "reason": "Chased the top on NQ and got smoked",
+      "pnl": "N/A",
+      "lesson": "Don't chase tops",
+      "author": "MambaTrades",
+      "timestamp": "2025-07-29T13:49:39",
+      "channel": "futures-alerts"
+    },
+    {
+      "ticker": "ES",
+      "direction": "unknown",
+      "verdict": "good",
+      "reason": "Divergence setup between ES and NQ made good trade opportunity",
+      "pnl": "N/A",
+      "lesson": "N/A",
+      "author": "MambaTrades",
+      "timestamp": "2025-09-15T13:57:49",
+      "channel": "futures-alerts"
+    },
+    {
+      "ticker": "NQ",
+      "direction": "unknown",
+      "verdict": "good",
+      "reason": "Divergence setup between ES and NQ made good trade opportunity",
+      "pnl": "N/A",
+      "lesson": "N/A",
+      "author": "MambaTrades",
+      "timestamp": "2025-09-15T13:57:49",
+      "channel": "futures-alerts"
+    },
+    {
+      "ticker": "NQ",
+      "direction": "short",
+      "verdict": "good",
+      "reason": "Nice short to previous day low, caught 150 points for $5700",
+      "pnl": "+$5,700",
+      "lesson": "N/A",
+      "author": "MambaTrades",
+      "timestamp": "2025-10-16T18:25:51",
+      "channel": "futures-alerts"
+    },
+    {
+      "ticker": "NQ",
+      "direction": "long",
+      "verdict": "good",
+      "reason": "Solid trade to hourly high at 25860",
+      "pnl": "N/A",
+      "lesson": "N/A",
+      "author": "MambaTrades",
+      "timestamp": "2025-12-10T20:14:30",
+      "channel": "futures-alerts"
+    },
+    {
+      "ticker": "NQ",
+      "direction": "unknown",
+      "verdict": "mixed",
+      "reason": "Best trade on NQ that day but risky due to red folder news at the time",
+      "pnl": "N/A",
+      "lesson": "Be cautious around red folder news events",
+      "author": "MambaTrades",
+      "timestamp": "2026-01-06T14:58:21",
+      "channel": "futures-alerts"
+    },
+    {
+      "ticker": "ES-NQ",
+      "direction": "short",
+      "verdict": "good",
+      "reason": "Displacement was clear, made $4k on the short",
+      "pnl": "+$4,000",
+      "lesson": "N/A",
+      "author": "MambaTrades",
+      "timestamp": "2026-02-03T15:18:45",
+      "channel": "futures-alerts"
+    },
+    {
+      "ticker": "ES-NQ",
+      "direction": "short",
+      "verdict": "good",
+      "reason": "Inverse to previous day high was a solid trade setup",
+      "pnl": "N/A",
+      "lesson": "N/A",
+      "author": "MambaTrades",
+      "timestamp": "2026-03-04T15:31:48",
+      "channel": "futures-alerts"
+    },
+    {
+      "ticker": "NQ",
+      "direction": "long",
+      "verdict": "good",
+      "reason": "Best trade so far, 5m gap bounce and displacement out",
+      "pnl": "N/A",
+      "lesson": "N/A",
+      "author": "MambaTrades",
+      "timestamp": "2026-03-05T15:02:25",
+      "channel": "futures-alerts"
+    },
+    {
+      "ticker": "NQ",
+      "direction": "short",
+      "verdict": "good",
+      "reason": "2 best trades of day, 5m gap rejections and displacement",
+      "pnl": "N/A",
+      "lesson": "N/A",
+      "author": "MambaTrades",
+      "timestamp": "2026-03-27T15:29:27",
+      "channel": "futures-alerts"
+    },
+    {
+      "ticker": "ES-NQ",
+      "direction": "long",
+      "verdict": "good",
+      "reason": "Best trade, displacement, 1m gap bounce targeting PDH and daily gap",
+      "pnl": "N/A",
+      "lesson": "N/A",
+      "author": "MambaTrades",
+      "timestamp": "2026-03-31T14:07:47",
+      "channel": "futures-alerts"
+    },
+    {
+      "ticker": "ES-NQ",
+      "direction": "short",
+      "verdict": "good",
+      "reason": "Price respected 1hr bearish gap, solid short to the lows",
+      "pnl": "N/A",
+      "lesson": "N/A",
+      "author": "MambaTrades",
+      "timestamp": "2026-04-28T15:51:59",
+      "channel": "futures-alerts"
+    },
+    {
+      "ticker": "NQ",
+      "direction": "short",
+      "verdict": "good",
+      "reason": "Best trade of day, sell setup to London lows",
+      "pnl": "N/A",
+      "lesson": "N/A",
+      "author": "MambaTrades",
+      "timestamp": "2026-04-30T15:07:53",
+      "channel": "futures-alerts"
+    },
+    {
+      "ticker": "NQ",
+      "direction": "unknown",
+      "verdict": "mixed",
+      "reason": "No great setups, only B-grade for eval accounts",
+      "pnl": "N/A",
+      "lesson": "N/A",
+      "author": "MambaTrades",
+      "timestamp": "2026-05-05T15:08:25",
+      "channel": "futures-alerts"
+    },
+    {
+      "ticker": "ES-NQ",
+      "direction": "long",
+      "verdict": "good",
+      "reason": "Solid trade to London highs of the 1m FVG",
+      "pnl": "N/A",
+      "lesson": "N/A",
+      "author": "MambaTrades",
+      "timestamp": "2026-05-07T14:07:10",
+      "channel": "futures-alerts"
+    },
+    {
+      "ticker": "ES-NQ",
+      "direction": "both",
+      "verdict": "good",
+      "reason": "Best setups: long to London lows and short to unfilled 4hr gap",
+      "pnl": "N/A",
+      "lesson": "N/A",
+      "author": "MambaTrades",
+      "timestamp": "2026-05-12T14:46:20",
+      "channel": "futures-alerts"
+    },
+    {
+      "ticker": "ES-NQ",
+      "direction": "unknown",
+      "verdict": "good",
+      "reason": "Solid trade setup that extended to 1:1 RR",
+      "pnl": "N/A",
+      "lesson": "N/A",
+      "author": "MambaTrades",
+      "timestamp": "2026-05-19T14:21:03",
+      "channel": "futures-alerts"
+    },
+    {
+      "ticker": "ES-NQ",
+      "direction": "short",
+      "verdict": "good",
+      "reason": "15m gap rejection with divergence targeting Asia lows, 1m gap continuation to PDL",
+      "pnl": "N/A",
+      "lesson": "N/A",
+      "author": "MambaTrades",
+      "timestamp": "2026-06-24T14:00:21",
+      "channel": "futures-alerts"
+    },
+    {
+      "ticker": "GOOG",
+      "direction": "long",
+      "verdict": "bad",
+      "reason": "Stopped out, news messed up the 4h buy side liquidity thesis despite sound analysis",
+      "pnl": "N/A",
+      "lesson": "News can disrupt technical setups regardless of thesis quality",
+      "author": "TonyMontana",
+      "timestamp": "2024-04-04T19:00:16",
+      "channel": "scarface-alerts"
+    },
+    {
+      "ticker": "AMD",
+      "direction": "long",
+      "verdict": "good",
+      "reason": "Laid out break/retest plan in premarket and executed simply — great trade",
+      "pnl": "N/A",
+      "lesson": "Have a plan and follow it",
+      "author": "TonyMontana",
+      "timestamp": "2024-07-05T14:08:22",
+      "channel": "scarface-alerts"
+    },
+    {
+      "ticker": "AMZN",
+      "direction": "short",
+      "verdict": "good",
+      "reason": "Market dropping and AMZN was the best trade to the downside",
+      "pnl": "N/A",
+      "lesson": "N/A",
+      "author": "TonyMontana",
+      "timestamp": "2024-08-02T14:16:26",
+      "channel": "scarface-alerts"
+    },
+    {
+      "ticker": "AMZN",
+      "direction": "unknown",
+      "verdict": "good",
+      "reason": "Good move even without full displacement",
+      "pnl": "N/A",
+      "lesson": "N/A",
+      "author": "TonyMontana",
+      "timestamp": "2024-08-28T13:45:45",
+      "channel": "scarface-alerts"
+    },
+    {
+      "ticker": "TSLA",
+      "direction": "long",
+      "verdict": "good",
+      "reason": "Higher probability day after earnings, used HOD scale to lock profits and let rest run",
+      "pnl": "N/A",
+      "lesson": "Use HOD scale to lock profits then let rest run",
+      "author": "TonyMontana",
+      "timestamp": "2024-10-24T18:59:11",
+      "channel": "scarface-alerts"
+    },
+    {
+      "ticker": "GOOGL",
+      "direction": "unknown",
+      "verdict": "mixed",
+      "reason": "Same setup didn't work yesterday but ran nicely today — probabilistic outcomes",
+      "pnl": "N/A",
+      "lesson": "Good setup doesn't always work; don't abandon strategy after one loss",
+      "author": "TonyMontana",
+      "timestamp": "2025-01-31T15:00:51",
+      "channel": "scarface-alerts"
+    },
+    {
+      "ticker": "TSLA",
+      "direction": "unknown",
+      "verdict": "bad",
+      "reason": "Bigger loss than wanted, had thesis but trade played out against him",
+      "pnl": "-$11,000",
+      "lesson": "N/A",
+      "author": "TonyMontana",
+      "timestamp": "2025-02-10T15:45:07",
+      "channel": "scarface-alerts"
+    },
+    {
+      "ticker": "AAPL",
+      "direction": "unknown",
+      "verdict": "mixed",
+      "reason": "Good setup right into open with low risk but got stopped for small loss",
+      "pnl": "small loss",
+      "lesson": "N/A",
+      "author": "TonyMontana",
+      "timestamp": "2025-03-11T13:36:42",
+      "channel": "scarface-alerts"
+    },
+    {
+      "ticker": "TSLA",
+      "direction": "unknown",
+      "verdict": "mixed",
+      "reason": "First trade lost -$2,900 because market conditions weren't ready (no SPY break). Second won after waiting for SPY break and re-entering with 84% rule.",
+      "pnl": "-$2,900",
+      "lesson": "Don't freak after loss, zoom out, wait for market confirmation, re-enter",
+      "author": "TonyMontana",
+      "timestamp": "2025-05-01T14:40:27",
+      "channel": "scarface-alerts"
+    },
+    {
+      "ticker": "TSLA",
+      "direction": "unknown",
+      "verdict": "mixed",
+      "reason": "Lost $20k on 3 swings combined but one TSLA swing made $90k+ — risk/reward worked out",
+      "pnl": "+$70,000",
+      "lesson": "Size down on swings, risk/reward works out if trade moves in timely manner",
+      "author": "TonyMontana",
+      "timestamp": "2025-05-21T19:05:21",
+      "channel": "scarface-alerts"
+    },
+    {
+      "ticker": "SPY",
+      "direction": "unknown",
+      "verdict": "mixed",
+      "reason": "First one-candle rule trade worked, second 84% rule failed because choppy day",
+      "pnl": "N/A",
+      "lesson": "Market context matters for which setups work",
+      "author": "TonyMontana",
+      "timestamp": "2025-07-31T14:23:52",
+      "channel": "scarface-alerts"
+    },
+    {
+      "ticker": "TSLA",
+      "direction": "long",
+      "verdict": "good",
+      "reason": "Clear thesis TSLA was main focus, relative strength paid off, $60k in record time",
+      "pnl": "+$60,000",
+      "lesson": "Patience and focusing on strongest name pays off",
+      "author": "TonyMontana",
+      "timestamp": "2025-09-12T14:04:46",
+      "channel": "scarface-alerts"
+    },
+    {
+      "ticker": "AAPL",
+      "direction": "unknown",
+      "verdict": "good",
+      "reason": "Solid trade achieving 9R multiple on trailers",
+      "pnl": "N/A",
+      "lesson": "N/A",
+      "author": "TonyMontana",
+      "timestamp": "2025-09-16T14:10:52",
+      "channel": "scarface-alerts"
+    },
+    {
+      "ticker": "TSLA",
+      "direction": "long",
+      "verdict": "good",
+      "reason": "Perfect move to upside as outlined in premarket gameplan",
+      "pnl": "N/A",
+      "lesson": "Follow your premarket plan",
+      "author": "TonyMontana",
+      "timestamp": "2025-09-29T13:31:58",
+      "channel": "scarface-alerts"
+    },
+    {
+      "ticker": "TSLA",
+      "direction": "long",
+      "verdict": "good",
+      "reason": "Followed premarket plan, simple B&R strategy delivered 100%+ on Friday",
+      "pnl": "+$40,000",
+      "lesson": "Keep it simple: follow plan, focus on one name, execute the setup",
+      "author": "TonyMontana",
+      "timestamp": "2025-12-12T15:01:11",
+      "channel": "scarface-alerts"
+    },
+    {
+      "ticker": "TSLA",
+      "direction": "long",
+      "verdict": "mixed",
+      "reason": "Great trade but cut late — peaked $45k realized $32k because no continuation at ATH",
+      "pnl": "+$32,000",
+      "lesson": "N/A",
+      "author": "TonyMontana",
+      "timestamp": "2025-12-17T18:47:15",
+      "channel": "scarface-alerts"
+    },
+    {
+      "ticker": "GOOGL",
+      "direction": "unknown",
+      "verdict": "good",
+      "reason": "Straight from premarket gameplan, contracts moved nicely, done in 25 minutes on Friday",
+      "pnl": "N/A",
+      "lesson": "N/A",
+      "author": "TonyMontana",
+      "timestamp": "2026-01-09T14:53:24",
+      "channel": "scarface-alerts"
+    },
+    {
+      "ticker": "TSLA",
+      "direction": "unknown",
+      "verdict": "good",
+      "reason": "Best trade of the day while everything else was untradeable",
+      "pnl": "N/A",
+      "lesson": "N/A",
+      "author": "TonyMontana",
+      "timestamp": "2026-03-03T15:02:58",
+      "channel": "scarface-alerts"
+    },
+    {
+      "ticker": "AMD",
+      "direction": "long",
+      "verdict": "good",
+      "reason": "Held through consolidation and it paid off",
+      "pnl": "N/A",
+      "lesson": "N/A",
+      "author": "TonyMontana",
+      "timestamp": "2026-04-01T14:34:53",
+      "channel": "scarface-alerts"
+    },
+    {
+      "ticker": "QQQ",
+      "direction": "unknown",
+      "verdict": "bad",
+      "reason": "Emotional mistake caused missing easy trade that would have made $30k+",
+      "pnl": "+$2,700",
+      "lesson": "Emotions can derail even experienced traders",
+      "author": "TonyMontana",
+      "timestamp": "2026-04-15T17:11:53",
+      "channel": "scarface-alerts"
+    },
+    {
+      "ticker": "NVDA",
+      "direction": "long",
+      "verdict": "good",
+      "reason": "Main target (premarket high) hit, could scale there and let trailers ride into weekend",
+      "pnl": "N/A",
+      "lesson": "N/A",
+      "author": "TonyMontana",
+      "timestamp": "2026-04-17T14:14:49",
+      "channel": "scarface-alerts"
+    },
+    {
+      "ticker": "PLTR",
+      "direction": "unknown",
+      "verdict": "good",
+      "reason": "Great thesis was playing out, solid move",
+      "pnl": "N/A",
+      "lesson": "N/A",
+      "author": "TonyMontana",
+      "timestamp": "2026-05-01T13:41:34",
+      "channel": "scarface-alerts"
+    },
+    {
+      "ticker": "MU",
+      "direction": "unknown",
+      "verdict": "good",
+      "reason": "Textbook trade from entry to exit",
+      "pnl": "N/A",
+      "lesson": "N/A",
+      "author": "TonyMontana",
+      "timestamp": "2026-05-04T19:04:27",
+      "channel": "scarface-alerts"
+    },
+    {
+      "ticker": "TSLA",
+      "direction": "long",
+      "verdict": "mixed",
+      "reason": "Not best entry for ATH breakout long swing but FOMO made it hard to sit out",
+      "pnl": "N/A",
+      "lesson": "N/A",
+      "author": "mattyice",
+      "timestamp": "2024-12-10T15:16:13",
+      "channel": "swing-ideas"
+    },
+    {
+      "ticker": "AAPL",
+      "direction": "long",
+      "verdict": "mixed",
+      "reason": "Good swing but exited and switched to NVDA for better risk-reward given Tim Cook political risk under Trump",
+      "pnl": "N/A",
+      "lesson": "Monitor political/catalyst risk on individual positions",
+      "author": "FierceTiger",
+      "timestamp": "2025-05-18T17:03:49",
+      "channel": "swing-ideas"
+    },
+    {
+      "ticker": "AMZN",
+      "direction": "long",
+      "verdict": "good",
+      "reason": "Scaled out 80% for nice quick swing profit",
+      "pnl": "N/A",
+      "lesson": "N/A",
+      "author": "EeveeWinter",
+      "timestamp": "2025-06-09T16:56:35",
+      "channel": "swing-ideas"
+    },
+    {
+      "ticker": "AMD",
+      "direction": "long",
+      "verdict": "good",
+      "reason": "Good HTF thesis, sized to zero so could stay stress-free through weeks of drawdown, ended up 500%",
+      "pnl": "+500%",
+      "lesson": "Size to zero so you can hold through drawdown stress-free",
+      "author": "Krypto_Greys",
+      "timestamp": "2025-07-25T23:40:55",
+      "channel": "swing-ideas"
+    },
+    {
+      "ticker": "AMZN",
+      "direction": "long",
+      "verdict": "good",
+      "reason": "Higher lows in outer liquidity realm, bounced from SMA 20 retest",
+      "pnl": "N/A",
+      "lesson": "N/A",
+      "author": "305 Trader",
+      "timestamp": "2025-09-18T01:17:04",
+      "channel": "swing-ideas"
+    },
+    {
+      "ticker": "QQQ",
+      "direction": "long",
+      "verdict": "good",
+      "reason": "Pure uptrending sentiment",
+      "pnl": "N/A",
+      "lesson": "N/A",
+      "author": "305 Trader",
+      "timestamp": "2025-09-18T01:17:04",
+      "channel": "swing-ideas"
+    },
+    {
+      "ticker": "META",
+      "direction": "unknown",
+      "verdict": "mixed",
+      "reason": "Trade looked good but sat too close to stop loss too long, worried about bounce off 760",
+      "pnl": "N/A",
+      "lesson": "N/A",
+      "author": "Soopernoodle",
+      "timestamp": "2025-09-24T20:01:52",
+      "channel": "swing-ideas"
+    },
+    {
+      "ticker": "AMD",
+      "direction": "unknown",
+      "verdict": "bad",
+      "reason": "Exited early at small profit after being red many days, should have held per zero-value strategy",
+      "pnl": "small profit",
+      "lesson": "Don't exit swing early just because it's been red; trust thesis",
+      "author": "305 Trader",
+      "timestamp": "2025-10-02T13:39:01",
+      "channel": "swing-ideas"
+    },
+    {
+      "ticker": "QQQ",
+      "direction": "short",
+      "verdict": "good",
+      "reason": "Well managed risk, never technically invalidated, good trade even though it took time",
+      "pnl": "N/A",
+      "lesson": "N/A",
+      "author": "DWalt Trades",
+      "timestamp": "2025-12-09T03:30:32",
+      "channel": "backtesting"
+    },
+    {
+      "ticker": "AMD",
+      "direction": "short",
+      "verdict": "mixed",
+      "reason": "Nice concept following NVDA PDL break, but should have taken partials on way to target. AMD had trouble hitting PDL.",
+      "pnl": "N/A",
+      "lesson": "Always take partials on way to target.",
+      "author": "Luke",
+      "timestamp": "2025-01-29T00:27:20",
+      "channel": "trade-feedback"
+    },
+    {
+      "ticker": "QQQ",
+      "direction": "short",
+      "verdict": "good",
+      "reason": "After morning chop where BNRs failed, entered on clean break-and-retest of key level. Strong rejection confirmed trend. Scaled at TP1/TP2.",
+      "pnl": "N/A",
+      "lesson": "Wait through morning chop for clean setup. Scale out at targets.",
+      "author": "Lauren (lakatrades)",
+      "timestamp": "2025-03-06T18:58:32",
+      "channel": "trade-feedback"
+    },
+    {
+      "ticker": "MSFT",
+      "direction": "long",
+      "verdict": "good",
+      "reason": "Strong BNR at 5-min ORH with clean break/retest. Momentum pushing to fill premarket gap. Managed exit on trendline break.",
+      "pnl": "N/A",
+      "lesson": "Clean BNR at ORH with gap-fill thesis is high-probability.",
+      "author": "Lauren (lakatrades)",
+      "timestamp": "2025-03-06T19:09:21",
+      "channel": "trade-feedback"
+    },
+    {
+      "ticker": "QQQ",
+      "direction": "short",
+      "verdict": "bad",
+      "reason": "Setup looked perfect but was chop. 84% rule failed and didn't hit main target. Got stopped out.",
+      "pnl": "N/A",
+      "lesson": "Perfect-looking setups can be chop. Factor in time of day and market context.",
+      "author": "DWC2016",
+      "timestamp": "2025-03-07T03:38:23",
+      "channel": "trade-feedback"
+    },
+    {
+      "ticker": "NVDA",
+      "direction": "long",
+      "verdict": "bad",
+      "reason": "Entered 84% rule but shouldn't have because first entry wasn't stopped out yet.",
+      "pnl": "N/A",
+      "lesson": "Don't enter re-entry if original position hasn't been invalidated.",
+      "author": "Luke",
+      "timestamp": "2025-04-28T16:46:59",
+      "channel": "trade-feedback"
+    },
+    {
+      "ticker": "PLTR",
+      "direction": "unknown",
+      "verdict": "bad",
+      "reason": "Lousy trade — BnR with only 3/5 confidence. -1R loss.",
+      "pnl": "-1R",
+      "lesson": "Don't take trades when entry confidence is low.",
+      "author": "Kam",
+      "timestamp": "2025-06-26T19:52:29",
+      "channel": "trade-feedback"
+    },
+    {
+      "ticker": "NVDA",
+      "direction": "unknown",
+      "verdict": "mixed",
+      "reason": "Good setups but market structure changed causing three consecutive stop-outs.",
+      "pnl": "N/A",
+      "lesson": "Good setups lose when market structure shifts. Adapt sizing or step back.",
+      "author": "neverBackDown",
+      "timestamp": "2025-07-09T15:42:01",
+      "channel": "trade-feedback"
+    },
+    {
+      "ticker": "AAPL",
+      "direction": "long",
+      "verdict": "good",
+      "reason": "Good trade — one candle rule retest and internal liquidity break. AAPL lost momentum but setup was correct.",
+      "pnl": "N/A",
+      "lesson": "Trade can be good even when it loses. Focus on setup and execution.",
+      "author": "Nathan",
+      "timestamp": "2025-07-21T15:33:49",
+      "channel": "trade-feedback"
+    },
+    {
+      "ticker": "AAPL",
+      "direction": "long",
+      "verdict": "mixed",
+      "reason": "Felt good about 84% rule entry because indices held and momentum was strong, but AAPL died after reclaim and retest.",
+      "pnl": "N/A",
+      "lesson": "Strong entry doesn't guarantee continuation. Watch momentum after initial pop.",
+      "author": "DSmith",
+      "timestamp": "2025-07-21T15:48:18",
+      "channel": "trade-feedback"
+    },
+    {
+      "ticker": "NVDA",
+      "direction": "long",
+      "verdict": "mixed",
+      "reason": "Good loser — solid setup with PMH/ATH retest and fib targets but stopped out. Process and risk management correct.",
+      "pnl": "N/A",
+      "lesson": "Judge trades by process, not outcome.",
+      "author": "Dcrouth21",
+      "timestamp": "2025-07-25T15:06:46",
+      "channel": "trade-feedback"
+    },
+    {
+      "ticker": "PLTR",
+      "direction": "long",
+      "verdict": "good",
+      "reason": "Planned gap-fill entry before open, PLTR showed relative strength. Captured cleanly despite fast movement.",
+      "pnl": "N/A",
+      "lesson": "Plan entries before open; use relative strength to confirm bias.",
+      "author": "Royal191",
+      "timestamp": "2025-08-20T13:02:11",
+      "channel": "trade-feedback"
+    },
+    {
+      "ticker": "ORCL",
+      "direction": "short",
+      "verdict": "good",
+      "reason": "Short targeting gap fill after confirming HTF structure break. Light size, banked $1,000.",
+      "pnl": "+$1,000",
+      "lesson": "Confirm HTF structure break. Size down when catalyst risk present.",
+      "author": "FierceTiger",
+      "timestamp": "2025-09-17T04:44:50",
+      "channel": "trade-feedback"
+    },
+    {
+      "ticker": "ORCL",
+      "direction": "short",
+      "verdict": "mixed",
+      "reason": "Perfect entry in hindsight was first red candle after PM high broke, but TikTok news made cautious approach correct.",
+      "pnl": "N/A",
+      "lesson": "News justifies extra caution even if you miss textbook entry.",
+      "author": "FierceTiger",
+      "timestamp": "2025-09-17T04:47:09",
+      "channel": "trade-feedback"
+    },
+    {
+      "ticker": "PLTR",
+      "direction": "long",
+      "verdict": "bad",
+      "reason": "FOMO entry when already overextended. Lost $84.",
+      "pnl": "-$84",
+      "lesson": "Never FOMO into overextended move.",
+      "author": "Anne",
+      "timestamp": "2025-09-19T15:25:03",
+      "channel": "trade-feedback"
+    },
+    {
+      "ticker": "PLTR",
+      "direction": "long",
+      "verdict": "mixed",
+      "reason": "Setup not bad on 5min but buying 0DTE ruined trade management.",
+      "pnl": "N/A",
+      "lesson": "Match instrument to timeframe. 0DTE cannot be managed on 5min chart.",
+      "author": "Anne",
+      "timestamp": "2025-09-20T03:07:14",
+      "channel": "trade-feedback"
+    },
+    {
+      "ticker": "PLTR",
+      "direction": "long",
+      "verdict": "mixed",
+      "reason": "Good thesis at HTF key support but cut too early before it worked out.",
+      "pnl": "N/A",
+      "lesson": "When HTF supports thesis, give trade room to breathe.",
+      "author": "Kash",
+      "timestamp": "2025-11-05T17:33:30",
+      "channel": "trade-feedback"
+    },
+    {
+      "ticker": "QQQ",
+      "direction": "short",
+      "verdict": "bad",
+      "reason": "Didn't feel right but took it anyway. Didn't trim at LOD, got hit by huge green candle.",
+      "pnl": "N/A",
+      "lesson": "Trust gut. If it doesn't feel right, don't take it. Trim partials at targets.",
+      "author": "Jay_aye11",
+      "timestamp": "2025-12-16T17:36:58",
+      "channel": "trade-feedback"
+    },
+    {
+      "ticker": "AMD",
+      "direction": "long",
+      "verdict": "mixed",
+      "reason": "Sold way too early but accepting early exit because trade could have reversed.",
+      "pnl": "N/A",
+      "lesson": "Don't beat yourself up over early exits. Focus on process.",
+      "author": "Huy",
+      "timestamp": "2026-01-21T16:19:10",
+      "channel": "trade-feedback"
+    },
+    {
+      "ticker": "SPY",
+      "direction": "long",
+      "verdict": "bad",
+      "reason": "Sold SPY calls at 1.05 but contract went to 1.185 — exited way too early, left significant profits on the table for a small loss",
+      "pnl": "-$30",
+      "lesson": "Don't exit too early; let winning trades run to target",
+      "author": "Jasper -TP2 Trading",
+      "timestamp": "2024-10-18T15:31:11",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "AAPL",
+      "direction": "long",
+      "verdict": "bad",
+      "reason": "Entered wrong strike price — bought 237.5c at .54 instead of intended 235c, delta too low at 0.27 so underlying needs to move a lot to profit",
+      "pnl": "+$80",
+      "lesson": "Double-check strike price before entry; wrong strike kills probability",
+      "author": "Mike Y",
+      "timestamp": "2024-10-22T16:12:16",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "NVDA",
+      "direction": "long",
+      "verdict": "bad",
+      "reason": "Made $3k on NVDA in the morning but couldn't sit on hands, overtraded and gave almost all of it back, ending the day with only $100 total",
+      "pnl": "+$100 (from $3k peak)",
+      "lesson": "Sit on your hands after a big win; don't overtrade profits away",
+      "author": "Jasper -TP2 Trading",
+      "timestamp": "2024-10-22T20:06:03",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "NVDA",
+      "direction": "long",
+      "verdict": "bad",
+      "reason": "Lost $580 on NVDA and regrets exiting early — should have held the position longer for the full move",
+      "pnl": "-$580",
+      "lesson": "Trust your thesis and hold for the full move if the setup is still valid",
+      "author": "Jasper -TP2 Trading",
+      "timestamp": "2024-10-24T19:34:56",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "TSLA",
+      "direction": "long",
+      "verdict": "bad",
+      "reason": "Bad entry on TSLA 285 calls — poor entry price forced exit at breakeven, while intended entry of 280 calls at $5 would have doubled to $10",
+      "pnl": "$0 (breakeven)",
+      "lesson": "Precise entry is critical; a bad entry ruins the entire setup",
+      "author": "Heiken-Sushi",
+      "timestamp": "2024-11-06T17:15:15",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "NVDA",
+      "direction": "long",
+      "verdict": "mixed",
+      "reason": "Entered NVDA too early, was stressed the whole time, let it ride past stop loss to give breathing room — it eventually turned around and worked out but risk management was poor",
+      "pnl": "N/A",
+      "lesson": "Enter at the right time and respect your stop loss; don't rely on luck",
+      "author": "OptionPro",
+      "timestamp": "2024-12-04T17:28:39",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "AMZN",
+      "direction": "long",
+      "verdict": "bad",
+      "reason": "Got a good entry on AMZN at PMH test but got scared when it pulled back, sold prematurely for a small loss instead of holding",
+      "pnl": "-$1",
+      "lesson": "Trust your analysis; don't let fear make you exit good entries early",
+      "author": "demchy19",
+      "timestamp": "2024-12-03T16:29:03",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "TSLA",
+      "direction": "long",
+      "verdict": "bad",
+      "reason": "Blew through mental stop loss on Tesla, was down $700 — reckless risk management ignoring own stop levels",
+      "pnl": "-$700 (peak drawdown)",
+      "lesson": "Never blow through your stop losses; respect your risk limits",
+      "author": "Stella",
+      "timestamp": "2024-12-10T15:13:33",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "TSLA",
+      "direction": "long",
+      "verdict": "bad",
+      "reason": "Took TSLA $425 call but exited on a small loss due to inexperience, leaving significant profit on the table",
+      "pnl": "small loss (N/A)",
+      "lesson": "Inexperience leads to exiting too early; gain confidence to hold winners",
+      "author": "MAN786",
+      "timestamp": "2024-12-13T15:38:04",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "SPY",
+      "direction": "long",
+      "verdict": "mixed",
+      "reason": "Took 5min ORB break and retest on SPY, sized down due to already being up for the week (good risk management) but left a ton of money on the table after a strong bounce",
+      "pnl": "+10-15%",
+      "lesson": "Sizing down protects profits but can cap gains; balance risk management with opportunity",
+      "author": "Markellwhite16",
+      "timestamp": "2024-12-27T18:56:10",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "BGLC",
+      "direction": "unknown",
+      "verdict": "bad",
+      "reason": "Was too aggressive on the backside of the trade, leading to a $3k-$4k loss — turned a $10k potential day into roughly flat after a series of losses",
+      "pnl": "-$3,000 to -$4,000",
+      "lesson": "Don't get reckless after a win; one over-aggressive trade can wipe out gains",
+      "author": "Andy Pyramidoor (Biz._Decision)",
+      "timestamp": "2025-01-02T22:25:48",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "NVDA",
+      "direction": "long",
+      "verdict": "good",
+      "reason": "NVDA trade was a great trade but exited too early just above high of day while it kept pushing — still profitable but could have had 20%+ more",
+      "pnl": "profitable (N/A)",
+      "lesson": "Hold longer and wait for signs of weakness before exiting",
+      "author": "DWC2016",
+      "timestamp": "2025-01-21T18:03:27",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "NVDA",
+      "direction": "long",
+      "verdict": "mixed",
+      "reason": "Setup was right, entry was good, took first target, respected stop loss (good discipline) but didn't capture the full move and didn't re-enter when it consolidated — process good, result a loss",
+      "pnl": "loss (N/A)",
+      "lesson": "Good process doesn't always mean profit; consider re-entry if thesis is still valid after stop-out",
+      "author": "StevenP",
+      "timestamp": "2025-01-23T21:26:49",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "AMD",
+      "direction": "unknown",
+      "verdict": "bad",
+      "reason": "Had a bad entry on AMD — entry price was poor",
+      "pnl": "N/A",
+      "lesson": "Wait for a proper entry; don't force a trade at a bad price",
+      "author": "void",
+      "timestamp": "2025-01-29T16:01:29",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "GOOGL",
+      "direction": "unknown",
+      "verdict": "bad",
+      "reason": "Entered GOOGL 3 times on good setups but got stopped out on all 3 — market didn't follow through despite solid entries",
+      "pnl": "N/A (3 losses)",
+      "lesson": "Even good setups can fail; the market ultimately decides",
+      "author": "Viper",
+      "timestamp": "2025-01-30T16:25:51",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "GOOGL",
+      "direction": "unknown",
+      "verdict": "mixed",
+      "reason": "Stuck to original thesis through 4 trades — 3 losses on good entries but final trade worked out, ending breakeven. Persistence paid off but took many losses",
+      "pnl": "$0 (breakeven)",
+      "lesson": "Sticking to a thesis can eventually work, but multiple failed entries erode confidence and capital",
+      "author": "Viper",
+      "timestamp": "2025-01-30T21:24:40",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "AAPL",
+      "direction": "short",
+      "verdict": "bad",
+      "reason": "Had Apple puts that were solid, sold at $4.00/contract but they later went to $9.30 — sold way too early and left massive profits on the table",
+      "pnl": "profitable but far less than possible",
+      "lesson": "Hold for the bigger move instead of taking small profits early on winners",
+      "author": "Stella",
+      "timestamp": "2025-01-31T20:21:46",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "GOOG",
+      "direction": "long",
+      "verdict": "mixed",
+      "reason": "Quick scalp on GOOG — not the best entry but still worked out profitably",
+      "pnl": "profitable (N/A)",
+      "lesson": "N/A",
+      "author": "Mina",
+      "timestamp": "2025-02-05T04:19:35",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "NVDA",
+      "direction": "long",
+      "verdict": "bad",
+      "reason": "Took calls above VWAP at 6:50 candle, got stopped out next candle, then the move happened later — bad timing cost -$860 and wiped out weekly gains",
+      "pnl": "-$860",
+      "lesson": "Entry timing is critical; being too early on a move still loses money",
+      "author": "Mk",
+      "timestamp": "2025-02-06T18:12:52",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "QQQ",
+      "direction": "short",
+      "verdict": "bad",
+      "reason": "Had the perfect QQQ drop play drawn out but got distracted by an NVDA long play, still made money but missed 60% of potential profits",
+      "pnl": "profitable but -60% potential",
+      "lesson": "Stick to your plan; don't get distracted by other plays",
+      "author": "DWC2016",
+      "timestamp": "2025-02-07T15:35:15",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "NVDA",
+      "direction": "long",
+      "verdict": "bad",
+      "reason": "Was up $2k at $131 on NVDA, held on too long, gave back most profits to end with only $600 — didn't take profits when available",
+      "pnl": "+$600 (from $2k peak)",
+      "lesson": "Take partial profits along the way; don't get greedy holding for more",
+      "author": "Lauren (lakatrades)",
+      "timestamp": "2025-02-11T18:29:08",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "NVDA",
+      "direction": "long",
+      "verdict": "bad",
+      "reason": "Made bad trades that didn't fit the break-and-retest strategy, now holding NVDA long hoping for a bounce back — no plan, just hoping",
+      "pnl": "N/A",
+      "lesson": "Only trade your strategy; holding and hoping is not a plan",
+      "author": "Boat Hobo",
+      "timestamp": "2025-02-24T18:46:29",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "NQ",
+      "direction": "unknown",
+      "verdict": "bad",
+      "reason": "Lost $450 on NQ — tried to trade on the subway resulting in a bad entry in a poor trading environment",
+      "pnl": "-$450",
+      "lesson": "Don't trade in distracting environments; wait until you can focus",
+      "author": "TG",
+      "timestamp": "2025-02-26T18:21:31",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "QQQ",
+      "direction": "short",
+      "verdict": "mixed",
+      "reason": "QQQ hit PDL target but got stopped out before reaching it — followed rules and didn't crash out but left $240+ extra profit on the table",
+      "pnl": "+$64",
+      "lesson": "Following your rules is more important than maximizing every trade",
+      "author": "DWC2016",
+      "timestamp": "2025-02-21T15:47:26",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "QQQ",
+      "direction": "long",
+      "verdict": "mixed",
+      "reason": "Took QQQ, made only $185 after getting stopped out on last contract, should have been up $450-$500 but followed rules — good discipline despite leaving money on table",
+      "pnl": "+$185",
+      "lesson": "Following rules consistently matters more than any single day's result",
+      "author": "DWC2016",
+      "timestamp": "2025-02-13T15:38:37",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "QQQ",
+      "direction": "unknown",
+      "verdict": "good",
+      "reason": "Good trade, followed the plan, but couldn't scale properly with only 2 contracts — limited profit potential but executed discipline well",
+      "pnl": "moderate profit (N/A)",
+      "lesson": "Good risk management with position sizing that fits account size",
+      "author": "DWC2016",
+      "timestamp": "2025-02-27T15:14:41",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "QQQ",
+      "direction": "short",
+      "verdict": "bad",
+      "reason": "Traded 2 QQQ puts, took TP of $189, then got back in out of greed and gave back profits, ending with only $112 — couldn't walk away after hitting target",
+      "pnl": "+$112",
+      "lesson": "Walk away after hitting your target; greed to make more costs you",
+      "author": "TCTrader1",
+      "timestamp": "2025-02-27T15:59:27",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "QQQ",
+      "direction": "short",
+      "verdict": "bad",
+      "reason": "Had a good entry for puts on Qs but panicked on the bounce, got out for a loss. Position kept dropping after exit.",
+      "pnl": "N/A",
+      "lesson": "Don't panic on bounces during a trending move; let the trade play out if the thesis is intact",
+      "author": "WillDaBeast",
+      "timestamp": "2025-03-11T14:28:40",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "AAPL",
+      "direction": "long",
+      "verdict": "bad",
+      "reason": "Took the immediate retest into market open and lost instead of waiting for the 84% retrace which would have been a 9R winner",
+      "pnl": "N/A",
+      "lesson": "Wait for proper retrace (84% rule) rather than jumping in at market open",
+      "author": "Sam Nuho",
+      "timestamp": "2025-03-11T16:06:47",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "SPY",
+      "direction": "long",
+      "verdict": "good",
+      "reason": "Stayed in the trade using order blocks as resistance levels, locked in $447 profit",
+      "pnl": "+$447",
+      "lesson": "Use order blocks as resistance to stay in trades longer",
+      "author": "Addy",
+      "timestamp": "2025-03-12T15:36:23",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "QQQ",
+      "direction": "short",
+      "verdict": "mixed",
+      "reason": "Trade was up $230+ and about to hit LOD, missed by 0.04%, then totally reversed to a $120 loss. Followed rules but still lost.",
+      "pnl": "-$120",
+      "lesson": "Use limit orders to secure TP at key levels and avoid missing by fractions",
+      "author": "DWC2016",
+      "timestamp": "2025-03-14T14:58:53",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "SPY",
+      "direction": "long",
+      "verdict": "good",
+      "reason": "Nice 5-minute break and retest at 9:44am, bought 4 long calls at $2.39, sold at $3.90 for $604 profit in 18 minutes",
+      "pnl": "+$604",
+      "lesson": "Need to learn to stay in trades longer for bigger moves",
+      "author": "Addy",
+      "timestamp": "2025-03-20T14:21:53",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "TSLA",
+      "direction": "long",
+      "verdict": "bad",
+      "reason": "Was up $115 at one point but held too long/got greedy, sold during consolidation for a small loss right before it spiked to a new high of day",
+      "pnl": "small loss",
+      "lesson": "Don't get greedy — take profits when available or at least move stops to breakeven",
+      "author": "Ryan",
+      "timestamp": "2025-03-27T14:34:03",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "TSLA",
+      "direction": "long",
+      "verdict": "bad",
+      "reason": "Took a loss on first entry and then on the 84% rule re-entry, but looking back should not have stopped out because the 5-min chart looked good",
+      "pnl": "N/A",
+      "lesson": "Trust the higher timeframe structure even during drawdown; don't let intraday noise shake you out",
+      "author": "habob",
+      "timestamp": "2025-03-27T14:38:55",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "TSLA",
+      "direction": "long",
+      "verdict": "bad",
+      "reason": "First trade had a loss of about $180 per contract due to the second down closed candle pushing too far, ended with $60 total loss on two trades",
+      "pnl": "-$60",
+      "lesson": "Consider candle close stop loss to avoid being stopped by wick extensions",
+      "author": "unnas",
+      "timestamp": "2025-03-27T22:08:22",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "SPX",
+      "direction": "short",
+      "verdict": "bad",
+      "reason": "Bought SPX puts but did not buy them at a clean entry point, had to manage risk and exit suboptimally",
+      "pnl": "N/A",
+      "lesson": "Wait for a clean entry point — don't enter just because you want to be in the trade",
+      "author": "rocketup",
+      "timestamp": "2025-04-15T17:50:23",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "MNQ",
+      "direction": "short",
+      "verdict": "good",
+      "reason": "Solid trade overall, but should have targeted Low Of Day for maximum profit",
+      "pnl": "N/A",
+      "lesson": "Aim for LOD on MNQ shorts when trend is strong",
+      "author": "Luke",
+      "timestamp": "2025-04-17T16:33:47",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "MES",
+      "direction": "short",
+      "verdict": "good",
+      "reason": "Solid trade though it never technically touched the PML (came very close). Per strict rules it needs to wick into or touch the level.",
+      "pnl": "N/A",
+      "lesson": "Be strict about PML touches — close isn't good enough for rule-based entries",
+      "author": "Luke",
+      "timestamp": "2025-04-17T16:33:47",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "NQ",
+      "direction": "short",
+      "verdict": "good",
+      "reason": "Took the 1:30pm reversal, waited for break and retest of premarket lows at 19,216.25, made a solid profit",
+      "pnl": "+$3,455",
+      "lesson": "N/A",
+      "author": "Mez",
+      "timestamp": "2025-04-28T23:27:06",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "TSLA",
+      "direction": "long",
+      "verdict": "good",
+      "reason": "Took TSLA right after break of day high with no retest and it flew to the upside. Usually waits for retest but the strong displacement worked.",
+      "pnl": "N/A",
+      "lesson": "Strong displacement can justify entries without a retest",
+      "author": "Kash",
+      "timestamp": "2025-05-03T02:31:48",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "TSLA",
+      "direction": "long",
+      "verdict": "mixed",
+      "reason": "Original entry wasn't great — it retraced down $18 — but bought more to average down and eventually had a huge swing win. Bad entry saved by good position management.",
+      "pnl": "N/A",
+      "lesson": "Scaling into a position (averaging down) can save a bad entry if the thesis is intact",
+      "author": "GoodVibez",
+      "timestamp": "2025-06-03T17:17:25",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "AMD",
+      "direction": "long",
+      "verdict": "bad",
+      "reason": "Had to cut AMD early because couldn't monitor the trade after 8 AM, lost about $25 of profit and took a hit on the R multiple",
+      "pnl": "-$25 (lost profit)",
+      "lesson": "Use limit orders or avoid entering trades you can't monitor to completion",
+      "author": "Viper",
+      "timestamp": "2025-05-27T19:52:35",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "HOOD",
+      "direction": "long",
+      "verdict": "good",
+      "reason": "Took HOOD calls using the 1 candle rule, executed solidly",
+      "pnl": "N/A",
+      "lesson": "N/A",
+      "author": "John H",
+      "timestamp": "2025-07-31T14:03:20",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "AAPL",
+      "direction": "long",
+      "verdict": "bad",
+      "reason": "Got stopped out on AAPL 205 calls runners at $9, now they are $20+. Stopped out too early on runners in a winner.",
+      "pnl": "N/A",
+      "lesson": "Consider wider stops on runners or trailing stops instead of fixed levels in strong trends",
+      "author": "NT",
+      "timestamp": "2025-08-06T22:14:54",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "NVDA",
+      "direction": "long",
+      "verdict": "good",
+      "reason": "Good moves on first two NVDA trades, made $44",
+      "pnl": "+$44",
+      "lesson": "N/A",
+      "author": "Patel_Trades",
+      "timestamp": "2025-09-30T14:32:53",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "AAPL",
+      "direction": "long",
+      "verdict": "bad",
+      "reason": "Took a stupid AAPL move in between NVDA trades — it was an emotional trade that cost $53",
+      "pnl": "-$53",
+      "lesson": "Don't take emotional trades between good setups; stick to the plan",
+      "author": "Patel_Trades",
+      "timestamp": "2025-09-30T14:32:53",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "PLTR",
+      "direction": "long",
+      "verdict": "good",
+      "reason": "Caught PLTR bouncing off 184 for a good trade",
+      "pnl": "N/A",
+      "lesson": "N/A",
+      "author": "Alkanall",
+      "timestamp": "2025-10-03T04:04:34",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "AMD",
+      "direction": "long",
+      "verdict": "bad",
+      "reason": "Re-entered AMD but was tired and thought it might go sideways, exited early. A few minutes later it ran. Exited due to fatigue.",
+      "pnl": "N/A",
+      "lesson": "Don't let fatigue cause premature exits — use a game plan not feelings",
+      "author": "Alkanall",
+      "timestamp": "2025-10-03T04:04:34",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "NVDA",
+      "direction": "unknown",
+      "verdict": "good",
+      "reason": "Beautiful NVDA play at the summit — worked out perfectly in front of thousands. Demonstrates the system works if you follow the rules.",
+      "pnl": "N/A",
+      "lesson": "The system works if you follow the rules consistently",
+      "author": "Davis",
+      "timestamp": "2025-10-03T02:55:54",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "NVDA",
+      "direction": "long",
+      "verdict": "mixed",
+      "reason": "Should have held the NVDA swing longer — sold yesterday, it continued today. Still happy with the profit though.",
+      "pnl": "profit (amount N/A)",
+      "lesson": "Hold swing trades longer when the trend is intact",
+      "author": "JMURR",
+      "timestamp": "2025-10-09T14:37:02",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "NVDA",
+      "direction": "long",
+      "verdict": "bad",
+      "reason": "Took a big loss on NVDA and didn't have the courage to re-enter on the 84% rule, but the re-entry would have worked out",
+      "pnl": "N/A",
+      "lesson": "Have the courage to re-enter on the 84% rule if the setup is still valid — don't let a loss shake your confidence",
+      "author": "LifeWithMikey",
+      "timestamp": "2025-10-27T18:21:38",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "TSLA",
+      "direction": "long",
+      "verdict": "bad",
+      "reason": "Late entries on TSLA led to losing more % than wanted, then cut the TSLL trade too early due to frustration from the NVDA loss",
+      "pnl": "N/A",
+      "lesson": "Late entries compound losses; sit out rather than chase",
+      "author": "LifeWithMikey",
+      "timestamp": "2025-10-27T18:21:38",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "TSLA",
+      "direction": "long",
+      "verdict": "mixed",
+      "reason": "Went long over 427 targeting PDH but didn't get follow through. Setup was correct (avoided no-trade zone) but the move didn't materialize.",
+      "pnl": "N/A",
+      "lesson": "Trust your levels and process regardless of outcome — the trade was valid",
+      "author": "Markellwhite16",
+      "timestamp": "2025-09-19T14:23:24",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "AAPL",
+      "direction": "long",
+      "verdict": "good",
+      "reason": "Super solid trade catching the PDL break and retest",
+      "pnl": "N/A",
+      "lesson": "N/A",
+      "author": "Markellwhite16",
+      "timestamp": "2025-09-24T14:20:26",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "AMD",
+      "direction": "long",
+      "verdict": "bad",
+      "reason": "Break and retest candles were too tiny and the ATH nearby has sell-side liquidity — not a good setup despite being a clean level",
+      "pnl": "N/A",
+      "lesson": "Need strong candle confirmation on break and retest, especially near ATH levels with sell-side liquidity overhead",
+      "author": "FraggDieb",
+      "timestamp": "2025-09-23T14:39:13",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "AMD",
+      "direction": "long",
+      "verdict": "good",
+      "reason": "3rd trade on AMD was good, but didn't hold through the $2 move up and down — exited early in the volatility",
+      "pnl": "N/A",
+      "lesson": "Hold through intraday noise if the thesis is intact",
+      "author": "Limitless",
+      "timestamp": "2025-11-21T17:01:06",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "SPY",
+      "direction": "long",
+      "verdict": "bad",
+      "reason": "FOMO after SPY moved up, then made a series of emotional/bad trades. Down $400.",
+      "pnl": "-$400",
+      "lesson": "Don't FOMO — emotional trading after missing a move leads to compounding losses",
+      "author": "Patel_Trades",
+      "timestamp": "2025-11-05T15:22:09",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "AAPL",
+      "direction": "long",
+      "verdict": "good",
+      "reason": "PMHR (Pre-Market High Retest) was a perfect entry setup",
+      "pnl": "N/A",
+      "lesson": "N/A",
+      "author": "Jonathan",
+      "timestamp": "2025-11-11T14:43:26",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "TSLA",
+      "direction": "long",
+      "verdict": "mixed",
+      "reason": "$77 loss on TSLA with one contract, but positive because respected the stop loss and followed the plan. Good process despite losing trade.",
+      "pnl": "-$77",
+      "lesson": "Following your plan and respecting stop losses matters more than individual trade outcomes",
+      "author": "jwolfe29",
+      "timestamp": "2025-11-28T15:41:55",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "AMD",
+      "direction": "long",
+      "verdict": "good",
+      "reason": "Sold AMD on the HOD (high of day) pop, good exit execution",
+      "pnl": "N/A",
+      "lesson": "N/A",
+      "author": "jwolfe29",
+      "timestamp": "2025-11-28T15:41:55",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "AMD",
+      "direction": "unknown",
+      "verdict": "bad",
+      "reason": "Loss on AMD was a combination of late entry and an execution mistake on the first take-profit target — missed it by a couple of seconds",
+      "pnl": "N/A",
+      "lesson": "Improve execution speed and consider using limit orders for TP targets",
+      "author": "Hugo Comte",
+      "timestamp": "2025-12-03T16:11:41",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "AAPL",
+      "direction": "unknown",
+      "verdict": "mixed",
+      "reason": "Lost on AAPL but the trade was still valid — had seen great moves developing after open consolidation in past days, just didn't work this time",
+      "pnl": "N/A",
+      "lesson": "Valid setups can still lose; that's probability, not a flaw in the system",
+      "author": "Hugo Comte",
+      "timestamp": "2025-12-03T16:11:41",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "TSLA",
+      "direction": "short",
+      "verdict": "bad",
+      "reason": "Accidentally entered short when trying to go long (clicked wrong side on broker), cut immediately but lost $100 on the mistake",
+      "pnl": "-$100",
+      "lesson": "Double-check order direction before submitting and cut accidental entries immediately",
+      "author": "Limitless",
+      "timestamp": "2025-12-03T16:18:53",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "TSLA",
+      "direction": "long",
+      "verdict": "mixed",
+      "reason": "Had a great entry on TSLA with 3 contracts, plan was to take off 2 on the pop but accidentally hit buy instead of sell, then panic sold as soon as green. Only made $67.",
+      "pnl": "+$67",
+      "lesson": "Slow down and verify order buttons before clicking; don't panic sell after a mistake",
+      "author": "jwolfe29",
+      "timestamp": "2025-12-04T15:13:52",
+      "channel": "trading-floor"
+    },
+    {
+      "ticker": "TSLA",
+      "direction": "short",
+      "verdict": "bad",
+      "reason": "Took profit too early on a TSLA short because feared a reversal, but should have waited for market structure to break. Missed what would have been the one good trade for the month.",
+      "pnl": "N/A",
+      "lesson": "Let winners run until market structure breaks — don't exit on fear of reversal",
+      "author": "Jai",
+      "timestamp": "2025-12-08T16:00:39",
+      "channel": "trading-floor"
+    }
+  ]
+}

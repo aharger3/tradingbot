@@ -1,0 +1,1128 @@
+[
+  {
+    "channel": "trading-floor",
+    "id": "1484198107418988604",
+    "ts": "2026-03-19T14:33:23",
+    "author": "ND",
+    "content": "<@1014389514141184074> your strategy is amazing, I made $100 lol. What do you think of this trade?",
+    "score": 2,
+    "categories": [
+      "pnl-mention",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1484960303384105090",
+    "ts": "2026-03-21T17:02:05",
+    "author": "Luke",
+    "content": "<@300218937587662849> 100%, ideally it\u2019d be nice if it could have a bigger correction since I only like trading when the intraday trend is aligned with the HTF trend. It\u2019s been so tricky for me with these gap fills since we\u2019ll gap down with more bearish HTFs and show intraday strength. Overall best setups happen when all timeframes are aligned like yesterday!",
+    "score": 2,
+    "categories": [
+      "adj-trade"
+    ],
+    "tickers": [
+      "HTF"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1485627089892675594",
+    "ts": "2026-03-23T13:11:39",
+    "author": "Mr. Wick\u2122",
+    "content": "Amazing, I was hoping for a bigger short today.",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1486016892354428978",
+    "ts": "2026-03-24T15:00:35",
+    "author": "Z33TRADES",
+    "content": "I was in a short position on qqq and cut it just by chance and took a long and boom made $168 off one contract in 10 seconds",
+    "score": 2,
+    "categories": [
+      "pnl-mention",
+      "ticker-action"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1488557861868146788",
+    "ts": "2026-03-31T15:17:30",
+    "author": "Neto Moreno (Performance Coach)",
+    "content": "It was a good setup, just needed a bit more time",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": "1488557745165832202"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1488705782861140038",
+    "ts": "2026-04-01T01:05:17",
+    "author": "Schang91",
+    "content": "I stopped out with bad losses just right before the rip.  Sad",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": "1488579980140216430"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1491819692585779210",
+    "ts": "2026-04-09T15:18:51",
+    "author": "FLIRE",
+    "content": "Yeah, there were also several trades happening at once, which made it hard for me to manage all stop levels perfectly. For me it's just a learning experience to focus on one good trade rather than several.",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": "1491816193122898020"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1491855324322463745",
+    "ts": "2026-04-09T17:40:26",
+    "author": "Z33TRADES",
+    "content": "I am in the same boat. Biggest loss i've ever had trying to chase a good trade. Both tesla and amd were bad for me. What should've been a $1500 loss turned into a $3500 loss trying to make it back. I defiently broke my rules today and tried to go for the 2R and ended up never recovering when it went the other way. Going to come back with a clear goal tomorrow and size down the next few days. I am going to just exit without scalling because that really got me today. Hope tomorrow is a better day for you too.",
+    "score": 4,
+    "categories": [
+      "adj-trade",
+      "pnl-mention",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": "1491832840139309306"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1492161462452359230",
+    "ts": "2026-04-10T13:56:55",
+    "author": "DHayesTrades",
+    "content": "Hey guys - I'm fairly new here been tradig in the community for  afew weeks now. An issue I keep running into is the stop losses. They seem to be fairly discretionary. Today was the perfect example on NVDA. I entered when I saw clear buyers stepping in on the Wednesday Highs level retest - it then reverses and had two candles testing it. Both candles broke that level (where my stop loss was) but both candles did not close underneath. I stopped out when it broke. The trade then runs amazingly without me lol. Cand someone please inform me how to successfully place and respect the stop losses around these key levels especially during a candle trying to break it?",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "NVDA"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1493751702061580328",
+    "ts": "2026-04-14T23:15:58",
+    "author": "Hana",
+    "content": "That\u2019s an amazing explanation. Super helpful for us who like to trade 0dte. I stopped because I am not great with my stop, and like you said a 0dte trader needs to be very strict with the small stop losses.",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": "1492938275793408120"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1494003582880714972",
+    "ts": "2026-04-15T15:56:51",
+    "author": "DaxMax",
+    "content": "TSLA has been a really good trade \ud83e\udd73",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [
+      "TSLA"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1495807375876034721",
+    "ts": "2026-04-20T15:24:29",
+    "author": "Z33TRADES",
+    "content": "I was down $1000 from the AMD trade I took with Tony and then shorted SPY 0dte 707 puts and was able to make back about $1600 and was able to exit with a profit \ud83d\ude43",
+    "score": 2,
+    "categories": [
+      "pnl-mention",
+      "ticker-action"
+    ],
+    "tickers": [
+      "AMD",
+      "SPY"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1496326704342372412",
+    "ts": "2026-04-22T01:48:06",
+    "author": "JP400",
+    "content": "Mess up today. Took AMD today PMH at 10:01 with 2 Cons. Looking for 2:1. Stop at PMH. Did not get the 2:1. Got scared when it came back and sold 1 Con to minimize loss. Then it stepped up again, so I bought another. Sold 1 Con at the close of 10:05. Pushed again. Held for 2:1. Did not get it. Then crossed my fingers (that well known strategy). Then sold last Con at 10:13 with QQQ selling too.\nTried AMD again at 10:14... (with QQQ above PDH). Lost again.\nTried AMD again at 10:22... (with QQQ above PDH). Lost again.\nThen recovered some on 2 QQQ Puts off PML at 10:57. Caught that drop. Nice. And recovered my losses. Green day.\nBut I didn't stop trading !\nI bought 2 QQQ again at 11:05 for a drop to PDL.  But it reversed, and I paid the price on the fast price changes on Friday Puts. Wiped out more gains.\nAnd then... Took 2 more QQQ trades (2 Cons each time) to try to recover. Clawed some back. But just reinforcing terrible habits !\nOverall loss on the day.\n\nSigh... Too tired after a busy day repairing cars yesterday. Wanted to make some money. Forgot the No.1 rule that it's not about making money. Broke my 11am rule, and did not stop at 11am. And also took waaaaaay too many trades.\nSigh...",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "AMD",
+      "QQQ",
+      "PDL",
+      "PMH",
+      "PML",
+      "PDH"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1496522821248090113",
+    "ts": "2026-04-22T14:47:24",
+    "author": "MDizzy",
+    "content": "my tool has no exit on AAPL until now and even then it is a weak exit.",
+    "score": 2,
+    "categories": [
+      "adj-trade"
+    ],
+    "tickers": [
+      "AAPL"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1499052477285404773",
+    "ts": "2026-04-29T14:19:21",
+    "author": "Aiolos",
+    "content": "Beautiful trade... Small size for me today.",
+    "score": 2,
+    "categories": [
+      "adj-trade"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1499434145158398063",
+    "ts": "2026-04-30T15:35:58",
+    "author": "Jon",
+    "content": "a beautiful move.   Just closed my trailer",
+    "score": 2,
+    "categories": [
+      "adj-trade"
+    ],
+    "tickers": [],
+    "reply_to": "1499425643862036742"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1499778902355345550",
+    "ts": "2026-05-01T14:25:54",
+    "author": "Austtinn",
+    "content": "I held my position on INTC for a drawdown of -1200 but then I sell for $100 profit. Then I\u2019m trying to scalp it the whole way up and get stopped out, -240 on the day.",
+    "score": 2,
+    "categories": [
+      "pnl-mention",
+      "ticker-action"
+    ],
+    "tickers": [
+      "INTC"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1503775295553929357",
+    "ts": "2026-05-12T15:06:09",
+    "author": "Dice56",
+    "content": "Can someone tell me what made today\u2019s TSLA call a good setup to enter",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [
+      "TSLA"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1504136738132463616",
+    "ts": "2026-05-13T15:02:23",
+    "author": "Dice56",
+    "content": "I saw today NVDA ending up being a good trade on 5 min time frame with PDH reclaim. Just curious, does anyone else look at pre market activity. Today NVDA had unusually high pre market volume (usually sits between 1.5M - 3M) and today was at 7M. It tells me instiutions we're buying in. Any thoughts?",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [
+      "PDH",
+      "NVDA"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1504138297960828991",
+    "ts": "2026-05-13T15:08:35",
+    "author": "Moe",
+    "content": "premarket high and low seem key. The fake breakout over premarket high got me, due to impatience. Also, SPY QQQ were weak so it wasn't a good setup for me to take. TSLA also had a decent setup over premarket high at 10.25am.",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [
+      "TSLA",
+      "QQQ",
+      "SPY"
+    ],
+    "reply_to": "1504136738132463616"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1504144569275515011",
+    "ts": "2026-05-13T15:33:30",
+    "author": "FraggDieb",
+    "content": "This is a comparsion between stock and options ... how can I avoid such bad options? Im at RR of 1:1 on the underlying but nearly BE on option\n10cents less on the option and my sell limit would be filled ... thats so ugly :X",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "BE",
+      "RR"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1504228057601278052",
+    "ts": "2026-05-13T21:05:16",
+    "author": "JP400",
+    "content": "Oh darn it ! I just noticed that I stopped out of my emotional NVDA trade as it dropped below the 5mOR at 10:32.. But it bounced straight off the PDH, and climbed back up... and up... and up. Not only should I have not taken the trade because I was being emotional... I also lost out on a great recovery for the day. But I guess the profit would have arguably cemented bad habits of trying to claw back when I should really be quitting for the day. Grrrrrrrr....",
+    "score": 4,
+    "categories": [
+      "should-judgment",
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "PDH",
+      "NVDA"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1504910842762756187",
+    "ts": "2026-05-15T18:18:24",
+    "author": "Moe",
+    "content": "Daily wicks seem to me to lead to alot of chop and good avoid zones. Look at NVDA and TSLA both we though looked decent for a short but both hit a daily wick zone and chopped.",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "TSLA",
+      "NVDA"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1507448978214748342",
+    "ts": "2026-05-22T18:24:03",
+    "author": "JP400",
+    "content": "It should be that easy... right ? It's all well and good figuring out which delta to buy and what DTE, and all that stuff. But SPY can move fast and one just doesn't Sell quick enough. Or... one gets in a bit too late into INTC, and then holds for a little too long. So those $50 Risks get a bit bigger than intended. The numbers worked... the execution... not so much.",
+    "score": 3,
+    "categories": [
+      "pnl-mention",
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "DTE",
+      "INTC",
+      "SPY"
+    ],
+    "reply_to": "1507400646528340209"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1511001493388394828",
+    "ts": "2026-06-01T13:40:29",
+    "author": "Rockin'Rogers",
+    "content": "Great call!",
+    "score": 2,
+    "categories": [
+      "adj-trade"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1511722339270791371",
+    "ts": "2026-06-03T13:24:52",
+    "author": "Jatin",
+    "content": "Gameplan for 03 June 2026\n\nSPY we are in its prev day's range, would like it to maintain above 757.50 at a minimum for upside momentum, if we break that, next support we have is PDL\nQQQ is stronger, would like it to maintain above PDH and move towards PMH. If we break below PDH, next support we have is 743.70\n\nMain watches- \nAAPL above PDH\nAMD above PMH\nMU above PDH or PMH is also fine\nGOOGL below PMH we have some room, only looking at it if we have a lot of weakness as we have filled the Gap in pre market\nMaybe even NFLX below 82.80, good amount of room below\n\nOther names that can setup but don't like them a lot-\n\nINTC above 116.80\nNVDA above 227 we should see a smooth move\nMSFT above 447.80 \n\n*Focus on a couple of names and set alerts for rest**",
+    "score": 4,
+    "categories": [
+      "adj-trade",
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "NFLX",
+      "INTC",
+      "AMD",
+      "MSFT",
+      "AAPL",
+      "QQQ",
+      "NVDA",
+      "SPY",
+      "PDL",
+      "PMH",
+      "GOOGL",
+      "PDH",
+      "MU"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1514800451315564597",
+    "ts": "2026-06-12T01:16:11",
+    "author": "LifeWithMikey",
+    "content": "I spent the last 2 months focusing on risk management, keeping my losers small, trading 1 con, shooting for a 2R multiple. Discipline was been fantastic. Still been struggling with bigger losers than winners but not losing control\u2026. Until today! Started off with a beautiful trade amazon puts off PDL 2 cons, great entries, great exits. Then something snapped and I guess I got greedy. Tried to take MSFT puts and gave back almost all I made then started chasing MSFT calls. Basically undid all the work I\u2019ve been putting in the last two months in one day! Why? Wtf!! \ud83e\udd26\ud83c\udffb",
+    "score": 4,
+    "categories": [
+      "adj-trade"
+    ],
+    "tickers": [
+      "MSFT",
+      "PDL"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1516112533705064540",
+    "ts": "2026-06-15T16:09:56",
+    "author": "demchy19",
+    "content": "Can you please give me some feedback on options trade - loner expiration - on Google to ATH? Would this be a good entry if the stock closes above the yellow line?",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [
+      "ATH"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1516840717618643225",
+    "ts": "2026-06-17T16:23:28",
+    "author": "Moe",
+    "content": "I use 15SL, if it's a good trade that will see volume and movement in the contracts, this is usu. enough e.g. HOOD breaking over PDH and 200SMA today.",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [
+      "HOOD",
+      "PDH"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1517181826517565552",
+    "ts": "2026-06-18T14:58:55",
+    "author": "Moe",
+    "content": "I just realized that tomorrow is OPEX. With Fed Wednesday, G7, would've been far better to take this week. With respect, there wasn't one good trade opportunity all week.",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [
+      "OPEX"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1520071957599617325",
+    "ts": "2026-06-26T14:23:16",
+    "author": "Jatin",
+    "content": "Names for bearish plan are showing strength: TSLA, AMZN, NVDA slow grind up, MSFT a lot of strength and clean move from 360 level but its very bearish HTF",
+    "score": 2,
+    "categories": [
+      "adj-trade"
+    ],
+    "tickers": [
+      "MSFT",
+      "NVDA",
+      "TSLA",
+      "HTF",
+      "AMZN"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1523240570548654110",
+    "ts": "2026-07-05T08:14:12",
+    "author": "_mx2lckdin",
+    "content": "<@650479552715423756> After replaying the live session on Thursday, I agree. That's why we have to buy lots of cons to be able to scale and profit the way they did. They're not wrong though, their entry was good, but they just have bigger account.",
+    "score": 3,
+    "categories": [
+      "copula-judgment",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "jdub-alerts",
+    "id": "1275439201600405565",
+    "ts": "2024-08-20T13:00:02",
+    "author": "Jdub",
+    "content": "Gameplan August 20th\n\nNQ just filled its hourly gap on the higher timeframes. NQ and ES the key level to look out for is the PDH. If we get above those levels we can see PMH. If we stay underneath we are going to chop around. As for the Tech names I will be looking at TSLA looks good if it can pullback to the 5 min ob in pre market or the PDH level. AMD looks good off the 156 level and NVDA looks good for a Dip and RIP Opening Drive play. Other tickers to keep an eye out on is AMZN abvoe PDH and AAPL as well.\n\n<@&1219020123218645102>",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "AMD",
+      "AAPL",
+      "NVDA",
+      "RIP",
+      "TSLA",
+      "PMH",
+      "PDH",
+      "AMZN"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "jdub-alerts",
+    "id": "1285587493378457724",
+    "ts": "2024-09-17T13:05:43",
+    "author": "Jdub",
+    "content": "Game Plan September 17th\n\nSpy hit ATH's in the Pre Market while QQQ hit last Fridays highs. What I want to see coming into today is the reaction around the ATH's level on Spy. That is going to be the major inflection point for the markets. Besides that there are a lot of good looking higher timeframe charts. NVDA has been holding our key levels being 116.2 on the higher timeframes. I expect this one to continue higher and breaking the downtrend.  One of my favorite charts is AMZN. A hole of 186 will move this higher last Friday's high. There's also a lot of names above PDH like MSFT, META, GOOG and other names that are very bullish on the higher timeframes.\n\n<@&1219020123218645102>",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "MSFT",
+      "QQQ",
+      "NVDA",
+      "META",
+      "GOOG",
+      "PDH",
+      "AMZN",
+      "ATH"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "jdub-alerts",
+    "id": "1287759209869344941",
+    "ts": "2024-09-23T12:55:21",
+    "author": "Jdub",
+    "content": "Game Plan September 23rd \n\nRight now you can see that we still hav not closed above the ATH's on the ES. We have on the SPY and are currently using this as a retest. So as long as we maintain above 565 we are going to move higher in the markets. QQQ is the major indices that have been lagging the markets. What I would like to see is all major dips be bought up on this name.\n\nAs for tech names my main watch will be TSLA for a continuation for a move towards the highs. Above 241 we can see a push towards the gap fill on the higher timeframes being that 245.68 level. Besides that AMZN looks good for a move higher above PDH towards the daily gap level. META looks good if it can pull back towards PDH. AAPL big reject on Friday and this one looks good underneath PDL for a move towards 224 on the higher timeframes.\n\n<@&1219020123218645102>",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "AAPL",
+      "QQQ",
+      "META",
+      "SPY",
+      "PDL",
+      "TSLA",
+      "PDH",
+      "AMZN",
+      "ATH"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "jdub-alerts",
+    "id": "1291020554857353216",
+    "ts": "2024-10-02T12:54:46",
+    "author": "Jdub",
+    "content": "Game Plan October 2nd \n\nPlan coming into today is to expect price to stay heavy underneath your key levels. SPY underneath 570, ES under 5782, QQQ under mondays lows. I'm expecting price to continue towards the downside as long as we hold key levels. If we pop right at open then price is going to be back inside of the range from yesterday.\n\nLots of opening plays towards the downside on tech names. Look for the names that will stay heavy right off open. Best play towards the downside is AAPL. As for upside my main watch today is going to be TSLA. This has delivery numbers and I expect volatility on this one. Let's see how the the contracts are priced coming into open.\n\n<@&1219020123218645102>",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "ticker-action"
+    ],
+    "tickers": [
+      "TSLA",
+      "AAPL",
+      "QQQ",
+      "SPY"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "jdub-alerts",
+    "id": "1298268676545445899",
+    "ts": "2024-10-22T12:56:13",
+    "author": "Jdub",
+    "content": "Game Plan October 22nd \n\nGap down here in the overall market. Whenever we have a gap down and the market is bullish overall it makes it difficult for any short of short positions. As for longs this will be the gap fill back towards the upside. We are dropping here with no red folder news so we are just going to play what's in front of us today.\n\nThe only ticker that I am going to play today is NVDA. This one is at ATH's and is the only ticker that is in play. What I would like to see is the retest off PDH or the reclaim of this level coming into the markets. This is the only ticker that I like and the one that I will focus on.\n\nAs for the other names I'm really not seeing much intraday. Alot of the other names are in range or setting up for swings. AAPL still looks good if it can hold the 233 level for continuation towards the upside.\n\n<@&1219020123218645102>",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "ATH",
+      "PDH",
+      "AAPL",
+      "NVDA"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "jdub-alerts",
+    "id": "1298631186238935063",
+    "ts": "2024-10-23T12:56:42",
+    "author": "Jdub",
+    "content": "Game Plan October 23rd\n\nMarkets are inside of the range still on the major indices. SPY and QQQ both filled the gap and now are pulling back here coming into market open. You can see that QQQ is still inside of the range from 491 -496. In between these levels what you can expect is internal liquidity. Meaning look for gaps to fill. \n\nAs for the tech names. We have TSLA earnings today which I'm excited about. Going to see what happens after hours on this name. As for intraday setups wise. The best looking name is MSFT for continuation above PDH. META also looks good for the reclaim of the 583 level for a move higher. NVDA I would like to see a hold of the PDL and 141.59 level for continuation. AAPL I would like to see the gap fill once again today back towards the highs. \n\n<@&1219020123218645102>",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "AAPL",
+      "QQQ",
+      "META",
+      "SPY",
+      "NVDA",
+      "PDL",
+      "TSLA",
+      "PDH",
+      "MSFT"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "jdub-alerts",
+    "id": "1299100674658668637",
+    "ts": "2024-10-24T20:02:16",
+    "author": "Jdub",
+    "content": "Biggest Day Of The Year For Me!!\n\n+12K Realized Intraday Plus Some Trailers Still\n+17K Unrealized In Long Term \ud83d\ude42\n\nBeautiful trade today on TSLA. Hopefully some of you guys were able to capture it. I try my very best to outline the moves before hand in the pre market and in the live sessions. The reason I do them is for you guys to build conviction yourself. There is no better feeling then having your own conviction in a trade. That's why we always preach understanding whats going on instead of relying on \"signals\". You can follow signals all day but in the end you won't become profitable if don't learn to trade for yourself.\n\nWith that being said I just took some time to reflect today and I wanted to let you guys know that trading is hard. We might make it seem easier then it is at times but the reality is that trading is one of the most difficult professions in the world. \n\nI started trading in 2019. At the time I was living with my grandparents in an unfinished basement. I was in school, was working at Amazon while trying to make trading work. For the first two years I was losing every-single day and it felt like I couldn't even put on a winning trade. Nothing felt like it was going my way. I was struggling everyday but I knew that it was only a matter of time. \n\nI know some of you guys are in that position right now and I just want to let you guys know that it is going to get better. Everything that you need to succeed in the markets is all in front of you. All you have to do is put in the work. Show up to the pre markets preps, watch the live sessions over and over again, watch the trade reviews. We can layout the full blue print but in the end it is up to YOU to put in the work. I can't come and click the buttons for you. \n\nJust wanted to end it off here. I usually don't get too emotional or like typing out these motivational speeches but I thought if it can help someone or motivate someone then it would be worth it.  At the end of the day trading is very lonely and I think we've built a great community here and all want each other to win. \n\nLet's keep killing it team! @everyone",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "ticker-action"
+    ],
+    "tickers": [
+      "TSLA"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "jdub-alerts",
+    "id": "1304081511221428288",
+    "ts": "2024-11-07T13:54:20",
+    "author": "Jdub",
+    "content": "November 7th Game Plan \n\nSo far after the gap up yesterday the first dip has gotten bought up and now we are continuating towards the upside. We do have FOMC today at 2:00PM. I expect all dips to get bought up going into FOMC. What I would like to see is a drop coming into market open towards the PDH where you can look for the low risk entries for continuation back towards the upside. \n\nThe charts I will focus on today is TSLA, NVDA, and AMZN. This names look all good for continuation as long as we hold key levels on the higher timeframes. \n\nAs for TSLA look for the bnr of PDH or the retest of 285. NVDA I would like to see an intraday setup for a move towards PDH and AMZN I would like to see a retest of PDH or 206.\n\n@everyone",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "FOMC",
+      "NVDA",
+      "TSLA",
+      "PDH",
+      "AMZN"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "jdub-alerts",
+    "id": "1304445044756975667",
+    "ts": "2024-11-08T13:58:54",
+    "author": "Jdub",
+    "content": "Game Plan November 8th \n\nNQ finally hit its main objective as well being that ATH's key level. Coming into today we just had FOMC. After a big move the days previous fomc didn't really affect the market. So far right now the markets are inside of the fomc range from yestereday. As long as the market holds key areas I do expect the markets to gravitate higher towards the PDH level. \n\nMy main focus is going to be TSLA. This has been the main watch for the past three weeks. The key level to look out for today is the 296. If we can hold that level I would like to see a push above the 300 and above. We can look for the dip and rip today.\n\nFor the other tech names. They all look good. Still holding key areas and expect them to move in line with the overall markets. \n\n@everyone",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "FOMC",
+      "TSLA",
+      "PDH",
+      "ATH"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "jdub-alerts",
+    "id": "1305894551596171387",
+    "ts": "2024-11-12T13:58:43",
+    "author": "Jdub",
+    "content": "Gameplan November 12th \n\nMini pullback on the SPY and QQQ yesterday. This are the dips that we want for continuation back towards the highs. SPY into our 597 level QQQ into our 512 area. Price is currently very much bullish on the higher timeframes. I would like to see those areas hold for more continuation.\n\nAs for TSLA today is the first major reaction day. Currently took out the PDH and PDL liquidity. What I would like to see is the reaction around the PDL. Really what I want is the 328 which we hit in the PM. That is the gap fill on the daily chart. If we can get any dips down towards that area I will be looking to buy the first dip on the higher timeframes. \n\nAs for a few other names. NVDA, META, AMZN and a few other names like GOOG look good for more upside. I would like to see them hold the key areas and they have a good chance of moving back towards ATH's \n\n@everyone",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "PM",
+      "QQQ",
+      "NVDA",
+      "SPY",
+      "PDL",
+      "META",
+      "TSLA",
+      "GOOG",
+      "PDH",
+      "AMZN",
+      "ATH"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "jdub-alerts",
+    "id": "1310967405362810952",
+    "ts": "2024-11-26T13:56:26",
+    "author": "Jdub",
+    "content": "Game Plan November 26th \n\nWe have some red folder news today at 10:00AM. I don't really expect the markets to break outside of the previous days range within the first 30 minutes so we will wait for that. SPY also just hit the ATH's level and rejected off that level. So far the market is being bought up so we are very much still intact. \n\nWhat I would like to see today is the retest of the PDH on AMD or AAPL. I like AAPL the best. A break and hold above the 233 level is going to launch this thing towards the 234 and  above. Higher timeframes looks super solid on this name. \n\nAs for TSLA this one is fairly weak intraday after yesterday rejections off 360. I expect a mini bounce today just back inside of its range. \n\nAMZN also looks good after the reclaim of 201. I would now like to see this hold and use this as a retest back towards the highs. \n\n@everyone",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "AMD",
+      "AAPL",
+      "SPY",
+      "TSLA",
+      "PDH",
+      "AMZN",
+      "ATH"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "jdub-alerts",
+    "id": "1313867202574811226",
+    "ts": "2024-12-04T13:59:11",
+    "author": "Jdub",
+    "content": "Game Plan December 4th \n\nRight now QQQ and SPY are gapping up overnight. NQ hit ATH's in the pre market and after hours. Lots of red folder news in the markets today so I'm going to be patient on the QQQ. \n\nAs for top watches I like the Flat top that is forming on TSLA. Higher timeframe looks good that its holding the 350 area. \n\nI like MSFT as well for the downtrend break on the higher timeframes. I would like to see a retest of the 433 level coming into market open. \n\nSemi conductors are looking good with SMH bouncing in a key spot. I expect AMD and NVDA all dips to get bought up. \n\nAs for the rest of the names like AAPL, AMZN and META. Those ones are at ATH's are you can just expect all dips on those ones to get bought up. \n\n@everyone",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "AMD",
+      "AAPL",
+      "QQQ",
+      "NVDA",
+      "SPY",
+      "AMZN",
+      "SMH",
+      "TSLA",
+      "META",
+      "MSFT",
+      "ATH"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "jdub-alerts",
+    "id": "1316766765489065995",
+    "ts": "2024-12-12T14:01:01",
+    "author": "Jdub",
+    "content": "Game Plan December 12th \n\nAs I mentioned in the pre market prep. I am going to be very cautious today. Markets are in a key spot on the higher timeframes. NQ and QQQ are at ATH's and we are trying to get back underneath. I am going to be very cautious and wait for the first 30 minutes of market open. There is a possibility that we can reverse off this ATH's on the NQ. \n\nAs for Tech as I mentioned as well yesterday I'm basically all cash now, Closed out most of my swing positions. I don't really like anything long on the higher timeframes as of right now. I would like to see some names pullback for good buying opportunities. \n\nAs for day trades we will look for relative strength and weakness for intraday setups. \n\nDon't have a top watch. My main thing is just keeping an eye out for the QQQ and see what it wants to do. \n\n@everyone",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "ATH",
+      "QQQ"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "jdub-alerts",
+    "id": "1318578281234042962",
+    "ts": "2024-12-17T13:59:20",
+    "author": "Jdub",
+    "content": "Game Plan December 17th \n\nQQQ inside of yesterdays range. SPY is at the bottom of the range. What I would like to see for the QQQ is consolidation and then fill the gap back towards the upside. \n\nAs for TSLA another gap in the market. What I would like to see for TSLA is similar to yesterday. As long as price maintains above PDH I expect this one to move higher. I would like to see price consolidate today then gap once again for the 500 move on TSLA. \n\nAs for the other tech names like AMZN, GOOG, and AAPL. These ones are at highs. What I want to see is just the recliam of key areas for moves higher. \n\nMSFT looks good if we can maintain the 450 level that is going to be key on the higher timeframes. \n\nSemi conductors are staying weak. What I would like to see is the reaction around PDL on NVDA. If it stays heavy we can look for the pop and fade towards the donwside. \n\n@everyone",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "MSFT",
+      "AAPL",
+      "QQQ",
+      "NVDA",
+      "SPY",
+      "PDL",
+      "GOOG",
+      "TSLA",
+      "PDH",
+      "AMZN"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "jdub-alerts",
+    "id": "1319303146731999232",
+    "ts": "2024-12-19T13:59:41",
+    "author": "Jdub",
+    "content": "Pre Market Gameplan December 19th \n\nLots of volatility in the markets now with FOMC. Right now you can see that we are boucning off key levels on the higher timeframes. We bullish on the weekly and daily and bearish on the lower timeframes. \n\nWhat does this mean? It means we will have to be more focused on shorter timeframes due to the volatility in the markets. \n\nThis is great for day traders but not good for swings and long term. \n\nComing into today will keep an eye and see what the markets want to do within the first 15-30 minutes. If we hold 590 on SPY i expect a push back inside of the range. If we get underneath 590 on spy we can see PDL. \n\nSame thesis on almost every single name. \n\nAs for Tech. Now we will be looking for the names that have the most relative strength on the drops. TSLA is going to be my main watch for moves higher going forward. I like this name as long as we maintain 430. \n\nFor the rest of tech look for intraday setups with relative strength or weakness to trade. \n\nAlso make sure to take profits on pops now as things will happen quicker and the markets can flip very fast now. \n\n@everyone",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "FOMC",
+      "TSLA",
+      "SPY",
+      "PDL"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "jdub-alerts",
+    "id": "1329447471016968252",
+    "ts": "2025-01-16T13:49:37",
+    "author": "Jdub",
+    "content": "Gameplan January 16th \n\nNice push yesterday in the overall markets towards the upside after CPI. Today we are at the key levels on the higher timeframes on the major indices. What I would like to see now is the reaction we have off these levels. I would like to see the hold or reclaim of the PDH levels for moves towards the upside. The thesis stays the same for all the tickers. \n\nAs for my main watches I like TSLA still for continuation. The hold of the 422 level is going to be key for this name. AMZN as well looks good for continuation higher as long as we hold PDH. \n\nFor the rest of the tech names just be patient and wait for relative strength/weakness. Wait for the QQQ and SPY to lead the way. \n\n@everyone",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "CPI",
+      "QQQ",
+      "SPY",
+      "TSLA",
+      "PDH",
+      "AMZN"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "jdub-alerts",
+    "id": "1331259464585707540",
+    "ts": "2025-01-21T13:49:49",
+    "author": "Jdub",
+    "content": "Good Morning Everyone!\n\nGame plan For January 21st\n\nOverall indices pushing towards the upside here with the SPY and QQQ leading the way. What I would like to see is coming into market open is reaction around the PDH. That is going to be key for continuation towards the upside. For the SPY the hold of the PDH is necessary in order for the markets to move towards PMH and the 602 on the higher timeframes.\n\nAs for top watches. My favourite ticker on the hgiher timeframes is GOOG. This is setting up fairly nicely for a move back towards ATH's. Keep and eye out for the retest of the PDH on this one.  TSLA looks good as long as we maintain 430. NVDA I would like to see hold PDH and AAPL is the ticker that has been weak compared to the overall markets. Keep and eye on this one off the PDL level. AMZN also coming up into a key area. I would like to see the reaction on this one off the 229 level on the higher timeframes.\n \n@everyone",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "AAPL",
+      "QQQ",
+      "NVDA",
+      "SPY",
+      "PDL",
+      "GOOG",
+      "TSLA",
+      "PMH",
+      "PDH",
+      "AMZN",
+      "ATH"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "jdub-alerts",
+    "id": "1343990719538532464",
+    "ts": "2025-02-25T16:59:17",
+    "author": "Jdub",
+    "content": "Made $16K today on TSLA\n\nI talked about being frustrated last week. Couldn't really get anything going. Ended in over $6K in drawdown last week and had my first red week in over 6 months. \n\nCame back this week with a clear mind. Looking to being more open to playing both sides. \n\nAll it took was one A+ setup to make it all back and  then some.\n@everyone",
+    "score": 2,
+    "categories": [
+      "pnl-mention",
+      "ticker-action"
+    ],
+    "tickers": [
+      "TSLA"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "jdub-alerts",
+    "id": "1344306631634321520",
+    "ts": "2025-02-26T13:54:36",
+    "author": "Jdub",
+    "content": "Gameplan February 26th \n\nMarkets finally showing a little bit of strength. Higher timeframes are still intact for a move towards the downside. We really hit all our major objectives towards the downside on the overall markets. I want to get cautious right off of the bat. I don't expect to much volatility today compared to the previous days. \n\nThe markets currently are going to have a small gap coming into market open. What I would like to see is a gap fill towards the donwside within the first 30 minutes on the indices. \n\nAs for the tech names I don't have to many top watches. TSLA is the only name that looks interesting. What I will be looking for on this name is the pop and fade off of 309 for continuation down towards the gap fill and potential the PDL. \n\nAs for NVDA this one has earnings so not allowed trading this one today. \n\nAAPL still holding up but this one has been a tough long so will hold off on this one as well right off of the bat. \n\nAMZN looks  good above the PDH so we an keep and eye out on this one for a move back towards the upside. \n\nBe patient today. tm is the big day with NVDA earnings and red rolder news. \n\n@everyone",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "AAPL",
+      "NVDA",
+      "PDL",
+      "TSLA",
+      "PDH",
+      "AMZN"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "jdub-alerts",
+    "id": "1345031798140440631",
+    "ts": "2025-02-28T13:56:10",
+    "author": "Jdub",
+    "content": "Gameplan February 28th \n\nWe just had some red folder news in the markets. We also have some orange folder at 9:45 AM. Right now you can see that the markets are staying heavy. Right now we have just been in the pop and fade market for the past week. We have been doing that and we will continue to do that as long as its working. \n\nComing into market open what I want for the SPY and the QQQ is the pop and fade off the pre market highs. We do have to be very careful today. Markets have only been dropping and we really met all our major objectives on the higher timeframes. \n\nMy top watches today will be NVDA. If we can come back up towards the PDL that would be perfect area to look for potential shorts. \n\nTSLA I would be cautious on. Down 6 days right into a key level of support. If you cannot catch the first move lower I would hold off trading this one. \n\nAAPL looks good as well for continuation lower. PDL hold if going to move this towards the 235 and below. \n\nAs for the rest of the tickers just look for the reaction off the key levels. \n\n@everyone",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "AM",
+      "AAPL",
+      "QQQ",
+      "NVDA",
+      "SPY",
+      "PDL",
+      "TSLA"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "jdub-alerts",
+    "id": "1356251128354046113",
+    "ts": "2025-03-31T12:57:46",
+    "author": "Jdub",
+    "content": "Gameplan March 31st \n\nBig push on Friday towards the downside. You can now see that we are gapping down as well here on most names. SPY right into a level of support where as QQQ is underneath key levels. Coming into market open what we will be doing is seeing the reaction that we have off of those levels. \n\nFor any sort of short we have to be cautious. We want to see a bounce or some sort of consolidation for a move lower. \n\nMy top watches today will be NVDA and TSLA. TSLA key level is the 252 area that we will be looking for a pop and fade. NVDA lets keep and eye out for the reaction off the 104. \n\nAMZN, META, and AMD also all look good if these one can stay heavy as well underneath the PDL levels. \n\n@everyone",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "AMD",
+      "QQQ",
+      "NVDA",
+      "SPY",
+      "META",
+      "PDL",
+      "TSLA",
+      "AMZN"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "jdub-alerts",
+    "id": "1372196126962356275",
+    "ts": "2025-05-14T12:57:30",
+    "author": "Jdub",
+    "content": "Pre Market Gameplan May 14th \n\nComing into this morning you can see that markets are continuing to show strength. Currently we are at PDH on the QQQ. We just hit a key level in the  pre market. What I would like to see coming into market open is the reaction we have off the PDH like yesterday. \n\nAs for my top watches today. TSLA we will keep an eye out for the 342, AAPL if we can show some strength above the 314. META above PDH and AMD retest of the 116. \n\nPLTR also looks good for continuation higher above PDH. \n\nAs for today I would advise caution. Lots of people will feel fomo from yesterday and jump in the first thing they see. Be patient and wait for quaulity setups. \n\n@everyone",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "AMD",
+      "AAPL",
+      "QQQ",
+      "META",
+      "TSLA",
+      "PDH",
+      "PLTR"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "jdub-alerts",
+    "id": "1372557751628333056",
+    "ts": "2025-05-15T12:54:28",
+    "author": "Jdub",
+    "content": "Pre Market Gameplan May 15th\n\nComing into market open we just had some news at 8:30AM EST being core PPI. We also had Fed Powell speak as well. Currently you can see that the markets are holding levels on the higher timeframes.\n\nWhat I would like to see hold on the major markets are SPY 583 and QQQ 514. As long as we maintain those levels I expect the markets to push higher towards the upside. \n\nMy main watches coming into market open will be TSLA reclaim of the 343, AAPL reclaim 211, MSFT hold of the 450. \n\nGOOG looks good above the 166.8 and AMD hold of the PDL. \n\n@everyone",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "AMD",
+      "EST",
+      "AAPL",
+      "QQQ",
+      "SPY",
+      "PDL",
+      "GOOG",
+      "TSLA",
+      "MSFT",
+      "PPI"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "jdub-alerts",
+    "id": "1377269433591922718",
+    "ts": "2025-05-28T12:57:01",
+    "author": "Jdub",
+    "content": "Gameplan May 28th \n\nComing into market open you can see that we had a very nice push towards the upside yesterday. We also just hit a main objective in the premarket being last weeks highs. This is the area that we dropped from with the news tariffs and now we are right back. \n\nWhat we do have coming into today is FOMC along with NVDA earnings so that is going to be key. \n\nAs for my top watches what I have is TSLA. This one I would like to see continuation above the PDH. \n\nMSFT looks good as well above PDH, along with AMD. \n\nAs for the rest of the name keep and eye out for the major indices reaction off the highs. \n\n@everyone",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "FOMC",
+      "AMD",
+      "NVDA",
+      "TSLA",
+      "PDH",
+      "MSFT"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "jdub-alerts",
+    "id": "1387053419629641788",
+    "ts": "2025-06-24T12:55:05",
+    "author": "Jdub",
+    "content": "Gameplan June 24th\n\nMarkets moving nicely in the after hours breaking the top of the range. Let's see if we can start to trend towards the upside now after breaking outside of the range on the higher timeframes. \n\nKey levels will be the QQQ 536 and the SPY 603. Those are the levles I would like to see hold on the major indices. \n\nAs for the top watches I would like to see TSLA hold of the 355 coming into today.\n\nNVDA PDH retest or break above 146. AMD Hold of the 132.5. \n\nAll other names are looking good as well as long as we can maintain key levels @everyone",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "AMD",
+      "QQQ",
+      "NVDA",
+      "SPY",
+      "TSLA",
+      "PDH"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "jdub-alerts",
+    "id": "1388141119401103443",
+    "ts": "2025-06-27T12:57:13",
+    "author": "Jdub",
+    "content": "Gameplan June 27th \n\nComing into today SPY hit ATH's in the premarket. Now QQQ and SPY at ATH's. With that being said that has been my main objective. What I would like to see now is the reaction that we have off that level. \n\nSPY 613 coming into this morning is key along with QQQ 547. \n\nWith it being a Friday and the big move has already happened lets wait for the first 15-30 minutes to play out. \n\nMy top watches will still be continuation above PDH. I like AMZN and META. Semis still look good as well\n\n@everyone",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "QQQ",
+      "META",
+      "SPY",
+      "PDH",
+      "AMZN",
+      "ATH"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "jdub-alerts",
+    "id": "1389229577569828944",
+    "ts": "2025-06-30T13:02:21",
+    "author": "Jdub",
+    "content": "Gameplan June 30th \n\nEOM and EOQ today in the markets. SPY and QQQ at ATH's. NQ hit ATH as well. Last one now is the ES. Coming into today what I would like to see is the reaction that we have off the PDH. That is going to be key for me. \n\nSemis are still my main watch as there are strong and still have room higher. SMH has room towards ATHs as well.\n\nOther watches are META ATHS retest, AMZN PDH Retest, and GOOG looks good. \n\nAlot of names shaping up nicely just make sure to keep and eye out for the major indices to hold key levels \n\n@everyone",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "EOQ",
+      "QQQ",
+      "META",
+      "SPY",
+      "SMH",
+      "GOOG",
+      "EOM",
+      "PDH",
+      "AMZN",
+      "ATH",
+      "ATHS"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "jdub-alerts",
+    "id": "1390314458215354530",
+    "ts": "2025-07-03T12:53:17",
+    "author": "Jdub",
+    "content": "Gameplan July 3rd \n\nHalf day today in the markets. We close at 1:00PM EST.  With that being said the ES hit ATH's in the pre market. That was our last level for the major indices. \n\nWhat I would like to see coming into today is the reaction that we have off that level.\n\nAs for longs today it will have to be above your ATH's on both the QQQ and SPY. \n\nAs for my top watches today its going to be NVDA and AAPL. \n\nNVDA looks good above the 157.5 PDH for a push towards the 158.5.\n\nAs for AAPL I would like to see it maintain above Tuesdays highs. \n\n@everyone",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "EST",
+      "AAPL",
+      "QQQ",
+      "NVDA",
+      "SPY",
+      "PDH",
+      "ATH"
+    ],
+    "reply_to": null
+  }
+]

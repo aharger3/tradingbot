@@ -1,0 +1,208 @@
+[
+ {
+  "date": "2025-03-17",
+  "outcome": "bad_stop",
+  "ticker": "NVDA",
+  "direction": "long",
+  "setup": "gap up retest of previous day high"
+ },
+ {
+  "date": "2024-11-18",
+  "outcome": "bad_stop",
+  "ticker": "TSLA",
+  "direction": "long",
+  "setup": "five minute opening range retest"
+ },
+ {
+  "date": "2024-12-02",
+  "outcome": "bad_stop",
+  "ticker": "AAPL",
+  "direction": "long",
+  "setup": "break and retest of premarket high"
+ },
+ {
+  "date": "2025-02-20",
+  "entry": 246.01,
+  "stop": 245.19,
+  "target": 247.65,
+  "outcome": "loss",
+  "claimed": "loss",
+  "ticker": "AAPL",
+  "direction": "long",
+  "setup": "retest of 246.01 level"
+ },
+ {
+  "date": "2024-09-23",
+  "entry": 245.97,
+  "stop": 246.55,
+  "target": 247.13,
+  "outcome": "loss",
+  "claimed": "win",
+  "ticker": "TSLA",
+  "direction": "long",
+  "setup": "order block retest of five minute opening range"
+ },
+ {
+  "date": "2025-03-27",
+  "entry": 275.79,
+  "stop": 275.54,
+  "target": 276.29,
+  "outcome": "loss",
+  "claimed": "loss",
+  "ticker": "TSLA",
+  "direction": "long",
+  "setup": "break and retest of premarket high with order block"
+ },
+ {
+  "date": "2025-03-31",
+  "entry": 104.68,
+  "stop": 104.81,
+  "target": 104.42,
+  "outcome": "loss",
+  "claimed": "win",
+  "ticker": "NVDA",
+  "direction": "short",
+  "setup": "break and retest of low, weak price action below order block"
+ },
+ {
+  "date": "2024-11-15",
+  "outcome": "bad_stop",
+  "ticker": "TSLA",
+  "direction": "long",
+  "setup": "retest of previous day low and premarket high"
+ },
+ {
+  "date": "2024-09-30",
+  "entry": 231.2,
+  "stop": 230.5,
+  "target": 232.6,
+  "outcome": "loss",
+  "claimed": "win",
+  "ticker": "AAPL",
+  "direction": "long",
+  "setup": "flag pattern break and retest of opening candle high"
+ },
+ {
+  "date": "2024-11-22",
+  "outcome": "bad_stop",
+  "ticker": "TSLA",
+  "direction": "long",
+  "setup": "break and retest of premarket level"
+ },
+ {
+  "date": "2025-04-17",
+  "entry": 499.55,
+  "stop": 500.56,
+  "target": 497.53,
+  "outcome": "loss",
+  "claimed": "win",
+  "ticker": "META",
+  "direction": "short",
+  "setup": "break and retest of 499.55 level"
+ },
+ {
+  "date": "2025-02-04",
+  "outcome": "bad_stop",
+  "ticker": "NVDA",
+  "direction": "long",
+  "setup": "break and retest of five minute opening retest"
+ },
+ {
+  "date": "2024-11-01",
+  "entry": 222.22,
+  "stop": 221.46,
+  "target": 223.74,
+  "outcome": "loss",
+  "claimed": "win",
+  "ticker": "AAPL",
+  "direction": "long",
+  "setup": "break and retest of premarket low"
+ },
+ {
+  "date": "2024-07-19",
+  "entry": 121.46,
+  "stop": 120.54,
+  "target": 123.3,
+  "outcome": "loss",
+  "claimed": "win",
+  "ticker": "NVDA",
+  "direction": "long",
+  "setup": "five minute opening range retest"
+ },
+ {
+  "date": "2025-03-14",
+  "outcome": "bad_stop",
+  "ticker": "NVDA",
+  "direction": "long",
+  "setup": "break and retest of premarket high, 84% rule on 5min range high retest"
+ },
+ {
+  "date": "2024-08-14",
+  "outcome": "bad_stop",
+  "ticker": "QQQ",
+  "direction": "short",
+  "setup": "order block retest"
+ },
+ {
+  "date": "2024-08-20",
+  "entry": 227.0,
+  "stop": 225.6,
+  "target": 229.8,
+  "outcome": "loss",
+  "claimed": "loss",
+  "ticker": "TSLA",
+  "direction": "long",
+  "setup": "break and retest of premarket high"
+ },
+ {
+  "date": "2024-07-22",
+  "entry": 122.41,
+  "stop": 122.0,
+  "target": 123.23,
+  "outcome": "win",
+  "claimed": "loss",
+  "ticker": "NVDA",
+  "direction": "long",
+  "setup": "break above previous high of day with retest"
+ },
+ {
+  "date": "2024-08-01",
+  "outcome": "bad_stop",
+  "ticker": "NVDA",
+  "direction": "long",
+  "setup": "break and retest of previous day high and order block"
+ },
+ {
+  "date": "2024-12-09",
+  "entry": 243.71,
+  "stop": 243.52,
+  "target": 244.09,
+  "outcome": "win",
+  "claimed": "win",
+  "ticker": "AAPL",
+  "direction": "long",
+  "setup": "break and retest of previous day pivot level"
+ },
+ {
+  "date": "2024-11-04",
+  "entry": 140.39,
+  "stop": 140.56,
+  "target": 140.05,
+  "outcome": "loss",
+  "claimed": "loss",
+  "ticker": "AMD",
+  "direction": "short",
+  "setup": "break and retest of flat bottom"
+ },
+ {
+  "date": "2025-03-07",
+  "entry": 237.5,
+  "stop": 236.5,
+  "target": 239.5,
+  "outcome": "win",
+  "claimed": "win",
+  "ticker": "AAPL",
+  "direction": "long",
+  "setup": "previous day high retest"
+ }
+]

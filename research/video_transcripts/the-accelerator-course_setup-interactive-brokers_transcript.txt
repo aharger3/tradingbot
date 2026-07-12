@@ -1,0 +1,410 @@
+# Transcription: the-accelerator-course_setup-interactive-brokers.wav
+# Duration: 2138s
+# Model: tiny
+
+[0s-4s] Alrighty, so today I'm going to be going over my interactive broker setup.
+[4s-9s] This is my personal broker, right interactive brokers, this is Tony's personal broker.
+[9s-14s] This is what I feel like everyone should be using if you're, let's say, outside of the US, right?
+[14s-18s] Outside of the US, there's limited options, so that's why I personally use IBKR.
+[18s-22s] But if I was in the US, right, it has the best executions, right, best fails,
+[22s-26s] right, it has decent commissions. If you're outside of the US,
+[27s-30s] right, it's really one of the only options and it's technically one of the best options.
+[30s-34s] So, in today's video, I'm going to be going over how to set up interactive brokers.
+[35s-38s] So, what we're going to be talking about today is the account creation,
+[38s-43s] TWS customizing layouts, right, charts and indicators, the time and sales,
+[44s-49s] watch list, option chains, the order entry and book trader. That's how you enter an exit out of
+[49s-55s] stocks, right? I'm going to also be talking about hotkeys and then the IB data to, sorry,
+[55s-60s] the interactive broker's data subscription and I'm going to end it off with the trading view integration.
+[60s-65s] So, now let's go over the account creation. Alrighty, so this is the interactive brokers website,
+[65s-70s] right here. As you can see, this is a regulated broker. This is one of the best brokers on the market,
+[70s-75s] right? Everything that has to do with the US, right, that has to do with the New York Stock
+[75s-80s] change. The NAS like, these are all regulated brokers, right? You have to go through something special,
+[80s-86s] right? You have to put in your KYC. You have to, you have to put in your KYC where you send them
+[86s-91s] your social insurance number. You have to do all this to verify your identity, right? We're not
+[91s-96s] trading crypto, for x where there's a lot of unregulated brokers, where there's potentially
+[96s-100s] be a lot of sketchy things that happen, right? When you're trading for x and crypto,
+[100s-106s] everything is, there's a lot of things that are unregulated, right? You can have offshore brokers,
+[106s-112s] when it comes to crypto, right? There's unregulated brokers, exchanges, right? Everything is decentralized,
+[112s-118s] so there can be a lot of potential sketchy things that happen. So, when you come into the interactive
+[118s-122s] brokers website, right, what you want to do is click open account and then you want to click start
+[122s-129s] application, right? When you get on to this page, right? You can see right here, this is your open
+[129s-133s] and account right. You can create your username password, confirm your email address, complete the
+[133s-139s] application. Personally, I'm not going to be walking you through how to do all this, right? I've
+[139s-142s] opened up plenty of accounts, but you guys can just go through this, right? You can see it's personal
+[142s-148s] contact information income, and tax-regidians, residency information, information on trading,
+[148s-153s] experience, and objectives, bank information. So, yeah, this is your KYC right? You have to do this
+[153s-157s] if you're, if you're want to trade on the New York stock exchange because everything's regulated
+[157s-163s] and then on top of this, after you open this up, right? You also have to tell them what type of
+[163s-167s] trading instruments you want to trade. So, essentially, if you want to be trading options and
+[167s-172s] features, you have to apply for that and then you have to take some sort of exam on your trading
+[172s-177s] experience, if you're under a certain age, then if you're over a certain age, you can just put
+[177s-181s] however much trading experience you have, how much money you have, etc. And then you're, you're
+[181s-187s] going to be able to be set to start trading options and features. So, with this out the way,
+[187s-192s] now I'm going to be talking about my TWS chart layouts. All right, so as you can see right here,
+[192s-198s] I'm all my interactive brokers, right? This is what's called TWS. It stands for a trader workstation,
+[198s-203s] right? This is one of the oldest, it's pretty not user friendly. So, that's why I'm going to be
+[203s-209s] breaking it down in this video, right? I BKR actually has a newer version of this, which is a lot more
+[209s-213s] friendly, right? It looks a lot more friendly. I could potentially make a video on that, but I'm just so
+[213s-220s] used to the TWS. I haven't used the new one personally. So, I'm going to be going over the TWS,
+[220s-225s] which is the one that I'm on right now. So, let's first create a new layout, right? First thing you
+[225s-231s] want to do is go on to the bottom right here and you click this plus button, right? And when you click
+[231s-235s] add top, you can create a new custom layout or you can go to the layout library. First, we're going
+[235s-239s] to click the layout library, right? And there's a bunch of things right here. So, you can have browse
+[239s-244s] layouts, right? You have the option trading, you have the standard mosaic chart trading, which is the
+[244s-249s] short term stocks and scanners, order entry with portfolio, chart trading long term, FX trading
+[249s-255s] news, right? So, first, let's go and click the add layout. So, this is a default layout for the option
+[255s-260s] trading. So, we'll click this. So, now I have the default layout for the option trading. And you can see
+[260s-265s] right here. If you want to customize this layout, right? You can click on this unlock button right here,
+[265s-271s] which is right beside the contact. So, this is essentially what unlocks the layout and you can go
+[271s-277s] out and customize it to however much you'd like. So, right here, when you unlock it, you can remove windows,
+[277s-281s] you can add windows. So, right here, we'll remove this window right here and then we'll add in the
+[281s-286s] option chart. So, we can click the closed button, right? We can click yes. And then we can click to the
+[286s-291s] new window and then we can go all the way down to chart and click chart, right? And then we can go
+[291s-297s] here and then we can resize it to however much we'd like. Right? So, we can resize this into the corner
+[298s-302s] and then we can go back and click save changes. Right? So, now you can see right here,
+[302s-308s] we have a chart that resembles the spy. Right? So, whenever you click, let's say on the option
+[308s-312s] chart as well, right? Everything's linked together. So, right here, there's essentially what's called
+[312s-316s] the clip right here and this is the grouping. So, whenever you see this green thing right here,
+[316s-320s] if the same colors are aligned, that's what's called the group. And then whenever you click it,
+[320s-324s] it'll change the chart. So, as you can see right here, I have just a regular watch list right here.
+[324s-329s] And if you click, let's say Amazon, for example, right? Everything should pop up to Amazon. You
+[329s-334s] can see this is the option chain, right? The order entry switches to Amazon. We have the
+[334s-339s] Amazon chart as well. And if I click AMD, right, you can see it switches over, which is very neat
+[340s-345s] apples well, right? Everything switches over. So, it's very nice and it's very simple to use, right?
+[345s-349s] When you group the pattern. So, this is the watch list, right? This is your order entry. And then this
+[349s-356s] is your option's option chart. So, right here, sorry, this is your option's chain. So, right here,
+[356s-361s] let's say you want to play a contract, for example, and you want to be playing the 170 puts,
+[361s-366s] right? You can go and click the ask right here, which is right here, and it'll bring it up.
+[366s-370s] It'll pop up the order entry, and then you can see the options prices as well, right? Let's
+[370s-374s] expand this out a bit, right? You can see there's not that much volume because we're playing 16
+[374s-379s] days out, right? It pops up into the order entry, right? Because everything's connected, and then if you
+[379s-384s] want to buy something real quick, you can see the buy button, you can go over here, click the quantity
+[384s-389s] amount, right? I'll expand more about the order entry in the second, but this is just one of the
+[389s-393s] basic layouts for the options, right? This is the default layout, and now I'm going to be showing
+[393s-400s] guys my personal layout and what I like to use on a day-to-day basis. So, right here, when we want to
+[400s-405s] create a new layout, let's create this one, right? We can create a custom layout, let's just
+[405s-410s] create it, and name it demo, and we'll create it right here. So right here, you can see we have an unlocked
+[410s-414s] layout, and now we can go onto the new windows and start adding things, right? So me personally,
+[414s-419s] I like to have what's called the quote monitor, right? It's under more advanced tools, and you can
+[419s-426s] go over here and click the quote monitor, and then you can just name it to let's say jdub, right? So
+[426s-431s] this is what's called your quote monitor, right? I put all my contracts and everything. If I'm flipping
+[431s-437s] through contracts, right, I want this to have. I'll show you guys what the use of the quote monitor
+[437s-444s] is in for a second, right? What I also like to have is my options chain. So right here, you can
+[444s-454s] click on the option chain. So let's save this layout, let's go back to this. Sorry, go back onto the
+[454s-458s] option chain real quick. This is the option chain, this is where you're going to be seeing every
+[458s-463s] single options contract, and then what I like to do is drag all the option chain instead of clicking
+[463s-469s] it one by one, I'll drag it onto the quote monitor, and then I can see a bunch of more information.
+[469s-473s] So this is what I have on the top two, right, and then you can go down onto the windows again.
+[473s-480s] You can click on the order entry, right? Order entry, I like to have as well, and I also like to have
+[480s-484s] the book trader. So the book trader and order entry are both the same thing, right? They both
+[484s-489s] serve the same purpose, which is to exit in and out of the markets. So you can use the book trader,
+[489s-495s] or you can use the order entry. Me personally, I like to use the book trader. I've just been using
+[495s-499s] it for a decent long time now. I used to use the order entry, but I like the book trader because
+[499s-503s] I have the buttons, and it's a lot quicker. And what we can have on the bottom right here is essentially
+[503s-508s] our trade history. So you can go over here and then go into the order management and you can
+[508s-515s] click trade summary, right? Once you have your trade summary, it shows the P&L that you have for the day,
+[515s-521s] right? The P&L, you can add the trades that you have, you can add the orders that you have,
+[521s-526s] right? This is what I like to have set up on the activity monitor right here. So this is all what
+[526s-530s] I have, and then you can flip through accounts as if you like. There's a lot of different customization
+[530s-535s] features when it comes to IVK, or you just have to get used to it. But this is where you're going to
+[535s-543s] be seeing all your summary, your orders, your trades, and your your P&L. So as you can see,
+[543s-548s] right, this is one of my main layouts, right? This is what I use personally now, right? I don't look
+[548s-552s] at the options chart. When I first look at the options chart, I'll have another personal layout.
+[552s-558s] So this is right here, my old personal layout that I used to use. I used to use this when I
+[558s-562s] had this as my main screen, but I don't use this anymore. But you guys can also have this
+[563s-568s] chart set up if you'd like, right? So right here on this customized window, I hit right here,
+[568s-572s] I have the watch list, so you guys can go down here and you can go and click the watch list,
+[572s-577s] let's find it right here. Right? So this is your watch list. I have it on the side right here. You can
+[578s-583s] size to fit it if you'd like. Right? And I have all the names that I'm trading down here,
+[583s-588s] or the spy, the keys, and then the tech names. Right here, I have one main chart, which is a spy.
+[588s-593s] And then I also have the time and sales right here. I'll talk about this more in a second. And then this one
+[594s-598s] is used as an options chart. Right? Whenever this is used as an options chart, right? You guys
+[598s-604s] can group this up. This is the best if you have multiple layouts. Right? If you have, let's say two
+[604s-608s] screens, right? Two monitors right beside one another. If you only have one screen, I would just use
+[608s-613s] this layout right here, which is the basic option trading layout. If you have multiple screens,
+[613s-617s] right? You can customize your layouts towards your liking. I had this screen, which was my main
+[617s-623s] layout, and I also had my side screen, which was my side where I had all my contracts laid out.
+[623s-627s] But now I'm going to be going back onto the actual layout that I was talking about, and I want to
+[627s-633s] talk more about how I actually use it on a trade to trade basis. So quickly, I just want to talk
+[633s-640s] about how I take my trades and how I pull up the contract. So let's say I want to trade Tesla.
+[640s-644s] So right here, I'm going to quickly talk about how I trade the contracts. Right? So let's say I'm
+[644s-649s] on trading view. And I like Tesla, for example, or AMD, where I'm going to go in here. And I'm going
+[649s-654s] to search it up. So I have this pulled up, right? So now you can see that the Amazon contracts are pulled
+[654s-658s] up, right? So let's say Amazon right now, I'm not sure where it's currently out. I want to be playing
+[658s-663s] the 180 calls, right? You can see the 180 calls, I go direct them over really quickly. So you can see
+[663s-669s] right here. I have the Amazon 180 calls dragged up. And if you click on it, right? You can see that
+[669s-676s] on the order entry, it says Amazon April 19, 2024, 180 call, right? And if you want to use the order
+[676s-681s] entry, you can go click buy and they can change your quantity to, let's say, 20 contracts. And then
+[681s-686s] you have to go over here, click market, right? And then click submit, right? This takes a couple
+[686s-693s] of buttons, right? Technically, you have to do one, two, three, four. So you click four, five buttons,
+[693s-698s] right? You have to click five times the pressing and entry, right? This is why I like using
+[698s-704s] the book trader, right? I already have this set to default. So what I'll quickly do is type in the
+[704s-708s] size that I like. Let's say I want to trade 20 contracts. I'll just click buy market. And then
+[708s-714s] instantaneously sends an order into the market. So instead of pressing four buttons, I just go and
+[714s-719s] click this, right? Change the size and click buy market. I'll talk about the book trader and order
+[719s-724s] entry in second, how I customize it. But then once I click buy market, it'll pop up on the orders.
+[724s-731s] And then I'll be able to market buy in very quickly, right? And let's say I want to trade puts,
+[731s-737s] right? Let's say I have the 190 puts pulled up, right? You can flip back between these contracts. So
+[737s-740s] you can see right here. Every single time I click the 180, it pulls up the 180, call every
+[740s-746s] single time I click the 190 puts, it pulls up the 190 puts, right? So I can quickly flip in between
+[746s-749s] these contracts. And let's say I'm looking at a bunch of different names. Let's say I'm looking at
+[749s-754s] AMD as well. Right? When I drag these contracts onto here, right? I can easily click between
+[754s-759s] a bunch of these contracts at a time. So instead of typing it individually and then going through
+[759s-766s] the option chain and then finding what option contract to trade, right? I just drag all the contracts
+[766s-772s] that I need for the day onto the cool monitor. And then I just quickly flip through the cool monitor
+[772s-776s] and then be able to enter and based off that. So this is how fast I'll be able to do. So let's
+[776s-780s] say I'm looking at Amazon. It's finally coming towards a key level. I'm going to trip puts,
+[780s-787s] quickly flip onto Amazon. I'll go and click 10. And then click buy market. And then instantaneously
+[787s-792s] enter in the market. It takes like five seconds. Very quick, whereas the order entry might take a
+[792s-800s] little bit longer. But that is how I use my TWS. And that's how I customize my layouts. Right?
+[800s-804s] I have two layouts. I actually technically showed you guys three layouts. I showed you guys the main
+[804s-810s] option screen. Right? This was my OG layout that I used to use. This is one that you can use if you
+[810s-814s] only have one monitor. And you can also use this one as well. This is my personal favorite. This is
+[814s-822s] the one that I use right now currently. So yeah. Now I'm going to be talking about charts and
+[822s-828s] indicators. Right? So right whenever you want to pull up a chart, as I mentioned, you guys want to go
+[828s-833s] over here. Click the unlock feature and then click new window and then click chart. So whenever you
+[833s-839s] have chart, right this pulls up your basic chart where you have volume. And you have a bunch of other
+[839s-844s] things. Right? You can size this to however much you like. There's different types of chart. This is
+[844s-850s] the thumb chart where it doesn't have volume. It just is a price chart. So as you can see right here,
+[850s-857s] this one has volume. This one does not have volume. And if you want to, let's say for example,
+[857s-862s] right. So I have this one pulled up right. I already have a chart here. So I'll click out of this. And I'll
+[862s-867s] lock it and I'll save it. So right here, this is my watch list on the side. So if I want to click
+[867s-872s] on Meta, right, I'll click Meta right as I mentioned the grouping is lined up. So everything is set.
+[873s-879s] Click Microsoft Microsoft pulls up Google, Google pulls up. So this is just your basic chart.
+[879s-883s] It's like any other training platform where you have to watch this, you click it and then just
+[883s-890s] flip through the chart. Very nice and neat. Very easy to use. So I don't think there's much more
+[890s-894s] explaining to do on the charts wise. Right? Indicator wise if you want to go to indicated, you click
+[894s-900s] file. Sorry, you go to edit and then you will go on to go into studies and then in the studies,
+[901s-906s] you want to go on to anything you'd like, right? So in the studies, right? You can type anything you
+[906s-914s] like, let's say you want VWAP. So volume, weighted average price. You can see right here,
+[914s-919s] intradivolium weighted average price is VWAP and you can go in here and then you can change it
+[919s-925s] just if you like but you can click apply. So you click apply and now this is VWAP, right? This is a
+[925s-929s] classic indicator a lot of people use. You guys cannot go in here and add EMAs if you like but this
+[929s-935s] it will be your indicator study. As I mentioned, you can go to studies on the edit page and then you
+[935s-940s] can add. If you want to add, you click add if you want to remove, you can click remove, right? It's not simple.
+[940s-948s] There's different types of indicators, right? Personally, I like to use the the 90 MA. So let's
+[948s-954s] pull up the EMAs. Well, exponential moving average. So I'll click add and then you can see it's
+[954s-959s] already set to the 90 MA and then let's just pull back up on the volume, weighted average price.
+[959s-964s] So the VWAP. So the volume, weighted average price. So then you click add again and then click apply.
+[964s-971s] So right, two to indicator set up. So I've a VWAP and then I also have the 90 MA set up right
+[972s-977s] nine and then you can also add the 21 MA if you really like. So these are all the indicators that I have
+[977s-984s] and then I also have volume as well. This one comes standard and then when customizing charts wise,
+[984s-992s] right, if you want there's this button right here which will allow you to move your chart right,
+[992s-996s] I'm pretty sure default wise. It's all the way to the end. So if you don't like that and you want to
+[996s-999s] move it out and you want to see a little bit more information, you can move this towards the side.
+[1000s-1005s] Other things on the chart wise, if you don't like the panels on the side where you can change it,
+[1006s-1011s] you can go on to the settings right here and then click settings on the chart and then you can do a bunch
+[1011s-1015s] other things. So you can display market clock, right. There's so many different settings that you guys
+[1015s-1020s] can mess around with the margin area, the layouts, right. There's so many different things when it
+[1020s-1025s] comes to charts by just like having the basic charts. I don't really chart on interactive brokers.
+[1025s-1029s] I chart on trading view. It's a lot more beginner friendly and there's a lot more studies and
+[1029s-1035s] everything. If you do like the interactive brokers charts, right, you guys can mess around with this
+[1035s-1040s] and just look at different types of different types of displays that they have on here. They
+[1040s-1044s] they've been in ass prices. All different types of things you guys can look out for. But now I'm going
+[1044s-1052s] to be going on to the time and sales. All right. So time and sales is where you can see every single
+[1052s-1057s] market that's coming through. So time and sales is every single order that you can see coming through
+[1057s-1062s] the market. So this is very neat, right. This is everything is regulated here and it all goes through
+[1062s-1069s] one market, the NASDAQ exchange, right. The Chicago Board of Exchange, right. Every single order is
+[1069s-1074s] routed through this area, right. It's all through the same exchange. So every single order in the
+[1074s-1078s] market place, you can see that's going through the time and sales. A lot of people like to use it.
+[1078s-1082s] I personally don't use it as much. Obviously, if you want to go on to it, you can click new window.
+[1082s-1087s] You can click time and sales, right. Time and sales. And then it brings it up here as you can see.
+[1088s-1091s] And you can see the orders that are coming through the market, right. When you click
+[1091s-1097s] expand, you can see that you can see the time and they can also see the orders that are coming through
+[1097s-1103s] the market. So this is very neat. I don't use it personally. I used to use it when I was training
+[1103s-1108s] penny stocks, but it's not as useful when you're trading mega caps, right. Because there's less
+[1108s-1114s] manipulation and there's always order. There's always volume flowing through the market. So you can
+[1114s-1118s] guys can have this up if you like. You guys can have level 2 as well. I personally don't use that
+[1118s-1124s] level 2 is where you can see where the liquidity is essentially resting, but I don't really need that.
+[1124s-1128s] When I'm trading mega caps because I already know where the liquidity is resting and that's above
+[1128s-1135s] old highs and old lows. And yeah, so that's it for the time and sales. Now I'm going to be
+[1135s-1140s] heading on to the watch list. Now I'm going to be flipping back onto the layout that I heard earlier.
+[1140s-1144s] You can go and click new window if you want to create a watch list. Right. This is your watch list.
+[1145s-1149s] Me personally as I mentioned, I like to use what's called the quote monitor.
+[1150s-1154s] Right. You guys can use the quote monitor instead. It's exactly the same thing as a watch list.
+[1155s-1160s] I just like the aesthetic of it. Right. It's the same thing. Right. As the watch list, if you want to
+[1160s-1165s] type in a watch list, you can click Tesla. Right. You guys can add your watch list. You just click
+[1165s-1176s] shift enter. And I'd say, Nvidia, Nvidia, right. So whenever you click these names, right, it
+[1176s-1181s] brings up, if it's grouped together, it brings up everything else on the option chain. Right. You
+[1181s-1186s] can also use this as a watch as well. Right. You can have AMD, Tesla. You guys can drag this over.
+[1187s-1194s] Right. And this also acts as a watch list. So essentially the quote monitor and the watch list are
+[1194s-1198s] essentially the exact same thing. I personally like using the quote monitor because you guys can
+[1198s-1204s] add pages as well. There's a lot more information. I just personally like to use it over the
+[1204s-1209s] watch list. But this is the exact same thing. The watch list is virtually the same thing as the quote
+[1209s-1214s] monitor. If you guys want to change the quote monitor, you guys can click configure. And you can change
+[1214s-1219s] a lot of things. Right. If you want to show the volatility, right. You want to show your P&L,
+[1219s-1224s] right. You guys can add over here. And you can just add stuff. Right. If you want to show your P&L,
+[1224s-1228s] you can go over here, click Cospase, this and let's say you want to add it. Right. It'll add it. And then
+[1228s-1233s] you can see the Cospase. You guys, and then you go down and click Apply. You can see the Cospase is now
+[1233s-1237s] right here. Right here. Where my arrow is. And you want to remove it. You click Remove and then you
+[1237s-1243s] click Apply. And then yeah. So there's a bunch of different studies here. You can change the options
+[1243s-1247s] column. If you like, sorry, the orders column, the colors of the columns. Right. There's so many
+[1247s-1253s] different customization when it comes to a TWS. But I'd just like to keep it simple, just like to
+[1253s-1259s] use the basic stuff and don't customize it as much. So now we'll go back on to here. And now we'll
+[1259s-1265s] talk more about the options chain. So right here, the option chain, right. This is let's pull this up.
+[1265s-1269s] So right here, this is the option chain, right. This is where you see every single contract in the
+[1269s-1274s] market. As I mentioned, if you want to pull up any thicker you like, you guys can go on here.
+[1274s-1278s] Click Apple, right. You want to type something out. You can type the ticker. So if you want to
+[1278s-1284s] test it, it's called TSLA and you click Shift Enter. So you click Enter and then you click Shift Enter.
+[1285s-1290s] So that's how you pull up TSLA really quick. So you click Enter and then Shift Enter and then test
+[1290s-1295s] the pops up. And then majority of the times right, you'll only have the weekly contracts pulled up.
+[1295s-1299s] You guys can click down on more and then you can click the weekly. So this is your default setting.
+[1300s-1303s] When you pull up contracts, you guys can if you want to trade weekly, like this week's
+[1303s-1310s] explorations are next week. You guys can click more. You can click weekly. And then you'll be able to
+[1310s-1314s] see the weekly contracts expiring this week. So there's contracts expiring this week on April the 5th.
+[1315s-1319s] Right. And then you guys will be able to you guys will be able to click on these contracts.
+[1320s-1324s] And then you'll be able to look through these ones and look at all the contracts prices. Right.
+[1325s-1329s] You guys can customize the option chains. What I like to have is the bid ask. It comes default.
+[1329s-1334s] I like having applied volatility. Delta, volume and open interest.
+[1335s-1340s] Technically, I don't need the Delta. You guys can remove this. You guys really don't need to look at
+[1340s-1344s] the groups as much. I like to look at the applied volatility. Right. So let's go customize this
+[1345s-1354s] so you can see on the option chain. Right. You can come on to layout and then you can click on
+[1354s-1361s] Delta and you can click remove. Right. So this is what I like to look at. So I like to look at the bid
+[1361s-1365s] ask and apply volatility, volume and open interest. These are the one things. These are really the
+[1365s-1370s] only things that matter. Some of the people can have the theta as the Greeks. I personally don't use
+[1370s-1376s] those. But things you want to look at is the implied volatility if it's over 100. Make sure to stay away
+[1376s-1380s] because those contracts are probably super juiced up. Right. Volume. You want to always look for
+[1380s-1384s] the contracts with the most volume. Right. Currently, this option chain is not loading up.
+[1386s-1389s] Click back on loading up. So whenever you're looking at Tesla, right. You want to be looking at
+[1389s-1393s] the contracts with the most volume. So you can see as 20 AK. So these are the ones you probably want
+[1393s-1399s] to be trading. 20 AK is the 30 nine cases, 66. Kays. Right. These ones have the most volume. So they're
+[1399s-1403s] very liquid. So you can get in and out very quickly without worrying about having to get filled
+[1404s-1408s] that a certain price and getting slippage. Right. Open interest is also very important. Especially
+[1408s-1412s] if you're swing trading, you want to see the open interest that means how many contracts are being held
+[1412s-1418s] overnight. So this is your call side, right. Call sides on the left. The put side is on the right.
+[1418s-1423s] And then you also have tab views. You have the list view. If you like, there's different types of things.
+[1423s-1427s] You have the puts and calls. You have all strikes. Right. If you guys want to look at more
+[1427s-1433s] strike prices, right. I'm pretty sure it only puts up 10 at the very start. Right. You guys, if you only have
+[1433s-1437s] 10 contracts, right. If it looks like this, you guys can click on the strike price and click
+[1437s-1441s] all. So you can see every single contract strike price. And then you guys can go
+[1442s-1447s] customize it if you like and you can do a bunch of other things. So this is mainly what the option
+[1448s-1454s] chain is. Right. This is a pretty in that explanation of it. Now I'm going to be going on to the order
+[1454s-1458s] entry and book trader. So right here as you can see right here, this is the order entry and this is the
+[1458s-1463s] book trader. This is your default order entry. This is what everyone is used to. Right. This is
+[1463s-1469s] your default one. We were let's say you want to click Tesla. Right. This one's connected already. So I'll
+[1469s-1474s] click AMD. You can see once I click it on the book trader, once I click it on the cold monitor,
+[1475s-1480s] you can see that these are grouped up together. So you can see it pops up on the order entry.
+[1480s-1484s] And then let's say you want to buy AMD. You guys can click buy. So you want to click buy. You want to
+[1484s-1488s] buy 100 shares. You guys can click limit. You guys can click a market. You can
+[1488s-1493s] stop. Right. You guys can change the price. If you like, you guys can change the quantity. If you
+[1493s-1497s] like, and then you want to go on to the pricing. Right. If you want to have a limit by all the way down
+[1497s-1502s] here, you guys can switch it. Right. These are the prices. Right. This is your ass. This is your bid.
+[1502s-1509s] You can do a bunch of things on the order entry. Right. You want to have a good to fill. Right. You want to fill
+[1509s-1516s] outside after hours. You want to allow pre-market trading. Good to cancel trades. You want to have
+[1516s-1522s] other trades such as the OC orders. Like, one can't sell another orders where you can have a stop
+[1522s-1528s] and you can have a stop loss and a buy position at the same time. Right. Whatever fills first.
+[1528s-1533s] Right. You can do a bunch of things on the order entry. Right. This is the most basic one. You
+[1533s-1538s] guys can change the adaptive algal like what type of pricing you'd like. Right. If you want to click
+[1538s-1544s] sell, you guys can just click sell and you do the complete opposite. Right. This is essentially your order
+[1544s-1548s] entry. Right. You guys can go and go right here and then it really explains it right here when
+[1548s-1553s] you click on the settings. It really explains everything on the order entry. It's pretty basic.
+[1553s-1557s] Now we're going to be going on to what I use personally and this is what's called the book trader.
+[1557s-1560s] Right. You guys can go on the new window. You guys can go down and click book trader.
+[1562s-1566s] And this is where the buttons come in. Right. Instead of clicking the order entry where you click
+[1566s-1569s] one and then let's say you have to change the size. You have to change it to market order and
+[1569s-1574s] you have to click submit. Right. One, two, three. As I mentioned, this is like four buttons.
+[1574s-1578s] Whenever I'm doing the book trader, right. If you already have the R&D fault size up,
+[1578s-1582s] right. All you have to do is just click market buy. Whenever you switch a Tesla,
+[1582s-1588s] market buy instantly, it just takes one button and then it instantly routes into the market
+[1588s-1594s] where you can buy automatically. Right. So this is the buttons. And then if you want to change and
+[1594s-1601s] customize the buttons, you guys can go over here and click this button right here. This tool
+[1601s-1605s] icon right here. The configure button and then you can go and customize your button. So if you
+[1605s-1610s] want to add a new button, you guys can click new and then you can go and select action. You can
+[1610s-1616s] click buy. Let's create a market buy one and then you want to click buy and then you want to click
+[1616s-1623s] you can just click right here. Order action by size. You can do absolute or you can just do default.
+[1623s-1627s] I would keep it on default and then you can click market buy. Right. So right here, you can see the
+[1627s-1633s] button text is market buy. And then you want to click instantaneously order. It transmit the order
+[1633s-1638s] instantaneously. Right. If you click this, right. This means that the button is going to go through
+[1638s-1644s] right away without having without popping up the window saying, are you sure you want to buy?
+[1644s-1648s] Because that can be sometimes annoying, especially if you're in a trade really quickly. Right.
+[1648s-1652s] And you're trying to get in a position. And when that pops up, right. It might take a couple seconds.
+[1652s-1657s] And that could potentially be the difference between a nice entry and a potential
+[1657s-1661s] battery, especially if you're scalping. So I always have the transmit order instantaneously.
+[1661s-1665s] And you can click OK. And then you can click apply. And then you can see right here.
+[1665s-1670s] Right. Have a new button. Right. It's a buy market button. Obviously, I already have a buy market
+[1670s-1675s] button. So I can go ahead and remove this. And then you can have a buy limit button. Right.
+[1675s-1680s] You guys can edit. You guys can edit it. Right. You can go here. The order types. Right. It's just
+[1680s-1684s] on different order types. So if you want to buy a limit, you guys can click a new button.
+[1684s-1688s] And then you could click buy again. And then you want to do limit instead of market order.
+[1688s-1691s] This time you want to do limit. And then that's where the buy limit comes in. You guys can do the
+[1691s-1697s] ah limit price offset. If you like. If you want better entries. Right. There's so many different
+[1697s-1701s] types of things. And then you can also do transmit in order instantaneous as well. Right.
+[1702s-1706s] There's all different types of things. I have a sell limit. Right. If you go and configure the
+[1706s-1712s] button. Right. Instead of clicking buy, I click sell. And then it's order type is market. All
+[1712s-1717s] different types of things. Close position. So this will be your close position button. You have a
+[1717s-1722s] cancel button. So whenever you're in a position. And you need to get out right away. This is your
+[1722s-1728s] close position. And let's edit this real quick. It's just a close position. So it's close position.
+[1728s-1733s] And then you can click the order transmit order instantaneously. And then it just exit your position.
+[1736s-1741s] And then also of cancel. I have a buy stop of sell stop. These are for when trailing positions.
+[1741s-1746s] So this is it for the book trader. Right. This is what I personally use. I'm not sure what Tony
+[1746s-1751s] uses. He might use the order entry or the rapid trader. But I like to use personally the order
+[1751s-1757s] trader. The order entry or the book trader. Okay. So now I'm going to be going on two hotkeys.
+[1757s-1761s] Right. Hockey is also very a lot of people like to use hotkeys as well. Right. If you don't
+[1762s-1765s] use the order entry or the book trader. A lot of people like to use hotkeys. I won't do the
+[1765s-1770s] hotkeys in a second here. Me personally I used to use hotkeys and to configure the hotkeys
+[1770s-1774s] which you want to do is click control H. Right. When you click control H on the chart you click
+[1774s-1780s] control H again. And this brings up two hotkeys on the chart trader. Right. You can go into here
+[1780s-1785s] and write you can configure new hotkeys. Right. So if you want to create a new hotkey you go over here.
+[1785s-1791s] You click create a shortcut. And then you want to click record. So this is on your keyboard. Right.
+[1791s-1796s] If you want to let's say you want to do a market buy. Right. Let's say we do a shift be. Right.
+[1796s-1802s] Shift be. It will be a market buy. And then you can go and click customize. Right. This is same as
+[1802s-1807s] the book trader. You guys can go action by and then you can go on to default size. Right. If I want
+[1807s-1814s] to buy that default size is let's say if I want to play 10 contracts I can do absolute. So
+[1814s-1818s] absolute. Let's say I want to do 10 contracts at a time and then I want to do market. And then I want
+[1818s-1826s] to do instantaneously enter in the market and then click OK. And then I click yes. Oops. I kind of
+[1826s-1837s] configured my other one. But let's go click this one record shift be. All right. So now if I click on the
+[1837s-1843s] chart right if I click a contract and whatever I click shift be it will automatically instantaneously
+[1843s-1848s] buy 10 contracts because that's what I have the hockey configured to. Right. I configured the contract
+[1848s-1853s] to whenever I click shift be on the chart or on the quote monitor. It buys 10 contracts no
+[1853s-1860s] matter what. So let's say I have a contract pulled up on the quote monitor. So we'll go back
+[1860s-1865s] over here. Right. Let's say I have the AMD Aper 150 calls and I click shift be. It's going to
+[1865s-1872s] automatically buy 10 contracts. So this is what happens on setting up hockey's if you're on the quote
+[1872s-1877s] monitor or on the chart right. It's going to automatically it's going to automatically buy whatever
+[1877s-1882s] you set up the hockey to. So right here you can see you can have the buy market set up right. So you
+[1882s-1887s] have the buy market set up you have the sell market set up you can have the buy limit to shift out.
+[1887s-1892s] You can increase the size decrease the size. You close position to shift that so you can have
+[1892s-1900s] sell limit shift K right. These are just some of the hockey that you can configure and you guys can
+[1900s-1905s] go and add all the shortcuts yourself right. If you want to buy market as I mentioned you go over
+[1906s-1910s] to create shortcut. If you want to close all positions you can create a shortcut for this.
+[1910s-1914s] You want to click sell you can create a shortcut right. You just come on to you all you have to do is
+[1914s-1920s] click control H twice and then go over here and click create shortcut and that will work for you.
+[1921s-1927s] Alrighty so that's essentially my whole interactive brokers set up. Now I'm going to be talking about
+[1927s-1932s] some of the iB data subscriptions that I use personally so I'm going to be heading back onto the
+[1932s-1937s] web browser. Alright so as you can see right here right I'm on the market data subscriptions
+[1937s-1942s] I'm on my interactive brokers and to get here you have to go into the settings and then you have to go
+[1942s-1948s] to market data subscriptions. So right here you can see that for North America right I have the CME
+[1948s-1954s] events contracts trader workstation. This is for your book trader the US equities options add on streaming
+[1954s-1961s] bundle the mutual funds the real time non-contallating streaming quotes I think all these ones the ones
+[1961s-1965s] they have to pay right the US equity options and add on streaming bundle right these fees will be
+[1965s-1970s] waived if you do a certain amount of commissions per month so as you can see right here the US
+[1970s-1975s] security snapshot features a value bundle the trader workstation waived if monthly commission
+[1976s-1983s] reaches $30 USD so if you do $30 in commissions for the whole month right it will waive the whole fee
+[1983s-1989s] right $30 it's usually around the 30 contracts so if you trade 30 contracts each way right 15
+[1990s-1996s] 15 contracts like 15 buy and 15 sales rate you're most likely going to get a waived on the actual
+[1996s-2002s] commission so you don't actually don't have to worry about the price per month. Other things I have
+[2002s-2009s] is the alternative European equities the trader workstation and the goalbacks the ideal pro effects
+[2009s-2015s] the US EU bonds and quotes right there's a lot more other fees that you could probably add on this is
+[2015s-2021s] what I just have personally this is you what you need just for futures in the live data so this is
+[2021s-2029s] all what I have and yeah so that is it for the interactive brokers market data subscriptions so this
+[2029s-2035s] brings me to my 10 point which is trading view integration right trading view integration what you want
+[2035s-2040s] to do is this is the desktop version of the trading view where you want to go up here is going on to
+[2041s-2045s] the bottom right here this trading panel and you want to click connect to interactive brokers right and
+[2045s-2051s] when you click connect you guys can open up this right and you can type in your interactive brokers
+[2051s-2057s] account right and then load up the interactive brokers profile onto trading view it currently only
+[2057s-2062s] supports futures and stocks right it does not support options which is unfortunate but right if you
+[2062s-2067s] guys trade futures you guys can always your manager positions you guys can connect your interactive
+[2067s-2073s] broker straight towards the trading view and you guys can essentially use the trading view platform right
+[2073s-2076s] when you're using the trading view platform you guys can just click the buy and sell it's up here
+[2076s-2081s] right you can manage it very easily you can drag your stops and play seven spots right me personally
+[2082s-2086s] I don't like it like I've had bad experiences with the trading view integration especially when
+[2086s-2091s] trading futures I really I'm trading with the decent amount of money I don't want trading view to
+[2091s-2095s] mess up and I've gotten a slip a couple of times so me personally I would brought not recommend the
+[2095s-2100s] trading view integration but you guys can check that out for yourselves so with that being said I hope you guys
+[2100s-2106s] found that helpful right that was the full blessing on the interactive brokers full breakdown of
+[2106s-2111s] the trader workstation right you guys should have learned the account creation TWS customizing layouts
+[2111s-2115s] charts and indicators time and sales watch this option chain order on cheap book trader hockey's
+[2115s-2120s] number nine IB data subscription number 10 trading view integration right this is plenty of enough
+[2120s-2125s] to get started especially when it comes to learning the interactive brokers trading platform
+[2126s-2130s] the trader's workstation is very complicated so it's going to take time for you guys to
+[2130s-2136s] understand the platform but I hope this helped you get started now let's go on to the next module
+[2136s-2140s] which is my full breakdown on trading view

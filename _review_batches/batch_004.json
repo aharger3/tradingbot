@@ -1,0 +1,1038 @@
+[
+  {
+    "channel": "trade-feedback",
+    "id": "1458494213883953183",
+    "ts": "2026-01-07T16:15:18",
+    "author": "Huy",
+    "content": "yep! I lost $120 today. Entered in with Jack. I hesitated when Tony entered. Tony was more of an A+ setup while Jack was less. Tony entered on the one candle rule retest while Jack entered based on the PDH. All good; i followed my rule and stopped myself out. Saw the run afterwards which would've hit my daily profit goal BUT there's always tomorrow! \ud83d\udcaa",
+    "score": 3,
+    "categories": [
+      "pnl-mention",
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "PDH"
+    ],
+    "reply_to": "1458493560704864531"
+  },
+  {
+    "channel": "trade-feedback",
+    "id": "1458510427724972239",
+    "ts": "2026-01-07T17:19:43",
+    "author": "FraggDieb",
+    "content": "Today was not cheap \ud83d\ude04 \nBesides the Amazon loss I took. I did not get into intel but tried spy an got both time SL\n\nIt is what it is.\n\nThe first one was bad \u2026 the second one was a good entry (I would say) but market was like nope",
+    "score": 4,
+    "categories": [
+      "adj-trade",
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "SL"
+    ],
+    "reply_to": "1458494213883953183"
+  },
+  {
+    "channel": "trade-feedback",
+    "id": "1458791120392818718",
+    "ts": "2026-01-08T11:55:06",
+    "author": "kython89",
+    "content": "This looked like a good B&R of 5 Min ORB but it didn't reclaim HOD and chopped a bit.  Not paying attention to the time and being in the trade during red folder news certainly didn't help.  However I took calls on what looked like a B&R.  Neto took Puts a couple minutes later and was obviously right.  Given I entered on the close of the 8:52 bullish candle what were the signs that I shouldn't have entered this trade?  The flip zone wasn't as strong or obvious prior to the 8:55 candle.",
+    "score": 4,
+    "categories": [
+      "should-judgment",
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "ORB",
+      "HOD"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trade-feedback",
+    "id": "1458879427709505547",
+    "ts": "2026-01-08T17:46:00",
+    "author": "Huy",
+    "content": "I am going to share this since it may help a few people out because I'm sure I am not the only one feeling like this. Trading all comes down to a probability game. \nJack called the AMZN play yesterday - i took it and it was a loser\nhe then called the INTC play. He profited but I didn't take it because I was already at a loss and didn't want to hop into another trade just because.\n\nfast forward to today, its the same thing again lol. He called the TSLA put. I took a bigger lost than i'd like because of the impulsive green candle at 9:47am (+$1.99!). He then took the NVDA put and profited. I didn't enter for the same reason as yesterday.\n\nI ended today in a loss again BUT i must say; i managed my risk the best that I could and didn't have an itch to enter another trade. I am done for the day. This is how we will win in the long run. If you feel down - go do something. Punch a bag. Go to the gym and lift some weights. Go for a walk or run then review the trades and why it didn't work out. Today was a win in my books. I didn't make the dollar gains but I made some mental gains \ud83d\udcaa \n\np.s. I only entered their live trades because I see what Jack and Tony see and have the same thesis. No entering in blindly.",
+    "score": 2,
+    "categories": [
+      "pnl-mention",
+      "ticker-action"
+    ],
+    "tickers": [
+      "TSLA",
+      "AMZN",
+      "INTC",
+      "NVDA"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trade-feedback",
+    "id": "1458938989275775167",
+    "ts": "2026-01-08T21:42:40",
+    "author": "Royal191",
+    "content": "Stop loss placement on your chart looks good. I wouldn't have stopped out on this either. I would have prob taken first scale at the bottom or close to the bottom of that big red 9:36 candle because im my experience there is usually a pullback after a big candle like that. Then it would have been easier to hold for the next level down. Today Spy PA was just choppy so its easy to get shaken out of trades.",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "PA"
+    ],
+    "reply_to": "1458880939185934460"
+  },
+  {
+    "channel": "trade-feedback",
+    "id": "1458944095614537758",
+    "ts": "2026-01-08T22:02:58",
+    "author": "Royal191",
+    "content": "One thing I learned is not all retests are created equal. Although TSLA retested your zone to the downside, prior to that TSLA dropped and had a strong rejection and was actually pushing up while Qs was dropping. TSLA has been on a big down trend since hitting ATH so you have to be careful shorting at the bottom. Shorting would be trading with the trend but there also needs to be pullbacks before continuation. Today TSLA bounced off of a key zone on the HTF. I would have been more cautious after seeing the 931 and 932 candles.\nIf you zoom out some more NVDA is still in range, but its at the bottom of the range now. The benefits of trading the mag 7 with relative strength and weakness helps us focus on trending names. some people are still able take good trades within the range but i prefer to trade trending names.",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [
+      "TSLA",
+      "ATH",
+      "HTF",
+      "NVDA"
+    ],
+    "reply_to": "1458855576779100379"
+  },
+  {
+    "channel": "trade-feedback",
+    "id": "1458962441466810408",
+    "ts": "2026-01-08T23:15:52",
+    "author": "Neto Moreno (Performance Coach)",
+    "content": "X2 what Ram just explained <@674489420749078539> \nSPY just created that range and there was not a clean entry model for me\nBut, if your plan was playing bouncing ball between the high and low of that range, then it was a great play",
+    "score": 4,
+    "categories": [
+      "adj-trade"
+    ],
+    "tickers": [
+      "SPY"
+    ],
+    "reply_to": "1458945178529304782"
+  },
+  {
+    "channel": "trade-feedback",
+    "id": "1460311958099329199",
+    "ts": "2026-01-12T16:38:22",
+    "author": "Kam",
+    "content": "Hi Huy - i think this is a pretty good setup, a personal preference I have is to treat 1 bar steep pullbacks to a level with caution - but that's not a hard disqualifier. I would definitely check out Jack's live session today when he posts it - I hopped on towards the end and he had some really good pointers on this setup specifically - this is a context call when PDH isn't the best setup (after a big move up or opening drive tagged liquidity at PDH already).",
+    "score": 5,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [
+      "PDH"
+    ],
+    "reply_to": "1460303444635156500"
+  },
+  {
+    "channel": "trade-feedback",
+    "id": "1461746432242487491",
+    "ts": "2026-01-16T15:38:27",
+    "author": "Huy",
+    "content": "did you buy at the ask? The spread is so wide that a bad fill can already put you badly in the negative and sometimes a big pop will barely make you break even",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": "1461743480609964033"
+  },
+  {
+    "channel": "trade-feedback",
+    "id": "1461753038653100273",
+    "ts": "2026-01-16T16:04:42",
+    "author": "Huy",
+    "content": "yep market on wide spreads generally give you bad fills",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": "1461747401525301433"
+  },
+  {
+    "channel": "trade-feedback",
+    "id": "1463568617428881676",
+    "ts": "2026-01-21T16:19:10",
+    "author": "Huy",
+    "content": "I am going to address something due to the amount of people feeling that they sold AMD too soon and missed out on the gains. Disclaimer - I bought and also sold AMD WAY too early too (lol) but the trade could've gone either way (trading in general) but I am totally okay with it. A few of the recent trades that they called out only last 1-2 mins before things turned around. Learn to leave a small trailer after you locked in profits for these sort of action but profits is still profits. With this mindset, we can very well hold a bad trade longer than necessary in the future. We do not always see these kind of continuation. Most days a trend only last for just a decent moment before it consolidate or reverses. Just my 2 cents",
+    "score": 4,
+    "categories": [
+      "adj-trade",
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "AMD"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trade-feedback",
+    "id": "1463900034528448676",
+    "ts": "2026-01-22T14:16:06",
+    "author": "Neto Moreno (Performance Coach)",
+    "content": "<@731609570836742144> congrats brother, amazing trades. And how you use your tool\u2026 outstanding",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trade-feedback",
+    "id": "1465745543773815029",
+    "ts": "2026-01-27T16:29:29",
+    "author": "Huy",
+    "content": "What I said here still stand true: https://discord.com/channels/1218766394997346395/1219021113686888478/1465371648365428747. Very similar story with AAPL today from the live trade. AAPL did have continuation but IV affected the option price.\n\nSince I preset my TP in a bracket order, I was able to sell and get filled at a very good price of $4.65 (this was miraculous). This also had the most volume! Contract was barely at 4.75 after it pushed more than a dollar from there. \n\nAgain for people who are still getting the hang of trading, baby wins like this matters. It proves a point. It proves we can follow a system. It also proves we can trust in ourselves. We can alter the TP strategy better once we have more experience under our belt. \nNote: I left 1 runner but cut it once I saw the price was stalling.",
+    "score": 3,
+    "categories": [
+      "pnl-mention",
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "AAPL",
+      "IV",
+      "TP"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trade-feedback",
+    "id": "1466495650823934012",
+    "ts": "2026-01-29T18:10:09",
+    "author": "Erich",
+    "content": "I entered the TSLA trade on the BnR of the LOD at 423 at 9:20am, which seemed like a good entry as it looked like we had confirmation of the continuation to the downside. The next candle at 9:21am jumped to 425, hitting my stop loss (-15%). Was I too conservative on that SL? Guess I should have let it play out, which in hindsight would have worked out really well. Unfortunate timing on the entry and immediate spike upwards.",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [
+      "TSLA",
+      "SL",
+      "LOD"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trade-feedback",
+    "id": "1466977411575840861",
+    "ts": "2026-01-31T02:04:30",
+    "author": "DSmith",
+    "content": "Hey everyone - I\u2019m really looking for some recommendations going into next month and to get my mind right/refreshed.  I\u2019ve been through the courses and joining the Live sessions since mid June of last year. I\u2019m watching all of the reviews and YouTube videos. Each month it seems like I\u2019ll be really improving and seeing consistent wins, and then I end up giving it all back and more on a few trades, (or like this past week for example) and pretty much wasted a whole month\u2019s worth of progress\u2026start over again and then it happens the next month and so on. \ud83d\ude43 Last week I realized that I really needed to try and not scale so quickly/let trades play out longer with my small 1-3 cons because my winners were so much smaller than my losers when I scale at HOD. Tried that approach this week and obviously wasn\u2019t a smart move\u2026out of all weeks this one was the one where I should\u2019ve just continued to scale at HOD. $4500 acct turned into $3400 in a week\u2026and I\u2019m definitely feeling a bit hesitant going into the next month if I stay on this trajectory. What have you guys done to get out of this situation and survive another day? Is the answer to scale? Or not to scale? \ud83d\ude02 I mean on MUs and SNDKs I\u2019m basically just on 1 con, Fridays I\u2019ve been downsizing, and then still get wrecked! I liked the setup that Jack took today on QQQ puts\u2026actually got in like right before he did, and then the sucker just had the most massive green candle right after the entry\u2026\ud83e\udd26. Maybe the lesson is just to completely avoid FOMC and earnings weeks all around. Here\u2019s my month- AAPL on the 27th which was an amazing trade but all I had was -0.32 cents to show for it!\ud83d\ude02 I appreciate any and all feedback!!",
+    "score": 7,
+    "categories": [
+      "adj-trade",
+      "pnl-mention",
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "FOMC",
+      "AAPL",
+      "QQQ",
+      "HOD"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trade-feedback",
+    "id": "1467086963952714005",
+    "ts": "2026-01-31T09:19:49",
+    "author": "mrp_cz",
+    "content": "one thing I can share is: focus more on A+ trades with a very low risk\u2026 do not take every single trade that u feel like it\u2019s ok.. focus only on the best setups with the lowest risk possible \n\nand do not trade P&Ls, trade patterns\u2026 this is probably the most important motto ever \ud83d\ude42 the process is more important than profits",
+    "score": 2,
+    "categories": [
+      "adj-trade"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trade-feedback",
+    "id": "1467202398547345723",
+    "ts": "2026-01-31T16:58:31",
+    "author": "DSmith",
+    "content": "Thank you - yes, well one thing I can confidently say is that the setups are usually really good (because I\u2019m sticking to Tony and Jack, and I trust them 100% after seeing their results and being in this group for the past 7 months). Entries and exits may be a bit late here and there but I find that on good trades I scale majority out on HOD and just don\u2019t get a lot of extra gas on 1 con, or maybe I take it off at TP1. It\u2019s just the Stop Losses, every time I lose it\u2019s usually like 1 or 2 huge red candles that just kill me and I stop out on strong weakness with market orders\u2026often I check back later in the day just to find that the stock went up later in the day etc. and I probably would\u2019ve made huge profits if I didn\u2019t get faked out. But losing on those 3 cons with such weakness just eats away my small profits that I take on 1 or 2 at HOD and then 1 con left for TP1.",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [
+      "HOD"
+    ],
+    "reply_to": "1467086963952714005"
+  },
+  {
+    "channel": "trade-feedback",
+    "id": "1467204024364175495",
+    "ts": "2026-01-31T17:04:58",
+    "author": "John H",
+    "content": "Quick post here regarding my oversized losses from Friday's session. I decided I would play WDC, and as we witnessed memory names had a brutal selloff. But more importantly what did I do wrong. I came in simply unprepared. WDC is not a ticker I normally trade. I had zero premarket prep. No key levels to watch and no exit plan when the trade turned against me. I failed to check a higher time frame to see that we were selling off. I should have marked off the open high low on the 5 min. candle as is often discussed here and I didn't do that either. So, an entire solid month of very good trading cost me more than 1/2 my gains for January. \n\nTo make matters worse, I continued to trade. While I won most of those trades, I took yet another big loss on SNDK. I entered very late chasing more downside and the stock reversed near end of day. I'm saying this as a reminder to myself and for others that might be newer traders how very important it is to map out your game plan. To stay disciplined. To know your exit point if the trade turns against you. To not overtrade by taking too many trades, or revenge trade to try and recoup losses. Had I followed <@1014389514141184074> Friday advice I would of had a much better week & month. I was up $42K for January, I ended with $16K. I was disciplined all month long until Friday. That is truly how quickly you can make careless errors and give it all back. \n\nI still have a very high win rate, but you'll find that does not matter if you let trades get worse by the minute and don't get out when they are clearly not working. I will come to the market prepared, or I will not trade. That is something I have to follow for myself. We ride again Monday, and you all will see me turn this around. Best of luck everyone.",
+    "score": 3,
+    "categories": [
+      "pnl-mention",
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "WDC",
+      "SNDK"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trade-feedback",
+    "id": "1467210350515453982",
+    "ts": "2026-01-31T17:30:07",
+    "author": "DSmith",
+    "content": "Dude, with mistakes and all, congrats on a great month! Haha $16k on a month would be a dream come true for me \ud83e\udd23 - that\u2019s a heck of a job. Friday was my worst day also of Jan\u2026didn\u2019t scale on the MU trade and then the QQQ put which basically just felt like the market laughing it\u2019s ass off at me\u2026Jack got out quick but I was too busy trying to pick my jaw up off the floor \ud83d\ude02\ud83d\ude02. Anyways I know it\u2019s all part of it, just trying to minimize it where I can. \nAnd I totally echo your sentiment about Jack - when I see him make months like this one (best ever) that gets me so pumped for him because I know how much he puts into it and really makes so much effort to help everyone else get there. Tony and all of the other admins as well - honestly just can\u2019t say enough about this community and the people within it. I\u2019ve got the lifetime, and I really just hope it\u2019s not going anywhere in my lifetime! \ud83c\udfc6",
+    "score": 2,
+    "categories": [
+      "pnl-mention",
+      "ticker-action"
+    ],
+    "tickers": [
+      "MU",
+      "QQQ"
+    ],
+    "reply_to": "1467204024364175495"
+  },
+  {
+    "channel": "trade-feedback",
+    "id": "1467925012458635521",
+    "ts": "2026-02-02T16:49:55",
+    "author": "Fred",
+    "content": "Hi, here my trade for today. The result wasn't very good : two losses (-2.7R) and one win (+2R).\nWhat's your opinion on the process ?\n\nIn 1h TF, we broke and retested the previous high from last Wednesday. Last Thursday, we broke the Wednesday low, which we then retested on Friday. The plan today was either a continuation of the bearish trend (break of the red zone/PDL) or a rejection of the previous low/PDH (red zone).\n\nIn 15m TF I identified 2 potential areas for a reverse (green area, which coincides with the red zone for rejection in 1h TF) and 1 area for continuation (red area).\n\nOn the 1m TF, the scenario is bullish; we disregard the bearish continuation opportunity and focus on the reversal. Based on my key zones identified on the 1-hour and 15-minute charts, I took puts on breakouts and retested previous 1-minute highs (market structure/yellow area).",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "TF",
+      "PDH",
+      "PDL"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trade-feedback",
+    "id": "1470497069213941871",
+    "ts": "2026-02-09T19:10:21",
+    "author": "Jay_aye11",
+    "content": "Yeah I think i became fearful of the big candle into the order block. Smh. Would\u2019ve been a solid trade lol. Thank you bro and idk why Think or Swim has these crazy wicks down. They don\u2019t appear on my  tradezella I don\u2019t see them on your chart either.",
+    "score": 2,
+    "categories": [
+      "adj-trade"
+    ],
+    "tickers": [],
+    "reply_to": "1470495649114886407"
+  },
+  {
+    "channel": "trade-feedback",
+    "id": "1470521740550606909",
+    "ts": "2026-02-09T20:48:23",
+    "author": "Sean Dees",
+    "content": "Waddup guys took two trades today TSM and AMD \nSolid trades the yellow line is entry brown is first scale 2nd scale is blue and final exit green felt like I could of managed it better on the scaling but next time will work on that. And AMD sold into first pop took it on lower size already green but it was textbook so I took a stab at it. Up 83dollars on the day.",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "ticker-action"
+    ],
+    "tickers": [
+      "AMD",
+      "TSM"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trade-feedback",
+    "id": "1471973219987886252",
+    "ts": "2026-02-13T20:56:03",
+    "author": "Joebag009",
+    "content": "I took a quick apple scalp since JDUB was looking at it and bought two 0 day cons. One sold at profit of 17 and one tight stop out at -9. They reversed shortly after so my exit was ok. Then I saw NVDA come back within 5 bucks of where I entered. It retested and I tried again with Jack and chat talking about continuation (but not high conviction on retrospect, it didn\u2019t close under the level I was looking at with conviction and the market reversed). While I was wrong on the setup I did manage risk by switching from 0 days to next Friday expiry. I had a tighter stop but sized up like an idiot to 3 cons instead of sticking to 1 on a lower probability setup and overall should have stayed out because it is Friday and my 2nd attempt at NVDA already failed. Looking back it felt rational but was an emotional trade. I lost another 118 in my margin account stopping out. \n\nI took a solo trade going long on QQQ when it popped above the 15 minute orb and defended it with the 10:31 candle, it did not continue higher so I sold my single 0 day con for a profit of $33.00 very quickly. This turned out to be a smart decision as it didn\u2019t break higher for two more hours, by then most would have stopped out and any contract would have decayed.\n\nI gave spy long a try but had an ultra tight stop and was done at -9 bucks, also wise as it rejected that level about 10 times and then failed bigly hours later.",
+    "score": 2,
+    "categories": [
+      "pnl-mention",
+      "ticker-action"
+    ],
+    "tickers": [
+      "JDUB",
+      "NVDA",
+      "QQQ"
+    ],
+    "reply_to": "1471972942933004380"
+  },
+  {
+    "channel": "trade-feedback",
+    "id": "1471973305488769035",
+    "ts": "2026-02-13T20:56:23",
+    "author": "Joebag009",
+    "content": "I had a big AHA that if it was my cash account I never would have risked subsequent NVDA trades, so I think I might be trading my cash account with 720 in it (and taking profit out each day) for a few days to build my psychology up with a fresh start. Another big aha is that with 0s and even generally the first trade is the best trade and unless I have a new thesis or proved continuation (preferably with divergence from the market), re-entering is a bad idea - looking at my trading notes I have had wins in the past on re-entering for continuation, especially in big dumps around key levels and in grinds but this week it has not worked out (as in net profit) and eaten my meagre profits. Instead of blaming the market, I am adding new habits of pausing between trades and to reload I will develop a quick checklist for myself - did it defend a key level and continue or is it just teasing me, or is it just teasing me as it mirrors qqq moves (hey, it got Jack with TSLA this week, I need to be kind to myself, but also prevent it next time), is it over-extended on the stock, and with qqq overall? What is the daily tf trend? Are Jack and Tony still in and either not at target or just tp1? Tp2 and \u201cto the moon\u201d are horrible places for re-entry, even if it is holding a key level or 1 minute timeframe. Reminder to myself that re-entries pay less, fail more often, and lose money more quickly than initial setups.",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [
+      "TSLA",
+      "AHA",
+      "NVDA"
+    ],
+    "reply_to": "1471973219987886252"
+  },
+  {
+    "channel": "trade-feedback",
+    "id": "1471973535663656990",
+    "ts": "2026-02-13T20:57:18",
+    "author": "Joebag009",
+    "content": "I keep getting to the half way point of passing evals and then getting close to blowing them, grinding up, then either failing with tight margin or a second tilt day. I wish I had tried props sooner, days of learning only costs me the eval fee. I wish more that I was passing them. I want to try trading multiple accounts at the same time with a copy trader for base hits that add up, I have two Apex accounts and wanted to link them to Ninja trader, only to find out that the feature was removed with the latest update to Ninja 8. I might try trading both together on Rthmic trader pro, but haven\u2019t figured out the right settings and also need to tweak the master settings to switch from Ninja to Rthmic. I was super exited for Ninja with all the flashy Youtube shorts out there, it looks like ass out of the box and I am let down. So far my best results have been with TPT. Apex trailing drawdown scares me, I need 1 solid trade per day which might be good for my trading, but if I trail too close I\u2019ll get stopped out in profit and then if I try to re-enter I\u2019ll get cooked on small moves and spreads. If I size up I can\u2019t give it too much room without blowing the account. Two micros and one trade attempt per day might be the best way to go, but how much is a healthy stop and healthy trail for Apex. I think Flowzone has a video on Apex best trading practice so I\u2019ll check it out. I need to start trading the accounts next week so I can pass before they renew but this week has sucked and I\u2019m not starting on a Friday.\n\nBetween all my accounts my challenges are: overtrading, tilt, sizing up instead of being consistent, not differentiating between good and crap setups, and rule breaking by staying on charts too long.",
+    "score": 4,
+    "categories": [
+      "adj-trade",
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "TPT"
+    ],
+    "reply_to": "1471973448694628393"
+  },
+  {
+    "channel": "trade-feedback",
+    "id": "1473412077329584178",
+    "ts": "2026-02-17T20:13:33",
+    "author": "Luke",
+    "content": "Hey <@708108045301055548>, I see what you were going for here. I see a few things here: I like that 5min low for a move down to HTF key levels. It looks like you entered at 10:06am EST on the reclaim of Premarket Low. Before that though, you can see that I have a level from the 15min timeframe (not a super strong level but good for context). You can see it actually swept it beforehand and bounced off of it, so for me I would need to wait for a reclaim or retest of the 179.45; it looks like you didn't have that key level drawn so in your case the the context is pretty good.\nOne other small thing you can see is there was a lower-high made at 9:57am EST and it was actually broken at 10:03am EST and the 1min timeframe technically had already reversed before you entered, and was now creating a higher-low.\nThose are just some small things that stick out to me. Overall solid trade idea though. You can see on the HTF that NVDA has a lot of room down if it can get below Premarket Low/1790.45 HTF key level and has room down to at least Feb 6th's LOD. Hope that helps",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [
+      "EST",
+      "NVDA",
+      "LOD",
+      "HTF"
+    ],
+    "reply_to": "1473407600153460860"
+  },
+  {
+    "channel": "trade-feedback",
+    "id": "1473427145186611436",
+    "ts": "2026-02-17T21:13:26",
+    "author": "Joebag009",
+    "content": "Tuesday, February 17, 2026\n\n1) TSLA Feb 18 $405 Put | 1 con | Buy 3.90 @ 9:44 | Sell 3.90 @ 9:47 | P&L +0 | Acct: Cash\n   Notes: Was worried MNQ headed up; could have exited at minor profit.\n\n2) TSLA Feb 18 $405 Put | 1 con | Buy 4.48 @ 9:48 | Sell 5.10 @ 9:50 | P&L +62 | Acct: Cash\n   Notes: Could have held and sold ~6.30 at 9:55, ~6.80 10:07\u201310:14, but at the time no certainty so it\n         would have been a gamble with a single con.\n\n3) TSLA Feb 18 $405 Put | 1 con | Buy 5.20 @ 9:51 | Sell 5.23 @ 9:51 | P&L +3 | Acct: Margin\n   Notes: 6.35 at 9:55; there was room left for TSLA. Should have either not entered or had the kiwis to hold it.\n\n4) TSLA Feb 18 $405 Put | 1 con | Buy 5.29 @ 9:51 | Sell 5.52 @ 9:53 | P&L +23 | Acct: Margin\n   Notes: Took on risk and still didn\u2019t exit well in the low-of-day window.\n\n5) QQQ Feb 20 $595 Put | 1 con | Buy 7.00 @ 9:54 | Sell 7.40 @ 9:54 | P&L +40 | Acct: Margin\n   Notes: Didn\u2019t want to risk TSLA; traded main QQQ rejection instead. Sniper exit; hovered around 7.40 until\n         10:15, then pumped against shorts and only made 7.90 HOD at 10:35.\n\n6) TSLA Feb 18 $405 Put | 1 con | Buy 6.75 @ 9:59 | Sell 6.50 @ 10:04 | P&L -25 | Acct: Margin\n   Notes: Entered in uncertain market structure; was lucky to get out ok. Could have gotten out b/e or profit\n         if I held but it was holding at the price level.\n\n7) TSLA Feb 18 $400 Put | 1 con | Buy 4.78 @ 10:11 | Sell 4.40 @ 10:22 | P&L -38 | Acct: Margin\n   Notes: Just gave back my gains\u2014why did I re-enter? AM trades re-entry worked out, but how did I not realize\n         we are extended? Should have at least paused for continuation. 8 minutes later it was at 5.20 (about HOD).\n\n8) TSLA Feb 18 $400 Put | 1 con | Buy 1.79 @ 13:25 | Sell 1.88 @ 13:26 | P&L +9 | Acct: Margin\n   Notes: Sniper scalp of retrace from a pump in conjunction with QQQ.\n\nTOTALS\n- Net P&L: +74\n- Cash: +62\n- Margin: +12\n- Comment: Looking at the number of trades here, less is certainly more.",
+    "score": 4,
+    "categories": [
+      "pnl-mention",
+      "should-judgment",
+      "ticker-action"
+    ],
+    "tickers": [
+      "AM",
+      "QQQ",
+      "TSLA",
+      "TOTAL",
+      "MNQ",
+      "HOD"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trade-feedback",
+    "id": "1473427420270039352",
+    "ts": "2026-02-17T21:14:31",
+    "author": "Joebag009",
+    "content": "Prop accounts: TPT -about 30 and 50 cents away from blowing it, will try a trade but fully expect to lose it and not planning to renew \u2013 will focus on my other accounts now that I have ruled out trading outside NY session.\n\nTopStep: no trades.\n\nApex 02: +105 followed rules well\nApex 01: -264 slightly overtraded but caught myself and closed the charts before it got worse\n\nElite athletes don\u2019t rise to the occasion; they fall to their level of training. -Neto Moreno\n\nTheme of the day and Aha #1: SLOW THE HELL DOWN, be patient, DO NOT LONG OR SHORT IN CHOP, AT EDGE OF RANGES, AT HIGH OR LOW OF DAY\u2026 so in other words looking at a 1/5/15 min TF of a daily chart, the move looks HUGE, it makes us GREEDY, it makes us FEEL LIKE A BAD TRADER for \u201conly\u201d capturing xyz\u2026 but really, \u201cperfect\u201d is timing to SAFELY capture a relatively TINY part of that move with HIGH expectancy and CONSISTENCY. Doing it with 0s like JT (Jack and Tony) grants extra rewards.\n\nBig aha for me today is how much more 0s can move compared to Friday expiries, 80% vs 20 profit roughly, however 0s are sooo spicy, even 1 option feels so high risk, definitely with the low discipline I have had lately. So, I could do 1 con 0 and be out when in profit, no re-entries ever on 0s, just with longer expiries, and not to mention that I\u2019m super cooked if JT are wrong. I feel like I am at the beginning of my trading journey again, learning how to execute accurately and repeatedly with a single 0 will be a new challenge for me, I understand these are just for the main trade of the day and an A+ setup, I will want more wiggle room on most days until I\u2019m consistently green.",
+    "score": 4,
+    "categories": [
+      "adj-trade",
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "DO",
+      "LOW",
+      "HUGE",
+      "TRADE",
+      "OR",
+      "SHORT",
+      "HIGH",
+      "GREED",
+      "TPT",
+      "EDGE",
+      "HELL",
+      "FEEL",
+      "LIKE",
+      "SAFEL",
+      "CHOP",
+      "TF",
+      "NY",
+      "SLOW",
+      "DOWN",
+      "OF",
+      "LONG",
+      "IN",
+      "TINY",
+      "JT",
+      "AT",
+      "RANGE",
+      "BAD"
+    ],
+    "reply_to": "1473427145186611436"
+  },
+  {
+    "channel": "trade-feedback",
+    "id": "1473427511718318182",
+    "ts": "2026-02-17T21:14:53",
+    "author": "Joebag009",
+    "content": "Struggle I identified last week was juggling too much at once: evals with MNQ and FZ (FlowZone), options with JT. It is too many accounts. My original thesis was options in the AM followed by MNQ all day, it is 24/5 after all. For almost a month now I tried trading globex, I tried Asia and London, I tried open (5 central, Sunday afternoon etc.) and my results are mixed \u2013 very much like my early trading journey with medium wins and big losses wiping it all out, plus mental exhaustion, replicated in the youtubers I watch who trade all these sessions. One clean setup over and over, like Neto talks about often, and JT implicitly in their Youtube vids. Overtrading for me boils down to: desperation, greed, fear, poor impulse control, and revenge trading. I have conquered them individually, but need to be ready for any to pop up randomly depending on my emotional state and how the day is going. \n\nToday I did okay with options and then shifted my focus to futures which prevented overtrading and losses by maintaining focus on one thing at a time, however now I\u2019m worried I won\u2019t pass evals without sustained focus on a big move. I will need to be disciplined if trades don\u2019t line up to protect gains, let some evals fail, and perhaps focus a morning just on futures \u2013 there is more of a grind in props but much lower cash risk compared to options with my own money \u2013 one con of options is the same as like 3 evals or more if they are on sale, however it is a journey to get to profitability with props.",
+    "score": 2,
+    "categories": [
+      "adj-trade"
+    ],
+    "tickers": [
+      "MNQ",
+      "AM",
+      "FZ",
+      "JT"
+    ],
+    "reply_to": "1473427420270039352"
+  },
+  {
+    "channel": "trade-feedback",
+    "id": "1473427651363475708",
+    "ts": "2026-02-17T21:15:27",
+    "author": "Joebag009",
+    "content": "Big aha with FZ today is that just like with JT I overtraded and didn\u2019t quite match his execution. My goal today was to trade less and more focused on his stops and setups. While I missed some of the moves and botched the execution a bit, I at least paid attention to him with a new type of mindset and followed through and am up in 1 out of two Apex accounts. I could feel my frontal cortex straining, doing REPS, as I breathed through my emotions and focused on market structure. I stayed OUT of MULTIPLE trades, that WOULD NOT HAVE WORKED. So that was a huge psych win for me today, which I need cause I feel like I\u2019m on the cusp of either making it big or completely losing my mind. FZ did 3 trades today, I did more with less size, same pattern as with JT and re-entries, but a bit easier managed on the charts so less friction. \n\n12:30 PM Eastern behaviour of futures seems to change a bit and most consistent pros are done here if not a lot sooner. Big AHA: a price move on a chart is not equal, cons and futures move different depending on price volume and market structure. \u201cd\u2019uh\u201d but seeing it in real time is different than seeing it in a lesson. A \u201cchoppy/grindy\u201d move in both futures and contracts is a lot crappier than a clean smaller move with strong volume and direction. Again \u201cd\u2019uh\u201d, but starting to see it is making a big difference in my emotions and execution. Also after 12:30 fills get worse on stopping out and taking profits making it harder to stack up wins that recover from even small losses (because bad fills make them even 3x worse than AM exit with the same distance stop). In other words, what the chart shows is a lie, the risks of extracting money from what you see go UP.",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [
+      "AM",
+      "HAVE",
+      "PM",
+      "WORKE",
+      "AHA",
+      "JT",
+      "WOULD",
+      "FZ",
+      "REPS",
+      "UP"
+    ],
+    "reply_to": "1473427511718318182"
+  },
+  {
+    "channel": "trade-feedback",
+    "id": "1473711725202247803",
+    "ts": "2026-02-18T16:04:15",
+    "author": "FraggDieb",
+    "content": "Got a good entry on TLSA Long .... But got faked out with that downclose candle sadly \ud83d\ude41",
+    "score": 4,
+    "categories": [
+      "adj-trade",
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "TLSA"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trade-feedback",
+    "id": "1473762505296838667",
+    "ts": "2026-02-18T19:26:02",
+    "author": "Huy",
+    "content": "first candle rule (5 mins opening orb range) is something that is always good to map out and see so you can build some context. If the price is below both the PDL and PML, that would be one confluence for me. I like to take key levels into consideration such as the HTF levels. I am going to steal Jack's words but WMT offered that beautiful pop and fade today. \nPDL + 128.10 key support would have been a low risk entry. PML and PMH should be used with caution though since the levels created in this session does not have a lot of volume so its a thing we can look at if there's a HTF thesis and PM levels is the only thing that we can work off in a *trending* day.\n\nif presented with this trade, I would only take a short off the 128.10 level that I mentioned either or go long if it can break and retest above 129.70 since this would violate the current structure and can shift for the upside. \n\np.s. if you trade with wmt more in the future, you can watch the XLP index for another confluence",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "XLP",
+      "PM",
+      "PDL",
+      "PMH",
+      "HTF",
+      "PML",
+      "WMT"
+    ],
+    "reply_to": "1473752249627971615"
+  },
+  {
+    "channel": "trade-feedback",
+    "id": "1473779808813977620",
+    "ts": "2026-02-18T20:34:47",
+    "author": "Joebag009",
+    "content": "Re the 5 minute candle, if you are deep in profit and managing a trade on the 1 minute and it is messy or not giving a clear signal, the 5 minute can be used instead to manage a good exit in profit, but I always use the 1 minute for entries.",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": "1473752249627971615"
+  },
+  {
+    "channel": "trade-feedback",
+    "id": "1473845198264991784",
+    "ts": "2026-02-19T00:54:37",
+    "author": "Huy",
+    "content": "I was referring to the area where price consolidated above the PMH before those candles left fair value gaps. This shows strength and institution made it clear that was \"them\". \n\nre the other question: It depends on your thesis..if priced is flipped and you see a good setup and it meets your rules then why not? p.s. i know in an earlier thread you mentioned you don't feel comfortable shorting. When market wants to sell off, the volume and intensity is strong so catching that move to the downside can offer nice rr's. Jack tend to be more aggressive when he find a bearish set up.",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [
+      "PMH"
+    ],
+    "reply_to": "1473511466198892678"
+  },
+  {
+    "channel": "trade-feedback",
+    "id": "1474883562800152606",
+    "ts": "2026-02-21T21:40:43",
+    "author": "Kam",
+    "content": "I\u2019d probably look at the 9:42 candle after the hammer at the 5m OR as the best retest. It\u2019s aggressive (ahead of the 1m OB), but it has confluence with a prior daily level from the prior Fri high and is inline with the 1st pullback method\n\nThe 2nd and 3rd pulls look weaker to me because momentum hadn\u2019t really established yet - GOOG was consolidating and the market was choppy. Retests tend to work best after clear displacement & quick pullbacks\n\nIMO the 2nd best momentum retest came later around 11:20 on the 5m once relative strength was obvious.\n\nBig thing though is replaying & practicing these moments in real-time speed. In hindsight a lot of things can look textbook, but we have to go with what we can see in the moment! Just because the 9:42 entry didn't go up & have continuation doesn't mean it was a bad trade according to the system. The 2nd & 3rd entries look good because they went up, but for every chart that looks like this, there's one that fails to the downside also",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [
+      "GOOG",
+      "IMO",
+      "OB",
+      "OR"
+    ],
+    "reply_to": "1474773071645900962"
+  },
+  {
+    "channel": "trade-feedback",
+    "id": "1475510215444271255",
+    "ts": "2026-02-23T15:10:49",
+    "author": "Lianne",
+    "content": "Took PLTR for a loss, but I\u00b4m not sure what I did wrong. Took it on the 5m low, HTF was bearish, QQQ was dropping. I thought it was a pretty solid setup. I took it pretty late as I was waiting for QQQ to drop. Was it not a BNR? It consolidated a bit and then went back up. Any feedback would be appreciated.",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "ticker-action"
+    ],
+    "tickers": [
+      "QQQ",
+      "PLTR",
+      "HTF",
+      "BNR"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trade-feedback",
+    "id": "1476246576858005676",
+    "ts": "2026-02-25T15:56:51",
+    "author": "Huy",
+    "content": "i see what you were trying to do. Good attempt but here's the issues. You did the right thing by waiting for good price action but 9:45am est candle had a major wick which means sellers really brought it down. \n418 is a pivot point so the idea is;\n- we need to see a candle pushing past the 9:45am candle\n- the above will in turn go past 418\n- this is still tricky since we are walking into an order block from 9:33am\n\nin conditions like this, a closure above 418 would be a good confirmation to potentially go long",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": "1476245531926990858"
+  },
+  {
+    "channel": "trade-feedback",
+    "id": "1476288585786327161",
+    "ts": "2026-02-25T18:43:46",
+    "author": "Huy",
+    "content": "in light of keeping the scenarios simple, yes. look at the HTF on AAPL. We are on a nice bull trend. Everytime we push and close from a PDH, we move forward. Today is a good example on apple consolidating after pushing up $20. Given this context, this is important why apple has to break and retest yeserday's PDH in order to get that continuation.",
+    "score": 2,
+    "categories": [
+      "pnl-mention",
+      "polar-term"
+    ],
+    "tickers": [
+      "AAPL",
+      "PDH",
+      "HTF"
+    ],
+    "reply_to": "1476287863392964749"
+  },
+  {
+    "channel": "trade-feedback",
+    "id": "1478130366224273542",
+    "ts": "2026-03-02T20:42:21",
+    "author": "B dawgg",
+    "content": "<@1121621751764369501> Good trade on nvda earlier. Did you scale out of this position? What percentages were you scaling off at and when did you start scaling, at HOD etc?",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [
+      "HOD"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trade-feedback",
+    "id": "1478265395323601007",
+    "ts": "2026-03-03T05:38:55",
+    "author": "Argin S",
+    "content": "Quick questions and clarification for NVIDIA trade . That Tony took today. \n\n$180 calls went from around $4.15 to $4.83 (about a 16\u201317% move). To clear $11K on that move, that\u2019s roughly 50-60k position .Just trying to understand the capital deployed compared to the 0DTE trade that <@1121621751764369501> took that moved 50% and she cleared 5k . I see that I\u2019m seeing the suggestion to avoid 0DTE and instead take the weekly (like the March 6 $180 calls). But if the weekly only moved from ~$4.15 to ~$4.83 (around 16\u201317%), doesn\u2019t 0DTE offer a higher risk-to-reward since it can move 40\u201350%+ in the same time window?\n\nThanks in advance .",
+    "score": 2,
+    "categories": [
+      "pnl-mention",
+      "ticker-action"
+    ],
+    "tickers": [
+      "NVIDI"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trade-feedback",
+    "id": "1478829906501570723",
+    "ts": "2026-03-04T19:02:05",
+    "author": "Juice",
+    "content": "I took this trade today \nIt was a pretty simple break of premarket structure, and my signal candle was the five minute close of that bullish candle and entered right after with a stop below the brake aiming for about a 1 to 2. Do you think this is a pretty good trade?",
+    "score": 4,
+    "categories": [
+      "adj-trade",
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trade-feedback",
+    "id": "1479137606334677056",
+    "ts": "2026-03-05T15:24:46",
+    "author": "Hayden",
+    "content": "100%, it is using key levels technically, I don't really think in terms of \"entry models\" like 5m high / 15m high / PMH etc I always just trade Orderblocks / key levels / HOD or LOD essentially - wherever the best trade is. This one was a bit tricky and I try to not do this very much",
+    "score": 2,
+    "categories": [
+      "adj-trade"
+    ],
+    "tickers": [
+      "LOD",
+      "PMH",
+      "HOD"
+    ],
+    "reply_to": "1479136096624574647"
+  },
+  {
+    "channel": "trade-feedback",
+    "id": "1481659753091567799",
+    "ts": "2026-03-12T14:26:53",
+    "author": "Goon",
+    "content": "took AMD shorts today for 2 cons.  bad trade management, but up +100.  winners are not bigger than my losses it seems",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [
+      "AMD"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trade-feedback",
+    "id": "1481659886839529503",
+    "ts": "2026-03-12T14:27:24",
+    "author": "Goon",
+    "content": "saw QQQ and SPY reversing back into 5m low, so I cut my last trailer... which I should have held because it ended up hitting 3R and more",
+    "score": 2,
+    "categories": [
+      "should-judgment"
+    ],
+    "tickers": [
+      "QQQ",
+      "SPY"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trade-feedback",
+    "id": "1481685302920613991",
+    "ts": "2026-03-12T16:08:24",
+    "author": "ZaBest",
+    "content": "Hello, been struggling a little bit over the last few days. I have been mostly right with my read of the market in general but my execution has not been the best. I have realized that I struggle a lot with good entries and identifying key levels. Today should have been a really good day based on my analysis, but I messed everything up. Emotional state isn't the best either, considering I have an extremely small account with almost no room for error. \nFor now I trade only MES (1 con only)\nAfter missing the initial move to the downside at market open, I waited for a retest 6720 level which I had marked out. Price went above that level for a bit and then had 3 1m candle closures below it. I entered as the 10:07 candle was pushing to the downside for what I thought was confirmation of the rejection from 6720. \nUnfortunately price went higher, stopped me out and then reversed towards much lower targets I had also marked out. \n\nI'll be taking a short break hoping to gather myself and hopefully keep the motivation to keep learning",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "MES"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trade-feedback",
+    "id": "1481735448295510159",
+    "ts": "2026-03-12T19:27:40",
+    "author": "Kam",
+    "content": "Hey there, that\u2019s a really self-aware recap. I think being able to clearly explain what you saw and where it went wrong is a good sign you\u2019re processing things the right way.\n\nMost of us have had plenty of days where the read was right but the execution wasn\u2019t, that\u2019s a frustrating but very normal phase of the learning curve and just a part of the profession. If you follow Jack and Tony live or even catch the tape after the fact, you'll see plenty of days where even they have this frustration. \n\nTaking a short reset is usually a good move. When you come back, just focus on the process again and keep the size small while you refine the entries.",
+    "score": 4,
+    "categories": [
+      "adj-trade",
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": "1481685302920613991"
+  },
+  {
+    "channel": "trade-feedback",
+    "id": "1481747416872124697",
+    "ts": "2026-03-12T20:15:13",
+    "author": "Dee",
+    "content": "Challenge yourself to hold your runners and only exit when price reclaims the green up close candle. Try using <@1121621751764369501>  approach with the trend lines, I think it has helped people that struggle with emotional exits. Solid trades though.",
+    "score": 2,
+    "categories": [
+      "adj-trade"
+    ],
+    "tickers": [],
+    "reply_to": "1481662379719917660"
+  },
+  {
+    "channel": "trade-feedback",
+    "id": "1482027118891110625",
+    "ts": "2026-03-13T14:46:39",
+    "author": "Martin_AT",
+    "content": "Was QQQ Long at 9:52 a bad trade? For me it was above my resistance zone, so long was valid but maybe it was too weak of a breakthrough to the upside (and because of that the zone got rejected in the end)\nOn the 1min it looked very good for me > PMH retest, 602.00 retest, nice pullback\nhttps://www.tradingview.com/x/FRArXP9j/",
+    "score": 4,
+    "categories": [
+      "adj-trade",
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "QQQ",
+      "PMH"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trade-feedback",
+    "id": "1482038011314045070",
+    "ts": "2026-03-13T15:29:56",
+    "author": "Huy",
+    "content": "its a good play IMO. QQQ was starting to change character to the upside on the HTF. I didn't like that the change happened in pre market so this is debatable. As far as your entry its a good one. Next time if you see it struggling to make a higher high, take your profit and run! Beautiful attempt on the break and retest of the PMH. Its a probabilistic game.\n\nLook at my spy put from today. I had to respect my SL and stopped out but then the real move happened not too long ago. \n\nI had a good setup too. 5 mins low + order block.",
+    "score": 6,
+    "categories": [
+      "adj-trade",
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "SL",
+      "QQQ",
+      "PMH",
+      "HTF",
+      "IMO"
+    ],
+    "reply_to": "1482027118891110625"
+  },
+  {
+    "channel": "trade-feedback",
+    "id": "1483343214696992779",
+    "ts": "2026-03-17T05:56:21",
+    "author": "Martin_AT",
+    "content": "Hello,\nI have a question regarding the TSLA long trade from yesterday (16.3).\nleft: QQQ; right: TSLA https://www.tradingview.com/x/VvIqsv8u/\n(the order in the QQQ screenshot is just a copy from the TSLA order to simply show the location where QQQ was during the TSLA entry)\nIn my playbook I wrote down not to enter shorts on stocks when QQQ is near a good support zone or not to enter longs when QQQ is near a good resistance zone (because the likelihood of a bounce is too high)\nTesla is funny because QQQ was approaching a good/well respected (potential) resistance zone. The TSLA long trade still workout out just because the reversal from the zone happend later (as you can see in the screenhot).\n\nSo I am a little bit confused about when to ignore certain zones (and just buy / short through them) and when to skip stock trades because of QQQ zones.\nIn this set up it might be the case that QQQ was creating very nice HLs into the potentail resistance which made the fact that we are in a resistance zone less important.\nOpinions on that?",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "TSLA",
+      "QQQ"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trade-feedback",
+    "id": "1484559684391145553",
+    "ts": "2026-03-20T14:30:10",
+    "author": "Joebag009",
+    "content": "Hello friends, a few of you have been so kind to engage with me and you might remember I have not been doing well both in trading and personally. I haven't posted in a while so here is an update: I have kept journalling in crazy detail the technicals, the feelings before duirng and after the trade, pages each day and often on paper so it was just too much to share on here daily. I am trying to improve my consistency, avoid losses, and follow rules - trading really is you vs you and a journey. I slowed down my losses to basically breakeven since about mid February, but still not reverted to steady profitability like I hoped. The market has been difficult these past weeks as you all know, also a host of bad luck for me: internet outages at terrible times that stop out otherwise banger trades, broker glitches, and off the screen for personal matters and funerals on almost all the continuation days. Yesterday I got stopped out by 1-5 ticks multiple times... literally 2 points into my stop and then the market did that 200+ point pump, and stopped me on an attemt to re-enter on the pullback by a couple points. I am grinding away some evals on props and fighting with my broker. They admitted an outage and it cost me about $1000 and hope I can recover more than a small credit they offered. I am done with that broker now and will come back to options after I switch. IKBR has just not been great for me, but I'll re-watch Jack and Tony's content on it. I'm also considering CMC markets. Any recommendations? Must work for Alberta, Canada and bonus if it integrates with Ninja Trader. I keep watching the streams daily to stay in touch with everything and hope to trade again soon. Without getting into detail, I worked my way through two degrees, had a 6 figure job, and now my life is in shambles. If you are doing well treasure it and sock away some cash for a rainy day, without my emergency funds I would be living in a cardboard box right now.",
+    "score": 3,
+    "categories": [
+      "pnl-mention",
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "CMC",
+      "IKBR"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trade-feedback",
+    "id": "1486168051496783943",
+    "ts": "2026-03-25T01:01:15",
+    "author": "Neto Moreno (Performance Coach)",
+    "content": "Took a L here\nReviewing it today in the afternoon, I still think it was a good setup and nice entry, just didn't work",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trade-feedback",
+    "id": "1495547861625208933",
+    "ts": "2026-04-19T22:13:16",
+    "author": "JP400",
+    "content": "Hello. Thanks. Like the car analogy \ud83d\ude42 I have been playing with this for a while, and have noticed that a 1:2 on the underlying can often end up being 1:3 on the Options. Your criteria of 3:1 on the underlying, could easily push into 4:1 on the Options. Obviously that is nice ! I guess I lack the confidence to hold that long. I see the 2:1 and the 3:1 on the table and want to take it !\nGood point on the indecisive wicks, and the time. Do you prefer to wait longer... ? Or is it more a case of the time was another risk factor in this particular case ? Appreciate you taking the time to look at it. Thanks \ud83d\ude42",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": "1495414257641197729"
+  },
+  {
+    "channel": "trade-feedback",
+    "id": "1496194239250305156",
+    "ts": "2026-04-21T17:01:44",
+    "author": "ZaBest",
+    "content": "Also, as I only trade NQ and (sometimes) ES, do you have any tips for recognizing good setups a bit quicker? I noticed that during the live trading sessions with Jack/Tony they mostly wait for something to happen with SPY/QQQ before deciding what to do with the tickers they'd like to trade...but if I'm trading NQ/ES directly I get the feeling I have to be quicker with decision making and execution, which is one thing I am currently struggling with. I hesistate way too much and end up taking bad trades or messing up good ones",
+    "score": 5,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [
+      "QQQ",
+      "SPY"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trade-feedback",
+    "id": "1496879910185078836",
+    "ts": "2026-04-23T14:26:21",
+    "author": "Ashleyyy",
+    "content": "For PLTR, is the 9:53am reclaim of prior day low considered a good entry for downside? I was looking at PLTR then but eventually didnt take the trade as it was close to low of day at this point. On hindsight, it obviously worked out but just wanted feedback if this was a good entry point. Thanks!",
+    "score": 5,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [
+      "PLTR"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trade-feedback",
+    "id": "1498342589324198079",
+    "ts": "2026-04-27T15:18:31",
+    "author": "305 Trader",
+    "content": "Break and retest of $362.4 to d/s looks good for TSLA to drop down to $356.",
+    "score": 2,
+    "categories": [
+      "pnl-mention",
+      "polar-term"
+    ],
+    "tickers": [
+      "TSLA"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trade-feedback",
+    "id": "1498696224453296229",
+    "ts": "2026-04-28T14:43:44",
+    "author": "JP400",
+    "content": "Good morning. The black line is the 8 EMA based on the Chart TF (so 1min in this case). I use this in conjunction with the pink line which is the 3 EMA also based on the Chart TF (so 1 min in this case). I want the 3 to be above the 8. If I notice the 3 and 8 constantly crossing, I am hesitant. If the 3 holds above, then I feel more confident that the price will hold in the direction I intend. The orange dotted line is the VWAP, and I want price to be on my side of it. The blue solid line is the 3 EMA based on a 15min TF. In theory it reminds me that the 15m is also holding my direction (as long as I pay attention to it). But, as with anything... Sometimes my eyes completely ignore them when desperation sets in. Call it blind panic.",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "TF",
+      "EMA",
+      "VWAP"
+    ],
+    "reply_to": "1498634427566129222"
+  },
+  {
+    "channel": "trade-feedback",
+    "id": "1498709920101433457",
+    "ts": "2026-04-28T15:38:09",
+    "author": "JP400",
+    "content": "$2.86 Stop was where I based my trade. But that was generous since it was not below the levels. In reality, the Option price showed a $2.80 Stop.\n\nI said to my wife yesterday that the hardest part is trying not to think of the financial side of it. Let the trade work itself out. If the result is a win... great. If it's a loss... great too (you stuck to your plan). Today arguably should have been a loss at $2.86 (or $2.80), because it hit my Stop. And, even though it came back for two tiny wins, it never hit my 2:1.",
+    "score": 2,
+    "categories": [
+      "pnl-mention",
+      "ticker-action"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trade-feedback",
+    "id": "1498728388989550633",
+    "ts": "2026-04-28T16:51:32",
+    "author": "Kam",
+    "content": "Hey there, this looks like a good trade to me. If you mark out the entire 9:40 1 candle, you'll see that price never closed below that range + the 211 key level. I'd say you may want to increase stop width on this one so that your stop is more inline with structure. May need to take lower size to account for the wider risk. Nice trade idea tho!",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": "1498689874000220160"
+  },
+  {
+    "channel": "trade-feedback",
+    "id": "1498775610498224239",
+    "ts": "2026-04-28T19:59:11",
+    "author": "Kam",
+    "content": "I think the key is to really switch the focus to the logic or 'why' behind the level. The reason we trade BnR and key levels is because we are looking for evidence of prior resistance turning to support and vice versa. The lower wick on the 9:56 candle shows that buyers are stepping in to defend 211 - a key level both intraday as well as last week's high. There were multiple confluences here. 3c close below such a key level on a $200 underlying price wouldn't be enough evidence to stop out for me personally. But if your data & backtested rules say to stop out, then definitely stop out!  \n\nThat being said - it's really easy to use hindsight bias on this one as the trade worked. If you were in the trade from <@722212337460838421> entry and holding as that lower wick forms, likely you're going to want to stop out at lows as it pushes below your stop. The confidence to place stops consistently and execute usually comes from really understanding & internalizing the logic behind the level and of course there's no substitute for a lot of reps where you practice doing the same thing repeatedly. I'd really suggest checking out Jack's video on accepting risk - it's a really good one and worth reviewing https://discord.com/channels/1218766394997346395/1222375088318447637/1467221561898569911",
+    "score": 2,
+    "categories": [
+      "pnl-mention",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": "1498751811618869438"
+  }
+]

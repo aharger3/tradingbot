@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trading Bot Dashboard</title>
+<style>
+  :root {
+    --bg: #0d1117;
+    --card: #161b22;
+    --border: #30363d;
+    --text: #e6edf3;
+    --muted: #8b949e;
+    --green: #3fb950;
+    --red: #f85149;
+    --blue: #58a6ff;
+    --yellow: #d29922;
+    --purple: #bc8cff;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    padding: 20px;
+    min-height: 100vh;
+  }
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+  }
+  .header h1 {
+    font-size: 24px;
+    font-weight: 600;
+  }
+  .header .status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: var(--muted);
+  }
+  .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .dot.green { background: var(--green); }
+  .dot.red { background: var(--red); }
+  .dot.yellow { background: var(--yellow); }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px;
+  }
+  .card h2 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .pnl-display {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+  }
+  .pnl-number {
+    font-size: 36px;
+    font-weight: 700;
+  }
+  .pnl-number.positive { color: var(--green); }
+  .pnl-number.negative { color: var(--red); }
+  .pnl-number.zero { color: var(--muted); }
+  .stat-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+  }
+  .stat-row:last-child { border-bottom: none; }
+  .stat-label { color: var(--muted); }
+  .stat-value { font-weight: 500; }
+  .stat-value.green { color: var(--green); }
+  .stat-value.red { color: var(--red); }
+  .stat-value.blue { color: var(--blue); }
+  .signal-item {
+    padding: 12px;
+    margin-bottom: 8px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 13px;
+  }
+  .signal-item:last-child { margin-bottom: 0; }
+  .signal-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 6px;
+    font-weight: 600;
+  }
+  .signal-reason {
+    color: var(--muted);
+    font-size: 12px;
+  }
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+  }
+  .badge.put { background: rgba(248,81,73,0.15); color: var(--red); }
+  .badge.call { background: rgba(63,185,80,0.15); color: var(--green); }
+  .badge.skipped { background: rgba(210,153,34,0.15); color: var(--yellow); }
+  .badge.a { background: rgba(188,140,255,0.15); color: var(--purple); }
+  .badge.b { background: rgba(88,166,255,0.15); color: var(--blue); }
+  .badge.c { background: rgba(210,153,34,0.15); color: var(--yellow); }
+  .badge.d { background: rgba(139,148,158,0.15); color: var(--muted); }
+  .heartbeat-line {
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+  .heartbeat-line:last-child { margin-bottom: 0; }
+  .watchlist-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  .watchlist-table th {
+    text-align: left;
+    padding: 6px 8px;
+    color: var(--muted);
+    font-weight: 500;
+    border-bottom: 1px solid var(--border);
+  }
+  .watchlist-table td {
+    padding: 6px 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .watchlist-table tr:last-child td { border-bottom: none; }
+  .bias-neutral { color: var(--muted); }
+  .bias-bullish { color: var(--green); }
+  .bias-bearish { color: var(--red); }
+  .mt-16 { margin-top: 16px; }
+  .text-center { text-align: center; }
+  .empty-state {
+    color: var(--muted);
+    text-align: center;
+    padding: 24px;
+    font-size: 14px;
+  }
+  #last-updated {
+    font-size: 12px;
+    color: var(--muted);
+    text-align: right;
+    margin-top: 12px;
+  }
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>&#x1F4C8; Trading Bot Dashboard</h1>
+  <div class="status">
+    <span class="dot" id="status-dot"></span>
+    <span id="status-text">Loading...</span>
+  </div>
+</div>
+
+<div class="grid">
+  <div class="card">
+    <h2>Daily P&amp;L</h2>
+    <div class="pnl-display">
+      <span class="pnl-number" id="pnl-total">--</span>
+      <span id="pnl-label" style="font-size:14px;color:var(--muted)">today</span>
+    </div>
+    <div style="margin-top:16px">
+      <div class="stat-row">
+        <span class="stat-label">Trades</span>
+        <span class="stat-value" id="pnl-trades">--</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-label">Wins</span>
+        <span class="stat-value green" id="pnl-wins">--</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-label">Losses</span>
+        <span class="stat-value red" id="pnl-losses">--</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-label">Win Rate</span>
+        <span class="stat-value" id="pnl-wr">--</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Open Positions</h2>
+    <div id="positions-content">
+      <div class="empty-state">No open positions</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Today's Signals</h2>
+    <div id="signals-content">
+      <div class="empty-state">No signals today</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Bot Heartbeat</h2>
+    <div id="heartbeat-content">
+      <div class="empty-state">No data</div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <h2>Watchlist</h2>
+  <div style="overflow-x:auto">
+    <table class="watchlist-table" id="watchlist-table">
+      <thead>
+        <tr>
+          <th>Symbol</th>
+          <th>PDH</th>
+          <th>PDL</th>
+          <th>HTF Bias</th>
+        </tr>
+      </thead>
+      <tbody id="watchlist-body"></tbody>
+    </table>
+  </div>
+</div>
+
+<div id="last-updated"></div>
+
+<script>
+async function fetchData() {
+  try {
+    const resp = await fetch('/api/data');
+    if (!resp.ok) throw new Error('API error');
+    const data = await resp.json();
+    updateDashboard(data);
+    document.getElementById('status-dot').className = 'dot green';
+    document.getElementById('status-text').textContent = 'Connected';
+  } catch(e) {
+    document.getElementById('status-dot').className = 'dot red';
+    document.getElementById('status-text').textContent = 'Disconnected';
+  }
+}
+
+function updateDashboard(d) {
+  // P&L
+  const pnl = d.pnl || {};
+  const totalPnl = pnl.total_pnl || 0;
+  const pnlEl = document.getElementById('pnl-total');
+  pnlEl.textContent = (totalPnl >= 0 ? '+' : '') + '$' + Math.abs(totalPnl).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+  pnlEl.className = 'pnl-number ' + (totalPnl > 0 ? 'positive' : totalPnl < 0 ? 'negative' : 'zero');
+
+  document.getElementById('pnl-trades').textContent = pnl.trade_count ?? '--';
+  document.getElementById('pnl-wins').textContent = pnl.wins ?? '--';
+  document.getElementById('pnl-losses').textContent = pnl.losses ?? '--';
+  const wr = pnl.trade_count > 0 ? ((pnl.wins / pnl.trade_count) * 100).toFixed(1) + '%' : '--';
+  document.getElementById('pnl-wr').textContent = wr;
+
+  // Positions
+  const positionsEl = document.getElementById('positions-content');
+  const positions = d.positions || [];
+  if (positions.length === 0) {
+    positionsEl.innerHTML = '<div class="empty-state">No open positions</div>';
+  } else {
+    positionsEl.innerHTML = positions.map(p => `
+      <div class="signal-item">
+        <div class="signal-header">
+          <span>${p.symbol} <span class="badge ${p.direction}">${p.direction}</span></span>
+          <span>${p.contracts} @ $${p.entry_premium}</span>
+        </div>
+        <div class="signal-reason">
+          ${p.setup.replace(/_/g, ' ')} &middot; Strike $${p.strike} &middot; Opened ${p.opened_at}
+        </div>
+      </div>
+    `).join('');
+  }
+
+  // Signals
+  const signalsEl = document.getElementById('signals-content');
+  const signals = d.signals || [];
+  if (signals.length === 0) {
+    signalsEl.innerHTML = '<div class="empty-state">No signals today</div>';
+  } else {
+    signalsEl.innerHTML = signals.map(s => {
+      const dirBadge = s.direction ? `<span class="badge ${s.direction}">${s.direction}</span>` : '';
+      const gradeBadge = s.grade ? `<span class="badge ${s.grade.toLowerCase()}">Grade ${s.grade}</span>` : '';
+      const statusBadge = s.status === 'skipped' ? '<span class="badge skipped">Skipped</span>' : '';
+      return `
+        <div class="signal-item">
+          <div class="signal-header">
+            <span>${s.symbol || '--'} ${dirBadge} ${gradeBadge} ${statusBadge}</span>
+            <span>${s.signal_type ? s.signal_type.replace(/_/g, ' ') : '--'}</span>
+          </div>
+          <div class="signal-reason">${s.reason || s.skip_reason || s.status || '--'}</div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  // Heartbeat
+  const hbEl = document.getElementById('heartbeat-content');
+  hbEl.innerHTML = d.heartbeat ? `
+    <div class="heartbeat-line"><strong>Last scan:</strong> ${d.heartbeat.last_scan_time || 'N/A'}</div>
+    <div class="heartbeat-line"><strong>Date:</strong> ${d.heartbeat.date || 'N/A'}</div>
+    <div class="heartbeat-line"><strong>Log size:</strong> ${d.heartbeat.log_size_kb || 0} KB</div>
+    <div class="heartbeat-line"><strong>Scan cycles:</strong> ${d.heartbeat.scan_cycles || 0}</div>
+  ` : '<div class="empty-state">No heartbeat data</div>';
+
+  // Watchlist
+  const wlBody = document.getElementById('watchlist-body');
+  const wl = d.watchlist || {};
+  wlBody.innerHTML = Object.entries(wl).map(([sym, info]) => `
+    <tr>
+      <td><strong>${sym}</strong></td>
+      <td>$${info.pdh.toFixed(2)}</td>
+      <td>$${info.pdl.toFixed(2)}</td>
+      <td class="bias-${info.htf}">${info.htf}</td>
+    </tr>
+  `).join('');
+
+  // Last updated
+  document.getElementById('last-updated').textContent = 'Last updated: ' + new Date().toLocaleTimeString();
+}
+
+// Initial load + auto-refresh every 30s
+fetchData();
+setInterval(fetchData, 30000);
+</script>
+</body>
+</html>

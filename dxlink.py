@@ -50,7 +50,7 @@ def fetch_quotes(
         ws.send(json.dumps({
             "type": "SETUP",
             "channel": 0,
-            "version": "0.1-vanquish/1.0",
+            "version": "0.1-omen/1.0",
             "keepaliveTimeout": 60,
             "acceptKeepaliveTimeout": 60,
         }))
@@ -184,7 +184,7 @@ def fetch_candles(
         ws.send(json.dumps({
             "type": "SETUP",
             "channel": 0,
-            "version": "0.1-vanquish/1.0",
+            "version": "0.1-omen/1.0",
             "keepaliveTimeout": 60,
             "acceptKeepaliveTimeout": 60,
         }))

@@ -1,0 +1,1692 @@
+[
+ {
+  "file": "-f0noOhwCEM_transcript.txt",
+  "title": "September 8th Trade Review (trade-reviews)",
+  "pnl": null,
+  "outcome": null,
+  "tickers": [],
+  "date_str": "September 8"
+ },
+ {
+  "file": "-_Q_BlPhjhU_transcript.txt",
+  "title": "December Trade Review ($4.5k TSLA) (trade-reviews)",
+  "pnl": 4500.0,
+  "outcome": "win",
+  "tickers": [
+   "TSLA"
+  ],
+  "date_str": null
+ },
+ {
+  "file": "0aoKhSUs-LM_transcript.txt",
+  "title": "October 4th Trade Review (-$1.6k NVDA) (trade-reviews)",
+  "pnl": -1600.0,
+  "outcome": "loss",
+  "tickers": [
+   "NVDA"
+  ],
+  "date_str": "October 4"
+ },
+ {
+  "file": "0mUVcHm9WXs_transcript.txt",
+  "title": "Weekly Trade Review January 29th- February 2nd (trade-reviews)",
+  "pnl": null,
+  "outcome": null,
+  "tickers": [],
+  "date_str": "January 29"
+ },
+ {
+  "file": "0qxxsCC-8kI_transcript.txt",
+  "title": "May 30th Trade Review (TSLA $17k) (trade-reviews)",
+  "pnl": null,
+  "outcome": null,
+  "tickers": [
+   "TSLA"
+  ],
+  "date_str": "May 30"
+ },
+ {
+  "file": "0QyuYNDoKpY_transcript.txt",
+  "title": "March 17th Trade Review ($1.1k NVDA + AMD) (trade-reviews)",
+  "pnl": 1100.0,
+  "outcome": "win",
+  "tickers": [
+   "NVDA",
+   "AMD"
+  ],
+  "date_str": "March 17"
+ },
+ {
+  "file": "1_FH-Cy6G20_transcript.txt",
+  "title": "May 20th Trade Review (NQ Futures $4.5k) (trade-reviews)",
+  "pnl": null,
+  "outcome": null,
+  "tickers": [],
+  "date_str": "May 20"
+ },
+ {
+  "file": "2AFfZOf5qZk_transcript.txt",
+  "title": "November 18th Trade Review ($10.5k TSLA) (trade-reviews)",
+  "pnl": 10500.0,
+  "outcome": "win",
+  "tickers": [
+   "TSLA"
+  ],
+  "date_str": "November 18"
+ },
+ {
+  "file": "2nWW5IPgroU_transcript.txt",
+  "title": "April 25th Trade Review ($9.8k NVDA) (trade-reviews)",
+  "pnl": 9800.0,
+  "outcome": "win",
+  "tickers": [
+   "NVDA"
+  ],
+  "date_str": "April 25"
+ },
+ {
+  "file": "2teXVtwyYcc_transcript.txt",
+  "title": "March 2nd Trade Review (trade-reviews)",
+  "pnl": null,
+  "outcome": null,
+  "tickers": [],
+  "date_str": "March 2"
+ },
+ {
+  "file": "2Wh32wlqXDE_transcript.txt",
+  "title": "October 23rd Trade Review ($4k NVDA) (trade-reviews)",
+  "pnl": 4000.0,
+  "outcome": "win",
+  "tickers": [
+   "NVDA"
+  ],
+  "date_str": "October 23"
+ },
+ {
+  "file": "3xG69aUOf2I_transcript.txt",
+  "title": "December 2nd Trade Review ($4k AAPL) (trade-reviews)",
+  "pnl": 4000.0,
+  "outcome": "win",
+  "tickers": [
+   "AAPL"
+  ],
+  "date_str": "December 2"
+ },
+ {
+  "file": "4Amt_V1wnAE_transcript.txt",
+  "title": "March 12th Trade Review ($3.9k TSLA) (trade-reviews)",
+  "pnl": 3900.0,
+  "outcome": "win",
+  "tickers": [
+   "TSLA"
+  ],
+  "date_str": "March 12"
+ },
+ {
+  "file": "4YbcS7KpSOs_transcript.txt",
+  "title": "August 8th Trade Review ($4k QQQ) (trade-reviews)",
+  "pnl": 4000.0,
+  "outcome": "win",
+  "tickers": [
+   "QQQ"
+  ],
+  "date_str": "August 8"
+ },
+ {
+  "file": "5IGKlp8plz0_transcript.txt",
+  "title": "March 20th Trade Review (trade-reviews)",
+  "pnl": null,
+  "outcome": null,
+  "tickers": [],
+  "date_str": "March 20"
+ },
+ {
+  "file": "5Pc49F9_-sw_transcript.txt",
+  "title": "January 17th Trade Review (trade-reviews)",
+  "pnl": null,
+  "outcome": null,
+  "tickers": [],
+  "date_str": "January 17"
+ },
+ {
+  "file": "5uJddIJYyzk_transcript.txt",
+  "title": "March 29th Trade Review (trade-reviews)",
+  "pnl": null,
+  "outcome": null,
+  "tickers": [],
+  "date_str": "March 29"
+ },
+ {
+  "file": "5yVBewFS8lM_transcript.txt",
+  "title": "October 14th Trade Review ($1.2k NVDA) (trade-reviews)",
+  "pnl": 1200.0,
+  "outcome": "win",
+  "tickers": [
+   "NVDA"
+  ],
+  "date_str": "October 14"
+ },
+ {
+  "file": "5zhlLPvW_cs_transcript.txt",
+  "title": "November 19th Trade Review ($9.5k TSLA) (trade-reviews)",
+  "pnl": 9500.0,
+  "outcome": "win",
+  "tickers": [
+   "TSLA"
+  ],
+  "date_str": "November 19"
+ },
+ {
+  "file": "62w1GJXPjZA_transcript.txt",
+  "title": "June 24th Trade Review ($80 TSLA) (trade-reviews)",
+  "pnl": 80000.0,
+  "outcome": "win",
+  "tickers": [
+   "TSLA"
+  ],
+  "date_str": "June 24"
+ },
+ {
+  "file": "64om7Rlf8TU_transcript.txt",
+  "title": "June 3rd Trade Review ($2.8k TSLA) (trade-reviews)",
+  "pnl": 2800.0,
+  "outcome": "win",
+  "tickers": [
+   "TSLA"
+  ],
+  "date_str": "June 3"
+ },
+ {
+  "file": "6eMkQt_XsHk_transcript.txt",
+  "title": "June 28th Trade Review ($4.7k TSLA) (trade-reviews)",
+  "pnl": 4700.0,
+  "outcome": "win",
+  "tickers": [
+   "TSLA"
+  ],
+  "date_str": "June 28"
+ },
+ {
+  "file": "6TW_H52DV_4_transcript.txt",
+  "title": "January 13th Trade Review (trade-reviews)",
+  "pnl": null,
+  "outcome": null,
+  "tickers": [],
+  "date_str": "January 13"
+ },
+ {
+  "file": "7DM97TbfgNo_transcript.txt",
+  "title": "August 16th Trade Review ($6.1k TSLA) (trade-reviews)",
+  "pnl": 6100.0,
+  "outcome": "win",
+  "tickers": [
+   "TSLA"
+  ],
+  "date_str": "August 16"
+ },
+ {
+  "file": "7LLd6oK8Z4Y_transcript.txt",
+  "title": "February 20th Trade Review (-$2.8k AAPL) (trade-reviews)",
+  "pnl": -2800.0,
+  "outcome": "loss",
+  "tickers": [
+   "AAPL"
+  ],
+  "date_str": "February 20"
+ },
+ {
+  "file": "7nXFvzcoEuE_transcript.txt",
+  "title": "April 9th Trade Review ($7k TSLA) (trade-reviews)",
+  "pnl": 7000.0,
+  "outcome": "win",
+  "tickers": [
+   "TSLA"
+  ],
+  "date_str": "April 9"
+ },
+ {
+  "file": "7ujnfM1NoB0_transcript.txt",
+  "title": "January 5th Trade Review (trade-reviews)",
+  "pnl": null,
+  "outcome": null,
+  "tickers": [],
+  "date_str": "January 5"
+ },
+ {
+  "file": "7_RtCugLJfs_transcript.txt",
+  "title": "February 12th Trade Review ($3.7k TSLA) (trade-reviews)",
+  "pnl": 3700.0,
+  "outcome": "win",
+  "tickers": [
+   "TSLA"
+  ],
+  "date_str": "February 12"
+ },
+ {
+  "file": "8DmV9UBQq5g_transcript.txt",
+  "title": "March 7th Trade Review (trade-reviews)",
+  "pnl": null,
+  "outcome": null,
+  "tickers": [],
+  "date_str": "March 7"
+ },
+ {
+  "file": "8Oo_5LydiDQ_transcript.txt",
+  "title": "February 10th Trade Review (-$8,000 TSLA + NVDA) (trade-reviews)",
+  "pnl": -8000.0,
+  "outcome": "loss",
+  "tickers": [
+   "TSLA",
+   "NVDA"
+  ],
+  "date_str": "February 10"
+ },
+ {
+  "file": "8_2g0essJN4_transcript.txt",
+  "title": "March 18th Trade Review ($2.6k TSLA) (trade-reviews)",
+  "pnl": 2600.0,
+  "outcome": "win",
+  "tickers": [
+   "TSLA"
+  ],
+  "date_str": "March 18"
+ },
+ {
+  "file": "9-Y340PyCZ8_transcript.txt",
+  "title": "September 23rd Trade Review ($6k TSLA) (trade-reviews)",
+  "pnl": 6000.0,
+  "outcome": "win",
+  "tickers": [
+   "TSLA"
+  ],
+  "date_str": "September 23"
+ },
+ {
+  "file": "93B-EK9t1Rk_transcript.txt",
+  "title": "September 7th Trade review (trade-reviews)",
+  "pnl": null,
+  "outcome": null,
+  "tickers": [],
+  "date_str": "September 7"
+ },
+ {
+  "file": "98e9o3AMmwk_transcript.txt",
+  "title": "November 8th Trade Review ($130k TSLA P2 + AAPL) (trade-reviews)",
+  "pnl": 130000.0,
+  "outcome": "win",
+  "tickers": [
+   "TSLA",
+   "AAPL"
+  ],
+  "date_str": "November 8"
+ },
+ {
+  "file": "9Kl6sAKutj8_transcript.txt",
+  "title": "March 9th Trade Review (trade-reviews)",
+  "pnl": null,
+  "outcome": null,
+  "tickers": [],
+  "date_str": "March 9"
+ },
+ {
+  "file": "9_SUU8V-uJc_transcript.txt",
+  "title": "February 6th Trade Review (trade-reviews)",
+  "pnl": null,
+  "outcome": null,
+  "tickers": [],
+  "date_str": "February 6"
+ },
+ {
+  "file": "adk8ywqcQww_transcript.txt",
+  "title": "April 11th Trade Review (-$1100 NVDA) (trade-reviews)",
+  "pnl": -1100000.0,
+  "outcome": "loss",
+  "tickers": [
+   "NVDA"
+  ],
+  "date_str": "April 11"
+ },
+ {
+  "file": "aj7HXPbrI5Q_transcript.txt",
+  "title": "April 29th Trade Review ($8k NVDA & AAPL) (trade-reviews)",
+  "pnl": 8000.0,
+  "outcome": "win",
+  "tickers": [
+   "NVDA",
+   "AAPL"
+  ],
+  "date_str": "April 29"
+ },
+ {
+  "file": "AKTOq72_28s_transcript.txt",
+  "title": "March 27 Trade Review ($3k TSLA) (trade-reviews)",
+  "pnl": 3000.0,
+  "outcome": "win",
+  "tickers": [
+   "TSLA"
+  ],
+  "date_str": "March 27"
+ },
+ {
+  "file": "APJ8H9pRouU_transcript.txt",
+  "title": "January 22 Trade Review (trade-reviews)",
+  "pnl": null,
+  "outcome": null,
+  "tickers": [],
+  "date_str": "January 22"
+ },
+ {
+  "file": "B9uniOihM2M_transcript.txt",
+  "title": "March 31st Trade Review (1.6k NVDA) (trade-reviews)",
+  "pnl": 1600.0,
+  "outcome": "win",
+  "tickers": [
+   "NVDA"
+  ],
+  "date_str": "March 31"
+ },
+ {
+  "file": "bLS_VwNP_WU_transcript.txt",
+  "title": "March 28th Trade Review ($5.7k TSLA) (trade-reviews)",
+  "pnl": 5700.0,
+  "outcome": "win",
+  "tickers": [
+   "TSLA"
+  ],
+  "date_str": "March 28"
+ },
+ {
+  "file": "BLy0H8AqtCs_transcript.txt",
+  "title": "February 15th Trade Review (trade-reviews)",
+  "pnl": null,
+  "outcome": null,
+  "tickers": [],
+  "date_str": "February 15"
+ },
+ {
+  "file": "bMVp6npdFN8_transcript.txt",
+  "title": "February 25th Trade Review (-1.8k AAPL) (trade-reviews)",
+  "pnl": -1800.0,
+  "outcome": "loss",
+  "tickers": [
+   "AAPL"
+  ],
+  "date_str": "February 25"
+ },
+ {
+  "file": "BNwbqW_jTsM_transcript.txt",
+  "title": "December 2nd Trade Review ($2k AAPL + TSLA) (trade-reviews)",
+  "pnl": 2000.0,
+  "outcome": "win",
+  "tickers": [
+   "AAPL",
+   "TSLA"
+  ],
+  "date_str": "December 2"
+ },
+ {
+  "file": "B_bBQHIxHtg_transcript.txt",
+  "title": "May 10th Trade Review ($4k NVDA) (trade-reviews)",
+  "pnl": 4000.0,
+  "outcome": "win",
+  "tickers": [
+   "NVDA"
+  ],
+  "date_str": "May 10"
+ },
+ {
+  "file": "c27JuWwoYvo_transcript.txt",
+  "title": "August 27th Trade Review ($1.2k AMZN) (trade-reviews)",
+  "pnl": 1200.0,
+  "outcome": "win",
+  "tickers": [
+   "AMZN"
+  ],
+  "date_str": "August 27"
+ },
+ {
+  "file": "cbUWk0IroyI_transcript.txt",
+  "title": "January 6th Trade Review (trade-reviews)",
+  "pnl": null,
+  "outcome": null,
+  "tickers": [],
+  "date_str": "January 6"
+ },
+ {
+  "file": "CC852s5M26A_transcript.txt",
+  "title": "November 15th Trade Review ($250 TSLA) (trade-reviews)",
+  "pnl": 250000.0,
+  "outcome": "win",
+  "tickers": [
+   "TSLA"
+  ],
+  "date_str": "November 15"
+ },
+ {
+  "file": "ClQOGwOmOSk_transcript.txt",
+  "title": "July 1st Trade Review ($10.3k TSLA) (trade-reviews)",
+  "pnl": 10300.0,
+  "outcome": "win",
+  "tickers": [
+   "TSLA"
+  ],
+  "date_str": "July 1"
+ },
+ {
+  "file": "cyDOi4Jjh5U_transcript.txt",
+  "title": "March 1st Trade Review (trade-reviews)",
+  "pnl": null,
+  "outcome": null,
+  "tickers": [],
+  "date_str": "March 1"
+ },
+ {
+  "file": "dbM1BpdbMOo_transcript.txt",
+  "title": "December 18th Trade Review ($3k TSLA + SPY) (trade-reviews)",
+  "pnl": 3000.0,
+  "outcome": "win",
+  "tickers": [
+   "TSLA",
+   "SPY"
+  ],
+  "date_str": "December 18"
+ },
+ {
+  "file": "DJ0vXuQhUY8_transcript.txt",
+  "title": "June 7th Trade Review (AMD $900) (trade-reviews)",
+  "pnl": null,
+  "outcome": null,
+  "tickers": [
+   "AMD"
+  ],
+  "date_str": "June 7"
+ },
+ {
+  "file": "DvvzpY5OwOU_transcript.txt",
+  "title": "July 10th Trade Review ($2.4k TSLA) (trade-reviews)",
+  "pnl": 2400.0,
+  "outcome": "win",
+  "tickers": [
+   "TSLA"
+  ],
+  "date_str": "July 10"
+ },
+ {
+  "file": "DYniybwOBAY_transcript.txt",
+  "title": "May 8th Trade Review (NVDA $3k) (trade-reviews)",
+  "pnl": null,
+  "outcome": null,
+  "tickers": [
+   "NVDA"
+  ],
+  "date_str": "May 8"
+ },
+ {
+  "file": "E35CAIh0mH0_transcript.txt",
+  "title": "February 14th Trade Review (trade-reviews)",
+  "pnl": null,
+  "outcome": null,
+  "tickers": [],
+  "date_str": "February 14"
+ },
+ {
+  "file": "EguL6G2G-l4_transcript.txt",
+  "title": "May 15th Trade Review ($19k NVDA) (trade-reviews)",
+  "pnl": 19000.0,
+  "outcome": "win",
+  "tickers": [
+   "NVDA"
+  ],
+  "date_str": "May 15"
+ },
+ {
+  "file": "eJPQc_x9Ca8_transcript.txt",
+  "title": "February 2nd Trade Review (trade-reviews)",
+  "pnl": null,
+  "outcome": null,
+  "tickers": [],
+  "date_str": "February 2"
+ },
+ {
+  "file": "ELPe7DNAAh8_transcript.txt",
+  "title": "September 30th Trade Review ($2k AAPL) (trade-reviews)",
+  "pnl": 2000.0,
+  "outcome": "win",
+  "tickers": [
+   "AAPL"
+  ],
+  "date_str": "September 30"
+ },
+ {
+  "file": "EMOXU7EVlF0_transcript.txt",
+  "title": "November 30th Trade Review ($220k Month + $10k AAPL Trade) (trade-reviews)",
+  "pnl": 220000.0,
+  "outcome": "win",
+  "tickers": [
+   "AAPL"
+  ],
+  "date_str": "November 30"
+ },
+ {
+  "file": "eRUSWiIZh9U_transcript.txt",
+  "title": "September 19th Trade Review ($24k TSLA & AAPL) (trade-reviews)",
+  "pnl": 24000.0,
+  "outcome": "win",
+  "tickers": [
+   "TSLA",
+   "AAPL"
+  ],
+  "date_str": "September 19"
+ },
+ {
+  "file": "Eu_2e9xTi5I_transcript.txt",
+  "title": "Sept 9th Trade Review (trade-reviews)",
+  "pnl": null,
+  "outcome": null,
+  "tickers": [],
+  "date_str": null
+ },
+ {
+  "file": "eXbaSstEPK8_transcript.txt",
+  "title": "May 29th Trade Review ($300 AAPL) (trade-reviews)",
+  "pnl": 300000.0,
+  "outcome": "win",
+  "tickers": [
+   "AAPL"
+  ],
+  "date_str": "May 29"
+ },
+ {
+  "file": "EZcFeFHcldA_transcript.txt",
+  "title": "Weekly Trade Review January 15th-19th (trade-reviews)",
+  "pnl": null,
+  "outcome": null,
+  "tickers": [],
+  "date_str": "January 15"
+ },
+ {
+  "file": "f9zwHJjaU-o_transcript.txt",
+  "title": "October 23rd Trade Review (-$1k AAPL) (trade-reviews)",
+  "pnl": -1000.0,
+  "outcome": "loss",
+  "tickers": [
+   "AAPL"
+  ],
+  "date_str": "October 23"
+ },
+ {
+  "file": "fAoJxffhWVc_transcript.txt",
+  "title": "March 4th Trade Review ($20k TSLA) (trade-reviews)",
+  "pnl": 20000.0,
+  "outcome": "win",
+  "tickers": [
+   "TSLA"
+  ],
+  "date_str": "March 4"
+ },
+ {
+  "file": "ffCNocEg9So_transcript.txt",
+  "title": "August 7th Trade Review ($2k AAPL) (trade-reviews)",
+  "pnl": 2000.0,
+  "outcome": "win",
+  "tickers": [
+   "AAPL"
+  ],
+  "date_str": "August 7"
+ },
+ {
+  "file": "ffgXS_5BP9s_transcript.txt",
+  "title": "September 12th Trade Review (-3.8k TSLA) (trade-reviews)",
+  "pnl": -3800.0,
+  "outcome": "loss",
+  "tickers": [
+   "TSLA"
+  ],
+  "date_str": "September 12"
+ },
+ {
+  "file": "fKVPyaEwLvg_transcript.txt",
+  "title": "Sept 2nd Trade Review (trade-reviews)",
+  "pnl": null,
+  "outcome": null,
+  "tickers": [],
+  "date_str": null
+ },
+ {
+  "file": "G-6jDoH1EFw_transcript.txt",
+  "title": "June 10th Trade Review ($5.1K AMD) (trade-reviews)",
+  "pnl": 5100.0,
+  "outcome": "win",
+  "tickers": [
+   "AMD"
+  ],
+  "date_str": "June 10"
+ },
+ {
+  "file": "G-vUWzxVtb8_transcript.txt",
+  "title": "April 5th Trade Review (trade-reviews)",
+  "pnl": null,
+  "outcome": null,
+  "tickers": [],
+  "date_str": "April 5"
+ },
+ {
+  "file": "G5t4G32eR84_transcript.txt",
+  "title": "November 11th Trade Review (-$300 SPY) (trade-reviews)",
+  "pnl": -300000.0,
+  "outcome": "loss",
+  "tickers": [
+   "SPY"
+  ],
+  "date_str": "November 11"
+ },
+ {
+  "file": "GioAzO16xM4_transcript.txt",
+  "title": "February 13th + February 10th Trade Review (trade-reviews)",
+  "pnl": null,
+  "outcome": null,
+  "tickers": [],
+  "date_str": "February 13"
+ },
+ {
+  "file": "GxBUIXNS3aA_transcript.txt",
+  "title": "December 6th Trade Review ($26k TSLA + NVDA) (trade-reviews)",
+  "pnl": 26000.0,
+  "outcome": "win",
+  "tickers": [
+   "TSLA",
+   "NVDA"
+  ],
+  "date_str": "December 6"
+ },
+ {
+  "file": "Ha_QXbl_Oqc_transcript.txt",
+  "title": "December 10th Trade Review ($9.9k GOOG + TSLA + AAPL) (trade-reviews)",
+  "pnl": 9900.0,
+  "outcome": "win",
+  "tickers": [
+   "GOOG",
+   "TSLA",
+   "AAPL"
+  ],
+  "date_str": "December 10"
+ },
+ {
+  "file": "HkxTwWnzzAY_transcript.txt",
+  "title": "June 17th Trade Review ($11k TSLA A+ Trade) (trade-reviews)",
+  "pnl": 11000.0,
+  "outcome": "win",
+  "tickers": [
+   "TSLA"
+  ],
+  "date_str": "June 17"
+ },
+ {
+  "file": "HUUq4NYw2W4_transcript.txt",
+  "title": "January 31st Trade Review (trade-reviews)",
+  "pnl": null,
+  "outcome": null,
+  "tickers": [],
+  "date_str": "January 31"
+ },
+ {
+  "file": "I2vQTAj7NPA_transcript.txt",
+  "title": "February 11th Trade Review ($15k AAPL) (trade-reviews)",
+  "pnl": 15000.0,
+  "outcome": "win",
+  "tickers": [
+   "AAPL"
+  ],
+  "date_str": "February 11"
+ },
+ {
+  "file": "i8mc9L5P5C4_transcript.txt",
+  "title": "January 10th Trade Review (trade-reviews)",
+  "pnl": null,
+  "outcome": null,
+  "tickers": [],
+  "date_str": "January 10"
+ },
+ {
+  "file": "IGkIF6IRsLc_transcript.txt",
+  "title": "May 17th Trade Review (-$4k AMD & AAPL) (trade-reviews)",
+  "pnl": -4000.0,
+  "outcome": "loss",
+  "tickers": [
+   "AMD",
+   "AAPL"
+  ],
+  "date_str": "May 17"
+ },
+ {
+  "file": "iwgAOnAuN7A_transcript.txt",
+  "title": "April 8th Trade Review ($4k AMD & TSLA) (trade-reviews)",
+  "pnl": 4000.0,
+  "outcome": "win",
+  "tickers": [
+   "AMD",
+   "TSLA"
+  ],
+  "date_str": "April 8"
+ },
+ {
+  "file": "IyuUAoSsfnE_transcript.txt",
+  "title": "November 22nd Trade Review ($30k TSLA) (trade-reviews)",
+  "pnl": 30000.0,
+  "outcome": "win",
+  "tickers": [
+   "TSLA"
+  ],
+  "date_str": "November 22"
+ },
+ {
+  "file": "J1E2QdTaG4Y_transcript.txt",
+  "title": "November 5th Trade Review ($890 NVDA) (trade-reviews)",
+  "pnl": 890000.0,
+  "outcome": "win",
+  "tickers": [
+   "NVDA"
+  ],
+  "date_str": "November 5"
+ },
+ {
+  "file": "jEPb9-WmnxM_transcript.txt",
+  "title": "February 17th Trade Review (trade-reviews)",
+  "pnl": null,
+  "outcome": null,
+  "tickers": [],
+  "date_str": "February 17"
+ },
+ {
+  "file": "jLc8Gxm0WbU_transcript.txt",
+  "title": "February 21st Trade Review (trade-reviews)",
+  "pnl": null,
+  "outcome": null,
+  "tickers": [],
+  "date_str": "February 21"
+ },
+ {
+  "file": "jN2ZHgeyOBM_transcript.txt",
+  "title": "November 21 Trade Review ($500 TSLA) (trade-reviews)",
+  "pnl": 500000.0,
+  "outcome": "win",
+  "tickers": [
+   "TSLA"
+  ],
+  "date_str": "November 21"
+ },
+ {
+  "file": "JPL8yUA5I8A_transcript.txt",
+  "title": "January 30th Trade Review (trade-reviews)",
+  "pnl": null,
+  "outcome": null,
+  "tickers": [],
+  "date_str": "January 30"
+ },
+ {
+  "file": "JVnwuqK0UHo_transcript.txt",
+  "title": "April 17th Trade Review $5k Meta (trade-reviews)",
+  "pnl": null,
+  "outcome": null,
+  "tickers": [],
+  "date_str": "April 17"
+ },
+ {
+  "file": "K-Y2b9IEbXQ_transcript.txt",
+  "title": "February 4th Trade Review ($4k NVDA) (trade-reviews)",
+  "pnl": 4000.0,
+  "outcome": "win",
+  "tickers": [
+   "NVDA"
+  ],
+  "date_str": "February 4"
+ },
+ {
+  "file": "KCqSOCaHcZU_transcript.txt",
+  "title": "November 1st Trade Review ($3k AAPL) (trade-reviews)",
+  "pnl": 3000.0,
+  "outcome": "win",
+  "tickers": [
+   "AAPL"
+  ],
+  "date_str": "November 1"
+ },
+ {
+  "file": "kfYbz-q0MGE_transcript.txt",
+  "title": "March 10th Trade Review (trade-reviews)",
+  "pnl": null,
+  "outcome": null,
+  "tickers": [],
+  "date_str": "March 10"
+ },
+ {
+  "file": "Kl6J6tI-3J4_transcript.txt",
+  "title": "January 19 Trade Review (trade-reviews)",
+  "pnl": null,
+  "outcome": null,
+  "tickers": [],
+  "date_str": "January 19"
+ },
+ {
+  "file": "KqwkOjnsZIU_transcript.txt",
+  "title": "March 23rd Trade Review (trade-reviews)",
+  "pnl": null,
+  "outcome": null,
+  "tickers": [],
+  "date_str": "March 23"
+ },
+ {
+  "file": "kwxSHc6tr9U_transcript.txt",
+  "title": "January 3rd Trade Review (trade-reviews)",
+  "pnl": null,
+  "outcome": null,
+  "tickers": [],
+  "date_str": "January 3"
+ },
+ {
+  "file": "kxjuZ9bk-F0_transcript.txt",
+  "title": "December 16th Trade Review (-$690 SPY) (trade-reviews)",
+  "pnl": -690000.0,
+  "outcome": "loss",
+  "tickers": [
+   "SPY"
+  ],
+  "date_str": "December 16"
+ },
+ {
+  "file": "lDwyydxul9s_transcript.txt",
+  "title": "January 26th Trade Review (trade-reviews)",
+  "pnl": null,
+  "outcome": null,
+  "tickers": [],
+  "date_str": "January 26"
+ },
+ {
+  "file": "lI15h_OsYxc_transcript.txt",
+  "title": "July 19th Trade Review ($1.5k NVDA) (trade-reviews)",
+  "pnl": 1500.0,
+  "outcome": "win",
+  "tickers": [
+   "NVDA"
+  ],
+  "date_str": "July 19"
+ },
+ {
+  "file": "LidIpAxjxHg_transcript.txt",
+  "title": "January 25th Trade Review (trade-reviews)",
+  "pnl": null,
+  "outcome": null,
+  "tickers": [],
+  "date_str": "January 25"
+ },
+ {
+  "file": "lJwLmX7kB3g_transcript.txt",
+  "title": "March 14th Trade Review ($450 NVDA) (trade-reviews)",
+  "pnl": 450000.0,
+  "outcome": "win",
+  "tickers": [
+   "NVDA"
+  ],
+  "date_str": "March 14"
+ },
+ {
+  "file": "Lo5HzRJq9fg_transcript.txt",
+  "title": "August 14th Trade Review ($5.5k NVDA) (trade-reviews)",
+  "pnl": 5500.0,
+  "outcome": "win",
+  "tickers": [
+   "NVDA"
+  ],
+  "date_str": "August 14"
+ },
+ {
+  "file": "lvPYyI8AaSg_transcript.txt",
+  "title": "May 3rd Trade Review ($3k TSLA) (trade-reviews)",
+  "pnl": 3000.0,
+  "outcome": "win",
+  "tickers": [
+   "TSLA"
+  ],
+  "date_str": "May 3"
+ },
+ {
+  "file": "LY4HpL4kf0w_transcript.txt",
+  "title": "September 5th Trade Review ($2.9k AAPL) (trade-reviews)",
+  "pnl": 2900.0,
+  "outcome": "win",
+  "tickers": [
+   "AAPL"
+  ],
+  "date_str": "September 5"
+ },
+ {
+  "file": "LyHxlS52KJg_transcript.txt",
+  "title": "October 25th Trade Review ($21k TSLA) (trade-reviews)",
+  "pnl": 21000.0,
+  "outcome": "win",
+  "tickers": [
+   "TSLA"
+  ],
+  "date_str": "October 25"
+ },
+ {
+  "file": "LyRX2tJ72RY_transcript.txt",
+  "title": "January 4th Trade Review (FOMC) (trade-reviews)",
+  "pnl": null,
+  "outcome": null,
+  "tickers": [],
+  "date_str": "January 4"
+ },
+ {
+  "file": "mhlS6zBxQvk_transcript.txt",
+  "title": "January 24th Trade Review (trade-reviews)",
+  "pnl": null,
+  "outcome": null,
+  "tickers": [],
+  "date_str": "January 24"
+ },
+ {
+  "file": "Ml0UXGoDRbw_transcript.txt",
+  "title": "March 22nd Trade Review (trade-reviews)",
+  "pnl": null,
+  "outcome": null,
+  "tickers": [],
+  "date_str": "March 22"
+ },
+ {
+  "file": "mmXJYCk-nd0_transcript.txt",
+  "title": "January 19 Trade Review (trade-reviews)",
+  "pnl": null,
+  "outcome": null,
+  "tickers": [],
+  "date_str": "January 19"
+ },
+ {
+  "file": "MOMtlLRNZvM_transcript.txt",
+  "title": "Sept 22 Trade Review (trade-reviews)",
+  "pnl": null,
+  "outcome": null,
+  "tickers": [],
+  "date_str": null
+ },
+ {
+  "file": "n5a9PDnO83A_transcript.txt",
+  "title": "June 5th Trade Review (-$2.9k TSLA) (trade-reviews)",
+  "pnl": -2900.0,
+  "outcome": "loss",
+  "tickers": [
+   "TSLA"
+  ],
+  "date_str": "June 5"
+ },
+ {
+  "file": "NFIrJj3VrgE_transcript.txt",
+  "title": "May 21st Trade Review ($5.2K TSLA) (trade-reviews)",
+  "pnl": 5200.0,
+  "outcome": "win",
+  "tickers": [
+   "TSLA"
+  ],
+  "date_str": "May 21"
+ },
+ {
+  "file": "ngO33mnxhYQ_transcript.txt",
+  "title": "August 20th Trade Review ($5k AMD & TSLA) (trade-reviews)",
+  "pnl": 5000.0,
+  "outcome": "win",
+  "tickers": [
+   "AMD",
+   "TSLA"
+  ],
+  "date_str": "August 20"
+ },
+ {
+  "file": "nxY9GrkEE5A_transcript.txt",
+  "title": "February 14th Trade Review ($10.3k AAPL) (trade-reviews)",
+  "pnl": 10300.0,
+  "outcome": "win",
+  "tickers": [
+   "AAPL"
+  ],
+  "date_str": "February 14"
+ },
+ {
+  "file": "o5Q6QD_m42o_transcript.txt",
+  "title": "September 25th Trade Review ($4k NVDA + TSLA) (trade-reviews)",
+  "pnl": 4000.0,
+  "outcome": "win",
+  "tickers": [
+   "NVDA",
+   "TSLA"
+  ],
+  "date_str": "September 25"
+ },
+ {
+  "file": "Oi-W-hI4KJ0_transcript.txt",
+  "title": "March 3rd Trade Review (trade-reviews)",
+  "pnl": null,
+  "outcome": null,
+  "tickers": [],
+  "date_str": "March 3"
+ },
+ {
+  "file": "oIF2iRfSKxo_transcript.txt",
+  "title": "April 30th Trade Review (NVDA SWING $18k) (trade-reviews)",
+  "pnl": null,
+  "outcome": null,
+  "tickers": [
+   "NVDA"
+  ],
+  "date_str": "April 30"
+ },
+ {
+  "file": "OK17b9D7Td4_transcript.txt",
+  "title": "October 15th Trade Review ($6.7k AAPL) (trade-reviews)",
+  "pnl": 6700.0,
+  "outcome": "win",
+  "tickers": [
+   "AAPL"
+  ],
+  "date_str": "October 15"
+ },
+ {
+  "file": "oR0mdBs_6KI_transcript.txt",
+  "title": "March 13th Trade Review (trade-reviews)",
+  "pnl": null,
+  "outcome": null,
+  "tickers": [],
+  "date_str": "March 13"
+ },
+ {
+  "file": "oUZhSR_t3FI_transcript.txt",
+  "title": "March 31st Trade Review (trade-reviews)",
+  "pnl": null,
+  "outcome": null,
+  "tickers": [],
+  "date_str": "March 31"
+ },
+ {
+  "file": "p3kNolbkQlA_transcript.txt",
+  "title": "February 27th Trade Review (trade-reviews)",
+  "pnl": null,
+  "outcome": null,
+  "tickers": [],
+  "date_str": "February 27"
+ },
+ {
+  "file": "PBgqlCoAGZk_transcript.txt",
+  "title": "February 28th Trade Review (trade-reviews)",
+  "pnl": null,
+  "outcome": null,
+  "tickers": [],
+  "date_str": "February 28"
+ },
+ {
+  "file": "pdrqsVrNO-A_transcript.txt",
+  "title": "April 18th Trade Review ($2.3k AMD) (trade-reviews)",
+  "pnl": 2300.0,
+  "outcome": "win",
+  "tickers": [
+   "AMD"
+  ],
+  "date_str": "April 18"
+ },
+ {
+  "file": "pk3SxX47zeg_transcript.txt",
+  "title": "July 15th Trade Review ($10.9k TSLA) (trade-reviews)",
+  "pnl": 10900.0,
+  "outcome": "win",
+  "tickers": [
+   "TSLA"
+  ],
+  "date_str": "July 15"
+ },
+ {
+  "file": "pNi3dkDNUbI_transcript.txt",
+  "title": "July 22nd Trade Review (-$4.8k NVDA) (trade-reviews)",
+  "pnl": -4800.0,
+  "outcome": "loss",
+  "tickers": [
+   "NVDA"
+  ],
+  "date_str": "July 22"
+ },
+ {
+  "file": "pthjYVfx2fQ_transcript.txt",
+  "title": "October 2nd Trade Review ($1.7k NVDA) (trade-reviews)",
+  "pnl": 1700.0,
+  "outcome": "win",
+  "tickers": [
+   "NVDA"
+  ],
+  "date_str": "October 2"
+ },
+ {
+  "file": "q-FxhohAEec_transcript.txt",
+  "title": "March 8th Trade Review (trade-reviews)",
+  "pnl": null,
+  "outcome": null,
+  "tickers": [],
+  "date_str": "March 8"
+ },
+ {
+  "file": "Q9rS8WNAmYc_transcript.txt",
+  "title": "August 1st Trade Review (-$1.6k NVDA) (trade-reviews)",
+  "pnl": -1600.0,
+  "outcome": "loss",
+  "tickers": [
+   "NVDA"
+  ],
+  "date_str": "August 1"
+ },
+ {
+  "file": "qA7pBDvBwb4_transcript.txt",
+  "title": "December 12th Trade Review ($350 AMD) (trade-reviews)",
+  "pnl": 350000.0,
+  "outcome": "win",
+  "tickers": [
+   "AMD"
+  ],
+  "date_str": "December 12"
+ },
+ {
+  "file": "qESz1CN7oxw_transcript.txt",
+  "title": "Sept19th Trade Review (trade-reviews)",
+  "pnl": null,
+  "outcome": null,
+  "tickers": [],
+  "date_str": null
+ },
+ {
+  "file": "qf0etbv2Zos_transcript.txt",
+  "title": "July 17th Trade Review ($1.7k AMD) (trade-reviews)",
+  "pnl": 1700.0,
+  "outcome": "win",
+  "tickers": [
+   "AMD"
+  ],
+  "date_str": "July 17"
+ },
+ {
+  "file": "QnTdnh57wME_transcript.txt",
+  "title": "March 24th Trade Review (trade-reviews)",
+  "pnl": null,
+  "outcome": null,
+  "tickers": [],
+  "date_str": "March 24"
+ },
+ {
+  "file": "qsEvoLppZig_transcript.txt",
+  "title": "February 1-7 Trade Review For Week (trade-reviews)",
+  "pnl": null,
+  "outcome": null,
+  "tickers": [],
+  "date_str": "February 1"
+ },
+ {
+  "file": "QSK5MhgR5r8_transcript.txt",
+  "title": "January 9th Trade Review (trade-reviews)",
+  "pnl": null,
+  "outcome": null,
+  "tickers": [],
+  "date_str": "January 9"
+ },
+ {
+  "file": "Qz6a1ah8Vd4_transcript.txt",
+  "title": "February 9th Trade Review (trade-reviews)",
+  "pnl": null,
+  "outcome": null,
+  "tickers": [],
+  "date_str": "February 9"
+ },
+ {
+  "file": "QziMXDCoomw_transcript.txt",
+  "title": "March 26th Trade Review ($7.5k NVDA) (trade-reviews)",
+  "pnl": 7500.0,
+  "outcome": "win",
+  "tickers": [
+   "NVDA"
+  ],
+  "date_str": "March 26"
+ },
+ {
+  "file": "QZxzbKperp4_transcript.txt",
+  "title": "May 2nd Trade Review ($90 AMZN) (trade-reviews)",
+  "pnl": 90000.0,
+  "outcome": "win",
+  "tickers": [
+   "AMZN"
+  ],
+  "date_str": "May 2"
+ },
+ {
+  "file": "RDzumndcMHI_transcript.txt",
+  "title": "March 6th Trade Review (trade-reviews)",
+  "pnl": null,
+  "outcome": null,
+  "tickers": [],
+  "date_str": "March 6"
+ },
+ {
+  "file": "rJZlRxDSz5o_transcript.txt",
+  "title": "Dec 28 Trade Review (trade-reviews)",
+  "pnl": null,
+  "outcome": null,
+  "tickers": [],
+  "date_str": null
+ },
+ {
+  "file": "RnD6Po3efLk_transcript.txt",
+  "title": "February 8th Trade Review (trade-reviews)",
+  "pnl": null,
+  "outcome": null,
+  "tickers": [],
+  "date_str": "February 8"
+ },
+ {
+  "file": "RU8zDdT53Ag_transcript.txt",
+  "title": "February 19th Trade Review ($16k TSLA) (trade-reviews)",
+  "pnl": 16000.0,
+  "outcome": "win",
+  "tickers": [
+   "TSLA"
+  ],
+  "date_str": "February 19"
+ },
+ {
+  "file": "S7aerujfxtk_transcript.txt",
+  "title": "March 6th Trade Review (-$4.6k TSLA) (trade-reviews)",
+  "pnl": -4600.0,
+  "outcome": "loss",
+  "tickers": [
+   "TSLA"
+  ],
+  "date_str": "March 6"
+ },
+ {
+  "file": "s8Bzt1kDslU_transcript.txt",
+  "title": "August 13th Trade Review (-$180 AMD) (trade-reviews)",
+  "pnl": -180000.0,
+  "outcome": "loss",
+  "tickers": [
+   "AMD"
+  ],
+  "date_str": "August 13"
+ },
+ {
+  "file": "SeHdVXBf9-k_transcript.txt",
+  "title": "September 3rd Trade Review ($6.2k NVDA) (trade-reviews)",
+  "pnl": 6200.0,
+  "outcome": "win",
+  "tickers": [
+   "NVDA"
+  ],
+  "date_str": "September 3"
+ },
+ {
+  "file": "siorzDW_l6I_transcript.txt",
+  "title": "December 9th Trade Review ($3k AAPL) (trade-reviews)",
+  "pnl": 3000.0,
+  "outcome": "win",
+  "tickers": [
+   "AAPL"
+  ],
+  "date_str": "December 9"
+ },
+ {
+  "file": "SSzo8GvLGgg_transcript.txt",
+  "title": "January 27th Trade Review (trade-reviews)",
+  "pnl": null,
+  "outcome": null,
+  "tickers": [],
+  "date_str": "January 27"
+ },
+ {
+  "file": "TaAYbe8lt7E_transcript.txt",
+  "title": "May 23rd Trade Review ($3.7k NVDA) (trade-reviews)",
+  "pnl": 3700.0,
+  "outcome": "win",
+  "tickers": [
+   "NVDA"
+  ],
+  "date_str": "May 23"
+ },
+ {
+  "file": "TFHJk8_y8RI_transcript.txt",
+  "title": "November 12th Trade Review ($6.6k NVDA) (trade-reviews)",
+  "pnl": 6600.0,
+  "outcome": "win",
+  "tickers": [
+   "NVDA"
+  ],
+  "date_str": "November 12"
+ },
+ {
+  "file": "tmIEyK_1Ho4_transcript.txt",
+  "title": "October 3rd Trade Review ($12k NVDA) (trade-reviews)",
+  "pnl": 12000.0,
+  "outcome": "win",
+  "tickers": [
+   "NVDA"
+  ],
+  "date_str": "October 3"
+ },
+ {
+  "file": "tPHghiu-q9c_transcript.txt",
+  "title": "March 16th Trade Review (trade-reviews)",
+  "pnl": null,
+  "outcome": null,
+  "tickers": [],
+  "date_str": "March 16"
+ },
+ {
+  "file": "TquD3EV0EHw_transcript.txt",
+  "title": "June 26th + 27th Trade Review ( $7k 2 TSLA, AAPL) (trade-reviews)",
+  "pnl": null,
+  "outcome": null,
+  "tickers": [
+   "TSLA",
+   "AAPL"
+  ],
+  "date_str": "June 26"
+ },
+ {
+  "file": "TX6JQxpk08g_transcript.txt",
+  "title": "November 4th Trade Review ($1.4k NVDA) (trade-reviews)",
+  "pnl": 1400.0,
+  "outcome": "win",
+  "tickers": [
+   "NVDA"
+  ],
+  "date_str": "November 4"
+ },
+ {
+  "file": "u4sDOKFdJKc_transcript.txt",
+  "title": "September 10 & 11th Trade Review  (TSLA & NVDA) (trade-reviews)",
+  "pnl": null,
+  "outcome": null,
+  "tickers": [
+   "TSLA",
+   "NVDA"
+  ],
+  "date_str": "September 10"
+ },
+ {
+  "file": "UjiqjtAjdrM_transcript.txt",
+  "title": "January 18 Trade Review (trade-reviews)",
+  "pnl": null,
+  "outcome": null,
+  "tickers": [],
+  "date_str": "January 18"
+ },
+ {
+  "file": "UkhDtUIA1gc_transcript.txt",
+  "title": "April 16th Trade Review ($500 meta) (trade-reviews)",
+  "pnl": 500000.0,
+  "outcome": "win",
+  "tickers": [],
+  "date_str": "April 16"
+ },
+ {
+  "file": "umaeCwnvbJg_transcript.txt",
+  "title": "July 29th Trade Review ($2.4k) (trade-reviews)",
+  "pnl": 2400.0,
+  "outcome": "win",
+  "tickers": [],
+  "date_str": "July 29"
+ },
+ {
+  "file": "uPLuEui0CxU_transcript.txt",
+  "title": "June 13th Trade Review ($60 AAPL) (trade-reviews)",
+  "pnl": 60000.0,
+  "outcome": "win",
+  "tickers": [
+   "AAPL"
+  ],
+  "date_str": "June 13"
+ },
+ {
+  "file": "uPYtn-ka9JY_transcript.txt",
+  "title": "August 22nd Trade Review ($2.8k AMD) (trade-reviews)",
+  "pnl": 2800.0,
+  "outcome": "win",
+  "tickers": [
+   "AMD"
+  ],
+  "date_str": "August 22"
+ },
+ {
+  "file": "v0ACy-Gkpy4_transcript.txt",
+  "title": "February 7th Trade Review (trade-reviews)",
+  "pnl": null,
+  "outcome": null,
+  "tickers": [],
+  "date_str": "February 7"
+ },
+ {
+  "file": "vgc5IVOBaoE_transcript.txt",
+  "title": "August 29th Trade Review ($24k TSLA & AAPL Swing) (trade-reviews)",
+  "pnl": 24000.0,
+  "outcome": "win",
+  "tickers": [
+   "TSLA",
+   "AAPL"
+  ],
+  "date_str": "August 29"
+ },
+ {
+  "file": "VK0aJOkXrfk_transcript.txt",
+  "title": "February 1st 2023 Trade Review (trade-reviews)",
+  "pnl": null,
+  "outcome": null,
+  "tickers": [],
+  "date_str": "February 1"
+ },
+ {
+  "file": "VKXO1lGJrUM_transcript.txt",
+  "title": "January 20th Trade Review (trade-reviews)",
+  "pnl": null,
+  "outcome": null,
+  "tickers": [],
+  "date_str": "January 20"
+ },
+ {
+  "file": "VVwVqEsuCKA_transcript.txt",
+  "title": "BIGGEST TRADE EVER. November 6th Trade Review ($108k TSLA) (trade-reviews)",
+  "pnl": 108000.0,
+  "outcome": "win",
+  "tickers": [
+   "TSLA"
+  ],
+  "date_str": "November 6"
+ },
+ {
+  "file": "v_r4RENOo1A_transcript.txt",
+  "title": "June 20th Trade Review ($6.7k AMD) (trade-reviews)",
+  "pnl": 6700.0,
+  "outcome": "win",
+  "tickers": [
+   "AMD"
+  ],
+  "date_str": "June 20"
+ },
+ {
+  "file": "WF0AbNZDR8s_transcript.txt",
+  "title": "December 26 Trade Review ($500 AAPL) (trade-reviews)",
+  "pnl": 500000.0,
+  "outcome": "win",
+  "tickers": [
+   "AAPL"
+  ],
+  "date_str": "December 26"
+ },
+ {
+  "file": "Xc1P02mCPco_transcript.txt",
+  "title": "March 24 & 25 Trade Review ($14k TSLA + AAPL) (trade-reviews)",
+  "pnl": 14000.0,
+  "outcome": "win",
+  "tickers": [
+   "TSLA",
+   "AAPL"
+  ],
+  "date_str": "March 24"
+ },
+ {
+  "file": "xhD_SRbyMNE_transcript.txt",
+  "title": "March 13th Trade Review ($11.8k TSLA) (trade-reviews)",
+  "pnl": 11800.0,
+  "outcome": "win",
+  "tickers": [
+   "TSLA"
+  ],
+  "date_str": "March 13"
+ },
+ {
+  "file": "Y3hc79PvDxI_transcript.txt",
+  "title": "February 5th Trade Review ($6k NVDA) (trade-reviews)",
+  "pnl": 6000.0,
+  "outcome": "win",
+  "tickers": [
+   "NVDA"
+  ],
+  "date_str": "February 5"
+ },
+ {
+  "file": "y3jnvlxDczQ_transcript.txt",
+  "title": "March 27th Trade Review (trade-reviews)",
+  "pnl": null,
+  "outcome": null,
+  "tickers": [],
+  "date_str": "March 27"
+ },
+ {
+  "file": "Ya-CbcUDulc_transcript.txt",
+  "title": "July 11th Trade Review ($2.2k TSLA) (trade-reviews)",
+  "pnl": 2200.0,
+  "outcome": "win",
+  "tickers": [
+   "TSLA"
+  ],
+  "date_str": "July 11"
+ },
+ {
+  "file": "ykDLeZ4NnBQ_transcript.txt",
+  "title": "December 11th Trade Review ($16k TSLA) (trade-reviews)",
+  "pnl": 16000.0,
+  "outcome": "win",
+  "tickers": [
+   "TSLA"
+  ],
+  "date_str": "December 11"
+ },
+ {
+  "file": "YYfKUJxV9j4_transcript.txt",
+  "title": "February 16th Trade Review (trade-reviews)",
+  "pnl": null,
+  "outcome": null,
+  "tickers": [],
+  "date_str": "February 16"
+ },
+ {
+  "file": "yZQckMBOtZw_transcript.txt",
+  "title": "March 21 Trade Review ($10k TSLA) (trade-reviews)",
+  "pnl": 10000.0,
+  "outcome": "win",
+  "tickers": [
+   "TSLA"
+  ],
+  "date_str": "March 21"
+ },
+ {
+  "file": "z3cvNms9ep8_transcript.txt",
+  "title": "January 11 Trade Review (trade-reviews)",
+  "pnl": null,
+  "outcome": null,
+  "tickers": [],
+  "date_str": "January 11"
+ },
+ {
+  "file": "ZaTjVDBTxlM_transcript.txt",
+  "title": "March 28th Trade Review (trade-reviews)",
+  "pnl": null,
+  "outcome": null,
+  "tickers": [],
+  "date_str": "March 28"
+ },
+ {
+  "file": "ZCB7VOtR-lU_transcript.txt",
+  "title": "May 13th Trade Review ($3k AAPL) (trade-reviews)",
+  "pnl": 3000.0,
+  "outcome": "win",
+  "tickers": [
+   "AAPL"
+  ],
+  "date_str": "May 13"
+ },
+ {
+  "file": "Zt8c-5OcLGk_transcript.txt",
+  "title": "April 22nd Trade Review ($22k NVDA) (trade-reviews)",
+  "pnl": 22000.0,
+  "outcome": "win",
+  "tickers": [
+   "NVDA"
+  ],
+  "date_str": "April 22"
+ },
+ {
+  "file": "Zvj9wsulyCM_transcript.txt",
+  "title": "April 24th Trade Review ($9.8k NVDA) (trade-reviews)",
+  "pnl": 9800.0,
+  "outcome": "win",
+  "tickers": [
+   "NVDA"
+  ],
+  "date_str": "April 24"
+ },
+ {
+  "file": "_22z9rgwvAQ_transcript.txt",
+  "title": "November 4th Trade Review (-$1k AMD) (trade-reviews)",
+  "pnl": -1000.0,
+  "outcome": "loss",
+  "tickers": [
+   "AMD"
+  ],
+  "date_str": "November 4"
+ },
+ {
+  "file": "_Em7Q3lyrDg_transcript.txt",
+  "title": "June 14th Trade Review ($1.2k TSLA) (trade-reviews)",
+  "pnl": 1200.0,
+  "outcome": "win",
+  "tickers": [
+   "TSLA"
+  ],
+  "date_str": "June 14"
+ },
+ {
+  "file": "_Eq6a6LSl9A_transcript.txt",
+  "title": "April 4th Trade Review (trade-reviews)",
+  "pnl": null,
+  "outcome": null,
+  "tickers": [],
+  "date_str": "April 4"
+ },
+ {
+  "file": "_jehm9tKmIE_transcript.txt",
+  "title": "January 12 Trade Review (trade-reviews)",
+  "pnl": null,
+  "outcome": null,
+  "tickers": [],
+  "date_str": "January 12"
+ },
+ {
+  "file": "_qe5pNH9eEY_transcript.txt",
+  "title": "March 7th Trade Review ($2.2k AAPL) (trade-reviews)",
+  "pnl": 2200.0,
+  "outcome": "win",
+  "tickers": [
+   "AAPL"
+  ],
+  "date_str": "March 7"
+ }
+]

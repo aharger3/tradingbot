@@ -2,7 +2,7 @@
 
 from typing import List, Optional, Tuple
 from dataclasses import dataclass
-from vanquish_bot import (
+from omen_bot import (
     Candle, SignalType, TradingSession, PriceActionAnalyzer,
     BreakAndRetestDetector, OneCandleRuleDetector, RuleOf84Detector,
     OpeningRangeAnalyzer

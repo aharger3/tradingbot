@@ -1,0 +1,774 @@
+# Transcription: boot-camp-recordings_Day_8_Scaling_With_Options.wav
+# Duration: 4581s
+# Model: tiny
+
+[0s-6s] good to go. Good to see you with subbedo. What's going on? I changed my name to jack-a.
+[6s-10s] Now I got to run it through jack-sume so we can have everybody inside so it should be
+[10s-17s] should be super super solid session today. Okay. Sweet. I think we should have
+[17s-22s] decimant of people inside really one minute past four o'clock so I'm just gonna do
+[22s-30s] a quick introduction. I'll just have myself just how I became into this position not
+[30s-34s] only that but also just about my trading journey. You guys saw Neto last time. Some
+[34s-38s] you guys are familiar with Neto. Some of you guys haven't been familiar with I
+[38s-43s] guess myself Neto. We're two of the traders that have learned from Jack and Tony
+[43s-48s] using options trading to become profitable traders using the break and
+[48s-53s] retest. Everybody has their little bit of a different style but me and Neto have
+[53s-58s] been two of the guys that have been very successful in doing so and I have built this
+[58s-64s] system using options and how to scale out of options trades to kind of
+[64s-69s] optimize and make things more mechanical rather than just guessing whenever to
+[69s-74s] scale out of positions or run to close positions when you should do it when
+[74s-77s] you shouldn't do it what exactly it is so that's gonna be the session we're
+[77s-83s] going through today. Me personally I've been trading for you you will be able to
+[83s-88s] with futures this all by the way just quick quick side know this this well you can
+[88s-91s] do with stocks you can do it with futures I'm gonna go over the differences
+[91s-97s] between the two I do think that with options it's gonna be a little bit easier to
+[97s-101s] get the most set of it but you will be able to 100% use this with and you can
+[101s-104s] use this with cryptocurrency you can use it with futures I'm gonna be just going
+[104s-108s] over scaling period with options it just you might get a little bit more juice
+[108s-114s] set of this so just brief intro so I actually started out trading five years
+[114s-119s] ago I started with actually options trading I utterly and completely failed
+[119s-123s] multiple times below all my accounts like most traders would it was kind of
+[123s-127s] when GME and A and C were these I was like popping off back in the day on the
+[127s-132s] coba era didn't really have any system and I then transferred from there to
+[132s-138s] crypto traded crypto for three years was successful maybe in like the last
+[138s-144s] six months of that third year it wasn't for me I saw Tony on Twitter and I
+[144s-148s] saw that he was trading options in today and I said you know what let me just
+[148s-152s] see what this guy's all about because he seems only trade for 90 minutes and
+[152s-156s] and he used options to do so a little bit of a different style wasn't too
+[156s-160s] familiar with scalping and so I've pretty much been working alongside like Jack
+[160s-165s] and Tony for about two years now I'll go through kind of that process a little
+[165s-169s] bit maybe closer to the end of the session but just so you guys know for the
+[169s-174s] last like couple I want to say that last year has been super solid in terms of
+[174s-179s] trading the last like seven months I want to say has been like around 20,000
+[179s-184s] a month trading options in today so just a little bit of a background for
+[184s-190s] myself so that being said I will all get started on a little bit of the
+[190s-195s] introduction what scaling is why we do it so welcome you guys if you're just
+[195s-198s] joining and yeah it's 404 so I think it we should be should be good time to
+[198s-203s] actually start up with the session so a little bit of an introduction like
+[203s-206s] let's just talk about what we're talking about when we talk about scaling so
+[206s-210s] what I'm initially talking about when I'm talking about scaling at a
+[210s-213s] time of scaling out of positions by the way so anytime I talk about scaling I'm
+[213s-218s] talking about simply scaling out of positions there's very rare times where you
+[218s-222s] will want to scale into a position especially with the break and retests and how
+[222s-228s] the break and retests works just really quickly let's go over an example of
+[228s-231s] just like maybe why you wouldn't want to scale into positions just real quick
+[231s-236s] let me know if you guys can see my trading view actually real quick as well just just
+[236s-241s] type of one in the chat if you can see my trading view okay so it sounds good so
+[241s-247s] typically when you're trading the break and retests system you are looking for
+[247s-250s] a break oh maybe there's a range maybe could be a previous day's highs previous
+[250s-255s] days lows could be some sort of key level at this point what I'm looking at is
+[255s-260s] this level of resistance right here right so this previous resistance once this
+[260s-265s] price breaks out is now turned into what a support zone so typically what you
+[265s-269s] want to see right here is a reaction at this level and usually our entries are
+[269s-276s] around for say this general area so at this point if price is moving downwards we
+[276s-281s] now know that this level is not valid so you're not going to want to scale
+[281s-285s] into these trades right you're only scaling out of positions but just a
+[285s-291s] quick reasoning why usually our trades work out right away or they'll
+[291s-294s] typically go in there will hit your software the way usually you won't see a
+[294s-298s] ton of ranging around there usually they're pretty quick move so that is why
+[298s-301s] you wouldn't want to scale into them just a little bit of a side no let's not
+[301s-307s] talk about I'm talking about scaling at a position so taking scales at key levels just
+[307s-314s] real quick that is what I'm referring to so say let's say you buy 10 contracts right
+[314s-320s] of Tesla and video indeed or you buy five micro is five minis whatever maybe
+[321s-327s] shares right it's taking partial profits at key levels and then using the rest as a
+[327s-331s] trailer position so that's exactly what I'm referring to when I'm talking about
+[331s-335s] options or scaling you can use any instrument I'm just going to refer to it as
+[335s-340s] as contractions because that's what I trade so quick intro so
+[340s-346s] how why we scale is to avoid the all or nothing trap right it's to secure daily
+[346s-351s] profits to stay consistent and keep runners I should say keep runners for
+[351s-355s] potential exponential options gains it might not always be exponential if you're
+[355s-359s] referring to futures so I go with that also I help to reduce stress
+[360s-366s] increase confidence protect capital right a lot of traders find it very difficult to
+[366s-371s] hold on to their entire position right and when you have a fixed take profit and a fixed
+[371s-376s] stop loss it can be a little bit tricky knowing that you've already taken off some of your
+[376s-382s] profits for the day is going to allow your brain to be a little bit more at ease and hold on
+[382s-387s] to those extra couple contracts or those extra little bit of your position I should say for
+[387s-391s] either more continuation or maybe for break even and I'll talk about each one of those
+[391s-398s] different scenarios as well so the core dilemma right the main idea of trading in general
+[398s-403s] is the two painful extremes right taking profits too early which I know a lot of you guys can
+[403s-409s] probably relate to I know I definitely was very very fat at this and also holding on to
+[409s-413s] long right you also don't want to do this either so we're going to be building this kind of
+[413s-419s] like middle ground in one to do this and one not to do this little helps again with
+[419s-424s] like psychology things right fear versus greed so scaling kind of gives you that middle ground
+[425s-431s] that's that's a whole idea of this right goal goal is just to secure profits daily right or even
+[431s-437s] for weekly for month either one um everyone is better if you can be green daily your weeks are
+[437s-441s] going to be green right if you're weeks are green your months are going to be green so
+[442s-447s] essentially you want to stack up the small winds right what we call base hits you see sometimes
+[447s-452s] so when you will have uh or jack will have you know a thousand or two thousand dollar a three thousand
+[452s-456s] dollar a and then occasionally they'll have those forty thousand dollar days right and it's like
+[456s-463s] that only can happen if you have a trailer position so you know that's kind of the whole idea
+[463s-469s] of this right it's going to be the small winds will stack right but then you have the potential
+[469s-474s] for those big green upside days as well so um options are a little bit different
+[475s-480s] all right because they have time to gain volatility premium um but they are going to give you that
+[480s-486s] exponential kind of like you know exponential gain whereas you have for futures and stocks you have
+[486s-498s] this linear like maybe 5% maybe like 10% here 15% etc etc with options um the curve for price
+[498s-504s] usually you look something like this right where it'd be like five right here maybe like 25 you know
+[504s-510s] a hundred two hundred percent so this is kind of how the options contracts move versus um versus
+[510s-517s] futures versus uh stocks versus shares till that's why I can be used a little bit easier we'll
+[517s-522s] talk about different scenarios too so let's you participate in those exponential gains that
+[522s-526s] risking your whole profit right because you've already taken off a lot of your day trade position
+[526s-532s] and we'll talk with this so so what scaling up means selling part of your contracts at preset
+[532s-537s] targets this it doesn't always have to be preset targets we're going to go over a lot of different
+[537s-543s] case scenarios and when you should scale when you shouldn't um leaving runners as think of it
+[543s-547s] as I can pay yourself now but keep some skin in the game right that's the whole idea of this that
+[547s-554s] is what scaling is so the mechanics of it so you buy 10 contracts sell 7 at 20% hold 3 for a potential
+[554s-560s] 100% plus right um you can pre-plan your eggsics before entering the trade it's always good to do
+[561s-566s] and you can adjust this based off volatility market conditions momentum we always refer to
+[566s-571s] good versus bad market conditions you want to have a base idea of how you're going to play
+[571s-578s] every single trade you can adjust it slightly we're going to go over that too so um psychological
+[578s-582s] advantage right you're going to remove a lot and a lot of stress one to you have already taken
+[582s-587s] profit for the day right it's like when you win a trade and you go into your next trade maybe with
+[587s-591s] higher size you can you're always going to be able to manage that position a little bit easier
+[591s-597s] no matter what so easier to let the words run do some motion decision making in fast moving
+[597s-601s] markets or just especially when you're trading options right these things go crazy they move fast
+[601s-609s] so it helps be a little bit more stable so and also is a little bit of a built-in
+[609s-613s] risk management system so if you actually go and apply this to your trading like afterwards
+[614s-620s] you will have an idea of you know one to scale out whether it's high of day whether it's
+[620s-624s] you know closer to to our we'll talk about different scenarios it'll actually kind of help you build
+[624s-630s] some sort of um everyday game plan and by proxy you will just manage risk better because you're
+[630s-638s] not going to be you're going to be only selling or buying based off of mechanical entries or
+[638s-647s] the mechanical process versus trying to exit trades randomly right versus trying to exit just
+[647s-651s] based off your P&L right you you can't always do that you know will is referred to like trading
+[651s-657s] your P&L is never never usually a good thing we always have the max loss master's portrayed but
+[657s-664s] you know if you are aligning everything properly and you're managing risk properly this will help
+[665s-672s] like two x that I promise this will be way easier so we all do this for the big effect day right
+[673s-679s] you still catch those rare massive trend days even if the move is 300% your runners benefit
+[679s-684s] this is what we're leading up to um those bigger days now add to your week the month year
+[684s-690s] instead of being a missed opportunities so that is the whole purpose of this right we would not hold
+[690s-697s] on the trailers if we did not um did not have those potential gains those extra huge green days right
+[697s-701s] I talked a little bit about jack and Tony and how they'll have you know or jack will have
+[701s-706s] like it was a 20k days and 20 of those 50k days versus some of them they're like 3000 right
+[707s-712s] so rules for scaling out what you want to do is pre-plan your main target levels before your
+[712s-718s] trade right depending on whether it's an aggressive one depending where high of day is or a low of
+[718s-724s] day depending on the recess we'll talk about that and we're going to take your first scale at that
+[724s-730s] conservator target talk about the first targets let runners write only if momentum is still intact
+[730s-735s] so we'll talk about when to cut the position when you actually when it comes down to it and then you
+[735s-740s] never obviously re-ad sides unless there's a plus set up I would just ignore this just never
+[740s-748s] never add sides to these trades for the break and retest doesn't make sense um one so this is going to
+[748s-753s] be very very very important for you guys I really that this is probably the most important if you
+[753s-758s] are listening in and especially if you are a new trader and if you are brand new at trading options
+[758s-764s] and you are not risking a lot portrayed this is a massive, massive disclaimer when you should not
+[764s-772s] scale it up trades when you have very small position size so it's not worth splitting short term
+[772s-777s] scalp trades you don't really want to if you're not very confident in your setup right you're always
+[777s-783s] going to scale a little bit more or you're going to close out the whole position um liquidity
+[783s-788s] issues are never really a thing unless you're trading maybe mid caps that are like further OTM
+[789s-793s] usually when you're trading around money like usually at the money or one out on this week's
+[793s-797s] contracts usually you will never have this problem on like you know video test the name so we normally
+[797s-805s] trade so but let's dive into very small position size right so if you're trading around one to two
+[805s-814s] contracts the reason why scaling won't work as well with one to two contracts or even like a
+[814s-819s] I want to say like five is where it really starts to get you really start to take advantage of it
+[819s-827s] is let's just say you have a trade and this trade you have a break you have a retest of this level
+[827s-833s] say your entry is just right above here I'm just using this position tool as a as a reference
+[833s-837s] I'm not going to go really crazy into this retest whatever you know obviously we don't want to have
+[837s-843s] our softest below here just for presentation purposes let's just say this is your position right
+[843s-849s] if you have one to two contracts if you're if you're trying to scale at high day a lot of times
+[849s-854s] with a lot of our retests at you're not going to get really you're not going to get that high of day
+[854s-860s] push every single time so it's going to be very hard to identify and it's going to be very
+[861s-865s] it's like this is a whole like very discretionary thing whether you want to scale that contract or not
+[866s-872s] so that's why I say with lower sizing one to two contracts you do want to probably close out your
+[872s-879s] whole position so just let me repeat that again with one to two contracts you want to close out your
+[879s-885s] whole position because when you have obviously with one you can't scale it all with two the problem
+[885s-890s] comes where yes you scale at this high day level but then how many trades are going to go up
+[890s-897s] well like past year first scale maybe three out of ten and those ones usually aren't going to make up for
+[897s-904s] the losses right where your risk is right here versus when you have three five ten plus
+[905s-912s] those extra gains up here those extra couple contracts up here will make up when it does when you
+[912s-918s] do have continuation for these losses so one to two contracts we're going to we're going to talk
+[918s-921s] about like two are we're going to talk about high they we're going to talk about all those things
+[921s-928s] just rule thumb one to two stick to and we'll talk about how to manage your positions a little bit
+[928s-933s] better if you are one to two contracts too because I know most of you guys if you are just learning
+[933s-938s] you're going to want to just stick to low sizing that was what makes sense that's literally what I did
+[938s-943s] trust me I know I can be a little bit frustrated because you don't have the opportunity to hold on to a lot of
+[943s-949s] those trades but trust me when you get to that point it's going to be a lot easier right because you're
+[949s-954s] going to have your whole system down you're going to know when to enter your trades at that point
+[954s-959s] it's just scaling out right that's the only other thing that you have to implement you should be
+[959s-965s] able to hit your classic high of day scale setups with one to two contracts you can still be green trust
+[966s-972s] trust me you can I'll go over a little bit about that too so I'll show that I'll dive in I'm going to go back to
+[972s-979s] the prestational over here so column mistakes with scaling you know scaling it to early every time
+[979s-983s] it's sunscreen no plan for the final exit so you're just basically holding it on until it
+[983s-989s] versus on you and then random splits instead of a consistent approach this is the biggest thing that I think
+[989s-995s] that I see anyways so so the break and retests so I'm going to play out a little bit of a
+[995s-1001s] scenario right here and I kind of already drew it out a little bit so before you trade obviously
+[1001s-1008s] you're going to want to identify your entry right when you have a break right and you have price
+[1008s-1011s] pull back and you're looking to enter the trade you're going to need to identify the entry point right
+[1012s-1016s] likely when you see a bounce or a buyer step in so you're going to wait for the entry right
+[1016s-1021s] the first thing you're going to do when you enter that trade is identified the entry and then
+[1021s-1025s] your stop loss next so you're not going to put it to price sorry yet you're just going to put
+[1025s-1032s] wherever you're going to close that position now whether it is a an option trade whether it's a
+[1032s-1037s] future trade you're going to just identify where price breaks so in this case if you look at this
+[1037s-1043s] drawing right here it's just a close or a price pulls back above that retest level in this case
+[1043s-1049s] it's a short position taking puts this would be your stop loss and then you can identify wherever
+[1049s-1058s] high of day or low of day is risk reward wise relative to your stop and entry right relative to your
+[1058s-1063s] stop loss and your entry point and that's very key so let's go over this a little bit I'm just going
+[1063s-1071s] to go over a live example with candles from Friday from the school trade so I thought process here
+[1071s-1075s] so first thing you're going to do right you can even replay this a little bit
+[1077s-1083s] so at this point I'm waiting for the next candle to form pretty much above this red hammer
+[1083s-1089s] candle stick here waiting for buyers to push have this kind of small breakout so I know where my
+[1089s-1093s] entry is at this point I know we're about pretty closely where I'm about to enter I can refine it a
+[1093s-1098s] little bit after I actually do enter the trade so I already have my position to already about
+[1098s-1105s] all right I'm just going to exit the replay just play this out so my stop loss is going to be just
+[1105s-1111s] under here and my entry is it was actually on the 950 candle this candle didn't quite close or
+[1111s-1116s] form above it yet so in this case I've identified my entry I've identified my stop loss
+[1117s-1125s] now high of day based on my entry right based on my entry and my stop loss is about 1.79
+[1125s-1131s] restore reward right I will I can talk about this trade maybe closer to the end of the session
+[1131s-1136s] it was yeah like a one candle rule like entry but I will I'm going to talk I'm going to talk about
+[1136s-1143s] the setup I'm just going to talk about scaling and how to actually do this first um so in this case
+[1143s-1151s] I see that high of day is 1.8 restore so now that I know that is my first scale target where some
+[1151s-1157s] other trades maybe you take an immediate retest we could talk about that you probably want to
+[1157s-1164s] have a set limit for yourself what that's a 1.5 1.75 2R right generally speaking if I take the
+[1164s-1172s] immediate retest and there isn't a high of day point to actually you know go off of usually 2R is a
+[1172s-1178s] good rule of thumb right because most of the time the options they're never going to truly be again like
+[1178s-1183s] I'm just going to make this to sound too the never truly going to be exactly 2R there's just no way in
+[1183s-1187s] real time of making those like calculations especially when you're watching the charts especially when
+[1187s-1192s] you're managing your position right it's going to be very difficult so we use the position tool as a
+[1193s-1201s] as a good reference right as a good reference so I'm going to go back here so and then at that point
+[1201s-1206s] you're going to identify some like some levels whether that's if you're trading intraday maybe it is
+[1207s-1215s] some key pivot right we'll go over something as much as that a lot of the times Tony is he's using
+[1215s-1220s] those already for retests right so his white lines if you guys were in his his lesson was explaining
+[1220s-1226s] his levels and everything those white lines whether really any key levels any highs or lows so
+[1226s-1232s] you can use those as a general rule of thumb so this is where we're going to start actually getting a
+[1232s-1239s] little bit a little bit more complex a little bit more a little bit more value in here into the
+[1239s-1244s] nitty gritty of things how do you get that box to show the research word on the chart it's just a
+[1244s-1249s] tool and trading view so if on the left hand side right here there's the long and short position tools
+[1249s-1260s] here so you can use those real quick actually it should just do this right here so a general rule of
+[1261s-1265s] for whatever reason you get really mixed up you get really confused you get a little bit
+[1265s-1272s] discombobulated with everyone to say you should just be having 75% of your contracts as a day trade
+[1272s-1280s] your initial scale just rule of thumb 75% it's usually it's never a bad thing most of your position is off
+[1280s-1287s] we are technically like day traders intraday scalpers so most of your position should be gone at
+[1288s-1294s] that trade right it just makes it only makes sense and then about 25% of the position is going to
+[1294s-1302s] be letting it ride so for example four shares four contracts four menus four macros right like
+[1303s-1308s] you're going to be few buy four you're going to be taking profit with three of those and leaving one
+[1308s-1314s] maybe four continuation right we're going to talk about one to do that and like what levels to maybe
+[1314s-1321s] hold on to so this we're going to have to stick on this slide for a little bit here but this is the
+[1321s-1327s] kind of main idea some of you guys have actually seen this before and some of you guys might have
+[1327s-1333s] worked with me within some of the coaching and the accelerator or in the or even the traders
+[1333s-1340s] live in the one to one and everything so these this is my rule of thumb I will have this PDF for you
+[1340s-1344s] guys don't worry I will send it in with the recording and everything after this too but let's take
+[1344s-1351s] some time and let's just pause and go over some levels and some percentages and why and like why I
+[1351s-1355s] actually have this because that's the most important thing I can explain this but if this doesn't make
+[1355s-1363s] sense why to you guys then it won't matter so just a general rule of thumb this this is for myself
+[1363s-1369s] you guys can always kind of make this and base your system a little bit relative towards this as well
+[1370s-1376s] so and I will answer some questions about that too so a rule of thumb for me when high of day or
+[1376s-1383s] low of day right is 1.5 risker word or a lower base on the entry and based on your stop loss
+[1384s-1388s] just be careful with taking profits usually you don't want to take any off there especially with
+[1388s-1393s] options because with your fill price and market orders you know it's never really going to be too
+[1393s-1399s] accurate and the closer you are to want to one you know you're not getting you're going to have
+[1399s-1405s] to have a really high win rate which is okay if you have a really really high win rate 80%
+[1405s-1411s] plus then maybe it makes sense to scale at like 1 to 1 or some of those levels I know Tony
+[1411s-1418s] he might scale a little bit earlier than than the 1.5 R right he has a very very very high
+[1418s-1422s] win rate on a trade so for for just a rule of thumb for myself and that what I've been going with
+[1422s-1429s] for the last little bit is 1.5 so just go back to the chart real quick if let's just say my entry
+[1429s-1434s] was a bit like a little bit higher right like a little bit into this candle so we're going to be
+[1434s-1441s] truly truly a hundred percent accurate I understand that trust me at this point this would be the
+[1441s-1447s] first scale or if I entered up here right I would have to wait till you know 1.5 hits because
+[1447s-1452s] realistically this would be the like structure break of this trade so my stop is going to
+[1452s-1457s] really be there no matter what I might just have to leave it a little bit longer so even though
+[1457s-1465s] high of day technically right here the last high of day is at 1 to 1 I'm going to wait until
+[1465s-1470s] at least probably 1.5 to scale because it it only makes sense I get it's a level of resistance
+[1470s-1477s] but if I take this trade over and over and over again with the nature of options and just getting
+[1477s-1482s] fills and scaling at these points I'm going to need a pretty high percentage wind rate to be
+[1482s-1488s] profitable does that make sense so you guys just real quick just how to does that make sense just
+[1488s-1495s] 1's in the chart that makes sense okay sounds good sounds good so just for me like minimum 1.5
+[1495s-1501s] is usually a very good level even if you have a slightly lower wind rate some of these when they do
+[1502s-1509s] continue it'll make up for that trust me so based on to this get into the specifics here right
+[1509s-1513s] so when high of day or low of day right I'm just going to keep saying high of day just for
+[1514s-1518s] because I really really really really right now I'm only taking long positions and mostly
+[1518s-1522s] Tony and Jack have in as well so just gonna use high of days in example it's what I hear it could
+[1522s-1530s] be the exact opposite high of day low of day same thing first scale points so when it is around 1.5 to 1.75
+[1530s-1537s] restore reward relative to your entry and your stop I usually 60% is a very good scale
+[1538s-1547s] because what we are looking for right in majority of our our trade right is 2R and high of
+[1547s-1552s] day these are the two things that we're obviously going to leave this up here too right usually this is
+[1552s-1557s] the main two things that you're looking for and we'll talk about like that's like you know that's why
+[1557s-1563s] we are out of most of the position at that point but you haven't quite got the 2R out of the
+[1563s-1569s] trade yet and it's not in that close to it so by my rule if I'm like about like 7525 right
+[1569s-1576s] I still I'm not fully confident but I'm still majority day trade so 60% I'm still majority
+[1576s-1582s] taking off my position it is closer to half right then obviously a hundred I still want to treat
+[1582s-1587s] this as a day trade though I still want to secure some profits but I haven't there hasn't
+[1587s-1593s] had a big enough push yet for me to exercise the rest of those contracts for me to sell those
+[1593s-1601s] contracts guys been enough push yet if I said if I sold more at these levels then I would have a
+[1602s-1607s] it would be I would have to have a higher win rate to win most of these other trades so when high
+[1607s-1615s] day or low days around 1.75 plus to 2R relative to where your entry and your stop is right the rule
+[1615s-1621s] thumb is like around 70% right so if you're splitting these up into lower contract we're going to
+[1621s-1624s] talk about that too don't worry we're going to talk about like you know three contracts for a contract
+[1624s-1629s] five contracts you're not going to be able to use percentages really so we'll talk about each one
+[1629s-1635s] because I know a lot of you guys are at that level right now too so and then when high day or low day
+[1635s-1643s] is too r or more relative to your entry and stop you're going to go 80% and this is so at that last
+[1643s-1648s] slide that I said you know the general rule of thumb like 7525 like majority of your position should
+[1648s-1652s] be the day trade it should be high day it should be too r right like I was talking about up here
+[1652s-1659s] so most of your position should be gone and you can use that in terms of just like if you're confused
+[1660s-1666s] on anything right has a trade hit to r has to trade hit your high day if it has you should be
+[1666s-1670s] out of majority of position or in the case where you're trading one or two contracts pretty much
+[1670s-1680s] all of your position right or actually all of your position so when high day or low days 2.5 plus
+[1680s-1687s] right then you can still scale up until you know you're you're 2R point right so there's no
+[1687s-1693s] harm in scaling at 2R right just remember we haven't hit the main target how you know price works
+[1693s-1699s] in and price action right if you have highs and lows usually the next point if we're if you're buying
+[1699s-1704s] a retest right here this is the next level of liquidity so it will naturally gravitate towards that
+[1704s-1710s] level so you haven't hit the main target but if you're if you you know you hit a 2R on your trade
+[1711s-1718s] then it makes sense and makes sense to take some off right go over and I'm just going to pause
+[1718s-1722s] here for a second and answer just a few questions I do have like some other slides to go
+[1722s-1729s] to and some other stuff I'm going to go break even stuff like that too so let's just say so yeah
+[1729s-1734s] if you guys want to throw some questions real quick just on this then I will go through some of them
+[1734s-1738s] are you comfortable with the trade let's go 1.4R reverse on you and then close trade right
+[1738s-1743s] 100% you just have to stick to the system some of the trades just won't work out
+[1743s-1752s] and the break even point is going to be after I take off after I take my first scale so usually
+[1754s-1759s] this is this is a rule thumb probably for like all of you guys that you can kind of implement
+[1759s-1764s] the only time you should probably go break even is like after you take your first scale
+[1764s-1769s] with that being said like if you're trading one or two contracts might be a bit different right
+[1769s-1776s] I have the rest of the last couple of slides we were like one to go break even one to actually take
+[1776s-1783s] the scales etc etc so I'll don't worry about those kind of questions so yeah let's just say
+[1783s-1791s] so let's just say I buy call options at this point right at this entry right here 5x10 5x10 contracts
+[1792s-1798s] at this point high of day is like 1.5R compared to my stop loss and my take profit right
+[1799s-1803s] so at that point I'm going to take six of those contracts and sell them
+[1805s-1810s] 60% because that's 60% of my initial position sizing versus or in this case it would be
+[1810s-1817s] 7 contracts in this case it'd be 8 contracts right and you can talk about discretion and you can
+[1817s-1823s] talk about maybe these higher time frame setups and maybe not scaling as much you can you can
+[1823s-1830s] work with that a little bit it just you have to have some sort of system in place to make sure that
+[1830s-1834s] you are consistent with your trading that's the biggest problem with traders it's consistency so you
+[1834s-1840s] do want to have some sort of rulebook something to refer back to once you do start scaling out of your
+[1840s-1849s] trades right are you comfortable with so let's see if my entry is late and I entered in your
+[1850s-1855s] immediately saw that no that's not the case so every trade scenario is going to be very different
+[1855s-1860s] right so I kind of went over this example right here where let's just say I did enter this
+[1860s-1864s] school trade a little bit later right into this green candle I didn't get maybe I got a real bad
+[1864s-1868s] fill maybe that's my break even point right 1.5
+[1871s-1874s] you're going to you're going to want to go instead of the one r right you're not going to stop at
+[1874s-1878s] what you're not going to close a position because you have the thesis you had the retest there
+[1878s-1883s] you might have slipped and maybe you had a little bit like a follow-mo and you entered in the
+[1883s-1889s] position then you just as a rule of thumb go 1.5R because at that point you can still have a
+[1890s-1896s] a decent win rate and be in the green right it depends on the contract depends on your sizing everything
+[1896s-1901s] right I can't say an exact number but you will be relatively if you have a decent win rate like
+[1901s-1907s] about 50% right 40% you should still be technically in the green if you're taking me setups so
+[1909s-1914s] so yeah it depends like if you enter in your hive day or if you have the immediate style
+[1914s-1922s] retest right where you don't have this opportunity to scale into a hive day level let's just say
+[1923s-1929s] I just say we had a key level down here right let's just say let's move this just for
+[1930s-1935s] just for purposes of the low time frames let's take a look at something like this right
+[1936s-1941s] maybe you enter this trade right here right your stop was just below this red candle
+[1941s-1946s] but you don't have a hive day over here to go to realistically your goal should be too
+[1946s-1951s] are like most of the times you can you can wait especially if you only have one and two contracts
+[1951s-1956s] your goal should be to hit these two are setups over and over and over again all right
+[1957s-1962s] if you have a bit more size to play with if you can buy three four five contracts then you can
+[1962s-1967s] start working on scaling out a little bit sooner but there's no real other key level over here to
+[1967s-1973s] go off of intraday at least maybe there's some in the previous session in this case this was a google
+[1973s-1978s] like it was all time highs on google so there wasn't but you should be looking at that instead
+[1980s-1985s] understood but what's the what's the reasoning behind this well the reasoning behind this is when you
+[1985s-1994s] have the trays run so let's just say I so in this case my entry right here on google my stop loss
+[1994s-1999s] right here my original take profit would have been at this at this point that's pivot right here
+[1999s-2004s] that's your hive day I could have exit my whole entire position there but I don't but the the
+[2004s-2010s] momentum is still intact the trade is still intact so why the reason why I hold most my position is
+[2010s-2017s] because these contracts right here might have done 30% the contracts that I sold up here did like
+[2017s-2023s] maybe like 80% almost like 90% right yeah this is just an example I'm not I forget how much they
+[2023s-2029s] actually moved definitely wasn't 100% I traded next week actually on this one so put on zero days
+[2029s-2034s] on Fridays right you guys know think there's somebody that posted in traders obviously that the
+[2034s-2040s] Apple contracts they bought on the dip in rep they did like 700% it's like so when you take your first
+[2040s-2046s] when you scale out of your whole position at that like 30% and you watch the trade just go and
+[2046s-2050s] go and go we're like well I could have just held onto some of my trade and I could have just made
+[2051s-2058s] up for two weeks of losses of all of those red days in one single trade so it's very that was
+[2058s-2063s] you have posted on a little nice no seriously though nice that was super solitary man
+[2065s-2071s] like those trades will make up your your weeks and your months right it's not because of some
+[2071s-2078s] intricate like you know pattern or it's not because of very specific things like that is the main goal
+[2078s-2085s] is to have the opportunity to have those huge green days right it's not because you know the
+[2085s-2092s] specifics of the risk management work perfectly it will help overall 100% but you have to have that
+[2092s-2099s] option right because those are gonna not only recover more than one of your losses right they're
+[2099s-2105s] they're gonna help you you know like when you see Tony right hold those like Tesla contracts maybe
+[2105s-2110s] they'll hold them overnight those ones will do maybe or even like Jack's Jack's dad remember
+[2110s-2116s] real jack's dad posted the the AMD cons right those contracts did went like $3 like $50
+[2117s-2122s] the only time you're ever gonna be able to get a move like that is if you're able to hold on to
+[2122s-2128s] some of that trade now the way that he did it obviously wasn't exactly the best right you bought
+[2128s-2133s] most of his position with like his account size but when you have the opportunity
+[2134s-2138s] to take a scalp day trade the way that we do things the way that we scalp the way that we trade
+[2138s-2145s] you don't always have to scale every single contract out at the levels at two are you can hold on
+[2145s-2151s] to some especially if momentum intact people a lot of times use a view of people use the nine the
+[2151s-2156s] nine EMA or 21 EMA right there's a lot of ways to hold on to trades and that's what we're gonna
+[2156s-2162s] go over to as well as I've had a hold on to it went to cut it when is the momentum gonna fail right
+[2162s-2171s] so what is your trading zero d t strategy same applies yeah 100% zero can be a little bit trickier
+[2171s-2177s] 10 to hit 15 to 30% very quick and you know with a short was about 1.5 yeah so that's the thing is like
+[2177s-2181s] usually in that case that you don't like so Friday is like your sizing should be a bit different
+[2181s-2187s] based off your risk because I talk about contracts like realists got been talking about contracts this
+[2187s-2193s] whole time it should be percentages and it should be like you know based off risk not exactly
+[2193s-2201s] contracts I think we can all safely let's see what we can all safely say that but if the chart hits
+[2201s-2208s] about one to one point five are like those contracts are like they will move more but you shouldn't
+[2208s-2216s] be risking as much on it does that make sense you like so let's just say you have three like Apple
+[2216s-2222s] like to expire in Friday's contracts right and there are 50 cents right those contracts are going to
+[2222s-2230s] move percentage wise way more than let's say if you bought them on Wednesday right so just refer if
+[2230s-2236s] you ever confused on that like just refer a little bit back to the option session now can you tell
+[2236s-2241s] your weekly contracts at any time before yeah 100% yeah you can tell you that's that's what we do
+[2241s-2248s] so that we buy in sell options contracts so we'll be taking we buy calls and we buy puts and then we sell
+[2249s-2256s] right intro day so I'm just going to go through the rest of the rest of the slides here then we'll go over
+[2256s-2262s] some examples go for some questions right so when to actually take the scales so we talked about the first one
+[2262s-2268s] right like high day or two are right we talked about that as a huge thing um well when do you actually
+[2268s-2274s] take out the other scales right like one do you actually decide to um like sell those contracts so
+[2275s-2283s] one important note I want to say before going through like some of these right with options you need to
+[2283s-2290s] be fast and you need to scale call options into green candles right you're gonna get the most
+[2290s-2297s] juice of the premiums that way um with put options obviously you are doing opposite you are selling them
+[2297s-2304s] into red candles right with momentum so you need to be selling them that is the most important rule
+[2304s-2311s] right you don't want to let's just say you have price climbing up and it falls down here you don't want to sell
+[2311s-2315s] options when they're falling or call options when they're falling you want to be selling them
+[2315s-2322s] right when they come into this peak right so like your key levels so yeah you can yeah you can use
+[2322s-2327s] you can use market sell or a bed too either one I just use market just as a
+[2327s-2331s] rule of thumb I just use market orders I think jack and toe and just use market orders too so
+[2333s-2338s] obviously you know your higher time frame key levels is gonna be kind of your main objective if you
+[2338s-2345s] are holding onto some of the trailers um new highs of day or low of day so in this case scenario
+[2345s-2350s] in this example right here very rarely will you see like trades like this right very rarely will you see
+[2350s-2357s] trades just go straight up I'm just using one example exactly from from like Friday that I did take
+[2358s-2366s] in this in most cases you won't see this but even even here you can see um price did technically
+[2366s-2373s] pull back a little bit here and made a new high same idea right here so price pulled back made a new
+[2373s-2379s] high this could be a scale point so new highs of day or lows of day you could do it at order
+[2379s-2385s] blocks too we'd talk about order blocks the one-kand rule you can use fibonacci retracement tool as
+[2385s-2392s] well I won't really go I don't really like this as much I really like the fib tool that much I would
+[2392s-2397s] rather just use key psychological numbers I know we talk about that too a lot so jack times
+[2397s-2403s] talk about key psychological numbers those are always good skill points as well always good skill points so
+[2404s-2412s] main idea so let's just say for example um in this case I took this this setup right here and it was
+[2412s-2420s] 1.5r which is say to high today my apologies for the the bad the bad text this 1.5r right here
+[2421s-2428s] um so 60% of my position would be here right and then I know just based off like my pre-market
+[2428s-2433s] and the game plan everything like my next key level is up here realistically like how price moves
+[2434s-2439s] you should be like at least trying to hold on to a few like one or two contracts until that key
+[2439s-2445s] level hits right until the next higher time frame key level hits because naturally prices just
+[2445s-2449s] gonna gravitate towards there so maybe you're 15 minute levels maybe they're your intro day
+[2449s-2455s] levels naturally price will gravitate towards there so in this case the 60% so let's say it's
+[2455s-2461s] like 10 contracts I would have sold six of them at this high day right here so I'm just gonna go
+[2461s-2471s] six actually let me do bread six and green 10 by right here so this is the first skill right here
+[2471s-2478s] six contracts when price pulled back and made a new high right right here I can I can use that as a
+[2478s-2483s] scale point now because that's another key level that we had just broken right so this case I can
+[2483s-2490s] maybe sell another two of those contracts right sell two of those contracts um again price pulled
+[2490s-2495s] back made a new high update I can sell one contract here and maybe one at the next key level so that
+[2495s-2499s] that's the total of like my time search this is the example of how you can play some of these trades
+[2502s-2506s] and then how to the little type of break even a little bit too because this is the thing that
+[2506s-2512s] Tony and Jack might do differently and you might want to do different you might want to be more
+[2512s-2518s] of their selling you might want to be more of my style so usually after I take my first scale so whenever
+[2518s-2525s] I take off any of my first position like first scale initial scale I will usually go back and I will
+[2525s-2531s] cut up break even generally speaking if the trade has been like more if it's been more than 10
+[2531s-2536s] minutes like I don't exactly do like an exact 10 minute mark usually if after 10 minutes the
+[2536s-2543s] price falls back below your like be your first scale like usually the momentum is exactly there
+[2543s-2548s] and you want to go break even there isn't an exact ruling to this if I actually take a look at
+[2548s-2554s] this example specifically I could say it was probably about 10 minutes actually if I count the
+[2554s-2560s] candles it might be a bit more if momentum is still there you're still holding on to the position
+[2560s-2568s] usually a break at break even too is good right so like I've 10 minutes right in this trade specifically
+[2568s-2572s] I cut it at break even just because the momentum was there you could also if the trade is taking
+[2572s-2578s] a lot longer than that right you can at your first scale point right if price falls below that you can
+[2578s-2584s] always cut that too every case scenario is going to be very different right it's very difficult to
+[2584s-2590s] say that you want to have a set rule for like one to cut the trailers because in some cases like as
+[2590s-2598s] for Friday right I still had some trailers because Google was at all time highs price the contracts
+[2598s-2603s] I was down maybe for about like a minute right here just because of the context and Google
+[2603s-2609s] at all time highs I still have three contracts left price really never broke my saw plus or really
+[2609s-2616s] like closed below my entry like it's the level is still being held especially like even on
+[2616s-2621s] the higher timeframes right I'm okay with holding a few into next week versus if you're
+[2623s-2627s] I'm taking next week's contract versus if you're treating zero days right you're probably
+[2627s-2631s] going to cut break even as soon as you break below this level right here because this is technically
+[2631s-2638s] like your next your last retest yeah if you're kind of order block right here and you're your
+[2638s-2642s] like last pivot high right here technically so it's like that's a good level to cut it
+[2642s-2648s] it's around your break even arc too so momentum stops you cut the trade you could make your own rules
+[2648s-2655s] to do it a little bit sooner right there's no very specific like reason or specific
+[2656s-2661s] way to do it every single time it's going to be based off of momentum it's going to be based off of
+[2661s-2666s] higher highs higher lows a lot of times right if you make it higher low or a lower high in a lower
+[2667s-2673s] that could be a way to do it all right i'm going to go over some stuff in the chat in a second
+[2673s-2679s] I'm just going to go through the last one yeah like a lot of this so a lot of the like holding
+[2679s-2684s] on due positions and like when to cut them when not to cut them it is going to kind of be based
+[2684s-2693s] off of like intro day and the trades specifically versus um very like mechanical based decision making
+[2693s-2697s] right because let's just say you want to set up something for yourself right if the trade doesn't
+[2697s-2702s] play do in 10 minutes after your first EP you could cut it right if there's no momentum you can
+[2702s-2708s] set up these weird little rules and and things to do um i think that like market context and
+[2708s-2716s] having experience is going to dress which seems that over time too right um overnight swing positions
+[2716s-2720s] can be can be really good right if you want to hold on some of those like i usually don't really
+[2720s-2725s] hold too many contracts over the weekends but just because google was at all time highs it broke out
+[2725s-2730s] and it held that level i'm okay with my entry and everything like holding a few right but it's
+[2730s-2737s] only like 10% of my position i already scaled that up like a majority of it trust me i don't want to
+[2737s-2744s] i'm still a day trader i still i'm i still use a break and retests i'm just using the extra
+[2744s-2752s] contracts my advantage so that's why jack says always go at pops yes 100% yes one holding runners
+[2752s-2758s] to be a pride the higher high higher low trend is broken 100% pullbacks is hard to get the anxiety yeah
+[2760s-2765s] what if price tips can really so yeah let's talk about the case scenario where you have your first scale
+[2767s-2773s] and let's just say price like rips back right away so like price you know tops of target and rips
+[2773s-2778s] right back down in this case i would probably use my actual stop loss because i haven't looked at trade play out
+[2778s-2782s] for that long this is what i'm talking about with discretion like if it's been five minutes
+[2783s-2790s] and the trade if i hit tp like tp one or like high of day or whatever you want to put this
+[2790s-2796s] level as and price immediately jumps down price immediately rejects after i'll probably use my actual
+[2796s-2802s] stop loss because i haven't gave it that much time whereas if the trade has been like 10 minutes
+[2802s-2809s] and just kind of doing this right i'm probably going to go break even right if i'm holding on to the
+[2809s-2815s] trade for like even even longer like maybe like 15 20 right you can use that higher higher low trend
+[2816s-2822s] to cut the position right you can use that as well in this case i didn't i didn't do that just
+[2822s-2828s] because it was at all time highs kind of played as a little bit of a swing i have very very little
+[2828s-2833s] of the position left most of the position was already out at 2r and high of day so i don't need
+[2833s-2841s] to really like stress too much about this so yeah so let's go over some actually real quick just
+[2841s-2849s] because i'm done the um i'm done the session like with technically the actual slides themselves
+[2849s-2855s] i want to go over some lower contract sizing because i know a lot of you guys are at that level
+[2855s-2860s] and like how to deal with the base off that so if you are just again in machine with
+[2860s-2867s] preface one to two contracts you're scaling out the 100% of your position at like either like
+[2867s-2873s] two or your high of day key level whatever may be probably at least good to have 1.5 minimum no
+[2873s-2880s] matter what um i see a lot of people it'll take similar trades to to jack and Tony and like they'll
+[2880s-2884s] try to scale at the same points when it's like one to one and if you're only at this level of
+[2884s-2892s] contracts and you're scaling let's do something let me drop some uh let me drop some sauce for
+[2892s-2900s] here and you guys let's do some very important okay let's just say any you are trading with one
+[2900s-2907s] to two contracts right and you take this trade 10 times if you have a like 60% of when right or
+[2907s-2911s] even a little behind maybe 70% you're going to be pretty close to break even just because of the
+[2911s-2916s] nature of options just because of how they work because of fills it just is what it is you're
+[2916s-2922s] going to be pretty close to break even um if you're scaling very fast whereas if if like if you
+[2922s-2928s] have 10 contracts right if you have 10 contracts you have the exact same win rate a lot of the times
+[2928s-2933s] you're going to enter here and price is going to go way higher so these contracts that you
+[2933s-2939s] sell up here are going to make up for a lot of these losses like probably three of those losses
+[2940s-2945s] so I can pick the exact same trades and I can scale at this point with more contracts
+[2946s-2953s] because it'll make up for these losses but when you have one to two contracts you can't do you can't
+[2953s-2959s] scale it up here so just you got to you got to play the strengths right now you got to just go for the
+[2959s-2965s] the 1.5 plus to our setups maybe right that probably explains why a lot of you guys are at the
+[2965s-2970s] break even level that is the biggest struggle for break even traders is going to be that scaling point
+[2970s-2976s] right it's going to be that so that's why I say with one to two contracts don't we're both scaling
+[2976s-2982s] you have to worry about the the risk reward and take out and get the base hits down take
+[2982s-2989s] up 100% or position says just real quick so probably explain probably just explained a lot of the
+[2989s-2997s] break even traders problems right there to the other with three contracts right this is probably the next
+[2997s-3002s] level you can do a two to one and I'm not too opposed to this so you can do a two to one split so
+[3002s-3009s] two at high bid and then one would be like either next higher timeframe level it could be a
+[3009s-3014s] pivot from yesterday it could be you want it you do want to wait for some sort of level to hit maybe
+[3014s-3020s] it's the new high bid right maybe you take off you know one contract here just use this as
+[3020s-3027s] sorry use this as an example is your high bid maybe if price you know pulls back you break out
+[3027s-3035s] maybe it is right here maybe it's at this level right here maybe scale the next note there maybe
+[3035s-3040s] you want to be a little more patient maybe you want to wait for one of the other like more
+[3040s-3047s] serious levels to hit maybe it's only 50 minute chart you could wait for that too as well so I'm not
+[3047s-3054s] I'm not opposed to the two to one split with three contracts just I feel like for the most part
+[3054s-3059s] if you're at to are right and you've already already at high bid or you're buying close to high
+[3059s-3066s] bid you could still do three a whole three contracts I I think that's the better option to be honest
+[3067s-3074s] whereas if you're under to are maybe you do the two to one split right but most of it still
+[3075s-3083s] technically speaking 67% is still gonna be majority it's still gonna be majority right so I'm gonna be the day trade
+[3083s-3091s] so that could be the three the three contracts if you'd buy three with four I'm gonna say the exact same thing
+[3091s-3096s] it's gonna be it's gonna be three to one three and one split major at the time
+[3097s-3103s] if you are super super confident right if you are like I'm super bullish on Tesla I know
+[3103s-3110s] Tesla runs baby you do a two and two now I'd be careful with this because again
+[3110s-3116s] we're day traders majority of your position should be at the scalp day trade the other two for
+[3116s-3123s] continuation it would be good it would be okay but just you want to make sure that like
+[3123s-3128s] that's maybe say it for certain case scenarios maybe you have some criteria maybe a break
+[3128s-3133s] out on the 15 minute chart right or break out of the kill maybe you need a candlestick pattern
+[3133s-3137s] maybe you need some other confluence to take some scales like this you can get really complex I
+[3137s-3142s] don't want to jump into like exact case scenarios because it's just never gonna happen
+[3142s-3148s] but you could you could I would say majority of times you're gonna wanted the three to one split
+[3148s-3154s] and then for maybe special occasions you can do two and two where you're extra bullish and you
+[3154s-3162s] want to hold on to some makes sense four five contracts four five contracts this one's probably
+[3162s-3168s] the easiest one you can do a three one one split as is where it starts to get a little bit more
+[3168s-3174s] interesting right so if you let's just say you buy this you have the chart you enter in around here
+[3174s-3179s] your first scale would be three contracts here right maybe the next new high of day scale one
+[3179s-3184s] maybe there's like a higher time for him level up here right price continues maybe scale another
+[3184s-3190s] one up into this three is where it gets a little bit it gets nicer or sorry five contracts is where
+[3190s-3197s] it gets nicer I do like this setup again majority still day trade and then you have these two
+[3197s-3203s] extra contracts and and sometimes you don't even have to sell all of those the same day right
+[3203s-3208s] because like even let's just say you take four off and that next contract like prices still
+[3208s-3212s] continue higher like you could always hold that one overnight right it's it's a little bit
+[3212s-3221s] riskier but the profits that you took from your initial four are likely this last contract is not
+[3221s-3226s] gonna lose enough value to to even be close that even if it goes away with what your stop loss right
+[3226s-3231s] it's net that's rarely rarely ever gonna happen so you can always hold them right it's structure keeps
+[3231s-3237s] holding you don't have to even sell it um just make sure you have a final exit plan make sure you
+[3237s-3242s] have some sort of key level for when it does hit right for six I would say the exact same
+[3242s-3248s] you're just gonna do like four one one right and you can keep going up and and as they take
+[3248s-3252s] the closer you get to the percentages the better it is because that's what you want to base it off of
+[3252s-3259s] it's not like the number of contracts it's more so like percentages but at this point I'm
+[3259s-3263s] just gonna read the checks as you'll also find out get caught up but I think that was a good
+[3264s-3267s] good little bit a little bit of uh
+[3268s-3275s] explanation same simple do you put a soft loss every even yeah so it depends yeah I kind of
+[3275s-3280s] went over that a little bit I'm the break even stop loss I'll go over it kind of again if I've
+[3280s-3285s] already hit the first TP and the trade goes against me and it's been like over 10 minutes I'm
+[3285s-3290s] just gonna stop over it even if it's been like under five minutes or so I'll usually use
+[3290s-3297s] the actual stop loss because if it hasn't even done anything yet um for anything past that
+[3297s-3303s] for anything past 10 minutes I would say you want to use your like actual structure so like your
+[3303s-3309s] higher highs higher lows so like right here you might want to cut the trade you're still in profit up here
+[3309s-3314s] so you can cut the trade there as well you could use the wall you could use 90 amazing
+[3314s-3319s] just 21 units you could do a whole lot of stuff there's not gonna be ever like a you know I'm
+[3319s-3323s] gonna cut this exactly right here all the time it's gonna be a little context based but I did
+[3323s-3329s] give some pretty good rules with them like with five minutes 10 minutes if it's like over 10
+[3329s-3333s] minutes and it loses structure right then you can go you can just cut it period you don't even have
+[3333s-3340s] to wait for break even you can just cut it period when you're in the green in prices going
+[3340s-3344s] your favorite would be a good idea to say a trail stop yeah the thing is the trail stops is like a
+[3344s-3348s] lot of the times like I don't like setting because you have to you will one of the use the
+[3348s-3355s] options price if you can just run a quick calculation that's cool um I don't think that's a bad idea
+[3356s-3361s] I just I just like I you want to be looking to scale and sell into a strength like and if you
+[3361s-3365s] have that you might get wicked though essentially if you lose if you're like off the screen
+[3366s-3370s] honestly I don't think it's a bad idea usually for the most part like I just have a lot of
+[3370s-3376s] set on trading view like I don't really have like an actual order in right but most of the times
+[3376s-3381s] you can just set alerts you could do that though 100% you could you could stop at that word
+[3381s-3388s] book just try to like calculate the risk in my number of contracts I straight it depends on your
+[3388s-3394s] count size like so if you have like a 5,000 dollar count versus a 10,000 dollar count you know
+[3394s-3398s] the amount of contracts that you trade are gonna be and obviously a lot different you're probably
+[3398s-3406s] gonna be trading closer to like double the size now without being said no matter what no matter
+[3406s-3411s] how much money you have in a trading account if you haven't found consistency and you haven't found
+[3412s-3416s] like a little bit of an edge yet you should typically be trading just wanted to contracts anyways
+[3416s-3424s] and just go for the two are like high-day setups right at least like 1.5 I'm gonna say at minimum right
+[3424s-3430s] you can you can start like taking scales and you can start like cutting positions a little bit earlier
+[3430s-3440s] than then once you have more size because it makes more sense right for a new high-day do I use
+[3440s-3444s] 5 nonch essential centers now I wouldn't I honestly I don't like fib tool that much
+[3445s-3451s] for all-time highs you can use fib tool for scaling maybe because like you just I would just use
+[3451s-3457s] old pivots if there is like all-time highs yeah use fib nonch for for new highs of day you
+[3457s-3465s] use other levels from like previous like previous sessions are you setting a stop up break even
+[3465s-3471s] or stop limit yeah I would I just market close positions like a lot of times because sometimes I'll
+[3471s-3478s] wait for closure sometimes sometimes I would just will close it just based off wicks too like if it
+[3478s-3485s] keeps dropping right after my interest no matter what so so detraiser yeah sometimes I will trade zeroes
+[3488s-3493s] the only thing like what's here here's the thing was you're like it's very hard to tell when you
+[3493s-3498s] have a lot of strength a lot of momentum early into the session so you could base this maybe off
+[3498s-3504s] QQQ if you want to trade zeroes or not like typically I will trade zero days I just think that
+[3504s-3508s] there has to be a very clear trending day and there has to be some volatility right where is if
+[3508s-3514s] you're trading next week so you can you can just kind of be a little bit more on the chill side of things
+[3516s-3522s] there isn't it depends on kind of the initial first bit of the session like at this point
+[3522s-3531s] it's 950 and we'd pretty much are back at your opening price so if I'm taking a trade at around 10 o'clock
+[3531s-3536s] like we're kind of still in this massive range maybe if we broke out immediately it made new highs
+[3537s-3543s] right here maybe I think about trading zeroes but just overall when you look at the like QQ and
+[3543s-3549s] spy at market open if you see higher highs higher lows being made or if you see lower lows lower highs
+[3549s-3555s] like all the time big momentum it's a little bit volatile then trading zero dc is pretty it's like
+[3555s-3562s] it's useful right that's useful how we calculate the options risk and dollar amount was
+[3563s-3567s] yeah so you're gonna use just gamma and delta that depends on each different contract size
+[3568s-3570s] I'll leave that to the session with Tony
+[3573s-3578s] use trailing stops yeah I thought about trailing stops a little bit I don't really
+[3581s-3587s] I don't like I don't set orders for them usually like usually I'll just set alerts and trading
+[3587s-3591s] view and then I'll hop and close the position manually but you can use a trailing stop
+[3592s-3596s] I don't think of the trailing especially if you're like working or especially if you have
+[3596s-3601s] like mental capacity somewhere else at this point like you're getting lunch or whatever like
+[3601s-3606s] or you're away from the screen like I'm not opposed to trailing stops not opposed without all
+[3606s-3608s] now I'm just be careful how you place it right
+[3610s-3613s] do you place the sub loss after entry mental just yet marketers mental stop
+[3614s-3624s] um Tony bought AMD calls a Friday time for a 95 sold on one time how is it one or two
+[3624s-3629s] are yeah so not all the time so I did just talk about that right I did talk about the
+[3629s-3636s] different maybe this was like after it there was a huge difference between trading 10 contracts
+[3636s-3642s] and and one or two contracts one or two contracts you need to hold on to them a little bit longer
+[3642s-3647s] because you can't scale when it does hit those higher targets right I definitely I'd
+[3647s-3653s] went over that a little bit um Tony can afford to scale a little bit earlier right because if you
+[3653s-3659s] can scale out one to one well he has 15 more contracts that you can scale up here here here here here
+[3659s-3664s] here here right so it's like those wins and those are going to make up for like five
+[3664s-3670s] 10 losses probably right that when you trade one two contracts that can never happen to you technically
+[3670s-3676s] the way that we teach you know we that we trade so yeah and and you shouldn't trade further out of
+[3676s-3681s] the money to get more contracts they've all the just there's knocking I can get as much to
+[3681s-3689s] set of money ways trust me um yeah it's not worth it just just stick with like around the money
+[3690s-3695s] sick with end of week you know you that's the rule thumb because they won't move as fast you won't
+[3695s-3702s] get as much out of them but coup-chon two contracts for next is it worth is it worth or hold
+[3702s-3709s] I'm not sure what you're not sure what that means to hold overnight into zero day I don't you
+[3709s-3716s] wouldn't be able to hold overnight into zero like unless you're gonna like exercise the option
+[3716s-3722s] but I don't think so like typically like on on the google code on the google trade like if I have
+[3722s-3731s] to go hold and use into Monday for for next week um I'm not sure what the idea that that's a
+[3731s-3734s] weird question you'll be with options can you explain how options profits are exponential versus
+[3734s-3740s] underlying stocks futures will the more the more the price so like say a stop say you buy a stock
+[3740s-3747s] at a hundred dollars and it goes to a hundred a hundred two dollars this is a whole my
+[3747s-3753s] drawing tools skills are not very good let's just say this happens you make two dollars if you buy one
+[3753s-3759s] share all right with options if you buy an options contract that says you're gonna buy maybe
+[3759s-3767s] the strike prices is one or two you're betting that this this stock is going to be at a hundred and
+[3767s-3775s] two dollars um by the end of the week right I may be that contract costs one dollar which
+[3775s-3779s] and it's a hundred the contract is a hundred dollars because you have to buy a hundred so in that case
+[3780s-3786s] right if the price moves and this actually moves to a hundred two dollars this is gonna
+[3787s-3795s] be you're gonna make maybe a few hundred dollars on those versus if you just have two dollars on this like
+[3795s-3800s] so the contracts the more more they get in the money the higher and higher the percentage goes
+[3801s-3805s] right so it's all about like Apple you put in Apple you put out
+[3807s-3817s] how much what's one of those so sad recording stopped I think think the recording I heard
+[3817s-3823s] before I stop I think we should be still good to go though I do have it recorded on my actual PC2 so
+[3823s-3832s] this in case break even for stock price or for options price options price oh yeah I'll have
+[3832s-3838s] don't worry I'll have the percentages and I'll have all of this for you guys this makes sense if you
+[3838s-3844s] are trading more than like five contracts makes it an issue what exactly for about five
+[3844s-3850s] cons he was against most of the yeah hundred percent calculate risks yeah yeah you calculate
+[3850s-3856s] risks instead of the contracts you should trade yeah you should do that and people try to scale
+[3856s-3861s] like yeah exactly the maths doesn't work with with sizing with if you're on one to two contracts
+[3864s-3869s] I think it's really helpful my questions yeah hundred percent yeah most amounts of sub losses
+[3870s-3875s] fib levels at all times yeah I can I can go over that because I don't like the reason I don't
+[3875s-3880s] like fibs to it because you can use like so many different levels right like like if I go from
+[3882s-3887s] like this this swing lower here to your last high that's a that's a that's a
+[3887s-3895s] hour's level two I don't even like the fibonacci tool really mostly like I'll just use use key
+[3895s-3902s] psychological numbers if you're using it on the low time frames too like I don't think it just
+[3902s-3906s] doesn't make sense it doesn't make sense I had it's an option I just I don't like it
+[3908s-3913s] schedule a little bit of yeah yeah that's why you don't want to use limit orders when you're
+[3913s-3916s] scaling and when you're selling because you're going to get them most of the options premium
+[3917s-3922s] when on a call option where's the green candle and then on a put option where there's a red candle
+[3922s-3932s] right comments forming fewer goings sorry I'm just like the chat I'm going to make the chat bigger here
+[3932s-3938s] real quick if you're going to mark over in scale if you're interested in a high-day or the rest
+[3938s-3945s] for your twenty percent can you place up hard profit target yeah like I so I kind of just
+[3945s-3949s] talk about this too like you want to scale into strength with with calls and stuff so like you
+[3949s-3954s] can have a main level and like you can have your you won't lose that much out of it if you have like
+[3954s-3960s] a limit order at certain levels it's never a bad idea right like there's no for that there's going
+[3960s-3966s] to be like no defined answer like if you want to use there's same thing with trailings stops like
+[3966s-3969s] if you want to use a trailings stop that's cool like a hundred percent of these trailings stop
+[3969s-3974s] I don't need anything wrong with it I like just setting alerts and doing markers or just why
+[3974s-3978s] do you maybe I'll start doing trailings stop tested out it's not really going to make too much
+[3978s-3986s] of a difference that's the thing never trade off the force you have to use in gold you must have
+[3986s-3990s] a physical stop either of those you'll pay you do it for that yeah you're all trusting with
+[3990s-3994s] options you will pay if you don't you you have the mentally close up position that's why
+[3995s-4000s] most rate of fail right is because like you will like price will move below your soft loss
+[4000s-4004s] and you might have you might not close it out and the price continues to go down you might add
+[4004s-4010s] to it right that's kind of the whole psychology thing hopefully Jared will help it with that I'm
+[4010s-4017s] okay then like teaching psychology but I'll leave that to Jared he's an actual psychologist
+[4017s-4023s] I'm as dealt with a bunch of us for a long time so what is like a petition in the
+[4023s-4028s] loss option versus injury in front of us so price options price down third yeah because if
+[4028s-4033s] I want to say you don't want to trade your P and L but you should have a max loss right you should
+[4033s-4041s] have a max like loss per trade 100% like definitely I would argue that that's probably
+[4041s-4046s] what you should do in that case scenario like the actual options themselves or like price itself
+[4046s-4051s] didn't quite reach your soft loss a lot of the time with these trades work out all the time
+[4051s-4057s] or the start sorry they will work out right away or they won't at all so I truly don't think that
+[4057s-4060s] and you'll go you guys you guys will see that over time trust me it's either they work out
+[4060s-4065s] right away or they don't so making your soft loss a little bit tighter and closing it out maybe
+[4066s-4070s] just like one options maybe move a little bit more than expected I don't think that's a bad idea
+[4071s-4076s] just understand that feeling that's a bad idea all right keeping loss of small is never a bad
+[4076s-4083s] thing right camera tick ticker but I said so all contracts at 10 was up so I'm okay
+[4083s-4087s] at the end of the day those same 10 yeah like let me let me read this message more clearly
+[4088s-4093s] and I've had the same case in case in your happen if you look at some of my trade reviews on
+[4093s-4099s] YouTube maybe I'll maybe I'll put it in the chat even the advent trading floors probably the best
+[4099s-4105s] like place to look for those but so I can't remember the ticker but Tony sold all contracts
+[4105s-4112s] except 10 and was up around 7k at the end of the day with those same 10 contracts he was up 28k
+[4112s-4115s] scaling can definitely help you hold on to a few that is the whole purpose of this
+[4116s-4122s] that is the whole purpose of this right and and you didn't do anything differently like he's just
+[4122s-4126s] holding onto the trades and waiting for key levels to hit and then saw in a man right
+[4128s-4131s] and then that is the difference between so if he's took him off all on 7k
+[4132s-4138s] that other like he would have had like 20k last that month then like so when you look at your
+[4138s-4141s] trades out of the month or you look at your your stats for the month if you look at the trades
+[4141s-4147s] that you could have held on to there are the contracts or the CFD futures whatever if you
+[4147s-4152s] held on until a little bit more of them you would have been you would have been way by our spot
+[4154s-4160s] I'm going to have to stop and take profits use the actual stock chart yes so you can you can use
+[4160s-4167s] the options chart for first scale if you're like your position tool too I wouldn't though because
+[4167s-4174s] stock is actually being traded on the like base on underlying price right so you don't really want to
+[4174s-4179s] use the options chart right it's going to be pretty close it's going to be pretty close but I
+[4179s-4184s] still would use it based your stock based off of the underlying price that's what it's being traded
+[4184s-4189s] with so that's how it's actually moving it's not that the price of Google is not moving based off
+[4189s-4198s] of the options contracts right it's based off people buying and selling shares of Google for the most
+[4198s-4201s] part obviously there's different reasons but like for like 90% I'm just saying 90%
+[4202s-4208s] I would go train to us lovers like TS also Tesla yeah you can do that I have never just so
+[4208s-4212s] the here's the thing I've never done I don't really want to give a solid answer I know that people
+[4212s-4218s] I have though people that do how long if you can train for when you see probably yeah that I've
+[4218s-4224s] been training for five years I first sort of making money like three years in this trading like and
+[4224s-4228s] but that was not with Tony and Jack right that was like me by myself trying to formulate some sort
+[4228s-4234s] of a system and a good crypto but last few months were good but like I just it wasn't worth it
+[4234s-4240s] because crypto's 24 hours my system was like a little bit about breakouts in position trading
+[4241s-4247s] it just it was just my it just was not good for my mental right like your you're I was holding
+[4247s-4255s] to their swing trades they were trying to like scale in and out of positions like buying and selling
+[4255s-4261s] all the time the markets are 24 hours 70s a week so it just didn't make sense I'm like I'm
+[4261s-4265s] spending all my time doing this I might as well just go to work I might as well just go to the
+[4265s-4270s] different job right at that point I wasn't making that much money it was consistent but then again
+[4270s-4274s] I was like okay well how can I make this a little bit easier how I'm gonna do this in less time that's
+[4274s-4285s] what that's what that's what Tony came in right in Jack yeah I'm with holding and trading to zero
+[4285s-4291s] yeah that's yeah so if you're just rule of thumb if you're if you're holding options
+[4291s-4295s] zero days like on the next set that most of the time it's gonna be Friday if you're trying to
+[4295s-4301s] buy and queues that could be every day if by 11 o'clock your trade hasn't played out for the most part
+[4301s-4306s] you're just gonna want to close it out no matter what you don't want to have that like it's a
+[4306s-4311s] Friday you don't want to have the mental like you're just thinking about all these actually a couple
+[4311s-4316s] contracts and what are they gonna do and and this like I would just say rule of thumb for zero days
+[4319s-4323s] just 11 o'clock is like the rule just like don't don't hold any after that
+[4324s-4328s] PowerPoint is pure gold yeah I'm gonna send it in so I'll send that in with the recording and everything
+[4328s-4331s] right I'll send it in the PowerPoint right after this to be honest
+[4334s-4340s] so options cost $5 yeah it's yeah it's based off the premium but like yeah like it could it could be
+[4340s-4349s] $500 robber like it probably more that's why I'm here from crypto pretty super looking
+[4349s-4355s] I charge all the long yeah no exactly you gotta doesn't make any sense it's just it's a little different
+[4357s-4361s] you can trade on chain two I like futures I like the idea of futures it's a little bit easier to
+[4361s-4368s] calculate than options but I get options charge to I be carry out you can do that
+[4375s-4382s] it's not as confusing with the options because no you so you can you can you can allow the contract to
+[4382s-4388s] expire worthless basically but you can always sell the contract like you can you can buy and sell the
+[4388s-4397s] contract so you're never gonna lose more than you put in with margin accounts let's not dive into that
+[4397s-4402s] if you have a cash count and you buy one contract you can technically speaking use that as your
+[4403s-4408s] entire risk for the whole trade but you are going to sell that contract at some point that's what we
+[4408s-4413s] teach anyways we buy and sell options so you're not gonna hold on to it to go to zero
+[4421s-4423s] I think that's it for right now I think that's all the questions right now
+[4425s-4431s] I'll probably leave this recording it's like Sunday 5 p.m. where eastern time
+[4431s-4439s] if you guys have more stuff about scaling you can always like shoot me a quick message inside of the
+[4442s-4447s] inside of the circle group discord's probably good to discord is really it's honestly easier
+[4448s-4455s] it's a easier response it's a little bit faster and stuff discord is a good place
+[4456s-4461s] I will go to the you'll see me in the adventuring floor a lot or in the verified trailer up here
+[4462s-4469s] just click on it I guess we had money should post everything for this week earnings news
+[4470s-4475s] we have everything right here for you guys so in terms of the PowerPoint I'll get the
+[4475s-4486s] I'll just up I'll put that right away after let's see anything else I think there's like the
+[4486s-4489s] lower size thing is gonna be very important for you guys to learn like the lower size you got
+[4489s-4494s] to just hold on to the trade a little longer if you have more contracts you can definitely work
+[4494s-4502s] with the scaling thing a few other things so yeah we don't sell puts or calls really like before hand
+[4503s-4509s] I know there's other strategies where you saw options we don't really do that you can learn
+[4509s-4513s] if you really want to but we don't really do that I think that's more really investing to be on
+[4513s-4518s] some respect with I can investing but I'll drop it in the members room chat and then I'll
+[4518s-4523s] pin it I'll actually yeah I'll probably pin it in there or I will add everybody and you'll have
+[4523s-4529s] that message notification so super helpful thanks so much you know worries and yeah so I'll have
+[4529s-4534s] that I have a few other good good presentations that I can always that I can always go through too
+[4534s-4540s] as well um throughout the boot camp I might I know I have one on believe it's next Saturday so
+[4541s-4546s] I will jump out of here I will have the recording and everything for you guys I'll probably post a
+[4546s-4554s] trade yeah I do post a trade abuse too actually I'll put the I'll put my YouTube thing in here I don't
+[4554s-4559s] have too many on here right now to be honest but I'll drop in the chat quick if you guys want to if
+[4559s-4563s] you're still at the end of this and you can look through the how I look at my trades versus
+[4563s-4570s] Jack and Tony I'll usually post them in the advent trading floor too as well I'll usually post them
+[4570s-4576s] here you'll see me in the discord shoot me a message let me know how things go post a lot of my stuff
+[4576s-4583s] here and I will talk to you guys tomorrow I'll see you guys for pre-market

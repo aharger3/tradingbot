@@ -55,7 +55,7 @@ Context from the Mac session that doesn't auto-sync (Claude Code conversations +
 
 ## Where we are
 
-Building **Vanquish signal bot** for Austin (prop-firm day trader, trades 9:30–11:00 AM ET only).
+Building **Omen signal bot** for Austin (prop-firm day trader, trades 9:30–11:00 AM ET only).
 Repo: https://github.com/aharger3/tradingbot
 
 ### The three-part architecture (decided 2026-05-28)

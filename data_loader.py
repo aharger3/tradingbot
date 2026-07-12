@@ -3,7 +3,7 @@
 import random
 from datetime import datetime, timedelta
 from typing import List
-from vanquish_bot import Candle
+from omen_bot import Candle
 
 
 class MockDataLoader:

@@ -1,4 +1,4 @@
-# Vanquish Signal Bot
+# Omen Signal Bot
 
 Autonomous scanner for TSLA + NVDA. Detects break-and-retest, one-candle, and 84% setups (both call and put). Posts full options trade card to Discord with strike, expiration, entry/stop/target premiums, and contract count sized for $1K max loss / $2K target (2:1 RR).
 
@@ -22,7 +22,7 @@ Loops 9:30-11:00 ET, polls every 60s, posts Discord on any signal. Ctrl+C to sto
 | `options_sizer.py` | Builds options trade card from stock entry/stop |
 | `position_sizer.py` | Stock-side sizing (legacy, used by manual CLI) |
 | `discord_bot.py` | Webhook poster, embed formatter |
-| `vanquish_bot.py` | Candle dataclass, price-action helpers, setup detectors |
+| `omen_bot.py` | Candle dataclass, price-action helpers, setup detectors |
 | `rules.md` | Strategy spec (canonical) |
 
 ## Setup
@@ -75,6 +75,6 @@ Rules validated against TradeZella backtest of 320 trades:
 
 - Cron / launchd auto-start at 9:25 ET
 - 2-loss-day automatic halt
-- Per-account staggering for 10 Vanquish accounts (currently same signal fires for all)
+- Per-account staggering for 10 Omen accounts (currently same signal fires for all)
 - Hermes integration as Discord reader (paper-trade logger, mobile push)
 - Trade journal back into Obsidian

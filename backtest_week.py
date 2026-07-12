@@ -10,6 +10,7 @@ $1000 risk per trade: win = +$2000 (2R), loss = -$1000, scratch = R-multiple x $
 Usage: python backtest_week.py [YYYY-MM-DD ...]   (default: last week's sessions)
 """
 
+import math
 import sys
 from collections import defaultdict
 from dataclasses import dataclass, field
@@ -23,11 +24,14 @@ import yfinance as yf
 from omen_bot import Candle, TradeGrade
 from signal_runner import SignalRunner
 
-# Austin's watchlist 2026-07-06. Core = Scarface/JW's stocks + SPY/QQQ (trend
-# reference, rarely traded). Experimental = Austin's adds to evaluate per-stock.
+# Austin's watchlist 2026-07-11: all stocks with ~200k+ daily options volume
+# (his rule — high options volume = cleaner moves, easier fills). SPY/QQQ stay
+# as trend reference, rarely traded.
 CORE_SYMBOLS = ["TSLA", "NVDA", "AAPL", "AMD", "META",
                 "GOOGL", "AMZN", "MSFT", "PLTR", "SPY", "QQQ"]
-EXPERIMENTAL_SYMBOLS = ["SOFI", "ORCL", "COIN", "HOOD", "IREN", "INTC", "SMCI"]
+EXPERIMENTAL_SYMBOLS = ["SOFI", "ORCL", "COIN", "HOOD", "IREN", "INTC", "SMCI",
+                        "MSTR", "NFLX", "AVGO", "MU", "UBER", "BABA", "CRM",
+                        "TSM", "MARA", "RIVN"]
 SYMBOLS = CORE_SYMBOLS + EXPERIMENTAL_SYMBOLS
 RISK_DOLLARS = 1000.0
 DEDUPE_BARS = 30  # same setup re-firing within 30 min = same trade idea
@@ -41,6 +45,24 @@ REPORT_PATH = Path(__file__).parent / "backtest_report.md"
 RULE6_ENABLED = False      # toggle for backtest comparison
 RULE6_SCALE_PCT = 0.5      # fraction of position closed at breakeven
 RULE6_BE_MULT = 1.0        # breakeven level = entry +- 1R x this multiplier
+
+# ---- F1: Liquidity-ladder exits (fable-spec-2026-07-12, audit #7) ----
+# Source: "exit some at high of day every single time", then next draw of
+# liquidity (PDH/PDL, psych whole numbers); "2:1 is the MINIMUM aggregate
+# expectation, not the exit mechanism". Blind 2R was our invention.
+#   None = blind 2R (current behavior)
+#   "A"  = 50% off at first HOD/LOD touch after entry (session extremes as-of
+#          entry bar, no lookahead); stop unchanged until scale; runner to
+#          first key level beyond the scale point (PDH/PDL/PMH/PML/next whole
+#          dollar; fallback = original 2R target); runner keeps original stop
+#   "B"  = A + stop -> breakeven after the first scale
+# W% note: scaled trades are labeled win/loss by SIGN of total P&L; EOD runners
+# stay "scratch" (same as blind-2R). 84% arming: only FULL stop-outs (unscaled)
+# arm a re-entry — a scaled trade already paid, "stop was wrong" doesn't apply.
+LADDER_MODE = None  # F1 A/B 2026-07-11: A −$12k full-pop / tier $5.9k; B (BE
+                    # after scale) 58%W tier but $5.7k vs blind-2R $25k. Ladder
+                    # trades expectancy for win rate on our population — OFF.
+                    # See research/f2f1_runs/session-notes.md.
 
 
 
@@ -65,6 +87,10 @@ class SimTrade:
     be_level: float = 0.0     # stock price where 50% is scaled out (0 = disabled)
     be_taken: bool = False     # whether breakeven scale already fired
     runner_stop: float = 0.0   # raised stop for runner after BE taken
+    # F1 ladder fields
+    scale_level: float = 0.0   # HOD/LOD as-of entry bar (50% scale trigger)
+    runner_target: float = 0.0 # first key level beyond scale point
+    scaled: bool = False       # ladder 50% scale fired
 
     @property
     def counted(self) -> bool:
@@ -91,6 +117,13 @@ class SimTrade:
         if risk == 0:
             return 0.0
 
+        # F1 ladder: 50% filled at scale_level + 50% at exit_price
+        if self.scaled:
+            sign = 1 if self.direction == "call" else -1
+            scale_r = sign * (self.scale_level - self.entry) / risk
+            run_r = sign * (self.exit_price - self.entry) / risk
+            return round((0.5 * scale_r + 0.5 * run_r) * RISK_DOLLARS, 2)
+
         # Rule 6: BE scale taken -> two-stage P&L
         if self.be_taken:
             be_r = 1.0  # always 1R at breakeven
@@ -105,6 +138,45 @@ class SimTrade:
         # Original binary P&L (no Rule 6)
         move = (self.exit_price - self.entry) if self.direction == "call" else (self.entry - self.exit_price)
         return round(move / risk * RISK_DOLLARS * 1.0, 2)
+
+
+def _arm_84(t: "SimTrade", runner: "BacktestRunner") -> None:
+    """Arm one 84%-rule re-entry off a full stop-out (same gate as blind-2R path)."""
+    from signal_runner import RULE84_ARM_BNR_ONLY
+    arm_ok = t.signal_type == "break_and_retest" if RULE84_ARM_BNR_ONLY \
+        else t.signal_type != "reentry_84_rule"
+    if t.counted and arm_ok:
+        runner.session.entry_price = t.entry
+        runner.session.entry_direction = t.direction
+        runner.session.entry_target = t.target
+        runner.session.entry_stop = t.stop
+
+
+def _ladder_bar(t: "SimTrade", c: Candle, i: int, open_trades: list,
+                runner: "BacktestRunner") -> None:
+    """F1 ladder position management for one bar. Conservative: stop wins ties."""
+    long = t.direction == "call"
+    if not t.scaled:
+        if (c.low <= t.stop) if long else (c.high >= t.stop):
+            t.outcome, t.exit_price, t.exit_idx = "loss", t.stop, i
+            open_trades.remove(t)
+            _arm_84(t, runner)  # full stop-out arms 84%, scaled trades never do
+            return
+        if (c.high >= t.scale_level) if long else (c.low <= t.scale_level):
+            t.scaled = True
+            if LADDER_MODE == "B":
+                t.runner_stop = t.entry  # accelerator: BE after first scale
+        return
+    stop_lv = t.runner_stop if (LADDER_MODE == "B" and t.runner_stop) else t.stop
+    if (c.low <= stop_lv) if long else (c.high >= stop_lv):
+        t.exit_price, t.exit_idx = stop_lv, i
+    elif (c.high >= t.runner_target) if long else (c.low <= t.runner_target):
+        t.exit_price, t.exit_idx = t.runner_target, i
+    else:
+        return
+    p = t.pnl
+    t.outcome = "win" if p > 0 else ("loss" if p < 0 else "scratch")
+    open_trades.remove(t)
 
 
 class BacktestRunner(SignalRunner):
@@ -215,10 +287,14 @@ ENTRY_CUTOFF = "11:00:00"  # Scarface trades 9:30-11 only (volume/volatility); N
 
 def simulate_day(symbol: str, day_iso: str, candles: List[Candle],
                  pdh: Optional[float], pdl: Optional[float], bias: Optional[str],
-                 pmh: Optional[float] = None, pml: Optional[float] = None) -> List[SimTrade]:
+                 pmh: Optional[float] = None, pml: Optional[float] = None,
+                 pdo: Optional[float] = None, pdc: Optional[float] = None,
+                 qqq: Optional[dict] = None) -> List[SimTrade]:
     runner = BacktestRunner(symbol)
     runner.pdh, runner.pdl, runner.htf_bias = pdh, pdl, bias
     runner.pmh, runner.pml = pmh, pml
+    runner.pd_open, runner.pd_close = pdo, pdc  # [pdwick] tag inputs
+    runner.qqq_breaks = qqq  # F4 [qqqA]/[qqqX] tag input
 
     trades: List[SimTrade] = []
     open_trades: List[SimTrade] = []
@@ -229,6 +305,9 @@ def simulate_day(symbol: str, day_iso: str, candles: List[Candle],
 
         # 1. update open sim positions against this bar
         for t in list(open_trades):
+            if LADDER_MODE:
+                _ladder_bar(t, c, i, open_trades, runner)
+                continue
             # Rule 6: check breakeven scale BEFORE stop/target
             if RULE6_ENABLED and not t.be_taken and t.be_level > 0:
                 if (t.direction == "call" and c.high >= t.be_level) or                    (t.direction == "put" and c.low <= t.be_level):
@@ -266,7 +345,13 @@ def simulate_day(symbol: str, day_iso: str, candles: List[Candle],
         runner.detect_signals()
 
         for sig in runner.captured[before:]:
-            key = (sig["signal_type"].value, sig["direction"], round(sig["stop"], 2))
+            # Dedupe by trade IDEA. For B&R that's the broken level (name is
+            # unique per day) — keying on stop price breaks under F2 variable
+            # stops (retest/buffer stops shift by the bar -> 760 tr became 1811).
+            idea = (sig.get("stop_level_name")
+                    if sig["signal_type"].value == "break_and_retest"
+                    else round(sig["stop"], 2))
+            key = (sig["signal_type"].value, sig["direction"], idea)
             if key in seen and i - seen[key] < DEDUPE_BARS:
                 seen[key] = i  # still firing: extend suppression
                 continue
@@ -283,6 +368,20 @@ def simulate_day(symbol: str, day_iso: str, candles: List[Candle],
                     be_level = sig["entry"] - RULE6_BE_MULT * risk
             else:
                 be_level = 0.0
+            # F1 ladder: scale trigger = session extreme as-of entry bar (no
+            # lookahead); runner target = first key level beyond the scale point
+            scale_level = runner_tgt = 0.0
+            if LADDER_MODE and risk > 0:
+                if sig["direction"] == "call":
+                    scale_level = max(cd.high for cd in candles[:i + 1])
+                    cands = [x for x in (pdh, pmh) if x is not None and x > scale_level]
+                    cands.append(math.floor(scale_level) + 1.0)  # next psych whole $
+                    runner_tgt = min(cands)
+                else:
+                    scale_level = min(cd.low for cd in candles[:i + 1])
+                    cands = [x for x in (pdl, pml) if x is not None and x < scale_level]
+                    cands.append(math.ceil(scale_level) - 1.0)
+                    runner_tgt = max(cands)
 
             t = SimTrade(symbol=symbol, day=day_iso,
                          signal_type=sig["signal_type"].value,
@@ -290,7 +389,8 @@ def simulate_day(symbol: str, day_iso: str, candles: List[Candle],
                          status=sig["status"], entry_time=c.timestamp,
                          entry=sig["entry"], stop=sig["stop"], target=target,
                          reason=sig["reason"], entry_idx=i, exit_idx=len(candles) - 1,
-                         be_level=be_level)
+                         be_level=be_level, scale_level=scale_level,
+                         runner_target=runner_tgt)
             trades.append(t)
             if risk > 0:
                 open_trades.append(t)
@@ -366,6 +466,27 @@ def write_report(all_trades: List[SimTrade], days: List[str], notes: List[str]) 
         st_ = [t for t in fired if t.symbol == sym]
         n, w, l, s, wr, pnl = _stats(st_)
         lines.append(f"| {sym} | {n} | {w} | {l} | {s} | {wr}% | ${pnl} |")
+    lines.append("")
+
+    # Per entry-hour (2026-07-11): YouTube stat says 75% of Scarface trades
+    # cluster ~10:00 AM — test our own hour-by-hour win rate. Entry cutoff is
+    # 11:00, so every fired trade falls in one of these three 30-min buckets.
+    def _hour_bucket(ts: str) -> Optional[str]:
+        hhmm = ts[:5]  # "HH:MM"
+        if "09:30" <= hhmm < "10:00":
+            return "09:30-10:00"
+        if "10:00" <= hhmm < "10:30":
+            return "10:00-10:30"
+        if "10:30" <= hhmm < "11:00":
+            return "10:30-11:00"
+        return None
+    lines += ["### By Entry Hour", "| Hour | Signals | W | L | Scratch | Win rate | P&L |",
+              "|------|---------|---|---|---------|----------|-----|"]
+    for bucket in ["09:30-10:00", "10:00-10:30", "10:30-11:00"]:
+        bt = [t for t in fired if _hour_bucket(t.entry_time) == bucket]
+        if bt:
+            n, w, l, s, wr, pnl = _stats(bt)
+            lines.append(f"| {bucket} | {n} | {w} | {l} | {s} | {wr}% | ${pnl} |")
     lines.append("")
 
     # Austin 2026-07-10: clean first-break vs late/dirty-level B&R A/B
@@ -488,15 +609,46 @@ def build_notes(all_trades: List[SimTrade]) -> List[str]:
     return notes
 
 
+def _load_news_days() -> set:
+    """Load news_days.json -> set of date strings (empty on missing/error)."""
+    import json
+    try:
+        nd = json.loads((Path(__file__).parent / "news_days.json").read_text())
+        return set(nd.get("news_days", []))
+    except (OSError, ValueError):
+        return set()
+
+
 def main():
+    import argparse
+    ap = argparse.ArgumentParser(
+        description="Backtest OMEN signals over the last trading week.")
+    ap.add_argument("dates", nargs="*",
+                    help="explicit dates YYYY-MM-DD (default: last week)")
+    ap.add_argument("--days", type=int, default=None,
+                    help="lookback days (e.g. --days 30; max 29)")
+    ap.add_argument("--entry-cutoff", default=None, metavar="HH:MM",
+                    help="override entry cutoff time (default 11:00)")
+    ap.add_argument("--skip-news", action="store_true",
+                    help="exclude dates listed in news_days.json")
+    args = ap.parse_args()
+
+    # Override ENTRY_CUTOFF before the day loop (module-level global read by
+    # simulate_day). Spec: module-level assignment before the loop is fine.
+    global ENTRY_CUTOFF
+    if args.entry_cutoff:
+        ENTRY_CUTOFF = f"{args.entry_cutoff}:00"
+
+    news_days = _load_news_days() if args.skip_news else set()
+
     fetch_days = 8
-    if "--days" in sys.argv:  # e.g. --days 30: backtest everything yfinance still has
-        fetch_days = min(int(sys.argv[sys.argv.index("--days") + 1]), 29)
+    if args.days is not None:
+        fetch_days = min(args.days, 29)
         target_days = None
         week_start = (date.today() - timedelta(days=fetch_days)).isoformat()
         week_end = (date.today() - timedelta(days=1)).isoformat()
-    elif len(sys.argv) > 1:
-        target_days = sys.argv[1:]
+    elif args.dates:
+        target_days = args.dates
         week_start = week_end = None  # explicit dates only
     else:
         target_days = None  # last complete trading week (Mon..Fri of most recent Friday)
@@ -519,6 +671,8 @@ def main():
         use = [d for d in day_keys
                if (target_days is None and week_start <= d <= week_end)
                or (target_days and d in target_days)]
+        if news_days:
+            use = [d for d in use if d not in news_days]
         prev_day = None
         for d in day_keys:  # iterate all so prev_day PDH/PDL is right
             candles = data["days"][d]
@@ -526,11 +680,12 @@ def main():
                 if prev_day:
                     pc = data["days"][prev_day]
                     pdh, pdl = max(c.high for c in pc), min(c.low for c in pc)
+                    pdo, pdc = pc[0].open, pc[-1].close
                 else:
-                    pdh = pdl = None
+                    pdh = pdl = pdo = pdc = None
                 bias = htf_bias_for(data["hourly"], d)
                 pmh, pml = data.get("premkt", {}).get(d, (None, None))
-                trades = simulate_day(sym, d, candles, pdh, pdl, bias, pmh, pml)
+                trades = simulate_day(sym, d, candles, pdh, pdl, bias, pmh, pml, pdo, pdc)
                 all_trades.extend(trades)
                 orh = max(c.high for c in candles[:5])
                 orl = min(c.low for c in candles[:5])

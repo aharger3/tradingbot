@@ -1,0 +1,8 @@
+baseline (1.5x, wick+partial, no vol)  |  166 trades  30.0% $-1543.08 | OB:  147  27.0% $-2643.08
+displacement 2.0x                      |  103 trades  31.6% $ -404.79 | OB:   84  26.6% $-1504.79
+displacement 2.5x                      |   59 trades  32.8% $  -34.80 | OB:   40  23.1% $-1134.80
+wick_only retest                       |  119 trades  38.3% $ 1738.62 | OB:  100  35.4% $  638.62
+volume 1.3x (SPEC11)                   |   63 trades  31.6% $ -146.66 | OB:   44  21.1% $-1246.66
+wick_only + vol 1.3x                   |   44 trades  42.5% $ 1235.04 | OB:   25  33.3% $  135.04
+2.0x + wick_only                       |   82 trades  39.2% $ 1476.91 | OB:   63  35.0% $  376.91
+2.0x + wick_only + vol 1.3x            |   37 trades  51.5% $ 1935.04 | OB:   18  50.0% $  835.04

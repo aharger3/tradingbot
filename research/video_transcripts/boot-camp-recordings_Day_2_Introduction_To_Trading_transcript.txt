@@ -1,0 +1,965 @@
+# Transcription: boot-camp-recordings_Day_2_Introduction_To_Trading.wav
+# Duration: 5055s
+# Model: tiny
+
+[0s-8s] Yes, yes, yes, yes, yes, yes. Okay. How's everyone doing? How is everyone's session today? How is everyone's session today for live trading?
+[8s-12s] I know Jack took Apple today. I ended up taking Tesla. That was a solid trade on Tesla today
+[14s-20s] But afterwards I didn't really see too much out. How were you guys doing? It was good took Tesla
+[20s-27s] minus 130 up with 1,000 150 solid W on Tesla and Q 4.1 K nice. I got three R minus 550
+[27s-29s] Oh, you see some winners see some losers here
+[30s-35s] Oh, yeah, I guess we will was there. So there was actually a lot of names today down in terms of apps and stuff too
+[35s-37s] Like basically everything was down today
+[37s-40s] I went for my full way the basically everything was down today
+[40s-48s] Because of the Amazon servers and pretty sure so it wasn't really even the broker's fault. It was more so the Amazon servers that everything kind of relies on was down and therefore
+[48s-50s] That took everything down took Tesla
+[52s-54s] Robinhood sucks took Apple
+[55s-59s] Not just broker AWS messed up the whole world futures did well traded spy
+[60s-67s] $4,500 win on 50 contracts nice had a win on MES one candle rule nice nice nice nice $10 on Apple God nervous by AWS
+[67s-70s] issue and I did it a sap. Okay. Okay. Okay cool. So
+[71s-73s] coming into today
+[73s-83s] Once again, the way we kind of want to structure this boot camp is make everything super simple in the beginning make sure everyone is up to pace and then kind of get into it to the nitty gritty stuff, right?
+[83s-88s] So coming into today today's gonna be a very simple introduction to trading
+[88s-94s] I'm gonna go over a couple things with you guys that I think are good very baseline things to understand and
+[94s-100s] This way everyone has the same foundation going into the next couple days as well. Okay. Now with this being said day two for traders edge
+[101s-105s] What is the main thing? I want to ask you guys right because I talked about this a little bit yesterday
+[105s-110s] But I want to really emphasize this point. What can you expect by the end of the next 14 days?
+[111s-113s] What do you expect
+[113s-120s] By the end of the next 14 days for your trading coming into this? What are you expecting to get out of it within the next 14 days?
+[120s-125s] Put it in the chat down below and reading the chat right now. I want to see what most people are expecting
+[126s-131s] Within the next 14 days, right? I want to make sure that everyone has a very clear
+[131s-134s] Kind of goal or a path and you know
+[134s-140s] I want to see if somebody guys are too delusional or if somebody you guys are not delusional at all, right? I want to see what's going on here
+[145s-147s] How do we handle sticks?
+[149s-151s] Insistency
+[151s-154s] Consistency be confident fill in some more gaps
+[155s-163s] Stable foundation better for him. We're can consistency a true path to become a full-time trader strategy that works longjewity and trading awesome. Okay. I see a lot of the right answers here
+[164s-168s] I see a lot of the right answers for some of the people that are talking about I see a lot of the right answers
+[168s-174s] I do see some people talk about money. I always talk about this don't look at the money part of trading
+[175s-182s] Especially in the beginning right the money part will come when you have what other people are saying right like once you have the right road map to become a trader
+[182s-187s] Once you know the right things once you've implemented enough right once you've taken enough trades
+[187s-190s] You've seen the trials you know because you do have to go through the trials and tribulations
+[191s-195s] Obviously 14 days isn't enough to go through trials and tribulations, but that's why you're here with us for a year for
+[195s-198s] actual live trading so you can actually implement the things that we teach you
+[199s-203s] But the whole purpose of this right is to help you understand
+[204s-209s] You know everything from start to finish and then that way by the end of the year that you guys have with us
+[209s-213s] Right you'll have a lot more results right we're not just gonna leave you after the next 14 days
+[213s-216s] The next 14 days is going to be your foundation for the rest of the year
+[217s-222s] Right the next 14 days is your foundation to the rest of the year and that's going to be the goal for me at least right
+[222s-229s] So I already talked about this before, but by the end of the next 14 days you'll understand everything that I've learned in the last seven years of my trading
+[229s-234s] Okay, so today we're gonna be going through the introduction of trading okay
+[234s-237s] We're going to be going through the introduction of trading we're gonna make this very simple
+[237s-243s] I'm gonna start this from literally very very beginner friendly in terms of like the like just the terms that we use
+[244s-248s] And then we're going to get more advanced as the days kind of go on right you guys have already seen the schedule
+[248s-250s] You guys already know the topics that we're going to talk about in the future as well
+[250s-256s] So you know that they do get a little bit more advanced. However, I want to start off and make sure that everyone has the same foundation
+[256s-260s] Okay, so with this being said I do see someone type in the chat
+[260s-264s] Some is someone feeling is other people feeling overwhelmed
+[264s-267s] It's okay to feel overwhelmed right we're all the first small we're only on day two
+[268s-271s] But if you are feeling overwhelmed right that's why we're starting off very very
+[272s-279s] You know slowly in order to make sure that everyone's at the same pace now some of you guys may look at today's lesson and be like this is very basic
+[279s-283s] I already know this information which is fine, right? It'll just be a quick recap for you guys
+[283s-288s] Some of you guys may look at today's lesson and be like damn I didn't know that right so I want to once again
+[288s-292s] Make sure that we're all starting off with the same foundation because we're all gonna learn the same things over the next 14 days anyways
+[292s-297s] From the complicated and advanced stuff to the simple stuff. Okay, so with that being said in this session
+[297s-301s] What I'm gonna be going over is going to be the day trading terminology that you need to know right?
+[301s-304s] You need to know some of this terminology and if you don't understand it
+[304s-307s] You're going to be at a crucial disadvantage in your trading journey
+[307s-314s] Then we're gonna be going through a quick trading setup walk through that'll be at the end of this session and then most importantly the options workshop as well
+[314s-320s] So how many of you guys trade options? I was type one if you trade options type two if you trade futures and then type three if you trade both
+[322s-325s] Type one if you trade options type two if you trade futures and type three if you trade both
+[328s-333s] Okay, so I see a lot of people one two a lot of ones two's some three's as well
+[334s-336s] Okay, and
+[337s-340s] So for the people that are talking about that they do trade options or want to learn options
+[341s-346s] How what what would you say your ability before this class? What would you say your ability to understand options is?
+[347s-352s] Right, do you guys know how to look at options? Do you guys understand the Greeks of options?
+[352s-357s] What's your ability so from one to 10 if you had to go from one to 10 right rate yourself one to 10
+[357s-359s] Where would you say your option ability lies?
+[362s-369s] 5 0 0 7 5 0 7 7 7 5 A 4 0, okay, so literally everywhere
+[369s-371s] Now see some lines in there a
+[372s-382s] But looking confidence 10 3 4, okay, so that's the purpose of today's class, right? It's to go through everything kind of the the very very basic stuff for you guys
+[382s-387s] In order to really you know take your kind of trading to the next level we need to learn the basic stuff first before we learn anything else
+[388s-392s] Okay, so let's get into it. Let me
+[393s-395s] Actually get rid of all
+[396s-397s] Okay, so
+[398s-403s] They train terminology so today we're gonna go through the day trading terminology first and then we're gonna go through all the options
+[403s-411s] Workshops and then we're gonna go through the actual trading setup. Okay, so number one for beginners to understand the terminology and concepts of day trading is very crucial now
+[412s-416s] We're gonna go very basic once again, and then we're going to get into the more advanced stuff as well
+[416s-420s] Okay, so bit an ass price a lot of you guys should already know this if you don't know this
+[420s-425s] We're gonna do a quick little you know introduction of what that is so the big price is the amount where buyers
+[425s-432s] Are willing to purchase a trade right? So what the bid price essentially shows is the strength and demand in a stock
+[432s-440s] Compare to the ask price and this is the amount where sellers are willing to sell a trade and this will show more weakness and supply
+[441s-446s] Now how many of you guys buy on the sorry how many of you guys right now buy on the bid?
+[446s-454s] So when you're looking to enter a trade type one in the chat if you're someone that buys on the bid type two in the chat if you're someone that buys on the ask
+[455s-471s] Type two if you buy on the ask type one if you buy on the bid as these are people going middle limit mid point. Okay, some people trade mid points. Okay
+[473s-475s] mid market market market
+[476s-478s] 2 and 1
+[478s-486s] Tony by bit sometimes 2 and 1. Okay, so okay, so okay, so for me personally right when I take trades
+[486s-489s] I need to be quick right you guys understand you guys have seen the trades today as well
+[490s-496s] I like to be very quick with my trades what that means is I need to enter in as I see the break and retest forming
+[496s-504s] And I see some strong price action. Let's just say off of this level. I need to be very quick to enter in at this area because I know if I
+[505s-511s] For example, I'm a little bit slower. I may start getting filled a high of day high of days where I want to take my profit targets
+[511s-518s] But I may even get filled a high of day if I'm too slow or if I have a limit order in and I can't get filled fast enough
+[518s-528s] Right and so for myself what I do right is I buy the ask what the ask is is essentially the highest price that you can essentially buy the ticker for at that current
+[528s-533s] Pride at the current price. It's out right so once again. I'm going to make sure this makes sense to you guys in the next slide
+[534s-541s] However, I buy the ask and I sell the bid this way I get in and out of trades as fast as possible
+[541s-547s] Okay, so I buy the ask and I sell the bid with this means is for example if the stock is valued
+[548s-555s] at $100 and the ask is $101 and let's just say the bid is $99
+[555s-564s] Right, I am going to buy the ask at $101 and then when I sell the stock hopefully it goes up in price right and let's say if it does go up in price
+[564s-571s] The ask goes up to let's say 102 right, but the bid remains at let's say 101 50s or something like that
+[571s-576s] Right, I'll make a 50 cent profit on it and I won't get filled on the ask
+[576s-584s] But I'll be in and out of the trade very quickly right so what I'm what for me this is very very crucial because when I'm trading right
+[584s-592s] I need to be very quick. So I'm not looking to get the best price in and out. I'm simply looking to capture the move that is there quickly
+[592s-597s] Okay, does that make sense? Does that make sense to you guys another thing that I need you guys to understand as well
+[597s-602s] When you do see the bid the bid is showing the demand. Okay, so the bid is showing demand
+[602s-607s] What this means is buyers are the ones that are trying to hold the bid price up
+[607s-610s] Right, this is where the buyers need to hold the price up for
+[610s-615s] Consignuation back to the upside. Okay, and then the ask price is this is what showing resistance right?
+[615s-617s] This is where sellers want to hold the price down
+[618s-628s] Okay, so very very important to understand this when I buy a trade I buy the ask when I sell the trade I sell the bid
+[628s-632s] Okay, and once again, this will be more clear as we kind of go on in the examples
+[632s-634s] Okay, does that make sense yes
+[637s-639s] Do do do yes yes
+[641s-645s] Some of your questions that you guys are asking I'm gonna answer in a second by the way some of the questions that you guys are asking
+[645s-649s] They're in the next slides. I'm just making it you know very simple right now
+[650s-657s] Okay, so bid and ask so there's the difference between bid and ask spread so I just kind of gave you guys that example and
+[657s-659s] I'm going to help you guys understand this. Okay, so
+[660s-664s] Does anyone know what a bid and ask spread is right have you guys heard of the bid and ask spread?
+[664s-670s] Have you guys heard of spread in general type yes if you've heard of asked type or sorry if you've heard of spread type know if you haven't
+[672s-675s] See so there is a couple of nose. I see some yes is
+[676s-682s] Okay, so essentially the bid and ask spread is the difference between the bid and ask price
+[682s-688s] So when a stock is at a hundred dollars right so let's just say a stock or an option contract whatever we're buying
+[689s-693s] Let's just say the stock price is a hundred dollars for a specific name
+[693s-701s] Well for the stock price to be at a hundred dollars typically the stock price represents the midpoint of the ask in the bid
+[701s-708s] Okay the stock price represents the midpoint right so if you have a bid over here right let's just say this is your bid
+[708s-714s] You have your ask over here right the stock price will be somewhere in the middle between both of those right?
+[714s-719s] So for me as you can see here if a bid price is $99.50
+[720s-724s] This is what buyers want this price to hold right buyers don't want the stock to go below
+[725s-727s] $99.50 on the bid price
+[727s-735s] But the ask price is a hundred dollars and 50 cents sellers don't want the price to go above this either right sellers want the price to hold to the
+[735s-737s] Downside for this as well
+[737s-739s] Okay, so for me
+[739s-746s] Understanding this is very crucial because if I want to get in quickly right it's very simple to just buy the ass price
+[746s-753s] However if I want the best entry let's say I'm swing trading and I you know I don't necessarily need to get in right away
+[754s-759s] Right I'm not scalping or I'm not day trading in today. I just need to get in at a specific point
+[759s-767s] Right that's when I will look to enter in on the bid that's when I will look to enter in on a price where buyers want the stock to hold above
+[767s-773s] However if I'm looking for a quick moment to move I will be looking to enter in on the ask price for the quickest
+[774s-780s] Entry right and then sell on the bid price does this make a little bit more sense to you guys for the people that were saying no a little bit earlier
+[780s-782s] Does this make a little bit more sense now?
+[784s-789s] Does this make a little bit more sense and if it doesn't make sense type in the chat what you're confused about as well
+[792s-797s] If it doesn't make sense type what you're confused about as well. I want to make sure we start off very very
+[799s-804s] Okay, a lot of you guys I'm gonna answer the market question in second here. I'm gonna answer the market question in second
+[805s-813s] Exactly, so the ask price is where you want to buy right ask is where you want to buy and the bid is where you want to sell
+[813s-818s] For the quickest entry and exits. This is for the quickest entry and exits, okay?
+[818s-825s] So for the fastest way to get entered into a stock you will buy the ask price for the fastest way to sell a stock
+[825s-830s] You will sell the bid price. Okay, so how many of you guys if I was to give it an example?
+[830s-835s] How many of you guys right have seen a break in retest trade? Let's just assume this trade right here
+[835s-838s] Right and it's coming back for the break in retest
+[838s-842s] Right, let's just say you have an order in here, right? Let's just say this price is at $100
+[843s-845s] The price actually does touch a hundred dollars
+[846s-851s] But it quickly moves back up into your profit target and you had an order right you had a limit order
+[851s-856s] Let's just assume for a hundred dollars, but you didn't get filled right you didn't get filled on this trade even though a
+[857s-861s] Hit a hundred dollars and you were not you're just watching this trade move to the upside
+[861s-865s] Exactly how you thought it would but you didn't get entered in how many times has that happened to you guys
+[866s-868s] Type yes in the chat if that's ever happened to you
+[874s-882s] Okay, so I see a lot of yes is right so the reason this is happening to you is because you're trying to enter in at the best price possible
+[883s-888s] You are trying to enter in at the best price possible and therefore for me
+[889s-894s] I'm not trying to enter in on the best price possible. I'm just trying to enter in because I know if I can enter into this name
+[894s-898s] Right, and it does show continuation or you know, let's say it moves above high of day
+[899s-903s] Right, I'll still make enough profit where it makes sense for me to enter in quicker
+[903s-908s] Rather than wait for the absolute best entry to the scent on this stock
+[908s-914s] Okay, now let me make this make a little bit more sense. So when you have the bid and ask spread
+[914s-918s] Let's say your ask price is a hundred dollars and fifty cents and your bid price is
+[918s-925s] $99.50 cents remember we said that the stock price is a hundred dollars remember that right the stock price is a hundred dollars
+[926s-930s] Remember that however the ask price is a hundred dollars fifty cents and the bid price is
+[930s-932s] $99.50
+[932s-935s] Therefore if we subtract the $100.50 from the
+[936s-936s] $99.50
+[937s-939s] Right we get a spread of one dollar
+[940s-943s] Okay, we get a one dollar spread on this name now
+[943s-950s] Does can anyone tell me in the chat is a one dollar spread on a ticker that we're trading good or bad?
+[951s-956s] What does this represent what does a one dollar ask spread represent for us?
+[960s-962s] Bad bad bad slippage
+[963s-965s] Oh, someone said hoard
+[966s-974s] Very bad right Todd your right on a stock it isn't bad
+[974s-978s] I think a lot of people here are referring to the options. Oh on a stock a dollar spread isn't really that bad
+[979s-984s] I think most people are referring to the the option contract right which is this is obviously a little bit too much
+[984s-990s] Okay, so what this essentially means is if we're entering into this name remember I told you I'm an
+[990s-996s] Entringling on the ask right I'm trying to get in the stock as quickly as possible and because I'm trying to get in as quickly as possible
+[996s-999s] That means if this stock is valued at a hundred dollars
+[1000s-1003s] Right, let's say I'm entering and right here right let's just say the stock is right here and
+[1004s-1006s] Let's say right here the stock is valued at a hundred dollars
+[1007s-1012s] Okay, I enter in for a hundred dollars and fifty cents right so I'm and technically my entry prices
+[1012s-1020s] Let's just say up here right even though the stock I entered in here right my entry prices around here right about hundred dollars and fifty cents
+[1020s-1021s] Okay
+[1021s-1026s] So for me to go break even on this name it needs to go back up to hundred dollars and fifty cents
+[1027s-1028s] However
+[1028s-1034s] However if this stock fails and it comes back down and it hits my stop loss
+[1034s-1039s] Let's just say and this is example my stop loss was I don't know let's just say ninety dollars to make it simple
+[1039s-1044s] Okay, well for the ninety dollars if I was just trading one share I would have only lost ten dollars
+[1044s-1050s] Right which isn't that bad I would have only lost ten dollars on this name right but because we have that dollar spread as well
+[1050s-1054s] That we bought right technically I'm going to lose more money right
+[1054s-1061s] I'm going to lose technically I'm gonna lose a $11 right because of the bid and ask spread at this
+[1061s-1066s] $90 because I'm going to sell the bid at the ninety dollars right therefore I'm most likely going to get filled out
+[1066s-1073s] Let's just say $89 right or eighty nine dollars and fifty cents right and I bought at a hundred dollars and fifty cents
+[1073s-1077s] Does that make sense do you guys kind of understand what what the bid and ask spread means now?
+[1077s-1081s] Right, so having the smallest bid and ask spread is key
+[1082s-1085s] because the the smaller the bid and ask spread is the
+[1086s-1092s] The less the less likely hood of you losing more potential money on that trade
+[1092s-1097s] Okay, does that make sense can we put one in the chat if that makes sense to you and two if it doesn't make sense
+[1097s-1100s] Just want to make sure everyone's on the same playing field here
+[1102s-1105s] Okay, perfect perfect okay, see bunch of ones
+[1105s-1107s] Okay, so
+[1107s-1111s] Once again if anything here is too confusing for you guys by the way at the end
+[1111s-1116s] I'm gonna do a quick Q and A for you guys so you can ask me any questions that you may be confused about I think all some of you guys
+[1116s-1123s] Maybe also confused because you I haven't gone through the whole lesson yet once I the more I go through the lesson the more I kind of build upon these topics
+[1123s-1125s] Which you'll understand
+[1125s-1130s] So just give me till the end and then I'll out how you know if you there's any questions that you have I'll try to answer those at the end as well
+[1131s-1134s] So now this is the question that you guys are asking market order or limit order
+[1134s-1139s] What do you guys do you right before I explain what a market order is and a limit order is what do you guys do?
+[1139s-1142s] Do you guys do market orders or do you do limit orders or
+[1143s-1150s] Do you not if you don't know what a market or limit order is type three in the chat so either say market or limit and if you don't know what it is just type three in the chat as well
+[1153s-1155s] Markets markets
+[1156s-1159s] Lot of markets I see some limits some people do both
+[1161s-1166s] Both both both okay, so
+[1168s-1172s] Here's how here's what a market in limit orders because I do see some people don't know what that is
+[1172s-1176s] So for a market order, this is simply a way to enter into a trade
+[1177s-1185s] Okay a market order and a limit order is how you enter a trade now for a market order all this means is this is an
+[1186s-1188s] Instantious way to buy a trade
+[1188s-1196s] Okay, this is an instant way to buy or sell a trade if you hit market order on your broker when you're entering into a trade
+[1197s-1198s] You will get filled
+[1198s-1206s] Instantly now how will you get filled you will get filled on the market order exactly like how I explained in the last slides
+[1206s-1214s] The market order will do the work for you and it will fill you on the ask price when you're looking to buy the trade
+[1214s-1219s] And it will sell on the bid price when you're looking to sell a trade right now
+[1219s-1227s] Sometimes there may be a little bit of slippage which I'll talk about in the upcoming slides here and I'll explain what slippage is right
+[1227s-1230s] But for myself personally, right? I used to do limit orders
+[1231s-1233s] I still do limit orders right? I do a combination of both really
+[1234s-1238s] But market like for a newer trader. I think market orders are just so simple right like you can just do market
+[1238s-1243s] I used to recommend limit orders, but I kind of made it complicated for people and then I realize like most people
+[1243s-1247s] Though just be better off doing market orders right so if you can do a market order
+[1247s-1254s] Right that is going to be the instant way that you can buy in sell so everything that I explained earlier about the bid price and the
+[1254s-1260s] Ask price the spread right you don't have to worry about it as much because the market order will kind of deal with it for you
+[1260s-1265s] And you'll get in and out instantaneously you just have to understand when you do a market order
+[1265s-1272s] You're not going to get the best prices. Okay. That's the one thing you have to understand when you do a market order
+[1272s-1277s] You will not get the best prices however you will be getting filled when you do a market order
+[1278s-1279s] Okay
+[1279s-1282s] Does that make sense type one in the chat if that makes sense for you guys?
+[1286s-1293s] Okay now limit order so a limit order this is what it's going to give you the best buy and sell price on a stock
+[1294s-1300s] Okay, this is how you're going to get the best entry and exit right like when you're looking to
+[1300s-1306s] Enter into a trade for the lowest amount of risk and the highest amount of reward right the limit prices
+[1306s-1311s] What's that going to do that for you all limit price means is when you're looking to buy a limit
+[1312s-1314s] Right you're going to get filled on the bid
+[1315s-1320s] Remember for the market order we're getting filled on the ask which means we're instantly getting filled right because if a stock
+[1321s-1327s] Like I mentioned before right if a stock is a hundred dollars right and the ask is a hundred and one dollars and
+[1327s-1334s] The bid is ninety nine dollars right the market order is going to fill you if you're looking to enter the trade at one
+[1334s-1340s] One however the limit order you can put in where you want to enter so if you see where the bid is it's
+[1340s-1346s] 99 you can put in a limit order for $99 and that's where it's going to get you in the stock
+[1346s-1351s] The problem with the limit order is that sometimes when a stock is moving too quickly
+[1351s-1355s] It won't fill you therefore you may miss an entire move
+[1355s-1363s] Waiting for that $99 fill however sometimes if the stock does come back down and then move back up and let's just say you had a limit order
+[1364s-1368s] Right your limit order will get you the best entry for that move up
+[1368s-1370s] So you'll have technically the best risk to reward
+[1371s-1379s] Okay, so once again the limit order will fill you on the bid when you're looking to buy and it will sell on the ask when you're looking to
+[1379s-1381s] Actually sell the trade
+[1381s-1386s] Okay, so does it make sense between market order and limit order for most people?
+[1387s-1392s] Okay for most people the market order is going to be the simple one that you can do right away
+[1392s-1396s] You can get in and out of trade you don't have to worry about anything you literally just get in and out of trades
+[1396s-1399s] The limit order right you can use
+[1399s-1406s] Okay, but typically what I would do now and what I do do now is I'll try to get a filled on a market order quickly
+[1406s-1411s] Right, I'll try to get filled on a market order when I'm entering a trade and when I'm selling a trade
+[1411s-1413s] Let's just say a trade is going up and profit
+[1413s-1418s] Okay, and I see a key level here on Tesla let's just say there's the there's a key level at $100
+[1418s-1424s] I got you know, let's just say I bought a $95 and there's a key level at 100 right you can put a limit order here
+[1425s-1427s] Right so you can put a limit order here
+[1427s-1432s] So when Tesla does end up hitting this name right you'll get filled in not instantly
+[1432s-1436s] But you'll get filled at the highest price when it does touch that level
+[1437s-1440s] Okay, so that's the only way that I would use that kind of limit order
+[1440s-1445s] Okay, make sense do you guys understand the difference between the market order and the limit order?
+[1447s-1449s] So once again in my personal opinion
+[1449s-1456s] It is a better option if you are comfortable entering trades quickly to use the market order
+[1456s-1460s] I know some of you guys are not comfortable with that yet though, right?
+[1460s-1466s] I do also understand that a lot of you guys, you know, you're kind of like me when I first started when I first started
+[1466s-1472s] There was no chance I wanted a market order because I was looking for the best entry and I was looking for the best exit right like
+[1473s-1479s] Especially on names like Tesla for example right because I want to give you guys the reality of trading as well right so for example like a name like Tesla
+[1480s-1482s] Today the option contracts I forgot what they were they were like
+[1482s-1484s] $14 I think right
+[1484s-1488s] $14 a contract on Tesla right which means it was like 1,400 a pop
+[1489s-1493s] Okay, and I think the bid and ask price was probably like maybe like I forgot what it was honestly
+[1493s-1497s] But it was like let's just say there was even like a $23 difference on Tesla
+[1497s-1502s] Or let's just say like $2 difference even the dollar difference right that means that if you were to enter the trade
+[1502s-1507s] You would have already been down at least a hundred bucks right on that trade you would have been down at least
+[1507s-1512s] That's on one contract you would have been down a hundred dollars if you just market order it in right so I know there is
+[1513s-1518s] You know for some people that have smaller accounts right market order may not be the best way to enter in for some of you guys
+[1518s-1524s] However if you're trading stuff like Apple or if you're trading names that have you know the less
+[1525s-1531s] The sorry the less spread right if you're trading names with less spread then market order is definitely the way to go right market order is
+[1531s-1533s] Definitely the way to go
+[1533s-1535s] Okay, make sense
+[1535s-1537s] Make sense makes sense makes sense perfect
+[1538s-1544s] Okay, so now I want to go through a couple quick topics of things that you need to know
+[1545s-1549s] These things aren't as important as the things that we just said but these are things that are important for you guys to understand
+[1549s-1554s] So premium does anyone know what a premium is does anyone know what a premium stands for?
+[1554s-1557s] I mean you can read it right here, but does before this did you know what a premium was?
+[1560s-1566s] Yes, no, no, no, okay, so a premium's important so the premium is the price that the buyer pays for the option contract
+[1566s-1575s] Right, so if I'm saying Tesla like let's say the underlying of let's use apple right let's say the underlying for apple calls right
+[1576s-1579s] Apple right let's say the underlying is a hundred dollars
+[1580s-1582s] When I say underlying by the way
+[1583s-1588s] When I say underlying of a hundred dollars all that means is the actual stock price
+[1588s-1591s] Okay, so the stock price of apple is a hundred dollars
+[1591s-1598s] So when we're looking at the premium of the option contract let's say the premium of the option contract on apple is two dollars
+[1599s-1605s] Right that means that you have to pay two dollars for you to control essentially
+[1605s-1608s] One hundred shares of apple right or two dollars which would actually technically be
+[1609s-1613s] Two hundred dollars because every option contract you have to multiply by a hundred
+[1613s-1620s] Okay, does that make sense does that make sense on what a premium is a premium is essentially just the price of the option contract
+[1622s-1624s] Okay
+[1624s-1630s] Okay, IPO so IPO we don't really necessarily refer to this as much anymore
+[1631s-1635s] a big IPO that I was you know kind of a more a part of and when I was looking into
+[1635s-1642s] I pears a little bit more was like Airbnb back in the day right but IPO is initial public offering all the simply means is there is a
+[1642s-1651s] Private company that is looking to go public the reason the company is looking to go public is because it is trying to raise money or raise funds for
+[1651s-1655s] You know the next round of you know funding or whatever next kind of project they have
+[1656s-1662s] Okay companies typically do this for a the founder to you know go public sell there a little bit of their company a little bit of the shares
+[1662s-1667s] Make a little bit more money for the founder or they do this because they don't have enough money and they need to raise money
+[1667s-1669s] for their next project
+[1669s-1676s] Okay, so an IPO is an initial public offering this is simply just when a private company goes public into the stock market
+[1676s-1685s] Sometimes you may see an IPO into you know OTCs sometimes you may see an you know an IPO into the the NASDAQ or the New York stock exchange
+[1685s-1687s] Okay
+[1687s-1694s] Index so an index represents the performance of a group of stocks now does anyone know I mean
+[1694s-1703s] I just gave it away so I'm not gonna ask a question but an index right is something like spy or a QQQ now does anyone know what spy holds does any
+[1703s-1705s] Can anyone tell me what to spy hold?
+[1706s-1714s] What to spy hold let's see
+[1717s-1721s] Exactly the spy holds a top five hundred companies in America
+[1722s-1728s] Okay, so the spy holds a top five hundred US company so the reason people like to invest in the
+[1729s-1734s] How many of you guys have spying your long-term accounts right or your retirement accounts or you know
+[1734s-1739s] You're investing accounts right like 90% of you probably have spy in that right 95% of you and if you don't you should
+[1739s-1745s] Registres it's just like a no brainer to half right the reason that is is because spy right on average
+[1745s-1747s] People give you eight to 10% a year every single year
+[1748s-1753s] You know without doing anything right and that's been proven over the next last 50 plus years right
+[1753s-1757s] So for spy right that's going to be the top five hundred companies when you're looking to enter into spy
+[1757s-1761s] You're essentially just trading the top 500 companies of America now
+[1761s-1767s] QQ does anyone know a QQ holds right and by the way the reason I'm asking about these two is because these two are the most important for us
+[1767s-1769s] Does anyone know a QQ holds
+[1775s-1780s] Exactly, so QQ holds so spy holds a top 500 companies in general
+[1781s-1790s] Okay, so spy holds a 500 top companies in the US right but QQ holds a top 100 tech companies in the US
+[1790s-1793s] Right so for spy right
+[1794s-1801s] Sorry, yeah for spy right it holds the top 500 US companies for QQ it holds a top 100 technology company
+[1801s-1803s] So when you have stuff like AMD and Vidya
+[1805s-1808s] Tesla apple like all of those are in the QQ
+[1809s-1817s] Okay, and the reason I'm mentioning in the indices and index is because it is very important and in my strategy my system
+[1817s-1822s] And you guys will learn this the QQ plays a very big part in my system
+[1824s-1830s] Sorry, I need a water break the QQ holds a very big part of my system does anyone know why the QQ holds a big part of my system
+[1830s-1833s] I know there's some people in traders lab in here that are probably gonna give the answer away
+[1833s-1839s] But does anyone know why the QQ or spy holds a very big part of my system
+[1845s-1848s] Well, it's strength and weakness because you trade tech companies
+[1849s-1857s] Correlation very liquid market direction exactly so the reason the QQ holds such a big part in my and once again
+[1857s-1859s] We're gonna have a session on this so no no no big deal, but
+[1860s-1866s] The reason this is important is because the indices right is the performance of a group of stocks
+[1866s-1872s] So if the spy is moving to the upside and QQ is moving to the upside and let's say I want to trade
+[1872s-1873s] You know
+[1873s-1878s] Let's just say apple in this case scenario, but apple is moving to the downside
+[1878s-1880s] What does that mean for me?
+[1880s-1884s] What does that mean for me right if spy is moving to the upside
+[1884s-1889s] QQQ is moving to the upside and this is the performance of a group of stocks
+[1889s-1893s] Right and apple is moving to the downside what does that mean?
+[1895s-1905s] What does that mean for me?
+[1905s-1908s] It means apples weak right it means the apple has relative weakness
+[1909s-1912s] Right so if theoretically right if apples
+[1912s-1917s] Consonuous showing relative weakness and let's just say QQ shirts showing a little bit of you know
+[1917s-1922s] Consolidation or it breaks market structure and apple is retesting something
+[1922s-1927s] Right that means that this apple entry is going to be a much higher probability entry
+[1927s-1933s] Okay, this is going to be a higher probability entry for me to enter compared to earlier when QQ is
+[1933s-1939s] Trending to the upside okay. Does that make sense? Does that make sense on why we look at indices and what indices are?
+[1941s-1946s] Once again, this it's self is going to have a whole class don't and so if you don't understand this don't worry
+[1946s-1951s] This this gets a little bit more complicated. This is going to have its own class. So just you know
+[1951s-1952s] I was just trying to give you guys a quick summary of that
+[1953s-1959s] Okay, slippage so how many of you guys have experienced slippage before type yes in the chat if you've experienced
+[1959s-1971s] slippage before yes yes yes, okay a lot of you guys right so for people that don't know
+[1971s-1978s] Slippages slippage is essentially where the execution price of trade slips from the expected price of the trade so
+[1979s-1985s] Let's say you're trade you're looking at the stock and the stock is valued at a hundred dollars
+[1986s-1990s] Right if this or actually let's make this actually a little bit more simple. Let's say you're already in a trade
+[1990s-1993s] Right let's say you bought a trade at a hundred dollars down here
+[1993s-1997s] Okay, let's say the trade comes all the way up into a hundred and ten dollars
+[1998s-2003s] So you go to sell this hundred-tend dollar position right so you're looking to sell
+[2004s-2010s] Right sell a hundred and ten dollar position you click sell on a hundred and ten dollars
+[2010s-2013s] And you see profit in your account obviously because you know
+[2014s-2018s] Technically should have ten dollars of profit if you just bought one contractor one share here
+[2018s-2022s] Right, but you go and click sell and you only see
+[2022s-2029s] You know let's just say in this example you only see seven dollars in your account now if you only see seven dollars in your account
+[2029s-2036s] What happened there? Well, there's a couple things that happen for you to only profit seven dollars even though the trade went up ten dollars
+[2036s-2041s] Number one the first thing that I would usually check is your commission on the trade right so if you have
+[2041s-2044s] Commission on your trade what happened, okay?
+[2044s-2050s] Did the commit was the commission a lot more on this specific trade and if it was obviously go ask your broker what happened
+[2050s-2055s] However if it's not the commission then typically what it's going to be is it's going to be slippage?
+[2055s-2061s] Which simply means that the market order that you put in to sell a hundred and ten dollars worth right the market order?
+[2061s-2063s] We taught we already talked about market order remember
+[2063s-2067s] I'm trying to build upon everything right so I'm trying to make you guys see the whole overall picture here
+[2067s-2075s] But the market order that you put in at a hundred and ten dollars where you should have made ten dollars right the actual stock price
+[2075s-2080s] Was 110 right the ask price may have been let's just say 110 50
+[2082s-2088s] Right and the the bid price may have been let's just assume you know one oh, it's here
+[2088s-2095s] Okay, so when you went to sell that market order quickly right the what did what the market order did is like
+[2095s-2097s] Okay, let me try to sell this person
+[2097s-2103s] Instantly and so they went to a hundred and eight dollars the hundred and eight dollar price as they went to go execute
+[2103s-2113s] Slipped and it went into 107 and so you got filled at 107 right because your market order slipped below the bid into 107s
+[2113s-2115s] Does that make sense?
+[2115s-2118s] Does that make sense do you guys understand what slippage means?
+[2124s-2130s] So once again slippage can happen typically when you're trading high volatile stocks slippage doesn't happen as much
+[2131s-2135s] However when you're trading have any of you guys traded penny stocks have you guys traded
+[2136s-2138s] small caps have you guys traded
+[2138s-2140s] illiquid option contracts
+[2142s-2147s] Give me some names of illiquid names or yeah give me some illiquid names that you guys have traded
+[2149s-2152s] MSTR that's a go yeah, hymns okay hello
+[2154s-2160s] You say are yeah, so a lot of these like kind of mid cap names right typically will show you a little bit more slippage
+[2161s-2164s] Okay typically those mid cap names will show you a little bit more slippage
+[2165s-2170s] Okay leverage this one pretty self-success planatory you guys most of you guys already know this but leverage is essentially
+[2170s-2177s] Bored capital to make more money now the reason people use leverage is because technically let's just say you have a hundred dollars in your broker account
+[2178s-2182s] Right you sign up for a margin account technically you can trade with three hundred and thirty three dollars
+[2182s-2184s] Right so it just makes like
+[2184s-2189s] For most people that kind of come in new it's like why would you not trade with three hundred and thirty three dollars because you know
+[2189s-2196s] Like technically if the stock does go up in price you'll make three X the reward on you know one X the investment now
+[2196s-2200s] Leverage is a very very scary game to play I personally do not
+[2200s-2205s] Recommend traders to trade with leverage just because especially in the beginning stage just because it's like if you lose
+[2205s-2210s] You're gonna lose more money than you already have in your account and that's just a very scary thing to kind of go for
+[2211s-2216s] But we use leverage in a different way right so we use leverage for options right and once again
+[2216s-2221s] Into the options workshop later on in this session today right you'll understand what this means
+[2221s-2227s] But we use leverage for options themselves right do you guys know why we use leverage for options?
+[2227s-2229s] Do you guys know why we use leverage for options?
+[2230s-2232s] Or what the leverages for options?
+[2236s-2239s] Exactly right so every one contract
+[2239s-2245s] That's bad every one contract of an so every one option contract
+[2245s-2247s] controls
+[2247s-2249s] 100 shares
+[2249s-2255s] Okay, so every one option contract controls 100 shares of the underlying stock
+[2255s-2262s] So technically we are using leverage, but we're using leverage with the actual financial instrument that we're trading and not
+[2262s-2268s] Typically with our actual capital because when you start using leverage on top of leveraging options
+[2269s-2273s] It's just a very slippery slope that you don't want to go down. Okay, and then finally market maker
+[2273s-2278s] How many how many people have heard of market maker and think this is a bad term
+[2278s-2282s] How many people have heard of market maker and think this is a bad term?
+[2284s-2286s] How many of you guys know what a market maker is?
+[2286s-2290s] How many of you guys think market makers bad? How many of you guys think market maker is good?
+[2292s-2298s] Me bad. It's good for the market. Don't know it's a very good good necessary
+[2299s-2300s] bad market maker essential
+[2302s-2303s] annoying but not bad
+[2304s-2311s] Markets can function necessary evil. Okay, okay, so the reason I say that is because a lot of people will blame a lot of
+[2311s-2317s] Their mistakes on market makers and be like market makers taught me how they didn't so what a market maker is is when you have
+[2317s-2322s] Essentially, you know this market makers are typically more for stocks there a little bit more in liquid
+[2322s-2324s] But essentially if you have a name and
+[2325s-2332s] Let's just say you're ranging on this name right so you have you know your resistance up here and you have support down here
+[2332s-2338s] Okay, and you're ranging well the more you range the more you're biting or eating off resistance
+[2338s-2342s] Right, so every time you come into resistance you're making the resistance weaker
+[2343s-2348s] Right every time you come into demand you're making the demand weaker because you're entering in orders
+[2348s-2353s] Right, so all the orders that were filled up here right like if I was to give you like a volume chart here
+[2353s-2360s] Right, let's just say there was a lot of orders kind of near this demand and there was a lot of orders near this supply area up here like this
+[2361s-2364s] Right every time you come into this area
+[2364s-2369s] It will slowly lower the volume that is in that area because you're once again
+[2369s-2371s] You're coming in and you're eating up at the liquidity
+[2372s-2377s] So what a market makers responsibility is is for a stock to not just barcode all day
+[2377s-2381s] Right because no one wants to know and wants a stock to just barcode and do absolutely nothing all day
+[2382s-2388s] Right, so what market makers will do is they will then come in and they will utilize their own money or their
+[2388s-2395s] Institution or their firms money and they will buy the stock aggressively to either break it above a specific key level
+[2395s-2400s] And then the markets will once again rebalance themselves out right or they will sell the stock
+[2400s-2406s] Quickly right, so the market rebalances the cell phone and then buyers will either step back in or we'll continue in the trend
+[2406s-2415s] That's kind of going on right, but a market maker in the the premise of a market maker is simply to make sure that the stock stays liquid and the market keeps moving
+[2415s-2420s] It's so the stocks don't just barcode all day a market maker is not necessarily bad
+[2420s-2426s] However the reason some people think a market maker can typically be bad is because you'll see these fake out moves and people are like
+[2426s-2430s] This is a market maker fake out move where they broke above the resistance, you know
+[2430s-2433s] I bought the breakout and then they came it all the way back down in reality
+[2433s-2438s] That's just where the liquidity was sitting so their job was literally just to get you to the next liquidity pool
+[2438s-2442s] Once they get you to the liquidity pool then the market rebalances itself out and goes from there
+[2443s-2446s] Okay, so does that make sense what a market makers job is?
+[2447s-2450s] Do you guys understand a little bit more what a market makers job is?
+[2454s-2456s] Okay, cool
+[2457s-2462s] Okay, cool, so with that being said that was the kind of day trading terminology
+[2463s-2468s] That was the day trading terminology. I wanted to make sure everyone kind of gets their own foundation
+[2468s-2474s] And I know some of that what may have been a little bit too simple for you guys some of it may be a little bit advanced for other people
+[2474s-2481s] Don't worry, you know, we're just trying to make sure everyone's kind of at the same level. Okay, so with that being said that was day trading terminology
+[2481s-2486s] If you do have questions about that, we're gonna answer them more so near the end of today's session however
+[2487s-2492s] Now give me one second. I will be going over the options workshop
+[2493s-2499s] Give me one okay options workshop you guys ready type one in the chat if you're ready for the options workshop
+[2500s-2503s] Give me a one in the chat if you are ready for the options workshop
+[2505s-2510s] Okay, now before we get into the options workshop there's a couple things I want to tell you guys number one
+[2510s-2515s] If you are confused at any point in this in this you know in the next 15 20 slides
+[2516s-2523s] Just relax, okay, you can always come back and rewatch this session we also have an accelerator workshop
+[2523s-2527s] Four options as well that you can go back and watch for more of the basic stuff
+[2527s-2533s] Right however if you are confused at any point in the options workshop because there will be a point that I can almost
+[2533s-2537s] To sure you some people will be confused don't worry don't stress don't over one yourself
+[2537s-2542s] You can come back and rewatch it or you can ask a question at the end of the session okay?
+[2542s-2547s] I'm gonna try to simplify this as much as possible. There's a lot of things here that's
+[2547s-2551s] You know if it is confusing typically right you don't even really need to
+[2552s-2557s] Have the deepest understanding of it if that makes sense you just need to have an understanding of it to know what it's doing right?
+[2557s-2561s] So as long as I can give you that basic foundational understanding of options
+[2561s-2568s] That's really all you need for the way we trade because we're not trading complex options strategies because options can get very complex when it comes to
+[2569s-2571s] actually hedging positions or you know
+[2572s-2578s] Buying straddles and stuff like like it can get very you know or option flywheel strategy for for long-term investing like it can get very complex
+[2578s-2584s] Right however we trade options in a very simplified way so therefore I'm going to teach it in a very simplified way
+[2584s-2589s] Okay, sound good type yes in the chat if that sounds good. I can get started type one in the chat or yes
+[2589s-2590s] Awesome
+[2590s-2592s] Okay, so
+[2592s-2594s] Options so option
+[2595s-2599s] Sorry options are contracts that give the buyer the right
+[2599s-2607s] But not the obligation to buy or sell the underlying asset at a pre-determined price on a specified date
+[2608s-2611s] Okay, now what does that mean that those are a lot of words? What does that mean?
+[2611s-2618s] So when you buy futures let's say you're buying gold right does anyone know what happens if you have gold futures as they expire
+[2619s-2623s] Does anyone know what you have to do if you have gold or if you're trading weats
+[2623s-2630s] Right like if you're trading wheat futures does anyone know what happens when you technically the the gold or wheat
+[2630s-2638s] Futures expire
+[2638s-2640s] Yeah
+[2640s-2645s] Level you if you if you if you have a lot of wheat you're about you're you better hope that you you live on farmland
+[2647s-2649s] But no but
+[2649s-2651s] You know
+[2651s-2658s] But for example like you know technically you have to take delivery of it that's technically what it means right now most of the time
+[2658s-2661s] You don't have to just it depends on the broker and stuff like that
+[2661s-2666s] But technically when you're looking at futures right and you're let's say you're trading wheat futures or you're trading gold
+[2667s-2672s] Technically at the end of it you got to go ahead and you know take delivery of that wheat to your house
+[2672s-2678s] Right now obviously in today's day and age that's usually not what happens anymore right usually it'll just expire
+[2678s-2681s] But for for the most part right that's what you have to do
+[2682s-2689s] But with options you don't have to buy the actual underlying right with options you don't have the obligation
+[2689s-2694s] You can if you want to right at the end when it expires if you want to you can go ahead and buy
+[2694s-2700s] Let's just say you had one contract of Tesla you can go ahead and buy those hundred contract or hundred shares when the option
+[2700s-2704s] Contract expires right for example if Tesla's worth hundred dollars right
+[2705s-2708s] Hundred dollars on Tesla right the option contract let's you say was cost it a hundred
+[2708s-2714s] I'm sorry one dollar right now you're hundred dollar investment you're gonna have to a hundred times a hundred that right
+[2714s-2719s] Which is a lot of money a lot of people don't want to do that so therefore you don't have the obligation to buy it when it actually does
+[2720s-2726s] expire right whereas with futures you have to buy it you have to buy the futures whatever
+[2726s-2730s] You know underlying your trading but with options you don't have to and that's kind of a good thing however
+[2731s-2734s] What that usually means is it's going to expire worthless most of the time
+[2734s-2736s] Okay, make sense
+[2737s-2740s] Most of the time the option contract will expire worthless anyway, so it doesn't really matter
+[2740s-2744s] However, you don't have the right to buy it or you sure you have the right to buy it, but you don't need to buy it
+[2745s-2747s] Now let's kind of go through this
+[2747s-2753s] So for calls so a call it essentially gives the buyer the right to purchase an underlying asset at once again
+[2753s-2760s] Same thing as before, but the call is essentially looking for the price to move to the upside right so when we're looking for stock
+[2760s-2764s] Right the call is essentially looking for the stock to move to the upside
+[2764s-2770s] So when I'm saying I'm buying you know Tesla let's say is that a hundred dollars right and I'm saying I'm looking to buy the
+[2770s-2775s] 101 calls I'm looking for Tesla to get up and price up into 101
+[2775s-2781s] Meanwhile with the puts this gives the buyer the right to sell the underlying right so let's say for example once again
+[2781s-2788s] Tesla's at a hundred dollars. I want this stock to drop to $99 and that's how I'm going to profit
+[2788s-2794s] Okay, so the reason that options are good in my opinion is because when we're looking at something like this right
+[2795s-2802s] The option contract we don't have to have that much money behind it right this $100 to a hundred one dollar move
+[2802s-2809s] Well most likely typically cost us let's just use Apple in this example actually this will typically cost us let's just say you know a dollar
+[2809s-2815s] Right, which means we would have to spend essentially a hundred dollars right, but if Tesla ends up moving to a hundred and one dollars
+[2815s-2820s] Right this will most likely this option contract will most likely be worth one dollar fifty cents
+[2820s-2829s] Which means we just made a 50% gain on a one dollar move compared to a one dollar gain if we just bought this here does that make sense
+[2830s-2837s] Does that make sense to you guys so call once again just moving to the upside put moving to the downside and then the option contracts
+[2837s-2839s] How it moves as well
+[2840s-2843s] Okay, so with this being said let's kind of talk about the math behind this
+[2844s-2850s] So like I said Apple one hundred dollars if Apple price is $100
+[2850s-2853s] That means one contract equals
+[2854s-2859s] 100 shares of control remember I already told you guys this right when you buy one contract of an option
+[2860s-2866s] That is going to be one hundred shares of control that you technically have so when it technically expires
+[2866s-2871s] You would have to buy one hundred shares correct type yes in the chat
+[2874s-2880s] Okay, so with this being said if we do know this that means if we have
+[2880s-2882s] 100 shares let's just say we don't want to buy
+[2883s-2887s] Let's just say we don't want to buy the option contract right let's just say we want to buy the shares
+[2888s-2893s] If we want to buy the same amount of shares of control as the one contract would give us
+[2893s-2896s] Well, we would need to buy 100 shares which would be a
+[2896s-2898s] $10,000
+[2898s-2899s] $1000
+[2899s-2903s] Remember the price is a hundred dollars so a hundred dollars for the stock price
+[2903s-2908s] Multiplyed by a hundred dollars of the shares price gives us a ten thousand dollar position size
+[2909s-2912s] Okay, so for us to control a hundred shares
+[2912s-2916s] We would need to put in a ten thousand dollar position
+[2917s-2924s] Compare to where Tesla or sorry, sorry compared to where if we bought a call position right or call contract
+[2925s-2930s] The call contract for Apple is typically only going to be valued at let's just say two dollars right because on average
+[2931s-2935s] Apple calls are anywhere from like a dollar to two dollars depending on what time of the week you're actually looking to buy them
+[2936s-2942s] So because of this this one contract that we buy is a two hundred dollar position right because it's a two dollar contract
+[2942s-2946s] But remember you have to multiply this by a hundred right so it's going to be
+[2946s-2949s] $200 of position size so for
+[2949s-2956s] 100 shares of control with one contract instead of spending ten thousand dollars all we have to do is spend
+[2957s-2959s] $200
+[2959s-2966s] Okay, does that make sense so instead of spending the ten thousand dollars that we needed to to buy you know the a hundred shares of control
+[2966s-2968s] We can literally just spend two hundred dollars
+[2969s-2973s] It's the same thing with puts by the way right if you want a hundred shares of control right
+[2973s-2978s] $10,000 position size and then two hundred dollars for once again the one contract to control the same amount
+[2978s-2984s] However, if have you guys ever tried a short real stock before have you got first of all a lot of brokers don't even let you do it
+[2984s-2988s] But have you guys tried to if your broker gives you the option have you guys tried to short a trade before
+[2989s-2995s] Or if you've got it's for example if you're trying to short penny stocks right you have to have very
+[2995s-3000s] Specific brokers to short penny stocks right not all brokers will let you short penny stocks
+[3000s-3006s] Because you need to find low-cates for the actual shares that you're trading it gets a lot more expensive
+[3006s-3012s] It gets a lot more complicated, but with options it's simple if you want to stock to go up by the calls if you want to stock
+[3012s-3019s] So go down by the puts very simple right very simple and very cost-friendly as well very cost-friendly actually, okay
+[3020s-3024s] Now with this being said so remember this example
+[3025s-3029s] So with this being said when we look at this example let's kind of go through what happens
+[3030s-3037s] So here you can see like I said $200 position size if we used the share position and
+[3038s-3044s] Let's say the apple when we bought apple it was a hundred dollars now apple is sitting at a hundred and five dollars
+[3044s-3049s] Right so let's say apple was a hundred dollars and now it is sitting at a hundred and five dollars
+[3050s-3054s] So we caught a five dollar move on this name correct now
+[3054s-3061s] Let's say we had the $10,000 position right for the $10,000 position we had first of all we have to calculate our profit
+[3061s-3064s] For our profit we know that there's was
+[3064s-3069s] $105 minus a hundred dollars that we initially bought it for so for every share of
+[3069s-3076s] $100 that we have every 100 sorry every share that we had we made five dollars of profit per share
+[3076s-3081s] So to calculate the total profit all we have to do is multiply the five dollars per share
+[3082s-3086s] Multiply the amount of shares that we had which was five hundred dollars and therefore on the
+[3087s-3095s] $10,000 position size on the $10,000 position size we made five percent in profit right we spent
+[3095s-3098s] $10,000 to make five percent in profit which is about five hundred dollars
+[3099s-3106s] Now let's say we did the same thing with an options contract if an options contract was let's say at a hundred dollars
+[3106s-3112s] It was priced at two dollars okay and at a hundred and five dollars it was priced at four dollars and fifty cents
+[3113s-3119s] The reason it would be priced at four dollars and fifty cents is assuming a delta of 0.5 if you don't know what delta means
+[3119s-3122s] Don't worry I'm going to go through the Greeks in a second here
+[3122s-3127s] But I'm just trying to help you understand why options are a powerful tool right but if you look at the two dollars
+[3128s-3135s] Minus the four dollars and fifty cents that means on the one option contract you made two dollars and fifty cents of profit
+[3135s-3141s] So to calculate your actual profit it's the amount of contracts you bought multiplied by the amount of profit per
+[3141s-3144s] Contract therefore you made
+[3144s-3150s] $250 profit so once again remember this one only cost us two hundred dollars
+[3150s-3153s] We made two hundred and fifty dollars a profit so we ended up making
+[3154s-3160s] 125 percent of our position on this compared to the five percent up here
+[3160s-3166s] Okay compared to the five percent of profit that we made we did make more money technically here
+[3166s-3169s] Right we made $500 compared to the two fifty however we spent
+[3170s-3172s] $10,000 to make $500 here
+[3172s-3175s] Whereas here we spent two hundred dollars to make two hundred and fifty dollars
+[3175s-3179s] Which one would you guys rather do would you guys rather do option one or would you guys rather do option two
+[3186s-3194s] Option two right right right so once again making this very clear
+[3195s-3203s] For this trade okay for this trade we risk two percent so if we had a ten thousand dollar position size right
+[3204s-3207s] The total if this contract lost all of its money
+[3208s-3211s] Okay if the option contract lost all of its money
+[3212s-3217s] Meaning that if it went to zero dollars the total that we would lose is two hundred dollars
+[3218s-3222s] Whereas if the actual apple went down two percent
+[3222s-3228s] Sorry if apple went down right we would have lost two percent or about two hundred dollars on the
+[3229s-3234s] Ten thousand dollar position size but with such a small amount of position size
+[3234s-3236s] We were able to still take
+[3236s-3239s] 50 percent of the profit from up here
+[3239s-3243s] We made five hundred dollars on ten thousand dollars we made two hundred and fifty dollars on two hundred dollars
+[3244s-3246s] So from this profit to this profit
+[3246s-3253s] We still made about 50 percent with literally two percent of the total risk of that trade
+[3253s-3255s] Okay
+[3255s-3257s] So therefore understanding this
+[3258s-3263s] Options is a very powerful tool to use if you can utilize it correctly
+[3263s-3268s] Okay, does that make sense to you guys do you guys understand how we are using options?
+[3272s-3276s] Yes, yes, yes, yes, okay
+[3279s-3282s] Okay, so now let's talk about some of the benefits of options
+[3282s-3288s] Number one the benefits of options number one leveraging profits and reducing losses the reason we can leverage profits is
+[3288s-3293s] Because when you're looking at an option contract this is a trade that was I believe on Tesla
+[3294s-3302s] This trade on Tesla I believe the actual option contracts air say the actual underlying of the stock only went from I believe like one fifty two
+[3302s-3306s] I believe one fifty one or one fifty two right where
+[3306s-3309s] Technically right if you took that trade you would have made about two dollars per share
+[3310s-3314s] Okay, however the actual option contract went up 115 percent so if you bought
+[3315s-3322s] Which once again these are I'd be care you know executions right if you bought even this one contract right this one contract from here
+[3322s-3324s] To here would have made 115 percent
+[3325s-3330s] Okay, so I just want to make that clear like it's very important to understand that with options
+[3330s-3333s] You need a lot less money to make a lot more money
+[3333s-3338s] Okay, so once again leveraging profits to reduce and reducing losses because options just cost a lot less
+[3339s-3345s] Generating income is obviously a given now the main purpose the main purpose of options is to hedge
+[3345s-3352s] Against potential losses does anyone know why options were actually invented does anyone actually know why options was invented
+[3354s-3356s] Does anyone know why options was invented
+[3365s-3369s] It was invented as a way for insurance or to hedge positions
+[3370s-3372s] Okay, so the main purpose of options
+[3373s-3380s] Is essentially if I'm buying if or if I'm a big firm okay if I'm a big firm and I'm buying you know
+[3380s-3384s] Let's just say a million dollars. Let me make this right again. So it's actually nice on the eye
+[3385s-3387s] If I'm buying a million dollars right one mill
+[3388s-3390s] of let's just say stock
+[3390s-3393s] You know apple right let's just say apple real quick
+[3394s-3399s] Okay, if I'm buying a million dollars of apple and I'm a big institution or a
+[3399s-3403s] hedge fund and I'm you know looking I'm managing other people's you know
+[3403s-3408s] Positions unless it's assume a million dollars is big money for them right at they're probably working with
+[3408s-3415s] Hundreds of millions of dollars in this case right but they need to manage your hedge their risk right because that's too much exposure into a name
+[3415s-3422s] So the way they can manage their risk or at least hedge from potential losses is if they're buying a million dollars of
+[3422s-3424s] actual
+[3424s-3431s] Stock that they're looking for the move to the upside to manage your hedge their risk they can literally buy a hundred thousand dollars
+[3432s-3437s] Which is 10% of this total position by the way they can buy a hundred thousand dollars or less right
+[3438s-3440s] 100 thousand dollars or less of
+[3440s-3441s] Apple puts
+[3441s-3444s] Okay, and that way the
+[3444s-3449s] Obviously they're gonna make less money technically on the the shares but if Apple does come back down
+[3449s-3457s] They're fully hedged against it where they can still consistently kind of make that five to eight percent that they're aiming for a year over year
+[3457s-3462s] Right and so that's really tip that's the main purpose of why options are a thing
+[3462s-3467s] It's because huge position sizes right in shares right
+[3467s-3470s] Allow us to actually hedge it using options
+[3471s-3474s] Does that make sense now for us?
+[3474s-3481s] We don't really typically do that. Well, we're doing is we're speculating on the direction of the underlying asset
+[3481s-3486s] We're looking for a bigger move or a bigger percentage gain right so obviously we don't have
+[3487s-3491s] You know 50 million dollars or a hundred million dollars to put into these shares right the trust me
+[3491s-3493s] And if we did right
+[3493s-3503s] My apologies trade the shares at that point, but we don't have that so because we don't have that the easier way for us to trade and to make more capital with the least
+[3503s-3510s] amount is shared to make more money with the least amount of capital is to speculate on the direction of the underlying asset and that's what all trading is
+[3511s-3514s] Okay, so does that make sense on the benefits of
+[3514s-3516s] Options?
+[3516s-3519s] Does that make sense on the benefits of the options?
+[3523s-3527s] Okay, now very important to remember the risk of options
+[3528s-3533s] You can blend this is with anything but I need to put this here because I want to make this very clear for you guys
+[3533s-3535s] You can blow your entire account
+[3537s-3540s] Okay, the reason I say that is because it is a lot harder
+[3540s-3548s] Sorry, oops, it is a lot harder to blow an account with shares right like if you're buying shares of a specific name
+[3549s-3552s] It's for example if I'm buying Tesla okay
+[3553s-3556s] I just keep going back to Tesla now, right, but let's just say I'm buying Tesla now
+[3556s-3559s] I bought I don't know let's just say about a hundred thousand dollars worth of shares of
+[3560s-3563s] Tesla if I'm buying a hundred thousand dollars worth of shares on Tesla
+[3564s-3568s] This thing for me to completely wipe out my entire account
+[3568s-3573s] needs to come back to zero dollars right so five about a hundred thousand dollars of shares of Tesla
+[3573s-3576s] for me to completely lose all of my money
+[3577s-3584s] Tesla needs to come back down to zero dollars the likely hood of Tesla coming back down to zero dollars in the next five to ten years is
+[3585s-3587s] very very like
+[3587s-3590s] You know probably like in the 99th percent of no chance
+[3591s-3593s] Right
+[3593s-3598s] Whereas if I bought Tesla a hundred thousand dollar option position
+[3598s-3604s] Expiring on Friday and Tesla doesn't make the move that I needed to make will now guess what?
+[3604s-3609s] I just lost the full hundred thousand because the option contract will expire at zero
+[3610s-3614s] Okay, the option contract if Tesla doesn't let's say I want Tesla to go up and it starts going down
+[3615s-3618s] The option contract on Tesla will actually end up going to zero
+[3618s-3622s] So if I had a hundred thousand dollar account and I put it all onto Tesla calls for Friday and
+[3622s-3626s] Tesla moves to the downside will now I just made zero dollars. I just lost all my money
+[3627s-3630s] Right, I just blew my entire account so technically
+[3630s-3635s] It's a lot easier blowing your account on options, but once again if that Tesla contract didn't move
+[3635s-3638s] Right and let's just say on Friday this thing had you know a nice move to the upside
+[3639s-3643s] This 100 thousand could have been three hundred four hundred five hundred thousand and that's kind of the
+[3643s-3647s] The beauty of options and that's why people like to trade options however for me
+[3647s-3654s] I still you know I would preach managed risk first before looking for any sort of gain or results
+[3654s-3660s] Okay, so does that make sense? Do you guys understand the risk of options and the benefits of options as well
+[3661s-3665s] Do you guys understand the risk and the benefits of options both of them?
+[3667s-3669s] Type one in the chat if you do
+[3672s-3674s] Okay awesome
+[3674s-3676s] See a bunch of ones perfect
+[3677s-3684s] Okay now let's go over the Greeks now this is where some of you guys will be a little bit confused
+[3684s-3688s] Don't worry take a deep breath, you know, we're all here
+[3689s-3694s] We're all here together, but we're just gonna take this very slowly now you don't need to I'm gonna emphasize this
+[3695s-3699s] You don't need to know the Greeks in that much detail the way we trade
+[3699s-3705s] Okay, the way I trade specifically there's only two Greeks that I need to know there's genuinely only two
+[3705s-3710s] Greece that I need to know okay the two Greeks that I need to know is going to be Delta and
+[3711s-3715s] Theta right those are the only two that you kind of have to understand these ones
+[3715s-3719s] I've I'll be completely honest with you guys. I'm gonna explain them to you. I've never used them in my life
+[3719s-3722s] I've never even looked at them and I don't even have them on my chart
+[3722s-3726s] Okay, but once again, it's important to understand them so I'm still going to help you guys understand them
+[3726s-3731s] I've just never looked at them or ever cared about them okay for me what's important is the Delta
+[3732s-3737s] The Theta and the IV which I'm gonna talk about what IV is here as well. Okay, so let's get into it
+[3738s-3750s] So Delta what is Delta Delta Delta Delta is what measures the price movement in options with the one dollar change in stock price
+[3751s-3753s] Okay, so what does that mean?
+[3753s-3760s] For me if Delta so typically Delta can be anywhere from like zero to like one technically if you have a one Delta
+[3760s-3767s] That's pretty high, but let's just say you have a Delta of zero point five right let's just say you're Delta that you see on your chart is zero point five
+[3768s-3775s] This means for every one dollar move in the underlying price right so let's say you have Tesla
+[3776s-3781s] At $100 for every one dollar move so let's say when Tesla gets to one hundred and one dollars
+[3781s-3784s] The option contract will move
+[3784s-3788s] 50 cents right because zero point five so 50 cents
+[3788s-3795s] You go to him saying so when you have a stock price right let's say it's a hundred dollars the option the call option
+[3795s-3803s] Cost $1 right so once again the price of the stock under lying is a hundred dollars the option contract cost $1
+[3803s-3809s] When the price moves to one hundred and one dollars right so we move from one hundred dollars to one hundred one dollars
+[3809s-3817s] Meaning the underlying move of dollar the Delta zero point five that means that the call option now is going to be a dollar 50
+[3818s-3825s] Okay, so therefore technically from this one dollar move if the price moves up one dollar on the underlying moves up one dollar
+[3826s-3828s] You will get a 50 percent gain
+[3829s-3833s] You will get a 50 percent gain in the option contract
+[3834s-3836s] Okay, does that make sense
+[3837s-3845s] Does that make sense and of course with time the Delta will continuously go up for calls once again the Delta's going up and then for puts the Delta's
+[3846s-3852s] Okay, does that make sense now Delta's an important one to understand this one's a very simple one to understand as well
+[3852s-3856s] But this is the most in my opinion Delta's probably the most important one to understand right and
+[3856s-3862s] So once again, I want to make this very clear for every one dollar that the underlying stock moves
+[3863s-3869s] Okay, so for example the stock said a hundred dollars right let's say the stock moves to a hundred and two dollars
+[3870s-3876s] That is a two dollar move in the underlying price right that is a two dollar move in underlying price
+[3876s-3884s] The Delta is 50 cents therefore from a hundred to a hundred and one the Delta moved to one 50
+[3884s-3888s] But from a hundred to a hundred and two the Delta moved one whole dollar
+[3888s-3895s] Therefore if I bought the option the the option at one dollar at a hundred and at a hundred dollars
+[3895s-3899s] Then at a hundred and two dollars the option contract will be worth two dollars
+[3900s-3908s] Okay, make sense so as every one dollar move is how much the option contract will move based off of its Delta
+[3908s-3910s] Okay
+[3910s-3919s] So that's Delta number two gamma so gamma is what measures the rate of change in Delta
+[3920s-3928s] Okay, gamma is what measures the rate of change in Delta itself remember we just talked about Delta
+[3928s-3935s] So if Delta is once again that 50 to 0.5 or the 50 cent move right and let's say once again
+[3935s-3940s] You know the option contracts have one 50 at a hundred and one dollars compared to one dollar at a hundred dollars
+[3940s-3945s] The gamma will help the Delta increase to 0.6
+[3945s-3947s] Now what does that mean?
+[3947s-3950s] This means that for every time the
+[3950s-3956s] Option contract keeps getting higher the gamma will continuously keep going up as well
+[3956s-3960s] So for example if the option contract at a hundred dollars
+[3960s-3962s] Right was one dollar
+[3963s-3965s] With a Delta of 0.5
+[3966s-3972s] Right so a hundred dollar option a hundred dollar stock price one dollar option price and
+[3972s-3974s] 0.5 Delta
+[3974s-3978s] Right the gamma is what's helping the Delta go up so now
+[3979s-3985s] Let's say the option per are these stock prices are 101 right we know that from the previous
+[3985s-3988s] $100 move we had a 0.5 Delta therefore the actual
+[3989s-3995s] Option prices a dollar 50 but now the gamma is going to increase the Delta
+[3996s-4003s] Therefore for the next dollar move the gamma may make the Delta 0.6 and now if it's 0.6
+[4003s-4009s] This means when the stock price gets up to one dollar and two or sorry a one hundred and two dollars
+[4009s-4015s] Right this will now move to two dollars and ten cents because it's a 60 cent gain now
+[4015s-4021s] Right does that make sense was I able to simplify that for you guys so now it's a 60 cent move and now for example
+[4021s-4030s] Right the gamma may move the Delta back up into 0.7 right and so on and so forth right so with time the gamma is going to increase the
+[4030s-4032s] calls will increase and the puts will increase as well. Okay
+[4034s-4039s] Make sense yes much clearer on the course on law no worries
+[4041s-4042s] Okay
+[4042s-4044s] Okay Vega
+[4044s-4052s] Now Vega is the measurement of the option price sensitivity to implied volatility or
+[4052s-4063s] IV okay implied volatility or IV the more time until expiration the larger the value of the Vega is so for example
+[4064s-4070s] If a Vega you see of zero once again this one I don't you don't really need to know as much with how we trade
+[4070s-4078s] However it's important to understand if a Vega is showing you 0.15 right if the if the Vega 0.15
+[4078s-4085s] That means for each change in percentage in volatility right so the change of percentage in volatility
+[4085s-4094s] Which is your IV which we will talk about in a second here in the next slides the actual option price will change by 15 cents
+[4096s-4103s] Right so this is now changing the option price in regards to the volatility or the demand that's coming into the option
+[4104s-4105s] Okay
+[4105s-4107s] Does that make sense now once again
+[4107s-4114s] This will this is more typically for IV. I'm going to show you an IV chart soon and that will help kind of you know
+[4114s-4121s] Lair this back together. Okay, but essentially what you need to know is Vega is simply just what is measuring the price
+[4121s-4129s] Compared to the IV so when we talk about IV spikes if you've ever heard me say that it is the Vega that's allowing the IV spike to happen as well
+[4130s-4134s] Okay type one if that makes sense type two if it's a little bit confusing
+[4136s-4140s] Amazing and clear all the questions I had from the course. Okay awesome
+[4141s-4143s] Okay, I see some twos we're going to get back to it
+[4143s-4145s] Beta now
+[4145s-4155s] Data is important now what data means is this is the measurement in change in price of options as the time passes now. What does that mean?
+[4156s-4162s] I already told you guys all option contracts or I shouldn't I should not you say all right, but 90%
+[4166s-4170s] 90% of option contracts will go to zero dollars that expire
+[4170s-4179s] Okay because they are made and built for essentially the longer right the option contract for example on if you go to look at
+[4179s-4183s] Option contracts for Tesla, you know, let's say late. Let's say for the next two weeks
+[4183s-4189s] They might be sitting at $20 right but when you look at those same option contracts two weeks from now on a Friday
+[4190s-4196s] They're probably going to be sitting at like you know $1.50 at 3pm on the Friday. Why?
+[4196s-4203s] Because the theta if the option contract doesn't move in its favor the theta is continuously working against the price of the
+[4203s-4210s] Option contract right so what the theta is showing you is how fast the contract will actually go to zero
+[4210s-4217s] Right the theta is showing you how quickly your option contract will go to zero one thing that you have to understand about theta
+[4218s-4224s] Is that it is very important to remember theta is always going to kill your option contract
+[4225s-4233s] Okay, it will always kill the at and it doesn't matter if you're trading calls or puts it is going to reduce the value no matter which way the market
+[4233s-4239s] Technically it doesn't matter which way the market's moving but as the time comes closer to expire
+[4239s-4244s] Data will continuously be working against your option contract no matter if you're looking for a long position or a short position
+[4245s-4247s] Okay, so you just have to understand that does that make sense
+[4249s-4253s] Does that make sense theta is always looking to work against you?
+[4253s-4256s] Essentially if you're looking to obviously buy the trade
+[4257s-4259s] Okay
+[4259s-4261s] Yes, yes
+[4262s-4265s] Okay, now I see some people talk about implied volatility
+[4265s-4272s] So implied volatility is the measure of expected volatility of the underlying stock
+[4273s-4275s] Over the life of the option contract
+[4275s-4280s] It is used to compare the relative value of different options and to assess the risk of an option contract so for example
+[4282s-4284s] Let me try to make this as simple as possible
+[4284s-4289s] You have apple here, okay, so this is apple over this this is apple puts over 60 days and then this is
+[4290s-4296s] Tesla puts over 60 days you can see right we have random spikes here right you can see a spike here
+[4296s-4303s] You can see a spike here you can see another spike here right the base foundation kind of going up and then you can see another spike here
+[4303s-4309s] Now does anyone know why these spikes are happening does anyone know what IVs actually doing
+[4310s-4313s] What are these spikes?
+[4313s-4325s] What are these spikes in IV?
+[4325s-4332s] Every time yes, so the the spikes in IV are essentially just either news events there they're the it can be a
+[4333s-4335s] Source of different things which I'm gonna explain in the next slides, but
+[4336s-4339s] Typically it's going to be news events earnings
+[4340s-4343s] FOMC and I'll explain the the other events as well in the next slides however
+[4344s-4347s] Well, you need to understand is that every time IV spikes
+[4348s-4352s] We do not want to buy the contracts right so when the IV is spiking on specific names
+[4352s-4359s] We do not want to buy the contract. Why because when the IV spikes the contract price is going to spike as well
+[4359s-4365s] Right so what IV means is every time you see an increase in IV the option prices going to increase as well
+[4365s-4371s] Now you may think oh the option prices increasing this is good. That's not good because when for example
+[4371s-4372s] Let's say you know
+[4372s-4377s] Let's just use apple for example, right let's say this is the close end of day on apple on
+[4378s-4379s] Monday
+[4379s-4381s] Right so let's just say end of day on apple on monday
+[4382s-4384s] This is the close right
+[4384s-4386s] Let's say we have earnings and we gap up
+[4386s-4395s] overnight so the next day apple opens up up here right now from this to this right this whole kind of gap filled move that we have
+[4396s-4401s] Right now we have a whole gap on top of the gap we also have this
+[4401s-4404s] IV which is probably you know let's just say
+[4405s-4411s] I don't know anywhere from like 80 to 100 right 80 to 100 IV now because of this if we buy a
+[4411s-4417s] break and retest on apple right off the bat like right the second the market opens we buy a break and retest right on apple
+[4418s-4423s] If it moves up the option contract in price has already moved up so much overnight
+[4423s-4430s] Especially with IV that this contract won't really give you as much money as you're as you're thinking because the IV is a little bit too high
+[4431s-4438s] Compared to if this drops right now the IV is going to get crushed so you're going to get IV crushed at the same time
+[4438s-4445s] So now the IV is going to go from a hundred to 80 to a hundred backtown to its normal range of let's just say like 40 to 30
+[4445s-4450s] Right and if the IV drops the remember I told you IV is a change of price as well
+[4450s-4455s] So now the option contract where it may have been you know let's just say nine dollars here
+[4455s-4460s] Because the IV's dropping well the option contract dropping while the stock is dropping at the same time
+[4460s-4466s] This option contract may only be worth a dollar 50 right even though the drop was in that big
+[4466s-4469s] That's because the IV is crushing your profits
+[4470s-4474s] Okay, and that's why we don't want to trade IV
+[4474s-4478s] It was names with high IV for example today the test that trade I took was a solid trade
+[4478s-4480s] It was a fantastic trade for a move to the upside
+[4480s-4487s] However the IV on Tesla was higher today because we have earnings coming up and therefore going into tomorrow and Wednesday
+[4487s-4492s] Most likely not going to trade Tesla right it's going to be hands off for me until the earnings happened
+[4493s-4496s] Okay, so does that make sense on how IV works?
+[4498s-4501s] Does that help you guys see a little bit more clear how IV works?
+[4506s-4508s] Yes, yes, yes, okay perfect
+[4508s-4514s] So with this being said if you trade IV care by the way right where your option contracts are right where you see the option contracts
+[4514s-4521s] IV is going to be a percentage up here so you can typically just look at IV up here and you'll see exactly where the IV is and what you need to look for up here
+[4522s-4523s] Okay
+[4523s-4528s] Now with this being said one of the most important questions is okay
+[4529s-4534s] When does IV actually increase right water days that we know to avoid for IV because
+[4534s-4541s] There are specific days that you can simply just avoid and you'll literally not get IV crushed and that's very important
+[4541s-4543s] Right, that's very important to understand so
+[4543s-4549s] What are the days that we can avoid to make sure that we don't get IV crushed or at least don't have that higher probability chance
+[4550s-4557s] So for me for me there's going to be three main days right there's going to be three main days that I typically tend to avoid trading
+[4558s-4560s] for IV crush
+[4560s-4562s] number one
+[4562s-4566s] Quadwitching so quadwitching is when all four financial contracts are
+[4567s-4573s] Expiring it doesn't matter if you're trading you know stock futures if you're trading index options stock options or single stock futures
+[4573s-4579s] This occurs quarterly right and so quadwitching is every single quarter typically on a Friday
+[4580s-4585s] And what will happen is all the option contracts all the futures contracts stock option whatever and maybe
+[4586s-4594s] Everything is expiring on that day and because everything is expiring on that day it makes it a little bit more of a lower probability day to trade
+[4594s-4601s] Okay, it makes it a little bit more of a lower probability trade day to trade and therefore I typically tend to
+[4601s-4605s] Avoid quadwitching days unless I see a very very high probability setup
+[4606s-4607s] Okay
+[4607s-4614s] Number two j pow days now these are days where Jerome Powell or the federal reserve chair makes announcements
+[4614s-4619s] Right the market typically waits for his speeches on this day and therefore you will tend to see
+[4619s-4625s] Chop or range before two pm because typically whenever you have an FOMC day or a Jerome Powell day
+[4625s-4630s] That's going to be at about two pm and therefore you don't want to trade before then because what you're what you'll normally
+[4630s-4634s] Typically see is the market doing this until two pm
+[4634s-4640s] Or it's just kind of in range and range and range and then I'll do a big move to one side and then it'll correct the move to the other side
+[4640s-4646s] And then it'll kind of you know do the same thing again right but you'll typically see this all the way up until about two pm
+[4646s-4652s] Eastern right then you'll see two pm hit you'll see this kind of big move from two pm to around three 30 pm
+[4652s-4657s] And then the market will cool down again for the next day right but this is typically how those Jerome Powell days are
+[4658s-4663s] So typically I would tend to avoid j pow days or days where you have FOMC
+[4664s-4668s] And then finally earning days so these ones are obviously a little bit more self-explanatory
+[4668s-4674s] But days that the stock you trade reports earnings typically this is quarterly for example Tesla's going to report earnings this week
+[4674s-4677s] The reason you want to avoid that is because the market's typically just waiting for
+[4678s-4683s] You know the earnings to come out and therefore you know the actual buyers and sellers on the stock are
+[4683s-4689s] And going to be aggressive buying it or aggressive selling it because they're also waiting for the news event to of course hit the stock as well
+[4690s-4698s] Okay, so once again those are the three days that I typically tend to avoid for myself and if you tell if you look to avoid these days as well
+[4698s-4705s] Or you go back and you go back test your go back to your journal and go back test the days that you know you did trade these names
+[4705s-4710s] Nine times out of ten you'll see that if you didn't take them you'll you'd probably avoid a losing day
+[4710s-4715s] Okay, I see some people talking about where you can find this jack every single week
+[4715s-4722s] I've talked about this in the last class, but every single week we have the weekly outlook and we talk about if there's earnings for specific names
+[4722s-4728s] If there's FOMC we show you guys the full schedule. So just go look at the weekly outlook that we post in the accelerator
+[4729s-4733s] Okay, so does this make sense does this make sense
+[4735s-4739s] On the days not to trade and does options make sense to you guys as well
+[4742s-4746s] Does options make sense to you guys as well? Does the day trading terminology make sense to you guys
+[4749s-4750s] Okay
+[4750s-4758s] Perfect now there's one more thing I want to do so that was the conclusion for the actual slides, but I do want to do one more thing here
+[4759s-4764s] Which is over here so for my because a lot of people ask me this question. I do have this in the
+[4766s-4767s] in the
+[4768s-4770s] Sorry, I'm once again
+[4770s-4775s] I do have this in the works in the accelerator course, sorry, but I just want to go over it
+[4775s-4777s] So really quickly what is my trading view?
+[4778s-4784s] Layout look like my trading view layout for myself. I typically have QQQ on the right hand side here right QQ
+[4784s-4788s] And then I have the main ticker that I'm trading which is going to be Tesla you know in video
+[4788s-4792s] Whatever, maybe I'm going to have the main ticker here and then on my top screen
+[4792s-4797s] I have this except I have four I have another two of these right so I I'll typically have where is that screen?
+[4797s-4802s] I'll typically have another one right so two of these and then I'll have two more up here and that'll be like
+[4802s-4807s] Nvidia and Apple or Nvidia and Tesla or whatever I'm looking at again right in terms of my actual watch list
+[4807s-4812s] Right this is my watch list. This is literally what I mark out every single day. I mark out spy
+[4812s-4819s] QQ Apple Tesla and video and AMD those are the names that I mark out every single day
+[4819s-4824s] Those are the names that I look for an opportunity every single day and if none of those names have an opportunity
+[4824s-4829s] Then I'll look for something else based off the higher time frame that I can potentially trade like palentier or any other
+[4829s-4835s] Name that's really showing that higher time frame opportunity. Okay now the names the the actual
+[4836s-4841s] Bundle that I have because I know some people are curious about this as well. I have for trading view
+[4841s-4847s] I have the New York Stock Exchange the Nasdaq the NYC the ARCA Nasdaq kids
+[4847s-4852s] OTC and the US stock markets bundle right that's what I have for real-time data
+[4852s-4857s] So if you were ever confused of what I have that's what I have for real-time data for my
+[4858s-4864s] Trading view and that's just once again. I just want to make sure that you guys understand how trading be works for the actual
+[4866s-4868s] Make this go up for the actual
+[4869s-4878s] Setup on IBKR this workshop is a fantastic workshop where Jack literally goes over everything you need to actually start trading with IBKR
+[4878s-4885s] This is exactly how my setup works as well for me personally. I'm not gonna lie recently. I've been really into trading on my phone
+[4885s-4892s] I don't know why but I haven't actually used this in a little while to be honest since it basically since I went to LA
+[4893s-4897s] a little bit before I went to LA. I've honestly been liking just executing on my phone for some reason
+[4897s-4903s] However the actual setup on your computer right you can watch this fully this is going to be in the accelerator course
+[4903s-4909s] Which is in circle as well. So you guys can click click this setup interactive brokers and you can completely see that as well
+[4909s-4911s] Okay
+[4911s-4915s] So does that all make sense to you guys does that all make sense?
+[4915s-4918s] That's the conclusion of day two
+[4919s-4924s] That's the conclusion of day two how how can you excuse so fast or your phone you'd be surprised
+[4924s-4928s] I think I just got a little used to it, but if you're just market ordering in a note and you're phone already
+[4928s-4933s] You just put the the limit order on your phone right so like 50 contracts like every time and you just get in and out in a note in a note
+[4933s-4936s] It's actually pretty quick
+[4936s-4941s] Right, so did that all make sense did you guys learn something today this was
+[4942s-4945s] Hopefully for some of you guys you learned something new for some of you guys you just you know
+[4945s-4947s] It was a good way to
+[4947s-4951s] Re kind of learn things that you've already known, but it's it was just kind of a good summary
+[4951s-4955s] I wanted to make sure everyone starts off at the brand you know if you're brand new or if you're experience
+[4956s-4958s] We all start off at the exact same level
+[4960s-4964s] Yes, you guys you guys okay perfect so for tomorrow
+[4965s-4971s] Okay, so for tomorrow jack will be on for day three he'll be going over technical analysis for trade zilis
+[4971s-4973s] See some of you guys typing go check your emails
+[4974s-4980s] A lot of you guys have already claimed your trade zilis access right a lot of you guys have already claimed your trades elaxis
+[4980s-4985s] Just go check your emails you should have gone it there if you having gone one
+[4985s-4989s] We're gonna still continuously email you we're gonna email you trades elaxis this whole week
+[4989s-4991s] So like you'll you'll get it within the week
+[4992s-4996s] If you didn't get it though because that's just emails sometimes emails balance whatever it may be
+[4996s-4999s] So you'll get the trades ill it don't worry trust me trust me you will get trades illa
+[5000s-5003s] A lot of you guys have already had access, but just make sure to check your emails okay
+[5004s-5009s] Okay awesome so I'm gonna get this session recorded and up for you guys as well
+[5009s-5015s] So you guys can come back and rewatches. I hope you guys got some value from this session and what I will do now is
+[5016s-5020s] Obviously tomorrow day three with jack and then I'll see you guys for live trading as well. I also have to do a trade review
+[5021s-5023s] as well okay
+[5023s-5025s] Does that make sense?
+[5025s-5026s] All right
+[5026s-5027s] Awesome awesome awesome
+[5028s-5030s] Stop the share of the screen
+[5031s-5035s] Okay awesome. I hope you guys had a good class and I will catch you guys
+[5036s-5042s] Some are you will you did sorry so someone's talking about trades elaxis you do get a free month access
+[5042s-5044s] Just make sure to check your emails. It's it's free for one month
+[5045s-5047s] Okay
+[5047s-5051s] Awesome all right. I'll see you guys for the trade review later tonight and then I'll see you guys for live trading tomorrow all right
+[5052s-5054s] Bye guys

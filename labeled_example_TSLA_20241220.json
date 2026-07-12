@@ -1,0 +1,15 @@
+{
+ "symbol": "TSLA",
+ "date": "2024-12-20",
+ "source": "trade-reviews/-_Q_BlPhjhU (December Trade Review $4.5k TSLA)",
+ "scarface_verdict": "super solid / a lot of confluence",
+ "direction": "call",
+ "setup": "break_and_retest",
+ "stated_level": "premarket high + order block",
+ "stated_target": 445.82,
+ "data_pmh": 431.5,
+ "data_pml": 410.21,
+ "first_close_above_pmh": "10:12",
+ "hod": 447.08,
+ "target_hit": true
+}

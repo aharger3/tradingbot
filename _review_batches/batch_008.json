@@ -1,0 +1,943 @@
+[
+  {
+    "channel": "trading-floor",
+    "id": "1293609912404021248",
+    "ts": "2024-10-09T16:23:57",
+    "author": "Cody Lim",
+    "content": "No good setups",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1293611295945265226",
+    "ts": "2024-10-09T16:29:27",
+    "author": "Benny Stax",
+    "content": "AAPL looks good for aswing to 233 but I would wait for a pullback to long it",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "AAPL"
+    ],
+    "reply_to": "1293610542010863677"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1293611960377802883",
+    "ts": "2024-10-09T16:32:05",
+    "author": "RJ _Yongi",
+    "content": "which time frame is this? 1m  i had a good trade today in aapl and spy but got out after a few long red candles",
+    "score": 4,
+    "categories": [
+      "adj-trade",
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": "1293611700519440476"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1293619030376059040",
+    "ts": "2024-10-09T17:00:11",
+    "author": "RJ _Yongi",
+    "content": "he is a risk taker, not too long ago he had a drawdown of $30k but he just trusted his analysis. ended green",
+    "score": 2,
+    "categories": [
+      "pnl-mention",
+      "ticker-action"
+    ],
+    "tickers": [],
+    "reply_to": "1293618545770500248"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1293627595845402685",
+    "ts": "2024-10-09T17:34:13",
+    "author": "mrhype84",
+    "content": "this was a good move",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1293933130209820814",
+    "ts": "2024-10-10T13:48:18",
+    "author": "Mk",
+    "content": "aapl looks good for short/puts at 5 min retest",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1293934784531398697",
+    "ts": "2024-10-10T13:54:52",
+    "author": "mrhype84",
+    "content": "i took this.. bad entry i must say but hopefully it works out",
+    "score": 4,
+    "categories": [
+      "adj-trade",
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1293951836251754506",
+    "ts": "2024-10-10T15:02:38",
+    "author": "Cody Lim",
+    "content": "As long as nvda holds this area we should be good",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1293959464986087424",
+    "ts": "2024-10-10T15:32:57",
+    "author": "Benny Stax",
+    "content": "for anyone adventurous TSLA may be a good short here",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "TSLA"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1293968477127839825",
+    "ts": "2024-10-10T16:08:45",
+    "author": "Jasper -TP2 Trading",
+    "content": "Out of spy. That was a good trade",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1293995553390329918",
+    "ts": "2024-10-10T17:56:21",
+    "author": "Miguel Licero",
+    "content": "Guys in the meantime if someone can help with this question.  I usually take the 1st con out of the money, i avoid 0DTEs, usually take the next weekly avoiding 1 or 2 DTE too. When i do my trades im usually getting 20% of the total cost of the trade. So if i buy $1000 in contracts i get $200.  The price usually move between $1 and $2 but i feel my gain % is too low.  I see others make 30% or 50% or even 100% on the cost of the contracts.  What could i be missing while selecting my contracts? and what is a good strategy to pick a contract that revaluetes good?",
+    "score": 2,
+    "categories": [
+      "pnl-mention",
+      "polar-term"
+    ],
+    "tickers": [
+      "DTE"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1294287269204725792",
+    "ts": "2024-10-11T13:15:31",
+    "author": "Neto Moreno (Performance Coach)",
+    "content": "**RULES RULES RULES FOR FRIDAY**\n\nSeriously, take a screenshot of this and keep it handy. \n\n**If you\u2019re green for the week**, only trade with a small **PORTION of your profits**. For example, if you\u2019re up $1,000, risk just $200-$300. Even if you lose it, you\u2019ll still end the week green. \n\nIf you\u2019re green but don\u2019t have enough profits to play with, **DO NOT TRADE.**\n\n**If you\u2019re red for the week, DO NOT TRADE.**\n\nEven if you\u2019re green and have profits to spare, you can always take Friday off. Enjoy a 3-day weekend\u2014it\u2019s never a bad idea. \n\nRemember, **Fridays won\u2019t make you, but they can break you**. \n\nStick to these rules, and you\u2019ll never end the week on a bad note.\n\n@everyone <@&1219020123218645102>   \n\nPlease confirm you have read this with a \ud83e\udd11",
+    "score": 2,
+    "categories": [
+      "pnl-mention",
+      "polar-term"
+    ],
+    "tickers": [
+      "FRIDA",
+      "TRADE",
+      "DO",
+      "RULES"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1294291503010681017",
+    "ts": "2024-10-11T13:32:21",
+    "author": "Hassan123",
+    "content": "135 NVDA BREAK AND RETEST would be a SOLID entry! We have PMH and PDH coincide",
+    "score": 2,
+    "categories": [
+      "adj-trade"
+    ],
+    "tickers": [
+      "RETES",
+      "SOLID",
+      "NVDA",
+      "PMH",
+      "BREAK",
+      "PDH"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1294301611224727704",
+    "ts": "2024-10-11T14:12:31",
+    "author": "DS",
+    "content": "Good call still on NVDA",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [
+      "NVDA"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1294304225752514663",
+    "ts": "2024-10-11T14:22:54",
+    "author": "kem",
+    "content": "Shoutout to who called that trade. Best movement today",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "ticker-action"
+    ],
+    "tickers": [],
+    "reply_to": "1294303824059564032"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1294304993045643274",
+    "ts": "2024-10-11T14:25:57",
+    "author": "Mk",
+    "content": "AMZN was the best trade of the day so far. I charted it and called it out as well but was too focused on nvda and missed it",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "ticker-action"
+    ],
+    "tickers": [
+      "AMZN"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1294308824819437578",
+    "ts": "2024-10-11T14:41:10",
+    "author": "TG",
+    "content": "Qs, Spy, AMZN were good trades in hindsight.",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [
+      "AMZN"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1294312505580978256",
+    "ts": "2024-10-11T14:55:48",
+    "author": "Mk",
+    "content": "AMZN was best trade of the day! CLEAN entry and price action!!!",
+    "score": 4,
+    "categories": [
+      "adj-trade"
+    ],
+    "tickers": [
+      "AMZN",
+      "CLEAN"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1294312617887797372",
+    "ts": "2024-10-11T14:56:15",
+    "author": "Cody Lim",
+    "content": "With q pushing back up we should see some solid moves",
+    "score": 2,
+    "categories": [
+      "adj-trade"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1294317041880137939",
+    "ts": "2024-10-11T15:13:50",
+    "author": "Heiken-Sushi",
+    "content": "QQQ and AMZN are good trades that were in the morning. BNR so clean",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [
+      "AMZN",
+      "QQQ",
+      "BNR"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1294336991571214368",
+    "ts": "2024-10-11T16:33:06",
+    "author": "Neto Moreno (Performance Coach)",
+    "content": "Team, there is a reason I share this message every week\u2026 and still we get new sad stories about people doing the exact opposite: going full port, risking beyond their week profits, over trading, not respecting their own rules, no plan, taking horrible setups or no setups at all, feeling the urgency to catch something\u2026\n\nPlease make sure to do the right thing, mature and grow up as a Trader. \nWe all make mistakes, don\u2019t let a Friday mistake destroy you. \n\nRemember, **Fridays won\u2019t make you, but they can break you**\n<@&1219020123218645102>",
+    "score": 2,
+    "categories": [
+      "adj-trade"
+    ],
+    "tickers": [],
+    "reply_to": "1294287269204725792"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1295471986813702365",
+    "ts": "2024-10-14T19:43:10",
+    "author": "demchy19",
+    "content": "Today, I was trading NVDA and followed the 84% rule. I planned to enter on the 1-minute OB, but it didn\u2019t hold; instead, it went through. Once the stock reclaimed that level, it was a good entry point. I entered the trade, but I think I was a bit too quick and didn\u2019t wait for the proper timing. Fortunately, the trade moved in the right direction.",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [
+      "NVDA",
+      "OB"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1296516319008788612",
+    "ts": "2024-10-17T16:52:58",
+    "author": "Benny Stax",
+    "content": "NVDA took my $200. NVDA range bound no likey",
+    "score": 2,
+    "categories": [
+      "pnl-mention",
+      "ticker-action"
+    ],
+    "tickers": [
+      "NVDA"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1296523200527732789",
+    "ts": "2024-10-17T17:20:19",
+    "author": "mrhype84",
+    "content": "seemed good when i took it the other day",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1296529895454674966",
+    "ts": "2024-10-17T17:46:55",
+    "author": "Lauren (lakatrades)",
+    "content": "Sometimes I find myself in a bad trade, and I end up stuck in the market for hours.",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1296547992123478136",
+    "ts": "2024-10-17T18:58:50",
+    "author": "mrhype84",
+    "content": "it was really impulsive i guess i didnt get a good entry",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1296560183119708160",
+    "ts": "2024-10-17T19:47:16",
+    "author": "Benny Stax",
+    "content": "Well if you have trouble sleeping its great reading",
+    "score": 2,
+    "categories": [
+      "adj-trade"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1296663703298510909",
+    "ts": "2024-10-18T02:38:37",
+    "author": "Neto Moreno (Performance Coach)",
+    "content": "**RULES RULES RULES FOR FRIDAY**\n\nSeriously, take a screenshot of this and keep it handy. \n\n**If you\u2019re green for the week**, only trade with a small **PORTION of your profits**. For example, if you\u2019re up $1,000, risk just $200-$300. Even if you lose it, you\u2019ll still end the week green. \n\nIf you\u2019re green but don\u2019t have enough profits to play with, **DO NOT TRADE.**\n\n**If you\u2019re red for the week, DO NOT TRADE.**\n\nEven if you\u2019re green and have profits to spare, you can always take Friday off. Enjoy a 3-day weekend\u2014it\u2019s never a bad idea. \n\nRemember, **Fridays won\u2019t make you, but they can break you**. \n\nStick to these rules, and you\u2019ll never end the week on a bad note.\n\n@everyone <@&1219020123218645102>   \n\nPlease confirm you have read this with a \ud83e\udd11",
+    "score": 2,
+    "categories": [
+      "pnl-mention",
+      "polar-term"
+    ],
+    "tickers": [
+      "FRIDA",
+      "TRADE",
+      "DO",
+      "RULES"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1296666964915388450",
+    "ts": "2024-10-18T02:51:35",
+    "author": "Neto Moreno (Performance Coach)",
+    "content": "From the bottom of my heart!\nIt hits me hard every Friday to read super sad stories about over trading, revenge trading, greed and didn\u2019t take profits, a bad trade someone didn\u2019t cut early and now drawdown -80% asking for advice, etc etc etc",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": "1296666417873162251"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1296847392808763474",
+    "ts": "2024-10-18T14:48:32",
+    "author": "Benny Stax",
+    "content": "TSLA might make a good swing into wednesday. Volatility only 68%...should climb above 120% by earnings and give long calls a boost",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "TSLA"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1296858126913372242",
+    "ts": "2024-10-18T15:31:11",
+    "author": "Jasper -TP2 Trading",
+    "content": "i took a $30 loss on those SPY calls and sold at 1.05. its at 1.185",
+    "score": 2,
+    "categories": [
+      "pnl-mention",
+      "ticker-action"
+    ],
+    "tickers": [
+      "SPY"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1296895303152046210",
+    "ts": "2024-10-18T17:58:55",
+    "author": "Lauren (lakatrades)",
+    "content": "I am, in qqq - shrugs. One of the bad trades\u2026 how about you?",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": "1296890843768164413"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1297978204279013406",
+    "ts": "2024-10-21T17:41:59",
+    "author": "Jasper -TP2 Trading",
+    "content": "I sold a lot at 3.75. My 5 little runners are at 3.825. Maybe $4 once the Q hit that 496",
+    "score": 2,
+    "categories": [
+      "pnl-mention",
+      "ticker-action"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1298318015720591451",
+    "ts": "2024-10-22T16:12:16",
+    "author": "Mike Y",
+    "content": "P/L  +$980 EOD.  Took AAPL trade for P/L +$80.  Entered wrong strike in at .54 on 237.5c.  Meant for the 235c.  Delta at .27, so underline needs to move alot. So at least I made on it.  NVDA took Opening Range low, had nice bounce then retest lower and recovered with QQQ.  HTF...HTF...HTF... Played the PML flip which was also at 61.8 levels for added confluence for internal liquidity.",
+    "score": 2,
+    "categories": [
+      "pnl-mention",
+      "ticker-action"
+    ],
+    "tickers": [
+      "EOD",
+      "AAPL",
+      "NVDA",
+      "QQQ",
+      "HTF",
+      "PML"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1298376850246209776",
+    "ts": "2024-10-22T20:06:03",
+    "author": "Jasper -TP2 Trading",
+    "content": "I been doing real well lately and today was probably my worst trade since I been with JDUB. I made 3k on that NVDA this morning and couldn\u2019t sit on my hands. I came out with $100. Back to the books",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "pnl-mention"
+    ],
+    "tickers": [
+      "JDUB",
+      "NVDA"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1298720882117709834",
+    "ts": "2024-10-23T18:53:07",
+    "author": "Lauren (lakatrades)",
+    "content": "if there's a bnr from liquidity box, may will be a good trade..  make sure there's A+ setup, or 84% trade.",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1298740987543294003",
+    "ts": "2024-10-23T20:13:00",
+    "author": "Edomobi",
+    "content": "But will it get filled at the entry point you would aim for or you don\u2019t think so this is for a market order, like would you get filled like the perfect example is tony scarface alerts now as he said you could enter on the appl trade, now if someone entered with just a market order in after market hours, would they get filled at that exact point they wish to enter the trade. <@1014389514141184074>",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1299056725873397780",
+    "ts": "2024-10-24T17:07:38",
+    "author": "Jdub",
+    "content": "Solid Trade",
+    "score": 2,
+    "categories": [
+      "adj-trade"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1299077415414267974",
+    "ts": "2024-10-24T18:29:51",
+    "author": "chunky_beast",
+    "content": "You\u2019re not alone bro, I got most of my cons stopped out leaving about $16k on the table but like everyone\u2019s said it\u2019s just the first of many this earnings season. Also like Jack and Tony say, hindsight is always right but it\u2019s better to walk away green vs having bag held and TSLA could\u2019ve ripped down the other way\n\nLooking at the wider market QQQ\u2019s and SPY stayed within range and nothing else is showing this kind of strength",
+    "score": 2,
+    "categories": [
+      "pnl-mention",
+      "ticker-action"
+    ],
+    "tickers": [
+      "TSLA",
+      "QQQ",
+      "SPY"
+    ],
+    "reply_to": "1299066877095706696"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1299093793974517834",
+    "ts": "2024-10-24T19:34:56",
+    "author": "Jasper -TP2 Trading",
+    "content": "i lost 580 from NVDA. SMH should have held",
+    "score": 2,
+    "categories": [
+      "should-judgment"
+    ],
+    "tickers": [
+      "SMH",
+      "NVDA"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1299208164872421379",
+    "ts": "2024-10-25T03:09:24",
+    "author": "Neto Moreno (Performance Coach)",
+    "content": "**RULES RULES RULES FOR FRIDAY**\n\nSeriously, take a screenshot of this and keep it handy. \n\n**If you\u2019re green for the week**, only trade with a small **PORTION of your profits**. For example, if you\u2019re up $1,000, risk just $200-$300. Even if you lose it, you\u2019ll still end the week green. \n\nIf you\u2019re green but don\u2019t have enough profits to play with, **DO NOT TRADE.**\n\n**If you\u2019re red for the week, DO NOT TRADE.**\n\nEven if you\u2019re green and have profits to spare, you can always take Friday off. Enjoy a 3-day weekend\u2014it\u2019s never a bad idea. \n\nRemember, **__Fridays won\u2019t make you, but they can break you__**. \n\nStick to these rules, and you\u2019ll never end the week on a bad note.\n\n@everyone <@&1219020123218645102>   \n\nPlease confirm you have read this with a \ud83e\udd11",
+    "score": 2,
+    "categories": [
+      "pnl-mention",
+      "polar-term"
+    ],
+    "tickers": [
+      "FRIDA",
+      "TRADE",
+      "DO",
+      "RULES"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1299428416487161866",
+    "ts": "2024-10-25T17:44:36",
+    "author": "MrAcidBurn",
+    "content": "Everything red lol and spy made a new low of day. Good thing I stopped at 11am",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1299442306675638304",
+    "ts": "2024-10-25T18:39:48",
+    "author": "HariRao",
+    "content": "we took a loss of $1000+ today",
+    "score": 2,
+    "categories": [
+      "pnl-mention",
+      "ticker-action"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1299466842422907020",
+    "ts": "2024-10-25T20:17:18",
+    "author": "Alex Kong",
+    "content": "I'd love to get input on this too... I was thinking the same, I guess as long as the delta is above .35 and the IV is around 50 overall for that expiration, it should be fine, I feel like grabbing deltas below .3 and low IV would probably not be a good idea for intraday trading or scalping",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "IV"
+    ],
+    "reply_to": "1299459192519786557"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1299800678587306115",
+    "ts": "2024-10-26T18:23:50",
+    "author": "chunky_beast",
+    "content": "<@584423632802021376> I\u2019ll keep this as simple as possible, but please what I\u2019m about to say isn\u2019t meant to be gospel. I don\u2019t like leaving questions unanswered if I can help it. \n\nWhen you look at the upcoming earnings you obviously expect an uptick in options trading into that particular week volume wise but what will almost always increase is options holders/open interest (OI) into those options. Using AAPL for example we have a large disparity between Call holders vs Put holders for Nov 1 Weekly\u2019s so with this we can estimate that, as of Friday, the market is currently expecting bullish move into earnings. Plus as you get from Earnings Whispers, on the wider options there was a large volume of Feb 21 265C bought on Friday indicating some bull expects a move towards the upside in the longer term worth putting up $12M. With all this you can infer the market a bullish outlook on AAPL. \n\nA different case is GOOGL where we can see, as of Friday, there isn\u2019t really any high expectations for explosive short term moves based on next weeks options OI. \n\nThere are other equities you can look at with extremely high bullish option sentiment like AMZN and AMD. \n\nHowever this is just a gauge, not a crystal ball. Do your own research and ensure that this correlates with your strategy and playbook. Also if you\u2019re gonna trade shorter dated options into earnings this isn\u2019t a swing where you may lose 60-70%. You can easily lose your equity so you have to be comfortable with a 100% risk to capital overnight.",
+    "score": 2,
+    "categories": [
+      "pnl-mention",
+      "ticker-action"
+    ],
+    "tickers": [
+      "AMD",
+      "AAPL",
+      "OI",
+      "GOOGL",
+      "AMZN"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1300532297040265388",
+    "ts": "2024-10-28T18:51:02",
+    "author": "iremiacapital",
+    "content": "I entered at $265 hold.  And stopped out.",
+    "score": 2,
+    "categories": [
+      "pnl-mention",
+      "ticker-action"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1300622132895551508",
+    "ts": "2024-10-29T00:48:00",
+    "author": "formula1inc_15128",
+    "content": "My bad on your  IG story  I misread it, it says long term not swing",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "IG"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1301168380048572489",
+    "ts": "2024-10-30T12:58:36",
+    "author": "Neto Moreno (Performance Coach)",
+    "content": "<@801169196015943731> AMD with continuation to the downside is not on your watchlist? Could be a good play? Looking for some retest of PMH or 155 and then drop",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [
+      "PMH",
+      "AMD"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1301762244404838432",
+    "ts": "2024-11-01T04:18:24",
+    "author": "Neto Moreno (Performance Coach)",
+    "content": "**RULES RULES RULES FOR FRIDAY**\n\nSeriously, take a screenshot of this and keep it handy. \n\n**If you\u2019re green for the week**, only trade with a small **PORTION of your profits**. For example, if you\u2019re up $1,000, risk just $200-$300. Even if you lose it, you\u2019ll still end the week green. \n\nIf you\u2019re green but don\u2019t have enough profits to play with, **DO NOT TRADE.**\n\n**If you\u2019re red for the week, DO NOT TRADE.**\n\nEven if you\u2019re green and have profits to spare, you can always take Friday off. Enjoy a 3-day weekend\u2014it\u2019s never a bad idea. \n\nRemember, **__Fridays won\u2019t make you, but they can break you__**. \n\nStick to these rules, and you\u2019ll never end the week on a bad note.\n\n@everyone <@&1219020123218645102>   \n\nPlease confirm you have read this with a \ud83e\udd11",
+    "score": 2,
+    "categories": [
+      "pnl-mention",
+      "polar-term"
+    ],
+    "tickers": [
+      "FRIDA",
+      "TRADE",
+      "DO",
+      "RULES"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1302287932094418945",
+    "ts": "2024-11-02T15:07:18",
+    "author": "Mike Y",
+    "content": "I thought it was going to start at 11am est which is 8am west coast.  Saw Neto's invite so, I think I over slept! Jack always records. There were great plays too! AMD, AAPL & TSLA were my best this week.",
+    "score": 2,
+    "categories": [
+      "adj-trade"
+    ],
+    "tickers": [
+      "TSLA",
+      "AAPL",
+      "AMD"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1303033829069553744",
+    "ts": "2024-11-04T16:31:14",
+    "author": "Kam",
+    "content": "great trade idea!",
+    "score": 2,
+    "categories": [
+      "adj-trade"
+    ],
+    "tickers": [],
+    "reply_to": "1303001698997895209"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1303750429653471273",
+    "ts": "2024-11-06T15:58:44",
+    "author": "JWillX2",
+    "content": "<@717554586843611217>  amazing on the $114k -I hope we can all learn from you and execute to win for our families!",
+    "score": 2,
+    "categories": [
+      "pnl-mention",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1303767696877424705",
+    "ts": "2024-11-06T17:07:21",
+    "author": "Jdub",
+    "content": "Its not really about being upset because as a human you are going to have emotions. It's all about what you do with those emotions. Am I upset when I take a bigger loss than expected. Of course but its all about how you respond and what you do after the fact. \n\nTrading is all a game about probabilities. I had conviction coming into this morning on TSLA for a continuation higher and guess what it didn't work out. I wanted to only risk around $2000 on this trade and ended up losing over $4000. But what happened next, I didn't do anything irrational or went to do something dumb. What I did was wait for another opportunity to setup. \n\nWe ended up getting in SPY/ES which was a solid setup and is still working out as I type this out. \n\nAs for relying on trading as income I didn't do this for the longest time. When I started out and even when I was profitable I was still delivering packages on the side. I would next recommend someone to do this full time without some sort of income coming in. Having to \"rely\" on trading is going to make it very difficult no matter who you are. \n\nHope that makes some more sense.",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "pnl-mention"
+    ],
+    "tickers": [
+      "TSLA",
+      "SPY"
+    ],
+    "reply_to": "1303758380246241343"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1303769681781592074",
+    "ts": "2024-11-06T17:15:15",
+    "author": "Heiken-Sushi",
+    "content": "TSLA exited 285 calls at Break even. Pretty bad entry it was. That srewed up my intended entry of 280 calls at 5$ which is now 10$. This thing you need to be a surgeon to scalp precisely...",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [
+      "TSLA"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1303813903934820352",
+    "ts": "2024-11-06T20:10:58",
+    "author": "thai_curry",
+    "content": "that pre market  re test would ve been a good entry",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1303815211924324422",
+    "ts": "2024-11-06T20:16:10",
+    "author": "Heiken-Sushi",
+    "content": "COIN still looks like a good play on its retest of the first 5 min order block. Could have been an awesome play better than TSLA",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [
+      "TSLA",
+      "COIN"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1304298234575065210",
+    "ts": "2024-11-08T04:15:31",
+    "author": "Kam",
+    "content": "PLTR in new high territory so it could def keep running, but generally i look for at least 3-5 days momo in a new trend for swing which on weekly chart started this week with earnings. Short term is stretched above daily 9EMA so you would need a wider stop perhaps down to that gap-low at 47 if starting a new long position up here so not exactly good R/R. i definitely wouldn't try and anticipate a short on something this strong is my best advice \ud83d\ude42 if want to look for a top you want to see more of a parabolic type move with blow-off volume and bearish price action on daily (reverse hammer)",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "PLTR"
+    ],
+    "reply_to": "1304137914061684812"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1304426719419043921",
+    "ts": "2024-11-08T12:46:04",
+    "author": "Neto Moreno (Performance Coach)",
+    "content": "**RULES RULES RULES FOR FRIDAY**\n\nSeriously, take a screenshot of this and keep it handy. \n\n**If you\u2019re green for the week**, only trade with a small **PORTION of your profits**. For example, if you\u2019re up $1,000, risk just $200-$300. Even if you lose it, you\u2019ll still end the week green. \n\nIf you\u2019re green but don\u2019t have enough profits to play with, **DO NOT TRADE.**\n\n**If you\u2019re red for the week, DO NOT TRADE.**\n\nEven if you\u2019re green and have profits to spare, you can always take Friday off. Enjoy a 3-day weekend\u2014it\u2019s never a bad idea. \n\nRemember, **__Fridays won\u2019t make you, but they can break you__**. \n\nStick to these rules, and you\u2019ll never end the week on a bad note.\n\n@everyone <@&1219020123218645102>   \n\nPlease confirm you have read this with a \ud83e\udd11",
+    "score": 2,
+    "categories": [
+      "pnl-mention",
+      "polar-term"
+    ],
+    "tickers": [
+      "FRIDA",
+      "TRADE",
+      "DO",
+      "RULES"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1305257175244996618",
+    "ts": "2024-11-10T19:46:01",
+    "author": "TonyMontana",
+    "content": "What\u2019s up guys!\n\nHope everyone is having a good weekend after a BIG week last week.\n\nWe have crypto pumping today and markets overall bullish.\n\nA quick message to be cautious this week,\n\nMonday we have a bank holiday but markets are open expect low volume and chop.\n\nAfter that overall on most charts we do need a pullback.\n\nI know fomo is high for most people right now but don\u2019t do anything dumb this week (full size, low quality trades, impulsive trades)\n\nLet\u2019s keep following our rules and look for high quality setups this week.\n\nRemember it\u2019s about staying in the game long term.\n\nA lot of people see the $130k trade in a week and think it took a week.\n\nNo.\n\nIt took 7+ years of learning and long nights.\n\nWith this being said, I\u2019ll catch you on voice Monday at 9:25AM EST!\n\n@everyone",
+    "score": 3,
+    "categories": [
+      "pnl-mention",
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "EST",
+      "BIG"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1306682929849565324",
+    "ts": "2024-11-14T18:11:27",
+    "author": "patapesa",
+    "content": "Could of been a good short today. Definitely looking at this tomorrow either up or down.",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": "1306666738896867328"
+  }
+]

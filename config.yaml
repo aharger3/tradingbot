@@ -6,3 +6,8 @@ max_trades_per_day: 3
 consecutive_loss_halt: 2
 data_feed: tastytrade
 alpaca_fallback: false
+# SPEC15 futures mode: run `live_scanner.py --futures ES` (or NQ/RTY)
+mode: options
+futures_contract: ES
+futures_session_start: "09:30"
+futures_session_end: "16:00"

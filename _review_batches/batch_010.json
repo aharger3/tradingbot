@@ -1,0 +1,913 @@
+[
+  {
+    "channel": "trading-floor",
+    "id": "1328391686757416980",
+    "ts": "2025-01-13T15:54:18",
+    "author": "DWC2016",
+    "content": "I drew my level just sligghty off on QQQ's I should have entered a short just now. and now I missed the trade would have been a big W. Kinda pissed at my self. SMH \ud83e\udd26\u200d\u2642\ufe0f",
+    "score": 3,
+    "categories": [
+      "should-judgment",
+      "ticker-action"
+    ],
+    "tickers": [
+      "SMH",
+      "QQQ"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1328394942741221397",
+    "ts": "2025-01-13T16:07:14",
+    "author": "NnelGdaBandit",
+    "content": "I followed along and for me I got a bad fill, but ended up squeaking out a profit",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1328423044607115305",
+    "ts": "2025-01-13T17:58:54",
+    "author": "Jnyma",
+    "content": "@Lauren question..,A big mistake I still hold AAPL call cons , should I close it a cut the loss? Exp Jan 31",
+    "score": 2,
+    "categories": [
+      "should-judgment"
+    ],
+    "tickers": [
+      "AAPL"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1328755032438603951",
+    "ts": "2025-01-14T15:58:06",
+    "author": "StevenP",
+    "content": "basically the first trade loss was a my bad waited to long to hit the button. then it stair stepped down on me. missed the entry off the 235 retest again got back in on the retest of 235.43 at 9:10 and sold at hod to cut the first loss in half and here we are lol",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1328756291446771833",
+    "ts": "2025-01-14T16:03:06",
+    "author": "StevenP",
+    "content": "i forgot you took q's my bad",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": "1328756192713113600"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1328756618846015499",
+    "ts": "2025-01-14T16:04:25",
+    "author": "DWC2016",
+    "content": "The trade wasn\u2019t bad , didn\u2019t make any clear mistake maybe I coulda got out when it hit my entry I guess",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1328759723520167977",
+    "ts": "2025-01-14T16:16:45",
+    "author": "StevenP",
+    "content": "i wouldve been ok had it not stopped me out. then i shouldve renetered on the candle that stopped me out and looks like i wouldve been around $100 profit",
+    "score": 2,
+    "categories": [
+      "pnl-mention",
+      "ticker-action"
+    ],
+    "tickers": [],
+    "reply_to": "1328759153061134396"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1329120052527763540",
+    "ts": "2025-01-15T16:08:34",
+    "author": "demchy19",
+    "content": "Also, if it comes back to the PMH, I noticed the 15-minute chart doesn\u2019t look very good for going long. The last 15-minute candle closed \"green,\" but it had a very long wick on top.",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "PMH"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1329137056915652688",
+    "ts": "2025-01-15T17:16:08",
+    "author": "DWC2016",
+    "content": "I would have gotten tesla but its like $1000-$1500 for just one con. Pretty crazy , and Im starting with a smaller/new account so I been avoiding those crazy expensive cons but geez that was a great trade kinda wish I got in but for new account super risky",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "pnl-mention"
+    ],
+    "tickers": [],
+    "reply_to": "1329135098175557662"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1329138166451535893",
+    "ts": "2025-01-15T17:20:33",
+    "author": "TG",
+    "content": "True. Today was the first time buying Telsa in a long while. I have a smell account as well. I only look at the cons during the later part of the week--$1500 decreases to $800 or so.",
+    "score": 2,
+    "categories": [
+      "pnl-mention",
+      "ticker-action"
+    ],
+    "tickers": [],
+    "reply_to": "1329137056915652688"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1329138795693735956",
+    "ts": "2025-01-15T17:23:03",
+    "author": "DWC2016",
+    "content": "yea I looked today with was still $8-$9 for those still with start account of $2k not worth putting the whole account into. Then if I get stopped I cant even trade any more trade for the day haha. The QQQ is good for now pretty much everything else is in that $1-$4 range so imma chill on tela.",
+    "score": 3,
+    "categories": [
+      "pnl-mention",
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "QQQ"
+    ],
+    "reply_to": "1329138166451535893"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1329138882960298006",
+    "ts": "2025-01-15T17:23:23",
+    "author": "DWC2016",
+    "content": "But damn it was a good trade 100% would have taken it if it wasnt for those insane con prices",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1329170174837784669",
+    "ts": "2025-01-15T19:27:44",
+    "author": "DocHolliday615",
+    "content": "<@1121621751764369501> another great trade today.  I have a question about your TP1 at 131.50, though.  How did you choose that over 132.30, which seems to be similarly significant as an intra-day level?  Especially since 132.50 being near the base of the impulsive bullish CPI news candle.  I would have probably dumped most of my position there.",
+    "score": 2,
+    "categories": [
+      "adj-trade"
+    ],
+    "tickers": [
+      "CPI"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1329474611678810244",
+    "ts": "2025-01-16T15:37:27",
+    "author": "demchy19",
+    "content": "Hi <@1121621751764369501>  do you think this would be good entry?  or should i wait to break PDH?",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [
+      "PDH"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1329486498969686137",
+    "ts": "2025-01-16T16:24:42",
+    "author": "Lauren (lakatrades)",
+    "content": "If the price successfully retests and holds above PDH, this could be a solid entry point with lower risk, as you're entering at support",
+    "score": 2,
+    "categories": [
+      "adj-trade"
+    ],
+    "tickers": [
+      "PDH"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1329548454753599621",
+    "ts": "2025-01-16T20:30:53",
+    "author": "demchy19",
+    "content": "Also, now if QQQ goes up, it looks like a good entry point, haha",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [
+      "QQQ"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1329835027235737601",
+    "ts": "2025-01-17T15:29:37",
+    "author": "demchy19",
+    "content": "if comes back to PDH is still good entry to go down?",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [
+      "PDH"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1329837507734536234",
+    "ts": "2025-01-17T15:39:29",
+    "author": "demchy19",
+    "content": "It needs to break PDH and retest; this would indicate a good entry. I\u2019m tempted to jump in before it gets to the 224 level, which is the previous resistance.",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [
+      "PDH"
+    ],
+    "reply_to": "1329837123410591785"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1329837653398655007",
+    "ts": "2025-01-17T15:40:03",
+    "author": "akkari",
+    "content": "How do you guys manage to get good RR with very small sizes? Say you just have 1 con take it off at profit at HOD/LOD which can sometimes be at like 0.5-1R...Problem is you keep doing this, one bad trade could potentially wipe out a few good trades. Obviously if you have 5-10 cons or more then now you have more flexibility to take partials and raise the overall RR, but when you're not yet comfortable with these sizes, what do you do?",
+    "score": 5,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [
+      "LOD",
+      "HOD",
+      "RR"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1329839437500252301",
+    "ts": "2025-01-17T15:47:09",
+    "author": "demchy19",
+    "content": "do oyu think is good entry for put?",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1329852133146759289",
+    "ts": "2025-01-17T16:37:36",
+    "author": "Lauren (lakatrades)",
+    "content": "No worries, Demchy19, I\u2019m here for you and anyone needing step-by-step help..no judgment here! \ud83d\ude0a\n\nFocus on one chart at a time, make a solid trade plan, and stick to it. With patience and discipline, the bags will come..I can assure you this!\n\nTrading\u2019s a journey, and we all face ups and downs. Take it one step at a time you\u2019ve got this! \ud83d\udcaa",
+    "score": 2,
+    "categories": [
+      "adj-trade"
+    ],
+    "tickers": [],
+    "reply_to": "1329850673323577395"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1329856508111884379",
+    "ts": "2025-01-17T16:54:59",
+    "author": "demchy19",
+    "content": "Hi <@1121621751764369501>  i am looking in META and based on 5 min - 15 min and 30 min looks bearish to me. can you please let me know where woud be the best entry? because i am so focus too look where is the best entry but in the end i miss the trade",
+    "score": 4,
+    "categories": [
+      "adj-trade"
+    ],
+    "tickers": [
+      "META"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1329992811256483862",
+    "ts": "2025-01-18T01:56:36",
+    "author": "MAN786",
+    "content": "I have one contract $435, I am thinking it would hit $447 next week",
+    "score": 2,
+    "categories": [
+      "pnl-mention",
+      "ticker-action"
+    ],
+    "tickers": [],
+    "reply_to": "1329927534665531523"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1330028700581761167",
+    "ts": "2025-01-18T04:19:12",
+    "author": "Mk",
+    "content": "My absolute biggest blunder of a problem is that I do not wait for confirmation. My trade ideas are correct and have learned much from Tony and Jack. But a large part in my trading stems from having the lowest risk possible so I end up trying to catch the bottom for long positions without waiting for confirmation.  Today I had a $1,400 loss on TSLA because I stopped out too early. I re took it later and made $1,600 on it.  Green but could of avoided unnecessary draw down.\n\nMy question is, what type of confirmations do you guys look for on trending days? Green 5 min candle close above the level with strong volume or something else?  <@1014389514141184074> <@1121621751764369501> <@792532341565554728>",
+    "score": 2,
+    "categories": [
+      "pnl-mention",
+      "ticker-action"
+    ],
+    "tickers": [
+      "TSLA"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1330030864158949396",
+    "ts": "2025-01-18T04:27:48",
+    "author": "Neto Moreno (Performance Coach)",
+    "content": "For this setup to work best, there are some essential components:\n\nBreak of the level \u2013 Price needs to decisively break above or below the identified support or resistance.\nDisplacement \u2013 There should be a noticeable and strong move away from the level after the break. This ensures momentum and liquidity have shifted.\nRetest \u2013 Price then retraces to retest the broken level.\nReaction \u2013 Finally, observe how price reacts during the retest. Strong rejection or confirmation signals the continuation of the move, offering a potential entry point.\n\nWaiting for all these steps helps filter out false breakouts and increases the probability of a successful trade.",
+    "score": 2,
+    "categories": [
+      "adj-trade"
+    ],
+    "tickers": [],
+    "reply_to": "1330028700581761167"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1331295084049858560",
+    "ts": "2025-01-21T16:11:22",
+    "author": "Humantorch",
+    "content": "Also, for strike price, would you take next closest, or 2nd farther price? (Even though it might not hit it, you'll get a good gain)",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1331298607722266786",
+    "ts": "2025-01-21T16:25:22",
+    "author": "DWC2016",
+    "content": "clearly not impossible to be profitable with options. Tony did $50k last week Jdub crushed it as well. And many members is here crush it as well just have to be detailed and journal what your doing about what you think the issue is. Maybe it\u2019s an issue with risk to reward ,  cause you should be trading on the underlying. The speed of which ur SL hits or TP hits shouldn\u2019t matter that much for day trades unless your trading 0DTES . TELSA cons move good . AAPL cons kinda suck",
+    "score": 2,
+    "categories": [
+      "pnl-mention",
+      "polar-term"
+    ],
+    "tickers": [
+      "TELSA",
+      "SL",
+      "AAPL",
+      "TP"
+    ],
+    "reply_to": "1331297291339960434"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1331299369424781363",
+    "ts": "2025-01-21T16:28:24",
+    "author": "ND",
+    "content": "for a good trade",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1331300696586190919",
+    "ts": "2025-01-21T16:33:40",
+    "author": "DWC2016",
+    "content": "It\u2019s not impossible to be profitable with options if you have that mind set you will indeed make it impossible as many others here make it happen. I\u2019m on my 1st month and profitable. My 1st week was maybe $700 profits nothing crazy but it can be done. I\u2019m new to options and in the green for 2 weeks right now. \n\nToday not a great day tho , I took NVDA as well it\u2019s in slight profits. \nEveryone 100% faces problems / set backs. If you think \u201cit\u2019s impossible\u201d then you will not push through. Maybe ask specific questions so we can try to help you more \ud83d\ude4f",
+    "score": 2,
+    "categories": [
+      "pnl-mention",
+      "ticker-action"
+    ],
+    "tickers": [
+      "NVDA"
+    ],
+    "reply_to": "1331298971821543609"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1331312048977744017",
+    "ts": "2025-01-21T17:18:47",
+    "author": "Humantorch",
+    "content": "<@814780110095515649> agreed TSLA is way too expensive, what are some good cons for beginner that are \"affordable\"? like today when i took the likes of AMD, AAPL, AMZN they were all pretty affordable at around 130-200$",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "TSLA",
+      "AAPL",
+      "AMZN",
+      "AMD"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1331323290786205697",
+    "ts": "2025-01-21T18:03:27",
+    "author": "DWC2016",
+    "content": "<@1121621751764369501> this NVDA trade eneded being a GREAT trade wish I held a longer got out  just above high of day and its still pushing. Next time I need to learn how to bar by bar or just wait for weakness. feel like a got out a bit early tbh. could have like 20%+ more profits geez. but Im happy to end green on a day like today",
+    "score": 2,
+    "categories": [
+      "adj-trade"
+    ],
+    "tickers": [
+      "GREAT",
+      "NVDA"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1331326204804075624",
+    "ts": "2025-01-21T18:15:02",
+    "author": "DWC2016",
+    "content": "Yea dude paper is fine I did paper for a lil bit at 1st as well. Yea feel like I funmle NVDA its still pumping suuuuper hard haha. All well I made money but in the future I will hold longer and wait for weakness looking back it didnt even have a down closed candle when I sol dit was pumping all green so no need to sell. but over all great trade.",
+    "score": 2,
+    "categories": [
+      "adj-trade"
+    ],
+    "tickers": [
+      "NVDA"
+    ],
+    "reply_to": "1331325053975003298"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1331327015701446656",
+    "ts": "2025-01-21T18:18:15",
+    "author": "demchy19",
+    "content": "Actually this was my best trade ever! Unfortunately on paper trading but i am still happy with everything!",
+    "score": 2,
+    "categories": [
+      "adj-trade"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1331639175241404427",
+    "ts": "2025-01-22T14:58:40",
+    "author": "DWC2016",
+    "content": "<@1121621751764369501> great entry on NVDA ! I wasnt comformable to enter the trade in the 1st 60sec but tha def was the move today",
+    "score": 2,
+    "categories": [
+      "adj-trade"
+    ],
+    "tickers": [
+      "NVDA"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1331644364526583889",
+    "ts": "2025-01-22T15:19:17",
+    "author": "JL",
+    "content": "hey <@1121621751764369501> , how long after you enter a trade do you start drawing your \"protect your capital\" trend line?   noticed you've done that several times which is good discipline.  but wondering does that usually work out or have you found that prices could pull back below that line and bounce?",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": "1331641565256482908"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1331648110782316615",
+    "ts": "2025-01-22T15:34:10",
+    "author": "demchy19",
+    "content": "Now that I have some time while waiting for NVDA to push higher, I wanted to share an issue. On paper trading, I\u2019m doing pretty well with my trades, but once I switch to my real trading account, my brain and emotions just skyrocket. My judgment for entries, holding through wins and losses, doesn\u2019t work properly. LOL. I understand this is normal, but does anyone have an idea of how I can fix that?\nFor example, I had an amazing entry on NVDA, similar to <@1121621751764369501> . But when the stock pulled back on the 1-minute chart, I got scared and sold out. I was too scared... even though I had the thesis! and i am really angry at myself",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [
+      "LOL",
+      "NVDA"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1331651113593606168",
+    "ts": "2025-01-22T15:46:06",
+    "author": "MAN786",
+    "content": "Or else it will hit my stop loss and I will close out all 10 below $146",
+    "score": 2,
+    "categories": [
+      "pnl-mention",
+      "ticker-action"
+    ],
+    "tickers": [],
+    "reply_to": "1331650858265608325"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1331660339690868747",
+    "ts": "2025-01-22T16:22:46",
+    "author": "demchy19",
+    "content": "Haha, and I helped you! Yesterday, I took a paper trade, and it went up $100. Today, with real money\u2014disaster!",
+    "score": 2,
+    "categories": [
+      "pnl-mention",
+      "ticker-action"
+    ],
+    "tickers": [],
+    "reply_to": "1331659759924805633"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1331676350838345729",
+    "ts": "2025-01-22T17:26:23",
+    "author": "PewSpatialPew",
+    "content": "UAL just had good earnings and its approaching a key level. It's a slow stock, but i think if you buy further out, once it hits or if you like how its holding 108, it can move up to ATH. Could also just buy the stock.\n\nSTX also had really good earnings, so i'm waiting for it to hit 107 area, ish",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "STX",
+      "UAL",
+      "ATH"
+    ],
+    "reply_to": "1331674636056002621"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1331676807191199785",
+    "ts": "2025-01-22T17:28:12",
+    "author": "PewSpatialPew",
+    "content": "i also think RKLB if it hits 28 and maintains, might be a good starter position long term",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "RKLB"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1331751621130059917",
+    "ts": "2025-01-22T22:25:29",
+    "author": "ND",
+    "content": "im still kind of new to this strat. was this a good trade?",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1332006045056237668",
+    "ts": "2025-01-23T15:16:28",
+    "author": "DWC2016",
+    "content": "<@1025807331327475863> break and retest it was a good trade would have TP a con alreay but I didnt understand why I wasnt in profits after my TP#1 was pretty much hit then I realized I messed up the cons smh",
+    "score": 4,
+    "categories": [
+      "adj-trade",
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "TP"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1332028154880987228",
+    "ts": "2025-01-23T16:44:20",
+    "author": "xxdominic1",
+    "content": "THATS A SOLID ENTRY THEN",
+    "score": 2,
+    "categories": [
+      "adj-trade"
+    ],
+    "tickers": [
+      "THEN",
+      "SOLID",
+      "THATS",
+      "ENTRY"
+    ],
+    "reply_to": "1332028079476051978"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1332030986413670524",
+    "ts": "2025-01-23T16:55:35",
+    "author": "Eyrian",
+    "content": "some good long lower wick though, no`?",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1332046108649852968",
+    "ts": "2025-01-23T17:55:40",
+    "author": "ErenTheExile",
+    "content": "Youre right. I just don't understand why I don't learn my lesson after blowing my hard earning money in dumb moves. I blew my account last month and I'm doing it again. I might step away from the market for a while and study mentality stuff",
+    "score": 2,
+    "categories": [
+      "adj-trade"
+    ],
+    "tickers": [],
+    "reply_to": "1332045681095086123"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1332053467132592249",
+    "ts": "2025-01-23T18:24:54",
+    "author": "DWC2016",
+    "content": "yea good plays easy setups on NVDA today I think if we come back to HOD for the 3rd and break through its going to be a strong bullish push because we double topped came back down to retest the key level and then now back up.",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [
+      "NVDA",
+      "HOD"
+    ],
+    "reply_to": "1332053058993258559"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1332099246249214074",
+    "ts": "2025-01-23T21:26:49",
+    "author": "StevenP",
+    "content": "listen i lost on nvda yesterday morning. setup was right. entry was good took my first target but didnt take enough for the move it made. hit my Sl and respected it. look what nvda did. it consolidated after my sl hit then went up. i couldve taken the second entry at 11:15 but i lost my max amount for the day so paper traded it and moved on to today. didnt take the 5 times nvda gave to enter after missing my initial entry on open due to the speech today so i sat and played paper.",
+    "score": 4,
+    "categories": [
+      "copula-judgment",
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1332101400775229634",
+    "ts": "2025-01-23T21:35:23",
+    "author": "Ali",
+    "content": "Takes real discipline after seeing everyone make such good gains. Goal is to be a good trader, not to be a king money maker short term",
+    "score": 4,
+    "categories": [
+      "adj-trade",
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1332367994680115211",
+    "ts": "2025-01-24T15:14:44",
+    "author": "BrokeAintNoJoke",
+    "content": "Two Trades today, NVDA. Traded the retest of 5 min Low to the upside. Missed the entry on the retest from previous day Break (Thanks <@1121621751764369501> n for pointing out) and scaled 25% out for profit and the rest at breakeven. Then saw weakness at 61% fib level and took put at the break under the Key level highlighted by JDUB. First positive week and finally taking some good trades.",
+    "score": 4,
+    "categories": [
+      "adj-trade",
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "JDUB",
+      "NVDA"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1332383684732387438",
+    "ts": "2025-01-24T16:17:04",
+    "author": "Mk",
+    "content": "solid move bro",
+    "score": 2,
+    "categories": [
+      "adj-trade"
+    ],
+    "tickers": [],
+    "reply_to": "1332383295740313643"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1332385412571988089",
+    "ts": "2025-01-24T16:23:56",
+    "author": "PewSpatialPew",
+    "content": "haha, i think lulu is interesting very long term. had good earnings, but its an expensive stock.\n\ni like ulta alot too.",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": "1332385237329772665"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1332389383332036618",
+    "ts": "2025-01-24T16:39:43",
+    "author": "Chris",
+    "content": "need another good trade for today meta or nvda?",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1332411166957506582",
+    "ts": "2025-01-24T18:06:17",
+    "author": "void",
+    "content": "Was thinking about buying the calls when it was $2 and it's $8 now haha feels amazing",
+    "score": 2,
+    "categories": [
+      "pnl-mention",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1332433418637807746",
+    "ts": "2025-01-24T19:34:42",
+    "author": "Nines",
+    "content": "Jk good trade",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1332661498899857500",
+    "ts": "2025-01-25T10:41:00",
+    "author": "BrokeAintNoJoke",
+    "content": "I took the put trade yesterday because of multiple confluences. Price had retraced to the 61% fib level which correlated closely to the KL from previous PDH (I read trading bible over last weekend in books channel), PA was showing wicks up for a few bars showing sellers keeping price from breaching, there was a perfect test of the 1min ORB low and I think at the same time Qs and Spy showed weakness. \nI did not expect it to go down that quickly and exited all cons in the same fashion missing out on the huge move downward. I failed to leave trailers and scale. Also exited completely because just minutes prior I was in a call that at peak was 3x what I closed scaling 25% then 75% at breakeven. One lesson is I need to remember to leave trailers. Missed the big move downward. could have been a $3k day instead of $550 if I left trailers. That said I am happy that I am starting to see profitable entries.",
+    "score": 3,
+    "categories": [
+      "pnl-mention",
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "KL",
+      "PDH",
+      "ORB",
+      "PA"
+    ],
+    "reply_to": "1332399180794040362"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1333181483296493668",
+    "ts": "2025-01-26T21:07:14",
+    "author": "Amoney",
+    "content": "Lauren do you mind sharing how long you\u2019ve been trading? The way you analyze charts is really amazing, but I also know it comes with time so I was just curious.",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": "1333176818525802517"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1333462018736259114",
+    "ts": "2025-01-27T15:41:59",
+    "author": "Chris",
+    "content": "Any good setups rn",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1333465167543140513",
+    "ts": "2025-01-27T15:54:30",
+    "author": "Viper",
+    "content": "On that APPL trade, should I have scaled majority of my position at my first TP? I got in at the 1 minute opening range retest, and sold 33% at my first TP should I have sold more or was that ok?",
+    "score": 2,
+    "categories": [
+      "should-judgment"
+    ],
+    "tickers": [
+      "APPL",
+      "TP"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1333475215426191515",
+    "ts": "2025-01-27T16:34:26",
+    "author": "Viper",
+    "content": "should I have scaled 66% at my first scale instead of 33%",
+    "score": 2,
+    "categories": [
+      "should-judgment"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1333491082943791184",
+    "ts": "2025-01-27T17:37:29",
+    "author": "Lauren (lakatrades)",
+    "content": "I was at 16k when NVDA hit TP2, but it started showing mixed strength and eventually dropped to 8k. It also broke the trendline, which is when I decided to sell all of the contracts. I\u2019m good with that for now",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "NVDA"
+    ],
+    "reply_to": null
+  }
+]

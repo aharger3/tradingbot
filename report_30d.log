@@ -1,0 +1,7 @@
+1292 signals, 145 chart records
+  * A+/A win rate 38% vs B/C 40% -> grading NOT predictive this week - review PA grade criteria
+  * D-grade filter: filtered signals would have won 31% -> filter justified (<50%)
+  * 84% rule (Scarface-faithful: arms only on A+ stop-outs, one re-entry then disarm): 7 triggers, fired win rate n/a. Was 51 triggers/week before the disarm fix.
+  * LIVE BUG: 84% rule can never fire in production - session.entry_price is only set by session.start_trade(), which live_scanner never calls. Backtest armed it manually on simulated stop-outs. Wire SPEC12 position tracking into live_scanner or the rule stays dead code.
+  * Best setup: break_and_retest (53%) | worst: one_candle_rule (31%)
+  * C-grade alerts (86, alert-only per SPEC2) would have won 36% - similar to traded grades; alert-only demotion costs little.

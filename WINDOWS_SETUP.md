@@ -1,4 +1,4 @@
-# Windows Setup — Vanquish Signal Bot
+# Windows Setup — Omen Signal Bot
 
 Run the scanner on a Windows machine 24/7. Hermes edits the rules via GitHub; this machine runs the bot.
 
@@ -101,7 +101,7 @@ Optional: add a second daily task at 9:24 AM that runs `git pull` first, so you 
 
 1. 9:24 ET — Task Scheduler runs `git pull` (gets Hermes's latest rules)
 2. 9:25 ET — Task Scheduler runs `live_scanner.py`
-3. 9:30-11:00 ET — signals post to Discord, you trade in Vanquish
+3. 9:30-11:00 ET — signals post to Discord, you trade in Omen
 4. 11:05 ET — Hermes asks how it went, logs journal
 5. Anytime — talk to Hermes about improvements; it commits to GitHub; next morning's `git pull` picks them up
 

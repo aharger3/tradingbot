@@ -1,10 +1,10 @@
 ---
-name: vanquish-trading-rules
+name: omen-trading-rules
 created: 2026-05-22
 status: active
 ---
 
-# Vanquish Trading Rules
+# Omen Trading Rules
 
 ## Core Parameters
 - **Timeframe**: 1-minute candles only
@@ -114,7 +114,7 @@ Screenshot from 2026-05-23:
 ## Status (as of 2026-05-24)
 
 **Implemented**:
-- Signal detection engine (`vanquish_bot.py`): break-and-retest, one-candle-rule, 84% rule logic
+- Signal detection engine (`omen_bot.py`): break-and-retest, one-candle-rule, 84% rule logic
 - Mock data generator (`data_loader.py`): realistic test scenarios for all three setups
 - Backtester framework (`backtester.py`): validates signal logic on historical/mock data
 - Discord webhook integration (`discord_bot.py`): colored embeds, real-time alerts

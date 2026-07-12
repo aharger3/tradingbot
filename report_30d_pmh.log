@@ -1,0 +1,62 @@
+$TSLA: possibly delisted; no price data found  (1m 2026-07-04 -> 2026-07-06)
+
+1 Failed download:
+['TSLA']: possibly delisted; no price data found  (1m 2026-07-04 -> 2026-07-06)
+$NVDA: possibly delisted; no price data found  (1m 2026-07-04 -> 2026-07-06)
+
+1 Failed download:
+['NVDA']: possibly delisted; no price data found  (1m 2026-07-04 -> 2026-07-06)
+$AAPL: possibly delisted; no price data found  (1m 2026-07-04 -> 2026-07-06)
+
+1 Failed download:
+['AAPL']: possibly delisted; no price data found  (1m 2026-07-04 -> 2026-07-06)
+$AMD: possibly delisted; no price data found  (1m 2026-07-04 -> 2026-07-06)
+
+1 Failed download:
+['AMD']: possibly delisted; no price data found  (1m 2026-07-04 -> 2026-07-06)
+$META: possibly delisted; no price data found  (1m 2026-07-04 -> 2026-07-06)
+
+1 Failed download:
+['META']: possibly delisted; no price data found  (1m 2026-07-04 -> 2026-07-06)
+$GOOG: possibly delisted; no price data found  (1m 2026-07-04 -> 2026-07-06)
+
+1 Failed download:
+['GOOG']: possibly delisted; no price data found  (1m 2026-07-04 -> 2026-07-06)
+$AMZN: possibly delisted; no price data found  (1m 2026-07-04 -> 2026-07-06)
+
+1 Failed download:
+['AMZN']: possibly delisted; no price data found  (1m 2026-07-04 -> 2026-07-06)
+$MSFT: possibly delisted; no price data found  (1m 2026-07-04 -> 2026-07-06)
+
+1 Failed download:
+['MSFT']: possibly delisted; no price data found  (1m 2026-07-04 -> 2026-07-06)
+$PLTR: possibly delisted; no price data found  (1m 2026-07-04 -> 2026-07-06)
+
+1 Failed download:
+['PLTR']: possibly delisted; no price data found  (1m 2026-07-04 -> 2026-07-06)
+$SPY: possibly delisted; no price data found  (1m 2026-07-04 -> 2026-07-06)
+
+1 Failed download:
+['SPY']: possibly delisted; no price data found  (1m 2026-07-04 -> 2026-07-06)
+$QQQ: possibly delisted; no price data found  (1m 2026-07-04 -> 2026-07-06)
+
+1 Failed download:
+['QQQ']: possibly delisted; no price data found  (1m 2026-07-04 -> 2026-07-06)
+fetching TSLA...
+fetching NVDA...
+fetching AAPL...
+fetching AMD...
+fetching META...
+fetching GOOG...
+fetching AMZN...
+fetching MSFT...
+fetching PLTR...
+fetching SPY...
+fetching QQQ...
+1594 signals, 171 chart records
+  * A+/A win rate 38% vs B/C 41% -> grading NOT predictive this week - review PA grade criteria
+  * D-grade filter: filtered signals would have won 30% -> filter justified (<50%)
+  * 84% rule (Scarface-faithful: arms only on A+ stop-outs, one re-entry then disarm): 8 triggers, fired win rate n/a. Was 51 triggers/week before the disarm fix.
+  * LIVE BUG: 84% rule can never fire in production - session.entry_price is only set by session.start_trade(), which live_scanner never calls. Backtest armed it manually on simulated stop-outs. Wire SPEC12 position tracking into live_scanner or the rule stays dead code.
+  * Best setup: break_and_retest (50%) | worst: one_candle_rule (31%)
+  * C-grade alerts (103, alert-only per SPEC2) would have won 39% - similar to traded grades; alert-only demotion costs little.

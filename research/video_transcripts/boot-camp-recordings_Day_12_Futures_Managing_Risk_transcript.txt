@@ -1,0 +1,1088 @@
+# Transcription: boot-camp-recordings_Day_12_Futures_Managing_Risk.wav
+# Duration: 6455s
+# Model: tiny
+
+[0s-5s] Yeah, what's up everyone?
+[5s-6s] Hope you guys are doing well.
+[6s-9s] Just gonna wait a couple more minutes
+[9s-11s] until everyone comes in here.
+[11s-12s] How's everyone's trading?
+[12s-14s] Kind of day and trading week.
+[14s-15s] Been so far.
+[15s-18s] I'd say Monday and Tuesday kind of nice rally towards
+[18s-21s] the upside currently as you can see right?
+[21s-24s] Last two days, been a little bit more hands off just because
+[24s-28s] a lot of kind of major news earnings,
+[28s-31s] sort of major news that we have in the market,
+[31s-32s] specifically earnings.
+[32s-34s] And you can see how that really impacts the market, right?
+[34s-39s] Anything that happens in your day, not as significant,
+[39s-42s] compared to something that happens when there's a news catalyst,
+[42s-45s] right currently, you can see Apple, right?
+[45s-48s] Microsoft, sorry, Apple and Amazon.
+[48s-50s] These are really kind of what's moving the market.
+[50s-52s] And that's why I've been a little bit more cautious.
+[52s-54s] We'll kind of talk about that today.
+[54s-56s] When it comes to futures and everything else,
+[56s-58s] when it comes to news.
+[58s-60s] Yeah, it's up everyone.
+[60s-67s] Hope you guys are doing well.
+[67s-68s] It's up.
+[68s-71s] I have lots of water here as well.
+[71s-73s] It's day number, what is it?
+[73s-76s] Day number 12 or 13.
+[76s-80s] So it's good to see some of you guys are still here.
+[80s-85s] Taza Andy, Gary, Malayne,
+[85s-89s] what's okay, O, Zoom, good to see a bunch of familiar faces.
+[89s-93s] Yeah, what's up everyone?
+[93s-96s] Let me scroll down here as well.
+[96s-97s] Let's up everyone.
+[97s-102s] Muhammad, Neo, Asmin, what's up, Hayden, Omar?
+[102s-104s] Did I miss anything now?
+[104s-105s] We're just starting.
+[105s-110s] We've got some water here and we'll get started as for today.
+[110s-113s] We're going to go over futures.
+[113s-114s] What are my more favorite classes?
+[114s-116s] It's a little something different.
+[116s-121s] So right, you guys know, we've primarily trade options.
+[121s-128s] We trade a futures a lot more in the past year, but not as of recent, but futures
+[128s-131s] something that's within kind of our toolbox.
+[131s-135s] I think there's a time and place for futures, especially if the market's ranging.
+[135s-140s] And I think it's really good to understand at least number one what the indices are doing.
+[140s-144s] Because a lot of times, if you can understand what the overall markets are doing, it's
+[144s-152s] a lot easier to trade the underlying tech name.
+[152s-155s] Alrighty.
+[156s-160s] Long time no see-hating, yeah, to have an implementation called nice.
+[160s-164s] I'm rewatching the recordings and finally understanding by the ass and sell the bid.
+[164s-168s] Yeah, it's great about these as well as we always have them recorded.
+[168s-170s] And you guys will have these recordings for life.
+[170s-174s] So you can always look back on these recordings specifically on the bootcamp, the live
+[174s-180s] sessions that we always have, pre-market props, the accelerator, where everything's recorded
+[180s-182s] so you guys can go back and look at it.
+[182s-185s] Especially if you go a little bit too fast or you're beginner, right?
+[185s-189s] That's the reason why we have them.
+[189s-191s] Okay.
+[191s-197s] Before we get started here, I just want to have kind of, I'm curious.
+[197s-203s] Type in the chat if you guys trade futures or you primarily trade options, right?
+[203s-207s] Type in the chat, I'm actually curious to see how many futures traders there.
+[207s-224s] Type either futures or options or stocks, or whatever asset cost you trade.
+[224s-228s] I see a lot of futures at the start.
+[228s-234s] I see some stocks, some options, a lot of options here.
+[234s-239s] Some of both futures and options.
+[239s-241s] Okay.
+[241s-244s] So there's kind of a wide variety here.
+[244s-247s] So the futures completely new.
+[247s-250s] So yeah, if you trade options, there's a good chance.
+[250s-257s] You understand futures or you'll have a very easy to understand futures because we
+[257s-258s] kind of always talk with this.
+[258s-259s] Right?
+[259s-262s] Options is one of the most complex financial instruments.
+[262s-264s] Futures a lot easier.
+[264s-268s] There's less things that go into it, especially the Greeks.
+[268s-271s] So if you guys trade, if you only trade options, then futures is going to be a lot easier
+[271s-273s] to understand.
+[273s-277s] If you start off on futures, this is great as well because futures is something as
+[277s-278s] a mention.
+[278s-282s] If you can understand the overall direction of the markets, there's a good chance you can
+[282s-286s] understand the overall direction of the tech names and everything else.
+[286s-290s] Yeah, that's good to kind of see in the chat.
+[290s-291s] I guess there's a wide variety.
+[291s-297s] What's great about this is to show you guys that really the break and retes can work in
+[297s-299s] a multitude of different asset classes, right?
+[299s-303s] Features, right, options, stocks, right, crypto.
+[303s-305s] There's a bunch of other things as well.
+[305s-310s] And as for the people that do trade futures, I'm curious to you guys trade on personal
+[310s-314s] capital, you guys trade on the prop firms because they know the prop firms have gotten quite
+[314s-316s] popular the past.
+[316s-332s] Let's say two years, a lot of people do trade on prop firms now.
+[332s-341s] Personal, let's see cash account, prop firms, prop personal, right now prop, but looking
+[341s-348s] new personal journey and on, I'm waiting to learn from this and decide what to trade.
+[348s-351s] Okay, so there's a bunch of different ones, right?
+[351s-356s] Majority I say personal and I do see some prop firm accounts as well.
+[356s-357s] Someone's in my boss's account.
+[357s-359s] That's the best trading without your own money.
+[359s-362s] But yeah, what kind of go over futures today?
+[362s-365s] That's kind of the main lesson, kind of basic to futures.
+[365s-370s] We'll go over, right, the very, very basic starting from like what are futures, the
+[370s-372s] different type of future contracts.
+[372s-378s] I will go over how they're calculated, how to calculate, how to calculate the risk, we'll
+[378s-383s] go over my favorite, which will be, which will be how to draw key levels and they'll
+[383s-388s] go over a bunch of examples and then other things as well.
+[388s-394s] First things first, futures, most of you guys already know what futures are, but what essentially
+[394s-395s] are futures?
+[395s-399s] What's the first thing that comes to mind when you guys think of future contracts?
+[399s-401s] Do you guys type in the chat?
+[401s-421s] What's the first thing that you think of?
+[421s-429s] Yes, and Q, commodities, fast movements, indices, portbellies, animals, plants, materials.
+[429s-435s] I'm not sure that's a good answer as well.
+[435s-439s] But yeah, so basically futures, at least when I first started trading futures or when
+[439s-444s] I thought about futures, I thought strictly commodities, right?
+[444s-448s] Things like oil, gold, red, wheat.
+[448s-450s] That's what I thought.
+[450s-455s] Majority of people are already trading the NASDAQ, or the indices as well, but there's
+[455s-460s] so many different types of futures out there, and that's why I think futures is also
+[460s-462s] a great asset class.
+[462s-466s] Let's go into the basics of kind of what futures are.
+[466s-471s] So futures is a contract.
+[471s-476s] If futures contract is a financial derivative that all negates the buyer to purchase and
+[476s-478s] under the line asset.
+[478s-483s] So realistically, when you buy futures contract, similar to kind of options, but a little
+[483s-484s] bit different.
+[484s-489s] Essentially, you're buying, let's say, for example, you're buying a futures contract
+[489s-491s] that's oil.
+[491s-495s] Technically, if you waited for that option, or sorry, the futures contract to expire,
+[495s-500s] let's say, remember, back in the day when oil went negative, I think this was back in
+[500s-503s] like 2021.
+[503s-511s] Technically, if the futures contracts expire, you would be obligated to essentially, you
+[511s-517s] basically be obligated to fulfill that futures contract, whatever that may be.
+[517s-521s] But basically, it's very similar to options in that case.
+[521s-523s] There's essentially just a contract here.
+[523s-529s] So, very similar to option contracts and how it is an agreement between two parties.
+[529s-535s] So think of it like selling stock when you buy in cello stock, you own a share of a company.
+[535s-539s] When you buy futures contracts, you're buying the contract.
+[539s-540s] So it's very similar.
+[540s-543s] It's just a different asset cost.
+[543s-549s] Futures contracts allows traders and investors to speculate on the direction of an asset.
+[549s-555s] So when you're trading futures, right, you're not, it's not a long-term investment.
+[555s-559s] Unless, all right, sorry, when you're trading futures is a mention, it's not a long-term
+[559s-560s] investment.
+[560s-561s] Usually, it's more speculative.
+[561s-563s] Are you day trading it?
+[563s-565s] Maybe you're swing trading it.
+[565s-571s] Instead of buying stock, let's say you're buying Google, Amazon, something like Apple, right,
+[571s-578s] you can invest long-term because you can hold whereas future contracts, they have an expiration.
+[578s-583s] Very similar to options.
+[583s-588s] The value of a futures contracts is calculated based off the asset derives.
+[588s-599s] So in this case, if we're specifically talking about DNQ, along with the ES or the Dow,
+[599s-604s] in this case, it's the YM.
+[604s-607s] As you can see, this is on a right hand side.
+[607s-615s] DNQ, ES and YM are strictly derived and that's calculated based off the price, right, or
+[615s-618s] the asset, it's basically calculated from.
+[618s-629s] So the NQ is the NASDAQ, right, the top 500 companies, sorry, the top, this is the top
+[629s-630s] 100 tech games.
+[630s-633s] The ES is S&P 500.
+[633s-638s] So this is the top 500 companies and there's also the Dow as well.
+[638s-645s] So you'll see that if you're looking at specifically the NQ, right, it's going to be the
+[645s-647s] exact same as the NASDAQ.
+[647s-651s] It's going to the chart, M is on this kind of rip-in, by the way.
+[651s-660s] But you can see, if we look at the spy here, this is spy, right, it's spy ETF.
+[660s-663s] This is what it's called.
+[663s-668s] And what is the spy derived off of the S&P 500?
+[668s-673s] If you're looking at the ES, it's the futures contract.
+[673s-676s] And it's also derived off the S&P 500.
+[676s-682s] And you can see the ES and spy are identical.
+[682s-685s] They're the exact same, at least in price movements.
+[685s-689s] The only difference is they're different asset classes.
+[689s-694s] If you look at the S&P X, it's somewhere thing, right?
+[694s-701s] So when you're trading the spy, or you're trading the ES, when we're talking about these,
+[701s-703s] they're basically talking about the exact same thing.
+[704s-707s] The only difference, as I mentioned, is very minute.
+[707s-712s] It's just basically the asset classes, and there's a little bit of other things that go into it.
+[712s-722s] The exact same thing here on the Q's, I guess it disappeared, but exact same thing for the
+[722s-723s] Q's.
+[723s-729s] Right, as you can see, this is the QQ ETF.
+[729s-732s] And it's derived off the NASDAQ.
+[732s-736s] And if you look at the NQ, it looks exactly the same.
+[736s-739s] Right, there's not a single difference besides, right?
+[739s-741s] Just the asset is traded off of.
+[741s-743s] So this is the stock.
+[743s-745s] Simple way to put it.
+[745s-752s] The QQQ is the stock.
+[752s-759s] And the NQ is the future.
+[759s-765s] Right, it's somewhere thing, spy, and then we have the ES.
+[765s-769s] Right, we have the stock here, and then we have the futures.
+[769s-772s] As I mentioned, they're the exact same thing.
+[772s-775s] They're both derived off, it's called the NASDAQ.
+[775s-778s] And then this one, that's in P500.
+[778s-782s] The way they're calculated is the exact same thing.
+[782s-785s] And there's also someone just mentioned as well.
+[785s-790s] Or sorry, I thought someone said Forex, but right, they're all derived off the same thing.
+[790s-793s] Right, for trading Forex, there's US30.
+[793s-795s] I forget what else it's called.
+[795s-798s] But basically, all these are the exact same.
+[798s-803s] I know it might be a little bit confusing at the start, and it's like, why do we have
+[803s-804s] futures?
+[804s-805s] Why do we have stocks?
+[805s-806s] Why is the S&P?
+[806s-808s] Why can't trade the S&P 500?
+[808s-810s] And like five different asset classes?
+[810s-818s] Right, you have spy, you have ES, you have SPX, you can trade options, you can trade.
+[818s-822s] There's so many different ways you can trade the S&P 500, which might make it a little bit
+[822s-825s] confusing, but as I mentioned, they're all the same thing, but they're just different
+[825s-826s] asset classes.
+[828s-829s] Does this make sense?
+[831s-846s] All right, type in the chat.
+[846s-850s] One, one, one, one, good.
+[850s-852s] Ish.
+[852s-858s] I saw one mentioned, yes, it's confusing, did I know Kiki was, yeah, so that's exactly why.
+[858s-863s] At least when you're starting out, that's why I kind of mentioned that just because
+[863s-868s] some people actually don't know it's the same, even though they're both identical.
+[868s-873s] As I mentioned, if you look at bar by bar price, they look identical.
+[874s-878s] The reason being is because the way they calculate is the exact same, but they're just
+[878s-882s] different asset classes.
+[882s-883s] OK.
+[883s-889s] Now let's go on to the two main type of future contracts.
+[889s-892s] Does anyone know what this is, right?
+[892s-901s] We have really just two different types of futures you can trade, or at least how I like
+[901s-903s] it to break it down into.
+[903s-909s] Does anyone know?
+[918s-926s] And he's in micro's, commodities in index, MES, that's actually the next one, but kind
+[926s-932s] of phrase that question bad, but it's kind of broken up into, I'd say two main types
+[932s-934s] of futures contracts.
+[934s-941s] So what we have here is what I consider what most people trade, but it's actually not as big
+[941s-942s] as you think it is.
+[942s-946s] So we basically have what's called the indices, right?
+[946s-947s] Indicies, currencies.
+[947s-954s] I just call this kind of the financials.
+[954s-959s] And then on the right, what we have is commodities.
+[959s-965s] This is, I'm definitely going to spell that wrong, but I'm just going to do a short form.
+[965s-969s] So we have the financials as I mentioned, stock indices, which we just touched up on.
+[969s-973s] These are the main ones that we trade.
+[973s-979s] And then there's also what most people actually think when they first start is, right,
+[979s-983s] what do you think like metals, energies, right, key guys typing the chat?
+[983s-988s] There's actually a bunch of different types of futures that most people would even know
+[988s-992s] that you can buy and sell.
+[992s-994s] Yeah, gold silver, that one too.
+[994s-998s] What are some other ones?
+[998s-1006s] Come on, these wives.
+[1006s-1008s] Yep, oils of big one.
+[1008s-1011s] A lot of people trade that.
+[1011s-1014s] Corn, pork belly, I don't know if that's actually a thing.
+[1014s-1015s] It's pork belly is a thing.
+[1015s-1016s] I very much will.
+[1016s-1017s] It could be.
+[1017s-1019s] And see there's so many different ones.
+[1019s-1022s] We, yeah, pork belly is exactly.
+[1022s-1027s] So you can see in the chat, people are typing, just these random futures markets, where
+[1027s-1032s] there's like pork belly is, right, I know you can trade, I forget where it was.
+[1032s-1036s] But yeah, we, those are the big ones, natural gas.
+[1036s-1040s] So there's so many different ways you can trade futures gold.
+[1040s-1043s] The main ones we trade as I mentioned.
+[1043s-1049s] Thank you, yes, probably trade the YM, which is the Dow.
+[1049s-1053s] And then what's actually been really good recently is gold.
+[1053s-1058s] Right, gold's been on a very, I think it's called GL.
+[1058s-1060s] What kind of talk about how to identify?
+[1060s-1071s] I'm not sure how many guys trade gold, but in the past year, gold, I think, I forget how
+[1071s-1075s] much it's up over 100% in the past year, which is crazy.
+[1075s-1080s] Right, in the break and retests has been working super solid on gold, just because
+[1080s-1084s] right, as long as we're in a trending market, right, that's what we really want to be
+[1084s-1086s] looking for, anything that's trending.
+[1086s-1094s] I think if you guys traded gold, either via GLD, which actually, we can go back to that.
+[1094s-1096s] Right, so there's features.
+[1096s-1101s] So you have GLD, which is, as I mentioned, the stock.
+[1101s-1106s] So as you can see right here, you search up GLD.
+[1106s-1108s] This is fairly similar to spy.
+[1108s-1111s] Right, so it's a stock version.
+[1111s-1113s] It's called the ETF.
+[1113s-1119s] So in this case, if you want to trade gold on the New York Stock Exchange, where you want
+[1119s-1125s] to search up GLD, if you want to trade the futures, it's called GL.
+[1127s-1135s] I don't know if I actually do this.
+[1135s-1137s] Yeah, so it's called GL.
+[1137s-1142s] Or, sorry, I think it's, what is it?
+[1142s-1145s] Do you guys remember, yeah, would you guys remember with the short formats for gold?
+[1145s-1147s] I thought it was GL, is it not?
+[1147s-1150s] GC, sorry, GC.
+[1150s-1156s] See, sometimes it's a little bit confusing, because there's so many different kind of shortcuts.
+[1156s-1159s] But futures, gold, it's basically GL.
+[1159s-1160s] So this is the gold features.
+[1160s-1165s] So fairly similar to the spy in Q's.
+[1165s-1167s] So this is the futures market.
+[1167s-1171s] And the futures market is actually, what do you think is bigger?
+[1171s-1176s] The stock market or the futures market?
+[1176s-1190s] That exclamation will kind of talk about that.
+[1190s-1198s] Futures, stocks, futures.
+[1198s-1205s] Yeah, so specifically, four X is actually four X's big.
+[1205s-1210s] So when you're specifically trading, the indices themselves, right?
+[1210s-1215s] Futures is a huge market because I'll kind of explain that later.
+[1215s-1218s] But if you're trading specifically the major indices, right?
+[1218s-1222s] That's in P500, the NASDAQ, the YM, right?
+[1222s-1224s] Futures are huge.
+[1224s-1231s] A lot of people that want to trade the indices, they'll opt in for the ESNNQ over the
+[1231s-1232s] Spine KQQ.
+[1232s-1237s] And I'll kind of talk about the pros and cons on why that might be the case and why.
+[1237s-1239s] And actually, it might be more, right?
+[1239s-1242s] If you're good trade options, that's only time people trade the Spine Qs.
+[1242s-1246s] If you're going to trade the indices themselves, you're going to much rather trade the futures.
+[1246s-1249s] But I'll talk about that here in a second.
+[1249s-1251s] But let's go back on to the NQ.
+[1251s-1253s] Sorry, let's go back into this.
+[1253s-1258s] But basically, as I mentioned, there's two types of futures contracts.
+[1258s-1265s] So now we understand what are futures, the very basics of futures, the different types
+[1265s-1270s] of futures and how they're the same as the Spine Qs.
+[1270s-1274s] They're all derived off of either the underlying asset itself.
+[1274s-1280s] And now let's go on to basically how the options contracts are calculated.
+[1280s-1282s] But before we do that, do you guys have any questions?
+[1282s-1284s] It's super basic.
+[1284s-1288s] We're just kind of going to the basics and then we're going to go into a little bit more
+[1288s-1299s] on how they calculate and then we're going to draw some levels as well.
+[1299s-1306s] Autotrading on futures.
+[1306s-1308s] Do you use the five minute break and retest for futures?
+[1308s-1309s] Anyone tried auto trade?
+[1309s-1314s] Yeah, so if you're trading futures, as I mentioned, it's the same thing.
+[1314s-1319s] If you're trading the five minute range break and retest for Spine Qs, as I mentioned,
+[1319s-1320s] it's the exact same.
+[1320s-1324s] The way price moves on yes is going to be the same as the Spine.
+[1324s-1326s] The NQ, the same thing as the QQ.
+[1326s-1333s] So if it works on the Qs, then it's also going to work on the futures as well.
+[1333s-1335s] Okay.
+[1335s-1341s] Let's go on to how we can calculate the actual options.
+[1341s-1345s] Sorry, I always say options, but the futures contracts itself.
+[1345s-1347s] Let me actually bring up this screenshot.
+[1347s-1352s] I just made this a little bit earlier.
+[1352s-1354s] But as you can see, what do we have here?
+[1354s-1355s] Right?
+[1355s-1366s] How to calculate the futures contracts?
+[1366s-1371s] So let's kind of break down this chart and understand how it's calculated.
+[1371s-1382s] So before we do that, actually, if you go on to, for example, spy or we click on the options,
+[1382s-1386s] we'll kind of talk about the options in here in a second.
+[1386s-1392s] But basically, when you're looking at the options price or how to calculate options,
+[1392s-1397s] there's a bunch of different kind of factors that affect the price.
+[1397s-1403s] So if you watch that first module that Tony talked about, which is understanding the Greeks,
+[1403s-1408s] right, there's so many different Greeks that affect the actual contract price, essentially
+[1408s-1410s] that make up the contract price in itself.
+[1410s-1416s] So it's very difficult to actually calculate whereas if you're trading futures or you're
+[1416s-1425s] trading stocks, it's very simple because one feature contract is basically whatever it's worth.
+[1425s-1432s] So in this case, if you're buying one futures contract, which currently the price is at
+[1432s-1436s] 6855, that's how much you're going to pay.
+[1436s-1437s] It's just one contract.
+[1437s-1438s] Right?
+[1438s-1444s] Similar thing to the NQ, if you buy one contract, it's the exact same thing.
+[1444s-1449s] If you're trading the spy and Qs, I say you're buying the stock, right, one share is
+[1449s-1457s] going to be right, 677, right, 679 dollars, if you buy one share of Qs, it's going to
+[1457s-1459s] be 626 dollars.
+[1459s-1460s] Right?
+[1460s-1465s] So you're just buying one futures contract.
+[1465s-1466s] Okay.
+[1466s-1473s] So how do we calculate this?
+[1473s-1480s] So basically, it's split up into two different types of contracts.
+[1480s-1487s] So we'll be have on the left hand side is what's called our mini.
+[1487s-1494s] I think of mini as, right, just the bigger contract or the normal.
+[1494s-1500s] And then on the right hand side, we have what's called our micro.
+[1500s-1505s] And this is the smaller version, it should divide it into 10.
+[1505s-1511s] So the mini is our regular and then our micro is a tenth of a mini.
+[1511s-1516s] So whatever I say on the mini, just divided by 10.
+[1516s-1523s] And we're going to calculate this for the ES and the NQ.
+[1523s-1530s] So as you can see, our contract, let's say we trade the ES mini, which will be right
+[1530s-1538s] ES, if you're trading the MES, it's called MES, stands for micro.
+[1538s-1541s] Yes, similar to like leverage, right?
+[1541s-1549s] Let's say for a stock example, you have Tesla.
+[1549s-1556s] And then in this case, I guess this is a double leverage, but you have TSL.
+[1556s-1558s] So it's just leverage.
+[1558s-1559s] Right?
+[1559s-1561s] Tesla is regular.
+[1561s-1565s] TSL is a two-ox leverage.
+[1565s-1573s] As for mini, right, regular and then the micro is actually less leverage, it's a tenth.
+[1573s-1576s] But as you can see right here, what it's calculated in is
+[1576s-1578s] essentially is ticks.
+[1578s-1581s] Ticks are points.
+[1581s-1588s] So it's fairly similar to kind of stocks when I say one point, usually moves up by one.
+[1588s-1597s] If you're looking at futures, you go by points as well, but you can also go by ticks.
+[1597s-1609s] So in this case, right, one point, you have four ticks.
+[1609s-1611s] Does that at least that makes sense for the point in tick?
+[1611s-1616s] I don't want to make it too confusing, but one point, usually that's what we go by.
+[1616s-1620s] And then basically one point or four ticks.
+[1620s-1627s] Or I should just say a fourth of a point.
+[1627s-1628s] Does that make sense?
+[1628s-1640s] Keep tight to like one in the chat.
+[1640s-1641s] One more one.
+[1641s-1644s] Okay.
+[1644s-1647s] Yeah, what really matters is the points.
+[1647s-1653s] Ticks matter somewhat since it is fairly volatile, but the main thing that does matters
+[1653s-1655s] the point size.
+[1655s-1659s] So what kind of just going to the point?
+[1659s-1662s] So one point of yes is fifty dollars.
+[1662s-1666s] We're talking about the ES mini contract.
+[1666s-1671s] One point of the IQ is twenty dollars.
+[1671s-1676s] By the way, IQ, a lot more volatile, why just because it's worth more.
+[1676s-1681s] So if you're trading ES, first the IQ, you have to be careful because one contract,
+[1681s-1684s] if an IQ, is going to move a lot more than ES.
+[1684s-1687s] Just based off the price.
+[1687s-1693s] What need feature, how about features and why people love to trade features, is that
+[1693s-1697s] can basically 24 hours.
+[1697s-1703s] Technically it's twenty three, but I just kind of consider this 24 hours a day.
+[1703s-1715s] Not sure if people need this, but when you're trading stocks, right, four AM is your pre-market.
+[1715s-1726s] Then you have your new record, or your new record session, which goes from 930 to 4 PM.
+[1726s-1732s] And then it goes from 4 to 8, which is the after hours.
+[1732s-1738s] So basically the stock is broken up into a couple of things.
+[1738s-1744s] You have your pre-market, you have your regular market open, which will focus on.
+[1744s-1746s] And then we have our after hours.
+[1746s-1751s] Really we're kind of only trading from 930 to 11.
+[1751s-1753s] That's when the most volatility is.
+[1753s-1757s] You can be looking for other trades within the New York open, but when you're specifically
+[1757s-1764s] trading options, it's only open for the New York session.
+[1764s-1770s] I heard there's some rumors, which still probably end up doing for options or stocks to
+[1770s-1780s] be open 24 hours, which would be absolutely crazy.
+[1780s-1782s] It's the end of doing that, yeah, who knows.
+[1782s-1789s] But they most likely will end up switching it over, but at least for now from 930 to 4 PM.
+[1789s-1793s] Whereas futures, it's 24 hours a day.
+[1793s-1800s] The only time it closes is actually between market.
+[1800s-1804s] It's basically from 5 to 6.
+[1804s-1814s] Specifically the indices, that's kind of the settlement period, but from 5 to 6 it closes.
+[1814s-1822s] So if we're trading yes and then Q, that's kind of going to this.
+[1822s-1824s] You can see there's a little bit more information.
+[1824s-1831s] So that's why most people think that the yes and spy are different along with the
+[1831s-1833s] NQ and QQ.
+[1833s-1837s] They think they're different is because if you look at the futures chart, there's more information
+[1837s-1840s] here.
+[1840s-1847s] But the reason why there's more information is because this one's open 247 or 23 hours a day.
+[1847s-1855s] Compared to the spy and Q's, which are from 4 AM to APM Eastern Standard Time.
+[1855s-1861s] So as I mentioned, if we were to break it up into sessions, I think there's different
+[1861s-1864s] indicators that make it nice and easy.
+[1864s-1866s] Let me see if this will load.
+[1866s-1873s] But as you can see right here, I just pulled up a random indicator.
+[1873s-1877s] What we have here is the New York Session.
+[1877s-1879s] This is what they call it.
+[1879s-1883s] They have the overnight session, which a lot of people call the London Session or the
+[1883s-1884s] overnight.
+[1884s-1891s] And then the Tokyo Session, which is also called the afterers or the Asia Session.
+[1891s-1898s] So if we're trading futures, the three major sessions, you have the New York.
+[1898s-1901s] I had said the New York, the London and the Asia Session.
+[1902s-1904s] Those are the three names you can call it.
+[1904s-1911s] If you're on the Q's, as you can see, there's a little bit less information.
+[1911s-1912s] Right?
+[1912s-1916s] You have your New York Session, which is the exact same.
+[1916s-1920s] But then we're kind of missing out on the overnight session.
+[1920s-1925s] And we're missing a little bit of that London Session as well.
+[1925s-1931s] But as I mentioned, they're the exact same thing, but one just has a little bit more information.
+[1931s-1937s] I personally like marking out charts, specifically on the ESNNQ.
+[1937s-1943s] Sometimes there might be too much information or your charts might get a little bit clutter.
+[1943s-1949s] But right, it's good to mark out, especially if you want that more extra information.
+[1949s-1958s] You can mark out your spine, Q's levels, specifically on the ESNNQ.
+[1958s-1961s] I see some questions here as well.
+[1961s-1967s] Yeah, you can just search up, talk, you can just search up any indicator, just say, time zones and you'll pop up.
+[1967s-1970s] Could trade the break and we're going to test on the London Session.
+[1970s-1973s] You can, but there's less volatility.
+[1973s-1975s] So you'll have to back test.
+[1975s-1978s] I know it's quite a few people traded on the London Session.
+[1978s-1983s] But you're going to have to back test that on the indices.
+[1983s-1993s] It's only, but as I mentioned, it's best when there's a lot of volatility.
+[1993s-1994s] I know, Cocca, we're with options.
+[1994s-1996s] I'll kind of talk about that.
+[1996s-2000s] More of a features, Cocca, I'll kind of talk about how to calculate risk here in a second.
+[2000s-2006s] And why it's a lot easier to calculate risk when we're talking about features than something like
+[2006s-2012s] St-I, sorry, a lot easier to calculate features compared to something like options.
+[2012s-2013s] Exactly.
+[2013s-2015s] London refers to a London Session.
+[2015s-2018s] Yes, that's what I refer to as well.
+[2018s-2021s] But okay.
+[2021s-2026s] The next point is the trading days.
+[2026s-2028s] One thing we'll be trading features.
+[2028s-2035s] It actually opens up on Sunday at 6 p.m.
+[2035s-2038s] So you get a little bit of an extra day when you're trading features.
+[2038s-2044s] It gives us a little bit more of an indication of how the week is going to open.
+[2044s-2049s] Because it does open on Sunday at 6 p.m. Eastern Standard Time.
+[2049s-2059s] So if you go into the weeks open, you can see once price gaped up on Sunday.
+[2059s-2070s] You can see the time, which is at 18 military time, which is at 6 p.m. Eastern Standard Time.
+[2070s-2075s] As I mentioned, really this doesn't matter too much because we're trading stocks and
+[2075s-2077s] features primarily.
+[2077s-2085s] But it's just to get them to understand if we're specifically trading features.
+[2085s-2091s] And then for the maintenance margin, maintenance margin, the thing about features is you're
+[2091s-2094s] going to use margin.
+[2094s-2100s] Since the contracts are fairly expensive, you're going to be using margin.
+[2100s-2108s] Because technically, if you're buying, let's say one futures contract, right?
+[2108s-2109s] It's a leverage product.
+[2109s-2116s] When you're trading futures contracts, if you're trading options contracts, options all
+[2116s-2119s] you're doing is paying for the premium.
+[2119s-2126s] So whatever you pay for, let's say it costs $5, right?
+[2126s-2131s] You multiply that by 100.
+[2131s-2137s] Your option contract will cost $500.
+[2137s-2140s] So this is how much you're going to pay.
+[2140s-2145s] When you're trading futures, it's also a leverage product.
+[2145s-2149s] So in this case, you're going to be on margin.
+[2149s-2151s] So there's something called, it can mean its margin.
+[2151s-2157s] It doesn't really matter as much if you're trading on profits or if you're trading,
+[2157s-2162s] say if you're trading on a regulated broker, then there's just some margin requirements
+[2162s-2164s] specifically for micro's.
+[2164s-2169s] They still a little bit older, but basically the margin requirements, requirements would
+[2169s-2172s] change depending if you hold overnight, right?
+[2172s-2173s] Depending on your broker as well.
+[2173s-2178s] So just understand if you are trading features, there's usually more of a requirement
+[2178s-2179s] for margin.
+[2179s-2184s] So that's why some people like to trade options or other leverage instruments because
+[2184s-2185s] there's less of a requirement.
+[2185s-2187s] But it's not a good or bad thing.
+[2187s-2188s] Right?
+[2188s-2192s] Some people more gravitate towards options because of the high percentage returns.
+[2192s-2197s] Whereas futures, there's a little bit more of a barrier, especially when it comes to capital.
+[2197s-2203s] So that's why something like pro firms have become very popular in the past few years
+[2203s-2207s] because you don't need technically a lot of money to make a lot of money.
+[2207s-2214s] But okay, it's kind of talk about now the futures contracts, explorations.
+[2214s-2217s] Before we do that, do you guys have any questions?
+[2217s-2220s] You guys understand so far the basics.
+[2220s-2224s] Hopefully most of you guys probably already understood that, but just kind of brushing
+[2224s-2232s] up over the basics that before we head on to some more advanced stuff.
+[2232s-2241s] I don't know if you've got some water here as well.
+[2241s-2244s] Do you guys all understand that type one in the chat?
+[2244s-2250s] Future is drive the extended price movements in the options chart.
+[2250s-2253s] Future is drive the extended price movements.
+[2253s-2258s] I'm not sure what you mean by price movements in the options chart.
+[2258s-2263s] The options chart is going to move based off the actual underlying.
+[2263s-2267s] So if the underlying moves higher, then the options are going to move higher.
+[2267s-2268s] Underline moves lower.
+[2268s-2272s] The options are going to move lower.
+[2272s-2272s] Okay.
+[2273s-2277s] So now we're going to go into future contracts, explorations.
+[2277s-2286s] So if you go into the options chain here, let's just search up Tesla.
+[2286s-2290s] As you can see here, this is what's called their options chain.
+[2290s-2293s] Are very basic options chain.
+[2293s-2296s] You can see we have a lot of explorations.
+[2296s-2303s] Basically every single week on Friday, we have an expiration.
+[2303s-2307s] Tesla August the 31st, which is this week.
+[2307s-2318s] As I said tomorrow, we have next week, two weeks out, three weeks out, four weeks out,
+[2318s-2327s] and so forth, where you have options all the way into, right, really three years out.
+[2327s-2330s] So you can see the options basically expire every single week.
+[2330s-2333s] So there's a lot of different expirations.
+[2333s-2343s] Whereas if you go into the NQ, we really only have four major features,
+[2343s-2345s] expirations.
+[2345s-2349s] And they happen once a quarter.
+[2349s-2354s] Is anyone know what quadwitching is by chance?
+[2354s-2360s] Or you hear us maybe talk about this once a quarter, but we'll talk about quadwitching,
+[2360s-2373s] which is fairly important.
+[2373s-2376s] Well, one yes, expiration on contracts, correct.
+[2376s-2380s] So basically what happens is once a quarter,
+[2380s-2383s] we'll have what's called quadwitching.
+[2383s-2389s] And quadwitching is when all major asset classes expire.
+[2389s-2395s] So if you're trading option leaps, that's when I'll expire.
+[2395s-2400s] If you're trading futures, that's when we'll have the expiration date.
+[2400s-2404s] Basically all the major asset classes are going to expire on this certain day.
+[2405s-2408s] And there's a lot of rebalancing at the end of the day,
+[2408s-2411s] just because people are hedging, right?
+[2411s-2414s] There's a lot of different things, but it only happens once a quarter,
+[2414s-2416s] but something to keep in mind.
+[2416s-2419s] Basically exactly when the contracts rolled over.
+[2419s-2424s] So we're talking about futures, right?
+[2424s-2429s] And we're choosing the futures contracts to trade.
+[2429s-2432s] It's very simple because we can only choose one, right?
+[2432s-2435s] You can trade NQ1, the continuous contract,
+[2435s-2439s] which is going to automatically choose the contract with the most volume.
+[2439s-2443s] But basically there's only four that we can choose.
+[2443s-2446s] In reality, there's only one, but there's four different
+[2446s-2449s] expirations throughout the year.
+[2449s-2457s] We have options that expire in December, which will end off in Q and start in Z.
+[2457s-2464s] So we'll have NQ, which is the instrument.
+[2464s-2466s] So we're trading the NASDAQ.
+[2466s-2473s] And then the Q stands for the expiration,
+[2473s-2477s] which in this case is December.
+[2477s-2482s] If it ends with each, it expires in March,
+[2482s-2487s] but it ends with M, expires in June.
+[2487s-2492s] And if it ends with you, expires in September.
+[2492s-2495s] So I was mentioned there's only four.
+[2495s-2496s] All right, so it's nice and easy.
+[2496s-2499s] This happens on home major assets.
+[2499s-2506s] So all major futures go into yes, somewhere then.
+[2506s-2516s] Right, ES, Z, December, ESH, March, ESM, June, ESU, September, 26.
+[2519s-2523s] So this is the mini contract if we're trading the micro's.
+[2523s-2526s] It's the same thing where you're just going to put an S in the front.
+[2526s-2530s] As I mentioned earlier, if you're trading micro's,
+[2530s-2537s] it's the exact same thing as the ES, I just want to show you a chart comparison.
+[2537s-2541s] Right, as you can see, this is what's called their MES.
+[2541s-2552s] If I pull up the ES, as you can see, these charts essentially look identical.
+[2552s-2559s] Right, the reason why they look identical is because they're the exact same thing.
+[2559s-2561s] As you can see, the McIntyre is assuming this in.
+[2565s-2578s] This one has the after hours, but if it's if I take this off, you can see.
+[2578s-2580s] Right, identical.
+[2580s-2583s] Actually, in this case, after hours a little bit of slippage, but
+[2584s-2588s] sometimes it's like that, but you can see generally speaking in the actual market hours,
+[2588s-2590s] and they're going to be exactly identical.
+[2591s-2594s] Right, the reason is because they're the exact same thing.
+[2596s-2599s] Okay, do you understand that?
+[2599s-2601s] Is this the open, the same as quad watching?
+[2603s-2608s] OPEX, OPEX days happen the third week of the month.
+[2608s-2609s] So it's a little bit different.
+[2610s-2616s] Quad watching happens once a quarter, whereas OPEX happens the third Friday of every single month.
+[2618s-2622s] And then we also have right these days, which you can see her roll over days.
+[2623s-2626s] They see the contracts will roll over into the next expiration.
+[2627s-2629s] Once more volume is traded on the previous contract.
+[2630s-2636s] So once right, it comes closer to expiration, June, it's going to roll over into
+[2636s-2637s] September's contracts.
+[2638s-2640s] Once September's contracts have more volume.
+[2641s-2645s] And that's why sometimes you'll see these gaps on the chart.
+[2646s-2650s] Right, if you're trading futures, common question is,
+[2651s-2652s] sometimes you'll have these big gaps.
+[2653s-2659s] Like right here, and this is our contract roll over.
+[2661s-2662s] And then sometimes if you click it off,
+[2664s-2666s] right, we won't have a gap in the chart.
+[2666s-2668s] So right here, I may actually just kind of go back,
+[2673s-2675s] be in see. There's a little bit of difference in price.
+[2677s-2681s] Just because we have what's called right the contracts get rolled over.
+[2681s-2685s] It's kind of similar to when spy has a dividend,
+[2686s-2689s] right, you can adjust for contracts, right, because spy pays out dividends.
+[2690s-2693s] Sometimes you're going to have a gap in the chart for me personally.
+[2694s-2697s] I like to keep this on, so there's no gap in the chart.
+[2701s-2708s] Okay, so that was for the basics of futures, sorry.
+[2717s-2722s] All right, sorry, let me just get some water and we should be get onto the next part.
+[2722s-2724s] But basically, that was the basics for futures.
+[2725s-2729s] Had to kind of get that out the way, but what do you guys understand?
+[2729s-2733s] I know it's pretty basic for some of you guys, but understand the contracts.
+[2734s-2737s] Just understand in what basics of options are.
+[2738s-2741s] Now we're going to go onto a little bit more interesting.
+[2741s-2747s] And why some of you guys might prefer trading futures is understanding risk.
+[2747s-2751s] And then we'll go onto kind of drawn key levels in some other things as well.
+[2760s-2765s] And that's a fair for news exactly. So now let's go onto
+[2768s-2777s] really what's key about trading futures or about stocks in general.
+[2778s-2783s] Right, what is the main difference if you guys can type in the chart?
+[2783s-2788s] What's the main difference between calculating risk when it comes to futures?
+[2789s-2792s] First, when it comes to trading, something like options.
+[2792s-2815s] What's the main difference? Not sure if you guys can see, but I've likely three water bottles,
+[2815s-2816s] which is actually hilarious.
+[2819s-2823s] That's a series for let's see. Should we get it's true from the continued?
+[2823s-2826s] I like the continued. The continued chart of my opinion is the favorite one.
+[2828s-2833s] No, time decay, higher leverage, fix versus non-fix, all or nothing.
+[2834s-2839s] In packs of volatility, no clue greets, prices one to one. Options are not obligated by.
+[2840s-2844s] So you guys mentioned a lot more, are you guys mentioned actually a lot of things here?
+[2845s-2846s] The number one thing.
+[2847s-2849s] Right, when it comes to determining risk.
+[2850s-2859s] It's fixed. So let me see if I can bring back up the original kind of screenshot that I had.
+[2867s-2871s] When it comes to determining risk when you're trading futures,
+[2872s-2880s] it's fixed. So what does this mean when it's fixed?
+[2881s-2885s] It means it doesn't, right, it doesn't aggregate with price.
+[2886s-2891s] Whereas if you're trading options, there's a lot of different things affecting price.
+[2892s-2899s] Greeks, time decay, right, all the different types of Greeks, right, data, delta, right, when you're
+[2899s-2906s] trading futures, it's fixed. So what you buy or the simplest term to put it,
+[2907s-2912s] what you pay is what you're getting. If you buy it and it goes up, you're making money.
+[2913s-2919s] If you buy it and it goes down, you're losing one. Whereas if you're trading options,
+[2920s-2925s] right, usually that's the case, but sometimes when it may be your trading zero-day contracts,
+[2925s-2930s] maybe you're trading super far at the money. Right, you can technically buy an option contract.
+[2930s-2936s] If the IV's really elevated, it could go up and technically maybe the option contract might not go up.
+[2937s-2942s] That's a, that's understanding IV, but basically what we have in this case is its fixed.
+[2943s-2947s] So as I mentioned, this is basically what it looks like and how much you're risking.
+[2947s-2954s] Let's just kind of go and see exactly how much, let's just, the easiest way to see how to determine
+[2954s-2959s] risk is by going to like the replay feature. Let's say you're trying to buy a trade.
+[2963s-2981s] So let's say for example, let's go on to, oops, let's go into this. So let's go on to the one minute
+[2981s-2991s] chart here. And let's buy one futures ES contract. As you can see here, when I clicked it,
+[2992s-2996s] you actually saw it said the ES one is Z, which is that expiration.
+[2999s-3011s] Whereas you can see here, ES Z2025. Then if I was to put a stop loss, it already calculated for me.
+[3012s-3019s] So that's one thing about trading futures is it's easy to determine essentially a risk reward.
+[3020s-3029s] Right? This tool is basically exactly how much it is. Because as I mentioned,
+[3029s-3038s] this risk reward tool right here is fixed. Right? In this case, it would be a 1.4
+[3038s-3046s] risk reward ratio. You're looking for 10 point stop, per about a 15 point target.
+[3047s-3056s] So this is the ES contract. As I mentioned, right, in this case you'd be risking $500
+[3058s-3064s] to make around 750 bucks. And this doesn't change, right?
+[3065s-3073s] If price gravitates up and towards the target within one candle,
+[3073s-3082s] 750 bucks. If it consolidates, then gravitates up and towards your target,
+[3084s-3092s] 750 bucks. If price comes all the way back down, and then gravitates towards your target,
+[3093s-3099s] 750 bucks. No matter what happens, it doesn't matter about time.
+[3099s-3105s] Right? You're going to make 750 bucks because as I mentioned, it's fixed.
+[3106s-3110s] Right? So you have a fixed reward here. You understand how much you're going to make.
+[3111s-3120s] The downside, your stop. No matter if it had to stop loss in a minute,
+[3128s-3134s] if it had to stop in 30 minutes on hour, but maybe then the next day.
+[3135s-3142s] The time is not an issue here. Right? Time does not play an effector. Whereas when you're trading
+[3142s-3150s] options, right? Time is a big factor. So let's say for example, it's kind of just confirmed this,
+[3153s-3158s] and then right there, let's see if on the P&L 750 bucks as you can see.
+[3162s-3167s] And that happens specifically when you're trading something that's fixed, something like futures,
+[3168s-3174s] something like stocks. Did that last explanation kind of make sense when it comes to
+[3174s-3197s] right understanding at least risk the basics of risk when it comes to that one, one, one.
+[3203s-3207s] What's the difference between buying the ES future versus buying a spy ETF?
+[3208s-3212s] Yeah, there's just different asset classes. So when you're buying the futures contract,
+[3212s-3218s] the other one, if you're buying, let's say spy, you can buy the stock, or you can buy options contracts.
+[3219s-3225s] Futures, mental, high stops, would you prefer? Some are thin. I personally like mental
+[3225s-3229s] stops, but you can also put the thing about futures is now you can place hard stops if you want as well.
+[3233s-3238s] Okay. So under calculating kind of risk when it comes to futures as mentioned,
+[3239s-3246s] easier to calculate. Right? Exact same thing. If you're trading, for example,
+[3247s-3255s] that's just place a random buy order, stop loss, profit target, you can have bracket or so
+[3255s-3260s] you'll see a lot of people when you trade futures, you have bracket orders. You can already place
+[3260s-3266s] our take profits and stops because you already know what you're looking for. Usually it's like a one to two.
+[3267s-3273s] Right, one to two, you just have your take profit, you have your stop loss in place, and then
+[3273s-3279s] you can just click on firm and then you're already in the trade. I consider that in advantage
+[3279s-3286s] when you're trading futures. If you just click this, sometimes people will see this on the chart,
+[3286s-3292s] and that's what they'll see. As I mentioned, it's fixed. What's the main difference? Right?
+[3292s-3297s] When you're trading futures, as I mentioned, it's fixed. When you're trading options,
+[3298s-3305s] right? This is kind of the key part where some people kind of get confused when you're trading,
+[3306s-3312s] right? Options. And that's a question people always ask all the time. Right? How do I calculate
+[3312s-3317s] risk? Right? What's the best way? Right? We're going to kind of touch up on that here and kind of the
+[3317s-3323s] difference between the two. But basically, as I mentioned, our association will be a nice thing. Basically,
+[3323s-3329s] the difference will have to look at the option, contracts, and itself. And we'll kind of talk
+[3329s-3345s] about different ways you can calculate the risk. But let's go back on to now, let's go back onto the
+[3345s-3362s] E-spite chart. Okay. So for example, if you're trading the spy, in this case, let's say if you're
+[3362s-3370s] trading the futures contract, and we're looking at this specific set of, I had some sort of key
+[3370s-3381s] level here, and you're just looking for a hive day. This is very nice and easy because you can just
+[3381s-3390s] easily calculate it as a 1.68 risk for a worker's show. And that's why we always use this draw
+[3390s-3397s] in tool as an illustration, right? It's not going to be exact risk for a reward. When it comes to
+[3397s-3406s] trading options, in my personal opinion, risk for a reward is it's just a general, right? Because
+[3406s-3411s] you're never going to get a fixed risk. So this is the main part here. So yes, as I mentioned,
+[3411s-3424s] is fixed. What's so different about trading options is that it's not fixed. This is where
+[3424s-3432s] they're kind of the confusing part comes in. All right. So if it's not fixed, how are you supposed to
+[3432s-3441s] do determine risk? It's a little bit more difficult because if price is constantly moving,
+[3441s-3448s] and if the actual value of the option contract is constantly moving, then how are we supposed to
+[3448s-3454s] calculate risk? Can you guys type in the chat, right? If something's not fixed and it's constantly
+[3454s-3476s] moving, how are we supposed to calculate the risk? Yeah, if you guys can type in the chat, if you guys
+[3476s-3502s] know the actual answer, right? What are some ways we can calculate the risk? Let's see,
+[3502s-3510s] trading stops, risk, max, risk is premium, but it's not the fact you can only lose your premium
+[3510s-3518s] that you paid on options is kind of fixed. So exactly. So the reason why it's more difficult to
+[3518s-3528s] calculate risk when it comes to trading options is because it's constantly moving, right? The only
+[3528s-3541s] technical way you can have a hundred percent certainty, this is key way here. The only way you
+[3541s-3548s] know exactly how much you're losing when you're trading options is if you size for zero.
+[3549s-3558s] How much you paid for the contract? Because we can't lose more than a hundred percent of the contract.
+[3558s-3572s] So let's say contract costs five dollars times that by a hundred. That's going to equal
+[3574s-3584s] 500. All right, so that's the only way we can lose that we know exactly the amount is basically
+[3584s-3593s] 500 dollars. Let me kind of break it down into this. So when you're trading, let's say a risk amount
+[3595s-3612s] at $1,000 and we're trading futures and options. If we're trading futures, there's really
+[3612s-3622s] kind of only one way. Let's say for example, we're trading one ES contract. In this case,
+[3622s-3641s] one ES contract. One point equals 50 bucks. So what is how to lose a thousand dollars when you're
+[3641s-3649s] trading ES? There's only one way. All right, it's basically if you're to lose,
+[3650s-3656s] I can't even do a quick math here. My brain's super slow today. But if you're to lose,
+[3656s-3664s] yeah, I'm actually already new that. I'm just super slow. Basically, a thousand dollars
+[3664s-3677s] divided by 50, 20 points. It's a little only one way. Right, 20 points. I fixed 20 points
+[3677s-3687s] stop in order to lose a thousand dollars. Right, especially if you're trading right one ES contract.
+[3687s-3696s] You can technically split it up as well. Maybe let's say you have two contracts.
+[3697s-3708s] Two ES, then you can risk 10 points. Sure, there's a couple of different ways you can lose at
+[3708s-3716s] thousand dollars. But it's fixed as I mentioned. Nice and easy. What happens when you're trading options?
+[3718s-3722s] Where if you're trading a thousand dollars in the option contracts number one,
+[3724s-3730s] right, there's so many different factors. Right, because ES, there's only one thing you can
+[3730s-3740s] trade. It's ES. Let's say if you're trading options, say you're trading now, spy. Number one,
+[3741s-3747s] right, there's different explorations. Are you playing zero days? Are you playing weekly?
+[3747s-3753s] What strike price are you trading? Right, features doesn't have that. All you have is just your
+[3753s-3759s] fixed risk reward. When you're trading spy, let's say for example, you're trying to trade with
+[3759s-3765s] a thousand dollars. There's so many different ways you can, right, lose a thousand dollars.
+[3766s-3786s] You could technically have a ten thousand dollar position size and have 10% stock. You can have
+[3788s-3801s] a five thousand dollar position size. You can have a 20% stock. You guys get the point, right? You
+[3801s-3823s] can have a thousand dollar position size and risk, 100% of it. You can just do 100%. That would
+[3823s-3833s] also equal a thousand dollars. So you can see for options, right, when you're talking about percentages,
+[3834s-3842s] now it's not fixed because technically it is fixed right here, 10%, but to get a perfect 10%
+[3842s-3848s] stop loss on the option contract, I'll show you guys the option contract here. The option contract
+[3848s-3862s] is very volatile. That's why we always mention 10 to 20% stock. Unaverage. So we have to give it a little
+[3862s-3867s] bit of wiggle room because it's not always going to be perfect. That's based off as I mentioned,
+[3868s-3873s] the underlying, the Greeks, right, things that are affecting the options price,
+[3874s-3883s] liquidity, slippage. There's a bunch of different things that are affecting the actual options
+[3883s-3890s] contract price. So when we're asking or when someone asks, right, how do you calculate the exact
+[3890s-3896s] risk amount? And we're always like, oh, we usually give it around 10 to 20%. I'm going to show you why.
+[3897s-3904s] We could have an exact amount, but a lot of times price will come down, hate your key level,
+[3904s-3913s] if it's what's more important here. Let's say price was, or a breaking above, right, retesting.
+[3913s-3920s] You have like a textbook break and retest. You enter here, or what does it let me
+[3920s-3928s] refrain the question? Right, what does the market care about? Does the market move based off of
+[3929s-3937s] your risk on options contract? Or does it move based off of what the actual underlying stock,
+[3937s-3952s] and what the actual market is doing in itself? In trading, there's a thousand ways to
+[3952s-3960s] those at the thousand bucks, yeah, that's a good one. I tend to 20% stop loss of premium or capital.
+[3960s-3972s] It'll be your premium, especially when you're day trading. The underlying underlying market,
+[3972s-3977s] exactly. Right, so a lot of people will be like, what's the risk amount? Or someone would be like,
+[3978s-3985s] oh, price is coming down. It's still holding my technical level, but I may be risking more
+[3985s-3992s] than I wanted to lose, or maybe I'm looking at my P&L. Right, the market doesn't care about that.
+[3992s-3997s] Right, to be frank, it doesn't care about any of it. Like any of ours, very small amount. Like if
+[3997s-4003s] you have one contract, right, the market's not moving based off of your one option contract,
+[4003s-4008s] or a hundred option contracts, or a thousand. Right, the option cares about, they started the
+[4008s-4013s] market action moves on big money. So, at least we kind of got that out the way.
+[4014s-4020s] In this case, when you're trading, right, so as I mentioned, there's a bunch of different ways to risk
+[4021s-4029s] a thousand dollars when it comes to trading options. Right, as futures, it's nice and easy because it's fixed.
+[4032s-4037s] Okay, now let's go on to, right, what this like, let's say you're a calculating options price.
+[4038s-4046s] Not sure why there's a lot of things that affect it. And why we always mention, right, specifically for
+[4046s-4053s] our strategy, why we only need to risk 10 to 20% on day trades. When you're talking about swing positions,
+[4053s-4057s] of course, it's going to be a little bit different. You can calculate delta and other things, but
+[4057s-4067s] we only usually give it 10 to 20% when we're talking about day trades specifically. Let's, for example,
+[4068s-4082s] go on to Tesla. All right, let's bring up the actual underlying. At this point, this really doesn't
+[4083s-4088s] much to do with features, but I saw someone asking about it earlier and I think it's fairly important.
+[4088s-4120s] So we'll talk about it. Let's go at the 440 puts. Okay, so as you can see right here on Tesla,
+[4120s-4129s] what we have is the underlying on the left hand side. And we also have the actual options price
+[4130s-4138s] on the right hand side. Most of you guys maybe don't even tell me guys you have pulled up the options
+[4138s-4143s] chart when you're trading. I'm curious. Are you guys even looking at this? Do you guys look at the
+[4143s-4168s] options chart by chance? No rarely did I know too? Okay, for the people that said no,
+[4168s-4176s] what is your way of calculating risk? Where how do you guys calculate risk when you guys trade options?
+[4176s-4182s] I'm curious. Or do you guys even calculate risk at all? What's the, how do you guys calculate
+[4182s-4190s] where I type in the chart? To be honest, no, just the actual calls and puts on the chart.
+[4192s-4217s] Sometimes, never news, option, hope and prayers, that's actually funny. Don't trade options sounds
+[4217s-4222s] like risky. Yeah, for sure. Definitely risky. Just watch the options chain price
+[4222s-4230s] movements to know where my real break even is. Let's see, 20% are sized to zero. That's a pretty big
+[4230s-4237s] range. Problem is it never trade option. Some way for the bootcamp start trading. I watch my
+[4237s-4248s] P&L and stock chart prices. Okay, so there's a couple good comments that I saw, a couple
+[4248s-4256s] questionable ones. But basically, the main thing I mentioned is what happens on the actual
+[4256s-4264s] options contract should not matter. Right, but to understand and to kind of give us a good
+[4264s-4270s] understanding is that we want to manage risk properly. So, for example, let's say we're trading
+[4270s-4281s] Tesla towards the downside today. And we're looking for some sort of opportunity. The reason why the
+[4281s-4288s] break and retest works the best, in my opinion, specifically when we're trading options,
+[4289s-4295s] I have a bunch of setups within the break and retest is because we can manage risk effectively.
+[4297s-4308s] Price moves higher. We come back for the retest and we're looking for a trading opportunity towards upside.
+[4309s-4314s] For look at the actual options, like this is what the underlying one looks like. But if we're
+[4314s-4322s] strictly talking about the actual risk amount, right, it might be like a one to two or maybe like a one
+[4322s-4328s] to one depending on how good of an entry again. But really all these break and retest opportunities,
+[4330s-4338s] you always want to be looking, let's just give an on average, a 20% stop loss just to make it nice and easy.
+[4339s-4345s] So, if we have a negative 20% stop loss on the option contract,
+[4346s-4357s] be one a minimum of 40%. If the options aren't, if we're trying to risk 20%, we want around a 40%
+[4357s-4365s] or that one to two. Sometimes it's going to be less, of course, we're going to take profits,
+[4365s-4371s] we're going to have trade layers, right? So it's not always going to be exactly one to two as
+[4371s-4378s] a mention, right? You can't just have negative 20, negative and just have 40. Sometimes if you have
+[4378s-4386s] a really good entry, maybe you only need to risk 10%. Maybe if the trade has continuation,
+[4386s-4391s] you're going to get more than 40%. Maybe you're going to get 100%. Maybe if it hits
+[4391s-4400s] high of day and rejects, you're only going to get 10%. So, might be a little bit confusing
+[4401s-4408s] on kind of the overall different kind of thesises and what can play out here on options.
+[4408s-4414s] And I want to try and confuse you guys. But I did see someone that asked about risk cooking options
+[4414s-4422s] earlier and I kind of wanted to make sure we have this. So you guys can hook back on it.
+[4424s-4431s] So it's just, right, we're looking for a one to two essentially. Negative 20,
+[4431s-4436s] you want to be looking for 40. What are some ways we can calculate
+[4437s-4442s] the actual risk amount? Where we can do it in a couple of ways. Number one,
+[4444s-4449s] maybe we're just not even looking at the option chart and just understanding based off the break
+[4449s-4458s] and retests, we only need to risk negative 10 to 20% and that's about it. And you just have to look at
+[4458s-4463s] the actual underlying, which is really the only thing that matters. I think we're in your day trading
+[4463s-4468s] if you just get into the right opportunities, you don't even have to look at the option contract,
+[4468s-4474s] maybe if you have a basic understanding of momentum, IV, maybe make sure you're getting in the
+[4474s-4480s] right opportunities like you're not trading a reversal. The IV's not high, right, there's not that
+[4480s-4487s] if there's a lot of volatility, right, you can just strictly look at the options. I started
+[4487s-4492s] you're going to strictly look at the underlying, which is just looking at the name itself. I'd say
+[4492s-4497s] Tesla in video, you don't even have to have the option contract pulled up. Number two,
+[4499s-4505s] is my opinion a little bit more difficult, but some people do it as well, is you look at
+[4506s-4513s] the actual options contract. In my opinion, this is more difficult. Let's say you're looking for an
+[4513s-4521s] opportunity towards the downside. Your risk is going to be really a break above this swing high,
+[4522s-4532s] because the retest is here and you're looking for a continuation lower, and you want to see a reaction
+[4532s-4540s] lower. So depending on where you get in, your risk is going to be about technically two points
+[4540s-4546s] on the underlying or a break above this IV-50, depending as I mentioned, and where you get in.
+[4548s-4553s] And some people might look at this based off of the option contract, and then you're going to
+[4553s-4561s] your stop is going to be around two 60. So if you buy here, you can calculate based off of
+[4561s-4568s] right two 60. So let's say you're want to risk. You're basically risking about, in this case,
+[4570s-4576s] right around 40 60 cents, because that technically is your stop on the options contract, because it
+[4576s-4584s] lines up. This might seem a little bit confusing. It's probably easier if I have a call position,
+[4585s-4591s] but basically you can see right here. This is the exact same trade. You're looking for that break
+[4591s-4598s] and retest. Lower. The stop on options would be about two 60. I'm going to be looking for a continuation
+[4598s-4604s] higher. This actually, like you're buying the by the way, you're buying the put. So
+[4605s-4609s] should I chose a call example? Because in my confusing guys, you're like you're going short here.
+[4611s-4621s] Right, if we're going to look short, we're going to buy putts. We're going to buy putts.
+[4622s-4626s] Sorry, putt calls. We're going to buy putts. If we're going to look long,
+[4628s-4637s] we're going to buy calls. We are not shorting calls. We are buying calls. We're betting the price to go
+[4639s-4648s] down. If we buy calls, we're betting the price to go up. So that's why the chart is going up in
+[4648s-4654s] this case is because we're buying putt calls. So you want the stock to go down,
+[4656s-4662s] but we want the putt to go up in value because we're buying putts. Hopefully that makes,
+[4663s-4667s] yeah, I picked a putt example instead of a call, it would be much easier. But
+[4669s-4673s] do you guys understand this? Very briefly. This is the second way. It's by looking at the options
+[4673s-4692s] chart itself. I want to make sure you guys understand. So we can move forward. But if you guys don't
+[4692s-4697s] understand, you guys can ask some questions. I think this example, it chose a putt instead of a call,
+[4698s-4702s] which might make it a little bit confusing, especially if you're looking at the chart for the first time.
+[4705s-4710s] Because in your entry point at the top of the candle body, your entry point at the top, yeah, I just
+[4710s-4714s] chose this, we're not talking about exactly where the entry is going to be. We're just talking
+[4714s-4723s] about a general area of risk and how you can calculate it. This is the price for 542 is equal to $2
+[4723s-4730s] on the option. Or it just came up with the stop. I mean, um, 42, 42 is equal to $2 on the options.
+[4730s-4737s] Now, this is your underlying stop. So this is your underlying stop. If you broke above here,
+[4737s-4743s] it invalidate the trade basis. As for options, if price came up here,
+[4744s-4752s] then most likely your call as our your putt will come down here. So you, you lose to 60.
+[4753s-4759s] Maybe with slippage, you lose a little bit more around 250. Because this is the exact candle
+[4759s-4770s] it broke down. Based off options, it'll probably be closer to 260 or 250. For the live data,
+[4770s-4776s] let's see. Do you just match the chart one? One button. I'm confused the number on the right
+[4776s-4780s] hand side of both charts. So this is the exact candle. So you can see right here,
+[4781s-4790s] let me go into a call example a lot easier. What was bullish? Let's go into Tesla a few days ago.
+[4790s-4819s] Let's go on to some Tesla calls for 60. Let's go into this. So this is a little bit easier to understand
+[4820s-4828s] now. Let's say we're looking for let's see if Tesla sets up. Okay. So let's say for Tesla
+[4829s-4853s] is an end of moving higher. Okay. Right here. Let's see. Okay. Now, as you can see here for Tesla,
+[4854s-4861s] let's say for example, you wanted to long for our push back up into our top dead. Let's just
+[4861s-4867s] say we had a thesis, one minute opening range, buyer stepping in, five minute range as well,
+[4867s-4874s] a continuation higher. Now this towards the upside. So you can see all your calls and then we have the
+[4874s-4889s] underlying. Let's replicate this and bring this over. So if we're buying calls right here,
+[4890s-4898s] let's say on this candle close to be exact, 4.570. So on this candle close,
+[4899s-4908s] contracts would be at 9.15. Our stop if we're looking to take this setup is going to be at this
+[4908s-4918s] low of the candle, 4.55. Either it be a close underneath or right as soon as it touches it.
+[4920s-4925s] All right. That's up to you. Let's say the close underneath this. And let's just say we just have it
+[4925s-4931s] right here for now. As soon as it touches it, let's say we're out. So if we look at this on the
+[4931s-4940s] option side, you can see this for 60 calls, our stop is going to be at $1 a contract. Of course,
+[4940s-4947s] if you're waiting for the candle to close, things a little bit more, right, variable when it comes
+[4947s-4954s] in right candle closes. Right. But let's just say, it was just right here for now. You're essentially
+[4954s-4963s] getting the contract and nine dollars. And then your stop is going to be at, I should say, $8.
+[4968s-4977s] So you're risking one whole dollar on the contracts. As I mentioned, it's not going to be exact.
+[4977s-4981s] Right. Because price, if you're waiting for the candles close, you might lose more.
+[4982s-4986s] Or maybe a consolidate comes back down. Right. There's so many different factors with options.
+[4987s-4991s] But let's just make it nice and easy. As soon as it touches your out, right. So we're
+[4991s-4996s] risking about a dollar on the contracts. As I mentioned, a lot of our trades. If you're looking at
+[4996s-5002s] this a dollar on the contract, a cost line box, right. That's about probably like 15 to 20%.
+[5004s-5010s] But this opportunity, all right, you can technically, your first skills are probably going to be around
+[5011s-5023s] 11 or let's say 50. So you're looking for a risk about a dollar contract to make
+[5025s-5039s] from nine to 1150 about $2.50 contract. Right. So you're risking a dollar to make about $2.50.
+[5039s-5043s] And of course, if it has a continuation, you're going to make a little bit more money.
+[5044s-5050s] But this is kind of looking at kind of your first reward. We'll look at the actual options chart.
+[5051s-5056s] But this, of course, is an example worked out. So it's kind of a little bit easier to understand.
+[5057s-5060s] But does this make sense at least when you're calculating the risk?
+[5060s-5065s] Be a self of your option chart. And of course, if you're risking about a dollar a
+[5065s-5069s] con, you're going to have to do the math in your head. Right. Let's say you want to risk a $1,000.
+[5072s-5081s] You only want to risk $1 contract. Right. That means you can have 10 contracts of $9.
+[5081s-5092s] So you can have a $9,000 position size, which equates to 10 contracts of the 10 60 calls. Sorry,
+[5092s-5103s] the four 60s. So you can have 10 or 60 calls. And your risk is going to be a dollar contract.
+[5104s-5111s] So that's going to be close to that $1,000 risk. As I mentioned, there's a lot of variables that
+[5111s-5116s] come into it. So it's not going to be perfectly $1,000. But this is very close to what you're going to get,
+[5116s-5121s] especially for trading the break and read tests. As I mentioned around 10 to 20%.
+[5122s-5126s] Does that make sense? You guys have been shot? Yes, if that makes sense. No, if it doesn't.
+[5137s-5144s] Yeah, it's the 10 to 20% is the option contract, the premium. So as I mentioned earlier, if you
+[5144s-5151s] want to risk a 100% on the premium, right, that's how much we paid for the contract. But that doesn't
+[5151s-5175s] mean we need a risk of 100%. Because when we either have two out of a stop, maybe the market's very
+[5175s-5180s] volatile, that's maybe why we're risking a little bit more. But generally speaking around 10 to 20%.
+[5180s-5183s] If the market's a little bit more volatile, then you're risking a little bit more.
+[5184s-5189s] There's exceptions. If you're trading zero day contracts, those move a lot more volatile. So
+[5189s-5193s] instead of risking your normal 10 to 20%, maybe you're risking around 20 to 40. Because that's how
+[5193s-5201s] volatile zero day contracts are. If you're switching it, maybe you're risking 50 to 100% in the
+[5201s-5208s] contract. She's because you have to give it a lot more room. Yes, yes, yes, I was missing this piece.
+[5208s-5212s] Thank you. It's quite a bit exactly. I'm not even accounting for spread and other things that
+[5212s-5217s] can affect the option price. So that's why I mentioned around 10 to 20%, maybe a little bit more.
+[5217s-5223s] Right. It's not going to be 100% perfect. Another way to calculate options prices as well. So this is
+[5224s-5229s] number one is to just use the default. Right. This is a great rule. This is the rule. If I might
+[5229s-5240s] always go by 10 to 20%, 10 to 20% on the option contract is all what you need. If you're
+[5240s-5245s] risking more, maybe rethink about your entry and be a little bit more cautious. If you're risking
+[5245s-5249s] more than that, yeah, as I mentioned, just be a little bit more cautious. Another way, right,
+[5249s-5256s] options looking at the actual options contract and what's the other way. The other way is
+[5256s-5263s] calculating based off of Delta. This is actually one of my favorite ways as well. It's
+[5263s-5272s] specifically for day trading. But when you trade one of the money contract, the normal Delta is going to be
+[5272s-5282s] 0.5. So essentially, you can just do quick math. On average, if you're risking one dollar.
+[5282s-5303s] So Delta, if you go back, all right. So Delta, if you go back and watch the first module that
+[5303s-5311s] I told you later, which is basically however much the underlying moves by one point,
+[5311s-5318s] is how much your option contract is going to move. So let's say the Delta is 0.5,
+[5320s-5329s] which is on average for one out of the money calls weekly expiration. So let's say the Delta's
+[5329s-5337s] point five. That means for every dollar move, test the pushes higher or lower.
+[5338s-5345s] It's going to move 50 cents on the option contract. So let's say if Tesla moves up $5,
+[5347s-5366s] which is let's say for example, from four, 56. Let's say I move from 456 to 461. This is a
+[5366s-5374s] $5 move. Based off of a Delta of 0.5, which is about average, as I mentioned,
+[5374s-5380s] through a majority of your contracts, one out the money, trading weekly calls 0.5.
+[5382s-5401s] That technically should mean that your option contract should move $2.50. If it dropped by $5,
+[5401s-5407s] some are there. It would lose $2.50. But on average, if it's 0.5,
+[5408s-5414s] rate Delta of course changes, but if you're trading one out the money, it's usually around 0.5.
+[5415s-5420s] At least to calculate this, do you understand how this actually works? We'll talk about this
+[5420s-5432s] example here, but do you guys understand how Delta works? Here are my cat. I'm going to let my cat
+[5433s-5467s] inside. What kind of cat have a Tuxedo cat? Okay. So this is, as I mentioned, 0.5 Delta.
+[5468s-5473s] So now if we're just used Delta in itself, we can kind of have a good understanding of how much
+[5473s-5479s] in general we're going to risk. So as you can see right here, we're asking about two points.
+[5482s-5487s] The way to calculate it, let's just say there's two points exactly, are very close to two points.
+[5487s-5496s] Let's see, right? You can see on the underline, 2.25, right? 257 to 255. So we're basically
+[5496s-5511s] risking about two points. If we have a 0.5 Delta, that equals $1. Back up into our
+[5511s-5521s] type day. Let's just say right, 250, I should say 250, for example, up and towards
+[5523s-5528s] 262, just to make a nice and easy. All right, so that's four points.
+[5531s-5542s] Times 0.5 Delta, it goes $2. Right, which is fairly close to that kind of one to two mark.
+[5542s-5550s] So for trading, for example, the four 60 calls, which we just talked about, one out the money,
+[5551s-5559s] four 60 calls, right, is going to be on average right at 0.5 Delta. So depending on the price of the
+[5559s-5567s] four 60s at the time, which is around $9, we're going to risk about two points, which is about a
+[5567s-5571s] dollar on the contracts, which you can actually see lines up perfectly, are very close,
+[5572s-5578s] which is also $8. So as I mentioned, $9 entry, stop loss $8 on the contract,
+[5578s-5587s] which is as I mentioned Delta, right, two points on the underline, times 50, a dollar on the contract.
+[5587s-5595s] And then we're looking for upside, four points, we're about $2 on the contract, or fairly close,
+[5595s-5604s] right, $9 to $11, maybe a little bit more. So you can get about a $2 move, maybe $250,
+[5604s-5610s] right, premiums working your favor. If you get those nice premium pops, you can potentially kind of
+[5610s-5614s] get nice. That's why I was talking about those premium pops, nice, are we looking for a pop?
+[5615s-5619s] Because if you're losing your favor quickly, then you're going to get these nice moves in the market.
+[5621s-5626s] But as you can see right here, does that make sense? Calculating kind of the different ways you
+[5626s-5644s] just talked about, there are all fairly similar. But this in my opinion is the best way to calculate
+[5644s-5650s] options price is by using Delta, where you don't have to look at the option chart,
+[5650s-5656s] as you don't have to write it over a complicated with too many charts on the screen. You can just use
+[5656s-5662s] Delta, as I mentioned, a good rule of thumb. If it's one of the money contracts, weekly,
+[5662s-5668s] is which we always trade. It's usually write 50 cents on the underlying. So if we lose a dollar,
+[5668s-5674s] you risk 50 cents. That's the in my opinion, the best way to do it. And then another good rule
+[5674s-5681s] thumb, as I mentioned, 10 to 20 percent on the option contract. What is one point equal dollar?
+[5682s-5686s] It's just a point. You can say a dollar, you can say a point. There's just different names for it.
+[5687s-5693s] But you can do that. One dollar or one point. Yes, there will change a lot. Will that change on Friday?
+[5694s-5699s] Yeah, exactly. That's mentioned. This is like through one day through, one day through Thursday,
+[5699s-5704s] when you get closer to expiration, the option contracts are going to be more volatile. So
+[5705s-5712s] these numbers are going to be exaggerated, I'd say, by roughly at least for that percentage
+[5712s-5715s] wise, they're going to be too active. So they're just going to move a lot more volatile.
+[5718s-5722s] I like how this is a feature session that's evolving to more super helpful. Options are risk.
+[5723s-5729s] Maybe there's a gap in the virtual day 16. Yeah. No, this is fairly important. I think we
+[5729s-5736s] briefly went over it. But someone was asking for it and I thought this was very important. So
+[5736s-5743s] I went over this one. With that change up, I took the 40. Fides because of a small count.
+[5743s-5746s] What are the major differences? Have I taken four to five money? The condons, instead of one
+[5746s-5751s] under money, understand the delta would be about 0.3 to four. Is there anything else? It's just
+[5752s-5757s] super far at the money so the contracts are cheaper and there's more chance that this is going
+[5757s-5763s] to expire worthless. That's kind of a whole other kind of subject. But if you're training
+[5763s-5770s] something super far at the money, you're betting something against time. So there's something
+[5770s-5777s] like Tesla 405 is really far at the money. So that's why they're cheaper. Because especially
+[5777s-5781s] if you're looking for this week's contracts, there's a good chance that Tesla is not going to
+[5781s-5787s] move towards our all-time highs within the next day. So most likely that's why your contracts
+[5787s-5793s] are very cheap and because they're most likely going to expire worthless. Whereas if you're choosing
+[5793s-5797s] one of the money, there's a potential that can expire in the money. So that's why they're going
+[5797s-5804s] to be more expensive. A good rule of thumb, as I mentioned, is just choosing one of the money
+[5804s-5815s] contracts and choosing week of the expiration. Okay. Let's see. Do you guys have any other questions?
+[5817s-5823s] As for the future said, I think the risker was fairly important. I'll probably just answer
+[5823s-5829s] some more questions now. As for the future, I used to have the key levels and no Tony's
+[5829s-5835s] going to talk about higher timeframes plus patterns. As for the future, I don't really have too much
+[5835s-5840s] else to talk about. I was going to talk more about key levels and set out as we already had that.
+[5840s-5845s] And I was going to talk a little bit more about prompt firms which we already have. Some modules as well.
+[5846s-5851s] But I think I'll probably just answer some more questions here and then I will
+[5853s-5858s] at least this one was good. So you guys can all kind of rename this one and then you guys can look back
+[5858s-5864s] on it for a risk now. Let's see. And I appreciate you going over the options examples. Your
+[5864s-5869s] patience and education is really appreciate that. How should features be trade differently. If all
+[5869s-5875s] compared to options, if our break in retests. So for futures, as I mentioned, it's fixed. So
+[5876s-5883s] it doesn't matter how fast or how much momentum. Right? Name gets the options that are
+[5883s-5887s] started futures doesn't care about speed and momentum. Because you're not getting paid for.
+[5887s-5892s] Right? It can as I mentioned, it can move to your target in two minutes. You're going to get the
+[5893s-5899s] as if it moved to your target in two hours. Whereas if options, if it moves to your target
+[5899s-5904s] in two minutes, right? It's something called gamma. You're going to get paid more than something
+[5904s-5909s] that would take longer because options is about speed and momentum. So with that being in mind,
+[5910s-5915s] specifically for options, you want to trade momentum moves. When you're trading futures,
+[5916s-5921s] technically you can take any setup you want because setups that don't care about time, you can
+[5921s-5926s] trade momentum. You can trade reversals, you can trade bounces, rejections. You can do a lot of
+[5926s-5932s] thing with features because where you don't have to worry about time. Where you can trade more
+[5932s-5937s] reversal names and you can sit in a position all day if you want. Right? Let's say you're trying to
+[5937s-5944s] short. Right? You can sit in a position technically all day and not really worry about it because
+[5944s-5948s] we understand how much you're making. You understand how much you're risking. If you're trying
+[5948s-5954s] to hold a short old day trading options, this is really untradable because it's very hard to
+[5954s-5961s] hold your options, especially if you have shorter expiration. Just because you're going to get
+[5961s-5966s] affected quite a bit by these Greeks. So that's why if you hear us talk about no trade days,
+[5966s-5972s] there would be a little bit of opportunity, but ultimately there's nothing that is momentum.
+[5972s-5976s] And that's strictly what we focus on and that's what you should focus on when you're trading
+[5976s-5986s] options is right speed and momentum. Right? That's key. I know about Australia. There's a bunch
+[5986s-5992s] of different options seen less newcomer friendly for me. It makes it a sense of trade options.
+[5992s-5999s] If you have an exact right options, you talk about this. It's the most complex financial instrument.
+[5999s-6003s] Right? It's the highest risk but also highest reward. If you know what you're doing,
+[6003s-6006s] you can make a lot of money. If you don't know what you're doing, you can lose a lot of money.
+[6007s-6011s] When you first come into the markets, right? You might get sucked into it just based off of
+[6011s-6016s] very the key crazy right percentage gains or the the piano. There's a bunch of different reasons
+[6016s-6021s] why you might be interested in trading options. And maybe these overnight position or these
+[6021s-6027s] earning names that you can see these crazy percentage returns. Or it options, there's a lot of
+[6027s-6033s] things that go into it as I kind of mentioned today with Greeks with time. It's very difficult because
+[6033s-6038s] nothing is fixed when it comes to options. So things are constantly moving in the prices
+[6038s-6043s] constant moving as well. Whereas I did talk about features earlier but I kind of stared away from
+[6043s-6049s] that future is super simple. You know what you're getting with features. You just have to
+[6049s-6055s] wear about one thing only, which is ESNNQ. And for the risk amount, it's a lot easier to cook it as
+[6055s-6064s] well. Why don't you in Tony trading more cues and spy instead of tech? It's a good question.
+[6064s-6075s] I just because right markets you'll see KIGUQ and spy, what do they like to do? Markets are efficient.
+[6075s-6086s] A lot more reversals. Mean reversions. Bounces, rejections off key levels. Right the markets are
+[6086s-6092s] efficient. Markets don't try and as much specifically talk with the spine cues. So a lot of your setups
+[6092s-6097s] are going to be reversal setups. Mean reversions is mentioned. Bounces are support. Redrucks
+[6097s-6103s] and software systems. Right. You can still trade them. I'm hoping a little bit more difficult. Whereas
+[6103s-6108s] if you're trading the tech name, there's always some sort of name trending. And right we like
+[6108s-6113s] trading trends because that's when the break-and-retest works the best. If we're trading in ranges
+[6114s-6119s] right, it's going to be a lot harder to trade the break-and-retest because we're looking for
+[6119s-6124s] continuation. If we're trading the spine cues, we're going to be looking for more mean reversions setups
+[6124s-6130s] within the break-and-retest. Whereas the best break-and-retest setups happen when we're in a trendy market.
+[6130s-6135s] So that's why we trade primarily the tech names because there's always something trending. Right. Either
+[6135s-6141s] be maybe the past two days was going to get example. But like a Apple, right? Tesla, right,
+[6141s-6145s] nice trends. Right. There's so many different names that are going to have trends. Right.
+[6145s-6158s] Out of the mag seven, I know of all these other names as well. I'm going to go over year. Yeah,
+[6158s-6165s] we have we go over them on we had the one which was on I think last week where I talked about all
+[6165s-6171s] the setups. But then we always go over them on the weekend. So if you're a little bit newer, I haven't
+[6172s-6178s] done the weekly recaps or as in depth just because I'm busy and we've had this boot camp. But once
+[6179s-6183s] we go back to the kind of everything normal. We'll have those weekly recaps again. We'll go over
+[6183s-6191s] kind of the setups, the playbooks, and just basically scaling and everything else. Yeah, no PDT.
+[6191s-6197s] There's also other benefits. There's some tax things. There are no PDT. There's also a couple
+[6197s-6203s] other ones as well. You consider IV when risking 10 and 20. IV should be normal if we're trading regularly.
+[6203s-6207s] Underneath, right, one out the money. Right. We can be contracts. Your IV's usually normal.
+[6208s-6214s] Only time IV's elevated when we have earnings or something coming up. Depends on the specular
+[6214s-6218s] amount. Yeah, we like sizing down and trading zero days. You can also use next week's contracts as well.
+[6221s-6225s] I heard you say other things on top of being our for features like order flows at it.
+[6226s-6230s] Yeah, you can use order flow. There's other things that go into trading features
+[6231s-6236s] because you want more other conferences. You can take a look at the spine keys themselves.
+[6236s-6240s] Other people look at volume or the flow. When we trade the tech names right, one of our main
+[6240s-6245s] conferences is looking at the QQ relative strength and weakness. So that's one of our main things.
+[6245s-6249s] We're afraid of trading the features. I'd probably want a couple more other conferences as well.
+[6257s-6260s] Yeah, that's actually a good point. Our community has any relations with partnerships.
+[6260s-6265s] We have some codes. Actually, let me post in the chat. If you guys are interested,
+[6265s-6270s] we have one with EPIX. It's just internal. We're going to have probably some more modules out as
+[6270s-6276s] well. Just because I know a lot of people do trade features. Let me see if I can get the code.
+[6278s-6282s] Actually, if you code, let me type it in. But if you trade some
+[6282s-6289s] props for them specifically. Picks, do you have a code? I'll probably put in the chat or I will
+[6289s-6294s] have a module on it where it's kind of talk about some props as well. I know a lot of you guys do talk
+[6294s-6299s] about futures. It's called traders. Yeah, traders. That. There have a few codes.
+[6300s-6304s] I'll post in the chat. We'll have some more modules as well if anyone is interested.
+[6306s-6313s] But yeah, let's see. Would you consider a safer options beginner to risk a few contracts?
+[6313s-6316s] I'm going all in just to learn the mechanics. If you're learning the mechanics,
+[6316s-6320s] you can always pay for trading. If you don't understand the dynamics of how options work,
+[6320s-6324s] pay for trading or is your best bet. And then if you start trading, very small.
+[6328s-6334s] Very small size. I think one or two. We like saying two to three contracts. It's
+[6334s-6337s] practical scaling. But if you want to understand the movement, you can
+[6337s-6342s] pay for trade that or you can even trade one contract. Are there any
+[6342s-6347s] pro firms on options? There's actually one. I haven't looked into it that much, but I know there's
+[6347s-6351s] a vote one. Thanks for the detailed explanations. I was great to listen to your
+[6351s-6358s] index explanation. Appreciate that. Yeah, it's for this one. Best platform to trade options.
+[6358s-6363s] There's different brokers. If you're in the Canada, there's IBKR, there's Moomu,
+[6363s-6367s] a Moomu or something. I actually have been testing out. I actually don't mind the broker.
+[6367s-6371s] I think I like it a lot. For the US, a bunch of other brokers as well.
+[6376s-6381s] Yeah, at least for now. Okay. So for this one, we'll have more futures modules
+[6383s-6388s] in the accelerated that we'll add on as well. But at least for this one, we're kind of
+[6388s-6392s] steered off. It started off on futures and then kind of went to risk, which I think it's
+[6392s-6399s] good. So you guys can always look back on it on the bootcamp side. And then at least for tomorrow,
+[6399s-6403s] we'll have, yes, for tomorrow, that's going to be a really good one, which is Tony Talk
+[6403s-6410s] with Howard Time Friends plus his, I think he's time about key levels. What do you think about
+[6410s-6414s] we both get? If you're in the US discount, all discount brokerages like we will Robin Hood.
+[6414s-6420s] If you're trading quick, I'll be a little bit more cautious. If you're swing trading, investing,
+[6420s-6426s] those ones are good options as well. Do you market an queue on top of ES? Yeah, as I mentioned,
+[6426s-6429s] more information. So more information that we have, always the better.
+[6432s-6437s] Yeah, I, and most, yeah, I'm going to call it a day here. Hopefully, you guys did enjoy that.
+[6437s-6441s] And I have this recorded. It seems like some of you guys kind of left as well.
+[6442s-6446s] Might have been a little bit too boring. But it was really good information. I'll have this recorded
+[6446s-6452s] for you guys. And then I will see you guys all tomorrow morning. All right, take care everyone. Peace.

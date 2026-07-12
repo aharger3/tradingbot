@@ -1,18 +1,22 @@
-"""Discord scraper — reads messages from your logged-in browser session.
-No bot needed. Piggybacks your existing Chrome where you're logged into Discord.
+"""Discord scraper v2 — full-history archive via Discord's own API, using the
+token from YOUR logged-in Chrome session (personal archive of servers you're in).
+
+v1 scrolled the DOM (500-msg cap, months at best). v2 paginates the REST API:
+years of history, clean attachment URLs, incremental resume.
 
 USAGE:
-  1. Chrome with remote debugging (the same window you use for Circle):
-     Make sure you're logged into Discord web in that Chrome window.
-     Navigate to the Discord server/channel you want to scrape.
+  1. Start Chrome with remote debugging and log into Discord web:
+     Start-Process chrome "https://discord.com/channels/@me --remote-debugging-port=9222 --user-data-dir=C:/Users/aharg/circle-profile"
 
-  2. Run python discord_scraper.py --discover to find server/channel IDs.
+  2. Discover channels (prints every channel in the server, grouped by category):
+     python discord_scraper.py --discover
 
-  3. Edit SERVER_ID and CHANNEL_IDS in this file.
+  3. Scrape (full history first run, only-new afterwards):
+     python discord_scraper.py                # all channels in CHANNEL_IDS
+     python discord_scraper.py youtube        # just named channel(s)
 
-  4. Run python discord_scraper.py to scrape.
-
-Saves discord_data/<channel-name>.json + images/
+Saves discord_data/<channel>.json (id-keyed messages) + images/<channel>/.
+State in discord_data/_state.json -> reruns resume instead of refetching.
 """
 
 import json, re, sys, time
@@ -22,185 +26,225 @@ from playwright.sync_api import sync_playwright
 
 DATA_DIR = Path("discord_data")
 CDP = "http://localhost:9222"
-DISCORD_BASE = "https://discord.com"
+API = "https://discord.com/api/v9"
 
-# === CONFIGURE THESE ===
-SERVER_ID = 1218766394997346395  # The Accelerator (Scarface Trades)
-CHANNEL_IDS = {                  # name -> channel_id
-    "premarket-charts": 1222970013602807909,
-    "trading-floor": 1219022414239764520,
-    "swing-ideas": 1282826052405559417,
-    "trade-feedback": 1219021113686888478,
-    "backtesting": 1272975902631788726,
-    "scarface-trade-reviews": 1219022089252503632,
-    "jdub-trade-reviews": 1222648559682457650,
-    "futures-trade-reviews": 1339692914573312000,
-    "options-trade-reviews": 1340175319000154143,
+SERVER_ID = "1218766394997346395"  # The Accelerator (Scarface Trades)
+
+# name -> channel_id. Austin 2026-07-05: all coaching/education channels except
+# zoom links, plus #youtube (every upload posted there = free video index).
+# Run --discover to find IDs for channels not listed yet.
+CHANNEL_IDS = {
+    "premarket-charts": "1222970013602807909",
+    "trading-floor": "1219022414239764520",
+    "swing-ideas": "1282826052405559417",
+    "trade-feedback": "1219021113686888478",
+    "backtesting": "1272975902631788726",
+    "scarface-trade-reviews": "1219022089252503632",
+    "jdub-trade-reviews": "1222648559682457650",
+    "futures-trade-reviews": "1339692914573312000",
+    "options-trade-reviews": "1340175319000154143",
+    # coaching education (Austin: everything except zoom-links)
+    "weekly-live-education": "1222375088318447637",
+    "pre-market-live": "1239709794642825266",
+    "live-sessions": "1222650780738129950",
+    "a-plus-setups": "1222374921561182262",
+    "weekly-outlook": "1222375186964156527",
+    "scarface-tips": "1222375001332645899",
+    # youtube: every upload posted here -> feeds youtube_scraper
+    "youtube": "1218991923218350160",
+    # education vault
+    "module-1": "1222378248290435072",
+    "module-2": "1222378248802144347",
+    "module-3": "1222378249200472095",
+    "module-4": "1222378249867231292",
+    "module-5": "1222378250475540500",
+    "module-6": "1222378266942373989",
+    "module-7": "1222378267542159421",
+    "module-8": "1222378268230025257",
+    "module-9": "1222378268703985665",
+    "module-10": "1222378269576400949",
+    "books": "1219022145296797737",
+    # coach alert history (real trade calls = backtest ground truth)
+    "scarface-alerts": "1222377337975210064",
+    "jdub-alerts": "1222377361895460934",
+    "futures-alerts": "1339691315851427922",
 }
-MESSAGE_LIMIT = 500       # Per channel
+
+REQUEST_SLEEP = 0.6  # seconds between API calls; gentle on rate limits
+MIN_IMG_BYTES = 5000
 
 
 def log(msg):
-    safe = msg.encode('ascii', errors='replace').decode('ascii')
-    print(safe, flush=True)
+    print(msg.encode("ascii", errors="replace").decode("ascii"), flush=True)
 
 
-def get_guilds_channels(page):
-    """Navigate to Discord and discover servers + channels."""
-    page.goto(f"{DISCORD_BASE}/channels/@me", wait_until="domcontentloaded", timeout=20000)
-    page.wait_for_timeout(5000)
-
-    # Wait for Discord to fully load
-    page.wait_for_selector('[class*=sidebar]', timeout=15000)
-
-    # Get all guilds (servers) in the sidebar
-    guilds = page.evaluate('''
-    () => {
-        let items = [];
-        // Discord servers are usually in a list with aria-labels
-        document.querySelectorAll('[class*=guild] a, [class*=guilds] a, [data-list-item-id*=guilds] a, nav a[href*="/channels/"]').forEach(el => {
-            let href = el.getAttribute('href') || '';
-            let parts = href.split('/').filter(Boolean);
-            if (parts.length >= 2 && parts[0] === 'channels') {
-                let name = el.getAttribute('aria-label') || el.getAttribute('data-list-item-id') || parts[1];
-                items.push({name: name, id: parts[1], href: href});
-            }
-        });
-        return items;
-    }
-    ''')
-
-    log(f"Found {len(guilds)} guilds/servers")
-    for g in guilds[:20]:
-        log(f"  [{g['id']}] {g['name']}")
-
-    return guilds
-
-
-def get_channels(page, guild_id):
-    """Get text channels for a specific server."""
-    url = f"{DISCORD_BASE}/channels/{guild_id}"
-    page.goto(url, wait_until="domcontentloaded", timeout=20000)
-    page.wait_for_timeout(5000)
-
-    channels = page.evaluate(f'''
-    () => {{
-        let items = [];
-        document.querySelectorAll('[class*=channel] a, a[href*="/channels/{guild_id}/"]').forEach(el => {{
-            let href = el.getAttribute('href') || '';
-            let parts = href.split('/').filter(Boolean);
-            let name = el.innerText?.trim() || el.getAttribute('aria-label') || parts[2];
-            if (parts.length >= 3 && parts[1] === '{guild_id}') {{
-                let isVoice = href.includes('/voice') || (el.querySelector('[class*=voice]'));
-                if (!isVoice) items.push({{name: name, id: parts[2]}});
-            }}
-        }});
-        return items;
-    }}
-    ''')
-
-    log(f"  {len(channels)} text channels found")
-    for c in channels[:10]:
-        log(f"    [{c['id']}] #{c['name']}")
-    return channels
-
-
-def scrape_channel(page, guild_id, channel_id, channel_name, limit=100):
-    """Scroll and scrape messages from a channel."""
-    url = f"{DISCORD_BASE}/channels/{guild_id}/{channel_id}"
-    page.goto(url, wait_until="domcontentloaded", timeout=20000)
-    page.wait_for_timeout(5000)
-
-    # Wait for messages to load
-    try:
-        page.wait_for_selector('[class*=message]', timeout=10000)
-    except:
-        log(f"    No messages loaded for #{channel_name}")
-        return []
-
-    # Scroll up to load older messages
-    for i in range(10):
-        page.evaluate("document.querySelector('[class*=scroller]')?.scrollTo(0, 0)")
-        page.wait_for_timeout(1500)
-        count = page.evaluate("document.querySelectorAll('[class*=message]').length")
-        if count >= limit:
-            break
-
-    # Extract messages
-    messages = page.evaluate('''
-    () => {
-        let items = [];
-        document.querySelectorAll('[class*=message]').forEach(msg => {
-            let author = msg.querySelector('[class*=author]')?.innerText?.trim() || '';
-            let content = msg.querySelector('[class*=messageContent]')?.innerText?.trim() || '';
-            let time = msg.querySelector('time')?.getAttribute('datetime') || '';
-            let imgUrls = [];
-            msg.querySelectorAll('img[src]').forEach(img => {
-                let src = img.getAttribute('src') || '';
-                if (src.startsWith('http') && !src.includes('emoji') && !src.includes('avatar')) {
-                    imgUrls.push(src);
-                }
-            });
-            if (author && content) {
-                items.push({author, content, timestamp: time, images: imgUrls});
-            }
-        });
-        return items;
-    }
-    ''')
-
-    return messages
-
-
-def main():
+def sniff_token() -> str:
+    """Grab the Authorization header from the logged-in Discord tab's own requests."""
+    token = {}
     with sync_playwright() as pw:
         browser = pw.chromium.connect_over_cdp(CDP)
         ctx = browser.contexts[0]
         page = ctx.new_page()
-
-        if "--discover" in sys.argv:
-            get_guilds_channels(page)
-            page.close()
-            browser.close()
-            return
-
-        if not SERVER_ID or not CHANNEL_IDS:
-            log("ERROR: Set SERVER_ID and CHANNEL_IDS first.")
-            log("Run: python discord_scraper.py --discover")
-            page.close()
-            browser.close()
-            return
-
-        DATA_DIR.mkdir(exist_ok=True)
-
-        for name, channel_id in CHANNEL_IDS.items():
-            log(f"\nScraping #{name} ({channel_id})...")
-            messages = scrape_channel(page, SERVER_ID, channel_id, name, MESSAGE_LIMIT)
-
-            if messages:
-                fpath = DATA_DIR / f"{name}.json"
-                fpath.write_text(json.dumps(messages, indent=2, ensure_ascii=False), encoding="utf-8")
-                log(f"  -> {len(messages)} messages to {fpath}")
-
-                # Download attached images
-                img_count = 0
-                for msg in messages:
-                    for img_url in msg.get('images', []):
-                        try:
-                            resp = requests.get(img_url, timeout=10, headers={"User-Agent": "Mozilla/5.0"})
-                            if resp.status_code == 200 and len(resp.content) > 5000:
-                                safe_name = re.sub(r'[^a-z0-9]+', '-', name.lower()).strip('-')
-                                fname = f"{safe_name}_img{img_count+1}.png"
-                                (DATA_DIR / fname).write_bytes(resp.content)
-                                img_count += 1
-                        except:
-                            pass
-                if img_count:
-                    log(f"  -> {img_count} images downloaded")
-
+        page.on("request", lambda req: token.update(t=req.headers["authorization"])
+                if req.headers.get("authorization") else None)
+        page.goto("https://discord.com/channels/@me", wait_until="domcontentloaded",
+                  timeout=30000)
+        for _ in range(60):
+            if token.get("t"):
+                break
+            page.wait_for_timeout(500)
         page.close()
         browser.close()
-        log(f"\nDone. Data in {DATA_DIR}/")
+    if not token.get("t"):
+        raise RuntimeError("No Discord token seen — is Discord web logged in in the debug Chrome?")
+    return token["t"]
+
+
+def api_get(session, path, params=None):
+    while True:
+        r = session.get(f"{API}{path}", params=params, timeout=20)
+        if r.status_code == 429:
+            wait = r.json().get("retry_after", 5)
+            log(f"    rate limited, sleeping {wait}s")
+            time.sleep(float(wait) + 1)
+            continue
+        if r.status_code != 200:
+            log(f"    HTTP {r.status_code} on {path}")
+            return None
+        return r.json()
+
+
+def discover(session):
+    chans = api_get(session, f"/guilds/{SERVER_ID}/channels")
+    if chans is None:
+        log("Could not list channels (missing permission?) — falling back to known list only.")
+        return
+    cats = {c["id"]: c["name"] for c in chans if c["type"] == 4}
+    by_cat = {}
+    for c in sorted(chans, key=lambda c: (c.get("parent_id") or "", c.get("position", 0))):
+        if c["type"] in (0, 5, 15):  # text / announcement / forum
+            by_cat.setdefault(cats.get(c.get("parent_id"), "(no category)"), []).append(c)
+    for cat, cs in by_cat.items():
+        log(f"\n[{cat}]")
+        for c in cs:
+            mark = " <- configured" if c["id"] in CHANNEL_IDS.values() else ""
+            log(f'    "{c["name"]}": "{c["id"]}",{mark}')
+
+
+def msg_slim(m) -> dict:
+    return {
+        "id": m["id"],
+        "ts": m["timestamp"][:19],
+        "author": m["author"].get("global_name") or m["author"]["username"],
+        "content": m.get("content", ""),
+        "attachments": [a["url"] for a in m.get("attachments", [])],
+        "embeds": [e.get("url") or e.get("image", {}).get("url", "")
+                   for e in m.get("embeds", []) if e.get("url") or e.get("image")],
+        "reply_to": (m.get("referenced_message") or {}).get("id"),
+    }
+
+
+def fetch_page(session, channel_id, **params):
+    return api_get(session, f"/channels/{channel_id}/messages",
+                   params={"limit": 100, **params})
+
+
+def scrape_channel(session, name, channel_id, state):
+    fpath = DATA_DIR / f"{name}.json"
+    msgs = {}
+    if fpath.exists():
+        msgs = {m["id"]: m for m in json.loads(fpath.read_text(encoding="utf-8"))}
+    st = state.setdefault(channel_id, {})
+    added = 0
+
+    def save():
+        ordered = sorted(msgs.values(), key=lambda m: int(m["id"]))
+        fpath.write_text(json.dumps(ordered, indent=1, ensure_ascii=False), encoding="utf-8")
+
+    # 1. new messages since last run (or from present if first run)
+    before = None
+    while True:
+        page = fetch_page(session, channel_id, **({"before": before} if before else {}))
+        time.sleep(REQUEST_SLEEP)
+        if page is None:
+            break  # API error; state untouched, next run resumes
+        if not page:
+            st["backfill_done"] = True  # walked past the first message ever
+            break
+        for m in page:
+            if m["id"] not in msgs:
+                msgs[m["id"]] = msg_slim(m)
+                added += 1
+        before = page[-1]["id"]
+        newest_known = st.get("newest")
+        if newest_known and int(before) <= int(newest_known) and st.get("backfill_done"):
+            break  # reached previously-archived region and history below is complete
+        if len(page) < 100:
+            st["backfill_done"] = True
+            break
+        if added and added % 1000 == 0:
+            log(f"    ...{added} new so far (at {page[-1]['timestamp'][:10]})")
+            save()
+
+    if msgs:
+        ids = sorted(msgs, key=int)
+        st["oldest"], st["newest"] = ids[0], ids[-1]
+    save()
+    log(f"  {name}: +{added} new, {len(msgs)} total"
+        + (f" (back to {msgs[min(msgs, key=int)]['ts'][:10]})" if msgs else ""))
+    return msgs
+
+
+def download_images(name, msgs):
+    img_dir = DATA_DIR / "images" / name
+    img_dir.mkdir(parents=True, exist_ok=True)
+    have = {p.stem.rsplit("_", 1)[0] for p in img_dir.iterdir()}
+    n = 0
+    for m in msgs.values():
+        if m["id"] in have:
+            continue
+        for i, url in enumerate(m["attachments"] + [u for u in m["embeds"] if u]):
+            if not re.search(r"\.(png|jpe?g|webp|gif)(\?|$)", url, re.I):
+                continue
+            ext = re.search(r"\.(png|jpe?g|webp|gif)", url, re.I).group(1).lower()
+            try:
+                r = requests.get(url, timeout=15, headers={"User-Agent": "Mozilla/5.0"})
+                if r.status_code == 200 and len(r.content) >= MIN_IMG_BYTES:
+                    (img_dir / f"{m['id']}_{i}.{ext}").write_bytes(r.content)
+                    n += 1
+                    time.sleep(0.2)
+            except Exception:
+                pass
+    if n:
+        log(f"  {name}: {n} images downloaded")
+
+
+def main():
+    token = sniff_token()
+    log("Token acquired from browser session.")
+    session = requests.Session()
+    session.headers.update({"Authorization": token, "User-Agent": "Mozilla/5.0"})
+
+    if "--discover" in sys.argv:
+        discover(session)
+        return
+
+    only = [a for a in sys.argv[1:] if not a.startswith("-")]
+    targets = {n: c for n, c in CHANNEL_IDS.items() if not only or n in only}
+    DATA_DIR.mkdir(exist_ok=True)
+    state_path = DATA_DIR / "_state.json"
+    state = json.loads(state_path.read_text(encoding="utf-8")) if state_path.exists() else {}
+
+    for name, cid in targets.items():
+        log(f"\nScraping #{name}...")
+        try:
+            msgs = scrape_channel(session, name, cid, state)
+            download_images(name, msgs)
+        except Exception as e:
+            log(f"  FAILED: {e}")
+        state_path.write_text(json.dumps(state, indent=1), encoding="utf-8")
+
+    log("\nDone.")
 
 
 if __name__ == "__main__":

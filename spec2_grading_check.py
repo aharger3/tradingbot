@@ -1,5 +1,5 @@
 """SPEC2 verification: A-D grading, grade-based sizing, C alert-only, 3/day cap."""
-from vanquish_bot import Candle, TradeGrade, PriceActionAnalyzer, TradingSession
+from omen_bot import Candle, TradeGrade, PriceActionAnalyzer, TradingSession
 from options_sizer import GRADE_SIZE_PCT, build_options_plan
 
 OR_HIGH, OR_LOW = 100.0, 98.0
@@ -16,9 +16,10 @@ def main():
     hammer = c(100.4, 100.65, 99.5, 100.6)
     assert PriceActionAnalyzer.grade_trade(hammer, [prev_red], OR_HIGH, OR_LOW, True) == TradeGrade.A_PLUS
 
-    # 2. A: bullish engulfing at key level, not a hammer (big body, small wick)
+    # 2. Engulfing NO LONGER grades A (hallucination audit 2026-07-11: pattern
+    # absent from all 4 rulebooks). Falls through to C (retest, no hammer/wick).
     engulf = c(100.1, 100.75, 99.95, 100.7)
-    assert PriceActionAnalyzer.grade_trade(engulf, [prev_red], OR_HIGH, OR_LOW, True) == TradeGrade.A
+    assert PriceActionAnalyzer.grade_trade(engulf, [prev_red], OR_HIGH, OR_LOW, True) == TradeGrade.C
 
     # 3. B: large lower wick (1.5-2x body) at key level, no engulfing, close off high
     prev_green = c(100.1, 100.5, 100.0, 100.4)

@@ -1,4 +1,4 @@
-# Daily Vanquish runner — launched by Task Scheduler at 9:25 AM ET.
+# Daily Omen runner — launched by Task Scheduler at 9:25 AM ET.
 # Pulls Hermes's latest rule changes, then starts the live scanner.
 # Output tees to journal\scanner-YYYY-MM-DD.log for review.
 # --paper enables paper-trade simulation (logs to journal/paper-trades.jsonl)
@@ -10,7 +10,10 @@ Set-Location $PSScriptRoot
 # crash with UnicodeEncodeError under PowerShell's cp1252 pipe encoding.
 $env:PYTHONIOENCODING = "utf-8"
 
-$python = "C:\Users\aharg\AppData\Local\hermes\hermes-agent\venv\Scripts\python.exe"
+# 2026-07-10: hermes venv gets WIPED by hermes updates (07-09 run had no
+# websocket/yfinance -> zero data all day). Standalone Python313 is the stable
+# interpreter for scheduled jobs — never point this back at the hermes venv.
+$python = "C:\Users\aharg\AppData\Local\Programs\Python\Python313\python.exe"
 if (-not (Test-Path $python)) { $python = "python" }
 
 $logDir = Join-Path $PSScriptRoot "journal"
@@ -24,3 +27,6 @@ git pull --rebase --autostash 2>&1 | Tee-Object -FilePath $log -Append
 
 # Run with paper trading enabled (logs paper trades alongside live signals)
 & $python live_scanner.py --paper 2>&1 | Tee-Object -FilePath $log -Append
+
+# Bank today's 1-min bars via Polygon.io (was yfinance — socket timeouts) for longer backtests
+& $python archive_1m.py 2>&1 | Tee-Object -FilePath $log -Append

@@ -1,0 +1,19 @@
+{
+  "timestamp": "2026-07-11T21:56:01.810270-04:00",
+  "symbols_scanned": [
+    "TSLA"
+  ],
+  "signals_fired_today": 0,
+  "session_halt": {
+    "halted": false,
+    "consecutive_losses": 0,
+    "signals_today": 0,
+    "max_trades": 3
+  },
+  "regime_state": "normal",
+  "last_error": null,
+  "webhooks": {
+    "posted": 0,
+    "failed": 0
+  }
+}

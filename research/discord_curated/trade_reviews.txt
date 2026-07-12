@@ -1,0 +1,1079 @@
+[9m] trade-feedback.json | Das Wookie | 2025-11-20T20:02:18
+  I broke a number of my rules today with my trades... not all of my rules, but quite a bunch of them:
+  - Don't trade after 11 - I couldn't resist the afternoon downturn to go short on PLTR and GOOG
+  - Don't revenge trade - I lost my first entry trying a trade with RGTI, so I exited the position, played a Uno Reverse card on my position and immediately re-entered, and lost again! -$4k on both. Doggie! That sucked!
+  - Don't chase! DON'T F-ING CHASE! Got it! - See Revenge / RGTI trade
+  - Don't force trades - See Revenge / RGTI trade
+  - Sit on your hands and WAIT for your entry - See Revenge / RGTI trade
+  - Don't flit from one trade to another - See Revenge / RGTI trade
+  - Max of 3 daily options trades... I entered in on 11 trades in total today
+  - Don't over trade - See max 3 trades
+  - If I do well on either of my initial 2 trades, and I'm green for the day... you're done! - I only had the two trades on TSLA and INTC, but I got greedy and wanted more. It worked out, but it shouldn't have. I got luc
+
+---
+
+[8m] trading-floor.json | Markellwhite16 | 2025-09-23T21:39:42
+  **GAMEPLAN FOR 9/24/2025:** **TSLA ** Key levels being respected here nicely. I like shorts under PDL due to this being a big RR trade , worth the risk. as you can see here a bear flag setting up on the HTF.  Be cautious trading between 427 - 411.4 due to it being a consolidation zone , cant be surprised if the PA is bad in there. between 436.3 & 427 im hands off due to that being in the middle of the range and that would be an inside bar day = lower probability.  if we can break over 436.3 i like longs targeting PDH due to HTF context being bullish and of course Long over PDH. **AMD ** A+ long still over 162.05 on the daily we STILL haven't got a candle close over this level , i like longs off of this targeting PDH and hopefully move higher. I'm hands off taking  Longs off of PDH due to a weekly R level being right above @ 164.75 , not a good RR trade. Shorts under 157.8. **NVDA ** Respected its levels perfectly. Kind of hands off for now on this , moved a good amount today so not sur
+
+---
+
+[7m] trade-feedback.json | demchy19 | 2024-09-12T02:52:37
+  Hi <@801169196015943731> , <@717554586843611217>  <@1014389514141184074> ,
+  
+  Could you please share your thoughts on my trade? Today, I was watching TSLA after it pulled back. QQQ was weak, and TSLA wasn’t particularly strong either, showing downside movement (as you can see my TP1 and TP2). My stop loss was set above the 1-minute candle. Initially, I saw a good retest from the 1-minute candle, and I entered the trade when I saw strong price action to the downside. At the time, it was within the 1-minute order block, and the 5-minute chart also looked good for a downside move, with QQQ still showing weakness.
+  
+  However, TSLA retested the 5-minute candle's open range (OR) -221.12  and pulled back. Once the candle closed above the 1-minute OR, I got stopped out. I entered again with the same thesis, but I got stopped out again.
+  
+  Could you please let me know if my stop loss was too tight? After that, I had to head to work, and honestly, I was a bit frustrated because after I left, the stock
+
+---
+
+[7m] trade-feedback.json | Kuba | 2025-06-13T15:40:49
+  3 PLTR scalps I am quite happy about:
+  
+  #1 previous week high B&R. Great volume on the breakout, was a bit late on the entry (9:41 candle) and this one is a trade I am the least happy about, but it worked out straight away and quite nicely too as I was able to hold to it. Was looking for PDH but it broke it easily and never looked back, exited my 1con near low of 9:53 candle. 1.17$ gain on a con, 1:2.47 RR <:PepeHappy:1219024184148230197> 
+  
+  #2 re-entry on the same PWH restest, Entered near highs of 10:27 candle with super tight risk as it was below 5m high and there was low volume. Was looking for PDH which got pierced thru and I took profits at 10:38 for a quick 0.50$ gain. about 1:5 RR <:pepeOK:1219024188803776712> 
+  
+  #3 this one I liked the most. Played with 2 cons here to see if I can manage the exit better as <@864287214946746368> suggested. Nice order block reclaim with an increasing volume and I entered at 10:51 candle looking for HOD and potentially ATH retest. SL just below the 
+
+---
+
+[7m] trade-feedback.json | Das Wookie | 2025-11-22T06:45:20
+  In the interest of sharing, I had an absolutely HORRIFIC trading day today. I lost my first two trades for the day, and should have followed my rule and walked away right then. Instead, I chased, and entered a trade without a proper setup entry JUST because it looked like it might be good. I sized WAY up to 400 contracts too try and make up for my loss. Turns out tho, there were NO options traders on that symbol. The Bid/Ask Spread was MASSIVE with a $3.50 spread, but I didn't notice until I went to exit. There were NO buyers. NONE!!! I pulled up the Time & Sales, and I thought the data connection was broken. I pulled up history, and I saw some trades of mostly 1 contact, a few for 2 contracts, a rare 5 or 10, and then my 400 contacts buy. There we no other options trades. I couldn't exit! Well I could, but with THAT spread, it was BRUTAL. I listed the limit sale at the ASK, and nothing happened for 30 seconds. I dropped my price by $0.10. Then again. And again. And again... and And AN
+
+---
+
+[7m] futures-alerts.json | MambaTrades | 2025-03-06T13:55:32
+  Premarket Gameplan
+  
+  Market  Analysis
+  The indices are showing large relative weakness with ES down 1.26% and NQ down 1.64% due to poor unemployment data. 
+  
+  ES Volume: 271 - great volume (want 150k min)
+  
+  Any News?
+  Unemployment data lower than expected 
+  
+  Watchlist:
+  NQ acceptance under 20300.50 PT previous day low and 20142
+  If we bounce off the level and trend above the opening print, longs could be on the table but don't love it based on the higher TF
+  
+  ES acceptance under 5769 to target 5751.50. Ideal shorts under 5751.50 to see 5695.50
+  
+  Reminder to be reactive and let price tell you what to do. Be patient for your setups and disciplined to follow your rules and trade limits. 
+  @everyone
+
+---
+
+[7m] futures-alerts.json | MambaTrades | 2025-06-23T13:12:05
+  Premarket Gameplan
+  
+  Indices are showing some relative strength with NQ up .19% and ES. up .15% due to the overnight action with the war. I want too see NQ confirm over 21881.75 and trend above opening print for longs. ES over 6024.50
+  
+  ES Volume: 174k - good volume in the PM, want 150k min
+  
+  Any News?
+  Flash PMI - 15 mins after open (red folder)
+  Existing home sales - 30 mins after open (orange)
+  
+  Watchlist
+  🎯 NQ over 21881.75 with strength. Target Premarket high, 21108.75 and previous day high
+  if we get under 21799.25, shorts on the table.
+  watching for divergences too
+  
+  🎯 ES  over 6024.50 and trend above opening print. Target premarket high, PDH,  6074.75
+  Under 6009.75 for potential shorts. 
+  @everyone
+
+---
+
+[7m] futures-alerts.json | MambaTrades | 2025-09-11T13:15:30
+  Premarket Gameplan
+  
+  Market  Analysis
+  Indicse are currently showing relative strength due to CPI data. Month over month was higher than forecasted so dont marry a bias today and watch how price moves at open. 
+  
+  ES Volume: 164k - good volume, want 150k min
+  
+  Any News?
+  CPI data released
+  
+  Watchlist
+  🟢 NQ buy setup above OP. Target data high 23976 then 24044, 24068
+  🔴 if we sweep 23976 and trend under OP, target data low 23838
+  
+  🟢 ES buy setup above OP for longs. Target 6562 data high, 6565
+  🔴 if we sweep data highs and get under OP we can short to data lows 6535
+  @everyone
+
+---
+
+[7m] futures-alerts.json | MambaTrades | 2025-10-14T13:13:11
+  Futures Premarket Gameplan
+  
+  Market  Analysis
+  Indices are showing relative weakness coming into today. I am watching for shorts under opening print to target 24242 gap fill and 24158 PDL. NQ above OP we can see 24749 before going lower. 
+  
+  ES Volume: 370k - great volume, want 150k min
+  
+  Any News?
+  Powell speaks after 2pm
+  The market is dropping due to China tariffs tension
+  
+  Watchlist
+  NQ sell setup below OP. Target gap fill 24424 and 24158.5 PDL
+  Buy setup above OP. Target 24749.5
+  
+  The market may rebalance to 24749 gap before going lower.
+  @everyone
+
+---
+
+[6m] trade-feedback.json | PlugSabe | 2024-04-02T15:36:42
+  Yeah so I only trade the B/R. I always wait for a signal candle and my SL will go slightly above the high of the candle. On the first trade I just targeted a 2:1 R and the second trade I targeted LOD which was the same level. I consider the first trader to be a B/R because it closed and held below the PML then failed to close back above on that big wick. I watch the 1min for an entry first, but if the candle closes above the level, then I watch to see if the 2min confirms which is wat happened in this case. Iv backtested the 1 and 2 min and for my strategy they have the same winrate, I just take whichever confirms.
+
+---
+
+[6m] trade-feedback.json | Tito Frescado | 2025-03-19T18:08:43
+  Overview:
+  FOMC day but strong uptrend on SPY and QQQ. I thought that since AMZN was above YDH so early in the day with a strong uptrend behind it on all timeframes that it might continue. AMZN was above YDH and retested with a strong hammer candle with long bottom wick. Entered on the close of the second hammer candle with long bottom wick, looking for the daily gap fill. Exited when a candle closed below the first order bock. 
+  
+  Setup Details:
+  Entry: FOMC day but strong uptrend on SPY and QQQ. AMZN showed a strong uptrend on all timeframes. AMZN was above YDH and retested with a strong hammer candle with long bottom wick. Entered on the close of the second hammer candle with long bottom wick, looking for the daily gap fill.
+  Position Size: Discuss the position size taken and why. Mention any adjustments made for risk management.
+  Exit: Exited when a candle closed below the first order bock. 
+  Profit/Loss: Lost 20 dollars on the trade. On second look, the was perhaps too optimistic trade o
+
+---
+
+[6m] trade-feedback.json | Kam | 2025-06-26T19:52:29
+  Took a pretty lousy trade on PLTR this morning and wanted to share my review. Open to any thoughts or other feedback! 
+  
+  PLTR – 6/26/25
+  Setup: BnR 1m OB Continuation + 5m OR Retest
+  Result:  Loss (–1R)
+  Confidence on Entry: 3/5
+  Sizing: Base Size
+  
+  What Happened:
+  Strong opening drive in PLTR with RS and news catalyst. Took an anticipatory reclaim entry off the 1m OB after visual strength near prior pivot, but skipped confirmation and entered on candle stretch. Market context was improving, 5m candle looked like a nice hammer, but pullback was steep and PLTR can be trappy. Trade hit stop shortly after entry. Earlier missed trade off PMH may have been a factor as well as pass on NVDA OB play prior day.
+  
+  Classification:
+  False Form – Anticipatory Entry 
+  Good structure idea, poor entry execution. Trade plan shifted from OB pullback to reclaim without re-evaluation.
+  
+  Primary Mistake:
+  Premature Entry – No Reclaim Confirmation
+  
+  What Worked:
+  - Avoided forced dip buys in semis
+  - Honored stop and resp
+
+---
+
+[6m] trade-feedback.json | Kam | 2025-06-27T00:58:23
+  Hey Jatin - this is a tricky one for me since it's lower timeframe bearish, but HTF bullish. I didn't take this trade, but here's how I hypothetically would have managed it:
+  
+  The 155 area was the reclaim level after the 5m hammer into the PDH level so once we get a candle close above that level I'd draw out the full OB and use that as structural invalidation. I'd have taken profit like you at HOD. That nasty wick held that OB - and after taking profits at HOD, the trade is de-risked so if it comes back it comes back, and stop out for BE or small loss depending on your size. I probably would have sold into new high pops at 156.5, but these setups usually work fast and hit PMH quickly. So once it stalled out, I probably would have been cautious when got back under the HOD pivot and 1m/5m OB to stop out of trailers. 
+  
+  There's different ways to trail though - I tend to use OB's and structure to trail, but others like <@1121621751764369501> use trendlines and EMAs. <@1014389514141184074> us
+
+---
+
+[6m] trade-feedback.json | Malik | 2025-08-20T14:37:44
+  Hi gang, so yesterday I mapped out entry points and tried to see where my entry would have been if I had played that trade (thanks to <@1062934985109160057> , <@1080561490576285706>  and <@1224464587756277830> for some fantastic feedback). Today I did a high-level analysis and took an entry doing paper trading (have lost A LOT of money doing Stupid FOMO trades), to perfect my entries and exits (NOT based on FOMO), I am trying to pinpoint where I take the trades. Here it goes. Since the market dynamics were bearish today. I looked at PLTR and AMD and decided to go with AMD. I waited for it to break the PML and took the entry at the one candle rule at $163.10 with $162 Strike Puts, Exp 08/22 (two reasons, the first was a downward trend, and the second was below VWAP). Marked my trade with the risk reward ratio (first time in my life I waited patiently, as <@1014389514141184074> said NO FOMO). Saw the trade hit the target at $161.11 and exited with most of my position and let the trailers
+
+---
+
+[6m] trade-feedback.json | Markellwhite16 | 2025-09-13T18:00:40
+  TBH you should really focus on HTF key levels , mark out your key levels from the weekly , daily , 4hr , and PDH/PDL . once you do this you can take trades off these HTF key levels because they hold more liquidity , volume , these are levels where big money is sitting etc. AND it will help you avoid taking trades . you went LONG into a major R level on NVDA. Here is  SS , look at all this overhead resistance. i see why you took the trade, i was actually looking at this too in real time BUT what made me pass was these HTF key levels. At the end of the day do what works best for YOU! i do not trade or mark out pre market levels. those levels are created during the after hours and pre market , that being said those levels dont have much volume behind them so they dont hold as much weight and conviction as these HTF (higher time frame) key levels. really hope this helps!
+
+---
+
+[6m] trade-feedback.json | 305 Trader | 2025-09-14T02:53:09
+  Hi Max. Thanks for sharing your trades which lost, I think is brave of you to decide to do self accountabilty on your losses and to share. We learn a lot from our losses and other people’s.,I took the time to draw some thoughts and took screenshots of your charts. Then I draw where I would enter, not knowing anything about HTF and a narrative on those tickers, just purely intraday patterns from the chart.  I trade patterns. 
+  
+  I know it may be a different style for you. I think the market always form patterns like a gradual ascending (long) staircase, or a gradual descending (short) staircase. These patterns repeat over and over intraday but it needs time to form. 
+  
+  Trading the 1st 15 mins of market open in my opinion requires a very strong HTF narrative formed, a strong understanding of the stock and a good gut for being ok with accepting larger losses.  And this is because the market has not formed patterns yet, its only reaction to pre market and gaps. 
+  I trade differently. This is w
+
+---
+
+[6m] trade-feedback.json | Royal191 | 2025-09-19T15:26:05
+  This was a good reclaim entry. The things I would pay attention to is that we had pretty strong rejections above PMH with long upper wicks. Second even tho the reclaim entry at PDH was a good one it was a bit riskier because if you had an intra-day bearish thesis, you would probably be looking for price to go up to PMH and reject for the downside so I would have been waiting for price to either get above PMH like <@1083558050251673661> said or above HOD to confirm it wants to go higher. Also at the time of your entry Qs was at HOD and AAPL was lagging behind. Honestly it’s a good HTF thesis, I was watching this myself.
+
+---
+
+[6m] trade-feedback.json | Luke | 2025-11-07T15:50:17
+  Hey <@1411434496636489949> I see what you were doing there. Your first trade's thesis is 100% valid, but I don't think you got enough confirmation. If you look at QQQ it looks like it was trying to get back above a key level, and with the 9:38 and 9:39 candles being neutral I would have waited long for Qs to see what it wanted to do. You also were buying pretty much at LOD which is fine is some cases with shorts because you have to be more aggressive on them.
+  Your second trade was valid, but you would have needed to get in before that big red candle at 9:46 closed because if you enter near the bottom of that candle, your risk is very high and your R:R doesn't make too much sense, especially if you're playing 0DTEs. LOD would have been the first scale and you can see at LOD at 9:51 Qs was bouncing and reclaiming key levels to the upside which was trying to push TSLA back up.
+  Hopefully that makes sense
+
+---
+
+[6m] trade-feedback.json | dane | 2025-11-18T19:56:05
+  Took this scalp to the downside today on AMD with everyone else it seems. Slightly upset about it though because I broke my rules. I only enter when both spy and QQQ are below my key level and spy was not yet. 
+  
+  I have a few questions on this trade. When looking at key levels on the indices is it needed to have both under your level or just one to go short? I heard Jack called this an opening drive play, but I thought that had to be right off the open. How late can an opening drive play be? 
+  
+  Any other feedback would be great as well. Also I know I should’ve held longer but I’m on one contract right now and scaled at the first draw on liquidity. Thanks
+
+---
+
+[6m] trade-feedback.json | Das Wookie | 2025-11-21T01:56:01
+  I generally am not, no. Sometimes I'll have it on in the background, just so I can listen in on what the boys are doing, but for the most part I'm doing my own thing. I trade more than B&R, and watch more symbols... so if the Mag 7 aren't doing anything interesting, and my thesis for the day ended up wrong... well then I'll just go wherever my watchlist leads me... and where one of my setups appears.
+  
+  Today, it would have been VERY difficult to have not printed if you were still paying attention after 11, and the bottom of the bucket fell out for the next 2 hours. Today was an amazing velocity trade to the downside!!! This sorta day doesn't come around very often... at least not without some tweet from the pumpkin king that causes the entire market to panic. I was in a $40k trade last time that happened, and my jaw hit the floor!!! "Holy ****!!!! What the... What just happened!??? Babe! Pull up the news. Did the pentagon just explode or a dirty bomb go off in NY or LA????" as I watched
+
+---
+
+[6m] trade-feedback.json | Jay_aye11 | 2025-12-16T17:36:58
+  Hey yall, I would appreciate some feedback on this trade on QQQ short. It didn't feel right but I still took it. I took a bigger loss than usual due to the huge green candle. MY key level was previous day low, I was looking for the break and continuation to the downside. I didn't trim at low of day becaue my RR wasnt at least a 1.5 now looking back I should have.   I usually wait for the one candle rule then a retest but this time I just took what I believed to be the reclaim of PDL. Is this a bad trade any feedback would be cool. TIA
+
+---
+
+[6m] trade-feedback.json | Fred | 2026-01-08T16:11:13
+  Hi,
+  
+  3 trade today for small loss at the end of the day.
+  
+  **SHORT TSLA**
+  TSLA is bearish, broke Tuesday's low, I was hoping for a retest.
+  1.29R so no TP** => losing trade -1R**
+  I think my mistake was taking it despite its obvious relative strength versus QQQ…
+   
+  
+  **SHORT AMD**
+  Break the PDL so i take the retest
+  TP1 50% at 2R. All out break even **=> Wining trade +1R**
+   
+  
+  **SHORT NVDA**
+  NVDA range since christmas and finally break the low of the range so i take the retest (+OB)
+  Take 25% off and all out at SL **=> losing trade -0.5R**
+   
+  **I am open to all constructive advice.**
+
+---
+
+[6m] trade-feedback.json | Joebag009 | 2026-02-13T20:54:57
+  The numbers: Cash account +64  Margin account:  -400
+  Take Profit Trader eval: -162 Top Step eval: -283 Apex evals: No trades
+  
+  The Story
+  Lots of learning today. I’m not doing well personally, or in trading at the moment. Spilling my guts on here in a narrative others can comprehend instead of just short form writing to myself might help me work through it. I have done much better before so I know I can do this. 
+  
+  Cash account: I have been trading in a margin account and sizing up worked great until my slump, since I have been trading 1-3 cons lately, I figured why not try a cash account with no margin? I took 720 bucks and put it in a cash account. I did one quick trade with JDUB on 2 0 day cons of NVDA and made 64 bucks. I could have held longer for continuation – I have gotten better, but still hold losers longer than winners. Losses happen faster than winners, cutting needs to be ruthless. I got lots of insight so my new rule for next week is trade 1 account only – cash if I can, mar
+
+---
+
+[6m] trade-feedback.json | Joebag009 | 2026-02-13T20:56:23
+  I had a big AHA that if it was my cash account I never would have risked subsequent NVDA trades, so I think I might be trading my cash account with 720 in it (and taking profit out each day) for a few days to build my psychology up with a fresh start. Another big aha is that with 0s and even generally the first trade is the best trade and unless I have a new thesis or proved continuation (preferably with divergence from the market), re-entering is a bad idea - looking at my trading notes I have had wins in the past on re-entering for continuation, especially in big dumps around key levels and in grinds but this week it has not worked out (as in net profit) and eaten my meagre profits. Instead of blaming the market, I am adding new habits of pausing between trades and to reload I will develop a quick checklist for myself - did it defend a key level and continue or is it just teasing me, or is it just teasing me as it mirrors qqq moves (hey, it got Jack with TSLA this week, I need to be 
+
+---
+
+[6m] trade-feedback.json | Joebag009 | 2026-02-13T20:57:18
+  I keep getting to the half way point of passing evals and then getting close to blowing them, grinding up, then either failing with tight margin or a second tilt day. I wish I had tried props sooner, days of learning only costs me the eval fee. I wish more that I was passing them. I want to try trading multiple accounts at the same time with a copy trader for base hits that add up, I have two Apex accounts and wanted to link them to Ninja trader, only to find out that the feature was removed with the latest update to Ninja 8. I might try trading both together on Rthmic trader pro, but haven’t figured out the right settings and also need to tweak the master settings to switch from Ninja to Rthmic. I was super exited for Ninja with all the flashy Youtube shorts out there, it looks like ass out of the box and I am let down. So far my best results have been with TPT. Apex trailing drawdown scares me, I need 1 solid trade per day which might be good for my trading, but if I trail too close 
+
+---
+
+[6m] trade-feedback.json | Porter | 2026-02-18T18:45:17
+  I should have mentioned this earlier, but I did **not** intend to use the 5-minute timeframe for the entry not on this trade itself.
+  
+  * The trade was meant to be a **break and retest of the pre-market level (PML)**.
+  * The **5-minute level** was only being used as a **price target** in this situation.
+  * At the time, the ticker was **below both the PML and the PDL**, with **very bearish price action** from the prior day.
+  * Because of that, I felt using the **PML as resistance** made sense.
+  * Price had **wicked into the EMA and VWAP twice and rejected**, which reinforced that bias.
+  
+  I should also clarify:
+  
+  * I trade primarily on the **3-minute chart**, not the 1-minute.
+  * That said, after dropping down to the **1-minute**, I see what you mean about the entry — and you’re right.
+  
+  Looking back at it now using **TradingView replay**:
+  
+  * The **9:36 candle on the 3-minute** was the correct entry.
+  * I entered **too late**, mainly due to hesitation on my part.
+  * There also wasn’t any real **disp
+
+---
+
+[6m] trade-feedback.json | Huy | 2026-02-18T19:26:02
+  first candle rule (5 mins opening orb range) is something that is always good to map out and see so you can build some context. If the price is below both the PDL and PML, that would be one confluence for me. I like to take key levels into consideration such as the HTF levels. I am going to steal Jack's words but WMT offered that beautiful pop and fade today. 
+  PDL + 128.10 key support would have been a low risk entry. PML and PMH should be used with caution though since the levels created in this session does not have a lot of volume so its a thing we can look at if there's a HTF thesis and PM levels is the only thing that we can work off in a *trending* day.
+  
+  if presented with this trade, I would only take a short off the 128.10 level that I mentioned either or go long if it can break and retest above 129.70 since this would violate the current structure and can shift for the upside. 
+  
+  p.s. if you trade with wmt more in the future, you can watch the XLP index for another confluence
+
+---
+
+[6m] trade-feedback.json | Huy | 2026-03-02T20:42:32
+  As many of you have already agreed on this - no more 0's! No ifs. The trade has to work out right away and the move has to be impulsive for 0's to work in our favor. Also it takes another level of mental capital to be able to hold through the ups and downs. Only Jack and Tony can get away with this due to where they are in their trading journey + their experience. My suggestion is only take 0's once you get to a certain point but the size is going to be much smaller. Vast majority of us including myself are not there yet.
+  
+  I can give you 2 feedbacks on the trade today. 
+  1. NVDA was consolidating after we got in but it never broke market structure. There was an order block that it was respecting nicely
+  2. QQQ also never broke structure
+  
+  do not get me wrong, today was also tough. It takes some mental fortitude to hold through that
+
+---
+
+[6m] trade-feedback.json | Joebag009 | 2026-03-20T14:30:10
+  Hello friends, a few of you have been so kind to engage with me and you might remember I have not been doing well both in trading and personally. I haven't posted in a while so here is an update: I have kept journalling in crazy detail the technicals, the feelings before duirng and after the trade, pages each day and often on paper so it was just too much to share on here daily. I am trying to improve my consistency, avoid losses, and follow rules - trading really is you vs you and a journey. I slowed down my losses to basically breakeven since about mid February, but still not reverted to steady profitability like I hoped. The market has been difficult these past weeks as you all know, also a host of bad luck for me: internet outages at terrible times that stop out otherwise banger trades, broker glitches, and off the screen for personal matters and funerals on almost all the continuation days. Yesterday I got stopped out by 1-5 ticks multiple times... literally 2 points into my stop 
+
+---
+
+[6m] trade-feedback.json | Martin_AT | 2026-06-06T11:16:00
+  Hello,
+  on Friday my overall bias was correct because my bias was to the downside. QQQ dropped after market open and was below PDL but I still hesitated to go short on AMD. I missed the first two order block retest opportunities. On the third order block retest I already had a bad feeling but I still went short. The trade was a looser but after 11:10 am price continued to go down.
+  https://www.tradingview.com/x/9jDs9Idd/
+  For me the learning is this (more like a "re-learning" because I should have known this): If Qs is dropping for about 30min without a significant pullback then the chance for a bigger pullback or a reversal is too high and therefore shorting stocks on the 1min TF is too high risk. Thus in future I would focus on shorting opportunities at the beginning of the session and avoid late short opportunities like AMD von Friday. (Based on all the trade reviews from Tony/Jack that I have watched I noticed that they never go short too late - like me in this case)
+  
+  What are your th
+
+---
+
+[6m] trading-floor.json | mattyoptions | 2024-05-29T15:45:51
+  if anyone can learn anything please learn from me. I took 175.18 retest on tesla, only 2 contracts (normal size is 4 contracts) Scaled 1 at HOD 176, held the last one into previous high and instead of selling out of my position which would have been a $200 day for me it ended break even and only $65. I then stayed in the room and felt like the market owed me something since i shouldve had a great day based on the trade. Oversized and took 10 contracts of the apple trade, that failed and put me down $200 on the day instead. If you have one good trade PLEASE walk away from the screens . I shouldve been happy with the trade on tesla and instead i was focused on the dollar amount and in the long run it didnt end well.
+
+---
+
+[6m] trading-floor.json | Jdub | 2024-09-05T01:53:45
+  Just caught back up with the chat.
+  
+  I'd like to give my thought on some of the things said.
+  
+  Taking signals is not a long term solution. I can promise you that if you solely rely on signals that you will lose in the long term and let me break it down. A great example of this is yesterday and today. Let's say you took the NVDA trade towards the downside yesterday. Most likely you would have sold on the first push towards the downside because you didn't understand the overall context of the trade. This was a higher timeframe thesis laid out in the pre market prep and we talked about this over the weekend as well. If the market is weak we will be look for NVDA towards the downside. And if you didn't understand this, you would have no conviction to hold for the move towards the downside even though there was a very good chance that it would head lower. 
+  
+  And today for example lets say you missed the trade yesterday and now you got into NVDA this morning. I mentioned that its a completely d
+
+---
+
+[6m] trading-floor.json | demchy19 | 2024-10-14T19:37:43
+  Hi Lauren,
+  I'm not a professional trader yet; I'm still learning, but I'll share my thoughts on your question. I don't think this follows the 84% rule. If I understand correctly, the 84% rule applies when you have a plan for entering a stock at a specific key level (e.g., the 5-minute opening candle print), and the stock tries to retest that level but fails and goes lower. The 84% rule comes into play when the stock returns to that key level and breaks through it. At this point, you just watch the price reaction at that level. Typically, with the 84% rule, the stock doesn't retest the key level—it just breaks through and moves in the right direction.
+  From the picture below, we can see that the stock has retested the same level twice. This can give you a stronger confirmation that the level is well established and could push the stock lower. There are likely many sellers above this level, preventing the stock from going higher, so there's a good chance it will drop. But based on your ta
+
+---
+
+[6m] trading-floor.json | GoodVibez | 2025-06-03T17:17:25
+  Hey. Firstly, I feel your pain man. Gotta look at those higher time frames. Pretty much what Jack/Tony did. But remember they're not always correct in the immediate sense. Remember that huge TSLA swing  win Tony had. His orignial entry wasn't that great. It retraced down like $18. He bought more to offset while it worked back to original target. I'm not saying do that. Buy what did you see on higher timeframe that inspired you to enter Shorts? Also be mindful you only have until the June 6. Theta is gonna rip into the liquidity esp. as it sits negative. My experience...patience is good when on the the right side of a trade OR when you're intitally wrong, trust your thesis, and have bought enough time out (like 2 weeks to a month) for you to profit or at least break even. Maybe give it a lil time but you also don't wanna regret not cutting your losses at 3k when you're down $12k. Also think about the consolidation on the Daily chart. So if we're breaking above this level... it's probabl
+
+---
+
+[6m] trading-floor.json | psycho276305 | 2025-07-15T21:08:19
+  Yup I am, the main mistake Ive seen myself make is just entering too aggresivley and also re-entering without the 84 percent rule, but I have been looking at the indexes and relative strength/weakness, I guess I got to give it some time since my trade management is slowly getting better especially this week, and psychology too,  I missed some good setups last week to be honest since I was out on vacation. Todays trade I took on AMD on the 5 min range and took a partial but then got stopped out. Will keep you guys updated later this month and how it goes
+
+---
+
+[6m] trading-floor.json | Markellwhite16 | 2025-09-15T22:17:26
+  i have an alert set @ 229.3 as you can clear level of support here . held it today as well (price doesn't always fully pull back to the key level but on the HTF today it held this level) i like shorts under this 229.3 especially if it comes tomorrow that's a great setup because it'll also be under the PDL. if it gets under 229.3 that's a great RR trade as well IMO , nothing in its way until it approaches that weekly support level . if this is a stock you trade you can keep an eye on this 231.8 level as well to play off of as you can see it gave a nice break and retest to both the upside and downside today! hope this helps
+
+---
+
+[6m] trading-floor.json | Markellwhite16 | 2025-09-18T20:43:10
+  **Trading Game Plan for 9/19/2025**: **AAPL **setting up nicely as we can see the key levels here are 241.30 and bottom of the range 236.35. top of the range 241.30 rejected perfectly again, main watch is this level. tomorrow AAPL has its iPhone releases for pre order so hopefully that can get us over this level , really watching this one. **TSLA **interesting one here , i do hope we can get some downside to start to slide in now , it would be a healthy pull back and gap fill. in a range between 427 & 415 , anything going on in the middle of here im hands off. I've taken two long trades off of 415 this week going 2/2 on it but now there is clearly a key support level here under it on the 4hr which is 411.40 so i would be patient and wait for a break and retest under this level if TSLA wants to stay heavy , this is the A+ setup and a high RR trade to the downside , no longer interested in shorting off of 415. For the upside 427 is def a key level ,  i went long off this today but going 
+
+---
+
+[6m] trading-floor.json | Markellwhite16 | 2025-09-20T15:45:54
+  **Game plan for 9/22/25** : **TSLA **still sitting in a range, i do like the B&R over the PDH & PDL due to it being a good RR. over PDH is a $6 move & under PDL is a $5 move. A+ LONG is over 436.3 & A+ SHORT is under 411.40. as you can see 411.4 & 415 are strong levels of support buyers defend. **AMD **still setting up on the HTF here , avoiding this no trade zone for good reason. i like shorts under $155 and A+ long is top of the range 162.05 , key level 157.8 gets respected very nicely so if we open up above it Mon i like a short off this level targeting PDL. **NVDA **just consolidating , nice recover after its sell off from CHINA news, headed back into this no trade zone im hands off there. A+ LONG is over 178.8 & A+ short is under 173.15 if we open up with an inside bar day im hands off this name , 176.4 is a key level to take trades off of if you like , clearly respected nicely. **AAPL **key level for the next long is over 247.3 if we fall under 244.05 i like this to the down side
+
+---
+
+[6m] trading-floor.json | Dora | 2025-10-16T18:21:35
+  Yes, I swing trade on occasion. I think it's easier because I usually have more conviction and I'm buying the options that expire much later. The DTE I enter depends on how long I think it will take the trade to reach my goal. Not sure of tutorials. On the daily chart in TradingView, using market structure info, I draw out those "long position" or "short position" tools to mark my stop loss and target. I usually enter into long (call) swing positions after a good company has had a bad day (fell by a lot), then start to go back up. This past year, I've swung ABBV, MELI, and LLY (most recently). I usually swing calls and seldom shorts.
+
+---
+
+[6m] trading-floor.json | Z33TRADES | 2026-04-09T17:40:26
+  I am in the same boat. Biggest loss i've ever had trying to chase a good trade. Both tesla and amd were bad for me. What should've been a $1500 loss turned into a $3500 loss trying to make it back. I defiently broke my rules today and tried to go for the 2R and ended up never recovering when it went the other way. Going to come back with a clear goal tomorrow and size down the next few days. I am going to just exit without scalling because that really got me today. Hope tomorrow is a better day for you too.
+
+---
+
+[6m] jdub-alerts.json | Jdub | 2024-09-20T13:01:39
+  Game Plan September 20th 
+  
+  Quad Witching today. If you don't know what this is I suggest you to size light or not trade. I still have trailers on TSLA so I will be looking to offload on the first push towards the gap fill. SPY and QQQ are really in the middle of the range. We are still above the FOMC highs. I expect the major indices to consolidate in the range from yesterday. There is this big gap on SPY towards the downside. Key levels will be the FOMC highs 566.7 level. 
+  
+  As for watches today I will be looking for TSLA opening drive, AMZN for a move up towards 191.60 higher timeframe gap if it can hold 190.6, Meta opening drive, AAPL looks really good for continuation as well and same for GOOG. Look for a dip and rip in most of these names if you are going to trade it. If they move higher first be hands off.
+  
+  <@&1219020123218645102>
+
+---
+
+[6m] futures-alerts.json | MambaTrades | 2025-03-04T00:27:15
+  What’s up everyone! 👋
+  
+  Super excited to be here! I’ve been trading for 5 years and went all-in on futures last year.
+  
+  I’m based in Southern California, and my trading name is inspired by my childhood hero, Kobe Bryant—RIP to the GOAT! 🐍
+  
+  What I love about futures is the ability to manage risk effectively without battling theta decay. My system uses a 1-candle stop loss, allowing for precision and tight risk control.
+  
+  If you're a newer trader or working with limited capital, futures are the best way to go. They allow you to develop a strong system and gain real experience without high costs. Once things start clicking, you can leverage prop firms and scale to $10K+ per month.
+  
+  I primarily trade the 4 major indices (ES, NQ, RTY, YM) but focus mostly on ES and NQ because they offer consistent moves and high-quality risk-reward setups almost daily.
+  
+  My approach is level-to-level trading based on liquidity and market structure. I’m here to share my system and processes to help you build an 
+
+---
+
+[6m] futures-alerts.json | MambaTrades | 2025-03-10T13:07:56
+  Premarket Gameplan
+  
+  Market  Analysis
+  Indices are showing large relative weakness due to recession fears. NQ is down -1.60%, ES -1.36% and YM -1.08%. NQ is currently at Fridays support @19873. I would like for us to get acceptance below 19873 to see 19816.75. The real short is below 19816.75 where there's room down to 19182.5 (about 600 pts). ES acceptance below 5693.25 has room to 5548. If we test both support level on ES and NQ and trend above the opening print, longs on the table.
+  
+  ES Volume: 335k - great volume in the premarket (want 150k min)
+  
+  Any News?
+  Trump Speaks Tentatively today 
+  
+  Watchlist:
+  NQ acceptance below 19873 PT 19816.75,  19182.5 (trim at 2R and hold position) since target is far away and huge gap down already
+  -NQ retest of 19873 that trends above the opening print for longs
+  
+  ES acceptance below 5693.25 PT 5548.25 (trim along the way)
+  -ES retest of 5693.25 that trend above the OP for longs
+  
+  With the daily bar of NQ and ES right now, I am favoring shorts. Be patient at
+
+---
+
+[6m] futures-alerts.json | MambaTrades | 2025-04-23T13:14:57
+  Huge Gap Up
+  
+  Market  Analysis
+  The indices are showing extreme relative strength up 2.92% on NQ and 2.42% on ES. Its at a point where I'm not sure if we gapped up too much and going to range or trend higher. I am watching NQ for a bounce at 18816 and 5411 on ES. Hopefully we can sell off a bit and set a divergence to go higher. Trends above OP are also an option for longs. I don't think i want to short this move unless i see a clear bearish divergence.
+  
+  ES Volume: 287k - great volume in the premarket
+  
+  Any News?
+  Flash PMI -15 mins after open
+  New Homes sales - 30 mins after open
+  
+  Watchlist
+  NQ bounce @ 18816.50 or divergence for longs. Trends above opening print can be a long too. Target 19068
+  ES bounce @ 5411 or break and retest 5466. PT 5520
+  
+  No shorts unless clear setup under OP or divergence.
+  @everyone
+
+---
+
+[6m] futures-alerts.json | MambaTrades | 2025-05-19T13:06:39
+  Premarket Gameplan
+  
+  Indices are showing relative weakness due to US debt downgrade with NQ down 1.36% and ES down .97%. I want NQ to stay below 21287.5 for shorts and ES below 5922 (end of day pivot).
+  
+  ES Volume: 183k - good volume in the premarket; want 150k min
+  
+  Any News?
+  No news till Thursday 
+  
+  Watchlist
+  NQ reject 21287.5 or trend below OP to target overnight lows then 20943
+  ES reject 5922, overnight highs (london highs, or trend below OP for shorts.
+  
+  Watching for divergences in either directions. 
+  Bias is mainly shorts today with the news. 
+  @everyone
+
+---
+
+[6m] futures-alerts.json | MambaTrades | 2025-05-21T13:10:44
+  Premarket Gameplan
+  
+  Market  Analysis
+  Indices are showing relative weakness with NQ down .70% and ES down .68% due to bond yields moving higher. Higher yields is generally bad for the market. I am watching NQ for a rejection of 21350 or ES rejection of 5939. If we don't get a rejection, I will be looking for a divergence or trend below OP.
+  
+  ES Volume: 155k - solid volume 
+  
+  Any News?
+  No news just higher yields
+  
+  Watchlist
+  NQ reject 21350 or trend below OP or divergence for shorts
+  ES reject 5939 or trend below OP or divergence for shorts. 
+  
+  Keeping it simple today @everyone
+
+---
+
+[6m] futures-alerts.json | MambaTrades | 2025-09-03T13:14:32
+  Premarket Gameplan
+  
+  Indices are showing relative strength due to GOOGL and AAPL news. I am watching NQ above OP and ES above 6453.5 for longs
+  
+  ES Volume: 169k -good volume, want 150k min
+  
+  Any News?
+  Jots Job Opening - 30 mins after open
+  AAPL and GOOGL catalyst
+  
+  Watchlist
+  NQ trend above OP with buy setup. Target 23484,  23509, 23552
+  bounce off 1hr gap with divergence
+  if we trend below OP we can see a quick short to 23395.5
+  
+  ES above OP and 6453.5 Target 6464, London high, Asia High 
+  @everyone
+
+---
+
+[6m] futures-alerts.json | MambaTrades | 2025-10-15T13:17:16
+  Futures Premarket Gameplan
+  
+  Market  Analysis
+  Indices are showing relative strength due to strong earnings. NQ is creating bullish gaps so i want us to hold the 15m gap and present a buy setup above OP to target 25044.25 then 25196
+  
+  ES Volume: 195k - great volume, want 150k min
+  Any News?
+  No News but good volume in premarket
+  
+  Watchlist
+  🚀 NQ buy setup above opening print. Target 25044.25, 25196 unfilled gap
+  bounce @ 24986 15m gap
+  
+  🚀 ES buy setup above OP. Target 6757.75
+  
+  Not looking for shorts unless we get huge sellers at open. 
+  @everyone
+
+---
+
+[6m] futures-alerts.json | MambaTrades | 2025-11-10T14:16:12
+  Futures Premarket Gameplan
+  
+  Indices are showing relative strength due to potential gov shutdown ending and tariff stimulus checks. However, today's price action is uncertain with most of the move happening in the afterhours and we are ranging on the 1hr. We have London high and this 1hr midpoint as potential targets and london lows for downside targets. Watch for displacement since we could range today. 
+  
+  ES Volume: 218k - good volume, want 150k min
+  
+  Any News?
+  No red folder news
+  
+  Watchlist
+  🟢 NQ buy setup above OP. Target 25569 then Midpoint of 1hr gap @
+   25655
+  🔴 NQ sell setup below OP. Target 25457
+  @everyone
+
+---
+
+[6m] futures-alerts.json | MambaTrades | 2025-12-03T14:19:29
+  Futures Premarket Gameplan
+  
+  Market  Analysis
+  Indices are showing relative weakness due to job reports and MSFT. Looking for shorts today. 
+  
+  ES Volume: 175k - good volume
+  
+  Any News?
+  Job reports
+  ISM PMI - 30 mins after open
+  
+  Watchlist
+  🔴 NQ sell setup below opening print. Target 25414, 25324, 25193
+  🔴 ES setup below opening print. Target 6818, 6812, 6802
+  
+  Keeping it simple today @everyone
+
+---
+
+[6m] futures-alerts.json | MambaTrades | 2026-02-27T14:11:05
+  Indices are showing relative weakness due to AI selling off. I want to see continuation below opening print for shorts. 
+  
+  ES volume and VIX looks good.
+  
+  Watchlist: 
+  🔴 NQ sell setup below opening print. Target 26694, 24668
+  I want to see NQ hold below the 15m gap as a condition
+  @everyone
+
+---
+
+[6m] futures-alerts.json | MambaTrades | 2026-03-03T14:13:57
+  Futures Premarket Gameplan
+  
+  Market  Analysis
+  Indices are showing relative weakness in the premarket. Today could be a bit tricky since we took out liquidity to the downside and had a huge move in the premarket. I am watching NQ under the opening print for shorts. 
+  
+  ES Volume: 487 great volume
+  VIX (Minimum above 14.5) Ideally 15-18
+  26 - good
+  
+  Any News?
+  No news
+  
+  Watchlist
+  🔴 NQ sell setup below opening print. Target 24239, 24154
+  🔴 ES sell setup below opening print. Target 6732, 6684
+  @everyone
+
+---
+
+[5m] trade-feedback.json | Lane 🌿 | 2024-04-19T20:30:21
+  Here's what I see on your trade <@705768295609008141> . First 2 lines were fantastic entries after that break and retest on your intraday level. Your stop loss was perfect and it was hit, no problem. The move was supposed to happen, you weren't wrong. Sometimes it just doesn't because of the volume, no biggie. The circled candle would have been a perfect 84% rule example where you could have entered with the exact same criteria and it would have worked.
+
+---
+
+[5m] trade-feedback.json | KevinS | 2024-07-19T14:57:40
+  Could I get some help on this?
+  
+  I took my first trade because I thought it was doing an opening print reversal into the order block. Took the trade and got stopped out quick
+  
+  Then I took it again because of the 84% rule and got stopped out once more. 
+  
+  I didn’t take it a third time because 84% of 84% is 71%. But it ended up exceeding my profit target the third time.
+
+---
+
+[5m] trade-feedback.json | demchy19 | 2024-09-05T15:08:55
+  <@801169196015943731> , <@1014389514141184074> Can you please share your thoughts on whether I made the right decision?
+  
+  Today, I know you were watching AMZN, but I also noticed NVDA had the potential to go up to the PDH if it held the PMH, which it did. Once the stock bounced, I took 6 contracts. My first take-profit was at the HOD, where I took off 3 contracts, and I left the rest for PDH. However, I felt that the stock looked a bit weak, especially since QQQ was strong, but NVDA didn't show as much strength. So, I sold 2 additional contracts and kept 1 for the PDH. When the stock broke below the PMH, I sold my last share.
+  
+  Could you please share your thoughts on whether I made the right move? Also, why did you say that NVDA wasn't a good long setup— which, in the end, you were obviously right ? 😄
+
+---
+
+[5m] trade-feedback.json | TheArtisan ⛏ | 2024-10-03T05:10:36
+  Guys, I would like to have some feedback on this trade..
+  
+  Thursday 3th Oct
+  QQQ
+  
+  I play the BnR of opening candle(1min).
+  0dte put 477. 
+  2 contracts
+  
+  I think I had a good entry.
+  I took profit  at Low of day(sold 1 cons)
+  And let the second continue, my target was PDL but it never reached it.
+  
+  And then the price revert, also with SPY. and I had to cut it out.
+  
+  1, What should be my mentality when I'm scalping? 
+  
+  2, Do I still need to keep levels in mind as TP, or just sell at 2:1 3:1 ?
+  
+  3, Do you sell the whole position at first target or you do it scaling?
+  
+  4, What do you think about playing with 2 cons? How would you execute the trade in this case?
+  
+  5, Any suggestion about the contract that I choose? Price was 479.5 when I entered, and my target was 477.5. Is this too aggressive for a scalp?
+  
+  In this case the position was up around 50% but I did not sell the contract waiting for it to reach the PDL. 
+  It was sad to see that I did not take the profit when it was high, but I feel good that I
+
+---
+
+[5m] trade-feedback.json | Lauren (lakatrades) | 2025-01-26T20:46:59
+  <@1025807331327475863> 
+  
+  Great question! Comparing your second chart and my first one, here’s how I’d approach the scenarios you outlined:
+  
+  Scenario 1 (Green Arrow):
+  If NVDA filled the gap, broke the 5-minute opening range, retested the bottom line of the opening range, and then pushed up:
+  
+  Yes, I would consider entering after the retest and confirmation of strength (e.g., a bullish candle closing above the retest level).
+  This setup aligns with gap-fill momentum, which often leads to a continuation if volume supports it.
+  Stop Loss (SL): Just below the retest level or slightly under the gap-fill zone to account for noise.
+  Scenario 2 (Red Arrow):
+  If NVDA broke the top of the 5-minute opening range, retested, and then started selling:
+  
+  No, I wouldn’t enter here. The initial breakdown of the top of the range would signal weakness, especially if it couldn’t hold the breakout level.
+  Entering short after the breakdown could work for a different strategy, but for me, I’d wait for further confi
+
+---
+
+[5m] trade-feedback.json | demchy19 | 2025-02-07T16:58:08
+  I would really appreciate any feedback on my trade today. Theses: AMZN had earnings yesterday, and they were better than expected. However, the outlook for the next quarter was not very promising, which is why the stock started to sell off. The plan was that if it broke above the  PMH, we could potentially see it move higher since PMH aligned with a key level on the daily chart.
+  
+  Once the market opened, it dropped to retest that level, which had multiple bounces on the higher time frame. Then, it broke above PMH and the key level on the daily chart (red square) before pulling back to where I initially entered. My take-profit was the previous day's high. However, as you can see, it broke the 5-minute opening range, came back, and then broke my first stop-loss, so I exited with a loss.
+  
+  Then, I checked the 84% rule. Once it broke above PMH again, I re-entered with the same TP at PDH. But then the news came out, and the stock just sold off.
+  
+  The question is—was my thinking correct? Even t
+
+---
+
+[5m] trade-feedback.json | Luke | 2025-02-10T15:58:08
+  I'd appreciate some feedback on this trade I took today. I never got into NVDA, I wasn't trying to be super aggressive. I saw this AAPL retest and in itself it's pretty good but there are a few things I notice. It was in the middle of the range between the PDH and PDL, It was kind of just chopping around since market open meaning it didn't have relative strength or weakness.
+
+---
+
+[5m] trade-feedback.json | Ali | 2025-02-10T18:03:26
+  Don't worry I made a mistake myself today. I exited on 2RR instead of a potential 3.2 RR at HOD on AMD. Got scared on the 1 minute because it was 10:30 when I entered the trade, so thought momentum would die and it wouldnt hit HOD.
+
+---
+
+[5m] trade-feedback.json | DWC2016 | 2025-02-25T16:47:36
+  Nice !! I was a W right ? and you too make you are constant in here. If I can be consistant for the next month going to start scaling my account a bit. Only on 2-3 cons at the moment which is about $750-$1000 postion size which is all im willing to take rn. 
+  
+  and yea man Q's has been really good this last week or so puts wise
+
+---
+
+[5m] trade-feedback.json | Angel (az) | 2025-02-27T03:06:08
+  As the others pointed out, the 5m was incorrectly marked so the retest was different, but I think I see what you were looking at, there was an immediate retest. It's to the downside, we seem to be breaking outside of consolidation after many days and below PDL right into the open with immediate retest. I would say this is quite an aggressive play, because it happens a few minutes into market open. The other comments I have (I make this same mistake myself) - you're taking it very close to LOD, so it is riskier. Ultimately, it did give you a new LOD at 9:42 where you should've taken some off. Thesis checks out for me, but the other factor was QQQ was slowly moving up, and I believe Jack and Tony said in the live that it would be hard to short. I think this is why it hit your targets ultimately, but it was very choppy on 1 minute. 15 minute retest of PML looks nice in hindsight.
+
+---
+
+[5m] trade-feedback.json | DWC2016 | 2025-03-07T03:38:23
+  <@1121621751764369501> how did you know to avoid the chop on the Q's on the on the 10:31 B&R ? at the time it had a perfect set up and looking like it was making a lower high rejecting off a key level then after  had a "failed" 84% rule that also didn't hit the main target. (I took and got stopped on these trades)
+  
+  How was it possible for you know to avoid the 1st few set ups and go for the 3/4th time it set up in the moment ? 
+  
+  This really got me yesterday. Thanks
+
+---
+
+[5m] trade-feedback.json | Luke | 2025-03-07T22:42:32
+  for me, I would have not been that aggressive on meta, especially on a Friday. QQQ hadn’t picked a trend yet, and was showing strength when market opened. I would have been looking for the retest of the PDL as well, but would have wanted some more displacement, or you could have potentially looked for the 5min opening range low retest. You could have potentially been looking for the 84% Rule of the PDL as well.
+  As for the second trade I wouldn’t switch my thesis to long on Meta because based on the higher time frame you would be longing into range.
+
+---
+
+[5m] trade-feedback.json | Ruslan /ruˈslan/ | 2025-03-10T15:02:34
+  I entered the position not at key levels because I had a plan based on the HTF, so I was waiting for a pop and reverse towards the downside due to the downtrend on the HTF.
+  
+  I bought only two contracts, so I didn’t trail with the price and sold at the LOD and PDL.
+
+---
+
+[5m] trade-feedback.json | unnas | 2025-03-10T16:14:26
+  I used to enter into these kind of trades when I was first learning about the break and retest strategy.  Every time I saw a good retest, I would take the trade (good thing it was only paper money back then).  The biggest lesson I learned is to develop a HTF thesis first, then enter a set up that lines up with the HTF thesis.  For example, we are currently in a downtrend and most stocks (including NVDA) are in a downtrend.  Therefore, a suggested setup would be to look for a shorting position on a key level.  I make sure to watch Jdubs premarket prep videos to get an idea of what to expect and what key levels to keep and eye on.  Trying to a Long position on a stock that is downtrending in the HTF is pretty risky.  Also, something new that I'm just learning is to use the QQQ and SPY price action to determine relative strength and weakness for the stock I'm considering to trade.  In a nut shell, the break and retest strategy works best when you pair it up with multiple confluences like 
+
+---
+
+[5m] trade-feedback.json | Luke | 2025-03-17T15:59:52
+  If anyone has any thoughts about these 2 trades on MSFT that’d be great! The first trade was based on the hold of the 1min order block + 5min OR reclaim. The second trade was what I think was the 84% Rule kinda set up on the 5min timeframe. My thesis was to target previous day high and it ended up tapping it
+
+---
+
+[5m] trade-feedback.json | Luke | 2025-04-28T16:46:59
+  Wanted to share this trade I took on NVDA today. It was the 84% Rule of the 5min OR Low. I never entered on the first retest because there wasn't any confirmation candel for me to enter on. I entered at 10:13 EST, when I should never have because the first trade never got stopped out. What I should have done was entered at 10:30 EST after the first trade actually got stopped out, and it would have worked out nicely. LESSON: **Don't enter into an 84% Rule when the first trade didn't get stopped out; wait for the first trade to get stopped out first.** Hope some of you can relate to this🙂
+
+---
+
+[5m] trade-feedback.json | Haseeb Rehman | 2025-04-30T17:16:46
+  DEMO TRADES!!!
+  Today was hectic for me. My first live trade after back testing for a couple weeks. Live trading is a whole different game. Made some blunders as I'm not used TWS. Took Tesla Calls instead of Puts and then took Tesla Puts at the wrong strike price. Cleared my head afterwards. However, since I missed the Tesla trade, I ended up taking a FOMO entry on NVDA. My three trades afterwards are as follows:
+  NVDA: Took a FOMO entry but did base it on the BnR of the 5min OR (The only setup I backtested). Ended up hitting my TP which was the PM Pivot Level. I knew there wasn't enough strength in QQQ for NVDA to go to PMH. It was a 3.47R trade.
+  AMD: I think it was a nice entry based on my setup. 5min ORH BnR with 1 candle rule. Closed my final position just before my last TP which was intraday resistance. It was a 4.37R trade.
+  QQQ: Wasn't a clean retest of the 5min ORH but with the 1 candle rule, I was able to take an entry of an impulsive candle. It was a 2.81R trade.
+  Please let me k
+
+---
+
+[5m] trade-feedback.json | Dux | 2025-06-16T21:13:09
+  I personally would because of my risk amount. I would be waiting for a full retest. Your stop loss in the image is sort of in the middle of nowhere. it would be completely reasonable for the trade to come back down and fully retest the 5 min OR +  the one candle rule at 9:34. If price then closes slightly below the 5 min ORB you would be stopped out but Nvidia's structure would still be in tact for a move up.
+  
+  In the instance of the entry above you would have a couple of options:
+  Size down and give the trade enough room so that it can pull back into the 5 Min ORB and not stop you out until it breaks market structure.
+  Or
+  Trade with normal size and have your stop really tight (quite an aggressive entry) and hope it works right away. In this instance your stop would be below the 9:54 order block candle.
+  
+  I personally wouldn't take the second option because NVDA didn't have that much strength compared to the QQQ at this point so I would wait for the full re-test of the 5 Min OR.
+  
+  Hope that
+
+---
+
+[5m] trade-feedback.json | Dcrouth21 | 2025-07-25T15:06:46
+  I took 2 losing trades today but i feel like they were good losers. For the first trade I was looking for a retest of PMH on NVDA which was also the ATH level and my targets were fib projections based on yesterdays range. I entered on the 9:09 candle as it was the 5 min candle close above that level and then got stopped out on the 9:13 candle. The second trade was the 84% rule as i entered on a 5 min reclaim which was also the first 15 min candle close above PMH. Price had also retested the 1 and 5 min opening ranges before reclaiming PMH. I think these were decent trades at least good based on my current level of knowlage. The only thing I think I could have done differently was wait for a 5 min candle close above the 1 min order block. I did a better job than usual following my rules and my plan I'm just curious if there was anything I should have done differently. <@1014389514141184074> <@717554586843611217> <@801169196015943731>
+
+---
+
+[5m] trade-feedback.json | Vlad | 2025-08-18T21:37:57
+  Hi all, I would appreciate some feedback/words of wisdom regarding a trade a took today. I took the 22-AUG TSLA 332.5 CALL after a break and retest of the pre market high at 9:39. Target was at 335.10, giving me a 2R multiple. At 10:11 there was a new HOD and I scaled out (inital size was 4 cons, sold one here). At 11:40 I sold the rest at break even, because it was taking too long and I wanted out. Finally at 12:19 the initial target was reached, so thesis was kind of ok I guess. What bothers me is the options price (second image) the underlying made a 2r trade with the scale being at around 1,1r. Looking at the option price for the same movement - the scale was at a 0.9r and the final result would have been at 1.3r. So it would seem that the wait would have not been worth it. If it was a 0DTE option contract I would expect such a result, but given that it is a Monday, I was suprised by this option price movement. I don't have a lot of experience, but so far usually options move close
+
+---
+
+[5m] trade-feedback.json | Neto Moreno (Performance Coach) | 2025-09-05T11:45:28
+  I took almost the same Trade, just one candle before you
+  
+  https://discord.com/channels/1218766394997346395/1307877347822796800/1413199400158629991
+  
+  Made decent profit but I had a clear target of $569, waited for reaction there and understood the Trade won’t have continuation, but still a good move because I had 0DTE contracts
+
+---
+
+[5m] trade-feedback.json | 305 Trader | 2025-09-12T12:06:05
+  manny, Good morning. When you trade the market open and until 10:30 am, you need to have a narrative beforehand that you formed off the HTF. There is a video for this from Jack. 
+  
+  Now, if you trade after 10:45 am, having a narrative is not as necessary but rather studying the patterns the market made in intraday. 
+  
+  Everything is about identifying patterns of price structure, also study videos on market structure from Jack (2nd video). 
+  
+  When you trade the 1st hour in my opinion is more difficult because you need to have a good preparation of the HTF narrative. When you are newer this takes time to understand. And losses are more often as a result.
+  
+  We trade patterns and when these patterns occur, we act. B&R is a requisite for entry but not a strategy in itself. After 10:30 am these patterns often become more clear. 
+  
+  I cant tell you what period of the morning to trade or even the afternoon. But what I can tell you is that I needed to learn and still mastering two fundamental aspects o
+
+---
+
+[5m] trade-feedback.json | Anne | 2025-09-15T15:06:56
+  Very bad day today regarding PnL (-1988$), good day regarding "respect the process". I saw the trades through until they hit SL. Than I added a fourth trade only because I am still on paper and I want to use this state to try out what comes up in my brain. As I am a very bad rule holder I decided last week to implement only one rule after the other: First I did risk managment (don't stay in the trade after candle close beneath SL), next is: only exit when SL or PT is hit. In other words: don't look at the PnL, look at the process. Well, today that wasn't a nice thing to do but I don't feel really bad with such a loss on paper anymore. That means I don't identify my personal value with the outcome of a trade anymore. 
+  The fourth trade I took was out of the "take only three trades a day" rule but I allowed it due to that I am still on paper and I did not implement that rule yet. That rule will be the last one that I will implement while being on paper trading. The most important rule for
+
+---
+
+[5m] trade-feedback.json | Dcrouth21 | 2025-09-29T15:38:06
+  I took a NVDA trade at 9:07 CDT. I was looking for a reclaim of the OB that formed at 8:37. Price held it once then there was a candle close below and at that point I was looking to take an 84% rule price had a close just slightly above the previous reclaim attempt and I entered with my stop below the OB that Price reclaimed. NVDA also formed a small flag that was broken during the reclaim I entered on. The main issue I see with this trade is that the indices were consolidating and I wasnt paying enough attention to them. I was wondering if anyone sees any other mistakes that I need to address. I took a later entry than jack and tony because I missed the first one and based on the relative strength of NVDA it seemed there was a good chance that we would get HOD continuation. As I was looking at it I was thinking how jack said in a video that if you miss the first set up 60-70% of the time a second set up will present itself thats just as good if not better. Would appreciate any feedbac
+
+---
+
+[5m] trade-feedback.json | Luke | 2025-10-01T20:49:46
+  that’s awesome brother, you can never go wrong tracking all the data from your trades. Another thing I just noticed is there wasn’t much displacement on that trade, and you were inside the previous day’s range. In my playbook, I only take trades with that little of displacement off Previous Day High or levels outside the previous day’s range where I have a strong bias and higher time frame thesis of it working. Like PDH retest on AMD today is a good example of little displacement but makes sense to be more aggressive. In my opinion, there’s no reason to be that aggressive on a Premarket High retest inside the previous day’s range. Hopefully that makes sense🫡
+
+---
+
+[5m] trade-feedback.json | Kam | 2025-10-15T03:23:15
+  https://discord.com/channels/1218766394997346395/1219022389396901958/1427819217780211732 <@648855504994566154> moving the AMD trade discussion to this channel. Attaching some markup also in case it helps. There were a couple of things that kept me out earlier (I'm assuming you entered at 10:42?). 
+  
+  1) QQQ context. Q's were struggling at PDL and I wanted to see a reclaim of PDL and ideally PMH for any longs at that point. AMD also wasn't moving as strongly as the indices (QQQ was well above HOD and AMD was barely trying to break above)
+  
+  2) After 10:15 EST I stop looking at the 1m chart for entries and have a rule to only take 5m candle closures - especially on reclaims. 
+  
+  3) Something Tony has drilled into my head - "where does the momo start"? For AMD my PM plan was to look for long setups over PMH with the gap-up. We weren't at PMH so started looking at intraday stucture for momo evidence. Since we hadn't displaced above HOD level (other than PM), 10:42 was more of a breakout trade to
+
+---
+
+[5m] trade-feedback.json | Royal191 | 2025-10-22T16:21:27
+  Good entry and trade management. There were a lot of upper wicks coming back down for the retest before you entered. I would have been cautious of that but we did see some buyers step in where you entered. Nice job scaling out. On the final scale I personally would have cut it at the close of the 10:10 candle because we see some sellers coming in and the Qs just rejected/retested the opening candle high to the downside and failed Vwap. Ultimately it’s up to you how you manage your trade based on how many cons you are trading and your personal risk tolerance. Overall it was a good trade. I like it.
+
+---
+
+[5m] trade-feedback.json | dane | 2025-11-05T16:22:32
+  Was hoping for some confirmation on this trade. I am fine with losing but want to make sure I’m not making any major mistakes in the system.
+  
+  I had a bearish bias as soon as both QQQ and SPY broke below PDL. So I looked at my names I liked to the downside. PLTR was one of them and I focused in as it had just broke below PDL and PML as well. It then came back and retested the PDL and closed below the PML so I entered. Soon after the indices reversed a bit before the big bull run we saw and I got stopped out. The trade then broke back below for the 84% rule to get stopped out again and then worked the 3rd time (I didn’t take either of these I stick to one trade a day).
+  
+  My questions for the group are does this follow the system? Do you guys have any notes on any mistake I may have made? Is this just a normal loss based on the percentages? Is there a reason I’m not seeing anyone else take this same trade?
+  
+  Thank you all
+
+---
+
+[5m] trade-feedback.json | Kam | 2025-11-13T16:11:35
+  hey Dane, I didn't take this but was watching it (short side is not my best side to put it mildly lol)
+  
+  I'd suggest drawing out market structure (orderblocks) or HTF levels rather than just using the 5m level as your stop. 421.87 was last Fri low, and if you draw out at least the wick to the body portion of the 9:31 candle you can see the confluence. 
+  
+  A slightly wider stop above structure is probably the best adjustment on your trade, which may mean smaller size for the wider risk. 
+  
+  Your entry was a little aggressive given the lack of displacement below LOD, but that's actually ok because you generally have to be more aggressive on the short side because the flushes may not give multiple entry opps like on the long side. 
+  
+  I was personally looking at the 9:41 candle break but I blinked 😩
+
+---
+
+[5m] trade-feedback.json | Das Wookie | 2025-11-19T17:15:32
+  Not only did I enter on the initial pullback from 9:30:48 to 9:31:33, I also entered based on the fact that I was also looking at HUGE numbers in the ASK side of L2 and L2 BID numbers for size were also at that time significantly smaller. The L2 data showed large ASK limit orders all that way up to ~$294. I figured this was probably for people still trying to unload short positions from the prior day, so I didn't know if it would be a quick scalp, but I clearly saw at least a $1.50 move so, I went in w/100 contracts. I still didn't have a good feeling for what the larger theme of the day would be. It could possibly have a pullback after the initial open spike, or if it could continue to run... but as soon as it started to run I just kept my eye on the L2, Time & Sales, and price action. At that first real pullback at $297.50 the L2 was pretty flat, but QQQ still showed movement... so I just put my faith in the Q's and let it ride... while still holding my finger over the button to clos
+
+---
+
+[5m] trade-feedback.json | DWalt Trades | 2025-12-13T03:43:49
+  Hi 🙂
+  
+  I can 100% totally see where you are coming for sure because I used to think the same thing until I saw the change that it made so as someone that now does it I can’t say I agree with you! It seems hard such as all good habit creation does until.. eventually it’s just a habit. Then you realize it was just a self-limiting belief. Yes I may have to put a few extra hours in overnight. but the TRUE reality is that this is not going to be sweet as a cake. We trade NY MKT OPEN 9:30-11:00 which is not even a full 2 hours. Nobody’s situation will change only working 1.5 hours a day! Those “extra hours” are where success derives from. This may not be my biggest year in the market Profit wise due to a lower trade frequency & size, but it is by far my biggest year win rate & growth wise — so to me, my best year in the market — So yes maybe I put in an extra 3 hours at night - sometimes even a LOT more. But It’s worth it for the clarity. It’s worth it to be more comprehensive in the market. 
+
+---
+
+[5m] trade-feedback.json | Fred | 2026-01-06T15:26:30
+  Hi, 
+  I trade without Jack and Tony's live because I want to be independent. I only use replays to compare and try to understand my mistakes.
+  
+  **1 trade today on TSLA**
+  
+  SHORT (09:41) @ 438.42
+  SL @ 440.76
+  TP1 25% @ 436.7
+  All out break even.
+  
+  Pros : weakness + OB + ORB5 + nice 1min PA
+  Cons : close KL below (Jack pre market KL) + late entry + SL far away => small RR
+  
+  I'd like your opinion on this trade. I think my SL could have been placed lower for a better RR. I also think I shouldn't have taken this trade because it was too close to the KL.
+
+---
+
+[5m] trade-feedback.json | Fred | 2026-01-07T15:36:16
+  Hi,
+  I post my trades every day but I don't get any feedback/opinions, I would really need some to understand what's wrong with my trading please.
+  
+  I've noticed I often struggle to make the right decisions. For example, today I saw an opportunity but didn't take the trade on NVDA.
+  
+  I didn't take it because : 
+  •    the retest was a bit far from Jack's key level and ORB5 and ORB15 (even if the OB retest was good)
+  •    QQQ had just drop below its PDH/showed some weakness at this time
+  
+  What's your opinion ?
+  
+  Otherwise, I took a trade on TSLA, the retest wasn't clear enough (a bit far from Jack's key level). It was a mistake i think/too aggressive. Moreover, i take a huge lose because of the big candle.
+
+---
+
+[5m] trade-feedback.json | Jmew | 2026-01-08T17:52:00
+  Took GOOG puts at 9:34 retest and rejection of 326 Key level for me. Technically hit my SL, but I gave it a little bit more room because price never touched vwap. Made the mistake of taking a look at the contract prices during the big green candle near my SL, so I got spooked out looking at my P&L. Took first partials at the close of 9:37 am and then got shaken out by the move of the next two candles, even though price never came close to my SL, just to watch price hit my next two TP targets. Not the first time, I got shaken out because of lack of conviction in a trade. I will need to do more self reflection and not look at my P&L during the trade.
+
+---
+
+[5m] trade-feedback.json | John H | 2026-01-31T17:04:58
+  Quick post here regarding my oversized losses from Friday's session. I decided I would play WDC, and as we witnessed memory names had a brutal selloff. But more importantly what did I do wrong. I came in simply unprepared. WDC is not a ticker I normally trade. I had zero premarket prep. No key levels to watch and no exit plan when the trade turned against me. I failed to check a higher time frame to see that we were selling off. I should have marked off the open high low on the 5 min. candle as is often discussed here and I didn't do that either. So, an entire solid month of very good trading cost me more than 1/2 my gains for January. 
+  
+  To make matters worse, I continued to trade. While I won most of those trades, I took yet another big loss on SNDK. I entered very late chasing more downside and the stock reversed near end of day. I'm saying this as a reminder to myself and for others that might be newer traders how very important it is to map out your game plan. To stay disciplined. 
+
+---
+
+[5m] trade-feedback.json | Joebag009 | 2026-02-17T21:13:26
+  Tuesday, February 17, 2026
+  
+  1) TSLA Feb 18 $405 Put | 1 con | Buy 3.90 @ 9:44 | Sell 3.90 @ 9:47 | P&L +0 | Acct: Cash
+     Notes: Was worried MNQ headed up; could have exited at minor profit.
+  
+  2) TSLA Feb 18 $405 Put | 1 con | Buy 4.48 @ 9:48 | Sell 5.10 @ 9:50 | P&L +62 | Acct: Cash
+     Notes: Could have held and sold ~6.30 at 9:55, ~6.80 10:07–10:14, but at the time no certainty so it
+           would have been a gamble with a single con.
+  
+  3) TSLA Feb 18 $405 Put | 1 con | Buy 5.20 @ 9:51 | Sell 5.23 @ 9:51 | P&L +3 | Acct: Margin
+     Notes: 6.35 at 9:55; there was room left for TSLA. Should have either not entered or had the kiwis to hold it.
+  
+  4) TSLA Feb 18 $405 Put | 1 con | Buy 5.29 @ 9:51 | Sell 5.52 @ 9:53 | P&L +23 | Acct: Margin
+     Notes: Took on risk and still didn’t exit well in the low-of-day window.
+  
+  5) QQQ Feb 20 $595 Put | 1 con | Buy 7.00 @ 9:54 | Sell 7.40 @ 9:54 | P&L +40 | Acct: Margin
+     Notes: Didn’t want to risk TSLA; traded main QQQ rejection instead. Sniper exit; ho
+
+---
+
+[5m] trade-feedback.json | Joebag009 | 2026-02-17T21:14:31
+  Prop accounts: TPT -about 30 and 50 cents away from blowing it, will try a trade but fully expect to lose it and not planning to renew – will focus on my other accounts now that I have ruled out trading outside NY session.
+  
+  TopStep: no trades.
+  
+  Apex 02: +105 followed rules well
+  Apex 01: -264 slightly overtraded but caught myself and closed the charts before it got worse
+  
+  Elite athletes don’t rise to the occasion; they fall to their level of training. -Neto Moreno
+  
+  Theme of the day and Aha #1: SLOW THE HELL DOWN, be patient, DO NOT LONG OR SHORT IN CHOP, AT EDGE OF RANGES, AT HIGH OR LOW OF DAY… so in other words looking at a 1/5/15 min TF of a daily chart, the move looks HUGE, it makes us GREEDY, it makes us FEEL LIKE A BAD TRADER for “only” capturing xyz… but really, “perfect” is timing to SAFELY capture a relatively TINY part of that move with HIGH expectancy and CONSISTENCY. Doing it with 0s like JT (Jack and Tony) grants extra rewards.
+  
+  Big aha for me today is how much more 0s can 
+
+---
+
+[5m] trade-feedback.json | Huy | 2026-02-19T00:54:37
+  I was referring to the area where price consolidated above the PMH before those candles left fair value gaps. This shows strength and institution made it clear that was "them". 
+  
+  re the other question: It depends on your thesis..if priced is flipped and you see a good setup and it meets your rules then why not? p.s. i know in an earlier thread you mentioned you don't feel comfortable shorting. When market wants to sell off, the volume and intensity is strong so catching that move to the downside can offer nice rr's. Jack tend to be more aggressive when he find a bearish set up.
+
+---
+
+[5m] trade-feedback.json | Kam | 2026-02-21T21:40:43
+  I’d probably look at the 9:42 candle after the hammer at the 5m OR as the best retest. It’s aggressive (ahead of the 1m OB), but it has confluence with a prior daily level from the prior Fri high and is inline with the 1st pullback method
+  
+  The 2nd and 3rd pulls look weaker to me because momentum hadn’t really established yet - GOOG was consolidating and the market was choppy. Retests tend to work best after clear displacement & quick pullbacks
+  
+  IMO the 2nd best momentum retest came later around 11:20 on the 5m once relative strength was obvious.
+  
+  Big thing though is replaying & practicing these moments in real-time speed. In hindsight a lot of things can look textbook, but we have to go with what we can see in the moment! Just because the 9:42 entry didn't go up & have continuation doesn't mean it was a bad trade according to the system. The 2nd & 3rd entries look good because they went up, but for every chart that looks like this, there's one that fails to the downside also
+
+---
+
+[5m] trade-feedback.json | Martin_AT | 2026-03-13T14:46:39
+  Was QQQ Long at 9:52 a bad trade? For me it was above my resistance zone, so long was valid but maybe it was too weak of a breakthrough to the upside (and because of that the zone got rejected in the end)
+  On the 1min it looked very good for me > PMH retest, 602.00 retest, nice pullback
+  https://www.tradingview.com/x/FRArXP9j/
+
+---
+
+[5m] trade-feedback.json | 305 Trader | 2026-05-01T11:39:47
+  Good morning. You were correct, the bottom was near but not quite at the time of your entry. It was at your exit.  Go in higher Time Frames, 4H and 1H with extended hours and find zones of solid confluence and draw them as rectangles as Jack does. Polish them in 15 mins TF around their edges. They will indicate bottoms and tops for larger moves. You need only few, maybe three max, 4. When the stock breaks those levels with a retest and making new higher lows (long) or new Lower highs (short) prior your entry, plus increasing volume and a solid reaction ( a hammer or a solid large bar),its a confirmation the reversal  or continuation is in place. This is how big moves are caught. If you only wait for this and do nothing, absolutely nothing else in your trading, you will transform your account. Then, study, study off time how the best break outs happen out of those levels and refine your entry. Go back in time in your Time frame of preference and one higher to study these breakouts from 
+
+---
+
+[5m] trade-feedback.json | ak4312 | 2026-05-02T21:49:05
+  Hi Team,  could you please review trade and let me know your inputs. Below is the thesis and execution details
+  
+  1. AMD is making new ATHs daily, looked for PDH break and retest. On Friday 5/1/2026, QQQ is bullish and caught and immediate break and retest with confirmation around PDH. Planned 1st target is 1:2 R:R ratio and stop out if a strong candle close below PDH which essentially proves that my long thesis is invalid.
+  2. Stopped out per plan but candle at stop is impulsive, due to which lost 36% on premium rather than my max loss of 22% on loss trades. One of the reason for that much loss is due to 0day and high IV on this ticker.
+  3. Looking for inputs ,is this good set up? and from risk management standpoint, instead of manual stop to avoid slippage should I put stop loss of 22% upfront?
+
+---
+
+[5m] trade-feedback.json | Jay_aye11 | 2026-05-06T18:44:29
+  Hello everyone, this is my life story I rarely get any follow through or continuation on the stock i choose when I enter. Any feedback would be appreciated. Thank you. 
+  
+  Why Take this trade? Above PDH , got alerted first ,only resistance PMH 
+  Pre-identified with alert?  Yes got an alert
+  Entering at HTF support zone ? Not directly but tradig above PDH currently in middle of PDH and PMH
+  Clean air above to target : targeting PMH 
+  C1 clean break :  ✅ 
+  C2 no rejection wick  ✅ 
+  C3 retest within 3–8 candles ✅ 
+  C4 closed in direction no entered at the the break of 3. 
+  R/R 1:1+ yes ✅ 
+  
+  Was this a good trade idea? 
+  I am pretty good at choosing the wrong stock to trade 😒
+
+---
+
+[5m] trade-feedback.json | FraggDieb | 2026-05-18T19:51:27
+  Today I traded MSFT. Perfect entry. Only 2cons. One exited at the arrow, last one at BE. Only to see the right move later in the day that could trippe my profit … 
+  
+  Did I do anything wrong at all?
+  
+  I think with more contracts, I still would be in because I maybe would sell like 50-70% on those HOD. But that is not working for me right now
+
+---
+
+[5m] trade-feedback.json | Royal191 | 2026-05-21T17:50:27
+  I don’t trade TSLA but ill offer my two cents. Setup was good. Level was good, my only concerns was the entry at HOD . Second concern was that both Qs and spy were consolidating /moving sideways at the time of entry. I also would have liked to see more displacement above PMH before the pullback and retest, this ties back in to the HOD entry  because if you had a bigger push ave PDH before the retest you would not be entering at HOD.
+
+---
+
+[5m] trade-feedback.json | JP400 | 2026-05-31T05:10:20
+  Hi. Glad it made you laugh. And appreciate the compassion. I have probably tried way too many things. Sometimes it is easier to teach someone who has no experience, rather than someone who has had some experience. 
+  I am sorry to hear that you had a bad May too. I am sure it must be frustrating, especially as you had a strategy that worked for 2026, and you chose to try something new. It is good to learn new things, but there is some pain sometimes.
+  I am going to try really hard to commit to one ticker (probably QQQ). I currently trade with 2 Cons (occasionally 3), because I want the ability to sell 1 and let 1 ride. Perhaps that is burning me too. I suspect that trading with 2 Cons on QQQ might be too expensive from a risk point of view. And I suspect that 0 DTE will be too risky too. Need to watch it and see how 2 or 3 DTE move.
+  Sigh...
+
+---
+
+[5m] trade-feedback.json | JP400 | 2026-06-11T15:01:46
+  Missed the first one because the candle went too far (5m OR)
+  Caught the second one (PMH), but got stopped out
+  Attempted the third one (PMH reclaim), but saw the writing on the wall, and took the loss before it hit my Stop.
+  Two trades... just short of max loss.
+  Perhaps I would have more success if I rewrote my rules as follows...
+  1) Open Discord
+  2) Open IBKR Desktop
+  3) Do not open any Charts
+  4) Do not think... Simply copy Tony and Jack (But use 2 Cons; Sell 1; Trail 1)
+
+---
+
+[5m] trade-feedback.json | JP400 | 2026-06-12T15:21:22
+  I maybe should not Post this now because I am so confused.
+  
+  Tony's recent Post says that this week has been a "fantastic week of trading" and "this market is not something we want to miss".
+  It is quite depressing to read when, so far, I am in the red again this month.
+  I am not criticizing him, or this channel, or anyone. I just do not understand. I know he explains why he takes things, but...well... please read on before you Comment.
+  
+  It seems that "we" were taking INTC again today (and I can clearly see the INTC trade on the INTC chart), but I do not see support for any Long trade on the QQQ 1m TF at the time of the INTC trade.
+  QQQ was below PDH, below PML, breaking below the 5mOR, pulling back on the hourly (when you include after-hours). I do see Buyers stepping in on the 9:46 candle, but then an immediate inverted hammer on the 9:47.
+  
+  I am trying to focus on only trading one symbol, QQQ. You can see that I waited patiently until the PDH B&R. It broke... put in a hammer, and then I 
+
+---
+

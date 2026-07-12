@@ -1,0 +1,340 @@
+[7m] trade-feedback.json | Kuba | 2025-06-13T15:40:49
+  3 PLTR scalps I am quite happy about:
+  
+  #1 previous week high B&R. Great volume on the breakout, was a bit late on the entry (9:41 candle) and this one is a trade I am the least happy about, but it worked out straight away and quite nicely too as I was able to hold to it. Was looking for PDH but it broke it easily and never looked back, exited my 1con near low of 9:53 candle. 1.17$ gain on a con, 1:2.47 RR <:PepeHappy:1219024184148230197> 
+  
+  #2 re-entry on the same PWH restest, Entered near highs of 10:27 candle with super tight risk as it was below 5m high and there was low volume. Was looking for PDH which got pierced thru and I took profits at 10:38 for a quick 0.50$ gain. about 1:5 RR <:pepeOK:1219024188803776712> 
+  
+  #3 this one I liked the most. Played with 2 cons here to see if I can manage the exit better as <@864287214946746368> suggested. Nice order block reclaim with an increasing volume and I entered at 10:51 candle looking for HOD and potentially ATH retest. SL just below the 
+
+---
+
+[7m] trade-feedback.json | Kam | 2025-12-22T16:12:03
+  Hey Jason - a few thoughts, hope it helps!
+  
+  1) QQQ inside PM range - META RS but not correlated with indices. low-vol holiday week and big opening drive, probably need a strong catalyst to sustain momo
+  
+  2) PDH Immediate retest technically valid but super aggressive given context
+  
+  3) I like the 2nd entry but don't see this as 84% rule since 1-candle structure never failed. More of a PDH + 1-candle reclaim play. When didnt hit HOD + made lower high + failed the PDH retest I would have probably cut this aggressively given overall context.
+
+---
+
+[6m] trade-feedback.json | Jay_aye11 | 2025-10-31T18:00:37
+  Facts: AMD(C), (2)2.40 - (2)1.82 = 480- 364= -116.00 ( 31%  loss)  @6:59am -7:01Am , hold time 2 minute, AMD ranging in between PDH and PDL.QQQ opened weak, in range, moving side ways. Entry a bit uncertain, 84% rule  entered on the “retest”, buyers appeared to enter gave us a wick, trading below the Premarket high, i was anticipating a break above. 
+  Feelings;  a bit tired , woke up a late, a bit anxious due to it being friday. 
+  Findings: entry was uncertain, i was looking for the 3 bar entry but get impatient, struggle to  correlate my entry with spy or qqq uncertain, got impatient about entry. 
+  Fix : be more prepared, be patient, understand  set ups better, wait for the 3 candle closure above ( confirmation candle), should i have waited for price to break Pre Market high? 
+  Categories:  strategy break, 5 min break and retest, range break, one candle rule, 84% reclaim retest entry, target Previous day high. Frustrated, Currently on a 10 loss streak.
+
+---
+
+[6m] trade-feedback.json | Joebag009 | 2026-02-13T20:56:23
+  I had a big AHA that if it was my cash account I never would have risked subsequent NVDA trades, so I think I might be trading my cash account with 720 in it (and taking profit out each day) for a few days to build my psychology up with a fresh start. Another big aha is that with 0s and even generally the first trade is the best trade and unless I have a new thesis or proved continuation (preferably with divergence from the market), re-entering is a bad idea - looking at my trading notes I have had wins in the past on re-entering for continuation, especially in big dumps around key levels and in grinds but this week it has not worked out (as in net profit) and eaten my meagre profits. Instead of blaming the market, I am adding new habits of pausing between trades and to reload I will develop a quick checklist for myself - did it defend a key level and continue or is it just teasing me, or is it just teasing me as it mirrors qqq moves (hey, it got Jack with TSLA this week, I need to be 
+
+---
+
+[6m] trading-floor.json | demchy19 | 2024-10-14T19:37:43
+  Hi Lauren,
+  I'm not a professional trader yet; I'm still learning, but I'll share my thoughts on your question. I don't think this follows the 84% rule. If I understand correctly, the 84% rule applies when you have a plan for entering a stock at a specific key level (e.g., the 5-minute opening candle print), and the stock tries to retest that level but fails and goes lower. The 84% rule comes into play when the stock returns to that key level and breaks through it. At this point, you just watch the price reaction at that level. Typically, with the 84% rule, the stock doesn't retest the key level—it just breaks through and moves in the right direction.
+  From the picture below, we can see that the stock has retested the same level twice. This can give you a stronger confirmation that the level is well established and could push the stock lower. There are likely many sellers above this level, preventing the stock from going higher, so there's a good chance it will drop. But based on your ta
+
+---
+
+[6m] trading-floor.json | psycho276305 | 2025-07-15T21:08:19
+  Yup I am, the main mistake Ive seen myself make is just entering too aggresivley and also re-entering without the 84 percent rule, but I have been looking at the indexes and relative strength/weakness, I guess I got to give it some time since my trade management is slowly getting better especially this week, and psychology too,  I missed some good setups last week to be honest since I was out on vacation. Todays trade I took on AMD on the 5 min range and took a partial but then got stopped out. Will keep you guys updated later this month and how it goes
+
+---
+
+[5m] trade-feedback.json | Lane 🌿 | 2024-04-19T20:30:21
+  Here's what I see on your trade <@705768295609008141> . First 2 lines were fantastic entries after that break and retest on your intraday level. Your stop loss was perfect and it was hit, no problem. The move was supposed to happen, you weren't wrong. Sometimes it just doesn't because of the volume, no biggie. The circled candle would have been a perfect 84% rule example where you could have entered with the exact same criteria and it would have worked.
+
+---
+
+[5m] trade-feedback.json | KevinS | 2024-07-19T14:57:40
+  Could I get some help on this?
+  
+  I took my first trade because I thought it was doing an opening print reversal into the order block. Took the trade and got stopped out quick
+  
+  Then I took it again because of the 84% rule and got stopped out once more. 
+  
+  I didn’t take it a third time because 84% of 84% is 71%. But it ended up exceeding my profit target the third time.
+
+---
+
+[5m] trade-feedback.json | demchy19 | 2025-02-07T16:58:08
+  I would really appreciate any feedback on my trade today. Theses: AMZN had earnings yesterday, and they were better than expected. However, the outlook for the next quarter was not very promising, which is why the stock started to sell off. The plan was that if it broke above the  PMH, we could potentially see it move higher since PMH aligned with a key level on the daily chart.
+  
+  Once the market opened, it dropped to retest that level, which had multiple bounces on the higher time frame. Then, it broke above PMH and the key level on the daily chart (red square) before pulling back to where I initially entered. My take-profit was the previous day's high. However, as you can see, it broke the 5-minute opening range, came back, and then broke my first stop-loss, so I exited with a loss.
+  
+  Then, I checked the 84% rule. Once it broke above PMH again, I re-entered with the same TP at PDH. But then the news came out, and the stock just sold off.
+  
+  The question is—was my thinking correct? Even t
+
+---
+
+[5m] trade-feedback.json | DWC2016 | 2025-03-07T03:38:23
+  <@1121621751764369501> how did you know to avoid the chop on the Q's on the on the 10:31 B&R ? at the time it had a perfect set up and looking like it was making a lower high rejecting off a key level then after  had a "failed" 84% rule that also didn't hit the main target. (I took and got stopped on these trades)
+  
+  How was it possible for you know to avoid the 1st few set ups and go for the 3/4th time it set up in the moment ? 
+  
+  This really got me yesterday. Thanks
+
+---
+
+[5m] trade-feedback.json | Luke | 2025-03-07T22:42:32
+  for me, I would have not been that aggressive on meta, especially on a Friday. QQQ hadn’t picked a trend yet, and was showing strength when market opened. I would have been looking for the retest of the PDL as well, but would have wanted some more displacement, or you could have potentially looked for the 5min opening range low retest. You could have potentially been looking for the 84% Rule of the PDL as well.
+  As for the second trade I wouldn’t switch my thesis to long on Meta because based on the higher time frame you would be longing into range.
+
+---
+
+[5m] trade-feedback.json | Luke | 2025-03-17T15:59:52
+  If anyone has any thoughts about these 2 trades on MSFT that’d be great! The first trade was based on the hold of the 1min order block + 5min OR reclaim. The second trade was what I think was the 84% Rule kinda set up on the 5min timeframe. My thesis was to target previous day high and it ended up tapping it
+
+---
+
+[5m] trade-feedback.json | Luke | 2025-04-28T16:46:59
+  Wanted to share this trade I took on NVDA today. It was the 84% Rule of the 5min OR Low. I never entered on the first retest because there wasn't any confirmation candel for me to enter on. I entered at 10:13 EST, when I should never have because the first trade never got stopped out. What I should have done was entered at 10:30 EST after the first trade actually got stopped out, and it would have worked out nicely. LESSON: **Don't enter into an 84% Rule when the first trade didn't get stopped out; wait for the first trade to get stopped out first.** Hope some of you can relate to this🙂
+
+---
+
+[5m] trade-feedback.json | Dcrouth21 | 2025-07-25T15:06:46
+  I took 2 losing trades today but i feel like they were good losers. For the first trade I was looking for a retest of PMH on NVDA which was also the ATH level and my targets were fib projections based on yesterdays range. I entered on the 9:09 candle as it was the 5 min candle close above that level and then got stopped out on the 9:13 candle. The second trade was the 84% rule as i entered on a 5 min reclaim which was also the first 15 min candle close above PMH. Price had also retested the 1 and 5 min opening ranges before reclaiming PMH. I think these were decent trades at least good based on my current level of knowlage. The only thing I think I could have done differently was wait for a 5 min candle close above the 1 min order block. I did a better job than usual following my rules and my plan I'm just curious if there was anything I should have done differently. <@1014389514141184074> <@717554586843611217> <@801169196015943731>
+
+---
+
+[5m] trade-feedback.json | Dcrouth21 | 2025-09-29T15:38:06
+  I took a NVDA trade at 9:07 CDT. I was looking for a reclaim of the OB that formed at 8:37. Price held it once then there was a candle close below and at that point I was looking to take an 84% rule price had a close just slightly above the previous reclaim attempt and I entered with my stop below the OB that Price reclaimed. NVDA also formed a small flag that was broken during the reclaim I entered on. The main issue I see with this trade is that the indices were consolidating and I wasnt paying enough attention to them. I was wondering if anyone sees any other mistakes that I need to address. I took a later entry than jack and tony because I missed the first one and based on the relative strength of NVDA it seemed there was a good chance that we would get HOD continuation. As I was looking at it I was thinking how jack said in a video that if you miss the first set up 60-70% of the time a second set up will present itself thats just as good if not better. Would appreciate any feedbac
+
+---
+
+[5m] trade-feedback.json | dane | 2025-11-05T16:22:32
+  Was hoping for some confirmation on this trade. I am fine with losing but want to make sure I’m not making any major mistakes in the system.
+  
+  I had a bearish bias as soon as both QQQ and SPY broke below PDL. So I looked at my names I liked to the downside. PLTR was one of them and I focused in as it had just broke below PDL and PML as well. It then came back and retested the PDL and closed below the PML so I entered. Soon after the indices reversed a bit before the big bull run we saw and I got stopped out. The trade then broke back below for the 84% rule to get stopped out again and then worked the 3rd time (I didn’t take either of these I stick to one trade a day).
+  
+  My questions for the group are does this follow the system? Do you guys have any notes on any mistake I may have made? Is this just a normal loss based on the percentages? Is there a reason I’m not seeing anyone else take this same trade?
+  
+  Thank you all
+
+---
+
+[5m] trade-feedback.json | Joebag009 | 2026-02-17T21:13:26
+  Tuesday, February 17, 2026
+  
+  1) TSLA Feb 18 $405 Put | 1 con | Buy 3.90 @ 9:44 | Sell 3.90 @ 9:47 | P&L +0 | Acct: Cash
+     Notes: Was worried MNQ headed up; could have exited at minor profit.
+  
+  2) TSLA Feb 18 $405 Put | 1 con | Buy 4.48 @ 9:48 | Sell 5.10 @ 9:50 | P&L +62 | Acct: Cash
+     Notes: Could have held and sold ~6.30 at 9:55, ~6.80 10:07–10:14, but at the time no certainty so it
+           would have been a gamble with a single con.
+  
+  3) TSLA Feb 18 $405 Put | 1 con | Buy 5.20 @ 9:51 | Sell 5.23 @ 9:51 | P&L +3 | Acct: Margin
+     Notes: 6.35 at 9:55; there was room left for TSLA. Should have either not entered or had the kiwis to hold it.
+  
+  4) TSLA Feb 18 $405 Put | 1 con | Buy 5.29 @ 9:51 | Sell 5.52 @ 9:53 | P&L +23 | Acct: Margin
+     Notes: Took on risk and still didn’t exit well in the low-of-day window.
+  
+  5) QQQ Feb 20 $595 Put | 1 con | Buy 7.00 @ 9:54 | Sell 7.40 @ 9:54 | P&L +40 | Acct: Margin
+     Notes: Didn’t want to risk TSLA; traded main QQQ rejection instead. Sniper exit; ho
+
+---
+
+[5m] trading-floor.json | Moni Leine | 2025-02-08T16:43:15
+  Hey Traders,
+  @everyone
+  
+  Another fantastic Weekly Recap in the books! Here’s what we covered:
+  
+  ✅ Reviewed this week’s trades
+  ✅ Reviewed mistakes made and how to avoid them in the future
+  ✅ Key lessons to improve our strategies:
+  
+  - Trade setups: 1' & 5' OR BNR (Opening Range Break & Retest)
+  - PDH/PDL BNR: Previous Day High/Low Break & Retest
+  - Key levels: Based on High Timeframe Thesis
+  - 84% Rule Strategy: a second high-probability entry at the previous BNR point after being stopped out on an initial trade.
+  - Choosing strike prices for contracts
+  - Managing stop losses:
+  🔹 1-BBB (Bar-by-Bar)
+  🔹 OB (Order Blocks)
+  🔹 Trailing stops
+  🔹 Break-even stops
+  🔹 Hard stops
+  With the market shifting and volatility on the rise, scalping is becoming the go-to strategy over swing trading. But don’t worry—we’re adapting together!
+  
+  Jack answered all your questions—huge thanks to him! 🙌
+  
+  These sessions are packed with valuable insights, creating a friendly and engaging space where our Coach is always ready to sh
+
+---
+
+[5m] trading-floor.json | Jonathan | 2025-10-27T18:32:24
+  All losses teach something. If that NVDA trade still showed a 84% rule after losing a good chunck of % why would you enter again? Personally to me, even if the 84%rule shows itself if my loss has reached a point where i can't mentally handle. I do not enter and just wait for tomorrow. So you not entering that 84% trade can help you depending on how you see it or put into perspective. You already took a big L. Could you have handled another L if that 84%failed? 
+  Its good to disect every single loss trade and why they failed. 
+  What was your bias on the past trades you took? Calls or puts?  Ask yourself which ones favored you and which ones didn't. Calls,puts,tickers, time frames, even trading days. All those losing trades mean something about your psychology while trading.
+
+---
+
+[4m] trade-feedback.json | Francine | 2024-11-16T16:47:22
+  Question:
+  Friday on AMZN I entered short on 9:39 candle, it popped very little then I stopped out. It came back to PML retest, but I waited for confirmation on 84% rule, it ended up chopping around so I stopped as well. Would you have taken the trade again on the retest of the PML? I’m just wondering your thoughts.  <@801169196015943731> <@1014389514141184074>
+
+---
+
+[4m] trade-feedback.json | Luke | 2025-02-05T16:22:31
+  I would appreciate some feedback on my 2 QQQ trades this morning. The first trade was a clear retest of the 1min OR and I entered on the confirmation candle. I ended up getting stopped out. The second trade I entered again with what I think is the 84% rule and it decided to dump. My thesis was to catch the move to the gap fill that it made overnight. QQQ was between the PDH and PDL, so that is something I definitely need to be aware of in the future.
+
+---
+
+[4m] trade-feedback.json | demchy19 | 2025-02-13T04:08:46
+  So, the red line was your PML, correct? For you, was the only option that the stock needed to stay below PML?
+  I usually focus too much on the HTF. For example, on the HTF, GOOG looked bearish, and I had a thesis that if it held PML—or even better, PDL—it would confirm the bearish move. Because again, on the higher time frame, it looked bearish.
+  But then again, if I trade based on the HTF, I need to have a wider stop loss because eventually, it went in my direction, just not at the time I was waiting for.
+  Do you think that once it broke PDL, the 84% rule would apply or not?
+
+---
+
+[4m] trade-feedback.json | Luke | 2025-02-21T18:32:55
+  Never took this trade on TSLA but I personally really like this setup. Coming into the day I wouldn't be interested in TSLA unless it can break PDL (marked in the red region). It ended up retesting PML but I wouldn't be interested since it wasn't below the PDL/HTF support. The 84% Rule ended up setting up, and worked out really nicely in hindsight. Although it's still above your PDL, it is reclaiming your PML which I like. What are your all opinions on this? <@1121621751764369501>
+
+---
+
+[4m] trade-feedback.json | WinterO | 2025-03-06T17:04:23
+  Hey guys, need some feedback on my trade.
+  AAPL, shows relative strength compared to QQQ in the beginning. After first retest of PDH failed, entered on 84% rule at 10:37 candle after 10:36 closed higher than previous candle. Exited around 1.5R.
+
+---
+
+[4m] trade-feedback.json | ErenTheExile | 2025-03-07T01:28:58
+  need some advice what i could had done better.
+  1st con: entered during the formation of the green candle around the 5m, was forming red but instant wick back up and made a green and jumped out right away, didn't wait for close.
+  2nd con: used the 84% rule and entered since it rejected the 5m with volume and really like that and sized heavy, was a trap and got nuked
+  3rd con: entered during the formation and saw it rejecting PDL and was red but closed green and got instant stopped
+
+---
+
+[4m] trade-feedback.json | Luke | 2025-03-07T20:28:41
+  <@701631929522585671> how I see it, AAPL already had retested the PDH, and was failing to make a new high, showing a loss of momentum. So in your case if you missed that initial retest at 10am EST, I would wait for a break below PDH, and the 84% rule reclaim.
+  On NVDA, your trade didn’t work out because QQQ was making a higher low, and had a mini pop, which dragged nvda up with it
+
+---
+
+[4m] trade-feedback.json | Luke | 2025-04-03T18:14:47
+  Your first entry looks really nice with the htf thesis of SPY rejecting the resistance level, and entering on the break back below the 1min OR high. I took pretty much the same entry. I see your LOD scale which is nice, and your final exit also looks nice. It looks like I also stopped out of my trailers on the same candle as you too haha. I was thinking that if it got back above PML, then the momentum would be lost; it actually ended up holding the PML on the 5min timeframe though. So if you wanted to hold it a little longer, looking back on it you could've waited for the 5min candle closure beneath the PML. Your second entry I really like too, I think that's where Jack entered NQ. It looks like a super solid 84% Rule of the PML to me, with the thesis of QQQ going down to sweep PML. I really like these trades Tito nice work!
+
+---
+
+[4m] trade-feedback.json | NixonTrades | 2025-06-05T14:59:08
+  Alright, so I took QQQ of the 5-min BNR to LOD. I know I had a late entry. I saw that it hit low of the candle and not the wick before stopping me out. I then saw what I thought was the 84% rule with the weak candles. I also did see the consolidation before I entered, but I did see a break of it then weak price action which gave me the conviction to enter. Right now feeling uncertain with myself so any advice would be great!
+
+---
+
+[4m] trade-feedback.json | Kuba | 2025-06-11T15:00:25
+  Another trade review request guys 🙏 
+  
+  today I entered couple of trades I wanted to share and highlight just how important it is to grow some balls and hold onto your trades and stick to your TP:
+  
+  #1 PLTR was breaking above PDH, PMH and PWH, once it broke the 5m opening range high at 10:24 and immediately retested the next candle it showed strength and so I entered at 10:26 candle with a 1:2 RR target. I took 1 138 call contract but wasn't able to execute sell at target and essentially went out near 10:28 candle close.
+  
+  #2 HOOD was over 5m opening range high and was also reclaiming PMH with 84% rule at 10:28. This is where I entered looking for 1:2 RR and HOD, maybe even prev day high if it would have showed some strength. I exited at 10:37 as it was not showing enough strenght for me to be convinced to stay in the trade. 
+  
+  #3 AVGO was showing a lot of strenght as it was above PDH, PMH, also a beautiful 5m opening range B&R (which I missed). There was an order block retest at 10:08 at w
+
+---
+
+[4m] trade-feedback.json | DSmith | 2025-07-21T15:48:18
+  Yeah I took this trade as well. AAPL was strong at the start of market just to start dying out right after the reclaim and retest of our key level. I felt pretty good taking it on the 84% rule because the indices were holding up and because of the strong momentum it had going into it. Any suggestions on avoiding the failing 16%ers?
+
+---
+
+[4m] trade-feedback.json | Dcrouth21 | 2025-11-07T15:15:42
+  I took NVDA today and had my stop just above the order block. there was a candle close just above my stop by a couple cents so I stopped out. Tony was saying that NVDA was still holding to the downside. I didnt take an 84% rule as I felt stressed out which could throw off my trading. Is there anything I should have done differently or was this just an unfortunate outcome? <@717554586843611217> <@801169196015943731> <@1014389514141184074>
+
+---
+
+[4m] trade-feedback.json | MasonTrades | 2025-11-07T19:30:26
+  Okay great thanks a lot man, so pretty much be more patient in waiting for confirmation with the Q's and instead of entering near LOD, maybe waited until more of a pullback to enter? and the when im taking 84% rule reclaims probably being more aggressive and enter in before the candle closes? I've gotta work on utilizing relative strength or weakness with the Q's, I find it hard sometimes.  Also for today I saw Tony had the 604.71 level marked on Q'S around when I entered my trade at 9:40, but I couldn't figure out where he got the level from.  Wasn't sure if you knew? And then if i had of known the level was there, you're suggesting I should have waited until Q's held under the level showing weakness, right?
+
+---
+
+[4m] trade-feedback.json | KevinS | 2025-11-14T17:20:13
+  I took 2 of my own trades today.  Could I get some feedback on them?
+  
+  PLTR: I entered based on buyers stepping in above PDL. The idea was a retest of the 1 candle rule and PDL. Price didn’t fully retest but since it’s a zone, i thought it was ok. But then in hindsight, I see that if I marked out the whole candle, there was a clear entry where the arrow is.
+  
+  AMD: entry was based on strong candle close/ reclaim of PDL but again on this one, in hindsight, price did retrace perfectly into the OB below and would’ve given me a great entry.
+  
+  Could I get some feedback on if these were valid entries and it’s just a matter of using the 84% rule or if it was my analysis that was off?
+
+---
+
+[4m] trade-feedback.json | Luke | 2026-02-05T03:08:10
+  Hey <@293563891345129472>, I really like the trade based on a "5min setup." As far as momentum on the 1min timeframe, you would like to have seen it work out right away rather than consolidating. After about 10:12am EST, I would have not been interested in it anymore based on the 1min timeframe since you would like to see it reject immediately especially for shorts. This is where you could go to the 5min timeframe if you have more of a bearish thesis and look to enter based off of the 5min timeframe. Also, another reason this would be a "5min setup" (you'll hear Jack and Tony refer to these as that) is you can see that there is a lot of displacement... in my opinion just a little too much for momentum shorts on the 1min timeframe for me, but based on the 5min chart it looks super nice. But besides that, your stop loss looks solid and your entry. This was definitely a trade you could have looked to re-enter with the 84% Rule on. Nice trade though!!
+
+---
+
+[4m] trade-feedback.json | Martin_AT | 2026-04-28T17:11:15
+  I don't know how to "process" my nvidia trade from today.
+  https://www.tradingview.com/x/dC1h5rVW/
+  I only took the first entry on the orderblock retest. Stopped out on the break of the orderblock.
+  I missed the second entry because I was looking at an entry on QQQ.
+  
+  So what to do in a situation like that? My plan (if this occurs again) would be to simply re-enter after such a beatifull 5min + order block retest occurs.
+  Or is it generally a better idea to focus on the 5min/PD/PM levels instead of order blocks when orderblocks are so closeby?
+  Maybe also the orderblock was too small because i didn't include the lower wick (because the upper wick and body were already big enough for me)
+
+---
+
+[4m] trading-floor.json | JLD | 2024-05-23T21:59:29
+  I'm going to tighten up a bit on myself with a couple guidlines. 1) If I take a loss, that's it for the day unless the loss was off of an A+ set up and the 84% rule comes into play. I know other A plus set ups could present themselves but I'm more likely to lose more than to get my money back for the day. I've seen this from looking back at my tradezella. 2) Locking in at HOD or LOD always and then keeping a position or so from there. In the beginning I only traded 1 or 2  contracts which doesn't really allow to work on scaling.
+
+---
+
+[4m] trading-floor.json | Mk | 2024-06-28T02:57:19
+  <@801169196015943731> I am watching the live trading and had a question. I know you said you didn't take TSLA because the 5 minute candle did not close above the orderblock. So I entered off the 1 min the first time as approached the orderblock.  Do you have an example of 5 min candle opening above 5 min order block. I ended up entering, got stopped out. Used the 84% rule (which I thought applied to this but could be wrong) and took it again a second time at that same 196.21 level.
+  
+  I am a bit confused on what signifies as a "confirmation candle" here... If you have a video in mind where you've gone over this again i'd be happy to watch again. Thanks man
+
+---
+
+[4m] trading-floor.json | Neto Moreno (Performance Coach) | 2024-11-23T17:13:52
+  **Hi Team**,
+  
+  If you joined the Weekly Recap session—congrats on being part of such an amazing discussion! If you missed it, make sure to watch the recording—it’s packed with wisdom gems. Jack <@801169196015943731>, completely relaxed and free from the stress of live trading, shared invaluable tips and tricks, including:
+  
+  Entry criteria for the **84% rule**
+  Risk management and Stop Loss adjustments
+  How to read the **real move on Higher Time Frames (HTF)**
+  These weekend sessions are incredibly valuable, so be sure to mark your calendars and join the next one. Don’t miss out!
+  
+  Have a great weekend—work on your charts, review upcoming events/news/earnings, and prepare your plans for the week ahead. I’ll see you all Monday for PreMarket Prep!
+  
+  Cheers,
+  Neto
+  @everyone <@&1219020123218645102>
+
+---
+
+[4m] trading-floor.json | demchy19 | 2025-03-27T15:19:46
+  How much contact did you have in your first trade?
+  
+  I'm struggling because, in my first trade, I had 3 contracts and took a loss of $390. However, in my second trade, I also had 3 contracts, but my profit was only $250.
+  
+  In the second entry, I jumped into the trade sooner than Jack and Tony, but they finished the day green, while I was still in the red. I’m not sure what I’m doing wrong.
+
+---
+
+[4m] scarface-alerts.json | TonyMontana | 2025-05-01T14:33:34
+  Perfect use of 84% rule today.
+  
+  Now take some off at hod this is the KEY level.
+  
+  Gold trailers for next levels which are far and therefore u should be taking hod scales but
+  
+  290 + 293 key level.
+  
+  @everyone
+
+---
+

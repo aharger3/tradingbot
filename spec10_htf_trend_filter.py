@@ -12,7 +12,7 @@ downgrade at least one letter. This is the #1 missing filter.
 
 FILES TO MODIFY:
   - tastytrade_feed.py — add real fetch_htf_bias()
-  - vanquish_bot.py — add HTF-aware grade adjustment
+  - omen_bot.py — add HTF-aware grade adjustment
   - spec10_check.py (new) — verification
 
 Step 1: Fetch 1-hr candles from Tastytrade DXLink
@@ -46,7 +46,7 @@ adjustment and doesn't need a separate data stream.
 
 Step 2: Add grade adjustment in PriceActionAnalyzer
 
-vanquish_bot.PriceActionAnalyzer.grade_trade() already receives
+omen_bot.PriceActionAnalyzer.grade_trade() already receives
 htf_bias. Add adjustment:
 
   def _adjust_for_htf(grade: TradeGrade, htf_bias: str,

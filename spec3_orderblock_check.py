@@ -1,6 +1,6 @@
 """SPEC3 verification: market structure, order block = last red before HH,
 retest strength classification, structure-intact gate."""
-from vanquish_bot import Candle, MarketStructure, check_retest_type, detect_order_block_setup
+from omen_bot import Candle, MarketStructure, check_retest_type, detect_order_block_setup
 
 
 def c(ts, o, h, l, cl):

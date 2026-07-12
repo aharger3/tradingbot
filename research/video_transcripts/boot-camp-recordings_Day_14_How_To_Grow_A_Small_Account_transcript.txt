@@ -1,0 +1,984 @@
+# Transcription: boot-camp-recordings_Day_14_How_To_Grow_A_Small_Account.wav
+# Duration: 5733s
+# Model: tiny
+
+[0s-6s] That's computer and do that. Yeah, game counts three three right now. So
+[7s-9s] pretty nuts.
+[13s-17s] I don't do any live trading right now, but I do want to, I just want my own channel for it.
+[17s-20s] This is because I don't want to flood the Ivan trading floor.
+[22s-26s] Yeah, we should be good to probably start up here. Yeah, series three three.
+[27s-33s] So whoever wants to name one's world series, but all right, let's get to the chase. Let's get to the trading
+[33s-37s] stuff. I'll do my own. I'll get to your guys questions. I'll have the chat up. Don't worry.
+[38s-46s] If I don't read it right away, don't worry about it. So they 14, how to grow a small trading count or even
+[46s-52s] just to grow a trading count in general. Right? And before we dive into actual technicals and
+[52s-58s] specifics of like risk reward, you know, max drawdown all like the really technical side of
+[58s-65s] things. When rate, I do want to paint you guys like sort of a picture of like understanding the journey
+[65s-72s] of a trader. And a lot of you guys are in an instant, or spot I want to say, I feel like most people
+[72s-77s] have been trading for maybe about six months, a year, maybe a few more, maybe maybe a bit less,
+[77s-81s] like maybe your brand new. So the session will be good for everybody. We'll go over some
+[82s-88s] some good pointers. We'll go over some tips and tricks. But essentially how everybody starts out.
+[90s-96s] Let me, let me, let me load this up. Everybody starts out trading, you know, you like here from
+[96s-101s] it from a friend or from somebody at work. Okay, like I mean, it's money trading. You load up a
+[101s-106s] brokerage account. And most, I feel like most people have that initial win you for you. Like you'll
+[106s-113s] win your first couple of trades and, you know, you have your overconfident. And that does not lead to
+[113s-118s] consistency in the long run. Just randomly gambling. Obviously, we have systems in place. We have
+[118s-123s] our strategy using risk management psychology. That's what's going to win in the long run.
+[125s-131s] Most of the time, you will start to see losses due to trying to make your money back, due to
+[131s-137s] over trading, due to not having any systems in place. You'll see this kind of downtrend in, you know,
+[137s-144s] you general account. And then once you start like implementing a lot of this up that we preach.
+[144s-150s] So like, you know, Jared with psychology, Tony with the strategy, you know, we have so many different
+[150s-157s] things in place to protect capital over, you know, a longer period of time. And at a certain point,
+[157s-161s] whether you're on a small account or a big account or profit from whatever may be,
+[161s-167s] once you start to get the hang of your own trading, like through journaling too, as well, right?
+[167s-172s] I'm learning where your own edges. You'll see it start to plight a little bit right here. And
+[172s-177s] you'll start to make back a lot of those over trading losses over leveraging, right?
+[178s-184s] So, and then you'll get back to break even, you'll get momentum. You'll still, you're account-sized,
+[184s-188s] well, you know, exponentially grow over a long period of time, which will go over as well.
+[188s-195s] So, so, the initial growth, right? That kind of just talked about this. You know, you heard from your
+[195s-199s] friends of family, so I made a bunch of money in socks. You got interested, opened up a broker,
+[201s-204s] and the first three or four months, we didn't really know what you were doing, but you've watched
+[204s-209s] enough YouTube videos to think that you did, no. So you made a initial game and you thought, well,
+[209s-214s] now this is too bad, maybe I can do this full time, which we'll talk about, you know, working
+[215s-219s] in trading as well. And then kind of comes at decline phase where, you know, you started watching
+[219s-225s] more videos, but the market's not going into direction anymore. You're initial gain, that initial
+[225s-233s] phase of growth has kind of, it started fading away, right? I think a lot of it is due to
+[233s-237s] just general psychology, and we'll talk about kind of like the breaking even trader too,
+[237s-240s] because I really really really wanted to dive into that, because I think a lot of people are pretty close
+[241s-249s] by, and I think I can help fix a lot of the kind of main problems that I see. I've been around
+[249s-255s] in like, general trading with Jack Tony for a long time. I've seen people be successful. I've seen
+[255s-261s] the things that they have done. I have similar experiences to a lot of traders. So I have some
+[261s-267s] some good tips and trips, tips and tricks, if you're, you know, still struggling to, you know,
+[267s-273s] hit that break even point or even get to that like, profitable phase or even just not lose as much.
+[273s-279s] Right? A lot of this I can't teach because you have to click the button this, but like the
+[279s-286s] over trading stuff, the, you know, over leveraging, full-mo, all that stuff. We'll dive in a little
+[286s-290s] bit to that, but most of it I want to stick to the technical today, like how much you're risking,
+[291s-298s] win rate, et cetera, et cetera. So, now the consistency trader, right? Once you've found
+[298s-304s] consistency and understand the strategy and your system and what, I kind of want to break down
+[304s-309s] what we mean by like system because it's a word that we throw a lot of the times. And I don't think
+[309s-318s] there's like a true, like, definition that you could give it. It is essentially a built up, like,
+[318s-323s] group of, you know, risk management, your, your playbook, right? The trades that you're going to
+[323s-329s] take your entry models, it is your psychology, it's, it's everything combined. That is, that is your
+[329s-333s] system, right? It's your max drawdown. It's, it's like your average risk or work or trade like that
+[333s-339s] should be a part of your system, right? That's what we talk about system. You need some sort of rules in
+[339s-344s] place. You need some sort of criteria to follow, not only when entering trades, but how much risk
+[344s-347s] you're putting on per trade, right? So that's kind of what we're going to talk about today.
+[349s-353s] And obviously, you know, when not the trade as well, in which markets the trade and in which
+[353s-357s] markets to avoid, you know, exactly how profitable your system is if you follow it and why you should
+[357s-361s] not deviate away from your plan. Because you have no edge if you, if you deviate from your plan, right?
+[362s-369s] Let's see, a lot of people taking like, you know, five, six trades a day. And it could be the set-up,
+[369s-376s] like, potentially could be there, but that's not really, it over the long period of time, if you look
+[376s-381s] at like the break and retest and the A plus that ups and all of these low-time frame entry models,
+[381s-385s] like, there really, it doesn't make sense. And so you guys have all of that stuff. You guys have
+[385s-391s] all the technicals. We're going to go over the back end of like how to actually manage risk and
+[391s-396s] and how to grow on account with what the actual, you know, technicals that you have now. So
+[396s-403s] we'll go through that. And also, like, setting some realistic goals to, right? Like, I could say,
+[403s-409s] you know, you can risk X amount per trade and you could hit, turn it $1,000 account to a $10,000 account.
+[409s-416s] Is that realistically what you want to do right off the bat? Not necessarily. It's very possible,
+[416s-422s] but you're trying to build consistency over a long period of time. The goal of trading,
+[422s-432s] at least in our eyes, is not to make as much money as fast as possible. Yeah, so this is how we
+[432s-436s] are here, you know, how you're in a P&L deviating, sizing slowly. We'll talk about all these things.
+[439s-444s] So yeah, I was about to like, realistic goals. And we'll talk about that, too. So let's go over
+[444s-449s] just like some expectations real quick. Because like, everybody sees like, exponential growth
+[449s-456s] for everybody sees, you know, those accounts at like over time, oops, you will go from,
+[456s-461s] say, like, 1,000 to 10,000 in your account will look at something like this, right? But it also works
+[461s-467s] the exact opposite against you. We have to understand that, see, right? Gains are
+[467s-474s] required to make up for loss, right? Percentage recovery. So I think you guys might have seen
+[474s-479s] something like this before. You guys might have seen the similar chart like this. Maybe
+[479s-486s] in some YouTube videos, maybe in some, some other like program or whatever, right? We talk about
+[486s-494s] recovery and how it works. So if you take a trade or if you take any trade and you lose 10% of your
+[494s-502s] account size, you need to make 11% to make that money back to get to break even. If you lose 20%
+[502s-509s] you have to now win 25% back to get back to break even. So it works against you in the opposite way.
+[509s-516s] So this is like, it's a double-edged sword now trading in an exponential versus percentage recovery.
+[516s-520s] See, exact same thing. So and the further and further you get down the craigsaw you're
+[520s-526s] getting, it's like a minus 80% draw it down in your account. You need to now make 400% on that account
+[526s-531s] back to just get back to break even. So it can be a little disheartening. It can be a little disheartening.
+[531s-536s] It can be struggle at times, but that's why we're here today. So I can give you guys some
+[536s-542s] good pointers and good stuff to go by and talking about pretty much, today's going to
+[542s-546s] a little bit about risk, essentially. So, first of all, this is something that you can talk
+[546s-552s] about. So trading capital, risk per trade, risk reward, obviously, and when right, these are two
+[552s-558s] massive ones right here. Probably the two biggest factors when it comes to trading. We'll go over
+[558s-561s] that. There's a good chart. I'm going to show you guys too. So super solid.
+[562s-567s] Essentially, where you want to be on the risk per reward section is the low risk
+[567s-573s] hard reward. Right. We'll talk about that too. So first, right off the bat, we do have to kind of
+[573s-579s] go over a trading capital. So how much money should you start to trade with? I know we say this a lot,
+[579s-584s] but I really, really, it's so important to understand that like when you were learning,
+[584s-589s] you have to trade with money you can afford to lose. And it's not just because you're learning,
+[589s-596s] that's not the idea. It's also because your psychology is going to be absolutely destroyed.
+[596s-600s] If you are trading with money that you need for rent, for groceries for like, you know,
+[600s-607s] your average day-to-day activities, you can't, you can't put that money into an account and say,
+[607s-614s] I'm going to turn this into, you know, x into y. It doesn't work like that. The human brain is not
+[614s-621s] wired to, you know, put on that kind of risk and accept it. So like, I wanted to go over just a little
+[621s-626s] bit of a little bit of this conversation too. So every trade you take, you put on risk,
+[626s-631s] but there's a difference between putting on risk, right, like risking money per trade,
+[631s-636s] and then actually accepting it, right? A lot of people enter trades and like maybe it is with
+[636s-641s] money you can afford to lose. This is also the case too. And you're, you're kind of second-guessing
+[642s-646s] you're like, did I end to this good trade? Was this a good setup? Should I close this out?
+[646s-650s] And you would, won't wait till it hits your take profit or stop loss. And over a long period of
+[650s-655s] time, we know that that will not work out. Right? So you'll kind of start to second-guess yourself
+[655s-665s] if, and this becomes way different when you are trading with money that you can't afford to lose,
+[665s-668s] right? Or that you, you know, over a little bit of over leverage and even, right? You're going to
+[668s-674s] make more emotional decisions. You're going to make more, you're going to flip your bias, right?
+[674s-677s] Tracer is going the opposite direction. You'll probably try to make that money back, right?
+[677s-683s] Because you need to, because it's money that you really couldn't afford to lose. So, but like realistically,
+[683s-687s] we're going to dive into, like, how much money should trade options with and everything, and
+[687s-692s] now, like a decent size, but like this is like the general answer, right? Understanding this.
+[692s-700s] This is the biggest idea of the conversation here. But there is a, we had to be
+[700s-704s] do up to have this conversation anyway, and it's even though it's a weird conversation to have.
+[705s-712s] The dollar amount, like what you should start with in trading capital, if you are under $1,000,
+[713s-721s] likely paper trading, prompt firms, back testing is going to be the go to. I see people
+[721s-727s] like, like, this is just a general idea, right? Like, if you have $500 and you want to throw
+[727s-731s] that into a cash count and like, search trades and watch with it, for sure. Like, I'm not, I'm not
+[731s-736s] supposed to that. I do think that it becomes a lot easier, though, managing risk wise and just like,
+[736s-744s] in general, when you get over the $1,000, it makes them all sense. So, you know, anywhere between
+[744s-748s] a thousand and 10,000, you can trade stocks, you can trade options, you can trade futures, you can trade
+[748s-756s] for X, so you have a little bit more, you have a little bit more cushion, I would say, right,
+[756s-762s] with like a thousand to 10,000. I would even maybe put this to like $5,000, right? If you're starting
+[762s-768s] out, probably, whatever, again, whatever you can afford to lose, you don't need, you do not need
+[768s-771s] $10,000 to trade. Like, if you're, especially if you're starting out, especially if you're trying
+[771s-777s] to grow on account, you don't need $10,000, trust me. Trust me, you definitely do not. When you're
+[777s-781s] learning, you don't need to trade with that. It's different if you find consistency, you're
+[781s-789s] sizing up over time, then it makes sense to have a decent amount of capital. So, now we're
+[789s-793s] going to talk a little bit about risk, probably spend a little bit of time here, right? And we've
+[793s-799s] preaches a few times, now I'm risk per trade, right? So, we'll go over a few examples, obviously,
+[799s-803s] we're going to use like this kind of one R as like our risk. This is our risk, right here?
+[804s-810s] So, if you're trading with $8,000 account size, and you multiply that by a point zero, one which is
+[810s-818s] 1% that is a $10 risk per trade. So, one R is your max risk per trade. Now, I think like it is,
+[818s-823s] it's a little bit hard to keep this exact with the options and don't want to go over with options too.
+[825s-829s] But a good rule of thumb, right, is no more than one to two percent of your trading account.
+[829s-836s] So, just a general rule of thumb. It's a little bit tough, I get a little bit tough to calculate
+[836s-842s] some times and average, like, you know, contracting or if you're trading futures, it's a lot
+[842s-848s] a lot easier, but, or stocks, right? So, just for an example, I kind of went through some
+[848s-853s] up here anyways, but a $10,000 account, you should be risking around $10 to $20 per trade.
+[853s-859s] Like, ideally, right? I'm just talking about an ideal situation, an ideal world, you're risking
+[859s-864s] about $10 to $20 per trade. So, if one, and we'll go over this, and this is really important actually,
+[864s-871s] this conversation to have right here. So, if one R is 10, I'm just going over examples. So, if one
+[871s-881s] R is $10, it will take you $100 to make $1,000, right? $10 times $100 or $1,000, or $2,00,
+[881s-889s] be a count size, right? So, to take $1,000 to $2,000, using a two-to-one RisteroWord model,
+[890s-897s] it would take you 50 trades as well. And this is a really good, this was a really good,
+[898s-906s] I want to say, sample size, right? It's a really good sample size. So, let's say, like, you have
+[906s-909s] a small account and you've been trading it for a little bit, you're a hot-a-live account,
+[909s-913s] you're not in demo or anything. You'll have a pretty good idea of where you're
+[913s-918s] right. You'll start to find a little bit more consistency. Obviously, some ones are going to be
+[919s-923s] easier to trade than other ones, but in general, I do want to say that you're going to have this
+[923s-929s] like sample size, right? You're going to have this like good ideal amount of trades to go by,
+[929s-937s] and if you truly do use this like RisteroWord model, like a two-to-one, and you truly follow it to a
+[938s-943s] T, then you should be even in the, you should be around break even, maybe slightly,
+[944s-949s] in the loss depending on how you treat your disciplined side of things, right? We'll talk about,
+[949s-951s] we'll talk about that too. It's kind of the next slide here.
+[953s-956s] I'll go over some of your questions in chat real quick just to just keep update is so don't get
+[956s-961s] this slimmed. Yeah, I'll go over my own journey. I'll probably do that at the end of the session.
+[961s-966s] I'm going to keep this like just the presentation stuff. Last week, I draw from break even and
+[966s-973s] some profit and to draw some sound again. I'll go over flip your bias and do to news, and other factors,
+[973s-978s] or like that, or just stick to it over high time frame range, strong and not original thesis. Yeah.
+[979s-987s] So I will, like, based on, like, I don't really like, I don't like flip biases due to news. It
+[987s-992s] just depends what the technical is telling you, right? If that's, that's not, um, doesn't flip,
+[992s-997s] like say if I'm, you know, long and video on the chart looks good, news comes out of the bearish, right?
+[997s-1002s] Like, I just have to wait to see what the chart does. I'm not going to short-base off news. I'm still
+[1002s-1006s] going to use my system. I'm still going to use the break and retest model. I'm still going to use
+[1007s-1015s] what I've learned right over a long period of time. I saw it's like, do what I flip biases if the chart
+[1015s-1020s] looks worse, like, technically, like you have to. Like, that's what trading is. You have to kind of,
+[1021s-1025s] you know, be reactionary. You don't want to predict anything, right? Trading is not predicting.
+[1025s-1032s] Are you want to be reactionary? Yeah. I don't think, so not, not making a $10 trade, but
+[1032s-1039s] risking $10. Because you're not letting, so, like, let's just say, you buy an option contract worth
+[1039s-1049s] $100. You're basically, your ideal stop loss is going to be $10 to $1. Not a $10 trade.
+[1050s-1056s] So when you're risking, is it 10% of the accounts size? 10% of 50% per tick? Yeah, I know it's
+[1056s-1063s] 1% per, of your trading account, right? 1% of your trading account. And then in general, like, we'll
+[1063s-1068s] talk about, you know, options, everything like, in general, it is around 10 to 20% per trade.
+[1071s-1079s] Right? Because this is also a $1,000 account, $10 is 1% of that. So your position size might look different,
+[1079s-1084s] but the actual risk you're putting on is going to be, should be around 1%. And it's hard with
+[1084s-1087s] the small accounts. So we'll talk about, that's a purpose of today too. So,
+[1090s-1095s] yeah, no, 100%. Like Tesla, I get trust me. I've had the conversation a lot of times.
+[1096s-1102s] Tesla is a little bit more expensive. I get it. I get it. Yeah, TSL is decent. I haven't traded it.
+[1102s-1108s] I can't, I can't speak for myself. But I think a lot of other people have had decent trades with TSL,
+[1108s-1112s] too, because you can get options on those. Usually, the risk to prosome game the spread,
+[1112s-1119s] you have to pay for trading begins. Yeah, it depends. It really depends on where you're entering.
+[1119s-1123s] And if you're using market or if you're, you know, if you're marketing the ask them,
+[1125s-1135s] you can slightly be in the red. But it depends on what depends on what contracts you're buying,
+[1135s-1141s] it depends on how the trade is moving. Sometimes we get filled too, right? It's not always,
+[1141s-1147s] it's not always spread too. Yeah, we'll talk about, we'll talk about the account and what trades
+[1147s-1153s] to go for. Yes, one to two percent of the account is ideal. And then 10 to 20 percent per trade.
+[1153s-1158s] That is ideal technically. Like ideal in an ideal situation, that is perfect.
+[1159s-1166s] You've had success at TSL, perfect, perfect. So if you take a trade for $100, and yeah, so if I,
+[1166s-1174s] yeah, if I say my position is $100, right? My position is 100, then ideally I'm risking 10 to 20
+[1174s-1184s] dollars. This is your position size. This is your risk. Sorry, my, my most drawing is not very good.
+[1184s-1190s] Things are actually a little bit better than that. So yeah, that's where you're stopping. So let's go over,
+[1190s-1195s] let's go over this because this is very, very, very important. This is very, very, very, very important.
+[1195s-1200s] And I truly, I have to go over this. We have to, we have to have this conversation. This is a
+[1200s-1205s] really good chart. It's like from trading view itself, I think. It's used in some other videos and stuff.
+[1206s-1212s] Understanding this is very, very, very important because I truly think a lot of people are at this
+[1212s-1218s] state right here exactly this. Like I don't mean break even. I mean literally 1 to 1 and 50 percent.
+[1218s-1224s] I've seen it so much in my coaching sessions and traders love like a lot of stuff that we do.
+[1224s-1230s] On the one to one calls, I think there's like this inflection point that I need. We have to have this
+[1230s-1237s] conversation, especially especially especially with the small count. I think because so let's,
+[1237s-1242s] let's go over just to trading view real quick. I'm not just going over draw a random model.
+[1242s-1245s] Break and retest doesn't have to be pretty. It's not the purpose of it.
+[1248s-1257s] Let's just draw something like this. Let's say, five days I can all 1.2 whatever it is,
+[1257s-1264s] right? This is just a random situation, or I'm not. This is not technically, you know, perfect, but
+[1266s-1270s] when I talk about this in the scaling too, because it is definitely a part of scaling,
+[1270s-1276s] but when you are trading on a small account, you can't really afford to scale.
+[1277s-1280s] Right? If the price goes higher than high, you can't really afford to scale here here here,
+[1280s-1286s] because you can't get that many contracts. So there is a major major difference between trading
+[1286s-1293s] say 10 plus contracts versus like 1 to 3. Draw that a little bit better. Major major difference.
+[1294s-1300s] Thing is, with Jack and Tony, if they take this or anybody, that doesn't even matter for
+[1300s-1305s] Jack or Tony, it could be anybody that's trading with like, you know, more size. So if you have
+[1305s-1310s] 10 contracts, or sorry, let's just say you take this trade 10 times, right? Tony and Jack are
+[1310s-1316s] able to take some off at a lower, risk or ward ratio, and maybe go break even after, or even
+[1316s-1322s] lose some trades. Let's just say they win for just like, you know, hits your first TP, and then they
+[1322s-1328s] go break even or whatever, or they close it up fully. But just say you have three lock or
+[1328s-1333s] let's just say you have four losses, all right, at least 10 trades. Let's just do this.
+[1334s-1341s] And then you have two that go like above and beyond your five day, and you can take these scales.
+[1342s-1348s] These two trades, I actually just deleted, these two trades are going to make up for like,
+[1348s-1355s] probably four of those losses right away. But when you're trading with a small account,
+[1355s-1361s] and you take the same exact trades, you will not be able to get those exponential gains on those
+[1361s-1367s] contracts one in the, you know, go past high bid. So you have to be a lot more careful with
+[1367s-1371s] where you're scaling out and where you're taking profit when you're using a smaller account. You have to,
+[1372s-1377s] you have to aim more so for the two are setups, because over a long enough period of time,
+[1377s-1382s] I see this time and time again, it's the biggest issue I see with just in general,
+[1382s-1387s] options trading, the breaking retails, what we teach is the biggest biggest hurdle to get over.
+[1389s-1395s] If you take this exact rate, let's just say exactly this, right, 1.27, use the position tool.
+[1395s-1399s] I get it, trust me, like options are not exact. This is just a good rule of thumb. It's a good,
+[1399s-1406s] it's a good, I want to say not indicator. It's a good tool to visualize where your
+[1406s-1410s] restorboard is, because it's pretty accurate. Like, I'm not going to lie like options, obviously,
+[1410s-1415s] they're a little bit different, and we'll talk about that, but it is pretty accurate. Like,
+[1415s-1421s] generally speaking, if you hate your two are, versus your stop, or if you have a two one,
+[1421s-1427s] it is going to be close to a two-to-one. It truly is. I've seen it more times than, you know,
+[1428s-1435s] you could probably imagine trust me. But that being said, when you're trading on a smart count,
+[1435s-1441s] you do have to go for these like two are set ups. Because if you're based on getting fills,
+[1441s-1446s] right, getting like the spread, getting fills, the nature of marketing, and options, right,
+[1446s-1453s] if your risk rewards like anywhere below this, on average, below 1.5 are portrayed.
+[1454s-1458s] Like, if you say, like, if it's anywhere below this, you're probably going to be break-even.
+[1458s-1462s] I'm just going to just say that's right up. You're probably going to be break-even. You could
+[1462s-1466s] have a decent winery. Like, you could have, like, I mentioned over here. Like, you could have a 50%
+[1466s-1470s] winery. But this is why most people are break-even, because they'll just still cop positions too early.
+[1471s-1477s] Let it or, like, you know, with other people, you can scale, and it works good. But if you can't
+[1477s-1481s] scale, I think that this is the biggest problem. If you close out your whole position, you know,
+[1481s-1487s] before 1.5 are, then it's going to be very tough. Right? It's going to be very, very, very, very,
+[1487s-1494s] very tough. So, that being out of the way does everybody understand what I'm talking about. I think
+[1494s-1498s] I went over it in the scaling lesson a little bit too, but does everybody, can I just say, like, a one,
+[1498s-1506s] if you guys understand that? I truly, like, I truly, like, I need to, I need to stress that a lot.
+[1507s-1517s] Um, I'll go over it quicker more, song. I'll go over it quicker more, song. So, the difference is,
+[1517s-1521s] between, I'm going to try to draw, I would like a good, I'm trying to draw like a good scenario,
+[1521s-1531s] but I can just talk about it too again. So, let's just say, you know, you're somebody that trades
+[1531s-1538s] with 10 contracts. If you take this trade, and you scale a high of day, let's just say,
+[1538s-1544s] take the trade 10 times, the likelyness of it going over high of day, and you're getting like a
+[1544s-1549s] two hour, three hour, four hour set up with scaling, like you'll have that opportunity probably
+[1549s-1553s] three to the 10 times, three to 10 trades. I'm just going to give it like a random number. It's
+[1553s-1559s] probably close to like two, three, three times, just based on my experience. Now, um, you will get
+[1559s-1563s] the high of day sometimes, and you'll go break even. So, you have like a base hit, right,
+[1563s-1568s] smaller one, and then you'll get stopped out a few times, right, based on your winery,
+[1568s-1573s] let's just say you have like a 50% winery. But even if you have a 50% winery,
+[1574s-1581s] these scales up here push your wrist or a word higher per trade. You can scale up here here here,
+[1581s-1588s] you know, a price goes higher, whereas if you're trading one contract, you can't do these scales.
+[1588s-1591s] So you have to edit your wrist or word. You can't take off your whole position size until you
+[1591s-1604s] have a decent wrist or word. Hopefully that makes sense again. Like, you saw, yeah, like this is
+[1604s-1612s] going to be a really technical conversation. If we dive into every single setup, and it's like,
+[1612s-1616s] let's let's let's dive in a little bit, just because I think this is a good conversation to have.
+[1618s-1623s] Yeah, so anywhere I did go over this on the scaling session, like I said, like anywhere from one to two,
+[1623s-1626s] even three contracts, you probably don't want to scale anything. You probably just can't
+[1626s-1631s] close those to the whole position. That's your ideal situation. I don't want to make it a scaling
+[1631s-1635s] lesson, just because we already did that. The recordings are good for there. Just like average
+[1635s-1642s] contracts, like how you would scale. I've done that. They did the session on that, but just to reiterate
+[1642s-1647s] with one contract, you can't afford to close that. I have it in this situation, right, in this specific
+[1647s-1655s] situation. Maybe your hive days like 1.8 or 1.9, right? It's like, that's probably a good spot.
+[1655s-1660s] Right? Like if it's, if they get an entry right here, and you know, like 1.9, right? Like that's
+[1660s-1663s] reasonable, right? It's never going to be truly exact, especially with options. It's never going to
+[1663s-1669s] be truly, truly exact, but you want to get as close as possible. I think anywhere below 1.5,
+[1669s-1675s] you're kind of putting yourself in this situation where you can, like, a lot of you guys, I've seen
+[1675s-1680s] some of the win rates of some of the traders. Like inside, like I've gone over people's journals,
+[1681s-1686s] mostly in the traders I've won to one stuff, but I've gone over people's journals and like they have
+[1686s-1691s] like a 50% win rate, and I'm like, I'm like expecting them to be green from the months,
+[1692s-1697s] but they're not because they can't hold, they don't know a simple thing. That's like, okay,
+[1697s-1700s] you need to hold on to the trail a little bit longer on average. You do need to.
+[1701s-1707s] And we can go over, like, some setups, we can go over some examples of like maybe 1 and 1 not 2.
+[1707s-1713s] I do a pretty good job in the trader views on like, like scaling. I can even, I can even take a look at
+[1713s-1718s] some trades after this. So it is, like, it really makes sense, and especially if it's common,
+[1718s-1724s] you see, yeah, 100%. Like, yeah, you have to, so, like, you know, on YouTube and stuff,
+[1724s-1728s] like we always say, like, you know, reiterate the 2R. Like, that's usually like the ideal situation.
+[1729s-1731s] Like, it, like, it kind of have to be, right?
+[1734s-1738s] Then that goes into knowing how to hold your trades longer. Yeah, 100%. There is a, there is a,
+[1738s-1746s] like, discipline side of this too, which I 100% understand. Generally speaking, like, just going
+[1746s-1754s] over, like, a quick, just like, entry model sort of thing, usually the best setups, and the ideal
+[1754s-1760s] situation for the trades is going to be, like, some form of displacement, and then, like, a pullback.
+[1761s-1765s] So, like, when you enter, maybe, like, right here on this candle, you have a decent, like, you have a
+[1765s-1771s] target to go to. Like, these are ideal for small accounts, because, like, at least you have a high
+[1771s-1778s] day target with decent restore ward. Like, your shop would be right here. The entry would be right here.
+[1778s-1784s] I'm going to go to this yellow. Okay, I just erased that. And so we're on our time. Ideally,
+[1784s-1789s] you want to stick the trades that look like this. Just because there's actually like a target,
+[1790s-1795s] just say you enter like right here, entry, your stop would be, you know, just below the
+[1795s-1801s] candle here, and then the TV would be up here. You can, you can stick to these setups. They'll
+[1801s-1804s] be, they'll treat you a little bit better, because you have a clear risk and you have a clear
+[1805s-1808s] target. Usually, you'll have decent restored, but there's always going to be the case, which I
+[1808s-1813s] completely get, other goes like quicker retests, where it doesn't have that much displacement,
+[1813s-1819s] and you kind of are entering, like, close to have day. Right. You're going to have these scenarios.
+[1819s-1826s] There's no, like, this one is not better than the other one. I do see some better setups, and, like,
+[1826s-1832s] a more clear thought process when it does come to this setup right here, just because you have a
+[1832s-1839s] clear target, you have clear risk, you have a clear entry too. So, there's always the case of taking
+[1839s-1845s] the immediate retest and you can go over that, but, yeah, just understanding this, like, you can
+[1845s-1849s] take a screenshot of this or you can say this, I can even send you guys the PDF after you guys
+[1849s-1854s] have the recording. You can run it back, but this is super important to understand, super super, super
+[1855s-1863s] important. Where are you, are ideally, I believe anyways, is, like, likely, you know, 50 to 60
+[1863s-1870s] percent win rate at like a two to one, or, like, yeah, one is a resort. Ideally, you're up here,
+[1871s-1877s] you can even be in 40 to 50 percent though, and still be in profit, as you can see. So, it's, like,
+[1877s-1881s] I see a lot of people would really get win rates, and they take a trade, but they're in law still,
+[1881s-1888s] because they're, they're more so around here, right, or break even. That's all a time, but,
+[1888s-1893s] like, most people, I think a lot of people are at this stage, and I think that's going to fix
+[1893s-1895s] fix a little bit of it. I think it's a scaling, I think it's going to weigh on trades longer.
+[1898s-1903s] So, I mean, I thought I would risk a little bit, I think you guys are pretty familiar with this topic
+[1903s-1908s] now already, but when I say, when I use a position tool, right, it's, it's ideally,
+[1909s-1917s] if you were risked for a ward ratio right here, is like a one, then you're risking $100 to make $100.
+[1918s-1922s] Right, and you ideally don't want to be here with the way that we trade. I get taking scales
+[1922s-1925s] and stuff before, like if you're, if you're trading higher size, we want over that.
+[1926s-1933s] Ideally, you probably want to be in this area anywhere around 2 to 1. So, you're risking about $100,
+[1933s-1939s] so make about $200. And then for, you know, your three, three are set ups, you know,
+[1939s-1942s] I'll risk 100 to make 300, just quick note, I think most of you guys already know this,
+[1942s-1946s] but I just wanted to go over it anyways. So, here we go, the kind of diving into the options
+[1946s-1952s] side of things. So, risk ward trading options. For the strategy we use, like for the breaking
+[1952s-1958s] retest, generally speaking, this is kind of like this ideal, right? It's around 10 to 20% stop loss
+[1959s-1966s] on the contracts you buy. So, if your contract costs at $1, then ideally your stop loss
+[1966s-1972s] would be like 10 cents to 20 cents on the contract, right? Or I could position size the $100,
+[1972s-1979s] then it'd be around $100 to, sorry, $10, $20. So, having this amount, I know if I have roughly
+[1979s-1983s] a thousand dollar position size, right? We're going to kind of position size here. I'm risking
+[1983s-1988s] around $100 to $200, depending on setup. Obviously, everything's going to be a little bit different.
+[1988s-1994s] You want to put your stop loss based on technicals, but most of the time, like I think majority of
+[1994s-2004s] the time, it's around 10 to 20% on the contracts. So, with $1,000, let's see, I had like five contracts,
+[2004s-2012s] you know, they're $200 or $2, whatever. They're risking, you know, you're going to sell those five
+[2012s-2019s] contracts when you're in a loss of around $100, $200. So, using two to one risk reward,
+[2019s-2032s] you should be targeting anywhere from a $200 to $400 win, right? Ideally, so, as for the max
+[2032s-2040s] drawdown, this is where, like the name of the game and in trading is capital preservation,
+[2040s-2045s] I say this a lot in my coaching sessions, right? This capital preservation, the longer you can stay in
+[2045s-2051s] the game, the better. So, you need to have some form of like, okay, the average trade, the average
+[2051s-2059s] trading day, your total accounts says there has to be some form of a like a stop loss for your account,
+[2059s-2066s] too. So, not even just portrayed, but even for your account. Actually, let me go into the second,
+[2066s-2069s] I want to answer some questions, just gives it a seat, but the fee in the chat here.
+[2073s-2077s] Yeah, but I'm just saying, usually, so ideally, two to contract, two to three contracts, and
+[2077s-2083s] scale, take one off. Yeah, I would go through the scaling session again. Yeah, two, yeah,
+[2083s-2089s] what Daniel said in the chat there, it's probably that's pretty much ideal. I say, like,
+[2090s-2094s] most of the time, you can even use three. You can even take off all three, two and one is good, though,
+[2094s-2102s] for three years, for three contracts. I mean, for the tools, some of this, 100%
+[2103s-2108s] learn the system of the playplace setups, and scale up gradually, yeah, 100%, 100%.
+[2108s-2117s] Because they're truly, I get the stigma of more contracts it's easier. It's not necessarily,
+[2118s-2123s] not only because of the psychology, and if you're not used to risking that much,
+[2123s-2128s] but also because, like, if you can't grow a small account, you're not going to be able to grow a
+[2128s-2135s] account. It's generally the same thing. Most of the trades that we take, they're going to be the
+[2135s-2141s] exact same trades. Like the difference in the setups, and like say, like, you take the exact same
+[2141s-2145s] trading you use to offer them, and Tony uses, you know, he'll scale a little bit earlier. Well,
+[2145s-2151s] like, if Tony has like 80% winery, like some ones he has, like, he's had a crazy winery. He's
+[2151s-2156s] focusing, like, a little bit more winery than, than, risk or war because he can scale, right? We
+[2156s-2161s] talked about that. But let's just say, some of those trades he let go to two are, and they didn't
+[2161s-2168s] exactly hit there. It would probably be closer to like, 50, 60, maybe 50%, right? Maybe it is 50%.
+[2168s-2172s] But then, you're still in profit because you're still at the two to one. So, like, even if you
+[2172s-2176s] have more contracts, it's still not going to, you can maybe have your winery a little bit higher,
+[2176s-2181s] but it's not going to change your risk or war and how long you can hold on to trades.
+[2182s-2186s] So, if I buy the contracts that are worth roughly a dollar, if I mean, you go to 80 cents,
+[2186s-2193s] and I send it to you, it's pretty much. It's like, yeah, you do want to, like, like, so there's
+[2193s-2197s] technicals involved, or that's why I say with the break and retest, like, with how we trade, like,
+[2197s-2202s] one minute time for him, everything. It's pretty, like, you'll see around 10 to 20% most of the time.
+[2202s-2206s] That's where you want to keep it. And it usually aligns with your, with your set up.
+[2208s-2213s] Right? And you can use position size. That's like ideal. I'm as easiest way to kind of go about it.
+[2214s-2219s] So, that's the position size, 10% of that, $100, $100, that's around 10 to 20%.
+[2219s-2225s] Like, on trades. It is based on tyrant goals. Like, obviously, you don't want to, like, exit the trade too early,
+[2225s-2230s] but you should have a max, like, loss portrayed. Like, obviously, if it's, there is a case scenario
+[2231s-2238s] where I get it. Like, if you were truly in a bigger, um, drawdown, right? If you need to exit the
+[2238s-2244s] trade and it hasn't quite hit your saw policy yet, I get it. Like, there is that situation. Trust me,
+[2245s-2251s] if it does go, you know, below your, your average risk portrayed, right? I just, I just literally
+[2251s-2256s] thought I was like, where it was a, capital preservation is a name of the game trading. So, like,
+[2256s-2261s] if you have to take, uh, take the loss, even though it didn't hit your saw boss, I get it.
+[2262s-2267s] Um, you do want to, you know, trade based on technicals, but you also do need to manage risk. So,
+[2267s-2272s] there's, there's arguments for both, right? There's arguments for both. Um, there's no, like, hard rule.
+[2272s-2277s] I want to say for it. I think you should just because, like, again, it's kind of like your max trade,
+[2277s-2282s] drawdown. You can have it on a trade. You can have it on a day. You can have it on a week,
+[2282s-2287s] or your account size, or you kind of have to set some sort of parameters. Right?
+[2288s-2294s] So, for example, like, I think 10% is a little bit high, right, for your account.
+[2296s-2302s] I think, like, on the average trading day, you're, you're account ideally. Like, if you,
+[2302s-2305s] using our rules, like, using, like, you know, your maximum three trades per day,
+[2305s-2312s] etc. It should be around to 3%, I think that is ideal 3 to 5, 3 to 5%.
+[2314s-2320s] That's like, that's ideal, I think, for most people, think 10% is a little bit high to be honest.
+[2321s-2326s] It depends on if you're using that again, like, you can do this daily. So, like, for daily 3 to 5,
+[2327s-2332s] maybe for weekly, you have like 10, right, or your total account size 10. But you have to kind of
+[2332s-2337s] set up some of these parameters for yourself to make sure that for whatever reason, if you do
+[2337s-2341s] foam off, or do over trader, you do over the other stuff, you have that, you have that, like, stop loss.
+[2342s-2346s] You have the, you know, you have that stop loss, the maximum amount of money you're willing to lose any
+[2346s-2351s] of your time. Hard stuff, I'm tuning around to the shadow, quick, two questions, hard stuff,
+[2351s-2356s] my stuff, a lot of times, for mental stops, you can use hard stops. If you want to calculate the
+[2356s-2361s] options, like, when it's doing in real time, it's like, when you're trying to manage a position,
+[2361s-2368s] I don't think it's ideal, but you can do that 100%. I think the mental stops probably, you know,
+[2368s-2374s] ideal for traders that are more disciplined. Now, if you've gone through the whole psychology thing,
+[2374s-2380s] and like trust me, it takes a while, it's truly, truly, truly, truly master your motions and discipline.
+[2380s-2383s] When it comes to trading, it does take a little bit. That's why I say when you start, you know,
+[2383s-2388s] traders money you can afford to lose. Because sometimes you do want to wait for
+[2388s-2392s] cameo closures, like sometimes you'll get a window, but then other times you'll also,
+[2393s-2399s] other times you'll also have it where you see a candle form like this, right?
+[2401s-2407s] And like if you understand that, then that means that you're afraid when your average winning trade,
+[2407s-2411s] you have to keep that in mind. I have to keep that in mind with scaling it's easier, because like a
+[2411s-2415s] lot of those, a lot of those candles that form like this, and you take a bigger loss than you
+[2415s-2420s] imagine, when you're scaling and you kind of make up for those. So I think with a smaller count,
+[2420s-2424s] it is best to like literally no matter what, just stop out. I do think that,
+[2426s-2430s] with smaller counts, I think it's a little bit easier, or sorry, a little bit tougher to kind of
+[2430s-2435s] manage that. I do genuinely think that it's worth it just stop out. Right? I talk about capital
+[2435s-2439s] management, it's very, very, very important. I get the technical side of things, right? If it doesn't
+[2440s-2446s] close below it, whatever, I think capital preservation is a little bit more important in this case scenario,
+[2446s-2455s] for a smaller count. Right? If you are, I was going to go over a setup here real quick, I forget exactly what
+[2455s-2461s] I was going to go over. I got it to talking, I'll come back to, I'll come back to, I'm going to read
+[2461s-2466s] some of the questions. When you have a cell pause for your count and then you serve. Yeah, like,
+[2466s-2471s] so ideally, so this is like, if you were like literally the brand new with options against started,
+[2471s-2475s] or like, you're a brand new trader, this is probably how you should go about, this is probably
+[2475s-2480s] how you should go about like starting out trading. I do genuinely think like pick like a decent,
+[2480s-2484s] like pick like a range of money that you want to start with and this doesn't have like whatever you
+[2484s-2488s] can afford to lose again or whatever, if it's like a thousand, if it's two thousand, if it's five
+[2488s-2495s] hundred, whatever it is, try to set parameters on paper trading because I know a lot of paper trading
+[2495s-2501s] accounts like they'll give you like whatever amount of money. I don't know exactly how everyone works.
+[2502s-2506s] I'm not sure, I think think your swim has paper trading, we will have paper trading, there's a few
+[2506s-2514s] other, I know I be cared, obviously. At that point, you want to start the practice managing risk
+[2514s-2520s] on the paper count as if you had the specific number dollar value that you did have when you start.
+[2521s-2527s] So then on your paper account, you can see how you would kind of navigate. So, and like you
+[2527s-2531s] obviously, there's this psychology side of things, you have to treat it like a real account,
+[2531s-2539s] you do have to treat it like a trading life. So then you have like an idea of where you'll be at,
+[2539s-2543s] when you do go to a log account. And your psychology will change, like your thought process might
+[2543s-2547s] change a little bit, but it's the best when you don't have to worry about losing.
+[2548s-2552s] So if you were right that, right that account, you're like, okay, this is solely for learning.
+[2552s-2559s] This is solely for me to just test myself out. You'll take better trades. I promise. I promise that.
+[2562s-2566s] All right, happy hug, great stop loss, based off level with this work. Yeah, that,
+[2567s-2572s] I'm not sure what you mean, but on the basis level with this, I'm not sure what that means.
+[2573s-2577s] Honestly, beginners need to trade once a day instead of my one of three trades per week.
+[2578s-2583s] Yeah, I agree. I agree. I don't even, yeah, I think even three trades a day is like, you know,
+[2583s-2588s] that's a little bit much. And I have some rules that we're going to go over to in a second. So,
+[2592s-2596s] yeah, I, it's honestly kind of like what kind of style you want to do. I think if you're like
+[2596s-2603s] more folks on low-time frames and just the one-minute chart, right? And you're like a little bit,
+[2604s-2609s] I don't want to say negligent, but like you're focused on like you're opening range setups and
+[2609s-2618s] like you know, ideally, you know, like you're one minute candles, then like you'll probably have
+[2618s-2622s] a lower window and you'll probably see a lot more trades setups. You're probably going to want to take
+[2622s-2627s] more of them. So I get it if you're that style. For me, I'm a, I found that through journaling
+[2627s-2634s] and through, you know, getting feedback that like most of the time, it's like, I don't
+[2635s-2639s] really trade good just the one-minute picture. Like I like to see the bigger picture. I like to see
+[2639s-2643s] all the time frames line. I'll wait for the break out on, you know, on the five-minute, 15-minute. And then
+[2643s-2648s] all, and then all zoom into the low-time frames. So I'll take less trades, right? So it's kind of like,
+[2648s-2652s] you got, you got a test yourself, oh, kind of got a test yourself, so for you, you need data,
+[2652s-2656s] you need data through journaling, see where you trade best, where your best setups happen,
+[2656s-2660s] what strategy, not exactly what strategy, but what entry model, I guess I should say,
+[2660s-2666s] right, is good and when it's best, right, analyze your trades, review your trades, trust me,
+[2666s-2671s] and look at them with their hindsight, right? I see a lot of people when they review your trades,
+[2671s-2676s] they review the trades. They think because they lose a trade, it is a bad trade. It's like if you go
+[2676s-2681s] back to that and you see that the setup works like a lot of the time, but you end up getting
+[2681s-2685s] stopped out on this one trade, that's not a, that doesn't mean it's a bad trade. Lusers are part of
+[2685s-2689s] your, your system, right? You have to, you have to just accept that your, the probabilities are
+[2689s-2695s] always going to work out, but because of that you have, right? You can always come back and
+[2695s-2700s] you can say, okay, you can even use replay mode, like I do this a ton, and then like some of
+[2700s-2705s] my code decisions like I will over trades and people will say like, you know, in hindsight,
+[2705s-2709s] right, this trade didn't work out, so it was at a bad trade, I'm like, no, not at all exactly.
+[2711s-2715s] And if it does work out, that's good, right? So another point of a testing,
+[2716s-2721s] kind of on a little bit of a track there, but I think it's also a good, good point, good conversation
+[2721s-2726s] I have. Think whenever the break in retis makes a double top, a shooting serve, I will
+[2727s-2731s] signal that, otherwise it's a bigger means new high skill confidence, knowing it will get you higher.
+[2731s-2738s] This is right. I'm confused when you said, breaking retis makes a double top, shooting serve,
+[2738s-2741s] signal to exit full. Yeah, you, you, you, you, you, you, you, you, you, you can, like that's not,
+[2742s-2746s] like ideally you can just go back to break even depending on how many contracts you have.
+[2746s-2751s] Right, if you're trading one contract, maybe you do exit full, or maybe exit the full position,
+[2751s-2757s] but if you're trading like, you know, more, then like you can always hold on, so I'm even
+[2757s-2765s] if, right, like, these, these one minute candles aren't exactly always the best to kind of go off of,
+[2765s-2770s] right? Like, if you see one, like, hammer candle in the one minute, that's good, right? It's a good,
+[2770s-2776s] good indicator, but you could see, a, you could see a doge, you could see a shooting, sorry,
+[2776s-2782s] you could see a bunch of these things, and like, the low time frames are not as great, so if you're
+[2782s-2792s] in profit in the trade still, right, it makes sense to hold on to them. Yeah, so with the Greeks,
+[2792s-2797s] seems like it'd be hard to set a hard, so I'll tend to understand. Yeah, it's not this, honestly,
+[2797s-2802s] not that hard, but it is better to exit based on underlying price because that's how the
+[2802s-2813s] ticker's moving, right? Yeah, maybe I'll go over the break out with breakouts with crypto,
+[2813s-2820s] and in another session, I won't do it for today, but, um, with a small account, don't wait for
+[2820s-2824s] those big red candles, it closed just like, yeah, that makes them most sense. Like, listen, oh,
+[2824s-2831s] that's exactly what I remember, what I was going to go over from a little bit ago. Like, if you
+[2831s-2835s] go and look at a lot of these trades, like, if you, if you truly go with, and you look at
+[2836s-2840s] Tony's trade reviews, if you look at my trade reviews, if you go in back test, you'll see most of
+[2840s-2844s] the time, like honestly, you'll see most of the time the trade either works out right away,
+[2845s-2849s] or it doesn't at all, right? It's as you usually want it to. Usually, you won't see too much
+[2849s-2853s] jobiness, unless you're trading later in the session, maybe, right? That's why we have the volatility
+[2853s-2860s] there. So, if I want 100% get, if you just want, if you even if it wicks out, right? Sometimes,
+[2860s-2864s] we'll come back, that's trading. Like, that's just trading, I'm sorry to tell you. If you get
+[2864s-2867s] whipped out and it comes back and you set your stop here, that's just trading. You're just going
+[2867s-2873s] to have to deal with it. There's no, there's no, like, magic way of, you know, making this work,
+[2873s-2877s] it has happened to me. Trust me, like, you'll get your stop loss in the trade warverse, and I'll
+[2877s-2884s] hit your take profit. It's, is what it is. I'm sorry to tell you, there's no magic thing. Obviously,
+[2884s-2888s] we can go through, we can look at the trades and we can dive in a little bit, but it's just going
+[2888s-2894s] to happen. It is what it is just going to happen. So, versus if the trade works out, like, right?
+[2894s-2898s] So, I'm talking about stop loss here. This is kind of why I'm going over this. Like, why you might
+[2898s-2903s] want to stop out, just based on the wick, write this level versus waiting for a closure. Most of
+[2903s-2907s] times, if it's not, if it's gratifying towards here, and this is a key point that you're taking a
+[2907s-2912s] retest off of. If it truly is a good level, whether it's your opening range or whether it's your,
+[2912s-2916s] like, previous day high, or whether it's a key level in the higher timeframe, like, if it's, if it's,
+[2916s-2921s] to get, you know, closing the loadess, like, it's probably not going to work out, right? Just based
+[2921s-2926s] on technicals, the trade isn't going to work out anyways. Trust me, I get it. It might wake
+[2926s-2931s] out, it might go back. It is what it is. It's better that you manage risk properly versus
+[2931s-2943s] hoping that it comes back, right? So, yeah, or something different, so, yeah, it depends on what
+[2943s-2952s] broker you're using for the, for your stop loss depends. Yeah, I'd be here at pay for counter
+[2952s-2959s] versus, I just remember the $1, yeah, don't trade with, don't, don't take trades based on
+[2959s-2964s] the account size, right? Like, have an ideal, have an ideal account size that you want to start with,
+[2964s-2968s] or even if you do have one already, and you do want to go to pay a portrayed or whatever,
+[2968s-2971s] let's never bat thing, and you can always go back to pay for sharing for a bit, it's a good,
+[2971s-2977s] to get resource. Like, you, like, try to work on, like, a general risk amount, right?
+[2977s-2981s] Work on the general risk amount portrayed on paper, so that when you go to do a live,
+[2982s-2989s] it's like the easiest, right? It's way easier, right? Generally, take three trades per day,
+[2989s-2994s] think of a max. If I want it to risk more, is it why say one or two trades per day,
+[2994s-2998s] ever since they amount? Max 600 per day to another, it's portrayed,
+[2999s-3004s] then switch back. Yeah, that makes sense, that makes sense. Yeah, that's perfect. Yeah, that's it,
+[3004s-3010s] that's exactly it. We, you can say your paper count, anything that's good. Yeah, if you, yeah,
+[3010s-3014s] you can, yeah, if you set your paper count to, like, whatever you want, that's ideal.
+[3014s-3023s] That is ideal. It's easy to make money on paper sharing, there's no pressure. Yeah, I, I get you.
+[3023s-3026s] Yeah, some platforms have 15 minutes, like, too, so not a lot of that. Just a little bit,
+[3026s-3029s] if it's a miss, yeah, I think if you have, if you have market data, like, you should be fine.
+[3029s-3036s] Like, I think it'll integrate with your paper count. Do you have multiple screens where you can view
+[3036s-3043s] multiple times? No, I don't, like, yes, but like, I don't necessarily, I don't necessarily have,
+[3043s-3047s] I'll, I'll run through maybe, like, a little bit of, like, the higher time frames and how I use them.
+[3050s-3056s] Jump to, jump to AMD, click on your screen. Just, just, like, I,
+[3056s-3061s] ideally in the morning, like, you have your key levels. You have your key pivots, or I, like, say,
+[3061s-3066s] like, AMD reclaims this key point to your lowest from, like, Wednesday for Tuesday as well.
+[3067s-3071s] All right, this is kind of a key point. Maybe I'll edit this a little bit. So I'll bounce here.
+[3072s-3075s] We close below it pretty heavy. You see a big move to the downside. I like this point.
+[3076s-3080s] I'm just going over real quick. It's also your highs from Monday to Tuesday. It's a good, like, key,
+[3080s-3087s] like, deep, low, green point. Let's say we reclaim this. This key pivot right here. I don't really need
+[3087s-3090s] to look at this on the higher time frames. You're like, ideally in the morning, you're going to be like,
+[3090s-3095s] okay, if AMD revends us, I'm going to jump to the lower time frames. I'm going to look for trades. All right,
+[3095s-3101s] you can set alerts. You can set trade, like, you know, let's just say, AMD ranges in here all that.
+[3101s-3104s] I'm just going to say, you know what, I'm not going to trade AMD today. If it's just ranging in here.
+[3105s-3110s] If it breaks down, maybe it'll short it. Right? Maybe I can take a short position. Ideally,
+[3110s-3116s] shorting AMD right now. It's like, you know, 50 minutes, making lower highs. I don't want to do too much
+[3116s-3121s] time for stuff, but you want to set like parameters for yourself. So you don't really need higher time
+[3121s-3125s] frames charged by your side. Because you know, in the morning, you set parameters. Like, I'm going to trade
+[3125s-3131s] X above Y level. I'm going to trade AMD above 258. And I'm not going to trade it's in here. So you
+[3131s-3140s] don't really need to like have all the time frames. Right? Yeah, yeah, yeah, KQQ. Spy is good to have.
+[3140s-3145s] Like, usually you'll just have all run KQ. I'll check out Spy to off-lip to it. You can run KQ and
+[3145s-3150s] Spy on one screen. Maybe have, if you have multiple monitors, it's a little easier. What I don't
+[3150s-3157s] think that you should do though. And this is just like a general like general trick. Like a tip,
+[3157s-3162s] I guess. I thought about this in the coach from two a lot. I think if you have like eight screens
+[3162s-3167s] and 15 tickers running at the same time, I genuinely just think that's a lot of noise. I think
+[3167s-3173s] trading should be mostly hands off. Like, have alerts that have your main watches, be reactionary.
+[3173s-3177s] Don't try to search through your whole watch list if something doesn't set up. Right?
+[3177s-3181s] Like, ideally you want to stick to your game plan. And ideally, you can set alerts on other
+[3181s-3185s] names if they do break out. Right? So it's like, you can look for a relive strength that we can
+[3185s-3191s] just like get that. Like, you know, trades aren't working out. But I do think that having 15 screens
+[3191s-3196s] and 50 different tickers is like, it's a lot. It's a lot. And it doesn't really make the lot sense.
+[3198s-3202s] It depends on, you know, your style. Maybe it works for you. For me, it doesn't. I'd rather just have
+[3203s-3214s] two main watches or three, right? Have alerts set. Right? Do you recommend have a paid version
+[3214s-3219s] of trading? Yeah, if you're starting, I would. Like, realistically, the best thing for it is going
+[3219s-3225s] to be your like split things that you get and then the watch list obviously. I don't think you
+[3225s-3230s] like, I don't think you need it. It's good though to have. Right? It's good to have if you want
+[3230s-3234s] the watch list to be a little bigger. I probably, I kind of want to add some stuff to the watch
+[3234s-3238s] list. Maybe some big caps soon. So we'll talk about that too. I'll be easier with some
+[3238s-3241s] art count as well. So it could be like a follow up to the session we could do.
+[3246s-3250s] Yeah, honestly, my YouTube is probably the best just to, or even if you go to
+[3252s-3264s] the discord one, it's just run this quick. Yeah, even a lot of times like, if you, I'm just
+[3264s-3268s] sharing the discord screen. If you run to the options trader views, or is it?
+[3268s-3277s] Okay, even fun. I'm a model here. Okay, I'm on the channel. You can see like my thought process.
+[3277s-3282s] Like I go through, I have like really in-depth interviews, percentages of contracts,
+[3282s-3286s] everything, I'll go through. I'll talk about the entry, why answer, how time frames.
+[3287s-3291s] You can just, I can, I can like my YouTube and here at the end too, if you guys want to do it
+[3291s-3296s] last time. I won't go through a really today. I don't think it's ideal for today, but
+[3297s-3304s] that Wico then hit T.P. Is this scenario that Mrs. Emma's say, oh yeah, I know I trust me.
+[3305s-3309s] I get it. Oh, I can completely get it. It's just over a long period. You have to think of trading
+[3309s-3314s] as like a long period of time, right? Let's just say you don't use that soft boss and you wait
+[3314s-3321s] for it to say like close below. You're going to have a lot of trades that your your risk is
+[3321s-3326s] going to be like undefined. Like you're like, where is my actual stop loss? And over a long
+[3326s-3332s] period of time, this doesn't make sense because it's not really measurable, right? It's not really
+[3333s-3337s] easy to, like this is going to mess with your risk of warning your trades too. So like ideally,
+[3337s-3341s] I get it if you have like a lot of contracts, you can, you can wait it over a little bit
+[3341s-3346s] because then on the winners, you can scale a little bit, you know, a little bit higher, but
+[3346s-3354s] um trust me, it's all about like measurable mechanical things. If you do wait for the
+[3354s-3358s] can of closures and you see stuff like this happen, it's going to really give your risk
+[3358s-3363s] reward and you can't measure that happening every single time so you don't know, right? It's
+[3363s-3368s] better to just like, you know, have a clean stop, even if it's a mental one, right? It's better to
+[3368s-3377s] have a clean stop than try to wait and hold on to trades. But you got to think of long term,
+[3378s-3387s] is it measurable? Is it mechanical? Is it repeatable? Right? Yeah, there's six, six, six
+[3387s-3393s] canals. Yeah, awesome. Do you have way for closure? You know, it works. Yeah, all the times I
+[3393s-3398s] will wait for closures, like a lot of times I will, but I know like on the trades that do continue
+[3398s-3405s] higher, that like I can I can manage to exit like in scale. So it makes out for like a few of those
+[3405s-3410s] losses that the closures are below. But at some times I do just exit on the way, right? If it's
+[3410s-3415s] really weak, like if I think the trade isn't working out, like in it's kind of, I don't want to say
+[3415s-3421s] it's like you can kind of tell because it does take time to learn that, but yeah, you can always use
+[3421s-3427s] the A4% run, let's talk with the actual, let me run through the rest of this. Like so money management,
+[3427s-3431s] right, this is capital, right? Everything, this is kind of the whole point of this conversation today.
+[3432s-3436s] These are some rules you should have, right? Like you should always have a point of inflection,
+[3437s-3442s] right? Always have this no matter what, you should always know where your stop is,
+[3442s-3447s] always know where your risk is, right? You're a risk manager that that's what you should be thinking
+[3447s-3455s] of yourself as. 10 to 20% on options, pretty ideas, not like a hard set, but you should be at 20%
+[3455s-3461s] in size quite a bit, right? 20% anything over 20 is quite a bit. You can, and this is where
+[3461s-3465s] this is why I kind of went here, you can always look to re-answer, right? There's going to be more
+[3466s-3470s] trades. There's like 300, there's 200, what, 50 is something plus trading day's year, I forget
+[3470s-3476s] these act number. There's going to be more trades too, not just these acts same name and you
+[3476s-3480s] can always re-answer, but there's going to be so many more trades, right? You don't have to worry
+[3480s-3489s] about this, this one loss, right? I guess yeah, we can go through, we thought that's a bunch of times,
+[3489s-3494s] but you know, trades from 930 to 11, that's usually, that's the better I would say time and trade.
+[3494s-3497s] Recently you see more like clarity and direction later into the session,
+[3498s-3503s] besides like a lot of like, let's say like month or two, generally speaking though, it's not
+[3503s-3508s] ideal to trade after this. You also want to have some sort of parameters, like, right? The more you
+[3508s-3513s] can narrow it down when your trading happens, right? And you can go back to this and review your
+[3513s-3517s] trades every year, general, like, okay, well every day I trade in this, if you have like random scattered
+[3517s-3522s] times, like three-thirty, like a lot of these, a lot of our entry models too in the break and
+[3522s-3529s] we test, we haven't like back tested it, like going into like later in the sessions, right?
+[3529s-3533s] Because a lot of the plays are like, you're opening drives, so let's say like, you know,
+[3533s-3537s] you're like dipping a rep, or your pop and fades, or your opening range breakouts,
+[3538s-3544s] like these won't necessarily work later into the session, because they're like opening drive
+[3544s-3550s] plays. I would say that if you go in back test and you work on key levels and you see trades happening
+[3550s-3555s] later in the day, then be my guest, right? Just make sure you have the data to prove that you
+[3555s-3564s] can trade after this, right? Max, you can kind of customize this. I would honestly, I'll say this,
+[3564s-3568s] I'll say this, and I've done the data, I've done the testing, you can go do it yourself too,
+[3568s-3576s] talk about a little bit about back testing. Truly, if you run through, like, so I think I have like,
+[3577s-3583s] most of the six watches last week, if I run through all of these names, and I go look at every
+[3583s-3587s] single week, like, you know, there's a breakout on a higher time frame, there's a good set up on the
+[3587s-3592s] low time frames, into enter into a trade, but the trade work out did an not trade, right? There's
+[3592s-3601s] usually, like, there's usually like, I would say like, two good setups a day, like anywhere from, like,
+[3601s-3606s] two to three, maybe, and like, one of them you're just not going to see, right? One of them you're just
+[3606s-3611s] might not be paying attention to, you might have missed the entry on it, whatever. So, like, taking the
+[3611s-3618s] three trades a day, especially when learning, I don't think it's ideal, I think, if you were good,
+[3618s-3622s] and you have the data, and you're like, okay, I'll take me setups for sure, I think the A plus setups,
+[3623s-3627s] like, I would say anywhere from like one to three days, sometimes there's zero, right? Sometimes there's none,
+[3628s-3636s] so there's usually this many trades like a day, and like, I think if you try to, like, find all of them,
+[3636s-3641s] it's not going to be ideal, you should be focusing on like one name, one to go for the most part,
+[3641s-3647s] for the most part, right? You can sell it, you can take other trades too, just like, no,
+[3647s-3650s] go do the back, just go do the data, you know, does it have a higher time of her break,
+[3650s-3655s] is there a low time frame entry model? I went through a thing last week, I think it was just
+[3655s-3662s] palentier and, and Apple, I think, or something, I did in the co-chips session, and I went Monday through
+[3662s-3667s] Thursday, and there was like two good trades on those two names. So if I went through, like, my tire
+[3667s-3674s] lists, like, I'd say there's like one at two a day. So like three trades is like, Max Max, right?
+[3674s-3680s] It's like Max. I do genuinely think if you're taking more trades in this, the tech and closer
+[3680s-3684s] probably an issue, right? Unless you're just like, you know, psychology or overlapaging over trading,
+[3684s-3688s] that little bit different, but if you see more than, like, really good setups, then like,
+[3690s-3700s] I'd say five, then like, it could probably something wrong with technicals. So yeah, you can use a
+[3700s-3707s] A4% or a4% or a4% not a dog, yeah, breaking your test and not work, socks are going to
+[3707s-3711s] done, can we get it early? Yeah, I mean, I wouldn't because this is what I was talking about here,
+[3711s-3716s] like your point of validation, like this is where you're going to close below, right?
+[3716s-3720s] So I wouldn't close it before your stop the loss, right? If the trade doesn't work out,
+[3720s-3726s] you should have that already defined. We'll tap and they'll at same time,
+[3726s-3731s] it should be on New York time even if you're someone trading view. I just don't matter,
+[3731s-3738s] it doesn't matter. I don't, the daily savings already happened. It's actually at a point where
+[3740s-3746s] everything is electronic now, so don't have to, I don't have to do it. Maybe it has already
+[3746s-3755s] fallen. Do what we do, join the live. No, I, I dig in and don't and we can have this conversation
+[3755s-3761s] too because I think it's important. There's going to be a point in your trading, in your trading journey,
+[3761s-3767s] right, at this point right now, maybe you're like in the middle of this, maybe whatever point you're
+[3767s-3772s] at, we'll talk about it. The learning phase kind of looks like this. It's kind of like,
+[3772s-3780s] what do you call it? It's kind of like a bell curve. It's like the first half of the bell curve.
+[3780s-3785s] It's like this is your learning phase like down here. This whole thing is your learning phase.
+[3785s-3789s] Eventually, it's going to just kind of like plateau and it doesn't make sense to watch more
+[3789s-3796s] YouTube videos. It doesn't make sense to learn a bunch more stuff. You should at some point just
+[3796s-3803s] be more so focusing on your journal and your data and your trades and reviewing those versus
+[3803s-3808s] learning more strategies and learning exactly what stuff does and when and like,
+[3808s-3813s] I sort of certain points are going to look like this and I think at that point, it makes a little
+[3813s-3823s] bit more sense to go trade solo, right? Like for me, I just can't like my mental when I join,
+[3823s-3828s] it's a little bit different depending, right? Like if you're still learning and you're still
+[3828s-3832s] in that phase, it is 100% going to go to the logic, and that's what we have before. Learn to see the
+[3832s-3837s] trades, why the answer, why the exit, right? So how the trade reviews do, but seeing it live is really
+[3837s-3841s] good. Seeing a thought process. I mean, like Jack and Tony are pretty, they're kind of like wizard
+[3841s-3845s] sometimes, man. I swear, it's like, oh, if you can keep your clothes above here, we'll see the push
+[3845s-3849s] and it doesn't. It's like, there's a lot of, a lot of good stuff in the logic trading.
+[3850s-3853s] You don't always have to take the same trade, too. I talked about that too. Like always,
+[3853s-3859s] you know, always manage your own risk properly. We do take losing trades, right? So,
+[3861s-3864s] yeah, that's a little bit about the life trading. Like, I'll join in. So if I take trades,
+[3864s-3870s] like a occasionally I would just jump in like 10, 10, 30, more of like, you know, I'm just
+[3870s-3873s] mostly out of a position or I've closed out for the day and I'll see what kind of trades they took.
+[3874s-3880s] That's usually what the what the goal is. Sometimes I just don't go at all. Sometimes I'll do the
+[3880s-3883s] whole sessions pretty rare though that I'll join like, rain the morning. If there's like,
+[3883s-3888s] our earnings reversal, if there's like a some big news, like, I'll probably jump in just to see what's
+[3888s-3896s] up. I'm still I still learn to, right? Have you ever used any problems for offstream? No.
+[3898s-3901s] I know that they're trying there's a few ones that are, I'll just be careful with
+[3901s-3905s] problems, right? Always be careful with problems, just because they're not regulated for the most part.
+[3908s-3912s] Yeah, just be careful with problems. That's my, that's my two cents. There's some good ones.
+[3912s-3917s] There's some bad ones, right? Many start scaling. Is that always starting selling contracts?
+[3917s-3922s] Some hitting targets. There's also the case when no, so I went over that in the scaling session.
+[3922s-3927s] There's really never a case scenario on the break and retelling on the one minute at least.
+[3927s-3932s] If you're swing trading this a different, but in the one minute time frame, our break and retest
+[3932s-3939s] strategy, there's really no reason to add contracts ever because if it bounces right in you buy in,
+[3941s-3947s] it's going to either work it right away or it's not at all. So if it closes below that,
+[3947s-3953s] there's no, that's the invalidation point, right? You have the invalidation. So there's never
+[3953s-3957s] really a point to add more contracts. So you see the bounce, right? You see the the bar
+[3957s-3963s] stepping in, right? Here may be you enter. Ideally, you're not looking to add more in.
+[3964s-3968s] There's really no, there's no reason for it and there's no case scenario where it makes sense.
+[3969s-3973s] Because it trades you're going to work out or it doesn't, so there's no point adding more, right?
+[3973s-3977s] But scaling out is different because you can hold onto your Wenders longer, you can get those
+[3977s-3988s] exponential gains, right? This scaling section, scaling out session was, and this one was necessary
+[3988s-3997s] at 100%. 100%. Now I like diving in and doing these two, so it gives me sharp as well. I didn't
+[3997s-4002s] hear from New York. I don't know, I don't know if anybody, probably a few people. I mean if
+[4002s-4008s] I talk about NYC, then I'll be last week talking about New York, then yeah, definitely quite a few.
+[4009s-4014s] But I'm weakly, yeah at the end of the, usually like the end of the week, sometimes on Friday,
+[4014s-4021s] we do, I'll take next week's. There's actually one trade example of the discord in that
+[4021s-4025s] I haven't discord of Google where I did actually hold or I did buy next week, so on Friday is
+[4025s-4030s] actually, it's pretty rare. I actually wanted to test it out kind of, I'm not going to lie.
+[4030s-4036s] I held some contracts over the weekend. I honestly don't recall if I've ever done that. Aside from
+[4036s-4042s] swing trade obviously, but like I don't recall for that or done that before. But generally speaking,
+[4042s-4046s] end of the week, if it's Friday, you don't have to trade zeros, or you can buy next week,
+[4046s-4051s] they're just going to be a little bit pricier, get a move a little bit slower. So it's all about
+[4051s-4056s] context and understanding, like if there's a really super big trending day, like the at trades
+[4056s-4062s] zeros, man, like why not? Like you can get cheap contracts, you can scale more. You get a bigger
+[4062s-4067s] percentage gain, obviously still have the same risk, but you know, those contracts can move.
+[4068s-4074s] So with that being said, if it's choppy day and like queues a cylinder range and spiced
+[4074s-4078s] cylinder range and nothing's really breaking out, then like maybe you don't want to take zeros.
+[4079s-4084s] There's no real, like yes or no answer to that. Should I trade zeros or should I not? There's no
+[4084s-4091s] real like best way to go load it. Think of a major part of learning is learning how to grow a small
+[4091s-4096s] account. I mean, it's learning how to hold my trades on. Yeah, 100%. That is it. Like I think by
+[4096s-4103s] any ador you write, I think back that thing is good. It's just like I think it most people
+[4103s-4110s] from closing early, you're looking at P&L, like I genuinely think like if you if you turned off P&L,
+[4111s-4115s] like which is not it, it's not like obviously there's not like a great thing, but
+[4116s-4119s] because you always want to see like you know what where you're matrixed because but if the trade is
+[4119s-4127s] working out, then like do not look at your P&L because and just go to it and close it or close
+[4127s-4131s] like some of it when you're at that too are. What have depending for scaling or not or you close
+[4131s-4135s] out the whole thing. I do genuinely think if you just see green and you're like let me just take
+[4135s-4141s] profit like that is the main thing. I don't think there's any real other psychology or psychological
+[4141s-4146s] reason why you close out early. Unless you're like looking at the chart and there's a green
+[4146s-4151s] count on you're like or or let's just say you don't think the trade is good. Right midway
+[4151s-4157s] through the trade you flip bias, maybe it's not good anymore. That's also kind of a thing but I think
+[4157s-4162s] for the most part it 95% of it is probably looking at your P&L, singer in the green closing it.
+[4162s-4166s] I think that may be turning it off. It's gonna help a little bit. I think over a long period of
+[4166s-4170s] time though it's not really sustainable I think it doesn't really make my sense. I certainly
+[4170s-4176s] point you should be disciplined enough to wait until that target hits. Think about a long term.
+[4176s-4182s] Like even your introdatriates to be green on the weeks and months like not just today.
+[4182s-4187s] Like it's always good to have in the back your mind. Right and you're not gonna get that those
+[4187s-4192s] green months in those green weeks if you're trading low size and your wristward isn't around
+[4192s-4198s] the altitude of one. Your or your win rate has to be super high. Like I could be completely wrong.
+[4198s-4203s] You could have like an 80% win rate and I'm like yeah sure man like take these one to one.
+[4203s-4210s] So whatever. Right but I think for the most part having having 80% win rate is like you know 8090
+[4210s-4216s] even 70% is like pretty difficult. I want to say it's like most traders are not around that level.
+[4217s-4223s] So it doesn't make sense to take these like one to one trades. Take the same risk higher
+[4223s-4229s] reward and like you win rate. You win it will naturally get better over time too.
+[4230s-4234s] It should anyways it should like be like an an ass or a point of plot to obviously.
+[4235s-4239s] Unless you do like some crazy upgrades sessions but if it works it works right.
+[4241s-4245s] When you see it like so. Like generally speaking I have like um
+[4248s-4251s] I have like an average trades like the average set up. I have three positions size is kind of
+[4251s-4257s] like a little bit of risk. It's always based on risk. Right usually on bad trades are like you know average
+[4257s-4262s] intradace setups one percent good. For like average trades I want to say like one to two percent
+[4263s-4268s] is good. They just overall good setups make it as a breakout. Hard time frames look good. Everything
+[4268s-4274s] makes sense. Very rarely there's the case. I don't think I've ever even I don't think I've done
+[4274s-4279s] this even like this year at all. I've I've rarely risked three percent for trade. If it's like if
+[4279s-4285s] there's like you know a plus like earnings of those numbers news the setups all there like
+[4286s-4290s] every the higher time frames look like everything's good. Then maybe there's a case scenario for this.
+[4290s-4296s] But I still think very rarely that you should run three percent. If you're on a smaller count I get it
+[4296s-4302s] because like obviously you might not have exactly they've run a thousand dollars and it's going to
+[4302s-4307s] be hard to invest 10 dollars per trade. So I get closer to the like one to two percent or two to
+[4307s-4313s] percent and then you might get close to three sometimes. I still don't think it's good because like we
+[4313s-4322s] went through we went through this chart here. Right percentage recovery is not a thing that you want to
+[4322s-4327s] dive into. When you look at the numbers it's like honestly it's like scary to go off. I lost six
+[4327s-4333s] to nine you need to make 150 percent back to to recover the loss. Right so it's like you don't want
+[4333s-4343s] to get into that like over risking per trade still stick to the one to two percent. Do you
+[4343s-4350s] worry about watch those now not really? You can make it. Yeah. Brooklyn here Queen's nice. What
+[4350s-4354s] do you supposed to vote? Trailing stock strategy? Well with options it's not good. If you're
+[4354s-4357s] if you're trying to stock for each of those fine with options it's just like it's tough because
+[4357s-4362s] you want to sell into obviously like with call options you sell into green candles that's for the
+[4362s-4366s] ideal you're going to get the most juice out of them. We always say that always sell into strength
+[4367s-4373s] versus like if you have a trailing stop. It's good for like if you so here's the thing
+[4373s-4377s] trailing stops are good for if you already taken off like a position like I say it's a high
+[4377s-4383s] day or two hour or whatever. So you already scaled out and then yeah like maybe if it breaks down
+[4383s-4387s] below like if you break structure maybe you have like a higher here or something. If you like
+[4387s-4392s] breaks below that then yeah you got to be traveling soft on the rest of it maybe a structure breaks
+[4392s-4398s] or maybe it's break even. Right it's just like I don't think that it makes sense to have just in general
+[4398s-4403s] because you want to sell into strength options but yeah stocks features for sure trying to stop is
+[4403s-4410s] decent it's really good. You know we get to our the amount of currency too much less than one
+[4410s-4416s] or something else or resources yeah it depends right like it depends like you can depends on your entry
+[4416s-4422s] depends on depends on the contracts too like it's like set up to set up I can't really say like
+[4423s-4430s] like it you can you're going to have the move maybe like the actual entry itself right it's going to
+[4430s-4435s] be a little bit higher than it was on trading view right because of slippage because of getting filled
+[4435s-4440s] because of options because of spread like there's a few different reasons why but you can always
+[4440s-4446s] you can always just like move this right and it will be accurate just like I've seen it it's like
+[4446s-4452s] if you are too are on this position tool it you will be very very very close to our one options
+[4452s-4457s] unless it literally takes like forever to work out then then I get it you're going to get
+[4457s-4464s] killed you to theta but most of the time you're good most of the time it's good I was looking
+[4464s-4469s] great on front and pound to and we're obviously pretty time right friends trying to decide to
+[4469s-4475s] run was actually red just unlucky they can't expect that time because of the journal though
+[4476s-4480s] oh yeah that that's a tough one that was like a hive yeah that was just a dad's a horrible
+[4481s-4490s] if I was like your actual entry do we always get at the money strikes for interested trading
+[4492s-4499s] yeah so it's just like it kind of depends like I genuinely think that like one out of the money
+[4499s-4504s] or at the money it just do to volume right like it's it's also like a volume thing it's also a
+[4504s-4508s] filtering too that's why we trade one at the money or one out of the money because it has most volume
+[4509s-4514s] but are getting full of stuff it's they're going to move the best in terms of price
+[4514s-4518s] you're probably getting more you're going to get more juice out of them for day trading for scalping
+[4518s-4522s] if you have like a you know like if you're looking to maybe hold into tomorrow like if you're like
+[4522s-4529s] the self looks really good maybe I'll go a little bit more of the money then then maybe you could do
+[4529s-4536s] like a few a few more of the money but like just generally speaking I wouldn't it really depends
+[4537s-4543s] really depends I don't I don't I don't think it's you know it's just you're going to have less
+[4546s-4550s] there's a feudal about I don't think that it makes sense the way that we trade but
+[4552s-4556s] yeah I just use I be care yeah the fills are pretty decent I'm never really had like major major
+[4556s-4562s] issues I've definitely got some horrible fills sometimes but that's just with any broker to be honest
+[4563s-4572s] most of the time is pretty decent even market orders question if your level is between higher
+[4572s-4581s] high and preview higher high I don't wait this if your level previous if your level is between
+[4581s-4587s] high and previous high would you making your level the previous high high may a low probability
+[4588s-4596s] yeah yeah like that's when you would maybe caught a trade all right it's like I think what you're
+[4596s-4603s] referring to is like if this breaks like is is that what you're referring to this level right here
+[4605s-4609s] I don't care I'm kind of a little bit can maybe I'm reading it a little bit weird woodmarking
+[4609s-4615s] a little that previous high make low probability I'm not sure what are we talking about entries
+[4615s-4624s] that I'm not really sure where we're at right now if your level is above that line I'm not sure
+[4624s-4632s] what the like what do you mean by make it lower probability because like you have a let me just draw
+[4632s-4639s] it on there so I can maybe semi screenshot semi screenshot and like that that's probably the best yeah
+[4639s-4644s] so you can even be using something message with discord to or or circle some messages to go over
+[4644s-4655s] in circle so let me just reach out I can I can always look at it um do you trade so yeah I'll probably
+[4655s-4660s] I'll probably run it just a few more questions and then I'll sign over the day so if you guys have
+[4660s-4664s] questions just send them in right now I'll go over some of them and then I'll probably go ahead out it's like
+[4664s-4669s] four it's four twenty of Saturday so I know you guys probably want to get out of here too
+[4671s-4677s] don't worry we have more such I think so today is technically the last I think lesson I think
+[4677s-4684s] like Tony is he's doing another session too but I think tomorrow do you think you trade somewhere
+[4684s-4689s] to know what the battle of the current higher day or a pivot yeah I'm more of like a higher time
+[4689s-4694s] like so nettle will he's more like lower time frame focus they kill take a lot more puts like
+[4694s-4701s] whereas like I like just overall higher time frame trend I like trading with the trend more I like
+[4701s-4706s] all the time frames allowing like breakouts on stocks I think the levels work a bit easier
+[4706s-4712s] for myself is personally um burst spine cues you know the levels are a bit weird usually
+[4712s-4721s] it it it it it respects sometimes but it's a little bit less likely now so I'm I got I think we probably
+[4721s-4727s] share some some probably share some like similarities but I think I'm pretty different from
+[4727s-4731s] nettle I don't know if some you guys probably haven't joined too many of the sessions recently
+[4732s-4736s] I definitely did like a while back I'm not sure if he's maybe switched up a little bit
+[4737s-4742s] maybe somebody else can comment on that because I know some some people probably join my coaching
+[4742s-4748s] sessions and and they go to nettle too so these campers on the test along Friday
+[4748s-4752s] I mean you got stopped there because they're shifting out of our street I don't use campers no
+[4754s-4759s] I don't like there's no like so a lot of the times like there's no like you know maybe real reason
+[4760s-4767s] why you got stopped out um like it could be anything like it could be like it could just be the
+[4767s-4773s] way that the algorithms are working right like computers running like data buying selling could be
+[4774s-4780s] could be new whatever it's like you just want to have a level of validation based on your strategy
+[4780s-4787s] and based on your like based on your data right that's the that's the idea
+[4788s-4792s] so like it could be that you can you can you can use campers if you truly think it's going to
+[4792s-4797s] help you strategy like you can go back test it just make sure like everything falls back to like these
+[4797s-4803s] like three things um is it easily understandable is it repeatable and can I be consistent with it pretty much
+[4804s-4809s] or like you know repeatable mechanical right those are all things that you need to be thinking of constantly
+[4809s-4814s] because you can say these one offs scenario is like you could say like all like you know Tesla did this
+[4814s-4819s] this one time and it did what I do this again it's like that's all right like it just
+[4819s-4824s] asked that question a lot I think you'll be I think you'll you'll get a lot of answers yourself
+[4829s-4836s] when you say a risk to reward of one or two these are the deletroxious I'm moving like the
+[4836s-4841s] ab but I'm I'm kind of referring just the position tool but yes like obviously the actual contracts
+[4841s-4847s] like your your stop loss if it's if your stop is like just below um like your key pivot level
+[4847s-4854s] or whatever it is you ideally want to be winning two times as much as you are loss as you
+[4854s-4859s] let's just say you want your one arm so if I risk a hundred dollars I will ideally be making two
+[4859s-4868s] hundred dollars if it's in profit that is a hoard will throw them again so this is the risk
+[4868s-4873s] this is the reward ideally depending on the contract now moves right we talked about 10
+[4873s-4877s] 20% stop loss too like anywhere in that range is gonna be a little bit different right for your
+[4877s-4881s] purchase rate and I'll find is gonna be a little bit scary too because zero's right
+[4882s-4890s] so I was like there's always these weird um like different uh different like you know
+[4891s-4896s] scenario is to play out and we'll do more we'll need more more from two towards just keep
+[4897s-4903s] make sense the approach to the end off of the boot camp what do you the time for
+[4903s-4909s] use for the break of structure uh depending like so like if I'm in a trade on like the one
+[4909s-4913s] minute right if I take a scalpset up or whatever um and I'm holding the trade then like usually the
+[4913s-4919s] five minute like usually you just hold them five minute especially if it's after 10 30 or 10 30
+[4919s-4924s] 11ish you know go to the five minute don't need to look at every single one minute candles movement right
+[4924s-4933s] um for break like if I'm just totally top with the one minute then like entries and everything
+[4934s-4940s] then like I use the break of structure on every time right right I also do use every time right like
+[4940s-4949s] if you make higher highs or higher lows you know then it makes sense right like just looking at this like
+[4949s-4951s] oh that's a good like game dee just for example
+[4952s-4958s] the it's if we break these lows and close below these lows or start making higher lows on this
+[4958s-4962s] now the time frame should kind of miss a wind right time frame should kind of miss a wind
+[4962s-4966s] because you look at the four hour or the one hour oh one hour doesn't look as good actually but
+[4969s-4973s] four hour you're still kind of holding your lows for back here it doesn't look as bad right it's kind
+[4973s-4979s] of ranging up in here you look at your daily daily looks solid super super bullish so
+[4979s-4984s] I'm kind of using like every time I frame I'll use it on the one minute if I'm like talking about
+[4987s-4996s] like break of structure ideally it's like from the previous low I just sorry I just had to sneeze
+[4997s-5001s] that's gonna be funny on the on the OBS record I can hear that
+[5003s-5005s] 20 talk about two more more sessions yeah we'll have those going
+[5007s-5010s] I have no idea of in the day 13 recording out all send them a message right now
+[5011s-5018s] or just just right after the session I will post the recordings 100% yeah yeah now it takes more
+[5018s-5023s] puts yeah like he's like he's way better trading shorts me I'm not a very good short trader I'm not
+[5023s-5029s] gonna lie I find most my best like well I can trade short it gets it's fine I'll take short
+[5029s-5034s] sessions but like my best trades like where I make the most amount of money and there's the best
+[5034s-5040s] risk to reward and then I've found over a long period of time is there are longs for for myself
+[5040s-5045s] like I think all like holding on to those extra contracts and just letting your position right
+[5046s-5050s] I've had way more success doing that than trying to take these shorts like scallops setups
+[5052s-5057s] just like just from what I've learned from my journaling and my trades that's kind of my style
+[5059s-5063s] it's everybody's a little different right that's that's why I talk about it and stuff too
+[5064s-5069s] for coaching sessions yeah if you guys don't have it join them like I do them every day
+[5069s-5075s] so you go over some good stuff in there if you go to the events you'll see some of the stuff too
+[5075s-5081s] so live trading obviously is there the coaching coach calls right here I don't know
+[5082s-5086s] I think I got a switch that's just something because it's 11 30 Eastern time when I do
+[5087s-5091s] I'm not sure what because like now like the weekly trader we have you know yes no
+[5091s-5096s] of Jack does that it's 10 a.m. every Saturday says 9 a.m. now I don't know if this is the
+[5096s-5103s] discord thing or this is like a column like I'm not really sure obviously like live trading
+[5103s-5110s] is 9 30 Eastern time that's no matter what for coaching that you can jump into here it's like
+[5110s-5114s] if you ever did the implementation calls it's just through a columny I have a bunch of squads
+[5115s-5120s] throughout the next week usually Thursdays I have a 4 p.m. session I just don't think that you can
+[5120s-5127s] book it right now I think it's like a time thing I can open up some more like later sessions too
+[5127s-5133s] also if you want them I can open up Monday as well I got to open up Monday so just maybe I'll just
+[5133s-5143s] run that right now I'll open up Monday for you guys he has only do that just real quick it's gonna be
+[5143s-5162s] a second here usually I do 11 30 just because after the trading day I think I should have
+[5163s-5173s] it open now should be good I think you refresh this just to make sure yeah should be good
+[5173s-5179s] for some more 11 30 Eastern the no matter what this says I guess you can just run the columny
+[5180s-5188s] so you're gonna check that let me run through the trial last couple of questions and I'll probably jump out
+[5189s-5195s] a really good session today though see I say you can get session this is really
+[5195s-5200s] and recording if I can actually back test the break and retests yeah I've actually talked about it
+[5200s-5205s] in my coaching a few times I do a little bit of a different style back testing rather than
+[5208s-5215s] rather than just like so how most people would go about back testing is like they would just go
+[5215s-5219s] and purely you draw the five minute opening range and then you see where it breaks out and if it
+[5219s-5224s] retests if it works out you can count how many times it worked out in the probabilities
+[5226s-5231s] whereas like more so I like to use context too I'm like are is it above it's opening print
+[5232s-5237s] there's a few other factors you can play in I'll run it back testing video probably because
+[5238s-5243s] what I what I talked about earlier too is like I ran through Apple and Pound here right it's like
+[5243s-5247s] if I went through this trading week how many A plus steps were there so you could have like Monday
+[5247s-5253s] Tuesday one say Thursday Friday I'm just doing this for whatever and then you could have like
+[5253s-5260s] your names like Apple right you could have Google whatever I'm just doing random examples
+[5261s-5267s] and then you can go through so that should be over here you can go through and say like okay Monday
+[5268s-5272s] Apple there was like one set up maybe there's a good one maybe there wasn't Google there's nothing
+[5272s-5276s] and you can run through you're like pretty much your whole watch list or like you maybe
+[5276s-5280s] know your whole watch list but the names that you're looking at at least from the previous week
+[5280s-5284s] and you can look and see if there's any entries so like you can look at the higher time friends
+[5284s-5289s] but like art did it break out or was it just it just like in range still maybe you'll
+[5289s-5293s] you'll base your A plus status bit off that like which I do so it's like if still in range
+[5293s-5298s] then I probably won't count as an A plus setup let's see the break out is your key levels
+[5298s-5304s] I'm pretty good stay highs and lows right those are the best ones so and then I'll go look at the
+[5304s-5308s] low time frames I'm like is there an entry here does it make sense to enter this trade is there a
+[5308s-5313s] breaking me test and then if yes then I count and I'll count that and the probabilities of like wins and
+[5313s-5317s] losses there might be a more efficient way to do this through like trade so I'm gonna there might be a different
+[5318s-5323s] different way to go though this either I just like use raw trading view I don't know if that's weird
+[5323s-5329s] or not but that's how I back this and just the problem is like it's gonna be very difficult for you to
+[5329s-5334s] do it on I think it's like you should be forward testing this too like after every trading day like
+[5334s-5338s] go back do a recap because like if you go back like on month right you're gonna have to mess with your
+[5338s-5343s] key levels you're gonna have to even at the end of the week or your key levels might be different so like
+[5343s-5349s] it's kind of difficult to run the back testing this way that's why I say like do it forward testing like
+[5349s-5361s] maybe next week start doing up and that's super good super good thinger yeah I'll have to
+[5361s-5367s] look into like more optimized ways oh maybe have let me have to comment on that after yeah I
+[5367s-5372s] got the requirements for life and if you have seen you post course code or it's for each other
+[5374s-5380s] yeah yeah like I do want to to post some I guess I thought the jack and to I if I could like a channel
+[5380s-5384s] for whatever something I just don't have a spot to put them a lot of times like if you want the
+[5384s-5396s] recording just you can always ask for me and DM me for the for the personal I mean yeah yeah for
+[5396s-5400s] accelerator yeah it's like it's like all run through like a recap of the day I'll do like a little bit
+[5400s-5406s] of like setups that I saw setups that were good maybe run through some of my trades spy cues
+[5406s-5412s] a little bit of the gameplay and ideas and then I'll all run through people's trades usually so I'll
+[5412s-5416s] run through like your setups or questions or whatever maybe right there's a lot of technical stuff
+[5417s-5422s] MPVs are part of the strategy I don't think monster in our three or four no so it's
+[5422s-5429s] for the best for the game shooter yeah so yeah that's that's sweet that's sweet yeah yeah I'll probably
+[5429s-5434s] probably jump out of here in a second maybe we'll not sitting through you're gonna try to
+[5434s-5440s] push up but you try yeah so this is the heart this is the heart because you're like what strategy
+[5440s-5444s] what's that's in or sorry which which entry model should I use right take sure I use the opening
+[5444s-5450s] range should I use X and Y or should I use E it's like there's good scenarios for every single one
+[5451s-5458s] right I don't really just use one and I don't think it's good it like it's kind of good to use one
+[5459s-5465s] but I think with like context and like trading knowledge like higher time frames everything
+[5466s-5471s] set and done you have to kind of adapt and use like a strategy because I get some things really
+[5472s-5476s] really strong and you like want to take a trade on it you're like okay it has relative strength
+[5476s-5480s] and you miss the five minute or adventure it doesn't retest but you only trade the five minute
+[5480s-5485s] or well how many setups are you gonna get per day like probably not that many there's probably
+[5485s-5490s] not that many good or setups a day it depends you know it's good back to us or you can always see it
+[5490s-5497s] but um right if it breaks out say like it previously higher something like at this point like
+[5497s-5500s] I'm just looking at inch models like maybe in pre-market we're right here and I can trade the
+[5500s-5506s] org strategy right maybe we're just gonna range and then break out right maybe in pre-market we
+[5506s-5511s] gap up over your previous day high maybe I'll use this as a retest so now because that's more solid
+[5511s-5519s] then if it was just like sitting in range in your pre-market right maybe it's a little it's better
+[5519s-5524s] than that it's better than sick breaking out pre-stay highs always really good um I think the one
+[5524s-5528s] can rule is really good for when you're like you know you can't find entry just have that first down
+[5529s-5533s] so like there's a lot of different entries you can have criteria for them too like you can build like
+[5533s-5539s] some sort of um canle formation maybe you want to see three up close canals maybe on the retest
+[5539s-5545s] candle you you want to see no closures right below this maybe you want to see like for the entry you
+[5545s-5550s] want to see the green candle break this candle that could be some sort of criteria you can
+[5550s-5555s] see you can set up these things and like for any retest right it doesn't necessarily have to be
+[5556s-5562s] a specific strategy or a specific set up right there's times for there's times for different
+[5562s-5566s] entries and different she models if you want to stick with one like 100% that's the new
+[5566s-5572s] new you I think for beginners it might make more sense it's hard to say because you do want to kind of
+[5572s-5579s] like adapt and you do want to be able to see different things I know somebody from my co uh somebody from
+[5579s-5585s] the accelerator he was telling me that he only trades the 50 minute orbit it's been kind of working
+[5585s-5589s] a better form so like maybe if that's the case like it's kind of something you have to figure out
+[5589s-5599s] I can't say the same for everybody that's kind of a very difficult question but um yeah so
+[5601s-5607s] for the trades up so I can to get in the training game how was it if we use the training yeah like I
+[5607s-5615s] I like I like I like to use it for just like your orbit setups and like your your pre-mark
+[5616s-5621s] a lot of the times that you don't need it um previous day high and previous day lower good
+[5621s-5627s] rakes you maybe you don't want to trade in this range if it's ranging right maybe your pre-market
+[5627s-5631s] is got they get all just draw those for you right it's like a lot of the trades I won't necessarily
+[5631s-5635s] have all of them marked out like when we have every single level marked out all the time
+[5636s-5641s] just because I have those trades zones right I kind of set up the pre-market where like I won't
+[5641s-5645s] trade in this area I'll trade above here below here so like having the extra lines kind of just like
+[5646s-5650s] adds a little bit of noise but it's good for your orbit setups and you have to draw it like it's not
+[5650s-5655s] revolutionary I think that the A plus trade checklist is my favorite part for sure
+[5657s-5668s] that's one of the best ones um that's uh y'all have all all get the 13th recording I'll try to get it
+[5668s-5674s] yeah yeah you can customize it yeah yeah yeah yeah yeah yeah I mean yeah I mean we'll do that
+[5674s-5677s] I haven't really dove in too much chains of colors but like I'm gonna let me be all diving
+[5677s-5686s] that um yeah so from that um next week running pretty much running the coaching running the
+[5686s-5692s] traders lab want to ones um if you're if you guys are in traders lab I will have the implementation
+[5692s-5697s] still going on I guess but you guys don't need that at this point if you guys have questions just
+[5697s-5704s] shoot me a DM and I will I will talk to you guys soon maybe I'll jump in probably tomorrow for
+[5704s-5710s] for Tony's session um I think it's Tony's time I think I may be Tony's setup yeah no it's super
+[5710s-5716s] solid session today um I'm pretty sure you guys were joining on Saturday glad there's quite a few people
+[5716s-5722s] so have a good rest of the weekend go jays sorry for your daughter's fan that's cool I still
+[5723s-5729s] I like her Tony I guess but not right now all right go to her she's that's gonna be a good
+[5729s-5733s] game nonetheless so all right so you guys

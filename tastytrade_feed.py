@@ -1,4 +1,4 @@
-"""Tastytrade API feed for Vanquish signal bot.
+"""Tastytrade API feed for Omen signal bot.
 
 Provides real-time option quotes, account data, market metrics, and 1-min
 candle bars (all via DXLink — see dxlink.py). Tastytrade is the sole
@@ -19,10 +19,14 @@ import sys
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Optional, List
+from zoneinfo import ZoneInfo
+
+# DST-safe Eastern; the old UTC-4 hardcode shifted every timestamp 1h Nov-Mar
+_ET = ZoneInfo("America/New_York")
 
 import requests
 
-from vanquish_bot import Candle
+from omen_bot import Candle
 
 # Force UTF-8 stdout/stderr so emoji/checkmark output (✓✗) don't crash with
 # UnicodeEncodeError when run under Windows/PowerShell (cp1252 pipes).
@@ -54,7 +58,7 @@ _load_tastytrade_env(Path(__file__).parent / ".env")
 API_BASE = "https://api.tastytrade.com"
 SESSION_ENDPOINT = f"{API_BASE}/sessions"
 TOKEN_ENDPOINT = f"{API_BASE}/oauth/token"
-USER_AGENT = "vanquish-trading-bot/1.0"
+USER_AGENT = "omen-trading-bot/1.0"
 
 
 class TastytradeFeed:
@@ -109,15 +113,34 @@ class TastytradeFeed:
         )
 
     def _session_auth(self) -> str:
-        """POST /sessions with username+password — returns session-token."""
+        """POST /sessions — remember-token first (skips device challenge), else password."""
+        remember = os.getenv("TASTYTRADE_REMEMBER_TOKEN", "")
+        if remember:
+            body = {"login": self.username, "remember-token": remember,
+                    "remember-me": True}
+        else:
+            body = {"login": self.username, "password": self.password,
+                    "remember-me": True}
         resp = requests.post(
             SESSION_ENDPOINT,
-            json={"login": self.username, "password": self.password},
+            json=body,
             headers={"User-Agent": USER_AGENT},
             timeout=10,
         )
+        if remember and resp.status_code != 201:
+            # stale/used remember-token — fall back to password once
+            resp = requests.post(
+                SESSION_ENDPOINT,
+                json={"login": self.username, "password": self.password,
+                      "remember-me": True},
+                headers={"User-Agent": USER_AGENT},
+                timeout=10,
+            )
         if resp.status_code == 201:
             data = resp.json().get("data", {})
+            new_remember = data.get("remember-token")
+            if new_remember:  # remember-tokens are single-use; rotate into .env
+                self._save_remember_token(new_remember)
             self._access_token = data.get("session-token")
             self._access_token_expiry = datetime.now(timezone.utc) + timedelta(hours=12)
             if not self.account_number:
@@ -133,6 +156,18 @@ class TastytradeFeed:
         raise RuntimeError(
             f"Tastytrade session auth failed: HTTP {resp.status_code} {resp.text[:200]}"
         )
+
+    @staticmethod
+    def _save_remember_token(token: str):
+        env = Path(__file__).parent / ".env"
+        try:
+            lines = [l for l in env.read_text().splitlines()
+                     if not l.startswith("TASTYTRADE_REMEMBER_TOKEN=")]
+            lines.append(f"TASTYTRADE_REMEMBER_TOKEN={token}")
+            env.write_text("\n".join(lines) + "\n")
+            os.environ["TASTYTRADE_REMEMBER_TOKEN"] = token
+        except OSError:
+            pass  # non-fatal: next login falls back to password
 
     def _oauth_auth(self) -> str:
         """OAuth refresh_token flow (legacy fallback)."""
@@ -371,7 +406,7 @@ class TastytradeFeed:
 
         candles: List[Candle] = []
         for c in raw:
-            ts = datetime.fromtimestamp(c["time"] / 1000, tz=timezone.utc) - timedelta(hours=4)  # approx ET
+            ts = datetime.fromtimestamp(c["time"] / 1000, tz=_ET)
             try:
                 candles.append(Candle(
                     timestamp=ts.strftime("%H:%M:%S"),
@@ -407,10 +442,10 @@ class TastytradeFeed:
             return []
 
         from dxlink import fetch_candles
-        # Midnight ET on the target date, expressed as UTC epoch ms.
-        # (Same UTC-4/ET approximation used elsewhere in this file.)
+        from zoneinfo import ZoneInfo
+        # Midnight ET on the target date, expressed as UTC epoch ms. DST-safe.
         from_dt = datetime(target_date.year, target_date.month, target_date.day,
-                            tzinfo=timezone.utc) + timedelta(hours=4)
+                            tzinfo=ZoneInfo("America/New_York"))
         from_time_ms = int(from_dt.timestamp() * 1000)
 
         try:
@@ -421,7 +456,7 @@ class TastytradeFeed:
 
         candles: List[Candle] = []
         for c in raw:
-            ts = datetime.fromtimestamp(c["time"] / 1000, tz=timezone.utc) - timedelta(hours=4)  # approx ET
+            ts = datetime.fromtimestamp(c["time"] / 1000, tz=_ET)
             if ts.date() != target_date:
                 continue
             try:
@@ -442,9 +477,10 @@ class TastytradeFeed:
     def fetch_daily_levels(self, symbol: str, timeout: float = 10.0):
         """Prior completed session's high/low via daily DXLink candles.
 
-        Returns (pdh, pdl) or None. Uses the last daily candle whose date is
-        before today (ET) — i.e. the true previous-day levels, not the
-        session-so-far proxy signal_runner falls back to.
+        Returns (pdh, pdl, pd_open, pd_close) or None (open/close may be None).
+        Uses the last daily candle whose date is before today (ET) — i.e. the
+        true previous-day levels, not the session-so-far proxy signal_runner
+        falls back to. Open/close feed the [pdwick] chop tag (audit 2026-07-11).
         """
         tok = self.get_dxlink_token()
         if not tok:
@@ -457,15 +493,30 @@ class TastytradeFeed:
         except Exception as e:
             print(f"  [{symbol}] daily candle fetch failed: {e}")
             return None
-        today_et = (datetime.now(timezone.utc) - timedelta(hours=4)).date()
+        today_et = datetime.now(_ET).date()
         prior = [c for c in raw
-                 if (datetime.fromtimestamp(c["time"] / 1000, tz=timezone.utc)
-                     - timedelta(hours=4)).date() < today_et
+                 if datetime.fromtimestamp(c["time"] / 1000, tz=_ET).date() < today_et
                  and c.get("high") is not None and c.get("low") is not None]
         if not prior:
             return None
         last = prior[-1]
-        return float(last["high"]), float(last["low"])
+        return (float(last["high"]), float(last["low"]),
+                float(last["open"]) if last.get("open") is not None else None,
+                float(last["close"]) if last.get("close") is not None else None)
+
+    def fetch_premarket_levels(self, symbol: str, timeout: float = 10.0):
+        """Today's premarket (before 09:30 ET) high/low, or None.
+
+        DXLink 1-min candles include extended hours; reuse the same-date fetch
+        and keep only bars before the open. Scarface: PMH/PML are breakable
+        structure alongside OR and PDH/PDL.
+        """
+        today_et = datetime.now(_ET).date().isoformat()
+        bars = self.fetch_bars_for_date(symbol, today_et, timeout=timeout)
+        pre = [c for c in bars if c.timestamp < "09:30:00"]
+        if not pre:
+            return None
+        return max(c.high for c in pre), min(c.low for c in pre)
 
     def fetch_htf_bias(self, symbol: str, timeout: float = 10.0):
         """1h trend direction: 'bullish' / 'bearish' / 'neutral', or None.

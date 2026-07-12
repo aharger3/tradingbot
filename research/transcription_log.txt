@@ -1,0 +1,4 @@
+Device: cpu, Compute: int8
+Total files to transcribe: 89
+TRANSCRIBE: boot-camp-recordings_Day_10_Understanding_Liquidity.mp4 (593.6MB)
+  Duration: 5989s, Audio @ 317.0x

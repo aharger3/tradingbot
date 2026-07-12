@@ -1,0 +1,638 @@
+# Transcription: the-accelerator-course_setup-tradingview.wav
+# Duration: 1585s
+# Model: tiny
+
+[0s-4s] Alright, now I'm going to go into Lesson 3, which is setting up trading view.
+[4s-6s] As you guys know, I share my screen every single day.
+[6s-10s] So if a lot of people always ask me how I set up my trading view, and today I'm going
+[10s-12s] to be doing exactly that.
+[12s-15s] So right before we get into the overview today of what we're going to be talking about for
+[15s-19s] trading view, if you guys do not already have trading view and want to sign up, we do have
+[19s-21s] a code for $50 off.
+[21s-24s] We'll make sure you put that in the description, and we'll make sure to put that in the
+[24s-29s] discord as well for anyone that has not had trading view set up.
+[29s-33s] So first things first, what we're going to be talking about today is the account creation,
+[33s-38s] customizing charts, indicators, and studies, drawing tools, watch the same favorites, setting
+[38s-44s] alerts, back testing strategies, layouts, news and others, and mobile and desktop version.
+[44s-48s] And with that being said, let's get right into account creation.
+[48s-52s] Alrighty, so this is what the website looks like for trading view, and if you guys want to
+[52s-56s] get set up, right, you guys can click the get started button, and then you guys can go over
+[56s-59s] here and sign up on trading view.
+[59s-63s] As you guys know, there's a bunch of different plans, right, the plus plans essential in
+[63s-64s] premium.
+[64s-68s] Personally, right, you can honestly use the free version of trading view, but I'm pretty
+[68s-69s] sure for the free version.
+[69s-73s] I'm not sure if you have real time data, so that might be something you have to look
+[73s-74s] up for.
+[74s-79s] But the essential plans, right, they are pretty cheap, and we do have a code for $15 off
+[79s-80s] if you'd like.
+[80s-82s] You guys can choose the plans here.
+[82s-85s] Right, the essential plan in the plus plan is already enough.
+[85s-91s] You don't have to go for the premiums, and you guys can even use the free charts as well.
+[91s-95s] So this side of you sign up, and you guys can look through the features if you'd like and
+[95s-100s] see what type of actual plan you want to go for, right, and then you can actually look
+[100s-102s] at charts in itself.
+[102s-106s] As you know, you don't have to have a paid plan.
+[106s-109s] What you can do on trading view is you can have a free overview, right, you can look at
+[109s-114s] the charts while doing this for free, right, you don't have to pay for it.
+[114s-119s] So you go over here, you can click products, and you can just click super charts, and then
+[119s-124s] you'll be able to chart on trading view for free without having a paid plan whatsoever.
+[124s-128s] You can just scroll through the chart right here, which is kind of cool that you guys
+[128s-129s] can look after.
+[129s-134s] So now I'm going to go over my personal chart, customizations when it comes to trading view,
+[134s-137s] and now let's hop over into the desktop version.
+[137s-141s] Okay, so when you first load up trading view on the desktop version, right, this is what
+[141s-142s] you're going to get, right?
+[142s-146s] You're going to get a plain chart with a couple candles on it, and you're also going
+[146s-150s] to get volume on the bottom, what you want to do, right, if you don't like the white
+[150s-154s] color background, you can go into the settings right here, right, click settings, you can
+[154s-156s] go into the canvas, and you can change the background, right?
+[156s-160s] This can be a solid background, where you can change all different types of colors as you
+[160s-161s] can see right here.
+[161s-163s] Me personally, I like the white colors.
+[163s-166s] Maybe your dark mode type of person.
+[166s-168s] I don't know, it's all personal preference.
+[168s-172s] Me personally, I'm going to stick with the white, right?
+[172s-178s] You can also have good lines if you'd like, I personally just like to leave it blank.
+[178s-179s] Cross hairs, right?
+[179s-180s] You can have cross hairs on, right?
+[180s-183s] This is your cross hair where you can see where prices at a certain time, so you can
+[183s-185s] leave that on right here.
+[185s-191s] And what I also want to do is talk about the actual candle colors, right?
+[191s-194s] A lot of people don't like green and red, right?
+[194s-198s] Because it associates with green being positive and red being negative emotions, right?
+[198s-202s] So you kind of want to disassociate those colors when you're trading right.
+[202s-206s] As soon as you see it right candle right, it is actually proven study that if you see
+[206s-209s] right, it usually indicates a negative sign.
+[209s-211s] So that can be a spark of emotions right there.
+[211s-214s] So you can change the bodies to whatever color you like.
+[214s-220s] Me personally, I like you can change it to black on the borders and bodies.
+[221s-231s] And then you can change the down close candles to let's say blue if you'd like.
+[231s-232s] Right.
+[232s-233s] So this is what we have so far.
+[233s-234s] You can see right here.
+[234s-236s] This is the volume indicator.
+[236s-239s] We can remove this for now just for now.
+[240s-241s] So you can see right here.
+[241s-245s] Now we have a plane slash background right right now.
+[245s-247s] We changed the colors of the candles.
+[247s-251s] We've also changed the background of the colors.
+[251s-255s] Now what we want to do is go on to the indicators and studies, right?
+[255s-259s] Me personally, I solely focus on price action,
+[259s-265s] but I also do usually have VWOP in a couple EMAs on my chart just to have it for
+[265s-268s] aesthetic reasons that's just about it.
+[268s-270s] So now we can go on to the indicators tab, right?
+[270s-272s] We can search up EMA, right?
+[272s-277s] When you search at EMA, right here brings up moving average exponential.
+[277s-279s] As you'll see, it pops up right here.
+[279s-281s] This is what's called the 90MA.
+[281s-284s] So we can also click on the 90MA, right?
+[284s-286s] And we can also duplicate it.
+[286s-288s] So as you can see right here, I copy and paste it.
+[288s-289s] The 90MA again.
+[289s-292s] And this one we can change to inputs, right?
+[292s-294s] We can change this to the 21.
+[294s-298s] So the only indicators I use are the 9 and 21 EMA.
+[298s-300s] And obviously we can change the colors on these ones.
+[300s-304s] So we can change this to orange, right?
+[304s-307s] We can change the EMA color on this one to orange.
+[307s-312s] And we can also go on to the indicators again and type in following you
+[312s-314s] weighted average price, which is VWOP.
+[314s-320s] And we can change this one to purple, right?
+[320s-323s] So now I have my indicator set.
+[323s-326s] Obviously if you go on to the lower timeframes.
+[326s-330s] Sorry, for VWOP, why is you have to take off the bands?
+[330s-333s] And then that's it set right there, right?
+[333s-335s] So this is, right?
+[335s-339s] Essentially, my basic layout when it comes to trading view, right?
+[339s-343s] I have the VWOP, I have the 90MA, also of the 21 EMA.
+[343s-344s] Right?
+[344s-345s] As you can see right here, we're on Tesla.
+[345s-348s] All you can see right now is just the actual new
+[348s-350s] your accession open price action.
+[350s-353s] If you guys do want to have extended trading hours on,
+[353s-355s] I know a lot of people don't know this, but you can go down
+[355s-358s] onto the regular trading hours here and click extended trading hours.
+[358s-360s] So you have a lot more information, right?
+[360s-363s] The blue shaded area right here is what's called after hours, right?
+[363s-365s] It's from 4pm to 8pm.
+[365s-370s] And then this one is the pre-market, which opens at 4am to market open,
+[370s-371s] which is at 930.
+[371s-374s] And then this white space is what's called the new your accession,
+[374s-378s] which runs from 930 to 4pm every single weekday.
+[378s-379s] Okay.
+[379s-382s] So right now, I'm currently on my options layout.
+[382s-386s] This is my personal layout that I've been using the past few years.
+[386s-389s] And you can see right, I have the QQQ on the left hand side
+[389s-391s] and I have Tesla on the right hand side.
+[391s-393s] And you can see right, as I mentioned,
+[393s-396s] the indicators that have VWOP, the 90MA,
+[396s-398s] and also the 21 EMA.
+[398s-401s] Right? This is the layout that I like to use, right?
+[401s-402s] Whenever I'm looking at the tax stocks
+[402s-404s] and I want to flip through the names, right?
+[404s-407s] I have this watch list, I'll be going over the watch this in a second.
+[407s-409s] But I'll flip through the names right here.
+[409s-411s] As you can see, I have the watch list
+[411s-413s] and I'll keep the QQQ on the left hand side
+[413s-417s] because that QQQ is one of the most important things,
+[417s-418s] especially when you're training the tax stocks, right?
+[418s-420s] So you want to flip through the charts
+[420s-422s] to see if you have any relative strength or weakness.
+[422s-425s] And then you want to keep the QQQ on the left hand side,
+[425s-426s] which is the NASDAQ.
+[426s-428s] Okay, before I go on to the drawing tools,
+[428s-431s] I want to quickly go over the timeframes, right?
+[431s-434s] So right here, you can see that the timeframes,
+[434s-435s] you have the one minute, the five minute,
+[435s-437s] the 15 minute, right?
+[437s-440s] These are all the custom intervals that you can choose, right?
+[440s-442s] You can also type onto the charts.
+[442s-445s] Whatever timeframe you want, if you want to type in time minute,
+[445s-446s] you can just type in 10 on the charts
+[446s-448s] and it's going to bring up the 10 minute charts.
+[448s-450s] But pretty personally, I like the one minute,
+[450s-453s] the five minute, 15, one hour, daily, weekly charts.
+[453s-457s] These are the main charts that I like to look at personally.
+[457s-459s] Right here, you can see it's on the bottom as well, right?
+[459s-461s] The daily charts, these are the higher timeframe charts
+[461s-462s] on the bottom, right?
+[462s-464s] And you have the intervals on the top.
+[464s-468s] What we also have on top here is we have different types
+[468s-470s] of canos, me personally, I just like to stick
+[470s-472s] to basic Japanese candlestick patterns.
+[472s-473s] So the canos up here, right?
+[473s-476s] You have Hall of Candos, we can change it to Hall of Candos,
+[476s-477s] Volume Candos, right?
+[477s-480s] We have all different types of canos,
+[480s-481s] they have the line charts, if you like,
+[481s-485s] but I just personally like to stick to basic canos like patterns.
+[485s-487s] All right, so now I'm going to be going on
+[487s-488s] to the drawing tools.
+[488s-491s] So the drawing tools are all on the left hand side right here.
+[491s-493s] You can see that this is my drawing tool right here.
+[493s-495s] Right, I have a bunch of favorites.
+[495s-497s] But right here, we have trend lines,
+[497s-500s] which is your basic trend line from point A to B.
+[500s-502s] We have your horizontal ray.
+[502s-505s] We have all different types of drawing tools.
+[505s-507s] Me personally, as you can see right here,
+[507s-510s] I have the horizontal ray, I have the vertical lines,
+[510s-511s] right, to set up the timing.
+[511s-512s] Other ones that I use right here,
+[512s-514s] these ones are favorite, right?
+[514s-517s] I use the arrows to use as demonstration.
+[517s-520s] I also have boxes that I draw, right?
+[520s-522s] This is a very key one, the box,
+[522s-525s] which can be found right here on the rectangular box down here
+[525s-526s] on shapes, right?
+[526s-528s] Boxes can be used for supplying demand areas,
+[528s-530s] order box, fair value gaps.
+[530s-533s] All different types of uses for blocks and, of course,
+[533s-534s] if you guys want to customize it,
+[534s-538s] you can right click here, you can go into the settings right here.
+[538s-540s] You can have middle lines if you like.
+[540s-542s] You can type in text, right?
+[542s-544s] You can type in, let's say this is an order block.
+[544s-546s] You can type in order block.
+[546s-547s] You can change the text.
+[547s-550s] You can do so much customization when it comes
+[550s-552s] to trading V, right?
+[552s-553s] You can also style it, right?
+[553s-556s] However, you like if you want an outlined border,
+[556s-558s] if you want to change the colors,
+[558s-559s] if you want to extend it to the right, right?
+[559s-560s] There's so many different things
+[560s-561s] that when it comes to trading V,
+[561s-564s] which is so cool about it.
+[564s-567s] There's also the text pattern that I use
+[567s-568s] to have notes, right?
+[568s-570s] If there's a key level coming up,
+[570s-574s] I can mention that I have a key level to look out for, right?
+[574s-576s] There's so many different types of things.
+[576s-578s] Another thing that I like to keep in mind
+[578s-580s] is this phymonology tool, right?
+[580s-582s] If we're looking at the phymonology retracement,
+[582s-584s] these are the settings that I have right here.
+[584s-586s] You guys can pause the video, right?
+[586s-590s] I like to have is a 0.3A2, the 0.5 level,
+[590s-594s] the 6.1 level, the 7.1, the 6.18 level,
+[594s-598s] and I also like to have the negative 6.18 level as well, right?
+[598s-601s] These are the levels for the phymonology retracement.
+[601s-602s] I'll potentially have another video
+[602s-605s] and I actually had to use the phymonology retracement
+[605s-608s] but that can be on a later video.
+[608s-609s] I also have the brushes,
+[609s-611s] while which is quite convenient.
+[611s-615s] You guys can go and look at all different types of tools as well, right?
+[615s-618s] Other tips and tricks are the projection tools,
+[618s-619s] which are the forecasts,
+[619s-621s] which will tell you the restore word ratios on each trade.
+[621s-624s] I like this a lot when I'm cuckicking the risk
+[624s-626s] reward ratio, especially on the underlying, right?
+[626s-627s] It's right here.
+[627s-629s] You can calculate for a short position, right?
+[629s-634s] It tells you how much you're risking to your win right here.
+[634s-636s] There's also different types of ones, right?
+[636s-637s] You can use the price range,
+[637s-640s] which is cuckulating how much of price needs to move, right?
+[640s-644s] There's also all different types of projection tools, right?
+[644s-646s] You guys can fool around with this, right?
+[646s-647s] These are the main ones that I use,
+[647s-649s] which are all my favorites.
+[649s-651s] These are the ones that I use personally.
+[651s-655s] So I feel like you don't have to use any more tools after that.
+[655s-659s] So now I'm going to be going over my watch list
+[659s-661s] and my favorites, right here.
+[661s-664s] This is on the right hand side, right?
+[664s-665s] As you can see right here,
+[665s-666s] I have a couple of watch lists, right?
+[666s-667s] If you want to create a new watch list,
+[667s-669s] you click on this right hand button here
+[669s-673s] and then you can go over and click create new lists.
+[673s-674s] Let's create a new list here.
+[674s-676s] Let's talk about tech names, right?
+[676s-678s] So let's say I put down tech names.
+[678s-681s] So right here, you can see I have a clear list.
+[681s-684s] I have nothing so far, and if I want to add symbols
+[684s-685s] into this, right, I can click symbols
+[685s-688s] and I can add in tech names, like let's say Tesla,
+[690s-692s] which is T-S-L-A, right?
+[692s-693s] I can add this to my watch list,
+[693s-699s] I can add an Apple, APL, sorry, APL, type that in wrong.
+[699s-702s] You can add an Apple, Microsoft, MSTF, right?
+[702s-705s] You can add it in different types of names
+[705s-706s] onto your watch list.
+[706s-708s] And whenever you click this, right,
+[708s-710s] you can see that it flips to your chart,
+[710s-712s] the desired chart that you'd like.
+[712s-713s] So whenever you want to go into Apple,
+[713s-715s] you can click the click Apple,
+[715s-718s] flip stop, you click Microsoft, quickly flip some Microsoft.
+[718s-719s] So you can flip back and forth
+[719s-723s] in between the charts super quickly, right?
+[723s-725s] You can also put in, let's say you want
+[725s-728s] to have a customized chart as well.
+[728s-730s] You can add a new section, right?
+[730s-733s] You can add this section, you can put in,
+[733s-735s] let's say rename the section to tech names,
+[736s-738s] and then you can add another section,
+[738s-740s] which can be indices, right?
+[740s-742s] So this can be your indices section,
+[742s-748s] you can rename this to indices,
+[748s-749s] and then under indices, right?
+[749s-752s] You can put in the QQQ, which is the NASDAQ,
+[752s-755s] you can put in the spy, which is the S&P500, right?
+[755s-757s] So these are their indices, and these are your spy.
+[757s-760s] You can keep it quite organized right here,
+[760s-762s] and then you have your techniques right here.
+[762s-763s] If you want to add a more watch this, right?
+[763s-765s] You can add, you can always create more watch this
+[765s-767s] as I mentioned.
+[767s-770s] Right, this makes it very easy to flip back
+[770s-770s] in four charts, right?
+[770s-772s] Instead of typing in in every single time,
+[772s-774s] if you create a watch list,
+[774s-777s] a specific watch list, especially if you're trading,
+[777s-779s] not just tech names, you're trading penny stocks,
+[779s-781s] you're trading make caps, you're trading crypto,
+[781s-784s] you're trading four extra trading futures,
+[784s-785s] but you want to have a watch list
+[785s-787s] for every different instrument you trade,
+[787s-791s] different sector rotations, and you want to always make sure
+[791s-793s] that you have them on the watch list,
+[793s-794s] which is very accessible, right?
+[794s-796s] You can also click change.
+[796s-798s] So let's say you're scanning for stocks on the day,
+[798s-799s] you want to see what's relatively strong,
+[799s-800s] and you can click this change button,
+[800s-803s] which sorts it from the highest to least highest, right?
+[803s-806s] So if you're looking for a relative weakness on the day,
+[806s-808s] you're like, okay, let me click on change real quick.
+[808s-812s] So you click change, and you can see that Tesla
+[812s-815s] is down the most on the day, percentage wise,
+[815s-817s] point wise and percentage wise,
+[817s-819s] because that Tesla's down on the most, right?
+[819s-821s] And then you can go to Apple,
+[821s-823s] and then you can go into Microsoft.
+[823s-826s] Also, things you can do is that you can favor it the names,
+[826s-827s] right?
+[827s-829s] You can put in a favorite, you can change the colors,
+[829s-830s] you can see there's a blue ribbon right here.
+[832s-836s] Just a little couple of tips and tricks for you.
+[836s-839s] Now I'm going to be going on to alerts, right?
+[839s-842s] This is number six, which is setting alerts.
+[842s-844s] So what's really good about training view
+[844s-846s] is that we can have alerts,
+[846s-847s] and you can set price targets,
+[847s-850s] and potential price alerts on the chart.
+[850s-853s] So let's say, for example, that we want to know
+[853s-856s] if Microsoft is gonna break this 430 level.
+[856s-859s] So if we, instead of monitoring the chart,
+[859s-861s] constantly what we can do is set price alert.
+[861s-863s] So we can right click on this,
+[863s-866s] and you can click add a alert on the horizontal rate.
+[866s-869s] You can see right here that we can click
+[869s-871s] create order on crossing, right?
+[871s-873s] Once only we can click create this, right?
+[873s-876s] So whenever price comes up to into this area,
+[876s-877s] and let's say we want to play the breakout
+[877s-879s] and potential retests, right?
+[879s-882s] We're interested if Microsoft can push up into this area.
+[882s-883s] I have an alert set.
+[883s-885s] So whenever price comes above this alert,
+[885s-888s] it's gonna alert me that Microsoft is finally
+[888s-890s] breaking out of this range, right?
+[890s-892s] This can be on a horizontal rate.
+[892s-895s] You can also, let's say, just add a price alert
+[895s-896s] on any price level as well.
+[896s-898s] You can add a alert right here, if you like.
+[898s-901s] So let's say you want to potentially go along
+[901s-903s] over previous day high.
+[903s-906s] So you have this previous day high, marked out
+[906s-908s] from this previous high, right?
+[908s-910s] You can have an alert set here.
+[910s-912s] So whenever price breaks above this level,
+[912s-914s] you can have an alert set and you'll be notified.
+[914s-916s] And if you have your phone settings on, right?
+[916s-918s] It can send you alerts on your mobile,
+[918s-921s] which is also very cool as well.
+[921s-924s] So you can set alerts for horizontal ways,
+[924s-928s] price levels, you can set alerts for potential trendlines as well,
+[928s-929s] right?
+[929s-930s] Which is very cool.
+[930s-932s] You can add in a alert on a trendline.
+[932s-935s] So if price crosses a trendline, it can add in a alert,
+[935s-937s] which is very cool, right?
+[937s-939s] There's so many different tips and tricks when it comes
+[939s-942s] to adding alerts and that you can use this to your advantage,
+[942s-945s] especially if you're swing trading and you're not staring at the screen
+[945s-947s] all the time, right?
+[947s-951s] You want to have price alerts set, which is very important.
+[951s-952s] All right.
+[952s-954s] So now I'm going to go on to my seven point,
+[954s-956s] which is called back testing strategies, right?
+[956s-959s] As you know, trading view has a feature, which is called replay mode,
+[959s-963s] and you guys can go back in time and look at historical data.
+[963s-967s] So essentially what you can do is replay price action, right?
+[967s-970s] Let's say we're looking at the video, for example, right?
+[970s-975s] During earnings, you can see that the video was coming up to a key level, right?
+[975s-979s] We had clear resistance right here, which is this triple top, right?
+[979s-982s] We had a pullback coming into earnings, right?
+[982s-984s] And then we had a gap of a burning, right?
+[984s-987s] You guys can go back and essentially back test it, right?
+[987s-989s] So you can see prices coming back into open, right?
+[989s-991s] You can use this replay feature, right?
+[991s-995s] And they can go into the lower timeframes and see how price action played out.
+[995s-997s] So let's say we're looking for the break and retest,
+[997s-1001s] you can go back and play price action, right?
+[1001s-1004s] So this is the clear break and retest level, right?
+[1004s-1007s] Coming into open, we can even go into the woman at timeframe,
+[1007s-1011s] and then we can see how price action develops around these key levels.
+[1011s-1013s] So first minute candle, right?
+[1013s-1016s] Comes back close to this retest level, you can see that price,
+[1016s-1018s] ends up tapping it perfectly right here.
+[1018s-1021s] This is where I actually personally entered, right?
+[1021s-1024s] Off this breaking retest level, you guys can go back,
+[1024s-1026s] watch the live sessions if you'd like.
+[1026s-1029s] They're on my YouTube channel and I'll post them in the discord as well.
+[1029s-1032s] Right? So you can see price end up bouncing at this retest level,
+[1032s-1035s] perfectly that's where I entered in as this candle was forming
+[1035s-1038s] and where my targets, my targets is the all-time haze level,
+[1038s-1040s] which is this pre-market height.
+[1041s-1043s] So this is my trait thesis, right?
+[1043s-1045s] This was an A plus setup for me, right?
+[1045s-1048s] It's good when you're looking at the replay modes to go back
+[1048s-1050s] and go on the higher timeframes,
+[1050s-1052s] because that's one of the things you really want to understand
+[1052s-1054s] is the higher timeframes, how they develop,
+[1054s-1056s] and then go into the lower timeframes to see how you had
+[1056s-1057s] traded this in real time.
+[1057s-1060s] So this is how I traded this in real time, right?
+[1060s-1062s] I bought as this candle was forming,
+[1062s-1066s] and then you can see we end up having a nice push-up, right?
+[1066s-1068s] And then price, this is the down close candle,
+[1068s-1069s] this is your order block level,
+[1069s-1072s] and you can see how perfectly price is respecting this level.
+[1072s-1076s] As you see right here, taps it in perfectly right there,
+[1076s-1079s] and then absolutely just gravitates the words of the highs.
+[1079s-1081s] I end up sculling majority of my position here,
+[1081s-1083s] and then end up leaving trailers, right?
+[1083s-1085s] End up having this down close candle,
+[1085s-1087s] this was my order block now.
+[1087s-1089s] I remember this trade very clearly,
+[1089s-1091s] it was actually my best trade of the year.
+[1091s-1094s] You can see price comes back down into this woman order block,
+[1094s-1097s] and then it's up gravitating back towards the highs.
+[1098s-1100s] And then you can just play price action, right?
+[1100s-1102s] And that is exactly how you can use the replay mode,
+[1102s-1103s] where you start on the higher timeframes,
+[1103s-1104s] going to the lower timeframes,
+[1104s-1106s] and then look for potential entries, right?
+[1106s-1108s] And you can see how price action plays out.
+[1108s-1110s] So that's where I ended up scaling my position,
+[1110s-1112s] and then you can go on to the other timeframes
+[1112s-1114s] to see if you would have trail this position,
+[1114s-1116s] towards the upside, right?
+[1116s-1119s] This is what's very neat about the replay mode, right?
+[1119s-1122s] You can back test any strategy you would like.
+[1122s-1124s] You can back test the pre-market high,
+[1125s-1127s] the pre-market low retest,
+[1127s-1128s] the previous day high,
+[1128s-1130s] the previous day low retest, order block,
+[1130s-1131s] retest, right?
+[1131s-1133s] You can go back and you can also see
+[1133s-1136s] what type of price action was happening during that time in real time.
+[1136s-1138s] You can go back and look at past price action,
+[1138s-1140s] sure I didn't simulate what was happening in real time
+[1140s-1142s] with the replay function.
+[1142s-1144s] Obviously you're not trading with real money,
+[1144s-1145s] you're not trading,
+[1145s-1147s] you're not seeing the price action develop in real time
+[1147s-1149s] because it is sped up.
+[1149s-1151s] But it's still very good practice to get that repetition
+[1151s-1154s] and to see the patterns repeat over and over itself.
+[1154s-1156s] So what's also cool about this is that
+[1156s-1158s] you can have the replay mode where you can show
+[1158s-1160s] how the QQQ up beside,
+[1160s-1162s] which will give you even more extra conflicts
+[1162s-1163s] when back testing.
+[1163s-1165s] So you can see what was happening with the Q's
+[1165s-1168s] and what was happening with the video at the exact same time.
+[1168s-1172s] But that is how we can use the replay mode function,
+[1172s-1173s] right?
+[1173s-1175s] As we can keep playing the table,
+[1175s-1177s] let's say we go back onto the one hour time from now.
+[1177s-1179s] Let's keep playing this.
+[1179s-1182s] You can see that price end up using this pre-market highs
+[1182s-1183s] and retest.
+[1183s-1185s] And then we end up coming back all the way down.
+[1185s-1187s] Look where end up coming back down on this day, right?
+[1187s-1190s] So if you know that key level mark draw out,
+[1190s-1193s] you could potentially look to either short it towards the downside
+[1193s-1194s] towards these key levels,
+[1194s-1197s] or you could have looked to play the bounce on this key level,
+[1197s-1199s] which was this 775 level.
+[1199s-1200s] So yeah,
+[1200s-1202s] you guys can fool around with this,
+[1202s-1204s] go back test your strategies,
+[1204s-1208s] the best way to gain experience is through real time price action.
+[1208s-1212s] That is the best, the second best is to go look past price action.
+[1212s-1217s] Yeah, so you essentially back testing what it does is you look at past price action
+[1217s-1220s] to determine future price movements, right?
+[1220s-1223s] That's what back testing is for to get that reputation
+[1223s-1225s] and that consistency in your head.
+[1225s-1228s] So yeah, that is it for back testing strategies.
+[1228s-1231s] Now I'm going to be going onto the layouts, right?
+[1231s-1232s] I have a bunch of different layouts here.
+[1232s-1233s] As you can see, right?
+[1233s-1234s] When you're going to the layouts,
+[1234s-1235s] you can save it.
+[1235s-1237s] You can make new copies, right?
+[1238s-1240s] What I like to do is have multiple layouts.
+[1240s-1242s] So this is my one options layout that I have.
+[1242s-1244s] I also have on the top,
+[1244s-1246s] I have my Nasdaq layout, which is my NQ.
+[1246s-1249s] I have my ES on this one, right?
+[1249s-1250s] I have multiple layouts.
+[1250s-1255s] So instead of having my instead of flipping through charts on one layout
+[1255s-1257s] and it kind of messes it up like this one.
+[1257s-1259s] I have different settings, right?
+[1259s-1260s] As you can see on this one,
+[1260s-1264s] I have the one I are chart pulled up in the Nasdaq 15 minute on the Nasdaq one minute.
+[1264s-1267s] This is what I use for the Nasdaq, right?
+[1267s-1269s] And then for the ES, I have the same thing here.
+[1269s-1272s] But when I'm trading options, I have two charts pulled up beside each other.
+[1272s-1278s] I have the QQQ, and I also have the actual text stock that I'm trading on the right hand side, right?
+[1278s-1281s] So it would be much easier to have multiple layouts, right?
+[1281s-1285s] You guys can have up to 10 with the plan that I have.
+[1285s-1286s] I think it's the pro.
+[1286s-1288s] I think it's up to 10.
+[1288s-1289s] Layouts, right?
+[1289s-1291s] If you click the plus button,
+[1291s-1292s] right?
+[1292s-1293s] You can see that all the different layouts I have.
+[1293s-1294s] I have the weekly outlooks layout.
+[1294s-1297s] I have the examples divergence, daily high and low layouts.
+[1297s-1298s] I have multiple layouts here.
+[1298s-1300s] You guys can make multiple layouts.
+[1300s-1302s] It's good to keep track rate.
+[1302s-1306s] This is my weekly outlook layout where I draw my thesis is coming into the week.
+[1306s-1309s] And you can see them play out here.
+[1309s-1311s] So these are the thesis.
+[1311s-1312s] This is my weekly outlook one.
+[1312s-1318s] And then you can have multiple layouts for multiple different instruments that you trade.
+[1318s-1323s] Or anything of the sorts.
+[1323s-1325s] So number nine.
+[1325s-1327s] Number nine is a news and others.
+[1327s-1328s] Right?
+[1328s-1331s] In this, I want to talk about other features that trading view does have.
+[1331s-1332s] Right?
+[1332s-1335s] If you look on the top, there's the quick search button.
+[1335s-1336s] Right?
+[1336s-1341s] You guys can go and search any tool or function here, which is very easily, easily accessible.
+[1341s-1342s] Right?
+[1342s-1345s] Other ones are the settings, the charge settings.
+[1345s-1347s] You also have the full screen mode.
+[1347s-1350s] You also have take a snapshot right if you want to take a screenshot.
+[1350s-1354s] You can click this button and then you can download the image copy image.
+[1354s-1356s] I hope in any tab, you can also tweet the image right.
+[1356s-1359s] If you go on this side, this is the object tree.
+[1359s-1362s] The object tree is where all your lines and indicators are.
+[1362s-1363s] So you can see right?
+[1363s-1364s] You see the view up.
+[1364s-1366s] All the boxes that you drew.
+[1366s-1367s] You can see which ones you click.
+[1367s-1368s] You can hide them if you like.
+[1368s-1370s] If you want to take off some, you can.
+[1370s-1372s] Let's go in here for a second.
+[1372s-1373s] Right?
+[1373s-1374s] You can hide these horizontal rays.
+[1374s-1376s] You can see that these ones are getting hidden.
+[1376s-1379s] As I'm clicking them and I can un-hide them.
+[1379s-1380s] Right?
+[1380s-1383s] This is a cool tool as well.
+[1383s-1384s] Right?
+[1384s-1385s] You have the data window.
+[1385s-1389s] Other ones that you have are essentially the volume gainers.
+[1389s-1390s] Like, what's hard on the day?
+[1390s-1391s] Right?
+[1391s-1392s] This is definitely one to keep in mind.
+[1392s-1393s] Right?
+[1393s-1394s] If you're looking to scan stocks, right?
+[1394s-1395s] There's fin viz.
+[1395s-1398s] There's different types of stock scanners, training view,
+[1398s-1399s] also as a stock scanner.
+[1399s-1403s] As well, that you guys can use this one as quite neat as well.
+[1403s-1406s] You can see the volume gainers on the US exchange.
+[1406s-1410s] You can see that Intel did out the most volume on the day.
+[1410s-1411s] Right?
+[1411s-1412s] There's different exchanges.
+[1412s-1414s] Do you have the most percent change gainers?
+[1414s-1415s] Right?
+[1415s-1416s] ABC.
+[1416s-1417s] This is the, we're a cannabis.
+[1417s-1418s] Right?
+[1418s-1419s] You can see a bunch of these ones as well.
+[1419s-1420s] Right?
+[1420s-1421s] So that's that feature.
+[1421s-1424s] If you guys go into the my ideas feature, right?
+[1424s-1425s] This is where all your ideas are.
+[1425s-1427s] I personally don't have any set up.
+[1427s-1430s] There's the public forums where you can see other people posting.
+[1430s-1431s] I do not look at these.
+[1431s-1434s] You can have other people's ideas.
+[1434s-1435s] Right?
+[1435s-1436s] This one's the streams.
+[1436s-1438s] I don't use this as much.
+[1438s-1439s] Right?
+[1439s-1440s] These are people streaming on training view.
+[1440s-1442s] And then you also have your notifications.
+[1442s-1443s] Right?
+[1443s-1445s] So you have your notifications.
+[1445s-1447s] And then on this side, you just have your home.
+[1447s-1449s] You have your notifications.
+[1449s-1450s] And yeah.
+[1450s-1453s] So there's a bunch of different tools that you guys can check out on a
+[1453s-1454s] trading view.
+[1454s-1458s] There's also this calendar feature, which is quite nice.
+[1458s-1461s] It's like for X-Factory, I personally only use for X-Factory.
+[1461s-1467s] This one tells you a lot more about a bunch of different exchanges and bunch of different
+[1467s-1468s] markets.
+[1468s-1469s] Right?
+[1469s-1470s] You guys can use this.
+[1470s-1473s] And then there's a bunch of other features like how do we help data charts.
+[1473s-1477s] There's so many different things that comes into trading view.
+[1477s-1480s] So now I'm going to be talking about the mobile and desktop version.
+[1480s-1481s] Right?
+[1481s-1482s] Trading view.
+[1482s-1486s] You guys can use on any different type of platform you guys can use on the web browser.
+[1486s-1487s] You guys can use on the desktop.
+[1487s-1490s] You guys can use the mobile right trading view is very user friendly.
+[1490s-1493s] So you guys can use this on any setup you'd like.
+[1493s-1500s] If you are trading, if you are swing trading or you're trading at the office and you don't have multiple monitors or you're on the desktop,
+[1500s-1502s] you can always use your phone to chart right?
+[1502s-1507s] Trading view on the phone or the iPad or anything is quite useful and user friendly as I mentioned.
+[1507s-1511s] So those things are something to keep in mind.
+[1511s-1512s] Right?
+[1512s-1517s] So I'm doing it on the desktop is the best because it gives you all the tools that you need and it looks the best.
+[1517s-1525s] Very easy to use compared to the mobile, but mobile is still a very viable option if you cannot use your computer.
+[1525s-1528s] So with that being said, I hope you guys enjoyed that lesson.
+[1528s-1531s] That was the breakdown of full trading view.
+[1531s-1532s] Right?
+[1532s-1533s] That was overview in this lesson.
+[1533s-1535s] You learned about the calculation, customizing charts.
+[1535s-1538s] Indicator studies, drawing tools, watching some favorite setting alerts.
+[1538s-1544s] Back to some strategies, layouts, news and other things, and then the mobile and desktop versions of trading view.
+[1544s-1546s] So I hope you guys enjoyed that.
+[1546s-1549s] Now I'm going to be going into the conclusion.
+[1549s-1550s] All right.
+[1550s-1552s] So that is the module three conclusion.
+[1552s-1559s] Right? After this module three, you guys should understand the difference in brokers between all the different types of unregulated brokers,
+[1559s-1567s] regulated brokers, which brokers that we use, how to set up interactive brokers, my full breakdown on the trader workstation,
+[1567s-1572s] and how to set up trading view on the desktop and mobile version.
+[1572s-1573s] Right?
+[1573s-1579s] So if you guys do have any questions, please reach out on Discord and leave them in the question chat.
+[1579s-1582s] I hope you guys enjoyed that module three breaking down everything.
+[1582s-1584s] And I'll see you guys next module.
+[1584s-1585s] Take care.

@@ -1,0 +1,792 @@
+# Transcription: the-accelerator-course_how-to-journal-your-key-statistics.wav
+# Duration: 2903s
+# Model: tiny
+
+[0s-5s] So for the last part of module 8, I'm going to be talking about journaling and tracking statistics.
+[5s-7s] Why it's so important to be journaling?
+[7s-10s] And then you need to be logging every single trade that you take.
+[10s-14s] You also need to be logging your trades and emotions on a daily basis.
+[14s-17s] This is very important in order to become a successful trader.
+[17s-22s] Every single successful trader logs and journals trades every single day.
+[22s-25s] Right? It is a necessity in order to become a successful trader.
+[25s-31s] You have to be doing these things. It is a necessity in order to become profitable.
+[31s-33s] Next, I'm going to be talking about strengths of weaknesses.
+[33s-35s] Right? Why you need to be journaling?
+[35s-38s] Because you need to be able to identify your strengths of weaknesses.
+[38s-44s] It is very important to be able to understand when you're playing towards your strong suit,
+[44s-46s] when you can potentially have weaknesses coming in.
+[46s-49s] And that's where I'm going to be talking about the mental game of trading,
+[49s-53s] which is a very neat book that I want to mention in this segment.
+[53s-56s] And finally, I'm going to be talking about tips and tricks.
+[56s-60s] Some tips and tricks that will help you journal and improve your trading overall.
+[60s-62s] So let's get this started.
+[63s-65s] So journaling and tracking statistics.
+[65s-70s] A journal is a way to track your trading performance by recording trades,
+[70s-76s] which you can later review to improve your trading activity by learning from both your successful
+[76s-78s] and not so successful trades.
+[78s-83s] So whenever you track your trades, you have to understand that it is very,
+[83s-86s] very important because it's based off statistics.
+[86s-89s] As you guys know, trading is based off of probabilities.
+[89s-92s] And you want to know if you have a high probability of trading,
+[92s-94s] it's by tracking your trades.
+[94s-97s] When I first started trading, a lot of you guys, as well,
+[98s-101s] probably did not track any of your trades.
+[101s-104s] Now, of course, there's a lot of automation where you have trades,
+[104s-107s] is you can have automated notion templates.
+[107s-109s] You have Excel spreadsheets, but back in the day,
+[110s-114s] not back in the day, but a few years ago, I used to be on an Excel spreadsheet.
+[115s-118s] And I used to have to import manually every single trade that I took.
+[118s-120s] It was very annoying.
+[120s-122s] Sometimes I did even do it, right?
+[122s-125s] Which is something to keep in mind, right?
+[125s-127s] You have to do this in order to become successful.
+[127s-129s] When I first first started trading, right?
+[129s-132s] I did not track any statistics whatsoever.
+[132s-134s] Because I thought that it wasn't really necessary.
+[134s-136s] I could keep things in my mind, right?
+[136s-137s] But you guys forget, right?
+[137s-138s] As you guys know, whenever you trade,
+[140s-141s] there's emotions evolved.
+[141s-146s] And you sometimes need to remember what your edges and what type of statistics
+[146s-146s] that you have.
+[146s-149s] That's where tracking your statistics comes into play,
+[149s-149s] right?
+[149s-152s] Because you always can look back on your trades
+[152s-154s] and see what type of setups that you really enjoy
+[154s-158s] and what setups are those A plus setups that you can hit on a day-to-day basis.
+[159s-163s] Tracking your trades, trade progress will allow you to study mistakes
+[163s-166s] that you have made while opening or closing positions.
+[166s-168s] It also helps you stick to your trading plan
+[168s-172s] and enhance your ability to make better executions in the future.
+[172s-176s] So the only way to improve as a trader is to learn from your past mistakes
+[176s-178s] or successes, right?
+[178s-182s] Your past mistakes are lessons, right?
+[182s-185s] Every single lesson, every single loss is a lesson
+[185s-186s] as long as you learn from it.
+[186s-191s] And being able to learn from those lessons will allow you to progress further as a trader.
+[191s-194s] And how to progress further as a trader as a mentor is by journaling
+[194s-196s] and trading statistics.
+[198s-201s] So an example right here is on trade sellers.
+[201s-204s] So obviously we have a trade pulled up, right?
+[204s-206s] This is a tradezilla, I have as you guys know.
+[207s-210s] If you guys don't already have tradeszilla, we have a coupon.
+[210s-214s] I think Tony has a coupon for a discount code for you guys
+[214s-215s] for a tradezilla.
+[215s-219s] He has a nice, he is one of the best offers for a tradezilla for a discount code.
+[219s-222s] So if you want to, I'm pretty sure there's going to be an official link in the discord.
+[223s-228s] So right here, I'm not going to be showing you guys how to actually import your trades.
+[228s-230s] You guys can watch a video on that.
+[230s-234s] But once you have your trades pulled up and imported into your broker, right?
+[234s-240s] Most brokers, regulated brokers support VSCSV files.
+[240s-244s] So interactive brokers, TD Ameritrade, every single broker you can download CSV files,
+[245s-248s] which is essentially a trade log based on Excel spreadsheet.
+[248s-252s] And once you import it to tradezilla, it will basically pop up
+[252s-253s] every single execution they have.
+[253s-254s] So it's very easy.
+[255s-257s] Everything is automated nowadays.
+[257s-262s] Right? Obviously tradezilla costs a lot of money, but you guys can always use
+[262s-265s] notion templates, you guys can use your own Excel spreadsheets.
+[265s-268s] You can even manually write down every single trade that you'd like.
+[268s-271s] But tradezilla, very user friendly, it looks
+[272s-274s] pleasing aesthetically pleasing as well.
+[274s-275s] So that's why I use this.
+[276s-280s] So right here, once you have the trade pulled up, right?
+[280s-282s] What you'll have is your net P&L, right?
+[282s-285s] You have the options, contracts, is that you traded, commission fees,
+[285s-288s] the net percentage ROI, right?
+[288s-289s] Gross P&L, right?
+[289s-290s] Adjust the cost.
+[290s-291s] You have so many different things, right?
+[291s-293s] You also have a playbook setup.
+[293s-296s] I'm going to be talking about, I talked about that earlier, right?
+[296s-297s] The playbook setup.
+[297s-299s] You guys can make your custom playbooks within tradezilla.
+[300s-304s] What you guys also have here, trade readings, trade rating.
+[304s-305s] You have your profit target stop loss, right?
+[305s-309s] Stop loss is based off of the actual options contract.
+[310s-313s] So if you trade options, you're going to be placing your stop loss based off of the
+[313s-314s] option contracts.
+[314s-317s] And that gives you the most important thing, which is risk, right?
+[317s-319s] Risk is the most important thing when it comes to journaling.
+[320s-323s] As you can see, this case, I was risking one point eight on the contracts, right?
+[323s-326s] The contracts, actual chart is not popped up right here.
+[326s-329s] But I'm risking $700 on the trade, right?
+[329s-332s] This was an opening drag plan on Tesla towards its upside, right?
+[332s-337s] I was risking $780 based off of the R multiple and based off the contracts options.
+[338s-343s] I was risking one point eight on the contracts, $780 in total.
+[343s-346s] And in this case, right, I ended up making $5,000.
+[346s-350s] So you can see in this case, I had a six point eight one restore word ratio, right?
+[350s-354s] A six point eight one are multiple, which is an absolute incentive.
+[354s-358s] As you can see here, I only put in $4,000.
+[358s-362s] So I ended up putting in $4,000, I ended up making over $5,000, which is over a hundred percent
+[362s-364s] gain on these contracts.
+[364s-367s] It wasn't even on this day as well.
+[367s-369s] So it was on a zero day, right?
+[369s-370s] Zero DTs.
+[370s-372s] As you can see, it was on Friday.
+[373s-377s] Absolutely perfect day on towards the upside, right?
+[377s-378s] The contracts move very nicely.
+[378s-381s] And you can see right here, I also have the setups.
+[381s-383s] So I talked about the setups earlier in the playbook.
+[383s-387s] And you can see in this case, right, you want to be marking up your setups as well.
+[387s-390s] When it comes to tradezilla, you will have a bunch of different tags here.
+[390s-393s] So right here, I have the opening drive.
+[393s-395s] And this also classifies as the gap and go.
+[395s-398s] So you'll have a bunch of playbook setups.
+[398s-400s] You'll have all sorts of different setups.
+[400s-404s] So you guys can have those five setups that I talked about earlier.
+[404s-407s] And I told you talked about earlier, sorry, the opening drive gap and go.
+[407s-409s] The pre-market high and low retests.
+[409s-411s] You can have the inside bar.
+[411s-414s] You guys can also have all sorts of different setups.
+[414s-418s] So within the break and retests, you guys know that there's all different types of setups.
+[418s-422s] There's probably like 10, 20 different setups within the break and retests.
+[422s-426s] So you guys have to understand that not every single break and retests is going to be equal.
+[426s-429s] Every single break and retests is a little bit different, right?
+[429s-431s] Because there's different setups within the break and retests.
+[431s-434s] So that's where you guys want to be tracking your different types of setups.
+[435s-439s] So in this case, the setup was a opening drive play and a gap and go.
+[439s-441s] So I'm going to be marking this down.
+[441s-444s] And you go on, just want to be doing this for every single trade.
+[444s-446s] So every single trade you have, you want to be marking up your risk.
+[447s-452s] What type of setups you have and you can also put it into what type of playbook you want to have as well.
+[453s-458s] And this brings me to my actual options contracts.
+[458s-459s] So what's so cool about trades at this?
+[459s-461s] So you have the underlying chart, which is right here.
+[462s-464s] As you can see, this is Tesla on the one minute timeframe.
+[465s-469s] Right underneath that, what you'll have is the charts running P and L.
+[469s-470s] So this is the options contract.
+[470s-475s] So I originally said this was on a Friday, but I forgot.
+[475s-479s] I remember now this was on a Thursday and actually had contracts swinging overnight.
+[479s-483s] So as you can see in this case, right, the options contracts, you can see it's kind of hard to tell
+[483s-485s] with this screenshot here.
+[485s-490s] But you can see that the contracts were at 250 per contract.
+[490s-495s] And you can see I was really risking right here all the way down towards 180.
+[495s-497s] So I was risking 180 on the contracts.
+[497s-498s] It's a little bit hard to tell.
+[498s-502s] But as you can see right opening drive plays towards the upside,
+[503s-506s] you can see it was a very nice push and you see I was scaling here as well.
+[506s-508s] And this is what's needed about trades as well.
+[508s-511s] It's not only you can see the actual underlying ticker.
+[511s-515s] You guys can also see the options contract, which is very useful, especially when cuckering the
+[515s-520s] risk. You guys can look back on the options contract, see how they move in comparison to actual
+[520s-521s] underlying price.
+[521s-523s] A lot of the times, you guys won't.
+[523s-526s] You guys a lot of the times will be sticking to the underlying charts.
+[527s-531s] But sometimes it's very good to see how the option contracts move in comparison to the
+[532s-537s] underlying to see how the Greeks affected the options contracts and everything that has to do
+[537s-539s] with the options contract as well.
+[539s-542s] Because as you guys know, you guys are not training not only the underlying,
+[542s-546s] where you guys are training the options price as well, which is very important.
+[547s-552s] You guys also have this very neat feature, which is this running P&L.
+[552s-556s] So right here you can see how much P&L you were up during the whole trade.
+[556s-560s] So as you can see in this case, I was mainly up as soon as I entered the trade,
+[560s-563s] I was basically always in green.
+[563s-566s] I was always in, I was up during the day.
+[566s-569s] You can see I had a nice push towards upside rate.
+[569s-573s] I was up over $5,000 as you can see right here.
+[573s-574s] And I took most of my position off.
+[574s-576s] You can see I took most of my position off.
+[578s-583s] And you can see I left traders run towards that next day, which is that overnight position.
+[583s-586s] You can see as soon as the scale out, majority of my contracts, which was right here,
+[587s-590s] my P&L wasn't really reflected, right?
+[590s-592s] It wasn't really affected, sorry.
+[592s-598s] The remaining contracts, because I scaled most likely 80-90% of my contracts at these highs,
+[598s-599s] and I left a couple overnight.
+[599s-602s] So you can see the P&L was really around $5,000 the whole day.
+[602s-606s] And then once market opened, I end up scaling my full contracts here.
+[606s-608s] So this is very neat to understand the running P&L.
+[608s-610s] To see how much you were in drawdown.
+[610s-615s] Or how much you were up the whole time, or how much you were in drawdown,
+[615s-617s] to understand how the contracts move.
+[618s-625s] Another very cool example here is on the right underneath the running P&L.
+[625s-628s] So right here, you can see we're back on the exact same example that we had earlier.
+[629s-632s] And right here is the journal, right?
+[632s-635s] You guys can mark out your own journal personally either on word.
+[635s-637s] You guys can have a notion template as I mentioned.
+[637s-642s] But if you guys use tradezilla, you guys have an option of where you can write trade notes.
+[642s-645s] So I did a mini trade note just for this example here.
+[645s-648s] And you can put in some notes that you were looking at coming to the day,
+[648s-650s] potential higher timeframe setups.
+[650s-654s] So what I was saying here after the trade was done,
+[654s-657s] I said very nice inverse head and shoulders on the higher timeframes.
+[657s-661s] Strong push right off the open, right off the gap,
+[661s-665s] strong push right off the open towards that gapill area on the charts.
+[665s-668s] Coming into the day, I was looking for a move above 190.
+[668s-672s] And that can fuel a move towards 194 and higher.
+[672s-676s] If it can enter in the gap level, that was the earnings gap that it made.
+[676s-679s] And you can see multiple reactions off the bottom of the gap there.
+[679s-682s] If you can get above that level, it can spark a move towards the upside.
+[683s-686s] So it's a little bit harder to see on these charts right here.
+[686s-691s] But this was the earnings gap that had towards the downside, back in February and you can see,
+[691s-693s] right? We had that earnings gap marked out.
+[693s-696s] Right? You can see we had a touch here, right?
+[696s-698s] Rejection. And then we had one more touch right here,
+[698s-702s] which was forming that inverse head and shoulders on the daily timeframe.
+[702s-705s] You can see this is the one our chart. So you can see we tapped it,
+[705s-709s] the day previous, we were holding that previous day high level right here.
+[709s-711s] And that's where we had that open drive place towards the upside.
+[711s-713s] And you can see this day they can't afford, right?
+[713s-718s] Ended up forming very bullish, end up closing very bullish inside the gap level.
+[718s-720s] And that's where we traded towards the upside.
+[720s-724s] So I wrote these notes after the trade.
+[724s-726s] You guys want to be understanding what you guys.
+[726s-728s] So this is how you want to lay down, right?
+[728s-731s] So before coming to the market open, you want to have a pre-market plan.
+[731s-734s] Once you have that pre-market plan, you want to do your regular stuff,
+[734s-737s] and trade-day-wise. After, in trade day, you want to mark on your journal,
+[737s-742s] you want to track your trades, you want to potentially track your emotions going into that day.
+[743s-748s] And actually how your emotions were when you're trading, in trade-day-wise.
+[748s-751s] So you want to have all those marked out, you want to have your emotions marked out as well.
+[751s-755s] And then after, once you find the imported trades, you want to look back on,
+[755s-760s] you want to determine how much you were risking on the setup, where I will play books.
+[760s-764s] That was a part of. And then you can also have your trade note, which is
+[765s-769s] what were you looking at coming into a day, anything that has to do with the trade, how you manage the trade.
+[769s-773s] Any types of charts that will help you review your trades in the future.
+[773s-778s] So once you have this down, you guys can also mention that this was on the higher timeframes.
+[778s-782s] You guys can have different types of setups. So in this case, you can also have an inverse
+[782s-785s] head and shoulder on the daily timeframes. So that was the higher timeframe pad.
+[785s-790s] Right? The opening drive play and the gap and go was based off of what was happening on the lower
+[790s-794s] timeframes. But on the higher timeframes, you can see we had an inverse head and shoulders,
+[794s-799s] we had an earnings gap fill. There's a bunch of different higher timeframes setups as well.
+[799s-803s] So you guys can mark that out and you can always trackers statistics for that as well.
+[804s-811s] So an example here, once you have a bunch of these trades mapped out for at least a month,
+[811s-817s] right? You're getting get something called your stats. So these were my stats for January 1st,
+[817s-824s] this year to January 31st, right? I made $16,000 this month. The main thing was I was on vacation
+[824s-829s] for over half the month. So that's why it was a bit lower P&L for me. But I'll give you all these statistics.
+[829s-835s] So these were my statistics and we'll go over them right here for the month of January
+[835s-843s] earlier this year. Right? Total P&L $16,000, $600 average daily volume, 26 average winning trade
+[843s-849s] was $1800 and average losing trade was $316. So that's pretty crazy. If you're looking at the
+[849s-855s] risk or water ratio here, right? My average win was $1800 and my average losing trade was $300.
+[856s-863s] Total number of trades I took was 17. I had 10 winning trades, 7 losers, 0 break
+[863s-871s] events, max consecutive wins, 6 max consecutive losses, 2 total commissions, $650. Total fees,
+[871s-878s] 3 bucks, largest profit was $4500, largest loss. I kept my losses very small this month. My
+[878s-885s] sizing was pretty small as well, right? $600, $700 loser. The stats that are really important are
+[885s-890s] these ones down here. The average whole time, as you can see in this case, my average whole time was 26
+[890s-896s] minutes. So after all my traders and my starting positions when I exited my full trades, my average
+[896s-905s] trade, whole time was 26 minutes. My average winning trade was actually 30 minutes. So my average
+[905s-911s] winning trade, I held for 30 minutes, my majority of my position before the $30 minutes, but
+[911s-916s] I'm leaving at least a couple of traders. So this month and the past few months, I've been leaving
+[916s-921s] a lot more traders, like 10% of my position, I've been holding it a lot longer. So in this case,
+[921s-928s] right, $39 for my average winning trades, average losing trades, $8 minutes. So you understand that
+[928s-934s] when I lose right, I cut quick. So I understand that if I win or lose, right, things are going to
+[934s-940s] happen very quickly. If I lose, I know I'm wrong, whether or not, right, away, if I win, I know I'm right,
+[940s-947s] right, away. So eight minutes is my average losing trade and then my average winning trade is 39 minutes,
+[947s-954s] right? These are very important statistics that you guys have to track. Average trade, P&L,
+[955s-961s] $90, profit factor, very important as well. As you can see in this case, 8.5 profit factor, that means
+[962s-969s] how much money I made compared to how much losses I took. I total trading days, I only end up as I mentioned,
+[969s-974s] 12 trading days out of the 20, I was on vacation for half the month. I had nine winning days,
+[974s-980s] three losing days, and then others statistics as well, right, average day, P&L.
+[981s-990s] Average winning day was 1900, average losing day was negative 350, other, others statistics, obviously,
+[990s-995s] you guys can see and look at them right here, mainly the same statistics all the way down
+[995s-1002s] towards the downside, right? So trade expectancy, $900. So as you guys will see here,
+[1003s-1008s] you guys can go on to your ports on trade data and you guys will get these statistics. So this is a
+[1008s-1013s] very neat statistics, right? This just gives you a quick overview of how your month will look like
+[1013s-1018s] the more important statistics are the ones I'm going to be talking about right here that are all
+[1018s-1025s] done automated. So this is your statistics based off of your days of the week. So this is very key
+[1025s-1030s] to understand what type of days that you trade the best on. So in this case, right, I didn't even take
+[1030s-1035s] a single trade on Monday. There at the whole month, not a single trade on Monday, majority of my
+[1035s-1040s] money was made Tuesday, Wednesday, Thursday, Thursday, and you can see on Friday as well, right,
+[1040s-1046s] I barely traded on Friday as well. So you can see in this case, majority of my money that I made
+[1046s-1052s] Tuesday and Wednesday, made a little bit of money on Thursday, I mean, see, I made no money on Monday
+[1052s-1058s] and no money on Friday. So based off of these statistics, obviously it's only one month, right?
+[1058s-1064s] But if you are basing off the one month of statistics, that would mean I would not trade on Mondays,
+[1064s-1068s] and I would not trade on Friday. So I just come into the market just based off of these three days
+[1068s-1073s] right here. And you can see down here right, it tells you all the summary that you have right total
+[1073s-1080s] profits in this case was $6,000, right? That was my total profits. And then my net profits was actually
+[1080s-1090s] $6,000 on Tuesday, right? $7,000 on Wednesday. Tuesday was $2,400 and Friday was negative 38. So
+[1090s-1096s] based off these statistics right here, you can see that I want to be trading between Tuesday and Thursday.
+[1098s-1102s] These are other statistics that are very important as well. As you can see right here,
+[1102s-1107s] as I always talk about, as Tony always talks about, right, what times do we trade it?
+[1107s-1113s] Right, 930 to 11 o'clock. As you can see right here, nine o'clock, 10 o'clock. I'm
+[1113s-1120s] ace most of my money in between these two hours. You can see 11 o'clock, 12 o'clock, and 15 o'clock,
+[1120s-1127s] right? Majority of these days, right? I'm not trading after 11 o'clock, right? As you can see,
+[1127s-1133s] based off the trade distribution by an hour, right? I'm only trading between nine and 10, right? The
+[1133s-1138s] past 11 o'clock, I'm not trading whatsoever. Some of the profits during this month, I did make a
+[1138s-1143s] decent amount of profits after 11 o'clock, but that was most likely due to swing positions.
+[1143s-1149s] But every single trade I took, based off of a trade distribution was all a trade between nine
+[1149s-1155s] to 10, taking entries wise. So if I knew that, if I know that, right? I'm only going to be looking
+[1155s-1161s] for that first hour to an hour have to take positions. And that's why it's not, we don't just say
+[1161s-1167s] the first hour and a half for no reason, right? It's based off of statistics, and we understand that,
+[1167s-1172s] right? Our most, the most money we make is based off of the first one hour to an hour and a half,
+[1172s-1178s] right? From 930 to 11 a.m. Eastern Standard Time every single day. So that's why we only trade
+[1178s-1182s] between those windows, because that's when we make the most money. And then after the fact,
+[1182s-1186s] right, we end up losing less money or the opportunities less. Obviously, in this case,
+[1186s-1190s] based off the only one month, one month statistics, right? I didn't really trade too much after
+[1190s-1196s] 11 o'clock and see during these days, right? I may actually a little bit of money more than I did at 9 o'clock.
+[1198s-1202s] Other examples are understanding contract prices. So this is very important as well when you're
+[1202s-1210s] trading options, you got to understand what type of contract prices that you trade the best under.
+[1210s-1214s] So in this case, you can see distribution by price, right? Any contracts that trade under $2,
+[1214s-1220s] I rarely trade contracts under $2. Most of the time when I'm trading Tesla, AMD, right? All those
+[1220s-1226s] takers, I'm trading between $2 contracts to $5 contracts. The only time I'm trading above $5 contracts
+[1226s-1230s] is when I'm trading the video because it's more expensive from the underlying. So you can see in this case,
+[1230s-1235s] right? Based off of these statistics, right? I do not want to be trading any contracts under $2.
+[1235s-1240s] A lot of times when contracts are under $2, what day will it be? It usually be Friday,
+[1240s-1246s] or trading a midcap. So that means I usually lose. So in this case, I'll avoid Friday,
+[1246s-1251s] based off of the statistics, I usually lose, based off of this month's statistics. And I'll also
+[1251s-1256s] stay away from any contracts that are under $2. So if contracts are too cheap, right, that usually
+[1256s-1260s] means they're way more out the money, or they're maybe a midcap. I'm going to look to stay away.
+[1260s-1265s] And I'm going to look to stick to that sweet spot, which is $2. For me, personally, right?
+[1265s-1270s] That $2 to $3 range is that sweet spot for me for Tesla as they talked about.
+[1270s-1273s] Right? It's usually one out the money. When you're one out the money, the contracts are going
+[1273s-1279s] to cost around $2.50 to $3. And that's that sweet spot for me, and that's when I have my best trade
+[1279s-1285s] entry. So in this case, right, I'm only looking to trade, take trades. When the contract prices are above
+[1285s-1292s] $2. In this case, as well, you can see right here in that profits I actually lost. $700 under $2.
+[1293s-1301s] Over $2 to $5, right, $6,000, and then over $5 to $9, and then making $6,000,
+[1301s-1306s] that's most likely under video. And then this is also very important as well. So you understand
+[1306s-1311s] the time, you understand the contract prices, you understand the day that you should trade as well.
+[1311s-1315s] This is also very important, right? This is where you get the statistics. So when you have
+[1315s-1321s] trades, it's something that's very automated, right? You have all these statistics that come together.
+[1321s-1326s] So you don't have to do it manually, but you don't have to go on to an Excel spreadsheet,
+[1326s-1331s] and calculate manually, or do it on a Google Docs. When you have the notion automation,
+[1331s-1336s] or you have any type of automation that helps you track all this stuff, it makes it so much easier.
+[1336s-1341s] So in this case, right, I'm looking at the tickers. And it tells me what type of tickers that
+[1341s-1347s] I actually traded. So in this case, my top tickers for January was Tesla. So Tesla, in this case,
+[1347s-1355s] I made most of my money on Tesla. You can see I ended up making $7,700 on Tesla. On an Q, I made $5,000
+[1355s-1363s] AMD. I made $4,500 and meta-endemic in $1,000. These were technically the only tickers I traded
+[1363s-1368s] all month. I actually ended up not taking any trades on the video during January. That's actually
+[1368s-1375s] very surprising. But you can see, based off of these symbols right here, it tells me what symbols
+[1375s-1381s] my most profitable. So you can see Tesla is by far the most profitable. So based off of these statistics,
+[1381s-1387s] I should mainly be focusing on Tesla. So this will help you understand what tickers you trade
+[1387s-1392s] best on right. And when you're the time, I trade my best on Tesla, in the video, AMD, those two
+[1392s-1400s] three tickers, right, I also trade NQ as well. So understanding these, understanding what tickers that
+[1400s-1404s] you're like to trade and understand the personalities will allow you to have a basket of stocks where
+[1404s-1411s] you can just focus on those baskets. So yeah, based off of these statistics, what can we
+[1412s-1418s] conclude? Based on the following statistics, what should I do? So after tracking all these
+[1418s-1425s] statistics, this is just for January. Based off of these statistics, I should be only trading
+[1425s-1431s] from Tuesday to Thursday. I should be trading between 930 to 11AM every single day.
+[1432s-1438s] Contracts that should be trading is over $2. I should mainly trade Tesla and the NASDAQ.
+[1438s-1443s] And every single risk amount should be less than $500 per trade. So this is just based off of
+[1444s-1449s] a little bit of statistics that were on trades. Obviously, there's a lot more statistics.
+[1449s-1454s] These are just the basic ones they have to get. These are just the basics, the
+[1454s-1460s] statistics that you just have to know. These are the main ones. There's obviously more detailed
+[1460s-1464s] ones. But these are the main ones. Understanding what time, understanding what day, understanding the
+[1464s-1469s] price, understanding the risk. This is the basic requirements for statistics. You guys can
+[1469s-1476s] die deeper into those smaller statistics. I think these are the main ones they have to look
+[1476s-1481s] out for. But just already understanding the days that you trade the best, the times that you
+[1481s-1485s] trade the best, the conscious prices, the ticker, symbols that you trade the best, and how much
+[1485s-1491s] you should risk per trade. It's already a lot of information. If you combine this with an actual
+[1491s-1499s] playbook that we talked about, this will really refine your trading system to become very profitable.
+[1499s-1505s] So these are based off my statistics in January of this year. Based off my other statistics from
+[1505s-1511s] the past couple years. So this is just based off one year. I have statistics for the past three
+[1511s-1516s] years of my trading. So my system is a lot more refined and I know exactly what I'm looking for on a day
+[1516s-1522s] to day basis. Maybe if you're a beginner, you're not going to have a bunch of statistics. These
+[1522s-1527s] all the statistics that I mentioned as well as based off of live actual trading. It's not back
+[1527s-1532s] test of results where sometimes it can be a little bit skewed because you already know what's
+[1532s-1536s] happening in hindsight. Where those statistics were based off of live results I traded in real time.
+[1536s-1543s] So I understand that all those statistics were based off of real time. So I have a very accurate
+[1544s-1549s] statistics that I can look back on and understand what I do best and then really refine my
+[1549s-1554s] system for me. So those are based off my statistics. You guys have to understand what works for you.
+[1554s-1557s] So you guys have to track your own statistics. You guys can do that as I talked about through
+[1557s-1563s] tradezilla. There's a bunch of free notion templates as well. You guys can do this through Excel.
+[1564s-1568s] There's a bunch of different things that you can look for when tracking statistics. But you
+[1568s-1574s] want to have this type of information where it tells you a time, by price and not they were
+[1574s-1579s] risking the actual ticker as that you have. These are just some of the basic things that you need
+[1579s-1587s] when recording statistics. So when you're recording statistics. And the reason being you want to
+[1587s-1592s] record and journal your statistics is because you want to be able to identify your strengths and
+[1593s-1597s] weaknesses. So when it comes to trading, knowing your strengths and weaknesses is a crucial
+[1597s-1602s] step to becoming a remaining a successful trader. It is a must to determine the key personality
+[1602s-1608s] trace that maximizes the impact of your strengths and minimize the potential harm caused by your
+[1608s-1614s] flaws. So everything, in trading, in business where you want to understand your strength and your
+[1614s-1620s] weaknesses and it's no different than in trading. So being able to track your statistics and track your
+[1620s-1623s] emotions right, you'll know what you're good at. Me personally, I'm good at momentum trading.
+[1623s-1629s] I'm good at understanding when things work in my favor right away. What I'm not good at is when I
+[1629s-1633s] trade the chop when I have no higher time frame bias, right? I can easily get chopped around.
+[1633s-1638s] So I know this right. I'm going to stay away on choppy days, right? At least I'm going to
+[1638s-1642s] try my best to stay away from choppy days. And how do I know it's choppy days based off statistics
+[1642s-1648s] understanding higher time frame bias? Understanding what days I don't like to trade what days I
+[1648s-1651s] lose money on right? Based off of the generous statistics right? I'm not going to be trading on
+[1651s-1655s] Thursday and Friday. Sorry, I'm not going to be trading on Monday and Friday because I lose money on
+[1655s-1660s] those days. I'm going to be trading Tuesday. One day Thursday. I'm going to be trading tickers.
+[1660s-1664s] Tesla. I'm not going to be trading names that I don't usually trade. I'm going to be trading
+[1664s-1669s] contracts that are above $2, right? Those are my strengths. My weaknesses are going to be trading
+[1669s-1674s] zero DTs underneath $2, right? When there's choppy markets when I'm trading tickers that I don't
+[1674s-1680s] know the personality on, right? You guys have to understand that you have to identify your own
+[1680s-1684s] strength and weaknesses. And I'm going to talk about that more in the next slide, which is a very key
+[1685s-1690s] book that I want you guys to read one of my personal favorite books. But this process is always
+[1690s-1697s] going to be different for every trader. Simply because each personality and each person has a different
+[1697s-1705s] characteristics and experience. So, recommendation is for one trader. So, thus essentially me
+[1705s-1711s] recommending you anything is going to differ between trader and trader. As I talked about every
+[1711s-1718s] single trader is different and me scalping, right? I'm primarily a scalper. Maybe you're not a scalping.
+[1718s-1723s] Maybe you like to look at higher time frames and you like to swing trade. So, maybe scalping's
+[1723s-1726s] not for you because things happen too fast. So, you have to understand what works for your
+[1726s-1731s] personality. Every single trader is going to have a different personality. Every trader is going
+[1731s-1736s] to have a different system. So, that's why you have to identify and work what works best for your
+[1736s-1740s] system and your personality. So, what works for some traders might not work for the others, right?
+[1740s-1746s] There's no one system that fits all traders. There's no one's strategy that works in all trading
+[1746s-1753s] conditions. So, you have to find out what really works best for you. And this brings me to one of
+[1753s-1759s] my favorite slides in this whole module is called the mental game of trading. So, if you guys don't
+[1759s-1764s] know what this is, this is based off of a book called the Mental Game of Trading. It's by Jared
+[1764s-1770s] Tender. Absolutely, amazing read. It really helped re-find my psychology and essentially helped me
+[1770s-1776s] understand that emotions are part of the game. So, as you guys know, whenever you hear people talk
+[1776s-1781s] about emotions when it comes to trading, a lot of the times people tell you that you want to be
+[1781s-1786s] as emotionless as possible. Obviously, you want to try and become emotionless as possible. But you
+[1786s-1790s] have to understand that emotions are part of the game. You're never going to not be emotional because
+[1790s-1796s] we're humans. Right? Emotions are part of the game. And the main thing is understanding what those
+[1796s-1800s] emotions are telling you. And that's really, really is hammered in this book. So, as you can see
+[1801s-1807s] right here what we have is the mental game. So, pretend the C game is when you're performing at
+[1807s-1811s] your worst. And a game is when you're performing at your best. And b game is really mediocre.
+[1811s-1819s] So, you really want to mark down how we're trading and what are personality traits are when we're
+[1819s-1824s] at our worst. So, in this case, when we're at our worst, right? This is the C game,
+[1824s-1829s] right? We're distracted, right? We're risk adverse, right? We're hesitating our entries.
+[1830s-1835s] We're forcing trades to overcome hesitance. No patience. Negative self-talk, self-doubt,
+[1835s-1842s] trading P&L. Right? This is all on the C game. Right? If you understand, and you have some of these
+[1842s-1847s] character traits when trading, right? You have self-doubt, you're trading your P&L. You have negative
+[1847s-1852s] self-talk. That means you usually in the C game. And right? And you don't really want to be in the C game.
+[1852s-1857s] You really want to be in the B game. Right? That's where you're even. Right? Sometimes you're going to be in the
+[1857s-1862s] C game. But you have to recognize it. And sometimes you're going to be in the A game. Not always
+[1862s-1866s] going to be in the A game. But you're not always going to be in the A game. So you have to
+[1866s-1873s] recognize where you're at in regards to the A B game. C game. And you have to decipher where you're
+[1873s-1878s] trading as accurately. And then based off of your your mental game, you're going to be wanting
+[1878s-1883s] to place trades. So when we're looking at the B game, right? What's happening in the B game? We're
+[1883s-1889s] maybe a little bit overthinking, tension to wrong market, right? Losing focus, missing obvious
+[1889s-1894s] trades. Look at P&L reacting slower, going against God. Right? So this is your B game. This is usually
+[1894s-1897s] where you're kind of at when you're trading, right? Majority of the time, you're going to be in your
+[1897s-1904s] B game. And then in your A game is when you're trading at your best. So your very relaxed, your decisive,
+[1905s-1910s] your patient on your setups, your confident and your trusting your God. So this is where you want to be.
+[1910s-1914s] Right? You want to try your best to be at your A game a lot of the times. Right? This is where you want to
+[1915s-1921s] your A plus setups. This is where you want to push the the floor to the this is where you want to push
+[1922s-1926s] on size, right? This is where you want to trade the best. When you're in your A game, right? When you're
+[1926s-1931s] in your B game, you're going to want to step a little bit back. You want to be making, you want to be
+[1931s-1937s] taking more scalps, right? You don't want to be over pushing it. And then when obviously you're in the
+[1937s-1941s] C game, right? You want to step back completely. If you know you're distracted, right? You know
+[1941s-1945s] your forcing trades? Right? There's no reason to be trading where you're in the C game. Right? When your
+[1945s-1949s] mental game is in the dumpster. Right? That's when you need to take a step back. That's where you
+[1949s-1953s] got to understand. That you want to have a mental reset. You want to try and get back into theB
+[1953s-1957s] game A game. Right? Whenever you're in the C game, you want to get back into the B game A game.
+[1957s-1961s] When you're in the A game, right? You want to stay there, right? You want to have that mental state
+[1961s-1966s] but when you're in the A game and you you understand that you might be slipping back into the
+[1966s-1966s] be game, right?
+[1966s-1970s] You want to take a step back and try and get back into the game.
+[1970s-1973s] So when we're talking about the mental game, right?
+[1973s-1977s] There's also tactical skills, which are things that you actually do.
+[1977s-1981s] So in this case, these are actions that you actually take.
+[1981s-1982s] So in your C game, right?
+[1982s-1983s] You keep chasing price.
+[1983s-1988s] You keep fading directional moves, cutting trades too soon, because I wanted to get paid.
+[1988s-1993s] Didn't follow law-slimant rules, making impulsive trades because I'm overreacting to one element.
+[1993s-1996s] Nothing without a plan for going price against me.
+[1996s-1997s] This is when you're in a C game.
+[1997s-1998s] This is when you're trading the worst.
+[1998s-2001s] If you keep chasing price, you keep fading directional moves.
+[2001s-2005s] Understand that you should not be trading because you're in your C game, your mental is
+[2005s-2010s] off, you're probably distracted, you're probably trying to force trades.
+[2010s-2012s] Where you want to be is in your A game.
+[2012s-2016s] Where you have a clear understanding of a context of a market as whole, clear understanding
+[2016s-2022s] of correlation with the NASDAQ, ES and Q, clear understanding of location price and where
+[2022s-2026s] we are on a chart, letting price come to me, seeing trap traders.
+[2026s-2028s] This is the A game, this is where you want to be.
+[2028s-2030s] This is where the A plus setup starts.
+[2030s-2033s] You want to try and be in your A game at all times.
+[2033s-2034s] Your B game, right?
+[2034s-2038s] Worst understanding of context and correlation, scalping for a two's takes, but not big trades,
+[2038s-2043s] not aware enough to sit out or pick my spots, cutting trades too soon, and not giving enough
+[2043s-2044s] room.
+[2044s-2048s] Too much attention to that, not really good read on volatility.
+[2048s-2051s] So as I mentioned, right, I'm a joy of the time when you're trading your good and
+[2051s-2055s] B in the B game, or you want to try your best to stick towards A game.
+[2055s-2058s] So if you're in the A game, you want to try your best to stay within the A game.
+[2058s-2062s] If you're in the C game, you want to try and get out of the C game as fast as possible,
+[2062s-2065s] back towards the B game, and back towards the A game.
+[2065s-2070s] So this is just a quick glimpse of the mental game of trading.
+[2070s-2073s] Obviously, these are already pre-filled though.
+[2073s-2076s] You guys want to go back and fill this out yourself.
+[2076s-2078s] So what does your A game look like?
+[2078s-2079s] Are you very relaxed?
+[2079s-2080s] Are you decisive?
+[2080s-2085s] Usually a lot of these are the same for most traders, but you go on to go back and make
+[2085s-2086s] your own spreadsheet.
+[2086s-2089s] So you want to make your own spreadsheet of what your A game looks like, your B game,
+[2089s-2092s] and you want to identify every single day coming to market open.
+[2092s-2094s] What are you feeling this morning?
+[2094s-2098s] You want to look at this maybe every hour or every two hours and to see what game you're
+[2098s-2100s] in, right?
+[2100s-2101s] Very important.
+[2101s-2103s] This is one of my favorite books, as I mentioned, right?
+[2103s-2106s] Mental game of trading by Jared Taylor.
+[2106s-2107s] You guys can read this.
+[2107s-2110s] You guys think the books on Amazon?
+[2110s-2112s] You guys can go read this.
+[2112s-2113s] Very good book.
+[2113s-2119s] I recommend this probably my top three favorite books for trading wise.
+[2119s-2125s] And this really brings me to just understanding different tips and tricks when it comes
+[2125s-2127s] to journaling and tracking statistics.
+[2127s-2129s] One being is screen recording.
+[2129s-2130s] So as you guys know, right?
+[2130s-2136s] I screen share every single day, my trade, what I'm looking at, just my trading view charts.
+[2136s-2137s] Right?
+[2137s-2140s] I've been doing this for almost two, three years now.
+[2140s-2141s] You can see here.
+[2141s-2143s] I used to stream to myself.
+[2143s-2148s] I used to stream all the way back in the start of February, right?
+[2148s-2149s] Even earlier, right?
+[2149s-2151s] I've been streaming for two, three years now.
+[2151s-2154s] And I used to stream live stream by myself, right?
+[2154s-2159s] This was just for myself for personal use to look back on to my trading and see where I was
+[2159s-2161s] streaming every single day.
+[2161s-2166s] I'm probably, I might release these live streams that were from a few years ago.
+[2166s-2169s] I might not probably not to be honest.
+[2170s-2173s] These are my live streams that I had from two years ago.
+[2173s-2176s] And you can see that I was screen sharing every single day.
+[2176s-2180s] So you can see right basically an hour, two hours of footage every single day.
+[2180s-2184s] And it just allowed me to go back and see exactly what I'm seeing in real time.
+[2184s-2185s] This is very important.
+[2185s-2189s] If you have the ability to be able to record your screen and have a webcam as well,
+[2189s-2193s] that's so crucial because it allowed you to see what you're looking at in real time.
+[2193s-2198s] And if you have a webcam, you can not only see yourself talking right with the audio.
+[2198s-2199s] You can also see your face.
+[2199s-2203s] So you can see visually how you're feeling during the trade and that's very important as well.
+[2203s-2206s] But this is a very cool snapshot way back in the day, right?
+[2206s-2210s] You can see these Tesla contracts were absolutely crazy back in the day, right?
+[2210s-2214s] You can see the contracts were around 15 because they're so expensive.
+[2214s-2216s] Pre-split on Tesla.
+[2216s-2218s] This was actually good to look back on.
+[2218s-2220s] I ended up making like $3,000 on the day.
+[2220s-2222s] You can guys can see this in real-count.
+[2222s-2224s] I've been doing this for a very long time now.
+[2224s-2226s] I was making $3,000 a day.
+[2226s-2228s] Obviously not every single day.
+[2228s-2229s] But this was a nice day.
+[2229s-2234s] All the way back like two years ago on Tesla, nice trade towards the upside right?
+[2234s-2238s] I tried a lot differently than I do now, but you can see how many executions I had on the
+[2238s-2239s] chart which is kind of funny.
+[2239s-2244s] But this is just an example of you guys want to be screen-sharing.
+[2244s-2245s] You guys see me do it.
+[2245s-2247s] I post my last sessions every single day.
+[2247s-2250s] You guys want to be screen-sharing yourself or you guys want to be recording your own
+[2250s-2253s] screens on OBS and then maybe uploading them to YouTube.
+[2253s-2258s] So you guys can always look back on it, which is very neat.
+[2258s-2264s] Another way to look back on is if you don't have tradezilla right, obviously tradezilla
+[2264s-2265s] now.
+[2265s-2267s] Some of you guys might not want to pay.
+[2267s-2268s] I think it might be like 50.
+[2268s-2271s] I'm not exactly sure how much tradezilla is a month.
+[2271s-2274s] But if you guys don't want to pay for tradezilla right, you guys can always do it on
+[2274s-2275s] Excel spreadsheet.
+[2275s-2276s] So this was me way back.
+[2276s-2280s] This was like four years ago and ended up this was when I first started trading.
+[2280s-2282s] I ended up losing money on this month.
+[2282s-2286s] But you can see I was tracking basically every trade I took right.
+[2286s-2291s] This, you can see I basically had every single trade that I took.
+[2291s-2295s] It was kind of annoying going on back then I was trading on CIBC.
+[2295s-2297s] I had to mainly track every single trade.
+[2297s-2299s] Very annoying and put them onto Excel spreadsheet.
+[2299s-2302s] So I'm glad that I have tools such as tradezilla now.
+[2302s-2306s] But back in the day, I was tracking these on Excel spreadsheet.
+[2306s-2307s] Hello annoying.
+[2307s-2311s] You can see right at just the summary of the P&Ls every single day where I would add them
+[2311s-2314s] up by myself right out.
+[2314s-2315s] The trade log is well.
+[2315s-2319s] But it didn't give me that much information because I didn't really track.
+[2319s-2323s] I just had all these numbers but I didn't do anything with these statistics.
+[2323s-2324s] But now there's automation right.
+[2324s-2328s] It gives you how much the best time of day right.
+[2328s-2330s] There's so much more information with tradezilla.
+[2330s-2334s] That's what's so cool about automation is that it basically tracks everything that you want
+[2334s-2335s] to know.
+[2335s-2338s] Whereas Excel spreadsheet right, you have to have a customized layout.
+[2338s-2342s] You probably have to pay for that as well or maybe even a notion does a very good job
+[2342s-2343s] as well.
+[2343s-2345s] I have these notion templates.
+[2345s-2348s] Some people have notion templates that you have to pay for.
+[2348s-2352s] But notion works just as good as tradezilla because it has insane amount of automation
+[2352s-2354s] that people just code into.
+[2354s-2358s] But it tells you so much more information where it's an Excel spreadsheet unless you
+[2358s-2361s] automate it yourself right, you're not really going to have too much.
+[2361s-2364s] But you guys can use Excel as well right.
+[2364s-2367s] There's no excuse not to track your trades if you don't have tradezilla.
+[2367s-2370s] You can always track it on Excel right.
+[2370s-2373s] Another thing is to always have a details journal.
+[2373s-2375s] So you can see in this case, this was way back in the day.
+[2375s-2380s] I'm not sure this probably was like three years ago.
+[2380s-2381s] I used to be on word.
+[2381s-2383s] So back in the day I was on word.
+[2383s-2386s] I used to have a detailed journal of what I was looking at.
+[2386s-2387s] You can see right.
+[2387s-2389s] This was just all in one day.
+[2389s-2393s] So if we go through this, I was going to the day.
+[2393s-2395s] Was cautious of the market, didn't really get up.
+[2395s-2396s] I didn't really trust Tesla got up.
+[2396s-2398s] I really really weird on 30 minute time.
+[2398s-2401s] I never got up over my supply, which was definitely interesting.
+[2401s-2405s] It seemed like such a hard spot to get above and it seemed like to just gap out of nowhere.
+[2405s-2408s] That was my pre-market plan coming into the day.
+[2408s-2411s] As I talked about, you want to have a pre-market plan coming into the day.
+[2411s-2412s] This was my pre-market plan.
+[2412s-2416s] Then you want to see how intraday price action was.
+[2416s-2421s] You can see I annotated all my pre-market plan and my intraday action.
+[2421s-2426s] As you can see right, such a detailed journal here, right, has so much information
+[2426s-2429s] I have the intraday commentary of the pre-market plan.
+[2429s-2433s] I have very detailed journal here, right all the way down towards what happened into
+[2433s-2435s] the intraday price action.
+[2435s-2439s] So so much detail on these journals here.
+[2439s-2441s] This is what you have to do in order to become successful.
+[2441s-2443s] You have to have these detailed journals.
+[2443s-2444s] You have to do this every single day.
+[2444s-2446s] I kind of slacked off.
+[2446s-2449s] I really stopped detailing in journal as much.
+[2449s-2454s] The main reason is because I have the trade recaps, so I don't really have to do too much
+[2454s-2455s] in-depth.
+[2455s-2459s] Especially when you're starting out as a beginner, you want to have these detailed journals
+[2459s-2463s] where you can look into them every single day where you can look back on to see how
+[2463s-2469s] you're performing and what you're actually looking at intraday wise.
+[2469s-2474s] Another cool tip is that you have to pretend that you have your own private disjoint.
+[2474s-2478s] This was a very neat tip that I had when I first started training.
+[2478s-2479s] I learned it.
+[2479s-2480s] I figured someone on to it.
+[2480s-2484s] I can't exactly remember where I got it from.
+[2484s-2489s] You really want to have your own, pretend you have your own trading discord.
+[2489s-2490s] You want to have a discord.
+[2490s-2492s] In this case, this was my private server.
+[2492s-2494s] This was back in 2022.
+[2494s-2495s] This was my private server.
+[2495s-2498s] What I had here was I had a bunch of different text channels.
+[2498s-2502s] I had the option shot, the general to do this, I had my game plan, I had some goals that
+[2502s-2506s] I had a couple of challenged things.
+[2506s-2511s] Trading in the zone notes, I had the trade journal, which is the options PNL calendar,
+[2511s-2514s] my method, which is a rule of strategy life.
+[2514s-2520s] I'll watch stats for the month ebooks, eulings, Twitter threads, flashcards, videos,
+[2520s-2522s] A plus setups, A plus setups on the higher time.
+[2522s-2527s] It's so many different types of channels here.
+[2527s-2529s] You can pretend that you're on Discord.
+[2529s-2532s] Your own private discord, where it's just to yourself.
+[2532s-2535s] You can put in your trade notes here.
+[2535s-2538s] You can put in your trade journal.
+[2538s-2540s] You can do so many things with Discord.
+[2540s-2541s] It's very powerful as well.
+[2541s-2543s] So you can track your own statistics.
+[2543s-2547s] Every single day you can post your own charts into your Discord and see what you're
+[2547s-2549s] thinking in real time.
+[2549s-2552s] Right, Discord is a very powerful tool.
+[2552s-2553s] It's free.
+[2553s-2554s] The main thing is free.
+[2554s-2556s] You guys can see here.
+[2556s-2558s] This is back in 2022.
+[2558s-2562s] I said on 23rd, this was what is that?
+[2562s-2566s] My junior favorite, March 21st, back in 2022.
+[2566s-2571s] I had my own mini private discord, where I was talking about some of my trades I took
+[2571s-2572s] that day.
+[2572s-2573s] I said not about day.
+[2573s-2574s] I had really no edge.
+[2574s-2576s] The whole day, market was trading in a range.
+[2576s-2577s] I had no edge on Tesla.
+[2577s-2580s] The trade that I did take on Tesla took me if you tried to work up because of my
+[2580s-2581s] good tank.
+[2581s-2582s] I'm getting paid.
+[2582s-2583s] Should honestly look to short.
+[2583s-2588s] Other stuff besides Tesla when I was strong.
+[2588s-2590s] You just want to have your own trading things.
+[2590s-2593s] As you can see in this case as well, you have different channels.
+[2593s-2596s] You can pretend it's your own.
+[2596s-2599s] In right here, where Tesla 8 Plus setups had these ones.
+[2599s-2600s] You marked out the one minute time for it.
+[2600s-2601s] It wasn't 8 Plus setups.
+[2601s-2603s] We're on the one minute time frame.
+[2603s-2608s] I'm basically in Marko, all the one minute time frames and all the potential retest I was
+[2608s-2609s] looking at for Tesla.
+[2609s-2612s] You can see in this case, this is all the way back in two years ago.
+[2612s-2615s] I was looking for basically the exact same strategy.
+[2615s-2617s] You can see right here on this chart, right?
+[2617s-2622s] Break of previous low, pre-market lows, retest, head towards the downside.
+[2622s-2624s] You can see I was still trading the break and retest here.
+[2625s-2631s] Push down right off the gates, right consolidation, down trying break, break below, retest
+[2631s-2633s] head towards the downside here.
+[2633s-2636s] Opening channel print, pre-market low, retest towards the downside.
+[2636s-2642s] So you can see I was tracking basically Tesla charts every single day.
+[2642s-2644s] That's what you have to do.
+[2644s-2648s] You can create your own private discord to pretend you're just talking to yourself.
+[2648s-2650s] Or maybe you can pretend you're talking to other people or other people.
+[2650s-2651s] I don't know, right?
+[2651s-2655s] You keep accountable because accountability is very important and you always want to track
+[2655s-2656s] yourself too.
+[2656s-2663s] So discord, you can organize it in very nice ways where you have channels, you have folders,
+[2663s-2664s] ready to have sections.
+[2664s-2665s] And it's very neat.
+[2665s-2669s] I love, I love discord personally.
+[2669s-2672s] What you have to understand is trading is hard, right?
+[2672s-2677s] So trading is one of the most difficult endeavors in the world.
+[2677s-2680s] You guys have to understand that you have to expect this to be difficult, right?
+[2680s-2681s] If it was so easy, right?
+[2681s-2684s] Everyone was doing, everyone would be doing this and it's not.
+[2684s-2688s] So there's a reason why trading is very difficult and 90% of people are coming into this
+[2688s-2690s] business fail because it is difficult.
+[2690s-2693s] And most people don't even do the bare minimum.
+[2693s-2697s] Again, to you, have to people in this room don't even journal in a daily basis.
+[2697s-2700s] They probably come in looking to take signals and that's about it.
+[2700s-2702s] They probably don't even track their own trades.
+[2702s-2706s] They don't even journal their own trades or most of you guys are not even going to put
+[2706s-2707s] in the work to become successful.
+[2708s-2709s] You're trying to look for handouts.
+[2709s-2711s] You're trying to look for these quick signals.
+[2711s-2714s] But even though, yeah, I don't want to keep ranked it.
+[2714s-2719s] But yeah, even though, if you don't put in the work to even journal whatsoever, you
+[2719s-2721s] don't put in the bare minimum, right?
+[2721s-2725s] Journaling and tracking statistics is just a bare minimum, right?
+[2725s-2726s] Everyone should be doing this.
+[2726s-2727s] There's no exception to it.
+[2727s-2730s] If you don't trade, if you don't track your trades in journal, right?
+[2730s-2732s] You're not going to be consistently profitable in the long term.
+[2732s-2736s] I don't care who you are or how smart you are or how much you think you don't need journal.
+[2736s-2737s] Right?
+[2737s-2738s] If you don't do this, you don't do the bare minimum, right?
+[2738s-2740s] You're not going to become successful.
+[2740s-2741s] And that's just facts.
+[2741s-2742s] Right?
+[2742s-2743s] I can guarantee that, right?
+[2743s-2745s] With 100% certainty.
+[2745s-2748s] Other things to mention, you want to be journaling at your trades.
+[2748s-2752s] You also want to be journaling your motions as well while in the trades.
+[2752s-2755s] So there's one thing about journaling your statistics.
+[2755s-2758s] But you have to understand how you're thinking during that trade as well.
+[2758s-2760s] So that's where journaling your motions comes as well.
+[2760s-2762s] That's where it comes into recording yourself.
+[2762s-2765s] You can also write down how you're failing in the trade.
+[2765s-2770s] But it's kind of difficult, especially if you're scalping it happens a lot quicker.
+[2770s-2772s] You might be in the trades in and out very quickly.
+[2772s-2776s] If you're swing trading, you can easily write down your motions while in the trade.
+[2776s-2780s] But when you're scalping when things are happening so quick, sometimes it can be hard to actually
+[2780s-2785s] track how you're feeling during your motions while during in the trade.
+[2785s-2787s] That's why you can record yourself if you have a webcam.
+[2787s-2792s] You can see exactly your reaction to your body language to actually how you're speaking
+[2792s-2794s] your tone and the trade.
+[2794s-2794s] That's very important.
+[2794s-2797s] That's where journaling comes in.
+[2797s-2800s] And when you have to understand, it's that you have to be patient.
+[2800s-2803s] Being patient is one of the biggest things when it comes to trading.
+[2803s-2807s] And also when it comes to life, a lot of things take time.
+[2807s-2811s] You have to understand and think in terms of years and not days.
+[2811s-2813s] Trading is all about the long term.
+[2813s-2817s] The name of the game and trading is being able to survive.
+[2817s-2820s] The people that trade the longest are the people that succeed.
+[2820s-2823s] You have to think in terms of years and not days.
+[2823s-2824s] You have to think it.
+[2824s-2827s] Yeah, you have to think in terms of years and not days.
+[2827s-2830s] You have to think long term vision and where you want to be.
+[2830s-2834s] If you can't picture yourself trading a year from now and you're only looking for that
+[2834s-2837s] quick money, you're only in trading just to make money.
+[2837s-2840s] Most likely you're not going to be trading within a year.
+[2840s-2843s] So I've been trading for almost five plus years now.
+[2843s-2844s] Right?
+[2844s-2845s] It didn't come overnight.
+[2845s-2847s] Took me two years.
+[2847s-2849s] They almost two years to become profitable.
+[2849s-2851s] And even then, it very difficult.
+[2851s-2854s] I was basically looking at the charts as a back test thing.
+[2854s-2855s] I was trading.
+[2855s-2856s] I was on the screens all day every day.
+[2856s-2860s] So for me, personally, it took two years and I was sitting at the screen basically every
+[2860s-2866s] single day for like two years straight for over 10 plus hours a day.
+[2866s-2871s] So it took me a very long time to understand that trading is difficult.
+[2871s-2873s] It's hard, but that's why we're here.
+[2873s-2878s] So we can help teach you guys and guide you guys in the right direction.
+[2878s-2881s] That brings me to module a conclusion.
+[2881s-2884s] So after this conclusion, you guys should understand different types of setups that we
+[2884s-2885s] look for.
+[2885s-2890s] The playbook and how to create one, back testing, why it's very important when it comes
+[2890s-2893s] to back testing, journaling and tracking statistics.
+[2893s-2898s] If you guys enjoyed that module, or if you guys have any questions, always leave them in
+[2898s-2898s] the discord.
+[2898s-2900s] Yeah.
+[2900s-2900s] Hope you guys enjoyed that.
+[2900s-2902s] I'll see you guys next module.
+[2902s-2902s] Peace.

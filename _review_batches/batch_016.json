@@ -1,0 +1,942 @@
+[
+  {
+    "channel": "trading-floor",
+    "id": "1424755957111455755",
+    "ts": "2025-10-06T13:51:30",
+    "author": "Markellwhite16",
+    "content": "SNIPER entry on NVDA waiting for this pull back long , good way to start the week.",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "NVDA",
+      "SNIPE"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1425125827699409049",
+    "ts": "2025-10-07T14:21:14",
+    "author": "Blessed_trades",
+    "content": "Question, I got Apple 257.5 calls that expire Friday, and I held some from last week when I bought thinking that Apple would hit Ath this week, but obviously that hasn\u2019t happened. Should I just cut my losses and sell or hold on to see if Apple can go up",
+    "score": 3,
+    "categories": [
+      "should-judgment",
+      "ticker-action"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1425303623088214056",
+    "ts": "2025-10-08T02:07:44",
+    "author": "305 Trader",
+    "content": "Here is a really sinple method I use as an options trader for scalping,\n\na)- What is the max loss per trade I am willing to accept today given my account size?\n\nb)- when the set up is forming, I watch where my TPs are, I take a TP1 and also the ultimate, TP1 to me should be 1:2, the ultimate is whatever it can be. Understand this is a super conservative  (but game changer) approach. \n\nc) - Here is the science, what is the underlying (real stock) $cents size of the most realistic stop loss (not an arbitrary one)??\nd)\nFormula: \n\n c) x contracts number x 0.5 = a). \n\nExample : Stop loss measures  25 cts of stock value. \nMax loss per trade is $50\nFactor is 0.5\nSo,\n25 x 0.5 = 12.5\n$50 / 12.5 = 4 contracts. \n\nThat is your contract size to lose $50 as per your measured stop loss (as long as you exit when it says so). \n\nthen, \n\nYour RvR  ratio to TP1 is 1:2\nSo,\n\nYou have to measure  and find 50 stock value cents to TP1 to enter the trade.\n\nNotice I measure 1:2 RvR to TP1, yes I know this is conservative, but not really cause you are only interested anyways in a  small stop loss, so provided this is what you look for, a RvR to TP1 of 1:2 is realistic and it will occur often. \n\nHope this helps, with this method you will be more focused on the  size of your stop loss rather than % of your account to discard set ups that are not winners in what you need: Lower risk",
+    "score": 2,
+    "categories": [
+      "pnl-mention",
+      "ticker-action"
+    ],
+    "tickers": [],
+    "reply_to": "1425207886342131814"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1425579353944756254",
+    "ts": "2025-10-08T20:23:23",
+    "author": "Royal191",
+    "content": "Hi there, we are a learning community first. There are a lot of educational content in here including the accelerator course which is not available on youtube or anywhere else. I would highly recommend you spend some time going through the videos. Feel free to skip the beginner stuff if you like. There are also trade reviews and weekly sessions at your disposal. The live trading is for you to see in real time how the strategy is executed and learn in real time as well. You can follow along and potentially take the same trades as Jack and Tony as they are pretty clear when and why they are entering a trade. They call out which name they are looking at and the levels. But you do need to learn the entry models so you can execute yourself and have a good entry with a better risk to reward. IF you are waiting to hear them say they enter then you will always be a few seconds late which can make a big difference since we are trading momentum and some of these moves happen quickly.",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [
+      "IF"
+    ],
+    "reply_to": "1425576864423870526"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1425854578636755046",
+    "ts": "2025-10-09T14:37:02",
+    "author": "JMURR",
+    "content": "I should have held my NVDA swing today I sold it yesterday \ud83d\ude43profit is profit still happy with it",
+    "score": 2,
+    "categories": [
+      "should-judgment"
+    ],
+    "tickers": [
+      "NVDA"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1427709557475381468",
+    "ts": "2025-10-14T17:28:04",
+    "author": "Lauren (lakatrades)",
+    "content": "I took a trade on NVDA this morning and have been reviewing it looks like AMZN would\u2019ve been a solid trade to take around noon EST today. (Reversed PDL BNR)",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "ticker-action"
+    ],
+    "tickers": [
+      "EST",
+      "NVDA",
+      "PDL",
+      "AMZN",
+      "BNR"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1428393833217134775",
+    "ts": "2025-10-16T14:47:08",
+    "author": "EAria",
+    "content": "Good entry and scalp. Thank you.",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": "1428388762131370066"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1428439888277012500",
+    "ts": "2025-10-16T17:50:08",
+    "author": "NachoHari",
+    "content": "Personally I am a student and I also got a job, so we're on the same page. I think there are still some good setups to trade after 11. And the strategy will be based more on supply & demand zone. You can look into this from Neto's videos, they are very helpful",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": "1428435299804909659"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1428447802857357403",
+    "ts": "2025-10-16T18:21:35",
+    "author": "Dora",
+    "content": "Yes, I swing trade on occasion. I think it's easier because I usually have more conviction and I'm buying the options that expire much later. The DTE I enter depends on how long I think it will take the trade to reach my goal. Not sure of tutorials. On the daily chart in TradingView, using market structure info, I draw out those \"long position\" or \"short position\" tools to mark my stop loss and target. I usually enter into long (call) swing positions after a good company has had a bad day (fell by a lot), then start to go back up. This past year, I've swung ABBV, MELI, and LLY (most recently). I usually swing calls and seldom shorts.",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "ABBV",
+      "DTE",
+      "MELI",
+      "LLY"
+    ],
+    "reply_to": "1428444593644376084"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1428749757689368619",
+    "ts": "2025-10-17T14:21:27",
+    "author": "Jonathan",
+    "content": "What a beautiful move to upside on TSLA and NVDA",
+    "score": 2,
+    "categories": [
+      "adj-trade"
+    ],
+    "tickers": [
+      "TSLA",
+      "NVDA"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1428873254571081748",
+    "ts": "2025-10-17T22:32:11",
+    "author": "Syd",
+    "content": "\u201cThe best traders aren\u2019t afraid. They aren\u2019t afraid because they have developed attitudes that give them the greatest degree of mental flexibility to flow in and out of trades based on what the market is telling them about the possibilities from its perspective.\n\nAt the same time, the best traders have developed attitudes that prevent them from getting reckless.\u201d - Mark Douglas",
+    "score": 4,
+    "categories": [
+      "adj-trade"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1430570957201997928",
+    "ts": "2025-10-22T14:58:14",
+    "author": "Day_don",
+    "content": "Right, it was a perfect entry. It went down too fast to get a fill for me",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": "1430566825661562910"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1430952718750715964",
+    "ts": "2025-10-23T16:15:13",
+    "author": "Clem",
+    "content": "Thanks for providing me an answer, but Im pretty sure that he said he took a little off at HOD range, maybe 10~20%ish, he also said that he scaled more on last Friday's lows which was a key level, probably where he scaled off a good chunk of his position, 50% maybe?, than probably scaled more on pops and whole psych levels and left 10cons (trailers) for PDL and higher?  The amount that he scaled at each key levels are just my assumptions.  As im personally struggling with scaling and R:R, im just curious and wanna know where and how he did his scales so i can learn more about it",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "HOD",
+      "PDL"
+    ],
+    "reply_to": "1430945539058307073"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1432392411140722760",
+    "ts": "2025-10-27T15:36:03",
+    "author": "Royal191",
+    "content": "This could have been a good entry to watch for on the 5 min if it pulled back.  It moved up too far already for a pullback now. I wouldnt FOMO into anything at this time <@1073417975002054726>",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [
+      "FOMO"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1432434083429879832",
+    "ts": "2025-10-27T18:21:38",
+    "author": "LifeWithMikey",
+    "content": "Couple late entries which led me to lose more % wise than I wanted to and basically its just been the trades not working out. Last week I took a big L on one of the NVDA trades and I didn't have the balls to reenter on the 84% and it worked out. Today on the TSLA trade (TSLL for me) I just cut it too early cause I had a zoom meeting for work. So today and that NVDA trade last week were on me due to fear and other circumstances, but the other 4-5 trades just didn't work out. Pretty much a bad luck streak.",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "TSLA",
+      "NVDA",
+      "TSLL"
+    ],
+    "reply_to": "1432432379754053692"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1432436791331524759",
+    "ts": "2025-10-27T18:32:24",
+    "author": "Jonathan",
+    "content": "All losses teach something. If that NVDA trade still showed a 84% rule after losing a good chunck of % why would you enter again? Personally to me, even if the 84%rule shows itself if my loss has reached a point where i can't mentally handle. I do not enter and just wait for tomorrow. So you not entering that 84% trade can help you depending on how you see it or put into perspective. You already took a big L. Could you have handled another L if that 84%failed? \nIts good to disect every single loss trade and why they failed. \nWhat was your bias on the past trades you took? Calls or puts?  Ask yourself which ones favored you and which ones didn't. Calls,puts,tickers, time frames, even trading days. All those losing trades mean something about your psychology while trading.",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "NVDA"
+    ],
+    "reply_to": "1432434083429879832"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1434932923202801725",
+    "ts": "2025-11-03T15:51:08",
+    "author": "Jonathan",
+    "content": "<@467193380456235018> I get you man. I'm on the same boat. As long as you can comeback tomorrow not holding what today represents, you will comeback stronger. \nEvery losing day is a lesson. Digest it and move on, add it to your journal. \n\nNvda was not optimal today. Stuck in 5M Range. Qqq also pushing weaker. Only possible good exit was HOD after PMHR which is what I took and lost in the end. My bias was upside so this loss doesn't deviate from my edge. Learn from today and move on.",
+    "score": 4,
+    "categories": [
+      "adj-trade",
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "PMHR",
+      "HOD"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1435474323208146965",
+    "ts": "2025-11-05T03:42:28",
+    "author": "BillyBob Joe",
+    "content": "The indexes seem harder to me and Tony/ Jdub dont trade them much as not as volatile or manipulatable by \"the Bigs\". You need to just sit and listen to premarket explanation and the watch/listen to live trading EVERY DAY. And you paid to be here so listen to what they say... Watch the videos explaing the strategy... SEVERAL TIMES. To be successful, My opinion is you have to accept whatever stratgy as YOURS! it's Tony's when he's trying to teach you but YOURs when your money is driving.  Just do all the work and they money will follow... thing Tony says that often. Good Luck, system is proven... I've added a couple additional things to make it mine and have had to losing days in last 2 weeks... no more than 2 losses/ ticker /day! then done! I count <$.10 win as a loss (market not acting right?). Havent had any homerun days and only trading 1 con. average win >$100. but very consistent! Learning original strategy is the deal! Then try to learn scaling out, as thats where the biggest money is. Keep on keepin' on and good luck.",
+    "score": 2,
+    "categories": [
+      "pnl-mention",
+      "polar-term"
+    ],
+    "tickers": [
+      "TIMES",
+      "EVERY",
+      "YOURS"
+    ],
+    "reply_to": "1435322627467247747"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1435650406213484674",
+    "ts": "2025-11-05T15:22:09",
+    "author": "Patel_Trades",
+    "content": "Super angry with myself. Got FOMO after that SPY move up and then made a series of emotional/ bad trades. I really hate this feeling of 1 step forward 2 steps back! So annoying! Down $400. I. Am. Stupid.",
+    "score": 4,
+    "categories": [
+      "adj-trade",
+      "pnl-mention",
+      "polar-term"
+    ],
+    "tickers": [
+      "FOMO",
+      "SPY"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1436009989067243530",
+    "ts": "2025-11-06T15:11:01",
+    "author": "Patel_Trades",
+    "content": "Another tough day. Down $360. I thought the BNR of the PML was a good entry. Got stopped out hard shortly after. Took another chance and made back a small profit, but what really hurts is that if I was present in the second trade, I could've made it all back plus more. Just gave ALL of October's profits back in two trading days. I've been doing this daily since August 1. I joined the group on Sept. 20. I am grateful for the lessson and community! Why do I take a big loss, but can't hold the trade, especially when it moves back my way in spades? I will live to trade another day. But man these two days are a pain in my butt. I got my wisdom teeth out last week and have been sleeping like shit, maybe that has been apart of it too. I won't stop learning, but man o man. I get very angry with myself, it's a negative feedback loop. Need to figure out a way to channel this energy into a positve. Thanks for reading \ud83d\ude42",
+    "score": 5,
+    "categories": [
+      "adj-trade",
+      "pnl-mention",
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "PML",
+      "BNR"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1436397129580019852",
+    "ts": "2025-11-07T16:49:22",
+    "author": "jwolfe29",
+    "content": "I finally got around to getting Tradezilla, moving over from a more basic P&L tracker. It is confirming what I suspected. I am taking good trade setups, but really need to focus on the risk management/ following my game plan piece.  Based on the stats, I'm letting my losers go past my SL and not letting the winners hit my targets. I'll have to get into more backtesting to build confidence in my executions.",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [
+      "SL"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1436457064191758467",
+    "ts": "2025-11-07T20:47:32",
+    "author": "jayjonbeach",
+    "content": "Good move, anyone struggling should seek a mentor",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1437521869174603869",
+    "ts": "2025-11-10T19:18:41",
+    "author": "DavidG389",
+    "content": "I saw a break and retest.  I bought $621 contracts when QQQ's were at $620.40 then think or swim went down and I could not sell contracts and it was rejecting good order instructions.  Then when they agreed that I sould of been able to get out of the trade at a profit did change the trade price and give me a fill at bad prices.  I fought with them until they agreed they had good order instructions and just failed to execute.  They are working with the back office to try and fix it but it was a fight. Even when I am supposed to win I loose.  LOL",
+    "score": 2,
+    "categories": [
+      "pnl-mention",
+      "polar-term"
+    ],
+    "tickers": [
+      "LOL",
+      "QQQ"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1437814987371315262",
+    "ts": "2025-11-11T14:43:26",
+    "author": "Jonathan",
+    "content": "APPL PMHR was perfect entry. \nIM OUT OF BP FROM YESTERDAY SO I CANT TRADE LOL. \nSee yall tomorrow!\n\nVeterans Day today.",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [
+      "SO",
+      "PMHR",
+      "TRADE",
+      "BP",
+      "CANT",
+      "APPL",
+      "FROM",
+      "OF",
+      "LOL",
+      "IM"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1440034265394974793",
+    "ts": "2025-11-17T17:42:03",
+    "author": "Jai",
+    "content": "best moves are at the start of the session, which is part of the strategy. Jack and Tony hold partials for not enter into any trades later on in the session. Its tempting to jump back in, however the way it moves later on in the session is very different and more challenging",
+    "score": 2,
+    "categories": [
+      "adj-trade"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1440125336103948460",
+    "ts": "2025-11-17T23:43:56",
+    "author": "Neto Moreno (Performance Coach)",
+    "content": "Those were the good old days of $8-12 pullbacks",
+    "score": 2,
+    "categories": [
+      "pnl-mention",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1440342298939621498",
+    "ts": "2025-11-18T14:06:04",
+    "author": "Nines",
+    "content": "scale down as u go, amd is my main watch personally, but tsla doesnt look bad as well, i just dont like shorting it as much because we just took out a major liquidity last week so i wanna let it see what it wasnts to do but it does look nice for a short",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": "1440340765627645983"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1440373836288884881",
+    "ts": "2025-11-18T16:11:23",
+    "author": "Limitless",
+    "content": "Trading is very hard is not easy I\u2019ve been in this trading thing for 4 years \ud83d\ude02 on and off but I take long breaks when I do so\nPlus I don\u2019t start with huge accounts \nOnly around $500-1000",
+    "score": 2,
+    "categories": [
+      "pnl-mention",
+      "ticker-action"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1440534121511125024",
+    "ts": "2025-11-19T02:48:18",
+    "author": "Dan Grand",
+    "content": "Hey everyone, I wanted to share something important that I realized about my trading journey, and I\u2019m hoping to get some guidance and support from the community.\n\nBack in August, I had an amazing month trading options \u2014 one of my best ever. That gave me the confidence to try trading with real money. My first week was +$800, the second week I lost -$1000, and that\u2019s when I realized I didn\u2019t truly understand risk the way I thought I did. I stepped back and tried futures for a while, but trading futures alone without a mentor has been difficult. Watching YouTube isn\u2019t enough when you don\u2019t have someone to ask real questions.\n\nAnd now, after thinking deeply, I\u2019ve decided not to give up on options. I want to continue trading options seriously, because this is the environment where I feel the most support and structure, and where I\u2019ve already seen my best results. I just want to do it the right way this time.\n\nOne big realization I had is this:\n\nI can follow rules.\nI can take clean entries.\nI can respect my stop.\nI can let my trades hit either TP or SL.\n\nBut what I cannot do well yet is read the higher-timeframe context and understand when the market wants to move long and when it wants to move short. That\u2019s the piece I\u2019ve never deeply worked on.\n\nSometimes I take a valid entry according to my rules, but I\u2019m trading it completely against the larger direction \u2014 while some of you or the mentors are actually looking for trades in the opposite direction because of context. This made me realize I\u2019m not just \u201cpressing buttons.\u201d I\u2019m missing a whole dimension of the market.\n\nSo as I return to trading options, I really want to improve this part of my trading.\nIf anyone can share advice or help me build a simple, structured plan for learning how to read higher-timeframe context, it would mean a lot.\n\nThanks in advance for any support or suggestions. I appreciate this community and I\u2019m ready to grow properly this time.",
+    "score": 3,
+    "categories": [
+      "pnl-mention",
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "SL",
+      "TP"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1440709479153930364",
+    "ts": "2025-11-19T14:25:06",
+    "author": "Nines",
+    "content": "the market is bearish so be cautious on the longs, the best trades is when ur aligned with nasdaq like yesterady on amd",
+    "score": 2,
+    "categories": [
+      "adj-trade"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1440800950838100058",
+    "ts": "2025-11-19T20:28:35",
+    "author": "Bhargav",
+    "content": "After experiencing a massive drawdown in August, September, & October, I lost around $8000. So I decided to sit back and take a break. While I took the break, I went all in and backtested the system and developed my psychology, and saw some great results. First, I backtested the strategy on QQQ ( 3 Months Data ), and then I tested it on NVDA ( 3 Months Data ). Then, looking at the data, I understood the way I traded and what works for me. \n\n\nSo I started again on the 12th of November with $500 and already grew my small account to $5448. Only traded 5 days and took 1 trade a day, that\u2019s it, and you can see the results.",
+    "score": 2,
+    "categories": [
+      "pnl-mention",
+      "ticker-action"
+    ],
+    "tickers": [
+      "QQQ",
+      "NVDA"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1440805343692329000",
+    "ts": "2025-11-19T20:46:02",
+    "author": "daling \ud83d\udcb8",
+    "content": "Thats awesome bro, are u taking your own or following Tony and Jack ? Also with $500 how long you scale it to 5k?",
+    "score": 2,
+    "categories": [
+      "pnl-mention",
+      "ticker-action"
+    ],
+    "tickers": [],
+    "reply_to": "1440800950838100058"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1441087579880427581",
+    "ts": "2025-11-20T15:27:33",
+    "author": "EeveeWinter",
+    "content": "It moved but not a lot. And it\u2019s already back to ranging. My worst trades this year have been Apple. I try and avoid it at all costs unless I see a clear trade. Today was clear, but took Tesla instead",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "ticker-action"
+    ],
+    "tickers": [],
+    "reply_to": "1441084865410760727"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1441173409839976560",
+    "ts": "2025-11-20T21:08:36",
+    "author": "Limitless",
+    "content": "He took his account to $980k from $15k",
+    "score": 2,
+    "categories": [
+      "pnl-mention",
+      "ticker-action"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1441473513322975432",
+    "ts": "2025-11-21T17:01:06",
+    "author": "Limitless",
+    "content": "3rd trade he took was good AMD  for me but I didn\u2019t hold thru that $2 move up and down",
+    "score": 3,
+    "categories": [
+      "pnl-mention",
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "AMD"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1442170682837307442",
+    "ts": "2025-11-23T15:11:25",
+    "author": "305 Trader",
+    "content": "its amazing to learn that we all fall in similar mistakes, as if our brain is wired in a similar way no matter how long we have been in this journey of trading.",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1442962896966516840",
+    "ts": "2025-11-25T19:39:23",
+    "author": "Jai",
+    "content": "i should have held for longer till 2R or more, however i thought if it turns around on me, then i will walk away with no profit. My issue is that i dont hold onto the winners for longer",
+    "score": 2,
+    "categories": [
+      "should-judgment"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1443348220641280010",
+    "ts": "2025-11-26T21:10:31",
+    "author": "Hayden",
+    "content": "Sure \ud83d\udc4d \n\nTruth is, numbers alone don\u2019t show the full story. They don\u2019t show the bad trades I passed on, the discipline it took to sit on my hands, or the weeks where protecting capital mattered more than making it. Mostly important is the reasons why \n\nP&L can create the wrong focus, invite comparison, and push people into forcing trades just to \u201ckeep up\"\n\nBut I also believe in transparency. Everyday I do coaching and talk about my setups / PNL / scaling and why I didn't take trades. If you really want something that's going to help, those sessions and thoughts will go a lot further than numbers will \ud83d\ude05",
+    "score": 4,
+    "categories": [
+      "adj-trade",
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "PNL"
+    ],
+    "reply_to": "1443318194776313918"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1443377812906971246",
+    "ts": "2025-11-26T23:08:07",
+    "author": "Huy",
+    "content": "I\u2019m digging this. I aspire to do something like this. What I noticed is you just take one good trade on most days and rarely 2 trades. This tells me you only take when the setup is an A+ one. \ud83d\udc4f",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": "1443348220641280010"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1443441342620373124",
+    "ts": "2025-11-27T03:20:33",
+    "author": "Hayden",
+    "content": "For me, I generally risk anywhere from $600\u2013$900 per trade and aim for $1,200\u2013$1,500+ per win at minimum. My position size usually sits around the $8k\u2013$12k range\n\nIt definitely wasn\u2019t always like this though. I spent a long time consistently risking $50 to make $100. Slow, steady growth and scaling the account over time is really the only sustainable way to do this \ud83d\udc4d",
+    "score": 2,
+    "categories": [
+      "pnl-mention",
+      "ticker-action"
+    ],
+    "tickers": [],
+    "reply_to": "1443413747686445078"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1443990298957971648",
+    "ts": "2025-11-28T15:41:55",
+    "author": "jwolfe29",
+    "content": "I took 2 trades today with next week expiration. TLSA and AMD. TSLA was a $77 loss with one contract. The positive was that I didn't sell early and respected my stop loss, so it was a loser but I followed my plan. With AMD, I took one contract with next week expiration and sold on the HOD pop. The price only moved $10, so that was a sign to shut down my broker and enjoy the weekend.",
+    "score": 2,
+    "categories": [
+      "pnl-mention",
+      "ticker-action"
+    ],
+    "tickers": [
+      "TLSA",
+      "TSLA",
+      "AMD",
+      "HOD"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1445443286700396616",
+    "ts": "2025-12-02T15:55:34",
+    "author": "Benny Stax",
+    "content": "the SPY short squeeze over $681.50 was a thing of beauty",
+    "score": 2,
+    "categories": [
+      "pnl-mention",
+      "ticker-action"
+    ],
+    "tickers": [
+      "SPY"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1445760912786067619",
+    "ts": "2025-12-03T12:57:42",
+    "author": "Nines",
+    "content": "no i dont see a good short imo, your tying to call a top in a bullish market you dont do that, you can find success in doing that sometimes but most of the time it will not work. now i do see what u mean but if i were to short apple i would want to see a clear rejection on a 1h time frame, a rejection on a 1 min time frame will just trap u",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": "1445727650302918658"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1445777944474685673",
+    "ts": "2025-12-03T14:05:23",
+    "author": "Nines",
+    "content": "meta looks good for a short",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1445777978964312278",
+    "ts": "2025-12-03T14:05:31",
+    "author": "John H",
+    "content": "Good I'm short and been on the pain train to the upside. lol",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1445809730609090570",
+    "ts": "2025-12-03T16:11:41",
+    "author": "Hugo Comte",
+    "content": "Two losses today, worst day since october for me.\n\nthe loss on amd is a cumulation of late entry and execution mistake on my first TP which i missed for a couple of second.\nthe AAPL loss , i think the trade was still valid as we saw the past day some great move developing after open consolidation but unfortunately didint work.",
+    "score": 2,
+    "categories": [
+      "adj-trade"
+    ],
+    "tickers": [
+      "AAPL",
+      "TP"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1445811542032650251",
+    "ts": "2025-12-03T16:18:53",
+    "author": "Limitless",
+    "content": "I almost got destroyed on tsla short I accidentally entered when I was trying to enter long \nThe tos broker sometimes I click right side \ud83d\ude02 this is the second time i did\nBut I cut it right away but knowing how tsla moves I was down $100 when I cut",
+    "score": 2,
+    "categories": [
+      "pnl-mention",
+      "ticker-action"
+    ],
+    "tickers": [],
+    "reply_to": "1445809730609090570"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1446157567406510192",
+    "ts": "2025-12-04T15:13:52",
+    "author": "jwolfe29",
+    "content": "I messed up a great trade opportunity today. I had a great entry on TSLA with 3 cons. The plan was to take of 2 on the pop, but instead of hitting sell, I hit buy. After that, I panic sold as soon as I saw green. Could have been worse, but only up $67 on the day.",
+    "score": 6,
+    "categories": [
+      "adj-trade",
+      "pnl-mention",
+      "ticker-action"
+    ],
+    "tickers": [
+      "TSLA"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1447618890913022174",
+    "ts": "2025-12-08T16:00:39",
+    "author": "Jai",
+    "content": "im an idiot, i was in a TSLA short, and because i thought it was gonna reverse i took profit. I should have waited for it to break market structure. Missed out big time, this would have been that one good trade for the month",
+    "score": 4,
+    "categories": [
+      "adj-trade",
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "TSLA"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1447622875703148680",
+    "ts": "2025-12-08T16:16:29",
+    "author": "Limitless",
+    "content": "You know what I have realized that it\u2019s so hard to trade and make money \nWe as traders can make $100-200 in a very short amount of time think of trading as business",
+    "score": 2,
+    "categories": [
+      "pnl-mention",
+      "ticker-action"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1447623097086771210",
+    "ts": "2025-12-08T16:17:21",
+    "author": "Limitless",
+    "content": "I took my $1000 to $5k",
+    "score": 2,
+    "categories": [
+      "pnl-mention",
+      "ticker-action"
+    ],
+    "tickers": [],
+    "reply_to": "1447623015113425069"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1448401190118359052",
+    "ts": "2025-12-10T19:49:13",
+    "author": "Joebag009",
+    "content": "Making fat bank on qqq scalps but my bp is up, at this point in the speech single calls and only risking portion of profit, I can't read the chart for scalps now, need to wait for market to show its hand. 280 profit and 52 stop losses, not bad. Was not expecting terrible call liquidity on all dates except today's around FOMC. I usually trade further out once we are past 10 am. Less spicy option would have been to trade Tqqq/Sqqq for longs/shorts or training wheels: pure QQQ stock which is what I did the first couple anouncements I traded, when I was wrong it was much more forgiving, and sized so that I could wait it out. Also, at the end of the day, size position so a big hit does not wreck your account or recent profits. This is high reward and high risk trading, one day it will bite you the wrong way and can't risk  much on these trades.",
+    "score": 4,
+    "categories": [
+      "adj-trade",
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "FOMC",
+      "QQQ"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1448444681930281061",
+    "ts": "2025-12-10T22:42:02",
+    "author": "Joebag009",
+    "content": "He didn't really say all that much, but markets are juiced and react off of anything as they digest the rate cut. Best guess is that the huge green initial candle was when the rate cut was confirmed, then whipping around because of market dynamics and because they reacted to how close the vote was and stuff he said about job numbers and that the rate cut might not be good for the economy-market hears: might have bad economic indicators short term and a rate pause or hike medium term, over the next few sessions we will see consolidation, but what I'm waiting to see is how long that will take, could be one session or a week as things go up and down before the next big news hits whatever that may be. Best I could tell 623.50 from last week was a key level today and the previous ath was a magnet that we may now fall back down toward",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": "1448400029093199882"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1449055826043080887",
+    "ts": "2025-12-12T15:10:31",
+    "author": "Limitless",
+    "content": "Turn off the desktops if you already made good trades",
+    "score": 3,
+    "categories": [
+      "adj-trade",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1449201919858970685",
+    "ts": "2025-12-13T00:51:02",
+    "author": "Dan Grand",
+    "content": "What a great day it was here in the chat \ud83d\ude02\nLet\u2019s switch the subject \ud83d\ude09\n\nI want to share how this month is going from my side.\nI am BE!\n\nFrom green to zero \u2014 and I actually feel great. Why? Because I feel the progress I\u2019ve made since the moment I found Tony on YouTube and joined this community. I\u2019m still developing my edge, but I stick to my rules. My progress has really accelerated since I got here.\n\nBefore I met Tony, I was coming to the charts without really understanding what I was supposed to do. What was my strategy at all? \ud83d\ude02\nI was hoping the 20 SMA would tell me which button to press \ud83d\ude02\nNow I\u2019m kind of laughing when I think about the early days of my journey.\n\nI went through two mentorships and never even saw their performance\u2026 not sure why I chose them. Probably because they were posting charts and adding +$$$$ amounts to their stories every single day. As a new player in the industry, that consistency made me believe them.\n\nNow I understand what I\u2019m actually looking for. I have a clear strategy, and I feel like I\u2019m in the most important stage of the process \u2014 the BE stage.\nThis is where mistakes happen, sometimes good profits happen, and sometimes really good losses happen (meaning even if the trade is bad from an HTF context \u2014 which is my weakest point because I never worked on it before \u2014 I still respect my SL). And i am barely or even not at all lose money \ud83d\udcb0",
+    "score": 3,
+    "categories": [
+      "copula-judgment",
+      "polar-term"
+    ],
+    "tickers": [
+      "SL",
+      "SMA",
+      "BE",
+      "HTF"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1450130741575815198",
+    "ts": "2025-12-15T14:21:50",
+    "author": "Benny Stax",
+    "content": "Webull pays for order flow so they work with select market makers for routing orders,,,so you may not get the very best fills. IBKR does not pay for orderflow so you are pretty much gonna get the best fills.",
+    "score": 4,
+    "categories": [
+      "adj-trade"
+    ],
+    "tickers": [
+      "IBKR"
+    ],
+    "reply_to": "1449976336557801534"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1450159271378550916",
+    "ts": "2025-12-15T16:15:12",
+    "author": "Raj",
+    "content": "I took telsa but lost no trade after that. I am new, not very good at it",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": "1450158727746551938"
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1450162139603013777",
+    "ts": "2025-12-15T16:26:36",
+    "author": "Limitless",
+    "content": "Also if your trading account is not big enough to trade one con around $10.00 which is $1000 \nIt\u2019s not good to trade it",
+    "score": 2,
+    "categories": [
+      "pnl-mention",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1450480746648178729",
+    "ts": "2025-12-16T13:32:38",
+    "author": "Jai",
+    "content": "If QQQ does good, TSLA got chance to hit all time highs",
+    "score": 2,
+    "categories": [
+      "ticker-action",
+      "polar-term"
+    ],
+    "tickers": [
+      "TSLA",
+      "QQQ"
+    ],
+    "reply_to": null
+  },
+  {
+    "channel": "trading-floor",
+    "id": "1450512799947161631",
+    "ts": "2025-12-16T15:40:00",
+    "author": "EeveeWinter",
+    "content": "If he bought around $476, and didn\u2019t sell to $481, contracts went from about $880 to $1250 - and it depends on his fill - so I\u2019d say $250 is correct on a bad market fill",
+    "score": 2,
+    "categories": [
+      "pnl-mention",
+      "polar-term"
+    ],
+    "tickers": [],
+    "reply_to": null
+  }
+]

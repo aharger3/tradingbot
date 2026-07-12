@@ -109,6 +109,22 @@ def detect_layout(page):
     return "empty"
 
 
+def _download_img(src, img_dir):
+    """Download one image with a non-colliding name (v1 bug: every post wrote
+    img_1.. so later posts overwrote earlier images). Returns filename or None."""
+    try:
+        resp = requests.get(src, timeout=10, headers={"User-Agent": "Mozilla/5.0"})
+        if resp.status_code != 200 or len(resp.content) <= 8000:
+            return None
+        ext = src.rstrip("/").rsplit(".", 1)[-1].split("?")[0]
+        ext = ext if ext in ("webp", "png", "jpg", "jpeg", "gif") else "jpg"
+        fname = f"img_{len(list(img_dir.glob('img_*'))) + 1}.{ext}"
+        (img_dir / fname).write_bytes(resp.content)
+        return fname
+    except Exception:
+        return None
+
+
 def scrape_posts(page, layout, space_dir, img_dir):
     """Extract all post text + images from whatever's loaded in DOM. Returns (count, img_count)."""
     posts_data = []
@@ -133,17 +149,25 @@ def scrape_posts(page, layout, space_dir, img_dir):
             cls = (img.get_attribute("class") or "").lower()
             if any(x in cls for x in ["emoji", "icon"]):
                 continue
-            try:
-                resp = requests.get(src, timeout=10, headers={"User-Agent": "Mozilla/5.0"})
-                if resp.status_code == 200 and len(resp.content) > 8000:
-                    ext = src.rstrip("/").rsplit(".", 1)[-1].split("?")[0]
-                    ext = ext if ext in ("webp","png","jpg","jpeg","gif") else "jpg"
-                    fname = f"img_{len(entry['images'])+1}.{ext}"
-                    (img_dir / fname).write_bytes(resp.content)
-                    entry["images"].append(fname)
-            except Exception:
-                pass
+            fname = _download_img(src, img_dir)
+            if fname:
+                entry["images"].append(fname)
         posts_data.append(entry)
+
+    if layout == "chat":
+        # chat messages keep images OUTSIDE the <p> text nodes — sweep the whole
+        # DOM for attachment images and pair each with its message's text
+        for img in page.query_selector_all("img[src^='http']"):
+            src = img.get_attribute("src") or ""
+            cls = (img.get_attribute("class") or "").lower()
+            if any(x in cls for x in ["emoji", "icon", "avatar"]) or "avatar" in src:
+                continue
+            fname = _download_img(src, img_dir)
+            if fname:
+                ctx = img.evaluate(
+                    "el => (el.closest('[class*=message],[data-testid],[class*=post]')"
+                    "?.innerText || '').slice(0, 300)")
+                posts_data.append({"text": ctx, "images": [fname]})
 
     (space_dir / "posts.json").write_text(
         json.dumps(posts_data, indent=2, ensure_ascii=False),
