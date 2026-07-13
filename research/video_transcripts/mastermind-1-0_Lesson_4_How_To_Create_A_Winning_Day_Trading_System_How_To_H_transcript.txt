@@ -1,0 +1,792 @@
+# Transcription: mastermind-1-0_Lesson_4_How_To_Create_A_Winning_Day_Trading_System_How_To_H.wav
+# Duration: 3704s
+# Model: tiny
+
+[3s-5s] Okay, so let's get into lesson four.
+[5s-8s] And today's lesson, we're going to be going over
+[8s-10s] how to create a winning trading system.
+[10s-13s] And then we're also going to be going over a very important concept,
+[13s-17s] which is how to hold your winners longer when you're actually within trade.
+[17s-19s] So let's talk about it.
+[19s-23s] So number one, what is a trading system?
+[23s-27s] And how can we create a winning day trading system to make sure
+[27s-29s] that we actually become profitable?
+[29s-32s] Now a winning day trading system is very, very crucial
+[32s-35s] because a system essentially allows you to become more mechanical
+[35s-39s] within trades rather than going off of your emotions or gut feelings
+[39s-40s] or anything like that.
+[40s-45s] So in today's actual workshop, we're going to be talking about
+[45s-46s] what is a trading system.
+[46s-48s] We're going to be going over trading styles.
+[48s-50s] We're going to be talking about entry and exit signals.
+[50s-52s] We're going to be going over back testing.
+[52s-55s] How to create rules for your trading system.
+[55s-58s] How to effectively manage your risk while you're in trades,
+[58s-59s] how to follow your system.
+[59s-63s] And then finally, how to refine your system to ensure that it's not an
+[63s-67s] out-of-date system for the actual current markets.
+[67s-70s] So what is a trading system?
+[70s-74s] A trading system is a list of rules that you must abide by on a daily basis.
+[74s-80s] A trading system helps you identify when and how to buy or sell a financial
+[80s-81s] instrument.
+[81s-85s] The signals provided by your systems are purely based on technical or fundamental
+[86s-87s] analysis.
+[87s-90s] It does not include gut trading.
+[90s-94s] Now, when we talk about a trading system, let's talk about trading in general for
+[94s-96s] a second.
+[96s-101s] Within trading, already, right off the bat, you are already at a disadvantage
+[101s-105s] because most people do not make it as a full-time trader.
+[105s-107s] That's just a fact.
+[107s-108s] It's just the reality.
+[108s-110s] It's just the truth.
+[110s-114s] Most people do not make it as a full-time trader.
+[114s-115s] And why is that?
+[115s-121s] The reason most people don't make it as a full-time trader is because the edge of your
+[121s-123s] strategy is already so minimal, right?
+[123s-130s] The actual probability of you winning a trade and your little edge in this big
+[130s-137s] market is already so little that if you also include human emotions or gut trading
+[137s-139s] within your strategy, right?
+[139s-143s] There's genuinely no way for you to be a profitable trader, right?
+[143s-149s] And that's why it's so important that our entries and exits are as mechanical and robotic
+[149s-150s] as we can get.
+[150s-155s] Now, emotions must be mitigated for this to happen.
+[155s-157s] How can we mitigate our emotions?
+[157s-160s] Our emotions will not be mitigated, right?
+[160s-164s] Our emotions will not be mitigated enough to zero.
+[164s-165s] Okay?
+[165s-169s] So, you cannot say that, you know, you have no emotions while in a trade.
+[169s-171s] Every human no matter how long you've been trading.
+[171s-174s] That's the one thing you're going to have to deal with for the rest of your trading
+[174s-178s] career, which is mitigating your emotions.
+[178s-179s] Okay?
+[179s-182s] And it's very, very important that you understand that, you know, you cannot make your emotions
+[182s-184s] go to essentially nothing.
+[184s-189s] However, you can mitigate them enough where you can be as robotic as possible for a human.
+[189s-190s] Okay?
+[190s-194s] A trading system only works when back tested on a profitable setup.
+[194s-196s] I.e. the break and retest setup, which I teach.
+[196s-201s] And we're going to be going more over the back testing of a profitable setup.
+[202s-204s] As we actually go through out the actual lecture.
+[206s-210s] So, what is different trading styles?
+[210s-212s] What kind of trader are you?
+[212s-219s] Now, here are some trading styles that I have found or that I believe are the, you know,
+[219s-222s] trading styles that resonate the most with people.
+[222s-226s] And that is momentum trading, which is something we are, right?
+[226s-228s] We are momentum traders.
+[228s-229s] I trade momentum.
+[229s-232s] I'm looking for a high-a-day low-of-day type of things, right?
+[232s-233s] So therefore, momentum trading.
+[233s-235s] Some people are scalpers.
+[235s-235s] Okay?
+[235s-239s] So scalpers are someone that gets in and out of trades extremely fast.
+[239s-240s] That could be within seconds.
+[240s-242s] It could be within minutes, right?
+[242s-243s] Some people are scalpers.
+[243s-244s] Some people are swing traders, right?
+[244s-248s] They're going overnight on their contracts or maybe they're just trading, you know,
+[248s-249s] commons or whatever.
+[249s-252s] Some people are swing traders or they're trading small caps.
+[252s-256s] You know, you have the investor, which is a full-time, you know, type of thing,
+[256s-260s] you're a full-time investor, which means you're not really selling out of a stock,
+[260s-262s] but that is trading as well.
+[262s-265s] And then, of course, you have a reversion trader, you have a supply.
+[265s-268s] Man, trader, you rate, there's so many different types of traders.
+[268s-271s] You have to identify which type of trader you are.
+[271s-274s] After you've identified what type of trader you are,
+[274s-278s] you need to identify what commitments do you have.
+[278s-279s] Okay?
+[279s-284s] The commitments you have directly correlate with the trading ability you have.
+[284s-286s] What do I mean by this?
+[286s-290s] So, if you have a full-time work commitment, right?
+[290s-293s] You cannot be a scalper, right?
+[293s-297s] If you're working a nine to five, you can't be a scalper because you're out work.
+[297s-298s] You need to focus on work.
+[298s-301s] And when you're out trading, you need to put all your focus and trading.
+[301s-304s] You can't do a 50, 50 split, right?
+[304s-306s] And most people will try to tell you, you can and stuff like that.
+[306s-310s] But in this mastermind, I'm trying to break everything down where you 100%
+[310s-312s] walk out of this and understand exactly what to do, right?
+[312s-318s] So if you are having a full-time nine to five job, you can't be a scalper.
+[318s-320s] It's just not possible, okay?
+[320s-321s] Do you have family, right?
+[321s-324s] Do you have family commitments to have, right?
+[324s-328s] You may have kids, you know, you may have to look for, look up for your parents
+[328s-333s] and help them, you may have to, you know, whatever type of commitments you have in your life.
+[333s-334s] You may have school, right?
+[334s-339s] You may have other obligations with, I don't know, maybe, you know, some recreational commitments,
+[339s-341s] right, with your friends or something like that.
+[341s-345s] You need to understand what commitments you have, you need to understand what are the most
+[345s-346s] important commitments, right?
+[346s-352s] So maybe you could, you know, get rid of some of the recreational commitments you have, right?
+[352s-355s] You need to understand which commitments are important, which commitments are important,
+[355s-359s] and that will help you identify what kind of trader you can be, okay?
+[359s-361s] And then finally, what instruments do you trade?
+[361s-365s] Do you trade commons, do you trade futures, do you trade options, right?
+[365s-368s] Do you trade forex, do you trade, you know, equities?
+[368s-373s] Do you trade, you need to understand that and have that within your trading system, because
+[373s-375s] you can't just be everywhere, right?
+[375s-378s] You can't just one day decide you want to trade commons, the next day you want to trade options,
+[378s-381s] the next day you want to trade futures, the next day, you know, you want to open up a
+[381s-382s] proper, right?
+[382s-383s] Like, that's just not how that works.
+[383s-389s] You need to understand exactly what type of instruments you want to trade, okay?
+[389s-393s] Now, this doesn't have to be a direct, like, I'm going to trade options only or I'm only
+[393s-397s] going to trade futures, but there should be something where the majority of the time you're
+[397s-400s] trading options may be sometimes you trade commons, right?
+[400s-402s] That's type of thing.
+[402s-406s] And then finally, what set up fits your personality the best?
+[406s-413s] Flags inside bar, break and retest, wedge, flat top, or, you know, there's so many more.
+[413s-417s] And the reason you need to know this is because, based off of everything we've said,
+[417s-422s] you need to create a trading style that works for you, okay?
+[422s-425s] So let's say you trade commons shares.
+[425s-430s] Well, with common shares, you can actually trade the break out strategy, right?
+[430s-432s] Just a simple breakout strategy with common shares.
+[432s-437s] And this is because you know exactly where your stop is every time you don't have the
+[437s-440s] actual option Greeks working against you, right?
+[440s-443s] You don't have Delta, you don't have Gamma, you don't have Beta, you don't have any of that,
+[443s-444s] right?
+[444s-448s] You simply can just trade the common shares, have a very simple stop, have a very simple
+[448s-449s] profit target.
+[449s-452s] And that's why you can trade that breakout strategy.
+[452s-457s] However, if you're trading options, trading breakouts is probably one of the worst things
+[457s-462s] to do in my opinion, because when you're buying the top of an option contract, the second
+[462s-463s] it dips a little bit, right?
+[463s-468s] Again, Stu, you're going to lose so much money when you're actually buying the tops of
+[468s-471s] option contracts, okay?
+[471s-476s] So when we think about a trading style, right, let's use an example here.
+[476s-481s] If you're a person who has a family, you work a nine to five, right?
+[481s-486s] You may be better off swing trading options over a one to two week period rather than
+[486s-488s] scalping them, okay?
+[488s-493s] So maybe you cannot sit in front of the screen at the same time I can, right?
+[493s-495s] I trade from nine o'clock to 11 a.m.
+[495s-496s] Okay?
+[496s-498s] Eastern time, of course.
+[498s-500s] I can do that because I'm a full time trader.
+[500s-503s] This is what I do for a living, okay?
+[503s-508s] However, for you, if you have family commitments, if you have to be at work at the desk
+[508s-513s] or let's say you're a construction worker or you're, you know, you have to work outside
+[513s-516s] you're an electrician or anything like that, okay?
+[516s-519s] And you can't have your phone open at your job.
+[519s-524s] Maybe you want to focus more on swing trading, right?
+[524s-526s] Maybe you want to focus more on those longer term trade, right?
+[526s-531s] Not those, you know, not like a five-tem-minute trade, you want to focus in on, you know,
+[531s-534s] maybe entering in at like 9.30, 10.30, right?
+[534s-539s] Or you can just have your entry set and then have your exits set already from the previous
+[539s-545s] stage simply by entering in on specific key levels and price action, okay?
+[545s-551s] So you need to understand your current commitment, your current financial situation, your current
+[551s-556s] lifestyle in general, and that's how you can determine what type of trader you are.
+[556s-560s] A lot of people just try to come into trading and they try to force it, right?
+[561s-566s] They try to force becoming a scalper when they're literally outwork at a 9-5 sitting at their
+[566s-568s] desk trying to, you know, scalp the market.
+[568s-571s] But simultaneously they're also trying to work full-time.
+[571s-573s] That just doesn't work, okay?
+[573s-578s] And to be a long term successful trader, I'm telling you right now, choose one style, stick
+[578s-582s] to that style and stick to that style only after you understand what kind of commitments
+[582s-587s] you have in your real life and what will be the easiest for you to, you know, slowly transition
+[587s-588s] into, okay?
+[588s-594s] Because some traders, like I said, are 18 years old, 19 years old, right?
+[594s-597s] All they have to do is go to school and they're done for the day, right?
+[597s-599s] They can probably even scalp, right?
+[599s-603s] Because they have so much free time on their hands, right?
+[603s-606s] They can learn these strategies over a long period of time.
+[606s-607s] They have a long time, right?
+[607s-609s] They don't have other commitments.
+[609s-612s] All they have is school and that's it, okay?
+[612s-618s] But for you, you may have multiple commitments and it will take you a longer time to learn
+[618s-620s] this is just the truth.
+[620s-624s] But because it takes you a longer time to learn, you need to understand the type of trader
+[624s-625s] you are.
+[625s-629s] So I hope I've really genuinely, you know, made sure you understood this specific slide
+[629s-637s] because it is very important when you're looking at the longevity of your trading career.
+[637s-638s] Entry and exit signals.
+[638s-643s] So entry and exit signals are important because you need to create rules that help you
+[643s-649s] enter and exit the trade effectively and repeatedly each time you see them, right?
+[649s-654s] Every single time that I take a trade, it will be the exact same trade, it will be the exact
+[654s-659s] same entry signal, it will be the exact same exit signal, right?
+[659s-664s] Simple break, retest, hammer candle, inverted hammer candle, strong price action, weak price
+[664s-666s] action, high day low day or key levels.
+[666s-667s] Very, very simple.
+[667s-671s] I make my trade so simple for anyone to understand, right?
+[671s-673s] And that's a beauty of this mastermind in my opinion.
+[673s-676s] However, let's say that doesn't work for you, right?
+[676s-679s] Let's say you're not, you just don't like the break and retest that I'm teaching.
+[679s-680s] That's fine.
+[680s-684s] Even if you don't like the strategy that I'm teaching and you have your own strategy that
+[684s-688s] you've been back testing and you just like that a little bit more, that's completely fine.
+[688s-693s] However, at the end of the day, you still need to understand that your strategy, whatever
+[693s-696s] that may be, has to be a very, very simple strategy, right?
+[696s-700s] Make your entry and exit very, very clear, right?
+[700s-704s] Have it to a point where you can explain to your younger cousin or your kids or anything
+[704s-709s] like that, you know, where you enter an exit to chart and they understand what you're
+[709s-710s] saying, right?
+[710s-712s] That's genuinely how simple it should be, okay?
+[712s-718s] And finally, make your entry and exit signals make sense, okay?
+[718s-723s] So if you're trying to, you know, force entry and exit signals like they're different
+[723s-725s] each time, right?
+[725s-726s] It won't work, right?
+[726s-728s] You need to make it make sense.
+[728s-731s] If you're trying to buy a breakout, right?
+[731s-735s] If you're trying to buy a breakout trade, let's say our breakout trader, you're trying
+[735s-736s] to buy a breakout trade, right?
+[736s-740s] For high of day, but the trend is low of day, right?
+[740s-744s] That's simply not an effective entry and exit signal because your trade doesn't make sense.
+[744s-746s] You're not following market trend.
+[746s-748s] You're not following market structure.
+[748s-753s] So that's why it's really, really important to have all those rules in place, okay?
+[753s-757s] And to have all those rules in place, it will only increase your confidence because you
+[757s-761s] know how simple of an entry and exit you have, right?
+[761s-763s] So for example here, what do we have?
+[763s-765s] We wait for momentum and trend to develop.
+[765s-767s] Look for the stock to break a key level.
+[767s-768s] Once broken, look for a retrace.
+[768s-770s] On retrace, look for a hammer candle.
+[770s-771s] Once PA is confirmed.
+[771s-776s] Buy into stock, looking for high-adads exit or V-Ops, slash key level as stop loss.
+[776s-777s] So here, right?
+[777s-780s] As we can see, we have consolidation.
+[780s-781s] We wait for the break.
+[781s-782s] We come back for a retest.
+[782s-783s] We see a hammer candle.
+[783s-784s] We enter on the hammer candle.
+[784s-786s] We look for high-aday and a key level.
+[786s-789s] We can scale a high-aday and then we can scale out our key level.
+[789s-790s] Okay?
+[790s-791s] Very, very simple trait.
+[791s-797s] One thing I want to mention is, until you actually consistently look for the exact same entry
+[797s-799s] and exit criteria, you're gambling, right?
+[799s-801s] Because you don't have a system.
+[801s-802s] Okay?
+[802s-805s] You don't, you do not have a system until you have the exact same entry and exit signals.
+[805s-810s] The reason this is because you'll notice when you're journaling, you have one set up,
+[810s-811s] right?
+[811s-813s] Let's say it's a break and retest setup.
+[813s-817s] At every single time you journal at the end of the day, you'll notice that this was
+[817s-818s] an American retest setup.
+[818s-820s] I actually bought a breakout here.
+[820s-821s] Okay?
+[821s-822s] Now this time, it was a revision trait.
+[822s-823s] Okay?
+[823s-825s] Now this time I was doing supply and demand, right?
+[825s-829s] And journaling isn't effective when you have 50 different strategies that you're trading.
+[829s-833s] Journaling is only effective when you have one, and that's why you need the same entry
+[833s-837s] and exit signals every single time.
+[837s-838s] Backtesting.
+[838s-839s] With old backtesting, you're simple.
+[839s-843s] You're sorry, without backtesting, your system is simply won't work.
+[843s-845s] I am giving you a system from scratch.
+[845s-847s] I'm giving you my exact full strategy.
+[847s-849s] I've told you exactly how I enter stocks.
+[849s-851s] I told you exactly how I exit stocks.
+[851s-854s] I've told you, I've live traded in front of you.
+[854s-857s] I've told you everything about my strategy from scratch.
+[857s-862s] I even told you on the workshop number one, how my IBKR is setup, how my trading view
+[862s-863s] is set up.
+[863s-864s] Okay?
+[864s-865s] I'm telling you everything from scratch.
+[865s-868s] If you're a new trader, you still understand this, right?
+[868s-874s] But for you to actually be confident with any single setup, with any trade, with anything
+[874s-876s] in life, right?
+[876s-880s] You need to put in the work, and you need to backtest the trade.
+[880s-886s] What backtesting will do is increase your confidence, it'll increase your conviction, it
+[886s-892s] will increase your experience to charts much faster, and it will decrease your fear.
+[892s-893s] Let's talk about this.
+[893s-897s] It'll increase your confidence because when you backtest and you look at the statistics
+[897s-902s] over a long period of time, you understand, hey, even if I lose a trade, that's completely
+[902s-907s] fine because over the long period of time, if I keep entering these break and retest trades
+[907s-911s] or if I keep entering this breakout trades, I will be profitable.
+[911s-916s] We will have a backtesting whole workshop, don't worry, that will be coming out.
+[916s-919s] Number two, it'll increase your conviction every single time you're in a trade and you
+[919s-924s] want to sell the trade, which we will be talking about in how to hold the winners longer,
+[924s-927s] which is upcoming in this actual workshop itself, right?
+[927s-930s] It'll only increase your conviction, right?
+[930s-932s] Number three, it'll increase your experience.
+[932s-938s] Now, as we know, trading a lot of the things you learn from it is from experience, okay?
+[938s-944s] And backtesting will essentially help you skip a lot of time because you experience those
+[944s-946s] trades while you're backtesting.
+[946s-950s] Now you don't feel the emotions when you're backtesting, but you experience it on the
+[950s-951s] actual charts.
+[951s-956s] You start to notice similar tendencies within trades and that's how you create your edge.
+[956s-958s] And finally, it decreases fear, right?
+[958s-960s] Let me ask you a quick question.
+[960s-961s] Has this ever been you?
+[961s-965s] Have you seen a trade that's within your setup?
+[965s-967s] 100% perfect trade, right?
+[967s-971s] You're looking at the trade, but you're like, oh wait, let me just wait for the entry.
+[971s-973s] Let me just wait for like just one moment.
+[973s-975s] Let me just wait 30 more seconds and see what happens, right?
+[975s-978s] Like, let's see if it, let's see if it fails.
+[978s-982s] Like, let me just get it as close to the key level as possible, right?
+[982s-986s] That's you actually, you know, being within fear, okay?
+[986s-991s] That's you experiencing fear because you are not entering the trade even though
+[991s-996s] every single one of your rules or your entry criteria are met.
+[996s-999s] You're like, no, no, no, let me get a little bit closer to the key level, right?
+[999s-1003s] And what happens is, once the trade starts going, you're like, oh well, now my
+[1003s-1005s] risk to a word is too skewed.
+[1005s-1006s] I can't enter into the trade.
+[1006s-1010s] Your risk to a reward wasn't skewed when you should have entered while your entry
+[1010s-1012s] criteria was there, right?
+[1012s-1016s] But now you can't enter the trade and you see the trade hit your profit target and now you're
+[1016s-1017s] frustrated.
+[1017s-1021s] Now the fact you're frustrated, you're going to go and enter into, you know,
+[1021s-1025s] a subpar trade right after just to try to make that profit on the day,
+[1025s-1028s] but you missed your A plus setup and now you're entering into a subpar trade,
+[1028s-1032s] which you may lose again, which will only decrease your confidence.
+[1032s-1034s] Right? So I want you guys to type in the chat.
+[1034s-1037s] Has that ever happened to you? Have you ever experienced something like that?
+[1052s-1055s] Revenge trading all the time? Yes, yep, yep all the time.
+[1057s-1057s] Definitely.
+[1059s-1064s] Yeah, so this happens to, you know, a lot of people, right? So, you know, I just wanted to show you guys
+[1064s-1068s] right, how many people right kind of think the same as you because I feel like what happens is a lot of
+[1068s-1073s] people, especially in trading, they think they're all alone and, you know, they're feeling something that
+[1073s-1078s] only they feel and no one else understands them, but the thing is everyone else understands it,
+[1078s-1083s] no one really talks about it, right? So just that's why I wanted you guys to type in the chat to kind of
+[1083s-1085s] see like, hey, everyone kind of goes through the same thing, right?
+[1087s-1093s] Creating rules. So you must create strict rules. You need to abide by every time you take a trade.
+[1093s-1098s] These rules can be made up of things such as the time you trade. So for example, for me,
+[1098s-1105s] my rules within my strategy are as follows, the time I trade, I only trade from 930 a.m. to 11 a.m.
+[1105s-1111s] Eastern time, right? Most people and the people from my previous mentorships or live trading,
+[1111s-1120s] they can vouch for me, they have never ever seen me take a trade after 1130 a.m. ever.
+[1120s-1127s] Okay? And this is because I simply will not break that rule. That is a rule I have because I know that my
+[1127s-1134s] setup and my specific strategy has the most probability of working within those times and those are the
+[1134s-1139s] times that I backed. I did in back test 1 p.m. on the day. I didn't backed as 2 p.m. on the day.
+[1139s-1145s] Right? I backed as is from 930 a.m. to 1130 a.m. and I will only trade that time, right?
+[1146s-1152s] Number two, I don't have this anymore, but a max stop for the day is very, very crucial as well. So for example,
+[1152s-1157s] this was me in the beginning. When I was first starting out trading, this is exactly what would happen to me.
+[1157s-1165s] I would make $100 one day. I would make $200 the next day. I would make $100 the next day. And then the one day,
+[1165s-1173s] I would lose $1,000. Right? And what would that would make me do is still be read for the week just because I took one bad trade.
+[1173s-1179s] Right? Where I took multiple bad trades on the same day. And that's why for you as a new trader,
+[1179s-1184s] it is extremely crucial. You have a max stop for the day. So let's say you consistently right now are
+[1184s-1190s] making $100 a day or it doesn't have to be, you know, consistent yet. But let's just say you're aiming for $100 a day or
+[1190s-1197s] $50 a day. Whatever. Let's just use $100 a day. You're aiming to make $100 a day. Well, your max stop for the day
+[1197s-1203s] should also be $100 a day. Right? If you lose more than $100 a day, you should stop trading just
+[1203s-1208s] completely stop trading because that's just not your day. That is not your day to trade. Your setup is not
+[1208s-1215s] being put out as well as they could. And then also maybe your psychology, your lacking in psychology,
+[1215s-1219s] and that's why you keep losing and entering these subpar trades. Maybe the market isn't there.
+[1219s-1225s] Right? And that's why those max stop for the day is really important to ensure you are a profitable
+[1225s-1231s] trader over the long period of time. Right? So if you're making $100 a day, you know, have a max stop at $100 a day.
+[1231s-1236s] Right? So that way, you know, one day you make $100, one day you lose $100, one day you make $100,
+[1236s-1240s] one day you make $200, one day you lose $100. Right? Simple stuff. Right? And at the end of the week,
+[1240s-1245s] you'll still be profitable because you had that max stop for the day. Okay? Max position sizing.
+[1246s-1249s] Have a rule. You know, you cannot enter in.
+[1249s-1272s] You contract. Right? And then all the sudden the next day you enter 10 contracts because you
+[1274s-1278s] in vouch for me. They have never ever seen me.
+[1278s-1351s] Tips. Are we yet? You guys see us here? And okay. Okay. Let me go back.
+[1355s-1361s] Right? So if you're making $100 a day, you know, have a max stop at $100 a day. Right? So that way,
+[1361s-1366s] you know, one day you make $100, one day you lose $100, one day you make $100, one day you lose
+[1366s-1370s] $100. Right? Simple stuff. Right? And at the end of the week, you'll still be profitable because you
+[1370s-1378s] had that max stop for the day. Okay? Max position sizing. Have a rule. You know, you cannot enter into,
+[1379s-1383s] you know, let's say you're entering into one to two contracts. Right? And then all of a sudden the next
+[1383s-1388s] day you enter 10 contracts because you won the day before. Well, now if you lose that trade,
+[1388s-1392s] you lose all profits from, you know, the previous week, maybe even the previous month. Okay?
+[1392s-1396s] Because you just entered into such a big position, which you've never done before and you lost the trade.
+[1396s-1401s] Right? So always have a max position size. Understand how much risk you're willing to, to, you know,
+[1401s-1406s] encounter. So if you're trading with one to two contracts, your max position size is two contracts.
+[1406s-1410s] That's it. Every single time you can only trade two contracts, you can't scale in more. Okay?
+[1411s-1415s] However, some people, what they do as a new trader, right? Like the enter into a trade,
+[1416s-1420s] that with one to two contracts, the win the trade, the next trade, they're in with 20 contracts.
+[1420s-1424s] With 30 contracts because they want to make a lot more money. That'll only slow you down. I promise you.
+[1424s-1430s] Right? So have a max stop or sorry, max position size. And finally, max loss is in a row.
+[1430s-1436s] For me, something that really helped me is, you know, I only trade three like at max on a day.
+[1436s-1442s] Like this is my maximum level of trades in the day. I can only take three trades in a day.
+[1442s-1447s] Right? And I haven't taken three trades in a day in a very, very long time. But for me, a rule is,
+[1447s-1454s] I can only have three trades in a day. Now, I have a maximum loss in the day. Right? So if I have three
+[1454s-1458s] losses in the day, that means I'm done. I'm done for the day. Okay? For me, currently right now,
+[1458s-1463s] though, it's if I have two losses, I'm not going to take the third trade just because I know
+[1463s-1468s] with experience and over time that, you know, my strategy isn't simply not working that day.
+[1468s-1473s] If I have more than two losses in the day, or I also know that my psychology just may be bad on
+[1473s-1478s] that specific day and I'm entering into sub-part trades. Right? So have max losses in a row. Let's say,
+[1478s-1483s] you take, you know, take two trades in the day. Right? If you lose those two trades, you're done.
+[1483s-1486s] Right? You're done for the day. Right? And that's really important too, because it'll help you
+[1487s-1492s] not trade in the choppy market or consolidate in market or, you know, a market where your own
+[1492s-1500s] personal psychology is just messed up. Okay? Risk management. So each system has a different
+[1500s-1506s] risk management approach. This varies on trader psychology and experience. What do I mean by this?
+[1507s-1512s] Most traders think that risk management is something that is universal. Right? Like they'll
+[1512s-1518s] ask me, for example, like, you know, and some people in this mastermind alone have asked me, like,
+[1518s-1522s] okay, like, I have $100,000. How should I manage my risk with this $100,000? And I'm like,
+[1522s-1528s] you're just looking at this completely wrong. Okay? Completely wrong. Because until you actually become
+[1528s-1533s] consistent as a trader, I don't care how much money you have. You could have $10 million sitting in
+[1533s-1538s] your stock or you're trading portfolio. Right? I don't care. You're not trading with, you know,
+[1538s-1544s] more than one to two contracts in my opinion, right? Because in the beginning, you will 100%
+[1544s-1548s] I can almost guarantee it. You will lose money in the beginning. When you are a when you're trying
+[1548s-1553s] to become a full-time trader, you will. Right? You had that you this could be most likely you
+[1553s-1557s] right? Like you entered into the market, you right? You made some money on stock, right? Maybe that
+[1557s-1562s] be from AMC or GME or whatever back in the day, right? You may have made, you know, that
+[1562s-1567s] beginners look and you road that market up and let's say you started out like $10,000 and you turn
+[1567s-1572s] the $10,000 into like 100,000, right? That was beginners look. After that beginners look, what you do
+[1572s-1577s] is what determines if you will be a full-time trader or not. And what most people do is they try to
+[1577s-1583s] size in or manage the risk with a generic rule and it just doesn't work for them because they
+[1583s-1589s] don't have the experience behind it. So what my recommendation for most people, especially
+[1589s-1595s] do traders, is when you're trying to manage your risk in the beginning, only have one to two
+[1595s-1600s] option contracts. Okay? The reason this is because you will lose money and this way you will lose the
+[1600s-1604s] least amount of money but you will also learn how to scale in and out of trades with one, you know,
+[1604s-1609s] two two contracts, you'll learn how to scale in and out of trades and you just won't lose as much
+[1609s-1614s] money as, you know, you possibly could, right? And this will help you stay in the game much
+[1614s-1620s] much longer because one thing that actually helped me back for, I want to say, you know, many years
+[1620s-1626s] is in the beginning when I lost my first $30,000. Every single time I took a trade, it was with
+[1626s-1630s] fear even as much as I, you know, would say, I don't fear, I don't fear getting into the trade.
+[1630s-1635s] There was still an aspect of fear behind my trades. Every single time I would enter because I was
+[1636s-1642s] paralyzed by the thought of actually losing more money over the $30,000, which was a huge sum for
+[1642s-1648s] me back in the day. Okay? And so that's something you need to understand, right? You need to
+[1648s-1654s] understand, can I enter this trade with the least size possible, right? Because in the long term
+[1654s-1660s] of your trading career, that will only help you. That will only help you. Okay? So some risk
+[1660s-1664s] management rules are sizing on contracts like we talked about, went to two contracts, but however,
+[1664s-1668s] if you are a more experienced trader, right? So we've talked about the new traders now,
+[1668s-1673s] let's talk about some of the experienced traders. Here's something that I go by sizing on contracts.
+[1673s-1679s] Okay? On a chop your market, you have to manage your risk based off of the market. So sometimes
+[1679s-1683s] when of the market is extremely bullish, I'll go in with a lot of contracts. Like we're talking
+[1683s-1688s] about 152, 200 plus contracts. Okay? And that's just because I know it's a market where my strategy
+[1688s-1693s] is really working and it's time to push, you know, the pedal. Right? And once again, I want to make
+[1693s-1698s] this a clear again, this is for the people in the mastermind that are already experienced and,
+[1698s-1703s] you know, they're consistent, right? And there are some people in this mastermind that are consistent
+[1703s-1708s] traders. So with that being said, it depends on market context, but, you know, you can size
+[1708s-1714s] specifically based on each market. So in a bullish market, like I said, 1, 5, 200 plus in this current
+[1714s-1720s] market or in the markets that we've been in, you know, recently, I'm taking 50 contracts to 70,
+[1720s-1725s] 80 contracts max right now. Right? Like 100 contracts will be, if I say, I really, really good
+[1725s-1729s] trades setup, but right now I'm only taking 50 to 70 contracts. And that's just based off of the
+[1729s-1733s] market, right? And you have to manage your risk based off of the market you're in, is your training
+[1733s-1737s] setup working, if your trading setup is working, really, really effectively right now, maybe you
+[1737s-1741s] can size up slowly. It's very crucial that everything you do in trading is slowly. Everyone thinks
+[1741s-1745s] trading is, you know, one of those things that you come in and you make a lot of money, no, no, no,
+[1745s-1749s] it takes a long time to get to the position that even I'm in or some of your favorite traders are in,
+[1749s-1755s] and it's because it's very, very, very slow. Okay. It's not going to take you six months. It's
+[1755s-1758s] not going to take you a year, right? It's going to take you a long period of time. But hopefully
+[1758s-1764s] with this mastermind, you'll learn everything that you need to learn, right? So it does sort of accelerate
+[1764s-1770s] that learning curve for you. Okay? The amount of risk you take per trade. So the amount of risk you
+[1770s-1777s] take per trade should generally be the exact same. Okay? So let's say, I'll actually, I talk about this
+[1777s-1783s] in a second, and then finally zero DTEs. Zero DTEs should not be traded in my opinion if you're a new
+[1783s-1789s] trader. Okay? You do not trade zero DTEs. Even on Fridays, let's say it is zero DTEs go to the next
+[1789s-1794s] weeks, you know, option contracts because they move so, so much. They're so volatile plus the data
+[1794s-1801s] is killing the contracts. So if you are in an options trade, and it's a zero DTE, and it's more
+[1802s-1808s] into the later the day, if that option goes against you even a little bit, right? Like a little
+[1808s-1812s] bit, the underlying goes down a little bit, or up a little bit depending on if you're in calls or puts,
+[1812s-1818s] and it goes against you, you will lose 40 to 50 percent of that option contracts value. And that's why
+[1818s-1822s] it's really important not to probably zero DTEs until you're an experienced trader, and even
+[1822s-1828s] experienced traders, you know, have a different sizing metric for zero DTEs for me. You know, I'll
+[1828s-1835s] slowly slowly enter into zero DTEs with smaller size. Let's say 50 to 60 contracts max,
+[1835s-1838s] where you know if it was like weekly, there's something like that. I trade with more size type of thing.
+[1838s-1842s] Okay? So let's talk about the amount of risk. So for some people, it's crucial to have a
+[1842s-1848s] stop loss on their account. Okay? It's crucial, right? Because risk management, once again, like I said,
+[1848s-1854s] depends and varies on the person. Right? So some people, they may have a stop loss of 10 percent on their
+[1855s-1861s] account. Okay? Based on their strategy. So if your strategy is a longer term type of play rate,
+[1861s-1865s] let's say you're a one to two week out type of trader, you're trading, you know, you're swing
+[1865s-1871s] trading, you're one to two weeks out on option contracts, right? You can't really have a 10 percent
+[1871s-1877s] stop loss. And that's because the option contract might move 10 percent just within a singular day.
+[1877s-1882s] Right? And that's why it's for others, right? It's okay if they lose 10 percent because they're going
+[1882s-1886s] for those bigger wins. So you need to understand and go back to that, you know, slide from before.
+[1886s-1891s] What type of trader are you? Depending on the type of trader you are, that's how you can manage
+[1891s-1895s] your risk. And that's how you can understand, right? Like, am I the type of trader that I need to
+[1895s-1899s] have a stop loss of 10 percent? Because I'm day trading or something like that? Or am I going for those
+[1899s-1903s] bigger wins? Even within day trading that it's okay that I lose 10 percent because I'm going for those,
+[1903s-1909s] you know, 50 percent, 70 percent, 100 percent plays. Okay? So you need to understand that when you're
+[1909s-1916s] managing your risk as well. Allowing your system, this is very crucial. Now, once we've made
+[1916s-1920s] our system, right? Those previous slides helped you understand how to make a system. Now you've made
+[1920s-1928s] your system. Only trade that one system. That's it. That is it. You cannot trade another system
+[1928s-1933s] after that. The only system that you are allowed to trade from now on is that one system and stick
+[1933s-1940s] to it. That system should be your holy grail, right? Don't be like him, right? Look, who
+[1940s-1945s] do we have on screen? We have Mr. Krabs. Okay? Mr. Krabs from Spunbubb, very greedy, right? Like,
+[1945s-1950s] whatever comes to him, right? Whatever type of money opportunity comes, money money money money.
+[1950s-1953s] Right? He's always thinking about money. Which way can I make the most fastest money, right?
+[1954s-1960s] That's not something you should be doing because most traders and most people in general in today's
+[1960s-1965s] society, they have shiny spoon syndrome. What that means is every single time they see something
+[1965s-1970s] shiny or a new way to make money made that be, you know, switching into dropship and going to
+[1970s-1975s] into SMMA, going into Amazon affiliates, whatever. Like, there's so many different things to make
+[1975s-1982s] money on mine nowadays, right? They'll try to go into every single niche. What's super important
+[1982s-1988s] in life to just be successful, even, you know, not even in trading just in life, is to only have,
+[1988s-1993s] you know, that one lane that you're trying to really become successful at and just put your full
+[1993s-2000s] 100% focus into that, block out all the noise and just focus completely on that with no one else's
+[2000s-2007s] opinion. And that's my personal opinion, and that's just how I like to, you know, follow my life's principles
+[2007s-2012s] in, right? And the number one reason traders don't become profitable and never reach out
+[2012s-2017s] profitability is a lack of discipline and conviction in their system, right? And we talked about this.
+[2017s-2022s] You get that conviction in your system through actually backtesting and we will have a backtesting
+[2022s-2028s] workshop, right? And then finally, people change their systems based on foam or food routes.
+[2028s-2033s] So let's say, you know, I told you all this. I helped you learn, you know, how to create a
+[2033s-2039s] winning trading system. I tell you everything that you need to know. Now, in three to four months,
+[2039s-2044s] or let's say six months down the line, you go and you buy another discord. You go and buy another
+[2044s-2050s] mastermind. You go and buy another mentorship program, or you find another trader. He or she will
+[2050s-2056s] mouth trade you a bear or teach you, sorry, a very different type of strategy, a very different type of
+[2056s-2062s] system. Now, the system that you've been working six months to create, you just lost all that
+[2062s-2067s] progress because now you're going to go follow the next person, right? The next system, right? The next
+[2067s-2073s] indicator, the next holy grail. And that's why I think in this mastermind, what I'm trying to teach you
+[2073s-2078s] is there is no holy grail in trading. All it comes down to is hard work and understanding the key
+[2078s-2084s] fundamentals of why successful traders are successful. And it's because they just stick to one thing
+[2084s-2091s] and learn it and essentially be obsessed with their one specific edge and just continue to refine it.
+[2091s-2096s] And while we're on the topic of refining systems, let's talk about it. Just because you have a
+[2096s-2104s] system does not mean it's your be all and end all. What do I mean by this? In each system, you will notice
+[2104s-2110s] that there are draw-down periods. This means that there are periods within your system that it just
+[2110s-2116s] won't work, right? And it's because of the market conditions, whatever, right? And for this type of
+[2116s-2122s] draw-down, you must continuously backtest. That means even if you become profitable, it doesn't mean that
+[2122s-2126s] you know, you can just pick your feet up and relax. That's not how I work, right? That's not how any
+[2126s-2131s] profitable trader works. You need to continuously backtest your system. You need to understand what's
+[2131s-2137s] working, what's not working, you need to increase your edge over time, right? And increasing your edge
+[2137s-2142s] may depend on different market factors. You need to keep up with the market. You need to understand
+[2142s-2147s] is the market now currently uptrending? Is it downtrending? Are we in a consolidation or range
+[2147s-2151s] market? Why is my system now working? Why is my system working really effectively right now?
+[2152s-2160s] Different things require different, you know, actions behind it. Okay? And then finally, you need to journal.
+[2160s-2166s] Journaling will help you identify weaknesses within yourself and strengths within yourself. It will
+[2166s-2171s] help you identify weaknesses within your system based off the market and strengths of your system
+[2171s-2178s] with the market. And it'll only increase your edge over time. Okay? So, refining your system will be a
+[2178s-2184s] life long process. And that's something you need to understand. It is a life long process. It's not just
+[2184s-2189s] a simple one-day thing. Okay? It's not one-day I became profitable and I'm done for the rest of my
+[2189s-2194s] life. I can trade the same system. No, no, no. You have to continuously refine your system.
+[2195s-2201s] And finally, in conclusion, in this section, we touched on all the key concepts you must look at when
+[2201s-2206s] you're creating your trading system. Right? You must understand what a trading system is. We talked
+[2206s-2211s] about it. What is your trading style? Your specific entry and exit signals, back testing your
+[2211s-2216s] results, how to create rules, how to manage risk, how to follow your systems, and finally, how to
+[2216s-2222s] continuously refine your system. Okay? Now we're going to be going over how to hold winners longer.
+[2222s-2227s] Let me just take a little break and drink a little bit of water here. How did you guys like that
+[2227s-2233s] specific section on how to create your system? Do you guys believe that benefited you and helped you
+[2233s-2253s] understand how to create your system? No, it's a whole full thing. 100% made me feel more confident
+[2253s-2257s] very good. Yes, it was good. Yes, it all makes sense. Yes, yes, good. I'm glad I'm glad to hear that.
+[2258s-2263s] Now we're going to get into the how to hold winners longer. Trading was a bad day for me today.
+[2263s-2270s] Now I have a plan. Very good. Actually following is the catch. I can only take time. But consistency
+[2270s-2283s] wins. Awesome. Awesome. Okay. Now let's talk about how to hold winners longer. So
+[2283s-2287s] hold winners longer. The agenda we're going to be going over is maximizing profits through
+[2287s-2290s] strategic holding. And we're going to be talking about how to have that strategic holding.
+[2290s-2295s] We're going to be going over an analyzing market trends managing risk. We're going to track the
+[2295s-2301s] performance and then finally we're going to conclude off the full session. So like I said,
+[2301s-2305s] maximizing profits through strategic holding. We're going to be talking about four main things.
+[2305s-2310s] The hold winners longer. There are four factors that will help you. Number one is market conditions
+[2310s-2315s] understanding the conditions of the market that you're within. Number two is having clear targets
+[2315s-2319s] slash it system, which we just discussed. Number three is tracking and back testing that
+[2319s-2323s] performance. And number four is scaling and managing that risk while you're within the trade.
+[2324s-2330s] So a clear profit taking system. What does a clear profit taking system consist of? So a clear
+[2330s-2335s] profit taking system consists of let's say we're using the break and retest. Right? It consists
+[2335s-2341s] of having a simple and repetitive profit taking system every time or exit every time. Right? So
+[2341s-2348s] within my system, I know that I can take profits at high every day, low of day, or key levels.
+[2348s-2357s] That is where I take profits 99.999999% of the time. Okay. The reason I do this is because
+[2357s-2362s] that's within my strategy. When I back test my strategy, I notice that every single time
+[2362s-2366s] I'm in a momentum trade. High of day, low of day or key levels is the best place to take profits
+[2367s-2371s] because it has the most probability of working out. With trading we've discussed this before,
+[2371s-2378s] within this webinar. But when you're taking a trade, the probability of you actually becoming a
+[2378s-2384s] full time trader is already low. Okay. So in your edge, that little advantage you have in the market
+[2384s-2392s] over other people is extremely low as well. So if you have any gut feeling or if you have any feeling
+[2392s-2397s] of emotions while you're in the trade that make you deviate from your plan of high-a-day,
+[2397s-2403s] low-day or key levels, that will simply not work in the long term and you won't be a consistent
+[2403s-2407s] and profitable trader. Okay. The same thing when we're talking about stop out levels,
+[2407s-2412s] your stop levels. Right? Have them at key levels, VWAP in market structure. That's what my
+[2412s-2417s] stop level has always been. Now, VWAP is always combined with the key level. Right? If a key
+[2417s-2420s] level is near VWAP, that's usually where I'm going to put my profit target or if a market
+[2420s-2426s] structure is involved with VWAP, VWAP alone will not be where I stop out. But VWAP combined with
+[2426s-2430s] something is where I can stop out. As you guys know, I don't really like using indicators, but VWAP
+[2430s-2436s] is the only indicator that I have on my specific charts. Understanding a market trend. So it is
+[2436s-2440s] important to understand the current market trends and conditions before making decisions about
+[2440s-2446s] holding the stock. Analyzing the news and other data sources can help traders make informed
+[2446s-2450s] decisions. What direction the trend is going? Is key plus market conditions is key to holding
+[2450s-2457s] winners. So in different markets sentiments and environments you have to trade differently.
+[2457s-2463s] Okay. So what do I mean by this? In a very bullish market, right? You can scale differently.
+[2463s-2468s] And you can hold winners in a different way, right? You can hold the stock differently. What do I mean
+[2468s-2473s] by this? If we're looking at a trade in a bullish environment, we have a break and retest to the
+[2473s-2478s] upside. If we have a break and retest to the upside, we can hold that trade much longer after
+[2478s-2482s] the high a day. So let's say we have three contracts. We scale one at a high of day. And we leave
+[2482s-2488s] two for another key level somewhere down the road. Right? That will be determined by the market
+[2488s-2494s] structure, right? And we can do that because of the market conditions. It's a very, very bullish
+[2494s-2499s] market. We know that. And that's why we can hold that stock. At the same time, let's say there was,
+[2500s-2531s] you know, in a different market environment, we have chopiness and works. At type of environment,
+[2531s-2535s] would you hold your trade? Probably not because it's going to be volatile after the news drops.
+[2535s-2540s] But before the news drops, it's just going to be very, very choppy. Okay. And due to this,
+[2540s-2545s] we simply do not want to hold that trade. So that same trade that we would have taken in the bullish
+[2545s-2549s] environment. Let's say we take the same three contracts this time. We might want to scale
+[2549s-2554s] all out a high a day. Or maybe we want to scale the majority. So let's say two out a high a day
+[2554s-2560s] and hold one for a one to one stop after high a day has been reached. Right? So I hope that,
+[2560s-2565s] you know, that helps you understand like you cannot have the same, you know,
+[2565s-2569s] holding your winners like you can't hold your winners grow, you know, each environment the same.
+[2569s-2573s] Right? Some you want to hold longer depending on a bullish or bearish environment. But when it's
+[2573s-2578s] choppy, you really want to sell out quick. Okay? You really want to sell out quick. Next,
+[2578s-2582s] tracking performance. So tracking performance is an important part of day trading. It keeps
+[2582s-2587s] track of profits and losses. And that can help traders make better decisions about when to hold
+[2587s-2593s] and when to trade. Right? So tracking performance, you can forward test. Right? So forward testing
+[2593s-2597s] would be, you know, simply just journaling your performance over a long period of time. Okay?
+[2597s-2601s] And then you can also back test previous performance. And this will also help you increase that
+[2601s-2606s] confidence in conviction. Like we've been talking about throughout this complete seminar. Right?
+[2606s-2613s] Now, with tracking your performance, why do we do this? We do this to first understand our mistakes,
+[2613s-2619s] to understand our strengths and three learn from both of these things or mistakes and our strengths
+[2619s-2625s] to see exactly how we can become the best trader possible. And when you track that performance
+[2625s-2630s] over a long period of time and you understand, hey, even if I lose, let's say you lose for a
+[2630s-2634s] weak straight. Right? Like you lose every single trade that you took for a weak straight because you're
+[2634s-2639s] in a choppy environment or something like that, you still have enough conviction and confidence
+[2639s-2646s] to take a trade when you see fit with an eight plus setup every single time because over the long
+[2646s-2651s] period of time, you understand that your strategy is profitable and you're simply just in a draw
+[2651s-2656s] down period. You understand that. And therefore, you take that trade every time. What most traders do
+[2656s-2662s] and what most new traders do even some traders with experience do this, they will enter trade,
+[2662s-2667s] exit the trade when when or lose the trade right, whatever. Over a week or something, if they
+[2667s-2672s] lose a trader, let's say over a month, if they lose a trade, I know profitable traders. Right?
+[2672s-2677s] I know profitable traders that have lost for two to three months in a row and they're like
+[2677s-2683s] seven figure traders. They've lost for two to three months in a row before. Okay, with their strategy.
+[2683s-2690s] But that doesn't mean anything to them because they know that they have that long term vision.
+[2690s-2694s] Right? They know that over a long period of time, they'll be completely fine. So they take trades.
+[2694s-2698s] They show up every day. They take trades every single day, like it's a normal day. Okay?
+[2699s-2704s] And they came out of those slums before. But this is why with trading, I always tell people,
+[2704s-2707s] don't just enter into trading once you see consistency quit your job.
+[2708s-2714s] Right? Before your job, you want to have a big, big nest egg. Right? If a regular person's
+[2714s-2717s] nest egg is three months, right? They have three months of expenses for a trader. Have a
+[2717s-2722s] year's worth of expenses. Right? And that's really, really important to help you be
+[2722s-2726s] consistent and profitable and not fear every single time you're entering a trade. I'm thinking,
+[2726s-2730s] will I be able to pay my bills this month? Right? That's the worst way to come into trading.
+[2733s-2738s] Managing risk. So risk management is a key factor in holding winners, knowing when to hold
+[2738s-2742s] and when to cut is essential to protect against losses. Setting up stop losses and taking profits can
+[2742s-2748s] help you manage that risk. So to help manage risk scaling can be used, let's look at this example
+[2749s-2755s] in this example. Right here, we see this previous high and then we see the break of the high
+[2755s-2761s] and then a perfect retest with the hammer candle. What can we do to hold this winner longer
+[2761s-2765s] if this was a bullish environment? Well, to hold this winner longer, look at this original
+[2765s-2770s] profit target. Let's say we have two contracts. Right? Let's just use two contracts in this example.
+[2770s-2774s] Well, in this first one, right? We enter in on our two contracts on this hammer candle close,
+[2774s-2779s] where stop loss is simply below that previous pivot high. Right? We come up, we come back,
+[2779s-2784s] retest our stop loss is pretty close and we move up for high a day and we sell the full position
+[2784s-2789s] at high a day. Well, we sold a whole position at high a day. This are original risk to reward
+[2789s-2797s] with 3.18 and we sold both contracts at 3.18 risk to reward. Okay? However, if we scale in and out
+[2797s-2803s] of the trade, so if we scale to contracts here and then we scale 1 out high of day and we stop,
+[2803s-2809s] we have our stop loss now at a 1 to 1. So our stop loss, if we go back to break even as 1 to 1,
+[2809s-2816s] right? We can hold for the next profit target up here. Right? And that next profit target is at about
+[2816s-2822s] 437 site level. Right? And we can hold for that profit target as we can see all the way up here.
+[2822s-2829s] Okay? And that's why it's extremely important to scale in and out of trade. Scaling will help you
+[2829s-2835s] increase your conviction within the trade and have less fear in the trade to hold those winners.
+[2835s-2840s] Right? Because once you sell 1 out high of day, what will happen psychologically is you're like,
+[2840s-2846s] okay, I have a guaranteed realized profit for the day. Right? Let's say you, you know, let's say
+[2846s-2853s] this trade where you were up $200, you have a guaranteed $100 game up here. Right? So now if it comes
+[2853s-2862s] back to break even, you still made that guaranteed $100 profit. Okay? However, if you sold both,
+[2862s-2869s] you would have just made $200. On the next trade, you have a guaranteed $100 here. You hold the
+[2869s-2875s] next one, right? To your stop. And if it keeps going, now you just made $300, $400 on a trade that you
+[2875s-2881s] would have originally made $200 by simply holding your winner and managing the scaling while you're
+[2881s-2886s] in the trade. The risk while you're in the trade and your psychology because you sold that one,
+[2886s-2893s] you were able to hold the other one for the full profit. Okay? I hope this slide resonates with some
+[2893s-2898s] of you and helps you understand why scaling in and out is very important. And once again,
+[2898s-2902s] depends on the market where in in this current market, I like to sell a little bit more at the
+[2902s-2907s] profit target first. However, in different market scenarios, this is something that I love doing
+[2907s-2913s] myself, right? And previous mentorship students can, you know, vote you on that one as well. Okay?
+[2915s-2920s] So in conclusion, by using these strategies, you can maximize your profits by holding the
+[2920s-2926s] option contracts or common stocks or futures or equities much, much longer. It doesn't just apply
+[2926s-2932s] to options. You can hold many different types of assets using these same specific strategies, right?
+[2932s-2936s] You need to understand the market trend, you need to understand how you're managing your risk,
+[2936s-2941s] you need to, you know, understand your trading system and you need to track your performance over a
+[2941s-2947s] long period of time and this will help you only hold your winners longer. Right? So I want to thank
+[2947s-2952s] you for listening to this presentation. Okay? This presentation we went over exactly how to hold the
+[2952s-2957s] winners and we went over exactly how to create a winning trading system. Okay? Now, if anyone has any
+[2957s-2961s] questions from this lecture, you can put them in the chat now and I'll answer all of them.
+[2980s-2983s] When you're talking about changing your stop to break even after you scaled like you did this
+[2983s-2987s] morning, do you look at the premium price to make sure you can get out in the profits?
+[2987s-2991s] Since the break even spot on the chart is almost always negative on the option? Yeah, so it depends,
+[2991s-2997s] right? So today, when I actually exited for my final position, right, it was below my entry.
+[2997s-3002s] However, that profit, right, that I took earlier in the day allowed me to make still $500 today.
+[3002s-3008s] Right? So for me, right? I'm kind of it's you do have to monitor both. It's very important because
+[3008s-3013s] of course our money is tied up in the actual option contract. However, for me, when I'm looking
+[3013s-3018s] at the actual stock, it's important to look at the technicals where it can actually come down to
+[3018s-3024s] and not change trend. So today was for example, that pre-market high, like I talked about in today's
+[3024s-3028s] live session. Right? If you were in the actual live session today, you know, I talked about how
+[3028s-3035s] you could have theoretically, you know, exited after it broke that one, I believe it was pre-market
+[3035s-3040s] once it broke that, right? Technically, it would have already lost. It's momentum to the upside,
+[3040s-3045s] but I wanted to ensure that, right, because I did take profits. So it's important to look at both.
+[3045s-3052s] However, you want to put more emphasis on the underlying asset. Any more questions?
+[3061s-3065s] If a stock has moved away from VWP significantly, do you get out sooner since the stock tends to
+[3065s-3071s] no? No. VWP once again is an indicator VWP should be used as an indicator VWP should not be used
+[3071s-3078s] for changing my strategy at all. Right? VWP is simply on my chart because it helps me look at where,
+[3080s-3084s] you know, a stock will potentially bounce from if there's a key level there, right? Because
+[3084s-3090s] other traders are looking at VWP, however, VWP will not affect my strategy or how I hold my stock
+[3091s-3098s] much, much more. Do we have a separate session on levels? If you go to my, if you go to the,
+[3098s-3103s] the last two sessions were honestly on levels. If you, the last two, lesson two and lesson three
+[3103s-3109s] were basically on levels, right? So just make sure you watch those because I draw levels in both of them.
+[3109s-3115s] And I talk about levels more in lesson two. So when I'm talking about how to create my strategy
+[3116s-3124s] in lesson two, right? That was mainly also about levels. And you'll be better at drawing levels
+[3124s-3128s] and understanding the levels much, much more. Once you see more trader views and last sessions
+[3128s-3133s] and stuff like that, right? You compare your levels to mine. So what I recommend when you draw,
+[3134s-3138s] you know, draw your levels before I actually put them in the Scarface Lershale in the mornings.
+[3139s-3143s] And that way you guys can see where you put your key levels and where I put mine and how they differ
+[3143s-3147s] and why they differ, right? And that's how mastermind one student's today, right? And that's how
+[3147s-3151s] their levels are, you know, a little bit more accurate now, right? It'll just take some time, right?
+[3151s-3155s] And well, it won't take, you know, a week or two, you know, it'll take months to really solidify those levels
+[3155s-3162s] same as mine. I've been doing that on trading view. They don't always line up with candles.
+[3163s-3165s] I've been doing that on trading view. They don't always line up with the candles.
+[3165s-3170s] Um, yeah, the, sometimes trading view has, I don't know, trading views weird sometimes,
+[3170s-3174s] right? Sometimes the pre-market levels are different. Just make sure you have the data on rate.
+[3174s-3177s] Make sure you buy that trading view data, the real-time data, and you should be fun.
+[3181s-3188s] Any more questions? Psych to track performance. You can use tradezilla, right? I use tradezilla
+[3188s-3194s] personally. That's where I have my journal. However, I recommend in the beginning to use Excel.
+[3196s-3201s] I recommend in the beginning to use Excel. We will have a journaling workshop, right? That's
+[3201s-3207s] within the bonus workshops as well. We'll have a journaling workshop, and that will be in the last
+[3207s-3211s] week. I'll get that out of two guys that that's within the bonus workshops as well. But I recommend
+[3211s-3215s] tradeszilla if you want to site to actually track it. I think you have to pay for it. That's like $50
+[3215s-3222s] or something like that. For zero DTF, I found that options seem to move much more normally. If I
+[3222s-3226s] trade one or two strikes in the money instead of out of the money, what are your thoughts on that?
+[3226s-3233s] We're trading next week's contracts. Yeah. I mean, I think the thing with zero DTE is,
+[3233s-3236s] there, there are much, much more volatile, right? So if the stock does go against you,
+[3237s-3242s] because data's crushing them at the same time, right? The stock, the out of the money will,
+[3242s-3246s] will lose much, much more value, much, much more quickly. However, if the stock does go with you,
+[3247s-3252s] it'll gain the exact same process where it'll make much more money as well.
+[3253s-3256s] So you just have to be really careful with zero DTEs in my personal opinion. If you're a new
+[3256s-3259s] trader, I don't think you should be trading zero DTEs. I think you should still go for the next week
+[3259s-3265s] contracts. Why is zero DTEs no go when we're doing mostly? These quick trades either.
+[3265s-3269s] And profit, it's not like we're holding our positions for a long. Yeah, it's just like I
+[3269s-3273s] explain, right? Sometimes you do get caught up in trade. So for example, today, we got caught up in
+[3273s-3277s] that Tesla trade for a little while. It was consolidating right at high a day, rate,
+[3277s-3282s] low high a day consolidated there for about 10, 15 minutes. And if you're doing zero DTEs,
+[3282s-3287s] in earlier in the day, zero DTEs are still fine, right? From to like a lot of clock realistically.
+[3287s-3292s] However, if you're a new trader, I still recommend for you to stay away from it, just because
+[3292s-3296s] they can be extremely volatile, right? And it's just safer, right? It's it's literally just the fact
+[3296s-3303s] that it's going to be safer. On Thursday, should you also go next week or just proud of
+[3303s-3308s] it? I personally, you're you're fine on Thursday's realistically, just go friday, right? Friday,
+[3308s-3313s] just go next week. Once you get comfortable, you can trade for Fridays or DTEs, but for now,
+[3313s-3320s] just go friday next week. For persistence, I know you use 50 contracts at the start of your
+[3320s-3324s] but if, but since different contracts on different days have a different premium price,
+[3324s-3328s] would it be better to have a dollar a month to contract amount? For me, I don't really care too much about
+[3328s-3333s] that honestly. You know, for for a new trader, I think that's important, but for me, I've been training
+[3333s-3337s] for quite a while now where 50 contracts to just find the price of it doesn't really matter to me.
+[3338s-3343s] You know, too much, right? As long as the IV still low, right? As long as the price is
+[3343s-3350s] in, you know, bumped up because of IV, it's not too big of a, but a difference. But that should help
+[3350s-3354s] with risk management. Yeah, yeah, it should, however, when I'm entering and entering and exiting trades,
+[3354s-3358s] you guys will see my trades, ill-appreformance, you know, for the month and stuff like that.
+[3359s-3363s] I manage my risk per trade, right? It's not, I don't manage my risk, you know, over, like,
+[3364s-3370s] how do I explain this and the best way possible? I don't manage my trade per trade basis, right?
+[3370s-3375s] So depending on the trade in the market environment, right, that's how I manage my risk. It's
+[3375s-3382s] per trade. It's not every single trade is the exact for my personal risk management. I'm not
+[3382s-3386s] recommending this to you, right? The way I explain it within the workshop is how I recommend it to you,
+[3386s-3392s] but for me, personally, at the level I am, right, it's per trade, right, because I, once again,
+[3392s-3399s] can take 50 contracts one day and take 150 the next day, right? It's just how the market is for me.
+[3399s-3404s] But for new traders, you want to keep that constant, right? Hopefully that makes sense.
+[3410s-3417s] Hopefully that makes sense. Constant dollar, constant contract amount. So you're comfortable with those
+[3417s-3431s] contracts. Yeah. You provide your SPX strategy to old trades. Can you provide your SPX strategy to old traders?
+[3433s-3437s] Are you talking about the previous trade reviews? The SPX strategy really is kind of the same as
+[3437s-3440s] breaking the United States. I don't do the SPX strategy anymore, because I don't trade SPX not much anymore.
+[3443s-3463s] But I'm assuming you're talking about the old trade reviews. Any more questions? These were
+[3463s-3468s] good questions, honestly. I think there was a lot of things that, you know, people may have been confused
+[3469s-3471s] on. If you have any questions that you think are like even kind of, you know,
+[3471s-3475s] don't know anything like that, there's no questions, honestly, that are dumb. I used to ask the dumbest
+[3475s-3479s] questions ever when I was first starting off trading. So trust me, you're fine. If you, you know,
+[3479s-3482s] any question that you guys have, you can, you know, this is the best time, right, because I'm
+[3482s-3490s] literally sitting in front of the screen. So I can answer it instantly. So if you have any questions,
+[3490s-3496s] right, ask them now. Once again, I won't be trading. There's in Friday, right? I try to trade
+[3496s-3500s] there's in Friday by myself to ensure, you know, I kind of have a couple of days for myself. And that's
+[3500s-3507s] why JW trade with you guys. And then I'll be back Monday again. Your strategies are only based on
+[3507s-3513s] B&R. Yeah. Yeah. All my strategies are basically based off B&R in some way, shape or form
+[3519s-3523s] for those creating your trading plan, do you have an example format and discord? No, but you can
+[3523s-3527s] use the exact, you can use a slide, right? How I explained in the slides to do it, right? You can just
+[3527s-3534s] kind of have that within your own trading plan. But I could honestly make an example format.
+[3534s-3543s] What do you mean now? But I could definitely do that in the future and send that out. If you were
+[3543s-3547s] taking a smaller amount of contracts too, would you have been all out of the trade this morning
+[3547s-3551s] and your second skill? Realistically, I would have probably only taken one skill at high of
+[3551s-3556s] day if I was taking two and I would hold the other one. I wouldn't see how I wouldn't, I wouldn't
+[3556s-3564s] take that second skill that I would have waited for the second skill. Can I be in our strategy
+[3564s-3570s] be used for trading 100%. I'm actually thinking of, because I do swing trade on another account
+[3570s-3573s] and I just don't alert those swing trades, right? But they work out pretty well on the hard time
+[3573s-3579s] for you. So I don't know, I think I might kind of add within the live trading, you know,
+[3579s-3583s] those swing trades that add. If that's something you guys want to see, just because I know a lot of
+[3583s-3588s] people here are data traders, but I do swing trade. I've been swing trading more often now than before
+[3589s-3595s] and you know, they've been doing good. And that's why sometimes I don't have to take those
+[3595s-3599s] day trades as well. By the way, guys, like because I am day trading, but I only show the day trades
+[3599s-3607s] that I take on Instagram and everything like that. So I don't know if that's something you guys want to see.
+[3607s-3610s] Yes, yes, yes, yes, yes, yes, yes, yes, yes, yes, yes, yes, yes, yes, yes, yes, yes, yes, please, yes,
+[3610s-3614s] please, that's when which for people working out of thought, yes, please. So the thing with the swing
+[3614s-3617s] swing trading though is a little bit different, right? It's a brick and retest, but the risk to her
+[3617s-3624s] word and win rate is a little bit different. I have to explain that. So maybe when when we end this
+[3624s-3631s] mastermind, we end this mastermind, I think on the 19th or 20th, I have to catch a flight basically
+[3631s-3638s] the next day to Dubai. But then once I come back, I can make a bonus workshop on swing trading and
+[3638s-3643s] kind of whenever we restart on the swing trades, I'll kind of, you know, fill you guys in from then.
+[3643s-3649s] And then, um, but yeah, or I can just start giving, I don't know, we'll figure that out. We'll
+[3649s-3655s] figure that out. How do you choose a whole psychological numbers for targets? It's just whichever
+[3655s-3660s] one is kind of the nearest at the time, right? So if it's like if stocks are like 100, if 101's
+[3660s-3667s] near, right, I'll choose 100 or 101, sorry. But yeah, okay, those are all the questions I'm going
+[3667s-3672s] to answer right now. I hope you guys enjoyed today's session. Let's get some W's if you guys did
+[3672s-3677s] get some value out of today's session. Like I said, there will be a quiz later today,
+[3677s-3681s] right, that you guys can do, there will be a quiz later today. But I did do hope you guys enjoyed
+[3681s-3685s] this session and got some value out of it. Yeah, I'll post a quiz later today and then this
+[3685s-3692s] recording will be up later as well. I hope you guys enjoyed and yeah, I'll see you guys on Monday, but
+[3692s-3697s] I'll be in the chat, I'll be in the chat throughout the day. So yeah, I'll see you guys soon, all right?
+[3697s-3707s] Bye.

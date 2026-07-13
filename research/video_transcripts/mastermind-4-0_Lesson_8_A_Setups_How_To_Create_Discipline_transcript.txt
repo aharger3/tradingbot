@@ -1,0 +1,1044 @@
+# Transcription: mastermind-4-0_Lesson_8_A_Setups_How_To_Create_Discipline.wav
+# Duration: 5355s
+
+[0s-9s] So welcome to lesson eight. Today is going to be the last lesson of the boot camp section
+[9s-16s] of the Mastermind. Now really quickly, I do want to mention going forward, of course,
+[16s-20s] you will always have this for lifetime. However, going forward on every Saturday
+[20s-25s] for the next, you know, going forward, basically in general, JDub will still do those
+[25s-29s] weekly sessions with you guys. So you guys will be getting that weekly session as well
+[29s-36s] that live weekly session with the lesson. And also on Monday, I believe on Sunday or Monday,
+[36s-41s] you guys will also get some bonus workshops that are only for Mastermind students. And then on
+[41s-45s] top of that, in about a week and a half, I believe, or two weeks, we're going to do the
+[45s-49s] final Q&A session to wrap up the full Mastermind. And then of course, you also get that live
+[49s-52s] training for the next two months. And of course, I'm going to be in the Discord as
+[52s-57s] well. And then we'll do one more recap session with all the Mastermind classes for Mastermind
+[57s-61s] one, two, four, everybody in one Zoom call. And we'll talk about how that's going to work
+[61s-66s] in the future as well. But that's also planned for, I believe, in I think three weeks from now.
+[66s-71s] So it's not like we're ending off or anything, but we're just ending off the boot camp section.
+[71s-75s] The reason I do it like this, I've said it a couple of times before, is just so every single
+[75s-82s] person can be on the same kind of level as we're actually trading live. Because it's good
+[82s-86s] to know about what to look for when you're actually trading live. Because before then,
+[87s-91s] if you're entering into a trade, you're simply entering it as a signal. And you're not entering
+[91s-94s] it based off of the education that you've learned or your own practical experience.
+[95s-99s] So that's what I think is very important. And that's why we have a structured where
+[99s-102s] you do the two-week boot camp first, and then you kind of do the live trading.
+[102s-106s] Now talking about live trading, how was your guy's live trading session today?
+[106s-112s] I took one super break even trade on Apple. And then I also had, or sorry,
+[112s-119s] JDub took Tesla. But it's not even about the P&L that I really care about for you guys right now.
+[119s-123s] But are you guys looking at the chart differently from the start of the mastermind
+[123s-126s] till now at least? Are you guys looking at that chart differently?
+[127s-130s] And you're able to look at some stuff that's happening in real time?
+[132s-136s] Yes, yes, yes, for sure. Yes, need more backtesting. Yes, absolutely. Yes,
+[136s-141s] it has been helpful. Awesome. Love to hear game changers making more sense. Love to hear.
+[141s-145s] No trading for me till I sum up the whole strategy, but now I have a way new side. Awesome,
+[145s-150s] awesome, awesome. Many more to come. Cool. Definitely going to trade different. Most
+[150s-154s] definitely. Yes, but still not understanding it enough. No trading yet. Exactly. So
+[154s-159s] really good to hear overall. Really, really positive feedback. Now one thing that someone
+[159s-165s] did say, they're not understanding it completely yet, that's just going to take time. Here's
+[165s-172s] the thing. I can't guide your hand. I can't walk you through the actual real time
+[173s-178s] and click the buttons for you. So that's something I always say is I can only guide
+[178s-183s] you so much and then you kind of have to take that leap by yourself of actually obviously
+[183s-189s] executing the trades. However, I think if you watch the live trading for the next two months
+[189s-193s] as well and then do it by yourself as well and then come back and watch those, it'll be
+[193s-200s] much better. It'll be much better and that honestly will just take time. That will just
+[200s-206s] take time. So first of all, realistically the mastermind has only happened for two weeks so
+[206s-211s] far and I think in the two weeks you guys have seen a lot obviously and you've learned a lot,
+[211s-215s] but now it's really more time to apply everything that we've talked about. It's
+[215s-221s] time to apply everything. So with that being said, I'm having trouble with the yellow
+[221s-226s] boxes that Jaydub draws. We'll watch the video again. So Jaydub actually has multiple videos on
+[226s-229s] the order block. I think he should be in the chat soon so he'll answer some of the questions
+[229s-234s] that were up there. I saw as well he'll answer some of those questions, but Jaydub does have
+[234s-239s] a bunch of videos for order blocks. He actually has a whole session dedicated to order blocks
+[239s-242s] so make sure you're watching those Jaydub weekly trade reviews as well because there's
+[242s-247s] going to be sessions in that. If not, just on Saturday just tell Jaydub to redo it. He
+[247s-251s] does have, but I do know because he's gotten this question so many times that he has a full
+[251s-254s] in-depth order block video. He has like four of them I think that he's already made.
+[254s-259s] So just ask Jaydub about that. I'm pretty sure it's in the Jaydub trade review though
+[259s-262s] or just the Jaydub channel, not in the trade review, sorry, just the Jaydub channel in
+[262s-268s] the mastermind discord. So with that being said, let's start lesson eight and for all
+[268s-272s] the other questions we're going to wait until after the lesson is done and then I'm
+[272s-278s] going to kind of wrap it up with the questions at the end. April 6th from Accelerator Course
+[278s-284s] is all about order blocks. Yeah, so yeah, just watch that then. All right, so let's continue.
+[285s-289s] So today we're going to be talking about, if my laptop will work, today we're going
+[289s-293s] to be talking about how to create discipline and then we're going to talk about how to
+[293s-302s] identify A plus setups. So in order to create discipline or you know how to create discipline,
+[302s-306s] we need to define what discipline is. Now a lot of people, you know this is really the
+[306s-310s] psychology aspect of trading today that we're going to talk about a lot more because we need
+[310s-315s] to focus on that because for the last couple of workshops we've talked much more technicals,
+[315s-319s] we've talked strategy, we've talked opening strategy, we've talked break and retest strategy,
+[319s-325s] we've talked about you know how to read market structure but now it's really important to also
+[325s-330s] under and we've talked about psychology before, yes, however it's important to understand how to
+[330s-335s] have a winning psychology, how to actually be a profitable trader through your psychology
+[335s-340s] and how to have you know not you're not bundled down with emotions just because of
+[340s-346s] your previous losses or previous experiences. Okay, so how do we create discipline? So
+[346s-351s] before we actually answer this, we need to define what discipline is. So discipline is a practice of
+[351s-356s] training yourself to follow rules and conduct yourself within behavior that is defined within
+[356s-360s] your rules. If you do not follow your rules, you can be punished and penalized in order to
+[360s-366s] enforce obedience which sounds a little crazy but you know it's true. So how many people
+[366s-371s] in this room think they have a psychology problem? How many people in this room think
+[371s-372s] they have a psychology problem?
+[379s-382s] So as you guys can see, a couple people, you know a decent amount of people
+[383s-388s] are used to not now, me getting better, I do well, right? So a couple people have
+[388s-393s] psychology problems and here's the thing, when you learn the strategy and especially now
+[393s-396s] like since you know I'm glad that a lot of you guys are seeing the chart from a different
+[396s-401s] perspective, you know so you guys are seeing the chart from a different perspective so
+[401s-407s] you're gonna be able to see it in real time and actually you know trade the setups or whatever
+[407s-412s] right? That's cool and all however if you don't have the proper psychology behind your trades
+[412s-418s] you will still fail as a trader. The reason that is is because one bad trade is all it
+[418s-428s] takes to blow your day, your week or month. One bad trade or one bad day, okay? So it's so crucial
+[428s-432s] for us to understand that the most important part of trading and I've tried to emphasize
+[432s-436s] this a couple times is risk management of course having a profitable edge but then
+[436s-442s] after that it's to follow your risk management right? So because the most important part of
+[442s-445s] trading is having an edge in risk management right? Obviously a profitable strategy which
+[445s-451s] comes into the edge because of that following it is the most important after that fact and
+[451s-457s] you know most people can't do that all right? Most people can't follow their strategy or
+[457s-461s] whatever they're trying to trade for a long period of time because they either a don't have
+[461s-466s] enough conviction in the strategy or b they just think that it's not going to work over
+[466s-469s] a long period of time because they see a new shiny strategy you know like I've talked about
+[469s-474s] this before they see the new you know ict strategy coming out or whatever right? And because
+[474s-479s] of that they don't have they want to jump ship because they don't have the conviction like I
+[479s-484s] talked about earlier right? So you know does everyone know what's going on with the Robbins
+[484s-488s] Cup right? That's something that's been news for a little while now in the trading community
+[488s-498s] does that does everyone know what's going on with the Robbins Cup? No no no no no so it's
+[498s-502s] just it's kind of it's not anything crazy or anything like that but for the people
+[502s-507s] but for the people that you know that kind of keep up with that type of stuff the reason I'm
+[507s-511s] saying this is just to kind of help you guys understand you know about strategy and psychology
+[511s-515s] and the difference in between them is the fact that so in the Robbins Cup all it is is you
+[515s-519s] know it's just technically it's like if you enter the Robbins Cup you know your name it's
+[519s-523s] like the top three people are like the best traders in the world technically like it's not
+[523s-528s] really but like that's what they kind of promote the Cup as and so you know ict did
+[528s-533s] that you know that Cup or whatever and you know he said that guaranteed he was going to be number
+[533s-539s] one because he taught the strategies he knows the strategies perfectly and it was very very
+[539s-544s] clear very quickly that he never even reached near top 10 right like he's he's like he's
+[544s-548s] probably in like the bottom of the leaderboard realistically right and the only reason I'm
+[548s-555s] saying that is to help you guys understand that you can have the best strategy you can be
+[555s-561s] have a really good edge which is important 100% you can understand how to manage your risk but
+[561s-566s] if you can't actually follow those systems through the discipline you have then you will
+[566s-570s] not be profitable and we're going to talk about how to create the discipline and how to
+[570s-573s] you know the different types of discipline but the reason I'm you know I mentioned the Robbins
+[573s-579s] Cup is to show you like ict is literally you know the most people think that he's like a
+[579s-583s] genius and like he's created all these strategies and they work and they've seen
+[583s-587s] profitability through them which is fine and cool I don't have anything against the guy at all
+[587s-591s] however what I'm trying to show you here what I'm trying to explain through the you know this
+[591s-595s] this analogy is the fact that yes he created yes he had those strategies yes he had those
+[595s-600s] tutorials but could he have done it live no he's never traded live and every time he's
+[600s-604s] traded live he's lost and could he have done it where he won the Robbins Cup sure
+[604s-607s] he could have won the Robbins Cup however he's last place or not last place but he's not
+[607s-612s] even in the top leaderboards you understand what I'm saying so you know it's cool with the
+[612s-616s] strategies and everything like that to see how the market works which we've done so far but now
+[616s-622s] it's time to implement it in real time and are you as a trader right sorry not as you as a
+[622s-628s] trader are you as a person able to be a trader that's the question we need to ask ourselves
+[628s-634s] now right are you as a person able to be a trader because you can have the best strategy
+[634s-639s] best risk management but for you you need to understand that at the end of the day it's
+[639s-643s] going to be you versus you in front of the charts right you can understand exactly what's
+[643s-647s] going on I've seen this multiple times I have some friends that are really really really really
+[647s-651s] good chartists like they actually like they can it's kind of almost scary how much they can
+[651s-655s] predict what's going to happen in the markets right like it's kind of scary how you can do
+[655s-661s] that they're really good at that aspect but they completely suck at trading they suck at
+[661s-667s] trading right the reason that is is because they're really good at the the one skill they
+[667s-671s] have which is charting right and they're good at predicting but at the end of the day when
+[671s-675s] they put real skin in the game they just can't handle those emotions and a lot of people can't
+[675s-680s] handle those emotions right and so that's something you need to know that that's what
+[680s-689s] you need to be good at to actually sustain this long term okay so as I said that now
+[689s-693s] that we kind of know what discipline is and why it's so important let's talk about the
+[693s-699s] three types of discipline now for most courses most people most gurus they don't even understand
+[699s-703s] that there is three types of discipline right how many of you guys knew that there was three
+[703s-707s] different types of discipline right most people they just think of discipline as a very simple
+[707s-710s] type of thing you know they just think discipline is oh if I don't follow my
+[710s-716s] trade whatever like blah blah blah right but there's actually three layers of discipline and
+[716s-720s] you need to understand each layer and today we're going to get into each layer as well
+[720s-725s] and what you need to understand is how to not punish yourself punish yourself seems a little
+[725s-731s] harsh but how to discipline yourself in each of those layers to create more obedience within
+[731s-737s] your rules okay so the number one level or the most base and elementary level this is what
+[737s-741s] 90 percent of people on social media talk about when they're talking about discipline
+[741s-748s] is preventive discipline okay so this is when you're establishing expectations guidelines
+[748s-755s] and behaviors so you know preventive discipline is what most people or most of you have only
+[755s-759s] heard about preventive discipline you haven't heard about the other two most likely and the
+[759s-764s] reason that is because when you're on social media or when you're when you were learning
+[764s-770s] how to trade right what will happen is the the person teaching you will say okay let's say
+[770s-776s] you you have a strategy well create rules to that strategy and create expectations which
+[776s-780s] means you know you can only trade from 9 30 to 11 o'clock you can you know you're trading the
+[780s-786s] break and retest setup you're trading with only one contract for example what's another
+[786s-790s] rule we can have you're trading on only trending days you're trading if the stock
+[790s-796s] is above vwap right like there's just a bunch of rules that you have within your system right
+[796s-803s] so what the preventive discipline is is when you actually have those rules those rules are
+[803s-809s] in place but if you break them nothing's really going to happen okay nothing's really going to
+[809s-812s] happen if you break those rules you have those rules in place and that you know for you that's
+[812s-817s] the discipline you should follow in the terms of i have these rules and therefore i'm going to
+[817s-822s] follow these rules but that's all preventive discipline is there's nothing more in depth
+[822s-828s] about it it's just a very baseline uh you know kind of uh it's a baseline guideline
+[828s-832s] for you to actually follow your rules that's all it is it's just a rules checklist
+[832s-839s] okay now after this we get into supportive discipline supportive discipline occurs after
+[839s-845s] the problem has occurred and a warning may be in place so for preventive discipline let's say
+[845s-851s] you have a rule that you only can take two trades a day maximum no matter what you can
+[851s-856s] only take two trades per day well with supportive discipline what will happen is
+[856s-861s] if you take over those two trades per day let's say you take the third trader the fourth
+[861s-867s] trade if it's your first time doing it so it's the first time that you've broken your rules
+[868s-875s] you know every time here's the thing the first time you do something it makes it easier for
+[875s-880s] you to do it the next time this is a fact okay this is a fact the first time you do
+[880s-888s] something it will 100 be easier the second time okay so what i mean by that is for example
+[888s-894s] if you go to the gym okay if you're someone that goes to the gym and you're you know you
+[894s-902s] go to the gym every single day if the first time you uh you uh stop you don't go let's say the
+[902s-907s] first like there's a day that you don't go well the next week if you're tired or you're
+[907s-911s] feeling lazy you're more inclined to not go because you're like i already missed one time
+[911s-914s] last week it didn't really make that big of a difference so let me not go again right
+[914s-919s] and the week after that you may miss two days the week after that you may miss three days right so
+[919s-924s] it's really really hard to create a habit and stick to the habit right but it's really really
+[924s-931s] easy to break and have it and stick with the break the breakable habit okay so therefore with
+[931s-937s] supportive discipline all it is is when a problem has occurred for example you didn't go
+[937s-942s] to the gym for one day you understand that you didn't go to the gym for the one day
+[942s-946s] but you're not going to do it again you're going to warn yourself that you're not going to do it
+[946s-956s] again okay now number three is corrective discipline so if you fail to change behavior
+[956s-960s] after supportive discipline this is when corrective discipline must be used
+[960s-967s] this has consequences so what is corrective oh why did it do that why did it do that
+[968s-973s] sorry so with corrective discipline if you fail to change behavior of supportive
+[973s-978s] discipline this is when corrective discipline must be used this has consequences so for example
+[978s-982s] if you did if you missed one day of the gym right the reason i'm using the gym is because
+[982s-987s] it's a really simple analogy but let's say you just missed one day of the gym okay well
+[987s-991s] that's fine right you just give yourself uh you know kind of like a warning like so basically
+[991s-996s] the way i see this is you give yourself if if anyone watches soccer you give yourself a
+[996s-1001s] yellow card which means this is a warning don't do it again but if you do it again there will be
+[1001s-1005s] a consequence but right now you're fine just don't do it again i'm just giving you a warning
+[1005s-1011s] with corrective discipline if you do that same mistake two times right if you do it the second
+[1011s-1016s] time then you have to give yourself some sort of consequence or something that you don't want
+[1016s-1025s] to do okay so something that i can relate to myself in terms of training is you know when i
+[1025s-1032s] would have a big red day based off of my you know let's say i wasn't following a rule for example
+[1032s-1036s] let's say i had two trades i could only take two trades in a day and i took three well if i did
+[1036s-1039s] it the first time i'm like okay i'm just going to give myself a yellow card and this is
+[1039s-1043s] supportive discipline i'm just going to give myself a yellow card you know i didn't follow
+[1043s-1050s] my rules whatever well if i do it the second time so the second time comes around and once
+[1050s-1056s] again i give i you know take three trades in a day and it doesn't even matter if i'm green or
+[1056s-1061s] red that's the thing it doesn't matter if you're green or red the pnl is just the final the pnl
+[1061s-1066s] is the result of your plan and your actions right like the pnl doesn't matter okay but what
+[1066s-1072s] matters is what i did at like in the trading session okay so if i once again take three
+[1072s-1078s] trades in a day and i've already given myself a warning before then i have to do something
+[1078s-1083s] that i don't want to do now what i usually recommend to traders because as a trader
+[1083s-1088s] you're sitting in front of the screen all day you know you're you're already your eyes are
+[1088s-1092s] probably tired you're probably not getting that much activity either i always recommend
+[1092s-1096s] to do something that has something to do with activity that will make you a little bit more
+[1096s-1102s] healthier that's just what i recommend so for me personally every single time that i broke
+[1102s-1108s] my rules or if i break my rules right what i do is i go on a five kilometer run the reason for
+[1108s-1113s] this is because a i don't want to do a five kilometer run that's something i really genuinely
+[1113s-1118s] like you know i'm fine with running but you know for 5k i don't really want to run that
+[1118s-1122s] much right and number two it's good for me at the same time right so though i'm disciplining
+[1122s-1127s] myself in terms of i'm not going to do this again because i don't want to do the 5k run
+[1127s-1131s] the 5k runs also benefiting me in terms of health okay which is good because once again
+[1131s-1134s] we're sitting in front of the screens all day and you need to be active and healthy at the same
+[1134s-1138s] time because you don't just want to be sitting there and you know in front of the screen all
+[1138s-1143s] day you know trying to make this money on on you know your computer or whatever but you're
+[1143s-1148s] also missing you know you're out of touch with reality right so for me personally what i did was
+[1148s-1154s] every time that i do something that i don't want to do i will put a consequence to it
+[1154s-1159s] of something that i don't want to do however it's still going to be beneficial for me in
+[1159s-1164s] the long run so you have to think about it in terms of yourself okay so in terms of yourself
+[1164s-1169s] you need to think about something that you can do that that that you don't want to do sorry that
+[1169s-1176s] would technically benefit you in the long run however you really genuinely don't want to do it
+[1176s-1181s] right because then that's going to stop you because in your brain every single time that
+[1181s-1185s] you even want to go take that third trade or whatever in your brain there's going to be a
+[1185s-1189s] switch that kind of turns on after you've done it one or two times after you've done that you know
+[1189s-1193s] 5k run there's going to be a little switch in your brain that turns on it's going to be like
+[1193s-1198s] no no no bad idea you don't want to do this right and all of a sudden then you'll notice
+[1198s-1204s] that you're going to be much more disciplined in whatever task you're doing okay so for
+[1204s-1211s] example you know another analogy that i can use as well is for me in the beginning and you
+[1211s-1215s] guys will get this journaling workshop as well whenever i used to take a lot of trades in the
+[1215s-1219s] day i genuinely didn't take a lot of trades in the day the reason being is because i knew
+[1219s-1223s] i had to journal them at the end of the day and for me that journaling was such a
+[1223s-1229s] rigorous process because i used to put in so much information per trade like i used to take
+[1229s-1234s] a screenshot of the trade i used to put in exactly where i bought and sold on the trade
+[1234s-1237s] like manually like tradezilla was not around when i was doing this right like you know i
+[1237s-1242s] don't think i think there was probably i forgot what the with the trading what the journaling
+[1242s-1247s] software was called back then i someone in the chat probably remembers but um you know back then
+[1247s-1252s] like trader view yeah i think it was trader view actually it was trader view but but even
+[1252s-1256s] trader view wasn't really the greatest i think it was even before trader view a little bit
+[1256s-1262s] trader view came out in i think like 2018-2019 but even before then right i used to use
+[1262s-1267s] basically just excel worksheets and because i used to have you know exactly where i entered
+[1267s-1273s] exactly where i exited exactly where what what i did in the trade how i felt in the trade you know
+[1273s-1278s] the exact contracts i was buying i had to put in every single little detail to the commissions
+[1278s-1284s] on the trade i used to put that in excel myself manually right i used to manually put
+[1284s-1288s] in the commissions that i put i had on the trade where my entry was where my exit was i
+[1288s-1295s] used to mark up the chart itself like per trade generally one trade probably back then
+[1295s-1300s] took me at least 25 minutes to 45 minutes even after i did it a couple times it still took
+[1300s-1306s] me 25 to 45 minutes just to have one trade review right like have it in my excel like
+[1306s-1309s] put it all in there with how i felt and everything like that i used to write like
+[1309s-1315s] a paragraph of how i felt why i took the trade blah blah blah right and that itself
+[1315s-1318s] made me want to take less trades because i knew i was like all right if i take this
+[1318s-1321s] trade it's going to take me 45 minutes tonight to just journal this trade and that's
+[1321s-1326s] something i don't want to do right because it's just such a mundane task to me but you know it's
+[1326s-1333s] that task or that kind of um you know structure that helped me become profitable because at the
+[1333s-1337s] end of the day because i didn't want to do it it made me stop taking you know those on those
+[1337s-1342s] low quality trades and stick to only high quality trades so do you guys understand why
+[1342s-1347s] of the three types of discipline and how you kind of need to structure your own trading
+[1347s-1353s] right so you structure it in a way where if you do something bad you need to do something
+[1353s-1357s] uh that could a benefit you which is probably ideal but something you really don't want to
+[1357s-1361s] do and it's going to be a little bit time consuming right i'm putting excel too don't
+[1361s-1367s] know why i have the same feeling i should add that very good idea right so can some
+[1367s-1372s] people gave me uh you know some examples of corrective discipline they would use within
+[1372s-1376s] their own training or like for themselves and i think this would get this will give a chat
+[1376s-1381s] the a better idea as well it's just like a little i do this with the most mastermind classes and
+[1381s-1386s] they uh they usually have some creative ideas for corrective discipline which a lot of people
+[1386s-1393s] kind of get a laugh at as well fast for a week yeah i mean fasting for a week is insane
+[1393s-1399s] uh spin class slash read a book i don't eat for three days 45 minutes stair master so that
+[1399s-1403s] one's a good one the 45 minute stair master yes every time i make money the wrong way i
+[1403s-1410s] will send it to the person i hate that is insane i like to run neat ideas eat vegan for a week
+[1410s-1418s] don't trade for a day uh drink raw egg so the main thing with corrective discipline is i think
+[1418s-1421s] is really just try to do something that benefits you though right like at the end of the day
+[1421s-1425s] it should be something that benefits you too like it's like you know of course it's
+[1425s-1429s] it's cool to be funny and everything like that but do whatever it is just make sure
+[1429s-1432s] it's something that like can will help you out long term as well like i always try to
+[1432s-1437s] you know make it something related to uh to physical activity like that's something i like
+[1437s-1442s] to do um or something that could benefit yeah like update your resume go right ahead you
+[1442s-1445s] know update your resume or do something that you've been you know you really didn't want
+[1445s-1450s] to do right like something you really didn't want to do do that right i like the sending
+[1450s-1454s] money idea that's helped someone yeah i mean i like the sending money idea but he said to
+[1454s-1458s] someone i hate so i mean i don't know if you want to help someone that you hate but you know
+[1461s-1465s] but yeah so you guys get the idea of the three types of discipline now let's kind of
+[1465s-1471s] talk about how we can actually implement this discipline so how do you actually create the
+[1471s-1477s] discipline so number one write down exactly where you want to be a year from today right
+[1477s-1482s] be super realistic now a lot of and i'm not even talking about traders here i'm talking
+[1482s-1485s] about just successful people in general and i used to watch videos like this and i was like
+[1485s-1492s] this is so corny i thought it was like the most corniest thing but i genuinely can tell you like
+[1492s-1498s] you need to sit there one day i usually do this in the beginning of the year and i write
+[1498s-1503s] down exactly where i want to be a year from then because a year is a really long time like
+[1503s-1507s] it seems short like a year does seem super short when you kind of go through the year
+[1507s-1511s] but a year is a really long time within a year you have four quarters okay so let's kind
+[1511s-1516s] of talk about this let's kind of talk about the the how to be realistic with with your
+[1517s-1525s] actually let's use a different color let's use white so you know in a year you have quarter one
+[1527s-1533s] you have quarter two quarter three and then quarter four
+[1533s-1538s] four
+[1538s-1543s] right so you have four quarters in a year okay it's on corny broad goal setting is important
+[1543s-1547s] achieving this is good no no i said i thought this was corny back when i was learning like
+[1547s-1551s] before i became like this was before i thought this was super corny just because i was like
+[1551s-1555s] everyone says this but what i'm going to explain here is going to make sense why it's
+[1555s-1559s] not corny and why it's important so what i do in the beginning of the year right let's say
+[1559s-1567s] this is january right here i will write down my exact goals of what will get me to my end result
+[1567s-1573s] in december okay so what's going to what do i want to see for myself in december now these
+[1573s-1578s] rules for you are obviously going to be for trading but what you need to understand is these
+[1578s-1581s] rules can be for trading but they can also be for different things as well right like i
+[1581s-1586s] personally write down my for example i write down health goals right so i write down health
+[1586s-1591s] goals i write down financial goals so financials just like personal finances as well what do i want
+[1591s-1595s] to see within my other businesses right because i i don't just trade i have other businesses so
+[1595s-1600s] what do i want to see with that i write down my trading goals right and then i write down now
+[1600s-1604s] because you know i've kind of you know had a pretty good success with this i also write down
+[1604s-1608s] things that i want to do within the year as well right so what where do i want to travel
+[1608s-1612s] stuff like that this is like this is kind of what you write down after the fact so don't
+[1612s-1615s] you don't have to worry about that but i'm just saying from my personal experience right
+[1615s-1618s] i also kind of write down what i want to do within the year because you know for the past
+[1618s-1622s] like seven years what i realized is you know though it's awesome that i've achieved these
+[1622s-1628s] goals but i haven't really done anything like you know i haven't had the experiences
+[1628s-1632s] that come with these goals and that's why now i'm trying to make sure that i get all the
+[1632s-1636s] experiences that do come with the goals that i'm that i'm hitting right so that's something
+[1636s-1640s] that you know i kind of saw while i was writing down these goals that's important for me
+[1640s-1645s] okay but for you you want to write down and be realistic you know being realistic means that
+[1645s-1651s] you're writing down your year goals in terms of how like where you are right now right so a
+[1651s-1655s] realistic goal for you is not making a million dollars next year that's not a realistic goal
+[1655s-1660s] a realistic goal for you is not making 200k trading this year that's not a realistic goal
+[1660s-1664s] because you're putting a p and l number behind it but you're not putting behind what
+[1664s-1669s] you're not putting behind what the work is behind that okay so for most of you i think
+[1669s-1675s] what the goal should be in general is going to be getting better at specific things within
+[1675s-1681s] your trading right that's the goal you kind of want to have okay so you know for one year
+[1682s-1687s] after this right maybe for some of you it's to see consistency within your trading but not
+[1687s-1692s] consistency in terms of you know the p and l fluctuation but consistency where you know
+[1692s-1697s] you're having more green days than red days you know your smaller red day you have smaller
+[1697s-1702s] red days now you're not having those big red days you know you're having more consistent trades
+[1702s-1707s] you're not taking those you know low quality trades you're only taking a plus setups right
+[1707s-1712s] so just write down what that big specific goal is for you this year because you want
+[1712s-1716s] to achieve that goal to achieve that goal you need to know what it is so you work towards it
+[1716s-1721s] each quarter okay so you need to work towards it each quarter now the reason i have these
+[1721s-1725s] quarters here is because what i do is from january to december that's my end goal so
+[1725s-1730s] december is my end goal that december is what i want to end off the year with right i need to
+[1730s-1734s] know that my december is going to be safe how do i know that my december is going to be safe in
+[1734s-1739s] terms of you know i reach my goals it's through these quarterly checkups okay that's
+[1739s-1743s] what a lot of people fail to do they fail to have quarterly checkups within themselves
+[1743s-1749s] okay so every quarter right so let's say quarter one right at the end of quarter one
+[1749s-1755s] you go back and you look at what did you do well in quarter one so you understand your strengths
+[1755s-1760s] in quarter one and you understand your weaknesses in quarter one okay so what was
+[1760s-1765s] your strength this year okay or sorry not this year what was your strength in quarter one
+[1765s-1770s] maybe you had really you had a lot of green days right you had a lot of green days but
+[1770s-1776s] your red days outweighed all of your green days right your red days outweighed all your
+[1776s-1781s] green days and because of that what you're going to focus on for quarter two is going to be what
+[1781s-1788s] you're going to focus on your sizing in quarter two right so what these quarterly sessions will do
+[1788s-1793s] is they'll help you understand okay i'm already good at having green days like i have consistent
+[1793s-1798s] green days now so you understand your strengths but then in terms of your weakness you understand
+[1798s-1802s] to get to that next level of your december let's say consistency that you're looking for
+[1802s-1807s] well now you need to focus on making sure you're sizing the right way and your red days
+[1807s-1812s] start small okay now from there you might notice okay now my green days are pretty good my red
+[1812s-1817s] days are small but now what i'm noticing is because i'm getting a little bit more confident
+[1817s-1822s] in my trades right all of a sudden my ego is increasing because i think i figured out the
+[1822s-1826s] market and therefore now you're trying now you're going to see your trading results
+[1826s-1831s] decrease and now it's not because of these you know factors that we could have easily fixed
+[1831s-1836s] before now it's more to do with your psychology so in quarters three what you're going to focus on
+[1836s-1840s] is psychology right you're going to try to read more about your psychology in terms of what you
+[1840s-1845s] can do what you've been doing wrong right why the probability factor in trading is so important
+[1845s-1849s] and just overall fix your psychology in quarter three and then in quarter four
+[1849s-1854s] right your edge may have a small you know your edge may be diminishing because of the
+[1854s-1857s] markets right and that's when you have to and i'm just giving this as a random example
+[1857s-1861s] obviously and if your edge is diminishing in the market what do you do well you obviously
+[1861s-1866s] have to go back back test to make sure that by the time december hits in december right
+[1866s-1872s] you're by the end of quarter four at least right you're on track to see that final goal
+[1872s-1876s] okay but to do that you need to have these quarterly checkups within yourself
+[1876s-1885s] on understanding your strengths and your weaknesses okay so now here's how i kind of
+[1885s-1892s] tie this all up right i tie this all up through an example and i kind of want you guys to think
+[1892s-1898s] about it like this let's say your you know let's let's just do a quick case study here
+[1898s-1901s] everyone got this point right like i can i can get rid of this everyone got this point that
+[1901s-1910s] i was annotating i can get rid of all that let's see yes yes yes all right
+[1910s-1915s] okay so let me just get rid of this really quickly
+[1919s-1924s] so now let's say your let's say you know let's just use someone as an example i don't know
+[1924s-1928s] let's just use you know a guy named peter right let's just use a guy named peter right
+[1928s-1934s] so we got my boy peter up here okay so let's say for peter he wants to see he's you know
+[1934s-1938s] he's a little overweight right now right so let's say peter's 200 pounds right now
+[1938s-1945s] right or let's just say he's 200 pounds right he wants to get down to 170 right he wants to
+[1945s-1950s] get down to 170 pounds okay now peter's in the chat that's actually kind of funny
+[1951s-1955s] i actually did not mean it from you i just i was just using peter as an example just the
+[1955s-1959s] first name that came to mind but uh but let's just say you know peter's 200 pounds right
+[1959s-1964s] and he wants to get down to 170 pounds this is a realistic goal this is something peter can
+[1964s-1969s] do his you notice how his goal is not from 200 he wants to drop to 150 and be shredded no peter
+[1969s-1974s] just wants to go from 200 to 170 pounds right he doesn't matter really how he loses he just
+[1974s-1976s] wants to lose the money right and just kind of go to the gym and be a little bit more
+[1976s-1981s] active and healthy that's his end goal for december okay so now from here what does peter
+[1981s-1985s] need to do he needs to understand his strengths what is peter good at so peter's
+[1985s-1991s] good at uh you know actually the gym like he's good at the gym aspect of of uh let me make
+[1991s-1995s] sure i'm drawing this right it's really hard to do this on a macbook by the way my writing
+[1995s-1999s] is only really bad because of i'm doing this on a macbook however uh so peter's really good
+[1999s-2002s] at the gym right so let's just say in high school he used to go to the gym peter used
+[2002s-2007s] to have you know a fitness class or whatever and he used to be pretty athletic back in the
+[2007s-2012s] day and because of this right he knows that if he goes into the gym he knows exactly what
+[2012s-2017s] he needs to do he knows he the the work he needs to put in for the results that he needs
+[2017s-2025s] to get but peter also knows his weakness comes from food okay so his weakness comes from food
+[2025s-2029s] he knows that he's really good in the gym and if he just goes to the gym consistently he will
+[2029s-2033s] see results but peter has a sweet tooth and because of that he knows that you know he
+[2033s-2038s] just can't help himself if he sees a cake or whatever he needs to eat that cake okay
+[2038s-2043s] and because of that all of a sudden peter knows his strengths and his weaknesses now if
+[2043s-2047s] you were peter would you focus on your strength or would you focus on your weakness for everyone
+[2047s-2051s] in the chat would you focus on the strength that you have you know you're really good at the gym
+[2051s-2056s] you know exactly what you need to do you don't need to hire anyone right or would you focus on
+[2056s-2062s] your weakness and for for the people that are putting strength or weakness why would you
+[2062s-2067s] focus on that right so put put s or w and then comment and then why you would focus on that
+[2067s-2074s] strength positive weakness would yield better results overall
+[2080s-2082s] strength repeat the same thing that works
+[2088s-2093s] all right so cool cool i see i see what you some of you guys are saying cool weakness
+[2093s-2096s] it's what's bringing him down some of you guys are on the right even for the people that
+[2096s-2102s] didn't hit it right they're still kind of on the right track so for me personally i would focus on
+[2102s-2109s] the weakness okay i would personally focus on the weakness why because when i know my strength
+[2110s-2116s] right my strength is i'm already good at the gym i'm good at creating a dedicated workout plan
+[2116s-2121s] i'm good at knowing how you know exactly what i need to do like how many sets i need to do
+[2121s-2125s] the reps i need to do what i am what i'm actually looking for right i'm good at all
+[2125s-2131s] of that right i know exactly what i need to do within the gym and i know i need to go to the
+[2131s-2138s] gym and i'm obviously consistent with that right so if i'm already good at something why would i
+[2138s-2143s] focus on it more right like you're already good at something where you know the most return on
+[2143s-2148s] your money right the most return on your like i'm just saying this in terms of like a business
+[2148s-2153s] aspect as well is to always focus on the weakness that you have because if you have the
+[2153s-2159s] strength the strength will be there okay so when you're when you're worried when you're worrying
+[2159s-2164s] about the weakness technically the return on your investment is much greater because if you can
+[2164s-2169s] increase this weakness to a strength then all of a sudden you really don't have that many
+[2169s-2174s] weaknesses you have a bunch of strengths some may not be as strong as for example your gym
+[2174s-2180s] may be the best trait you have but now as long as the food isn't a weakness anymore
+[2180s-2186s] all of a sudden you are 10x better off than you were before when this was a weakness right because
+[2186s-2190s] if we're focusing on the gym think about it like this from an roi standpoint right from a return
+[2190s-2194s] on investment standpoint you're already really good you know with with the gym you're
+[2194s-2200s] already good at it how much better can you get at the gym right maybe you understand
+[2200s-2205s] a little bit more about compound movements maybe you can get your bench up a little bit higher
+[2205s-2208s] maybe you you know you start doing match reps on something i don't know right you just start
+[2208s-2213s] getting a little bit better right but you're gonna plateau eventually right eventually you're
+[2213s-2219s] going to plateau at this okay but for your weaknesses you're starting down here on your
+[2219s-2223s] weaknesses right like if this was a trading chart your weaknesses you're starting below
+[2223s-2228s] support let's say support is right here you're starting below support okay or you're starting
+[2228s-2234s] below vwap okay so the more you focus on the weakness to make it better right you're
+[2234s-2239s] actually getting a higher percentage return buying that support dip right you're buying
+[2239s-2244s] the support dip on your weakness in real life do you understand what i'm saying and so because
+[2244s-2248s] of that you want to focus on the weakness over the strength because you're already good at the
+[2248s-2253s] strength and you're going to plateau yourself out on the strength right you can focus on the
+[2253s-2257s] strength and get that get to that plateau level after your weakness has already
+[2257s-2264s] increased into a strength okay so does that make sense and did that analogy make sense i hope
+[2264s-2269s] that analogy also made sense as well now number three you know you need or sorry number four
+[2269s-2273s] now you need to focus on fixing the things you struggle with which we talked about is weakness
+[2273s-2280s] right but when you focus on it the main thing is number five which is start with small size
+[2280s-2286s] okay so how many people you know have tried to do a really solid gym routine where they're
+[2286s-2291s] trying to go every single day you know they try but then they miss one day and then they never
+[2291s-2296s] go again right like has that has that happened to anyone here where you know you're you're so
+[2296s-2300s] dedicated you know it's january 1st you make that new year resolution of you're going to
+[2300s-2304s] go to the gym and then all of a sudden it's february and you haven't gone for a month
+[2306s-2310s] right uh yeah so much muscle pain and couldn't even stand it until
+[2310s-2313s] i do the gym step by step just to create a daily routine right so
+[2314s-2321s] trigger so you want to start with small size now in terms of trading you what's a gym so in terms
+[2321s-2326s] of uh so in terms of trading we already know that we're starting with small size i have
+[2326s-2332s] already nailed this concept of small size into your heads like there's no reason that i need
+[2332s-2339s] to tell this to you again okay however in terms of uh uh you know let's just say regular life
+[2339s-2342s] right because i want to kind of we're going to see how this correlates back into trading
+[2342s-2346s] for a second i'm not saying start with small size in terms of your actual position size
+[2346s-2349s] in trading here that i'm going to talk about why i'm not saying that but you want to start
+[2349s-2354s] with small size so for example when we're looking in terms of the gym again for example
+[2354s-2361s] right if peter goes for one day right if peter goes one day right and his goal right in the
+[2361s-2366s] beginning is to just go every single day one day to through the whole week right one to seven
+[2366s-2371s] he's going every single day well all of a sudden what you're going to notice is peter's
+[2371s-2374s] going to have muscle fatigue right so all of a sudden his muscle he's going to have muscle
+[2374s-2380s] fatigue on top of that he's going to get because of that muscle fatigue right now all of a sudden
+[2380s-2384s] he's much more tired right all of a sudden he can't eat the foods he was eating before
+[2384s-2389s] so he's even more tired and his body hurts more and he's having headaches because while
+[2389s-2395s] he's trying to lose weight right so you know realistically if peter goes in full force
+[2395s-2399s] right off the bat he's going to go to the gym for maybe a week and then after that week
+[2399s-2407s] he will never never step foot in the gym again okay and that's why with everything you do you
+[2407s-2414s] always want to slowly ramp it up right you always want to slowly ramp it up in terms of
+[2414s-2420s] let me even explain it to you like this right when i first started to do masterminds for
+[2420s-2426s] example okay so when i first even started to teach people right i didn't believe in my
+[2426s-2431s] ability to teach people why because i was like i'm a good trader i'm a profitable trader however
+[2431s-2435s] how do i know that i can make other people profitable how do i know that i can make other
+[2435s-2440s] people profitable i don't i personally don't know that i can make other people profitable
+[2440s-2444s] at that point because i've never done you know a mastermind or i've never helped anyone and
+[2444s-2451s] therefore everything i say means nothing right so what i did was i took two people i took
+[2451s-2458s] from the result of unprofitable right to becoming profitable that was a terrible error
+[2458s-2465s] to becoming profitable right and then all of a sudden i started with that small size group
+[2465s-2471s] right i started with a small size to make sure that everything that i teach does genuinely help
+[2471s-2479s] them once i saw that hey i can do this with a smaller size group of people then and only then
+[2479s-2486s] did i go okay now i feel comfortable in selling a product where i can get people to their achieved
+[2486s-2492s] their desirable state right does that make sense right so you always want to start off small with
+[2492s-2497s] whatever you do even if i'm in business right where if i'm in trading you always start off
+[2497s-2503s] as small as possible right just to see if you can get to your desired state if you can get to
+[2503s-2509s] your desired state then you can increase in scale up right so for example this mastermind
+[2509s-2514s] class right this had this class had 100 people in it right this class had 100 people in it why
+[2514s-2521s] because i know that i can comfortably comfortably manage 100 people and give them my complete
+[2521s-2525s] attention and make sure that their questions are being answered through me and jdub and the
+[2525s-2530s] moderators i know that you know each person in this chat that asks a question i can help you
+[2530s-2535s] within the chat as well right like i can give you my complete attention for the month program
+[2535s-2539s] and then on top of that through that lifetime support i can give you that attention that you
+[2539s-2544s] need okay but i know i can't give that same attention to you know for example the
+[2544s-2549s] accelerator where the accelerator almost right like let's say it gets a thousand people right
+[2549s-2553s] just it's just trading discord right let's say the accelerator gets a thousand i can't
+[2553s-2558s] give a thousand people my full complete attention right i can live trade with them
+[2558s-2563s] but i can't give them the complete attention that you know you guys get for example right
+[2563s-2567s] and because of that right i know for the accelerator right i need to continue that
+[2567s-2573s] small size to give them the most desirable outcome okay and so what i'm trying to tell
+[2573s-2579s] you guys is the scaling aspect of trading is very similar to the business aspect of trading
+[2579s-2585s] okay the scaling aspect of trading is very similar to a business aspect of trading or any
+[2585s-2590s] other aspect of trading we related it to the gym right here so well right when you start
+[2590s-2595s] off with big size you're going to lose that money and all of a sudden you're done the market
+[2595s-2601s] right you're never going to trade again but if you lose little money every time right a small
+[2601s-2606s] amount of money every time right let's say 50 bucks 50 bucks 50 bucks 50 bucks it's not that
+[2606s-2610s] big of a deal because you're learning along with it and therefore the more time frame right
+[2610s-2614s] so your time horizon here that we've talked about before the more time you give yourself
+[2614s-2620s] within the industry itself right the more runway you give yourself the better the final result
+[2620s-2625s] will be okay so does that make sense on how do you create discipline we i know i kind of
+[2625s-2630s] rambled on about different things here and i completely marked up this chart but i hope that
+[2630s-2635s] i was really able to completely like get that off to you guys right like how you need to be
+[2635s-2640s] looking at trading how you need to be looking at that psychology aspect yes the one to win
+[2640s-2647s] back the loss and small size seems too slow it will be slow hey man listen listen it will
+[2647s-2653s] be slow right the reason it's going to be slow is because for me for example i was down $30,000
+[2653s-2659s] right i lost $30,000 when i was starting out okay and here's the thing i lost $30,000 when
+[2659s-2664s] i was starting out i was 18 years old right imagine losing $30,000 at 18 years old
+[2664s-2667s] trust me i thought it was the end of the world right i thought it was the end of the
+[2667s-2673s] world so i promise you it will be very slow but when you see that consistency then that
+[2673s-2680s] scaling up will come pretty fast okay when you see the consistency finally then you can start to
+[2680s-2684s] scale up and you'll notice that your since your trades are working much faster right you're going
+[2684s-2690s] to remake those losses very very quickly but in the beginning you don't even worry about making
+[2690s-2696s] back the losses just worry about being consistent okay does this make sense can i move to the
+[2696s-2700s] next slide the problem is always trying to make that the loss really quickly muscle memory
+[2700s-2706s] yes you're right one okay cool let me clear this out
+[2708s-2714s] and let's continue so now we talked about my you know my boy peter in the chat
+[2715s-2721s] sorry peter um but we talked about peter right but now and we talked about how to uh you know
+[2721s-2725s] uh relate it into gym or different aspects of life in general but now we need to talk about
+[2725s-2732s] how and why does this even relate to trading okay so the reason discipline relates to trading
+[2732s-2737s] is because number one right is making the rules right so when we're making the rules what is
+[2737s-2743s] this so what is making rules and with the three disciplines we have which discipline is
+[2743s-2747s] making rules which level of discipline is making rules
+[2747s-2750s] rules
+[2753s-2759s] preventive right so it's the first one right so the first level in trading is preventive
+[2759s-2765s] discipline which is making the rules right so understanding what you need to do and what you
+[2765s-2773s] need to follow okay so this is simply to follow your or sorry this is simply what you need to
+[2773s-2777s] follow right these are the rules you need to make to follow these rules okay now within these
+[2777s-2782s] rules there's nothing really that we have to do other than follow them right so the next step
+[2782s-2787s] from after this is following these rules now what does following the rules come under let's
+[2787s-2799s] say you break it one time what does that come under supportive correct right so supportive
+[2799s-2806s] now let's say that we have our rules we have the supporting psychology and we understand that
+[2806s-2811s] trading is all psychology we understand trading is all psychology right because at this point
+[2811s-2816s] we have our profitable edge right so we have a profitable edge over a long period of time right
+[2816s-2819s] and by the way i'm only just doing the the keywords because i can't write the whole thing
+[2819s-2826s] so we have our profitable edge we have our strategy okay that looks like a five we have
+[2826s-2831s] our profitable edge we have our strategy and also right we have the back testing data that's
+[2831s-2835s] required we have the confidence we have the conviction so now we understand that trading is
+[2835s-2840s] all psychology we have our preventive measures in place we have our supportive measures in place
+[2840s-2846s] we have our corrective measures in place but now you have an a plus setup in front of you
+[2846s-2851s] you're in the real markets you see what you need to do you have you know exactly what you
+[2851s-2857s] need to do and that's execute right so you know you need to execute you see your a plus setup
+[2857s-2867s] but for some reason you fail to execute you don't take the trade that you're supposed to take
+[2867s-2872s] can someone tell me why you don't take this trade right what what made you not take an
+[2872s-2883s] a plus setup
+[2886s-2897s] lack of backtesting
+[2898s-2906s] patience lack of conviction tony didn't teach us right not confident no confidence doubt exactly
+[2906s-2913s] right so now you have a doubt right now you have a doubt or you have conviction problems and why
+[2913s-2919s] do you have that it's because you haven't made the right rules right because if your rules are
+[2919s-2923s] there if your strategy is there if your profitable edge is there if you've backtested
+[2923s-2929s] if you've done everything that i've told you so far there should be no way that you do not
+[2929s-2933s] execute an a plus trade there should be no way that you don't execute an a plus trade
+[2933s-2939s] okay now if you're still here's the thing here's one thing that i would like to say
+[2939s-2942s] how many people were in the live trading session today
+[2944s-2945s] how many people were in the live trading session today
+[2954s-2962s] yes yes yes me okay how many people that were in the live trading session today took either tesla
+[2962s-2971s] or apple right the two trades that we took today i did not both apple apple apple both tesla so
+[2971s-2976s] some people took both some people took tesla some people took apple now you guys know that
+[2976s-2981s] i could care less about it being a alert service that that's not something that i want
+[2981s-2985s] you guys to look at this from i don't want you guys to look at if you take the alerts that
+[2985s-2988s] you know you're gonna be profitable or anything like that that's not what i'm trying to trying
+[2988s-2994s] to tell you guys but what i am trying to tell you guys is let's say you took tesla or apple
+[2994s-2998s] okay or say let's say you were in the live session and you didn't take tesla or apple
+[2998s-3005s] well here's the thing if your mentor is entering into a trade with the strategy that
+[3005s-3012s] he taught you he or she taught you right if they're entering into a trade with the strategy that
+[3012s-3016s] they taught you why are you technically not entering into that trade because they're the
+[3016s-3018s] one that taught you the strategy they're the one that's teaching you the edge they're the
+[3018s-3022s] one that's teaching you you know everything that you basically learn about the technicals
+[3022s-3027s] right so why would you not enter into the trade and once again i'm not saying this from
+[3027s-3032s] a perspective of take it as an alert but i'm saying this more as in terms of you know if
+[3032s-3036s] there's an a plus setup right and i'm only executing a plus setups then obviously you're
+[3036s-3041s] most likely gonna want to take that trade now is that trade going to work right is that trade
+[3041s-3048s] going to work every time no i'm gonna lose trades right i'm 100 going to lose trades
+[3049s-3056s] right i'm 100 going to lose trades in the future however right if i'm entering a trade
+[3056s-3062s] and if you see the same thesis as me which you should be able to see the same thesis as me
+[3062s-3065s] because we've talked about this multiple times you have multiple trade reviews to go back
+[3065s-3069s] you know most of you guys should see the same thesis as me in real time at this point
+[3069s-3072s] right and if you don't then that just means you need a little bit more time which we'll
+[3072s-3077s] talk about but if you're able to say see the same thesis as me you're able to see the trade
+[3077s-3082s] then most likely you need to execute those trades right because then at that point right
+[3083s-3087s] you just have a fear right because at that point you're just fearing that you might lose the trade
+[3088s-3095s] okay so if you're at this point where you see an a plus setup in real time you have everything
+[3095s-3099s] else down pat which most of you realistically are not at this point yeah by the way i want to
+[3099s-3102s] make this very clear most of you are not at this point most of some of you may think
+[3102s-3105s] you're at this point you're not at this point right and that's why i was doing this little
+[3105s-3110s] exercise up here as well most of you are realistically still in terms of this back
+[3110s-3114s] testing right this is where most of you are probably you haven't back tested enough to
+[3114s-3118s] increase your conviction right and that's only it's been two weeks i mean i don't expect you
+[3118s-3122s] to be at this point either right this is a very long-term game it's a long-term game
+[3122s-3126s] right but if you're here you need to start executing which most of you once again i
+[3126s-3131s] want to make sure you're not here by the way right but it's still good to execute so
+[3131s-3135s] you guys can see you know what what we see in real time and kind of feel those emotions as
+[3136s-3141s] right and obviously you want some skin in the game okay now from here the last thing i want
+[3141s-3148s] to touch up on is don't trade and just watch if you're someone that you're still confused on
+[3148s-3154s] the trades you're you know you're not completely sure you know what to look for or you do know
+[3154s-3159s] what to look for but in real time it just gets a little bit harder what i want you to do
+[3159s-3166s] is open up your broker have whatever option contract i'm going to trade open right if i'm
+[3166s-3171s] trading the if i'm trading whatever or if jdub's trading whatever have the option contracts open
+[3171s-3174s] right and have your chart open right let's just make a chart right here
+[3176s-3180s] have your have your option contracts or your broker open and then also have your chart open
+[3180s-3186s] okay and i want you all i want you to do is look at how the option contract moves
+[3186s-3189s] and what i want you to do with the chart is look at how the chart moves as well
+[3191s-3196s] okay and what this will help you do is determine like okay if i lost right you guys will see how
+[3196s-3200s] much that theoretically loss would or how much that theoretical loss would be and if i won you're
+[3200s-3205s] going to see how much that win would be as well but the main thing here is i want you to
+[3205s-3210s] see how much money not not that was a bad term to put it but the main thing i want you
+[3210s-3217s] to see is how much not money but how much of a percentage right you're missing out on
+[3217s-3225s] because of the fact that you're simply too scared to enter okay so what i want you to do is not
+[3225s-3228s] even trade if you're not at that point yet you know i don't want you to i don't want
+[3228s-3232s] you to get forced into trading right i don't want you to get forced into trading or
+[3232s-3235s] anything like that i don't want you to start taking random trades but what i want you to do
+[3235s-3241s] is simply look at the chart open up the option contract and just look just observe the sure
+[3241s-3245s] you can paper trade if you want to paper trade you can go ahead and paper trade as well right
+[3245s-3248s] just so you kind of feel like you're in it a little bit more but for me personally
+[3248s-3252s] i think i would probably just look at the option contracts and hop into a real account
+[3252s-3255s] personally just because i think the real account will teach you emotions that the
+[3255s-3260s] option contracts or the proud the uh paper account wouldn't personally that's what i think
+[3260s-3263s] but if you want to paper trade you can paper trade as well that's completely up to you i don't
+[3263s-3269s] really have a defined yes or no answer on that okay but does this make sense on how this relates
+[3269s-3272s] to trading and what you need to do going forward right this these are some you know key steps
+[3272s-3280s] for you going forward on what you need to do okay now we talked about discipline we talked
+[3280s-3286s] about all this now what i want to do is go over to the a plus setup so let me stop the
+[3286s-3287s] screen share
+[3290s-3294s] and what we're going to do is we're going to go over to the a plus setups
+[3298s-3306s] now with these a plus setups right this is a share screen it's going to be a quick video
+[3306s-3310s] and then we're also going to talk about some setups that occurred today that you could have
+[3310s-3313s] potentially entered in on the only reason i'm doing a plus setups again and we're doing
+[3313s-3318s] a video is just to make sure that we're walking away with this with both the psychology aspect
+[3318s-3323s] but also understanding what the a plus setup is because the last slide just talked about if an
+[3323s-3327s] a plus setup occurs right so you need to know what an a plus setup looks like okay so we're
+[3327s-3330s] going to do this we're going to watch the video we're going to look at one chart example
+[3330s-3335s] after this and then we'll do the q and a and end off the boot camp version of the
+[3335s-3340s] mastermind okay does that sound good and all i want you to do is type in the number one
+[3340s-3345s] once i start the video to make sure that the audio is good all right the first example we
+[3345s-3351s] have here is on qqq and tesla so also i just want to mention are the audio is good i just
+[3351s-3356s] i do want to mention that this video is i think it's it's a couple months old so there's some
+[3356s-3359s] things i say in this video that do not apply to you guys this is a private video no one
+[3359s-3364s] else can see it's only for mastermind students but uh there is this video is a little old
+[3364s-3368s] therefore if there is some things that i say that are you know for another class or intended
+[3368s-3373s] for another class just ignore just watch the examples part all right of course this is hindsight
+[3373s-3376s] of course right but i just want you guys to see what i'm looking at when i'm looking at break
+[3376s-3382s] and retest so the number one thing that we see on tesla is we have relative weakness right
+[3382s-3387s] into the open now this is very important for an a plus setup is that this stock you're
+[3387s-3391s] trading has really strong momentum because as you know we're momentum traders and we need
+[3391s-3398s] that strong momentum to ensure that the stock that we're trading has you know it works out
+[3398s-3402s] right away right that's me that's the main point right so we don't want to be stuck in
+[3402s-3407s] chop and this one had relative weakness right we see cues dropping below making a new low of
+[3407s-3413s] day here and then coming right back up to high of day where on tesla we see that it drops and
+[3413s-3418s] then it slowly just kind of fades here right so now we personally were in this trade right i
+[3418s-3422s] remember we were in this trade for the gaffa but i want to talk about another example of how you
+[3422s-3429s] could have played this trade i'm uh we played this from 941 to 1007 which was a great setup
+[3429s-3434s] as well um but i just want to show you on the chart if you had no previous uh you know
+[3434s-3438s] of course we we played off a previous day level previous day low but i want to show you
+[3438s-3442s] on the chart if we don't play off those levels and if we just draw out levels intraday how
+[3442s-3447s] you can play them off off of those levels as well right so pre-market low we break that
+[3447s-3453s] on qqq we come back up we make high a day and then we come back and break again to a new low
+[3453s-3458s] of day right and that's where tesla also new low of day and then what does cues do right
+[3458s-3465s] cues shows us that this is the low on cues right here this is the new lows on cues right
+[3465s-3470s] we we come here we bounce off strong right v-shaped formation bounce all the way up to
+[3470s-3475s] vwap we stall out at vwap and this 292.62 which is also a pre-market level and then
+[3475s-3481s] we come back down now in this example here this level here is a good entry however what
+[3481s-3485s] would be the a plus entry an a plus entry like you guys have seen me talk about before
+[3485s-3491s] is when the candle actually breaks your level tries to see and the reason this is this is an
+[3491s-3495s] a plus entry by the way is because if a candle actually breaks the level and still can't break
+[3495s-3499s] and comes back down it shows that there's too many sellers for the buyers to actually
+[3499s-3502s] push it up rather than when it's just consolidating underneath that level because
+[3502s-3508s] then you know the those breakup buyers will come and they'll push up the candle and you know if
+[3508s-3511s] it does close above that level then there it's going to keep going in that trend right so it's
+[3511s-3517s] very important to have a candle close that pushed up and then close below so in this
+[3517s-3521s] example here where would be the break of market structure on qqq so qqq came up and
+[3521s-3527s] it broke above vwap in this 292.62 level or 65 level a break of market structure rate
+[3527s-3533s] would essentially occur on qqq if you break below this level right here okay the reason
+[3533s-3537s] this is is because first of all we have vwap here and we're consolidating we're consolidating
+[3537s-3544s] near a very key pivot point on qqq because if we don't close above and hold above this level
+[3544s-3549s] on qqq we will reverse and it will be used as resistance rate that pre-market low will
+[3549s-3553s] be used as resistance for the downside and of course we see that we're already trending
+[3553s-3557s] down on tesla so we're playing a stock with relative weakness okay and that's exactly
+[3557s-3561s] what happens right we break below that there i don't know why i got rid of that we break
+[3561s-3568s] below that 292.44 level right showing that we broke to the downside on qqq we come back and
+[3568s-3576s] retest the 292.26 which is the previous pivot low on qqq and what do we do on tesla we
+[3576s-3585s] retest vwap plus the 201.80 which is a low on tesla okay with a very very very nice inverted
+[3585s-3593s] hammer candle okay so you can enter into tesla here looking for low of day
+[3594s-3599s] okay you can enter into tesla here looking for low of day um slash that pivot rate
+[3599s-3604s] that body can also 198.84 to 198.52 in this example you can see that it actually
+[3604s-3608s] technically didn't hit low of day um but we're going to talk about this as well this exit
+[3609s-3613s] but what we would do right is we would enter in here and we can look for that low of day move
+[3613s-3620s] on tesla because we see that qqq actually broke or held that resistance broke market
+[3620s-3624s] structure came back retested so this is a really low risk entry because what we can use
+[3624s-3630s] for qqq essentially if we were let me just show you on qqq what we can use on qqq as
+[3630s-3636s] a stop loss is this break of this level right here 292.65 right looking for low of day on qqq
+[3636s-3642s] okay and then we can play that same scenario out on tesla okay and that's exactly and then the
+[3642s-3647s] way i would scale on this is basically when qqq hits a low of day that's where i would scale
+[3647s-3652s] on tesla as well so in this example here qq hits low of day on this candle right here
+[3652s-3657s] right so i would but that 1108 candle this candle right here i would exit some of my
+[3657s-3661s] position because this is once again right we do have this is a huge move right so of course
+[3661s-3665s] we're looking for low of day but we do want to still have some key levels that we want to scale
+[3665s-3671s] out on right so this would be a great example right when qqq hits that low of day move right
+[3671s-3675s] we hit we take out some on tesla and of course we wait for low of day which does hit
+[3675s-3680s] at 198.89 and then we hold that low of day unfortunately right so we didn't actually get the
+[3680s-3686s] complete break of that level however still a really really good a plus trade entry point
+[3686s-3690s] right the entry point was a great plus trade rate now this didn't work out in the full scenario
+[3690s-3693s] but i want to show you guys that you know sometimes even a plus setups don't work out
+[3693s-3698s] in full in that you know the full technically profit target uh you know where you can let
+[3698s-3701s] those trailers right it doesn't work out like that sometimes but this is still a really good
+[3701s-3706s] trade for the risk reward that it would offer because our support where we would put our stop
+[3706s-3710s] is basically a break above that vwap slash 202 level and that's just because this is where
+[3710s-3714s] it's came down installed down to right so if we broke above that we would have to cut the
+[3714s-3721s] trade okay so this was a really good example of how to play an a plus trade um you know with
+[3721s-3727s] the qqq context okay let's go look at another example all right here we are on another example
+[3727s-3732s] now on this example here what we see on these charts was that we gapped up overnight right
+[3732s-3736s] so when we're gapping up overnight we understand that we're playing pre-market levels
+[3736s-3741s] so on qqq right we also gapped up overnight as well and so we're playing these pre-market
+[3741s-3745s] levels that you guys can see that i've drawn um now this trade as well this is a trade that
+[3745s-3750s] we did play in real time i know this is hindsight but we played this trade in real time
+[3750s-3754s] and um so what do we see on this trade here right so we have this level that we have from
+[3754s-3761s] pre-market 294.57 at the same time on qqq this is how you play that context on qqq's
+[3761s-3766s] right so we have this downtrend channel that's forming on qqq and we need it to break
+[3766s-3773s] on tesla however we see relative strength okay we see relative strength on tesla and we see that
+[3773s-3779s] we have this level at 204.38 at tesla stall that okay we can come back and retest that
+[3779s-3785s] level which we do right here on this candle let me just draw this out on this candle right
+[3785s-3790s] here right we come back and retest and it's also a strong hammer candle so we can enter
+[3790s-3798s] tesla here and we know that we're looking for a move up on tesla to 206 okay we're looking for
+[3798s-3804s] that 206 move on tesla right there right there that's a 206 move on tesla okay and then of
+[3804s-3808s] course we're looking for a high of day as well um but it's just near 206 so i'm just
+[3808s-3814s] going to say 206 here and then of course the higher uh 207 and then 208 um which it did hit
+[3814s-3819s] here right so anyways on tesla what do we see we see that we have a relative strength
+[3819s-3824s] and then we come back we retest the level that we previously stalled out at 204.38 we
+[3824s-3830s] entered in on this trade here you can uh this is the february 27th so if you guys want to
+[3830s-3833s] go back to the trade reviews to see if we actually did take this trade you guys can go
+[3833s-3839s] back to february 27th we were in this trade and um what we see is since we do have that
+[3839s-3843s] relative strength and that consolidation on tesla now we understand that because we have that
+[3843s-3850s] 294.57 on qqq right we have a level of support on qqq that we can trade tesla with because if
+[3850s-3854s] q's essentially breaks underneath this 294.57 which it does look like chop right now right
+[3854s-3858s] but if you look at it afterwards behind side of course you know you didn't see that it had a
+[3858s-3863s] downturn break and if it basically just held that 294.57 that we had pre-market we understand
+[3863s-3867s] that q's is going to be strong enough for tesla to push right the tesla for tesla to
+[3867s-3875s] push to the higher time frame levels okay now we entered in on tesla here on that 204.56 and
+[3875s-3879s] i want you guys to see what qqq was doing at the same time at the same time right there on
+[3879s-3885s] qqq we were holding that 294.57 with a strong hammer candle as well so we were holding that
+[3885s-3890s] level of support okay so our stop loss here would have been very minimal right at this
+[3890s-3896s] level right here at 204 essentially right that 204 psych level could be used as our stop loss
+[3896s-3902s] and so if we put in the actual profit factor or a long position right we would enter in here
+[3902s-3907s] and we're obviously looking for that 208 level but the actual trade essentially paid us this
+[3907s-3912s] this much but even if we look for the 206 right this is still a great risk reward 206
+[3912s-3917s] to 208 right so anyways that's how we would play this trade right and of course we can see
+[3917s-3921s] that we consolidated consolidated right this candle might have tried to close it stop us
+[3921s-3925s] out but we're still in this level because we understand that qqq is strong and if we
+[3925s-3931s] qqq does break above this downturn flag right we have that 295.47 level which is at pre-market high
+[3931s-3935s] and that's exactly what happened right we've come over here we take some off at 206 right
+[3935s-3942s] when we when we break that 295.45 level we keep coming up 207s right and then 208s of
+[3942s-3948s] course right here right and qqq stalls out at 296.50s and then unfortunately you would
+[3948s-3952s] probably cut your trade on tesla if you were in tesla you have right you would cut it when
+[3952s-3958s] it broke below that 295.54.45 for the rest of the trailers at about 1035 okay so about
+[3958s-3962s] this candle right here that's where the market structure broke on on qqq and that's where you
+[3962s-3967s] can cut the rest of your trade right so the this is once again another example on tesla
+[3968s-3973s] comparing it to qqq and showing you how it's a great a plus setup right into the open like
+[3973s-3977s] you get these setups every single day and it's really important that you guys you know see
+[3978s-3982s] how i see these levels and how i see these setups before the market
+[3983s-3989s] are you know in real time right so i can show these videos you know and this isn't hindsight
+[3989s-3993s] because once again everyone hindsight is a great trader right it's so easy to be a
+[3993s-3997s] hindsight warrior right but that's why i want you guys to go back and look at the
+[3997s-4001s] february 27th trade review and see that we were actually in this trade and how this was an
+[4001s-4007s] a plus trade with the candlesticks with the relative strength with you forming a pattern
+[4007s-4012s] as well above you up on the chart that we're actually trading and then the higher time frame
+[4012s-4017s] prop targets that can be used as magnet levels okay so that's the second example let's go and
+[4017s-4022s] look for one final example all right and here we are on the final example on the final example
+[4022s-4027s] here we're on qqq and spy because i want to show you guys that it does work on different
+[4027s-4033s] tickers as well and so we're using spy so on this example here we have a very similar pattern
+[4033s-4038s] right so market structure broke on spy when it broke below this 401 27 level right the opening
+[4038s-4044s] candle print it broke below that once it broke below that level at 1006 we're looking for
+[4044s-4050s] shorts and at the same time right qqq also while we broke market structure on on spy
+[4050s-4056s] essentially a qqq right we broke below of day so we have weakness in both names here
+[4056s-4060s] okay you can play relative you can on qqq and spy rate if you're playing you can play out
+[4060s-4067s] regularly technically both um but i would i like to only use qq to refer to the trade that i'm
+[4068s-4073s] playing but you can use once again if you're playing like for example qqq you can use spy
+[4073s-4078s] to see relative strength and weakness vice versa right so anyways what do we see here
+[4078s-4084s] what we see is we broke below that 296 26 which is the air 62 which is the low of day
+[4084s-4088s] candle right here on qqq right and then we actually start making this pattern right here
+[4088s-4093s] right which is the essentially a bear flag pattern okay and at the same time right we
+[4093s-4099s] also see that same pattern being made on a spy but on spy rate that pattern is not as
+[4099s-4105s] as nice um we can have this right here right so a break of that where it does come back and
+[4105s-4112s] hold however on spy what i personally see is let me get the horizontal what i personally see
+[4112s-4119s] is a break of this 452 level which would really show us weakness to the downside okay so let's
+[4119s-4124s] see on i personally wouldn't enter until we actually do get a retest so we got a retest
+[4124s-4130s] on spy f40 127 and this is a really good candle as well for that retest entry so we enter
+[4130s-4137s] in right here on spy and at the same time what is qqq doing we have that 296 62 so this is a
+[4137s-4143s] really low risk entry rate because on qqq essentially you would wait for spy to also hit this level but
+[4143s-4149s] on qqq rate we need to make sure that qqq holds below 296 85 the whole market structure and then
+[4149s-4154s] on by we need to make sure that spy essentially holds below the opening candle which is about
+[4154s-4159s] here right that 467 level looking for a force flow of day and then those lower levels at
+[4159s-4164s] 400 psych right because that 400 psych level like we know on spy gives us a really good
+[4164s-4170s] risk to reward just because that's that level has been used as resistance and support on spy so
+[4170s-4174s] much intraday if you guys go look back at the charts that has been a level that has been used
+[4174s-4180s] almost every other day essentially when we're near in this range okay so really good level
+[4180s-4185s] for a profit target right so anyways we see this bear flag we enter in here okay because
+[4185s-4192s] we see the bear flag on qqq as well we we get low day we take some off below that 452
+[4192s-4195s] level rate our stop loss doesn't change a lot of people change their stop loss our stop loss
+[4195s-4199s] doesn't change you guys have seen this with me as well i only change stop loss when we change
+[4199s-4206s] market structure and market structure so far has not changed um so 400 401 27 we come back
+[4206s-4211s] and retest that level on qqq look at this we come back 296 296 62 we never break above
+[4211s-4217s] that 296 85 while on qqq which is their stop loss right so we come right back down right
+[4217s-4223s] making new low day on qqq and spy right below that 452 we finally close below and then we
+[4223s-4229s] move all the way down to that 400 site okay so this is once again a great example of how to
+[4229s-4237s] use patterns market context market structure break below vwap and candles and price action
+[4237s-4244s] to essentially help you enter trades much more effectively and identify a plus setups okay so
+[4244s-4250s] i hope this video cleared up a couple things which is how i draw my key levels market structure
+[4250s-4257s] market breaks price action what i'm looking for context and how to use qqq i hope it really
+[4257s-4260s] covered all the bases that we've talked about in january and february of course
+[4262s-4269s] all right so now that we've watched that let's go over and give me one second
+[4275s-4279s] one second
+[4283s-4284s] can you guys see the screen
+[4291s-4295s] yep okay so now that we talked about that i want to talk about an opening plate today that i
+[4295s-4299s] think was a really good example of an opening play we were just we unfortunately missed it
+[4299s-4304s] honestly and it came down to just being on the five minute rather than the one minute
+[4304s-4311s] but it was a really good solid trade so this morning on amd what i saw was amd had this kind
+[4311s-4316s] of bear flag forming and at the same time we had this level of resistance at 162 17s
+[4316s-4321s] right because that was the previous day high as well now that i'm actually looking at it
+[4321s-4325s] technically the previous day high that you know i actually didn't see this earlier but if
+[4325s-4329s] i actually marked out this previous day high right where it was supposed to be where the
+[4329s-4332s] actual previous day high was i wanted to see if that would have changed my thesis going
+[4332s-4338s] into the day but you guys see on the higher time frame what i was looking at and on the lower
+[4338s-4342s] time frame right i literally had this drawn out so if you go to the trading floor today you guys
+[4342s-4347s] can literally see that i had this this exact scenario drawn out as well if i actually go
+[4347s-4355s] over to the trading floor go to um where is it where is it where is it if i go to trading
+[4355s-4362s] floor you guys can see that this was one of the the levels that i was looking at oh it's
+[4362s-4368s] right here look i literally had this this drawn out today right that it was going to come up 162
+[4368s-4373s] 17 hold that level and then push maybe have a little bounce back where we could have entered
+[4373s-4376s] into another retest and then push back down right that's what i was kind of coming into
+[4376s-4386s] the day with and when we go back let me got to move this there we go when we came
+[4386s-4396s] back up this morning what happened exactly to the t to the t what i said right so we came up we
+[4396s-4403s] pushed up we had this level holding we came down we bounced right now this was once again
+[4403s-4407s] unfortunately today the problem was that it just wasn't the exact key levels where this
+[4407s-4411s] was the opening print technically it bounced over the opening print and then it pushed and
+[4411s-4416s] it continued to the downside right so this is an example the reason i wanted to show you this
+[4416s-4424s] example was because today was the exact uh you know setup or thesis that i had today
+[4424s-4429s] worked out perfectly unfortunately we weren't able to actually enter into the trade and
+[4429s-4436s] sometimes this will happen like i had this analysis way before the market opened right
+[4436s-4439s] before the market opened i said it's gonna bounce it's mostly gonna do a little retest
+[4439s-4445s] and it's gonna drop here exactly what it did however sometimes what will happen is even though
+[4445s-4451s] you have that analysis you just won't be able to enter and profit off that trade why because
+[4451s-4455s] it'll do something like this where you know it came up but unfortunately right it did end up
+[4455s-4460s] closing above our level now if we were to wait for that weak price action candle which
+[4460s-4465s] i usually talk about right you can see that this 935 candle by the time we would have even
+[4465s-4470s] entered right this was already near low of day right so the risk her word on this was completely
+[4470s-4476s] skewed okay so this is just a good example that i want to talk about or i just wanted to end it
+[4476s-4481s] off with where i wanted to talk about how this was technically an a plus opening drive play or
+[4481s-4487s] opening uh dip and rip or i guess rip and dip type of play right but because we weren't able
+[4487s-4492s] to enter in off of it and profit off of it because of you know of course breaking our key
+[4492s-4498s] level right this is something that we have to know going forward that we may have a proper thesis
+[4498s-4502s] but if our risk reward isn't there if our if it's not aligning with our strategy
+[4502s-4507s] even if it works out with what we said and it's not giving us an entry signal we still
+[4508s-4512s] don't enter right does that make sense so this was an a plus kind of setup
+[4512s-4518s] perfectly kind of planned right i literally gave you the play step by step but it was
+[4518s-4524s] unfortunately there was no entry for us okay based off of the break and retest and sometimes
+[4524s-4529s] that'll happen and every time it happens i won't enter the trade why because if the break and
+[4529s-4533s] retest isn't there right if it's not within one of my strategies which is the either the
+[4533s-4537s] opening play opening drive like any of the opening plays or within the break and retest
+[4537s-4541s] five minute pre-market high or whatever right if it's not within those strategies i will not
+[4541s-4547s] take the trade okay so does that make sense though you saw all those eight plus examples
+[4547s-4552s] right you need to understand the fact of also understanding you know sometimes
+[4552s-4558s] right you just can't enter because of what the price action is intraday okay
+[4560s-4561s] so if it didn't break that level
+[4564s-4568s] yes yes so if it didn't break this level right so if it didn't break this level and
+[4568s-4573s] it showed weak price action on this level right then i would have entered but unfortunately it
+[4573s-4578s] wasn't really showing that weak price action and it also broke the level okay
+[4581s-4586s] so does that make sense please draw how it would be a plus on the b and r so you did
+[4586s-4591s] just see a couple b and r examples of the b and r but i if i was to show you one more
+[4591s-4594s] b and r let's go to something like tesla let's see if tesla had a b and r today
+[4595s-4597s] i know jdub took a trade on tesla
+[4599s-4606s] right so tesla is something that was like an 84 rule type of play on uh with the b and r so
+[4606s-4612s] if you can look at tesla right here right this is a good example and what you can see on tesla
+[4612s-4617s] is you have this opening candle right here right now the first time tesla came up and broke
+[4617s-4623s] it didn't have any uh displacement right so right here no displacement but the second time
+[4623s-4628s] we broke out which is right here right this is the second time we broke out on tesla and this
+[4628s-4633s] time you can see that we actually had this displacement move which means that the we
+[4633s-4637s] actually broke above the level and a candlestick isn't touching the level where all of these
+[4637s-4643s] candlesticks are touching the level and then we pushed back down with a strong price action
+[4643s-4647s] candle which you can see right here right this is the strong price action candle and based off
+[4647s-4651s] of that strong price action candle your first pt would be high of day i think there was
+[4651s-4656s] another level like up here somewhere that you guys were guys you guys were taking like 190
+[4656s-4660s] and then your final targets are not final targets but your majority of your targets
+[4660s-4666s] right your main target would probably be this 190 65 right but notice how this first one
+[4666s-4670s] wasn't a solid a plus break and retest trade the reason this is because though it broke
+[4670s-4675s] up with an impulsive candle it consolidated right so theoretically it can still use it
+[4675s-4680s] as resistance because it's still touching the level but when it breaks above and it
+[4680s-4685s] actually breaks without touching the level and it shows impulsivity then it comes back
+[4685s-4691s] and pulls back and it closes above 180 858 then it becomes an a plus move for the upside okay
+[4694s-4701s] i would enter on the tesla i would enter in on the 955 candle so i would wait for the 954
+[4701s-4706s] and then 955 i would enter in like on the basically i'd wait for the 954 to close but
+[4706s-4712s] the 955 it doesn't really matter i would just enter in on the 955 okay now because this is
+[4712s-4717s] the last of the two weeks if you guys have any questions right right now is the time to ask me
+[4718s-4724s] okay let me full screen this just so we can end it off here right now is the time to ask me
+[4724s-4730s] if you do have any questions let's see
+[4730s-4735s] so tony yesterday you talked about using ha candles on the higher time frame i was wondering
+[4735s-4744s] if why if if that is why sometimes i don't see your levels what no i i i right now for 99%
+[4744s-4750s] of the time i will be using i usually use just candles i used to use ha candles a little
+[4750s-4758s] bit more back in the day i don't use them as much now i only use candles for me myself
+[4759s-4764s] for me myself personally um i thought i heard jdub mention closing a position using a market
+[4764s-4767s] order is that true do you recommend closing positions with market orders to ensure the
+[4767s-4771s] gift get filled immediately also on your trailers are you opening trailer stop orders
+[4771s-4777s] are you doing this manually as well so uh for for jdub yeah he does use market orders
+[4777s-4781s] to sell sometimes market orders are fine honestly like it depends if you don't have big
+[4781s-4786s] uh you know contract size market orders are completely fine you may get filled like five
+[4786s-4791s] cents under which is fine i just use limit uh sells just because if i'm coming in with
+[4791s-4796s] big orders i will definitely experience that slippage but in the most terms if you're selling
+[4796s-4801s] into strength market orders are going to be fine for the most part uh in terms of the trailers
+[4801s-4805s] uh the trailers are usually going to be the mental stops as well i just have alerts on my
+[4805s-4809s] chart i talked about this yesterday as well if so if you go back and watch those workshops
+[4809s-4813s] as well but for the trailers on my uh you know my trailer positions those stop orders
+[4813s-4817s] are usually just going to be mental as well do you have more examples of opening plays in the
+[4817s-4822s] discord if you just go and watch those trade reviews that we have over the years there's
+[4822s-4828s] definitely like at least 20 to 30 uh trade reviews that are just opening plays
+[4829s-4832s] what is a meaningful displacement value given the stock's price are different so there isn't
+[4832s-4837s] really a value that i would say it's more you have to you just have to look at the stock
+[4837s-4845s] right like if a stock if a stock has you know something like let me go like this like this
+[4845s-4851s] if a stock is moving right and you see that it has something like this right this is this
+[4851s-4856s] obviously isn't the greatest displacement but if that same stock breaks above that level
+[4856s-4860s] right and then retest and you know that that stock has relative strength on the day then
+[4860s-4865s] that's a good displacement right so that's something that's per basis it's a per trade
+[4865s-4870s] basis type of thing on the displacement i personally don't have a value that i would give a stock for
+[4870s-4873s] the displacement i will ask questions after practicing all that i've learned in two weeks
+[4873s-4878s] thanks going into summer months do you find good setups far and few between uh honestly
+[4878s-4882s] every summer is different it used to be where every time we go into summer there's a lot
+[4882s-4886s] there's very little volume low liquidity because most people are just on vacation and stuff like
+[4886s-4891s] that um but we'll see how this summer is last summer was decent as well it wasn't it
+[4891s-4895s] wasn't a bad summer it was actually a pretty decent summer we'll see how this summer is but
+[4895s-4900s] for the most part you do want to kind of have a chill summer overall like you don't really want
+[4900s-4904s] to size up too much in the summer now that being said i did have one of my biggest days
+[4904s-4909s] last summer so it's it all comes down to the actual context tony how to identify a plus
+[4909s-4914s] setup also what is the term a plus setup i will talk about this on those yeah so i already
+[4914s-4919s] just went through a plus setup in this whole session however jdell will go through more a
+[4919s-4924s] plus setups for you um we talked about how to identify they i mean i don't know if you
+[4924s-4928s] were watching the session but that's all we've been talking about for the last 20 minutes uh 30
+[4928s-4933s] minutes actually uh but jdub will be going through those a plus setups even more for
+[4933s-4940s] the weekend sessions as well okay um on the opening drives for the for on the opening
+[4940s-4944s] drives to you only trade if they align with higher time frame thesis for example if the
+[4944s-4947s] higher time frame is bullish but hits a daily level that is bearish on the lower time
+[4947s-4951s] frame would you enter if it gives me the lowest risk and doesn't invalidate the higher time frame
+[4951s-4955s] thesis yes i would enter if it gives me a low risk and doesn't invalidate the higher time
+[4955s-4959s] frame thesis i would enter thanks thanks thanks can you suggest how we can you suggest
+[4961s-4964s] how we should spend time learning over the next two weeks once we have come
+[4964s-4968s] so once you go over the accelerator course make sure you understand the full accelerator
+[4968s-4972s] course then i would re-watch every single mastermind lesson that we've done so far
+[4972s-4976s] take notes on it and then after that you just have to put it into yourself you have
+[4976s-4982s] to put into motion by backtesting everything that i've said and that will take you two weeks i can
+[4982s-4985s] promise you if that takes you less than two weeks that means you haven't watched it already
+[4985s-4989s] tony do you have personal ibk trading counter business i have personal i have a personal ibk
+[4989s-4994s] trading account for backtesting now uh for backtesting how many one-minute candles do
+[4994s-5000s] we need uh example like a year's worth uh how i i forget how much trading view gives you
+[5000s-5003s] um on the premium access on the free i don't even know if you can back to so i think
+[5003s-5008s] you can back this on the free one i'm not really sure um but realistically you want to do as much
+[5008s-5012s] as possible right even even doing the last three to four months will give you enough data in my
+[5012s-5018s] opinion uh and enough data to have conviction not to give to show a profitable edge but to
+[5018s-5022s] have conviction in your trading uh say the stock you trade a range in a ranging market how
+[5022s-5025s] do you adjust your strategies giving your momentum break and retest so if the stocks
+[5025s-5029s] that i'm trading are in a ranging market i most likely will switch over to the future side
+[5029s-5033s] of trading if that's also ranging then i'll probably honestly just stop trading for a bit
+[5033s-5036s] right like it's that simple it's not i'm not someone that needs to trade every single day
+[5036s-5041s] if i see that the market is in a range right and it's just consolidating and shopping why
+[5041s-5046s] would i even you know bother right because your one thing you'll notice is the most money you
+[5046s-5051s] make as a trader will come every year within a one to two month span you'll make a lot of
+[5051s-5055s] money and that's not what that one to two month span isn't like at the same span it'll
+[5055s-5059s] be like two weeks you'll do really really really good make a lot of money then you'll
+[5059s-5062s] kind of chill out and make you know like these little wallet patterns where it's like
+[5062s-5065s] you know a thousand dollars two thousand dollars three thousand dollar wallet patterns and then
+[5065s-5069s] you'll get like a 50k day or 20k day that's how usually my trading works and that's just
+[5070s-5074s] based off of market sentiment so if it's a ranging market i just won't trade at that time
+[5076s-5079s] since i am deaf i have to set the speed slow and stop to read cc and study the chart which
+[5079s-5084s] makes me move like a turd or however this is how i continue to improve yeah i respect you
+[5084s-5088s] for honestly just put in that work will you keep providing the predictive setups like you
+[5088s-5092s] did this morning it really helps me to look for yeah so whatever way you were doing the live
+[5092s-5096s] trading if i see something on the higher time frame i only do that if i see something on the
+[5096s-5099s] higher time frame if i don't see anything on the higher time frame then i'm not going to do
+[5099s-5102s] that but if i see something on the higher time frame i usually just put those charts in
+[5103s-5107s] um using nine ema9 and vwap gives good signals to enter trade on top of key levels
+[5107s-5112s] i don't use i don't use any uh indicators personally i just use price action strictly
+[5112s-5119s] tony i have a differentiating regular break and retest verse a plus setup i mean differentiating
+[5119s-5125s] regular break and retest verse a plus setup so a regular break oh a regular break and retest
+[5125s-5130s] verse an a plus setup so a regular break and retest you could enter based off of without
+[5130s-5134s] qqq context so an a plus setup would have to have a qqq context a higher time frame thesis
+[5134s-5140s] um a higher time frame thesis a qqq context and the level you're entering on is a higher
+[5140s-5144s] timeframe level as well. Whereas a regular break and retest may have the QGQ context,
+[5144s-5150s] but it's missing one of those main factors. If that makes sense. Hopefully that made sense.
+[5152s-5156s] Hey man, I've been training for a few years with different mentors. I've never heard anything as
+[5156s-5162s] good as this course. Thanks for the lessons. Really appreciate that. Yeah, I honestly hope
+[5162s-5168s] you did get value from this room. Now, one thing I do want to say just before we end off,
+[5168s-5175s] I'm going to send out a link later tonight for it's just a testimonial website. I would really
+[5175s-5180s] love if you guys could give, you know, your feedback for the accelerator thus far. You know,
+[5180s-5183s] I put in a lot of work into this and the only thing I basically ask at the end is just so
+[5184s-5188s] if you guys could give, you know, some feedback on how you guys have found the
+[5188s-5193s] mastermind thus far, you can do either a video feedback or a text feedback. Either
+[5193s-5198s] one is very, very much appreciated. But yeah, I'll send out that link later tonight. I hope so.
+[5198s-5204s] So I won't be able to watch your weight loss journey. But yeah, I'm starting small. But yeah,
+[5204s-5208s] I hope you guys have found a lot of value in this room. My goal was to provide you as
+[5208s-5211s] much value as possible within, you know, these two weeks. So you guys can start live
+[5211s-5215s] trading with me and Jaydub and really see how we're actually trading in the real market. So
+[5215s-5218s] you can actually apply it. You know, most masterminds, what they'll do is they'll
+[5218s-5221s] give you, you know, this two to three, four week period. And then after that, they'll
+[5221s-5224s] just leave you high and dry without really anything where, you know, we kind of want
+[5224s-5228s] to give you that continued support until, you know, you become better trader than at least
+[5228s-5233s] you came in with. Okay. You'll always have the mastermind discord, the mastermind discord,
+[5233s-5237s] you'll always have for life. Okay, even if we're not live trading, because we're not going
+[5237s-5242s] to be live trading for, I think, I forget when, but it'll you'll have live trading for
+[5242s-5246s] the next two months, and then it'll stop and then it'll re continue with mastermind five.
+[5246s-5249s] But when we when we don't have live trading, you're still going to be in the in the
+[5249s-5253s] discord and everything like that. But then we'll continue it as we kind of go on.
+[5253s-5258s] Okay, so yeah, testimonial website link will be there later tonight. I would love if some
+[5258s-5263s] of you guys could give that as well. And yeah, hope you guys have gotten value from this,
+[5263s-5268s] and I will see you guys. What if we want to join accelerator after two months,
+[5268s-5274s] you 100% can join the accelerator. You know, the Excel, you have those discounts,
+[5274s-5277s] we'll talk about how to join the accelerator as the mastermind closing, by the way,
+[5277s-5280s] we don't need to talk about that right now you have more access in the mastermind than
+[5280s-5283s] you have an accelerator anyways, right now. We'll talk about the accelerator after the
+[5283s-5286s] mastermind is closing. But yeah, with that being said, oh, we got one more question.
+[5286s-5289s] All right, I'll wait for the one more question, then I'll end this off.
+[5294s-5299s] Trading live on zoom are over forever. So no, no, no. So trading live on zoom will
+[5299s-5305s] be for the next two months. So from So what is it? So June 1 to August 1. So till August
+[5305s-5311s] 1, you will still get the live trading on zoom every single day. And then August 1 will stop
+[5311s-5318s] until mastermind five is open, which is probably September, October, don't quote me. I actually
+[5318s-5321s] just hired a new team for the mastermind. So we'll see how that works. But September,
+[5321s-5324s] October is when mastermind five will start and you guys will get the live training
+[5324s-5327s] continued on that too. So you you have some time to trade by yourself as well. And of
+[5327s-5331s] course, if you want to join the accelerator to continue the live trading like year round,
+[5331s-5334s] you can do that as well. But you know, that's really up to you at the end of the day.
+[5334s-5338s] All right. So I hope you guys got value so far from the mastermind. This is
+[5340s-5345s] not over yet. Right. We're still going to keep going. But with that being said,
+[5345s-5351s] I will see you guys tomorrow. All right. Bye, guys.

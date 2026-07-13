@@ -1,0 +1,3696 @@
+# Transcription: mastermind-4-0_Lesson_4_How_To_Create_A_Winning_Day_Trading_System_How_To_H.wav
+# Duration: 6133s
+
+[0s-8s] What's up guys, can you guys hear me and can you guys see this screen?
+[8s-12s] Cool, cool, cool.
+[12s-14s] So I want to ask you really quickly.
+[14s-18s] So far, it's been, you know, not even a week yet, but so far, how are you guys
+[18s-20s] liking the mastermind so far?
+[20s-22s] Today's the last lesson of the week for me.
+[22s-27s] Of course, you know, tomorrow, JDub will be, you know, doing the, or not tomorrow,
+[27s-30s] on Saturday, he'll be doing a full lesson himself as well.
+[30s-30s] Excellent.
+[30s-31s] Love it.
+[31s-32s] Really enjoying it.
+[32s-32s] Awesome.
+[32s-33s] Good to see.
+[33s-34s] Good to see good feedback.
+[34s-34s] Right.
+[35s-37s] So yeah, really quickly, I just wanted to say, right.
+[37s-39s] So today is going to be the last lesson for this week.
+[40s-43s] The way we do it is four lessons, four and four back to back weeks.
+[44s-49s] And then, you know, we're going to go on to, you know, I think it's in,
+[49s-51s] I believe I can actually check.
+[51s-52s] Let me check really quickly.
+[53s-56s] I think on, let me check.
+[57s-57s] Yeah.
+[57s-59s] So on the 28th of Friday, right.
+[59s-64s] We're going to go ahead and actually, uh, you know, do the Q and a kind of session.
+[64s-68s] And that's, that's usually tends to be, uh, you know, a longer session with
+[68s-71s] depending on, you know, that completely depends on the actual, you know,
+[71s-73s] questions you guys are asking and everything like that.
+[73s-78s] Um, but once again, for the people that don't understand, I see some people
+[78s-79s] here, love it.
+[79s-84s] The lost money on Tesla guys, it's, you know, we just started, right.
+[84s-88s] You know, I always recommend to mastermind, you know, students as well.
+[88s-90s] Within the first week, I actually recommend not trading.
+[90s-94s] And I said that in the first, you know, um, I said it in the first workshop.
+[94s-96s] I told you not to trade it within the first week because you don't, you
+[96s-99s] haven't even learned anything like you've learned something now, but you
+[99s-102s] haven't, you're, you haven't like applied it, right?
+[102s-104s] Like you've learned it, but you haven't even applied anything.
+[104s-107s] So it's like, you know, you haven't went and back tested, you haven't
+[107s-111s] done anything and you're, you're skipping the steps to go and try to
+[111s-112s] make money, right?
+[112s-115s] So you have to understand though, you know, some people may be
+[115s-116s] eager to make money or whatever.
+[116s-120s] But at the end of the day, it comes down to the fact that how long are
+[120s-122s] you able to have patience, right?
+[122s-123s] How long are you able to play the long game?
+[124s-128s] You know, uh, one analogy, for example, is, you know, for, for
+[128s-131s] example, like I have this e-commerce, uh, brand that, that,
+[131s-133s] that I'm building out with me and, you know, two partners.
+[133s-136s] And we were talking today, I had a meeting today and they were
+[136s-138s] talking about, you know, the longevity because one of our competitors,
+[138s-141s] right, though, what they did was, you know, they kind of went in
+[141s-143s] for the short end play where they, you know, for two years they were
+[143s-146s] making, I think it was like a million dollars a month, right?
+[146s-149s] But now their brand is completely dead or that their e-commerce
+[149s-150s] brand was dead, right?
+[150s-153s] So it kind of comes into trading as well where it's like, you know,
+[153s-155s] we're trying to build it up slowly where we're trying to, you know,
+[156s-158s] you know, sustain that brand for 10 years, where it's the same
+[158s-161s] thing as trading where it's like, are you trying to sustain
+[161s-163s] and be here for the longevity?
+[163s-166s] Are you trying to, you know, become a trader full time for the
+[166s-169s] next 10, 20, 30 years, or are you trying to come in here, you
+[169s-172s] know, make a play like GME or AMC today, right?
+[172s-175s] Where it's like, you know, you, you see those big results from
+[175s-177s] Roaring Kitty, you know, he made what, like $200 million, right?
+[177s-180s] Like realistically, that's going to be, you know, the top, you
+[180s-182s] know, .00001%, right?
+[182s-184s] So it's just like, it's just unrealistic, right?
+[184s-188s] So that's just one thing that, you know, I want to kind of
+[188s-191s] emphasize is the fact that you need to be here for the long
+[191s-194s] run and you need to understand that this mastermind, of course,
+[194s-197s] you know, the support does last for a very, very long time, but
+[197s-199s] it's up to you on how fast you want to, you know, end up,
+[199s-202s] you know, eventually scaling or, you know, putting these
+[202s-204s] strategies into place with real money, right?
+[204s-207s] But I always recommend the first week, right, to make sure
+[207s-211s] to not actually, you know, actually trade at all, right?
+[212s-213s] So yeah, with that being said, I just wanted to start off
+[213s-216s] with that very quickly, just to, you know, for the first
+[216s-219s] week, just kind of do a quick little recap of what we've
+[219s-220s] done so far for the week.
+[220s-221s] And then, yeah, today we're going to be talking about
+[221s-224s] lesson four and lesson four, we're going to be going over
+[224s-226s] a couple of things, but the main thing today we're going
+[226s-228s] to be going over is a winning day trading system.
+[229s-232s] Okay, so let's get into it.
+[233s-236s] So how to create a winning day trading system.
+[237s-239s] Today's agenda is going to be what is a trading system.
+[239s-242s] A lot of people, you'll be surprised for the people
+[242s-243s] that have been trading for a little while.
+[243s-245s] Some people don't even know what a trading system is.
+[245s-246s] So we would have to kind of get into that.
+[247s-249s] And even if you've been trading for a while, you may
+[249s-251s] not actually know the right definition of how to create
+[251s-254s] a trading system, which is important to understand.
+[254s-256s] We're going to be going over different trading styles.
+[256s-258s] So what you should focus on as a trader, what type of
+[258s-260s] training style you need, and then we're going to go over
+[260s-262s] obviously different entry and exit signals.
+[262s-263s] We're going to go over how to back, we're not going
+[263s-265s] to go over how to back test, but we're going to talk
+[265s-266s] about the importance of back testing.
+[266s-268s] If you actually want to see how to back test
+[268s-269s] completely, right.
+[269s-270s] It's we're going to have a bonus workshop on that
+[270s-271s] as well.
+[271s-273s] And then also that's in the accelerator as well.
+[273s-274s] And then we're going to talk about how to create
+[274s-276s] rules, risk management, following your system, and
+[276s-277s] then refining your system.
+[277s-278s] Okay.
+[278s-281s] So with this being said, let's start off.
+[281s-284s] So what is a trading system?
+[284s-286s] So a trading system is a list of rules you must
+[286s-289s] abide by on a daily basis, right?
+[289s-292s] A trading system helps you identify when and how
+[292s-294s] to buy or sell a financial instrument.
+[295s-297s] The signals provided by your system are purely
+[297s-299s] based on technical or fundamental analysis.
+[299s-301s] It does not include the trading.
+[302s-304s] So entry and exit can be mechanical and
+[304s-305s] robotic, right?
+[305s-306s] But you have to understand that your
+[306s-307s] emotions must be mitigated.
+[308s-310s] So really quickly, you know, I just said a
+[310s-312s] bunch of words, but what does that mean?
+[312s-313s] So what is a trading system?
+[314s-317s] You have to understand as a trader are only
+[317s-320s] thing you make money from in the markets is
+[320s-321s] your edge.
+[321s-323s] I've said this before and I'm going to, you
+[323s-324s] know, re-emphasize the point.
+[325s-327s] The only reason a trader makes money in the
+[327s-329s] markets is because of the edge they have.
+[329s-331s] They develop that edge over a long period of
+[331s-332s] time.
+[332s-334s] And that edge is the only thing that
+[334s-336s] differentiates you from other traders,
+[336s-336s] right?
+[336s-339s] But your edge comes from obviously learning
+[339s-340s] what the right edge is, obviously, and what
+[340s-341s] you're doing here.
+[341s-344s] But you need to actually put in the work and
+[344s-347s] get the experience and screen time to
+[347s-348s] increase that edge and increase the
+[348s-350s] probability of you entering good trades.
+[351s-353s] And the edge, it doesn't just have to be
+[353s-354s] based off technical analysis, right?
+[355s-356s] A lot of people think that, you know,
+[356s-357s] your trading edge has to be technical
+[357s-358s] analysis purely.
+[358s-360s] No, sometimes some people have really
+[360s-361s] good edges, how?
+[361s-363s] Through psychology, right?
+[363s-364s] They're able to really mitigate their
+[364s-365s] emotions, right?
+[365s-367s] So they're able to take, you know, four,
+[367s-368s] five, six red trades in a day, but
+[368s-371s] then one red or one green trade, right?
+[371s-372s] They'll be able to increase their risk
+[372s-374s] reward significantly and therefore win
+[374s-375s] that trade, right?
+[375s-377s] So your edge doesn't have to be based
+[377s-379s] off of technicals completely, though
+[379s-382s] you need, of course, a proven, you
+[382s-384s] know, profitable edge, right?
+[384s-384s] Of course.
+[385s-386s] However, it doesn't completely have
+[386s-387s] to be based off technicals.
+[387s-389s] Your edge can also be based off
+[389s-390s] psychology, it can be based off
+[390s-391s] your risk management.
+[391s-392s] You know, there's a lot of different
+[392s-393s] factors for edge, and we're going
+[393s-394s] to talk about that in upcoming
+[394s-395s] workshops as well.
+[395s-398s] But with a trading system, what you
+[398s-400s] need to understand is this is your
+[400s-402s] edge is what creates the trading
+[402s-403s] system, right?
+[403s-405s] Everything revolves around the edge
+[405s-407s] and what is and the edge is within
+[407s-408s] the trading system, right?
+[408s-409s] So when you think about the
+[409s-410s] ecosystem rate, the trading system
+[410s-412s] is like, let's just say the big
+[412s-414s] square and then the edge is within
+[414s-414s] that square.
+[415s-417s] OK, so the trading system should
+[417s-419s] be very, very, very simple.
+[420s-421s] What this means is every single
+[421s-424s] time you're looking to enter or
+[424s-425s] exit, there should be no question
+[425s-427s] in your head if you're doing
+[427s-428s] something wrong or if you're
+[428s-430s] exiting too fast or if you're
+[430s-431s] exiting too late, there should
+[431s-433s] be no question, right?
+[433s-434s] The reason that is is because
+[434s-436s] we're not trying to gut trade.
+[436s-438s] What gut trading means is, you
+[438s-439s] know, oh, I have this feeling
+[439s-440s] that, you know, the stock could
+[440s-442s] do this. I have a feeling it
+[442s-443s] could do this and therefore let
+[443s-445s] me enter into this trade or I
+[445s-446s] have a feeling that the stock's
+[446s-447s] going to reverse and let me
+[447s-448s] exit out before it hits my
+[448s-449s] profit target, right?
+[449s-451s] That's not following our system.
+[451s-452s] That's not being robotic.
+[452s-453s] That's being, you know, that's
+[453s-454s] putting discretion into our
+[454s-455s] system, right?
+[455s-457s] So, you know, you want your
+[457s-459s] system to be as robotic as
+[459s-460s] possible.
+[460s-462s] OK, you want the system to
+[462s-463s] basically be like where if you
+[464s-465s] first of all, you should be able
+[465s-467s] to teach the system to, you
+[467s-468s] know, a little kid, you know,
+[468s-471s] because the more simple you
+[471s-472s] can make your system, the
+[472s-474s] more simple the entry and exit
+[474s-474s] criteria is, the less
+[474s-476s] confluences you need, the
+[476s-478s] better it will be long term
+[478s-480s] for you to actually change that
+[480s-481s] system. Now, why, why am I
+[481s-482s] talking about changing the
+[482s-483s] system when we're first
+[483s-483s] talking about, you know, what
+[483s-484s] a trading system is?
+[485s-486s] The reason I'm saying this is
+[486s-487s] because when we think about
+[487s-489s] it, let me annotate on the
+[489s-490s] chart here real quick.
+[492s-493s] Can you guys see that drawing?
+[493s-494s] You guys can see the strong,
+[494s-495s] obviously. Sure.
+[498s-499s] Cool. So when you're looking
+[499s-500s] at, you know, let's say a
+[500s-502s] trade rate and you know, for
+[502s-503s] us, right, it's just a simple
+[503s-504s] break in retest rate.
+[504s-505s] So we're just looking to
+[505s-506s] enter in right here.
+[506s-507s] Right. Now, here's the
+[507s-510s] thing. In different markets,
+[510s-511s] we have to trade the break
+[511s-512s] and retest a little bit
+[512s-513s] differently. Right.
+[513s-514s] And you guys will see that,
+[514s-515s] you know, if you if you go
+[515s-516s] through the trade reviews
+[516s-517s] that have been there for
+[517s-519s] years at this point, right,
+[519s-519s] you'll be able to see
+[519s-521s] different markets in different,
+[521s-522s] you know, scenarios where we
+[522s-523s] do trade that break in
+[523s-525s] retest. But the main thing
+[525s-526s] is the main objective with
+[526s-527s] the break in retest is that
+[527s-530s] the fundamental strategy is
+[530s-532s] simply a move up, a
+[532s-533s] displacement move here.
+[533s-534s] Right. And if you don't
+[534s-535s] know what displacement is
+[535s-536s] completely yet, we will
+[536s-537s] also have, I think this
+[537s-538s] weekend, J Double go over
+[538s-540s] it as well. But we need
+[540s-541s] a displacement move up.
+[541s-543s] Right. And then we just
+[543s-543s] get the retest in the
+[543s-545s] most basic, you know,
+[545s-547s] kind of terms. That's the
+[547s-549s] strategy right now. We know
+[549s-550s] so far with the previous
+[550s-551s] workshops that we've done
+[551s-553s] that obviously you have much
+[553s-554s] more confluences. Right.
+[554s-556s] You need QQQ. You need to
+[556s-556s] understand, you know, how
+[556s-557s] much displacement this has.
+[557s-558s] If it's a good retest,
+[558s-559s] you need to have the good
+[559s-560s] obviously a proper key
+[560s-561s] level and everything like
+[561s-561s] that, which you will learn
+[561s-563s] over time. Right. But in
+[563s-564s] the most basic terms,
+[564s-565s] right, it's just the
+[565s-566s] break, the retest, and
+[566s-566s] you're just entering on
+[566s-567s] the retest for a new
+[567s-569s] high day push. Okay. So
+[569s-571s] for us, if we need to,
+[571s-573s] you know, maybe refine the
+[573s-574s] strategy for a different
+[574s-576s] market, it's so, so, so
+[576s-578s] easy. So easy. Okay.
+[578s-580s] Because if because of the
+[580s-581s] fact that the strategy
+[581s-583s] simple, right, let's say
+[583s-585s] that, you know, we're in
+[585s-586s] a market currently that
+[586s-587s] high of day, right. So
+[587s-588s] whenever a stock hits
+[588s-590s] high of day, it reverses.
+[590s-590s] So there's no
+[590s-593s] continuation. Okay. If
+[593s-594s] there's no continuation,
+[594s-595s] what does that mean for
+[595s-596s] our strategy? Well, for
+[596s-597s] our strategy, it simply
+[597s-598s] means that if we enter
+[598s-599s] in at this level, at
+[599s-601s] the retest level, and
+[601s-602s] it does move up to high
+[602s-602s] of day, but it reverses
+[602s-603s] that high of day, we're
+[603s-604s] still taking the high
+[604s-605s] of day scale. But at
+[605s-606s] this point, right, rather
+[606s-607s] than taking, let's say
+[607s-608s] 20 to 40% off a high
+[608s-609s] of day, now we're taking
+[609s-611s] 100% off and we're just
+[611s-611s] scalping the strategy
+[611s-612s] rather than holding the
+[612s-614s] trailers. Right. So it's
+[614s-615s] just like those little,
+[615s-616s] little, you know,
+[616s-618s] refining techniques that
+[618s-619s] you need due to different
+[619s-620s] market conditions. If
+[620s-621s] it's choppy, if there's
+[621s-622s] no high day continuation,
+[622s-623s] you know, if let's say
+[623s-624s] if it's a trending
+[624s-625s] market, right, let's
+[625s-625s] say the market's super,
+[625s-626s] super trendy and you
+[626s-627s] know, we're all we're
+[627s-628s] pushing to all time
+[628s-629s] highs. Well, in that
+[629s-630s] case scenario, right,
+[630s-631s] what you want is you
+[631s-632s] always get the break in
+[632s-633s] retest. But then after
+[633s-634s] that, when you make that
+[634s-635s] new high of day, you're
+[635s-636s] going to obviously only
+[636s-638s] take, let's say 20% off
+[638s-638s] here, and then you're
+[638s-639s] going to hold the
+[639s-640s] majority of your
+[640s-641s] position because you're
+[641s-642s] in a trending market.
+[643s-643s] Right. So does that
+[643s-645s] make sense? You refine
+[645s-647s] your system. Very, very
+[647s-648s] small. It's a very
+[648s-649s] small, you know,
+[649s-651s] tweak in your system.
+[651s-652s] But you can only do
+[652s-654s] this if it's a simple
+[654s-655s] system. If it's a hard
+[655s-656s] system to follow, if
+[656s-657s] it's, you know, you
+[657s-658s] have 10 confluences
+[658s-659s] where it's like, you
+[659s-660s] know, you have the
+[660s-661s] break in retest and
+[661s-662s] then you have to add,
+[662s-663s] you know, four
+[663s-665s] different indicators. You
+[665s-666s] have to add, you know,
+[666s-667s] very, very hard like
+[667s-667s] market structure. You're
+[667s-668s] looking at like, you
+[668s-669s] know, you're looking at
+[669s-670s] market structure in a
+[670s-671s] way that you may have
+[671s-672s] been taught on YouTube
+[672s-673s] rather than what I
+[673s-674s] taught yesterday. Right.
+[674s-675s] Like it's so much
+[675s-676s] harder to do that
+[676s-677s] when, you know, in
+[677s-678s] reality, all it is is
+[678s-679s] just the break in
+[679s-680s] retest and you just
+[680s-681s] have little refinements
+[681s-681s] to your either your
+[681s-683s] risk management or you
+[683s-685s] have refinements within
+[685s-686s] your actual strategy
+[686s-686s] itself, where it's
+[686s-687s] like, okay, I'm just
+[687s-687s] taking high of day
+[687s-688s] scales or, you know,
+[688s-689s] maybe I just have to
+[689s-690s] size down. It's just
+[690s-691s] not the strategies not
+[691s-692s] in a, you know, it's
+[692s-693s] not the greatest time
+[693s-694s] for the strategies
+[694s-694s] win rate right now
+[694s-695s] because we're
+[695s-696s] consolate. We're in
+[696s-697s] a consolidation market
+[697s-697s] and therefore the win
+[697s-699s] rate does decrease and
+[699s-700s] therefore let me just
+[700s-701s] decrease my size in this
+[701s-702s] specific market. But
+[702s-703s] then when the market
+[703s-704s] starts trending again,
+[704s-705s] I'm going to increase
+[705s-705s] my size back up to
+[705s-707s] wherever it was. Right.
+[707s-708s] So does that make
+[708s-709s] sense on how to
+[709s-710s] actually refine that
+[710s-712s] system and what a
+[712s-713s] trading system is?
+[717s-717s] Let me get rid of
+[717s-720s] these drawings. Let me
+[720s-721s] get rid of this chat
+[721s-722s] real quick.
+[727s-728s] So with this being
+[728s-729s] said, that's the
+[729s-730s] trading system, right?
+[730s-731s] You just want it to
+[731s-731s] be as mechanical and
+[731s-732s] robotic as possible.
+[732s-733s] You don't want human
+[733s-734s] discretion at the end
+[734s-734s] of the day. So one
+[734s-735s] of the main things I
+[735s-736s] can tell you is,
+[736s-737s] you know, whenever
+[737s-738s] you have a feeling
+[738s-739s] like, oh, like this
+[739s-740s] stock, I have a
+[740s-741s] feeling that the stock
+[741s-742s] is going to, you
+[742s-743s] know, go, you know,
+[743s-744s] move up to the
+[744s-744s] upside. It's going to
+[744s-745s] have a 90 degree
+[745s-746s] move to the upside
+[746s-747s] or whatever. And it
+[747s-748s] has nothing to do
+[748s-748s] with the chart, but
+[748s-749s] it's just the gut
+[749s-750s] feeling you have, right?
+[750s-751s] Don't follow it, right?
+[751s-752s] Literally don't follow
+[752s-753s] it. Just go, go
+[753s-754s] based off of your
+[754s-755s] plan. Your plan is
+[755s-756s] what you need to
+[757s-759s] Okay. We can talk
+[759s-760s] about experience as
+[760s-761s] a trader. After you
+[761s-762s] have, you know,
+[762s-763s] multiple years as a
+[763s-764s] trader, you've been
+[764s-765s] sitting there in
+[765s-765s] front of the screen,
+[765s-766s] trading the break
+[766s-767s] and retest, and
+[767s-767s] you have that
+[767s-768s] experience and that
+[768s-770s] experience is within
+[770s-770s] your edge. And now
+[770s-771s] you have a defined
+[771s-772s] edge. And therefore
+[772s-773s] then, yeah, maybe
+[773s-774s] we can talk about,
+[774s-776s] you know, following
+[776s-776s] our experience a
+[776s-777s] little bit more, but
+[777s-779s] in the beginning, be
+[779s-779s] as robotic as
+[779s-781s] possible, right? You
+[781s-782s] have to be as
+[782s-783s] robotic as possible in
+[783s-784s] the beginning, right?
+[784s-785s] Only after you've
+[785s-786s] been trading for, I
+[786s-787s] want to say, five plus
+[787s-789s] years with the same
+[789s-790s] system and the same
+[790s-790s] setup, and you've
+[790s-791s] been seeing consistency
+[792s-793s] only after then can
+[793s-794s] you be like, okay,
+[794s-795s] yeah, no, I have a,
+[795s-795s] you know, based off
+[795s-796s] the experience that
+[796s-797s] I have, you know,
+[797s-798s] this most likely
+[798s-799s] will revert. Like,
+[799s-800s] for example, a
+[800s-801s] good example was the
+[801s-802s] Tesla trade that
+[802s-803s] I took yesterday,
+[803s-803s] right? It was a
+[803s-804s] loss, but what
+[804s-805s] happened on that
+[805s-805s] Tesla trade? What
+[805s-806s] happened on that
+[806s-807s] Tesla trade was it
+[807s-808s] came near low of
+[808s-808s] day, but then it
+[808s-810s] reversed like 10
+[810s-812s] cents before low of
+[812s-813s] day. Now, when
+[813s-814s] that happened during
+[814s-815s] real time, I was
+[815s-816s] like, okay, yeah,
+[816s-817s] like, this is this
+[817s-818s] most likely is just
+[818s-818s] going to either
+[818s-819s] consolidate all day,
+[820s-820s] or it might even
+[820s-821s] sweep the low and
+[821s-822s] then make a new
+[822s-823s] move to like, you
+[823s-824s] know, the stop loss
+[824s-825s] that we had. But
+[825s-827s] even then, even
+[827s-828s] knowing that, right,
+[828s-829s] I had to let the
+[829s-830s] probability of the
+[830s-830s] trade play out,
+[830s-831s] knowing that it
+[831s-832s] could potentially do
+[832s-833s] that. I still let
+[833s-834s] the probability play
+[834s-835s] out. Why? Because
+[835s-836s] it was my plan
+[836s-837s] before I entered
+[837s-838s] the trade. That
+[838s-838s] was a plan I
+[838s-839s] entered with even
+[839s-840s] with the experience
+[840s-841s] I have. And I
+[841s-842s] knew that the
+[842s-843s] reason, the fact
+[843s-844s] that it did that
+[844s-845s] low of day or made
+[845s-845s] like a higher low
+[845s-846s] before a low of
+[846s-847s] day, even though
+[847s-848s] I knew it was
+[848s-848s] going to consolidate,
+[848s-849s] I had to follow
+[849s-850s] my plan similar
+[850s-851s] with AMD today.
+[851s-851s] I said in real
+[851s-852s] time, if you go
+[852s-853s] watch that live
+[853s-853s] session today on
+[853s-855s] AMD, right, right
+[855s-855s] when we were
+[855s-855s] coming near that
+[855s-856s] low of day, and
+[856s-857s] we actually
+[857s-857s] failed to make
+[857s-858s] a new low of day.
+[858s-858s] I was like, oh
+[858s-859s] yeah, AMD is
+[859s-859s] most likely going
+[859s-860s] to reverse here.
+[860s-861s] And that's exactly
+[861s-861s] what happened on
+[861s-863s] AMD as well. Right.
+[863s-863s] So just one of
+[863s-864s] those things where
+[864s-865s] that experience
+[865s-866s] does end up coming
+[866s-867s] into play. And
+[867s-868s] you obviously
+[868s-868s] understand the
+[868s-869s] charts much better
+[869s-869s] because you've had,
+[869s-870s] you know, years
+[870s-871s] looking at them,
+[871s-872s] but you still,
+[872s-873s] at the end of the day,
+[873s-874s] you want to follow
+[874s-875s] your plan 99.9%
+[875s-876s] of the time,
+[876s-877s] especially as a
+[877s-877s] new trader,
+[877s-878s] 100% of the time,
+[878s-879s] right, as a new
+[879s-880s] trader, 100% of the time.
+[880s-881s] But then when
+[881s-881s] you have that,
+[881s-882s] you know, five
+[882s-883s] plus years of
+[883s-883s] experience or six,
+[883s-884s] seven plus years
+[884s-885s] of experience,
+[885s-885s] then you can,
+[885s-886s] you know, go back
+[886s-886s] and, you know,
+[886s-888s] maybe have that,
+[888s-888s] you know, potential
+[888s-889s] like, oh, OK,
+[889s-890s] I'm going to take
+[890s-890s] some trailers here
+[890s-891s] or whatever. Right.
+[891s-892s] That's a different
+[892s-892s] topic for when
+[892s-893s] you have that
+[893s-894s] experience. But as a
+[894s-894s] as a beginner
+[894s-896s] trader, your plan
+[896s-897s] and your mechanical
+[897s-898s] entries only. Right.
+[898s-899s] No gut trading.
+[899s-901s] OK.
+[901s-902s] So with this being said,
+[902s-904s] now we have to understand
+[904s-904s] trading styles
+[904s-905s] and a couple of questions
+[905s-906s] that I want you
+[906s-907s] to ask yourself.
+[907s-907s] So as I'm going
+[907s-908s] through this,
+[908s-910s] literally think about yourself
+[910s-912s] and how you
+[912s-913s] trade and your life.
+[913s-914s] Like, right,
+[914s-915s] I'm going to go
+[915s-916s] through this based off
+[916s-916s] of like your life
+[916s-917s] type of thing.
+[917s-919s] And I want you to,
+[919s-920s] you know,
+[920s-921s] kind of go along
+[921s-922s] with this.
+[922s-922s] And then at the end,
+[922s-923s] I'm going to ask you
+[923s-924s] what type of trader
+[924s-925s] you suits you best.
+[925s-926s] OK, so, you know,
+[926s-927s] first we have to understand
+[927s-928s] what kind of traders
+[928s-928s] they're even on.
+[928s-929s] OK.
+[929s-930s] So there's a momentum
+[930s-931s] trader, a scalper,
+[931s-932s] a swing trader
+[932s-933s] and an investor.
+[933s-935s] OK, so these are the major
+[935s-936s] like the main traders.
+[936s-937s] There's obviously
+[937s-938s] different styles of trading
+[938s-938s] and everything like that.
+[938s-939s] But these are like
+[939s-940s] the main ones
+[940s-941s] from especially
+[941s-942s] from the applications
+[942s-943s] that I read
+[943s-944s] for you guys.
+[944s-945s] These are the main ones
+[945s-945s] that you guys
+[945s-946s] were kind of saying.
+[946s-947s] Right. So
+[947s-948s] with the momentum trader,
+[948s-949s] that's what I am.
+[949s-951s] And what that simply means
+[951s-952s] is I'm riding the trend
+[952s-954s] and I'm trying to,
+[954s-955s] you know, get
+[955s-956s] impulsive moves
+[956s-957s] and I'm trying to capture,
+[957s-958s] you know, those big moves
+[958s-959s] after high of day slash low of day.
+[959s-960s] I'm trying to, you know,
+[960s-962s] capture that continuation.
+[962s-964s] So I'm a momentum trader.
+[964s-965s] OK, now a scalper
+[965s-967s] is someone that enters
+[967s-967s] into a trade.
+[967s-969s] You know, they they might enter
+[969s-970s] into two, three, four, five,
+[970s-971s] six trades a day,
+[971s-973s] but they're looking for very,
+[973s-973s] very quick moves
+[973s-975s] like they're in and out of trades
+[975s-976s] very, very quickly.
+[976s-977s] Right. They're in and out of trades
+[977s-979s] within five, ten minutes max.
+[979s-980s] Right. Sometimes even less.
+[980s-981s] Right. So, you know,
+[981s-983s] a scalper is someone that
+[983s-985s] can sit in front of the chart
+[985s-987s] and trade either
+[987s-988s] early on in the morning
+[988s-989s] and then just they just
+[989s-989s] have to go to work
+[989s-990s] or something like that.
+[990s-992s] Or a scalper can also be someone
+[992s-993s] that has to sit there
+[993s-995s] in front of the screens
+[995s-996s] and trade all day
+[996s-997s] to make up that,
+[997s-998s] you know, that daily
+[998s-999s] kind of like goal
+[999s-1000s] that they have just
+[1000s-1001s] because they have to scalp
+[1001s-1002s] all day based off the,
+[1002s-1003s] you know, whatever system
+[1003s-1004s] they trade. OK.
+[1004s-1004s] Then, of course,
+[1004s-1005s] you have swing trader.
+[1005s-1006s] I feel like most people
+[1006s-1007s] know what a swing trader is.
+[1007s-1008s] Right. Swing trader is anyone
+[1008s-1009s] that goes in
+[1009s-1010s] and enters the trade
+[1010s-1011s] based off of a higher
+[1011s-1012s] time frame type of level.
+[1012s-1014s] Right. So one hour, four hour,
+[1014s-1014s] you know, daily time
+[1014s-1015s] frame type of thing
+[1015s-1016s] where you're swing trading
+[1016s-1018s] over multiple days
+[1018s-1019s] or weeks. Right.
+[1019s-1019s] You can be a swing trader
+[1019s-1020s] for multiple days,
+[1020s-1021s] weeks or even months.
+[1021s-1022s] Right.
+[1022s-1023s] But then after a swing trader,
+[1023s-1024s] then you have an investor.
+[1024s-1025s] An investor is someone
+[1025s-1026s] that when you enter
+[1026s-1027s] into a trade,
+[1027s-1028s] you're looking for,
+[1028s-1030s] you know, a one year
+[1030s-1032s] plus type of time
+[1032s-1033s] horizon. Right.
+[1033s-1034s] A swing trader is anywhere.
+[1034s-1035s] Anyone that enters
+[1035s-1036s] into a trade for,
+[1036s-1037s] you know, a couple of days,
+[1037s-1038s] a couple of weeks.
+[1038s-1039s] Whereas an investor
+[1039s-1039s] is entering in
+[1039s-1040s] for that longer term,
+[1040s-1041s] like, you know, six plus,
+[1041s-1042s] seven plus months.
+[1042s-1043s] Most likely,
+[1043s-1044s] if you're an investor,
+[1044s-1045s] you're entering into
+[1045s-1046s] whatever investment
+[1046s-1046s] you're entering into
+[1046s-1047s] for, you know, the year
+[1047s-1049s] or like the long term play.
+[1049s-1050s] OK, so those are
+[1050s-1050s] the different type
+[1050s-1052s] of traders there are.
+[1052s-1053s] Now, you have to kind of define
+[1053s-1055s] which one works best for you.
+[1055s-1056s] Now, based off of defining
+[1056s-1057s] what which one works
+[1057s-1058s] the best off the best for you.
+[1058s-1059s] Sorry, you have to understand
+[1059s-1060s] the risk levels as well.
+[1060s-1061s] So, for example,
+[1061s-1063s] a momentum trader, right,
+[1063s-1065s] they have a little bit more risk
+[1065s-1066s] because they're coming
+[1066s-1067s] in and out of trades.
+[1067s-1069s] Right. And their,
+[1069s-1070s] you know, risk multiple,
+[1070s-1071s] like, for example,
+[1071s-1072s] my risk multiple is two.
+[1072s-1073s] It's not too bad.
+[1073s-1074s] But, you know, I want
+[1074s-1075s] I'm not going to win
+[1075s-1076s] every single trade, right.
+[1076s-1077s] The thing with me is
+[1077s-1078s] I'm not going to win
+[1078s-1078s] every single trade,
+[1078s-1079s] but I have to be in front
+[1079s-1080s] of the screens from nine
+[1080s-1081s] thirty to eleven o'clock
+[1081s-1082s] every single day
+[1082s-1082s] and just make sure
+[1082s-1083s] that there's good trade
+[1083s-1085s] setups there for me.
+[1085s-1086s] And of course, I need a market
+[1086s-1087s] that's trending. Right.
+[1087s-1089s] Now, with the scalper,
+[1089s-1090s] you may have a lower
+[1090s-1091s] risk to reward. Right.
+[1091s-1092s] So a scalper might go one to one,
+[1092s-1094s] which means if you're risking
+[1094s-1094s] one hundred dollars,
+[1094s-1095s] they're only looking
+[1095s-1096s] to gain one hundred dollars,
+[1096s-1097s] where with our strategy, right,
+[1097s-1098s] if we're risking one hundred dollars,
+[1098s-1098s] I'm looking to gain
+[1098s-1100s] about two hundred dollars. Right.
+[1100s-1101s] So a scalper
+[1101s-1102s] might be a one to one scalper.
+[1102s-1104s] And the thing with the scalper
+[1104s-1105s] is they're looking for a little bit
+[1105s-1106s] higher of a win rate. Right.
+[1106s-1107s] So they need a higher win rate
+[1107s-1108s] because they had their risk
+[1108s-1109s] to reward is lower.
+[1109s-1110s] So, you know,
+[1110s-1112s] between these two right here,
+[1112s-1112s] because these two,
+[1112s-1113s] these three are probably
+[1113s-1114s] the main ones,
+[1114s-1115s] but these two right here
+[1115s-1116s] with the momentum trader.
+[1116s-1117s] Right.
+[1117s-1118s] What you're looking for
+[1118s-1119s] is a higher win rate.
+[1119s-1121s] You're sorry.
+[1121s-1122s] You're looking for
+[1122s-1122s] a higher risk reward.
+[1122s-1123s] Your win rate
+[1123s-1124s] might be a little bit lower.
+[1124s-1124s] So are you someone
+[1124s-1126s] that can handle those losses?
+[1126s-1127s] You might have, you know,
+[1127s-1129s] 10 consecutive losses in a row.
+[1129s-1131s] But then, you know,
+[1131s-1132s] five good trades will make up
+[1132s-1134s] for those 10 losses, technically.
+[1134s-1134s] Right.
+[1134s-1136s] Or are you a scalper?
+[1136s-1137s] Are you someone that needs
+[1137s-1138s] to enter into a lot of trades
+[1138s-1139s] very, very quickly
+[1139s-1141s] and you have to continuously
+[1141s-1142s] enter into trade
+[1142s-1142s] because that's just
+[1142s-1143s] how your personality is.
+[1143s-1145s] And based off of that personality,
+[1145s-1146s] you want to win more.
+[1146s-1147s] So you need to win more trades.
+[1147s-1148s] You don't really care
+[1148s-1149s] about the risk reward as much.
+[1149s-1150s] You care about the winning
+[1150s-1152s] and losing aspect.
+[1152s-1153s] Right.
+[1153s-1153s] And then you have swing trader,
+[1153s-1155s] which is obviously someone that
+[1155s-1157s] are are you able to,
+[1157s-1158s] you know, just constantly
+[1158s-1159s] monitor your positions
+[1159s-1160s] on a higher time frame.
+[1160s-1161s] But you don't have to sit
+[1161s-1162s] in front of the charts all day.
+[1162s-1163s] Right. As a swing trader,
+[1163s-1164s] you don't really swing it.
+[1164s-1165s] You don't sit in front
+[1165s-1165s] of the charts all day.
+[1165s-1167s] But what you do do
+[1167s-1169s] is you have to take that risk
+[1169s-1170s] of overnighting positions,
+[1170s-1172s] which means, you know,
+[1172s-1173s] for example, if you're in
+[1173s-1175s] let's just use GME for today.
+[1175s-1175s] Right.
+[1175s-1176s] Like, let's say you were
+[1176s-1178s] swing trading GME.
+[1178s-1179s] You know, GME was down
+[1179s-1180s] like 20, 30 percent
+[1180s-1181s] for the last couple of days.
+[1181s-1182s] And then today, you know,
+[1182s-1183s] is the day that it went up
+[1183s-1185s] like 100, 100 percent
+[1185s-1185s] or something like that,
+[1185s-1186s] a little bit over 100 percent.
+[1186s-1187s] Right.
+[1187s-1188s] So it's one of those things
+[1188s-1188s] where it's like,
+[1188s-1190s] are you able to hold through
+[1190s-1192s] and, you know, those overnight,
+[1192s-1194s] you know, flushes or those overnight,
+[1194s-1195s] you know, big red candles
+[1195s-1198s] or big down gaps for a potential
+[1198s-1201s] that the swing trade will come back,
+[1201s-1202s] you know, with, you know,
+[1202s-1203s] will come back
+[1203s-1205s] with a bigger percentage gain.
+[1205s-1206s] Right.
+[1206s-1207s] Or, of course, are your investor.
+[1207s-1208s] And, you know, once again,
+[1208s-1209s] we don't really have to talk
+[1209s-1209s] too much about investors,
+[1209s-1210s] because if you obviously
+[1210s-1211s] in this mastermind,
+[1211s-1212s] you're trying to become a trader.
+[1212s-1216s] So now after you understand
+[1216s-1218s] what type of trader you are.
+[1218s-1219s] Right. That's kind of like
+[1219s-1220s] the first thing you have
+[1220s-1221s] to kind of think about.
+[1221s-1222s] You have to think about like
+[1222s-1223s] what type of trader
+[1223s-1225s] kind of suits your your personality.
+[1225s-1226s] But the main thing
+[1226s-1228s] you have to think about
+[1228s-1230s] are two things, actually.
+[1230s-1230s] Number one,
+[1230s-1232s] what commitments do you have?
+[1232s-1234s] This is so important to understand.
+[1234s-1236s] A lot of traders come into the market
+[1236s-1237s] and they try to force a trading style
+[1237s-1238s] by forcing a trading style.
+[1238s-1239s] What I mean is
+[1239s-1240s] they'll come into the markets
+[1240s-1241s] and they want to be,
+[1241s-1242s] you know, a scalp trader
+[1242s-1243s] where they want to sit
+[1243s-1244s] in front of the screen all day
+[1244s-1245s] and they want to scalp trade.
+[1245s-1246s] But the problem with that
+[1246s-1247s] is they can't do that
+[1247s-1249s] because they don't have the
+[1250s-1251s] they don't have the luxury to.
+[1251s-1252s] They have to work all day.
+[1252s-1253s] They have a family.
+[1253s-1256s] They, you know, they they have to,
+[1256s-1258s] you know, do random household
+[1258s-1259s] charge, you know, things like it's
+[1259s-1261s] like you have to understand
+[1261s-1262s] how much commitment
+[1262s-1263s] you have outside of trading.
+[1263s-1265s] And you have to implement
+[1265s-1265s] that into your training
+[1265s-1266s] to become the trader
+[1266s-1267s] you want to be.
+[1267s-1268s] Right. So, for example,
+[1268s-1270s] when I started trading,
+[1270s-1271s] you know, when I first started
+[1271s-1272s] trading, I started doing those.
+[1272s-1273s] Like I talked to you guys about
+[1273s-1274s] like those overnight
+[1274s-1276s] slash swing positions on,
+[1276s-1278s] you know, those those penny stocks.
+[1278s-1279s] Right. That's how I kind of started.
+[1280s-1281s] And after I realized like,
+[1281s-1282s] you know, like this swing
+[1282s-1283s] trading stuff's good.
+[1283s-1284s] But I had a little bit more time
+[1284s-1286s] because I was still at the time
+[1286s-1287s] I was in university
+[1287s-1288s] and going into university, actually.
+[1288s-1289s] So at the time I was going
+[1289s-1290s] into university.
+[1290s-1292s] And so I had a little bit
+[1292s-1292s] more time on my hands.
+[1292s-1293s] So I was like, you know what?
+[1293s-1294s] Like I'm going to sit
+[1294s-1295s] in front of the screen anyways,
+[1295s-1296s] just because I'm, you know,
+[1296s-1297s] in lectures or whatever.
+[1297s-1299s] So it's like I do have the time
+[1299s-1301s] to, you know, learn this skill
+[1301s-1302s] of trading and being a momentum
+[1302s-1303s] trader rather than someone
+[1303s-1304s] that's a swing trader.
+[1304s-1305s] Right. But for someone
+[1305s-1307s] that has, you know, commitments,
+[1307s-1307s] if you're someone that has,
+[1307s-1309s] you know, a full time job,
+[1309s-1310s] you're someone that has,
+[1310s-1311s] you know, a family to take care
+[1311s-1312s] of as well. Right.
+[1312s-1313s] Obviously give time to family
+[1313s-1314s] and everything like that.
+[1314s-1316s] Then, you know, you might not
+[1316s-1317s] want to be a scalper.
+[1317s-1318s] You might not want to be someone
+[1318s-1319s] that needs to sit in front
+[1319s-1320s] of the screen all day.
+[1320s-1321s] You might just want to take,
+[1321s-1322s] you know, the swing
+[1322s-1323s] trading route. Right.
+[1323s-1324s] Or you might want to take
+[1324s-1324s] the momentum right.
+[1324s-1326s] Where I trade from 930
+[1326s-1327s] to 11 o'clock every morning
+[1327s-1329s] and then you call it a day.
+[1329s-1329s] Right.
+[1329s-1331s] So you have to really understand
+[1331s-1333s] and dial down exactly
+[1333s-1334s] where your commitments are
+[1334s-1335s] and, you know, how much time
+[1335s-1336s] each kind of commitment
+[1336s-1338s] takes from you
+[1338s-1339s] and takes away from you
+[1339s-1340s] when you're trying to learn
+[1340s-1341s] how to trade.
+[1341s-1342s] OK.
+[1342s-1343s] Now, number three,
+[1343s-1345s] which instruments do you trade?
+[1345s-1346s] This is important as well
+[1346s-1348s] because you can't be
+[1348s-1349s] a jack of all trades.
+[1349s-1349s] Right.
+[1349s-1350s] A lot of traders come in
+[1350s-1351s] and especially new traders,
+[1351s-1353s] they try to be a jack of all trade.
+[1353s-1354s] They try to learn Forex.
+[1354s-1355s] They try to learn crypto.
+[1355s-1356s] They try to learn,
+[1356s-1358s] you know, a stock trading
+[1358s-1358s] options trading.
+[1358s-1359s] They try to learn everything.
+[1359s-1360s] But in the beginning,
+[1360s-1361s] it's important for you,
+[1361s-1363s] like I said, with same
+[1363s-1363s] as your setup,
+[1363s-1364s] it's the same thing.
+[1364s-1365s] You want to trade
+[1365s-1366s] one instrument as well,
+[1366s-1367s] because technically
+[1367s-1369s] your system in the beginning
+[1369s-1371s] should only be, you know,
+[1371s-1373s] I like to call it one dimensional.
+[1373s-1374s] What that simply means is
+[1374s-1375s] you only have one system
+[1375s-1377s] or you only have one setup.
+[1377s-1379s] You have one
+[1379s-1380s] instrument that you're trading
+[1380s-1381s] and you only trade it
+[1381s-1383s] based off those, you know,
+[1383s-1384s] that one kind of basket
+[1384s-1386s] of stocks that you have
+[1386s-1386s] or, you know, however
+[1386s-1387s] you want to trade it.
+[1387s-1388s] Right.
+[1388s-1390s] So it's like you don't want to add
+[1390s-1391s] in, you know, let's say
+[1391s-1393s] if you're trying to trade options,
+[1393s-1394s] you don't want to go ahead
+[1394s-1395s] and start trading futures
+[1395s-1396s] at the same time.
+[1396s-1397s] Right.
+[1397s-1398s] But if you're trading futures,
+[1398s-1399s] you want to stick to futures.
+[1399s-1399s] You don't want to go ahead
+[1399s-1401s] and start trading options.
+[1401s-1402s] So whichever instrument
+[1402s-1403s] you've already been trading.
+[1403s-1404s] Once again, I've said this before,
+[1404s-1405s] but this strategy
+[1405s-1406s] and this system applies
+[1406s-1409s] to all of the different
+[1409s-1411s] instruments that you can trade.
+[1411s-1412s] But you want to choose
+[1412s-1413s] one in the beginning
+[1413s-1413s] and you want to get
+[1413s-1414s] consistent at that.
+[1414s-1415s] You're right.
+[1415s-1416s] You want to get consistent
+[1416s-1417s] at either, you know,
+[1417s-1418s] you want to trade common shares,
+[1418s-1419s] you want to trade options,
+[1419s-1420s] you want to trade futures,
+[1420s-1420s] you want to trade crypto,
+[1420s-1421s] whatever, Forex, I don't care.
+[1421s-1422s] But it's just you have to
+[1422s-1424s] choose that one
+[1424s-1425s] and you have to stick to that one
+[1425s-1426s] and get consistent
+[1426s-1427s] on that one instrument.
+[1427s-1429s] Once you see consistency
+[1429s-1430s] in that one instrument,
+[1430s-1431s] then you can kind of push forward
+[1431s-1433s] and, you know, go into futures
+[1433s-1434s] and, you know, go into
+[1434s-1435s] probably not Forex.
+[1435s-1436s] Let's be honest.
+[1436s-1437s] Most people in here
+[1437s-1438s] are not going to go into Forex.
+[1438s-1439s] But, you know, you can go ahead
+[1439s-1440s] and trade other instruments.
+[1440s-1442s] For me personally,
+[1442s-1443s] the majority of the time
+[1443s-1444s] I'm trading options,
+[1444s-1446s] but I also do trade futures.
+[1446s-1446s] Right.
+[1446s-1447s] So I trade options or futures.
+[1447s-1448s] And then if I'm investing,
+[1448s-1449s] then I'll invest
+[1449s-1451s] in the common shares most likely.
+[1451s-1451s] Right.
+[1451s-1452s] So when I'm investing,
+[1452s-1453s] I'll most likely enter
+[1453s-1454s] into common shares
+[1454s-1456s] when trading its futures
+[1456s-1457s] or options.
+[1457s-1458s] OK.
+[1458s-1459s] Now, after this,
+[1459s-1460s] you need to understand
+[1460s-1461s] for your trading style,
+[1461s-1464s] what setup fits your personality.
+[1464s-1466s] Everyone has a different personality.
+[1466s-1468s] The way everyone works
+[1468s-1468s] is different.
+[1468s-1471s] The way your brain is wired
+[1471s-1473s] is based off of the experiences
+[1473s-1473s] that you had.
+[1473s-1473s] Right.
+[1473s-1475s] So, for example,
+[1475s-1476s] you know, if you grew up,
+[1476s-1477s] you know, really rich,
+[1477s-1478s] for example, right,
+[1478s-1479s] you may be someone
+[1479s-1480s] that doesn't have the same work.
+[1480s-1481s] I think as someone that grew up,
+[1481s-1483s] you know, extremely in poverty.
+[1483s-1483s] Right.
+[1484s-1485s] It's just you've seen
+[1485s-1485s] different things in life,
+[1485s-1487s] and it's not anything against,
+[1487s-1487s] you know, anyone.
+[1487s-1489s] But it's just it's just the reality
+[1489s-1490s] of, you know, how you how you are
+[1490s-1492s] as a person, how people psychology
+[1492s-1493s] are. Right.
+[1493s-1495s] Like you're just based off
+[1495s-1496s] the experience that you had
+[1496s-1497s] in your life.
+[1497s-1498s] So therefore,
+[1498s-1499s] you know, if you're someone
+[1499s-1500s] that's impatient,
+[1500s-1501s] if you're someone that,
+[1501s-1502s] you know, can't hold trades
+[1502s-1504s] to your to your targets,
+[1504s-1505s] which we will talk about today as well.
+[1505s-1506s] If you're someone
+[1506s-1508s] that can't do that, right,
+[1508s-1509s] then you may need something
+[1509s-1511s] that works extremely quickly.
+[1511s-1512s] Right.
+[1512s-1513s] So you might need to be
+[1513s-1514s] a momentum trader because
+[1514s-1515s] a momentum trader,
+[1515s-1516s] for example, like myself,
+[1516s-1518s] the trade works out pretty quickly
+[1518s-1519s] unless it starts chopping around.
+[1519s-1520s] Then, of course,
+[1520s-1521s] we have to sit around it.
+[1521s-1521s] But, you know,
+[1521s-1523s] for our first scales,
+[1523s-1523s] at least like from,
+[1523s-1525s] you know, that retest to high
+[1525s-1526s] of day, that usually works out
+[1526s-1527s] within like three
+[1527s-1529s] to five minutes on average.
+[1529s-1529s] Right.
+[1529s-1532s] So it's like what setup fits you
+[1532s-1533s] if you're someone that's patient,
+[1533s-1535s] you're you're able to hold through.
+[1535s-1536s] You're able to, you know,
+[1536s-1537s] not care about the money
+[1537s-1539s] as much at this specific
+[1539s-1539s] point in your life.
+[1539s-1540s] And you're just trying
+[1540s-1541s] to learn the skill.
+[1541s-1542s] You may be someone
+[1542s-1543s] that could potentially have
+[1543s-1545s] those higher time frame
+[1545s-1546s] swing trades because you're patient,
+[1546s-1547s] you're able to capture
+[1547s-1548s] those bigger moves and,
+[1548s-1549s] you know, hold through the losses
+[1549s-1551s] and hold through the overnight,
+[1551s-1552s] you know, gap downs and,
+[1552s-1553s] you know, it won't affect
+[1553s-1554s] your psychology as much.
+[1554s-1555s] So you have to understand
+[1555s-1556s] which setup will fit
+[1556s-1556s] your personality.
+[1556s-1557s] Once again,
+[1557s-1558s] the break and retest that I teach,
+[1558s-1559s] I think it's one of the,
+[1559s-1560s] you know, best setups
+[1560s-1561s] in my opinion,
+[1561s-1562s] because it's such a versatile setup
+[1562s-1564s] and it works in really any market.
+[1564s-1565s] But if that's a setup
+[1565s-1567s] that's too fast for you
+[1567s-1568s] and you think that you need
+[1568s-1569s] a slower setup,
+[1569s-1570s] that's completely fine.
+[1570s-1570s] Right.
+[1570s-1571s] You can literally just go
+[1571s-1571s] on the higher time frame
+[1571s-1572s] and still trade the break
+[1572s-1573s] and retest, right?
+[1573s-1574s] Or if you're a little
+[1574s-1575s] you're just a breakout trader,
+[1575s-1576s] you can also do that.
+[1576s-1577s] You know, there's a lot
+[1577s-1578s] of different things that I always tell,
+[1578s-1580s] you know, students this like
+[1580s-1581s] don't take this mastermind
+[1581s-1583s] and think that you're
+[1583s-1584s] you need to copy
+[1584s-1586s] every single aspect of what I say.
+[1586s-1587s] No, that's not the point of this.
+[1587s-1588s] The point of this mastermind
+[1588s-1590s] is to give put you
+[1590s-1591s] on the right direction
+[1591s-1593s] to implement everything
+[1593s-1594s] that I talk about.
+[1594s-1596s] But you can also take
+[1596s-1597s] what I'm saying and you
+[1597s-1598s] obviously you have to put
+[1598s-1599s] in a little bit more work,
+[1599s-1600s] you know, if you want
+[1600s-1601s] to switch things up.
+[1601s-1603s] But that work is going
+[1603s-1604s] is what's going to give you
+[1604s-1605s] your edge in the markets as well.
+[1605s-1607s] So everyone has to put in the work.
+[1607s-1608s] But if you want to trade
+[1608s-1609s] a different type of setup
+[1609s-1610s] or a different type of strategy,
+[1610s-1611s] right, this mastermind
+[1611s-1612s] still sets you up for that.
+[1612s-1613s] But you just need to understand
+[1613s-1614s] that it's just going to be
+[1614s-1615s] a little bit more work
+[1615s-1615s] at the end of day.
+[1615s-1616s] Right.
+[1616s-1617s] So based on the answers
+[1617s-1619s] that you create, you know,
+[1619s-1619s] then you can create
+[1619s-1620s] a trading style for yourself.
+[1620s-1622s] So an example I like to use
+[1622s-1624s] because, you know,
+[1624s-1625s] for most people
+[1625s-1626s] that join the mastermind
+[1626s-1626s] is kind of a similar
+[1626s-1627s] type of backstory anyway.
+[1627s-1628s] So it's like, you know,
+[1628s-1630s] most people here like it's like
+[1630s-1630s] I'm going to be
+[1630s-1631s] most likely a person
+[1631s-1632s] who has a family and works
+[1632s-1633s] a nine to five.
+[1633s-1635s] And I always recommend this.
+[1635s-1637s] And not a lot of people
+[1637s-1638s] really listen to me
+[1638s-1639s] when I say this part.
+[1639s-1640s] But, you know, it is what it is.
+[1640s-1642s] If you're someone
+[1642s-1644s] that works a nine to five,
+[1644s-1646s] like you work an intensive
+[1646s-1647s] nine to five, right?
+[1647s-1648s] And you have a family
+[1648s-1649s] that you need to,
+[1649s-1650s] you know, be committed to.
+[1650s-1651s] And obviously, you know,
+[1651s-1652s] you need to be there
+[1652s-1654s] for your family and stuff like that.
+[1654s-1655s] You may be better off
+[1655s-1656s] swing trading options
+[1656s-1657s] over a one to two week period
+[1657s-1658s] than scalping them
+[1658s-1660s] or momentum trading.
+[1660s-1661s] Right.
+[1661s-1662s] The reason I say this,
+[1662s-1663s] and it's not to discourage you,
+[1663s-1664s] you can one hundred percent,
+[1664s-1665s] you know, momentum
+[1665s-1665s] traders sculptured.
+[1665s-1668s] But that's just the easier option
+[1668s-1668s] in my opinion.
+[1668s-1670s] Like if I was in that position,
+[1670s-1671s] knowing the stuff
+[1671s-1672s] that I know now about trading,
+[1672s-1673s] especially for me, for example,
+[1673s-1674s] if I just give you
+[1674s-1675s] my future plans,
+[1675s-1676s] like I think in like not now,
+[1676s-1678s] but like 10, 15 years
+[1678s-1680s] down the line when I do end up,
+[1680s-1680s] you know, whatever,
+[1680s-1681s] having a family or whatever,
+[1681s-1683s] I'm probably going to,
+[1683s-1683s] you know, transition
+[1683s-1685s] into swing trading.
+[1685s-1686s] You know, I'm not going to
+[1686s-1686s] I don't want to sit
+[1686s-1687s] in front of the screen
+[1687s-1688s] every single day,
+[1688s-1689s] Monday to Friday.
+[1689s-1689s] Right.
+[1689s-1690s] So once I kind of make,
+[1690s-1691s] you know, enough
+[1691s-1692s] from what I'm doing now,
+[1692s-1693s] I'm probably going to transition
+[1693s-1694s] into, you know,
+[1694s-1696s] taking more size on swing trades
+[1696s-1698s] with the exact same strategy.
+[1698s-1699s] That's just kind of my plan
+[1699s-1699s] going into the future.
+[1699s-1700s] Right.
+[1700s-1700s] So it's like for you,
+[1700s-1701s] you kind of have to understand,
+[1701s-1703s] like, what is your commitment
+[1703s-1704s] and what type of trader are you?
+[1704s-1706s] So now after I said all that,
+[1706s-1707s] I want to see in the chat,
+[1707s-1709s] what type of trader are you
+[1709s-1710s] and where do you kind of think
+[1710s-1712s] that you're sitting in,
+[1712s-1714s] you know, in the
+[1714s-1716s] in the spectrum of traders?
+[1716s-1717s] Like what type of trader
+[1717s-1718s] do you want to be based off
+[1718s-1719s] your kind of situation?
+[1719s-1720s] Let's see some people in the chat.
+[1720s-1721s] I want to see.
+[1726s-1727s] Momentum, momentum, momentum,
+[1727s-1728s] 9 a.m. to 11.
+[1728s-1729s] Momentum sounds like the best
+[1729s-1731s] momentum and scalper
+[1731s-1733s] momentum, good trader.
+[1733s-1735s] Momentum day trading is perfect
+[1735s-1736s] and since I'm in the West Coast,
+[1736s-1737s] momentum, swing and day trading,
+[1737s-1739s] mostly options.
+[1741s-1743s] Momentum, 9 a.m. to 11 a.m.
+[1743s-1743s] Right.
+[1743s-1746s] So, you know, once again,
+[1746s-1748s] I think the the the thing
+[1748s-1748s] with momentum is,
+[1748s-1749s] especially the way I teach it,
+[1749s-1751s] the way I trade, it's like
+[1751s-1752s] I'm not sitting in front
+[1752s-1753s] of the screens that long, right?
+[1753s-1755s] Like I'm sitting from 9 a.m.
+[1755s-1756s] to 11 o'clock.
+[1756s-1757s] So it's like, you know,
+[1757s-1758s] worst case scenario,
+[1758s-1759s] even if you have a nine to five,
+[1759s-1761s] like and you're working from home,
+[1761s-1762s] like you're easily able to,
+[1762s-1763s] you know, do the nine,
+[1763s-1764s] you know, because it's like
+[1764s-1765s] the thing is you're looking
+[1765s-1766s] for a break and retest,
+[1766s-1767s] but it's not like you have to monitor
+[1767s-1768s] every one minute candle.
+[1768s-1770s] Like you can literally look
+[1770s-1771s] you can have a chart
+[1771s-1773s] on the left side of your screen
+[1773s-1773s] or wherever.
+[1773s-1774s] Let's say you have a two monitor
+[1774s-1776s] set up at work or whatever.
+[1776s-1776s] Like, you know, I'm just trying
+[1776s-1778s] to give you guys like
+[1778s-1779s] like a visual here.
+[1779s-1780s] Let's say you have a two set up
+[1780s-1781s] monitor on the left side
+[1781s-1782s] of your screen.
+[1782s-1784s] All you really need is to have
+[1784s-1785s] like four or five charts up,
+[1785s-1786s] let's say like Tesla, Apple,
+[1786s-1788s] NVIDIA, QQQ, Spy
+[1788s-1790s] and whatever charts
+[1790s-1790s] you want to have up.
+[1790s-1791s] I'm just giving you an example
+[1791s-1793s] and just have those key levels
+[1793s-1794s] from the earlier day.
+[1794s-1796s] And once you see something
+[1796s-1797s] retesting on the left side,
+[1797s-1798s] obviously you can do your work
+[1798s-1799s] on your main monitor.
+[1799s-1800s] Right. But on the left side,
+[1800s-1801s] when you see something retesting,
+[1801s-1803s] you simply look over at QQQ
+[1803s-1804s] if QQQ is also aligning.
+[1804s-1806s] It's simple. You take the trade.
+[1806s-1807s] Right. You take you take the trade
+[1807s-1809s] and you know, you have your
+[1809s-1810s] profit targets already set up.
+[1810s-1811s] Right. Like for me,
+[1811s-1813s] the reason I try to
+[1814s-1815s] in the live sessions,
+[1815s-1816s] I try to speak a lot more
+[1816s-1817s] and I try to show you
+[1817s-1818s] with everything that's going on
+[1818s-1819s] is just because I'm trying to help
+[1819s-1821s] you understand what to look
+[1821s-1822s] at at the chart.
+[1822s-1824s] If you want my honest opinion
+[1824s-1826s] on how I actually used to trade
+[1826s-1827s] so how I used to trade
+[1827s-1828s] before I had to do live
+[1828s-1829s] training in front of everyone.
+[1829s-1830s] I'll be honest.
+[1830s-1832s] Some days, like I wouldn't even be
+[1832s-1833s] at the at the desk.
+[1833s-1834s] Right. Like some days,
+[1834s-1835s] I'll just have my laptop,
+[1835s-1836s] for example, I have my laptop
+[1836s-1837s] and my phone.
+[1837s-1838s] And some days I literally
+[1838s-1839s] trade from my bed.
+[1839s-1840s] Was that a bad habit?
+[1840s-1841s] One hundred percent.
+[1841s-1842s] Right. Like I'm not saying
+[1842s-1842s] that's something like
+[1842s-1843s] you want to do consistently.
+[1843s-1845s] But some days, like
+[1845s-1846s] once again, I was profitable.
+[1846s-1847s] Right. I've been profitable
+[1847s-1847s] for many years.
+[1847s-1848s] So there's a reason I can do that.
+[1848s-1849s] But like some days,
+[1849s-1850s] I'll just be chilling in my bed.
+[1850s-1852s] Not now, but like back then
+[1852s-1853s] when I didn't have to live
+[1853s-1854s] trade in front of everybody.
+[1854s-1855s] Like I just be chill in my bed.
+[1855s-1856s] You know, take a trade.
+[1856s-1858s] You know, I used to take trades
+[1858s-1858s] when I was sick, too.
+[1858s-1860s] Like I was literally I remember
+[1860s-1861s] it was like I think it was like
+[1861s-1862s] six, seven months ago,
+[1862s-1863s] I was really sick
+[1863s-1864s] and I was sick for like
+[1864s-1865s] a whole week.
+[1865s-1866s] But I was still just
+[1866s-1867s] I wake up in the morning
+[1867s-1868s] and I take trades on my phone
+[1868s-1869s] and then go like
+[1869s-1870s] I just have the order set up
+[1870s-1872s] where like I knew where my stop
+[1872s-1872s] was and I knew where
+[1872s-1873s] my profit target was.
+[1873s-1875s] And once my first profit
+[1875s-1875s] target hit,
+[1875s-1877s] I just have that hard stop
+[1877s-1879s] underneath that like
+[1879s-1880s] the first stop loss I had.
+[1880s-1881s] And then I had my profit
+[1881s-1882s] target on my next key level
+[1882s-1883s] and I just go sleep.
+[1883s-1884s] And then it just whatever
+[1884s-1885s] would happen would happen.
+[1885s-1887s] I'd wake up and I, you know,
+[1887s-1888s] the worst case scenario
+[1888s-1889s] I was break even on the trade.
+[1889s-1890s] Right. Best case scenario
+[1890s-1890s] hit my profit target.
+[1890s-1892s] So it's one of those things
+[1892s-1893s] where I do think trading
+[1893s-1894s] gives you the freedom
+[1894s-1896s] to do a lot of different things.
+[1897s-1898s] But it's not, you know,
+[1898s-1899s] all sunshine and rainbows,
+[1899s-1900s] how people on social media
+[1900s-1901s] portray it.
+[1901s-1902s] It does give you freedom,
+[1902s-1903s] though, right?
+[1903s-1903s] It does really does
+[1903s-1904s] give you freedom.
+[1904s-1905s] I don't know how many people
+[1905s-1906s] have watched my
+[1906s-1908s] the vlog I posted.
+[1908s-1908s] I don't know how many people
+[1908s-1909s] have watched it
+[1909s-1910s] and within the mastermind itself.
+[1910s-1911s] But, you know, even like,
+[1911s-1913s] for example, when I went to L.A.,
+[1913s-1913s] right, like that was
+[1913s-1915s] a crazy experience for me.
+[1915s-1916s] Right. But the thing is,
+[1916s-1918s] like I was literally trading
+[1918s-1918s] and you guys saw
+[1918s-1919s] how I was trading.
+[1919s-1920s] I just had my laptop open
+[1920s-1921s] and I had my phone
+[1921s-1922s] and I was executing
+[1922s-1924s] on my phone slash laptop.
+[1924s-1925s] Every single like I well,
+[1925s-1926s] I only traded technically
+[1926s-1927s] one day on that video.
+[1927s-1928s] But like for the rest of the days,
+[1928s-1930s] like every time I like executed,
+[1930s-1931s] I was executing on my phone
+[1931s-1932s] and I just had my laptop open
+[1932s-1933s] for charts and like
+[1933s-1934s] this crazy house.
+[1934s-1935s] Right. So it's like,
+[1935s-1936s] you know, social media
+[1936s-1937s] does show you the
+[1937s-1939s] the highlights of everything.
+[1939s-1940s] Right. But you have to understand
+[1940s-1941s] there is obviously the downsides
+[1941s-1942s] and stuff like that.
+[1942s-1942s] But you need to
+[1942s-1944s] you just need to understand
+[1944s-1944s] for yourself
+[1944s-1946s] like what type of trader you are.
+[1946s-1947s] And I hope this slide
+[1947s-1948s] was able to kind of help
+[1948s-1949s] you understand like
+[1949s-1950s] where you should go
+[1950s-1952s] in your trading journey
+[1952s-1954s] and what you need to focus on,
+[1954s-1955s] because knowing what to focus on
+[1955s-1956s] is very important as well,
+[1956s-1957s] rather than, you know,
+[1957s-1958s] jumping from momentum
+[1958s-1959s] to scalper to swing trader.
+[1959s-1960s] Like, you know,
+[1960s-1961s] you don't want to do those jumps.
+[1961s-1962s] You want to choose one
+[1962s-1964s] and really just try to get the best
+[1964s-1965s] at that one type of strategy
+[1965s-1966s] or, you know,
+[1966s-1967s] that one type of trader.
+[1967s-1970s] OK, so next slide,
+[1970s-1971s] we actually did stay on this slide
+[1971s-1972s] for a little while,
+[1972s-1974s] but I think it was good.
+[1974s-1975s] So now let's talk about
+[1975s-1977s] the entry and exit signals.
+[1977s-1979s] So when we're looking at entry
+[1979s-1980s] and exit signals,
+[1980s-1981s] you need to create rules
+[1981s-1982s] that help you enter your trade
+[1982s-1984s] effectively and repetitively
+[1984s-1985s] each time you see them.
+[1985s-1987s] So what does that mean?
+[1987s-1988s] A lot of traders,
+[1988s-1989s] what will happen is
+[1989s-1992s] they'll enter in.
+[1992s-1994s] To trades that are not
+[1994s-1996s] within their setup, why?
+[1996s-1998s] Because they're getting FOMO.
+[1998s-1999s] They have greed
+[1999s-2001s] or they'll exit the trade
+[2001s-2002s] before it hit their profit,
+[2002s-2003s] target or stop loss.
+[2003s-2006s] Why? Because they have fear, right?
+[2006s-2007s] So that's where
+[2007s-2008s] the emotions come in place.
+[2008s-2009s] So for us,
+[2009s-2011s] what we want to do is have
+[2011s-2013s] such repeatable entry
+[2013s-2014s] and exit signals,
+[2014s-2015s] like make them so repeatable
+[2015s-2017s] and so simple
+[2017s-2018s] that we don't even have
+[2018s-2019s] the opportunity
+[2019s-2020s] to really think about like,
+[2020s-2022s] oh, like this is what's happening,
+[2022s-2023s] like maybe I should exit,
+[2023s-2024s] maybe I should enter,
+[2024s-2025s] maybe I should know.
+[2025s-2026s] Like it should be where
+[2026s-2027s] you see the entry signal
+[2027s-2028s] and you enter,
+[2028s-2030s] you see the exit signal
+[2030s-2030s] and you exit.
+[2030s-2031s] It shouldn't.
+[2031s-2033s] There shouldn't be any,
+[2033s-2035s] you know, brain function
+[2035s-2035s] working for you
+[2035s-2036s] where you have to think
+[2036s-2037s] about it consciously,
+[2037s-2039s] like where it's like, oh,
+[2039s-2040s] like I might enter,
+[2040s-2041s] I might not enter.
+[2041s-2042s] No, it's like you see it,
+[2042s-2042s] you enter.
+[2042s-2043s] You don't see it.
+[2043s-2044s] You know, if you don't like it,
+[2044s-2046s] then, sorry,
+[2046s-2047s] if the setup isn't there,
+[2047s-2048s] then you don't enter, right?
+[2048s-2049s] So make them simple,
+[2049s-2050s] make them clear
+[2050s-2051s] and finally make them make sense.
+[2051s-2053s] So here's a quick little example.
+[2054s-2055s] When we have a clear uptrend
+[2055s-2056s] on this trade right here,
+[2056s-2057s] we have a clear uptrend.
+[2057s-2058s] And then what did we have?
+[2058s-2059s] We had a flat top, right?
+[2059s-2062s] So what does the flat top signify?
+[2062s-2064s] It signifies that there is
+[2064s-2065s] this is a resistance.
+[2065s-2066s] And if we break above this
+[2066s-2067s] with an impulsive candle
+[2067s-2069s] and have a strong displacement,
+[2069s-2071s] right, it shows that buyers
+[2071s-2072s] are buying the stock up
+[2072s-2073s] and obviously sellers
+[2073s-2074s] are weak above this level.
+[2074s-2075s] Therefore, the retest
+[2075s-2077s] of this level will be strong.
+[2077s-2078s] Why? Because buyers
+[2078s-2079s] are going to keep it
+[2079s-2080s] above this level
+[2080s-2080s] because this is
+[2080s-2081s] where we were holding.
+[2081s-2083s] So therefore, the stop loss
+[2083s-2083s] is obviously going to be
+[2083s-2085s] right below this level.
+[2085s-2085s] And our profit target,
+[2085s-2087s] once again, you know,
+[2087s-2088s] could be high of day
+[2088s-2089s] or another key level.
+[2089s-2090s] That really depends, right?
+[2090s-2091s] Your first profit
+[2091s-2091s] target is always going to be
+[2091s-2092s] high day where you scale
+[2092s-2094s] and then your second key level
+[2094s-2095s] or whatever, right?
+[2095s-2096s] But the main thing is here
+[2096s-2098s] we waited for the momentum
+[2098s-2099s] and trend to develop.
+[2099s-2100s] We waited for the stock
+[2100s-2102s] to then break the key level.
+[2102s-2103s] Once it broke,
+[2103s-2104s] we looked for the retracement
+[2104s-2106s] and then on the retracement,
+[2106s-2107s] we're looking for strong
+[2107s-2108s] price action.
+[2108s-2108s] So the price action
+[2108s-2109s] for me, you guys know
+[2109s-2110s] I'm either looking
+[2110s-2110s] for a strong
+[2110s-2111s] hammer stick candle close
+[2111s-2112s] or I'm looking for a wick
+[2112s-2113s] to develop right underneath.
+[2113s-2114s] Right.
+[2114s-2114s] If you guys were
+[2114s-2115s] in the lab trading today,
+[2115s-2116s] you guys know whenever
+[2116s-2117s] it's a key level,
+[2117s-2118s] I like to actually see the wick
+[2118s-2120s] go below and then close above
+[2120s-2121s] because that shows
+[2121s-2122s] that sellers
+[2122s-2123s] did try to bring it down,
+[2123s-2123s] but buyers brought it up
+[2123s-2125s] really aggressively.
+[2125s-2126s] And then once this candle closes
+[2126s-2127s] on the second candle,
+[2127s-2129s] I'll be looking to enter in
+[2129s-2130s] right on the second candle
+[2130s-2131s] once I see a little bit
+[2131s-2133s] more strength and I enter in.
+[2133s-2133s] Right.
+[2133s-2134s] And I'm looking for a high
+[2134s-2135s] advance and exit
+[2135s-2136s] or once again,
+[2136s-2136s] those higher levels
+[2136s-2137s] with my stop loss
+[2137s-2138s] right at the break
+[2138s-2139s] of structure. Right.
+[2139s-2142s] So you very, very, very simple
+[2142s-2143s] entry and exit signals.
+[2143s-2143s] Right.
+[2143s-2144s] It should be where
+[2144s-2145s] every single time
+[2145s-2146s] and you guys can go back
+[2146s-2147s] to trade reviews from,
+[2147s-2148s] you know, two years ago
+[2148s-2149s] from today.
+[2149s-2150s] And you'll see that
+[2150s-2152s] I had the exact same
+[2152s-2153s] entry and exit signals
+[2153s-2154s] back then that I do now
+[2154s-2155s] and I use them
+[2155s-2156s] every single time.
+[2156s-2157s] It's not like I'm
+[2157s-2158s] adding anything.
+[2158s-2159s] It's the exact same.
+[2159s-2159s] Right.
+[2159s-2160s] So does that make sense?
+[2160s-2161s] Do you guys understand?
+[2161s-2163s] You know, the only time
+[2163s-2164s] you are sorry,
+[2164s-2165s] the only time
+[2165s-2167s] the time you do change
+[2167s-2168s] your entry and exit signals,
+[2168s-2168s] you'll notice
+[2168s-2169s] is the time you're going to
+[2169s-2170s] lose money in the markets
+[2170s-2171s] that shouldn't be lost.
+[2171s-2171s] Right.
+[2171s-2173s] So it's completely fine
+[2173s-2174s] if the trade doesn't work out.
+[2174s-2175s] I want to make that
+[2175s-2176s] very, very clear as well.
+[2176s-2177s] If this trade, for example,
+[2177s-2179s] came back, retested,
+[2179s-2179s] strong candle,
+[2179s-2180s] this candle was showing
+[2180s-2181s] bullishness and it just
+[2181s-2182s] didn't even make
+[2182s-2183s] high a day and it rejected.
+[2183s-2184s] That's fine. Right.
+[2184s-2186s] Because that's still
+[2186s-2187s] a good trade.
+[2187s-2189s] The trade's result
+[2189s-2190s] of winning and losing
+[2190s-2191s] does not define a good trade.
+[2191s-2193s] What defines a good trade
+[2193s-2194s] is your pre-plan.
+[2194s-2195s] Right.
+[2195s-2196s] So the trade's actual result
+[2196s-2198s] is not the result.
+[2198s-2198s] Yeah.
+[2198s-2199s] The trade's actual result
+[2199s-2201s] does not define a good trade.
+[2201s-2202s] A good trade is defined
+[2202s-2203s] by your actual setup
+[2203s-2204s] and how well you
+[2204s-2205s] follow your plan.
+[2205s-2206s] OK.
+[2206s-2207s] So I want to make sure
+[2207s-2207s] you guys really
+[2207s-2208s] understand that. Right.
+[2208s-2210s] Win or lose does not matter
+[2210s-2211s] as long as you follow
+[2211s-2213s] your plan every single time.
+[2213s-2216s] OK.
+[2216s-2217s] OK.
+[2217s-2220s] So now we have to understand
+[2220s-2221s] that, yes, this is all,
+[2221s-2222s] you know, this this all
+[2222s-2223s] seems good.
+[2223s-2224s] And, you know, when I'm
+[2224s-2225s] when I'm giving you
+[2225s-2227s] the actual lesson,
+[2227s-2229s] you guys are going to take this
+[2229s-2229s] and you're going to be like,
+[2229s-2231s] wow, like I learned a lot today,
+[2231s-2232s] all this, blah, blah, blah.
+[2232s-2233s] But then that's all
+[2233s-2234s] that's going to happen.
+[2234s-2235s] You're just going to think,
+[2235s-2236s] oh, yeah, I learned a lot today
+[2236s-2238s] and then not take any action.
+[2238s-2239s] Right.
+[2239s-2241s] And without taking action,
+[2241s-2243s] nothing works.
+[2243s-2243s] Right.
+[2243s-2244s] So without similarly
+[2244s-2245s] without back testing
+[2245s-2247s] your system, it won't work.
+[2247s-2248s] OK.
+[2248s-2250s] So I'm going to give you
+[2250s-2251s] and I already have
+[2251s-2253s] I'm giving you the full system
+[2253s-2256s] the way I trade live
+[2256s-2257s] every single day.
+[2257s-2258s] And, you know, we've seen
+[2258s-2259s] the results, everything like that.
+[2259s-2261s] But you still need
+[2261s-2262s] to put in the work
+[2262s-2264s] to back test those systems.
+[2264s-2267s] Now, there for other mastermind
+[2267s-2268s] classes, by the time
+[2268s-2269s] we got to this slide, right,
+[2269s-2270s] they had the excuse
+[2270s-2271s] because they're like, oh, well,
+[2271s-2271s] you haven't taught us
+[2271s-2273s] how to back test yet, Tony.
+[2273s-2274s] So we can't back test
+[2274s-2275s] because you haven't taught us.
+[2275s-2276s] But for you guys,
+[2276s-2278s] you don't have that excuse.
+[2278s-2278s] Right.
+[2278s-2279s] You have the full
+[2279s-2280s] accelerator course
+[2280s-2281s] and within the course,
+[2281s-2282s] you have the module
+[2282s-2283s] where you can literally
+[2283s-2284s] learn how to back test.
+[2284s-2284s] Right.
+[2284s-2286s] So if you wanted tonight,
+[2286s-2287s] you could go go ahead
+[2287s-2288s] and back test exactly
+[2288s-2289s] the way me and J.W. do.
+[2289s-2290s] Right.
+[2290s-2291s] So for you,
+[2291s-2292s] there's a couple of reasons
+[2292s-2295s] why back testing is important.
+[2295s-2297s] Now, for like the thing
+[2297s-2297s] is that the system
+[2297s-2298s] and the strategy
+[2298s-2299s] that I'm telling you,
+[2299s-2300s] you already kind of know
+[2300s-2301s] is profitable
+[2301s-2302s] just because I'm trading it.
+[2302s-2302s] I've already told you
+[2302s-2304s] the stats about the strategy itself.
+[2304s-2306s] But it's you're not back
+[2306s-2307s] testing to go and go ahead
+[2307s-2308s] and, you know,
+[2308s-2310s] get some crazy stats
+[2310s-2311s] or anything like that.
+[2311s-2311s] What you're back
+[2311s-2313s] testing for is for yourself.
+[2313s-2313s] You're back
+[2313s-2314s] testing to increase
+[2314s-2315s] your confidence
+[2315s-2316s] when you enter a trade,
+[2316s-2317s] increase your conviction,
+[2317s-2319s] increase your experience
+[2319s-2321s] and decrease your fear.
+[2321s-2323s] Those are the four main reasons
+[2323s-2325s] why you need to back test.
+[2325s-2327s] Now, let me explain this.
+[2327s-2328s] The reason back
+[2328s-2329s] testing increases your confidence
+[2329s-2331s] and I can tell you for a fact,
+[2331s-2332s] it will increase
+[2332s-2334s] your confidence is because
+[2334s-2335s] when you see a trade,
+[2335s-2336s] let's say I see a trade
+[2336s-2337s] that's a break in retest, right?
+[2337s-2340s] Let's say let me get it
+[2341s-2344s] do right here.
+[2344s-2345s] OK, so let's just say
+[2345s-2347s] I see a trade, right?
+[2347s-2349s] Like, let's say that's terrible.
+[2352s-2352s] Right.
+[2352s-2353s] I see a trade.
+[2353s-2354s] There's the break
+[2354s-2355s] in retest here, right?
+[2355s-2357s] We see a break.
+[2357s-2359s] We see the retest
+[2359s-2361s] and then we see the move up.
+[2361s-2363s] Well, for you, right,
+[2363s-2364s] you may have not entered
+[2364s-2366s] this trade because look,
+[2366s-2367s] the trade actually came
+[2367s-2368s] below the level.
+[2368s-2369s] So you might have not
+[2369s-2370s] entered that trade
+[2370s-2372s] because you haven't
+[2372s-2372s] done the back
+[2372s-2373s] testing it.
+[2373s-2374s] You haven't seen,
+[2374s-2375s] you know, you haven't had
+[2375s-2376s] that experience
+[2376s-2377s] within the market.
+[2377s-2378s] So you may sit out of this trade
+[2378s-2379s] because, oh, Tony,
+[2379s-2381s] it didn't hit the level completely.
+[2381s-2382s] Here's the thing.
+[2382s-2385s] The level, every level, right?
+[2385s-2385s] You have to understand.
+[2385s-2387s] And I think I said this yesterday
+[2387s-2388s] when I was showing
+[2388s-2388s] how to draw levels
+[2388s-2389s] or two days ago
+[2389s-2389s] when I was showing
+[2389s-2390s] how to draw levels.
+[2390s-2392s] But every level is a zone, right?
+[2392s-2393s] You have to consider
+[2393s-2394s] the levels like a zone.
+[2394s-2396s] Like it's not like the trade
+[2396s-2397s] is going to come down
+[2397s-2399s] to your level specifically, right?
+[2399s-2399s] Like let's say
+[2399s-2400s] this is the level right here, right?
+[2400s-2401s] It's not like the trade
+[2401s-2402s] is going to come down
+[2402s-2403s] and hit it perfectly
+[2403s-2404s] to the tick and move up.
+[2404s-2406s] No, like this is the real markets.
+[2406s-2407s] This isn't like, you know,
+[2407s-2408s] where there's no
+[2408s-2409s] theoretical aspect,
+[2409s-2410s] there's no textbook examples.
+[2410s-2411s] The real markets,
+[2411s-2412s] what it'll do is
+[2412s-2413s] it might just dip
+[2413s-2414s] right below the level
+[2414s-2415s] and then rip.
+[2415s-2416s] But what you have to understand
+[2416s-2418s] is the level is a zone, right?
+[2418s-2419s] There's like a little two,
+[2419s-2421s] let's say, depending on what trade, right?
+[2421s-2422s] It can be like anywhere
+[2422s-2424s] from like a two to ten cents zone.
+[2424s-2426s] And so when you understand that,
+[2426s-2427s] that's when you understand like,
+[2427s-2428s] oh, OK, you know,
+[2428s-2429s] this was still a good break
+[2429s-2430s] and retest.
+[2430s-2431s] But the only reason
+[2431s-2432s] you're going to understand
+[2432s-2433s] that is through back
+[2433s-2435s] testing the setup yourself.
+[2435s-2436s] OK, so it'll increase
+[2436s-2437s] your confidence
+[2437s-2438s] to actually enter trades.
+[2438s-2440s] How many people
+[2440s-2441s] with within the chat?
+[2441s-2443s] Let's open up the chat here.
+[2443s-2443s] How many people
+[2443s-2444s] within this chat
+[2444s-2446s] have seen a trade,
+[2446s-2447s] a plus setup
+[2447s-2448s] and didn't even enter the trade, right?
+[2448s-2449s] Like it was your eight plus setup.
+[2449s-2451s] It was a trade that you've seen you back.
+[2451s-2452s] You may have not back
+[2452s-2453s] tested, obviously,
+[2453s-2454s] but you've seen the trade.
+[2454s-2455s] You've seen it work on YouTube.
+[2455s-2456s] You know, you may have even seen
+[2456s-2457s] my YouTube videos
+[2457s-2459s] before you walked into this mastermind.
+[2459s-2460s] Right. You saw it
+[2460s-2462s] and you didn't enter it.
+[2462s-2463s] The reason you haven't entered it
+[2463s-2465s] why is because you don't have confidence.
+[2465s-2466s] You're not confident in your system.
+[2466s-2468s] You're not confident in the setup.
+[2468s-2469s] And the reason you're not confident
+[2469s-2471s] is once again comes down to
+[2471s-2474s] you don't have the experience, right?
+[2474s-2476s] You're not confident.
+[2476s-2477s] Right.
+[2477s-2478s] You're not confident
+[2478s-2481s] because you lack the experience.
+[2481s-2483s] OK, and then now
+[2483s-2486s] let's say you have the experience
+[2486s-2487s] and you have the confidence.
+[2487s-2488s] So you have the experience
+[2488s-2488s] through the back testing
+[2488s-2490s] and then you increase your confidence.
+[2490s-2492s] Well, both the experience
+[2492s-2493s] and confidence is good
+[2493s-2495s] because now both of these things
+[2495s-2498s] will allow you to enter the trade.
+[2498s-2499s] Right. So now you're
+[2499s-2500s] this is only going to allow you
+[2500s-2501s] to enter the trade.
+[2501s-2503s] OK, however,
+[2503s-2504s] what's going to allow you
+[2504s-2506s] to hit your profit target
+[2506s-2508s] or stop out at your stop loss?
+[2508s-2510s] Those two things come in
+[2510s-2513s] with conviction and fear, right?
+[2513s-2514s] So conviction and fear
+[2514s-2516s] is the what is what's going to allow
+[2516s-2518s] you to exit the trade, right?
+[2518s-2519s] So this is going to allow
+[2519s-2521s] you to exit the trade.
+[2521s-2522s] Why is my mouse doing that?
+[2522s-2523s] Exit the trade.
+[2523s-2524s] And this is going to be
+[2524s-2527s] the entry for the trade.
+[2527s-2527s] Entry, right?
+[2527s-2528s] So this is going to be the entry
+[2528s-2529s] and this is going to be
+[2529s-2530s] the exit of the trade.
+[2530s-2531s] Now, why?
+[2531s-2532s] The reason this is
+[2532s-2534s] because when you increase
+[2534s-2535s] your conviction,
+[2535s-2536s] that means that you have enough
+[2536s-2538s] confidence in the trade
+[2538s-2539s] to enter the trade.
+[2539s-2540s] But you have the conviction
+[2540s-2541s] to hold the trade
+[2541s-2543s] because through your back
+[2543s-2543s] testing results,
+[2543s-2546s] you have seen firsthand
+[2546s-2548s] though the results show you
+[2548s-2549s] that if you just get rid
+[2549s-2550s] of your emotions
+[2550s-2551s] when you're actually in the trade
+[2551s-2552s] and you just let the chart work,
+[2552s-2554s] it will hit your profit target
+[2554s-2556s] or it will hit your stop loss.
+[2556s-2558s] But over a long period of time
+[2558s-2559s] through your back testing rate,
+[2559s-2560s] let's say you you did
+[2560s-2561s] a back testing session
+[2561s-2562s] and, you know, for two weeks,
+[2562s-2564s] you won four trades
+[2564s-2565s] and you lost six.
+[2565s-2567s] Even though you lost more times
+[2567s-2569s] than you won in those two weeks,
+[2569s-2570s] if you had the proper risk
+[2570s-2571s] to reward on each trade
+[2571s-2573s] of a two hour minimum, right?
+[2573s-2575s] You were still green.
+[2576s-2577s] You walk out of those,
+[2577s-2577s] you know, two weeks,
+[2577s-2579s] you lost more trades than you won,
+[2579s-2582s] but you still made money, right?
+[2582s-2583s] So understanding that
+[2583s-2584s] is what's going to help you
+[2584s-2585s] increase your conviction
+[2585s-2586s] in the trades.
+[2586s-2588s] And then at the same time,
+[2588s-2589s] understanding that is
+[2589s-2590s] what's going to help you
+[2590s-2591s] decrease your fear as well,
+[2591s-2594s] because now every single time
+[2594s-2596s] you know you have to enter
+[2596s-2598s] the trade based off of the criteria
+[2598s-2599s] you have based off
+[2599s-2600s] your back testing results
+[2600s-2602s] and you have less fear
+[2602s-2603s] because that back testing result
+[2603s-2605s] shows you that you're profitable.
+[2605s-2607s] So even though, you know,
+[2607s-2609s] a stock is coming near your stop loss
+[2609s-2610s] or hit your stop loss,
+[2610s-2611s] you're OK with that.
+[2611s-2613s] You're OK of losing the trade.
+[2613s-2615s] You don't care if you win or lose
+[2615s-2616s] because, you know,
+[2616s-2618s] if you just follow the system,
+[2618s-2620s] you know, every single time
+[2620s-2622s] you will see consistency
+[2622s-2624s] over a long period of time.
+[2624s-2625s] OK, so does it make sense
+[2625s-2627s] why we need to back test?
+[2633s-2635s] Right, and so once again,
+[2635s-2636s] other mastermind classes
+[2636s-2638s] have the excuse
+[2638s-2639s] at this slide where they're like,
+[2639s-2640s] well, the back
+[2640s-2642s] testing workshop is going to come out
+[2642s-2644s] during the bonus workshop.
+[2644s-2645s] So, you know,
+[2645s-2646s] I don't know how to back test.
+[2646s-2648s] You know, I actually see someone still
+[2648s-2650s] somehow in the chat saying,
+[2650s-2651s] you know, still don't know
+[2651s-2652s] how to back test.
+[2652s-2653s] Go to the accelerator, right?
+[2653s-2654s] Go to the accelerator.
+[2654s-2657s] And there is a full video
+[2657s-2659s] going through exactly
+[2659s-2660s] how you need to back test.
+[2660s-2662s] There's a full video, right?
+[2662s-2663s] And it's in it's in one
+[2663s-2664s] of the modules, right?
+[2664s-2665s] So it's very important.
+[2665s-2668s] What I honestly recommend you to do.
+[2668s-2670s] This is what I actually recommend
+[2670s-2671s] for this week, right?
+[2671s-2672s] Only try to absorb.
+[2672s-2674s] If I was to take this mastermind,
+[2674s-2675s] the way I would do it is this week
+[2675s-2676s] I would try to absorb
+[2676s-2678s] the information that I'm saying
+[2678s-2679s] for the next two weeks
+[2679s-2680s] I'd absorb the information
+[2680s-2681s] me and Jade were saying.
+[2681s-2683s] And then the third week
+[2683s-2683s] I would go through
+[2683s-2684s] that whole accelerator, right?
+[2684s-2685s] I would take notes
+[2685s-2686s] on the whole accelerator
+[2686s-2687s] during the third week.
+[2687s-2688s] And then the fourth week
+[2688s-2690s] I'd probably back test and,
+[2690s-2691s] you know, look at the results
+[2691s-2692s] based off the back testing.
+[2692s-2694s] And then the end of the fourth week,
+[2694s-2695s] when that Q&A session is there,
+[2695s-2696s] then you can ask me questions
+[2696s-2697s] based off your results
+[2697s-2698s] and based off all
+[2698s-2699s] the accelerator stuff.
+[2699s-2700s] Like I wouldn't really go
+[2700s-2701s] through the accelerator stuff
+[2701s-2702s] right now personally if it was me.
+[2702s-2703s] I'd personally go through
+[2703s-2704s] everything that I'm saying
+[2704s-2705s] and kind of go through
+[2705s-2706s] the mastermind first
+[2706s-2708s] and then go through the accelerator
+[2708s-2709s] right after the mastermind
+[2709s-2711s] and right after the first two weeks
+[2711s-2712s] go through it in the third week
+[2712s-2713s] and then during the fourth week
+[2713s-2714s] when we have that Q&A session
+[2714s-2716s] you can kind of get answers
+[2716s-2717s] to everything that you need, right?
+[2717s-2720s] That's how I would personally do it.
+[2720s-2721s] How often do you recommend back testing?
+[2721s-2723s] I personally recommend back testing
+[2723s-2724s] especially when you're beginning
+[2724s-2726s] as often as possible,
+[2726s-2728s] as often as possible, right?
+[2728s-2731s] Different stocks,
+[2731s-2733s] different, so for example,
+[2733s-2734s] like one day you can back test AMD
+[2734s-2735s] next day you can back test Nvidia
+[2735s-2737s] next day you can back test Tesla
+[2737s-2739s] and you'll see like some stocks
+[2739s-2742s] just have a better win rate, right?
+[2742s-2744s] Like for example, AMD and Nvidia
+[2744s-2746s] now started to have, you know,
+[2746s-2748s] for example, Nvidia, for example,
+[2748s-2749s] had a really, really high win rate
+[2749s-2751s] for the break and retest recently
+[2751s-2752s] and that's just because it's been
+[2752s-2754s] trending super hard to the upside.
+[2754s-2756s] However, you know,
+[2756s-2758s] even I think it was like two years ago,
+[2758s-2760s] like when maybe two years ago,
+[2760s-2761s] like right when chip started
+[2761s-2763s] dying down like two years ago,
+[2763s-2764s] I used to trade AMD before
+[2764s-2768s] and AMD was one of the worst stocks to trade
+[2768s-2770s] was one of the worst stocks
+[2770s-2772s] to trade with the break and retest setup.
+[2772s-2773s] It just wasn't working
+[2773s-2775s] because there was no volume on AMD
+[2775s-2777s] and it was like right under like a hundred bucks
+[2777s-2779s] and it was just an extremely hard name
+[2779s-2781s] to trade with the break and retest.
+[2781s-2783s] But because the momentum is back on AMD,
+[2783s-2784s] the volume is back on AMD
+[2784s-2786s] and it's trending on the higher timeframes,
+[2786s-2787s] all of a sudden now it's really,
+[2787s-2788s] really easy to back test, right?
+[2788s-2790s] So you basically want to back test
+[2790s-2792s] only due to the fact to increase your conviction
+[2792s-2796s] and also understand which names are better to trade,
+[2796s-2798s] you know, during the specific markets that we're in, okay?
+[2799s-2800s] Let's see.
+[2803s-2804s] Oh.
+[2806s-2811s] To do, okay, do you find that you need to modify
+[2811s-2812s] your system for different tickers
+[2812s-2814s] or do you do the exact same thing
+[2814s-2815s] every time for any security?
+[2816s-2818s] For most names, I do the exact same strategy.
+[2818s-2819s] Most names I'm looking,
+[2819s-2821s] because the thing is I'm trading tech names, right?
+[2821s-2823s] So for most names,
+[2823s-2825s] I'm trading the exact same way, right?
+[2825s-2827s] Now, does it help understanding personalities
+[2828s-2829s] of tickers 100%, right?
+[2829s-2831s] Like I know, for example,
+[2831s-2833s] on days that Tesla honestly,
+[2833s-2835s] sorry, on days that Tesla wants to run,
+[2835s-2836s] on days that Tesla, you know,
+[2836s-2838s] has clear moves to the upside
+[2838s-2841s] and, you know, it gives you a small retest.
+[2841s-2843s] You know, sometimes you have to be really aggressive
+[2843s-2844s] with Tesla on those days.
+[2844s-2845s] You get those aggressive entries.
+[2845s-2846s] You need to have them
+[2846s-2847s] because you're going to miss out on the retest.
+[2847s-2848s] Why?
+[2848s-2849s] Because on days like that,
+[2849s-2851s] Tesla's going to have a very strong push
+[2851s-2852s] to the upside or to the downside.
+[2852s-2854s] However, on days that Tesla doesn't want to run
+[2854s-2856s] and recently how the higher timeframe
+[2856s-2858s] is just in consolidation, you know,
+[2858s-2860s] Tesla is something you don't even want to touch
+[2860s-2862s] because the retest might not work out, right?
+[2862s-2864s] So it's like, understanding that,
+[2864s-2865s] you'll understand that through experience
+[2865s-2867s] and the more you trade those names.
+[2868s-2870s] Is accelerator only available to WAP?
+[2870s-2874s] Can we access from Discord or links to videos?
+[2874s-2876s] Yeah, you want to just go to your WAP
+[2876s-2878s] and just go to the hub page, right?
+[2878s-2880s] And the accelerator is there, okay?
+[2880s-2882s] For some reason, I can't access the accelerator.
+[2882s-2884s] Just make sure, so the only reason
+[2884s-2886s] you wouldn't be able to access the accelerator
+[2886s-2890s] is if you're not signed in to the exact same account
+[2890s-2892s] that you bought the mastermind from.
+[2892s-2894s] So make sure it's the exact same account.
+[2894s-2895s] It's always good to be familiar
+[2895s-2896s] with the ticker you're trading.
+[2896s-2898s] I find it difficult to focus on multiple tickers
+[2898s-2899s] in live sessions.
+[2899s-2901s] What is your view on trading just one indices
+[2901s-2905s] like QQQ or Spy and become really good at one ticker?
+[2905s-2908s] What is your view on trading just one indices
+[2908s-2909s] like QQQ or Spy and become?
+[2909s-2911s] So that's fine, but you need to have your edge
+[2911s-2912s] on QQQ and Spy, right?
+[2912s-2916s] So you can trade technically QQQ and Spy every single day.
+[2916s-2917s] You can do that, sure.
+[2917s-2919s] But you need to understand
+[2919s-2921s] that you have to have your own edge.
+[2921s-2922s] You have to create an edge through.
+[2922s-2924s] Now, for me, the edge comes from understanding
+[2924s-2928s] which trades have the higher timeframe thesis.
+[2928s-2930s] And based off that higher timeframe thesis,
+[2930s-2932s] we can go and trade those
+[2932s-2933s] because they have momentum, right?
+[2933s-2935s] I find the momentum on the higher timeframe
+[2935s-2937s] then trade the lower timeframe, right?
+[2937s-2939s] But if you're trading one name every single day
+[2939s-2940s] and some days they're obviously not gonna have
+[2940s-2942s] higher timeframe theses,
+[2942s-2943s] then you have to create your own thesis
+[2943s-2946s] based off of your strategy, right?
+[2947s-2949s] Got it, got it, thanks.
+[2949s-2951s] Sign in, but it keeps asking you to pay.
+[2951s-2953s] If you're having questions about that, right?
+[2953s-2956s] Ask it in the help channels, right?
+[2956s-2958s] Currently, we're doing a lesson, right?
+[2958s-2960s] So I'm not gonna answer those questions.
+[2962s-2964s] All right, let's keep going.
+[2964s-2966s] Well, we gotta get rid of this.
+[2968s-2969s] Get rid of that.
+[2969s-2972s] Okay, so now we need to create rules.
+[2973s-2975s] So you must create strict rules you need to abide by
+[2975s-2977s] every time you take a trade.
+[2977s-2980s] So these rules are really what's going to
+[2980s-2982s] differentiate you as well
+[2982s-2984s] because if you can follow your rules,
+[2984s-2988s] if you can follow your rules every single time,
+[2988s-2989s] then you will see consistency.
+[2989s-2992s] However, what happens is most traders,
+[2992s-2993s] they'll have green days,
+[2993s-2994s] they'll have consistent green days
+[2994s-2997s] and then one red day will wipe out
+[2997s-2999s] the majority of their gains.
+[2999s-3000s] And I know I don't even have to ask a question
+[3000s-3001s] to you in the chat right now
+[3002s-3003s] because I know for a fact,
+[3003s-3005s] if not every single one of you,
+[3005s-3008s] the majority of you, 90% of you have seen that
+[3008s-3011s] where you may have been on a small little green streak
+[3011s-3013s] where you're having these small little green days
+[3013s-3015s] consistently but then one red day
+[3015s-3020s] wipes out the complete green streak that you had, right?
+[3020s-3021s] And with me, for example,
+[3021s-3023s] look at my green streak, right?
+[3023s-3025s] I had this crazy green streak
+[3025s-3028s] for the last two months almost, right?
+[3028s-3029s] I only lost like two trades,
+[3029s-3032s] two days, sorry, not two trades, two days.
+[3032s-3035s] However, however, every time I had a red day,
+[3035s-3038s] it was very, I would manage it very well, right?
+[3038s-3043s] Like I try to make it under a 3K red day, okay?
+[3043s-3045s] Because my green days, right?
+[3045s-3048s] Some days were like $15,000, $20,000, right?
+[3048s-3050s] Some days were, you know, $3,000, $4,000.
+[3050s-3054s] But on average, that red day was still much, much,
+[3054s-3058s] much smaller and manageable for me, okay?
+[3058s-3060s] So how was I able to do that?
+[3060s-3061s] How was I able to manage that red day
+[3061s-3065s] where even though I had small green days, you know,
+[3065s-3066s] or not even small green days,
+[3066s-3067s] but how did I have green days
+[3067s-3069s] and then still not manage to blow up my account
+[3069s-3070s] on one red day?
+[3070s-3070s] Why was I able to do that?
+[3070s-3073s] So there's a couple rules that I wanna talk about
+[3073s-3074s] that I think every trader should have,
+[3074s-3076s] especially in the beginning.
+[3076s-3078s] Number one, the time you trade.
+[3078s-3080s] So within your system,
+[3080s-3083s] you need to know exactly what time you trade.
+[3083s-3085s] You cannot have the system be, you know,
+[3085s-3087s] a factor of like 10 different things.
+[3087s-3090s] You need to have it very, very, like I said, robotic,
+[3090s-3092s] and you need to have it where it's like,
+[3092s-3094s] it has the same criteria every single time.
+[3094s-3097s] So for example, the time I trade
+[3097s-3099s] is 9.30 a.m. Eastern to 11 a.m. Eastern.
+[3099s-3101s] For you, that may not work.
+[3101s-3102s] For you, you might wanna swing trade.
+[3102s-3104s] For you, you might wanna be a momentum trader.
+[3104s-3105s] That trades a five-minute timeframe.
+[3105s-3107s] And if you're trying to trade the five-minute timeframe,
+[3107s-3109s] then you gotta go from, you know, 9.30 to 11
+[3109s-3113s] to maybe 9.30 to, you know, 1 or 2 p.m., right?
+[3113s-3115s] Or maybe you wanna trade power hour.
+[3115s-3117s] You know, that really depends on you.
+[3117s-3119s] So you need to understand what time of day
+[3119s-3120s] are you going to trade,
+[3120s-3124s] and you trade that time of day every single day consistently.
+[3124s-3126s] You don't change the time of day you trade, okay?
+[3126s-3128s] Because you get used to the volatility
+[3128s-3129s] that you have during that time,
+[3129s-3130s] and there's just a lot of different factors.
+[3130s-3132s] The reason I choose from 9.30 a.m. to 11 o'clock
+[3132s-3134s] is because the volatility and the volume
+[3134s-3135s] is the highest during that time.
+[3135s-3138s] On average, obviously some weeks, right,
+[3138s-3139s] you might get bigger moves.
+[3139s-3141s] Like someone asked me the question today in the chat.
+[3141s-3143s] It's like, oh, what about if a bigger move
+[3143s-3144s] happens at like two o'clock today?
+[3144s-3145s] It's like, I don't care,
+[3145s-3146s] because I know on average,
+[3146s-3149s] the biggest moves happen from 9.30 to 11 o'clock,
+[3149s-3150s] because that's when the most volume
+[3150s-3152s] in the markets is inflowing, right?
+[3152s-3155s] Now, number two, the max stop for your day.
+[3155s-3157s] This is so important.
+[3157s-3160s] I always think as a new trader, right,
+[3160s-3161s] as a new trader,
+[3161s-3164s] you need to have a max stop loss for the day.
+[3164s-3167s] What this means is the second you hit that stop loss,
+[3167s-3169s] you're completely done trading.
+[3169s-3172s] Now, this doesn't mean that you exit your trade.
+[3172s-3173s] Let's say you have, you know,
+[3173s-3175s] a specific risk to reward ratio on a trade
+[3175s-3177s] and you hit your max stop loss for that trade.
+[3177s-3179s] Technically, you shouldn't exit the trade
+[3179s-3180s] because the trade, you know,
+[3180s-3182s] if the technical analysis is still there
+[3182s-3183s] and it technically hasn't broken,
+[3183s-3185s] you know, you should be staying in that trade.
+[3185s-3187s] However, what the max stop means is,
+[3187s-3190s] let's say you took, you know,
+[3190s-3192s] let's say you're someone that takes three to four trades.
+[3192s-3195s] You're someone that takes three to four trades per day.
+[3195s-3199s] If you, on average, make $100 a day,
+[3199s-3201s] so on average, you make $100 a day,
+[3201s-3206s] then your max stop should be $100, right?
+[3206s-3209s] You shouldn't lose more than you win.
+[3209s-3212s] You shouldn't lose a bigger amount than you win.
+[3212s-3215s] Therefore, let's say you take, you know,
+[3215s-3216s] let's say on average you take four trades
+[3216s-3218s] and two trades, you end up red.
+[3218s-3221s] Well, that means that you probably want to stop
+[3221s-3223s] and stop trading that day, right?
+[3223s-3224s] You don't want to go back
+[3224s-3226s] and try to remake that profit.
+[3226s-3228s] For example, and I said this earlier,
+[3228s-3230s] and the thing is you guys will be able
+[3230s-3231s] to see all this in real time as well,
+[3231s-3233s] which is like the great thing about this mastermind
+[3233s-3235s] and, you know, through the accelerator
+[3235s-3235s] and everything like that.
+[3235s-3238s] But the main thing is, like for me,
+[3238s-3240s] two days ago on Tesla,
+[3240s-3243s] if I really wanted to make that $2,800 back, right?
+[3243s-3245s] If I really wanted to, you know,
+[3245s-3247s] focus up and go on the five minute and make it back,
+[3247s-3249s] I probably could have made it back, right?
+[3249s-3251s] Or I probably could have lost even more money
+[3251s-3254s] that I didn't need to lose and not follow my system,
+[3254s-3255s] right?
+[3255s-3256s] So it's one of those things for me,
+[3256s-3258s] like did I want to keep that green streak I had?
+[3258s-3259s] Yeah, 100%.
+[3259s-3260s] You know, I'm human.
+[3260s-3262s] Obviously, I wanted to keep a green streak.
+[3262s-3263s] It was cool, right?
+[3263s-3266s] However, I understand that, you know,
+[3266s-3268s] trading's not gimmicks, right?
+[3268s-3269s] I'm not gonna try and go
+[3269s-3271s] and like try to just keep this green streak
+[3271s-3272s] and completely disregard my system.
+[3272s-3274s] No, my system comes number one.
+[3274s-3276s] The rules I have in place come number one.
+[3276s-3278s] Therefore, I took that red trade.
+[3278s-3280s] I saw that the probability of that trade was low
+[3280s-3282s] or the probability of taking any other trade that day
+[3282s-3284s] was low until 11 o'clock.
+[3284s-3287s] And so I just didn't take a trade that day, right?
+[3287s-3291s] And so based off of that, you need to understand for days,
+[3291s-3293s] let's say on average, if you make $100 a day,
+[3293s-3295s] your max stop for the day should be $100.
+[3295s-3297s] If you lose $100, you just stop trading that day.
+[3297s-3298s] But now this doesn't mean that, you know,
+[3298s-3301s] you're down $100 unrealized on a trade
+[3301s-3302s] and you just stop out of the trade
+[3302s-3303s] because you're down $100.
+[3303s-3304s] No, no, no.
+[3304s-3307s] You stop after it hits the technical stop loss
+[3307s-3308s] that you had.
+[3308s-3310s] However, once you do stop out of that trade
+[3310s-3312s] and let's say it's like 150, 160 bucks,
+[3312s-3315s] you are not taking a single trade after that, okay?
+[3315s-3318s] But you need to have a max stop in mind for the day
+[3318s-3321s] where, you know, this amount of dollars, right?
+[3321s-3325s] If I'm down, I'm not taking any more trades for the day.
+[3325s-3326s] Now with this being said,
+[3326s-3328s] you need to also know how much
+[3328s-3331s] your max position size is, okay?
+[3331s-3332s] Now this is really important
+[3332s-3334s] because knowing your max position size
+[3334s-3336s] will allow you to enter each trade
+[3336s-3338s] consistently every time.
+[3338s-3340s] In the beginning, I always recommend
+[3340s-3342s] for when you're learning my system
+[3342s-3345s] or if you're learning any new strategy or setup
+[3345s-3346s] and even if you're backtesting it,
+[3346s-3349s] go down to the most minimal contracts, right?
+[3349s-3351s] Like you only wanna take one or two contracts,
+[3351s-3352s] maybe two to three,
+[3352s-3355s] like one to three, you know, contracts
+[3355s-3357s] because three will actually help you learn how to scale
+[3357s-3358s] which is pretty good.
+[3358s-3360s] However, like one or two is good as well, right?
+[3360s-3361s] Like two will help you scale as well
+[3361s-3363s] but I think three is like that sweet spot
+[3363s-3365s] for the scaling aspect and learning how to scale.
+[3365s-3366s] But in the beginning,
+[3366s-3368s] when you're just trying to learn the strategy, right?
+[3368s-3369s] And not make money,
+[3369s-3372s] you wanna trade one to two contracts, okay?
+[3372s-3374s] So understand your max position size, right?
+[3374s-3376s] For me, for example, right?
+[3376s-3379s] Now that I've had a lot of experience trading, right?
+[3379s-3381s] I can manage my position size
+[3381s-3383s] based on the different market we're in.
+[3383s-3385s] So if we're in an uptrending market,
+[3385s-3386s] then I'm gonna go ahead
+[3386s-3391s] and I'm gonna take 150, 200 contracts maybe, right?
+[3391s-3392s] If it's a really, really good setup.
+[3392s-3394s] However, if I'm in a choppy market
+[3394s-3397s] and we're consolidating, I'll take like 50 contracts.
+[3397s-3398s] I'll just take the starter position
+[3398s-3400s] and call it there, right?
+[3401s-3404s] So you have to understand what market are you,
+[3404s-3406s] what's your max position size
+[3406s-3407s] and how much are you willing to lose
+[3407s-3409s] or have your max stop for the day.
+[3409s-3410s] Now, with this being said,
+[3410s-3412s] another rule you wanna have
+[3412s-3415s] is your max losses allowed in a row, okay?
+[3415s-3416s] So I have this rule,
+[3416s-3418s] the reason I have this rule is because
+[3418s-3421s] in the beginning, for me personally,
+[3421s-3425s] what would happen is on days that were choppy,
+[3425s-3427s] I would take more trades, right?
+[3427s-3428s] Because here's the thing,
+[3428s-3431s] on trending days, I would win my one trade or whatever
+[3431s-3432s] and I'd call it a day because I'm like,
+[3432s-3433s] oh, I'm green, let me call it a day
+[3433s-3435s] because I took one green trade and I'm good.
+[3435s-3439s] However, on those choppy days when I lost my first trade,
+[3439s-3440s] I'd go and take a second trade.
+[3440s-3442s] I'd go and take a third trade.
+[3442s-3444s] I'd go and take a fourth trade, right?
+[3444s-3446s] Because I'm trying to, I'm like, what?
+[3446s-3446s] Why am I not winning?
+[3446s-3448s] But I didn't understand.
+[3448s-3450s] That was just a choppy day, right?
+[3450s-3451s] Now what you'll notice is
+[3451s-3455s] I only take one to two trades a day on average.
+[3455s-3457s] Technically within my rules, I can take one to three.
+[3457s-3461s] However, on average, I'll take one to two, right?
+[3461s-3462s] And the reason that is
+[3462s-3464s] because sometimes I may lose a first trade
+[3464s-3466s] but that doesn't really have anything to do
+[3466s-3467s] with the overall markets completely.
+[3467s-3469s] It may just be the trade that I traded
+[3469s-3471s] didn't have the highest probability of working
+[3471s-3474s] or the probabilities just weren't in my favor
+[3474s-3475s] for that one specific trade
+[3475s-3477s] but the market still looks good, right?
+[3477s-3479s] And that's based off experience that I understand,
+[3479s-3480s] okay, let me go for a second trade.
+[3480s-3483s] However, for me on average, right?
+[3483s-3484s] I'll take anywhere from one to two trades.
+[3484s-3487s] And if I lose two trades in a row,
+[3487s-3490s] what that shows me is don't go for the third trade,
+[3490s-3490s] right?
+[3490s-3492s] Why would I try to even go for the third trade
+[3492s-3493s] if I just lost two trades in a row?
+[3493s-3495s] That simply means that either A,
+[3495s-3498s] my psychology isn't on point for the day
+[3498s-3500s] or B, the market is just chopping around
+[3500s-3501s] or consolidating or it's not a market
+[3501s-3502s] that I wanna trade.
+[3502s-3504s] So it's either something wrong with me or the markets
+[3504s-3505s] and therefore those are the days
+[3505s-3507s] that you're gonna probably lose the most money
+[3507s-3509s] and therefore I'm going to have a max loss
+[3509s-3510s] for the day where it's, you know,
+[3510s-3512s] you have your max stop for the day
+[3512s-3513s] which means the max amount of money
+[3513s-3515s] you're allowed to lose
+[3515s-3516s] but then you have your max losses for the day
+[3516s-3519s] which means the maximum amount of losses
+[3519s-3521s] you're allowed to take in a row, okay?
+[3521s-3524s] So does that make sense?
+[3524s-3525s] Let's see.
+[3529s-3531s] Yes, yes, yes.
+[3532s-3535s] What capital do you recommend to start trading with?
+[3535s-3537s] In the beginning, one to three contracts
+[3537s-3538s] is all you need, right?
+[3538s-3539s] So in the beginning, it depends on how many
+[3539s-3540s] one to three contracts are.
+[3540s-3542s] If you look at something like Tesla, for example,
+[3542s-3546s] Apple, you know, if the contracts are like 274
+[3546s-3550s] which is $274, you know, you need two, four, six,
+[3550s-3552s] you need like a thousand dollar account, okay?
+[3552s-3553s] But if you're trading something like Nvidia
+[3553s-3556s] and the contracts are like $22, right?
+[3556s-3558s] Then you need to trade three contracts,
+[3558s-3559s] you need two, four, six,
+[3559s-3561s] you need like a $10,000 account, right?
+[3561s-3562s] So it really depends on what instrument
+[3562s-3563s] you're trying to trade,
+[3563s-3565s] what stock you're trying to trade in the person,
+[3565s-3567s] you know, in the person you are,
+[3567s-3568s] how much you're willing to lose as well.
+[3568s-3570s] In the beginning, what I always recommend
+[3570s-3574s] is to, you know, have the lowest amount possible.
+[3574s-3578s] I always recommend to have the lowest amount possible, okay?
+[3578s-3580s] How do you calculate risk with the contract?
+[3580s-3581s] Do you have a video for that?
+[3581s-3583s] I think if you go to the accelerator,
+[3583s-3584s] there is a video for that.
+[3584s-3587s] That type of stuff is a little bit more basic,
+[3587s-3589s] I feel like, so we have that in the accelerator,
+[3589s-3590s] I believe.
+[3591s-3593s] For a 25K account, how many contracts?
+[3593s-3594s] We're gonna do a full,
+[3594s-3596s] so for the sizing and risk management,
+[3596s-3597s] how to grow an account,
+[3597s-3598s] we're gonna do a full workshop for that.
+[3598s-3601s] So I don't wanna answer that question just yet.
+[3601s-3602s] In the beginning, like I said,
+[3602s-3603s] I want you to take it as low as possible.
+[3603s-3605s] I don't care if you have, here's the thing,
+[3605s-3607s] you know, I'm gonna, let me actually answer that question.
+[3607s-3608s] I wasn't even willing to,
+[3608s-3610s] but let me answer it really quickly.
+[3610s-3612s] Here's the thing, in the beginning,
+[3612s-3616s] I don't care if your income is $500,000 a year,
+[3616s-3620s] or if your income is $5,000 a year, okay?
+[3620s-3621s] I don't care if it's $500,000 a year
+[3621s-3623s] or $5,000 a year.
+[3623s-3626s] You still wanna trade with the lowest amount
+[3626s-3628s] of contracts possible just to learn the system
+[3628s-3630s] because you will lose that money.
+[3630s-3631s] You will lose that money, right?
+[3631s-3634s] Just learning the system, you will lose that money, right?
+[3634s-3636s] But once you learn the system
+[3636s-3638s] and you see that consistency and you, you know,
+[3638s-3640s] have like, let's say, a month or two of consistency,
+[3640s-3641s] then you can size up.
+[3641s-3644s] Sure, then we can go ahead and have that talk, right?
+[3644s-3646s] But until then, you wanna only take
+[3646s-3651s] that one to three contract size, right?
+[3653s-3655s] Keep in mind that this session is being recorded
+[3655s-3656s] for us and watched later probably,
+[3656s-3659s] so let's try to keep the question exactly 100%.
+[3659s-3660s] I agree with Roy all there.
+[3660s-3662s] How long do you recommend we adhere to these rules
+[3662s-3665s] before we scale up from one to three trades in a day?
+[3665s-3668s] So here's the thing, you don't want to,
+[3668s-3669s] you don't want to, you know, scale up.
+[3669s-3672s] You don't wanna scale up one to three trades a day.
+[3672s-3675s] Like you want to, whatever you create your rules with,
+[3675s-3678s] you wanna keep them very, very similar for a long time
+[3678s-3681s] because we can only talk about scaling up
+[3681s-3683s] and this is why this mastermind is good
+[3683s-3684s] because you have that continuous support.
+[3684s-3686s] So once you do start seeing consistency,
+[3686s-3689s] you can ask me those questions within the question chat
+[3689s-3690s] or through the help tickets or whatever
+[3690s-3692s] when you see that consistency.
+[3692s-3694s] However, for the current time,
+[3694s-3695s] don't even worry about that.
+[3695s-3696s] Why are you worrying about that
+[3696s-3698s] when you haven't even seen consistency, right?
+[3698s-3700s] You know, what you need to worry about
+[3700s-3702s] is finding that consistency first
+[3702s-3705s] and just creating the rules first, right?
+[3705s-3707s] People are trying to jump to the next level
+[3707s-3709s] where it's like, oh, like, what about when I do this?
+[3709s-3710s] Like, what should I do then?
+[3710s-3711s] It's like, you're not even,
+[3711s-3712s] you're not even consistent yet,
+[3712s-3714s] so why are we even asking these questions, right?
+[3714s-3716s] You have to see consistency first.
+[3716s-3717s] You have to create the rules first.
+[3717s-3719s] Once you create the rules and you, you know,
+[3719s-3720s] you like the rules or whatever,
+[3720s-3722s] then you're gonna learn yourself.
+[3722s-3724s] You're literally going to learn yourself
+[3724s-3726s] when you need to jump up on that, right?
+[3726s-3728s] You'll see, when you see that consistency,
+[3728s-3729s] you'll be like, okay,
+[3729s-3730s] now I'm able to go to the next level.
+[3730s-3733s] You'll see it, you'll feel it, right?
+[3733s-3736s] But until then, right, those questions aren't really,
+[3736s-3738s] you know, something that'll help you right now.
+[3738s-3739s] You wanna ask questions,
+[3739s-3741s] especially in the, when I'm doing these live calls,
+[3741s-3743s] what will help you right now, right?
+[3743s-3745s] Not what'll help you five years down the line, right?
+[3745s-3747s] Because we can, you have this mastermind
+[3747s-3748s] once again for lifetime,
+[3748s-3749s] so you'll have that continued support.
+[3749s-3751s] So you can ask those type of questions
+[3751s-3752s] whenever you want, right?
+[3752s-3755s] So let's keep going.
+[3756s-3759s] Now let's talk about risk management.
+[3759s-3762s] So each system has a different risk management approach.
+[3762s-3765s] This varies on the trader's psychology and experience.
+[3765s-3769s] So some risk management rules are sizing on contracts,
+[3769s-3770s] amount of risk per trade, and zero DT.
+[3770s-3772s] So let's talk about this each.
+[3772s-3776s] So some people, they think that it's crucial
+[3776s-3779s] to have a stop loss on your account, right?
+[3779s-3781s] So if you're a new trader, what they think is,
+[3781s-3786s] if you have, let's say you have a $1,000 account,
+[3787s-3790s] you risk 10% of the account per trade.
+[3790s-3793s] We're talking about a per trade basis here, okay?
+[3793s-3796s] But then for others, they have a $1,000 account,
+[3796s-3798s] but they're okay to lose 10%
+[3798s-3801s] because they're going for bigger wins, okay?
+[3801s-3803s] So this isn't going back.
+[3803s-3805s] So for example, I just wanna make sure this is clear.
+[3805s-3807s] This isn't going into what I said here, right?
+[3807s-3809s] This isn't going, it's like max losses
+[3809s-3810s] or max offer of the day.
+[3810s-3812s] What this is going into is understanding
+[3812s-3814s] your personal risk management approach.
+[3814s-3818s] So risk management really comes down to you as a person.
+[3818s-3820s] And it comes down to the fact that this is obviously
+[3820s-3822s] once you see consistency, by the way, this is not,
+[3822s-3825s] this slide is made for when you see consistency.
+[3825s-3827s] It's not made for when you're still trying to learn.
+[3827s-3829s] Once again, I still abide by the rule
+[3829s-3832s] when you're trying to learn one to three contracts max.
+[3832s-3834s] But when you're trying to learn how to trade
+[3834s-3836s] and you're looking at risk management, right?
+[3836s-3838s] There's not a one size fits all.
+[3838s-3841s] That's what a lot of traders think the problem is
+[3841s-3844s] because someone on YouTube or someone on Instagram
+[3844s-3845s] or Twitter told them that,
+[3845s-3848s] oh, if you risk 1% of your account per trade, right?
+[3848s-3851s] You're gonna gradually compound this account
+[3851s-3853s] to like 3% a day, whatever, blah, blah, blah, right?
+[3853s-3854s] Like you've heard that before, right?
+[3854s-3857s] But the thing with options is that's not how it works.
+[3857s-3861s] So for example, let me give you an example.
+[3861s-3863s] When I reset my account back in the day, right?
+[3863s-3866s] I'd reset it to $50,000, okay?
+[3866s-3869s] I'd reset my options account to $50,000.
+[3869s-3871s] Now, based off the 50,000,
+[3871s-3874s] I was okay if it technically lost $5,000.
+[3874s-3878s] If I lost $5,000 on one trade, you know, I was fine.
+[3878s-3879s] That's completely fine
+[3879s-3881s] because it's within my risk management.
+[3881s-3886s] Now, if it was someone else and they had a $5,000 account,
+[3886s-3891s] they might not even be comfortable losing 500, okay?
+[3891s-3893s] So the risk management really comes down to
+[3893s-3895s] what type of trader you are,
+[3895s-3897s] set up your trading,
+[3897s-3898s] but on top of that,
+[3898s-3900s] understanding how much you're willing to lose
+[3900s-3901s] because it is true.
+[3901s-3905s] Some people are in a better financial situation
+[3905s-3908s] to lose more money than other people, okay?
+[3908s-3911s] That's just the fact, it's the fact of the game, okay?
+[3911s-3913s] So when you see consistency,
+[3913s-3916s] understanding where you are financially
+[3916s-3916s] is going to help you,
+[3916s-3919s] but still only risk the amount of money
+[3919s-3922s] that you're willing to lose per trade, okay?
+[3922s-3925s] If you're not willing to lose $1,000,
+[3925s-3927s] for example, if you see a trade,
+[3927s-3929s] it has like a 4R multiple and it looks really good,
+[3929s-3930s] A plus setup trade,
+[3930s-3932s] and it's one of those trades that, you know,
+[3932s-3935s] you're like, oh, this is like A plus in my textbook.
+[3935s-3936s] This is probably going to go,
+[3936s-3938s] and let's say it had the 84% rule
+[3938s-3939s] to even increase the chances, right?
+[3939s-3941s] So 84% of the time it's gonna work, right?
+[3941s-3943s] Let's say it's one of those trades
+[3943s-3946s] and you have a very strong conviction on that trade,
+[3946s-3948s] you've back-tested it, whatever.
+[3948s-3951s] If you wanna, and you wanna size up on that trade
+[3951s-3953s] and you wanna make $10,000 on that trade
+[3953s-3953s] because you're like, oh yeah,
+[3953s-3956s] this has a really high probability to go,
+[3956s-3959s] well, let's say you size up on that trade and you lose it.
+[3959s-3962s] All of a sudden, because you didn't think about the risk
+[3962s-3963s] and you were thinking about
+[3963s-3966s] how it was such a high probability trade,
+[3966s-3968s] you lose the trade and now all of a sudden,
+[3968s-3970s] you lost two, $3,000,
+[3970s-3973s] which you've never had have lost that big before,
+[3973s-3975s] and it's really screwing up your psychology.
+[3975s-3979s] So now, the next time you see that exact same setup,
+[3979s-3980s] you might not even enter it
+[3980s-3982s] because you have PTSD from the last time,
+[3982s-3985s] even though that's probably one of the best setups
+[3985s-3988s] for you to enter, right?
+[3988s-3989s] So does that make sense
+[3989s-3991s] on how you should manage your risk per trade?
+[3991s-3994s] It's based off of per trade basis, okay?
+[3994s-3998s] It's not based off of just this strict like,
+[3998s-3999s] oh, if I was you,
+[3999s-4001s] I'd risk 1% of your account and I do this.
+[4001s-4003s] No, it's based off of per trade basis
+[4003s-4006s] and it's based off of exactly how much money
+[4006s-4008s] you're personally willing to lose as well, right?
+[4008s-4011s] I can't go ahead and look at your guys' bank account
+[4011s-4015s] and be like, oh yeah, so you wanna risk out about $100.
+[4015s-4017s] This other guy wants to risk about $10,000 per trade.
+[4017s-4019s] It's not like that, right?
+[4019s-4020s] You need to, that's, you know,
+[4020s-4022s] once again, the thing is with the Smash Fund,
+[4022s-4025s] I'm trying to lay everything out from scratch to you,
+[4025s-4026s] but at the end of the day,
+[4026s-4028s] you're gonna have to put in your own work.
+[4028s-4031s] The people that get the most value out of any program,
+[4031s-4034s] any mentorship, any course, anything like that,
+[4034s-4035s] are always going to be the people
+[4035s-4037s] that put in the most work, right?
+[4037s-4039s] You can buy, you can go ahead
+[4039s-4043s] and buy a $50,000 mastermind from someone
+[4043s-4045s] that has like the craziest track record
+[4045s-4046s] in trading or whatever, right?
+[4046s-4049s] But the thing is, if you don't do anything,
+[4049s-4051s] that $50,000 you spent might be better,
+[4051s-4053s] like that $50,000 you spent,
+[4053s-4056s] someone who spent $50 on some random Discord
+[4056s-4058s] might get more value than you
+[4058s-4060s] just because you didn't put in the work, right?
+[4060s-4061s] So at the end of the day, you have to understand
+[4061s-4064s] that you will have to put in the work yourself as well.
+[4064s-4066s] But that's, once again, the risk management part of this
+[4066s-4070s] is based off of your own specific financial situation
+[4070s-4071s] at the time, okay?
+[4072s-4074s] So let's go to the next slide.
+[4074s-4077s] So the next slide here, following your system.
+[4077s-4079s] So now once you made your system,
+[4079s-4082s] only trade your system, right?
+[4082s-4083s] Don't be him.
+[4083s-4085s] So obviously everyone knows Mr. Krabs.
+[4085s-4086s] I mean, some people honestly
+[4086s-4088s] are a little bit older in this room.
+[4088s-4091s] Does everyone know who I'm talking about here?
+[4091s-4092s] I mean, everyone has like grandkids
+[4092s-4093s] or like kids I've seen, you know,
+[4093s-4095s] Spongebob, obviously.
+[4095s-4097s] I mean, if you don't, it's whatever,
+[4097s-4100s] but you know, yes, not really, yes.
+[4101s-4102s] Okay, well, whatever.
+[4102s-4104s] All you have to know,
+[4105s-4107s] all you have to know is, you know,
+[4107s-4108s] this character basically,
+[4108s-4110s] he's just a very greedy person, right?
+[4110s-4112s] He's just a very, very greedy person, right?
+[4112s-4114s] So that's basically all you have to know from this.
+[4114s-4117s] But the main thing is the number one reason
+[4117s-4119s] traders never reach profitability
+[4119s-4122s] is a lack of discipline and conviction in their system
+[4122s-4126s] and changing their system based off of fear of missing out
+[4126s-4130s] or different Furu's or Guru's or whoever they follow, right?
+[4130s-4131s] So here's the thing.
+[4131s-4134s] Before, let's actually do a quick exercise, right?
+[4134s-4135s] Because I want you guys to see
+[4135s-4137s] how other people in this room also think.
+[4137s-4140s] How many people traded differently to me
+[4140s-4141s] before you started following?
+[4141s-4143s] Like you followed me
+[4143s-4144s] and you changed your system based off of me,
+[4144s-4147s] or did you always trade the break in retest, right?
+[4147s-4149s] So yes, if you change your system,
+[4149s-4152s] know if you had the same system the whole time.
+[4161s-4163s] So you can see it's like,
+[4164s-4167s] most people are yes, some people are no.
+[4167s-4169s] My system trade and pray.
+[4169s-4171s] Yeah, so you can see most people are like,
+[4171s-4174s] it's like, honestly, it's like a 60-40 type of thing.
+[4174s-4175s] But anyways, regardless,
+[4175s-4178s] what you need to know is that, you know,
+[4178s-4180s] most people, they do end up changing their system
+[4180s-4182s] or whatever based off the person they follow, right?
+[4182s-4184s] Whatever like the new next thing is.
+[4184s-4187s] Like, for example, in the last couple years,
+[4187s-4191s] one thing that's been all over my feed is ICT, right?
+[4191s-4194s] Like ICT has been all over every single,
+[4194s-4197s] like I can go on Twitter, Instagram, or YouTube,
+[4197s-4200s] and all I see is different ICT videos
+[4200s-4201s] or all the, I don't know
+[4201s-4202s] if you guys have seen them or not, right?
+[4202s-4205s] But that's just what I, that's what I see, right?
+[4205s-4207s] And it's just because it's like the new trend right now.
+[4207s-4208s] It's just the new trading trend.
+[4208s-4211s] But the thing is, like those ICT, whatever,
+[4211s-4213s] like whatever that system is, it's the same thing,
+[4213s-4215s] but it's just repackaged in a way
+[4215s-4218s] where it's just fancy words to explain
+[4218s-4220s] the exact same kind of way that I trade, right?
+[4220s-4221s] Like the way I trade, right?
+[4221s-4223s] It's kind of very similar, but it's like,
+[4223s-4226s] it's just fancy wording to make it seem like,
+[4226s-4229s] yeah, exactly, to make it a cult-like following, right?
+[4229s-4231s] So what you need to understand is
+[4231s-4233s] there's always going to be the new, you know,
+[4233s-4235s] shiny object, it's called this shiny object syndrome,
+[4235s-4236s] right?
+[4236s-4237s] And this is the reason most people
+[4237s-4239s] aren't successful in general in life,
+[4239s-4240s] not even just in trading, but in life.
+[4240s-4241s] The reason they're not general
+[4241s-4244s] is because they can't just stick to one thing, right?
+[4244s-4245s] They can't stick to one thing
+[4245s-4246s] that's going to make the money,
+[4246s-4247s] and therefore they jump from, you know,
+[4247s-4249s] different things, they jump from,
+[4249s-4252s] now I'm not saying to go ahead and, you know,
+[4252s-4254s] not experiment, like for example,
+[4254s-4255s] when I first started, right,
+[4255s-4257s] I started off trying to drop ship.
+[4257s-4259s] I started off trying to build an e-commerce store,
+[4259s-4260s] as it failed the first couple of times,
+[4260s-4262s] then I finally had a successful e-commerce store, right?
+[4262s-4264s] Like I started off trying to resell clothes,
+[4264s-4266s] I started off trading, like I,
+[4266s-4268s] like obviously it's good to experiment,
+[4268s-4270s] but once you find something,
+[4270s-4274s] the longer you stick at one thing,
+[4274s-4276s] one craft, though you might not see consistency,
+[4276s-4278s] you know, there's this thing that Alex Hermosy
+[4278s-4279s] always says, I don't know if you guys know
+[4279s-4281s] Alex Hermosy, but there's one thing
+[4281s-4282s] that he always says that, you know,
+[4282s-4285s] if you can do something consistently,
+[4285s-4288s] every single day, without seeing the results,
+[4288s-4292s] for years, then you will be the most successful person
+[4292s-4293s] at doing whatever that, you know,
+[4293s-4295s] that object is, or whatever that skill is,
+[4295s-4298s] you will be the most successful person at it, right?
+[4298s-4301s] And I truly believe that within my own, you know,
+[4301s-4302s] just life kind of thing, too, as well,
+[4302s-4304s] because, you know, whatever I do,
+[4304s-4306s] like, though, nowadays,
+[4306s-4309s] like I'm not in anything for the short term,
+[4309s-4310s] I'm always looking at the long term,
+[4310s-4311s] and every single thing that I'm doing
+[4311s-4313s] may that be in business or trading or anything,
+[4313s-4315s] like I'm always looking at that long term perspective,
+[4315s-4316s] you know, 10 years down the line,
+[4316s-4319s] how will this affect me, or, you know, whatever,
+[4319s-4321s] and so, for you, you have to understand,
+[4321s-4323s] if you trade the same strategy,
+[4323s-4324s] you may not see results today,
+[4324s-4327s] you may not see results in three months, six months,
+[4327s-4330s] but a couple years down the road,
+[4330s-4334s] when you finally do start seeing the results of what,
+[4334s-4337s] of your work, because you were consistently doing it
+[4337s-4338s] and refining every single day,
+[4338s-4342s] then you'll be so happy that you did put in the work,
+[4342s-4343s] even though you didn't see the results.
+[4343s-4345s] However, that timeframe,
+[4345s-4346s] when you're not seeing results,
+[4346s-4347s] but you're putting in a lot of work,
+[4347s-4348s] is the hardest timeframe,
+[4348s-4351s] and the reason most traders never make it,
+[4351s-4353s] because within that timeframe,
+[4353s-4355s] most people will tell you to stop trading,
+[4355s-4356s] they'll tell you you're gambling,
+[4356s-4358s] they'll tell you, you know, you need to, you know,
+[4358s-4360s] stop, wrap it up and, you know, do whatever,
+[4360s-4362s] something else or whatever, right?
+[4362s-4363s] Like, you're just wasting your time,
+[4363s-4366s] but if you're able to consistently and repeatably
+[4366s-4368s] do the things that are, you know,
+[4368s-4371s] you think are making you better as a trader,
+[4371s-4373s] those things are gonna take you much, you know,
+[4373s-4375s] longer, they're gonna take you much further
+[4375s-4377s] than someone that, you know,
+[4377s-4379s] made money on GME and called it a day, right?
+[4379s-4381s] So, it's not about chasing the short term aspect,
+[4381s-4383s] but it's always about the long term aspect, right?
+[4383s-4385s] So, once again, for some people in this mastermind,
+[4385s-4387s] it may take you, you know,
+[4387s-4389s] six months to become profitable, right?
+[4389s-4391s] For other people, it may take you three years
+[4391s-4394s] to four years to become profitable, right?
+[4394s-4396s] But it's not about comparing yourself to other people,
+[4396s-4398s] but it's about comparing yourself to your own journey
+[4398s-4400s] and building upon each step, right?
+[4400s-4402s] So, that's the main thing, okay?
+[4402s-4405s] So, just the reason I have this slide up here
+[4405s-4406s] is to make you understand
+[4406s-4408s] that you need to follow your system
+[4408s-4410s] and you need to continuously refine it.
+[4410s-4412s] Now, when we talk about refining the system,
+[4412s-4414s] let's talk a little bit more about that.
+[4414s-4416s] So, just because you have a system
+[4416s-4420s] does not mean it's your be all and end all, right?
+[4420s-4422s] Because like we talked about before,
+[4422s-4427s] you must continuously back test, increase your edge,
+[4427s-4431s] keep up with the market, and finally, journal, okay?
+[4431s-4435s] So, the way it works is when you have a system
+[4435s-4437s] and you're refining it,
+[4437s-4438s] when you're refining it,
+[4438s-4439s] you obviously have to back test,
+[4439s-4441s] but here's the thing, a lot of people,
+[4441s-4443s] what happens is when they see consistency,
+[4443s-4444s] and I've seen this in students before,
+[4444s-4446s] I've seen this in my friends that are traders
+[4446s-4447s] that are full-time traders,
+[4447s-4449s] I've literally seen this within them,
+[4449s-4452s] is they'll find consistency,
+[4452s-4453s] they'll make a decent amount of money,
+[4453s-4456s] let's say they make a million dollars or something,
+[4456s-4458s] and they think that they're,
+[4458s-4459s] and they know not to think like this,
+[4459s-4462s] but for some people, it's just hard psychologically,
+[4462s-4464s] just because of their egos or whatever,
+[4464s-4466s] they think they're the best trader ever.
+[4466s-4469s] And because of that, they'll stop back testing,
+[4469s-4473s] they'll start just spewing anything and everything
+[4473s-4473s] that comes out of their mouth
+[4473s-4475s] because they think that they're the smartest person alive
+[4475s-4477s] because they're making consistent money trading,
+[4477s-4478s] which is a hard thing to do,
+[4478s-4480s] and obviously, they're proud of it,
+[4480s-4481s] but because of that,
+[4481s-4483s] because they stop refining their system,
+[4483s-4486s] they'll start slowly decreasing their edge,
+[4486s-4490s] they'll start slowly losing what was making the money,
+[4490s-4492s] they'll stop doing what was making the money,
+[4492s-4493s] what was making the money
+[4493s-4495s] was continuously refining and learning,
+[4495s-4496s] but because they stopped doing that,
+[4496s-4500s] all of a sudden, they have all this money,
+[4500s-4502s] but now they don't have the systems in place,
+[4502s-4505s] they don't have the knowledge
+[4505s-4507s] that they were continuously had through the markets,
+[4507s-4510s] they were continuously keeping up with the markets,
+[4510s-4511s] they don't have that.
+[4511s-4512s] Now, this isn't to say
+[4512s-4513s] that they became unprofitable or anything,
+[4513s-4514s] that's not the case,
+[4514s-4517s] but they just took a hit in their trading career,
+[4517s-4519s] they just took a little hit in their trading career,
+[4519s-4521s] they took a couple big losses,
+[4521s-4522s] lost a little bit of money,
+[4522s-4523s] but then right after that,
+[4523s-4525s] they came back, refined their system,
+[4525s-4525s] and now once again,
+[4525s-4526s] now they understand that,
+[4526s-4529s] no, I should refine my system and continuously learn,
+[4529s-4532s] but if they just continuously refined and learned
+[4532s-4534s] and just stayed within their own lane
+[4534s-4536s] and didn't let their ego consume them,
+[4536s-4537s] they wouldn't have ever even lost
+[4537s-4540s] that money to begin with, okay?
+[4540s-4541s] So that's why you need to,
+[4541s-4543s] even when you find the system, it works,
+[4543s-4544s] you see that consistency,
+[4544s-4547s] you still will need to back test, right?
+[4547s-4548s] Continuously increase your edge,
+[4548s-4549s] by increasing your edge,
+[4549s-4551s] all that means is keeping up with the markets
+[4551s-4553s] and making sure that the markets
+[4553s-4554s] are not changing and your win rates
+[4554s-4556s] still relatively the same
+[4556s-4558s] and your risk reward is relatively the same.
+[4558s-4560s] Now, in every market, it's going to change,
+[4560s-4562s] but you gotta take the average over years,
+[4562s-4564s] that's why back testing is important,
+[4564s-4565s] or journaling is important,
+[4565s-4567s] because the journaling will tell you
+[4567s-4568s] about your specific trade,
+[4568s-4569s] but then the back testing
+[4569s-4570s] will tell you about the market, right?
+[4570s-4571s] So the journaling will tell you
+[4571s-4574s] how your performance is over the past year,
+[4574s-4575s] and then you can obviously compare that
+[4575s-4577s] within one, two, three years from now,
+[4577s-4578s] but then the back testing will tell you
+[4578s-4579s] how the market's performance was
+[4579s-4581s] over those two, three years, okay?
+[4581s-4585s] So, does that make sense on the refine part?
+[4587s-4588s] Can you explain a bit back testing?
+[4588s-4591s] So once again, we're gonna have a full workshop
+[4591s-4593s] for back testing, and it's in the accelerator,
+[4593s-4597s] the back testing is not the point of this workshop,
+[4597s-4598s] but yeah, you have the full module
+[4598s-4600s] for the back testing as well.
+[4600s-4603s] So, in conclusion, in this section,
+[4603s-4605s] we touched on all the key points
+[4605s-4606s] that you need to understand
+[4606s-4607s] when you're creating your system, right?
+[4607s-4609s] We talked about what is a trading system,
+[4609s-4610s] we talked about your trading style,
+[4610s-4612s] we talked about specific entry and exit signals,
+[4612s-4614s] we talked about back testing results,
+[4614s-4615s] we talked about how to create rules,
+[4615s-4617s] manage risk, follow your system,
+[4617s-4620s] and continuously refine your system.
+[4620s-4623s] Did this part of the workshop make sense to you?
+[4625s-4626s] Where is the accelerator located?
+[4626s-4630s] If you go back to WAP, it is in your WAP account.
+[4630s-4633s] You will see WAP, HUB, and then Scarface Trades.
+[4633s-4636s] Yes, yes, yes, absolutely, yep.
+[4636s-4637s] Cool, all right, I'm just gonna get
+[4637s-4640s] a quick water real quick,
+[4640s-4643s] and we still, by the way, we're not done.
+[4643s-4645s] We still have a couple more slides to go.
+[4645s-4648s] Now we have to go on how to hold our winners longer.
+[4648s-4649s] So we're gonna go through that.
+[4649s-4651s] I'm just gonna go get a quick water.
+[4651s-4653s] It's just right here, one sec.
+[4657s-4658s] It's actually, not gonna lie,
+[4658s-4662s] it's actually harder to talk an hour.
+[4662s-4663s] Well, how much was that?
+[4663s-4666s] An hour and like almost 20 minutes straight.
+[4666s-4668s] All right, at least it wasn't the three hours
+[4668s-4669s] that we did before.
+[4669s-4671s] That three hours was actually insane.
+[4671s-4674s] I don't think I've ever had a class
+[4674s-4675s] that lasted that long.
+[4675s-4677s] I was like, wow, three hours is insane.
+[4678s-4680s] You had zero DTE on previous slide,
+[4680s-4680s] but didn't expand on it.
+[4680s-4683s] So you do, so zero DTE or front on it.
+[4683s-4685s] Oh, sorry, maybe I missed it.
+[4685s-4687s] But with zero DTE, really quickly,
+[4687s-4690s] I just wanna say, with zero DTEs,
+[4690s-4692s] you have to understand your system.
+[4692s-4693s] You have to understand your system.
+[4693s-4696s] Zero DTEs, you have to understand,
+[4696s-4699s] you have to be a little bit more risk.
+[4699s-4702s] You have to be willing to put on more risk with zero DTEs.
+[4702s-4707s] In the beginning, I always recommend the weekly contracts
+[4707s-4709s] and on Fridays when it is zero DTE,
+[4709s-4711s] just go to the next week contracts.
+[4711s-4714s] However, for me, like I can trade zero DTEs.
+[4714s-4715s] Right, I've been trading for so long
+[4715s-4717s] where I can trade those zero DTEs.
+[4717s-4719s] But for most people, I don't recommend zero DTEs
+[4719s-4722s] until you have that experience where you can trade it.
+[4722s-4723s] Okay.
+[4726s-4729s] All right, let me get this slide open.
+[4729s-4731s] Give me one second.
+[4733s-4737s] All right, how to hold our winners longer.
+[4738s-4740s] So when we're looking at winners,
+[4740s-4742s] we're going to talk about profits,
+[4742s-4743s] maximizing your profits.
+[4743s-4744s] We're gonna talk about market trends,
+[4744s-4746s] risk, leverage and tracking performance.
+[4746s-4751s] So maximizing profits through strategic holding.
+[4751s-4753s] So to hold winners longer,
+[4753s-4755s] there's four factors that will help you.
+[4755s-4758s] Okay, now these four factors are something
+[4758s-4760s] that you have to consider every time.
+[4760s-4761s] And the reason this is,
+[4761s-4763s] and it's not like it's gonna be hard.
+[4763s-4765s] Like it's one of those things where,
+[4765s-4767s] I'm explaining the four factors here,
+[4767s-4768s] but like once you kind of do it,
+[4768s-4770s] it'll be in the back of your mind forever.
+[4770s-4773s] And so number one is market conditions.
+[4773s-4775s] Okay, so when we're holding our winners,
+[4775s-4777s] you need to understand the market condition you're in
+[4777s-4780s] and is it a market that you wanna hold longer
+[4780s-4782s] or is it a market you wanna sell faster, okay?
+[4782s-4784s] That's very, very important.
+[4784s-4786s] For most people, it's going to,
+[4786s-4789s] you want to trade or hold your winners longer
+[4789s-4791s] in market conditions that we're trending
+[4791s-4793s] on the higher timeframe.
+[4793s-4794s] Okay, if we're consolidating or chopping around
+[4794s-4795s] in the higher timeframe,
+[4795s-4798s] obviously you wanna sell the majority at high of day.
+[4798s-4801s] Okay, and we're gonna talk about how to scale as well.
+[4801s-4803s] But in a market condition that we're trending,
+[4803s-4805s] you want to hold your winners longer,
+[4805s-4807s] but in a market condition that we're chopping,
+[4807s-4808s] you wanna hold it shorter, right?
+[4808s-4811s] So that's one of the factors that you need to consider.
+[4811s-4814s] Number two, you need to consider your targets
+[4814s-4816s] within your system, okay?
+[4816s-4818s] So let's say we're in a trending market
+[4818s-4820s] and your strategy,
+[4820s-4822s] and I'm not talking about the break and retest here,
+[4822s-4824s] I'm just saying in general, like a generic strategy.
+[4824s-4826s] A generic strategy, let's just say,
+[4826s-4828s] you have to get rid of your,
+[4828s-4830s] let's just annotate this real quick.
+[4832s-4834s] Oops, like that.
+[4834s-4838s] So let's say for your strategy, right?
+[4839s-4841s] Let's just say it's a breakout strategy, right?
+[4841s-4844s] So for example, we're breaking out here, okay?
+[4844s-4848s] So you have your profit target all the way up here, okay?
+[4848s-4851s] And your stop loss is right at this pivot low right here,
+[4851s-4853s] right, and you're buying this breakout right here.
+[4853s-4857s] Now, you do have a clear system, okay?
+[4857s-4859s] But if it's a choppy market,
+[4859s-4861s] if this is a choppy market,
+[4861s-4863s] what's going to happen is every time we break out,
+[4863s-4864s] we're gonna go right to that stop,
+[4864s-4867s] right to that stop every time, okay?
+[4867s-4869s] However, if it's a trending market,
+[4869s-4870s] then we're gonna hit, once again,
+[4870s-4872s] that profit target most likely,
+[4872s-4875s] or it's more probable to hit that profit target
+[4875s-4876s] than your stop loss, right?
+[4876s-4879s] So based off the market condition,
+[4879s-4883s] you need to change that criteria.
+[4883s-4885s] For us, the reason the break and retest works
+[4885s-4888s] so, so, so well is because we're not,
+[4888s-4890s] even if it's a choppy market, right,
+[4890s-4891s] like let's say this is high of day
+[4891s-4893s] and it's breaking through its resistance,
+[4893s-4894s] even if it comes down,
+[4894s-4896s] that's fine because we never even entered.
+[4896s-4898s] We're not entering the breakout.
+[4898s-4901s] We're only entering if it breaks out and then retest.
+[4901s-4904s] Now, if the retest fails after we enter, right,
+[4904s-4906s] that's unfortunate, but it's a part of the game.
+[4906s-4908s] It's a part of our system.
+[4908s-4910s] However, if it doesn't and it works out
+[4910s-4912s] to let's say our system right here,
+[4912s-4914s] well, we have clear targets, right?
+[4914s-4915s] Even if it's a choppy market,
+[4915s-4917s] we know that, hey, like we can take majority
+[4917s-4920s] off a high of day if it's a choppy market, right?
+[4920s-4920s] If it's a choppy market,
+[4920s-4922s] we can take majority off a high of day.
+[4922s-4924s] However, let's say it's not a choppy market
+[4924s-4926s] and it's a market that we're trending.
+[4926s-4928s] Well, let's just say we take 20% off a high of day
+[4928s-4930s] and we let the rest ride, right?
+[4930s-4933s] So these factors will help you understand
+[4933s-4935s] where to create your target and system
+[4935s-4936s] based off of the market.
+[4936s-4938s] But for us in my break and retest,
+[4938s-4939s] it's the same system every time.
+[4939s-4940s] It's very, very clear.
+[4940s-4943s] High of day and then you hold the trailers for longer.
+[4943s-4945s] However, if it's a choppy market,
+[4945s-4946s] then you just go straight up high of day
+[4946s-4949s] and you take the majority off a high of day, okay?
+[4949s-4952s] Now, to maximize your profits even more,
+[4952s-4954s] you need to be tracking your performance.
+[4954s-4957s] It's so important you're tracking your performance, right?
+[4957s-4961s] Because sometimes when you're actually trading live,
+[4961s-4966s] it's very, very hard to understand your emotions, right?
+[4966s-4968s] Because you're so, especially as a new trader,
+[4968s-4970s] you're so clouded by so many different things
+[4970s-4972s] that are going on in the chart
+[4972s-4975s] that you literally just, you don't know what's going on.
+[4975s-4978s] Like it's too much information overload, right?
+[4978s-4979s] It's information overload.
+[4979s-4982s] So let's say you enter into this trade right here, right?
+[4982s-4983s] You're entering into this retest
+[4983s-4986s] and it doesn't work and it comes down to your stop loss.
+[4986s-4987s] Well, now all of a sudden,
+[4987s-4990s] even though you know that you should be taking
+[4990s-4992s] that stop loss, you know, all of a sudden you're like,
+[4992s-4994s] oh, maybe I should just hold, maybe I should just hold,
+[4994s-4996s] maybe I should just hold, maybe I should just hold,
+[4996s-4997s] maybe I should just hold.
+[4997s-4998s] And all of a sudden you just lost, you know,
+[4998s-5000s] where you were risking a hundred dollars,
+[5000s-5003s] you just lost, you know, $2,000, right?
+[5003s-5004s] Tracking your performance though
+[5004s-5007s] and journaling every single day after the trades
+[5007s-5009s] will help you understand
+[5009s-5011s] if you do something dumb like this, right?
+[5011s-5012s] You do something dumb like this,
+[5012s-5013s] it'll help you understand.
+[5013s-5017s] It'll be like, oh wow, like the reason I'm red
+[5017s-5018s] on this month, right?
+[5018s-5020s] The reason I'm red on the month
+[5020s-5022s] is only because of this one trade I took.
+[5022s-5025s] Every other trade was a proper trade
+[5025s-5027s] that I followed my system and I made money,
+[5027s-5029s] but this one trade messed up my whole month.
+[5029s-5031s] So then the next month you go
+[5031s-5033s] and you try to avoid this mistake.
+[5033s-5036s] But then the next month you might make the mistake
+[5036s-5040s] of, you know, selling too early at your stop loss.
+[5040s-5041s] You know, let's say your stop loss is down there,
+[5042s-5044s] and it never technically hit your stop loss
+[5044s-5046s] and it moved up, but you sold early
+[5046s-5048s] in the anticipation that it was gonna sell.
+[5048s-5050s] Well, you can track that performance the next time
+[5050s-5052s] it's like, all right, I gotta stop doing that.
+[5052s-5054s] And it's like those little, you know,
+[5054s-5057s] light bulb moments that you have through your journaling
+[5057s-5058s] that will help you, you know,
+[5058s-5061s] make the best profit target systems
+[5061s-5063s] and just an overall proper system
+[5063s-5065s] that you'll actually follow every time, right?
+[5065s-5068s] And then finally, scaling and managing risk.
+[5068s-5070s] Now, scaling and managing risk,
+[5070s-5072s] all that simply means is having that proper system
+[5072s-5076s] in place to have, you know, clear scaling techniques.
+[5076s-5078s] So for me, for example, for me, right,
+[5078s-5081s] my clear techniques are whenever we have a break
+[5081s-5084s] and retest, right, high of day, I'm selling some,
+[5084s-5086s] it doesn't matter if I'm selling 5% of my account,
+[5086s-5089s] it doesn't matter if I'm selling 20% of my account,
+[5089s-5092s] I'm scaling some at high of day, okay?
+[5092s-5093s] I'm scaling some at high of day.
+[5093s-5095s] Now, from the high of day,
+[5095s-5097s] I'm gonna hold some to my next profit target,
+[5097s-5099s] which may be a previous day level or whatever.
+[5099s-5102s] And then finally, right, my final kind of profit targets
+[5102s-5104s] might be this higher timeframe level,
+[5104s-5105s] you know, all the way up here, right,
+[5105s-5107s] this higher timeframe level, okay?
+[5107s-5109s] But through this, right,
+[5109s-5110s] notice how it's a very, you know,
+[5110s-5112s] repeatable thing where it's like, okay,
+[5112s-5113s] high of day first,
+[5113s-5116s] and then whatever higher timeframe level that we have,
+[5116s-5117s] that's where the liquidity is gonna,
+[5117s-5118s] that's where the most liquidity is sitting in,
+[5118s-5120s] so that's where the stock most likely has to head,
+[5120s-5121s] right?
+[5121s-5122s] So does that make sense?
+[5122s-5125s] Does that make sense on how to hold your targets?
+[5125s-5126s] Okay.
+[5133s-5135s] Yes, yes, yes.
+[5135s-5136s] Cool.
+[5137s-5140s] Let me get rid of this really quickly.
+[5142s-5145s] Now, clear profit-taking systems.
+[5145s-5147s] Now, the BNR profit-taking system
+[5147s-5149s] is simple, repetitive each time.
+[5149s-5150s] We just talked about it,
+[5150s-5151s] but I just wanted to make sure
+[5151s-5152s] that we can visualize the slide.
+[5152s-5154s] I'm gonna go over a little bit quicker, right?
+[5154s-5157s] We take profits at high of day slash low of day
+[5157s-5158s] and key levels.
+[5158s-5159s] I just talked about it.
+[5159s-5164s] We stop out at key levels, VWAP, and market structure.
+[5164s-5167s] Now, the reason I have this slide in general
+[5167s-5169s] is because I always talk about the profit-taking
+[5169s-5171s] because that's, you know, very important as well,
+[5171s-5173s] but what's even more important is your risk level,
+[5173s-5174s] right?
+[5174s-5175s] So when we're doing this,
+[5175s-5177s] I've drawn this so many times at this point,
+[5177s-5180s] but when we're doing this, you know,
+[5180s-5182s] for example, this retest, right,
+[5182s-5184s] from yesterday's workshop,
+[5184s-5186s] you should understand at this point
+[5186s-5189s] that the stop loss is always going to be
+[5189s-5192s] a pivot level of some sort or a higher timeframe level.
+[5192s-5194s] Like you guys understand that at this point.
+[5194s-5196s] So in this scenario here,
+[5196s-5197s] our pivot level is simply gonna be
+[5197s-5199s] where we opened up on this trade right here, right?
+[5199s-5201s] That's going to be our pivot level or our stop loss,
+[5201s-5201s] right?
+[5201s-5203s] Now, our pivot level always,
+[5203s-5206s] or sorry, our stop level always has to make sure
+[5206s-5209s] that it is a break of market structure.
+[5209s-5212s] Our stop loss or our profit-taking system
+[5212s-5217s] is never, you know, trying to maximize the returns.
+[5217s-5219s] It's not trying to maximize, like, you know,
+[5219s-5220s] I'm not going to get stopped out
+[5220s-5222s] because I lost 200 bucks, okay?
+[5222s-5223s] I'm gonna get stopped out
+[5223s-5226s] because it broke market structure, okay?
+[5226s-5227s] Does that make sense?
+[5235s-5237s] All right.
+[5237s-5238s] Let me go to the next slide.
+[5238s-5239s] All right.
+[5242s-5242s] Oh.
+[5249s-5250s] All right.
+[5250s-5251s] Understanding market trends.
+[5251s-5252s] So it's important to understand
+[5252s-5254s] the current market trends and conditions
+[5254s-5256s] before making any decisions about holding the stock.
+[5256s-5258s] So analyzing the news and other data sources
+[5258s-5260s] can help traders make informed decisions
+[5260s-5263s] of what direction the trend is going to keep plus,
+[5263s-5264s] sorry, what direction the trend is going
+[5264s-5267s] is key plus market conditions is key to holding winners.
+[5267s-5271s] Now, how many people in this room have been in a trade,
+[5271s-5272s] it's been an A plus trade,
+[5272s-5273s] doesn't have to be break and retest,
+[5273s-5274s] could be break and retest, whatever.
+[5274s-5277s] It was just an A plus trade for you at the time.
+[5277s-5280s] However, there was some sort of news event
+[5280s-5282s] that made the trade hit your stop loss
+[5282s-5283s] before your profit target.
+[5283s-5284s] How many people?
+[5292s-5293s] Right?
+[5293s-5296s] Now, how many people have heard me say
+[5296s-5297s] red folder news?
+[5299s-5300s] Elon Musk opened his mouth.
+[5303s-5304s] And how many times, I mean,
+[5304s-5307s] I guess for the Mastermind students in specific,
+[5307s-5308s] you guys haven't seen it too much,
+[5308s-5310s] but for the people that were in the accelerator before,
+[5310s-5312s] how many times have you seen me go,
+[5312s-5314s] oh guys, we've got to wait till either 10 o'clock
+[5314s-5316s] or we have to just not trade that day
+[5316s-5317s] based off the news, right?
+[5317s-5320s] Because it'll be too volatile, right?
+[5320s-5322s] So the reason I say this
+[5323s-5326s] is because I understand the market trend.
+[5326s-5328s] I understand market, okay?
+[5328s-5331s] So when we're looking at this,
+[5331s-5332s] you need to understand
+[5332s-5336s] that the market will move in whichever direction base.
+[5336s-5340s] Let's say we have a relative strength on Tesla
+[5340s-5341s] and QQQ is looking good.
+[5341s-5345s] However, if we do have that 10 o'clock news,
+[5345s-5348s] that news can potentially get rid
+[5348s-5351s] of any market structure you have,
+[5351s-5352s] get rid of all the market structure,
+[5352s-5355s] get rid of any technical analysis you know.
+[5355s-5357s] If we get news that's bad news
+[5357s-5359s] in a really, really strong uptrend,
+[5359s-5361s] you know what the stock's gonna look like?
+[5361s-5363s] The stock's gonna look like this, right?
+[5363s-5364s] Let's say the stock's moving up, right?
+[5364s-5367s] Moving up, moving up, moving up, super nice, right?
+[5367s-5368s] Super nice.
+[5368s-5371s] And then the second you get really bad market news,
+[5371s-5372s] out of nowhere, it doesn't even have to be a key level.
+[5372s-5375s] That thing's going like this, right?
+[5376s-5378s] The reason that is is because of course,
+[5378s-5379s] the news drives the market.
+[5379s-5380s] News does drive the market,
+[5380s-5382s] but number two, right?
+[5382s-5385s] Those fundamentals do drive the market as well, right?
+[5385s-5387s] One thing that I feel like a lot of traders
+[5387s-5391s] make a mistake on is that technical analysis
+[5391s-5393s] drives the market.
+[5393s-5396s] And I actually have a Instagram Reel coming tomorrow,
+[5396s-5398s] which I kind of talk about this as well
+[5398s-5399s] on my Instagram Reel tomorrow,
+[5399s-5403s] but what I mean by this is fundamental analysis
+[5403s-5404s] is really what drives the market, right?
+[5404s-5406s] Volume is what drives the market, right?
+[5406s-5409s] So other big institutions buying and selling
+[5409s-5411s] is what drives the market.
+[5411s-5415s] Your little flag pattern or your break and retest
+[5415s-5418s] is not what's driving markets, okay?
+[5418s-5420s] What we do with the technical patterns
+[5420s-5423s] is try to get the best risk to reward
+[5423s-5426s] and try to put ourselves in high probability trades.
+[5426s-5429s] This does not mean that we have 100% guarantee
+[5429s-5430s] of what's going to happen.
+[5430s-5435s] What is 100% guarantee is if Howell says something wrong,
+[5435s-5436s] right, if he says something wrong
+[5436s-5438s] that the banks don't agree with,
+[5439s-5442s] the market is going 90 degrees down, right?
+[5442s-5444s] So understanding that and understanding
+[5444s-5446s] just how the market moves in general
+[5446s-5448s] based off the data and the news,
+[5448s-5452s] you start to understand why it's such a low probability
+[5452s-5455s] reason to trade on FOMC days
+[5455s-5458s] or days that we have read folder news
+[5458s-5461s] that actually impact the markets, okay?
+[5461s-5464s] So to avoid being caught up in a trade
+[5464s-5466s] that looks like this, and here's the thing,
+[5466s-5468s] I still sometimes get caught up in trade like this
+[5468s-5469s] because sometimes it'll be news
+[5469s-5471s] that I couldn't have predicted, right?
+[5471s-5473s] We want to put ourselves in front
+[5473s-5474s] of high probability trades.
+[5474s-5476s] So the red folder news, we know
+[5476s-5478s] because we see that red folder news, right?
+[5478s-5481s] JDAB every single week has that weekly outlook for us.
+[5481s-5484s] But sometimes it'll just be like someone said
+[5484s-5485s] in the chat earlier, which was kind of funny,
+[5485s-5489s] like sometimes Elon Musk will just open his mouth, right?
+[5489s-5490s] And when Elon Musk opens his mouth,
+[5490s-5494s] that might drop Tesla or it might shoot Tesla, right?
+[5494s-5496s] But you can't predict that.
+[5496s-5497s] That's something you can't predict.
+[5497s-5498s] You don't know if Elon Musk
+[5498s-5501s] is randomly gonna tweet that day, right?
+[5501s-5503s] So understanding that is very key
+[5503s-5506s] that we can't analyze all the market news.
+[5506s-5510s] However, the ones we can, we need to plan around them, okay?
+[5513s-5514s] Let's keep going.
+[5514s-5516s] Now, like we talked about before,
+[5516s-5517s] the part of tracking performance.
+[5517s-5519s] So tracking performance is an important part.
+[5519s-5521s] Keeping track of profits and losses
+[5521s-5522s] can help traders make better decisions
+[5522s-5524s] and want to hold and sell.
+[5524s-5526s] So once again, with the tracking performance,
+[5526s-5527s] I talked about this earlier,
+[5527s-5529s] but the only reason I have this is
+[5529s-5531s] because the back testing previous performance
+[5531s-5532s] will help increase your conviction and confidence,
+[5532s-5534s] obviously, but notice how I've had
+[5534s-5536s] this tracking performance slide here,
+[5536s-5538s] like three times already,
+[5538s-5539s] with the same back testing
+[5539s-5542s] will increase your conviction and confidence.
+[5542s-5543s] There's a reason I have that here
+[5543s-5546s] and it's because when you tell someone something
+[5546s-5548s] the first time, they'll listen,
+[5548s-5549s] but they won't retain it.
+[5549s-5552s] When you tell someone the same thing the second time,
+[5552s-5554s] they'll listen and they'll think about it,
+[5554s-5555s] but they won't retain it.
+[5555s-5558s] But the third time you really drain it into their head
+[5558s-5559s] that they need to back,
+[5559s-5561s] like whatever you're trying to say,
+[5561s-5563s] they will remember it.
+[5563s-5565s] So now I know for a fact,
+[5565s-5566s] for a fact, every single one of you
+[5566s-5568s] that's in this voice call right now,
+[5568s-5571s] you will remember the way to increase conviction
+[5571s-5574s] and confidence is going to be through that back testing.
+[5576s-5579s] So this is, I think, one of the last slides, I believe,
+[5579s-5581s] but so managing your risk.
+[5581s-5582s] So risk management is a key factor
+[5582s-5583s] in holding your winners.
+[5583s-5585s] Knowing when to hold and when to cut
+[5585s-5589s] is very crucial to protect against losses
+[5589s-5590s] and setting up your stop loss and taking profits
+[5590s-5592s] can help manage risk as well.
+[5592s-5595s] So here's an example I like to use.
+[5595s-5598s] Let's say, right, we had this original break
+[5598s-5598s] in retest trade, right?
+[5598s-5601s] So we see the displacement, we see this clear breakout,
+[5601s-5601s] we see this displacement,
+[5601s-5604s] we see the retest off that previous support level
+[5604s-5607s] and all of a sudden we hit high of date.
+[5607s-5610s] Now, if we hit high of date
+[5610s-5612s] and this is a trending market,
+[5612s-5614s] as we can see this is a trending market,
+[5614s-5617s] well, we just lost out on so much profits here
+[5617s-5620s] if we just exited the full trade at high of date.
+[5620s-5625s] We lost out on, what is this, 436.25 to 436.99.
+[5625s-5628s] We lost on like an 80 cent move, right?
+[5628s-5630s] Which on the actual underlying ticker,
+[5630s-5632s] right, or maybe like a 50,
+[5632s-5634s] or sorry, not the underlying ticker,
+[5634s-5635s] on the actual option contract,
+[5635s-5638s] that might be a 50, 60% move, right?
+[5638s-5641s] So because of the, on a zero DT,
+[5641s-5642s] but because of this, right,
+[5642s-5646s] you need to understand how to actually effectively
+[5646s-5647s] hold your winners longer.
+[5647s-5649s] So the way I would do it
+[5649s-5651s] is this is your original risk to reward,
+[5651s-5653s] your original risk to reward was a 3.18.
+[5653s-5655s] To increase your risk to reward,
+[5655s-5657s] which this is a 7.08,
+[5657s-5660s] is you, when you enter into this trade here,
+[5660s-5664s] you take half off at your profit target, right?
+[5664s-5667s] So you take half off at whatever level this is,
+[5667s-5669s] 436.25, I believe,
+[5669s-5671s] and then from this half off,
+[5671s-5675s] you hold the other half and you scale along the way.
+[5675s-5677s] Now you can either scale along the way,
+[5677s-5679s] or you can obviously sell the full thing here,
+[5679s-5681s] that really depends on what type of market condition
+[5681s-5682s] we're in, hard to say.
+[5682s-5685s] However, you can scale at whole numbers.
+[5685s-5687s] For example, this 436.50 level, right?
+[5687s-5690s] That's where you see this high rate here,
+[5690s-5690s] you know, you see this high,
+[5690s-5692s] let me just make sure you guys know,
+[5692s-5693s] right, like right here,
+[5693s-5695s] this is like that 436.50, right?
+[5695s-5696s] So the first time we can see
+[5696s-5698s] that I used it as resistance,
+[5698s-5699s] so the second time it comes up
+[5699s-5701s] for that retest of high of day,
+[5701s-5704s] you can sell some here, lock in more profits, right?
+[5704s-5706s] So let's just say we had three contracts, right?
+[5706s-5708s] We sell one contract here,
+[5708s-5710s] we sell one contract of 436.50,
+[5710s-5713s] and then our final target,
+[5713s-5716s] because once again, because we locked in these two,
+[5716s-5719s] this is already how much money we would have made
+[5719s-5721s] if we just held to high of day, right?
+[5721s-5723s] Like we already, the realized profits we have
+[5723s-5726s] from these two is already more than the realized profits
+[5726s-5727s] we would have had just holding to a high of day.
+[5727s-5730s] So now with the unrealized profits of the third one,
+[5730s-5732s] we're able to hold that trade much longer
+[5732s-5735s] into our profit target, which is right here, right?
+[5735s-5738s] Now with this profit target right here, right,
+[5738s-5740s] once we get, once we obviously get out of that trade
+[5740s-5743s] fully, our risk to reward increased
+[5743s-5748s] from this 3.18 to 7.08, okay?
+[5748s-5751s] And the only reason that was able to happen
+[5751s-5753s] is because we have the high of day scale
+[5753s-5754s] like I talked about,
+[5754s-5757s] we have a key psychological number scale
+[5757s-5757s] that we talked about,
+[5757s-5761s] and then we have the final profit target up here,
+[5761s-5763s] and we were able to hold that stress-free
+[5763s-5766s] because we have realized profits,
+[5766s-5768s] and so this, you know, the final contract,
+[5768s-5771s] we're able to ride it because it's stress-free.
+[5772s-5773s] Okay, does that make sense?
+[5776s-5777s] Does that make sense?
+[5780s-5781s] Yes, yes, yes.
+[5787s-5791s] So with this being said, in conclusion,
+[5791s-5792s] by using these strategies,
+[5792s-5793s] you can maximize your profits
+[5793s-5795s] by holding the options longer.
+[5795s-5796s] You need to understand the market trend,
+[5796s-5798s] managing risk and trading your system
+[5798s-5800s] and tracking your performance.
+[5800s-5802s] So with this being said,
+[5802s-5805s] that's going to be it for the fourth lesson.
+[5805s-5807s] That's this whole week, right?
+[5807s-5809s] We went through this whole week.
+[5809s-5812s] We talked about everything from, you know,
+[5812s-5814s] kind of the fundamentals of everything,
+[5814s-5815s] and I think, you know,
+[5815s-5819s] just based off these last four workshops,
+[5819s-5821s] you already have so much information.
+[5821s-5823s] In my opinion, you already have so much information
+[5823s-5824s] from these last four.
+[5824s-5826s] Like, you genuinely should see trading
+[5826s-5828s] from a different light just based off these last four.
+[5829s-5831s] But yeah, with this being said,
+[5831s-5834s] tomorrow, obviously, I will be live training,
+[5834s-5839s] and JDubb's live session is on Saturday.
+[5839s-5841s] He will probably make the time for you guys tomorrow.
+[5841s-5844s] It's usually 2.30 p.m. Eastern.
+[5844s-5848s] It's anywhere from 12.30 p.m. to 2.30 p.m. Eastern time.
+[5848s-5849s] Okay?
+[5850s-5851s] But yeah, with that being said,
+[5851s-5853s] do you guys have any questions?
+[5853s-5855s] Do you have any questions?
+[5860s-5861s] Tomorrow, since it's zero DT,
+[5861s-5865s] does how long you hold change?
+[5865s-5867s] Are you in and out faster?
+[5867s-5868s] No, because realistically,
+[5868s-5871s] since we trade from 9.30 to 11 o'clock, right?
+[5871s-5874s] The theta doesn't really affect us too much.
+[5874s-5875s] The video you said yesterday
+[5875s-5877s] we'll post regarding chart trading.
+[5877s-5878s] Oh yeah, just remind me in the chat.
+[5878s-5879s] Remind me in the chat.
+[5879s-5880s] I can still post that.
+[5880s-5883s] Do you use a mechanical stop for your final target?
+[5883s-5884s] It depends.
+[5884s-5887s] It depends if I'm trading still,
+[5887s-5888s] or if I'm not trading,
+[5888s-5890s] then I'll just have my profit target set
+[5890s-5892s] on my IBK, and I'll just walk away.
+[5893s-5896s] What happened to 17.30 Eastern?
+[5896s-5898s] That's just for my live session.
+[5898s-5900s] My live sessions will remain at 5.30 p.m. Eastern.
+[5900s-5903s] My live sessions will always remain at 5.30 p.m. Eastern.
+[5903s-5905s] It's J-dub, it's because it's a weekend, right?
+[5905s-5909s] Nobody on Saturday wants to come at 5.30 p.m. Eastern.
+[5909s-5912s] A lot of people are busy on Saturday night,
+[5912s-5915s] so it's usually earlier on in the day that he does it.
+[5917s-5920s] How did you choose those key levels?
+[5920s-5921s] How did you choose those key levels?
+[5921s-5923s] Well, that was just an example.
+[5923s-5925s] That was just an example of risk management.
+[5925s-5927s] It wasn't based off key levels.
+[5927s-5930s] It was just an example of risk management.
+[5930s-5933s] Do you recommend hard system stop-loss?
+[5933s-5935s] No, make sure you're watching the modules as well.
+[5935s-5938s] I always say you want to have a mental stop-loss.
+[5938s-5940s] What is the 84% rule?
+[5940s-5942s] I have a full YouTube video on the 84% rule.
+[5942s-5944s] There's also in the accelerator course, right?
+[5944s-5946s] So you can go through and watch that as well, 84%.
+[5946s-5948s] Basically, what it is is when a trade comes
+[5948s-5950s] to one level with the same thesis
+[5950s-5952s] and it doesn't work the first time,
+[5952s-5953s] the second time, if it has the same thesis,
+[5953s-5955s] it will work.
+[5955s-5957s] Is there a way to get bar replay on QQ
+[5957s-5958s] and Tesla at the same time?
+[5958s-5958s] What's going on?
+[5958s-5960s] Yeah, it's on, yeah, you can do that.
+[5960s-5962s] You just have to go to TradingView once again.
+[5962s-5964s] I think JDubb should have a video on that.
+[5964s-5966s] If not, you can literally ask JDubb tomorrow.
+[5966s-5968s] He'll help you with that one.
+[5968s-5970s] Do you go over how contract pricing works?
+[5970s-5973s] I am pretty lost on knowing how much I am risking
+[5973s-5974s] based on how many contracts.
+[5975s-5976s] Yeah, so with options, right?
+[5976s-5979s] Sometimes, with options, sometimes what it is
+[5979s-5984s] is what will happen is you will end up not,
+[5984s-5985s] like sometimes you won't know your complete risk,
+[5985s-5987s] but it just comes with experience.
+[5987s-5989s] But there is a website that you can go to
+[5990s-5992s] and you can ask for your exact risk.
+[5992s-5993s] I'll put it in the chat later.
+[5993s-5996s] If someone reminds me, just put that question
+[5996s-5999s] in with at Tony Montana and I'll put in the thing
+[5999s-6003s] where you can see how much you're risking per trade.
+[6003s-6004s] It's a website that you can use.
+[6004s-6008s] But realistically for me, it's just from experience,
+[6008s-6010s] I kind of know how much I'm risking.
+[6010s-6012s] It says I have to purchase a law course
+[6012s-6012s] for the modules.
+[6012s-6015s] No, you 100% do not.
+[6015s-6016s] You just make sure you're signed
+[6016s-6019s] into the exact same mastermind
+[6019s-6022s] where you bought the mastermind off of from WAP.
+[6022s-6024s] Make sure you're signed into the exact same one,
+[6024s-6025s] the same account.
+[6025s-6027s] If you are, there's no chance
+[6027s-6029s] that we'll ask you for money.
+[6029s-6030s] It's working for everyone else.
+[6030s-6033s] And if it does, just open up a help ticket
+[6033s-6036s] and someone from the team will help you walk through that.
+[6036s-6038s] Are we gonna learn the second strategy on the BNR,
+[6038s-6040s] the rejection from YouTube you mentioned?
+[6040s-6043s] There is another strategy we're still gonna learn.
+[6043s-6045s] It's the opening play strategy.
+[6045s-6046s] And we'll talk more about that when we have to,
+[6046s-6048s] I think next week.
+[6048s-6050s] Just curious, when you say one to three trades a day,
+[6050s-6051s] are you in one trade and then out
+[6051s-6053s] before you take in the other trade?
+[6053s-6056s] Most of the time, I'm usually in one trade at a time.
+[6056s-6058s] I had never traded options and don't know anything
+[6058s-6060s] about how effective the strategy is for NQ
+[6060s-6063s] and how often we get trades.
+[6063s-6064s] NQ, so for example,
+[6064s-6066s] NQ and QQ are the exact same thing, right?
+[6066s-6069s] You can trade QQQ options and it's the exact same thing,
+[6069s-6071s] or you can trade NQ futures.
+[6071s-6073s] The strategy works very well on QQQ, obviously,
+[6073s-6075s] because if I'm trading the tech names,
+[6075s-6077s] you have to understand the strategy clearly is working.
+[6079s-6080s] When you enter the trade,
+[6080s-6082s] you enter your entry right at the hammer candle
+[6082s-6084s] or next confirmation or exact point when they're drawn.
+[6084s-6086s] Yeah, so when I enter the trade,
+[6086s-6088s] because the first candle has to close, right?
+[6088s-6089s] So it's the next candle.
+[6089s-6090s] It's the next candle that I'm entering on.
+[6090s-6091s] It's usually going to be the open
+[6091s-6093s] of the next candle, right?
+[6095s-6096s] But yeah, with that being said,
+[6096s-6099s] I hope you guys got some value out of lesson four.
+[6099s-6100s] Once again, this is gonna be
+[6100s-6101s] the last lesson for this week.
+[6101s-6104s] However, JDub will be on Saturday.
+[6104s-6105s] I'll be on live trading tomorrow.
+[6105s-6108s] And Monday, I'll be on for another session
+[6108s-6110s] for that whole week as well, right?
+[6110s-6112s] So hope you guys are getting value
+[6112s-6113s] from the mastermind so far.
+[6113s-6114s] Once again, don't worry, we just started.
+[6114s-6116s] If stuff isn't still making sense to you,
+[6116s-6117s] do not worry.
+[6117s-6119s] We're still here for the long run, right?
+[6119s-6120s] It's gonna take you some time
+[6120s-6121s] to absorb all this information.
+[6121s-6123s] I'm just trying to get it all out to you right now,
+[6123s-6125s] but it'll take you some time to obviously absorb that.
+[6125s-6129s] But yeah, I will see you guys tomorrow, all right?
+[6129s-6129s] Bye.

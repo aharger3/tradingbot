@@ -1,0 +1,1405 @@
+# Transcription: mastermind-4-0_Lesson_7_How_To_Play_The_Open_Multi_Time_Frame_Analysis.wav
+# Duration: 3548s
+
+[0s-8s] What's up guys, can you guys hear me and can you guys see this screen?
+[8s-15s] Yes, yes, yes, cool.
+[15s-19s] So today we only have 20 people in here so far.
+[19s-23s] I was just basically waiting for it to kind of fill up just because I know that we are
+[23s-24s] starting 15 minutes early.
+[24s-29s] Most people usually like to trickle in by around 530 to 545, but I have to do it
+[29s-34s] a little bit earlier today just because I do have like two more meetings that I push
+[34s-38s] back all day today just to do this, but I was only able to get it pushed back
+[38s-41s] till seven, so I have to get prepared for those as well.
+[41s-43s] But I'm still going to be here to answer all the questions and everything
+[43s-45s] at the end of this and I'm not going to rush it.
+[45s-48s] And so just to make sure I don't rush this, I just push it up 15 minutes
+[48s-51s] just to make sure we have enough time for questions at the end.
+[51s-54s] Now, historically, in the last three masterminds, this is about an hour
+[54s-58s] class just because with the examples in the videos and everything like that,
+[58s-62s] it's about an hour and then we'll obviously have lesson eight tomorrow as well.
+[62s-65s] But in today's lesson, we're going to talk about how to play the open.
+[65s-69s] Now, before I even get into it, how was everyone's trading session today?
+[69s-72s] For me personally, I didn't take a trade today,
+[72s-76s] but I did talk about that Nvidia A plus setup that we had today.
+[76s-79s] Now, because it was FOMC, it wasn't an A plus setup for me
+[80s-83s] just because of the news and stuff like that, even though today,
+[83s-85s] like there was a couple of good setups, I'm not going to lie.
+[85s-87s] There was good setups today, but it was just one of those days
+[87s-89s] where historically it's going to be choppy.
+[89s-92s] So I didn't want to risk that and just within my system,
+[92s-95s] I'm not allowed to play FOMC days on most FOMC days,
+[95s-98s] especially when it's like big days like today, for example.
+[99s-101s] But with that being said, how was everyone's session today?
+[101s-104s] Did you guys have any trades? What happened?
+[104s-107s] No trades today, just watch price action, got a root knowledge.
+[107s-110s] So pretty much same as all the other trading sessions.
+[113s-115s] Cool. So it seems like most people didn't take a trade today,
+[116s-118s] which is completely fine.
+[118s-119s] You know, today was one of those days.
+[119s-121s] And I said it yesterday, I said it this morning.
+[121s-123s] You know, today was a day you didn't really want to take a trade anyways
+[124s-126s] and kind of more so focus on other things.
+[127s-129s] Of course, go back later on today and review those trades.
+[129s-131s] That's going to be important for you as well,
+[131s-134s] just to see what FOMC is like, what happens during FOMC.
+[135s-138s] And so you can kind of get that data for the long term. Right.
+[138s-140s] So, you know, every FOMC, you want to see the price action,
+[140s-141s] maybe you can take a screenshot. Right.
+[141s-144s] So what I would do when I was starting out
+[144s-148s] was during big news events like today, I would take screenshots of the chart.
+[148s-150s] The reason I would take screenshots of the chart.
+[150s-152s] And I talk about this in the journaling video,
+[152s-155s] which you guys will get as a as a bonus video as well
+[156s-157s] on Sunday, I believe.
+[157s-161s] But basically, whenever I would journal my trades, right,
+[161s-163s] I would always have even on the days I didn't take trades,
+[163s-166s] I would screenshot all the the one minute time frame
+[168s-170s] on most names that I would trade because I, you know,
+[170s-172s] over a long period of time. Right.
+[172s-175s] Though today was one of those days where the FOMC before FOMC,
+[175s-178s] like price action was really, really good and the market was pushing.
+[178s-182s] So today was kind of like a like, you know, unique.
+[182s-184s] But for most of them, it's going to be choppy.
+[184s-187s] And so if you screenshot it, right, you'll know like, oh,
+[187s-190s] like one out of five FOMC days might have a trending day.
+[190s-193s] But, you know, the other four are going to be choppy and stuff like that.
+[193s-194s] Like, you just want to create that data.
+[194s-197s] And the more data you have, the more you can build your edge around that data.
+[197s-200s] Right. So that's just one little tip
+[200s-202s] I wanted to give right in the beginning before we start out
+[202s-205s] and just kind of talk about everyone's trading session.
+[205s-208s] But with that being said, let's get into lesson seven.
+[208s-211s] So today we're going to be talking about how to play the open action
+[211s-212s] before we even talk about this.
+[212s-214s] Did everyone watch the YouTube video from yesterday?
+[215s-217s] Did everyone watch the YouTube video from yesterday?
+[217s-219s] Just so everyone's kind of on the same page,
+[219s-221s] everyone knows at least the opening range.
+[221s-223s] Yes, yes, yes, yes. Great. Yes. Cool.
+[223s-226s] So we're going to kind of talk about that a little bit today,
+[226s-227s] but it's going to be a little bit different as well.
+[227s-229s] You'll see in the examples.
+[229s-232s] But no, but we'll see.
+[232s-236s] You guys will see how the the strategy kind of correlates
+[236s-238s] with what I'm about to talk today about how to play the open.
+[239s-243s] Now, how to play the open and how to identify higher time frame patterns
+[243s-248s] to play the open is what we're going to be talking about in today's workshop.
+[248s-252s] Now, a lot of people think because it's near the open,
+[252s-255s] they think that it's a completely different strategy, a different chart,
+[255s-257s] a different thesis, different risk levels, profit targets.
+[257s-260s] No, it's going to be primarily the same thing,
+[260s-265s] but there's a couple of things added to make it a little bit more effective
+[265s-266s] to play the open.
+[266s-270s] Now, how many people have heard in the live sessions,
+[270s-273s] me and Jaydub talk about either a gap and go type of play
+[274s-277s] or just the opening drive, if you guys have heard about that, right?
+[277s-280s] Have you guys heard that in the live session so far
+[280s-282s] of me and Jaydub talking about that? Right.
+[282s-286s] So when we talk about things like that, those are what that means
+[286s-288s] is that's a setup within our system.
+[289s-291s] OK, so the break in retest.
+[292s-295s] Let's make this very clear what this means.
+[295s-297s] Let me annotate on the chart real quick.
+[297s-299s] So the break in retest, right?
+[300s-303s] That's the overall like setup or that's within the system.
+[303s-306s] That's the overall fundamental strategy, right?
+[306s-308s] This strategy is the fundamental strategy.
+[308s-311s] However, sometimes when we're coming to play the open,
+[311s-315s] what will happen is the stock dips into a key level.
+[316s-319s] And we buy at this key level right here,
+[319s-322s] looking for a move back to the upside.
+[322s-325s] OK, now some people are going to be like, well, Tony,
+[325s-326s] you're not buying the break in retest.
+[326s-331s] But what they don't understand is if you take the same chart, right,
+[331s-334s] and you look at the higher time frame version of that chart
+[334s-337s] on the higher time frame, what might have been happening
+[337s-340s] is that it's retesting the higher time frame level, right?
+[340s-342s] So like a four hour level.
+[342s-345s] So though on the one minute, it looks like it's coming back.
+[345s-347s] It's coming down into a key level and it looks like a reversal trade
+[348s-349s] on the higher time frame.
+[349s-351s] We're still trading that break in retest, right?
+[351s-354s] But this is just going to be the lowest risk for us to enter
+[354s-356s] based off of the one minute chart.
+[356s-360s] OK, so does that make sense sometimes when we're talking
+[360s-363s] talking about the opening drive or the opening gap, right?
+[363s-367s] What we're simply looking for is a stock to come back
+[367s-370s] and fill its gap or fill its level and then take that reversal.
+[370s-373s] Or sometimes we're looking for it to just basically retest
+[374s-375s] previous support.
+[375s-378s] This could be pre-market low, pre-market high even, you know,
+[378s-382s] this could be a previous day support level, whatever it is, right?
+[382s-386s] We're simply looking at it to retest that level from the higher time frame
+[386s-389s] and then continue the trend back to either fill its gap
+[389s-392s] or different, you know, profit targets,
+[392s-394s] which we'll talk about when we're doing the examples.
+[394s-397s] OK, there's a four market a four hour time frame include pre-market
+[397s-398s] or is it continue?
+[398s-402s] So I do include the pre-market and after hours in my four hour.
+[402s-406s] OK, I do personally include the pre-market.
+[406s-407s] That's actually a good question.
+[407s-409s] I don't think I talked about that yet, but that is important to talk about.
+[409s-411s] I just think I forgot about it.
+[411s-415s] So every time I chart the pre-market and after hours is on.
+[415s-417s] So every level that I draw everything, it's with it's
+[417s-419s] including the pre-market and the after hours.
+[419s-424s] OK, backtesting today, I was kicked out sometimes due to early entry.
+[424s-426s] Right. So we're going to talk about today.
+[426s-429s] What we're going to talk about is how the opening strategy
+[429s-431s] is a little bit different than the break and retest
+[431s-433s] that we fundamentally know.
+[433s-437s] Still the same thing, but it's a little bit different in terms of
+[437s-440s] to do with how the strategy actually works.
+[440s-442s] But overall, you'll notice it's pretty, pretty, pretty similar.
+[443s-446s] OK, and then once again, playing the open is important to understand
+[446s-450s] because there's more volatility right within the first five to ten minutes of open.
+[450s-454s] And so being able to understand how to play the open is very, very crucial,
+[454s-457s] especially as a momentum trader.
+[457s-461s] So. Let's talk about chart identification first.
+[461s-465s] So chart identification to help identify higher time frame patterns
+[465s-468s] and which way the stock will move into open or throughout the day.
+[468s-470s] I like to use the Heiken Ashi candles.
+[470s-473s] Heiken Ashi takes the average of the stock candle
+[473s-476s] to create candlesticks and filter out market noise.
+[476s-478s] This helps clear the noise and identify patterns
+[478s-480s] on the higher time frame much more clearly.
+[481s-484s] Now, how many people have heard about the H.A.
+[484s-485s] candles or Heiken Ashi?
+[485s-487s] How many people have heard about that?
+[488s-490s] Do you know what the Heiken Ashi candles are?
+[491s-494s] If you don't, you can also say no.
+[494s-497s] Yes, yes, yes. No, me of me from your course.
+[497s-498s] No, yes.
+[498s-502s] So I do talk about the Heiken Ashi in the accelerator as well, by the way.
+[502s-505s] So, you know, for the people that do not know, right,
+[505s-506s] that just means you haven't watched the accelerator yet,
+[506s-509s] which I do recommend you guys to watch that, of course.
+[510s-515s] However, what the Heiken Ashi basically is, it's it's the average price.
+[515s-518s] OK, so it's going to be the average price of the stock candle
+[518s-520s] to create the to create the candlestick.
+[520s-525s] So, for example, this uptrend, right, this uptrend right here,
+[526s-528s] what this is, is obviously this is all green candles.
+[528s-532s] However, with regular candles, so if we had normal candles,
+[532s-535s] there's going to be red candles in here, obviously, right?
+[535s-537s] There's going to be red candles in here.
+[537s-541s] But for the most part, if you average it out, this is an uptrend.
+[541s-544s] And therefore, the Heiken Ashi candles will stay green, OK,
+[544s-545s] to go on trading view.
+[545s-547s] We'll talk about how to get to Heiken Ashi as well.
+[547s-552s] And every time the average of the candle or the trend itself
+[552s-555s] wants to move back into or pull back right,
+[555s-557s] then the Heiken Ashi will change red.
+[558s-560s] OK, for the most part, right,
+[560s-563s] if the trend is just continuing to the upside, it will stay the color it is.
+[563s-567s] And it helps to identify trend much more easier than,
+[568s-570s] you know, looking at it from a regular candle.
+[570s-574s] Now, what a lot of people ask me is after I tell them about the Heiken Ashi,
+[574s-577s] they're like, what if I just do the break and retest using the Heiken Ashi?
+[578s-579s] We don't, right?
+[579s-581s] We don't want to do that, right?
+[581s-584s] We don't want to trade the Heiken Ashi candlesticks.
+[584s-588s] OK, I see someone said you said you don't you don't use it exactly.
+[588s-593s] I personally write don't use the Heiken Ashi candlesticks to actually trade.
+[594s-596s] OK, I if if I was to use it right,
+[596s-600s] it's only for pattern and chart identification.
+[600s-603s] OK, because it blocks out a lot of the noise,
+[603s-606s] a lot of gaps that you see on the on the daily time frame.
+[606s-609s] And it'll just smooth out the chart so you can see the pattern.
+[609s-613s] For example, this flag pattern much more clearly.
+[613s-617s] OK, so the Heiken Ashi is used for chart identification,
+[617s-619s] but not to trade the actual ticker that you're trading,
+[619s-623s] because the price action on the Heiken Ashi candles are not good.
+[623s-624s] Like you can.
+[624s-628s] There's not really, you know, anything that you can read from price action,
+[628s-631s] in my opinion, that gives you an edge from Heiken Ashi candles. Right.
+[632s-635s] It's simply to identify trend and pattern identification.
+[635s-636s] OK, so does that make sense?
+[636s-639s] How we use the Heiken Ashi candles on the higher time frames
+[639s-642s] to help identify patterns?
+[644s-647s] Yes. OK, let's keep going.
+[649s-653s] Now. Different strategies.
+[653s-658s] So the break in retest fundamentally is very simple.
+[658s-660s] Like we all understand what the break in retest is.
+[660s-664s] Now, when we're playing the open, the open strategy
+[665s-670s] is going to be a little bit different than the break in retest you were taught.
+[670s-672s] So before I even talk about it,
+[673s-675s] I want to make sure you understand that
+[677s-680s] in the beginning, if you're just focusing on the break in retest, right,
+[680s-683s] then only focus on the break and retest.
+[683s-686s] Do not go and look for other strategies.
+[686s-689s] If you're not comfortable playing the open, you don't have to play the open.
+[689s-692s] I'm giving you this strategy because combining it with the break
+[692s-694s] in retest is going to be powerful.
+[694s-696s] But in the beginning, if you're not ready for this, right,
+[696s-697s] then that's completely fine.
+[697s-700s] You can still watch the workshops, still understand how it works.
+[700s-702s] But you know that you need to still focus on the break
+[702s-705s] in retest in the beginning to, you know, see that consistency first.
+[705s-708s] OK, so I just want to start off by saying that.
+[708s-712s] But number two, the strategy is different than the break
+[712s-716s] in retest just a little bit because there's more emphasis on key levels.
+[717s-720s] You need to act even faster than you would with the break in retest.
+[720s-723s] And we're looking at retest of levels or patterns
+[723s-726s] rather than looking at the break and retest.
+[726s-728s] So what does that actually mean?
+[728s-730s] So when we're looking at the break in retest,
+[730s-731s] we already talked about this, right?
+[731s-732s] But the break in retest, right?
+[732s-734s] I'm just going to draw this up here just so you guys know.
+[734s-735s] This is the break in retest, right?
+[735s-737s] We already talked about this a couple of times.
+[737s-741s] However, with the actual playing the open, OK,
+[741s-745s] if we have a level right here, the emphasis that we're putting on the chart
+[745s-749s] is that on the higher time frame, the trend is to the upside.
+[749s-753s] So the pullback entry that we're getting from this pre-market, right?
+[753s-756s] So let's just say behind this line, all this stuff is pre-market right here.
+[756s-759s] Right. So what the entry that we're getting from pre-market,
+[759s-761s] let's say we're pulling back right right into the open.
+[762s-764s] Well, this is going to be the best entry for us, right?
+[764s-767s] We have to have more conviction when we're playing the open, of course,
+[767s-770s] because we're buying just the straight up pullback right into the open.
+[770s-774s] However, when we see a strong price action candle
+[774s-776s] blows above our level right there, right?
+[776s-779s] Let's just pretend that's a good hammer stick candle, right?
+[779s-783s] We need to act extremely quickly to get into this trade, because once again,
+[783s-787s] the market within the first five to 10 minutes moves extremely quickly.
+[787s-792s] And we want to get into this trade or to start pushing back to the upside
+[792s-796s] because this is where the buyers were. Right.
+[796s-799s] And so, of course, the right into the beginning of the day,
+[799s-801s] if the stock gapped up or whatever it did. Right.
+[801s-804s] Obviously, the people from the previous day want to take profits,
+[804s-806s] and that's what's going to sell off.
+[806s-810s] But the key level of support that we had here on the higher time frame,
+[810s-812s] this is most likely going to be a higher time frame level.
+[812s-815s] The key level support that we made on the higher time frame level,
+[815s-818s] if we see strong price action here, we need to enter much faster
+[818s-821s] than we would enter a break in retest, because you guys have seen so far,
+[822s-824s] you know, with the live trading, sometimes when the break in retest comes,
+[824s-828s] it gives you a couple of minutes right here just to kind of analyze.
+[828s-831s] Like, for example, did anyone see that NVIDIA trade I was talking about today?
+[831s-834s] Right. You guys saw that NVIDIA trade that I was talking about today. Right.
+[834s-838s] Now, that trade worked out extremely well,
+[838s-842s] but it gave you and NVIDIA basically pulled back like NVIDIA broke the level
+[842s-844s] and then it pulled back into the level.
+[844s-847s] And it gave you literally like five to 10 minutes to enter in here.
+[847s-849s] And then it moved up. Right.
+[849s-851s] Like this is the exact NVIDIA chart that we had today. OK.
+[851s-854s] So you had time to enter into that NVIDIA trade,
+[854s-857s] whereas when we're playing the open, you won't have that time.
+[857s-861s] It'll most likely, if it's a good setup, it'll come into your level
+[861s-863s] and then V shape recovery out of it. OK.
+[863s-867s] And the more emphasis that we need to have is on the key level
+[867s-870s] and understanding that we have conviction from the higher time frame
+[870s-871s] that the trend is to the upside.
+[871s-874s] And therefore, this pullback is going to get eaten up. Right.
+[874s-877s] The reason the higher time or the reason the playing the open
+[877s-881s] is such an effective strategy is because if you're able to capture this,
+[881s-884s] you know, this, you know, candlestick, you're basically
+[884s-888s] if the trend continues all day, you're basically able to buy
+[888s-892s] the low of the stock, like low of day and ride it all the way.
+[892s-895s] If this if the stock or the trend continues all day.
+[895s-897s] And that's really the beauty of the break and retest.
+[897s-899s] It's similar to the break and retest.
+[899s-902s] However, you see that it's a little bit different compared to the
+[903s-905s] emphasis is on key levels more.
+[905s-906s] You need to act faster.
+[906s-910s] And we have more conviction on the higher time frame than anything else.
+[910s-914s] OK, so because we don't have the price action to justify,
+[914s-916s] you know, with the break and retest, for example,
+[916s-919s] we have price action to justify, like, OK, the high of day levels right here.
+[920s-921s] We had a strong displacement move.
+[921s-923s] Now we're retesting with this.
+[923s-925s] You you don't have a strong displacement move.
+[925s-927s] You're simply coming into a level of support.
+[927s-929s] You have to see if the price action is strong there.
+[929s-931s] And then you're you're buying for the move to the upside.
+[931s-935s] OK, so does that make sense?
+[935s-938s] Does that make sense on how this strategy is a little bit different
+[938s-941s] than the actual break and retest strategy?
+[943s-945s] But overall, still very, very similar, right?
+[946s-948s] Yes, yes, yes.
+[952s-954s] Let's get rid of this.
+[955s-959s] OK, let's see if it tests the higher value in pre-market,
+[959s-962s] does that mean that you can't use it retest if it tests
+[962s-964s] the higher value in pre-market?
+[964s-967s] Does that mean you can't use it if it retest again during normal markets?
+[967s-970s] So we'll talk we'll talk about that once again, right?
+[970s-973s] We'll talk a little bit more about that in the examples.
+[973s-975s] Quick recap. Missed the first part on and through that 30.
+[975s-979s] So yes. So when you say dip and rip, are you referring to that?
+[979s-982s] Yeah. So when I say dip and rip, when I'm when I'm saying, guys,
+[982s-984s] it's going to be a dip and rip or something like that, right?
+[984s-988s] The dip and rip literally just means that on the higher time frame or pre-market,
+[988s-989s] this was consolidating up here.
+[989s-993s] It's going to dip into our key level support and then rip from that level.
+[993s-996s] OK. Now, when we're so I only use this trade
+[996s-999s] in the open of the market for the first five, 10 to 15 minutes. Exactly.
+[999s-1003s] So this type of trade, realistically, the best setup
+[1003s-1006s] usually occurs within the first 15 minutes of market open. Right.
+[1006s-1010s] So the first 15 minutes of market open is when we want to look for this.
+[1010s-1014s] And then after that, after the first 15 minutes,
+[1014s-1018s] we're only strictly looking for the break and retest. OK.
+[1018s-1020s] After that, we're strictly looking for the break and retest.
+[1020s-1023s] This is only for the first 15 minutes. OK.
+[1024s-1026s] If you missed the earlier part, once again, this will be recorded.
+[1026s-1029s] So make sure you can you can just rewatch that recording.
+[1030s-1033s] But does that for everyone else that was here, does that make sense?
+[1034s-1037s] Now, for the indices part of this, we're going to talk about that as well.
+[1037s-1038s] I see I see someone talk about the indices part.
+[1038s-1039s] We're going to talk about that as well.
+[1039s-1042s] Once we actually look at the examples. OK.
+[1045s-1048s] Now, when we're talking about the thesis for this strategy,
+[1048s-1051s] it's going to be a little bit different. OK.
+[1052s-1056s] So with the break and retest, you're waiting for the trend to confirm.
+[1057s-1060s] We enter after the the trend is clear on the day.
+[1060s-1065s] However, playing the open, you enter before a clear trend
+[1065s-1068s] or intraday price action has occurred.
+[1068s-1071s] This is because we have a thesis from the higher time frame.
+[1071s-1073s] So we need to think fast. OK.
+[1073s-1078s] So once again, I need to make sure you guys understand
+[1078s-1080s] how this is different than the break and retest.
+[1080s-1082s] The break and retest. OK.
+[1082s-1087s] You have the clear higher highs and higher lows that are forming. Right.
+[1087s-1089s] You have a strong displacement move.
+[1089s-1092s] You have the retest and then we're just looking for that high of day. Right.
+[1092s-1093s] So that displacement moves right there.
+[1093s-1095s] We're looking at the retest and then we're looking for the high day
+[1095s-1097s] profit targets up here. OK.
+[1097s-1101s] With the playing the open, because it's the first 10 to 15 minutes,
+[1101s-1105s] the market hasn't even decided really a direction intraday.
+[1105s-1109s] OK. So during market hours, we haven't decided that direction.
+[1109s-1113s] However, because we're playing the higher time frame break. Right.
+[1113s-1116s] We're simply looking, even if the trend is down trending. Right.
+[1116s-1119s] In the first five to 10 minutes, let's say the trend is down trending.
+[1119s-1121s] But we have our key level support here.
+[1121s-1124s] We're going to buy that key level support because it's technically
+[1124s-1127s] the break and retest on the higher time frame for that push up.
+[1128s-1131s] OK. So the reason that the thesis is going to be different
+[1131s-1136s] on this trade is because we instead of waiting for the trend to confirm
+[1137s-1140s] during intraday, we're not waiting for trend to confirm.
+[1140s-1143s] Rather, we're trying to enter for the lowest risk entry
+[1143s-1147s] for the potential highest reward without waiting for trend to confirm
+[1147s-1151s] because on the higher time frame, the trend is to the upside. OK.
+[1155s-1158s] Are we looking for confluence with QQQ trend during the strategy?
+[1158s-1160s] We'll talk more about that in the examples.
+[1160s-1164s] Should we swap as should we swap as well with it?
+[1165s-1166s] Still waiting for a clear bullish candle.
+[1166s-1170s] Yeah. So the only thing you're waiting for when we're looking for this
+[1170s-1173s] for the break for the not the break in retest for the play the open.
+[1174s-1177s] The only thing you're waiting for near that key level. Right.
+[1177s-1179s] So near the key level that we're coming back down to.
+[1180s-1184s] The only thing you're waiting for is strong price action. Right.
+[1184s-1187s] So if you get a hammer stick candle, right, you enter into that trade
+[1187s-1189s] and you're looking for that potential move to the upside. OK.
+[1190s-1193s] Now you're going to have to have a little bit more experience to play the open.
+[1193s-1195s] I personally believe that you're going to have
+[1195s-1198s] to have a little bit more experience playing the open with this strategy.
+[1198s-1202s] Right. But you need to always no matter what strategy
+[1202s-1204s] I'm trading, anything like that.
+[1204s-1208s] The price action is what's telling me if buyers and sellers are there
+[1208s-1210s] to actually move the stock. OK.
+[1210s-1215s] Therefore, for us, we need to have strong price action
+[1215s-1218s] candle for anything break and retest higher time frame.
+[1218s-1220s] Five minute strategy.
+[1220s-1223s] Any strategy within my playbook requires strong
+[1223s-1225s] price action. OK.
+[1225s-1227s] What was wrong? So jumping into the open range the wrong way.
+[1227s-1230s] Lost money. So play the opening and opening drive for the same thing.
+[1230s-1232s] When you see the examples, it'll make more sense.
+[1232s-1234s] Will you tell us where it's this place to stop?
+[1234s-1236s] If it is bounces off the key level, there are no reference candles.
+[1236s-1239s] Yes. So we're once again, we haven't gotten to the examples.
+[1239s-1242s] Now the questions that we're getting are we're not even into the examples yet.
+[1242s-1244s] Right. So we're going to have to wait for the examples
+[1244s-1245s] before we ask those questions. Right.
+[1245s-1248s] I'm still just giving you the summary of the strategy.
+[1248s-1251s] OK. What if someone asked about what about VWAP?
+[1251s-1254s] VWAP is I don't even use VWAP in my regular trading.
+[1254s-1256s] So I'm not going to use VWAP for this either. Right.
+[1257s-1259s] Once again, I've told you I've said this before multiple times.
+[1259s-1265s] VWAP is only there for me to buy above and sell below.
+[1265s-1269s] Right. Like VWAP is really something that I for my personal trading.
+[1270s-1273s] I rarely look at VWAP. Right.
+[1273s-1275s] I rarely look at VWAP. Right.
+[1275s-1277s] Once again, I've said that multiple times.
+[1277s-1280s] The only reason you should even have VWAP on your chart is above VWAP.
+[1280s-1281s] Calls below VWAP puts. Right.
+[1281s-1285s] And that's more for the intraday price action with the open rate.
+[1285s-1287s] VWAP could matter less. OK.
+[1292s-1296s] Now. Let's move this.
+[1296s-1297s] Actually, let me just get rid of the chart real quick.
+[1297s-1300s] So when we're talking about risk levels, right,
+[1300s-1302s] someone just asked about the stop the stop loss with this
+[1303s-1308s] right before I got onto this slide, that's why I was telling them to call to wait.
+[1308s-1310s] But for break and retest,
+[1310s-1313s] your risk level will always be the break of a key level
+[1313s-1315s] or a break of trend or market structure. Right.
+[1315s-1316s] And we're waiting for the candle to close.
+[1316s-1317s] You guys understand that.
+[1317s-1321s] However, when we're playing the higher time frame or playing the open,
+[1321s-1325s] your risk level, because we actually don't know where like
+[1325s-1327s] when we're playing the break and retest, for example, right.
+[1327s-1329s] Like, let's say this is breaking green test rate.
+[1329s-1331s] We're pushing up here. This is the retest rate.
+[1331s-1334s] The clear risk level is going to be that low of day level rate right here.
+[1334s-1335s] And then so our risk level is going to be right here.
+[1335s-1337s] And our profit target is going to be up here.
+[1337s-1338s] Very, very simple.
+[1338s-1341s] But when we're playing the open, right, if we're coming back
+[1341s-1342s] and we're dipping into this level.
+[1342s-1346s] Well, what's the next level that theoretically we can come down to?
+[1346s-1347s] We don't know. Right.
+[1347s-1351s] We don't know just based off of intraday price action. Right.
+[1351s-1355s] So the intraday price action, we don't know where to put our risk level.
+[1355s-1359s] Therefore, the risk level that we use for playing the open
+[1359s-1362s] is going to be a higher time frame level. OK.
+[1363s-1364s] And this is different because the chart has informed.
+[1364s-1367s] Therefore, break of structure hasn't been identified.
+[1367s-1368s] Or change of character intraday.
+[1368s-1372s] Therefore, you need to give the trade room to breathe. OK.
+[1372s-1376s] So what I see a lot of people doing and why they played the break of open
+[1377s-1381s] ineffectively is because let's say their stop loss is very, very tight.
+[1382s-1385s] What will happen is because it is the open, the stock will dip.
+[1385s-1387s] That was actually way too big of a candle.
+[1387s-1391s] The stock will dip right below and then push up. Right.
+[1391s-1394s] And that's because right into the open, there's more volatility.
+[1394s-1394s] There's more volume.
+[1394s-1398s] So the stock is going to be a little bit more volatile to have that dip.
+[1398s-1401s] And therefore, you need to, especially in the open,
+[1401s-1404s] even if you don't give your stock, your trade room to breathe later on
+[1404s-1406s] in the day, which I 100 percent think you should.
+[1406s-1408s] But even if you don't do that and you've been seeing success
+[1408s-1411s] with very, very tight stop losses. Right.
+[1411s-1414s] With the break in retest or sorry, with the play the open,
+[1414s-1418s] you need to give a room to breathe just because it's right into the open.
+[1418s-1420s] Right. So with the examples, once again, the risk level will make more sense.
+[1421s-1424s] But the risk level is not based off of intraday price action,
+[1424s-1426s] but rather the higher time frame levels of support.
+[1426s-1429s] OK. Or resistance, depending on if it's short or long.
+[1431s-1432s] Now, for our profit targets,
+[1432s-1436s] this is the exact same slide as the slide you guys saw last week.
+[1436s-1438s] Right. The exact same profit targets. Right.
+[1438s-1441s] So high of day slash low of day key levels and pattern high and low.
+[1441s-1445s] OK. So with this, once again, you know, if I'm playing the open
+[1445s-1449s] or whatever I'm playing, the high of day depends.
+[1449s-1452s] Now, of course, it depends if the high of day is very, very close.
+[1453s-1456s] Right. Like if it's like, let's see, we have key level right here.
+[1456s-1459s] If the high of day is like right here, then obviously I'm not going to take
+[1459s-1461s] the high of day if it's like not even a 10 cent move.
+[1462s-1464s] However, for the most part, if let's say we dip down
+[1464s-1468s] significantly to our key level, which we had, then, yeah,
+[1468s-1470s] I'm going to take that high of day skill. Right.
+[1470s-1471s] But for the most part, right.
+[1471s-1473s] High of day skills, low of day skills, key levels,
+[1474s-1477s] which are most likely going to be on the higher time frame
+[1477s-1480s] or even pre-market high or low, depending on, you know,
+[1480s-1482s] where pre-market high and low is. Right.
+[1482s-1484s] It could be a pre-market high and low key level
+[1484s-1486s] or the pattern high and pattern low.
+[1486s-1489s] So, for example, let's say this is the four hour chart. Right.
+[1489s-1491s] So this is the four hour chart. Right.
+[1491s-1492s] So let's just put four. Right.
+[1492s-1496s] Let's say on the four hour chart, we had the flag pattern, right.
+[1496s-1498s] Forming like this. Right.
+[1498s-1499s] So we had that flag pattern.
+[1499s-1504s] Now, the high of this flag pattern right here on the one minute chart,
+[1504s-1506s] when we're entering into the trade. Right.
+[1506s-1508s] Let's say we're entering into the trade. Right.
+[1508s-1510s] And let's say the flag pattern high is right up here.
+[1510s-1515s] My final targets might be this four hour sorry,
+[1515s-1518s] this four hour top of this flag pattern. OK.
+[1518s-1522s] So though I'm going to take some off a high of day, right,
+[1522s-1525s] maybe even a key level, the final level or the final place
+[1525s-1527s] that the stock most likely will reach
+[1527s-1530s] is going to be that high of day flag pattern
+[1530s-1533s] or this that high of the flag pattern. OK.
+[1533s-1535s] So does that make sense for the profit targets?
+[1535s-1538s] It's the exact same really as the overall break
+[1538s-1539s] and retest strategy.
+[1539s-1541s] Just a little bit different in terms of, you know,
+[1541s-1544s] because high of day and low of day might be so, so close
+[1544s-1547s] because it's right into the open that we might have to just wait
+[1547s-1548s] for that key level. But does that make sense?
+[1554s-1556s] Got it. Yes, yes, yes.
+[1558s-1561s] Yes. 13.
+[1561s-1565s] So someone someone said someone just said repeat really quickly.
+[1565s-1567s] So I'm just going to repeat really, really quickly on what I said.
+[1567s-1570s] High of day, low of day, high of day might be a little bit too close.
+[1570s-1573s] Therefore, we need to make sure that the profit target
+[1573s-1576s] is obviously not going to be a negative risk to reward.
+[1576s-1579s] Therefore, sometimes it might not be high of day slash low of day
+[1579s-1581s] compared to the break and retest because high of day
+[1581s-1583s] and low of day might be too close going into the open.
+[1583s-1586s] The key level we're looking for is going to be a higher time frame
+[1586s-1588s] key level, which we'll talk about more in the examples
+[1588s-1589s] and it'll make more sense.
+[1589s-1591s] And then finally, the pattern high and low is going to be if,
+[1591s-1594s] for example, if you have a flag in the top of that flag pattern
+[1594s-1597s] might be the final profit target you have for your profit targets.
+[1597s-1599s] OK, so that's just a quick summary for someone that asked
+[1600s-1602s] that said that it didn't make sense.
+[1602s-1605s] But once again, you guys really need to see the examples
+[1605s-1606s] to make sure that you understand this.
+[1606s-1609s] And we're going to see the examples here in like one slide.
+[1610s-1614s] So with the examples that I was talking about,
+[1615s-1619s] let me open up those examples to do to do.
+[1622s-1625s] Let's open up this share screen.
+[1626s-1631s] Um, can you guys see my screen?
+[1631s-1635s] Can you guys see the screen? All right, cool.
+[1635s-1639s] So once again, this is going to be about 15 to 16 minutes of examples.
+[1639s-1642s] OK, so we have 16 minutes of playing the open examples
+[1642s-1643s] that I want to show you guys.
+[1643s-1646s] And then we're going to talk a little bit more.
+[1646s-1649s] So, by the way, the higher time frame and the playing the open,
+[1649s-1651s] it's combined within this. Right.
+[1651s-1653s] So this is all kind of combined.
+[1653s-1656s] So after this 15, 16 minutes, we're going to go over to today.
+[1656s-1659s] And I want to talk about some things that I saw on the higher time frame
+[1660s-1663s] that the reason some of the stocks move that they how they did.
+[1663s-1666s] And then from there, we're going to talk about some some,
+[1666s-1669s] you know, things that you could have potentially seen as well
+[1669s-1670s] on the higher time frame today.
+[1670s-1673s] So if you do have time or actually let's watch this video first.
+[1673s-1674s] And then we'll talk about that. Right.
+[1674s-1675s] So let's watch this video.
+[1675s-1677s] Just type one in the chat when I start playing the video,
+[1677s-1679s] if you guys can hear the video properly.
+[1679s-1683s] OK, now we're going to be going over some examples for this workshop.
+[1683s-1685s] So for this workshop, like I talked about,
+[1685s-1687s] we're going to be doing that multi time frame analysis.
+[1687s-1690s] And we're also going to be looking at the higher time frame
+[1690s-1691s] on how to play the open.
+[1691s-1695s] So one thing that I personally like to use for myself
+[1695s-1697s] when I'm identifying patterns on the higher time frame
+[1697s-1700s] is simply just the one hour or four hour.
+[1700s-1702s] And then I like to look at the high Kenashie candles.
+[1702s-1704s] Now, of course, the higher the time frame,
+[1704s-1705s] the better the move is going to be.
+[1705s-1707s] The move is going to be.
+[1707s-1709s] But in this example here, I just want to show you
+[1709s-1711s] why you can identify things with the high Kenashie
+[1711s-1714s] that simply you couldn't identify with other charts.
+[1714s-1716s] So here we are on the AJ candles.
+[1716s-1720s] And as we can see, this makes it very, very clear.
+[1720s-1724s] It shows you very, very clearly different type of pattern
+[1724s-1727s] setups and recognition of those patterns
+[1727s-1732s] that you simply could not see on the regular chart.
+[1732s-1735s] So as we can see here, you kind of see this flat top forming.
+[1736s-1739s] And the problem with this, if we just go on the regular chart
+[1739s-1742s] and show you all the examples I just drew,
+[1742s-1744s] it's a little bit harder to identify that
+[1744s-1745s] on the real chart.
+[1745s-1746s] Look at this one.
+[1746s-1748s] Definitely a little bit harder to identify.
+[1748s-1750s] And on the AJ candles,
+[1750s-1753s] it just makes it a little bit more simple to identify.
+[1753s-1755s] As we can see here, much, much more clear,
+[1755s-1759s] much, much more clear and very, very, very clear.
+[1759s-1762s] And so that's just one quick tip that I do have
+[1762s-1763s] when you're looking at the higher time frame
+[1763s-1765s] if you're trying to identify patterns on the day.
+[1765s-1767s] Go to the four hour, go to the one hour,
+[1767s-1769s] and simply just look at the AJ candles
+[1769s-1772s] to see any patterns that form.
+[1772s-1774s] And you can do this first and then mark out
+[1774s-1776s] your key levels and everything like that.
+[1776s-1778s] But I like to just go on the AJ candles
+[1778s-1780s] just to identify any patterns that might be forming
+[1780s-1785s] that I simply cannot see within the actual bar chart.
+[1785s-1787s] So on this Heiken Ashi candle, on the one hour,
+[1787s-1787s] what do I see?
+[1787s-1790s] On the Heiken Ashi, you can't do the replay feature
+[1790s-1791s] and therefore I'm just blocking out
+[1791s-1792s] what's happening next.
+[1792s-1797s] All right, you can clearly see this bear flag forming
+[1797s-1798s] on SPY here.
+[1798s-1799s] We have a very, very strong move
+[1799s-1800s] and then the bear flag forming.
+[1800s-1804s] Now with Heiken Ashi, we were able to identify the pattern.
+[1804s-1805s] Now let's go over to the regular chart
+[1805s-1807s] to actually identify what's going on.
+[1807s-1809s] Okay, here we are on the regular charts
+[1809s-1811s] and we've drew this out with the Heiken Ashi candles
+[1811s-1813s] and we can see this is when the market closed
+[1813s-1816s] on the 24th and we see very, very clearly
+[1816s-1818s] SPY is making this bear flag to the downside.
+[1818s-1821s] This shows that if the SPY keeps this up,
+[1821s-1824s] during the open, we can trade this bear flag
+[1824s-1826s] to the downside and we have a pretty good understanding
+[1826s-1828s] that the stock will be trending to the downside
+[1828s-1830s] and therefore we can take those aggressive entries
+[1830s-1833s] because we understand the higher timeframe aligns
+[1833s-1834s] with our shorter timeframe entries.
+[1834s-1836s] Okay, now what we're gonna do here
+[1836s-1839s] is go down to the one minute timeframe.
+[1839s-1841s] On the one minute timeframe here, what do we see?
+[1841s-1844s] Well, we see that we did form that bear flag
+[1844s-1847s] and we actually are breaking it during pre-market.
+[1847s-1850s] So how would we want to enter into the stock
+[1850s-1852s] or look for potential entries?
+[1852s-1854s] Well, for me, it's very simple.
+[1854s-1857s] We would either want a retest of that flag, right?
+[1857s-1858s] That would be the number one entry.
+[1858s-1860s] I would mark out the pre-market low level
+[1860s-1863s] which is right here, okay?
+[1863s-1866s] And I would simply wait for the stock to come back
+[1866s-1868s] into this level right here, right?
+[1868s-1870s] And move all the way down.
+[1870s-1872s] So let's keep playing this trade out.
+[1875s-1877s] The stock broke below pre-market low here
+[1877s-1879s] and right here we see, you know,
+[1879s-1881s] not a complete retest,
+[1881s-1883s] but because we have those aggressive entries,
+[1883s-1886s] we could enter in on the potential of this trade right here
+[1886s-1887s] because of the higher timeframe
+[1887s-1890s] and the very nice opening dip, okay?
+[1890s-1893s] So we would enter in for a short position right here
+[1893s-1895s] on the stock and where would our profit targets be?
+[1895s-1896s] Like I talked about before,
+[1896s-1899s] our profit targets here were this structure formed,
+[1899s-1901s] right, so this structure formed
+[1901s-1902s] based off of these candles right here.
+[1902s-1904s] So that's where our profit target would be.
+[1904s-1907s] Now, of course, this is a very, very far profit target.
+[1907s-1908s] You guys know for me,
+[1908s-1910s] my profit target would be a little bit closer as well,
+[1910s-1911s] just so I can get some scales out
+[1911s-1914s] and we can have that previous day level there as well
+[1914s-1915s] for another profit target
+[1915s-1918s] so we can actually hold for this complete move, right?
+[1918s-1919s] Now this complete trade would result
+[1919s-1923s] in an about 9.17 trade, right?
+[1923s-1926s] And your stop loss here would be a close
+[1926s-1929s] simply above this level right here now, right?
+[1929s-1932s] And you can have your stop above the previous candle
+[1932s-1935s] that broke, right, with that 931 candle can be your stop.
+[1935s-1937s] Okay, and this is because if we do break back
+[1937s-1939s] above this level of pre-market low, right,
+[1939s-1940s] we could see some consolidation
+[1940s-1942s] before we see another move down, right?
+[1942s-1944s] Or we could come back all the way up here
+[1944s-1947s] and retest this previous higher timeframe level
+[1947s-1949s] and therefore we simply just don't wanna be in that trade
+[1949s-1950s] after it does break above, right?
+[1950s-1953s] And that's why that stop loss is okay, right?
+[1953s-1955s] So this would be an 8.23 risk to reward trade.
+[1955s-1958s] Of course, we would scale F420s here as well
+[1958s-1960s] and then we would probably have one more scale
+[1960s-1963s] at around 420s, that whole psych number,
+[1963s-1964s] and then we would hit our full profit target.
+[1964s-1967s] But overall, that's how that trade
+[1967s-1970s] would play out for the open, right?
+[1970s-1972s] So let's play out this trade if we were to enter here.
+[1976s-1978s] Right, that would be our first scale right there
+[1978s-1982s] at 420.74s, right, very, very simple scale, right?
+[1982s-1985s] We come back down, we keep moving down,
+[1985s-1987s] there's that 420 scale as well.
+[1990s-1994s] So, so far we have our two scales already in,
+[1994s-1995s] locked in for the day.
+[1995s-1998s] And now we would simply just wait
+[1998s-1999s] for the rest of the price action
+[1999s-2001s] to continue to the downside.
+[2002s-2004s] And the reason we scale is once again,
+[2004s-2008s] so we can hold it to that full profit target, right?
+[2008s-2010s] Because if I didn't scale in and out of this trade,
+[2010s-2012s] right, I simply wouldn't be able to hold it
+[2012s-2013s] to that profit target, right?
+[2013s-2016s] We try to break back above 420.74s.
+[2016s-2019s] Unfortunately, the stock, or fortunately for us,
+[2019s-2021s] the stock could not hold above that level.
+[2021s-2023s] And we keep continuing to make a move down.
+[2023s-2026s] We can play this a little bit faster now, right?
+[2026s-2028s] We come back up, we never hit our stop.
+[2032s-2036s] And we do hit our profit target, right?
+[2036s-2038s] So we're going to hit our profit target,
+[2038s-2040s] and we're going to hit our profit target,
+[2040s-2042s] and we're going to hit our profit target,
+[2042s-2045s] and we do hit our profit target, right?
+[2045s-2047s] All the way down here.
+[2047s-2048s] Now, here's the thing.
+[2048s-2051s] This trade did take a very, very, very long time
+[2051s-2052s] to work out, right?
+[2052s-2054s] You would be done at 105,
+[2054s-2057s] and it did come back up to near our stop loss, right?
+[2057s-2059s] So this trade was once again,
+[2059s-2062s] an example of a time that you do play the open,
+[2062s-2064s] and those scales are what really, really helps you.
+[2064s-2066s] Those scales at those key levels, right?
+[2066s-2069s] 420.74s, 420 key level scale, right?
+[2069s-2071s] You could have a 419 scale
+[2071s-2073s] because that's another psych level,
+[2073s-2075s] and then you can potentially ride this
+[2075s-2077s] all the way down, right?
+[2077s-2079s] However, once again, we do see that move
+[2079s-2081s] all the way back up near our stop loss,
+[2081s-2083s] but if you did scale properly on this trade, right,
+[2083s-2084s] this was a very, very good trade,
+[2084s-2085s] and how to play the open, right?
+[2085s-2088s] We entered into this trade about one, two, three, four,
+[2088s-2089s] five minutes into the open.
+[2089s-2091s] Most of the trade, I'd say 70% of the trade
+[2091s-2093s] worked out right before 10.30,
+[2093s-2096s] and then you did have to wait for the final scales
+[2096s-2098s] all the way down to 418.06s.
+[2098s-2101s] However, right, that's just how the market played out,
+[2101s-2103s] and that was a very good example of how to play the open.
+[2103s-2106s] Now let's go look at another example.
+[2106s-2108s] Here we are on another example.
+[2108s-2110s] Here we're on Tesla.
+[2110s-2111s] Now on Tesla, what do we see?
+[2111s-2113s] We see this wedge pattern forming
+[2113s-2114s] on the one hour timeframe.
+[2114s-2115s] On the one hour timeframe,
+[2115s-2117s] we see this wedge to the downside,
+[2117s-2120s] and then we also see this upper trend line
+[2120s-2121s] on the wedge as well.
+[2121s-2124s] Overall, Tesla does have a very, very strong downtrend,
+[2124s-2125s] and we are forming a wedge.
+[2125s-2127s] Now the wedge could break in either direction,
+[2127s-2128s] and therefore, for us,
+[2128s-2130s] what we would be waiting for to play the open
+[2130s-2133s] or the higher timeframe is a break of that wedge pattern.
+[2133s-2135s] We would wanna break to either side,
+[2135s-2137s] and that's how we would play this specific trade.
+[2137s-2141s] So let's go on over to the one minute timeframe here
+[2141s-2144s] and mark out some key levels.
+[2144s-2147s] So like I said, we would want to wait for Tesla
+[2147s-2151s] to actually show or indicate some strength or weakness.
+[2151s-2154s] So I would mark out the pre-market low here,
+[2154s-2157s] and then I would mark out the pre-market high,
+[2157s-2159s] and Tesla would have to break either of these levels
+[2159s-2162s] to show some strength or weakness within the stock, okay?
+[2162s-2165s] So let's play out this trade here
+[2165s-2167s] and see exactly which way we want to move.
+[2170s-2173s] Okay, right into the open here, what do we see?
+[2173s-2178s] Right, we see a break below 209s,
+[2178s-2181s] and then we see that the 209 is holding, right?
+[2181s-2183s] Or that timeframe here is holding,
+[2183s-2187s] but we are below that 209 level, okay?
+[2187s-2190s] So this wouldn't give me enough confirmation to enter.
+[2190s-2193s] The reason this is is because we held that wedge, yes,
+[2193s-2196s] but we are still below that pre-market low level, okay?
+[2196s-2199s] So there is no trade yet, right?
+[2199s-2201s] I wanna make that very clear, there is no trade yet.
+[2207s-2209s] We come back right above this.
+[2209s-2212s] We're seeing Tesla kind of make some new highs here,
+[2212s-2214s] but we're still within the wedge, right?
+[2214s-2215s] We're still within this wedge.
+[2218s-2222s] Okay, and now look, we came back, we broke,
+[2222s-2224s] we actually retested Tesla at that 209,
+[2224s-2226s] but like I said, we want a break
+[2226s-2228s] of either of these levels on the wedge
+[2228s-2230s] to play that higher timeframe level,
+[2230s-2232s] and you could have entered in on this wedge, sure,
+[2232s-2234s] right, but look, now we've actually broken
+[2234s-2235s] below the wedge.
+[2235s-2238s] So now this will give us a proper entry confirmation.
+[2240s-2242s] And you know, this is once again,
+[2242s-2245s] another one of those wicks, but right here, right,
+[2245s-2247s] we can see that we're coming back up
+[2247s-2250s] into that wedge, and we actually reject
+[2250s-2252s] that wedge pattern rate to the downside.
+[2252s-2254s] So this is a retest of that wedge.
+[2254s-2256s] Now this wick, yeah, once again,
+[2256s-2258s] not actually a real wick, right,
+[2258s-2260s] that's just some price action with TradingView
+[2260s-2262s] that's been happening for some time.
+[2262s-2264s] However, right, still a bearish candle,
+[2264s-2266s] still a retest, and a really, really good retest
+[2266s-2268s] for that move to the downside.
+[2268s-2270s] So where would our profit targets
+[2270s-2272s] for this specific example be?
+[2272s-2274s] Well, we can simply go back to the one-hour timeframe,
+[2275s-2278s] and we can see here on the one-hour timeframe, right,
+[2278s-2281s] we have a profit target down here
+[2281s-2285s] where this flag pattern actually started at 203.69,
+[2285s-2288s] and then we have another one down here at 202.52.
+[2288s-2291s] Okay, so we can come back to the one-minute timeframe,
+[2291s-2294s] right, and let's see how we would scale
+[2294s-2296s] in and out of this trade.
+[2296s-2298s] So we enter in on the trade here.
+[2298s-2300s] This would be a short position.
+[2300s-2302s] Our stop, our profit targets are down here
+[2302s-2305s] at about 203.70s, and then our final one
+[2305s-2308s] would be about 202.50s, and our stop loss
+[2308s-2310s] in this specific scenario would simply be
+[2310s-2314s] just a break above, right, this previous 209.02 level,
+[2314s-2317s] or just a break a little bit above this previous high
+[2317s-2318s] that we made right here, right,
+[2318s-2321s] so we can simply just have our stop loss right up here.
+[2321s-2324s] And this would be a 4.35 risk-to-reward trade.
+[2324s-2327s] Let's play out this trade and see exactly what happens.
+[2328s-2330s] There we go, we made a new low of day, right,
+[2330s-2332s] you can scale on that low of day.
+[2333s-2334s] That wick was fake, right, we haven't actually hit
+[2334s-2336s] that profit target yet, it was just a fake wick.
+[2339s-2341s] For this specific example, right,
+[2341s-2342s] just look at the body candles,
+[2342s-2344s] just because there is some wick action going on
+[2344s-2346s] that isn't real.
+[2346s-2348s] There's our second profit target,
+[2348s-2349s] if you took some low of day,
+[2349s-2351s] there's your profit target to help you keep
+[2351s-2353s] in the trade, and then finally,
+[2353s-2356s] you have your third profit target down there as well,
+[2356s-2358s] which hit right there, right.
+[2358s-2361s] And just like that, right, very, very simple trade.
+[2361s-2364s] You can see how you play the open, right,
+[2364s-2366s] we still use the retest a little bit, right,
+[2366s-2369s] but the overall thesis of that trade was much,
+[2369s-2372s] much more based off of the higher timeframe, okay.
+[2372s-2374s] Now, this was October 30th,
+[2374s-2377s] if you go to the trade review for October 30th,
+[2377s-2380s] we took this specific trade, right.
+[2380s-2381s] So this was the trade on Tesla,
+[2381s-2383s] now let's go over to one final example
+[2383s-2385s] to really tie this all in and help you guys
+[2385s-2387s] really, really understand how to play the open
+[2387s-2388s] and how to look at the higher timeframe.
+[2388s-2390s] Here we are on our last example,
+[2390s-2391s] here we're on Nvidia,
+[2391s-2394s] and this is not as much of a pattern,
+[2394s-2396s] but more of just the break and retest
+[2396s-2398s] on a higher timeframe that I wanna talk about.
+[2398s-2400s] So here, what do we see on the video, right,
+[2400s-2402s] we see that we had this bottom on a video,
+[2402s-2403s] we consolidated it,
+[2403s-2404s] and then we broke below that bottom, right,
+[2404s-2406s] which was a low on a video, right,
+[2406s-2408s] it was a lower low,
+[2408s-2409s] we broke below it,
+[2409s-2412s] and now we're coming back pre-market
+[2412s-2414s] and we're retesting that low,
+[2414s-2415s] what does this mean?
+[2415s-2417s] This means this is a simple break and retest
+[2417s-2418s] on the higher timeframe
+[2418s-2420s] that we could enter into, right,
+[2420s-2423s] right into the opening of the day, right,
+[2423s-2424s] based off of the key level
+[2424s-2426s] without having to wait for the break and retest
+[2426s-2427s] on the lower timeframe,
+[2427s-2429s] because we understand it's a break and retest
+[2429s-2430s] on the higher timeframe
+[2430s-2433s] and we can simply just use this level here.
+[2433s-2436s] Okay, so let's go over to the one minute timeframe,
+[2436s-2439s] we see that there's a break and retest set up forming,
+[2440s-2442s] let's actually play this out till 9.30,
+[2442s-2445s] so we see exactly what happens, 9.30,
+[2445s-2446s] okay, now we're at 9.30,
+[2446s-2448s] how would you play this trade out?
+[2448s-2449s] So we can see that the retest
+[2449s-2451s] already occurred on the video.
+[2451s-2454s] Now, I would mark out this pre-market low level right here,
+[2454s-2456s] okay, for our profit targets
+[2456s-2457s] in this specific trade rate,
+[2457s-2459s] we can have profit targets here
+[2459s-2461s] at previous day levels as well, right,
+[2461s-2463s] so, and then previous day levels right there as well,
+[2463s-2467s] right, so 4.34.09s and 4.33.88s,
+[2467s-2468s] so let's play this trade out
+[2468s-2471s] and see exactly how we can trade it.
+[2471s-2473s] So the first thing that I see right into the open
+[2473s-2475s] right here is, you know,
+[2475s-2477s] we see that a very, very bearish candle
+[2477s-2479s] right here being put in
+[2479s-2480s] and then we see some consolidation
+[2480s-2482s] and this kind of looks like a bear flag
+[2482s-2484s] also forming to the downside, right,
+[2484s-2486s] with a very, very weak price action candle
+[2486s-2487s] near that pre-market low level.
+[2487s-2489s] So we can enter into a short position
+[2489s-2491s] based off of this candle,
+[2491s-2492s] our stop loss here would have to be
+[2492s-2494s] a break of that high, right,
+[2494s-2496s] so a break of the actual day's high
+[2496s-2497s] because until we break that rate,
+[2497s-2500s] we still have that bearish, bearish sentiment
+[2500s-2502s] on the stock and our profit targets
+[2502s-2505s] are simply going to be near that 4.34 level
+[2505s-2508s] and then also 4.31.88s.
+[2508s-2511s] This would be about a 2.0 risk to reward trade, right,
+[2511s-2514s] very simple trade based off the pre-market level
+[2514s-2515s] and the higher timeframe,
+[2515s-2516s] we would enter into the trade here
+[2516s-2518s] and let's see exactly what happens.
+[2522s-2523s] Right, we did take a little move up here
+[2523s-2524s] after low of day,
+[2524s-2526s] however, our stop is still up there,
+[2526s-2527s] so which is fine.
+[2527s-2528s] There's our first profit target, right,
+[2528s-2531s] you would have taken your first profits right here.
+[2535s-2537s] Notice how we do have to sit through
+[2537s-2538s] a little bit of consolidation here, right,
+[2538s-2541s] and this is exactly why you wanna take those scales, right,
+[2541s-2543s] it's very, very important that you take those scales
+[2543s-2545s] so you can sit through this kind of consolidation,
+[2545s-2546s] period, right.
+[2546s-2549s] Now, this is, you know, not to mention,
+[2549s-2551s] we're not seeing the background of what's going on
+[2551s-2553s] with QQQ, right, or market context.
+[2553s-2555s] There's our second profit target, by the way,
+[2555s-2556s] and notice how we did come back
+[2556s-2559s] to retest this level up here near 4.36.88s,
+[2559s-2562s] but we never broke above that level.
+[2562s-2563s] Now, notice how we did come back
+[2563s-2564s] above that level.
+[2564s-2567s] Now, one thing I wanna mention is, you know,
+[2567s-2570s] we don't see with, while playing the open,
+[2570s-2571s] we don't see what's going on,
+[2571s-2573s] or giving these examples at least,
+[2573s-2574s] I'm not, you know, showing what's going on
+[2574s-2577s] with QQQ at the same time, right,
+[2577s-2579s] or SPY, or any other, you know, ticker
+[2579s-2581s] that you can relate whatever stock
+[2581s-2582s] you're playing to with.
+[2582s-2584s] So it's really important to have that market context
+[2584s-2588s] in mind as well, however, just playing the open
+[2588s-2590s] with the higher timeframe is a very, very good way
+[2590s-2593s] to get a high probability trade-in right into the open,
+[2593s-2595s] or maybe even a couple minutes after the open,
+[2595s-2598s] but it'll help you understand and build a thesis
+[2598s-2599s] around your trades, okay?
+[2599s-2602s] And that's what I come in with every single day
+[2602s-2604s] during pre-market, every single day during pre-market,
+[2604s-2606s] before live trading, I always talk about
+[2606s-2608s] what my thesis is going into the day.
+[2608s-2610s] Now, as you guys know, I don't like to have a bias
+[2610s-2612s] going into the day, but if there's a very strong
+[2612s-2614s] higher timeframe pattern set up that's going on,
+[2614s-2616s] I will talk about it, and I will put a little bit
+[2616s-2618s] more emphasis on that pattern, right?
+[2618s-2620s] Once again, I will always trade the price action
+[2620s-2621s] that's presented to me,
+[2621s-2623s] but I will have a little bit more emphasis
+[2623s-2626s] on different tickers if they have a better
+[2626s-2628s] higher timeframe pattern, okay?
+[2628s-2630s] And these higher timeframe patterns happen all the time,
+[2630s-2632s] not every single day will they occur,
+[2632s-2634s] but they do happen all the time, right?
+[2634s-2636s] So you just have to be mindful of what stock
+[2636s-2639s] has a higher timeframe pattern that it's giving you, okay?
+[2639s-2642s] So I hope this made sense to you.
+[2642s-2645s] I hope these examples helped you see how to play
+[2645s-2648s] the open and exactly what I would be looking for
+[2648s-2648s] with the multi-time.
+[2650s-2652s] All right, so does that make sense?
+[2652s-2655s] Let me just make sure I answer some of the questions here,
+[2656s-2658s] and then we can go from there.
+[2658s-2659s] This is gold, isn't that great, Kanita?
+[2659s-2662s] So why can't we add more on the bounce?
+[2662s-2663s] I'm not sure where that part was.
+[2663s-2665s] Can we explore the Apple example today?
+[2665s-2667s] That's exactly the example we're gonna talk about today.
+[2667s-2669s] We can't see the edges of your screen.
+[2669s-2671s] Please squeeze a little bit the charts
+[2671s-2673s] when drawing the levels.
+[2673s-2675s] I think Zoom will have that,
+[2675s-2677s] like when you re-watch the recording,
+[2677s-2678s] I think Zoom will be fine on that.
+[2678s-2679s] I'm on the MacBook,
+[2679s-2682s] so I think that's just what the MacBook does with Zoom,
+[2682s-2684s] but I think for the recording, it'll be fine.
+[2684s-2686s] Is it only bearish or just a coincidence
+[2686s-2687s] why you didn't take the first break of level
+[2687s-2690s] and waited for the break and read test?
+[2690s-2692s] I think we have to look at one more example
+[2692s-2693s] for me to answer that question.
+[2693s-2694s] On these trades examples,
+[2694s-2696s] we have not considered confluence of QQ.
+[2696s-2697s] So when we're looking at these trades,
+[2697s-2698s] especially how to play the opens, right?
+[2698s-2701s] So we're looking for that relative strength and weakness
+[2701s-2704s] to come in from the higher timeframe, right?
+[2704s-2705s] So the higher timeframe,
+[2705s-2706s] we're putting a little bit more emphasis
+[2706s-2707s] on the higher timeframe.
+[2707s-2709s] Yes, it's important to look at QQ,
+[2709s-2711s] and I talked about that as well, right?
+[2711s-2712s] It's important to look at QQ
+[2712s-2714s] for the overall price action of the day as well.
+[2714s-2715s] However, with the higher timeframe,
+[2715s-2717s] especially playing the open,
+[2717s-2718s] we're putting a little bit more emphasis
+[2718s-2720s] on the higher timeframe, right?
+[2720s-2721s] We're putting it on the higher timeframe
+[2721s-2722s] rather than QQ.
+[2722s-2724s] Now our edge still comes from QQ.
+[2724s-2726s] However, the higher timeframe,
+[2726s-2727s] if the trend continues,
+[2727s-2729s] especially after a breakout pattern, right?
+[2729s-2731s] It'll have the best risk to reward,
+[2731s-2734s] and therefore if we can enter in very quickly, right?
+[2734s-2735s] Then we, or say if we can enter in
+[2735s-2736s] at the lowest risk, right?
+[2736s-2738s] Then technically we're only risking $100, $200
+[2738s-2741s] to make a potential of two, three, four R, okay?
+[2742s-2744s] My question is, when you take profit on partial
+[2744s-2746s] and it bounces back to your entry,
+[2746s-2748s] why can you not add more?
+[2748s-2749s] You could add more.
+[2749s-2752s] That's depending on you and your personal system
+[2752s-2753s] within your strategy.
+[2753s-2756s] For me personally, I just, it's just the cycle.
+[2756s-2758s] That is more about psychology.
+[2758s-2759s] Are you comfortable adding more
+[2759s-2761s] knowing that you could go straight back
+[2761s-2762s] to your stop loss?
+[2762s-2763s] Or are you comfortable knowing
+[2763s-2764s] that if it hits your stop loss,
+[2764s-2766s] you're still be break even for the day?
+[2766s-2768s] That depends on you and your own psychology, right?
+[2768s-2770s] You can do that 100%.
+[2770s-2773s] However, for me personally, right?
+[2773s-2776s] I like the peace of mind of knowing
+[2776s-2777s] that if it comes back to my stop,
+[2777s-2780s] I'll still be green on that trade.
+[2780s-2782s] Now it depends on certain scenarios.
+[2782s-2784s] I will add more on certain scenarios, different trades,
+[2784s-2787s] but for the simplicity of this, right?
+[2787s-2791s] We're just gonna talk about one entry every time
+[2791s-2794s] rather than scaling in on your entries, okay?
+[2794s-2796s] So it's a break of a key level and higher timeframe.
+[2796s-2798s] So it's just a break of key level
+[2798s-2800s] of the higher timeframe at the open.
+[2800s-2802s] Exactly, something very useful I learned
+[2802s-2804s] on this mastermind is we need our strategy
+[2804s-2805s] to be aligned on the smaller timeframe
+[2805s-2806s] and higher timeframe 100%.
+[2806s-2809s] Yes, always I do even break even or have a loss.
+[2809s-2813s] Okay, so with this, let's go over to a chart.
+[2813s-2816s] Let's go over to the Apple chart really quickly.
+[2816s-2821s] Let me make sure this screen is being shared.
+[2828s-2830s] All right, can you guys see the screen?
+[2833s-2837s] Cool, so now one thing I want you to see here
+[2837s-2838s] is this is the higher timeframe
+[2838s-2841s] we talked about yesterday on QQQ, right?
+[2841s-2842s] You can see that Q's pushed up
+[2842s-2844s] and the QQQ's pushed up,
+[2844s-2846s] you can see that Q's pushed up
+[2846s-2848s] and it did the break and retest on the lower timeframe, right?
+[2848s-2850s] So this was a lower timeframe break
+[2850s-2852s] or say on the higher timeframe.
+[2852s-2854s] So this was a higher timeframe break and retest
+[2854s-2855s] but it still works out, right?
+[2855s-2857s] So you saw the break and retest here.
+[2857s-2858s] So for the next couple of days
+[2858s-2860s] based off of the price action, right?
+[2860s-2862s] Because it was in your favor,
+[2862s-2867s] you could have had the thesis going into the day
+[2867s-2868s] that you should go long.
+[2868s-2872s] Now after those like, what did we have?
+[2872s-2875s] One, two, three, four, five, six, seven,
+[2875s-2876s] basically eight days of an uptrend.
+[2876s-2879s] Right now we're finally creating this gap on Q.
+[2879s-2882s] So tomorrow, right, we could go into the day
+[2882s-2884s] with a potential gap trade thesis coming in.
+[2884s-2885s] However, we're gonna have to see
+[2885s-2887s] price action tomorrow more specifically
+[2887s-2890s] but the trade I wanted to actually get into right now
+[2890s-2891s] was going to be the Apple trade.
+[2892s-2895s] So let's get into that really quick.
+[2897s-2898s] Open this up.
+[2903s-2904s] Give me a second.
+[2904s-2907s] I don't know why my laptop is being so slow.
+[2909s-2912s] So here's the Apple trade from today.
+[2912s-2915s] Now, what was happening on the Apple trade
+[2915s-2918s] is on the four hour timeframe, I believe.
+[2920s-2921s] On the four hour timeframe,
+[2921s-2922s] or no, it was a one hour timeframe.
+[2922s-2924s] On the one hour timeframe,
+[2924s-2927s] what we can see is an impulsive push up, right?
+[2927s-2929s] An impulsive move to the upside.
+[2929s-2931s] And then we were seeing this kind of
+[2931s-2933s] flat top slash flag pattern, right?
+[2933s-2934s] Can you guys see that
+[2934s-2936s] on the pre market slash after hours, right?
+[2936s-2938s] We were seeing kind of this flat top
+[2938s-2940s] slash flag pattern kind of being created right here,
+[2940s-2941s] right?
+[2941s-2943s] Something like this, right?
+[2943s-2944s] Something like that.
+[2944s-2947s] And we were waiting for the open, right?
+[2947s-2949s] Because this was once again, the all time highest place.
+[2949s-2952s] Plus we had AI news on Apple the other day as well.
+[2952s-2955s] So Apple would have been a really good entry today.
+[2955s-2957s] And when we go to the open of the day,
+[2958s-2960s] let's move this over.
+[2961s-2963s] When we go to the open of the day,
+[2963s-2965s] wow, this laptop is lagging bad.
+[2967s-2969s] You can see the first one minute,
+[2969s-2971s] this is a name that you didn't really have
+[2971s-2972s] that much time to enter on.
+[2972s-2974s] However, if you were playing the open
+[2974s-2976s] and you had that conviction,
+[2976s-2977s] look at the first one minute candle.
+[2977s-2980s] It came back into that key level, 207.20s.
+[2980s-2983s] It held it, put in a strong price action candle.
+[2983s-2986s] You enter in here looking for probably a psych number
+[2986s-2988s] at 210 or you could use Fib numbers.
+[2988s-2990s] If you don't know how to use Fibs as well, right?
+[2990s-2993s] Please refer to the live session today.
+[2993s-2995s] I think Jaydub talked about it,
+[2995s-2997s] but you could look for even two tens
+[2997s-2999s] and your stop loss in this scenario right here,
+[2999s-3001s] literally just had to be that low,
+[3001s-3003s] the pre-market low right here, right?
+[3003s-3005s] So pre-market low looking for two tens.
+[3005s-3008s] So that gave the trade some room to breathe.
+[3008s-3009s] But at the same time,
+[3009s-3011s] you still had at least a two R multiple
+[3011s-3012s] and then you could ride the trailers
+[3012s-3014s] for the rest of the day, right?
+[3014s-3017s] So today was a great example on Apple
+[3017s-3020s] of the higher timeframe and how to play the open, okay?
+[3020s-3023s] Now I wanna show you one more example
+[3025s-3029s] on the Nvidia, I believe it is.
+[3031s-3034s] So here we can see on Nvidia today as well.
+[3034s-3036s] Look at what happened on Nvidia, right?
+[3036s-3037s] So we had this range
+[3037s-3039s] and we've had this range
+[3039s-3041s] for a little while now on Nvidia,
+[3041s-3044s] but this morning pre-market,
+[3044s-3046s] we're coming up and we're trying to break
+[3046s-3048s] this 122.84 level, right?
+[3048s-3051s] We're trying to break this 122.84 level.
+[3051s-3053s] Now, if we go to the one minute timeframe,
+[3055s-3058s] when we did come up for that 122.84 break,
+[3058s-3060s] look at what happened during the open.
+[3060s-3062s] We came up, you could have gotten
+[3062s-3064s] the first candle right here,
+[3064s-3066s] but if you weren't comfortable,
+[3066s-3067s] it actually came back,
+[3067s-3070s] showed you that the trend is to the upside
+[3071s-3072s] and then it had a retest
+[3072s-3075s] with a strong price action candle above VWAP
+[3075s-3078s] that you could have entered in on right here
+[3078s-3080s] and because now it had a little bit more price action,
+[3080s-3082s] your stop loss didn't even have to be that far.
+[3082s-3084s] Your stop loss literally just had to be
+[3084s-3086s] a close below this candlestick, right?
+[3086s-3088s] A close below this candlestick
+[3088s-3091s] with your profit targets basically up here at 125.52
+[3091s-3093s] for this would have been a 2.8 art rate.
+[3093s-3094s] Now I know today was FMC,
+[3094s-3096s] so we're kinda talking about this
+[3096s-3098s] with of course news factors going on,
+[3098s-3100s] but overall you guys can see
+[3100s-3101s] that this is once again,
+[3101s-3102s] another higher timeframe level trade
+[3102s-3103s] that you could have entered.
+[3103s-3105s] Now the trade that I actually had today,
+[3105s-3107s] if you guys go over here
+[3107s-3112s] and you go to the Scarface Alerts,
+[3112s-3113s] look at the trade that I had today,
+[3113s-3115s] or not had, but the trade
+[3115s-3116s] that I was talking about today.
+[3116s-3118s] I was talking about this in the video potential retest.
+[3118s-3119s] Why was I talking about this
+[3119s-3121s] in the video potential retest even on a date?
+[3121s-3123s] Why did I even talk about this trade today
+[3123s-3124s] even though it was FMC?
+[3124s-3126s] Because this was a really an A plus setup.
+[3126s-3128s] If I had personally,
+[3128s-3130s] like if I was trading today,
+[3130s-3132s] and it wasn't an FMC day,
+[3132s-3135s] this was such an easy trade to capture right here.
+[3135s-3137s] Because you literally just wait
+[3137s-3138s] for a strong price action candle.
+[3138s-3141s] You get that strong price action candle at 955.
+[3141s-3142s] Your stop loss here literally just had to be
+[3142s-3144s] this pivot right here,
+[3144s-3146s] this pivot high at 934.
+[3146s-3148s] So you had a pretty tight stop loss right here
+[3148s-3150s] because the trend is still to the upside.
+[3150s-3151s] And then your profit target
+[3151s-3153s] was literally just that all time highs play on Nvidia.
+[3153s-3155s] And then you could obviously ride the trailers,
+[3155s-3157s] which would have gave you a little bit more,
+[3157s-3158s] but this was a 3.11 trade
+[3158s-3161s] based off of the higher timeframe breakout, right?
+[3161s-3163s] So one thing you have to understand here
+[3163s-3164s] is that the higher timeframe,
+[3164s-3166s] you need to know it no matter what.
+[3166s-3167s] Even if you're playing the open
+[3167s-3168s] or the break and retest,
+[3168s-3170s] it just gives you that more conviction
+[3170s-3173s] to enter in or not enter into the trade, okay?
+[3173s-3177s] So does this make sense for the higher timeframes?
+[3177s-3178s] Do the examples make sense?
+[3180s-3182s] What do you, how do you guys feel about this?
+[3182s-3183s] Let's see.
+[3184s-3185s] Yes, yes, yes.
+[3185s-3186s] Okay.
+[3188s-3190s] Now, do you guys have questions?
+[3191s-3193s] Do you guys have questions?
+[3193s-3195s] We can answer some questions now.
+[3198s-3200s] Yeah, once again, you can always re-watch this, right?
+[3200s-3201s] You can always re-watch this.
+[3201s-3204s] There was a lot of information kind of giving it to.
+[3206s-3207s] Amazing explanations.
+[3207s-3208s] Cool, cool, cool.
+[3208s-3210s] All right, so once again,
+[3210s-3215s] tomorrow is going to be the last live session
+[3215s-3218s] for at least the first two-week bootcamp style version of it.
+[3218s-3219s] It's going to be the last session,
+[3219s-3222s] so make sure you're here tomorrow as well.
+[3223s-3224s] We're gonna try to,
+[3224s-3225s] tomorrow I'm gonna try to answer
+[3225s-3227s] way more questions and everything like that as well,
+[3227s-3229s] just to make sure everyone's on the same page.
+[3229s-3233s] And then on, I believe it is next,
+[3233s-3234s] not next Thursday, but the Thursday after,
+[3234s-3235s] so in about two weeks,
+[3235s-3237s] we're gonna do the Q&A where, you know,
+[3237s-3239s] all the questions that you've had
+[3239s-3240s] after watching the accelerator,
+[3240s-3241s] re-watching all the modules,
+[3241s-3243s] all those questions that are kind of building up,
+[3244s-3246s] you can get the answer to them all at one time.
+[3246s-3248s] And you also will have two weeks
+[3248s-3250s] to actually trade all the strategies
+[3250s-3250s] that I've been talking about
+[3250s-3252s] and kind of implement everything.
+[3252s-3253s] So you'll have a little bit more experience
+[3253s-3256s] to talk, to ask questions from.
+[3256s-3257s] And then of course, right,
+[3257s-3258s] we're gonna be here for lifetime as well.
+[3258s-3259s] That's a whole different thing,
+[3259s-3260s] but I just wanna kind of make sure
+[3260s-3262s] you guys understand the schedule going forward.
+[3262s-3265s] So far, how has the value been in the mastermind?
+[3265s-3268s] How do you guys feel about the mastermind so far?
+[3268s-3272s] I would love to know some of you guys' opinions so far.
+[3272s-3274s] Fantastic, great, fantastic.
+[3275s-3278s] 100%, appreciate that.
+[3278s-3280s] Appreciate that so much value.
+[3281s-3282s] I appreciate that.
+[3282s-3284s] Amazing, the watching accelerator is a must.
+[3284s-3287s] Outstanding, you guys, thank you, thank you, thank you.
+[3287s-3289s] So once again, who is Zalamborowu?
+[3290s-3292s] What a random question.
+[3293s-3295s] The material is good, but the pace is fast.
+[3295s-3298s] So if you think that the pace is fast, right,
+[3298s-3300s] you can always go back and you can make sure,
+[3300s-3302s] just make sure you're re-watching it, right?
+[3302s-3304s] You can always re-watch the content, right?
+[3304s-3306s] And that's why I do that final Q and A at the end,
+[3306s-3307s] by the way, right?
+[3307s-3308s] I do that final Q and A at the end
+[3308s-3311s] is if you do think that the pace is a little bit faster,
+[3311s-3314s] right, you can just go back and re-watch everything
+[3314s-3316s] to make sure that you're up to speed, okay?
+[3316s-3317s] You should have the accelerator
+[3317s-3319s] as a prerequisite for the mastermind.
+[3319s-3319s] That's kind of how it is.
+[3319s-3321s] The accelerator is the prerequisite to the mastermind.
+[3321s-3322s] That's why I always talk about
+[3322s-3324s] how you can watch the accelerator.
+[3324s-3326s] And that's why, once again, with the mastermind,
+[3326s-3327s] one thing you have to understand
+[3327s-3329s] is you have this content for life,
+[3329s-3331s] so you can watch the accelerator,
+[3331s-3334s] then re-watch the mastermind at your own pace.
+[3334s-3336s] The only reason I'm giving you this two-week boot camp
+[3336s-3338s] right away is so you know everything
+[3338s-3340s] for the live trading upcoming for the next two months.
+[3340s-3343s] However, you'll be able to watch that accelerator.
+[3343s-3345s] You can re-watch it at any time
+[3345s-3347s] and kind of re-come back to it, right?
+[3348s-3352s] If it rains in New York, do you still trade?
+[3352s-3353s] What?
+[3353s-3354s] What does that even mean?
+[3355s-3356s] You know how to explain the topic,
+[3356s-3358s] but there will be more questions
+[3358s-3359s] as I get into practical further.
+[3359s-3361s] Yeah, and once again, right,
+[3361s-3364s] make sure in the Discord you're using that app,
+[3364s-3366s] the toolbox on the top, right,
+[3366s-3367s] where you can search the questions
+[3367s-3368s] and make sure you're using that as well.
+[3368s-3370s] Would we have access to the next mastermind
+[3370s-3371s] if there is one?
+[3371s-3373s] So you get access to the bonus questions.
+[3373s-3374s] You don't get access to the full mastermind
+[3374s-3375s] because, once again, every mastermind
+[3375s-3377s] is basically the same content,
+[3377s-3380s] just it's presented a little bit differently.
+[3380s-3384s] But so you'll get bonus content and stuff like that.
+[3384s-3386s] If I think I did something better in the next mastermind
+[3386s-3388s] that I didn't explain to you guys well,
+[3388s-3389s] then you'll get that.
+[3389s-3393s] For example, I believe it was workshop three or four.
+[3393s-3395s] I think I did a really, really good example with you guys.
+[3395s-3398s] So I did a really, really good example with you guys
+[3398s-3400s] that I didn't do with mastermind one and two.
+[3400s-3402s] And so the workshop that we did,
+[3402s-3404s] I actually sent it to them as well, right?
+[3404s-3406s] So every time I do a new bonus lesson,
+[3406s-3408s] or if I add anything to the mastermind
+[3408s-3410s] that mastermind one, two, and three having gotten,
+[3410s-3412s] I will also send that out, right?
+[3412s-3414s] So anything that I add new
+[3414s-3416s] or anything that's basically the next mastermind class
+[3416s-3418s] got that you didn't get,
+[3418s-3421s] you'll get that updated version as well, okay?
+[3421s-3422s] But we still get live trading, right?
+[3422s-3424s] Yeah, you'll get live trading as well, right,
+[3424s-3425s] for the next two months.
+[3425s-3426s] And then every time I open up a mastermind,
+[3426s-3428s] you'll get live trading for that as well,
+[3428s-3430s] similar to where the mastermind one, two, and three
+[3430s-3431s] you get, right?
+[3431s-3434s] I wanna watch more of yours in JDubb's videos.
+[3434s-3436s] He answered that one.
+[3436s-3437s] Q, question, earnings is avoided.
+[3437s-3438s] Days, as you said,
+[3438s-3440s] even if Apple announces new iPhone in September,
+[3440s-3441s] we still avoid because it should go up.
+[3441s-3442s] No, no, no, no.
+[3442s-3444s] So if it's like a news event
+[3444s-3446s] and it's like a pretty simple news event,
+[3446s-3447s] you don't have to avoid the news event.
+[3448s-3451s] That's a pretty simple news event, right?
+[3451s-3452s] And we're talking about earnings.
+[3452s-3455s] You should avoid earnings, FOMC, stuff like that.
+[3455s-3457s] But if it's like a simple news event
+[3457s-3459s] that's already kind of factored in pre-market,
+[3459s-3461s] then that's fine, okay?
+[3461s-3464s] You can add more info about futures, in my opinion.
+[3464s-3466s] So the accelerator does have some things
+[3466s-3468s] about the futures as well.
+[3468s-3469s] However, with the mastermind,
+[3469s-3472s] as the mastermind kind of continues,
+[3472s-3474s] and I talk about futures maybe in the future, right?
+[3474s-3476s] Well, you'll get that as well, okay?
+[3476s-3477s] No quiz for yesterday.
+[3477s-3480s] I think the team honestly forgot to put up the quiz.
+[3480s-3483s] I actually did text the team to put up the quiz,
+[3483s-3486s] but you'll get yesterday's quiz and today's quiz
+[3486s-3488s] and the answers for yesterday's quiz today as well.
+[3488s-3489s] I just have to message the team
+[3489s-3491s] to make sure they put that out there.
+[3491s-3493s] Earning for Apple, for example, we avoid that day.
+[3493s-3495s] Yeah, so earning day you avoid.
+[3495s-3497s] If it's the day before earnings,
+[3497s-3498s] you avoid that day, all right?
+[3498s-3500s] But yeah, with that being said,
+[3500s-3502s] hope you guys are getting value from this.
+[3502s-3504s] We will have our final workshop tomorrow,
+[3504s-3506s] or not final, I keep saying that,
+[3506s-3509s] a final bootcamp-style workshop tomorrow.
+[3510s-3511s] It would be helpful for the quizzes
+[3511s-3514s] if we knew if we got one wrong what it was.
+[3514s-3517s] You do, you do, if you go to the questions, by the way,
+[3517s-3518s] if you go to the quizzes,
+[3518s-3522s] every single quiz I put up a PDF right after, right?
+[3522s-3523s] So the next day you'll have a PDF.
+[3523s-3526s] You should know which questions you got right and wrong.
+[3526s-3529s] We look at the PDF, scroll to the bottom of the PDF,
+[3529s-3532s] and it tells you which ones are the right answers.
+[3532s-3534s] So you do actually get the answers to those quizzes.
+[3534s-3536s] So make sure you're actually looking at the quizzes tab.
+[3536s-3538s] But yeah, with that being said,
+[3538s-3539s] I will see you guys tomorrow
+[3539s-3542s] for the live trading session, all right?
+[3542s-3543s] Bye, guys.

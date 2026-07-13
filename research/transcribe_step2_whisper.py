@@ -1,6 +1,13 @@
 """Step 2: Transcribe extracted WAV audio — one file at a time, checkpoint after each."""
 import os, sys, time, json, traceback
 
+# ctranslate2 needs cublas/cudnn DLLs from the pip nvidia-* wheels; it resolves
+# them via PATH (same shim as circle_transcribe.py, tested 2026-07-05)
+import glob, site
+_dirs = [d for p in site.getsitepackages()
+         for d in glob.glob(os.path.join(p, "nvidia", "*", "bin"))]
+os.environ["PATH"] = os.pathsep.join(_dirs) + os.pathsep + os.environ["PATH"]
+
 AUDIO_DIR = r"C:\Users\aharg\tradingbot\research\audio_extracted"
 OUT_DIR = r"C:\Users\aharg\tradingbot\research\video_transcripts"
 os.makedirs(OUT_DIR, exist_ok=True)
@@ -28,7 +35,14 @@ for idx, filename in enumerate(ordered):
     print(f"[{idx+1}/{len(ordered)}] {filename}", flush=True)
     try:
         from faster_whisper import WhisperModel
-        model = WhisperModel("medium", device="cpu", compute_type="int8")
+        # GPU first (2026-07-12: CPU medium ran ~1x realtime = 30h backlog);
+        # RTX 2060 int8_float16 is 5-10x faster. CPU fallback keeps it running
+        # if VRAM is tight or CUDA breaks.
+        try:
+            model = WhisperModel("medium", device="cuda", compute_type="int8_float16")
+        except Exception as ge:
+            print(f"  CUDA unavailable ({ge}); CPU int8 fallback", flush=True)
+            model = WhisperModel("medium", device="cpu", compute_type="int8")
 
         t0 = time.time()
         segments, info = model.transcribe(inpath, beam_size=5, language="en")

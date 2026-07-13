@@ -1,0 +1,521 @@
+# Transcription: mastermind-1-0_Lesson_6_Part_2.wav
+# Duration: 2717s
+# Model: tiny
+
+[2s-5s] All right, so I forget exactly where I was.
+[5s-10s] I, but basically, you know, the point of the final point there was if you do stop
+[10s-14s] out, you can always reassess your trade and re-enter, right?
+[14s-17s] One thing, you know, that we've talked about in the previous room, as well, in the previous
+[17s-21s] masterminds, is the 84% rule, okay?
+[21s-26s] Does anyone in this room remember that 84% rule if you were in the previous mastermind?
+[26s-28s] Can we type yes?
+[28s-31s] If you know the 84% rule from other places, you know, it's IPS.
+[31s-34s] If you don't know it, type no, I just want to know how many people know the 84%
+[34s-35s] rule.
+[35s-44s] So if I have to talk about it or not.
+[44s-45s] No, no, no, no.
+[45s-48s] Damn, everybody's a no, okay.
+[48s-53s] So here's the 84% rule, but, and this is something that really really helped me, you
+[53s-55s] know, enter into, or stop out of trade.
+[55s-59s] So every time I stop to out of trade, my number one concern was what if I stopped out
+[59s-60s] at the wrong time, right?
+[60s-63s] What if the trade comes back and goes to my profit target?
+[63s-68s] Well, the number one thing that helped me to stay in those trades was understanding the
+[68s-73s] 84% rule, which is if you have an entry, like an entry criteria, let's say it's a break
+[73s-77s] and retest rate, a stock breaks high of day, comes back, retest to key level, right?
+[77s-81s] Looking and you're looking for whatever a new high of day or a new key level, inner stop
+[81s-84s] losses at the break of market structure.
+[84s-86s] Let's say you break that market structure, right?
+[86s-90s] But then you come back later on in the day, this can be like 5, 10, 15, 20 minutes, whatever.
+[90s-94s] You come back to that same area later on in the day, that same key level that you first entered
+[94s-97s] on, and you have the exact same trade setting up, right?
+[97s-102s] So you have the same break of that key level, you have the same retest of the key level,
+[102s-105s] you have, you know, a hammer candle still there, you have the same stop loss you could
+[105s-108s] put in before, and you have the same profit target as before.
+[108s-115s] Well, that's called the 84% rule, and theoretically what the 84% rule indicates is 84%
+[115s-118s] of the time, if the criteria is the same as your first trade and the first trade criteria
+[118s-123s] and the system obviously has to be correct, but which is, which ours is, if the criteria
+[123s-129s] is the exact same, 84% of the time, this second trade should work out, right?
+[129s-131s] Now this is of course theoretical, right?
+[131s-135s] However, that's like a rule that you know, you can apply when you stop out of trades, right?
+[135s-140s] If it does come back, you can always reassess and reenter the trade, right?
+[140s-143s] And that'll help you stop out of, you know, all the trades that your stop loss and not
+[143s-148s] have that foam of what if I, you know, miss out on a specific trade.
+[148s-151s] And I think that can help a lot of you guys out.
+[151s-155s] Now in the previous mentorships, we've traded the 84% rule.
+[155s-160s] I don't know exactly which trade review I talk about the 84% rule in, but I can guarantee
+[160s-165s] you if you go to the January or February trade reviews, you guys will be able to find the
+[165s-170s] 84% rule and how we played it, like a whole trade review on it.
+[170s-174s] And hopefully, you know, we will be able to play the 84% rule within, you know, the future
+[174s-178s] as well to show you guys how I would play the 84% rule.
+[178s-183s] However, that this is the best way in my opinion to always, you know, psychologically
+[183s-185s] stop out of trades, right?
+[185s-189s] And it's simply by understanding that if you do stop out of that trade, you can always reassess
+[189s-190s] and reenter it.
+[190s-192s] This is something that helped me a lot.
+[192s-196s] And I'm talking about a lot when I was first starting out trading because I would never
+[196s-199s] want to stop out of the trade because if I stopped out of the trade, that meant I lost money,
+[199s-200s] right?
+[200s-203s] But if I never stopped out, I feel rightfully never lost money, right?
+[203s-206s] And that is something that is a mindset you definitely definitely definitely do not want
+[206s-210s] to have and it will slow you down in your trading careers.
+[210s-211s] Okay.
+[211s-213s] So now we're just going to go look at one example.
+[213s-218s] Let me stop sharing the screen and open up.
+[218s-219s] Trading view.
+[219s-224s] We're going to go look at one example here real quick on trading view of risk management,
+[224s-225s] a wide risk management, a super important.
+[225s-229s] Just to help you guys visualize, wide risk management is important.
+[229s-234s] Let me just open it up real quick.
+[234s-252s] Let me share my screen again.
+[252s-256s] You guys see my trading view screen.
+[256s-260s] Let me know if you can see my trading view screen.
+[260s-265s] Yes, yes, yes, yes, yes.
+[265s-266s] Okay.
+[266s-267s] So here we are on Tesla.
+[267s-272s] And what I want to talk about is risk management within trades and how to effectively
+[272s-273s] manage risk.
+[273s-277s] Now this is just going to just show one quick example because I think this will help you understand
+[277s-279s] visually what I'm talking about when I'm talking about, when I'm talking about, when I talk about
+[279s-281s] not stopping out of trades.
+[281s-284s] And then of course, right later on throughout the mastermind's right with the trade reviews,
+[284s-286s] you'll see more risk management.
+[286s-290s] And of course, you know, the whole workshop on my actual setup, you guys saw how I actually
+[290s-290s] do manage that risk.
+[290s-295s] But this is just a good example for psychological purposes of why you should always follow
+[295s-296s] that risk and stop loss.
+[296s-297s] Okay.
+[297s-302s] So let's play out this trade here real quick on Tesla.
+[302s-305s] I'm going in with no key levels by the way, because I just want to show you guys real
+[305s-310s] quickly, you know, just simply how to manage risk within trade.
+[310s-315s] So the first thing that we see on Tesla here, right, is a high being made right here.
+[315s-319s] This is a high that we would want to break, right, this high is something that we would
+[319s-324s] want to break for a retest, right to the upside.
+[324s-328s] And then we see a low right here, right.
+[328s-330s] And this is where we made the impulse of move from.
+[330s-334s] So we have a high and low right now either side, right, either to the upside or to the
+[334s-338s] downside, we would want to see a break and then a retest to enter in for a long position or
+[338s-342s] a short position, whatever side, we want to break to okay.
+[342s-345s] And based off of that entry, we're going to talk about the risk for that entry.
+[345s-356s] So so far, right, we're still consolidating within that range.
+[356s-383s] We really don't want to see any, or take any trade here.
+[383s-386s] You should be still able to see my screen.
+[386s-389s] So anyways, we broke to the upside here on Tesla, right.
+[389s-391s] We broke to the upside here.
+[391s-394s] And now what we want, right, we would want to retest on Tesla here.
+[394s-396s] Now where would you put your stuff?
+[396s-398s] Now I know the retest doesn't occur.
+[398s-400s] Where would you guys put your stop here on Tesla, right?
+[400s-404s] I just want to see help you guys understand where to put your stop for a break of structure,
+[404s-407s] so I'm just going to kind of move my keyboard or my mouse around here.
+[407s-408s] Where would you put your stop?
+[408s-415s] Just let me know the number, right, like 2, 17, 50s, 2, 17, 10s, 2, 17, 72s,
+[415s-419s] 2, 17, 12s, where would you put your stop loss?
+[419s-426s] This is Tesla Friday, October the 20th, by the way, just so if anyone wants to fall along.
+[426s-433s] 2016, 60, 2016, 60, 2017, 10, 2016, 50, 2016, 2017, 2017,
+[433s-440s] 10, 2016, 2015, 2015, 2017, 2017.
+[440s-444s] Okay, so I think someone said the right answer there, but it would be two,
+[444s-449s] 16, 70s on Tesla here, right, because this is where the impulse of move came from,
+[449s-451s] the break of that move came from, right?
+[451s-456s] And so this is where you would want to put your stop loss, because if we did break below this,
+[456s-461s] right, this stock would have come back into that, it would break that previous high,
+[461s-464s] right, and this is the impulse to move in the impulse of candle that actually broke that new
+[464s-467s] high, right, and before that we were just consolidating.
+[467s-469s] So that's where you would want to put your stop, right?
+[469s-478s] So let's put key playing out this trade, right, and right here, we can see that we are getting the
+[478s-479s] retest, okay, we're getting the retest.
+[479s-485s] Now, let's say for this retest, we're going to target out pre-market highs here,
+[485s-489s] right, pre-market high is our profit target, and we already have our stop loss, right,
+[489s-491s] our stop loss is already in place.
+[492s-500s] So for this specific trade, right, we would have a long position, or stop loss would be here,
+[500s-501s] and a profit target would be up here.
+[502s-509s] Right, this would be a 1.97 risk-to-reward trade, okay, like basically let's just say it's a 1.2,
+[509s-510s] 1-to-to-risk-to-reward trade, okay.
+[511s-515s] Now, to enter into this trade, we would have a 1-to-to-risk-to-reward, which is fine, right?
+[515s-518s] It's a little bit lower than 1-to, whatever, right? It's fine.
+[518s-521s] For this, for the purpose of this, for this specific example, it's a 1-to-to-rester
+[521s-526s] word trade, okay, and we have our stop loss right here, right? So we have to follow our stop,
+[526s-530s] and we have to follow our profit target for proper risk management within this trade.
+[530s-533s] Let's say we enter into the trade here, let's see what price action gives us.
+[538s-544s] Okay, so we're breaking below here, right, we came back, we're breaking below, we're breaking below,
+[544s-549s] okay, now we broke below our stop loss, but here's the thing, we broke below our stop loss,
+[549s-554s] but this is a very, very small candle, right? This is a very, very small candle that we broke below.
+[554s-560s] So therefore, right, I can manage a little bit more risk. So let me just put my stop loss a little bit
+[560s-564s] below, right, at this previous pivot structure, because it just makes sense and look, this candle,
+[564s-569s] right, this candle is just, it's, it's retesting that pivot structure, it makes sense.
+[569s-576s] So let me put my stop loss here, and let's keep playing out this trade, okay, we're breaking down a
+[576s-580s] little bit, right, but look, look, look, look, here's the thing, we're breaking down a little bit,
+[580s-584s] but after we make, look, we're making this move, which shows that there's buyers here, right?
+[584s-590s] So therefore, we can have our stop loss here. And you know what, if we do break a little bit below this,
+[590s-594s] what's the next stop, what's the next place we can put our stop loss? We can simply put our stop
+[594s-599s] loss at the break of this structure right here, because this is the previous pivot level, right?
+[599s-603s] And since we're, we've our stop loss is already here, right, we might as well put it down here,
+[603s-607s] because of course we want to win this trade, it makes sense to win this trade, obviously.
+[614s-620s] Okay, so far so good, right, it hasn't hit our stop loss. Okay, it's kind of coming near our stop loss here.
+[621s-626s] Okay, but like now since it's breaking that stop, and low of days already right here,
+[626s-629s] you know what, let's just get rid of the stop, why don't we just get rid of the stop, because it's
+[629s-635s] low of day, this makes sense to me, right, this makes sense, low of days right here, so let's just keep
+[635s-639s] our stop, right, let's get rid of our stop, and let's just have our stop at low of day, it makes sense.
+[645s-652s] And now all of a sudden, look at what happened, all of a sudden, this, look, look what happened,
+[652s-658s] all of a sudden, what year, what year, one to two, risk to our ward was, right, where year one to two,
+[658s-665s] risk to our ward was is now a 0.45 risk to our ward, right, what a one to two, risk to our ward
+[665s-670s] trade should have been, which made a lot of sense when you were planning the trade, because of
+[670s-675s] your emotions, and because of you not wanting to exit that trade, right, because of your emotions,
+[675s-681s] and you not wanting to exit that trade, you now have a 0.5 risk to our ward. So let's say you were supposed
+[681s-690s] to lose what $500, you know, that break of structure right there, you now probably lost over $2,000 to $3,000,
+[690s-695s] because you simply did not want to exit the trade when you had to, right, does that make sense to you,
+[695s-699s] guys, do you guys understand why risk management is important and why you need to stop out of trades,
+[699s-704s] right, you saw my thought process when I was talking about it, right, you saw like how most new
+[704s-708s] traders think about these trades, like I thought about it like that too, when I was a new trader,
+[708s-712s] I used to think like that, like man shit, like, you know, it broke here, you know what, let's just have
+[712s-715s] our stop here, it makes sense, because that's the next key, key level, right, it'll always bounce
+[715s-719s] from there, okay, it bounced a little bit, right, it showed up bounced a little bit from here,
+[719s-723s] all right, so that means, you know, there is buyers coming in, but maybe he needs one more dip,
+[723s-726s] he needs one more dip before we can, you know, exit out, so let's just put our stop here.
+[726s-731s] And first stop, start here, it might as well be low of day and it keeps going and going and going,
+[731s-736s] right, and now you're, you know, what should have been a very, very small red day,
+[736s-741s] a man, a manageable red day is the biggest red day you've had within the month, right, and it's the
+[741s-746s] biggest date that you've had in the month, that you lost money, right, every other day you were
+[746s-752s] making $100, $200, and for one day, right, for one small mistake of keep, you keep moving your
+[752s-762s] stop loss, you just lost over $23,000, right, so I hope this example amplified the psychology
+[762s-767s] behind why people move their stop. I hope it showed you as well, next time you're in your head,
+[767s-771s] while you're in a trade and you're scared to, you know, lose money or you're scared for the stock
+[771s-776s] to go back to your profit, target why you should always, always, always exit out of us trade,
+[776s-780s] right, why you should always exit out, stop out, and if this trade came back, right, let's just
+[780s-786s] explain the 84% rule here real quick as well. If this trade ever came back, right, if this trade
+[786s-792s] ever came back here and then retested, right, we could always look at this again, we can always
+[792s-796s] reassess, right, see what the queue is doing, see the context of the market, and we could always
+[796s-803s] reenter, right, for that, for a good trade, okay, but we need to stop out of every single trade,
+[804s-808s] okay, does that make sense to you guys? Do you guys understand risk management, why that makes sense?
+[808s-822s] Give me a guess and then chat real quick. If you understand it, yes, yes, yes, yes, yes, yes, yes, yes, yes, yes, yes, yes, okay,
+[822s-828s] cool, cool, okay, that's good. All right, so now we're going to go on to, that was a risk management,
+[828s-834s] now we're going to go on to what I would focus on as a new trader. This is a video, so let me load it up real quick.
+[835s-889s] Let's stop the share real quick. Give me one second here, and you guys see my screen and can you guys see
+[890s-898s] what it says on the screen right here? Give me another quick, yes, we'll start the video. This is on what I would focus on as a new trader,
+[899s-907s] okay, cool. Yeah, this video just does a better job at explaining what I would focus on as a new trader. Of course, if there's
+[907s-912s] questions at the end, of course, I can answer them as well. Right, so let's play this out, and you guys can see what I would focus on as a new trader from
+[912s-913s] beginning to end.
+[914s-920s] Had it as focused, so it's crucial for new traders to learn one thing at a time rather than try to learn everything at once.
+[920s-927s] For example, do not try to trade three different strategies when you don't even understand how to read price action. Right, I would focus on one thing at a time.
+[927s-936s] The following slides are in order. I would focus on each aspect of my trading. Right, so before we get into the slides, what I think is really important to mention is that
+[937s-945s] especially when I was new, for example, what I would do is I didn't really care about anything else except my profit rate.
+[945s-952s] Like that's what every single new trader rate, everyone gets into trading for the profit rate. They see the type of gains you can make
+[953s-961s] potentially trading. The thing is you're not going to make those gains, right, if you don't have the consistency.
+[962s-966s] Right, when you don't have the setup, you don't have the knowledge to actually make those gains.
+[967s-973s] So I think it's really important in the beginning to make sure when you're learning, right, you don't even have to trade for like the first
+[973s-980s] months, two, three, four, five, months, right, like you need to learn. I would learn as much as possible before I even, you know, start trading for example.
+[981s-987s] And that's really important. And so the way I'm going to be, you know, presenting the slide show is it's going to be in order,
+[987s-996s] meaning every single slide will be in order for what I would do in the beginning. So the next slide will be the first thing that I'll focus on.
+[996s-1001s] And then we're going to continue until the very last one. And that'll be the last thing to focus on as a new trader. All right. So
+[1003s-1011s] let's start here. The first thing is charts. All right. So I would focus on charts first and how to read that price action, right.
+[1011s-1016s] So I think this one's really important because without this right, like you can have the best psychology in the world.
+[1016s-1021s] But if you don't know how to read chart rate, like realistically, you're not really going to be a good trader.
+[1022s-1031s] So the things I would focus on when I'm looking at charts is trend structure, right, I would understand what that even means market structure, right, I would focus on candlestakes, right,
+[1031s-1038s] by reading those books like falling prey analysis, candlestick dictionary, uh, is a candlestick Bible and addiction, you know,
+[1038s-1042s] washing those YouTube videos to really help me identify what type of
+[1043s-1049s] candlestakes and trend structures I can use to actually take trades, you know, how does volume come into play, right,
+[1049s-1056s] what does volume even mean, right, what are indicators that's important to know what indicators are, even if you're not going to trade.
+[1057s-1061s] For example, right, you're not going to trade those indicators personally. I don't think that you should be trading indicators.
+[1061s-1065s] I think you should be just trading price action, but it's still important to know what those are, right?
+[1066s-1070s] And then finally, the basic book happily and all that trade. So for example, we already did that
+[1070s-1077s] in the very beginning of the of the room, and there's a reason we did that right, it's so you understand every single time I'm saying something,
+[1077s-1081s] what I'm even saying, right? So for example, by now you guys all know what FOMC is,
+[1082s-1089s] you guys know what implied volatility is, you guys know what theta is, right? Like things like that, you need to understand what those
+[1090s-1098s] words mean and before you even start thinking about, you know, placing those trades, right, those are the main things that I would be
+[1098s-1102s] focusing on. All right, the next thing I would focus on is patterns and setups.
+[1103s-1111s] So for patterns and setups, it's really important that you want to focus on what pattern and set up that you're specifically trading.
+[1111s-1118s] So for example, it doesn't have to be the break and retest setup, right? Like you might not be, you know, comfortable with the break and retest setup,
+[1119s-1126s] right? And that's fine. Whatever pattern you want to trade is what you need to focus in on the most, right? So you have flags, double top,
+[1126s-1133s] break and retest, et cetera. And so when you're trading that pattern right, really try to understand the complete
+[1135s-1141s] reason why that pattern works. Okay. So for example, with the break and retest setup, why does that pattern work?
+[1141s-1148s] It works because stock moves up from a consolidation period, it moves up above its resistance or support.
+[1148s-1155s] It breaks that rate where buyers or sellers are present near those levels because that's where it had a strong break above.
+[1155s-1162s] And so when it comes back and pulls back into that area, it should have it buyers or sellers, depending if you're going along or short,
+[1162s-1170s] right, to actually move the stock in the direction that is desired for us. That's why the break and retest setup works.
+[1170s-1174s] So when you're trading flags, double top understand why does that set up work?
+[1175s-1180s] Third thing I would focus on now, since we are options traders is focusing on what are options. Now,
+[1180s-1186s] for this, you can of course, right, just watch the options workshop and I think that the options workshop
+[1186s-1191s] should be significant enough for you to, you know, just watch that one workshop and really understand what are options.
+[1191s-1196s] But of course, you need to, if you need to understand a little bit further, right, you need to understand how they move,
+[1196s-1202s] why they move, how are they related to the underlying ticker, what are Greeks? We talked about the majority of that stuff.
+[1202s-1207s] In that options workshop, right, we talked about like the major key things that you need to know for
+[1207s-1212s] options trading, especially the way we trade right with the day trading, especially into the open
+[1213s-1218s] with break and retest, right, we don't really need to get into too much specifics on the options,
+[1218s-1223s] right, but understand how they move, why they move and you can do this essentially just by watching that
+[1223s-1230s] options workshop, right? The fourth thing I would focus on is psychology. Now, a lot of people put
+[1230s-1236s] psychology as their number one thing that they would focus on when they're starting right, especially
+[1236s-1241s] on social media, everyone's talking with psychology and how it's so important and, you know, of course,
+[1241s-1247s] psychology is important and that's why it's number fourth, 100%, once you understand the basics of trading,
+[1247s-1252s] right, because it doesn't really honestly, like it genuinely does not take long to actually learn
+[1252s-1258s] how to trade per se, it really doesn't, right, you just have to learn the charge, you have to learn how,
+[1258s-1262s] trans structure works in self-adaptant, like realistically that, you can do that in less than a year.
+[1262s-1269s] This psychology part will take you years, on years, on years, years, and I'm, you know, it's a 100%
+[1269s-1273s] just like the truth. I'm going to tell you guys a truth. It's going to take you a long time, right?
+[1274s-1278s] But it's something that you're not supposed to focus on in the beginning, right, because in the beginning,
+[1278s-1283s] you don't even understand how the trade, how this stock actually moves, like a lot of people, and I know even a
+[1283s-1287s] couple of people in this room, they're focusing on psychology and think they have, you know, the charting figured out,
+[1287s-1292s] but then they send me trades, and it's like the worst trade I've ever seen, right? Now, I'm not going to say that,
+[1293s-1298s] you know, but, you know, even just going, if you guys go through the trade feedbacks, right, like there's some trades in there that are like
+[1298s-1303s] very questionable, break and retest trades, right? So it's important to understand how the stock moves,
+[1303s-1308s] what set up your trading, right, before you even look at the psychology aspect of trading, okay?
+[1309s-1315s] But then of course, psychology is important. The way I would, you know, approach the psychology aspect is
+[1315s-1320s] definitely by reading Mark Douglas trading in the zone. You guys know, for me, like when I started trading,
+[1320s-1325s] I didn't really read too many books. The books I did read, they are in the books chat in the discord rates.
+[1325s-1329s] So of course, then we also have like a library of like a hundred and fifty or two hundred books in that in that
+[1329s-1336s] books channel, so make sure to go check that out as well. But the number one book that I recommend to all new traders is trading in the zone,
+[1336s-1341s] right, very good for psychology. A lot of things that I say come from that book,
+[1341s-1347s] and I think it's one of the most important books to watch, right? And third to read. And then second thing is watching the workshop,
+[1347s-1356s] right? So for me, the risk management workshop is definitely a must watch for you guys, right? The back testing workshop that we just came out with,
+[1357s-1363s] here, it should have came out, right? I'm recording this one before that video, but that back testing workshop should have came out,
+[1363s-1367s] and that's very important for how to have conviction in your trades, right?
+[1368s-1372s] That back testing workshop has not came out for us yet, so for the people freaking out in the chat with,
+[1372s-1377s] it's fine, it has it came out yet. That'll come out. I think next week or the week after that,
+[1377s-1381s] we'll do the back testing workshop. This was like I said, this video is pretty recorded,
+[1381s-1385s] so some things are just talking about the previous mentorship.
+[1385s-1390s] It's very important to go watch that as well. And in March, we're going to get into much more psychology-based
+[1390s-1396s] content in the workshop, so that will come out as time progresses, right? So the main thing here is we're going to
+[1396s-1401s] try to learn how to mitigate your emotions. Notice how I say mitigate once again, it's not about
+[1401s-1406s] completely getting rid of your emotions. It's not possible, right? You just don't want to be in the
+[1406s-1412s] monkey, like the monkey in, you know, Homer's head. You want to ensure that you can mitigate and control your
+[1412s-1417s] emotions. This will once again take a long time, but it's very important to, you know, because for me,
+[1417s-1421s] when I first started trading, I try to just like trade and like not think about it. Like I tried to,
+[1421s-1427s] you know, enter a trade and then pretend like I didn't have emotions, but like that, you know,
+[1428s-1434s] trying to not have emotions causes more anxiety if that makes sense, right? Like when you're in a,
+[1434s-1440s] when you're in a trade and you're trying to not like, you know, completely suppress,
+[1440s-1443s] suppress your emotions and like act like you don't have them, you know, create more anxiety in your
+[1443s-1447s] day-to-day life. So that's definitely not what, you know, you need to do what you need to do is learn how to
+[1447s-1451s] control every single motion you have when you're too happy when you win a trade rate. You need to
+[1451s-1457s] understand how to balance that, right? When you're sad after a loss, right? Or you're mad after
+[1457s-1461s] a loss, you need to understand how to balance that as well, right? So it's really about that balance
+[1461s-1466s] route and mitigating the motion rather than learning to suppress it, right? The fifth thing is one
+[1466s-1471s] set up. So what I mean by this is find a setup that matches your personality and ensure that setup
+[1471s-1476s] is profitable long term. Back to that setup to gain confidence and only play that one set up.
+[1476s-1481s] A lot of people, right? They focus on like four different setups or it's not even for, right?
+[1481s-1488s] They focus on what's a two. I wouldn't even focus on two, right? I would only focus on one set up that
+[1488s-1493s] matches your personality and that's very important that it matches your personality. This is a long-term
+[1493s-1498s] thing, right? If you want to genuinely be a successful trader that makes, you know, a lot of money
+[1498s-1503s] in the future, right? This isn't a hobby, right? You pay money to be in this route, right? Like,
+[1503s-1509s] you know, this isn't a video game, right? You need to actually focus and find a setup that aligns with
+[1509s-1515s] your personality. So for example, the break and retested matches with my personality because not
+[1515s-1518s] I don't like break-out trading, right? It's it's I've tried break-out trading. I don't like it.
+[1518s-1525s] But I can still trade momentum by buying those little pullbacks near the breakout, right? For the
+[1525s-1531s] high of day moves, I like doing that. Okay? I like buying the pullback because it shows me that there's a
+[1531s-1536s] little bit less risk in that trade, right? And I have a very defined stop loss. I have a very
+[1536s-1541s] defined profit target. And for me and my personality pullback trading near those high of days or
+[1541s-1545s] low of days really works for me, right? Because I'm still trading the momentum, which I love trading,
+[1545s-1549s] right? I don't like being trades for like two, three hours, right? That's not something that I'm
+[1549s-1556s] comfortable with. And it works because in and out usually within 10, 15 minutes max. And, you know,
+[1556s-1561s] I'm enjoying my day, you know, I only trade the first hour. And that just aligns with me. You need
+[1561s-1565s] to figure out what aligns with you. For you, you know, you may have a different work schedule where you
+[1565s-1571s] have to trade later on in the day, right? Or maybe you cannot trade, you know, in trade day, right?
+[1571s-1574s] You're busy with work or something like that. That's where you have to, you know, maybe you
+[1574s-1579s] need to find a swing trading setup, right? You can trade the break and reset on a higher time frame,
+[1579s-1585s] for example, right? And that's really where it comes down to you and your personality and your
+[1585s-1592s] personal life, you need to really figure that out yourself, right? And the main thing also is to
+[1592s-1598s] ensure that whatever setup you're trying to trade, make sure it's profitable long term, right? So for
+[1598s-1603s] example, you know, back testing will definitely increase that confidence for sure, but like,
+[1603s-1607s] when you're back testing, you need to ensure that whatever setup, for example, let's say you're trading
+[1608s-1613s] a flag pattern, right? You need to understand, right? If you're, if you're only trading a
+[1614s-1620s] both like, for example, and we're in a bear market, okay? You're going to lose every, like, probably
+[1620s-1625s] 60, 70, probably 80% of the trades that you enter, right? And then you're going to be like,
+[1625s-1628s] oh, like, the setup doesn't work. It's like, no, you're in the wrong market. You need to,
+[1628s-1633s] you know, trade that setup over a long period of time, right? Like, I'm not saying trade a setup
+[1633s-1638s] for like a week and be like, ah, it's not for me. I'm saying trade a setup for like two, three,
+[1638s-1643s] four, five months, at least you need to trade it for four months minimum in my opinion, four months,
+[1644s-1650s] one setup, trade it on a daily basis, okay? And that's how you'll figure out if, first of all,
+[1650s-1654s] if it's profitable, of course, you can back test it, but you'll figure out if it matches your
+[1654s-1660s] personality as well, right? And so give one setup, you know, play the one setup and give it time,
+[1660s-1664s] give it four months, and then if that's setup, you know, you realize after four months, okay,
+[1664s-1670s] maybe this setup is in for me, right? Go to another setup, okay? But the main thing is, right,
+[1670s-1678s] once again, to make sure that that setup that you do, you do use is profitable, okay? Sizing?
+[1678s-1683s] So with sizing, the only only take the setup you are studying in back testing, right?
+[1684s-1689s] Start a small account, you're learning, right? Start with money you're willing to lose. This could
+[1689s-1694s] be $100, $100, $1,000, $10,000, and one consistency has been achieved. Size up. So let's go from the
+[1694s-1701s] very start here. I say this, I don't know how many times I've said this and people still,
+[1701s-1706s] like, to this day, people are like, like, they'll message me on Instagram. Like, I say this,
+[1706s-1710s] like, on like, everything, and I'll be like, you know, make sure that you only trade, like,
+[1710s-1713s] want to do contracts when you're learning because you will lose, you will lose. And then people will
+[1713s-1718s] go and lose like $5,000 in a day and they'll be like, oh, like, I just blew my accounts. Like,
+[1719s-1724s] like, I thought you said you were trading with one contract. Like, I've seen it happen way too many times,
+[1724s-1729s] and I really don't want it to be you guys, right? In the beginning, you really want to focus on that
+[1729s-1734s] execution. You want to focus on learning. The money will come long-term, right? Now, you need to
+[1734s-1739s] start with money that you're willing to lose, right? The main problem with most traders, especially
+[1739s-1744s] even with me, right? Like, even with me, right? Like, when I started, I started with $30,000. And
+[1744s-1748s] that was just from working, like, you know, part-time jobs and stuff like that. And the thing is,
+[1748s-1754s] like, there, it makes no sense to start without much, right? Like, because you're always trying to,
+[1754s-1758s] like, make that one, like, quick trade. That's like, you know, you're going to turn $30,000 into
+[1758s-1762s] $100,000. Like, you see all these Wall Street pet guides making that type of money. And that's what
+[1762s-1766s] you're trying to do. That's literally terrible. Start with money or willing to lose, right? Like,
+[1766s-1770s] so, for example, if you don't have a job or something, right? Like, I think the first thing you need to
+[1770s-1775s] do is find a job, because having a source of income really de-stress is you when you're trying to
+[1775s-1781s] make trading a full-time thing. And then also, you know, let's say you're a doctor or something like that,
+[1781s-1786s] right? You have, like, a $300,000 annual salary or something like that. Right? You may be willing to
+[1786s-1792s] lose $10,000, right? That might be something that you're willing to lose. But I still recommend, you know,
+[1793s-1798s] only trading that one to two contracts in the beginning. Just so until you do find that consistency,
+[1798s-1803s] right? You're still losing as less as possible. But yeah, do not try to size up too fast, right?
+[1803s-1807s] Even if you're consistent for like a week, two weeks, right? Try to size up one contract at a time,
+[1807s-1812s] rather than going from like two contracts to like 30. Right? Let's try to not do that. Okay?
+[1813s-1820s] Job. So this is what I would do if I had a job. Well, which I was in university at the time,
+[1820s-1825s] plus had a part-time job when I was trying to figure this out. But this is how I would do it. So
+[1825s-1830s] like I said, folks, I want to think of a time, right? Like we went through this whole slide show so far.
+[1830s-1835s] So focus on everything like I said from the beginning. Okay? So go in terms of this slide show,
+[1835s-1840s] go from the very beginning to the very end and focus on those things once at a time. Right?
+[1840s-1846s] When you do have a job or other priorities like family kids, you know, girlfriend, whatever,
+[1846s-1853s] like it'll take more time than, you know, other people, you know, you as someone that has to,
+[1853s-1859s] you know, actually have a household income and pay bills may take more time than someone that's,
+[1859s-1865s] you know, a 19 years old and had it doesn't go to university and just like consent in front of the
+[1865s-1870s] screen all day. Right? Do not measure yourself with other people. You have to measure yourself with
+[1870s-1875s] yourself and the best way to do this is to give yourself the illegal. So like I still do this on a daily basis.
+[1875s-1880s] So for example, like when I was starting it was like, all right, today I'm going to learn how
+[1880s-1885s] a hammer candle forms and why a hammer candle form. Right? Like little things like that. Right? Where it's like,
+[1885s-1890s] okay, today I'm going to learn what a flag pattern is. Okay? And then you'd spend two,
+[1890s-1895s] two hours of your day. Right? Learning what that is. And it, yes, it'll take more time because you're
+[1895s-1902s] learning everything's very, very slowly. But you'll still learn and capture that value and retain that value
+[1902s-1907s] much longer when you're learning, you know, little by little rather than someone that's going to put like
+[1907s-1913s] jam like 30 things in their face, right? And really not understand a single thing and have, you know,
+[1913s-1918s] very little knowledge when it actually comes time to trade in real time. Right? Once again,
+[1918s-1922s] understand this is not a get rich quick scheme. You will lose money in the process, but that is why
+[1922s-1928s] you can't quit your job. Right? So like a lot of people ask when can I quit my job? A lot of people
+[1928s-1932s] honestly recently have been asking me that too. Like when can I quit my job? Like there's seen
+[1932s-1938s] some consistency even in this room and keep saying the same thing like do not quit your job.
+[1938s-1944s] Right? Like you can not quit your job in my opinion until you have at least two to three years of
+[1944s-1951s] expenses set aside. Okay? Until you have two to three years of expenses set aside. And for at least
+[1952s-1958s] one year you're a consistent trader. Like people like they'll be consistent traders for a month and be like
+[1958s-1964s] I'm done. I'm done. I'm done. My job. Like no, that is not something that I recommend personally. I personally
+[1964s-1968s] believe that you should not quit your job until you see at least a year of consistency and have
+[1968s-1974s] three years of expenses backed up. Okay? And then finally trade the first hour, right? Like when
+[1974s-1979s] you're busy with work or you're busy with family, right? There's a reason that I trade the first hour.
+[1979s-1983s] Right? The first hour is what has the most ballroom? It has the most volatility. And that's
+[1983s-1988s] something that I'm comfortable trading. And as you guys can see it's a very profitable way to,
+[1988s-1992s] you know, really finish off today quick before the chop comes in. Right? And so that's what I
+[1992s-2005s] would focus on if I was had a job or other. Okay. That's going to be the, that's going to be the
+[2005s-2013s] full workshop today. If you guys have questions, I can answer those questions now. Let me open up the chat real
+[2013s-2018s] quick. If you guys have questions, put it in the question chat. I just in the chat here and I can answer
+[2018s-2049s] any questions from the workshop you guys have. No questions? What's the best way to trade if you
+[2049s-2054s] can't trade the first hour? So the first hour, the reason I trade the first hour and I recommend
+[2054s-2058s] everyone else to trade the first hour when, what like that, as long as you're trading my setup,
+[2058s-2063s] is due to the fact that the most volume comes in within the first hour of the day, of course.
+[2064s-2068s] And then of course, with the most volume that means you're going to get the most largest moves.
+[2068s-2073s] Especially if you can predict, not predict, but if you can react and enter into the stock properly,
+[2073s-2079s] with the break and retest, the first hour of the day is better because you can enter in. And if that
+[2079s-2084s] stock does trend within the day, that, you know, you can trail your stops and you can make a lot of
+[2084s-2088s] lot of money. That's the reason I trade for the first hour of the day, but if you can't trade for the
+[2088s-2093s] first hour of the day, I would simply trade the five minute time frame, right? So later on in the
+[2093s-2097s] day, if you were to trade, I would trade the five minute time frame instead of the one minute.
+[2098s-2102s] And you can still trade the break and retest on the five minute time frame. It just takes
+[2102s-2109s] long as to, it takes longer to actually see those moves occur. Just going back to the test
+[2109s-2113s] of trade a little unrelated, but sometimes you set the body sometimes, you set the loss of the
+[2113s-2119s] work, how do you decide on that? So it depends, the way I do that is it depends on what has more
+[2119s-2123s] confluence, does a body have more confluence, or does a way have more confluence, if there's equal
+[2123s-2128s] body candles, I'll do it there, if the WIC is small, I'll do it on the body, if the WIC,
+[2129s-2133s] if there's two equal WIC lows, I'll do it on the WIC, right? So it just depends on the context.
+[2134s-2140s] While Booker Resource Direct meant to improve price action reading skills, so we will have a price
+[2140s-2146s] action workshop soon. So we'll talk more about price action. I think in the next week, we're going to
+[2147s-2152s] on Monday, the workshop is how to play the open, which we'll talk more about price action, so you'll
+[2152s-2157s] be able to see that as well. But volume price analysis is pretty good, and the candlestick Bible
+[2157s-2161s] is really good for price action, as well, right? To understand those candles and why they move like that.
+[2163s-2167s] I think it was something to get info just wondering about, oh yeah, I just answered that question for
+[2167s-2172s] you Spencer, it's next Monday, or this Monday. Do you recommend Nutriors listen to other
+[2172s-2176s] traders or to focus on trading on their own, I bet, does it? Do you recommend Nutriors to listen to
+[2176s-2181s] other traders or to if I recommend Nutriors to always choose one or two mentors that have the
+[2181s-2185s] same strategy, right? So let's say you want the break and retests, right? Choose one to two
+[2185s-2190s] people, it could be me, could be someone else, right? Choose one or two people, focus on what they say,
+[2190s-2194s] focus on what they have, right? And just really, really learn their strategy, and then back to
+[2194s-2199s] the figure yourself to be self-sufficient. Right? I think when people have too many different
+[2199s-2202s] mentors, too many different people, so I'm going to do some people are telling them to wait for the
+[2202s-2206s] don't trade the first 15 minutes, some people are telling them to trade the first 15 minutes, you know,
+[2206s-2210s] there's a lot of different roles, and that's why it's super super important to have one or two
+[2210s-2215s] mentors that have the same strategy, kind of alignment, and you can follow them. That's that's a
+[2215s-2219s] fastest way to success in trading, in my opinion. How many months of consistency would you recommend to
+[2219s-2226s] scale one to two trades to say, let's say, 10 to 15 trades? What do you mean by that? Can you
+[2226s-2232s] elaborate how many months of consistency would you recommend to scale from one to two trades to 10 to 15
+[2232s-2237s] trades? Like in a day, if you're happy with your setup and you only want to trade, a plus set up
+[2237s-2242s] to your proposed trade, only looks like one to one point five. Would you skip that trade in
+[2242s-2246s] way or would you, or would you, or would consistency be a factor for happy with your trade in one
+[2246s-2250s] and a plus set up your proposed trade, only looks like one to one point five or two trade,
+[2250s-2255s] would you skip that trade or wait for it? It depends, it depends. So like I said, I try to aim for
+[2255s-2260s] one to two, risk to a word at a minimum. However, sometimes, right, the way I scale in and out
+[2260s-2264s] to trade, sometimes my risk to a world will be less than that, sometimes it'll be more than that, right?
+[2264s-2267s] So depending on if it wasn't a plus set up, I most likely would take the trade, even if it was
+[2267s-2273s] one point five, right? However, rate, it would depend how I scale in and out of that trade
+[2273s-2278s] for that risk to a world to really make sense. Do you ever trade the last hour of the date?
+[2278s-2283s] Nope, I do not. After I promise you every single day, after 1130, after I leave the voice
+[2283s-2286s] session with you guys, I don't come back to the market unless I'm making a trade review for you
+[2286s-2291s] guys. I'm just not going to come back to the market. I do look at constantly monitor, like, you know,
+[2291s-2296s] the charts on my phone. And that's just because I'm addicted, I guess, to just monitor it, like,
+[2296s-2302s] you know, throughout the day, just see what the overall market's doing. But I do not trade. After
+[2302s-2307s] after I'm done those live sessions or after I'm done just trading to 1100. Do you withdraw
+[2307s-2314s] a profit on a week basis or use them? No, so I never, so this is the thing. And I think we were
+[2314s-2319s] going to have a workshop on those two. In the beginning, when I saw consistency, I used to have,
+[2319s-2324s] like, you know, a mill plus in my account just sitting there, and I would, you know, think it's
+[2324s-2328s] compounding, but it's really not because with small caps rate, you're compounding your money,
+[2328s-2331s] because, you know, the more money you have, the more money you can put into small caps,
+[2331s-2335s] your large caps or whatever, like long term investing, right? And you can put in more money,
+[2335s-2339s] and that's how you compound your growth. With with options, you've genuinely don't need more than
+[2339s-2344s] $50,000. You really don't need more than a $50,000 account. And I would be playing options with
+[2344s-2348s] the mill, not playing options, but there would just be a mill plus sitting in my account, even though I was
+[2348s-2353s] playing with only $50,000 size. And the only thing that I would do is, you know, increase my risk,
+[2353s-2358s] because I would try to enter into some ridiculous trades. Right? And so now, every single month,
+[2358s-2362s] anything over a hundred thousand, I try to take out, and I haven't done that in a month or two,
+[2363s-2370s] but I try to take out anything over a hundred thousand in my account. And that's every month.
+[2370s-2374s] So I just basically pay myself a month, but I guess. For stop loss, you have talked about waiting
+[2374s-2377s] for canal clothes and manually clothes in the trades, so you don't get with dough.
+[2377s-2380s] Isn't more of a time, in fact, where do you have a secondary stop loss in your mind? Like,
+[2380s-2384s] if the canal clothes, I'll stop out of the way. If there's not loss you have talked about waiting
+[2384s-2389s] for the canal clothes and manual closing the trades, so you don't get with dough. Is it more of a
+[2389s-2396s] timing factor, or do you have a secondary? No, so the thing is, with your stop, if your stop does
+[2396s-2402s] break below your stop loss, and you don't exit that trade, or say, you do exit that trade,
+[2402s-2407s] I've seen many, many times, especially in strong markets. Even today, for example, on Apple,
+[2407s-2412s] if you guys go, I can show you on my screen, actually. This is actually a good example. Let me share my
+[2412s-2428s] screen. Let me know if you guys can see my screen here real quick. One second, share screen,
+[2428s-2443s] screen one. Let me know if you guys can see my screen. You can, okay, cool. So look at Apple today,
+[2443s-2446s] right? This is the first stop loss purposes, right? Let's say you entered into Apple,
+[2446s-2450s] based off this consolidation, and you're looking for highs, right? You entered in on
+[2450s-2455s] let's say this canal right here. This canal right here, 10 to 2, 100% would have stopped you
+[2455s-2459s] out if you did not wait for this canal to close. Look, this canal right, technically, if it
+[2459s-2464s] closed, right, it would have closed down here at about 170, 82's, right? However, it didn't close,
+[2464s-2468s] it didn't close and when it did close, right, it's closed as one of the strongest candles
+[2468s-2475s] within the day. Higher volume, very, very strong hammer candle, right? And this is exactly why this is
+[2475s-2480s] exactly why we wait for those candles to close. Okay, it's so you don't get whipped out and you
+[2480s-2484s] understand that, hey, if I do get stopped out and let's say we would have stopped out here,
+[2484s-2487s] that's completely fine. It's within our system. And whenever you are back testing your setups
+[2487s-2491s] right, you're waiting for those candles to close anyway. So those back testing results of
+[2491s-2495s] however much money you could have made or however many percentage points you would have gained
+[2495s-2499s] or lost, they are dependent on your candle close or not dependent on if you would have entered
+[2499s-2504s] exited before the candle close or entered up before the candle close. And that's why I wait for
+[2504s-2508s] candle close. In regards to spy levels say you didn't mark out here, through and through the
+[2508s-2512s] low level and there was a free retest at that level, could you please talk about not taking that trade.
+[2522s-2525s] Someone else at this too earlier and it just wasn't a good trade.
+[2526s-2532s] Yeah, see, like this isn't a retest, I don't see the retest here. Do you guys, does anyone here see a
+[2532s-2538s] retest on spy here? Could you, could you theoretically take a, does this look like a retest to you?
+[2538s-2541s] If people say yes, I'll explain a little more on why it's not but
+[2543s-2548s] does anyone else see a retest here? See, this is the thing, this isn't a retest. Right, where would
+[2548s-2553s] you see the retest? We literally dropped, right, and there's no, we've closed above the level.
+[2553s-2557s] Right, we closed above the levels. There's absolutely no retest here. This candle would have
+[2557s-2562s] technically been, you know, a very good weekend to buy in on, but there was no retest. This is just
+[2563s-2579s] it was just coming down and consolidating at that level. What about 955 to 10 AM? 955?
+[2588s-2591s] Once again, this is also pushing, like this is also pushing in here as well.
+[2595s-2600s] Yeah, this 955 to 10 AM is also pushing it too. Like this is you're drawing a random key.
+[2600s-2605s] And I talked about this before in previous workshops, you know, you're, you're forcing trades
+[2605s-2609s] that just aren't there here, right? Because this, this is just a, it was dropping,
+[2609s-2613s] like it literally dropped on the very next candle, right? There's, there's, this isn't a pivot level.
+[2615s-2620s] Right there. So, let me just make sure I'm up to date with you. We'll let you
+[2620s-2624s] totally trade before 11 o'clock. Lifestyle preference or actual data driven. Do you know
+[2624s-2630s] how did you know, the time would stop was 11 o'clock? Most of the time, if you just look at
+[2630s-2635s] volume, volume will die down after 11 o'clock. So you can see here 11 o'clock is when we got the
+[2635s-2640s] most volume. And throughout the day here, right, you can see much, much more volume than the
+[2640s-2644s] rest of the day, right? You can see based off that chart here, there was more volume here.
+[2644s-2648s] There was some volume, once again 11 o'clock, and then after that, right, there was less volume.
+[2648s-2653s] Therefore, the biggest moves occur during that first one to two hours or one to two hours
+[2653s-2658s] of market open. So I like to trade till about 11 o'clock. After that, the volume simply dies down,
+[2658s-2663s] and therefore the moves take longer to form. Would you post the answers to quiz for, oh,
+[2663s-2668s] did I forget to do that? I'll do that. I'll post quiz six, then I'll post the answer to quiz five,
+[2668s-2673s] too. You got the pick-up, there was a fair value gap sitting on near that drop, which later in the
+[2673s-2678s] day, rejected from different strategy and not breaking retest. Okay. Yeah, so those are going to be all the
+[2678s-2683s] questions. I'll answer for today. I think I got all of them. I actually, yeah, I did get all of them.
+[2685s-2690s] And yeah, so I'll get the quiz out to you guys later today. I hope you guys enjoyed this session.
+[2690s-2693s] Of course, if you have any more questions, you can put in the question chat. Let's get some
+[2693s-2699s] W's before we leave, right? Get some hype up in the chat. And yeah, of course, I think JWB on
+[2699s-2704s] far forward, the live voice session, but I will have my key levels up as well. I hope you guys
+[2704s-2708s] enjoyed this session, of course, and I'll get this live recording out to you guys as well. Okay. So I'll
+[2708s-2711s] see you guys tomorrow. Okay. Bye.

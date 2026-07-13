@@ -1,0 +1,303 @@
+# Transcription: mastermind-1-0_Lesson_1_Part_2.wav
+# Duration: 2048s
+# Model: tiny
+
+[2s-6s] All right,
+[6s-10s] option Greeks are mathematical measures used to quantify the sensitivity of an option's price to various factors.
+[10s-15s] These measures can be used to assess the risk of an option or to compare the relative value of different options.
+[15s-18s] So Delta measures change in option price when stock price moves.
+[18s-27s] Now, what do you need to know about options is personally, you realistically with the Greeks,
+[27s-30s] you really don't need to know most of this stuff, right?
+[30s-36s] When you're day trading, when you're day trading options, you genuinely don't need to know this.
+[36s-38s] It is good to know this, right?
+[38s-44s] When you're swing trading because you actually need to understand this and I'll explain a little bit of each of these Greeks.
+[44s-50s] You know, when I was actually in university, I had to learn each and every single one of these,
+[50s-53s] you know, really, really, really didn't do so.
+[53s-54s] I can actually speak on them.
+[55s-60s] But, and, you know, most of these foods like they genuinely can tell you what the Greeks do.
+[60s-69s] But what the main thing about day trading is, honestly, I don't, I forget the last time I was really looking at Greeks in a lot of detail,
+[69s-74s] because they really don't matter too much when you have the volume on that option contract,
+[74s-76s] the Greeks really don't matter that much.
+[76s-81s] Okay, especially the things we trade, you'll be fine if you just have a simple understanding of the Greeks.
+[81s-83s] Okay, but what is Delta?
+[83s-87s] So Delta measures the change in the option process with price when the stock price moves.
+[87s-95s] So the Delta really is simply just how much an option price moves or can be expected to move for every dollar change that it has.
+[95s-102s] Okay, so let's say that a Delta or like a stock has a Delta or like an option, sorry, has a Delta of 0.6.
+[102s-110s] That means that the stock would move 60 cents for every dollar that the underlying asset moves.
+[110s-119s] Okay, therefore the higher the Delta, the higher the option or like the faster the option contract will grow.
+[119s-123s] Okay, for every one dollar move, all right.
+[123s-130s] Now it's super important that you know that, you know, Delta's, what, like Delta's are more like good Delta's or whatever.
+[130s-136s] Delta's at the money usually have near 50 or like 50 cents, right?
+[136s-146s] So at the money, you're looking at about 50 cents and they'll gradually approach 0 as fast as you get to out of the money.
+[146s-155s] So the closer you get to out of the money, you know, the Delta will slowly get to 0, especially, especially if the expiration is approaching.
+[155s-160s] Right, so if the expiration is approaching, the Delta's going to slowly slowly get to 0.
+[160s-167s] Now, this is due to the fact that the Delta is measured with also gamma and we're going to be talking about gamma in a second here.
+[167s-173s] But then put contracts right, we'll have a Delta near negative 50.
+[173s-177s] Okay, so every dollar that the stock moves down, you're going to be making 50 cents.
+[177s-182s] The same thing just reverse, right? But it's, it's negative when you're looking at puts or you're looking at shorting the stock.
+[182s-184s] Okay.
+[184s-188s] Gamma, so gamma measures change in Delta when the stock placement.
+[188s-195s] So all gamma is it will help you estimate how much the Delta might change once the stock price actually moves.
+[195s-200s] Okay, gamma is something that, you know, honestly, I couldn't tell you the last time I looked at gamma.
+[200s-202s] Generally, like I couldn't tell you the last time I looked at gamma.
+[202s-206s] It's not something that you're going to be looking at much as well.
+[206s-211s] Vega is a measure change in option price when the volatility moves.
+[211s-219s] Okay. So Vega is simply, it can help you understand how sensitive an option might be to larger swings, right?
+[219s-229s] So when a price has a big or like a large swing movement, Vega will help you, you know, understand how much volatility or how sensitive the option contract might be.
+[229s-238s] Now, something that's actually important in that you should be looking at is data and this is decay in option price every day as expiration gets closer and closer.
+[238s-244s] So when you're trading those zero DTEs, so let's say it's a Friday and you're trading a zero DTE or you're just trading a Spies zero DTEs.
+[244s-255s] When you're trading those zero DTEs, it's really important to measure how much of a value the option might lose each each, you know, day or hour as it comes closer to expiration.
+[255s-261s] Okay. And so data really just tells you the, like how much the price of an option should decrease each day as it comes near.
+[261s-266s] Now with data one thing most people don't understand is data works best when everything is constant.
+[266s-273s] Therefore we're talking about constant price constant, the all the other grief staying constant. Now that most of the time isn't really the case.
+[273s-284s] But data is simply what measures the price and how much it's going to decay every single day as the option contracts does decrease or sorry as the option contract does come near expiration.
+[285s-299s] Okay. So row is the measure change in option price when the stock price moves. So this can help you, you know, see the effect of interest rate changes over an option once again.
+[299s-304s] Like genuinely who cares? Okay, especially for us who cares.
+[304s-310s] The main thing that I think you guys need to worry about is delta and theta and I think it did a pretty good job explaining those things.
+[310s-313s] So as long as you have those in your notes you should be fine.
+[314s-316s] Okay. Next slide.
+[316s-317s] Sorry. Next slide.
+[317s-327s] In plaid volatility. So now we're not actually talking about implied volatility a little bit more. Now we already got the definition right. So now IV is really just something that you want to keep in the back of your head when you're trading.
+[327s-338s] And I, what I've he does is it makes the option contract not move too much when the price goes in your favor. So let's say you buy calls and the stock moves pretty significantly to the to the upside.
+[338s-348s] If the IV is high the stock or the option contract will move. But the second the second the price starts dipping on you right or going against you.
+[348s-357s] The stock will or the option contracts are we'll reduce and price significantly. Okay. Now I believe IV.
+[357s-366s] You, you want to be very of it, but I think above 50 to 60 is extreme levels of IV and you really shouldn't be trading that stock.
+[366s-378s] Right and like we said, when if you're on interactive brokers IV is over here on the top right where your actual calls and puts are so when you have this open IV will be on the top right.
+[378s-385s] There are three things that I don't like to trade that cause high IV and I don't like to trade on these days.
+[385s-398s] And you'll notice right I personally don't like to trade on these days and some time like during the mastermind I might trade these days and by trade these days. I mean, I'll be on the screen, but you know, if the mastermind wasn't you know, open.
+[398s-403s] You guys have will notice on my or you may have already noticed on my IG or anything like that.
+[403s-414s] I don't trade you know a lot of days like a lot of traders like trade every single day. I trade if like let's say the mastermind's on open. I would trade probably two to three days a week max.
+[414s-419s] Right and the reason that is is because that's just what I'm comfortable with.
+[420s-435s] And it's not that like what I'm not trading is like, I'm not like back testing or anything like that or I'm not setting the market still. I still am. I just only trading every single day. Right. I don't like that pressure. Right. And so for me, I like to trade with a very, very chill mindset.
+[435s-439s] Right. And so whenever these type of days happen we're going to be going over the next three.
+[439s-441s] I don't like to trade. So number one is quadwitching.
+[441s-449s] Waterging refers to simultaneous expiration of four different types of financial contracts stocking next future stock index option stock options and single stock futures.
+[449s-464s] It occurs quarterly and can lead to increased volatility in the markets. So quadwitching is not something you want to trade. It's really when everything in the market expiring right. So stock index futures stock index options stock options and single stock futures.
+[465s-474s] This happens quarterly and every single time this happens, you'll see volatility in the market or you're just going to see a lot of range either way. You really don't want to trade those days. Right.
+[475s-485s] Jay powtays. So every single time Jerome Powell talks, you'll see that the market's going to spike to one side or another and that's also days. I don't like to, you know, take any trades.
+[485s-492s] Because before he talks, you'll see a lot of chopper range. And then after he talks, you'll see, you know, big moves to one side or another.
+[492s-504s] But then they'll never be like a proper trend. Sometimes it will be don't get me wrong, but you know, the majority of the time there won't really be a proper trend. So Jay powtays to the earnings announcements made by the federal reserve chair Jerome Powell.
+[504s-509s] These announcements can have significant impact on the financial markets and closely watch by traders and investors.
+[509s-513s] And these can be like policy changes and stuff like that. And that's just something I don't like trade.
+[513s-519s] And then finally earnings, I don't like to trade one stocks are nearing their earnings or their earnings have already occurred. It's the next day.
+[519s-531s] And that's just because earnings refer to the financial performance of a company typically recorded reported quarterly earnings announcements can have a significant impact on the stock price of a company that can create trading opportunities for day traders.
+[531s-535s] So, you know, some day traders, they like to trade earnings.
+[535s-542s] Me personally, I don't. And that's just because there's too much volatility to one side unless there's a trend, right? Unless there's a trend.
+[542s-549s] But most of the time you'll see that a lot of people are confused with the earnings news and you'll just see like range in the stock or a lot of chopiness the next day.
+[549s-555s] And the big moves usually happen either pre-market or after hours during earnings.
+[555s-558s] Okay, so concluding of options.
+[558s-561s] Four things, right? You can leverage profits and reduce losses.
+[561s-565s] Options can be used to increase profits and limit losses when used correctly. We've talked about this. You can generate income.
+[565s-569s] We don't really talk about this because we do not, you know, I personally don't sell options.
+[569s-574s] But, you know, there are some people in the room that do. So if you want to talk to them, you know, you can of course talk to those people.
+[574s-577s] But you can generate income.
+[577s-582s] Hedge against potential losses. Options can be used to hedge against potential losses. This is once again pretty self-explanatory.
+[582s-588s] I mean, however, we're not going to specifically be using that. And then four, we can speculate on the direction of the underlying asset.
+[588s-591s] That's something we're going to do. So number one and number four, something we're going to do.
+[591s-594s] Number two and number three is something that you can, you know, keep in mind of what options do.
+[594s-602s] Options can be an effective tool for day traders if used correctly. And, you know, we're going to be going into the strategies in the future,
+[602s-607s] Master, future workshops to actually see how we can use those option contracts.
+[607s-613s] Okay. Now we're going to be looking at the YouTube video of my interactive broker set up. I already had this record.
+[613s-619s] So there's no need for me to actually go back and make another whole video because this one does a very, very good job.
+[619s-623s] So let's go into watching this video.
+[623s-638s] So the first thing I want to talk to you guys about here is my IV care set up.
+[638s-644s] As you guys can see, it's really simple. Nothing to, you know, complicated about it, right?
+[644s-649s] But I just want to talk about this set up in general and what I have. So in the beginning here,
+[649s-657s] what you guys see is the options chain, right? So the option chain is something that I used to see what option I want to buy, right?
+[657s-665s] Like you guys know, over a thousand volume is key for me and an over a dollar bid is also key for me as well.
+[665s-671s] So when I'm looking at my options rate, which ones I want to buy, we have calls on the left side, but it's on the right side.
+[671s-677s] Okay. On this have open option interest. I have the volume rate. Like I said, this is important to have a bit size,
+[677s-686s] size, size and then obviously the bid in as price of this specific strike that I'm looking at. I usually have eight strikes up right the smart smart strikes.
+[686s-690s] And I'm just looking for the ones that's one out of the money on either side.
+[690s-697s] So that's my options chain, right? Pretty simple everyone has basically the same one and I have the weekly's open usually. Okay.
+[697s-700s] Actually all the time, basically, after the weekly's open.
+[700s-710s] And then I watch list over here, right? The things that I trade every single day. That's a Apple QQ SPX. Those are the only things I traded. That's why those are the only four that are up there.
+[710s-718s] I don't like to call it on my stuff. You know, I don't like to call it my watch list. I don't like to call it on my desk in general. So I keep it very, very simple.
+[718s-726s] Okay. Here we have the rapid trader. Okay. So whenever I'm not using these buttons, which we'll get into right this is what I use the most.
+[726s-732s] But when I'm not using those buttons, that's what I'm using. I'm using rapid trader. I like it much more than the classic trader.
+[732s-741s] Okay. Now with the rapid trader, what you can do is, for example, let's say you want to buy, you know, for example, you want to buy the first out of the money here.
+[741s-749s] Right. You can buy 10 contracts at ask really quickly, right? That took me what like five seconds to do right? Those three things.
+[750s-755s] So the rapid traders pretty quick as well. If you don't want to use the buttons or hawkies.
+[755s-765s] In my personal preference, I like that much more. But we'll get into that. After this, I have the orders trades and summaries.
+[765s-772s] Right. Everyone has this on IB care. These are just where I can see my orders. I can see what trades I've taken and overall the summary of the day.
+[772s-780s] With the orders, what it is is I can just cancel them really quickly here or I can edit the price if I don't get filled pretty quickly as well.
+[780s-787s] And that's just something that I think has really beneficial in IB care rate. How fast you can do that as well.
+[787s-793s] Here we have the chart open. This is the option chart. I barely look at the option chart. I really just look at these buttons.
+[794s-807s] But I do have the options chart open here. You know, just as you will price the option chart isn't sometimes right. Like let's say, you know, apple for example is one 52.5 call.
+[807s-815s] Let's say I buy here right. And I'm looking for high days. Sometimes I won't get back up to high day on the option chart. But it will be on the underlying asset.
+[816s-821s] And sometimes I look for that overall. I really don't use it too much.
+[821s-840s] For the buttons, right. I have buy sell cancel, close alert and sell market. Now with the buy. I'm buying 50 contracts above like 10 cents above the ass price sell is 10 cents below the bid price. But I'm only buying 10 or only selling 10 contracts will get into that.
+[840s-852s] I'll get into the why of that. The second here. After this I have closed position rate. This will close my full position. I have alert rate. This is just what I want to get alerted on the chart rate at a specific price.
+[852s-860s] And then I have sell market. And we'll get to why I have that as well. So let's get into the settings of why I have these buttons.
+[860s-875s] All right. So like I said, I have buy sell cancel, close alert and sell market. Now with the buy button. What it is is I'm buying the limit price rate. I'm buying the limit ask I'm buying 50 contracts. Right. That's key.
+[875s-888s] My starter position on most trades is 50 contracts every time I say I'm buying a starter position. It's 50 contracts. And when I'm looking to buy it rate and buying the limit and buying the ask and buying 10 cents above that ask price.
+[888s-904s] Because that just allows me to get filled, you know, 97% on a time 98% on time. Obviously there's that 2 to 3% rate when I won't get filled and not just if the chart's moving too fast. But most of the time rate will get filled. And then obviously my destination is smart rate.
+[904s-925s] I'm just rooting through whichever one is the best fill price. Right. And you know, even when I do do limit ask tens of bucks. I usually do get filled on the ask unless the stock is moving. You know, extremely quickly. I do get filled on the ask or sometimes even below the ask, but mostly on the ask.
+[925s-938s] And I recommend you know, having that little wiggle room, especially the way we trade to get yourself in those trades rate have that 10 cent buffer. Okay. So that's the buy button that I have with the cell button.
+[938s-946s] I have it below 10 cents. So when I'm selling rate. I'm selling 10 contracts like I said, like to scale in and out of trades.
+[947s-961s] And so when I am scaling in and out of trades rate, I want to scale a small quantity of my position. So usually on the first cell rate. I'll like, you know, click the cell button two times I'll get out of 20 contracts, for example.
+[962s-969s] And then I'll do like 10 each time or something like that rate just slowly getting on to the trade depending on how much contracts I have.
+[969s-980s] Usually, though, I'll have like a hundred contracts and you know, so like 10 20 30 something like that, but you know, I like to sell in 10 10 contract sizes.
+[980s-987s] And that's just because rate, it lets me, you know, it's just, it's just an even number for me to sell app.
+[987s-991s] And that's something I like, right, just those 10 contracts each time.
+[991s-997s] Just slowly reducing my size rather than selling the whole position on a pop, right.
+[997s-1006s] And like I said, right, this one also sell absolute 10 limit bid below 10 cents. I usually always get filled on the bid or a little bit higher than the bid.
+[1007s-1016s] You know, sometimes I even get filled on the ask like I said, I rarely get filled 10 cents below the bid unless this stocks like falling in which case I wouldn't even use this button, but we'll kind into that as well.
+[1016s-1034s] And then just destination here smart, transmit the order and sustainously and that's just so when I do click the button right, sometimes you'll get pop ups like are you sure you want to submit this order and by the time you click OK, right, the trade will either have, you know, went up a lot or down a lot right in those like couple seconds right depending on the momentum of the trade.
+[1034s-1052s] And so it's important to click that transmit the order instantaneously button. Okay, so that's the buy that's the cell right and then we have cancel all right, that'll just cancel all my orders if I didn't get filled for example close position that I'll just close my full position and hole on a little bit below the bid.
+[1052s-1063s] I have an alert right that's just learning my chart and then finally I have sell market. So what the sell market is is sell absolute 50 so like I said my contract, sir, about 50 five 50 contracts.
+[1063s-1080s] For my starter, so sometimes rate like let's say I'll buy 50 contracts the chart will dip a little bit I'll buy another 50 and then I'll pop to high of day right, but it'll like give me a nice big pop. I'll click sell market. You know, just to get, you know, into profits really quickly.
+[1080s-1086s] And you know, sell 50 you know half the position depending on you know however much size I have I'll click sell market.
+[1086s-1098s] And sometimes I do it for the opposite as wall right if you know that's going against me really quickly right I'll click sell market and get out of that trade pretty quickly as well without having to click close position.
+[1098s-1103s] And that'll just close me out on the market. Right. So usually on the bid.
+[1103s-1112s] Price and I'll get out instantaneously there. No problem there. I've never had a problem without you know not getting it on sell market.
+[1112s-1128s] And this is once again, you know absolute 50 destination smart and transmit the order instantaneously. Now I don't have a buy market, but that's just because my buy button honestly I've never really had a problem with it. And if I do have a problem with it.
+[1129s-1139s] I usually just go into this rapid entry and do it this way. I'll click this and then either go into the rapid entry and change it or I'll just be in the orders entry here and I'll change it that way as well.
+[1139s-1155s] So you know I've never really had a problem with that per se. So that's my I B. K. are set up. Now let's just go over to my charts and when I'm looking for there. All right. So what I have here is my charts up. So my charts are pretty simple.
+[1156s-1172s] What I have on my charts is the apple five minute the apple one minute SMP 500 one minute and then the QQ one minute. Now the way I trade right you guys know right I'm looking at the one minute on QQ and Apple right that's what they're at the bottom right they're just a little bit easier to read.
+[1172s-1184s] And then I have the five minute up to seeing what overall the general consensus of what it's doing right what Apple is doing in the trend. And then I have SMP 500 when I want to trade that throughout the day.
+[1184s-1193s] And then I can't show you guys my other monitor, but on the other monitor, I essentially have a Tesla one minute and Tesla five minute chart open and then I have discord on the bottom.
+[1193s-1198s] I can't show you because it's a vertical monitor, so it'll like screw up the video.
+[1199s-1211s] But yeah, the Tesla one minute Tesla five minute and then I have discord on on the bottom and that vertical monitor I have three monitors right now I used to have four but that four is honestly overkill.
+[1211s-1219s] I think three is good you know even two is good as well. I think I could get down to two monitors no problem.
+[1219s-1225s] But three is just you know it's just you know you're always strating your eyes and stuff like that so.
+[1225s-1227s] You know there's not bad.
+[1227s-1230s] But yeah, so this might overall set up.
+[1230s-1232s] If you guys have any questions.
+[1233s-1238s] Okay, that is the full lesson for mastermind one.
+[1238s-1246s] I'm going to stop sharing my screen here so I can see the actual chat that was a full lesson for mastermind one.
+[1246s-1254s] We're going to open up the floor to some questions or you know whatever you guys want to ask.
+[1255s-1259s] So yeah, I'll just do have set up for a thinker swim.
+[1259s-1266s] I don't use thinker swim personally and I've never used thinker swim myself because I couldn't get it in Canada.
+[1266s-1268s] So no, I don't.
+[1268s-1271s] I don't have a set up on thinker swim. There's a bunch of videos on YouTube.
+[1271s-1277s] I can link some in the just remind me after in the question chat and I can link you a video that I think is good on thinker swim.
+[1277s-1279s] However, I've personally never used it.
+[1279s-1281s] Can we re-wash that video on YouTube?
+[1281s-1288s] Just give you the link to that specific video on YouTube but that it's going to be in the recording as well.
+[1288s-1299s] Why would you rather buy limit above ask rather than just market because in the in the thing I said as well, but sometimes when you have a bigger order.
+[1299s-1307s] You experience some slippage and you know to to get to make sure I don't have any slippage the limit allows me to ensure that I'll only have 10 cents off.
+[1307s-1315s] I think that's a great explanation which was really good. There was a lot I didn't know appreciate that before you entered trade. Did you get confirmation on spy kick you first or on the sockets all.
+[1315s-1321s] So for questions related to trades, we're going to try to not answer them in this specific one.
+[1321s-1325s] We're going to only answer content for the actual content that you learned.
+[1325s-1334s] And that's just because I'm going to have to repeat myself a lot if I do start talking about the actual trades because that exact question will literally be in the next lesson.
+[1334s-1338s] And I know that because I made the power points and everything like that.
+[1338s-1340s] So.
+[1340s-1344s] Did it do? Sorry, we're moving a little bit fast. What do you mean by a mental stop?
+[1344s-1352s] So a mental stop is simply just you know where you want. For example, on the chart you know exactly where you want to exit the stock.
+[1352s-1361s] So you don't actually have a hard stop in there. So if the stock does hit that point, it's not like your broker is going to take you out of that. You have to you know exit the stock yourself.
+[1361s-1366s] With your PC crashing, do you ever have issues with using mental stops instead of hard stops?
+[1366s-1376s] Okay, guys, my VC doesn't crash like that, right? Like this is the first time that I did a larger zoom meeting with a bunch of tabs open and stuff like that.
+[1376s-1383s] And so therefore my PC was crashing, but you know, I don't really need hard stops due to like my PC or anything like that.
+[1383s-1394s] What DTE contracts to you buy. So I buy one one weekly contracts for basically everything except spy sometimes on spy all by these zero days.
+[1394s-1402s] Now for new traders, I always always always recommend to buy weekly or anything that's longer.
+[1402s-1408s] Definitely not zero DTE's because they are extremely extremely risky and they can go down extremely fast.
+[1408s-1419s] So if you're a newer trader, I do recommend you buy the one week out contracts. However, if you're a little bit more experience, you can buy those zero days and you know, you can make you know a little bit more
+[1419s-1425s] Profits that way, however, that's only after you've, you know, you've been trading for quite a while.
+[1425s-1431s] And so that's why I trade zero DTEs on spy sometimes, but then sometimes also by weekly is it just really depends on the day as well.
+[1431s-1437s] What are the pros of cons of using IB, IB is there 25K account limit or subscription cost?
+[1437s-1443s] I don't think there's a 25K limit on IBKR. There is subscription cost. There's extremely extremely low.
+[1443s-1452s] I, you know, I couldn't tell you off the bat, but they're extremely extremely low cost for just like real time data and stuff like that.
+[1452s-1458s] You know, I'm probably $10 a month with all the packages, maybe 20 or something like that.
+[1459s-1463s] If I recall in some of your videos, you say you said stop losses when walkaways at the only time you used top.
+[1463s-1471s] Yeah, so I'll use limit stop, limit stop, so that just means, or sorry, trailing stops, so that just means as the stock keeps going up.
+[1471s-1479s] Well, as a stock keeps going up, we'll, sorry, the chasm with a little bit as a stock keeps going up, we'll actually,
+[1480s-1489s] I'll get stopped out if it, you know, goes down 10% after moving up 20% or something like that and I can walk away from the stock and that's the only way I'll use that.
+[1489s-1492s] So on Friday, we would buy next Friday.
+[1492s-1499s] You know, if you're a newer trader, I would recommend you buying next Friday on Fridays. It's just the safer way to go in my opinion.
+[1499s-1505s] You promised, you promised to show your face on these lessons.
+[1505s-1508s] I'll show my face soon. I'll show my face soon.
+[1508s-1513s] Honestly, after this, I'll show you guys the, you know, I'll give you guys a sneak peek of the new setup.
+[1513s-1519s] I just built a new whole new office. If you guys saw that on my IG, I built a whole new office.
+[1519s-1524s] So I'll send you guys a sneak peek on discord of how the new setup's looking.
+[1524s-1528s] When you buy weekly, are you still getting out the same day?
+[1528s-1532s] Yeah, so I, you know, we're still day trading at the end of the day, right? So we're still getting out on the same day.
+[1532s-1536s] We're just buying the weekly option contracts.
+[1536s-1541s] Their mobile app is great too when you're on the go to know that you're asking one to keep an eye on your trade.
+[1541s-1547s] Yeah, I think I B.K. are like the workstation is, you know, it get, you need to get used to it a little bit.
+[1547s-1551s] It is a little confusing in the beginning for shared like the trader workstation with I B.K.R.
+[1551s-1557s] And that's why, you know, I also have that video showing you guys how to use I B.K.R.
+[1557s-1561s] Because I think it's really important that, you know, you understand what to do.
+[1561s-1565s] And so that's why I kind of like ran you through it on the very first lesson.
+[1565s-1570s] Sorry, I miss that you say you always buy Friday expiration.
+[1570s-1575s] So I buy weekly. So weekly is always expire on Fridays, right?
+[1575s-1581s] So, for example, Tesla, Tesla that I bought today was October 6th, right?
+[1581s-1585s] So that was the weekly option contract.
+[1585s-1589s] Charging in an I B.K.R. suicidal use trading. Yeah, definitely.
+[1589s-1592s] So trading view is what you want to use.
+[1592s-1614s] Sorry, trading view trading view is what you want to use for that.
+[1614s-1622s] For for actually charting because I B.K.R. charting is absolutely, absolutely terrible.
+[1622s-1631s] Do you have to lie on your application? Yeah, I think on your application they ask you how well a bit trader you are, how much you trade and stuff like that.
+[1631s-1635s] So you know, you can you can you know, you can search up what you have to say.
+[1635s-1637s] I'm not going to say you have to lie on your application or anything like that.
+[1637s-1641s] But you know, you can Google if you have to.
+[1641s-1644s] Do you have I B.K.R. So that's what you can trade right on trading.
+[1644s-1648s] No, I don't have my trading view linked to my I B.K.R. A lot of people think I do.
+[1648s-1652s] I don't have that. I don't I think it would be really slow to execute as well.
+[1652s-1658s] Is it possible to link to stock to an option chain in I B.K.R.
+[1658s-1668s] I don't know what you mean by that. It's already linked to the stock.
+[1668s-1671s] You can find weekly move less, less or less to her work.
+[1671s-1680s] While the weekly's do move less, but I promise you it's not that big of a, you know, in the beginning especially, especially if you're trading zero DTE's.
+[1680s-1687s] If you're zero like you genuinely have to be a good trader to trade zero DTE's because if you or the stock just has to move in the beginning of the year.
+[1687s-1690s] You have to move in the direction that you wanted to pretty quickly.
+[1690s-1701s] And you have to manage that risk because if you don't, you're going to end up losing a lot, lot more than you would have just if you just had that weekly contract, you know.
+[1701s-1708s] But I already told you through my favorite part of the workshop was when you were roasting or to contracts.
+[1708s-1711s] Are you going to start teaching your strategy and next.
+[1711s-1722s] Yeah, so you know, all with each lesson you're going to learn more and more with my strategy. So the next lesson will be on Monday I believe.
+[1722s-1728s] And that will be right after I actually live trade. So I'm going to live trade Monday, which will be 930 in the morning.
+[1728s-1734s] And then all the lessons going to be like 530. So you guys will see the actual.
+[1734s-1738s] You'll see you'll see how I trade in the day depending if we get a set up or not.
+[1738s-1740s] And then you'll actually see my setup later in the day.
+[1741s-1744s] Yeah, Monday will be the setup.
+[1744s-1750s] I always do right click and then open the option changes is very slow. They're easy way to do it. You have to.
+[1750s-1756s] You have to you can link the option chain to your stuff just search that up on YouTube.
+[1756s-1762s] But there's that there's a little green icon on the top or some color that's that has like it's like a link icon.
+[1762s-1766s] And you just have to make sure each thing in your setup is the same color.
+[1766s-1770s] And that's the way if you just type in a stock in any single one all of it changes.
+[1771s-1775s] Yeah, the paper clip. Sorry. Yeah. Thanks, 9's.
+[1775s-1777s] Are all the lessons going to stay at this time.
+[1777s-1784s] Some lessons may be later. Some lessons may be before. But for the most part, they will stay around this time.
+[1784s-1789s] Uh, to to to on your live trading. Will you explain why you're taking your position.
+[1789s-1794s] Yeah, so with the live trading, I'm going to do only trade about three days of the week.
+[1794s-1797s] So yeah, most of the time I'm only going to trade three days of the week.
+[1797s-1803s] And that's just because I usually trade three days a week. I'm usually busy after that or I just don't want to trade.
+[1803s-1808s] So I'll trade about I usually like honestly when I'm not doing the mastermind. I'll trade three to two days a week.
+[1808s-1811s] And I said that in the in the workshop as well on your live trading.
+[1811s-1818s] Will you explain why you're taking your positions. Yeah, so in the live trading I will be trying my best to explain exactly what I'm doing.
+[1818s-1824s] Of course, I am trading myself. So, you know, bear with me. There's always the trader views after right.
+[1824s-1829s] So you guys will always be able to see those trade reviews after with a little bit more in depth of why I took it.
+[1829s-1834s] Sometimes I'll just take the trade. I'll tell you I took the trade, but you know, I'll actually talk about a little bit later. Something like that.
+[1834s-1838s] But you'll once again understand. Hopefully we won't crash any live trading.
+[1838s-1843s] Live trading will be on discord. We we never crash on discord with live trading. That'll be fine.
+[1843s-1846s] We we won't crash with live trading. Hopefully. Hopefully.
+[1847s-1852s] New to options. Sorry for this. How do you know you're buying in the money. I thought buying a call. You're always out of the money to start.
+[1852s-1856s] You know you're buying in the money when if you go back to the.
+[1856s-1858s] Well, when you rewatch this video.
+[1858s-1865s] Just go back to my IDKR option chain and when those colors change one is out of the money.
+[1865s-1875s] When it's black it's out of the money when it's blue it's in the money and the first one in between that is at the money. Hopefully that was a pretty good way to explain that.
+[1876s-1879s] Mark it will next Monday. Sorry. I don't.
+[1879s-1887s] I don't. Well, I trade on the I will be trading next Monday. If that's what you're asking. Do you have a tutorial for setting the I B care the way you had it in the video.
+[1887s-1893s] Yeah, the actual setup of the I B care. I think there's a YouTube video. I can link you guys.
+[1893s-1900s] But the the actual way I set it up is is why I actually showed you like these settings.
+[1901s-1906s] Can you post your view up and other trading view set up in the discord.
+[1906s-1908s] Yeah.
+[1908s-1913s] Can I. Oh, yeah, I can post my view up and something that I have. Hopefully we won't crash or in the last training in the city.
+[1913s-1916s] It's Saturday. We'll be trading with time is that recorded as well.
+[1916s-1922s] That'll be around 130 or 230 and that'll also that it'll be on zoom and that'll be recorded as well.
+[1923s-1925s] That's a room on this one.
+[1925s-1930s] Mr. And so we nice if you can send us your strategy before the lot of trading so that we can come prepared and fall along.
+[1930s-1935s] You'll you'll see my live trading that same day right. You'll see it up 5 30 PM Eastern.
+[1935s-1943s] And then yeah, you'll have it for the rest of the day. And that's for honestly why I'm not trading live this week as well.
+[1943s-1947s] Just to ensure that you guys do see that my setup before.
+[1948s-1959s] Yeah, and of course if you guys have you know any more questions, something like that you can always ask in the question chat and I can always get back to you.
+[1959s-1969s] Is it discord live still maximum 50 viewers. I thought you know I'm pretty sure I boosted the server and since I boosted the server, I think we should be good.
+[1969s-1978s] With a little bit more people, I'm not exactly sure we'll figure out if not I'll always you know open up zoom and we can you know I'll like we'll make sure that the live goes out.
+[1978s-1981s] But I think this chord should be good.
+[1981s-1984s] I think this chord will be fine.
+[1984s-1991s] But yeah, all right. So yeah, if there's any more questions, we can always ask it in the questions chat and I'll get back to you guys.
+[1991s-2002s] So I hope you guys did enjoy the very first lesson of the mastermind. It was you know a little bit basic in the beginning, but then I showed me on my I'd be carousel up and everything like that, but I just wanted to make sure everyone was on the same level.
+[2002s-2007s] So if we can get some double use in the chat, I'm going to post it on my IG as well.
+[2007s-2015s] You know, so just some double use if you guys enjoyed the first lesson of the mastermind and of course I'll see you guys.
+[2015s-2025s] You know next week as well and in live trading, but you know I hope you guys enjoyed the mastermind and of course you know the lesson will only get better from here.
+[2025s-2029s] This was just the first one. So you know, it was extremely, extremely simple.
+[2029s-2045s] But yeah, anyways, I'll see you guys tomorrow on the on the discord and this the recording will go up and also your homework will also be up as well. It'll be under the quizzes so make sure to complete that as well. All right, guys, so I'll see you guys in the discord. Bye.

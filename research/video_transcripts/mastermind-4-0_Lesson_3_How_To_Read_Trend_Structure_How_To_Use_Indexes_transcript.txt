@@ -1,0 +1,834 @@
+# Transcription: mastermind-4-0_Lesson_3_How_To_Read_Trend_Structure_How_To_Use_Indexes.wav
+# Duration: 4363s
+
+[0s-6s] Cool. Yeah. So like I was saying, we're going to start this session a little bit early today.
+[6s-11s] We're starting in about eight minutes, a little bit early. And the reason that is, is because
+[11s-15s] I just want to make sure that I get everything that I want to say out, and then we're
+[15s-22s] going to have time for any questions at the end as well. Now with this being said,
+[22s-25s] today's session, we're going to be going over market structure, how to read market
+[25s-32s] structure and indices. Now, this isn't going to be some sort of, you know, complicated lesson on,
+[32s-39s] you know, external liquidity, you know, and like, I'll literally show you how I look at the markets
+[39s-44s] in the most simple way where how I look at it, because, you know, it's important to understand,
+[44s-48s] obviously, market structure, I have a bunch of videos for free on YouTube about it. But how
+[48s-53s] do I actually look at the markets in real time, right? That's what I don't really discuss
+[53s-58s] too much, you know, on YouTube, right? On YouTube, it's all about the theoretical aspect. But you
+[58s-63s] need to be able to read market structure very, very quickly, right? And that's where a lot of
+[63s-67s] people fail, because when a lot of people try to read market structure, it's, you know,
+[67s-71s] they're too slow at it, right? And it's because they're looking at, you know,
+[71s-75s] too many different confluences, too many different factors. For me, it's a very quick,
+[75s-79s] you know, one candle type of thing. And I'm like, okay, I know what to do now. Okay.
+[79s-84s] And that's why my stop loss, what you'll notice is, sometimes it can be really, really tight,
+[84s-88s] because I know that it's going to be the lowest risk for me. And if it does fail that level,
+[88s-93s] right, the probability of market structure failing is going to be higher. Now, one thing
+[93s-98s] I want to preface before we even start today's, sorry, one thing I want to preface
+[98s-103s] before we even start today's lesson, the fact that market structure, though, you know,
+[103s-106s] you have market structure, you know, if it breaks, right, like market structure,
+[106s-110s] still probabilities, even if it breaks a key level or whatever, at the end of the day,
+[110s-115s] market structure is not 100% guaranteed that if you know, the market does this, right,
+[115s-120s] you're going to have the 100% that it's going to, you know, fail this trend or whatever.
+[120s-124s] Okay, market structure itself is also probabilities, right, because if market
+[124s-128s] structure is 100%, like if it made a lower high every time, and you just go, you know,
+[128s-132s] short on the position, right, if that happened every single time, right, everyone would be
+[132s-136s] rich. That's not how market structure works. The reality of market structure is that it's
+[136s-141s] also a probability aspect of it working, just like your trade, just like your setups.
+[141s-144s] Does everyone understand that, right? So market structure, you want to combine it
+[144s-149s] with whatever setup or strategy you have. And from that is what wherein you're going
+[149s-151s] to get the highest win rate, or you're just going to be able to scale better,
+[151s-155s] you're going to be able to put your stop loss better, and etc. Okay, so now,
+[155s-159s] as I get started, I just want to know in the chat really quickly, how many people
+[159s-163s] have watched my market structure video on YouTube? I mean, realistically, you should,
+[163s-166s] you should have, it was literally last week, and I've had like three or four videos before
+[166s-171s] then as well. Realistically, everyone in the chat should have seen those, right? So you
+[171s-175s] guys know the basic, you know, market structure, you guys know the basic market
+[175s-178s] structure that I've, you know, taught on YouTube. And therefore, in this video,
+[178s-182s] or sorry, I said video in this module, right, we're not even going to go through,
+[183s-187s] you know, all the theoretical aspect of market structure, because I've done around YouTube so
+[187s-190s] many times, if you want to see the theoretical aspect, I also have it, we have a full
+[190s-193s] accelerator course, right, you guys can go through that and watch the market structure
+[193s-198s] part of that as well. But for you, right, and the the thing with the mastermind is,
+[198s-204s] I'm trying to help you guys implement all that theoretical aspect, right, all that theoretical
+[204s-208s] stuff that we've talked about in, you know, the accelerator, you know, in the in the YouTube
+[208s-212s] videos, everything like that, the mastermind is here to help you see how to implement it
+[212s-217s] in real time, right? I'm saying in real time, but just on the charts, right, more on the
+[217s-220s] charts with a one-on-one experience where you can actually, you know, speak to me and
+[220s-227s] understand what we're looking at. Okay, so with this being said, here is the most basic
+[227s-231s] market structure, right? So, you know, when you're looking at market structure, right,
+[231s-235s] this is what everyone kind of teaches, right, you have these higher highs, you have these
+[235s-239s] higher lows, right, and boom, there you go, there's you, there's your uptrend, right,
+[239s-244s] very, very simple, right, now from this uptrend, from this uptrend, what do we have,
+[244s-252s] we have this high right here, okay, we have this high and we have this low, okay, so if someone
+[252s-259s] was to enter into a position on this retest right here, most likely their stop loss is going to be
+[259s-264s] right this low right here, okay, their stop loss is going to be this low right here,
+[264s-270s] now with this being said, when we're looking at entering it here, right, this is a very
+[270s-274s] textbook pattern, this is what you're seeing on YouTube, this is what you're seeing in,
+[274s-278s] you know, other courses you may have taken, right, you're just seeing the most simple
+[278s-282s] aspect of market structure and the most simple aspect is what, it's this example right here,
+[282s-286s] right, the fact that the stock is going to move with higher lows and higher highs,
+[286s-291s] here's the problem, the reality is, you know, most of these trades that we're taking is
+[291s-294s] are probably going to look like this, right, you see this, right, boom, boom, boom,
+[294s-306s] boom, you know, something like, let me move that over, whoops, let me just fix this,
+[307s-315s] something like this, okay, now can anyone in the chat tell me, right, if you see this lower high
+[315s-321s] compared to this level right here, right, would you stop out of this trade, would you stop out
+[321s-337s] of this trade, no, yes, no, no, yes, no, okay, right, so one thing that you'll notice a lot
+[338s-343s] in, you know, the way I explain things is, every time someone asks me a question,
+[343s-347s] I hate saying it because, you know, someone will ask me a question, I'll be like, oh,
+[347s-350s] it's based on the context, it's based on the context, right, but then it's like,
+[350s-353s] I'm not even giving the right, like, it's the right answer, because it is based on context,
+[353s-357s] but then they're like the person, you know, asking me the question, because they don't actually
+[357s-361s] understand the markets just too well just yet, right, especially when you're new, right,
+[361s-364s] they're like, wow, he just gave me like a half-assed answer, but I'm not, right,
+[364s-369s] it really all depends on the context of the trade, right, so in this example here,
+[369s-374s] though the market structure did break, let me get rid of this, though the market structure,
+[374s-382s] right, did, let me get the, where is this, brush, okay, so though the market structure,
+[382s-388s] right, you had this retest, right, so for the retest entry here, right, where are we entering,
+[388s-392s] we're entering on this retest right here, right, therefore, where would our stop loss be,
+[392s-396s] you got to understand this, right, so here you saw it very, very clearly, but here, right,
+[396s-400s] if you're entering this retest, because this retest is a good retest, right, where's your
+[400s-404s] stop, your stop is at this previous pivot level, it never broke that previous pivot level,
+[404s-408s] did it, right, so you just saw that it broke the previous lower high, but it never broke your
+[408s-413s] actual main original stop, why was your stop there, right, so all of a sudden, now you're looking
+[413s-417s] at this trade and you're like, wait, what, hold up, what just happened, right, so you broke
+[417s-422s] the lower high, but you never broke that stop loss if you had entered into this retest level,
+[422s-426s] and the stop loss is there for a reason, right, does that make sense, so you're looking at
+[426s-430s] this stop loss, right, you're looking at this stop loss rate, sorry, you're looking at this
+[430s-434s] pivot low right here, right, and same thing right here, right, you're looking at this pivot low,
+[434s-439s] and your stop loss is at the previous pivot low, same thing here, you're looking at this pivot
+[439s-445s] low, you're entering in, and your stop loss is at the previous pivot low, now, how do we know
+[445s-452s] where to put our stop loss, right, how do we know where to put our stop loss, now, here's
+[452s-458s] the problem, for me, right, the stop, or here's the problem for new traders, for most new
+[458s-462s] traders when they're looking at their stop loss or they're looking at the trade in general right
+[462s-467s] they're literally and i've seen this in too many times where they're simply trying to risk the
+[467s-472s] lowest amount possible right and they're not looking at the chart they're looking at their
+[472s-477s] risk and they're like okay if it breaks here right i'll stop out of the trade for example
+[477s-480s] right let's say this trade you know ends up you know moving to the upside whatever blah blah
+[480s-486s] blah right their risk they're probably going to risk just below this pivot low and this
+[486s-490s] doesn't make sense based off of market structure but to them and in their head it makes sense
+[490s-494s] because oh this is the pivot low therefore this is my stop and if it gets stopped if i get stopped
+[494s-499s] out of this trade that's fine but what they don't understand is they're looking at the trade
+[499s-504s] purely based off of risk they're not looking at the trade based off market structure the market
+[504s-509s] structure is telling us that the pivot low right is right here right so as i talked about
+[509s-512s] before you guys should know break of start do you guys know break of structure and change
+[512s-515s] of character do you guys know those terms or do i have to get into those terms
+[516s-524s] yes yes yes we know those terms cool so as we know right the break no get into it please okay
+[524s-528s] so really quickly really quickly because most people know so i'm just going to do this very
+[528s-532s] quickly once again if you want a full more understanding about that's fully on youtube
+[532s-536s] right or on the accelerator course but really quickly what you need to understand is
+[536s-541s] when a stock is moving to new highs right every time it breaks the previous high that's
+[541s-546s] a break of structure okay that's a break of structure but when a stock and therefore this
+[546s-550s] a break of structure basically just signifies that the stock is going to continue the trend
+[550s-555s] it's in okay however when we look when we look at a stock like this
+[557s-562s] right the previous low right here when it broke here right that's a change of character
+[562s-567s] a change of character indicates a trend reversal that means that that means that the trend is
+[567s-572s] going to reverse because it broke its previous low right so break of structure simply just means
+[572s-576s] that the trend is going to continue a change of character means that it's going to reverse
+[576s-580s] okay so in this example here when we're looking at this right we see these break of
+[580s-585s] structures right but when we come back down we actually did not change we didn't have a
+[585s-591s] change of character right the change of character occurs if we break this pivot low
+[591s-596s] okay and therefore the trend is still validated right and then we see that we technically did
+[596s-602s] put in a higher low right we did put or sorry a lower high we put in a lower high right here
+[602s-607s] but that does not matter because why we we're we didn't have a change of character the trend
+[607s-612s] is still in we still have an uptrend sorry and we're creating and once again when we come back
+[612s-618s] down a lower high and therefore the trend is still to the upside right does that make sense
+[619s-622s] if you have questions you can ask it now before we get into the first type of example
+[623s-629s] um i did see two questions earlier let me just answer those really quickly um i've noticed you
+[629s-632s] have tight stops when there's a significant strength because the change of character is too
+[632s-636s] far yes well we'll talk about that right so this is once again the theoretical we're
+[636s-639s] talking about right now right uh crunchy right we're talking about the theoretical aspect
+[639s-643s] right now right well we'll talk about how to actually put this in effect how to use this
+[643s-647s] effectively in the real markets so do you not move your stop to break even after you take
+[647s-651s] your first profits once again we'll talk about that as well so change of character means
+[651s-657s] reversal and break of structure means continuation correct correct correct right so let's continue
+[658s-665s] now here's the first example that i have for you today okay now this example is on
+[665s-670s] uh tesla and i want to just ask you guys a couple questions as we go through
+[670s-673s] this example okay so let's play out this trade
+[676s-680s] right we can see a move up actually let me get rid of all drawings
+[682s-691s] right let's make this a little bit bigger boom okay so look at this let's say we had
+[691s-696s] a retest level here on tesla okay we had this retest level on tesla okay now let's say our
+[696s-699s] profit target now this is just a theoretical example that i'm giving you right let's say
+[699s-703s] our profit target was up here now we know that we do exit at high a day that's a whole
+[703s-706s] different thing you know that we'll talk about after but let's say our profit target
+[706s-711s] is all the way up there right let's actually even move it a little bit further okay and so when
+[711s-717s] we enter this trade long position here right to the profit target here with no scales right
+[717s-721s] we're going to pretend like we're not taking any scales where would your stop loss be in
+[721s-727s] this scenario where would your stop loss be in this scenario can anyone tell me
+[729s-730s] let me move this a little bit
+[730s-740s] below the low that you took the trade red wick below the last low
+[742s-751s] 181 how is your stop loss i think you meant like 171 pre-market high
+[753s-758s] just below the 20 weeks cool so as we can see right everyone has you know kind of a different
+[758s-762s] way to look at their stop loss so for me in this scenario right and i actually did take
+[762s-767s] this trade live once again right but for me in this scenario right you have to think
+[767s-775s] about the actual confluences of the trade okay so in this example here right your trade
+[775s-781s] stop can simply be because this is the level that we had to break these wicks right here
+[781s-784s] right realistically right this is completely fine as a stop as well however if you want
+[784s-791s] to give your trade a little bit of room to breathe right this right here why why are
+[791s-797s] we putting our stop loss at this candlestick why this 933 candlestick in in general do we
+[797s-806s] have our stop loss at 179 66 50 retracement bottom of the breaking candle
+[806s-813s] because it broke level it's a candle exactly right so it's the candle that broke with an
+[813s-820s] impulsive move to the upside above 180 64s okay so it's the impulsive candle that broke
+[820s-826s] the level okay so buyers are going to keep that candlestick in mind okay because it is
+[826s-834s] the candlestick that broke now the only reason we would have our stop loss at this 179 66
+[834s-841s] at this 179 66 level is because we want to ensure that the trade does have room to breathe if it
+[841s-846s] wants to come back down okay realistically once you become a little bit better of a
+[846s-850s] trader you have a little bit more experience for example if i'm trading right i'm simply
+[850s-854s] just going to have my mental stop right here at the break of 180 18s and then once
+[854s-858s] it comes near my mental stop right i'm going to be i'm going to simply reevaluate the trade
+[858s-862s] and see how much more it could go down if it could potentially go down based off what
+[862s-866s] the market's telling me at the time right but as a new trader you want to make sure you're giving
+[866s-870s] your trade room to breathe a lot of new traders get stopped out of good trades because they don't
+[870s-880s] give the trade room to breathe okay does that make sense do do do wow nice yes yes yes yes
+[880s-885s] cool okay so with this being said let's play out the trade now i'm going to do a quick
+[885s-888s] exercise here right just just continue listening to what i'm going to say it's not going to
+[888s-895s] make sense to you but it will make sense when it's done okay so as we can see we never hit
+[895s-902s] we never hit uh our our our profit target here so far right we did move back down now look at
+[902s-907s] this right we actually ended up getting stopped out of the trade right here okay we ended up
+[907s-913s] getting stopped out of the trade at 179 66 okay now we got stopped out of this trade but
+[913s-918s] here's the thing we got stopped out of the trade and then the market decided to move up so
+[918s-923s] what are we going to do right we're going to move our stop loss we're going to move our stop loss
+[923s-928s] right at the bottom of that week right there okay now we're going to continue okay now what
+[928s-933s] happened we actually ended up getting stopped out again we ended up getting stopped out for
+[933s-940s] the second time here but once again the market is reversing right the market's reversing near
+[940s-945s] that stop loss level that we had so what are we going to do we're going to move our stop
+[945s-949s] loss to the bottom of that week now okay keep continuing it
+[951s-954s] now as we can see let's keep playing it out
+[956s-962s] the market because we already moved our stop loss two times right from our original stop loss
+[962s-968s] we moved it once twice we might as well move it the third time down to this level because
+[968s-972s] the market's reversing from here we're already holding the position right and if it comes back
+[972s-976s] to high a day we're gonna make money right so therefore let's move our stop loss all the
+[976s-983s] way to the bottom right here okay now let's keep playing out this trade see the market's
+[983s-989s] reversing i told you the market's reversing and now all of a sudden all of a sudden
+[989s-998s] right this trade that was supposed to be a 2.89 to three r multiple trade i just lost
+[998s-1001s] you know uh on a trade that was let's say three r right so we were supposed to lose let's
+[1001s-1006s] say 100 to make 300 right i probably just lost 400 on that trade so how much i was
+[1006s-1010s] supposed to win on that trade in total i lost more than how much i was supposed to win on
+[1010s-1017s] that trade can anyone tell me why i did that exercise can anyone tell me why i did this
+[1017s-1020s] exercise is this what i was supposed to do
+[1029s-1033s] exactly exactly right so
+[1037s-1041s] see i'm not gonna lie this class honestly i'm i'm not gonna lie probably the best class with
+[1041s-1045s] the at least for the answers like you guys are giving the proper answers like every
+[1045s-1050s] single time almost but yeah so the main reason i did this and i do this exercise with every
+[1050s-1055s] class i do this exercise with every single class right but the main reason i do this
+[1055s-1060s] exercise is literally to visualize and show you guys the thought process of where you
+[1060s-1063s] some of you guys may have done that compared to what i would have done
+[1063s-1067s] right so what i would have done in this scenario for example let's say my stop loss
+[1067s-1072s] was here the second i see this candle closing the second i see it up you know and it closes
+[1073s-1077s] i'm fully out of that position okay the reason that is is because that's where my stop loss was
+[1077s-1084s] i had a plan and before i entered into this trade right i had a good plan right i had a
+[1084s-1089s] good plan on this trade the plan was very very simple and the plan was not based off of
+[1089s-1093s] any emotions the plan was not based off of what i thought the plan was not based off of
+[1093s-1098s] bias but simply the plan was based off of the chart that i saw at the time however when the
+[1098s-1101s] trade does come down to your stop loss which you're going to see what you're going to notice
+[1101s-1107s] is all of a sudden it goes from having a plan to just starting to think about the trade you
+[1107s-1112s] start thinking about the trade you start thinking about different ideas that of how you can stay in
+[1112s-1117s] the trade how you can manage the risk but when you start thinking about how to manage risk on
+[1117s-1121s] a trade that you had a clear plan for as a new trader you will lose more money this is a
+[1121s-1127s] fact okay so do you guys understand why i did that exercise and why the stop loss is where it
+[1127s-1131s] should be
+[1135s-1139s] now how many people by the way have done that that the what i just showed how many people have
+[1139s-1146s] done that tony can you explain what an impulse can lose yeah i will give me one second yes yes
+[1146s-1152s] many times emotions me 10k gone we all know we've done that early in my trading i did all
+[1153s-1157s] exactly right so what you need to understand is every single time you do that
+[1157s-1162s] right you're simply putting yourself at a disadvantage you're simply putting yourself
+[1162s-1166s] in at a disadvantage compared to everybody else because the plan that you had before that was a
+[1166s-1171s] logical plan to follow all of a sudden you're not following it why because your emotions are
+[1171s-1176s] clouding your judgment okay and i've seen this multiple times with multiple students
+[1176s-1181s] you know and the thing is you're going to listen to this workshop today
+[1181s-1186s] and i promise you in like a month or even some of you guys like you know and let's say like
+[1186s-1192s] you know two weeks from now right this workshop will go in one year and out the other and all
+[1192s-1194s] of a sudden you're going to do the exact same thing that i told you not to do in this
+[1194s-1201s] workshop it's a fact right so in order to be a long-term consistent trader because that's the
+[1201s-1205s] goal the goal is not to be a profitable trader for one month you know make a good month
+[1205s-1210s] make a good you know have a good green month and then the next month be unprofitable for example
+[1210s-1215s] with me right one thing you will notice i so i've been on a green streak for two months now
+[1215s-1219s] right like uh by a green streak i just mean i've been losing the least i've ever lost
+[1219s-1225s] in my trading career recently however today i had a red day right now what a lot of people
+[1225s-1230s] will see is today i had a red day but notice how i managed my risk i was only down like
+[1230s-1236s] 2800 right when you take that into the bigger picture take that into the bigger picture i'm
+[1236s-1242s] up about 100 and i think it's like 190 000 in the last two and a half months right just through
+[1242s-1248s] trading right so when you put that into the bigger picture that's that loss seems very small
+[1248s-1253s] but if i took that same loss and i said oh i'm down 2k today let me try to remake my
+[1253s-1257s] loss or let me try to continue my win streak because let me tell you if i went and took
+[1257s-1263s] another trade today i could have potentially saved my win streak however i didn't take
+[1263s-1266s] another trade and i was like you know what i can take this loss this is a manageable loss
+[1266s-1272s] right i'm not going to take another trade why because tesla was choppy today tesla literally
+[1272s-1276s] had one of the most choppiest days right especially when we were trading it right and
+[1276s-1280s] tesla's been choppy on the higher time frame breakout the thesis that i had for my trade
+[1280s-1286s] going into the day ended up not working right does that make sense to you so the thesis
+[1286s-1290s] that i had going into the day the bare sentiment that it's going to break out of the wedge pattern
+[1290s-1294s] it didn't work today and because the thesis did not work today right and it should have
+[1294s-1298s] worked instantly when it started to consolidate i was like all right you know this you know tesla
+[1298s-1303s] clearly doesn't have volume to keep breaking out and when it went back into the range
+[1303s-1309s] a hundred percent that thesis is gone right so me trying to come back and trying to save my
+[1310s-1314s] green streak by trading tesla or any other name right it would have been you know a
+[1314s-1321s] rookie trader mistake right so that's why i let that go and i simply played my plan out i simply
+[1321s-1326s] played my tesla plan out that i had laid out in the morning okay and you'll notice that a lot
+[1326s-1330s] about me i'll literally just play out my plan every single day the exact way that i i'll say
+[1330s-1337s] i did i'll change it only if only if the market fully like reverses on one side or
+[1337s-1340s] something like that where the full let's say i was going into the day with a bullish you
+[1340s-1345s] know thesis and the market's bearish you know and every single stock has flipped bearish then
+[1345s-1350s] yeah i'll change my thesis yeah right but overall you'll notice that i try to follow my plan
+[1350s-1356s] every single morning right because that plan is there with no you know emotions in mind it's
+[1356s-1362s] simply there based off of the technicals that i see on the chart okay does that make sense
+[1362s-1367s] does everyone understand uh the the emotional side of this and the market structure side of
+[1367s-1377s] it as well yes yes yes yes okay so let's talk a little bit more about market structure here
+[1378s-1379s] i'm just going to go to a random
+[1382s-1388s] does this work yeah let's make this work we can make this work so here we have an example
+[1388s-1392s] on tesla okay what we can see right into the beginning of the day is this high
+[1393s-1399s] and we can see this low now from this high and low okay what are we looking for right because
+[1399s-1404s] this is just range this is simply just range right and i i'd like this is by the way this
+[1404s-1408s] is an example that i'm doing in front of you i don't have this pre-planned or anything like
+[1408s-1412s] that however i want to show you just based off market structure how simple you know market
+[1412s-1416s] structure is and how simple you can make market structure you know as if you're just
+[1416s-1419s] looking at the chart very very quickly right because once again we're trading on the one
+[1419s-1425s] minute time frame so we have to make decisions quickly if you're someone that lacks the ability
+[1425s-1430s] to make decisions quickly right i really recommend you to start trading on the five
+[1430s-1435s] minute or higher time frames right because on the one minute time frame you need to have
+[1435s-1440s] the ability to trade fast okay you need to have the ability to think fast and make those
+[1440s-1444s] decisions in a split second because sometimes that's what the trade gives you it gives you
+[1444s-1448s] a split second to enter and if you're not in the trade right then just you have to skip
+[1448s-1453s] that trade because then all of a sudden you're buying the breakout other than the retest
+[1453s-1459s] right so with that being said the reason we have this as range and everything inside is noise
+[1459s-1463s] right so you have to look at the context right for me to go ahead in here and mark
+[1463s-1471s] out every single low and high or pivot level that we have here right it's useless because
+[1471s-1476s] if we look at it from you know a macro perspective in here what do we see we see
+[1476s-1482s] no trend we see the stock moving up down up down right you literally see that this is chopped
+[1482s-1486s] so being able to identify which where we shouldn't draw levels compared to where we
+[1486s-1492s] should draw levels is very very important do you notice how why i drew this as range
+[1492s-1496s] this is range and not a trend and why i didn't draw every single pivot level in
+[1496s-1500s] between which some of you still do right
+[1507s-1512s] yes yes i see that tony question by the way that see so in the one thing i do want to mention
+[1512s-1516s] when i'm doing a workshop especially live in front of everyone else please try to make the
+[1516s-1520s] questions you know in regards to the workshop or what's happening on the screen at the time
+[1520s-1524s] right with everything all those other questions can be asked within either the the question
+[1524s-1529s] chat or after i'm done this module right at the end when i'm answering those questions
+[1529s-1533s] right and that's just so we don't you know disturb the flow of the actual full
+[1533s-1538s] the full class right so with this being said after we see this range right we're looking
+[1538s-1542s] for the retest now where does the retest come the retest comes right here right so we can see
+[1542s-1546s] this candle right here right this is the retest candle that's one of the worst arrows i've ever
+[1546s-1551s] drew but you can see that this is the retest candle right here right so this is the retest
+[1551s-1555s] of this trade now i know it didn't completely hit it but for the simplicity of this example
+[1555s-1560s] let's just say we hit this retest now if we're entering into a short position off this retest
+[1560s-1564s] because we clearly see that we broke out of the range we have strong displacement we retested
+[1564s-1580s] right where would our stop loss be where would our stop loss be in this scenario
+[1581s-1584s] so
+[1593s-1601s] 177 177 50 top of freaking candle so our stop loss in this scenario right so you this is
+[1601s-1607s] the reason i'm doing this is to show you different context right our stop loss in this
+[1607s-1615s] scenario is going to be the pivot levels okay so in this example here where do we see that stop
+[1615s-1620s] the stop would be here right the stop would simply be a little bit above this pivot level
+[1620s-1626s] which is 160 176 94 but then to give the trade a little bit of room to breathe near
+[1626s-1633s] that stop area right it would be the 177 29 level which is this pivot low and this pivot
+[1634s-1640s] okay the reason that is is because of course if we break back into this range we're going to
+[1640s-1643s] chop for the rest of the day that's one thing you have to understand right away if you're
+[1643s-1647s] great if you break into this range you're going to chop for the rest of the day however
+[1647s-1652s] because if we move back into this range what's often going to happen is we might just close
+[1652s-1656s] a little bit above and then have a big drop and therefore we need to be prepared for that
+[1656s-1660s] and we can see that this is the pivot low that we moved up off of and then this is where
+[1660s-1665s] we also came back when we came back into this downtrend right we held this on this one candle
+[1665s-1670s] and then moved down right so this candle also created an order block now if you guys don't know
+[1670s-1675s] what an order block is just yet don't worry this weekend j-dub will be going over all
+[1675s-1679s] those concepts like order block i think he goes over like fair value gap exactly how to
+[1679s-1685s] draw all those technical aspects of trading right so that's where our stop loss would be
+[1685s-1690s] because if we move back into this range right this is where the pivot level is and that's where
+[1690s-1696s] the market structure is going to break back into range does that make sense just above that
+[1696s-1702s] level top the red candle yes yes yes yes yes okay cool now here's where market structure
+[1702s-1708s] comes into play when we're looking at this trade right a lot of people move their stop
+[1708s-1713s] too fast way too fast okay i personally what you'll notice most of the time i don't even
+[1714s-1720s] right but if i do move my stop it's based off of two specific things number one it's the impulsivity
+[1720s-1725s] of how fast we're moving so the movement of each candle and how fast each candle is being printed
+[1725s-1729s] that's very very important you need big body candles when you see big body candles closing
+[1729s-1733s] to either direction of the side uh which you're going let's say you're going along
+[1733s-1737s] and you see a big or actually we're going short here so if we're going short right here
+[1737s-1742s] and we see a big body red candle right that speed is something that tells me okay sellers
+[1742s-1747s] are obviously in control here so that's number one that's a first sign that i could potentially
+[1747s-1751s] move my stop loss but it doesn't give me all the factors and then number two i move my stop
+[1751s-1757s] once we get a close below previous low of day right so this is the low of day that we put
+[1757s-1763s] in for the day once we get a close after low of day so we get a close of the candle
+[1763s-1770s] after low of day then you can potentially move your stop loss okay before then you never move
+[1770s-1774s] your stop you don't move your stop based off of your own risk management that's a mistake i see a
+[1774s-1778s] lot of people making where they're like oh yeah just because it hit you know uh it came near
+[1778s-1783s] low of day i'm gonna move my stop to break even why the market structure has not changed
+[1783s-1787s] and if you're and the trade here's the thing the because the market structure hasn't changed
+[1787s-1792s] right this trade could easily let's say if it was like right here it could easily reverse
+[1792s-1798s] from here make this move retest this level completely and then move down and then all of
+[1798s-1803s] a sudden you thought what you did was good by stopping out at break even but when the trade starts
+[1803s-1809s] working in your favor you're going to really regret not taking that first initial stop okay
+[1809s-1816s] so we don't move our stop loss until we break the candle or until we break the low of day
+[1816s-1822s] and we actually have a candle close below along with having the big red candles as well
+[1823s-1829s] right so we need an impulsive candle plus we need the can plus we need the uh the the
+[1830s-1833s] candle stay close sorry uh below low of day does that make sense
+[1837s-1842s] yes yes yes and i'm glad someone wrote that right so someone someone actually just wrote
+[1843s-1846s] what was that john just wrote break of structure correct right so you know break
+[1846s-1849s] of structure and everything like that's good when i'm showing you theoretical and i'm showing
+[1850s-1853s] you very slowly but i didn't even mention break of structure but you noticed that this was a
+[1853s-1857s] break of structure right you noticed that this was a continuation in the trend and that's when
+[1857s-1862s] you move that stop right so from here right we can move our stop to simply break even now break
+[1862s-1866s] even by break even i simply you're actually not moving into break even completely actually
+[1866s-1871s] you're moving it to the the the top wick of that previous high right so you're moving
+[1871s-1876s] it to the top wick of this previous high right here okay now from here as a trade moves
+[1876s-1882s] down every time you see a low of day being created every time you see a low of day being
+[1882s-1887s] created with the candle close below you start moving your stop right so let's say we go down
+[1887s-1892s] here right you start moving your stop every time so all of a sudden now right your stop
+[1892s-1898s] loss is where let's say right here right if we break this low of day and we obviously got
+[1898s-1902s] that impulsive candle as well where are you putting your stop loss there's two options
+[1902s-1907s] here right so i want to know what your guys's opinion 176.08 which is this green candle high
+[1907s-1912s] or are you putting it at 11.24 which is 175.78
+[1924s-1928s] 175.78 166 okay so we're getting like a 50 50
+[1932s-1940s] yeah literally like a 50 50 so for me where would i move my stop so when you see a big
+[1940s-1946s] impulsive move like this you're going to move your stop to where the previous low because
+[1946s-1952s] now you have to think about it from the perspective of your trade right like obviously
+[1952s-1955s] you want to think about it from the market structure first but also you have to understand
+[1955s-1960s] you just took this trade from up here right you just took this trade from up here and
+[1960s-1964s] you're already up like probably at this point like six are on the trade right so you want to
+[1964s-1968s] obviously manage that risk because now that risk comes into play as well as well obviously
+[1968s-1972s] however your first priority is not your risk but your first priority is understanding where
+[1972s-1978s] the market structure break is and this higher low or sorry this lower high is a great example
+[1978s-1984s] because it's also retesting where that previous low that we made so that previous
+[1984s-1988s] low that we made it's retesting right so that's something you have to understand as well
+[1988s-1995s] we're retesting this previous low with a bearish candle okay after this impulsive move down of
+[1995s-2002s] course my stop loss now is going to be this 175 78 right so notice how it all comes down
+[2002s-2008s] to understanding the context of the trade as well right so understanding the context that
+[2008s-2013s] oh look this was the low of day we broke that we came back up our stop loss obviously
+[2013s-2017s] moved to the high of this candle and then when we broke that again right our stop loss
+[2017s-2021s] can move but at this point we didn't break that low of day we break low of day here
+[2022s-2028s] and our stop loss is where now it can be the high of this candle because it is technically
+[2028s-2033s] a retest candle of previous low of day so notice how there's a lot of different factors
+[2033s-2038s] there's a lot of moving factors that you have to think about right and so one thing
+[2038s-2043s] that i feel like traders you know they they just don't understand it is they think that
+[2043s-2051s] it's so easy and it you know the the overall strategy that i'm trading is easy but if you
+[2051s-2056s] think i became you know a profitable trader a seven-figure trader by simply trading the
+[2056s-2060s] break and retest and not understanding anything else and you know just exactly how you know it
+[2060s-2065s] is on youtube right you know it's just not possible you got to be realistic right be
+[2065s-2069s] realistic with yourself obviously there's some some stuff that you need to understand to
+[2069s-2075s] obviously see that consistency over you know seven years of trading right and this is that
+[2075s-2079s] you know little sauce that you know you can't explain on youtube you need to be there in the
+[2079s-2083s] live session you need to you know i need to be speaking to you more like this like on a one
+[2083s-2086s] to one where you know you can ask questions about this but then i'm also reading the chat
+[2086s-2090s] and you know we're both understanding at the same time exactly what's going on in the chart
+[2090s-2096s] right so from here what's going on so as we continue down right all we're looking for
+[2096s-2101s] is new lows to be created as new lows are created we can simply keep moving down our
+[2101s-2106s] stop loss right or the market structure for example right so the next stop or the next low
+[2106s-2109s] of day rate is going to be right here and therefore we need to wait for a structure
+[2109s-2114s] break so this candle right here wasn't the strongest but then we got an impulsive break
+[2114s-2119s] once again right here so now we can move our stop loss now in this scenario here where would
+[2119s-2123s] you move your stop where's the break of market structure let me make this a little bit bigger
+[2123s-2129s] we have this low of day we created a new low right where is the break of structure after this
+[2129s-2141s] low day the green shooting star candle 175 175 50 175 cool so the so the so now right the
+[2141s-2144s] break of structure sorry not the break of structure but the stop loss right or the
+[2144s-2148s] change of character is simply right here right because now we made a new low of day
+[2148s-2152s] right and so now we need to hold this candle right here now notice how this candle
+[2152s-2158s] is very very close to this right here right this these two pivot levels very very close
+[2158s-2162s] right this really comes down to once again right if the can because we're waiting for the candle
+[2162s-2166s] to close anyways and if the candle does come back to this green shooting star candle most
+[2166s-2171s] likely we are going to guess if if it closes above most likely it will close above the 175
+[2171s-2175s] 30s anyways you just kind of have to understand that based off context but the
+[2175s-2180s] stop loss is simply this pivot level slash this green candle right here right so we continue
+[2180s-2185s] down down down down down and as we can see we're making new lows right here therefore our stop
+[2185s-2190s] loss right this one's pretty simple our stop loss is right here at 1209s and then when we
+[2190s-2195s] make that final low of day push and i promise you this low of day push because this reverses
+[2195s-2200s] like a v-shape this definitely has to correlate with something else yeah i could almost i could
+[2200s-2205s] have guessed that right so you see this low of day uh two days ago right this two a day
+[2205s-2209s] two days ago low of day right so that could have been your potential final profit target
+[2209s-2215s] right so you see that it clearly touch right here made a v-shape recovery an impulsive candle
+[2215s-2221s] right so we got an impulsive candle to the upside and notice the second we break back
+[2221s-2227s] above this level we get an impulsive candle this explains to us that clearly we had the
+[2227s-2234s] right level we had an impulsive candle the second it breaks off 174 174 73s and then after
+[2234s-2241s] that notice how the trade reverses straight up reverses after that level so notice how if you
+[2241s-2246s] were able to read market structure down the whole way you would have been able to hold this
+[2246s-2252s] trade completely throughout the whole thing right does that make sense did that example
+[2252s-2255s] make sense to you guys were you able to see what's going on in that example
+[2264s-2273s] okay now one thing i want to say is so those are a couple market structure examples we're going
+[2273s-2279s] to get over to the uh we're going to go over to how to correlate with the indices now however
+[2279s-2284s] one thing i want to say market structure uh is something that obviously you need to understand
+[2284s-2289s] and you're going to understand market structure better the more you obviously have
+[2289s-2292s] that experience and i know i keep saying the same stuff but it's literally like there
+[2292s-2297s] a lot of people think that there's like some like you know there's something that i will say within
+[2297s-2302s] the mastermind or something that i'll just tell you that all of a sudden you'll be profitable
+[2302s-2306s] it's not it's not that it's what i'm continuously saying listen to what i'm
+[2306s-2310s] continuously saying right i continuously say i'll give you the information you can implement
+[2310s-2313s] the information i'm trying to help you implement the information but then after you
+[2313s-2317s] implement it all you need is more experience and time on the charts it's literally that's
+[2317s-2321s] all it is you just need more time on the charts after learning what to look for because
+[2321s-2325s] the problem is some people have the time on the charts where they've had experience for five
+[2325s-2329s] ten years whatever right but they they weren't even looking for the right things right they
+[2329s-2334s] weren't even looking for the right things now that you understand the things to look out for
+[2334s-2338s] you'll actually be you know not wasting your time in front of the charts you know randomly
+[2338s-2342s] drawing key levels or backtesting some random strategy you'll be looking at something that can
+[2342s-2346s] actually make you profitable but you just have to put in your own time and you have to put
+[2346s-2350s] in the you know the work right it's like i said in the video yesterday the input you get
+[2350s-2356s] you put in is the output you get out okay can you quickly point out pivot levels in that
+[2356s-2363s] range a little confused on that which which which range which range which range
+[2368s-2376s] which range uh daphne where you have like where i started to short the position right up here
+[2376s-2382s] here right up here could you tell me like a number right below it
+[2386s-2389s] can you quickly point out pivot levels in that range yeah so when you look okay so when you
+[2389s-2394s] look at this right the pivot levels that you have right you're simply just looking for lower
+[2394s-2397s] highs right you're looking for lower highs or higher low or sorry you're looking for lower
+[2397s-2401s] highs and lower lows the reason you're looking for lower and lower highs is obviously that's
+[2401s-2406s] going to be your risk level but then every time we create a new low that means we're breaking
+[2406s-2411s] structure so the trend's continuing so every time you see the break of structure right you
+[2411s-2416s] can move your stop but you can only move your stop if we close the break of structure if we
+[2416s-2421s] close below that level right so simply like the example i gave earlier right where i drew
+[2421s-2426s] out this level this type of diagram right here where it was like this and then it did this
+[2426s-2430s] right so after we get a break of structure the only way you move your stop right so let's
+[2430s-2435s] say our stops right here the only way you're going to move your stop after this is if this
+[2435s-2440s] right here this this move right sorry i'm on my macbook so it's not that great but this move
+[2440s-2446s] right here closes above our level if it closes above our level right and we've taken that
+[2446s-2452s] profit that realized profit right then we can move our stop potentially however before then
+[2452s-2456s] we do not move our stop okay i hope that was able to answer your question
+[2461s-2467s] do you uh tony i'm at 174.79 let's see what was the other question uh tony when the price has
+[2467s-2475s] reached 174.93 uh where do you move where do you see you move your stop to you you you honestly
+[2475s-2478s] don't move your stop after that right so you have to look at this trade from a perspective
+[2478s-2483s] of like just understanding the trade in general right so when you see this new low of day
+[2483s-2486s] right you're seeing this new low of day being created you really don't have to move your stop
+[2486s-2489s] after this point right because you just have to think about the market context at this point
+[2489s-2495s] this is the low 174.73 you have your profit target here which is the two day previous day low
+[2495s-2499s] right so why would you end up moving your stop loss here right the reason i didn't move my
+[2499s-2503s] stop loss is based off market context right it doesn't make sense to move your stop loss
+[2503s-2507s] let me go back it doesn't make sense to move your stop loss here just because you already
+[2507s-2512s] understand that the trade obviously is trending to the downside so where's it where's it going
+[2512s-2515s] where is it going to potentially reverse it's not going to randomly reverse off any of these
+[2515s-2520s] levels anymore right it's going to like when the trades here it's basically 90 percent of the time
+[2520s-2524s] right like you just have to think about the probability there's a 90 chance it's going to
+[2524s-2529s] hit 173.92 why because this is where all the buying liquidity is if the trade does want to
+[2529s-2533s] reverse it's obviously going to get go to the buying liquidity first it's going to bring
+[2533s-2538s] in new buyers to reverse the trade it's not going to reverse off a random you know level
+[2538s-2543s] off the chart right so that's just the higher time frame right so understanding the higher
+[2543s-2546s] time frame levels is also obviously going to help you stay in the trade as well
+[2551s-2556s] so you ignore the range until it forms a lower low so you pivot management
+[2559s-2565s] so you ignore the range until it forms a lower low this range right here uh yes you
+[2565s-2569s] ignore yeah that's what i i just explained that right so you ignore this range until
+[2569s-2573s] you make a low until you see a candle close below the low you ignore that range
+[2573s-2578s] so pivot management right break of structure will validate lower high pivot point
+[2583s-2587s] question do you see value on charting all these levels and short position feature while
+[2587s-2591s] trading or just explaining to make a point no i'm just explaining to make a point you
+[2591s-2594s] don't have to draw out every single level that i just did i'm just i'm just showing you
+[2594s-2596s] to make a point of where to look out for
+[2598s-2602s] what if change of character happened at 174.73 what was the reason i am
+[2606s-2613s] if this stock ended up reversing off 174.73 right technically the reason we even have this
+[2613s-2618s] as a level is because this is low day so this isn't a random level anymore right but after
+[2618s-2623s] it makes a new low of day right after it makes a new low of day right obviously it's going
+[2623s-2628s] or not obviously but most likely it's going to hit 173.92 based off the probabilities however
+[2628s-2633s] when we come back and we're making a and if it breaks change of character if it changes character
+[2633s-2638s] after 174.73 then we can obviously get out of the trade because then it's changing character
+[2638s-2643s] before it before it hit a new low of day you keep seeing your final profit target does
+[2643s-2647s] this mean you would close out all your position including shows realistically if you
+[2647s-2651s] had a 173.92 final profit target yes you're you're going to stop out of the trade there
+[2651s-2656s] or you're going to hit your final pt there right like this would have been what if you
+[2656s-2659s] would have if you would have entered this trade with the original stop in place right
+[2659s-2664s] it's like a 3.45 r trade and then when you put it to break even this was like a 12 r trade
+[2666s-2671s] do you use hotkeys to execute trade say okay so once again now we're leaning away from
+[2671s-2674s] the topic of market structure right i keep saying to make sure we're just on market
+[2674s-2679s] structure just to answer your question yes i do use hotkeys to enter into my trade but
+[2679s-2683s] the hotkeys are just literally the it's not actually hotkeys it's just a chart
+[2685s-2690s] to the ibkr charting feature where you can enter in on the bottom of your chart right
+[2690s-2694s] you can enter in on the chart itself that's what i use okay so with that being said does
+[2694s-2705s] the market structure make sense to everybody yes yes yes yes cool cool cool cool okay now
+[2705s-2709s] from here let's take it up a notch right so all of a sudden right i explained the market
+[2709s-2712s] structure you're looking at the chart from a new angle and all of a sudden you know you think
+[2712s-2719s] you're you think you understand what everything that's going on now let's add in now let's add
+[2719s-2734s] in the qqq so as you guys know i told you earlier right uh the fact that i use qqq for
+[2734s-2740s] my trades i use qqq to enter into every single trade that i that i take and it's because it
+[2740s-2745s] gives me context so i want to talk about the tesla trade that i took today right because the
+[2745s-2750s] tesla trade that i took today i was using qqq as context unfortunately it didn't end up working
+[2750s-2756s] out but i but it still gave me specific indications that i saw that i would i like
+[2756s-2761s] theoretically like i saw and i from you know experience i was like okay i probably will end
+[2761s-2764s] up getting stopped out of this trade however i still stayed in the trade because i have to
+[2764s-2769s] respect my plan but qqq was giving me the indication of why i should probably stop out
+[2769s-2774s] of the trade and i want to talk about that as well so how do we compare qqq to that the the
+[2774s-2778s] stock that we're trading we're looking for relative strength and relative weakness that's
+[2778s-2783s] the main thing we're looking for okay so whenever we're looking at qqq or we're looking
+[2783s-2787s] at uh you know let's say tesla apple in the video whatever we're trading we're looking for
+[2787s-2791s] the specific stock that we're trading to have relative strength or weakness this
+[2791s-2794s] usually comes from a higher time frame breakout or a higher time frame you know
+[2794s-2800s] liquidity level that the stock can reach and qqq if it can trend in the same direction as
+[2800s-2806s] a stock that we're trading we're going to have an absolutely killer day okay so let's talk
+[2806s-2813s] about what happened with qqq today let me make sure by the way if if this isn't making sense
+[2813s-2817s] to you or if you're just confused right now don't worry you can come back you can re-watch this
+[2817s-2822s] video and then also i say this every day almost but make sure you go back after you've done all
+[2822s-2825s] this make sure you're watching first of all the accelerator course and then also make
+[2825s-2828s] sure you're watching the trade reviews as well right because the trade reviews will also help
+[2828s-2833s] you understand a lot of you know the strategy and stuff like that after you know what you're
+[2833s-2837s] looking for right it's the first the main objective the reason i do this in the first
+[2837s-2840s] two weeks where i do the full boot camp is to make sure you all know what you're even
+[2840s-2847s] looking for right so let's talk about cues real quick okay so the main thing we had into open
+[2847s-2853s] on tesla today let's go to the one hour right on the one hour on tesla you can see that we've
+[2853s-2859s] been creating this range and this very very tight wedge and so when we broke below this
+[2859s-2865s] consolidation we broke below it right obviously i'm looking for that short position because
+[2865s-2869s] we have a higher time frame breakout now one thing that i fail to see today or not even
+[2869s-2874s] fail to see i honestly didn't even fail to see it i kind of knew but i still took the trade one the
+[2874s-2878s] the main thing that i was looking for was the fact that tesla just is such a you know a weak
+[2878s-2883s] chart right now like it's just such a weak stock to trade it has no momentum to either side
+[2883s-2886s] it's been in a range for like the last like i don't even know like two weeks or something
+[2886s-2890s] like that it's just something you don't want to trade especially now that i understand that
+[2890s-2893s] you know even with the range breakout it still had terrible price action such as one of those
+[2893s-2897s] things where you know tesla's probably going to be on a no trade type of thing until i see
+[2897s-2902s] some good price action on it however with that being said what was i looking at on tesla and why
+[2902s-2908s] was qqq giving me the signal to enter so when we look at tesla right in the morning we see
+[2908s-2914s] a lot of relative weakness one two three four five red candles in a row where qqq is kind
+[2914s-2919s] of holding up right qqq is right at vwap really it's not really showing me too much weakness
+[2919s-2924s] of course it's showing a little weakness but compared to tesla you can see that relative
+[2924s-2930s] weakness so easily right so very quickly because it did break out as well it's below its previous
+[2931s-2938s] previous low day right i'm looking for a retest entry right i'm looking for a retest entry so
+[2938s-2943s] what am i looking for i'm looking for the trade to come back near 172 75s and i'm looking
+[2943s-2948s] to enter now based off of qqq at the time right obviously hindsight it's easy to say that
+[2949s-2954s] it didn't work out because qq ripped hindsight easy to say but in the real markets at the real
+[2954s-2962s] time qqq had this 458 25 resistance and because of this 425 458 25 resistance i was confident in
+[2962s-2968s] tesla because if qqq even rips to high of day it'll give me once again a better entry on
+[2968s-2974s] tesla because i entered in on tesla right here at around i believe 9 45 and so if qqq
+[2974s-2979s] does end up ripping to high of day right tesla will come back to 174.01 which it did and i could
+[2979s-2982s] i could have even entered into more of a position now i didn't today because it
+[2982s-2988s] didn't completely come back to my 174.01 level however right if tesla did end up reversing back
+[2988s-2991s] into 174.01 it would have gave me a better position to enter based off of the fact that
+[2991s-2996s] qqq is going to use 458 25 as resistance how do i know that because this is a higher time
+[2996s-3001s] frame resistance level with as we can see because it's green right so for me right i
+[3001s-3006s] enter into a short position on tesla and we get near low of day now one one thing you'll notice
+[3006s-3009s] is when you get a move like this where you're coming near low of day and then you get an
+[3009s-3013s] impulse and move off low of day usually not a good sign especially on tesla right so i saw
+[3013s-3016s] that and i was already like all right whatever like you know well we'll just let the
+[3016s-3021s] probabilities play out of this trade right here but then what you can see is tesla's
+[3021s-3026s] consolidating all day right so tesla ends up consolidating all day and of course we had
+[3026s-3029s] 10 o'clock news today so that's also why we had some consolidation as well and then
+[3029s-3035s] obviously we got the rip because we had a good bank of canada news however based off of this
+[3035s-3042s] you can see look tesla is breaking below 173 25s and what at the same time what is qqq doing
+[3042s-3048s] qqq as tesla's breaking 173 25 is actually putting in a bullish candle right so what does
+[3048s-3054s] that show us that shows me that i should stay in this tesla trade why because if qqq breaks
+[3055s-3060s] this little like flag pattern that i was doing right this downturn flag if it breaks below then
+[3060s-3067s] this will give tesla room all the way down to low of day and 171 20 or 171 43s okay so that's
+[3067s-3073s] what i was looking out for however we can see what did qqq do and this is the reason and
+[3073s-3076s] this is kind of where i was like all right i should probably exit the trade but i'm just
+[3076s-3081s] gonna wait till it hits my stop loss the second we had that low of day move right so
+[3081s-3086s] we try to move to low of day we try to break this flag we got bought up on the cues right away
+[3086s-3090s] and so this signified to me that realistically i should probably exit out of this trade right
+[3090s-3096s] here because qqq is most likely going to rip it just had a reversal off of and just had a fake
+[3096s-3100s] out reversal sorry they had a fake out reversal off this trend line all the way up to new
+[3100s-3105s] highs right so we're consolidating after this fake out reversal and at the same time right
+[3105s-3111s] tesla's trying to retest tesla was still extremely relatively weak compared to the
+[3111s-3117s] full market today right and you can see that even when tesla pushed up to 174 oh ones look
+[3117s-3121s] at what cues was doing right if cues wasn't as strong today tesla still would have potentially
+[3121s-3126s] worked but the problem was right tesla is all the way up here at 174 oh ones right trying
+[3126s-3132s] to still hold below as cues is absolutely ripping right ripping face all the way up
+[3132s-3137s] okay so you have to notice that because of this move obviously right my stop loss is 174.3 so the
+[3137s-3141s] second it moved up i didn't care if the trade came back down i didn't care if you know i
+[3141s-3146s] got stopped out in the trade made a 90 degree move up because cues is so strong on the day
+[3146s-3150s] i have to stop out of tesla no matter how much relative weakness and of course we can see
+[3150s-3155s] that that actually saved me from losing a lot more money than i potentially could have
+[3155s-3158s] okay so do you understand how i saw that tesla trade today
+[3158s-3162s] okay compared to qqq's of course
+[3173s-3181s] yes yes yes yes yes cool all right let's try to do one more example of qqq i want to do one
+[3181s-3187s] more let's see something we can use to do this
+[3190s-3195s] and then actually let's go over to like new video or something get rid of all the drawings
+[3197s-3198s] what day is this this is
+[3203s-3204s] let's go over to this day
+[3204s-3212s] okay so here's an example of nvidia and qqq notice how i don't have any key levels
+[3212s-3215s] i'm simply trying to show you the correlation between cues and nvidia
+[3218s-3226s] right let's make this a little bit more clear okay so now here what are you looking for
+[3226s-3232s] on qqq and what are you looking for on nvidia right so let's just block out qqq
+[3233s-3239s] and let's put in this level right here now i know you guys can see the screen obviously
+[3239s-3243s] on nvidia so you you saw what happened right obviously you saw what happened
+[3243s-3248s] but if you were to look at nvidia right here right if you were to look at nvidia
+[3248s-3253s] right here and you can see let's give it like right here if you're looking at this
+[3253s-3260s] nvidia trade and you're looking at this retest right here right are you entering into
+[3260s-3263s] this retest of nvidia based off of this previous low
+[3266s-3271s] and this isn't and by the way just because you saw what happens on nvidia does not mean
+[3271s-3274s] this is a good trade this doesn't mean it's a good trade or a bad trade i'm just i'm just
+[3274s-3278s] trying to ask you you can say yes you can say no but would you enter into nvidia here
+[3278s-3282s] and if you're saying yes or no i want to know the reason why behind it as well
+[3282s-3285s] just say yes and then the reason and then no and then the reason
+[3290s-3292s] you
+[3292s-3294s] you
+[3294s-3296s] you
+[3317s-3322s] okay let's see uh yes breaking structure into gap and breaking retest nodes within the range
+[3323s-3329s] uh below vwap no no good candles impulsive yes retest and below vwap no because it's still a
+[3329s-3334s] bit of pivot yes retest of prior structure yes break and retest of structure retest level
+[3334s-3341s] vwap and no within range so here's the thing you're seeing that it's range you are seeing
+[3341s-3346s] that it's range but if i was to do this right then and i i guess that's kind of my fault
+[3346s-3349s] because you for the people that are seeing range because it's kind of hindsight but
+[3349s-3354s] if you just look at it like this this looks really good there's there's really no range
+[3354s-3358s] right like here there's really no range right here right you see this low you see a move up
+[3358s-3363s] right you see that it tried to hold a brand new high but it actually swept it so what happened
+[3363s-3367s] is you know we had this high right here it swept highs right here then it broke back below
+[3367s-3372s] broke below this previous pivot level announced retesting below view up right now so nvidia
+[3372s-3376s] itself the trade looks good right because obviously you know a hindsight you can see that
+[3376s-3381s] there was a load of range but he until you see this candle there was no range right now with
+[3381s-3386s] this being said what was happening on qqq's to give you more confirmation of why this was a good
+[3386s-3395s] trade well here's what's going on on qqq at the same time as nvidia right we can see let's
+[3395s-3402s] go right here we can see that qqq had this pivot low and it's pushing up back into a
+[3402s-3409s] retest so as nvidia's retesting its vwap nvidia's retesting vwap and nvidia's retesting
+[3409s-3416s] its previous pivot level right qqq is also coming back for the retest of 450.79 what does
+[3416s-3421s] this mean this most likely means that if we just go to a short position on nvidia we have
+[3421s-3426s] our stop loss at this previous pivot structure high right this previous pivot structure high
+[3426s-3431s] with our profit target simply at low of day this is a 2.05 trade right qqq at the same
+[3431s-3436s] time right you're basically taking what you're basically looking for is would you take the same
+[3436s-3441s] trade you're taking on your trade with qqq right so in this example here right the pivot
+[3441s-3445s] structure on qq is right here right and then you're simply looking for low of day on qq as
+[3445s-3451s] well now obviously the qq trade isn't as great but what you can see here is that if q's does
+[3451s-3455s] end up dropping from the 450.79 retest level with the break and retest strategy
+[3455s-3460s] then nvidia will drop more right nvidia will drop more after this vwap retest and as we
+[3460s-3466s] can see low of day and then a huge push 90 degrees down on nvidia okay so because of this
+[3466s-3472s] you can see the correlation between why q's retested and then why nvidia also is moving
+[3472s-3477s] down now if q's is pushing down in the same direction as nvidia it's going to give it more
+[3477s-3482s] room to go to the downside because if q's is weak right that's the indices that's what is
+[3482s-3486s] holding the video and if the whole indices is weak then of course nvidia is going to push
+[3486s-3492s] down if it has relative weakness okay and of course people are going to ask how do you know
+[3492s-3497s] nvidia is more relatively weak than q's you know because when we opened up on the trade
+[3497s-3503s] right one two three four five red candles straight to the downside five red candles
+[3503s-3509s] whereas qqq came in with one two green candles and then three impulsive candles to the
+[3509s-3512s] downside right so q's actually had two green candles and then moved to the downside
+[3512s-3517s] whereas nvidia just opened up weak right so does that make sense
+[3531s-3535s] yes yes yes damn this is good
+[3535s-3545s] cool okay so now let's do one last example here just to make sure that this is
+[3545s-3550s] um let's do one last example just to make sure that this sticks in your in your head
+[3550s-3554s] and you guys kind of remember this and then from there right obviously as you see more
+[3554s-3557s] trade reviews as you see the live trading you'll you'll see it in real time and of
+[3557s-3561s] course you'll it'll make a little bit more sense to you right so let's just go to a
+[3561s-3568s] random we got to just go to a random part on the chart like once again i i honestly have
+[3568s-3575s] never seen these like like i'm just doing this based off of um what i see really quickly
+[3578s-3579s] let's see
+[3579s-3594s] okay this is a good example so look at nvidia here compared to qqq okay so we can see that
+[3594s-3598s] so far early on in the day right we really didn't get we had the high of day right here
+[3598s-3602s] we had the high day right here we didn't really get anything and then we have low of day right
+[3602s-3610s] here we have low of day right here right and then you have high of day you have high of day
+[3610s-3617s] on qqq right here and then you have low of day on qqq right here right so in between this
+[3617s-3620s] right really just range right really just range you don't really want to trade that
+[3620s-3628s] okay now here's the thing when we're looking at qqq compared to nvidia notice how nvidia breaks
+[3628s-3636s] out nvidia breaks out of its range or its low of day faster than qqq right qq did try to break
+[3636s-3639s] out of its low day but then it pushed right back in and consolidated for a little bit however
+[3639s-3645s] when nvidia broke it broke with impulse impulsivity to the downside okay so let's
+[3645s-3649s] just pretend like we had a retest level here right for simplicity sake let's just say this
+[3649s-3654s] was a retest level right now if we're looking at this retest level on nvidia short
+[3654s-3658s] would you enter into this trade here yes or no right we're going to wrap everything up with
+[3659s-3663s] with uh with everything we've learned in today's workshop so far
+[3667s-3677s] yes yes yes yes yes yes okay so we're going to enter in to nvidia here okay our profit
+[3677s-3681s] target obviously is going to be our first profit target at least low of day okay and
+[3681s-3686s] what we're looking for on nvidia right is going to be the stop right here okay our stop is going
+[3686s-3690s] to be right here because once again this is the pivot high right so of course this is going to
+[3690s-3695s] be the pivot high this is going to be the stop and on qqq at the same time what is going
+[3695s-3701s] on with qqq well we can see look at this when nvidia oh sorry
+[3704s-3710s] when nvidia came back for this retest when nvidia is coming back for this 1137 retest
+[3711s-3719s] qqq is pushing up and it's retesting its previous pivot level as well okay qqq is retesting its
+[3719s-3725s] previous pivot level as well and therefore for us we enter into this trade based off of the
+[3725s-3732s] qqq retest now once again what did i say i said that every single time that the stock closes
+[3732s-3739s] below your level you can move your stop before then you do not move your stop okay so in this
+[3739s-3744s] example here what do we see we see that the second we had the low of day we actually never
+[3744s-3751s] closed below low of day we pushed back up and then we closed here so we move our stop to this
+[3751s-3757s] pivot high right here after it breaks below here now here's the thing you can see that
+[3757s-3762s] q's decided to push up and therefore we don't have to get caught up and we don't have to
+[3762s-3768s] you know lose out on all this potential profit right here because we understand market
+[3768s-3773s] structure once the candle closes below that previous low of day we move our stop to the
+[3773s-3779s] previous pivot the lower high right and the second we get stopped out right here for our
+[3779s-3785s] trailer positions right we were able to avoid this whole move right we were able to avoid
+[3785s-3789s] this whole move on nvidia right you can see after that it just starts consolidating and
+[3789s-3794s] we didn't want to be entered into that so we what we did is we combined the actual qqq
+[3794s-3800s] right we entered we saw why we should enter nvidia based off of qqq we combined market
+[3800s-3804s] structure we were able to get out of the range right and we knew exactly where to put
+[3804s-3808s] our stop loss where our profit target was and everything was extremely simple
+[3811s-3816s] okay so with all that being said did this workshop make sense do you guys understand
+[3817s-3821s] you know qqq you understand how to read the indices compared to the markets
+[3821s-3828s] do you guys understand you know nvidia i don't know i said nvidia do you guys understand market
+[3828s-3833s] structure so these are things that you know that it can't be taught on like youtube it
+[3833s-3839s] can't be taught on something like a course it literally like i can't teach you this on a video
+[3839s-3843s] you know with the emphasis that i'm trying to put in right the emphasis that i'm trying
+[3843s-3846s] to give you and the stuff that i'm trying to teach you it can't be taught through just
+[3846s-3850s] like a course that's pre-recorded i can't do it right because you guys saw like there's
+[3850s-3854s] some stuff here that i'm you know emphasizing you guys are asking me questions so other people
+[3854s-3857s] can learn through those questions as well right like there's a lot of different moving
+[3857s-3862s] factors here of why you're learning faster here than you know through a course or anything
+[3862s-3867s] like that right now here's the thing with this you're gonna have to re-watch this
+[3867s-3871s] session most likely you 95 percent of you will need to re-watch a session to make sure
+[3871s-3875s] because there's a lot of different things that i spoke about in this session today
+[3875s-3880s] that may not make sense to you right there's a lot of different things that i spoke about
+[3880s-3884s] in this session today that may not make sense to you and therefore every single
+[3884s-3887s] time you re-watch it you're going to pick up something that you probably didn't know
+[3887s-3895s] before right so with that being said we can answer some questions now let's see
+[3906s-3910s] are you saying you entered in a video because the bearish candles of qqq so the shooting star
+[3910s-3915s] candle uh no i'm saying that qqq could have retested there right so i'm not saying that
+[3915s-3919s] we entered on the the bearish candle of qqq because qqq actually never retested at that point
+[3919s-3924s] i'm saying that if qq we have to understand the context right so we're buying the video's
+[3924s-3928s] retest based off of the fact that qqq also has a retest to the move to the downside
+[3929s-3934s] must read to watch to do more than one please explain impulsive candle an impulsive
+[3934s-3938s] candle is literally just a candle that has a really big move literally that's all it is like
+[3938s-3943s] for example like this right here is an impulsive candle to the downside right because the body
+[3943s-3948s] is so big right compared to the average candle so compared to an average candle let's say like
+[3948s-3951s] you know just for simplicity sake let's say this is an average hammer stick candle right so
+[3951s-3956s] this is just an average candle right you can see that the range of this green candle right
+[3956s-3961s] here is a much more stronger candle however the impulsive candle needs to break something
+[3961s-3965s] so this was so this was rejecting it needs to either break something or reject something so
+[3965s-3970s] as we can see here this red candle was rejecting high of day okay now here we have another
+[3970s-3975s] impulsive candle here right so this green candle right here is impulsive why because
+[3975s-3982s] it's breaking out to new highs after this pivot level break okay do you have another
+[3982s-3986s] example of relatively strong uh stock compared to there's a bunch through the
+[3987s-3991s] you can see a bunch through the trade reviews right you want to go through the trade reviews
+[3991s-3993s] now there's so many different examples
+[3997s-4001s] you mainly focus on qq for relative strength slash weakness can you explain why or when
+[4001s-4005s] you look at nq es or spy so i do look at spy as well the reason i didn't talk about spy
+[4005s-4010s] in this workshop is because you really just need qq however you have spy open as well just
+[4010s-4014s] to see how the indices are different are different themselves right because sometimes
+[4014s-4019s] spy will be relatively weak or strong compared to qq itself right so you just need to understand
+[4019s-4025s] that is spy if spy's super strong and you know qq is just consolidating most likely qq
+[4025s-4028s] is going to catch up to spy as well right so if you're looking at tesla right it's like
+[4028s-4033s] you just have that there's a lot of you know 3d factors you know that you're looking at
+[4033s-4036s] right you know a lot of people make trading 2d where they're just looking at the one chart
+[4036s-4042s] and that's it there's a lot it's a 3d aspect of it right the 3d aspect is understanding how
+[4042s-4048s] to correlate qq spy and nvidia but that is much more like you don't need to do that right now
+[4048s-4053s] right that's going to be way too much information overload for you what you need to do right now is
+[4053s-4059s] simply look at qq and nvidia once you're good or not nvidia but any tech name once you're
+[4059s-4065s] good at reading the price action on qq compared to any other name that's spy comparing spy qq
+[4065s-4068s] and nvidia is going to be a walk in the park right but first you just need to learn
+[4068s-4074s] how to compare just the first two and the other one will just make sense please show your execution
+[4074s-4079s] please show us your execution ibk you said below ibk chart please show us to make it easier three
+[4079s-4085s] minute video for what for what for which one are you talking about i have a follow-up to
+[4085s-4088s] the hockey questions you said you use a chart feature are you referring to the red and green
+[4088s-4092s] lines on the chart to allow you to enter no there's chart buttons there's buttons on the
+[4092s-4096s] bottom of your chart screen i think j double walks through it but it's called the chart
+[4096s-4102s] trader there's buttons on the bottom of your chart and it just literally has buy sell and
+[4102s-4105s] different there's a video i can literally post a video for that one if you want i
+[4105s-4112s] literally have a video that i that i have i am deaf rely on cc and your mouse movement must
+[4112s-4118s] rewatch all times damn you know good for you for putting the work confluence between nvidia
+[4118s-4123s] and qq okay thanks got it i'm gonna spend my 12 hour shift at work tomorrow rewatching
+[4123s-4127s] and get paid for it never thought about moving stop loss based on regular structure in a situation
+[4127s-4131s] where you close your entire position at take profit have you ever back tested taking the
+[4131s-4135s] reversal uh it's just it just doesn't make sense right it just doesn't make sense the
+[4135s-4140s] reason it doesn't make sense is because uh you know it just you know theoretically yes sure
+[4140s-4143s] but emotionally if you're able to do that you know kudos on you most people can't do
+[4143s-4148s] that emotionally right they can't handle you know uh exiting entering and exiting based off
+[4148s-4153s] the reversal right and for me personally you know the break and retest momentum trading works
+[4153s-4157s] i'm not a reversal trader so i just want to do that my biggest issue is putting the correct
+[4157s-4161s] levels jw did a video right before class and he made it simple by using five minute candle
+[4161s-4165s] high and low can i do this plus understand trend and high yes you you literally can do
+[4165s-4170s] that right so once again like i said what you want to do from this mastermind is to take
+[4170s-4175s] everything in with perspective right you want to take everything in with perspective okay so
+[4175s-4181s] what that means is you know the things that i'm teaching you you take these but at the same time
+[4181s-4186s] you want to make them your own so if there's something that you don't like about my strategy
+[4186s-4190s] you have to obviously then you have to put in the work and go back test your own thing that
+[4190s-4195s] you would have potentially liked but based off of that back testing you can implement
+[4195s-4201s] new things that you want in your strategy okay when you mean contact when you mean
+[4201s-4205s] context means uh higher time frame patterns are moved yeah so context is simply you know
+[4205s-4210s] understanding you know obviously qqq and the higher time frame right so that's mainly the
+[4210s-4214s] main thing qqq higher time frame and the price action during the time is relative strength only
+[4214s-4217s] used for entries or do you use it to manage your trades as well you can manage your trades
+[4217s-4221s] based off relative strength as well right you'll you'll see if this trade saws relative strength
+[4221s-4225s] or weakness a good to to really answer that question right watch the trade reviews we go
+[4225s-4230s] through how relative strength and weakness works uh on the trades what view up settings do you
+[4230s-4235s] have please i the view up settings i have are under scarface trades tips scarface trades tips
+[4235s-4241s] in the in the discord please post a video of your tar buns okay i will is it uh 1150 349 a
+[4241s-4244s] real level or just for example if real why didn't you consider the candles after
+[4244s-4248s] no this is just an example this is literally just an example this is just an example
+[4250s-4256s] um but yeah okay so with that being said i hope you guys got some value out of the
+[4256s-4260s] third workshop i hope for some of you guys some light bulbs are starting to click
+[4261s-4266s] and you guys are starting to understand what's going on and you know why the charts move the
+[4266s-4271s] way they do um but yeah so we're going to have the final class of the week tomorrow
+[4271s-4276s] for thursday yeah so thursday is going to be the last class of this week and then the
+[4276s-4279s] next class is obviously going to be next monday as well and then j double obviously have
+[4279s-4287s] a saturday uh class as well it'll be on saturday i believe uh he does it do you do uh discord so
+[4287s-4292s] the reason i don't respond i used to respond on my private discord but ever since i've started
+[4292s-4297s] the accelerator i can't because there's literally too many people in there and it's just not like
+[4297s-4300s] it's like i was i would have responded to the mastermind students but i can't because
+[4300s-4305s] there's like a hundred different accelerator students i can't respond to right like i'm
+[4305s-4311s] one person so the way to uh reach out to either me or jdub too um if it's something private like
+[4311s-4315s] if it's like a technical question just put it in the question chat somebody will reach out to
+[4315s-4320s] you and 100 answer it however if it's something private that you need to get taken care of open
+[4320s-4325s] up a help ticket right open up a help ticket if you open up a help ticket uh me or jdub or
+[4325s-4329s] somebody from the team will get back to you on on your question just but if it's like
+[4329s-4334s] something trading related just put it in the um uh you know question chat or whatever and
+[4334s-4340s] someone will respond to you okay if you're starting early please let us know early well
+[4340s-4344s] yeah i only started 10 minutes earlier but yeah you can go back and re-watch the video and
+[4344s-4348s] uh you know everything like that okay so with that being said i hope you guys enjoyed
+[4348s-4356s] this session um and yeah i will see you guys tomorrow morning for live training all right bye
