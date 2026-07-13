@@ -180,6 +180,10 @@ class PaperBook:
         self.realized_total = 0.0
 
     def _log(self, event: dict) -> None:
+        ts = event.get("ts", "")
+        if len(ts) == 8 and ":" in ts:  # HH:MM:SS — no date
+            today_et = (datetime.now(timezone.utc) - timedelta(hours=4)).strftime("%Y-%m-%d")
+            event = {**event, "ts": f"{today_et} {ts}"}
         with self.ledger_path.open("a", encoding="utf-8") as f:
             f.write(json.dumps(event) + "\n")
 
