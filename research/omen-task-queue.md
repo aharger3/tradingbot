@@ -21,9 +21,11 @@ all need A1. F needs A+C done.
 
 ## Phase A — Ship the measured wins (recommended config → live paper)
 
-- [ ] **A1** FABLE — Review the 5 modified code files (signal_runner, live_scanner, options_sizer,
+- [x] **A1** FABLE — Review the 5 modified code files (signal_runner, live_scanner, options_sizer,
   config.yaml, backtest_week), then local-commit the whole 82-file pile in logical chunks
   (.gitignore journal/*.log first). Done-when: clean `git status`, Austin only pushes.
+  *Done 2026-07-13: 8 commits (eeeb8895..9bb5d5ce+), review fixed 2 issues — dry-run double-import
+  bug (toggles hit dead module copy) + RULE6_ENABLED left True from comparison run, reverted.*
 - [ ] **A2** SONNET — Apply recommended config from Desktop/unified_backtest_synthesis.md:
   drop SMCI/SPY/MSTR/RIVN from symbol list, entry cutoff 10:30, skip-news ON, RULE6 stays OFF,
   SMA Directional 5% regime filter ON. config.yaml + live_scanner defaults. No signal-logic edits.
@@ -94,7 +96,7 @@ all need A1. F needs A+C done.
 
 ## Phase E — Live infra (cheap, anytime)
 
-- [ ] **E1** HAIKU — schtask: daily_review.py 16:10 ET weekdays, Python313. Done-when: task listed + one dry-run fired.
+- [x] **E1** HAIKU — schtask: daily_review.py 16:10 ET weekdays, Python313. Done-when: task listed + one dry-run fired.
 - [ ] **E2** HAIKU — paper_trader.py: date-prefix the `ts` field in paper-trades.jsonl (known gap,
   daily_review P&L bleed). Done-when: new trade line shows full date, daily_review --dry-run clean.
 - [ ] **E3** SONNET — Pre-market Discord card 9:00 ET: watchlist, key levels (PDH/PDL/PMH/PML),
