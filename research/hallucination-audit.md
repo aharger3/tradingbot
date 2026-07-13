@@ -1,9 +1,12 @@
-# Hallucination Audit — coded rules vs the 4 rulebooks (2026-07-11)
+# Hallucination Audit — coded rules vs the rulebooks (2026-07-11, videos pass 2026-07-13)
 
 Scope per next-session-brief: every rule in `omen_bot.py` (detect_break_retest,
 detect_order_block_setup, one-candle routing, grading) and `signal_runner.py`
 (grading, stops, targets, S score, 84% arm/fire) diffed against:
 `scarface-rules-{accelerator,mastermind,coaching-bonus,youtube}.md`.
+**B2 2026-07-13:** fifth source merged — `scarface-rules-videos.md` (89 Whisper transcripts,
+36 extraction groups). Per-rule videos column in the "Videos rulebook column" section below;
+verdict changes and new flags listed there.
 
 Verdicts: **MATCHES** (source teaches it), **DIVERGES** (source teaches something else),
 **INVENTED** (no source basis — course-attributed rules only; Austin's own dated rules
@@ -36,7 +39,7 @@ and data-derived thresholds are labeled **AUSTIN**/**OURS**, not hallucinations)
 | # | Coded rule | Source rule | Verdict | Fix |
 |---|-----------|-------------|---------|-----|
 | 13 | Hammer at level = A+ candidate | Hammer (long) / inverted hammer-shooting star (short) is THE entry candle, "the candle I trade 90% of the time" | MATCHES | none |
-| 14 | **Bullish/bearish engulfing at level = A** | Engulfing appears in ZERO of the 4 rulebooks (101 Circle + 558 YouTube transcripts) | **INVENTED** | **KILLED 2026-07-11** — branch removed from `_grade_pa` |
+| 14 | **Bullish/bearish engulfing at level = A** | Engulfing appears in ZERO of the 4 rulebooks (101 Circle + 558 YouTube transcripts). *Videos 07-13: ONE passing mention (Day 6) — see videos column* | **INVENTED → MENTIONED-ONCE** | **KILLED 2026-07-11** — branch removed from `_grade_pa`; kill stands (see videos section) |
 | 15 | Large-wick-at-level = B, any-retest = C ladder | Source has no letter ladder below A+/regular | OURS (scaffolding, not course-attributed) | keep |
 | 16 | HTF opposed → D; neutral caps A+/A → B | "Shorting when higher time frames still intact = low probability"; A+ requires all timeframes aligned | MATCHES | none |
 | 17 | A+ stack = first clean break + displacement + strong PA + clear road | Source A+ = that PLUS QQQ/SPY alignment + entry level is a HTF level | **SOURCE-SAYS-MORE** | QQQ leg pending `qqq-alignment-rules.md` (DeepSeek, 8 verbatim rules). Do NOT re-code the crude OR-break proxy — it inverted |
@@ -106,6 +109,106 @@ and data-derived thresholds are labeled **AUSTIN**/**OURS**, not hallucinations)
 
 ---
 
+## Videos rulebook column (B2, 2026-07-13)
+
+Fifth source: `scarface-rules-videos.md` — 89 video transcripts (boot camp, mastermind 1.0–5.0
+lessons, Hayden's coaching, performance coaching, Building Your Profitable System, bonus).
+Per-rule verdicts below; rules not listed = **videos silent** (extraction returned
+"NOT COVERED IN THIS SOURCE"): #3, #4, #6, #12, #15, #19, #20, #25–28, #29–31, #33–38,
+#45(partial, see below), #46–50.
+
+| # | Rule | Videos verdict | Evidence (scarface-rules-videos.md) |
+|---|------|---------------|-------------------------------------|
+| 1,2,8 | B&R FSM, closes-not-wicks, enter on confirm close | **RE-CONFIRMED** | "you always wait for the candlestick to close" + hammer-fakeout warning (bonus B&B, :72-76) |
+| 5 | LATE cap / first retest best | RE-CONFIRMED (implicit) | "first pullback" is an A-setup confluence (Day 6 A-setup definition, :28) |
+| 7 | Blind 2R vs liquidity exits | **DIVERGES re-reinforced** | "first scales at high of day EVERY TIME", 40%/60% trailer split, psych numbers + HTF pivots as final targets (:220-242). F1 A/B still refuted the literal ladder — tension documented, no action |
+| 9,13 | Hammer entry candle | RE-CONFIRMED | "weak/strong candle to confirm" per direction (:68-70) |
+| 10 | HOD/LOD B&R setup exists | RE-CONFIRMED (HODLOD_PAIR stays off — F3 measured no edge) | HOD/LOD framing throughout exits/liquidity sections |
+| 11 | PMH/PML demoted | **RE-CONFIRMED, now explicit hierarchy** | "The previous day high is gonna be a lot more important than the premarket high"; PM levels only "if there's nothing else to go off of" (Day 10, :180-184) |
+| 14 | Engulfing | **MENTIONED-ONCE, not a graded entry rule** | Single Day 6 observation: bullish engulfing holding above prior body high = continuation signal (:5936-5941). NOT taught as an at-level entry pattern anywhere else in 89 files. Kill stands — removal was net +$4k and tier composition unchanged |
+| 16 | HTF bias gates | RE-CONFIRMED + nuance | "thesis on daily/4h/1h, trade on the 1-min" (:84); NEW: "a higher timeframe thesis can sometimes overpower the relative strength" (Day 6, :6051) |
+| 17,18 | A+ stack / QQQ leg | **DIVERGES — sharpened (feeds B3)** | Day 6 A-setup = holistic confluence STACK (gap up + above PDH + 5-min all-green + OCR holding + HTF level + first pullback + QQQ relative strength), graded on quality not outcome; A+ vs A is a GRADIENT, no checklist ("I wouldn't say it's an A plus setup, but I would say it's an A setup"). Bot scores discrete mechanical checks → primary B3 hypothesis. ALSO: videos operationalize QQQ alignment as moment-to-moment RELATIVE STRENGTH at entry (+ maintenance after entry), NOT level-break direction — Rule-4 "first RTH close through PDH/PMH/PDL/PML" is a proxy, flag for A5/qqqA interpretation |
+| 21 | OCR = named concept | **CONFIRMED — accelerator "naming hallucination" worry closed** | Day 4/Day 6/Hayden/BYPS all name it; "the order block and the one candle rule is I consider the exact same thing" (:13-18). NEW ISSUE: OCR ≡ OB per source → coded OCR + OB detectors must not double-count confluence (queued below) |
+| 22–24 | OB wick-hold, close-through entry, displacement leg | RE-CONFIRMED | OB sections across groups |
+| 32 | 84% reclaim PA gate | Videos add little | 84% only referenced in passing, no full definition; "Reclaims generally work best before 11 am EST" (:2164); "second best entry" framing → secondary setup, consistent with current handling |
+| 39 | 2-consecutive-losses quit | Weak support only | Only as a journaling stat ("max consecutive losses, 2"); accelerator remains the source. No contradiction |
+| 40 | Max 3/day | RE-CONFIRMED (spread) | "three trades a day" (mm5.0 L8, :4125); "tried to not take more than two" + "best days are one trade" (perf coaching, :4885-4892) |
+| 42 | 09:30–11:00 window | **RE-CONFIRMED (multiple)** | "I trade before 11 o'clock" (mm5.0); "not trading after 11 o'clock whatsoever" (accelerator journal); "after 11 momentum is lost" (perf coaching) |
+| 43 | VWAP directional | RE-CONFIRMED verbatim | "above VWAP → long, below VWAP → short" (bonus B&B, :296-304) + "you don't really need it" — stays TAG-ONLY per 07-11 measurement |
+| 44 | News-day awareness | **NUANCE — sharper than "skip"** | "news always Trumps technicals"; avoid BEFORE news, "we usually like trading right after news events" (Day 10, :120-124). Current skip-news lever skips whole days — source only avoids pre-news. Note for A3/C10 interpretation, config untouched (A2 owns it) |
+| 45 | Day-of-week | Still SOURCE-CONFLICT | Adds "Monday and Tuesday most likely get ahead higher" (Day 10, :216) to the existing 3-way disagreement. Keep: test on own data (C7) |
+
+### New flags raised by the videos pass (B2 expanded 2026-07-13: full 36 groups analyzed)
+
+The existing 6 flags (stop_after_win, FVG downgrade, displacement threshold, OCR/OB double-count,
+SCARFACE_CONTRACT grounding, regime filter support) are all confirmed by the full 36-group scan.
+Additionally:
+
+7. **84% personal rejection (new).** Group 35 (performance coaching): "In my edge I don't take 84
+   percent for trades... I feel that when I'm taking them it's my mind tricking me... like a
+   revenge trade" — an experienced coach chooses to avoid the 84% rule entirely. Contradicts the
+   core system teaching. Implication: 84% rule is optional even per instructors, not mandatory.
+8. **VWAP contradiction (new).** Accelerator teaches VWAP as beginner directional filter ("no
+   calls under VWAP"). Masterminds 4.0/5.0 say: "I don't even use VWAP in my regular trading...
+   VWAP could matter less" (group_26); "VWAP... shouldn't be here anymore" (group_28). Direct
+   instructor contradiction across courses. Stays TAG-ONLY per 07-11 measurement.
+9. **Entry timing contradiction (new).** Hayden: "Zero percent of the time you enter on the retest
+   candle" (group_17, 1293s). Boot camp: "Enter on the level-touch candle close" (group_07,
+   4664s). Omen enters at confirm-candle close (= boot camp). Different instructors teach
+   different entry timing.
+10. **A/A+ grading sharpened (feeds B3).** Group 26 defines A+ as THREE required factors: QQQ
+    context + HTF thesis + HTF level. Day 6 defines A as holistic confluence stack (gap up + PDH
+    + first 5min green + OCR + HTF level + first pullback + QQQ RS). The bot scores discrete
+    mechanical checks vs a gradient definition — feeds B3 inversion hypothesis.
+11. **84% rule: A+ entry required (new).** Group 28 (mastermind 5.0): "The thing you need to know
+    about the 84% rule is you need an A plus entry." Accelerator omits this requirement entirely.
+    Bot currently arms off ANY counted B&R stop-out (RULE84_ARM_BNR_ONLY=True, which requires
+    B&R but not A+). Stricter arm gate candidate.
+12. **Breakeven rule nuance (new).** Accelerator: "move stop to BE after TP1 hits." Mastermind
+    4.0: "only move stop loss when market structure changes" (group_23, 5748s-5774s). Different
+    trigger events for the same action. Bot uses accelerator rule (BE after TP1).
+
+### Grading-as-KPI observation (feeds B3)
+
+1. **`stop_after_win` (config.yaml, ON since OPUS-SPEC gap #5) — SOURCE UNTRACEABLE.**
+   "Stop-when-green / stop-after-win" returned NOT COVERED in every one of the 36 extraction
+   groups; videos file's own gap list calls "stop after 2 consecutive wins" *"either from
+   unextracted YouTube (~1300 files) or a hallucination"* (:6107). Closest real quotes are
+   softer ("best days are one trade"). The gap #5 rationale "Scarface 1 win / 2 attempts" has
+   no verbatim source anywhere in 5 rulebooks. **Not a config change here (paper week freezes
+   config; A2/C10 own verdicts)** — but C10 must treat `stop_after_win` as OURS/unsourced,
+   not source-mandated. B5 (YouTube tranche) may still locate it.
+2. **FVG teaching downgraded.** Across 89 transcripts: ONE passing mention ("boxes can be
+   used for... fair value gaps"), zero methodology. The dead-code note's "FVG concept IS
+   taught (J-Dub session)" now rests on that single session only — `FVG_RETEST=False` stands,
+   and the displacement-anchored variant (C2) should be treated as OURS, not course material.
+3. **Displacement threshold confirmed arbitrary.** No numeric threshold in ANY of the 5
+   sources ("there's not enough big there's not enough move" — purely subjective). The 1.5×
+   body convention (`STRONG_PA_MULT`, `_bnr_displacement`) is OURS quantification. C1 A/B is
+   the only arbiter.
+4. **OCR/OB double-count risk (new, from #21).** Sources treat one-candle rule and order
+   block as the same concept. If `detect_order_block_setup` and any OCR-labeled path can
+   both credit the same candle as separate confluence, that inflates stacking. Low priority
+   (OCR demoted to A-grade+tight-stop, n≈10/yr) — verify during B4.
+5. **Newly source-CONFIRMED (was thin):** `SCARFACE_CONTRACT` first-OTM + weekly now has
+   verbatim grounding: "I always trade the first out of the money" (mm1.0 L3, :2819; repeated
+   mm2.0 L3) + "I'm trading one week out... this Friday's contracts... one out of the money...
+   for most traders, I recommend the one DTEs" (mm2.0 L7, :3123). Nuance: swing trades use
+   2–3 OTM; SPY sometimes 0DTE. D1 A/B has a real source spec to test against.
+6. **Regime filter support.** "Only trading in a trending market"; sideways = "only the most
+   A+ setups... low size"; "I don't take calls when it's down trending" — backs the A2 SMA
+   Directional regime filter and the C5 HTF-bias gate direction.
+
+### Grading-as-KPI observation (feeds B3)
+
+Performance coaching treats A/B/C grades as a tracked self-coaching metric ("goal was to
+reduce if not eliminate C type trades") — grade quality vs outcome independence is explicit
+("just because some trades work doesn't make it A plus"). Bot's C=alert-only matches the
+"eliminate C" intent. The A/A+ inversion diagnosis (B3) should start from the Day 6
+confluence-stack definition, not from more mechanical criteria.
+
+---
+
 ## Actions taken this session (2026-07-11)
 
 1. **KILLED** engulfing→A grading branch (INVENTED, #14). `spec2_grading_check.py` updated.
@@ -146,3 +249,6 @@ the remaining candidates for that are the queued structural changes below (exits
 - Stop-buffer A/B: retest-candle low vs level−10-15¢ (#6).
 - 84% arm-quality gate (A/A+ only) + 5-20min window measurement (#33, #34).
 - OB key-level confluence gate (#26) — low priority.
+- (B2 2026-07-13) `stop_after_win` unsourced — C10 treats as OURS; B5 may locate it in YouTube tranche.
+- (B2 2026-07-13) OCR/OB double-count check during B4 (sources say same concept).
+- (B2 2026-07-13) B3 starting hypothesis: grade_trade() mechanical checks vs Day 6 holistic confluence stack; QQQ leg = relative strength at entry, not level-break proxy.
