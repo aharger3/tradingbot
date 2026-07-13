@@ -42,7 +42,8 @@ REPORT_PATH = Path(__file__).parent / "backtest_report.md"
 # When price hits entry + 1R (calls) / entry - 1R (puts), close 50% at breakeven,
 # move runner stop to entry, let runner ride to 2R. Improves R:R by locking partial
 # profit and reducing max-loss frequency (runner is free after breakeven).
-RULE6_ENABLED = False      # toggle for backtest comparison
+RULE6_ENABLED = False     # toggle for backtest comparison; 12mo A/B 2026-07-12
+                          # (backtest_rule6_comparison.md): stays OFF per synthesis
 RULE6_SCALE_PCT = 0.5      # fraction of position closed at breakeven
 RULE6_BE_MULT = 1.0        # breakeven level = entry +- 1R x this multiplier
 

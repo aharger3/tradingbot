@@ -1,4 +1,4 @@
-# Backtest Report: Week of 2025-07-11 to 2026-07-10
+# Backtest Report: Week of 2025-07-14 to 2026-07-10
 
 ## Assumptions
 - Data: yfinance 1-min RTH bars; walk-forward replay through SignalRunner.detect_signals
@@ -7,44 +7,44 @@
 - Repeat fires of same setup within 30 min deduped
 
 ## Summary
-- Traded signals (A+/A/B, viable stop): **760** | 273W 486L 1 scratch | win rate 36.0% (of decided)
-- Simulated P&L (traded all A+/A/B): **+$54057.4**
-- C-grade alerts (alert-only per SPEC2): 211 | D filtered: 9889 | tight-stop skips: 133
+- Traded signals (A+/A/B, viable stop): **761** | 274W 486L 1 scratch | win rate 36.1% (of decided)
+- Simulated P&L (traded all A+/A/B): **+$56057.4**
+- C-grade alerts (alert-only per SPEC2): 213 | D filtered: 9846 | tight-stop skips: 133
 
 ### By Grade
 | Grade | Signals | W | L | Scratch | Win rate | P&L |
 |-------|---------|---|---|---------|----------|-----|
 | A+ | 13 | 4 | 9 | 0 | 30.8% | $-1000.0 |
-| A | 53 | 17 | 36 | 0 | 32.1% | $-3393.13 |
-| B | 694 | 252 | 441 | 1 | 36.4% | $58450.53 |
-| C (alert only) | 211 | 60 | 151 | 0 | 28.4% | ($-33045.47 if traded) |
-| D (filtered) | 9889 | 2704 | 7164 | 21 | 27.4% | ($-1752218.53 if traded) |
+| A | 55 | 17 | 38 | 0 | 30.9% | $-5393.13 |
+| B | 693 | 253 | 439 | 1 | 36.6% | $62450.53 |
+| C (alert only) | 213 | 60 | 153 | 0 | 28.2% | ($-35045.47 if traded) |
+| D (filtered) | 9846 | 2691 | 7134 | 21 | 27.4% | ($-1748218.53 if traded) |
 
 ### By Setup
 | Setup | Signals | W | L | Scratch | Win rate | P&L |
 |-------|---------|---|---|---------|----------|-----|
-| break_and_retest | 651 | 233 | 417 | 1 | 35.8% | $50488.89 |
-| one_candle_rule | 48 | 17 | 31 | 0 | 35.4% | $3000.0 |
-| reentry_84_rule | 61 | 23 | 38 | 0 | 37.7% | $568.51 |
+| break_and_retest | 652 | 234 | 417 | 1 | 35.9% | $52488.89 |
+| one_candle_rule | 49 | 17 | 32 | 0 | 34.7% | $2000.0 |
+| reentry_84_rule | 60 | 23 | 37 | 0 | 38.3% | $1568.51 |
 
 ### By Symbol
 | Symbol | Signals | W | L | Scratch | Win rate | P&L |
 |--------|---------|---|---|---------|----------|-----|
-| AAPL | 22 | 6 | 16 | 0 | 27.3% | $-4000.0 |
+| AAPL | 23 | 6 | 17 | 0 | 26.1% | $-5000.0 |
 | AMD | 40 | 16 | 24 | 0 | 40.0% | $7658.12 |
 | AMZN | 22 | 5 | 17 | 0 | 22.7% | $-7000.0 |
-| AVGO | 25 | 11 | 14 | 0 | 44.0% | $7784.53 |
+| AVGO | 26 | 12 | 14 | 0 | 46.2% | $9784.53 |
 | BABA | 21 | 8 | 13 | 0 | 38.1% | $3000.0 |
-| COIN | 39 | 16 | 23 | 0 | 41.0% | $8710.53 |
+| COIN | 40 | 16 | 24 | 0 | 40.0% | $7710.53 |
 | CRM | 23 | 7 | 16 | 0 | 30.4% | $-2194.52 |
 | GOOGL | 20 | 9 | 11 | 0 | 45.0% | $6930.18 |
-| HOOD | 40 | 14 | 26 | 0 | 35.0% | $1635.83 |
+| HOOD | 41 | 15 | 26 | 0 | 36.6% | $3635.83 |
 | INTC | 23 | 9 | 13 | 1 | 40.9% | $6488.89 |
-| IREN | 58 | 21 | 37 | 0 | 36.2% | $4517.32 |
+| IREN | 57 | 20 | 37 | 0 | 35.1% | $2517.32 |
 | MARA | 12 | 3 | 9 | 0 | 25.0% | $-3000.0 |
 | META | 26 | 10 | 16 | 0 | 38.5% | $4000.0 |
 | MSFT | 24 | 9 | 15 | 0 | 37.5% | $3000.0 |
-| MSTR | 50 | 15 | 35 | 0 | 30.0% | $-5756.42 |
+| MSTR | 48 | 15 | 33 | 0 | 31.2% | $-3756.42 |
 | MU | 41 | 16 | 25 | 0 | 39.0% | $6191.2 |
 | NFLX | 15 | 6 | 9 | 0 | 40.0% | $2837.84 |
 | NVDA | 28 | 10 | 18 | 0 | 35.7% | $2000.0 |
@@ -62,23 +62,22 @@
 ### By Entry Hour
 | Hour | Signals | W | L | Scratch | Win rate | P&L |
 |------|---------|---|---|---------|----------|-----|
-| 09:30-10:00 | 461 | 165 | 295 | 1 | 35.9% | $35101.38 |
-| 10:00-10:30 | 190 | 73 | 117 | 0 | 38.4% | $27258.97 |
+| 09:30-10:00 | 460 | 165 | 294 | 1 | 35.9% | $36101.38 |
+| 10:00-10:30 | 192 | 74 | 118 | 0 | 38.5% | $28258.97 |
 | 10:30-11:00 | 109 | 35 | 74 | 0 | 32.1% | $-8302.95 |
 
 ### B&R: clean first break vs late (level broken earlier)
 | Bucket | Signals | W | L | Scratch | Win rate | P&L |
 |--------|---------|---|---|---------|----------|-----|
-| clean | 441 | 164 | 276 | 1 | 37.3% | $53488.89 |
-| late | 210 | 69 | 141 | 0 | 32.9% | $-3000.0 |
+| clean | 441 | 165 | 275 | 1 | 37.5% | $56488.89 |
+| late | 211 | 69 | 142 | 0 | 32.7% | $-4000.0 |
 
 ## By Day
 | Day | Signals | Wins | Losses | Scratch | P&L |
 |-----|---------|------|--------|---------|-----|
-| 2025-07-11 | 3 | 0 | 3 | 0 | $-3000.0 |
-| 2025-07-14 | 6 | 2 | 4 | 0 | $0.0 |
+| 2025-07-14 | 5 | 1 | 4 | 0 | $-2000.0 |
 | 2025-07-15 | 5 | 1 | 4 | 0 | $-2000.0 |
-| 2025-07-16 | 0 | 0 | 0 | 0 | $0 |
+| 2025-07-16 | 5 | 2 | 3 | 0 | $1000.0 |
 | 2025-07-17 | 6 | 4 | 2 | 0 | $6000.0 |
 | 2025-07-18 | 3 | 3 | 0 | 0 | $6000.0 |
 | 2025-07-21 | 3 | 1 | 2 | 0 | $0.0 |
@@ -328,80 +327,40 @@
 | 2026-07-10 | 4 | 1 | 3 | 0 | $-1000.0 |
 
 ## 84% Rule Analysis
-- Total triggers (incl. filtered): 103
-- Fired re-entry signals: 61
-- Win rate on re-entry: 37.7% | P&L $568.51
+- Total triggers (incl. filtered): 102
+- Fired re-entry signals: 60
+- Win rate on re-entry: 38.3% | P&L $1568.51
 
 ## Signal Log
 | Day | Time | Sym | Setup | Dir | Grade | Status | Entry | Stop | Outcome | P&L |
 |-----|------|-----|-------|-----|-------|--------|-------|------|---------|-----|
-| 2025-07-11 | 09:35:00 | AMD | break_and_retest | put | B | fired | 142.05 | 142.34 | loss | $-1000 |
-| 2025-07-11 | 09:38:00 | MARA | break_and_retest | put | D | skipped_d | 19.46 | 19.50 | win | - |
-| 2025-07-11 | 09:43:00 | MSTR | break_and_retest | call | B | fired | 435.25 | 434.59 | loss | $-1000 |
-| 2025-07-11 | 09:45:00 | IREN | break_and_retest | put | D | skipped_d | 17.09 | 17.19 | loss | - |
-| 2025-07-11 | 09:47:00 | UBER | break_and_retest | put | D | skipped_d | 95.86 | 95.87 | loss | - |
-| 2025-07-11 | 09:48:00 | MARA | break_and_retest | put | D | skipped_d | 19.30 | 19.30 | loss | - |
-| 2025-07-11 | 09:49:00 | SMCI | break_and_retest | put | D | skipped_d | 49.27 | 49.30 | loss | - |
-| 2025-07-11 | 09:50:00 | HOOD | break_and_retest | call | D | skipped_d | 98.77 | 98.70 | loss | - |
-| 2025-07-11 | 09:51:00 | TSLA | break_and_retest | call | C | fired | 310.02 | 308.71 | loss | - |
-| 2025-07-11 | 09:52:00 | MU | one_candle_rule | call | D | skipped_d | 121.94 | 121.72 | win | - |
-| 2025-07-11 | 09:55:00 | AMD | break_and_retest | call | D | skipped_d | 143.21 | 143.14 | win | - |
-| 2025-07-11 | 10:01:00 | MSTR | reentry_84_rule | call | B | fired | 435.27 | 434.59 | loss | $-1000 |
-| 2025-07-11 | 10:09:00 | BABA | break_and_retest | put | D | skipped_d | 106.70 | 106.71 | win | - |
-| 2025-07-11 | 10:09:00 | RIVN | break_and_retest | call | D | skipped_d | 13.34 | 13.33 | loss | - |
-| 2025-07-11 | 10:12:00 | NVDA | one_candle_rule | call | D | skipped_d | 166.04 | 165.77 | win | - |
-| 2025-07-11 | 10:12:00 | AMZN | break_and_retest | call | D | skipped_d | 224.40 | 224.17 | loss | - |
-| 2025-07-11 | 10:13:00 | CRM | break_and_retest | put | D | skipped_d | 261.25 | 261.36 | loss | - |
-| 2025-07-11 | 10:18:00 | NFLX | one_candle_rule | call | D | skipped_d | 125.34 | 125.19 | loss | - |
-| 2025-07-11 | 10:20:00 | MSTR | break_and_retest | call | D | skipped_d | 435.15 | 434.59 | loss | - |
-| 2025-07-11 | 10:20:00 | MU | break_and_retest | call | D | skipped_d | 122.55 | 122.48 | loss | - |
-| 2025-07-11 | 10:23:00 | AAPL | break_and_retest | call | D | skipped_d | 212.01 | 211.88 | loss | - |
-| 2025-07-11 | 10:26:00 | AMZN | one_candle_rule | put | D | skipped_d | 224.62 | 224.86 | win | - |
-| 2025-07-11 | 10:26:00 | IREN | break_and_retest | put | D | skipped_d | 17.27 | 17.30 | win | - |
-| 2025-07-11 | 10:31:00 | NVDA | one_candle_rule | call | D | skipped_d | 167.53 | 167.18 | loss | - |
-| 2025-07-11 | 10:38:00 | ORCL | one_candle_rule | call | D | skipped_d | 233.02 | 232.66 | loss | - |
-| 2025-07-11 | 10:39:00 | IREN | break_and_retest | put | D | skipped_d | 17.16 | 17.19 | win | - |
-| 2025-07-11 | 10:40:00 | ORCL | break_and_retest | call | D | skipped_d | 232.89 | 232.84 | loss | - |
-| 2025-07-11 | 10:47:00 | AVGO | one_candle_rule | put | D | skipped_d | 273.00 | 273.47 | loss | - |
-| 2025-07-11 | 10:48:00 | NFLX | break_and_retest | put | D | skipped_d | 124.84 | 124.90 | loss | - |
-| 2025-07-11 | 10:51:00 | CRM | one_candle_rule | put | D | skipped_d | 260.04 | 260.25 | win | - |
-| 2025-07-11 | 10:52:00 | MARA | break_and_retest | put | D | skipped_d | 19.43 | 19.50 | loss | - |
-| 2025-07-14 | 09:36:00 | SOFI | break_and_retest | put | D | skipped_d | 20.74 | 20.75 | loss | - |
 | 2025-07-14 | 09:37:00 | NFLX | break_and_retest | call | D | skipped_d | 125.54 | 125.39 | loss | - |
 | 2025-07-14 | 09:37:00 | RIVN | break_and_retest | put | B | fired | 12.62 | 12.74 | loss | $-1000 |
 | 2025-07-14 | 09:38:00 | PLTR | break_and_retest | call | D | skipped_d | 144.85 | 144.65 | loss | - |
-| 2025-07-14 | 09:38:00 | PLTR | break_and_retest | call | D | skipped_d | 144.85 | 144.58 | loss | - |
 | 2025-07-14 | 09:40:00 | CRM | break_and_retest | call | B | fired | 260.39 | 259.95 | loss | $-1000 |
-| 2025-07-14 | 09:43:00 | IREN | break_and_retest | call | B | fired | 18.05 | 17.92 | win | $2000 |
 | 2025-07-14 | 09:43:00 | NFLX | break_and_retest | call | D | skipped_d | 125.26 | 125.22 | loss | - |
 | 2025-07-14 | 09:45:00 | TSLA | break_and_retest | put | D | skipped_d | 316.22 | 316.29 | loss | - |
 | 2025-07-14 | 09:45:00 | BABA | break_and_retest | call | D | skipped_d | 108.57 | 108.55 | loss | - |
 | 2025-07-14 | 09:49:00 | GOOGL | break_and_retest | put | D | skipped_d | 180.77 | 180.79 | loss | - |
 | 2025-07-14 | 09:50:00 | TSM | break_and_retest | put | D | skipped_d | 226.72 | 227.00 | loss | - |
 | 2025-07-14 | 09:56:00 | SMCI | break_and_retest | call | D | skipped_d | 49.66 | 49.56 | loss | - |
-| 2025-07-14 | 09:57:00 | MSFT | break_and_retest | call | D | skipped_d | 502.42 | 502.40 | loss | - |
-| 2025-07-14 | 09:58:00 | AMZN | break_and_retest | call | D | skipped_d | 225.80 | 225.54 | win | - |
-| 2025-07-14 | 10:00:00 | COIN | break_and_retest | call | D | skipped_d | 395.97 | 395.50 | loss | - |
 | 2025-07-14 | 10:01:00 | MSTR | break_and_retest | call | B | fired | 452.00 | 450.98 | win | $2000 |
 | 2025-07-14 | 10:02:00 | ORCL | one_candle_rule | put | D | skipped_d | 226.22 | 226.89 | loss | - |
 | 2025-07-14 | 10:03:00 | INTC | break_and_retest | put | D | skipped_d | 22.97 | 22.97 | loss | - |
 | 2025-07-14 | 10:08:00 | TSM | one_candle_rule | call | D | skipped_d | 227.81 | 227.61 | win | - |
-| 2025-07-14 | 10:11:00 | CRM | reentry_84_rule | call | B | fired | 260.39 | 259.95 | loss | $-1000 |
+| 2025-07-14 | 10:11:00 | CRM | reentry_84_rule | call | A | fired | 260.39 | 259.95 | loss | $-1000 |
 | 2025-07-14 | 10:17:00 | COIN | break_and_retest | call | D | skipped_d | 394.95 | 394.90 | win | - |
 | 2025-07-14 | 10:24:00 | SOFI | break_and_retest | put | D | skipped_d | 20.99 | 21.00 | win | - |
 | 2025-07-14 | 10:25:00 | RIVN | reentry_84_rule | put | A | fired | 12.62 | 12.74 | loss | $-1000 |
 | 2025-07-14 | 10:30:00 | RIVN | break_and_retest | put | D | skipped_d | 12.66 | 12.67 | loss | - |
-| 2025-07-14 | 10:31:00 | AMZN | break_and_retest | call | D | skipped_d | 225.64 | 225.54 | loss | - |
 | 2025-07-14 | 10:34:00 | COIN | break_and_retest | put | D | skipped_d | 389.69 | 390.00 | loss | - |
 | 2025-07-14 | 10:34:00 | COIN | break_and_retest | put | D | skipped_d | 389.69 | 390.00 | loss | - |
 | 2025-07-14 | 10:35:00 | NFLX | one_candle_rule | put | D | skipped_d | 126.03 | 126.15 | win | - |
 | 2025-07-14 | 10:36:00 | NVDA | break_and_retest | put | D | skipped_d | 163.54 | 163.63 | loss | - |
-| 2025-07-14 | 10:41:00 | TSLA | break_and_retest | call | D | skipped_d | 314.17 | 314.09 | loss | - |
 | 2025-07-14 | 10:45:00 | INTC | one_candle_rule | call | D | skipped_d | 23.16 | 23.09 | loss | - |
 | 2025-07-14 | 10:48:00 | PLTR | one_candle_rule | call | D | skipped_d | 146.43 | 146.00 | loss | - |
 | 2025-07-14 | 10:51:00 | IREN | break_and_retest | call | D | skipped_d | 17.64 | 17.61 | loss | - |
 | 2025-07-14 | 10:55:00 | RIVN | break_and_retest | put | D | skipped_d | 12.73 | 12.74 | win | - |
-| 2025-07-14 | 10:57:00 | AMZN | break_and_retest | call | D | skipped_d | 226.15 | 226.01 | win | - |
 | 2025-07-14 | 10:59:00 | RIVN | one_candle_rule | call | D | skipped_d | 12.73 | 12.70 | loss | - |
 | 2025-07-15 | 09:40:00 | AMD | break_and_retest | call | D | skipped_d | 157.13 | 157.00 | win | - |
 | 2025-07-15 | 09:40:00 | COIN | break_and_retest | call | D | skipped_d | 393.87 | 393.32 | win | - |
@@ -455,7 +414,7 @@
 | 2025-07-15 | 10:57:00 | RIVN | break_and_retest | put | D | skipped_d | 12.70 | 12.73 | loss | - |
 | 2025-07-16 | 09:36:00 | QQQ | break_and_retest | put | D | skipped_d | 556.57 | 556.66 | loss | - |
 | 2025-07-16 | 09:37:00 | TSLA | break_and_retest | call | D | skipped_d | 314.07 | 313.56 | win | - |
-| 2025-07-16 | 09:37:00 | AVGO | break_and_retest | put | D | skipped_d | 278.19 | 278.90 | win | - |
+| 2025-07-16 | 09:37:00 | AVGO | break_and_retest | put | B | fired | 278.19 | 278.90 | win | $2000 |
 | 2025-07-16 | 09:40:00 | RIVN | break_and_retest | put | D | skipped_d | 12.57 | 12.62 | win | - |
 | 2025-07-16 | 09:41:00 | TSLA | break_and_retest | call | D | skipped_d | 315.95 | 315.63 | win | - |
 | 2025-07-16 | 09:41:00 | AMZN | break_and_retest | put | D | skipped_d | 224.33 | 224.50 | loss | - |
@@ -468,7 +427,7 @@
 | 2025-07-16 | 09:52:00 | NVDA | break_and_retest | put | D | skipped_d | 170.54 | 170.61 | loss | - |
 | 2025-07-16 | 09:53:00 | HOOD | one_candle_rule | put | D | skipped_d | 101.68 | 102.34 | loss | - |
 | 2025-07-16 | 09:54:00 | AAPL | break_and_retest | call | D | skipped_d | 210.44 | 210.38 | win | - |
-| 2025-07-16 | 09:54:00 | AMD | break_and_retest | put | D | skipped_d | 154.27 | 154.83 | loss | - |
+| 2025-07-16 | 09:54:00 | AMD | break_and_retest | put | B | fired | 154.27 | 154.83 | loss | $-1000 |
 | 2025-07-16 | 09:54:00 | MSFT | break_and_retest | put | D | skipped_d | 503.17 | 503.49 | win | - |
 | 2025-07-16 | 09:56:00 | ORCL | break_and_retest | put | D | skipped_d | 233.93 | 234.00 | loss | - |
 | 2025-07-16 | 09:56:00 | SMCI | break_and_retest | put | D | skipped_d | 52.59 | 52.65 | win | - |
@@ -481,21 +440,21 @@
 | 2025-07-16 | 10:14:00 | MSFT | one_candle_rule | call | D | skipped_d | 503.48 | 503.23 | loss | - |
 | 2025-07-16 | 10:14:00 | ORCL | break_and_retest | call | D | skipped_d | 235.62 | 235.60 | loss | - |
 | 2025-07-16 | 10:15:00 | ORCL | break_and_retest | call | D | skipped_d | 235.73 | 235.70 | loss | - |
-| 2025-07-16 | 10:15:00 | COIN | one_candle_rule | call | D | skipped_d | 396.44 | 394.95 | loss | - |
+| 2025-07-16 | 10:15:00 | COIN | one_candle_rule | call | B | fired | 396.44 | 394.95 | loss | $-1000 |
 | 2025-07-16 | 10:15:00 | INTC | one_candle_rule | call | D | skipped_d | 22.73 | 22.69 | loss | - |
 | 2025-07-16 | 10:16:00 | MSTR | break_and_retest | put | D | skipped_d | 447.00 | 447.14 | loss | - |
-| 2025-07-16 | 10:17:00 | HOOD | break_and_retest | call | D | skipped_d | 103.00 | 102.70 | win | - |
+| 2025-07-16 | 10:17:00 | HOOD | break_and_retest | call | B | fired | 103.00 | 102.70 | win | $2000 |
 | 2025-07-16 | 10:19:00 | CRM | break_and_retest | put | D | skipped_d | 256.70 | 256.72 | loss | - |
-| 2025-07-16 | 10:21:00 | AAPL | break_and_retest | call | D | skipped_d | 212.22 | 211.89 | loss | - |
+| 2025-07-16 | 10:21:00 | AAPL | break_and_retest | call | A | fired | 212.22 | 211.89 | loss | $-1000 |
 | 2025-07-16 | 10:24:00 | IREN | break_and_retest | call | D | skipped_d | 17.25 | 17.24 | loss | - |
-| 2025-07-16 | 10:26:00 | MSFT | one_candle_rule | put | D | skipped_d | 503.09 | 503.75 | loss | - |
+| 2025-07-16 | 10:26:00 | MSFT | one_candle_rule | put | C | fired | 503.09 | 503.75 | loss | - |
 | 2025-07-16 | 10:26:00 | SOFI | break_and_retest | call | D | skipped_d | 21.52 | 21.52 | loss | - |
 | 2025-07-16 | 10:31:00 | NVDA | one_candle_rule | call | D | skipped_d | 170.09 | 169.95 | loss | - |
 | 2025-07-16 | 10:31:00 | GOOGL | one_candle_rule | call | D | skipped_d | 183.51 | 183.30 | win | - |
-| 2025-07-16 | 10:33:00 | TSLA | one_candle_rule | call | D | skipped_d | 319.70 | 318.69 | loss | - |
+| 2025-07-16 | 10:33:00 | TSLA | one_candle_rule | call | C | fired | 319.70 | 318.69 | loss | - |
 | 2025-07-16 | 10:33:00 | PLTR | break_and_retest | call | D | skipped_d | 149.85 | 149.78 | loss | - |
 | 2025-07-16 | 10:35:00 | NFLX | one_candle_rule | call | D | skipped_d | 126.19 | 126.00 | loss | - |
-| 2025-07-16 | 10:36:00 | META | one_candle_rule | call | D | skipped_d | 707.62 | 706.25 | loss | - |
+| 2025-07-16 | 10:36:00 | META | one_candle_rule | call | C | fired | 707.62 | 706.25 | loss | - |
 | 2025-07-16 | 10:38:00 | TSLA | one_candle_rule | put | D | skipped_d | 318.82 | 319.78 | loss | - |
 | 2025-07-16 | 10:40:00 | AMZN | break_and_retest | put | D | skipped_d | 225.43 | 225.46 | win | - |
 | 2025-07-16 | 10:41:00 | INTC | break_and_retest | put | D | skipped_d | 22.68 | 22.72 | loss | - |
@@ -11330,9 +11289,9 @@
 | 2026-07-10 | 10:44:00 | UBER | break_and_retest | call | B | fired | 75.70 | 75.50 | loss | $-1000 |
 
 ## Findings & Recommendations
-- A+/A win rate 32% vs B/C 36% -> grading NOT predictive this week - review PA grade criteria
+- A+/A win rate 31% vs B/C 37% -> grading NOT predictive this week - review PA grade criteria
 - D-grade filter: filtered signals would have won 27% -> filter justified (<50%)
-- 84% rule (Lesson 6 canonical 2026-07-06: solid B&R stop-out arms one re-entry on the reclaim close, ORIGINAL stop + target): 103 triggers, fired win rate 38%.
+- 84% rule (Lesson 6 canonical 2026-07-06: solid B&R stop-out arms one re-entry on the reclaim close, ORIGINAL stop + target): 102 triggers, fired win rate 38%.
 - 84% live wiring: armed per-symbol off paper stop-outs in live_scanner (2026-07-05). Requires --paper mode; signal-only runs have no stop-out feedback.
 - Best setup: reentry_84_rule (38%) | worst: one_candle_rule (35%)
-- C-grade alerts (211, alert-only per SPEC2) would have won 28% - similar to traded grades; alert-only demotion costs little.
+- C-grade alerts (213, alert-only per SPEC2) would have won 28% - similar to traded grades; alert-only demotion costs little.
