@@ -54,6 +54,15 @@ DEFAULT_SYMBOLS = [
     "TSM", "MARA", "RIVN",
 ]
 DEFAULT_WINDOW = "09:30-11:00"
+
+# OPUS-SPEC #5: Scarface session stop (2026-07-12)
+# fable_rules.yaml / strategy-scarface-trades.md: stop after 1 win ("1 win /
+# 2 attempts"). Prior: session halted only on 2 consecutive losses or max
+# trades (config max_trades_per_day=3, consecutive_loss_halt=2). Change: first
+# recorded win also ends the day. Win feedback exists only in --paper mode
+# (paper.mark -> session.record_win), so signal-only runs are unaffected.
+# config.yaml stop_after_win mirrors this; env STOP_AFTER_WIN=0 disables.
+STOP_AFTER_WIN = os.getenv("STOP_AFTER_WIN", "1") == "1"
 POLL_INTERVAL_SECONDS = 60
 
 OMEN_LOGO = r"""
@@ -215,10 +224,11 @@ def scan_once(
     if armed_84 is None:
         armed_84 = runner.armed_84 = {}
 
-    # Check daily limits
-    if runner.session.day_ended():
+    # Check daily limits (OPUS-SPEC #5: a win also ends the day)
+    if runner.session.day_ended() or (STOP_AFTER_WIN and runner.session.consecutive_wins >= 1):
         print(f"  Session halted: {runner.session.signals_today}/{max_trades} signals, "
-              f"{runner.session.consecutive_losses}/{max_consecutive_losses} consecutive losses")
+              f"{runner.session.consecutive_losses}/{max_consecutive_losses} consecutive losses, "
+              f"{runner.session.consecutive_wins} wins (stop_after_win={'on' if STOP_AFTER_WIN else 'off'})")
         _write_scanner_status(symbols, runner.session.signals_today, runner.session,
                               ACTION_NORMAL, last_error="session halted")
         return 0

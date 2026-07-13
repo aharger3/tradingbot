@@ -11,3 +11,7 @@ mode: options
 futures_contract: ES
 futures_session_start: "09:30"
 futures_session_end: "16:00"
+# OPUS-SPEC #5 (2026-07-12): Scarface session stop — 1 win = done for the day
+# ("1 win / 2 attempts"). Wired in live_scanner via STOP_AFTER_WIN env
+# (default on); needs --paper mode for win feedback, signal-only runs unaffected.
+stop_after_win: true
