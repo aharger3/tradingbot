@@ -1,0 +1,35 @@
+FVG_RETEST set: True
+QQQ key-level break times: 249 days
+[TSLA] 250 days, 772 signals
+[NVDA] 250 days, 732 signals
+[AAPL] 250 days, 694 signals
+[AMD] 250 days, 733 signals
+[META] 250 days, 757 signals
+[GOOGL] 250 days, 712 signals
+[AMZN] 250 days, 721 signals
+[MSFT] 250 days, 711 signals
+[PLTR] 250 days, 743 signals
+[QQQ] 250 days, 698 signals
+[SOFI] 250 days, 767 signals
+[ORCL] 2025-09-01 fetch failed: HTTPSConnectionPool(host='api.polygon.io', port=443): Read t
+[ORCL] 250 days, 733 signals
+[COIN] 250 days, 762 signals
+[HOOD] 250 days, 794 signals
+[IREN] 250 days, 797 signals
+[INTC] 250 days, 696 signals
+[NFLX] 250 days, 716 signals
+[AVGO] 250 days, 713 signals
+[MU] 250 days, 740 signals
+[UBER] 250 days, 709 signals
+[BABA] 250 days, 705 signals
+[CRM] 250 days, 719 signals
+[TSM] 250 days, 733 signals
+[MARA] 250 days, 766 signals
+
+250 sessions, 17623 total signals, 2341 charted
+  * A+/A win rate 34% vs B/C 35% -> grading NOT predictive this week - review PA grade criteria
+  * D-grade filter: filtered signals would have won 30% -> filter justified (<50%)
+  * 84% rule (Lesson 6 canonical 2026-07-06: solid B&R stop-out arms one re-entry on the reclaim close, ORIGINAL stop + target): 181 triggers, fired win rate 43%.
+  * 84% live wiring: armed per-symbol off paper stop-outs in live_scanner (2026-07-05). Requires --paper mode; signal-only runs have no stop-out feedback.
+  * Best setup: reentry_84_rule (43%) | worst: break_and_retest (34%)
+  * C-grade alerts (835, alert-only per SPEC2) would have won 32% - similar to traded grades; alert-only demotion costs little.

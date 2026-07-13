@@ -1,8 +1,30 @@
 {
-  "timestamp": "2026-07-13T04:00:53.677699-04:00",
+  "timestamp": "2026-07-13T11:04:41.939464-04:00",
   "symbols_scanned": [
+    "TSLA",
+    "NVDA",
+    "AAPL",
+    "AMD",
+    "META",
+    "GOOGL",
+    "AMZN",
+    "MSFT",
+    "PLTR",
     "QQQ",
-    "TSLA"
+    "SOFI",
+    "ORCL",
+    "COIN",
+    "HOOD",
+    "IREN",
+    "INTC",
+    "NFLX",
+    "AVGO",
+    "MU",
+    "UBER",
+    "BABA",
+    "CRM",
+    "TSM",
+    "MARA"
   ],
   "signals_fired_today": 0,
   "session_halt": {
@@ -13,8 +35,8 @@
   },
   "regime_state": "normal",
   "qqq_state": {
-    "up": "15:59:00",
-    "dn": null
+    "up": "11:00:00",
+    "dn": "09:34:00"
   },
   "last_error": null,
   "webhooks": {

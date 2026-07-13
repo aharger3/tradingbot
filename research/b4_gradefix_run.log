@@ -1,0 +1,34 @@
+QQQ key-level break times: 249 days
+[TSLA] 250 days, 426 signals
+[NVDA] 250 days, 395 signals
+[AAPL] 250 days, 385 signals
+[AMD] 250 days, 395 signals
+[META] 250 days, 413 signals
+[GOOGL] 250 days, 371 signals
+[AMZN] 250 days, 384 signals
+[MSFT] 250 days, 381 signals
+[PLTR] 250 days, 415 signals
+[QQQ] 250 days, 366 signals
+[SOFI] 250 days, 416 signals
+[ORCL] 250 days, 383 signals
+[COIN] 250 days, 406 signals
+[HOOD] 250 days, 433 signals
+[IREN] 250 days, 444 signals
+[INTC] 250 days, 346 signals
+[NFLX] 250 days, 399 signals
+[AVGO] 250 days, 377 signals
+[MU] 250 days, 376 signals
+[UBER] 250 days, 375 signals
+[BABA] 250 days, 340 signals
+[CRM] 250 days, 380 signals
+[TSM] 250 days, 387 signals
+[MARA] 250 days, 430 signals
+
+250 sessions, 9423 total signals, 851 charted
+  * A+/A win rate 34% vs B/C 38% -> grading NOT predictive this week - review PA grade criteria
+  * D-grade filter: filtered signals would have won 28% -> filter justified (<50%)
+  * 84% rule (Lesson 6 canonical 2026-07-06: solid B&R stop-out arms one re-entry on the reclaim close, ORIGINAL stop + target): 87 triggers, fired win rate 40%.
+  * 84% live wiring: armed per-symbol off paper stop-outs in live_scanner (2026-07-05). Requires --paper mode; signal-only runs have no stop-out feedback.
+  * Best setup: reentry_84_rule (40%) | worst: break_and_retest (37%)
+  * C-grade alerts (226, alert-only per SPEC2) would have won 31% - similar to traded grades; alert-only demotion costs little.
+GRADEFIX_DONE

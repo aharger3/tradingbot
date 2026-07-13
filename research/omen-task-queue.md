@@ -132,32 +132,72 @@ Optional parallel anytime: **B5** (DeepSeek YouTube tranche).
   trades are ungated 84% re-entries (RULE84_LESSON=True bypasses PA gate) floored C→B at
   signal_runner:643 then promoted B→A by clear-road rule, 22.7%W −$8,395 = 131% of tier loss;
   B&R A healthy (+$3k, 37%W). Fix list handed to B4 in research/aplus-inversion-audit.md.*
-- [ ] **B4** OPUS — Encode corrected A+ definition from B3 behind flag, 12mo A/B vs current
+- [x] **B4** OPUS — Encode corrected A+ definition from B3 behind flag, 12mo A/B vs current
   grading. Done-when: table old vs new grade distribution + P&L by grade.
+  *Done 2026-07-13: GRADE_FIX env flag (default OFF) in signal_runner — drops 84% C→B floor +
+  blocks clear-road B→A for 84% re-entries. 12mo A/B (671 vs 625 traded): A-tier inversion GONE
+  (A 34.0%W −$393 → 36.7%W +$3,000), tier IDENTICAL (78 tr 42.3%W $21k/yr — uncontaminated as B3
+  predicted), full-pop −$2,371 (floored-B 84% group was net-positive, benched with the bathwater).
+  Report: research/b4_grade_fix_ab.md. C10 decides default; narrower promotion-only variant noted for C9.*
 - [ ] **B5** DEEPSEEK (background, low priority) — YouTube tranche: rank ~1300 transcript titles
   by relevance (setup/level/entry keywords), extract top 100 per deepseek-extraction-spec.md
   → scarface-rules-youtube-2.md. Done-when: file exists, rest of tranche listed as skipped.
 
 ## Phase C — Win-rate levers (44.4% → 50%+, all independent, each = flag + 12mo A/B)
 
-- [ ] **C1** GLM — BNR_DISPLACEMENT_GATE on vs off, 12mo, full-pop + tier. Done-when: table + verdict.
-- [ ] **C2** GLM — FVG_RETEST new displacement-anchored variant on vs off, 12mo. Done-when: same.
-- [ ] **C3** SONNET — [disp]/[nodisp] + [vwap-]/[chase] tag performance split on latest 12mo run:
+- [x] **C1** GLM — BNR_DISPLACEMENT_GATE on vs off, 12mo, full-pop + tier. Done-when: table + verdict. *Result (2026-07-13): keep OFF. ON −$3,000/yr full-pop (677 tr 37.3%W vs 671 37.5%W) and −$5,000/yr tier (83 tr 39.8%W vs 78 42.3%W). Displacement split not predictive; gate hurts live tier. Report: research/c1_displacement_gate_ab.md.*
+- [x] **C2** GLM — FVG_RETEST new displacement-anchored variant on vs off, 12mo. Done-when: same. *Result (2026-07-13): keep OFF. ON doubles trades (671→1506) but loses everywhere — full-pop 37.5%→34.7%W −$27k; tier 78→63 tr 42.3%→38.1%W −$12k/yr. Displacement-anchor not enough to beat 07-05 dilution evidence. Report: research/c2_fvg_displacement_ab.md.*
+- [x] **C3** SONNET — [disp]/[nodisp] + [vwap-]/[chase] tag performance split on latest 12mo run:
   does stacking skip-tags beat S-score alone? Done-when: table in research/.
-- [ ] **C4** FABLE — Puts problem (−$21k/24mo structural): A/B (a) puts off entirely,
+  *Result (2026-07-13): No real stack win. Only skip-[chase] beats S-score alone on BOTH axes
+  (70 tr 44.3%W $23k vs 78 tr 42.3%W $21k) — marginal (+2pp +$2k), just filtering 8 bad chase-tier
+  trades, not a new edge. [chase]=28.2%W −$11.5k full-pop (real loser tag). [nodisp] carries the
+  tier (+$17k of $21k), skipping it collapses tier. [disp] dilutes win% but net-positive, skip
+  raises win% loses $/yr. [vwap-] removed 07-11, 0 occurrences (no-op). Defer skip-[chase] to C10.
+  Report: research/c3_tag_split.md.*
+- [x] **C4** FABLE — Puts problem (−$21k/24mo structural): A/B (a) puts off entirely,
   (b) puts only when QQQ-aligned bearish, (c) status quo. Decide. Done-when: config set + vault note.
-- [ ] **C5** OPUS — HTF bias gate (SPEC10, long-pending): daily-candle trend proxy via yfinance
+  *Verdict 2026-07-13: (c) STATUS QUO — premise stale. −$21k/24mo was year-1 bull regime;
+  current 12mo puts are the STRONGER side (+$43k full-pop vs calls +$35k; $14k of $21k tier).
+  (a) puts-off: tier 78→45 tr $21k→$6k. (b) qqqA-only: tier 59 tr $13k — drops 19 counter-QQQ
+  tier puts that ran 47.4%W +$8k (hammer+S already selects them). QQQ alignment is real but
+  direction-symmetric + already in S-score. No config change (freeze respected). Report:
+  research/c4_puts_decision.md.*
+- [x] **C5** OPUS — HTF bias gate (SPEC10, long-pending): daily-candle trend proxy via yfinance
   (no DXLink MTF needed), gate: only trade signal direction matching daily trend, flag-gated.
   12mo A/B. Done-when: flag + table.
-- [ ] **C6** SONNET — Per-symbol tier attribution: which symbols carry S≥4+[hammer] tier P&L;
+  *Result (2026-07-13): keep OFF. HTF_BIAS_GATE flag (default OFF) + daily_trend_bias() helper
+  (close vs SMA20) in signal_runner. Gate blocks 37% of trades as counter-trend but they were
+  net-positive: full-pop 671→423 tr, 37.5→36.2%W, $78k→$32k; tier 78→55 tr, 42.3→40.0%W,
+  $21k→$11k/yr (−$10k). Daily SMA20 trend not predictive of intraday B&R; counter-trend
+  retest+confirm IS the edge. Same lesson as C1/C2. Report: research/c5_htf_gate_ab.md.*
+- [x] **C6** SONNET — Per-symbol tier attribution: which symbols carry S≥4+[hammer] tier P&L;
   propose tier-specific symbol list. Done-when: table + proposed list (no config change yet).
-- [ ] **C7** SONNET — Day-of-week split + Friday-next-week-contracts rule (hard rule in rulebook).
+  *Result (2026-07-13): 78 tier trades across 24 symbols (12 net-pos, 10 net-neg, 2 zero). 8/12
+  pos symbols carry 80% of tier profit. Proposed 12-symbol whitelist (AMD,AMZN,COIN,GOOGL,INTC,
+  IREN,NFLX,NVDA,ORCL,PLTR,QQQ,UBER) → 43 tr/yr 60.5%W $35k/yr in-sample — but OVERFIT (list
+  selected from same run, 8/12 symbols n<5). PROPOSAL ONLY; C10 + F1 walk-forward before trust.
+  Report: research/c6_symbol_attribution.md.*
+- [x] **C7** SONNET — Day-of-week split + Friday-next-week-contracts rule (hard rule in rulebook).
   Encode Friday expiry shift if SCARFACE_CONTRACT lands (D1). 12mo day-of-week table.
   Done-when: table + verdict.
-- [ ] **C8** SONNET — Two-consecutive-losses = quit day (rulebook hard rule) as backtest flag,
+  *Result (2026-07-13): Friday NOT materially worse ($106/trade vs $120 non-Fri, Δ−$14, noise);
+  Fri next-week-contract rule is D1's live-sizing/encoding concern, not a win-rate lever.
+  Thu($32k)/Tue($2k) spread large but tier per-weekday n=12-22 overfit-prone (C6 class);
+  WATCH only — no weekday gate to live config, F1 must validate OOS if C10 wants one.
+  Report: research/c7_dow_split.md.*
+- [x] **C8** SONNET — Two-consecutive-losses = quit day (rulebook hard rule) as backtest flag,
   12mo A/B vs current loss-halt. Done-when: table + verdict.
-- [ ] **C9** OPUS — 84% rule strict-spec variant: require A+ entry + same-thesis (rulebook spec)
+  *Result (2026-07-13): Rule == config consecutive_loss_halt:2 == omen_bot.day_ended() — SAME rule, no A/B possible. Backtest does NOT apply it (671 = raw). Sensitivity sim: full-pop no-halt $78.2k > halt-at-1 $69.5k > halt-at-2 $65.3k (rule CUTS -$13k/yr -16.5%, stops net-pos follow-through). Tier: halt-at-2 = no-op (max-2/day dominates), halt-at-1 flat $21k +0.8ppW. Rule redundant at tier, harmful at full-pop. No change. Report: research/c8_loss_halt_ab.md.*
+- [x] **C9** OPUS — 84% rule strict-spec variant: require A+ entry + same-thesis (rulebook spec)
   vs current de-martingaled version (+$203). If still ~flat, kill detector. Done-when: verdict.
+  *Done 2026-07-13: ADOPT STRICT (don't kill). RULE84_STRICT/RULE84_OFF flags (default OFF) in
+  signal_runner, gate in backtest_week._arm_84. 12mo real A/B: current 671 tr / re84 51 tr 39.2%W
+  +$2,702; STRICT 624 tr / re84 4 tr 75%W +$4,162; OFF 620 tr / re84 0 (+$0). Rulebook "need an A+
+  entry" confirmed — the 47 B-origin re-entries current also takes are net −$1,461; strict keeps
+  only the 4 A/A+-origin winners. Strict dominates both. TIER IDENTICAL 78/42.3%/$21k all three
+  (84% carries no S-score = full-pop-only, tier no-op). Caveat: n=4/yr, edge unproven → F1. Report:
+  research/c9_rule84_strict_ab.md.*
 - [ ] **C10** FABLE — Synthesize C1–C9: which flags turn ON together; combined 12mo run of winners
   (composition check like A3). Update tier definition if S-formula should change. Done-when:
   new recommended config v2 in vault doc.

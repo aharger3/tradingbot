@@ -1,0 +1,18 @@
+
+=== FVG_RETEST OFF (baseline) ===
+Traded (A+/A/B): 671 tr  251W 419L  37.5%W  $78,190
+S>=4+hammer tier: 78 tr  42.3%W  $21,000/yr ($1,750/mo)
+By grade:
+  A+ |   11 tr | 3W 8L |  27.3%W | $  -2,000 | traded
+  A  |   47 tr | 16W 31L |  34.0%W | $    -393 | traded
+  B  |  613 tr | 232W 380L |  37.9%W | $  80,584 | traded
+  C  |  195 tr | 55W 140L |  28.2%W | $ -32,045 | alert-only
+
+=== FVG_RETEST ON ===
+Traded (A+/A/B): 1506 tr  519W 976L  34.7%W  $51,436
+S>=4+hammer tier: 63 tr  38.1%W  $9,000/yr ($750/mo)
+By grade:
+  A+ |   11 tr | 3W 8L |  27.3%W | $  -2,000 | traded
+  A  |  140 tr | 48W 91L |  34.5%W | $  -1,547 | traded
+  B  | 1355 tr | 468W 877L |  34.8%W | $  54,983 | traded
+  C  |  835 tr | 266W 564L |  32.0%W | $ -37,163 | alert-only

@@ -1,0 +1,18 @@
+
+=== GATE OFF (baseline) ===
+Traded (A+/A/B): 671 tr  251W 419L  37.5%W  $78,190
+S>=4+hammer tier: 78 tr  42.3%W  $21,000/yr ($1,750/mo)
+By grade:
+  A+ |   11 tr | 3W 8L |  27.3%W | $  -2,000 | traded
+  A  |   47 tr | 16W 31L |  34.0%W | $    -393 | traded
+  B  |  613 tr | 232W 380L |  37.9%W | $  80,584 | traded
+  C  |  195 tr | 55W 140L |  28.2%W | $ -32,045 | alert-only
+
+=== GATE ON ===
+Traded (A+/A/B): 677 tr  252W 424L  37.3%W  $75,190
+S>=4+hammer tier: 83 tr  39.8%W  $16,000/yr ($1,333/mo)
+By grade:
+  A+ |   11 tr | 3W 8L |  27.3%W | $  -2,000 | traded
+  A  |   32 tr | 10W 22L |  31.2%W | $  -3,393 | traded
+  B  |  634 tr | 239W 394L |  37.8%W | $  80,584 | traded
+  C  |  196 tr | 56W 140L |  28.6%W | $ -30,045 | alert-only
