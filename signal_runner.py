@@ -138,6 +138,68 @@ CLEAR_FOR_APLUS = True   # A+/A require entry beyond ALL levels in trade directi
 STOP_RANGE_MULT = 0.75   # stop must be >= this x avg 1-min range ("human-proof")
 _GRADE_RANK = {"A+": 4, "A": 3, "B": 2, "C": 1, "D": 0}
 
+# B4 (GRADE_FIX, 2026-07-13) — corrected A+ per B3 audit
+# (research/aplus-inversion-audit.md), FLAG-GATED, DEFAULT OFF. Config defaults
+# only change at C10; this flag exists purely so the 12mo A/B can measure it.
+# Root cause B3 confirmed: RULE84_LESSON=True (line 102) BYPASSES the strong-PA
+# gate on 84%-rule re-entries, so the "C -> B" floor in both 84% blocks laundered
+# ungated PLAIN-candle reclaims into B, then _grade_for_levels promoted them B -> A
+# ("clear of all levels"). Those 22 re-entries ran 22.7%W / -$8,395 = 131% of the
+# entire A-tier loss. When GRADE_FIX is ON:
+#   (1) the free C -> B floor on 84% re-entries is dropped -> plain reclaims stay C
+#       (alert-only, not traded); only genuine strong-PA reclaims (large wick = B)
+#       and hammer reclaims (A+) still trade. i.e. cap-at-B unless the reclaim
+#       candle itself earns better via PA (B3 fix #1).
+#   (2) the clear-road B -> A promotion is blocked for 84% re-entries (B3 fix #3 /
+#       H2: that promotion added zero edge, 37% ~ 36.6%, it only relabeled).
+GRADE_FIX = os.getenv("GRADE_FIX", "0").strip().lower() in ("1", "true", "yes", "on")
+
+# C5 (HTF_BIAS_GATE, SPEC10, 2026-07-13) — daily-candle trend bias gate,
+# FLAG-GATED, DEFAULT OFF. Daily trend proxy = last completed daily close vs
+# SMA20 of daily closes (no DXLink MTF needed): bullish if close > SMA20,
+# bearish if <. When ON, any signal whose direction fights the daily trend is
+# capped to C / alert-only ("only trade the daily trend"). self.daily_bias is
+# populated by the caller (live_scanner from yfinance daily candles); None or
+# "neutral" => gate is a no-op. Config defaults only change at C10; this flag
+# exists purely so the 12mo A/B can measure it. A/B: research/c5_htf_gate_ab.md.
+HTF_BIAS_GATE = os.getenv("HTF_BIAS_GATE", "0").strip().lower() in ("1", "true", "yes", "on")
+
+# C9 (RULE84_STRICT / RULE84_OFF, 2026-07-13) — 84%-rule arming variants,
+# FLAG-GATED, DEFAULT OFF. Both consulted at the single arm point
+# (backtest_week._arm_84 in the backtest; the live re-entry wiring inherits the
+# same rule once C10 flips a default). Config defaults only change at C10; these
+# exist purely so the 12mo A/B can measure a rulebook-strict 84% detector.
+#   RULE84_STRICT: rulebook spec "you need an A+ entry" (bonus_How_To_Read...
+#     543s) + same thesis/level/direction. Same-thesis(BNR)/same-level(reclaim of
+#     the original entry price)/same-direction are ALREADY enforced by the current
+#     arming (RULE84_ARM_BNR_ONLY + the entry_price/entry_direction gate in the 84%
+#     blocks); STRICT adds the missing requirement: arm ONLY when the ORIGINAL
+#     stopped-out entry graded A+ or A. The current de-martingaled version arms off
+#     any counted B&R stop-out regardless of its grade (B3: that laundered grade,
+#     C9: it also drags P&L — the B-origin re-entries are the net-negative ones).
+#   RULE84_OFF: disable the detector entirely (never arm) = the "84% off" arm.
+# A/B: research/c9_rule84_strict_ab.md.
+RULE84_STRICT = os.getenv("RULE84_STRICT", "0").strip().lower() in ("1", "true", "yes", "on")
+RULE84_OFF = os.getenv("RULE84_OFF", "0").strip().lower() in ("1", "true", "yes", "on")
+
+
+def daily_trend_bias(daily_closes, period: int = 20) -> Optional[str]:
+    """Daily-candle trend proxy used by HTF_BIAS_GATE. `daily_closes` = list of
+    COMPLETED daily closes in chronological order, most recent last, EXCLUDING
+    the current (still-forming) session — so there is no look-ahead. Returns
+    'bullish' if the last close is above its SMA(period), 'bearish' if below,
+    None if fewer than `period` closes are available. Simple + robust by design
+    (close-vs-SMA20); do not grow this into a framework."""
+    if not daily_closes or len(daily_closes) < period:
+        return None
+    sma = sum(daily_closes[-period:]) / period
+    last = daily_closes[-1]
+    if last > sma:
+        return "bullish"
+    if last < sma:
+        return "bearish"
+    return "neutral"
+
 
 class SignalRunner:
     """Monitor candles, detect signals, alert Discord"""
@@ -157,6 +219,9 @@ class SignalRunner:
         self.pmh: Optional[float] = None
         self.pml: Optional[float] = None
         self.htf_bias: Optional[str] = None
+        # C5 HTF_BIAS_GATE: daily-candle trend ('bullish'/'bearish'/'neutral'),
+        # set by the caller via daily_trend_bias(). None => gate no-op.
+        self.daily_bias: Optional[str] = None
         # F4 (qqq-alignment-rules.md Rule 4): QQQ's first PD/PM key-level break
         # times for the session — {"up": "HH:MM:SS"|None, "dn": ...} or None
         # when no QQQ data. Set by backtest_12mo; tag-only, no routing.
@@ -286,8 +351,13 @@ class SignalRunner:
                 sig["reason"] += " [A->B: entry not beyond all levels]"
             elif clear and grade == "B":
                 # Open road to new HOD/LOD = Austin's A context (30d: 67% win)
-                sig["grade"] = TradeGrade.A.value
-                sig["reason"] += " [B->A: breakout conditions, clear of all levels]"
+                if GRADE_FIX and sig.get("signal_type") == SignalType.REENTRY_84_RULE:
+                    # B4/H2: 84% re-entries don't earn the clear-road A promotion
+                    # (it added no edge, 37% ~ 36.6%; kept these at B not A)
+                    pass
+                else:
+                    sig["grade"] = TradeGrade.A.value
+                    sig["reason"] += " [B->A: breakout conditions, clear of all levels]"
             if clear and sig.get("aplus_stack"):
                 # First break of level today + displacement + strong PA + open road
                 sig["grade"] = TradeGrade.A_PLUS.value
@@ -640,7 +710,10 @@ class SignalRunner:
                 grade = PriceActionAnalyzer.grade_trade(current, lookback,
                                                         self.session.entry_price, self.session.entry_price,
                                                         is_long=True, htf_bias=self.htf_bias)
-                if grade == TradeGrade.C:  # strong-PA gate already passed; C = alert-only would bench every 84
+                # NOTE: comment "strong-PA gate already passed" is STALE — under
+                # RULE84_LESSON=True the strong-PA gate is bypassed (B3 audit), so
+                # this floor grants a free B to plain reclaims. GRADE_FIX drops it.
+                if grade == TradeGrade.C and not GRADE_FIX:
                     grade = TradeGrade.B
                 self._route(signals, {
                         "signal_type": SignalType.REENTRY_84_RULE,
@@ -821,7 +894,8 @@ class SignalRunner:
                 grade = PriceActionAnalyzer.grade_trade(current, lookback,
                                                         self.session.entry_price, self.session.entry_price,
                                                         is_long=False, htf_bias=self.htf_bias)
-                if grade == TradeGrade.C:  # see call side
+                # stale comment / free-B floor — see call side; GRADE_FIX drops it
+                if grade == TradeGrade.C and not GRADE_FIX:
                     grade = TradeGrade.B
                 self._route(signals, {
                         "signal_type": SignalType.REENTRY_84_RULE,
@@ -838,6 +912,16 @@ class SignalRunner:
                     })
                 # One re-entry per failed setup (see call side)
                 self.session.entry_price = None
+
+        # C5 HTF_BIAS_GATE (default OFF): cap counter-trend signals to C /
+        # alert-only so only daily-trend-aligned trades fire. daily_bias None or
+        # 'neutral' => no-op. Placed last so no later promotion can lift it back.
+        if HTF_BIAS_GATE and self.daily_bias in ("bullish", "bearish"):
+            want = "call" if self.daily_bias == "bullish" else "put"
+            for sig in signals:
+                if sig.get("direction") != want and sig.get("grade") in ("A+", "A", "B"):
+                    sig["grade"] = "C"
+                    sig["reason"] = sig.get("reason", "") + " [htf-block]"
 
         for sig in signals:
             self._log_record(sig)

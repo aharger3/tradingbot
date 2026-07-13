@@ -143,9 +143,14 @@ class SimTrade:
 
 def _arm_84(t: "SimTrade", runner: "BacktestRunner") -> None:
     """Arm one 84%-rule re-entry off a full stop-out (same gate as blind-2R path)."""
-    from signal_runner import RULE84_ARM_BNR_ONLY
+    from signal_runner import RULE84_ARM_BNR_ONLY, RULE84_STRICT, RULE84_OFF
+    if RULE84_OFF:  # C9: detector fully disabled
+        return
     arm_ok = t.signal_type == "break_and_retest" if RULE84_ARM_BNR_ONLY \
         else t.signal_type != "reentry_84_rule"
+    # C9 strict-spec: rulebook "you need an A+ entry" — arm only off an A+/A original.
+    if RULE84_STRICT and t.grade not in ("A+", "A"):
+        arm_ok = False
     if t.counted and arm_ok:
         runner.session.entry_price = t.entry
         runner.session.entry_direction = t.direction
@@ -325,15 +330,10 @@ def simulate_day(symbol: str, day_iso: str, candles: List[Candle],
                 t.outcome, t.exit_price, t.exit_idx = "loss", t.stop, i
                 open_trades.remove(t)
                 # Lesson 6 canonical: arm only off solid B&R stop-outs (Scarface:
-                # "can't be a one-minute order block with nothing else")
-                from signal_runner import RULE84_ARM_BNR_ONLY
-                arm_ok = t.signal_type == "break_and_retest" if RULE84_ARM_BNR_ONLY \
-                    else t.signal_type != "reentry_84_rule"
-                if t.counted and arm_ok:
-                    runner.session.entry_price = t.entry
-                    runner.session.entry_direction = t.direction
-                    runner.session.entry_target = t.target
-                    runner.session.entry_stop = t.stop
+                # "can't be a one-minute order block with nothing else"). Shared
+                # with the ladder path via _arm_84 so C9's RULE84_STRICT/RULE84_OFF
+                # gate applies here too (binary-2R path = default config).
+                _arm_84(t, runner)
             elif targeted:
                 t.outcome, t.exit_price, t.exit_idx = "win", t.target, i
                 open_trades.remove(t)
