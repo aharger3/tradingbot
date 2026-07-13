@@ -45,13 +45,15 @@ from regime_detector import (
 from market_data import fetch_spy_daily_closes
 
 
+# A2 2026-07-13 (unified_backtest_synthesis §8.1): SMCI/SPY/MSTR/RIVN removed
+# (−$22.1k/12mo combined; SMCI worst symbol in book at −$12.4k, SPY 0-for-5).
 DEFAULT_SYMBOLS = [
     "TSLA", "NVDA", "AAPL", "AMD", "META",
-    "GOOGL", "AMZN", "MSFT", "PLTR", "SPY", "QQQ",
-    "SOFI", "ORCL", "COIN", "HOOD", "IREN", "INTC", "SMCI",
+    "GOOGL", "AMZN", "MSFT", "PLTR", "QQQ",
+    "SOFI", "ORCL", "COIN", "HOOD", "IREN", "INTC",
     # 2026-07-11 Austin: expand to ~200k+ options-volume names (cleaner fills)
-    "MSTR", "NFLX", "AVGO", "MU", "UBER", "BABA", "CRM",
-    "TSM", "MARA", "RIVN",
+    "NFLX", "AVGO", "MU", "UBER", "BABA", "CRM",
+    "TSM", "MARA",
 ]
 DEFAULT_WINDOW = "09:30-11:00"
 
@@ -63,6 +65,20 @@ DEFAULT_WINDOW = "09:30-11:00"
 # (paper.mark -> session.record_win), so signal-only runs are unaffected.
 # config.yaml stop_after_win mirrors this; env STOP_AFTER_WIN=0 disables.
 STOP_AFTER_WIN = os.getenv("STOP_AFTER_WIN", "1") == "1"
+
+# A2 2026-07-13 (synthesis §8.2 + task queue): entry cutoff 10:30 — the
+# 10:30-11:00 tail is 32.1%W / −$8,303 per 12mo. Scan window stays 09:30-11:00
+# so open paper positions keep marking to stop/target; only NEW entries stop.
+# Options book evidence only — futures mode unaffected. ENTRY_CUTOFF= to move,
+# empty string to disable.
+ENTRY_CUTOFF = os.getenv("ENTRY_CUTOFF", "10:30")
+
+# A2: skip-news ON — news days run 30.6%W vs 37.2% clean (12mo). Was
+# warn-only; now blocks new entries all day (marking continues).
+# SKIP_NEWS=0 reverts to warn-only.
+SKIP_NEWS = os.getenv("SKIP_NEWS", "1") == "1"
+NEWS_HALT = {"active": False}  # set at startup from news_days.json
+
 POLL_INTERVAL_SECONDS = 60
 
 OMEN_LOGO = r"""
@@ -172,11 +188,56 @@ def get_daily_context(tasty_feed, symbol: str):
             ctx.get("pdo"), ctx.get("pdc"))
 
 
+# F4 Rule 4 (qqq-alignment-rules.md) — QQQ's first RTH close through a PD/PM
+# key level, in each direction. Ported from backtest_12mo.qqq_level_breaks
+# (offline uses polygon_feed; live reuses the same yfinance/tasty context).
+# Once a direction's break time is found it stays locked for the session, so
+# a level touched early still counts after price pulls back. runner.qqq_breaks
+# reads {"up","dn"} → _qqq_aligned tag ([qqqA]/[qqqX]) + S+1; None = no QQQ data.
+_qqq_state: dict = {"date": None, "up": None, "dn": None}
+
+
+def compute_qqq_breaks(tasty_feed):
+    """{"up": first RTH close above QQQ PDH/PMH, "dn": first below PDL/PML} as
+    HH:MM:SS (None until it breaks). Returns None only when QQQ data is missing."""
+    today = now_et().date().isoformat()
+    if _qqq_state["date"] != today:
+        _qqq_state.update(date=today, up=None, dn=None)
+    if _qqq_state["up"] and _qqq_state["dn"]:
+        return {"up": _qqq_state["up"], "dn": _qqq_state["dn"]}  # both locked, skip fetch
+
+    pdh, pdl, _bias, pmh, pml, _o, _c = get_daily_context(tasty_feed, "QQQ")
+    ups = [l for l in (pdh, pmh) if l is not None]
+    dns = [l for l in (pdl, pml) if l is not None]
+    if not ups and not dns:
+        return None  # no QQQ levels → S-input simply absent (same as offline no-data)
+
+    # Full RTH day so far — 60-min lookback misses an early break, so size the
+    # window to minutes since 09:30 (+5 buffer).
+    open_et = now_et().replace(hour=9, minute=30, second=0, microsecond=0)
+    mins = max(1, int((now_et() - open_et).total_seconds() // 60) + 5)
+    try:
+        bars = tasty_feed.fetch_recent_bars("QQQ", lookback_minutes=mins)
+    except Exception:
+        bars = []
+    if not bars:
+        try:
+            bars = _yf_recent_bars("QQQ", lookback_minutes=mins)
+        except Exception:
+            return None
+    rth = [c for c in bars if c.timestamp >= "09:30:00"]
+    if _qqq_state["up"] is None and ups:
+        _qqq_state["up"] = next((c.timestamp for c in rth if any(c.close > l for l in ups)), None)
+    if _qqq_state["dn"] is None and dns:
+        _qqq_state["dn"] = next((c.timestamp for c in rth if any(c.close < l for l in dns)), None)
+    return {"up": _qqq_state["up"], "dn": _qqq_state["dn"]}
+
+
 SCANNER_STATUS_PATH = Path(__file__).parent / "journal" / "scanner_status.json"
 
 
 def _write_scanner_status(symbols, signals_today, session, regime_action,
-                           last_error=None, posted=0, failed=0):
+                           last_error=None, posted=0, failed=0, qqq_breaks=None):
     """Atomically write journal/scanner_status.json (temp + os.replace).
 
     Dashboard reads this file later — no UI work here, file only.
@@ -192,6 +253,7 @@ def _write_scanner_status(symbols, signals_today, session, regime_action,
             "max_trades": session.max_signals_per_day,
         },
         "regime_state": regime_action,
+        "qqq_state": qqq_breaks,  # F4 Rule 4: {"up","dn"} break times or None
         "last_error": last_error,
         "webhooks": {"posted": posted, "failed": failed},
     }
@@ -230,7 +292,8 @@ def scan_once(
               f"{runner.session.consecutive_losses}/{max_consecutive_losses} consecutive losses, "
               f"{runner.session.consecutive_wins} wins (stop_after_win={'on' if STOP_AFTER_WIN else 'off'})")
         _write_scanner_status(symbols, runner.session.signals_today, runner.session,
-                              ACTION_NORMAL, last_error="session halted")
+                              ACTION_NORMAL, last_error="session halted",
+                              qqq_breaks=getattr(runner, "qqq_breaks", None))
         return 0
 
     # Regime filter: check today's market regime once per scan cycle.
@@ -249,6 +312,27 @@ def scan_once(
             elif regime_action == ACTION_STOP_SHORT:
                 msg += "PUT trades blocked (melt-down regime)"
             print(f"  {msg}")
+
+    # A2: entry gates — paper marking continues below, only NEW entries stop.
+    entries_ok = True
+    if NEWS_HALT["active"]:
+        entries_ok = False
+        print("  News-day halt (skip-news ON) — marking only, no new entries")
+    elif ENTRY_CUTOFF and not getattr(runner, "futures_mode", False) \
+            and now_et().strftime("%H:%M") >= ENTRY_CUTOFF:
+        entries_ok = False
+        print(f"  Entry cutoff {ENTRY_CUTOFF} passed — marking only, no new entries")
+
+    # F4 Rule 4: QQQ key-level break state, once per cycle, shared across the
+    # watchlist (skip in futures mode — QQQ context irrelevant there).
+    if not getattr(runner, "futures_mode", False):
+        try:
+            runner.qqq_breaks = compute_qqq_breaks(tasty_feed)
+        except Exception as e:
+            print(f"  QQQ break check failed: {e}")
+            runner.qqq_breaks = None
+        if runner.qqq_breaks:
+            print(f"  QQQ breaks: up={runner.qqq_breaks['up']} dn={runner.qqq_breaks['dn']}")
 
     last_error = None
     for symbol in symbols:
@@ -305,6 +389,9 @@ def scan_once(
         if runner.session.entry_price is None:  # detector fired its one re-entry -> disarm
             armed_84.pop(symbol, None)
 
+        # A2 entry gates (cutoff / news halt) drop signals same as regime STOP
+        if not entries_ok:
+            signals = []
         # Apply regime filter per signal (filter at signal level)
         if regime_action == ACTION_STOP:
             signals = []  # all trades halted
@@ -333,7 +420,8 @@ def scan_once(
     _write_scanner_status(symbols, runner.session.signals_today, runner.session,
                           regime_action, last_error=last_error,
                           posted=discord.posted if discord else 0,
-                          failed=discord.failed if discord else 0)
+                          failed=discord.failed if discord else 0,
+                          qqq_breaks=getattr(runner, "qqq_breaks", None))
     return fired
 
 
@@ -553,8 +641,13 @@ def main():
         _today = now_et().date().isoformat()
         if _today in set(_nd.get("news_days", [])):
             kind = _nd.get("by_date", {}).get(_today, "red-folder")
-            msg = (f"⚠ NEWS DAY ({kind}) — 12mo: 30.6%W on these days. "
-                   f"Scarface rule: size down or skip.")
+            if SKIP_NEWS:
+                NEWS_HALT["active"] = True
+                msg = (f"⚠ NEWS DAY ({kind}) — skip-news ON: no new entries today "
+                       f"(12mo: 30.6%W on these days). SKIP_NEWS=0 to override.")
+            else:
+                msg = (f"⚠ NEWS DAY ({kind}) — 12mo: 30.6%W on these days. "
+                       f"Scarface rule: size down or skip.")
             print(msg)
             if runner.post_to_discord and runner.discord:
                 runner.discord.post_text(msg)

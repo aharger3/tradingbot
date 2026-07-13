@@ -28,10 +28,10 @@ from signal_runner import SignalRunner
 # (his rule — high options volume = cleaner moves, easier fills). SPY/QQQ stay
 # as trend reference, rarely traded.
 CORE_SYMBOLS = ["TSLA", "NVDA", "AAPL", "AMD", "META",
-                "GOOGL", "AMZN", "MSFT", "PLTR", "SPY", "QQQ"]
-EXPERIMENTAL_SYMBOLS = ["SOFI", "ORCL", "COIN", "HOOD", "IREN", "INTC", "SMCI",
-                        "MSTR", "NFLX", "AVGO", "MU", "UBER", "BABA", "CRM",
-                        "TSM", "MARA", "RIVN"]
+                "GOOGL", "AMZN", "MSFT", "PLTR", "QQQ"]  # A3: SPY removed (0-for-5)
+EXPERIMENTAL_SYMBOLS = ["SOFI", "ORCL", "COIN", "HOOD", "IREN", "INTC",
+                        "NFLX", "AVGO", "MU", "UBER", "BABA", "CRM",
+                        "TSM", "MARA"]  # A3: SMCI/MSTR/RIVN removed (−$22k/12mo)
 SYMBOLS = CORE_SYMBOLS + EXPERIMENTAL_SYMBOLS
 RISK_DOLLARS = 1000.0
 DEDUPE_BARS = 30  # same setup re-firing within 30 min = same trade idea

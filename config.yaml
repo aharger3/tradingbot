@@ -1,7 +1,16 @@
 max_loss: 1000
 rr_target: 2.0
 trading_hours: "09:30-11:00"
-watchlist: [TSLA, NVDA, AAPL, AMD, META, GOOG, AMZN, MSFT, PLTR, SPY, QQQ, INTC]
+# A2 2026-07-13 (unified_backtest_synthesis §8): SPY removed (0-for-5, -$5k);
+# SMCI/MSTR/RIVN dropped from live_scanner DEFAULT_SYMBOLS same session.
+watchlist: [TSLA, NVDA, AAPL, AMD, META, GOOG, AMZN, MSFT, PLTR, QQQ, INTC]
+# A2: new entries stop at 10:30 (10:30-11:00 tail: 32.1%W, -$8.3k/12mo);
+# window stays 09:30-11:00 for paper-position marking. Env ENTRY_CUTOFF.
+entry_cutoff: "10:30"
+# A2: news days (news_days.json) block new entries, 30.6%W vs 37.2% clean.
+# Env SKIP_NEWS=0 reverts to warn-only. RULE6 stays OFF (-$1,639/wk test).
+# Regime filter SMA Directional 5% already ON (live_scanner main()).
+skip_news: true
 max_trades_per_day: 3
 consecutive_loss_halt: 2
 data_feed: tastytrade
