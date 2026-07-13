@@ -10,3 +10,10 @@ journal/signal_log_*.jsonl
 journal/*.log
 _extract_run.log
 spec0_snippets.txt
+
+# media — never in git (GitHub 100MB cap; 21GB+ total)
+circle_audio/
+research/audio_extracted/
+discord_data/images/
+*.wav
+*.mp4
