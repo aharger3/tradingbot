@@ -49,8 +49,16 @@ from signal_tracker import log_signal
 OB_RETEST_TYPES = ("wick_only",)  # accepted retest strengths
 OB_VOLUME_MULT = 0.0  # entry candle volume >= mult x avg(prior 10); 0 = gate off
 # 30d A/B 2026-07-05: FVG retests diluted B&R badly (206 trades @33% -$216 vs
-# 28 @50% +$1400 raw-level only; 0.1%-min-gap variant still +$277). Off until a
-# displacement-anchored FVG detector exists.
+# 28 @50% +$1400 raw-level only; 0.1%-min-gap variant still +$277).
+# OPUS-SPEC #2: FVG retest zones (2026-07-12)
+# fable_rules.yaml line 52: "3-candle gap... is valid retest zone in addition
+# to raw level". Prior: FVG blocks accepted any recent gap above/below the
+# level — the dilution the 07-05 A/B measured. Change: FVG entry now ALSO
+# requires break-leg displacement (_bnr_displacement), i.e. the gap must be
+# the one left by the displacement move — the "displacement-anchored detector"
+# the old comment said was missing. Default stays False until the anchored
+# variant is A/B'd; spec asked for True but the 07-05 evidence stands until
+# superseded. Test: signal_runner.py --dry-run.
 FVG_RETEST = False  # B&R may retest the displacement FVG instead of the raw level
 # Flag detector BENCHED 2026-07-09: my 2026-07-08 speculative add fired 465x for
 # -$57.6k over 12mo (28% win) = the whole system loss. Austin never visually
@@ -111,6 +119,17 @@ BNR_STOP_MODE = "level"  # F2 A/B 2026-07-11: retest & buffer BOTH lose (see
 # of an existing level. stop_level_name "HOD"/"LOD" for split reporting.
 HODLOD_PAIR = False  # F3 12mo 2026-07-11: 19 tr/yr standalone, 33.3%W −$228,
                      # tier drag 43.4→42.5 — no edge as specced. OFF.
+
+# OPUS-SPEC #1: B&R displacement gate (2026-07-12)
+# fable_rules.yaml line 50: displacement_gate = "break candle body >= 1.5x avg
+# body of prior N candles". omen_bot._has_displacement gates the OCR path only
+# (detect_order_block_setup); the B&R entry path never checked displacement.
+# Prior: B&R fired on any ordered break/leave/retest/confirm regardless of
+# break-leg momentum. Change: [disp]/[nodisp] measurement tag on every B&R card
+# + optional cap-at-C gate. Gate defaults OFF: no A/B exists yet, and untested
+# gates in this codebase have a losing record (FVG 2026-07-05, flag 2026-07-09).
+# Test: signal_runner.py --dry-run exercises both gate states.
+BNR_DISPLACEMENT_GATE = False  # True = B&R without break-leg displacement caps at C
 
 # Austin trade-notes review 2026-07-06 (91 trades): "middle of a bunch of levels,
 # probability goes down significantly"; likes trades where new HOD/LOD can be hit.
@@ -214,19 +233,27 @@ class SignalRunner:
         premium_risk = stock_risk * 0.5  # ATM delta ≈ 0.5 estimate
         return risk_pct >= 0.005 or premium_risk >= 0.20
 
+    def _bnr_displacement(self, level: float, is_long: bool) -> bool:
+        """OPUS-SPEC #1: displacement in the B&R break leg — a beyond-level
+        candle in the 5-bar leg with body >= 1.5x avg body of the 10 candles
+        before it (same 1.5x convention as omen_bot.DISPLACEMENT_MULT and the
+        A+ stack, which this was extracted from)."""
+        lookback = self.candles[-6:-1]
+        beyond = (lambda c: c.close > level) if is_long else (lambda c: c.close < level)
+        prior = self.candles[-16:-6] or self.candles[:-6]
+        avg_body = (sum(abs(c.close - c.open) for c in prior) / len(prior)) if prior else 0
+        return avg_body > 0 and any(
+            beyond(c) and abs(c.close - c.open) >= 1.5 * avg_body for c in lookback)
+
     def _aplus_stack(self, level: float, is_long: bool) -> bool:
         """Austin's A+ spec 2026-07-06: FIRST clean break of the level today,
         displacement in the break leg, strong PA entry candle."""
         current = self.candles[-1]
-        lookback = self.candles[-6:-1]
         earlier = self.candles[:-6]
         beyond = (lambda c: c.close > level) if is_long else (lambda c: c.close < level)
         first_break = not any(beyond(c) for c in earlier)
-        prior = self.candles[-16:-6] or self.candles[:-6]
-        avg_body = (sum(abs(c.close - c.open) for c in prior) / len(prior)) if prior else 0
-        displacement = avg_body > 0 and any(
-            beyond(c) and abs(c.close - c.open) >= 1.5 * avg_body for c in lookback)
-        return first_break and displacement and self._strong_pa(current)
+        return (first_break and self._bnr_displacement(level, is_long)
+                and self._strong_pa(current))
 
     def _grade_for_levels(self, sig: dict) -> None:
         """Demote signals fighting the level map (Austin notes 2026-07-06).
@@ -470,6 +497,13 @@ class SignalRunner:
                     grade = TradeGrade.C
                 if stock_risk < max(0.10, 0.0015 * current.close):  # relative min (flat $0.50 benched sub-$50 stocks)
                     grade = TradeGrade.D
+                # OPUS-SPEC #1: displacement check on the B&R break leg —
+                # tag always, cap-at-C only when the gate is enabled. Placed
+                # after promotions so the A+ stack can't lift it back.
+                disp = self._bnr_displacement(level_hi, is_long=True)
+                if (BNR_DISPLACEMENT_GATE and not disp
+                        and grade.value in ("A+", "A", "B")):
+                    grade = TradeGrade.C
                 # PM-level B&R negative BOTH backtest years (24mo 2026-07-10:
                 # −$5k y1 / −$6k y2, 30-31%W) — alert-only. After promotions so
                 # the A+ stack can't lift it back.
@@ -492,6 +526,7 @@ class SignalRunner:
                                    f"retest with {grade.value} PA"
                                    + (" [late]" if "LATE" in br_note else " [clean]")
                                    + (" [hammer]" if hammer else "")
+                                   + (" [disp]" if disp else " [nodisp]")  # OPUS-SPEC #1
                                    + self._bnr_tags(current, stock_risk, is_long=True)
                                    + f" S{sc}"),
                         "entry": current.close,
@@ -512,7 +547,9 @@ class SignalRunner:
                     continue
                 prior_breakout = any(c.close > level_hi for c in lookback)
                 already_at_level = current.low <= level_hi  # raw-level retest handles it
+                # OPUS-SPEC #2: gap must be the displacement leg's gap
                 if (prior_breakout and not already_at_level
+                        and self._bnr_displacement(level_hi, is_long=True)
                         and current.low <= fvg[1] and current.close > fvg[1]):
                     stock_risk = current.close - fvg[0]
                     grade = PriceActionAnalyzer.grade_trade(current, lookback, fvg[1], fvg[0],
@@ -654,6 +691,11 @@ class SignalRunner:
                     grade = TradeGrade.C
                 if stock_risk < max(0.10, 0.0015 * current.close):
                     grade = TradeGrade.D
+                # OPUS-SPEC #1: displacement tag + optional gate (see call side)
+                disp = self._bnr_displacement(level_lo, is_long=False)
+                if (BNR_DISPLACEMENT_GATE and not disp
+                        and grade.value in ("A+", "A", "B")):
+                    grade = TradeGrade.C
                 # PM-level B&R: alert-only (see call side, 24mo both-years split)
                 if lo_name == "PML" and grade.value in ("A+", "A", "B"):
                     grade = TradeGrade.C
@@ -672,6 +714,7 @@ class SignalRunner:
                                    f"retest with {grade.value} PA"
                                    + (" [late]" if "LATE" in br_note else " [clean]")
                                    + (" [hammer]" if hammer else "")
+                                   + (" [disp]" if disp else " [nodisp]")  # OPUS-SPEC #1
                                    + self._bnr_tags(current, stock_risk, is_long=False)
                                    + f" S{sc}"),
                         "entry": current.close,
@@ -691,7 +734,9 @@ class SignalRunner:
                     continue
                 prior_breakdown = any(c.close < level_lo for c in lookback)
                 already_at_level = current.high >= level_lo
+                # OPUS-SPEC #2: gap must be the displacement leg's gap (see call side)
                 if (prior_breakdown and not already_at_level
+                        and self._bnr_displacement(level_lo, is_long=False)
                         and current.high >= fvg[0] and current.close < fvg[0]):
                     stock_risk = fvg[1] - current.close
                     grade = PriceActionAnalyzer.grade_trade(current, lookback, fvg[1], fvg[0],
@@ -863,8 +908,49 @@ def main():
     parser.add_argument("--webhook", help="Discord webhook URL (or set DISCORD_WEBHOOK_URL env var)")
     parser.add_argument("--symbol", default="UNKNOWN", help="Ticker symbol for signal log records")
     parser.add_argument("--no-log", action="store_true", help="Skip writing to journal/signal_log_*.jsonl")
+    parser.add_argument("--dry-run", action="store_true",
+                        help="Self-check: run detect_signals on synthetic candles (no Discord, no log)")
 
     args = parser.parse_args()
+
+    if args.dry_run:
+        # OPUS-SPEC self-check: synthetic clean B&R day — flat range, displaced
+        # break over the OR high, leave, retest, hammer confirm. Asserts the
+        # detector runs clean under every OPUS-SPEC toggle combination.
+        # sys.modules[__name__], NOT `import signal_runner`: run as __main__,
+        # that import builds a second module copy and the toggles below would
+        # land on the dead copy while detect_signals reads __main__ globals.
+        import itertools
+        _sr = sys.modules[__name__]
+        # First 5 bars set OR high = 100.5; flats stay under it; then the FSM
+        # sequence in the last 12 bars: break (displaced) -> leave -> retest ->
+        # confirm close back above.
+        base = [Candle(f"09:{30+i:02d}:00", 100.0, 100.5, 99.9, 100.2, 1000)
+                for i in range(5)]
+        base += [Candle(f"09:{35+i:02d}:00", 100.1, 100.4, 100.0, 100.2, 1000)
+                 for i in range(15)]
+        base += [Candle("09:50:00", 100.3, 102.0, 100.2, 101.9, 5000),   # displaced break
+                 Candle("09:51:00", 101.9, 102.3, 101.7, 102.1, 2000),   # leave (low > level)
+                 Candle("09:52:00", 102.1, 102.2, 101.3, 101.6, 1500),   # drift back
+                 Candle("09:53:00", 101.6, 101.7, 100.4, 100.9, 1800),   # retest OR high
+                 Candle("09:54:00", 101.0, 101.6, 100.8, 101.5, 1600)]   # confirm close above
+        fired_baseline = None
+        for gate, fvg in itertools.product((False, True), repeat=2):
+            _sr.BNR_DISPLACEMENT_GATE, _sr.FVG_RETEST = gate, fvg
+            r = SignalRunner(post_to_discord=False, symbol="DRYRUN", log_signals=False)
+            r.candles = base
+            sigs = r.detect_signals()
+            assert isinstance(sigs, list), "detect_signals must return a list"
+            if not gate and not fvg:
+                fired_baseline = sigs
+            print(f"dry-run gate={gate} fvg={fvg}: {len(sigs)} signal(s) "
+                  + ", ".join(f"{s['grade']} {s['signal_type'].value}" for s in sigs))
+        assert fired_baseline, "synthetic clean B&R day must fire at least one signal"
+        assert any("[disp]" in s["reason"] for s in fired_baseline), \
+            "displaced break must carry the [disp] tag"
+        _sr.BNR_DISPLACEMENT_GATE, _sr.FVG_RETEST = False, False  # restore defaults
+        print("dry-run OK")
+        return
 
     runner = SignalRunner(webhook_url=args.webhook, post_to_discord=not args.no_discord,
                           symbol=args.symbol, log_signals=not args.no_log)
