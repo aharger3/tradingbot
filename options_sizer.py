@@ -95,9 +95,35 @@ class OptionsPlan:
             return ""
 
 
+# OPUS-SPEC #6: Scarface contract selection (2026-07-12)
+# Scarface buys the FIRST OTM strike on the nearest WEEKLY (Friday) expiry, not
+# nearest-ATM 0DTE. Prior: nearest_strike + nearest_expiration always. Change:
+# toggle routes strike/expiry through first_otm_strike/weekly_expiration.
+# Default OFF: ATM/0DTE is the measured baseline; flip after a live premium
+# comparison (OTM weekly = lower delta, cheaper premium, different sizing).
+SCARFACE_CONTRACT = False  # True = first OTM strike + nearest Friday expiration
+
+
 def nearest_strike(stock_price: float, symbol: str) -> float:
     inc = STRIKE_INCREMENT.get(symbol.upper(), 2.5)
     return round(stock_price / inc) * inc
+
+
+def first_otm_strike(stock_price: float, symbol: str, direction: str) -> float:
+    """OPUS-SPEC #6: first strike strictly beyond spot in the trade direction."""
+    inc = STRIKE_INCREMENT.get(symbol.upper(), 2.5)
+    base = round(stock_price / inc) * inc
+    if direction == "call":
+        return base + inc if base <= stock_price else base
+    return base - inc if base >= stock_price else base
+
+
+def weekly_expiration(now: Optional[datetime] = None) -> str:
+    """OPUS-SPEC #6: nearest Friday (this week's weekly; today if Friday)."""
+    if now is None:
+        now = datetime.now(timezone.utc) - timedelta(hours=4)  # approx ET
+    d = now.date()
+    return (d + timedelta(days=(4 - d.weekday()) % 7)).isoformat()
 
 
 def nearest_expiration(now: Optional[datetime] = None) -> str:
@@ -148,11 +174,12 @@ def build_options_plan(
         stock_risk = stock_stop - stock_entry
         stock_target = stock_entry - rr * stock_risk
 
-    # 2. Strike + expiration
+    # 2. Strike + expiration (OPUS-SPEC #6: Scarface = first OTM weekly)
     if strike is None:
-        strike = nearest_strike(stock_entry, symbol)
+        strike = (first_otm_strike(stock_entry, symbol, direction) if SCARFACE_CONTRACT
+                  else nearest_strike(stock_entry, symbol))
     if expiration is None:
-        expiration = nearest_expiration()
+        expiration = weekly_expiration() if SCARFACE_CONTRACT else nearest_expiration()
 
     # 3. Entry premium: Tastytrade (real-time) > delta estimate
     quote_source = "estimated_delta"
