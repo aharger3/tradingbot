@@ -225,7 +225,7 @@ def classify_source_priority(files):
 
 def main():
     print("=" * 60)
-    print("B1 Extraction: 89 transcripts × 36 groups → scarface-rules-videos.md")
+    print("B1 Extraction: 89 transcripts × 36 groups -> scarface-rules-videos.md")
     print("=" * 60)
 
     # Load groups

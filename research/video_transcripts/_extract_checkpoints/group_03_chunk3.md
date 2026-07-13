@@ -1,139 +1,129 @@
 # Group 3 Chunk 3: ['boot-camp-recordings_Day_13_Trameframe_Psychology_transcript.txt']
 
-# EXTRACTION FROM NEW TRANSCRIPTS
-
-## Risk Management (Types of Risk)
-
-- **Four types of market risk: market risk, credit risk, liquidity risk, news risk** "There's four specific types of risk in the market. Number one, the first type of risk in the market is market risk. The next risk we have is credit risk. This one is called liquidity risk. The last risk we have is news risk." (boot-camp-recordings_Day_13_Trameframe_Psychology.txt [166s-1759s])
-
-- **Market risk: losses from market conditions (interest rates, exchange rates, commodity prices)** "Market risk refers to the potential of losses because of market conditions. This can be interest rates, exchange rates, or commodity prices." (boot-camp-recordings_Day_13_Trameframe_Psychology.txt [221s-230s])
-
-- **Credit risk: counterparty defaulting on margin obligations** "Credit risk relates to the possibility of a counterparty to default on a trade or fail to meet their obligation... when you have a margin account and you don't pay back the margin, that is you being able to default on your credit risk." (boot-camp-recordings_Day_13_Trameframe_Psychology.txt [1009s-1100s])
-
-- **Liquidity risk: insufficient market liquidity to execute at desired prices** "Liquidity risk is the risk of the road and there is insufficient market liquidity to execute trades at desired prices." (boot-camp-recordings_Day_13_Trameframe_Psychology.txt [1298s-1305s])
-
-- **News risk: FOMC, earnings, news trumps technicals** "News risk is FOMC, earnings... News trumps technicals and is unpredictable." (boot-camp-recordings_Day_13_Trameframe_Psychology.txt [1753s-1776s])
-
-- **Margin trading: broker can liquidate before stop loss hits** "When you're on margin... the broker will first give you a warning, giving you a margin call... they will liquidate your position before it hits your stop loss." (boot-camp-recordings_Day_13_Trameframe_Psychology.txt [1208s-1242s])
-
-- **Avoid margin trading, especially with small accounts** "I typically avoid margin trading and I typically tell a lot of traders to avoid margin trading because it's a lot more dangerous in my opinion, especially if you have a smaller account." (boot-camp-recordings_Day_13_Trameframe_Psychology.txt [868s-877s])
-
-## Position Sizing
-
-- **Beginners must use constant position size, NOT market-sentiment-based sizing** "A lot of you guys in the early stages need to be typing number two. Number two means constant position size... because you guys have not earned the right to size up based off market sentiment." (boot-camp-recordings_Day_13_Trameframe_Psychology.txt [1954s-1974s])
-
-- **Market sentiment determines position sizing only for experienced traders** "For me, the market sentiment will determine position sizing... I have, Jack has, Nello has, Hayden has, but you have not yet." (boot-camp-recordings_Day_13_Trameframe_Psychology.txt [1913s-1992s])
-
-- **Constant position size balances out over time** "Stay with the constant position if the market's doing really well or doing really bad. And what will happen is, overall, over a long period of time, at least it will balance out." (boot-camp-recordings_Day_13_Trameframe_Psychology.txt [2028s-2037s])
-
-- **Adapt to each market: size down when market shows weakness** "When the market is showing a little bit more weakness, my account, right, I will size down, meaning that I have less risk on the table." (boot-camp-recordings_Day_13_Trameframe_Psychology.txt [2058s-2069s])
-
-## Stop Loss Discipline
-
-- **Respect stop loss at all times - changing stop loss consistently leads to consistent losing** "If you're consistently changing your stop loss, you will consistently be losing. Over a long period of time, you will lose if you consistently change your stop loss." (boot-camp-recordings_Day_13_Trameframe_Psychology.txt [2083s-2092s])
-
-- **Use price action (PA) stop losses, not dollar amounts** "I typically do PA stop losses because dollar amounts stop losses will stop you out before the market actually ends up doing anything." (boot-camp-recordings_Day_13_Trameframe_Psychology.txt [3218s-3222s])
-
-- **PA stop loss definition: wait for candle to close below key level** "PA is price action, it's just you're waiting for the stop, you're waiting for the candle to close below your key level." (boot-camp-recordings_Day_13_Trameframe_Psychology.txt [3518s-3522s])
-
-## 84% Rule / Re-entries
-
-- **84% reclaim allows re-entry after first stop-out** "The next 84% reclaim I entered in and then I was able to catch this entire trade." (boot-camp-recordings_Day_13_Trameframe_Psychology.txt [2142s-2149s])
-
-- **84% rule does NOT require a retest** "I thought the 84% rule doesn't have to retest. It doesn't." (boot-camp-recordings_Day_13_Trameframe_Psychology.txt [3234s-3237s])
-
-- **System designed so missing first trade doesn't prevent capturing the move** "With my system, the way I make my system, there's no chance that I shouldn't be able to enter high probability trades even if I mess up on the first trade." (boot-camp-recordings_Day_13_Trameframe_Psychology.txt [2208s-2213s])
-
-## Higher Time Frame Application
-
-- **Build thesis on daily, 4-hour, and 1-hour timeframes** "The key things I'm looking for are the daily and four hour specifically for me. It's going to be the daily four hour and one hour where I build my thesis." (boot-camp-recordings_Day_13_Trameframe_Psychology.txt [2960s-2963s])
-
-- **Higher timeframe thesis: higher highs + higher lows = bullish bias** "The thesis was we have a low here. We have then a higher low, higher low... If we break the low, then Tesla on the higher time frame now becomes a lot more neutral or bearish." (boot-camp-recordings_Day_13_Trameframe_Psychology.txt [2407s-2424s])
-
-- **Neutral with bullish price action = not opposed to going long** "It's neutral with more bullish price action, right? Because we have a high, high, and we made a brand new high... I would not be opposed to going long on Tesla." (boot-camp-recordings_Day_13_Trameframe_Psychology.txt [2429s-2439s])
-
-## QQQ Alignment / Index Confirmation
-
-- **QQQ relative strength/weakness is primary confluence for tech names** "When we trade the tech names right, one of our main confluences is looking at the QQQ relative strength and weakness." (boot-camp-recordings_Day_13_Trameframe_Psychology.txt [2509s-2515s])
-
-- **Trade probability lower when QQQ is dropping** "The overall context is lower because once again, QQQ is dropping." (boot-camp-recordings_Day_13_Trameframe_Psychology.txt [2541s-2547s])
-
-- **Higher probability entry = 84% reclaim + QQQ at key support** "This for me was a higher probability entry... because not only is this the 84% rule meaning that Tesla's reclaiming, but QQQ is now at a key level of support holding above their support." (boot-camp-recordings_Day_13_Trameframe_Psychology.txt [2587s-2634s])
-
-- **Scale 80% at high of day when QQQ at risk of breaking support** "I scale 80% out of high of day, because I know that though I took the risk, QQQ if it breaks below this level, the momentum on Tesla may die." (boot-camp-recordings_Day_13_Trameframe_Psychology.txt [2684s-2689s])
-
-- **Don't need both QQQ and SPY - too much information** "QQQ and SPY gives me the same thing, NQ and ES would... I don't want to add an extra step when I just don't need to." (boot-camp-recordings_Day_13_Trameframe_Psychology.txt [3146s-3160s])
-
-## Trade Selection
-
-- **Trade same tickers daily, select based on relative strength at open** "I trade the same ticker every day. I just select them based off relative strength when the market actually opens." (boot-camp-recordings_Day_13_Trameframe_Psychology.txt [3004s-3008s])
-
-- **Tech names (Tesla, NVDA, AMD, Apple) have higher correlation with QQQ** "I trade tech stocks in general because they have higher correlation with QQQ. And therefore I don't have to look at much information overall in the markets." (boot-camp-recordings_Day_13_Trameframe_Psychology.txt [2926s-2942s])
-
-- **Pick one strategy, backtest it, find which works in different markets** "You pick one and then you back test that one. And then out of the three that you have, you can then look at which one has the highest probability win rate in different markets. And then you trade that in that market." (boot-camp-recordings_Day_13_Trameframe_Psychology.txt [3101s-3120s])
-
-## Exits / Scaling
-
-- **Scale 80% at high of day when market context is uncertain** "I scaled 80% today because the probability with QQQ when it dropped below that 631 level, it became a lot lower. So I wanted to make sure that I'm coming out with profit." (boot-camp-recordings_Day_13_Trameframe_Psychology.txt [3273s-3284s])
-
-- **Scaling percentage adapts to market cycle** "This whole week, I've been scaling anywhere from 50 to 80% at high of day. However, if you go back to my trade reviews from July and June... I was only scaling out 25 or 30% at high of day, sometimes even less." (boot-camp-recordings_Day_13_Trameframe_Psychology.txt [3293s-3310s])
-
-- **Different market cycles require different scaling approaches** "It's the different market cycles that you need to understand." (boot-camp-recordings_Day_13_Trameframe_Psychology.txt [3310s-3314s])
-
-## Concrete Numbers
-
-- **Typical position size: 100-150 contracts, max 200** "I'll usually enter in like 50 and then I'll enter in 50 again. So that's 100. And then if I really like the setup, I'll enter in another maybe 50 to 50 maximum contract so far as 200. But typically, I'll do like 100 to 150." (boot-camp-recordings_Day_13_Trameframe_Psychology.txt [2975s-2995s])
-
-- **Win rate is usually higher than 50%** "My win rate has never been 50%, it's usually almost always higher than 50%." (boot-camp-recordings_Day_13_Trameframe_Psychology.txt [3260s-3267s])
-
-- **Risk $2-3k on lower probability trades, more on higher probability** "You're risking around $2 to $3,000 here, maybe potentially even three to $4,000 for that move to the upside, which is worth the risk." (boot-camp-recordings_Day_13_Trameframe_Psychology.txt [2654s-2665s])
-
-## Options Specifics
-
-- **Trade weekly options (Friday expiry)** "In terms of expiry day, I typically do weekly, right? So weekly expires. Meaning the expiry on Friday." (boot-camp-recordings_Day_13_Trameframe_Psychology.txt [1708s-1717s])
-
-- **Require at least 1,000 volume on option contracts** "For option contracts on top of this, I like to have at least a thousand volume." (boot-camp-recordings_Day_13_Trameframe_Psychology.txt [1614s-1622s])
-
-- **If can't afford one OTM, look for closest whole psychological number with 1,000+ volume** "If you can afford it, then I would be looking for something that has over a thousand volume and most likely the next closest whole psychological number." (boot-camp-recordings_Day_13_Trameframe_Psychology.txt [1652s-1666s])
-
-- **One OTM = first contract out of the money** "Out of the money is simply just the one, the first contract out of the money. So let's say a stock price is 400, out of the money would be 401." (boot-camp-recordings_Day_13_Trameframe_Psychology.txt [3082s-3090s])
-
-- **R:R calculation on options is difficult in real-time - use general rule of 2:1** "It's almost impossible for you to be doing the calculations of where 2:1 is on your option contract... It's the general rule that we want 2:1. So when you look at your option contracts, let's say it's a dollar, you want the option contract to obviously go up to $1.50, $2." (boot-camp-recordings_Day_13_Trameframe_Psychology.txt [3440s-3461s])
-
-- **To roll positions: close current profitable position, open new one** "The best way is to honestly just close the current position if you're in profit and then just open the next one. That's the easiest way for a lot of new traders." (boot-camp-recordings_Day_13_Trameframe_Psychology.txt [3333s-3342s])
-
-## Break and Retest
-
-- **Immediate retest with no displacement: depends on higher timeframe strength** "If it's an immediate retest, you want to look for more specifically is the higher time frame showing you relative strength or weakness. If the higher time frame is really good, you see relative strength, the market's moving up... sometimes you have to take an immediate retest." (boot-camp-recordings_Day_13_Trameframe_Psychology.txt [3352s-3371s])
-
-- **When market not showing strength, want more displacement and A+ opportunities** "If the market's not showing as much strength and it's just slowly kind of moving, then yeah, then you want to take more displacement trades and you want to make it as much A+ opportunity as possible." (boot-camp-recordings_Day_13_Trameframe_Psychology.txt [3371s-3382s])
-
-## Time of Day
-
-- **One-hour candle before open: don't need to wait for close, look for bullish/bearish bias** "You don't have to wait for that one hour candle to close for that. You're just looking for if the one hour coming into the day is bullish or not, you don't have to wait for the one hour close on the 9 a.m. candle." (boot-camp-recordings_Day_13_Trameframe_Psychology.txt [3054s-3070s])
-
-- **For more confluence, look at 8 a.m. candle too** "If you want more confluence, look at the 8 a.m. candle. If the 8 a.m. candle is also bullish and the last two candles are bullish, then you're obviously going to be looking for more of a bullish scenario coming into the day." (boot-camp-recordings_Day_13_Trameframe_Psychology.txt [3070s-3077s])
-
-## Swing Trading
-
-- **Swing trade on 4-hour and daily timeframe, not monthly** "I usually typically swing trade the four hour and the daily time frame, daily time frame max. I don't swing trade the monthly, it's too much." (boot-camp-recordings_Day_13_Trameframe_Psychology.txt [3386s-3396s])
-
-- **Good entry on 4-hour/daily will ride monthly anyway** "I look at the four hour and if I can get a good entry in the four hour slash daily, I'll be able to ride the monthly time frame anyways." (boot-camp-recordings_Day_13_Trameframe_Psychology.txt [3396s-3400s])
-
-## Psychology / Trading Philosophy
-
-- **Lazy traders become good because they simplify** "One of my mentors used to say is, lazy people will find the best way to... usually become very good traders because they try to simplify everything." (boot-camp-recordings_Day_13_Trameframe_Psychology.txt [3166s-3178s])
-
-- **Real trades are not picture-perfect like YouTube examples** "On my YouTube videos, a lot of trades that I show are picture perfect. But in reality, the trades that you guys will be taking on a consistent basis are trades like these." (boot-camp-recordings_Day_13_Trameframe_Psychology.txt [2792s-2806s])
-
-## NOT COVERED IN THIS SOURCE
-
-- **One-candle-rule / opening-candle-retest (named "one candle rule" or "opening candle retest"?)** - NOT COVERED IN THIS SOURCE (only mentioned in passing as "one candle rule" without definition)
-- **Order blocks** - NOT COVERED IN THIS SOURCE
-- **Key levels (PDH/PDL, PMH/PML, opening range, HOD/LOD, gap fill, hierarchy)** - NOT COVERED IN THIS SOURCE (HOD mentioned in context of scaling, but no formal definition)
-- **Displacement/FVG exact size definitions** - NOT COVERED IN THIS SOURCE
-- **A/A+/B/C grading criteria** - NOT COVERED IN THIS SOURCE
-- **Stop-after-win / max trades/day tier rules** - NOT COVERED IN THIS SOURCE
-- **Reclaim setup full definition** - NOT COVERED IN THIS SOURCE (84% rule mentioned but not fully defined)
-- **Gap fill stats** - NOT COVERED IN THIS SOURCE
-- **Drawdown numbers** - NOT COVERED IN THIS SOURCE
+# EXTRACTION FROM boot-camp-recordings_Day_13_Trameframe_Psychology_transcript.txt
+
+## 1. Break-and-Retest
+- **[First pullback rule after range break]** "when you're in range and you break below or above the range with strong price action, the first pullback rule is something you can look for" (boot-camp-recordings_Day_13_Trameframe_Psychology_transcript.txt [1824s-1832s])
+- **[Immediate retest vs displacement - depends on HTF strength]** "if it's an immediate retest, you want to look for more specifically is the higher time frame showing you relative strength or weakness. If the higher time frame is really good, you see relative strength, the market's moving up. Like if it's a name like Tesla, an immediate retest is something, sometimes you have to take, right? Sometimes you have to take an immediate retest. However, if the market's not showing as much strength and it's just slowly kind of moving, then yeah, then you want to take more displacement trades and you want to make it as much a plus opportunity as possible." (boot-camp-recordings_Day_13_Trameframe_Psychology_transcript.txt [3346s-3382s])
+
+## 2. One-Candle-Rule / Opening-Candle-Retest
+- **[One candle rule mentioned as setup example]** "We have a one candle rule here. We have a one candle rule here." (boot-camp-recordings_Day_13_Trameframe_Psychology_transcript.txt [1129s-1134s])
+- **[One candle rule entry with stop]** "you entered in on this candle right here. One candle rule, right? And your stop loss in this scenario would simply be something like this." (boot-camp-recordings_Day_13_Trameframe_Psychology_transcript.txt [1141s-1159s])
+
+## 3. 84% Rule / Re-entries
+- **[84% rule - reclaim entry after stop out]** "the next 84% reclaim I entered in and then I was able to catch, catch this entire trade" (boot-camp-recordings_Day_13_Trameframe_Psychology_transcript.txt [2142s-2149s])
+- **[84% rule - don't need retest, just strong price action]** "I thought the 84% rule doesn't have to retest. It doesn't. I was just waiting for more strong price action." (boot-camp-recordings_Day_13_Trameframe_Psychology_transcript.txt [3234s-3241s])
+- **[84% rule - higher probability when combined with QQQ support]** "this is the 84% rule meaning that Tesla's reclaiming, showing that buyers are stepping in in a little bit more aggressive, but QQ is now at a key level of support holding above their support" (boot-camp-recordings_Day_13_Trameframe_Psychology_transcript.txt [2612s-2628s])
+- **[Stop out then re-enter - system design]** "with my system, the way I make my system, there's no chance that I shouldn't be able to enter high probability trades even if I mess up on the first trade" (boot-camp-recordings_Day_13_Trameframe_Psychology_transcript.txt [2208s-2217s])
+- **[Always respect stop loss because re-entry exists]** "Always respect your stop loss because we have a rule in place that if the market does decide to go. We don't have to sit there and just, you know, look at the screen seeing something moving exactly how we wanted it to. We have a rule that is in place to help us capture these trades." (boot-camp-recordings_Day_13_Trameframe_Psychology_transcript.txt [2192s-2203s])
+
+## 4. Order Blocks
+- NOT COVERED IN THIS SOURCE
+
+## 5. Key Levels
+- **[QQQ key level - 631 area as HTF level]** "the actual Q level we had on Q's today that it needed to essentially hold was this level right here. This was a higher time frame level." (boot-camp-recordings_Day_13_Trameframe_Psychology_transcript.txt [2547s-2555s])
+- **[Tesla key level - 450s]** "the key level we had to break about today was 450's. But if we could break above 450's with strong price action, Tesla, I, you know, I had a very good, you know, recognition that Tesla was going to hit most likely 4505." (boot-camp-recordings_Day_13_Trameframe_Psychology_transcript.txt [2155s-2172s])
+
+## 6. Time-of-Day
+- **[FOMC - news trumps technicals]** "News trumps technicals... it is a very unpredictable market" (boot-camp-recordings_Day_13_Trameframe_Psychology_transcript.txt [1771s-1779s])
+- **[FOMC - overreaction then over-correction]** "the market could overreact, right? And then over-correct right after" (boot-camp-recordings_Day_13_Trameframe_Psychology_transcript.txt [1853s-1859s])
+- **[FOMC - important day to watch]** "FOMC is a very important day, right? Because they'll talk about interest rates and also when Jerome Powell speaking, he'll also give you updates on interest rates where it will help you determine the overall market kind of sentiment within the next couple of weeks, slash months." (boot-camp-recordings_Day_13_Trameframe_Psychology_transcript.txt [1056s-1067s])
+
+## 7. Exits
+- **[Scale 80% at HOD when probability lower due to QQQ]** "I scale 80% out of high of day, because I know that though I took the risk, Q's if it breaks below this level, the momentum on Tesla may die because though it has relative strength, Q's still needs to show some sort of strength." (boot-camp-recordings_Day_13_Trameframe_Psychology_transcript.txt [2684s-2694s])
+- **[Scaling % adapts to market cycle]** "This whole week, I've been scaling anywhere from 50 to 80% at high of day. However, if you go back to my trader views from, you know, July and June and July, when I was on like this 90% plus win rate every single day, right? In that time period, I was only scaling out 25 or 30% at high of day, sometimes even less." (boot-camp-recordings_Day_13_Trameframe_Psychology_transcript.txt [3293s-3310s])
+- **[Scaling 80% at HOD is market-specific, not always]** "I'm not always scaling 80% at high of day. Right? That's why I said when I had to differ markets, this is just me adapting to the market" (boot-camp-recordings_Day_13_Trameframe_Psychology_transcript.txt [3284s-3293s])
+
+## 8. HTF Application
+- **[Daily and 4H for thesis building]** "The key things I'm looking for are the daily and four hour specifically for me. It's going to be the daily four hour and one hour where I build my thesis." (boot-camp-recordings_Day_13_Trameframe_Psychology_transcript.txt [2955s-2963s])
+- **[Tesla 4H - neutral with bullish bias]** "Tesla on the higher time frame now becomes a lot more neutral or bearish. Now, this is already overall pretty neutral because we are kind of just ranging a little bit more. However, it's neutral with more bullish price action, right? Because we have a high, high, and we made a brand new high, right. So higher highs being developed, higher lows being developed." (boot-camp-recordings_Day_13_Trameframe_Psychology_transcript.txt [2419s-2439s])
+- **[Swing trade timeframe - 4H and daily max]** "I usually typically swing trade the four hour and the daily time frame, daily time frame max. I don't swing trade the monthly, please. It's too much. You know, I look at the four hour and if I can get a good entry in the four hour slash daily, I'll be able to ride the monthly time frame anyways." (boot-camp-recordings_Day_13_Trameframe_Psychology_transcript.txt [3386s-3400s])
+
+## 9. Trade Selection
+- **[Relative strength as key confluence]** "I entered into Tesla here is because it was showing relative strength" (boot-camp-recordings_Day_13_Trameframe_Psychology_transcript.txt [2503s-2509s])
+- **[Lower probability entry still worth taking]** "this first trade, a little bit lower probability, but it's worth taking the risk, right. The risk was still worth it. You're risking around $2 to $3,000 here, right. Maybe potentially even three to $4,000 for that, you know, move to the upside, which is worth the risk" (boot-camp-recordings_Day_13_Trameframe_Psychology_transcript.txt [2654s-2665s])
+- **[Higher probability entry = 84% reclaim + QQQ support]** "the second one was worth a lot more risk, because this was a higher probability trade with the 84% reclaim and Q's holding up" (boot-camp-recordings_Day_13_Trameframe_Psychology_transcript.txt [2671s-2677s])
+- **[Trade same tickers daily - tech names with QQQ correlation]** "I trade the same ticker every day. I just select them based off relative strength when the market actually opens." (boot-camp-recordings_Day_13_Trameframe_Psychology_transcript.txt [3004s-3008s])
+- **[Why only tech names - QQQ correlation simplifies]** "I trade tech stocks in general because they have higher correlation with QQQ. And therefore I don't have to look at much information overall in the markets." (boot-camp-recordings_Day_13_Trameframe_Psychology_transcript.txt [2926s-2942s])
+- **[Pick one strategy, backtest it]** "you pick one and then you back test that one. And then you see what the if it was good or bad. And then based off of that, you can consistently, sorry, you pick one, you back test it. And then out of the three that you have, you can then look at which one has the highest probability win rate in different markets. And then you trade that in that market." (boot-camp-recordings_Day_13_Trameframe_Psychology_transcript.txt [3096s-3114s])
+
+## 10. Concrete Numbers
+- **[Win rate usually above 50%]** "my win rate has never been 50% it's usually almost always higher than 50%" (boot-camp-recordings_Day_13_Trameframe_Psychology_transcript.txt [3260s-3267s])
+- **[Risk on Tesla trade - $2-4k]** "You're risking around $2 to $3,000 here, right. Maybe potentially even three to $4,000" (boot-camp-recordings_Day_13_Trameframe_Psychology_transcript.txt [2659s-2665s])
+- **[Position sizing - 50-100-150-200 contracts typical]** "I typically do 50 50 50 50. So usually if I'm I'll usually enter and like 50 and then I'll enter in 50 again. So that's 100. And then if I really like to set up, I'll enter in another maybe 50 to 50 maximum contract so far as 200. But typically, I'll do like 100 to 150." (boot-camp-recordings_Day_13_Trameframe_Psychology_transcript.txt [2975s-2995s])
+
+## SPECIAL AUDIT QUESTIONS
+
+### A/A+ grading
+- NOT COVERED IN THIS SOURCE
+
+### QQQ alignment
+- **[QQQ correlation - key for tech names]** "I trade tech stocks in general because they have higher correlation with QQQ" (boot-camp-recordings_Day_13_Trameframe_Psychology_transcript.txt [2926s-2942s])
+- **[QQQ at key support = higher probability entry]** "QQ is now at a key level of support holding above their support... So the context here was a little bit harder to understand today" (boot-camp-recordings_Day_13_Trameframe_Psychology_transcript.txt [2623s-2640s])
+- **[QQQ dropping lowers probability even with relative strength]** "the overall context is lower because once again, QQ is dropping" (boot-camp-recordings_Day_13_Trameframe_Psychology_transcript.txt [2541s-2547s])
+- **[QQQ vs SPY - simplifies to just QQQ/SPY]** "QQQ and SPY gives me the same thing, NQ and ES would. I know Jack will trade NQ and ES for me. It's just like, I don't know, I don't need to. I haven't done that and I've never needed to. So you know, I don't want to add an extra step when I just don't need to." (boot-camp-recordings_Day_13_Trameframe_Psychology_transcript.txt [3146s-3160s])
+- **[Futures correlation - ES with SPY, NQ with QQQ]** "if you're trading ES, you would have to base ES, right? Or let's say you're trading NQ. You're basing NQ with QQQ and then the overall tech market itself. And then seeing if it's relatively stronger relatively weak." (boot-camp-recordings_Day_13_Trameframe_Psychology_transcript.txt [3035s-3040s])
+
+### Displacement/FVG
+- NOT COVERED IN THIS SOURCE
+
+### Stop-after-win / max trades/day
+- NOT COVERED IN THIS SOURCE
+
+### Reclaim setup
+- **[84% reclaim = buyers stepping in more aggressively]** "the 84% rule meaning that Tesla's reclaiming, showing that buyers are stepping in in a little bit more aggressive" (boot-camp-recordings_Day_13_Trameframe_Psychology_transcript.txt [2617s-2623s])
+
+### Options risk calculation using Delta
+- NOT COVERED IN THIS SOURCE
+
+### Futures vs Options - Key Differences
+- NOT COVERED IN THIS SOURCE
+
+### Futures Contract Specifications
+- NOT COVERED IN THIS SOURCE
+
+## ADDITIONAL TOPICS COVERED
+
+### Risk Management - Four Types of Risk
+- **[Market risk - interest rates, exchange rates, commodity prices]** "market risk... refers to the potential of losses because of market conditions. This can be interest rates, exchange rates, or commodity prices." (boot-camp-recordings_Day_13_Trameframe_Psychology_transcript.txt [221s-230s])
+- **[Credit risk - margin/default]** "credit risk... relates to the possibility of a counterparty to default on a trade or fail to meet their obligation" (boot-camp-recordings_Day_13_Trameframe_Psychology_transcript.txt [1009s-1021s])
+- **[Credit risk - margin liquidation before stop loss hits]** "if we are using margin, we can get stopped out and liquidated even if our stop loss does not hit. So the technicals do not matter because we don't have enough credit to actually enter the trade." (boot-camp-recordings_Day_13_Trameframe_Psychology_transcript.txt [1260s-1284s])
+- **[Liquidity risk - insufficient market liquidity]** "liquidity risk... is the risk that there is insufficient market liquidity to execute trades at desired prices" (boot-camp-recordings_Day_13_Trameframe_Psychology_transcript.txt [1298s-1305s])
+- **[Liquidity risk mitigation - trade high probability names with 1000+ volume]** "we want to trade the high probability names... high probability names include the mag seven, right? SPY, right? QQQ, or anything like Palantir, right? Or any like kind of like large caps, large caps with momentum... I like to have at least a thousand volume." (boot-camp-recordings_Day_13_Trameframe_Psychology_transcript.txt [1581s-1622s])
+- **[Liquidity risk - if can't afford 1 OTM, buy closest whole psychological number with 1000+ volume]** "if you can afford it, then I would be looking for something that has over a thousand volume and most likely the next closest whole psychological number" (boot-camp-recordings_Day_13_Trameframe_Psychology_transcript.txt [1652s-1666s])
+- **[News risk - unpredictable, trumps technicals]** "news risk... News trumps technicals... it is a very unpredictable market" (boot-camp-recordings_Day_13_Trameframe_Psychology_transcript.txt [1753s-1779s])
+
+### Position Sizing
+- **[Beginners - constant position size, not market-dependent]** "you guys in the early stages need to be typing number two. Number two means constant position size... you have not earned the right to size up based off-market sentiment" (boot-camp-recordings_Day_13_Trameframe_Psychology_transcript.txt [1954s-1985s])
+- **[Advanced - adapt position size to market sentiment]** "the market sentiment will determine position sizing... I do that. Another thing I do is adapt to each market. So when the market is showing a little bit more weakness, right? My account, right, I will size down" (boot-camp-recordings_Day_13_Trameframe_Psychology_transcript.txt [1913s-2069s])
+
+### Stop Loss
+- **[Respect stop loss at all times]** "respect your stop loss at all times... If you're consistently changing your stop loss, you will consistently be losing." (boot-camp-recordings_Day_13_Trameframe_Psychology_transcript.txt [2075s-2092s])
+- **[PA stop loss vs dollar amount - PA preferred]** "I typically do PIA stop losses because dollar amounts, the stop losses will stop you out before the market actually, you know, ends up doing anything." (boot-camp-recordings_Day_13_Trameframe_Psychology_transcript.txt [3212s-3222s])
+- **[PA stop loss definition]** "PA when referring to stop loss price action, it's just you're waiting for the stop, you're waiting for the candle to close below your key level." (boot-camp-recordings_Day_13_Trameframe_Psychology_transcript.txt [3518s-3522s])
+
+### Options - General
+- **[Weekly expirations]** "In terms of expiry day, I typically do weekly, right? So weekly expires. Meaning the expiry on Friday." (boot-camp-recordings_Day_13_Trameframe_Psychology_transcript.txt [1704s-1717s])
+- **[1 OTM (one out of the money) as standard]** "I literally just buy one OTC... one out of the money" (boot-camp-recordings_Day_13_Trameframe_Psychology_transcript.txt [1626s-1636s])
+- **[Out of the money definition]** "Out of the money is simply just the one, the first contract out of the money. So let's say a, let's say, you know, a stock price is 400, right? Out of the money would be 401. Right, it would be the first contract above that price." (boot-camp-recordings_Day_13_Trameframe_Psychology_transcript.txt [3082s-3090s])
+- **[Rolling positions - close current, open next]** "the best way is to honestly just close the current position if you're in profit and then just open the next one. That's the easiest way for a lot of new traders" (boot-camp-recordings_Day_13_Trameframe_Psychology_transcript.txt [3333s-3342s])
+- **[R:R calculation for options - general rule, not exact]** "it is very difficult for me to sit there and be like, where is 2R? Right? Like, it's just almost, especially as a new trader, it's almost impossible for you to sit there very quickly... you just need to have the general idea of you need 2R on average with your trades" (boot-camp-recordings_Day_13_Trameframe_Psychology_transcript.txt [3419s-3486s])
+
+### One Hour Candle - Pre-Market Context
+- **[Don't need to wait for 9am candle to close]** "you don't have to wait for that one hour candle to close for that. You're just looking for if the one hour coming into the day is bullish or not, you don't have to wait for the one hour close on the 9 a.m. candle." (boot-camp-recordings_Day_13_Trameframe_Psychology_transcript.txt [3058s-3070s])
+- **[8am candle as additional confluence]** "if you want more confluence, look at the 8 a.m. candle. If the 8 a.m. candle is also bullish in the last two candles are bullish, then you're obviously going to be looking for more of a bullish scenario coming into the day." (boot-camp-recordings_Day_13_Trameframe_Psychology_transcript.txt [3070s-3077s])
+
+### Psychology / Process
+- **[Lazy traders simplify - become good traders]** "lazy people will find the best way to... lazy people when they come to trading. Usually become very good traders because they try to simplify everything." (boot-camp-recordings_Day_13_Trameframe_Psychology_transcript.txt [3166s-3178s])
+- **[Real trades vs YouTube - not picture perfect]** "on my YouTube videos, for example, a lot of trades that I show are picture perfect... But in reality, the trades that you guys will be taking on a consistent basis are trades like these" (boot-camp-recordings_Day_13_Trameframe_Psychology_transcript.txt [2792s-2806s])
+
+### NOT COVERED IN THIS SOURCE
+- Order blocks (full definition, drawing, probability hierarchy)
+- A/A+ grading criteria
+- Displacement/FVG exact size definitions
+- Stop-after-win / max trades/day tier rules
+- Gap fill stats
+- 84% rule disqualifiers
+- Breakeven mechanics
+- Multi-day holds
+- Market regime classification
