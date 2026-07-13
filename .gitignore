@@ -7,4 +7,6 @@ circle_videos/
 youtube_data/
 circle_*.html
 journal/signal_log_*.jsonl
+journal/*.log
+_extract_run.log
 spec0_snippets.txt
