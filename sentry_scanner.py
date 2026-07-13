@@ -21,8 +21,11 @@ from live_scanner import SCANNER_STATUS_PATH, now_et
 from discord_bot import DiscordSignalBot
 
 STALE_MIN = 15  # ponytail: const here, promote to config.yaml if more thresholds land
-RTH_START = dtime(9, 30)
-RTH_END = dtime(16, 0)
+# Watch window = the scanner's trading window (config trading_hours 09:30-11:00),
+# not full RTH — the scanner EXITS after 11:00, so alerting until 16:00 just
+# spams "stale" every 15 min all afternoon (2026-07-13 incident).
+RTH_START = dtime(9, 35)
+RTH_END = dtime(11, 10)
 
 
 def _in_rth(now) -> bool:
