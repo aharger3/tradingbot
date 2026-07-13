@@ -19,6 +19,58 @@ all need A1. F needs A+C done.
 
 ---
 
+## EXECUTION LOOP (state as of 2026-07-13: A1, B1, E1, E2 done)
+
+Per-session ritual (every task, any model):
+1. New Claude Code session, model per task row.
+2. Paste: `Do task <ID> from C:\Users\aharg\tradingbot\research\omen-task-queue.md. When done: check its box in that file with a one-line result, and add a session note to hermes-vault-sync/projects/omen-trading-bot.md. Do NOT commit.`
+3. After session: eyeball its one-line result. Backtest tasks: open the report it names —
+   **trade count must be >0** (0 trades = yfinance rate-limited garbage → wait 30–60 min, re-dispatch same task).
+4. Cross off. Next.
+
+Lane rule (unchanged): backtest/code lane is SERIAL — never two of these running at once.
+Extraction + infra lanes run parallel to it. Commit checkpoints: dispatch a Fable
+"review + commit everything uncommitted, A1-style" session at each ⛳ marker.
+
+### Round 1 (3 sessions, parallel OK)
+| Lane | Task | Model |
+|---|---|---|
+| backtest | **A2** recommended config | Sonnet |
+| audit | **B2** merge videos rulebook into audit + catalog (ALSO: commit B1 pile first) | Fable |
+| infra | **E3** pre-market Discord card | Sonnet |
+
+### Round 2
+| backtest | **A3** composition check | GLM |
+| audit | **B3** A/A+ inversion diagnosis | Fable |
+| infra | **E4** sentry staleness alert | Sonnet |
+
+### Round 3
+| backtest | **A4** combined tier run | Fable |
+| audit | (B4 waits — it edits signal code, joins backtest lane) | — |
+| infra | **E5** Sunday auto-backtest cron | Sonnet |
+
+### Round 4
+| backtest | **A5** QQQ live plumbing | Opus |
+⛳ commit checkpoint (Fable) → **START PAPER WEEK (A6: 5 trading days, log each close)**
+
+### Paper week — backtest lane keeps grinding, SERIAL, one per session:
+**B4** (Opus) → **C1** (GLM) → **C2** (GLM) → **C3** (Sonnet) → **C6** (Sonnet) → **C7** (Sonnet)
+→ **C8** (Sonnet) → **C5** (Opus) → **C9** (Opus) → **C4** (Fable) → ⛳ → **C10** (Fable, synthesis)
+Optional parallel anytime: **B5** (DeepSeek YouTube tranche).
+
+### After C10 + paper week
+**D1** (GLM) → **D2** (Opus) → **D3** (Sonnet) → ⛳ →
+**F1** (Fable) → **F2** (Fable, 2-week shadow) → **F3** (Fable, go/no-go) → [F4 optional].
+
+### Standing rules
+- 0-trade backtest = rate limit, not a result. Re-run later, never accept it.
+- Any task that wants to edit omen_bot.py/signal_runner.py but isn't Opus/Fable → abort, re-dispatch higher.
+- Config only changes at: A2, C10 verdicts, D verdicts. C tasks measure behind flags, they don't flip defaults.
+- Paper week freezes config — C results wait for C10 before anything goes live.
+- You only ever: dispatch, eyeball result lines, push commits after ⛳ sessions.
+
+---
+
 ## Phase A — Ship the measured wins (recommended config → live paper)
 
 - [x] **A1** FABLE — Review the 5 modified code files (signal_runner, live_scanner, options_sizer,
@@ -26,35 +78,60 @@ all need A1. F needs A+C done.
   (.gitignore journal/*.log first). Done-when: clean `git status`, Austin only pushes.
   *Done 2026-07-13: 8 commits (eeeb8895..9bb5d5ce+), review fixed 2 issues — dry-run double-import
   bug (toggles hit dead module copy) + RULE6_ENABLED left True from comparison run, reverted.*
-- [ ] **A2** SONNET — Apply recommended config from Desktop/unified_backtest_synthesis.md:
+- [x] **A2** SONNET — Apply recommended config from Desktop/unified_backtest_synthesis.md:
   drop SMCI/SPY/MSTR/RIVN from symbol list, entry cutoff 10:30, skip-news ON, RULE6 stays OFF,
   SMA Directional 5% regime filter ON. config.yaml + live_scanner defaults. No signal-logic edits.
   Done-when: config diff matches synthesis §recommendations, live_scanner --once --paper runs clean.
-- [ ] **A3** GLM — Composition check: 12mo backtest with ALL A2 changes combined (levers were
+  *Done 2026-07-13: 4 symbols dropped (28→24), ENTRY_CUTOFF=10:30 + SKIP_NEWS entry gates added
+  to live_scanner (marking continues, new entries blocked), RULE6/regime already correct;
+  --once --paper clean, cutoff gate verified via forced ENTRY_CUTOFF. Uncommitted.*
+- [x] **A3** GLM — Composition check: 12mo backtest with ALL A2 changes combined (levers were
   measured one-at-a-time; interactions unverified). Report vs $88–95k projection, per-lever
   attribution table. Done-when: report in research/, verdict line "composes / doesn't because X".
-- [ ] **A4** FABLE — Combined tier run: qqqA-S+1 + --skip-news + --entry-cutoff 10:30 (queued
+  *Done 2026-07-13: Doesn't compose — +$60k vs +$88-95k projected. Levers overlap heavily. Report: research/a3_composition_check.md.*
+- [x] **A4** FABLE — Combined tier run: qqqA-S+1 + --skip-news + --entry-cutoff 10:30 (queued
   "next session #1" from F-session). Interpret: new tier stats vs 90/44.4%/$2,500. Done-when:
   tier verdict updated in vault doc.
-- [ ] **A5** OPUS — QQQ plumbing in live_scanner: fetch QQQ 1-min candles each cycle, compute
+  *Done 2026-07-13: combined config HALVES tier — 56 tr/yr, 41.1%W, $13k/yr ($1,083/mo) vs
+  90/44.4%/$2,500. No re-run (A3 charts json = exact config): skip-news tier-neutral ($0),
+  symbol drops −$4k, cutoff −$1k, slot-churn −$9k. Config untouched; C10 decides. Vault updated.*
+- [x] **A5** OPUS — QQQ plumbing in live_scanner: fetch QQQ 1-min candles each cycle, compute
   Rule-4 alignment (first RTH close through PDH/PMH/PDL/PML before entry), S+1 on live cards +
   [qqqA] tag. Backtest logic already in repo — port, don't reinvent. Done-when: --once --paper
   shows QQQ state in scanner_status.json, dry-run card carries tag.
+  *Done 2026-07-13: ported backtest_12mo.qqq_level_breaks → live_scanner.compute_qqq_breaks
+  (reuses get_daily_context for QQQ PDH/PMH/PDL/PML + fetch_recent_bars sized to mins-since-9:30;
+  break times lock per session). scan_once sets runner.qqq_breaks once/cycle (skips futures) →
+  existing _qqq_aligned drives [qqqA]/[qqqX] tag + S+1 with zero signal_runner edits. scanner_status.json
+  gains qqq_state; --once --paper wrote {"up":"15:59:00","dn":null} (off-hours artifact, correct RTH-sized
+  live). Tag path verified via self-check. Uncommitted.*
 - [ ] **A6** SONNET (recurring, manual) — After each paper day: read daily_review embed, log tier
   compliance + P&L to vault doc. 1 week minimum before any config change. Done-when: 5 trading
   days logged.
 
 ## Phase B — Extraction → audit (kill remaining hallucinations)
 
-- [ ] **B1** DEEPSEEK — Run research/deepseek-spec-4.md: 36 group calls over 89 video transcripts
+- [x] **B1** DEEPSEEK — Run research/deepseek-spec-4.md: 36 group calls over 89 video transcripts
   → research/scarface-rules-videos.md. Done-when: headline section lists new/contradicting rules.
-- [ ] **B2** FABLE — Merge scarface-rules-videos.md into research/hallucination-audit.md +
+  *Done 2026-07-13: 6,115 lines. Headliners: OCR confirmed as named concept (contra accelerator),
+  A/A+ = holistic confluence stacking not checklist, stop-after-2-wins NOT FOUND, displacement
+  qualitative-only. Interim files research/_b1_interim/ — still uncommitted, fold into B2.*
+- [x] **B2** FABLE — Merge scarface-rules-videos.md into research/hallucination-audit.md +
   Desktop/PARAMETER_CATALOG.md. Flag new hallucinations + newly-confirmed rules. Done-when:
   audit updated with videos column.
-- [ ] **B3** FABLE — A/A+ inversion audit (BIGGEST open anomaly: A/A+ 30.9%W −$6.4k vs B 36.6%W
+  *Done 2026-07-13: videos column added (audit §"Videos rulebook column" + catalog §G). NEW
+  hallucination flag: stop_after_win unsourced in all 5 rulebooks (C10 verdict, config untouched);
+  newly confirmed: SCARFACE_CONTRACT first-OTM+weekly verbatim, OCR≡OB (double-count check → B4),
+  engulfing found ONCE (kill stands), B3 hypothesis sharpened (Day 6 confluence stack + QQQ=RS
+  not level-break). B1 pile NOT committed per dispatch "Do NOT commit" — fold into next ⛳.*
+- [x] **B3** FABLE — A/A+ inversion audit (BIGGEST open anomaly: A/A+ 30.9%W −$6.4k vs B 36.6%W
   +$62.5k). Diff coded grade_trade() criteria vs every rulebook A+ quote (rulebook: A+ = QQQ
   context + HTF thesis + entry level is HTF level). Hypothesis list + which coded criterion
   inverts. Done-when: written diagnosis in research/aplus-inversion-audit.md.
+  *Done 2026-07-13: inverter = 84%-rule grade laundering, not the A+ detector — 22 of 68 A-tier
+  trades are ungated 84% re-entries (RULE84_LESSON=True bypasses PA gate) floored C→B at
+  signal_runner:643 then promoted B→A by clear-road rule, 22.7%W −$8,395 = 131% of tier loss;
+  B&R A healthy (+$3k, 37%W). Fix list handed to B4 in research/aplus-inversion-audit.md.*
 - [ ] **B4** OPUS — Encode corrected A+ definition from B3 behind flag, 12mo A/B vs current
   grading. Done-when: table old vs new grade distribution + P&L by grade.
 - [ ] **B5** DEEPSEEK (background, low priority) — YouTube tranche: rank ~1300 transcript titles
@@ -97,14 +174,23 @@ all need A1. F needs A+C done.
 ## Phase E — Live infra (cheap, anytime)
 
 - [x] **E1** HAIKU — schtask: daily_review.py 16:10 ET weekdays, Python313. Done-when: task listed + one dry-run fired.
-- [ ] **E2** HAIKU — paper_trader.py: date-prefix the `ts` field in paper-trades.jsonl (known gap,
+- [x] **E2** HAIKU — paper_trader.py: date-prefix the `ts` field in paper-trades.jsonl (known gap,
   daily_review P&L bleed). Done-when: new trade line shows full date, daily_review --dry-run clean.
-- [ ] **E3** SONNET — Pre-market Discord card 9:00 ET: watchlist, key levels (PDH/PDL/PMH/PML),
+- [x] **E3** SONNET — Pre-market Discord card 9:00 ET: watchlist, key levels (PDH/PDL/PMH/PML),
   QQQ daily bias. Reuse discord_bot + level code from signal_runner. Done-when: --dry-run posts card.
-- [ ] **E4** SONNET — sentry-bot: alert if scanner_status.json older than 15 min during RTH.
+  *Done 2026-07-13: premarket_card.py posted live card to Discord; OmenPremarketCard schtask 9:00
+  weekdays created. yfinance rate-limited during test — per-symbol graceful degrade handles it.*
+- [x] **E4** SONNET — sentry-bot: alert if scanner_status.json older than 15 min during RTH.
   Done-when: staleness test fires Discord alert.
-- [ ] **E5** SONNET — Sunday cron: 12mo backtest refresh + diff summary vs prior week to Discord.
+  *Done 2026-07-13: sentry_scanner.py — RTH(9:30-16:00 ET, weekdays)+15min-stale gate
+  on scanner_status.json timestamp; OmenScannerSentry schtask 09:30 /ri 15 /du 06:30.
+  --test fired live Discord alert. Uncommitted.*
+- [x] **E5** SONNET — Sunday cron: 12mo backtest refresh + diff summary vs prior week to Discord.
   Done-when: one manual run posts diff.
+  *Done 2026-07-13: sunday_backtest.py parses backtest_report_12mo.md (signals/WR/P&L +
+  per-grade), runs backtest_12mo.py 365 --snapshot, diffs prior→new, posts embed. --test
+  posted live diff (SNAP 07-12 vs CURRENT 07-13) to Discord. OmenSundayBacktest schtask
+  Sunday 10:00 ET weekly. Uncommitted.*
 
 ## Phase F — Go-live gates (after A6 + C10)
 
