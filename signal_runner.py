@@ -179,7 +179,13 @@ HTF_BIAS_GATE = os.getenv("HTF_BIAS_GATE", "0").strip().lower() in ("1", "true",
 #     C9: it also drags P&L — the B-origin re-entries are the net-negative ones).
 #   RULE84_OFF: disable the detector entirely (never arm) = the "84% off" arm.
 # A/B: research/c9_rule84_strict_ab.md.
-RULE84_STRICT = os.getenv("RULE84_STRICT", "0").strip().lower() in ("1", "true", "yes", "on")
+# C10 verdict 2026-07-13: STRICT default ON (strict $79,651 > current $78,190 >
+# OFF $75,489 full-pop; tier identical all arms). GRADE_FIX stays OFF — the
+# combo run (research/c10_strict_gradefix_charts.json) benches all 4 strict
+# re-entries (grades them C) and lands exactly on the OFF arm's $75,489; with
+# STRICT removing the 47 B-origin laundered re-entries, A-tier heals anyway
+# (58tr 32.8%W -$2,393 -> 44tr 38.6%W +$6,162). n=4/yr caveat: F1 validates.
+RULE84_STRICT = os.getenv("RULE84_STRICT", "1").strip().lower() in ("1", "true", "yes", "on")
 RULE84_OFF = os.getenv("RULE84_OFF", "0").strip().lower() in ("1", "true", "yes", "on")
 
 

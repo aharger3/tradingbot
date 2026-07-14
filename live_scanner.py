@@ -64,14 +64,21 @@ DEFAULT_WINDOW = "09:30-11:00"
 # recorded win also ends the day. Win feedback exists only in --paper mode
 # (paper.mark -> session.record_win), so signal-only runs are unaffected.
 # config.yaml stop_after_win mirrors this; env STOP_AFTER_WIN=0 disables.
-STOP_AFTER_WIN = os.getenv("STOP_AFTER_WIN", "1") == "1"
+# C10 verdict 2026-07-13: default OFF. B2 audit found stop-after-win UNSOURCED
+# in all 5 rulebooks (36 extraction groups); C10 sweep measured it costing the
+# v2 tier $18k/yr (156tr 50.6%W $81k -> 132tr 49.2%W $63k). STOP_AFTER_WIN=1
+# re-enables.
+STOP_AFTER_WIN = os.getenv("STOP_AFTER_WIN", "0") == "1"
 
 # A2 2026-07-13 (synthesis §8.2 + task queue): entry cutoff 10:30 — the
 # 10:30-11:00 tail is 32.1%W / −$8,303 per 12mo. Scan window stays 09:30-11:00
 # so open paper positions keep marking to stop/target; only NEW entries stop.
 # Options book evidence only — futures mode unaffected. ENTRY_CUTOFF= to move,
 # empty string to disable.
-ENTRY_CUTOFF = os.getenv("ENTRY_CUTOFF", "10:30")
+# C10 verdict 2026-07-13: reverted 10:30 -> 11:00 (rulebook window). The 10:30
+# cutoff was a full-pop lever; at the v2 tier it costs $7k/yr (A4 showed the
+# same direction on the v1 tier). 09:30-11:00 stands.
+ENTRY_CUTOFF = os.getenv("ENTRY_CUTOFF", "11:00")
 
 # A2: skip-news ON — news days run 30.6%W vs 37.2% clean (12mo). Was
 # warn-only; now blocks new entries all day (marking continues).

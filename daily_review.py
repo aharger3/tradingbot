@@ -4,7 +4,7 @@ Reads today's journal/ signal log + paper trade results and posts ONE Discord
 embed via the existing DiscordSignalBot (which has retry). Covers:
   - Signals fired (symbol, grade, S, tags, outcome)
   - Paper P&L
-  - Tier-rule compliance (S>=4+[hammer], max 2, stop-when-green — flag violations)
+  - Tier-rule compliance (v2: S>=4, no [chase], max 2 — flag violations)
   - News-day note if applicable
   - Posted/failed webhook counters
 
@@ -160,18 +160,20 @@ def _paper_pnl(paper_trades: list) -> float:
 
 
 def _tier_compliance(rows: list, paper_trades: list) -> list:
-    """Check tier rules: S>=4+[hammer], max 2, stop-when-green.
+    """Check tier-v2 rules (C10 2026-07-13): S>=4, no [chase], max 2/day.
+    v1's [hammer] requirement and stop-when-green dropped per C10 sweep
+    (research/c10_synthesis.md); news days already blocked by SKIP_NEWS.
     Returns list of violation strings (empty = all compliant)."""
     violations = []
     trade_rows = [r for r in rows if r["status"] == "fired"]
 
-    # 1. S>=4 + [hammer]: each TRADE signal should have S>=4 and [hammer] tag
+    # 1. S>=4 and not a [chase] entry
     for r in trade_rows:
         issues = []
         if isinstance(r["s"], int) and r["s"] < 4:
             issues.append(f"S{r['s']}<4")
-        if "hammer" not in r["tags"].lower():
-            issues.append("no [hammer]")
+        if "chase" in r["tags"].lower():
+            issues.append("[chase] entry (28%W tag — skip)")
         if issues:
             violations.append(
                 f"{r['symbol']} {r['direction']} grade {r['grade']}: "
@@ -180,23 +182,6 @@ def _tier_compliance(rows: list, paper_trades: list) -> list:
     # 2. max 2 trades/day
     if len(trade_rows) > 2:
         violations.append(f"max 2 exceeded: {len(trade_rows)} TRADE-tier signals fired")
-
-    # 3. stop-when-green: no trades after daily P&L turns positive
-    closes = [ev for ev in paper_trades if ev.get("event") == "CLOSE"]
-    opens = [ev for ev in paper_trades if ev.get("event") == "OPEN"]
-    if closes and opens:
-        cumulative = 0.0
-        green_reached = False
-        for ev in sorted(closes + opens, key=lambda e: e.get("ts", "")):
-            if ev.get("event") == "CLOSE":
-                cumulative += ev.get("pnl", 0)
-                if cumulative > 0:
-                    green_reached = True
-            elif ev.get("event") == "OPEN" and green_reached:
-                violations.append(
-                    f"stop-when-green: trade opened after P&L turned green "
-                    f"(${cumulative:.0f})")
-                break
 
     return violations
 
@@ -248,7 +233,7 @@ def build_embed(date_str: str) -> dict:
     if violations:
         compliance = "⚠ " + "; ".join(violations)
     else:
-        compliance = "✓ All tier rules met (S>=4+[hammer], max 2, stop-when-green)"
+        compliance = "✓ All tier rules met (v2: S>=4, no [chase], max 2)"
     fields.append({"name": "Tier Compliance", "value": compliance, "inline": False})
 
     # News-day note

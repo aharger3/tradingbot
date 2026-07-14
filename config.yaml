@@ -4,9 +4,9 @@ trading_hours: "09:30-11:00"
 # A2 2026-07-13 (unified_backtest_synthesis §8): SPY removed (0-for-5, -$5k);
 # SMCI/MSTR/RIVN dropped from live_scanner DEFAULT_SYMBOLS same session.
 watchlist: [TSLA, NVDA, AAPL, AMD, META, GOOG, AMZN, MSFT, PLTR, QQQ, INTC]
-# A2: new entries stop at 10:30 (10:30-11:00 tail: 32.1%W, -$8.3k/12mo);
-# window stays 09:30-11:00 for paper-position marking. Env ENTRY_CUTOFF.
-entry_cutoff: "10:30"
+# C10 2026-07-13: cutoff reverted to 11:00 (rulebook window) — the 10:30 cut
+# was a full-pop lever, costs the v2 tier $7k/yr. Env ENTRY_CUTOFF.
+entry_cutoff: "11:00"
 # A2: news days (news_days.json) block new entries, 30.6%W vs 37.2% clean.
 # Env SKIP_NEWS=0 reverts to warn-only. RULE6 stays OFF (-$1,639/wk test).
 # Regime filter SMA Directional 5% already ON (live_scanner main()).
@@ -20,7 +20,6 @@ mode: options
 futures_contract: ES
 futures_session_start: "09:30"
 futures_session_end: "16:00"
-# OPUS-SPEC #5 (2026-07-12): Scarface session stop — 1 win = done for the day
-# ("1 win / 2 attempts"). Wired in live_scanner via STOP_AFTER_WIN env
-# (default on); needs --paper mode for win feedback, signal-only runs unaffected.
-stop_after_win: true
+# C10 2026-07-13: stop_after_win OFF — B2 audit found it UNSOURCED in all 5
+# rulebooks; C10 sweep: costs v2 tier $18k/yr. STOP_AFTER_WIN=1 re-enables.
+stop_after_win: false
