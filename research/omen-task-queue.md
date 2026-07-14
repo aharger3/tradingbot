@@ -259,8 +259,14 @@ Optional parallel anytime: **B5** (DeepSeek YouTube tranche).
 
 ## Phase F — Go-live gates (after A6 + C10)
 
-- [ ] **F1** FABLE — Walk-forward validation: rolling train-12mo/test-3mo on final config; overfit
+- [x] **F1** FABLE — Walk-forward validation: rolling train-12mo/test-3mo on final config; overfit
   check on every flag turned on in C10. Done-when: walk-forward table, verdict per flag.
+  *Done 2026-07-13: true rolling impossible (one 12mo window) → LOQO walk-forward of the 3,072-config
+  sweep + per-flag quarter stability. Config VALIDATED (hammer-drop/stop-green-off/max2 4-of-4 quarters;
+  skip-chase/skip-news/cutoff-11:00 3-of-4; C6 whitelist + C7 weekday = overfit CONFIRMED, stay dead;
+  RULE84_STRICT unvalidatable n=4). But OOS win rate = 43.0% pooled [35.7,50.7] / 45.5% pure-forward
+  vs 55% RoR threshold → flat-$1k funded ruin 14–21%, F3 can't pass on backtest — F2 shadow decides.
+  Report: research/f1_walkforward.md.*
 - [ ] **F2** FABLE — 2-week live shadow scorecard: paper signals vs backtest expectation
   (win rate CI, slippage estimate from bid/ask). Done-when: scorecard in vault.
 - [ ] **F3** FABLE — Real-money go/no-go checklist: F1 pass + F2 within CI + risk-of-ruin <5%
