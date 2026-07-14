@@ -9,7 +9,7 @@
 ## Summary
 - Traded signals (A+/A/B, viable stop): **620** | 231W 388L 1 scratch | win rate 37.3% (of decided)
 - Simulated P&L (traded all A+/A/B): **+$75488.89**
-- C-grade alerts (alert-only per SPEC2): 170 | D filtered: 8436 | tight-stop skips: 110
+- C-grade alerts (alert-only per SPEC2): 173 | D filtered: 8436 | tight-stop skips: 111
 
 ### By Grade
 | Grade | Signals | W | L | Scratch | Win rate | P&L |
@@ -17,7 +17,7 @@
 | A+ | 11 | 3 | 8 | 0 | 27.3% | $-2000.0 |
 | A | 29 | 11 | 18 | 0 | 37.9% | $4000.0 |
 | B | 580 | 217 | 362 | 1 | 37.5% | $73488.89 |
-| C (alert only) | 170 | 48 | 122 | 0 | 28.2% | ($-26000.0 if traded) |
+| C (alert only) | 173 | 50 | 123 | 0 | 28.9% | ($-23409.28 if traded) |
 | D (filtered) | 8436 | 2315 | 6102 | 19 | 27.5% | ($-1469306.48 if traded) |
 
 ### By Setup
@@ -322,7 +322,7 @@
 | 2026-07-10 | 4 | 1 | 3 | 0 | $-1000.0 |
 
 ## 84% Rule Analysis
-- Total triggers (incl. filtered): 0
+- Total triggers (incl. filtered): 4
 - Fired re-entry signals: 0
 - Win rate on re-entry: 0.0% | P&L $0
 
@@ -5920,7 +5920,9 @@
 | 2026-02-11 | 10:29:00 | BABA | break_and_retest | put | D | skipped_d | 161.62 | 161.88 | loss | - |
 | 2026-02-11 | 10:32:00 | HOOD | one_candle_rule | call | D | skipped_d | 75.19 | 74.71 | win | - |
 | 2026-02-11 | 10:42:00 | TSM | break_and_retest | call | A | fired | 374.60 | 373.73 | loss | $-1000 |
+| 2026-02-11 | 10:46:00 | UBER | reentry_84_rule | put | C | skipped_tight_stop | 72.36 | 72.50 | win | - |
 | 2026-02-11 | 10:48:00 | MARA | one_candle_rule | call | D | skipped_d | 7.68 | 7.63 | win | - |
+| 2026-02-11 | 10:52:00 | TSM | reentry_84_rule | call | C | fired | 374.71 | 373.73 | win | - |
 | 2026-02-12 | 09:35:00 | UBER | break_and_retest | call | D | skipped_d | 72.26 | 72.23 | loss | - |
 | 2026-02-12 | 09:36:00 | AAPL | break_and_retest | put | D | skipped_d | 273.45 | 273.47 | loss | - |
 | 2026-02-12 | 09:37:00 | AMD | break_and_retest | call | D | skipped_d | 216.93 | 216.45 | loss | - |
@@ -6947,6 +6949,7 @@
 | 2026-03-25 | 10:01:00 | NVDA | break_and_retest | call | D | skipped_d | 178.47 | 178.37 | win | - |
 | 2026-03-25 | 10:01:00 | BABA | one_candle_rule | put | D | skipped_d | 128.88 | 129.13 | loss | - |
 | 2026-03-25 | 10:01:00 | TSM | break_and_retest | put | D | skipped_d | 345.20 | 345.23 | loss | - |
+| 2026-03-25 | 10:03:00 | AMD | reentry_84_rule | call | C | fired | 216.77 | 216.15 | win | - |
 | 2026-03-25 | 10:03:00 | HOOD | one_candle_rule | call | D | skipped_d | 73.71 | 73.35 | win | - |
 | 2026-03-25 | 10:04:00 | QQQ | break_and_retest | call | D | skipped_d | 588.28 | 587.93 | win | - |
 | 2026-03-25 | 10:06:00 | MSFT | break_and_retest | put | D | skipped_d | 373.44 | 373.45 | loss | - |
@@ -9597,6 +9600,7 @@
 | 2026-07-08 | 10:53:00 | COIN | break_and_retest | put | D | skipped_d | 158.10 | 158.15 | loss | - |
 | 2026-07-08 | 10:56:00 | AMZN | one_candle_rule | put | D | skipped_d | 241.82 | 242.20 | win | - |
 | 2026-07-08 | 10:57:00 | NVDA | break_and_retest | call | A | fired | 198.75 | 197.93 | loss | $-1000 |
+| 2026-07-08 | 10:59:00 | NVDA | reentry_84_rule | call | C | fired | 198.78 | 197.93 | loss | - |
 | 2026-07-08 | 10:59:00 | PLTR | break_and_retest | put | D | skipped_d | 128.18 | 128.24 | loss | - |
 | 2026-07-09 | 09:38:00 | GOOGL | break_and_retest | call | D | skipped_d | 358.22 | 358.10 | loss | - |
 | 2026-07-09 | 09:39:00 | TSLA | break_and_retest | put | D | skipped_d | 393.32 | 393.60 | loss | - |
@@ -9669,6 +9673,7 @@
 ## Findings & Recommendations
 - A+/A win rate 35% vs B/C 37% -> grading NOT predictive this week - review PA grade criteria
 - D-grade filter: filtered signals would have won 28% -> filter justified (<50%)
+- 84% rule (Lesson 6 canonical 2026-07-06: solid B&R stop-out arms one re-entry on the reclaim close, ORIGINAL stop + target): 4 triggers, fired win rate n/a.
 - 84% live wiring: armed per-symbol off paper stop-outs in live_scanner (2026-07-05). Requires --paper mode; signal-only runs have no stop-out feedback.
 - Best setup: one_candle_rule (38%) | worst: break_and_retest (37%)
-- C-grade alerts (170, alert-only per SPEC2) would have won 28% - similar to traded grades; alert-only demotion costs little.
+- C-grade alerts (173, alert-only per SPEC2) would have won 29% - similar to traded grades; alert-only demotion costs little.

@@ -198,9 +198,15 @@ Optional parallel anytime: **B5** (DeepSeek YouTube tranche).
   only the 4 A/A+-origin winners. Strict dominates both. TIER IDENTICAL 78/42.3%/$21k all three
   (84% carries no S-score = full-pop-only, tier no-op). Caveat: n=4/yr, edge unproven → F1. Report:
   research/c9_rule84_strict_ab.md.*
-- [ ] **C10** FABLE — Synthesize C1–C9: which flags turn ON together; combined 12mo run of winners
+- [x] **C10** FABLE — Synthesize C1–C9: which flags turn ON together; combined 12mo run of winners
   (composition check like A3). Update tier definition if S-formula should change. Done-when:
   new recommended config v2 in vault doc.
+  *Done 2026-07-13: TIER v2 = S≥4, skip-[chase], max 2/day — hammer req + stop-green DROPPED →
+  156 tr/yr (0.70/day) 50.6%W $81k/yr in-sample (vs 78/42.3%/$21k), halves 48.8/52.6%, maxDD −$6k.
+  3,072-config sweep + robustness in research/c10_synthesis.md. Flags: RULE84_STRICT default ON;
+  GRADE_FIX stays OFF (combo run = detector-OFF $75,489, kills strict's 4 winners); C1/C2/C5 OFF.
+  Config: cutoff reverted 10:30→11:00, stop_after_win off, skip-news stays. S-formula unchanged.
+  50%W AND 1–2/day not in population — six figures = v2 + D-phase sizing. F1 gates real money.*
 
 ## Phase D — Sizing (profit per trade; only after C10 config stable)
 
