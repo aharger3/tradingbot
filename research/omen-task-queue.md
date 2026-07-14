@@ -139,9 +139,12 @@ Optional parallel anytime: **B5** (DeepSeek YouTube tranche).
   (A 34.0%W −$393 → 36.7%W +$3,000), tier IDENTICAL (78 tr 42.3%W $21k/yr — uncontaminated as B3
   predicted), full-pop −$2,371 (floored-B 84% group was net-positive, benched with the bathwater).
   Report: research/b4_grade_fix_ab.md. C10 decides default; narrower promotion-only variant noted for C9.*
-- [ ] **B5** DEEPSEEK (background, low priority) — YouTube tranche: rank ~1300 transcript titles
+- [x] **B5** DEEPSEEK (background, low priority) — YouTube tranche: rank ~1300 transcript titles
   by relevance (setup/level/entry keywords), extract top 100 per deepseek-extraction-spec.md
   → scarface-rules-youtube-2.md. Done-when: file exists, rest of tranche listed as skipped.
+  *Done 2026-07-13: 558 transcripts ranked → top 100 extracted. 14 headline findings: OCR naming
+  CONFIRMED in YouTube, 84% reclaim-based entry, thesis-not-broken gate, 0DTE rules, inside bars
+  as liquidity, bar-by-bar exit. 458 skipped (<12.0). See scarface-rules-youtube-2.md.*
 
 ## Phase C — Win-rate levers (44.4% → 50%+, all independent, each = flag + 12mo A/B)
 

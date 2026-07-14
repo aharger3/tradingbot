@@ -1,0 +1,13 @@
+Do one day of task A6 from C:\Users\aharg\tradingbot\research\omen-task-queue.md.
+
+Task A6 (recurring, one run per trading day, dispatched by schtask OmenA6PaperLog at 16:20 ET): after each paper trading day, log tier compliance + P&L to the vault doc.
+
+Steps:
+1. Determine today's date. If today is NOT a US market trading day (weekend/holiday) OR there is no signal/paper data for today, write nothing and output "A6: no trading day / no data — skipped." Do not log skip days to the vault.
+2. Read today's data: journal/ signal logs and paper-trades.jsonl in C:\Users\aharg\tradingbot (same sources daily_review.py uses — run `python daily_review.py --dry-run` if that is the easiest way to get the day's embed content).
+3. Append a paper-week log entry to C:\Users\aharg\hermes-vault-sync\projects\omen-trading-bot.md as a new ## section at top: "## <date> — A6 paper day N/5" with: signals fired (symbol/grade/S/tags/outcome), paper P&L for the day, tier-v2 compliance (S≥4, no [chase], max 2/day — from daily_review's compliance check), any violations. Count N by counting prior "A6 paper day" sections (starting Mon 2026-07-14 = day 1).
+4. If this is day 5: also check the A6 box in C:\Users\aharg\tradingbot\research\omen-task-queue.md with a one-line italic result summarizing the week (total trades, W/L, P&L, compliance), and add a line "PAPER WEEK COMPLETE — dispatch F2 (Fable)" to the vault entry.
+
+HARD RULES: no code edits, no config changes, no commits. Vault doc + (day 5 only) queue tick are the only writes.
+
+Final output: one line — day N/5, trades, P&L, compliant yes/no.
