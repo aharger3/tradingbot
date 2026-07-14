@@ -11,6 +11,8 @@ Usage: python backtest_week.py [YYYY-MM-DD ...]   (default: last week's sessions
 """
 
 import math
+import os
+import re
 import sys
 from collections import defaultdict
 from dataclasses import dataclass, field
@@ -34,6 +36,32 @@ EXPERIMENTAL_SYMBOLS = ["SOFI", "ORCL", "COIN", "HOOD", "IREN", "INTC",
                         "TSM", "MARA"]  # A3: SMCI/MSTR/RIVN removed (−$22k/12mo)
 SYMBOLS = CORE_SYMBOLS + EXPERIMENTAL_SYMBOLS
 RISK_DOLLARS = 1000.0
+
+# ---- D2: S-score-scaled position sizing (flag-gated, default OFF) ----
+# Scale per-trade risk by the selection score printed in the signal reason
+# (" S<n>"): S=4 -> 1.0x, S=5 -> 1.25x, S>=6 -> 1.5x, on the $1k base.
+# P&L is linear in risk dollars (pnl = R-multiple * risk_dollars), so a
+# higher-conviction trade risks — and returns — proportionally more; only
+# S>=5 scales up, S<=4 and unscored trades stay at base $1k. Sizing changes
+# no signal detection or outcomes, just the dollar multiplier on each trade.
+# Env: OMEN_SSCORE_SIZING=1. Default OFF (flat $1k), no existing default moved.
+SSCORE_SIZING = os.environ.get("OMEN_SSCORE_SIZING", "0") == "1"
+
+
+def sscore_mult(reason: str) -> float:
+    """Per-trade risk multiplier from the S-score in `reason` (D2, flag-gated).
+    Flat 1.0x when the flag is OFF or no S-score is present."""
+    if not SSCORE_SIZING:
+        return 1.0
+    m = re.search(r" S(\d+)", reason or "")
+    if not m:
+        return 1.0
+    s = int(m.group(1))
+    if s >= 6:
+        return 1.5
+    if s == 5:
+        return 1.25
+    return 1.0
 DEDUPE_BARS = 30  # same setup re-firing within 30 min = same trade idea
 REPORT_PATH = Path(__file__).parent / "backtest_report.md"
 
@@ -118,27 +146,30 @@ class SimTrade:
         if risk == 0:
             return 0.0
 
+        # D2: S-score-scaled risk (flag-gated; 1.0x = flat $1k when OFF).
+        risk_dollars = RISK_DOLLARS * sscore_mult(self.reason)
+
         # F1 ladder: 50% filled at scale_level + 50% at exit_price
         if self.scaled:
             sign = 1 if self.direction == "call" else -1
             scale_r = sign * (self.scale_level - self.entry) / risk
             run_r = sign * (self.exit_price - self.entry) / risk
-            return round((0.5 * scale_r + 0.5 * run_r) * RISK_DOLLARS, 2)
+            return round((0.5 * scale_r + 0.5 * run_r) * risk_dollars, 2)
 
         # Rule 6: BE scale taken -> two-stage P&L
         if self.be_taken:
             be_r = 1.0  # always 1R at breakeven
-            be_pnl = be_r * RISK_DOLLARS * RULE6_SCALE_PCT
+            be_pnl = be_r * risk_dollars * RULE6_SCALE_PCT
             if self.outcome == "win":
                 run_r = 2.0
-                run_pnl = run_r * RISK_DOLLARS * (1 - RULE6_SCALE_PCT)
+                run_pnl = run_r * risk_dollars * (1 - RULE6_SCALE_PCT)
             else:
                 run_pnl = 0.0
             return round(be_pnl + run_pnl, 2)
 
         # Original binary P&L (no Rule 6)
         move = (self.exit_price - self.entry) if self.direction == "call" else (self.entry - self.exit_price)
-        return round(move / risk * RISK_DOLLARS * 1.0, 2)
+        return round(move / risk * risk_dollars * 1.0, 2)
 
 
 def _arm_84(t: "SimTrade", runner: "BacktestRunner") -> None:

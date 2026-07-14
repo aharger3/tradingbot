@@ -210,12 +210,31 @@ Optional parallel anytime: **B5** (DeepSeek YouTube tranche).
 
 ## Phase D — Sizing (profit per trade; only after C10 config stable)
 
-- [ ] **D1** GLM — SCARFACE_CONTRACT A/B: first-OTM + weekly expiry vs current selection, 12mo
+- [x] **D1** GLM — SCARFACE_CONTRACT A/B: first-OTM + weekly expiry vs current selection, 12mo
   options P&L. Done-when: table + verdict.
-- [ ] **D2** OPUS — S-score-scaled sizing: S=4 → 1.0x, S=5 → 1.25x, S=6+ → 1.5x ($1k base risk),
+  *Done 2026-07-13: A == B bit-identical (620 tr / 231 W / 37.3% / $75,489 both arms, Δ$0).
+  Flag not in P&L path (backtest pnl = stock R-multiple * $1000); sizer risk-normalizes
+  max_loss to ~$1000 regardless of strike/expiry → 0/620 trades differ on premium/contracts/max_loss,
+  only strike(310)+expiry(474) labels differ. Real $-delta = gamma/theta at live premium (not modeled;
+  BS+IV layer = fake precision) → routed to F2 live-shadow. Keep OFF. weekly_expiration Fri-bug (C7)
+  noted, not fixed. Report: research/d1_scarface_contract_ab.md.*
+- [x] **D2** OPUS — S-score-scaled sizing: S=4 → 1.0x, S=5 → 1.25x, S=6+ → 1.5x ($1k base risk),
   flag-gated, 12mo A/B vs flat sizing. Done-when: table incl. max drawdown comparison.
-- [ ] **D3** SONNET — Re-run risk-of-ruin (fable_ror method) on final tier stats from C10/D2.
+  *Done 2026-07-13: SSCORE_SIZING flag (env OMEN_SSCORE_SIZING, default OFF) in backtest_week
+  SimTrade.pnl — scales THE backtest P&L path (unlike D1). Full-pop $78.2k→$94.6k (+20.9%),
+  maxDD −$21.5k→−$23.1k; tier v2 $81k→$100.25k (+23.8%), maxDD −$6k→−$7.25k. Both arms same
+  156/50.6%W (tier arm A reproduces C10's $81k). Return/maxDD improves both (3.63→4.09, 13.5→13.83)
+  but ~90% of uplift = S≥6 1.5x tranche (genuinely 44%/57.4%W); S=5 1.25x levers weakest bucket
+  (33%/40%W). Keep OFF pending D3 RoR at $1.22k avg/$1.5k peak effective size. Report:
+  research/d2_sscore_sizing_ab.md. Uncommitted.*
+- [x] **D3** SONNET — Re-run risk-of-ruin (fable_ror method) on final tier stats from C10/D2.
   $1k vs $1.5k risk. Done-when: numbers in vault doc.
+  *Done 2026-07-13: RoR @ 50.6%W tier v2 (funded-phase ruin; eval blow parens) —
+  flat $1k 6.4% (9.4%) [93.6% funded→buffer], flat $1.5k 17.2% (26.2%), D2 S-scaled
+  $1k base 10.7% (17.1%). Verdict: live = flat $1k; S-scaled stays OFF (2x ruin for
+  +$19k). Re-eval D2 at F1 if OOS win ≥55% (prior $1k ruin ~4% <5% gate). Sanity
+  reproduces prior fable_ror 96/84 @ 55%WR. Report research/d3_risk_of_ruin.md.
+  No commits.*
 
 ## Phase E — Live infra (cheap, anytime)
 
