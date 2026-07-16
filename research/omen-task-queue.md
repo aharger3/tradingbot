@@ -260,6 +260,63 @@ Optional parallel anytime: **B5** (DeepSeek YouTube tranche).
   posted live diff (SNAP 07-12 vs CURRENT 07-13) to Discord. OmenSundayBacktest schtask
   Sunday 10:00 ET weekly. Uncommitted.*
 
+## Phase G — Paper-data hygiene + automation lane (added 2026-07-14, runs parallel to paper week)
+
+Context: day-1 A6 audit found the review pipeline lies. ORCL 07-13 was a WATCH ding, not a trade
+(tier correctly rejected it — S=None), but daily_review counted it "fired" because
+signal_runner._log_record writes status="fired" for every routed signal pre-tier, and the −$728
+"P&L" is a stale undated 07-07 AMD row. Also day 1 ran pre-v2 config (scanner started 9:25,
+C10 commit landed later) — **paper week day 1 = Tue 07-14, not 07-13.**
+
+- [x] **G1** GLM — daily_review truth fix: dedupe signal-log rows per (symbol, entry, minute) —
+  scanner tier row ("alert"/"fired" with "WATCH ·"/"TRADE ·" prefix) wins over signal_runner's
+  pre-tier "fired" row; S=None counts as non-tier (excluded from tier stats), never vacuous-pass.
+  daily_review.py only, no signal-path edits. Done-when: `--dry-run --date 2026-07-13` reports
+  0 fired / 1 watch and compliance line says "0 tier trades".
+  *Done 2026-07-14 (GLM headless): _dedupe_signals (scanner tier rows authoritative, 5s window),
+  S=None excluded from tier stats, "Routed (untiered)" count added. 07-13 verifies 0 fired /
+  1 watch / $0 / "0 tier trades". Bonus: 07-07 AMD day re-checked — dedupe + S=None exclusion
+  work on a real trade day. Uncommitted.*
+- [x] **G2** GLM — paper-trades.jsonl reset: archive stale undated 07-07 AMD rows to
+  journal/paper-trades-archive.jsonl, leave live file empty. Done-when: daily_review 07-13 P&L $0.
+  *Done 2026-07-14: 2 AMD rows archived, live file empty, 07-13 and 07-07 both P&L $0 (fake −$728
+  gone). Uncommitted.*
+- [x] **G3** FABLE — Futures backtest, SEPARATE PROJECT (Austin 2026-07-14: do NOT touch
+  tradingbot code — new signal bot system). New folder `C:\Users\aharg\futuresbot\`, standalone
+  port of tier v2 concept (B&R + S≥4, skip-chase, max 2/day, QQQ alignment) with FIXED 2:1 R:R,
+  flat $ risk, entries 9:30–11:00. Data: Polygon 1-min SPY as ES proxy (+ QQQ as NQ variant)
+  unless real ES data available. tradingbot/ = read-only reference, no imports from it.
+  Rationale: availability shrinking; prop accounts mass-buy + copy-trade = automation endgame.
+  Done-when: 12mo tier table vs options baseline in futuresbot/research/ + vault doc stub.
+  *Done 2026-07-14: futuresbot/ built (signals.py + backtest.py standalone, tradingbot untouched).
+  VERDICT: tier v2 does NOT port to index underlyings — SPY-proxy negative all configs; QQQ-proxy
+  best 9 tr/yr 55.6%W +$5.6k net (n=9 noise) vs options 156/50.6%/$81k. Killers: min-stop gate
+  demotes ~98% of index signals, micro friction 30–44% of risk on tight stops, no 24-name breadth.
+  S≥4 still ranks (concept transfers, raw material doesn't). Polygon plan has no real ES/NQ —
+  proxies = upper bound. Report futuresbot/research/g3_es_backtest.md. Don't fund.*
+- [x] **G4** FABLE — prop-firm fit memo: D3 RoR model re-run against real firm specs (trailing DD,
+  eval target, copy-trade rules, per-firm sizing) for 2–3 candidate futures firms at OOS 43–46%W
+  AND at 50.6%W. Which vehicle survives <5% ruin, at what risk unit, how copy-trade scales it.
+  Done-when: research/g4_prop_fit.md with per-firm verdict table.
+  *Done 2026-07-14: Apex/Topstep/MFF modeled (g4_prop_fit.md + .py). WINNER: Apex $150K EOD —
+  $250 risk unit clears <5% ruin EVEN AT 43%W (EOD-trail floor locks at DD+$100, unlike Vanquish
+  buffer), 20-account copy stack = $17k/mo @43%W → $69k/mo @50.6%W. Kill line ~40%W. ES transfer
+  unproven — F2-on-ES prerequisite; confirm Apex copy/bot policy in writing before buying evals.*
+- [x] **G5** GLM+DEEPSEEK (background) — mine the 458 skipped YouTube transcripts (scored <12;
+  B5 ranking used day-trade keywords, so swing/long-term content was down-ranked). Two outputs:
+  (a) day-trade rule deltas, (b) NEW: swing/long-term B&R section (HTF setups, 4H/1H context) —
+  feeds either Omen ingestion context or a future swing bot. Course-video swing rules already
+  extracted (scarface-rules-videos.md §swing, bonus_How_To_Swing_Trade_Q_A). Done-when:
+  research/g5_youtube_remainder.md with both sections; honest "nothing new" allowed.
+  *Done 2026-07-14: 458/458 keyword-scanned full-text, 14 highest-signal deep-mined (12 DeepSeek +
+  2 full-read swing videos); 315 low-signal recaps left unmined (stated). NO hidden swing
+  curriculum — applied swing technique scattered in trade reviews. Section (a): 26 day-trade
+  deltas incl. contradictions (first-touch avoidance at ATH, displacement optional for B&R,
+  A+ = all-timeframes-aligned). Section (b): 11 swing rule clusters — weekly+daily+1H alignment
+  gate, HTF markup routine (≤9 levels), scale-out quarters, 30–50% option stops, next-week
+  contracts, external-HTF targets. Feeds future swing bot / ingestion. Report has one flagged
+  internal contradiction (scale on drawdown vs on strength) — do not ingest as one rule.*
+
 ## Phase F — Go-live gates (after A6 + C10)
 
 - [x] **F1** FABLE — Walk-forward validation: rolling train-12mo/test-3mo on final config; overfit
@@ -281,6 +338,7 @@ Optional parallel anytime: **B5** (DeepSeek YouTube tranche).
 ---
 
 ## Sequencing cheat sheet
-Now: A1 → dispatch B1 (DeepSeek, parallel) → A2/A3/A4 → A5 → start A6 paper week.
-During paper week: C1–C9 (any order, cheap models), B2–B4, E1–E5.
-Then: C10 → D → F. ~35 tasks total.
+Now (2026-07-14): G1+G2 today (before A6 day-2 log runs at 16:20, else it logs garbage again) →
+G3 → G4. Paper week day 1 = Tue 07-14 (07-13 ran pre-v2 config, doesn't count).
+A6 auto Mon–Fri → F2 (~2wk shadow) → F3. G5 optional background.
+Done: A, B, C, D, E, F1. ~35 tasks total.

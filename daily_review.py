@@ -18,8 +18,64 @@ Usage:
 import argparse
 import json
 import re
-from datetime import date, timedelta
+from datetime import date, datetime, timedelta
 from pathlib import Path
+
+_TIER_PREFIX_RE = re.compile(r"^(TRADE|WATCH)\s*·\s*")
+
+
+def _is_tier_row(reason: str) -> bool:
+    """Scanner tier rows carry a 'TRADE · ' or 'WATCH · ' prefix (live_scanner
+    _emit_signal). Pre-tier rows from signal_runner._log_record lack it."""
+    return bool(_TIER_PREFIX_RE.match(reason or ""))
+
+
+def _parse_ts(ts: str):
+    try:
+        return datetime.fromisoformat(ts)
+    except (ValueError, TypeError):
+        return None
+
+
+def _entry_match(a, b) -> bool:
+    try:
+        return abs(float(a) - float(b)) < 1e-9
+    except (TypeError, ValueError):
+        return a == b
+
+
+def _dedupe_signals(signals: list) -> tuple:
+    """G1: split authoritative scanner tier rows from pre-tier duplicates.
+
+    A pre-tier row (no TRADE/WATCH prefix) matching a tier row on
+    (symbol, direction, entry) within ~5s is a dup of the same signal — drop
+    it. A pre-tier 'fired' row with NO matching tier row was routed without a
+    tier decision; count it separately as untiered, not as fired.
+
+    Returns (tier_signals, untiered_fired_count).
+    """
+    tier, pre = [], []
+    for s in signals:
+        if s.get("status") not in ("fired", "alert"):
+            continue  # skip D-grade / tight-stop skips
+        (tier if _is_tier_row(s.get("reason", "")) else pre).append(s)
+
+    untiered = 0
+    for p in pre:
+        pt = _parse_ts(p.get("timestamp", ""))
+        matched = False
+        for t in tier:
+            if not (p.get("symbol") == t.get("symbol")
+                    and p.get("direction") == t.get("direction")
+                    and _entry_match(p.get("entry"), t.get("entry"))):
+                continue
+            tt = _parse_ts(t.get("timestamp", ""))
+            if pt and tt and abs((pt - tt).total_seconds()) <= 5:
+                matched = True
+                break
+        if not matched and p.get("status") == "fired":
+            untiered += 1
+    return tier, untiered
 
 ROOT = Path(__file__).parent
 JOURNAL = ROOT / "journal"
@@ -165,12 +221,15 @@ def _tier_compliance(rows: list, paper_trades: list) -> list:
     (research/c10_synthesis.md); news days already blocked by SKIP_NEWS.
     Returns list of violation strings (empty = all compliant)."""
     violations = []
-    trade_rows = [r for r in rows if r["status"] == "fired"]
+    # G1: S=None = NON-TIER (untiered routed, or a tier row missing an S
+    # score) — exclude from tier stats so they can't pass S>=4 vacuously.
+    trade_rows = [r for r in rows if r["status"] == "fired"
+                  and isinstance(r["s"], int)]
 
     # 1. S>=4 and not a [chase] entry
     for r in trade_rows:
         issues = []
-        if isinstance(r["s"], int) and r["s"] < 4:
+        if r["s"] < 4:
             issues.append(f"S{r['s']}<4")
         if "chase" in r["tags"].lower():
             issues.append("[chase] entry (28%W tag — skip)")
@@ -200,18 +259,22 @@ def build_embed(date_str: str) -> dict:
             text += f" (news day: {', '.join(news_types)})"
         return {"content": text}
 
-    rows = _build_signal_rows(signals, paper_trades)
+    tier_signals, untiered_fired = _dedupe_signals(signals)
+    rows = _build_signal_rows(tier_signals, paper_trades)
     pnl = _paper_pnl(paper_trades)
     violations = _tier_compliance(rows, paper_trades)
     trade_count = sum(1 for r in rows if r["status"] == "fired")
     alert_count = sum(1 for r in rows if r["status"] == "alert")
     skip_count = sum(1 for s in signals if s.get("status") == "skipped")
+    tier_trade_count = sum(1 for r in rows if r["status"] == "fired"
+                           and isinstance(r["s"], int))
 
     # Build embed
     fields = []
 
     # Signals summary
-    summary = (f"Fired: {trade_count} | Alerts: {alert_count} | Skipped: {skip_count} | "
+    summary = (f"Fired: {trade_count} | Alerts: {alert_count} | "
+               f"Skipped: {skip_count} | Routed (untiered): {untiered_fired} | "
                f"Paper P&L: {'+' if pnl >= 0 else ''}${pnl}")
     fields.append({"name": "Signals", "value": summary, "inline": False})
 
@@ -229,8 +292,10 @@ def build_embed(date_str: str) -> dict:
             detail += f"\n... +{len(rows) - 10} more"
         fields.append({"name": "Signal Detail", "value": detail, "inline": False})
 
-    # Tier-rule compliance
-    if violations:
+    # Tier-rule compliance (G1: S=None rows are non-tier, excluded above)
+    if tier_trade_count == 0:
+        compliance = "0 tier trades"
+    elif violations:
         compliance = "⚠ " + "; ".join(violations)
     else:
         compliance = "✓ All tier rules met (v2: S>=4, no [chase], max 2)"
