@@ -34,6 +34,23 @@ def trading_days(n_back: int):
     return sorted(out)
 
 
+def archived_days(start: str = None, end: str = None):
+    """OFFLINE date selection: every date actually present in data_archive/.
+
+    trading_days() anchors on date.today(), which drifts past the cached window
+    and forces network fetches for uncached dates. This instead enumerates the
+    union of dates for which any symbol has a cached CSV, so a run stays fully
+    offline (cache-first fetch_day never hits the network) over the real archive
+    span. --start/--end optionally clip the window. No signal logic touched.
+    """
+    dates = set()
+    for csv in (ROOT / "data_archive").glob("*/*.csv"):
+        dates.add(csv.stem)  # "YYYY-MM-DD"
+    out = sorted(d for d in dates
+                 if (start is None or d >= start) and (end is None or d <= end))
+    return out
+
+
 def hourly_from_1m(day_iso: str, bars) -> list:
     """(datetime, close) per hour bucket — last close wins. Matches htf_bias_for."""
     y, m, dd = map(int, day_iso.split("-"))
@@ -85,6 +102,13 @@ def main():
                     help="override entry cutoff time (default 11:00)")
     ap.add_argument("--skip-news", action="store_true",
                     help="exclude dates listed in news_days.json")
+    ap.add_argument("--archived", action="store_true",
+                    help="OFFLINE: use every date present in data_archive/ "
+                         "instead of a today-relative window (no network)")
+    ap.add_argument("--start", default=None, metavar="YYYY-MM-DD",
+                    help="with --archived: clip archive window start (inclusive)")
+    ap.add_argument("--end", default=None, metavar="YYYY-MM-DD",
+                    help="with --archived: clip archive window end (inclusive)")
     args = ap.parse_args()
 
     # Override ENTRY_CUTOFF in backtest_week before the day loop — simulate_day
@@ -103,7 +127,7 @@ def main():
             pass
 
     n_back = args.days
-    days = trading_days(n_back)
+    days = archived_days(args.start, args.end) if args.archived else trading_days(n_back)
     if news_days:
         days = [d for d in days if d not in news_days]
     all_trades, seen_days, chart_records = [], set(), []
