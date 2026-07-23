@@ -1,21 +1,16 @@
 """ntfy push-notification integration for Omen trading signals.
 
-Companion to discord_bot.py. Discord stays the rich-embed channel; ntfy is the
-phone-push channel — one topic, instant alerts on the lock screen even when
-Discord isn't open. Both fire independently: a broken Discord webhook never
-starves ntfy and vice-versa.
+ntfy is the phone-push channel and, since 2026-07-23, the ONLY alert channel —
+Discord is retired. One topic, instant alerts on the lock screen.
 
 Config (all via env, loaded from .env by signal_runner._load_env_file):
-    NTFY_TOPIC    required to enable. The subscribe topic (e.g. "omen-austin").
-                  Pick something unguessable — anyone with the topic can read it.
+    NTFY_TOPIC    the subscribe topic. Defaults to DEFAULT_TOPIC ("aharg-ops")
+                  so the bot is wired out of the box; set this to override.
+                  Whoever knows the topic can read the alerts — keep it private.
     NTFY_SERVER   optional, default https://ntfy.sh. Self-hosted: https://ntfy.example.com
     NTFY_TOKEN    optional, Bearer token for a protected topic / self-hosted auth.
 
-If NTFY_TOPIC is unset the constructor raises ValueError, and the caller
-disables ntfy gracefully (same contract as DiscordSignalBot) — a run with no
-ntfy configured is never a crash.
-
-Reliability mirrors discord_bot: 3 attempts with backoff, and on final failure
+Reliability: 3 attempts with backoff, and on final failure
 the full message is appended to journal/failed_ntfy.jsonl so nothing is lost.
 The topic/URL are NEVER written to that log — only a masked label.
 """
@@ -34,6 +29,10 @@ FAILED_LOG = Path(__file__).parent / "journal" / "failed_ntfy.jsonl"
 RETRY_ATTEMPTS = 3
 RETRY_BACKOFF = (1.0, 2.0)  # seconds between attempts (2 gaps for 3 attempts)
 DEFAULT_SERVER = "https://ntfy.sh"
+# Austin's live topic. ntfy is the ONLY alert channel now (Discord retired
+# 2026-07-23). Overridable with NTFY_TOPIC in .env, but this is the default so
+# the bot is wired to aharg-ops out of the box — no env edit required.
+DEFAULT_TOPIC = "aharg-ops"
 
 
 class NtfyNotifier:
@@ -41,9 +40,9 @@ class NtfyNotifier:
 
     def __init__(self, topic: Optional[str] = None, server: Optional[str] = None,
                  token: Optional[str] = None):
-        self.topic = topic or os.getenv("NTFY_TOPIC")
-        if not self.topic:
-            raise ValueError("NTFY_TOPIC not set. Set via env var or __init__ arg.")
+        self.topic = topic or os.getenv("NTFY_TOPIC") or DEFAULT_TOPIC
+        if not self.topic:  # only if someone forces NTFY_TOPIC="" and DEFAULT_TOPIC=""
+            raise ValueError("No ntfy topic. Set NTFY_TOPIC or DEFAULT_TOPIC.")
         self.server = (server or os.getenv("NTFY_SERVER") or DEFAULT_SERVER).rstrip("/")
         self.url = f"{self.server}/{self.topic}"
         token = token or os.getenv("NTFY_TOKEN")

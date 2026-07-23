@@ -208,7 +208,7 @@ def daily_trend_bias(daily_closes, period: int = 20) -> Optional[str]:
 
 
 class SignalRunner:
-    """Monitor candles, detect signals, alert Discord"""
+    """Monitor candles, detect signals, alert via ntfy (Discord retired)."""
 
     def __init__(self, webhook_url: Optional[str] = None, post_to_discord: bool = True,
                  symbol: str = "UNKNOWN", log_signals: bool = True,

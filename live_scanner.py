@@ -613,9 +613,15 @@ def main():
                         help="Trading window in ET HH:MM-HH:MM (default 09:30-11:00)")
     parser.add_argument("--once", action="store_true",
                         help="Run a single scan and exit (testing)")
-    parser.add_argument("--no-discord", action="store_true", help="Skip Discord posting")
+    # Discord retired 2026-07-23 — ntfy is the alert channel. Discord is OFF by
+    # default now; --discord opts back in. --no-discord kept as an accepted
+    # no-op so old invocations don't error.
+    parser.add_argument("--discord", action="store_true",
+                        help="Opt back into Discord posting (retired; ntfy is the default channel)")
+    parser.add_argument("--no-discord", action="store_true",
+                        help="(deprecated no-op — Discord is already off by default)")
     parser.add_argument("--no-ntfy", action="store_true",
-                        help="Skip ntfy push (ntfy only fires when NTFY_TOPIC is set anyway)")
+                        help="Skip ntfy push (ntfy is the primary channel — usually leave on)")
     parser.add_argument("--paper", action="store_true",
                         help="Paper-trade simulation: log fired signals + mark to stop/target in journal/paper-trades.jsonl")
     parser.add_argument("--futures", nargs="?", const="ES", default=None, metavar="CONTRACT",
@@ -624,7 +630,7 @@ def main():
 
     print(OMEN_LOGO)
     start, end = parse_window(args.window)
-    runner = SignalRunner(post_to_discord=not args.no_discord,
+    runner = SignalRunner(post_to_discord=args.discord,
                           post_to_ntfy=not args.no_ntfy)
     if args.futures:
         runner.futures_mode = True
@@ -661,10 +667,10 @@ def main():
         print(f"📝 Paper mode ON → {paper.ledger_path}")
 
     print(f"Scanner armed. Symbols: {args.symbols}  Window (ET): {args.window}")
-    print(f"   Channels: Discord={'on' if runner.post_to_discord else 'off'}  "
-          f"ntfy={'on' if runner.post_to_ntfy else 'off'}"
-          f"{' (NTFY_TOPIC unset)' if not runner.post_to_ntfy and not args.no_ntfy else ''}"
-          f"  Paper={'on' if paper else 'off'}")
+    _ntfy_label = f"on → {runner.ntfy.topic}" if runner.post_to_ntfy and runner.ntfy else "off"
+    print(f"   Channels: ntfy={_ntfy_label}  "
+          f"Discord={'on' if runner.post_to_discord else 'off (retired)'}  "
+          f"Paper={'on' if paper else 'off'}")
     # Startup ping so the user confirms push delivery before the first signal.
     if runner.post_to_ntfy and runner.ntfy:
         runner.ntfy.post_text(
