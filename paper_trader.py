@@ -309,9 +309,13 @@ if __name__ == "__main__":
     assert len(book.open_positions) == 1
     # candle that doesn't hit either level
     assert book.mark("TSLA", high=440.8, low=440.1, ts="09:36:00") == []
-    # Rule 6 test when enabled
-    orig = paper_trader.RULE6_ENABLED
-    import paper_trader as self_mod
+    # Rule 6 test when enabled. Toggle the flag on the *running* module — under
+    # `python paper_trader.py` that is __main__, which is the namespace
+    # PaperBook/PaperPosition actually read RULE6_ENABLED from. (`import
+    # paper_trader` would load a second, separate module copy.)
+    import sys as _sys
+    self_mod = _sys.modules[__name__]
+    orig = self_mod.RULE6_ENABLED
     self_mod.RULE6_ENABLED = True
     # Open a new position with Rule 6
     book2 = PaperBook(ledger_path=Path(tempfile.mkdtemp()) / "pt2.jsonl")
