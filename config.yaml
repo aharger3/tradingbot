@@ -15,6 +15,11 @@ max_trades_per_day: 3
 consecutive_loss_halt: 2
 data_feed: tastytrade
 alpaca_fallback: false
+# Paper-fill realism: haircut per side on paper option fills (buy higher, sell
+# lower). Env PAPER_SLIPPAGE_PCT, default 0.0 (OFF = exact stop/target fills).
+# e.g. 0.02 = 2%/side. Widens losses + shrinks gains to approximate crossing
+# the spread. Live-signal Discord/ntfy alerts are unaffected — sim P&L only.
+paper_slippage_pct: 0.0
 # SPEC15 futures mode: run `live_scanner.py --futures ES` (or NQ/RTY)
 mode: options
 futures_contract: ES

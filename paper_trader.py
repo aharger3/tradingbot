@@ -13,6 +13,7 @@ move the runner's stop to entry. The runner continues to the original 2R target.
 """
 
 import json
+import os
 from dataclasses import dataclass, asdict
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
@@ -25,6 +26,22 @@ from options_sizer import OptionsPlan
 RULE6_ENABLED = False       # toggle for live paper trading
 RULE6_SCALE_PCT = 0.5       # scale out 50% at breakeven
 RULE6_BE_MULT = 1.0         # breakeven at 1R (entry +/- 1R risk)
+
+# ---- Fill realism (2026-07-23) ----
+# The sim otherwise fills at the plan's exact stop/target premium — optimistic,
+# since real option fills cross the spread. PAPER_SLIPPAGE_PCT applies a haircut
+# per side: you pay (1+slip) at entry and receive (1-slip) at exit, so it widens
+# losses and shrinks gains symmetrically. Default 0.0 = OFF (exact behavior
+# unchanged). Env PAPER_SLIPPAGE_PCT=0.02 → 2% per side.
+PAPER_SLIPPAGE_PCT = float(os.getenv("PAPER_SLIPPAGE_PCT", "0.0"))
+
+
+def _slipped(entry_premium: float, exit_premium: float) -> tuple:
+    """Apply PAPER_SLIPPAGE_PCT to both fills: buy higher, sell lower."""
+    slip = PAPER_SLIPPAGE_PCT
+    if slip <= 0.0:
+        return entry_premium, exit_premium
+    return entry_premium * (1.0 + slip), exit_premium * (1.0 - slip)
 
 
 def _now_et_iso() -> str:
@@ -150,7 +167,8 @@ class PaperPosition:
         return None
 
     def realized_pnl(self, exit_premium: float) -> float:
-        return round((exit_premium - self.entry_premium) * 100 * self.contracts, 2)
+        entry, exit_ = _slipped(self.entry_premium, exit_premium)
+        return round((exit_ - entry) * 100 * self.contracts, 2)
 
     def scale_realized_pnl(self) -> float:
         """P&L from the BE-scaled portion (50% at breakeven price)."""
@@ -167,7 +185,8 @@ class PaperPosition:
         run_contracts = self.contracts - max(int(self.contracts * RULE6_SCALE_PCT), 1)
         if run_contracts <= 0:
             return 0.0
-        return round((exit_premium - self.entry_premium) * 100 * run_contracts, 2)
+        entry, exit_ = _slipped(self.entry_premium, exit_premium)
+        return round((exit_ - entry) * 100 * run_contracts, 2)
 
 
 class PaperBook:
