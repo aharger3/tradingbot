@@ -208,10 +208,11 @@ def daily_trend_bias(daily_closes, period: int = 20) -> Optional[str]:
 
 
 class SignalRunner:
-    """Monitor candles, detect signals, alert Discord"""
+    """Monitor candles, detect signals, alert via ntfy (Discord retired)."""
 
     def __init__(self, webhook_url: Optional[str] = None, post_to_discord: bool = True,
-                 symbol: str = "UNKNOWN", log_signals: bool = True):
+                 symbol: str = "UNKNOWN", log_signals: bool = True,
+                 post_to_ntfy: bool = True):
         self.session = TradingSession()
         self.candles: List[Candle] = []
         # True prior-day levels + HTF trend, set by live_scanner per symbol
@@ -243,6 +244,22 @@ class SignalRunner:
             except ValueError as e:
                 print(f"Warning: {e}")
                 self.post_to_discord = False
+
+        # ntfy is the phone-push channel, additive to Discord. Enabled only when
+        # NTFY_TOPIC is set; an unconfigured topic disables it silently (a run
+        # with no ntfy is never a crash). Fires independently of Discord.
+        self.ntfy = None
+        self.post_to_ntfy = post_to_ntfy
+        if post_to_ntfy:
+            try:
+                from ntfy_notifier import NtfyNotifier
+                self.ntfy = NtfyNotifier()
+            except ValueError:
+                # NTFY_TOPIC not set — stay quiet, this is the common case.
+                self.post_to_ntfy = False
+            except Exception as e:
+                print(f"Warning: ntfy init failed: {e}")
+                self.post_to_ntfy = False
 
     def load_candles_from_json(self, json_str: str) -> bool:
         """Parse candles from JSON array"""
@@ -986,6 +1003,10 @@ class SignalRunner:
                         print("   ✓ Posted to Discord")
                     else:
                         print("   ✗ Discord post failed")
+                if self.post_to_ntfy and self.ntfy:
+                    ok = self.ntfy.post_signal(signal_type, self.candles[-1], sig["reason"], plan,
+                                               grade=sig.get("grade", ""))
+                    print("   ✓ ntfy" if ok else "   ✗ ntfy push failed")
         else:
             print("No signals detected")
 

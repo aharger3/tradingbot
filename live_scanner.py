@@ -244,7 +244,8 @@ SCANNER_STATUS_PATH = Path(__file__).parent / "journal" / "scanner_status.json"
 
 
 def _write_scanner_status(symbols, signals_today, session, regime_action,
-                           last_error=None, posted=0, failed=0, qqq_breaks=None):
+                           last_error=None, posted=0, failed=0, qqq_breaks=None,
+                           ntfy_posted=0, ntfy_failed=0):
     """Atomically write journal/scanner_status.json (temp + os.replace).
 
     Dashboard reads this file later — no UI work here, file only.
@@ -263,6 +264,7 @@ def _write_scanner_status(symbols, signals_today, session, regime_action,
         "qqq_state": qqq_breaks,  # F4 Rule 4: {"up","dn"} break times or None
         "last_error": last_error,
         "webhooks": {"posted": posted, "failed": failed},
+        "ntfy": {"posted": ntfy_posted, "failed": ntfy_failed},
     }
     SCANNER_STATUS_PATH.parent.mkdir(parents=True, exist_ok=True)
     tmp = SCANNER_STATUS_PATH.with_suffix(".tmp")
@@ -287,6 +289,9 @@ def scan_once(
     discord = getattr(runner, "discord", None)
     if discord is not None:
         discord.posted = discord.failed = 0
+    ntfy = getattr(runner, "ntfy", None)
+    if ntfy is not None:
+        ntfy.posted = ntfy.failed = 0
     # symbol -> (entry, direction, target) of stopped-out trade awaiting one 84%
     # re-entry (needs --paper for stop-out feedback; signal-only mode has none)
     armed_84 = getattr(runner, "armed_84", None)
@@ -363,7 +368,11 @@ def scan_once(
             last = candles[-1]
             for ev in paper.mark(symbol, high=last.high, low=last.low, ts=last.timestamp):
                 print(f"   📕 PAPER CLOSE {ev['symbol']} {ev['direction'].upper()} "
-                      f"{ev['outcome'].upper()} P&L ${ev['pnl']:.2f}")
+                      f"{ev['outcome'].upper()} P&L ${ev.get('pnl', ev.get('be_pnl', 0.0)):.2f}")
+                if runner.post_to_ntfy and runner.ntfy:
+                    runner.ntfy.post_paper_close(ev)
+                if ev["outcome"] == "be_scale":
+                    continue  # partial scale, position still open — no win/loss yet
                 if ev["outcome"] == "stop":
                     runner.session.record_loss()
                     # Lesson 6 canonical (A/B 2026-07-06: B&R-only arm was the
@@ -424,11 +433,15 @@ def scan_once(
         print("   " + paper.summary())
     if discord is not None:
         print(f"  Discord delivery: posted={discord.posted} failed={discord.failed}")
+    if ntfy is not None:
+        print(f"  ntfy delivery: posted={ntfy.posted} failed={ntfy.failed}")
     _write_scanner_status(symbols, runner.session.signals_today, runner.session,
                           regime_action, last_error=last_error,
                           posted=discord.posted if discord else 0,
                           failed=discord.failed if discord else 0,
-                          qqq_breaks=getattr(runner, "qqq_breaks", None))
+                          qqq_breaks=getattr(runner, "qqq_breaks", None),
+                          ntfy_posted=ntfy.posted if ntfy else 0,
+                          ntfy_failed=ntfy.failed if ntfy else 0)
     return fired
 
 
@@ -578,10 +591,17 @@ def _emit_signal(runner: SignalRunner, tasty_feed: TastytradeFeed, symbol: str, 
                                    setup=signal_type_val)
         print(f"   📗 PAPER OPEN {pos.contracts}x {pos.symbol} ${pos.strike:g} "
               f"{pos.direction.upper()} @ ${pos.entry_premium:.2f}")
+        if runner.post_to_ntfy and runner.ntfy:
+            runner.ntfy.post_paper_open(pos)
     if runner.post_to_discord and runner.discord:
         ok = runner.discord.post_signal(sig["signal_type"], candle, sig["reason"], plan,
                                          grade=grade, stop_level_name=stop_level, stop_width_pct=stop_width)
         print("   ✓ Posted" if ok else "   ✗ Discord post failed")
+    if runner.post_to_ntfy and runner.ntfy:
+        ok = runner.ntfy.post_signal(sig["signal_type"], candle, sig["reason"], plan,
+                                     grade=grade, stop_level_name=stop_level,
+                                     stop_width_pct=stop_width, tier=tier)
+        print("   ✓ ntfy" if ok else "   ✗ ntfy push failed")
     return not alert_only
 
 
@@ -593,7 +613,15 @@ def main():
                         help="Trading window in ET HH:MM-HH:MM (default 09:30-11:00)")
     parser.add_argument("--once", action="store_true",
                         help="Run a single scan and exit (testing)")
-    parser.add_argument("--no-discord", action="store_true", help="Skip Discord posting")
+    # Discord retired 2026-07-23 — ntfy is the alert channel. Discord is OFF by
+    # default now; --discord opts back in. --no-discord kept as an accepted
+    # no-op so old invocations don't error.
+    parser.add_argument("--discord", action="store_true",
+                        help="Opt back into Discord posting (retired; ntfy is the default channel)")
+    parser.add_argument("--no-discord", action="store_true",
+                        help="(deprecated no-op — Discord is already off by default)")
+    parser.add_argument("--no-ntfy", action="store_true",
+                        help="Skip ntfy push (ntfy is the primary channel — usually leave on)")
     parser.add_argument("--paper", action="store_true",
                         help="Paper-trade simulation: log fired signals + mark to stop/target in journal/paper-trades.jsonl")
     parser.add_argument("--futures", nargs="?", const="ES", default=None, metavar="CONTRACT",
@@ -602,7 +630,8 @@ def main():
 
     print(OMEN_LOGO)
     start, end = parse_window(args.window)
-    runner = SignalRunner(post_to_discord=not args.no_discord)
+    runner = SignalRunner(post_to_discord=args.discord,
+                          post_to_ntfy=not args.no_ntfy)
     if args.futures:
         runner.futures_mode = True
         args.symbols = [args.futures.upper()]
@@ -638,6 +667,16 @@ def main():
         print(f"📝 Paper mode ON → {paper.ledger_path}")
 
     print(f"Scanner armed. Symbols: {args.symbols}  Window (ET): {args.window}")
+    _ntfy_label = f"on → {runner.ntfy.topic}" if runner.post_to_ntfy and runner.ntfy else "off"
+    print(f"   Channels: ntfy={_ntfy_label}  "
+          f"Discord={'on' if runner.post_to_discord else 'off (retired)'}  "
+          f"Paper={'on' if paper else 'off'}")
+    # Startup ping so the user confirms push delivery before the first signal.
+    if runner.post_to_ntfy and runner.ntfy:
+        runner.ntfy.post_text(
+            f"Omen armed · {len(args.symbols)} symbols · {args.window} ET"
+            f"{' · PAPER' if paper else ''}",
+            title="Omen scanner armed", tags="rocket", priority="low")
 
     # News-day warning (12mo: news days 30.6%W −$12k vs clean 37.2%W; tier
     # skipping them 44.8% vs 43.4%). Warn once at startup — Austin sizes
@@ -658,6 +697,9 @@ def main():
             print(msg)
             if runner.post_to_discord and runner.discord:
                 runner.discord.post_text(msg)
+            if runner.post_to_ntfy and runner.ntfy:
+                runner.ntfy.post_text(msg, title="Omen · news day", tags="warning",
+                                      priority="high")
     except (OSError, ValueError) as e:
         print(f"  news-day check skipped: {e}")
 
