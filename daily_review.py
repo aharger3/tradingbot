@@ -215,6 +215,83 @@ def _paper_pnl(paper_trades: list) -> float:
                      if ev.get("event") == "CLOSE"), 2)
 
 
+def _paper_record(paper_trades: list) -> tuple:
+    """W/L record + win-rate from CLOSE events (BE_SCALE partials excluded).
+
+    A close is a win on a target hit or any positive P&L, a loss on a stop or
+    negative P&L. Returns (wins, losses, win_rate_pct). win_rate is 0.0 with no
+    decided trades. This is the 2:1 book's headline stat — the number the
+    optimization work targets (goal: 55%)."""
+    wins = losses = 0
+    for ev in paper_trades:
+        if ev.get("event") != "CLOSE":
+            continue
+        pnl = ev.get("pnl", 0) or 0
+        if ev.get("outcome") == "target" or pnl > 0:
+            wins += 1
+        elif ev.get("outcome") == "stop" or pnl < 0:
+            losses += 1
+    decided = wins + losses
+    win_rate = round(wins / decided * 100, 1) if decided else 0.0
+    return wins, losses, win_rate
+
+
+def build_ntfy_digest(date_str: str) -> dict:
+    """Build the end-of-day ntfy push: {title, body, tags, priority}.
+
+    One phone card summarizing the paper session — record, win-rate, P&L, and a
+    compact per-trade list. Reuses the same loaders as the Discord embed so the
+    two never drift. Empty day = a one-line 'no signals' card.
+    """
+    signals = _load_signal_log(date_str)
+    paper_trades = _load_paper_trades(date_str)
+    is_news, news_types = _is_news_day(date_str)
+
+    if not signals:
+        body = "No signals fired today."
+        if is_news:
+            body += f"\nNews day: {', '.join(news_types)}"
+        return {"title": f"Omen EOD {date_str} · flat",
+                "body": body, "tags": "chart", "priority": "low"}
+
+    tier_signals, _untiered = _dedupe_signals(signals)
+    rows = _build_signal_rows(tier_signals, paper_trades)
+    pnl = _paper_pnl(paper_trades)
+    wins, losses, win_rate = _paper_record(paper_trades)
+    violations = _tier_compliance(rows, paper_trades)
+    fired = sum(1 for r in rows if r["status"] == "fired")
+    alerts = sum(1 for r in rows if r["status"] == "alert")
+
+    decided = wins + losses
+    sign = "+" if pnl >= 0 else ""
+    header = f"P&L {sign}${pnl:.0f}"
+    if decided:
+        header += f"  ·  {wins}-{losses}  ({win_rate:.0f}% WR, target 55%)"
+    else:
+        header += "  ·  no closed trades"
+
+    lines = [header, f"Fired {fired} · Alerts {alerts}"]
+    # Per-closed-trade one-liners (only trades that actually resolved).
+    closes = [ev for ev in paper_trades if ev.get("event") == "CLOSE"]
+    for ev in closes[:8]:
+        mark = "W" if (ev.get("outcome") == "target" or (ev.get("pnl", 0) or 0) > 0) else "L"
+        lines.append(f"  {mark} {ev.get('symbol', '?')} {str(ev.get('direction', '')).upper()} "
+                     f"{ev.get('outcome', '')} {sign if (ev.get('pnl', 0) or 0) >= 0 else ''}"
+                     f"${ev.get('pnl', 0):.0f}")
+    if len(closes) > 8:
+        lines.append(f"  … +{len(closes) - 8} more")
+    if violations:
+        lines.append("Tier flags: " + "; ".join(violations)[:200])
+    if is_news:
+        lines.append(f"News day: {', '.join(news_types)}")
+
+    # Losing day / rule violations get a higher-priority ping.
+    priority = "high" if (pnl < 0 or violations) else "default"
+    tag = "chart_with_upwards_trend" if pnl >= 0 else "chart_with_downwards_trend"
+    return {"title": f"Omen EOD {date_str} · {sign}${pnl:.0f}",
+            "body": "\n".join(lines), "tags": tag, "priority": priority}
+
+
 def _tier_compliance(rows: list, paper_trades: list) -> list:
     """Check tier-v2 rules (C10 2026-07-13): S>=4, no [chase], max 2/day.
     v1's [hammer] requirement and stop-when-green dropped per C10 sweep
@@ -329,7 +406,9 @@ def main():
     parser.add_argument("--date", default=None,
                         help="review date YYYY-MM-DD (default: yesterday)")
     parser.add_argument("--dry-run", action="store_true",
-                        help="print the embed JSON instead of posting to Discord")
+                        help="print the digest (ntfy text + embed JSON), don't post")
+    parser.add_argument("--discord", action="store_true",
+                        help="also post the legacy Discord embed (retired channel)")
     args = parser.parse_args()
 
     if args.date:
@@ -337,22 +416,33 @@ def main():
     else:
         date_str = (date.today() - timedelta(days=1)).isoformat()
 
-    payload = build_embed(date_str)
+    digest = build_ntfy_digest(date_str)
 
     if args.dry_run:
-        print(json.dumps(payload, indent=2))
+        print("=== ntfy digest ===")
+        print(f"TITLE: {digest['title']}  [tags={digest['tags']} priority={digest['priority']}]")
+        print(digest["body"])
+        if args.discord:
+            print("\n=== discord embed ===")
+            print(json.dumps(build_embed(date_str), indent=2))
         return
 
-    # Post via existing DiscordSignalBot (has retry + failed-log)
-    from discord_bot import DiscordSignalBot
-    try:
-        bot = DiscordSignalBot()
-    except ValueError as e:
-        print(f"Discord init failed: {e}")
-        print("Run with --dry-run to see the embed without posting.")
-        return
-    ok = bot._post_with_retry(payload)
-    print(f"Daily review for {date_str}: {'posted' if ok else 'FAILED'}")
+    # ntfy is the review channel now (Discord retired). Post one EOD card.
+    from ntfy_notifier import NtfyNotifier
+    n = NtfyNotifier()
+    ok = n.post_text(digest["body"], title=digest["title"],
+                     tags=digest["tags"], priority=digest["priority"])
+    print(f"Daily review for {date_str}: ntfy {'posted' if ok else 'FAILED'} → {n.topic}")
+
+    # Legacy Discord embed only when explicitly asked.
+    if args.discord:
+        from discord_bot import DiscordSignalBot
+        try:
+            bot = DiscordSignalBot()
+            d_ok = bot._post_with_retry(build_embed(date_str))
+            print(f"  discord: {'posted' if d_ok else 'FAILED'}")
+        except ValueError as e:
+            print(f"  discord skipped: {e}")
 
 
 if __name__ == "__main__":

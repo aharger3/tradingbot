@@ -28,5 +28,11 @@ git pull --rebase --autostash 2>&1 | Tee-Object -FilePath $log -Append
 # Run with paper trading enabled (logs paper trades alongside live signals)
 & $python live_scanner.py --paper 2>&1 | Tee-Object -FilePath $log -Append
 
+# End-of-day digest → ntfy (aharg-ops). One phone card: record, win-rate vs the
+# 55% goal, P&L, per-trade list. --date today since the scanner just finished
+# this session's ledger (default would be yesterday).
+$today = Get-Date -Format "yyyy-MM-dd"
+& $python daily_review.py --date $today 2>&1 | Tee-Object -FilePath $log -Append
+
 # Bank today's 1-min bars via Polygon.io (was yfinance — socket timeouts) for longer backtests
 & $python archive_1m.py 2>&1 | Tee-Object -FilePath $log -Append
