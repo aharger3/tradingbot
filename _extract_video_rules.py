@@ -20,7 +20,7 @@ GROUPS_FILE = TRANSCRIPT_DIR / "_extract_groups.json"
 CHECKPOINT_DIR = TRANSCRIPT_DIR / "_extract_checkpoints"
 NOTES_DIR = CHECKPOINT_DIR / "_running_notes"
 
-DEEPSEEK_API_KEY = "sk-516a62fdf01b4c19af470990babd63d8"
+DEEPSEEK_API_KEY = os.environ["DEEPSEEK_API_KEY"]
 DEEPSEEK_API_URL = "https://api.deepseek.com/v1/chat/completions"
 
 # Max chars of transcript text per chunk (leaves room for system prompt + output)

@@ -6,7 +6,7 @@ batch for topic-organized summaries, then merges into final document.
 import os, json, glob, time, re, math
 import openai
 
-API_KEY = "sk-516a62fdf01b4c19af470990babd63d8"
+API_KEY = os.environ["DEEPSEEK_API_KEY"]
 BASE_URL = "https://api.deepseek.com"
 MODEL = "deepseek-chat"
 CHECKPOINT = r"C:\Users\aharg\tradingbot\research\youtube-checkpoint.json"

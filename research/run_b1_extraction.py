@@ -18,7 +18,7 @@ GROUPS_FILE = TRANSCRIPTS / "_extract_groups.json"
 EXISTING_EXTRACT = BASE / "EXTRACTED_TRADING_RULES.md"
 OUTPUT = BASE / "scarface-rules-videos.md"
 
-API_KEY = os.environ.get("DEEPSEEK_API_KEY", "sk-516a62fdf01b4c19af470990babd63d8")
+API_KEY = os.environ["DEEPSEEK_API_KEY"]
 API_URL = "https://api.deepseek.com/chat/completions"
 MODEL = "deepseek-chat"
 

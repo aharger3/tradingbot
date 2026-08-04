@@ -16,7 +16,7 @@ OUTPUT_FILE = os.path.join(OUTPUT_DIR, "scarface-rules-youtube.md")
 MAX_WORKERS = 10
 MODEL = "deepseek-chat"  # DeepSeek V4 Flash
 
-API_KEY = "sk-516a62fdf01b4c19af470990babd63d8"
+API_KEY = os.environ["DEEPSEEK_API_KEY"]
 BASE_URL = "https://api.deepseek.com"
 
 client = openai.OpenAI(api_key=API_KEY, base_url=BASE_URL)

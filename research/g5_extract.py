@@ -16,7 +16,7 @@ YOUTUBE = Path(r"C:\Users\aharg\tradingbot\youtube_data")
 INTERIM = BASE / "_g5_interim"
 INTERIM.mkdir(exist_ok=True)
 
-API_KEY = os.environ.get("DEEPSEEK_API_KEY", "sk-516a62fdf01b4c19af470990babd63d8")
+API_KEY = os.environ["DEEPSEEK_API_KEY"]
 API_URL = "https://api.deepseek.com/chat/completions"
 MODEL = "deepseek-chat"
 
