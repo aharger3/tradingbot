@@ -1,0 +1,47 @@
+{
+  "n_population": 974,
+  "n_resolved": 973,
+  "n_scratch": 1,
+  "n_ambiguous": 1,
+  "ambiguous_rate_pct_all": 0.1,
+  "ambiguous_rate_pct_resolved": 0.1,
+  "mean_realized_R_pessimistic": 0.0216,
+  "mean_realized_R_optimistic": 0.0247,
+  "delta_opt_minus_pess": 0.0031,
+  "recorded_exit_price_mean_R": 0.0216,
+  "validation_agree": 974,
+  "validation_pct": 100.0,
+  "traded_only": {
+    "n": 761,
+    "n_resolved": 760,
+    "n_ambiguous": 1,
+    "ambiguous_rate_pct_all": 0.13,
+    "ambiguous_rate_pct_resolved": 0.13,
+    "mean_R_pessimistic": 0.0737,
+    "mean_R_optimistic": 0.0776
+  },
+  "kind_breakdown": {
+    "loss": 638,
+    "win": 334,
+    "ambiguous": 1,
+    "scratch": 1
+  },
+  "per_grade_ambiguous": {
+    "A": {
+      "ambig": 0,
+      "n": 55
+    },
+    "A+": {
+      "ambig": 0,
+      "n": 13
+    },
+    "B": {
+      "ambig": 1,
+      "n": 693
+    },
+    "C": {
+      "ambig": 0,
+      "n": 213
+    }
+  }
+}
