@@ -133,14 +133,27 @@ def psych_nodes(price_lo: float, price_hi: float):
 
 
 def hod_lod_nodes(bars, entry_i):
-    """High/low of the RTH session up to entry_i."""
-    seg = bars[: entry_i + 1]
+    """High/low of the RTH session *before* the entry bar (bars[: entry_i]).
+
+    The session extreme must be computed from bars strictly before the entry
+    bar, not through it: a break-and-retest entry is by definition a bar that
+    prints a new session extreme, so including it makes "the nearest wall" almost
+    always the entry bar's own extreme (see research/v34_verdict.md §2). The
+    prior session extreme — the wall standing there when the decision was made
+    — is what HOD/LOD was always meant to mean.
+
+    Each node carries `available_from`: the index of the bar that established
+    that extreme (always < entry_i, i.e. visible before the entry bar).
+    """
+    seg = bars[: entry_i]
     if not seg:
         return []
     hod = max(b["h"] for b in seg)
     lod = min(b["l"] for b in seg)
-    return [{"price": round(hod, 4), "type": "HOD", "weight": 3.0},
-            {"price": round(lod, 4), "type": "LOD", "weight": 3.0}]
+    hod_from = next(i for i, b in enumerate(seg) if b["h"] == hod)
+    lod_from = next(i for i, b in enumerate(seg) if b["l"] == lod)
+    return [{"price": round(hod, 4), "type": "HOD", "weight": 3.0, "available_from": hod_from},
+            {"price": round(lod, 4), "type": "LOD", "weight": 3.0, "available_from": lod_from}]
 
 
 def _prior_day(symbol: str, day: str):
@@ -270,3 +283,53 @@ def source_families_within(nodes, target, tol):
                     fams.add(fam)
                     break
     return fams
+
+
+def _bar(name, o, h, l, c):
+    return {"t": name, "o": float(o), "h": float(h), "l": float(l), "c": float(c)}
+
+
+def selftest():
+    """Build a synthetic level set and print it.
+
+    The entry bar (index 5) prints a NEW session high/low, so the session
+    extreme visible *at the decision* is the prior extreme (set at index 2).
+    HOD/LOD must exclude the entry bar, and every node must carry
+    `available_from` (the bar index from which the level was visible).
+    """
+    bars = [
+        _bar("09:30", 100, 102, 95, 101),
+        _bar("09:31", 101, 105, 100, 104),
+        _bar("09:32", 104, 110, 90, 109),   # prior high 110 / prior low 90
+        _bar("09:33", 109, 108, 96, 107),
+        _bar("09:34", 107, 106, 98, 105),
+        _bar("09:35", 105, 120, 80, 118),   # entry bar: NEW high 120 / NEW low 80
+    ]
+    entry_i = 5
+    entry, stop, target = 118.0, 105.0, 144.0
+    lo = min(entry, stop, target)
+    hi = max(entry, stop, target)
+    nodes = (hod_lod_nodes(bars, entry_i)
+             + swing_pivots(bars, entry_i)
+             + psych_nodes(lo, hi))
+    # psych nodes are price-derived and visible from the open
+    for nd in nodes:
+        nd.setdefault("available_from", 0)
+    import json
+    print(json.dumps(nodes, indent=2))
+    # invariants
+    hod = next(n for n in nodes if n["type"] == "HOD")
+    lod = next(n for n in nodes if n["type"] == "LOD")
+    assert hod["price"] == 110.0, f"HOD must be prior high 110, got {hod['price']}"
+    assert lod["price"] == 90.0, f"LOD must be prior low 90, got {lod['price']}"
+    assert hod["available_from"] < entry_i, "HOD must be established before the entry bar"
+    assert lod["available_from"] < entry_i, "LOD must be established before the entry bar"
+    assert all("available_from" in n for n in nodes), "every node must carry available_from"
+    return nodes
+
+
+if __name__ == "__main__":
+    import sys
+    if "--selftest" in sys.argv:
+        selftest()
+        sys.exit(0)
