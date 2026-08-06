@@ -1,0 +1,245 @@
+{
+  "_provenance": {
+    "symbol_set": "ALL (CORE + EXPERIMENTAL)",
+    "symbol_count": 24,
+    "date_range_start": "2024-07-31",
+    "date_range_end": "2026-07-31",
+    "trading_days": 523,
+    "cache_coverage_pct": 95.79,
+    "alert_only_included_in_metrics": false,
+    "git_sha": "unknown",
+    "utc_timestamp": "2026-08-01T21:13:40Z",
+    "mode": "full",
+    "backtest_module_version": "v2.4-pipeline-S0.2"
+  },
+  "overall": {
+    "trade_count": 1289,
+    "win_rate": 0.38013964313421256,
+    "avg_risk_reward": 1.2200055252241893,
+    "profit_factor": 1.2327044025157232,
+    "wins": 490,
+    "losses": 795,
+    "scratches": 4,
+    "gross_profit": 980000.0,
+    "gross_loss": 795000.0,
+    "net_profit": 185000.0
+  },
+  "per_signal_type": {
+    "break_and_retest": {
+      "trade_count": 1197,
+      "win_rate": 0.38011695906432746,
+      "avg_rr": 1.9883321689423037,
+      "profit_factor": 1.2330623306233062
+    },
+    "one_candle_rule": {
+      "trade_count": 92,
+      "win_rate": 0.3804347826086957,
+      "avg_rr": 2.1633415100846904,
+      "profit_factor": 1.2280701754385965
+    }
+  },
+  "by_grade": {
+    "B": {
+      "trade_count": 1285,
+      "win_rate": 0.38054474708171204,
+      "avg_rr": 2.0083619022845784,
+      "profit_factor": 1.2348484848484849
+    },
+    "A": {
+      "trade_count": 1,
+      "win_rate": 0.0,
+      "avg_rr": 0,
+      "profit_factor": 0.0
+    },
+    "A+": {
+      "trade_count": 3,
+      "win_rate": 0.3333333333333333,
+      "avg_rr": 0.2329450915141444,
+      "profit_factor": 1.0
+    }
+  },
+  "per_anchor_x_direction": {
+    "call": {
+      "PDH": {
+        "trade_count": 77,
+        "wins": 28,
+        "losses": 49,
+        "scratches": 0,
+        "win_rate": 36.4,
+        "pnl": 7000.0
+      },
+      "PDL": {
+        "trade_count": 5,
+        "wins": 2,
+        "losses": 3,
+        "scratches": 0,
+        "win_rate": 40.0,
+        "pnl": 1000.0
+      },
+      "PMH": {
+        "trade_count": 179,
+        "wins": 72,
+        "losses": 107,
+        "scratches": 0,
+        "win_rate": 40.2,
+        "pnl": 37000.0
+      },
+      "PML": {
+        "trade_count": 0,
+        "wins": 0,
+        "losses": 0,
+        "scratches": 0,
+        "win_rate": 0.0,
+        "pnl": 0.0
+      },
+      "ORH": {
+        "trade_count": 285,
+        "wins": 106,
+        "losses": 178,
+        "scratches": 1,
+        "win_rate": 37.3,
+        "pnl": 34883.54
+      },
+      "ORL": {
+        "trade_count": 1,
+        "wins": 0,
+        "losses": 1,
+        "scratches": 0,
+        "win_rate": 0.0,
+        "pnl": -1000.0
+      },
+      "none": {
+        "trade_count": 139,
+        "wins": 48,
+        "losses": 91,
+        "scratches": 0,
+        "win_rate": 34.5,
+        "pnl": 5000.0
+      }
+    },
+    "put": {
+      "PDH": {
+        "trade_count": 5,
+        "wins": 1,
+        "losses": 4,
+        "scratches": 0,
+        "win_rate": 20.0,
+        "pnl": -2000.0
+      },
+      "PDL": {
+        "trade_count": 72,
+        "wins": 34,
+        "losses": 38,
+        "scratches": 0,
+        "win_rate": 47.2,
+        "pnl": 30000.0
+      },
+      "PMH": {
+        "trade_count": 0,
+        "wins": 0,
+        "losses": 0,
+        "scratches": 0,
+        "win_rate": 0.0,
+        "pnl": 0.0
+      },
+      "PML": {
+        "trade_count": 148,
+        "wins": 63,
+        "losses": 85,
+        "scratches": 0,
+        "win_rate": 42.6,
+        "pnl": 41000.0
+      },
+      "ORH": {
+        "trade_count": 0,
+        "wins": 0,
+        "losses": 0,
+        "scratches": 0,
+        "win_rate": 0.0,
+        "pnl": 0.0
+      },
+      "ORL": {
+        "trade_count": 264,
+        "wins": 92,
+        "losses": 169,
+        "scratches": 3,
+        "win_rate": 35.2,
+        "pnl": 17720.16
+      },
+      "none": {
+        "trade_count": 114,
+        "wins": 44,
+        "losses": 70,
+        "scratches": 0,
+        "win_rate": 38.6,
+        "pnl": 18000.0
+      }
+    },
+    "all": {
+      "PDH": {
+        "trade_count": 82,
+        "wins": 29,
+        "losses": 53,
+        "scratches": 0,
+        "win_rate": 35.4,
+        "pnl": 5000.0
+      },
+      "PDL": {
+        "trade_count": 77,
+        "wins": 36,
+        "losses": 41,
+        "scratches": 0,
+        "win_rate": 46.8,
+        "pnl": 31000.0
+      },
+      "PMH": {
+        "trade_count": 179,
+        "wins": 72,
+        "losses": 107,
+        "scratches": 0,
+        "win_rate": 40.2,
+        "pnl": 37000.0
+      },
+      "PML": {
+        "trade_count": 148,
+        "wins": 63,
+        "losses": 85,
+        "scratches": 0,
+        "win_rate": 42.6,
+        "pnl": 41000.0
+      },
+      "ORH": {
+        "trade_count": 285,
+        "wins": 106,
+        "losses": 178,
+        "scratches": 1,
+        "win_rate": 37.3,
+        "pnl": 34883.54
+      },
+      "ORL": {
+        "trade_count": 265,
+        "wins": 92,
+        "losses": 170,
+        "scratches": 3,
+        "win_rate": 35.1,
+        "pnl": 16720.16
+      },
+      "none": {
+        "trade_count": 253,
+        "wins": 92,
+        "losses": 161,
+        "scratches": 0,
+        "win_rate": 36.4,
+        "pnl": 23000.0
+      }
+    }
+  },
+  "alert_only": {
+    "break_and_retest": {
+      "alert_count": 224
+    },
+    "one_candle_rule": {
+      "alert_count": 125
+    }
+  }
+}

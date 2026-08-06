@@ -1,0 +1,260 @@
+{"symbol": "TSLA", "day": "2024-01-08", "tier": "A", "entry": 237.9, "stop": 237.55, "target": 239.2, "entry_i": 33, "entry_t": "10:03", "rr": 3.714285714285726, "side": "call", "setups": ["Break & retest"], "management": "Hold to 2R", "note": "", "marked_at": "2026-08-04T16:45:00.195Z"}
+{"symbol": "SPY", "day": "2024-02-23", "tier": "A", "entry": 510.02, "stop": 509.87, "target": 510.4, "entry_i": 17, "entry_t": "09:47", "rr": 2.533333333333687, "side": "call", "setups": ["84% re-entry", "Break & retest"], "management": null, "note": "potentially a double fakeout here, trade to the downside too last 10m, usually dont trade spy and qq unless they are very bullish/bearish", "marked_at": "2026-08-04T16:21:51.950Z"}
+{"symbol": "NVDA", "day": "2024-02-26", "tier": "S", "entry": 79.49, "stop": 79.69, "target": 79.08, "entry_i": 12, "entry_t": "09:42", "rr": 2.0499999999999536, "side": "put", "setups": ["One candle rule"], "management": "Scale 1R + runner", "note": "no displacement but 2 green candles to respectt off of", "marked_at": "2026-08-04T16:59:45.270Z"}
+{"symbol": "TSLA", "day": "2024-04-22", "tier": "S", "entry": 142.13, "stop": 141.5, "target": 143.4, "entry_i": 13, "entry_t": "09:43", "rr": 2.0158730158730465, "side": "call", "setups": ["One candle rule"], "management": "Scale 1R + runner", "note": "", "marked_at": "2026-08-04T16:46:37.063Z"}
+{"symbol": "SPY", "day": "2024-05-14", "tier": "A", "entry": 521.49, "stop": 521.38, "target": 521.69, "entry_i": 28, "entry_t": "09:58", "rr": 1.8181818181820062, "side": "call", "setups": ["Break & retest"], "management": "Scale 1R + runner", "note": "could've been a reenter and take profit but this would've been a mess would've been faced out from the consolidation", "marked_at": "2026-08-04T16:34:01.420Z"}
+{"symbol": "IWM", "day": "2024-06-21", "tier": "A", "entry": 199.12, "stop": 199.35, "target": 198.46, "entry_i": 21, "entry_t": "09:51", "rr": 2.869565217391417, "side": "put", "setups": ["Break & retest"], "management": "Scale 1R + runner", "note": "", "marked_at": "2026-08-04T18:10:23.518Z"}
+{"symbol": "SPY", "day": "2024-07-11", "tier": "A", "entry": 561, "stop": 561.27, "target": 560.39, "entry_i": 44, "entry_t": "10:14", "rr": 2.259259259259462, "side": "put", "setups": ["Break & retest"], "management": "Scale 1R + runner", "note": "break and next candle is weak displacement so not even an a but something to notice if you have higher timeframe thesis", "marked_at": "2026-08-04T17:54:32.484Z"}
+{"symbol": "QQQ", "day": "2024-07-24", "tier": "A", "entry": 471.5, "stop": 472.09, "target": 470.31, "entry_i": 23, "entry_t": "09:53", "rr": 2.0169491525424545, "side": "put", "setups": ["Break & retest"], "management": "Scale 1R + runner", "note": "candles barely wicking away from pivot and 1 candle rule so took time for entry and a lot of consolidation", "marked_at": "2026-08-04T16:35:33.520Z"}
+{"symbol": "MARA", "day": "2024-08-02", "tier": "S", "entry": 17.98, "stop": 17.75, "target": 18.44, "entry_i": 19, "entry_t": "09:49", "rr": 2, "side": "call", "setups": ["Break & retest"], "management": "Scale 1R + runner", "note": "", "marked_at": "2026-08-04T16:01:20.367Z"}
+{"symbol": "SOFI", "day": "2024-08-05", "tier": "S", "entry": 6.12, "stop": 6.08, "target": 6.21, "entry_i": 13, "entry_t": "09:43", "rr": 2.2499999999999947, "side": "call", "setups": ["One candle rule"], "management": "Hold to 2R", "note": "", "marked_at": "2026-08-04T16:55:39.818Z"}
+{"symbol": "AVGO", "day": "2024-08-07", "tier": "S", "entry": 147.67, "stop": 148.13, "target": 146.72, "entry_i": 15, "entry_t": "09:45", "rr": 2.0652173913042873, "side": "put", "setups": ["Break & retest", "One candle rule"], "management": "Scale 1R + runner", "note": "couple entries couple candles later or way later when it goes down and all the way up", "marked_at": "2026-08-04T17:49:36.051Z"}
+{"symbol": "QQQ", "day": "2024-08-08", "tier": "S", "entry": 441.9, "stop": 441.32, "target": 443.06, "entry_i": 37, "entry_t": "10:07", "rr": 2.000000000000098, "side": "call", "setups": ["Break & retest", "Order block"], "management": "Hold to 2R", "note": "", "marked_at": "2026-08-04T16:14:13.563Z"}
+{"symbol": "PLTR", "day": "2024-08-20", "tier": "S", "entry": 32.2, "stop": 32.26, "target": 31.81, "entry_i": 40, "entry_t": "10:10", "rr": 6.500000000000592, "side": "put", "setups": ["Break & retest", "One candle rule"], "management": "Hold to 2R", "note": "", "marked_at": "2026-08-04T16:13:38.363Z"}
+{"symbol": "META", "day": "2024-08-27", "tier": "S", "entry": 519.75, "stop": 518.99, "target": 521.28, "entry_i": 28, "entry_t": "09:58", "rr": 2.0131578947368305, "side": "call", "setups": [], "management": "Scale 1R + runner", "note": "first red candle at 930 it respects", "marked_at": "2026-08-02T22:38:31.882Z"}
+{"symbol": "PLTR", "day": "2024-08-28", "tier": "A", "entry": 30.43, "stop": 30.48, "target": 30.3, "entry_i": 18, "entry_t": "09:48", "rr": 2.5999999999999432, "side": "put", "setups": ["Break & retest", "One candle rule"], "management": "Scale 1R + runner", "note": "", "marked_at": "2026-08-04T16:09:35.648Z"}
+{"symbol": "SPY", "day": "2024-08-30", "tier": "A", "entry": 561.62, "stop": 561.25, "target": 561.99, "entry_i": 11, "entry_t": "09:41", "rr": 1, "side": "call", "setups": ["84% re-entry", "Break & retest"], "management": "Stop at breakeven", "note": "reenter as it claims the same price, this would've been a double 84 percent loss but scaling out would've helped", "marked_at": "2026-08-04T16:02:52.467Z"}
+{"symbol": "DIA", "day": "2024-09-06", "tier": "S", "entry": 408.03, "stop": 408.6, "target": 406.88, "entry_i": 53, "entry_t": "10:23", "rr": 2.0175438596489057, "side": "put", "setups": ["Break & retest", "Order block"], "management": "Scale 1R + runner", "note": "", "marked_at": "2026-08-04T03:16:05.551Z"}
+{"symbol": "NVDA", "day": "2024-09-06", "tier": "A", "entry": 104.81, "stop": 105.06, "target": 104.38, "entry_i": 53, "entry_t": "10:23", "rr": 1.7200000000000273, "side": "put", "setups": ["Something else"], "management": "Stop at breakeven", "note": "no clean break it just respect pivot structures so maybe higher timeframe thesis", "marked_at": "2026-08-04T16:41:38.322Z"}
+{"symbol": "SOFI", "day": "2024-09-06", "tier": "A", "entry": 7.26, "stop": 7.29, "target": 7.18, "entry_i": 34, "entry_t": "10:04", "rr": 2.666666666666647, "side": "put", "setups": ["Break & retest"], "management": "Scale 1R + runner", "note": "when a major price is near like that you want to try to hit it. but I also dont like the way the candles look as much here so thats why im going with A", "marked_at": "2026-08-04T15:14:01.960Z"}
+{"symbol": "UBER", "day": "2024-09-10", "tier": "S", "entry": 69.69, "stop": 69.88, "target": 69.3, "entry_i": 17, "entry_t": "09:47", "rr": 2.052631578947396, "side": "put", "setups": ["Break & retest", "One candle rule"], "management": "Hold to 2R", "note": "could be entry slightly earlier I just didn't like that the entry was above pml", "marked_at": "2026-08-04T16:32:52.469Z"}
+{"symbol": "NFLX", "day": "2024-09-11", "tier": "A", "entry": 67.24, "stop": 67.35, "target": 67.02, "entry_i": 9, "entry_t": "09:39", "rr": 2, "side": "put", "setups": ["Break & retest"], "management": "Scale 1R + runner", "note": "maybe entry here but the price action meaning the candles look really ugly", "marked_at": "2026-08-04T16:18:15.446Z"}
+{"symbol": "GOOG", "day": "2024-10-03", "tier": "A", "entry": 166.7, "stop": 166.47, "target": 167.16, "entry_i": 34, "entry_t": "10:04", "rr": 2.0000000000001235, "side": "call", "setups": ["Break & retest"], "management": "Scale 1R + runner", "note": "after scale out the rest is break even stop unless you really think it makes sense to get a better MFE. maybe the stats will tell us", "marked_at": "2026-08-04T16:53:09.185Z"}
+{"symbol": "HOOD", "day": "2024-10-31", "tier": "S", "entry": 25.07, "stop": 25.37, "target": 24.47, "entry_i": 13, "entry_t": "09:43", "rr": 2, "side": "put", "setups": ["One candle rule"], "management": "Scale 1R + runner", "note": "one candle rule, misses by a cent or two but thats the perfect place for stop and its higher probability", "marked_at": "2026-08-04T18:57:43.758Z"}
+{"symbol": "GOOGL", "day": "2024-11-07", "tier": "A", "entry": 178.9, "stop": 178.7, "target": 179.3, "entry_i": 10, "entry_t": "09:40", "rr": 1.999999999999858, "side": "call", "setups": ["Break & retest", "One candle rule"], "management": "Hold to 2R", "note": "might've been not enough strength on entry candle so probably blew it here", "marked_at": "2026-08-04T16:46:16.228Z"}
+{"symbol": "CRM", "day": "2024-11-11", "tier": "A", "entry": 334.95, "stop": 333.82, "target": 337.28, "entry_i": 14, "entry_t": "09:44", "rr": 2.0619469026548614, "side": "call", "setups": ["84% re-entry"], "management": "Scale 1R + runner", "note": "would've taken 3 tries instead of 2 which is usual for 84 percent rule, unless you decide to change the stop to the pivot structure that was created, then it would've been 2 entries. 1015 was a one candle rule essentially that was respected too", "marked_at": "2026-08-04T17:59:09.183Z"}
+{"symbol": "NVDA", "day": "2024-11-13", "tier": "A", "entry": 148.36, "stop": 148.61, "target": 147.54, "entry_i": 17, "entry_t": "09:47", "rr": 3.2800000000000864, "side": "put", "setups": ["Break & retest"], "management": "Scale 1R + runner", "note": "held pivot but too choppy and taking too long I dont like this really", "marked_at": "2026-08-04T17:12:08.759Z"}
+{"symbol": "QQQ", "day": "2024-11-15", "tier": "A", "entry": 501.14, "stop": 501.52, "target": 500.38, "entry_i": 31, "entry_t": "10:01", "rr": 2, "side": "put", "setups": ["Break & retest"], "management": "Scale 1R + runner", "note": "not that much displacement enter as the candle closing could enter earlier possibly", "marked_at": "2026-08-04T18:53:18.573Z"}
+{"symbol": "GOOGL", "day": "2024-11-20", "tier": "S", "entry": 176.98, "stop": 177.33, "target": 176.28, "entry_i": 6, "entry_t": "09:36", "rr": 1.9999999999998377, "side": "put", "setups": ["Break & retest", "One candle rule"], "management": "Hold to 2R", "note": "", "marked_at": "2026-08-04T17:09:25.863Z"}
+{"symbol": "MARA", "day": "2024-11-21", "tier": "A", "entry": 24.43, "stop": 24.75, "target": 23.79, "entry_i": 27, "entry_t": "09:57", "rr": 2, "side": "put", "setups": ["Break & retest"], "management": "Scale 1R + runner", "note": "10:19 maybe an entry as well", "marked_at": "2026-08-04T16:31:13.903Z"}
+{"symbol": "MSFT", "day": "2024-12-02", "tier": "S", "entry": 425.06, "stop": 424.68, "target": 429.76, "entry_i": 15, "entry_t": "09:45", "rr": 12.368421052631698, "side": "call", "setups": ["Break & retest", "Order block"], "management": "Hold to 2R", "note": "prob one we wanna hold really strong and pretty looking red order block extra confluence tight stop, always move to be after a big move and when scaled some out", "marked_at": "2026-08-04T15:17:50.544Z"}
+{"symbol": "SPY", "day": "2024-12-03", "tier": "A", "entry": 603.12, "stop": 603.31, "target": 602.73, "entry_i": 10, "entry_t": "09:40", "rr": 2.0526315789479352, "side": "put", "setups": ["84% re-entry"], "management": "Scale 1R + runner", "note": "later entry in the day would've lowered the stop to fit the pivot structure better, but realistically you want something more s to find", "marked_at": "2026-08-04T18:49:54.439Z"}
+{"symbol": "BABA", "day": "2024-12-17", "tier": "S", "entry": 86.18, "stop": 86.06, "target": 86.42, "entry_i": 53, "entry_t": "10:23", "rr": 1.9999999999998817, "side": "call", "setups": ["Break & retest"], "management": "Hold to 2R", "note": "", "marked_at": "2026-08-04T16:29:25.451Z"}
+{"symbol": "AAPL", "day": "2024-12-20", "tier": "S", "entry": 248.65, "stop": 248.3, "target": 249.38, "entry_i": 47, "entry_t": "10:17", "rr": 2.0857142857142903, "side": "call", "setups": ["Order block", "Break & retest"], "management": null, "note": "I like break and retests where there was one fast candle and one rejection at 931 and 932 but can pay attention to other pivots instead like 930 and the 1010 pivot area or just the order block 2 before entry", "marked_at": "2026-08-04T17:53:32.667Z"}
+{"symbol": "NVDA", "day": "2024-12-20", "tier": "S", "entry": 130.64, "stop": 130.39, "target": 131.15, "entry_i": 41, "entry_t": "10:11", "rr": 2.0400000000000773, "side": "call", "setups": ["Break & retest", "One candle rule"], "management": "Hold to 2R", "note": "", "marked_at": "2026-08-04T16:27:12.918Z"}
+{"symbol": "AAPL", "day": "2025-01-10", "tier": "S", "entry": 237.76, "stop": 237.99, "target": 236.78, "entry_i": 30, "entry_t": "10:00", "rr": 4.26086956521701, "side": "put", "setups": ["Break & retest"], "management": "Hold to 2R", "note": "as candle is forming you dont want to get an entry all the way at the bottom, this should kind of signal you that your should be getting ready to get into the trade", "marked_at": "2026-08-04T16:24:35.934Z"}
+{"symbol": "QQQ", "day": "2025-01-14", "tier": "A", "entry": 507.38, "stop": 507.75, "target": 506.5, "entry_i": 26, "entry_t": "09:56", "rr": 2.3783783783783368, "side": "put", "setups": ["Break & retest"], "management": "Scale 1R + runner", "note": "trade may have been hard to work out, above orh earlier lowers probability", "marked_at": "2026-08-04T16:58:37.619Z"}
+{"symbol": "AMZN", "day": "2025-01-22", "tier": "S", "entry": 234.03, "stop": 233.64, "target": 234.78, "entry_i": 37, "entry_t": "10:07", "rr": 1.9230769230768503, "side": "call", "setups": ["One candle rule"], "management": "Scale 1R + runner", "note": "", "marked_at": "2026-08-04T17:02:34.871Z"}
+{"symbol": "AVGO", "day": "2025-02-07", "tier": "S", "entry": 233.92, "stop": 234.81, "target": 232.06, "entry_i": 7, "entry_t": "09:37", "rr": 2.089887640449387, "side": "put", "setups": ["Break & retest", "Order block"], "management": "Scale 1R + runner", "note": "", "marked_at": "2026-08-04T16:36:25.403Z"}
+{"symbol": "AAPL", "day": "2025-02-19", "tier": "A", "entry": 243.96, "stop": 244.16, "target": 243.73, "entry_i": 62, "entry_t": "10:32", "rr": 1.1500000000001562, "side": "put", "setups": ["Break & retest", "Order block"], "management": "Scale 1R + runner", "note": "a green candle that could've been respected for break even if necessary as well, just late in the day you always want earlier trades", "marked_at": "2026-08-04T15:27:02.897Z"}
+{"symbol": "COIN", "day": "2025-02-28", "tier": "A", "entry": 208.73, "stop": 207.71, "target": 210.65, "entry_i": 34, "entry_t": "10:04", "rr": 1.8823529411765199, "side": "call", "setups": ["Break & retest"], "management": "Scale 1R + runner", "note": "lots of consolidation but clear stop", "marked_at": "2026-08-04T17:56:59.866Z"}
+{"symbol": "QQQ", "day": "2025-03-03", "tier": "A", "entry": 508.56, "stop": 509.14, "target": 507.41, "entry_i": 22, "entry_t": "09:52", "rr": 1.9827586206896703, "side": "put", "setups": ["Break & retest"], "management": "Scale 1R + runner", "note": "no displacement enter as candle forming dont want to be at low of day", "marked_at": "2026-08-04T18:07:39.799Z"}
+{"symbol": "COIN", "day": "2025-03-06", "tier": "S", "entry": 218.39, "stop": 217.62, "target": 219.96, "entry_i": 27, "entry_t": "09:57", "rr": 2.0389610389611152, "side": "call", "setups": ["Order block", "Break & retest"], "management": "Scale 1R + runner", "note": "respects red candles, quite strong , clear levels to target", "marked_at": "2026-08-04T16:04:51.366Z"}
+{"symbol": "SOFI", "day": "2025-03-12", "tier": "S", "entry": 11.8, "stop": 11.86, "target": 11.67, "entry_i": 17, "entry_t": "09:47", "rr": 2.166666666666726, "side": "put", "setups": ["Break & retest"], "management": "Scale 1R + runner", "note": "", "marked_at": "2026-08-04T17:00:13.088Z"}
+{"symbol": "UBER", "day": "2025-03-12", "tier": "S", "entry": 70.43, "stop": 70.65, "target": 69.98, "entry_i": 21, "entry_t": "09:51", "rr": 2.045454545454569, "side": "put", "setups": ["Order block", "Break & retest"], "management": "Scale 1R + runner", "note": "stock respected green candle rest of the way, break ant retest displacement", "marked_at": "2026-08-02T22:37:43.698Z"}
+{"symbol": "AMZN", "day": "2025-03-14", "tier": "A", "entry": 196.26, "stop": 196.73, "target": 195.32, "entry_i": 37, "entry_t": "10:07", "rr": 2, "side": "put", "setups": ["One candle rule"], "management": "Scale 1R + runner", "note": "tough pa when stock breaks above orh the other way lower probability", "marked_at": "2026-08-04T16:48:55.414Z"}
+{"symbol": "MU", "day": "2025-03-28", "tier": "S", "entry": 89.82, "stop": 89.99, "target": 89.48, "entry_i": 33, "entry_t": "10:03", "rr": 1.9999999999999165, "side": "put", "setups": ["Break & retest", "Order block"], "management": "Hold to 2R", "note": "can come back up to that green candle and thats where u want it to hold", "marked_at": "2026-08-04T16:54:51.702Z"}
+{"symbol": "AVGO", "day": "2025-04-10", "tier": "A", "entry": 173.59, "stop": 174.33, "target": 172, "entry_i": 34, "entry_t": "10:04", "rr": 2.148648648648627, "side": "put", "setups": ["Break & retest"], "management": null, "note": "fits our system but very choppy so not what we like to see, want to get the day done early with the cleanest setup out there", "marked_at": "2026-08-04T16:26:19.651Z"}
+{"symbol": "META", "day": "2025-04-10", "tier": "A", "entry": 566.18, "stop": 570.89, "target": 556.64, "entry_i": 21, "entry_t": "09:51", "rr": 2.025477707006346, "side": "put", "setups": ["One candle rule"], "management": "Scale 1R + runner", "note": "holds green candle but not pretty setup", "marked_at": "2026-08-04T18:11:52.385Z"}
+{"symbol": "INTC", "day": "2025-04-14", "tier": "A", "entry": 20.26, "stop": 20.38, "target": 20, "entry_i": 15, "entry_t": "09:45", "rr": 2.166666666666726, "side": "put", "setups": ["Break & retest"], "management": "Scale 1R + runner", "note": "", "marked_at": "2026-08-04T16:57:45.453Z"}
+{"symbol": "META", "day": "2025-05-01", "tier": "S", "entry": 578.08, "stop": 580.2, "target": 573.84, "entry_i": 11, "entry_t": "09:41", "rr": 2, "side": "put", "setups": ["Break & retest"], "management": "Scale 1R + runner", "note": "", "marked_at": "2026-08-04T16:59:14.486Z"}
+{"symbol": "ORCL", "day": "2025-05-06", "tier": "S", "entry": 147.53, "stop": 147.33, "target": 147.92, "entry_i": 18, "entry_t": "09:48", "rr": 1.9500000000000426, "side": "call", "setups": ["One candle rule", "84% re-entry"], "management": "Hold to 2R", "note": "deep in the one candle but 84 percent reclaim would've worked out just took some time", "marked_at": "2026-08-04T17:13:16.192Z"}
+{"symbol": "AVGO", "day": "2025-05-14", "tier": "A", "entry": 229.86, "stop": 229.65, "target": 230.01, "entry_i": 23, "entry_t": "09:53", "rr": 0.714285714285579, "side": "call", "setups": ["Something else"], "management": null, "note": "no clear break, kind of dips into candle, marking a because I think no trade doesn't save comments", "marked_at": "2026-08-04T16:07:14.599Z"}
+{"symbol": "TSM", "day": "2025-05-27", "tier": "A", "entry": 195.31, "stop": 195.16, "target": 195.62, "entry_i": 24, "entry_t": "09:54", "rr": 2.0666666666666034, "side": "call", "setups": ["Break & retest"], "management": "Scale 1R + runner", "note": "nothing that clean try to enter not right at hod", "marked_at": "2026-08-04T18:11:02.552Z"}
+{"symbol": "IWM", "day": "2025-06-10", "tier": "S", "entry": 214.73, "stop": 214.64, "target": 215.23, "entry_i": 32, "entry_t": "10:02", "rr": 5.555555555555345, "side": "call", "setups": [], "management": null, "note": "", "marked_at": "2026-08-04T02:58:57.705Z"}
+{"symbol": "SOFI", "day": "2025-06-18", "tier": "S", "entry": 14.66, "stop": 14.64, "target": 14.73, "entry_i": 20, "entry_t": "09:50", "rr": 3.500000000000089, "side": "call", "setups": ["Break & retest"], "management": "Hold to 2R", "note": "", "marked_at": "2026-08-04T16:14:31.014Z"}
+{"symbol": "AMD", "day": "2025-06-25", "tier": "A", "entry": 141.54, "stop": 141.27, "target": 142.08, "entry_i": 59, "entry_t": "10:29", "rr": 2.0000000000002105, "side": "call", "setups": ["Break & retest"], "management": "Scale 1R + runner", "note": "", "marked_at": "2026-08-02T22:33:06.095Z"}
+{"symbol": "TSLA", "day": "2025-06-27", "tier": "S", "entry": 325.28, "stop": 324.58, "target": 326.68, "entry_i": 22, "entry_t": "09:52", "rr": 2.0000000000000813, "side": "call", "setups": ["Break & retest"], "management": "Scale 1R + runner", "note": "", "marked_at": "2026-08-04T18:55:08.575Z"}
+{"symbol": "MU", "day": "2025-07-09", "tier": "A", "entry": 124.12, "stop": 124.21, "target": 123.91, "entry_i": 50, "entry_t": "10:20", "rr": 2.3333333333337016, "side": "put", "setups": ["Something else"], "management": "Stop at breakeven", "note": "bearish higher timeframe thesis maybe no trade", "marked_at": "2026-08-04T16:42:09.922Z"}
+{"symbol": "NVDA", "day": "2025-07-10", "tier": "A", "entry": 162.67, "stop": 162.92, "target": 162.17, "entry_i": 30, "entry_t": "10:00", "rr": 2, "side": "put", "setups": ["Break & retest"], "management": "Scale 1R + runner", "note": "", "marked_at": "2026-08-04T16:23:31.285Z"}
+{"symbol": "PLTR", "day": "2025-07-15", "tier": "A", "entry": 150.24, "stop": 149.96, "target": 150.81, "entry_i": 45, "entry_t": "10:15", "rr": 2.035714285714253, "side": "call", "setups": ["84% re-entry"], "management": "Scale 1R + runner", "note": "stalled out at HOD ew, can't win them all it happens but you look for s trades to happen early you will notice most s trades happen very early, too much chop leading into this trade", "marked_at": "2026-08-04T18:06:45.565Z"}
+{"symbol": "NVDA", "day": "2025-07-16", "tier": "A", "entry": 170.34, "stop": 170.7, "target": 169.62, "entry_i": 24, "entry_t": "09:54", "rr": 2.000000000000079, "side": "put", "setups": ["Break & retest"], "management": "Scale 1R + runner", "note": "", "marked_at": "2026-08-04T18:03:06.065Z"}
+{"symbol": "META", "day": "2025-07-17", "tier": "A", "entry": 700.8, "stop": 701.53, "target": 699.26, "entry_i": 39, "entry_t": "10:09", "rr": 2.109589041095788, "side": "put", "setups": ["Break & retest"], "management": "Scale 1R + runner", "note": "", "marked_at": "2026-08-04T18:47:20.805Z"}
+{"symbol": "NFLX", "day": "2025-07-25", "tier": "S", "entry": 118.16, "stop": 117.98, "target": 118.52, "entry_i": 37, "entry_t": "10:07", "rr": 2.000000000000079, "side": "call", "setups": [], "management": "Hold to 2R", "note": "might as well target 2r since it correlates to pmh", "marked_at": "2026-08-04T03:00:03.805Z"}
+{"symbol": "PLTR", "day": "2025-08-06", "tier": "A", "entry": 175.08, "stop": 174.67, "target": 176.33, "entry_i": 38, "entry_t": "10:08", "rr": 3.048780487804692, "side": "call", "setups": [], "management": null, "note": "choppy here maybe", "marked_at": "2026-08-04T16:15:09.896Z"}
+{"symbol": "QQQ", "day": "2025-08-08", "tier": "S", "entry": 572.53, "stop": 572.16, "target": 573.31, "entry_i": 27, "entry_t": "09:57", "rr": 2.1081081081080084, "side": "call", "setups": ["One candle rule"], "management": "Scale 1R + runner", "note": "see how some of these are based on if we get a good fill for good risk to reward", "marked_at": "2026-08-04T18:13:49.420Z"}
+{"symbol": "IWM", "day": "2025-08-20", "tier": "S", "entry": 225.09, "stop": 225.32, "target": 224.21, "entry_i": 34, "entry_t": "10:04", "rr": 3.8260869565218893, "side": "put", "setups": ["Break & retest"], "management": "Hold to 2R", "note": "want to retarget LOD here", "marked_at": "2026-08-04T16:39:44.355Z"}
+{"symbol": "MARA", "day": "2025-08-22", "tier": "S", "entry": 16.2, "stop": 16.07, "target": 16.46, "entry_i": 53, "entry_t": "10:23", "rr": 2.0000000000000275, "side": "call", "setups": ["One candle rule"], "management": "Hold to 2R", "note": "took a while to tap hod so maybe scale out slightly before? or get a better entry of that strong green candle", "marked_at": "2026-08-04T17:56:27.582Z"}
+{"symbol": "ORCL", "day": "2025-08-28", "tier": "A", "entry": 238.22, "stop": 237.7, "target": 240.05, "entry_i": 24, "entry_t": "09:54", "rr": 3.519230769230724, "side": "call", "setups": ["Break & retest", "Order block"], "management": "Scale 1R + runner", "note": "this is a hard move to catch I would love to catch 9:34 if it didn't move so far and fast", "marked_at": "2026-08-04T17:06:55.141Z"}
+{"symbol": "TSLA", "day": "2025-08-28", "tier": "A", "entry": 348.79, "stop": 349.46, "target": 347.45, "entry_i": 46, "entry_t": "10:16", "rr": 2.0000000000001696, "side": "put", "setups": ["Break & retest"], "management": "Scale 1R + runner", "note": "", "marked_at": "2026-08-04T16:51:18.532Z"}
+{"symbol": "DIA", "day": "2025-09-16", "tier": "A", "entry": 459.8, "stop": 459.96, "target": 459.48, "entry_i": 9, "entry_t": "09:39", "rr": 2.0000000000003553, "side": "put", "setups": ["Break & retest"], "management": "Scale 1R + runner", "note": "respects pdl could be good entry but dia I dont like price action probably better higher timeframe", "marked_at": "2026-08-04T18:45:42.871Z"}
+{"symbol": "AMD", "day": "2025-09-19", "tier": "A", "entry": 158.31, "stop": 157.77, "target": 159.38, "entry_i": 19, "entry_t": "09:49", "rr": 1.981481481481498, "side": "call", "setups": ["Break & retest", "84% re-entry", "One candle rule"], "management": null, "note": "1 takeout happened here but the second one would've worked out, but I usually dont like when It takes so long to get into an 84 percent rule", "marked_at": "2026-08-04T16:22:54.368Z"}
+{"symbol": "IWM", "day": "2025-09-25", "tier": "A", "entry": 238.48, "stop": 238.82, "target": 237.57, "entry_i": 19, "entry_t": "09:49", "rr": 2.676470588235257, "side": "put", "setups": ["84% re-entry", "Break & retest"], "management": "Scale 1R + runner", "note": "possibly a double takeout here, reversed then consolidated about orh", "marked_at": "2026-08-04T18:01:09.733Z"}
+{"symbol": "NFLX", "day": "2025-09-29", "tier": "A", "entry": 121.56, "stop": 121.34, "target": 122.01, "entry_i": 28, "entry_t": "09:58", "rr": 2.045454545454569, "side": "call", "setups": ["Break & retest"], "management": "Scale 1R + runner", "note": "", "marked_at": "2026-08-04T18:48:35.688Z"}
+{"symbol": "BABA", "day": "2025-10-02", "tier": "A", "entry": 191.52, "stop": 191.09, "target": 192.64, "entry_i": 23, "entry_t": "09:53", "rr": 2.604651162790601, "side": "call", "setups": ["84% re-entry", "Break & retest"], "management": null, "note": "double loss here, candles look a little Sus, usually s trades fit within those top 10 stocks with the higher options volume, but we will see what stats tell us", "marked_at": "2026-08-04T16:44:15.060Z"}
+{"symbol": "DIA", "day": "2025-10-06", "tier": "A", "entry": 467.79, "stop": 467.59, "target": 467.89, "entry_i": 18, "entry_t": "09:48", "rr": 0.4999999999997158, "side": "call", "setups": [], "management": null, "note": "no trade, look at the tuff opportunities it never retraced into green candles. but with a higher timeframe thesis, surely you can look for an aggressive entry", "marked_at": "2026-08-04T17:08:39.025Z"}
+{"symbol": "CRM", "day": "2025-10-16", "tier": "S", "entry": 255.84, "stop": 253.92, "target": 262.63, "entry_i": 8, "entry_t": "09:38", "rr": 3.5364583333332997, "side": "call", "setups": [], "management": null, "note": "", "marked_at": "2026-08-04T15:10:47.062Z"}
+{"symbol": "ORCL", "day": "2025-10-23", "tier": "A", "entry": 276.94, "stop": 276.38, "target": 278.73, "entry_i": 49, "entry_t": "10:19", "rr": 3.196428571428595, "side": "call", "setups": ["One candle rule"], "management": null, "note": "you like when it holds these its like a double one candle since there the same size but just takes too long and im sure it looks cleaner on the 5 minute or 15m or 1h timeframe and better for swing trades", "marked_at": "2026-08-04T16:50:02.565Z"}
+{"symbol": "GOOGL", "day": "2025-11-24", "tier": "S", "entry": 314.56, "stop": 313.06, "target": 317.57, "entry_i": 9, "entry_t": "09:39", "rr": 2.0066666666666606, "side": "call", "setups": ["Break & retest"], "management": "Scale 1R + runner", "note": "", "marked_at": "2026-08-04T17:59:57.550Z"}
+{"symbol": "NFLX", "day": "2025-11-25", "tier": "A", "entry": 105.16, "stop": 105.25, "target": 104.76, "entry_i": 15, "entry_t": "09:45", "rr": 4.444444444444181, "side": "put", "setups": ["Break & retest"], "management": "Scale 1R + runner", "note": "I wouldn't take this just too tight and no displacement", "marked_at": "2026-08-04T16:19:14.765Z"}
+{"symbol": "INTC", "day": "2025-12-04", "tier": "A", "entry": 42.74, "stop": 42.92, "target": 42.38, "entry_i": 12, "entry_t": "09:42", "rr": 2, "side": "put", "setups": ["Break & retest"], "management": "Scale 1R + runner", "note": "", "marked_at": "2026-08-04T17:09:00.459Z"}
+{"symbol": "GOOG", "day": "2025-12-10", "tier": "A", "entry": 319.19, "stop": 318.59, "target": 319.97, "entry_i": 38, "entry_t": "10:08", "rr": 1.3, "side": "call", "setups": ["Break & retest"], "management": "Scale 1R + runner", "note": "lower probability after break of orh and no retest", "marked_at": "2026-08-04T17:51:54.201Z"}
+{"symbol": "TSLA", "day": "2025-12-18", "tier": "A", "entry": 483.01, "stop": 482.25, "target": 484.53, "entry_i": 59, "entry_t": "10:29", "rr": 2, "side": "call", "setups": ["Break & retest"], "management": "Scale 1R + runner", "note": "never like hod entries lower probability and when it goes below orl with no break and retest. there was actually that would've been a fakeout loser", "marked_at": "2026-08-04T18:09:56.367Z"}
+{"symbol": "GOOGL", "day": "2025-12-24", "tier": "A", "entry": 312.39, "stop": 312.99, "target": 311.93, "entry_i": 14, "entry_t": "09:44", "rr": 0.7666666666666035, "side": "put", "setups": ["Break & retest"], "management": "Scale 1R + runner", "note": "I might've been faked out here", "marked_at": "2026-08-04T17:10:26.359Z"}
+{"symbol": "MSFT", "day": "2025-12-24", "tier": "A", "entry": 486.65, "stop": 486.44, "target": 487.06, "entry_i": 31, "entry_t": "10:01", "rr": 1.9523809523812616, "side": "call", "setups": ["Break & retest"], "management": "Scale 1R + runner", "note": "choppy so not even an a trade really just like to mark these and put comments when it holds levels like this", "marked_at": "2026-08-04T16:54:18.602Z"}
+{"symbol": "MSFT", "day": "2026-01-02", "tier": "S", "entry": 483.14, "stop": 483.87, "target": 476.49, "entry_i": 9, "entry_t": "09:39", "rr": 9.109589041095632, "side": "put", "setups": ["Break & retest"], "management": "Hold to 2R", "note": "home run s", "marked_at": "2026-08-04T16:00:47.650Z"}
+{"symbol": "PLTR", "day": "2026-01-06", "tier": "S", "entry": 177.11, "stop": 176.87, "target": 177.85, "entry_i": 20, "entry_t": "09:50", "rr": 3.083333333333136, "side": "call", "setups": ["Break & retest", "84% re-entry"], "management": "Scale 1R + runner", "note": "HOD pop, stop out, never though about 84 percent rule going for it after a winner? I think its pretty rare but ill mark it just because", "marked_at": "2026-08-04T18:08:47.110Z"}
+{"symbol": "MARA", "day": "2026-01-15", "tier": "A", "entry": 10.84, "stop": 10.89, "target": 10.77, "entry_i": 37, "entry_t": "10:07", "rr": 1.3999999999999857, "side": "put", "setups": ["Break & retest"], "management": "Scale 1R + runner", "note": "might be on ban list because of price action this one could've or might've been loser", "marked_at": "2026-08-04T15:16:08.876Z"}
+{"symbol": "PLTR", "day": "2026-01-16", "tier": "A", "entry": 177.29, "stop": 177.87, "target": 176.1, "entry_i": 17, "entry_t": "09:47", "rr": 2.0517241379309863, "side": "put", "setups": ["Break & retest", "One candle rule"], "management": "Scale 1R + runner", "note": "no displacement but stock respected those green candles. enter as candle is bearish forming with strength", "marked_at": "2026-08-04T16:38:18.323Z"}
+{"symbol": "AVGO", "day": "2026-01-28", "tier": "A", "entry": 334.31, "stop": 335.11, "target": 331.7, "entry_i": 26, "entry_t": "09:56", "rr": 3.262499999999971, "side": "put", "setups": ["Break & retest"], "management": "Hold to 2R", "note": "not one of my s or a trades but could've made sense and would target lod . reason I dont like as much is because its a long break and retest and it breaks a couple of levels and doesn't retest them", "marked_at": "2026-08-04T15:20:45.991Z"}
+{"symbol": "INTC", "day": "2026-02-02", "tier": "S", "entry": 47.55, "stop": 47.35, "target": 47.95, "entry_i": 15, "entry_t": "09:45", "rr": 2.000000000000071, "side": "call", "setups": ["One candle rule"], "management": "Scale 1R + runner", "note": "", "marked_at": "2026-08-04T17:09:47.998Z"}
+{"symbol": "MSFT", "day": "2026-02-09", "tier": "A", "entry": 405.1, "stop": 403.62, "target": 408.14, "entry_i": 7, "entry_t": "09:37", "rr": 2.054054054054004, "side": "call", "setups": ["Break & retest"], "management": "Scale 1R + runner", "note": "no displacement", "marked_at": "2026-08-04T18:47:57.088Z"}
+{"symbol": "SOFI", "day": "2026-02-10", "tier": "S", "entry": 21.61, "stop": 21.56, "target": 21.71, "entry_i": 25, "entry_t": "09:55", "rr": 2, "side": "call", "setups": ["Break & retest", "Order block"], "management": "Scale 1R + runner", "note": "", "marked_at": "2026-08-04T18:46:07.054Z"}
+{"symbol": "GOOGL", "day": "2026-03-13", "tier": "S", "entry": 304.8, "stop": 305.44, "target": 303.58, "entry_i": 9, "entry_t": "09:39", "rr": 1.9062500000000833, "side": "put", "setups": [], "management": null, "note": "", "marked_at": "2026-08-04T16:04:04.033Z"}
+{"symbol": "NFLX", "day": "2026-03-16", "tier": "A", "entry": 95.62, "stop": 95.49, "target": 95.95, "entry_i": 35, "entry_t": "10:05", "rr": 2.5384615384613367, "side": "call", "setups": ["Break & retest"], "management": "Hold to 2R", "note": "dont like that large red to start the day, and we broke below orl earlier", "marked_at": "2026-08-04T17:07:34.041Z"}
+{"symbol": "HOOD", "day": "2026-03-23", "tier": "S", "entry": 72.48, "stop": 72.32, "target": 72.8, "entry_i": 39, "entry_t": "10:09", "rr": 1.9999999999998224, "side": "call", "setups": ["Break & retest"], "management": "Scale 1R + runner", "note": "", "marked_at": "2026-08-04T18:05:25.882Z"}
+{"symbol": "AVGO", "day": "2026-03-24", "tier": "A", "entry": 316.87, "stop": 317.78, "target": 314.94, "entry_i": 13, "entry_t": "09:43", "rr": 2.1208791208792026, "side": "put", "setups": ["Something else"], "management": "Stop at breakeven", "note": "this stock loved its levels here, no trade just wanted you to see", "marked_at": "2026-08-04T16:39:06.871Z"}
+{"symbol": "DIA", "day": "2026-04-06", "tier": "S", "entry": 465.89, "stop": 465.73, "target": 466.86, "entry_i": 48, "entry_t": "10:18", "rr": 6.062500000001377, "side": "call", "setups": ["Break & retest"], "management": "Hold to 2R", "note": "", "marked_at": "2026-08-04T16:03:31.616Z"}
+{"symbol": "IREN", "day": "2026-04-08", "tier": "A", "entry": 37.74, "stop": 37.91, "target": 37.41, "entry_i": 20, "entry_t": "09:50", "rr": 1.9411764705883288, "side": "put", "setups": ["Break & retest"], "management": "Scale 1R + runner", "note": "", "marked_at": "2026-08-04T17:59:33.817Z"}
+{"symbol": "MU", "day": "2026-04-16", "tier": "S", "entry": 455.18, "stop": 453.13, "target": 459.57, "entry_i": 32, "entry_t": "10:02", "rr": 2.141463414634128, "side": "call", "setups": ["Break & retest"], "management": "Scale 1R + runner", "note": "", "marked_at": "2026-08-04T16:42:32.105Z"}
+{"symbol": "SOFI", "day": "2026-04-16", "tier": "A", "entry": 19.11, "stop": 19.22, "target": 18.87, "entry_i": 20, "entry_t": "09:50", "rr": 2.181818181818179, "side": "put", "setups": ["Order block"], "management": "Scale 1R + runner", "note": "no displacement but I like this better then entry6 candles earlier, thats a one candle rule and orl break and retest, but it has to get past pml and a pivot structure", "marked_at": "2026-08-04T17:05:53.357Z"}
+{"symbol": "TSLA", "day": "2026-04-22", "tier": "S", "entry": 390.58, "stop": 389.82, "target": 392.15, "entry_i": 14, "entry_t": "09:44", "rr": 2.065789473684226, "side": "call", "setups": ["Break & retest", "84% re-entry"], "management": "Scale 1R + runner", "note": "84 percent rule would've been activated here, see how my stop just wasn't in the right place, not a big move but you can see it respect a pivot structure", "marked_at": "2026-08-04T16:12:26.147Z"}
+{"symbol": "META", "day": "2026-04-29", "tier": "S", "entry": 669.6, "stop": 668.57, "target": 671.65, "entry_i": 34, "entry_t": "10:04", "rr": 1.990291262135931, "side": "call", "setups": ["Break & retest"], "management": "Scale 1R + runner", "note": "ask candle is nearing high of day, when you know the clear stop your on watch to go for an entry", "marked_at": "2026-08-04T18:58:42.825Z"}
+{"symbol": "GOOG", "day": "2026-05-01", "tier": "A", "entry": 379.86, "stop": 379.11, "target": 381.99, "entry_i": 44, "entry_t": "10:14", "rr": 2.839999999999994, "side": "call", "setups": ["Break & retest"], "management": "Hold to 2R", "note": "", "marked_at": "2026-08-04T18:01:54.666Z"}
+{"symbol": "ORCL", "day": "2026-05-04", "tier": "A", "entry": 178.58, "stop": 177.81, "target": 180.12, "entry_i": 15, "entry_t": "09:45", "rr": 1.9999999999999631, "side": "call", "setups": ["One candle rule"], "management": "Scale 1R + runner", "note": "", "marked_at": "2026-08-02T22:39:32.699Z"}
+{"symbol": "AAPL", "day": "2026-05-06", "tier": "A", "entry": 285.31, "stop": 284.91, "target": 286.13, "entry_i": 28, "entry_t": "09:58", "rr": 2.0500000000000993, "side": "call", "setups": ["Break & retest", "One candle rule"], "management": "Scale 1R + runner", "note": "", "marked_at": "2026-08-04T16:19:45.182Z"}
+{"symbol": "DIA", "day": "2026-05-07", "tier": "S", "entry": 499.86, "stop": 500.32, "target": 498.93, "entry_i": 16, "entry_t": "09:46", "rr": 2.0217391304348875, "side": "put", "setups": ["Break & retest"], "management": "Scale 1R + runner", "note": "I like the double red candle confirmation here. also where price target was where a one candle rule and pml hold to the downside confirmed the bearish PA", "marked_at": "2026-08-04T18:04:03.932Z"}
+{"symbol": "BABA", "day": "2026-05-08", "tier": "S", "entry": 141.43, "stop": 141.7, "target": 140.85, "entry_i": 45, "entry_t": "10:15", "rr": 2.1481481481483393, "side": "put", "setups": ["One candle rule"], "management": null, "note": "", "marked_at": "2026-08-04T16:43:15.639Z"}
+{"symbol": "NVDA", "day": "2026-05-08", "tier": "S", "entry": 215.52, "stop": 215.05, "target": 216.45, "entry_i": 11, "entry_t": "09:41", "rr": 1.978723404255278, "side": "call", "setups": ["Break & retest", "One candle rule"], "management": "Hold to 2R", "note": "", "marked_at": "2026-08-04T16:26:39.251Z"}
+{"symbol": "AMZN", "day": "2026-05-11", "tier": "S", "entry": 271.54, "stop": 270.46, "target": 273.69, "entry_i": 6, "entry_t": "09:36", "rr": 1.9907407407406443, "side": "call", "setups": ["Break & retest", "One candle rule"], "management": "Scale 1R + runner", "note": "scale at hod", "marked_at": "2026-08-04T15:24:17.123Z"}
+{"symbol": "MARA", "day": "2026-05-11", "tier": "A", "entry": 13.25, "stop": 13.07, "target": 13.11, "entry_i": 45, "entry_t": "10:15", "rr": 0.7777777777777821, "side": "call", "setups": ["Something else"], "management": "Stop at breakeven", "note": "bullish stock but dont see any clean entry criteria", "marked_at": "2026-08-04T16:40:18.371Z"}
+{"symbol": "MSFT", "day": "2026-05-12", "tier": "A", "entry": 408.48, "stop": 409.33, "target": 406.68, "entry_i": 8, "entry_t": "09:38", "rr": 2.1176470588236276, "side": "put", "setups": ["Break & retest", "One candle rule"], "management": "Scale 1R + runner", "note": "holds green candle at 934", "marked_at": "2026-08-04T18:46:49.004Z"}
+{"symbol": "COIN", "day": "2026-05-18", "tier": "A", "entry": 191.52, "stop": 190.82, "target": 192.9, "entry_i": 20, "entry_t": "09:50", "rr": 1.971428571428517, "side": "call", "setups": ["Break & retest"], "management": "Scale 1R + runner", "note": "difficult entry want as candle is forming not all the way at hod", "marked_at": "2026-08-04T17:02:15.622Z"}
+{"symbol": "IREN", "day": "2026-05-21", "tier": "A", "entry": 55.02, "stop": 54.67, "target": 55.7, "entry_i": 9, "entry_t": "09:39", "rr": 1.9428571428571342, "side": "call", "setups": ["Break & retest"], "management": "Scale 1R + runner", "note": "", "marked_at": "2026-08-04T18:54:41.574Z"}
+{"symbol": "COIN", "day": "2026-06-12", "tier": "S", "entry": 162.03, "stop": 161.57, "target": 162.98, "entry_i": 62, "entry_t": "10:32", "rr": 2.0652173913042873, "side": "call", "setups": ["Break & retest"], "management": "Scale 1R + runner", "note": "", "marked_at": "2026-08-04T15:09:46.879Z"}
+{"symbol": "AVGO", "day": "2026-06-29", "tier": "S", "entry": 369.09, "stop": 370.27, "target": 364.56, "entry_i": 29, "entry_t": "09:59", "rr": 3.8389830508474123, "side": "put", "setups": ["Break & retest", "One candle rule"], "management": null, "note": "", "marked_at": "2026-08-04T16:08:26.148Z"}
+{"symbol": "AVGO", "day": "2026-07-16", "tier": "A", "entry": 380.78, "stop": 381.76, "target": 378.37, "entry_i": 13, "entry_t": "09:43", "rr": 2.4591836734693096, "side": "put", "setups": ["Break & retest"], "management": "Hold to 2R", "note": "LOD scalp", "marked_at": "2026-08-04T16:47:48.463Z"}
+{"symbol": "AVGO", "day": "2026-07-27", "tier": "A", "entry": 383.12, "stop": 384.19, "target": 380.67, "entry_i": 39, "entry_t": "10:09", "rr": 2.289719626168228, "side": "put", "setups": ["Break & retest"], "management": "Hold to 2R", "note": "", "marked_at": "2026-08-04T18:53:52.256Z"}
+{"symbol": "TSLA", "day": "2024-01-17", "_no_trade": true}
+{"symbol": "DIA", "day": "2024-01-30", "_no_trade": true}
+{"symbol": "NVDA", "day": "2024-02-08", "_no_trade": true}
+{"symbol": "TSLA", "day": "2024-02-14", "_no_trade": true}
+{"symbol": "QQQ", "day": "2024-02-23", "_no_trade": true}
+{"symbol": "TSLA", "day": "2024-03-14", "_no_trade": true}
+{"symbol": "NVDA", "day": "2024-04-30", "_no_trade": true}
+{"symbol": "GOOGL", "day": "2024-07-30", "_no_trade": true}
+{"symbol": "BABA", "day": "2024-08-01", "_no_trade": true}
+{"symbol": "TSLA", "day": "2024-08-01", "_no_trade": true}
+{"symbol": "TSLA", "day": "2024-08-05", "_no_trade": true}
+{"symbol": "ORCL", "day": "2024-08-26", "_no_trade": true}
+{"symbol": "NFLX", "day": "2024-09-04", "_no_trade": true}
+{"symbol": "AMZN", "day": "2024-09-12", "_no_trade": true}
+{"symbol": "PLTR", "day": "2024-09-17", "_no_trade": true}
+{"symbol": "SPY", "day": "2024-09-23", "_no_trade": true}
+{"symbol": "HOOD", "day": "2024-09-25", "_no_trade": true}
+{"symbol": "TSLA", "day": "2024-09-25", "_no_trade": true}
+{"symbol": "SOFI", "day": "2024-10-08", "_no_trade": true}
+{"symbol": "SPY", "day": "2024-10-10", "_no_trade": true}
+{"symbol": "CRM", "day": "2024-10-15", "_no_trade": true}
+{"symbol": "SPY", "day": "2024-10-15", "_no_trade": true}
+{"symbol": "SOFI", "day": "2024-10-17", "_no_trade": true}
+{"symbol": "TSLA", "day": "2024-10-22", "_no_trade": true}
+{"symbol": "PLTR", "day": "2024-10-31", "_no_trade": true}
+{"symbol": "NFLX", "day": "2024-11-08", "_no_trade": true}
+{"symbol": "MSFT", "day": "2024-11-12", "_no_trade": true}
+{"symbol": "DIA", "day": "2024-11-13", "_no_trade": true}
+{"symbol": "NFLX", "day": "2024-11-21", "_no_trade": true}
+{"symbol": "SOFI", "day": "2024-11-26", "_no_trade": true}
+{"symbol": "AVGO", "day": "2024-11-29", "_no_trade": true}
+{"symbol": "TSLA", "day": "2024-12-11", "_no_trade": true}
+{"symbol": "BABA", "day": "2024-12-12", "_no_trade": true}
+{"symbol": "BABA", "day": "2024-12-30", "_no_trade": true}
+{"symbol": "AAPL", "day": "2024-12-31", "_no_trade": true}
+{"symbol": "AVGO", "day": "2025-01-10", "_no_trade": true}
+{"symbol": "DIA", "day": "2025-02-06", "_no_trade": true}
+{"symbol": "GOOG", "day": "2025-02-19", "_no_trade": true}
+{"symbol": "NFLX", "day": "2025-02-19", "_no_trade": true}
+{"symbol": "ORCL", "day": "2025-02-20", "_no_trade": true}
+{"symbol": "SOFI", "day": "2025-02-26", "_no_trade": true}
+{"symbol": "MSFT", "day": "2025-02-28", "_no_trade": true}
+{"symbol": "ORCL", "day": "2025-03-03", "_no_trade": true}
+{"symbol": "TSLA", "day": "2025-03-03", "_no_trade": true}
+{"symbol": "QQQ", "day": "2025-03-04", "_no_trade": true}
+{"symbol": "MSFT", "day": "2025-03-06", "_no_trade": true}
+{"symbol": "TSM", "day": "2025-03-13", "_no_trade": true}
+{"symbol": "IREN", "day": "2025-03-14", "_no_trade": true}
+{"symbol": "NFLX", "day": "2025-03-14", "_no_trade": true}
+{"symbol": "TSM", "day": "2025-03-14", "_no_trade": true}
+{"symbol": "AMD", "day": "2025-03-18", "_no_trade": true}
+{"symbol": "BABA", "day": "2025-03-19", "_no_trade": true}
+{"symbol": "CRM", "day": "2025-03-31", "_no_trade": true}
+{"symbol": "TSLA", "day": "2025-04-16", "_no_trade": true}
+{"symbol": "INTC", "day": "2025-04-17", "_no_trade": true}
+{"symbol": "TSM", "day": "2025-04-23", "_no_trade": true}
+{"symbol": "AVGO", "day": "2025-04-28", "_no_trade": true}
+{"symbol": "CRM", "day": "2025-05-02", "_no_trade": true}
+{"symbol": "MU", "day": "2025-05-06", "_no_trade": true}
+{"symbol": "PLTR", "day": "2025-05-08", "_no_trade": true}
+{"symbol": "CRM", "day": "2025-05-12", "_no_trade": true}
+{"symbol": "SPY", "day": "2025-05-15", "_no_trade": true}
+{"symbol": "ORCL", "day": "2025-05-20", "_no_trade": true}
+{"symbol": "NVDA", "day": "2025-05-22", "_no_trade": true}
+{"symbol": "INTC", "day": "2025-06-20", "_no_trade": true}
+{"symbol": "HOOD", "day": "2025-06-23", "_no_trade": true}
+{"symbol": "MU", "day": "2025-06-23", "_no_trade": true}
+{"symbol": "GOOG", "day": "2025-06-25", "_no_trade": true}
+{"symbol": "AVGO", "day": "2025-06-30", "_no_trade": true}
+{"symbol": "MSFT", "day": "2025-07-02", "_no_trade": true}
+{"symbol": "IWM", "day": "2025-07-07", "_no_trade": true}
+{"symbol": "TSLA", "day": "2025-07-07", "_no_trade": true}
+{"symbol": "PLTR", "day": "2025-07-11", "_no_trade": true}
+{"symbol": "UBER", "day": "2025-07-15", "_no_trade": true}
+{"symbol": "BABA", "day": "2025-07-16", "_no_trade": true}
+{"symbol": "MSFT", "day": "2025-07-28", "_no_trade": true}
+{"symbol": "PLTR", "day": "2025-08-05", "_no_trade": true}
+{"symbol": "COIN", "day": "2025-08-13", "_no_trade": true}
+{"symbol": "GOOG", "day": "2025-08-14", "_no_trade": true}
+{"symbol": "META", "day": "2025-08-21", "_no_trade": true}
+{"symbol": "PLTR", "day": "2025-08-21", "_no_trade": true}
+{"symbol": "CRM", "day": "2025-09-03", "_no_trade": true}
+{"symbol": "MARA", "day": "2025-09-05", "_no_trade": true}
+{"symbol": "ORCL", "day": "2025-09-05", "_no_trade": true}
+{"symbol": "TSM", "day": "2025-09-08", "_no_trade": true}
+{"symbol": "TSM", "day": "2025-09-09", "_no_trade": true}
+{"symbol": "MARA", "day": "2025-09-12", "_no_trade": true}
+{"symbol": "NFLX", "day": "2025-09-16", "_no_trade": true}
+{"symbol": "MSFT", "day": "2025-09-25", "_no_trade": true}
+{"symbol": "AVGO", "day": "2025-09-29", "_no_trade": true}
+{"symbol": "IREN", "day": "2025-09-30", "_no_trade": true}
+{"symbol": "AAPL", "day": "2025-10-10", "_no_trade": true}
+{"symbol": "MARA", "day": "2025-10-13", "_no_trade": true}
+{"symbol": "MU", "day": "2025-10-13", "_no_trade": true}
+{"symbol": "UBER", "day": "2025-10-13", "_no_trade": true}
+{"symbol": "AMZN", "day": "2025-10-16", "_no_trade": true}
+{"symbol": "ORCL", "day": "2025-10-21", "_no_trade": true}
+{"symbol": "AVGO", "day": "2025-10-28", "_no_trade": true}
+{"symbol": "UBER", "day": "2025-10-28", "_no_trade": true}
+{"symbol": "COIN", "day": "2025-10-30", "_no_trade": true}
+{"symbol": "PLTR", "day": "2025-10-31", "_no_trade": true}
+{"symbol": "AAPL", "day": "2025-11-13", "_no_trade": true}
+{"symbol": "TSM", "day": "2025-11-18", "_no_trade": true}
+{"symbol": "AMZN", "day": "2025-12-02", "_no_trade": true}
+{"symbol": "CRM", "day": "2025-12-04", "_no_trade": true}
+{"symbol": "NFLX", "day": "2025-12-10", "_no_trade": true}
+{"symbol": "MU", "day": "2025-12-16", "_no_trade": true}
+{"symbol": "GOOGL", "day": "2025-12-18", "_no_trade": true}
+{"symbol": "AMD", "day": "2025-12-22", "_no_trade": true}
+{"symbol": "PLTR", "day": "2025-12-26", "_no_trade": true}
+{"symbol": "GOOGL", "day": "2026-01-07", "_no_trade": true}
+{"symbol": "NFLX", "day": "2026-01-16", "_no_trade": true}
+{"symbol": "BABA", "day": "2026-01-20", "_no_trade": true}
+{"symbol": "AAPL", "day": "2026-01-22", "_no_trade": true}
+{"symbol": "SOFI", "day": "2026-01-22", "_no_trade": true}
+{"symbol": "META", "day": "2026-01-27", "_no_trade": true}
+{"symbol": "CRM", "day": "2026-01-29", "_no_trade": true}
+{"symbol": "NVDA", "day": "2026-02-17", "_no_trade": true}
+{"symbol": "UBER", "day": "2026-02-25", "_no_trade": true}
+{"symbol": "ORCL", "day": "2026-02-27", "_no_trade": true}
+{"symbol": "GOOGL", "day": "2026-03-03", "_no_trade": true}
+{"symbol": "UBER", "day": "2026-03-09", "_no_trade": true}
+{"symbol": "SPY", "day": "2026-03-12", "_no_trade": true}
+{"symbol": "TSLA", "day": "2026-03-26", "_no_trade": true}
+{"symbol": "NVDA", "day": "2026-04-08", "_no_trade": true}
+{"symbol": "AAPL", "day": "2026-04-14", "_no_trade": true}
+{"symbol": "PLTR", "day": "2026-04-14", "_no_trade": true}
+{"symbol": "HOOD", "day": "2026-04-22", "_no_trade": true}
+{"symbol": "MARA", "day": "2026-04-22", "_no_trade": true}
+{"symbol": "BABA", "day": "2026-05-07", "_no_trade": true}
+{"symbol": "MSFT", "day": "2026-05-08", "_no_trade": true}
+{"symbol": "NFLX", "day": "2026-05-11", "_no_trade": true}
+{"symbol": "UBER", "day": "2026-05-14", "_no_trade": true}
+{"symbol": "MU", "day": "2026-05-19", "_no_trade": true}
+{"symbol": "BABA", "day": "2026-05-22", "_no_trade": true}
+{"symbol": "HOOD", "day": "2026-06-03", "_no_trade": true}
+{"symbol": "ORCL", "day": "2026-06-03", "_no_trade": true}
+{"symbol": "PLTR", "day": "2026-06-03", "_no_trade": true}
+{"symbol": "UBER", "day": "2026-06-03", "_no_trade": true}
+{"symbol": "BABA", "day": "2026-06-29", "_no_trade": true}
+{"symbol": "AMZN", "day": "2026-07-07", "_no_trade": true}
+{"symbol": "QQQ", "day": "2026-07-17", "_no_trade": true}
+{"symbol": "HOOD", "day": "2026-07-21", "_no_trade": true}
