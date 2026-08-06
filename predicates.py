@@ -11,6 +11,7 @@ level / order block / pivot being broken. Extra confluence if all three align.
 
 from typing import List, Optional, Tuple
 from dataclasses import dataclass
+from statistics import median
 
 @dataclass
 class Candle:
@@ -322,3 +323,53 @@ def is_x_signal(
         return True
 
     return False
+
+
+# S_GATE displacement threshold (omen-3.6 / T6). Source: research/s_gate_spec.md
+# "PRE-REGISTERED GATE" -- the X marks' 50th-percentile displacement. A
+# candidate passes the gate when its entry bar is at least as displaced as the
+# median reject (Austin's 'x' verdicts). Do not retune this after T7 sees the
+# backtest; that is the whole point of the pre-registration.
+S_GATE_DISPLACEMENT = 0.888
+
+
+def is_s_gate(candles: List[Candle]) -> bool:
+    """S-gate predicate (omen-3.6). Source: research/s_gate_spec.md.
+
+    Accepts a candidate entry when its displacement clears the pre-registered
+    threshold. `displacement` is defined exactly as in research/mark_features.md
+    and research/mark_features.py:
+
+        displacement = (entry bar range) / (median range of the prior 20 bars)
+
+    where the entry bar is `candles[-1]`, the prior bars are `candles[-21:-1]`
+    (up to 20 bars strictly before the entry, matching
+    `bars[max(0, entry_i-20):entry_i]`), and zero-range bars are excluded from
+    the median. When fewer than 20 prior bars exist, all available prior bars are
+    used (mirroring the `max(0, ...)` clamp).
+
+    Literal threshold: displacement >= 0.888 (the X marks' 50th percentile).
+    Returns False when displacement is undefined (no usable prior bars, zero
+    median range, or zero entry-bar range) -- the candidate does not pass.
+
+    Args:
+        candles: List of candles, most recent last. The last candle is the
+            entry candle. Works on any object exposing `.high` / `.low`.
+
+    Returns:
+        True if the candidate clears the displacement threshold, False otherwise.
+    """
+    if len(candles) < 2:
+        return False
+    entry = candles[-1]
+    rng = entry.high - entry.low
+    if rng <= 0:
+        return False
+    prior = candles[-21:-1]
+    prior_ranges = [c.high - c.low for c in prior if (c.high - c.low) > 0]
+    if not prior_ranges:
+        return False
+    med_rng = median(prior_ranges)
+    if not med_rng or med_rng <= 0:
+        return False
+    return (rng / med_rng) >= S_GATE_DISPLACEMENT
