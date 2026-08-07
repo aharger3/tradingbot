@@ -39,6 +39,7 @@ from omen_bot import (
 from discord_bot import DiscordSignalBot
 from position_sizer import compute_plan, SizingPlan
 from signal_tracker import log_signal
+from predicates import is_s_gate
 
 
 # Order-block tunables (module-level so backtest_sweep.py can vary them).
@@ -187,6 +188,17 @@ HTF_BIAS_GATE = os.getenv("HTF_BIAS_GATE", "0").strip().lower() in ("1", "true",
 # (58tr 32.8%W -$2,393 -> 44tr 38.6%W +$6,162). n=4/yr caveat: F1 validates.
 RULE84_STRICT = os.getenv("RULE84_STRICT", "1").strip().lower() in ("1", "true", "yes", "on")
 RULE84_OFF = os.getenv("RULE84_OFF", "0").strip().lower() in ("1", "true", "yes", "on")
+
+# omen-3.6 (S_GATE, 2026-08-06) -- the S gate fit from Austin's S/A/X verdicts,
+# FLAG-GATED, DEFAULT OFF. The gate (research/s_gate_spec.md, pre-registered in
+# T5 before any backtest) keeps only entries whose entry-bar displacement clears
+# the X marks' 50th percentile (0.888). The predicate is predicates.is_s_gate;
+# applied here in _route so it covers every candidate entry uniformly. When ON,
+# a candidate that fails the gate is capped to C (alert-only), mirroring the
+# BNR_DISPLACEMENT_GATE / HTF_BIAS_GATE convention. DEFAULT OFF => shipped
+# behaviour byte-identical to today; the harness flips this at runtime for the
+# T7 A/B exactly as research/c1_analyze.py flips BNR_DISPLACEMENT_GATE.
+S_GATE = False
 
 
 def daily_trend_bias(daily_closes, period: int = 20) -> Optional[str]:
@@ -474,6 +486,12 @@ class SignalRunner:
         """Accept viable signals; log D-grade / tight-stop skips for post-session analysis."""
         self._grade_for_levels(sig)
         self._calibration_grade(sig)
+        # omen-3.6 S_GATE (default OFF): cap low-displacement candidate entries
+        # to C (alert-only). Mirrors BNR_DISPLACEMENT_GATE / HTF_BIAS_GATE. OFF =
+        # byte-identical to today. See research/s_gate_spec.md.
+        if S_GATE and sig["grade"] in ("A+", "A", "B") and not is_s_gate(self.candles):
+            sig["grade"] = TradeGrade.C.value
+            sig["reason"] += " [capped C: S_GATE low displacement]"
         if sig["grade"] != TradeGrade.D.value:
             # tight-stop skip only for C — it killed 42 of 303 labeled takes
             # (calibration 2026-07-06); B+ setups size to the stop instead
