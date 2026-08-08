@@ -49,11 +49,11 @@ from market_data import fetch_spy_daily_closes
 # (−$22.1k/12mo combined; SMCI worst symbol in book at −$12.4k, SPY 0-for-5).
 DEFAULT_SYMBOLS = [
     "TSLA", "NVDA", "AAPL", "AMD", "META",
-    "GOOGL", "AMZN", "MSFT", "PLTR", "QQQ",
+    "GOOGL", "GOOG", "AMZN", "MSFT", "PLTR", "SPY", "QQQ",
     "SOFI", "ORCL", "COIN", "HOOD", "IREN", "INTC",
     # 2026-07-11 Austin: expand to ~200k+ options-volume names (cleaner fills)
     "NFLX", "AVGO", "MU", "UBER", "BABA", "CRM",
-    "TSM", "MARA",
+    "TSM", "MARA", "IWM",
 ]
 DEFAULT_WINDOW = "09:30-11:00"
 

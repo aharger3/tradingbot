@@ -61,11 +61,15 @@ class DiscordSignalBot:
         color_map = {
             SignalType.BREAK_AND_RETEST: 3066993,
             SignalType.ONE_CANDLE_RULE: 15844367,
+            SignalType.FAIR_VALUE_GAP: 3066993,
+            SignalType.FLAG: 15844367,
             SignalType.REENTRY_84_RULE: 9109760,
             SignalType.NONE: 9807270,
         }
         # Grade colors: A+ green, A teal, B blue, C yellow, D red
-        grade_colors = {"A+": 3066993, "A": 1752220, "B": 3447003, "C": 15844367, "D": 15158332}
+        # "X" is the skip grade; "D" kept for records written before the T5 rename
+        grade_colors = {"A+": 3066993, "A": 1752220, "B": 3447003, "C": 15844367,
+                        "X": 15158332, "D": 15158332}
         if grade in grade_colors:
             color_map = {k: grade_colors[grade] for k in color_map}
 

@@ -1,0 +1,159 @@
+{"symbol": "AMD", "day": "2025-06-05", "entry_i": 6, "tier": "S", "miss_reason": "no_break_retest", "detail": "a reference level is near but detect_break_retest returned falsy for every level"}
+{"symbol": "AMD", "day": "2026-03-04", "entry_i": 9, "tier": "A", "miss_reason": "no_break_retest", "detail": "a reference level is near but detect_break_retest returned falsy for every level"}
+{"symbol": "AMD", "day": "2026-04-21", "entry_i": 35, "tier": "A", "miss_reason": "no_reference_level", "detail": "no level within 0.5% of close $281.47; nearest $279.84 (0.58% away); levels available: OR high=$279.80, OR low=$277.08, PDH=$287.61, PDL=$272.00, PMH=$279.84, PML=$275.50"}
+{"symbol": "AMD", "day": "2026-05-14", "entry_i": 25, "tier": "A", "miss_reason": "vetoed_stop_too_tight", "detail": "B&R stock_risk $0.380 < $0.671 (0.0015*close / $0.10)"}
+{"symbol": "AMZN", "day": "2025-08-14", "entry_i": 18, "tier": "X", "miss_reason": "no_break_retest", "detail": "a reference level is near but detect_break_retest returned falsy for every level"}
+{"symbol": "AMZN", "day": "2026-04-10", "entry_i": 74, "tier": "A", "miss_reason": "fired_wrong_bar", "detail": "engine fired at bar(s) [27], all >2 from 74"}
+{"symbol": "AMZN", "day": "2026-07-17", "entry_i": 7, "tier": "A", "miss_reason": "fired_wrong_bar", "detail": "engine fired at bar(s) [34], all >2 from 7"}
+{"symbol": "BABA", "day": "2025-07-22", "entry_i": 20, "tier": "S", "miss_reason": "no_break_retest", "detail": "a reference level is near but detect_break_retest returned falsy for every level"}
+{"symbol": "BABA", "day": "2025-12-26", "entry_i": 36, "tier": "A", "miss_reason": "consolidation_early_return", "detail": "PDH/PDL/OR all within 0.5% of mean $150.44 -> detect_signals returned [] silently"}
+{"symbol": "COIN", "day": "2025-06-26", "entry_i": 18, "tier": "S", "miss_reason": "detected", "detail": "engine fired at bar(s) [18] within +/-2"}
+{"symbol": "COIN", "day": "2025-10-21", "entry_i": 8, "tier": "S", "miss_reason": "fired_wrong_bar", "detail": "engine fired at bar(s) [31, 62], all >2 from 8"}
+{"symbol": "COIN", "day": "2025-12-01", "entry_i": 11, "tier": "A", "miss_reason": "no_break_retest", "detail": "a reference level is near but detect_break_retest returned falsy for every level"}
+{"symbol": "COIN", "day": "2026-03-04", "entry_i": 43, "tier": "A", "miss_reason": "detected", "detail": "engine fired at bar(s) [45] within +/-2"}
+{"symbol": "COIN", "day": "2026-04-09", "entry_i": 30, "tier": "S", "miss_reason": "fired_wrong_bar", "detail": "engine fired at bar(s) [8], all >2 from 30"}
+{"symbol": "CRM", "day": "2025-06-02", "entry_i": 27, "tier": "S", "miss_reason": "fired_wrong_bar", "detail": "engine fired at bar(s) [32], all >2 from 27"}
+{"symbol": "CRM", "day": "2025-07-02", "entry_i": 17, "tier": "A", "miss_reason": "no_reference_level", "detail": "no level within 0.5% of close $266.87; nearest $268.31 (0.54% away); levels available: OR high=$271.71, OR low=$268.31, PDH=$263.79, PDL=$259.14, PMH=$272.58, PML=$271.00"}
+{"symbol": "CRM", "day": "2025-09-26", "entry_i": 12, "tier": "A", "miss_reason": "vetoed_htf", "detail": "htf_bias=bearish opposed a call"}
+{"symbol": "CRM", "day": "2025-11-18", "entry_i": 16, "tier": "A", "miss_reason": "no_break_retest", "detail": "a reference level is near but detect_break_retest returned falsy for every level"}
+{"symbol": "CRM", "day": "2026-05-07", "entry_i": 18, "tier": "X", "miss_reason": "detected", "detail": "engine fired at bar(s) [18, 18] within +/-2"}
+{"symbol": "GOOG", "day": "2025-04-04", "entry_i": 26, "tier": "A", "miss_reason": "detected", "detail": "engine fired at bar(s) [26] within +/-2"}
+{"symbol": "GOOG", "day": "2025-06-10", "entry_i": 21, "tier": "A", "miss_reason": "fired_wrong_bar", "detail": "engine fired at bar(s) [15], all >2 from 21"}
+{"symbol": "GOOG", "day": "2025-12-08", "entry_i": 58, "tier": "X", "miss_reason": "detected", "detail": "engine fired at bar(s) [60] within +/-2"}
+{"symbol": "GOOG", "day": "2026-02-23", "entry_i": 19, "tier": "X", "miss_reason": "detected", "detail": "engine fired at bar(s) [19] within +/-2"}
+{"symbol": "GOOGL", "day": "2024-09-03", "entry_i": 10, "tier": "A", "miss_reason": "vetoed_htf", "detail": "htf_bias=bullish opposed a put"}
+{"symbol": "GOOGL", "day": "2024-10-15", "entry_i": 32, "tier": "S", "miss_reason": "detected", "detail": "engine fired at bar(s) [32] within +/-2"}
+{"symbol": "GOOGL", "day": "2025-08-07", "entry_i": 18, "tier": "S", "miss_reason": "vetoed_htf", "detail": "htf_bias=bullish opposed a put"}
+{"symbol": "HOOD", "day": "2025-02-24", "entry_i": 16, "tier": "A", "miss_reason": "detected", "detail": "engine fired at bar(s) [17] within +/-2"}
+{"symbol": "HOOD", "day": "2025-03-04", "entry_i": 44, "tier": "S", "miss_reason": "no_reference_level", "detail": "no level within 0.5% of close $43.47; nearest $44.05 (1.34% away); levels available: OR high=$45.91, OR low=$44.71, PDH=$54.84, PDL=$46.68, PMH=$47.19, PML=$44.05"}
+{"symbol": "HOOD", "day": "2025-08-04", "entry_i": 40, "tier": "A", "miss_reason": "vetoed_htf", "detail": "htf_bias=bearish opposed a call"}
+{"symbol": "HOOD", "day": "2025-12-29", "entry_i": 12, "tier": "X", "miss_reason": "vetoed_htf", "detail": "htf_bias=bearish opposed a call"}
+{"symbol": "HOOD", "day": "2026-02-05", "entry_i": 40, "tier": "S", "miss_reason": "no_reference_level", "detail": "no level within 0.5% of close $75.32; nearest $76.05 (0.97% away); levels available: OR high=$78.97, OR low=$77.51, PDH=$85.30, PDL=$77.62, PMH=$79.98, PML=$76.05"}
+{"symbol": "HOOD", "day": "2026-04-13", "entry_i": 16, "tier": "S", "miss_reason": "vetoed_htf", "detail": "htf_bias=bearish opposed a call"}
+{"symbol": "HOOD", "day": "2026-05-19", "entry_i": 19, "tier": "A", "miss_reason": "vetoed_stop_too_tight", "detail": "B&R stock_risk $0.070 < $0.112 (0.0015*close / $0.10)"}
+{"symbol": "HOOD", "day": "2026-07-07", "entry_i": 37, "tier": "A", "miss_reason": "no_break_retest", "detail": "a reference level is near but detect_break_retest returned falsy for every level"}
+{"symbol": "HOOD", "day": "2026-07-10", "entry_i": 23, "tier": "S", "miss_reason": "no_reference_level", "detail": "no level within 0.5% of close $112.77; nearest $111.63 (1.01% away); levels available: OR high=$119.43, OR low=$116.67, PDH=$117.65, PDL=$111.63, PMH=$119.55, PML=$115.36"}
+{"symbol": "INTC", "day": "2025-06-05", "entry_i": 10, "tier": "X", "miss_reason": "vetoed_htf", "detail": "htf_bias=bearish opposed a call"}
+{"symbol": "IWM", "day": "2024-02-28", "entry_i": 9, "tier": "S", "miss_reason": "consolidation_early_return", "detail": "PDH/PDL/OR all within 0.5% of mean $202.34 -> detect_signals returned [] silently"}
+{"symbol": "IWM", "day": "2024-02-28", "entry_i": 18, "tier": "A", "miss_reason": "consolidation_early_return", "detail": "PDH/PDL/OR all within 0.5% of mean $202.42 -> detect_signals returned [] silently"}
+{"symbol": "IWM", "day": "2024-03-22", "entry_i": 24, "tier": "S", "miss_reason": "vetoed_stop_too_tight", "detail": "B&R stock_risk $0.130 < $0.311 (0.0015*close / $0.10)"}
+{"symbol": "IWM", "day": "2024-04-03", "entry_i": 13, "tier": "S", "miss_reason": "no_break_retest", "detail": "a reference level is near but detect_break_retest returned falsy for every level"}
+{"symbol": "IWM", "day": "2024-04-03", "entry_i": 73, "tier": "S", "miss_reason": "no_break_retest", "detail": "a reference level is near but detect_break_retest returned falsy for every level"}
+{"symbol": "IWM", "day": "2024-08-01", "entry_i": 44, "tier": "A", "miss_reason": "vetoed_stop_too_tight", "detail": "B&R stock_risk $0.090 < $0.332 (0.0015*close / $0.10)"}
+{"symbol": "IWM", "day": "2024-08-22", "entry_i": 27, "tier": "S", "miss_reason": "vetoed_stop_too_tight", "detail": "B&R stock_risk $0.210 < $0.322 (0.0015*close / $0.10)"}
+{"symbol": "IWM", "day": "2024-09-24", "entry_i": 35, "tier": "X", "miss_reason": "detected", "detail": "engine fired at bar(s) [33] within +/-2"}
+{"symbol": "IWM", "day": "2024-09-24", "entry_i": 53, "tier": "X", "miss_reason": "fired_wrong_bar", "detail": "engine fired at bar(s) [33], all >2 from 53"}
+{"symbol": "IWM", "day": "2025-04-10", "entry_i": 16, "tier": "S", "miss_reason": "detected", "detail": "engine fired at bar(s) [16] within +/-2"}
+{"symbol": "IWM", "day": "2025-09-05", "entry_i": 12, "tier": "S", "miss_reason": "detected", "detail": "engine fired at bar(s) [13] within +/-2"}
+{"symbol": "IWM", "day": "2025-09-05", "entry_i": 51, "tier": "A", "miss_reason": "fired_wrong_bar", "detail": "engine fired at bar(s) [13], all >2 from 51"}
+{"symbol": "IWM", "day": "2025-10-21", "entry_i": 9, "tier": "S", "miss_reason": "no_break_retest", "detail": "a reference level is near but detect_break_retest returned falsy for every level"}
+{"symbol": "IWM", "day": "2025-12-01", "entry_i": 11, "tier": "S", "miss_reason": "detected", "detail": "engine fired at bar(s) [12] within +/-2"}
+{"symbol": "IWM", "day": "2025-12-04", "entry_i": 56, "tier": "S", "miss_reason": "detected", "detail": "engine fired at bar(s) [58, 58] within +/-2"}
+{"symbol": "IWM", "day": "2026-05-28", "entry_i": 46, "tier": "S", "miss_reason": "no_break_retest", "detail": "a reference level is near but detect_break_retest returned falsy for every level"}
+{"symbol": "IWM", "day": "2026-06-24", "entry_i": 28, "tier": "A", "miss_reason": "vetoed_stop_too_tight", "detail": "B&R stock_risk $0.345 < $0.446 (0.0015*close / $0.10)"}
+{"symbol": "IWM", "day": "2026-07-24", "entry_i": 29, "tier": "S", "miss_reason": "no_break_retest", "detail": "a reference level is near but detect_break_retest returned falsy for every level"}
+{"symbol": "MARA", "day": "2024-09-09", "entry_i": 38, "tier": "X", "miss_reason": "no_reference_level", "detail": "no level within 0.5% of close $14.06; nearest $13.96 (0.71% away); levels available: OR high=$13.87, OR low=$13.67, PMH=$13.96, PML=$13.62"}
+{"symbol": "MARA", "day": "2024-10-18", "entry_i": 11, "tier": "S", "miss_reason": "detected", "detail": "engine fired at bar(s) [12, 12] within +/-2"}
+{"symbol": "MARA", "day": "2024-12-17", "entry_i": 49, "tier": "S", "miss_reason": "fired_wrong_bar", "detail": "engine fired at bar(s) [78], all >2 from 49"}
+{"symbol": "MARA", "day": "2025-04-02", "entry_i": 14, "tier": "A", "miss_reason": "vetoed_stop_too_tight", "detail": "B&R stock_risk $0.090 < $0.100 (0.0015*close / $0.10)"}
+{"symbol": "MARA", "day": "2025-05-14", "entry_i": 23, "tier": "X", "miss_reason": "detected", "detail": "engine fired at bar(s) [24] within +/-2"}
+{"symbol": "MARA", "day": "2025-07-30", "entry_i": 30, "tier": "A", "miss_reason": "no_reference_level", "detail": "no level within 0.5% of close $17.18; nearest $17.32 (0.79% away); levels available: OR high=$17.91, OR low=$17.32, PDH=$17.84, PDL=$16.47, PMH=$17.70, PML=$17.04"}
+{"symbol": "MARA", "day": "2025-08-18", "entry_i": 23, "tier": "X", "miss_reason": "vetoed_htf", "detail": "htf_bias=bearish opposed a call"}
+{"symbol": "MARA", "day": "2026-07-09", "entry_i": 19, "tier": "S", "miss_reason": "no_reference_level", "detail": "no level within 0.5% of close $13.10; nearest $12.96 (1.07% away); levels available: OR high=$12.96, OR low=$12.67, PDH=$12.12, PDL=$11.59, PMH=$12.77, PML=$12.00"}
+{"symbol": "MARA", "day": "2026-07-17", "entry_i": 13, "tier": "A", "miss_reason": "detected", "detail": "engine fired at bar(s) [14] within +/-2"}
+{"symbol": "MARA", "day": "2026-07-20", "entry_i": 11, "tier": "A", "miss_reason": "vetoed_htf", "detail": "htf_bias=bearish opposed a call"}
+{"symbol": "META", "day": "2025-09-23", "entry_i": 9, "tier": "A", "miss_reason": "vetoed_htf", "detail": "htf_bias=bullish opposed a put"}
+{"symbol": "META", "day": "2026-06-10", "entry_i": 18, "tier": "X", "miss_reason": "no_reference_level", "detail": "no level within 0.5% of close $589.46; nearest $585.76 (0.63% away); levels available: OR high=$585.50, OR low=$579.27, PDH=$597.63, PDL=$581.01, PMH=$585.76, PML=$578.05"}
+{"symbol": "MSFT", "day": "2025-03-04", "entry_i": 13, "tier": "S", "miss_reason": "vetoed_htf", "detail": "htf_bias=bearish opposed a call"}
+{"symbol": "MSFT", "day": "2025-03-20", "entry_i": 28, "tier": "S", "miss_reason": "no_break_retest", "detail": "a reference level is near but detect_break_retest returned falsy for every level"}
+{"symbol": "MSFT", "day": "2026-01-20", "entry_i": 12, "tier": "S", "miss_reason": "vetoed_htf", "detail": "htf_bias=bearish opposed a call"}
+{"symbol": "MSFT", "day": "2026-02-11", "entry_i": 20, "tier": "A", "miss_reason": "no_reference_level", "detail": "no level within 0.5% of close $408.65; nearest $412.27 (0.89% away); levels available: OR high=$416.46, OR low=$412.27, PDH=$423.68, PDL=$412.70, PMH=$417.98, PML=$412.85"}
+{"symbol": "MSFT", "day": "2026-06-10", "entry_i": 17, "tier": "A", "miss_reason": "no_break_retest", "detail": "a reference level is near but detect_break_retest returned falsy for every level"}
+{"symbol": "MU", "day": "2025-11-07", "entry_i": 22, "tier": "S", "miss_reason": "no_reference_level", "detail": "no level within 0.5% of close $238.10; nearest $236.30 (0.76% away); levels available: OR high=$236.30, OR low=$233.00, PDH=$246.41, PDL=$234.88, PMH=$245.10, PML=$232.93"}
+{"symbol": "MU", "day": "2025-12-08", "entry_i": 12, "tier": "X", "miss_reason": "vetoed_candle_colour", "detail": "entry candle not bullish"}
+{"symbol": "MU", "day": "2026-01-28", "entry_i": 13, "tier": "S", "miss_reason": "no_break_retest", "detail": "a reference level is near but detect_break_retest returned falsy for every level"}
+{"symbol": "NVDA", "day": "2024-11-18", "entry_i": 10, "tier": "S", "miss_reason": "no_break_retest", "detail": "a reference level is near but detect_break_retest returned falsy for every level"}
+{"symbol": "NVDA", "day": "2024-11-19", "entry_i": 18, "tier": "A", "miss_reason": "vetoed_htf", "detail": "htf_bias=bearish opposed a call"}
+{"symbol": "NVDA", "day": "2024-12-16", "entry_i": 12, "tier": "A", "miss_reason": "detected", "detail": "engine fired at bar(s) [12] within +/-2"}
+{"symbol": "NVDA", "day": "2024-12-30", "entry_i": 34, "tier": "A", "miss_reason": "no_break_retest", "detail": "a reference level is near but detect_break_retest returned falsy for every level"}
+{"symbol": "NVDA", "day": "2025-03-25", "entry_i": 25, "tier": "A", "miss_reason": "no_break_retest", "detail": "a reference level is near but detect_break_retest returned falsy for every level"}
+{"symbol": "NVDA", "day": "2026-05-21", "entry_i": 10, "tier": "A", "miss_reason": "no_break_retest", "detail": "a reference level is near but detect_break_retest returned falsy for every level"}
+{"symbol": "ORCL", "day": "2025-03-28", "entry_i": 12, "tier": "S", "miss_reason": "no_break_retest", "detail": "a reference level is near but detect_break_retest returned falsy for every level"}
+{"symbol": "ORCL", "day": "2025-07-08", "entry_i": 7, "tier": "S", "miss_reason": "fired_wrong_bar", "detail": "engine fired at bar(s) [13, 62], all >2 from 7"}
+{"symbol": "ORCL", "day": "2025-09-17", "entry_i": 11, "tier": "A", "miss_reason": "vetoed_htf", "detail": "htf_bias=bullish opposed a put"}
+{"symbol": "ORCL", "day": "2025-11-03", "entry_i": 17, "tier": "S", "miss_reason": "fired_wrong_bar", "detail": "engine fired at bar(s) [30], all >2 from 17"}
+{"symbol": "ORCL", "day": "2026-06-09", "entry_i": 8, "tier": "A", "miss_reason": "no_break_retest", "detail": "a reference level is near but detect_break_retest returned falsy for every level"}
+{"symbol": "PLTR", "day": "2024-10-23", "entry_i": 21, "tier": "S", "miss_reason": "fired_wrong_bar", "detail": "engine fired at bar(s) [15], all >2 from 21"}
+{"symbol": "PLTR", "day": "2025-09-18", "entry_i": 14, "tier": "S", "miss_reason": "no_break_retest", "detail": "a reference level is near but detect_break_retest returned falsy for every level"}
+{"symbol": "PLTR", "day": "2026-03-31", "entry_i": 23, "tier": "S", "miss_reason": "vetoed_htf", "detail": "htf_bias=bearish opposed a call"}
+{"symbol": "QQQ", "day": "2024-01-04", "entry_i": 41, "tier": "S", "miss_reason": "consolidation_early_return", "detail": "PDH/PDL/OR all within 0.5% of mean $396.90 -> detect_signals returned [] silently"}
+{"symbol": "QQQ", "day": "2024-01-30", "entry_i": 35, "tier": "X", "miss_reason": "vetoed_stop_too_tight", "detail": "B&R stock_risk $0.330 < $0.640 (0.0015*close / $0.10)"}
+{"symbol": "QQQ", "day": "2024-02-01", "entry_i": 44, "tier": "X", "miss_reason": "no_break_retest", "detail": "a reference level is near but detect_break_retest returned falsy for every level"}
+{"symbol": "QQQ", "day": "2024-03-05", "entry_i": 11, "tier": "A", "miss_reason": "fired_wrong_bar", "detail": "engine fired at bar(s) [16], all >2 from 11"}
+{"symbol": "QQQ", "day": "2024-03-05", "entry_i": 21, "tier": "S", "miss_reason": "fired_wrong_bar", "detail": "engine fired at bar(s) [16], all >2 from 21"}
+{"symbol": "QQQ", "day": "2024-03-15", "entry_i": 11, "tier": "S", "miss_reason": "vetoed_htf", "detail": "htf_bias=bullish opposed a put"}
+{"symbol": "QQQ", "day": "2024-05-08", "entry_i": 8, "tier": "S", "miss_reason": "no_break_retest", "detail": "a reference level is near but detect_break_retest returned falsy for every level"}
+{"symbol": "QQQ", "day": "2024-08-23", "entry_i": 36, "tier": "S", "miss_reason": "detected", "detail": "engine fired at bar(s) [36] within +/-2"}
+{"symbol": "QQQ", "day": "2024-10-03", "entry_i": 18, "tier": "S", "miss_reason": "vetoed_stop_too_tight", "detail": "B&R stock_risk $0.420 < $0.723 (0.0015*close / $0.10)"}
+{"symbol": "QQQ", "day": "2024-12-16", "entry_i": 28, "tier": "S", "miss_reason": "no_break_retest", "detail": "a reference level is near but detect_break_retest returned falsy for every level"}
+{"symbol": "QQQ", "day": "2024-12-23", "entry_i": 47, "tier": "A", "miss_reason": "vetoed_htf", "detail": "htf_bias=bullish opposed a put"}
+{"symbol": "QQQ", "day": "2025-01-10", "entry_i": 13, "tier": "S", "miss_reason": "vetoed_stop_too_tight", "detail": "B&R stock_risk $0.410 < $0.764 (0.0015*close / $0.10)"}
+{"symbol": "QQQ", "day": "2025-01-16", "entry_i": 23, "tier": "S", "miss_reason": "vetoed_stop_too_tight", "detail": "B&R stock_risk $0.300 < $0.775 (0.0015*close / $0.10)"}
+{"symbol": "QQQ", "day": "2025-01-28", "entry_i": 40, "tier": "A", "miss_reason": "vetoed_htf", "detail": "htf_bias=bearish opposed a call"}
+{"symbol": "QQQ", "day": "2025-02-25", "entry_i": 16, "tier": "S", "miss_reason": "detected", "detail": "engine fired at bar(s) [17] within +/-2"}
+{"symbol": "QQQ", "day": "2025-02-25", "entry_i": 53, "tier": "A", "miss_reason": "fired_wrong_bar", "detail": "engine fired at bar(s) [8, 17, 28], all >2 from 53"}
+{"symbol": "QQQ", "day": "2025-02-26", "entry_i": 28, "tier": "S", "miss_reason": "no_break_retest", "detail": "a reference level is near but detect_break_retest returned falsy for every level"}
+{"symbol": "QQQ", "day": "2025-03-17", "entry_i": 16, "tier": "S", "miss_reason": "no_break_retest", "detail": "a reference level is near but detect_break_retest returned falsy for every level"}
+{"symbol": "QQQ", "day": "2025-03-18", "entry_i": 13, "tier": "S", "miss_reason": "no_break_retest", "detail": "a reference level is near but detect_break_retest returned falsy for every level"}
+{"symbol": "QQQ", "day": "2025-05-07", "entry_i": 31, "tier": "A", "miss_reason": "no_break_retest", "detail": "a reference level is near but detect_break_retest returned falsy for every level"}
+{"symbol": "QQQ", "day": "2025-05-16", "entry_i": 63, "tier": "A", "miss_reason": "no_break_retest", "detail": "a reference level is near but detect_break_retest returned falsy for every level"}
+{"symbol": "QQQ", "day": "2025-06-24", "entry_i": 15, "tier": "S", "miss_reason": "vetoed_stop_too_tight", "detail": "B&R stock_risk $0.220 < $0.807 (0.0015*close / $0.10)"}
+{"symbol": "QQQ", "day": "2025-06-25", "entry_i": 48, "tier": "A", "miss_reason": "vetoed_htf", "detail": "htf_bias=bullish opposed a put"}
+{"symbol": "QQQ", "day": "2025-07-01", "entry_i": 72, "tier": "X", "miss_reason": "consolidation_early_return", "detail": "PDH/PDL/OR all within 0.5% of mean $550.37 -> detect_signals returned [] silently"}
+{"symbol": "QQQ", "day": "2025-12-05", "entry_i": 27, "tier": "S", "miss_reason": "vetoed_stop_too_tight", "detail": "B&R stock_risk $0.280 < $0.940 (0.0015*close / $0.10)"}
+{"symbol": "QQQ", "day": "2025-12-05", "entry_i": 35, "tier": "S", "miss_reason": "vetoed_candle_colour", "detail": "entry candle not bullish"}
+{"symbol": "QQQ", "day": "2025-12-30", "entry_i": 24, "tier": "S", "miss_reason": "consolidation_early_return", "detail": "PDH/PDL/OR all within 0.5% of mean $620.51 -> detect_signals returned [] silently"}
+{"symbol": "QQQ", "day": "2026-02-11", "entry_i": 32, "tier": "S", "miss_reason": "no_break_retest", "detail": "a reference level is near but detect_break_retest returned falsy for every level"}
+{"symbol": "QQQ", "day": "2026-02-11", "entry_i": 45, "tier": "S", "miss_reason": "no_break_retest", "detail": "a reference level is near but detect_break_retest returned falsy for every level"}
+{"symbol": "QQQ", "day": "2026-03-04", "entry_i": 42, "tier": "S", "miss_reason": "no_break_retest", "detail": "a reference level is near but detect_break_retest returned falsy for every level"}
+{"symbol": "QQQ", "day": "2026-03-06", "entry_i": 47, "tier": "X", "miss_reason": "no_break_retest", "detail": "a reference level is near but detect_break_retest returned falsy for every level"}
+{"symbol": "QQQ", "day": "2026-07-09", "entry_i": 11, "tier": "S", "miss_reason": "no_break_retest", "detail": "a reference level is near but detect_break_retest returned falsy for every level"}
+{"symbol": "SOFI", "day": "2024-10-30", "entry_i": 16, "tier": "S", "miss_reason": "no_reference_level", "detail": "no level within 0.5% of close $10.92; nearest $10.77 (1.42% away); levels available: OR high=$10.77, OR low=$10.46, PMH=$10.73, PML=$10.40"}
+{"symbol": "SOFI", "day": "2026-03-11", "entry_i": 63, "tier": "A", "miss_reason": "no_break_retest", "detail": "a reference level is near but detect_break_retest returned falsy for every level"}
+{"symbol": "SOFI", "day": "2026-05-20", "entry_i": 55, "tier": "A", "miss_reason": "vetoed_htf", "detail": "htf_bias=bearish opposed a call"}
+{"symbol": "SPY", "day": "2024-02-22", "entry_i": 25, "tier": "A", "miss_reason": "consolidation_early_return", "detail": "PDH/PDL/OR all within 0.5% of mean $503.91 -> detect_signals returned [] silently"}
+{"symbol": "SPY", "day": "2024-04-03", "entry_i": 9, "tier": "S", "miss_reason": "consolidation_early_return", "detail": "PDH/PDL/OR all within 0.5% of mean $517.91 -> detect_signals returned [] silently"}
+{"symbol": "SPY", "day": "2024-06-11", "entry_i": 23, "tier": "S", "miss_reason": "no_break_retest", "detail": "a reference level is near but detect_break_retest returned falsy for every level"}
+{"symbol": "SPY", "day": "2024-09-19", "entry_i": 19, "tier": "S", "miss_reason": "no_break_retest", "detail": "a reference level is near but detect_break_retest returned falsy for every level"}
+{"symbol": "SPY", "day": "2024-10-22", "entry_i": 41, "tier": "A", "miss_reason": "no_break_retest", "detail": "a reference level is near but detect_break_retest returned falsy for every level"}
+{"symbol": "SPY", "day": "2025-02-20", "entry_i": 35, "tier": "A", "miss_reason": "consolidation_early_return", "detail": "PDH/PDL/OR all within 0.5% of mean $611.41 -> detect_signals returned [] silently"}
+{"symbol": "SPY", "day": "2025-02-21", "entry_i": 18, "tier": "X", "miss_reason": "consolidation_early_return", "detail": "PDH/PDL/OR all within 0.5% of mean $609.63 -> detect_signals returned [] silently"}
+{"symbol": "SPY", "day": "2025-03-18", "entry_i": 13, "tier": "S", "miss_reason": "no_break_retest", "detail": "a reference level is near but detect_break_retest returned falsy for every level"}
+{"symbol": "SPY", "day": "2025-06-02", "entry_i": 40, "tier": "A", "miss_reason": "no_break_retest", "detail": "a reference level is near but detect_break_retest returned falsy for every level"}
+{"symbol": "SPY", "day": "2025-07-01", "entry_i": 41, "tier": "A", "miss_reason": "consolidation_early_return", "detail": "PDH/PDL/OR all within 0.5% of mean $616.85 -> detect_signals returned [] silently"}
+{"symbol": "SPY", "day": "2025-09-25", "entry_i": 45, "tier": "A", "miss_reason": "vetoed_stop_too_tight", "detail": "B&R stock_risk $0.550 < $0.988 (0.0015*close / $0.10)"}
+{"symbol": "SPY", "day": "2025-11-05", "entry_i": 52, "tier": "A", "miss_reason": "no_break_retest", "detail": "a reference level is near but detect_break_retest returned falsy for every level"}
+{"symbol": "SPY", "day": "2025-11-19", "entry_i": 9, "tier": "S", "miss_reason": "vetoed_htf", "detail": "htf_bias=bearish opposed a call"}
+{"symbol": "SPY", "day": "2025-12-02", "entry_i": 14, "tier": "X", "miss_reason": "consolidation_early_return", "detail": "PDH/PDL/OR all within 0.5% of mean $681.39 -> detect_signals returned [] silently"}
+{"symbol": "SPY", "day": "2026-01-08", "entry_i": 42, "tier": "X", "miss_reason": "vetoed_stop_too_tight", "detail": "B&R stock_risk $0.279 < $1.034 (0.0015*close / $0.10)"}
+{"symbol": "SPY", "day": "2026-02-09", "entry_i": 24, "tier": "A", "miss_reason": "no_break_retest", "detail": "a reference level is near but detect_break_retest returned falsy for every level"}
+{"symbol": "SPY", "day": "2026-03-02", "entry_i": 24, "tier": "S", "miss_reason": "no_break_retest", "detail": "a reference level is near but detect_break_retest returned falsy for every level"}
+{"symbol": "SPY", "day": "2026-03-03", "entry_i": 17, "tier": "S", "miss_reason": "no_break_retest", "detail": "a reference level is near but detect_break_retest returned falsy for every level"}
+{"symbol": "SPY", "day": "2026-03-05", "entry_i": 56, "tier": "S", "miss_reason": "vetoed_htf", "detail": "htf_bias=bullish opposed a put"}
+{"symbol": "SPY", "day": "2026-03-25", "entry_i": 10, "tier": "X", "miss_reason": "vetoed_htf", "detail": "htf_bias=bearish opposed a call"}
+{"symbol": "SPY", "day": "2026-05-05", "entry_i": 10, "tier": "A", "miss_reason": "vetoed_stop_too_tight", "detail": "B&R stock_risk $0.070 < $1.083 (0.0015*close / $0.10)"}
+{"symbol": "TSLA", "day": "2024-01-12", "entry_i": 18, "tier": "X", "miss_reason": "detected", "detail": "engine fired at bar(s) [18] within +/-2"}
+{"symbol": "TSLA", "day": "2024-02-05", "entry_i": 16, "tier": "A", "miss_reason": "detected", "detail": "engine fired at bar(s) [16] within +/-2"}
+{"symbol": "TSLA", "day": "2024-03-27", "entry_i": 13, "tier": "S", "miss_reason": "vetoed_candle_colour", "detail": "entry candle not bearish"}
+{"symbol": "TSLA", "day": "2024-06-24", "entry_i": 9, "tier": "S", "miss_reason": "fired_wrong_bar", "detail": "engine fired at bar(s) [14], all >2 from 9"}
+{"symbol": "TSLA", "day": "2024-12-03", "entry_i": 8, "tier": "A", "miss_reason": "no_break_retest", "detail": "a reference level is near but detect_break_retest returned falsy for every level"}
+{"symbol": "TSLA", "day": "2026-02-18", "entry_i": 42, "tier": "S", "miss_reason": "vetoed_htf", "detail": "htf_bias=bearish opposed a call"}
+{"symbol": "TSM", "day": "2025-10-07", "entry_i": 74, "tier": "A", "miss_reason": "vetoed_htf", "detail": "htf_bias=bullish opposed a put"}
+{"symbol": "TSM", "day": "2026-05-29", "entry_i": 23, "tier": "S", "miss_reason": "fired_wrong_bar", "detail": "engine fired at bar(s) [16], all >2 from 23"}
+{"symbol": "UBER", "day": "2025-02-07", "entry_i": 22, "tier": "S", "miss_reason": "no_reference_level", "detail": "no level within 0.5% of close $72.12; nearest $71.70 (0.58% away); levels available: OR high=$71.70, OR low=$70.13, PMH=$70.44, PML=$69.50"}
+{"symbol": "UBER", "day": "2025-07-31", "entry_i": 48, "tier": "A", "miss_reason": "no_break_retest", "detail": "a reference level is near but detect_break_retest returned falsy for every level"}
+{"symbol": "UBER", "day": "2025-08-13", "entry_i": 25, "tier": "S", "miss_reason": "vetoed_htf", "detail": "htf_bias=bullish opposed a put"}
+{"symbol": "UBER", "day": "2025-09-11", "entry_i": 15, "tier": "S", "miss_reason": "detected", "detail": "engine fired at bar(s) [15] within +/-2"}
+{"symbol": "UBER", "day": "2026-01-06", "entry_i": 22, "tier": "A", "miss_reason": "no_reference_level", "detail": "no level within 0.5% of close $84.64; nearest $84.10 (0.64% away); levels available: OR high=$84.10, OR low=$81.09, PDH=$82.84, PDL=$79.58, PMH=$82.33, PML=$80.80"}
+{"symbol": "UBER", "day": "2026-06-09", "entry_i": 11, "tier": "A", "miss_reason": "no_break_retest", "detail": "a reference level is near but detect_break_retest returned falsy for every level"}
+{"symbol": "UBER", "day": "2026-07-06", "entry_i": 12, "tier": "S", "miss_reason": "no_break_retest", "detail": "a reference level is near but detect_break_retest returned falsy for every level"}

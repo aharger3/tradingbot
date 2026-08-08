@@ -137,7 +137,11 @@ BNR_DISPLACEMENT_GATE = False  # True = B&R without break-leg displacement caps 
 LEVEL_BLOCK_CAP = True   # level inside the 2R path caps grade at C (alert-only)
 CLEAR_FOR_APLUS = True   # A+/A require entry beyond ALL levels in trade direction
 STOP_RANGE_MULT = 0.75   # stop must be >= this x avg 1-min range ("human-proof")
-_GRADE_RANK = {"A+": 4, "A": 3, "B": 2, "C": 1, "D": 0}
+# T5 rename: "X" is the skip grade, "D" is its old letter — both rank 0 so
+# either spelling compares correctly.
+_GRADE_RANK = {"A+": 4, "A": 3, "B": 2, "C": 1, "X": 0, "D": 0}
+# Grade values that mean "skip" (TradeGrade.X, formerly TradeGrade.D)
+_SKIP_GRADES = ("X", "D")
 
 # B4 (GRADE_FIX, 2026-07-13) — corrected A+ per B3 audit
 # (research/aplus-inversion-audit.md), FLAG-GATED, DEFAULT OFF. Config defaults
@@ -199,6 +203,40 @@ RULE84_OFF = os.getenv("RULE84_OFF", "0").strip().lower() in ("1", "true", "yes"
 # behaviour byte-identical to today; the harness flips this at runtime for the
 # T7 A/B exactly as research/c1_analyze.py flips BNR_DISPLACEMENT_GATE.
 S_GATE = False
+
+# omen-3.7 (DETECT_WIDE, T5, 2026-08-08) -- detection widening at the single
+# biggest cause of S-blindness, FLAG-GATED, DEFAULT OFF.
+#
+# Source: research/miss_autopsy.md. Its S column's top row is `no_break_retest`
+# -- **27 of the 77 S marks** (35.1%), where detect_break_retest returned falsy
+# for every level. research/corpus_miss_autopsy.md (T2.1) independently agrees:
+# the same reason tops the 10,263-instance Discord corpus at 4,186 (40.8%).
+#
+# research/t5_wide_probe.py localises it inside the FSM: on 14 of those 27 the
+# sequence stalls at step 3, RETEST -- price broke the level, left it, then
+# turned back NEAR it without ever tagging it, and the exact-touch test
+# (`c.low <= level`) discards the setup. Widening the window (2 marks) or the
+# confirm gap (1 mark) -- the two knobs the autopsy prose guessed at -- barely
+# moves it; a retest proximity band reaches 9.
+#
+# Mechanism (ONE knob): when ON, detect_break_retest's retest step accepts a
+# candle within DETECT_WIDE_RETEST_MULT * (avg candle range in the window) of
+# the level. Window, max_confirm_gap, the break buffer, the LEAVE step and the
+# adverse-wick rule are all unchanged. OFF passes retest_tol_mult=0.0, which is
+# today's exact-touch test byte-for-byte => shipped behaviour is identical. The
+# harness flips this at runtime exactly as research/c1_analyze.py flips
+# BNR_DISPLACEMENT_GATE. Pre-registered recall prediction for T6 is in
+# research/detect_wide.md and was written before this code existed.
+DETECT_WIDE = False
+# 1.0 = "the retest came within one average candle's range of the level". The
+# probe's efficient point was 1.3 (13 of 27 vs 9) with a flat curve to 2.5 --
+# deliberately NOT taken: 1.3 is fitted to 27 marks, 1.0 is a rule.
+DETECT_WIDE_RETEST_MULT = 1.0
+
+
+def _retest_tol() -> float:
+    """retest_tol_mult to hand detect_break_retest. 0.0 unless DETECT_WIDE."""
+    return DETECT_WIDE_RETEST_MULT if DETECT_WIDE else 0.0
 
 
 def daily_trend_bias(daily_closes, period: int = 20) -> Optional[str]:
@@ -478,6 +516,8 @@ class SignalRunner:
                 stop_width_pct=sig.get("stop_width_pct"),
                 status=status,
                 skip_reason=skip_reason,
+                # T5: always None until an S/A/C mapping is earned, not invented
+                austin_tier=sig.get("austin_tier"),
             )
         except OSError as e:
             print(f"⚠ signal log write failed: {e}")
@@ -492,7 +532,11 @@ class SignalRunner:
         if S_GATE and sig["grade"] in ("A+", "A", "B") and not is_s_gate(self.candles):
             sig["grade"] = TradeGrade.C.value
             sig["reason"] += " [capped C: S_GATE low displacement]"
-        if sig["grade"] != TradeGrade.D.value:
+        # T5: slot for a future S/A/C mapping of Austin's own tiers. ALWAYS None
+        # — no mapping from A+/A/B/C exists and none is asserted here (B is the
+        # only profitable engine tier; A+/A both lose. See research/detect_wide.md).
+        sig.setdefault("austin_tier", None)
+        if sig["grade"] not in _SKIP_GRADES:
             # tight-stop skip only for C — it killed 42 of 303 labeled takes
             # (calibration 2026-07-06); B+ setups size to the stop instead
             if sig["grade"] != "C" or self._min_viable_stop(sig["entry"], sig["stop"], sig["direction"]):
@@ -501,7 +545,7 @@ class SignalRunner:
                 return
             self._log_record(sig, status="skipped", skip_reason="stop too tight (<0.5% of entry and premium risk <$0.20)")
             return
-        self._log_record(sig, status="skipped", skip_reason="D grade")
+        self._log_record(sig, status="skipped", skip_reason="X grade (skip)")
 
     def detect_signals(self) -> List[dict]:
         """Scan candles for signals, grade A-D, filter D.
@@ -564,7 +608,8 @@ class SignalRunner:
             # break → LEAVE the level → come back → confirm, IN ORDER. Replaces the
             # presence-in-window booleans that let chop/no-return fire (his review).
             br_out = {}
-            br_note = detect_break_retest(self.candles, level_hi, is_long=True, out=br_out)
+            br_note = detect_break_retest(self.candles, level_hi, is_long=True, out=br_out,
+                                          retest_tol_mult=_retest_tol())
             if br_note and current.close > level_hi:
                 stop = level_hi
                 if BNR_STOP_MODE == "retest":
@@ -583,7 +628,7 @@ class SignalRunner:
                 stack = current.is_bullish and self._aplus_stack(level_hi, is_long=True)
                 # Austin's A+ stack outranks candle patterns (30d: pattern grader
                 # D-benched 38 of 53 stack setups) — floor B unless HTF opposed
-                if stack and grade.value in ("C", "D") and self.htf_bias != "bearish":
+                if stack and grade.value in ("C",) + _SKIP_GRADES and self.htf_bias != "bearish":
                     grade = TradeGrade.B
                 elif (grade == TradeGrade.D and current.is_bullish
                         and self.htf_bias != "bearish"):
@@ -619,6 +664,7 @@ class SignalRunner:
                         "reason": (f"B&R long — prior breakout above {hi_name} ${level_hi:.2f}, "
                                    f"retest with {grade.value} PA"
                                    + (" [late]" if "LATE" in br_note else " [clean]")
+                                   + (" [wide]" if "WIDE" in br_note else "")
                                    + (" [hammer]" if hammer else "")
                                    + (" [disp]" if disp else " [nodisp]")  # OPUS-SPEC #1
                                    + self._bnr_tags(current, stock_risk, is_long=True)
@@ -651,7 +697,7 @@ class SignalRunner:
                     if stock_risk < 0.50:
                         grade = TradeGrade.D
                     self._route(signals, {
-                            "signal_type": SignalType.BREAK_AND_RETEST,
+                            "signal_type": SignalType.FAIR_VALUE_GAP,
                             "reason": f"B&R long — FVG retest ${fvg[0]:.2f}-${fvg[1]:.2f} above {hi_name} ${level_hi:.2f}, {grade.value} PA",
                             "entry": current.close,
                             "stop": fvg[0],
@@ -691,9 +737,10 @@ class SignalRunner:
                     "stop_width_pct": round(stock_risk / current.close * 100, 2),
                 })
 
-        # Flag long (Austin 2026-07-08): pole up -> tight pause -> breakout up.
-        # Routed as ONE_CANDLE_RULE like order block; "Flag long" reason tags it.
-        # ponytail: dedicated SignalType.FLAG if per-setup analytics needed later.
+        # Flag long (Austin 2026-08-08): pole up -> tight pause -> breakout up.
+        # T5: was routed as ONE_CANDLE_RULE, which made per-setup win rates for
+        # the flag AND the order block untruthful. Own type now. Dormant
+        # (FLAG_ENABLED False), so this is a label fix, not a behaviour change.
         flag, fnote = detect_flag_setup(self.candles, "bullish") if FLAG_ENABLED else (None, "")
         if flag is not None and current.close > flag["flag_lo"] and _volume_ok(self.candles):
             stock_risk = current.close - flag["flag_lo"]
@@ -702,7 +749,7 @@ class SignalRunner:
             if stock_risk < 0.50:
                 grade = TradeGrade.D
             self._route(signals, {
-                    "signal_type": SignalType.ONE_CANDLE_RULE,
+                    "signal_type": SignalType.FLAG,
                     "reason": f"Flag long — {fnote}, breakout ${flag['flag_hi']:.2f}, {grade.value} PA",
                     "entry": current.close,
                     "stop": flag["flag_lo"],
@@ -766,7 +813,8 @@ class SignalRunner:
                 continue
             # Mirror of the long side — ordered break/leave/retest/confirm.
             br_out = {}
-            br_note = detect_break_retest(self.candles, level_lo, is_long=False, out=br_out)
+            br_note = detect_break_retest(self.candles, level_lo, is_long=False, out=br_out,
+                                          retest_tol_mult=_retest_tol())
             if br_note and current.close < level_lo:
                 stop = level_lo
                 if BNR_STOP_MODE == "retest":
@@ -781,7 +829,7 @@ class SignalRunner:
                 if "LATE" in br_note and grade.value in ("A+", "A"):
                     grade = TradeGrade.B
                 stack = current.is_bearish and self._aplus_stack(level_lo, is_long=False)
-                if stack and grade.value in ("C", "D") and self.htf_bias != "bullish":
+                if stack and grade.value in ("C",) + _SKIP_GRADES and self.htf_bias != "bullish":
                     grade = TradeGrade.B
                 elif (grade == TradeGrade.D and current.is_bearish
                         and self.htf_bias != "bullish"):
@@ -810,6 +858,7 @@ class SignalRunner:
                         "reason": (f"B&R short — prior breakdown below {lo_name} ${level_lo:.2f}, "
                                    f"retest with {grade.value} PA"
                                    + (" [late]" if "LATE" in br_note else " [clean]")
+                                   + (" [wide]" if "WIDE" in br_note else "")
                                    + (" [hammer]" if hammer else "")
                                    + (" [disp]" if disp else " [nodisp]")  # OPUS-SPEC #1
                                    + self._bnr_tags(current, stock_risk, is_long=False)
@@ -841,7 +890,7 @@ class SignalRunner:
                     if stock_risk < 0.50:
                         grade = TradeGrade.D
                     self._route(signals, {
-                            "signal_type": SignalType.BREAK_AND_RETEST,
+                            "signal_type": SignalType.FAIR_VALUE_GAP,
                             "reason": f"B&R short — FVG retest ${fvg[0]:.2f}-${fvg[1]:.2f} below {lo_name} ${level_lo:.2f}, {grade.value} PA",
                             "entry": current.close,
                             "stop": fvg[1],
@@ -887,7 +936,7 @@ class SignalRunner:
             if stock_risk < 0.50:
                 grade = TradeGrade.D
             self._route(signals, {
-                    "signal_type": SignalType.ONE_CANDLE_RULE,
+                    "signal_type": SignalType.FLAG,
                     "reason": f"Flag short — {fnote}, breakdown ${flag['flag_lo']:.2f}, {grade.value} PA",
                     "entry": current.close,
                     "stop": flag["flag_hi"],

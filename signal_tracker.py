@@ -26,8 +26,15 @@ def log_signal(
     quote_source: str = "estimated",
     status: str = "fired",
     skip_reason: Optional[str] = None,
+    austin_tier: Optional[str] = None,
 ):
-    """Append one signal record to date's jsonl file."""
+    """Append one signal record to date's jsonl file.
+
+    `austin_tier` (omen-3.7 T5) is a slot for a future S/A/C mapping of Austin's
+    own grading. It is ALWAYS None today — no mapping from the engine's
+    A+/A/B/C is asserted, because none is supported by the evidence
+    (research/detect_wide.md).
+    """
     record = {
         "status": status,
         "skip_reason": skip_reason,
@@ -39,6 +46,7 @@ def log_signal(
         "stop": round(stop, 2),
         "target": round(target, 2),
         "grade": grade,
+        "austin_tier": austin_tier,
         "reason": reason,
         "stop_width_pct": stop_width_pct,
         "quote_source": quote_source,

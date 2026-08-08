@@ -20,7 +20,8 @@ DEFAULT_RR = 2.0
 DEFAULT_DELTA = 0.5  # ATM ≈ 0.5
 
 # Grade → fraction of max loss to risk (SPEC2). C = alert-only, D = filtered upstream.
-GRADE_SIZE_PCT = {"A+": 1.0, "A": 0.8, "B": 0.6, "C": 0.4, "D": 0.0}
+# "X" is the skip grade (T5 rename); "D" kept as its old letter — both 0%.
+GRADE_SIZE_PCT = {"A+": 1.0, "A": 0.8, "B": 0.6, "C": 0.4, "X": 0.0, "D": 0.0}
 
 # Per-symbol strike increment (USD)
 # Initial-guess only — fetch_option_snapshot queries ±$5 range and picks closest
