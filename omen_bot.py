@@ -7,17 +7,37 @@ from enum import Enum
 
 class SignalType(Enum):
     BREAK_AND_RETEST = "break_and_retest"
+    # ONE_CANDLE_RULE is Austin's One Candle Rule (2026-08-07): "you mark the
+    # downclose candle in an uptrend and price respects it, or vice versa" —
+    # i.e. the order block, and detect_order_block_setup alone. omen-3.7 T5:
+    # the FVG and flag entries used to hide behind other labels (FVG under
+    # BREAK_AND_RETEST, flag under ONE_CANDLE_RULE), so no per-setup win rate
+    # for any of them was truthful. They now carry their own types.
     ONE_CANDLE_RULE = "one_candle_rule"
+    FAIR_VALUE_GAP = "fair_value_gap"
+    FLAG = "flag"
     REENTRY_84_RULE = "reentry_84_rule"
     NONE = "none"
 
 
 class TradeGrade(Enum):
+    """omen-3.7 T5: `D` and `X` both mean SKIP, so `X` is now the canonical
+    skip grade and `D` is kept as an alias (TradeGrade.D is TradeGrade.X) so
+    nothing that reads the old letter breaks. TradeGrade("D") still resolves
+    via _missing_. Pure rename — no semantics changed."""
     A_PLUS = "A+"
     A = "A"
     B = "B"
     C = "C"
-    D = "D"
+    X = "X"          # skip / do not trade
+    D = "X"          # alias of X — the old letter for the same thing
+
+    @classmethod
+    def _missing_(cls, value):
+        # TradeGrade("D") -> TradeGrade.X, for callers holding the old letter
+        if isinstance(value, str) and value.strip().upper() == "D":
+            return cls.X
+        return None
 
 
 @dataclass
@@ -402,7 +422,7 @@ def detect_flag_setup(candles: List[Candle], direction: str = "bullish"):
 
 def detect_break_retest(candles: List[Candle], level: float, is_long: bool,
                         window: int = 12, max_confirm_gap: int = 3,
-                        out: Optional[dict] = None):
+                        out: Optional[dict] = None, retest_tol_mult: float = 0.0):
     """Austin's ORDERED break-and-retest (2026-07-09). Returns a note str if the
     LAST candle is a valid entry, else None.
 
@@ -416,6 +436,16 @@ def detect_break_retest(candles: List[Candle], level: float, is_long: bool,
                    max_confirm_gap bars of the retest (immediate retest = gap 0)
     A failed break (falls back through before leaving) resets to step 1.
     PA/grade is judged by the caller; this only enforces the geometry.
+
+    `retest_tol_mult` (omen-3.7 T5, driven by signal_runner.DETECT_WIDE —
+    default OFF, so the default 0.0 here reproduces the exact-touch test
+    byte-for-byte) widens ONLY step 3/4: the retest candle may come within
+    `retest_tol_mult * (avg candle range in the window)` of the level instead of
+    tagging it exactly. Source: research/miss_autopsy.md — `no_break_retest` is
+    the top cause of S-blindness at 27 of 77 S marks, and research/detect_wide.md
+    shows the RETEST step is the deepest blocker on 14 of those 27 (price broke,
+    left, and turned back near the level without touching it). A level is a
+    zone, not a line; nothing else in the sequence moves.
     """
     if len(candles) < 4:
         return None
@@ -428,7 +458,10 @@ def detect_break_retest(candles: List[Candle], level: float, is_long: bool,
 
     # Austin 2026-07-10 (11-04 review): close AT the level / clearing by a hair
     # is not a break or displacement. Buffer = 10% of avg window candle range.
-    eps = 0.10 * (sum(c.high - c.low for c in w) / len(w))
+    avg_rng = sum(c.high - c.low for c in w) / len(w)
+    eps = 0.10 * avg_rng
+    # T5 DETECT_WIDE: retest proximity band (0.0 = today's exact touch)
+    rtol = retest_tol_mult * avg_rng
 
     # Austin 2026-07-10 (07-30, 10-09): entry candle with a big wick AGAINST the
     # trade (short w/ long lower wick, long w/ long upper wick) = buyers/sellers
@@ -453,11 +486,11 @@ def detect_break_retest(candles: List[Candle], level: float, is_long: bool,
             elif failed:
                 state = "seek_break"          # break fizzled, look for a new one
         elif state == "seek_retest":
-            back = (c.low <= level) if is_long else (c.high >= level)
+            back = (c.low <= level + rtol) if is_long else (c.high >= level - rtol)
             if back:
                 retest_idx, state = i, "hold"
         elif state == "hold":                 # retest found; take the latest touch
-            back = (c.low <= level) if is_long else (c.high >= level)
+            back = (c.low <= level + rtol) if is_long else (c.high >= level - rtol)
             if back:
                 retest_idx = i
 
@@ -474,6 +507,13 @@ def detect_break_retest(candles: List[Candle], level: float, is_long: bool,
     late = sum(1 for a, b in zip(prior, prior[1:])
                if (a.close - level) * (b.close - level) < 0)
     tag = f" | LATE({late} prior breaks)" if late else ""
+    # T5 DETECT_WIDE: say so when the band — not an exact touch — is what let
+    # this retest through, so the A/B can separate widened fires from the rest.
+    rc = w[retest_idx]
+    touched = (rc.low <= level) if is_long else (rc.high >= level)
+    if not touched:
+        miss = (rc.low - level) if is_long else (level - rc.high)
+        tag += f" | WIDE(retest missed level by ${miss:.2f} = {miss / avg_rng:.2f}x range)"
     if out is not None:
         # F2 stop-placement A/B: caller may place the stop at the retest
         # candle's extreme ("stop at the break of the candle that came back

@@ -67,18 +67,28 @@
 
 ## Setup 3: One Candle Rule
 
-**What it is:** [TO BE DOCUMENTED] — Austin's notes reference this but need more detail from Scarface videos.
+**What it is:** Austin, 2026-08-07 — *"you mark the downclose candle in an uptrend and price respects it, or vice versa."*
+
+That is the order block, and `detect_order_block_setup` (`omen_bot.py`) is its
+implementation. The candle that closed against the trend just before the move is
+the zone; the rule is that price coming back to it *respects* it.
 
 ### Entry Conditions
-- [Pending: exact candle pattern to identify]
-- [Pending: entry price level]
+- Uptrend: mark the last **down-close** candle before the structural higher high (mirror for a downtrend: the last **up-close** candle before the lower low)
+- Price comes back to that candle's zone and respects it — the retest must be a **wick only**, not a close inside the body (`OB_RETEST_TYPES = ("wick_only",)`)
+- Entry on the candle that closes back beyond the block (long: close > block high; short: close < block low)
 
 ### Exit Conditions
-- [Pending: profit target rules]
-- [Pending: stop loss placement]
+- Stop at the far side of the block — the block low (long) / block high (short)
+- Target 2R, per the house rule
 
 ### Risk Management
-- [Pending]
+- A-grade with a tight stop only. The 12mo split (2026-07-10) put B-grade at 19% win / −$13k and wide stops 0-for-11 / −$10k, so B is demoted to alert-only and a stop wider than 0.4% of entry is skipped outright.
+
+**Note on labelling (omen-3.7 T5):** `SignalType.ONE_CANDLE_RULE` now means this
+setup and only this setup. Fair-value-gap entries and flag breakouts used to
+share a label with it, which made every per-setup win rate untruthful; they now
+carry `SignalType.FAIR_VALUE_GAP` and `SignalType.FLAG`.
 
 ---
 

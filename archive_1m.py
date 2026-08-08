@@ -20,10 +20,10 @@ ARCHIVE = Path(__file__).parent / "data_archive"
 # drag in the scanner's discord/tastytrade deps)
 SYMBOLS = [
     "TSLA", "NVDA", "AAPL", "AMD", "META",
-    "GOOGL", "AMZN", "MSFT", "PLTR", "SPY", "QQQ",
+    "GOOGL", "GOOG", "AMZN", "MSFT", "PLTR", "SPY", "QQQ",
     "SOFI", "ORCL", "COIN", "HOOD", "IREN", "INTC", "SMCI",
     "MSTR", "NFLX", "AVGO", "MU", "UBER", "BABA", "CRM",
-    "TSM", "MARA", "RIVN",
+    "TSM", "MARA", "IWM", "RIVN",
 ]
 
 
