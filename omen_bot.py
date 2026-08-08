@@ -420,6 +420,16 @@ def detect_flag_setup(candles: List[Candle], direction: str = "bullish"):
     return None, "no flag"
 
 
+# omen-3.8 T4 geometry fix (2026-08-08): the 12-bar window is too short for
+# break-and-retest setups where the break is early in the session and the
+# retest/confirm lands 10+ bars later — the dominant `no_break_retest` cause
+# of S-blindness (27/77 S marks, research/miss_autopsy.md). When the tight
+# caller-requested window finds no valid sequence, detect_break_retest retries
+# once over this wider window + confirm gap. See detect_break_retest docstring.
+BR_WIDE_WINDOW = 20
+BR_WIDE_GAP = 6
+
+
 def detect_break_retest(candles: List[Candle], level: float, is_long: bool,
                         window: int = 12, max_confirm_gap: int = 3,
                         out: Optional[dict] = None, retest_tol_mult: float = 0.0):
@@ -446,81 +456,106 @@ def detect_break_retest(candles: List[Candle], level: float, is_long: bool,
     shows the RETEST step is the deepest blocker on 14 of those 27 (price broke,
     left, and turned back near the level without touching it). A level is a
     zone, not a line; nothing else in the sequence moves.
+
+    omen-3.8 T4 geometry fix (2026-08-08): the 12-bar window is the actual
+    blocker on the recoverable `no_break_retest` marks — the break is early in
+    the session and the retest/confirm lands 10+ bars later, so the ordered
+    break→leave→retest→confirm sequence never fits in 12 bars at the entry bar
+    (the break has scrolled out, or the recent-window eps swallows the early
+    break). When the tight caller-requested window returns None, retry once over
+    `BR_WIDE_WINDOW`/`BR_WIDE_GAP`. This is a STRICT SUPERSET for detection: a
+    bar that the tight window already fires is returned unchanged, so the retry
+    can only ADD fires, never replace one (widening the *primary* window
+    instead latches onto earlier breaks and regresses — research/t4_final_sweep.py
+    drops HOOD|2025-02-24|16). The tolerance knob above is NOT touched — that
+    path (DETECT_WIDE) was benched: halves precision, 0 new distinct S marks.
+    See research/t4_geometry_fix.md for the recovered marks.
     """
     if len(candles) < 4:
         return None
-    w = candles[-window:]
-    cur = w[-1]
-    if is_long and cur.close <= level:
-        return None
-    if not is_long and cur.close >= level:
-        return None
 
-    # Austin 2026-07-10 (11-04 review): close AT the level / clearing by a hair
-    # is not a break or displacement. Buffer = 10% of avg window candle range.
-    avg_rng = sum(c.high - c.low for c in w) / len(w)
-    eps = 0.10 * avg_rng
-    # T5 DETECT_WIDE: retest proximity band (0.0 = today's exact touch)
-    rtol = retest_tol_mult * avg_rng
+    def _pass(win, gap):
+        w = candles[-win:]
+        cur = w[-1]
+        if is_long and cur.close <= level:
+            return None
+        if not is_long and cur.close >= level:
+            return None
 
-    # Austin 2026-07-10 (07-30, 10-09): entry candle with a big wick AGAINST the
-    # trade (short w/ long lower wick, long w/ long upper wick) = buyers/sellers
-    # already fighting back — not an entry.
-    adverse = cur.lower_wick if not is_long else cur.upper_wick
-    if adverse > 1.5 * cur.body_size:
-        return None
+        # Austin 2026-07-10 (11-04 review): close AT the level / clearing by a
+        # hair is not a break or displacement. Buffer = 10% of avg window range.
+        avg_rng = sum(c.high - c.low for c in w) / len(w)
+        eps = 0.10 * avg_rng
+        # T5 DETECT_WIDE: retest proximity band (0.0 = today's exact touch)
+        rtol = retest_tol_mult * avg_rng
 
-    state, retest_idx = "seek_break", None
-    for i in range(1, len(w)):
-        c, p = w[i], w[i - 1]
-        if state == "seek_break":
-            crossed = (p.close <= level and c.close > level + eps) if is_long \
-                else (p.close >= level and c.close < level - eps)
-            if crossed:
-                state = "seek_leave"
-        elif state == "seek_leave":
-            left = (c.low > level + eps) if is_long else (c.high < level - eps)
-            failed = (c.close <= level + eps) if is_long else (c.close >= level - eps)
-            if left:
-                state = "seek_retest"
-            elif failed:
-                state = "seek_break"          # break fizzled, look for a new one
-        elif state == "seek_retest":
-            back = (c.low <= level + rtol) if is_long else (c.high >= level - rtol)
-            if back:
-                retest_idx, state = i, "hold"
-        elif state == "hold":                 # retest found; take the latest touch
-            back = (c.low <= level + rtol) if is_long else (c.high >= level - rtol)
-            if back:
-                retest_idx = i
+        # Austin 2026-07-10 (07-30, 10-09): entry candle with a big wick AGAINST
+        # the trade (short w/ long lower wick, long w/ long upper wick) =
+        # buyers/sellers already fighting back — not an entry.
+        adverse = cur.lower_wick if not is_long else cur.upper_wick
+        if adverse > 1.5 * cur.body_size:
+            return None
 
-    if retest_idx is None:
-        return None
-    if (len(w) - 1) - retest_idx > max_confirm_gap:
-        return None                            # retest too stale vs the entry candle
+        state, retest_idx = "seek_break", None
+        for i in range(1, len(w)):
+            c, p = w[i], w[i - 1]
+            if state == "seek_break":
+                crossed = (p.close <= level and c.close > level + eps) if is_long \
+                    else (p.close >= level and c.close < level - eps)
+                if crossed:
+                    state = "seek_leave"
+            elif state == "seek_leave":
+                left = (c.low > level + eps) if is_long else (c.high < level - eps)
+                failed = (c.close <= level + eps) if is_long else (c.close >= level - eps)
+                if left:
+                    state = "seek_retest"
+                elif failed:
+                    state = "seek_break"      # break fizzled, look for a new one
+            elif state == "seek_retest":
+                back = (c.low <= level + rtol) if is_long else (c.high >= level - rtol)
+                if back:
+                    retest_idx, state = i, "hold"
+            elif state == "hold":             # retest found; take the latest touch
+                back = (c.low <= level + rtol) if is_long else (c.high >= level - rtol)
+                if back:
+                    retest_idx = i
 
-    # Austin 2026-07-10 (07-30, 10-08, 11-06 + brain dump): if the level was
-    # already broken earlier in the session (before this window), the level is
-    # "dirty" and this is a LATE entry — he wants the FIRST clean break of the
-    # day. Tag it (caller downgrades; kept in data for the clean-vs-late A/B).
-    prior = candles[:-window]
-    late = sum(1 for a, b in zip(prior, prior[1:])
-               if (a.close - level) * (b.close - level) < 0)
-    tag = f" | LATE({late} prior breaks)" if late else ""
-    # T5 DETECT_WIDE: say so when the band — not an exact touch — is what let
-    # this retest through, so the A/B can separate widened fires from the rest.
-    rc = w[retest_idx]
-    touched = (rc.low <= level) if is_long else (rc.high >= level)
-    if not touched:
-        miss = (rc.low - level) if is_long else (level - rc.high)
-        tag += f" | WIDE(retest missed level by ${miss:.2f} = {miss / avg_rng:.2f}x range)"
-    if out is not None:
-        # F2 stop-placement A/B: caller may place the stop at the retest
-        # candle's extreme ("stop at the break of the candle that came back
-        # for the retest" — yt EIIiEtAEm3s) instead of exactly at the level
-        out["retest_low"], out["retest_high"] = w[retest_idx].low, w[retest_idx].high
-    return (f"break {'up' if is_long else 'down'} → cleared → retest "
-            f"{len(w)-1-retest_idx} bar(s) back → confirm close{tag}")
+        if retest_idx is None:
+            return None
+        if (len(w) - 1) - retest_idx > gap:
+            return None                        # retest too stale vs the entry candle
+
+        # Austin 2026-07-10 (07-30, 10-08, 11-06 + brain dump): if the level was
+        # already broken earlier in the session (before this window), the level
+        # is "dirty" and this is a LATE entry — he wants the FIRST clean break
+        # of the day. Tag it (caller downgrades; kept for the clean-vs-late A/B).
+        prior = candles[:-win]
+        late = sum(1 for a, b in zip(prior, prior[1:])
+                   if (a.close - level) * (b.close - level) < 0)
+        tag = f" | LATE({late} prior breaks)" if late else ""
+        # T5 DETECT_WIDE: say so when the band — not an exact touch — is what
+        # let this retest through, so the A/B can separate widened fires.
+        rc = w[retest_idx]
+        touched = (rc.low <= level) if is_long else (rc.high >= level)
+        if not touched:
+            miss = (rc.low - level) if is_long else (level - rc.high)
+            tag += f" | WIDE(retest missed level by ${miss:.2f} = {miss / avg_rng:.2f}x range)"
+        # T4: mark which window completed the sequence so a fallback fire is
+        # distinguishable from a tight one in the entry log / A-B.
+        if win != window or gap != max_confirm_gap:
+            tag += f" | WIN{win}/G{gap}"
+        if out is not None:
+            # F2 stop-placement A/B: caller may place the stop at the retest
+            # candle's extreme ("stop at the break of the candle that came back
+            # for the retest" — yt EIIiEtAEm3s) instead of exactly at the level
+            out["retest_low"], out["retest_high"] = w[retest_idx].low, w[retest_idx].high
+        return (f"break {'up' if is_long else 'down'} → cleared → retest "
+                f"{len(w)-1-retest_idx} bar(s) back → confirm close{tag}")
+
+    note = _pass(window, max_confirm_gap)
+    if note is None and (BR_WIDE_WINDOW > window or BR_WIDE_GAP > max_confirm_gap):
+        note = _pass(BR_WIDE_WINDOW, BR_WIDE_GAP)
+    return note
 
 
 class BreakAndRetestDetector:
