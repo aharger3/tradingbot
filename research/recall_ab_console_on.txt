@@ -1,0 +1,10 @@
+fired   S 14/77  A 7/60  X 5/22
+any-sig S 27/77  A 15/60  X 6/22
+raw-sig S 46/77  A 35/60  X 16/22
+firedraw S 23/77 A 9/60 X 8/22
+testable fired  S 14/77 A 7/60 X 5/22
+testable raw    S 46/77 A 35/60 X 16/22
+status mix {'skipped_d': 1611, 'fired': 440, 'skipped_tight': 50}  grade mix {'X': 1611, 'B': 78, 'C': 404, 'A+': 7, 'A': 1}
+precision 30/155 = 19.4%
+unmarked engine entries: 125
+entries total: 155; all_sigs(deduped): 387; raw_sigs: 2101; on marked days: 155
