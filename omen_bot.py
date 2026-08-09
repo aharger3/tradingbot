@@ -290,6 +290,30 @@ def check_retest_type(block: Candle, candle: Candle, direction: str = "bullish")
 
 DISPLACEMENT_MULT = 1.5  # break-leg body vs avg prior body (Scarface: skip slow/hesitant breaks)
 
+# omen-3.8 T4 (research/t4_geometry_fix.md): a level is a ZONE, not a line, but a
+# blanket retest band (signal_runner.DETECT_WIDE) halves precision and finds zero
+# new S after dedup — it fires on chop that merely hovers in the band, deduping the
+# real mark. ZONE_RETEST_MULT is the retest band, but it is GATED: a near-miss only
+# counts when the candle CLOSED BACK ON THE TRADE SIDE (long: close > level; short:
+# close < level) — i.e. the level HELD and price rejected off it. That rejection is
+# the geometry, not the tolerance: it is what separates a real retest (price came
+# back to the zone and bounced) from chop (price drifted into the zone and kept
+# going through it). Exact-touch retests are unchanged (the latest touch always
+# wins, so the confirm gap only shrinks — no baseline retest can regress).
+ZONE_RETEST_MULT = 0.0
+
+# omen-3.8 T4 (research/t4_geometry_fix.md): the LEAVE step requires a candle
+# FULLY above/below the level (low > level+eps for long). On 6 of the 27
+# no_break_retest S marks the break happened, price pulled straight back to the
+# level and reversed, but no candle ever sat fully clear — so the FSM stalled at
+# seek_leave. LEAVE_MODE sweeps candidate leave tests:
+#   "full"   (baseline) — a candle fully clears the level (low > level+eps)
+#   "hold"   — a post-break candle HOLDS beyond the level (close > level+eps);
+#              the break itself was the displacement; this lets a tight
+#              break→retest complete without a separate full-clear candle, while
+#              still filtering an immediate reversal (close back through → failed)
+LEAVE_MODE = "full"
+
 
 def _has_displacement(candles: List[Candle], block_idx: int, break_idx: int, direction: str) -> bool:
     """The leg away from the order block must be a momentum move: largest
@@ -471,6 +495,26 @@ def detect_break_retest(candles: List[Candle], level: float, is_long: bool,
         return None
 
     state, retest_idx = "seek_break", None
+    # T4: level zone for the gated near-miss retest (exact touch uses no band).
+    zone = ZONE_RETEST_MULT * avg_rng
+
+    def _retest(c):
+        """Is candle c a retest of the level?
+
+        Baseline (unchanged): the wick tagged the level exactly. PLUS a gated
+        zone retest (T4): the wick entered the level zone but stopped short, AND
+        the candle closed back on the TRADE side — the level HELD (rejection).
+        The close-side gate is what a blanket retest band lacks: chop that drifts
+        into the zone and keeps going through it (closes back through the level)
+        is NOT a retest, so it does not fire and does not dedupe the real mark."""
+        touched = (c.low <= level) if is_long else (c.high >= level)
+        if touched:
+            return True
+        in_zone = (c.low <= level + zone) if is_long else (c.high >= level - zone)
+        # rejected = closed back on the trade side (level held, price bounced)
+        rejected = (c.close > level) if is_long else (c.close < level)
+        return in_zone and rejected
+
     for i in range(1, len(w)):
         c, p = w[i], w[i - 1]
         if state == "seek_break":
@@ -479,19 +523,22 @@ def detect_break_retest(candles: List[Candle], level: float, is_long: bool,
             if crossed:
                 state = "seek_leave"
         elif state == "seek_leave":
-            left = (c.low > level + eps) if is_long else (c.high < level - eps)
+            if LEAVE_MODE == "hold":
+                # a post-break candle that HOLDS beyond the level = price left.
+                # Still filters an immediate reversal (close back through = failed).
+                left = (c.close > level + eps) if is_long else (c.close < level - eps)
+            else:  # "full" (baseline): a candle fully clears the level
+                left = (c.low > level + eps) if is_long else (c.high < level - eps)
             failed = (c.close <= level + eps) if is_long else (c.close >= level - eps)
             if left:
                 state = "seek_retest"
             elif failed:
                 state = "seek_break"          # break fizzled, look for a new one
         elif state == "seek_retest":
-            back = (c.low <= level + rtol) if is_long else (c.high >= level - rtol)
-            if back:
+            if _retest(c):
                 retest_idx, state = i, "hold"
         elif state == "hold":                 # retest found; take the latest touch
-            back = (c.low <= level + rtol) if is_long else (c.high >= level - rtol)
-            if back:
+            if _retest(c):
                 retest_idx = i
 
     if retest_idx is None:
@@ -509,11 +556,16 @@ def detect_break_retest(candles: List[Candle], level: float, is_long: bool,
     tag = f" | LATE({late} prior breaks)" if late else ""
     # T5 DETECT_WIDE: say so when the band — not an exact touch — is what let
     # this retest through, so the A/B can separate widened fires from the rest.
+    # T4: a gated ZONE retest (close-side rejection, not a blanket band) is a
+    # distinct mechanism from DETECT_WIDE — tag it so T5 can cite it.
     rc = w[retest_idx]
     touched = (rc.low <= level) if is_long else (rc.high >= level)
     if not touched:
         miss = (rc.low - level) if is_long else (level - rc.high)
-        tag += f" | WIDE(retest missed level by ${miss:.2f} = {miss / avg_rng:.2f}x range)"
+        tag += (f" | WIDE(retest missed level by ${miss:.2f} = "
+                f"{miss / avg_rng:.2f}x range)") if rtol else \
+               (f" | ZONE(retest held {miss / avg_rng:.2f}x range short, "
+                f"closed back on trade side)")
     if out is not None:
         # F2 stop-placement A/B: caller may place the stop at the retest
         # candle's extreme ("stop at the break of the candle that came back
