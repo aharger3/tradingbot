@@ -25,7 +25,9 @@ checks occur inside `detect_signals`):
                             the vocabulary for the before/after comparison)
   no_reference_level        no level in level_pairs within 0.5% of the close
   no_break_retest           detect_break_retest falsy for every level
-  no_order_block            detect_order_block_setup returned None
+  no_order_block            detect_order_block_setup returned None (B&R truthy)
+  no_setup_any              neither detect_break_retest nor detect_order_block_setup
+                            found anything on this bar (omen-3.9 T1)
   not_armed_84              84% re-entry but no stopped prior trade in replay
   vetoed_htf                signal built; grade_trade D via htf_bias opposed
   vetoed_candle_colour      _grade_pa D on candle colour
@@ -33,6 +35,10 @@ checks occur inside `detect_signals`):
                             _route dropped a C via _min_viable_stop
   vetoed_stop_too_wide      OB path stock_risk/close > 0.004
   vetoed_pa_grade_D         _grade_pa fell through to D (not at the level)
+  timing_miss               engine fired later on the symbol-day but a qualifying
+                            entry existed at an earlier bar (omen-3.9 T2); the
+                            engine took a later, worse bar and passed the earlier
+                            one over. Checked before fired_wrong_bar (precedence).
   fired_wrong_bar           engine fired on that symbol-day but >2 bars away
 
 Outputs:
@@ -57,9 +63,10 @@ TOL = t4.TOL  # +/-2 bar join tolerance
 
 REASONS = [
     "detected", "too_few_candles", "consolidation_early_return",
-    "no_reference_level", "no_break_retest", "no_order_block", "not_armed_84",
+    "no_reference_level", "no_break_retest", "no_order_block", "no_setup_any",
+    "not_armed_84",
     "vetoed_htf", "vetoed_candle_colour", "vetoed_stop_too_tight",
-    "vetoed_stop_too_wide", "vetoed_pa_grade_D", "fired_wrong_bar",
+    "vetoed_stop_too_wide", "vetoed_pa_grade_D", "timing_miss", "fired_wrong_bar",
 ]
 REASON_SET = set(REASONS)
 
@@ -115,7 +122,12 @@ def classify_no_detection(candles, pdh, pdl, pmh, pml):
             (f"no level within 0.5% of close ${close:.2f}; nearest ${nn:.2f} "
              f"({abs(nn-close)/close*100:.2f}% away); levels available: "
              + ", ".join(f"{n}=${v:.2f}" for n, v in _named_levels(level_pairs)))
-    # no_break_retest: detect_break_retest falsy for every level (engine order)
+    # Evaluate BOTH setups before labelling (omen-3.9 T1): the old code returned
+    # `no_break_retest` as soon as detect_break_retest was falsy, so the order
+    # block was never tested and the One Candle Rule (detect_order_block_setup
+    # alone, per SignalType.ONE_CANDLE_RULE) could not appear in the taxonomy at
+    # all. Both are evaluated first now, then a label is chosen.
+    # break/retest: detect_break_retest falsy for every level (engine order)
     br_any = False
     for _, _, hi, lo in level_pairs:
         if hi is not None and detect_break_retest(candles, hi, is_long=True):
@@ -124,16 +136,27 @@ def classify_no_detection(candles, pdh, pdl, pmh, pml):
         if lo is not None and detect_break_retest(candles, lo, is_long=False):
             br_any = True
             break
-    if not br_any:
+    # order block on both sides (block is None when note is a refusal string)
+    bbull, _, note_bull = detect_order_block_setup(candles, "bullish")
+    bbear, _, note_bear = detect_order_block_setup(candles, "bearish")
+    ob_any = bbull is not None or bbear is not None
+
+    if not br_any and not ob_any:
+        # nothing the engine knows how to trade exists on this bar
+        return "no_setup_any", \
+            "no break/retest and no order block on either side"
+    if not br_any and ob_any:
+        # B&R falsy but an order block exists -> candidate One Candle Rule entry.
+        sides = []
+        if bbull is not None:
+            sides.append("bullish")
+        if bbear is not None:
+            sides.append("bearish")
         return "no_break_retest", \
-            "a reference level is near but detect_break_retest returned falsy for every level"
-    # no_order_block: detect_order_block_setup None on both sides
-    _, _, note_bull = detect_order_block_setup(candles, "bullish")
-    _, _, note_bear = detect_order_block_setup(candles, "bearish")
-    # block is None when note is a refusal string
-    bbull = detect_order_block_setup(candles, "bullish")[0]
-    bbear = detect_order_block_setup(candles, "bearish")[0]
-    if bbull is None and bbear is None:
+            (f"OB present: {'/'.join(sides)} — detect_break_retest falsy for "
+             f"every level but an order block exists (One Candle Rule candidate)")
+    if br_any and not ob_any:
+        # no_order_block: detect_order_block_setup None on both sides
         return "no_order_block", f"{note_bull} / {note_bear}"
     # residual: a B&R pattern AND an order block both exist but neither built a
     # signal on this bar (current not beyond level / retest not in OB_RETEST_TYPES
@@ -211,6 +234,38 @@ def classify_veto(rec, candles, htf_bias):
 # --------------------------------------------------------------------------
 # per-day replay + classify a single bar on that day
 # --------------------------------------------------------------------------
+def _setup_at_bar(b, ds):
+    """True if the engine's detection helpers find a tradable setup (a
+    break/retest or an order block) at bar `b` — i.e. that bar "would itself
+    have produced a signal" in the detection sense. Calls the engine's own
+    `detect_break_retest` / `detect_order_block_setup` exactly as
+    `classify_no_detection` does (detection is NOT reimplemented); the veto
+    chain (htf/colour/stop) is not re-run, per the omen-3.9 T2 spec.
+
+    `classify_no_detection` reports a found setup as `no_order_block` (a
+    break/retest was found) or `no_break_retest` (an order block was found, or
+    both a B&R pattern and an order block exist). The pure-miss reasons
+    (`too_few_candles` / `no_reference_level` / `no_setup_any`) mean nothing was
+    detected. Results are memoized per day on `ds` — the corpus replays many
+    instances per day and overlapping ranges would otherwise re-scan the same
+    bars. Detection is pure (fresh MarketStructure per call, read-only on
+    candles), so caching is sound."""
+    candles = ds["candles"]
+    if b < 4 or b >= len(candles):  # classify_no_detection needs >= 5 candles
+        return False
+    cache = ds.get("_setup_cache")
+    if cache is None:
+        cache = {}
+        ds["_setup_cache"] = cache
+    if b in cache:
+        return cache[b]
+    reason, _ = classify_no_detection(candles[: b + 1], ds["pdh"], ds["pdl"],
+                                      ds["pmh"], ds["pml"])
+    found = reason in ("no_break_retest", "no_order_block")
+    cache[b] = found
+    return found
+
+
 def day_state(symbol, day):
     """Replay the day once. Returns dict with candles, fired entries (bars),
     raw captured signals (per-bar, with status), and the level inputs. None if
@@ -246,8 +301,23 @@ def classify_bar(bar, ds):
     if skips:
         skip = min(skips, key=lambda r: abs(r["bar"] - bar))
         return classify_veto(skip, candles, ds["htf"])
-    # 3. fired_wrong_bar: engine fired on the day but >2 bars away
+    # 3. fired on the day but >2 bars away: timing_miss vs fired_wrong_bar.
+    #    timing_miss (omen-3.9 T2): the engine took a LATER, worse bar when a
+    #    qualifying entry existed earlier. Replay the bars between the mark and
+    #    the engine's nearest later fired entry and check whether any earlier
+    #    bar than the engine's would itself have produced a signal (the engine's
+    #    own detect_break_retest / detect_order_block_setup, via _setup_at_bar).
+    #    Checked before fired_wrong_bar so it takes precedence.
     if fired_bars:
+        after = [fb for fb in fired_bars if fb > bar]
+        if after:
+            engine_bar = min(after)  # nearest later fired entry = the worse bar
+            for b in range(bar, engine_bar):
+                if _setup_at_bar(b, ds):
+                    return "timing_miss", \
+                        f"engine fired later at bar {engine_bar} but bar {b} " \
+                        f"({engine_bar - b} bar(s) earlier) would have produced " \
+                        f"a signal; mark at bar {bar}, engine fired at {fired_bars}"
         return "fired_wrong_bar", \
             f"engine fired at bar(s) {fired_bars}, all >2 from {bar}"
     # 4. no detection at this bar
@@ -258,6 +328,50 @@ def classify_bar(bar, ds):
 # --------------------------------------------------------------------------
 # T2: marks
 # --------------------------------------------------------------------------
+def write_t2_report(rows, counts):
+    """omen-3.9 T2: write research/t2_timing_miss.md — the count of marks the
+    `timing_miss` reason reclassified from `fired_wrong_bar`, with the
+    `timing_miss_S:` line on its own line (>= 1, per spec)."""
+    tm = [r for r in rows if r["miss_reason"] == "timing_miss"]
+    tm_s = [r for r in tm if r["tier"] == "S"]
+    fwb = counts["fired_wrong_bar"]
+    lines = []
+    lines.append("# t2_timing_miss (omen-3.9 T2)")
+    lines.append("")
+    lines.append("The `timing_miss` reason: the engine fired on a symbol-day but "
+                 "took a later, worse bar when a qualifying entry existed earlier. "
+                 "For every mark where the engine fired outside the +/-2 tolerance, "
+                 "the bars between the mark and the engine's nearest later fired "
+                 "entry are replayed through the engine's own "
+                 "`detect_break_retest` / `detect_order_block_setup` (via "
+                 "`classify_no_detection` — detection is not reimplemented). If "
+                 "any earlier bar than the engine's would itself have produced a "
+                 "signal, the mark is `timing_miss`; otherwise it stays "
+                 "`fired_wrong_bar`. `timing_miss` is checked before "
+                 "`fired_wrong_bar` and takes precedence.")
+    lines.append("")
+    lines.append("## Counts")
+    lines.append("")
+    n_tm = len(tm)
+    n_tm_s = len(tm_s)
+    lines.append(f"- timing_miss (all tiers): {n_tm}")
+    lines.append(f"- timing_miss S: {n_tm_s}")
+    lines.append(f"- fired_wrong_bar (all tiers): {fwb['S'] + fwb['A'] + fwb['X']}")
+    lines.append(f"- fired_wrong_bar S: {fwb['S']}")
+    lines.append("")
+    lines.append("timing_miss_S: " + str(n_tm_s))
+    lines.append("")
+    if tm_s:
+        lines.append("## S marks reclassified from fired_wrong_bar to timing_miss")
+        lines.append("")
+        lines.append("| symbol | day | entry_i | detail |")
+        lines.append("|---|---|---:|---|")
+        for r in tm_s:
+            lines.append(f"| {r['symbol']} | {r['day']} | {r['entry_i']} | {r['detail']} |")
+        lines.append("")
+    open(os.path.join(HERE, "t2_timing_miss.md"), "w").write("\n".join(lines) + "\n")
+
+
 def run_marks():
     marks = [json.loads(l) for l in open(MARKS) if l.strip()]
     by_pair = defaultdict(list)
@@ -372,6 +486,7 @@ def run_marks():
         print(f"{r:28s} S={c['S']:3d} A={c['A']:3d} X={c['X']:3d} tot={c['S']+c['A']+c['X']:3d}")
     print(f"detected S = {counts['detected']['S']} (engine_recall.md expected ~4)")
     print(f"detected+veto S = {counts['detected']['S'] + sum(counts[r]['S'] for r in REASONS if r.startswith('vetoed'))} (any-signal expected ~19)")
+    write_t2_report(rows, counts)
 
 
 def _fix_paragraph(reason, s_count):
@@ -403,6 +518,13 @@ def _fix_paragraph(reason, s_count):
             "not retesting). The fix is the isolation/displacement gates or the retest "
             "type vocabulary (`OB_RETEST_TYPES`). Would reach ~%d S marks where an "
             "order block existed in structure but was refused." % s_count,
+        "no_setup_any":
+            "Neither `detect_break_retest` nor `detect_order_block_setup` found "
+            "anything on this bar — no reference level completed its geometry AND no "
+            "order block exists on either side. The fix is new detection vocabulary "
+            "(swing-pivot / flag-low / FVG reference levels, or a wider order-block "
+            "search), not a tolerance tweak on either existing test. Would reach "
+            "~%d S marks the engine currently sees nothing tradeable on at all." % s_count,
         "vetoed_stop_too_tight":
             "A signal was built but the stop was too tight: the B&R path's "
             "`stock_risk < max(0.10, 0.0015*close)` (`signal_runner.py:592`), the order "
@@ -426,6 +548,15 @@ def _fix_paragraph(reason, s_count):
             "`_grade_pa` fell through to D — price never retested the level on that bar "
             "(`omen_bot.py:173` / `:186`). The fix is the retest/at-key-level geometry. "
             "Would recover ~%d S marks." % s_count,
+        "timing_miss":
+            "The engine fired on this symbol-day, but on a later bar than the "
+            "mark — and an earlier bar in between would itself have produced a "
+            "signal (the engine's own `detect_break_retest` / "
+            "`detect_order_block_setup` found a setup there). The engine took a "
+            "later, worse entry and passed the earlier one over. The fix is the "
+            "B&R window / confirm-gap or the entry-selection ordering so the "
+            "fire lands on the earlier qualifying bar. Would move ~%d S marks "
+            "from wrong-bar/timing to detected." % s_count,
         "fired_wrong_bar":
             "The engine DID fire on this symbol-day, but more than 2 bars from the mark "
             "— a timing/geometry mismatch, not a blind spot. Reaching these needs the "

@@ -4,6 +4,9 @@ trading_hours: "09:30-11:00"
 # A2 2026-07-13 (unified_backtest_synthesis §8): SPY removed (0-for-5, -$5k);
 # SMCI/MSTR/RIVN dropped from live_scanner DEFAULT_SYMBOLS same session.
 watchlist: [TSLA, NVDA, AAPL, AMD, META, GOOG, AMZN, MSFT, PLTR, QQQ, INTC]
+pools:
+  index: [QQQ, SPY, IWM]
+  equity: [NVDA, TSLA, SPCX, PLTR, AAPL, MU, MSTR, AMZN, HTZ, MSFT, INTC, AMD, GOOGL, META]
 # C10 2026-07-13: cutoff reverted to 11:00 (rulebook window) — the 10:30 cut
 # was a full-pop lever, costs the v2 tier $7k/yr. Env ENTRY_CUTOFF.
 entry_cutoff: "11:00"

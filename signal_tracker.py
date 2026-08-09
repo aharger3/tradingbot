@@ -30,10 +30,12 @@ def log_signal(
 ):
     """Append one signal record to date's jsonl file.
 
-    `austin_tier` (omen-3.7 T5) is a slot for a future S/A/C mapping of Austin's
-    own grading. It is ALWAYS None today — no mapping from the engine's
-    A+/A/B/C is asserted, because none is supported by the evidence
-    (research/detect_wide.md).
+    `austin_tier` is "S", "A" or "C" — Austin's own tier, computed by
+    `signal_runner.compute_austin_tier` from the four clauses in
+    Trading-Bot-Rulesets.md "Austin's Tiers (S / A / C / X)" (omen-3.9 T4).
+    It is NOT a translation of the engine's A+/A/B/C grade; no such mapping
+    exists or is asserted. None only when the tier is disabled. Never "X" —
+    that is Austin's do-not-track marker, not an engine output.
     """
     record = {
         "status": status,

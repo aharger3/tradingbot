@@ -44,6 +44,19 @@ ENTRY_CUTOFF = "11:00:00"  # Scarface trades 9:30-11 only (production)
 TOL = 2                 # +/-2 bar join tolerance
 TIER_RANK = {"S": 3, "A": 2, "X": 1}
 
+# Pool definitions (omen-3.9 T7): index and equity pools from config.yaml
+INDEX_POOL = frozenset({"QQQ", "SPY", "IWM"})
+EQUITY_POOL = frozenset({"NVDA", "TSLA", "SPCX", "PLTR", "AAPL", "MU", "MSTR",
+                         "AMZN", "HTZ", "MSFT", "INTC", "AMD", "GOOGL", "META"})
+
+
+def pool_for(symbol: str) -> str:
+    if symbol in INDEX_POOL:
+        return "index"
+    if symbol in EQUITY_POOL:
+        return "equity"
+    return "other"
+
 
 def _to_min(dtstr: str) -> str:
     return dtstr[11:16]  # "HH:MM"
@@ -438,6 +451,59 @@ def main():
     print(f"unmarked engine entries: {len(unmatched)}")
     print(f"entries total: {len(all_entries)}; all_sigs(deduped): {len(all_sigs)}; "
           f"raw_sigs: {len(raw_sigs)}; on marked days: {len(on_marked_days)}")
+
+    # ---- per-pool recall (omen-3.9 T7) ----
+    pool_total = Counter()
+    pool_hit = Counter()
+    pool_any = Counter()
+    pool_raw = Counter()
+    pool_testable_total = Counter()
+    pool_testable_hit = Counter()
+    for m in marks:
+        p = pool_for(m["symbol"])
+        key = (m["symbol"], m["day"])
+        ent_bars = [e["bar"] for e in all_entries
+                    if e["symbol"] == m["symbol"] and e["day"] == m["day"]]
+        sig_bars = [s["bar"] for s in sig_by_day.get(key, [])]
+        hit = any(abs(b - m["entry_i"]) <= TOL for b in ent_bars)
+        any_hit = any(abs(b - m["entry_i"]) <= TOL for b in sig_bars)
+        raw_hit = any(abs(b - m["entry_i"]) <= TOL for b in raw_by_day.get(key, []))
+        pool_total[p] += 1
+        if pair_has_archive.get(key):
+            pool_testable_total[p] += 1
+            if hit:
+                pool_testable_hit[p] += 1
+        if hit:
+            pool_hit[p] += 1
+        if any_hit:
+            pool_any[p] += 1
+        if raw_hit:
+            pool_raw[p] += 1
+
+    # per-pool precision: split on_marked_days entries by pool
+    pool_on_marked = Counter()
+    pool_matched = Counter()
+    for e in on_marked_days:
+        p = pool_for(e["symbol"])
+        pool_on_marked[p] += 1
+    for e in matched:
+        p = pool_for(e["symbol"])
+        pool_matched[p] += 1
+
+    print("")
+    print("--- per-pool (omen-3.9 T7) ---")
+    for p in ["index", "equity", "other"]:
+        t = pool_total[p]
+        h = pool_hit[p]
+        a = pool_any[p]
+        r = pool_raw[p]
+        tt = pool_testable_total[p]
+        th = pool_testable_hit[p]
+        pom = pool_on_marked.get(p, 0)
+        pm = pool_matched.get(p, 0)
+        prec = pm / pom if pom else 0.0
+        print(f"{p:7s} fired {h}/{t}  any-sig {a}/{t}  raw {r}/{t}  "
+              f"testable-fired {th}/{tt}  precision {pm}/{pom}={prec:.0%}")
 
 
 if __name__ == "__main__":

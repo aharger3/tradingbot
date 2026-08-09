@@ -121,7 +121,7 @@ check(detect_break_retest(short_sequence(98.40), LEVEL, is_long=False,
       "short: widened path still REJECTS a far retest")
 
 
-print("2. D -> X skip-grade rename + austin_tier slot")
+print("2. D -> X skip-grade rename + austin_tier (computed since omen-3.9 T4)")
 
 check(TradeGrade.X.value == "X", "a skip grade serialises as 'X'")
 check(TradeGrade.D is TradeGrade.X, "TradeGrade.D is an alias of TradeGrade.X")
@@ -133,7 +133,8 @@ check(sr._GRADE_RANK["X"] == 0 and sr._GRADE_RANK["D"] == 0,
 check(sr._GRADE_RANK["C"] > sr._GRADE_RANK["X"], "C outranks the skip grade")
 
 # _route must drop a skip-grade signal and keep a tradeable one, and must stamp
-# austin_tier as None on both.
+# austin_tier on both. omen-3.9 T4: the slot became a computed S/A/C — it is
+# still a REPORTED field, so routing must be identical either side of it.
 runner = sr.SignalRunner("TEST")
 runner.log_signals = False
 runner.candles = TOUCH
@@ -144,8 +145,8 @@ skip_sig = {"signal_type": SignalType.BREAK_AND_RETEST, "reason": "t", "entry": 
             "stop_level_name": "OR high", "stop_width_pct": 0.9}
 runner._route(skipped, skip_sig)
 check(skipped == [], "_route drops an X-grade (skip) signal")
-check("austin_tier" in skip_sig and skip_sig["austin_tier"] is None,
-      "austin_tier is on the signal dict and is None")
+check(skip_sig.get("austin_tier") in ("S", "A", "C"),
+      "austin_tier is on the signal dict, computed even on a skipped signal")
 
 kept = []
 keep_sig = {"signal_type": SignalType.BREAK_AND_RETEST, "reason": "t", "entry": 100.9,
@@ -153,12 +154,17 @@ keep_sig = {"signal_type": SignalType.BREAK_AND_RETEST, "reason": "t", "entry": 
             "stop_level_name": "OR high", "stop_width_pct": 0.9}
 runner._route(kept, keep_sig)
 check(len(kept) == 1, "_route keeps a B-grade signal")
-check(kept[0]["austin_tier"] is None,
-      "austin_tier is None on a fired signal too (a slot, not a mapping)")
+check(kept[0]["austin_tier"] in ("S", "A", "C"),
+      "austin_tier is computed on a fired signal too")
+check(kept[0]["austin_tier"] != "X",
+      "compute_austin_tier never emits X — that is Austin's own marker")
 
-# No A+/A/B/C -> S/A/C mapping is asserted anywhere.
+# Still no A+/A/B/C -> S/A/C mapping: the tier is computed from the four
+# clauses, not translated from an engine grade.
 check(all(g.value not in ("S",) for g in TradeGrade),
       "no engine grade claims to be an Austin S tier")
+check(sr.TRADE_S_ONLY is False and sr.HTF_OPPOSITION_VETO == "hard",
+      "the S-only switch is off and clause 4 defaults to hard")
 
 
 print("3. FAIR_VALUE_GAP / FLAG split out of ONE_CANDLE_RULE")
@@ -180,7 +186,9 @@ check("Flag long" in src and 'SignalType.FLAG,\n                    "reason": f"
       "the flag long branch routes to SignalType.FLAG")
 check('SignalType.FAIR_VALUE_GAP,\n                            "reason": f"B&R long — FVG retest' in src,
       "the FVG long branch routes to SignalType.FAIR_VALUE_GAP")
-check(src.count("SignalType.ONE_CANDLE_RULE") == 2,
+# Counts ROUTING uses only ("signal_type": ...), not every mention: omen-3.9 T4
+# also names ONE_CANDLE_RULE in S_ELIGIBLE_SETUPS, which routes nothing.
+check(src.count('"signal_type": SignalType.ONE_CANDLE_RULE') == 2,
       "ONE_CANDLE_RULE is left to the order block alone (long + short)")
 
 
