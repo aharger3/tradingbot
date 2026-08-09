@@ -1,0 +1,7 @@
+{
+  "_source": "Austin, 2026-08-09, Projects/omen-3.9-homework.md §1 — top-14 US equities by options volume. META is #14 at ~498k.",
+  "equity_pool_14": ["NVDA","TSLA","SPCX","PLTR","AAPL","MU","MSTR","AMZN","HTZ","MSFT","INTC","AMD","GOOGL","META"],
+  "index_pool": ["QQQ","SPY","IWM"],
+  "index_futures": ["/ES","/NQ"],
+  "_note": "index/ETF pool is kept separate on Austin's ruling: it is the prop-firm / high-leverage side. Same detection rules, separate scoreboard. No data_archive coverage yet for SPCX, HTZ, MSTR."
+}
