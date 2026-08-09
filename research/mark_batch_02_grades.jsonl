@@ -1,0 +1,60 @@
+{"card": 1, "kind": "s_miss", "symbol": "IWM", "day": "2026-07-24", "tod": "09:59", "entry_i": 29, "miss_reason": "no_break_retest", "austin_grade": "S", "note": null}
+{"card": 2, "kind": "s_miss", "symbol": "HOOD", "day": "2026-07-10", "tod": "09:53", "entry_i": 23, "miss_reason": "no_reference_level", "austin_grade": "S", "note": "4 candles earlier is entry"}
+{"card": 3, "kind": "s_miss", "symbol": "MARA", "day": "2026-07-09", "tod": "09:49", "entry_i": 19, "miss_reason": "no_reference_level", "austin_grade": "S", "note": null}
+{"card": 4, "kind": "s_miss", "symbol": "QQQ", "day": "2026-07-09", "tod": "09:41", "entry_i": 11, "miss_reason": "no_break_retest", "austin_grade": "S", "note": null}
+{"card": 5, "kind": "s_miss", "symbol": "UBER", "day": "2026-07-06", "tod": "09:42", "entry_i": 12, "miss_reason": "no_break_retest", "austin_grade": "S", "note": null}
+{"card": 6, "kind": "s_miss", "symbol": "TSM", "day": "2026-05-29", "tod": "09:53", "entry_i": 23, "miss_reason": "fired_wrong_bar", "austin_grade": "S", "note": "entry 5 candles earlier but not at high of day"}
+{"card": 7, "kind": "s_miss", "symbol": "IWM", "day": "2026-05-28", "tod": "10:16", "entry_i": 40, "miss_reason": "no_break_retest", "austin_grade": "S", "note": null}
+{"card": 8, "kind": "s_miss", "symbol": "HOOD", "day": "2026-04-13", "tod": "09:46", "entry_i": 16, "miss_reason": "vetoed_htf", "austin_grade": "S", "note": null}
+{"card": 9, "kind": "s_miss", "symbol": "COIN", "day": "2026-04-09", "tod": "10:00", "entry_i": 30, "miss_reason": "fired_wrong_bar", "austin_grade": "A", "note": null}
+{"card": 10, "kind": "s_miss", "symbol": "PLTR", "day": "2026-03-31", "tod": "09:53", "entry_i": 23, "miss_reason": "vetoed_htf", "austin_grade": "S", "note": null}
+{"card": 11, "kind": "s_miss", "symbol": "SPY", "day": "2026-03-05", "tod": "10:26", "entry_i": 40, "miss_reason": "vetoed_htf", "austin_grade": "S", "note": null}
+{"card": 12, "kind": "s_miss", "symbol": "QQQ", "day": "2026-03-04", "tod": "10:12", "entry_i": 40, "miss_reason": "no_break_retest", "austin_grade": "S", "note": null}
+{"card": 13, "kind": "s_miss", "symbol": "SPY", "day": "2026-03-03", "tod": "09:47", "entry_i": 17, "miss_reason": "no_break_retest", "austin_grade": "S", "note": null}
+{"card": 14, "kind": "s_miss", "symbol": "SPY", "day": "2026-03-02", "tod": "09:54", "entry_i": 24, "miss_reason": "no_break_retest", "austin_grade": "S", "note": null}
+{"card": 15, "kind": "s_miss", "symbol": "TSLA", "day": "2026-02-18", "tod": "10:12", "entry_i": 40, "miss_reason": "vetoed_htf", "austin_grade": "S", "note": null}
+{"card": 16, "kind": "s_miss", "symbol": "QQQ", "day": "2026-02-11", "tod": "10:02", "entry_i": 32, "miss_reason": "no_break_retest", "austin_grade": "S", "note": "if it actually retested the pivot structure and if you get an entry thats not all the way at low of day"}
+{"card": 17, "kind": "s_miss", "symbol": "QQQ", "day": "2026-02-11", "tod": "10:15", "entry_i": 40, "miss_reason": "no_break_retest", "austin_grade": "A", "note": "because earlier entry 9-10 candles earlier because thats a one candle rule, but the b and r is clean PA"}
+{"card": 18, "kind": "s_miss", "symbol": "HOOD", "day": "2026-02-05", "tod": "10:10", "entry_i": 40, "miss_reason": "no_reference_level", "austin_grade": "S", "note": null}
+{"card": 19, "kind": "s_miss", "symbol": "MU", "day": "2026-01-28", "tod": "09:43", "entry_i": 13, "miss_reason": "no_break_retest", "austin_grade": "S", "note": "but your trade was an x, you missed the entry 9 candles earlier perfect break and retest one candle rule hammer stick"}
+{"card": 20, "kind": "s_miss", "symbol": "MSFT", "day": "2026-01-20", "tod": "09:42", "entry_i": 12, "miss_reason": "vetoed_htf", "austin_grade": "S", "note": "if get a good fill not at high of day"}
+{"card": 21, "kind": "s_miss", "symbol": "QQQ", "day": "2025-12-30", "tod": "09:54", "entry_i": 24, "miss_reason": "consolidation_early_return", "austin_grade": "S", "note": null}
+{"card": 22, "kind": "s_miss", "symbol": "QQQ", "day": "2025-12-05", "tod": "09:57", "entry_i": 27, "miss_reason": "vetoed_stop_too_tight", "austin_grade": "S", "note": null}
+{"card": 23, "kind": "s_miss", "symbol": "QQQ", "day": "2025-12-05", "tod": "10:05", "entry_i": 35, "miss_reason": "vetoed_candle_colour", "austin_grade": "X", "note": null}
+{"card": 24, "kind": "s_miss", "symbol": "SPY", "day": "2025-11-19", "tod": "09:39", "entry_i": 9, "miss_reason": "vetoed_htf", "austin_grade": "S", "note": null}
+{"card": 25, "kind": "s_miss", "symbol": "MU", "day": "2025-11-07", "tod": "09:52", "entry_i": 22, "miss_reason": "no_reference_level", "austin_grade": "S", "note": null}
+{"card": 26, "kind": "s_miss", "symbol": "ORCL", "day": "2025-11-03", "tod": "09:47", "entry_i": 17, "miss_reason": "fired_wrong_bar", "austin_grade": "S", "note": null}
+{"card": 27, "kind": "s_miss", "symbol": "COIN", "day": "2025-10-21", "tod": "09:38", "entry_i": 8, "miss_reason": "fired_wrong_bar", "austin_grade": "S", "note": "but earlier entry 5 candles earlier as the candle is closing weak not at low of day"}
+{"card": 28, "kind": "s_miss", "symbol": "IWM", "day": "2025-10-21", "tod": "09:39", "entry_i": 9, "miss_reason": "no_break_retest", "austin_grade": "S", "note": null}
+{"card": 29, "kind": "s_miss", "symbol": "PLTR", "day": "2025-09-18", "tod": "09:44", "entry_i": 14, "miss_reason": "no_break_retest", "austin_grade": "S", "note": "I candle earlier entry"}
+{"card": 30, "kind": "s_miss", "symbol": "UBER", "day": "2025-08-13", "tod": "09:55", "entry_i": 25, "miss_reason": "vetoed_htf", "austin_grade": "S", "note": null}
+{"card": 31, "kind": "s_miss", "symbol": "GOOGL", "day": "2025-08-07", "tod": "09:48", "entry_i": 18, "miss_reason": "vetoed_htf", "austin_grade": "S", "note": "enter as candle is forming not at low of day"}
+{"card": 32, "kind": "s_miss", "symbol": "BABA", "day": "2025-07-22", "tod": "09:50", "entry_i": 20, "miss_reason": "no_break_retest", "austin_grade": "S", "note": null}
+{"card": 33, "kind": "s_miss", "symbol": "ORCL", "day": "2025-07-08", "tod": "09:37", "entry_i": 7, "miss_reason": "fired_wrong_bar", "austin_grade": "S", "note": null}
+{"card": 34, "kind": "s_miss", "symbol": "QQQ", "day": "2025-06-24", "tod": "09:45", "entry_i": 15, "miss_reason": "vetoed_stop_too_tight", "austin_grade": "A", "note": "because the red candle before is no displacement"}
+{"card": 35, "kind": "s_miss", "symbol": "AMD", "day": "2025-06-05", "tod": "09:36", "entry_i": 6, "miss_reason": "no_break_retest", "austin_grade": "A", "note": null}
+{"card": 36, "kind": "s_miss", "symbol": "CRM", "day": "2025-06-02", "tod": "09:57", "entry_i": 27, "miss_reason": "fired_wrong_bar", "austin_grade": "S", "note": null}
+{"card": 37, "kind": "s_miss", "symbol": "ORCL", "day": "2025-03-28", "tod": "09:42", "entry_i": 12, "miss_reason": "no_break_retest", "austin_grade": "X", "note": null}
+{"card": 38, "kind": "s_miss", "symbol": "MSFT", "day": "2025-03-20", "tod": "09:58", "entry_i": 28, "miss_reason": "no_break_retest", "austin_grade": "S", "note": null}
+{"card": 39, "kind": "s_miss", "symbol": "QQQ", "day": "2025-03-18", "tod": "09:43", "entry_i": 13, "miss_reason": "no_break_retest", "austin_grade": "A", "note": null}
+{"card": 40, "kind": "s_miss", "symbol": "SPY", "day": "2025-03-18", "tod": "09:43", "entry_i": 13, "miss_reason": "no_break_retest", "austin_grade": "A", "note": null}
+{"card": 41, "kind": "engine_fp", "symbol": "AMD", "day": "2026-05-14", "tod": "10:00", "entry_i": 30, "miss_reason": null, "austin_grade": "A", "note": "(repeat setup as previous)"}
+{"card": 42, "kind": "engine_fp", "symbol": "AMZN", "day": "2026-04-10", "tod": "09:57", "entry_i": 27, "miss_reason": null, "austin_grade": "A", "note": "entry 5 candles earlier"}
+{"card": 43, "kind": "engine_fp", "symbol": "COIN", "day": "2025-10-21", "tod": "10:01", "entry_i": 31, "miss_reason": null, "austin_grade": "X", "note": null}
+{"card": 44, "kind": "engine_fp", "symbol": "COIN", "day": "2025-10-21", "tod": "10:32", "entry_i": 40, "miss_reason": null, "austin_grade": "X", "note": null}
+{"card": 45, "kind": "engine_fp", "symbol": "COIN", "day": "2026-03-04", "tod": "10:15", "entry_i": 40, "miss_reason": null, "austin_grade": "X", "note": null}
+{"card": 46, "kind": "engine_fp", "symbol": "COIN", "day": "2026-04-09", "tod": "09:38", "entry_i": 8, "miss_reason": null, "austin_grade": "S", "note": "enter not at hod"}
+{"card": 47, "kind": "engine_fp", "symbol": "GOOGL", "day": "2024-10-15", "tod": "10:17", "entry_i": 40, "miss_reason": null, "austin_grade": "S", "note": null}
+{"card": 48, "kind": "engine_fp", "symbol": "HOOD", "day": "2025-12-29", "tod": "09:59", "entry_i": 29, "miss_reason": null, "austin_grade": "X", "note": null}
+{"card": 49, "kind": "engine_fp", "symbol": "HOOD", "day": "2026-05-19", "tod": "10:00", "entry_i": 30, "miss_reason": null, "austin_grade": "X", "note": null}
+{"card": 50, "kind": "engine_fp", "symbol": "META", "day": "2025-09-23", "tod": "10:44", "entry_i": 40, "miss_reason": null, "austin_grade": "X", "note": null}
+{"card": 51, "kind": "engine_fp", "symbol": "MSFT", "day": "2025-03-04", "tod": "09:50", "entry_i": 20, "miss_reason": null, "austin_grade": "A", "note": "reclaim 84 percent rule did happen for another trade but everextended possible earlier entry"}
+{"card": 52, "kind": "engine_fp", "symbol": "MSFT", "day": "2026-01-20", "tod": "10:07", "entry_i": 37, "miss_reason": null, "austin_grade": "X", "note": null}
+{"card": 53, "kind": "engine_fp", "symbol": "MU", "day": "2025-12-08", "tod": "09:38", "entry_i": 8, "miss_reason": null, "austin_grade": "X", "note": null}
+{"card": 54, "kind": "engine_fp", "symbol": "NVDA", "day": "2024-12-16", "tod": "10:05", "entry_i": 35, "miss_reason": null, "austin_grade": "X", "note": null}
+{"card": 55, "kind": "engine_fp", "symbol": "ORCL", "day": "2025-11-03", "tod": "10:00", "entry_i": 30, "miss_reason": null, "austin_grade": "X", "note": null}
+{"card": 56, "kind": "engine_fp", "symbol": "PLTR", "day": "2024-10-23", "tod": "09:45", "entry_i": 15, "miss_reason": null, "austin_grade": "A", "note": null}
+{"card": 57, "kind": "engine_fp", "symbol": "QQQ", "day": "2024-10-03", "tod": "10:51", "entry_i": 40, "miss_reason": null, "austin_grade": "X", "note": null}
+{"card": 58, "kind": "engine_fp", "symbol": "QQQ", "day": "2025-01-10", "tod": "09:46", "entry_i": 16, "miss_reason": null, "austin_grade": "S", "note": "as candle is closing to lod"}
+{"card": 59, "kind": "engine_fp", "symbol": "QQQ", "day": "2025-01-10", "tod": "10:00", "entry_i": 30, "miss_reason": null, "austin_grade": "A", "note": "same stock but earlier entry better"}
+{"card": 60, "kind": "engine_fp", "symbol": "QQQ", "day": "2025-01-10", "tod": "10:57", "entry_i": 40, "miss_reason": null, "austin_grade": "X", "note": null}
