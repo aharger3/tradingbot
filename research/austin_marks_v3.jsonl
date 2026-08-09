@@ -1,0 +1,184 @@
+{"symbol": "HOOD", "day": "2025-08-04", "entry_i": 40, "tier": "A"}
+{"symbol": "SOFI", "day": "2026-03-11", "entry_i": 63, "tier": "A"}
+{"symbol": "QQQ", "day": "2025-06-25", "entry_i": 48, "tier": "A"}
+{"symbol": "SPY", "day": "2026-01-08", "entry_i": 42, "tier": "X"}
+{"symbol": "MSFT", "day": "2026-02-11", "entry_i": 20, "tier": "A"}
+{"symbol": "QQQ", "day": "2025-02-26", "entry_i": 28, "tier": "S"}
+{"symbol": "SPY", "day": "2026-02-09", "entry_i": 24, "tier": "A"}
+{"symbol": "HOOD", "day": "2026-05-19", "entry_i": 19, "tier": "A"}
+{"symbol": "META", "day": "2025-09-23", "entry_i": 9, "tier": "A"}
+{"symbol": "NVDA", "day": "2024-11-19", "entry_i": 18, "tier": "A"}
+{"symbol": "COIN", "day": "2025-10-21", "entry_i": 8, "tier": "S"}
+{"symbol": "IWM", "day": "2026-07-24", "entry_i": 29, "tier": "S"}
+{"symbol": "QQQ", "day": "2025-06-24", "entry_i": 15, "tier": "A", "note": "because the red candle before is no displacement", "kind": "s_miss"}
+{"symbol": "META", "day": "2026-06-10", "entry_i": 18, "tier": "X"}
+{"symbol": "SPY", "day": "2024-10-22", "entry_i": 41, "tier": "A"}
+{"symbol": "MARA", "day": "2025-08-18", "entry_i": 23, "tier": "X"}
+{"symbol": "IWM", "day": "2024-04-03", "entry_i": 13, "tier": "S"}
+{"symbol": "IWM", "day": "2024-04-03", "entry_i": 73, "tier": "S"}
+{"symbol": "AMZN", "day": "2025-08-14", "entry_i": 18, "tier": "X"}
+{"symbol": "CRM", "day": "2025-07-02", "entry_i": 17, "tier": "A"}
+{"symbol": "MARA", "day": "2025-04-02", "entry_i": 14, "tier": "A"}
+{"symbol": "BABA", "day": "2025-07-22", "entry_i": 20, "tier": "S"}
+{"symbol": "TSM", "day": "2025-10-07", "entry_i": 74, "tier": "A"}
+{"symbol": "QQQ", "day": "2024-12-23", "entry_i": 47, "tier": "A"}
+{"symbol": "CRM", "day": "2026-05-07", "entry_i": 18, "tier": "X"}
+{"symbol": "IWM", "day": "2025-12-01", "entry_i": 11, "tier": "S"}
+{"symbol": "SPY", "day": "2026-03-25", "entry_i": 10, "tier": "X"}
+{"symbol": "AMD", "day": "2026-04-21", "entry_i": 35, "tier": "A"}
+{"symbol": "GOOGL", "day": "2025-08-07", "entry_i": 18, "tier": "S"}
+{"symbol": "QQQ", "day": "2024-05-08", "entry_i": 8, "tier": "S"}
+{"symbol": "HOOD", "day": "2025-03-04", "entry_i": 44, "tier": "S"}
+{"symbol": "INTC", "day": "2025-06-05", "entry_i": 10, "tier": "X"}
+{"symbol": "QQQ", "day": "2024-03-05", "entry_i": 11, "tier": "A"}
+{"symbol": "QQQ", "day": "2024-03-05", "entry_i": 21, "tier": "S"}
+{"symbol": "QQQ", "day": "2025-03-17", "entry_i": 16, "tier": "S"}
+{"symbol": "SPY", "day": "2024-04-03", "entry_i": 9, "tier": "S"}
+{"symbol": "GOOG", "day": "2025-06-10", "entry_i": 21, "tier": "A"}
+{"symbol": "QQQ", "day": "2026-02-11", "entry_i": 32, "tier": "S"}
+{"symbol": "QQQ", "day": "2026-02-11", "entry_i": 45, "tier": "S"}
+{"symbol": "SPY", "day": "2025-02-21", "entry_i": 18, "tier": "X"}
+{"symbol": "IWM", "day": "2025-09-05", "entry_i": 12, "tier": "S"}
+{"symbol": "IWM", "day": "2025-09-05", "entry_i": 51, "tier": "A"}
+{"symbol": "QQQ", "day": "2025-12-05", "entry_i": 27, "tier": "S"}
+{"symbol": "QQQ", "day": "2025-12-05", "entry_i": 35, "tier": "X", "kind": "s_miss"}
+{"symbol": "CRM", "day": "2025-06-02", "entry_i": 27, "tier": "S"}
+{"symbol": "QQQ", "day": "2025-03-18", "entry_i": 13, "tier": "A", "kind": "s_miss"}
+{"symbol": "SPY", "day": "2025-06-02", "entry_i": 40, "tier": "A"}
+{"symbol": "QQQ", "day": "2024-01-04", "entry_i": 41, "tier": "S"}
+{"symbol": "MSFT", "day": "2026-01-20", "entry_i": 12, "tier": "S"}
+{"symbol": "IWM", "day": "2024-02-28", "entry_i": 9, "tier": "S"}
+{"symbol": "IWM", "day": "2024-02-28", "entry_i": 18, "tier": "A"}
+{"symbol": "AMZN", "day": "2026-07-17", "entry_i": 7, "tier": "A"}
+{"symbol": "COIN", "day": "2026-03-04", "entry_i": 43, "tier": "A"}
+{"symbol": "MU", "day": "2025-11-07", "entry_i": 22, "tier": "S"}
+{"symbol": "QQQ", "day": "2025-01-16", "entry_i": 23, "tier": "S"}
+{"symbol": "QQQ", "day": "2025-12-30", "entry_i": 24, "tier": "S"}
+{"symbol": "GOOG", "day": "2025-12-08", "entry_i": 58, "tier": "X"}
+{"symbol": "TSLA", "day": "2026-02-18", "entry_i": 42, "tier": "S"}
+{"symbol": "QQQ", "day": "2024-10-03", "entry_i": 18, "tier": "S"}
+{"symbol": "UBER", "day": "2026-06-09", "entry_i": 11, "tier": "A"}
+{"symbol": "NVDA", "day": "2024-11-18", "entry_i": 10, "tier": "S"}
+{"symbol": "QQQ", "day": "2025-05-16", "entry_i": 63, "tier": "A"}
+{"symbol": "IWM", "day": "2025-04-10", "entry_i": 16, "tier": "S"}
+{"symbol": "MARA", "day": "2025-05-14", "entry_i": 23, "tier": "X"}
+{"symbol": "GOOGL", "day": "2024-09-03", "entry_i": 10, "tier": "A"}
+{"symbol": "ORCL", "day": "2025-11-03", "entry_i": 17, "tier": "S"}
+{"symbol": "ORCL", "day": "2025-03-28", "entry_i": 12, "tier": "X", "kind": "s_miss"}
+{"symbol": "IWM", "day": "2025-10-21", "entry_i": 9, "tier": "S"}
+{"symbol": "HOOD", "day": "2025-02-24", "entry_i": 16, "tier": "A"}
+{"symbol": "QQQ", "day": "2024-08-23", "entry_i": 36, "tier": "S"}
+{"symbol": "UBER", "day": "2025-09-11", "entry_i": 15, "tier": "S"}
+{"symbol": "GOOGL", "day": "2024-10-15", "entry_i": 32, "tier": "S"}
+{"symbol": "NVDA", "day": "2024-12-16", "entry_i": 12, "tier": "A"}
+{"symbol": "MSFT", "day": "2025-03-04", "entry_i": 13, "tier": "S"}
+{"symbol": "QQQ", "day": "2025-01-10", "entry_i": 13, "tier": "S"}
+{"symbol": "TSLA", "day": "2024-03-27", "entry_i": 13, "tier": "S"}
+{"symbol": "QQQ", "day": "2026-03-04", "entry_i": 42, "tier": "S"}
+{"symbol": "MARA", "day": "2026-07-09", "entry_i": 19, "tier": "S"}
+{"symbol": "CRM", "day": "2025-11-18", "entry_i": 16, "tier": "A"}
+{"symbol": "NVDA", "day": "2024-12-30", "entry_i": 34, "tier": "A"}
+{"symbol": "MU", "day": "2026-01-28", "entry_i": 13, "tier": "S"}
+{"symbol": "SPY", "day": "2025-09-25", "entry_i": 45, "tier": "A"}
+{"symbol": "HOOD", "day": "2026-04-13", "entry_i": 16, "tier": "S"}
+{"symbol": "SPY", "day": "2025-02-20", "entry_i": 35, "tier": "A"}
+{"symbol": "TSM", "day": "2026-05-29", "entry_i": 23, "tier": "S"}
+{"symbol": "GOOG", "day": "2026-02-23", "entry_i": 19, "tier": "X"}
+{"symbol": "MARA", "day": "2026-07-17", "entry_i": 13, "tier": "A"}
+{"symbol": "SPY", "day": "2024-02-22", "entry_i": 25, "tier": "A"}
+{"symbol": "UBER", "day": "2026-01-06", "entry_i": 22, "tier": "A"}
+{"symbol": "SPY", "day": "2025-11-05", "entry_i": 52, "tier": "A"}
+{"symbol": "QQQ", "day": "2024-02-01", "entry_i": 44, "tier": "X"}
+{"symbol": "SPY", "day": "2026-03-03", "entry_i": 17, "tier": "S"}
+{"symbol": "IWM", "day": "2024-03-22", "entry_i": 24, "tier": "S"}
+{"symbol": "SPY", "day": "2025-03-18", "entry_i": 13, "tier": "A", "kind": "s_miss"}
+{"symbol": "PLTR", "day": "2024-10-23", "entry_i": 21, "tier": "S"}
+{"symbol": "QQQ", "day": "2026-07-09", "entry_i": 11, "tier": "S"}
+{"symbol": "ORCL", "day": "2026-06-09", "entry_i": 8, "tier": "A"}
+{"symbol": "SPY", "day": "2026-05-05", "entry_i": 10, "tier": "A"}
+{"symbol": "AMD", "day": "2026-05-14", "entry_i": 25, "tier": "A"}
+{"symbol": "HOOD", "day": "2026-02-05", "entry_i": 40, "tier": "S"}
+{"symbol": "TSLA", "day": "2024-12-03", "entry_i": 8, "tier": "A"}
+{"symbol": "IWM", "day": "2024-08-22", "entry_i": 27, "tier": "S"}
+{"symbol": "COIN", "day": "2025-12-01", "entry_i": 11, "tier": "A"}
+{"symbol": "QQQ", "day": "2024-01-30", "entry_i": 35, "tier": "X"}
+{"symbol": "ORCL", "day": "2025-07-08", "entry_i": 7, "tier": "S"}
+{"symbol": "TSLA", "day": "2024-06-24", "entry_i": 9, "tier": "S"}
+{"symbol": "UBER", "day": "2026-07-06", "entry_i": 12, "tier": "S"}
+{"symbol": "QQQ", "day": "2026-03-06", "entry_i": 47, "tier": "X"}
+{"symbol": "MARA", "day": "2025-07-30", "entry_i": 30, "tier": "A"}
+{"symbol": "MARA", "day": "2024-09-09", "entry_i": 38, "tier": "X"}
+{"symbol": "IWM", "day": "2026-06-24", "entry_i": 28, "tier": "A"}
+{"symbol": "MARA", "day": "2024-10-18", "entry_i": 11, "tier": "S"}
+{"symbol": "HOOD", "day": "2026-07-07", "entry_i": 37, "tier": "A"}
+{"symbol": "TSLA", "day": "2024-02-05", "entry_i": 16, "tier": "A"}
+{"symbol": "MU", "day": "2025-12-08", "entry_i": 12, "tier": "X"}
+{"symbol": "UBER", "day": "2025-07-31", "entry_i": 48, "tier": "A"}
+{"symbol": "PLTR", "day": "2026-03-31", "entry_i": 23, "tier": "S"}
+{"symbol": "IWM", "day": "2026-05-28", "entry_i": 46, "tier": "S"}
+{"symbol": "MARA", "day": "2024-12-17", "entry_i": 49, "tier": "S"}
+{"symbol": "SPY", "day": "2025-12-02", "entry_i": 14, "tier": "X"}
+{"symbol": "AMD", "day": "2025-06-05", "entry_i": 6, "tier": "A", "kind": "s_miss"}
+{"symbol": "IWM", "day": "2024-08-01", "entry_i": 44, "tier": "A"}
+{"symbol": "QQQ", "day": "2024-03-15", "entry_i": 11, "tier": "S"}
+{"symbol": "MSFT", "day": "2026-06-10", "entry_i": 17, "tier": "A"}
+{"symbol": "UBER", "day": "2025-02-07", "entry_i": 22, "tier": "S"}
+{"symbol": "CRM", "day": "2025-09-26", "entry_i": 12, "tier": "A"}
+{"symbol": "PLTR", "day": "2025-09-18", "entry_i": 14, "tier": "S"}
+{"symbol": "SOFI", "day": "2024-10-30", "entry_i": 16, "tier": "S"}
+{"symbol": "QQQ", "day": "2025-01-28", "entry_i": 40, "tier": "A"}
+{"symbol": "QQQ", "day": "2024-12-16", "entry_i": 28, "tier": "S"}
+{"symbol": "MARA", "day": "2026-07-20", "entry_i": 11, "tier": "A"}
+{"symbol": "SOFI", "day": "2026-05-20", "entry_i": 55, "tier": "A"}
+{"symbol": "NVDA", "day": "2025-03-25", "entry_i": 25, "tier": "A"}
+{"symbol": "COIN", "day": "2025-06-26", "entry_i": 18, "tier": "S"}
+{"symbol": "TSLA", "day": "2024-01-12", "entry_i": 18, "tier": "X"}
+{"symbol": "QQQ", "day": "2025-05-07", "entry_i": 31, "tier": "A"}
+{"symbol": "HOOD", "day": "2025-12-29", "entry_i": 12, "tier": "X"}
+{"symbol": "ORCL", "day": "2025-09-17", "entry_i": 11, "tier": "A"}
+{"symbol": "AMD", "day": "2026-03-04", "entry_i": 9, "tier": "A"}
+{"symbol": "AMZN", "day": "2026-04-10", "entry_i": 74, "tier": "A"}
+{"symbol": "UBER", "day": "2025-08-13", "entry_i": 25, "tier": "S"}
+{"symbol": "IWM", "day": "2025-12-04", "entry_i": 56, "tier": "S"}
+{"symbol": "IWM", "day": "2024-09-24", "entry_i": 35, "tier": "X"}
+{"symbol": "IWM", "day": "2024-09-24", "entry_i": 53, "tier": "X"}
+{"symbol": "HOOD", "day": "2026-07-10", "entry_i": 23, "tier": "S"}
+{"symbol": "SPY", "day": "2025-07-01", "entry_i": 41, "tier": "A"}
+{"symbol": "GOOG", "day": "2025-04-04", "entry_i": 26, "tier": "A"}
+{"symbol": "SPY", "day": "2024-06-11", "entry_i": 23, "tier": "S"}
+{"symbol": "SPY", "day": "2026-03-02", "entry_i": 24, "tier": "S"}
+{"symbol": "COIN", "day": "2026-04-09", "entry_i": 30, "tier": "A", "kind": "s_miss"}
+{"symbol": "SPY", "day": "2026-03-05", "entry_i": 56, "tier": "S"}
+{"symbol": "NVDA", "day": "2026-05-21", "entry_i": 10, "tier": "A"}
+{"symbol": "MSFT", "day": "2025-03-20", "entry_i": 28, "tier": "S"}
+{"symbol": "BABA", "day": "2025-12-26", "entry_i": 36, "tier": "A"}
+{"symbol": "QQQ", "day": "2025-07-01", "entry_i": 72, "tier": "X"}
+{"symbol": "SPY", "day": "2025-11-19", "entry_i": 9, "tier": "S"}
+{"symbol": "SPY", "day": "2024-09-19", "entry_i": 19, "tier": "S"}
+{"symbol": "QQQ", "day": "2025-02-25", "entry_i": 16, "tier": "S"}
+{"symbol": "QQQ", "day": "2025-02-25", "entry_i": 53, "tier": "A"}
+{"symbol": "IWM", "day": "2026-05-28", "entry_i": 40, "tier": "S", "kind": "s_miss"}
+{"symbol": "SPY", "day": "2026-03-05", "entry_i": 40, "tier": "S", "kind": "s_miss"}
+{"symbol": "QQQ", "day": "2026-03-04", "entry_i": 40, "tier": "S", "kind": "s_miss"}
+{"symbol": "TSLA", "day": "2026-02-18", "entry_i": 40, "tier": "S", "kind": "s_miss"}
+{"symbol": "QQQ", "day": "2026-02-11", "entry_i": 40, "tier": "A", "note": "because earlier entry 9-10 candles earlier because thats a one candle rule, but the b and r is clean PA", "kind": "s_miss"}
+{"symbol": "AMD", "day": "2026-05-14", "entry_i": 30, "tier": "A", "note": "(repeat setup as previous)", "kind": "engine_fp"}
+{"symbol": "AMZN", "day": "2026-04-10", "entry_i": 27, "tier": "A", "note": "entry 5 candles earlier", "kind": "engine_fp"}
+{"symbol": "COIN", "day": "2025-10-21", "entry_i": 31, "tier": "X", "kind": "engine_fp"}
+{"symbol": "COIN", "day": "2025-10-21", "entry_i": 40, "tier": "X", "kind": "engine_fp"}
+{"symbol": "COIN", "day": "2026-03-04", "entry_i": 40, "tier": "X", "kind": "engine_fp"}
+{"symbol": "COIN", "day": "2026-04-09", "entry_i": 8, "tier": "S", "note": "enter not at hod", "kind": "engine_fp"}
+{"symbol": "GOOGL", "day": "2024-10-15", "entry_i": 40, "tier": "S", "kind": "engine_fp"}
+{"symbol": "HOOD", "day": "2025-12-29", "entry_i": 29, "tier": "X", "kind": "engine_fp"}
+{"symbol": "HOOD", "day": "2026-05-19", "entry_i": 30, "tier": "X", "kind": "engine_fp"}
+{"symbol": "META", "day": "2025-09-23", "entry_i": 40, "tier": "X", "kind": "engine_fp"}
+{"symbol": "MSFT", "day": "2025-03-04", "entry_i": 20, "tier": "A", "note": "reclaim 84 percent rule did happen for another trade but everextended possible earlier entry", "kind": "engine_fp"}
+{"symbol": "MSFT", "day": "2026-01-20", "entry_i": 37, "tier": "X", "kind": "engine_fp"}
+{"symbol": "MU", "day": "2025-12-08", "entry_i": 8, "tier": "X", "kind": "engine_fp"}
+{"symbol": "NVDA", "day": "2024-12-16", "entry_i": 35, "tier": "X", "kind": "engine_fp"}
+{"symbol": "ORCL", "day": "2025-11-03", "entry_i": 30, "tier": "X", "kind": "engine_fp"}
+{"symbol": "PLTR", "day": "2024-10-23", "entry_i": 15, "tier": "A", "kind": "engine_fp"}
+{"symbol": "QQQ", "day": "2024-10-03", "entry_i": 40, "tier": "X", "kind": "engine_fp"}
+{"symbol": "QQQ", "day": "2025-01-10", "entry_i": 16, "tier": "S", "note": "as candle is closing to lod", "kind": "engine_fp"}
+{"symbol": "QQQ", "day": "2025-01-10", "entry_i": 30, "tier": "A", "note": "same stock but earlier entry better", "kind": "engine_fp"}
+{"symbol": "QQQ", "day": "2025-01-10", "entry_i": 40, "tier": "X", "kind": "engine_fp"}

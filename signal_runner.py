@@ -101,7 +101,14 @@ CHASE_PCT = 0.005
 # no pattern needed, ORIGINAL stop + targets, arm only off solid B&R setups.
 # Austin's chat def: strong-PA reclaim, stop under reclaim candle.
 RULE84_LESSON = True   # True = lesson-faithful (no PA gate, original stop)
-RULE84_ARM_BNR_ONLY = True  # arm only when the failed trade was a break & retest
+# Austin 2026-08-09: the 84% re-entry arms after a loser from break-and-retest,
+# the one candle rule, OR both — not B&R alone. A stopped-out one-candle-rule
+# trade now arms it too. FVG and flag losers must NOT arm it (kept out of the
+# set). RULE84_ARM_BNR_ONLY is retained as a computed alias so anything reading
+# the old boolean name still works; it is now False because the set is wider
+# than B&R-only.
+RULE84_ARM_ON = frozenset({SignalType.BREAK_AND_RETEST, SignalType.ONE_CANDLE_RULE})
+RULE84_ARM_BNR_ONLY = RULE84_ARM_ON == frozenset({SignalType.BREAK_AND_RETEST})
 
 # F2 stop-placement A/B (fable-spec-2026-07-12, audit #6). Ours was exactly AT
 # the level -> zone-wiggle stop-outs. Source: "10-15 cents buffer below level"
@@ -177,7 +184,7 @@ HTF_BIAS_GATE = os.getenv("HTF_BIAS_GATE", "0").strip().lower() in ("1", "true",
 #   RULE84_STRICT: rulebook spec "you need an A+ entry" (bonus_How_To_Read...
 #     543s) + same thesis/level/direction. Same-thesis(BNR)/same-level(reclaim of
 #     the original entry price)/same-direction are ALREADY enforced by the current
-#     arming (RULE84_ARM_BNR_ONLY + the entry_price/entry_direction gate in the 84%
+#     arming (RULE84_ARM_ON + the entry_price/entry_direction gate in the 84%
 #     blocks); STRICT adds the missing requirement: arm ONLY when the ORIGINAL
 #     stopped-out entry graded A+ or A. The current de-martingaled version arms off
 #     any counted B&R stop-out regardless of its grade (B3: that laundered grade,
@@ -278,9 +285,155 @@ RULE10_MAX_PIVOTS_AT_LEVEL = 2
 RULE10_LEVEL_TOL = 0.002        # 0.2% of the level, as in rule7_rule10.py
 
 
+# omen-3.9 (AUSTIN_TIER, T4, 2026-08-09) -- austin_tier stops being a slot.
+#
+# From omen-3.7 T5 until now, _route did `sig.setdefault("austin_tier", None)`
+# with a comment saying it is always None because no mapping from the engine's
+# A+/A/B/C exists. That was the right call then and it is still true now: there
+# is no such mapping, and none is invented here. Austin settled the tiers on
+# 2026-08-09 as four clauses about the signal itself, so the tier is computed
+# from those clauses directly instead of translated from a grade.
+#
+# The rule is written out in Trading-Bot-Rulesets.md "Austin's Tiers (S / A /
+# C / X)"; that section is the spec and this code is its implementation. One
+# named helper per clause so T5/T8 can cite a clause instead of re-deriving it:
+#   clause 1  setup_is_s_eligible  - B&R / one candle rule / armed 84% re-entry
+#   clause 2  bar_extreme_veto     - entry close not at the bar's own extreme
+#   clause 3  idea_key             - first S today on this symbol+dir+level
+#   clause 4  HTF_OPPOSITION_VETO  - higher timeframe not opposed (a SWITCH)
+#
+# THIS ROW IS ADDITIVE. austin_tier is a reported field; sig["grade"],
+# _SKIP_GRADES and which signals _route accepts are untouched, which is what
+# research/regression_gate.py proves.
+AUSTIN_TIER_ENABLED = True
+# The switch that would restrict _route to S only. READ NOWHERE in this
+# version, on purpose: T8 A/Bs it, and arming it is Austin's call.
+TRADE_S_ONLY = False
+# Clause 4, the one clause Austin has not settled -- so it is a parameter, not
+# a constant, and T8 measures both arms.
+#   "hard"          an opposed higher timeframe can never be S (today's rule)
+#   "fill_override" a signal passing clause 2 may still be S with an opposing HTF
+HTF_OPPOSITION_VETO = "hard"
+# Clause 2's band: "top 25% of the bar's own range" read literally, not fitted.
+BAR_EXTREME_FRAC = 0.25
+# Clause 1: exactly three setups, nothing else is ever S. FAIR_VALUE_GAP and
+# FLAG are deliberately absent.
+S_ELIGIBLE_SETUPS = (SignalType.BREAK_AND_RETEST, SignalType.ONE_CANDLE_RULE,
+                     SignalType.REENTRY_84_RULE)
+
+# omen-3.9 (ENFORCE_NO_REPEAT, T5, 2026-08-09) -- clause 3 made into a routing
+# rule, FLAG-GATED, DEFAULT OFF.
+#
+# T4 built idea_key(sig) = (symbol, direction, level NAME) and used it inside
+# compute_austin_tier's clause 3 ("first S of this idea today") as a reported
+# field. This row turns that identity into an actual skip: once an idea has
+# been ACCEPTED this session, a later accepted entry on the same idea is
+# skipped with [skip: repeat idea] -- the same trade twice is noise Austin does
+# not want. The 84% re-entry (SignalType.REENTRY_84_RULE) is the one exemption,
+# because it IS by definition the sanctioned second bite at the same idea.
+#
+# DEFAULT OFF => shipped behaviour byte-identical to today: the per-session
+# self._fired_ideas set is maintained on the accept path either way (clause 3
+# and the report read it), but nothing is skipped until this is True. The
+# harness forces it True in-process for the measurement in
+# research/t5_no_repeat_effect.py; arming it is Austin's call. See
+# research/t5_no_repeat.md for the suppressed-entry / lost-mark counts.
+ENFORCE_NO_REPEAT = False
+
+
 def _retest_tol() -> float:
     """retest_tol_mult to hand detect_break_retest. 0.0 unless DETECT_WIDE."""
     return DETECT_WIDE_RETEST_MULT if DETECT_WIDE else 0.0
+
+
+def setup_is_s_eligible(sig: dict) -> bool:
+    """Clause 1. True only for break-and-retest, the one candle rule (order
+    block) and the 84% re-entry — the three setups Austin trades. A
+    fair-value-gap entry or a flag breakout is never S no matter how it looks."""
+    return sig.get("signal_type") in S_ELIGIBLE_SETUPS
+
+
+def bar_extreme_veto(sig: dict, candle) -> bool:
+    """Clause 2, as a veto: True when the fill is bad enough to block S.
+
+    Vetoes when the entry close sits in the top BAR_EXTREME_FRAC of the signal
+    bar's own range (long) or the bottom (short). `candle` is the bar the entry
+    is taken on, read AS FORMED at that moment — this is a fill-quality guard
+    ("better fills matter" / "don't buy the top"), NOT a wait-for-the-close
+    confirmation gate, so it must never be handed a later bar.
+
+    Returns False unconditionally for SignalType.REENTRY_84_RULE: on the 84%
+    re-entry the close back through the failed entry IS the signal, so an
+    extreme close is the thing being asked for. A zero-range bar cannot say
+    where in its range the close sits, so it does not veto."""
+    if sig.get("signal_type") is SignalType.REENTRY_84_RULE:
+        return False
+    entry = sig.get("entry")
+    if candle is None or entry is None:
+        return False
+    rng = candle.high - candle.low
+    if rng <= 0:
+        return False
+    if sig.get("direction") == "call":
+        return entry >= candle.high - BAR_EXTREME_FRAC * rng
+    return entry <= candle.low + BAR_EXTREME_FRAC * rng
+
+
+def idea_key(sig: dict) -> tuple:
+    """Clause 3's identity: (symbol, direction, level_name).
+
+    The level is its NAME (OR high / OR low / PDH / PDL / PMH / PML — whatever
+    stop_level_name spells for this setup), never its price: the same level
+    broken again at a different tick is the same idea having a second go, and a
+    price would make it look like a new one."""
+    return (sig.get("symbol"), sig.get("direction"), sig.get("stop_level_name"))
+
+
+def _targets_session_extreme(sig: dict) -> bool:
+    """C's other arm: the signal targets the session HOD/LOD. Those are the
+    levels HODLOD_PAIR builds, and stop_level_name is where they surface."""
+    return sig.get("stop_level_name") in ("HOD", "LOD")
+
+
+def _htf_opposes(sig: dict, htf_bias) -> bool:
+    """Clause 4's raw condition, before the HTF_OPPOSITION_VETO switch. A
+    missing or neutral bias opposes nothing."""
+    if htf_bias not in ("bullish", "bearish"):
+        return False
+    return htf_bias == ("bearish" if sig.get("direction") == "call" else "bullish")
+
+
+def compute_austin_tier(sig: dict, candles, fired_ideas, htf_bias) -> str:
+    """Austin's tier for this signal: "S", "A" or "C". Never "X" — X is his
+    marking vocabulary for a level not worth tracking, not something the engine
+    emits (Trading-Bot-Rulesets.md, "Austin's Tiers").
+
+    `fired_ideas` is the set of idea_key()s that have already produced an S
+    today; `candles` ends on the bar the entry is taken on.
+
+    All four clauses -> S. Clause 1 holds and one or two of 2/3/4 fail -> A.
+    Clause 1 holds with three failures, or the signal targets the session
+    HOD/LOD -> C. Clause 1 fails -> C.
+    """
+    if not setup_is_s_eligible(sig):
+        return "C"
+    if _targets_session_extreme(sig):
+        return "C"
+    is_reentry = sig.get("signal_type") is SignalType.REENTRY_84_RULE
+    # clause 2 — fill quality on the entry bar as formed
+    fill_ok = not bar_extreme_veto(sig, candles[-1] if candles else None)
+    # clause 3 — first S of this idea today; the armed re-entry is allowed to
+    # be the second, that is what it is for
+    fresh = is_reentry or idea_key(sig) not in (fired_ideas or ())
+    # clause 4 — the unsettled one, read through the switch
+    if _htf_opposes(sig, htf_bias):
+        htf_ok = HTF_OPPOSITION_VETO == "fill_override" and fill_ok
+    else:
+        htf_ok = True
+    fails = sum(1 for ok in (fill_ok, fresh, htf_ok) if not ok)
+    if fails == 0:
+        return "S"
+    return "A" if fails <= 2 else "C"
 
 
 def rule7_retest_bars(candles, level, window: int = RULE7_WINDOW) -> int:
@@ -398,6 +551,12 @@ class SignalRunner:
         # times for the session — {"up": "HH:MM:SS"|None, "dn": ...} or None
         # when no QQQ data. Set by backtest_12mo; tag-only, no routing.
         self.qqq_breaks: Optional[dict] = None
+        # omen-3.9 T4 clause 3 / T5 no-repeat: idea_key()s of every signal this
+        # runner has ACCEPTED today. Clause 3 reads it (an idea already accepted
+        # cannot be S again today); T5, when ENFORCE_NO_REPEAT is armed, skips a
+        # later accepted entry on the same idea outright. Same per-runner "today"
+        # scope as self._dir_fired.
+        self._fired_ideas = set()
         self.discord = None
         self.post_to_discord = post_to_discord
         self.symbol = symbol
@@ -626,7 +785,8 @@ class SignalRunner:
                 stop_width_pct=sig.get("stop_width_pct"),
                 status=status,
                 skip_reason=skip_reason,
-                # T5: always None until an S/A/C mapping is earned, not invented
+                # omen-3.9 T4: "S"/"A"/"C" from compute_austin_tier (was always
+                # None while it was a slot); None only if the tier is disabled
                 austin_tier=sig.get("austin_tier"),
             )
         except OSError as e:
@@ -653,15 +813,41 @@ class SignalRunner:
             if why:
                 sig["grade"] = TradeGrade.C.value
                 sig["reason"] += f" [capped C: {why}]"
-        # T5: slot for a future S/A/C mapping of Austin's own tiers. ALWAYS None
-        # — no mapping from A+/A/B/C exists and none is asserted here (B is the
-        # only profitable engine tier; A+/A both lose. See research/detect_wide.md).
-        sig.setdefault("austin_tier", None)
+        # omen-3.9 T4: austin_tier is now COMPUTED (S/A/C) from Austin's four
+        # clauses, not a None slot. Reported only — nothing below branches on
+        # it, and TRADE_S_ONLY is read nowhere in this version. See
+        # Trading-Bot-Rulesets.md "Austin's Tiers (S / A / C / X)".
+        if AUSTIN_TIER_ENABLED:
+            sig["symbol"] = self.symbol           # idea_key's first element
+            sig["austin_tier"] = compute_austin_tier(
+                sig, self.candles, self._fired_ideas, self.htf_bias)
+        else:
+            sig.setdefault("austin_tier", None)
         if sig["grade"] not in _SKIP_GRADES:
+            # omen-3.9 T5: enforce clause 3 as a routing rule. Once an idea
+            # (symbol, direction, level NAME) has been accepted this session, a
+            # later accepted entry on the same idea is skipped — the 84%
+            # re-entry excepted, that IS the sanctioned second bite at the same
+            # idea. DEFAULT OFF: _fired_ideas is maintained on the accept path
+            # either way (clause 3 and the report read it), so nothing is
+            # skipped until ENFORCE_NO_REPEAT is True. See research/t5_no_repeat.md.
+            sig.setdefault("symbol", self.symbol)
+            if (ENFORCE_NO_REPEAT
+                    and sig.get("signal_type") is not SignalType.REENTRY_84_RULE
+                    and idea_key(sig) in self._fired_ideas):
+                sig["reason"] += " [skip: repeat idea]"
+                self._log_record(sig, status="skipped", skip_reason="repeat idea")
+                return
             # tight-stop skip only for C — it killed 42 of 303 labeled takes
             # (calibration 2026-07-06); B+ setups size to the stop instead
             if sig["grade"] != "C" or self._min_viable_stop(sig["entry"], sig["stop"], sig["direction"]):
                 self._dir_fired[sig["direction"]] = self._dir_fired.get(sig["direction"], 0) + 1
+                # clause 3 bookkeeping: every accepted signal records its idea,
+                # so a later entry on the same symbol+direction+level cannot be
+                # S (clause 3) and, when ENFORCE_NO_REPEAT is armed, is skipped.
+                # Recorded on the ACCEPTED path only — a skipped signal never
+                # fired. Same per-runner "today" scope as _dir_fired.
+                self._fired_ideas.add(idea_key(sig))
                 signals.append(sig)
                 return
             self._log_record(sig, status="skipped", skip_reason="stop too tight (<0.5% of entry and premium risk <$0.20)")

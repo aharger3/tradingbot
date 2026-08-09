@@ -23,7 +23,7 @@ from typing import List, Optional
 import pandas as pd
 import yfinance as yf
 
-from omen_bot import Candle, TradeGrade
+from omen_bot import Candle, SignalType, TradeGrade
 from signal_runner import SignalRunner
 
 # Austin's watchlist 2026-07-11: all stocks with ~200k+ daily options volume
@@ -174,11 +174,12 @@ class SimTrade:
 
 def _arm_84(t: "SimTrade", runner: "BacktestRunner") -> None:
     """Arm one 84%-rule re-entry off a full stop-out (same gate as blind-2R path)."""
-    from signal_runner import RULE84_ARM_BNR_ONLY, RULE84_STRICT, RULE84_OFF
+    from signal_runner import RULE84_ARM_ON, RULE84_STRICT, RULE84_OFF
     if RULE84_OFF:  # C9: detector fully disabled
         return
-    arm_ok = t.signal_type == "break_and_retest" if RULE84_ARM_BNR_ONLY \
-        else t.signal_type != "reentry_84_rule"
+    # Austin 2026-08-09: arm when the stopped trade's setup is in RULE84_ARM_ON
+    # (B&R or the one candle rule). FVG / flag losers do NOT arm it.
+    arm_ok = SignalType(t.signal_type) in RULE84_ARM_ON
     # C9 strict-spec: rulebook "you need an A+ entry" — arm only off an A+/A original.
     if RULE84_STRICT and t.grade not in ("A+", "A"):
         arm_ok = False

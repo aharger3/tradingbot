@@ -39,24 +39,34 @@
 
 ## Setup 2: 5-Minute Opening Range (84% Rule Related)
 
-**What it is:** The first 5-minute candle of the session sets the range. 84% of the time, price will eventually break this range and not come back inside it.
+**What it is:** The 84% rule is **not a standalone entry**. It is the re-entry you
+take *after a losing trade* — a stopped-out break-and-retest, a stopped-out one
+candle rule, or both — when the original thesis was right but the stop was wrong.
+
+**VOID (2026-08-09):** the old text below claimed the 84% rule was a standalone
+entry on the break of the opening range — *"Once broken, price tends to not
+return, so entry on break is high probability."* That is wrong. Austin's ruling:
+the 84% rule can never happen by itself; it is only taken after a loser from
+break-and-retest, the one candle rule, or both.
 
 ### Entry Conditions
-- Define the opening range: High and low of the first 5-minute candle (or first N candles)
-- Wait for price to break above the high OR below the low
-- **84% rule**: Once broken, price tends to not return, so entry on break is high probability
-- Enter at/near the break of the range
+- A prior break-and-retest OR one-candle-rule trade was stopped out (this is what
+  arms the 84% re-entry — a fair-value-gap or flag loser does **not** arm it)
+- Wait for price to close back at or above the price where you originally entered
+  (long) / at or below it (short) — the predicament is *correct thesis, wrong stop*
+- Take the trade on that reclaim close
 
 ### Exit Conditions
-- **Profit target:** If 84% rule holds, ride the momentum for 10:1 RR (or market structure target)
-- **Stop loss:** Other side of the opening range, or below the swing low/high
-- **Early exit:** If price reverses back into range (the 16% of the time it fails), exit immediately
+- **Stop loss:** leave the stop where it was, or move it to where it makes the most
+  sense (a new level, a pivot structure). The thesis is still correct — you keep
+  the trade, you just fix the stop
+- **Profit target:** ride the momentum toward the original target / market structure
 
 ### Risk Management
-- This is a higher-probability setup (84% win rate)
-- Position size can be slightly larger due to high probability
-- Use tight stops to protect the 16% failures
-- Combine with HTF confirmation for best results
+- This is a re-entry, not a fresh position — it exists because the idea was right
+  and the stop was wrong, not because a new edge appeared
+- The stop placement is the whole point: keep it where it was, or improve it on
+  real structure; do not widen it to force the trade
 
 ### Key Learning from Austin
 - NVDA trade: "small winner" — needed to aim for at least 10% RR
@@ -94,20 +104,45 @@ carry `SignalType.FAIR_VALUE_GAP` and `SignalType.FLAG`.
 
 ## Setup 4: 84% Rule (Full Details)
 
-**What it is:** Extended explanation of the 84% probability rule noted in Austin's charts.
+**What it is:** The 84% rule is the re-entry you take after a losing trade when the
+thesis was right and the stop was wrong. It is **never a standalone entry** — it
+only fires off a stopped-out break-and-retest, a stopped-out one candle rule, or
+both.
+
+**VOID (2026-08-09):** the old text below described the 84% rule as a standalone
+entry on the break of the opening range — *"When opening range (first 5 minutes)
+breaks, 84% of the time price doesn't return inside that range ... a statistical
+edge that can be mechanically traded."* That is wrong, and it is the doc-vs-code
+conflict that has been open since 2026-08-07. Austin's ruling: the 84% rule can
+never happen by itself; it is only taken after a loser from B&R, the one candle
+rule, or both. When a candle closes at or above the same price where you
+originally entered, take the trade and leave the stop where it was, or where it
+makes the most sense (a new level, pivot structure) — because the predicament is
+*correct thesis, wrong stop.*
 
 ### Core Principle
-- When opening range (first 5 minutes) breaks, 84% of the time price doesn't return inside that range
-- This is a statistical edge that can be mechanically traded
+- The 84% re-entry exists for one situation: you were right about direction, but
+  your stop got hit. Price then closes back through your original entry price.
+  The thesis is still alive, so you re-enter — you do not abandon the idea
+- It is armed *only* by a stopped-out break-and-retest or one-candle-rule trade.
+  A fair-value-gap or flag loser does not arm it
 
 ### Entry Conditions
-- [Clarify exact timing and confirmation]
+- A break-and-retest or one-candle-rule trade was stopped out (arming)
+- A candle closes at or above the original entry price (long) / at or below it
+  (short) — the reclaim that says the thesis was right, stop was wrong
+- Re-enter on that close
 
 ### Exit Conditions
-- [Clarify exact targets and stops]
+- **Stop loss:** leave the stop where it was, or move it to where it makes the
+  most sense — a new level, a pivot structure. Keep the trade, fix the stop
+- **Profit target:** the original target / market-structure target
 
 ### Risk Management
-- [Clarify position sizing for high-probability trades]
+- Re-entry, not a new edge — size and intent follow the original trade, not a
+  fresh setup
+- The stop is the decision: keep the old one or improve it on real structure;
+  do not force the trade by widening the stop
 
 ---
 
@@ -184,6 +219,80 @@ non-null marks per arm. Until then this threshold is Austin's sentence made coun
 same `RULE_710_ENABLED` flag (**default `False`**), capping A+/A/B to C with a reason naming which
 of the two rules capped it. Off by default; arming it is Austin's call, and the honest A/B is the
 recall/precision pair from `research/regression_gate.py` with the flag flipped at runtime.
+
+---
+
+## Austin's Tiers (S / A / C / X)
+
+**What it is:** Austin's own vocabulary for marking a chart, settled 2026-08-09. It is not the
+engine's A+/A/B/C grade and never has been — the grade is a quality score the detector computes
+about a candidate, while a tier is Austin's verdict on whether the thing in front of him is a
+trade. Until now `austin_tier` was a slot that always held nothing, because no honest mapping from
+A+/A/B/C existed. It does not need one: the tier is computed from the four clauses below, directly.
+
+### S — tradeable
+
+All four clauses hold. Anything short of all four is not an S.
+
+1. **The setup is one of exactly three.** Break-and-retest, the one candle rule (the order block),
+   or an **armed** 84% re-entry. Nothing else is ever S — a fair-value-gap entry and a flag
+   breakout can be perfectly good-looking and are still not one of the three setups Austin trades.
+2. **The fill is not at the extreme of the bar.** The entry close does not sit in the top 25% of
+   the signal bar's own range (long) or the bottom 25% (short), measured against the bar **as it
+   stands at the moment of entry**. This is a fill-quality guard — "better fills matter", lesson 4
+   above, and "don't buy the top" — and it is emphatically *not* a wait-for-the-close confirmation
+   gate: it reads the bar being entered on, never a later bar and never a confirmed close.
+   *Exempt: the 84% re-entry, where the close back through the failed entry price **is** the
+   signal, so an extreme close is the thing being asked for.*
+3. **It is the first S of its idea today.** No prior S has fired today on the same
+   **symbol + direction + level**. The same level re-broken in the same direction is the same idea
+   having a second go, not a second trade. *Exempt: an armed 84% re-entry, which exists precisely
+   to be the second entry on an idea that already fired and stopped out.*
+4. **The higher timeframe does not oppose the direction** — **unless clause 2 passes**, in which
+   case a good fill may be allowed to carry an opposing higher timeframe. Clause 4 is the one
+   clause Austin has **not** settled. It is therefore a switch, not a constant, and both arms are
+   measured before anyone picks one.
+
+### A — one or two clauses missing
+
+Clause 1 holds, and one or two of clauses 2/3/4 do not. These are valid setups under the right
+higher-timeframe circumstance, and they are **detected and logged, not traded**. The point of
+naming them is that they are the pool clause 4's switch is decided from — an arm that promotes
+half the A pool to S is an arm that changes what gets traded, and that has to be measured, not
+assumed.
+
+### C — seen, not traded
+
+Clause 1 holds but three or more of the others fail; or the setup fits one of the three but sits in
+**in-between mesh** (Austin, 2026-07-06: *"middle of a bunch of levels, probability goes down
+significantly"*); or it **targets the session HOD/LOD**. Clause 1 failing outright — a fair-value
+gap, a flag — is also C. **Detected and logged, not traded.**
+
+### X — Austin's marker, not an engine output
+
+X is *"not a level worth tracking"* — his own do-not-trade mark on a chart. It is a marking
+vocabulary, not a signal class the engine emits, so `compute_austin_tier` never returns `"X"`. (The
+engine's *skip* grade is also spelled `X`; that is `TradeGrade.X`, a different field, and the two
+should not be read as the same statement.)
+
+**In code:** `signal_runner.compute_austin_tier(sig, candles, fired_ideas, htf_bias)`, called from
+`_route` so that **every** signal — accepted or skipped — carries `sig["austin_tier"]`. One named
+helper per clause, so later rows can cite a clause rather than re-derive it:
+`setup_is_s_eligible(sig)` is clause 1, `bar_extreme_veto(sig, candle)` is clause 2 (True = vetoed;
+unconditionally False for `SignalType.REENTRY_84_RULE`), and `idea_key(sig)` is clause 3's identity
+`(symbol, direction, level_name)` — the *name* of the reference level (OR high / OR low / PDH /
+PDL / PMH / PML), never its price, so the same level at a different tick is still the same idea.
+
+Clause 4 is the parameter `HTF_OPPOSITION_VETO`, **default `"hard"`** because hard is today's
+behaviour: an opposed higher timeframe can never be S. The other arm, `"fill_override"`, lets a
+signal that passes clause 2 stay S with an opposing higher timeframe. Both arms get measured before
+Austin picks.
+
+`AUSTIN_TIER_ENABLED` ships **`True`**: this is a reported field and nothing branches on it, so
+there is nothing to gate. `TRADE_S_ONLY` — the switch that would restrict entries to S alone —
+ships **`False`** and is **read nowhere in this version**; it exists so the tier can be A/B'd
+against today's routing before anyone arms it. Adding the tier changed no grade, no `_SKIP_GRADES`
+membership and no routing decision; `research/regression_gate.py` is the proof.
 
 ---
 
