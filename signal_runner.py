@@ -234,9 +234,125 @@ DETECT_WIDE = False
 DETECT_WIDE_RETEST_MULT = 1.0
 
 
+# omen-3.8 (RULE_710_ENABLED, T5, 2026-08-09) -- Rules 7 and 10 restated as
+# ALWAYS-DEFINED detection conditions, FLAG-GATED, DEFAULT OFF.
+#
+# Source: research/rule7_rule10.md. Both rules were measured there against the
+# 159 marks and both are undefined on a large slice of them, for the SAME
+# reason: their start point is a "break candle" (a bar whose body closed across
+# the reference level). No break candle => no value. Rule 7 is null on 76/159
+# (47.8%), rule 10 on 56/159 (35.2%). A rule the engine cannot evaluate on a bar
+# is not a rule, it is a wish, so both conditions below are rewritten to anchor
+# on the CURRENT bar -- which always exists -- instead of on a break candle, and
+# to saturate rather than return None. Every function here is total: it returns
+# a number on every bar, for every level, with no null branch.
+#
+# Rule 7 (speed of the retest). rule7_retest_bars() counts the bars the level
+# spent untouched between price leaving it and now: the away-leg (consecutive
+# bars before the retest whose range did not contain the level) plus the lag
+# (bars since that retest). Capped at RULE7_WINDOW, and a window with no touch
+# at all returns the cap -- "as slow as this window can measure", which fails.
+#
+# Rule 10 (left-side pivot noise). rule10_left_pivots() uses the same 3-bar
+# swing-pivot definition as research/rule7_rule10.py count_left_pivots and
+# omen_bot.MarketStructure.update, but over the RULE10_LOOKBACK bars before the
+# CURRENT bar rather than before the break; at_level counts the pivots sitting
+# within RULE10_LEVEL_TOL of the level -- "is this level already chewed up".
+#
+# Thresholds are RULES, not fits. rule7_rule10.md's separation tables are
+# underpowered on every contrast (|d| below the MDE at this n), so nothing here
+# is tuned to those means -- 5 bars is "as soon as possible" read literally, and
+# 2 is "at most a couple of old pivots on the level". Same discipline as
+# DETECT_WIDE_RETEST_MULT taking 1.0 over the fitted 1.3.
+#
+# Reference level = sig["stop"], which in every setup below IS the structure
+# being retested (stop_level_name spells it: OR high / PDH / Order block low /
+# FVG low / Flag low). Applied in _route so it covers every candidate uniformly.
+# DEFAULT OFF => shipped behaviour byte-identical to today; when ON, a candidate
+# that fails is capped to C (alert-only), mirroring S_GATE / HTF_BIAS_GATE.
+RULE_710_ENABLED = False
+RULE7_WINDOW = 20
+RULE7_MAX_BARS = 5
+RULE10_LOOKBACK = 20
+RULE10_MAX_PIVOTS_AT_LEVEL = 2
+RULE10_LEVEL_TOL = 0.002        # 0.2% of the level, as in rule7_rule10.py
+
+
 def _retest_tol() -> float:
     """retest_tol_mult to hand detect_break_retest. 0.0 unless DETECT_WIDE."""
     return DETECT_WIDE_RETEST_MULT if DETECT_WIDE else 0.0
+
+
+def rule7_retest_bars(candles, level, window: int = RULE7_WINDOW) -> int:
+    """Rule 7 feature: bars the level went untouched between price leaving it
+    and the current bar. ALWAYS an int in [0, window] — never None.
+
+    A bar 'touches' the level when the level lies inside its range
+    (low <= level <= high). Scanning back from the current bar: the most recent
+    touching bar is the retest; the bars since it are the lag; the run of
+    non-touching bars immediately before it is the away-leg. No touching bar
+    inside the window returns `window` (saturated = slowest measurable), which
+    is what replaces rule7_rule10.py's None on the no-break-candle case."""
+    n = len(candles)
+    if n == 0 or level is None or window <= 0:
+        return max(window, 0)
+    lo = max(0, n - window)
+    touch = lambda c: c.low <= level <= c.high
+    retest_i = None
+    for k in range(n - 1, lo - 1, -1):
+        if touch(candles[k]):
+            retest_i = k
+            break
+    if retest_i is None:
+        return window
+    away = 0
+    k = retest_i - 1
+    while k >= lo and not touch(candles[k]):
+        away += 1
+        k -= 1
+    return min(window, (n - 1 - retest_i) + away)
+
+
+def rule10_left_pivots(candles, level, lookback: int = RULE10_LOOKBACK,
+                       tol: float = RULE10_LEVEL_TOL):
+    """Rule 10 feature: (count, at_level) 3-bar swing pivots whose centre lies
+    in the `lookback` bars before the current bar. ALWAYS a pair of ints —
+    (0, 0) when there is not enough history, never None.
+
+    Pivot definition is rule7_rule10.py count_left_pivots': a high above both
+    neighbours and/or a low below both; a bar that is both contributes two.
+    `at_level` counts the pivot prices within `tol` of the level."""
+    n = len(candles)
+    i = n - 1
+    prices = []
+    for p in range(max(1, i - lookback), i):
+        if p + 1 >= n:
+            break
+        h, l = candles[p].high, candles[p].low
+        if h > candles[p - 1].high and h > candles[p + 1].high:
+            prices.append(h)
+        if l < candles[p - 1].low and l < candles[p + 1].low:
+            prices.append(l)
+    at_level = (sum(1 for pr in prices if abs(pr - level) <= tol * abs(level))
+                if level else 0)
+    return len(prices), at_level
+
+
+def rule_710_reject(candles, level) -> Optional[str]:
+    """Rules 7 + 10 evaluated on the current bar against `level`. Returns None
+    when both pass, else a short reason naming the one that failed. Total by
+    construction: both features are defined on every bar, so this never has to
+    say 'undefined'. A missing level is the one abstain — nothing to measure
+    against — and it passes rather than blocks."""
+    if level is None or not candles:
+        return None
+    bars = rule7_retest_bars(candles, level)
+    if bars > RULE7_MAX_BARS:
+        return f"rule7 retest {bars}>{RULE7_MAX_BARS} bars"
+    _cnt, at_level = rule10_left_pivots(candles, level)
+    if at_level > RULE10_MAX_PIVOTS_AT_LEVEL:
+        return f"rule10 {at_level} pivots on level"
+    return None
 
 
 def daily_trend_bias(daily_closes, period: int = 20) -> Optional[str]:
@@ -492,12 +608,6 @@ class SignalRunner:
             return False
         return ((c.high - c.close) if is_long else (c.close - c.low)) <= 0.25 * rng
 
-    def _is_consolidation(self, or_high: float, or_low: float, pdh: float, pdl: float) -> bool:
-        """All key levels within 0.5% = consolidation, skip all signals."""
-        levels = [pdh, pdl, or_high, or_low]
-        avg = sum(levels) / len(levels)
-        return all(abs(l - avg) / avg < 0.005 for l in levels)
-
     def _log_record(self, sig: dict, status: str = "fired", skip_reason: Optional[str] = None) -> None:
         if not self.log_signals:
             return
@@ -532,6 +642,17 @@ class SignalRunner:
         if S_GATE and sig["grade"] in ("A+", "A", "B") and not is_s_gate(self.candles):
             sig["grade"] = TradeGrade.C.value
             sig["reason"] += " [capped C: S_GATE low displacement]"
+        # omen-3.8 RULE_710_ENABLED (default OFF): Rules 7 (retest speed) and 10
+        # (left-side pivot noise) as always-defined conditions on the retested
+        # structure — sig["stop"]. Both are evaluable on every bar, so the
+        # "no break candle -> null" case that made these rules unimplementable
+        # in research/rule7_rule10.md cannot occur here. OFF = byte-identical to
+        # today. See Trading-Bot-Rulesets.md "Rule 7" / "Rule 10".
+        if RULE_710_ENABLED and sig["grade"] in ("A+", "A", "B"):
+            why = rule_710_reject(self.candles, sig.get("stop"))
+            if why:
+                sig["grade"] = TradeGrade.C.value
+                sig["reason"] += f" [capped C: {why}]"
         # T5: slot for a future S/A/C mapping of Austin's own tiers. ALWAYS None
         # — no mapping from A+/A/B/C exists and none is asserted here (B is the
         # only profitable engine tier; A+/A both lose. See research/detect_wide.md).
@@ -566,9 +687,13 @@ class SignalRunner:
         pdh = self.pdh if self.pdh is not None else hod
         pdl = self.pdl if self.pdl is not None else lod
 
-        # Consolidation check → skip all
-        if self._is_consolidation(or_high, or_low, pdh, pdl):
-            return []
+        # Clustered-level bars no longer hard-skip (Austin 2026-08-07,
+        # OMEN-CONSOLIDATED.md settled input #2): levels bunched within 0.5%
+        # are NOT a no-trade gate — one level broken and retested cleanly is
+        # enough to trade. The blanket early-return that abandoned the whole
+        # bar was removed; the per-setup B&R / OB / FVG loops below now run
+        # against whichever single level the bar actually breaks and retest,
+        # and fall through to "no signal" only if none of them fire.
 
         # Level map for chop grading (only real levels, no session proxies)
         self._active_levels = [l for l in (self.pdh, self.pdl, self.pmh,

@@ -1,25 +1,52 @@
 {"symbol": "AMD", "day": "2026-05-14", "bar": 30, "timestamp": "10:00:00", "signal_type": "break_and_retest", "direction": "call", "grade": "B", "stop_level": "PMH", "entry": 448.644, "stop": 447.05}
 {"symbol": "AMZN", "day": "2026-04-10", "bar": 27, "timestamp": "09:57:00", "signal_type": "break_and_retest", "direction": "call", "grade": "B", "stop_level": "OR high", "entry": 238.035, "stop": 237.67}
+{"symbol": "AMZN", "day": "2026-07-17", "bar": 34, "timestamp": "10:04:00", "signal_type": "break_and_retest", "direction": "call", "grade": "B", "stop_level": "PMH", "entry": 248.27, "stop": 247.8843}
+{"symbol": "COIN", "day": "2025-06-26", "bar": 18, "timestamp": "09:48:00", "signal_type": "break_and_retest", "direction": "call", "grade": "B", "stop_level": "OR high", "entry": 367.77, "stop": 366.8499}
+{"symbol": "COIN", "day": "2025-06-26", "bar": 89, "timestamp": "10:59:00", "signal_type": "break_and_retest", "direction": "call", "grade": "C", "stop_level": "PDH", "entry": 370.57, "stop": 369.28}
 {"symbol": "COIN", "day": "2025-10-21", "bar": 31, "timestamp": "10:01:00", "signal_type": "break_and_retest", "direction": "put", "grade": "B", "stop_level": "PML", "entry": 336.9642, "stop": 337.75}
 {"symbol": "COIN", "day": "2025-10-21", "bar": 62, "timestamp": "10:32:00", "signal_type": "break_and_retest", "direction": "put", "grade": "C", "stop_level": "PDL", "entry": 338.15, "stop": 338.75}
 {"symbol": "COIN", "day": "2026-03-04", "bar": 45, "timestamp": "10:15:00", "signal_type": "break_and_retest", "direction": "call", "grade": "B", "stop_level": "OR high", "entry": 206.5, "stop": 205.25}
 {"symbol": "COIN", "day": "2026-04-09", "bar": 8, "timestamp": "09:38:00", "signal_type": "break_and_retest", "direction": "put", "grade": "B", "stop_level": "PDL", "entry": 172.41, "stop": 172.96}
+{"symbol": "CRM", "day": "2025-06-02", "bar": 32, "timestamp": "10:02:00", "signal_type": "one_candle_rule", "direction": "put", "grade": "B", "stop_level": "Order block high", "entry": 259.8129, "stop": 260.8377}
 {"symbol": "CRM", "day": "2026-05-07", "bar": 18, "timestamp": "09:48:00", "signal_type": "break_and_retest", "direction": "call", "grade": "B", "stop_level": "OR high", "entry": 187.875, "stop": 186.7621}
 {"symbol": "CRM", "day": "2026-05-07", "bar": 18, "timestamp": "09:48:00", "signal_type": "break_and_retest", "direction": "call", "grade": "C", "stop_level": "PDH", "entry": 187.875, "stop": 187.1}
+{"symbol": "GOOG", "day": "2025-04-04", "bar": 26, "timestamp": "09:56:00", "signal_type": "break_and_retest", "direction": "call", "grade": "C", "stop_level": "OR high", "entry": 152.48, "stop": 151.87}
+{"symbol": "GOOG", "day": "2025-06-10", "bar": 15, "timestamp": "09:45:00", "signal_type": "break_and_retest", "direction": "call", "grade": "B", "stop_level": "OR high", "entry": 180.1, "stop": 178.5}
+{"symbol": "GOOG", "day": "2025-12-08", "bar": 11, "timestamp": "09:41:00", "signal_type": "break_and_retest", "direction": "put", "grade": "B", "stop_level": "PML", "entry": 318.76, "stop": 319.4013}
+{"symbol": "GOOG", "day": "2025-12-08", "bar": 60, "timestamp": "10:30:00", "signal_type": "break_and_retest", "direction": "put", "grade": "C", "stop_level": "OR low", "entry": 317.31, "stop": 318.1}
+{"symbol": "GOOG", "day": "2026-02-23", "bar": 19, "timestamp": "09:49:00", "signal_type": "break_and_retest", "direction": "put", "grade": "B", "stop_level": "OR low", "entry": 316.42, "stop": 316.92}
+{"symbol": "GOOG", "day": "2026-02-23", "bar": 57, "timestamp": "10:27:00", "signal_type": "one_candle_rule", "direction": "put", "grade": "C", "stop_level": "Order block high", "entry": 315.9106, "stop": 316.66}
 {"symbol": "GOOGL", "day": "2024-10-15", "bar": 32, "timestamp": "10:02:00", "signal_type": "break_and_retest", "direction": "call", "grade": "B", "stop_level": "OR high", "entry": 166.825, "stop": 166.4}
 {"symbol": "GOOGL", "day": "2024-10-15", "bar": 47, "timestamp": "10:17:00", "signal_type": "one_candle_rule", "direction": "call", "grade": "C", "stop_level": "Order block low", "entry": 166.95, "stop": 166.39}
-{"symbol": "HOOD", "day": "2025-08-04", "bar": 40, "timestamp": "10:10:00", "signal_type": "break_and_retest", "direction": "call", "grade": "B", "stop_level": "OR high", "entry": 101.8562, "stop": 101.27}
-{"symbol": "HOOD", "day": "2025-08-04", "bar": 40, "timestamp": "10:10:00", "signal_type": "break_and_retest", "direction": "call", "grade": "C", "stop_level": "PMH", "entry": 101.8562, "stop": 101.4}
+{"symbol": "HOOD", "day": "2025-02-24", "bar": 17, "timestamp": "09:47:00", "signal_type": "break_and_retest", "direction": "put", "grade": "B", "stop_level": "OR low", "entry": 51.67, "stop": 51.95}
 {"symbol": "HOOD", "day": "2025-12-29", "bar": 29, "timestamp": "09:59:00", "signal_type": "break_and_retest", "direction": "put", "grade": "C", "stop_level": "PDL", "entry": 117.0601, "stop": 117.5}
 {"symbol": "HOOD", "day": "2026-05-19", "bar": 30, "timestamp": "10:00:00", "signal_type": "break_and_retest", "direction": "put", "grade": "B", "stop_level": "OR low", "entry": 74.6106, "stop": 74.9}
+{"symbol": "INTC", "day": "2025-06-05", "bar": 22, "timestamp": "09:52:00", "signal_type": "break_and_retest", "direction": "put", "grade": "B", "stop_level": "OR low", "entry": 20.145, "stop": 20.25}
+{"symbol": "IWM", "day": "2024-03-22", "bar": 27, "timestamp": "09:57:00", "signal_type": "break_and_retest", "direction": "put", "grade": "B", "stop_level": "PML", "entry": 206.9, "stop": 207.27}
+{"symbol": "IWM", "day": "2024-08-01", "bar": 48, "timestamp": "10:18:00", "signal_type": "break_and_retest", "direction": "put", "grade": "B", "stop_level": "PML", "entry": 221.105, "stop": 221.57}
+{"symbol": "IWM", "day": "2024-09-24", "bar": 33, "timestamp": "10:03:00", "signal_type": "break_and_retest", "direction": "put", "grade": "B", "stop_level": "OR low", "entry": 220.6, "stop": 221.13}
+{"symbol": "IWM", "day": "2025-04-10", "bar": 16, "timestamp": "09:46:00", "signal_type": "break_and_retest", "direction": "put", "grade": "B", "stop_level": "OR low", "entry": 183.79, "stop": 184.12}
+{"symbol": "IWM", "day": "2025-09-05", "bar": 13, "timestamp": "09:43:00", "signal_type": "break_and_retest", "direction": "call", "grade": "B", "stop_level": "OR high", "entry": 239.43, "stop": 238.95}
+{"symbol": "IWM", "day": "2025-12-01", "bar": 12, "timestamp": "09:42:00", "signal_type": "break_and_retest", "direction": "call", "grade": "B", "stop_level": "OR high", "entry": 246.35, "stop": 245.92}
+{"symbol": "IWM", "day": "2025-12-04", "bar": 58, "timestamp": "10:28:00", "signal_type": "break_and_retest", "direction": "call", "grade": "B", "stop_level": "PDH", "entry": 250.515, "stop": 250.0}
+{"symbol": "IWM", "day": "2025-12-04", "bar": 58, "timestamp": "10:28:00", "signal_type": "break_and_retest", "direction": "call", "grade": "C", "stop_level": "PMH", "entry": 250.515, "stop": 250.01}
+{"symbol": "IWM", "day": "2026-06-24", "bar": 59, "timestamp": "10:29:00", "signal_type": "break_and_retest", "direction": "call", "grade": "B", "stop_level": "OR high", "entry": 297.35, "stop": 296.88}
+{"symbol": "MARA", "day": "2024-10-18", "bar": 12, "timestamp": "09:42:00", "signal_type": "break_and_retest", "direction": "call", "grade": "B", "stop_level": "OR high", "entry": 18.653, "stop": 18.55}
+{"symbol": "MARA", "day": "2024-10-18", "bar": 12, "timestamp": "09:42:00", "signal_type": "break_and_retest", "direction": "call", "grade": "C", "stop_level": "PMH", "entry": 18.653, "stop": 18.5}
+{"symbol": "MARA", "day": "2024-12-17", "bar": 78, "timestamp": "10:48:00", "signal_type": "break_and_retest", "direction": "put", "grade": "B", "stop_level": "PML", "entry": 24.5913, "stop": 24.73}
+{"symbol": "MARA", "day": "2025-05-14", "bar": 24, "timestamp": "09:54:00", "signal_type": "break_and_retest", "direction": "put", "grade": "B", "stop_level": "PML", "entry": 15.93, "stop": 16.04}
+{"symbol": "MARA", "day": "2026-07-17", "bar": 14, "timestamp": "09:44:00", "signal_type": "break_and_retest", "direction": "put", "grade": "B", "stop_level": "OR low", "entry": 10.5983, "stop": 10.7}
 {"symbol": "META", "day": "2025-09-23", "bar": 74, "timestamp": "10:44:00", "signal_type": "one_candle_rule", "direction": "call", "grade": "C", "stop_level": "Order block low", "entry": 768.95, "stop": 767.545}
 {"symbol": "MSFT", "day": "2025-03-04", "bar": 20, "timestamp": "09:50:00", "signal_type": "break_and_retest", "direction": "put", "grade": "C", "stop_level": "PDL", "entry": 385.02, "stop": 386.155}
 {"symbol": "MSFT", "day": "2026-01-20", "bar": 37, "timestamp": "10:07:00", "signal_type": "one_candle_rule", "direction": "put", "grade": "C", "stop_level": "Order block high", "entry": 453.47, "stop": 454.58}
 {"symbol": "MU", "day": "2025-12-08", "bar": 8, "timestamp": "09:38:00", "signal_type": "break_and_retest", "direction": "call", "grade": "B", "stop_level": "PMH", "entry": 246.0165, "stop": 245.2}
 {"symbol": "NVDA", "day": "2024-12-16", "bar": 12, "timestamp": "09:42:00", "signal_type": "break_and_retest", "direction": "put", "grade": "B", "stop_level": "OR low", "entry": 131.84, "stop": 132.27}
 {"symbol": "NVDA", "day": "2024-12-16", "bar": 35, "timestamp": "10:05:00", "signal_type": "break_and_retest", "direction": "put", "grade": "C", "stop_level": "PDL", "entry": 131.8309, "stop": 132.54}
+{"symbol": "ORCL", "day": "2025-07-08", "bar": 13, "timestamp": "09:43:00", "signal_type": "break_and_retest", "direction": "call", "grade": "A", "stop_level": "OR high", "entry": 239.22, "stop": 238.75}
+{"symbol": "ORCL", "day": "2025-07-08", "bar": 62, "timestamp": "10:32:00", "signal_type": "break_and_retest", "direction": "call", "grade": "C", "stop_level": "PMH", "entry": 238.14, "stop": 237.69}
 {"symbol": "ORCL", "day": "2025-11-03", "bar": 30, "timestamp": "10:00:00", "signal_type": "break_and_retest", "direction": "put", "grade": "B", "stop_level": "PML", "entry": 259.03, "stop": 259.5975}
 {"symbol": "PLTR", "day": "2024-10-23", "bar": 15, "timestamp": "09:45:00", "signal_type": "break_and_retest", "direction": "call", "grade": "B", "stop_level": "PMH", "entry": 43.265, "stop": 43.047}
+{"symbol": "QQQ", "day": "2024-03-05", "bar": 16, "timestamp": "09:46:00", "signal_type": "break_and_retest", "direction": "put", "grade": "B", "stop_level": "OR low", "entry": 438.82, "stop": 439.4904}
 {"symbol": "QQQ", "day": "2024-08-23", "bar": 36, "timestamp": "10:06:00", "signal_type": "break_and_retest", "direction": "call", "grade": "B", "stop_level": "PMH", "entry": 480.68, "stop": 479.75}
 {"symbol": "QQQ", "day": "2024-10-03", "bar": 81, "timestamp": "10:51:00", "signal_type": "break_and_retest", "direction": "call", "grade": "B", "stop_level": "OR high", "entry": 482.338, "stop": 481.36}
 {"symbol": "QQQ", "day": "2025-01-10", "bar": 16, "timestamp": "09:46:00", "signal_type": "break_and_retest", "direction": "put", "grade": "B", "stop_level": "OR low", "entry": 508.39, "stop": 509.63}
@@ -29,5 +56,11 @@
 {"symbol": "QQQ", "day": "2025-02-25", "bar": 17, "timestamp": "09:47:00", "signal_type": "break_and_retest", "direction": "put", "grade": "C", "stop_level": "OR low", "entry": 516.65, "stop": 517.75}
 {"symbol": "QQQ", "day": "2025-02-25", "bar": 28, "timestamp": "09:58:00", "signal_type": "one_candle_rule", "direction": "put", "grade": "C", "stop_level": "Order block high", "entry": 515.7, "stop": 517.03}
 {"symbol": "SOFI", "day": "2026-05-20", "bar": 5, "timestamp": "09:35:00", "signal_type": "break_and_retest", "direction": "put", "grade": "B", "stop_level": "PML", "entry": 15.065, "stop": 15.18}
+{"symbol": "SPY", "day": "2025-02-21", "bar": 45, "timestamp": "10:15:00", "signal_type": "one_candle_rule", "direction": "call", "grade": "C", "stop_level": "Order block low", "entry": 608.05, "stop": 607.54}
+{"symbol": "TSLA", "day": "2024-01-12", "bar": 18, "timestamp": "09:48:00", "signal_type": "break_and_retest", "direction": "call", "grade": "B", "stop_level": "OR high", "entry": 224.0861, "stop": 223.41}
+{"symbol": "TSLA", "day": "2024-02-05", "bar": 16, "timestamp": "09:46:00", "signal_type": "break_and_retest", "direction": "put", "grade": "B", "stop_level": "OR low", "entry": 182.9599, "stop": 183.362}
+{"symbol": "TSLA", "day": "2024-03-27", "bar": 9, "timestamp": "09:39:00", "signal_type": "break_and_retest", "direction": "put", "grade": "B", "stop_level": "OR low", "entry": 177.9999, "stop": 178.581}
+{"symbol": "TSLA", "day": "2024-03-27", "bar": 10, "timestamp": "09:40:00", "signal_type": "break_and_retest", "direction": "put", "grade": "C", "stop_level": "PML", "entry": 177.695, "stop": 178.6}
+{"symbol": "TSLA", "day": "2024-06-24", "bar": 14, "timestamp": "09:44:00", "signal_type": "break_and_retest", "direction": "call", "grade": "B", "stop_level": "OR high", "entry": 187.535, "stop": 187.0}
 {"symbol": "TSM", "day": "2026-05-29", "bar": 16, "timestamp": "09:46:00", "signal_type": "break_and_retest", "direction": "call", "grade": "B", "stop_level": "OR high", "entry": 428.75, "stop": 427.34}
 {"symbol": "UBER", "day": "2025-09-11", "bar": 15, "timestamp": "09:45:00", "signal_type": "break_and_retest", "direction": "call", "grade": "B", "stop_level": "OR high", "entry": 95.155, "stop": 94.75}

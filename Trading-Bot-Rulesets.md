@@ -111,6 +111,82 @@ carry `SignalType.FAIR_VALUE_GAP` and `SignalType.FLAG`.
 
 ---
 
+## Rule 7: Speed of the Retest
+
+**What it is:** Austin, dictation — *"ideally the break and retest happens as soon as possible ...
+if it takes too many candles probability decreases."* A level that is broken and reclaimed in the
+next couple of candles is the setup; the same level wandered back to twenty candles later is a
+different, worse trade that happens to end up at the same price.
+
+This rule sat in the rulebook for months with nothing behind it, and when
+`research/rule7_rule10.py` finally measured it the reason became obvious: the feature it built,
+`bars_break_to_retest`, counts bars from **the break candle** to the first candle whose wick
+returns to the level, and the break candle is a bar whose *body closed across* the level. On
+Austin's 159 marks that bar does not exist 56 times (35.2%), and a further 20 marks have a break
+but no returning wick before entry — so the feature is `null` on **76 of 159 marks (47.8%)**
+(`research/rule7_rule10.md`). A rule the engine cannot evaluate on half the bars it sees is not a
+rule the engine has. The fix is to stop anchoring on a candle that may not exist and anchor on the
+one that always does: the current bar.
+
+**Detection condition:** `rule7_retest_bars(candles, level) <= 5`, where `rule7_retest_bars` is the
+number of bars the level spent **untouched** between price leaving it and now — the away-leg (the
+run of bars immediately before the retest whose range did not contain the level) plus the lag (bars
+since that retest). A bar "touches" the level when `low <= level <= high`. The scan is capped at a
+20-bar window and **saturates at 20** when no bar in the window touched the level at all, which is
+exactly the case that used to emit `null`: no retest inside the window is not undefined, it is the
+slowest reading the window can produce, and it fails. The value is therefore an integer in `[0,20]`
+on every bar, for every level, with no null branch — the same number is available whether or not a
+body ever closed across the level.
+
+**Threshold:** 5 bars, read straight off "as soon as possible", **not fitted.** The separation
+tables in `research/rule7_rule10.md` are underpowered on every contrast (observed |d| below the
+minimum detectable effect at n=34 S / 38 A / 11 X), so no threshold here can honestly claim to be
+tuned to Austin's tiers; 5 is a rule in the same spirit as `DETECT_WIDE_RETEST_MULT` taking the
+round 1.0 over the fitted 1.3.
+
+**In code:** `signal_runner.rule7_retest_bars`, applied in `_route` behind `RULE_710_ENABLED`
+(module-level, **default `False`**). When armed, a candidate graded A+/A/B whose retest is slower
+than the threshold is capped to C (alert-only), mirroring `S_GATE` and `HTF_BIAS_GATE`; it is never
+a hard skip. The reference level is `sig["stop"]`, which in every setup above *is* the structure
+being retested (`stop_level_name` names it: OR high / PDH / Order block low / FVG low / Flag low).
+While the flag is off this is a no-op and shipped behaviour is unchanged.
+
+---
+
+## Rule 10: Left-Side Pivot Noise
+
+**What it is:** Austin, X-card rejection — *"a bunch of candles or pivot structures already there
+before your break ... if the break and retest is not clean or the order block is not clean."* The
+same break at the same price is worth less when the left side of the chart has already chopped
+through that level several times. A level is tradeable because it is *undisturbed*; every prior
+swing that turned on it has already spent some of that.
+
+Same failure as Rule 7 and the same cause. `left_pivot_count` counted 3-bar swing pivots in the 20
+bars **before the break candle**, so it inherited the break candle's absence and came back `null`
+on **56 of 159 marks (35.2%)** — precisely the no-break-identifiable marks
+(`research/rule7_rule10.md`). Nothing about pivot noise actually requires a break candle to define
+it; the lookback simply has to end somewhere, and the current bar is a perfectly good end.
+
+**Detection condition:** `rule10_left_pivots(candles, level)[1] <= 2` — of the 3-bar swing pivots
+whose centre falls in the 20 bars before the current bar, at most two may sit within 0.2% of the
+level. A pivot is a high above both its neighbours and/or a low below both (the same definition
+`omen_bot.MarketStructure.update` and `research/rule7_rule10.py` use; a bar that is both counts
+twice). With too little history the count is simply 0, so the pair `(count, at_level)` is two
+non-negative integers on every bar — the "before the break" clause that produced the nulls is gone,
+and with it the null.
+
+**Threshold:** at most 2 pivots on the level, again a rule and **not a fit** — the measured means
+(S 1.57 / A 2.33 / X 1.93 pivots at level) do not separate the tiers at this sample size, and
+`research/v37_verdict.md` puts the sample needed to answer Rule 7 or Rule 10 at roughly 145
+non-null marks per arm. Until then this threshold is Austin's sentence made countable, nothing more.
+
+**In code:** `signal_runner.rule10_left_pivots`, evaluated in the same `_route` block behind the
+same `RULE_710_ENABLED` flag (**default `False`**), capping A+/A/B to C with a reason naming which
+of the two rules capped it. Off by default; arming it is Austin's call, and the honest A/B is the
+recall/precision pair from `research/regression_gate.py` with the flag flipped at runtime.
+
+---
+
 ## Bot Decision Engine (Pseudocode)
 
 ```

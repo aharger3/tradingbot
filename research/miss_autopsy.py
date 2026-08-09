@@ -20,7 +20,9 @@ checks occur inside `detect_signals`):
 
   detected                  entry fired within +/-2 bars (not a miss)
   too_few_candles           len(candles) < 5 at that bar
-  consolidation_early_return  _is_consolidation returned True -> detect_signals []
+  consolidation_early_return  RETIRED (omen-3.8 T3): _is_consolidation's hard-skip
+                            was removed, so this is now structurally 0 (kept in
+                            the vocabulary for the before/after comparison)
   no_reference_level        no level in level_pairs within 0.5% of the close
   no_break_retest           detect_break_retest falsy for every level
   no_order_block            detect_order_block_setup returned None
@@ -76,8 +78,9 @@ OUT_CORPUS_MD = os.path.join(HERE, "corpus_miss_autopsy.md")
 def classify_no_detection(candles, pdh, pdl, pmh, pml):
     """candles = candles[:b+1]. Returns (reason, detail) for a bar where the
     engine built NO signal at all. Mirrors detect_signals' own checks, calling
-    the engine's real helpers (_is_consolidation logic, detect_break_retest,
-    detect_order_block_setup)."""
+    the engine's real helpers (detect_break_retest, detect_order_block_setup).
+    The former `_is_consolidation` hard-skip was removed in omen-3.8 T3, so
+    this classifier no longer returns `consolidation_early_return`."""
     n = len(candles)
     if n < 5:
         return "too_few_candles", f"len(candles)={n} < 5"
@@ -86,12 +89,11 @@ def classify_no_detection(candles, pdh, pdl, pmh, pml):
     lod = min(c.low for c in candles)
     _pdh = pdh if pdh is not None else hod
     _pdl = pdl if pdl is not None else lod
-    # _is_consolidation: all of [pdh,pdl,or_high,or_low] within 0.5% of mean
-    lv = [_pdh, _pdl, or_high, or_low]
-    avg = sum(lv) / 4.0
-    if all(abs(l - avg) / avg < 0.005 for l in lv):
-        return "consolidation_early_return", \
-            f"PDH/PDL/OR all within 0.5% of mean ${avg:.2f} -> detect_signals returned [] silently"
+    # consolidation_early_return retired (omen-3.8 T3): _is_consolidation's
+    # blanket hard-skip was removed — clustered levels (PDH/PDL/OR within 0.5%
+    # of mean) are NOT a no-trade gate, so detect_signals no longer returns []
+    # here. The reason stays in the vocabulary but is now structurally 0 (like
+    # not_armed_84); clustered bars fall through to the level/BR/OB checks below.
     # level_pairs, exactly as detect_signals builds them (HODLOD_PAIR off)
     level_pairs = [("OR high", "OR low", or_high, or_low)]
     if pdh is not None and pdl is not None:
@@ -354,7 +356,7 @@ def run_marks():
     lines.append("Detection vs veto is read from `CaptureRunner`'s per-bar capture "
                  "(fired / skipped_d / skipped_tight). No-detection sub-reasons call "
                  "the engine's real helpers (`detect_break_retest`, "
-                 "`detect_order_block_setup`, the `_is_consolidation` test). Veto "
+                 "`detect_order_block_setup`). Veto "
                  "sub-reasons re-run `PriceActionAnalyzer.grade_trade` with the same "
                  "levels/lookback `detect_signals` uses. The 84% re-entry rule is not "
                  "armed in this replay (no stopped prior trade), so `not_armed_84` is "
@@ -377,14 +379,10 @@ def _fix_paragraph(reason, s_count):
     many S marks it would reach. Do NOT change code here."""
     n = {
         "consolidation_early_return":
-            "`signal_runner.py:457` (`_is_consolidation`) returns `[]` and abandons "
-            "the whole bar whenever PDH/PDL/OR-high/OR-low all sit within 0.5%% of their "
-            "mean. Austin has already ruled clustered levels are NOT a no-trade "
-            "condition (framing B): one level broken and retested cleanly is enough, "
-            "level spread is a probability input. Removing the blanket `return []` and "
-            "recording level-spread as a flag would let these bars proceed to the "
-            "B&R/OB paths. Would reach ~%d S marks (the bars currently killed before "
-            "any setup is even tested)." % s_count,
+            "RESOLVED (omen-3.8 T3): `_is_consolidation`'s blanket `return []` was "
+            "removed, so clustered-levels bars no longer abandon the whole bar. This "
+            "reason is now structurally 0 (kept in the vocabulary only for the "
+            "before/after comparison in research/t3_consolidation_effect.md).",
         "no_reference_level":
             "No reference level sits within 0.5%% of the close, so `detect_break_retest` "
             "has nothing to retest. The fix is the level vocabulary: `HODLOD_PAIR`'s "
@@ -652,8 +650,8 @@ def run_corpus():
                  "every built signal's status (fired / skipped_d / skipped_tight) "
                  "per bar. `detected` = fired entry within +/-2 bars; veto reasons "
                  "re-run `grade_trade`; no-detection reasons call the engine's real "
-                 "`detect_break_retest` / `detect_order_block_setup` / "
-                 "`_is_consolidation`. The 84% rule is not armed in replay, so "
+                 "`detect_break_retest` / `detect_order_block_setup`. The 84% rule "
+                 "is not armed in replay, so "
                  "`not_armed_84` is structurally 0. Bars past the 11:00 entry cutoff "
                  "are classified by detection state (the engine would not trade them "
                  "regardless, but the vocabulary has no cutoff label). No code changed.")
