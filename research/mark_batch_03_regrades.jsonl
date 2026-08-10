@@ -1,0 +1,29 @@
+{"id":"BABA_2025-07-22_20","bucket":"seek_retest","symbol":"BABA","day":"2025-07-22","entry_i":20,"tod":"09:50","tier":"S","setup":"OCR"}
+{"id":"IWM_2024-02-28_9","bucket":"seek_retest","symbol":"IWM","day":"2024-02-28","entry_i":9,"tod":"09:39","tier":"S","setup":"OCR"}
+{"id":"IWM_2026-05-28_46","bucket":"seek_retest","symbol":"IWM","day":"2026-05-28","entry_i":46,"tod":"10:16","setup":"BR","tier":"S"}
+{"id":"IWM_2026-07-24_29","bucket":"seek_retest","symbol":"IWM","day":"2026-07-24","entry_i":29,"tod":"09:59","tier":"A","note":"never broke that PML earlier","setup":"OCR"}
+{"id":"ORCL_2025-03-28_12","bucket":"seek_retest","symbol":"ORCL","day":"2025-03-28","entry_i":12,"tod":"09:42","tier":"A","note":"here to be s you draw a trend link would like a second confirmation candle with strength to break that line","setup":"OCR"}
+{"id":"QQQ_2025-02-26_28","bucket":"seek_retest","symbol":"QQQ","day":"2025-02-26","entry_i":28,"tod":"09:58","tier":"S","setup":"OCR"}
+{"id":"QQQ_2025-03-17_16","bucket":"seek_retest","symbol":"QQQ","day":"2025-03-17","entry_i":16,"tod":"09:46","tier":"S","setup":"OCR"}
+{"id":"QQQ_2025-03-18_13","bucket":"seek_retest","symbol":"QQQ","day":"2025-03-18","entry_i":13,"tod":"09:43","tier":"A","setup":"OCR"}
+{"id":"QQQ_2026-02-11_32","bucket":"seek_retest","symbol":"QQQ","day":"2026-02-11","entry_i":32,"tod":"10:02","tier":"X","setup":"none"}
+{"id":"QQQ_2026-02-11_45","bucket":"seek_retest","symbol":"QQQ","day":"2026-02-11","entry_i":45,"tod":"10:15","tier":"A","note":"little overextended the stock, and didn't get past pml","setup":"BR"}
+{"id":"QQQ_2026-07-09_11","bucket":"seek_retest","symbol":"QQQ","day":"2026-07-09","entry_i":11,"tod":"09:41","tier":"S","setup":"OCR"}
+{"id":"SPY_2024-06-11_23","bucket":"seek_retest","symbol":"SPY","day":"2024-06-11","entry_i":23,"tod":"09:53","tier":"X","setup":"none","note":"dont see any levels, unless some were forgot to be marked"}
+{"id":"SPY_2024-09-19_19","bucket":"seek_retest","symbol":"SPY","day":"2024-09-19","entry_i":19,"tod":"09:49","setup":"none","tier":"X","note":"doesn't approach any one candle rule or pivot or level for retest"}
+{"id":"SPY_2025-03-18_13","bucket":"seek_retest","symbol":"SPY","day":"2025-03-18","entry_i":13,"tod":"09:43","tier":"S","setup":"OCR"}
+{"id":"SPY_2026-03-02_24","bucket":"seek_retest","symbol":"SPY","day":"2026-03-02","entry_i":24,"tod":"09:54","setup":"BR","tier":"A","note":"candles look a little choppier wicks on both sides"}
+{"id":"SPY_2026-03-03_17","bucket":"seek_retest","symbol":"SPY","day":"2026-03-03","entry_i":17,"tod":"09:47","tier":"S","setup":"BR"}
+{"id":"UBER_2026-07-06_12","bucket":"seek_retest","symbol":"UBER","day":"2026-07-06","entry_i":12,"tod":"09:42","tier":"S","setup":"OCR"}
+{"id":"AMD_2025-06-05_6","bucket":"seek_leave","symbol":"AMD","day":"2025-06-05","entry_i":6,"tod":"09:36","tier":"S","setup":"OCR"}
+{"id":"IWM_2025-10-21_9","bucket":"seek_leave","symbol":"IWM","day":"2025-10-21","entry_i":9,"tod":"09:39","note":"1 candle earlier is the entry, marking A because 4 candles before the mark is a bullish candle and price never got close below those levels, so it looks riskier not knowing if it's gonna run","tier":"A","setup":"OCR"}
+{"id":"MU_2026-01-28_13","bucket":"seek_leave","symbol":"MU","day":"2026-01-28","entry_i":13,"tod":"09:43","tier":"X","setup":"none"}
+{"id":"NVDA_2024-11-18_10","bucket":"seek_leave","symbol":"NVDA","day":"2024-11-18","entry_i":10,"tod":"09:40","tier":"C","note":"6 candles earlier is a break and retest no displacement, so that would've been A and this one C","setup":"OCR"}
+{"id":"QQQ_2024-05-08_8","bucket":"seek_leave","symbol":"QQQ","day":"2024-05-08","entry_i":8,"tod":"09:38","tier":"A","note":"no displacement","setup":"OCR"}
+{"id":"SPY_2024-04-03_9","bucket":"seek_leave","symbol":"SPY","day":"2024-04-03","entry_i":9,"tod":"09:39","tier":"A","note":"candle after is your entry because nothing touched, stop is bottom of red order block","setup":"OCR"}
+{"id":"IWM_2024-04-03_13","bucket":"seek_break","symbol":"IWM","day":"2024-04-03","entry_i":13,"tod":"09:43","setup":"OCR","tier":"S","note":"large wick before candle entry gives confidence even though it's not the absolute strongest green candle"}
+{"id":"IWM_2024-04-03_73","bucket":"seek_break","symbol":"IWM","day":"2024-04-03","entry_i":73,"tod":"10:43","setup":"OCR","tier":"S","note":"candle before is the entry actually, because it's enough strength and only taps into the wick of the order block"}
+{"id":"MSFT_2025-03-20_28","bucket":"seek_break","symbol":"MSFT","day":"2025-03-20","entry_i":28,"tod":"09:58","tier":"A","note":"too much consolidation before entry and the candle before entry is where you would've liked to see strength","setup":"BR"}
+{"id":"PLTR_2025-09-18_14","bucket":"seek_break","symbol":"PLTR","day":"2025-09-18","entry_i":14,"tod":"09:44","setup":"BR","tier":"S"}
+{"id":"QQQ_2024-01-04_41","bucket":"seek_break","symbol":"QQQ","day":"2024-01-04","entry_i":41,"tod":"10:11","tier":"C","note":"4 candles earlier is an A trade (break and retest no displacement); this one has good price action but lower probability because of the earlier almost-setup. Changed mind slightly: this = C, earlier entry = A","setup":"OCR"}
+{"id":"QQQ_2024-12-16_28","bucket":"seek_break","symbol":"QQQ","day":"2024-12-16","entry_i":28,"tod":"09:58","tier":"C","note":"same as previous — break and retest no displacement entry 7 candles before, price action good on this mark but lower probability because of the earlier looking setup. Changed mind slightly: this = C, earlier entry = A","setup":"BR"}
