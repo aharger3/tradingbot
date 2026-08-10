@@ -341,6 +341,38 @@ S_ELIGIBLE_SETUPS = (SignalType.BREAK_AND_RETEST, SignalType.ONE_CANDLE_RULE,
 ENFORCE_NO_REPEAT = False
 
 
+# omen-4.0 T6 (NO_REPEAT_ENTRIES, 2026-08-09) -- Austin's settled "no repeat
+# entries -- take the first one available" rule (Projects/OMEN.md), made into a
+# routing rule. Batch 04 showed the engine violating it constantly: TSLA
+# 2024-03-27 fired bars 9 (S) and 10 (X) -- adjacent; MSFT 2026-02-11 fired 6
+# and 9; NVDA 2024-12-16 fired 7, 14 and 76; TSLA 2024-02-05 fired 8 and 10.
+# Every duplicate after the first is an X -- the single largest source of the
+# 3% blind equity precision.
+#
+# Scope is symbol + direction + LEVEL. Once a long off PDH has fired on TSLA,
+# no second long off PDH that day. A different level, or the other direction,
+# is a different idea and may still fire. The level is its PRICE (rounded to a
+# tick), not its name: two names at the same price on the same side is the same
+# idea having a second go, and a name would miss that. sig["stop"] IS the
+# retested structural level for every setup (B&R -> broken level, OB -> block
+# edge, FVG -> gap edge, flag -> flag bound).
+#
+# The ONLY exemption is an armed 84% re-entry (SignalType.REENTRY_84_RULE):
+# by definition the sanctioned second bite at the same idea, so it must stay
+# allowed even on a level already taken.
+#
+# DEFAULT True -- the rule is settled and the engine should enforce it in
+# production. A backtest flips it False to measure both arms. See
+# research/t6_no_repeat.md. This is keyed and scoped separately from the
+# omen-3.9 ENFORCE_NO_REPEAT (name-keyed, default OFF) above: that one tracks
+# the same idea by level NAME for tier-clause-3 reporting; this one tracks it
+# by level PRICE and actually suppresses the duplicate entry.
+NO_REPEAT_ENTRIES = True
+# Decimal places to round the level price to (cents = a sensible tick for the
+# options names OMEN trades). Mirrors t4_engine_recall's round(sig["stop"], 2).
+NO_REPEAT_LEVEL_TICK = 2
+
+
 def _retest_tol() -> float:
     """retest_tol_mult to hand detect_break_retest. 0.0 unless DETECT_WIDE."""
     return DETECT_WIDE_RETEST_MULT if DETECT_WIDE else 0.0
@@ -557,6 +589,14 @@ class SignalRunner:
         # later accepted entry on the same idea outright. Same per-runner "today"
         # scope as self._dir_fired.
         self._fired_ideas = set()
+        # omen-4.0 T6 no-repeat-entries: (symbol, direction, rounded level
+        # price) of every signal this runner has ACCEPTED today. A later
+        # accepted entry on the same symbol+direction+level is suppressed --
+        # the armed 84% re-entry excepted (it IS the sanctioned second bite).
+        # Same per-runner "today" scope as self._fired_ideas; only consulted
+        # when NO_REPEAT_ENTRIES is True (the default), but maintained on the
+        # accept path either way so the report can read it.
+        self._fired_levels = set()
         self.discord = None
         self.post_to_discord = post_to_discord
         self.symbol = symbol
@@ -841,6 +881,23 @@ class SignalRunner:
             # tight-stop skip only for C — it killed 42 of 303 labeled takes
             # (calibration 2026-07-06); B+ setups size to the stop instead
             if sig["grade"] != "C" or self._min_viable_stop(sig["entry"], sig["stop"], sig["direction"]):
+                # omen-4.0 T6: no repeat entries on the same symbol+direction+
+                # LEVEL. The armed 84% re-entry is the ONE exemption — it is by
+                # definition the sanctioned second bite at the same idea, so it
+                # stays allowed on a level already taken. DEFAULT ON
+                # (NO_REPEAT_ENTRIES=True). Suppression sits inside the accepted
+                # branch on purpose: a tight-stop skip never fired, so it must
+                # not claim the level — the first AVAILABLE entry wins. The
+                # level is sig["stop"] rounded to NO_REPEAT_LEVEL_TICK (cents).
+                # See research/t6_no_repeat.md.
+                is_reentry = sig.get("signal_type") is SignalType.REENTRY_84_RULE
+                nr_key = (self.symbol, sig["direction"],
+                           round(sig["stop"], NO_REPEAT_LEVEL_TICK))
+                if (NO_REPEAT_ENTRIES and not is_reentry
+                        and nr_key in self._fired_levels):
+                    sig["reason"] += " [skip: repeat entry]"
+                    self._log_record(sig, status="skipped", skip_reason="repeat entry")
+                    return
                 self._dir_fired[sig["direction"]] = self._dir_fired.get(sig["direction"], 0) + 1
                 # clause 3 bookkeeping: every accepted signal records its idea,
                 # so a later entry on the same symbol+direction+level cannot be
@@ -848,6 +905,10 @@ class SignalRunner:
                 # Recorded on the ACCEPTED path only — a skipped signal never
                 # fired. Same per-runner "today" scope as _dir_fired.
                 self._fired_ideas.add(idea_key(sig))
+                # T6 no-repeat bookkeeping: the same accept records the level
+                # price, so a later accepted entry on the same symbol+
+                # direction+level is suppressed (84% re-entry excepted above).
+                self._fired_levels.add(nr_key)
                 signals.append(sig)
                 return
             self._log_record(sig, status="skipped", skip_reason="stop too tight (<0.5% of entry and premium risk <$0.20)")

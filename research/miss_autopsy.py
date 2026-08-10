@@ -24,7 +24,14 @@ checks occur inside `detect_signals`):
                             was removed, so this is now structurally 0 (kept in
                             the vocabulary for the before/after comparison)
   no_reference_level        no level in level_pairs within 0.5% of the close
-  no_break_retest           detect_break_retest falsy for every level
+  no_break_retest           detect_break_retest falsy for every level AND
+                            detect_order_block_setup also returned nothing (the
+                            One Candle Rule was checked and found nothing too)
+  one_candle_rule_missed    detect_break_retest falsy for every level but
+                            detect_order_block_setup returned a hit — a One
+                            Candle Rule setup the B&R path missed (omen-4.0 T2).
+                            Previously short-circuited to no_break_retest before
+                            the order-block detector was ever called.
   no_order_block            detect_order_block_setup returned None (B&R truthy)
   no_setup_any              neither detect_break_retest nor detect_order_block_setup
                             found anything on this bar (omen-3.9 T1)
@@ -63,7 +70,8 @@ TOL = t4.TOL  # +/-2 bar join tolerance
 
 REASONS = [
     "detected", "too_few_candles", "consolidation_early_return",
-    "no_reference_level", "no_break_retest", "no_order_block", "no_setup_any",
+    "no_reference_level", "no_break_retest", "one_candle_rule_missed",
+    "no_order_block", "no_setup_any",
     "not_armed_84",
     "vetoed_htf", "vetoed_candle_colour", "vetoed_stop_too_tight",
     "vetoed_stop_too_wide", "vetoed_pa_grade_D", "timing_miss", "fired_wrong_bar",
@@ -71,6 +79,7 @@ REASONS = [
 REASON_SET = set(REASONS)
 
 MARKS = os.path.join(HERE, "austin_marks_v2.jsonl")
+REGRADES = os.path.join(HERE, "mark_batch_03_regrades.jsonl")
 CORPUS = os.path.join(HERE, "corpus_instances.jsonl")
 CORPUS_ENTRIES = os.path.join(HERE, "corpus_engine_entries.jsonl")
 OUT_MARKS_JSONL = os.path.join(HERE, "miss_autopsy.jsonl")
@@ -147,12 +156,17 @@ def classify_no_detection(candles, pdh, pdl, pmh, pml):
             "no break/retest and no order block on either side"
     if not br_any and ob_any:
         # B&R falsy but an order block exists -> candidate One Candle Rule entry.
+        # omen-4.0 T2: this used to be labelled `no_break_retest`, which hid the
+        # One Candle Rule entirely — the very defect flagged in Projects/OMEN.md
+        # ("There is no S in the engine", defect #1). detect_break_retest was
+        # falsy for every level, but an order block was found, so this is a One
+        # Candle Rule setup the B&R path missed, NOT a bare no-break-retest.
         sides = []
         if bbull is not None:
             sides.append("bullish")
         if bbear is not None:
             sides.append("bearish")
-        return "no_break_retest", \
+        return "one_candle_rule_missed", \
             (f"OB present: {'/'.join(sides)} — detect_break_retest falsy for "
              f"every level but an order block exists (One Candle Rule candidate)")
     if br_any and not ob_any:
@@ -160,7 +174,8 @@ def classify_no_detection(candles, pdh, pdl, pmh, pml):
         return "no_order_block", f"{note_bull} / {note_bear}"
     # residual: a B&R pattern AND an order block both exist but neither built a
     # signal on this bar (current not beyond level / retest not in OB_RETEST_TYPES
-    # / volume). No dedicated label -> fold into no_break_retest (primary path).
+    # / volume). Both detectors were checked (this is the only remaining path that
+    # returns no_break_retest); no dedicated label, so fold into no_break_retest.
     return "no_break_retest", \
         "B&R pattern & order block present but neither produced a signal on this bar"
 
@@ -507,11 +522,20 @@ def _fix_paragraph(reason, s_count):
             "marks currently graded in open air." % s_count,
         "no_break_retest":
             "`detect_break_retest` (`omen_bot.py:403`) returned falsy for every level — "
-            "its ordered break/leave/retest/confirm geometry did not complete. The fix "
-            "is that geometry: its 12-bar window, its `max_confirm_gap`, or its "
-            "requirement that the break close beyond the level by body. Relaxing the "
-            "window or the confirm gap would reach ~%d S marks where a break happened "
-            "but the retest/confirm did not line up inside the window." % s_count,
+            "its ordered break/leave/retest/confirm geometry did not complete — AND "
+            "`detect_order_block_setup` also found nothing, so neither setup the engine "
+            "knows was present. The fix is that geometry: its 12-bar window, its "
+            "`max_confirm_gap`, or its requirement that the break close beyond the level "
+            "by body. Relaxing the window or the confirm gap would reach ~%d S marks "
+            "where a break happened but the retest/confirm did not line up inside the "
+            "window." % s_count,
+        "one_candle_rule_missed":
+            "`detect_break_retest` was falsy for every level but "
+            "`detect_order_block_setup` (`omen_bot.py:304`) returned a hit — a One "
+            "Candle Rule setup the break/retest path missed. The fix is the order-block "
+            "gates (isolation / displacement / retest type) or the B&R geometry that "
+            "left the bar to the OCR path at all. Would reach ~%d S marks the old "
+            "short-circuit hid inside `no_break_retest` (omen-4.0 T2)." % s_count,
         "no_order_block":
             "`detect_order_block_setup` (`omen_bot.py:304`) returned None — its four "
             "refusals (no valid block / structure broken, not isolated, no displacement, "
@@ -796,6 +820,62 @@ def run_corpus():
     print(f"top corpus={top_corpus}  top S={top_s}  agree={top_corpus==top_s}")
 
 
+def run_smoke():
+    """omen-4.0 T2 done-when check: re-run the miss autopsy over the 29 regraded
+    marks (`research/mark_batch_03_regrades.jsonl`) and confirm the new
+    `one_candle_rule_missed` reason surfaces. Fast (~25 symbol-days, a few
+    seconds) — replays each day once via day_state and classifies every mark on
+    it with the SAME classifier run_marks uses. Exits 0 only if
+    `one_candle_rule_missed` appears at least once (the row's done-when)."""
+    if not os.path.exists(REGRADES):
+        print("SMOKE FAIL: regrades file not found:", REGRADES)
+        raise SystemExit(1)
+    marks = [json.loads(l) for l in open(REGRADES) if l.strip()]
+    by_pair = defaultdict(list)
+    for m in marks:
+        by_pair[(m["symbol"], m["day"])].append(m)
+    rows = []
+    state_cache = {}
+    for (sym, day), ms in sorted(by_pair.items()):
+        if (sym, day) not in state_cache:
+            state_cache[(sym, day)] = day_state(sym, day)
+        ds = state_cache[(sym, day)]
+        if ds is None:
+            continue
+        for m in ms:
+            res = classify_bar(m["entry_i"], ds)
+            if res is None:
+                res = classify_no_detection(ds["candles"], ds["pdh"], ds["pdl"],
+                                            ds["pmh"], ds["pml"])
+            reason, detail = res
+            assert reason in REASON_SET, reason
+            rows.append({
+                "symbol": sym, "day": day, "entry_i": m["entry_i"],
+                "setup": m.get("setup"), "tier": m.get("tier"),
+                "miss_reason": reason, "detail": detail,
+            })
+    counts = Counter(r["miss_reason"] for r in rows)
+    print("=== smoke: 29 regraded marks ===")
+    print(f"classified {len(rows)}/{len(marks)} marks over "
+          f"{len(state_cache)} symbol-days")
+    for reason in REASONS:
+        if counts.get(reason):
+            print(f"{reason:28s} {counts[reason]}")
+    ocr = [r for r in rows if r["miss_reason"] == "one_candle_rule_missed"]
+    print(f"\none_candle_rule_missed: {len(ocr)}")
+    for r in ocr:
+        print(f"  {r['symbol']} {r['day']} bar={r['entry_i']} setup={r['setup']}")
+    if not ocr:
+        print("SMOKE FAIL: one_candle_rule_missed did not appear — the "
+              "no_break_retest short-circuit is not fixed.")
+        raise SystemExit(1)
+    print("SMOKE OK: one_candle_rule_missed present — short-circuit fixed.")
+    raise SystemExit(0)
+
+
 if __name__ == "__main__":
-    run_marks()
-    run_corpus()
+    if "--smoke" in sys.argv:
+        run_smoke()
+    else:
+        run_marks()
+        run_corpus()
