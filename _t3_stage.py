@@ -9,6 +9,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
 import polygon_feed
+from universe import ALL_SYMS
 
 ARCHIVE = Path(__file__).parent / "data_archive"
 
@@ -16,13 +17,8 @@ ARCHIVE = Path(__file__).parent / "data_archive"
 COMMON_START = date(2024, 2, 20)
 LATEST       = date(2026, 8, 7)   # last full trading day before this run
 
-# equity_pool_14 from priority_pool.json minus HTZ (skip per spec)
-EQUITY_POOL = [
-    "NVDA","TSLA","SPCX","PLTR","AAPL","MU","MSTR",
-    "AMZN","MSFT","INTC","AMD","GOOGL","META",
-]
-INDEX_POOL = ["QQQ","SPY","IWM"]
-ALL_SYMS   = EQUITY_POOL + INDEX_POOL
+# Symbols from universe.py (single source of truth, 2026-08-11)
+# ALL_SYMS combines MAJOR_15 + INDEX_POOL + OTHER_POOL
 
 def trading_days_between(start: date, end: date) -> list[date]:
     """Return all weekdays in [start, end]."""

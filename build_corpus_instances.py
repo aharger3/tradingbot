@@ -23,15 +23,10 @@ DISCORD = ROOT / "discord_data"
 OUT_JSONL = ROOT / "research" / "corpus_instances.jsonl"
 OUT_MD = ROOT / "research" / "corpus_instances.md"
 
-# --- Universe: archive_1m.SYMBOLS plus ARM, QCOM, IWM ---
-SYMBOLS = [
-    "TSLA", "NVDA", "AAPL", "AMD", "META",
-    "GOOGL", "AMZN", "MSFT", "PLTR", "SPY", "QQQ",
-    "SOFI", "ORCL", "COIN", "HOOD", "IREN", "INTC", "SMCI",
-    "MSTR", "NFLX", "AVGO", "MU", "UBER", "BABA", "CRM",
-    "TSM", "MARA", "RIVN",
-]
-UNIVERSE = set(SYMBOLS) | {"ARM", "QCOM", "IWM"}
+# Universe from universe.py (single source of truth, 2026-08-11)
+# ALL_SYMS combines MAJOR_15 + INDEX_POOL + OTHER_POOL + extra legacy names
+from universe import ALL_SYMS
+UNIVERSE = set(ALL_SYMS) | {"ARM", "QCOM"}
 
 IMG_EXTS = (".png", ".jpg", ".jpeg", ".gif", ".webp", ".bmp", ".svg")
 URL_EXT_RE = re.compile(r"\.([a-zA-Z]{2,5})(?:[?#]|$)")
