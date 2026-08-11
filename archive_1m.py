@@ -14,22 +14,16 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent))
 
 import polygon_feed
+from universe import ALL_SYMS
 
 ARCHIVE = Path(__file__).parent / "data_archive"
-# keep in sync with live_scanner.DEFAULT_SYMBOLS (no import: this job must not
-# drag in the scanner's discord/tastytrade deps)
-SYMBOLS = [
-    "TSLA", "NVDA", "AAPL", "AMD", "META",
-    "GOOGL", "GOOG", "AMZN", "MSFT", "PLTR", "SPY", "QQQ",
-    "SOFI", "ORCL", "COIN", "HOOD", "IREN", "INTC", "SMCI",
-    "MSTR", "NFLX", "AVGO", "MU", "UBER", "BABA", "CRM",
-    "TSM", "MARA", "IWM", "RIVN",
-]
+# Symbols from universe.py (single source of truth, 2026-08-11)
+# ALL_SYMS combines MAJOR_15 + INDEX_POOL + OTHER_POOL
 
 
 def main() -> None:
     today = date.today().isoformat()
-    for sym in SYMBOLS:
+    for sym in ALL_SYMS:
         out = ARCHIVE / sym / f"{today}.csv"
         if out.exists():
             print(f"{sym}: already archived")

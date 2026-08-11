@@ -45,16 +45,11 @@ from regime_detector import (
 from market_data import fetch_spy_daily_closes
 
 
-# A2 2026-07-13 (unified_backtest_synthesis §8.1): SMCI/SPY/MSTR/RIVN removed
+# A2 2026-07-13 (unified_backtest_synthesis §8.1): SMCI/SPY/RIVN removed
 # (−$22.1k/12mo combined; SMCI worst symbol in book at −$12.4k, SPY 0-for-5).
-DEFAULT_SYMBOLS = [
-    "TSLA", "NVDA", "AAPL", "AMD", "META",
-    "GOOGL", "GOOG", "AMZN", "MSFT", "PLTR", "SPY", "QQQ",
-    "SOFI", "ORCL", "COIN", "HOOD", "IREN", "INTC",
-    # 2026-07-11 Austin: expand to ~200k+ options-volume names (cleaner fills)
-    "NFLX", "AVGO", "MU", "UBER", "BABA", "CRM",
-    "TSM", "MARA", "IWM",
-]
+# MicroStrategy removed from all pools per 2026-08-11 triage (universe.py).
+from universe import MAJOR_15, INDEX_POOL, OTHER_POOL, POOL_OF
+DEFAULT_SYMBOLS = MAJOR_15 + INDEX_POOL + OTHER_POOL
 DEFAULT_WINDOW = "09:30-11:00"
 
 # OPUS-SPEC #5: Scarface session stop (2026-07-12)
@@ -393,6 +388,10 @@ def scan_once(
          runner.session.entry_target, runner.session.entry_stop) = \
             armed if armed else (None, None, None, None)
         signals = runner.detect_signals()
+        # Tag every signal with its pool for per-pool tracking (omen-5.0 T5).
+        pool_name = POOL_OF.get(symbol, "OTHER")
+        for sig in signals:
+            sig["pool"] = pool_name
         if runner.session.entry_price is None:  # detector fired its one re-entry -> disarm
             armed_84.pop(symbol, None)
 

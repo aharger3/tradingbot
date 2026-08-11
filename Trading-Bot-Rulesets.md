@@ -144,6 +144,53 @@ makes the most sense (a new level, pivot structure) — because the predicament 
 - The stop is the decision: keep the old one or improve it on real structure;
   do not force the trade by widening the stop
 
+### Attempt count
+- **The 84% rule takes 2 attempts, not 3.** After two stopped-out entries on the
+  same idea the thesis is no longer "correct, wrong stop" — it is wrong — so a
+  third reclaim does not arm another re-entry. Evidence: `CRM_2024-11-11_14`.
+
+### Reclaim speed
+- **Reclaim speed** demotes. A reclaim that takes a long time is not the same
+  trade as a fast one: the 84% reclaim is an automatic S only when it snaps
+  back, and a slow, late reclaim is graded down. Austin graded
+  `AMD_2026-05-14_67` an A — *"late + slow to develop"* — despite the rulebook
+  calling a reclaim an automatic S. A slow reclaim is an A, not an S.
+
+---
+
+## Austin's Trading Rules (verbatim from his notes)
+
+These are rules Austin repeats in his notes because they were not written down
+anywhere in the rulebook. Each is its own numbered clause, in his words, with the
+mark ids that establish it.
+
+1. **Stop-outs happen on the close, not the wick.** A trade is stopped out only
+   when a candle *closes beyond the stop level*. A wick through the stop is not a
+   stop-out — the trade stays on until a bar closes past the stop. Evidence:
+   `MSTR_2024-09-26_11_14`, `MSTR_2024-03-20_73_78`, `MU_2026-02-09_24_36`,
+   `PLTR_2025-12-10_45_52`, `MSFT_2024-01-25_52_70`, `NVDA_2026-02-05_48_52`.
+
+2. **Entry is the close, except on an extreme close.** Normally enter on the
+   candle close. When a fast candle would close at the session high (long) or
+   low (short), enter intrabar at the level instead — *"you want it to look like
+   it will close above that."* If the bar then closes back beyond the level,
+   scratch out at that close; a scratch is not a loss and does not arm the 84%
+   rule. Evidence: the 10 *"enter as the candle is forming / closing"* notes,
+   `AMD_2025-03-28_31`.
+
+3. **Nothing is traded outside 09:30–11:00**, and that includes the 84% reclaim
+   leg — a re-entry is an entry. No new position, and no reclaim re-entry, fires
+   outside the 09:30–11:00 window. Evidence: `INTC_2025-02-27_72_153`,
+   `PLTR_2024-01-02_196`, `NVDA_2024-01-03_98`, `AMD_2025-10-14_75_137`.
+
+4. **Do not enter at the session extreme.** Distinct from the existing
+   `BAR_EXTREME_FRAC` clause (clause 2 of the tiers), which measures position
+   *inside the signal candle*. This one measures distance to the day's high/low
+   so far and is a **veto, not a demotion** — an entry sitting on the session
+   HOD/LOD is not taken regardless of grade. Evidence: 21 HOD/LOD notes
+   including `MSFT_2024-01-25_52_70` (*"get a better fill not at HOD"*),
+   `AMD_2025-03-28_31`.
+
 ---
 
 ## Rule 7: Speed of the Retest
@@ -232,7 +279,10 @@ A+/A/B/C existed. It does not need one: the tier is computed from the four claus
 
 ### S — tradeable
 
-All four clauses hold. Anything short of all four is not an S.
+All of clauses 1–8 hold. Anything short of all of them is not an S. Clauses 1–4
+are the original negative filters (setup identity, bar-extreme fill, first-of-its-idea,
+higher-timeframe). Clauses 5–8 are what was missing — the *positive* requirements
+and the hard vetoes that make a break-and-retest an S in the first place.
 
 1. **The setup is one of exactly three.** Break-and-retest, the one candle rule (the order block),
    or an **armed** 84% re-entry. Nothing else is ever S — a fair-value-gap entry and a flag
@@ -252,21 +302,80 @@ All four clauses hold. Anything short of all four is not an S.
    case a good fill may be allowed to carry an opposing higher timeframe. Clause 4 is the one
    clause Austin has **not** settled. It is therefore a switch, not a constant, and both arms are
    measured before anyone picks one.
+5. **Displacement.** The break leg must show displacement — a decisive move off
+   the level rather than a drift — and a break-and-retest without it can **never**
+   be S. Define it once, concretely, so `BNR_DISPLACEMENT_GATE` implements exactly
+   what this paragraph says: a beyond-level candle in the 5-bar break leg whose
+   body (`|close − open|`) is **≥ 1.5× the average body of the 10 candles before
+   it** (the `DISPLACEMENT_MULT = 1.5` convention shared with
+   `omen_bot._has_displacement` and the A+ stack). The displacement candle must
+   not touch the level being broken. A B&R that drifts through the level with no
+   bar clearing that 1.5× body threshold is not an S, whatever the other clauses
+   say. Evidence: `GOOGL_2026-01-20_67` (*"way to many break and retests with no
+   displacement"*), `QQQ_2024-05-08_8`, `SPY_2024-07-11_44`, `TSLA_2024-12-03_17`,
+   `NVDA_2024-11-18_10`.
+6. **Too much consolidation, or too slow a retest, demotes.** Austin, 2026-08-10:
+   an OCR or B&R with too much consolidation before entry, or too long between
+   the break and the retest of the level (or one candle), is subject to
+   **demotion** — not an outright veto, but it cannot stay S. This is the same
+   rule stated numerically by **Rule 7** (retest speed: `rule7_retest_bars ≤ 5`)
+   and **Rule 10** (left-side pivot count: `rule10_left_pivots ≤ 2`); cite them
+   here so the paragraph and the code are one rule. Evidence:
+   `MSFT_2025-03-20_28` (*"too much consolidation before entry"*),
+   `NVDA_2024-11-13_17` (*"too choppy and taking too long"*), `QQQ_2024-07-24_23`,
+   `MSTR_2024-12-17_89` (*"chop"*).
+7. **In-between mesh is a hard veto, not a demotion.** Austin, 2026-07-06:
+   *"middle of a bunch of levels, probability goes down significantly."* A
+   candidate sitting in the mesh between several nearby levels is not a demoted S
+   or a C — it is **not taken at all**. This is a hard veto, distinct from the
+   consolidation demotion of clause 6. (Earlier in this document it was written
+   as a C-condition; it is a veto, and it is implemented nowhere yet.)
+   Evidence: `AAPL_2024-10-28_162` (*"tight and chop in-between channels"*),
+   `SPCX_2026-06-29_47` (*"overextended and no great entry presented itself"*).
+8. **Pivot structure is a level.** Swing highs and lows are levels Austin trades
+   off, on equal footing with OR high/low, PDH/PDL and PMH/PML, and **a break of
+   pivot structure outranks a break of a named level.** A break/retest of a
+   2-candle pivot structure is a valid S-level even when no named level sits
+   there; and when both are present the pivot-structure break governs the stop
+   and the grade. Evidence: `AMZN_2025-07-17_34` (*"pivot-structure break >
+   level break"*), `NVDA_2024-09-06_53` (*"no clean break it just respect pivot
+   structures"*), `TSLA_2024-12-03_17` (*"break/retest of a 2-candle structure,
+   not a large pivot"*), `NVDA_2025-11-28_14_22` (*"raise the stop to the higher
+   piece of the pivot structure"*).
+
+### S+ — the top 1–3 per day (reporting rank, not a fifth tier)
+
+All S signals stay S on one grading scale — there is no fifth tier letter. The
+top **1–3 per day** universe-wide are reported as **S+** — *"the top S trades
+which usually happen earlier in the day."* This is a **reporting rank**, not a
+quality gate: the S signals that are not in the top 1–3 are still S and are
+**never discarded**. `S+` is a label applied to the day's best handful of S
+candidates for reporting; it does not change whether the rest are taken.
+
+### Confluence is a bonus
+
+Two of the three setups firing on the same bar is **recorded and reported, never
+required**. Confluence raises confidence and is noted on the signal, but a
+single-setup S is still an S; confluence is not a gate and does not demote a
+signal that lacks it. Evidence: `PLTR_2025-12-10_45_52` (*"perfect S entry OCR
+BR confluence"*), `NVDA_2024-12-16_14` (*"OCR+BR confluence"*).
 
 ### A — one or two clauses missing
 
-Clause 1 holds, and one or two of clauses 2/3/4 do not. These are valid setups under the right
-higher-timeframe circumstance, and they are **detected and logged, not traded**. The point of
-naming them is that they are the pool clause 4's switch is decided from — an arm that promotes
-half the A pool to S is an arm that changes what gets traded, and that has to be measured, not
-assumed.
+Clause 1 holds, and one or two of clauses 2–8 do not (consolidation / slow
+retest under clause 6 being the most common demoter). These are valid setups
+under the right higher-timeframe circumstance, and they are **detected and
+logged, not traded**. The point of naming them is that they are the pool clause
+4's switch is decided from — an arm that promotes half the A pool to S is an arm
+that changes what gets traded, and that has to be measured, not assumed.
 
 ### C — seen, not traded
 
-Clause 1 holds but three or more of the others fail; or the setup fits one of the three but sits in
-**in-between mesh** (Austin, 2026-07-06: *"middle of a bunch of levels, probability goes down
-significantly"*); or it **targets the session HOD/LOD**. Clause 1 failing outright — a fair-value
-gap, a flag — is also C. **Detected and logged, not traded.**
+Clause 1 holds but three or more of the others fail; or the setup **targets the
+session HOD/LOD** (clause 4 of *Austin's Trading Rules* — the session-extreme
+veto — also drops a target here). Clause 1 failing outright — a fair-value gap,
+a flag — is also C. **Detected and logged, not traded.** (In-between mesh is not
+listed here: per clause 7 it is a hard veto, not a C.)
 
 ### X — Austin's marker, not an engine output
 
@@ -293,6 +402,45 @@ there is nothing to gate. `TRADE_S_ONLY` — the switch that would restrict entr
 ships **`False`** and is **read nowhere in this version**; it exists so the tier can be A/B'd
 against today's routing before anyone arms it. Adding the tier changed no grade, no `_SKIP_GRADES`
 membership and no routing decision; `research/regression_gate.py` is the proof.
+
+---
+
+## Written but not yet implemented
+
+The clauses below are pulled from Austin's notes and from the 2026-08-11 session
+sweep. Each is written as its own short line so a later version can implement it,
+and the **whole group is explicitly not yet implemented** — nobody should read
+this paragraph as shipped behaviour. None of these have a detector, gate, or
+flag in the engine today.
+
+- **Wick-touch is a hard filter for break-and-retest too**, not only for the one
+  candle rule. The B&R retest must touch the level as a wick, not close inside
+  it. Evidence: `PLTR_2024-10-23_10` (*"wick not touching a level"*).
+- **A pre-signal wick raises confidence.** A large wick on the candle before
+  entry gives confidence even when the entry candle is not the absolute strongest
+  green candle. Evidence: `IWM_2024-04-03_13` (*"large wick before candle entry
+  gives confidence even though it's not the absolute strongest green candle"*).
+- **A trendline break wants a second confirmation candle with strength.**
+  Evidence: `ORCL_2025-03-28_12`.
+- **Order-block stop selection.** Austin: *"you want the stop to always be
+  somewhere in the order block"*, and *"if you want a price target high of day
+  and you can only go so far for your stop loss to hit the 2-1 then you use the
+  stop-loss to whatever is the closest to that level, top of the order block."*
+  The rulebook currently says only "stop at the far side of the block"; his rule
+  picks the stop **closest to the level that still clears 2:1**, which is a
+  different and better-defined rule.
+- **Candle speed.** Austin: *"We need to figure out a system to detect how fast
+  the candle's moving... you have a clean break and retest and you're waiting on
+  one more candle to do what you want it to do and that puts you on high alert."*
+  No velocity feature exists anywhere in the engine.
+- **One-candle-rule prior-visit veto.** Austin: *"I don't like one candle rule
+  when there's noise previously (the stock has already been there before) — you
+  have to have premarket or higher timeframe thesis to take middleman stuff like
+  this."*
+- **Entries come off retests, never breaks.** Austin: *"I never enter on breaks,
+  I enter on retests with strong price confirmation."* The break-and-retest
+  detector already implies this; it is stated here so it cannot be loosened by
+  accident.
 
 ---
 
