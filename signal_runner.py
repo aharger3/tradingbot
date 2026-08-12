@@ -137,7 +137,15 @@ HODLOD_PAIR = False  # F3 12mo 2026-07-11: 19 tr/yr standalone, 33.3%W −$228,
 # + optional cap-at-C gate. Gate defaults OFF: no A/B exists yet, and untested
 # gates in this codebase have a losing record (FVG 2026-07-05, flag 2026-07-09).
 # Test: signal_runner.py --dry-run exercises both gate states.
-BNR_DISPLACEMENT_GATE = False  # True = B&R without break-leg displacement caps at C
+# omen-5.0 T11(a): ARMED. Trading-Bot-Rulesets.md clause 5 now defines it
+# concretely — "a beyond-level candle in the 5-bar break leg whose body
+# (|close - open|) is >= 1.5x the average body of the 10 candles before it...
+# The displacement candle must not touch the level being broken" — and says a
+# B&R without it can NEVER be S. _bnr_displacement implements exactly that
+# paragraph (the no-touch clause was missing and is now in), the gate caps the
+# engine grade at C, and compute_austin_tier refuses S outright.
+BNR_DISPLACEMENT_GATE = os.getenv("BNR_DISPLACEMENT_GATE", "1").strip().lower() \
+    in ("1", "true", "yes", "on")
 
 # Austin trade-notes review 2026-07-06 (91 trades): "middle of a bunch of levels,
 # probability goes down significantly"; likes trades where new HOD/LOD can be hit.
@@ -277,9 +285,22 @@ DETECT_WIDE_RETEST_MULT = 1.0
 # FVG low / Flag low). Applied in _route so it covers every candidate uniformly.
 # DEFAULT OFF => shipped behaviour byte-identical to today; when ON, a candidate
 # that fails is capped to C (alert-only), mirroring S_GATE / HTF_BIAS_GATE.
+# omen-5.0 T11(a): Rule 7's window is now FITTED to Austin's own S marks
+# (research/t11_s_quality.md) instead of assumed. The distribution of
+# retest-bars at his S marks needs 8 bars to retain 90% of them -- his note
+# "lots more candles before retest but I dont mind with the way it wicked and
+# tapped from so far away" is visible in that tail. But at 8 bars the rule also
+# keeps almost every non-S fire, so arming it would filter nothing and add a
+# fitted threshold: RULE_710_ENABLED stays OFF, exactly as this row's spec says
+# to do when the fit does not separate. RULE7_MAX_BARS carries the fitted value
+# so that the day it is armed it is armed at the measured number, not at 5.
+# Rule 10's pivot-count arm is unaffected.
+#
+# (RULE7_WINDOW below is the SCAN HORIZON -- how far back rule7_retest_bars
+# looks before saturating -- not the gate. The gate is RULE7_MAX_BARS.)
 RULE_710_ENABLED = False
 RULE7_WINDOW = 20
-RULE7_MAX_BARS = 5
+RULE7_MAX_BARS = 8      # fitted 2026-08-11: 90% S retention (was 5, a guess)
 RULE10_LOOKBACK = 20
 RULE10_MAX_PIVOTS_AT_LEVEL = 2
 RULE10_LEVEL_TOL = 0.002        # 0.2% of the level, as in rule7_rule10.py
@@ -373,6 +394,127 @@ NO_REPEAT_ENTRIES = True
 NO_REPEAT_LEVEL_TICK = 2
 
 
+# omen-5.0 T3 (SESSION WINDOW / INTRABAR FILL / SESSION-EXTREME VETO / 84% CAPS,
+# 2026-08-11) -- four mechanics Austin has written down repeatedly and none of
+# which the detector implemented. All four ship ON: this version exists to
+# change behaviour, not to add another dormant flag.
+#
+# (a) The session window lives INSIDE detect_signals now. It used to live only
+#     in callers (backtest_week.ENTRY_CUTOFF, live_scanner, t4_engine_recall),
+#     so a new caller silently lost it -- that is how 37 of the 80 homework
+#     cards were built outside the window and wasted. Austin: "I dont trade
+#     past 11 am remember".
+SESSION_START = os.getenv("SESSION_START", "09:30:00")
+SESSION_END   = os.getenv("SESSION_END", "11:00:00")   # Austin: "I dont trade past 11 am"
+
+# (c) Session HOD/LOD proximity is a VETO, not a demotion (settled 2026-08-11).
+#     BAR_EXTREME_FRAC measures where the close sits inside the SIGNAL BAR;
+#     this measures how close the fill sits to the SESSION extreme so far --
+#     "dont want to be at low of day" / "not right at HOD" (21 notes). Fitted
+#     by the A/B in research/t3_session_extreme.md over {0.00, 0.05, 0.10,
+#     0.20}; the value below is that measurement's chosen_frac.
+#
+#     The A/B came back NEGATIVE: 0.00 (veto off) scored the best S-precision
+#     (13.11%) of the four, and every armed setting scored at or below it while
+#     dropping fires and S-mark coverage (0.05: 12.28%, 7/56 -> 6/56; 0.10:
+#     9.09%; 0.20: 11.11%). The spec's own decision rule — highest S-precision
+#     that still emits 40% of the control arm's fires — therefore selects 0.00.
+#     The mechanic is built and inherited by every subclass through _emit, and
+#     arming it is one env var (SESSION_EXTREME_FRAC=0.05). What the marks will
+#     not support is arming it by default. See research/t3_session_extreme.md.
+SESSION_EXTREME_FRAC = float(os.getenv("SESSION_EXTREME_FRAC", "0.0"))
+
+# (d) 84% rule: 2 attempts on one idea TOTAL (the original entry plus a single
+#     re-entry -- "2 is usual"), and the reclaim itself must land before
+#     SESSION_END.
+RULE84_MAX_ATTEMPTS = int(os.getenv("RULE84_MAX_ATTEMPTS", "2"))
+
+# (b, continued) When the intrabar fill lands ON a level-stop there is no risk
+# left to size and the signal dies in the minimum-risk gate. Austin's stated
+# rule for exactly that case is that the stop sits on the candle he entered on.
+# See intrabar_stop() for the five notes and the 30%-of-B&R measurement.
+INTRABAR_STOP_AT_BAR = os.getenv("INTRABAR_STOP_AT_BAR", "1").strip().lower() \
+    in ("1", "true", "yes", "on")
+
+
+# omen-5.0 T10 (PIVOT STRUCTURE AS A LEVEL, 2026-08-11) -- the level type the
+# engine has never had.
+#
+# The engine knows six levels (OR high/low, PDH/PDL, PMH/PML) plus order blocks
+# and the session extremes. Austin's eye also trades pivot structure -- swing
+# highs and lows built from price itself -- and his notes say so outright:
+# "pivot structure break > level break" (AMZN_2025-07-17_34), "no clean break it
+# just respect pivot structures" (NVDA_2024-09-06_53), "break/retest of a
+# 2-candle structure, not a large pivot" (TSLA_2024-12-03_17), "dont see any
+# levels, unless some were forgot to be marked" (SPY_2024-06-11_23).
+#
+# PIVOT_STRENGTH is bars either side, starting at 2 -- the smallest structure
+# his "2-candle structure" note treats as real. A pivot needs PIVOT_STRENGTH
+# bars to its RIGHT before it exists, so it is only usable from
+# pivot_index + PIVOT_STRENGTH + 1 onward; pivot_levels enforces that with
+# as_of, and test_austin_tier asserts it. Getting it wrong is lookahead and
+# would make every downstream number a fiction.
+PIVOT_LEVELS = os.getenv("PIVOT_LEVELS", "1").strip().lower() in ("1", "true", "yes", "on")
+PIVOT_STRENGTH = int(os.getenv("PIVOT_STRENGTH", "2"))
+# Only pivots formed inside this many bars of the current one are live
+# structure. Same order as RULE10_LOOKBACK (20) and the B&R FSM window: a swing
+# from an hour ago is history, not the thing price is retesting now. Without a
+# horizon a 90-bar session accumulates ~40 pivots and every B&R level in the
+# book gets a duplicate.
+PIVOT_LOOKBACK = int(os.getenv("PIVOT_LOOKBACK", "30"))
+# A pivot within this fraction of an existing named level is that level, not a
+# new one -- same 0.1% dedupe HODLOD_PAIR uses.
+PIVOT_DEDUPE_FRAC = float(os.getenv("PIVOT_DEDUPE_FRAC", "0.001"))
+
+
+# omen-5.0 T11 (S HAS TO EARN ITS WAY, 2026-08-11) -- S stops being the default
+# for a detected setup.
+#
+# compute_austin_tier granted S to any bar where clause 1 held and three
+# NEGATIVE filters did not fire. Nothing asked whether the setup was any good.
+# B&R fired 74,805 times across the archive while Austin takes 1-3 S a day, and
+# that inversion -- not threshold tuning -- is why S-precision is 0-5%. Every
+# clause below is a POSITIVE requirement or a hard veto.
+#
+# (a2) A level that keeps getting hit stops being a level. Austin: "that rule is
+#      not a rule without context, you repeat that 3 times and its just not even
+#      a break and retest." After LEVEL_RETIRE_TOUCHES completed break-and-
+#      retests of the same level in a session, the level is done for the day at
+#      EVERY tier -- not a demotion. Distinct from NO_REPEAT_ENTRIES, which only
+#      blocks a second entry on an idea that was ACCEPTED.
+#
+#      Rule 10's rule10_left_pivots at_level count is the structural version of
+#      the same phenomenon and stays where it is (the RULE_710 grade arm). It is
+#      not reused as the retirement trigger because it counts swing pivots
+#      sitting near a price, which retires levels that never produced a signal;
+#      Austin's sentence counts the break-and-retests themselves, which is what
+#      _level_br_count holds. 0 disables retirement.
+LEVEL_RETIRE_TOUCHES = int(os.getenv("LEVEL_RETIRE_TOUCHES", "2"))
+# Two fires on the same level inside this many bars are ONE break-and-retest
+# having a second go at the entry, not two separate ones -- the same 30-bar
+# window backtest_week.DEDUPE_BARS uses to say two fires are one idea. Without
+# it, a level that re-fires on consecutive bars retires itself in two minutes,
+# which is not what "you repeat that 3 times" means.
+LEVEL_RETIRE_COOLDOWN = int(os.getenv("LEVEL_RETIRE_COOLDOWN", "30"))
+
+# (c) In-between mesh is a HARD S-veto (Austin 2026-07-06: "middle of a bunch of
+#     levels, probability goes down significantly", made a veto not a demotion on
+#     2026-08-11). The computation is _grade_for_levels' own blocking-level test
+#     -- a known level sitting inside the entry-to-2R path -- reused, not
+#     duplicated, and routed into compute_austin_tier where it had no effect.
+#     The mesh set includes the T10 pivot levels; the engine-grade path
+#     (LEVEL_BLOCK_CAP) keeps the named-level set it was measured on.
+MESH_S_VETO = os.getenv("MESH_S_VETO", "1").strip().lower() in ("1", "true", "yes", "on")
+
+# (e) S+ is a REPORTING RANK inside S, not a new tier letter. All S signals stay
+#     S and nothing is discarded -- Austin: "i dont want that discarded, just put
+#     it in two separate tiers, not separate grading scale". The top 1-3 per day
+#     universe-wide are S+; "the top s trades which usually happen earlier in the
+#     day", so the rank is earliest-first, ties broken by engine grade then by
+#     confluence.
+S_PLUS_PER_DAY = int(os.getenv("S_PLUS_PER_DAY", "3"))
+
+
 def _retest_tol() -> float:
     """retest_tol_mult to hand detect_break_retest. 0.0 unless DETECT_WIDE."""
     return DETECT_WIDE_RETEST_MULT if DETECT_WIDE else 0.0
@@ -411,6 +553,133 @@ def bar_extreme_veto(sig: dict, candle) -> bool:
     return entry <= candle.low + BAR_EXTREME_FRAC * rng
 
 
+def bar_time(ts) -> str:
+    """"HH:MM:SS" from a bar timestamp, whatever shape the caller carries.
+
+    Archive replays hand "09:31:00", live_scanner hands the same, but a JSON
+    feed may hand an ISO stamp ("2026-08-11T09:31:00-04:00") and some sources
+    hand "09:31". All three have to answer the same question — is this bar
+    inside the window Austin trades — so they are normalised here rather than
+    at four call sites."""
+    if not ts:
+        return ""
+    s = str(ts)
+    if "T" in s:
+        s = s.split("T", 1)[1]
+    elif " " in s:
+        s = s.split(" ", 1)[1]
+    s = s[:8]
+    if len(s) == 5:          # "09:31" -> "09:31:00"
+        s += ":00"
+    return s
+
+
+def in_session(ts) -> bool:
+    """T3(a). True when this bar is inside [SESSION_START, SESSION_END) —
+    09:30–11:00, Austin's whole trading window. An unparseable stamp passes:
+    a detector that silently stopped firing on an unfamiliar timestamp format
+    would be worse than one that fires."""
+    t = bar_time(ts)
+    if len(t) != 8:
+        return True
+    return SESSION_START <= t < SESSION_END
+
+
+def fill_price(level: float, candle, is_long: bool) -> float:
+    """Austin 2026-08-11: fill at the close, except when the close sits inside
+    BAR_EXTREME_FRAC of the bar's own extreme in the trade direction — then fill
+    at the level, which is where he actually enters as the candle is forming.
+
+    "those candles that move fast and close at high of day or low of day, i
+    just want to try to not miss out." The level is clamped into the bar's own
+    range: he cannot be filled at a price the bar never traded."""
+    if candle is None:
+        return level
+    if level is None:
+        return candle.close
+    probe = {"entry": candle.close, "direction": "call" if is_long else "put"}
+    if not bar_extreme_veto(probe, candle):
+        return candle.close
+    return min(max(level, candle.low), candle.high)
+
+
+def pivot_levels(candles, strength: Optional[int] = None,
+                 as_of: Optional[int] = None, lookback: Optional[int] = None):
+    """T10. Swing highs and lows built from price itself, as levels.
+
+    A pivot high is a bar whose high exceeds the highs of the `strength` bars on
+    EITHER side of it; a pivot low mirrors it. Each level is a dict:
+
+        {"index": int,        the bar the pivot formed ON
+         "usable_from": int,  index + strength + 1 — the first bar that may see it
+         "price": float,
+         "kind": "high" | "low",
+         "name": "pivot high @HH:MM" / "pivot low @HH:MM"}
+
+    `as_of` is the index of the bar being traded. A pivot needs `strength` bars
+    to its RIGHT to exist, so with as_of set, only pivots whose `usable_from` is
+    at or before it are returned — that is the no-lookahead guarantee, and it is
+    the whole reason this takes an index rather than a slice. `lookback` drops
+    pivots older than that many bars before `as_of` (live structure, not the
+    session's whole history).
+
+    The name carries the pivot's own time, so idea_key() and
+    _targets_session_extreme() keep working unchanged: two pivots at the same
+    price from different bars are different ideas, which is what they are."""
+    k = PIVOT_STRENGTH if strength is None else strength
+    n = len(candles)
+    if k < 1 or n < 2 * k + 1:
+        return []
+    out = []
+    for i in range(k, n - k):
+        usable = i + k + 1
+        if as_of is not None:
+            if usable > as_of:          # not yet formed on the bar being traded
+                continue
+            if lookback is not None and i < as_of - lookback:
+                continue
+        c = candles[i]
+        window = [j for j in range(i - k, i + k + 1) if j != i]
+        stamp = bar_time(c.timestamp)[:5]
+        if all(c.high > candles[j].high for j in window):
+            out.append({"index": i, "usable_from": usable, "price": c.high,
+                        "kind": "high", "name": f"pivot high @{stamp}"})
+        if all(c.low < candles[j].low for j in window):
+            out.append({"index": i, "usable_from": usable, "price": c.low,
+                        "kind": "low", "name": f"pivot low @{stamp}"})
+    return out
+
+
+def intrabar_stop(entry: float, stop: float, candle, is_long: bool) -> float:
+    """The stop that goes with an intrabar fill.
+
+    T3(b) fills at the LEVEL when the close sits at the bar's extreme. For
+    break-and-retest the level IS the stop (BNR_STOP_MODE="level"), so that fill
+    lands exactly on the stop and the trade has no risk to size — measured on
+    the marked-day population, 223 of 744 B&R signals (30%) collapsed this way
+    and were dropped by the minimum-risk gate. Silently losing 30% of the
+    detector to a fill rule is not what T3(b) is for.
+
+    Austin's own answer, written five times in the recovered reviews: the stop
+    goes on the candle he entered on. "stop loss top of wick of candle you
+    entered" (COIN 2026-01-22), "stop a little lower bottom of candle you
+    entered on" (INTC 2026-06-10), "stop could be bottom wick of green candle"
+    (ORCL 2026-01-16), "needs to be top wick of candle you entered" (AMD
+    2026-05-13), "stop loss at the bottom of the wick you entered" (IREN
+    2026-06-02). So: only when the fill has landed at or through the level-stop,
+    the stop moves to the entry bar's own extreme. Every other setup keeps its
+    structural stop untouched — this fires only where the geometry collapsed."""
+    if not INTRABAR_STOP_AT_BAR or candle is None:
+        return stop
+    collapsed = (entry <= stop) if is_long else (entry >= stop)
+    if not collapsed:
+        return stop
+    bar_stop = candle.low if is_long else candle.high
+    if (bar_stop < entry) if is_long else (bar_stop > entry):
+        return bar_stop
+    return stop
+
+
 def idea_key(sig: dict) -> tuple:
     """Clause 3's identity: (symbol, direction, level_name).
 
@@ -435,6 +704,51 @@ def _htf_opposes(sig: dict, htf_bias) -> bool:
     return htf_bias == ("bearish" if sig.get("direction") == "call" else "bullish")
 
 
+def blocking_levels(sig: dict, levels) -> list:
+    """Levels sitting inside the entry-to-2R path — the "in-between mesh".
+
+    Extracted from _grade_for_levels so the engine grade (LEVEL_BLOCK_CAP) and
+    Austin's tier (MESH_S_VETO, T11(c)) read ONE computation. The traded level
+    itself is ignored (within 10% of risk of the entry); everything else between
+    the entry and its 2R target is road he has to get through."""
+    entry, stop = sig.get("entry"), sig.get("stop")
+    if entry is None or stop is None or not levels:
+        return []
+    risk = abs(entry - stop)
+    if risk == 0:
+        return []
+    target = entry + 2 * risk if sig.get("direction") == "call" else entry - 2 * risk
+    lo, hi = min(entry, target), max(entry, target)
+    return [l for l in levels if l is not None and lo < l < hi
+            and abs(l - entry) > 0.1 * risk]
+
+
+def rank_s_plus(signals, per_day: Optional[int] = None) -> list:
+    """T11(e). Stamp `s_rank` on a day's S signals: the top `per_day` are "S+",
+    the rest stay "S". NOTHING is discarded — this is a reporting rank inside S,
+    on one grading scale.
+
+    Order is earliest-first ("the top s trades which usually happen earlier in
+    the day"), ties broken by engine grade then by confluence. `signals` is any
+    iterable of signal dicts carrying `austin_tier`, a timestamp under
+    "timestamp" or "entry_time", `grade` and optionally `confluence`; they are
+    grouped by their "day" key so a multi-day set ranks per day, universe-wide,
+    which a per-symbol runner cannot do on its own."""
+    cap = S_PLUS_PER_DAY if per_day is None else per_day
+    by_day = {}
+    for s in signals:
+        if s.get("austin_tier") != "S":
+            continue
+        by_day.setdefault(s.get("day"), []).append(s)
+    for _day, rows in by_day.items():
+        rows.sort(key=lambda s: (str(s.get("timestamp") or s.get("entry_time") or ""),
+                                 -_GRADE_RANK.get(s.get("grade"), 0),
+                                 0 if s.get("confluence") else 1))
+        for i, s in enumerate(rows):
+            s["s_rank"] = "S+" if i < cap else "S"
+    return signals
+
+
 def compute_austin_tier(sig: dict, candles, fired_ideas, htf_bias) -> str:
     """Austin's tier for this signal: "S", "A" or "C". Never "X" — X is his
     marking vocabulary for a level not worth tracking, not something the engine
@@ -450,6 +764,17 @@ def compute_austin_tier(sig: dict, candles, fired_ideas, htf_bias) -> str:
     if not setup_is_s_eligible(sig):
         return "C"
     if _targets_session_extreme(sig):
+        return "C"
+    # T11(a) — the positive quality clause S never had. Trading-Bot-Rulesets.md
+    # clause 5: a break-and-retest whose break leg showed no displacement "can
+    # never be S, whatever the other clauses say".
+    if (BNR_DISPLACEMENT_GATE
+            and sig.get("signal_type") is SignalType.BREAK_AND_RETEST
+            and sig.get("displacement") is False):
+        return "C"
+    # T11(c) — in-between mesh is a HARD veto, not a demotion. A level (named or
+    # pivot) sitting between the entry and its 2R target means no clear room.
+    if MESH_S_VETO and sig.get("mesh_blocked"):
         return "C"
     is_reentry = sig.get("signal_type") is SignalType.REENTRY_84_RULE
     # clause 2 — fill quality on the entry bar as formed
@@ -597,6 +922,18 @@ class SignalRunner:
         # when NO_REPEAT_ENTRIES is True (the default), but maintained on the
         # accept path either way so the report can read it.
         self._fired_levels = set()
+        # omen-5.0 T3(d): attempts spent on one 84%-rule idea today, keyed by
+        # (direction, original entry price rounded to a tick). The original
+        # entry is attempt 1, so the armed re-entry is attempt 2 and
+        # RULE84_MAX_ATTEMPTS stops there — "2 is usual".
+        self._attempts_84 = {}
+        # omen-5.0 T11(a2): completed break-and-retests per (symbol, level name)
+        # today. The LEVEL_RETIRE_TOUCHES-th one retires the level for the rest
+        # of the session, at every tier.
+        self._level_br_count = {}
+        # T10 pivot prices live on the bar being traded — the mesh S-veto reads
+        # them alongside the named level map.
+        self._pivot_prices = []
         self.discord = None
         self.post_to_discord = post_to_discord
         self.symbol = symbol
@@ -670,12 +1007,18 @@ class SignalRunner:
         return risk_pct >= 0.005 or premium_risk >= 0.20
 
     def _bnr_displacement(self, level: float, is_long: bool) -> bool:
-        """OPUS-SPEC #1: displacement in the B&R break leg — a beyond-level
-        candle in the 5-bar leg with body >= 1.5x avg body of the 10 candles
-        before it (same 1.5x convention as omen_bot.DISPLACEMENT_MULT and the
-        A+ stack, which this was extracted from)."""
+        """Displacement in the B&R break leg, exactly as Trading-Bot-Rulesets.md
+        clause 5 defines it (T7): a beyond-level candle in the 5-bar leg whose
+        body is >= 1.5x the average body of the 10 candles before it (the
+        DISPLACEMENT_MULT convention shared with omen_bot._has_displacement and
+        the A+ stack), AND which does not touch the level being broken.
+
+        omen-5.0 T11(a) added the no-touch clause. A bar that closes past the
+        level but still wicks back into it did not displace off it — it is the
+        drift the rulebook says can never be S."""
         lookback = self.candles[-6:-1]
-        beyond = (lambda c: c.close > level) if is_long else (lambda c: c.close < level)
+        beyond = ((lambda c: c.close > level and c.low > level) if is_long
+                  else (lambda c: c.close < level and c.high < level))
         prior = self.candles[-16:-6] or self.candles[:-6]
         avg_body = (sum(abs(c.close - c.open) for c in prior) / len(prior)) if prior else 0
         return avg_body > 0 and any(
@@ -706,10 +1049,9 @@ class SignalRunner:
         risk = abs(entry - stop)
         if risk == 0:
             return
-        target = entry + 2 * risk if sig["direction"] == "call" else entry - 2 * risk
-        lo, hi = min(entry, target), max(entry, target)
-        # ignore the traded level itself (within 10% of risk of entry)
-        blocking = [l for l in levels if lo < l < hi and abs(l - entry) > 0.1 * risk]
+        # T11(c): one computation, two readers — blocking_levels() is also what
+        # the mesh S-veto reads. Ignores the traded level itself.
+        blocking = blocking_levels(sig, levels)
         if LEVEL_BLOCK_CAP and blocking and _GRADE_RANK.get(grade, 0) > _GRADE_RANK["C"]:
             sig["grade"] = TradeGrade.C.value
             sig["reason"] += f" [capped C: level ${blocking[0]:.2f} blocks 2R path]"
@@ -832,6 +1174,60 @@ class SignalRunner:
         except OSError as e:
             print(f"⚠ signal log write failed: {e}")
 
+    def _session_extremes(self) -> tuple:
+        """(high, low) of the session SO FAR — every bar from SESSION_START up
+        to and including the signal bar. No future bars, ever: this is read on
+        the entry bar and the answer must be the one Austin could have seen."""
+        bars = [c for c in self.candles if bar_time(c.timestamp) >= SESSION_START] \
+            or list(self.candles)
+        if not bars:
+            return (None, None)
+        return (max(c.high for c in bars), min(c.low for c in bars))
+
+    def session_extreme_veto(self, sig: dict) -> bool:
+        """T3(c). True when the fill sits within SESSION_EXTREME_FRAC of the
+        session extreme it is running into — a long buying the high of day, a
+        short selling the low of day. 21 of Austin's notes say some form of
+        "dont want to be at low of day" / "not right at HOD", and on 2026-08-11
+        he settled that this is a VETO (the signal is not emitted) rather than
+        the S->A demotion BAR_EXTREME_FRAC gives.
+
+        SESSION_EXTREME_FRAC <= 0 disables it, which is the A/B's control arm."""
+        if SESSION_EXTREME_FRAC <= 0:
+            return False
+        entry = sig.get("entry")
+        if entry is None:
+            return False
+        hi, lo = self._session_extremes()
+        if hi is None or lo is None:
+            return False
+        band = SESSION_EXTREME_FRAC * (hi - lo)
+        if band <= 0:
+            return False
+        if sig.get("direction") == "call":
+            return entry >= hi - band
+        return entry <= lo + band
+
+    def _emit(self, signals: List[dict], sig: dict) -> None:
+        """Every detection site posts through here, not straight to _route.
+
+        _route is overridden by BacktestRunner and by the research replays; a
+        veto placed inside it would be silently absent from exactly the runs
+        that measure it. The session-extreme veto therefore sits in front of
+        _route where every subclass inherits it."""
+        if self.session_extreme_veto(sig):
+            sig.setdefault("symbol", self.symbol)
+            sig["reason"] = sig.get("reason", "") + " [veto: at session extreme]"
+            self._log_record(sig, status="skipped", skip_reason="at session extreme")
+            return
+        # T11(d): remember which of the three S setups fired on this bar and
+        # side, before any routing filter can hide one. Confluence is REPORTED,
+        # never required — a lone clean setup is still S.
+        if sig.get("signal_type") in S_ELIGIBLE_SETUPS:
+            self._bar_setups.setdefault(sig.get("direction"), set()).add(
+                sig["signal_type"].value)
+        self._route(signals, sig)
+
     def _route(self, signals: List[dict], sig: dict) -> None:
         """Accept viable signals; log D-grade / tight-stop skips for post-session analysis."""
         self._grade_for_levels(sig)
@@ -857,12 +1253,41 @@ class SignalRunner:
         # clauses, not a None slot. Reported only — nothing below branches on
         # it, and TRADE_S_ONLY is read nowhere in this version. See
         # Trading-Bot-Rulesets.md "Austin's Tiers (S / A / C / X)".
+        # omen-5.0 T11(c): the mesh the tier veto reads is the named level map
+        # PLUS the T10 pivot levels — "another known level (including the new
+        # pivot levels from T10) sitting between it and its 2R target". The
+        # engine-grade path above keeps the named-only set it was measured on.
+        mesh_levels = list(getattr(self, "_active_levels", []))
+        mesh_levels += [p for p in getattr(self, "_pivot_prices", [])]
+        sig["mesh_blocked"] = bool(blocking_levels(sig, mesh_levels))
         if AUSTIN_TIER_ENABLED:
             sig["symbol"] = self.symbol           # idea_key's first element
             sig["austin_tier"] = compute_austin_tier(
                 sig, self.candles, self._fired_ideas, self.htf_bias)
+            # T11(e): every S carries a rank. S+ is decided per DAY and
+            # universe-wide, which one symbol's runner cannot see, so the
+            # promotion is rank_s_plus()'s job — the runner ships the floor.
+            if sig["austin_tier"] == "S":
+                sig.setdefault("s_rank", "S")
         else:
             sig.setdefault("austin_tier", None)
+        # T11(a2): a level that has already been broken and retested
+        # LEVEL_RETIRE_TOUCHES times today is DONE — every tier, not a demotion.
+        # Austin: "you repeat that 3 times and its just not even a break and
+        # retest." Counted per symbol + level name, direction-agnostic: the same
+        # level failing both ways is the same level being chewed up.
+        if LEVEL_RETIRE_TOUCHES > 0 and sig.get("signal_type") in (
+                SignalType.BREAK_AND_RETEST, SignalType.ONE_CANDLE_RULE):
+            lv_key = (self.symbol, sig.get("stop_level_name"))
+            bar = len(self.candles) - 1
+            done, last = self._level_br_count.get(lv_key, (0, -10 ** 9))
+            if done >= LEVEL_RETIRE_TOUCHES:
+                sig["reason"] += " [retired: level broken and retested %d times]" % done
+                sig["level_retired"] = True
+                self._log_record(sig, status="skipped", skip_reason="level retired")
+                return
+            if bar - last >= LEVEL_RETIRE_COOLDOWN:
+                self._level_br_count[lv_key] = (done + 1, bar)
         if sig["grade"] not in _SKIP_GRADES:
             # omen-3.9 T5: enforce clause 3 as a routing rule. Once an idea
             # (symbol, direction, level NAME) has been accepted this session, a
@@ -924,7 +1349,15 @@ class SignalRunner:
         if len(self.candles) < 5:
             return []
 
+        # omen-5.0 T3(a): the 09:30-11:00 window is enforced HERE, not only in
+        # callers. Austin: "I dont trade past 11 am remember". The caller-side
+        # cutoffs (backtest_week.ENTRY_CUTOFF, live_scanner, t4_engine_recall)
+        # stay where they are — they are now redundant, not wrong.
+        if not in_session(self.candles[-1].timestamp):
+            return []
+
         signals = []
+        self._bar_setups = {}      # T11(d): S-eligible setups seen on THIS bar
         current = self.candles[-1]
         or_high, or_low = OpeningRangeAnalyzer.get_opening_range(self.candles)
         # Session extremes (HOD/LOD) — used by 84% rule RR checks
@@ -970,6 +1403,27 @@ class SignalRunner:
             if hod_lv is not None or lod_lv is not None:
                 level_pairs.append(("HOD", "LOD", hod_lv, lod_lv))
 
+        # omen-5.0 T10: pivot structure, fed to break-and-retest exactly as the
+        # named levels are. One-sided entries — a pivot high is a long's level
+        # and a pivot low is a short's, and each loop skips the side it has no
+        # level for. as_of pins them to bars that had already formed BEFORE the
+        # bar being traded; a pivot within PIVOT_DEDUPE_FRAC of a named level is
+        # that level having a second name, not a new one.
+        self._pivot_names = set()
+        self._pivot_prices = []
+        if PIVOT_LEVELS:
+            here = len(self.candles) - 1
+            for p in pivot_levels(self.candles, as_of=here, lookback=PIVOT_LOOKBACK):
+                if any(abs(p["price"] - l) <= PIVOT_DEDUPE_FRAC * abs(l)
+                       for l in self._active_levels if l):
+                    continue
+                self._pivot_names.add(p["name"])
+                self._pivot_prices.append(p["price"])
+                if p["kind"] == "high":
+                    level_pairs.append((p["name"], None, p["price"], None))
+                else:
+                    level_pairs.append((None, p["name"], None, p["price"]))
+
         # ---- CALL SIDE (bullish) ----
 
         # B&R long: prior breakout of a reference high, retest
@@ -990,7 +1444,10 @@ class SignalRunner:
                     recent = self.candles[-11:-1]
                     avg_rng = (sum(c.high - c.low for c in recent) / len(recent)) if recent else 0.0
                     stop = level_hi - max(0.10, 0.10 * avg_rng)
-                stock_risk = current.close - stop
+                # T3(b): close by default, intrabar at the level on an extreme close
+                entry = fill_price(level_hi, current, is_long=True)
+                stop = intrabar_stop(entry, stop, current, is_long=True)
+                stock_risk = entry - stop
                 grade = PriceActionAnalyzer.grade_trade(current, lookback, level_hi, level_lo,
                                                         is_long=True, htf_bias=self.htf_bias)
                 # Austin 2026-07-10: level already broken earlier in the session
@@ -1007,7 +1464,7 @@ class SignalRunner:
                     # valid confirmation entry, pattern-D only -> alert tier
                     grade = TradeGrade.C
                 if stock_risk < max(0.10, 0.0015 * current.close):  # relative min (flat $0.50 benched sub-$50 stocks)
-                    grade = TradeGrade.D
+                    grade = TradeGrade.D  # T3(b): an intrabar fill sitting on the stop has no trade to size
                 # OPUS-SPEC #1: displacement check on the B&R break leg —
                 # tag always, cap-at-C only when the gate is enabled. Placed
                 # after promotions so the A+ stack can't lift it back.
@@ -1031,7 +1488,7 @@ class SignalRunner:
                       # F4 Rule 4 S-input (2026-07-11): QQQ-aligned +1. Tier
                       # 12mo: 90 tr 44.4%W $30k/yr vs 83/43.4%/$25k without.
                       + (1 if self._qqq_aligned(current.timestamp, True) else 0))
-                self._route(signals, {
+                self._emit(signals, {
                         "signal_type": SignalType.BREAK_AND_RETEST,
                         "reason": (f"B&R long — prior breakout above {hi_name} ${level_hi:.2f}, "
                                    f"retest with {grade.value} PA"
@@ -1041,13 +1498,20 @@ class SignalRunner:
                                    + (" [disp]" if disp else " [nodisp]")  # OPUS-SPEC #1
                                    + self._bnr_tags(current, stock_risk, is_long=True)
                                    + f" S{sc}"),
-                        "entry": current.close,
+                        "entry": entry,
                         "stop": stop,
                         "direction": "call",
                         "grade": grade.value,
                         "stop_level_name": hi_name,
                         "stop_width_pct": round(stock_risk / current.close * 100, 2),
                         "aplus_stack": stack,
+                        # T10: which KIND of level this B&R is keyed to. Austin's
+                        # "pivot-structure break > level break" is recorded as a
+                        # rank on the signal, not applied as a silent preference.
+                        "level_kind": "pivot" if hi_name in self._pivot_names else "named",
+                        "level_rank": 0 if hi_name in self._pivot_names else 1,
+                        # T11(a): rulebook clause 5 — no displacement, never S
+                        "displacement": disp,
                     })
 
         # B&R long via FVG: breakout displacement left a gap above the level;
@@ -1055,6 +1519,8 @@ class SignalRunner:
         if FVG_RETEST:
             fvg = find_fvg(self.candles, "bullish")
             for hi_name, _lo, level_hi, level_lo in level_pairs:
+                if level_hi is None:      # T10: pivot lows are short-side only
+                    continue
                 if fvg is None or fvg[0] < level_hi:  # gap must sit above the broken level
                     continue
                 prior_breakout = any(c.close > level_hi for c in lookback)
@@ -1063,15 +1529,16 @@ class SignalRunner:
                 if (prior_breakout and not already_at_level
                         and self._bnr_displacement(level_hi, is_long=True)
                         and current.low <= fvg[1] and current.close > fvg[1]):
-                    stock_risk = current.close - fvg[0]
+                    entry = fill_price(fvg[1], current, is_long=True)  # T3(b)
+                    stock_risk = entry - fvg[0]
                     grade = PriceActionAnalyzer.grade_trade(current, lookback, fvg[1], fvg[0],
                                                             is_long=True, htf_bias=self.htf_bias)
                     if stock_risk < 0.50:
                         grade = TradeGrade.D
-                    self._route(signals, {
+                    self._emit(signals, {
                             "signal_type": SignalType.FAIR_VALUE_GAP,
                             "reason": f"B&R long — FVG retest ${fvg[0]:.2f}-${fvg[1]:.2f} above {hi_name} ${level_hi:.2f}, {grade.value} PA",
-                            "entry": current.close,
+                            "entry": entry,
                             "stop": fvg[0],
                             "direction": "call",
                             "grade": grade.value,
@@ -1084,7 +1551,8 @@ class SignalRunner:
         block, retest, note = detect_order_block_setup(self.candles, "bullish")
         if (block is not None and retest in OB_RETEST_TYPES
                 and current.close > block.high and _volume_ok(self.candles)):
-            stock_risk = current.close - block.low
+            entry = fill_price(block.high, current, is_long=True)  # T3(b)
+            stock_risk = entry - block.low
             # Grade PA at the block's own level, not the OR (a block far from the
             # OR could otherwise never grade above C)
             grade = PriceActionAnalyzer.grade_trade(current, lookback, block.high, block.low,
@@ -1098,10 +1566,10 @@ class SignalRunner:
                 grade = TradeGrade.C
             if stock_risk / current.close > 0.004:  # stop wider than 0.4% = 2R unreachable
                 grade = TradeGrade.D
-            self._route(signals, {
+            self._emit(signals, {
                     "signal_type": SignalType.ONE_CANDLE_RULE,
                     "reason": f"Order block long — block ${block.low:.2f}-${block.high:.2f} (at {block.timestamp}), {retest} retest, {grade.value} PA",
-                    "entry": current.close,
+                    "entry": entry,
                     "stop": block.low,
                     "direction": "call",
                     "grade": grade.value,
@@ -1115,15 +1583,16 @@ class SignalRunner:
         # (FLAG_ENABLED False), so this is a label fix, not a behaviour change.
         flag, fnote = detect_flag_setup(self.candles, "bullish") if FLAG_ENABLED else (None, "")
         if flag is not None and current.close > flag["flag_lo"] and _volume_ok(self.candles):
-            stock_risk = current.close - flag["flag_lo"]
+            entry = fill_price(flag["flag_hi"], current, is_long=True)  # T3(b)
+            stock_risk = entry - flag["flag_lo"]
             grade = PriceActionAnalyzer.grade_trade(current, lookback, flag["flag_hi"], flag["flag_lo"],
                                                     is_long=True, htf_bias=self.htf_bias)
             if stock_risk < 0.50:
                 grade = TradeGrade.D
-            self._route(signals, {
+            self._emit(signals, {
                     "signal_type": SignalType.FLAG,
                     "reason": f"Flag long — {fnote}, breakout ${flag['flag_hi']:.2f}, {grade.value} PA",
-                    "entry": current.close,
+                    "entry": entry,
                     "stop": flag["flag_lo"],
                     "direction": "call",
                     "grade": grade.value,
@@ -1147,9 +1616,17 @@ class SignalRunner:
             tgt = self.session.entry_target
             rr_ok = (tgt is not None and stop_chk < current.close
                      and (tgt - current.close) >= 1.5 * (current.close - stop_chk))
-            if day_range > 0 and (hod - current.close) / day_range > 0.2 and rr_ok:  # not too close to HOD
+            # T3(d): 2 attempts on ONE idea total (original + a single re-entry,
+            # "2 is usual") and the reclaim must itself land before 11:00.
+            key_84 = ("call", round(self.session.entry_price, NO_REPEAT_LEVEL_TICK))
+            attempts = self._attempts_84.get(key_84, 1)   # the original entry is attempt 1
+            caps_ok = (attempts < RULE84_MAX_ATTEMPTS
+                       and bar_time(current.timestamp) < SESSION_END)
+            if day_range > 0 and (hod - current.close) / day_range > 0.2 and rr_ok and caps_ok:  # not too close to HOD
                 stop_84 = stop_chk
-                stock_risk = current.close - stop_84
+                entry = fill_price(self.session.entry_price, current, is_long=True)  # T3(b)
+                stock_risk = entry - stop_84
+                self._attempts_84[key_84] = attempts + 1
                 grade = PriceActionAnalyzer.grade_trade(current, lookback,
                                                         self.session.entry_price, self.session.entry_price,
                                                         is_long=True, htf_bias=self.htf_bias)
@@ -1158,14 +1635,15 @@ class SignalRunner:
                 # this floor grants a free B to plain reclaims. GRADE_FIX drops it.
                 if grade == TradeGrade.C and not GRADE_FIX:
                     grade = TradeGrade.B
-                self._route(signals, {
+                self._emit(signals, {
                         "signal_type": SignalType.REENTRY_84_RULE,
                         # [hammer] tag: sources demand strong PA on the reclaim
                         # (audit #32) — measure before gating
                         "reason": (f"84% long — prior entry ${self.session.entry_price:.2f} "
                                    f"reclaimed ({grade.value} PA)"
+                                   + f" [attempt {attempts + 1}/{RULE84_MAX_ATTEMPTS}]"
                                    + (" [hammer]" if _confirm_candle(current, long=True) else "")),
-                        "entry": current.close,
+                        "entry": entry,
                         "stop": stop_84,
                         "target": self.session.entry_target,
                         "direction": "call",
@@ -1195,7 +1673,10 @@ class SignalRunner:
                     recent = self.candles[-11:-1]
                     avg_rng = (sum(c.high - c.low for c in recent) / len(recent)) if recent else 0.0
                     stop = level_lo + max(0.10, 0.10 * avg_rng)
-                stock_risk = stop - current.close
+                # T3(b): close by default, intrabar at the level on an extreme close
+                entry = fill_price(level_lo, current, is_long=False)
+                stop = intrabar_stop(entry, stop, current, is_long=False)
+                stock_risk = stop - entry
                 grade = PriceActionAnalyzer.grade_trade(current, lookback, level_hi, level_lo,
                                                         is_long=False, htf_bias=self.htf_bias)
                 if "LATE" in br_note and grade.value in ("A+", "A"):
@@ -1225,7 +1706,7 @@ class SignalRunner:
                       + (2 if hammer else 0)
                       # F4 Rule 4 S-input — mirror of call side
                       + (1 if self._qqq_aligned(current.timestamp, False) else 0))
-                self._route(signals, {
+                self._emit(signals, {
                         "signal_type": SignalType.BREAK_AND_RETEST,
                         "reason": (f"B&R short — prior breakdown below {lo_name} ${level_lo:.2f}, "
                                    f"retest with {grade.value} PA"
@@ -1235,19 +1716,27 @@ class SignalRunner:
                                    + (" [disp]" if disp else " [nodisp]")  # OPUS-SPEC #1
                                    + self._bnr_tags(current, stock_risk, is_long=False)
                                    + f" S{sc}"),
-                        "entry": current.close,
+                        "entry": entry,
                         "stop": stop,
                         "direction": "put",
                         "grade": grade.value,
                         "stop_level_name": lo_name,
                         "stop_width_pct": round(stock_risk / current.close * 100, 2),
                         "aplus_stack": stack,
+                        # T10: see the call side — pivot-keyed B&R outranks a
+                        # named-level one on the same bar, recorded not applied.
+                        "level_kind": "pivot" if lo_name in self._pivot_names else "named",
+                        "level_rank": 0 if lo_name in self._pivot_names else 1,
+                        # T11(a): rulebook clause 5 — no displacement, never S
+                        "displacement": disp,
                     })
 
         # B&R short via FVG (mirror of the long side)
         if FVG_RETEST:
             fvg = find_fvg(self.candles, "bearish")
             for _hi, lo_name, level_hi, level_lo in level_pairs:
+                if level_lo is None:      # T10: pivot highs are long-side only
+                    continue
                 if fvg is None or fvg[1] > level_lo:  # gap must sit below the broken level
                     continue
                 prior_breakdown = any(c.close < level_lo for c in lookback)
@@ -1256,15 +1745,16 @@ class SignalRunner:
                 if (prior_breakdown and not already_at_level
                         and self._bnr_displacement(level_lo, is_long=False)
                         and current.high >= fvg[0] and current.close < fvg[0]):
-                    stock_risk = fvg[1] - current.close
+                    entry = fill_price(fvg[0], current, is_long=False)  # T3(b)
+                    stock_risk = fvg[1] - entry
                     grade = PriceActionAnalyzer.grade_trade(current, lookback, fvg[1], fvg[0],
                                                             is_long=False, htf_bias=self.htf_bias)
                     if stock_risk < 0.50:
                         grade = TradeGrade.D
-                    self._route(signals, {
+                    self._emit(signals, {
                             "signal_type": SignalType.FAIR_VALUE_GAP,
                             "reason": f"B&R short — FVG retest ${fvg[0]:.2f}-${fvg[1]:.2f} below {lo_name} ${level_lo:.2f}, {grade.value} PA",
-                            "entry": current.close,
+                            "entry": entry,
                             "stop": fvg[1],
                             "direction": "put",
                             "grade": grade.value,
@@ -1277,7 +1767,8 @@ class SignalRunner:
         block, retest, note = detect_order_block_setup(self.candles, "bearish")
         if (block is not None and retest in OB_RETEST_TYPES
                 and current.close < block.low and _volume_ok(self.candles)):
-            stock_risk = block.high - current.close
+            entry = fill_price(block.low, current, is_long=False)  # T3(b)
+            stock_risk = block.high - entry
             # Grade at the block's own level (see call side)
             grade = PriceActionAnalyzer.grade_trade(current, lookback, block.high, block.low,
                                                     is_long=False, htf_bias=self.htf_bias)
@@ -1288,10 +1779,10 @@ class SignalRunner:
                 grade = TradeGrade.C
             if stock_risk / current.close > 0.004:
                 grade = TradeGrade.D
-            self._route(signals, {
+            self._emit(signals, {
                     "signal_type": SignalType.ONE_CANDLE_RULE,
                     "reason": f"Order block short — block ${block.low:.2f}-${block.high:.2f} (at {block.timestamp}), {retest} retest, {grade.value} PA",
-                    "entry": current.close,
+                    "entry": entry,
                     "stop": block.high,
                     "direction": "put",
                     "grade": grade.value,
@@ -1302,15 +1793,16 @@ class SignalRunner:
         # Flag short (Austin 2026-07-08): pole down -> tight pause -> breakdown.
         flag, fnote = detect_flag_setup(self.candles, "bearish") if FLAG_ENABLED else (None, "")
         if flag is not None and current.close < flag["flag_hi"] and _volume_ok(self.candles):
-            stock_risk = flag["flag_hi"] - current.close
+            entry = fill_price(flag["flag_lo"], current, is_long=False)  # T3(b)
+            stock_risk = flag["flag_hi"] - entry
             grade = PriceActionAnalyzer.grade_trade(current, lookback, flag["flag_hi"], flag["flag_lo"],
                                                     is_long=False, htf_bias=self.htf_bias)
             if stock_risk < 0.50:
                 grade = TradeGrade.D
-            self._route(signals, {
+            self._emit(signals, {
                     "signal_type": SignalType.FLAG,
                     "reason": f"Flag short — {fnote}, breakdown ${flag['flag_lo']:.2f}, {grade.value} PA",
-                    "entry": current.close,
+                    "entry": entry,
                     "stop": flag["flag_hi"],
                     "direction": "put",
                     "grade": grade.value,
@@ -1333,21 +1825,30 @@ class SignalRunner:
             tgt = self.session.entry_target
             rr_ok = (tgt is not None and stop_chk > current.close
                      and (current.close - tgt) >= 1.5 * (stop_chk - current.close))
-            if day_range > 0 and (current.close - lod) / day_range > 0.2 and rr_ok:
+            # T3(d): mirror of the call side — 2 attempts on one idea, reclaim
+            # before 11:00.
+            key_84 = ("put", round(self.session.entry_price, NO_REPEAT_LEVEL_TICK))
+            attempts = self._attempts_84.get(key_84, 1)
+            caps_ok = (attempts < RULE84_MAX_ATTEMPTS
+                       and bar_time(current.timestamp) < SESSION_END)
+            if day_range > 0 and (current.close - lod) / day_range > 0.2 and rr_ok and caps_ok:
                 stop_84 = stop_chk
-                stock_risk = stop_84 - current.close
+                entry = fill_price(self.session.entry_price, current, is_long=False)  # T3(b)
+                stock_risk = stop_84 - entry
+                self._attempts_84[key_84] = attempts + 1
                 grade = PriceActionAnalyzer.grade_trade(current, lookback,
                                                         self.session.entry_price, self.session.entry_price,
                                                         is_long=False, htf_bias=self.htf_bias)
                 # stale comment / free-B floor — see call side; GRADE_FIX drops it
                 if grade == TradeGrade.C and not GRADE_FIX:
                     grade = TradeGrade.B
-                self._route(signals, {
+                self._emit(signals, {
                         "signal_type": SignalType.REENTRY_84_RULE,
                         "reason": (f"84% short — prior entry ${self.session.entry_price:.2f} "
                                    f"rejected ({grade.value} PA)"
+                                   + f" [attempt {attempts + 1}/{RULE84_MAX_ATTEMPTS}]"
                                    + (" [hammer]" if _confirm_candle(current, long=False) else "")),
-                        "entry": current.close,
+                        "entry": entry,
                         "stop": stop_84,
                         "target": self.session.entry_target,
                         "direction": "put",
@@ -1367,6 +1868,30 @@ class SignalRunner:
                 if sig.get("direction") != want and sig.get("grade") in ("A+", "A", "B"):
                     sig["grade"] = "C"
                     sig["reason"] = sig.get("reason", "") + " [htf-block]"
+
+        # T11(d): two of the three setups on the same symbol, direction and bar
+        # is CONFLUENCE — flagged and reported so we can measure whether his S
+        # marks cluster there. Never required.
+        for sig in signals:
+            pair = sorted(self._bar_setups.get(sig.get("direction"), ()))
+            if len(pair) >= 2:
+                sig["confluence"] = True
+                sig["confluence_pair"] = "+".join(pair)
+                sig["reason"] += f" [confluence: {sig['confluence_pair']}]"
+            else:
+                sig.setdefault("confluence", False)
+
+        # T10: "pivot structure break > level break". When both kinds fire on
+        # the same bar and side, the named-level one is marked as outranked and
+        # the list is ordered pivot-first. Nothing is dropped — the ordering is
+        # recorded so T11 can read it, which is what Austin asked for.
+        if PIVOT_LEVELS and any(s.get("level_kind") == "pivot" for s in signals):
+            pivot_dirs = {s["direction"] for s in signals if s.get("level_kind") == "pivot"}
+            for sig in signals:
+                if sig.get("level_kind") == "named" and sig["direction"] in pivot_dirs:
+                    sig["ranked_below_pivot"] = True
+                    sig["reason"] += " [outranked: pivot B&R on this bar]"
+            signals.sort(key=lambda s: s.get("level_rank", 1))
 
         for sig in signals:
             self._log_record(sig)

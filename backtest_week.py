@@ -88,10 +88,25 @@ RULE6_BE_MULT = 1.0        # breakeven level = entry +- 1R x this multiplier
 # W% note: scaled trades are labeled win/loss by SIGN of total P&L; EOD runners
 # stay "scratch" (same as blind-2R). 84% arming: only FULL stop-outs (unscaled)
 # arm a re-entry — a scaled trade already paid, "stop was wrong" doesn't apply.
-LADDER_MODE = None  # F1 A/B 2026-07-11: A −$12k full-pop / tier $5.9k; B (BE
-                    # after scale) 58%W tier but $5.7k vs blind-2R $25k. Ladder
-                    # trades expectancy for win rate on our population — OFF.
-                    # See research/f2f1_runs/session-notes.md.
+# omen-5.0 T4(d): LADDER_MODE defaults to "B" — Austin's real management, stated
+# 2026-08-11 and in his notes before it: scale out at 1R and let a runner go,
+# "you always take something off at HOD; true 2R only when target coincides with
+# HOD". The F1 A/B recorded here measured mode B at a 58% win rate against
+# blind-2R's larger dollar figure; his gate is a 55% win rate, so mode B is the
+# book that answers the question he is actually asking. Blind 2R stays reachable
+# (OMEN_LADDER_MODE=none) so the old number is reproducible — the comment on the
+# F1 line above says it outright: "Blind 2R was our invention."
+_LADDER_ENV = os.environ.get("OMEN_LADDER_MODE", "B").strip()
+LADDER_MODE = None if _LADDER_ENV.lower() in ("", "none", "0", "off") else _LADDER_ENV
+
+# omen-5.0 T4(a): the stop TRIGGERS on the candle CLOSE, not on a wick through
+# the level. Austin has written this five times in one grading batch — "stop out
+# happens when candle CLOSES below the level", "stop outs only happen when candle
+# closes by the way", "your entry never closed below the stop so no need 84
+# percent rule". The exit PRICE stays t.stop: his stop order still fills at the
+# level, only the trigger moves. STOP_ON_CLOSE=0 reproduces the old wick
+# behaviour for the A/B in research/t4_stop_on_close.md. Default ON.
+STOP_ON_CLOSE = os.getenv("STOP_ON_CLOSE", "1") not in ("0", "false")
 
 
 
@@ -172,10 +187,32 @@ class SimTrade:
         return round(move / risk * risk_dollars * 1.0, 2)
 
 
-def _arm_84(t: "SimTrade", runner: "BacktestRunner") -> None:
-    """Arm one 84%-rule re-entry off a full stop-out (same gate as blind-2R path)."""
-    from signal_runner import RULE84_ARM_ON, RULE84_STRICT, RULE84_OFF
+def _wick_hit(c: Candle, level: float, long: bool) -> bool:
+    """Pre-omen-5.0 stop trigger: any wick through the level stops the trade out.
+    Reachable only with STOP_ON_CLOSE=0, so the old numbers stay reproducible."""
+    return (c.low <= level) if long else (c.high >= level)
+
+
+def _stop_hit(c: Candle, level: float, long: bool) -> bool:
+    """T4(a). Did this bar stop the trade out? On the CLOSE by default."""
+    if STOP_ON_CLOSE:
+        return (c.close <= level) if long else (c.close >= level)
+    return _wick_hit(c, level, long)
+
+
+def _arm_84(t: "SimTrade", runner: "BacktestRunner", c: Optional[Candle] = None) -> None:
+    """Arm one 84%-rule re-entry off a full stop-out (same gate as blind-2R path).
+
+    omen-5.0 T4(c): only a close-based FULL stop-out arms it. A scratch does not
+    ("scratch out at close, no 84 percent"), and neither does a stop-out landing
+    at or after 11:00 — Austin does not trade past 11, so there is no re-entry to
+    take. `c` is the stop-out bar; omitted means the caller has no bar to time."""
+    from signal_runner import RULE84_ARM_ON, RULE84_STRICT, RULE84_OFF, SESSION_END, bar_time
     if RULE84_OFF:  # C9: detector fully disabled
+        return
+    if t.outcome != "loss":       # scratches never arm the 84% rule
+        return
+    if c is not None and bar_time(c.timestamp) >= SESSION_END:
         return
     # Austin 2026-08-09: arm when the stopped trade's setup is in RULE84_ARM_ON
     # (B&R or the one candle rule). FVG / flag losers do NOT arm it.
@@ -195,10 +232,11 @@ def _ladder_bar(t: "SimTrade", c: Candle, i: int, open_trades: list,
     """F1 ladder position management for one bar. Conservative: stop wins ties."""
     long = t.direction == "call"
     if not t.scaled:
-        if (c.low <= t.stop) if long else (c.high >= t.stop):
+        # T4(a): the close is the trigger; the fill is still t.stop
+        if _stop_hit(c, t.stop, long):
             t.outcome, t.exit_price, t.exit_idx = "loss", t.stop, i
             open_trades.remove(t)
-            _arm_84(t, runner)  # full stop-out arms 84%, scaled trades never do
+            _arm_84(t, runner, c)  # full stop-out arms 84%, scaled trades never do
             return
         if (c.high >= t.scale_level) if long else (c.low <= t.scale_level):
             t.scaled = True
@@ -206,7 +244,7 @@ def _ladder_bar(t: "SimTrade", c: Candle, i: int, open_trades: list,
                 t.runner_stop = t.entry  # accelerator: BE after first scale
         return
     stop_lv = t.runner_stop if (LADDER_MODE == "B" and t.runner_stop) else t.stop
-    if (c.low <= stop_lv) if long else (c.high >= stop_lv):
+    if _stop_hit(c, stop_lv, long):     # T4(a): close-based on the runner too
         t.exit_price, t.exit_idx = stop_lv, i
     elif (c.high >= t.runner_target) if long else (c.low <= t.runner_target):
         t.exit_price, t.exit_idx = t.runner_target, i
@@ -352,12 +390,16 @@ def simulate_day(symbol: str, day_iso: str, candles: List[Candle],
                     t.be_taken = True
                     t.runner_stop = t.entry  # raise stop to breakeven
                     # BE scale recorded; runner continues below
-            # Check stop (using runner_stop if BE taken)
-            check_stop = t.runner_stop if t.be_taken else t.stop
-            if t.direction == "call":
-                stopped, targeted = c.low <= check_stop, c.high >= t.target
+            # Check stop (using runner_stop if BE taken). T4(a): a wick through
+            # the level is not a stop-out — the CANDLE HAS TO CLOSE beyond it.
+            # The target is unchanged: a target order fills intrabar.
+            if t.be_taken:
+                stopped = _stop_hit(c, t.runner_stop, t.direction == "call")
+            elif t.direction == "call":
+                stopped = (c.close <= t.stop) if STOP_ON_CLOSE else _wick_hit(c, t.stop, True)
             else:
-                stopped, targeted = c.high >= check_stop, c.low <= t.target
+                stopped = (c.close >= t.stop) if STOP_ON_CLOSE else _wick_hit(c, t.stop, False)
+            targeted = c.high >= t.target if t.direction == "call" else c.low <= t.target
             if stopped:  # both in one bar -> conservative: loss
                 t.outcome, t.exit_price, t.exit_idx = "loss", t.stop, i
                 open_trades.remove(t)
@@ -365,7 +407,7 @@ def simulate_day(symbol: str, day_iso: str, candles: List[Candle],
                 # "can't be a one-minute order block with nothing else"). Shared
                 # with the ladder path via _arm_84 so C9's RULE84_STRICT/RULE84_OFF
                 # gate applies here too (binary-2R path = default config).
-                _arm_84(t, runner)
+                _arm_84(t, runner, c)
             elif targeted:
                 t.outcome, t.exit_price, t.exit_idx = "win", t.target, i
                 open_trades.remove(t)
@@ -426,7 +468,18 @@ def simulate_day(symbol: str, day_iso: str, candles: List[Candle],
                          runner_target=runner_tgt)
             trades.append(t)
             if risk > 0:
-                open_trades.append(t)
+                # T4(b): scratch a failed entry bar. Austin, 2026-08-11: an entry
+                # taken intrabar that then closes back beyond the level is not a
+                # loss — "scratch out at close, no 84 percent, this rule and
+                # previous applys to BR and OCR as well". sig["stop"] IS that
+                # level for every setup. A scratch never calls _arm_84.
+                level = sig["stop"]
+                closed_back = (c.close < level if sig["direction"] == "call"
+                               else c.close > level)
+                if closed_back:
+                    t.outcome, t.exit_price, t.exit_idx = "scratch", c.close, i
+                else:
+                    open_trades.append(t)
 
     # EOD: whatever is open scratches at last close
     for t in open_trades:
