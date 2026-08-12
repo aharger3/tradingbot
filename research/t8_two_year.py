@@ -146,7 +146,8 @@ def run_symbol(args):
             rows.append({"symbol": t.symbol, "day": t.day, "time": t.entry_time,
                          "setup": t.signal_type, "dir": t.direction,
                          "grade": t.grade, "tier": tier, "status": t.status,
-                         "outcome": t.outcome, "counted": t.counted, "pnl": t.pnl})
+                         "outcome": t.outcome, "counted": t.counted, "pnl": t.pnl,
+                         "r": round(t.pnl / 1000.0, 4)})
 
     bw.BacktestRunner.__init__ = orig_init
     return symbol, rows, days_run
@@ -196,7 +197,18 @@ def main():
     ap.add_argument("--start", default="2024-08-12")
     ap.add_argument("--end", default="2026-08-11")
     ap.add_argument("--procs", type=int, default=6)
+    ap.add_argument("--pools", default="", help="comma-separated pool names to restrict to")
+    ap.add_argument("--rows-out", default="", help="dump every trade row to this JSON path")
+    ap.add_argument("--md-out", default="", help="override the report path")
     a = ap.parse_args()
+
+    global POOLS, OUT_MD, OUT_JSON
+    if a.pools:
+        want = {x.strip() for x in a.pools.split(",")}
+        POOLS = [(n, p) for n, p in POOLS if n in want]
+    if a.md_out:
+        OUT_MD = a.md_out
+        OUT_JSON = os.path.splitext(a.md_out)[0] + ".json"
 
     syms = [s for _, p in POOLS for s in p if os.path.isdir(os.path.join(ARCHIVE, s))]
     missing = [s for _, p in POOLS for s in p if not os.path.isdir(os.path.join(ARCHIVE, s))]
@@ -291,6 +303,11 @@ def main():
     out["by_setup"] = {st: stats([r for r in fired if r["setup"] == st])
                        for st in sorted({r["setup"] for r in fired})}
     out["per_day"] = {t: round(sum(1 for r in fired if r["tier"] == t) / nd, 3) for t in TIERS}
+
+    if a.rows_out:
+        with open(a.rows_out, "w") as f:
+            json.dump(rows, f)
+        print(f"wrote {a.rows_out} ({len(rows)} rows)")
 
     with open(OUT_MD, "w") as f:
         f.write("\n".join(L))
