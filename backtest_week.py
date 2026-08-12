@@ -263,16 +263,30 @@ class BacktestRunner(SignalRunner):
         self.captured: List[dict] = []
 
     def _route(self, signals: List[dict], sig: dict) -> None:
-        self._grade_for_levels(sig)
-        self._calibration_grade(sig)
-        if sig["grade"] == TradeGrade.D.value:
-            sig["status"] = "skipped_d"
-        elif sig["grade"] == "C" and not self._min_viable_stop(sig["entry"], sig["stop"], sig["direction"]):
-            sig["status"] = "skipped_tight_stop"
-        else:
+        """Capture ALL signals, but let the BASE decide which of them fire.
+
+        omen-5.0 (2026-08-12): this used to reimplement routing -- grade, D-skip,
+        tight-stop skip -- and never called super(). Every gate the base grew
+        after it was written was therefore INERT in every backtest ever run:
+        austin_tier (omen-3.9 T4), ENFORCE_NO_REPEAT / NO_REPEAT_ENTRIES
+        (omen-3.9 T5, omen-4.0 T6), and all of omen-5.0 T11 -- the mesh S-veto,
+        level retirement, S_GATE and RULE_710. The subclass exists to CAPTURE
+        what the base rejects, not to route differently, so it now delegates and
+        labels the outcome afterwards."""
+        before = len(signals)
+        super()._route(signals, sig)
+        if len(signals) > before:
             sig["status"] = "fired"
-            self._dir_fired[sig["direction"]] = self._dir_fired.get(sig["direction"], 0) + 1
-            signals.append(sig)
+        elif sig["grade"] == TradeGrade.D.value:
+            sig["status"] = "skipped_d"
+        elif sig.get("level_retired"):
+            sig["status"] = "skipped_level_retired"
+        elif "[skip: repeat entry]" in sig.get("reason", ""):
+            sig["status"] = "skipped_repeat_entry"
+        elif "[skip: repeat idea]" in sig.get("reason", ""):
+            sig["status"] = "skipped_repeat_idea"
+        else:
+            sig["status"] = "skipped_tight_stop"
         self.captured.append(sig)
 
 
