@@ -35,9 +35,15 @@ the uncapped runner — which is T4's job, not this one.
 ## The flip file
 
 `research/t51_fill_flip.jsonl` is deliberately wider than the headline: it carries
-all 12 trades in the whole simulated book whose FILL the rule moved, 0 of
-them traded. The rest are `counted: false` — D-grade and tight-stop signals the
-engine filters out but still simulates, so their R multiples (a $0.004 stop books
-11R) are evidence, not headline numbers. Every row carries `status` and `counted`
-so a filtered signal is never read as a traded one, and `old_outcome`/`new_outcome`
-are equal on a row whose R moved but whose label did not.
+all 26 trades in the whole simulated book whose FILL the rule moved, 0 of
+them traded. The rest are `counted: false` — signals the engine simulates but
+never takes (D-grade, tight-stop, and C-grade fired-but-uncounted), so their R
+multiples (a $0.004 stop books 11R) are evidence, not headline numbers. Every row
+carries `status` and `counted` so a filtered signal is never read as a traded one,
+and `old_outcome`/`new_outcome` are equal on a row whose R moved but whose label
+did not.
+
+5 of those 26 rows do change label (win -> loss); the other 21 are
+R-reductions only. 5 of the 5 are `counted: false`, which is why `flips_change_outcome`
+is 0: the rule bites, but on signals the engine had already thrown
+away. That distinction is the whole point of keeping both counts.
