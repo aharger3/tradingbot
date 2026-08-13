@@ -133,7 +133,8 @@ def fmt(tally):
     return n, wr, ev
 
 
-def prose(n_total, n_out_traded, n_moved, traded_moved, wr_o, wr_p, ev_o, ev_p):
+def prose(n_total, n_out_traded, n_moved, traded_moved, wr_o, wr_p, ev_o, ev_p,
+          n_out=0):
     """The paragraph under the trailer. Says what the numbers mean, out loud."""
     L = ["## What this measured", "",
          "The stop needs a candle CLOSE beyond the level; the target is a resting limit",
@@ -167,11 +168,18 @@ def prose(n_total, n_out_traded, n_moved, traded_moved, wr_o, wr_p, ev_o, ev_p):
           f"`research/t51_fill_flip.jsonl` is deliberately wider than the headline: it carries",
           f"all {n_moved} trades in the whole simulated book whose FILL the rule moved, "
           f"{traded_moved} of",
-          "them traded. The rest are `counted: false` — D-grade and tight-stop signals the",
-          "engine filters out but still simulates, so their R multiples (a $0.004 stop books",
-          "11R) are evidence, not headline numbers. Every row carries `status` and `counted`",
-          "so a filtered signal is never read as a traded one, and `old_outcome`/`new_outcome`",
-          "are equal on a row whose R moved but whose label did not.", ""]
+          "them traded. The rest are `counted: false` — signals the engine simulates but",
+          "never takes (D-grade, tight-stop, and C-grade fired-but-uncounted), so their R",
+          "multiples (a $0.004 stop books 11R) are evidence, not headline numbers. Every row",
+          "carries `status` and `counted` so a filtered signal is never read as a traded one,",
+          "and `old_outcome`/`new_outcome` are equal on a row whose R moved but whose label",
+          "did not.", "",
+          f"{n_out} of those {n_moved} rows do change label (win -> loss); the other "
+          f"{n_moved - n_out} are",
+          f"R-reductions only. {n_out - n_out_traded} of the {n_out} are `counted: false`, "
+          f"which is why `flips_change_outcome`",
+          f"is {n_out_traded}: the rule bites, but on signals the engine had already thrown",
+          "away. That distinction is the whole point of keeping both counts.", ""]
     return "\n".join(L)
 
 
@@ -226,7 +234,7 @@ def main():
           f"flips_change_outcome: {n_out_traded}\n")
     with open(OUT_MD, "w") as f:
         f.write(md + "\n" + prose(n_o, n_out_traded, len(flips), traded_flips,
-                                  wr_o, wr_p, ev_o, ev_p))
+                                  wr_o, wr_p, ev_o, ev_p, n_out))
     print(md)
     print(f"wrote {OUT_MD} and {OUT_JSONL} ({len(flips)} flips)")
 

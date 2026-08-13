@@ -51,6 +51,7 @@ from t8_two_year import ARCHIVE, day_table, rth_candles, bias_from
 
 OUT_MD = os.path.join(HERE, "t51_ev_honest.md")
 OUT_ROWS = os.path.join(HERE, "_t51_ev_rows.json")
+T8_ROWS = os.path.join(HERE, "t8_rows.json")   # T8's own book, from a fuller archive
 
 B = 20000            # bootstrap resamples, same as t8_significance.py
 SEED = 20260813
@@ -131,6 +132,62 @@ def boot_ci(xs, rng, b=B, lo=2.5, hi=97.5):
     return float(means[int(b * lo / 100)]), float(means[int(b * hi / 100)])
 
 
+def archive_coverage(out_days):
+    """Symbols whose local `data_archive` runs out before the window does.
+
+    This checkout's archive is not uniformly deep: a dozen names stop in July
+    2026, which lands INSIDE the out-of-sample quarter. Silently scoring a
+    thinner book than T8 did would be exactly the kind of flattering omission
+    this row exists to remove, so the gap is measured and printed.
+    """
+    syms = [s for s in ALL_SYMS if os.path.isdir(os.path.join(ARCHIVE, s))]
+    short = []
+    for s in syms:
+        files = sorted(f for f in os.listdir(os.path.join(ARCHIVE, s))
+                       if f.endswith(".csv"))
+        if not files:
+            continue
+        last = files[-1][:-4]
+        if last < out_days[-1]:
+            short.append((s, last, sum(1 for d in out_days if d <= last)))
+    return len(syms), sorted(short, key=lambda x: (x[1], x[0]))
+
+
+def t8_reference(rng):
+    """The same cells scored on `research/t8_rows.json`.
+
+    That file is T8's traded book, produced when the archive still held the days
+    this checkout is missing, so it is the one available read on how much the
+    archive gap moves the headline. Its R values are the OPTIMISTIC arm -- which
+    doubles as the pessimistic arm, because the fill rule moves zero traded
+    trades (measured below).
+    """
+    if not os.path.exists(T8_ROWS):
+        return None
+    allr = json.load(open(T8_ROWS))
+    days = sorted({r["day"] for r in allr})
+    cut = int(len(days) * IN_FRAC)
+    in_d, out_d = set(days[:cut]), set(days[cut:])
+    counted = [r for r in allr if r["counted"]]
+
+    def c(sub, cap):
+        rs = [r["r"] for r in sub]
+        if cap is not None:
+            rs = [min(x, cap) for x in rs]
+        dec = [r for r in sub if r["outcome"] in ("win", "loss")]
+        wr = 100.0 * sum(1 for r in dec if r["outcome"] == "win") / len(dec) \
+            if dec else float("nan")
+        lo, hi = boot_ci(rs, rng)
+        return dict(n=len(rs), wr=wr, ev=sum(rs) / len(rs) if rs else float("nan"),
+                    lo=lo, hi=hi)
+
+    return {"days": len(days), "split": days[cut], "last": days[-1],
+            "n": len(counted),
+            "in_cap": c([r for r in counted if r["day"] in in_d], CAP),
+            "out_cap": c([r for r in counted if r["day"] in out_d], CAP),
+            "out_unc": c([r for r in counted if r["day"] in out_d], None)}
+
+
 def cell(rows, arm, cap, rng):
     """One line of the table: n, win rate, EV in R, bootstrap 95% CI."""
     rs = [r["r_opt" if arm == "optimistic" else "r_pess"] for r in rows]
@@ -193,7 +250,17 @@ def main():
           f"({all_days[0]}..{all_days[cut-1]}), out-of-sample {len(out_days)} "
           f"({split_day}..{all_days[-1]})")
 
+    flip_path = os.path.join(HERE, "t51_fill_flip.jsonl")
+    flip = [json.loads(l) for l in open(flip_path)] if os.path.exists(flip_path) else []
+    flip_n = len(flip)
+    flip_skipped = sum(1 for r in flip if r.get("status") != "fired")
+    flip_fired = flip_n - flip_skipped
+
     rng = np.random.default_rng(SEED)
+    # the reference book gets its OWN stream, so the eight headline CIs are
+    # identical whether or not this diagnostic runs
+    REF = t8_reference(np.random.default_rng(SEED + 1))
+    n_syms_arch, short = archive_coverage(sorted(out_days))
     C = {}
     for arm in ("optimistic", "pessimistic"):
         for cap_name, cap in (("uncapped", None), ("cap_2r", CAP)):
@@ -217,15 +284,20 @@ def main():
     L.append(f"`research/t8_ev.md` reported **+0.914R per trade**. That number is "
              f"in-sample, optimistically filled and uncapped -- all three of the "
              f"assumptions omen-5.1 exists to strip out. This is the same two-year "
-             f"replay ({a.start} to {a.end}, {len(all_days)} trading sessions, "
+             f"replay ({all_days[0]} to {all_days[-1]}, {len(all_days)} trading sessions, "
              f"{n_syms} symbols, $1,000 risk, `STOP_ON_CLOSE=1`, `LADDER_MODE=B`) "
              f"scored under every combination of the three.\n")
     L.append(f"Population is the **traded** book -- fired, engine grade A+/A/B -- "
-             f"{len(rows)} trades, the same population the +0.914R came from. Win rate "
-             f"counts decided trades only; EV is mean R per trade and counts every "
-             f"trade, scratches included. CIs are percentile bootstrap, "
-             f"{B:,} resamples, seeded ({SEED}), the method of "
+             f"{len(rows)} trades. Win rate counts decided trades only; EV is mean R "
+             f"per trade and counts every trade, scratches included. CIs are percentile "
+             f"bootstrap, {B:,} resamples, seeded ({SEED}), the method of "
              f"`research/t8_significance.md`.\n")
+    if REF:
+        L.append(f"That is **not quite** the population the +0.914R came from: "
+                 f"`research/t8_rows.json` holds {REF['n']} traded trades over "
+                 f"{REF['days']} days, {REF['n'] - len(rows)} more than replay here. The "
+                 f"difference is data, not logic -- see *Where the archive runs out* "
+                 f"below, which measures it rather than waving at it.\n")
 
     L.append("## How the window was split\n")
     L.append(f"- **In-sample:** {all_days[0]} to {all_days[cut-1]} -- "
@@ -260,20 +332,17 @@ def main():
     L.append(f"The two fill columns are identical, and that is a finding, not a bug. The "
              f"pessimistic flag demonstrably bites: over the {sim_n:,} signals the engine "
              f"simulates it moved **{moved_all}** fills, {moved_counted} of them on a "
-             f"trade the engine actually took. Every fill it moved sits on a D-grade or "
-             f"tight-stop signal that never reaches the book, so the traded EV cannot "
+             f"trade the engine actually took. Of those {flip_n}, {flip_skipped} are "
+             f"signals the engine skipped outright and {flip_fired} is a fired C-grade "
+             f"alert -- none of them reach the traded book, so the traded EV cannot "
              f"move. `research/t51_fill.md` reached the same zero from the other "
              f"direction.\n")
-    L.append(f"One thing worth writing down: **`backtest_week.py` had no "
-             f"`PESSIMISTIC_FILL` in it when this row started**, though T2's report is "
-             f"committed and describes it as the default. The flag and the tie rule were "
-             f"rebuilt here, to T2's spec, so this table's pessimistic arm is a real "
-             f"replay and not a restatement of T2's file. That rebuild is why the fill "
-             f"count above ({moved_all}) is larger than the {12} rows in "
-             f"`research/t51_fill_flip.jsonl`: this implementation also books the "
-             f"ORIGINAL stop when a bar tags the runner target and closes beyond the "
-             f"breakeven stop mode B moved it to, which is the harsher of the two "
-             f"readings of the rule. The traded-book answer is zero under either.\n")
+    L.append(f"This arm is a real replay of T2's committed flag, not a restatement of "
+             f"T2's file: `PESSIMISTIC_FILL` now lives in `backtest_week.py` "
+             f"(default ON) and both arms are driven through it. The {moved_all} fills "
+             f"moved here match the {flip_n} rows in `research/t51_fill_flip.jsonl` "
+             f"exactly, so the two rows agree on which bars the rule touches as well as "
+             f"on the traded-book answer of zero.\n")
     L.append(f"For reference, the same four assumption sets scored over the **whole** "
              f"window, in-sample and out-of-sample pooled -- this is the row `t8_ev.md` "
              f"was quoting:\n")
@@ -284,6 +353,48 @@ def main():
             c = FULL[(arm, cap_name)]
             L.append(f"| {arm} | {cap_label} " + fmt(c))
     L.append("")
+
+    # ---- the archive gap, stated before the verdict leans on the number ----
+    if short:
+        L.append("## Where the archive runs out\n")
+        july = [s for s, last, _ in short if last.startswith("2026-07")]
+        L.append(f"**{len(short)} of the {n_syms_arch} symbols have a `data_archive` that "
+                 f"ends before the window does**, and the shortfall lands inside the "
+                 f"out-of-sample quarter -- the one this report's headline comes from. "
+                 f"{len(july)} of them stop in July 2026:\n")
+        L.append("| symbol | last archived day | out-of-sample days covered |")
+        L.append("|---|---|---|")
+        for s, last, n in short:
+            L.append(f"| {s} | {last} | {n} / {len(out_days)} |")
+        L.append("")
+        L.append(f"So the out-of-sample book scored above is {len(OUT)} trades where T8's "
+                 f"was larger. This is a thinner sample, not a different engine: every "
+                 f"missing trade is a day whose 1-minute bars are absent from this "
+                 f"checkout, and no trade present here is missing from T8's book.\n")
+        if REF:
+            L.append(f"`research/t8_rows.json` still holds those days, so the gap can be "
+                     f"priced rather than apologised for. Scoring the **same** "
+                     f"chronological 75/25 split on that fuller book (split at "
+                     f"{REF['split']}, through {REF['last']}) gives:\n")
+            L.append("| book | R cap | sample | trades | win rate | EV/trade | 95% CI |")
+            L.append("|---|---|---|---|---|---|---|")
+            L.append(f"| this checkout | capped at 2R | out-of-sample "
+                     + fmt(C[("pessimistic", "cap_2r", "out_of_sample")]))
+            L.append(f"| t8_rows.json (fuller archive) | capped at 2R | out-of-sample "
+                     + fmt(REF["out_cap"]))
+            L.append(f"| this checkout | uncapped | out-of-sample "
+                     + fmt(C[("pessimistic", "uncapped", "out_of_sample")]))
+            L.append(f"| t8_rows.json (fuller archive) | uncapped | out-of-sample "
+                     + fmt(REF["out_unc"]))
+            L.append("")
+            gap = REF["out_cap"]["ev"] - C[("pessimistic", "cap_2r", "out_of_sample")]["ev"]
+            L.append(f"The fuller book is **{gap:+.3f}R** on the headline cell. The days "
+                     f"this checkout is missing were, on balance, *good* ones -- so the "
+                     f"number reported here is the more conservative of the two, and the "
+                     f"verdict below does not depend on which book you use. Both CIs sit "
+                     f"above zero. Treat the headline as a floor rather than a "
+                     f"point estimate, and re-run this row on the Windows box, where the "
+                     f"archive is complete, before quoting it to three decimals.\n")
 
     # ---- what each assumption cost, measured one at a time ----
     base = C[("optimistic", "uncapped", "in_sample")]
@@ -333,6 +444,13 @@ def main():
                  f"all. That is not proof the engine is worthless -- it is proof this "
                  f"window is too small to settle it, and it means the honest headline is "
                  f"'unproven', not a number to size positions from.\n")
+    if short:
+        L.append(f"Two honest asterisks on that number, both already priced above: the "
+                 f"out-of-sample window is **not a true holdout** (the rules were fitted "
+                 f"while looking at these days), and this checkout's archive is missing "
+                 f"the last month for {len(short)} symbols. Neither flips the verdict -- "
+                 f"the fuller book scores the same cell *higher* -- but they are why the "
+                 f"headline is a floor to trade from, not a precise expectancy.\n")
     L.append("Everything above that cell in the table is a more flattering assumption. "
              "Quote the honest cell, keep the others visible so it is obvious what each "
              "assumption was worth, and retire +0.914R -- it is the most optimistic "

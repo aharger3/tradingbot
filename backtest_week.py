@@ -21,7 +21,10 @@ from pathlib import Path
 from typing import List, Optional
 
 import pandas as pd
-import yfinance as yf
+try:                          # yfinance is a settled dead end for OMEN; only the
+    import yfinance as yf     # live-fetch path below still touches it, never the
+except ModuleNotFoundError:   # data_archive replay the research rows run on.
+    yf = None
 
 from omen_bot import Candle, SignalType, TradeGrade
 from signal_runner import SignalRunner
