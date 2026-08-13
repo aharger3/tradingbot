@@ -13,11 +13,16 @@ pessimistic flip never arms an 84% re-entry: the runner rung is a scaled trade,
 and `_arm_84` has always refused those, so the entry set is identical.)
 
 `trades_total` / the two win rates / the two EVs are the TRADED book
-(`SimTrade.counted`: fired, engine grade != C) — the 1,047 trades and 55.5% of
+(`SimTrade.counted`: fired, engine grade != C) — the 1,017 trades and 55.0% of
 the "traded (engine A+/A/B)" line in research/t8_two_year.md, so the two reports
 are read against each other directly. Win rate counts decided trades only
 (scratches out of the denominator); EV is mean R per trade at $1,000 risk.
 `trades_flipped` counts those trades, and only those.
+
+`flips_change_outcome` is the strictest count in the file: traded trades
+(`counted: true`) whose win/loss/scratch label actually MOVED, not just their R.
+It is the number the row exists to produce. Zero means the optimistic
+target-fill assumption is not where the engine's edge came from.
 
 The flip file is wider on purpose: it carries every trade in the whole simulated
 book whose fill the rule moved, INCLUDING the D-grade and tight-stop signals the
@@ -128,6 +133,48 @@ def fmt(tally):
     return n, wr, ev
 
 
+def prose(n_total, n_out_traded, n_moved, traded_moved, wr_o, wr_p, ev_o, ev_p):
+    """The paragraph under the trailer. Says what the numbers mean, out loud."""
+    L = ["## What this measured", "",
+         "The stop needs a candle CLOSE beyond the level; the target is a resting limit",
+         "order, so it fills on an intrabar TOUCH. Asymmetric on purpose, and both halves",
+         "are right. The open question was the bar that does BOTH: today's book let the",
+         "target win it. `PESSIMISTIC_FILL=1` (now the default) says you cannot know, from",
+         "a 1-minute bar, whether price tagged the target before or after it collapsed",
+         "through the stop — so it books the loss at the stop, at every rung of ladder B.",
+         "The 1R scale-out takes no partial credit, and the runner books at the trade's",
+         "ORIGINAL stop rather than the breakeven stop mode B moved it to.", ""]
+    if n_out_traded == 0:
+        L += [f"**The answer is zero.** Across {n_total} traded trades, not one changed from a",
+              "win to a loss (or a loss to a win) under the pessimistic rule. Win rate and",
+              f"average R are identical in both arms to the digit ({wr_o:.1f}% and "
+              f"{ev_o:+.3f}R either way).", "",
+              "The reason is that the tie was **already** resolved as a loss, in both exit",
+              "paths, before this flag existed: `backtest_week._stop_hit` is tested first in",
+              "`_ladder_bar` and first again on the binary path. omen-5.0's own caveat said",
+              "so; this row is the measurement that proves it.", "",
+              "**So the target-fill assumption is not where the engine's edge came from.** The",
+              f"reported {ev_o:+.3f}R per trade does not shrink by a cent when you take the",
+              "most hostile possible view of same-bar fills. That leaves the honest-EV",
+              "question resting entirely on the other two inflators — in-sample fitting and",
+              "the uncapped runner — which is T4's job, not this one.", ""]
+    else:
+        L += [f"**{n_out_traded} of {n_total} traded trades change outcome** under the pessimistic",
+              f"rule: win rate {wr_o:.1f}% -> {wr_p:.1f}%, average R {ev_o:+.3f} -> {ev_p:+.3f}.",
+              "The same-bar fill assumption WAS carrying part of the reported edge; the",
+              "pessimistic arm is the number to quote.", ""]
+    L += ["## The flip file", "",
+          f"`research/t51_fill_flip.jsonl` is deliberately wider than the headline: it carries",
+          f"all {n_moved} trades in the whole simulated book whose FILL the rule moved, "
+          f"{traded_moved} of",
+          "them traded. The rest are `counted: false` — D-grade and tight-stop signals the",
+          "engine filters out but still simulates, so their R multiples (a $0.004 stop books",
+          "11R) are evidence, not headline numbers. Every row carries `status` and `counted`",
+          "so a filtered signal is never read as a traded one, and `old_outcome`/`new_outcome`",
+          "are equal on a row whose R moved but whose label did not.", ""]
+    return "\n".join(L)
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--start", default="2024-08-12")
@@ -157,8 +204,12 @@ def main():
     # numbers. The file also carries the filtered signals the rule moved.
     traded_flips = sum(1 for r in flips if r["counted"])
     n_out = sum(1 for r in flips if r["old_outcome"] != r["new_outcome"])
+    # the headline: traded book AND the win/loss label itself moved
+    n_out_traded = sum(1 for r in flips
+                       if r["counted"] and r["old_outcome"] != r["new_outcome"])
     from collections import Counter
-    print(f"fills moved: {len(flips)} (traded: {traded_flips}; outcome changed: {n_out})")
+    print(f"fills moved: {len(flips)} (traded: {traded_flips}; outcome changed: {n_out}; "
+          f"traded AND outcome changed: {n_out_traded})")
     print(Counter((r["status"], r["old_outcome"] + "->" + r["new_outcome"]) for r in flips))
     with open(OUT_JSONL, "w") as f:
         for r in flips:
@@ -171,9 +222,11 @@ def main():
           f"win_rate_optimistic: {wr_o:.1f}\n"
           f"win_rate_pessimistic: {wr_p:.1f}\n"
           f"ev_optimistic: {ev_o:.3f}\n"
-          f"ev_pessimistic: {ev_p:.3f}\n")
+          f"ev_pessimistic: {ev_p:.3f}\n"
+          f"flips_change_outcome: {n_out_traded}\n")
     with open(OUT_MD, "w") as f:
-        f.write(md)
+        f.write(md + "\n" + prose(n_o, n_out_traded, len(flips), traded_flips,
+                                  wr_o, wr_p, ev_o, ev_p))
     print(md)
     print(f"wrote {OUT_MD} and {OUT_JSONL} ({len(flips)} flips)")
 

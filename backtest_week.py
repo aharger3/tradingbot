@@ -108,6 +108,15 @@ LADDER_MODE = None if _LADDER_ENV.lower() in ("", "none", "0", "off") else _LADD
 # behaviour for the A/B in research/t4_stop_on_close.md. Default ON.
 STOP_ON_CLOSE = os.getenv("STOP_ON_CLOSE", "1") not in ("0", "false")
 
+# omen-5.1 T2: the same-bar tie. A resting limit target fills on an intrabar
+# TOUCH; a stop needs a CLOSE beyond the level. One bar can do both, and from a
+# 1-minute bar you cannot know which came first — assuming the target tagged
+# first is the most optimistic assumption in the whole backtest. Default ON:
+# a bar that touches the target AND closes beyond the stop books the LOSS, at
+# the trade's ORIGINAL stop, at every rung of ladder B. The 1R scale-out takes
+# no partial credit. PESSIMISTIC_FILL=0 reproduces the old behaviour exactly so
+# both arms backtest (research/t51_fill.md, research/t51_ev_honest.md).
+PESSIMISTIC_FILL = os.getenv("PESSIMISTIC_FILL", "1") not in ("0", "false")
 
 
 @dataclass
@@ -232,7 +241,10 @@ def _ladder_bar(t: "SimTrade", c: Candle, i: int, open_trades: list,
     """F1 ladder position management for one bar. Conservative: stop wins ties."""
     long = t.direction == "call"
     if not t.scaled:
-        # T4(a): the close is the trigger; the fill is still t.stop
+        # T4(a): the close is the trigger; the fill is still t.stop.
+        # omen-5.1 T2: the stop is tested BEFORE the 1R scale rung, so a bar that
+        # tags the scale level and closes beyond the stop already books the full
+        # loss with no partial credit — pessimistic here without a flag.
         if _stop_hit(c, t.stop, long):
             t.outcome, t.exit_price, t.exit_idx = "loss", t.stop, i
             open_trades.remove(t)
@@ -244,9 +256,14 @@ def _ladder_bar(t: "SimTrade", c: Candle, i: int, open_trades: list,
                 t.runner_stop = t.entry  # accelerator: BE after first scale
         return
     stop_lv = t.runner_stop if (LADDER_MODE == "B" and t.runner_stop) else t.stop
+    hit_target = (c.high >= t.runner_target) if long else (c.low <= t.runner_target)
     if _stop_hit(c, stop_lv, long):     # T4(a): close-based on the runner too
-        t.exit_price, t.exit_idx = stop_lv, i
-    elif (c.high >= t.runner_target) if long else (c.low <= t.runner_target):
+        # omen-5.1 T2: the runner rung's same-bar tie. A bar that tagged the
+        # runner target and STILL closed beyond the stop books at the trade's
+        # ORIGINAL stop, not the breakeven stop mode B moved it to.
+        t.exit_price = t.stop if (PESSIMISTIC_FILL and hit_target) else stop_lv
+        t.exit_idx = i
+    elif hit_target:
         t.exit_price, t.exit_idx = t.runner_target, i
     else:
         return

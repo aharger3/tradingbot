@@ -1,5 +1,12 @@
 # T8 -- expectancy per trade, and what carries it
 
+> **Superseded as the headline (omen-5.1 T4, 2026-08-13).** The +0.914R below is
+> the most optimistic corner of the assumption space: in-sample, optimistically
+> filled, and uncapped. OMEN's official expectancy is now the pessimistic-fill,
+> 2R-capped, out-of-sample cell in `research/t51_ev_honest.md` — **+0.370R**,
+> 95% CI [+0.223, +0.517], 319 trades. The bucket splits below still stand; the
+> headline number does not.
+
 Every number is R at $1,000 risk (`pnl / 1000`). Win rate counts decided trades only; EV counts every trade including scratches.
 
 ## Against the previous backtest
