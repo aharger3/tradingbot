@@ -1,0 +1,802 @@
+[
+  {
+    "card_id": "BT000",
+    "symbol": "AMD",
+    "day": "2025-11-21",
+    "entry_i": 25,
+    "direction": "put",
+    "grade": "A+"
+  },
+  {
+    "card_id": "BT001",
+    "symbol": "AMD",
+    "day": "2025-11-21",
+    "entry_i": 25,
+    "direction": "put",
+    "grade": "A+"
+  },
+  {
+    "card_id": "BT002",
+    "symbol": "META",
+    "day": "2026-08-11",
+    "entry_i": 25,
+    "direction": "call",
+    "grade": "A+"
+  },
+  {
+    "card_id": "BT003",
+    "symbol": "CRM",
+    "day": "2026-04-09",
+    "entry_i": 25,
+    "direction": "put",
+    "grade": "A"
+  },
+  {
+    "card_id": "BT004",
+    "symbol": "MSFT",
+    "day": "2026-05-29",
+    "entry_i": 25,
+    "direction": "call",
+    "grade": "A"
+  },
+  {
+    "card_id": "BT005",
+    "symbol": "MSFT",
+    "day": "2026-05-29",
+    "entry_i": 25,
+    "direction": "call",
+    "grade": "A"
+  },
+  {
+    "card_id": "BT006",
+    "symbol": "NVDA",
+    "day": "2026-06-29",
+    "entry_i": 25,
+    "direction": "put",
+    "grade": "A"
+  },
+  {
+    "card_id": "BT007",
+    "symbol": "TSLA",
+    "day": "2026-01-14",
+    "entry_i": 25,
+    "direction": "put",
+    "grade": "A"
+  },
+  {
+    "card_id": "BT008",
+    "symbol": "TSLA",
+    "day": "2026-05-19",
+    "entry_i": 19,
+    "direction": "put",
+    "grade": "A"
+  },
+  {
+    "card_id": "BT009",
+    "symbol": "TSLA",
+    "day": "2026-05-19",
+    "entry_i": 25,
+    "direction": "put",
+    "grade": "A"
+  },
+  {
+    "card_id": "BT010",
+    "symbol": "AAPL",
+    "day": "2025-09-16",
+    "entry_i": 19,
+    "direction": "call",
+    "grade": "B"
+  },
+  {
+    "card_id": "BT011",
+    "symbol": "AAPL",
+    "day": "2026-01-07",
+    "entry_i": 12,
+    "direction": "put",
+    "grade": "B"
+  },
+  {
+    "card_id": "BT012",
+    "symbol": "AAPL",
+    "day": "2026-01-20",
+    "entry_i": 22,
+    "direction": "put",
+    "grade": "B"
+  },
+  {
+    "card_id": "BT013",
+    "symbol": "AAPL",
+    "day": "2026-02-19",
+    "entry_i": 25,
+    "direction": "call",
+    "grade": "B"
+  },
+  {
+    "card_id": "BT014",
+    "symbol": "AAPL",
+    "day": "2026-05-21",
+    "entry_i": 24,
+    "direction": "call",
+    "grade": "B"
+  },
+  {
+    "card_id": "BT015",
+    "symbol": "AAPL",
+    "day": "2026-06-09",
+    "entry_i": 9,
+    "direction": "put",
+    "grade": "B"
+  },
+  {
+    "card_id": "BT016",
+    "symbol": "AAPL",
+    "day": "2026-06-10",
+    "entry_i": 25,
+    "direction": "put",
+    "grade": "B"
+  },
+  {
+    "card_id": "BT017",
+    "symbol": "AAPL",
+    "day": "2026-06-25",
+    "entry_i": 25,
+    "direction": "put",
+    "grade": "B"
+  },
+  {
+    "card_id": "BT018",
+    "symbol": "AAPL",
+    "day": "2026-06-30",
+    "entry_i": 15,
+    "direction": "call",
+    "grade": "B"
+  },
+  {
+    "card_id": "BT019",
+    "symbol": "AAPL",
+    "day": "2026-07-06",
+    "entry_i": 12,
+    "direction": "call",
+    "grade": "B"
+  },
+  {
+    "card_id": "BT020",
+    "symbol": "AAPL",
+    "day": "2026-08-03",
+    "entry_i": 6,
+    "direction": "put",
+    "grade": "B"
+  },
+  {
+    "card_id": "BT021",
+    "symbol": "AMD",
+    "day": "2025-08-21",
+    "entry_i": 21,
+    "direction": "put",
+    "grade": "B"
+  },
+  {
+    "card_id": "BT022",
+    "symbol": "AMD",
+    "day": "2025-09-08",
+    "entry_i": 25,
+    "direction": "put",
+    "grade": "B"
+  },
+  {
+    "card_id": "BT023",
+    "symbol": "AMD",
+    "day": "2025-10-06",
+    "entry_i": 19,
+    "direction": "put",
+    "grade": "B"
+  },
+  {
+    "card_id": "BT024",
+    "symbol": "AMD",
+    "day": "2025-10-08",
+    "entry_i": 20,
+    "direction": "call",
+    "grade": "B"
+  },
+  {
+    "card_id": "BT025",
+    "symbol": "AMD",
+    "day": "2025-11-07",
+    "entry_i": 25,
+    "direction": "put",
+    "grade": "B"
+  },
+  {
+    "card_id": "BT026",
+    "symbol": "AMD",
+    "day": "2025-11-18",
+    "entry_i": 25,
+    "direction": "put",
+    "grade": "B"
+  },
+  {
+    "card_id": "BT027",
+    "symbol": "AMD",
+    "day": "2025-11-20",
+    "entry_i": 18,
+    "direction": "put",
+    "grade": "B"
+  },
+  {
+    "card_id": "BT028",
+    "symbol": "AMD",
+    "day": "2025-11-21",
+    "entry_i": 12,
+    "direction": "put",
+    "grade": "B"
+  },
+  {
+    "card_id": "BT029",
+    "symbol": "AMD",
+    "day": "2025-12-01",
+    "entry_i": 14,
+    "direction": "call",
+    "grade": "B"
+  },
+  {
+    "card_id": "BT030",
+    "symbol": "AMD",
+    "day": "2025-12-17",
+    "entry_i": 9,
+    "direction": "put",
+    "grade": "B"
+  },
+  {
+    "card_id": "BT031",
+    "symbol": "AMD",
+    "day": "2026-01-13",
+    "entry_i": 23,
+    "direction": "call",
+    "grade": "B"
+  },
+  {
+    "card_id": "BT032",
+    "symbol": "AMD",
+    "day": "2026-01-20",
+    "entry_i": 25,
+    "direction": "call",
+    "grade": "B"
+  },
+  {
+    "card_id": "BT033",
+    "symbol": "AMD",
+    "day": "2026-01-28",
+    "entry_i": 25,
+    "direction": "put",
+    "grade": "B"
+  },
+  {
+    "card_id": "BT034",
+    "symbol": "AMD",
+    "day": "2026-02-20",
+    "entry_i": 25,
+    "direction": "call",
+    "grade": "B"
+  },
+  {
+    "card_id": "BT035",
+    "symbol": "AMD",
+    "day": "2026-03-06",
+    "entry_i": 25,
+    "direction": "call",
+    "grade": "B"
+  },
+  {
+    "card_id": "BT036",
+    "symbol": "AMD",
+    "day": "2026-03-19",
+    "entry_i": 25,
+    "direction": "call",
+    "grade": "B"
+  },
+  {
+    "card_id": "BT037",
+    "symbol": "AMD",
+    "day": "2026-03-24",
+    "entry_i": 25,
+    "direction": "call",
+    "grade": "B"
+  },
+  {
+    "card_id": "BT038",
+    "symbol": "AMD",
+    "day": "2026-04-02",
+    "entry_i": 25,
+    "direction": "call",
+    "grade": "B"
+  },
+  {
+    "card_id": "BT039",
+    "symbol": "AMD",
+    "day": "2026-04-09",
+    "entry_i": 25,
+    "direction": "call",
+    "grade": "B"
+  },
+  {
+    "card_id": "BT040",
+    "symbol": "AMD",
+    "day": "2026-04-16",
+    "entry_i": 10,
+    "direction": "call",
+    "grade": "B"
+  },
+  {
+    "card_id": "BT041",
+    "symbol": "AMD",
+    "day": "2026-04-20",
+    "entry_i": 16,
+    "direction": "call",
+    "grade": "B"
+  },
+  {
+    "card_id": "BT042",
+    "symbol": "AMD",
+    "day": "2026-05-12",
+    "entry_i": 7,
+    "direction": "call",
+    "grade": "B"
+  },
+  {
+    "card_id": "BT043",
+    "symbol": "AMD",
+    "day": "2026-05-13",
+    "entry_i": 11,
+    "direction": "put",
+    "grade": "B"
+  },
+  {
+    "card_id": "BT044",
+    "symbol": "AMD",
+    "day": "2026-05-26",
+    "entry_i": 21,
+    "direction": "call",
+    "grade": "B"
+  },
+  {
+    "card_id": "BT045",
+    "symbol": "AMD",
+    "day": "2026-06-05",
+    "entry_i": 25,
+    "direction": "put",
+    "grade": "B"
+  },
+  {
+    "card_id": "BT046",
+    "symbol": "AMD",
+    "day": "2026-06-09",
+    "entry_i": 25,
+    "direction": "put",
+    "grade": "B"
+  },
+  {
+    "card_id": "BT047",
+    "symbol": "AMD",
+    "day": "2026-06-18",
+    "entry_i": 25,
+    "direction": "put",
+    "grade": "B"
+  },
+  {
+    "card_id": "BT048",
+    "symbol": "AMD",
+    "day": "2026-06-24",
+    "entry_i": 17,
+    "direction": "put",
+    "grade": "B"
+  },
+  {
+    "card_id": "BT049",
+    "symbol": "AMD",
+    "day": "2026-06-30",
+    "entry_i": 25,
+    "direction": "call",
+    "grade": "B"
+  },
+  {
+    "card_id": "BT050",
+    "symbol": "AMD",
+    "day": "2026-07-10",
+    "entry_i": 25,
+    "direction": "call",
+    "grade": "B"
+  },
+  {
+    "card_id": "BT051",
+    "symbol": "AMD",
+    "day": "2026-07-14",
+    "entry_i": 25,
+    "direction": "put",
+    "grade": "B"
+  },
+  {
+    "card_id": "BT052",
+    "symbol": "AMD",
+    "day": "2026-07-20",
+    "entry_i": 25,
+    "direction": "put",
+    "grade": "B"
+  },
+  {
+    "card_id": "BT053",
+    "symbol": "AMD",
+    "day": "2026-07-22",
+    "entry_i": 25,
+    "direction": "call",
+    "grade": "B"
+  },
+  {
+    "card_id": "BT054",
+    "symbol": "AMD",
+    "day": "2026-07-23",
+    "entry_i": 25,
+    "direction": "call",
+    "grade": "B"
+  },
+  {
+    "card_id": "BT055",
+    "symbol": "AMD",
+    "day": "2026-08-07",
+    "entry_i": 15,
+    "direction": "put",
+    "grade": "B"
+  },
+  {
+    "card_id": "BT056",
+    "symbol": "AMD",
+    "day": "2026-08-07",
+    "entry_i": 25,
+    "direction": "put",
+    "grade": "B"
+  },
+  {
+    "card_id": "BT057",
+    "symbol": "AMD",
+    "day": "2026-08-10",
+    "entry_i": 25,
+    "direction": "put",
+    "grade": "B"
+  },
+  {
+    "card_id": "BT058",
+    "symbol": "AMZN",
+    "day": "2025-08-27",
+    "entry_i": 16,
+    "direction": "call",
+    "grade": "B"
+  },
+  {
+    "card_id": "BT059",
+    "symbol": "AMZN",
+    "day": "2025-11-17",
+    "entry_i": 12,
+    "direction": "put",
+    "grade": "B"
+  },
+  {
+    "card_id": "BT060",
+    "symbol": "AMZN",
+    "day": "2025-11-21",
+    "entry_i": 15,
+    "direction": "put",
+    "grade": "B"
+  },
+  {
+    "card_id": "BT061",
+    "symbol": "AMZN",
+    "day": "2026-02-06",
+    "entry_i": 25,
+    "direction": "put",
+    "grade": "B"
+  },
+  {
+    "card_id": "BT062",
+    "symbol": "AMZN",
+    "day": "2026-02-11",
+    "entry_i": 8,
+    "direction": "put",
+    "grade": "B"
+  },
+  {
+    "card_id": "BT063",
+    "symbol": "AMZN",
+    "day": "2026-02-12",
+    "entry_i": 20,
+    "direction": "put",
+    "grade": "B"
+  },
+  {
+    "card_id": "BT064",
+    "symbol": "AMZN",
+    "day": "2026-03-12",
+    "entry_i": 18,
+    "direction": "call",
+    "grade": "B"
+  },
+  {
+    "card_id": "BT065",
+    "symbol": "AMZN",
+    "day": "2026-03-20",
+    "entry_i": 16,
+    "direction": "put",
+    "grade": "B"
+  },
+  {
+    "card_id": "BT066",
+    "symbol": "AMZN",
+    "day": "2026-04-28",
+    "entry_i": 18,
+    "direction": "call",
+    "grade": "B"
+  },
+  {
+    "card_id": "BT067",
+    "symbol": "AMZN",
+    "day": "2026-05-04",
+    "entry_i": 25,
+    "direction": "call",
+    "grade": "B"
+  },
+  {
+    "card_id": "BT068",
+    "symbol": "AMZN",
+    "day": "2026-05-12",
+    "entry_i": 13,
+    "direction": "put",
+    "grade": "B"
+  },
+  {
+    "card_id": "BT069",
+    "symbol": "AMZN",
+    "day": "2026-05-19",
+    "entry_i": 19,
+    "direction": "put",
+    "grade": "B"
+  },
+  {
+    "card_id": "BT070",
+    "symbol": "AMZN",
+    "day": "2026-06-05",
+    "entry_i": 20,
+    "direction": "put",
+    "grade": "B"
+  },
+  {
+    "card_id": "BT071",
+    "symbol": "AMZN",
+    "day": "2026-07-15",
+    "entry_i": 20,
+    "direction": "call",
+    "grade": "B"
+  },
+  {
+    "card_id": "BT072",
+    "symbol": "AVGO",
+    "day": "2025-08-25",
+    "entry_i": 8,
+    "direction": "call",
+    "grade": "B"
+  },
+  {
+    "card_id": "BT073",
+    "symbol": "AVGO",
+    "day": "2025-09-25",
+    "entry_i": 25,
+    "direction": "put",
+    "grade": "B"
+  },
+  {
+    "card_id": "BT074",
+    "symbol": "AVGO",
+    "day": "2025-11-20",
+    "entry_i": 25,
+    "direction": "call",
+    "grade": "B"
+  },
+  {
+    "card_id": "BT075",
+    "symbol": "AVGO",
+    "day": "2025-11-21",
+    "entry_i": 16,
+    "direction": "put",
+    "grade": "B"
+  },
+  {
+    "card_id": "BT076",
+    "symbol": "AVGO",
+    "day": "2025-12-09",
+    "entry_i": 25,
+    "direction": "call",
+    "grade": "B"
+  },
+  {
+    "card_id": "BT077",
+    "symbol": "AVGO",
+    "day": "2026-01-06",
+    "entry_i": 8,
+    "direction": "put",
+    "grade": "B"
+  },
+  {
+    "card_id": "BT078",
+    "symbol": "AVGO",
+    "day": "2026-01-07",
+    "entry_i": 25,
+    "direction": "put",
+    "grade": "B"
+  },
+  {
+    "card_id": "BT079",
+    "symbol": "AVGO",
+    "day": "2026-01-08",
+    "entry_i": 8,
+    "direction": "put",
+    "grade": "B"
+  },
+  {
+    "card_id": "BT080",
+    "symbol": "AAPL",
+    "day": "2025-08-26",
+    "entry_i": 23,
+    "direction": "call",
+    "grade": "C"
+  },
+  {
+    "card_id": "BT081",
+    "symbol": "AAPL",
+    "day": "2026-01-02",
+    "entry_i": 25,
+    "direction": "put",
+    "grade": "C"
+  },
+  {
+    "card_id": "BT082",
+    "symbol": "AAPL",
+    "day": "2026-03-02",
+    "entry_i": 25,
+    "direction": "put",
+    "grade": "C"
+  },
+  {
+    "card_id": "BT083",
+    "symbol": "AAPL",
+    "day": "2026-05-26",
+    "entry_i": 25,
+    "direction": "call",
+    "grade": "C"
+  },
+  {
+    "card_id": "BT084",
+    "symbol": "AAPL",
+    "day": "2026-06-25",
+    "entry_i": 25,
+    "direction": "put",
+    "grade": "C"
+  },
+  {
+    "card_id": "BT085",
+    "symbol": "AAPL",
+    "day": "2026-07-07",
+    "entry_i": 25,
+    "direction": "call",
+    "grade": "C"
+  },
+  {
+    "card_id": "BT086",
+    "symbol": "AAPL",
+    "day": "2026-07-16",
+    "entry_i": 22,
+    "direction": "call",
+    "grade": "C"
+  },
+  {
+    "card_id": "BT087",
+    "symbol": "AAPL",
+    "day": "2026-07-17",
+    "entry_i": 25,
+    "direction": "call",
+    "grade": "C"
+  },
+  {
+    "card_id": "BT088",
+    "symbol": "AMD",
+    "day": "2025-08-19",
+    "entry_i": 25,
+    "direction": "call",
+    "grade": "C"
+  },
+  {
+    "card_id": "BT089",
+    "symbol": "AMD",
+    "day": "2025-10-16",
+    "entry_i": 25,
+    "direction": "call",
+    "grade": "C"
+  },
+  {
+    "card_id": "BT090",
+    "symbol": "AMD",
+    "day": "2025-10-29",
+    "entry_i": 25,
+    "direction": "call",
+    "grade": "C"
+  },
+  {
+    "card_id": "BT091",
+    "symbol": "AMD",
+    "day": "2025-10-30",
+    "entry_i": 25,
+    "direction": "call",
+    "grade": "C"
+  },
+  {
+    "card_id": "BT092",
+    "symbol": "AMD",
+    "day": "2025-11-05",
+    "entry_i": 25,
+    "direction": "put",
+    "grade": "C"
+  },
+  {
+    "card_id": "BT093",
+    "symbol": "AMD",
+    "day": "2025-11-14",
+    "entry_i": 25,
+    "direction": "put",
+    "grade": "C"
+  },
+  {
+    "card_id": "BT094",
+    "symbol": "AMD",
+    "day": "2025-11-14",
+    "entry_i": 25,
+    "direction": "put",
+    "grade": "C"
+  },
+  {
+    "card_id": "BT095",
+    "symbol": "AMD",
+    "day": "2025-11-21",
+    "entry_i": 25,
+    "direction": "put",
+    "grade": "C"
+  },
+  {
+    "card_id": "BT096",
+    "symbol": "AMD",
+    "day": "2025-12-01",
+    "entry_i": 25,
+    "direction": "call",
+    "grade": "C"
+  },
+  {
+    "card_id": "BT097",
+    "symbol": "AMD",
+    "day": "2025-12-17",
+    "entry_i": 25,
+    "direction": "put",
+    "grade": "C"
+  },
+  {
+    "card_id": "BT098",
+    "symbol": "AMD",
+    "day": "2025-12-17",
+    "entry_i": 25,
+    "direction": "put",
+    "grade": "C"
+  },
+  {
+    "card_id": "BT099",
+    "symbol": "AMD",
+    "day": "2026-01-02",
+    "entry_i": 25,
+    "direction": "put",
+    "grade": "C"
+  }
+]
