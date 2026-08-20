@@ -1,0 +1,87 @@
+{"type":"day","card_id":"TSLA_2026-05-14","symbol":"TSLA","date":"2026-05-14","grade":"none","day_type":"","reason_none":"","n_trades":0,"notes":""}
+{"type":"day","card_id":"TSLA_2026-05-15","symbol":"TSLA","date":"2026-05-15","grade":"none","day_type":"","reason_none":"","n_trades":0,"notes":""}
+{"type":"day","card_id":"TSLA_2026-05-18","symbol":"TSLA","date":"2026-05-18","grade":"none","day_type":"","reason_none":"","n_trades":0,"notes":""}
+{"type":"day","card_id":"TSLA_2026-05-19","symbol":"TSLA","date":"2026-05-19","grade":"S","day_type":"","reason_none":"","n_trades":2,"notes":""}
+{"type":"trade","card_id":"TSLA_2026-05-19","symbol":"TSLA","date":"2026-05-19","trade_no":1,"side":"S","source":"taken","setup":"BR","entry_i":19,"entry_t":"09:49:00","entry_p":400.9941,"exit_i":24,"exit_t":"09:54:00","exit_p":402.0953,"stop_i":19,"stop_t":"09:49:00","stop_p":402.1641,"r_multiple":-0.94}
+{"type":"trade","card_id":"TSLA_2026-05-19","symbol":"TSLA","date":"2026-05-19","trade_no":2,"side":"S","source":"taken","setup":"84","entry_i":28,"entry_t":"09:58:00","entry_p":400.9253,"exit_i":29,"exit_t":"09:59:00","exit_p":398.8606,"stop_i":30,"stop_t":"10:00:00","stop_p":402.2329,"r_multiple":1.58}
+{"type":"day","card_id":"TSLA_2026-05-20","symbol":"TSLA","date":"2026-05-20","grade":"none","day_type":"","reason_none":"","n_trades":0,"notes":""}
+{"type":"day","card_id":"TSLA_2026-05-21","symbol":"TSLA","date":"2026-05-21","grade":"S","day_type":"","reason_none":"","n_trades":1,"notes":""}
+{"type":"trade","card_id":"TSLA_2026-05-21","symbol":"TSLA","date":"2026-05-21","trade_no":1,"side":"S","source":"taken","setup":"BR","entry_i":25,"entry_t":"09:55:00","entry_p":419.5944,"exit_i":28,"exit_t":"09:58:00","exit_p":418.1068,"stop_i":24,"stop_t":"09:54:00","stop_p":421.1647,"r_multiple":0.95}
+{"type":"day","card_id":"TSLA_2026-05-22","symbol":"TSLA","date":"2026-05-22","grade":"none","day_type":"","reason_none":"","n_trades":0,"notes":""}
+{"type":"day","card_id":"TSLA_2026-05-26","symbol":"TSLA","date":"2026-05-26","grade":"none","day_type":"","reason_none":"","n_trades":0,"notes":""}
+{"type":"day","card_id":"TSLA_2026-05-27","symbol":"TSLA","date":"2026-05-27","grade":"A","day_type":"","reason_none":"","n_trades":1,"notes":"as candle forming not LOD"}
+{"type":"trade","card_id":"TSLA_2026-05-27","symbol":"TSLA","date":"2026-05-27","trade_no":1,"side":"S","source":"taken","setup":"BR","entry_i":13,"entry_t":"09:43:00","entry_p":440.2974,"exit_i":16,"exit_t":"09:46:00","exit_p":438.8245,"stop_i":3,"stop_t":"09:33:00","stop_p":441.2548,"r_multiple":1.54}
+{"type":"day","card_id":"TSLA_2026-05-28","symbol":"TSLA","date":"2026-05-28","grade":"none","day_type":"","reason_none":"","n_trades":0,"notes":""}
+{"type":"day","card_id":"TSLA_2026-05-29","symbol":"TSLA","date":"2026-05-29","grade":"none","day_type":"","reason_none":"missed it","n_trades":0,"notes":""}
+{"type":"day","card_id":"TSLA_2026-06-01","symbol":"TSLA","date":"2026-06-01","grade":"none","day_type":"trend","reason_none":"missed it","n_trades":0,"notes":""}
+{"type":"day","card_id":"TSLA_2026-06-02","symbol":"TSLA","date":"2026-06-02","grade":"none","day_type":"trend","reason_none":"missed it","n_trades":0,"notes":""}
+{"type":"day","card_id":"TSLA_2026-06-03","symbol":"TSLA","date":"2026-06-03","grade":"S","day_type":"","reason_none":"","n_trades":1,"notes":""}
+{"type":"trade","card_id":"TSLA_2026-06-03","symbol":"TSLA","date":"2026-06-03","trade_no":1,"side":"L","source":"taken","setup":"BR+OCR","entry_i":20,"entry_t":"09:50:00","entry_p":422.7714,"exit_i":27,"exit_t":"09:57:00","exit_p":425.4611,"stop_i":20,"stop_t":"09:50:00","stop_p":421.2512,"r_multiple":1.77}
+{"type":"day","card_id":"TSLA_2026-06-04","symbol":"TSLA","date":"2026-06-04","grade":"A","day_type":"","reason_none":"","n_trades":1,"notes":""}
+{"type":"trade","card_id":"TSLA_2026-06-04","symbol":"TSLA","date":"2026-06-04","trade_no":1,"side":"L","source":"taken","setup":"","entry_i":6,"entry_t":"09:36:00","entry_p":424.3409,"exit_i":8,"exit_t":"09:38:00","exit_p":426.35,"stop_i":8,"stop_t":"09:38:00","stop_p":422.8797,"r_multiple":1.37}
+{"type":"day","card_id":"TSLA_2026-06-05","symbol":"TSLA","date":"2026-06-05","grade":"none","day_type":"","reason_none":"missed it","n_trades":0,"notes":""}
+{"type":"day","card_id":"TSLA_2026-06-08","symbol":"TSLA","date":"2026-06-08","grade":"S","day_type":"","reason_none":"","n_trades":1,"notes":""}
+{"type":"trade","card_id":"TSLA_2026-06-08","symbol":"TSLA","date":"2026-06-08","trade_no":1,"side":"L","source":"taken","setup":"BR","entry_i":28,"entry_t":"09:58:00","entry_p":400.9394,"exit_i":32,"exit_t":"10:02:00","exit_p":403.3929,"stop_i":28,"stop_t":"09:58:00","stop_p":399.5129,"r_multiple":1.72}
+{"type":"day","card_id":"TSLA_2026-06-09","symbol":"TSLA","date":"2026-06-09","grade":"A","day_type":"","reason_none":"","n_trades":1,"notes":""}
+{"type":"trade","card_id":"TSLA_2026-06-09","symbol":"TSLA","date":"2026-06-09","trade_no":1,"side":"S","source":"taken","setup":"","entry_i":58,"entry_t":"10:28:00","entry_p":407.5841,"exit_i":75,"exit_t":"10:45:00","exit_p":405.6986,"stop_i":48,"stop_t":"10:18:00","stop_p":408.7749,"r_multiple":1.58}
+{"type":"day","card_id":"TSLA_2026-06-10","symbol":"TSLA","date":"2026-06-10","grade":"S","day_type":"","reason_none":"","n_trades":1,"notes":""}
+{"type":"trade","card_id":"TSLA_2026-06-10","symbol":"TSLA","date":"2026-06-10","trade_no":1,"side":"L","source":"taken","setup":"BR","entry_i":12,"entry_t":"09:42:00","entry_p":394.6712,"exit_i":21,"exit_t":"09:51:00","exit_p":393.8397,"stop_i":18,"stop_t":"09:48:00","stop_p":393.6885,"r_multiple":-0.85}
+{"type":"day","card_id":"TSLA_2026-06-11","symbol":"TSLA","date":"2026-06-11","grade":"A","day_type":"","reason_none":"","n_trades":1,"notes":""}
+{"type":"trade","card_id":"TSLA_2026-06-11","symbol":"TSLA","date":"2026-06-11","trade_no":1,"side":"S","source":"taken","setup":"BR+OCR","entry_i":14,"entry_t":"09:44:00","entry_p":382.3058,"exit_i":15,"exit_t":"09:45:00","exit_p":383.3836,"stop_i":14,"stop_t":"09:44:00","stop_p":383.3238,"r_multiple":-1.06}
+{"type":"day","card_id":"TSLA_2026-06-12","symbol":"TSLA","date":"2026-06-12","grade":"A","day_type":"","reason_none":"","n_trades":1,"notes":"no displacement"}
+{"type":"trade","card_id":"TSLA_2026-06-12","symbol":"TSLA","date":"2026-06-12","trade_no":1,"side":"S","source":"taken","setup":"BR","entry_i":17,"entry_t":"09:47:00","entry_p":396.3781,"exit_i":null,"exit_t":null,"exit_p":null,"stop_i":17,"stop_t":"09:47:00","stop_p":397.5527,"r_multiple":null}
+{"type":"day","card_id":"TSLA_2026-06-15","symbol":"TSLA","date":"2026-06-15","grade":"none","day_type":"","reason_none":"","n_trades":0,"notes":""}
+{"type":"day","card_id":"TSLA_2026-06-16","symbol":"TSLA","date":"2026-06-16","grade":"none","day_type":"","reason_none":"","n_trades":0,"notes":""}
+{"type":"day","card_id":"TSLA_2026-06-17","symbol":"TSLA","date":"2026-06-17","grade":"none","day_type":"","reason_none":"","n_trades":0,"notes":""}
+{"type":"day","card_id":"TSLA_2026-06-18","symbol":"TSLA","date":"2026-06-18","grade":"none","day_type":"","reason_none":"","n_trades":0,"notes":""}
+{"type":"day","card_id":"TSLA_2026-06-22","symbol":"TSLA","date":"2026-06-22","grade":"S","day_type":"","reason_none":"","n_trades":1,"notes":""}
+{"type":"trade","card_id":"TSLA_2026-06-22","symbol":"TSLA","date":"2026-06-22","trade_no":1,"side":"L","source":"taken","setup":"BR+OCR","entry_i":12,"entry_t":"09:42:00","entry_p":400.8259,"exit_i":14,"exit_t":"09:44:00","exit_p":402.795,"stop_i":12,"stop_t":"09:42:00","stop_p":398.9975,"r_multiple":1.08}
+{"type":"day","card_id":"TSLA_2026-06-23","symbol":"TSLA","date":"2026-06-23","grade":"none","day_type":"chop","reason_none":"","n_trades":0,"notes":""}
+{"type":"day","card_id":"TSLA_2026-06-24","symbol":"TSLA","date":"2026-06-24","grade":"none","day_type":"chop","reason_none":"","n_trades":0,"notes":""}
+{"type":"day","card_id":"TSLA_2026-06-25","symbol":"TSLA","date":"2026-06-25","grade":"none","day_type":"chop","reason_none":"","n_trades":0,"notes":""}
+{"type":"day","card_id":"TSLA_2026-06-26","symbol":"TSLA","date":"2026-06-26","grade":"A","day_type":"","reason_none":"","n_trades":1,"notes":"not as clean PA"}
+{"type":"trade","card_id":"TSLA_2026-06-26","symbol":"TSLA","date":"2026-06-26","trade_no":1,"side":"L","source":"taken","setup":"BR","entry_i":19,"entry_t":"09:49:00","entry_p":372.4825,"exit_i":26,"exit_t":"09:56:00","exit_p":373.9562,"stop_i":20,"stop_t":"09:50:00","stop_p":371.3597,"r_multiple":1.31}
+{"type":"day","card_id":"TSLA_2026-06-29","symbol":"TSLA","date":"2026-06-29","grade":"S","day_type":"","reason_none":"","n_trades":1,"notes":""}
+{"type":"trade","card_id":"TSLA_2026-06-29","symbol":"TSLA","date":"2026-06-29","trade_no":1,"side":"L","source":"taken","setup":"BR","entry_i":7,"entry_t":"09:37:00","entry_p":385.5885,"exit_i":10,"exit_t":"09:40:00","exit_p":389.6311,"stop_i":6,"stop_t":"09:36:00","stop_p":384.1286,"r_multiple":2.77}
+{"type":"day","card_id":"TSLA_2026-06-30","symbol":"TSLA","date":"2026-06-30","grade":"A","day_type":"","reason_none":"","n_trades":1,"notes":""}
+{"type":"trade","card_id":"TSLA_2026-06-30","symbol":"TSLA","date":"2026-06-30","trade_no":1,"side":"L","source":"taken","setup":"BR+OCR","entry_i":16,"entry_t":"09:46:00","entry_p":410.6574,"exit_i":21,"exit_t":"09:51:00","exit_p":412.463,"stop_i":16,"stop_t":"09:46:00","stop_p":409.2279,"r_multiple":1.26}
+{"type":"day","card_id":"TSLA_2026-07-01","symbol":"TSLA","date":"2026-07-01","grade":"none","day_type":"","reason_none":"","n_trades":0,"notes":""}
+{"type":"day","card_id":"TSLA_2026-07-02","symbol":"TSLA","date":"2026-07-02","grade":"none","day_type":"trend","reason_none":"","n_trades":0,"notes":""}
+{"type":"day","card_id":"TSLA_2026-07-06","symbol":"TSLA","date":"2026-07-06","grade":"none","day_type":"","reason_none":"","n_trades":0,"notes":""}
+{"type":"day","card_id":"TSLA_2026-07-07","symbol":"TSLA","date":"2026-07-07","grade":"none","day_type":"chop","reason_none":"","n_trades":0,"notes":""}
+{"type":"day","card_id":"TSLA_2026-07-08","symbol":"TSLA","date":"2026-07-08","grade":"none","day_type":"chop","reason_none":"","n_trades":0,"notes":""}
+{"type":"day","card_id":"TSLA_2026-07-09","symbol":"TSLA","date":"2026-07-09","grade":"A","day_type":"","reason_none":"","n_trades":2,"notes":""}
+{"type":"trade","card_id":"TSLA_2026-07-09","symbol":"TSLA","date":"2026-07-09","trade_no":1,"side":"L","source":"taken","setup":"BR+OCR","entry_i":16,"entry_t":"09:46:00","entry_p":395.6601,"exit_i":19,"exit_t":"09:49:00","exit_p":394.5335,"stop_i":16,"stop_t":"09:46:00","stop_p":394.4799,"r_multiple":-0.95}
+{"type":"trade","card_id":"TSLA_2026-07-09","symbol":"TSLA","date":"2026-07-09","trade_no":2,"side":"L","source":"taken","setup":"84","entry_i":27,"entry_t":"09:57:00","entry_p":395.4455,"exit_i":35,"exit_t":"10:05:00","exit_p":398.4498,"stop_i":30,"stop_t":"10:00:00","stop_p":394.5335,"r_multiple":3.29}
+{"type":"day","card_id":"TSLA_2026-07-10","symbol":"TSLA","date":"2026-07-10","grade":"C","day_type":"","reason_none":"","n_trades":2,"notes":""}
+{"type":"trade","card_id":"TSLA_2026-07-10","symbol":"TSLA","date":"2026-07-10","trade_no":1,"side":"S","source":"taken","setup":"OCR","entry_i":14,"entry_t":"09:44:00","entry_p":407.8221,"exit_i":17,"exit_t":"09:47:00","exit_p":408.8649,"stop_i":1,"stop_t":"09:31:00","stop_p":408.7998,"r_multiple":-1.07}
+{"type":"trade","card_id":"TSLA_2026-07-10","symbol":"TSLA","date":"2026-07-10","trade_no":2,"side":"S","source":"taken","setup":"84","entry_i":52,"entry_t":"10:22:00","entry_p":407.9525,"exit_i":63,"exit_t":"10:33:00","exit_p":403.1294,"stop_i":59,"stop_t":"10:29:00","stop_p":408.8649,"r_multiple":5.29}
+{"type":"day","card_id":"TSLA_2026-07-13","symbol":"TSLA","date":"2026-07-13","grade":"none","day_type":"trend","reason_none":"","n_trades":0,"notes":""}
+{"type":"day","card_id":"TSLA_2026-07-14","symbol":"TSLA","date":"2026-07-14","grade":"none","day_type":"chop","reason_none":"","n_trades":0,"notes":""}
+{"type":"day","card_id":"TSLA_2026-07-15","symbol":"TSLA","date":"2026-07-15","grade":"none","day_type":"chop","reason_none":"","n_trades":0,"notes":""}
+{"type":"day","card_id":"TSLA_2026-07-16","symbol":"TSLA","date":"2026-07-16","grade":"none","day_type":"reversal","reason_none":"","n_trades":0,"notes":""}
+{"type":"day","card_id":"TSLA_2026-07-17","symbol":"TSLA","date":"2026-07-17","grade":"A","day_type":"","reason_none":"","n_trades":1,"notes":"as candle forming not LOD"}
+{"type":"trade","card_id":"TSLA_2026-07-17","symbol":"TSLA","date":"2026-07-17","trade_no":1,"side":"S","source":"taken","setup":"BR","entry_i":12,"entry_t":"09:42:00","entry_p":378.4588,"exit_i":14,"exit_t":"09:44:00","exit_p":377.4582,"stop_i":11,"stop_t":"09:41:00","stop_p":379.4118,"r_multiple":1.05}
+{"type":"day","card_id":"TSLA_2026-07-20","symbol":"TSLA","date":"2026-07-20","grade":"none","day_type":"trend","reason_none":"missed it","n_trades":0,"notes":""}
+{"type":"day","card_id":"TSLA_2026-07-21","symbol":"TSLA","date":"2026-07-21","grade":"none","day_type":"trend","reason_none":"missed it","n_trades":0,"notes":""}
+{"type":"day","card_id":"TSLA_2026-07-22","symbol":"TSLA","date":"2026-07-22","grade":"none","day_type":"chop","reason_none":"","n_trades":0,"notes":""}
+{"type":"day","card_id":"TSLA_2026-07-23","symbol":"TSLA","date":"2026-07-23","grade":"S","day_type":"","reason_none":"","n_trades":1,"notes":""}
+{"type":"trade","card_id":"TSLA_2026-07-23","symbol":"TSLA","date":"2026-07-23","trade_no":1,"side":"S","source":"taken","setup":"BR+OCR","entry_i":14,"entry_t":"09:44:00","entry_p":334.7434,"exit_i":16,"exit_t":"09:46:00","exit_p":332.3281,"stop_i":2,"stop_t":"09:32:00","stop_p":336.6756,"r_multiple":1.25}
+{"type":"day","card_id":"TSLA_2026-07-24","symbol":"TSLA","date":"2026-07-24","grade":"C","day_type":"","reason_none":"","n_trades":1,"notes":"no displacement and tight trade"}
+{"type":"trade","card_id":"TSLA_2026-07-24","symbol":"TSLA","date":"2026-07-24","trade_no":1,"side":"S","source":"taken","setup":"BR","entry_i":13,"entry_t":"09:43:00","entry_p":317.9814,"exit_i":20,"exit_t":"09:50:00","exit_p":316.7962,"stop_i":2,"stop_t":"09:32:00","stop_p":318.4752,"r_multiple":2.4}
+{"type":"day","card_id":"TSLA_2026-07-27","symbol":"TSLA","date":"2026-07-27","grade":"none","day_type":"","reason_none":"","n_trades":0,"notes":""}
+{"type":"day","card_id":"TSLA_2026-07-28","symbol":"TSLA","date":"2026-07-28","grade":"none","day_type":"","reason_none":"","n_trades":0,"notes":""}
+{"type":"day","card_id":"TSLA_2026-07-29","symbol":"TSLA","date":"2026-07-29","grade":"none","day_type":"","reason_none":"","n_trades":0,"notes":""}
+{"type":"day","card_id":"TSLA_2026-07-30","symbol":"TSLA","date":"2026-07-30","grade":"S","day_type":"","reason_none":"","n_trades":1,"notes":""}
+{"type":"trade","card_id":"TSLA_2026-07-30","symbol":"TSLA","date":"2026-07-30","trade_no":1,"side":"L","source":"taken","setup":"BR+OCR","entry_i":9,"entry_t":"09:39:00","entry_p":305.1334,"exit_i":20,"exit_t":"09:50:00","exit_p":307.5162,"stop_i":10,"stop_t":"09:40:00","stop_p":303.7128,"r_multiple":1.68}
+{"type":"day","card_id":"TSLA_2026-07-31","symbol":"TSLA","date":"2026-07-31","grade":"A","day_type":"","reason_none":"","n_trades":1,"notes":""}
+{"type":"trade","card_id":"TSLA_2026-07-31","symbol":"TSLA","date":"2026-07-31","trade_no":1,"side":"S","source":"taken","setup":"OCR","entry_i":23,"entry_t":"09:53:00","entry_p":306.3089,"exit_i":43,"exit_t":"10:13:00","exit_p":302.3634,"stop_i":23,"stop_t":"09:53:00","stop_p":309.0332,"r_multiple":1.45}
+{"type":"day","card_id":"TSLA_2026-08-03","symbol":"TSLA","date":"2026-08-03","grade":"none","day_type":"","reason_none":"","n_trades":0,"notes":""}
+{"type":"day","card_id":"TSLA_2026-08-04","symbol":"TSLA","date":"2026-08-04","grade":"none","day_type":"chop","reason_none":"","n_trades":0,"notes":""}
+{"type":"day","card_id":"TSLA_2026-08-05","symbol":"TSLA","date":"2026-08-05","grade":"A","day_type":"","reason_none":"","n_trades":1,"notes":"not as great PA"}
+{"type":"trade","card_id":"TSLA_2026-08-05","symbol":"TSLA","date":"2026-08-05","trade_no":1,"side":"L","source":"taken","setup":"OCR","entry_i":14,"entry_t":"09:44:00","entry_p":324.7498,"exit_i":17,"exit_t":"09:47:00","exit_p":325.8891,"stop_i":6,"stop_t":"09:36:00","stop_p":324.2751,"r_multiple":2.4}
+{"type":"day","card_id":"TSLA_2026-08-06","symbol":"TSLA","date":"2026-08-06","grade":"C","day_type":"","reason_none":"","n_trades":1,"notes":""}
+{"type":"trade","card_id":"TSLA_2026-08-06","symbol":"TSLA","date":"2026-08-06","trade_no":1,"side":"L","source":"taken","setup":"OCR","entry_i":16,"entry_t":"09:46:00","entry_p":319.0055,"exit_i":23,"exit_t":"09:53:00","exit_p":319.7351,"stop_i":13,"stop_t":"09:43:00","stop_p":318.1139,"r_multiple":0.82}
+{"type":"day","card_id":"TSLA_2026-08-07","symbol":"TSLA","date":"2026-08-07","grade":"A","day_type":"","reason_none":"","n_trades":1,"notes":"no displacement"}
+{"type":"trade","card_id":"TSLA_2026-08-07","symbol":"TSLA","date":"2026-08-07","trade_no":1,"side":"L","source":"taken","setup":"BR","entry_i":12,"entry_t":"09:42:00","entry_p":325.3911,"exit_i":15,"exit_t":"09:45:00","exit_p":326.8288,"stop_i":12,"stop_t":"09:42:00","stop_p":324.4108,"r_multiple":1.47}
+{"type":"day","card_id":"TSLA_2026-08-10","symbol":"TSLA","date":"2026-08-10","grade":"none","day_type":"chop","reason_none":"","n_trades":0,"notes":""}
