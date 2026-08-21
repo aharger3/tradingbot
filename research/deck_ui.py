@@ -1,4 +1,7 @@
-"""OMEN Day Deck UI v5.2 — HTML/CSS/JS template for the marking decks.
+"""OMEN Day Deck UI v5.3 — HTML/CSS/JS template for the marking decks.
+
+CANONICAL. `build_deck.py` is the only generator; it imports this module. Any
+other file that hand-rolls deck HTML is a bug — see Projects/omen-decks.md.
 
 Single source of truth for the deck front-end. Both t51_build_deck.py (fresh
 builds) and retrofit_deck.py (patch an already-generated deck without re-running
@@ -137,7 +140,9 @@ canvas { display: block; width: 100%; height: 180px; border-radius: 4px;
   <span style="color:#9b7ede">— PMH/PML</span>
   <span style="color:#e0a458">&middot;&middot; ORH/ORL (5-min)</span>
   &nbsp;Setups: <b>BR</b> break-and-retest &middot; <b>OCR</b> one-candle-rule &middot;
-  <b>BR+OCR</b> &middot; <b>84</b> re-entry after stop-out.
+  <b>BR+OCR</b> &middot; <b>84</b> re-entry after stop-out.<br>
+  Grades: <b>S</b> = textbook, would size up &middot; <b>A</b> = clean, would take it &middot;
+  <b>C</b> = marginal, would pass &middot; <b>none</b> = no setup at all (then pick a reason).
 </p>
 <div class="controls">
   <button onclick="exportJSONL()">📥 Download JSONL</button>
@@ -146,6 +151,7 @@ canvas { display: block; width: 100%; height: 180px; border-radius: 4px;
   <button id="levelsBtn" onclick="toggleLevels()">📏 Levels: on</button>
   <button onclick="resetAll()">🗑️ Reset All</button>
   <span class="stats" id="stats">0 / __TOTAL__ graded &middot; 0 trades</span>
+  <span class="stats" id="saveState">not saved yet</span>
 </div>
 <div id="importPane">
   <textarea id="importBox" placeholder="Paste a previously exported JSONL here, then press Restore. Existing marks for those card_ids are overwritten."></textarea>
@@ -180,7 +186,6 @@ HTML_PER_CARD = r"""<div class="card" id="card-__CID__" data-id="__CID__">
       <label data-g="none" for="n-__CID__">none</label>
     </div>
     <div class="day-selects">
-      <select id="daytype-__CID__" title="What kind of day was it?">__DAYTYPE_OPTS__</select>
       <select id="reason-__CID__" title="If no trade: why not?">__REASON_OPTS__</select>
     </div>
     <div class="notes-box">
@@ -196,7 +201,12 @@ var DAY_DATA = __DAY_DATA__;
 var PRIOR_LEVELS = __PRIOR_LEVELS__;
 var CARD_IDS = __CARD_IDS__;
 var SETUPS = __SETUPS__;
-var STORE_PREFIX = 'omen-deck2-';
+var DECK_ID = '__DECK_ID__';
+var STORE_PREFIX = 'omen-' + DECK_ID + '-';
+var STORAGE_OK = (function() {
+  try { localStorage.setItem('omen-probe', '1'); localStorage.removeItem('omen-probe'); return true; }
+  catch (e) { return false; }
+})();
 var LEGACY_PREFIX = 'omen-deck-';
 
 // MARKS[cid] = { trades: [ {side, src, setup, e:{i,p,t}, x:{i,p,t}|null, stop:{i,p,t}|null} ] }
@@ -508,11 +518,10 @@ function renderTrades(cid) {
   for (var ti = 0; ti < m.trades.length; ti++) {
     var t = m.trades[ti];
     var side = t.side || inferSide(t);
-    var r = rMultiple(t);
-    var rHtml = (r === null)
-      ? '<span class="r-na">' + (t.x ? 'no stop' : 'open') + '</span>'
-      : '<span class="' + (r >= 0 ? 'r-pos' : 'r-neg') + '">' +
-        (r >= 0 ? '+' : '') + r.toFixed(2) + 'R</span>';
+    var sideLabel = (side === 'S') ? 'Short' : 'Long';
+    var stopHtml = t.stop
+      ? '<span class="r-na">stop ' + t.stop.p.toFixed(2) + '</span>'
+      : '<span class="r-neg">no stop</span>';
     var opts = '<option value="">setup?</option>';
     for (var si = 0; si < SETUPS.length; si++) {
       var sv = SETUPS[si][0], sl = SETUPS[si][1];
@@ -524,7 +533,7 @@ function renderTrades(cid) {
       '<span class="mini side-' + side + '" onclick="cycleSide(\'' + cid + '\',' + ti + ')">' + side + '</span>' +
       '<span class="mini ' + (t.src === 'missed' ? 'src-missed' : '') + '" onclick="cycleSrc(\'' + cid + '\',' + ti + ')">' + t.src + '</span>' +
       '<span class="times">' + hhmm(t.e && t.e.t) + '&rarr;' + (t.x ? hhmm(t.x.t) : '<span class="open">open</span>') + '</span>' +
-      rHtml +
+      stopHtml +
       '<select onchange="setTradeField(\'' + cid + '\',' + ti + ',\'setup\',this.value)">' + opts + '</select>' +
       '<span class="del" onclick="delTrade(\'' + cid + '\',' + ti + ')">&#10005;</span>' +
       '</div>';
@@ -541,12 +550,10 @@ function cardState(cid) {
     if (radios[i].checked) { grade = radios[i].value; break; }
   }
   var notes = document.getElementById('notes-' + cid);
-  var dt = document.getElementById('daytype-' + cid);
   var rs = document.getElementById('reason-' + cid);
   return {
     grade: grade,
     notes: notes ? notes.value : '',
-    day_type: dt ? dt.value : '',
     reason_none: rs ? rs.value : '',
     trades: (MARKS[cid] || {trades: []}).trades
   };
@@ -560,8 +567,6 @@ function applyState(cid, data) {
   }
   var notes = document.getElementById('notes-' + cid);
   if (notes) notes.value = data.notes || '';
-  var dt = document.getElementById('daytype-' + cid);
-  if (dt) dt.value = data.day_type || '';
   var rs = document.getElementById('reason-' + cid);
   if (rs) rs.value = data.reason_none || '';
   MARKS[cid] = { trades: (data.trades || []) };
@@ -581,10 +586,40 @@ function loadCard(cid) {
   updateHint(cid);
 }
 
+function pad2(n) { return (n < 10 ? '0' : '') + n; }
+
+function setSaveState(txt, bad) {
+  var el = document.getElementById('saveState');
+  if (!el) return;
+  el.textContent = txt;
+  el.style.color = bad ? '#ff5555' : '#5fa85f';
+}
+
+var _warnedStorage = false;
+
 function saveCard(cid) {
+  if (!STORAGE_OK) {
+    if (!_warnedStorage) {
+      _warnedStorage = true;
+      alert('This browser is blocking local storage for this page, so marks will NOT ' +
+            'survive a reload.\n\nMark what you want, then press "Copy to Clipboard" ' +
+            'before closing. Opening the file over http://127.0.0.1 instead of file:// ' +
+            'restores autosave.');
+    }
+    setSaveState('NOT SAVING — copy to clipboard before closing', true);
+    updateDot(cid); updateStats();
+    return;
+  }
   try {
     localStorage.setItem(STORE_PREFIX + cid, JSON.stringify(cardState(cid)));
+    // whole-deck backup: one key, rewritten on every change, so a lost card key
+    // is recoverable from the pane below.
+    localStorage.setItem(STORE_PREFIX + '__backup', jsonlText());
+    var d = new Date();
+    setSaveState('saved ' + pad2(d.getHours()) + ':' + pad2(d.getMinutes()) + ':' +
+                 pad2(d.getSeconds()), false);
   } catch (e) {
+    setSaveState('SAVE FAILED — export now', true);
     alert('Browser storage is full or blocked — marks are NOT being saved. ' +
           'Export to JSONL now before you lose them.');
   }
@@ -621,7 +656,7 @@ function resetAll() {
     localStorage.removeItem(STORE_PREFIX + cid);
     localStorage.removeItem(LEGACY_PREFIX + cid);
     MARKS[cid] = { trades: [] };
-    applyState(cid, { grade: '', notes: '', day_type: '', reason_none: '', trades: [] });
+    applyState(cid, { grade: '', notes: '', reason_none: '', trades: [] });
     renderTrades(cid); repaint(cid); updateDot(cid); updateHint(cid);
   }
   updateStats();
@@ -636,11 +671,11 @@ function getRows() {
     var us = cid.lastIndexOf('_');
     var symbol = cid.substring(0, us), date = cid.substring(us + 1);
     var st = cardState(cid);
-    if (!st.grade && !st.notes && !st.day_type && !st.reason_none && !st.trades.length) continue;
+    if (!st.grade && !st.notes && !st.reason_none && !st.trades.length) continue;
 
     rows.push({
-      type: 'day', card_id: cid, symbol: symbol, date: date,
-      grade: st.grade, day_type: st.day_type,
+      type: 'day', card_id: cid, symbol: symbol, date: date, deck: DECK_ID,
+      grade: st.grade,
       reason_none: st.grade === 'none' ? st.reason_none : '',
       n_trades: st.trades.length, notes: st.notes
     });
@@ -648,7 +683,7 @@ function getRows() {
     for (var ti = 0; ti < st.trades.length; ti++) {
       var t = st.trades[ti];
       rows.push({
-        type: 'trade', card_id: cid, symbol: symbol, date: date,
+        type: 'trade', card_id: cid, symbol: symbol, date: date, deck: DECK_ID,
         trade_no: ti + 1,
         side: t.side || inferSide(t),
         source: t.src || 'taken',
@@ -672,7 +707,7 @@ function exportJSONL() {
   var blob = new Blob([jsonlText() + '\n'], {type: 'application/x-ndjson'});
   var url = URL.createObjectURL(blob);
   var a = document.createElement('a');
-  a.href = url; a.download = 'deck_marks.jsonl';
+  a.href = url; a.download = 'deck_marks_' + DECK_ID + '.jsonl';
   document.body.appendChild(a); a.click(); document.body.removeChild(a);
   setTimeout(function() { URL.revokeObjectURL(url); }, 1000);
 }
@@ -707,12 +742,12 @@ function doImport() {
     try { r = JSON.parse(lines[i]); } catch(e) { bad++; continue; }
     if (!r.card_id) { bad++; continue; }
     if (!byCard[r.card_id]) {
-      byCard[r.card_id] = { grade: '', notes: '', day_type: '', reason_none: '', trades: [] };
+      byCard[r.card_id] = { grade: '', notes: '', reason_none: '', trades: [] };
     }
     var b = byCard[r.card_id];
     if (r.type === 'day') {
       b.grade = r.grade || ''; b.notes = r.notes || '';
-      b.day_type = r.day_type || ''; b.reason_none = r.reason_none || '';
+      b.reason_none = r.reason_none || '';
     } else if (r.type === 'trade') {
       b.trades.push({
         side: r.side || '', src: r.source || 'taken', setup: r.setup || '',
@@ -757,15 +792,17 @@ function wireCard(cid) {
   }
   var notes = document.getElementById('notes-' + cid);
   if (notes) notes.addEventListener('input', function() { saveCard(cid); });
-  var dt = document.getElementById('daytype-' + cid);
-  if (dt) dt.addEventListener('change', function() { saveCard(cid); });
   var rs = document.getElementById('reason-' + cid);
   if (rs) rs.addEventListener('change', function() { saveCard(cid); });
   var canvas = document.getElementById('chart-' + cid);
   if (canvas) canvas.addEventListener('click', function(ev) { onCanvasClick(cid, ev); });
 }
 
-window.addEventListener('load', function() {
+var BOOTED = false;
+
+function bootDeck() {
+  if (BOOTED) return;
+  BOOTED = true;
   resizeCanvases();
   for (var ci = 0; ci < CARD_IDS.length; ci++) {
     (function(cid) {
@@ -775,7 +812,45 @@ window.addEventListener('load', function() {
     })(CARD_IDS[ci]);
   }
   updateStats();
-});
+  if (!STORAGE_OK) setSaveState('NOT SAVING — copy to clipboard before closing', true);
+
+  // A zero-width container (panel still laying out) paints nothing. Retry until
+  // the canvases have real width, then stop.
+  var tries = 0;
+  var iv = setInterval(function() {
+    tries++;
+    var cv = document.querySelector('canvas');
+    var w = cv ? cv.getBoundingClientRect().width : 0;
+    if (w > 0 && cv.width > 1) {
+      resizeCanvases();
+      for (var ci = 0; ci < CARD_IDS.length; ci++) repaint(CARD_IDS[ci]);
+      clearInterval(iv);
+    }
+    if (tries > 60) clearInterval(iv);
+  }, 100);
+
+  if (window.ResizeObserver) {
+    var pending = false;
+    var ro = new ResizeObserver(function() {
+      if (pending) return;
+      pending = true;
+      requestAnimationFrame(function() {
+        pending = false;
+        resizeCanvases();
+        for (var ci = 0; ci < CARD_IDS.length; ci++) repaint(CARD_IDS[ci]);
+      });
+    });
+    var grid = document.getElementById('cardGrid');
+    if (grid) ro.observe(grid);
+  }
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', bootDeck);
+} else {
+  bootDeck();
+}
+window.addEventListener('load', bootDeck);
 
 window.addEventListener('resize', function() {
   resizeCanvases();
@@ -800,7 +875,6 @@ def _opts(values, placeholder):
 
 def render_card(cid: str, symbol: str) -> str:
     html = HTML_PER_CARD
-    html = html.replace("__DAYTYPE_OPTS__", _opts(DAYTYPES, "day type?"))
     html = html.replace("__REASON_OPTS__", _opts(REASONS, "why no trade?"))
     html = html.replace("__CID__", cid)
     html = html.replace("__SYMBOL__", symbol)

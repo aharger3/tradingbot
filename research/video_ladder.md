@@ -69,8 +69,48 @@ T3's vision ladder already built the instrument that would settle it —
 range. Running that grader over `video_ladder_results_flash.jsonl` is the obvious
 next step and it needs no new model calls.
 
+## In-range grading (2026-08-21, no new model calls)
+
+`_video_ladder_grade.py` runs T3's `price_in_range_pct` rule over the T6 result
+files: a price is in range when it falls inside `[low*0.98, high*1.02]` of the
+day's 1-min session bars for that ticker. Ground-truth day = the video's
+`upload_date` (a same-day recap). Setups whose ticker is not in `data_archive`,
+or that have no bars for that day, are excluded, never penalised.
+
+```
+| rung | model | setups | gradeable | price_in_range_pct | setup_all_in_range_pct |
+|---|---|---:|---:|---:|---:|
+| qwen | qwen/qwen3.7-flash | 34 | 1 | 0.0% (n=4) | 0.0% |
+| batch | google/gemini-3.5-flash-lite | 446 | 397 | 1.4% (n=1112) | 1.3% |
+| flash | gemini-3.6-flash | 53 | 41 | 32.4% (n=219) | 34.1% |
+```
+
+`batch`'s 1.4% confirms the read above: it is generating setup objects, not
+reading charts. 446 setups, 1112 prices, 15 of them real.
+
+**The date assumption, tested.** `upload_date` is a weak anchor - an educational
+video can show a chart from any month - so a low in-day rate could mean *wrong
+day* rather than *wrong price*. Checking flash's 290 prices against each
+ticker's **entire** 2024-2026 archive range separates the two:
+
+- 24.5% land in the upload day's range
+- 65.5% are a plausible price for that ticker at *some* point in the archive
+- **34.5% are not a valid price for that ticker on any day in the archive**
+
+That last number needs no date assumption to hold. A third of flash's prices are
+impossible.
+
+**PROMOTION: BLOCKED.** T3's image tier read 80% in-range off a *still chart with
+a known date*, on the same grader. Video, at 24-32%, is not close. The yield
+result above stands - flash returns numeric stops where captions return rules -
+but yield without accuracy is not a corpus source.
+
+VERDICT_ACCURACY: video does not beat captions on price accuracy
+
 ## Consequence
 
-The video thread stays open, on `gemini-3.6-flash` only. Discord charts are no
-longer the only possible stop source. Do not promote flash's stops into the corpus
-until the in-range grading pass has run.
+The video thread stays open on `gemini-3.6-flash` for **yield research only**.
+The in-range pass above has now run and it blocks promotion: flash's stops do not
+enter the corpus. Discord chart images (T3, 80% in-range) remain the stop source.
+Next test worth running: give the video model the *known session date* and grade
+again - it separates "cannot read charts" from "read a chart from another day".

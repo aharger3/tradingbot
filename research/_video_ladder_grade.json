@@ -1,0 +1,38 @@
+[
+  {
+    "rung": "qwen",
+    "model": "qwen/qwen3.7-flash",
+    "setups": 34,
+    "gradeable": 1,
+    "in_range": 0,
+    "setup_pct": 0.0,
+    "price_pct": 0.0,
+    "prices": 4,
+    "no_ticker": 5,
+    "no_bars": 2
+  },
+  {
+    "rung": "batch",
+    "model": "google/gemini-3.5-flash-lite",
+    "setups": 446,
+    "gradeable": 397,
+    "in_range": 5,
+    "setup_pct": 1.2594458438287155,
+    "price_pct": 1.4388489208633095,
+    "prices": 1112,
+    "no_ticker": 13,
+    "no_bars": 6
+  },
+  {
+    "rung": "flash",
+    "model": "gemini-3.6-flash",
+    "setups": 53,
+    "gradeable": 41,
+    "in_range": 14,
+    "setup_pct": 34.146341463414636,
+    "price_pct": 32.42009132420091,
+    "prices": 219,
+    "no_ticker": 0,
+    "no_bars": 11
+  }
+]
