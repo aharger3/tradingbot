@@ -52,8 +52,11 @@ ENTRY_CUTOFF = t4.ENTRY_CUTOFF
 TOL = t4.TOL
 # Measurable priority-pool symbols (config.yaml: index 3 + equity 14, minus the
 # 2 with no data_archive: SPCX, HTZ) = 15 symbols Austin actually trades.
-WINDOW_SYMBOLS = ["QQQ", "SPY", "IWM", "NVDA", "TSLA", "PLTR", "AAPL", "MU",
-                  "MSTR", "AMZN", "MSFT", "INTC", "AMD", "GOOGL", "META"]
+# Derived from disk, not hand-maintained (OMEN 6 ticket 14). The old hardcoded
+# list still carried MSTR (retired 2026-07-11) and omitted ACHR, fully archived
+# since 2026-08-10 -- so a backfill silently failed to reach this headline.
+from universe import archived_symbols, INDEX_POOL, MAJOR_15
+WINDOW_SYMBOLS = archived_symbols(INDEX_POOL + MAJOR_15)
 
 
 def _tier(sig, candles_upto, fired_ideas, htf_bias, mode):

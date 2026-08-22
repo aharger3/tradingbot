@@ -8,10 +8,9 @@ from pathlib import Path
 from tastytrade_feed import TastytradeFeed
 from signal_runner import SignalRunner
 
-DEFAULT_SYMBOLS = [
-    "TSLA", "NVDA", "AAPL", "AMD", "META",
-    "GOOG", "AMZN", "MSFT", "PLTR", "SPY", "QQQ",
-]
+# Was a private list carrying GOOG where the universe carries GOOGL, plus SPY.
+# One source now (OMEN 6 ticket 14).
+from universe import CORE_SYMBOLS as DEFAULT_SYMBOLS
 
 def backtest_window(symbols, date_str="2026-05-27", start_et="09:30", end_et="11:00"):
     """Backtest signals from a specific window on a date.

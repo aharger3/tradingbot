@@ -44,18 +44,11 @@ ENTRY_CUTOFF = "11:00:00"  # Scarface trades 9:30-11 only (production)
 TOL = 2                 # +/-2 bar join tolerance
 TIER_RANK = {"S": 3, "A": 2, "X": 1}
 
-# Pool definitions (omen-3.9 T7): index and equity pools from config.yaml
-INDEX_POOL = frozenset({"QQQ", "SPY", "IWM"})
-EQUITY_POOL = frozenset({"NVDA", "TSLA", "SPCX", "PLTR", "AAPL", "MU", "MSTR",
-                         "AMZN", "HTZ", "MSFT", "INTC", "AMD", "GOOGL", "META"})
-
-
-def pool_for(symbol: str) -> str:
-    if symbol in INDEX_POOL:
-        return "index"
-    if symbol in EQUITY_POOL:
-        return "equity"
-    return "other"
+# Pools come from universe.py (OMEN 6 ticket 14). The copy that used to live
+# here still carried MSTR and HTZ -- both retired 2026-07-11 -- and omitted
+# ACHR, NFLX and ORCL, so per-pool reporting had drifted from the traded set.
+from universe import (INDEX_POOL_SET as INDEX_POOL,  # noqa: F401
+                      EQUITY_POOL, pool_for)
 
 
 def _to_min(dtstr: str) -> str:

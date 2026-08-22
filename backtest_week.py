@@ -32,12 +32,10 @@ from signal_runner import SignalRunner
 # Austin's watchlist 2026-07-11: all stocks with ~200k+ daily options volume
 # (his rule — high options volume = cleaner moves, easier fills). SPY/QQQ stay
 # as trend reference, rarely traded.
-CORE_SYMBOLS = ["TSLA", "NVDA", "AAPL", "AMD", "META",
-                "GOOGL", "AMZN", "MSFT", "PLTR", "QQQ"]  # A3: SPY removed (0-for-5)
-EXPERIMENTAL_SYMBOLS = ["SOFI", "ORCL", "COIN", "HOOD", "IREN", "INTC",
-                        "NFLX", "AVGO", "MU", "UBER", "BABA", "CRM",
-                        "TSM", "MARA"]  # A3: SMCI/MSTR/RIVN removed (−$22k/12mo)
-SYMBOLS = CORE_SYMBOLS + EXPERIMENTAL_SYMBOLS
+# Watchlist tiers live in universe.py -- the single source of truth. Re-exported
+# here because six modules import them from backtest_week (OMEN 6 ticket 14).
+from universe import (CORE_SYMBOLS, EXPERIMENTAL_SYMBOLS,  # noqa: F401
+                      BACKTEST_SYMBOLS as SYMBOLS)
 RISK_DOLLARS = 1000.0
 
 # ---- D2: S-score-scaled position sizing (flag-gated, default OFF) ----

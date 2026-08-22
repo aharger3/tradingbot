@@ -55,7 +55,7 @@ from omen_bot import PriceActionAnalyzer, TradeGrade
 
 START, END = "2024-08-12", "2026-08-11"
 ARCHIVE = os.path.join(ROOT, "data_archive")
-INDEX_POOL = ["QQQ", "SPY", "IWM"]
+from universe import INDEX_POOL  # single source (OMEN 6 ticket 14)
 CONTROL = ["TSLA"]
 
 # the gate names the spec asks about, in engine order

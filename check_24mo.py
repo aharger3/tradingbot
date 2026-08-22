@@ -6,8 +6,10 @@ from datetime import date, timedelta
 import polygon_feed as pf
 from backtest_week import simulate_day, htf_bias_for
 
-CORE_SYMBOLS = ["TSLA", "NVDA", "AAPL", "AMD", "META",
-                "GOOGL", "AMZN", "MSFT", "PLTR", "SPY", "QQQ"]
+# Was a private copy that INCLUDED SPY, directly contradicting backtest_week's
+# list which drops it. One source now (OMEN 6 ticket 14); SPY membership is
+# governed by universe.INCLUDE_SPY_IN_BACKTEST.
+from universe import CORE_SYMBOLS
 
 
 def _hourly_from_1m(day_iso, bars):
