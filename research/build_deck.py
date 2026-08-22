@@ -5,7 +5,8 @@ Standard (settled 2026-08-21, Projects/omen-decks.md):
   * Mixed: half days the engine fires on, half it is silent on, shuffled, with no
     tell in the card as to which is which.
   * Card = grade (S/A/C/none + legend) + trade type + entry + stop. No R:R.
-  * Never repeats a card_id that already appears in research/marks/*.jsonl.
+  * Never repeats a symbol-day Austin has already judged, in ANY mark corpus --
+    research/marks/*.jsonl plus the older files listed in LEGACY_MARK_FILES.
   * Front-end comes from deck_ui.py. This file supplies data only.
 
     python research/build_deck.py                       # default mixed deck
@@ -39,25 +40,108 @@ SESSION_START = "09:30"
 SESSION_END = "11:00"
 
 
-def marked_card_ids() -> set[str]:
-    """Every card_id Austin has already graded, across every mark file ever exported.
+# Every artifact carrying a human judgement, per research/marks/LEDGER.md (OMEN 6
+# ticket 01). research/marks/*.jsonl is globbed on top of this, so new deck
+# exports are picked up automatically; these are the older corpora that live
+# OUTSIDE that directory and were invisible to the guard until 2026-08-22.
+#
+# Deliberately NOT here: decks/*-manifest.jsonl and decks/_retired/*-key.json
+# (engine answer keys, not Austin's judgements).
+LEGACY_MARK_FILES = [
+    "austin_marks_v7.jsonl",      # terminal file; v2-v6 are fully contained in it
+    "blind_marks_all.jsonl",
+    "marks_clean.jsonl",
+    "mark_batch_02_grades.jsonl",
+    "mark_batch_03_regrades.jsonl",
+    "mark_batch_04_grades.jsonl",
+    "derived_marks_v1.jsonl",
+    "derived_marks_v2.jsonl",
+    "recovered_reviews.jsonl",
+    "austin_verdicts.json",       # a JSON list, not jsonl
+]
+
+# The schemas disagree. Canonical day-cards carry card_id/symbol/date; the older
+# bar-level corpora carry id/symbol/day; one batch carries only `id`. The join is
+# always symbol + date.
+_GRADE_KEYS = ("austin_tier", "tier", "austin_grade", "grade", "verdict")
+
+
+def _judgement_key(row: dict) -> str | None:
+    """Normalise any mark row to ``SYMBOL_YYYY-MM-DD``, or None if it isn't a judgement.
+
+    A row counts as a judgement when it carries a non-empty human grade. Note
+    that ``grade: "none"`` IS a judgement -- an explicit refusal to trade the day
+    -- so it must exclude the day from future decks. Rows with no grade at all
+    (e.g. the unmarked remainder of blind_marks_all.jsonl) are not judgements and
+    do not exclude anything.
+    """
+    if not any(str(row.get(k, "")).strip() for k in _GRADE_KEYS):
+        return None
+    symbol = row.get("symbol")
+    day = row.get("date") or row.get("day")
+    if not (symbol and day):
+        # mark_batch_04_grades.jsonl carries only `id`; card_id/id are
+        # SYMBOL_YYYY-MM-DD or SYMBOL_YYYY-MM-DD_ENTRYIDX.
+        ident = row.get("card_id") or row.get("id") or row.get("card")
+        if not ident:
+            return None
+        parts = str(ident).split("_")
+        if len(parts) < 2:
+            return None
+        symbol, day = parts[0], parts[1]
+    return "%s_%s" % (symbol, day)
+
+
+def _rows(path: str):
+    """Yield dict rows from a .jsonl or a .json list."""
+    if not os.path.exists(path):
+        return
+    if path.endswith(".json"):
+        try:
+            data = json.load(open(path, encoding="utf-8"))
+        except ValueError:
+            return
+        for row in data if isinstance(data, list) else data.values():
+            if isinstance(row, dict):
+                yield row
+        return
+    with open(path, encoding="utf-8") as fh:
+        for line in fh:
+            line = line.strip()
+            if not line:
+                continue
+            try:
+                row = json.loads(line)
+            except ValueError:
+                continue
+            if isinstance(row, dict):
+                yield row
+
+
+def mark_sources() -> list[str]:
+    """Every path the no-repeat guard reads. Order is stable for reporting."""
+    return sorted(glob.glob(os.path.join(MARKS_DIR, "*.jsonl"))) + [
+        os.path.join(HERE, name) for name in LEGACY_MARK_FILES
+    ]
+
+
+def marked_card_ids(per_source: dict | None = None) -> set[str]:
+    """Every symbol-day Austin has already judged, across EVERY mark corpus.
 
     This is the no-repeats guarantee. A deck that re-asks a day he already
     answered wastes the only scarce input in this project.
+
+    Until 2026-08-22 this globbed research/marks/ alone and was blind to the 386
+    symbol-days in austin_marks_v7.jsonl and the standalone batches -- see OMEN 6
+    ticket 15. Pass ``per_source`` (a dict) to have it filled with
+    ``{path: n_keys}`` for reporting.
     """
     seen: set[str] = set()
-    for path in sorted(glob.glob(os.path.join(MARKS_DIR, "*.jsonl"))):
-        with open(path, encoding="utf-8") as fh:
-            for line in fh:
-                line = line.strip()
-                if not line:
-                    continue
-                try:
-                    cid = json.loads(line).get("card_id")
-                except ValueError:
-                    continue
-                if cid:
-                    seen.add(cid)
+    for path in mark_sources():
+        found = {k for k in (_judgement_key(r) for r in _rows(path)) if k}
+        if per_source is not None:
+            per_source[path] = len(found)
+        seen |= found
     return seen
 
 
@@ -101,8 +185,16 @@ def fire_count(symbol: str, day: str) -> int:
 def pick(n: int, seed: int, max_probe: int):
     """Half fire days, half silent days, drawn at random, never already marked."""
     want = n // 2
-    seen = marked_card_ids()
-    pool = [(s, d) for s, d in universe() if "%s_%s" % (s, d) not in seen]
+    per_source: dict[str, int] = {}
+    seen = marked_card_ids(per_source)
+    full = universe()
+    pool = [(s, d) for s, d in full if "%s_%s" % (s, d) not in seen]
+    print("no-repeat guard: %d judged symbol-days across %d sources; "
+          "pool %d -> %d archived days"
+          % (len(seen), len(per_source), len(full), len(pool)))
+    for path, cnt in sorted(per_source.items(), key=lambda kv: -kv[1]):
+        if cnt:
+            print("    %5d  %s" % (cnt, os.path.relpath(path, ROOT)))
     rng = random.Random(seed)
     rng.shuffle(pool)
 
@@ -188,11 +280,13 @@ def main():
 
     ids = ["%s_%s" % (c["symbol"], c["day"]) for c in cards]
     assert len(set(ids)) == len(ids), "duplicate card_id inside the deck"
-    assert not (set(ids) & marked_card_ids()), "deck repeats an already-marked day"
+    # Checked against EVERY mark corpus, not just research/marks/ -- ticket 15.
+    repeats = set(ids) & marked_card_ids()
+    assert not repeats, "deck repeats already-judged days: %s" % sorted(repeats)
 
     print("Wrote %s" % path)
     print("  cards=%d  fire=%d  silent=%d" % (len(cards), nf, ns))
-    print("  probed=%d days  excluded %d already-marked card_ids" % (probed, nseen))
+    print("  probed=%d days  excluded %d already-judged symbol-days" % (probed, nseen))
 
 
 if __name__ == "__main__":
