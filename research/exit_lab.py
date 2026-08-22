@@ -216,18 +216,26 @@ def scale_out(bars, entry_i, entry, stop, side, weights, trail_method="atr"):
     w1 = weights[0]
     w_rest = sum(weights[1:]) or 1.0
 
-    # --- tranche 1: fixed stop until the HOD exit bar ---
+    # --- tranche 1: fixed stop until the HOD exit bar, INCLUSIVE ---
+    # The stop is live on the HOD bar itself. A bar can print a new extreme and
+    # then reverse through the stop in the same minute; the module's pessimistic
+    # same-bar convention (see _stop_hit_first) says the stop filled first, so
+    # the range must include hod_i. Excluding it let tranche 1 book that bar's
+    # close no matter how far below the stop it was.
     t1_exit_i = hod_i
-    for i in range(entry_i + 1, min(hod_i, n)):
+    t1_stopped = False
+    for i in range(entry_i + 1, min(hod_i + 1, n)):
         if _stop_hit_first(bars, i, entry, stop, side):
             t1_exit_i = i
+            t1_stopped = True
             break
-    t1_price = stop if t1_exit_i < hod_i else bars[hod_i]["c"]
+    t1_price = stop if t1_stopped else bars[hod_i]["c"]
     r1 = realised_r(entry, stop, t1_price, side)
 
     # --- runner: stop to break-even, trail the rest ---
+    # The runner starts at whichever bar tranche 1 actually left on.
     rest_i, rest_price = _runner_exit(
-        bars, hod_i, entry, side, trail_method, start_stop=entry
+        bars, t1_exit_i, entry, side, trail_method, start_stop=entry
     )
     r_rest = realised_r(entry, stop, rest_price, side)
     return w1 * r1 + w_rest * r_rest
@@ -239,11 +247,24 @@ def _runner_exit(bars, from_i, entry, side, trail_method, start_stop):
     Causal: the trail stop for bar ``i`` is set from bars ``<= i-1`` and then
     tested against bar ``i``. Force-flat on the clock, a structure break, or
     consolidation is evaluated at bar ``i``'s close.
+
+    ``start_stop`` is the break-even stop the module docstring promises: once
+    tranche 1 is out, the stop moves to entry and never moves back. It is a
+    FLOOR under the trail, not an alternative to it -- the effective stop is
+    whichever of the two is tighter (higher on longs, lower on shorts). Without
+    this the ATR trail can sit far below entry on a wide-range day and the
+    runner books tens of R against a break-even stop that was never applied.
+    See ``research/test_runner_stop.py``.
     """
     n = len(bars)
     end = min(CLOCK_BAR + 1, n)
     if from_i + 1 >= end:
         i = CLOCK_BAR if n > CLOCK_BAR else n - 1
+        # the break-even stop is live on this bar too
+        if side == "L" and bars[i]["l"] <= start_stop:
+            return i, start_stop
+        if side == "S" and bars[i]["h"] >= start_stop:
+            return i, start_stop
         return i, bars[i]["c"]
 
     # running extremes for the trail (through bar i-1)
@@ -267,6 +288,12 @@ def _runner_exit(bars, from_i, entry, side, trail_method, start_stop):
                 trail_stop = bars[i - 1]["l"]
             else:
                 trail_stop = bars[i - 1]["h"]
+
+        # the break-even stop floors the trail -- take whichever is tighter
+        if side == "L":
+            trail_stop = max(trail_stop, start_stop)
+        else:
+            trail_stop = min(trail_stop, start_stop)
 
         # 1. protective trail stop (fills at the stop price)
         if side == "L" and b["l"] <= trail_stop:
