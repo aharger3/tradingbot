@@ -6,9 +6,16 @@ The 5.2 scale-out table reported a worst trade of -12.46R on ``30_30_30_10``.
     after tranche 1 the stop moves to entry (break-even)
 
 If that stop is actually enforced, the runner leg can never realise worse than
-0R, so a laddered policy's floor is tranche 1's -1.0R weight -- i.e. no trade
-can book worse than -1.0R overall. Anything below that is the break-even stop
-not being applied.
+0R, so a laddered policy's floor is tranche 1's weight on a full stop-out.
+
+Since ticket 17 that floor is -1.25R, not -1.0R: Austin's stop rule (ballot q1)
+triggers on the candle CLOSE and fills at that close, so a bar that closes far
+beyond the stop books more than a clean -1.0R. -1.25R is his stated worst case
+and exit_lab clamps there. Anything below it is a bug.
+
+The second half of this file is the other half of ticket 17: a day that wicks
+through the stop on every bar and closes above it every time. Austin does not get
+stopped out on that day. Under the old wick-based test he booked -1.0R on it.
 
 These are synthetic-bar cases, no archive needed. Run:
 
@@ -25,6 +32,7 @@ if _REPO_ROOT not in sys.path:
 
 from research.exit_lab import (  # noqa: E402
     CLOCK_BAR,
+    MAX_LOSS_R,
     policy_30_30_30_10,
     policy_50_20_20_10,
 )
@@ -34,7 +42,7 @@ LADDERED = {
     "50_20_20_10": policy_50_20_20_10,
 }
 
-FLOOR = -1.0
+FLOOR = -MAX_LOSS_R
 EPS = 1e-9
 
 
@@ -66,6 +74,40 @@ def wide_atr_collapse(side="L"):
     return bars
 
 
+def wick_through_stop(side="L"):
+    """Every bar spikes through the stop and closes back on the right side.
+
+    This is the shape Austin described five times in one batch of marks: the
+    wick takes out the level, the close does not, and the trade is still on. A
+    wick-based stop books a loss here; a close-based one books the winner.
+
+    Built per side rather than by mirroring -- the mirror of a rising day is not
+    a falling day with the same wick geometry, and getting that wrong silently
+    turns the short case into a different test.
+    """
+    bars = [_bar(100.0, 100.4, 99.6, 100.0) for _ in range(21)]
+    for k in range(10):
+        if side == "L":
+            top = 100.6 + k * 0.5
+            # low 98.5 is well through the 99.00 stop; the close never is
+            bars.append(_bar(100.2 + k * 0.5, top, 98.5, top - 0.1))
+        else:
+            bot = 99.4 - k * 0.5
+            # high 101.5 is well through the 101.00 stop; the close never is
+            bars.append(_bar(99.8 - k * 0.5, 101.5, bot, bot + 0.1))
+    last = bars[-1]["c"]
+    while len(bars) <= CLOCK_BAR:
+        bars.append(_bar(last, last + 0.2, last - 0.2, last))
+    return bars
+
+
+# Cases that must NOT stop out at all -- the close never goes beyond the stop.
+POSITIVE_CASES = [
+    ("wick_through_stop long", wick_through_stop, 20, 100.0, 99.00, "L"),
+    ("wick_through_stop short", wick_through_stop, 20, 100.0, 101.00, "S"),
+]
+
+
 CASES = [
     # name, bars_fn, entry_i, entry, stop, side
     ("wide_atr_collapse long, 1.00 stop", wide_atr_collapse, 20, 100.0, 99.00, "L"),
@@ -91,21 +133,34 @@ def main():
                     f"(break-even stop on the runner was not enforced)"
                 )
 
+    for name, bars_fn, entry_i, entry, stop, side in POSITIVE_CASES:
+        bars = bars_fn(side)          # already side-correct, do not mirror
+        for pid, fn in LADDERED.items():
+            r = fn(bars, entry_i, entry, stop, side)
+            rows.append((name, pid, r))
+            if r <= 0:
+                failures.append(
+                    f"  {name} / {pid}: realised {r:+.4f}R on a day whose closes "
+                    f"never went beyond the stop -- a wick stopped it out"
+                )
+
     width = max(len(n) for n, _, _ in rows)
     for name, pid, r in rows:
-        flag = "  FAIL" if r < FLOOR - EPS else ""
+        positive = any(name == pn for pn, _, _, _, _, _ in POSITIVE_CASES)
+        bad = (r <= 0) if positive else (r < FLOOR - EPS)
+        flag = "  FAIL" if bad else ""
         print(f"{name:<{width}}  {pid:<12} {r:+8.4f}R{flag}")
 
     if failures:
         print()
-        print("RUNNER-STOP SELFTEST FAILED: "
-              f"{len(failures)} of {len(rows)} laddered results book worse than "
-              f"{FLOOR:+.2f}R.")
+        print(f"RUNNER-STOP SELFTEST FAILED: {len(failures)} of {len(rows)} "
+              f"laddered results are wrong.")
         print("\n".join(failures))
         sys.exit(1)
 
     print()
-    print(f"runner-stop selftest ok: all {len(rows)} laddered results >= {FLOOR:+.2f}R")
+    print(f"runner-stop selftest ok: {len(rows)} laddered results, "
+          f"stop-outs floored at {FLOOR:+.2f}R, wick-only days never stopped out")
 
 
 if __name__ == "__main__":

@@ -45,6 +45,21 @@ import sys
 CLOCK_BAR = 90
 CONSOLIDATION_BARS = 5  # no new extreme in the trade's direction for N bars
 ATR_WINDOW = 14
+
+# --- Austin's stop rule, rule ballot q1 (2026-08-23) ------------------------
+# "a 1m candle close below is exit, max slippage -1.25r which is 1.25k based on
+#  current position sizing"
+# The CLOSE is the trigger, the fill is that close, and the loss floors at
+# -1.25R. Settled 2026-08-11 and marked never-re-elicit; backtest_week.py:245
+# has always obeyed it and this module never did (OMEN 6 ticket 17).
+MAX_LOSS_R = 1.25
+
+# OPEN, deliberately shipped at 0. The 2026-08-23 Q&A settled "25% of the
+# previous candle's range" as one tolerance unit and listed stop slippage as one
+# of the three places it applies -- but ballot q1 describes a plain close beyond
+# the stop with no buffer. Two readings, materially different. This ships on the
+# literal q1 reading and the other is a one-line flip, not a rewrite.
+STOP_TRIGGER_BUFFER_FRAC = 0.0
 MARKS_FILES = [
     os.path.join(os.path.dirname(__file__), "marks", "deck_marks_tsla_2026-08-20.jsonl"),
     os.path.join(os.path.dirname(__file__), "marks", "deck_marks_index_2026-08-19.jsonl"),
@@ -129,15 +144,43 @@ def causal_hod_exit_bar(bars, entry_i, side):
         return CLOCK_BAR if n > CLOCK_BAR else n - 1
 
 
+def _ref_range(bars, i):
+    """The previous bar's range -- the only range known before bar ``i`` closes."""
+    j = i - 1 if i > 0 else i
+    return max(0.0, bars[j]["h"] - bars[j]["l"])
+
+
 def _stop_hit_first(bars, i, entry, stop, side):
     """Did the protective stop fire on bar ``i`` (before any target)?
 
-    Pessimistic same-bar convention: if both stop and target would touch in the
-    same bar, assume the stop filled first. Returns True if the stop was hit.
+    The CLOSE is the trigger, not the wick. Austin, five times in one batch of
+    marks and again in rule ballot q1: a 1-minute candle close beyond the level
+    is the exit, and a wick through it stops nothing out.
+
+    Pessimistic same-bar convention survives: if the close is beyond the stop
+    and a target also traded in that bar, the stop still wins.
     """
+    buf = STOP_TRIGGER_BUFFER_FRAC * _ref_range(bars, i)
     if side == "L":
-        return bars[i]["l"] <= stop
-    return bars[i]["h"] >= stop
+        return bars[i]["c"] <= stop - buf
+    return bars[i]["c"] >= stop + buf
+
+
+def _stop_fill(bars, i, entry, stop, side, risk):
+    """What a close-triggered stop actually fills at.
+
+    You are out at market once the bar closes beyond the stop, so the fill is
+    that close -- which is worse than the stop price, by however far the bar ran.
+    Floored at Austin's stated worst case of -1.25R (ballot q1).
+
+    This is where the left tail comes from. Filling at the stop price instead
+    (what this module did before) is the same optimism that left the 03 baseline
+    with 32 of 40 slices sitting at exactly -0.30R and no distribution at all.
+    """
+    close = bars[i]["c"]
+    if side == "L":
+        return max(close, entry - MAX_LOSS_R * risk)
+    return min(close, entry + MAX_LOSS_R * risk)
 
 
 # ---------------------------------------------------------------------------
@@ -159,7 +202,7 @@ def flat_target(bars, entry_i, entry, stop, side, target_r):
     for i in range(entry_i + 1, end):
         b = bars[i]
         if _stop_hit_first(bars, i, entry, stop, side):
-            return realised_r(entry, stop, stop, side)
+            return realised_r(entry, stop, _stop_fill(bars, i, entry, stop, side, risk), side)
         hit = (b["h"] >= target) if side == "L" else (b["l"] <= target)
         if hit:
             return realised_r(entry, stop, target, side)
@@ -190,7 +233,7 @@ def hod_only(bars, entry_i, entry, stop, side, trail_method="atr"):
     end = min(hod_i, n)
     for i in range(entry_i + 1, end):
         if _stop_hit_first(bars, i, entry, stop, side):
-            return realised_r(entry, stop, stop, side)
+            return realised_r(entry, stop, _stop_fill(bars, i, entry, stop, side, risk), side)
     return realised_r(entry, stop, bars[hod_i]["c"], side)
 
 
@@ -223,25 +266,24 @@ def scale_out(bars, entry_i, entry, stop, side, weights, trail_method="atr"):
     # the range must include hod_i. Excluding it let tranche 1 book that bar's
     # close no matter how far below the stop it was.
     t1_exit_i = hod_i
-    t1_stopped = False
+    t1_price = bars[hod_i]["c"]
     for i in range(entry_i + 1, min(hod_i + 1, n)):
         if _stop_hit_first(bars, i, entry, stop, side):
             t1_exit_i = i
-            t1_stopped = True
+            t1_price = _stop_fill(bars, i, entry, stop, side, risk)
             break
-    t1_price = stop if t1_stopped else bars[hod_i]["c"]
     r1 = realised_r(entry, stop, t1_price, side)
 
     # --- runner: stop to break-even, trail the rest ---
     # The runner starts at whichever bar tranche 1 actually left on.
     rest_i, rest_price = _runner_exit(
-        bars, t1_exit_i, entry, side, trail_method, start_stop=entry
+        bars, t1_exit_i, entry, side, trail_method, start_stop=entry, risk=risk
     )
     r_rest = realised_r(entry, stop, rest_price, side)
     return w1 * r1 + w_rest * r_rest
 
 
-def _runner_exit(bars, from_i, entry, side, trail_method, start_stop):
+def _runner_exit(bars, from_i, entry, side, trail_method, start_stop, risk):
     """Pick the exit bar/price for the remaining tranches after tranche 1.
 
     Causal: the trail stop for bar ``i`` is set from bars ``<= i-1`` and then
@@ -260,11 +302,11 @@ def _runner_exit(bars, from_i, entry, side, trail_method, start_stop):
     end = min(CLOCK_BAR + 1, n)
     if from_i + 1 >= end:
         i = CLOCK_BAR if n > CLOCK_BAR else n - 1
-        # the break-even stop is live on this bar too
-        if side == "L" and bars[i]["l"] <= start_stop:
-            return i, start_stop
-        if side == "S" and bars[i]["h"] >= start_stop:
-            return i, start_stop
+        # the break-even stop is live on this bar too -- and it is close-based,
+        # per ballot q3: "if the structure doesn't break you don't want to stop
+        # out, that's why you wait for candle closes for stops"
+        if _stop_hit_first(bars, i, entry, start_stop, side):
+            return i, _stop_fill(bars, i, entry, start_stop, side, risk)
         return i, bars[i]["c"]
 
     # running extremes for the trail (through bar i-1)
@@ -295,11 +337,13 @@ def _runner_exit(bars, from_i, entry, side, trail_method, start_stop):
         else:
             trail_stop = min(trail_stop, start_stop)
 
-        # 1. protective trail stop (fills at the stop price)
-        if side == "L" and b["l"] <= trail_stop:
-            return i, trail_stop
-        if side == "S" and b["h"] >= trail_stop:
-            return i, trail_stop
+        # 1. protective trail stop -- close-based, same as every other stop.
+        # A wick through break-even is exactly the case ballot q3 says does not
+        # take Austin out. The ATR trail is a machine rule rather than one of
+        # his, but it is floored by the break-even stop, so treating it any other
+        # way would reintroduce wick stop-outs through the back door.
+        if _stop_hit_first(bars, i, entry, trail_stop, side):
+            return i, _stop_fill(bars, i, entry, trail_stop, side, risk)
 
         # update extremes / consolidation counter using bar i (causal at close)
         made_new = False
