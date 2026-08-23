@@ -228,6 +228,16 @@ textarea.note:focus-visible{outline:2px solid var(--accent); outline-offset:1px}
 JS = r"""
 <script>
 (function(){
+  /* In the claude.ai artifact viewer a plain <a download> is inert and the async
+     clipboard is blocked. Ask for the downloads capability if it is there; the
+     editable textarea is the fallback that always works. */
+  var DL = null;
+  try {
+    if (window.claude && typeof window.claude.use === 'function'){
+      window.claude.use('downloads').then(function(d){ DL = d; }, function(){});
+    }
+  } catch (e) {}
+
   var bar = document.querySelector('.bar');
   var DECK = (bar && bar.getAttribute('data-deck')) || 'probe';
   var KEY = 'omen-probe:' + DECK + ':';
@@ -400,8 +410,12 @@ JS = r"""
     card._saveTimer = setTimeout(function(){ save(card); }, 400);
   });
 
+  var exported = false;
+  document.addEventListener('click', function(e){
+    if (e.target.closest && e.target.closest('#exportbtn')) exported = true;
+  }, true);
   window.addEventListener('beforeunload', function(e){
-    if (storeOk || !jsonl()) return;
+    if (exported || !jsonl()) return;
     e.preventDefault(); e.returnValue = '';
   });
 
@@ -425,13 +439,12 @@ def shell(title, eyebrow, h1, lede, cards_html, footer_html, deck_id):
         '<button class="jump" type="button">Next unanswered</button>'
         '<button class="jump alt" type="button" id="exportbtn">Export</button></div>' % deck_id,
         '<div class="drawer" id="drawer" hidden>'
-        '<p class="hint">Everything you have answered, as JSONL. <b>Copy all</b> and paste it '
-        'into the chat, or <b>Download</b> and send me the file.</p>'
+        '<p class="hint"><b>Select all the text in the box below and copy it</b> (the box is editable, so ctrl/cmd+A then ctrl/cmd+C works even where the Copy button is blocked), then paste it into the chat. Download works too when the browser allows it.</p>'
         '<div class="drawer-btns">'
         '<button class="jump" type="button" id="copybtn">Copy all</button>'
         '<button class="jump alt" type="button" id="dlbtn">Download .jsonl</button>'
         '<span class="hint" id="copymsg"></span></div>'
-        '<textarea id="out" readonly></textarea></div>',
+        '<textarea id="out" spellcheck="false"></textarea></div>',
         cards_html,
         '<div class="foot">%s</div>' % footer_html,
         "</div>", JS,

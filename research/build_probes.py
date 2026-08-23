@@ -88,6 +88,7 @@ LEVEL_OPTS = [
     ("orh", "ORH"), ("orl", "ORL"),
     ("prior_close", "Prior close"), ("round", "Round number"),
     ("intraday_hod", "Intraday HOD/LOD"), ("gap_fill", "Gap fill"),
+    ("ocr_only", "OCR only — no level needed"),
     ("none", "No level — momentum only"),
 ]
 
@@ -172,7 +173,15 @@ def build_autopsy():
                 "missing", "One thing the engine had to know.",
                 "Only if the answer above was &ldquo;needed context&rdquo;. One line.",
                 [], required=False,
-                note_placeholder="e.g. QQQ had already broken its own PDH two bars earlier"),
+                note_placeholder="(optional — type here)"),
+            probe_page.question(
+                "regrade",
+                "Does this still deserve the grade on file (%s)?" % r["grade"],
+                "You regraded three of these on the first pass. Say so here and it "
+                "lands in the corpus instead of in a note I have to parse.",
+                [("keep", "Keep %s" % r["grade"]), ("to_a", "Actually A"),
+                 ("to_c", "Actually C"), ("to_none", "Would not take it today")],
+                required=False),
             "</article>",
         ]
         cards.append("".join(body))
