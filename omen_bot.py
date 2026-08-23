@@ -420,9 +420,18 @@ def detect_flag_setup(candles: List[Candle], direction: str = "bullish"):
     return None, "no flag"
 
 
+# Stage funnel for the B&R FSM. Which step actually kills a candidate entry?
+# research/miss_autopsy.md called RETEST the deepest blocker on 14 of 27 S-misses;
+# this counts it directly instead of inferring it.
+BR_FUNNEL = {"calls": 0, "too_short": 0, "no_confirm_close": 0, "adverse_wick": 0,
+             "no_break": 0, "no_leave": 0, "no_retest": 0, "stale_retest": 0,
+             "passed": 0}
+
+
 def detect_break_retest(candles: List[Candle], level: float, is_long: bool,
                         window: int = 12, max_confirm_gap: int = 3,
-                        out: Optional[dict] = None, retest_tol_mult: float = 0.0):
+                        out: Optional[dict] = None, retest_tol_mult: float = 0.0,
+                        on_watch: bool = False, watch_frac: float = 0.25):
     """Austin's ORDERED break-and-retest (2026-07-09). Returns a note str if the
     LAST candle is a valid entry, else None.
 
@@ -447,14 +456,38 @@ def detect_break_retest(candles: List[Candle], level: float, is_long: bool,
     left, and turned back near the level without touching it). A level is a
     zone, not a line; nothing else in the sequence moves.
     """
+    BR_FUNNEL["calls"] += 1
     if len(candles) < 4:
+        BR_FUNNEL["too_short"] += 1
         return None
     w = candles[-window:]
     cur = w[-1]
-    if is_long and cur.close <= level:
-        return None
-    if not is_long and cur.close >= level:
-        return None
+
+    # ON WATCH (2026-08-23). Step 4 asks the CURRENT candle to CLOSE back through
+    # the level. Austin: "the goal of my comments was for an entry to be made
+    # BEFORE the candle closes, because most of the time the candle closes
+    # near/above HOD/LOD, and the RR is shot." Waiting for that close is the
+    # design, and he calls it the reason the engine misses his entries.
+    #
+    # So a bar also confirms by TRADING through the level by watch_frac of the
+    # PREVIOUS bar's range -- a price fixed before this bar opened, which is what
+    # makes it a live-executable trigger rather than hindsight. The close is then
+    # irrelevant; out["watch_entry"] carries the fill so the caller does not book
+    # the close it never waited for.
+    watch_entry = None
+    if on_watch and len(w) >= 2:
+        prev = w[-2]
+        buf = watch_frac * max(0.0, prev.high - prev.low)
+        trig = level + buf if is_long else level - buf
+        if (cur.high >= trig) if is_long else (cur.low <= trig):
+            watch_entry = trig
+    if out is not None:
+        out["watch_entry"] = watch_entry
+
+    if watch_entry is None:
+        if (cur.close <= level) if is_long else (cur.close >= level):
+            BR_FUNNEL["no_confirm_close"] += 1
+            return None
 
     # Austin 2026-07-10 (11-04 review): close AT the level / clearing by a hair
     # is not a break or displacement. Buffer = 10% of avg window candle range.
@@ -468,6 +501,7 @@ def detect_break_retest(candles: List[Candle], level: float, is_long: bool,
     # already fighting back — not an entry.
     adverse = cur.lower_wick if not is_long else cur.upper_wick
     if adverse > 1.5 * cur.body_size:
+        BR_FUNNEL["adverse_wick"] += 1
         return None
 
     state, retest_idx = "seek_break", None
@@ -495,8 +529,11 @@ def detect_break_retest(candles: List[Candle], level: float, is_long: bool,
                 retest_idx = i
 
     if retest_idx is None:
+        BR_FUNNEL["no_break" if state == "seek_break"
+                  else ("no_leave" if state == "seek_leave" else "no_retest")] += 1
         return None
     if (len(w) - 1) - retest_idx > max_confirm_gap:
+        BR_FUNNEL["stale_retest"] += 1
         return None                            # retest too stale vs the entry candle
 
     # Austin 2026-07-10 (07-30, 10-08, 11-06 + brain dump): if the level was
@@ -519,6 +556,7 @@ def detect_break_retest(candles: List[Candle], level: float, is_long: bool,
         # candle's extreme ("stop at the break of the candle that came back
         # for the retest" — yt EIIiEtAEm3s) instead of exactly at the level
         out["retest_low"], out["retest_high"] = w[retest_idx].low, w[retest_idx].high
+    BR_FUNNEL["passed"] += 1
     return (f"break {'up' if is_long else 'down'} → cleared → retest "
             f"{len(w)-1-retest_idx} bar(s) back → confirm close{tag}")
 

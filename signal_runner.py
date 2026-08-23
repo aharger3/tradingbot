@@ -337,6 +337,13 @@ TRADE_S_ONLY = False
 HTF_OPPOSITION_VETO = "hard"
 # Clause 2's band: "top 25% of the bar's own range" read literally, not fitted.
 BAR_EXTREME_FRAC = 0.25
+
+# ON WATCH -- the third engine state, added 2026-08-23. Off by env if it has to
+# be A/B'd: ON_WATCH=0. See watch_trigger()/watch_fired().
+ON_WATCH = os.getenv("ON_WATCH", "1").strip().lower() in ("1", "true", "yes", "on")
+
+# Diagnostic counters for the ON WATCH A/B. Cheap, always on, never read in prod.
+WATCH_STATS = {"br_note": 0, "closed_through": 0, "watch_only": 0, "neither": 0}
 # Clause 1: exactly three setups, nothing else is ever S. FAIR_VALUE_GAP and
 # FLAG are deliberately absent.
 S_ELIGIBLE_SETUPS = (SignalType.BREAK_AND_RETEST, SignalType.ONE_CANDLE_RULE,
@@ -601,6 +608,42 @@ def fill_price(level: float, candle, is_long: bool) -> float:
     if not bar_extreme_veto(probe, candle):
         return candle.close
     return min(max(level, candle.low), candle.high)
+
+
+def watch_trigger(level, prev_candle, is_long: bool):
+    """The ON WATCH trigger price for ``level``, known BEFORE the bar forms.
+
+    Austin, 2026-08-23: "the goal of my comments was for an entry to be made
+    BEFORE the candle closes, because most of the time the candle closes
+    near/above HOD/LOD, and the RR is shot." Waiting for the close is the bug,
+    not the safeguard. The engine has two states, no-signal and entered; the
+    missing third is ON WATCH.
+
+    Distance is BAR_EXTREME_FRAC (0.25) of the PREVIOUS bar's range. It has to
+    be the previous bar -- a bar's own range is unknown until it closes, which is
+    precisely what we refuse to wait for. Same 0.25 the fill rule already uses:
+    Austin settled it as ONE tolerance unit governing the entry trigger, the 84%
+    reclaim and stop slippage alike.
+    """
+    if level is None or prev_candle is None:
+        return None
+    buf = BAR_EXTREME_FRAC * max(0.0, prev_candle.high - prev_candle.low)
+    return level + buf if is_long else level - buf
+
+
+def watch_fired(level, prev_candle, current, is_long: bool):
+    """Trigger price if the bar traded through it, else None -- close ignored.
+
+    On 1-minute bars we cannot see the moment price crossed, only that the bar's
+    extreme reached the trigger. That is the honest backtest approximation of a
+    live intrabar order: the trigger price is fixed before the bar, and the bar
+    tells us whether it printed. Live can do better; the archive cannot.
+    """
+    trig = watch_trigger(level, prev_candle, is_long)
+    if trig is None or current is None:
+        return None
+    reached = (current.high >= trig) if is_long else (current.low <= trig)
+    return trig if reached else None
 
 
 def pivot_levels(candles, strength: Optional[int] = None,
@@ -1435,8 +1478,19 @@ class SignalRunner:
             # presence-in-window booleans that let chop/no-return fire (his review).
             br_out = {}
             br_note = detect_break_retest(self.candles, level_hi, is_long=True, out=br_out,
-                                          retest_tol_mult=_retest_tol())
-            if br_note and current.close > level_hi:
+                                          retest_tol_mult=_retest_tol(),
+                                          on_watch=ON_WATCH, watch_frac=BAR_EXTREME_FRAC)
+            watch_px = br_out.get("watch_entry") if ON_WATCH else None
+            closed_through = current.close > level_hi
+            if br_note:
+                WATCH_STATS["br_note"] += 1
+                if closed_through:
+                    WATCH_STATS["closed_through"] += 1
+                elif watch_px is not None:
+                    WATCH_STATS["watch_only"] += 1
+                else:
+                    WATCH_STATS["neither"] += 1
+            if br_note and (closed_through or watch_px is not None):
                 stop = level_hi
                 if BNR_STOP_MODE == "retest":
                     stop = br_out["retest_low"]
@@ -1444,8 +1498,15 @@ class SignalRunner:
                     recent = self.candles[-11:-1]
                     avg_rng = (sum(c.high - c.low for c in recent) / len(recent)) if recent else 0.0
                     stop = level_hi - max(0.10, 0.10 * avg_rng)
-                # T3(b): close by default, intrabar at the level on an extreme close
-                entry = fill_price(level_hi, current, is_long=True)
+                # T3(b): close by default, intrabar at the level on an extreme close.
+                # ON WATCH overrides it: if the bar never closed through the level
+                # we are in on the trigger price, mid-bar, which is the entire
+                # point -- a bar that runs to HOD and closes there used to be
+                # either skipped or filled at a price that shot the R:R.
+                if closed_through:
+                    entry = fill_price(level_hi, current, is_long=True)
+                else:
+                    entry = watch_px
                 stop = intrabar_stop(entry, stop, current, is_long=True)
                 stock_risk = entry - stop
                 grade = PriceActionAnalyzer.grade_trade(current, lookback, level_hi, level_lo,
@@ -1664,8 +1725,19 @@ class SignalRunner:
             # Mirror of the long side — ordered break/leave/retest/confirm.
             br_out = {}
             br_note = detect_break_retest(self.candles, level_lo, is_long=False, out=br_out,
-                                          retest_tol_mult=_retest_tol())
-            if br_note and current.close < level_lo:
+                                          retest_tol_mult=_retest_tol(),
+                                          on_watch=ON_WATCH, watch_frac=BAR_EXTREME_FRAC)
+            watch_px = br_out.get("watch_entry") if ON_WATCH else None
+            closed_through = current.close < level_lo
+            if br_note:
+                WATCH_STATS["br_note"] += 1
+                if closed_through:
+                    WATCH_STATS["closed_through"] += 1
+                elif watch_px is not None:
+                    WATCH_STATS["watch_only"] += 1
+                else:
+                    WATCH_STATS["neither"] += 1
+            if br_note and (closed_through or watch_px is not None):
                 stop = level_lo
                 if BNR_STOP_MODE == "retest":
                     stop = br_out["retest_high"]
@@ -1674,7 +1746,9 @@ class SignalRunner:
                     avg_rng = (sum(c.high - c.low for c in recent) / len(recent)) if recent else 0.0
                     stop = level_lo + max(0.10, 0.10 * avg_rng)
                 # T3(b): close by default, intrabar at the level on an extreme close
-                entry = fill_price(level_lo, current, is_long=False)
+                # ON WATCH: mid-bar trigger fill when the bar never closed through
+                entry = (fill_price(level_lo, current, is_long=False)
+                         if closed_through else watch_px)
                 stop = intrabar_stop(entry, stop, current, is_long=False)
                 stock_risk = stop - entry
                 grade = PriceActionAnalyzer.grade_trade(current, lookback, level_hi, level_lo,
