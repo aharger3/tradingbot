@@ -430,8 +430,7 @@ BR_FUNNEL = {"calls": 0, "too_short": 0, "no_confirm_close": 0, "adverse_wick": 
 
 def detect_break_retest(candles: List[Candle], level: float, is_long: bool,
                         window: int = 12, max_confirm_gap: int = 3,
-                        out: Optional[dict] = None, retest_tol_mult: float = 0.0,
-                        on_watch: bool = False, watch_frac: float = 0.25):
+                        out: Optional[dict] = None, retest_tol_mult: float = 0.0):
     """Austin's ORDERED break-and-retest (2026-07-09). Returns a note str if the
     LAST candle is a valid entry, else None.
 
@@ -463,31 +462,18 @@ def detect_break_retest(candles: List[Candle], level: float, is_long: bool,
     w = candles[-window:]
     cur = w[-1]
 
-    # ON WATCH (2026-08-23). Step 4 asks the CURRENT candle to CLOSE back through
-    # the level. Austin: "the goal of my comments was for an entry to be made
-    # BEFORE the candle closes, because most of the time the candle closes
-    # near/above HOD/LOD, and the RR is shot." Waiting for that close is the
-    # design, and he calls it the reason the engine misses his entries.
+    # ON WATCH, corrected 2026-08-23. A first cut let a bar confirm by TRADING
+    # through the level without closing through it. Austin rejected that shape:
+    # "you can't make your decision based on the previous candle, but you CAN
+    # enter on the candle you want to enter at candle close if it's one of those
+    # that are too close to the high for the day."
     #
-    # So a bar also confirms by TRADING through the level by watch_frac of the
-    # PREVIOUS bar's range -- a price fixed before this bar opened, which is what
-    # makes it a live-executable trigger rather than hindsight. The close is then
-    # irrelevant; out["watch_entry"] carries the fill so the caller does not book
-    # the close it never waited for.
-    watch_entry = None
-    if on_watch and len(w) >= 2:
-        prev = w[-2]
-        buf = watch_frac * max(0.0, prev.high - prev.low)
-        trig = level + buf if is_long else level - buf
-        if (cur.high >= trig) if is_long else (cur.low <= trig):
-            watch_entry = trig
-    if out is not None:
-        out["watch_entry"] = watch_entry
-
-    if watch_entry is None:
-        if (cur.close <= level) if is_long else (cur.close >= level):
-            BR_FUNNEL["no_confirm_close"] += 1
-            return None
+    # So the CLOSE decides and step 4 is unchanged. ON WATCH is now purely a
+    # FILL rule, in signal_runner.fill_price: same verdict, better price, and
+    # only on bars that close jammed against the session extreme.
+    if (cur.close <= level) if is_long else (cur.close >= level):
+        BR_FUNNEL["no_confirm_close"] += 1
+        return None
 
     # Austin 2026-07-10 (11-04 review): close AT the level / clearing by a hair
     # is not a break or displacement. Buffer = 10% of avg window candle range.
