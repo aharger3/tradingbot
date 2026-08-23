@@ -58,3 +58,19 @@ research/test.txt
 
 # generated decks: rebuild with research/build_deck.py, never commit the HTML
 research/decks/**/*.html
+
+# --- NEVER IGNORE A HUMAN JUDGEMENT -------------------------------------
+# research/*.jsonl above exists for the tens of thousands of regenerable corpus
+# artifacts. It is wider than it looks and has already silently swallowed real
+# work twice: 5.2's T6 decks, and t60_silent_days.jsonl + rule_ballot_batch01.
+# Austin's marks cannot be regenerated -- see CLAUDE.md, "never lose a mark".
+!research/*marks*.jsonl
+!research/mark_batch_*.jsonl
+!research/*verdicts*.json
+!research/*reviews*.jsonl
+!research/rule_ballot_*.jsonl
+!research/probe_*.jsonl
+!research/t60_silent_days.jsonl
+!research/marks/**
+!research/probes/*.html
+!research/decks/*-manifest.jsonl
