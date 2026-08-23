@@ -54,6 +54,34 @@ def tags_of(reason):
     return out
 
 
+def why_graded_d(s):
+    """Re-derive which branch of _grade_pa handed this signal a D.
+
+    Not guesswork: _grade_pa is eight lines and every input is on the record.
+    For BNR_STOP_MODE="level" the signal's stop IS the level it broke, which is
+    also what grade_trade received -- the parameter is only NAMED or_high.
+
+        long:  not bullish -> D ; low  > level -> D ; else C/B/A+
+        short: not bearish -> D ; high < level -> D ; else C/B/A+
+    """
+    is_long = s.get("dir") == "call"
+    level = s.get("stop")
+    bullish = s["c"] >= s["o"]
+    if level is None:
+        return "no level on the signal"
+    if is_long:
+        if not bullish:
+            return "entry candle is RED on a long"
+        if s["l"] > level:
+            return "candle never traded back down to the level"
+    else:
+        if bullish:
+            return "entry candle is GREEN on a short"
+        if s["h"] < level:
+            return "candle never traded back up to the level"
+    return "HTF bias opposed the trade"
+
+
 def replay(symbol, day):
     """Every signal the engine considered on this day, reason strings intact."""
     candles = rth_candles(symbol, day)
@@ -81,6 +109,9 @@ def replay(symbol, day):
         for s in r.captured[before:]:
             sigs.append({"bar": i, "grade": s.get("grade"), "status": s.get("status"),
                          "level": s.get("stop_level_name"),
+                         "stop": s.get("stop"), "dir": s.get("direction"),
+                         "o": candles[i].open, "h": candles[i].high,
+                         "l": candles[i].low, "c": candles[i].close,
                          "type": getattr(s.get("signal_type"), "value", s.get("signal_type")),
                          "reason": s.get("reason", "")})
     return sigs
@@ -100,6 +131,7 @@ def main():
     tp_status = Counter()
     n_sigs = n_tp = 0
     tp_x_levels = Counter()      # which LEVEL did the X-graded true positives break?
+    tp_x_why = Counter()         # and WHY did _grade_pa hand them a D?
     marks_covered = set()
     marks_total = sum(len(v) for v in by_day.values())
     days_run = 0
@@ -123,6 +155,7 @@ def main():
             tp_status[s["status"]] += 1
             if s["grade"] in SKIP_GRADES:
                 tp_x_levels[s.get("level") or "(none)"] += 1
+                tp_x_why[why_graded_d(s)] += 1
             for m in hit:
                 marks_covered.add((sym, date, m["entry_i"]))
             for t in tags_of(s["reason"]):
@@ -176,13 +209,24 @@ def main():
         L.append("| %s | %d |" % (s, c))
     L.append("")
 
-    L.append("## 3b. The level the X-graded true positives were trading")
+    L.append("## 3b. Why _grade_pa handed them a D")
     L.append("")
-    L.append("`PriceActionAnalyzer._grade_pa` computes `at_key_level` against the **opening "
-             "range only** — `candle.low <= or_high` for longs. A break-and-retest of PDH, "
-             "PMH or a pivot is graded as though the opening range were the level it broke. "
-             "Every row below that is not `OR high` / `OR low` is a signal graded on the "
-             "wrong level.")
+    L.append("**Correction, 2026-08-23.** An earlier draft of this report claimed the grader "
+             "measured `at_key_level` against the opening range whatever level the setup "
+             "broke. That is wrong. Every `grade_trade` call site passes the real level — "
+             "`level_hi`/`level_lo`, the FVG edge, the order block, the flag boundary. The "
+             "parameter is merely still NAMED `or_high` from when the opening range was the "
+             "only level there was. No level bug exists. The kill is the grader's actual "
+             "logic:")
+    L.append("")
+    L.append("| why it was graded D | hits on his entries |")
+    L.append("|---|---:|")
+    for why, c in tp_x_why.most_common():
+        L.append("| %s | **%d** |" % (why, c))
+    L.append("")
+    L.append("### The level the X-graded true positives were trading")
+    L.append("")
+    L.append("Reported for coverage, not blame — the grader saw each of these correctly.")
     L.append("")
     L.append("| level the setup actually broke | X-graded hits on his entries |")
     L.append("|---|---:|")

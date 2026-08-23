@@ -42,9 +42,21 @@ This is the list that matters. A gate high here is throwing away trades Austin a
 | fired | 8 |
 | skipped_tight | 2 |
 
-## 3b. The level the X-graded true positives were trading
+## 3b. Why _grade_pa handed them a D
 
-`PriceActionAnalyzer._grade_pa` computes `at_key_level` against the **opening range only** — `candle.low <= or_high` for longs. A break-and-retest of PDH, PMH or a pivot is graded as though the opening range were the level it broke. Every row below that is not `OR high` / `OR low` is a signal graded on the wrong level.
+**Correction, 2026-08-23.** An earlier draft of this report claimed the grader measured `at_key_level` against the opening range whatever level the setup broke. That is wrong. Every `grade_trade` call site passes the real level — `level_hi`/`level_lo`, the FVG edge, the order block, the flag boundary. The parameter is merely still NAMED `or_high` from when the opening range was the only level there was. No level bug exists. The kill is the grader's actual logic:
+
+| why it was graded D | hits on his entries |
+|---|---:|
+| candle never traded back down to the level | **42** |
+| entry candle is RED on a long | **35** |
+| HTF bias opposed the trade | **35** |
+| entry candle is GREEN on a short | **15** |
+| candle never traded back up to the level | **7** |
+
+### The level the X-graded true positives were trading
+
+Reported for coverage, not blame — the grader saw each of these correctly.
 
 | level the setup actually broke | X-graded hits on his entries |
 |---|---:|
