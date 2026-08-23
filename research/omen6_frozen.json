@@ -1,8 +1,8 @@
 {
-  "frozen_at": "2026-08-22",
-  "commit": "174e165d94b36739f3b9df88e458ffb98b1809e1",
+  "frozen_at": "2026-08-23",
+  "commit": "40949c6a8779676b4a34f8a76ee461f72a4f2e70",
   "branch": "main",
-  "tag": "omen-6-frozen-2026-08-22",
+  "tag": null,
   "policy": "30_30_30_10",
   "entry_cutoff": "11:00:00",
   "universe": {
@@ -82,14 +82,14 @@
     "omen_bot.py": "c12bec75ccfbf8673921e478e5af9890ac843d05c08c81a20db6951efb0e7419",
     "universe.py": "8cd5e3a777a31fae4cf7c2e37f790815e7c9efc11cc0ce37db74d3088bdd5149",
     "research/levels.py": "24de6bdde1f7aa0e4fb8d3a785e6aa63635819f705c5a1409ee4318894eb852f",
-    "research/exit_lab.py": "daf5cd518797cd52109e8f4ae85e420149db33a033f986815e0154a97dc79fbe",
+    "research/exit_lab.py": "010427e9d1d1d9cca500e78b90cdcc3c6be0cc7be5735b172a67e01a73f522a9",
     "research/t4_engine_recall.py": "62a1adb21b5f4c88f78f97e3fce44d1a39b53a8f708ed832ae0f3eee6430243f",
     "research/trend_gate.py": "ec65c6e39355620acaddf5b1895d2e1e7adffa6ca61bfc358a9b668d62e45ffa"
   },
   "sample_size": {
-    "baseline_sd_r": 2.3323380304972257,
+    "baseline_sd_r": 2.171746593955098,
     "ci_half_width_r": 0.25,
-    "trades_needed": 334,
+    "trades_needed": 290,
     "note": "N for a 95% CI half-width of 0.25R on mean R, using the baseline's own dispersion. Quote nothing before this."
   },
   "what_is_frozen": [
