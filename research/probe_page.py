@@ -5,8 +5,11 @@ One visual identity across the ballot, the autopsy and the head-to-head: IBM Ple
 the teal accent, and the market's own semantics -- green/red candles, amber for
 Austin's entry, red-brown for a stop -- kept separate from that accent.
 
-The page is a LIVE DOC. Everything a tap changes is a real attribute on a real
-element, so it saves and Claude can read the answers straight off the page.
+Persistence, 2026-08-23: these pages carry their own localStorage save and their
+own JSONL export, the same contract the decks have had since 5.1. They were built
+relying on the claude.ai `artifact` capability to save DOM gestures; on Austin's
+first pass nothing persisted, so the page no longer depends on it. Answers survive
+a refresh, and Copy all / Download hands them back with no round trip.
 """
 from __future__ import annotations
 
@@ -72,20 +75,42 @@ h1{
 .bar{
   position:sticky; top:0; z-index:20; background:var(--bg);
   border-bottom:1px solid var(--rule); margin:0 -14px 20px; padding:9px 14px;
-  display:flex; align-items:center; gap:12px;
+  display:flex; align-items:center; gap:10px; flex-wrap:wrap;
 }
 .bar .count{
   font-family:"IBM Plex Mono",monospace; font-size:13px; font-weight:600;
   font-variant-numeric:tabular-nums; color:var(--ink); white-space:nowrap;
 }
-.track{flex:1; height:4px; background:var(--rule); border-radius:2px; overflow:hidden}
+.track{flex:1 1 60px; height:4px; background:var(--rule); border-radius:2px; overflow:hidden}
 .fill{height:100%; width:0%; background:var(--accent); transition:width .25s ease}
+.saved{
+  font-family:"IBM Plex Mono",monospace; font-size:10px; font-weight:600;
+  letter-spacing:.08em; text-transform:uppercase; color:var(--ink-3);
+  white-space:nowrap; transition:color .2s;
+}
+.saved[data-state="just"]{color:var(--accent)}
+.saved[data-state="fail"]{color:var(--stop)}
 .jump{
   font:600 12px/1 "IBM Plex Sans",sans-serif; letter-spacing:.03em;
   background:var(--accent); color:var(--accent-ink); border:0; border-radius:999px;
   padding:9px 14px; cursor:pointer; white-space:nowrap;
 }
 .jump:hover{filter:brightness(1.08)}
+.jump:focus-visible{outline:2px solid var(--ink); outline-offset:2px}
+.jump.alt{background:transparent; color:var(--accent); box-shadow:inset 0 0 0 1px var(--accent)}
+
+/* export drawer */
+.drawer{
+  background:var(--surface); border:1px solid var(--rule); border-radius:10px;
+  padding:14px 16px; margin:0 0 18px; box-shadow:var(--shadow);
+}
+.drawer-btns{display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin:10px 0}
+.drawer textarea{
+  width:100%; min-height:200px; resize:vertical;
+  font:400 12px/1.45 "IBM Plex Mono",ui-monospace,monospace; color:var(--ink);
+  background:var(--surface-2); border:1px solid var(--rule-2); border-radius:8px;
+  padding:10px; white-space:pre; overflow-x:auto;
+}
 
 /* cards */
 .card{
@@ -200,17 +225,83 @@ textarea.note:focus-visible{outline:2px solid var(--accent); outline-offset:1px}
 </style>
 """
 
-JS = """
+JS = r"""
 <script>
 (function(){
+  var bar = document.querySelector('.bar');
+  var DECK = (bar && bar.getAttribute('data-deck')) || 'probe';
+  var KEY = 'omen-probe:' + DECK + ':';
+
   function cards(){ return Array.prototype.slice.call(document.querySelectorAll('.card')); }
-  function answered(card){
-    var qs = card.querySelectorAll('.q[data-required="1"]');
-    for (var i = 0; i < qs.length; i++){
-      if (!qs[i].querySelector('.chip[aria-pressed="true"]')) return false;
-    }
-    return qs.length > 0;
+  function qs(card){ return Array.prototype.slice.call(card.querySelectorAll('.q[data-q]')); }
+
+  /* localStorage throws in private mode. Say so loudly rather than losing answers. */
+  var storeOk = true;
+  try { localStorage.setItem(KEY + '_probe', '1'); localStorage.removeItem(KEY + '_probe'); }
+  catch (e) { storeOk = false; }
+
+  function cardState(card){
+    var picked = {}, notes = {};
+    qs(card).forEach(function(q){
+      var k = q.getAttribute('data-q'), vals = [];
+      q.querySelectorAll('.chip[aria-pressed="true"]').forEach(function(c){
+        vals.push(c.getAttribute('data-v'));
+      });
+      if (vals.length) picked[k] = vals;
+      var t = q.querySelector('textarea.note');
+      if (t && t.value.trim()) notes[k] = t.value.trim();
+    });
+    return {picked: picked, notes: notes};
   }
+
+  var flagTimer = null;
+  function flag(state, text){
+    var el = document.getElementById('saved');
+    if (!el) return;
+    el.setAttribute('data-state', state);
+    el.textContent = text;
+    if (state === 'just'){
+      clearTimeout(flagTimer);
+      flagTimer = setTimeout(function(){ el.setAttribute('data-state', ''); }, 1400);
+    }
+  }
+
+  function save(card){
+    if (!storeOk){ flag('fail', 'no local save - export before closing'); return; }
+    try {
+      localStorage.setItem(KEY + card.getAttribute('data-cid'),
+                           JSON.stringify(cardState(card)));
+      flag('just', 'saved');
+    } catch (e) { flag('fail', 'save failed - export now'); }
+  }
+
+  function restore(){
+    if (!storeOk) return;
+    cards().forEach(function(card){
+      var raw = localStorage.getItem(KEY + card.getAttribute('data-cid'));
+      if (!raw) return;
+      var st;
+      try { st = JSON.parse(raw); } catch (e) { return; }
+      qs(card).forEach(function(q){
+        var k = q.getAttribute('data-q');
+        (((st.picked || {})[k]) || []).forEach(function(v){
+          var chip = q.querySelector('.chip[data-v="' + v + '"]');
+          if (chip) chip.setAttribute('aria-pressed', 'true');
+        });
+        var t = q.querySelector('textarea.note');
+        if (t && (st.notes || {})[k]) t.value = st.notes[k];
+      });
+    });
+  }
+
+  function answered(card){
+    var req = card.querySelectorAll('.q[data-required="1"]');
+    for (var i = 0; i < req.length; i++){
+      if (!req[i].querySelector('.chip[aria-pressed="true"]')) return false;
+    }
+    return req.length > 0;
+  }
+
   function refresh(){
     var cs = cards(), done = 0;
     cs.forEach(function(c){
@@ -218,14 +309,67 @@ JS = """
       c.setAttribute('data-done', d);
       if (d === '1') done++;
     });
-    var n = cs.length;
     var cnt = document.getElementById('count');
-    if (cnt) cnt.textContent = done + ' / ' + n;
+    if (cnt) cnt.textContent = done + ' / ' + cs.length;
     var fill = document.getElementById('fill');
-    if (fill) fill.style.width = (n ? (done * 100 / n) : 0) + '%';
+    if (fill) fill.style.width = (cs.length ? (done * 100 / cs.length) : 0) + '%';
   }
+
+  function jsonl(){
+    var lines = [];
+    cards().forEach(function(card){
+      var st = cardState(card);
+      if (!Object.keys(st.picked).length && !Object.keys(st.notes).length) return;
+      lines.push(JSON.stringify({
+        type: 'probe', probe: DECK, card_id: card.getAttribute('data-cid'),
+        grade: card.getAttribute('data-grade') || null,
+        answers: st.picked, notes: st.notes
+      }));
+    });
+    return lines.join('\n');
+  }
+
   document.addEventListener('click', function(e){
     if (!e.target.closest) return;
+
+    if (e.target.closest('#exportbtn')){
+      var d = document.getElementById('drawer'), o = document.getElementById('out');
+      var text = jsonl();
+      o.value = text || '(nothing answered yet)';
+      d.hidden = false;
+      d.scrollIntoView({behavior: 'smooth', block: 'start'});
+      o.focus(); o.select();
+      return;
+    }
+
+    if (e.target.closest('#copybtn')){
+      var box = document.getElementById('out'), msg = document.getElementById('copymsg');
+      box.select(); box.setSelectionRange(0, 999999);
+      var say = function(ok){ msg.textContent = ok ? 'copied' : 'select the text and copy'; };
+      if (navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(box.value).then(function(){ say(true); },
+                                                      function(){ say(false); });
+      } else {
+        try { say(document.execCommand('copy')); } catch (err) { say(false); }
+      }
+      return;
+    }
+
+    if (e.target.closest('#dlbtn')){
+      var m2 = document.getElementById('copymsg');
+      try {
+        var blob = new Blob([jsonl() + '\n'], {type: 'application/x-ndjson'});
+        var a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = 'probe_' + DECK + '.jsonl';
+        document.body.appendChild(a); a.click(); a.remove();
+        m2.textContent = 'downloaded';
+      } catch (err) {
+        m2.textContent = 'download blocked here - use Copy all';
+      }
+      return;
+    }
+
     var chip = e.target.closest('.chip');
     if (!chip){
       if (e.target.closest('.jump')){
@@ -245,22 +389,49 @@ JS = """
     }
     chip.setAttribute('aria-pressed', on ? 'false' : 'true');
     refresh();
+    save(chip.closest('.card'));
   });
+
+  document.addEventListener('input', function(e){
+    var t = e.target;
+    if (!t || !t.classList || !t.classList.contains('note')) return;
+    var card = t.closest('.card');
+    clearTimeout(card._saveTimer);
+    card._saveTimer = setTimeout(function(){ save(card); }, 400);
+  });
+
+  window.addEventListener('beforeunload', function(e){
+    if (storeOk || !jsonl()) return;
+    e.preventDefault(); e.returnValue = '';
+  });
+
+  restore();
   refresh();
+  if (!storeOk) flag('fail', 'no local save - export before closing');
 })();
 </script>
 """
 
 
-def shell(title, eyebrow, h1, lede, cards_html, footer_html):
+def shell(title, eyebrow, h1, lede, cards_html, footer_html, deck_id):
     return "".join([
         "<title>%s</title>" % title, FONTS, CSS,
         '<div class="wrap">',
         '<div class="mast"><p class="eyebrow">%s</p><h1>%s</h1><p class="lede">%s</p></div>'
         % (eyebrow, h1, lede),
-        '<div class="bar"><span class="count" id="count">0 / 0</span>'
+        '<div class="bar" data-deck="%s"><span class="count" id="count">0 / 0</span>'
         '<span class="track"><span class="fill" id="fill"></span></span>'
-        '<button class="jump" type="button">Next unanswered</button></div>',
+        '<span class="saved" id="saved">saved</span>'
+        '<button class="jump" type="button">Next unanswered</button>'
+        '<button class="jump alt" type="button" id="exportbtn">Export</button></div>' % deck_id,
+        '<div class="drawer" id="drawer" hidden>'
+        '<p class="hint">Everything you have answered, as JSONL. <b>Copy all</b> and paste it '
+        'into the chat, or <b>Download</b> and send me the file.</p>'
+        '<div class="drawer-btns">'
+        '<button class="jump" type="button" id="copybtn">Copy all</button>'
+        '<button class="jump alt" type="button" id="dlbtn">Download .jsonl</button>'
+        '<span class="hint" id="copymsg"></span></div>'
+        '<textarea id="out" readonly></textarea></div>',
         cards_html,
         '<div class="foot">%s</div>' % footer_html,
         "</div>", JS,

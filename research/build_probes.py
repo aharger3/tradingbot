@@ -178,9 +178,10 @@ def build_autopsy():
         cards.append("".join(body))
 
     foot = ("<h2>What happens to these answers</h2>"
-            "<p>Every tap saves to this page as you make it — close the tab, come back, "
-            "it is still here. Nothing to export and nothing to download; Claude reads "
-            "the answers straight off the page.</p>"
+            "<p>Every tap saves in this page as you make it — close the tab, come back, "
+            "it is still here. When you are done (or partway, it does not matter) hit "
+            "<b>Export</b> at the top, then <b>Copy all</b> and paste it into the chat, or "
+            "<b>Download .jsonl</b> and send me the file.</p>"
             "<p>These are the <b>%d</b> days you traded and the engine saw nothing "
             "(SPY excluded — the engine is configured never to trade it, so those 14 are "
             "not misses). S-days are first, because the OMEN 6 gate is measured on them: "
@@ -193,7 +194,7 @@ def build_autopsy():
         "Fifteen days you traded and OMEN stayed silent. Your entry is already marked — "
         "the question is never <em>where</em>, it is <strong>what made it a trade</strong>. "
         "Roughly six minutes, all taps.",
-        "".join(cards), foot)
+        "".join(cards), foot, "silent-day-autopsy")
     return html, "silent-day-autopsy", total
 
 
@@ -266,7 +267,8 @@ def build_head2head():
             "<p>There are only <b>%d</b> days in the whole corpus where OMEN fired and you "
             "refused. That is the entire false-fire set. The answers here become the "
             "engine's veto list — the checks it runs <i>after</i> it finds a setup.</p>"
-            "<p>Every tap saves as you make it. Nothing to export.</p>" % total)
+            "<p>Saves as you tap. <b>Export → Copy all</b> when you want to send it back.</p>"
+            % total)
 
     html = probe_page.shell(
         "Head-to-Head",
@@ -274,7 +276,7 @@ def build_head2head():
         "OMEN pulled the trigger. You didn't.",
         "Nine days the engine fired and you graded the day <code>none</code>. "
         "The engine's entry is marked. Two taps each, about two minutes.",
-        "".join(cards), foot)
+        "".join(cards), foot, "head-to-head")
     return html, "head-to-head", total
 
 

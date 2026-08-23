@@ -198,9 +198,10 @@ def main():
         ]))
 
     foot = ("<h2>How this gets used</h2>"
-            "<p>Every tap saves to this page as you make it. Claude reads the answers straight "
-            "off it — nothing to export, nothing to send. Anything you leave untapped stays "
-            "open; anything you tap becomes a recorded decision that can be voided later.</p>"
+            "<p>Every tap saves in this page as you make it. Hit <b>Export</b> at the top, "
+            "then <b>Copy all</b>, and paste it into the chat. Anything you leave untapped "
+            "stays open; anything you tap becomes a recorded decision that can be voided "
+            "later.</p>"
             "<p>Four questions that were here on 2026-08-22 are gone: <b>rule ballot batch 01 "
             "answered them</b>. Four new ones the ballot opened have taken their place — "
             "the downgrade-variable list, the on-watch mechanic, the 84% reclaim tolerance, "
@@ -213,7 +214,7 @@ def main():
         "Each one ships with a recommended answer already written, so a single tap is a "
         "complete reply. Tier&nbsp;1 gates the destination — do those five and the map moves. "
         "About <strong>ten minutes</strong> for all of it.",
-        "".join(cards), foot)
+        "".join(cards), foot, "qa-queue")
 
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
     with open(OUT, "w", encoding="utf-8") as f:
