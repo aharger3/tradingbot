@@ -1,0 +1,231 @@
+<title>OMEN 6 Open Questions</title><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:wght@500;600&display=swap">
+<style>
+:root{
+  --bg:#f3f5f4; --surface:#ffffff; --surface-2:#eceff0;
+  --ink:#131e1c; --ink-2:#4c5b58; --ink-3:#7b8b87;
+  --rule:#dbe2e0; --rule-2:#c3cecb;
+  --accent:#0d6961; --accent-ink:#ffffff; --accent-soft:#dcece9;
+  --up:#1d7a4c; --dn:#a63229; --entry:#a86a06; --stop:#8d3b33;
+  --lvl-pd:#5b6ea8; --lvl-pm:#8a5ea3; --lvl-or:#3f7f76;
+  --shadow:0 1px 2px rgba(19,30,28,.06),0 8px 24px -14px rgba(19,30,28,.28);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0d1211; --surface:#151d1c; --surface-2:#1d2726;
+    --ink:#e7edeb; --ink-2:#a3b3af; --ink-3:#7d8d89;
+    --rule:#25322f; --rule-2:#33433f;
+    --accent:#54cfbe; --accent-ink:#07201d; --accent-soft:#16332f;
+    --up:#48b57c; --dn:#e07068; --entry:#e0a340; --stop:#d47a70;
+    --lvl-pd:#8fa2dc; --lvl-pm:#bb92d1; --lvl-or:#6dbcb0;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 28px -16px rgba(0,0,0,.7);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0d1211; --surface:#151d1c; --surface-2:#1d2726;
+  --ink:#e7edeb; --ink-2:#a3b3af; --ink-3:#7d8d89;
+  --rule:#25322f; --rule-2:#33433f;
+  --accent:#54cfbe; --accent-ink:#07201d; --accent-soft:#16332f;
+  --up:#48b57c; --dn:#e07068; --entry:#e0a340; --stop:#d47a70;
+  --lvl-pd:#8fa2dc; --lvl-pm:#bb92d1; --lvl-or:#6dbcb0;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 28px -16px rgba(0,0,0,.7);
+}
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:"IBM Plex Sans",system-ui,-apple-system,Segoe UI,sans-serif;
+  font-size:16px; line-height:1.5; -webkit-text-size-adjust:100%;
+}
+.wrap{max-width:800px; margin:0 auto; padding:0 14px 96px}
+
+/* masthead */
+.mast{padding:28px 0 18px; border-bottom:1px solid var(--rule)}
+.eyebrow{
+  font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:11px; font-weight:500;
+  letter-spacing:.14em; text-transform:uppercase; color:var(--accent); margin:0 0 8px;
+}
+h1{
+  font-family:"IBM Plex Serif",Georgia,serif; font-weight:600;
+  font-size:clamp(26px,6vw,36px); line-height:1.15; margin:0 0 10px; text-wrap:balance;
+}
+.lede{margin:0; color:var(--ink-2); font-size:15px; max-width:62ch}
+.lede strong{color:var(--ink); font-weight:600}
+
+/* sticky progress */
+.bar{
+  position:sticky; top:0; z-index:20; background:var(--bg);
+  border-bottom:1px solid var(--rule); margin:0 -14px 20px; padding:9px 14px;
+  display:flex; align-items:center; gap:12px;
+}
+.bar .count{
+  font-family:"IBM Plex Mono",monospace; font-size:13px; font-weight:600;
+  font-variant-numeric:tabular-nums; color:var(--ink); white-space:nowrap;
+}
+.track{flex:1; height:4px; background:var(--rule); border-radius:2px; overflow:hidden}
+.fill{height:100%; width:0%; background:var(--accent); transition:width .25s ease}
+.jump{
+  font:600 12px/1 "IBM Plex Sans",sans-serif; letter-spacing:.03em;
+  background:var(--accent); color:var(--accent-ink); border:0; border-radius:999px;
+  padding:9px 14px; cursor:pointer; white-space:nowrap;
+}
+.jump:hover{filter:brightness(1.08)}
+
+/* cards */
+.card{
+  background:var(--surface); border:1px solid var(--rule); border-radius:10px;
+  box-shadow:var(--shadow); margin:0 0 18px; overflow:hidden; scroll-margin-top:64px;
+}
+.card[data-done="1"]{border-color:var(--accent)}
+.card > header{
+  display:flex; align-items:baseline; gap:10px; flex-wrap:wrap;
+  padding:13px 16px; border-bottom:1px solid var(--rule); background:var(--surface-2);
+}
+.idx{
+  font-family:"IBM Plex Mono",monospace; font-size:11px; font-weight:600;
+  color:var(--ink-3); font-variant-numeric:tabular-nums;
+}
+.tick{
+  font-family:"IBM Plex Mono",monospace; font-size:16px; font-weight:600;
+  letter-spacing:.02em;
+}
+.when{font-family:"IBM Plex Mono",monospace; font-size:13px; color:var(--ink-2)}
+.tags{margin-left:auto; display:flex; gap:6px; flex-wrap:wrap; align-items:center}
+.tag{
+  font-family:"IBM Plex Mono",monospace; font-size:10px; font-weight:600;
+  letter-spacing:.08em; text-transform:uppercase; padding:3px 7px; border-radius:4px;
+  background:var(--accent-soft); color:var(--accent); border:1px solid transparent;
+}
+.tag.warn{background:transparent; color:var(--stop); border-color:var(--stop)}
+.done-dot{width:8px; height:8px; border-radius:50%; background:var(--rule-2); flex:none}
+.card[data-done="1"] .done-dot{background:var(--accent)}
+
+/* chart */
+.chartwrap{padding:10px 6px 4px; background:var(--surface)}
+.chart{width:100%; height:auto; display:block}
+.chart .grid{stroke:var(--rule); stroke-width:.6}
+.chart .axis{
+  font-family:"IBM Plex Mono",monospace; font-size:9px; fill:var(--ink-3);
+  text-anchor:middle;
+}
+.chart .wk{stroke-width:1}
+.chart .bd{stroke-width:.5}
+.chart .up{stroke:var(--up); fill:var(--up)}
+.chart .dn{stroke:var(--dn); fill:var(--dn)}
+.chart .lvl{stroke-width:1; stroke-dasharray:5 4; opacity:.85}
+.chart .lvl-t{font-family:"IBM Plex Mono",monospace; font-size:9px; font-weight:500}
+.chart .lvl-pd{stroke:var(--lvl-pd); fill:var(--lvl-pd)}
+.chart .lvl-pm{stroke:var(--lvl-pm); fill:var(--lvl-pm)}
+.chart .lvl-or{stroke:var(--lvl-or); fill:var(--lvl-or)}
+.chart .entry{stroke:var(--entry); stroke-width:1.3}
+.chart .entry-t{
+  font-family:"IBM Plex Mono",monospace; font-size:9px; font-weight:600; fill:var(--entry);
+}
+.chart .arrow{fill:var(--entry)}
+.chart .stopl{stroke:var(--stop); stroke-width:1; stroke-dasharray:2 3}
+.chart .stop-t{
+  font-family:"IBM Plex Mono",monospace; font-size:9px; font-weight:600; fill:var(--stop);
+}
+.legend{
+  display:flex; gap:14px; flex-wrap:wrap; padding:2px 16px 12px;
+  font-family:"IBM Plex Mono",monospace; font-size:10px; color:var(--ink-3);
+}
+.legend b{font-weight:600}
+
+/* questions */
+.q{padding:14px 16px; border-top:1px solid var(--rule)}
+.q h3{margin:0 0 3px; font-size:14px; font-weight:600; line-height:1.35; color:var(--ink)}
+.q .hint{margin:0 0 10px; font-size:12.5px; color:var(--ink-3)}
+.chips{display:flex; flex-wrap:wrap; gap:7px}
+.chip{
+  font:500 13.5px/1.2 "IBM Plex Sans",sans-serif; color:var(--ink-2);
+  background:var(--surface); border:1px solid var(--rule-2); border-radius:8px;
+  padding:10px 12px; min-height:42px; cursor:pointer; text-align:left;
+  transition:background .12s,border-color .12s,color .12s;
+}
+.chip:hover{border-color:var(--accent)}
+.chip:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+.chip[aria-pressed="true"]{
+  background:var(--accent); border-color:var(--accent); color:var(--accent-ink);
+  font-weight:600;
+}
+.q[data-tone="veto"] .chip[aria-pressed="true"]{
+  background:var(--stop); border-color:var(--stop); color:#fff;
+}
+textarea.note{
+  width:100%; margin-top:8px; min-height:56px; resize:vertical;
+  font:400 14px/1.5 "IBM Plex Sans",sans-serif; color:var(--ink);
+  background:var(--surface-2); border:1px solid var(--rule-2); border-radius:8px;
+  padding:9px 11px;
+}
+textarea.note:focus-visible{outline:2px solid var(--accent); outline-offset:1px}
+
+/* footer */
+.foot{
+  margin-top:26px; padding:16px; border:1px dashed var(--rule-2); border-radius:10px;
+  font-size:13.5px; color:var(--ink-2);
+}
+.foot h2{
+  font-family:"IBM Plex Serif",Georgia,serif; font-size:16px; font-weight:600;
+  margin:0 0 6px; color:var(--ink);
+}
+.foot code{
+  font-family:"IBM Plex Mono",monospace; font-size:12.5px; background:var(--surface-2);
+  padding:1px 5px; border-radius:4px;
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+@media (max-width:520px){
+  .wrap{padding:0 10px 96px}
+  .bar{margin:0 -10px 16px; padding:8px 10px}
+  .chip{flex:1 1 calc(50% - 4px); min-width:0}
+  .q{padding:13px 12px}
+  .card > header{padding:11px 12px}
+}
+</style>
+<div class="wrap"><div class="mast"><p class="eyebrow">OMEN 6 &middot; the Q&amp;A queue</p><h1>Thirteen questions only you can answer.</h1><p class="lede">Each one ships with a recommended answer already written, so a single tap is a complete reply. Tier&nbsp;1 gates the destination — do those five and the map moves. About <strong>ten minutes</strong> for all of it.</p></div><div class="bar"><span class="count" id="count">0 / 0</span><span class="track"><span class="fill" id="fill"></span></span><button class="jump" type="button">Next unanswered</button></div><p class="eyebrow" style="margin:26px 0 10px">Tier 1 &middot; gates the destination itself</p><article class="card" data-cid="capital" data-tier="1" data-done="0"><header><span class="idx">01/13</span><span style="font-family:'IBM Plex Serif',Georgia,serif;font-size:17px;font-weight:600;flex:1 1 100%;line-height:1.3">Six figures on what capital?</span><span class="tags"><span class="done-dot"></span></span></header><div class="q" style="border-top:0;padding-bottom:0"><p class="hint" style="margin:0 0 8px">Account size, risk per trade, shares or contracts. <code>$100k/yr on $52k at 1%</code> and <code>$100k/yr on $250k at 0.5%</code> are different engines and only one of them is reachable. Every dollar figure in the backtest scales off this one number.</p><div style="border-left:3px solid var(--accent);padding:8px 0 8px 12px;font-size:14px;color:var(--ink)"><b style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:4px">Recommended</b>$52k account, 1% risk per trade, shares. The $52k is the only figure on record (omen-5.0 T4). Your ballot answer on stops puts max slippage at &minus;1.25R = $1,250, which is consistent with 1% of $52k being ~$520 &mdash; so if $1.25k is really 1.25R, the account is closer to $100k. Worth correcting.</div></div><section class="q" data-q="answer" data-multi="0" data-required="1"><h3>Your answer</h3><p class="hint">Tap one. The note is optional — the tap is a complete answer.</p><div class="chips"><button class="chip" type="button" data-v="default" aria-pressed="false">Take the default</button><button class="chip" type="button" data-v="override" aria-pressed="false">Override — see my note</button></div><textarea class="note" data-note="answer" placeholder="Account size / risk % / anything about sizing"></textarea></section></article><article class="card" data-cid="slices" data-tier="1" data-done="0"><header><span class="idx">02/13</span><span style="font-family:'IBM Plex Serif',Georgia,serif;font-size:17px;font-weight:600;flex:1 1 100%;line-height:1.3">&ldquo;Consistent across all your elements&rdquo; — name the slices.</span><span class="tags"><span class="done-dot"></span></span></header><div class="q" style="border-top:0;padding-bottom:0"><p class="hint" style="margin:0 0 8px">You said expectancy has to hold across every angle, not be one good year in a suit. I need the actual cuts, because the durability gate is literally a loop over them.</p><div style="border-left:3px solid var(--accent);padding:8px 0 8px 12px;font-size:14px;color:var(--ink)"><b style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:4px">Recommended</b>Every quarter positive, every pool positive, and no single symbol carrying more than 25% of total R.</div></div><section class="q" data-q="answer" data-multi="0" data-required="1"><h3>Your answer</h3><p class="hint">Tap one. The note is optional — the tap is a complete answer.</p><div class="chips"><button class="chip" type="button" data-v="default" aria-pressed="false">Take the default</button><button class="chip" type="button" data-v="override" aria-pressed="false">Override — see my note</button></div><textarea class="note" data-note="answer" placeholder="Other cuts that must hold: month? day-of-week? long vs short?"></textarea></section></article><article class="card" data-cid="decisive" data-tier="1" data-done="0"><header><span class="idx">03/13</span><span style="font-family:'IBM Plex Serif',Georgia,serif;font-size:17px;font-weight:600;flex:1 1 100%;line-height:1.3">How far above the benchmarks is &ldquo;decisive&rdquo;?</span><span class="tags"><span class="done-dot"></span></span></header><div class="q" style="border-top:0;padding-bottom:0"><p class="hint" style="margin:0 0 8px">55% win rate and $100k are the floor. How much daylight before it's real and not noise? Without this, a 55.4% result and a 68% result both read PASS.</p><div style="border-left:3px solid var(--accent);padding:8px 0 8px 12px;font-size:14px;color:var(--ink)"><b style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:4px">Recommended</b>The 95% confidence interval on mean R sits entirely above zero, and win rate clears 55% on the <i>lower</i> bound, not the point estimate.</div></div><section class="q" data-q="answer" data-multi="0" data-required="1"><h3>Your answer</h3><p class="hint">Tap one. The note is optional — the tap is a complete answer.</p><div class="chips"><button class="chip" type="button" data-v="default" aria-pressed="false">Take the default</button><button class="chip" type="button" data-v="override" aria-pressed="false">Override — see my note</button></div></section></article><article class="card" data-cid="winrate_basis" data-tier="1" data-done="0"><header><span class="idx">04/13</span><span style="font-family:'IBM Plex Serif',Georgia,serif;font-size:17px;font-weight:600;flex:1 1 100%;line-height:1.3">Is 55% measured before or after the scale-out ladder?</span><span class="tags"><span class="done-dot"></span></span></header><div class="q" style="border-top:0;padding-bottom:0"><p class="hint" style="margin:0 0 8px"><code>30/30/30/10</code> books a high win rate largely because tranche&nbsp;1 fills often. That number is not comparable to a flat-exit win rate, so the same &ldquo;55%&rdquo; means two different things.</p><div style="border-left:3px solid var(--accent);padding:8px 0 8px 12px;font-size:14px;color:var(--ink)"><b style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:4px">Recommended</b>After the ladder — that's the system you'd actually trade — but reported beside the flat number every run so the inflation stays visible.</div></div><section class="q" data-q="answer" data-multi="0" data-required="1"><h3>Your answer</h3><p class="hint">Tap one. The note is optional — the tap is a complete answer.</p><div class="chips"><button class="chip" type="button" data-v="default" aria-pressed="false">Take the default</button><button class="chip" type="button" data-v="override" aria-pressed="false">Override — see my note</button></div></section></article><article class="card" data-cid="downgrade_vars" data-tier="1" data-done="0"><header><span class="idx">05/13</span><span style="font-family:'IBM Plex Serif',Georgia,serif;font-size:17px;font-weight:600;flex:1 1 100%;line-height:1.3">A = one downgrade, C = two. Which variables can downgrade?</span><span class="tags"><span class="done-dot"></span></span></header><div class="q" style="border-top:0;padding-bottom:0"><p class="hint" style="margin:0 0 8px">This is the one that turns grading into arithmetic. If S is a clean setup and each missing thing costs one grade, then the engine can <i>compute</i> the grade instead of guessing it — but only once the list of countable things exists. Tap everything that costs a grade when it's missing or wrong. Your ballot already ruled <b>HOD/LOD proximity</b> out, so it isn't on the list.</p><div style="border-left:3px solid var(--accent);padding:8px 0 8px 12px;font-size:14px;color:var(--ink)"><b style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:4px">Recommended</b>No default — this list doesn't exist yet anywhere in the vault or the code.</div></div><section class="q" data-q="answer" data-multi="1" data-required="1"><h3>Your answer</h3><p class="hint">Tap every one that counts.</p><div class="chips"><button class="chip" type="button" data-v="no_displacement" aria-pressed="false">No displacement candle</button><button class="chip" type="button" data-v="stale_retest" aria-pressed="false">Stale retest</button><button class="chip" type="button" data-v="weak_level" aria-pressed="false">Weak / minor level</button><button class="chip" type="button" data-v="no_confluence" aria-pressed="false">No BR+OCR confluence</button><button class="chip" type="button" data-v="against_qqq" aria-pressed="false">Against QQQ trend</button><button class="chip" type="button" data-v="low_volume" aria-pressed="false">Low volume</button><button class="chip" type="button" data-v="late_session" aria-pressed="false">Late in the session</button><button class="chip" type="button" data-v="thin_rr" aria-pressed="false">Thin R:R</button><button class="chip" type="button" data-v="choppy" aria-pressed="false">Choppy structure into it</button><button class="chip" type="button" data-v="no_htf" aria-pressed="false">No higher-timeframe thesis</button><button class="chip" type="button" data-v="wide_stop" aria-pressed="false">Stop wider than normal</button><button class="chip" type="button" data-v="gap_untested" aria-pressed="false">Gap left untested</button></div><textarea class="note" data-note="answer" placeholder="Anything missing from this list, or which two of these usually pair to make a C"></textarea></section></article><p class="eyebrow" style="margin:26px 0 10px">Tier 2 &middot; unblocks one ticket each</p><article class="card" data-cid="prearm" data-tier="2" data-done="0"><header><span class="idx">06/13</span><span style="font-family:'IBM Plex Serif',Georgia,serif;font-size:17px;font-weight:600;flex:1 1 100%;line-height:1.3">The &ldquo;on watch&rdquo; mechanic — how should it actually work?</span><span class="tags"><span class="done-dot"></span></span></header><div class="q" style="border-top:0;padding-bottom:0"><p class="hint" style="margin:0 0 8px">Ballot q7: <i>&ldquo;we miss out on entries near HOD because they close too high for our entry risk to reward.&rdquo;</i> Ballot q8: <i>&ldquo;you want it to be probable of closing above that level. don't just enter when it taps a level.&rdquo;</i> Both point at the same missing state: the engine has no notion of <em>watching</em> a level and deciding mid-bar. Pick the shape and I'll build it.</p><div style="border-left:3px solid var(--accent);padding:8px 0 8px 12px;font-size:14px;color:var(--ink)"><b style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:4px">Recommended</b>Two-bar arm: when price crosses a level intrabar, the engine goes ON WATCH. It enters on the <i>next</i> bar's open if the watch bar closed beyond the level with displacement. Stop still goes below the level, so an entry near HOD gets a wider stop and smaller size rather than being skipped for R:R.</div></div><section class="q" data-q="answer" data-multi="0" data-required="1"><h3>Your answer</h3><p class="hint">Tap one. The note is optional — the tap is a complete answer.</p><div class="chips"><button class="chip" type="button" data-v="two_bar" aria-pressed="false">Two-bar arm (the default above)</button><button class="chip" type="button" data-v="close_then_pullback" aria-pressed="false">Wait for the close, then enter on the first pullback</button><button class="chip" type="button" data-v="size_down" aria-pressed="false">Enter at the close anyway, size down to keep risk flat</button><button class="chip" type="button" data-v="override" aria-pressed="false">None of these — see my note</button></div><textarea class="note" data-note="answer" placeholder="How you actually do it when you're watching a level near HOD"></textarea></section></article><article class="card" data-cid="reclaim_tol" data-tier="2" data-done="0"><header><span class="idx">07/13</span><span style="font-family:'IBM Plex Serif',Georgia,serif;font-size:17px;font-weight:600;flex:1 1 100%;line-height:1.3">84% rule: how far from your original entry is &ldquo;too far&rdquo;?</span><span class="tags"><span class="done-dot"></span></span></header><div class="q" style="border-top:0;padding-bottom:0"><p class="hint" style="margin:0 0 8px">Ballot q12 settled that it's a re-entry at <b>the price you entered on</b>, not just the level. Ballot q13: <i>&ldquo;candle close as long as the close is not too far away from original entry.&rdquo;</i> That needs a number or it can't be coded.</p><div style="border-left:3px solid var(--accent);padding:8px 0 8px 12px;font-size:14px;color:var(--ink)"><b style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:4px">Recommended</b>Within 0.25R of the original entry. Expressed in R rather than cents so it scales across TSLA and QQQ without a second rule.</div></div><section class="q" data-q="answer" data-multi="0" data-required="1"><h3>Your answer</h3><p class="hint">Tap one. The note is optional — the tap is a complete answer.</p><div class="chips"><button class="chip" type="button" data-v="quarter_r" aria-pressed="false">0.25R — the default</button><button class="chip" type="button" data-v="half_r" aria-pressed="false">0.5R</button><button class="chip" type="button" data-v="tenth" aria-pressed="false">A fixed 0.10% of price</button><button class="chip" type="button" data-v="override" aria-pressed="false">Something else — see my note</button></div></section></article><article class="card" data-cid="ladder_switch" data-tier="2" data-done="0"><header><span class="idx">08/13</span><span style="font-family:'IBM Plex Serif',Georgia,serif;font-size:17px;font-weight:600;flex:1 1 100%;line-height:1.3">Trend-vs-chop ladder switching — in scope, or OMEN 7?</span><span class="tags"><span class="done-dot"></span></span></header><div class="q" style="border-top:0;padding-bottom:0"><p class="hint" style="margin:0 0 8px">Ballot q4: <i>&ldquo;30 percent is when better chance stock runs, 50 for choppier. we must identify this.&rdquo;</i> But ballot q5 says stick with 30/30/30/10 for now. Those pull opposite ways. A regime detector is a whole subsystem and it would restart the frozen forward clock.</p><div style="border-left:3px solid var(--accent);padding:8px 0 8px 12px;font-size:14px;color:var(--ink)"><b style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:4px">Recommended</b>Out of scope for OMEN 6. Ship 30/30/30/10 fixed, measure the edge, and make regime detection the first thing OMEN 7 does — when there's a trustworthy baseline to beat.</div></div><section class="q" data-q="answer" data-multi="0" data-required="1"><h3>Your answer</h3><p class="hint">Tap one. The note is optional — the tap is a complete answer.</p><div class="chips"><button class="chip" type="button" data-v="default" aria-pressed="false">Take the default</button><button class="chip" type="button" data-v="override" aria-pressed="false">Override — see my note</button></div></section></article><article class="card" data-cid="be_slippage" data-tier="2" data-done="0"><header><span class="idx">09/13</span><span style="font-family:'IBM Plex Serif',Georgia,serif;font-size:17px;font-weight:600;flex:1 1 100%;line-height:1.3">What does a break-even stop actually fill at?</span><span class="tags"><span class="done-dot"></span></span></header><div class="q" style="border-top:0;padding-bottom:0"><p class="hint" style="margin:0 0 8px">After ticket 02's fix the runner fills <i>exactly</i> at entry and literally cannot lose — a modelling artifact, not a market fact. It is why <code>+1.5148R</code> is a ceiling and not an expectation. You priced the <i>initial</i> stop at &minus;1.25R max; this is the break-even one.</p><div style="border-left:3px solid var(--accent);padding:8px 0 8px 12px;font-size:14px;color:var(--ink)"><b style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:4px">Recommended</b>Haircut the BE fill by one tick against you. If TradeZella gives up real fills (ticket 16), replace the haircut with your measured slippage and never guess again.</div></div><section class="q" data-q="answer" data-multi="0" data-required="1"><h3>Your answer</h3><p class="hint">Tap one. The note is optional — the tap is a complete answer.</p><div class="chips"><button class="chip" type="button" data-v="one_tick" aria-pressed="false">One tick against me</button><button class="chip" type="button" data-v="quarter_r" aria-pressed="false">0.25R against me — same as the initial-stop haircut</button><button class="chip" type="button" data-v="zella" aria-pressed="false">Wait for TradeZella and measure it</button><button class="chip" type="button" data-v="override" aria-pressed="false">Something else — see my note</button></div></section></article><article class="card" data-cid="corpus_contract" data-tier="2" data-done="0"><header><span class="idx">10/13</span><span style="font-family:'IBM Plex Serif',Georgia,serif;font-size:17px;font-weight:600;flex:1 1 100%;line-height:1.3">What does &ldquo;the corpus validates a rule&rdquo; mean?</span><span class="tags"><span class="done-dot"></span></span></header><div class="q" style="border-top:0;padding-bottom:0"><p class="hint" style="margin:0 0 8px">You settled that the corpus is a validator, never a rule source. I still need the verdict vocabulary and what happens when it contradicts something you stated.</p><div style="border-left:3px solid var(--accent);padding:8px 0 8px 12px;font-size:14px;color:var(--ink)"><b style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:4px">Recommended</b><code>confirmed</code> / <code>contradicted</code> / <code>unmentioned</code>. A contradiction <b>flags, never blocks</b> — it's your strategy and you're the authority. Runs as one batch pass after the rulebook is rewritten, not per rule.</div></div><section class="q" data-q="answer" data-multi="0" data-required="1"><h3>Your answer</h3><p class="hint">Tap one. The note is optional — the tap is a complete answer.</p><div class="chips"><button class="chip" type="button" data-v="default" aria-pressed="false">Take the default</button><button class="chip" type="button" data-v="override" aria-pressed="false">Override — see my note</button></div></section></article><p class="eyebrow" style="margin:26px 0 10px">Tier 3 &middot; your call, but I can proceed either way</p><article class="card" data-cid="spy" data-tier="3" data-done="0"><header><span class="idx">11/13</span><span style="font-family:'IBM Plex Serif',Georgia,serif;font-size:17px;font-weight:600;flex:1 1 100%;line-height:1.3">Should SPY go back into the backtest universe?</span><span class="tags"><span class="done-dot"></span></span></header><div class="q" style="border-top:0;padding-bottom:0"><p class="hint" style="margin:0 0 8px">Dropped 2026-07-11 on a &ldquo;0-for-5&rdquo; note. Five trades is not a sample. SPY is fully archived, it sits in <code>INDEX_POOL</code>, and it is <b>30 of the 120 symbol-days you have ever graded</b> — so every recall number today ignores a quarter of your own judgements. One flag flips it everywhere.</p><div style="border-left:3px solid var(--accent);padding:8px 0 8px 12px;font-size:14px;color:var(--ink)"><b style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:4px">Recommended</b>Yes, include it. Flip it before the next baseline so the number is computed once. Every published pre-ticket-14 figure moves, which is why it's your call and not mine.</div></div><section class="q" data-q="answer" data-multi="0" data-required="1"><h3>Your answer</h3><p class="hint">Tap one. The note is optional — the tap is a complete answer.</p><div class="chips"><button class="chip" type="button" data-v="default" aria-pressed="false">Take the default</button><button class="chip" type="button" data-v="override" aria-pressed="false">Override — see my note</button></div></section></article><article class="card" data-cid="extra_s_rows" data-tier="3" data-done="0"><header><span class="idx">12/13</span><span style="font-family:'IBM Plex Serif',Georgia,serif;font-size:17px;font-weight:600;flex:1 1 100%;line-height:1.3">Re-verify the 47 extra S-rows?</span><span class="tags"><span class="done-dot"></span></span></header><div class="q" style="border-top:0;padding-bottom:0"><p class="hint" style="margin:0 0 8px">Your S-day count is <b>154</b>, high confidence. It could be <b>201</b> if 47 S-tier rows from old chat-transcript mining were merged, but they carry no bar index and you already declined them once.</p><div style="border-left:3px solid var(--accent);padding:8px 0 8px 12px;font-size:14px;color:var(--ink)"><b style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:4px">Recommended</b>No. Gate on 154. Re-opening 47 low-confidence rows to grow a sample that's already big enough is the wrong trade.</div></div><section class="q" data-q="answer" data-multi="0" data-required="1"><h3>Your answer</h3><p class="hint">Tap one. The note is optional — the tap is a complete answer.</p><div class="chips"><button class="chip" type="button" data-v="default" aria-pressed="false">Take the default</button><button class="chip" type="button" data-v="override" aria-pressed="false">Override — see my note</button></div></section></article><article class="card" data-cid="widen_graded" data-tier="3" data-done="0"><header><span class="idx">13/13</span><span style="font-family:'IBM Plex Serif',Georgia,serif;font-size:17px;font-weight:600;flex:1 1 100%;line-height:1.3">Should the graded set widen past QQQ / SPY / TSLA?</span><span class="tags"><span class="done-dot"></span></span></header><div class="q" style="border-top:0;padding-bottom:0"><p class="hint" style="margin:0 0 8px">Those three are <b>all you have ever graded</b>. The engine trades 29 symbols. A gate proven on three may not transfer — but widening is exactly the deck-hours this effort exists to cut.</p><div style="border-left:3px solid var(--accent);padding:8px 0 8px 12px;font-size:14px;color:var(--ink)"><b style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:4px">Recommended</b>No, not for OMEN 6. Prove it on three, then test transfer as the first act of OMEN 7.</div></div><section class="q" data-q="answer" data-multi="0" data-required="1"><h3>Your answer</h3><p class="hint">Tap one. The note is optional — the tap is a complete answer.</p><div class="chips"><button class="chip" type="button" data-v="default" aria-pressed="false">Take the default</button><button class="chip" type="button" data-v="override" aria-pressed="false">Override — see my note</button></div></section></article><div class="foot"><h2>How this gets used</h2><p>Every tap saves to this page as you make it. Claude reads the answers straight off it — nothing to export, nothing to send. Anything you leave untapped stays open; anything you tap becomes a recorded decision that can be voided later.</p><p>Four questions that were here on 2026-08-22 are gone: <b>rule ballot batch 01 answered them</b>. Four new ones the ballot opened have taken their place — the downgrade-variable list, the on-watch mechanic, the 84% reclaim tolerance, and whether ladder switching is OMEN 6's problem.</p></div></div>
+<script>
+(function(){
+  function cards(){ return Array.prototype.slice.call(document.querySelectorAll('.card')); }
+  function answered(card){
+    var qs = card.querySelectorAll('.q[data-required="1"]');
+    for (var i = 0; i < qs.length; i++){
+      if (!qs[i].querySelector('.chip[aria-pressed="true"]')) return false;
+    }
+    return qs.length > 0;
+  }
+  function refresh(){
+    var cs = cards(), done = 0;
+    cs.forEach(function(c){
+      var d = answered(c) ? '1' : '0';
+      c.setAttribute('data-done', d);
+      if (d === '1') done++;
+    });
+    var n = cs.length;
+    var cnt = document.getElementById('count');
+    if (cnt) cnt.textContent = done + ' / ' + n;
+    var fill = document.getElementById('fill');
+    if (fill) fill.style.width = (n ? (done * 100 / n) : 0) + '%';
+  }
+  document.addEventListener('click', function(e){
+    if (!e.target.closest) return;
+    var chip = e.target.closest('.chip');
+    if (!chip){
+      if (e.target.closest('.jump')){
+        var next = cards().filter(function(c){
+          return c.getAttribute('data-done') !== '1';
+        })[0];
+        if (next) next.scrollIntoView({behavior: 'smooth', block: 'start'});
+      }
+      return;
+    }
+    var q = chip.closest('.q');
+    var on = chip.getAttribute('aria-pressed') === 'true';
+    if (q.getAttribute('data-multi') !== '1'){
+      q.querySelectorAll('.chip').forEach(function(o){
+        o.setAttribute('aria-pressed', 'false');
+      });
+    }
+    chip.setAttribute('aria-pressed', on ? 'false' : 'true');
+    refresh();
+  });
+  refresh();
+})();
+</script>
