@@ -30,7 +30,8 @@ sys.path.insert(0, HERE)
 sys.path.insert(0, ROOT)
 
 import deck_ui
-from research.t4_engine_recall import run_day, rth_candles, prior_day_levels
+from research.t4_engine_recall import (run_day, rth_candles, prior_day_levels,
+                                       premarket_extremes)
 
 ARCHIVE = os.path.join(ROOT, "data_archive")
 MARKS_DIR = os.path.join(HERE, "marks")
@@ -214,8 +215,14 @@ def pick(n: int, seed: int, max_probe: int):
         if len(bucket) >= want:
             continue
         pdh, pdl, _o, _c = prior_day_levels(sym, day)
+        pmh, pml = premarket_extremes(sym, day)
+        # Opening range = first 5 RTH bars, same definition backtest_week.py:808,
+        # backtest_12mo.py:144 and backtest_30d_report.py:40 all use.
+        orh = max(c.high for c in candles[:5]) if len(candles) >= 5 else None
+        orl = min(c.low for c in candles[:5]) if len(candles) >= 5 else None
         bucket.append({"symbol": sym, "day": day, "candles": candles,
-                       "pdh": pdh, "pdl": pdl, "fires": n_fires})
+                       "pdh": pdh, "pdl": pdl, "pmh": pmh, "pml": pml,
+                       "orh": orh, "orl": orl, "fires": n_fires})
         if probed % 25 == 0:
             print("  probed %d  fire=%d silent=%d" % (probed, len(fire), len(silent)))
 
@@ -231,8 +238,11 @@ def write_deck(cards, name: str, label: str) -> str:
         cid = "%s_%s" % (c["symbol"], c["day"])
         card_ids.append(cid)
         day_data[cid] = [candle_dict(x) for x in c["candles"]]
-        prior[cid] = {"pdh": round(c["pdh"], 2) if c["pdh"] else None,
-                      "pdl": round(c["pdl"], 2) if c["pdl"] else None}
+        # All six levels deck_ui.LEVEL_KEYS knows how to draw. Supplying only
+        # PDH/PDL left four of them silently blank, and break-and-retest is
+        # defined ON these levels -- a card without them cannot be graded.
+        prior[cid] = {k: (round(c[k], 2) if c.get(k) else None)
+                      for k in ("pdh", "pdl", "pmh", "pml", "orh", "orl")}
         htmls.append(deck_ui.render_card(cid, c["symbol"]))
 
     out = deck_ui.HTML_HEAD.replace("__LABEL__", label).replace("__TOTAL__", str(len(card_ids)))
