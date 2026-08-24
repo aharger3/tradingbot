@@ -342,6 +342,14 @@ BAR_EXTREME_FRAC = 0.25
 # be A/B'd: ON_WATCH=0. It is a FILL rule -- see near_session_extreme().
 ON_WATCH = os.getenv("ON_WATCH", "1").strip().lower() in ("1", "true", "yes", "on")
 
+# Austin, 2026-08-24: "I don't trade FVG or FLAG. Those are not setups
+# anymore." Detection stays on -- the historical numbers stay comparable --
+# only routing stops. TRADE_RETIRED_SETUPS=1 is the one-variable-away
+# reversal, off by default like every other A/B flag in this file.
+RETIRED_SETUPS = frozenset({SignalType.FAIR_VALUE_GAP, SignalType.FLAG})
+TRADE_RETIRED_SETUPS = os.getenv("TRADE_RETIRED_SETUPS", "0").strip().lower() \
+    in ("1", "true", "yes", "on")
+
 # Clause 1: exactly three setups, nothing else is ever S. FAIR_VALUE_GAP and
 # FLAG are deliberately absent.
 S_ELIGIBLE_SETUPS = (SignalType.BREAK_AND_RETEST, SignalType.ONE_CANDLE_RULE,
@@ -1253,6 +1261,10 @@ class SignalRunner:
         veto placed inside it would be silently absent from exactly the runs
         that measure it. The session-extreme veto therefore sits in front of
         _route where every subclass inherits it."""
+        if not TRADE_RETIRED_SETUPS and sig.get("signal_type") in RETIRED_SETUPS:
+            sig.setdefault("symbol", self.symbol)
+            self._log_record(sig, status="skipped", skip_reason="retired setup")
+            return
         if self.session_extreme_veto(sig):
             sig.setdefault("symbol", self.symbol)
             sig["reason"] = sig.get("reason", "") + " [veto: at session extreme]"
