@@ -123,7 +123,7 @@ LEGEND = ('<div class="legend">'
           '<span><b style="color:var(--stop)">STOP</b></span></div>')
 
 
-def card(idx, total, sym, day, sig, klass, austin_grade):
+def card(idx, total, sym, day, sig, klass, austin_grade, cid_prefix=""):
     cs = window(rth_candles(sym, day))
     if len(cs) < 60:
         return None
@@ -166,8 +166,8 @@ def card(idx, total, sym, day, sig, klass, austin_grade):
                   [("none_tripped", "Nothing was flagged")]
 
     body = [
-        '<article class="card" data-cid="%s_%s_b%d" data-grade="%s" data-done="0">'
-        % (sym, day, sig["bar"], austin_grade),
+        '<article class="card" data-cid="%s%s_%s_b%d" data-grade="%s" data-done="0">'
+        % (cid_prefix, sym, day, sig["bar"], austin_grade),
         head,
         '<div class="chartwrap">%s</div>' % chart, LEGEND, verdict,
         probe_page.question(
@@ -188,7 +188,13 @@ def card(idx, total, sym, day, sig, klass, austin_grade):
     return "".join(body)
 
 
-def main():
+def select():
+    """The 12 disagreement cards, 6 harsh + 6 soft.
+
+    Split out of main() so the merged homework page can reuse the exact same
+    selection instead of forking it. Returns (picked, harsh, soft) where picked
+    is a list of ``(symbol, date, signal, klass, austin_grade)``.
+    """
     days, marks = load_day_cards()
     by_day = defaultdict(list)
     for m in marks:
@@ -215,8 +221,11 @@ def main():
             if g == "none" and s["rec"]["grade"] == "S" and len(soft) < PER_CLASS:
                 soft.append((sym, date, s, "soft", "none"))
                 break
+    return harsh + soft, harsh, soft
 
-    picked = harsh + soft
+
+def main():
+    picked, harsh, soft = select()
     total = len(picked)
     cards = []
     n = 0

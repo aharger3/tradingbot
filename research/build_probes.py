@@ -112,6 +112,63 @@ VERDICT_OPTS = [
 ]
 
 
+def autopsy_card(idx, total, symbol, date, grade, candles, ms, cid_prefix=""):
+    """One silent-day autopsy card.
+
+    Split out of build_autopsy() so the merged homework page can rebuild the
+    five NO_ANSWER cards through this exact path instead of forking it.
+    ``ms`` is Austin's mark sub-rows for the day.
+    """
+    lv = levels_for(symbol, date, candles)
+    ms = sorted(ms, key=lambda m: m.get("entry_i") or 0)
+    marks_svg = [{"i": m["entry_i"], "price": m["entry_p"], "stop": m.get("stop_p"),
+                  "side": m.get("side", "L"), "tag": "YOU"}
+                 for m in ms if m.get("entry_i") is not None]
+    setups = " / ".join(sorted({m.get("setup") or "?" for m in ms})) or "?"
+    times = ", ".join(m.get("entry_t", "")[:5] for m in ms if m.get("entry_t"))
+    tags = [(grade, False), ("engine silent", True)]
+    chart = probe_chart.render(candles, lv, marks_svg, "%s %s" % (symbol, date))
+    body = [
+        '<article class="card" data-cid="%s%s_%s" data-grade="%s" data-done="0">'
+        % (cid_prefix, symbol, date, grade),
+        header(idx, total, symbol, date, tags),
+        '<div class="chartwrap">%s</div>' % chart, LEGEND,
+        probe_page.question(
+            "level",
+            "Which level were you trading off?",
+            "Tap every one that was in play. Your entry is the amber line at "
+            "%s (setup on file: %s). Tap all that apply."
+            % (times or "the marked bar", setups),
+            LEVEL_OPTS, multi=True),
+        probe_page.question(
+            "confirm",
+            "What confirmed it?",
+            "The thing that turned a level into a trade.",
+            CONFIRM_OPTS, multi=True),
+        probe_page.question(
+            "verdict",
+            "Should a scanner watching level + displacement close have caught this?",
+            "This is the question the whole probe exists for — it splits 37 misses "
+            "into engine bugs, missing features, and days to stop counting against it.",
+            VERDICT_OPTS),
+        probe_page.question(
+            "missing", "One thing the engine had to know.",
+            "Only if the answer above was &ldquo;needed context&rdquo;. One line.",
+            [], required=False,
+            note_placeholder="(optional — type here)"),
+        probe_page.question(
+            "regrade",
+            "Does this still deserve the grade on file (%s)?" % grade,
+            "You regraded three of these on the first pass. Say so here and it "
+            "lands in the corpus instead of in a note I have to parse.",
+            [("keep", "Keep %s" % grade), ("to_a", "Actually A"),
+             ("to_c", "Actually C"), ("to_none", "Would not take it today")],
+            required=False),
+        "</article>",
+    ]
+    return "".join(body)
+
+
 def build_autopsy():
     rows = [json.loads(l) for l in open(SILENT, encoding="utf-8") if l.strip()]
     rows = [r for r in rows if r["symbol"] != "SPY"]
@@ -136,55 +193,8 @@ def build_autopsy():
     total = len(picked)
     for i, (r, candles) in enumerate(picked, 1):
         key = (r["symbol"], r["date"])
-        lv = levels_for(r["symbol"], r["date"], candles)
-        ms = sorted(by_day.get(key, []), key=lambda m: m.get("entry_i") or 0)
-        marks_svg = [{"i": m["entry_i"], "price": m["entry_p"], "stop": m.get("stop_p"),
-                      "side": m.get("side", "L"), "tag": "YOU"}
-                     for m in ms if m.get("entry_i") is not None]
-        setups = " / ".join(sorted({m.get("setup") or "?" for m in ms})) or "?"
-        times = ", ".join(m.get("entry_t", "")[:5] for m in ms if m.get("entry_t"))
-        tags = [(r["grade"], False), ("engine silent", True)]
-        chart = probe_chart.render(candles, lv, marks_svg,
-                                   "%s %s" % (r["symbol"], r["date"]))
-        body = [
-            '<article class="card" data-cid="%s_%s" data-grade="%s" data-done="0">'
-            % (r["symbol"], r["date"], r["grade"]),
-            header(i, total, r["symbol"], r["date"], tags),
-            '<div class="chartwrap">%s</div>' % chart, LEGEND,
-            probe_page.question(
-                "level",
-                "Which level were you trading off?",
-                "Tap every one that was in play. Your entry is the amber line at "
-                "%s (setup on file: %s). Tap all that apply."
-                % (times or "the marked bar", setups),
-                LEVEL_OPTS, multi=True),
-            probe_page.question(
-                "confirm",
-                "What confirmed it?",
-                "The thing that turned a level into a trade.",
-                CONFIRM_OPTS, multi=True),
-            probe_page.question(
-                "verdict",
-                "Should a scanner watching level + displacement close have caught this?",
-                "This is the question the whole probe exists for — it splits 37 misses "
-                "into engine bugs, missing features, and days to stop counting against it.",
-                VERDICT_OPTS),
-            probe_page.question(
-                "missing", "One thing the engine had to know.",
-                "Only if the answer above was &ldquo;needed context&rdquo;. One line.",
-                [], required=False,
-                note_placeholder="(optional — type here)"),
-            probe_page.question(
-                "regrade",
-                "Does this still deserve the grade on file (%s)?" % r["grade"],
-                "You regraded three of these on the first pass. Say so here and it "
-                "lands in the corpus instead of in a note I have to parse.",
-                [("keep", "Keep %s" % r["grade"]), ("to_a", "Actually A"),
-                 ("to_c", "Actually C"), ("to_none", "Would not take it today")],
-                required=False),
-            "</article>",
-        ]
-        cards.append("".join(body))
+        cards.append(autopsy_card(i, total, r["symbol"], r["date"], r["grade"],
+                                  candles, by_day.get(key, [])))
 
     foot = ("<h2>What happens to these answers</h2>"
             "<p>Every tap saves in this page as you make it — close the tab, come back, "
