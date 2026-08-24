@@ -37,7 +37,9 @@ from research.t60_baseline import load_day_cards                       # noqa: E
 OUT = os.path.join(HERE, "t66_downgrade_measure.md")
 TOL = 3
 OLD_SKIP = ("X", "D")
-TRADEABLE = ("S", "A")          # what the engine would take under the new grader
+# Austin, 2026-08-24, asked directly: "S only". His reason, from the rule ballot:
+# "S trades are the most important because it's what actual money will go to."
+TRADEABLE = ("S",)
 
 
 def as_dicts(candles):
