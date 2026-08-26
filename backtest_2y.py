@@ -177,7 +177,11 @@ def main():
                                     ["tight", "mid", "wide", "very wide"]),
                     "bias": bias or "none",
                     "aligned": ("n/a" if not bias else
-                                "with" if (bias == "bull") == (t.direction == "call")
+                                # htf_bias_for returns "bullish"/"bearish"/"neutral",
+                                # never "bull" -- comparing to "bull" collapsed this
+                                # whole facet into "is this a put" (found by G4).
+                                "n/a" if bias == "neutral" else
+                                "with" if (bias == "bullish") == (t.direction == "call")
                                 else "against"),
                     "level": lv.group(1) if lv else "other",
                     "s": int(sm.group(1)) if sm else -1,
