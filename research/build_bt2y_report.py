@@ -189,6 +189,11 @@ td.num{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums}
 .tag{display:inline-block;border:1px solid var(--line);border-radius:4px;padding:0 5px;
   font-size:11px;color:var(--muted);font-family:"IBM Plex Mono",monospace;margin-right:3px}
 .empty{color:var(--faint);padding:22px 0}
+.badge{display:inline-block;border-radius:99px;padding:0 6px;font-size:10px;
+  letter-spacing:.03em;text-transform:uppercase;margin-left:6px;vertical-align:1px}
+.badge.low{background:color-mix(in srgb,var(--warn) 18%,transparent);color:var(--warn)}
+tr.lowsample{opacity:.55}
+tr.lowsample:hover{opacity:.9}
 .note{color:var(--muted);font-size:12px;max-width:70ch}
 .note b{color:var(--ink)}
 footer{padding:22px 28px 60px;border-top:1px solid var(--line);color:var(--faint);font-size:12px}
@@ -243,16 +248,22 @@ footer{padding:22px 28px 60px;border-top:1px solid var(--line);color:var(--faint
     <h2>Edge scanner <span class="hint">every slice of the current selection, ranked by mean R against its own baseline</span></h2>
     <div class="tabs" id="scantabs"></div>
     <div class="panel scroll"><table id="scan"></table></div>
-    <p class="note" style="margin-top:9px">A slice only lists when it holds at least
-    <b id="minn">20</b> trades. <b>&Delta;R</b> is that slice&rsquo;s mean R minus the
-    mean R of everything currently selected &mdash; positive is where the edge lives,
-    negative is where it leaks.</p>
+    <p class="note" style="margin-top:9px"><b>&Delta;R</b> is that slice&rsquo;s mean R
+    minus the mean R of everything currently selected &mdash; positive is where the edge
+    lives, negative is where it leaks. Rows under <b id="minn">20</b> trades are marked
+    <span class="badge low">low n</span> and always sort below every row that clears the
+    floor, no matter how big their &Delta;R looks &mdash; a two-trade slice can show a
+    huge number purely by luck.</p>
   </section>
 
   <section>
     <h2>Breakdown <span class="hint">pick a dimension</span></h2>
     <div class="tabs" id="dimtabs"></div>
     <div class="panel scroll"><table id="dim"></table></div>
+    <p class="note" style="margin-top:9px">Rows marked <span class="badge low">low n</span>
+    haven&rsquo;t happened enough times yet for the number next to them to mean anything
+    &mdash; it could easily flip with the next few trades. They&rsquo;re still shown in full,
+    just pushed to the bottom regardless of which column you sort by.</p>
   </section>
 
   <section>
@@ -272,6 +283,8 @@ footer{padding:22px 28px 60px;border-top:1px solid var(--line);color:var(--faint
   Grades are the <em>engine&rsquo;s</em> (A+/A/B alert-and-trade, C alert-only, X filtered),
   not Austin&rsquo;s S/A/C marks. No futures contracts are in the archive, so the asset-class
   filter offers stocks and index ETFs only.
+  A row tagged <span class="badge low">low n</span> below still shows its real number,
+  it&rsquo;s just too early to trust it &mdash; not enough of that slice has happened yet.
 </footer>
 
 <script id="data" type="application/json">__DATA__</script>
@@ -532,11 +545,29 @@ function drawMonths(){
 }
 
 // ---- tables ---------------------------------------------------------------
+// Sample floor for any per-slice row (edge scanner AND the breakdown table).
+// Reused, not reinvented: this is the same 20 the edge scanner has always
+// enforced (see below), which is itself the number the S/A/C sweep already
+// treats as the smallest slice worth reading. Below it a single trade can
+// swing a slice's mean R by half a point or more, so the figure is noise, not
+// evidence. A slice under the floor still renders -- it's just marked
+// low-confidence and always sorts last (see markLow/lowSort below) rather
+// than being dropped, so a thin slice is still findable, just not mistakable
+// for a finding.
 var SCAN_MIN = 20;
 // Outcome-derived fields are excluded from the scanner: "scaled" and "out" are
 // results, not conditions you could have known at entry, so ranking by them is
 // circular (every scaled trade is a win by construction).
 var POST_HOC = {out:1, scaled:1};
+function markLow(st){ return st.n < SCAN_MIN; }
+// Comparator: low-confidence rows always sink below every trustworthy row,
+// regardless of the column being sorted on -- a 2-trade slice can never top
+// a leaderboard just because its lucky mean R is large. `cmp` breaks ties
+// among rows on the same side of the floor.
+function lowSort(a, b, cmp){
+  if(a.low !== b.low) return a.low ? 1 : -1;
+  return cmp(a, b);
+}
 function groupStats(field){
   var by={};
   live.forEach(function(i){
@@ -568,17 +599,20 @@ function renderScan(){
     var by=groupStats(f[0]);
     for(var v in by){
       var st=stats(by[v]);
-      if(st.n < SCAN_MIN) continue;
-      rows.push({dim:f[1], val:v, st:st, d:st.meanR-base.meanR});
+      rows.push({dim:f[1], val:v, st:st, d:st.meanR-base.meanR, low:markLow(st)});
     }
   });
-  rows.sort(function(a,b){ return b.d-a.d; });
-  var mxd = rows.length? Math.max.apply(null,rows.map(function(r){return Math.abs(r.d);})) : 1;
+  rows.sort(function(a,b){ return lowSort(a,b,function(a,b){ return b.d-a.d; }); });
+  var trusted = rows.filter(function(r){ return !r.low; });
+  var mxd = trusted.length? Math.max.apply(null,trusted.map(function(r){return Math.abs(r.d);})) : 1;
   var head='<thead><tr><th>Dimension</th><th>Slice</th><th>N</th><th>Win%</th>'+
     '<th>Mean R</th><th>&Delta;R vs selection</th><th>Total R</th></tr></thead>';
   var body = rows.map(function(r){
     var w=Math.abs(r.d)/mxd*100;
-    return '<tr><td>'+r.dim+'</td><td class="num">'+r.val+'</td>'+
+    var badge=r.low?' <span class="badge low" title="fewer than '+SCAN_MIN+
+      ' trades -- too few for this number to mean anything">low n</span>':'';
+    return '<tr'+(r.low?' class="lowsample"':'')+'><td>'+r.dim+'</td><td class="num">'+
+      r.val+badge+'</td>'+
       '<td class="num">'+r.st.n+'</td><td class="num">'+fmt(r.st.wr,1)+'</td>'+
       '<td class="num '+cls(r.st.meanR)+'">'+fmt(r.st.meanR,3)+'</td>'+
       '<td class="num '+cls(r.d)+'">'+(r.d>=0?"+":"")+fmt(r.d,3)+
@@ -587,23 +621,28 @@ function renderScan(){
       '<td class="num '+cls(r.st.sumR)+'">'+fmt(r.st.sumR,1)+'</td></tr>';
   }).join("");
   document.getElementById("scan").innerHTML = head+"<tbody>"+
-    (body||'<tr><td colspan="7" class="empty">no slice reaches '+SCAN_MIN+' trades</td></tr>')+"</tbody>";
+    (body||'<tr><td colspan="7" class="empty">no trades in selection</td></tr>')+"</tbody>";
 }
 
 var dimField="sgrade", dimSort="sumR", dimDesc=true;
 function renderDim(){
   var by=groupStats(dimField), rows=[];
-  for(var v in by) rows.push({val:v, st:stats(by[v])});
+  for(var v in by){ var st=stats(by[v]); rows.push({val:v, st:st, low:markLow(st)}); }
   rows.sort(function(a,b){
-    var x=dimSort==="val"?a.val:a.st[dimSort], y=dimSort==="val"?b.val:b.st[dimSort];
-    if(x<y) return dimDesc?1:-1; if(x>y) return dimDesc?-1:1; return 0;
+    return lowSort(a,b,function(a,b){
+      var x=dimSort==="val"?a.val:a.st[dimSort], y=dimSort==="val"?b.val:b.st[dimSort];
+      if(x<y) return dimDesc?1:-1; if(x>y) return dimDesc?-1:1; return 0;
+    });
   });
   var cols_=[["val","Slice"],["n","N"],["wr","Win%"],["meanR","Mean R"],
              ["sumR","Total R"],["pf","PF"],["dd","MaxDD"],["greenPct","Months green%"],["bars","Avg min"]];
   var head='<thead><tr>'+cols_.map(function(c){
     return '<th data-s="'+c[0]+'">'+c[1]+(dimSort===c[0]?(dimDesc?" \\u25be":" \\u25b4"):"")+"</th>";}).join("")+"</tr></thead>";
   var body=rows.map(function(r){
-    return '<tr><td class="num">'+r.val+'</td><td class="num">'+r.st.n+'</td>'+
+    var badge=r.low?' <span class="badge low" title="fewer than '+SCAN_MIN+
+      ' trades -- too few for this number to mean anything">low n</span>':'';
+    return '<tr'+(r.low?' class="lowsample"':'')+'><td class="num">'+r.val+badge+'</td>'+
+      '<td class="num">'+r.st.n+'</td>'+
       '<td class="num">'+fmt(r.st.wr,1)+'</td>'+
       '<td class="num '+cls(r.st.meanR)+'">'+fmt(r.st.meanR,3)+'</td>'+
       '<td class="num '+cls(r.st.sumR)+'">'+fmt(r.st.sumR,1)+'</td>'+
