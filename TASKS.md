@@ -128,6 +128,7 @@ it contradicts the LOOSE arm, not the shipped one. Next bottleneck is the detect
 
 | date | task | commit | number that moved |
 |---|---|---|---|
+| 2026-08-26 | G4 — what the legacy grader throws away, by branch | `d8b04625` | 7,219 dropped S attributed: bias 3,525 / colour 2,120 / B&R min-stop 1,385 / OCR 174; 303 fail on the colour line alone, 142 of those reach tradeable B; dropped-set expectancy n=588 +0.465R vs book +0.957R; 968 of 1,016 trades are B only from the first-of-day floor |
 | 2026-08-26 | G1 — 84%-rule three-arm A/B (P7) | `40fdadd3` | 84% re-entries 3 -> 116 (loose) / 12 (S) fired; book mean R +0.957 -> +0.942 / +0.947; recommendation: no change |
 | 2026-08-26 | 2-year replay + interactive report, both grade ladders attached | `04a6e60f` + follow-up | first S/A/C-filterable book: 1,016 traded signals, mean R +0.957 vs the 2.0 gate |
 | 2026-08-26 | G9 — structure trail + far-target tail (P10) | `6c3f880f` | nothing beats ladder B: best +0.914R whole book / +1.267R on S; new ceiling number — stop-respecting oracle +3.501R, incumbent captures 27.3% |
