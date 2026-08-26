@@ -50,6 +50,14 @@ This is the single most confusing thing in the codebase and it has cost real tim
   It answers "is this candle a hammer at a level" (shape). Austin's eight variables are
   about structure. It is not a buggy grader; it answers a different question
   (`research/t62_veto_autopsy.md`).
+- **And it is not what selects the trades.** 968 of those 1,016 are `B` only because
+  `_calibration_grade` floors the *first with-trend signal of the day, inside 90 minutes*
+  to B. `_grade_pa` is effectively binary — `C` (alert) or `X` (silent). The engine's real
+  entry rule is arrival order (`research/g4_dropped_s.md` §6).
+- **`at_key_level` is NOT hardcoded to the opening range.** Every `grade_trade` call site
+  passes the level the setup actually broke; the parameter is merely still *named*
+  `or_high`. Corrected in `t62_veto_autopsy.md` 2026-08-23, re-verified by G4: OR levels
+  drop at 96.6%, everything else at 96.4%. Do not scope a ticket against this bug.
 
 **Every new measurement must carry both grades side by side** until the day
 `downgrade.py` is wired in and the legacy ladder is deleted.
@@ -124,8 +132,11 @@ Ranked by how safely it runs without Austin.
   book's own mean, so it dilutes. Default unchanged. The remaining unmeasured piece is
   the detector: 433 armings produced 116 signals and the 317 that never fired are
   un-autopsied.
-- **One Candle Rule is 4,389 detections → 67 traded** (98.5% graded X). Same shape of
-  problem as the recall gate, one setup down.
+- **One Candle Rule is 4,389 detections → 67 traded** (98.5% graded X). G4 attributed the
+  drop: the order-block path demotes every `B` to `C` at the detection site, so it can
+  never ship a tradeable grade on its own, and its $0.50 / 0.4%-of-price stop gates were
+  tuned on a stale 12-month yfinance split. The bigger gap is upstream — 40,783 B&R
+  detections against 4,389 OCR, 9.3x.
 - **Scratch is nearly extinct** — 5 of 1,016 traded outcomes. The T4(b) failed-entry
   scratch and the EOD scratch may not be reaching the ladder path.
 - **ON WATCH has no A/B on the 2-year rig.** `t61_onwatch_ab.py` measures it over 120
