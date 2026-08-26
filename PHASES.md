@@ -36,7 +36,7 @@ exact mistake `downgrade.py`'s header exists to prevent.
 
 | phase | task | lane |
 |---|---|---|
-| **P7** | **G1 — 84%-rule three-arm A/B**: `RULE84_STRICT=1` (today) vs `0` vs armed on `sgrade == "S"`. Diagnosis is already done: the strict gate arms only off legacy `A+`/`A`, which fires 17 times in two years, so 465 of 472 arming opportunities are discarded. | green |
+| **P7** | ~~**G1 — 84%-rule three-arm A/B**~~ **ANSWERED 2026-08-26** (`40fdadd3`, `research/p7_84_rule.md`): the gate, not the detector, is the bottleneck — 7 of 472 arming opportunities survive it, and opening it produces 116 re-entries worth +0.792R, below the book's own mean. Keep `RULE84_STRICT=1`. | done |
 | **P8** | **G2 — the dead scratch branch.** The T4(b) failed-entry scratch has never fired in two years: it needs the entry bar to close back through the level while the entry rule requires a close through it. Fix the trigger so it can express Austin's rule, or delete it and record why. | green |
 | **P9** | **G3 — ON WATCH at 2-year scale.** Shipped and on by default, but only ever A/B'd over the 120 graded day-cards. Flip `ON_WATCH=0` against the full rig and report the delta in recall and mean R. | green |
 

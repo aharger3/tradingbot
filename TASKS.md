@@ -11,11 +11,9 @@ red = needs Austin).
 
 | # | task | why it matters | check that proves it |
 |---|---|---|---|
-| G1 | **84%-rule A/B**: run the 2-year rig at `RULE84_STRICT=1` (today) vs `0` vs gated on `sgrade == "S"`. Diagnosis is already done (see below) — this is the measurement. | The strict gate is calibrated against the wrong ladder. Three arms, one table. | three runs, mean R + recall for each, committed next to the script |
 | G2 | **Delete or fix the T4(b) entry-bar scratch** — it has never fired in 2 years (see Diagnosed). Decide whether the rule needs a wider trigger or the code is genuinely unreachable. | Dead code that looks like a working rule is worse than no rule. | a replay case that scratches, or the branch removed with the reason |
 | G8 | **Add a BR+OCR confluence setup type.** `downgrade.has_confluence` already detects it; give it its own `SignalType` so it can be routed, graded and counted like any other setup. | Austin asked for it directly, and confluence is already worth +6.5pts of win rate. | confluence signals appear as their own row in every per-setup table |
 | G3 | **ON WATCH A/B on the 2-year rig**, not just the 120 day-cards. Reuse `t61_onwatch_ab.py`'s flag switch against `backtest_2y.py`. | The other big management piece, unmeasured at scale. | two runs, one table, delta in recall and mean R |
-| G4 | **One Candle Rule recall**: 4,389 detected → 67 traded. Re-grade with `downgrade.py` and report S/A/C on the dropped 4,322. | Second-biggest recall leak after B&R. | grade distribution + how many land on a marked entry |
 | G5 | **Corpus sweep for unstated rules** we already coded. Run `corpus_query.py` over every constant in `parameter_catalog_draft.md`; mark each CONFIRMED / CONTRADICTED / UNMENTIONED. | Cheapest unattended lane; catches hallucinated rules. | an updated `hallucination-audit.md` with dates |
 | G6 | **Per-symbol floor**: decide and implement a minimum-sample rule so reports stop printing GOOGL n=21 next to COIN n=104. | Half the per-symbol table is noise presented as signal. | reports suppress or grey sub-threshold rows |
 
@@ -63,13 +61,28 @@ against +1.283R, +0.10R on n=128, inside the noise. Two structural reads: removi
 77.3% → 39.8%. **The exit is not the binding constraint; entry selection is.** What was not
 tested is in the report and became G9.
 
-**The legacy grader is wick shape at one level type (2026-08-26).** `omen_bot.py:171`
-`_grade_pa`: first line returns `D` if the entry candle is not the trade's colour — a long
-whose retest bar closes red is dropped with no reference to structure. Then `A+` = hammer
-at a key level, `B` = large wick at a key level, and `at_key_level` is hardcoded to the
-**opening-range** high/low, so a retest of PDH/PMH/a pivot is not "at a key level" to it.
-6,040 of the 7,219 dropped S signals broke a non-OR level. Austin, unprompted: "the candle
-doesn't have to be so specific — you're just looking for PA to support your thesis."
+**The legacy grader is wick shape, and it is not even the selector (2026-08-26, G4).**
+`research/g4_dropped_s.md` attributes all 7,219 dropped S signals to the gate that
+actually rejected them, by re-running `_grade_pa` over each entry bar in an instrumented
+replay: **HTF bias opposed 3,525 · colour gate 2,120 · B&R min-stop 1,385 · OCR min-stop
+153 · OCR wide-stop 21 · join collisions 15.** Only two of those are the grader. 303 rows
+fail on the colour line *and nothing else*; delete that one `if` and 142 of them reach the
+tradeable `B` tier. Austin, unprompted: "the candle doesn't have to be so specific —
+you're just looking for PA to support your thesis."
+
+**Correction carried by this ticket:** an earlier note here claimed `at_key_level` was
+hardcoded to the opening range, so a PDH/PMH/pivot retest was invisible to the grader.
+**That is false** — every `grade_trade` call site passes the level the setup actually
+broke; the parameter is merely still *named* `or_high`. `research/t62_veto_autopsy.md`
+corrected this on 2026-08-23 and G4 reproduces it: OR levels drop at 96.6%, everything
+else at 96.4%, a 0.1-point gap. The 6,040-of-7,219 non-OR figure is real but is coverage,
+not blame.
+
+**And the grader is not what picks the trades.** 968 of the 1,016 traded signals (95.3%)
+are `B` only because of `_calibration_grade`'s *first with-trend signal of the day, inside
+90 minutes* floor. `_grade_pa` is effectively binary — `C` (alert) or `X` (silent) — and
+the engine's real entry rule is arrival order. G7 said the exit is not the binding
+constraint; G4 says the grade ladder is not either.
 
 **The S supply is 58x bigger than the book (2026-08-26).** Over two years the downgrade
 grader scores **7,485 signals as S**. The engine trades **128** of them. The other 7,225
@@ -93,18 +106,27 @@ it needs the entry bar to close back through the level, and the entry rule requi
 *through* the level, so the branch is unreachable by construction. The rule Austin stated is
 real; the implementation cannot express it.
 
-**The 84% rule is gated on the wrong ladder (2026-08-26).** `RULE84_STRICT` defaults to
-`1`, which arms a re-entry only off an `A+`/`A` original — the rulebook line *"you need an
-A+ entry"*. But that line is **Austin's** vocabulary, and `_grade_pa`'s `A+` is a different
-scale that fires on 17 of 1,016 traded signals. Over two years: **473 traded losses, 472 of
-them on an arming setup, 7 survive the strict gate, 3 re-entries ever fired.** The strict
-reading discards 98.5% of the rule's opportunities. Under Austin's own ladder the
-equivalent of "A+" is **S**, which `downgrade.py` can now score for every signal. G1
-measures all three arms; R2/R3 decide.
+**G1 answered: the gate is the bottleneck, and opening it buys nothing (2026-08-26).**
+`research/p7_84_rule.md`: three arms of the arming gate over the 500-session replay.
+Funnel, counted stop-outs -> arming setup -> grade gate -> before 11:00 -> signal:
+strict **473 -> 472 -> 7 -> 5 -> 3**, loose **521 -> 472 -> 472 -> 433 -> 116**,
+S-grade **477 -> 472 -> 43 -> 39 -> 12**. So the rule is dead in backtest because of
+the GATE, not the detector — 7 of 472 opportunities survive it. The non-84% book is
+identical to the cent in all three arms (1,013 trades, +966.17R), so every delta is
+the re-entries alone. Whole book: strict +0.957R / 53.2% / 23-of-25 months green,
+loose +0.942R / 52.1% / 25-of-25, S-grade +0.947R / 53.0% / 23-of-25. **Keep
+`RULE84_STRICT=1`.** The loose re-entries are positive (+0.792R, n=79) but below the
+book's own mean so they dilute; median −1.000R, 49 of 79 lose; and the 25/25
+durability headline is one trade deep — drop the best re-entry from 2025-06 and it is
+red again. The S arm is the worst (−0.073R) on n=7, a sample-size result rather than a
+verdict on Austin's ladder. P11 row A8 agrees independently from the corpus side, and
+it contradicts the LOOSE arm, not the shipped one. Next bottleneck is the detector:
+433 armings produced 116 signals, and the 317 that never fired are un-autopsied.
 
 ## Done
 
 | date | task | commit | number that moved |
 |---|---|---|---|
+| 2026-08-26 | G1 — 84%-rule three-arm A/B (P7) | `40fdadd3` | 84% re-entries 3 -> 116 (loose) / 12 (S) fired; book mean R +0.957 -> +0.942 / +0.947; recommendation: no change |
 | 2026-08-26 | 2-year replay + interactive report, both grade ladders attached | `04a6e60f` + follow-up | first S/A/C-filterable book: 1,016 traded signals, mean R +0.957 vs the 2.0 gate |
 | 2026-08-26 | G9 — structure trail + far-target tail (P10) | `6c3f880f` | nothing beats ladder B: best +0.914R whole book / +1.267R on S; new ceiling number — stop-respecting oracle +3.501R, incumbent captures 27.3% |

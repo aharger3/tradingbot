@@ -118,8 +118,12 @@ Ranked by how safely it runs without Austin.
 
 ## Known open bugs (2026-08-26)
 
-- **The 84% rule is effectively dead in backtest** — 3 fired signals in two years.
-  Either the arming gate is too strict or detection never reaches it. Unmeasured.
+- ~~**The 84% rule is effectively dead in backtest**~~ — **measured 2026-08-26**
+  (`research/p7_84_rule.md`, `40fdadd3`). It is the arming gate: 7 of 472 opportunities
+  survive it. Opening it yields 116 re-entries at +0.792R — positive, but under the
+  book's own mean, so it dilutes. Default unchanged. The remaining unmeasured piece is
+  the detector: 433 armings produced 116 signals and the 317 that never fired are
+  un-autopsied.
 - **One Candle Rule is 4,389 detections → 67 traded** (98.5% graded X). Same shape of
   problem as the recall gate, one setup down.
 - **Scratch is nearly extinct** — 5 of 1,016 traded outcomes. The T4(b) failed-entry
