@@ -26,8 +26,22 @@ def _esc(s):
             .replace('"', "&quot;"))
 
 
-def render(candles, levels, marks=None, label=""):
-    """candles: [{t,o,h,l,c,v}]  levels: {pdh:..}  marks: [{i,price,stop,side,tag}]"""
+def render(candles, levels, marks=None, label="", interactive=False):
+    """candles: [{t,o,h,l,c,v}]  levels: {pdh:..}  marks: [{i,price,stop,side,tag}]
+
+    ``interactive=True`` (OMEN Test 1) adds two things and changes nothing else:
+
+    * the plot's own scale, as data-* attributes on the <svg>, so a page can map
+      a bar index to an x and a price to a y without re-deriving the framing;
+    * an empty ``<g class="usermark">`` holding placeholder entry/stop lines the
+      page positions when Austin taps. The chart stays static SVG rendered here
+      in Python -- the page only moves elements that are already in the markup,
+      which is what keeps it phone-safe and pointer-free.
+
+    The frame (lo/hi) is computed from the bars and the levels, so a mark placed
+    later can fall outside it. The page clamps rather than rescaling: rescaling
+    would move every candle under his finger mid-tap.
+    """
     marks = marks or []
     n = len(candles)
     if not n:
@@ -60,8 +74,14 @@ def render(candles, levels, marks=None, label=""):
         return PAD_T + (hi - p) * plot_h / span
 
     bw = max(1.6, plot_w / n * 0.62)
+    scale = ""
+    if interactive:
+        scale = (' data-n="%d" data-padl="%d" data-padt="%d" data-plotw="%.2f"'
+                 ' data-ploth="%.2f" data-lo="%.4f" data-hi="%.4f" data-w="%d"'
+                 % (n, PAD_L, PAD_T, plot_w, plot_h, lo, hi, W))
     out = ['<svg class="chart" viewBox="0 0 %d %d" role="img" aria-label="%s" '
-           'preserveAspectRatio="xMidYMid meet">' % (W, H, _esc(label or "session chart"))]
+           'preserveAspectRatio="xMidYMid meet"%s>'
+           % (W, H, _esc(label or "session chart"), scale)]
 
     # session grid: a faint line every 15 bars, i.e. every 15 minutes
     for i in range(0, n, 15):
@@ -110,5 +130,23 @@ def render(candles, levels, marks=None, label=""):
             out.append('<text class="stop-t" x="%.1f" y="%.1f">STOP %.2f</text>'
                        % (PAD_L + plot_w + 4, y(s) + 3.4, s))
 
+    if interactive:
+        # Placeholders only. Every one of these is in the served markup; the page
+        # sets x/y and drops the `hidden` attribute. Nothing is created by script.
+        out.append(
+            '<g class="usermark">'
+            '<rect class="band" x="0" y="%d" width="0" height="%.1f" hidden></rect>'
+            '<line class="uentry" x1="%d" y1="0" x2="%.1f" y2="0" hidden></line>'
+            '<line class="ubar" x1="0" y1="%d" x2="0" y2="%.1f" hidden></line>'
+            '<text class="uentry-t" x="%.1f" y="0" hidden></text>'
+            '<line class="ustop" x1="%d" y1="0" x2="%.1f" y2="0" hidden></line>'
+            '<text class="ustop-t" x="%.1f" y="0" hidden></text>'
+            '</g>'
+            % (PAD_T, plot_h,
+               PAD_L, PAD_L + plot_w,
+               PAD_T, PAD_T + plot_h,
+               PAD_L + plot_w + 4,
+               PAD_L, PAD_L + plot_w,
+               PAD_L + plot_w + 4))
     out.append("</svg>")
     return "".join(out)

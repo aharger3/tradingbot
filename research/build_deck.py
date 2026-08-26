@@ -22,6 +22,7 @@ import glob
 import json
 import os
 import random
+import re
 import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -66,30 +67,51 @@ LEGACY_MARK_FILES = [
 # always symbol + date.
 _GRADE_KEYS = ("austin_tier", "tier", "austin_grade", "grade", "verdict")
 
+# A card_id may be prefixed by its section and suffixed by a bar index --
+# `cal_QQQ_2026-06-29_b10`, `sr_TSLA_2026-03-12`, `TSLA_2026-05-21_36`. Pull the
+# SYMBOL_DATE pair out of wherever it sits rather than assuming it is at the front.
+_ID_RE = re.compile(r"(?:^|_)([A-Z][A-Z0-9.\-]{0,7})_(\d{4}-\d{2}-\d{2})(?:_|$)")
+
 
 def _judgement_key(row: dict) -> str | None:
     """Normalise any mark row to ``SYMBOL_YYYY-MM-DD``, or None if it isn't a judgement.
 
-    A row counts as a judgement when it carries a non-empty human grade. Note
-    that ``grade: "none"`` IS a judgement -- an explicit refusal to trade the day
-    -- so it must exclude the day from future decks. Rows with no grade at all
-    (e.g. the unmarked remainder of blind_marks_all.jsonl) are not judgements and
-    do not exclude anything.
+    A row counts as a judgement when it carries a non-empty human grade, OR when
+    it is a probe row carrying at least one answer. Note that ``grade: "none"``
+    IS a judgement -- an explicit refusal to trade the day -- so it must exclude
+    the day from future decks. Rows with no grade and no answers (e.g. the
+    unmarked remainder of blind_marks_all.jsonl) are not judgements and do not
+    exclude anything.
+
+    Two holes, both found on the 2026-08-26 master homework export and both fixed
+    here (OMEN Test 1):
+
+    * **Prefixed card_ids parsed to garbage.** ``cal_QQQ_2026-06-29_b10`` split on
+      ``_`` and yielded the key ``cal_QQQ``. All 51 rows of
+      ``marks/probe_master_homework_2026-08-26.jsonl`` collapsed to six useless
+      keys, so every day on that page was still eligible for a future deck.
+    * **A probe answer is a judgement even with no grade field.** The 25
+      ``sr_`` S-recall rows carry ``grade: null`` and ``answers.s_call`` -- Austin
+      looked at the chart and said yes/no. That is exactly the thing the
+      guarantee exists to protect, and it was invisible.
     """
-    if not any(str(row.get(k, "")).strip() for k in _GRADE_KEYS):
+    graded = any(str(row.get(k, "")).strip() for k in _GRADE_KEYS)
+    answers = row.get("answers")
+    answered = isinstance(answers, dict) and any(answers.values())
+    if not (graded or answered):
         return None
     symbol = row.get("symbol")
     day = row.get("date") or row.get("day")
     if not (symbol and day):
-        # mark_batch_04_grades.jsonl carries only `id`; card_id/id are
-        # SYMBOL_YYYY-MM-DD or SYMBOL_YYYY-MM-DD_ENTRYIDX.
+        # mark_batch_04_grades.jsonl carries only `id`; probe exports carry a
+        # section-prefixed card_id.
         ident = row.get("card_id") or row.get("id") or row.get("card")
         if not ident:
             return None
-        parts = str(ident).split("_")
-        if len(parts) < 2:
+        m = _ID_RE.search(str(ident))
+        if not m:
             return None
-        symbol, day = parts[0], parts[1]
+        symbol, day = m.group(1), m.group(2)
     return "%s_%s" % (symbol, day)
 
 

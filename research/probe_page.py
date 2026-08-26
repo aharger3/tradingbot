@@ -325,16 +325,34 @@ JS = r"""
     if (fill) fill.style.width = (cs.length ? (done * 100 / cs.length) : 0) + '%';
   }
 
+  /* Export row shape is a contract: research/marks/probe_*.jsonl must all parse
+     with one reader. These two extension points ADD keys to a row and never
+     rename or drop one, so a page that uses neither exports exactly what it
+     always did.
+       data-export  static JSON merged into the row (symbol, date, ...)
+       window.probeRow(card, row)  page hook for values derived from the taps
+                                   (OMEN Test 1 uses it for entry_i/_t/_p, stop_p) */
   function jsonl(){
     var lines = [];
     cards().forEach(function(card){
       var st = cardState(card);
       if (!Object.keys(st.picked).length && !Object.keys(st.notes).length) return;
-      lines.push(JSON.stringify({
+      var row = {
         type: 'probe', probe: DECK, card_id: card.getAttribute('data-cid'),
         grade: card.getAttribute('data-grade') || null,
         answers: st.picked, notes: st.notes
-      }));
+      };
+      var stat = card.getAttribute('data-export');
+      if (stat){
+        try {
+          var ex = JSON.parse(stat);
+          for (var k in ex) if (Object.prototype.hasOwnProperty.call(ex, k)) row[k] = ex[k];
+        } catch (e) {}
+      }
+      if (typeof window.probeRow === 'function'){
+        try { window.probeRow(card, row); } catch (e) {}
+      }
+      lines.push(JSON.stringify(row));
     });
     return lines.join('\n');
   }
