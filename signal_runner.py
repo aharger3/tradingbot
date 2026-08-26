@@ -208,6 +208,25 @@ HTF_BIAS_GATE = os.getenv("HTF_BIAS_GATE", "0").strip().lower() in ("1", "true",
 RULE84_STRICT = os.getenv("RULE84_STRICT", "1").strip().lower() in ("1", "true", "yes", "on")
 RULE84_OFF = os.getenv("RULE84_OFF", "0").strip().lower() in ("1", "true", "yes", "on")
 
+# P7/G1 (RULE84_ARM_SGRADE, 2026-08-26) — the third reading of the same rulebook
+# line, FLAG-GATED, DEFAULT OFF. Consulted at the same single arm point as
+# RULE84_STRICT / RULE84_OFF (backtest_week._arm_84).
+#   The rulebook sentence behind RULE84_STRICT is "you need an A+ entry", and it
+#   is AUSTIN's sentence — but the A+ the gate tests is `_grade_pa`'s, a candle-
+#   shape ladder that fires on 17 of 1,016 traded signals in the 2-year replay.
+#   Counted over that book: 473 traded losses, 472 on an arming setup (B&R/OCR),
+#   7 survive the strict gate, 3 re-entries ever fire. Under Austin's own ladder
+#   (S / A / C, research/downgrade.py) the equivalent of "A+" is **S**.
+#   When ON: arm only when the ORIGINAL stopped-out trade scores "S" by
+#   downgrade.score on the bars up to its entry — the same call, same level proxy
+#   (the stop) that backtest_2y.py already attaches to every row, so the two
+#   measurements stay comparable. RULE84_STRICT is IGNORED while this is on: they
+#   are two readings of one sentence, not two stacked gates.
+#   This does NOT wire downgrade.py into detection (R3 owns that). It only reads
+#   his grade at the arm point.
+# A/B: research/p7_84_rule.md (three arms: strict / loose / S).
+RULE84_ARM_SGRADE = os.getenv("RULE84_ARM_SGRADE", "0").strip().lower() in ("1", "true", "yes", "on")
+
 # omen-3.6 (S_GATE, 2026-08-06) -- the S gate fit from Austin's S/A/X verdicts,
 # FLAG-GATED, DEFAULT OFF. The gate (research/s_gate_spec.md, pre-registered in
 # T5 before any backtest) keeps only entries whose entry-bar displacement clears

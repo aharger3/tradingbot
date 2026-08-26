@@ -56,6 +56,12 @@ _extract_days.py
 _patch_verdict.py
 research/test.txt
 
+# per-arm 2-year replay books (P7/G1). ~25 MB each and fully regenerable with
+# `python research/p7_84_rule.py run --arm ...`; the same reason
+# research/bt2y_trades.json has never been tracked. The finding lives in
+# research/p7_84_rule.md, which IS tracked.
+research/p7_arm_*.json
+
 # generated decks: rebuild with research/build_deck.py, never commit the HTML
 research/decks/**/*.html
 

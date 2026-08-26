@@ -14,7 +14,7 @@ import math
 import os
 import re
 import sys
-from collections import defaultdict
+from collections import Counter, defaultdict
 from dataclasses import dataclass, field
 from datetime import date, datetime, timedelta
 from pathlib import Path
@@ -210,27 +210,71 @@ def _stop_hit(c: Candle, level: float, long: bool) -> bool:
     return _wick_hit(c, level, long)
 
 
+# P7/G1: the arm-gate funnel, counted in-process. Pure bookkeeping — reading or
+# ignoring it changes nothing. research/p7_84_rule.py resets it and prints it.
+ARM84_FUNNEL: Counter = Counter()
+
+
+def _sgrade_84(t: "SimTrade", runner: "BacktestRunner") -> Optional[str]:
+    """Austin's S/A/C grade for the ORIGINAL stopped-out trade, or None.
+
+    Same call backtest_2y.py already makes per row — downgrade.score on the day's
+    bars at the entry index, with the stop as the level proxy — so the arm gate and
+    the report's `sgrade` column are the same number. score() is causal (nothing
+    reads past `i`), so grading off runner.candles, a prefix of the session that
+    always reaches past the entry bar, is identical to grading off the full day."""
+    from research import downgrade as dg
+    bars = getattr(runner, "candles", None) or []
+    if t.entry_idx >= len(bars):
+        return None
+    d = [{"o": x.open, "h": x.high, "l": x.low, "c": x.close, "v": x.volume} for x in bars]
+    rec = dg.score(d, t.entry_idx, t.stop, t.direction == "call", runner.htf_bias)
+    return (rec or {}).get("grade")
+
+
 def _arm_84(t: "SimTrade", runner: "BacktestRunner", c: Optional[Candle] = None) -> None:
     """Arm one 84%-rule re-entry off a full stop-out (same gate as blind-2R path).
 
     omen-5.0 T4(c): only a close-based FULL stop-out arms it. A scratch does not
     ("scratch out at close, no 84 percent"), and neither does a stop-out landing
     at or after 11:00 — Austin does not trade past 11, so there is no re-entry to
-    take. `c` is the stop-out bar; omitted means the caller has no bar to time."""
-    from signal_runner import RULE84_ARM_ON, RULE84_STRICT, RULE84_OFF, SESSION_END, bar_time
+    take. `c` is the stop-out bar; omitted means the caller has no bar to time.
+
+    P7/G1: the three gates are evaluated instead of short-circuited so each stage
+    can be counted. The final condition is unchanged — counted AND arming setup
+    AND grade gate AND before 11:00 — so with every flag at its default this arms
+    exactly the same stop-outs it always did."""
+    from signal_runner import (RULE84_ARM_ON, RULE84_STRICT, RULE84_OFF,
+                               RULE84_ARM_SGRADE, SESSION_END, bar_time)
     if RULE84_OFF:  # C9: detector fully disabled
         return
     if t.outcome != "loss":       # scratches never arm the 84% rule
         return
-    if c is not None and bar_time(c.timestamp) >= SESSION_END:
-        return
+    ARM84_FUNNEL["stopouts"] += 1
+    if t.counted:
+        ARM84_FUNNEL["stopouts_counted"] += 1
     # Austin 2026-08-09: arm when the stopped trade's setup is in RULE84_ARM_ON
     # (B&R or the one candle rule). FVG / flag losers do NOT arm it.
-    arm_ok = SignalType(t.signal_type) in RULE84_ARM_ON
-    # C9 strict-spec: rulebook "you need an A+ entry" — arm only off an A+/A original.
-    if RULE84_STRICT and t.grade not in ("A+", "A"):
-        arm_ok = False
-    if t.counted and arm_ok:
+    setup_ok = SignalType(t.signal_type) in RULE84_ARM_ON
+    # The grade gate, in whichever of its three readings is active.
+    #   RULE84_ARM_SGRADE (P7/G1): Austin's ladder — the original must be S.
+    #   RULE84_STRICT (C9, shipped): rulebook "you need an A+ entry", read against
+    #     the legacy ladder — arm only off an A+/A original.
+    #   neither: arm off any counted stop-out on an arming setup.
+    if RULE84_ARM_SGRADE:
+        grade_ok = _sgrade_84(t, runner) == "S"
+    elif RULE84_STRICT:
+        grade_ok = t.grade in ("A+", "A")
+    else:
+        grade_ok = True
+    in_session = c is None or bar_time(c.timestamp) < SESSION_END
+    if t.counted and setup_ok:
+        ARM84_FUNNEL["arming_setup"] += 1
+        if grade_ok:
+            ARM84_FUNNEL["grade_gate"] += 1
+            if in_session:
+                ARM84_FUNNEL["armed"] += 1
+    if t.counted and setup_ok and grade_ok and in_session:
         runner.session.entry_price = t.entry
         runner.session.entry_direction = t.direction
         runner.session.entry_target = t.target
