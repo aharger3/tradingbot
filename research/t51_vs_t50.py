@@ -15,7 +15,8 @@ entry_i) and reports what moved.
            retired levels across all 29 symbols, so it moves nothing), no S+ tier
            (the S+ rank is deleted, all S+ fold back to S), PESSIMISTIC_FILL=1.
 
-Both arms share STOP_ON_CLOSE=1 and LADDER_MODE="B". The fill rule and the S
+Both arms share STOP_ON_CLOSE=1 and SCALE_PLAN="hod_then_runner_be" (called
+LADDER_MODE="B" before P5). The fill rule and the S
 tier are the only things that differ; both are tier/outcome labels, so neither
 can change which trades FIRE (engine grade is identical) -- a result T2 and T4
 already measured, and this row proves with the join.
@@ -87,7 +88,7 @@ def run_symbol(args):
     """One symbol, full range, BOTH arms. Returns (symbol, rows50, rows51, retire)."""
     symbol, start_day, end_day = args
     import backtest_week as bw
-    bw.STOP_ON_CLOSE, bw.LADDER_MODE = True, "B"
+    bw.STOP_ON_CLOSE, bw.SCALE_PLAN = True, "hod_then_runner_be"
 
     # restated so a stray env var cannot move them
     sr.BNR_DISPLACEMENT_GATE = True
@@ -373,7 +374,8 @@ def main():
     L.append("# T9 -- omen-5.0 vs omen-5.1, head-to-head over the same two years\n")
     L.append(f"The identical `research/t8_two_year.py` replay ({a.start} to {a.end}, "
              f"{len(days)} trading days, {len(syms)} symbols across the three pools, "
-             f"$1,000 risk, `STOP_ON_CLOSE=1`, `LADDER_MODE=B`) run under the two "
+             f"$1,000 risk, `STOP_ON_CLOSE=1`, `SCALE_PLAN=hod_then_runner_be` "
+             f"(was `LADDER_MODE=B`)) run under the two "
              f"default sets, then joined trade-by-trade on `(symbol, date, entry_i)`. "
              f"Population is the **traded** book -- fired, engine grade A+/A/B -- "
              f"{s50['n']} trades, the same line `t8_two_year.md` reports. Win rate "

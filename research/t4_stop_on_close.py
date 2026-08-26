@@ -3,9 +3,9 @@
 Runs backtest_week.simulate_day — the same engine, unchanged — over the archived
 1-minute bars in data_archive for the MAJOR_15 pool, once per arm:
 
-  wick     STOP_ON_CLOSE=0, LADDER_MODE=B   (the old trigger: any wick through the level)
-  close    STOP_ON_CLOSE=1, LADDER_MODE=B   (Austin's rule: the candle has to CLOSE beyond it)
-  blind2r  STOP_ON_CLOSE=1, LADDER_MODE=None (the old blind-2R exit, for the exit A/B)
+  wick     STOP_ON_CLOSE=0, SCALE_PLAN=hod_then_runner_be   (the old trigger: any wick through the level; was LADDER_MODE=B)
+  close    STOP_ON_CLOSE=1, SCALE_PLAN=hod_then_runner_be   (Austin's rule: the candle has to CLOSE beyond it; was LADDER_MODE=B)
+  blind2r  STOP_ON_CLOSE=1, SCALE_PLAN=None (the old blind-2R exit, for the exit A/B; was LADDER_MODE=None)
 
 Level inputs (PDH/PDL/PMH/PML, prior-day open/close, HTF bias) are rebuilt from
 the archive per symbol in one pass, so nothing here hits the network.
@@ -35,9 +35,9 @@ ARCHIVE = os.path.join(ROOT, "data_archive")
 OUT_MD = os.path.join(HERE, "t4_stop_on_close.md")
 
 ARMS = {
-    # name: (STOP_ON_CLOSE, LADDER_MODE)
-    "wick": (False, "B"),
-    "close": (True, "B"),
+    # name: (STOP_ON_CLOSE, SCALE_PLAN)  -- SCALE_PLAN was called LADDER_MODE
+    "wick": (False, "hod_then_runner_be"),
+    "close": (True, "hod_then_runner_be"),
     "blind2r": (True, None),
 }
 
@@ -111,8 +111,8 @@ def run_symbol(args):
     """One (symbol, arm) run. Returns (arm, symbol, rows, arm84_count)."""
     symbol, arm, start_day = args
     import backtest_week as bw
-    stop_on_close, ladder = ARMS[arm]
-    bw.STOP_ON_CLOSE, bw.LADDER_MODE = stop_on_close, ladder
+    stop_on_close, scale_plan = ARMS[arm]
+    bw.STOP_ON_CLOSE, bw.SCALE_PLAN = stop_on_close, scale_plan
 
     armed = {"n": 0}
     real_arm = bw._arm_84

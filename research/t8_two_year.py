@@ -2,7 +2,8 @@
 four ways by Austin's own tier scale.
 
 Runs `backtest_week.simulate_day` unchanged, at the committed omen-5.0 defaults
-(STOP_ON_CLOSE=1, LADDER_MODE="B", the 09:30-11:00 gate inside detect_signals,
+(STOP_ON_CLOSE=1, SCALE_PLAN="hod_then_runner_be" (was LADDER_MODE="B"), the
+09:30-11:00 gate inside detect_signals,
 pivot levels on, T11's S quality clauses on). Nothing here tunes anything -- the
 only additions are (1) carrying each signal's `austin_tier` through to its trade
 and (2) applying `rank_s_plus`'s rule ACROSS the universe per day, which is where
@@ -94,7 +95,7 @@ def run_symbol(args):
     import backtest_week as bw
 
     # the committed omen-5.0 defaults, restated so a stray env var can't move them
-    bw.STOP_ON_CLOSE, bw.LADDER_MODE = True, "B"
+    bw.STOP_ON_CLOSE, bw.SCALE_PLAN = True, "hod_then_runner_be"
 
     # carry austin_tier from the sig dict onto the trade: BacktestRunner keeps
     # every sig it routed in .captured, so register each runner as it is built
@@ -237,7 +238,8 @@ def main():
     L = []
     L.append("# T8 -- two-year backtest of the omen-5.0 engine, by pool and by tier\n")
     L.append(f"`backtest_week.simulate_day` at the committed omen-5.0 defaults "
-             f"(`STOP_ON_CLOSE=1`, `LADDER_MODE=B`, the 09:30-11:00 gate inside "
+             f"(`STOP_ON_CLOSE=1`, `SCALE_PLAN=hod_then_runner_be` (was "
+             f"`LADDER_MODE=B`), the 09:30-11:00 gate inside "
              f"`detect_signals`, pivot levels on, T11's S clauses on), replayed over "
              f"**{a.start} to {a.end}** ({len(days)} trading days) across "
              f"**{len(syms)} symbols** in the three tracked pools. $1,000 risk per "

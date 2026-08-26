@@ -251,7 +251,7 @@ bw.BacktestRunner._route = _wrapped_route
 # ---- replay driver (mirrors t8_two_year.run_symbol exactly) ----
 
 def run_symbol(symbol):
-    bw.STOP_ON_CLOSE, bw.LADDER_MODE = True, "B"   # committed omen-5.0 defaults
+    bw.STOP_ON_CLOSE, bw.SCALE_PLAN = True, "hod_then_runner_be"   # committed omen-5.0 defaults (was LADDER_MODE="B")
     table = day_table(symbol)
     days = sorted(table)
     for i, day in enumerate(days):

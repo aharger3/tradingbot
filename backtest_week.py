@@ -81,24 +81,41 @@ RULE6_BE_MULT = 1.0        # breakeven level = entry +- 1R x this multiplier
 # liquidity (PDH/PDL, psych whole numbers); "2:1 is the MINIMUM aggregate
 # expectation, not the exit mechanism". Blind 2R was our invention.
 #   None = blind 2R (current behavior)
-#   "A"  = 50% off at first HOD/LOD touch after entry (session extremes as-of
-#          entry bar, no lookahead); stop unchanged until scale; runner to
-#          first key level beyond the scale point (PDH/PDL/PMH/PML/next whole
-#          dollar; fallback = original 2R target); runner keeps original stop
-#   "B"  = A + stop -> breakeven after the first scale
+#   "hod_then_runner"    = 50% off at first HOD/LOD touch after entry (session
+#          extremes as-of entry bar, no lookahead); stop unchanged until scale;
+#          runner to first key level beyond the scale point (PDH/PDL/PMH/PML/
+#          next whole dollar; fallback = original 2R target); runner keeps
+#          original stop. (Was called ladder mode "A".)
+#   "hod_then_runner_be" = hod_then_runner + stop -> breakeven after the first
+#          scale. (Was called ladder mode "B".)
 # W% note: scaled trades are labeled win/loss by SIGN of total P&L; EOD runners
 # stay "scratch" (same as blind-2R). 84% arming: only FULL stop-outs (unscaled)
 # arm a re-entry — a scaled trade already paid, "stop was wrong" doesn't apply.
-# omen-5.0 T4(d): LADDER_MODE defaults to "B" — Austin's real management, stated
-# 2026-08-11 and in his notes before it: scale out at 1R and let a runner go,
-# "you always take something off at HOD; true 2R only when target coincides with
-# HOD". The F1 A/B recorded here measured mode B at a 58% win rate against
-# blind-2R's larger dollar figure; his gate is a 55% win rate, so mode B is the
-# book that answers the question he is actually asking. Blind 2R stays reachable
-# (OMEN_LADDER_MODE=none) so the old number is reproducible — the comment on the
-# F1 line above says it outright: "Blind 2R was our invention."
-_LADDER_ENV = os.environ.get("OMEN_LADDER_MODE", "B").strip()
-LADDER_MODE = None if _LADDER_ENV.lower() in ("", "none", "0", "off") else _LADDER_ENV
+# omen-5.0 T4(d): SCALE_PLAN defaults to "hod_then_runner_be" — Austin's real
+# management, stated 2026-08-11 and in his notes before it: scale out at 1R and
+# let a runner go, "you always take something off at HOD; true 2R only when
+# target coincides with HOD". The F1 A/B recorded here measured that plan (once
+# called ladder mode B) at a 58% win rate against blind-2R's larger dollar
+# figure; his gate is a 55% win rate, so it is the book that answers the
+# question he is actually asking. Blind 2R stays reachable (OMEN_SCALE_PLAN=none)
+# so the old number is reproducible — the comment on the F1 line above says it
+# outright: "Blind 2R was our invention."
+#
+# P5 (2026-08-26): renamed from LADDER_MODE. Its "A"/"B" values read as trade
+# grades in every table and conversation — Austin: "what's ladder B — B is not
+# a grade anymore." It never was a grade; it is this exit plan. OMEN_LADDER_MODE
+# is kept working below as a deprecated alias (values "A"/"B"/"none" map onto
+# the new words) so committed research docs that say "reproduce with
+# OMEN_LADDER_MODE=B" don't go stale. Remove the alias once no research/*.md
+# still cites the old env var.
+_LEGACY_LADDER_MAP = {"a": "hod_then_runner", "b": "hod_then_runner_be"}
+_SCALE_ENV = os.environ.get("OMEN_SCALE_PLAN")
+if _SCALE_ENV is None:
+    _legacy_env = os.environ.get("OMEN_LADDER_MODE", "B").strip()
+    _SCALE_ENV = _LEGACY_LADDER_MAP.get(_legacy_env.lower(), _legacy_env)
+else:
+    _SCALE_ENV = _SCALE_ENV.strip()
+SCALE_PLAN = None if _SCALE_ENV.lower() in ("", "none", "0", "off") else _SCALE_ENV
 
 # omen-5.0 T4(a): the stop TRIGGERS on the candle CLOSE, not on a wick through
 # the level. Austin has written this five times in one grading batch — "stop out
@@ -297,10 +314,10 @@ def _ladder_bar(t: "SimTrade", c: Candle, i: int, open_trades: list,
             return
         if (c.high >= t.scale_level) if long else (c.low <= t.scale_level):
             t.scaled = True
-            if LADDER_MODE == "B":
+            if SCALE_PLAN == "hod_then_runner_be":
                 t.runner_stop = t.entry  # accelerator: BE after first scale
         return
-    stop_lv = t.runner_stop if (LADDER_MODE == "B" and t.runner_stop) else t.stop
+    stop_lv = t.runner_stop if (SCALE_PLAN == "hod_then_runner_be" and t.runner_stop) else t.stop
     hit_target = (c.high >= t.runner_target) if long else (c.low <= t.runner_target)
     if _stop_hit(c, stop_lv, long):     # T4(a): close-based on the runner too
         # omen-5.1 T2: the runner rung's same-bar tie. A bar that tagged the
@@ -457,7 +474,7 @@ def simulate_day(symbol: str, day_iso: str, candles: List[Candle],
 
         # 1. update open sim positions against this bar
         for t in list(open_trades):
-            if LADDER_MODE:
+            if SCALE_PLAN:
                 _ladder_bar(t, c, i, open_trades, runner)
                 continue
             # Rule 6: check breakeven scale BEFORE stop/target
@@ -522,7 +539,7 @@ def simulate_day(symbol: str, day_iso: str, candles: List[Candle],
             # F1 ladder: scale trigger = session extreme as-of entry bar (no
             # lookahead); runner target = first key level beyond the scale point
             scale_level = runner_tgt = 0.0
-            if LADDER_MODE and risk > 0:
+            if SCALE_PLAN and risk > 0:
                 if sig["direction"] == "call":
                     scale_level = max(cd.high for cd in candles[:i + 1])
                     cands = [x for x in (pdh, pmh) if x is not None and x > scale_level]

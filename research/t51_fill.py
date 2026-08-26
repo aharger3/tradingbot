@@ -2,7 +2,8 @@
 
 Runs the SAME two-year backtest as `research/t8_two_year.py` (same 501-day
 window, same 29 symbols in the three tracked pools, same $1,000 risk, same
-omen-5.0 defaults: STOP_ON_CLOSE=1, LADDER_MODE="B") twice per session -- once
+omen-5.0 defaults: STOP_ON_CLOSE=1, SCALE_PLAN="hod_then_runner_be" (was
+LADDER_MODE="B")) twice per session -- once
 with `backtest_week.PESSIMISTIC_FILL` ON and once OFF -- and diffs the two books
 trade by trade.
 
@@ -60,7 +61,7 @@ def run_symbol(args):
     import backtest_week as bw
 
     # the committed omen-5.0 defaults, restated so a stray env var can't move them
-    bw.STOP_ON_CLOSE, bw.LADDER_MODE = True, "B"
+    bw.STOP_ON_CLOSE, bw.SCALE_PLAN = True, "hod_then_runner_be"
 
     table = day_table(symbol)
     days = sorted(table)

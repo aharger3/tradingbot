@@ -14,7 +14,7 @@ from t8_two_year import ARCHIVE, day_table, rth_candles, bias_from
 def run_symbol(args):
     symbol, start_day, end_day = args
     import backtest_week as bw
-    bw.STOP_ON_CLOSE, bw.LADDER_MODE, bw.PESSIMISTIC_FILL = True, "B", False
+    bw.STOP_ON_CLOSE, bw.SCALE_PLAN, bw.PESSIMISTIC_FILL = True, "hod_then_runner_be", False
     C = Counter()
     orig = bw._ladder_bar
 

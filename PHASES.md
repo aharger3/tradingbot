@@ -68,8 +68,9 @@ exact mistake `downgrade.py`'s header exists to prevent.
 - **The 09:30–11:00 window is correct.** The old "everything fires before 10:00" bug is
   gone: entries in the 2-year book run 09:35 → 10:59, 55.4% in the 09:30 half-hour, 44.6%
   after 10:00, 140 after 10:30. The 10:30 slot's 39.4% win rate is a *result*, not a bug.
-- **Ladder B is not a grade.** It is `LADDER_MODE`, the exit scale-out plan: 50% off at the
-  first HOD/LOD after entry, stop to breakeven, runner to the next key level. The letter
-  collision with grade B is a naming accident — P5.
+- **Ladder B is not a grade.** It is `SCALE_PLAN` (`LADDER_MODE` before P5), the exit
+  scale-out plan: 50% off at the first HOD/LOD after entry, stop to breakeven, runner to
+  the next key level. The letter collision with grade B is a naming accident, fixed by
+  P5 — the plan is now named `hod_then_runner_be` (was `"B"`).
 - **Grades exist to route trades, and the downgrade system is the whole of it.** Grade =
   `S − (downgrades tripped) + (1 if confluence)`, floored at C. Nothing else feeds it.

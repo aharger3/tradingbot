@@ -3,7 +3,8 @@
 `research/t8_ev.md`'s +0.914R is in-sample, optimistically filled and uncapped.
 This row replays the SAME two-year backtest (`research/t8_two_year.py`: same
 501-day window, same 29 symbols in the three tracked pools, same $1,000 risk,
-same defaults STOP_ON_CLOSE=1 / LADDER_MODE="B") and reports every combination
+same defaults STOP_ON_CLOSE=1 / SCALE_PLAN="hod_then_runner_be" (was
+LADDER_MODE="B")) and reports every combination
 of the three assumptions that inflate it:
 
   fill model   optimistic (`PESSIMISTIC_FILL=0`) / pessimistic (T2's default, =1)
@@ -68,7 +69,7 @@ def run_symbol(args):
     import backtest_week as bw
 
     # the committed omen-5.0 defaults, restated so a stray env var can't move them
-    bw.STOP_ON_CLOSE, bw.LADDER_MODE = True, "B"
+    bw.STOP_ON_CLOSE, bw.SCALE_PLAN = True, "hod_then_runner_be"
 
     table = day_table(symbol)
     days = sorted(table)
@@ -285,7 +286,8 @@ def main():
              f"in-sample, optimistically filled and uncapped -- all three of the "
              f"assumptions omen-5.1 exists to strip out. This is the same two-year "
              f"replay ({all_days[0]} to {all_days[-1]}, {len(all_days)} trading sessions, "
-             f"{n_syms} symbols, $1,000 risk, `STOP_ON_CLOSE=1`, `LADDER_MODE=B`) "
+             f"{n_syms} symbols, $1,000 risk, `STOP_ON_CLOSE=1`, "
+             f"`SCALE_PLAN=hod_then_runner_be` (was `LADDER_MODE=B`)) "
              f"scored under every combination of the three.\n")
     L.append(f"Population is the **traded** book -- fired, engine grade A+/A/B -- "
              f"{len(rows)} trades. Win rate counts decided trades only; EV is mean R "
