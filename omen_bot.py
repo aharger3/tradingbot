@@ -14,6 +14,18 @@ class SignalType(Enum):
     # BREAK_AND_RETEST, flag under ONE_CANDLE_RULE), so no per-setup win rate
     # for any of them was truthful. They now carry their own types.
     ONE_CANDLE_RULE = "one_candle_rule"
+    # BR_OCR_CONFLUENCE is the two above holding at once on the same bar, side
+    # and level. Austin, P3/G8: "One candle rule should be just as popular as
+    # break-and-retest is. And both trading strategies should have an option
+    # where both one candle rule and break-and-retest occur." Until now a signal
+    # was exactly one type, so a setup that was both got filed under whichever
+    # detector fired — the same blindness omen-3.7 T5 split FVG and FLAG out of
+    # ("no per-setup win rate for any of them was truthful"), and this is that
+    # same move. The condition is research/downgrade.py::has_confluence — one
+    # definition of confluence, in the file that owns it, never re-implemented.
+    # It is a LABEL, not a gate: routing is unchanged unless
+    # signal_runner.CONFLUENCE_SETUP_ROUTES is turned on.
+    BR_OCR_CONFLUENCE = "br_ocr_confluence"
     FAIR_VALUE_GAP = "fair_value_gap"
     FLAG = "flag"
     REENTRY_84_RULE = "reentry_84_rule"

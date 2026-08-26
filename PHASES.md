@@ -18,7 +18,7 @@ everything that closes the money gate is upstream of the fill.
 |---|---|---|---|
 | **P1** | **G4 — what the grader throws away.** Re-run `_grade_pa` over the 7,219 dropped S-signals and record which `return` branch killed each. Cost of the colour gate, cost of the OR-only level test, honest expectancy of the dropped set, OCR-vs-B&R funnel side by side. | green | **dispatched** |
 | **P2** | **A1 — threshold sweep on `downgrade.py`.** Austin gave the eight variables, never the numbers. Every constant in that file is a commented guess. Sweep them against the 120 graded day-cards; his corpus is 28 S / 27 A / 3 C and the grader currently produces ≈13% / 24% / 62%. | amber | ready |
-| **P3** | **G8 — BR+OCR confluence as its own setup.** `downgrade.has_confluence` already detects it; give it a `SignalType` so it routes, grades and counts like any other setup. Confluence is already worth +6.5 points of win rate. | green | ready |
+| **P3** | ~~**G8 — BR+OCR confluence as its own setup**~~ **DONE 2026-08-26** (`research/p3_confluence.md`): `SignalType.BR_OCR_CONFLUENCE` labels every signal where `downgrade.has_confluence` holds. 29,815 of 45,175 detections re-labelled; the book is identical to the cent (1,016 traded, 52.95%, +0.9571R, +972.38R). Funnel — B&R alone 13,546 → 828 → 391 (50.1%, +0.888R) · OCR alone 1,811 → 70 → 16 (18.8%, −0.315R) · confluence 29,815 → 1,353 → 606 (55.6%, +1.030R). Routing unchanged; `CONFLUENCE_SETUP_ROUTES` default OFF. | green | done |
 
 ## Block 2 — retire the legacy ladder
 

@@ -107,7 +107,13 @@ RULE84_LESSON = True   # True = lesson-faithful (no PA gate, original stop)
 # set). RULE84_ARM_BNR_ONLY is retained as a computed alias so anything reading
 # the old boolean name still works; it is now False because the set is wider
 # than B&R-only.
-RULE84_ARM_ON = frozenset({SignalType.BREAK_AND_RETEST, SignalType.ONE_CANDLE_RULE})
+# P3/G8: BR_OCR_CONFLUENCE is in the set deliberately. It IS a break-and-retest
+# and a one-candle-rule at once, and both already arm the 84% rule, so a stopped
+# confluence trade must keep arming it — leaving it out would be a silent
+# behaviour change the moment CONFLUENCE_SETUP_ROUTES is flipped on. With the
+# flag OFF no signal ever carries the type, so this membership is a no-op today.
+RULE84_ARM_ON = frozenset({SignalType.BREAK_AND_RETEST, SignalType.ONE_CANDLE_RULE,
+                           SignalType.BR_OCR_CONFLUENCE})
 RULE84_ARM_BNR_ONLY = RULE84_ARM_ON == frozenset({SignalType.BREAK_AND_RETEST})
 
 # F2 stop-placement A/B (fable-spec-2026-07-12, audit #6). Ours was exactly AT
@@ -369,10 +375,61 @@ RETIRED_SETUPS = frozenset({SignalType.FAIR_VALUE_GAP, SignalType.FLAG})
 TRADE_RETIRED_SETUPS = os.getenv("TRADE_RETIRED_SETUPS", "0").strip().lower() \
     in ("1", "true", "yes", "on")
 
+# P3/G8 (CONFLUENCE_SETUP_ROUTES, 2026-08-26) -- BR+OCR confluence as its own
+# SignalType. LABEL ALWAYS; ROUTING FLAG-GATED, DEFAULT OFF.
+#
+# Austin: "One candle rule should be just as popular as break-and-retest is.
+# And both trading strategies should have an option where both one candle rule
+# and break-and-retest occur." A signal has always been exactly one SignalType,
+# so the setup he calls his best has never been counted, graded or measured as
+# itself -- it was filed under whichever detector happened to fire. omen-3.7 T5
+# split FVG and FLAG out from under other labels for exactly this reason; this
+# is the same move.
+#
+# THE CONDITION IS research/downgrade.py::has_confluence, IMPORTED. One
+# definition of confluence, in the file that owns it. It is already the `+1` in
+# Austin's grade arithmetic (score = tripped - confluence) and is already worth
+# +6.5 points of win rate on the 2-year book (55.8% with, 49.3% without,
+# n=609/407). downgrade.py is deliberately unwired into detection and its header
+# says why; this ticket adds a LABEL AND A COUNT, not a gate.
+#
+# WHAT HAPPENS BY DEFAULT: a qualifying signal gets sig["setup_type"] =
+# BR_OCR_CONFLUENCE, sig["br_ocr"] = True and a " [brocr]" tag on its reason.
+# sig["signal_type"] -- the key every downstream routing, dedupe and arming test
+# reads, including backtest_week's dedupe idea key -- is UNTOUCHED, so the
+# replay is identical to the cent and the only difference is the new label.
+#
+# WHEN CONFLUENCE_SETUP_ROUTES=1: signal_type itself becomes BR_OCR_CONFLUENCE
+# (the base type is kept on sig["base_signal_type"]), so the setup routes,
+# dedupes and reports as its own thing. Everything that gated the base setup
+# still gates it -- see S_ELIGIBLE_SETUPS and RULE84_ARM_ON below, which both
+# carry the new member deliberately, and the two point comparisons
+# (BNR_DISPLACEMENT_GATE's clause-5 veto, LEVEL_RETIRE_TOUCHES) which name it
+# alongside its bases.
+#
+# NOT the same thing as T11(d)'s sig["confluence"] / " [confluence: a+b]" at the
+# end of detect_signals. That one means "two S-eligible setups fired on this bar
+# and side" -- a co-occurrence count over emitted signals. This one is Austin's
+# structural test on the bars: a break bar at the level, an isolated OCR whose
+# far edge could hold the stop, and the OCR still respected. Both are reported;
+# neither is required.
+CONFLUENCE_SETUP_ROUTES = os.getenv("CONFLUENCE_SETUP_ROUTES", "0").strip().lower() \
+    in ("1", "true", "yes", "on")
+# The setups that can be half of a BR+OCR confluence. FVG and FLAG cannot --
+# Austin does not trade them (RETIRED_SETUPS) -- and the 84% re-entry is a second
+# bite at an idea that already fired, not a fresh break-and-retest.
+CONFLUENCE_BASE_SETUPS = frozenset({SignalType.BREAK_AND_RETEST,
+                                    SignalType.ONE_CANDLE_RULE})
+
 # Clause 1: exactly three setups, nothing else is ever S. FAIR_VALUE_GAP and
 # FLAG are deliberately absent.
+# P3/G8: BR_OCR_CONFLUENCE is added deliberately. It is a break-and-retest AND
+# an order block at once, and both of those are already S-eligible, so leaving
+# it out would silently make the highest-quality setup the only one that can
+# never be S the moment CONFLUENCE_SETUP_ROUTES is flipped on. With the flag OFF
+# no signal ever carries the type, so this membership is a no-op today.
 S_ELIGIBLE_SETUPS = (SignalType.BREAK_AND_RETEST, SignalType.ONE_CANDLE_RULE,
-                     SignalType.REENTRY_84_RULE)
+                     SignalType.REENTRY_84_RULE, SignalType.BR_OCR_CONFLUENCE)
 
 # omen-3.9 (ENFORCE_NO_REPEAT, T5, 2026-08-09) -- clause 3 made into a routing
 # rule, FLAG-GATED, DEFAULT OFF.
@@ -833,8 +890,12 @@ def compute_austin_tier(sig: dict, candles, fired_ideas, htf_bias) -> str:
     # T11(a) — the positive quality clause S never had. Trading-Bot-Rulesets.md
     # clause 5: a break-and-retest whose break leg showed no displacement "can
     # never be S, whatever the other clauses say".
+    # P3/G8: BR_OCR_CONFLUENCE named alongside its base so a confluence signal
+    # keeps the same clause-5 veto it had as a plain B&R. Only B&R signals carry
+    # a `displacement` key at all, so naming it here cannot reach an order block.
     if (BNR_DISPLACEMENT_GATE
-            and sig.get("signal_type") is SignalType.BREAK_AND_RETEST
+            and sig.get("signal_type") in (SignalType.BREAK_AND_RETEST,
+                                           SignalType.BR_OCR_CONFLUENCE)
             and sig.get("displacement") is False):
         return "C"
     # T11(c) — in-between mesh is a HARD veto, not a demotion. A level (named or
@@ -1273,6 +1334,55 @@ class SignalRunner:
             return entry >= hi - band
         return entry <= lo + band
 
+    def _dg_bars(self) -> list:
+        """self.candles as research/downgrade.py's plain-dict bars.
+
+        Memoised on the identity AND the length of self.candles, so it is reused
+        across several emits on one bar and can never go stale: backtest_week
+        rebinds runner.candles to a fresh slice each bar, live_scanner appends in
+        place, and both cases are caught."""
+        cached = getattr(self, "_dg_bars_cache", None)
+        if cached is not None and cached[0] is self.candles and cached[1] == len(self.candles):
+            return cached[2]
+        rows = [{"o": c.open, "h": c.high, "l": c.low, "c": c.close, "v": c.volume}
+                for c in self.candles]
+        self._dg_bars_cache = (self.candles, len(self.candles), rows)
+        return rows
+
+    def _label_confluence(self, sig: dict) -> None:
+        """P3/G8. Tag a break-and-retest that is ALSO a one candle rule, and
+        vice versa, as SignalType.BR_OCR_CONFLUENCE.
+
+        The test is research/downgrade.py::has_confluence on exactly the inputs
+        backtest_2y.py already grades every row with — the signal's own bar and
+        sig["stop"] as the level proxy — so this label and the book's existing
+        `confluence` column are the same measurement rather than two.
+
+        Routing is untouched unless CONFLUENCE_SETUP_ROUTES is on; see the flag's
+        comment block. `setup_type` is stamped on EVERY signal so a per-setup
+        table has one field to group by."""
+        st = sig.get("signal_type")
+        sig.setdefault("setup_type", st)
+        if st not in CONFLUENCE_BASE_SETUPS or not self.candles:
+            return
+        level = sig.get("stop")
+        if level is None:
+            return
+        try:
+            from research import downgrade as dg
+        except Exception:                      # research/ not importable (packaged live run)
+            return
+        bars = self._dg_bars()
+        if not dg.has_confluence(bars, len(bars) - 1, level,
+                                 sig.get("direction") == "call"):
+            return
+        sig["setup_type"] = SignalType.BR_OCR_CONFLUENCE
+        sig["br_ocr"] = True
+        sig["reason"] = sig.get("reason", "") + " [brocr]"
+        if CONFLUENCE_SETUP_ROUTES:
+            sig["base_signal_type"] = st
+            sig["signal_type"] = SignalType.BR_OCR_CONFLUENCE
+
     def _emit(self, signals: List[dict], sig: dict) -> None:
         """Every detection site posts through here, not straight to _route.
 
@@ -1280,6 +1390,10 @@ class SignalRunner:
         veto placed inside it would be silently absent from exactly the runs
         that measure it. The session-extreme veto therefore sits in front of
         _route where every subclass inherits it."""
+        # P3/G8: label first, so a signal vetoed below still carries its setup
+        # identity into the skip log — the detection funnel has to count the
+        # confluence setups that never reached routing.
+        self._label_confluence(sig)
         if not TRADE_RETIRED_SETUPS and sig.get("signal_type") in RETIRED_SETUPS:
             sig.setdefault("symbol", self.symbol)
             self._log_record(sig, status="skipped", skip_reason="retired setup")
@@ -1345,8 +1459,11 @@ class SignalRunner:
         # Austin: "you repeat that 3 times and its just not even a break and
         # retest." Counted per symbol + level name, direction-agnostic: the same
         # level failing both ways is the same level being chewed up.
+        # P3/G8: BR_OCR_CONFLUENCE named alongside its two bases — a level being
+        # chewed up is chewed up whichever label the setup carries.
         if LEVEL_RETIRE_TOUCHES > 0 and sig.get("signal_type") in (
-                SignalType.BREAK_AND_RETEST, SignalType.ONE_CANDLE_RULE):
+                SignalType.BREAK_AND_RETEST, SignalType.ONE_CANDLE_RULE,
+                SignalType.BR_OCR_CONFLUENCE):
             lv_key = (self.symbol, sig.get("stop_level_name"))
             bar = len(self.candles) - 1
             done, last = self._level_br_count.get(lv_key, (0, -10 ** 9))
