@@ -13,6 +13,7 @@ from datetime import date, datetime, timedelta
 from pathlib import Path
 
 import polygon_feed as pf
+from research import downgrade as dg
 from backtest_week import simulate_day, htf_bias_for, RISK_DOLLARS
 from backtest_12mo import hourly_from_1m, qqq_level_breaks
 from universe import (ALL_SYMS, INDEX_POOL, CORE_SYMBOLS, EXPERIMENTAL_SYMBOLS,
@@ -66,6 +67,12 @@ def spy_context():
                            "normal" if v["_vol"] <= hi else "wild")
         v.pop("_vol")
     return ctx
+
+
+def dg_bars(rth):
+    """downgrade.py reads plain dicts, not Candle objects (same shape t66 feeds it)."""
+    return [{"o": c.open, "h": c.high, "l": c.low, "c": c.close, "v": c.volume}
+            for c in rth]
 
 
 def bucket(x, edges, names):
@@ -131,8 +138,16 @@ def main():
             cx = ctx.get(d, {})
             dow = datetime.fromisoformat(d).strftime("%a")
             seq = defaultdict(int)
+            dbars = dg_bars(rth) if trades else None
 
             for t in trades:
+                # Austin's own S/A/C ladder, computed alongside the engine's
+                # legacy A+/A/B/C/X. downgrade.py is still NOT wired into
+                # detection -- this only ATTACHES his grade to each signal so
+                # the report can filter on it. Level proxy is the stop, the same
+                # input research/t66_downgrade_measure.py graded on, so the two
+                # measurements stay comparable.
+                rec = dg.score(dbars, t.entry_idx, t.stop, t.direction == "call", bias)
                 risk = abs(t.entry - t.stop)
                 lv = LEVEL_RE.search(t.reason)
                 sm = S_RE.search(t.reason)
@@ -171,6 +186,10 @@ def main():
                     "drange": round(drange, 2),
                     "rangeb": bucket(drange, [1.5, 3.0], ["quiet", "normal", "big range"]),
                     "dret": round(dret, 2),
+                    "sgrade": (rec or {}).get("grade", "n/a"),
+                    "tripped": str((rec or {}).get("n_tripped", "n/a")),
+                    "confluence": "yes" if (rec or {}).get("confluence") else "no",
+                    "downgrades": (rec or {}).get("tripped", []),
                     "scaled": bool(t.scaled),
                     "spy_trend": cx.get("spy_trend", "n/a"),
                     "vol_regime": cx.get("vol_regime", "n/a"),

@@ -17,9 +17,11 @@ ROOT = Path(__file__).resolve().parent.parent
 
 # field -> label, in the order the filter rail renders them
 FACETS = [
-    ("book", "Book"), ("cls", "Asset class"), ("pool", "Pool"), ("tier", "Watchlist tier"),
+    ("book", "Book"), ("sgrade", "Austin grade S/A/C"),
+    ("tripped", "Downgrades tripped"), ("confluence", "BR+OCR confluence"),
+    ("cls", "Asset class"), ("pool", "Pool"), ("tier", "Watchlist tier"),
     ("sym", "Symbol"), ("setup", "Setup"), ("dir", "Direction"),
-    ("grade", "Engine grade"), ("status", "Fired / filtered"),
+    ("grade", "Engine grade (legacy)"), ("status", "Fired / filtered"),
     ("out", "Outcome"), ("level", "Level broken"), ("stopb", "Stop width"),
     ("aligned", "vs HTF bias"), ("s", "S-score"), ("seq", "Nth signal of day"),
     ("slot", "Entry slot"), ("dow", "Weekday"), ("yr", "Year"),
@@ -29,6 +31,7 @@ FACETS = [
 ]
 NUMS = ["r", "pnl", "bars", "stop_pct", "gap", "drange", "dret",
         "entry", "stop", "target", "exit"]
+MULTI = ["tags", "downgrades"]      # a signal can carry several of each
 STRS = ["day", "et", "ym"]          # kept raw, dictionary-encoded like the facets
 
 
@@ -59,17 +62,17 @@ def encode(trades):
         cols[f] = codes
     for f in NUMS:
         cols[f] = [t.get(f, 0) for t in trades]
-    tagvocab = {}
-    tagcodes = []
-    for t in trades:
-        cs = []
-        for tag in t.get("tags", []):
-            if tag not in tagvocab:
-                tagvocab[tag] = len(tagvocab)
-            cs.append(tagvocab[tag])
-        tagcodes.append(cs)
-    dicts["tags"] = list(tagvocab)
-    cols["tags"] = tagcodes
+    for f in MULTI:
+        vocab, codes = {}, []
+        for t in trades:
+            cs = []
+            for v in t.get(f, []):
+                if v not in vocab:
+                    vocab[v] = len(vocab)
+                cs.append(vocab[v])
+            codes.append(cs)
+        dicts[f] = list(vocab)
+        cols[f] = codes
     return dicts, cols
 
 
@@ -197,8 +200,10 @@ footer{padding:22px 28px 60px;border-top:1px solid var(--line);color:var(--faint
     <h1>OMEN <em>Two-Year Tape</em></h1>
     <p class="sub">Every signal the engine produced over __SESSIONS__ sessions
     (__FIRST__ &rarr; __LAST__), replayed bar-by-bar from the 1-minute archive.
-    Filter anything; the numbers, the curve and the edge scanner all recompute
-    against what is left.</p>
+    Every signal carries <b>both</b> grades: Austin&rsquo;s S/A/C ladder
+    (<span class="mono">research/downgrade.py</span>, scored here, still not wired into
+    detection) and the engine&rsquo;s legacy A+/A/B/C/X. Filter anything; the numbers,
+    the curve and the edge scanner all recompute against what is left.</p>
   </div>
   <div class="stamp mono">built __GEN__<br>__NSIG__ signals &middot; __NTRADED__ traded<br>1R = $__RISK__</div>
 </header>
@@ -276,6 +281,8 @@ footer{padding:22px 28px 60px;border-top:1px solid var(--line);color:var(--faint
 var D = JSON.parse(document.getElementById("data").textContent);
 var dicts = D.dicts, cols = D.cols, N = cols.day.length;
 var FACETS = D.facets, RISK = D.meta.risk_dollars;
+var MULTI = {tags:1, downgrades:1};       // fields holding a list per signal
+var EXTRA = [["downgrades","Which downgrade fired"],["tags","Reason tags"]];
 
 // ---- decode helpers -------------------------------------------------------
 function val(f,i){ return dicts[f][cols[f][i]]; }
@@ -295,7 +302,7 @@ var order = [];              // chronological index order
 var sel = {};                 // field -> Set of selected dict codes
 function clearSel(){
   FACETS.forEach(function(f){ sel[f[0]] = new Set(); });
-  sel.tags = new Set();
+  EXTRA.forEach(function(f){ sel[f[0]] = new Set(); });
 }
 function defaultSel(){          // the page opens on the traded book, not the raw firehose
   clearSel();
@@ -307,8 +314,8 @@ defaultSel();
 function passes(i){
   for(var k in sel){
     var s = sel[k]; if(!s.size) continue;
-    if(k === "tags"){
-      var has=false, cs=cols.tags[i];
+    if(MULTI[k]){
+      var has=false, cs=cols[k][i];
       for(var j=0;j<cs.length;j++) if(s.has(cs[j])){has=true;break;}
       if(!has) return false;
     } else if(!s.has(cols[k][i])) return false;
@@ -361,10 +368,10 @@ function cls(x){ return x>0?"pos":x<0?"neg":"neu"; }
 // ---- filter rail ----------------------------------------------------------
 function buildRail(){
   var rail = document.getElementById("rail"), html = "";
-  var all = FACETS.concat([["tags","Reason tags"]]);
+  var all = FACETS.concat(EXTRA);
   all.forEach(function(f,fi){
     var field=f[0], label=f[1];
-    var open = ["book","cls","setup","grade"].indexOf(field)>=0 ? " open" : "";
+    var open = ["book","sgrade","setup","cls"].indexOf(field)>=0 ? " open" : "";
     html += '<details class="facet'+open+'"><summary>'+label+'</summary>'+
             '<div class="chips" data-field="'+field+'"></div></details>';
   });
@@ -385,7 +392,7 @@ function facetCounts(field){
   var counts = {};
   for(var i=0;i<N;i++){
     if(!passes(i)) continue;
-    if(field==="tags"){ cols.tags[i].forEach(function(c){counts[c]=(counts[c]||0)+1;}); }
+    if(MULTI[field]){ cols[field][i].forEach(function(c){counts[c]=(counts[c]||0)+1;}); }
     else { var c=cols[field][i]; counts[c]=(counts[c]||0)+1; }
   }
   sel[field] = saved;
@@ -393,7 +400,7 @@ function facetCounts(field){
 }
 
 function renderChips(){
-  var all = FACETS.concat([["tags","Reason tags"]]);
+  var all = FACETS.concat(EXTRA);
   all.forEach(function(f){
     var field=f[0];
     var box = document.querySelector('.chips[data-field="'+field+'"]');
@@ -533,8 +540,8 @@ var POST_HOC = {out:1, scaled:1};
 function groupStats(field){
   var by={};
   live.forEach(function(i){
-    if(field==="tags"){
-      cols.tags[i].forEach(function(c){ (by[dicts.tags[c]]=by[dicts.tags[c]]||[]).push(i); });
+    if(MULTI[field]){
+      cols[field][i].forEach(function(c){ (by[dicts[field][c]]=by[dicts[field][c]]||[]).push(i); });
     } else {
       var v=val(field,i); (by[v]=by[v]||[]).push(i);
     }
@@ -554,7 +561,7 @@ function buildTabs(id, fields, current, onpick){
 
 function renderScan(){
   var base = stats(live), rows=[];
-  var pool = FACETS.concat([["tags","Reason tags"]]).filter(function(f){return !POST_HOC[f[0]];});
+  var pool = FACETS.concat(EXTRA).filter(function(f){return !POST_HOC[f[0]];});
   var fields = scanField==="__ALL__" ? pool
     : pool.filter(function(f){return f[0]===scanField;});
   fields.forEach(function(f){
@@ -583,7 +590,7 @@ function renderScan(){
     (body||'<tr><td colspan="7" class="empty">no slice reaches '+SCAN_MIN+' trades</td></tr>')+"</tbody>";
 }
 
-var dimField="sym", dimSort="sumR", dimDesc=true;
+var dimField="sgrade", dimSort="sumR", dimDesc=true;
 function renderDim(){
   var by=groupStats(dimField), rows=[];
   for(var v in by) rows.push({val:v, st:stats(by[v])});
@@ -621,13 +628,14 @@ function renderTrades(){
   if(page>=pages) page=pages-1;
   var slice=live.slice(page*PAGE,(page+1)*PAGE);
   var head='<thead><tr><th>Date</th><th>Time</th><th>Sym</th><th>Setup</th><th>Dir</th>'+
-    '<th>Grade</th><th>Entry</th><th>Stop</th><th>Stop%</th><th>Exit</th><th>Out</th>'+
-    '<th>R</th><th>$</th><th>Level</th><th>S</th><th>Bias</th><th>Tags</th></tr></thead>';
+    '<th>S/A/C</th><th>Eng</th><th>Entry</th><th>Stop</th><th>Stop%</th><th>Exit</th><th>Out</th>'+
+    '<th>R</th><th>$</th><th>Level</th><th>S#</th><th>Bias</th><th>Tags</th></tr></thead>';
   var body=slice.map(function(i){
     var r=cols.r[i];
     return '<tr><td class="num">'+val("day",i)+'</td><td class="num">'+val("et",i)+'</td>'+
       '<td class="num">'+val("sym",i)+'</td><td>'+val("setup",i)+'</td>'+
-      '<td>'+val("dir",i)+'</td><td class="num">'+val("grade",i)+'</td>'+
+      '<td>'+val("dir",i)+'</td><td class="num">'+val("sgrade",i)+'</td>'+
+      '<td class="num">'+val("grade",i)+'</td>'+
       '<td class="num">'+cols.entry[i].toFixed(2)+'</td><td class="num">'+cols.stop[i].toFixed(2)+'</td>'+
       '<td class="num">'+cols.stop_pct[i].toFixed(2)+'</td>'+
       '<td class="num">'+cols.exit[i].toFixed(2)+'</td><td>'+val("out",i)+'</td>'+
@@ -638,7 +646,7 @@ function renderTrades(){
       '<td>'+cols.tags[i].map(function(c){return '<span class="tag">'+dicts.tags[c]+"</span>";}).join("")+'</td></tr>';
   }).join("");
   document.getElementById("trades").innerHTML=head+"<tbody>"+
-    (body||'<tr><td colspan="17" class="empty">nothing selected</td></tr>')+"</tbody>";
+    (body||'<tr><td colspan="18" class="empty">nothing selected</td></tr>')+"</tbody>";
   document.getElementById("pageinfo").textContent=(page+1)+" / "+pages;
   document.getElementById("tradecount").textContent=total.toLocaleString()+" in selection";
 }
@@ -652,7 +660,7 @@ function render(){
   renderScan(); renderDim(); renderTrades();
 }
 
-var DIMS = FACETS.concat([["tags","Reason tags"]]);
+var DIMS = FACETS.concat(EXTRA);
 var SCANDIMS = [["__ALL__","Every dimension"]].concat(
   DIMS.filter(function(f){return !POST_HOC[f[0]];}));
 function pickScan(f){ scanField=f; buildTabs("scantabs",SCANDIMS,scanField,pickScan); renderScan(); }
