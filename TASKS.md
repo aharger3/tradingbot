@@ -11,6 +11,7 @@ red = needs Austin).
 
 | # | task | why it matters | check that proves it |
 |---|---|---|---|
+| G10 | **Autopsy the 317 armings that never fired.** P7 opened the 84% gate and got 433 armings but only 116 signals; nobody knows which of the re-entry detector's conditions (reclaim close, candle colour, >20% off the day's extreme, >=1.5x remaining reward, before 11:00, 2-attempt cap) kills the other 317. Instrument them the way `research/p7_84_rule.py` instruments the arm gate. | The gate is settled; the detector is now the binding constraint on this rule. | a per-condition funnel over the 433 armings |
 | G2 | **Delete or fix the T4(b) entry-bar scratch** — it has never fired in 2 years (see Diagnosed). Decide whether the rule needs a wider trigger or the code is genuinely unreachable. | Dead code that looks like a working rule is worse than no rule. | a replay case that scratches, or the branch removed with the reason |
 | G8 | **Add a BR+OCR confluence setup type.** `downgrade.has_confluence` already detects it; give it its own `SignalType` so it can be routed, graded and counted like any other setup. | Austin asked for it directly, and confluence is already worth +6.5pts of win rate. | confluence signals appear as their own row in every per-setup table |
 | G3 | **ON WATCH A/B on the 2-year rig**, not just the 120 day-cards. Reuse `t61_onwatch_ab.py`'s flag switch against `backtest_2y.py`. | The other big management piece, unmeasured at scale. | two runs, one table, delta in recall and mean R |
