@@ -1,0 +1,51 @@
+{"type":"probe","probe":"omen-master-homework","card_id":"cal_QQQ_2026-06-29_b10","grade":"S","answers":{"your_grade":["S"]},"notes":{"reject":"the engine entered one candle late, thats why it doesn't see the textbook s trade OCR"}}
+{"type":"probe","probe":"omen-master-homework","card_id":"cal_QQQ_2026-06-30_b11","grade":"S","answers":{"your_grade":["S"],"reject":["level_not_respected"]},"notes":{"reject":"bull flag to start day, never closed below the level"}}
+{"type":"probe","probe":"omen-master-homework","card_id":"cal_QQQ_2026-07-14_b37","grade":"A","answers":{"your_grade":["C"],"reject":["no_displacement"]},"notes":{"reject":"not the best weak price action and im counting that as another downgrade"}}
+{"type":"probe","probe":"omen-master-homework","card_id":"cal_QQQ_2026-07-16_b10","grade":"S","answers":{"your_grade":["C"]},"notes":{"reject":"c is fine because there is an earlier A entry 2-3 candles later"}}
+{"type":"probe","probe":"omen-master-homework","card_id":"cal_QQQ_2026-07-20_b34","grade":"S","answers":{"your_grade":["A"]},"notes":{"reject":"a because it broke above orh and rejected, but clear break retest weak PA"}}
+{"type":"probe","probe":"omen-master-homework","card_id":"cal_QQQ_2026-07-24_b20","grade":"S","answers":{"your_grade":["A"]},"notes":{"reject":"5 candles earlier possible, but candle entered on fine as long as not all the way at LOD"}}
+{"type":"probe","probe":"omen-master-homework","card_id":"cal_QQQ_2026-07-02_b61","grade":"none","answers":{"your_grade":["A"]},"notes":{"reject":"1 candle later better entry, stock already fails BR of ORH to upside."}}
+{"type":"probe","probe":"omen-master-homework","card_id":"cal_QQQ_2026-07-06_b88","grade":"none","answers":{"your_grade":["no"]},"notes":{"reject":"consolidation"}}
+{"type":"probe","probe":"omen-master-homework","card_id":"cal_QQQ_2026-07-08_b20","grade":"none","answers":{"your_grade":["no"]},"notes":{"reject":"no good BR and too much chop"}}
+{"type":"probe","probe":"omen-master-homework","card_id":"cal_QQQ_2026-07-21_b81","grade":"none","answers":{"your_grade":["C"]},"notes":{"reject":"took too long for the move and little choppy stop not as clear"}}
+{"type":"probe","probe":"omen-master-homework","card_id":"cal_QQQ_2026-07-28_b58","grade":"none","answers":{"your_grade":["no"]},"notes":{"reject":"too choppy and there were no earlier trade changes and missed opportunities. I see one 9:50 OCR stoop green body would be A or S trade"}}
+{"type":"probe","probe":"omen-master-homework","card_id":"cal_QQQ_2026-07-31_b23","grade":"none","answers":{"your_grade":["S"]},"notes":{"reject":"large wicks like that are scary but I like the weakness in the day. stop loss instead should be tighter the OCR at 9:45"}}
+{"type":"probe","probe":"omen-master-homework","card_id":"au_TSLA_2026-05-21","grade":"S","answers":{"level":["none"],"confirm":["ocr"],"verdict":["scanner_should"],"regrade":["to_a"]},"notes":{"missing":"didn't respect orl and small pivot to base OCR off of gives it the downgrade to A"}}
+{"type":"probe","probe":"omen-master-homework","card_id":"au_QQQ_2026-07-09","grade":"S","answers":{"confirm":["ocr"],"regrade":["keep"]},"notes":{}}
+{"type":"probe","probe":"omen-master-homework","card_id":"au_QQQ_2026-07-20","grade":"S","answers":{"level":["pdh","pmh"],"confirm":["ocr"],"verdict":["scanner_should"],"regrade":["keep"]},"notes":{}}
+{"type":"probe","probe":"omen-master-homework","card_id":"au_QQQ_2026-07-24","grade":"S","answers":{"level":["orl"],"regrade":["to_a"]},"notes":{"missing":"chop and slower moving candles, and entry candle have to get as candle forming not low of day"}}
+{"type":"probe","probe":"omen-master-homework","card_id":"au_QQQ_2026-08-03","grade":"S","answers":{"level":["orh"],"regrade":["keep"]},"notes":{}}
+{"type":"probe","probe":"omen-master-homework","card_id":"h2_TSLA_2026-05-15","grade":"none","answers":{},"notes":{"veto":"just look at it you can tell its no goo there's nothing here"}}
+{"type":"probe","probe":"omen-master-homework","card_id":"h2_TSLA_2026-06-17","grade":"none","answers":{},"notes":{"veto":"nothing here"}}
+{"type":"probe","probe":"omen-master-homework","card_id":"h2_TSLA_2026-06-25","grade":"none","answers":{},"notes":{"veto":"nothing here"}}
+{"type":"probe","probe":"omen-master-homework","card_id":"h2_TSLA_2026-07-08","grade":"none","answers":{},"notes":{"veto":"nothing here"}}
+{"type":"probe","probe":"omen-master-homework","card_id":"h2_TSLA_2026-07-13","grade":"none","answers":{},"notes":{"veto":"reversal"}}
+{"type":"probe","probe":"omen-master-homework","card_id":"h2_TSLA_2026-07-15","grade":"none","answers":{},"notes":{"veto":"nothing here"}}
+{"type":"probe","probe":"omen-master-homework","card_id":"h2_TSLA_2026-07-20","grade":"none","answers":{},"notes":{"veto":"nothing here"}}
+{"type":"probe","probe":"omen-master-homework","card_id":"h2_TSLA_2026-07-28","grade":"none","answers":{},"notes":{"veto":"nothing here chop and no break"}}
+{"type":"probe","probe":"omen-master-homework","card_id":"h2_TSLA_2026-08-03","grade":"none","answers":{},"notes":{"veto":"entering on a break"}}
+{"type":"probe","probe":"omen-master-homework","card_id":"sr_QQQ_2026-01-21","grade":null,"answers":{"s_call":["no"]},"notes":{}}
+{"type":"probe","probe":"omen-master-homework","card_id":"sr_TSLA_2026-05-07","grade":null,"answers":{"s_call":["no"]},"notes":{}}
+{"type":"probe","probe":"omen-master-homework","card_id":"sr_QQQ_2026-02-04","grade":null,"answers":{"s_call":["no"]},"notes":{"s_call":"entry 10:10 couldve been an a trade"}}
+{"type":"probe","probe":"omen-master-homework","card_id":"sr_TSLA_2026-03-30","grade":null,"answers":{"s_call":["no"]},"notes":{}}
+{"type":"probe","probe":"omen-master-homework","card_id":"sr_TSLA_2026-03-12","grade":null,"answers":{"s_call":["s"]},"notes":{"s_call":"10:04  S entry"}}
+{"type":"probe","probe":"omen-master-homework","card_id":"sr_QQQ_2026-05-05","grade":null,"answers":{"s_call":["no"]},"notes":{"s_call":"9:44 entry as candle forming, A trade because OCR is large and not pretty and 9:31 OCR was not retested"}}
+{"type":"probe","probe":"omen-master-homework","card_id":"sr_QQQ_2026-02-09","grade":null,"answers":{"s_call":["s"]},"notes":{"s_call":"9:54 hammer entry off OCR, may have missed by few cents 9:38 OCR but this is what we have been talking about and trying to put in our edge"}}
+{"type":"probe","probe":"omen-master-homework","card_id":"sr_QQQ_2026-02-10","grade":null,"answers":{"s_call":["no"]},"notes":{}}
+{"type":"probe","probe":"omen-master-homework","card_id":"sr_QQQ_2026-05-14","grade":null,"answers":{"s_call":["no"]},"notes":{"s_call":"10:02 A trade because overextended but you can understand the BR there"}}
+{"type":"probe","probe":"omen-master-homework","card_id":"sr_QQQ_2026-02-02","grade":null,"answers":{"s_call":["no"]},"notes":{"s_call":"9:59 a trade just because the PA is choppy and volatile in a bad way (large red candles)"}}
+{"type":"probe","probe":"omen-master-homework","card_id":"sr_QQQ_2026-02-12","grade":null,"answers":{"s_call":["s"]},"notes":{"s_call":"10:04 S entry, double chop areas but PA and below a lot of levels"}}
+{"type":"probe","probe":"omen-master-homework","card_id":"sr_TSLA_2026-04-23","grade":null,"answers":{"s_call":["no"]},"notes":{"s_call":"10:18 A trade because no displacement"}}
+{"type":"probe","probe":"omen-master-homework","card_id":"sr_TSLA_2026-04-08","grade":null,"answers":{"s_call":["s"]},"notes":{"s_call":"10:02 S trade no displacement but 2 very large red candles to start the day and below levels gives it the upgrade in my opinion"}}
+{"type":"probe","probe":"omen-master-homework","card_id":"sr_TSLA_2026-02-11","grade":null,"answers":{"s_call":["no"]},"notes":{"s_call":"stock had movement but dont see any opportunities"}}
+{"type":"probe","probe":"omen-master-homework","card_id":"sr_QQQ_2026-06-25","grade":null,"answers":{"s_call":["no"]},"notes":{"s_call":"stock had movement but dont see any opportunities"}}
+{"type":"probe","probe":"omen-master-homework","card_id":"sr_QQQ_2026-08-11","grade":null,"answers":{"s_call":["no"]},"notes":{}}
+{"type":"probe","probe":"omen-master-homework","card_id":"sr_QQQ_2026-01-02","grade":null,"answers":{"s_call":["no"]},"notes":{"s_call":"stock had movement but dont see any opportunities"}}
+{"type":"probe","probe":"omen-master-homework","card_id":"sr_TSLA_2026-02-02","grade":null,"answers":{"s_call":["no"]},"notes":{}}
+{"type":"probe","probe":"omen-master-homework","card_id":"sr_TSLA_2026-03-04","grade":null,"answers":{"s_call":["s"]},"notes":{"s_call":"10:19 s"}}
+{"type":"probe","probe":"omen-master-homework","card_id":"sr_QQQ_2026-05-08","grade":null,"answers":{"s_call":["no"]},"notes":{"s_call":"9:44 A entry because no displacement"}}
+{"type":"probe","probe":"omen-master-homework","card_id":"sr_QQQ_2026-01-15","grade":null,"answers":{"s_call":["no"]},"notes":{"s_call":"holy chop"}}
+{"type":"probe","probe":"omen-master-homework","card_id":"sr_TSLA_2026-03-17","grade":null,"answers":{"s_call":["no"]},"notes":{"s_call":"holy chop"}}
+{"type":"probe","probe":"omen-master-homework","card_id":"sr_TSLA_2026-01-26","grade":null,"answers":{"s_call":["no"]},"notes":{}}
+{"type":"probe","probe":"omen-master-homework","card_id":"sr_TSLA_2026-03-03","grade":null,"answers":{"s_call":["no"]},"notes":{"s_call":"stock had movement but dont see any opportunities"}}
+{"type":"probe","probe":"omen-master-homework","card_id":"sr_QQQ_2026-06-05","grade":null,"answers":{"s_call":["no"]},"notes":{"s_call":"9:55 c entry and 9:44 as candle forming A entry because no displacement and c is later after an a entry which lowers probabilit. both OCR trades"}}

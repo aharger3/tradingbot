@@ -255,3 +255,30 @@ canon adds 2026-05-14 → 2026-08-10, mostly non-overlapping with v7's window).
 
 30 distinct symbols carry at least one mark. TSLA/QQQ/SPY dominate because they
 are both v7's most-marked names and the entirety of the canon deck pool.
+
+
+---
+
+## `probe_master_homework_2026-08-26.jsonl` — 51 rows, added 2026-08-26
+
+The OMEN master homework, graded away from this machine and pasted back into the
+session. **The paste is the only copy** — nothing landed in `~/Downloads`, so there is
+no file to reconcile against. Four sections in one file, distinguished by card-id prefix:
+
+| prefix | section | rows |
+|---|---|---:|
+| `cal_` | grader calibration — which tripped downgrade does he reject | 12 |
+| `au_` | silent-day autopsy — what made it a trade | 5 |
+| `h2_` | head-to-head — days he refused that the engine graded S | 9 |
+| `sr_` | S-recall — is there an S entry on this day at all | 25 |
+
+`sr_` rows carry `grade: null` by design: the question is "is there an S here", answered
+in `answers.s_call`, and several `no` answers still name a specific bar and letter in
+`notes.s_call` ("10:02 A trade because overextended"). Those notes are judgements about
+bars the corpus has no card for — do not discard them when parsing.
+
+**Two symbol-days were asked twice inside this one document**: QQQ 2026-07-20 and
+QQQ 2026-07-24 each appear as both a `cal_` and an `au_` card. `build_deck.marked_card_ids()`
+guards against re-asking a day judged in a *previous* corpus; it does not deduplicate
+across the sections of a document being built. Austin noticed before we did. Tracked as
+G12; until it is fixed, every multi-section instrument can repeat itself.
