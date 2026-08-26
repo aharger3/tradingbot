@@ -170,6 +170,8 @@ def main():
                     "target": round(t.target, 2), "exit": round(t.exit_price, 2),
                     "out": t.outcome, "pnl": t.pnl, "r": round(t.pnl / RISK_DOLLARS, 3),
                     "bars": max(0, t.exit_idx - t.entry_idx),
+                    "entry_i": t.entry_idx,          # index into pf.rth(day) — exit sweeps need it
+                    "side": "L" if t.direction == "call" else "S",
                     "stop_pct": round(stop_pct, 3),
                     "stopb": bucket(stop_pct, [0.15, 0.35, 0.7],
                                     ["tight", "mid", "wide", "very wide"]),
