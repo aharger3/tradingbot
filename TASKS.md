@@ -12,6 +12,7 @@ red = needs Austin).
 | # | task | why it matters | check that proves it |
 |---|---|---|---|
 | G10 | **Autopsy the 317 armings that never fired.** P7 opened the 84% gate and got 433 armings but only 116 signals; nobody knows which of the re-entry detector's conditions (reclaim close, candle colour, >20% off the day's extreme, >=1.5x remaining reward, before 11:00, 2-attempt cap) kills the other 317. Instrument them the way `research/p7_84_rule.py` instruments the arm gate. | The gate is settled; the detector is now the binding constraint on this rule. | a per-condition funnel over the 433 armings |
+| G11 | **Clause 2's scratch in the LIVE path.** `Trading-Bot-Rulesets.md` clause 2 says an intrabar entry that closes back beyond the level scratches at that close and does not arm the 84% rule. P8 proved the backtest cannot hold it (it never takes that entry). `paper_trader.py` marks positions on **wicks** against `stock_stop` and has no `scratch` outcome at all, and `live_scanner.py` only reacts to `stop` / target. Obeying the rule live needs an intrabar quote, not a 1-minute bar — scope that first. | The one place the rule is real is the one place it is unimplemented. | a paper position that scratches and does not arm 84% |
 | G3 | **ON WATCH A/B on the 2-year rig**, not just the 120 day-cards. Reuse `t61_onwatch_ab.py`'s flag switch against `backtest_2y.py`. | The other big management piece, unmeasured at scale. | two runs, one table, delta in recall and mean R |
 | G5 | **Corpus sweep for unstated rules** we already coded. Run `corpus_query.py` over every constant in `parameter_catalog_draft.md`; mark each CONFIRMED / CONTRADICTED / UNMENTIONED. | Cheapest unattended lane; catches hallucinated rules. | an updated `hallucination-audit.md` with dates |
 | G6 | **Per-symbol floor**: decide and implement a minimum-sample rule so reports stop printing GOOGL n=21 next to COIN n=104. | Half the per-symbol table is noise presented as signal. | reports suppress or grey sub-threshold rows |
@@ -100,7 +101,7 @@ outcome in two years is −1.000R. Austin called this before the arithmetic did.
 `research/exit_lab.py` forces flat at 11:00 ET, which is the first thing to A/B (G7).
 
 **G2 answered: the branch is deleted, and the rule is not backtestable (2026-08-26).**
-`research/p8_scratch.md`. Instrumented over **43,374 created trades**: the entry bar's
+`7979a61e`, `research/p8_scratch.md`. Instrumented over **43,374 created trades**: the entry bar's
 close is on the good side of `sig["stop"]` and of the retested level **every single time**,
 closest approach **+0.0001 bar-ranges**, zero crossings. It is not a threshold wanting
 widening — the condition is consumed upstream, the same shape as `break_then_rejection` in
