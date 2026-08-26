@@ -40,11 +40,11 @@ exact mistake `downgrade.py`'s header exists to prevent.
 | **P8** | **G2 — the dead scratch branch.** The T4(b) failed-entry scratch has never fired in two years: it needs the entry bar to close back through the level while the entry rule requires a close through it. Fix the trigger so it can express Austin's rule, or delete it and record why. | green |
 | **P9** | **G3 — ON WATCH at 2-year scale.** Shipped and on by default, but only ever A/B'd over the 120 graded day-cards. Flip `ON_WATCH=0` against the full rig and report the delta in recall and mean R. | green |
 
-## Block 4 — exits, the one direction still open
+## Block 4 — exits, the one direction still open — **closed**
 
-| phase | task | lane |
-|---|---|---|
-| **P10** | **G9 — structure trail + far-target scale-out.** G7 ruled out every mechanical trail (ATR14 / prior-bar, 5-bar consolidation exit) and showed `flat_5r` is the only policy the extra room helps. Untested: a tail riding to 4–5R behind a *structure* trail with no 11:00 clock, and partial exits at the far targets. | green |
+| phase | task | lane | state |
+|---|---|---|---|
+| **P10** | **G9 — structure trail + far-target scale-out.** G7 ruled out every mechanical trail (ATR14 / prior-bar, 5-bar consolidation exit) and showed `flat_5r` is the only policy the extra room helps. Untested: a tail riding to 4–5R behind a *structure* trail with no 11:00 clock, and partial exits at the far targets. | green | **done `6c3f880f`** — negative; `research/p10_structure_trail.md` |
 
 ## Block 5 — hygiene and validation
 

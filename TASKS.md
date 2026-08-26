@@ -13,7 +13,6 @@ red = needs Austin).
 |---|---|---|---|
 | G1 | **84%-rule A/B**: run the 2-year rig at `RULE84_STRICT=1` (today) vs `0` vs gated on `sgrade == "S"`. Diagnosis is already done (see below) — this is the measurement. | The strict gate is calibrated against the wrong ladder. Three arms, one table. | three runs, mean R + recall for each, committed next to the script |
 | G2 | **Delete or fix the T4(b) entry-bar scratch** — it has never fired in 2 years (see Diagnosed). Decide whether the rule needs a wider trigger or the code is genuinely unreachable. | Dead code that looks like a working rule is worse than no rule. | a replay case that scratches, or the branch removed with the reason |
-| G9 | **Structure trail + far-target scale-out**, the one direction G7's numbers point at: a tail that rides to 4-5R behind a structure trail rather than ATR14, with no 11:00 clock. | G7 ruled out every mechanical trail. The untested arm is the one Austin actually describes. | mean R per grade against G7's table |
 | G8 | **Add a BR+OCR confluence setup type.** `downgrade.has_confluence` already detects it; give it its own `SignalType` so it can be routed, graded and counted like any other setup. | Austin asked for it directly, and confluence is already worth +6.5pts of win rate. | confluence signals appear as their own row in every per-setup table |
 | G3 | **ON WATCH A/B on the 2-year rig**, not just the 120 day-cards. Reuse `t61_onwatch_ab.py`'s flag switch against `backtest_2y.py`. | The other big management piece, unmeasured at scale. | two runs, one table, delta in recall and mean R |
 | G4 | **One Candle Rule recall**: 4,389 detected → 67 traded. Re-grade with `downgrade.py` and report S/A/C on the dropped 4,322. | Second-biggest recall leak after B&R. | grade distribution + how many land on a marked entry |
@@ -39,6 +38,19 @@ red = needs Austin).
 ---
 
 ## Diagnosed, awaiting a decision
+
+**G9 answered, and the answer is no again (2026-08-26).** `research/p10_structure_trail.md`:
+14 structure-trail policies x two clock arms over the same 1,016 signals. Longs ride while
+1-minute structure holds and exit on a CLOSE below the last confirmed swing low (the
+`omen_bot.py::MarketStructure` fractal). **Nothing beats the incumbent** — best whole book
++0.914R vs ladder B's +0.957R, best on S +1.267R vs +1.283R. Weight taken at the HOD rung
+beats weight left on the trail monotonically (+0.897 → +0.906 → +0.914, pure trail +0.827),
+4R/5R partials subtract, and the noclock arm is worse for every variant. **The new number is
+the ceiling**: a stop-respecting hindsight oracle returns **+3.501R** inside the 11:00
+window, so 2.0R of room exists and the incumbent captures 27.3% of it. The 473 losing
+signals average +0.647R of oracle and 33.8% offered +1R or better before dying — winners and
+losers are not separable from price alone. The exit family is closed; the constraint is
+information at entry.
 
 **G7 answered, and the answer is no (2026-08-26).** `research/g7_exit_sweep.md`: eight exit
 policies x two clock arms over all 1,016 traded signals. **Nothing reaches 2.0R.** Best on
@@ -95,3 +107,4 @@ measures all three arms; R2/R3 decide.
 | date | task | commit | number that moved |
 |---|---|---|---|
 | 2026-08-26 | 2-year replay + interactive report, both grade ladders attached | `04a6e60f` + follow-up | first S/A/C-filterable book: 1,016 traded signals, mean R +0.957 vs the 2.0 gate |
+| 2026-08-26 | G9 — structure trail + far-target tail (P10) | `6c3f880f` | nothing beats ladder B: best +0.914R whole book / +1.267R on S; new ceiling number — stop-respecting oracle +3.501R, incumbent captures 27.3% |
