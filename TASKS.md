@@ -127,7 +127,7 @@ it contradicts the LOOSE arm, not the shipped one. Next bottleneck is the detect
 
 | date | task | commit | number that moved |
 |---|---|---|---|
-| 2026-08-26 | G8 — BR+OCR confluence as its own setup type (P3) | `PENDING` | 29,815 of 45,175 detections re-labelled `br_ocr_confluence`; book identical to the cent (1,016 traded / 52.95% / +0.9571R / +972.38R). Funnel detection → grade → traded: B&R alone 13,546 → 828 → 391 (50.1%, +0.888R) · OCR alone 1,811 → 70 → 16 (18.8%, −0.315R) · confluence 29,815 → 1,353 → 606 (55.6%, +1.030R) |
+| 2026-08-26 | G8 — BR+OCR confluence as its own setup type (P3) | `b55bd9c9` | 29,815 of 45,175 detections re-labelled `br_ocr_confluence`; book identical to the cent (1,016 traded / 52.95% / +0.9571R / +972.38R). Funnel detection → grade → traded: B&R alone 13,546 → 828 → 391 (50.1%, +0.888R) · OCR alone 1,811 → 70 → 16 (18.8%, −0.315R) · confluence 29,815 → 1,353 → 606 (55.6%, +1.030R) |
 | 2026-08-26 | P5 — rename `LADDER_MODE` to `SCALE_PLAN` (`"A"`/`"B"` -> `"hod_then_runner"`/`"hod_then_runner_be"`); `OMEN_LADDER_MODE` kept as a deprecated alias | `d981ec2f` | none — pure rename; 45-day smoke replay produced byte-identical trades under the old env var and the new default |
 | 2026-08-26 | G4 — what the legacy grader throws away, by branch | `d8b04625` | 7,219 dropped S attributed: bias 3,525 / colour 2,120 / B&R min-stop 1,385 / OCR 174; 303 fail on the colour line alone, 142 of those reach tradeable B; dropped-set expectancy n=588 +0.465R vs book +0.957R; 968 of 1,016 trades are B only from the first-of-day floor |
 | 2026-08-26 | G1 — 84%-rule three-arm A/B (P7) | `40fdadd3` | 84% re-entries 3 -> 116 (loose) / 12 (S) fired; book mean R +0.957 -> +0.942 / +0.947; recommendation: no change |
