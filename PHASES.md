@@ -37,7 +37,7 @@ exact mistake `downgrade.py`'s header exists to prevent.
 | phase | task | lane |
 |---|---|---|
 | **P7** | ~~**G1 — 84%-rule three-arm A/B**~~ **ANSWERED 2026-08-26** (`40fdadd3`, `research/p7_84_rule.md`): the gate, not the detector, is the bottleneck — 7 of 472 arming opportunities survive it, and opening it produces 116 re-entries worth +0.792R, below the book's own mean. Keep `RULE84_STRICT=1`. | done |
-| **P8** | **G2 — the dead scratch branch.** The T4(b) failed-entry scratch has never fired in two years: it needs the entry bar to close back through the level while the entry rule requires a close through it. Fix the trigger so it can express Austin's rule, or delete it and record why. | green |
+| **P8** | ~~**G2 — the dead scratch branch**~~ **DONE 2026-08-26** (`research/p8_scratch.md`): unreachable over **43,374 trades**, closest approach **+0.0001 bar-ranges**, zero crossings. The rule is a *live fill correction* (`Trading-Bot-Rulesets.md` clause 2) and the backtest already holds the information it exists to recover — `detect_break_retest`'s `no_confirm_close` return IS the scratch. Branch deleted, book byte-identical (0 of 45,175 rows differ). `ENTRY_SCRATCH=level` (default OFF) is the nearest expressible rule and costs **−107.06R**: it cuts 70 winners with 185 losses while win rate *rises* to 61.9% on the shrunken denominator. Keeper: bar-1 holds-the-level splits the book **+1.3097R vs −0.0844R**. | green |
 | **P9** | **G3 — ON WATCH at 2-year scale.** Shipped and on by default, but only ever A/B'd over the 120 graded day-cards. Flip `ON_WATCH=0` against the full rig and report the delta in recall and mean R. | green |
 
 ## Block 4 — exits, the one direction still open — **closed**

@@ -136,6 +136,54 @@ STOP_ON_CLOSE = os.getenv("STOP_ON_CLOSE", "1") not in ("0", "false")
 # both arms backtest (research/t51_fill.md, research/t51_ev_honest.md).
 PESSIMISTIC_FILL = os.getenv("PESSIMISTIC_FILL", "1") not in ("0", "false")
 
+# ---- P8/G2: ENTRY_SCRATCH — Austin's failed-entry scratch, one bar late ----
+# Austin, 2026-08-11: "an entry taken intrabar that then closes back beyond the
+# level is not a loss — scratch out at close, no 84 percent, this rule and
+# previous applys to BR and OCR as well."
+#
+# The T4(b) implementation of that sentence tested the ENTRY bar's own close
+# against sig["stop"], at the trade-creation site below. It was UNREACHABLE by
+# construction and never fired in two years. Every detector requires the entry
+# bar to CLOSE through the retested level (detect_break_retest step 4;
+# `current.close > block.high` for the order block; `close >= entry_price` for
+# the 84% reclaim), and every stop sits at or beyond that level on the losing
+# side — so the entry bar's close is on the good side of BOTH lines, always.
+# research/p8_scratch.md carries the measured distribution.
+#
+# The cause is that this engine is bar-CLOSE driven. It cannot take an entry
+# "intrabar" in the sense Austin means: it decides at the close of bar i, and
+# fill_price() only back-dates the PRICE to the level. A bar that trades through
+# the level and closes back is never entered at all — detect_break_retest's
+# `no_confirm_close` return IS that scratch, taken before the fill instead of
+# after it. So the earliest bar on which "closes back beyond the level" can be
+# true here is entry_idx + 1, and that is the bar this flag tests.
+#
+#   ENTRY_SCRATCH=level  the bar AFTER entry closes back through the RETESTED
+#                        LEVEL (sig["level_price"]) -> scratch at that close,
+#                        clamped no worse than the trade's own stop (his stop
+#                        order still fills at the level), and _arm_84 is never
+#                        called. Tested BEFORE the stop, so the scratch wins the
+#                        bar.
+#   ENTRY_SCRATCH=stop   the same one-bar shift read against sig["stop"] — the
+#                        dead branch's own line. Measured for the report, NOT
+#                        recommended: with BNR_STOP_MODE="level" the stop IS the
+#                        level, so it re-labels ordinary close-based stop-outs as
+#                        scratches and contradicts the settled rule that "stop
+#                        out happens when candle CLOSES below the level".
+#   ENTRY_SCRATCH=0      OFF — the shipped default, byte-identical to the book.
+ENTRY_SCRATCH = os.getenv("ENTRY_SCRATCH", "0").strip().lower()
+if ENTRY_SCRATCH in ("", "0", "off", "false", "none"):
+    ENTRY_SCRATCH = ""
+
+# P8/G2 bookkeeping, the way ARM84_FUNNEL is bookkeeping: one row per created
+# trade saying where the entry bar's close — and the NEXT bar's close — sit
+# relative to the retested level and to the stop, in units of the entry bar's
+# own range. Collected only under SCRATCH_PROBE=1 (research/p8_scratch.py drives
+# it); untouched and empty otherwise, so the canonical replay is unaffected.
+SCRATCH_PROBE_ON = os.getenv("SCRATCH_PROBE", "0").strip().lower() \
+    in ("1", "true", "yes", "on")
+SCRATCH_PROBE: List[dict] = []
+
 
 @dataclass
 class SimTrade:
@@ -162,6 +210,11 @@ class SimTrade:
     scale_level: float = 0.0   # HOD/LOD as-of entry bar (50% scale trigger)
     runner_target: float = 0.0 # first key level beyond scale point
     scaled: bool = False       # ladder 50% scale fired
+    # P8/G2: the RETESTED level this setup is keyed to, as a price. Equal to
+    # `stop` for a default B&R (BNR_STOP_MODE="level"), NOT equal for the order
+    # block (stop = the far side of the block) or when intrabar_stop() collapsed
+    # the stop onto the entry bar's own extreme. Read only by ENTRY_SCRATCH.
+    level_price: float = 0.0
 
     @property
     def counted(self) -> bool:
@@ -296,6 +349,52 @@ def _arm_84(t: "SimTrade", runner: "BacktestRunner", c: Optional[Candle] = None)
         runner.session.entry_direction = t.direction
         runner.session.entry_target = t.target
         runner.session.entry_stop = t.stop
+
+
+def _entry_scratch(t: "SimTrade", c: Candle) -> Optional[float]:
+    """P8/G2. The exit price if `c` scratches this entry, else None.
+
+    `c` is the bar AFTER entry; the caller owns that check. Reads ENTRY_SCRATCH
+    at call time (default "" = OFF, so this always returns None as shipped) so a
+    test can arm one mode without re-importing the module."""
+    if not ENTRY_SCRATCH:
+        return None
+    lv = t.level_price if ENTRY_SCRATCH == "level" else t.stop
+    long = t.direction == "call"
+    if (c.close < lv) if long else (c.close > lv):
+        # "scratch out at close" — but his stop order still fills at the level,
+        # so the scratch is never worse than the stop-out it replaced.
+        return max(c.close, t.stop) if long else min(c.close, t.stop)
+    return None
+
+
+def _probe_row(t: "SimTrade", c: Candle, nxt: Optional[Candle], level: float) -> dict:
+    """P8/G2 measurement, no behaviour. Where the entry bar's close and the next
+    bar's close sit relative to the retested level and the stop.
+
+    Offsets are SIGNED so that positive = on the trade's side of the line (a long
+    closing above it), and scaled by the ENTRY bar's own range so a $400 stock and
+    a $9 stock are on one axis. `d0_*` < 0 is exactly the condition the dead T4(b)
+    branch tested; `d1_*` < 0 is the same condition one bar later."""
+    rng = c.high - c.low
+    sgn = 1.0 if t.direction == "call" else -1.0
+
+    def off(px, line):
+        if rng <= 0 or px is None or line is None:
+            return None
+        return round(sgn * (px - line) / rng, 4)
+
+    return {"sym": t.symbol, "day": t.day, "et": t.entry_time[:5],
+            "setup": t.signal_type, "dir": t.direction, "grade": t.grade,
+            "traded": bool(t.counted), "rng": round(rng, 4),
+            "level_eq_stop": abs(level - t.stop) < 1e-9,
+            # fill_price() returned the LEVEL, not the close — the engine's only
+            # model of "taken intrabar" (bar_extreme_veto or ON WATCH tripped).
+            "intrabar_fill": abs(t.entry - c.close) > 1e-9,
+            "d0_stop": off(c.close, t.stop), "d0_level": off(c.close, level),
+            "d1_stop": off(nxt.close if nxt else None, t.stop),
+            "d1_level": off(nxt.close if nxt else None, level),
+            "out": t.outcome, "r": 0.0, "hold": 0}
 
 
 def _ladder_bar(t: "SimTrade", c: Candle, i: int, open_trades: list,
@@ -467,6 +566,7 @@ def simulate_day(symbol: str, day_iso: str, candles: List[Candle],
 
     trades: List[SimTrade] = []
     open_trades: List[SimTrade] = []
+    probe: List[tuple] = []   # P8/G2, only under SCRATCH_PROBE=1
     seen = {}  # dedupe key -> last bar index it appeared
 
     for i in range(5, len(candles)):
@@ -474,6 +574,18 @@ def simulate_day(symbol: str, day_iso: str, candles: List[Candle],
 
         # 1. update open sim positions against this bar
         for t in list(open_trades):
+            # P8/G2 ENTRY_SCRATCH, default OFF. Austin's failed-entry scratch on
+            # the FIRST bar after entry — the earliest bar on which "taken
+            # intrabar, then closes back beyond the level" can be true on a
+            # close-driven engine. Tested ahead of the stop so the scratch wins
+            # the bar, exits at that close but never worse than the trade's own
+            # stop, and never reaches _arm_84 ("no 84 percent").
+            if i == t.entry_idx + 1:
+                px = _entry_scratch(t, c)
+                if px is not None:
+                    t.outcome, t.exit_price, t.exit_idx = "scratch", px, i
+                    open_trades.remove(t)
+                    continue
             if SCALE_PLAN:
                 _ladder_bar(t, c, i, open_trades, runner)
                 continue
@@ -561,22 +673,28 @@ def simulate_day(symbol: str, day_iso: str, candles: List[Candle],
                          runner_target=runner_tgt)
             trades.append(t)
             if risk > 0:
-                # T4(b): scratch a failed entry bar. Austin, 2026-08-11: an entry
-                # taken intrabar that then closes back beyond the level is not a
-                # loss — "scratch out at close, no 84 percent, this rule and
-                # previous applys to BR and OCR as well". sig["stop"] IS that
-                # level for every setup. A scratch never calls _arm_84.
-                level = sig["stop"]
-                closed_back = (c.close < level if sig["direction"] == "call"
-                               else c.close > level)
-                if closed_back:
-                    t.outcome, t.exit_price, t.exit_idx = "scratch", c.close, i
-                else:
-                    open_trades.append(t)
+                # T4(b) was HERE and tested this bar's own close against
+                # sig["stop"]. It could not fire: the detector already required
+                # this bar to close through the retested level, and the stop sits
+                # at or beyond that level on the losing side. See ENTRY_SCRATCH
+                # above and research/p8_scratch.md — the test that replaced it
+                # lives in the open-position loop, one bar later.
+                t.level_price = sig.get("level_price")
+                if t.level_price is None:
+                    t.level_price = sig["stop"]
+                if SCRATCH_PROBE_ON:
+                    nxt = candles[i + 1] if i + 1 < len(candles) else None
+                    probe.append((_probe_row(t, c, nxt, t.level_price), t))
+                open_trades.append(t)
 
     # EOD: whatever is open scratches at last close
     for t in open_trades:
         t.outcome, t.exit_price = "scratch", candles[-1].close
+    for row, t in probe:   # P8/G2: outcomes are only known once the day is done
+        row["out"] = t.outcome
+        row["r"] = round(t.pnl / RISK_DOLLARS, 3)
+        row["hold"] = max(0, t.exit_idx - t.entry_idx)
+        SCRATCH_PROBE.append(row)
     return trades
 
 

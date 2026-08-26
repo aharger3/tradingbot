@@ -62,6 +62,13 @@ research/test.txt
 # research/p7_84_rule.md, which IS tracked.
 research/p7_arm_*.json
 
+# per-arm 2-year replay books + the entry-bar probe (P8/G2), same story: tens of
+# MB, regenerable with `python research/p8_scratch.py run --arm ...`, and
+# research/p8_scratch.json is the flag-off verification replay from
+# `python backtest_2y.py`. The finding lives in research/p8_scratch.md, which IS
+# tracked -- the .md is deliberately outside this pattern.
+research/p8_*.json
+
 # generated decks: rebuild with research/build_deck.py, never commit the HTML
 research/decks/**/*.html
 

@@ -1694,6 +1694,14 @@ class SignalRunner:
                         "direction": "call",
                         "grade": grade.value,
                         "stop_level_name": hi_name,
+                        # P8/G2: the RETESTED LEVEL as a price, not just a name.
+                        # backtest_week's T4(b) scratch needs "the level" Austin
+                        # names in "closes back beyond the level"; it had been
+                        # reusing sig["stop"], which is the level only for
+                        # BNR_STOP_MODE="level" and never for the order block
+                        # (stop = the far side of the block). Reported field —
+                        # nothing routes on it. See research/p8_scratch.md.
+                        "level_price": level_hi,
                         "stop_width_pct": round(stock_risk / current.close * 100, 2),
                         "aplus_stack": stack,
                         # T10: which KIND of level this B&R is keyed to. Austin's
@@ -1765,6 +1773,7 @@ class SignalRunner:
                     "direction": "call",
                     "grade": grade.value,
                     "stop_level_name": "Order block low",
+                    "level_price": block.high,
                     "stop_width_pct": round(stock_risk / current.close * 100, 2),
                 })
 
@@ -1840,6 +1849,7 @@ class SignalRunner:
                         "direction": "call",
                         "grade": grade.value,
                         "stop_level_name": "Original stop" if RULE84_LESSON else "Reclaim candle low",
+                        "level_price": self.session.entry_price,
                         "stop_width_pct": round(stock_risk / current.close * 100, 2) if current.close else 0,
                     })
                 # Scarface: 84% rule = ONE re-entry per failed setup. Disarm so it
@@ -1913,6 +1923,7 @@ class SignalRunner:
                         "direction": "put",
                         "grade": grade.value,
                         "stop_level_name": lo_name,
+                        "level_price": level_lo,
                         "stop_width_pct": round(stock_risk / current.close * 100, 2),
                         "aplus_stack": stack,
                         # T10: see the call side — pivot-keyed B&R outranks a
@@ -1979,6 +1990,7 @@ class SignalRunner:
                     "direction": "put",
                     "grade": grade.value,
                     "stop_level_name": "Order block high",
+                    "level_price": block.low,
                     "stop_width_pct": round(stock_risk / current.close * 100, 2),
                 })
 
@@ -2046,6 +2058,7 @@ class SignalRunner:
                         "direction": "put",
                         "grade": grade.value,
                         "stop_level_name": "Original stop" if RULE84_LESSON else "Rejection candle high",
+                        "level_price": self.session.entry_price,
                         "stop_width_pct": round(stock_risk / current.close * 100, 2) if current.close else 0,
                     })
                 # One re-entry per failed setup (see call side)

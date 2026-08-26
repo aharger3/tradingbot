@@ -137,8 +137,16 @@ Ranked by how safely it runs without Austin.
   never ship a tradeable grade on its own, and its $0.50 / 0.4%-of-price stop gates were
   tuned on a stale 12-month yfinance split. The bigger gap is upstream — 40,783 B&R
   detections against 4,389 OCR, 9.3x.
-- **Scratch is nearly extinct** — 5 of 1,016 traded outcomes. The T4(b) failed-entry
-  scratch and the EOD scratch may not be reaching the ladder path.
+- ~~**Scratch is nearly extinct**~~ — **answered 2026-08-26** (`research/p8_scratch.md`).
+  All 5 are EOD scratches, and that is correct: the T4(b) failed-entry scratch was
+  **unreachable over 43,374 trades** (closest approach +0.0001 bar-ranges, zero crossings)
+  and is now deleted, book byte-identical. Austin's clause-2 scratch is a *live fill
+  correction* the backtest structurally cannot hold — it already knows the entry bar's
+  close, so it declines the entry instead of scratching it. `ENTRY_SCRATCH=level` is the
+  nearest expressible rule, default OFF, and costs −107.06R. Still open: **nothing in the
+  live path implements clause 2 either** (`paper_trader.py` has no scratch outcome), and
+  the backtest is optimistic *in count* on ON WATCH fills — 65.3% of entries are filled at
+  the level, and live, some share of those would scratch instead of never opening.
 - **ON WATCH has no A/B on the 2-year rig.** `t61_onwatch_ab.py` measures it over 120
   graded day-cards only.
 - **Symbol coverage is wildly uneven** — COIN 104 traded signals, SOFI and ACHR 2 each.

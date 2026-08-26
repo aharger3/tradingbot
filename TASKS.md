@@ -12,7 +12,6 @@ red = needs Austin).
 | # | task | why it matters | check that proves it |
 |---|---|---|---|
 | G10 | **Autopsy the 317 armings that never fired.** P7 opened the 84% gate and got 433 armings but only 116 signals; nobody knows which of the re-entry detector's conditions (reclaim close, candle colour, >20% off the day's extreme, >=1.5x remaining reward, before 11:00, 2-attempt cap) kills the other 317. Instrument them the way `research/p7_84_rule.py` instruments the arm gate. | The gate is settled; the detector is now the binding constraint on this rule. | a per-condition funnel over the 433 armings |
-| G2 | **Delete or fix the T4(b) entry-bar scratch** — it has never fired in 2 years (see Diagnosed). Decide whether the rule needs a wider trigger or the code is genuinely unreachable. | Dead code that looks like a working rule is worse than no rule. | a replay case that scratches, or the branch removed with the reason |
 | G3 | **ON WATCH A/B on the 2-year rig**, not just the 120 day-cards. Reuse `t61_onwatch_ab.py`'s flag switch against `backtest_2y.py`. | The other big management piece, unmeasured at scale. | two runs, one table, delta in recall and mean R |
 | G5 | **Corpus sweep for unstated rules** we already coded. Run `corpus_query.py` over every constant in `parameter_catalog_draft.md`; mark each CONFIRMED / CONTRADICTED / UNMENTIONED. | Cheapest unattended lane; catches hallucinated rules. | an updated `hallucination-audit.md` with dates |
 | G6 | **Per-symbol floor**: decide and implement a minimum-sample rule so reports stop printing GOOGL n=21 next to COIN n=104. | Half the per-symbol table is noise presented as signal. | reports suppress or grey sub-threshold rows |
@@ -100,11 +99,28 @@ tighter than −1R cannot close the gap — there is no −1.25R tail to trim, t
 outcome in two years is −1.000R. Austin called this before the arithmetic did.
 `research/exit_lab.py` forces flat at 11:00 ET, which is the first thing to A/B (G7).
 
-**The T4(b) entry-bar scratch is dead code (2026-08-26).** All 5 scratches in the two-year
-book are EOD scratches (held 303-344 bars). The failed-entry-bar scratch has **never fired**:
-it needs the entry bar to close back through the level, and the entry rule requires a close
-*through* the level, so the branch is unreachable by construction. The rule Austin stated is
-real; the implementation cannot express it.
+**G2 answered: the branch is deleted, and the rule is not backtestable (2026-08-26).**
+`research/p8_scratch.md`. Instrumented over **43,374 created trades**: the entry bar's
+close is on the good side of `sig["stop"]` and of the retested level **every single time**,
+closest approach **+0.0001 bar-ranges**, zero crossings. It is not a threshold wanting
+widening — the condition is consumed upstream, the same shape as `break_then_rejection` in
+`research/p2_threshold_sweep.md`. **Why:** `Trading-Bot-Rulesets.md` clause 2 states the
+rule as a *live fill correction* — Austin commits mid-candle without knowing the close and
+scratches when the guess is wrong. The backtest never makes that guess: it reads bar `i`
+complete, requires a close through the level, and only then back-dates the fill via
+`fill_price`. `detect_break_retest`'s `no_confirm_close` return IS the scratch, taken
+before the fill instead of after it. Branch deleted; the book is **byte-identical**
+(0 of 45,175 rows differ across 15 fields), which is itself the proof it never fired.
+**The nearest expressible rule was built and measured**: `ENTRY_SCRATCH=level` (default
+OFF) scratches when the bar AFTER entry closes back through the retested level. It costs
+**−107.06R** (+972.38 → +865.32, mean +0.9571 → +0.8517) because it cuts **70 eventual
+winners** with the 185 losses, while the printed win rate *rises* 8.7 pts (53.2% → 61.9%)
+purely on the shrunken denominator. Keep it off. **The keeper finding:** whether the bar
+after entry holds the level splits the book **+1.3097R (n=759) vs −0.0844R (n=257)** — a
+1.39R spread, sharper than anything the grader does, though only knowable one bar late.
+Also queued: nothing in the LIVE path implements the rule either — `paper_trader.py` marks
+on wicks and has no scratch outcome at all, and obeying clause 2 there needs an intrabar
+quote, not a 1-minute bar.
 
 **G1 answered: the gate is the bottleneck, and opening it buys nothing (2026-08-26).**
 `research/p7_84_rule.md`: three arms of the arming gate over the 500-session replay.
