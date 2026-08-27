@@ -34,7 +34,8 @@ _load_env_file(Path(__file__).parent / ".env")
 from omen_bot import (
     Candle, SignalType, TradeGrade, OpeningRangeAnalyzer, TradingSession,
     BreakAndRetestDetector, RuleOf84Detector, PriceActionAnalyzer,
-    detect_order_block_setup, find_fvg, detect_flag_setup, detect_break_retest
+    detect_order_block_setup, find_fvg, detect_flag_setup, detect_break_retest,
+    HTF_BIAS_VETO
 )
 from discord_bot import DiscordSignalBot
 from position_sizer import compute_plan, SizingPlan
@@ -389,6 +390,39 @@ ON_WATCH = os.getenv("ON_WATCH", "1").strip().lower() in ("1", "true", "yes", "o
 # ENABLE_STRUCTURAL_RISK_FLOOR=1; research/g13_floor_fix_ab.py prices both arms.
 ENABLE_STRUCTURAL_RISK_FLOOR = os.getenv(
     "ENABLE_STRUCTURAL_RISK_FLOOR", "0").strip().lower() in ("1", "true", "yes", "on")
+
+# --- R3: WHICH grader the ten detection sites ask ---------------------------
+#
+# `omen_bot.PriceActionAnalyzer._grade_pa` grades candle SHAPES -- is this bar a
+# hammer / a large-wick bar, at a level. research/g4_dropped_s.md measured what
+# that costs over two years: `research/downgrade.py` scores 7,485 signals `S`
+# and `_grade_pa` drops 7,225 of them (96.5%), 2,120 on its very first line (the
+# entry bar closed the wrong colour). And 968 of the 1,016 traded signals are
+# `B` only because of `_calibration_grade`'s first-with-trend-signal-of-the-day
+# floor -- so the engine's real entry rule is arrival order, not grade.
+#
+# ON: the base grade comes from `research/downgrade.py::score` instead --
+# Austin's eight-variable downgrade count (S = clean, A = one downgrade, C =
+# two, floored at C), the stated replacement. Only the BASE moves: the veto and
+# the neutral cap `grade_trade` wraps around `_grade_pa` are applied identically
+# in both arms, so this flag is a swap of the grader and nothing else.
+#
+# OFF BY DEFAULT, and that is not a placeholder. R3 is Austin's call; this flag
+# exists to put a number in front of it. Flipping it changes what trades, and
+# re-freezing the engine VOIDS the forward book (research/omen6_forward.py).
+# A/B it with ENABLE_DOWNGRADE_GRADER=1; research/r3_downgrade_grader_ab.py
+# prices both arms and research/test_downgrade_grader.py asserts the routing.
+ENABLE_DOWNGRADE_GRADER = os.getenv(
+    "ENABLE_DOWNGRADE_GRADER", "0").strip().lower() in ("1", "true", "yes", "on")
+
+# His S/A/C onto the engine's ladder. This is the exact inverse of the mapping
+# `research/t70_test1_score.py` already declares in the other direction (engine
+# A+ -> his S, engine A/B -> his A, engine C -> his C), so a grade round-trips:
+# S -> A+ -> S, A -> B -> A, C -> C -> C. His A maps onto the engine's `B` and
+# not its `A` on purpose -- `_grade_pa` can only ever emit A+/B/C/X, so the ON
+# arm emits from the SAME alphabet as the OFF arm and no downstream cap
+# (`if grade.value in ("A+", "A")`) sees a tier the shipped grader never makes.
+DOWNGRADE_TIER = {"S": "A+", "A": "B", "C": "C"}
 
 # Austin, 2026-08-24: "I don't trade FVG or FLAG. Those are not setups
 # anymore." Detection stays on -- the historical numbers stay comparable --
@@ -1393,6 +1427,58 @@ class SignalRunner:
         self._dg_bars_cache = (self.candles, len(self.candles), rows)
         return rows
 
+    def _grade_trade(self, current: Candle, lookback: List[Candle],
+                     level_hi, level_lo, is_long: bool, htf_bias=None) -> TradeGrade:
+        """The one grading seam. R3 / ENABLE_DOWNGRADE_GRADER.
+
+        Every detection site posts through here instead of calling
+        `PriceActionAnalyzer.grade_trade` directly, so which grader answers is
+        one branch in one place rather than ten.
+
+        OFF (the shipped default): `PriceActionAnalyzer.grade_trade`, handed
+        exactly the arguments the ten sites used to hand it. Same function, same
+        bar, same floats -- the flag-off engine is the flag-less engine.
+
+        ON: the BASE grade comes from `research/downgrade.py::score` instead.
+        The wrapper `grade_trade` puts around `_grade_pa` -- the HTF veto and
+        the neutral-hour cap -- is reapplied here verbatim, so the arm isolates
+        the grader and does not quietly also lift the veto (which is a separate,
+        unowned rule; see research/g4_dropped_s.md section 8)."""
+        if not ENABLE_DOWNGRADE_GRADER:
+            return PriceActionAnalyzer.grade_trade(
+                current, lookback, level_hi, level_lo,
+                is_long=is_long, htf_bias=htf_bias)
+        opposed = (htf_bias in ("bullish", "bearish")
+                   and (htf_bias == "bullish") != is_long)
+        if opposed and HTF_BIAS_VETO:
+            return TradeGrade.D
+        base = self._downgrade_grade(level_hi if is_long else level_lo, is_long,
+                                     htf_bias)
+        if htf_bias == "neutral" and base in (TradeGrade.A_PLUS, TradeGrade.A):
+            return TradeGrade.B
+        return base
+
+    def _downgrade_grade(self, level, is_long: bool, htf_bias=None) -> TradeGrade:
+        """`downgrade.score()` on this bar, as an engine tier. See DOWNGRADE_TIER.
+
+        The level handed over is the one the setup broke -- `level_hi` for a
+        long, `level_lo` for a short -- which is the same argument `_grade_pa`
+        reads as `or_high`/`or_low`, and the same level proxy
+        `_label_confluence` and `backtest_2y.py` already grade every row with.
+
+        `score()` returns None only when it has no bars or no level, which the
+        legacy grader cannot survive either (it subscripts them unguarded). That
+        is graded `X`/skip rather than guessed at -- absence of an input is not
+        evidence of a setup, the convention `downgrade.py` itself uses."""
+        from research import downgrade as dg     # ImportError here is a real
+        # failure of the ON arm: falling back to _grade_pa would silently make
+        # the "on" book a second copy of the "off" book. Never caught.
+        bars = self._dg_bars()
+        rec = dg.score(bars, len(bars) - 1, level, is_long, htf_bias=htf_bias)
+        if rec is None:
+            return TradeGrade.D
+        return TradeGrade(DOWNGRADE_TIER[rec["grade"]])
+
     def _label_confluence(self, sig: dict) -> None:
         """P3/G8. Tag a break-and-retest that is ALSO a one candle rule, and
         vice versa, as SignalType.BR_OCR_CONFLUENCE.
@@ -1684,8 +1770,8 @@ class SignalRunner:
                 structural_stop = stop     # G13: before intrabar_stop reacts to the fill
                 stop = intrabar_stop(entry, stop, current, is_long=True)
                 stock_risk = entry - stop
-                grade = PriceActionAnalyzer.grade_trade(current, lookback, level_hi, level_lo,
-                                                        is_long=True, htf_bias=self.htf_bias)
+                grade = self._grade_trade(current, lookback, level_hi, level_lo,
+                                          is_long=True, htf_bias=self.htf_bias)
                 # Austin 2026-07-10: level already broken earlier in the session
                 # = dirty/late entry — cap at B (kept for the clean-vs-late A/B).
                 if "LATE" in br_note and grade.value in ("A+", "A"):
@@ -1779,8 +1865,8 @@ class SignalRunner:
                         and current.low <= fvg[1] and current.close > fvg[1]):
                     entry = fill_price(fvg[1], current, is_long=True)  # T3(b)
                     stock_risk = entry - fvg[0]
-                    grade = PriceActionAnalyzer.grade_trade(current, lookback, fvg[1], fvg[0],
-                                                            is_long=True, htf_bias=self.htf_bias)
+                    grade = self._grade_trade(current, lookback, fvg[1], fvg[0],
+                                              is_long=True, htf_bias=self.htf_bias)
                     if stock_risk < 0.50:
                         grade = TradeGrade.D
                     self._emit(signals, {
@@ -1803,8 +1889,8 @@ class SignalRunner:
             stock_risk = entry - block.low
             # Grade PA at the block's own level, not the OR (a block far from the
             # OR could otherwise never grade above C)
-            grade = PriceActionAnalyzer.grade_trade(current, lookback, block.high, block.low,
-                                                    is_long=True, htf_bias=self.htf_bias)
+            grade = self._grade_trade(current, lookback, block.high, block.low,
+                                      is_long=True, htf_bias=self.htf_bias)
             if stock_risk < 0.50:
                 grade = TradeGrade.D
             # Austin 2026-07-10 review + 12mo split: OCR only earns its keep at
@@ -1834,8 +1920,8 @@ class SignalRunner:
         if flag is not None and current.close > flag["flag_lo"] and _volume_ok(self.candles):
             entry = fill_price(flag["flag_hi"], current, is_long=True)  # T3(b)
             stock_risk = entry - flag["flag_lo"]
-            grade = PriceActionAnalyzer.grade_trade(current, lookback, flag["flag_hi"], flag["flag_lo"],
-                                                    is_long=True, htf_bias=self.htf_bias)
+            grade = self._grade_trade(current, lookback, flag["flag_hi"], flag["flag_lo"],
+                                      is_long=True, htf_bias=self.htf_bias)
             if stock_risk < 0.50:
                 grade = TradeGrade.D
             self._emit(signals, {
@@ -1876,9 +1962,9 @@ class SignalRunner:
                 entry = fill_price(self.session.entry_price, current, is_long=True)  # T3(b)
                 stock_risk = entry - stop_84
                 self._attempts_84[key_84] = attempts + 1
-                grade = PriceActionAnalyzer.grade_trade(current, lookback,
-                                                        self.session.entry_price, self.session.entry_price,
-                                                        is_long=True, htf_bias=self.htf_bias)
+                grade = self._grade_trade(current, lookback,
+                                          self.session.entry_price, self.session.entry_price,
+                                          is_long=True, htf_bias=self.htf_bias)
                 # NOTE: comment "strong-PA gate already passed" is STALE — under
                 # RULE84_LESSON=True the strong-PA gate is bypassed (B3 audit), so
                 # this floor grants a free B to plain reclaims. GRADE_FIX drops it.
@@ -1929,8 +2015,8 @@ class SignalRunner:
                 structural_stop = stop     # G13: before intrabar_stop reacts to the fill
                 stop = intrabar_stop(entry, stop, current, is_long=False)
                 stock_risk = stop - entry
-                grade = PriceActionAnalyzer.grade_trade(current, lookback, level_hi, level_lo,
-                                                        is_long=False, htf_bias=self.htf_bias)
+                grade = self._grade_trade(current, lookback, level_hi, level_lo,
+                                          is_long=False, htf_bias=self.htf_bias)
                 if "LATE" in br_note and grade.value in ("A+", "A"):
                     grade = TradeGrade.B
                 stack = current.is_bearish and self._aplus_stack(level_lo, is_long=False)
@@ -2002,8 +2088,8 @@ class SignalRunner:
                         and current.high >= fvg[0] and current.close < fvg[0]):
                     entry = fill_price(fvg[0], current, is_long=False)  # T3(b)
                     stock_risk = fvg[1] - entry
-                    grade = PriceActionAnalyzer.grade_trade(current, lookback, fvg[1], fvg[0],
-                                                            is_long=False, htf_bias=self.htf_bias)
+                    grade = self._grade_trade(current, lookback, fvg[1], fvg[0],
+                                              is_long=False, htf_bias=self.htf_bias)
                     if stock_risk < 0.50:
                         grade = TradeGrade.D
                     self._emit(signals, {
@@ -2025,8 +2111,8 @@ class SignalRunner:
             entry = fill_price(block.low, current, is_long=False)  # T3(b)
             stock_risk = block.high - entry
             # Grade at the block's own level (see call side)
-            grade = PriceActionAnalyzer.grade_trade(current, lookback, block.high, block.low,
-                                                    is_long=False, htf_bias=self.htf_bias)
+            grade = self._grade_trade(current, lookback, block.high, block.low,
+                                      is_long=False, htf_bias=self.htf_bias)
             if stock_risk < 0.50:
                 grade = TradeGrade.D
             # Mirror of call side: A-grade + tight stop only (2026-07-10 split).
@@ -2051,8 +2137,8 @@ class SignalRunner:
         if flag is not None and current.close < flag["flag_hi"] and _volume_ok(self.candles):
             entry = fill_price(flag["flag_lo"], current, is_long=False)  # T3(b)
             stock_risk = flag["flag_hi"] - entry
-            grade = PriceActionAnalyzer.grade_trade(current, lookback, flag["flag_hi"], flag["flag_lo"],
-                                                    is_long=False, htf_bias=self.htf_bias)
+            grade = self._grade_trade(current, lookback, flag["flag_hi"], flag["flag_lo"],
+                                      is_long=False, htf_bias=self.htf_bias)
             if stock_risk < 0.50:
                 grade = TradeGrade.D
             self._emit(signals, {
@@ -2092,9 +2178,9 @@ class SignalRunner:
                 entry = fill_price(self.session.entry_price, current, is_long=False)  # T3(b)
                 stock_risk = stop_84 - entry
                 self._attempts_84[key_84] = attempts + 1
-                grade = PriceActionAnalyzer.grade_trade(current, lookback,
-                                                        self.session.entry_price, self.session.entry_price,
-                                                        is_long=False, htf_bias=self.htf_bias)
+                grade = self._grade_trade(current, lookback,
+                                          self.session.entry_price, self.session.entry_price,
+                                          is_long=False, htf_bias=self.htf_bias)
                 # stale comment / free-B floor — see call side; GRADE_FIX drops it
                 if grade == TradeGrade.C and not GRADE_FIX:
                     grade = TradeGrade.B
