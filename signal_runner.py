@@ -367,6 +367,29 @@ BAR_EXTREME_FRAC = 0.25
 # be A/B'd: ON_WATCH=0. It is a FILL rule -- see near_session_extreme().
 ON_WATCH = os.getenv("ON_WATCH", "1").strip().lower() in ("1", "true", "yes", "on")
 
+# G13 (2026-08-27) -- WHICH GEOMETRY the minimum-risk floor at :1657 / :1892 is
+# measured on. Today: the POST-fill geometry. T3(b)'s fill_price() back-dates a
+# break-and-retest entry onto the broken level, and for B&R the level IS the
+# stop (BNR_STOP_MODE="level"), so a better fill collapses `entry - stop` under
+# a floor that is 0.15% of price -- largest exactly where a B&R stop is
+# tightest. research/g12_recall_regression.md attributes six of Austin's S
+# marks to precisely that, on a 159-mark gate, all six satisfying
+# `risk_after < floor <= risk_before` on the same bar and the same level.
+#
+# ON: the floor is read on the STRUCTURAL (pre-fill) geometry instead -- the bar
+# close against the stop the setup had BEFORE fill_price moved the entry and
+# intrabar_stop reacted to it. The floor exists to reject setups with no room to
+# size; an intrabar fill that gets a BETTER price does not make a setup
+# unsizeable. Nothing else moves: the fill still sets the price actually paid,
+# the R denominator, stop_width_pct and the selection score.
+#
+# OFF BY DEFAULT, and that is not a placeholder. Flipping it changes what
+# trades, which is Austin's call, and re-freezing the engine VOIDS the forward
+# book (research/omen6_forward.py). A/B it with
+# ENABLE_STRUCTURAL_RISK_FLOOR=1; research/g13_floor_fix_ab.py prices both arms.
+ENABLE_STRUCTURAL_RISK_FLOOR = os.getenv(
+    "ENABLE_STRUCTURAL_RISK_FLOOR", "0").strip().lower() in ("1", "true", "yes", "on")
+
 # Austin, 2026-08-24: "I don't trade FVG or FLAG. Those are not setups
 # anymore." Detection stays on -- the historical numbers stay comparable --
 # only routing stops. TRADE_RETIRED_SETUPS=1 is the one-variable-away
@@ -800,6 +823,27 @@ def intrabar_stop(entry: float, stop: float, candle, is_long: bool) -> float:
     if (bar_stop < entry) if is_long else (bar_stop > entry):
         return bar_stop
     return stop
+
+
+def floor_reference_risk(entry: float, stop: float, close: float,
+                         structural_stop: float, is_long: bool) -> float:
+    """The risk the minimum-risk floor is measured on. See
+    ENABLE_STRUCTURAL_RISK_FLOOR.
+
+    OFF (the shipped default): the POST-fill geometry, `entry - stop`. That is
+    byte-identical to the `stock_risk` the call sites already compute, so the
+    flag-off engine is the flag-less engine — the same subtraction of the same
+    two floats, not a re-derivation of them.
+
+    ON: the PRE-fill geometry — the bar CLOSE against the stop the setup had
+    before fill_price() back-dated the entry and intrabar_stop() reacted to it.
+
+    This function decides ONLY which risk the floor is compared against. It is
+    not the R denominator, not the price paid, and not the selection score's
+    `stock_risk / close`; all three keep reading the post-fill number."""
+    if ENABLE_STRUCTURAL_RISK_FLOOR:
+        return (close - structural_stop) if is_long else (structural_stop - close)
+    return (entry - stop) if is_long else (stop - entry)
 
 
 def idea_key(sig: dict) -> tuple:
@@ -1637,6 +1681,7 @@ class SignalRunner:
                 # either skipped or filled at a price that shot the R:R.
                 entry = fill_price(level_hi, current, is_long=True,
                                    session_hi=hod, session_lo=lod)
+                structural_stop = stop     # G13: before intrabar_stop reacts to the fill
                 stop = intrabar_stop(entry, stop, current, is_long=True)
                 stock_risk = entry - stop
                 grade = PriceActionAnalyzer.grade_trade(current, lookback, level_hi, level_lo,
@@ -1654,7 +1699,11 @@ class SignalRunner:
                         and self.htf_bias != "bearish"):
                     # valid confirmation entry, pattern-D only -> alert tier
                     grade = TradeGrade.C
-                if stock_risk < max(0.10, 0.0015 * current.close):  # relative min (flat $0.50 benched sub-$50 stocks)
+                # relative min (flat $0.50 benched sub-$50 stocks). G13: WHICH
+                # risk this reads is ENABLE_STRUCTURAL_RISK_FLOOR's whole job —
+                # post-fill by default, pre-fill when the flag is on.
+                if floor_reference_risk(entry, stop, current.close, structural_stop,
+                                        True) < max(0.10, 0.0015 * current.close):
                     grade = TradeGrade.D  # T3(b): an intrabar fill sitting on the stop has no trade to size
                 # OPUS-SPEC #1: displacement check on the B&R break leg —
                 # tag always, cap-at-C only when the gate is enabled. Placed
@@ -1877,6 +1926,7 @@ class SignalRunner:
                 # T3(b): close by default, intrabar at the level on an extreme close
                 entry = fill_price(level_lo, current, is_long=False,
                                    session_hi=hod, session_lo=lod)
+                structural_stop = stop     # G13: before intrabar_stop reacts to the fill
                 stop = intrabar_stop(entry, stop, current, is_long=False)
                 stock_risk = stop - entry
                 grade = PriceActionAnalyzer.grade_trade(current, lookback, level_hi, level_lo,
@@ -1889,7 +1939,9 @@ class SignalRunner:
                 elif (grade == TradeGrade.D and current.is_bearish
                         and self.htf_bias != "bullish"):
                     grade = TradeGrade.C
-                if stock_risk < max(0.10, 0.0015 * current.close):
+                # mirror of the call side — see the G13 note there
+                if floor_reference_risk(entry, stop, current.close, structural_stop,
+                                        False) < max(0.10, 0.0015 * current.close):
                     grade = TradeGrade.D
                 # OPUS-SPEC #1: displacement tag + optional gate (see call side)
                 disp = self._bnr_displacement(level_lo, is_long=False)
