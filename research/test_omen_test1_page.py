@@ -26,7 +26,10 @@ import subprocess
 import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-PAGE = os.path.join(HERE, "probes", "omen-test-1.html")
+# Same parameter build_omen_test1.py uses -- Test 1 is graded and frozen, so the
+# page under test is the NEXT deck by default.
+DECK = os.getenv("OMEN_DECK", "omen-test-2").strip() or "omen-test-2"
+PAGE = os.path.join(HERE, "probes", DECK + ".html")
 
 DRIVER = r"""
 const fs = require('fs');
@@ -113,6 +116,16 @@ st2.value = typed;
 st2.dispatchEvent(new dom.window.Event('input', {bubbles: true}));
 out.typed_stop = parseFloat(typed);
 
+// c2 also fills BEFORE the candle closed -- the thing the page could not record
+// until 2026-08-27. Typed entry price must win over the bar's close, and the
+// close must survive as bar_close_p. See research/p25_midcandle_entry.md.
+const en2 = c2.querySelector('.q[data-q="emin"] textarea.note');
+const efill = (JSON.parse(c2.getAttribute('data-closes'))[9] - 0.11).toFixed(2);
+en2.value = efill;
+en2.dispatchEvent(new dom.window.Event('input', {bubbles: true}));
+out.typed_entry = parseFloat(efill);
+out.bar_close_at_9 = JSON.parse(c2.getAttribute('data-closes'))[9];
+
 // probe_page debounces a note save by 400ms; a real sitting always clears that,
 // a synchronous test never does. Wait it out rather than weakening the debounce.
 await settle(700);
@@ -157,6 +170,7 @@ out.restored_stop = !!r0.querySelector('.q[data-q="stop"] .chip[aria-pressed="tr
 out.restored_note = r0.querySelector('.q[data-q="comment"] textarea.note').value;
 out.restored_x = !!r1.querySelector('.q[data-q="grade"] .chip[data-v="X"][aria-pressed="true"]');
 out.restored_typed = r2.querySelector('.q[data-q="stop"] textarea.note').value;
+out.restored_typed_entry = r2.querySelector('.q[data-q="emin"] textarea.note').value;
 out.restored_count = doc.getElementById('count').textContent.trim();
 const rsvg = r0.querySelector('svg.chart');
 out.restored_entry_line = !rsvg.querySelector('.uentry').hasAttribute('hidden');
@@ -244,6 +258,22 @@ def main():
           "stop=%s side=%s" % (a.get("stop_p"), a.get("side")))
     check("row carries setup + comment",
           a.get("setup") == "BR+OCR" and "reclaimed" in json.dumps(a.get("notes", {})))
+    # the mid-candle fill: typed entry wins, the bar's close survives beside it,
+    # and the flag is set. Before 2026-08-27 entry_p was closes[i] unconditionally.
+    mid = [x for x in rows if x.get("entered_before_close") is True]
+    check("typed entry overrides the bar close",
+          len(mid) == 1 and abs(mid[0]["entry_p"] - r["typed_entry"]) < 1e-9,
+          mid[0].get("entry_p") if mid else None)
+    check("the bar close survives as bar_close_p",
+          bool(mid) and abs(mid[0]["bar_close_p"] - r["bar_close_at_9"]) < 1e-9,
+          mid[0].get("bar_close_p") if mid else None)
+    check("an untouched entry is flagged at-close",
+          a.get("entered_before_close") is False
+          and a.get("entry_p") == a.get("bar_close_p"),
+          "%s == %s" % (a.get("entry_p"), a.get("bar_close_p")))
+    check("reload keeps the typed entry",
+          r["restored_typed_entry"] == ("%.2f" % r["typed_entry"]),
+          r["restored_typed_entry"])
     typed = [x for x in rows if x.get("stop_src") == "typed"]
     check("typed stop overrides the rail",
           len(typed) == 1 and abs(typed[0]["stop_p"] - r["typed_stop"]) < 0.005,

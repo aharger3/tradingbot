@@ -121,11 +121,14 @@ from research.t4_engine_recall import (rth_candles, prior_day_levels,
                                        premarket_extremes)
 
 OUT_DIR = os.path.join(HERE, "probes")
-OUT_NAME = "omen-test-1.html"
-MANIFEST = "omen-test-1-manifest.jsonl"
+# The deck id is a parameter because Test 1 is graded and its HTML is the record
+# of what Austin was actually shown. Regenerating over it would destroy that.
+# `OMEN_DECK=omen-test-3 python research/build_omen_test1.py` builds the next one.
+DECK_ID = os.getenv("OMEN_DECK", "omen-test-2").strip() or "omen-test-2"
+OUT_NAME = DECK_ID + ".html"
+MANIFEST = DECK_ID + "-manifest.jsonl"
 BT2Y = os.path.join(HERE, "bt2y_trades.json")
 
-DECK_ID = "omen-test-1"
 SESSION_START, SESSION_END = "09:30", "11:00"
 BARS = 90                     # 09:30..10:59 inclusive; cards must be exactly this
 PART_SIZE = 20
@@ -487,9 +490,12 @@ def card_html(idx, total, part, sym, day, bars, lv, pdc):
         probe_page.question(
             "emin", "&hellip; and which minute?",
             "These are minutes inside the block you picked &mdash; they relabel to "
-            "the clock as soon as one is chosen. Entry price is that "
-            "candle&rsquo;s close.", minute_opts(),
-            required=False),
+            "the clock as soon as one is chosen. Entry price defaults to that "
+            "candle&rsquo;s close &mdash; if you got in before it closed, type the "
+            "price you actually filled at.", minute_opts(),
+            required=False,
+            note_placeholder="(optional) the price you actually filled at, if "
+                             "you entered before the candle closed"),
         '<div class="q readout" data-when="trade"><p class="hint" '
         'data-role="entryout">no entry marked yet</p></div>',
         '<section class="q" data-q="stop" data-multi="0" data-required="0" '
@@ -693,7 +699,24 @@ EXTRA_JS = r"""
       if (i >= 0 && i < BARS){
         out.entry_i = i;
         out.entry_t = times(i);
+        /* The picked bar's close is the DEFAULT fill, not the only one. Austin
+           enters before the close -- "as candle forming not HOD/LOD" -- and the
+           old code wrote closes[i] unconditionally, so every entry in the corpus
+           read as an at-close fill by construction and the question could not be
+           answered from the data (research/p25_midcandle_entry.md). The close is
+           kept as bar_close_p so nothing that compared against it breaks.
+           Same typed-price escape hatch the stop has had all along. */
+        out.bar_close_p = closes[i];
         out.entry_p = closes[i];
+        out.entered_before_close = false;
+        var en = card.querySelector('.q[data-q="emin"] textarea.note');
+        if (en){
+          var etyped = parseFloat(String(en.value).replace(/[^0-9.\-]/g, ''));
+          if (isFinite(etyped) && etyped > 0){
+            out.entry_p = etyped;
+            out.entered_before_close = etyped !== closes[i];
+          }
+        }
       }
     }
 
@@ -839,7 +862,8 @@ EXTRA_JS = r"""
          one meaning so a single parser reads this file and every older one */
       row.grade_std = mk.grade === 'X' ? 'none' : mk.grade;
     }
-    ['entry_i', 'entry_t', 'entry_p', 'stop_p', 'stop_src', 'side', 'setup']
+    ['entry_i', 'entry_t', 'entry_p', 'bar_close_p', 'entered_before_close',
+     'stop_p', 'stop_src', 'side', 'setup']
       .forEach(function(k){ if (mk[k] != null) row[k] = mk[k]; });
   };
 

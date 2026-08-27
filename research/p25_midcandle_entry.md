@@ -99,6 +99,8 @@ that does. That is a purchase, not a patch.
 
 ## Status
 
+**Provenance:** every number above is produced by `research/p25_midcandle_entry.py`, committed at `9d0c2206`, over the mark corpora listed in its `MARK_FILES`. Regenerate with `python research/p25_midcandle_entry.py --json research/p25_midcandle_entry.json`.
+
 - `research/p25_midcandle_entry.py` committed, `--selfcheck` green.
 - `research/p25_midcandle_entry.json` is the per-entry table (regenerate with `--json`).
 - Queued: **R6** (instrument fix), **R7** (roster), **R8** (intrabar ambiguity rate).
