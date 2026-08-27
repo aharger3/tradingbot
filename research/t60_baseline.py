@@ -31,7 +31,7 @@ if _REPO_ROOT not in sys.path:
 
 import research.exit_lab as exit_lab  # noqa: E402
 from research.v52_scaleout_run import corpus_b_trades, bars_for  # noqa: E402
-from universe import pool_for  # noqa: E402
+from universe import pool_for, MIN_SAMPLE_N  # noqa: E402
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT_MD = os.path.join(HERE, "t60_baseline.md")
@@ -110,8 +110,12 @@ def quarter_of(date_str):
 
 
 def row(label, s):
-    return ("| %s | %d | %+.4f | %+.4f | %.3f | %.2f | %d | %s |"
-            % (label, s["n"], s["mean_r"], s["median_r"], s["win_rate"],
+    # G6/T5: a slice under the shared sample floor is still shown in full --
+    # never dropped, never pulled out of any total -- just tagged so a thin
+    # slice cannot be mistaken for a finding (research/p12_sample_floor.md).
+    tag = " _(low n)_" if s["n"] < MIN_SAMPLE_N else ""
+    return ("| %s%s | %d | %+.4f | %+.4f | %.3f | %.2f | %d | %s |"
+            % (label, tag, s["n"], s["mean_r"], s["median_r"], s["win_rate"],
                s["worst"], s["mcl"], format(round(s["ann_dollars"]), "+,")))
 
 
@@ -277,6 +281,10 @@ def main():
     L.append("The slice gate is **every month green** (Austin, 2026-08-23), tightened from "
              "quarterly. Per-pool and per-symbol are read for *concentration* — no single "
              "name may carry the book.")
+    L.append("")
+    L.append("Slices tagged `(low n)` are under %d trades (`universe.MIN_SAMPLE_N`) -- too "
+             "few for the number to mean anything yet. Still shown, still counted in every "
+             "total above; just not evidence on its own." % MIN_SAMPLE_N)
     L.append("")
     for title, group in (("Per month", by_m), ("Per quarter", by_q),
                          ("Per pool", by_pool), ("Per symbol", by_sym)):

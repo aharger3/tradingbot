@@ -112,6 +112,26 @@ def pool_for(symbol: str) -> str:
 
 
 # ---------------------------------------------------------------------------
+# Sample floor for per-symbol / per-pool reporting (G6/T5)
+# ---------------------------------------------------------------------------
+# 20 trades. Settled in research/p12_sample_floor.md, read before this constant
+# was added: it reused SCAN_MIN, the floor research/build_bt2y_report.py's edge
+# scanner already enforced, rather than inventing a second number. That doc's
+# arithmetic: a slice's mean R carries a standard error of roughly
+# sd/sqrt(n); below n=20 that error is large enough for one more trade to
+# swing the mean by several tenths of an R -- the same order of magnitude as
+# the money gate itself (mean R >= 2.0, research/t60_baseline.py). Above ~20
+# the swing per additional trade is small enough for the number to mean
+# something. research/t70_metric_sweep.py had independently landed on the same
+# 20 under its own name (THIN_N) for the same reason -- a second confirmation,
+# not a second number.
+#
+# Every per-symbol/per-pool reporting path imports this ONE constant and marks
+# -- never drops, never excludes from whole-book totals -- rows under it.
+MIN_SAMPLE_N = 20
+
+
+# ---------------------------------------------------------------------------
 # Archive coverage -- derived from disk, never hardcoded
 # ---------------------------------------------------------------------------
 ARCHIVE_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data_archive")

@@ -35,7 +35,7 @@ from signal_runner import SignalRunner
 # Watchlist tiers live in universe.py -- the single source of truth. Re-exported
 # here because six modules import them from backtest_week (OMEN 6 ticket 14).
 from universe import (CORE_SYMBOLS, EXPERIMENTAL_SYMBOLS,  # noqa: F401
-                      BACKTEST_SYMBOLS as SYMBOLS)
+                      BACKTEST_SYMBOLS as SYMBOLS, MIN_SAMPLE_N)
 RISK_DOLLARS = 1000.0
 
 # ---- D2: S-score-scaled position sizing (flag-gated, default OFF) ----
@@ -762,7 +762,10 @@ def write_report(all_trades: List[SimTrade], days: List[str], notes: List[str]) 
     for sym in sorted({t.symbol for t in fired}):
         st_ = [t for t in fired if t.symbol == sym]
         n, w, l, s, wr, pnl = _stats(st_)
-        lines.append(f"| {sym} | {n} | {w} | {l} | {s} | {wr}% | ${pnl} |")
+        tag = " _(low n)_" if n < MIN_SAMPLE_N else ""
+        lines.append(f"| {sym}{tag} | {n} | {w} | {l} | {s} | {wr}% | ${pnl} |")
+    lines.append(f"_(low n): under {MIN_SAMPLE_N} trades -- too few for this row to mean much "
+                 "(research/p12_sample_floor.md). Still counted in every total above._")
     lines.append("")
 
     # Per entry-hour (2026-07-11): YouTube stat says 75% of Scarface trades

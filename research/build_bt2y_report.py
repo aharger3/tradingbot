@@ -10,10 +10,12 @@ inside one artifact-sized file.
 
 Usage: python research/build_bt2y_report.py [--in ...] [--out ...]
 """
-import argparse, json
+import argparse, json, sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ROOT))
+from universe import MIN_SAMPLE_N  # noqa: E402
 
 # field -> label, in the order the filter rail renders them
 FACETS = [
@@ -250,7 +252,7 @@ footer{padding:22px 28px 60px;border-top:1px solid var(--line);color:var(--faint
     <div class="panel scroll"><table id="scan"></table></div>
     <p class="note" style="margin-top:9px"><b>&Delta;R</b> is that slice&rsquo;s mean R
     minus the mean R of everything currently selected &mdash; positive is where the edge
-    lives, negative is where it leaks. Rows under <b id="minn">20</b> trades are marked
+    lives, negative is where it leaks. Rows under <b id="minn">__MIN_SAMPLE_N__</b> trades are marked
     <span class="badge low">low n</span> and always sort below every row that clears the
     floor, no matter how big their &Delta;R looks &mdash; a two-trade slice can show a
     huge number purely by luck.</p>
@@ -546,15 +548,15 @@ function drawMonths(){
 
 // ---- tables ---------------------------------------------------------------
 // Sample floor for any per-slice row (edge scanner AND the breakdown table).
-// Reused, not reinvented: this is the same 20 the edge scanner has always
-// enforced (see below), which is itself the number the S/A/C sweep already
-// treats as the smallest slice worth reading. Below it a single trade can
-// swing a slice's mean R by half a point or more, so the figure is noise, not
-// evidence. A slice under the floor still renders -- it's just marked
-// low-confidence and always sorts last (see markLow/lowSort below) rather
-// than being dropped, so a thin slice is still findable, just not mistakable
-// for a finding.
-var SCAN_MIN = 20;
+// Not a JS-only number: it is universe.MIN_SAMPLE_N, threaded through by the
+// Python builder below (see __MIN_SAMPLE_N__) so this page can never drift
+// from every other per-symbol/per-pool report in the repo. Below it a single
+// trade can swing a slice's mean R by half a point or more, so the figure is
+// noise, not evidence. A slice under the floor still renders -- it's just
+// marked low-confidence and always sorts last (see markLow/lowSort below)
+// rather than being dropped, so a thin slice is still findable, just not
+// mistakable for a finding.
+var SCAN_MIN = __MIN_SAMPLE_N__;
 // Outcome-derived fields are excluded from the scanner: "scaled" and "out" are
 // results, not conditions you could have known at entry, so ranking by them is
 // circular (every scaled trade is a win by construction).
@@ -740,7 +742,8 @@ def main():
             .replace("__GEN__", meta["generated"].replace("T", " "))
             .replace("__NSIG__", "{:,}".format(meta["signals"]))
             .replace("__NTRADED__", "{:,}".format(meta["traded"]))
-            .replace("__RISK__", str(int(meta["risk_dollars"]))))
+            .replace("__RISK__", str(int(meta["risk_dollars"])))
+            .replace("__MIN_SAMPLE_N__", str(MIN_SAMPLE_N)))
     out = ROOT / args.out
     out.write_text(html, encoding="utf-8")
     print("wrote %s (%.1f MB)" % (out, out.stat().st_size / 1e6))

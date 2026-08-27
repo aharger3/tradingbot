@@ -41,10 +41,11 @@ ladders backtested rather than one picked, so nothing here is preferred --
 
 The thin-slice rule
 -------------------
-Any slice with N < 20 is written to the CSV with ``thin=1`` and is excluded
-from every ranking in the markdown. A 3-trade slice with mean +2.5R is noise,
-and presenting it as a finding is the exact failure mode this report exists to
-avoid.
+Any slice with N below the shared floor (``universe.MIN_SAMPLE_N``, currently
+20 -- see research/p12_sample_floor.md) is written to the CSV with ``thin=1``
+and is excluded from every ranking in the markdown. A 3-trade slice with mean
++2.5R is noise, and presenting it as a finding is the exact failure mode this
+report exists to avoid.
 
 FVG and FLAG are retired
 ------------------------
@@ -95,7 +96,7 @@ import research.exit_lab as exit_lab  # noqa: E402
 import research.trend_gate as trend_gate  # noqa: E402
 import research.sizing as sizing  # noqa: E402
 from research.v52_scaleout_run import corpus_b_trades, bars_for  # noqa: E402
-from universe import pool_for  # noqa: E402
+from universe import pool_for, MIN_SAMPLE_N  # noqa: E402
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT_CSV = os.path.join(HERE, "t70_metric_sweep.csv")
@@ -107,8 +108,6 @@ REFERENCE_POLICY = "30_30_30_10"  # T60's headline ladder, for comparability onl
 
 # Austin, 2026-08-24: "I don't trade FVG or FLAG. Those are not setups anymore."
 RETIRED_SETUPS = {"fair_value_gap", "flag"}
-
-THIN_N = 20  # below this a slice is noise and is ranked nowhere
 
 TRADING_DAYS_PER_YEAR = 252  # same annualisation basis as T60
 R_DOLLARS = sizing.R_DOLLARS  # 1R = $1,000, settled 2026-08-23
@@ -303,7 +302,7 @@ def sweep(rows):
             "dim": dim,
             "slice": slice_val,
             "retired": retired,
-            "thin": 1 if s["n"] < THIN_N else 0,
+            "thin": 1 if s["n"] < MIN_SAMPLE_N else 0,
             **s,
         })
 
@@ -476,7 +475,7 @@ def main():
              "every ranking here. Of %d slice rows, **%d are thin (%.0f%%)** — the sweep is "
              "mostly noise by row count, and that is the honest shape of a %d-trade corpus "
              "cut ten ways. A 3-trade slice with mean +2.5R is not a finding."
-             % (THIN_N, len(sweep_rows), sum(1 for s in sweep_rows if s["thin"]),
+             % (MIN_SAMPLE_N, len(sweep_rows), sum(1 for s in sweep_rows if s["thin"]),
                 100 * sum(1 for s in sweep_rows if s["thin"]) / max(len(sweep_rows), 1),
                 len(rows)))
     L.append("")
@@ -571,7 +570,7 @@ def main():
              "printed next to the mean instead of underneath it. Median N in these twenty "
              "rows: **%d**, against %d trades in the corpus. §1e is where to look for what "
              "actually holds up."
-             % (THIN_N,
+             % (MIN_SAMPLE_N,
                 statistics.median([s["n"] for s in (best10 + worst10)] or [0]),
                 len(rows)))
     L.append("")
