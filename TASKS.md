@@ -32,6 +32,11 @@ red = needs Austin).
 | R2 | Ratify or reject the S/A/C thresholds after A1. | "Is this chart an S?" — nothing else can answer it. |
 | R3 | Wire `downgrade.py` into detection and retire `_grade_pa`. | Trades change the day this lands. |
 | R4 | `INCLUDE_SPY_IN_BACKTEST` — SPY is 30 of his 120 graded symbol-days but excluded from `CORE_SYMBOLS`. | Q12 in the Q&A queue, still open. |
+| R5 | **Hard cap on S trades per symbol-day.** Ballot c3 says max 2, c4 says max 3 then "cap at .8 s trades a day per symbol" — three numbers from him. Nothing is implemented; P20 codes only the quality downgrade. | Which number, and is the cap per symbol-day or per day. |
+| R6 | **The homework instrument cannot record a mid-candle fill.** `build_omen_test1.py:696` writes `entry_p = closes[i]`, so 100% of OMEN Test 1's S/A/C entries read at-close by construction while 14 of 58 notes say "as candle forming not HOD/LOD" (P25). | Does the next deck ask him to type the fill price, drag a line, or keep the close and carry an explicit `entered_before_close` flag. |
+| R7 | **The S-trade roster.** He wants the next deck restricted to names he would actually take S trades in ("options vol above 300k or something"). No options-volume feed exists in this repo; his own stated exclusion in the marks is share price ("cheap stock", MARA $9 / ACHR $5), not option volume, in 6 of 100 rows. | The screen and the number: options volume, share price floor, or a hand-written roster. |
+| R8 | **The intrabar ambiguity rate.** With 1-minute bars, an intrabar trigger and its stop can both sit inside the same bar and no OHLC says which came first. Countable and uncounted. | Whether an unresolvable share of intrabar fills is acceptable, or the rig needs second/tick data. |
+| R9 | **A simpler parallel exit system.** He is concerned about the intricacy of the shipped one and wants a side system on the same entries with simpler exits, measured against it. | What "simpler" means: flat 2R, HOD/LOD only, or one scale and out. |
 
 ---
 
