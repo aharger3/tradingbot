@@ -67,3 +67,7 @@ That is the number that decides whether lifting `rr15` is worth anything. P7 alr
 - Touch `signal_runner.py`: `rule84_conditions()` is a read-only transcription, cross-checked against the real engine's own `reentry_84_rule` count on every `run`.
 
 Reproduce: `python research/g10_arming_funnel.py run` then `python research/g10_arming_funnel.py report`. `python research/g10_arming_funnel.py --selfcheck` runs the assert-based, archive-free check on `rule84_conditions()` itself.
+
+---
+
+**Provenance.** Produced by `research/g10_arming_funnel.py`, committed at `66557d12`. Regenerate with `python research/g10_arming_funnel.py run`.

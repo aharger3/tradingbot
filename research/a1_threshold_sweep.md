@@ -78,3 +78,7 @@ S-day recall and false-fire, both rigs, and how many graded cards produced no en
 2. **This is not a sweep.** Every number above is the ONE committed setting. `research/p2_threshold_sweep.md` already swept the six numeric guesses across ~60 settings each; this row asks a narrower question -- does each variable, AS SHIPPED, point the right way -- against a corpus that could not have leaked into any prior tuning.
 3. **A wrong-signed verdict is not a call to retune that variable.** P15 tried three reformulations of `level_not_respected` and all three failed differently. The recommendation for a wrong-signed variable here is the same STOP, not a fourth attempt taken on this row's own initiative.
 4. **The held-out rig is 100 cards, not 1,000.** A verdict that shows up consistently in the 45,175-signal book is the load-bearing one; the card rigs corroborate or fail to corroborate it, they do not compute it independently (`on`/`off` are book-only, see above).
+
+---
+
+**Provenance.** Produced by `research/p2_threshold_sweep.py`, committed at `99bead1c`. Regenerate with `python research/p2_threshold_sweep.py --a1`.

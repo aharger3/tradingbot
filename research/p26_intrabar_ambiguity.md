@@ -106,3 +106,7 @@ The one lever that shrinks it without new data is the split above. Strip out the
 - 0 signals were dropped for a missing archived day and 0 for an entry minute with no bar; 45,175 of 45,175 signals were classified. Cache misses are never fetched, on purpose.
 
 Reproduce: `python research/p26_intrabar_ambiguity.py` · verify: `python research/p26_intrabar_ambiguity.py --selfcheck`
+
+---
+
+**Provenance.** Produced by `research/p26_intrabar_ambiguity.py`, committed at `8bb78c77`. Regenerate with `python research/p26_intrabar_ambiguity.py`.
