@@ -356,7 +356,10 @@ def scan_once(
         # Mark/close any open paper positions against this fresh candle first.
         if paper is not None:
             last = candles[-1]
-            for ev in paper.mark(symbol, high=last.high, low=last.low, ts=last.timestamp):
+            # close= is the stop trigger (G11): a wick through the stop stops
+            # nothing out. high/low still drive the target and the Rule 6 scale.
+            for ev in paper.mark(symbol, high=last.high, low=last.low,
+                                 close=last.close, ts=last.timestamp):
                 print(f"   📕 PAPER CLOSE {ev['symbol']} {ev['direction'].upper()} "
                       f"{ev['outcome'].upper()} P&L ${ev['pnl']:.2f}")
                 if ev["outcome"] == "stop":

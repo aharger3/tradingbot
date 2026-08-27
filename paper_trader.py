@@ -10,6 +10,13 @@ already bake in the delta estimate), so the sim needs no live option quotes.
 
 Rule 6 (Austin 2026-07-10): if RULE6_ENABLED, scale 50% at breakeven (1R) and
 move the runner's stop to entry. The runner continues to the original 2R target.
+
+Stops trigger on the candle CLOSE (`stop_rule.stop_hit_on_close`, the same
+predicate backtest_week.py's STOP_ON_CLOSE path uses). Until G11 this module
+tested the bar's WICK and was never handed a close at all, so it had been
+mismarking every paper position since paper trading started — see stop_rule.py.
+Targets and the Rule 6 break-even scale are limit orders and still fill on an
+intrabar TOUCH; only the stop moved.
 """
 
 import json
@@ -19,6 +26,7 @@ from pathlib import Path
 from typing import List, Optional
 
 from options_sizer import OptionsPlan
+from stop_rule import stop_hit_on_close
 
 
 # ---- Rule 6: Position Management ----
@@ -70,18 +78,24 @@ class PaperPosition:
     runner_stop: float = 0.0      # stop for the runner after BE taken (raised to entry)
     be_taken: bool = False        # whether breakeven scale already fired
 
-    def _check_stop(self, high: float, low: float) -> Optional[tuple]:
-        """Check if stop was hit. Returns (exit_premium, outcome) or None."""
-        if self.direction == "call":
-            if low <= self.stock_stop:
-                return self.stop_premium, "stop"
-        else:
-            if high >= self.stock_stop:
-                return self.stop_premium, "stop"
+    def _check_stop(self, close: float) -> Optional[tuple]:
+        """Check if stop was hit. Returns (exit_premium, outcome) or None.
+
+        The CLOSE is the trigger — a wick through the level stops nothing out.
+        The fill is unchanged: the stop order still rests at the level, so the
+        exit is the plan's precomputed `stop_premium`, i.e. exactly 1R, which is
+        why there is no -1.25R floor to apply on the premium side here.
+        """
+        if stop_hit_on_close(close, self.stock_stop, self.direction == "call"):
+            return self.stop_premium, "stop"
         return None
 
     def _check_target(self, high: float, low: float) -> Optional[tuple]:
-        """Check if target was hit. Returns (exit_premium, outcome) or None."""
+        """Check if target was hit. Returns (exit_premium, outcome) or None.
+
+        Wick-based on purpose: a target is a resting limit order and fills on any
+        intrabar touch. backtest_week.py:606 does the same (`c.high >= t.target`).
+        """
         if self.direction == "call":
             if high >= self.stock_target:
                 return self.target_premium, "target"
@@ -91,7 +105,12 @@ class PaperPosition:
         return None
 
     def _check_breakeven(self, high: float, low: float) -> Optional[float]:
-        """Check if breakeven scale level was hit. Returns exit_price or None."""
+        """Check if breakeven scale level was hit. Returns exit_price or None.
+
+        Wick-based on purpose, same as the target: the Rule 6 scale is a limit
+        order sitting at +1R, not a stop. backtest_week.py:593-595 triggers it on
+        `c.high`/`c.low` too. Only the RUNNER's raised stop below is close-based.
+        """
         if self.be_scale_level == 0.0 or self.be_taken:
             return None
         if self.direction == "call":
@@ -102,7 +121,7 @@ class PaperPosition:
                 return self.be_scale_level
         return None
 
-    def exit_for(self, high: float, low: float) -> Optional[tuple]:
+    def exit_for(self, high: float, low: float, close: float) -> Optional[tuple]:
         """Return (exit_premium, outcome) if this candle hits stop or target, else None.
 
         With Rule 6 enabled: BE scale checked before stop/target on same bar.
@@ -111,7 +130,7 @@ class PaperPosition:
         """
         # If Rule 6 is disabled or BE already taken — use original binary logic
         if not RULE6_ENABLED:
-            return self._check_stop(high, low) or self._check_target(high, low)
+            return self._check_stop(close) or self._check_target(high, low)
 
         # ---- Rule 6 path ----
         be_price = self._check_breakeven(high, low)
@@ -127,21 +146,18 @@ class PaperPosition:
             return (self.entry_premium, "be_scale")
 
         if self.be_taken:
-            # Runner path: use runner_stop (raised to entry/breakeven)
-            if self.direction == "call":
-                if low <= self.runner_stop:
-                    return self.stop_premium, "stop"
-                if high >= self.stock_target:
-                    return self.target_premium, "target"
-            else:
-                if high >= self.runner_stop:
-                    return self.stop_premium, "stop"
-                if low <= self.stock_target:
-                    return self.target_premium, "target"
+            # Runner path: use runner_stop (raised to entry/breakeven). Still a
+            # STOP, so still close-triggered — backtest_week.py:602 runs the
+            # runner through the same `_stop_hit`.
+            long = self.direction == "call"
+            if stop_hit_on_close(close, self.runner_stop, long):
+                return self.stop_premium, "stop"
+            if (high >= self.stock_target) if long else (low <= self.stock_target):
+                return self.target_premium, "target"
             return None
 
         # Pre-BE path: original stop/target logic, but also check BE
-        hit = self._check_stop(high, low)
+        hit = self._check_stop(close)
         if hit:
             return hit
         hit = self._check_target(high, low)
@@ -211,8 +227,13 @@ class PaperBook:
         self._log({"event": "OPEN", "ts": pos.opened_at, **asdict(pos)})
         return pos
 
-    def mark(self, symbol: str, high: float, low: float, ts: Optional[str] = None) -> List[dict]:
-        """Mark open positions for `symbol` against a candle's high/low. Close any hit.
+    def mark(self, symbol: str, high: float, low: float, close: float,
+             ts: Optional[str] = None) -> List[dict]:
+        """Mark open positions for `symbol` against one candle. Close any hit.
+
+        `close` is required, not defaulted: the stop rule needs it, and a default
+        would let a caller silently fall back to the wick trigger this exists to
+        remove. Targets and the Rule 6 scale still read high/low.
 
         With Rule 6 enabled: BE scales are handled first (50% partial close at
         breakeven), then the runner is checked against the raised stop and original target.
@@ -254,7 +275,7 @@ class PaperBook:
                         continue
 
             # Check stop/target (runner path if BE taken)
-            hit = pos.exit_for(high, low)
+            hit = pos.exit_for(high, low, close)
             if hit is None:
                 still_open.append(pos)
                 continue
@@ -294,6 +315,11 @@ class PaperBook:
 
 if __name__ == "__main__":
     # Self-test: open a call, walk it to BE scale then target. No market needed.
+    # Stop cases are close-based (G11); research/test_paper_trader_stop.py is the
+    # full grid, this is just the smoke test.
+    # Note: this block runs as __main__, so RULE6_ENABLED is rebound directly.
+    # `import paper_trader` here would make a SECOND module object and toggle a
+    # flag nothing in this process reads (which is what it used to do).
     import tempfile, os
     tmp = Path(tempfile.mkdtemp()) / "paper-trades.jsonl"
     book = PaperBook(ledger_path=tmp)
@@ -308,22 +334,24 @@ if __name__ == "__main__":
     book.open_from_plan(call_plan, ts="09:35:00")
     assert len(book.open_positions) == 1
     # candle that doesn't hit either level
-    assert book.mark("TSLA", high=440.8, low=440.1, ts="09:36:00") == []
+    assert book.mark("TSLA", high=440.8, low=440.1, close=440.4, ts="09:36:00") == []
+    # a WICK through the stop (439.3) that closes back above it is not a stop-out
+    assert book.mark("TSLA", high=440.6, low=438.9, close=440.1, ts="09:37:00") == []
+    assert len(book.open_positions) == 1
     # Rule 6 test when enabled
-    orig = paper_trader.RULE6_ENABLED
-    import paper_trader as self_mod
-    self_mod.RULE6_ENABLED = True
+    orig = RULE6_ENABLED
+    RULE6_ENABLED = True
     # Open a new position with Rule 6
     book2 = PaperBook(ledger_path=Path(tempfile.mkdtemp()) / "pt2.jsonl")
     book2.open_from_plan(call_plan, ts="09:35:00")
     assert book2.open_positions[0].be_scale_level > 0
     # Candle hits breakeven (entry + 1R = 440.0 + 0.7 = 440.7 but stop=439.3, R=0.7, BE=440.7)
-    evs = book2.mark("TSLA", high=441.0, low=440.3, ts="09:40:00")
+    evs = book2.mark("TSLA", high=441.0, low=440.3, close=440.8, ts="09:40:00")
     assert len(evs) == 1 and evs[0]["event"] == "BE_SCALE", evs
-    # Next candle hits target 
-    evs = book2.mark("TSLA", high=441.5, low=440.5, ts="09:41:00")
+    # Next candle hits target
+    evs = book2.mark("TSLA", high=441.5, low=440.5, close=441.2, ts="09:41:00")
     assert len(evs) == 1 and evs[0]["outcome"] == "target", evs
-    self_mod.RULE6_ENABLED = orig
+    RULE6_ENABLED = orig
 
     put_plan = OptionsPlan(
         symbol="NVDA", direction="put", expiration="2026-06-10", strike=850.0,
@@ -333,7 +361,10 @@ if __name__ == "__main__":
         quote_source="estimated_delta", occ_symbol="NVDA260610P00850000",
     )
     book.open_from_plan(put_plan, ts="10:00:00")
-    closed = book.mark("NVDA", high=853.0, low=849.0, ts="10:05:00")
+    # wick above the 852.5 stop, close back below it -> still open
+    assert book.mark("NVDA", high=853.0, low=849.0, close=850.2, ts="10:05:00") == []
+    # closes above the stop -> stopped out, filled at the stop premium
+    closed = book.mark("NVDA", high=853.0, low=849.0, close=852.9, ts="10:06:00")
     assert len(closed) == 1 and closed[0]["outcome"] == "stop", closed
     assert closed[0]["pnl"] == round((2.50 - 3.00) * 100 * 4, 2), closed
 

@@ -28,6 +28,7 @@ except ModuleNotFoundError:   # data_archive replay the research rows run on.
 
 from omen_bot import Candle, SignalType, TradeGrade
 from signal_runner import SignalRunner
+from stop_rule import stop_hit_on_close, stop_hit_on_wick
 
 # Austin's watchlist 2026-07-11: all stocks with ~200k+ daily options volume
 # (his rule — high options volume = cleaner moves, easier fills). SPY/QQQ stay
@@ -270,13 +271,18 @@ class SimTrade:
 def _wick_hit(c: Candle, level: float, long: bool) -> bool:
     """Pre-omen-5.0 stop trigger: any wick through the level stops the trade out.
     Reachable only with STOP_ON_CLOSE=0, so the old numbers stay reproducible."""
-    return (c.low <= level) if long else (c.high >= level)
+    return stop_hit_on_wick(c.high, c.low, level, long)
 
 
 def _stop_hit(c: Candle, level: float, long: bool) -> bool:
-    """T4(a). Did this bar stop the trade out? On the CLOSE by default."""
+    """T4(a). Did this bar stop the trade out? On the CLOSE by default.
+
+    Candle-shaped wrapper over `stop_rule`, which the live path also imports —
+    one rule, one function (G11). Reads the module-global STOP_ON_CLOSE on every
+    call so research/t4_stop_on_close.py can still flip `bw.STOP_ON_CLOSE`.
+    """
     if STOP_ON_CLOSE:
-        return (c.close <= level) if long else (c.close >= level)
+        return stop_hit_on_close(c.close, level, long)
     return _wick_hit(c, level, long)
 
 
@@ -598,12 +604,8 @@ def simulate_day(symbol: str, day_iso: str, candles: List[Candle],
             # Check stop (using runner_stop if BE taken). T4(a): a wick through
             # the level is not a stop-out — the CANDLE HAS TO CLOSE beyond it.
             # The target is unchanged: a target order fills intrabar.
-            if t.be_taken:
-                stopped = _stop_hit(c, t.runner_stop, t.direction == "call")
-            elif t.direction == "call":
-                stopped = (c.close <= t.stop) if STOP_ON_CLOSE else _wick_hit(c, t.stop, True)
-            else:
-                stopped = (c.close >= t.stop) if STOP_ON_CLOSE else _wick_hit(c, t.stop, False)
+            lv = t.runner_stop if t.be_taken else t.stop
+            stopped = _stop_hit(c, lv, t.direction == "call")
             targeted = c.high >= t.target if t.direction == "call" else c.low <= t.target
             if stopped:  # both in one bar -> conservative: loss
                 t.outcome, t.exit_price, t.exit_idx = "loss", t.stop, i
