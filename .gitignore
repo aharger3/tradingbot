@@ -92,3 +92,8 @@ research/decks/**/*.html
 # `python research/g4_dropped_s.py`; the finding lives in research/g4_dropped_s.md,
 # which IS tracked.
 research/_g4_branches.json
+
+# G10 arm-event replay cache, regenerable with
+# `python research/g10_arming_funnel.py run`; the finding lives in
+# research/g10_arming_funnel.md, which IS tracked.
+research/_g10_arm_events.json
