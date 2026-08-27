@@ -78,7 +78,7 @@ CONFLUENCE_CAP = 0.20            # Austin 2026-08-24: confluence under 1 in 5
 
 # committed defaults, mirrored here so the sweep never mutates downgrade.py
 D = {
-    "STALE_BARS": 15,
+    "STALE_BARS": 10,        # ratified, ballot batch 02 b11
     "CHOP_TOUCHES": 2,
     "EXHAUSTED_ATR": 10.0,
     "DISP_BODY_MULT": 1.5,

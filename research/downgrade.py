@@ -39,14 +39,18 @@ THE THRESHOLDS ARE GUESSES AND ARE MARKED AS SUCH
 -------------------------------------------------
 Austin gave the variables, not the numbers. Every constant below carries a comment saying
 so. They are the first thing to tune once the measurement exists, and no result computed
-from them should be quoted as though the numbers came from him.
+from them should be quoted as though the numbers came from him -- except `STALE_BARS`,
+ratified in rule ballot batch 02 (`research/rule_ballot_batch02.jsonl`, 2026-08-27, b11).
+That one now carries a citation instead of a guess; the rest are still first guesses.
 """
 from __future__ import annotations
 
 # --- thresholds. AUSTIN HAS NOT SET ANY OF THESE. -------------------------
 # Each is a starting point chosen to be defensible, not fitted. Tune against the
 # 120 graded day-cards; do not present a number computed from these as his rule.
-STALE_BARS = 15          # bars between break and retest before the retest is stale
+STALE_BARS = 10          # bars between break and retest before the retest is stale.
+                         # Ratified: ballot batch 02, b11 ("1m always needs fast
+                         # happenstance, if you want a number ill say 10 right now").
 CHOP_TOUCHES = 2         # closes sitting ON the level before it counts as disrespected
 EXHAUSTED_ATR = 10.0     # move from the session open, in ATR, that counts as spent.
                          # 3.0 was the first guess and the selftest killed it: on
