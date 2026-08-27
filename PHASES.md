@@ -66,8 +66,9 @@ numbers on the eight variables, and it broke two things and added five.
 | **P19** | **Upgrade 2 — multi-level position confluence.** Price on the correct side of **≥5 of the 6 levels he watches**, with PA agreeing, = +1. `has_confluence` knows exactly one thing today (BR+OCR). First step is enumerating whether the engine tracks 6 levels at all — if it does not, that is the finding. | green | b5 |
 | **P20** | **The sequence gate.** A 2nd+ graded entry on a symbol cannot rank the same quality unless it is the 84% rule. Per symbol, no cross-symbol effect. **He contradicts himself on the cap** — c3 says max 2 S per symbol, c4 says max 3 and then ~0.8/day. Build the downgrade, build **no** cap, put the contradiction to him. | green→red | b2 c3 c4 |
 | **P21** | **Target availability gates the entry.** *"its about sizing for the mean 2rr, so if there are no other levels to target… harder to trade."* Is there a tracked level ≥2R away at entry? G7 and G9 both closed on *"the constraint is information at entry"* — **this is the first candidate for that information and it is the most valuable row on this board.** | amber | b4 |
-| **P22** | **The 11:00 boundary is manage-only.** No new entries after 11:00; the runner is a **10%** position. Almost certainly already true (book runs 09:35→10:59) — an audit, not a change. | green | c7 |
+| **P22** | ~~**The 11:00 boundary is manage-only**~~ **DONE 2026-08-27** (`8190951e`, `research/p22_1100_boundary.md`): the 11:00 half is clean — `ENTRY_CUTOFF` at `backtest_week.py:553,621`, zero entries at or after 11:00, latest 10:59. **The runner half is not.** See P24. | green | c7 |
 | **P23** | **Re-run P2's sweep on the corrected grader** after P15–P19, same hold-out, with a diff table against the committed version. | amber | — |
+| **P24** | **The shipped runner is 50%, Austin runs 10%.** `SCALE_PLAN="hod_then_runner_be"` splits 50% at the HOD / 50% runner (`backtest_week.py:475`). He says he manages *"a 10 percent position most of the time"*. The `30_30_30_10` policy that leaves 10% exists only in `research/exit_lab.py:378` — a reference module, not the backtest. So the book's runner carries **5x** the weight he actually holds, and G7/G9's "the exit is not the binding constraint" was measured on an exit he does not trade. Size the gap before re-opening the exit family. | amber → red | c7 |
 
 ## Block 4 — exits, the one direction still open — **closed**
 
@@ -90,7 +91,8 @@ numbers on the eight variables, and it broke two things and added five.
 | **R2** | Ratify or reject the S/A/C thresholds after P2. |
 | **R4** | `INCLUDE_SPY_IN_BACKTEST` — SPY is 30 of his 120 graded symbol-days and excluded from `CORE_SYMBOLS`. |
 | **R5** | **Max S trades per symbol: 2 or 3?** Ballot c3 says 2, c4 says 3 and then "cap at .8 s trades a day per symbol". P20 ships the downgrade and no cap until he picks. |
-| **R6** | **What is higher-timeframe bias?** He says it does not exist yet. It is currently the engine's biggest veto. P16 deletes it; he either defines it or confirms the deletion. |
+| **R6** | **What is higher-timeframe bias?** He says it does not exist yet. P16 measured it: the veto is blamed for 3,525 dropped S signals but lifting it frees only **60 (1.7%)** — mostly redundant, not mostly costly. Corpus verdict: the concept is CONFIRMED (his mentors teach HTF alignment), the SMA20-of-hourly formula is UNMENTIONED, his own ballot CONTRADICTS ownership. `HTF_BIAS_VETO` defaults ON so live behaviour is unchanged until he defines it or deletes it. |
+| **R7** | **Re-freeze the forward clock.** `signal_runner.py` and `omen_bot.py` both moved in P16, so the guard now refuses to score against the `40949c6a` manifest. The book has **0 trades booked**, so re-freezing voids nothing — but `freeze --force` is the documented VOID operation and does not get run without him saying so. One word: re-freeze. |
 
 ---
 
