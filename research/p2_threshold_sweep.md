@@ -25,21 +25,21 @@ The 120 cards are split **50/50, stratified by Austin's own grade**: within each
 
 Sweeping 45,175 signals x ~60 settings by calling `downgrade.score` each time is not affordable, so the grader is re-expressed here as *sufficient statistics* — one pass over bars yields the gap, the count, the ratio each variable is really testing, and every threshold then reduces to one comparison. `--selftest` checks that against `downgrade.score` on a random 400-signal sample and must come back with zero mismatches.
 
-Against the grades **stored** in `bt2y_trades.json`, the recomputation agrees on **44778 of 45175 (99.12%)**. The residual is level precision: the JSON stores `stop` rounded to the cent, and a level within a hair of `eps` can land either side of a comparison. Every row below is computed against this same recomputed baseline, so the residual cancels.
+Against the grades **stored** in `bt2y_trades.json`, the recomputation agrees on **44714 of 45175 (98.98%)**. The residual is level precision: the JSON stores `stop` rounded to the cent, and a level within a hair of `eps` can land either side of a comparison. Every row below is computed against this same recomputed baseline, so the residual cancels.
 
 ## Baseline — `downgrade.py` exactly as committed
 
 | setting | S recall | false fire | gate | agree | day S/A/C | day shape | sig S/A/C | confl |
 |---|---|---|---:|---|---|---:|---|---:|
-| all 120 cards | 12/28 = 0.429 | 30/61 = 0.492 | **-0.063** | 21/58 = 0.36 | 29/23/6 | 0.069 | 168/304/778 | 64.9% |
+| all 120 cards | 12/28 = 0.429 | 30/61 = 0.492 | **-0.063** | 20/58 = 0.34 | 29/22/7 | 0.086 | 166/303/781 | 64.9% |
 | TUNE | 7/14 = 0.500 | 14/30 = 0.467 | **+0.033** | 10/29 = 0.34 | 18/10/1 | 0.138 | 95/157/403 | 61.7% |
-| HOLD | 5/14 = 0.357 | 16/31 = 0.516 | **-0.159** | 11/29 = 0.38 | 11/13/5 | 0.121 | 73/147/375 | 68.4% |
+| HOLD | 5/14 = 0.357 | 16/31 = 0.516 | **-0.159** | 10/29 = 0.34 | 11/12/6 | 0.155 | 71/146/378 | 68.4% |
 
 | setting | S n | S win | S mean R | A mean R | C mean R | monotone |
 |---|---:|---:|---:|---:|---:|---|
-| current defaults | 129 | 66.7% | **+1.313R** | +1.010R | +0.865R | yes |
+| current defaults | 129 | 66.7% | **+1.313R** | +1.018R | +0.862R | yes |
 
-Over the traded book: S n=129 66.7% win +1.313R · A n=248 54.8% +1.010R · C n=639 49.5% +0.865R.
+Over the traded book: S n=129 66.7% win +1.313R · A n=247 55.1% +1.018R · C n=640 49.4% +0.862R.
 
 ## First finding: 168/304/778 was never comparable to 28/27/3
 
@@ -48,13 +48,13 @@ T66 put the grader's **per-signal** mix next to Austin's **per-day-card** mix an
 | mix | S | A | C | distance from 28/27/3 |
 |---|---:|---:|---:|---:|
 | Austin, per day-card | 28 | 27 | 3 | 0.000 |
-| grader, per day-card (best signal) | 29 | 23 | 6 | **0.069** |
-| grader, per signal (T66's number) | 168 | 304 | 778 | 0.571 |
+| grader, per day-card (best signal) | 29 | 22 | 7 | **0.086** |
+| grader, per signal (T66's number) | 166 | 303 | 781 | 0.573 |
 
 
-**The distribution objection dissolves.** Read in his own unit the grader is already at 29/23/6 against his 28/27/3 — distance **0.069**, not 0.571. T66's line "if the distribution above is nothing like that, the thresholds are wrong before anything else is" was comparing a per-signal histogram to a per-day one. The thresholds may still be wrong; the distribution is not the evidence.
+**The distribution objection dissolves.** Read in his own unit the grader is already at 29/22/7 against his 28/27/3 — distance **0.086**, not 0.571. T66's line "if the distribution above is nothing like that, the thresholds are wrong before anything else is" was comparing a per-signal histogram to a per-day one. The thresholds may still be wrong; the distribution is not the evidence.
 
-What does not agree is **which** days. Exact day-level agreement with his letter is **21/58 = 36%**, and S-day recall is **12/28**. The grader produces the right mix of letters and hands them to the wrong cards. That is a different failure from a mis-set threshold, and no threshold in this sweep fixes it.
+What does not agree is **which** days. Exact day-level agreement with his letter is **20/58 = 34%**, and S-day recall is **12/28**. The grader produces the right mix of letters and hands them to the wrong cards. That is a different failure from a mis-set threshold, and no threshold in this sweep fixes it.
 
 ## Does each variable fire, and does it separate money?
 
@@ -63,7 +63,7 @@ At the committed defaults. `mean R when tripped` vs `when clean` is over the 101
 | variable | trips on cards | trips on book | traded mean R tripped | clean | delta | max trips at ANY swept value |
 |---|---:|---:|---:|---:|---:|---:|
 | `no_displacement` | 604 (48.3%) | 21845 (48.4%) | +0.816R (n=576) | +1.142R (n=440) | -0.326R | 21845 |
-| `stale_retest` | 3 (0.2%) | 98 (0.2%) | -0.428R (n=2) | +0.960R (n=1014) | -1.388R | 98 |
+| `stale_retest` | 8 (0.6%) | 263 (0.6%) | -0.157R (n=10) | +0.968R (n=1006) | -1.125R | 263 |
 | `level_not_respected` | 853 (68.2%) | 28361 (62.8%) | +0.996R (n=638) | +0.892R (n=378) | +0.104R | 28361 |
 | `exhausted` | 140 (11.2%) | 5592 (12.4%) | +0.847R (n=53) | +0.963R (n=963) | -0.116R | 5592 |
 | `counter_trend_not_respected` | 1135 (90.8%) | 40415 (89.5%) | +0.924R (n=927) | +1.300R (n=89) | -0.376R | 40415 |
@@ -86,14 +86,14 @@ The mechanism is the same one `TASKS.md` records for the T4(b) entry-bar scratch
 | knob | swept | gate response | S-money response | verdict |
 |---|---|---|---|---|
 | `STALE_BARS` | 3 … 120 | cliff (span 0.016) | non-monotone (span 0.076R) | weak |
-| `CHOP_TOUCHES` | 1 … 12 | non-monotone (span 0.085) | non-monotone (span 0.588R) | live |
-| `EXHAUSTED_ATR` | 2.0 … 50.0 | non-monotone (span 0.177) | cliff (span 0.173R) | live |
-| `DISP_BODY_MULT` | 0.25 … 4.0 | non-monotone (span 0.286) | non-monotone (span 0.185R) | live |
+| `CHOP_TOUCHES` | 1 … 12 | non-monotone (span 0.085) | non-monotone (span 0.578R) | live |
+| `EXHAUSTED_ATR` | 2.0 … 50.0 | non-monotone (span 0.177) | non-monotone (span 0.217R) | live |
+| `DISP_BODY_MULT` | 0.25 … 4.0 | non-monotone (span 0.286) | non-monotone (span 0.231R) | live |
 | `REJECT_BARS` | 0 … 20 | dead (span 0.000) | dead (span 0.000R) | **dead knob** |
 | `UNRESPECTED_COUNTER` | 1 … 12 | non-monotone (span 0.171) | non-monotone (span 0.272R) | live |
 | `ATR_WINDOW` | 5 … 30 | non-monotone (span 0.124) | non-monotone (span 0.195R) | live |
 | `ocr_lookback` | 2 … 30 | non-monotone (span 0.061) | non-monotone (span 0.157R) | live |
-| `ocr_isolation` | none … both2 | non-monotone (span 0.077) | non-monotone (span 0.147R) | live |
+| `ocr_isolation` | none … both2 | non-monotone (span 0.077) | non-monotone (span 0.146R) | live |
 
 ### `STALE_BARS`
 
@@ -102,8 +102,8 @@ The mechanism is the same one `TASKS.md` records for the T4(b) entry-bar scratch
 | `STALE_BARS = 3` | 11/28 = 0.393 | 27/61 = 0.443 | **-0.050** | 20/58 = 0.34 | 26/23/9 | 0.103 | 134/298/818 | 64.9% |
 | `STALE_BARS = 5` | 12/28 = 0.429 | 29/61 = 0.475 | **-0.047** | 21/58 = 0.36 | 28/23/7 | 0.069 | 153/299/798 | 64.9% |
 | `STALE_BARS = 8` | 12/28 = 0.429 | 30/61 = 0.492 | **-0.063** | 21/58 = 0.36 | 28/23/7 | 0.069 | 163/302/785 | 64.9% |
-| `STALE_BARS = 10` | 12/28 = 0.429 | 30/61 = 0.492 | **-0.063** | 20/58 = 0.34 | 29/22/7 | 0.086 | 166/303/781 | 64.9% |
-| `STALE_BARS = 15`  *(current)* | 12/28 = 0.429 | 30/61 = 0.492 | **-0.063** | 21/58 = 0.36 | 29/23/6 | 0.069 | 168/304/778 | 64.9% |
+| `STALE_BARS = 10`  *(current)* | 12/28 = 0.429 | 30/61 = 0.492 | **-0.063** | 20/58 = 0.34 | 29/22/7 | 0.086 | 166/303/781 | 64.9% |
+| `STALE_BARS = 15` | 12/28 = 0.429 | 30/61 = 0.492 | **-0.063** | 21/58 = 0.36 | 29/23/6 | 0.069 | 168/304/778 | 64.9% |
 | `STALE_BARS = 20` | 12/28 = 0.429 | 30/61 = 0.492 | **-0.063** | 21/58 = 0.36 | 29/23/6 | 0.069 | 168/305/777 | 64.9% |
 | `STALE_BARS = 30` | 12/28 = 0.429 | 30/61 = 0.492 | **-0.063** | 21/58 = 0.36 | 29/23/6 | 0.069 | 168/306/776 | 64.9% |
 | `STALE_BARS = 60` | 12/28 = 0.429 | 30/61 = 0.492 | **-0.063** | 21/58 = 0.36 | 29/23/6 | 0.069 | 168/306/776 | 64.9% |
@@ -114,8 +114,8 @@ The mechanism is the same one `TASKS.md` records for the T4(b) entry-bar scratch
 | `STALE_BARS = 3` | 108 | 66.7% | **+1.258R** | +1.081R | +0.873R | yes |
 | `STALE_BARS = 5` | 122 | 67.2% | **+1.306R** | +1.108R | +0.841R | yes |
 | `STALE_BARS = 8` | 127 | 66.9% | **+1.333R** | +1.030R | +0.856R | yes |
-| `STALE_BARS = 10` | 129 | 66.7% | **+1.313R** | +1.018R | +0.862R | yes |
-| `STALE_BARS = 15`  *(current)* | 129 | 66.7% | **+1.313R** | +1.010R | +0.865R | yes |
+| `STALE_BARS = 10`  *(current)* | 129 | 66.7% | **+1.313R** | +1.018R | +0.862R | yes |
+| `STALE_BARS = 15` | 129 | 66.7% | **+1.313R** | +1.010R | +0.865R | yes |
 | `STALE_BARS = 20` | 129 | 66.7% | **+1.313R** | +1.010R | +0.865R | yes |
 | `STALE_BARS = 30` | 129 | 66.7% | **+1.313R** | +1.006R | +0.866R | yes |
 | `STALE_BARS = 60` | 129 | 66.7% | **+1.313R** | +1.006R | +0.866R | yes |
@@ -125,103 +125,103 @@ The mechanism is the same one `TASKS.md` records for the T4(b) entry-bar scratch
 
 | setting | S recall | false fire | gate | agree | day S/A/C | day shape | sig S/A/C | confl |
 |---|---|---|---:|---|---|---:|---|---:|
-| `CHOP_TOUCHES = 1` | 7/28 = 0.250 | 19/61 = 0.311 | **-0.061** | 22/58 = 0.38 | 16/30/12 | 0.207 | 80/315/855 | 64.9% |
-| `CHOP_TOUCHES = 2`  *(current)* | 12/28 = 0.429 | 30/61 = 0.492 | **-0.063** | 21/58 = 0.36 | 29/23/6 | 0.069 | 168/304/778 | 64.9% |
-| `CHOP_TOUCHES = 3` | 14/28 = 0.500 | 38/61 = 0.623 | **-0.123** | 22/58 = 0.38 | 35/20/3 | 0.121 | 239/342/669 | 64.9% |
-| `CHOP_TOUCHES = 4` | 16/28 = 0.571 | 43/61 = 0.705 | **-0.133** | 22/58 = 0.38 | 39/16/3 | 0.190 | 320/376/554 | 64.9% |
-| `CHOP_TOUCHES = 5` | 17/28 = 0.607 | 46/61 = 0.754 | **-0.147** | 22/58 = 0.38 | 41/14/3 | 0.224 | 360/380/510 | 64.9% |
-| `CHOP_TOUCHES = 6` | 18/28 = 0.643 | 46/61 = 0.754 | **-0.111** | 23/58 = 0.40 | 42/13/3 | 0.241 | 371/401/478 | 64.9% |
-| `CHOP_TOUCHES = 8` | 18/28 = 0.643 | 46/61 = 0.754 | **-0.111** | 23/58 = 0.40 | 42/13/3 | 0.241 | 372/410/468 | 64.9% |
-| `CHOP_TOUCHES = 12` | 18/28 = 0.643 | 46/61 = 0.754 | **-0.111** | 23/58 = 0.40 | 42/13/3 | 0.241 | 372/411/467 | 64.9% |
+| `CHOP_TOUCHES = 1` | 7/28 = 0.250 | 19/61 = 0.311 | **-0.061** | 21/58 = 0.36 | 16/29/13 | 0.207 | 78/314/858 | 64.9% |
+| `CHOP_TOUCHES = 2`  *(current)* | 12/28 = 0.429 | 30/61 = 0.492 | **-0.063** | 20/58 = 0.34 | 29/22/7 | 0.086 | 166/303/781 | 64.9% |
+| `CHOP_TOUCHES = 3` | 14/28 = 0.500 | 38/61 = 0.623 | **-0.123** | 22/58 = 0.38 | 35/20/3 | 0.121 | 236/343/671 | 64.9% |
+| `CHOP_TOUCHES = 4` | 16/28 = 0.571 | 43/61 = 0.705 | **-0.133** | 22/58 = 0.38 | 39/16/3 | 0.190 | 316/379/555 | 64.9% |
+| `CHOP_TOUCHES = 5` | 17/28 = 0.607 | 46/61 = 0.754 | **-0.147** | 22/58 = 0.38 | 41/14/3 | 0.224 | 356/383/511 | 64.9% |
+| `CHOP_TOUCHES = 6` | 18/28 = 0.643 | 46/61 = 0.754 | **-0.111** | 23/58 = 0.40 | 42/13/3 | 0.241 | 367/404/479 | 64.9% |
+| `CHOP_TOUCHES = 8` | 18/28 = 0.643 | 46/61 = 0.754 | **-0.111** | 23/58 = 0.40 | 42/13/3 | 0.241 | 368/413/469 | 64.9% |
+| `CHOP_TOUCHES = 12` | 18/28 = 0.643 | 46/61 = 0.754 | **-0.111** | 23/58 = 0.40 | 42/13/3 | 0.241 | 368/414/468 | 64.9% |
 
 | setting | S n | S win | S mean R | A mean R | C mean R | monotone |
 |---|---:|---:|---:|---:|---:|---|
-| `CHOP_TOUCHES = 1` | 68 | 73.5% | **+1.651R** | +0.958R | +0.891R | yes |
-| `CHOP_TOUCHES = 2`  *(current)* | 129 | 66.7% | **+1.313R** | +1.010R | +0.865R | yes |
-| `CHOP_TOUCHES = 3` | 202 | 58.4% | **+1.063R** | +0.968R | +0.914R | yes |
-| `CHOP_TOUCHES = 4` | 252 | 58.3% | **+1.083R** | +0.901R | +0.924R | win only |
-| `CHOP_TOUCHES = 5` | 266 | 58.6% | **+1.105R** | +0.956R | +0.869R | yes |
-| `CHOP_TOUCHES = 6` | 274 | 59.5% | **+1.155R** | +0.975R | +0.810R | yes |
-| `CHOP_TOUCHES = 8` | 277 | 59.6% | **+1.165R** | +0.985R | +0.784R | yes |
-| `CHOP_TOUCHES = 12` | 277 | 59.6% | **+1.165R** | +0.985R | +0.784R | yes |
+| `CHOP_TOUCHES = 1` | 68 | 73.5% | **+1.651R** | +0.967R | +0.888R | yes |
+| `CHOP_TOUCHES = 2`  *(current)* | 129 | 66.7% | **+1.313R** | +1.018R | +0.862R | yes |
+| `CHOP_TOUCHES = 3` | 201 | 58.7% | **+1.073R** | +0.960R | +0.914R | yes |
+| `CHOP_TOUCHES = 4` | 251 | 58.6% | **+1.091R** | +0.895R | +0.924R | win only |
+| `CHOP_TOUCHES = 5` | 265 | 58.9% | **+1.112R** | +0.950R | +0.869R | yes |
+| `CHOP_TOUCHES = 6` | 273 | 59.7% | **+1.163R** | +0.969R | +0.810R | yes |
+| `CHOP_TOUCHES = 8` | 276 | 59.8% | **+1.173R** | +0.980R | +0.784R | yes |
+| `CHOP_TOUCHES = 12` | 276 | 59.8% | **+1.173R** | +0.980R | +0.784R | yes |
 
 ### `EXHAUSTED_ATR`
 
 | setting | S recall | false fire | gate | agree | day S/A/C | day shape | sig S/A/C | confl |
 |---|---|---|---:|---|---|---:|---|---:|
-| `EXHAUSTED_ATR = 2.0` | 7/28 = 0.250 | 13/61 = 0.213 | **+0.037** | 18/58 = 0.31 | 17/24/17 | 0.241 | 66/178/1006 | 64.9% |
-| `EXHAUSTED_ATR = 3.0` | 11/28 = 0.393 | 17/61 = 0.279 | **+0.114** | 26/58 = 0.45 | 21/25/12 | 0.155 | 89/212/949 | 64.9% |
-| `EXHAUSTED_ATR = 5.0` | 12/28 = 0.429 | 22/61 = 0.361 | **+0.068** | 27/58 = 0.47 | 24/25/9 | 0.103 | 120/271/859 | 64.9% |
-| `EXHAUSTED_ATR = 8.0` | 12/28 = 0.429 | 28/61 = 0.459 | **-0.030** | 23/58 = 0.40 | 27/25/6 | 0.052 | 148/308/794 | 64.9% |
-| `EXHAUSTED_ATR = 10.0`  *(current)* | 12/28 = 0.429 | 30/61 = 0.492 | **-0.063** | 21/58 = 0.36 | 29/23/6 | 0.069 | 168/304/778 | 64.9% |
-| `EXHAUSTED_ATR = 15.0` | 16/28 = 0.571 | 31/61 = 0.508 | **+0.063** | 23/58 = 0.40 | 35/18/5 | 0.155 | 182/317/751 | 64.9% |
-| `EXHAUSTED_ATR = 20.0` | 17/28 = 0.607 | 31/61 = 0.508 | **+0.099** | 24/58 = 0.41 | 36/17/5 | 0.172 | 186/321/743 | 64.9% |
-| `EXHAUSTED_ATR = 30.0` | 17/28 = 0.607 | 31/61 = 0.508 | **+0.099** | 24/58 = 0.41 | 36/18/4 | 0.155 | 186/322/742 | 64.9% |
-| `EXHAUSTED_ATR = 50.0` | 17/28 = 0.607 | 31/61 = 0.508 | **+0.099** | 24/58 = 0.41 | 36/18/4 | 0.155 | 186/322/742 | 64.9% |
+| `EXHAUSTED_ATR = 2.0` | 7/28 = 0.250 | 13/61 = 0.213 | **+0.037** | 17/58 = 0.29 | 17/23/18 | 0.259 | 66/175/1009 | 64.9% |
+| `EXHAUSTED_ATR = 3.0` | 11/28 = 0.393 | 17/61 = 0.279 | **+0.114** | 25/58 = 0.43 | 21/24/13 | 0.172 | 88/211/951 | 64.9% |
+| `EXHAUSTED_ATR = 5.0` | 12/28 = 0.429 | 22/61 = 0.361 | **+0.068** | 26/58 = 0.45 | 24/24/10 | 0.121 | 119/270/861 | 64.9% |
+| `EXHAUSTED_ATR = 8.0` | 12/28 = 0.429 | 28/61 = 0.459 | **-0.030** | 22/58 = 0.38 | 27/24/7 | 0.069 | 146/307/797 | 64.9% |
+| `EXHAUSTED_ATR = 10.0`  *(current)* | 12/28 = 0.429 | 30/61 = 0.492 | **-0.063** | 20/58 = 0.34 | 29/22/7 | 0.086 | 166/303/781 | 64.9% |
+| `EXHAUSTED_ATR = 15.0` | 16/28 = 0.571 | 31/61 = 0.508 | **+0.063** | 22/58 = 0.38 | 35/17/6 | 0.172 | 180/316/754 | 64.9% |
+| `EXHAUSTED_ATR = 20.0` | 17/28 = 0.607 | 31/61 = 0.508 | **+0.099** | 23/58 = 0.40 | 36/16/6 | 0.190 | 184/320/746 | 64.9% |
+| `EXHAUSTED_ATR = 30.0` | 17/28 = 0.607 | 31/61 = 0.508 | **+0.099** | 23/58 = 0.40 | 36/17/5 | 0.172 | 184/321/745 | 64.9% |
+| `EXHAUSTED_ATR = 50.0` | 17/28 = 0.607 | 31/61 = 0.508 | **+0.099** | 23/58 = 0.40 | 36/17/5 | 0.172 | 184/321/745 | 64.9% |
 
 | setting | S n | S win | S mean R | A mean R | C mean R | monotone |
 |---|---:|---:|---:|---:|---:|---|
-| `EXHAUSTED_ATR = 2.0` | 50 | 74.0% | **+1.438R** | +1.020R | +0.911R | yes |
-| `EXHAUSTED_ATR = 3.0` | 72 | 72.2% | **+1.421R** | +1.033R | +0.889R | yes |
-| `EXHAUSTED_ATR = 5.0` | 99 | 68.7% | **+1.380R** | +0.999R | +0.882R | yes |
-| `EXHAUSTED_ATR = 8.0` | 119 | 69.7% | **+1.444R** | +0.959R | +0.867R | yes |
-| `EXHAUSTED_ATR = 10.0`  *(current)* | 129 | 66.7% | **+1.313R** | +1.010R | +0.865R | yes |
-| `EXHAUSTED_ATR = 15.0` | 134 | 65.7% | **+1.271R** | +1.045R | +0.855R | yes |
-| `EXHAUSTED_ATR = 20.0` | 134 | 65.7% | **+1.271R** | +1.053R | +0.851R | yes |
-| `EXHAUSTED_ATR = 30.0` | 134 | 65.7% | **+1.271R** | +1.077R | +0.841R | yes |
-| `EXHAUSTED_ATR = 50.0` | 134 | 65.7% | **+1.271R** | +1.077R | +0.841R | yes |
+| `EXHAUSTED_ATR = 2.0` | 49 | 75.5% | **+1.487R** | +1.020R | +0.909R | yes |
+| `EXHAUSTED_ATR = 3.0` | 71 | 73.2% | **+1.455R** | +1.033R | +0.887R | yes |
+| `EXHAUSTED_ATR = 5.0` | 99 | 68.7% | **+1.380R** | +1.008R | +0.879R | yes |
+| `EXHAUSTED_ATR = 8.0` | 119 | 69.7% | **+1.444R** | +0.967R | +0.864R | yes |
+| `EXHAUSTED_ATR = 10.0`  *(current)* | 129 | 66.7% | **+1.313R** | +1.018R | +0.862R | yes |
+| `EXHAUSTED_ATR = 15.0` | 134 | 65.7% | **+1.271R** | +1.053R | +0.852R | yes |
+| `EXHAUSTED_ATR = 20.0` | 134 | 65.7% | **+1.271R** | +1.061R | +0.848R | yes |
+| `EXHAUSTED_ATR = 30.0` | 134 | 65.7% | **+1.271R** | +1.085R | +0.838R | yes |
+| `EXHAUSTED_ATR = 50.0` | 134 | 65.7% | **+1.271R** | +1.085R | +0.838R | yes |
 
 ### `DISP_BODY_MULT`
 
 | setting | S recall | false fire | gate | agree | day S/A/C | day shape | sig S/A/C | confl |
 |---|---|---|---:|---|---|---:|---|---:|
-| `DISP_BODY_MULT = 0.25` | 18/28 = 0.643 | 41/61 = 0.672 | **-0.029** | 25/58 = 0.43 | 40/15/3 | 0.207 | 259/445/546 | 64.9% |
-| `DISP_BODY_MULT = 0.5` | 17/28 = 0.607 | 41/61 = 0.672 | **-0.065** | 24/58 = 0.41 | 39/16/3 | 0.190 | 251/428/571 | 64.9% |
-| `DISP_BODY_MULT = 0.75` | 17/28 = 0.607 | 39/61 = 0.639 | **-0.032** | 24/58 = 0.41 | 39/16/3 | 0.190 | 244/402/604 | 64.9% |
-| `DISP_BODY_MULT = 1.0` | 15/28 = 0.536 | 38/61 = 0.623 | **-0.087** | 21/58 = 0.36 | 37/17/4 | 0.172 | 235/362/653 | 64.9% |
-| `DISP_BODY_MULT = 1.25` | 14/28 = 0.500 | 37/61 = 0.607 | **-0.107** | 21/58 = 0.36 | 35/18/5 | 0.155 | 203/347/700 | 64.9% |
-| `DISP_BODY_MULT = 1.5`  *(current)* | 12/28 = 0.429 | 30/61 = 0.492 | **-0.063** | 21/58 = 0.36 | 29/23/6 | 0.069 | 168/304/778 | 64.9% |
-| `DISP_BODY_MULT = 2.0` | 11/28 = 0.393 | 27/61 = 0.443 | **-0.050** | 22/58 = 0.38 | 25/26/7 | 0.069 | 131/254/865 | 64.9% |
-| `DISP_BODY_MULT = 2.5` | 11/28 = 0.393 | 18/61 = 0.295 | **+0.098** | 23/58 = 0.40 | 24/26/8 | 0.086 | 91/254/905 | 64.9% |
-| `DISP_BODY_MULT = 3.0` | 11/28 = 0.393 | 13/61 = 0.213 | **+0.180** | 26/58 = 0.45 | 20/27/11 | 0.138 | 66/237/947 | 64.9% |
-| `DISP_BODY_MULT = 4.0` | 9/28 = 0.321 | 11/61 = 0.180 | **+0.141** | 23/58 = 0.40 | 16/27/15 | 0.207 | 54/222/974 | 64.9% |
+| `DISP_BODY_MULT = 0.25` | 18/28 = 0.643 | 41/61 = 0.672 | **-0.029** | 26/58 = 0.45 | 39/16/3 | 0.190 | 256/446/548 | 64.9% |
+| `DISP_BODY_MULT = 0.5` | 17/28 = 0.607 | 41/61 = 0.672 | **-0.065** | 25/58 = 0.43 | 38/17/3 | 0.172 | 248/429/573 | 64.9% |
+| `DISP_BODY_MULT = 0.75` | 17/28 = 0.607 | 39/61 = 0.639 | **-0.032** | 25/58 = 0.43 | 38/17/3 | 0.172 | 241/403/606 | 64.9% |
+| `DISP_BODY_MULT = 1.0` | 15/28 = 0.536 | 38/61 = 0.623 | **-0.087** | 22/58 = 0.38 | 36/18/4 | 0.155 | 232/363/655 | 64.9% |
+| `DISP_BODY_MULT = 1.25` | 14/28 = 0.500 | 37/61 = 0.607 | **-0.107** | 22/58 = 0.38 | 34/19/5 | 0.138 | 200/348/702 | 64.9% |
+| `DISP_BODY_MULT = 1.5`  *(current)* | 12/28 = 0.429 | 30/61 = 0.492 | **-0.063** | 20/58 = 0.34 | 29/22/7 | 0.086 | 166/303/781 | 64.9% |
+| `DISP_BODY_MULT = 2.0` | 11/28 = 0.393 | 27/61 = 0.443 | **-0.050** | 21/58 = 0.36 | 25/25/8 | 0.086 | 129/253/868 | 64.9% |
+| `DISP_BODY_MULT = 2.5` | 11/28 = 0.393 | 18/61 = 0.295 | **+0.098** | 22/58 = 0.38 | 24/25/9 | 0.103 | 91/251/908 | 64.9% |
+| `DISP_BODY_MULT = 3.0` | 11/28 = 0.393 | 13/61 = 0.213 | **+0.180** | 25/58 = 0.43 | 20/26/12 | 0.155 | 66/234/950 | 64.9% |
+| `DISP_BODY_MULT = 4.0` | 9/28 = 0.321 | 11/61 = 0.180 | **+0.141** | 22/58 = 0.38 | 16/26/16 | 0.224 | 54/219/977 | 64.9% |
 
 | setting | S n | S win | S mean R | A mean R | C mean R | monotone |
 |---|---:|---:|---:|---:|---:|---|
-| `DISP_BODY_MULT = 0.25` | 208 | 65.4% | **+1.312R** | +0.896R | +0.840R | yes |
-| `DISP_BODY_MULT = 0.5` | 202 | 65.3% | **+1.308R** | +0.763R | +0.946R | **NO** |
-| `DISP_BODY_MULT = 0.75` | 189 | 66.1% | **+1.298R** | +0.821R | +0.914R | win only |
-| `DISP_BODY_MULT = 1.0` | 170 | 64.7% | **+1.248R** | +0.909R | +0.893R | yes |
-| `DISP_BODY_MULT = 1.25` | 153 | 64.7% | **+1.235R** | +0.947R | +0.891R | yes |
-| `DISP_BODY_MULT = 1.5`  *(current)* | 129 | 66.7% | **+1.313R** | +1.010R | +0.865R | yes |
-| `DISP_BODY_MULT = 2.0` | 91 | 68.1% | **+1.361R** | +1.025R | +0.884R | yes |
-| `DISP_BODY_MULT = 2.5` | 66 | 69.7% | **+1.291R** | +1.139R | +0.875R | yes |
-| `DISP_BODY_MULT = 3.0` | 53 | 75.5% | **+1.420R** | +1.160R | +0.872R | yes |
-| `DISP_BODY_MULT = 4.0` | 43 | 72.1% | **+1.364R** | +1.230R | +0.868R | yes |
+| `DISP_BODY_MULT = 0.25` | 208 | 65.4% | **+1.312R** | +0.901R | +0.836R | yes |
+| `DISP_BODY_MULT = 0.5` | 202 | 65.3% | **+1.308R** | +0.768R | +0.942R | **NO** |
+| `DISP_BODY_MULT = 0.75` | 189 | 66.1% | **+1.298R** | +0.826R | +0.910R | win only |
+| `DISP_BODY_MULT = 1.0` | 170 | 64.7% | **+1.248R** | +0.916R | +0.890R | yes |
+| `DISP_BODY_MULT = 1.25` | 153 | 64.7% | **+1.235R** | +0.954R | +0.888R | yes |
+| `DISP_BODY_MULT = 1.5`  *(current)* | 129 | 66.7% | **+1.313R** | +1.018R | +0.862R | yes |
+| `DISP_BODY_MULT = 2.0` | 91 | 68.1% | **+1.361R** | +1.034R | +0.881R | yes |
+| `DISP_BODY_MULT = 2.5` | 65 | 70.8% | **+1.327R** | +1.129R | +0.875R | yes |
+| `DISP_BODY_MULT = 3.0` | 52 | 76.9% | **+1.467R** | +1.149R | +0.872R | yes |
+| `DISP_BODY_MULT = 4.0` | 42 | 73.8% | **+1.420R** | +1.218R | +0.868R | yes |
 
 ### `REJECT_BARS`
 
 | setting | S recall | false fire | gate | agree | day S/A/C | day shape | sig S/A/C | confl |
 |---|---|---|---:|---|---|---:|---|---:|
-| `REJECT_BARS = 0` | 12/28 = 0.429 | 30/61 = 0.492 | **-0.063** | 21/58 = 0.36 | 29/23/6 | 0.069 | 168/304/778 | 64.9% |
-| `REJECT_BARS = 1` | 12/28 = 0.429 | 30/61 = 0.492 | **-0.063** | 21/58 = 0.36 | 29/23/6 | 0.069 | 168/304/778 | 64.9% |
-| `REJECT_BARS = 2`  *(current)* | 12/28 = 0.429 | 30/61 = 0.492 | **-0.063** | 21/58 = 0.36 | 29/23/6 | 0.069 | 168/304/778 | 64.9% |
-| `REJECT_BARS = 3` | 12/28 = 0.429 | 30/61 = 0.492 | **-0.063** | 21/58 = 0.36 | 29/23/6 | 0.069 | 168/304/778 | 64.9% |
-| `REJECT_BARS = 5` | 12/28 = 0.429 | 30/61 = 0.492 | **-0.063** | 21/58 = 0.36 | 29/23/6 | 0.069 | 168/304/778 | 64.9% |
-| `REJECT_BARS = 8` | 12/28 = 0.429 | 30/61 = 0.492 | **-0.063** | 21/58 = 0.36 | 29/23/6 | 0.069 | 168/304/778 | 64.9% |
-| `REJECT_BARS = 12` | 12/28 = 0.429 | 30/61 = 0.492 | **-0.063** | 21/58 = 0.36 | 29/23/6 | 0.069 | 168/304/778 | 64.9% |
-| `REJECT_BARS = 20` | 12/28 = 0.429 | 30/61 = 0.492 | **-0.063** | 21/58 = 0.36 | 29/23/6 | 0.069 | 168/304/778 | 64.9% |
+| `REJECT_BARS = 0` | 12/28 = 0.429 | 30/61 = 0.492 | **-0.063** | 20/58 = 0.34 | 29/22/7 | 0.086 | 166/303/781 | 64.9% |
+| `REJECT_BARS = 1` | 12/28 = 0.429 | 30/61 = 0.492 | **-0.063** | 20/58 = 0.34 | 29/22/7 | 0.086 | 166/303/781 | 64.9% |
+| `REJECT_BARS = 2`  *(current)* | 12/28 = 0.429 | 30/61 = 0.492 | **-0.063** | 20/58 = 0.34 | 29/22/7 | 0.086 | 166/303/781 | 64.9% |
+| `REJECT_BARS = 3` | 12/28 = 0.429 | 30/61 = 0.492 | **-0.063** | 20/58 = 0.34 | 29/22/7 | 0.086 | 166/303/781 | 64.9% |
+| `REJECT_BARS = 5` | 12/28 = 0.429 | 30/61 = 0.492 | **-0.063** | 20/58 = 0.34 | 29/22/7 | 0.086 | 166/303/781 | 64.9% |
+| `REJECT_BARS = 8` | 12/28 = 0.429 | 30/61 = 0.492 | **-0.063** | 20/58 = 0.34 | 29/22/7 | 0.086 | 166/303/781 | 64.9% |
+| `REJECT_BARS = 12` | 12/28 = 0.429 | 30/61 = 0.492 | **-0.063** | 20/58 = 0.34 | 29/22/7 | 0.086 | 166/303/781 | 64.9% |
+| `REJECT_BARS = 20` | 12/28 = 0.429 | 30/61 = 0.492 | **-0.063** | 20/58 = 0.34 | 29/22/7 | 0.086 | 166/303/781 | 64.9% |
 
 | setting | S n | S win | S mean R | A mean R | C mean R | monotone |
 |---|---:|---:|---:|---:|---:|---|
-| `REJECT_BARS = 0` | 129 | 66.7% | **+1.313R** | +1.010R | +0.865R | yes |
-| `REJECT_BARS = 1` | 129 | 66.7% | **+1.313R** | +1.010R | +0.865R | yes |
-| `REJECT_BARS = 2`  *(current)* | 129 | 66.7% | **+1.313R** | +1.010R | +0.865R | yes |
-| `REJECT_BARS = 3` | 129 | 66.7% | **+1.313R** | +1.010R | +0.865R | yes |
-| `REJECT_BARS = 5` | 129 | 66.7% | **+1.313R** | +1.010R | +0.865R | yes |
-| `REJECT_BARS = 8` | 129 | 66.7% | **+1.313R** | +1.010R | +0.865R | yes |
-| `REJECT_BARS = 12` | 129 | 66.7% | **+1.313R** | +1.010R | +0.865R | yes |
-| `REJECT_BARS = 20` | 129 | 66.7% | **+1.313R** | +1.010R | +0.865R | yes |
+| `REJECT_BARS = 0` | 129 | 66.7% | **+1.313R** | +1.018R | +0.862R | yes |
+| `REJECT_BARS = 1` | 129 | 66.7% | **+1.313R** | +1.018R | +0.862R | yes |
+| `REJECT_BARS = 2`  *(current)* | 129 | 66.7% | **+1.313R** | +1.018R | +0.862R | yes |
+| `REJECT_BARS = 3` | 129 | 66.7% | **+1.313R** | +1.018R | +0.862R | yes |
+| `REJECT_BARS = 5` | 129 | 66.7% | **+1.313R** | +1.018R | +0.862R | yes |
+| `REJECT_BARS = 8` | 129 | 66.7% | **+1.313R** | +1.018R | +0.862R | yes |
+| `REJECT_BARS = 12` | 129 | 66.7% | **+1.313R** | +1.018R | +0.862R | yes |
+| `REJECT_BARS = 20` | 129 | 66.7% | **+1.313R** | +1.018R | +0.862R | yes |
 
 **Dead over this range.** Every value yields an identical grade on every signal in both rigs. Either the variable never binds, or the swept range sits entirely on one side of where it does.
 
@@ -229,87 +229,87 @@ The mechanism is the same one `TASKS.md` records for the T4(b) entry-bar scratch
 
 | setting | S recall | false fire | gate | agree | day S/A/C | day shape | sig S/A/C | confl |
 |---|---|---|---:|---|---|---:|---|---:|
-| `UNRESPECTED_COUNTER = 1` | 10/28 = 0.357 | 29/61 = 0.475 | **-0.118** | 20/58 = 0.34 | 26/26/6 | 0.052 | 139/305/806 | 64.9% |
-| `UNRESPECTED_COUNTER = 2`  *(current)* | 12/28 = 0.429 | 30/61 = 0.492 | **-0.063** | 21/58 = 0.36 | 29/23/6 | 0.069 | 168/304/778 | 64.9% |
-| `UNRESPECTED_COUNTER = 3` | 14/28 = 0.500 | 38/61 = 0.623 | **-0.123** | 21/58 = 0.36 | 35/18/5 | 0.155 | 227/346/677 | 64.9% |
-| `UNRESPECTED_COUNTER = 4` | 22/28 = 0.786 | 45/61 = 0.738 | **+0.048** | 28/58 = 0.48 | 45/10/3 | 0.293 | 318/371/561 | 64.9% |
-| `UNRESPECTED_COUNTER = 5` | 24/28 = 0.857 | 50/61 = 0.820 | **+0.037** | 29/58 = 0.50 | 48/8/2 | 0.345 | 384/400/466 | 64.9% |
-| `UNRESPECTED_COUNTER = 6` | 24/28 = 0.857 | 50/61 = 0.820 | **+0.037** | 27/58 = 0.47 | 50/6/2 | 0.379 | 424/412/414 | 64.9% |
-| `UNRESPECTED_COUNTER = 8` | 24/28 = 0.857 | 50/61 = 0.820 | **+0.037** | 27/58 = 0.47 | 50/6/2 | 0.379 | 436/419/395 | 64.9% |
-| `UNRESPECTED_COUNTER = 12` | 24/28 = 0.857 | 50/61 = 0.820 | **+0.037** | 27/58 = 0.47 | 50/6/2 | 0.379 | 436/423/391 | 64.9% |
+| `UNRESPECTED_COUNTER = 1` | 10/28 = 0.357 | 29/61 = 0.475 | **-0.118** | 19/58 = 0.33 | 26/25/7 | 0.069 | 137/304/809 | 64.9% |
+| `UNRESPECTED_COUNTER = 2`  *(current)* | 12/28 = 0.429 | 30/61 = 0.492 | **-0.063** | 20/58 = 0.34 | 29/22/7 | 0.086 | 166/303/781 | 64.9% |
+| `UNRESPECTED_COUNTER = 3` | 14/28 = 0.500 | 38/61 = 0.623 | **-0.123** | 21/58 = 0.36 | 35/18/5 | 0.155 | 225/345/680 | 64.9% |
+| `UNRESPECTED_COUNTER = 4` | 22/28 = 0.786 | 45/61 = 0.738 | **+0.048** | 28/58 = 0.48 | 45/10/3 | 0.293 | 316/370/564 | 64.9% |
+| `UNRESPECTED_COUNTER = 5` | 24/28 = 0.857 | 50/61 = 0.820 | **+0.037** | 29/58 = 0.50 | 48/8/2 | 0.345 | 382/399/469 | 64.9% |
+| `UNRESPECTED_COUNTER = 6` | 24/28 = 0.857 | 50/61 = 0.820 | **+0.037** | 28/58 = 0.48 | 49/7/2 | 0.362 | 421/414/415 | 64.9% |
+| `UNRESPECTED_COUNTER = 8` | 24/28 = 0.857 | 50/61 = 0.820 | **+0.037** | 28/58 = 0.48 | 49/7/2 | 0.362 | 433/422/395 | 64.9% |
+| `UNRESPECTED_COUNTER = 12` | 24/28 = 0.857 | 50/61 = 0.820 | **+0.037** | 28/58 = 0.48 | 49/7/2 | 0.362 | 433/426/391 | 64.9% |
 
 | setting | S n | S win | S mean R | A mean R | C mean R | monotone |
 |---|---:|---:|---:|---:|---:|---|
-| `UNRESPECTED_COUNTER = 1` | 107 | 66.4% | **+1.283R** | +0.982R | +0.896R | yes |
-| `UNRESPECTED_COUNTER = 2`  *(current)* | 129 | 66.7% | **+1.313R** | +1.010R | +0.865R | yes |
-| `UNRESPECTED_COUNTER = 3` | 174 | 66.1% | **+1.340R** | +1.008R | +0.816R | yes |
-| `UNRESPECTED_COUNTER = 4` | 245 | 59.2% | **+1.130R** | +1.081R | +0.782R | yes |
-| `UNRESPECTED_COUNTER = 5` | 305 | 58.0% | **+1.068R** | +1.123R | +0.722R | win only |
-| `UNRESPECTED_COUNTER = 6` | 328 | 57.9% | **+1.092R** | +1.026R | +0.753R | yes |
-| `UNRESPECTED_COUNTER = 8` | 344 | 57.3% | **+1.076R** | +0.962R | +0.821R | yes |
-| `UNRESPECTED_COUNTER = 12` | 344 | 57.3% | **+1.076R** | +0.955R | +0.829R | yes |
+| `UNRESPECTED_COUNTER = 1` | 106 | 67.0% | **+1.305R** | +0.982R | +0.893R | yes |
+| `UNRESPECTED_COUNTER = 2`  *(current)* | 129 | 66.7% | **+1.313R** | +1.018R | +0.862R | yes |
+| `UNRESPECTED_COUNTER = 3` | 174 | 66.1% | **+1.340R** | +1.016R | +0.813R | yes |
+| `UNRESPECTED_COUNTER = 4` | 245 | 59.2% | **+1.130R** | +1.088R | +0.778R | yes |
+| `UNRESPECTED_COUNTER = 5` | 305 | 58.0% | **+1.068R** | +1.128R | +0.720R | win only |
+| `UNRESPECTED_COUNTER = 6` | 327 | 58.1% | **+1.098R** | +1.016R | +0.760R | yes |
+| `UNRESPECTED_COUNTER = 8` | 343 | 57.4% | **+1.082R** | +0.952R | +0.827R | yes |
+| `UNRESPECTED_COUNTER = 12` | 343 | 57.4% | **+1.082R** | +0.944R | +0.835R | yes |
 
 ### `ATR_WINDOW`
 
 | setting | S recall | false fire | gate | agree | day S/A/C | day shape | sig S/A/C | confl |
 |---|---|---|---:|---|---|---:|---|---:|
-| `ATR_WINDOW = 5` | 12/28 = 0.429 | 31/61 = 0.508 | **-0.080** | 20/58 = 0.34 | 30/22/6 | 0.086 | 172/310/768 | 64.9% |
-| `ATR_WINDOW = 7` | 12/28 = 0.429 | 32/61 = 0.525 | **-0.096** | 22/58 = 0.38 | 28/24/6 | 0.052 | 174/303/773 | 64.9% |
-| `ATR_WINDOW = 10` | 12/28 = 0.429 | 31/61 = 0.508 | **-0.080** | 21/58 = 0.36 | 29/23/6 | 0.069 | 172/293/785 | 64.9% |
-| `ATR_WINDOW = 14`  *(current)* | 12/28 = 0.429 | 30/61 = 0.492 | **-0.063** | 21/58 = 0.36 | 29/23/6 | 0.069 | 168/304/778 | 64.9% |
-| `ATR_WINDOW = 21` | 11/28 = 0.393 | 30/61 = 0.492 | **-0.099** | 20/58 = 0.34 | 28/23/7 | 0.069 | 168/292/790 | 64.9% |
-| `ATR_WINDOW = 30` | 14/28 = 0.500 | 29/61 = 0.475 | **+0.025** | 23/58 = 0.40 | 31/20/7 | 0.121 | 163/296/791 | 64.9% |
+| `ATR_WINDOW = 5` | 12/28 = 0.429 | 31/61 = 0.508 | **-0.080** | 20/58 = 0.34 | 30/22/6 | 0.086 | 170/310/770 | 64.9% |
+| `ATR_WINDOW = 7` | 12/28 = 0.429 | 32/61 = 0.525 | **-0.096** | 22/58 = 0.38 | 28/24/6 | 0.052 | 171/305/774 | 64.9% |
+| `ATR_WINDOW = 10` | 12/28 = 0.429 | 31/61 = 0.508 | **-0.080** | 21/58 = 0.36 | 29/23/6 | 0.069 | 169/295/786 | 64.9% |
+| `ATR_WINDOW = 14`  *(current)* | 12/28 = 0.429 | 30/61 = 0.492 | **-0.063** | 20/58 = 0.34 | 29/22/7 | 0.086 | 166/303/781 | 64.9% |
+| `ATR_WINDOW = 21` | 11/28 = 0.393 | 30/61 = 0.492 | **-0.099** | 20/58 = 0.34 | 28/23/7 | 0.069 | 165/294/791 | 64.9% |
+| `ATR_WINDOW = 30` | 14/28 = 0.500 | 29/61 = 0.475 | **+0.025** | 23/58 = 0.40 | 31/20/7 | 0.121 | 161/296/793 | 64.9% |
 
 | setting | S n | S win | S mean R | A mean R | C mean R | monotone |
 |---|---:|---:|---:|---:|---:|---|
-| `ATR_WINDOW = 5` | 135 | 63.7% | **+1.160R** | +1.112R | +0.849R | yes |
-| `ATR_WINDOW = 7` | 139 | 63.3% | **+1.152R** | +1.091R | +0.861R | yes |
-| `ATR_WINDOW = 10` | 132 | 64.4% | **+1.164R** | +1.073R | +0.866R | yes |
-| `ATR_WINDOW = 14`  *(current)* | 129 | 66.7% | **+1.313R** | +1.010R | +0.865R | yes |
-| `ATR_WINDOW = 21` | 128 | 66.4% | **+1.283R** | +1.012R | +0.872R | yes |
-| `ATR_WINDOW = 30` | 127 | 67.7% | **+1.347R** | +0.958R | +0.881R | yes |
+| `ATR_WINDOW = 5` | 135 | 63.7% | **+1.160R** | +1.120R | +0.847R | yes |
+| `ATR_WINDOW = 7` | 139 | 63.3% | **+1.152R** | +1.100R | +0.858R | yes |
+| `ATR_WINDOW = 10` | 132 | 64.4% | **+1.164R** | +1.081R | +0.863R | yes |
+| `ATR_WINDOW = 14`  *(current)* | 129 | 66.7% | **+1.313R** | +1.018R | +0.862R | yes |
+| `ATR_WINDOW = 21` | 128 | 66.4% | **+1.283R** | +1.020R | +0.869R | yes |
+| `ATR_WINDOW = 30` | 127 | 67.7% | **+1.347R** | +0.966R | +0.878R | yes |
 
 ### `ocr_lookback`
 
 | setting | S recall | false fire | gate | agree | day S/A/C | day shape | sig S/A/C | confl |
 |---|---|---|---:|---|---|---:|---|---:|
-| `ocr_lookback = 2` | 8/28 = 0.286 | 24/61 = 0.393 | **-0.108** | 20/58 = 0.34 | 19/25/14 | 0.190 | 88/250/912 | 25.1% |
-| `ocr_lookback = 3` | 10/28 = 0.357 | 26/61 = 0.426 | **-0.069** | 21/58 = 0.36 | 23/24/11 | 0.138 | 105/264/881 | 32.8% |
-| `ocr_lookback = 5` | 11/28 = 0.393 | 28/61 = 0.459 | **-0.066** | 21/58 = 0.36 | 25/23/10 | 0.121 | 130/269/851 | 42.9% |
-| `ocr_lookback = 8` | 11/28 = 0.393 | 29/61 = 0.475 | **-0.083** | 21/58 = 0.36 | 26/24/8 | 0.086 | 144/296/810 | 53.6% |
-| `ocr_lookback = 10` | 12/28 = 0.429 | 29/61 = 0.475 | **-0.047** | 22/58 = 0.38 | 28/23/7 | 0.069 | 152/304/794 | 57.8% |
-| `ocr_lookback = 15` | 12/28 = 0.429 | 30/61 = 0.492 | **-0.063** | 21/58 = 0.36 | 29/23/6 | 0.069 | 168/302/780 | 63.4% |
-| `ocr_lookback = 20`  *(current)* | 12/28 = 0.429 | 30/61 = 0.492 | **-0.063** | 21/58 = 0.36 | 29/23/6 | 0.069 | 168/304/778 | 64.9% |
-| `ocr_lookback = 30` | 12/28 = 0.429 | 31/61 = 0.508 | **-0.080** | 21/58 = 0.36 | 29/23/6 | 0.069 | 173/304/773 | 66.7% |
+| `ocr_lookback = 2` | 8/28 = 0.286 | 24/61 = 0.393 | **-0.108** | 19/58 = 0.33 | 19/24/15 | 0.207 | 88/246/916 | 25.1% |
+| `ocr_lookback = 3` | 10/28 = 0.357 | 26/61 = 0.426 | **-0.069** | 20/58 = 0.34 | 23/23/12 | 0.155 | 105/259/886 | 32.8% |
+| `ocr_lookback = 5` | 11/28 = 0.393 | 28/61 = 0.459 | **-0.066** | 20/58 = 0.34 | 25/22/11 | 0.138 | 129/266/855 | 42.9% |
+| `ocr_lookback = 8` | 11/28 = 0.393 | 29/61 = 0.475 | **-0.083** | 20/58 = 0.34 | 26/23/9 | 0.103 | 143/293/814 | 53.6% |
+| `ocr_lookback = 10` | 12/28 = 0.429 | 29/61 = 0.475 | **-0.047** | 21/58 = 0.36 | 28/22/8 | 0.086 | 151/301/798 | 57.8% |
+| `ocr_lookback = 15` | 12/28 = 0.429 | 30/61 = 0.492 | **-0.063** | 20/58 = 0.34 | 29/22/7 | 0.086 | 166/301/783 | 63.4% |
+| `ocr_lookback = 20`  *(current)* | 12/28 = 0.429 | 30/61 = 0.492 | **-0.063** | 20/58 = 0.34 | 29/22/7 | 0.086 | 166/303/781 | 64.9% |
+| `ocr_lookback = 30` | 12/28 = 0.429 | 31/61 = 0.508 | **-0.080** | 20/58 = 0.34 | 29/22/7 | 0.086 | 171/303/776 | 66.7% |
 
 | setting | S n | S win | S mean R | A mean R | C mean R | monotone |
 |---|---:|---:|---:|---:|---:|---|
-| `ocr_lookback = 2` | 80 | 70.0% | **+1.202R** | +1.117R | +0.874R | yes |
-| `ocr_lookback = 3` | 82 | 69.5% | **+1.192R** | +1.101R | +0.877R | yes |
-| `ocr_lookback = 5` | 87 | 71.3% | **+1.231R** | +0.998R | +0.908R | yes |
-| `ocr_lookback = 8` | 106 | 69.8% | **+1.306R** | +1.039R | +0.872R | yes |
-| `ocr_lookback = 10` | 115 | 69.6% | **+1.349R** | +1.019R | +0.863R | yes |
-| `ocr_lookback = 15` | 127 | 66.1% | **+1.268R** | +1.049R | +0.858R | yes |
-| `ocr_lookback = 20`  *(current)* | 129 | 66.7% | **+1.313R** | +1.010R | +0.865R | yes |
-| `ocr_lookback = 30` | 131 | 66.4% | **+1.296R** | +1.010R | +0.867R | yes |
+| `ocr_lookback = 2` | 80 | 70.0% | **+1.202R** | +1.120R | +0.874R | yes |
+| `ocr_lookback = 3` | 82 | 69.5% | **+1.192R** | +1.104R | +0.878R | yes |
+| `ocr_lookback = 5` | 87 | 71.3% | **+1.231R** | +0.999R | +0.908R | yes |
+| `ocr_lookback = 8` | 106 | 69.8% | **+1.306R** | +1.042R | +0.871R | yes |
+| `ocr_lookback = 10` | 115 | 69.6% | **+1.349R** | +1.021R | +0.863R | yes |
+| `ocr_lookback = 15` | 127 | 66.1% | **+1.268R** | +1.053R | +0.857R | yes |
+| `ocr_lookback = 20`  *(current)* | 129 | 66.7% | **+1.313R** | +1.018R | +0.862R | yes |
+| `ocr_lookback = 30` | 131 | 66.4% | **+1.296R** | +1.018R | +0.864R | yes |
 
 ### `ocr_isolation`
 
 | setting | S recall | false fire | gate | agree | day S/A/C | day shape | sig S/A/C | confl |
 |---|---|---|---:|---|---|---:|---|---:|
-| `ocr_isolation = none` | 14/28 = 0.500 | 31/61 = 0.508 | **-0.008** | 25/58 = 0.43 | 29/23/6 | 0.069 | 195/380/675 | 84.3% |
-| `ocr_isolation = left` | 10/28 = 0.357 | 27/61 = 0.443 | **-0.085** | 17/58 = 0.29 | 23/20/15 | 0.207 | 130/211/909 | 47.6% |
-| `ocr_isolation = right` | 14/28 = 0.500 | 34/61 = 0.557 | **-0.057** | 25/58 = 0.43 | 31/23/4 | 0.069 | 215/410/625 | 90.1% |
-| `ocr_isolation = both`  *(current)* | 12/28 = 0.429 | 30/61 = 0.492 | **-0.063** | 21/58 = 0.36 | 29/23/6 | 0.069 | 168/304/778 | 64.9% |
-| `ocr_isolation = both2` | 10/28 = 0.357 | 25/61 = 0.410 | **-0.053** | 18/58 = 0.31 | 24/21/13 | 0.172 | 122/291/837 | 41.0% |
+| `ocr_isolation = none` | 14/28 = 0.500 | 31/61 = 0.508 | **-0.008** | 25/58 = 0.43 | 29/23/6 | 0.069 | 193/379/678 | 84.3% |
+| `ocr_isolation = left` | 10/28 = 0.357 | 27/61 = 0.443 | **-0.085** | 17/58 = 0.29 | 23/20/15 | 0.207 | 130/208/912 | 47.6% |
+| `ocr_isolation = right` | 14/28 = 0.500 | 34/61 = 0.557 | **-0.057** | 25/58 = 0.43 | 31/23/4 | 0.069 | 213/409/628 | 90.1% |
+| `ocr_isolation = both`  *(current)* | 12/28 = 0.429 | 30/61 = 0.492 | **-0.063** | 20/58 = 0.34 | 29/22/7 | 0.086 | 166/303/781 | 64.9% |
+| `ocr_isolation = both2` | 10/28 = 0.357 | 25/61 = 0.410 | **-0.053** | 18/58 = 0.31 | 24/21/13 | 0.172 | 122/290/838 | 41.0% |
 
 | setting | S n | S win | S mean R | A mean R | C mean R | monotone |
 |---|---:|---:|---:|---:|---:|---|
-| `ocr_isolation = none` | 199 | 60.3% | **+1.175R** | +1.048R | +0.801R | yes |
-| `ocr_isolation = left` | 91 | 67.0% | **+1.179R** | +1.076R | +0.907R | yes |
-| `ocr_isolation = right` | 199 | 60.3% | **+1.175R** | +1.048R | +0.801R | yes |
-| `ocr_isolation = both`  *(current)* | 129 | 66.7% | **+1.313R** | +1.010R | +0.865R | yes |
-| `ocr_isolation = both2` | 92 | 62.0% | **+1.166R** | +1.226R | +0.852R | win only |
+| `ocr_isolation = none` | 197 | 59.9% | **+1.168R** | +1.073R | +0.790R | yes |
+| `ocr_isolation = left` | 90 | 66.7% | **+1.167R** | +1.098R | +0.905R | yes |
+| `ocr_isolation = right` | 197 | 59.9% | **+1.168R** | +1.073R | +0.790R | yes |
+| `ocr_isolation = both`  *(current)* | 129 | 66.7% | **+1.313R** | +1.018R | +0.862R | yes |
+| `ocr_isolation = both2` | 91 | 62.6% | **+1.190R** | +1.209R | +0.854R | win only |
 
 ## The best setting, chosen on TUNE and reported on HOLD
 
@@ -318,18 +318,18 @@ Selection rules, fixed before the numbers were read:
 1. chosen on the **TUNE half only** — never on HOLD, never on all 120;
 2. must keep **S > A > C on both mean R and win rate** over the 2-year book;
 3. must not cut the S set's mean R below baseline (+1.313R);
-4. must not make the day-level shape distance worse than baseline (0.069).
+4. must not make the day-level shape distance worse than baseline (0.086).
 
 Per-knob survivors (each still one knob moved, everything else at committed defaults):
 
 | setting | S recall | false fire | gate | agree | day S/A/C | day shape | sig S/A/C | confl |
 |---|---|---|---:|---|---|---:|---|---:|
 | `EXHAUSTED_ATR = 8.0` — TUNE | 7/14 = 0.500 | 13/30 = 0.433 | **+0.067** | 12/29 = 0.41 | 16/12/1 | 0.069 | 79/165/411 | 61.7% |
-| `EXHAUSTED_ATR = 8.0` — HOLD | 5/14 = 0.357 | 15/31 = 0.484 | **-0.127** | 11/29 = 0.38 | 11/13/5 | 0.121 | 69/143/383 | 68.4% |
+| `EXHAUSTED_ATR = 8.0` — HOLD | 5/14 = 0.357 | 15/31 = 0.484 | **-0.127** | 10/29 = 0.34 | 11/12/6 | 0.155 | 67/142/386 | 68.4% |
 
 | setting | S n | S win | S mean R | A mean R | C mean R | monotone |
 |---|---:|---:|---:|---:|---:|---|
-| `EXHAUSTED_ATR = 8.0` | 119 | 69.7% | **+1.444R** | +0.959R | +0.867R | yes |
+| `EXHAUSTED_ATR = 8.0` | 119 | 69.7% | **+1.444R** | +0.967R | +0.864R | yes |
 
 ### Combinations, measured as combinations
 
@@ -340,11 +340,11 @@ Only one knob survived selection, so there is nothing to stack: the "combination
 | setting | S recall | false fire | gate | agree | day S/A/C | day shape | sig S/A/C | confl |
 |---|---|---|---:|---|---|---:|---|---:|
 | `EXHAUSTED_ATR=8.0` — TUNE | 7/14 = 0.500 | 13/30 = 0.433 | **+0.067** | 12/29 = 0.41 | 16/12/1 | 0.069 | 79/165/411 | 61.7% |
-| `EXHAUSTED_ATR=8.0` — HOLD | 5/14 = 0.357 | 15/31 = 0.484 | **-0.127** | 11/29 = 0.38 | 11/13/5 | 0.121 | 69/143/383 | 68.4% |
+| `EXHAUSTED_ATR=8.0` — HOLD | 5/14 = 0.357 | 15/31 = 0.484 | **-0.127** | 10/29 = 0.34 | 11/12/6 | 0.155 | 67/142/386 | 68.4% |
 
 | setting | S n | S win | S mean R | A mean R | C mean R | monotone |
 |---|---:|---:|---:|---:|---:|---|
-| `EXHAUSTED_ATR=8.0` | 119 | 69.7% | **+1.444R** | +0.959R | +0.867R | yes |
+| `EXHAUSTED_ATR=8.0` | 119 | 69.7% | **+1.444R** | +0.967R | +0.864R | yes |
 
 ### Recommended — **not applied**
 
@@ -358,12 +358,12 @@ EXHAUSTED_ATR = 8.0      # was 10.0
 | false fires | 13/30 | **15/31** | 28/61 |
 | gate | +0.067 | **-0.127** | -0.030 |
 | baseline gate | +0.033 | -0.159 | -0.063 |
-| day S/A/C | 16/12/1 | 11/13/5 | 27/25/6 |
+| day S/A/C | 16/12/1 | 11/12/6 | 27/24/7 |
 
 | setting | S n | S win | S mean R | A mean R | C mean R | monotone |
 |---|---:|---:|---:|---:|---:|---|
-| baseline | 129 | 66.7% | **+1.313R** | +1.010R | +0.865R | yes |
-| recommended | 119 | 69.7% | **+1.444R** | +0.959R | +0.867R | yes |
+| baseline | 129 | 66.7% | **+1.313R** | +1.018R | +0.862R | yes |
+| recommended | 119 | 69.7% | **+1.444R** | +0.967R | +0.864R | yes |
 
 **Read the size of this before reading the sign.** On the held-out half it moves S-day recall by +0 and false fires by -1 — one card. The gate is still negative on HOLD (-0.127), meaning the grader fires on a larger share of the days Austin refused than of the days he graded S, and this change does not fix that. What it does do is cut the S set from 129 to 119 traded signals while raising its mean R from +1.313R to +1.444R and its win rate from 66.7% to 69.7%, with S > A > C intact on both measures. That is a real but small tightening, and it is the ONLY single change in the sweep that improves the card gate without costing money or shape.
 
@@ -372,13 +372,13 @@ EXHAUSTED_ATR = 8.0      # was 10.0
 | mix | S | A | C | distance |
 |---|---:|---:|---:|---:|
 | Austin | 28 | 27 | 3 | 0.000 |
-| baseline, per day-card | 29 | 23 | 6 | 0.069 |
-| closest single setting (`UNRESPECTED_COUNTER = 1`, NOT admissible) | 26 | 26 | 6 | **0.052** |
-| recommended combination | 27 | 25 | 6 | 0.052 |
+| baseline, per day-card | 29 | 22 | 7 | 0.086 |
+| closest single setting (`ATR_WINDOW = 7`, NOT admissible) | 28 | 24 | 6 | **0.052** |
+| recommended combination | 27 | 24 | 7 | 0.069 |
 
-Austin's mix is **48.3% S / 46.6% A / 5.2% C**. Read per day-card — his unit — the committed grader is **already there**, and the sweep can shave the remaining distance but has nothing left to fix. The honest answer to "how far does the best setting get toward 28/27/3" is: **the distance was never the problem.** The C bucket is the one real residual — the grader puts 6 cards in C where he put 3, and every one of those is a day he was willing to trade.
+Austin's mix is **48.3% S / 46.6% A / 5.2% C**. Read per day-card — his unit — the committed grader is **already there**, and the sweep can shave the remaining distance but has nothing left to fix. The honest answer to "how far does the best setting get toward 28/27/3" is: **the distance was never the problem.** The C bucket is the one real residual — the grader puts 7 cards in C where he put 3, and every one of those is a day he was willing to trade.
 
-Where it is genuinely short is agreement, not shape: 21/58 cards match his letter and 12/28 of his S-days fire. Moving a threshold trades those two against each other and does not lift both.
+Where it is genuinely short is agreement, not shape: 20/58 cards match his letter and 12/28 of his S-days fire. Moving a threshold trades those two against each other and does not lift both.
 
 ## The 1-in-5 confluence cap
 
@@ -393,8 +393,8 @@ This is the part of the ticket that is a finding rather than a number. Everythin
 1. **`break_then_rejection` is an unreachable branch** (10/45175 signals at the widest setting). The rule is his; the implementation is not it. Fixing it means anchoring on the FIRST break of the level rather than the most recent one — which is a change to the variable, and R2/R3 territory.
 2. **`counter_trend_not_respected` fires on 89% of everything.** Two un-bought-back counter candles in a 12-bar window on 1-minute bars is an ordinary market, not a defect. Whatever Austin means by "red candles inside an uptrend that don't get bought back", he does not mean 9 signals in 10.
 3. **`level_not_respected` has the wrong sign on money** (+0.996R when it trips vs +0.892R when it does not, over 1016 traded signals). It also fires on 63% of the book. Combined with (2), two of the eight variables are true of the majority of signals, which is the whole reason the C bucket is large.
-4. **`stale_retest` fires on 0.2% of the book**, which is why `STALE_BARS` sweeps nearly flat. It is not dead, but it is not doing work either.
-5. **The gap is agreement, not distribution.** 21/58 card agreement with a day-level mix that already matches his says the ladder is sorting the right proportions of the wrong days. A threshold cannot fix that; either a variable is missing, or the level the grader is handed (the stop, as a proxy) is not the level Austin was looking at.
+4. **`stale_retest` fires on 0.6% of the book**, which is why `STALE_BARS` sweeps nearly flat. It is not dead, but it is not doing work either.
+5. **The gap is agreement, not distribution.** 20/58 card agreement with a day-level mix that already matches his says the ladder is sorting the right proportions of the wrong days. A threshold cannot fix that; either a variable is missing, or the level the grader is handed (the stop, as a proxy) is not the level Austin was looking at.
 
 ## What this does not say
 
