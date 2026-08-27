@@ -44,7 +44,10 @@ ALLOWED = {
 }
 
 SKIP_DIRS = {".git", "__pycache__", "node_modules", "circle_data", "circle_videos",
-             "circle_audio", "discord_data", "data_archive", "venv", ".venv"}
+             "circle_audio", "discord_data", "data_archive", "venv", ".venv",
+             # session/tooling scratch, not source -- .git/info/exclude already
+             # treats .claude/worktrees/ as ephemeral and untracked.
+             ".claude"}
 
 
 def offenders():

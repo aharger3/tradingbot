@@ -117,6 +117,7 @@ sys.path.insert(0, ROOT)
 import build_deck as deck
 import probe_chart
 import probe_page
+import universe
 from research.t4_engine_recall import (rth_candles, prior_day_levels,
                                        premarket_extremes)
 
@@ -134,15 +135,36 @@ BARS = 90                     # 09:30..10:59 inclusive; cards must be exactly th
 PART_SIZE = 20
 SEED = 1
 FROM_DAY = "2025-01-01"       # keep the regime next to the corpus he already graded
-MAX_PER_SYMBOL = 8            # so the test is not four symbols wearing a hat
+
+# Austin, 2026-08-27: "core symbols and indices in prop firms." 12 distinct symbols
+# -- CORE_SYMBOLS is 10 (SPY is NOT in it; INCLUDE_SPY_IN_BACKTEST governs the
+# BACKTEST roster, not this deck, and is not flipped here) + INDEX_POOL adds SPY
+# and IWM (QQQ is in both, hence the set union rather than a plain concat).
+# Imported, never retyped -- test_universe_single_source.py fails the build on a
+# second copy of a ticker list.
+ROSTER = sorted(set(universe.CORE_SYMBOLS) | set(universe.INDEX_POOL))
+
+# 12 symbols x 8 = 96 < 100: MAX_PER_SYMBOL=8 cannot reach N_CARDS=100 by
+# arithmetic alone. Raised to the minimum that can: 12 x 9 = 108 >= 100.
+MAX_PER_SYMBOL = 9            # so the test is not four symbols wearing a hat
 
 # stratum -> how many cards. The first two are the S denominator (see the header).
+#
+# Measured against ROSTER (2026-08-27, research/omen_test2.md has the full
+# numbers): s_traded/s_dropped/silent/low all have hundreds-to-thousands of
+# candidates left after excluding judged days, so those four keep their original
+# targets unchanged. offroster does not -- one of its five patterns, range_fade,
+# returns ZERO candidates on this roster (and did before the roster filter too:
+# the pre-filter build already failed at "20 of 25", the same 4-patterns-of-5
+# ceiling). offroster is capped at the number OFFROSTER_EACH x 4 living patterns
+# can actually deliver; the 5 cards that frees move to `low`, which has the
+# deepest bench (thousands of candidates against a 20-card draw).
 QUOTAS = [
     ("s_traded", 12),
     ("s_dropped", 28),
     ("silent", 15),
-    ("offroster", 25),
-    ("low", 20),
+    ("offroster", 20),
+    ("low", 25),
 ]
 N_CARDS = sum(n for _k, n in QUOTAS)
 
@@ -301,7 +323,19 @@ def select():
     judged = deck.marked_card_ids()
 
     pool = [(s, d) for s, d in deck.universe()
-            if s in bt_symbols and d >= FROM_DAY and "%s_%s" % (s, d) not in judged]
+            if s in ROSTER and s in bt_symbols and d >= FROM_DAY
+            and "%s_%s" % (s, d) not in judged]
+
+    # MEASURE the candidate pool per stratum -- cheap (engine_index lookups only,
+    # no bar reads) and printed every build so a future roster or quota change
+    # shows its own ceiling instead of failing the assert blind. "mid" (best
+    # sgrade A) is not a QUOTAS stratum; it is only ever reachable via offroster.
+    pool_strata = collections.Counter(stratum_of(idx.get((s, d))) for s, d in pool)
+    offroster_eligible = sum(1 for s, d in pool
+                             if idx.get((s, d)) is None or not idx[(s, d)]["traded"])
+    pool_stats = {"total": len(pool), "strata": pool_strata,
+                 "offroster_eligible": offroster_eligible}
+
     rng = random.Random(SEED)
     rng.shuffle(pool)
 
@@ -355,8 +389,9 @@ def select():
 
     for k, n in QUOTAS:
         assert len(picked[k]) == n, (
-            "stratum %s short: %d of %d (probed %d days)" % (k, len(picked[k]), n, probed))
-    return picked, judged, probed, off_want
+            "stratum %s short: %d of %d (probed %d days, %d in roster pool)"
+            % (k, len(picked[k]), n, probed, pool_strata.get(k, 0)))
+    return picked, judged, probed, off_want, pool_stats
 
 
 # ---------------------------------------------------------------------------
@@ -944,7 +979,7 @@ def scorebox(grader_s):
 
 
 def build():
-    picked, judged, probed, off_left = select()
+    picked, judged, probed, off_left, pool_stats = select()
 
     rows = []
     for strat, _n in QUOTAS:
@@ -1022,6 +1057,7 @@ def build():
         "symbols": collections.Counter(r["symbol"] for r in rows),
         "offroster_unfilled": {k: v for k, v in off_left.items() if v},
         "grader_s": grader_s,
+        "pool_stats": pool_stats,
     }
     return html, manifest, stats, judged
 
@@ -1089,6 +1125,14 @@ def main():
     print("wrote %s  (%d bytes, %d cards, %d parts of %d)"
           % (path, len(html), stats["cards"], N_CARDS // PART_SIZE, PART_SIZE))
     print("wrote %s  (answer key, OUTSIDE the html)" % man_path)
+    ps = stats["pool_stats"]
+    print("  roster:   %d symbols: %s" % (len(ROSTER), " ".join(ROSTER)))
+    print("  pool:     %d candidate symbol-days (roster + from %s + not judged)"
+          % (ps["total"], FROM_DAY))
+    print("  pool by stratum (ceiling picked draws from): " + "  ".join(
+        "%s=%d" % (k, ps["strata"].get(k, 0)) for k in
+        ("s_traded", "s_dropped", "silent", "low", "mid")))
+    print("  pool off-roster eligible (info None or untraded): %d" % ps["offroster_eligible"])
     print("  strata:   " + "  ".join("%s=%d" % kv for kv in sorted(stats["strata"].items())))
     print("  off-roster:" + "  ".join(" %s=%d" % kv for kv in sorted(stats["patterns"].items())))
     if stats["offroster_unfilled"]:
