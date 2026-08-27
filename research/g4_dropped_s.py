@@ -75,7 +75,8 @@ CURRENT = {"sym": None, "day": None}
 _LAST = {}          # what the most recent grade_trade call saw
 
 
-def pa_branch(candle, lookback, or_high, or_low, is_long, htf_bias, skip_colour=False):
+def pa_branch(candle, lookback, or_high, or_low, is_long, htf_bias, skip_colour=False,
+              skip_bias=False):
     """Which `return` inside grade_trade/_grade_pa fires, as a label.
 
     A transcription of `omen_bot.PriceActionAnalyzer.grade_trade` +
@@ -89,8 +90,14 @@ def pa_branch(candle, lookback, or_high, or_low, is_long, htf_bias, skip_colour=
     specific"). A+ stays unreachable for a wrong-colour candle because
     `is_hammer_stick` / `is_inverted_hammer` each re-test colour internally;
     the wick tests do not, so `B` is reachable.
+
+    `skip_bias=True` runs the ladder with the HTF-bias veto (the first line of
+    all) deleted — P16/W3, Austin: "we dont have any higher timeframe bias yet
+    youll need to tell me what that is then" (rule ballot batch 02, c6). The
+    `neutral` cap two lines below is left alone: it never fires without a
+    bullish/bearish bias reaching it in the first place, so it is inert here.
     """
-    if htf_bias in ("bullish", "bearish"):
+    if not skip_bias and htf_bias in ("bullish", "bearish"):
         if (htf_bias == "bullish") != is_long:
             return "bias_opposed"
     if is_long:
@@ -133,6 +140,8 @@ def install_patches():
                                       is_long, htf_bias),
                      nocolour=pa_branch(candle, lookback_candles, or_high, or_low,
                                         is_long, htf_bias, skip_colour=True),
+                     nobias=pa_branch(candle, lookback_candles, or_high, or_low,
+                                      is_long, htf_bias, skip_bias=True),
                      is_long=is_long, bias=htf_bias or "none")
         return orig_grade(candle, lookback_candles, or_high, or_low, is_long, htf_bias)
 
@@ -150,6 +159,7 @@ def install_patches():
             BRANCHES[key].append({
                 "branch": last.get("branch", "unattributed"),
                 "nocolour": last.get("nocolour", "unattributed"),
+                "nobias": last.get("nobias", "unattributed"),
                 "emit_grade": sig.get("grade"),
                 "bias": last.get("bias", "none"),
                 "lvl_name": sig.get("stop_level_name"),
@@ -330,7 +340,7 @@ def main():
         recs = br.get(keyof(t))
         if not recs:
             t["_branch"], t["_minvi"] = "unmatched", None
-            t["_pa"] = t["_nocolour"] = "unmatched"
+            t["_pa"] = t["_nocolour"] = t["_nobias"] = "unmatched"
             t["_minstop"] = None
             miss += 1
             continue
@@ -343,6 +353,7 @@ def main():
         t["_minvi"], t["_rec"] = r0["minvi"], r0
         t["_pa"] = r0["branch"]
         t["_nocolour"] = r0["nocolour"]
+        t["_nobias"] = r0.get("nobias", "unattributed")
         t["_minstop"] = r0["minstop"]
         t["_branch"] = kill_branch(t, r0)
 
@@ -686,6 +697,84 @@ def main():
           "this document reads that field** — every bias number here comes from the "
           "`htf_bias` the replay handed `grade_trade`. Fixing it re-generates a "
           "published artifact, which is an amber action.",
+          ""]
+
+    # ---- 8. P16/W3 -- the HTF-bias veto has no author -----------------------
+    bias_dropped = [t for t in dropped if t["_branch"] == BIAS]
+    bias_viable = [t for t in bias_dropped if t.get("_minvi") is True]
+    bf = Counter(t["_nobias"] for t in bias_viable)
+    bias_tradeable = bf["graded_B"] + bf["graded_A+"]
+    bias_cf_trade = [t for t in bias_viable if t["_nobias"] in ("graded_B", "graded_A+")]
+    n_all, wr_all, mr_all, md_all = agg([t["r"] for t in viable])
+    n_bias, wr_bias, mr_bias, md_bias = agg([t["r"] for t in bias_cf_trade])
+    L += ["", "## 8. P16/W3 — what the HTF-bias veto costs (author: nobody)", "",
+          "Austin, rule ballot batch 02 (c6), asked directly what higher-timeframe bias "
+          "should mean: *\"we dont have any higher timeframe bias yet youll need to tell "
+          "me what that is then.\"* The veto already has no vote in `research/downgrade.py`"
+          " — `score()` demotes it to a reported `observations.htf_opposed` flag, same "
+          "shape as the colour gate in §2. This section runs the same counterfactual on "
+          "the legacy grader (`omen_bot.py::PriceActionAnalyzer.grade_trade`), which "
+          "still hard-vetoes on it.",
+          "",
+          "**What the veto actually computes.** `htf_bias` is the close of the most "
+          "recent completed **1-hour** candle compared to the 20-period simple moving "
+          "average of the 20 hourly candles before it — both taken from bars strictly "
+          "before the trading day's 09:30 open, never from the current session. If that "
+          "last hourly close sits more than 0.1% above the average, the hour is called "
+          "\"bullish\"; more than 0.1% below, \"bearish\"; inside that band, \"neutral.\" "
+          "`grade_trade` then throws out any signal whose direction disagrees with that "
+          "label outright (a long when the label is \"bearish\" grades `D`/skipped, and "
+          "vice versa), and caps a \"neutral\" hour's best signals from A+/A down to B. "
+          "It is a real higher-timeframe read — the 1-hour bar genuinely sits above the "
+          "engine's 1-minute working timeframe — but it is a plain trend filter nobody "
+          "on the team ever specified or ratified; three modules (`tastytrade_feed.py`, "
+          "`futures_feed.py`, `backtest_week.py`/`research/t4_engine_recall.py`) each "
+          "reimplement the same SMA20-of-hourly idea independently, which is what an "
+          "unowned rule looks like in a codebase. It is **not** the mislabelled "
+          "\"call vs put\" bug `8797aee6` found — that bug lives in `backtest_2y.py`'s "
+          "separate `aligned` reporting field (§7 item 6), not in this veto.",
+          "",
+          "**%d of the 7,219 dropped-S signals (%.1f%%) die on this single line** — the "
+          "single largest gate in the drop table (§1)."
+          % (len(bias_dropped), 100.0 * len(bias_dropped) / max(len(dropped), 1)),
+          ""]
+    L += table("Counterfactual: same ladder, HTF-bias veto deleted",
+               ["verdict without the bias line", "signals", "what it becomes"],
+               [(k.replace("graded_", ""), v,
+                 "**tradeable tier**" if k in ("graded_B", "graded_A+")
+                 else "alert-only" if k == "graded_C" else "still dropped")
+                for k, v in bf.most_common()],
+               "Restricted to the %d of %d bias-vetoed signals with a viable stop "
+               "(`_min_viable_stop`, same exclusion as §4) — the min-stop gates sit "
+               "downstream of the veto and are unaffected by removing it."
+               % (len(bias_viable), len(bias_dropped)))
+    L += table("Expectancy: the freed set vs the book",
+               ["set", "n", "win rate", "mean R", "median R"],
+               [("dropped S, viable stop (§4 baseline, all gates)", n_all,
+                 "%.1f%%" % wr_all, "%+.3f" % mr_all, "%+.3f" % md_all),
+                ("**HTF-veto arm: viable stop AND would grade B+ with the veto off**",
+                 n_bias, "%.1f%%" % wr_bias, "%+.3f" % mr_bias, "%+.3f" % md_bias),
+                ("S signals the engine actually traded (incumbent)", *band(traded_s, "x")[1:]),
+                ("the whole traded book (incumbent, money gate = 2.0R)", *band([t for t in T if t["traded"]], "x")[1:])])
+    vs_book = ("above the book's own +0.957R" if mr_bias > 0.957
+               else "below the book's own +0.957R" if mr_bias < 0.957 else "flat to the book's +0.957R")
+    L += ["",
+          "**%d of the %d bias-vetoed signals (%.1f%%) reach a tradeable tier once the "
+          "veto is deleted, and %d more become alerts** — %d still die elsewhere (colour "
+          "gate or never touched the level) even with the veto gone. Of the tradeable "
+          "ones, %d clear `_min_viable_stop` and make up the expectancy row above: "
+          "**%+.3fR mean, %s** (incumbent traded book, all setups) and well clear of the "
+          "whole dropped-S set's own **+0.465R** (n=%d, §4) — unlike §2's colour-gate arm "
+          "(+0.293R, roughly at the dropped-S baseline), this freed set is not "
+          "indistinguishable from the rest of the discard pile. **Read the sample size "
+          "with it**: n=%d is thin — a fifth the size of the traded S book (n=128) — and "
+          "still well short of the 2.0R money gate, so this is a candidate worth a real "
+          "A/B (deduped through `NO_REPEAT_ENTRIES` and arrival order, per §6), not a "
+          "result to ship on. What it does settle is the provenance question: the veto "
+          "has no author, and on this read deleting it costs nothing and may be hiding a "
+          "small pool of signals as good as the ones already traded."
+          % (bias_tradeable, len(bias_dropped), 100.0 * bias_tradeable / max(len(bias_dropped), 1),
+             bf["graded_C"], len(bias_viable) - bias_tradeable, n_bias, mr_bias, vs_book, n_all, n_bias),
           ""]
 
     Path(args.out).write_text("\n".join(L) + "\n", encoding="utf-8")

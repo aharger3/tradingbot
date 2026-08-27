@@ -256,3 +256,36 @@ Three consequences, and they reframe the whole ticket:
 5. The expectancy in §4 says the dropped set is **not** free money at today's exit policy — it is a large pool of setups at roughly the book's own mean R, and well short of the 2.0R gate. Read together with G7 (*the exit is not the binding constraint*) and §6 above, the constraint is neither the exit nor the grade ladder: it is that the engine picks its entry by *arrival order*, not by structure.
 6. **Bug found in passing, not fixed here: `bt2y_trades.json`'s `aligned` field is not measuring bias.** `backtest_2y.py` computes it as `(bias == "bull") == (t.direction == "call")`, but `htf_bias_for` returns `"bullish"`, so the comparison is always False and the field collapses to *is this a put*. Over the whole book `Counter((aligned, dir))` is `{('against','call'): 22542, ('with','put'): 22310, ('n/a','call'): 168, ('n/a','put'): 155}` — a 1:1 with direction. The interactive report's "vs HTF bias" facet is therefore a duplicate of its Direction facet. **Nothing in this document reads that field** — every bias number here comes from the `htf_bias` the replay handed `grade_trade`. Fixing it re-generates a published artifact, which is an amber action.
 
+
+## 8. P16/W3 — what the HTF-bias veto costs (author: nobody)
+
+Austin, rule ballot batch 02 (c6), asked directly what higher-timeframe bias should mean: *"we dont have any higher timeframe bias yet youll need to tell me what that is then."* The veto already has no vote in `research/downgrade.py` — `score()` demotes it to a reported `observations.htf_opposed` flag, same shape as the colour gate in §2. This section runs the same counterfactual on the legacy grader (`omen_bot.py::PriceActionAnalyzer.grade_trade`), which still hard-vetoes on it.
+
+**What the veto actually computes.** `htf_bias` is the close of the most recent completed **1-hour** candle compared to the 20-period simple moving average of the 20 hourly candles before it — both taken from bars strictly before the trading day's 09:30 open, never from the current session. If that last hourly close sits more than 0.1% above the average, the hour is called "bullish"; more than 0.1% below, "bearish"; inside that band, "neutral." `grade_trade` then throws out any signal whose direction disagrees with that label outright (a long when the label is "bearish" grades `D`/skipped, and vice versa), and caps a "neutral" hour's best signals from A+/A down to B. It is a real higher-timeframe read — the 1-hour bar genuinely sits above the engine's 1-minute working timeframe — but it is a plain trend filter nobody on the team ever specified or ratified; three modules (`tastytrade_feed.py`, `futures_feed.py`, `backtest_week.py`/`research/t4_engine_recall.py`) each reimplement the same SMA20-of-hourly idea independently, which is what an unowned rule looks like in a codebase. It is **not** the mislabelled "call vs put" bug `8797aee6` found — that bug lives in `backtest_2y.py`'s separate `aligned` reporting field (§7 item 6), not in this veto.
+
+**3525 of the 7,219 dropped-S signals (48.8%) die on this single line** — the single largest gate in the drop table (§1).
+
+
+### Counterfactual: same ladder, HTF-bias veto deleted
+
+Restricted to the 323 of 3525 bias-vetoed signals with a viable stop (`_min_viable_stop`, same exclusion as §4) — the min-stop gates sit downstream of the veto and are unaffected by removing it.
+
+| verdict without the bias line | signals | what it becomes |
+|---|---|---|
+| colour_gate | 146 | still dropped |
+| C | 84 | alert-only |
+| B | 47 | **tradeable tier** |
+| never_touched_level | 33 | still dropped |
+| A+ | 13 | **tradeable tier** |
+
+### Expectancy: the freed set vs the book
+
+| set | n | win rate | mean R | median R |
+|---|---|---|---|---|
+| dropped S, viable stop (§4 baseline, all gates) | 588 | 50.2% | +0.465 | +0.136 |
+| **HTF-veto arm: viable stop AND would grade B+ with the veto off** | 60 | 55.0% | +1.012 | +0.464 |
+| S signals the engine actually traded (incumbent) | 128 | 66.4% | +1.283 | +1.129 |
+| the whole traded book (incumbent, money gate = 2.0R) | 1016 | 53.4% | +0.957 | +0.575 |
+
+**60 of the 3525 bias-vetoed signals (1.7%) reach a tradeable tier once the veto is deleted, and 84 more become alerts** — 263 still die elsewhere (colour gate or never touched the level) even with the veto gone. Of the tradeable ones, 60 clear `_min_viable_stop` and make up the expectancy row above: **+1.012R mean, above the book's own +0.957R** (incumbent traded book, all setups) and well clear of the whole dropped-S set's own **+0.465R** (n=588, §4) — unlike §2's colour-gate arm (+0.293R, roughly at the dropped-S baseline), this freed set is not indistinguishable from the rest of the discard pile. **Read the sample size with it**: n=60 is thin — a fifth the size of the traded S book (n=128) — and still well short of the 2.0R money gate, so this is a candidate worth a real A/B (deduped through `NO_REPEAT_ENTRIES` and arrival order, per §6), not a result to ship on. What it does settle is the provenance question: the veto has no author, and on this read deleting it costs nothing and may be hiding a small pool of signals as good as the ones already traded.
+

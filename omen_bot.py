@@ -1,8 +1,22 @@
 """Omen Trading Bot - Signal Detection Engine"""
 
+import os
 from dataclasses import dataclass
 from typing import Optional, List
 from enum import Enum
+
+# P16/W3 (2026-08-27): `grade_trade`'s opposed-bias veto has no author. Austin,
+# rule ballot batch 02 c6, asked directly what HTF bias should mean and said
+# "we dont have any higher timeframe bias yet youll need to tell me what that
+# is then." `research/downgrade.py::score` already demotes the same read to a
+# reported `observations["htf_opposed"]` flag with no vote — this flag brings
+# the legacy grader in line with that. Default OFF: an opposed hour no longer
+# forces D, it is graded on price action alone. Set HTF_BIAS_VETO=1 to restore
+# the old hard veto (measured cost: `research/g4_dropped_s.md` §8, 3,525 of
+# the 7,219 dropped S signals, freed-set expectancy ~book mean, no edge
+# manufactured). The computed bias itself (close vs SMA20 of prior hourly
+# closes, see `htf_bias_for` / `fetch_htf_bias`) is untouched — only its vote.
+HTF_BIAS_VETO = os.getenv("HTF_BIAS_VETO", "0").strip().lower() in ("1", "true", "yes", "on")
 
 
 class SignalType(Enum):
@@ -166,14 +180,15 @@ class PriceActionAnalyzer:
         """Grade a potential signal A+ through D (D = skip).
 
         htf_bias ('bullish'/'bearish'/'neutral'/None) gates the top grades:
-        opposed trend = D (counter-trend, course says skip); neutral caps at
-        B (A+/A require HTF alignment per fable_rules); None = unknown,
-        grade on PA alone (pre-SPEC0 behavior).
+        opposed trend = D when HTF_BIAS_VETO=1 (default 0 — P16/W3, the veto
+        has no author, see module docstring); neutral caps at B (A+/A require
+        HTF alignment per fable_rules); None = unknown, grade on PA alone
+        (pre-SPEC0 behavior).
         """
-        if htf_bias in ("bullish", "bearish"):
-            aligned = (htf_bias == "bullish") == is_long
-            if not aligned:
-                return TradeGrade.D
+        opposed = (htf_bias in ("bullish", "bearish")
+                   and (htf_bias == "bullish") != is_long)
+        if opposed and HTF_BIAS_VETO:
+            return TradeGrade.D
         base = PriceActionAnalyzer._grade_pa(candle, lookback_candles, or_high, or_low, is_long)
         if htf_bias == "neutral" and base in (TradeGrade.A_PLUS, TradeGrade.A):
             return TradeGrade.B
