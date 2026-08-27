@@ -72,8 +72,15 @@ def replay(symbol, day):
         except Exception:
             continue
         for s in r.captured[before:]:
+            st = s.get("signal_type")
             out.append({"bar": i, "old": s.get("grade"), "stop": s.get("stop"),
-                        "dir": s.get("direction"), "bias": bias})
+                        "dir": s.get("direction"), "bias": bias,
+                        # P20/W6: the 84%-rule exemption needs to know which
+                        # captured signal IS the sanctioned re-entry. Additive
+                        # key -- existing consumers (downgrade_tune.py,
+                        # p18_p19_new_variables.py, p2_threshold_sweep.py)
+                        # read only the keys they already used.
+                        "signal_type": getattr(st, "value", st)})
     return out, as_dicts(candles)
 
 

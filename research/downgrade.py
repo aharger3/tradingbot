@@ -90,6 +90,27 @@ CONFLUENCE_LEVELS = ("PDH", "PDL", "PMH", "PML", "ORH", "ORL")
 CONFLUENCE_MIN_LEVELS = 5   # Austin's own number (ballot b5: "at least 5/6")
 ENABLE_MULTI_LEVEL_CONFLUENCE = False
 
+# --- P20/W6: the sequence gate, OFF by default ------------------------------
+# Ballot batch 02, b2: "doesent impact other symbols, but yes anytime there
+# was an s a or c entry, a subsequent entry thats not 84 percent rule cannot
+# be ranked the same quality." The 2nd+ graded entry on a SYMBOL on a DAY
+# takes this downgrade; the 84%-rule re-entry is exempt -- it IS the
+# sanctioned second bite at the same idea. No cross-symbol effect, per
+# Austin's own words.
+#
+# This needs state none of the other nine variables need: how many entries on
+# THIS symbol, THIS day, were already graded before this one. `score()` only
+# ever sees one signal's own bars, so it cannot compute that itself -- the
+# caller supplies `entry_seq` (1-based ordinal of this entry among every
+# entry downgrade.score() has graded on the same symbol-day, as of this bar)
+# and `is_84_reentry`. Both default to "unknown", and unknown means "do not
+# judge" -- the same convention `ocr_not_respected` / `multi_level_confluence`
+# use when they lack the input to decide, never guessed. Still causal:
+# `entry_seq` only ever counts entries with an EARLIER bar index on the same
+# symbol-day, which the caller already knows without reading past bar `i` of
+# the entry being graded.
+ENABLE_SEQUENCE_GATE = False
+
 
 # ---------------------------------------------------------------------------
 # small bar helpers -- every one is causal: nothing reads past `i`
@@ -359,6 +380,23 @@ def multi_level_confluence(bars, i, level, is_long, levels):
     return pa_agrees and on_side >= CONFLUENCE_MIN_LEVELS
 
 
+def sequence_gate(entry_seq, is_84_reentry):
+    """Ballot b2: 'anytime there was an s a or c entry, a subsequent entry
+    thats not 84 percent rule cannot be ranked the same quality' -- per
+    symbol, no cross-symbol effect.
+
+    `entry_seq` is the 1-based ordinal of THIS entry among every entry
+    graded on the SAME symbol, SAME day, so far (the caller's job to track --
+    see the module comment above `ENABLE_SEQUENCE_GATE`). None or 1 means
+    this is the first entry (or the caller has no ordering information,
+    which is not evidence of a repeat either way) -- does not trip.
+    `is_84_reentry` exempts the one sanctioned second bite at the idea.
+    """
+    if not entry_seq or entry_seq <= 1:
+        return False
+    return not is_84_reentry
+
+
 CHECKS = {
     "no_displacement": no_displacement,
     "stale_retest": stale_retest,
@@ -401,7 +439,8 @@ def has_confluence(bars, i, level, is_long):
 # ---------------------------------------------------------------------------
 
 def score(bars, i, level, is_long, htf_bias=None, levels=None,
-          enable_large_counter_body=None, enable_multi_level_confluence=None):
+          enable_large_counter_body=None, enable_multi_level_confluence=None,
+          enable_sequence_gate=None, entry_seq=None, is_84_reentry=False):
     """Return the full grading record for the signal on bar ``i``.
 
     ``observations`` carries what the removed TradeGrade.D used to veto on. Austin
@@ -409,7 +448,7 @@ def score(bars, i, level, is_long, htf_bias=None, levels=None,
     are real entry criteria and worth measuring, which is why they are reported
     rather than deleted.
 
-    P18/P19 additions, both OFF by default and both opt-in per call (the
+    P18/P19/P20 additions, all OFF by default and all opt-in per call (the
     `enable_*` kwargs override the module flags so a caller can measure
     without mutating global state):
 
@@ -422,16 +461,24 @@ def score(bars, i, level, is_long, htf_bias=None, levels=None,
     SEPARATE upgrade from `has_confluence` (BR+OCR) -- either or both firing
     still costs only one point off `net`, since Austin has not been asked
     whether two independent +1s should stack.
+    ``enable_sequence_gate`` -- adds the tenth downgrade (ballot b2) when
+    True; defaults to `ENABLE_SEQUENCE_GATE` (False). ``entry_seq`` and
+    ``is_84_reentry`` are its inputs -- see `sequence_gate` and the module
+    comment above `ENABLE_SEQUENCE_GATE` for what they mean and why `score()`
+    cannot compute them itself.
     """
     if not bars or i >= len(bars) or level is None:
         return None
     lcb_on = ENABLE_LARGE_COUNTER_BODY if enable_large_counter_body is None else enable_large_counter_body
     mlc_on = (ENABLE_MULTI_LEVEL_CONFLUENCE if enable_multi_level_confluence is None
               else enable_multi_level_confluence)
+    seq_on = ENABLE_SEQUENCE_GATE if enable_sequence_gate is None else enable_sequence_gate
 
     tripped = [name for name, fn in CHECKS.items() if fn(bars, i, level, is_long)]
     if lcb_on and large_counter_body(bars, i, level, is_long):
         tripped.append("large_counter_body")
+    if seq_on and sequence_gate(entry_seq, is_84_reentry):
+        tripped.append("sequence_gate")
 
     confl_br_ocr = has_confluence(bars, i, level, is_long)
     confl_ml = mlc_on and multi_level_confluence(bars, i, level, is_long, levels)
