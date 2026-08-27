@@ -10,13 +10,23 @@ from enum import Enum
 # "we dont have any higher timeframe bias yet youll need to tell me what that
 # is then." `research/downgrade.py::score` already demotes the same read to a
 # reported `observations["htf_opposed"]` flag with no vote — this flag brings
-# the legacy grader in line with that. Default OFF: an opposed hour no longer
-# forces D, it is graded on price action alone. Set HTF_BIAS_VETO=1 to restore
-# the old hard veto (measured cost: `research/g4_dropped_s.md` §8, 3,525 of
-# the 7,219 dropped S signals, freed-set expectancy ~book mean, no edge
-# manufactured). The computed bias itself (close vs SMA20 of prior hourly
-# closes, see `htf_bias_for` / `fetch_htf_bias`) is untouched — only its vote.
-HTF_BIAS_VETO = os.getenv("HTF_BIAS_VETO", "0").strip().lower() in ("1", "true", "yes", "on")
+# the legacy grader in line with that.
+#
+# DEFAULT ON, deliberately, and it is not a vote of confidence in the rule.
+# P16 measured what turning it off actually buys: of the 3,525 dropped S
+# signals G4 attributes to this veto, only **60 (1.7%)** reach a tradeable tier
+# once it is lifted — the rest are caught by other gates anyway. 60 signals at
+# +1.012R (n=60, thin) is not worth changing what the LIVE scanner alerts on
+# tomorrow morning without Austin saying so, and this flag is read by all ten
+# of `signal_runner.py`'s detection sites, live ones included.
+#
+# So: shipped behaviour is unchanged, `HTF_BIAS_VETO=0` lifts the veto for
+# measurement, and the decision is queued as R6 in `PHASES.md` — he either
+# defines what higher-timeframe bias should mean or confirms the deletion.
+# Numbers: `research/p16_htf_bias.md`. The computed bias itself (close vs SMA20
+# of the prior hourly closes, `htf_bias_for` / `fetch_htf_bias`) is untouched
+# either way — this flag governs only its vote.
+HTF_BIAS_VETO = os.getenv("HTF_BIAS_VETO", "1").strip().lower() in ("1", "true", "yes", "on")
 
 
 class SignalType(Enum):
