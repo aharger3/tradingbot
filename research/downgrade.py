@@ -72,6 +72,24 @@ VARIABLES = (
     "ocr_not_respected",
 )
 
+# --- P18/W4: a ninth downgrade variable, OFF by default --------------------
+# Ballot batch 02, b6: "large 75 percent red body candles, espcially ones
+# within range of other candles are less atractive trades." Measured in
+# research/p18_p19_new_variables.md; not ratified, not wired into `score()`
+# unless ENABLE_LARGE_COUNTER_BODY (or the equivalent `score()` kwarg) is set.
+LARGE_BODY_FRAC = 0.75     # Austin's own number (ballot b6: "75 percent")
+LARGE_BODY_WINDOW = 12     # guess: how far back to look; mirrors CHOP_WINDOW
+LARGE_BODY_CONTAIN = 3     # guess: bars each side that make up "the bars around it"
+ENABLE_LARGE_COUNTER_BODY = False
+
+# --- P19/W5: a second, independent +1, OFF by default -----------------------
+# Ballot batch 02, b5: "lets count bull/bear PA and below/above at least 5/6
+# levels i watch a +1." The six levels and why those six (not HOD/LOD/T10
+# pivots) are named in research/p18_p19_new_variables.md.
+CONFLUENCE_LEVELS = ("PDH", "PDL", "PMH", "PML", "ORH", "ORL")
+CONFLUENCE_MIN_LEVELS = 5   # Austin's own number (ballot b5: "at least 5/6")
+ENABLE_MULTI_LEVEL_CONFLUENCE = False
+
 
 # ---------------------------------------------------------------------------
 # small bar helpers -- every one is causal: nothing reads past `i`
@@ -276,6 +294,71 @@ def ocr_not_respected(bars, i, level, is_long):
     return False
 
 
+def large_counter_body(bars, i, level, is_long):
+    """Ballot b6: 'large 75 percent red body candles, especially ones within
+    range of other candles are less attractive trades.'
+
+    Two conditions, both required. A counter-coloured candle with a big body
+    is common on any real reversal attempt; Austin's second clause ('within
+    range of other candles') is what tells a big candle sitting in chop apart
+    from one that just made a new extreme (a breakout candle almost always
+    pokes outside the recent range). Dropping containment would flag ordinary
+    strong counter-moves as a downgrade. P18 in
+    research/p18_p19_new_variables.md measures both halves separately.
+
+    OFF by default (`ENABLE_LARGE_COUNTER_BODY`) -- `score()` only calls this
+    when asked.
+    """
+    window = bars[max(0, i - LARGE_BODY_WINDOW):i + 1]
+    base = max(0, i - LARGE_BODY_WINDOW)
+    for j, b in enumerate(window, start=base):
+        rng = _rng(b)
+        if rng <= 0:
+            continue
+        counter = (not _is_up(b)) if is_long else _is_up(b)
+        if not counter:
+            continue
+        if _body(b) / rng < LARGE_BODY_FRAC:
+            continue
+        lo = max(0, j - LARGE_BODY_CONTAIN)
+        hi = min(i, j + LARGE_BODY_CONTAIN)
+        neighbours = [bars[k] for k in range(lo, hi + 1) if k != j]
+        if not neighbours:
+            continue
+        nb_hi = max(nb["h"] for nb in neighbours)
+        nb_lo = min(nb["l"] for nb in neighbours)
+        if b["h"] <= nb_hi and b["l"] >= nb_lo:
+            return True
+    return False
+
+
+def multi_level_confluence(bars, i, level, is_long, levels):
+    """Ballot b5: 'lets count bull/bear PA and below/above at least 5/6
+    levels i watch a +1.'
+
+    `levels` is the six-level roster (`CONFLUENCE_LEVELS`) as of the entry
+    bar -- built by `research/p21_target_availability.py::levels_for_entry`,
+    the same causal level-assembly code T11(c) and P21 already use, keyed by
+    name with missing entries omitted. All six must resolve or this cannot
+    judge "5 of 6" and returns False -- absence of data is not evidence of
+    the setup, same convention as `ocr_not_respected`.
+
+    `level` (the trade's stop / broken level) is unused; kept in the
+    signature to match the other downgrade/confluence functions' shape.
+
+    OFF by default (`ENABLE_MULTI_LEVEL_CONFLUENCE`) -- `score()` only calls
+    this when asked, and it is a SEPARATE +1 from `has_confluence` (BR+OCR);
+    the two are capped together in `score()`, not combined here.
+    """
+    if levels is None or not all(levels.get(k) is not None for k in CONFLUENCE_LEVELS):
+        return False
+    close = bars[i]["c"]
+    on_side = sum(1 for k in CONFLUENCE_LEVELS
+                  if ((levels[k] <= close) if is_long else (levels[k] >= close)))
+    pa_agrees = _is_up(bars[i]) if is_long else (not _is_up(bars[i]))
+    return pa_agrees and on_side >= CONFLUENCE_MIN_LEVELS
+
+
 CHECKS = {
     "no_displacement": no_displacement,
     "stale_retest": stale_retest,
@@ -317,18 +400,42 @@ def has_confluence(bars, i, level, is_long):
 # the grade
 # ---------------------------------------------------------------------------
 
-def score(bars, i, level, is_long, htf_bias=None):
+def score(bars, i, level, is_long, htf_bias=None, levels=None,
+          enable_large_counter_body=None, enable_multi_level_confluence=None):
     """Return the full grading record for the signal on bar ``i``.
 
     ``observations`` carries what the removed TradeGrade.D used to veto on. Austin
     never listed any of the three as downgrades, so they do not count -- but they
     are real entry criteria and worth measuring, which is why they are reported
     rather than deleted.
+
+    P18/P19 additions, both OFF by default and both opt-in per call (the
+    `enable_*` kwargs override the module flags so a caller can measure
+    without mutating global state):
+
+    ``levels`` -- the six-level roster (`CONFLUENCE_LEVELS`) for
+    `multi_level_confluence`, ignored unless that check is enabled.
+    ``enable_large_counter_body`` -- adds the ninth downgrade (ballot b6)
+    when True; defaults to `ENABLE_LARGE_COUNTER_BODY` (False).
+    ``enable_multi_level_confluence`` -- adds the second +1 (ballot b5) when
+    True; defaults to `ENABLE_MULTI_LEVEL_CONFLUENCE` (False). It is a
+    SEPARATE upgrade from `has_confluence` (BR+OCR) -- either or both firing
+    still costs only one point off `net`, since Austin has not been asked
+    whether two independent +1s should stack.
     """
     if not bars or i >= len(bars) or level is None:
         return None
+    lcb_on = ENABLE_LARGE_COUNTER_BODY if enable_large_counter_body is None else enable_large_counter_body
+    mlc_on = (ENABLE_MULTI_LEVEL_CONFLUENCE if enable_multi_level_confluence is None
+              else enable_multi_level_confluence)
+
     tripped = [name for name, fn in CHECKS.items() if fn(bars, i, level, is_long)]
-    confl = has_confluence(bars, i, level, is_long)
+    if lcb_on and large_counter_body(bars, i, level, is_long):
+        tripped.append("large_counter_body")
+
+    confl_br_ocr = has_confluence(bars, i, level, is_long)
+    confl_ml = mlc_on and multi_level_confluence(bars, i, level, is_long, levels)
+    confl = confl_br_ocr or confl_ml           # capped at one point -- see docstring
     net = len(tripped) - (1 if confl else 0)
     grade = "S" if net <= 0 else ("A" if net == 1 else "C")
 
@@ -342,4 +449,6 @@ def score(bars, i, level, is_long, htf_bias=None):
                         and (htf_bias == "bullish") != is_long),
     }
     return {"grade": grade, "tripped": tripped, "n_tripped": len(tripped),
-            "confluence": confl, "net": net, "observations": observations}
+            "confluence": confl, "confluence_br_ocr": confl_br_ocr,
+            "confluence_multi_level": bool(confl_ml),
+            "net": net, "observations": observations}
