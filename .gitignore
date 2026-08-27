@@ -93,6 +93,12 @@ research/decks/**/*.html
 # which IS tracked.
 research/_g4_branches.json
 
+# per-arm 2-year replay books for the ON WATCH A/B (T3/G3). ~40 MB each and
+# regenerable with `python research/g3_onwatch_2y.py run --arm off|on`, same
+# story as research/p7_arm_*.json above. The finding lives in
+# research/g3_onwatch_2y.md, which IS tracked.
+research/g3_arm_*.json
+
 # G10 arm-event replay cache, regenerable with
 # `python research/g10_arming_funnel.py run`; the finding lives in
 # research/g10_arming_funnel.md, which IS tracked.
