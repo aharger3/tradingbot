@@ -52,6 +52,25 @@ THE TWO RIGS
     python research/p2_threshold_sweep.py [--selftest] [--limit N]
 
 Writes research/p2_threshold_sweep.md.
+
+A1/T4 -- --a1, ADDED WITHOUT TOUCHING ANY DEFAULT
+--------------------------------------------------
+Austin's rule (`Austin's Vault/Projects/omen-rulebook.md`): A = one downgrade, C =
+two, off eight variables. The thresholds in `downgrade.py` were guessed, never
+tuned, and the corpus mix they produce was flagged as a mismatch against his 28
+S / 27 A / 3 C. `--a1` answers a narrower question than the sweep above: AT THE
+COMMITTED DEFAULTS ONLY (no sweep, nothing retuned), does each of the eight
+variables point the right way, checked against a held-out corpus that could not
+have leaked into any prior tuning?
+
+    python research/p2_threshold_sweep.py --a1 [--limit N]
+
+Writes research/a1_threshold_sweep.md. Reuses `build_cards()` (now takes an
+optional `days=`), `split_cards()`, `incidence()`, `eval_cards()`, `build_book()`
+unchanged -- the held-out 100-card OMEN Test 1 set
+(`research/marks/probe_omen_test1_2026-08-27.jsonl`) is graded by calling
+`build_cards()` a second time with a differently-sourced `days`, never a second
+card builder.
 """
 from __future__ import annotations
 
@@ -75,6 +94,16 @@ BT2Y = os.path.join(HERE, "bt2y_trades.json")
 # Austin's own corpus. 58 day-cards he was willing to trade, graded by him.
 AUSTIN_MIX = {"S": 28, "A": 27, "C": 3}
 CONFLUENCE_CAP = 0.20            # Austin 2026-08-24: confluence under 1 in 5
+
+# A1/T4: the 100-card held-out OMEN Test 1 set, Austin's grade_std counts.
+# 15+27+16 = 58 tradeable -- mirrors the 120-corpus's own 58 exactly by
+# coincidence of the build's sizing, not by construction. The other 42 are
+# "none" (X), same "a real judgement, not a blank" convention as the
+# 120-corpus's 61 "none" days.
+PROBE_PATH = os.path.join(HERE, "marks", "probe_omen_test1_2026-08-27.jsonl")
+HELDOUT_MIX = {"S": 15, "A": 27, "C": 16}
+HELDOUT_NONE_N = 42
+A1_OUT = os.path.join(HERE, "a1_threshold_sweep.md")
 
 # committed defaults, mirrored here so the sweep never mutates downgrade.py
 D = {
@@ -362,10 +391,20 @@ def setting(**kw):
 BEST = {"S": 3, "A": 2, "C": 1}
 
 
-def build_cards():
+def build_cards(days=None):
+    """Replay every ``(symbol, date)`` in ``days`` and grade every engine
+    signal that day produces.
+
+    ``days`` defaults to Austin's 120 graded day-cards
+    (``t60_baseline.load_day_cards()``) -- existing callers are unaffected.
+    A1/T4 reuses this SAME function for the 100-card OMEN Test 1 held-out set
+    by passing a differently-sourced ``days`` (see ``load_probe_days``): one
+    card builder, two inputs, never a second implementation.
+    """
     from research.t66_downgrade_measure import replay
-    from research.t60_baseline import load_day_cards
-    days, _marks = load_day_cards()
+    if days is None:
+        from research.t60_baseline import load_day_cards
+        days, _marks = load_day_cards()
     corpus = []
     for key in sorted(days):
         sigs, bars = replay(*key)
@@ -378,6 +417,29 @@ def build_cards():
                 feats.append(f)
         corpus.append((key, (days[key].get("grade") or "").strip(), feats))
     return corpus
+
+
+def load_probe_days(path=PROBE_PATH):
+    """The 100 OMEN Test 1 held-out cards, reshaped into the same
+    ``{(symbol, date): {"grade": ...}}`` shape ``load_day_cards()`` returns,
+    so ``build_cards()`` above needs no second implementation for this
+    corpus.
+
+    ``grade_std`` is already Austin's grade normalised to S/A/C/"none" -- the
+    same "none is a judgement, not a blank" convention the 120-card corpus
+    uses for a refused day. Each probe row is one card (one symbol-day); there
+    is no separate trade sub-row to merge, unlike the 120-corpus's day+trade
+    pair.
+    """
+    days = {}
+    with open(path, encoding="utf-8") as fh:
+        for line in fh:
+            line = line.strip()
+            if not line:
+                continue
+            d = json.loads(line)
+            days[(d["symbol"], d["date"])] = {"grade": d.get("grade_std") or "none"}
+    return days
 
 
 def split_cards(corpus, seed=6):
@@ -495,6 +557,80 @@ def incidence(corpus, book):
             best = max(best, sum(1 for f, _t, _w, _r, _s in book if trips_of(f, s2)[x]))
         reach[v] = best
     return card_n, card_trip, book_n, book_trip, on, off, reach
+
+
+# ---------------------------------------------------------------------------
+# A1/T4 -- the eight variables at committed defaults, no sweep, no retune
+# ---------------------------------------------------------------------------
+
+A1_MIN_N = 30    # below this many traded signals on a side, a verdict is directional
+
+
+def _variable_stats(corpus, book):
+    """One card corpus's trip stats against ``book``'s tripped/clean mean R,
+    AT THE COMMITTED DEFAULTS ONLY (``setting()`` with no overrides).
+
+    Calls ``incidence()`` once and reshapes it. ``on``/``off``/``book_trip``
+    depend only on ``book`` -- the money verdict is a property of the 2-year
+    book, not of which card corpus is passed in, so this returns the SAME
+    verdict for any corpus argument. What changes per corpus is `trip`/`n`,
+    the card-side trip rate.
+
+    Verdict is P15's test (`research/p15_level_respect.md`), applied to all
+    eight instead of one: does the TRIPPED population's mean R meet or beat
+    the CLEAN population's? If so the variable is wrong-signed for a
+    downgrade -- STOP, not tune.
+    """
+    n, trip, book_n, book_trip, on, off, reach = incidence(corpus, book)
+    out = {}
+    for v in VARS:
+        a, b = on[v], off[v]
+        ra = (a[1] / a[0]) if a[0] else None
+        rb = (b[1] / b[0]) if b[0] else None
+        if ra is None or rb is None:
+            verdict = "n/a (no traded %s population)" % ("tripped" if ra is None else "clean")
+        else:
+            sign = "wrong-signed" if ra >= rb else "right-signed"
+            verdict = sign if (a[0] >= A1_MIN_N and b[0] >= A1_MIN_N) else sign + " (low n)"
+        out[v] = {"var": v, "trip": trip[v], "n": n,
+                  "tripbook": book_trip[v], "nbook": book_n,
+                  "r_tripped": ra, "n_tripped": a[0],
+                  "r_clean": rb, "n_clean": b[0],
+                  "verdict": verdict, "reach": reach[v]}
+    return out
+
+
+def variable_table(corpus120, corpus_ho, book):
+    """One row per downgrade variable: trip rate on BOTH card rigs, trip rate
+    on the 2-year book, tripped/clean mean R, and the wrong-sign verdict.
+    Nothing swept, nothing retuned -- see ``_variable_stats``."""
+    s120 = _variable_stats(corpus120, book)
+    sho = _variable_stats(corpus_ho, book)
+    rows = []
+    for v in VARS:
+        a, b = s120[v], sho[v]
+        rows.append({
+            "var": v,
+            "trip120": a["trip"], "n120": a["n"],
+            "tripho": b["trip"], "nho": b["n"],
+            "tripbook": a["tripbook"], "nbook": a["nbook"],
+            "r_tripped": a["r_tripped"], "n_tripped": a["n_tripped"],
+            "r_clean": a["r_clean"], "n_clean": a["n_clean"],
+            "verdict": a["verdict"], "reach": a["reach"],
+        })
+    return rows
+
+
+def mix_distance(produced, target):
+    """The same distance ``eval_cards`` computes for ``shape_day``,
+    generalised to any target. ``eval_cards``'s own field is hardcoded to
+    ``AUSTIN_MIX`` (28/27/3), which is the wrong target for the held-out
+    corpus's own 15/27/16."""
+    t = sum(produced.values())
+    m = sum(target.values())
+    if not t or not m:
+        return 1.0
+    return 0.5 * sum(abs(produced[g] / t - target[g] / m) for g in ("S", "A", "C"))
 
 
 def card_score(r):
@@ -697,10 +833,19 @@ def main():
     ap.add_argument("--selftest", action="store_true")
     ap.add_argument("--limit", type=int, default=0,
                     help="cap the 2-year book to N symbol-days (smoke test only)")
+    ap.add_argument("--a1", action="store_true",
+                    help="A1/T4: eight-variable verdict table at committed defaults "
+                         "only, against the 120 cards + the 100-card held-out OMEN "
+                         "Test 1 set + the 2-year book. Writes "
+                         "research/a1_threshold_sweep.md. No sweep, no retune.")
     args = ap.parse_args()
 
     if args.selftest:
         sys.exit(0 if selftest() else 1)
+
+    if args.a1:
+        run_a1(args.limit or None)
+        return
 
     t0 = time.time()
     corpus = build_cards()
@@ -1232,6 +1377,240 @@ def write_report(corpus, tune, hold, book, missed, agree_book,
              "monotone moves and nothing else.")
 
     with open(OUT, "w", encoding="utf-8") as fh:
+        fh.write("\n".join(L) + "\n")
+
+
+# ---------------------------------------------------------------------------
+# A1/T4 report
+# ---------------------------------------------------------------------------
+
+A1_VAR_HEAD = ("| variable | trip % 120-cards | trip % held-out100 | trip % 2yr book | "
+              "tripped mean R | clean mean R | delta | verdict |\n"
+              "|---|---:|---:|---:|---:|---:|---:|---|")
+
+
+def a1_var_row(r):
+    ra = ("%+.3fR (n=%d)" % (r["r_tripped"], r["n_tripped"])) if r["r_tripped"] is not None else "n/a"
+    rb = ("%+.3fR (n=%d)" % (r["r_clean"], r["n_clean"])) if r["r_clean"] is not None else "n/a"
+    delta = ("%+.3fR" % (r["r_tripped"] - r["r_clean"])
+             if r["r_tripped"] is not None and r["r_clean"] is not None else "n/a")
+    v = ("**%s**" % r["verdict"]) if r["verdict"].startswith("wrong-signed") else r["verdict"]
+    return ("| `%s` | %d/%d = %.1f%% | %d/%d = %.1f%% | %d/%d = %.1f%% | %s | %s | %s | %s |"
+            % (r["var"],
+               r["trip120"], r["n120"], 100 * r["trip120"] / max(r["n120"], 1),
+               r["tripho"], r["nho"], 100 * r["tripho"] / max(r["nho"], 1),
+               r["tripbook"], r["nbook"], 100 * r["tripbook"] / max(r["nbook"], 1),
+               ra, rb, delta, v))
+
+
+def run_a1(limit=None):
+    t0 = time.time()
+    corpus120 = build_cards()
+    print("cards120: %d day-cards, %d signals, %.1fs"
+          % (len(corpus120), sum(len(f) for _, _, f in corpus120), time.time() - t0),
+          flush=True)
+
+    t0 = time.time()
+    corpus_ho = build_cards(days=load_probe_days())
+    print("held-out: %d day-cards, %d signals, %.1fs"
+          % (len(corpus_ho), sum(len(f) for _, _, f in corpus_ho), time.time() - t0),
+          flush=True)
+
+    t0 = time.time()
+    book, missed = build_book(limit)
+    print("book: %d signals (%d unmatched), %.1fs" % (len(book), missed, time.time() - t0),
+          flush=True)
+
+    rows = variable_table(corpus120, corpus_ho, book)
+    base120 = eval_cards(corpus120, setting())
+    baseho = eval_cards(corpus_ho, setting())
+    tune120, hold120 = split_cards(corpus120)
+    base_tune = eval_cards(tune120, setting())
+    base_hold = eval_cards(hold120, setting())
+
+    write_a1_report(corpus120, corpus_ho, book, missed, rows,
+                    base120, baseho, base_tune, base_hold)
+    print("wrote %s" % A1_OUT)
+
+
+def write_a1_report(corpus120, corpus_ho, book, missed, rows,
+                    base120, baseho, base_tune, base_hold):
+    n_traded = sum(1 for _f, t, _w, _r, _s in book if t)
+    L = ["# A1 / T4 -- the eight downgrade variables, at committed defaults, "
+         "against three populations", ""]
+    L.append("Generated by `python research/p2_threshold_sweep.py --a1`. **Nothing is "
+             "swept and nothing is retuned.** Every variable below runs at exactly the "
+             "constants committed in `research/downgrade.py` -- this row produces a "
+             "table and a recommendation, not a new default. "
+             "`research/test_downgrade.py` passes against the same committed constants "
+             "this report measures.")
+    L.append("")
+    L.append("Reused unchanged: `split_cards()`, `incidence()`, `eval_cards()`, "
+             "`build_book()`, `setting()`, `trips_of()`. `build_cards()` gained one "
+             "optional parameter (`days=`, default unchanged) so the held-out corpus "
+             "is graded by the SAME function with a different input, never a second "
+             "card builder. New: `load_probe_days()` (reshapes the probe jsonl into the "
+             "`days` shape `build_cards()` already expects), `_variable_stats()` / "
+             "`variable_table()` (P15's wrong-sign test, applied to all eight "
+             "variables instead of one), `mix_distance()`.")
+    L.append("")
+    L.append("## The three populations")
+    L.append("")
+    L.append("| rig | source | cards | signals |")
+    L.append("|---|---|---:|---:|")
+    L.append("| 120 graded day-cards | `t60_baseline.load_day_cards()`, unchanged | %d | %d |"
+             % (len(corpus120), sum(len(f) for _, _, f in corpus120)))
+    L.append("| 100 held-out OMEN Test 1 | `%s` | %d | %d |"
+             % (os.path.basename(PROBE_PATH), len(corpus_ho),
+                sum(len(f) for _, _, f in corpus_ho)))
+    L.append("| 2-year book | `bt2y_trades.json`, READ ONLY | -- | %d (%d traded) |"
+             % (len(book), n_traded))
+    L.append("")
+    if missed:
+        L.append("%d book signals could not be matched back to a bar and are excluded."
+                 % missed)
+        L.append("")
+    L.append("All 120 graded cards and all 100 held-out cards replayed with bars found "
+             "-- nothing was silently dropped from either card corpus.")
+    L.append("")
+
+    # ---- the table --------------------------------------------------------
+    L.append("## The eight variables, at committed defaults")
+    L.append("")
+    L.append("`tripped mean R` / `clean mean R` are over the %d TRADED 2-year-book "
+             "signals -- the only population with a realised outcome to read a sign "
+             "from; `trip %%` columns are over ALL signals in each population (the "
+             "same convention `p2_threshold_sweep.md`'s own incidence table uses). "
+             "**Verdict is P15's test, generalised to all eight:** if the TRIPPED "
+             "population's mean R meets or beats the CLEAN population's, the variable "
+             "is wrong-signed for a downgrade -- it is marking BETTER trades worse. "
+             "`(low n)` flags a side with fewer than %d traded signals; read that "
+             "verdict as directional, not decisive." % (n_traded, A1_MIN_N))
+    L.append("")
+    L.append(A1_VAR_HEAD)
+    for r in rows:
+        L.append(a1_var_row(r))
+    L.append("")
+
+    wrong = [r for r in rows if r["verdict"].startswith("wrong-signed")]
+    right = [r for r in rows if r["verdict"].startswith("right-signed")]
+    other = [r for r in rows if r not in wrong and r not in right]
+    L.append("**%d of 8 variables are wrong-signed, %d are right-signed%s.**"
+             % (len(wrong), len(right),
+                (", %d n/a" % len(other)) if other else ""))
+    L.append("")
+    if wrong:
+        for r in sorted(wrong, key=lambda r: (r["r_tripped"] or 0) - (r["r_clean"] or 0),
+                        reverse=True):
+            L.append("- **`%s`** -- tripped %+.3fR (n=%d) vs clean %+.3fR (n=%d), delta "
+                     "%+.3fR. Fires on %.0f%% of the 2-year book (reach at any swept "
+                     "value: %d). Per the P15 rule: **STOP, do not tune.** A downgrade "
+                     "whose tripped population earns more than its clean population is "
+                     "not mis-thresholded; it is measuring something that is not a "
+                     "defect through the level the grader is handed (the trade's stop)."
+                     % (r["var"], r["r_tripped"], r["n_tripped"], r["r_clean"], r["n_clean"],
+                        r["r_tripped"] - r["r_clean"],
+                        100 * r["tripbook"] / max(r["nbook"], 1), r["reach"]))
+        L.append("")
+
+    # ---- distribution section ----------------------------------------------
+    L.append("## Produced S/A/C distribution vs Austin's own, both rigs")
+    L.append("")
+    L.append("This is the mismatch that triggered this row: `downgrade.py` was said to "
+             "produce roughly 13% / 24% / 62% against Austin's 28 S / 27 A / 3 C. "
+             "`p2_threshold_sweep.md`'s own first finding was that 13/24/62 is the "
+             "**per-signal** mix (T66's unit) next to a **per-day-card** target -- "
+             "different units. Read per day-card (collapse each card to its single "
+             "best signal, the same reduction the S-only trading rule makes):")
+    L.append("")
+    L.append(CARD_HEAD)
+    L.append(card_row(base120, "120 cards, day-level"))
+    L.append(card_row(baseho, "held-out 100, day-level"))
+    L.append("")
+    L.append("(`day shape` is `eval_cards`'s own field, always measured against "
+             "28/27/3 regardless of which corpus is passed in -- for the held-out row "
+             "that is the wrong target, which is exactly why the table below computes "
+             "the distance again against its own 15/27/16.)")
+    L.append("")
+    d120 = mix_distance({"S": base120["dS"], "A": base120["dA"], "C": base120["dC"]}, AUSTIN_MIX)
+    dho_own = mix_distance({"S": baseho["dS"], "A": baseho["dA"], "C": baseho["dC"]}, HELDOUT_MIX)
+    dho_austin = mix_distance({"S": baseho["dS"], "A": baseho["dA"], "C": baseho["dC"]}, AUSTIN_MIX)
+    L.append("| mix | S | A | C | target | distance |")
+    L.append("|---|---:|---:|---:|---|---:|")
+    L.append("| Austin, 120 cards | 28 | 27 | 3 | -- | 0.000 |")
+    L.append("| grader, 120 cards (day-level) | %d | %d | %d | vs 28/27/3 | %.3f |"
+             % (base120["dS"], base120["dA"], base120["dC"], d120))
+    L.append("| Austin, held-out 100 | 15 | 27 | 16 | -- | 0.000 |")
+    L.append("| grader, held-out 100 (day-level) | %d | %d | %d | vs **15/27/16** (its own) | %.3f |"
+             % (baseho["dS"], baseho["dA"], baseho["dC"], dho_own))
+    L.append("| grader, held-out 100 (day-level) | %d | %d | %d | vs 28/27/3 (literal ticket anchor) | %.3f |"
+             % (baseho["dS"], baseho["dA"], baseho["dC"], dho_austin))
+    L.append("")
+    L.append("The last two rows come out identical (%.3f) by a coincidence of totals, "
+             "not because the held-out mix is equally close to both targets: 28/27/3 "
+             "and 15/27/16 share the same A (27 of 58) and the same S+C (31 of 58), so "
+             "this distance metric -- which only sees three buckets -- cannot tell them "
+             "apart. The row-by-row S/A/C counts above are the real comparison; the "
+             "distance number is a summary, not the finding." % dho_own)
+    L.append("")
+    L.append("The 120-card row reruns `p2_threshold_sweep.md`'s own finding as a sanity "
+             "check, not a new result. The row that matters for A1 is the **held-out** "
+             "one against its **own** 15/27/16 -- the honest test, since these 100 "
+             "cards did not exist when any threshold in this file was chosen and could "
+             "not have leaked into anything.")
+    L.append("")
+    L.append("S-day recall and false-fire, both rigs, and how many graded cards produced "
+             "no engine signal at all (excluded from the day-mix table above, since "
+             "there is no grade to count there):")
+    L.append("")
+    L.append("| rig | S-day recall | false fire | day agreement | no-signal cards |")
+    L.append("|---|---|---|---|---|")
+    L.append("| 120 cards | %d/%d | %d/%d | %d/%d | %d/%d |"
+             % (base120["s_hit"], base120["s_tot"], base120["ff"], base120["ff_tot"],
+                base120["agree"], base120["agree_tot"],
+                base120["nosig"], base120["agree_tot"]))
+    L.append("| held-out 100 | %d/%d | %d/%d | %d/%d | %d/%d |"
+             % (baseho["s_hit"], baseho["s_tot"], baseho["ff"], baseho["ff_tot"],
+                baseho["agree"], baseho["agree_tot"],
+                baseho["nosig"], baseho["agree_tot"]))
+    L.append("")
+
+    # ---- stability check via split_cards() ---------------------------------
+    L.append("## Robustness: TUNE/HOLD split of the 120 cards")
+    L.append("")
+    L.append("`split_cards()`, unchanged -- the same deterministic 50/50 "
+             "grade-stratified split `p2_threshold_sweep.md` uses. The per-variable "
+             "verdict above is a property of the 2-year book alone (`on`/`off` never "
+             "read the card corpus), so it cannot move between TUNE and HOLD by "
+             "construction; what CAN move is whether the 120-card recall numbers above "
+             "are representative of the whole 120 or an artifact of it. They are not "
+             "swept or retuned here either -- this is the same baseline row "
+             "`p2_threshold_sweep.md` reports for its own committed defaults.")
+    L.append("")
+    L.append(CARD_HEAD)
+    L.append(card_row(base_tune, "TUNE (60 cards)"))
+    L.append(card_row(base_hold, "HOLD (60 cards)"))
+    L.append("")
+
+    # ---- closing ------------------------------------------------------------
+    L.append("## What this does not say")
+    L.append("")
+    L.append("1. **Nothing here is applied.** `research/downgrade.py` is untouched.")
+    L.append("2. **This is not a sweep.** Every number above is the ONE committed "
+             "setting. `research/p2_threshold_sweep.md` already swept the six numeric "
+             "guesses across ~60 settings each; this row asks a narrower question -- "
+             "does each variable, AS SHIPPED, point the right way -- against a corpus "
+             "that could not have leaked into any prior tuning.")
+    L.append("3. **A wrong-signed verdict is not a call to retune that variable.** P15 "
+             "tried three reformulations of `level_not_respected` and all three failed "
+             "differently. The recommendation for a wrong-signed variable here is the "
+             "same STOP, not a fourth attempt taken on this row's own initiative.")
+    L.append("4. **The held-out rig is 100 cards, not 1,000.** A verdict that shows up "
+             "consistently in the 45,175-signal book is the load-bearing one; the card "
+             "rigs corroborate or fail to corroborate it, they do not compute it "
+             "independently (`on`/`off` are book-only, see above).")
+
+    with open(A1_OUT, "w", encoding="utf-8") as fh:
         fh.write("\n".join(L) + "\n")
 
 
