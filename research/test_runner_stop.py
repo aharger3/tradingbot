@@ -101,6 +101,41 @@ def wick_through_stop(side="L"):
     return bars
 
 
+
+def stop_then_rally(side="L"):
+    """The close goes through the stop on the very next bar, then price rips.
+
+    This is the shape `research/h1_2y_nowatch.py` found on PLTR 2026-06-01 and
+    45 rows of the 2-year book: the ORIGINAL stop fires before tranche 1
+    ever reaches its HOD rung, so the WHOLE position is flat -- there is no
+    runner left to move to break-even. `scale_out` was moving one anyway and
+    booking the rally that followed, which turned a full stop-out into a
+    profit. Third instance of ticket 02's bug class (a stop that is computed
+    and then not applied to the tranche it governs).
+    """
+    bars = [_bar(100.0, 100.4, 99.6, 100.0) for _ in range(21)]
+    # 21: closes at 98.50, well below the 99.00 stop -> whole position out
+    bars.append(_bar(99.8, 99.9, 98.4, 98.50))
+    for k in range(10):                      # 22..31: the rally that must not count
+        t = 100.0 + k
+        bars.append(_bar(t - 0.5, t + 0.5, t - 0.8, t))
+    last = bars[-1]["c"]
+    while len(bars) <= CLOCK_BAR:
+        bars.append(_bar(last, last + 0.2, last - 0.2, last))
+    if side == "S":
+        bars = [_bar(200 - b["o"], 200 - b["l"], 200 - b["h"], 200 - b["c"])
+                for b in bars]
+    return bars
+
+
+# Cases where the original stop fires first: the whole position is out, so the
+# realised R must be a LOSS. Booking anything above 0 means a stopped-out trade
+# kept running.
+STOPPED_CASES = [
+    ("stop_then_rally long", stop_then_rally, 20, 100.0, 99.00, "L"),
+    ("stop_then_rally short", stop_then_rally, 20, 100.0, 101.00, "S"),
+]
+
 # Cases that must NOT stop out at all -- the close never goes beyond the stop.
 POSITIVE_CASES = [
     ("wick_through_stop long", wick_through_stop, 20, 100.0, 99.00, "L"),
@@ -131,6 +166,25 @@ def main():
                 failures.append(
                     f"  {name} / {pid}: realised {r:+.4f}R, floor is {FLOOR:+.2f}R "
                     f"(break-even stop on the runner was not enforced)"
+                )
+
+    for name, bars_fn, entry_i, entry, stop, side in STOPPED_CASES:
+        bars = bars_fn(side)
+        if side == "S":
+            entry, stop = 200 - entry, 200 - stop
+        for pid, fn in LADDERED.items():
+            r = fn(bars, entry_i, entry, stop, side)
+            rows.append((name, pid, r))
+            if r > -1.0 + EPS:
+                failures.append(
+                    f"  {name} / {pid}: realised {r:+.4f}R on a trade whose close "
+                    f"went through the ORIGINAL stop before any tranche exited -- "
+                    f"100% of the position is out at that close, so this must be a "
+                    f"full stop-out (<= -1.00R), not a partial one"
+                )
+            if r < FLOOR - EPS:
+                failures.append(
+                    f"  {name} / {pid}: realised {r:+.4f}R, floor is {FLOOR:+.2f}R"
                 )
 
     for name, bars_fn, entry_i, entry, stop, side in POSITIVE_CASES:

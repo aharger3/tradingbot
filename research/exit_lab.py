@@ -267,12 +267,24 @@ def scale_out(bars, entry_i, entry, stop, side, weights, trail_method="atr"):
     # close no matter how far below the stop it was.
     t1_exit_i = hod_i
     t1_price = bars[hod_i]["c"]
+    stopped_out = False
     for i in range(entry_i + 1, min(hod_i + 1, n)):
         if _stop_hit_first(bars, i, entry, stop, side):
             t1_exit_i = i
             t1_price = _stop_fill(bars, i, entry, stop, side, risk)
+            stopped_out = True
             break
     r1 = realised_r(entry, stop, t1_price, side)
+
+    # The ORIGINAL stop fired before tranche 1 ever reached its HOD rung, so
+    # NO tranche has taken profit and 100% of the position is out at that
+    # close. There is no runner to move to break-even -- moving one books the
+    # rally that follows a full stop-out as a partial loss or a profit.
+    # Third instance of ticket 02's bug class: a stop computed and then not
+    # applied to the tranche it governs. research/test_runner_stop.py's
+    # `stop_then_rally` is red before this line and green after.
+    if stopped_out:
+        return r1
 
     # --- runner: stop to break-even, trail the rest ---
     # The runner starts at whichever bar tranche 1 actually left on.
