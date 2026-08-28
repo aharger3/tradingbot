@@ -26,8 +26,20 @@ def _esc(s):
             .replace('"', "&quot;"))
 
 
-def render(candles, levels, marks=None, label="", interactive=False):
+def render(candles, levels, marks=None, label="", interactive=False,
+           hlines=None, vlines=None):
     """candles: [{t,o,h,l,c,v}]  levels: {pdh:..}  marks: [{i,price,stop,side,tag}]
+
+    ``hlines`` / ``vlines`` (H2 three-lane deck, 2026-08-28) are optional
+    overlays that carry no market semantics of their own: a horizontal price
+    rail (the give-back lane's 2R target) and a vertical bar marker (the 11:00
+    clock step). They default to empty, so every existing caller gets byte-
+    identical SVG. Shape:
+
+        hlines = [{"price": 128.44, "label": "2R", "cls": "tgt"}]
+        vlines = [{"i": 90, "label": "11:00", "cls": "clk"}]
+
+    The page owns the colours via ``.chart .tgt`` / ``.chart .clk``.
 
     ``interactive=True`` (OMEN Test 1) adds two things and changes nothing else:
 
@@ -43,6 +55,8 @@ def render(candles, levels, marks=None, label="", interactive=False):
     would move every candle under his finger mid-tap.
     """
     marks = marks or []
+    hlines = hlines or []
+    vlines = vlines or []
     n = len(candles)
     if not n:
         return '<div class="chart-missing">no bars</div>'
@@ -59,6 +73,11 @@ def render(candles, levels, marks=None, label="", interactive=False):
         for v in (m.get("price"), m.get("stop")):
             if v is not None:
                 lo, hi = min(lo, v), max(hi, v)
+    for h in hlines:
+        # A 2R rail the tape never reached still has to be ON the chart, or the
+        # card asks him to judge a target he cannot see.
+        if h.get("price") is not None:
+            lo, hi = min(lo, h["price"]), max(hi, h["price"])
     span = (hi - lo) or 1.0
     lo -= span * 0.04
     hi += span * 0.04
@@ -91,6 +110,17 @@ def render(candles, levels, marks=None, label="", interactive=False):
         out.append('<text class="axis" x="%.1f" y="%.1f">%s</text>'
                    % (x(i), H - 8, _esc(t)))
 
+    for vl in vlines:
+        i = vl.get("i")
+        if i is None or not (0 <= i < n):
+            continue
+        out.append('<line class="vmark %s" x1="%.1f" y1="%d" x2="%.1f" y2="%.1f"/>'
+                   % (_esc(vl.get("cls", "")), x(i), PAD_T, x(i), PAD_T + plot_h))
+        if vl.get("label"):
+            out.append('<text class="vmark-t %s" x="%.1f" y="%d">%s</text>'
+                       % (_esc(vl.get("cls", "")), x(i), PAD_T + 9,
+                          _esc(vl["label"])))
+
     for k, lab, cls in LEVELS:
         v = levels.get(k)
         if v is None or not (lo <= v <= hi):
@@ -110,6 +140,16 @@ def render(candles, levels, marks=None, label="", interactive=False):
         top, bot = y(max(c["o"], c["c"])), y(min(c["o"], c["c"]))
         out.append('<rect class="bd %s" x="%.1f" y="%.1f" width="%.1f" height="%.1f"/>'
                    % (cls, cx - bw / 2, top, bw, max(1.0, bot - top)))
+
+    for h in hlines:
+        p = h.get("price")
+        if p is None or not (lo <= p <= hi):
+            continue
+        out.append('<line class="hrail %s" x1="%d" y1="%.1f" x2="%.1f" y2="%.1f"/>'
+                   % (_esc(h.get("cls", "")), PAD_L, y(p), PAD_L + plot_w, y(p)))
+        out.append('<text class="hrail-t %s" x="%.1f" y="%.1f">%s %.2f</text>'
+                   % (_esc(h.get("cls", "")), PAD_L + plot_w + 4, y(p) + 3.4,
+                      _esc(h.get("label", "")), p))
 
     for m in marks:
         cx, p = x(m["i"]), m.get("price")
