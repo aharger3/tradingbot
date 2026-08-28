@@ -98,11 +98,19 @@ def _judgement_key(row: dict) -> str | None:
       ``sr_`` S-recall rows carry ``grade: null`` and ``answers.s_call`` -- Austin
       looked at the chart and said yes/no. That is exactly the thing the
       guarantee exists to protect, and it was invisible.
+    * **``_no_trade`` rows were not judgements.** 143 rows of
+      ``blind_marks_all.jsonl`` are bare ``{symbol, day, _no_trade: true}`` --
+      Austin looked and said "nothing here". No grade key, no answers dict, so
+      the row fell out at the first gate and all 143 stayed eligible. Two of
+      them (BABA 2024-12-12, PLTR 2025-05-08) reached the 100-card S sweep on
+      2026-08-28 and he spotted the repeat before the code did. ``_no_trade`` is
+      the same thing as ``grade: "none"`` wearing a different field name.
     """
     graded = any(str(row.get(k, "")).strip() for k in _GRADE_KEYS)
     answers = row.get("answers")
     answered = isinstance(answers, dict) and any(answers.values())
-    if not (graded or answered):
+    refused = bool(row.get("_no_trade"))
+    if not (graded or answered or refused):
         return None
     symbol = row.get("symbol")
     day = row.get("date") or row.get("day")

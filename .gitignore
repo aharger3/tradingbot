@@ -152,3 +152,4 @@ research/_w3_*.log
 #   ON_WATCH=1 python backtest_2y.py --days 730 --out research/t11_arm_ow1_closefill.json
 # The numbers read off it live in research/_t11_rescore.json, which IS tracked.
 research/t11_arm_ow1_closefill.json
+.tasty_challenge

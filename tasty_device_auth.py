@@ -18,6 +18,7 @@ import requests
 API_BASE = "https://api.tastyworks.com"
 UA = {"User-Agent": "omen-trading-bot/1.0"}
 ENV = Path(__file__).parent / ".env"
+TOKEN_CACHE = Path(__file__).parent / ".tasty_challenge"  # gitignored, one-shot
 
 
 def _env(key):
@@ -54,7 +55,17 @@ def main():
         if cr.status_code >= 300:
             sys.exit(f"Challenge request failed: HTTP {cr.status_code} {cr.text[:300]}")
         phone = cr.json().get("data", {}).get("phone", "your phone")
-        code = input(f"Tastytrade texted a code to {phone}. Enter it: ").strip()
+        # ponytail: argv beats input() so this runs when nobody is at the keyboard.
+        # Two-step: `python tasty_device_auth.py` texts the code and parks the
+        # challenge token; `python tasty_device_auth.py <code>` finishes the login.
+        if len(sys.argv) > 1:
+            code = sys.argv[1].strip()
+            challenge_token = TOKEN_CACHE.read_text().strip() if TOKEN_CACHE.exists() else challenge_token
+        elif sys.stdin.isatty():
+            code = input(f"Tastytrade texted a code to {phone}. Enter it: ").strip()
+        else:
+            TOKEN_CACHE.write_text(challenge_token)
+            sys.exit(f"Code texted to {phone}. Re-run: python tasty_device_auth.py <code>")
         r = requests.post(
             f"{API_BASE}/sessions", json=body,
             headers={**UA, "X-Tastyworks-Challenge-Token": challenge_token,
