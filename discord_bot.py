@@ -7,7 +7,7 @@ import requests
 from pathlib import Path
 from typing import Optional, Tuple
 from dataclasses import dataclass
-from omen_bot import SignalType, Candle
+from omen_bot import SignalType, Candle, his_grade
 from position_sizer import SizingPlan
 from options_sizer import OptionsPlan
 
@@ -66,10 +66,11 @@ class DiscordSignalBot:
             SignalType.REENTRY_84_RULE: 9109760,
             SignalType.NONE: 9807270,
         }
-        # Grade colors: A+ green, A teal, B blue, C yellow, D red
-        # "X" is the skip grade; "D" kept for records written before the T5 rename
-        grade_colors = {"A+": 3066993, "A": 1752220, "B": 3447003, "C": 15844367,
-                        "X": 15158332, "D": 15158332}
+        # Austin's ladder only: S green, A teal, C yellow, X red. The engine's
+        # A+/A/B working states are translated by omen_bot.his_grade before they
+        # reach him -- see the HIS_LADDER block there.
+        grade = his_grade(grade) if grade else grade
+        grade_colors = {"S": 3066993, "A": 1752220, "C": 15844367, "X": 15158332}
         if grade in grade_colors:
             color_map = {k: grade_colors[grade] for k in color_map}
 

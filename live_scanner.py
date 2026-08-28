@@ -9,6 +9,8 @@ Usage:
 """
 
 import os
+
+from omen_bot import his_grade   # engine working state -> Austin's ladder
 import json
 import socket
 import sys
@@ -480,7 +482,7 @@ def _emit_futures_signal(runner: SignalRunner, contract: str, candle, sig: dict)
 
     signal_type_val = sig["signal_type"].value if hasattr(sig["signal_type"], "value") else str(sig["signal_type"])
     icon = "⚠" if alert_only else "🚀"
-    print(f"{icon} OMEN FUTURES {signal_type_val.upper()} {direction.upper()}  Grade: {grade}")
+    print(f"{icon} OMEN FUTURES {signal_type_val.upper()} {direction.upper()}  Grade: {his_grade(grade)}")
     if alert_only:
         print("   C GRADE — ALERT ONLY, manual review (not auto-traded)")
     print(f"   {sig['reason']}")
@@ -493,7 +495,7 @@ def _emit_futures_signal(runner: SignalRunner, contract: str, candle, sig: dict)
         quote_source="futures_yfinance", status="alert" if alert_only else "fired",
     )
     if runner.post_to_discord and runner.discord:
-        ok = runner.discord.post_text(f"{icon} **OMEN** · Grade {grade}\n{sig['reason']}\n{plan.format_discord()}")
+        ok = runner.discord.post_text(f"{icon} **OMEN** · Grade {his_grade(grade)}\n{sig['reason']}\n{plan.format_discord()}")
         print("   ✓ Posted" if ok else "   ✗ Discord post failed")
     return not alert_only
 
@@ -611,7 +613,7 @@ def _emit_signal(runner: SignalRunner, tasty_feed: TastytradeFeed, symbol: str, 
 
     tag = "[PAPER] " if paper is not None else ""
     icon = "🎯" if tier == "TRADE" else "👀"
-    print(f"{icon} {tag}{tier} {signal_type_val.upper()} {sig['direction'].upper()}  Grade: {grade}  Stop: {stop_level} ({stop_width}%)")
+    print(f"{icon} {tag}{tier} {signal_type_val.upper()} {sig['direction'].upper()}  Grade: {his_grade(grade)}  Stop: {stop_level} ({stop_width}%)")
     if alert_only:
         print("   WATCH — ding only, not traded")
     print(f"   {sig['reason']}")

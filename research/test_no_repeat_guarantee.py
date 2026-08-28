@@ -58,6 +58,7 @@ else:
 # symbol-days were served and never exported back, and all of them were eligible
 # for a new deck until 2026-08-28.
 SERVED_FLOOR, SEEN_FLOOR = 724, 1458
+# Pool floor rises as he grades. 959 was pre-sweep; his 100 landed 2026-08-28.
 served, seen = served_card_ids(), seen_card_ids()
 for name, got, floor in (("served", len(served), SERVED_FLOOR),
                          ("seen (judged|served)", len(seen), SEEN_FLOOR)):
@@ -71,12 +72,16 @@ for name, got, floor in (("served", len(served), SERVED_FLOOR),
 # empties and the deck comes out with nothing in it.
 _own = os.path.join(HERE, "decks", "omen-s-accuracy-100-manifest.jsonl")
 if os.path.exists(_own):
-    if len(seen_card_ids(_own)) >= len(seen):
+    # Test SERVED, not the union: once a deck comes back graded its cards are in
+    # marked_card_ids() too, so the union is unchanged by the exclude and would
+    # report a false failure. The property being pinned is that the manifest
+    # itself stops contributing.
+    if len(served_card_ids(_own)) >= len(served):
         print("FAIL a deck does not exclude its own manifest -- rebuilds self-block")
         fails += 1
     else:
-        print("ok   a deck excludes its own manifest (%d -> %d)"
-              % (len(seen), len(seen_card_ids(_own))))
+        print("ok   a deck excludes its own manifest (served %d -> %d)"
+              % (len(served), len(served_card_ids(_own))))
 
 if not seen >= pool:
     print("FAIL seen_card_ids() does not contain every judged day")

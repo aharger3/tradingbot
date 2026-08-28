@@ -56,6 +56,38 @@ class SignalType(Enum):
     NONE = "none"
 
 
+# --- The one ladder Austin ever sees -----------------------------------------
+#
+# Austin, 2026-08-28: "A+ was supposed to be killed too, what happened?"
+#
+# What happened: nothing killed them, because A+/A/B/C are not grades -- they
+# are the engine's WORKING STATES inside a promotion lattice (_grade_pa emits a
+# base, the A+ stack floors it up, LATE and neutral-HTF cap it down, the
+# first-with-trend rule floors C to B). Over the 2-year book that lattice trades
+# 1,000 B, 15 A and 2 A+, so `B` is not a leftover tier -- it is 98.3% of every
+# trade the engine has ever taken. Deleting the letter deletes the book.
+#
+# The kill that IS available today, and the one this block ships: no A+ and no B
+# ever reaches him again. Every grade crossing into an alert, a print or a post
+# is translated once, here, by the SAME mapping research/t70_test1_score.LADDER
+# already uses to score him. Nothing about what fires changes -- the book is
+# byte-identical -- only the letters he reads.
+#
+# The deeper kill (collapse the lattice itself onto his S/A/C downgrade count)
+# is `signal_runner.ENABLE_SAC_LADDER`. It is built, it is measured, and it
+# ships OFF because it scored 44.1% held-out recall against the legacy 52.5%.
+# Turning it on is a judgement call with a price, not a cleanup.
+HIS_LADDER = {"A+": "S", "A": "A", "B": "A", "C": "C", "X": "X", "D": "X"}
+
+
+def his_grade(letter) -> str:
+    """An engine working-state letter as the grade Austin uses. Never inverted:
+    his A covers two engine states, so the map is one-way by construction."""
+    if letter is None:
+        return "X"
+    return HIS_LADDER.get(getattr(letter, "value", letter), str(letter))
+
+
 class TradeGrade(Enum):
     """omen-3.7 T5: `D` and `X` both mean SKIP, so `X` is now the canonical
     skip grade and `D` is kept as an alias (TradeGrade.D is TradeGrade.X) so
