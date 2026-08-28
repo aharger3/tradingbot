@@ -310,3 +310,30 @@ A few rows are the same parameter point scored once and printed in two sections 
 
 `python research/w13_scaling.py --selfcheck` proves, on all 1017 rows: `staged_exit` reproduces `w2_time_ladder.time_ladder` exactly on the default rung set (so the causal conventions MATCH rather than being asserted to); no arm books above the MFE its own horizon offered, the ceiling extended by `size × (MFE − trigger_r)` for a scale-in arm; no leg books below −1.25 R per unit of original risk; MFE is monotone in the horizon; and `exit_lab.CLOCK_BAR` is restored to 90.
 
+
+---
+
+## Correction, 2026-08-28 — the `hod_only` breach §9 flagged is now fixed
+
+§9 recorded that `research/exit_lab.py::hod_only` books below the −1.25 R
+`MAX_LOSS_R` floor on 5 of the 1,017 traded rows, attributed it to the same
+off-by-one `scale_out` had fixed at `f5ff006a`, and left it unfixed because this
+ticket made no edits to `exit_lab`.
+
+**It is fixed now.** The stop scan is inclusive of `hod_i`, matching
+`scale_out`'s tranche 1. `research/test_runner_stop.py::hod_bar_craters` is red
+before the change (−4.0000 R, both sides) and green after (−1.2500 R).
+Re-measured by `research/w14_hod_only_fix.py`:
+
+| clock | §2 published | corrected | delta |
+|---|---:|---:|---:|
+| 11:00 | +0.9225 | **+0.9248** | +0.0022 |
+
+**No conclusion in this report changes.** `hod_only` is a control arm here, not
+a result: the finding is that scale-in tops out at +1.4697 R, and the 0.0022 R
+correction to a control it already beat by more than half an R does not touch
+that. §9's breach row should now read FIXED rather than FLAGGED.
+
+**One correction to §9's own number:** it names `MU 2026-06-16` at −1.4013 R as
+the worst case. At the 11:00 clock the worst is **`AVGO 2025-08-20` at
+−2.5851 R**. MU is third of five.

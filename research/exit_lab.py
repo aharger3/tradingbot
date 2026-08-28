@@ -230,7 +230,15 @@ def hod_only(bars, entry_i, entry, stop, side, trail_method="atr"):
     hod_i = causal_hod_exit_bar(bars, entry_i, side)
     if hod_i is None:
         return 0.0
-    end = min(hod_i, n)
+    # The stop is live on the HOD exit bar ITSELF -- the same INCLUSIVE range
+    # `scale_out`'s tranche 1 uses, and for the same reason. A bar can print a
+    # new extreme, fail to extend it, and close far beyond the stop in the one
+    # minute this policy exits on; excluding hod_i booked that close in full and
+    # never floored it at MAX_LOSS_R. `scale_out` was fixed at f5ff006a and this
+    # function was left behind -- 5 of 1,017 traded rows, worst -1.4013R
+    # (`research/w13_scaling.py --selfcheck`). `research/test_runner_stop.py`'s
+    # `hod_bar_craters` is red before this line and green after.
+    end = min(hod_i + 1, n)
     for i in range(entry_i + 1, end):
         if _stop_hit_first(bars, i, entry, stop, side):
             return realised_r(entry, stop, _stop_fill(bars, i, entry, stop, side, risk), side)

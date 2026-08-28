@@ -197,3 +197,37 @@ The best median in the whole sweep: `R2  rungs 1/2R 50-40`, on the `A1  10:30>50
 
 `python research/w2_time_ladder.py --selfcheck` proves, on all 1017 rows × every swept arm, that a `time_ladder` result never exceeds the maximum favourable excursion the tape offered at that arm's own backstop and never falls below the −1.25 R floor.
 
+
+---
+
+## Correction, 2026-08-28 — `hod_only`'s numbers in §4 were measured against a floor bug
+
+`research/exit_lab.py::hod_only` scanned for the stop over
+`range(entry_i + 1, min(hod_i, n))` — **exclusive of the HOD exit bar**, the one
+bar the policy actually exits on. A bar that printed a new extreme, failed to
+extend it, and then closed far beyond the stop was booked at that close in full
+and never floored at `MAX_LOSS_R`. `scale_out` carried the identical off-by-one
+and was fixed at `f5ff006a`; `hod_only` was left behind. Found by
+`research/w13_scaling.py --selfcheck`, fixed and re-measured by
+`research/w14_hod_only_fix.py`.
+
+**The numbers §4 quotes are superseded. They are not withdrawn — they were
+correctly computed against the code as it stood — and the delta is small:**
+
+| clock | §4 published | corrected | delta | rows that breached the floor |
+|---|---:|---:|---:|---:|
+| 11:00 | +0.9225 | **+0.9248** | +0.0022 | 5 of 1,017 |
+| 16:00 | +0.8965 | **+0.8974** | +0.0009 | 3 of 1,017 |
+
+The five breaching rows at the 11:00 clock, before → after:
+`AVGO 2025-08-20` −2.5851 → −1.2500, `COIN 2025-12-02` −1.9800 → −1.2500,
+`MU 2026-06-16` −1.4013 → −1.2500, `HOOD 2024-11-11` −1.2917 → −1.2500,
+`UBER 2025-07-17` −1.2632 → −1.2500.
+
+**§4's ranking conclusion survives and slightly strengthens**: `hod_only` still
+tops the incumbent ladder's +0.8976, now by 0.0272 R instead of 0.0249 R. That
+delta is 2.9× the ±0.0095 R narrow bar, so it was and remains readable but thin.
+
+**One correction to the correction:** the bug ticket cited the worst breach as
+−1.4013 R on `MU 2026-06-16`. At the 11:00 clock the worst is actually
+**−2.5851 R on `AVGO 2025-08-20`**, twice as far below the floor.

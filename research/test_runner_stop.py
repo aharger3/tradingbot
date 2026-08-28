@@ -33,6 +33,7 @@ if _REPO_ROOT not in sys.path:
 from research.exit_lab import (  # noqa: E402
     CLOCK_BAR,
     MAX_LOSS_R,
+    hod_only,
     policy_30_30_30_10,
     policy_50_20_20_10,
 )
@@ -128,6 +129,52 @@ def stop_then_rally(side="L"):
     return bars
 
 
+
+def hod_bar_craters(side="L"):
+    """The causal-HOD exit bar itself closes far beyond the stop.
+
+    `causal_hod_exit_bar` returns the first bar after the new session extreme
+    that fails to extend it. That bar is where tranche 1 exits -- and its own
+    close can be anywhere. Here it closes 4R the wrong way.
+
+    `hod_only` scanned for the stop over `range(entry_i + 1, end)` with
+    `end = min(hod_i, n)`, EXCLUSIVE of hod_i, so the stop was not live on the
+    one bar the policy actually exits on: the -4R close was booked in full and
+    never floored. `scale_out` carried the identical off-by-one and it was
+    fixed at `f5ff006a` ("tranche 1: fixed stop until the HOD exit bar,
+    INCLUSIVE"); `hod_only` was left behind. Measured on the real book by
+    `research/w13_scaling.py --selfcheck`: 5 of 1,017 traded rows, worst
+    -1.4013R on MU 2026-06-16.
+
+    Bar 21 prints the new extreme, so hod_bar = 21. Bar 22 fails to extend it,
+    so the exit bar is 22 -- and bar 22 closes 4R the wrong way.
+
+    Built per side rather than by mirroring -- the mirror of a rising day is
+    not a falling day with the same HOD/LOD geometry, and getting that wrong
+    silently turns the short case into a different test. Same reason
+    `wick_through_stop` is built this way.
+    """
+    bars = [_bar(100.0, 100.4, 99.6, 100.0) for _ in range(21)]
+    if side == "L":
+        bars.append(_bar(100.0, 101.0, 99.8, 100.8))  # 21: new session high
+        bars.append(_bar(100.6, 100.5, 95.5, 96.00))  # 22: exit bar, craters
+        tail = 96.0
+    else:
+        bars.append(_bar(100.0, 100.2, 99.0, 99.20))  # 21: new session low
+        bars.append(_bar(99.40, 104.5, 99.5, 104.00))  # 22: exit bar, craters
+        tail = 104.0
+    while len(bars) <= CLOCK_BAR:
+        bars.append(_bar(tail, tail + 0.4, tail - 0.4, tail))
+    return bars
+
+
+# `hod_only` is not a laddered policy, so it gets its own list. The floor is
+# the same one every other case asserts: nothing books below -1.25R.
+HOD_CASES = [
+    ("hod_bar_craters long", hod_bar_craters, 20, 100.0, 99.00, "L"),
+    ("hod_bar_craters short", hod_bar_craters, 20, 100.0, 101.00, "S"),
+]
+
 # Cases where the original stop fires first: the whole position is out, so the
 # realised R must be a LOSS. Booking anything above 0 means a stopped-out trade
 # kept running.
@@ -186,6 +233,16 @@ def main():
                 failures.append(
                     f"  {name} / {pid}: realised {r:+.4f}R, floor is {FLOOR:+.2f}R"
                 )
+
+    for name, bars_fn, entry_i, entry, stop, side in HOD_CASES:
+        bars = bars_fn(side)          # already side-correct, do not mirror
+        r = hod_only(bars, entry_i, entry, stop, side)
+        rows.append((name, "hod_only", r))
+        if r < FLOOR - EPS:
+            failures.append(
+                f"  {name} / hod_only: realised {r:+.4f}R, floor is {FLOOR:+.2f}R "
+                f"(the stop was not live on the HOD exit bar itself)"
+            )
 
     for name, bars_fn, entry_i, entry, stop, side in POSITIVE_CASES:
         bars = bars_fn(side)          # already side-correct, do not mirror
