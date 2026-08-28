@@ -1,0 +1,5272 @@
+{
+ "days": 730,
+ "pre_hashes": {
+  "signal_runner.py": "d001776dc57d15a9e6ec6d9d78c27d9c0676024ec3ed7e280a1c62ba88d1bdf0",
+  "omen_bot.py": "0f9cacbf7179fc0f0b7b6ce61faf25bd1694885bddb71e07d63d4ba3638cb9a2",
+  "backtest_week.py": "980f60bbc243edbf6875aa680556524a0ae671972c2d49b1d0a8de91dcaadff4",
+  "research/downgrade.py": "c3359f1f5da3218b4f9f9acb3b2afdfd65c3f04ee0275148da045c5590018521"
+ },
+ "post_hashes": {
+  "signal_runner.py": "5f1e98b2c2a109dff00875567d715ba43be440134748b60d1487bc465b4e42ee",
+  "omen_bot.py": "d89b97b52afae9ea36f7f107d9974a4a63426f996b30f40aa8edb9818f044713",
+  "backtest_week.py": "980f60bbc243edbf6875aa680556524a0ae671972c2d49b1d0a8de91dcaadff4",
+  "research/downgrade.py": "7b20b192ab1a3b68911aa9176db374db45bec23fc8aa91471ddc9c9210703ae9"
+ },
+ "files": {
+  "signal_runner.py": {
+   "n_stmts": 936,
+   "missing_lines": [
+    21,
+    86,
+    87,
+    88,
+    495,
+    526,
+    527,
+    529,
+    536,
+    542,
+    543,
+    584,
+    589,
+    619,
+    648,
+    651,
+    664,
+    665,
+    682,
+    687,
+    693,
+    714,
+    715,
+    721,
+    724,
+    749,
+    755,
+    764,
+    772,
+    775,
+    777,
+    780,
+    800,
+    801,
+    803,
+    806,
+    808,
+    813,
+    822,
+    824,
+    825,
+    828,
+    829,
+    830,
+    831,
+    834,
+    840,
+    841,
+    842,
+    854,
+    855,
+    856,
+    857,
+    858,
+    863,
+    866,
+    867,
+    887,
+    888,
+    889,
+    890,
+    891,
+    892,
+    893,
+    896,
+    922,
+    923,
+    925,
+    926,
+    927,
+    928,
+    929,
+    930,
+    931,
+    932,
+    933,
+    934,
+    935,
+    937,
+    938,
+    940,
+    962,
+    963,
+    964,
+    965,
+    966,
+    967,
+    968,
+    969,
+    973,
+    989,
+    990,
+    1001,
+    1004,
+    1025,
+    1026,
+    1027,
+    1028,
+    1029,
+    1030,
+    1031,
+    1032,
+    1033,
+    1037,
+    1048,
+    1049,
+    1050,
+    1051,
+    1052,
+    1053,
+    1054,
+    1059,
+    1060,
+    1063,
+    1076,
+    1078,
+    1093,
+    1094,
+    1096,
+    1099,
+    1101,
+    1102,
+    1104,
+    1105,
+    1106,
+    1107,
+    1108,
+    1111,
+    1121,
+    1124,
+    1125,
+    1126,
+    1127,
+    1128,
+    1129,
+    1130,
+    1131,
+    1132,
+    1133,
+    1134,
+    1135,
+    1136,
+    1137,
+    1138,
+    1141,
+    1150,
+    1151,
+    1152,
+    1153,
+    1154,
+    1155,
+    1156,
+    1157,
+    1158,
+    1159,
+    1160,
+    1161,
+    1163,
+    1166,
+    1172,
+    1173,
+    1174,
+    1175,
+    1176,
+    1177,
+    1178,
+    1179,
+    1180,
+    1190,
+    1193,
+    1196,
+    1201,
+    1204,
+    1207,
+    1210,
+    1211,
+    1213,
+    1214,
+    1216,
+    1217,
+    1218,
+    1221,
+    1231,
+    1239,
+    1244,
+    1248,
+    1251,
+    1252,
+    1253,
+    1254,
+    1255,
+    1257,
+    1258,
+    1259,
+    1260,
+    1261,
+    1262,
+    1264,
+    1266,
+    1267,
+    1268,
+    1269,
+    1270,
+    1278,
+    1279,
+    1280,
+    1281,
+    1282,
+    1284,
+    1286,
+    1287,
+    1289,
+    1290,
+    1292,
+    1304,
+    1307,
+    1310,
+    1311,
+    1312,
+    1322,
+    1324,
+    1334,
+    1335,
+    1337,
+    1338,
+    1342,
+    1348,
+    1362,
+    1364,
+    1365,
+    1366,
+    1371,
+    1377,
+    1379,
+    1380,
+    1382,
+    1385,
+    1387,
+    1388,
+    1389,
+    1393,
+    1410,
+    1411,
+    1414,
+    1415,
+    1416,
+    1417,
+    1418,
+    1419,
+    1420,
+    1421,
+    1422,
+    1425,
+    1426,
+    1428,
+    1462,
+    1463,
+    1464,
+    1465,
+    1468,
+    1469,
+    1470,
+    1471,
+    1478,
+    1480,
+    1481,
+    1487,
+    1489,
+    1490,
+    1491,
+    1492,
+    1498,
+    1505,
+    1507,
+    1516,
+    1520,
+    1521,
+    1522,
+    1523,
+    1525,
+    1530,
+    1531,
+    1533,
+    1534,
+    1538,
+    1539,
+    1540,
+    1541,
+    1542,
+    1543,
+    1544,
+    1546,
+    1547,
+    1548,
+    1549,
+    1550,
+    1551,
+    1568,
+    1569,
+    1575,
+    1577,
+    1578,
+    1579,
+    1581,
+    1590,
+    1591,
+    1592,
+    1600,
+    1603,
+    1605,
+    1612,
+    1613,
+    1614,
+    1615,
+    1617,
+    1637,
+    1638,
+    1641,
+    1643,
+    1644,
+    1645,
+    1647,
+    1648,
+    1649,
+    1651,
+    1663,
+    1684,
+    1685,
+    1686,
+    1688,
+    1689,
+    1690,
+    1691,
+    1692,
+    1693,
+    1694,
+    1695,
+    1699,
+    1700,
+    1701,
+    1703,
+    1704,
+    1706,
+    1716,
+    1719,
+    1720,
+    1721,
+    1723,
+    1724,
+    1725,
+    1729,
+    1732,
+    1734,
+    1736,
+    1737,
+    1741,
+    1742,
+    1743,
+    1751,
+    1752,
+    1753,
+    1763,
+    1764,
+    1788,
+    1789,
+    1790,
+    1791,
+    1792,
+    1793,
+    1794,
+    1796,
+    1797,
+    1814,
+    1829,
+    1831,
+    1832,
+    1838,
+    1842,
+    1844,
+    1845,
+    1856,
+    1862,
+    1863,
+    1865,
+    1868,
+    1870,
+    1871,
+    1885,
+    1888,
+    1892,
+    1893,
+    1894,
+    1895,
+    1896,
+    1920,
+    1921,
+    1922,
+    1929,
+    1931,
+    1936,
+    1937,
+    1938,
+    1946,
+    1947,
+    1951,
+    1952,
+    1960,
+    1961,
+    1967,
+    1972,
+    1973,
+    1977,
+    2043,
+    2044,
+    2045,
+    2046,
+    2047,
+    2048,
+    2049,
+    2050,
+    2051,
+    2053,
+    2061,
+    2084,
+    2085,
+    2089,
+    2092,
+    2093,
+    2109,
+    2110,
+    2111,
+    2139,
+    2141,
+    2146,
+    2147,
+    2161,
+    2162,
+    2182,
+    2199,
+    2211,
+    2266,
+    2267,
+    2268,
+    2269,
+    2270,
+    2271,
+    2272,
+    2273,
+    2274,
+    2276,
+    2284,
+    2304,
+    2306,
+    2309,
+    2310,
+    2311,
+    2312,
+    2313,
+    2326,
+    2327,
+    2375,
+    2376,
+    2398,
+    2399,
+    2400,
+    2401,
+    2409,
+    2412,
+    2421,
+    2422,
+    2423,
+    2424,
+    2425,
+    2426,
+    2427,
+    2429,
+    2430,
+    2432,
+    2434,
+    2436,
+    2437,
+    2438,
+    2439,
+    2440,
+    2441,
+    2443,
+    2444,
+    2446,
+    2448,
+    2450,
+    2451,
+    2452,
+    2453,
+    2454,
+    2455,
+    2457,
+    2458,
+    2459,
+    2460,
+    2461,
+    2466,
+    2467,
+    2468,
+    2470,
+    2472,
+    2473,
+    2474,
+    2475,
+    2476,
+    2478,
+    2480,
+    2481,
+    2482,
+    2483,
+    2485,
+    2487,
+    2490,
+    2491,
+    2492,
+    2493,
+    2494,
+    2495,
+    2496,
+    2497,
+    2498,
+    2501,
+    2503,
+    2510,
+    2511,
+    2515,
+    2517,
+    2519,
+    2524,
+    2525,
+    2526,
+    2527,
+    2528,
+    2529,
+    2530,
+    2531,
+    2532,
+    2533,
+    2535,
+    2536,
+    2538,
+    2539,
+    2540,
+    2542,
+    2545,
+    2546,
+    2547,
+    2548,
+    2549,
+    2550,
+    2551,
+    2552,
+    2553,
+    2555,
+    2556,
+    2557,
+    2560,
+    2561
+   ],
+   "missing_line_src": {
+    "21": "return",
+    "86": "prior = candles[-11:-1]",
+    "87": "avg = sum(c.volume for c in prior) / len(prior)",
+    "88": "return avg <= 0 or candles[-1].volume >= OB_VOLUME_MULT * avg",
+    "495": "SAC_LADDER_REGRADE_ALL = os.getenv(",
+    "526": "SAC_LADDER_VARSET = os.getenv(\"SAC_LADDER_VARSET\", \"shipped\").strip().lower()",
+    "527": "SAC_VARSET_DROP = {\"shipped\": frozenset(),",
+    "529": "SAC_VARSET_SEQ = {\"shipped\": False, \"w9c\": True}",
+    "536": "SAC_TIER = {\"S\": \"A+\", \"A\": \"A\", \"C\": \"C\", \"X\": \"X\"}",
+    "542": "RETIRED_SETUPS = frozenset({SignalType.FAIR_VALUE_GAP, SignalType.FLAG})",
+    "543": "TRADE_RETIRED_SETUPS = os.getenv(\"TRADE_RETIRED_SETUPS\", \"0\").strip().lower() \\",
+    "584": "CONFLUENCE_SETUP_ROUTES = os.getenv(\"CONFLUENCE_SETUP_ROUTES\", \"0\").strip().lower() \\",
+    "589": "CONFLUENCE_BASE_SETUPS = frozenset({SignalType.BREAK_AND_RETEST,",
+    "619": "ENFORCE_NO_REPEAT = False",
+    "648": "NO_REPEAT_ENTRIES = True",
+    "651": "NO_REPEAT_LEVEL_TICK = 2",
+    "664": "SESSION_START = os.getenv(\"SESSION_START\", \"09:30:00\")",
+    "665": "SESSION_END   = os.getenv(\"SESSION_END\", \"11:00:00\")   # Austin: \"I dont trade past 11 am\"",
+    "682": "SESSION_EXTREME_FRAC = float(os.getenv(\"SESSION_EXTREME_FRAC\", \"0.0\"))",
+    "687": "RULE84_MAX_ATTEMPTS = int(os.getenv(\"RULE84_MAX_ATTEMPTS\", \"2\"))",
+    "693": "INTRABAR_STOP_AT_BAR = os.getenv(\"INTRABAR_STOP_AT_BAR\", \"1\").strip().lower() \\",
+    "714": "PIVOT_LEVELS = os.getenv(\"PIVOT_LEVELS\", \"1\").strip().lower() in (\"1\", \"true\", \"yes\", \"on\")",
+    "715": "PIVOT_STRENGTH = int(os.getenv(\"PIVOT_STRENGTH\", \"2\"))",
+    "721": "PIVOT_LOOKBACK = int(os.getenv(\"PIVOT_LOOKBACK\", \"30\"))",
+    "724": "PIVOT_DEDUPE_FRAC = float(os.getenv(\"PIVOT_DEDUPE_FRAC\", \"0.001\"))",
+    "749": "LEVEL_RETIRE_TOUCHES = int(os.getenv(\"LEVEL_RETIRE_TOUCHES\", \"2\"))",
+    "755": "LEVEL_RETIRE_COOLDOWN = int(os.getenv(\"LEVEL_RETIRE_COOLDOWN\", \"30\"))",
+    "764": "MESH_S_VETO = os.getenv(\"MESH_S_VETO\", \"1\").strip().lower() in (\"1\", \"true\", \"yes\", \"on\")",
+    "772": "S_PLUS_PER_DAY = int(os.getenv(\"S_PLUS_PER_DAY\", \"3\"))",
+    "775": "def _retest_tol() -> float:",
+    "777": "return DETECT_WIDE_RETEST_MULT if DETECT_WIDE else 0.0",
+    "780": "def setup_is_s_eligible(sig: dict) -> bool:",
+    "800": "if sig.get(\"signal_type\") is SignalType.REENTRY_84_RULE:",
+    "801": "return False",
+    "803": "if candle is None or entry is None:",
+    "806": "if rng <= 0:",
+    "808": "if sig.get(\"direction\") == \"call\":",
+    "813": "def bar_time(ts) -> str:",
+    "822": "return \"\"",
+    "824": "if \"T\" in s:",
+    "825": "s = s.split(\"T\", 1)[1]",
+    "828": "s = s[:8]",
+    "829": "if len(s) == 5:          # \"09:31\" -> \"09:31:00\"",
+    "830": "s += \":00\"",
+    "831": "return s",
+    "834": "def in_session(ts) -> bool:",
+    "840": "if len(t) != 8:",
+    "841": "return True",
+    "842": "return SESSION_START <= t < SESSION_END",
+    "854": "if candle is None:",
+    "855": "return level",
+    "856": "if level is None:",
+    "857": "return candle.close",
+    "858": "probe = {\"entry\": candle.close, \"direction\": \"call\" if is_long else \"put\"}",
+    "863": "if not (bar_extreme_veto(probe, candle)",
+    "866": "return candle.close",
+    "867": "return min(max(level, candle.low), candle.high)",
+    "887": "if session_hi is None or session_lo is None:",
+    "888": "return False",
+    "889": "rng = session_hi - session_lo",
+    "890": "if rng <= 0:",
+    "891": "return False",
+    "892": "band = BAR_EXTREME_FRAC * rng",
+    "893": "return (candle.close >= session_hi - band) if is_long else (candle.close <= session_lo + band)",
+    "896": "def pivot_levels(candles, strength: Optional[int] = None,",
+    "922": "return []",
+    "923": "out = []",
+    "925": "usable = i + k + 1",
+    "926": "if as_of is not None:",
+    "927": "if usable > as_of:          # not yet formed on the bar being traded",
+    "928": "continue",
+    "929": "if lookback is not None and i < as_of - lookback:",
+    "930": "continue",
+    "931": "c = candles[i]",
+    "932": "window = [j for j in range(i - k, i + k + 1) if j != i]",
+    "933": "stamp = bar_time(c.timestamp)[:5]",
+    "934": "if all(c.high > candles[j].high for j in window):",
+    "935": "out.append({\"index\": i, \"usable_from\": usable, \"price\": c.high,",
+    "937": "if all(c.low < candles[j].low for j in window):",
+    "938": "out.append({\"index\": i, \"usable_from\": usable, \"price\": c.low,",
+    "940": "return out",
+    "962": "if not INTRABAR_STOP_AT_BAR or candle is None:",
+    "963": "return stop",
+    "964": "collapsed = (entry <= stop) if is_long else (entry >= stop)",
+    "965": "if not collapsed:",
+    "966": "return stop",
+    "967": "bar_stop = candle.low if is_long else candle.high",
+    "968": "if (bar_stop < entry) if is_long else (bar_stop > entry):",
+    "969": "return bar_stop",
+    "973": "def floor_reference_risk(entry: float, stop: float, close: float,",
+    "989": "if ENABLE_STRUCTURAL_RISK_FLOOR:",
+    "990": "return (close - structural_stop) if is_long else (structural_stop - close)",
+    "1001": "return (sig.get(\"symbol\"), sig.get(\"direction\"), sig.get(\"stop_level_name\"))",
+    "1004": "def _targets_session_extreme(sig: dict) -> bool:",
+    "1025": "entry, stop = sig.get(\"entry\"), sig.get(\"stop\")",
+    "1026": "if entry is None or stop is None or not levels:",
+    "1027": "return []",
+    "1028": "risk = abs(entry - stop)",
+    "1029": "if risk == 0:",
+    "1030": "return []",
+    "1031": "target = entry + 2 * risk if sig.get(\"direction\") == \"call\" else entry - 2 * risk",
+    "1032": "lo, hi = min(entry, target), max(entry, target)",
+    "1033": "return [l for l in levels if l is not None and lo < l < hi",
+    "1037": "def rank_s_plus(signals, per_day: Optional[int] = None) -> list:",
+    "1048": "cap = S_PLUS_PER_DAY if per_day is None else per_day",
+    "1049": "by_day = {}",
+    "1050": "for s in signals:",
+    "1051": "if s.get(\"austin_tier\") != \"S\":",
+    "1052": "continue",
+    "1053": "by_day.setdefault(s.get(\"day\"), []).append(s)",
+    "1054": "for _day, rows in by_day.items():",
+    "1059": "s[\"s_rank\"] = \"S+\" if i < cap else \"S\"",
+    "1060": "return signals",
+    "1063": "def compute_austin_tier(sig: dict, candles, fired_ideas, htf_bias) -> str:",
+    "1076": "return \"C\"",
+    "1078": "return \"C\"",
+    "1093": "return \"C\"",
+    "1094": "is_reentry = sig.get(\"signal_type\") is SignalType.REENTRY_84_RULE",
+    "1096": "fill_ok = not bar_extreme_veto(sig, candles[-1] if candles else None)",
+    "1099": "fresh = is_reentry or idea_key(sig) not in (fired_ideas or ())",
+    "1101": "if _htf_opposes(sig, htf_bias):",
+    "1102": "htf_ok = HTF_OPPOSITION_VETO == \"fill_override\" and fill_ok",
+    "1104": "htf_ok = True",
+    "1105": "fails = sum(1 for ok in (fill_ok, fresh, htf_ok) if not ok)",
+    "1106": "if fails == 0:",
+    "1107": "return \"S\"",
+    "1108": "return \"A\" if fails <= 2 else \"C\"",
+    "1111": "def rule7_retest_bars(candles, level, window: int = RULE7_WINDOW) -> int:",
+    "1121": "n = len(candles)",
+    "1124": "lo = max(0, n - window)",
+    "1125": "touch = lambda c: c.low <= level <= c.high",
+    "1126": "retest_i = None",
+    "1127": "for k in range(n - 1, lo - 1, -1):",
+    "1128": "if touch(candles[k]):",
+    "1129": "retest_i = k",
+    "1130": "break",
+    "1131": "if retest_i is None:",
+    "1132": "return window",
+    "1133": "away = 0",
+    "1134": "k = retest_i - 1",
+    "1135": "while k >= lo and not touch(candles[k]):",
+    "1136": "away += 1",
+    "1137": "k -= 1",
+    "1138": "return min(window, (n - 1 - retest_i) + away)",
+    "1141": "def rule10_left_pivots(candles, level, lookback: int = RULE10_LOOKBACK,",
+    "1150": "n = len(candles)",
+    "1151": "i = n - 1",
+    "1152": "prices = []",
+    "1153": "for p in range(max(1, i - lookback), i):",
+    "1154": "if p + 1 >= n:",
+    "1155": "break",
+    "1156": "h, l = candles[p].high, candles[p].low",
+    "1157": "if h > candles[p - 1].high and h > candles[p + 1].high:",
+    "1158": "prices.append(h)",
+    "1159": "if l < candles[p - 1].low and l < candles[p + 1].low:",
+    "1160": "prices.append(l)",
+    "1161": "at_level = (sum(1 for pr in prices if abs(pr - level) <= tol * abs(level))",
+    "1163": "return len(prices), at_level",
+    "1166": "def rule_710_reject(candles, level) -> Optional[str]:",
+    "1172": "if level is None or not candles:",
+    "1173": "return None",
+    "1174": "bars = rule7_retest_bars(candles, level)",
+    "1175": "if bars > RULE7_MAX_BARS:",
+    "1176": "return f\"rule7 retest {bars}>{RULE7_MAX_BARS} bars\"",
+    "1177": "_cnt, at_level = rule10_left_pivots(candles, level)",
+    "1178": "if at_level > RULE10_MAX_PIVOTS_AT_LEVEL:",
+    "1179": "return f\"rule10 {at_level} pivots on level\"",
+    "1180": "return None",
+    "1190": "if not daily_closes or len(daily_closes) < period:",
+    "1193": "last = daily_closes[-1]",
+    "1196": "if last < sma:",
+    "1201": "class SignalRunner:",
+    "1204": "def __init__(self, webhook_url: Optional[str] = None, post_to_discord: bool = True,",
+    "1207": "self.candles: List[Candle] = []",
+    "1210": "self.pdh: Optional[float] = None",
+    "1211": "self.pdl: Optional[float] = None",
+    "1213": "self.pd_open: Optional[float] = None",
+    "1214": "self.pd_close: Optional[float] = None",
+    "1216": "self.pmh: Optional[float] = None",
+    "1217": "self.pml: Optional[float] = None",
+    "1218": "self.htf_bias: Optional[str] = None",
+    "1221": "self.daily_bias: Optional[str] = None",
+    "1231": "self._fired_ideas = set()",
+    "1239": "self._fired_levels = set()",
+    "1244": "self._attempts_84 = {}",
+    "1248": "self._level_br_count = {}",
+    "1251": "self._pivot_prices = []",
+    "1252": "self.discord = None",
+    "1253": "self.post_to_discord = post_to_discord",
+    "1254": "self.symbol = symbol",
+    "1255": "self.log_signals = log_signals",
+    "1257": "if post_to_discord:",
+    "1258": "try:",
+    "1259": "self.discord = DiscordSignalBot(webhook_url)",
+    "1260": "except ValueError as e:",
+    "1261": "print(f\"Warning: {e}\")",
+    "1262": "self.post_to_discord = False",
+    "1264": "def load_candles_from_json(self, json_str: str) -> bool:",
+    "1266": "try:",
+    "1267": "data = json.loads(json_str)",
+    "1268": "self.candles = []",
+    "1269": "for item in data:",
+    "1270": "candle = Candle(",
+    "1278": "self.candles.append(candle)",
+    "1279": "return True",
+    "1280": "except Exception as e:",
+    "1281": "print(f\"Failed to parse JSON: {e}\")",
+    "1282": "return False",
+    "1284": "def load_candles_from_csv(self, csv_str: str) -> bool:",
+    "1286": "try:",
+    "1287": "lines = csv_str.strip().split(\"\\n\")",
+    "1289": "for line in lines:",
+    "1290": "if not line or line.startswith(\"#\"):",
+    "1292": "parts = line.split(\",\")",
+    "1304": "print(f\"Failed to parse CSV: {e}\")",
+    "1307": "def _min_viable_stop(self, entry: float, stop: float, direction: str) -> bool:",
+    "1310": "if entry == stop:",
+    "1311": "return False",
+    "1312": "stock_risk = abs(entry - stop)",
+    "1322": "return risk_pct >= 0.005 or premium_risk >= 0.20",
+    "1324": "def _bnr_displacement(self, level: float, is_long: bool) -> bool:",
+    "1334": "lookback = self.candles[-6:-1]",
+    "1335": "beyond = ((lambda c: c.close > level and c.low > level) if is_long",
+    "1337": "prior = self.candles[-16:-6] or self.candles[:-6]",
+    "1338": "avg_body = (sum(abs(c.close - c.open) for c in prior) / len(prior)) if prior else 0",
+    "1342": "def _aplus_stack(self, level: float, is_long: bool) -> bool:",
+    "1348": "first_break = not any(beyond(c) for c in earlier)",
+    "1362": "grade = sig[\"grade\"]",
+    "1364": "risk = abs(entry - stop)",
+    "1365": "if risk == 0:",
+    "1366": "return",
+    "1371": "sig[\"grade\"] = TradeGrade.C.value",
+    "1377": "if not clear and grade != \"B\":",
+    "1379": "sig[\"reason\"] += \" [A->B: entry not beyond all levels]\"",
+    "1380": "elif clear and grade == \"B\":",
+    "1382": "if GRADE_FIX and sig.get(\"signal_type\") == SignalType.REENTRY_84_RULE:",
+    "1385": "pass",
+    "1387": "sig[\"grade\"] = TradeGrade.A.value",
+    "1388": "sig[\"reason\"] += \" [B->A: breakout conditions, clear of all levels]\"",
+    "1389": "if clear and sig.get(\"aplus_stack\"):",
+    "1393": "elif sig[\"grade\"] == \"A+\":",
+    "1410": "if not hasattr(self, \"_dir_fired\"):",
+    "1411": "self._dir_fired = {\"call\": 0, \"put\": 0}",
+    "1414": "with_trend = (self.candles[-1].close >= self.candles[0].open) == (d == \"call\")",
+    "1415": "t = self.candles[-1].timestamp[:5]",
+    "1416": "mins = int(t[:2]) * 60 + int(t[3:5]) - 570",
+    "1417": "if ENABLE_SAC_LADDER:",
+    "1418": "self._sac_ladder_grade(sig)",
+    "1419": "if not with_trend and _GRADE_RANK.get(sig[\"grade\"], 0) > _GRADE_RANK[\"C\"]:",
+    "1420": "sig[\"grade\"] = TradeGrade.C.value",
+    "1421": "sig[\"reason\"] += \" [capped C: counter day trend]\"",
+    "1422": "elif (not ENABLE_SAC_LADDER and not ENABLE_KILL_B_FLOOR",
+    "1425": "sig[\"grade\"] = TradeGrade.B.value",
+    "1426": "sig[\"reason\"] += \" [floor B: first with-trend signal of the day]\"",
+    "1428": "def _sac_ladder_grade(self, sig: dict) -> None:",
+    "1462": "self._sac_seq = getattr(self, \"_sac_seq\", 0) + 1",
+    "1463": "if not SAC_LADDER_REGRADE_ALL and sig.get(\"grade\") in _SKIP_GRADES:",
+    "1464": "return",
+    "1465": "from research import downgrade as dg     # ImportError here is a real",
+    "1468": "level = sig.get(\"stop\")",
+    "1469": "bars = self._dg_bars() if self.candles else []",
+    "1470": "seq_on = SAC_VARSET_SEQ.get(SAC_LADDER_VARSET, False)",
+    "1471": "rec = (dg.score(bars, len(bars) - 1, level,",
+    "1478": "if rec is None:",
+    "1480": "sig[\"reason\"] += \" [W1 X: ungradeable (no bars or no level)]\"",
+    "1481": "return",
+    "1487": "tripped = [t for t in rec[\"tripped\"] if t not in drop]",
+    "1489": "his = \"S\" if net <= 0 else (\"A\" if net == 1 else (\"C\" if net == 2 else \"X\"))",
+    "1490": "sig[\"sac_net\"] = net",
+    "1491": "sig[\"sac_grade\"] = his",
+    "1492": "sig[\"grade\"] = SAC_TIER[his]",
+    "1498": "def _qqq_aligned(self, ts: str, is_long: bool) -> Optional[bool]:",
+    "1505": "return (up is not None and up <= ts) if is_long else (dn is not None and dn <= ts)",
+    "1507": "def _bnr_tags(self, current: Candle, stock_risk: float, is_long: bool) -> str:",
+    "1516": "tags += \" [chase]\"",
+    "1520": "aligned = self._qqq_aligned(current.timestamp, is_long)",
+    "1521": "if aligned is not None:",
+    "1522": "tags += \" [qqqA]\" if aligned else \" [qqqX]\"",
+    "1523": "return tags",
+    "1525": "def _strong_pa(self, current: Candle) -> bool:",
+    "1530": "avg = sum(abs(c.close - c.open) for c in prior) / len(prior)",
+    "1531": "return avg > 0 and abs(current.close - current.open) >= STRONG_PA_MULT * avg",
+    "1533": "@staticmethod",
+    "1534": "def _closes_strong(c: Candle, is_long: bool) -> bool:",
+    "1538": "rng = c.high - c.low",
+    "1539": "if rng <= 0:",
+    "1540": "return False",
+    "1541": "body = abs(c.close - c.open)",
+    "1542": "if body < 0.5 * rng:",
+    "1543": "return False",
+    "1544": "return ((c.high - c.close) if is_long else (c.close - c.low)) <= 0.25 * rng",
+    "1546": "def _log_record(self, sig: dict, status: str = \"fired\", skip_reason: Optional[str] = None) -> None:",
+    "1547": "if not self.log_signals:",
+    "1548": "return",
+    "1549": "risk = abs(sig[\"entry\"] - sig[\"stop\"])",
+    "1550": "target = sig[\"entry\"] + 2 * risk if sig[\"direction\"] == \"call\" else sig[\"entry\"] - 2 * risk",
+    "1551": "try:",
+    "1568": "except OSError as e:",
+    "1569": "print(f\"\u26a0 signal log write failed: {e}\")",
+    "1575": "bars = [c for c in self.candles if bar_time(c.timestamp) >= SESSION_START] \\",
+    "1577": "if not bars:",
+    "1578": "return (None, None)",
+    "1579": "return (max(c.high for c in bars), min(c.low for c in bars))",
+    "1581": "def session_extreme_veto(self, sig: dict) -> bool:",
+    "1590": "if SESSION_EXTREME_FRAC <= 0:",
+    "1591": "return False",
+    "1592": "entry = sig.get(\"entry\")",
+    "1600": "return False",
+    "1603": "return entry <= lo + band",
+    "1605": "def _dg_bars(self) -> list:",
+    "1612": "cached = getattr(self, \"_dg_bars_cache\", None)",
+    "1613": "if cached is not None and cached[0] is self.candles and cached[1] == len(self.candles):",
+    "1614": "return cached[2]",
+    "1615": "rows = [{\"o\": c.open, \"h\": c.high, \"l\": c.low, \"c\": c.close, \"v\": c.volume}",
+    "1617": "self._dg_bars_cache = (self.candles, len(self.candles), rows)",
+    "1637": "if not ENABLE_DOWNGRADE_GRADER:",
+    "1638": "return PriceActionAnalyzer.grade_trade(",
+    "1641": "opposed = (htf_bias in (\"bullish\", \"bearish\")",
+    "1643": "if opposed and HTF_BIAS_VETO:",
+    "1644": "return TradeGrade.D",
+    "1645": "base = self._downgrade_grade(level_hi if is_long else level_lo, is_long,",
+    "1647": "if htf_bias == \"neutral\" and base in (TradeGrade.A_PLUS, TradeGrade.A):",
+    "1648": "return TradeGrade.B",
+    "1649": "return base",
+    "1651": "def _downgrade_grade(self, level, is_long: bool, htf_bias=None) -> TradeGrade:",
+    "1663": "from research import downgrade as dg     # ImportError here is a real",
+    "1684": "st = sig.get(\"signal_type\")",
+    "1685": "sig.setdefault(\"setup_type\", st)",
+    "1686": "if st not in CONFLUENCE_BASE_SETUPS or not self.candles:",
+    "1688": "level = sig.get(\"stop\")",
+    "1689": "if level is None:",
+    "1690": "return",
+    "1691": "try:",
+    "1692": "from research import downgrade as dg",
+    "1693": "except Exception:                      # research/ not importable (packaged live run)",
+    "1694": "return",
+    "1695": "bars = self._dg_bars()",
+    "1699": "sig[\"setup_type\"] = SignalType.BR_OCR_CONFLUENCE",
+    "1700": "sig[\"br_ocr\"] = True",
+    "1701": "sig[\"reason\"] = sig.get(\"reason\", \"\") + \" [brocr]\"",
+    "1703": "sig[\"base_signal_type\"] = st",
+    "1704": "sig[\"signal_type\"] = SignalType.BR_OCR_CONFLUENCE",
+    "1706": "def _emit(self, signals: List[dict], sig: dict) -> None:",
+    "1716": "self._label_confluence(sig)",
+    "1719": "self._log_record(sig, status=\"skipped\", skip_reason=\"retired setup\")",
+    "1720": "return",
+    "1721": "if self.session_extreme_veto(sig):",
+    "1723": "sig[\"reason\"] = sig.get(\"reason\", \"\") + \" [veto: at session extreme]\"",
+    "1724": "self._log_record(sig, status=\"skipped\", skip_reason=\"at session extreme\")",
+    "1725": "return",
+    "1729": "if sig.get(\"signal_type\") in S_ELIGIBLE_SETUPS:",
+    "1732": "self._route(signals, sig)",
+    "1734": "def _route(self, signals: List[dict], sig: dict) -> None:",
+    "1736": "self._grade_for_levels(sig)",
+    "1737": "self._calibration_grade(sig)",
+    "1741": "if S_GATE and sig[\"grade\"] in (\"A+\", \"A\", \"B\") and not is_s_gate(self.candles):",
+    "1742": "sig[\"grade\"] = TradeGrade.C.value",
+    "1743": "sig[\"reason\"] += \" [capped C: S_GATE low displacement]\"",
+    "1751": "why = rule_710_reject(self.candles, sig.get(\"stop\"))",
+    "1752": "if why:",
+    "1753": "sig[\"grade\"] = TradeGrade.C.value",
+    "1763": "mesh_levels = list(getattr(self, \"_active_levels\", []))",
+    "1764": "mesh_levels += [p for p in getattr(self, \"_pivot_prices\", [])]",
+    "1788": "bar = len(self.candles) - 1",
+    "1789": "done, last = self._level_br_count.get(lv_key, (0, -10 ** 9))",
+    "1790": "if done >= LEVEL_RETIRE_TOUCHES:",
+    "1791": "sig[\"reason\"] += \" [retired: level broken and retested %d times]\" % done",
+    "1792": "sig[\"level_retired\"] = True",
+    "1793": "self._log_record(sig, status=\"skipped\", skip_reason=\"level retired\")",
+    "1794": "return",
+    "1796": "self._level_br_count[lv_key] = (done + 1, bar)",
+    "1797": "if sig[\"grade\"] not in _SKIP_GRADES:",
+    "1814": "if sig[\"grade\"] != \"C\" or self._min_viable_stop(sig[\"entry\"], sig[\"stop\"], sig[\"direction\"]):",
+    "1829": "sig[\"reason\"] += \" [skip: repeat entry]\"",
+    "1831": "return",
+    "1832": "self._dir_fired[sig[\"direction\"]] = self._dir_fired.get(sig[\"direction\"], 0) + 1",
+    "1838": "self._fired_ideas.add(idea_key(sig))",
+    "1842": "self._fired_levels.add(nr_key)",
+    "1844": "return",
+    "1845": "self._log_record(sig, status=\"skipped\", skip_reason=\"stop too tight (<0.5% of entry and premium risk <$0.20)\")",
+    "1856": "return []",
+    "1862": "if not in_session(self.candles[-1].timestamp):",
+    "1863": "return []",
+    "1865": "signals = []",
+    "1868": "or_high, or_low = OpeningRangeAnalyzer.get_opening_range(self.candles)",
+    "1870": "hod = max(c.high for c in self.candles)",
+    "1871": "lod = min(c.low for c in self.candles)",
+    "1885": "self._active_levels = [l for l in (self.pdh, self.pdl, self.pmh,",
+    "1888": "lookback = self.candles[-6:-1] if len(self.candles) >= 6 else self.candles[:-1]",
+    "1892": "level_pairs = [(\"OR high\", \"OR low\", or_high, or_low)]",
+    "1893": "if self.pdh is not None and self.pdl is not None:",
+    "1894": "level_pairs.append((\"PDH\", \"PDL\", self.pdh, self.pdl))",
+    "1895": "if self.pmh is not None and self.pml is not None:",
+    "1896": "level_pairs.append((\"PMH\", \"PML\", self.pmh, self.pml))",
+    "1920": "if PIVOT_LEVELS:",
+    "1921": "here = len(self.candles) - 1",
+    "1922": "for p in pivot_levels(self.candles, as_of=here, lookback=PIVOT_LOOKBACK):",
+    "1929": "level_pairs.append((p[\"name\"], None, p[\"price\"], None))",
+    "1931": "level_pairs.append((None, p[\"name\"], None, p[\"price\"]))",
+    "1936": "for hi_name, _lo_name, level_hi, level_lo in level_pairs:",
+    "1937": "if level_hi is None:  # F3 pair may carry only one qualifying side",
+    "1938": "continue",
+    "1946": "stop = level_hi",
+    "1947": "if BNR_STOP_MODE == \"retest\":",
+    "1951": "avg_rng = (sum(c.high - c.low for c in recent) / len(recent)) if recent else 0.0",
+    "1952": "stop = level_hi - max(0.10, 0.10 * avg_rng)",
+    "1960": "structural_stop = stop     # G13: before intrabar_stop reacts to the fill",
+    "1961": "stop = intrabar_stop(entry, stop, current, is_long=True)",
+    "1967": "if \"LATE\" in br_note and grade.value in (\"A+\", \"A\"):",
+    "1972": "if stack and grade.value in (\"C\",) + _SKIP_GRADES and self.htf_bias != \"bearish\":",
+    "1973": "grade = TradeGrade.B",
+    "1977": "grade = TradeGrade.C",
+    "2043": "if FVG_RETEST:",
+    "2044": "fvg = find_fvg(self.candles, \"bullish\")",
+    "2045": "for hi_name, _lo, level_hi, level_lo in level_pairs:",
+    "2046": "if level_hi is None:      # T10: pivot lows are short-side only",
+    "2047": "continue",
+    "2048": "if fvg is None or fvg[0] < level_hi:  # gap must sit above the broken level",
+    "2049": "continue",
+    "2050": "prior_breakout = any(c.close > level_hi for c in lookback)",
+    "2051": "already_at_level = current.low <= level_hi  # raw-level retest handles it",
+    "2053": "if (prior_breakout and not already_at_level",
+    "2061": "grade = TradeGrade.D",
+    "2084": "if stock_risk < 0.50:",
+    "2085": "grade = TradeGrade.D",
+    "2089": "if grade.value == \"B\":",
+    "2092": "grade = TradeGrade.D",
+    "2093": "self._emit(signals, {",
+    "2109": "flag, fnote = detect_flag_setup(self.candles, \"bullish\") if FLAG_ENABLED else (None, \"\")",
+    "2110": "if flag is not None and current.close > flag[\"flag_lo\"] and _volume_ok(self.candles):",
+    "2111": "entry = fill_price(flag[\"flag_hi\"], current, is_long=True)  # T3(b)",
+    "2139": "stop_chk = (self.session.entry_stop if RULE84_LESSON",
+    "2141": "tgt = self.session.entry_target",
+    "2146": "key_84 = (\"call\", round(self.session.entry_price, NO_REPEAT_LEVEL_TICK))",
+    "2147": "attempts = self._attempts_84.get(key_84, 1)   # the original entry is attempt 1",
+    "2161": "if grade == TradeGrade.C and not GRADE_FIX:",
+    "2162": "grade = TradeGrade.B",
+    "2182": "self.session.entry_price = None",
+    "2199": "recent = self.candles[-11:-1]",
+    "2211": "grade = TradeGrade.B",
+    "2266": "if FVG_RETEST:",
+    "2267": "fvg = find_fvg(self.candles, \"bearish\")",
+    "2268": "for _hi, lo_name, level_hi, level_lo in level_pairs:",
+    "2269": "if level_lo is None:      # T10: pivot highs are long-side only",
+    "2270": "continue",
+    "2271": "if fvg is None or fvg[1] > level_lo:  # gap must sit below the broken level",
+    "2272": "continue",
+    "2273": "prior_breakdown = any(c.close < level_lo for c in lookback)",
+    "2274": "already_at_level = current.high >= level_lo",
+    "2276": "if (prior_breakdown and not already_at_level",
+    "2284": "grade = TradeGrade.D",
+    "2304": "grade = self._grade_trade(current, lookback, block.high, block.low,",
+    "2306": "if stock_risk < 0.50:",
+    "2309": "if grade.value == \"B\":",
+    "2310": "grade = TradeGrade.C",
+    "2311": "if stock_risk / current.close > 0.004:",
+    "2312": "grade = TradeGrade.D",
+    "2313": "self._emit(signals, {",
+    "2326": "flag, fnote = detect_flag_setup(self.candles, \"bearish\") if FLAG_ENABLED else (None, \"\")",
+    "2327": "if flag is not None and current.close < flag[\"flag_hi\"] and _volume_ok(self.candles):",
+    "2375": "if grade == TradeGrade.C and not GRADE_FIX:",
+    "2376": "grade = TradeGrade.B",
+    "2398": "if HTF_BIAS_GATE and self.daily_bias in (\"bullish\", \"bearish\"):",
+    "2399": "want = \"call\" if self.daily_bias == \"bullish\" else \"put\"",
+    "2400": "for sig in signals:",
+    "2401": "if sig.get(\"direction\") != want and sig.get(\"grade\") in (\"A+\", \"A\", \"B\"):",
+    "2409": "pair = sorted(self._bar_setups.get(sig.get(\"direction\"), ()))",
+    "2412": "sig[\"confluence_pair\"] = \"+\".join(pair)",
+    "2421": "if PIVOT_LEVELS and any(s.get(\"level_kind\") == \"pivot\" for s in signals):",
+    "2422": "pivot_dirs = {s[\"direction\"] for s in signals if s.get(\"level_kind\") == \"pivot\"}",
+    "2423": "for sig in signals:",
+    "2424": "if sig.get(\"level_kind\") == \"named\" and sig[\"direction\"] in pivot_dirs:",
+    "2425": "sig[\"ranked_below_pivot\"] = True",
+    "2426": "sig[\"reason\"] += \" [outranked: pivot B&R on this bar]\"",
+    "2427": "signals.sort(key=lambda s: s.get(\"level_rank\", 1))",
+    "2429": "for sig in signals:",
+    "2430": "self._log_record(sig)",
+    "2432": "return signals",
+    "2434": "def process_candles(self, candles_data: str, format_type: str = \"json\") -> None:",
+    "2436": "if format_type == \"json\":",
+    "2437": "if not self.load_candles_from_json(candles_data):",
+    "2438": "return",
+    "2439": "elif format_type == \"csv\":",
+    "2440": "if not self.load_candles_from_csv(candles_data):",
+    "2441": "return",
+    "2443": "print(f\"Unknown format: {format_type}\")",
+    "2444": "return",
+    "2446": "print(f\"Loaded {len(self.candles)} candles\")",
+    "2448": "signals = self.detect_signals()",
+    "2450": "if signals:",
+    "2451": "print(f\"\\n{'='*70}\")",
+    "2452": "print(f\"SIGNALS DETECTED: {len(signals)}\")",
+    "2453": "print(f\"{'='*70}\\n\")",
+    "2454": "for sig in signals:",
+    "2455": "signal_type = sig[\"signal_type\"]",
+    "2457": "if sig[\"entry\"] == sig[\"stop\"]:",
+    "2458": "print(f\"\u26a0 {signal_type.value.upper()}: skipped (entry == stop, no risk to size)\\n\")",
+    "2459": "continue",
+    "2460": "try:",
+    "2461": "plan = compute_plan(",
+    "2466": "except ValueError as e:",
+    "2467": "print(f\"\u26a0 {signal_type.value.upper()}: sizing failed \u2014 {e}\\n\")",
+    "2468": "continue",
+    "2470": "print(f\"\ud83d\ude80 {signal_type.value.upper()}\")",
+    "2472": "print(f\"   Stop level: {sig.get('stop_level_name', 'N/A')} (width {sig.get('stop_width_pct', '?')}%)\")",
+    "2473": "print(f\"   Reason: {sig['reason']}\")",
+    "2474": "print(f\"   Time: {self.candles[-1].timestamp}\")",
+    "2475": "print(plan.format_discord())",
+    "2476": "print()",
+    "2478": "self.session.signals_today += 1",
+    "2480": "if self.post_to_discord and self.discord:",
+    "2481": "success = self.discord.post_signal(signal_type, self.candles[-1], sig[\"reason\"], plan)",
+    "2482": "if success:",
+    "2483": "print(\"   \u2713 Posted to Discord\")",
+    "2485": "print(\"   \u2717 Discord post failed\")",
+    "2487": "print(\"No signals detected\")",
+    "2490": "def main():",
+    "2491": "parser = argparse.ArgumentParser(description=\"Trading signal detector with Discord integration\")",
+    "2492": "parser.add_argument(\"--file\", help=\"Read candles from JSON/CSV file\")",
+    "2493": "parser.add_argument(\"--format\", choices=[\"json\", \"csv\"], default=\"json\", help=\"Input format\")",
+    "2494": "parser.add_argument(\"--no-discord\", action=\"store_true\", help=\"Skip Discord posting\")",
+    "2495": "parser.add_argument(\"--webhook\", help=\"Discord webhook URL (or set DISCORD_WEBHOOK_URL env var)\")",
+    "2496": "parser.add_argument(\"--symbol\", default=\"UNKNOWN\", help=\"Ticker symbol for signal log records\")",
+    "2497": "parser.add_argument(\"--no-log\", action=\"store_true\", help=\"Skip writing to journal/signal_log_*.jsonl\")",
+    "2498": "parser.add_argument(\"--dry-run\", action=\"store_true\",",
+    "2501": "args = parser.parse_args()",
+    "2503": "if args.dry_run:",
+    "2510": "import itertools",
+    "2511": "_sr = sys.modules[__name__]",
+    "2515": "base = [Candle(f\"09:{30+i:02d}:00\", 100.0, 100.5, 99.9, 100.2, 1000)",
+    "2517": "base += [Candle(f\"09:{35+i:02d}:00\", 100.1, 100.4, 100.0, 100.2, 1000)",
+    "2519": "base += [Candle(\"09:50:00\", 100.3, 102.0, 100.2, 101.9, 5000),   # displaced break",
+    "2524": "fired_baseline = None",
+    "2525": "for gate, fvg in itertools.product((False, True), repeat=2):",
+    "2526": "_sr.BNR_DISPLACEMENT_GATE, _sr.FVG_RETEST = gate, fvg",
+    "2527": "r = SignalRunner(post_to_discord=False, symbol=\"DRYRUN\", log_signals=False)",
+    "2528": "r.candles = base",
+    "2529": "sigs = r.detect_signals()",
+    "2530": "assert isinstance(sigs, list), \"detect_signals must return a list\"",
+    "2531": "if not gate and not fvg:",
+    "2532": "fired_baseline = sigs",
+    "2533": "print(f\"dry-run gate={gate} fvg={fvg}: {len(sigs)} signal(s) \"",
+    "2535": "assert fired_baseline, \"synthetic clean B&R day must fire at least one signal\"",
+    "2536": "assert any(\"[disp]\" in s[\"reason\"] for s in fired_baseline), \\",
+    "2538": "_sr.BNR_DISPLACEMENT_GATE, _sr.FVG_RETEST = False, False  # restore defaults",
+    "2539": "print(\"dry-run OK\")",
+    "2540": "return",
+    "2542": "runner = SignalRunner(webhook_url=args.webhook, post_to_discord=not args.no_discord,",
+    "2545": "if args.file:",
+    "2546": "print(f\"Reading from {args.file}...\")",
+    "2547": "try:",
+    "2548": "with open(args.file, \"r\") as f:",
+    "2549": "data = f.read()",
+    "2550": "runner.process_candles(data, format_type=args.format)",
+    "2551": "except FileNotFoundError:",
+    "2552": "print(f\"File not found: {args.file}\")",
+    "2553": "sys.exit(1)",
+    "2555": "print(\"Reading from stdin (paste JSON/CSV, then Ctrl+D)...\")",
+    "2556": "data = sys.stdin.read()",
+    "2557": "runner.process_candles(data, format_type=args.format)",
+    "2560": "if __name__ == \"__main__\":",
+    "2561": "main()"
+   },
+   "partial_branches": [
+    {
+     "line": 12,
+     "src": "if hasattr(sys.stdout, \"reconfigure\"):",
+     "never_taken_to": [
+      14
+     ]
+    },
+    {
+     "line": 14,
+     "src": "if hasattr(sys.stderr, \"reconfigure\"):",
+     "never_taken_to": [
+      18
+     ]
+    },
+    {
+     "line": 20,
+     "src": "if not path.exists():",
+     "never_taken_to": [
+      21
+     ]
+    },
+    {
+     "line": 84,
+     "src": "if OB_VOLUME_MULT <= 0 or len(candles) < 2:",
+     "never_taken_to": [
+      86
+     ]
+    },
+    {
+     "line": 800,
+     "src": "if sig.get(\"signal_type\") is SignalType.REENTRY_84_RULE:",
+     "never_taken_to": [
+      801,
+      802
+     ]
+    },
+    {
+     "line": 803,
+     "src": "if candle is None or entry is None:",
+     "never_taken_to": [
+      804,
+      805
+     ]
+    },
+    {
+     "line": 806,
+     "src": "if rng <= 0:",
+     "never_taken_to": [
+      807,
+      808
+     ]
+    },
+    {
+     "line": 808,
+     "src": "if sig.get(\"direction\") == \"call\":",
+     "never_taken_to": [
+      809,
+      810
+     ]
+    },
+    {
+     "line": 821,
+     "src": "if not ts:",
+     "never_taken_to": [
+      822
+     ]
+    },
+    {
+     "line": 824,
+     "src": "if \"T\" in s:",
+     "never_taken_to": [
+      825,
+      826
+     ]
+    },
+    {
+     "line": 826,
+     "src": "elif \" \" in s:",
+     "never_taken_to": [
+      828
+     ]
+    },
+    {
+     "line": 829,
+     "src": "if len(s) == 5:          # \"09:31\" -> \"09:31:00\"",
+     "never_taken_to": [
+      830,
+      831
+     ]
+    },
+    {
+     "line": 840,
+     "src": "if len(t) != 8:",
+     "never_taken_to": [
+      841,
+      842
+     ]
+    },
+    {
+     "line": 854,
+     "src": "if candle is None:",
+     "never_taken_to": [
+      855,
+      856
+     ]
+    },
+    {
+     "line": 856,
+     "src": "if level is None:",
+     "never_taken_to": [
+      857,
+      858
+     ]
+    },
+    {
+     "line": 863,
+     "src": "if not (bar_extreme_veto(probe, candle)",
+     "never_taken_to": [
+      866,
+      867
+     ]
+    },
+    {
+     "line": 887,
+     "src": "if session_hi is None or session_lo is None:",
+     "never_taken_to": [
+      888,
+      889
+     ]
+    },
+    {
+     "line": 890,
+     "src": "if rng <= 0:",
+     "never_taken_to": [
+      891,
+      892
+     ]
+    },
+    {
+     "line": 921,
+     "src": "if k < 1 or n < 2 * k + 1:",
+     "never_taken_to": [
+      922,
+      923
+     ]
+    },
+    {
+     "line": 924,
+     "src": "for i in range(k, n - k):",
+     "never_taken_to": [
+      925,
+      940
+     ]
+    },
+    {
+     "line": 926,
+     "src": "if as_of is not None:",
+     "never_taken_to": [
+      927,
+      931
+     ]
+    },
+    {
+     "line": 927,
+     "src": "if usable > as_of:          # not yet formed on the bar being traded",
+     "never_taken_to": [
+      928,
+      929
+     ]
+    },
+    {
+     "line": 929,
+     "src": "if lookback is not None and i < as_of - lookback:",
+     "never_taken_to": [
+      930,
+      931
+     ]
+    },
+    {
+     "line": 934,
+     "src": "if all(c.high > candles[j].high for j in window):",
+     "never_taken_to": [
+      935,
+      937
+     ]
+    },
+    {
+     "line": 937,
+     "src": "if all(c.low < candles[j].low for j in window):",
+     "never_taken_to": [
+      924,
+      938
+     ]
+    },
+    {
+     "line": 962,
+     "src": "if not INTRABAR_STOP_AT_BAR or candle is None:",
+     "never_taken_to": [
+      963,
+      964
+     ]
+    },
+    {
+     "line": 965,
+     "src": "if not collapsed:",
+     "never_taken_to": [
+      966,
+      967
+     ]
+    },
+    {
+     "line": 968,
+     "src": "if (bar_stop < entry) if is_long else (bar_stop > entry):",
+     "never_taken_to": [
+      969,
+      970
+     ]
+    },
+    {
+     "line": 989,
+     "src": "if ENABLE_STRUCTURAL_RISK_FLOOR:",
+     "never_taken_to": [
+      990,
+      991
+     ]
+    },
+    {
+     "line": 1013,
+     "src": "if htf_bias not in (\"bullish\", \"bearish\"):",
+     "never_taken_to": [
+      1015
+     ]
+    },
+    {
+     "line": 1026,
+     "src": "if entry is None or stop is None or not levels:",
+     "never_taken_to": [
+      1027,
+      1028
+     ]
+    },
+    {
+     "line": 1029,
+     "src": "if risk == 0:",
+     "never_taken_to": [
+      1030,
+      1031
+     ]
+    },
+    {
+     "line": 1050,
+     "src": "for s in signals:",
+     "never_taken_to": [
+      1051,
+      1054
+     ]
+    },
+    {
+     "line": 1051,
+     "src": "if s.get(\"austin_tier\") != \"S\":",
+     "never_taken_to": [
+      1052,
+      1053
+     ]
+    },
+    {
+     "line": 1054,
+     "src": "for _day, rows in by_day.items():",
+     "never_taken_to": [
+      1055,
+      1060
+     ]
+    },
+    {
+     "line": 1058,
+     "src": "for i, s in enumerate(rows):",
+     "never_taken_to": [
+      1054,
+      1059
+     ]
+    },
+    {
+     "line": 1075,
+     "src": "if not setup_is_s_eligible(sig):",
+     "never_taken_to": [
+      1076
+     ]
+    },
+    {
+     "line": 1077,
+     "src": "if _targets_session_extreme(sig):",
+     "never_taken_to": [
+      1078,
+      1085
+     ]
+    },
+    {
+     "line": 1085,
+     "src": "if (BNR_DISPLACEMENT_GATE",
+     "never_taken_to": [
+      1092
+     ]
+    },
+    {
+     "line": 1092,
+     "src": "if MESH_S_VETO and sig.get(\"mesh_blocked\"):",
+     "never_taken_to": [
+      1093,
+      1094
+     ]
+    },
+    {
+     "line": 1101,
+     "src": "if _htf_opposes(sig, htf_bias):",
+     "never_taken_to": [
+      1102,
+      1104
+     ]
+    },
+    {
+     "line": 1106,
+     "src": "if fails == 0:",
+     "never_taken_to": [
+      1107,
+      1108
+     ]
+    },
+    {
+     "line": 1122,
+     "src": "if n == 0 or level is None or window <= 0:",
+     "never_taken_to": [
+      1124
+     ]
+    },
+    {
+     "line": 1127,
+     "src": "for k in range(n - 1, lo - 1, -1):",
+     "never_taken_to": [
+      1128,
+      1131
+     ]
+    },
+    {
+     "line": 1128,
+     "src": "if touch(candles[k]):",
+     "never_taken_to": [
+      1127,
+      1129
+     ]
+    },
+    {
+     "line": 1131,
+     "src": "if retest_i is None:",
+     "never_taken_to": [
+      1132,
+      1133
+     ]
+    },
+    {
+     "line": 1135,
+     "src": "while k >= lo and not touch(candles[k]):",
+     "never_taken_to": [
+      1136,
+      1138
+     ]
+    },
+    {
+     "line": 1153,
+     "src": "for p in range(max(1, i - lookback), i):",
+     "never_taken_to": [
+      1154,
+      1161
+     ]
+    },
+    {
+     "line": 1154,
+     "src": "if p + 1 >= n:",
+     "never_taken_to": [
+      1155,
+      1156
+     ]
+    },
+    {
+     "line": 1157,
+     "src": "if h > candles[p - 1].high and h > candles[p + 1].high:",
+     "never_taken_to": [
+      1158,
+      1159
+     ]
+    },
+    {
+     "line": 1159,
+     "src": "if l < candles[p - 1].low and l < candles[p + 1].low:",
+     "never_taken_to": [
+      1153,
+      1160
+     ]
+    },
+    {
+     "line": 1172,
+     "src": "if level is None or not candles:",
+     "never_taken_to": [
+      1173,
+      1174
+     ]
+    },
+    {
+     "line": 1175,
+     "src": "if bars > RULE7_MAX_BARS:",
+     "never_taken_to": [
+      1176,
+      1177
+     ]
+    },
+    {
+     "line": 1178,
+     "src": "if at_level > RULE10_MAX_PIVOTS_AT_LEVEL:",
+     "never_taken_to": [
+      1179,
+      1180
+     ]
+    },
+    {
+     "line": 1190,
+     "src": "if not daily_closes or len(daily_closes) < period:",
+     "never_taken_to": [
+      1191,
+      1192
+     ]
+    },
+    {
+     "line": 1194,
+     "src": "if last > sma:",
+     "never_taken_to": [
+      1196
+     ]
+    },
+    {
+     "line": 1196,
+     "src": "if last < sma:",
+     "never_taken_to": [
+      1197,
+      1198
+     ]
+    },
+    {
+     "line": 1257,
+     "src": "if post_to_discord:",
+     "never_taken_to": [
+      -1204,
+      1258
+     ]
+    },
+    {
+     "line": 1269,
+     "src": "for item in data:",
+     "never_taken_to": [
+      1270,
+      1279
+     ]
+    },
+    {
+     "line": 1289,
+     "src": "for line in lines:",
+     "never_taken_to": [
+      1290,
+      1302
+     ]
+    },
+    {
+     "line": 1290,
+     "src": "if not line or line.startswith(\"#\"):",
+     "never_taken_to": [
+      1291,
+      1292
+     ]
+    },
+    {
+     "line": 1310,
+     "src": "if entry == stop:",
+     "never_taken_to": [
+      1311,
+      1312
+     ]
+    },
+    {
+     "line": 1316,
+     "src": "if recent:",
+     "never_taken_to": [
+      1320
+     ]
+    },
+    {
+     "line": 1318,
+     "src": "if stock_risk < STOP_RANGE_MULT * avg_range:",
+     "never_taken_to": [
+      1320
+     ]
+    },
+    {
+     "line": 1360,
+     "src": "if not levels:",
+     "never_taken_to": [
+      1361,
+      1362
+     ]
+    },
+    {
+     "line": 1365,
+     "src": "if risk == 0:",
+     "never_taken_to": [
+      1366,
+      1369
+     ]
+    },
+    {
+     "line": 1370,
+     "src": "if LEVEL_BLOCK_CAP and blocking and _GRADE_RANK.get(grade, 0) > _GRADE_RANK[\"C\"]:",
+     "never_taken_to": [
+      1371
+     ]
+    },
+    {
+     "line": 1374,
+     "src": "if CLEAR_FOR_APLUS and grade in (\"A+\", \"A\", \"B\"):",
+     "never_taken_to": [
+      -1352
+     ]
+    },
+    {
+     "line": 1377,
+     "src": "if not clear and grade != \"B\":",
+     "never_taken_to": [
+      1378,
+      1380
+     ]
+    },
+    {
+     "line": 1380,
+     "src": "elif clear and grade == \"B\":",
+     "never_taken_to": [
+      1382,
+      1389
+     ]
+    },
+    {
+     "line": 1382,
+     "src": "if GRADE_FIX and sig.get(\"signal_type\") == SignalType.REENTRY_84_RULE:",
+     "never_taken_to": [
+      1385,
+      1387
+     ]
+    },
+    {
+     "line": 1389,
+     "src": "if clear and sig.get(\"aplus_stack\"):",
+     "never_taken_to": [
+      1391,
+      1393
+     ]
+    },
+    {
+     "line": 1393,
+     "src": "elif sig[\"grade\"] == \"A+\":",
+     "never_taken_to": [
+      -1352,
+      1395
+     ]
+    },
+    {
+     "line": 1410,
+     "src": "if not hasattr(self, \"_dir_fired\"):",
+     "never_taken_to": [
+      1411,
+      1414
+     ]
+    },
+    {
+     "line": 1417,
+     "src": "if ENABLE_SAC_LADDER:",
+     "never_taken_to": [
+      1418,
+      1419
+     ]
+    },
+    {
+     "line": 1419,
+     "src": "if not with_trend and _GRADE_RANK.get(sig[\"grade\"], 0) > _GRADE_RANK[\"C\"]:",
+     "never_taken_to": [
+      1420,
+      1422
+     ]
+    },
+    {
+     "line": 1422,
+     "src": "elif (not ENABLE_SAC_LADDER and not ENABLE_KILL_B_FLOOR",
+     "never_taken_to": [
+      -1397,
+      1425
+     ]
+    },
+    {
+     "line": 1463,
+     "src": "if not SAC_LADDER_REGRADE_ALL and sig.get(\"grade\") in _SKIP_GRADES:",
+     "never_taken_to": [
+      1464,
+      1465
+     ]
+    },
+    {
+     "line": 1478,
+     "src": "if rec is None:",
+     "never_taken_to": [
+      1479,
+      1486
+     ]
+    },
+    {
+     "line": 1515,
+     "src": "if current.close > 0 and stock_risk / current.close >= CHASE_PCT:",
+     "never_taken_to": [
+      1516,
+      1520
+     ]
+    },
+    {
+     "line": 1521,
+     "src": "if aligned is not None:",
+     "never_taken_to": [
+      1522,
+      1523
+     ]
+    },
+    {
+     "line": 1528,
+     "src": "if not prior:",
+     "never_taken_to": [
+      1530
+     ]
+    },
+    {
+     "line": 1539,
+     "src": "if rng <= 0:",
+     "never_taken_to": [
+      1540,
+      1541
+     ]
+    },
+    {
+     "line": 1542,
+     "src": "if body < 0.5 * rng:",
+     "never_taken_to": [
+      1543,
+      1544
+     ]
+    },
+    {
+     "line": 1547,
+     "src": "if not self.log_signals:",
+     "never_taken_to": [
+      1548,
+      1549
+     ]
+    },
+    {
+     "line": 1577,
+     "src": "if not bars:",
+     "never_taken_to": [
+      1578,
+      1579
+     ]
+    },
+    {
+     "line": 1590,
+     "src": "if SESSION_EXTREME_FRAC <= 0:",
+     "never_taken_to": [
+      1591,
+      1592
+     ]
+    },
+    {
+     "line": 1593,
+     "src": "if entry is None:",
+     "never_taken_to": [
+      1595
+     ]
+    },
+    {
+     "line": 1599,
+     "src": "if band <= 0:",
+     "never_taken_to": [
+      1600,
+      1601
+     ]
+    },
+    {
+     "line": 1601,
+     "src": "if sig.get(\"direction\") == \"call\":",
+     "never_taken_to": [
+      1603
+     ]
+    },
+    {
+     "line": 1613,
+     "src": "if cached is not None and cached[0] is self.candles and cached[1] == len(self.candles):",
+     "never_taken_to": [
+      1614,
+      1615
+     ]
+    },
+    {
+     "line": 1637,
+     "src": "if not ENABLE_DOWNGRADE_GRADER:",
+     "never_taken_to": [
+      1638,
+      1641
+     ]
+    },
+    {
+     "line": 1643,
+     "src": "if opposed and HTF_BIAS_VETO:",
+     "never_taken_to": [
+      1644,
+      1645
+     ]
+    },
+    {
+     "line": 1647,
+     "src": "if htf_bias == \"neutral\" and base in (TradeGrade.A_PLUS, TradeGrade.A):",
+     "never_taken_to": [
+      1648,
+      1649
+     ]
+    },
+    {
+     "line": 1668,
+     "src": "if rec is None:",
+     "never_taken_to": [
+      1669,
+      1670
+     ]
+    },
+    {
+     "line": 1686,
+     "src": "if st not in CONFLUENCE_BASE_SETUPS or not self.candles:",
+     "never_taken_to": [
+      1687,
+      1688
+     ]
+    },
+    {
+     "line": 1689,
+     "src": "if level is None:",
+     "never_taken_to": [
+      1690,
+      1691
+     ]
+    },
+    {
+     "line": 1696,
+     "src": "if not dg.has_confluence(bars, len(bars) - 1, level,",
+     "never_taken_to": [
+      1699
+     ]
+    },
+    {
+     "line": 1702,
+     "src": "if CONFLUENCE_SETUP_ROUTES:",
+     "never_taken_to": [
+      -1672,
+      1703
+     ]
+    },
+    {
+     "line": 1717,
+     "src": "if not TRADE_RETIRED_SETUPS and sig.get(\"signal_type\") in RETIRED_SETUPS:",
+     "never_taken_to": [
+      1721
+     ]
+    },
+    {
+     "line": 1721,
+     "src": "if self.session_extreme_veto(sig):",
+     "never_taken_to": [
+      1722,
+      1729
+     ]
+    },
+    {
+     "line": 1729,
+     "src": "if sig.get(\"signal_type\") in S_ELIGIBLE_SETUPS:",
+     "never_taken_to": [
+      1730,
+      1732
+     ]
+    },
+    {
+     "line": 1741,
+     "src": "if S_GATE and sig[\"grade\"] in (\"A+\", \"A\", \"B\") and not is_s_gate(self.candles):",
+     "never_taken_to": [
+      1742,
+      1750
+     ]
+    },
+    {
+     "line": 1750,
+     "src": "if RULE_710_ENABLED and sig[\"grade\"] in (\"A+\", \"A\", \"B\"):",
+     "never_taken_to": [
+      1751,
+      1763
+     ]
+    },
+    {
+     "line": 1752,
+     "src": "if why:",
+     "never_taken_to": [
+      1753,
+      1763
+     ]
+    },
+    {
+     "line": 1766,
+     "src": "if AUSTIN_TIER_ENABLED:",
+     "never_taken_to": [
+      1776
+     ]
+    },
+    {
+     "line": 1773,
+     "src": "if sig[\"austin_tier\"] == \"S\":",
+     "never_taken_to": [
+      1784
+     ]
+    },
+    {
+     "line": 1784,
+     "src": "if LEVEL_RETIRE_TOUCHES > 0 and sig.get(\"signal_type\") in (",
+     "never_taken_to": [
+      1797
+     ]
+    },
+    {
+     "line": 1790,
+     "src": "if done >= LEVEL_RETIRE_TOUCHES:",
+     "never_taken_to": [
+      1791,
+      1795
+     ]
+    },
+    {
+     "line": 1795,
+     "src": "if bar - last >= LEVEL_RETIRE_COOLDOWN:",
+     "never_taken_to": [
+      1796,
+      1797
+     ]
+    },
+    {
+     "line": 1797,
+     "src": "if sig[\"grade\"] not in _SKIP_GRADES:",
+     "never_taken_to": [
+      1805,
+      1847
+     ]
+    },
+    {
+     "line": 1806,
+     "src": "if (ENFORCE_NO_REPEAT",
+     "never_taken_to": [
+      1814
+     ]
+    },
+    {
+     "line": 1814,
+     "src": "if sig[\"grade\"] != \"C\" or self._min_viable_stop(sig[\"entry\"], sig[\"stop\"], sig[\"direction\"]):",
+     "never_taken_to": [
+      1824,
+      1845
+     ]
+    },
+    {
+     "line": 1827,
+     "src": "if (NO_REPEAT_ENTRIES and not is_reentry",
+     "never_taken_to": [
+      1829,
+      1832
+     ]
+    },
+    {
+     "line": 1855,
+     "src": "if len(self.candles) < 5:",
+     "never_taken_to": [
+      1856,
+      1862
+     ]
+    },
+    {
+     "line": 1862,
+     "src": "if not in_session(self.candles[-1].timestamp):",
+     "never_taken_to": [
+      1863,
+      1865
+     ]
+    },
+    {
+     "line": 1893,
+     "src": "if self.pdh is not None and self.pdl is not None:",
+     "never_taken_to": [
+      1894,
+      1895
+     ]
+    },
+    {
+     "line": 1895,
+     "src": "if self.pmh is not None and self.pml is not None:",
+     "never_taken_to": [
+      1896,
+      1899
+     ]
+    },
+    {
+     "line": 1899,
+     "src": "if HODLOD_PAIR and len(self.candles) >= 43:",
+     "never_taken_to": [
+      1918
+     ]
+    },
+    {
+     "line": 1909,
+     "src": "if hod_lv is not None or lod_lv is not None:",
+     "never_taken_to": [
+      1918
+     ]
+    },
+    {
+     "line": 1920,
+     "src": "if PIVOT_LEVELS:",
+     "never_taken_to": [
+      1921,
+      1936
+     ]
+    },
+    {
+     "line": 1922,
+     "src": "for p in pivot_levels(self.candles, as_of=here, lookback=PIVOT_LOOKBACK):",
+     "never_taken_to": [
+      1923,
+      1936
+     ]
+    },
+    {
+     "line": 1928,
+     "src": "if p[\"kind\"] == \"high\":",
+     "never_taken_to": [
+      1929,
+      1931
+     ]
+    },
+    {
+     "line": 1936,
+     "src": "for hi_name, _lo_name, level_hi, level_lo in level_pairs:",
+     "never_taken_to": [
+      1937,
+      2043
+     ]
+    },
+    {
+     "line": 1937,
+     "src": "if level_hi is None:  # F3 pair may carry only one qualifying side",
+     "never_taken_to": [
+      1938,
+      1942
+     ]
+    },
+    {
+     "line": 1945,
+     "src": "if br_note and (current.close > level_hi):",
+     "never_taken_to": [
+      1936,
+      1946
+     ]
+    },
+    {
+     "line": 1947,
+     "src": "if BNR_STOP_MODE == \"retest\":",
+     "never_taken_to": [
+      1948,
+      1949
+     ]
+    },
+    {
+     "line": 1949,
+     "src": "elif BNR_STOP_MODE == \"buffer\":",
+     "never_taken_to": [
+      1958
+     ]
+    },
+    {
+     "line": 1967,
+     "src": "if \"LATE\" in br_note and grade.value in (\"A+\", \"A\"):",
+     "never_taken_to": [
+      1968,
+      1969
+     ]
+    },
+    {
+     "line": 1972,
+     "src": "if stack and grade.value in (\"C\",) + _SKIP_GRADES and self.htf_bias != \"bearish\":",
+     "never_taken_to": [
+      1973,
+      1974
+     ]
+    },
+    {
+     "line": 1974,
+     "src": "elif (grade == TradeGrade.D and current.is_bullish",
+     "never_taken_to": [
+      1977,
+      1981
+     ]
+    },
+    {
+     "line": 1981,
+     "src": "if floor_reference_risk(entry, stop, current.close, structural_stop,",
+     "never_taken_to": [
+      1983,
+      1987
+     ]
+    },
+    {
+     "line": 1988,
+     "src": "if (BNR_DISPLACEMENT_GATE and not disp",
+     "never_taken_to": [
+      1994
+     ]
+    },
+    {
+     "line": 1994,
+     "src": "if hi_name == \"PMH\" and grade.value in (\"A+\", \"A\", \"B\"):",
+     "never_taken_to": [
+      1995,
+      1998
+     ]
+    },
+    {
+     "line": 2043,
+     "src": "if FVG_RETEST:",
+     "never_taken_to": [
+      2044,
+      2075
+     ]
+    },
+    {
+     "line": 2045,
+     "src": "for hi_name, _lo, level_hi, level_lo in level_pairs:",
+     "never_taken_to": [
+      2046,
+      2075
+     ]
+    },
+    {
+     "line": 2046,
+     "src": "if level_hi is None:      # T10: pivot lows are short-side only",
+     "never_taken_to": [
+      2047,
+      2048
+     ]
+    },
+    {
+     "line": 2048,
+     "src": "if fvg is None or fvg[0] < level_hi:  # gap must sit above the broken level",
+     "never_taken_to": [
+      2049,
+      2050
+     ]
+    },
+    {
+     "line": 2053,
+     "src": "if (prior_breakout and not already_at_level",
+     "never_taken_to": [
+      2045,
+      2056
+     ]
+    },
+    {
+     "line": 2060,
+     "src": "if stock_risk < 0.50:",
+     "never_taken_to": [
+      2061
+     ]
+    },
+    {
+     "line": 2076,
+     "src": "if (block is not None and retest in OB_RETEST_TYPES",
+     "never_taken_to": [
+      2109
+     ]
+    },
+    {
+     "line": 2084,
+     "src": "if stock_risk < 0.50:",
+     "never_taken_to": [
+      2085,
+      2089
+     ]
+    },
+    {
+     "line": 2089,
+     "src": "if grade.value == \"B\":",
+     "never_taken_to": [
+      2090,
+      2091
+     ]
+    },
+    {
+     "line": 2091,
+     "src": "if stock_risk / current.close > 0.004:  # stop wider than 0.4% = 2R unreachable",
+     "never_taken_to": [
+      2092,
+      2093
+     ]
+    },
+    {
+     "line": 2110,
+     "src": "if flag is not None and current.close > flag[\"flag_lo\"] and _volume_ok(self.candles):",
+     "never_taken_to": [
+      2111,
+      2131
+     ]
+    },
+    {
+     "line": 2115,
+     "src": "if stock_risk < 0.50:",
+     "never_taken_to": [
+      2116,
+      2117
+     ]
+    },
+    {
+     "line": 2131,
+     "src": "if (self.session.entry_price is not None",
+     "never_taken_to": [
+      2137,
+      2187
+     ]
+    },
+    {
+     "line": 2150,
+     "src": "if day_range > 0 and (hod - current.close) / day_range > 0.2 and rr_ok and caps_ok:  # not too close to HOD",
+     "never_taken_to": [
+      2151,
+      2187
+     ]
+    },
+    {
+     "line": 2161,
+     "src": "if grade == TradeGrade.C and not GRADE_FIX:",
+     "never_taken_to": [
+      2162,
+      2163
+     ]
+    },
+    {
+     "line": 2187,
+     "src": "for _hi_name, lo_name, level_hi, level_lo in level_pairs:",
+     "never_taken_to": [
+      2266
+     ]
+    },
+    {
+     "line": 2188,
+     "src": "if level_lo is None:  # F3 pair may carry only one qualifying side",
+     "never_taken_to": [
+      2191
+     ]
+    },
+    {
+     "line": 2194,
+     "src": "if br_note and (current.close < level_lo):",
+     "never_taken_to": [
+      2187
+     ]
+    },
+    {
+     "line": 2196,
+     "src": "if BNR_STOP_MODE == \"retest\":",
+     "never_taken_to": [
+      2198
+     ]
+    },
+    {
+     "line": 2198,
+     "src": "elif BNR_STOP_MODE == \"buffer\":",
+     "never_taken_to": [
+      2199,
+      2203
+     ]
+    },
+    {
+     "line": 2210,
+     "src": "if \"LATE\" in br_note and grade.value in (\"A+\", \"A\"):",
+     "never_taken_to": [
+      2211
+     ]
+    },
+    {
+     "line": 2215,
+     "src": "elif (grade == TradeGrade.D and current.is_bearish",
+     "never_taken_to": [
+      2217,
+      2219
+     ]
+    },
+    {
+     "line": 2219,
+     "src": "if floor_reference_risk(entry, stop, current.close, structural_stop,",
+     "never_taken_to": [
+      2223
+     ]
+    },
+    {
+     "line": 2224,
+     "src": "if (BNR_DISPLACEMENT_GATE and not disp",
+     "never_taken_to": [
+      2226,
+      2228
+     ]
+    },
+    {
+     "line": 2228,
+     "src": "if lo_name == \"PML\" and grade.value in (\"A+\", \"A\", \"B\"):",
+     "never_taken_to": [
+      2229,
+      2231
+     ]
+    },
+    {
+     "line": 2266,
+     "src": "if FVG_RETEST:",
+     "never_taken_to": [
+      2267,
+      2298
+     ]
+    },
+    {
+     "line": 2268,
+     "src": "for _hi, lo_name, level_hi, level_lo in level_pairs:",
+     "never_taken_to": [
+      2269,
+      2298
+     ]
+    },
+    {
+     "line": 2269,
+     "src": "if level_lo is None:      # T10: pivot highs are long-side only",
+     "never_taken_to": [
+      2270,
+      2271
+     ]
+    },
+    {
+     "line": 2271,
+     "src": "if fvg is None or fvg[1] > level_lo:  # gap must sit below the broken level",
+     "never_taken_to": [
+      2272,
+      2273
+     ]
+    },
+    {
+     "line": 2276,
+     "src": "if (prior_breakdown and not already_at_level",
+     "never_taken_to": [
+      2268,
+      2279
+     ]
+    },
+    {
+     "line": 2283,
+     "src": "if stock_risk < 0.50:",
+     "never_taken_to": [
+      2284
+     ]
+    },
+    {
+     "line": 2299,
+     "src": "if (block is not None and retest in OB_RETEST_TYPES",
+     "never_taken_to": [
+      2326
+     ]
+    },
+    {
+     "line": 2306,
+     "src": "if stock_risk < 0.50:",
+     "never_taken_to": [
+      2307,
+      2309
+     ]
+    },
+    {
+     "line": 2309,
+     "src": "if grade.value == \"B\":",
+     "never_taken_to": [
+      2310,
+      2311
+     ]
+    },
+    {
+     "line": 2311,
+     "src": "if stock_risk / current.close > 0.004:",
+     "never_taken_to": [
+      2312,
+      2313
+     ]
+    },
+    {
+     "line": 2327,
+     "src": "if flag is not None and current.close < flag[\"flag_hi\"] and _volume_ok(self.candles):",
+     "never_taken_to": [
+      2328,
+      2347
+     ]
+    },
+    {
+     "line": 2332,
+     "src": "if stock_risk < 0.50:",
+     "never_taken_to": [
+      2333,
+      2334
+     ]
+    },
+    {
+     "line": 2347,
+     "src": "if (self.session.entry_price is not None",
+     "never_taken_to": [
+      2398
+     ]
+    },
+    {
+     "line": 2366,
+     "src": "if day_range > 0 and (current.close - lod) / day_range > 0.2 and rr_ok and caps_ok:",
+     "never_taken_to": [
+      2398
+     ]
+    },
+    {
+     "line": 2375,
+     "src": "if grade == TradeGrade.C and not GRADE_FIX:",
+     "never_taken_to": [
+      2376,
+      2377
+     ]
+    },
+    {
+     "line": 2398,
+     "src": "if HTF_BIAS_GATE and self.daily_bias in (\"bullish\", \"bearish\"):",
+     "never_taken_to": [
+      2399,
+      2408
+     ]
+    },
+    {
+     "line": 2400,
+     "src": "for sig in signals:",
+     "never_taken_to": [
+      2401,
+      2408
+     ]
+    },
+    {
+     "line": 2401,
+     "src": "if sig.get(\"direction\") != want and sig.get(\"grade\") in (\"A+\", \"A\", \"B\"):",
+     "never_taken_to": [
+      2400,
+      2402
+     ]
+    },
+    {
+     "line": 2408,
+     "src": "for sig in signals:",
+     "never_taken_to": [
+      2409,
+      2421
+     ]
+    },
+    {
+     "line": 2410,
+     "src": "if len(pair) >= 2:",
+     "never_taken_to": [
+      2415
+     ]
+    },
+    {
+     "line": 2421,
+     "src": "if PIVOT_LEVELS and any(s.get(\"level_kind\") == \"pivot\" for s in signals):",
+     "never_taken_to": [
+      2422,
+      2429
+     ]
+    },
+    {
+     "line": 2423,
+     "src": "for sig in signals:",
+     "never_taken_to": [
+      2424,
+      2427
+     ]
+    },
+    {
+     "line": 2424,
+     "src": "if sig.get(\"level_kind\") == \"named\" and sig[\"direction\"] in pivot_dirs:",
+     "never_taken_to": [
+      2423,
+      2425
+     ]
+    },
+    {
+     "line": 2429,
+     "src": "for sig in signals:",
+     "never_taken_to": [
+      2430,
+      2432
+     ]
+    },
+    {
+     "line": 2436,
+     "src": "if format_type == \"json\":",
+     "never_taken_to": [
+      2437,
+      2439
+     ]
+    },
+    {
+     "line": 2437,
+     "src": "if not self.load_candles_from_json(candles_data):",
+     "never_taken_to": [
+      2438,
+      2446
+     ]
+    },
+    {
+     "line": 2439,
+     "src": "elif format_type == \"csv\":",
+     "never_taken_to": [
+      2440,
+      2443
+     ]
+    },
+    {
+     "line": 2440,
+     "src": "if not self.load_candles_from_csv(candles_data):",
+     "never_taken_to": [
+      2441,
+      2446
+     ]
+    },
+    {
+     "line": 2450,
+     "src": "if signals:",
+     "never_taken_to": [
+      2451,
+      2487
+     ]
+    },
+    {
+     "line": 2454,
+     "src": "for sig in signals:",
+     "never_taken_to": [
+      -2434,
+      2455
+     ]
+    },
+    {
+     "line": 2457,
+     "src": "if sig[\"entry\"] == sig[\"stop\"]:",
+     "never_taken_to": [
+      2458,
+      2460
+     ]
+    },
+    {
+     "line": 2480,
+     "src": "if self.post_to_discord and self.discord:",
+     "never_taken_to": [
+      2454,
+      2481
+     ]
+    },
+    {
+     "line": 2482,
+     "src": "if success:",
+     "never_taken_to": [
+      2483,
+      2485
+     ]
+    },
+    {
+     "line": 2503,
+     "src": "if args.dry_run:",
+     "never_taken_to": [
+      2510,
+      2542
+     ]
+    },
+    {
+     "line": 2525,
+     "src": "for gate, fvg in itertools.product((False, True), repeat=2):",
+     "never_taken_to": [
+      2526,
+      2535
+     ]
+    },
+    {
+     "line": 2531,
+     "src": "if not gate and not fvg:",
+     "never_taken_to": [
+      2532,
+      2533
+     ]
+    },
+    {
+     "line": 2545,
+     "src": "if args.file:",
+     "never_taken_to": [
+      2546,
+      2555
+     ]
+    },
+    {
+     "line": 2560,
+     "src": "if __name__ == \"__main__\":",
+     "never_taken_to": [
+      -1,
+      2561
+     ]
+    }
+   ],
+   "n_arcs": 1060
+  },
+  "omen_bot.py": {
+   "n_stmts": 429,
+   "missing_lines": [
+    74,
+    75,
+    76,
+    120,
+    140,
+    149,
+    162,
+    172,
+    178,
+    215,
+    217,
+    240,
+    245,
+    248,
+    249,
+    251,
+    252,
+    253,
+    275,
+    277,
+    284,
+    297,
+    299,
+    300,
+    301,
+    303,
+    304,
+    305,
+    306,
+    318,
+    326,
+    327,
+    329,
+    330,
+    332,
+    333,
+    334,
+    345,
+    346,
+    348,
+    349,
+    350,
+    362,
+    382,
+    385,
+    386,
+    387,
+    388,
+    389,
+    390,
+    391,
+    394,
+    401,
+    402,
+    403,
+    404,
+    405,
+    406,
+    407,
+    408,
+    410,
+    412,
+    413,
+    414,
+    415,
+    416,
+    417,
+    428,
+    429,
+    430,
+    431,
+    432,
+    435,
+    438,
+    439,
+    440,
+    441,
+    442,
+    443,
+    444,
+    445,
+    446,
+    447,
+    448,
+    449,
+    450,
+    451,
+    452,
+    453,
+    454,
+    455,
+    456,
+    457,
+    458,
+    459,
+    460,
+    461,
+    467,
+    473,
+    478,
+    505,
+    506,
+    507,
+    508,
+    509,
+    510,
+    521,
+    522,
+    523,
+    553,
+    561,
+    562,
+    564,
+    570,
+    576,
+    579,
+    585,
+    586,
+    597,
+    600,
+    601,
+    612,
+    613,
+    615,
+    616,
+    618,
+    627,
+    629,
+    630,
+    641,
+    642,
+    644,
+    646,
+    648,
+    649,
+    650,
+    651,
+    652,
+    656,
+    664,
+    667,
+    668,
+    678,
+    679,
+    681,
+    682,
+    683,
+    685,
+    687,
+    688,
+    699,
+    702,
+    703,
+    712,
+    719,
+    724,
+    731,
+    732,
+    733,
+    752,
+    755,
+    756,
+    757,
+    758,
+    759,
+    761,
+    763,
+    770,
+    771,
+    772,
+    775,
+    776,
+    778,
+    780,
+    781,
+    782,
+    784,
+    785,
+    789,
+    791,
+    803,
+    806,
+    807,
+    808,
+    809,
+    810,
+    813,
+    814,
+    815,
+    818,
+    819,
+    820,
+    821
+   ],
+   "missing_line_src": {
+    "74": "if isinstance(value, str) and value.strip().upper() == \"D\":",
+    "75": "return cls.X",
+    "76": "return None",
+    "120": "return False",
+    "140": "return candle.is_bullish and (",
+    "149": "return False",
+    "162": "return candle.is_bearish and (",
+    "172": "return (candle.is_bullish and prev.is_bearish",
+    "178": "return (candle.is_bearish and prev.is_bullish",
+    "215": "return base",
+    "217": "@staticmethod",
+    "240": "return TradeGrade.D",
+    "245": "if (at_key_level and PriceActionAnalyzer.is_inverted_hammer(candle)):",
+    "248": "if at_key_level and PriceActionAnalyzer.has_large_upper_wick(candle):",
+    "249": "return TradeGrade.B",
+    "251": "if candle.high >= or_low:",
+    "252": "return TradeGrade.C",
+    "253": "return TradeGrade.D",
+    "275": "if c.high > candles[i - 1].high and c.high > candles[i + 1].high:",
+    "277": "if c.low < candles[i - 1].low and c.low < candles[i + 1].low:",
+    "284": "self.last_ll = cur",
+    "297": "break",
+    "299": "ll_idx = self.last_ll[2]",
+    "300": "for i in range(ll_idx - 1, -1, -1):",
+    "301": "if candles[i].is_bullish:",
+    "303": "if all(c.close <= block.high for c in candles[i + 1:]):",
+    "304": "blocks.append(block)",
+    "305": "break",
+    "306": "return blocks",
+    "318": "body_lo = min(candle.open, candle.close)",
+    "326": "return \"partial_body\"",
+    "327": "return \"full_body\"",
+    "329": "if candle.high < block.low:",
+    "330": "return \"not_retesting\"",
+    "332": "return \"wick_only\"",
+    "333": "if body_lo < block.low:",
+    "334": "return \"partial_body\"",
+    "345": "prior = candles[max(0, block_idx - 10):block_idx]",
+    "346": "if not prior:",
+    "348": "avg_body = sum(c.body_size for c in prior) / len(prior)",
+    "349": "if avg_body == 0:",
+    "350": "return True",
+    "362": "b_lo = min(block.open, block.close)",
+    "382": "block_idx = next(i for i in range(break_idx - 1, -1, -1)",
+    "385": "return None, None, \"Order block not isolated (consolidation), skipped\"",
+    "386": "if not _has_displacement(candles, block_idx, break_idx, direction):",
+    "387": "return None, None, \"No displacement - slow/hesitant break, skipped\"",
+    "388": "retest = check_retest_type(block, candles[-1], direction)",
+    "389": "if retest == \"not_retesting\":",
+    "390": "return None, None, \"Price not at order block\"",
+    "391": "return block, retest, f\"Order block retest: {retest}\"",
+    "394": "def find_fvg(candles: List[Candle], direction: str = \"bullish\", lookback: int = 15):",
+    "401": "lo_i = max(0, len(candles) - lookback)",
+    "402": "best = None",
+    "403": "for i in range(lo_i, len(candles) - 2):",
+    "404": "a, c = candles[i], candles[i + 2]",
+    "405": "if direction == \"bullish\" and a.high < c.low:",
+    "406": "zone = (a.high, c.low)",
+    "407": "elif direction == \"bearish\" and a.low > c.high:",
+    "408": "zone = (c.high, a.low)",
+    "410": "continue",
+    "412": "after = candles[i + 3:]",
+    "413": "if direction == \"bullish\" and any(x.close < zone[0] for x in after):",
+    "414": "continue",
+    "415": "if direction == \"bearish\" and any(x.close > zone[1] for x in after):",
+    "416": "continue",
+    "417": "best = zone  # keep scanning: most recent valid gap wins",
+    "428": "POLE_MIN_PCT = 0.006       # pole net move >= 0.6%",
+    "429": "POLE_LEN = 5               # candles forming the pole",
+    "430": "FLAG_LEN_RANGE = (2, 5)    # pause length to search",
+    "431": "FLAG_RANGE_MAX_PCT = 0.005  # pause total range <= 0.5% of price (tight)",
+    "432": "FLAG_MAX_RETRACE = 0.5     # pause holds >= half the pole",
+    "435": "def detect_flag_setup(candles: List[Candle], direction: str = \"bullish\"):",
+    "438": "bull = direction == \"bullish\"",
+    "439": "if len(candles) < POLE_LEN + FLAG_LEN_RANGE[0] + 1:",
+    "440": "return None, \"not enough candles\"",
+    "441": "current = candles[-1]",
+    "442": "for flag_len in range(FLAG_LEN_RANGE[0], FLAG_LEN_RANGE[1] + 1):",
+    "443": "flag = candles[-1 - flag_len:-1]                       # pause, excl. breakout",
+    "444": "pole = candles[-1 - flag_len - POLE_LEN:-1 - flag_len]  # run before pause",
+    "445": "if len(flag) < flag_len or len(pole) < POLE_LEN:",
+    "446": "continue",
+    "447": "pole_start, pole_end = pole[0].open, pole[-1].close",
+    "448": "if pole_start <= 0:",
+    "449": "continue",
+    "450": "pole_move = (pole_end - pole_start) / pole_start",
+    "451": "if (pole_move if bull else -pole_move) < POLE_MIN_PCT:",
+    "452": "continue                                            # pole too weak/wrong way",
+    "453": "flag_hi = max(c.high for c in flag)",
+    "454": "flag_lo = min(c.low for c in flag)",
+    "455": "if (flag_hi - flag_lo) / current.close > FLAG_RANGE_MAX_PCT:",
+    "456": "continue                                            # pause not tight",
+    "457": "pole_size = abs(pole_end - pole_start)",
+    "458": "retrace = (pole_end - flag_lo) if bull else (flag_hi - pole_end)",
+    "459": "if pole_size > 0 and retrace / pole_size > FLAG_MAX_RETRACE:",
+    "460": "continue                                            # pause gave back too much",
+    "461": "broke = (current.close > flag_hi and current.is_bullish) if bull \\",
+    "467": "return None, \"no flag\"",
+    "473": "BR_FUNNEL = {\"calls\": 0, \"too_short\": 0, \"no_confirm_close\": 0, \"adverse_wick\": 0,",
+    "478": "def detect_break_retest(candles: List[Candle], level: float, is_long: bool,",
+    "505": "BR_FUNNEL[\"calls\"] += 1",
+    "506": "if len(candles) < 4:",
+    "507": "BR_FUNNEL[\"too_short\"] += 1",
+    "508": "return None",
+    "509": "w = candles[-window:]",
+    "510": "cur = w[-1]",
+    "521": "if (cur.close <= level) if is_long else (cur.close >= level):",
+    "522": "BR_FUNNEL[\"no_confirm_close\"] += 1",
+    "523": "return None",
+    "553": "elif failed:",
+    "561": "if back:",
+    "562": "retest_idx = i",
+    "564": "if retest_idx is None:",
+    "570": "return None                            # retest too stale vs the entry candle",
+    "576": "prior = candles[:-window]",
+    "579": "tag = f\" | LATE({late} prior breaks)\" if late else \"\"",
+    "585": "miss = (rc.low - level) if is_long else (level - rc.high)",
+    "586": "tag += f\" | WIDE(retest missed level by ${miss:.2f} = {miss / avg_rng:.2f}x range)\"",
+    "597": "class BreakAndRetestDetector:",
+    "600": "@staticmethod",
+    "601": "def detect_breakout(",
+    "612": "if len(candles) < 2:",
+    "613": "return None",
+    "615": "current = candles[-1]",
+    "616": "previous = candles[-2]",
+    "618": "if is_long:",
+    "627": "return None",
+    "629": "@staticmethod",
+    "630": "def detect_retest_entry(",
+    "641": "if len(candles) < 3:",
+    "642": "return False, \"Not enough candles to confirm retest\"",
+    "644": "current = candles[-1]",
+    "646": "if is_long:",
+    "648": "if current.low <= resistance_level and current.close > resistance_level:",
+    "649": "if PriceActionAnalyzer.is_strong_price_action(current):",
+    "650": "return True, \"A+ retest entry: strong price action at resistance\"",
+    "651": "elif PriceActionAnalyzer.has_large_lower_wick(current):",
+    "652": "return True, \"A+ retest entry: large lower wick at resistance\"",
+    "656": "if PriceActionAnalyzer.is_strong_price_action(current):",
+    "664": "class OneCandleRuleDetector:",
+    "667": "@staticmethod",
+    "668": "def detect_entry(",
+    "678": "if len(candles) < 2:",
+    "679": "return False, \"Not enough candles\"",
+    "681": "current = candles[-1]",
+    "682": "support_level = reference_candle.low",
+    "683": "resistance_level = reference_candle.high",
+    "685": "if is_long:",
+    "687": "if current.low <= support_level and current.close > support_level:",
+    "688": "if PriceActionAnalyzer.is_strong_price_action(current):",
+    "699": "class RuleOf84Detector:",
+    "702": "@staticmethod",
+    "703": "def detect_reentry(",
+    "712": "if is_long:",
+    "719": "return True, \"84% Rule: price reclaimed entry level\"",
+    "724": "class OpeningRangeAnalyzer:",
+    "731": "high = max(c.high for c in opening_candles)",
+    "732": "low = min(c.low for c in opening_candles)",
+    "733": "return high, low",
+    "752": "self.max_signals_per_day = 3",
+    "755": "self.entry_direction: Optional[str] = None",
+    "756": "self.entry_target: Optional[float] = None",
+    "757": "self.entry_stop: Optional[float] = None",
+    "758": "self.entry_time: Optional[str] = None",
+    "759": "self.is_active_trade = False",
+    "761": "self.take_profit_levels: List[float] = []",
+    "763": "def day_ended(self) -> bool:",
+    "770": "def record_loss(self):",
+    "771": "self.consecutive_losses += 1",
+    "772": "self.consecutive_wins = 0",
+    "775": "self.consecutive_wins += 1",
+    "776": "self.consecutive_losses = 0",
+    "778": "def start_trade(self, entry_price: float, entry_time: str, stop_loss: float):",
+    "780": "self.entry_price = entry_price",
+    "781": "self.entry_time = entry_time",
+    "782": "self.stop_loss = stop_loss",
+    "784": "def close_trade(self):",
+    "785": "self.is_active_trade = False",
+    "789": "if __name__ == \"__main__\":",
+    "791": "sample_candles = [",
+    "803": "print(\"=== Omen Bot Signal Detection ===\\n\")",
+    "806": "last = sample_candles[-1]",
+    "807": "print(f\"Last candle: O={last.open}, H={last.high}, L={last.low}, C={last.close}\")",
+    "808": "print(f\"  Body: {last.body_size:.2f}, Lower wick: {last.lower_wick:.2f}\")",
+    "809": "print(f\"  Strong price action: {PriceActionAnalyzer.is_strong_price_action(last)}\")",
+    "810": "print(f\"  Is hammer: {PriceActionAnalyzer.is_hammer_stick(last, [])}\\n\")",
+    "813": "or_high, or_low = OpeningRangeAnalyzer.get_opening_range(sample_candles)",
+    "814": "print(f\"Opening Range (first 5 candles): {or_low:.2f} - {or_high:.2f}\")",
+    "815": "print(f\"Current price {last.close:.2f} outside OR: {OpeningRangeAnalyzer.is_outside_opening_range(last.close, or_high, or_low)}\\n\")",
+    "818": "session = TradingSession()",
+    "819": "session.record_loss()",
+    "820": "session.record_loss()",
+    "821": "print(f\"Day ended after 2 losses: {session.day_ended()}\")"
+   },
+   "partial_branches": [
+    {
+     "line": 74,
+     "src": "if isinstance(value, str) and value.strip().upper() == \"D\":",
+     "never_taken_to": [
+      75,
+      76
+     ]
+    },
+    {
+     "line": 119,
+     "src": "if not candle.is_bullish:",
+     "never_taken_to": [
+      120
+     ]
+    },
+    {
+     "line": 148,
+     "src": "if not candle.is_bearish:",
+     "never_taken_to": [
+      149
+     ]
+    },
+    {
+     "line": 210,
+     "src": "if opposed and HTF_BIAS_VETO:",
+     "never_taken_to": [
+      211,
+      212
+     ]
+    },
+    {
+     "line": 213,
+     "src": "if htf_bias == \"neutral\" and base in (TradeGrade.A_PLUS, TradeGrade.A):",
+     "never_taken_to": [
+      214,
+      215
+     ]
+    },
+    {
+     "line": 228,
+     "src": "if is_long:",
+     "never_taken_to": [
+      242
+     ]
+    },
+    {
+     "line": 229,
+     "src": "if not candle.is_bullish:",
+     "never_taken_to": [
+      230,
+      232
+     ]
+    },
+    {
+     "line": 238,
+     "src": "if candle.low <= or_high:",
+     "never_taken_to": [
+      240
+     ]
+    },
+    {
+     "line": 242,
+     "src": "if not candle.is_bearish:",
+     "never_taken_to": [
+      243,
+      245
+     ]
+    },
+    {
+     "line": 245,
+     "src": "if (at_key_level and PriceActionAnalyzer.is_inverted_hammer(candle)):",
+     "never_taken_to": [
+      246,
+      248
+     ]
+    },
+    {
+     "line": 248,
+     "src": "if at_key_level and PriceActionAnalyzer.has_large_upper_wick(candle):",
+     "never_taken_to": [
+      249,
+      251
+     ]
+    },
+    {
+     "line": 251,
+     "src": "if candle.high >= or_low:",
+     "never_taken_to": [
+      252,
+      253
+     ]
+    },
+    {
+     "line": 273,
+     "src": "for i in range(1, len(candles) - 1):",
+     "never_taken_to": [
+      279
+     ]
+    },
+    {
+     "line": 275,
+     "src": "if c.high > candles[i - 1].high and c.high > candles[i + 1].high:",
+     "never_taken_to": [
+      276,
+      277
+     ]
+    },
+    {
+     "line": 277,
+     "src": "if c.low < candles[i - 1].low and c.low < candles[i + 1].low:",
+     "never_taken_to": [
+      273,
+      278
+     ]
+    },
+    {
+     "line": 279,
+     "src": "for prev, cur in zip(self.swing_highs, self.swing_highs[1:]):",
+     "never_taken_to": [
+      282
+     ]
+    },
+    {
+     "line": 280,
+     "src": "if cur[0] > prev[0]:",
+     "never_taken_to": [
+      279
+     ]
+    },
+    {
+     "line": 282,
+     "src": "for prev, cur in zip(self.swing_lows, self.swing_lows[1:]):",
+     "never_taken_to": [
+      -270
+     ]
+    },
+    {
+     "line": 283,
+     "src": "if cur[0] < prev[0]:",
+     "never_taken_to": [
+      282,
+      284
+     ]
+    },
+    {
+     "line": 289,
+     "src": "if direction == \"bullish\" and self.last_hh is not None:",
+     "never_taken_to": [
+      298
+     ]
+    },
+    {
+     "line": 291,
+     "src": "for i in range(hh_idx - 1, -1, -1):",
+     "never_taken_to": [
+      306
+     ]
+    },
+    {
+     "line": 292,
+     "src": "if candles[i].is_bearish:",
+     "never_taken_to": [
+      291
+     ]
+    },
+    {
+     "line": 295,
+     "src": "if all(c.close >= block.low for c in candles[i + 1:]):",
+     "never_taken_to": [
+      297
+     ]
+    },
+    {
+     "line": 298,
+     "src": "elif direction == \"bearish\" and self.last_ll is not None:",
+     "never_taken_to": [
+      299,
+      306
+     ]
+    },
+    {
+     "line": 300,
+     "src": "for i in range(ll_idx - 1, -1, -1):",
+     "never_taken_to": [
+      301,
+      306
+     ]
+    },
+    {
+     "line": 301,
+     "src": "if candles[i].is_bullish:",
+     "never_taken_to": [
+      300,
+      302
+     ]
+    },
+    {
+     "line": 303,
+     "src": "if all(c.close <= block.high for c in candles[i + 1:]):",
+     "never_taken_to": [
+      304,
+      305
+     ]
+    },
+    {
+     "line": 320,
+     "src": "if direction == \"bullish\":",
+     "never_taken_to": [
+      321,
+      329
+     ]
+    },
+    {
+     "line": 325,
+     "src": "if body_hi > block.high:",
+     "never_taken_to": [
+      326,
+      327
+     ]
+    },
+    {
+     "line": 329,
+     "src": "if candle.high < block.low:",
+     "never_taken_to": [
+      330,
+      331
+     ]
+    },
+    {
+     "line": 331,
+     "src": "if body_hi < block.low:",
+     "never_taken_to": [
+      332,
+      333
+     ]
+    },
+    {
+     "line": 333,
+     "src": "if body_lo < block.low:",
+     "never_taken_to": [
+      334,
+      335
+     ]
+    },
+    {
+     "line": 346,
+     "src": "if not prior:",
+     "never_taken_to": [
+      347,
+      348
+     ]
+    },
+    {
+     "line": 349,
+     "src": "if avg_body == 0:",
+     "never_taken_to": [
+      350,
+      351
+     ]
+    },
+    {
+     "line": 365,
+     "src": "if not prior:",
+     "never_taken_to": [
+      367
+     ]
+    },
+    {
+     "line": 384,
+     "src": "if not _is_isolated(candles, block_idx):",
+     "never_taken_to": [
+      385,
+      386
+     ]
+    },
+    {
+     "line": 386,
+     "src": "if not _has_displacement(candles, block_idx, break_idx, direction):",
+     "never_taken_to": [
+      387,
+      388
+     ]
+    },
+    {
+     "line": 389,
+     "src": "if retest == \"not_retesting\":",
+     "never_taken_to": [
+      390,
+      391
+     ]
+    },
+    {
+     "line": 403,
+     "src": "for i in range(lo_i, len(candles) - 2):",
+     "never_taken_to": [
+      404,
+      418
+     ]
+    },
+    {
+     "line": 405,
+     "src": "if direction == \"bullish\" and a.high < c.low:",
+     "never_taken_to": [
+      406,
+      407
+     ]
+    },
+    {
+     "line": 407,
+     "src": "elif direction == \"bearish\" and a.low > c.high:",
+     "never_taken_to": [
+      408,
+      410
+     ]
+    },
+    {
+     "line": 413,
+     "src": "if direction == \"bullish\" and any(x.close < zone[0] for x in after):",
+     "never_taken_to": [
+      414,
+      415
+     ]
+    },
+    {
+     "line": 415,
+     "src": "if direction == \"bearish\" and any(x.close > zone[1] for x in after):",
+     "never_taken_to": [
+      416,
+      417
+     ]
+    },
+    {
+     "line": 439,
+     "src": "if len(candles) < POLE_LEN + FLAG_LEN_RANGE[0] + 1:",
+     "never_taken_to": [
+      440,
+      441
+     ]
+    },
+    {
+     "line": 442,
+     "src": "for flag_len in range(FLAG_LEN_RANGE[0], FLAG_LEN_RANGE[1] + 1):",
+     "never_taken_to": [
+      443,
+      467
+     ]
+    },
+    {
+     "line": 445,
+     "src": "if len(flag) < flag_len or len(pole) < POLE_LEN:",
+     "never_taken_to": [
+      446,
+      447
+     ]
+    },
+    {
+     "line": 448,
+     "src": "if pole_start <= 0:",
+     "never_taken_to": [
+      449,
+      450
+     ]
+    },
+    {
+     "line": 451,
+     "src": "if (pole_move if bull else -pole_move) < POLE_MIN_PCT:",
+     "never_taken_to": [
+      452,
+      453
+     ]
+    },
+    {
+     "line": 455,
+     "src": "if (flag_hi - flag_lo) / current.close > FLAG_RANGE_MAX_PCT:",
+     "never_taken_to": [
+      456,
+      457
+     ]
+    },
+    {
+     "line": 459,
+     "src": "if pole_size > 0 and retrace / pole_size > FLAG_MAX_RETRACE:",
+     "never_taken_to": [
+      460,
+      461
+     ]
+    },
+    {
+     "line": 463,
+     "src": "if broke:",
+     "never_taken_to": [
+      442
+     ]
+    },
+    {
+     "line": 506,
+     "src": "if len(candles) < 4:",
+     "never_taken_to": [
+      507,
+      509
+     ]
+    },
+    {
+     "line": 521,
+     "src": "if (cur.close <= level) if is_long else (cur.close >= level):",
+     "never_taken_to": [
+      522,
+      527
+     ]
+    },
+    {
+     "line": 536,
+     "src": "if adverse > 1.5 * cur.body_size:",
+     "never_taken_to": [
+      540
+     ]
+    },
+    {
+     "line": 541,
+     "src": "for i in range(1, len(w)):",
+     "never_taken_to": [
+      564
+     ]
+    },
+    {
+     "line": 543,
+     "src": "if state == \"seek_break\":",
+     "never_taken_to": [
+      548
+     ]
+    },
+    {
+     "line": 546,
+     "src": "if crossed:",
+     "never_taken_to": [
+      541
+     ]
+    },
+    {
+     "line": 548,
+     "src": "elif state == \"seek_leave\":",
+     "never_taken_to": [
+      549,
+      555
+     ]
+    },
+    {
+     "line": 551,
+     "src": "if left:",
+     "never_taken_to": [
+      553
+     ]
+    },
+    {
+     "line": 553,
+     "src": "elif failed:",
+     "never_taken_to": [
+      541,
+      554
+     ]
+    },
+    {
+     "line": 555,
+     "src": "elif state == \"seek_retest\":",
+     "never_taken_to": [
+      559
+     ]
+    },
+    {
+     "line": 557,
+     "src": "if back:",
+     "never_taken_to": [
+      541,
+      558
+     ]
+    },
+    {
+     "line": 559,
+     "src": "elif state == \"hold\":                 # retest found; take the latest touch",
+     "never_taken_to": [
+      541
+     ]
+    },
+    {
+     "line": 561,
+     "src": "if back:",
+     "never_taken_to": [
+      541,
+      562
+     ]
+    },
+    {
+     "line": 564,
+     "src": "if retest_idx is None:",
+     "never_taken_to": [
+      565,
+      568
+     ]
+    },
+    {
+     "line": 568,
+     "src": "if (len(w) - 1) - retest_idx > max_confirm_gap:",
+     "never_taken_to": [
+      569,
+      576
+     ]
+    },
+    {
+     "line": 584,
+     "src": "if not touched:",
+     "never_taken_to": [
+      585,
+      587
+     ]
+    },
+    {
+     "line": 587,
+     "src": "if out is not None:",
+     "never_taken_to": [
+      591,
+      592
+     ]
+    },
+    {
+     "line": 612,
+     "src": "if len(candles) < 2:",
+     "never_taken_to": [
+      613,
+      615
+     ]
+    },
+    {
+     "line": 618,
+     "src": "if is_long:",
+     "never_taken_to": [
+      620,
+      624
+     ]
+    },
+    {
+     "line": 620,
+     "src": "if current.close > resistance_level and previous.close <= resistance_level:",
+     "never_taken_to": [
+      627
+     ]
+    },
+    {
+     "line": 624,
+     "src": "if current.close < support_level and previous.close >= support_level:",
+     "never_taken_to": [
+      625,
+      627
+     ]
+    },
+    {
+     "line": 641,
+     "src": "if len(candles) < 3:",
+     "never_taken_to": [
+      642,
+      644
+     ]
+    },
+    {
+     "line": 646,
+     "src": "if is_long:",
+     "never_taken_to": [
+      648,
+      655
+     ]
+    },
+    {
+     "line": 648,
+     "src": "if current.low <= resistance_level and current.close > resistance_level:",
+     "never_taken_to": [
+      649,
+      661
+     ]
+    },
+    {
+     "line": 649,
+     "src": "if PriceActionAnalyzer.is_strong_price_action(current):",
+     "never_taken_to": [
+      650,
+      651
+     ]
+    },
+    {
+     "line": 651,
+     "src": "elif PriceActionAnalyzer.has_large_lower_wick(current):",
+     "never_taken_to": [
+      652,
+      661
+     ]
+    },
+    {
+     "line": 655,
+     "src": "if current.high >= support_level and current.close < support_level:",
+     "never_taken_to": [
+      656,
+      661
+     ]
+    },
+    {
+     "line": 656,
+     "src": "if PriceActionAnalyzer.is_strong_price_action(current):",
+     "never_taken_to": [
+      657,
+      658
+     ]
+    },
+    {
+     "line": 678,
+     "src": "if len(candles) < 2:",
+     "never_taken_to": [
+      679,
+      681
+     ]
+    },
+    {
+     "line": 685,
+     "src": "if is_long:",
+     "never_taken_to": [
+      687,
+      692
+     ]
+    },
+    {
+     "line": 687,
+     "src": "if current.low <= support_level and current.close > support_level:",
+     "never_taken_to": [
+      688,
+      696
+     ]
+    },
+    {
+     "line": 688,
+     "src": "if PriceActionAnalyzer.is_strong_price_action(current):",
+     "never_taken_to": [
+      689,
+      696
+     ]
+    },
+    {
+     "line": 692,
+     "src": "if current.high >= resistance_level and current.close < resistance_level:",
+     "never_taken_to": [
+      696
+     ]
+    },
+    {
+     "line": 712,
+     "src": "if is_long:",
+     "never_taken_to": [
+      714,
+      718
+     ]
+    },
+    {
+     "line": 714,
+     "src": "if current_candle.close >= entry_price:",
+     "never_taken_to": [
+      721
+     ]
+    },
+    {
+     "line": 718,
+     "src": "if current_candle.close <= entry_price:",
+     "never_taken_to": [
+      719,
+      721
+     ]
+    },
+    {
+     "line": 789,
+     "src": "if __name__ == \"__main__\":",
+     "never_taken_to": [
+      -1,
+      791
+     ]
+    }
+   ],
+   "n_arcs": 552
+  },
+  "backtest_week.py": {
+   "n_stmts": 558,
+   "missing_lines": [
+    26,
+    27,
+    58,
+    59,
+    60,
+    61,
+    62,
+    63,
+    64,
+    65,
+    66,
+    118,
+    257,
+    258,
+    259,
+    260,
+    261,
+    263,
+    264,
+    274,
+    286,
+    302,
+    303,
+    304,
+    305,
+    306,
+    307,
+    308,
+    326,
+    328,
+    341,
+    345,
+    368,
+    369,
+    370,
+    373,
+    374,
+    385,
+    386,
+    388,
+    389,
+    390,
+    391,
+    393,
+    471,
+    480,
+    481,
+    482,
+    483,
+    492,
+    493,
+    496,
+    497,
+    498,
+    499,
+    500,
+    501,
+    502,
+    503,
+    506,
+    507,
+    508,
+    509,
+    510,
+    511,
+    512,
+    514,
+    515,
+    516,
+    517,
+    518,
+    519,
+    520,
+    521,
+    522,
+    523,
+    524,
+    525,
+    526,
+    528,
+    529,
+    530,
+    531,
+    532,
+    538,
+    539,
+    592,
+    593,
+    594,
+    599,
+    600,
+    601,
+    602,
+    607,
+    608,
+    609,
+    610,
+    611,
+    612,
+    617,
+    618,
+    619,
+    620,
+    647,
+    648,
+    650,
+    686,
+    688,
+    689,
+    696,
+    697,
+    698,
+    699,
+    707,
+    708,
+    709,
+    710,
+    711,
+    712,
+    713,
+    714,
+    718,
+    719,
+    720,
+    721,
+    723,
+    725,
+    732,
+    733,
+    739,
+    741,
+    742,
+    743,
+    744,
+    745,
+    746,
+    747,
+    748,
+    749,
+    750,
+    751,
+    752,
+    754,
+    756,
+    757,
+    758,
+    759,
+    760,
+    762,
+    764,
+    765,
+    766,
+    767,
+    768,
+    769,
+    771,
+    776,
+    777,
+    778,
+    779,
+    780,
+    781,
+    782,
+    783,
+    784,
+    785,
+    787,
+    788,
+    789,
+    790,
+    791,
+    792,
+    795,
+    796,
+    797,
+    798,
+    799,
+    802,
+    803,
+    804,
+    805,
+    806,
+    809,
+    810,
+    811,
+    812,
+    813,
+    814,
+    815,
+    816,
+    817,
+    818,
+    819,
+    820,
+    821,
+    834,
+    836,
+    837,
+    838,
+    839,
+    840,
+    842,
+    843,
+    844,
+    850,
+    852,
+    853,
+    856,
+    858,
+    859,
+    860,
+    861,
+    865,
+    866,
+    868,
+    869,
+    870,
+    872,
+    873,
+    874,
+    875,
+    876,
+    878,
+    879,
+    880,
+    883,
+    884,
+    885,
+    886,
+    887,
+    890,
+    893,
+    894,
+    895,
+    896,
+    897,
+    898,
+    899,
+    901,
+    902,
+    903,
+    904,
+    908,
+    909,
+    910,
+    911,
+    916,
+    917,
+    918,
+    919,
+    920,
+    921,
+    925,
+    926,
+    928,
+    930,
+    932,
+    934,
+    936,
+    941,
+    942,
+    944,
+    946,
+    947,
+    948,
+    949,
+    950,
+    951,
+    952,
+    953,
+    954,
+    956,
+    957,
+    958,
+    959,
+    960,
+    962,
+    963,
+    964,
+    966,
+    967,
+    968,
+    969,
+    970,
+    971,
+    972,
+    973,
+    976,
+    977,
+    978,
+    979,
+    980,
+    981,
+    982,
+    983,
+    984,
+    985,
+    987,
+    988,
+    989,
+    990,
+    991,
+    992,
+    993,
+    994,
+    997,
+    998,
+    999,
+    1000,
+    1011,
+    1012,
+    1014,
+    1016,
+    1017,
+    1018,
+    1019,
+    1020,
+    1021,
+    1022,
+    1023,
+    1024,
+    1025,
+    1029
+   ],
+   "missing_line_src": {
+    "26": "except ModuleNotFoundError:   # data_archive replay the research rows run on.",
+    "27": "yf = None",
+    "58": "m = re.search(r\" S(\\d+)\", reason or \"\")",
+    "59": "if not m:",
+    "60": "return 1.0",
+    "61": "s = int(m.group(1))",
+    "62": "if s >= 6:",
+    "63": "return 1.5",
+    "64": "if s == 5:",
+    "65": "return 1.25",
+    "66": "return 1.0",
+    "118": "_SCALE_ENV = _SCALE_ENV.strip()",
+    "257": "be_r = 1.0  # always 1R at breakeven",
+    "258": "be_pnl = be_r * risk_dollars * RULE6_SCALE_PCT",
+    "259": "if self.outcome == \"win\":",
+    "260": "run_r = 2.0",
+    "261": "run_pnl = run_r * risk_dollars * (1 - RULE6_SCALE_PCT)",
+    "263": "run_pnl = 0.0",
+    "264": "return round(be_pnl + run_pnl, 2)",
+    "274": "return stop_hit_on_wick(c.high, c.low, level, long)",
+    "286": "return _wick_hit(c, level, long)",
+    "302": "from research import downgrade as dg",
+    "303": "bars = getattr(runner, \"candles\", None) or []",
+    "304": "if t.entry_idx >= len(bars):",
+    "305": "return None",
+    "306": "d = [{\"o\": x.open, \"h\": x.high, \"l\": x.low, \"c\": x.close, \"v\": x.volume} for x in bars]",
+    "307": "rec = dg.score(d, t.entry_idx, t.stop, t.direction == \"call\", runner.htf_bias)",
+    "308": "return (rec or {}).get(\"grade\")",
+    "326": "return",
+    "328": "return",
+    "341": "grade_ok = _sgrade_84(t, runner) == \"S\"",
+    "345": "grade_ok = True",
+    "368": "lv = t.level_price if ENTRY_SCRATCH == \"level\" else t.stop",
+    "369": "long = t.direction == \"call\"",
+    "370": "if (c.close < lv) if long else (c.close > lv):",
+    "373": "return max(c.close, t.stop) if long else min(c.close, t.stop)",
+    "374": "return None",
+    "385": "rng = c.high - c.low",
+    "386": "sgn = 1.0 if t.direction == \"call\" else -1.0",
+    "388": "def off(px, line):",
+    "389": "if rng <= 0 or px is None or line is None:",
+    "390": "return None",
+    "391": "return round(sgn * (px - line) / rng, 4)",
+    "393": "return {\"sym\": t.symbol, \"day\": t.day, \"et\": t.entry_time[:5],",
+    "471": "sig[\"status\"] = \"skipped_repeat_idea\"",
+    "480": "if isinstance(df.columns, pd.MultiIndex):",
+    "481": "df = df.copy()",
+    "482": "df.columns = df.columns.get_level_values(0)",
+    "483": "return df",
+    "492": "if days <= 8:",
+    "493": "m1 = _flatten(yf.download(symbol, period=f\"{days}d\", interval=\"1m\",",
+    "496": "chunks = []",
+    "497": "end = date.today() + timedelta(days=1)",
+    "498": "start = date.today() - timedelta(days=min(days, 29))",
+    "499": "cur = start",
+    "500": "while cur < end:",
+    "501": "nxt = min(cur + timedelta(days=7), end)",
+    "502": "try:",
+    "503": "df = _flatten(yf.download(symbol, start=cur.isoformat(), end=nxt.isoformat(),",
+    "506": "if len(df):",
+    "507": "chunks.append(df)",
+    "508": "except Exception as e:",
+    "509": "print(f\"  [{symbol}] chunk {cur} failed: {e}\")",
+    "510": "cur = nxt",
+    "511": "m1 = pd.concat(chunks) if chunks else pd.DataFrame()",
+    "512": "h1 = _flatten(yf.download(symbol, period=\"3mo\", interval=\"1h\",",
+    "514": "days = defaultdict(list)",
+    "515": "premkt = {}  # day -> [pm_high, pm_low] from 04:00-09:29 extended-hours bars",
+    "516": "rth_open = datetime.strptime(\"09:30\", \"%H:%M\").time()",
+    "517": "rth_close = datetime.strptime(\"16:00\", \"%H:%M\").time()",
+    "518": "for ts, row in m1.iterrows():",
+    "519": "if pd.isna(row[\"Open\"]):",
+    "520": "continue",
+    "521": "t, d = ts.time(), ts.date().isoformat()",
+    "522": "if t < rth_open:",
+    "523": "hi, lo = float(row[\"High\"]), float(row[\"Low\"])",
+    "524": "if d in premkt:",
+    "525": "premkt[d][0] = max(premkt[d][0], hi)",
+    "526": "premkt[d][1] = min(premkt[d][1], lo)",
+    "528": "premkt[d] = [hi, lo]",
+    "529": "continue",
+    "530": "if t >= rth_close:",
+    "531": "continue",
+    "532": "days[d].append(Candle(",
+    "538": "hourly = [(ts, float(row[\"Close\"])) for ts, row in h1.iterrows() if not pd.isna(row[\"Close\"])]",
+    "539": "return {\"days\": dict(days), \"hourly\": hourly,",
+    "592": "t.outcome, t.exit_price, t.exit_idx = \"scratch\", px, i",
+    "593": "open_trades.remove(t)",
+    "594": "continue",
+    "599": "if RULE6_ENABLED and not t.be_taken and t.be_level > 0:",
+    "600": "if (t.direction == \"call\" and c.high >= t.be_level) or                    (t.direction == \"put\" and c.low <= t.be_level):",
+    "601": "t.be_taken = True",
+    "602": "t.runner_stop = t.entry  # raise stop to breakeven",
+    "607": "lv = t.runner_stop if t.be_taken else t.stop",
+    "608": "stopped = _stop_hit(c, lv, t.direction == \"call\")",
+    "609": "targeted = c.high >= t.target if t.direction == \"call\" else c.low <= t.target",
+    "610": "if stopped:  # both in one bar -> conservative: loss",
+    "611": "t.outcome, t.exit_price, t.exit_idx = \"loss\", t.stop, i",
+    "612": "open_trades.remove(t)",
+    "617": "_arm_84(t, runner, c)",
+    "618": "elif targeted:",
+    "619": "t.outcome, t.exit_price, t.exit_idx = \"win\", t.target, i",
+    "620": "open_trades.remove(t)",
+    "647": "if sig[\"direction\"] == \"call\":",
+    "648": "be_level = sig[\"entry\"] + RULE6_BE_MULT * risk",
+    "650": "be_level = sig[\"entry\"] - RULE6_BE_MULT * risk",
+    "686": "t.level_price = sig[\"stop\"]",
+    "688": "nxt = candles[i + 1] if i + 1 < len(candles) else None",
+    "689": "probe.append((_probe_row(t, c, nxt, t.level_price), t))",
+    "696": "row[\"out\"] = t.outcome",
+    "697": "row[\"r\"] = round(t.pnl / RISK_DOLLARS, 3)",
+    "698": "row[\"hold\"] = max(0, t.exit_idx - t.entry_idx)",
+    "699": "SCRATCH_PROBE.append(row)",
+    "707": "n = len(trades)",
+    "708": "wins = sum(1 for t in trades if t.outcome == \"win\")",
+    "709": "losses = sum(1 for t in trades if t.outcome == \"loss\")",
+    "710": "scr = n - wins - losses",
+    "711": "decided = wins + losses",
+    "712": "wr = round(wins / decided * 100, 1) if decided else 0.0",
+    "713": "pnl = round(sum(t.pnl for t in trades), 2)",
+    "714": "return n, wins, losses, scr, wr, pnl",
+    "718": "fired = [t for t in all_trades if t.counted]",
+    "719": "alerts = [t for t in all_trades if t.is_alert]",
+    "720": "d_skips = [t for t in all_trades if t.status == \"skipped_d\"]",
+    "721": "tight = [t for t in all_trades if t.status == \"skipped_tight_stop\"]",
+    "723": "lines = [f\"# Backtest Report: Week of {days[0]} to {days[-1]}\" if days",
+    "725": "lines += [\"## Assumptions\",",
+    "732": "n, w, l, s, wr, pnl = _stats(fired)",
+    "733": "lines += [\"## Summary\",",
+    "739": "lines += [\"### By Grade\", \"| Grade | Signals | W | L | Scratch | Win rate | P&L |\",",
+    "741": "for g in [\"A+\", \"A\", \"B\"]:",
+    "742": "gt = [t for t in fired if t.grade == g]",
+    "743": "if gt:",
+    "744": "n, w, l, s, wr, pnl = _stats(gt)",
+    "745": "lines.append(f\"| {g} | {n} | {w} | {l} | {s} | {wr}% | ${pnl} |\")",
+    "746": "if alerts:",
+    "747": "n, w, l, s, wr, pnl = _stats(alerts)",
+    "748": "lines.append(f\"| C (alert only) | {n} | {w} | {l} | {s} | {wr}% | (${pnl} if traded) |\")",
+    "749": "if d_skips:",
+    "750": "n, w, l, s, wr, pnl = _stats(d_skips)",
+    "751": "lines.append(f\"| D (filtered) | {n} | {w} | {l} | {s} | {wr}% | (${pnl} if traded) |\")",
+    "752": "lines.append(\"\")",
+    "754": "lines += [\"### By Setup\", \"| Setup | Signals | W | L | Scratch | Win rate | P&L |\",",
+    "756": "for st in sorted({t.signal_type for t in fired}):",
+    "757": "stt = [t for t in fired if t.signal_type == st]",
+    "758": "n, w, l, s, wr, pnl = _stats(stt)",
+    "759": "lines.append(f\"| {st} | {n} | {w} | {l} | {s} | {wr}% | ${pnl} |\")",
+    "760": "lines.append(\"\")",
+    "762": "lines += [\"### By Symbol\", \"| Symbol | Signals | W | L | Scratch | Win rate | P&L |\",",
+    "764": "for sym in sorted({t.symbol for t in fired}):",
+    "765": "st_ = [t for t in fired if t.symbol == sym]",
+    "766": "n, w, l, s, wr, pnl = _stats(st_)",
+    "767": "tag = \" _(low n)_\" if n < MIN_SAMPLE_N else \"\"",
+    "768": "lines.append(f\"| {sym}{tag} | {n} | {w} | {l} | {s} | {wr}% | ${pnl} |\")",
+    "769": "lines.append(f\"_(low n): under {MIN_SAMPLE_N} trades -- too few for this row to mean much \"",
+    "771": "lines.append(\"\")",
+    "776": "def _hour_bucket(ts: str) -> Optional[str]:",
+    "777": "hhmm = ts[:5]  # \"HH:MM\"",
+    "778": "if \"09:30\" <= hhmm < \"10:00\":",
+    "779": "return \"09:30-10:00\"",
+    "780": "if \"10:00\" <= hhmm < \"10:30\":",
+    "781": "return \"10:00-10:30\"",
+    "782": "if \"10:30\" <= hhmm < \"11:00\":",
+    "783": "return \"10:30-11:00\"",
+    "784": "return None",
+    "785": "lines += [\"### By Entry Hour\", \"| Hour | Signals | W | L | Scratch | Win rate | P&L |\",",
+    "787": "for bucket in [\"09:30-10:00\", \"10:00-10:30\", \"10:30-11:00\"]:",
+    "788": "bt = [t for t in fired if _hour_bucket(t.entry_time) == bucket]",
+    "789": "if bt:",
+    "790": "n, w, l, s, wr, pnl = _stats(bt)",
+    "791": "lines.append(f\"| {bucket} | {n} | {w} | {l} | {s} | {wr}% | ${pnl} |\")",
+    "792": "lines.append(\"\")",
+    "795": "br = [t for t in fired if t.signal_type == \"break_and_retest\"]",
+    "796": "clean = [t for t in br if \"[clean]\" in t.reason]",
+    "797": "late = [t for t in br if \"[late]\" in t.reason]",
+    "798": "if clean or late:",
+    "799": "lines += [\"### B&R: clean first break vs late (level broken earlier)\",",
+    "802": "for name, ts in ((\"clean\", clean), (\"late\", late)):",
+    "803": "if ts:",
+    "804": "n, w, l, s, wr, pnl = _stats(ts)",
+    "805": "lines.append(f\"| {name} | {n} | {w} | {l} | {s} | {wr}% | ${pnl} |\")",
+    "806": "lines.append(\"\")",
+    "809": "scaled = [t for t in fired if t.be_taken]",
+    "810": "if scaled:",
+    "811": "be_hit = len(scaled)",
+    "812": "be_then_win = sum(1 for t in scaled if t.outcome == \"win\")",
+    "813": "be_then_loss = sum(1 for t in scaled if t.outcome == \"loss\")",
+    "814": "be_then_scr = sum(1 for t in scaled if t.outcome == \"scratch\")",
+    "815": "be_pnl = sum(t.pnl for t in scaled)",
+    "816": "no_be = [t for t in fired if not t.be_taken]",
+    "817": "no_be_decided = [t for t in no_be if t.outcome in (\"win\", \"loss\")]",
+    "818": "no_be_wr = round(sum(1 for t in no_be if t.outcome == \"win\") / max(len(no_be_decided), 1) * 100, 1)",
+    "819": "be_decided = [t for t in scaled if t.outcome in (\"win\", \"loss\")]",
+    "820": "be_wr = round(be_then_win / max(be_then_win + be_then_loss, 1) * 100, 1)",
+    "821": "lines += [\"### Rule 6: Breakeven Scale Analysis\",",
+    "834": "lines += [\"## By Day\", \"| Day | Signals | Wins | Losses | Scratch | P&L |\",",
+    "836": "for d in days:",
+    "837": "dt = [t for t in fired if t.day == d]",
+    "838": "n, w, l, s, wr, pnl = _stats(dt)",
+    "839": "lines.append(f\"| {d} | {n} | {w} | {l} | {s} | ${pnl} |\")",
+    "840": "lines.append(\"\")",
+    "842": "r84 = [t for t in all_trades if t.signal_type == \"reentry_84_rule\"]",
+    "843": "n, w, l, s, wr, pnl = _stats([t for t in r84 if t.counted])",
+    "844": "lines += [\"## 84% Rule Analysis\",",
+    "850": "lines += [\"## Signal Log\", \"| Day | Time | Sym | Setup | Dir | Grade | Status | Entry | Stop | Outcome | P&L |\",",
+    "852": "for t in sorted(all_trades, key=lambda t: (t.day, t.entry_time)):",
+    "853": "lines.append(f\"| {t.day} | {t.entry_time} | {t.symbol} | {t.signal_type} | {t.direction} \"",
+    "856": "lines.append(\"\")",
+    "858": "lines += [\"## Findings & Recommendations\"] + [f\"- {n_}\" for n_ in notes] + [\"\"]",
+    "859": "text = \"\\n\".join(lines)",
+    "860": "REPORT_PATH.write_text(text, encoding=\"utf-8\")",
+    "861": "return text",
+    "865": "notes = []",
+    "866": "fired = [t for t in all_trades if t.counted]",
+    "868": "def wr(ts):",
+    "869": "d = [t for t in ts if t.outcome in (\"win\", \"loss\")]",
+    "870": "return (sum(1 for t in d if t.outcome == \"win\") / len(d) * 100) if d else None",
+    "872": "top = wr([t for t in fired if t.grade in (\"A+\", \"A\")])",
+    "873": "low = wr([t for t in fired if t.grade in (\"B\", \"C\")])",
+    "874": "if top is not None and low is not None:",
+    "875": "verdict = \"KEEP grading\" if top >= low else \"grading NOT predictive this week - review PA grade criteria\"",
+    "876": "notes.append(f\"A+/A win rate {top:.0f}% vs B/C {low:.0f}% -> {verdict}\")",
+    "878": "d_wr = wr([t for t in all_trades if t.status == \"skipped_d\"])",
+    "879": "if d_wr is not None:",
+    "880": "notes.append(f\"D-grade filter: filtered signals would have won {d_wr:.0f}% -> \"",
+    "883": "r84 = [t for t in all_trades if t.signal_type == \"reentry_84_rule\"]",
+    "884": "if r84:",
+    "885": "r = wr([t for t in r84 if t.counted])",
+    "886": "rtxt = f\"{r:.0f}%\" if r is not None else \"n/a\"",
+    "887": "notes.append(f\"84% rule (Lesson 6 canonical 2026-07-06: solid B&R stop-out arms one \"",
+    "890": "notes.append(\"84% live wiring: armed per-symbol off paper stop-outs in live_scanner \"",
+    "893": "by_setup = defaultdict(list)",
+    "894": "for t in fired:",
+    "895": "by_setup[t.signal_type].append(t)",
+    "896": "ranked = [(st, wr(ts)) for st, ts in by_setup.items() if wr(ts) is not None]",
+    "897": "if ranked:",
+    "898": "ranked.sort(key=lambda x: x[1], reverse=True)",
+    "899": "notes.append(f\"Best setup: {ranked[0][0]} ({ranked[0][1]:.0f}%) | worst: {ranked[-1][0]} ({ranked[-1][1]:.0f}%)\")",
+    "901": "alerts = [t for t in all_trades if t.is_alert]",
+    "902": "a_wr = wr(alerts)",
+    "903": "if a_wr is not None:",
+    "904": "notes.append(f\"C-grade alerts ({len(alerts)}, alert-only per SPEC2) would have won {a_wr:.0f}% - \"",
+    "908": "scr = sum(1 for t in fired if t.outcome == \"scratch\")",
+    "909": "if fired and scr / len(fired) > 0.4:",
+    "910": "notes.append(f\"{scr}/{len(fired)} trades never resolved by EOD - 2R target may be too far for 1-min setups; test 1.5R\")",
+    "911": "return notes",
+    "916": "import json",
+    "917": "try:",
+    "918": "nd = json.loads((Path(__file__).parent / \"news_days.json\").read_text())",
+    "919": "return set(nd.get(\"news_days\", []))",
+    "920": "except (OSError, ValueError):",
+    "921": "return set()",
+    "925": "import argparse",
+    "926": "ap = argparse.ArgumentParser(",
+    "928": "ap.add_argument(\"dates\", nargs=\"*\",",
+    "930": "ap.add_argument(\"--days\", type=int, default=None,",
+    "932": "ap.add_argument(\"--entry-cutoff\", default=None, metavar=\"HH:MM\",",
+    "934": "ap.add_argument(\"--skip-news\", action=\"store_true\",",
+    "936": "args = ap.parse_args()",
+    "941": "if args.entry_cutoff:",
+    "942": "ENTRY_CUTOFF = f\"{args.entry_cutoff}:00\"",
+    "944": "news_days = _load_news_days() if args.skip_news else set()",
+    "946": "fetch_days = 8",
+    "947": "if args.days is not None:",
+    "948": "fetch_days = min(args.days, 29)",
+    "949": "target_days = None",
+    "950": "week_start = (date.today() - timedelta(days=fetch_days)).isoformat()",
+    "951": "week_end = (date.today() - timedelta(days=1)).isoformat()",
+    "952": "elif args.dates:",
+    "953": "target_days = args.dates",
+    "954": "week_start = week_end = None  # explicit dates only",
+    "956": "target_days = None  # last complete trading week (Mon..Fri of most recent Friday)",
+    "957": "today = date.today()",
+    "958": "last_friday = today - timedelta(days=(today.weekday() - 4) % 7 or 7)",
+    "959": "week_start = (last_friday - timedelta(days=4)).isoformat()",
+    "960": "week_end = last_friday.isoformat()",
+    "962": "all_trades: List[SimTrade] = []",
+    "963": "chart_records: List[dict] = []",
+    "964": "seen_days = set()",
+    "966": "for sym in SYMBOLS:",
+    "967": "try:",
+    "968": "data = fetch_week(sym, days=fetch_days)",
+    "969": "except Exception as e:",
+    "970": "print(f\"[{sym}] fetch failed: {e}\")",
+    "971": "continue",
+    "972": "day_keys = sorted(data[\"days\"].keys())",
+    "973": "use = [d for d in day_keys",
+    "976": "if news_days:",
+    "977": "use = [d for d in use if d not in news_days]",
+    "978": "prev_day = None",
+    "979": "for d in day_keys:  # iterate all so prev_day PDH/PDL is right",
+    "980": "candles = data[\"days\"][d]",
+    "981": "if d in use and len(candles) >= 30:",
+    "982": "if prev_day:",
+    "983": "pc = data[\"days\"][prev_day]",
+    "984": "pdh, pdl = max(c.high for c in pc), min(c.low for c in pc)",
+    "985": "pdo, pdc = pc[0].open, pc[-1].close",
+    "987": "pdh = pdl = pdo = pdc = None",
+    "988": "bias = htf_bias_for(data[\"hourly\"], d)",
+    "989": "pmh, pml = data.get(\"premkt\", {}).get(d, (None, None))",
+    "990": "trades = simulate_day(sym, d, candles, pdh, pdl, bias, pmh, pml, pdo, pdc)",
+    "991": "all_trades.extend(trades)",
+    "992": "orh = max(c.high for c in candles[:5])",
+    "993": "orl = min(c.low for c in candles[:5])",
+    "994": "levels = {k: v for k, v in [(\"PDH\", pdh), (\"PDL\", pdl), (\"PMH\", pmh),",
+    "997": "for t in trades:",
+    "998": "if t.counted or t.is_alert:",
+    "999": "lo, hi = max(0, t.entry_idx - 25), min(len(candles), t.exit_idx + 11)",
+    "1000": "chart_records.append({",
+    "1011": "seen_days.add(d)",
+    "1012": "print(f\"[{sym}] {d}: {len(candles)} bars, {len(trades)} signals \"",
+    "1014": "prev_day = d",
+    "1016": "days = sorted(seen_days)",
+    "1017": "notes = build_notes(all_trades)",
+    "1018": "write_report(all_trades, days, notes)",
+    "1019": "import json",
+    "1020": "charts_path = REPORT_PATH.with_name(\"backtest_charts.json\")",
+    "1021": "charts_path.write_text(json.dumps(chart_records), encoding=\"utf-8\")",
+    "1022": "print(f\"Charts data -> {charts_path} ({len(chart_records)} trades)\")",
+    "1023": "print(f\"\\nReport -> {REPORT_PATH}\")",
+    "1024": "for n_ in notes:",
+    "1025": "print(f\"  * {n_}\")",
+    "1029": "main()"
+   },
+   "partial_branches": [
+    {
+     "line": 56,
+     "src": "if not SSCORE_SIZING:",
+     "never_taken_to": [
+      58
+     ]
+    },
+    {
+     "line": 59,
+     "src": "if not m:",
+     "never_taken_to": [
+      60,
+      61
+     ]
+    },
+    {
+     "line": 62,
+     "src": "if s >= 6:",
+     "never_taken_to": [
+      63,
+      64
+     ]
+    },
+    {
+     "line": 64,
+     "src": "if s == 5:",
+     "never_taken_to": [
+      65,
+      66
+     ]
+    },
+    {
+     "line": 114,
+     "src": "if _SCALE_ENV is None:",
+     "never_taken_to": [
+      118
+     ]
+    },
+    {
+     "line": 176,
+     "src": "if ENTRY_SCRATCH in (\"\", \"0\", \"off\", \"false\", \"none\"):",
+     "never_taken_to": [
+      184
+     ]
+    },
+    {
+     "line": 256,
+     "src": "if self.be_taken:",
+     "never_taken_to": [
+      257
+     ]
+    },
+    {
+     "line": 259,
+     "src": "if self.outcome == \"win\":",
+     "never_taken_to": [
+      260,
+      263
+     ]
+    },
+    {
+     "line": 284,
+     "src": "if STOP_ON_CLOSE:",
+     "never_taken_to": [
+      286
+     ]
+    },
+    {
+     "line": 304,
+     "src": "if t.entry_idx >= len(bars):",
+     "never_taken_to": [
+      305,
+      306
+     ]
+    },
+    {
+     "line": 325,
+     "src": "if RULE84_OFF:  # C9: detector fully disabled",
+     "never_taken_to": [
+      326
+     ]
+    },
+    {
+     "line": 327,
+     "src": "if t.outcome != \"loss\":       # scratches never arm the 84% rule",
+     "never_taken_to": [
+      328
+     ]
+    },
+    {
+     "line": 340,
+     "src": "if RULE84_ARM_SGRADE:",
+     "never_taken_to": [
+      341
+     ]
+    },
+    {
+     "line": 342,
+     "src": "elif RULE84_STRICT:",
+     "never_taken_to": [
+      345
+     ]
+    },
+    {
+     "line": 366,
+     "src": "if not ENTRY_SCRATCH:",
+     "never_taken_to": [
+      368
+     ]
+    },
+    {
+     "line": 370,
+     "src": "if (c.close < lv) if long else (c.close > lv):",
+     "never_taken_to": [
+      373,
+      374
+     ]
+    },
+    {
+     "line": 389,
+     "src": "if rng <= 0 or px is None or line is None:",
+     "never_taken_to": [
+      390,
+      391
+     ]
+    },
+    {
+     "line": 422,
+     "src": "if SCALE_PLAN == \"hod_then_runner_be\":",
+     "never_taken_to": [
+      424
+     ]
+    },
+    {
+     "line": 470,
+     "src": "elif \"[skip: repeat idea]\" in sig.get(\"reason\", \"\"):",
+     "never_taken_to": [
+      471
+     ]
+    },
+    {
+     "line": 480,
+     "src": "if isinstance(df.columns, pd.MultiIndex):",
+     "never_taken_to": [
+      481,
+      483
+     ]
+    },
+    {
+     "line": 492,
+     "src": "if days <= 8:",
+     "never_taken_to": [
+      493,
+      496
+     ]
+    },
+    {
+     "line": 500,
+     "src": "while cur < end:",
+     "never_taken_to": [
+      501,
+      511
+     ]
+    },
+    {
+     "line": 506,
+     "src": "if len(df):",
+     "never_taken_to": [
+      507,
+      510
+     ]
+    },
+    {
+     "line": 518,
+     "src": "for ts, row in m1.iterrows():",
+     "never_taken_to": [
+      519,
+      538
+     ]
+    },
+    {
+     "line": 519,
+     "src": "if pd.isna(row[\"Open\"]):",
+     "never_taken_to": [
+      520,
+      521
+     ]
+    },
+    {
+     "line": 522,
+     "src": "if t < rth_open:",
+     "never_taken_to": [
+      523,
+      530
+     ]
+    },
+    {
+     "line": 524,
+     "src": "if d in premkt:",
+     "never_taken_to": [
+      525,
+      528
+     ]
+    },
+    {
+     "line": 530,
+     "src": "if t >= rth_close:",
+     "never_taken_to": [
+      531,
+      532
+     ]
+    },
+    {
+     "line": 591,
+     "src": "if px is not None:",
+     "never_taken_to": [
+      592
+     ]
+    },
+    {
+     "line": 595,
+     "src": "if SCALE_PLAN:",
+     "never_taken_to": [
+      599
+     ]
+    },
+    {
+     "line": 599,
+     "src": "if RULE6_ENABLED and not t.be_taken and t.be_level > 0:",
+     "never_taken_to": [
+      600,
+      607
+     ]
+    },
+    {
+     "line": 600,
+     "src": "if (t.direction == \"call\" and c.high >= t.be_level) or                    (t.direction == \"put\" and c.low <= t.be_level):",
+     "never_taken_to": [
+      601,
+      607
+     ]
+    },
+    {
+     "line": 610,
+     "src": "if stopped:  # both in one bar -> conservative: loss",
+     "never_taken_to": [
+      611,
+      618
+     ]
+    },
+    {
+     "line": 618,
+     "src": "elif targeted:",
+     "never_taken_to": [
+      582,
+      619
+     ]
+    },
+    {
+     "line": 646,
+     "src": "if RULE6_ENABLED and risk > 0:",
+     "never_taken_to": [
+      647
+     ]
+    },
+    {
+     "line": 647,
+     "src": "if sig[\"direction\"] == \"call\":",
+     "never_taken_to": [
+      648,
+      650
+     ]
+    },
+    {
+     "line": 685,
+     "src": "if t.level_price is None:",
+     "never_taken_to": [
+      686
+     ]
+    },
+    {
+     "line": 687,
+     "src": "if SCRATCH_PROBE_ON:",
+     "never_taken_to": [
+      688
+     ]
+    },
+    {
+     "line": 695,
+     "src": "for row, t in probe:   # P8/G2: outcomes are only known once the day is done",
+     "never_taken_to": [
+      696
+     ]
+    },
+    {
+     "line": 741,
+     "src": "for g in [\"A+\", \"A\", \"B\"]:",
+     "never_taken_to": [
+      742,
+      746
+     ]
+    },
+    {
+     "line": 743,
+     "src": "if gt:",
+     "never_taken_to": [
+      741,
+      744
+     ]
+    },
+    {
+     "line": 746,
+     "src": "if alerts:",
+     "never_taken_to": [
+      747,
+      749
+     ]
+    },
+    {
+     "line": 749,
+     "src": "if d_skips:",
+     "never_taken_to": [
+      750,
+      752
+     ]
+    },
+    {
+     "line": 756,
+     "src": "for st in sorted({t.signal_type for t in fired}):",
+     "never_taken_to": [
+      757,
+      760
+     ]
+    },
+    {
+     "line": 764,
+     "src": "for sym in sorted({t.symbol for t in fired}):",
+     "never_taken_to": [
+      765,
+      769
+     ]
+    },
+    {
+     "line": 778,
+     "src": "if \"09:30\" <= hhmm < \"10:00\":",
+     "never_taken_to": [
+      779,
+      780
+     ]
+    },
+    {
+     "line": 780,
+     "src": "if \"10:00\" <= hhmm < \"10:30\":",
+     "never_taken_to": [
+      781,
+      782
+     ]
+    },
+    {
+     "line": 782,
+     "src": "if \"10:30\" <= hhmm < \"11:00\":",
+     "never_taken_to": [
+      783,
+      784
+     ]
+    },
+    {
+     "line": 787,
+     "src": "for bucket in [\"09:30-10:00\", \"10:00-10:30\", \"10:30-11:00\"]:",
+     "never_taken_to": [
+      788,
+      792
+     ]
+    },
+    {
+     "line": 789,
+     "src": "if bt:",
+     "never_taken_to": [
+      787,
+      790
+     ]
+    },
+    {
+     "line": 798,
+     "src": "if clean or late:",
+     "never_taken_to": [
+      799,
+      809
+     ]
+    },
+    {
+     "line": 802,
+     "src": "for name, ts in ((\"clean\", clean), (\"late\", late)):",
+     "never_taken_to": [
+      803,
+      806
+     ]
+    },
+    {
+     "line": 803,
+     "src": "if ts:",
+     "never_taken_to": [
+      802,
+      804
+     ]
+    },
+    {
+     "line": 810,
+     "src": "if scaled:",
+     "never_taken_to": [
+      811,
+      834
+     ]
+    },
+    {
+     "line": 836,
+     "src": "for d in days:",
+     "never_taken_to": [
+      837,
+      840
+     ]
+    },
+    {
+     "line": 852,
+     "src": "for t in sorted(all_trades, key=lambda t: (t.day, t.entry_time)):",
+     "never_taken_to": [
+      853,
+      856
+     ]
+    },
+    {
+     "line": 874,
+     "src": "if top is not None and low is not None:",
+     "never_taken_to": [
+      875,
+      878
+     ]
+    },
+    {
+     "line": 879,
+     "src": "if d_wr is not None:",
+     "never_taken_to": [
+      880,
+      883
+     ]
+    },
+    {
+     "line": 884,
+     "src": "if r84:",
+     "never_taken_to": [
+      885,
+      890
+     ]
+    },
+    {
+     "line": 894,
+     "src": "for t in fired:",
+     "never_taken_to": [
+      895,
+      896
+     ]
+    },
+    {
+     "line": 897,
+     "src": "if ranked:",
+     "never_taken_to": [
+      898,
+      901
+     ]
+    },
+    {
+     "line": 903,
+     "src": "if a_wr is not None:",
+     "never_taken_to": [
+      904,
+      908
+     ]
+    },
+    {
+     "line": 909,
+     "src": "if fired and scr / len(fired) > 0.4:",
+     "never_taken_to": [
+      910,
+      911
+     ]
+    },
+    {
+     "line": 941,
+     "src": "if args.entry_cutoff:",
+     "never_taken_to": [
+      942,
+      944
+     ]
+    },
+    {
+     "line": 947,
+     "src": "if args.days is not None:",
+     "never_taken_to": [
+      948,
+      952
+     ]
+    },
+    {
+     "line": 952,
+     "src": "elif args.dates:",
+     "never_taken_to": [
+      953,
+      956
+     ]
+    },
+    {
+     "line": 966,
+     "src": "for sym in SYMBOLS:",
+     "never_taken_to": [
+      967,
+      1016
+     ]
+    },
+    {
+     "line": 976,
+     "src": "if news_days:",
+     "never_taken_to": [
+      977,
+      978
+     ]
+    },
+    {
+     "line": 979,
+     "src": "for d in day_keys:  # iterate all so prev_day PDH/PDL is right",
+     "never_taken_to": [
+      966,
+      980
+     ]
+    },
+    {
+     "line": 981,
+     "src": "if d in use and len(candles) >= 30:",
+     "never_taken_to": [
+      982,
+      1014
+     ]
+    },
+    {
+     "line": 982,
+     "src": "if prev_day:",
+     "never_taken_to": [
+      983,
+      987
+     ]
+    },
+    {
+     "line": 997,
+     "src": "for t in trades:",
+     "never_taken_to": [
+      998,
+      1011
+     ]
+    },
+    {
+     "line": 998,
+     "src": "if t.counted or t.is_alert:",
+     "never_taken_to": [
+      997,
+      999
+     ]
+    },
+    {
+     "line": 1024,
+     "src": "for n_ in notes:",
+     "never_taken_to": [
+      -924,
+      1025
+     ]
+    },
+    {
+     "line": 1028,
+     "src": "if __name__ == \"__main__\":",
+     "never_taken_to": [
+      1029
+     ]
+    }
+   ],
+   "n_arcs": 335
+  },
+  "research/downgrade.py": {
+   "n_stmts": 184,
+   "missing_lines": [
+    214,
+    217,
+    251,
+    283,
+    284,
+    285,
+    296,
+    297,
+    301,
+    316,
+    317,
+    321,
+    336,
+    337,
+    338,
+    339,
+    340,
+    341,
+    342,
+    343,
+    344,
+    345,
+    346,
+    347,
+    348,
+    349,
+    350,
+    351,
+    352,
+    353,
+    354,
+    355,
+    359,
+    377,
+    378,
+    379,
+    380,
+    382,
+    386,
+    398,
+    399,
+    419,
+    435,
+    436,
+    437,
+    444,
+    474,
+    481,
+    482,
+    488,
+    492
+   ],
+   "missing_line_src": {
+    "214": "return False",
+    "217": "return False",
+    "251": "return True",
+    "283": "counter = (not _is_up(b)) if is_long else _is_up(b)",
+    "284": "if not counter:",
+    "285": "continue",
+    "296": "if left_ok and right_ok:",
+    "297": "return j",
+    "301": "def ocr_not_respected(bars, i, level, is_long):",
+    "316": "if through:",
+    "317": "return True",
+    "321": "def large_counter_body(bars, i, level, is_long):",
+    "336": "window = bars[max(0, i - LARGE_BODY_WINDOW):i + 1]",
+    "337": "base = max(0, i - LARGE_BODY_WINDOW)",
+    "338": "for j, b in enumerate(window, start=base):",
+    "339": "rng = _rng(b)",
+    "340": "if rng <= 0:",
+    "341": "continue",
+    "342": "counter = (not _is_up(b)) if is_long else _is_up(b)",
+    "343": "if not counter:",
+    "344": "continue",
+    "345": "if _body(b) / rng < LARGE_BODY_FRAC:",
+    "346": "continue",
+    "347": "lo = max(0, j - LARGE_BODY_CONTAIN)",
+    "348": "hi = min(i, j + LARGE_BODY_CONTAIN)",
+    "349": "neighbours = [bars[k] for k in range(lo, hi + 1) if k != j]",
+    "350": "if not neighbours:",
+    "351": "continue",
+    "352": "nb_hi = max(nb[\"h\"] for nb in neighbours)",
+    "353": "nb_lo = min(nb[\"l\"] for nb in neighbours)",
+    "354": "if b[\"h\"] <= nb_hi and b[\"l\"] >= nb_lo:",
+    "355": "return True",
+    "359": "def multi_level_confluence(bars, i, level, is_long, levels):",
+    "377": "if levels is None or not all(levels.get(k) is not None for k in CONFLUENCE_LEVELS):",
+    "378": "return False",
+    "379": "close = bars[i][\"c\"]",
+    "380": "on_side = sum(1 for k in CONFLUENCE_LEVELS",
+    "382": "pa_agrees = _is_up(bars[i]) if is_long else (not _is_up(bars[i]))",
+    "386": "def sequence_gate(entry_seq, is_84_reentry):",
+    "398": "if not entry_seq or entry_seq <= 1:",
+    "399": "return False",
+    "419": "def has_confluence(bars, i, level, is_long):",
+    "435": "edge = bars[j][\"l\"] if is_long else bars[j][\"h\"]",
+    "436": "usable = (edge <= bars[i][\"c\"]) if is_long else (edge >= bars[i][\"c\"])",
+    "437": "return usable and not ocr_not_respected(bars, i, level, is_long)",
+    "444": "def score(bars, i, level, is_long, htf_bias=None, levels=None,",
+    "474": "return None",
+    "481": "if lcb_on and large_counter_body(bars, i, level, is_long):",
+    "482": "tripped.append(\"large_counter_body\")",
+    "488": "confl = confl_br_ocr or confl_ml           # capped at one point -- see docstring",
+    "492": "b = bars[i]"
+   },
+   "partial_branches": [
+    {
+     "line": 213,
+     "src": "if not bars:",
+     "never_taken_to": [
+      214
+     ]
+    },
+    {
+     "line": 216,
+     "src": "if a <= 0:",
+     "never_taken_to": [
+      217
+     ]
+    },
+    {
+     "line": 250,
+     "src": "if back:",
+     "never_taken_to": [
+      251
+     ]
+    },
+    {
+     "line": 276,
+     "src": "for j in range(i - 1, max(1, i - lookback) - 1, -1):",
+     "never_taken_to": [
+      282,
+      298
+     ]
+    },
+    {
+     "line": 284,
+     "src": "if not counter:",
+     "never_taken_to": [
+      285,
+      294
+     ]
+    },
+    {
+     "line": 296,
+     "src": "if left_ok and right_ok:",
+     "never_taken_to": [
+      276,
+      297
+     ]
+    },
+    {
+     "line": 311,
+     "src": "if j is None:",
+     "never_taken_to": [
+      313
+     ]
+    },
+    {
+     "line": 314,
+     "src": "for k in range(j + 1, i + 1):",
+     "never_taken_to": [
+      315,
+      318
+     ]
+    },
+    {
+     "line": 316,
+     "src": "if through:",
+     "never_taken_to": [
+      314,
+      317
+     ]
+    },
+    {
+     "line": 338,
+     "src": "for j, b in enumerate(window, start=base):",
+     "never_taken_to": [
+      339,
+      356
+     ]
+    },
+    {
+     "line": 340,
+     "src": "if rng <= 0:",
+     "never_taken_to": [
+      341,
+      342
+     ]
+    },
+    {
+     "line": 343,
+     "src": "if not counter:",
+     "never_taken_to": [
+      344,
+      345
+     ]
+    },
+    {
+     "line": 345,
+     "src": "if _body(b) / rng < LARGE_BODY_FRAC:",
+     "never_taken_to": [
+      346,
+      347
+     ]
+    },
+    {
+     "line": 350,
+     "src": "if not neighbours:",
+     "never_taken_to": [
+      351,
+      352
+     ]
+    },
+    {
+     "line": 354,
+     "src": "if b[\"h\"] <= nb_hi and b[\"l\"] >= nb_lo:",
+     "never_taken_to": [
+      338,
+      355
+     ]
+    },
+    {
+     "line": 377,
+     "src": "if levels is None or not all(levels.get(k) is not None for k in CONFLUENCE_LEVELS):",
+     "never_taken_to": [
+      378,
+      379
+     ]
+    },
+    {
+     "line": 398,
+     "src": "if not entry_seq or entry_seq <= 1:",
+     "never_taken_to": [
+      399,
+      400
+     ]
+    },
+    {
+     "line": 433,
+     "src": "if j is None:",
+     "never_taken_to": [
+      435
+     ]
+    },
+    {
+     "line": 473,
+     "src": "if not bars or i >= len(bars) or level is None:",
+     "never_taken_to": [
+      474
+     ]
+    },
+    {
+     "line": 481,
+     "src": "if lcb_on and large_counter_body(bars, i, level, is_long):",
+     "never_taken_to": [
+      482,
+      483
+     ]
+    },
+    {
+     "line": 483,
+     "src": "if seq_on and sequence_gate(entry_seq, is_84_reentry):",
+     "never_taken_to": [
+      486
+     ]
+    }
+   ],
+   "n_arcs": 233
+  }
+ }
+}

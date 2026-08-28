@@ -121,3 +121,13 @@ research/g3_arm_*.json
 # `python research/g10_arming_funnel.py run`; the finding lives in
 # research/g10_arming_funnel.md, which IS tracked.
 research/_g10_arm_events.json
+
+# W12 coverage-sweep byproducts. `w12_trades.json` is a 39.5 MB replay book
+# written only so the instrumented run has somewhere to put its output, and
+# `.coverage` is coverage.py's binary database. Both regenerable with
+# `python research/w12_reach.py run`; the finding lives in
+# research/w12_bug_sweep.md and the READABLE result in research/_w12/cov.json,
+# which IS tracked.
+research/_w12/w12_trades.json
+research/_w12/.coverage
+research/_w12/*.log

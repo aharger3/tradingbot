@@ -28,8 +28,8 @@ So no branch below is called dead because it looks dead:
 |---|---|---|
 | `research/w12_dg_probe.py` | every downgrade variable and its internal branches, re-derived on the exact bar `backtest_2y.py` graded | 45,193 signals, 11,808 symbol-days |
 | `research/w12_tight_stop.py` | `_min_viable_stop` re-derived on the graded bar | 1,017 traded rows |
-| `research/w12_reach.py` | the shipped `backtest_2y.py` replay under `coverage.py --branch`, restricted to the four in-scope modules | 28 symbols × ~500 sessions |
-| `research/g3_arm_ow1.json` | the book itself — `grade`, `sgrade`, `downgrades`, `status`, `r` per row | 45,193 signals, 1,017 traded |
+| `research/w12_reach.py` | the shipped `backtest_2y.py` replay under `coverage.py --branch`, restricted to the four in-scope modules | 45,193 signals / 500 sessions — reproduced the reference book exactly, then voided 3 of its 4 files' line numbers because they changed mid-run. See below |
+| `research/g3_arm_ow1.json` (gitignored, regenerate with `python research/g3_onwatch_2y.py run --arm on`) | the book itself — `grade`, `sgrade`, `downgrades`, `status`, `r` per row | 45,193 signals, 1,017 traded |
 
 Bars come from `data_archive/` via `polygon_feed`. Nothing was fetched. Output JSON
 is in `research/_w12/`.
@@ -338,6 +338,60 @@ off it.
 
 ---
 
+## The coverage sweep, and what it could and could not say
+
+`research/w12_reach.py run --days 730` finished: **45,193 signals, 1,017 traded, 500
+sessions** — the reference book's totals exactly (`research/g3_arm_ow1.json`, `f5ff006a`).
+That is worth one sentence on its own, given that 5.2's scale-out table could not be
+regenerated from committed code: **the 2-year book reproduces from HEAD.** It also
+independently confirms that W1's in-flight `ENABLE_SAC_LADDER` work is byte-identical
+with the flag off, which is what that flag promised.
+
+It then **voided its own line attribution**, and correctly:
+
+```
+!! a scoped file CHANGED during the run -- line numbers are void
+   changed: signal_runner.py        <- a concurrent agent's W1 edits
+   changed: omen_bot.py             <- this sweep's own finding-5 fix
+   changed: research/downgrade.py   <- this sweep's own finding-6 fix
+```
+
+`coverage.py` reports missing lines against the file **as it is now**, so a file that
+gained or lost a statement mid-run has every line after that point off by the delta.
+Three of the four are unusable and are not quoted anywhere above. This is the guard doing
+its job rather than a failed run — the alternative was a table of confident line numbers
+pointing at the wrong lines, which is how this bug class got planted in the first place.
+
+**`backtest_week.py` was stable across the whole run**, and it is where findings #3 and #4
+live. Its results are valid, and they sharpen #4:
+
+| line | never executed | what that means |
+|---|---|---|
+| `:302–308` | `_sgrade_84`, the whole function | `RULE84_ARM_SGRADE` ships OFF, so the S-keyed reading of the arm gate has never run once |
+| `:341` | `grade_ok = _sgrade_84(t, runner) == "S"` | same |
+| `:345` | `grade_ok = True` | the un-gated reading has never run either |
+| `:342` branch | the `elif RULE84_STRICT` false-arc | `RULE84_STRICT` was **always** true |
+
+So of the three readings the arm gate offers, **exactly one has ever executed** — the
+legacy `t.grade in ("A+", "A")`, keyed to a letter the shipped grader emits 17 times in
+45,193 signals. #4 is not "a gate that is rarely satisfied"; it is a gate with two
+alternative definitions that have never been evaluated at all.
+
+Two more from the same stable file, one in scope and one out:
+
+- **`:284` `if STOP_ON_CLOSE:` never takes its false arc.** The wick-based stop is dead in
+  every replay, which is exactly right — Austin settled five times that a stop needs a
+  close. A dead branch that *should* be dead, reported so the count is honest.
+- **`:599–620` never execute at all** — the binary stop/target exit path, including its own
+  `_arm_84` call, because `SCALE_PLAN` is set by default and `_ladder_bar` `continue`s past
+  it. `backtest_week` has two exit paths and only one runs. That is exit policy, out of
+  W12's scope by instruction, and it is flagged here for W2 rather than investigated.
+
+`research/_w12/cov.json` is committed. The 39.5 MB replay book the run wrote and
+`coverage.py`'s binary database are not; both regenerate from the same command.
+
+---
+
 ## What each finding needs from Austin
 
 1. **#1** — the tight-stop gate rejects rows worth +1.0861 R and keeps rows worth
@@ -363,7 +417,7 @@ Every number above names the script that made it, and every script is committed.
 |---|---|---|
 | variable fire rates, `_break_bar` branches, net histograms, 853,010 guard evaluations | `research/w12_dg_probe.py` → `research/_w12/dg.json` | `research/g3_arm_ow1.json` + `data_archive/` |
 | `_min_viable_stop` pass/fail and its R split | `research/w12_tight_stop.py` → `research/_w12/tight_stop.json` | same |
-| line and branch coverage of the four in-scope modules | `research/w12_reach.py` → `research/_w12/cov.json` | shipped `backtest_2y.py` replay under `coverage.py --branch` |
+| line and branch coverage — `backtest_week.py` only, the one file whose hash held across the run | `research/w12_reach.py` → `research/_w12/cov.json` | shipped `backtest_2y.py` replay under `coverage.py --branch` |
 | book composition, grade counts, alert/traded R, arm-eligible counts | `research/g3_arm_ow1.json` (`f5ff006a`, 500 sessions, 2024-08-21 → 2026-08-21) | — |
 | `spec0b` root cause | `spec0b_levels_check.py` with `_log_record` instrumented | 8 synthetic candles |
 
