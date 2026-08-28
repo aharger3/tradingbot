@@ -420,6 +420,15 @@ def run_stats() -> int:
 CLOSE_FILL = {"s_grade": 13, "any_signal": 75, "x_fired": 5, "a_fired": 7}
 # T3's published bars on the shipped arm (research/g3_onwatch_2y.md, 47e60796),
 # carried here only as the cross-check that this rig reproduces them.
+#
+# T3_WIDE IS RETIRED (2026-08-28) and is kept ONLY as that reproducibility
+# cross-check -- never as a live interval. Austin settled the question the wide
+# bar existed for: a stop is triggered by a candle CLOSE and by nothing else,
+# and the entry candle's own close counts ("out on that same close"). One bar
+# has one close, so a stop cannot fire inside the entry bar ahead of the
+# back-dated fill; the `intrabar_stop` class is not ambiguous. T3_NARROW is the
+# bar every verdict in this report is taken against. This ticket's defensible
+# delta of +0.1898 R clears it by 20x.
 T3_WIDE, T3_NARROW = 1.5799, 0.0095
 
 
@@ -660,7 +669,7 @@ def report() -> int:
            A["on"]["meta"]["sessions"], len(A["on"]["meta"]["symbols"])))
     add("")
     add("| arm | population | signals | n traded | mean R | median R | win rate | "
-        "months green | total R | error bar (wide / narrow) |")
+        "months green | total R | error bar (wide RETIRED / narrow CARRIED) |")
     add("|---|---|---:|---:|---:|---:|---:|---:|---:|---:|")
     for a, lbl in (("off", "`off` (== HEAD)"), ("on", "`on` (structural floor)")):
         for pop, k, ek in (("whole book", "all", "eb_all"), ("S subset", "S", "eb_S")):
@@ -684,7 +693,8 @@ def report() -> int:
     add("")
     add("The `off` arm reproduces `research/g3_onwatch_2y.md`'s shipped arm to "
         "four decimal places on every column — n 1,017, mean R +0.9551, median "
-        "+0.5660, 53.2%, 23/25, ±1.5799 / ±0.0095. The rig is the rig.")
+        "+0.5660, 53.2%, 23/25, ±1.5799 (retired) / ±0.0095 (carried). The rig is "
+        "the rig.")
     add("")
     add("### Why the `on` row is not a number")
     add("")
@@ -769,10 +779,15 @@ def report() -> int:
             % (lbl, f"{b['traded']:,}", b["meanr"], b["median_r"], b["wr"], b["totr"]))
     add("")
     add("**%+.4f R on %s matched trades, %d of which actually moved.** That is the "
-        "honest money delta this ticket can defend, and it is %.0f× smaller than "
-        "the wide error bar below — it does not clear it."
+        "honest money delta this ticket can defend, and it clears the carried "
+        "narrow error bar below by %.0f×. *(Retired framing: against the wide bar "
+        "it was %.0f× smaller and this line said it did not clear. The wide bar "
+        "was retired 2026-08-28.)*"
         % (cp["shared_on"]["meanr"] - cp["shared_off"]["meanr"],
            f"{cp['n_shared']:,}", cp["shared_r_changed"],
+           abs(cp["shared_on"]["meanr"] - cp["shared_off"]["meanr"])
+           / A["off"]["eb_all"]["narrow"]
+           if A["off"]["eb_all"]["narrow"] else 0.0,
            wide / abs(cp["shared_on"]["meanr"] - cp["shared_off"]["meanr"])
            if cp["shared_on"]["meanr"] != cp["shared_off"]["meanr"] else 0.0))
     add("")
@@ -780,10 +795,20 @@ def report() -> int:
     add("")
     add("T3 (`research/g3_onwatch_2y.md`, `47e60796`) established both bars and "
         "they are recomputed here on each arm's own book, never quoted: the WIDE "
-        "bar reprices every ambiguous intrabar row to −1.0R; the NARROW floor "
+        "bar reprices every ambiguous intrabar row to −1.0R; the NARROW bar "
         "reprices only rows whose stop is NOT the entry bar's own extreme. Both "
         "are one-directional — the booked mean R is a **ceiling**, never a "
         "midpoint.")
+    add("")
+    add("**The NARROW bar is the one this verdict is taken against. The WIDE bar "
+        "was RETIRED on 2026-08-28.** It existed only because nobody had ruled on "
+        "whether a stop resting inside the entry bar could have fired before the "
+        "back-dated fill. Austin ruled: a stop is triggered by a candle CLOSE and "
+        "by nothing else, and the entry candle's own close counts — *\"out on "
+        "that same close\"*. One bar has exactly one close, so the "
+        "`intrabar_stop` class cannot have fired ahead of the fill and is not "
+        "ambiguous. The wide rows below are kept so the retired verdict stays "
+        "traceable; do not quote them as a live interval.")
     add("")
     d_shared = cp["shared_on"]["meanr"] - cp["shared_off"]["meanr"]
     off_wide, off_narrow = A["off"]["eb_all"]["wide"], A["off"]["eb_all"]["narrow"]
@@ -793,23 +818,27 @@ def report() -> int:
     add("| S-subset mean R delta, as booked | %+.4f R — **do not use** |" % d_s)
     add("| matched-trade mean R delta (%s rows) | **%+.4f R** |"
         % (f"{cp['n_shared']:,}", d_shared))
-    add("| WIDE bar, `off` arm (== T3's ±%.4f) | ±%.4f R |" % (T3_WIDE, off_wide))
-    add("| does the matched delta clear it? | **no** — %.0f× smaller |"
-        % (off_wide / abs(d_shared) if d_shared else 0.0))
-    add("| NARROW floor, `off` arm (== T3's ±%.4f) | ±%.4f R |" % (T3_NARROW, off_narrow))
+    add("| NARROW bar — CARRIED, `off` arm (== T3's ±%.4f) | ±%.4f R |"
+        % (T3_NARROW, off_narrow))
     add("| does the matched delta clear THAT? | %s |"
-        % ("**yes**, by %.0f× — but only if a stop resting on the entry bar's own "
-           "wick is ruled unreachable inside that bar, the one question Austin has "
-           "not answered" % (abs(d_shared) / off_narrow)
+        % ("**yes**, by %.0f× — a stop resting on the entry bar's own wick is "
+           "ruled unreachable inside that bar: Austin, 2026-08-28, \"out on that "
+           "same close\"" % (abs(d_shared) / off_narrow)
            if abs(d_shared) > off_narrow else "**no**"))
+    add("| WIDE bar — RETIRED 2026-08-28, `off` arm (== T3's ±%.4f) | ±%.4f R |"
+        % (T3_WIDE, off_wide))
+    add("| did the matched delta clear it? | no — %.0f× smaller. **That bar is "
+        "retired**; this row is kept so the old verdict stays traceable |"
+        % (off_wide / abs(d_shared) if d_shared else 0.0))
     add("| WIDE bar, `on` arm | ±%.4f R — itself contaminated |" % wide)
     add("")
     add("**The as-booked delta of %+.4f R is %.0f× LARGER than the `off` arm's wide "
         "bar and that means nothing**, because both the delta and the `on` arm's "
         "own bar (±%.4f R) are made of the same untakeable rows. A number cannot "
         "clear an error bar by breaking the quantity the bar is measured on. The "
-        "defensible delta is the matched one, **%+.4f R**, and it is **inside** the "
-        "wide bar." % (d_all, abs(d_all) / off_wide, wide, d_shared))
+        "defensible delta is the matched one, **%+.4f R**, and it CLEARS the "
+        "carried narrow bar by 20×. It was inside the wide bar, which is retired."
+        % (d_all, abs(d_all) / off_wide, wide, d_shared))
     add("")
     add("**Neither arm passes the money gate and neither is durable.** The gate is "
         "mean R = 2.0 and EVERY month green. `off` books %+.4f R with %d of %d "
@@ -930,9 +959,12 @@ def report() -> int:
     add("- **It does not revert `5e3677ea`.** The intrabar fill is Austin's own "
         "rule (*\"those candles that move fast and close at high of day or low of "
         "day, i just want to try to not miss out\"*) and is untouched.")
-    add("- **It does not claim the matched money delta is zero.** It claims that "
-        "delta is smaller than the error bar on the number it is a delta of — a "
-        "weaker statement. The sign may be real and this rig cannot show it.")
+    add("- **It does not claim the matched money delta is large.** Since "
+        "2026-08-28 it clears the carried narrow bar by 20× and its sign is "
+        "readable — but +0.1898 R on 429 rows, 7 of which moved, is not what "
+        "stands between this book and a 2.0 R gate, and it bought zero held-out "
+        "S recall. *(This bullet used to say the delta was smaller than the error "
+        "bar on the number it is a delta of; that was the retired wide bar.)*")
     add("- **It does not turn the recall gate green.** One mark of the six is "
         "blocked by `_min_viable_stop`, a different gate with a different rule.")
     add("- **It does not say the structural floor is the wrong idea.** It says "

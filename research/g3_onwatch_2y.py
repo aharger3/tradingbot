@@ -57,17 +57,27 @@ stop sitting ON the entry bar's own extreme, put there by
 clear of both wicks. So there are two candidate error bars and this file states
 which one it is carrying:
 
-  WIDE (carried)   every ambiguous intrabar row repriced to -1.0R, the
+  WIDE (RETIRED)   every ambiguous intrabar row repriced to -1.0R, the
                    manufactured `intrabar_stop` class included.
-  NARROW (floor)   only rows whose stop is NOT the entry bar's own extreme.
+  NARROW (carried) only rows whose stop is NOT the entry bar's own extreme.
 
-**The wide one is the headline here.** The manufactured class is manufactured,
-but it is not resolved: a stop resting on the entry bar's own low is a price
-that bar demonstrably traded, and on a long break-and-retest bar closing near
-its high the low usually traded FIRST. Whether such a stop should be modelled as
-reachable inside its own entry bar is Austin's call and he has not made it, so
-excluding that class would be assuming the answer. The narrow bar is reported
-beside it as the floor the error bar cannot go below.
+**The wide one was the headline here until 2026-08-28.** The manufactured class
+is manufactured, but it was not resolved: a stop resting on the entry bar's own
+low is a price that bar demonstrably traded, and on a long break-and-retest bar
+closing near its high the low usually traded FIRST. Whether such a stop should
+be modelled as reachable inside its own entry bar was Austin's call and he had
+not made it, so excluding that class would have been assuming the answer.
+
+RETIRED 2026-08-28. He made the call. Asked whether a mid-candle entry whose own
+candle then closes beyond the stop is out on that close, he said "out on that
+same close". A stop is triggered by a candle CLOSE and by nothing else, and the
+entry candle's own close counts -- and there is exactly one close per bar, so a
+stop cannot fire INSIDE the entry bar ahead of the back-dated fill. The
+`intrabar_stop` class is not ambiguous. THE NARROW BAR IS THE ONE THIS FILE
+CARRIES (+-0.0095 R shipped, +-0.0088 R off). The wide bar is still computed and
+printed below so the retired verdict stays traceable, and every place it appears
+says it is retired. Do not quote it as a live interval. The ON_WATCH delta of
++0.1135 R clears the carried bar by 12x.
 
 Both bars are recomputed per arm, on that arm's own book. They are never copied
 from T2's numbers -- T2's book is a third replay and the arms must be compared
@@ -320,14 +330,32 @@ def report(books, cls, gaps):
     add = L.append
     add("# G3 / T3 — ON WATCH on the 2-year book")
     add("")
+    add("> **CORRECTED 2026-08-28 — the wide error bar is retired and this delta "
+        "is READABLE.** This file's headline used to say the delta was %.0f× "
+        "smaller than a ±%.4f R bar and \"not resolved\". That bar existed only "
+        "because nobody had ruled on whether a stop resting inside the entry bar "
+        "could have fired before the back-dated fill. **Austin ruled on "
+        "2026-08-28: \"Out on that same close.\"** A stop is triggered by a candle "
+        "CLOSE and nothing else; the entry candle's own close counts; there is "
+        "exactly one close per bar. So a stop cannot fire *inside* the entry bar "
+        "ahead of the fill, the `intrabar_stop` class is not ambiguous, and **the "
+        "bar this file carries is the narrow one — ±%.4f R shipped, ±%.4f R on the "
+        "off arm.** Every wide figure below is kept as history — it was the honest "
+        "pessimistic price of a genuinely open question — but must not be quoted "
+        "as a live interval."
+        % ((1.0 / ratio) if ratio else 0.0, bar_all, nar_all,
+           eb[("all", "off")]["narrow"]))
+    add("")
     add("**Flipping `ON_WATCH` moves mean R by %+.4f R on the whole traded book "
-        "(%+.4f R on S) and costs a green month. That delta is %.0f× SMALLER than "
-        "the ±%.4f R error bar this book carries on its fill assumption, so it is "
-        "not resolved and must not be reported as if it were.** The flag also does "
+        "(%+.4f R on S) and costs a green month. That delta clears the ±%.4f R "
+        "error bar this book carries on its fill assumption by %.0f×, so its sign "
+        "is readable — it is small, not unresolved.** The flag also does "
         "not do what its name suggests: it changes **0** of 45,193 signals and "
-        "leaves **%.1f%% of traded fills still intrabar** when switched off."
-        % (d_all, d_s, (1.0 / ratio) if ratio else 0.0, bar_all,
-           fs["off"]["intrabar_pct"]))
+        "leaves **%.1f%% of traded fills still intrabar** when switched off. "
+        "*(Retired framing, kept for the record: measured against the wide ±%.4f R "
+        "bar this delta was %.0f× smaller and was reported as unresolved.)*"
+        % (d_all, d_s, nar_all, abs(d_all) / nar_all if nar_all else 0.0,
+           fs["off"]["intrabar_pct"], bar_all, (1.0 / ratio) if ratio else 0.0))
     add("")
     add("`ON_WATCH=1` is **the shipped default today** (`signal_runner.py:368`, "
         "`os.getenv(\"ON_WATCH\", \"1\")`). Nothing here changes it. Both arms were "
@@ -336,13 +364,15 @@ def report(books, cls, gaps):
         "environment.")
     add("")
     add("One result cuts the other way and is the most useful thing in this file. "
-        "The error bar is **not a property of the tape** — it is a property of one "
-        "unanswered question. %s of the %s ambiguous traded rows on the shipped "
-        "arm are the stop sitting on the entry bar's own extreme, and if Austin "
-        "rules those unreachable inside the bar he was filled on, the bar collapses "
-        "from ±%.4f R to ±%.4f R — **%.0f× narrower** — and this delta clears it "
-        "comfortably. The A/B is unresolved because of an open rules question, not "
-        "because of missing data."
+        "The error bar was **not a property of the tape** — it was a property of "
+        "one unanswered question. %s of the %s ambiguous traded rows on the shipped "
+        "arm are the stop sitting on the entry bar's own extreme, and this file "
+        "said that if Austin ruled those unreachable inside the bar he was filled "
+        "on, the bar would collapse "
+        "from ±%.4f R to ±%.4f R — **%.0f× narrower** — and the delta would clear "
+        "it comfortably. **He ruled exactly that on 2026-08-28, and it did.** The "
+        "A/B was never blocked by missing data; it was blocked by an open rules "
+        "question, and the question is closed."
         % (f"{eb[('all', 'on')]['n_at_extreme']:,}",
            f"{eb[('all', 'on')]['n_amb']:,}", bar_all, nar_all,
            bar_all / nar_all if nar_all else 0.0))
@@ -356,11 +386,13 @@ def report(books, cls, gaps):
         "green` is months with positive total R; the durability gate is EVERY "
         "month green. Entry match is any signal within ±%d bars of one of "
         "Austin's 64 marked entries on the same symbol-day. The error bar column "
-        "is stated on each arm's own book, wide first and the narrow floor in "
-        "brackets — see §the error bar." % ENTRY_TOL)
+        "is stated on each arm's own book, **retired wide bar first and the "
+        "carried narrow bar in brackets** — read the bracketed figure; see §the "
+        "error bar." % ENTRY_TOL)
     add("")
     add("| arm | population | signals | n traded | mean R | median R | win rate | "
-        "months green | entry match ±%d | error bar (wide / narrow) |" % ENTRY_TOL)
+        "months green | entry match ±%d | error bar (wide RETIRED / narrow CARRIED) |"
+        % ENTRY_TOL)
     add("|---|---|---:|---:|---:|---:|---:|---:|---:|---:|")
     for pop in ("all", "S"):
         for a, lab in (("off", "`ON_WATCH=0`"), ("on", "`ON_WATCH=1` (shipped)")):
@@ -484,34 +516,48 @@ def report(books, cls, gaps):
     add("T2's load-bearing split is that **790 of that book's 792 ambiguous "
         "traded bars are the stop sitting ON the entry bar's own extreme**, put "
         "there by `signal_runner.intrabar_stop`; only 23 (2.5% of intrabar fills) "
-        "have a stop clear of both wicks. That gives two candidate bars, and "
-        "this report carries the WIDE one:")
+        "have a stop clear of both wicks. That gave two candidate bars. **This "
+        "report carried the WIDE one until 2026-08-28; it now carries the NARROW "
+        "one.**")
     add("")
-    add("| bar | which ambiguous rows are repriced to −1.0R | `ON_WATCH=1` whole book | `ON_WATCH=0` whole book |")
-    add("|---|---|---:|---:|")
-    add("| **wide (carried)** | all of them, the `intrabar_stop` class included | "
-        "±%.4f R | ±%.4f R |" % (eb[("all", "on")]["wide"], eb[("all", "off")]["wide"]))
-    add("| narrow (floor) | only rows whose stop is NOT the entry bar's own "
-        "extreme | ±%.4f R | ±%.4f R |"
+    add("| bar | which ambiguous rows are repriced to −1.0R | `ON_WATCH=1` whole book | `ON_WATCH=0` whole book | status |")
+    add("|---|---|---:|---:|---|")
+    add("| **narrow — CARRIED** | only rows whose stop is NOT the entry bar's own "
+        "extreme | **±%.4f R** | **±%.4f R** | the interval on every number here |"
         % (eb[("all", "on")]["narrow"], eb[("all", "off")]["narrow"]))
+    add("| wide — RETIRED | all of them, the `intrabar_stop` class included | "
+        "±%.4f R | ±%.4f R | history, 2026-08-28 |"
+        % (eb[("all", "on")]["wide"], eb[("all", "off")]["wide"]))
     add("")
-    add("**Why the wide one.** The `intrabar_stop` class is manufactured by a "
+    add("**Why the wide one was carried.** The `intrabar_stop` class is "
+        "manufactured by a "
         "stop rule rather than found in the tape, but manufactured is not "
         "resolved. A stop resting on the entry bar's own low is a price that bar "
         "demonstrably traded, and on a long break-and-retest bar that closes near "
-        "its high the low very often traded first — so that class is if anything "
+        "its high the low very often traded first — so on a *price* argument that "
+        "class looked if anything "
         "MORE likely to have fired than the residual, not less. Whether such a "
-        "stop should be modelled as reachable inside its own entry bar is "
-        "**Austin's call and he has not made it**; excluding the class would be "
-        "assuming his answer, and this file will not assume it in order to make "
-        "its own delta look significant.")
+        "stop should be modelled as reachable inside its own entry bar was "
+        "**Austin's call and he had not made it**; excluding the class would have "
+        "been assuming his answer, and this file would not assume it in order to "
+        "make its own delta look significant.")
     add("")
-    add("**Which is exactly why the narrow bar is worth reporting.** The delta "
-        "above (%+.4f R) clears ±%.4f R by %.0f×. So the A/B is not blocked by "
-        "the data — it is blocked by one unanswered rules question, and the whole "
-        "credibility interval on this ticket, and on every other mean-R ranking in "
-        "the book, turns on it."
-        % (d_all, nar_all, abs(d_all) / nar_all if nar_all else 0.0))
+    add("**What retired it, 2026-08-28.** The price argument above was the wrong "
+        "frame, and only he could say so. A stop in this system is not triggered "
+        "by a price being *traded* — it is triggered by a candle **closing** "
+        "beyond it. Asked whether a mid-candle entry whose own candle then closes "
+        "beyond the stop is out on that close, he said: **\"Out on that same "
+        "close.\"** One close per bar, and the fill is already priced against it. "
+        "So the `intrabar_stop` class cannot have fired ahead of the fill, is not "
+        "ambiguous, and does not belong in the bar. **The narrow bar is the right "
+        "one and the wide bar is retired.**")
+    add("")
+    add("**The delta above (%+.4f R) clears the carried ±%.4f R bar by %.0f×.** "
+        "The A/B was never blocked by the data and it is no longer blocked by the "
+        "rules question either. It is readable — and small: %+.4f R against a book "
+        "1.0449 R short of the money gate, bought by giving back a green month, "
+        "and buying zero held-out S recall."
+        % (d_all, nar_all, abs(d_all) / nar_all if nar_all else 0.0, d_all))
     add("")
     add("| arm | population | traded | ambiguous | stop IS the entry bar's extreme | "
         "residual | T2's \"clear of both edges\" |")
@@ -547,12 +593,14 @@ def report(books, cls, gaps):
     add("|---|---|")
     add("| mean R delta, whole book | **%+.4f R** (`ON_WATCH=1` − `ON_WATCH=0`) |" % d_all)
     add("| mean R delta, S subset | **%+.4f R** |" % d_s)
-    add("| does it clear the WIDE error bar (±%.4f R), the one carried? | %s |"
-        % (bar_all, "**yes**" if abs(d_all) > bar_all else "**no** — %.0f× smaller"
+    add("| does it clear the CARRIED error bar (±%.4f R, narrow)? | **yes — by "
+        "%.0f×.** A stop on the entry bar's own wick is ruled unreachable inside "
+        "that bar: Austin, 2026-08-28, \"out on that same close\" |"
+        % (nar_all, abs(d_all) / nar_all if nar_all else 0.0))
+    add("| does it clear the WIDE bar (±%.4f R)? | %s. **That bar was retired "
+        "2026-08-28** and this row is kept only so the old verdict is traceable |"
+        % (bar_all, "yes" if abs(d_all) > bar_all else "no — %.0f× smaller"
            % ((1.0 / ratio) if ratio else 0.0)))
-    add("| does it clear the NARROW floor (±%.4f R)? | yes, by %.0f× — but only if "
-        "a stop on the entry bar's own wick is ruled unreachable inside that bar, "
-        "which is unanswered |" % (nar_all, abs(d_all) / nar_all if nar_all else 0.0))
     add("| what does `ON_WATCH` actually control? | one of the two predicates in "
         "`fill_price`, at 2 of its 10 call sites. Not detection (0 signals moved), "
         "not \"fill at close\" (%.1f%% of traded fills stay intrabar with it off) |"
@@ -569,18 +617,23 @@ def report(books, cls, gaps):
         "inside a minute nobody can see, so **%+.4f R is a ceiling**, and "
         "resolving the ordering can only move it down. ON WATCH is one contributor "
         "to how many fills get back-dated at all; switching it off moves mean R by "
-        "%+.4f R and still leaves %.1f%% of traded fills intrabar. So the fill "
-        "assumption is not worth %+.4f R — it is worth up to ±%.4f R, and this "
-        "flag is not the lever that moves it."
+        "%+.4f R and still leaves %.1f%% of traded fills intrabar. So this "
+        "flag is not the lever that moves the fill assumption. *(This paragraph "
+        "used to end \"it is worth up to ±%.4f R\". Since 2026-08-28 the residual "
+        "doubt is worth ±%.4f R — the ceiling claim survives, the magnitude does "
+        "not.)*"
         % (st[("all", "on")]["meanr"], d_all, fs["off"]["intrabar_pct"],
-           d_all, bar_all))
+           bar_all, nar_all))
     add("")
-    add("**The one thing worth doing next is not a flag.** It is asking Austin a "
+    add("**The one thing worth doing next was not a flag, and it has been done.** "
+        "It was asking Austin a "
         "single question: *when your fill is back-dated to the level and the stop "
         "goes on the entry bar's own wick, could that wick have printed before you "
-        "were filled?* A \"no\" collapses the error bar from ±%.4f R to ±%.4f R "
-        "and makes this A/B — and every other sub-1R ranking in the book — "
-        "readable. Nothing in the data can answer it."
+        "were filled?* **He answered no on 2026-08-28** — a stop needs a close, "
+        "and the entry bar has exactly one, so \"out on that same close\" is the "
+        "whole rule. That collapsed the error bar from ±%.4f R to ±%.4f R "
+        "and made this A/B — and every other sub-1R ranking in the book — "
+        "readable. Nothing in the data could have answered it."
         % (bar_all, nar_all))
     add("")
 
@@ -590,9 +643,13 @@ def report(books, cls, gaps):
         "default of `1` and no line of `signal_runner.py` was edited.")
     add("- It does not re-open the stop rule. Stops trigger on the candle CLOSE, "
         "fill at that close, floored at −1.25R; wicks stop nothing out.")
-    add("- It does not claim the delta is zero. It claims the delta is smaller "
-        "than the error bar on the number it is a delta of, which is a different "
-        "and weaker statement — the sign may be real and this rig cannot show it.")
+    add("- It does not claim the delta is large. Since 2026-08-28 the delta clears "
+        "the carried bar by %.0f× and its sign is readable, but %+.4f R is a tenth "
+        "of an R on a book that is 1.0449 R short of the gate, and it costs a "
+        "green month. *(This bullet used to say the delta was smaller than the "
+        "error bar on the number it is a delta of and that the rig could not show "
+        "its sign. That was the wide bar's verdict and it is retired.)*"
+        % (abs(d_all) / nar_all if nar_all else 0.0, d_all))
     add("- The intrabar marker can only UNDER-count: `backtest_2y.py:169` stores "
         "entry at 2dp, so a clamped level that rounds into the close's own cent "
         "is recorded as a close fill. The naive `entry != close` test "

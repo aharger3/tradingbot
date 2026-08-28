@@ -26,14 +26,14 @@ Win rate is of DECIDED trades (R = 0 excluded) — the convention `research/a2_b
 
 **Removing ON WATCH does not close the gap and it was never going to.** The flag moves 0 of 45193 signals (`research/g3_onwatch_2y.md`, `47e60796`) — it is a price rule at 2 of `signal_runner.fill_price`'s 10 call sites, not a detector. Its whole reach is the break-and-retest bars that close jammed against the session extreme.
 
-**The error bar still swallows the delta.** One-directional, from the intrabar-fill ambiguity (`research/p26_intrabar_ambiguity.py`, `8bb78c77`): repricing an ambiguous row can only make R worse, so every mean below is a CEILING.
+**The error bar is the NARROW one, and the delta clears it.** One-directional, from the intrabar-fill ambiguity (`research/p26_intrabar_ambiguity.py`, `8bb78c77`): repricing an ambiguous row can only make R worse, so every mean below is a CEILING. **Which deduction is live was settled by Austin on 2026-08-28** — a stop is triggered by a candle CLOSE and nothing else, the entry candle's own close counts (*"out on that same close"*), and one bar has one close, so a stop cannot fire inside the entry bar ahead of the back-dated fill. The `intrabar_stop` class is not ambiguous. **Carry the narrow deduction. The wide deduction is RETIRED** and is printed only so the framing this file used to publish stays traceable.
 
-| book, ON WATCH off | mean R | wide deduction | narrow deduction |
+| book, ON WATCH off | mean R | narrow deduction (CARRIED) | wide deduction (RETIRED 2026-08-28) |
 |---|---:|---:|---:|
-| ladder | +0.8416 | −1.3388 | −0.0088 |
-| `flat_2r` | +0.5893 | −1.2028 | −0.0055 |
+| ladder | +0.8416 | −0.0088 | −1.3388 |
+| `flat_2r` | +0.5893 | −0.0055 | −1.2028 |
 
-The ON WATCH delta itself is **+0.1136 R**, which is **11.8×** smaller than the wide bar of ±1.3388 R on this arm. It is not resolvable on this rig in either direction.
+The ON WATCH delta itself is **+0.1136 R**, which is **13×** LARGER than the carried narrow bar of ±0.0088 R on this arm — its sign is readable, and it is small. *(Retired framing, kept for the record: against the wide bar of ±1.3388 R this delta was 11.8× smaller and this file called it unresolvable in either direction. That was the wide bar's verdict; the wide bar was retired 2026-08-28.)*
 
 ## 1b. Ladder vs simple 2R, on ONE rig and ONE clock
 

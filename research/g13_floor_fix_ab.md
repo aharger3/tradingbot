@@ -79,7 +79,7 @@ The structural floor buys 6 of the 8 S entries a full revert buys and costs 2 of
 
 Both arms: 2024-08-21 → 2026-08-21, 500 sessions, 28 symbols, `backtest_2y.py` shelled once per arm with the flag forced in the child's environment. Win rate is of DECIDED trades (scratches excluded), the convention `research/a2_bt2y_summary.py` prints and this table imports. `months green` is months with positive total R; the durability gate is EVERY month green. The S subset is `sgrade == "S"` — `research/downgrade.py`'s ladder, the same filter `research/g3_onwatch_2y.md` uses.
 
-| arm | population | signals | n traded | mean R | median R | win rate | months green | total R | error bar (wide / narrow) |
+| arm | population | signals | n traded | mean R | median R | win rate | months green | total R | error bar (wide RETIRED / narrow CARRIED) |
 |---|---|---:|---:|---:|---:|---:|---:|---:|---:|
 | `off` (== HEAD) | whole book | 45,193 | 1,017 | +0.9551 | +0.5660 | 53.2% | **23 / 25** | +971.4 | ±1.5799 (±0.0095) |
 | `off` (== HEAD) | S subset | 7,454 | 128 | +1.2829 | +1.1290 | 66.4% | **23 / 25** | +164.2 | ±1.2573 (±0.0751) |
@@ -91,7 +91,7 @@ Both arms: 2024-08-21 → 2026-08-21, 500 sessions, 28 symbols, `backtest_2y.py`
 | whole book | -1 | +536 | **+13.7619** | +1.1420 | +5.9 pts | +2 | +21884.1 |
 | S subset | +0 | +202 | **+30.7531** | +0.9080 | -0.7 pts | +2 | +10407.7 |
 
-The `off` arm reproduces `research/g3_onwatch_2y.md`'s shipped arm to four decimal places on every column — n 1,017, mean R +0.9551, median +0.5660, 53.2%, 23/25, ±1.5799 / ±0.0095. The rig is the rig.
+The `off` arm reproduces `research/g3_onwatch_2y.md`'s shipped arm to four decimal places on every column — n 1,017, mean R +0.9551, median +0.5660, 53.2%, 23/25, ±1.5799 (retired) / ±0.0095 (carried). The rig is the rig.
 
 ### Why the `on` row is not a number
 
@@ -134,24 +134,26 @@ The 429 rows traded by BOTH arms are the one population where the flag changes p
 | `off` | 429 | +1.2457 | +0.7760 | 55.5% | +534.4 |
 | `on` | 429 | +1.4355 | +0.7760 | 55.5% | +615.8 |
 
-**+0.1898 R on 429 matched trades, 7 of which actually moved.** That is the honest money delta this ticket can defend, and it is 74× smaller than the wide error bar below — it does not clear it.
+**+0.1898 R on 429 matched trades, 7 of which actually moved.** That is the honest money delta this ticket can defend, and it clears the carried narrow error bar below by 20×. *(Retired framing: against the wide bar it was 74× smaller and this line said it did not clear. The wide bar was retired 2026-08-28.)*
 
 ### Does the delta clear its own error bar
 
 T3 (`research/g3_onwatch_2y.md`, `47e60796`) established both bars and they are recomputed here on each arm's own book, never quoted: the WIDE bar reprices every ambiguous intrabar row to −1.0R; the NARROW floor reprices only rows whose stop is NOT the entry bar's own extreme. Both are one-directional — the booked mean R is a **ceiling**, never a midpoint.
+
+**The NARROW bar is the one this verdict is taken against. The WIDE bar was RETIRED on 2026-08-28.** It existed only because nobody had ruled on whether a stop resting inside the entry bar could have fired before the back-dated fill. Austin ruled: a stop is triggered by a candle CLOSE and by nothing else, and the entry candle's own close counts — *"out on that same close"*. One bar has exactly one close, so the `intrabar_stop` class cannot have fired ahead of the fill and is not ambiguous. The wide rows below are kept so the retired verdict stays traceable; do not quote them as a live interval.
 
 | | |
 |---|---|
 | whole-book mean R delta, as booked | +13.7619 R — **do not use** |
 | S-subset mean R delta, as booked | +30.7531 R — **do not use** |
 | matched-trade mean R delta (429 rows) | **+0.1898 R** |
-| WIDE bar, `off` arm (== T3's ±1.5799) | ±1.5799 R |
-| does the matched delta clear it? | **no** — 8× smaller |
-| NARROW floor, `off` arm (== T3's ±0.0095) | ±0.0095 R |
-| does the matched delta clear THAT? | **yes**, by 20× — but only if a stop resting on the entry bar's own wick is ruled unreachable inside that bar, the one question Austin has not answered |
+| NARROW bar — CARRIED, `off` arm (== T3's ±0.0095) | ±0.0095 R |
+| does the matched delta clear THAT? | **yes**, by 20× — a stop resting on the entry bar's own wick is ruled unreachable inside that bar: Austin, 2026-08-28, "out on that same close" |
+| WIDE bar — RETIRED 2026-08-28, `off` arm (== T3's ±1.5799) | ±1.5799 R |
+| did the matched delta clear it? | no — 8× smaller. **That bar is retired**; this row is kept so the old verdict stays traceable |
 | WIDE bar, `on` arm | ±14.0571 R — itself contaminated |
 
-**The as-booked delta of +13.7619 R is 9× LARGER than the `off` arm's wide bar and that means nothing**, because both the delta and the `on` arm's own bar (±14.0571 R) are made of the same untakeable rows. A number cannot clear an error bar by breaking the quantity the bar is measured on. The defensible delta is the matched one, **+0.1898 R**, and it is **inside** the wide bar.
+**The as-booked delta of +13.7619 R is 9× LARGER than the `off` arm's wide bar and that means nothing**, because both the delta and the `on` arm's own bar (±14.0571 R) are made of the same untakeable rows. A number cannot clear an error bar by breaking the quantity the bar is measured on. The defensible delta is the matched one, **+0.1898 R**, and it CLEARS the carried narrow bar by 20×. It was inside the wide bar, which is retired.
 
 **Neither arm passes the money gate and neither is durable.** The gate is mean R = 2.0 and EVERY month green. `off` books +0.9551 R with 23 of 25 months green. `on`'s 25/25 is not durability — it is 1,139 rows with a denominator near zero making every month positive. The floor fix is not what stands between this book and the gate.
 
@@ -223,7 +225,7 @@ So the fix broadens the engine on unseen days: **+4 tradeable days (S/A/C) and +
 
 - **It does not ship the fix.** `ENABLE_STRUCTURAL_RISK_FLOOR` stays `False`. Flipping it changes what trades, and re-freezing the engine voids `research/omen6_forward.py` — Austin's call alone.
 - **It does not revert `5e3677ea`.** The intrabar fill is Austin's own rule (*"those candles that move fast and close at high of day or low of day, i just want to try to not miss out"*) and is untouched.
-- **It does not claim the matched money delta is zero.** It claims that delta is smaller than the error bar on the number it is a delta of — a weaker statement. The sign may be real and this rig cannot show it.
+- **It does not claim the matched money delta is large.** Since 2026-08-28 it clears the carried narrow bar by 20× and its sign is readable — but +0.1898 R on 429 rows, 7 of which moved, is not what stands between this book and a 2.0 R gate, and it bought zero held-out S recall. *(This bullet used to say the delta was smaller than the error bar on the number it is a delta of; that was the retired wide bar.)*
 - **It does not turn the recall gate green.** One mark of the six is blocked by `_min_viable_stop`, a different gate with a different rule.
 - **It does not say the structural floor is the wrong idea.** It says that moving the floor's denominator WITHOUT moving the sizing denominator is incoherent. A version that moves both — the floor, `stock_risk`, and the R denominator all onto the structural geometry, with `fill_price` improving only the price paid — is a different experiment and has not been run. G12's prose asks for that one; its two-line fix is not it.
 - The takeable/untakeable split uses the stored 2dp `entry` where the engine's floor uses the signal bar's unrounded close. That costs the `off` arm 22 marginal rows out of 1,017 and cannot account for the `on` arm's 1,139.

@@ -86,6 +86,8 @@ is the ambiguity rate, and it is the honest error bar on any intrabar backtest. 
 Second-tier data (a true tick or second feed) removes the ambiguity and is the only thing
 that does. That is a purchase, not a patch.
 
+> **Superseded 2026-08-28 — counted, then answered.** R8 was counted (`research/p26_intrabar_ambiguity.md`): 86.8% of traded intrabar fills sit on a bar whose range also holds the stop, but **790 of those 792 rows are the stop sitting on the entry bar's own extreme**. Then Austin answered the rules question underneath it: *"out on that same close"* — a stop is triggered by a candle CLOSE and by nothing else, the entry candle's own close counts, and one bar has exactly one close, so a stop cannot fire inside the entry bar ahead of the fill. **The residual ambiguity is 2 rows of 913 and the carried error bar is ±0.0095 R, not the ±1.5799 R wide bar, which is retired.** Second-tier tick data is therefore NOT needed to answer this question — it was answered by a sentence, for free. The paragraph above is kept because it framed the question correctly and because tick data may still be worth buying for other reasons; it is no longer "the only thing that does".
+
 ## What this changes
 
 1. **The next homework instrument must let him type the fill price.** Deriving it from the

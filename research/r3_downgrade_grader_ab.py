@@ -406,11 +406,12 @@ def build_md(t1, gate, st) -> str:
                 co["x_fire"], co["x_n"], cn["x_fire"], cn["x_n"]))
     L.append("")
     L.append("**On the money it trades %+d more (%s -> %s) and the takeable-only mean R "
-             "goes %+.4f -> %+.4f, a delta of %+.4f R -- %s T3's wide error bar of "
-             "+-%.4f, so this rig does not resolve its sign.** The `on` arm's book is "
+             "goes %+.4f -> %+.4f, a delta of %+.4f R -- %s T3's RETIRED wide error bar "
+             "of +-%.4f, but it CLEARS the carried narrow bar by 14x, so its sign is "
+             "readable.** The `on` arm's book is "
              "not contaminated (0 rows with `entry == stop`, %.1f%% untakeable against "
              "%.1f%% on `off`), so unlike G13 that number is money rather than "
-             "arithmetic -- it simply is not big enough to read."
+             "arithmetic -- it is readable, and it is negative, and it is small."
              % (A["on"]["all"]["traded"] - A["off"]["all"]["traded"],
                 "{:,}".format(A["off"]["all"]["traded"]),
                 "{:,}".format(A["on"]["all"]["traded"]),
@@ -638,7 +639,7 @@ def build_md(t1, gate, st) -> str:
              "in both arms** and not each arm's own idea of S.")
     L.append("")
     L.append("| arm | population | signals | n traded | mean R | median R | win rate | "
-             "months green | total R | error bar (wide / narrow) |")
+             "months green | total R | error bar (wide RETIRED / narrow CARRIED) |")
     L.append("|---|---|---:|---:|---:|---:|---:|---:|---:|---:|")
     for arm, label in (("off", "`off` (== HEAD)"), ("on", "`on` (downgrade grader)")):
         b = A[arm]
@@ -761,6 +762,16 @@ def build_md(t1, gate, st) -> str:
              "are one-directional -- the booked mean R is a **ceiling**, never a "
              "midpoint.")
     L.append("")
+    L.append("**The NARROW bar is the one this verdict is taken against. The WIDE bar "
+             "was RETIRED on 2026-08-28.** It existed only because nobody had ruled on "
+             "whether a stop resting inside the entry bar could have fired before the "
+             "back-dated fill. Austin ruled: a stop is triggered by a candle CLOSE and "
+             "by nothing else, and the entry candle's own close counts -- *\"out on "
+             "that same close\"*. One bar has exactly one close, so the `intrabar_stop` "
+             "class cannot have fired ahead of the fill and is not ambiguous. Every "
+             "wide row below is kept so the retired verdict stays traceable; do not "
+             "quote it as a live interval.")
+    L.append("")
     dirty = (A["on"]["split"]["n_zero_risk"] > 0
              or A["on"]["split"]["pct_unsizeable"] >= 10.0)
     L.append("**The delta the verdict is taken on is the TAKEABLE-ONLY one.** G13's "
@@ -779,25 +790,26 @@ def build_md(t1, gate, st) -> str:
                         A["off"]["split"]["pct_unsizeable"])))
     L.append("| **takeable-only mean R delta -- the defensible one** | **%+.4f R** |"
              % d_clean)
-    L.append("| WIDE bar, `off` arm | +-%.4f R |" % wide)
-    L.append("| does the defensible delta clear it? | **%s** |"
+    L.append("| NARROW bar -- CARRIED, `off` arm | +-%.4f R |" % narrow)
+    L.append("| does the defensible delta clear THAT? | **%s** |"
+             % (("yes, by %.0fx -- a stop resting on the entry bar's own wick is ruled "
+                 "unreachable inside that bar: Austin, 2026-08-28, \"out on that same "
+                 "close\"" % (abs(d_clean) / narrow))
+                if narrow and abs(d_clean) > narrow else "no"))
+    L.append("| WIDE bar -- RETIRED 2026-08-28, `off` arm | +-%.4f R |" % wide)
+    L.append("| did it clear that one? | **%s**; the bar is retired and this row is "
+             "kept only so the old verdict stays traceable |"
              % ("yes" if abs(d_clean) > wide else "no -- %.0fx smaller"
                 % (wide / abs(d_clean)) if d_clean else "no"))
-    L.append("| NARROW floor, `off` arm | +-%.4f R |" % narrow)
-    L.append("| does it clear THAT? | **%s** |"
-             % (("yes, by %.0fx -- but only if a stop resting on the entry bar's own "
-                 "wick is ruled unreachable inside that bar, the one question Austin "
-                 "has not answered" % (abs(d_clean) / narrow))
-                if narrow and abs(d_clean) > narrow else "no"))
-    L.append("| WIDE bar, `on` arm | +-%.4f R |" % A["on"]["eb_all"]["wide"])
+    L.append("| WIDE bar, `on` arm (retired) | +-%.4f R |" % A["on"]["eb_all"]["wide"])
     L.append("")
-    L.append("**The defensible delta of %+.4f R is %s the `off` arm's wide bar of "
-             "+-%.4f R, so this rig does not resolve its sign.** The direction may be "
-             "real; %s."
+    L.append("**The defensible delta of %+.4f R was %s the `off` arm's wide bar of "
+             "+-%.4f R -- and that bar is retired. Against the carried narrow bar of "
+             "+-%.4f R it clears by %.0fx, so its sign IS resolved: the grader swap "
+             "costs money.** What it is not is large: %+.4f R on a book 1.03 R short "
+             "of the gate, and it bought 0 held-out S recall and 2 more false fires."
              % (d_clean, "INSIDE" if abs(d_clean) <= wide else "OUTSIDE", wide,
-                "a 100-card holdout and a 2-year book cannot separate it from noise "
-                "at this size" if abs(d_clean) <= wide
-                else "and this is one of the few deltas in this project that clears it"))
+                narrow, abs(d_clean) / narrow if narrow else 0.0, d_clean))
     L.append("")
     gate_off = (A["off"]["all"]["meanr"] >= 2.0
                 and A["off"]["all"]["months_green"] == A["off"]["all"]["months"])
@@ -832,8 +844,9 @@ def build_md(t1, gate, st) -> str:
     L.append("**%d of the %d symbols traded by both arms move DOWN and %d move up "
              "(over the %d that clear MIN_SAMPLE_N in both arms: %d down).** The "
              "whole-book delta is not one symbol; it is the same direction almost "
-             "everywhere, which is what makes a delta smaller than the error bar worth "
-             "reporting as a direction rather than discarding as noise."
+             "everywhere -- which was already worth reporting as a direction when the "
+             "delta sat inside the retired wide bar, and is now corroboration of a "
+             "sign the carried narrow bar resolves on its own."
              % (len(down), len(both), len(up), len(thick), len(thick_down)))
     L.append("")
     L.append("| symbol | n `off` | mean R `off` | n `on` | mean R `on` | delta mean R |")
@@ -868,10 +881,12 @@ def build_md(t1, gate, st) -> str:
              "+0.996R vs clean +0.892R) at a 63-68% trip rate. P15 tried three faithful "
              "reformulations and all three failed. This row measures the grader **as "
              "committed**; a better-calibrated version of it is a different experiment.")
-    L.append("- **It does not resolve a mean-R delta inside the error bar.** T3's wide "
-             "bar is +-%.4f R on the `off` arm. A delta smaller than that is not a "
-             "result in either direction, and this report says so above rather than "
-             "quoting the sign." % wide)
+    L.append("- **It does not claim the mean-R delta is large.** Since 2026-08-28 the "
+             "carried bar is T3's NARROW one (+-%.4f R on the `off` arm) and this "
+             "delta clears it by %.0fx, so the sign is quotable. T3's wide bar of "
+             "+-%.4f R, which this delta sat inside, is RETIRED -- Austin ruled a stop "
+             "fires on a close and the entry bar has exactly one."
+             % (narrow, abs(d_clean) / narrow if narrow else 0.0, wide))
     L.append("- **It does not lift the HTF veto.** That is a separate, unowned rule "
              "(`research/g4_dropped_s.md` section 8) and it is applied identically in "
              "both arms, so the arm is a swap of the grader alone.")

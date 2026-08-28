@@ -609,8 +609,17 @@ def report(arms, gaps, metas):
         "own extreme (T3: 2 rows of 913 on the shipped arm). **These are ceilings, "
         "not midpoints.**")
     add("")
-    add("| policy | fill arm | n | **P(2R)** | error bar (wide / narrow) | "
-        "P(2R) at the wide floor | mean R | mean R error bar |")
+    add("**Carry the NARROW bar. The WIDE bar was RETIRED 2026-08-28.** Which of the "
+        "two was live was never a measurement question — it was a rules question, and "
+        "Austin answered it: a stop is triggered by a candle CLOSE and by nothing "
+        "else, and the entry candle's own close counts (*\"out on that same "
+        "close\"*). One bar has exactly one close, so a stop cannot fire *inside* the "
+        "entry bar ahead of the back-dated fill and the `intrabar_stop` class is not "
+        "ambiguous. Every wide column below is kept so the retired verdicts stay "
+        "traceable; do not quote a wide figure as a live interval.")
+    add("")
+    add("| policy | fill arm | n | **P(2R)** | error bar (wide RETIRED / narrow CARRIED) | "
+        "P(2R) at the retired wide floor | mean R | mean R error bar (wide RETIRED / narrow CARRIED) |")
     add("|---|---|---:|---:|---:|---:|---:|---:|")
     for kind, key, name in (("flat", "flat2r_r", "`flat_2r`"),
                             ("ladder", "ladder_r", "incumbent ladder B")):
@@ -625,8 +634,8 @@ def report(arms, gaps, metas):
                    p["narrow"], p["opt"] - p["wide"], mb["opt"], mb["wide"],
                    mb["narrow"]))
     add("")
-    add("| delta (B − A), each arm's own book | P(2R) | vs the WIDE bar (carried) | "
-        "vs the NARROW floor |")
+    add("| delta (B − A), each arm's own book | P(2R) | vs the WIDE bar (RETIRED 2026-08-28) | "
+        "vs the NARROW bar (CARRIED) |")
     add("|---|---:|---|---|")
     add("| `flat_2r` (path) | **%+.2f pts** | %s | %s |"
         % (d_flat, _verdict(d_flat, p_flat["B"]["wide"]),
@@ -637,12 +646,16 @@ def report(arms, gaps, metas):
     add("")
     add("**Both bars are reported and the split is the same one T3 hit.** The wide "
         "bar strikes the `intrabar_stop` class, which is manufactured by a stop rule "
-        "rather than found in the tape — but manufactured is not resolved, and "
-        "whether a stop resting on the entry bar's own wick is reachable inside that "
-        "bar is **Austin's call and he has not made it**. Against the wide bar this "
-        "delta is noise; against the narrow floor it clears. Neither answers the "
-        "ticket, because both are computed on **each arm's own book** and those are "
-        "different sets of trades. The next table removes that.")
+        "rather than found in the tape. That was not enough to rule it out on its "
+        "own — manufactured is not resolved — and whether a stop resting on the "
+        "entry bar's own wick is reachable inside that bar was **Austin's call**. "
+        "**He made it on 2026-08-28: it is not reachable, because reaching it needs "
+        "a close and the entry bar's only close is the one the fill is already "
+        "priced against.** So the wide bar is retired and the narrow bar is carried, "
+        "and both deltas above CLEAR the carried bar by 17×. What still does not "
+        "answer the ticket is that they are computed on **each arm's own book** and "
+        "those are different sets of trades. The next table removes that, and it is "
+        "the survivorship — not the error bar — that was always the real objection.")
     add("")
 
     # ---- the matched subset --------------------------------------------
@@ -941,7 +954,7 @@ def report(arms, gaps, metas):
 def _verdict(delta, bar):
     if abs(delta) >= bar:
         return "**clears it** — %.1f× the bar" % (abs(delta) / bar) if bar else "clears it"
-    return ("**inside it** — the bar is %.0f× larger, so this is unresolved"
+    return ("**inside it** — the bar is %.0f× larger"
             % (bar / abs(delta)) if delta else "**inside it** — the delta is zero")
 
 

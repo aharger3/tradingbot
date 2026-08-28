@@ -91,8 +91,9 @@ file leaves the cells empty. It is a real gap, listed in §6.
 | C | 638 | +0.8735 | FAIL |
 
 **The S subset is the best population in the book and it still fails by 0.72 R.** The whole
-S-over-C span is **+0.4035 R** (`research/p26_intrabar_ambiguity.py`, `8bb78c77`) — see §4 for
-why that span is smaller than the error bar it is measured inside. The S subset's durability is
+S-over-C span is **+0.4035 R** (`research/p26_intrabar_ambiguity.py`, `8bb78c77`) — which clears
+the carried error bar by 42×, see §4. (Until 2026-08-28 this line said the span was smaller than
+the bar it was measured inside; that was true only of the retired wide bar.) The S subset's durability is
 also 23/25 (`research/g13_floor_fix_ab.py`, `6d89513d`).
 
 ---
@@ -227,48 +228,63 @@ entry bar's own extreme**, put there by `intrabar_stop` (`research/p26_intrabar_
 
 ---
 
-## 4. Error bars
+## 4. Error bars — the narrow one, since 2026-08-28
 
 `research/p26_intrabar_ambiguity.py` (`8bb78c77`) and `research/g3_onwatch_2y.py` (`47e60796`)
 built two bars. Both are **one-directional** — repricing can only make R worse, so the booked
-mean is a ceiling.
+mean is a ceiling. Which of the two the repo carried was never a measurement question; it was a
+rules question, and **Austin answered it on 2026-08-28**:
 
-| bar | which ambiguous rows get repriced to −1.0R | whole book, shipped arm |
-|---|---|---:|
-| **wide (carried)** | all of them, the `intrabar_stop` class included | **±1.5799 R** |
-| narrow (floor) | only rows whose stop is NOT the entry bar's own extreme | **±0.0095 R** |
+> Q: *"Entry is mid-candle at the level. That SAME candle then closes beyond your stop. Are you
+> out on that close, or does the stop only go live from the next candle?"*
+> A: **"Out on that same close."**
 
-The wide bar is carried because whether a stop resting on the entry bar's own wick could have
-printed before the fill is **Austin's call and he has not made it**; excluding that class would
-be assuming his answer. Netting out the rows that satisfy both tests, the **residual genuine
-ambiguity is 2 rows of 913** — 0.2% of intrabar fills. The bars are 167× apart and one sentence
-from him decides which one every number in this repo carries.
+A stop is triggered by a candle CLOSE and by nothing else, and the entry candle's own close
+counts. **There is exactly one close per bar, so a stop cannot fire inside the entry bar ahead of
+the back-dated fill.** The 790-of-792 `intrabar_stop` class is not ambiguous — it is decided.
 
-### Every A/B measured today lands inside the wide bar
+| bar | which ambiguous rows get repriced to −1.0R | whole book, shipped arm | status |
+|---|---|---:|---|
+| **narrow — CARRIED** | only rows whose stop is NOT the entry bar's own extreme | **±0.0095 R** | **the bar every number in this repo carries** |
+| wide — RETIRED 2026-08-28 | all of them, the `intrabar_stop` class included | ±1.5799 R | history; do not quote as a live interval |
 
-| A/B | delta | vs ±1.5799 R | vs ±0.0095 R | script + commit |
+**Why the wide bar was carried, and what retired it.** It was carried in good faith: while the
+ordering question was open, excluding the `intrabar_stop` class would have been assuming Austin's
+answer, so the honest move was to price both and quote the pessimistic one. His sentence — not a
+new rig, not new data — retired it. The residual genuine ambiguity is the **2 rows of 913** the
+narrow bar prices, 0.2% of intrabar fills. The ON-WATCH-off arm's pair is the same story:
+±0.0088 R carried, ±1.3388 R retired.
+
+### Every A/B measured 2026-08-27 CLEARS the carried bar
+
+| A/B | delta | vs ±0.0095 R, carried | vs ±1.5799 R, retired | script + commit |
 |---|---:|---|---|---|
-| `ON_WATCH` on − off, whole book | **+0.1135 R** | **inside** — 14× smaller | clears, 12× | `research/g3_onwatch_2y.py`, `47e60796` |
-| `ENABLE_STRUCTURAL_RISK_FLOOR`, 429 matched trades | **+0.1898 R** | **inside** — 8× smaller | clears, 20× | `research/g13_floor_fix_ab.py`, `6d89513d` |
-| `ENABLE_DOWNGRADE_GRADER`, takeable-only | **−0.1289 R** | **inside** — 12× smaller | clears, 14× | `research/r3_downgrade_grader_ab.py`, `ed09f53c` |
+| `ON_WATCH` on − off, whole book | **+0.1135 R** | **CLEARS — 12×** | *(was: inside, 14× smaller)* | `research/g3_onwatch_2y.py`, `47e60796` |
+| `ENABLE_STRUCTURAL_RISK_FLOOR`, 429 matched trades | **+0.1898 R** | **CLEARS — 20×** | *(was: inside, 8× smaller)* | `research/g13_floor_fix_ab.py`, `6d89513d` |
+| `ENABLE_DOWNGRADE_GRADER`, takeable-only | **−0.1289 R** | **CLEARS — 14×** | *(was: inside, 12× smaller)* | `research/r3_downgrade_grader_ab.py`, `ed09f53c` |
+| the whole S-over-C span | **+0.4035 R** | **CLEARS — 42×** | *(was: inside, 3.9× smaller)* | `research/p26_intrabar_ambiguity.py`, `8bb78c77` |
 
 **That is the section's real point, and it is a statement about the method, not about the three
-flags.** Every effect this project measured today is between 8× and 14× smaller than the doubt
-its own fill assumption already carries. The whole S-over-C edge the grader exists to produce is
-**+0.4035 R** — 3.9× smaller than the bar. An S/A/C ladder whose entire span is 0.4 R is being
-ranked inside an interval of 1.58 R.
+flags.** This section used to say the opposite: that every effect measured on 2026-08-27 was
+8–14× smaller than the doubt the fill assumption carried, and that a mean-R ranking under about
+one full R could not be read here in either direction. **That is no longer true and must not be
+repeated.** The three flag deltas and the S-over-C span all clear the carried bar by 12× to 42×.
+The signs are readable.
 
-So: **a mean-R ranking under about one full R cannot currently be read in this repo, in either
-direction.** Not "the delta is zero" — that is a stronger and different claim, and none of the
-three reports makes it. The sign may be real and no rig here can show it. What follows is that
-the ordinary loop of this project — build an arm, A/B it, compare mean R — cannot resolve
-anything at the size the arms actually move things, and will keep producing numbers that look
-like findings and are not.
+What the correction does **not** buy:
 
-Two ways out, and only one is free: rule the `intrabar_stop` class unreachable inside its own
-entry bar (Austin, one sentence, collapses the bar 167×), or buy second-tier tick data (a
-purchase, not a patch — `research/p25_midcandle_entry.md`, `9d0c2206`). Nothing in the OHLCV
-data answers it.
+- **It does not make any of these deltas large.** +0.1135 R and +0.1898 R are still small next to
+  the 1.0449 R the book is short of the money gate. Clearing an error bar makes a sign readable;
+  it does not make an effect worth shipping.
+- **It does not make them out-of-sample.** Every one is in-sample over the same 500 sessions, and
+  §2's held-out numbers govern (`CLAUDE.md`: held-out beats in-sample, always). Each of these
+  three arms bought **zero** held-out S recall regardless of what its mean R did.
+- **It does not touch the gate.** The ambiguity was always one-directional and the book always
+  failed at 2.0 R optimistically, pessimistically, and everywhere between.
+
+The tick-data purchase this section used to list as the other way out
+(`research/p25_midcandle_entry.md`, `9d0c2206`) is **no longer needed for this question**. The
+free lever was pulled.
 
 ---
 
@@ -282,8 +298,8 @@ call, and re-freezing the engine **VOIDS** the forward book (`research/omen6_for
 
 | flag | site | default | measured delta of flipping it | script + commit |
 |---|---|---|---|---|
-| `ENABLE_STRUCTURAL_RISK_FLOOR` | `signal_runner.py:391` | **OFF** (`"0"`) | in-sample `s_grade` **5 → 11**; held-out S recall **3/15 → 3/15**, false fires **12/42 → 19/42**. As-booked mean R +0.9551 → **+14.72** is arithmetic, not money: **73.3% of the resulting book (1,139 of 1,553) is untakeable**, 79 rows with `entry == stop` exactly. The defensible delta is the 429 matched trades: **+0.1898 R**, inside the wide bar | `research/g13_floor_fix_ab.py`, `6d89513d` |
-| `ENABLE_DOWNGRADE_GRADER` | `signal_runner.py:415` | **OFF** (`"0"`) | held-out S recall **3/15 → 3/15**, false fires **12/42 → 14/42**, grade agreement 5/58 → 6/58. Book 1,017 → 1,310 traded; takeable-only mean R +0.9716 → +0.8427 = **−0.1289 R**, inside the wide bar. 22 of 27 symbols move down | `research/r3_downgrade_grader_ab.py`, `ed09f53c` |
+| `ENABLE_STRUCTURAL_RISK_FLOOR` | `signal_runner.py:391` | **OFF** (`"0"`) | in-sample `s_grade` **5 → 11**; held-out S recall **3/15 → 3/15**, false fires **12/42 → 19/42**. As-booked mean R +0.9551 → **+14.72** is arithmetic, not money: **73.3% of the resulting book (1,139 of 1,553) is untakeable**, 79 rows with `entry == stop` exactly. The defensible delta is the 429 matched trades: **+0.1898 R**, which clears the carried narrow bar by 20× (the wide bar it was once judged inside was retired 2026-08-28 — §4) | `research/g13_floor_fix_ab.py`, `6d89513d` |
+| `ENABLE_DOWNGRADE_GRADER` | `signal_runner.py:415` | **OFF** (`"0"`) | held-out S recall **3/15 → 3/15**, false fires **12/42 → 14/42**, grade agreement 5/58 → 6/58. Book 1,017 → 1,310 traded; takeable-only mean R +0.9716 → +0.8427 = **−0.1289 R**, which clears the carried narrow bar by 14× (wide bar retired 2026-08-28 — §4). 22 of 27 symbols move down | `research/r3_downgrade_grader_ab.py`, `ed09f53c` |
 
 Both were verified byte-identical to unmodified HEAD with the flag off — same 45,193 signals,
 same 1,017 traded, same sha256 over the `trades` array. The flag-off engine is the flag-less
@@ -444,7 +460,9 @@ candidate pool and `X` is the real rejection.
 2. **The grader has now been attacked from both ends and neither end moved.** A1 measured the
    eight variables as committed and found 1 wrong-signed, 6 right-signed, 1 unreachable — with
    the grader's own mix 3× further from Austin on held-out cards than on the cards it was tuned
-   against. R3 replaced the grader entirely. Both landed inside the error bar.
+   against. R3 replaced the grader entirely. Both moved mean R by a readable but tiny amount
+   (R3: −0.1289 R, 14× the carried bar since 2026-08-28 — see §4) and **both bought zero held-out
+   S recall**, which is the read that governs.
 3. **T1 says the problem is upstream of any grade.** 4 of the 12 silent S days produce no signal
    of any grade at all, and the bar-level entry match is 7%. A grader ranks what detection
    hands it; it cannot conjure a setup the detector never saw.
@@ -453,18 +471,21 @@ candidate pool and `X` is the real rejection.
    and the requirement that the signal already reached `C`. That is the branch promoting 95.3%
    of the book. `research/hallucination-audit.md` lists the same rule as unsourced — *"Proxy rule
    from 133 labeled trades; not course-taught."*
-5. **It is the one lever whose effect is large enough to read.** §4's problem is that everything
-   measured today is 8-14× smaller than the error bar. Changing which signal is *first* replaces
-   trades rather than adding them at the margin — G4 §6 says so explicitly — so it is the only
-   candidate on the board that could plausibly move a number by more than 1.58 R.
+5. **It is the lever whose effect is largest, not merely readable.** This item used to rest on
+   §4's claim that everything measured was 8-14× smaller than the error bar; since 2026-08-28
+   those deltas are readable (12-20× the carried bar) and the argument no longer needs that
+   crutch. It stands on its own: changing which signal is *first* replaces trades rather than
+   adding them at the margin — G4 §6 says so explicitly — so it moves the whole book, while the
+   three flags measured so far move it by roughly a tenth of an R and buy no held-out recall.
 
-**Two other things are blocked on nothing and cost no compute:**
+**One other thing is blocked on nothing and costs no compute:**
 
-- **Ask Austin one question:** *when your fill is back-dated to the level and the stop goes on
-  the entry bar's own wick, could that wick have printed before you were filled?* A "no"
-  collapses the error bar from ±1.5799 R to ±0.0095 R — **167×** — and makes every sub-1R
-  ranking in this repo readable for the first time. Nothing in the data can answer it and no
-  amount of compute substitutes for it.
+- ~~**Ask Austin one question:** *when your fill is back-dated to the level and the stop goes on
+  the entry bar's own wick, could that wick have printed before you were filled?*~~ **Done
+  2026-08-28. His answer: "Out on that same close" — a stop needs a close and the entry bar has
+  exactly one, so that wick could not have taken him out first.** The bar this repo carries
+  collapsed from ±1.5799 R to ±0.0095 R, and every sub-1R ranking in it is readable for the first
+  time. The wide bar is retired; §4 carries the corrected verdicts.
 - **Fix the `paper_trader.py` wick bug** (§6 item 6). One file, one call site, one test rewrite,
   a working reference implementation already in the repo, and it has been mismarking every live
   paper position every day.
@@ -475,9 +496,10 @@ candidate pool and `X` is the real rejection.
 
 - **It does not say the book is worthless.** It says the book is +0.9551 R against a 2.0 R gate
   and 23/25 months green against a 25/25 gate, and that both figures are ceilings.
-- **It does not claim any of the three deltas in §4 is zero.** It says each is smaller than the
-  error bar on the quantity it is a delta of — a weaker and different statement. The signs may
-  be real and no rig here can show them.
+- **It no longer says the three deltas in §4 are unreadable.** Until 2026-08-28 it said each was
+  smaller than the error bar on the quantity it is a delta of. Austin's answer that day retired
+  the wide bar, and all three clear the carried narrow bar by 12-20×. Their signs are readable;
+  what they are not is *large*, and none of them bought a single held-out S day.
 - **It changes no code, flips no default, and re-runs nothing** that the fourteen source reports
   already measured. Where those reports disagree with each other (§6 items 7 and the two
   canonical books in §1), both numbers are shown rather than one picked.

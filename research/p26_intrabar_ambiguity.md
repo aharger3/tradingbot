@@ -1,5 +1,27 @@
 # P26 / R8 — the intrabar ambiguity rate
 
+> ## RESOLVED 2026-08-28 — the wide bar is retired
+>
+> This file ends by saying the choice between its two bars "is Austin's call, not a measurement." **He made the call on 2026-08-28.** Asked directly — *"Entry is mid-candle at the level. That SAME candle then closes beyond your stop. Are you out on that close, or does the stop only go live from the next candle?"* — he answered: **"Out on that same close."**
+>
+> A stop is triggered by a candle CLOSE and by nothing else, and the entry candle's own close counts. There is exactly one close per bar, so a stop **cannot** fire *inside* the entry bar ahead of the back-dated fill. The 790-of-792 `intrabar_stop` class is therefore **not ambiguous** — it is decided.
+>
+> - **The narrow bar is the one this repo carries: ±0.0095 R on the shipped arm, ±0.0088 R on the ON-WATCH-off arm.**
+> - **The wide bar — ±1.5799 R shipped, ±1.3388 R ON-WATCH-off, spread 1.5815 R — is RETIRED. Do not quote it as a live error bar again.**
+>
+> Every number below is kept exactly as measured. The wide arm was carried in good faith: with the ordering question open, excluding the `intrabar_stop` class would have been assuming his answer, and the honest move was to price both. What retired it is his sentence, not a new rig. Read the wide figures below as *what the doubt would have been worth had the ordering been unknowable* — history, not the interval on any current number.
+>
+> **Corrected verdicts on the deltas this file was used to judge** (all against ±0.0095 R):
+>
+> | A/B | delta | vs the narrow bar, carried |
+> |---|---:|---|
+> | `ON_WATCH` on − off, whole book | +0.1135 R | **CLEARS — 12×** |
+> | `ENABLE_STRUCTURAL_RISK_FLOOR`, 429 matched | +0.1898 R | **CLEARS — 20×** |
+> | `ENABLE_DOWNGRADE_GRADER`, takeable-only | −0.1289 R | **CLEARS — 14×** |
+> | the whole S-over-C span | +0.4035 R | **CLEARS — 42×** |
+>
+> The one thing this does **not** change: the ambiguity was always one-directional, and the money gate never turned on it. +0.9571 R was a ceiling and it is still 1.0429 R short of 2.0.
+
 **86.8% of intrabar fills sit on a bar that also contains the trade's stop, and the unknown is worth 1.5815 R of mean R on the traded book** — more than the 1.0429 R that book is short of the 2.0R money gate, and 3.9× the entire S-over-C edge the grader is built to produce.
 
 Two caveats belong in the same breath as that number. It is **one-directional** — the ambiguity can only make R worse, so the booked +0.9571 R is a ceiling, not a midpoint. And **790 of the 792 ambiguous traded bars are the stop sitting on the entry bar's own extreme**, which `signal_runner.intrabar_stop` put there; only 23 (2.5% of intrabar fills) have a stop clear of both edges of the bar.
@@ -95,7 +117,11 @@ The gate is mean R = 2.0. Two questions, and they have different answers.
 
 An S/A/C ladder whose whole span is 0.4035 R is being ranked inside an error bar of 1.5815 R. Every A/B in the book that turns on a mean-R difference of under a full R — which is most of them — is reporting a number smaller than the thing that has never been measured. **That is what this file changes: not the verdict on the gate, but the credibility interval on every ranking underneath it.**
 
+> **Superseded 2026-08-28.** That paragraph was true only while the ordering question was open. It is closed — a stop fires on a close, and the entry bar has one — so the interval on those rankings is **±0.0095 R**, not 1.5815 R. The S-over-C span of +0.4035 R clears the carried bar by **42×**, and every A/B listed in the banner at the top of this file clears it by 12–20×. Keep 1.5815 R as the size of a doubt that was real until it was answered; do not rank anything inside it.
+
 The one lever that shrinks it without new data is the split above. Strip out the `intrabar_stop` class and the residual ambiguity is 2.5% of intrabar fills; the open question is whether a stop resting on the entry bar's own wick should be modelled as reachable inside that bar at all, and that is Austin's call, not a measurement.
+
+> **Answered 2026-08-28: no.** It should not be modelled as reachable inside that bar, because reaching it requires a close and the entry bar's only close is the one the fill is already priced against. The lever named in this paragraph has been pulled, for free, by a sentence. The residual ambiguity is the 2 rows of 913 the narrow bar prices — 0.2% of intrabar fills.
 
 ## What this does not say
 

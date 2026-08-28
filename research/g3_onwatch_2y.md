@@ -1,16 +1,18 @@
 # G3 / T3 — ON WATCH on the 2-year book
 
-**Flipping `ON_WATCH` moves mean R by +0.1135 R on the whole traded book (+0.2023 R on S) and costs a green month. That delta is 14× SMALLER than the ±1.5799 R error bar this book carries on its fill assumption, so it is not resolved and must not be reported as if it were.** The flag also does not do what its name suggests: it changes **0** of 45,193 signals and leaves **74.7% of traded fills still intrabar** when switched off.
+> **CORRECTED 2026-08-28 — the wide error bar is retired and this delta is READABLE.** This file's headline used to say the +0.1135 R delta was 14× smaller than a ±1.5799 R bar and "not resolved". That bar existed only because nobody had ruled on whether a stop resting inside the entry bar could have fired before the back-dated fill. **Austin ruled on 2026-08-28: "Out on that same close."** A stop is triggered by a candle CLOSE and nothing else; the entry candle's own close counts; there is exactly one close per bar. So a stop cannot fire *inside* the entry bar ahead of the fill, the `intrabar_stop` class is not ambiguous, and **the bar this file carries is the narrow one — ±0.0095 R shipped, ±0.0088 R on the off arm.** The +0.1135 R delta **clears it by 12×**. Every wide figure below is kept as history — it was the honest pessimistic price of a genuinely open question — but must not be quoted as a live interval.
+
+**Flipping `ON_WATCH` moves mean R by +0.1135 R on the whole traded book (+0.2023 R on S) and costs a green month. That delta clears the ±0.0095 R error bar this book carries on its fill assumption by 12×, so its sign is readable — it is small, not unresolved.** The flag also does not do what its name suggests: it changes **0** of 45,193 signals and leaves **74.7% of traded fills still intrabar** when switched off. *(Retired framing, kept for the record: measured against the wide ±1.5799 R bar this delta was 14× smaller and was reported as unresolved.)*
 
 `ON_WATCH=1` is **the shipped default today** (`signal_runner.py:368`, `os.getenv("ON_WATCH", "1")`). Nothing here changes it. Both arms were replayed at _this commit_ by `research/g3_onwatch_2y.py`, which shells `backtest_2y.py` once per arm with the flag forced in the child's environment.
 
-One result cuts the other way and is the most useful thing in this file. The error bar is **not a property of the tape** — it is a property of one unanswered question. 791 of the 793 ambiguous traded rows on the shipped arm are the stop sitting on the entry bar's own extreme, and if Austin rules those unreachable inside the bar he was filled on, the bar collapses from ±1.5799 R to ±0.0095 R — **167× narrower** — and this delta clears it comfortably. The A/B is unresolved because of an open rules question, not because of missing data.
+One result cuts the other way and is the most useful thing in this file. The error bar was **not a property of the tape** — it was a property of one unanswered question. 791 of the 793 ambiguous traded rows on the shipped arm are the stop sitting on the entry bar's own extreme, and this file said that if Austin ruled those unreachable inside the bar he was filled on, the bar would collapse from ±1.5799 R to ±0.0095 R — **167× narrower** — and the delta would clear it comfortably. **He ruled exactly that on 2026-08-28, and it did.** The A/B was never blocked by missing data; it was blocked by an open rules question, and the question is closed.
 
 ## The table
 
-`n` is the traded book — the population the 2.0R money gate reads. Win rate is of DECIDED trades (scratches excluded), the same convention `research/a2_bt2y_summary.py` prints and this table imports. `months green` is months with positive total R; the durability gate is EVERY month green. Entry match is any signal within ±3 bars of one of Austin's 64 marked entries on the same symbol-day. The error bar column is stated on each arm's own book, wide first and the narrow floor in brackets — see §the error bar.
+`n` is the traded book — the population the 2.0R money gate reads. Win rate is of DECIDED trades (scratches excluded), the same convention `research/a2_bt2y_summary.py` prints and this table imports. `months green` is months with positive total R; the durability gate is EVERY month green. Entry match is any signal within ±3 bars of one of Austin's 64 marked entries on the same symbol-day. The error bar column is stated on each arm's own book, **retired wide bar first and the carried narrow bar in brackets** — read the bracketed figure; see §the error bar.
 
-| arm | population | signals | n traded | mean R | median R | win rate | months green | entry match ±3 | error bar (wide / narrow) |
+| arm | population | signals | n traded | mean R | median R | win rate | months green | entry match ±3 | error bar (wide RETIRED / narrow CARRIED) |
 |---|---|---:|---:|---:|---:|---:|---:|---:|---:|
 | `ON_WATCH=0` | whole book | 45,193 | 1,091 | +0.8416 | +0.4120 | 54.1% | **24 / 25** | 35 / 64 | ±1.3388 (±0.0088) |
 | `ON_WATCH=1` (shipped) | whole book | 45,193 | 1,017 | +0.9551 | +0.5660 | 53.2% | **23 / 25** | 35 / 64 | ±1.5799 (±0.0095) |
@@ -61,16 +63,18 @@ This is also why `research/t61_onwatch_ab.py` measured +0 on every metric over t
 
 From `research/p26_intrabar_ambiguity.py` (T2): when a fill is back-dated into the entry bar, that bar's own range usually also contains the trade's stop, and OHLCV cannot say which price traded first. The engine assumes fill-then-stop every time. Repricing the other order is the error bar, and it is **one-directional** — the booked mean R is a ceiling, never a midpoint.
 
-T2's load-bearing split is that **790 of that book's 792 ambiguous traded bars are the stop sitting ON the entry bar's own extreme**, put there by `signal_runner.intrabar_stop`; only 23 (2.5% of intrabar fills) have a stop clear of both wicks. That gives two candidate bars, and this report carries the WIDE one:
+T2's load-bearing split is that **790 of that book's 792 ambiguous traded bars are the stop sitting ON the entry bar's own extreme**, put there by `signal_runner.intrabar_stop`; only 23 (2.5% of intrabar fills) have a stop clear of both wicks. That gave two candidate bars. **This report carried the WIDE one until 2026-08-28; it now carries the NARROW one.**
 
-| bar | which ambiguous rows are repriced to −1.0R | `ON_WATCH=1` whole book | `ON_WATCH=0` whole book |
-|---|---|---:|---:|
-| **wide (carried)** | all of them, the `intrabar_stop` class included | ±1.5799 R | ±1.3388 R |
-| narrow (floor) | only rows whose stop is NOT the entry bar's own extreme | ±0.0095 R | ±0.0088 R |
+| bar | which ambiguous rows are repriced to −1.0R | `ON_WATCH=1` whole book | `ON_WATCH=0` whole book | status |
+|---|---|---:|---:|---|
+| **narrow — CARRIED** | only rows whose stop is NOT the entry bar's own extreme | **±0.0095 R** | **±0.0088 R** | the interval on every number here |
+| wide — RETIRED | all of them, the `intrabar_stop` class included | ±1.5799 R | ±1.3388 R | history, 2026-08-28 |
 
-**Why the wide one.** The `intrabar_stop` class is manufactured by a stop rule rather than found in the tape, but manufactured is not resolved. A stop resting on the entry bar's own low is a price that bar demonstrably traded, and on a long break-and-retest bar that closes near its high the low very often traded first — so that class is if anything MORE likely to have fired than the residual, not less. Whether such a stop should be modelled as reachable inside its own entry bar is **Austin's call and he has not made it**; excluding the class would be assuming his answer, and this file will not assume it in order to make its own delta look significant.
+**Why the wide one was carried.** The `intrabar_stop` class is manufactured by a stop rule rather than found in the tape, but manufactured is not resolved. A stop resting on the entry bar's own low is a price that bar demonstrably traded, and on a long break-and-retest bar that closes near its high the low very often traded first — so on a *price* argument that class looked if anything MORE likely to have fired than the residual, not less. Whether such a stop should be modelled as reachable inside its own entry bar was **Austin's call and he had not made it**; excluding the class would have been assuming his answer, and this file would not assume it in order to make its own delta look significant.
 
-**Which is exactly why the narrow bar is worth reporting.** The delta above (+0.1135 R) clears ±0.0095 R by 12×. So the A/B is not blocked by the data — it is blocked by one unanswered rules question, and the whole credibility interval on this ticket, and on every other mean-R ranking in the book, turns on it.
+**What retired it, 2026-08-28.** The price argument above was the wrong frame, and only he could say so. A stop in this system is not triggered by a price being *traded* — it is triggered by a candle **closing** beyond it. Asked whether a mid-candle entry whose own candle then closes beyond the stop is out on that close, he said: **"Out on that same close."** One close per bar, and the fill is already priced against it. So the `intrabar_stop` class cannot have fired ahead of the fill, is not ambiguous, and does not belong in the bar. **The narrow bar is the right one and the wide bar is retired.**
+
+**The delta above (+0.1135 R) clears the carried ±0.0095 R bar by 12×.** The A/B was never blocked by the data and it is no longer blocked by the rules question either. It is readable — and small: +0.1135 R against a book 1.0449 R short of the money gate, bought by giving back a green month, and buying zero held-out S recall.
 
 | arm | population | traded | ambiguous | stop IS the entry bar's extreme | residual | T2's "clear of both edges" |
 |---|---|---:|---:|---:|---:|---:|
@@ -87,21 +91,21 @@ The last two columns look like they disagree and they do not — they are two di
 |---|---|
 | mean R delta, whole book | **+0.1135 R** (`ON_WATCH=1` − `ON_WATCH=0`) |
 | mean R delta, S subset | **+0.2023 R** |
-| does it clear the WIDE error bar (±1.5799 R), the one carried? | **no** — 14× smaller |
-| does it clear the NARROW floor (±0.0095 R)? | yes, by 12× — but only if a stop on the entry bar's own wick is ruled unreachable inside that bar, which is unanswered |
+| does it clear the CARRIED error bar (±0.0095 R, narrow)? | **yes — by 12×.** A stop on the entry bar's own wick is ruled unreachable inside that bar: Austin, 2026-08-28, "out on that same close" |
+| does it clear the WIDE bar (±1.5799 R)? | no — 14× smaller. **That bar was retired 2026-08-28** and this row is kept only so the old verdict is traceable |
 | what does `ON_WATCH` actually control? | one of the two predicates in `fill_price`, at 2 of its 10 call sites. Not detection (0 signals moved), not "fill at close" (74.7% of traded fills stay intrabar with it off) |
 | is +0.9571R understated by the fill assumption? | **No — it is OVERstated.** The assumption is optimistic in one direction, so the booked number is a ceiling, not a midpoint. |
 | shipped default | `ON_WATCH=1`, unchanged by this ticket |
 
-The question this ticket was set to answer — *is +0.957R understated by the fill assumption, and by how much* — has an answer, and the sign is the opposite of the one the question assumes. The fill assumption is not conservative. Every back-dated fill assumes the trigger beat the stop inside a minute nobody can see, so **+0.9551 R is a ceiling**, and resolving the ordering can only move it down. ON WATCH is one contributor to how many fills get back-dated at all; switching it off moves mean R by +0.1135 R and still leaves 74.7% of traded fills intrabar. So the fill assumption is not worth +0.1135 R — it is worth up to ±1.5799 R, and this flag is not the lever that moves it.
+The question this ticket was set to answer — *is +0.957R understated by the fill assumption, and by how much* — has an answer, and the sign is the opposite of the one the question assumes. The fill assumption is not conservative. Every back-dated fill assumes the trigger beat the stop inside a minute nobody can see, so **+0.9551 R is a ceiling**, and resolving the ordering can only move it down. ON WATCH is one contributor to how many fills get back-dated at all; switching it off moves mean R by +0.1135 R and still leaves 74.7% of traded fills intrabar. So this flag is not the lever that moves the fill assumption. *(This paragraph used to end "it is worth up to ±1.5799 R". Since 2026-08-28 the residual doubt is worth ±0.0095 R — the ceiling claim survives, the magnitude does not.)*
 
-**The one thing worth doing next is not a flag.** It is asking Austin a single question: *when your fill is back-dated to the level and the stop goes on the entry bar's own wick, could that wick have printed before you were filled?* A "no" collapses the error bar from ±1.5799 R to ±0.0095 R and makes this A/B — and every other sub-1R ranking in the book — readable. Nothing in the data can answer it.
+**The one thing worth doing next was not a flag, and it has been done.** It was asking Austin a single question: *when your fill is back-dated to the level and the stop goes on the entry bar's own wick, could that wick have printed before you were filled?* **He answered no on 2026-08-28** — a stop needs a close, and the entry bar has exactly one, so "out on that same close" is the whole rule. That collapsed the error bar from ±1.5799 R to ±0.0095 R and made this A/B, and every other sub-1R ranking in the book, readable. Nothing in the data could have answered it.
 
 ## What this does not say
 
 - It does not ship, retire or re-tune the flag. `ON_WATCH` stays at its default of `1` and no line of `signal_runner.py` was edited.
 - It does not re-open the stop rule. Stops trigger on the candle CLOSE, fill at that close, floored at −1.25R; wicks stop nothing out.
-- It does not claim the delta is zero. It claims the delta is smaller than the error bar on the number it is a delta of, which is a different and weaker statement — the sign may be real and this rig cannot show it.
+- It does not claim the delta is large. Since 2026-08-28 the delta clears the carried bar by 12× and its sign is readable, but +0.1135 R is a tenth of an R on a book that is 1.0449 R short of the gate, and it costs a green month. *(This bullet used to say the delta was smaller than the error bar on the number it is a delta of and that the rig could not show its sign. That was the wide bar's verdict and it is retired.)*
 - The intrabar marker can only UNDER-count: `backtest_2y.py:169` stores entry at 2dp, so a clamped level that rounds into the close's own cent is recorded as a close fill. The naive `entry != close` test over-reports by ~11 points; T2's corrected marker is imported here, not re-derived.
 - 0 signals were dropped for a missing archived day and 0 for an entry minute with no bar. Cache misses are never fetched, on purpose.
 

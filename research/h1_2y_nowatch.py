@@ -280,20 +280,32 @@ def report(arms, gaps, metas):
         "reach is the break-and-retest bars that close jammed against the session extreme."
         % metas[HEADLINE]["signals"])
     add("")
-    add("**The error bar still swallows the delta.** One-directional, from the intrabar-fill "
+    add("**The error bar is the NARROW one, and the delta clears it.** One-directional, from "
+        "the intrabar-fill "
         "ambiguity (`research/p26_intrabar_ambiguity.py`, `8bb78c77`): repricing an ambiguous "
-        "row can only make R worse, so every mean below is a CEILING.")
+        "row can only make R worse, so every mean below is a CEILING. **Which deduction is "
+        "live was settled by Austin on 2026-08-28** — a stop is triggered by a candle CLOSE "
+        "and nothing else, the entry candle's own close counts (*\"out on that same close\"*), "
+        "and one bar has one close, so a stop cannot fire inside the entry bar ahead of the "
+        "back-dated fill. The `intrabar_stop` class is not ambiguous. **Carry the narrow "
+        "deduction. The wide deduction is RETIRED** and is printed only so the framing this "
+        "file used to publish stays traceable.")
     add("")
-    add("| book, ON WATCH off | mean R | wide deduction | narrow deduction |")
+    add("| book, ON WATCH off | mean R | narrow deduction (CARRIED) | wide deduction (RETIRED 2026-08-28) |")
     add("|---|---:|---:|---:|")
-    add("| ladder | %+.4f | −%.4f | −%.4f |" % (bar_l["opt"], bar_l["wide"], bar_l["narrow"]))
-    add("| `flat_2r` | %+.4f | −%.4f | −%.4f |" % (bar_f["opt"], bar_f["wide"], bar_f["narrow"]))
+    add("| ladder | %+.4f | −%.4f | −%.4f |" % (bar_l["opt"], bar_l["narrow"], bar_l["wide"]))
+    add("| `flat_2r` | %+.4f | −%.4f | −%.4f |" % (bar_f["opt"], bar_f["narrow"], bar_f["wide"]))
     add("")
-    add("The ON WATCH delta itself is **%+.4f R**, which is **%.1f×** smaller than the wide "
-        "bar of ±%.4f R on this arm. It is not resolvable on this rig in either direction."
+    add("The ON WATCH delta itself is **%+.4f R**, which is **%.0f×** LARGER than the carried "
+        "narrow bar of ±%.4f R on this arm — its sign is readable, and it is small. "
+        "*(Retired framing, kept for the record: against the wide bar of ±%.4f R this delta "
+        "was %.1f× smaller and this file called it unresolvable in either direction. That was "
+        "the wide bar's verdict; the wide bar was retired 2026-08-28.)*"
         % (lad_b["mean"] - lad["mean"],
-           bar_l["wide"] / max(abs(lad_b["mean"] - lad["mean"]), 1e-9),
-           bar_l["wide"]))
+           abs(lad_b["mean"] - lad["mean"]) / max(bar_l["narrow"], 1e-9),
+           bar_l["narrow"],
+           bar_l["wide"],
+           bar_l["wide"] / max(abs(lad_b["mean"] - lad["mean"]), 1e-9)))
     add("")
 
     # -- 1b -----------------------------------------------------------------

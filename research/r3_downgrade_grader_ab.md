@@ -2,7 +2,7 @@
 
 **Held-out first, per `research/g13_floor_fix_ab.md`'s lesson: an in-sample recall gain that does not reproduce out of sample is not a result.** On the 100 OMEN Test 1 cards the flag moves S recall **3/15 -> 3/15** and false fires on days Austin refused **12/42 -> 14/42**.
 
-**On the money it trades +293 more (1,017 -> 1,310) and the takeable-only mean R goes +0.9716 -> +0.8427, a delta of -0.1289 R -- inside T3's wide error bar of +-1.5799, so this rig does not resolve its sign.** The `on` arm's book is not contaminated (0 rows with `entry == stop`, 4.2% untakeable against 2.2% on `off`), so unlike G13 that number is money rather than arithmetic -- it simply is not big enough to read.
+**On the money it trades +293 more (1,017 -> 1,310) and the takeable-only mean R goes +0.9716 -> +0.8427, a delta of -0.1289 R -- inside T3's RETIRED wide error bar of +-1.5799, but it CLEARS the carried narrow bar by 14x, so its sign is readable.** The `on` arm's book is not contaminated (0 rows with `entry == stop`, 4.2% untakeable against 2.2% on `off`), so unlike G13 that number is money rather than arithmetic -- it is readable, and it is negative, and it is small.
 
 Nothing here ships. `signal_runner.ENABLE_DOWNGRADE_GRADER` defaults to **False**, `omen_bot.PriceActionAnalyzer._grade_pa` is not deleted, and the engine is not re-frozen -- that would VOID `research/omen6_forward.py` and it is Austin's call. Measured at _this commit_ by `research/r3_downgrade_grader_ab.py`.
 
@@ -100,7 +100,7 @@ Rows are his grade; columns are the best engine tier fired that day, mapped onto
 
 Both arms: `backtest_2y.py` shelled once per arm with the flag forced in the child's environment, same `data_archive/`. Win rate is of DECIDED trades (scratches excluded), the convention `research/a2_bt2y_summary.py` prints and this table imports. `months green` is months with positive total R; the durability gate is EVERY month green. The S subset is `sgrade == "S"` -- `research/downgrade.py`'s ladder as `backtest_2y.py` attaches it to every row after the fact, so it is the **same population in both arms** and not each arm's own idea of S.
 
-| arm | population | signals | n traded | mean R | median R | win rate | months green | total R | error bar (wide / narrow) |
+| arm | population | signals | n traded | mean R | median R | win rate | months green | total R | error bar (wide RETIRED / narrow CARRIED) |
 |---|---|---:|---:|---:|---:|---:|---:|---:|---:|
 | `off` (== HEAD) | whole book | 45,193 | 1,017 | +0.9551 | +0.5660 | 53.2% | **23 / 25** | +971.4 | +-1.5799 (+-0.0095) |
 | `off` (== HEAD) | S subset | 7,454 | 128 | +1.2829 | +1.1290 | 66.4% | **23 / 25** | +164.2 | +-1.2573 (+-0.0751) |
@@ -148,19 +148,21 @@ What became of the lost trades in the `on` arm: `absent` 1, `fired/C` 19, `skipp
 
 T3 (`research/g3_onwatch_2y.md`, `47e60796`) established both bars and they are recomputed here on each arm's own book, never quoted: the WIDE bar reprices every ambiguous intrabar row to -1.0R; the NARROW floor reprices only rows whose stop is NOT the entry bar's own extreme. Both are one-directional -- the booked mean R is a **ceiling**, never a midpoint.
 
+**The NARROW bar is the one this verdict is taken against. The WIDE bar was RETIRED on 2026-08-28.** It existed only because nobody had ruled on whether a stop resting inside the entry bar could have fired before the back-dated fill. Austin ruled: a stop is triggered by a candle CLOSE and by nothing else, and the entry candle's own close counts -- *"out on that same close"*. One bar has exactly one close, so the `intrabar_stop` class cannot have fired ahead of the fill and is not ambiguous. Every wide row below is kept so the retired verdict stays traceable; do not quote it as a live interval.
+
 **The delta the verdict is taken on is the TAKEABLE-ONLY one.** G13's whole lesson is that an as-booked mean R can be moved by rows whose risk denominator is ~0, and a number cannot clear an error bar by breaking the quantity the bar is measured on.
 
 | | |
 |---|---|
 | whole-book mean R delta, as booked | -0.1247 R (the `on` arm's untakeable share is 4.2%, against 2.2% on `off` -- this delta is not made of near-zero-risk rows) |
 | **takeable-only mean R delta -- the defensible one** | **-0.1289 R** |
-| WIDE bar, `off` arm | +-1.5799 R |
-| does the defensible delta clear it? | **no -- 12x smaller** |
-| NARROW floor, `off` arm | +-0.0095 R |
-| does it clear THAT? | **yes, by 14x -- but only if a stop resting on the entry bar's own wick is ruled unreachable inside that bar, the one question Austin has not answered** |
-| WIDE bar, `on` arm | +-1.3205 R |
+| NARROW bar -- CARRIED, `off` arm | +-0.0095 R |
+| does the defensible delta clear THAT? | **yes, by 14x -- a stop resting on the entry bar's own wick is ruled unreachable inside that bar: Austin, 2026-08-28, "out on that same close"** |
+| WIDE bar -- RETIRED 2026-08-28, `off` arm | +-1.5799 R |
+| did it clear that one? | **no -- 12x smaller**; the bar is retired and this row is kept only so the old verdict stays traceable |
+| WIDE bar, `on` arm (retired) | +-1.3205 R |
 
-**The defensible delta of -0.1289 R is INSIDE the `off` arm's wide bar of +-1.5799 R, so this rig does not resolve its sign.** The direction may be real; a 100-card holdout and a 2-year book cannot separate it from noise at this size.
+**The defensible delta of -0.1289 R was INSIDE the `off` arm's wide bar of +-1.5799 R -- and that bar is retired. Against the carried narrow bar of +-0.0095 R it clears by 14x, so its sign IS resolved: the grader swap costs money.** What it is not is large: -0.1289 R on a book 1.03 R short of the gate, and it bought 0 held-out S recall and 2 more false fires.
 
 **Neither arm passes the money gate and neither is durable.** The gate is mean R = 2.0 and EVERY month green. `off` books +0.9551 R with 23 of 25 months green; `on` books +0.8304 R with 24 of 25. The grader is not what stands between this book and the gate.
 
@@ -168,7 +170,7 @@ T3 (`research/g3_onwatch_2y.md`, `47e60796`) established both bars and they are 
 
 Rows under `universe.MIN_SAMPLE_N` (=20) are MARKED `(low n)`, never dropped and never excluded from the whole-book totals above -- below ~20 trades one more trade swings the mean by the same order of magnitude as the money gate itself.
 
-**22 of the 27 symbols traded by both arms move DOWN and 4 move up (over the 18 that clear MIN_SAMPLE_N in both arms: 15 down).** The whole-book delta is not one symbol; it is the same direction almost everywhere, which is what makes a delta smaller than the error bar worth reporting as a direction rather than discarding as noise.
+**22 of the 27 symbols traded by both arms move DOWN and 4 move up (over the 18 that clear MIN_SAMPLE_N in both arms: 15 down).** The whole-book delta is not one symbol; it is the same direction almost everywhere -- which was already worth reporting as a direction when the delta sat inside the retired wide bar, and is now corroboration of a sign the carried narrow bar resolves on its own.
 
 | symbol | n `off` | mean R `off` | n `on` | mean R `on` | delta mean R |
 |---|---:|---:|---:|---:|---:|
@@ -203,7 +205,7 @@ Rows under `universe.MIN_SAMPLE_N` (=20) are MARKED `(low n)`, never dropped and
 
 - **It does not ship the grader.** `ENABLE_DOWNGRADE_GRADER` stays `False` and `_grade_pa` is not deleted. R3 is Austin's call; flipping it changes what trades, and re-freezing the engine voids `research/omen6_forward.py`.
 - **It does not say the eight variables are right.** `research/a1_threshold_sweep.md` (`99bead1c`) measured the grader itself as overfit: mix distance from Austin **0.086 on the 120 cards it was tuned against and 0.282 on the held-out 100**, A undercounted 3x, S-day recall 5/15, and `level_not_respected` **wrong-signed** (tripped +0.996R vs clean +0.892R) at a 63-68% trip rate. P15 tried three faithful reformulations and all three failed. This row measures the grader **as committed**; a better-calibrated version of it is a different experiment.
-- **It does not resolve a mean-R delta inside the error bar.** T3's wide bar is +-1.5799 R on the `off` arm. A delta smaller than that is not a result in either direction, and this report says so above rather than quoting the sign.
+- **It does not claim the mean-R delta is large.** Since 2026-08-28 the carried bar is T3's NARROW one (+-0.0095 R on the `off` arm) and this delta clears it by 14x, so the sign is quotable. T3's wide bar of +-1.5799 R, which this delta sat inside, is RETIRED -- Austin ruled a stop fires on a close and the entry bar has exactly one.
 - **It does not lift the HTF veto.** That is a separate, unowned rule (`research/g4_dropped_s.md` section 8) and it is applied identically in both arms, so the arm is a swap of the grader alone.
 - **It does not fix arrival order.** G4's finding that outranks the drop table is that `_calibration_grade`'s first-with-trend floor, not the grader, is what promotes 95.3% of the traded book. A different grader changes which signal is *first*; it does not change that first is what gets taken.
 - The held-out sample is 100 cards and 15 S days. A 3/15 -> 3/15 read has a wide interval of its own; what it can rule out is a LARGE out-of-sample recall change, not a small one.
