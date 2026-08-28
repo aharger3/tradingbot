@@ -50,6 +50,10 @@ SESSION_END = "11:00"
 # Deliberately NOT here: decks/*-manifest.jsonl and decks/_retired/*-key.json
 # (engine answer keys, not Austin's judgements).
 LEGACY_MARK_FILES = [
+    # H2 tri-lane deck, lane 1 (B-remap), graded 2026-08-28 -- Austin's S/A/C/X
+    # verdicts on engine-proposed B-only signals. Pasted into chat, not exported
+    # to disk by the page, so this file is the only copy in the repo.
+    "marks/deck_marks_h2_3lane_2026-08-28.jsonl",
     "austin_marks_v7.jsonl",      # terminal file; v2-v6 are fully contained in it
     "blind_marks_all.jsonl",
     "marks_clean.jsonl",

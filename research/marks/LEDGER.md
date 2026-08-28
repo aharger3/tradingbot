@@ -354,3 +354,21 @@ This ledger already counts **47 S-tier symbol-days that exist only in
 `recovered_reviews.jsonl`'s unmatched 135**, excluded for having no bar index and no
 verified alignment. They are real Austin S judgements. Re-aligning them needs zero new
 grading and is the highest-value S-recall job in the repo that nobody has taken.
+
+## deck_marks_h2_3lane_2026-08-28.jsonl — 59 rows, human
+
+Lane 1 of the H2 tri-lane deck (`research/build_h2_deck.py`, artifact
+`4ce9a515`). Austin's S/A/C/X verdict on 59 engine-proposed `B`-only signals,
+graded 2026-08-28. Every row carries the engine's own proposal beside his call
+(`eng_grade`, `eng_sgrade`, `eng_downgrades`, `n_downgrades`, `eng_entry`,
+`eng_stop`), so this file is a paired human-vs-engine comparison, not a bare
+grade list.
+
+**Provenance:** pasted into the session by Austin from the page's Export → Copy
+all, and written to disk verbatim. The page's own localStorage holds the
+authoritative copy; the deck was 60 cards for this lane and 59 records arrived,
+so one row may not have been pasted. Nothing is lost — the page persists — but
+re-export before treating 59 as the lane total.
+
+Counts as a judgement for `marked_card_ids()`. Added to `LEGACY_MARK_FILES` in
+the same commit.
