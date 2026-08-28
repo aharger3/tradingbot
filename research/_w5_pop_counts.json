@@ -1,0 +1,67 @@
+{
+ "stride": 1,
+ "total": 12834,
+ "next_i": 12834,
+ "complete": true,
+ "days": 12834,
+ "fired_days": 4273,
+ "secs": 4721.971736907959,
+ "head": "d81fc730",
+ "status": {
+  "skipped_d": 135493,
+  "fired": 7289,
+  "skipped_tight": 4230
+ },
+ "kills": {
+  "RISK FLOOR \u2014 stock risk < max($0.10, 0.15% of close)": 111379,
+  "PA PATTERN VETO \u2014 `_grade_pa` graded the entry candle D": 18541,
+  "FLAT $0.50 RISK FLOOR (FVG / order block / flag)": 4369,
+  "TIGHT-STOP SKIP (C only)": 4230,
+  "OCR WIDE-STOP \u2014 order-block stop > 0.40% of close": 1204
+ },
+ "wheres": {
+  "RISK FLOOR \u2014 stock risk < max($0.10, 0.15% of close)": [
+   "`signal_runner.py:1983`",
+   "`signal_runner.py:2088`",
+   "`signal_runner.py:2221`",
+   "`signal_runner.py:2328`"
+  ],
+  "PA PATTERN VETO \u2014 `_grade_pa` graded the entry candle D": [
+   "`omen_bot.PriceActionAnalyzer`"
+  ],
+  "FLAT $0.50 RISK FLOOR (FVG / order block / flag)": [
+   "`signal_runner.py:2085`",
+   "`signal_runner.py:2190`",
+   "`signal_runner.py:2307`",
+   "`signal_runner.py:2414`"
+  ],
+  "TIGHT-STOP SKIP (C only)": [
+   "`_min_viable_stop`"
+  ],
+  "OCR WIDE-STOP \u2014 order-block stop > 0.40% of close": [
+   "`signal_runner.py:2092`",
+   "`signal_runner.py:2197`",
+   "`signal_runner.py:2312`",
+   "`signal_runner.py:2419`"
+  ]
+ },
+ "srcs": {
+  "RISK FLOOR \u2014 stock risk < max($0.10, 0.15% of close)": [
+   "grade = TradeGrade.D",
+   "grade = TradeGrade.D  # T3(b): an intrabar fill sitting on the stop has no trade to size"
+  ],
+  "FLAT $0.50 RISK FLOOR (FVG / order block / flag)": [
+   "grade = TradeGrade.D"
+  ],
+  "OCR WIDE-STOP \u2014 order-block stop > 0.40% of close": [
+   "grade = TradeGrade.D"
+  ]
+ },
+ "unlock": {
+  "RISK FLOOR \u2014 stock risk < max($0.10, 0.15% of close)": 8149,
+  "FLAT $0.50 RISK FLOOR (FVG / order block / flag)": 1802,
+  "PA PATTERN VETO \u2014 `_grade_pa` graded the entry candle D": 3659,
+  "TIGHT-STOP SKIP (C only)": 565,
+  "OCR WIDE-STOP \u2014 order-block stop > 0.40% of close": 394
+ }
+}
