@@ -391,6 +391,45 @@ ON_WATCH = os.getenv("ON_WATCH", "1").strip().lower() in ("1", "true", "yes", "o
 ENABLE_STRUCTURAL_RISK_FLOOR = os.getenv(
     "ENABLE_STRUCTURAL_RISK_FLOOR", "0").strip().lower() in ("1", "true", "yes", "on")
 
+# --- W3: the minimum-risk FILL CLAMP ---------------------------------------
+#
+# The third answer to the same wound G12 diagnosed and G13 priced, and the only
+# one that keeps the floor and the position sizer reading ONE number.
+#
+# G13's finding, in one sentence: `backtest_week` sizes every trade at
+# RISK_DOLLARS / |entry - stop|, so moving the FLOOR onto the pre-fill geometry
+# while the SIZER keeps reading the post-fill geometry admits exactly the rows
+# the account cannot take -- 73.3% of that book. The floor and the denominator
+# have to be the same quantity.
+#
+# This flag keeps them the same quantity and moves the third thing instead: the
+# FILL. `fill_price()` back-dates a B&R entry onto the broken level, and for
+# B&R the level IS the stop, so the entry lands on the stop and |entry - stop|
+# collapses under max(0.10, 0.0015 x close). Rather than excusing the collapsed
+# risk, refuse to book a fill that causes it:
+#
+#     long   entry := min(close, max(entry, stop + floor + tick))
+#     short  entry := max(close, min(entry, stop - floor - tick))
+#
+# The clamped price is NEVER better than the back-dated fill and NEVER worse
+# than the close the bar actually printed, so it is a price the bar traded
+# through on its way to the level -- strictly more conservative than HEAD's
+# fill, never a price the tape did not offer. When the close itself cannot
+# clear the floor the clamp resolves to the close, the risk is still under the
+# floor, and the setup is rejected exactly as it was before 5e3677ea.
+#
+# The floor constant it clamps against, B&R_MIN_RISK = 0.0015 x close, is one
+# of the 33 constants research/hallucination-audit.md classes UNMENTIONED --
+# Austin never stated it, it is ours. This flag does not tune it. It makes the
+# engine obey it on the price it books instead of using it to delete setups.
+#
+# OFF BY DEFAULT. Flipping it changes what trades, which is Austin's call, and
+# re-freezing the engine VOIDS the forward book (research/omen6_forward.py).
+# A/B it with ENABLE_MIN_RISK_FILL_CLAMP=1;
+# research/w3_recall_gate_fix_ab.py prices both arms.
+ENABLE_MIN_RISK_FILL_CLAMP = os.getenv(
+    "ENABLE_MIN_RISK_FILL_CLAMP", "0").strip().lower() in ("1", "true", "yes", "on")
+
 # --- R3: WHICH grader the ten detection sites ask ---------------------------
 #
 # `omen_bot.PriceActionAnalyzer._grade_pa` grades candle SHAPES -- is this bar a
@@ -989,6 +1028,61 @@ def floor_reference_risk(entry: float, stop: float, close: float,
     if ENABLE_STRUCTURAL_RISK_FLOOR:
         return (close - structural_stop) if is_long else (structural_stop - close)
     return (entry - stop) if is_long else (stop - entry)
+
+
+# ONE TICK past the floor, not onto it, and both reasons are about a number
+# being written down rather than about a rule:
+#
+#  1. IEEE 754. `(stop + floor) - stop` is not `floor` -- it misses by ~6e-15,
+#     and two of the six marks this ticket recovers (UBER 2025-09-11,
+#     GOOGL 2024-10-15) sit exactly on that edge. Clamping onto the floor and
+#     then asking `entry - stop >= floor` recovers 4 of 6, not 6 of 6.
+#  2. The BOOK stores entry and stop at 2 decimals (T2/R8,
+#     research/p26_intrabar_ambiguity.md, found the same thing costing ~11
+#     points on a naive `entry != close` test). A fill resting exactly ON the
+#     floor is indistinguishable, once rounded, from one a cent under it, so
+#     every downstream reader -- including the takeable/untakeable split this
+#     ticket is judged on -- would score a correctly-clamped row as unsizeable.
+#
+# A cent is the smallest price the tape quotes, so this cannot decide anything
+# the arithmetic did not already mean to pass. It makes the clamped fill one
+# tick WORSE, never better.
+_FILL_CLAMP_TICK = 0.01
+
+
+def min_risk_floor(close: float) -> float:
+    """B&R_MIN_RISK -- the minimum risk a break-and-retest has to carry.
+
+    `max(0.10, 0.0015 x close)`, lifted verbatim out of the two B&R call sites
+    so the floor and the clamp that respects it cannot drift apart. It is a
+    HALLUCINATED constant in research/hallucination-audit.md's sense: Austin
+    never stated it. Nothing here changes its value."""
+    return max(0.10, 0.0015 * close)
+
+
+def clamp_fill_to_min_risk(entry: float, stop: float, close: float,
+                           is_long: bool) -> float:
+    """The price actually paid, held at arm's length from the stop.
+    See ENABLE_MIN_RISK_FILL_CLAMP.
+
+    OFF (the shipped default): returns `entry` unchanged -- the same float in,
+    the same float out, so the flag-off engine is the flag-less engine.
+
+    ON: if the fill already clears the floor this is a no-op. If it does not,
+    the entry is walked back toward the bar's close only as far as the floor
+    requires, and never past the close. Both ends of that interval are prices
+    the bar traded, so the clamped fill is achievable and is strictly worse
+    (never better) than the fill HEAD books."""
+    if not ENABLE_MIN_RISK_FILL_CLAMP:
+        return entry
+    floor = min_risk_floor(close) + _FILL_CLAMP_TICK
+    if is_long:
+        if entry - stop >= floor:
+            return entry
+        return min(close, max(entry, stop + floor))
+    if stop - entry >= floor:
+        return entry
+    return max(close, min(entry, stop - floor))
 
 
 def idea_key(sig: dict) -> tuple:
@@ -1959,6 +2053,17 @@ class SignalRunner:
                                    session_hi=hod, session_lo=lod)
                 structural_stop = stop     # G13: before intrabar_stop reacts to the fill
                 stop = intrabar_stop(entry, stop, current, is_long=True)
+                # W3: hold the booked fill at arm's length from the stop rather
+                # than excusing the collapsed risk downstream. AFTER
+                # intrabar_stop, not before: intrabar_stop already widens the
+                # geometry on the rows where the fill landed on the stop, so
+                # running the clamp last makes this change PURELY ADDITIVE --
+                # risk_on >= risk_off on every signal, so nothing HEAD trades
+                # can stop trading. The clamp-first ordering restores the
+                # structural stop instead and costs 588 of HEAD's trades; it is
+                # measured in research/w3_recall_gate_fix.md as variant B and is
+                # not what ships. No-op when off.
+                entry = clamp_fill_to_min_risk(entry, stop, current.close, True)
                 stock_risk = entry - stop
                 grade = self._grade_trade(current, lookback, level_hi, level_lo,
                                           is_long=True, htf_bias=self.htf_bias)
@@ -2204,6 +2309,8 @@ class SignalRunner:
                                    session_hi=hod, session_lo=lod)
                 structural_stop = stop     # G13: before intrabar_stop reacts to the fill
                 stop = intrabar_stop(entry, stop, current, is_long=False)
+                # W3: mirror of the call side — see clamp_fill_to_min_risk.
+                entry = clamp_fill_to_min_risk(entry, stop, current.close, False)
                 stock_risk = stop - entry
                 grade = self._grade_trade(current, lookback, level_hi, level_lo,
                                           is_long=False, htf_bias=self.htf_bias)

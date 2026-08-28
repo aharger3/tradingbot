@@ -131,3 +131,10 @@ research/_g10_arm_events.json
 research/_w12/w12_trades.json
 research/_w12/.coverage
 research/_w12/*.log
+
+# W3 per-arm 2-year replay books and their intermediates. ~40 MB each and
+# regenerable with `python research/w3_recall_gate_fix_ab.py book --arm head|off|on`;
+# the finding lives in research/w3_recall_gate_fix.md, which IS tracked.
+research/w3_arm_*.json
+research/_w3_*.json
+research/_w3_*.log
