@@ -1,0 +1,100 @@
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"CRM_2025-09-19","grade":"none","answers":{"s":["s"]},"notes":{"min":"9:40"},"date":"2025-09-19","symbol":"CRM"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"AMD_2025-04-24","grade":"none","answers":{"s":["no"]},"notes":{"why":"good trend for a or c options"},"date":"2025-04-24","symbol":"AMD"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"AMD_2026-02-13","grade":"none","answers":{"s":["no"]},"notes":{},"date":"2026-02-13","symbol":"AMD"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"IWM_2024-03-04","grade":"none","answers":{"s":["no"]},"notes":{},"date":"2024-03-04","symbol":"IWM"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"AMD_2025-01-28","grade":"none","answers":{"s":["no"]},"notes":{},"date":"2025-01-28","symbol":"AMD"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"ARM_2024-10-28","grade":"none","answers":{"s":["s"]},"notes":{"min":"9:39"},"date":"2024-10-28","symbol":"ARM"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"NVDA_2025-11-24","grade":"none","answers":{"s":["no"]},"notes":{},"date":"2025-11-24","symbol":"NVDA"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"MSTR_2025-01-27","grade":"none","answers":{"s":["s"]},"notes":{"min":"9:52","why":"missed by couple cents"},"date":"2025-01-27","symbol":"MSTR"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"ACHR_2024-12-02","grade":"none","answers":{"s":["no"]},"notes":{},"date":"2024-12-02","symbol":"ACHR"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"HOOD_2025-09-16","grade":"none","answers":{"s":["no"]},"notes":{},"date":"2025-09-16","symbol":"HOOD"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"SMCI_2025-11-17","grade":"none","answers":{"s":["s"]},"notes":{"min":"10:06"},"date":"2025-11-17","symbol":"SMCI"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"COIN_2024-06-05","grade":"none","answers":{"s":["no"]},"notes":{},"date":"2024-06-05","symbol":"COIN"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"ARM_2024-11-11","grade":"none","answers":{"s":["s"]},"notes":{"min":"10:12"},"date":"2024-11-11","symbol":"ARM"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"INTC_2025-06-09","grade":"none","answers":{"s":["no"]},"notes":{"why":"looks like an A trade with runner potential"},"date":"2025-06-09","symbol":"INTC"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"MARA_2026-04-20","grade":"none","answers":{"s":["no"]},"notes":{},"date":"2026-04-20","symbol":"MARA"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"UBER_2026-06-08","grade":"none","answers":{"s":["no"]},"notes":{},"date":"2026-06-08","symbol":"UBER"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"QQQ_2024-02-22","grade":"none","answers":{"s":["no"]},"notes":{},"date":"2024-02-22","symbol":"QQQ"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"BABA_2025-08-28","grade":"none","answers":{"s":["s"]},"notes":{"min":"9:44"},"date":"2025-08-28","symbol":"BABA"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"COIN_2026-05-06","grade":"none","answers":{"s":["no"]},"notes":{},"date":"2026-05-06","symbol":"COIN"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"ACHR_2025-03-17","grade":"none","answers":{"s":["no"]},"notes":{},"date":"2025-03-17","symbol":"ACHR"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"BABA_2024-12-12","grade":"none","answers":{"s":["no"]},"notes":{},"date":"2024-12-12","symbol":"BABA"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"CRM_2026-02-11","grade":"none","answers":{"s":["s"]},"notes":{"min":"9:42","why":"as candle forming not lod"},"date":"2026-02-11","symbol":"CRM"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"MSTR_2026-06-01","grade":"none","answers":{"s":["no"]},"notes":{"why":"trade options here, respecting levels"},"date":"2026-06-01","symbol":"MSTR"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"TSM_2026-02-02","grade":"none","answers":{"s":["s"]},"notes":{"min":"9:36"},"date":"2026-02-02","symbol":"TSM"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"MU_2026-01-23","grade":"none","answers":{"s":["no"]},"notes":{},"date":"2026-01-23","symbol":"MU"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"HOOD_2025-07-01","grade":"none","answers":{"s":["no"]},"notes":{},"date":"2025-07-01","symbol":"HOOD"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"MSTR_2025-04-22","grade":"none","answers":{"s":["no"]},"notes":{"why":"runner options"},"date":"2025-04-22","symbol":"MSTR"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"BABA_2025-02-05","grade":"none","answers":{"s":["s"]},"notes":{"min":"9:41"},"date":"2025-02-05","symbol":"BABA"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"INTC_2024-08-30","grade":"none","answers":{"s":["no"]},"notes":{},"date":"2024-08-30","symbol":"INTC"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"MSFT_2025-12-30","grade":"none","answers":{"s":["s"]},"notes":{"min":"9:44","why":"A candle entry wouldve been 9:36, rare s entry after an a"},"date":"2025-12-30","symbol":"MSFT"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"AMZN_2026-03-13","grade":"none","answers":{"s":["no"]},"notes":{},"date":"2026-03-13","symbol":"AMZN"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"PLTR_2024-03-11","grade":"none","answers":{"s":["s"]},"notes":{"min":"9:43"},"date":"2024-03-11","symbol":"PLTR"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"ORCL_2024-09-25","grade":"none","answers":{"s":["no"]},"notes":{},"date":"2024-09-25","symbol":"ORCL"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"PLTR_2025-10-01","grade":"none","answers":{"s":["no"]},"notes":{"why":"runner potential"},"date":"2025-10-01","symbol":"PLTR"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"IWM_2026-05-01","grade":"none","answers":{"s":["s"]},"notes":{"min":"9:43","why":"orl close above clear stop"},"date":"2026-05-01","symbol":"IWM"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"QQQ_2025-09-16","grade":"none","answers":{"s":["s"]},"notes":{"min":"9:36"},"date":"2025-09-16","symbol":"QQQ"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"IREN_2026-03-19","grade":"none","answers":{"s":["no"]},"notes":{},"date":"2026-03-19","symbol":"IREN"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"BABA_2025-04-07","grade":"none","answers":{"s":["s"]},"notes":{"min":"10:10"},"date":"2025-04-07","symbol":"BABA"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"NVDA_2025-04-10","grade":"none","answers":{"s":["no"]},"notes":{},"date":"2025-04-10","symbol":"NVDA"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"ACHR_2026-02-05","grade":"none","answers":{"s":["s"]},"notes":{"min":"9:59"},"date":"2026-02-05","symbol":"ACHR"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"BABA_2024-11-22","grade":"none","answers":{"s":["no"]},"notes":{},"date":"2024-11-22","symbol":"BABA"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"AVGO_2025-05-02","grade":"none","answers":{"s":["s"]},"notes":{"min":"9:42","why":"if we dont hit price target 1, we dont raise the stop to BE, but we need to run stats on with enough movement raising to BE"},"date":"2025-05-02","symbol":"AVGO"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"HOOD_2024-11-06","grade":"none","answers":{"s":["s"]},"notes":{"min":"10:19","why":"as candle forming not HOD"},"date":"2024-11-06","symbol":"HOOD"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"AMZN_2025-06-12","grade":"none","answers":{"s":["no"]},"notes":{"why":"a trade 9:49 with 84 percent rule. candle closes way away from it but as long as get in is reclaim and close to original entry"},"date":"2025-06-12","symbol":"AMZN"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"COIN_2024-04-29","grade":"none","answers":{"s":["no"]},"notes":{},"date":"2024-04-29","symbol":"COIN"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"AVGO_2025-12-23","grade":"none","answers":{"s":["no"]},"notes":{},"date":"2025-12-23","symbol":"AVGO"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"MSTR_2025-08-26","grade":"none","answers":{"s":["s"]},"notes":{"min":"9:38"},"date":"2025-08-26","symbol":"MSTR"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"SOFI_2024-11-07","grade":"none","answers":{"s":["no"]},"notes":{},"date":"2024-11-07","symbol":"SOFI"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"SMCI_2026-02-09","grade":"none","answers":{"s":["no"]},"notes":{},"date":"2026-02-09","symbol":"SMCI"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"ARM_2026-04-29","grade":"none","answers":{"s":["no"]},"notes":{},"date":"2026-04-29","symbol":"ARM"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"IREN_2025-09-25","grade":"none","answers":{"s":["no"]},"notes":{},"date":"2025-09-25","symbol":"IREN"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"IWM_2024-03-27","grade":"none","answers":{"s":["no"]},"notes":{},"date":"2024-03-27","symbol":"IWM"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"PLTR_2025-01-06","grade":"none","answers":{"s":["no"]},"notes":{},"date":"2025-01-06","symbol":"PLTR"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"NFLX_2024-08-05","grade":"none","answers":{"s":["s"]},"notes":{"min":"9:52"},"date":"2024-08-05","symbol":"NFLX"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"AMD_2025-06-23","grade":"none","answers":{"s":["no"]},"notes":{},"date":"2025-06-23","symbol":"AMD"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"PLTR_2024-02-02","grade":"none","answers":{"s":["no"]},"notes":{},"date":"2024-02-02","symbol":"PLTR"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"MSFT_2025-03-13","grade":"none","answers":{"s":["s"]},"notes":{"min":"9:49","why":"as candle forming not lod. a entry few candles earlier"},"date":"2025-03-13","symbol":"MSFT"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"HOOD_2024-07-31","grade":"none","answers":{"s":["no"]},"notes":{"why":"candles are very choppy. interesting this stock is highest performing in backtests"},"date":"2024-07-31","symbol":"HOOD"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"SPCX_2026-06-25","grade":"none","answers":{"s":["s"]},"notes":{"min":"9:48"},"date":"2026-06-25","symbol":"SPCX"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"AVGO_2025-10-10","grade":"none","answers":{"s":["s"]},"notes":{"min":"9:47"},"date":"2025-10-10","symbol":"AVGO"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"AVGO_2024-08-15","grade":"none","answers":{"s":["no"]},"notes":{},"date":"2024-08-15","symbol":"AVGO"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"MSFT_2025-06-04","grade":"none","answers":{"s":["no"]},"notes":{},"date":"2025-06-04","symbol":"MSFT"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"BABA_2026-07-27","grade":"none","answers":{"s":["no"]},"notes":{},"date":"2026-07-27","symbol":"BABA"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"ORCL_2025-08-21","grade":"none","answers":{"s":["no"]},"notes":{},"date":"2025-08-21","symbol":"ORCL"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"NFLX_2026-07-02","grade":"none","answers":{"s":["no"]},"notes":{},"date":"2026-07-02","symbol":"NFLX"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"MU_2025-06-25","grade":"none","answers":{"s":["s"]},"notes":{"min":"9:38"},"date":"2025-06-25","symbol":"MU"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"AMD_2024-10-24","grade":"none","answers":{"s":["no"]},"notes":{},"date":"2024-10-24","symbol":"AMD"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"PLTR_2025-07-01","grade":"none","answers":{"s":["s"]},"notes":{"min":"9:34"},"date":"2025-07-01","symbol":"PLTR"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"AAPL_2025-10-06","grade":"none","answers":{"s":["no"]},"notes":{},"date":"2025-10-06","symbol":"AAPL"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"MSTR_2025-01-14","grade":"none","answers":{"s":["no"]},"notes":{},"date":"2025-01-14","symbol":"MSTR"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"ORCL_2026-07-28","grade":"none","answers":{"s":["no"]},"notes":{},"date":"2026-07-28","symbol":"ORCL"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"ARM_2025-05-01","grade":"none","answers":{"s":["no"]},"notes":{},"date":"2025-05-01","symbol":"ARM"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"INTC_2024-06-13","grade":"none","answers":{"s":["no"]},"notes":{},"date":"2024-06-13","symbol":"INTC"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"NVDA_2025-04-29","grade":"none","answers":{"s":["s"]},"notes":{"min":"9:56"},"date":"2025-04-29","symbol":"NVDA"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"SPY_2024-11-19","grade":"none","answers":{"s":["no"]},"notes":{},"date":"2024-11-19","symbol":"SPY"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"MARA_2026-06-02","grade":"none","answers":{"s":["no"]},"notes":{},"date":"2026-06-02","symbol":"MARA"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"HOOD_2024-07-15","grade":"none","answers":{"s":["no"]},"notes":{},"date":"2024-07-15","symbol":"HOOD"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"RIVN_2025-12-29","grade":"none","answers":{"s":["no"]},"notes":{},"date":"2025-12-29","symbol":"RIVN"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"PLTR_2025-05-08","grade":"none","answers":{"s":["no"]},"notes":{},"date":"2025-05-08","symbol":"PLTR"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"META_2024-05-09","grade":"none","answers":{"s":["no"]},"notes":{},"date":"2024-05-09","symbol":"META"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"QQQ_2025-09-23","grade":"none","answers":{"s":["s"]},"notes":{"min":"9:39"},"date":"2025-09-23","symbol":"QQQ"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"MSTR_2026-03-13","grade":"none","answers":{"s":["s"]},"notes":{"min":"9:41"},"date":"2026-03-13","symbol":"MSTR"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"COIN_2026-07-27","grade":"none","answers":{"s":["no"]},"notes":{},"date":"2026-07-27","symbol":"COIN"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"PLTR_2025-12-11","grade":"none","answers":{"s":["s"]},"notes":{"min":"9:52"},"date":"2025-12-11","symbol":"PLTR"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"GOOGL_2025-10-16","grade":"none","answers":{"s":["no"]},"notes":{},"date":"2025-10-16","symbol":"GOOGL"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"NVDA_2025-01-23","grade":"none","answers":{"s":["no"]},"notes":{},"date":"2025-01-23","symbol":"NVDA"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"COIN_2026-04-07","grade":"none","answers":{"s":["s"]},"notes":{"min":"9:42"},"date":"2026-04-07","symbol":"COIN"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"TSLA_2024-01-29","grade":"none","answers":{"s":["no"]},"notes":{},"date":"2024-01-29","symbol":"TSLA"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"MARA_2025-07-18","grade":"none","answers":{"s":["s"]},"notes":{"min":"9:38"},"date":"2025-07-18","symbol":"MARA"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"TSLA_2025-10-28","grade":"none","answers":{"s":["no"]},"notes":{"why":"lots of entries here"},"date":"2025-10-28","symbol":"TSLA"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"AMZN_2025-09-10","grade":"none","answers":{"s":["s"]},"notes":{"min":"9:38","why":"as candle forming not lod"},"date":"2025-09-10","symbol":"AMZN"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"BABA_2026-06-12","grade":"none","answers":{"s":["s"]},"notes":{"min":"9:39"},"date":"2026-06-12","symbol":"BABA"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"META_2025-02-05","grade":"none","answers":{"s":["no"]},"notes":{"why":"trades here but everextended not respecing red candles  as early as would like"},"date":"2025-02-05","symbol":"META"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"AAPL_2024-11-04","grade":"none","answers":{"s":["no"]},"notes":{},"date":"2024-11-04","symbol":"AAPL"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"PLTR_2024-09-20","grade":"none","answers":{"s":["s"]},"notes":{"min":"9:41"},"date":"2024-09-20","symbol":"PLTR"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"PLTR_2024-06-06","grade":"none","answers":{"s":["no"]},"notes":{},"date":"2024-06-06","symbol":"PLTR"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"AAPL_2025-07-21","grade":"none","answers":{"s":["no"]},"notes":{"why":"lots of early entries here that are a trades to me but early trades migh just be s and forgiven because early trades have great probability"},"date":"2025-07-21","symbol":"AAPL"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"INTC_2024-02-07","grade":"none","answers":{"s":["no"]},"notes":{},"date":"2024-02-07","symbol":"INTC"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"NVDA_2026-05-19","grade":"none","answers":{"s":["no"]},"notes":{},"date":"2026-05-19","symbol":"NVDA"}
+{"type":"probe","probe":"omen-s-accuracy-100","card_id":"MSTR_2026-07-17","grade":"none","answers":{"s":["s"]},"notes":{"min":"9:42"},"date":"2026-07-17","symbol":"MSTR"}
