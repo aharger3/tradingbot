@@ -274,8 +274,11 @@ def find_ocr(bars, i, is_long, lookback=20):
     candles back -- so the lookback is generous on purpose.
     """
     for j in range(i - 1, max(1, i - lookback) - 1, -1):
-        if j + 1 > i:
-            continue
+        # W12, 2026-08-28: a lookahead guard used to sit here, re-checking
+        # that the candidate bar was not the entry bar itself. The loop starts
+        # one bar BEFORE the entry, so the condition it tested could never hold
+        # -- 0 hits in 853,010 evaluations over the 2-year book
+        # (research/w12_dg_probe.py). Dead by construction, removed.
         b = bars[j]
         counter = (not _is_up(b)) if is_long else _is_up(b)
         if not counter:

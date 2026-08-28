@@ -190,10 +190,20 @@ class PriceActionAnalyzer:
         """Grade a potential signal A+ through D (D = skip).
 
         htf_bias ('bullish'/'bearish'/'neutral'/None) gates the top grades:
-        opposed trend = D when HTF_BIAS_VETO=1 (default 0 — P16/W3, the veto
-        has no author, see module docstring); neutral caps at B (A+/A require
-        HTF alignment per fable_rules); None = unknown, grade on PA alone
-        (pre-SPEC0 behavior).
+        opposed trend = D when HTF_BIAS_VETO=1, which is the SHIPPED DEFAULT
+        (see the comment block above the flag at module scope); neutral caps at
+        B (A+/A require HTF alignment per fable_rules); None = unknown, grade on
+        PA alone (pre-SPEC0 behavior).
+
+        W12, 2026-08-28: this docstring used to report the opposite default.
+        The flag has read `os.getenv("HTF_BIAS_VETO", "1")` since it was
+        introduced, and the module comment above it says DEFAULT ON in as many
+        words. The veto is not cosmetic -- 21,257 of the 45,193 signals in the
+        2-year book (47.0%) are HTF-opposed and take this D
+        (research/w12_dg_probe.py, research/g3_arm_ow1.json). Four committed
+        artefacts said OFF; the record was wrong, not the code. The open
+        question (does the veto have an author) is unchanged and still queued as
+        R6 -- what changed is that the file no longer misreports what it ships.
         """
         opposed = (htf_bias in ("bullish", "bearish")
                    and (htf_bias == "bullish") != is_long)

@@ -136,6 +136,18 @@ to size a position on.
 
 ## 5. What changed, and what didn't
 
+> **CORRECTION, W12, 2026-08-28.** The paragraph below says the flag shipped **default
+> OFF**. It did not. `omen_bot.py` has read `os.getenv("HTF_BIAS_VETO", "1")` since the
+> flag was introduced, and the comment block above it says DEFAULT ON in as many words —
+> P16 measured what turning it off would buy and then deliberately did not turn it off.
+> Read every sentence below with the default inverted. The veto is live and it is the
+> single largest gate in the engine: 21,257 of the 45,193 signals in the 2-year book
+> (47.0%) are HTF-opposed and take its `-> TradeGrade.D`
+> (`research/w12_dg_probe.py` over `research/g3_arm_ow1.json`). The open question — that
+> the rule has no author — is unchanged and still queued as R6.
+> `spec0b_levels_check.py`'s "(HTF_BIAS_VETO=0 default)" assertion carries the same error
+> and is unreachable anyway; see `research/w12_bug_sweep.md` #7.
+
 **Changed.** `omen_bot.py`: a new `HTF_BIAS_VETO` env flag, **default OFF**, gates the
 opposed-direction `-> TradeGrade.D` line inside `PriceActionAnalyzer.grade_trade` (the
 legacy grader). Default OFF means an opposed hour no longer skips a signal outright — it
