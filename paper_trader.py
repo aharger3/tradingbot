@@ -5,8 +5,11 @@ simulated options position here. Each scan marks open positions against the
 latest candle and closes them at the stock-side stop or 2R target, logging
 realized P&L to journal/paper-trades.jsonl.
 
-Exit pricing uses the plan's precomputed stop_premium / target_premium (which
-already bake in the delta estimate), so the sim needs no live option quotes.
+Exit pricing uses the plan's precomputed target_premium and, for a stop, the
+triggering close mapped through the plan's own delta (`_stop_fill_premium`,
+floored at -1.25R via `stop_rule.stop_fill_price`) — so the sim needs no live
+option quotes. Until T11 (2026-08-28) a stop booked the plan's `stop_premium`,
+i.e. exactly -1.000R however far the bar had already run past the level.
 
 Rule 6 (Austin 2026-07-10): if RULE6_ENABLED, scale 50% at breakeven (1R) and
 move the runner's stop to entry. The runner continues to the original 2R target.
@@ -26,7 +29,7 @@ from pathlib import Path
 from typing import List, Optional
 
 from options_sizer import OptionsPlan
-from stop_rule import stop_hit_on_close
+from stop_rule import stop_hit_on_close, stop_fill_price
 
 
 # ---- Rule 6: Position Management ----
@@ -78,16 +81,47 @@ class PaperPosition:
     runner_stop: float = 0.0      # stop for the runner after BE taken (raised to entry)
     be_taken: bool = False        # whether breakeven scale already fired
 
+    def _stop_fill_premium(self, close: float) -> float:
+        """T11. The premium a close-triggered stop books, floored at -1.25R.
+
+        The bar closed beyond the stop, so the position is out at market on that
+        close — not at the plan's precomputed `stop_premium`, which is exactly
+        -1.000R by construction and is what made the -1.25R floor unreachable in
+        every rig (research/x2_stop_floor_audit.md; on the archived tape 96.6% of
+        stop-outs were triggered by a bar that had already closed past 1R).
+
+        The stock-side fill comes from the ONE shared clamp,
+        `stop_rule.stop_fill_price`, anchored on the ORIGINAL entry and the
+        ORIGINAL `abs(stock_entry - stock_stop)` — so a runner whose stop was
+        raised to break-even still floors at -1.25R of the whole trade, not of
+        some re-based fraction.
+
+        That stock price becomes a premium through the plan's OWN delta map: the
+        plan already priced `stock_stop` at `stop_premium`, so
+        `premium_risk / stock_risk` is the delta it was built with and reusing it
+        keeps the sim consistent with the sizer instead of inventing a second
+        one. Linear, which is what `options_sizer` assumes; there is no options
+        tape in this repo to do better. Clamped at $0.05 for the same reason
+        `options_sizer.py:227` clamps `stop_premium` there — a long option's loss
+        is bounded by its premium, so this can only ever make a fill less bad.
+        """
+        srisk = abs(self.stock_entry - self.stock_stop)
+        prem_risk = self.entry_premium - self.stop_premium
+        if srisk <= 0 or prem_risk <= 0:
+            return self.stop_premium
+        long = self.direction == "call"
+        fill = stop_fill_price(close, self.stock_entry, srisk, long)
+        moved = (self.stock_entry - fill) if long else (fill - self.stock_entry)
+        return max(self.entry_premium - moved / srisk * prem_risk, 0.05)
+
     def _check_stop(self, close: float) -> Optional[tuple]:
         """Check if stop was hit. Returns (exit_premium, outcome) or None.
 
-        The CLOSE is the trigger — a wick through the level stops nothing out.
-        The fill is unchanged: the stop order still rests at the level, so the
-        exit is the plan's precomputed `stop_premium`, i.e. exactly 1R, which is
-        why there is no -1.25R floor to apply on the premium side here.
+        The CLOSE is the trigger — a wick through the level stops nothing out —
+        and since T11 it is the FILL as well, via `_stop_fill_premium` above.
         """
         if stop_hit_on_close(close, self.stock_stop, self.direction == "call"):
-            return self.stop_premium, "stop"
+            return self._stop_fill_premium(close), "stop"
         return None
 
     def _check_target(self, high: float, low: float) -> Optional[tuple]:
@@ -151,7 +185,13 @@ class PaperPosition:
             # runner through the same `_stop_hit`.
             long = self.direction == "call"
             if stop_hit_on_close(close, self.runner_stop, long):
-                return self.stop_premium, "stop"
+                # X2 found this returning `stop_premium` — a full 1R loss booked
+                # on a stop resting at break-even, 0R away. T11 replaces X2's
+                # `entry_premium` (right for a close exactly AT break-even, still
+                # a resting-order fill for any close past it) with the one shared
+                # convention: out at market on this close, floored at -1.25R of
+                # the ORIGINAL risk. At close == stock_entry the two agree.
+                return self._stop_fill_premium(close), "stop"
             if (high >= self.stock_target) if long else (low <= self.stock_target):
                 return self.target_premium, "target"
             return None
@@ -363,10 +403,21 @@ if __name__ == "__main__":
     book.open_from_plan(put_plan, ts="10:00:00")
     # wick above the 852.5 stop, close back below it -> still open
     assert book.mark("NVDA", high=853.0, low=849.0, close=850.2, ts="10:05:00") == []
-    # closes above the stop -> stopped out, filled at the stop premium
+    # closes above the stop -> stopped out, filled at THAT CLOSE (T11), not at
+    # the plan's stop premium. 852.90 is 2.90 above the 850.00 entry on a 2.50
+    # stock risk = 1.16R, inside the -1.25R floor, so the premium is
+    # 3.00 - 1.16*0.50 = 2.42 and the loss is -1.16R, not a flat -1.00R.
     closed = book.mark("NVDA", high=853.0, low=849.0, close=852.9, ts="10:06:00")
     assert len(closed) == 1 and closed[0]["outcome"] == "stop", closed
-    assert closed[0]["pnl"] == round((2.50 - 3.00) * 100 * 4, 2), closed
+    assert abs(closed[0]["exit_premium"] - 2.42) < 1e-9, closed
+    assert closed[0]["pnl"] == round((2.42 - 3.00) * 100 * 4, 2), closed
+    # and the floor really is live on this path: a close 2R past the stop books
+    # -1.25R, not -2R.
+    book3 = PaperBook(ledger_path=Path(tempfile.mkdtemp()) / "pt3.jsonl")
+    book3.open_from_plan(put_plan, ts="10:00:00")
+    far = book3.mark("NVDA", high=856.0, low=849.0, close=855.0, ts="10:06:00")
+    assert len(far) == 1 and far[0]["outcome"] == "stop", far
+    assert abs(far[0]["pnl"] / put_plan.max_loss + 1.25) < 1e-9, far
 
     print("paper_trader self-test passed")
     print(book.summary())

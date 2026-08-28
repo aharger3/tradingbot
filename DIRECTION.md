@@ -17,7 +17,7 @@ OMEN closes when all three are true at once, on one fixed measurement rig:
 | gate | target | where we stand (2026-08-26, 2-year replay, 1,016 traded signals) |
 |---|---|---|
 | **Recall** | fires on ≥90% of Austin's **S-grade** days it has never seen | **17.9%** with today's grader; 42.9% with `research/downgrade.py` (t66) |
-| **Money** | ≥55% win rate, mean R ≥ 2.0 | **53.2% / +0.957R** |
+| **Money** | ≥55% win rate, mean R ≥ 2.0 | **52.8% / +0.834R** (was 52.9% / +0.955R before the 2026-08-28 stop-fill fix) |
 | **Durability** | every month green, every slice | **23 of 25 months** green |
 
 Recall is the wound. Money is half-paid. Durability is nearly there.
@@ -69,8 +69,15 @@ This is the single most confusing thing in the codebase and it has cost real tim
 Beyond `CLAUDE.md`'s "never lose a mark":
 
 1. **Stops trigger on the candle CLOSE**, fill at that close, floored at **−1.25R**.
-   Wicks stop nothing. Verified in the 2-year replay: worst traded outcome is −1.000R,
-   so the floor never binds today — it exists for the slippage case.
+   Wicks stop nothing. **The claim that used to sit here — "worst traded outcome is
+   −1.000R, so the floor never binds" — was true of the file and circular as
+   evidence.** `backtest_week.py` triggered on the close and then filled at `t.stop`,
+   which is −1.000R by construction, so the floor was unreachable code. 458 of the
+   book's 474 stop-outs (96.6%) had already closed past 1R
+   (`research/x2_stop_floor_audit.md`). Fixed 2026-08-28 by
+   `stop_rule.stop_fill_price`, the one fill definition every rig now routes through
+   (`research/t11_stop_fill_fix.md`): the floor clamps 303 of 475 traded losses and
+   the book means −0.1210 R less.
 2. **One tolerance unit**: 25% of the previous candle's range (`BAR_EXTREME_FRAC`).
 3. **R is the result; dollars are a sizing skin.** 1R = $1,000, instrument is options.
 4. **`universe.py` is the only place a symbol list may live.** A test fails the build if

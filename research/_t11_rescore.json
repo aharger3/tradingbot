@@ -1,0 +1,59 @@
+{
+ "before": {
+  "label": "before (fill at t.stop)",
+  "n_signals": 45193,
+  "n_traded": 1017,
+  "mean_r": 0.9551396263520155,
+  "total_r": 971.3769999999998,
+  "win_rate": 52.90068829891839,
+  "n_win": 538,
+  "n_loss": 474,
+  "n_scratch": 5,
+  "months_green": 23,
+  "months": 25,
+  "max_dd": 11.437999999999988,
+  "max_dd_trades": 17,
+  "streak": 7,
+  "min_r": -1.0,
+  "n_worse_than_1r": 0,
+  "n_worse_than_125r": 0,
+  "n_exactly_1r": 474,
+  "floor_binds": 0,
+  "floor_binds_traded": 0,
+  "distinct_neg": [
+   -1.0
+  ],
+  "n_distinct_neg": 1
+ },
+ "after": {
+  "label": "after (close fill, -1.25R floor)",
+  "n_signals": 45193,
+  "n_traded": 1017,
+  "mean_r": 0.8341445427728619,
+  "total_r": 848.3250000000005,
+  "win_rate": 52.8023598820059,
+  "n_win": 537,
+  "n_loss": 475,
+  "n_scratch": 5,
+  "months_green": 23,
+  "months": 25,
+  "max_dd": 14.936000000000035,
+  "max_dd_trades": 26,
+  "streak": 7,
+  "min_r": -1.25,
+  "n_worse_than_1r": 460,
+  "n_worse_than_125r": 0,
+  "n_exactly_1r": 14,
+  "floor_binds": 22457,
+  "floor_binds_traded": 303,
+  "distinct_neg": [
+   -1.25,
+   -1.24,
+   -1.238,
+   -1.236,
+   -1.235,
+   -1.224
+  ],
+  "n_distinct_neg": 120
+ }
+}

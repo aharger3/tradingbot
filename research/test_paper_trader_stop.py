@@ -46,7 +46,9 @@ import stop_rule                                             # noqa: E402
 from options_sizer import OptionsPlan                         # noqa: E402
 from paper_trader import PaperBook                            # noqa: E402
 
-MAX_LOSS_R = 1.25
+import stop_rule                                              # noqa: E402
+
+MAX_LOSS_R = stop_rule.MAX_LOSS_R      # 1.25, and it must not fork
 EPS = 1e-9
 
 # A call: entry 440.00, stop 439.30 (risk 0.70), target 441.40.
@@ -136,21 +138,35 @@ def check_cases(failures, rows):
                 f"stop={plan.stock_stop})")
             continue
         if got == "stop":
-            # 5. the -1.25R floor. paper_trader exits a stop at the plan's
-            #    precomputed stop_premium, so the loss is exactly the plan's
-            #    max_loss (1R) however far the close overshot -- there is no
-            #    overshoot term on the premium side to floor. Asserted as a
-            #    property so that stays true if one is ever added.
+            # 5. the -1.25R floor. T11 (2026-08-28): the fill is the triggering
+            #    CLOSE mapped through the plan's own delta, floored at -1.25R --
+            #    it is no longer the plan's precomputed stop_premium, which was
+            #    exactly -1.000R however far the bar had already run past the
+            #    level. So the floor now BINDS on the premium side; assert both
+            #    that it holds and that the fill is the close, not the level.
             pnl = evs[0]["pnl"]
             if pnl < -MAX_LOSS_R * plan.max_loss - EPS:
                 failures.append(
                     f"  {name}: booked ${pnl:.2f} on a 1R of ${plan.max_loss:.2f} "
                     f"= {pnl / plan.max_loss:+.2f}R, floor is -{MAX_LOSS_R:.2f}R")
-            if evs[0]["exit_premium"] != plan.stop_premium:
+            long = plan.direction == "call"
+            srisk = abs(plan.stock_entry - plan.stock_stop)
+            prem_risk = plan.entry_premium - plan.stop_premium
+            fill_stock = stop_rule.stop_fill_price(
+                close, plan.stock_entry, srisk, long)
+            moved = ((plan.stock_entry - fill_stock) if long
+                     else (fill_stock - plan.stock_entry))
+            want_prem = max(plan.entry_premium - moved / srisk * prem_risk, 0.05)
+            if abs(evs[0]["exit_premium"] - want_prem) > 1e-6:
                 failures.append(
-                    f"  {name}: filled at {evs[0]['exit_premium']}, the stop "
-                    f"premium is {plan.stop_premium} -- the trigger moved to "
-                    f"the close but the FILL stays at the stop level")
+                    f"  {name}: filled at {evs[0]['exit_premium']}, expected "
+                    f"{want_prem:.4f} -- the close ({close}) mapped through the "
+                    f"plan's delta and floored at -{MAX_LOSS_R:.2f}R")
+            if evs[0]["exit_premium"] > plan.stop_premium + 1e-9:
+                failures.append(
+                    f"  {name}: filled at {evs[0]['exit_premium']}, BETTER than "
+                    f"the stop premium {plan.stop_premium} on a bar that closed "
+                    f"beyond the stop -- the close fill can only be worse")
         if not evs and book.open_positions == []:
             failures.append(f"  {name}: position vanished without an event")
 

@@ -28,7 +28,7 @@ except ModuleNotFoundError:   # data_archive replay the research rows run on.
 
 from omen_bot import Candle, SignalType, TradeGrade
 from signal_runner import SignalRunner
-from stop_rule import stop_hit_on_close, stop_hit_on_wick
+from stop_rule import stop_hit_on_close, stop_hit_on_wick, stop_fill_price
 
 # Austin's watchlist 2026-07-11: all stocks with ~200k+ daily options volume
 # (his rule — high options volume = cleaner moves, easier fills). SPY/QQQ stay
@@ -286,6 +286,34 @@ def _stop_hit(c: Candle, level: float, long: bool) -> bool:
     return _wick_hit(c, level, long)
 
 
+def _stop_fill_px(t: "SimTrade", c: Candle, long: bool) -> float:
+    """T11. The price a close-triggered stop BOOKS on bar ``c``.
+
+    The trigger is `_stop_hit` above; this is the other half of the same rule.
+    You are out at market once the bar closes beyond the stop, so the fill is
+    that close, floored at -1.25R of the trade's ORIGINAL risk
+    (`stop_rule.stop_fill_price`, shared with `research/exit_lab` and the live
+    `paper_trader`).
+
+    Until 2026-08-28 all three exit sites here filled at `t.stop` instead, which
+    is -1.000R by construction. `research/x2_stop_floor_audit.md` measured the
+    consequence on the shipped book: 458 of 474 stop-outs (96.6%) were triggered
+    by a candle that had ALREADY closed past 1R -- median -1.35R, worst -4.36R --
+    and every one was booked as exactly -1.000R, which is why the -1.25R floor
+    never bound on any of 45,193 rows. Austin, 2026-08-28: "fix stop out 1.25 max
+    slippage this needs to be fixed now."
+
+    ``entry`` and ``abs(entry - stop)`` are always the trade's ORIGINAL pair,
+    never the moved runner stop -- the floor is -1.25R of the whole trade, not
+    -1.25R measured off whichever stop happened to fire. Under STOP_ON_CLOSE=0
+    (the retired wick trigger, kept only so t4_stop_on_close's A/B reproduces)
+    there is no close to fill at, so the old `t.stop` fill stands.
+    """
+    if not STOP_ON_CLOSE:
+        return t.stop
+    return stop_fill_price(c.close, t.entry, abs(t.entry - t.stop), long)
+
+
 # P7/G1: the arm-gate funnel, counted in-process. Pure bookkeeping — reading or
 # ignoring it changes nothing. research/p7_84_rule.py resets it and prints it.
 ARM84_FUNNEL: Counter = Counter()
@@ -413,7 +441,7 @@ def _ladder_bar(t: "SimTrade", c: Candle, i: int, open_trades: list,
         # tags the scale level and closes beyond the stop already books the full
         # loss with no partial credit — pessimistic here without a flag.
         if _stop_hit(c, t.stop, long):
-            t.outcome, t.exit_price, t.exit_idx = "loss", t.stop, i
+            t.outcome, t.exit_price, t.exit_idx = "loss", _stop_fill_px(t, c, long), i
             open_trades.remove(t)
             _arm_84(t, runner, c)  # full stop-out arms 84%, scaled trades never do
             return
@@ -425,10 +453,18 @@ def _ladder_bar(t: "SimTrade", c: Candle, i: int, open_trades: list,
     stop_lv = t.runner_stop if (SCALE_PLAN == "hod_then_runner_be" and t.runner_stop) else t.stop
     hit_target = (c.high >= t.runner_target) if long else (c.low <= t.runner_target)
     if _stop_hit(c, stop_lv, long):     # T4(a): close-based on the runner too
-        # omen-5.1 T2: the runner rung's same-bar tie. A bar that tagged the
-        # runner target and STILL closed beyond the stop books at the trade's
-        # ORIGINAL stop, not the breakeven stop mode B moved it to.
-        t.exit_price = t.stop if (PESSIMISTIC_FILL and hit_target) else stop_lv
+        # T11: the fill is this bar's CLOSE, floored at -1.25R of the ORIGINAL
+        # risk -- so a runner whose stop had been raised to break-even can still
+        # book a real loss, which is the whole point of the floor.
+        fill = _stop_fill_px(t, c, long)
+        if PESSIMISTIC_FILL and hit_target:
+            # omen-5.1 T2 survives on top of it: a bar that tagged the runner
+            # target and STILL closed beyond the stop books no BETTER than the
+            # trade's ORIGINAL stop, never the breakeven stop mode B moved it
+            # to. `t.stop` is -1.000R, comfortably inside the floor, so taking
+            # the worse of the two can never breach it.
+            fill = min(fill, t.stop) if long else max(fill, t.stop)
+        t.exit_price = fill
         t.exit_idx = i
     elif hit_target:
         t.exit_price, t.exit_idx = t.runner_target, i
@@ -608,7 +644,9 @@ def simulate_day(symbol: str, day_iso: str, candles: List[Candle],
             stopped = _stop_hit(c, lv, t.direction == "call")
             targeted = c.high >= t.target if t.direction == "call" else c.low <= t.target
             if stopped:  # both in one bar -> conservative: loss
-                t.outcome, t.exit_price, t.exit_idx = "loss", t.stop, i
+                # T11: fill at the triggering close, floored at -1.25R.
+                t.outcome, t.exit_price, t.exit_idx = (
+                    "loss", _stop_fill_px(t, c, t.direction == "call"), i)
                 open_trades.remove(t)
                 # Lesson 6 canonical: arm only off solid B&R stop-outs (Scarface:
                 # "can't be a one-minute order block with nothing else"). Shared

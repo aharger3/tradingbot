@@ -52,7 +52,11 @@ ATR_WINDOW = 14
 # The CLOSE is the trigger, the fill is that close, and the loss floors at
 # -1.25R. Settled 2026-08-11 and marked never-re-elicit; backtest_week.py:245
 # has always obeyed it and this module never did (OMEN 6 ticket 17).
-MAX_LOSS_R = 1.25
+from stop_rule import MAX_LOSS_R, stop_fill_price  # noqa: F401  (re-exported)
+
+# MAX_LOSS_R = 1.25, Austin's stated worst case. Defined in stop_rule.py so the
+# backtest, the live path and this module cannot fork it; re-exported here
+# because ~15 research rigs already read `exit_lab.MAX_LOSS_R`.
 
 # OPEN, deliberately shipped at 0. The 2026-08-23 Q&A settled "25% of the
 # previous candle's range" as one tolerance unit and listed stop slippage as one
@@ -176,11 +180,15 @@ def _stop_fill(bars, i, entry, stop, side, risk):
     This is where the left tail comes from. Filling at the stop price instead
     (what this module did before) is the same optimism that left the 03 baseline
     with 32 of 40 slices sitting at exactly -0.30R and no distribution at all.
+
+    T11: the clamp itself now lives in ``stop_rule.stop_fill_price`` so that
+    ``backtest_week`` and the live ``paper_trader`` book the identical fill --
+    they used to fill at the stop price and this module was the only rig in the
+    repo obeying the rule. ``stop`` stays in the signature and stays unread: the
+    floor is -1.25R of the WHOLE trade from ``entry``, not a slippage allowance
+    measured off whichever stop fired (research/x2_stop_floor_audit.md 3.2).
     """
-    close = bars[i]["c"]
-    if side == "L":
-        return max(close, entry - MAX_LOSS_R * risk)
-    return min(close, entry + MAX_LOSS_R * risk)
+    return stop_fill_price(bars[i]["c"], entry, risk, side == "L")
 
 
 # ---------------------------------------------------------------------------

@@ -145,9 +145,13 @@ print("\nshipped default")
 check(os.getenv("ENTRY_SCRATCH") is not None or bw.ENTRY_SCRATCH == "",
       "ENTRY_SCRATCH is OFF unless the env var asks for it")
 t = only(run(long_day(BAND["thru_stop"]), mode="")[0])
-check(t.outcome == "loss" and abs(t.pnl / 1000 + 1.0) < EPS,
-      "OFF: the close-back bar is a -1.00R stop-out, unchanged (%s %.3fR)"
-      % (t.outcome, t.pnl / 1000))
+# T11 (2026-08-28): that bar closes 1.8R below entry, so the stop-out books its
+# own close floored at -1.25R, not the flat -1.00R the old fill-at-the-level
+# convention produced. What this check owns is that ENTRY_SCRATCH OFF still
+# takes the ordinary stop-out path -- see research/t11_stop_fill_fix.md.
+check(t.outcome == "loss" and abs(t.pnl / 1000 + 1.25) < EPS,
+      "OFF: the close-back bar is an ordinary stop-out, floored at -1.25R "
+      "(%s %.3fR)" % (t.outcome, t.pnl / 1000))
 
 # --------------------------------------------- 3. ON, the band that moves money
 
@@ -185,9 +189,20 @@ finally:
     bw._arm_84 = real_arm
 check(on.outcome == "scratch" and off.outcome == "loss",
       "loss -> scratch (%s -> %s)" % (off.outcome, on.outcome))
-check(abs(on.exit_price - on.stop) < EPS and abs(on.pnl - off.pnl) < EPS,
-      "never worse than the stop-out it replaced — his stop order still fills "
-      "at the level (%+.3fR both ways)" % (on.pnl / 1000))
+check(abs(on.exit_price - on.stop) < EPS and on.pnl >= off.pnl - EPS,
+      "never worse than the stop-out it replaced — the scratch is clamped to "
+      "the level (%+.3fR) while T11 books the stop-out at its own close "
+      "(%+.3fR)" % (on.pnl / 1000, off.pnl / 1000))
+# T11 made these two diverge, and that is the point: before 2026-08-28 the
+# stop-out ALSO filled at the level, so scratch and stop-out were the same
+# number and the ENTRY_SCRATCH flag could only move a label. Now the scratch is
+# genuinely worth more. `_entry_scratch`'s own `max(c.close, t.stop)` clamp is
+# deliberately left alone -- Austin's clause-2 scratch is a live fill
+# correction, not a stop, so it keeps the resting-order price.
+check(on.pnl > off.pnl,
+      "and on this bar it is strictly better: the scratch clamps at the level, "
+      "the stop-out books its close (%+.3fR vs %+.3fR)"
+      % (on.pnl / 1000, off.pnl / 1000))
 check(n_off == 1 and n_on == 0,
       "'no 84 percent': the stop-out arms it, the scratch does not (%d -> %d)"
       % (n_off, n_on))

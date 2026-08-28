@@ -356,14 +356,14 @@ def _attribute(events: list) -> None:
 def _price_alone_bucket(events: list) -> None:
     """For the largest kill-alone bucket, replays each rescued arming forward
     from its alone-bar to a real exit -- stop on the CLOSE, target on touch,
-    same as backtest_week's own position management (`_stop_hit`, `fill_price`,
-    `SimTrade.pnl`) -- and records the R it would have earned. Re-fetches only
+    same as backtest_week's own position management (`_stop_hit`, `_stop_fill_px`,
+    `fill_price`, `SimTrade.pnl`) -- and records the R it would have earned. Re-fetches only
     the handful of (symbol, day) pairs this bucket touches, from the same
     cache-first archive the replay already populated, so this is a couple of
     dozen local disk reads, not a second engine replay."""
     import polygon_feed as pf
     import signal_runner as sr
-    from backtest_week import SimTrade, RISK_DOLLARS, _stop_hit
+    from backtest_week import SimTrade, RISK_DOLLARS, _stop_hit, _stop_fill_px
 
     alone_dead = [ev for ev in events if ev.get("alone")]
     if not alone_dead:
@@ -395,7 +395,10 @@ def _price_alone_bucket(events: list) -> None:
         for i in range(i0 + 1, len(rth)):
             c = rth[i]
             if _stop_hit(c, stop, is_long):
-                t.outcome, t.exit_price, t.exit_idx = "loss", stop, i
+                # T11: fill at the triggering close, floored at -1.25R --
+                # `backtest_week._stop_fill_px`, the same one the book uses.
+                t.outcome, t.exit_price, t.exit_idx = (
+                    "loss", _stop_fill_px(t, c, is_long), i)
                 resolved = True
                 break
             hit = (c.high >= target) if is_long else (c.low <= target)
