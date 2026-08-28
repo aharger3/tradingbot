@@ -91,6 +91,14 @@ research/decks/**/*.html
 !research/probes/*.html
 !research/decks/*-manifest.jsonl
 
+# W4's candidate list: symbol-days nominated for grading, mined out of Austin's
+# own Discord messages, the Circle "A+ Setups" space and the YouTube scrape.
+# It holds NO grade and is NOT a mark corpus -- so it is deliberately absent from
+# build_deck.LEGACY_MARK_FILES, which would otherwise mark these days as already
+# judged and block the very cards W4 exists to produce. Tracked because
+# research/w4_recall_sources.md cites it row by row.
+!research/w4_candidate_days.jsonl
+
 # Austin's TradeZella export: 350 hand-logged trades with entry, size, risk and
 # realised R:R. NOT regenerable -- `data/` above is the 908 MB price cache and it
 # swallowed this file once already (added at ce2a98d6, then silently lost; W6 had

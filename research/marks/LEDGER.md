@@ -282,3 +282,75 @@ QQQ 2026-07-24 each appear as both a `cal_` and an `au_` card. `build_deck.marke
 guards against re-asking a day judged in a *previous* corpus; it does not deduplicate
 across the sections of a document being built. Austin noticed before we did. Tracked as
 G12; until it is fixed, every multi-section instrument can repeat itself.
+
+---
+
+## W4 source sweep, 2026-08-28 — no new mark corpus, and that is the finding
+
+Answers `Specs/omen6-h2-master-spec.md` §3 W4. Searched in Austin's own order:
+Corpus first, then Discord / Circle / YouTube. Script: `research/w4_recall_sources.py`
+(`--selfcheck` green). Report: `research/w4_recall_sources.md`.
+
+**No file in this sweep holds a human judgement, so no file from it belongs in
+`build_deck.LEGACY_MARK_FILES`.** That is deliberate and it is the opposite of an
+oversight — see below.
+
+### Corpus: zero Austin S-marks
+
+All 138 `research/corpus_*` artifacts were profiled by schema, by
+`speaker`/`author`/`class`/`source`, and by grep for any field named `grade`, `tier`,
+`verdict`, `mark`, `austin`, `rating`, `score`, `quality`.
+
+- `speaker` is **Scarface/jdub 2,453 · Hayden 417 · Mar 130**. Not Austin.
+- `corpus_instances.jsonl` (10,379 rows) holds **exactly 1** Austin-authored row — a
+  `trading-floor` message at `minute_i` 228 (13:53 ET), outside the trading window.
+- `corpus_entries*` / `corpus_frames` are model extractions (`model: qwen3.5:4b`).
+- The only corpus files with a `grade` field are the twelve `corpus_engine_*.jsonl`,
+  already excluded by name in the "Excluded as engine-produced" list above.
+
+Written up for the source-mining agent in `research/W4-HANDOFF.md`, which that agent
+deletes once read.
+
+### What WAS found: `research/w4_candidate_days.jsonl` — 198 nominations, no grades
+
+198 symbol-days worth putting in front of him, deduplicated against every existing mark
+corpus with `build_deck.marked_card_ids()` (758 judged symbol-days; 10 candidates
+dropped as already judged, 14 dropped for having no archived bars). Three provenance
+classes, kept separate and never merged upward:
+
+| class | days | what it is |
+|---|---:|---|
+| `austin_said` | 62 | Austin's OWN Discord message names the symbol on that session. A nomination made in real time, with no hindsight. **Not a grade.** |
+| `third_party` | 110 | Scarface (`TonyMontana`), Jdub, or a Circle "A+ Setups" member called it their best / an A+ setup. **Somebody else's ladder** — never let one enter a mark file as an Austin S. |
+| `model_inferred` | 26 | a local model read ticker + session date off a YouTube chart frame. |
+
+Author matching is **exact**: `Austin`, not a prefix. The scrape also carries
+`AustinPowers`, `AustinSD`, `Austin_9910` and `Rob from Austin` — four different
+community members. Prefix matching would have merged five people into one corpus.
+
+Corpus never mined the channels where Austin himself posts:
+`post-your-gains` (43 nominations) and `questions` are absent from
+`corpus_instances.md`'s channel list entirely.
+
+### Why this file is NOT in `LEGACY_MARK_FILES`
+
+`LEGACY_MARK_FILES` feeds `marked_card_ids()`, the deck's no-repeat guarantee: every
+symbol-day it names is treated as **already judged** and refused a card. Adding an
+ungraded candidate list would permanently block the exact days W4 exists to get graded.
+`CLAUDE.md`'s rule binds files holding a human judgement; this one holds none, asserted
+by a selfcheck that fails if any row grows a `grade` or `tier` key.
+
+`.gitignore` line 40 (`research/*.jsonl`) would have swallowed it. An explicit
+`!research/w4_candidate_days.jsonl` un-ignore was added in the same commit and
+`git status` was checked by eye — it stages as `A`.
+
+**The moment any of these 198 days comes back with a grade on it, the resulting file IS
+a mark corpus** and every rule in this ledger applies: verify it staged, add it to
+`LEGACY_MARK_FILES` in the same commit, and add an entry here.
+
+### Unclaimed, and cheap
+
+This ledger already counts **47 S-tier symbol-days that exist only in
+`recovered_reviews.jsonl`'s unmatched 135**, excluded for having no bar index and no
+verified alignment. They are real Austin S judgements. Re-aligning them needs zero new
+grading and is the highest-value S-recall job in the repo that nobody has taken.
