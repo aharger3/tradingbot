@@ -1,0 +1,29 @@
+{
+ "traded_rows": 1017,
+ "skipped": 0,
+ "pass": 285,
+ "fail": 732,
+ "failed_mean_r": 1.0861,
+ "failed_median_r": 0.6075,
+ "passed_mean_r": 0.6188,
+ "passed_median_r": 0.549,
+ "by_new_ladder_grade": {
+  "A": {
+   "pass": 69,
+   "fail": 182
+  },
+  "C": {
+   "pass": 84,
+   "fail": 247
+  },
+  "S": {
+   "pass": 41,
+   "fail": 87
+  },
+  "X": {
+   "pass": 91,
+   "fail": 216
+  }
+ },
+ "STOP_RANGE_MULT": 0.75
+}
