@@ -424,6 +424,117 @@ ENABLE_DOWNGRADE_GRADER = os.getenv(
 # (`if grade.value in ("A+", "A")`) sees a tier the shipped grader never makes.
 DOWNGRADE_TIER = {"S": "A+", "A": "B", "C": "C"}
 
+# --- W1: the grade remap. KILL B. -------------------------------------------
+#
+# Austin, 2026-08-28:
+#   "B is not supposed to be a trade. We changed it to A and C. S and A and C."
+#   "S A C grades are kept, A one downgrade, C two downgrades, revisit B trades
+#    and mold them into those grades or 'x' kill them."
+#
+# What is being removed: `_calibration_grade` floors a `C` up to `B` when the
+# signal is the FIRST with-trend signal of the day, and 968 of the 1,016 traded
+# signals are `B` only because of that floor (research/g4_dropped_s.md).
+# The engine trades on grade, so ARRIVAL ORDER -- not the setup -- selects 95.3%
+# of the book today.
+#
+# What replaces it: the final grade is Austin's ladder off the eight downgrade
+# variables (research/downgrade.py), read as the NET count after the confluence
+# +1, and it is the LAST word rather than a floor on top of another grader:
+#
+#     0 downgrades -> S   1 -> A   2 -> C   3 or more -> X (not tradeable)
+#
+# NOTE, and it is a real conflict this flag resolves in the spec's favour:
+# `downgrade.score()` FLOORS at C (Austin, 2026-08-24, asked what happens at
+# three or more). The 2026-08-28 ladder above kills the 3+ bucket instead. This
+# flag implements 2026-08-28 -- the later answer, and the one
+# `Specs/omen6-h2-master-spec.md` section 1.2 makes the contract -- by reading
+# `score()["net"]` rather than `score()["grade"]`, so the floor is not applied.
+#
+# OFF BY DEFAULT, and that is not a placeholder. Flipping it changes what
+# trades, which is Austin's call, and re-freezing the engine VOIDS the forward
+# book (research/omen6_forward.py). A/B it with ENABLE_SAC_LADDER=1;
+# research/w1_sac_ladder_ab.py prices both arms and
+# research/test_sac_ladder.py asserts the routing.
+ENABLE_SAC_LADDER = os.getenv(
+    "ENABLE_SAC_LADDER", "0").strip().lower() in ("1", "true", "yes", "on")
+
+# ...and the HALF of W1 that survived contact with Austin's own verdicts.
+#
+# On 2026-08-28 he graded 59 of these `B`-only signals himself
+# (research/marks/deck_marks_h2_3lane_2026-08-28.jsonl). Scored against the
+# count ladder above, agreement is 26/59 = 44.1% -- WORSE than always guessing
+# `X`, which scores 52.5% on the same rows. His S grades came at 2 and 3
+# downgrades and never at 0. And he TRADES 28 of the 59, five of them `S`: `B` is
+# not garbage. The ladder is a hypothesis that has been tested and failed.
+#
+# What did NOT fail is the reason the ticket exists: arrival order should not
+# select the book. This flag removes the first-with-trend `B` floor and does
+# NOTHING else -- a `C` that would have been floored to `B` stays a `C`, and
+# faces the tight-stop gate every `C` faces. It is the arm to read first.
+#
+# OFF BY DEFAULT. `ENABLE_SAC_LADDER` implies it, since the ladder overwrites the
+# grade anyway. research/w1_sac_ladder_ab.py prices both.
+ENABLE_KILL_B_FLOOR = os.getenv(
+    "ENABLE_KILL_B_FLOOR", "0").strip().lower() in ("1", "true", "yes", "on")
+
+# ...and WHICH signals the ladder is allowed to regrade. This second switch
+# exists because without it W1 silently becomes two changes at once.
+#
+# At HEAD, 42,937 of the 45,193 signals in the 2-year book are already `X` --
+# `omen_bot.PriceActionAnalyzer._grade_pa` vetoed them on candle SHAPE, and they
+# reach `_route` only to be skipped. A ladder that overwrites EVERY grade
+# resurrects that whole pool, which is not "kill B": it is R3's grader swap
+# (`ENABLE_DOWNGRADE_GRADER`, already measured) wearing W1's name.
+#
+# OFF (the default, and the W1 arm): a signal the incumbent chain already graded
+# `X` stays `X`. The ladder regrades what was tradeable -- exactly Austin's
+# "revisit B trades and mold them into those grades or 'x' kill them" -- so the
+# book can only shrink.
+# ON: the ladder regrades everything, including the `_grade_pa` vetoes. Reported
+# as a SECOND arm so the two levers are never added together unlabelled.
+SAC_LADDER_REGRADE_ALL = os.getenv(
+    "SAC_LADDER_REGRADE_ALL", "0").strip().lower() in ("1", "true", "yes", "on")
+
+# ...and WHICH variables the ladder counts. A ladder is only as good as the
+# variables under it, and `research/w9_downgrade_signs.md` (2026-08-28) re-signed
+# all eight on this very book:
+#
+#   `level_not_respected` is WRONG-SIGNED and fires on 62.7% of the book --
+#   tripped +1.0046R (n=640) against clean +0.8711R (n=377), so it marks BETTER
+#   trades worse. `break_then_rejection` never trips on a traded row at all.
+#   The other six are right-signed, and the OFF-by-default `sequence_gate`
+#   (ballot b2) is right-signed and strong: -0.3216R.
+#
+# The naive fix does not work, which is why this is a named set and not a
+# deletion. W9 simulated the ladder three ways: dropping `level_not_respected`
+# and keeping the other seven is the ONLY set that is NOT monotonic on median R
+# -- the C bucket collapses onto the stop floor and ties with X, so C stops
+# meaning anything.
+#
+#   "shipped"  the eight as committed. Monotonic -- but only because the
+#              wrong-signed variable is backfilling C with better trades.
+#   "w9c"      W9 set (c): the seven right-signed shipped variables PLUS
+#              `sequence_gate` turned on for this call. Monotonic on median R
+#              (S +1.211 > A +0.750 > C +0.293 > X -1.000) without carrying the
+#              known bug. W9's recommendation.
+#
+# DEFAULT "shipped", so this variable changes nothing on its own and the
+# committed default of `downgrade.ENABLE_SEQUENCE_GATE` is NOT touched -- "w9c"
+# passes `enable_sequence_gate=True` per call, the opt-in `score()` already
+# provides for exactly this. Both sets are measured in
+# `research/w1_sac_ladder_ab.py`; neither ships.
+SAC_LADDER_VARSET = os.getenv("SAC_LADDER_VARSET", "shipped").strip().lower()
+SAC_VARSET_DROP = {"shipped": frozenset(),
+                   "w9c": frozenset({"level_not_respected"})}
+SAC_VARSET_SEQ = {"shipped": False, "w9c": True}
+
+# His S/A/C/X onto the engine's alphabet. `B` is deliberately NOT in the range:
+# killing it is the whole point of the flag. The round trip against
+# `research/t70_test1_score.LADDER` (A+ -> S, A -> A, C -> C, None -> X) is
+# exact, so the A/B and the held-out scorer count the same thing.
+# `X` is `TradeGrade.X`, which `_SKIP_GRADES` already means "do not trade".
+SAC_TIER = {"S": "A+", "A": "A", "C": "C", "X": "X"}
+
 # Austin, 2026-08-24: "I don't trade FVG or FLAG. Those are not setups
 # anymore." Detection stays on -- the historical numbers stay comparable --
 # only routing stops. TRADE_RETIRED_SETUPS=1 is the one-variable-away
@@ -1288,6 +1399,12 @@ class SignalRunner:
         2026-07-06): he takes the FIRST signal per direction, with the day
         trend, inside the first 90 min (94.5% of his traded direction-days,
         1.2 alerts/day). Re-triggers and counter-trend spray are what he skips.
+
+        W1 / ENABLE_SAC_LADDER: with the flag ON the `B` floor below does not
+        run -- `_sac_ladder_grade` has already written the final grade off the
+        downgrade count, and `B` is not in its range. The counter-day-trend cap
+        is reapplied verbatim in BOTH arms, so the flag isolates the ladder and
+        does not quietly also lift a separate rule.
         """
         d = sig["direction"]
         if not hasattr(self, "_dir_fired"):
@@ -1297,13 +1414,86 @@ class SignalRunner:
         with_trend = (self.candles[-1].close >= self.candles[0].open) == (d == "call")
         t = self.candles[-1].timestamp[:5]
         mins = int(t[:2]) * 60 + int(t[3:5]) - 570
+        if ENABLE_SAC_LADDER:
+            self._sac_ladder_grade(sig)
         if not with_trend and _GRADE_RANK.get(sig["grade"], 0) > _GRADE_RANK["C"]:
             sig["grade"] = TradeGrade.C.value
             sig["reason"] += " [capped C: counter day trend]"
-        elif (with_trend and self._dir_fired[d] == 0 and 0 <= mins <= 90
+        elif (not ENABLE_SAC_LADDER and not ENABLE_KILL_B_FLOOR
+              and with_trend and self._dir_fired[d] == 0 and 0 <= mins <= 90
               and sig["grade"] == "C" and "capped C" not in sig["reason"]):
             sig["grade"] = TradeGrade.B.value
             sig["reason"] += " [floor B: first with-trend signal of the day]"
+
+    def _sac_ladder_grade(self, sig: dict) -> None:
+        """W1. Austin's S/A/C/X off the eight downgrade variables, as the FINAL
+        grade -- overwriting whatever `_grade_for_levels` and the base grader
+        produced, `B` included.
+
+            net downgrades (after the confluence +1):
+            0 -> S (A+)    1 -> A (A)    2 -> C (C)    3+ -> X (skip)
+
+        `net`, not `score()["grade"]`: `downgrade.py` FLOORS its own ladder at C
+        (Austin, 2026-08-24, asked what happens at three or more), and the
+        2026-08-28 ladder this implements kills the 3+ bucket instead. Reading
+        the raw net is how the later answer wins without editing the shared
+        grader -- W1 must not change the downgrade variables themselves.
+
+        The level proxy is `sig["stop"]`, the same input `_label_confluence` and
+        `backtest_2y.py` already grade every row with, so this grade and the
+        book's `sgrade` column are the same measurement rather than two.
+
+        `score()` returns None only with no bars or no level. That is graded `X`
+        rather than guessed at: absence of an input is not evidence of a setup,
+        the convention `downgrade.py` itself uses.
+
+        A signal the incumbent chain already graded `X` is LEFT alone unless
+        SAC_LADDER_REGRADE_ALL is set -- see that flag's comment. Regrading the
+        42,937 `_grade_pa` vetoes is a second, separate lever.
+
+        WHICH variables are counted is `SAC_LADDER_VARSET`; see its comment.
+        `_sac_seq` is `sequence_gate`'s input and is counted over EVERY signal
+        that reaches this method on this symbol-day, in the order they arrive --
+        the same population and ordering
+        `research/p20_sequence_gate.annotate_sequence` uses over the book, so the
+        engine and W9's simulation are counting the same thing. It is incremented
+        before any early return, or the ordinal would depend on which arm is
+        running."""
+        self._sac_seq = getattr(self, "_sac_seq", 0) + 1
+        if not SAC_LADDER_REGRADE_ALL and sig.get("grade") in _SKIP_GRADES:
+            return
+        from research import downgrade as dg     # ImportError here is a real
+        # failure of the ON arm: falling back to the incumbent grade would
+        # silently make the "on" book a copy of the "off" book. Never caught.
+        level = sig.get("stop")
+        bars = self._dg_bars() if self.candles else []
+        seq_on = SAC_VARSET_SEQ.get(SAC_LADDER_VARSET, False)
+        rec = (dg.score(bars, len(bars) - 1, level,
+                        sig.get("direction") == "call", htf_bias=self.htf_bias,
+                        enable_sequence_gate=seq_on,
+                        entry_seq=self._sac_seq if seq_on else None,
+                        is_84_reentry=(sig.get("signal_type")
+                                       is SignalType.REENTRY_84_RULE))
+               if bars and level is not None else None)
+        if rec is None:
+            sig["grade"] = SAC_TIER["X"]
+            sig["reason"] += " [W1 X: ungradeable (no bars or no level)]"
+            return
+        # `net` is recomputed rather than taken from `rec["net"]` so the variable
+        # set can be narrowed without editing the shared grader. With
+        # SAC_LADDER_VARSET="shipped" and nothing dropped it is `rec["net"]`
+        # exactly -- W1 must not change the downgrade variables themselves.
+        drop = SAC_VARSET_DROP.get(SAC_LADDER_VARSET, frozenset())
+        tripped = [t for t in rec["tripped"] if t not in drop]
+        net = len(tripped) - (1 if rec["confluence"] else 0)
+        his = "S" if net <= 0 else ("A" if net == 1 else ("C" if net == 2 else "X"))
+        sig["sac_net"] = net
+        sig["sac_grade"] = his
+        sig["grade"] = SAC_TIER[his]
+        sig["reason"] += " [W1%s %s: net %d downgrade%s%s]" % (
+            "" if SAC_LADDER_VARSET == "shipped" else "/" + SAC_LADDER_VARSET,
+            his, net, "" if net == 1 else "s",
+            ", confluence +1" if rec["confluence"] else "")
 
     def _qqq_aligned(self, ts: str, is_long: bool) -> Optional[bool]:
         """F4 Rule 4 (qqq-alignment-rules.md): QQQ broke a PD/PM key level in
