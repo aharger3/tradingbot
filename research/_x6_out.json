@@ -1,0 +1,1714 @@
+{
+ "s_traded": 128,
+ "s_detected": 7454,
+ "traded": 1017,
+ "symdays": 11808,
+ "per_symbol": [
+  {
+   "symbol": "TSLA",
+   "symdays": 493,
+   "s_traded": 12,
+   "s_detected": 373,
+   "s_per_symday": 0.0243,
+   "s_per_sym_year": 6.1,
+   "gap_x": 24.6
+  },
+  {
+   "symbol": "NVDA",
+   "symdays": 490,
+   "s_traded": 5,
+   "s_detected": 347,
+   "s_per_symday": 0.0102,
+   "s_per_sym_year": 2.6,
+   "gap_x": 58.8
+  },
+  {
+   "symbol": "COIN",
+   "symdays": 490,
+   "s_traded": 15,
+   "s_detected": 363,
+   "s_per_symday": 0.0306,
+   "s_per_sym_year": 7.7,
+   "gap_x": 19.6
+  },
+  {
+   "symbol": "QQQ",
+   "symdays": 489,
+   "s_traded": 1,
+   "s_detected": 273,
+   "s_per_symday": 0.002,
+   "s_per_sym_year": 0.5,
+   "gap_x": 293.4
+  },
+  {
+   "symbol": "MU",
+   "symdays": 488,
+   "s_traded": 9,
+   "s_detected": 310,
+   "s_per_symday": 0.0184,
+   "s_per_sym_year": 4.6,
+   "gap_x": 32.5
+  },
+  {
+   "symbol": "PLTR",
+   "symdays": 488,
+   "s_traded": 8,
+   "s_detected": 320,
+   "s_per_symday": 0.0164,
+   "s_per_sym_year": 4.1,
+   "gap_x": 36.6
+  },
+  {
+   "symbol": "ORCL",
+   "symdays": 488,
+   "s_traded": 2,
+   "s_detected": 289,
+   "s_per_symday": 0.0041,
+   "s_per_sym_year": 1.0,
+   "gap_x": 146.4
+  },
+  {
+   "symbol": "AMZN",
+   "symdays": 487,
+   "s_traded": 2,
+   "s_detected": 304,
+   "s_per_symday": 0.0041,
+   "s_per_sym_year": 1.0,
+   "gap_x": 146.1
+  },
+  {
+   "symbol": "AMD",
+   "symdays": 486,
+   "s_traded": 10,
+   "s_detected": 317,
+   "s_per_symday": 0.0206,
+   "s_per_sym_year": 5.2,
+   "gap_x": 29.2
+  },
+  {
+   "symbol": "NFLX",
+   "symdays": 486,
+   "s_traded": 7,
+   "s_detected": 258,
+   "s_per_symday": 0.0144,
+   "s_per_sym_year": 3.6,
+   "gap_x": 41.7
+  },
+  {
+   "symbol": "MSFT",
+   "symdays": 485,
+   "s_traded": 9,
+   "s_detected": 250,
+   "s_per_symday": 0.0186,
+   "s_per_sym_year": 4.7,
+   "gap_x": 32.3
+  },
+  {
+   "symbol": "GOOGL",
+   "symdays": 485,
+   "s_traded": 4,
+   "s_detected": 301,
+   "s_per_symday": 0.0082,
+   "s_per_sym_year": 2.1,
+   "gap_x": 72.7
+  },
+  {
+   "symbol": "AVGO",
+   "symdays": 485,
+   "s_traded": 9,
+   "s_detected": 313,
+   "s_per_symday": 0.0186,
+   "s_per_sym_year": 4.7,
+   "gap_x": 32.3
+  },
+  {
+   "symbol": "HOOD",
+   "symdays": 484,
+   "s_traded": 3,
+   "s_detected": 333,
+   "s_per_symday": 0.0062,
+   "s_per_sym_year": 1.6,
+   "gap_x": 96.8
+  },
+  {
+   "symbol": "AAPL",
+   "symdays": 483,
+   "s_traded": 2,
+   "s_detected": 268,
+   "s_per_symday": 0.0041,
+   "s_per_sym_year": 1.0,
+   "gap_x": 144.9
+  },
+  {
+   "symbol": "IWM",
+   "symdays": 483,
+   "s_traded": 1,
+   "s_detected": 295,
+   "s_per_symday": 0.0021,
+   "s_per_sym_year": 0.5,
+   "gap_x": 289.8
+  },
+  {
+   "symbol": "ACHR",
+   "symdays": 481,
+   "s_traded": 0,
+   "s_detected": 293,
+   "s_per_symday": 0.0,
+   "s_per_sym_year": 0.0,
+   "gap_x": null
+  },
+  {
+   "symbol": "META",
+   "symdays": 480,
+   "s_traded": 9,
+   "s_detected": 301,
+   "s_per_symday": 0.0187,
+   "s_per_sym_year": 4.7,
+   "gap_x": 32.0
+  },
+  {
+   "symbol": "INTC",
+   "symdays": 479,
+   "s_traded": 6,
+   "s_detected": 334,
+   "s_per_symday": 0.0125,
+   "s_per_sym_year": 3.2,
+   "gap_x": 47.9
+  },
+  {
+   "symbol": "SPY",
+   "symdays": 468,
+   "s_traded": 1,
+   "s_detected": 219,
+   "s_per_symday": 0.0021,
+   "s_per_sym_year": 0.5,
+   "gap_x": 280.8
+  },
+  {
+   "symbol": "BABA",
+   "symdays": 423,
+   "s_traded": 4,
+   "s_detected": 272,
+   "s_per_symday": 0.0095,
+   "s_per_sym_year": 2.4,
+   "gap_x": 63.4
+  },
+  {
+   "symbol": "TSM",
+   "symdays": 288,
+   "s_traded": 3,
+   "s_detected": 158,
+   "s_per_symday": 0.0104,
+   "s_per_sym_year": 2.6,
+   "gap_x": 57.6
+  },
+  {
+   "symbol": "SOFI",
+   "symdays": 277,
+   "s_traded": 0,
+   "s_detected": 201,
+   "s_per_symday": 0.0,
+   "s_per_sym_year": 0.0,
+   "gap_x": null
+  },
+  {
+   "symbol": "IREN",
+   "symdays": 271,
+   "s_traded": 4,
+   "s_detected": 205,
+   "s_per_symday": 0.0148,
+   "s_per_sym_year": 3.7,
+   "gap_x": 40.6
+  },
+  {
+   "symbol": "MARA",
+   "symdays": 271,
+   "s_traded": 0,
+   "s_detected": 212,
+   "s_per_symday": 0.0,
+   "s_per_sym_year": 0.0,
+   "gap_x": null
+  },
+  {
+   "symbol": "CRM",
+   "symdays": 269,
+   "s_traded": 2,
+   "s_detected": 161,
+   "s_per_symday": 0.0074,
+   "s_per_sym_year": 1.9,
+   "gap_x": 80.7
+  },
+  {
+   "symbol": "UBER",
+   "symdays": 268,
+   "s_traded": 0,
+   "s_detected": 162,
+   "s_per_symday": 0.0,
+   "s_per_sym_year": 0.0,
+   "gap_x": null
+  },
+  {
+   "symbol": "SPCX",
+   "symdays": 43,
+   "s_traded": 0,
+   "s_detected": 22,
+   "s_per_symday": 0.0,
+   "s_per_sym_year": 0.0,
+   "gap_x": null
+  }
+ ],
+ "implied_per_sym_year": 151.2,
+ "measured_per_sym_year": 2.73,
+ "supply_ladder": [
+  {
+   "label": "Austin's eye, implied (3 S/wk/symbol)",
+   "n": null,
+   "per_sym_year": 151.2
+  },
+  {
+   "label": "engine DETECTIONS graded S by downgrade.py",
+   "n": 7454,
+   "per_sym_year": 159.08
+  },
+  {
+   "label": "...of those, STRICT S (zero downgrades tripped)",
+   "n": 1005,
+   "per_sym_year": 21.45
+  },
+  {
+   "label": "engine ALERTS graded S",
+   "n": 174,
+   "per_sym_year": 3.71
+  },
+  {
+   "label": "engine TRADES graded S (the book)",
+   "n": 128,
+   "per_sym_year": 2.73
+  }
+ ],
+ "confluence_rescue_traded": [
+  105,
+  128
+ ],
+ "confluence_rescue_detected": [
+  6449,
+  7454
+ ],
+ "confluence_rate_book": [
+  29833,
+  45193
+ ],
+ "s_by_month": {
+  "2024-08": 2,
+  "2024-09": 3,
+  "2024-10": 3,
+  "2024-11": 4,
+  "2024-12": 5,
+  "2025-01": 10,
+  "2025-02": 4,
+  "2025-03": 4,
+  "2025-04": 8,
+  "2025-05": 5,
+  "2025-06": 1,
+  "2025-07": 5,
+  "2025-08": 6,
+  "2025-09": 4,
+  "2025-10": 5,
+  "2025-11": 4,
+  "2025-12": 2,
+  "2026-01": 7,
+  "2026-02": 7,
+  "2026-03": 8,
+  "2026-04": 2,
+  "2026-05": 12,
+  "2026-06": 7,
+  "2026-07": 6,
+  "2026-08": 4
+ },
+ "s_by_detector": {
+  "break_and_retest": 105,
+  "one_candle_rule": 22,
+  "reentry_84_rule": 1
+ },
+ "judged_symdays": 803,
+ "judged_tiers": {
+  "S": 240,
+  "none": 278,
+  "C": 53,
+  "A": 232
+ },
+ "austin_S_days": 240,
+ "austin_S_days_in_book": 207,
+ "engine_S_days": 128,
+ "day_agreement": 4,
+ "grade_mix_on_S_days": {
+  "trades": 33,
+  "days": 32,
+  "mix": {
+   "C": 20,
+   "A": 9,
+   "S": 4
+  }
+ },
+ "grade_mix_on_none_days": {
+  "trades": 65,
+  "days": 65,
+  "mix": {
+   "A": 14,
+   "C": 47,
+   "S": 4
+  }
+ },
+ "agree_both_S": {
+  "n_days": 4,
+  "setup": [
+   4,
+   4
+  ],
+  "bar3": [
+   1,
+   1
+  ],
+  "bar1": [
+   1,
+   1
+  ],
+  "deltas": [
+   0
+  ],
+  "detail": [
+   {
+    "key": "AMD_2025-11-21",
+    "austin_setup": "BR",
+    "engine_setup": [
+     "BR"
+    ],
+    "austin_entry_i": 12,
+    "engine_entry_i": [
+     12
+    ],
+    "engine_sgrade": [
+     "S"
+    ],
+    "bar_delta": 0,
+    "setup_ok": true,
+    "src": "austin_marks_v7.jsonl"
+   },
+   {
+    "key": "AMD_2026-01-08",
+    "austin_setup": "BR",
+    "engine_setup": [
+     "BR"
+    ],
+    "austin_entry_i": null,
+    "engine_entry_i": [
+     18
+    ],
+    "engine_sgrade": [
+     "S"
+    ],
+    "bar_delta": null,
+    "setup_ok": true,
+    "src": "recovered_reviews.jsonl"
+   },
+   {
+    "key": "INTC_2026-01-26",
+    "austin_setup": "BR",
+    "engine_setup": [
+     "BR"
+    ],
+    "austin_entry_i": null,
+    "engine_entry_i": [
+     10
+    ],
+    "engine_sgrade": [
+     "S"
+    ],
+    "bar_delta": null,
+    "setup_ok": true,
+    "src": "recovered_reviews.jsonl"
+   },
+   {
+    "key": "MSFT_2026-03-11",
+    "austin_setup": "OCR",
+    "engine_setup": [
+     "OCR"
+    ],
+    "austin_entry_i": null,
+    "engine_entry_i": [
+     68
+    ],
+    "engine_sgrade": [
+     "S"
+    ],
+    "bar_delta": null,
+    "setup_ok": true,
+    "src": "recovered_reviews.jsonl"
+   }
+  ]
+ },
+ "agree_he_S_engine_traded": {
+  "n_days": 32,
+  "setup": [
+   16,
+   18
+  ],
+  "bar3": [
+   11,
+   14
+  ],
+  "bar1": [
+   10,
+   14
+  ],
+  "deltas": [
+   0,
+   2,
+   0,
+   5,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   13,
+   0,
+   55
+  ],
+  "detail": [
+   {
+    "key": "AAPL_2025-07-01",
+    "austin_setup": null,
+    "engine_setup": [
+     "BR"
+    ],
+    "austin_entry_i": null,
+    "engine_entry_i": [
+     23
+    ],
+    "engine_sgrade": [
+     "C"
+    ],
+    "bar_delta": null,
+    "setup_ok": null,
+    "src": "deck_marks_h2_3lane_2026-08-28.jsonl"
+   },
+   {
+    "key": "AAPL_2026-08-03",
+    "austin_setup": null,
+    "engine_setup": [
+     "BR"
+    ],
+    "austin_entry_i": null,
+    "engine_entry_i": [
+     6
+    ],
+    "engine_sgrade": [
+     "C"
+    ],
+    "bar_delta": null,
+    "setup_ok": null,
+    "src": "deck_marks_h2_3lane_2026-08-28.jsonl"
+   },
+   {
+    "key": "AMD_2025-11-21",
+    "austin_setup": "BR",
+    "engine_setup": [
+     "BR"
+    ],
+    "austin_entry_i": 12,
+    "engine_entry_i": [
+     12
+    ],
+    "engine_sgrade": [
+     "S"
+    ],
+    "bar_delta": 0,
+    "setup_ok": true,
+    "src": "austin_marks_v7.jsonl"
+   },
+   {
+    "key": "AMD_2026-01-08",
+    "austin_setup": "BR",
+    "engine_setup": [
+     "BR"
+    ],
+    "austin_entry_i": null,
+    "engine_entry_i": [
+     18
+    ],
+    "engine_sgrade": [
+     "S"
+    ],
+    "bar_delta": null,
+    "setup_ok": true,
+    "src": "recovered_reviews.jsonl"
+   },
+   {
+    "key": "AMD_2026-03-24",
+    "austin_setup": "BR",
+    "engine_setup": [
+     "BR"
+    ],
+    "austin_entry_i": null,
+    "engine_entry_i": [
+     81
+    ],
+    "engine_sgrade": [
+     "C"
+    ],
+    "bar_delta": null,
+    "setup_ok": true,
+    "src": "recovered_reviews.jsonl"
+   },
+   {
+    "key": "AMD_2026-05-13",
+    "austin_setup": "BR",
+    "engine_setup": [
+     "BR"
+    ],
+    "austin_entry_i": null,
+    "engine_entry_i": [
+     11
+    ],
+    "engine_sgrade": [
+     "C"
+    ],
+    "bar_delta": null,
+    "setup_ok": true,
+    "src": "recovered_reviews.jsonl"
+   },
+   {
+    "key": "AMZN_2026-05-12",
+    "austin_setup": null,
+    "engine_setup": [
+     "BR"
+    ],
+    "austin_entry_i": null,
+    "engine_entry_i": [
+     13
+    ],
+    "engine_sgrade": [
+     "A"
+    ],
+    "bar_delta": null,
+    "setup_ok": null,
+    "src": "deck_marks_h2_3lane_2026-08-28.jsonl"
+   },
+   {
+    "key": "BABA_2025-04-01",
+    "austin_setup": null,
+    "engine_setup": [
+     "BR"
+    ],
+    "austin_entry_i": null,
+    "engine_entry_i": [
+     12
+    ],
+    "engine_sgrade": [
+     "C"
+    ],
+    "bar_delta": null,
+    "setup_ok": null,
+    "src": "deck_marks_h2_3lane_2026-08-28.jsonl"
+   },
+   {
+    "key": "COIN_2025-03-06",
+    "austin_setup": "BR",
+    "engine_setup": [
+     "BR"
+    ],
+    "austin_entry_i": 27,
+    "engine_entry_i": [
+     29
+    ],
+    "engine_sgrade": [
+     "A"
+    ],
+    "bar_delta": 2,
+    "setup_ok": true,
+    "src": "austin_marks_v7.jsonl"
+   },
+   {
+    "key": "COIN_2025-06-26",
+    "austin_setup": null,
+    "engine_setup": [
+     "BR"
+    ],
+    "austin_entry_i": 18,
+    "engine_entry_i": [
+     18
+    ],
+    "engine_sgrade": [
+     "A"
+    ],
+    "bar_delta": 0,
+    "setup_ok": null,
+    "src": "austin_marks_v7.jsonl"
+   },
+   {
+    "key": "COIN_2026-02-10",
+    "austin_setup": "BR",
+    "engine_setup": [
+     "BR"
+    ],
+    "austin_entry_i": null,
+    "engine_entry_i": [
+     14
+    ],
+    "engine_sgrade": [
+     "A"
+    ],
+    "bar_delta": null,
+    "setup_ok": true,
+    "src": "recovered_reviews.jsonl"
+   },
+   {
+    "key": "CRM_2025-06-02",
+    "austin_setup": null,
+    "engine_setup": [
+     "OCR"
+    ],
+    "austin_entry_i": 27,
+    "engine_entry_i": [
+     32
+    ],
+    "engine_sgrade": [
+     "A"
+    ],
+    "bar_delta": 5,
+    "setup_ok": null,
+    "src": "austin_marks_v7.jsonl"
+   },
+   {
+    "key": "HOOD_2025-03-04",
+    "austin_setup": null,
+    "engine_setup": [
+     "BR"
+    ],
+    "austin_entry_i": 44,
+    "engine_entry_i": [
+     44
+    ],
+    "engine_sgrade": [
+     "C"
+    ],
+    "bar_delta": 0,
+    "setup_ok": null,
+    "src": "austin_marks_v7.jsonl"
+   },
+   {
+    "key": "INTC_2026-01-26",
+    "austin_setup": "BR",
+    "engine_setup": [
+     "BR"
+    ],
+    "austin_entry_i": null,
+    "engine_entry_i": [
+     10
+    ],
+    "engine_sgrade": [
+     "S"
+    ],
+    "bar_delta": null,
+    "setup_ok": true,
+    "src": "recovered_reviews.jsonl"
+   },
+   {
+    "key": "INTC_2026-06-10",
+    "austin_setup": "BR",
+    "engine_setup": [
+     "BR"
+    ],
+    "austin_entry_i": null,
+    "engine_entry_i": [
+     12
+    ],
+    "engine_sgrade": [
+     "C"
+    ],
+    "bar_delta": null,
+    "setup_ok": true,
+    "src": "recovered_reviews.jsonl"
+   },
+   {
+    "key": "IREN_2025-10-14",
+    "austin_setup": "BR",
+    "engine_setup": [
+     "BR"
+    ],
+    "austin_entry_i": null,
+    "engine_entry_i": [
+     11
+    ],
+    "engine_sgrade": [
+     "C"
+    ],
+    "bar_delta": null,
+    "setup_ok": true,
+    "src": "recovered_reviews.jsonl"
+   },
+   {
+    "key": "IREN_2026-05-21",
+    "austin_setup": "BR",
+    "engine_setup": [
+     "BR"
+    ],
+    "austin_entry_i": 9,
+    "engine_entry_i": [
+     9
+    ],
+    "engine_sgrade": [
+     "A"
+    ],
+    "bar_delta": 0,
+    "setup_ok": true,
+    "src": "recovered_reviews.jsonl"
+   },
+   {
+    "key": "META_2025-08-11",
+    "austin_setup": "OCR",
+    "engine_setup": [
+     "OCR"
+    ],
+    "austin_entry_i": 43,
+    "engine_entry_i": [
+     43
+    ],
+    "engine_sgrade": [
+     "C"
+    ],
+    "bar_delta": 0,
+    "setup_ok": true,
+    "src": "austin_marks_v7.jsonl"
+   },
+   {
+    "key": "MSFT_2025-04-17",
+    "austin_setup": "OTHER",
+    "engine_setup": [
+     "BR"
+    ],
+    "austin_entry_i": 13,
+    "engine_entry_i": [
+     13
+    ],
+    "engine_sgrade": [
+     "C"
+    ],
+    "bar_delta": 0,
+    "setup_ok": null,
+    "src": "austin_marks_v7.jsonl"
+   },
+   {
+    "key": "MSFT_2026-03-11",
+    "austin_setup": "OCR",
+    "engine_setup": [
+     "OCR"
+    ],
+    "austin_entry_i": null,
+    "engine_entry_i": [
+     68
+    ],
+    "engine_sgrade": [
+     "S"
+    ],
+    "bar_delta": null,
+    "setup_ok": true,
+    "src": "recovered_reviews.jsonl"
+   },
+   {
+    "key": "MU_2026-03-09",
+    "austin_setup": "BR",
+    "engine_setup": [
+     "BR"
+    ],
+    "austin_entry_i": 19,
+    "engine_entry_i": [
+     19
+    ],
+    "engine_sgrade": [
+     "C"
+    ],
+    "bar_delta": 0,
+    "setup_ok": true,
+    "src": "probe_omen_test1_2026-08-27.jsonl"
+   },
+   {
+    "key": "MU_2026-05-20",
+    "austin_setup": "BR",
+    "engine_setup": [
+     "BR"
+    ],
+    "austin_entry_i": null,
+    "engine_entry_i": [
+     11
+    ],
+    "engine_sgrade": [
+     "C"
+    ],
+    "bar_delta": null,
+    "setup_ok": true,
+    "src": "recovered_reviews.jsonl"
+   },
+   {
+    "key": "NVDA_2024-09-03",
+    "austin_setup": null,
+    "engine_setup": [
+     "BR"
+    ],
+    "austin_entry_i": null,
+    "engine_entry_i": [
+     16
+    ],
+    "engine_sgrade": [
+     "C"
+    ],
+    "bar_delta": null,
+    "setup_ok": null,
+    "src": "deck_marks_h2_3lane_2026-08-28.jsonl"
+   },
+   {
+    "key": "NVDA_2024-12-16",
+    "austin_setup": "OTHER",
+    "engine_setup": [
+     "BR"
+    ],
+    "austin_entry_i": 12,
+    "engine_entry_i": [
+     12
+    ],
+    "engine_sgrade": [
+     "A"
+    ],
+    "bar_delta": 0,
+    "setup_ok": null,
+    "src": "austin_marks_v7.jsonl"
+   },
+   {
+    "key": "NVDA_2025-09-29",
+    "austin_setup": "OTHER",
+    "engine_setup": [
+     "BR"
+    ],
+    "austin_entry_i": 12,
+    "engine_entry_i": [
+     12
+    ],
+    "engine_sgrade": [
+     "C"
+    ],
+    "bar_delta": 0,
+    "setup_ok": null,
+    "src": "austin_marks_v7.jsonl"
+   },
+   {
+    "key": "ORCL_2025-11-03",
+    "austin_setup": "OCR",
+    "engine_setup": [
+     "BR"
+    ],
+    "austin_entry_i": 17,
+    "engine_entry_i": [
+     30
+    ],
+    "engine_sgrade": [
+     "C"
+    ],
+    "bar_delta": 13,
+    "setup_ok": false,
+    "src": "mark_batch_02_grades.jsonl"
+   },
+   {
+    "key": "QQQ_2026-06-29",
+    "austin_setup": null,
+    "engine_setup": [
+     "OCR"
+    ],
+    "austin_entry_i": null,
+    "engine_entry_i": [
+     52
+    ],
+    "engine_sgrade": [
+     "C"
+    ],
+    "bar_delta": null,
+    "setup_ok": null,
+    "src": "deck_marks_index_2026-08-19.jsonl"
+   },
+   {
+    "key": "TSLA_2026-01-14",
+    "austin_setup": "OCR",
+    "engine_setup": [
+     "OCR"
+    ],
+    "austin_entry_i": 85,
+    "engine_entry_i": [
+     85
+    ],
+    "engine_sgrade": [
+     "C"
+    ],
+    "bar_delta": 0,
+    "setup_ok": true,
+    "src": "austin_marks_v7.jsonl"
+   },
+   {
+    "key": "TSLA_2026-05-19",
+    "austin_setup": null,
+    "engine_setup": [
+     "BR"
+    ],
+    "austin_entry_i": null,
+    "engine_entry_i": [
+     19,
+     27
+    ],
+    "engine_sgrade": [
+     "A",
+     "A"
+    ],
+    "bar_delta": null,
+    "setup_ok": null,
+    "src": "deck_marks_tsla_2026-08-20.jsonl"
+   },
+   {
+    "key": "TSLA_2026-06-22",
+    "austin_setup": null,
+    "engine_setup": [
+     "BR"
+    ],
+    "austin_entry_i": null,
+    "engine_entry_i": [
+     12
+    ],
+    "engine_sgrade": [
+     "C"
+    ],
+    "bar_delta": null,
+    "setup_ok": null,
+    "src": "deck_marks_tsla_2026-08-20.jsonl"
+   },
+   {
+    "key": "TSM_2026-02-17",
+    "austin_setup": "BR",
+    "engine_setup": [
+     "BR"
+    ],
+    "austin_entry_i": null,
+    "engine_entry_i": [
+     29
+    ],
+    "engine_sgrade": [
+     "C"
+    ],
+    "bar_delta": null,
+    "setup_ok": true,
+    "src": "recovered_reviews.jsonl"
+   },
+   {
+    "key": "TSM_2026-02-23",
+    "austin_setup": "BR",
+    "engine_setup": [
+     "OCR"
+    ],
+    "austin_entry_i": 23,
+    "engine_entry_i": [
+     78
+    ],
+    "engine_sgrade": [
+     "C"
+    ],
+    "bar_delta": 55,
+    "setup_ok": false,
+    "src": "austin_marks_v7.jsonl"
+   }
+  ]
+ },
+ "false_S_rows": 4,
+ "true_S_rows": 4,
+ "unjudged_S_rows": 107,
+ "det_S_on_none_days": [
+  112,
+  246
+ ],
+ "det_S_on_S_days": [
+  99,
+  207
+ ],
+ "profile_false_S": {
+  "level": {
+   "OR low": 25.0,
+   "pivot low": 50.0,
+   "PML": 25.0
+  },
+  "side": {
+   "S": 100.0
+  },
+  "slot": {
+   "09:30": 25.0,
+   "10:00": 25.0,
+   "10:30": 50.0
+  },
+  "seq": {
+   "1": 100.0
+  },
+  "bias": {
+   "neutral": 25.0,
+   "bearish": 75.0
+  },
+  "aligned": {
+   "n/a": 25.0,
+   "with": 75.0
+  },
+  "stopb": {
+   "wide": 50.0,
+   "mid": 50.0
+  },
+  "gapb": {
+   "big gap": 50.0,
+   "flat": 25.0,
+   "small gap": 25.0
+  },
+  "rangeb": {
+   "normal": 50.0,
+   "big range": 50.0
+  },
+  "vol_regime": {
+   "n/a": 25.0,
+   "normal": 25.0,
+   "wild": 25.0,
+   "calm": 25.0
+  },
+  "spy_trend": {
+   "n/a": 25.0,
+   "bear": 50.0,
+   "bull": 25.0
+  },
+  "confluence": {
+   "yes": 100.0
+  },
+  "tripped": {
+   "0": 25.0,
+   "1": 75.0
+  },
+  "setup": {
+   "break_and_retest": 100.0
+  },
+  "out": {
+   "win": 50.0,
+   "loss": 50.0
+  },
+  "scaled": {
+   "True": 50.0,
+   "False": 50.0
+  },
+  "_tags": {
+   "clean": 75.0,
+   "hammer": 50.0,
+   "disp": 75.0,
+   "brocr": 100.0,
+   "late": 25.0,
+   "nodisp": 25.0
+  },
+  "_downgrades": {
+   "counter_trend_not_respected": 50.0,
+   "level_not_respected": 25.0
+  },
+  "mean_r": 0.3535,
+  "win_rate": 50.0
+ },
+ "profile_true_S": {
+  "level": {
+   "other": 25.0,
+   "OR low": 50.0,
+   "PML": 25.0
+  },
+  "side": {
+   "S": 100.0
+  },
+  "slot": {
+   "10:30": 25.0,
+   "09:30": 75.0
+  },
+  "seq": {
+   "1": 100.0
+  },
+  "bias": {
+   "bearish": 100.0
+  },
+  "aligned": {
+   "with": 100.0
+  },
+  "stopb": {
+   "mid": 100.0
+  },
+  "gapb": {
+   "flat": 25.0,
+   "big gap": 50.0,
+   "small gap": 25.0
+  },
+  "rangeb": {
+   "normal": 25.0,
+   "big range": 75.0
+  },
+  "vol_regime": {
+   "normal": 25.0,
+   "calm": 50.0,
+   "wild": 25.0
+  },
+  "spy_trend": {
+   "bear": 50.0,
+   "bull": 50.0
+  },
+  "confluence": {
+   "yes": 75.0,
+   "no": 25.0
+  },
+  "tripped": {
+   "1": 75.0,
+   "0": 25.0
+  },
+  "setup": {
+   "one_candle_rule": 25.0,
+   "break_and_retest": 75.0
+  },
+  "out": {
+   "win": 100.0
+  },
+  "scaled": {
+   "True": 100.0
+  },
+  "_tags": {
+   "brocr": 75.0,
+   "clean": 75.0,
+   "nodisp": 75.0
+  },
+  "_downgrades": {
+   "counter_trend_not_respected": 50.0,
+   "level_not_respected": 25.0
+  },
+  "mean_r": 3.9005,
+  "win_rate": 100.0
+ },
+ "profile_all_S": {
+  "level": {
+   "OR high": 14.8,
+   "PML": 11.7,
+   "PDL": 3.9,
+   "pivot high": 12.5,
+   "OR low": 12.5,
+   "other": 18.0,
+   "PDH": 7.8,
+   "PMH": 9.4,
+   "pivot low": 9.4
+  },
+  "side": {
+   "L": 53.9,
+   "S": 46.1
+  },
+  "slot": {
+   "09:30": 52.3,
+   "10:00": 34.4,
+   "10:30": 13.3
+  },
+  "seq": {
+   "1": 97.7,
+   "2": 2.3
+  },
+  "bias": {
+   "bullish": 51.6,
+   "bearish": 39.8,
+   "neutral": 7.0,
+   "none": 1.6
+  },
+  "aligned": {
+   "with": 91.4,
+   "n/a": 8.6
+  },
+  "stopb": {
+   "mid": 84.4,
+   "tight": 3.1,
+   "wide": 10.9,
+   "very wide": 1.6
+  },
+  "gapb": {
+   "flat": 18.8,
+   "small gap": 31.2,
+   "big gap": 50.0
+  },
+  "rangeb": {
+   "big range": 60.9,
+   "normal": 35.2,
+   "quiet": 3.9
+  },
+  "vol_regime": {
+   "calm": 32.0,
+   "normal": 30.5,
+   "wild": 36.7,
+   "n/a": 0.8
+  },
+  "spy_trend": {
+   "bull": 66.4,
+   "bear": 32.8,
+   "n/a": 0.8
+  },
+  "confluence": {
+   "yes": 97.7,
+   "no": 2.3
+  },
+  "tripped": {
+   "1": 82.0,
+   "0": 18.0
+  },
+  "setup": {
+   "break_and_retest": 82.0,
+   "one_candle_rule": 17.2,
+   "reentry_84_rule": 0.8
+  },
+  "out": {
+   "win": 66.4,
+   "loss": 33.6
+  },
+  "scaled": {
+   "True": 66.4,
+   "False": 33.6
+  },
+  "_tags": {
+   "clean": 59.4,
+   "nodisp": 64.8,
+   "brocr": 96.9,
+   "hammer": 21.9,
+   "disp": 17.2,
+   "late": 22.7,
+   "chase": 3.9
+  },
+  "_downgrades": {
+   "counter_trend_not_respected": 64.1,
+   "level_not_respected": 10.9,
+   "exhausted": 0.8,
+   "no_displacement": 5.5,
+   "stale_retest": 0.8
+  },
+  "mean_r": 1.2829,
+  "win_rate": 66.4
+ },
+ "profile_det_S_none_days": {
+  "level": {
+   "other": 14.6,
+   "OR low": 10.2,
+   "PML": 6.4,
+   "pivot high": 24.8,
+   "PDH": 5.1,
+   "pivot low": 24.8,
+   "PDL": 3.8,
+   "PMH": 3.8,
+   "OR high": 6.4
+  },
+  "side": {
+   "S": 53.5,
+   "L": 46.5
+  },
+  "slot": {
+   "09:30": 24.8,
+   "10:00": 39.5,
+   "10:30": 35.7
+  },
+  "seq": {
+   "2": 28.7,
+   "1": 26.1,
+   "3": 15.9,
+   "4": 12.7,
+   "5": 6.4,
+   "6": 5.7,
+   "7": 1.3,
+   "8": 1.3,
+   "9": 0.6,
+   "10": 0.6,
+   "11": 0.6
+  },
+  "bias": {
+   "bearish": 52.2,
+   "bullish": 42.0,
+   "none": 1.3,
+   "neutral": 4.5
+  },
+  "aligned": {
+   "with": 46.5,
+   "against": 47.8,
+   "n/a": 5.7
+  },
+  "stopb": {
+   "wide": 10.8,
+   "tight": 75.8,
+   "mid": 13.4
+  },
+  "gapb": {
+   "big gap": 47.8,
+   "flat": 19.7,
+   "small gap": 32.5
+  },
+  "rangeb": {
+   "big range": 54.8,
+   "normal": 36.9,
+   "quiet": 8.3
+  },
+  "vol_regime": {
+   "wild": 38.2,
+   "normal": 36.3,
+   "calm": 24.2,
+   "n/a": 1.3
+  },
+  "spy_trend": {
+   "bear": 38.2,
+   "bull": 60.5,
+   "n/a": 1.3
+  },
+  "confluence": {
+   "yes": 99.4,
+   "no": 0.6
+  },
+  "tripped": {
+   "1": 84.7,
+   "0": 15.3
+  },
+  "setup": {
+   "one_candle_rule": 14.6,
+   "break_and_retest": 85.4
+  },
+  "out": {
+   "loss": 62.4,
+   "win": 33.1,
+   "open": 2.5,
+   "scratch": 1.9
+  },
+  "scaled": {
+   "False": 65.0,
+   "True": 35.0
+  },
+  "_tags": {
+   "brocr": 99.4,
+   "clean": 32.5,
+   "nodisp": 61.1,
+   "hammer": 34.4,
+   "late": 52.9,
+   "disp": 24.2,
+   "chase": 3.2
+  },
+  "_downgrades": {
+   "counter_trend_not_respected": 70.1,
+   "level_not_respected": 9.6,
+   "exhausted": 2.5,
+   "no_displacement": 2.5
+  },
+  "mean_r": 3.3996,
+  "win_rate": 33.1
+ },
+ "profile_det_S_S_days": {
+  "level": {
+   "pivot low": 21.9,
+   "other": 12.3,
+   "PDL": 3.4,
+   "PMH": 8.9,
+   "OR low": 13.0,
+   "OR high": 8.2,
+   "pivot high": 19.9,
+   "PML": 8.2,
+   "PDH": 4.1
+  },
+  "side": {
+   "S": 53.4,
+   "L": 46.6
+  },
+  "slot": {
+   "10:00": 42.5,
+   "09:30": 34.9,
+   "10:30": 22.6
+  },
+  "seq": {
+   "2": 24.7,
+   "3": 22.6,
+   "1": 28.1,
+   "4": 11.0,
+   "5": 6.8,
+   "6": 6.2,
+   "7": 0.7
+  },
+  "bias": {
+   "bearish": 54.1,
+   "bullish": 37.7,
+   "neutral": 4.1,
+   "none": 4.1
+  },
+  "aligned": {
+   "with": 54.8,
+   "against": 37.0,
+   "n/a": 8.2
+  },
+  "stopb": {
+   "tight": 85.6,
+   "very wide": 1.4,
+   "mid": 9.6,
+   "wide": 3.4
+  },
+  "gapb": {
+   "big gap": 42.5,
+   "flat": 17.8,
+   "small gap": 39.7
+  },
+  "rangeb": {
+   "big range": 44.5,
+   "normal": 40.4,
+   "quiet": 15.1
+  },
+  "vol_regime": {
+   "wild": 28.1,
+   "calm": 37.0,
+   "normal": 34.9
+  },
+  "spy_trend": {
+   "bull": 62.3,
+   "bear": 37.7
+  },
+  "confluence": {
+   "yes": 98.6,
+   "no": 1.4
+  },
+  "tripped": {
+   "1": 79.5,
+   "0": 20.5
+  },
+  "setup": {
+   "break_and_retest": 87.7,
+   "one_candle_rule": 12.3
+  },
+  "out": {
+   "loss": 47.9,
+   "win": 47.3,
+   "open": 4.1,
+   "scratch": 0.7
+  },
+  "scaled": {
+   "False": 52.7,
+   "True": 47.3
+  },
+  "_tags": {
+   "late": 32.2,
+   "nodisp": 59.6,
+   "brocr": 98.6,
+   "clean": 55.5,
+   "hammer": 39.7,
+   "disp": 28.1
+  },
+  "_downgrades": {
+   "counter_trend_not_respected": 64.4,
+   "no_displacement": 4.1,
+   "level_not_respected": 8.2,
+   "exhausted": 2.1,
+   "no_retest": 0.7
+  },
+  "mean_r": 4.2809,
+  "win_rate": 47.3
+ },
+ "feature_gaps": [
+  {
+   "feature": "_tags",
+   "value": "clean",
+   "refused_pct": 32.5,
+   "sday_pct": 55.5,
+   "gap_pp": 23.0
+  },
+  {
+   "feature": "_tags",
+   "value": "late",
+   "refused_pct": 52.9,
+   "sday_pct": 32.2,
+   "gap_pp": 20.7
+  },
+  {
+   "feature": "out",
+   "value": "loss",
+   "refused_pct": 62.4,
+   "sday_pct": 47.9,
+   "gap_pp": 14.5
+  },
+  {
+   "feature": "out",
+   "value": "win",
+   "refused_pct": 33.1,
+   "sday_pct": 47.3,
+   "gap_pp": 14.2
+  },
+  {
+   "feature": "slot",
+   "value": "10:30",
+   "refused_pct": 35.7,
+   "sday_pct": 22.6,
+   "gap_pp": 13.1
+  },
+  {
+   "feature": "vol_regime",
+   "value": "calm",
+   "refused_pct": 24.2,
+   "sday_pct": 37.0,
+   "gap_pp": 12.8
+  },
+  {
+   "feature": "scaled",
+   "value": "True",
+   "refused_pct": 35.0,
+   "sday_pct": 47.3,
+   "gap_pp": 12.3
+  },
+  {
+   "feature": "scaled",
+   "value": "False",
+   "refused_pct": 65.0,
+   "sday_pct": 52.7,
+   "gap_pp": 12.3
+  },
+  {
+   "feature": "aligned",
+   "value": "against",
+   "refused_pct": 47.8,
+   "sday_pct": 37.0,
+   "gap_pp": 10.8
+  },
+  {
+   "feature": "rangeb",
+   "value": "big range",
+   "refused_pct": 54.8,
+   "sday_pct": 44.5,
+   "gap_pp": 10.3
+  },
+  {
+   "feature": "vol_regime",
+   "value": "wild",
+   "refused_pct": 38.2,
+   "sday_pct": 28.1,
+   "gap_pp": 10.1
+  },
+  {
+   "feature": "slot",
+   "value": "09:30",
+   "refused_pct": 24.8,
+   "sday_pct": 34.9,
+   "gap_pp": 10.1
+  }
+ ],
+ "w4_total": 198,
+ "w4_covered": 2,
+ "w4_new": 196,
+ "w4_new_by_provenance": {
+  "austin_said": 62,
+  "third_party": 109,
+  "model_inferred": 25
+ },
+ "judged_now": 817,
+ "ceiling_judged": 1013,
+ "expected_new_S": 58.6,
+ "heldout_book_coverage": [
+  85,
+  100
+ ],
+ "heldout_S_book_coverage": [
+  11,
+  15
+ ],
+ "heldout_arms": [
+  {
+   "arm": "A0 shipped (traded=True)",
+   "s_recall": [
+    1,
+    15
+   ],
+   "false_fire": [
+    7,
+    42
+   ],
+   "gate": -0.1,
+   "book_n": 1017,
+   "win_pct": 52.9,
+   "median_r": 0.566,
+   "mean_r_unusable": 0.955,
+   "non_traded_rows": 0
+  },
+  {
+   "arm": "A1 alert or traded",
+   "s_recall": [
+    1,
+    15
+   ],
+   "false_fire": [
+    9,
+    42
+   ],
+   "gate": -0.1476,
+   "book_n": 1394,
+   "win_pct": 47.13,
+   "median_r": -1.0,
+   "mean_r_unusable": 0.818,
+   "non_traded_rows": 377
+  },
+  {
+   "arm": "A2 any detection graded S by downgrade.py",
+   "s_recall": [
+    5,
+    15
+   ],
+   "false_fire": [
+    27,
+    42
+   ],
+   "gate": -0.3095,
+   "book_n": 7454,
+   "win_pct": 36.13,
+   "median_r": -1.0,
+   "mean_r_unusable": 9.485,
+   "non_traded_rows": 7326
+  },
+  {
+   "arm": "A3 any detection graded S or A",
+   "s_recall": [
+    6,
+    15
+   ],
+   "false_fire": [
+    32,
+    42
+   ],
+   "gate": -0.3619,
+   "book_n": 18509,
+   "win_pct": 34.8,
+   "median_r": -1.0,
+   "mean_r_unusable": 8.548,
+   "non_traded_rows": 18130
+  },
+  {
+   "arm": "A4 any detection at all",
+   "s_recall": [
+    11,
+    15
+   ],
+   "false_fire": [
+    38,
+    42
+   ],
+   "gate": -0.1714,
+   "book_n": 45193,
+   "win_pct": 31.89,
+   "median_r": -1.0,
+   "mean_r_unusable": 9.765,
+   "non_traded_rows": 44176
+  }
+ ],
+ "dropped_S_subcent_rows": 1044,
+ "heldout_offroster": 0,
+ "heldout_S_offroster": 0,
+ "austin_S_offroster": 4,
+ "austin_S_outside_window": 20,
+ "s_mean_r": 1.2829,
+ "s_win_rate": 66.41,
+ "s_needed_avg_win": 3.518
+}

@@ -15,6 +15,18 @@ import sys
 import time
 import argparse
 
+# T25 (2026-08-28, Austin R-B: "governor changes to match the book"): the live
+# path grades off Austin's S/A/C ladder, not the legacy A+/A tier. This must be
+# set BEFORE signal_runner is imported below — ENABLE_SAC_LADDER is read once,
+# at signal_runner's own module import time (os.getenv), not re-read per call.
+# `setdefault` so an explicit env override (a real `.env` line, or an exported
+# shell var) still wins; only the previously-unset live default moves.
+# Backtest/research processes are separate Python processes with their own
+# environment, so this does not touch signal_runner's OFF-by-default reader
+# there, and research/g3_arm_ow1.json is byte-identical to before this edit —
+# it was never produced by importing live_scanner.py in the first place.
+os.environ.setdefault("ENABLE_SAC_LADDER", "1")
+
 # 2026-07-10: a stalled yfinance read hung the 10:59 scan for 26 min until the
 # schtask 2h limit killed the process — archive_1m never ran. Hard-cap every
 # socket so a dead feed raises instead of hanging the scan loop.
@@ -239,14 +251,22 @@ SCANNER_STATUS_PATH = Path(__file__).parent / "journal" / "scanner_status.json"
 
 
 def _write_scanner_status(symbols, signals_today, session, regime_action,
-                           last_error=None, posted=0, failed=0, qqq_breaks=None):
+                           last_error=None, posted=0, failed=0, qqq_breaks=None,
+                           bars_fetched=None):
     """Atomically write journal/scanner_status.json (temp + os.replace).
 
     Dashboard reads this file later — no UI work here, file only.
+
+    `bars_fetched` (T13): count of symbols that returned >=1 candle this cycle,
+    out of len(symbols). None means "not measured this call" (the early-halt
+    return path never reaches the fetch loop). A scan that ran the loop and
+    fetched bars for zero symbols is a BLIND cycle — see sentry_scanner.py,
+    which trips on this even when the file itself is fresh.
     """
     status = {
         "timestamp": now_et().isoformat(),
         "symbols_scanned": list(symbols),
+        "bars_fetched": bars_fetched,
         "signals_fired_today": signals_today,
         "session_halt": {
             "halted": session.day_ended(),
@@ -337,6 +357,7 @@ def scan_once(
             print(f"  QQQ breaks: up={runner.qqq_breaks['up']} dn={runner.qqq_breaks['dn']}")
 
     last_error = None
+    bars_fetched = 0  # T13: symbols that returned >=1 candle this cycle
     for symbol in symbols:
         try:
             candles = tasty_feed.fetch_recent_bars(symbol, lookback_minutes=60)
@@ -348,6 +369,9 @@ def scan_once(
                 print(f"[{symbol}] yfinance fallback failed: {e2}")
                 last_error = f"{symbol}: {str(e2)[:120]}"
                 continue
+
+        if candles:
+            bars_fetched += 1
 
         if len(candles) < 5:
             print(f"[{symbol}] only {len(candles)} bars, skipping")
@@ -430,7 +454,8 @@ def scan_once(
                           regime_action, last_error=last_error,
                           posted=discord.posted if discord else 0,
                           failed=discord.failed if discord else 0,
-                          qqq_breaks=getattr(runner, "qqq_breaks", None))
+                          qqq_breaks=getattr(runner, "qqq_breaks", None),
+                          bars_fetched=bars_fetched)
     return fired
 
 
@@ -476,25 +501,53 @@ def _emit_futures_signal(runner: SignalRunner, contract: str, candle, sig: dict)
 _last_alert: dict = {}  # (symbol, direction) -> minutes-since-midnight of last ding
 ALERT_COOLDOWN_MIN = 20
 
-# Two-tier (Austin 2026-07-07): quality over quantity, one trade and done.
-# TRADE = first A/A+ of the day across ALL symbols, at or after 09:40 ET
-# (30d sim 2026-07-07: 12tr 58% +$10.8k; first-B+-anytime was 20tr 25% -$6k —
-# the 09:30-09:40 chop and B-grade spray are what governor must skip).
-# 84% re-entry exempt while consecutive losses < 2. Everything else fired =
-# WATCH, ding only, capped per day. Scanner restarts daily via schtask,
-# so counters reset free.
+# T25 (2026-08-28, R-B): the tier gate trades Austin's ladder, not the legacy
+# engine grade. ENABLE_SAC_LADDER=1 (forced on above, live-process-only) makes
+# `sig["grade"]` come off `research/downgrade.py::score` via SAC_TIER
+# ({"S": "A+", "A": "A", "C": "C", "X": "X"} -- signal_runner.py:620) instead
+# of `_grade_pa`'s candle-shape verdict, so "A+" here already means his S, not
+# the legacy A+/A pool the old two-tier system traded (14 trades in 500
+# sessions over the 2-year book, research/x7_entry_surface_map.md section 0).
+#
+# TRADE = S only. A and C are WATCH -- ding only, never auto-traded, same as
+# before. 84% re-entry is exempt from the grade check entirely (unchanged).
+#
+# TRADE_FLOOR ("09:40") is UNCHANGED and still a parameter, not a decision:
+# research/x8_time_blocks.md found 09:30-09:45 is the single best 15-minute
+# block (+1.1619R at 60.7% win) and 9 of the 15 held-out S entries land in it
+# -- so this floor is cutting the best window, not just the chop before it.
+# research/t25_governor.py measures the cost both ways; it does not silently
+# resolve it.
+#
+# GOVERNOR_S_CAP replaces the old hard "first signal of the day, across ALL
+# symbols" rule with a per-symbol daily cap, PARAMETERIZED per Austin
+# 2026-08-27: "my cap is just the prediction, so why cap it? maybe see what
+# happens then try to cap." Default None = uncapped -- every qualifying S
+# signal on every symbol trades. His ballot gave three conflicting numbers for
+# what the cap should be (batch 02: c3 "max 2 S trades per symbol", c4 "max 3"
+# then "cap at .8 s trades a day per symbol") -- unresolved, carried to ballot
+# batch 03 (research/t25_governor.md), not guessed at here.
+GOVERNOR_S_CAP = os.getenv("GOVERNOR_S_CAP")
+GOVERNOR_S_CAP = int(GOVERNOR_S_CAP) if GOVERNOR_S_CAP else None
 WATCH_DAILY_CAP = 5
 TRADE_FLOOR = "09:40"
 _watch_dings = {"n": 0}
+_s_trades_today: dict = {}  # symbol -> count of TRADE-tier S signals today.
+                            # Scanner restarts daily via schtask, so this
+                            # resets free, same as _last_alert / _watch_dings.
 
 
-def _tier(runner: SignalRunner, sig: dict, grade: str, ts: str) -> str:
+def _tier(runner: SignalRunner, sig: dict, grade: str, ts: str, symbol: str) -> str:
     s = runner.session
     if getattr(sig["signal_type"], "value", "") == "reentry_84_rule":
         return "TRADE" if s.consecutive_losses < 2 else "WATCH"
-    if grade not in ("A+", "A") or ts[:5] < TRADE_FLOOR:
+    if grade != "A+" or ts[:5] < TRADE_FLOOR:
         return "WATCH"
-    return "TRADE" if s.signals_today == 0 and s.consecutive_losses < 2 else "WATCH"
+    if s.consecutive_losses >= 2:
+        return "WATCH"
+    if GOVERNOR_S_CAP is not None and _s_trades_today.get(symbol, 0) >= GOVERNOR_S_CAP:
+        return "WATCH"
+    return "TRADE"
 
 
 def _cooled_down(symbol: str, direction: str, ts: str) -> bool:
@@ -527,13 +580,17 @@ def _emit_signal(runner: SignalRunner, tasty_feed: TastytradeFeed, symbol: str, 
     # 84% re-entries run 2x size (Austin: double to recover first stop-out + profit)
     if getattr(sig["signal_type"], "value", "") == "reentry_84_rule":
         size_pct *= 2.0
-    tier = _tier(runner, sig, grade, candle.timestamp)
+    tier = _tier(runner, sig, grade, candle.timestamp, symbol)
     alert_only = tier != "TRADE"
     if alert_only:
         if _watch_dings["n"] >= WATCH_DAILY_CAP:
             print(f"  {symbol} {sig['direction']} WATCH suppressed: daily cap ({WATCH_DAILY_CAP})")
             return False
         _watch_dings["n"] += 1
+    elif getattr(sig["signal_type"], "value", "") != "reentry_84_rule":
+        # 84% re-entries are exempt from the per-symbol S cap, same as they are
+        # exempt from the grade check itself (unchanged behaviour).
+        _s_trades_today[symbol] = _s_trades_today.get(symbol, 0) + 1
     sig["reason"] = f"{tier} · {sig['reason']}"
     try:
         plan = build_options_plan(

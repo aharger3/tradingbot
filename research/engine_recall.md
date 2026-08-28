@@ -2,38 +2,38 @@
 
 Detection: `signal_runner.SignalRunner.detect_signals` (replayed bar-by-bar; see footer).
 
-## Recall by tier â€” fired entries (all marks; +/-2 bars)
-- **S: 10/77** detected
-- **A: 6/60** detected
-- **X: 6/22** detected
+## Recall by tier — fired entries (all marks; +/-2 bars)
+- **S: 5/77** detected
+- **A: 5/60** detected
+- **X: 2/22** detected
 
-Precision: **25/66 = 37.9%** of engine entries on marked days land on a marked bar.
+Precision: **12/66 = 18.2%** of engine entries on marked days land on a marked bar.
 
-Denominators: join target `research/austin_marks_v2.jsonl` has 77 S / 60 A / 22 X (159, post-dedup). The spec's 78/60/24 are the pre-dedup `austin_verdicts.json` (162); the 3 collapsed rows are exact symbol|day|entry_i twins, so the detected counts are identical vs that base: S 10/78, A 6/60, X 6/24.
+Denominators: join target `research/austin_marks_v2.jsonl` has 77 S / 60 A / 22 X (159, post-dedup). The spec's 78/60/24 are the pre-dedup `austin_verdicts.json` (162); the 3 collapsed rows are exact symbol|day|entry_i twins, so the detected counts are identical vs that base: S 5/78, A 5/60, X 2/24.
 
 ## Verdict
-- Fired S recall is **10/77 = 13%**. The engine does not take the trades Austin grades S.
-- Even the generous upper bound â€” ANY captured signal, ANY grade (incl. D-skips), every bar â€” is only S 30/77 = 39%. The engine produces NO signal at ~61% of S bars. (No-dedupe fired-only is also just S 10/77.)
-- Of the 789 signals the engine produces (raw, every bar), 653 are downgraded to D and only 117 fire â€” mostly tight-stop kills (e.g. an S at the OR high with stop $0.22 on a $537 stock). A filter problem sits on top, but it is secondary: even counting every fired bar, S recall is 10/77 = 13%.
+- Fired S recall is **5/77 = 6%**. The engine does not take the trades Austin grades S.
+- Even the generous upper bound — ANY captured signal, ANY grade (incl. D-skips), every bar — is only S 36/77 = 47%. The engine produces NO signal at ~53% of S bars. (No-dedupe fired-only is also just S 5/77.)
+- Of the 1729 signals the engine produces (raw, every bar), 1598 are downgraded to D and only 90 fire — mostly tight-stop kills (e.g. an S at the OR high with stop $0.22 on a $537 stock). A filter problem sits on top, but it is secondary: even counting every fired bar, S recall is 5/77 = 6%.
 - This is a **detection problem, not a filter problem**. No gate on the trades the engine already takes can recover setups it never sees. The next version has to widen what the engine detects (level vocabulary / break-and-retest geometry), not tune what it filters.
 
-## Recall â€” any signal, any grade (detection vs filtering)
-- S: 28/77, A: 23/60, X: 13/22 â€” marks with ANY engine signal (incl. D/tight-stop skips, deduped) within +/-2 bars.
-- S: 30/77, A: 26/60, X: 15/22 â€” same but counting EVERY captured signal bar (no dedupe; the true upper bound on 'the engine produced a signal here').
-- No-dedupe FIRED only: S 10/77, A 6/60, X 7/22.
-- Raw captured signal status mix: {'skipped_d': 653, 'fired': 117, 'skipped_tight': 19}
-- Raw captured signal grade mix: {'X': 653, 'B': 44, 'C': 90, 'A+': 1, 'A': 1}
+## Recall — any signal, any grade (detection vs filtering)
+- S: 34/77, A: 28/60, X: 13/22 — marks with ANY engine signal (incl. D/tight-stop skips, deduped) within +/-2 bars.
+- S: 36/77, A: 33/60, X: 15/22 — same but counting EVERY captured signal bar (no dedupe; the true upper bound on 'the engine produced a signal here').
+- No-dedupe FIRED only: S 5/77, A 5/60, X 3/22.
+- Raw captured signal status mix: {'skipped_d': 1598, 'fired': 90, 'skipped_tight': 41}
+- Raw captured signal grade mix: {'X': 1598, 'B': 40, 'C': 91}
 
-## Recall â€” testable marks only (archive present; isolates detection/filter from the 54 no-archive misses)
-- Fired: S 10/77, A 6/60, X 6/22
-- Any signal (deduped): S 28/77, A 23/60, X 13/22
-- Any signal (raw, upper bound): S 30/77, A 26/60, X 15/22
+## Recall — testable marks only (archive present; isolates detection/filter from the 54 no-archive misses)
+- Fired: S 5/77, A 5/60, X 2/22
+- Any signal (deduped): S 34/77, A 28/60, X 13/22
+- Any signal (raw, upper bound): S 36/77, A 33/60, X 15/22
 
 ## Precision detail
 - Engine entries on marked days: **66**
-- Landing on a marked bar: **25** (tier mix â€” matched mark's tier: S 12, A 6, X 7)
-- Matched engine-entry grade mix: {'B': 19, 'C': 6}
-- Engine entries on marked days Austin did NOT mark: **41**
+- Landing on a marked bar: **12** (tier mix — matched mark's tier: S 5, A 5, X 2)
+- Matched engine-entry grade mix: {'C': 2, 'B': 10}
+- Engine entries on marked days Austin did NOT mark: **54**
 
 ## Method
 - Marks: `research/austin_marks_v2.jsonl` (159 marks, 151 distinct symbol|day).
@@ -43,4 +43,4 @@ Denominators: join target `research/austin_marks_v2.jsonl` has 77 S / 60 A / 22 
 - Level inputs reconstructed from the archive: PDH/PDL from the prior archived day, PMH/PML from the same day's 04:00-09:29 bars, HTF bias from prior days' close-vs-SMA20. 84% re-entries are not armed (need a stopped prior trade's state).
 - A mark is *detected* if any engine entry bar is within +/-2 of the mark's entry_i.
 
-Raw dumps: `research/engine_entries.jsonl` (66 fired entries, deduped) and `research/engine_signals.jsonl` (248 deduped all-grade signals; the raw per-bar capture is recomputed in-process for the mixes above) across all replayed days.
+Raw dumps: `research/engine_entries.jsonl` (66 fired entries, deduped) and `research/engine_signals.jsonl` (560 deduped all-grade signals; the raw per-bar capture is recomputed in-process for the mixes above) across all replayed days.

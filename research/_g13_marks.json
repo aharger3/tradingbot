@@ -1,0 +1,616 @@
+{
+  "off": {
+    "GOOGL|2024-10-15|32": {
+      "fired_within_tol": [],
+      "near": [
+        {
+          "avg_rng": 0.161,
+          "bar": 30,
+          "close": 166.46,
+          "direction": "call",
+          "entry": 166.46,
+          "floor": 0.2497,
+          "grade": "X",
+          "level": "OR high",
+          "risk": 0.06,
+          "setup": "break_and_retest",
+          "status": "skipped_d",
+          "stop": 166.4,
+          "tight_thr": 0.1208
+        },
+        {
+          "avg_rng": 0.161,
+          "bar": 30,
+          "close": 166.46,
+          "direction": "call",
+          "entry": 166.46,
+          "floor": 0.2497,
+          "grade": "X",
+          "level": "PMH",
+          "risk": 0.01,
+          "setup": "break_and_retest",
+          "status": "skipped_d",
+          "stop": 166.45,
+          "tight_thr": 0.1208
+        },
+        {
+          "avg_rng": 0.1825,
+          "bar": 32,
+          "close": 166.825,
+          "direction": "call",
+          "entry": 166.515,
+          "floor": 0.2502,
+          "grade": "X",
+          "level": "OR high",
+          "risk": 0.115,
+          "setup": "break_and_retest",
+          "status": "skipped_d",
+          "stop": 166.4,
+          "tight_thr": 0.1369
+        }
+      ]
+    },
+    "IWM|2025-04-10|16": {
+      "fired_within_tol": [],
+      "near": [
+        {
+          "avg_rng": 0.6088,
+          "bar": 16,
+          "close": 183.79,
+          "direction": "put",
+          "entry": 184.12,
+          "floor": 0.2757,
+          "grade": "X",
+          "level": "OR low",
+          "risk": 0.1,
+          "setup": "break_and_retest",
+          "status": "skipped_d",
+          "stop": 184.22,
+          "tight_thr": 0.4566
+        }
+      ]
+    },
+    "IWM|2025-12-01|11": {
+      "fired_within_tol": [],
+      "near": [
+        {
+          "avg_rng": 0.29,
+          "bar": 10,
+          "close": 245.99,
+          "direction": "call",
+          "entry": 245.99,
+          "floor": 0.369,
+          "grade": "X",
+          "level": "OR high",
+          "risk": 0.07,
+          "setup": "break_and_retest",
+          "status": "skipped_d",
+          "stop": 245.92,
+          "tight_thr": 0.2175
+        },
+        {
+          "avg_rng": 0.286,
+          "bar": 11,
+          "close": 246.19,
+          "direction": "call",
+          "entry": 245.92,
+          "floor": 0.3693,
+          "grade": "X",
+          "level": "OR high",
+          "risk": 0.08,
+          "setup": "break_and_retest",
+          "status": "skipped_d",
+          "stop": 245.84,
+          "tight_thr": 0.2145
+        },
+        {
+          "avg_rng": 0.295,
+          "bar": 12,
+          "close": 246.35,
+          "direction": "call",
+          "entry": 246.13,
+          "floor": 0.3695,
+          "grade": "X",
+          "level": "OR high",
+          "risk": 0.21,
+          "setup": "break_and_retest",
+          "status": "skipped_d",
+          "stop": 245.92,
+          "tight_thr": 0.2212
+        },
+        {
+          "avg_rng": 0.2905,
+          "bar": 13,
+          "close": 246.19,
+          "direction": "call",
+          "entry": 246.11,
+          "floor": 0.3693,
+          "grade": "X",
+          "level": "OR high",
+          "risk": 0.19,
+          "setup": "break_and_retest",
+          "status": "skipped_d",
+          "stop": 245.92,
+          "tight_thr": 0.2179
+        }
+      ]
+    },
+    "IWM|2025-12-04|56": {
+      "fired_within_tol": [],
+      "near": [
+        {
+          "avg_rng": 0.2588,
+          "bar": 56,
+          "close": 249.93,
+          "direction": "call",
+          "entry": 249.79,
+          "floor": 0.3749,
+          "grade": "X",
+          "level": "OR high",
+          "risk": 0.085,
+          "setup": "break_and_retest",
+          "status": "skipped_d",
+          "stop": 249.705,
+          "tight_thr": 0.1941
+        },
+        {
+          "avg_rng": 0.2528,
+          "bar": 57,
+          "close": 250.19,
+          "direction": "call",
+          "entry": 250.0,
+          "floor": 0.3753,
+          "grade": "X",
+          "level": "PDH",
+          "risk": 0.08,
+          "setup": "break_and_retest",
+          "status": "skipped_d",
+          "stop": 249.92,
+          "tight_thr": 0.1896
+        },
+        {
+          "avg_rng": 0.2528,
+          "bar": 57,
+          "close": 250.19,
+          "direction": "call",
+          "entry": 250.01,
+          "floor": 0.3753,
+          "grade": "X",
+          "level": "PMH",
+          "risk": 0.09,
+          "setup": "break_and_retest",
+          "status": "skipped_d",
+          "stop": 249.92,
+          "tight_thr": 0.1896
+        },
+        {
+          "avg_rng": 0.2715,
+          "bar": 58,
+          "close": 250.515,
+          "direction": "call",
+          "entry": 250.16,
+          "floor": 0.3758,
+          "grade": "X",
+          "level": "PDH",
+          "risk": 0.16,
+          "setup": "break_and_retest",
+          "status": "skipped_d",
+          "stop": 250.0,
+          "tight_thr": 0.2036
+        },
+        {
+          "avg_rng": 0.2715,
+          "bar": 58,
+          "close": 250.515,
+          "direction": "call",
+          "entry": 250.16,
+          "floor": 0.3758,
+          "grade": "X",
+          "level": "PMH",
+          "risk": 0.15,
+          "setup": "break_and_retest",
+          "status": "skipped_d",
+          "stop": 250.01,
+          "tight_thr": 0.2036
+        }
+      ]
+    },
+    "QQQ|2025-02-25|16": {
+      "fired_within_tol": [],
+      "near": [
+        {
+          "avg_rng": 0.7641,
+          "bar": 15,
+          "close": 517.74,
+          "direction": "put",
+          "entry": 517.74,
+          "floor": 0.7766,
+          "grade": "X",
+          "level": "OR low",
+          "risk": 0.01,
+          "setup": "break_and_retest",
+          "status": "skipped_d",
+          "stop": 517.75,
+          "tight_thr": 0.5731
+        },
+        {
+          "avg_rng": 0.7871,
+          "bar": 16,
+          "close": 517.28,
+          "direction": "put",
+          "entry": 517.75,
+          "floor": 0.7759,
+          "grade": "X",
+          "level": "OR low",
+          "risk": 0.25,
+          "setup": "break_and_retest",
+          "status": "skipped_d",
+          "stop": 518.0,
+          "tight_thr": 0.5903
+        },
+        {
+          "avg_rng": 0.7511,
+          "bar": 17,
+          "close": 516.65,
+          "direction": "put",
+          "entry": 517.26,
+          "floor": 0.775,
+          "grade": "X",
+          "level": "OR low",
+          "risk": 0.49,
+          "setup": "break_and_retest",
+          "status": "skipped_d",
+          "stop": 517.75,
+          "tight_thr": 0.5633
+        },
+        {
+          "avg_rng": 0.7261,
+          "bar": 18,
+          "close": 516.75,
+          "direction": "put",
+          "entry": 517.03,
+          "floor": 0.7751,
+          "grade": "X",
+          "level": "OR low",
+          "risk": 0.72,
+          "setup": "break_and_retest",
+          "status": "skipped_d",
+          "stop": 517.75,
+          "tight_thr": 0.5446
+        }
+      ]
+    },
+    "UBER|2025-09-11|15": {
+      "fired_within_tol": [],
+      "near": [
+        {
+          "avg_rng": 0.3194,
+          "bar": 15,
+          "close": 95.155,
+          "direction": "call",
+          "entry": 94.75,
+          "floor": 0.1427,
+          "grade": "X",
+          "level": "OR high",
+          "risk": 0.1328,
+          "setup": "break_and_retest",
+          "status": "skipped_d",
+          "stop": 94.6172,
+          "tight_thr": 0.2395
+        }
+      ]
+    }
+  },
+  "on": {
+    "GOOGL|2024-10-15|32": {
+      "fired_within_tol": [
+        32
+      ],
+      "near": [
+        {
+          "avg_rng": 0.161,
+          "bar": 30,
+          "close": 166.46,
+          "direction": "call",
+          "entry": 166.46,
+          "floor": 0.2497,
+          "grade": "X",
+          "level": "OR high",
+          "risk": 0.06,
+          "setup": "break_and_retest",
+          "status": "skipped_d",
+          "stop": 166.4,
+          "tight_thr": 0.1208
+        },
+        {
+          "avg_rng": 0.161,
+          "bar": 30,
+          "close": 166.46,
+          "direction": "call",
+          "entry": 166.46,
+          "floor": 0.2497,
+          "grade": "X",
+          "level": "PMH",
+          "risk": 0.01,
+          "setup": "break_and_retest",
+          "status": "skipped_d",
+          "stop": 166.45,
+          "tight_thr": 0.1208
+        },
+        {
+          "avg_rng": 0.1825,
+          "bar": 32,
+          "close": 166.825,
+          "direction": "call",
+          "entry": 166.515,
+          "floor": 0.2502,
+          "grade": "B",
+          "level": "OR high",
+          "risk": 0.115,
+          "setup": "break_and_retest",
+          "status": "fired",
+          "stop": 166.4,
+          "tight_thr": 0.1369
+        }
+      ]
+    },
+    "IWM|2025-04-10|16": {
+      "fired_within_tol": [
+        16
+      ],
+      "near": [
+        {
+          "avg_rng": 0.6088,
+          "bar": 16,
+          "close": 183.79,
+          "direction": "put",
+          "entry": 184.12,
+          "floor": 0.2757,
+          "grade": "B",
+          "level": "OR low",
+          "risk": 0.1,
+          "setup": "break_and_retest",
+          "status": "fired",
+          "stop": 184.22,
+          "tight_thr": 0.4566
+        }
+      ]
+    },
+    "IWM|2025-12-01|11": {
+      "fired_within_tol": [
+        12
+      ],
+      "near": [
+        {
+          "avg_rng": 0.29,
+          "bar": 10,
+          "close": 245.99,
+          "direction": "call",
+          "entry": 245.99,
+          "floor": 0.369,
+          "grade": "X",
+          "level": "OR high",
+          "risk": 0.07,
+          "setup": "break_and_retest",
+          "status": "skipped_d",
+          "stop": 245.92,
+          "tight_thr": 0.2175
+        },
+        {
+          "avg_rng": 0.286,
+          "bar": 11,
+          "close": 246.19,
+          "direction": "call",
+          "entry": 245.92,
+          "floor": 0.3693,
+          "grade": "X",
+          "level": "OR high",
+          "risk": 0.08,
+          "setup": "break_and_retest",
+          "status": "skipped_d",
+          "stop": 245.84,
+          "tight_thr": 0.2145
+        },
+        {
+          "avg_rng": 0.295,
+          "bar": 12,
+          "close": 246.35,
+          "direction": "call",
+          "entry": 246.13,
+          "floor": 0.3695,
+          "grade": "B",
+          "level": "OR high",
+          "risk": 0.21,
+          "setup": "break_and_retest",
+          "status": "fired",
+          "stop": 245.92,
+          "tight_thr": 0.2212
+        },
+        {
+          "avg_rng": 0.2905,
+          "bar": 13,
+          "close": 246.19,
+          "direction": "call",
+          "entry": 246.11,
+          "floor": 0.3693,
+          "grade": "X",
+          "level": "OR high",
+          "risk": 0.19,
+          "setup": "break_and_retest",
+          "status": "skipped_d",
+          "stop": 245.92,
+          "tight_thr": 0.2179
+        }
+      ]
+    },
+    "IWM|2025-12-04|56": {
+      "fired_within_tol": [
+        58
+      ],
+      "near": [
+        {
+          "avg_rng": 0.2588,
+          "bar": 56,
+          "close": 249.93,
+          "direction": "call",
+          "entry": 249.79,
+          "floor": 0.3749,
+          "grade": "X",
+          "level": "OR high",
+          "risk": 0.085,
+          "setup": "break_and_retest",
+          "status": "skipped_d",
+          "stop": 249.705,
+          "tight_thr": 0.1941
+        },
+        {
+          "avg_rng": 0.2528,
+          "bar": 57,
+          "close": 250.19,
+          "direction": "call",
+          "entry": 250.0,
+          "floor": 0.3753,
+          "grade": "X",
+          "level": "PDH",
+          "risk": 0.08,
+          "setup": "break_and_retest",
+          "status": "skipped_d",
+          "stop": 249.92,
+          "tight_thr": 0.1896
+        },
+        {
+          "avg_rng": 0.2528,
+          "bar": 57,
+          "close": 250.19,
+          "direction": "call",
+          "entry": 250.01,
+          "floor": 0.3753,
+          "grade": "X",
+          "level": "PMH",
+          "risk": 0.09,
+          "setup": "break_and_retest",
+          "status": "skipped_d",
+          "stop": 249.92,
+          "tight_thr": 0.1896
+        },
+        {
+          "avg_rng": 0.2715,
+          "bar": 58,
+          "close": 250.515,
+          "direction": "call",
+          "entry": 250.16,
+          "floor": 0.3758,
+          "grade": "B",
+          "level": "PDH",
+          "risk": 0.16,
+          "setup": "break_and_retest",
+          "status": "fired",
+          "stop": 250.0,
+          "tight_thr": 0.2036
+        },
+        {
+          "avg_rng": 0.2715,
+          "bar": 58,
+          "close": 250.515,
+          "direction": "call",
+          "entry": 250.16,
+          "floor": 0.3758,
+          "grade": "C",
+          "level": "PMH",
+          "risk": 0.15,
+          "setup": "break_and_retest",
+          "status": "skipped_tight",
+          "stop": 250.01,
+          "tight_thr": 0.2036
+        }
+      ]
+    },
+    "QQQ|2025-02-25|16": {
+      "fired_within_tol": [],
+      "near": [
+        {
+          "avg_rng": 0.7641,
+          "bar": 15,
+          "close": 517.74,
+          "direction": "put",
+          "entry": 517.74,
+          "floor": 0.7766,
+          "grade": "X",
+          "level": "OR low",
+          "risk": 0.01,
+          "setup": "break_and_retest",
+          "status": "skipped_d",
+          "stop": 517.75,
+          "tight_thr": 0.5731
+        },
+        {
+          "avg_rng": 0.7871,
+          "bar": 16,
+          "close": 517.28,
+          "direction": "put",
+          "entry": 517.75,
+          "floor": 0.7759,
+          "grade": "X",
+          "level": "OR low",
+          "risk": 0.25,
+          "setup": "break_and_retest",
+          "status": "skipped_d",
+          "stop": 518.0,
+          "tight_thr": 0.5903
+        },
+        {
+          "avg_rng": 0.7511,
+          "bar": 17,
+          "close": 516.65,
+          "direction": "put",
+          "entry": 517.26,
+          "floor": 0.775,
+          "grade": "C",
+          "level": "OR low",
+          "risk": 0.49,
+          "setup": "break_and_retest",
+          "status": "skipped_tight",
+          "stop": 517.75,
+          "tight_thr": 0.5633
+        },
+        {
+          "avg_rng": 0.7261,
+          "bar": 18,
+          "close": 516.75,
+          "direction": "put",
+          "entry": 517.03,
+          "floor": 0.7751,
+          "grade": "X",
+          "level": "OR low",
+          "risk": 0.72,
+          "setup": "break_and_retest",
+          "status": "skipped_d",
+          "stop": 517.75,
+          "tight_thr": 0.5446
+        }
+      ]
+    },
+    "UBER|2025-09-11|15": {
+      "fired_within_tol": [
+        15
+      ],
+      "near": [
+        {
+          "avg_rng": 0.3194,
+          "bar": 15,
+          "close": 95.155,
+          "direction": "call",
+          "entry": 94.75,
+          "floor": 0.1427,
+          "grade": "B",
+          "level": "OR high",
+          "risk": 0.1328,
+          "setup": "break_and_retest",
+          "status": "fired",
+          "stop": 94.6172,
+          "tight_thr": 0.2395
+        }
+      ]
+    }
+  }
+}

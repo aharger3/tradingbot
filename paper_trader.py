@@ -27,9 +27,12 @@ from dataclasses import dataclass, asdict
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 from typing import List, Optional
+from zoneinfo import ZoneInfo
 
 from options_sizer import OptionsPlan
 from stop_rule import stop_hit_on_close, stop_fill_price
+
+_ET = ZoneInfo("America/New_York")
 
 
 # ---- Rule 6: Position Management ----
@@ -39,7 +42,9 @@ RULE6_BE_MULT = 1.0         # breakeven at 1R (entry +/- 1R risk)
 
 
 def _now_et_iso() -> str:
-    return (datetime.now(timezone.utc) - timedelta(hours=4)).strftime("%Y-%m-%d %H:%M:%S")
+    # T13: was `utcnow() - timedelta(hours=4)`, i.e. hardcoded EDT — wrong by
+    # one hour Nov-Mar (DST). ZoneInfo is DST-correct year-round.
+    return datetime.now(_ET).strftime("%Y-%m-%d %H:%M:%S")
 
 
 def _calc_breakeven(
@@ -238,7 +243,8 @@ class PaperBook:
     def _log(self, event: dict) -> None:
         ts = event.get("ts", "")
         if len(ts) == 8 and ":" in ts:  # HH:MM:SS — no date
-            today_et = (datetime.now(timezone.utc) - timedelta(hours=4)).strftime("%Y-%m-%d")
+            # T13: same DST bug as _now_et_iso, fixed the same way.
+            today_et = datetime.now(_ET).strftime("%Y-%m-%d")
             event = {**event, "ts": f"{today_et} {ts}"}
         with self.ledger_path.open("a", encoding="utf-8") as f:
             f.write(json.dumps(event) + "\n")

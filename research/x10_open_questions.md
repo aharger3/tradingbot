@@ -111,15 +111,15 @@ doubles while mean and median R both fall by 6–8× the narrow bar.
 - **Answer would live:** a ballot row defining the formula, or a decision to delete. **Confirmed absent** — ballot batch 01 and 02 both contain his disavowal and no definition.
 - **Default:** delete the veto and keep the value as a reported observation. That is P16's own recommendation and it is now backed by a second, larger measurement. It changes what the live scanner alerts on tomorrow morning, which is why it is his.
 
-### A6 · The 84% reclaim tolerance, and `STRONG_PA_MULT = 1.5` which gates it
+### A6 · The 84% reclaim tolerance, and `STRONG_PA_MULT = 1.5` which does NOT gate it
 
-Two halves of one unowned rule.
+Two halves of one unowned rule. **CLARIFICATION:** `RULE84_LESSON=True` (line 104) short-circuits `_strong_pa` off the 84% code path entirely; the constant is used only in `_aplus_stack` (fires 2 times in 45,193 signals), never in the reclaim arming.
 
 - **The tolerance:** he said *"as long as the close is not too far away from original entry"* and never gave the number. Ballot b01 q12–q15 settled everything else about the rule (re-entry of the price, close to reclaim, max two attempts, must match trend direction).
-- **The constant:** `signal_runner.py:91` — `STRONG_PA_MULT = 1.5`, confirmed at HEAD, commented *"reclaim body vs avg body of prior 10 candles (84% rule gate)"*. `research/hallucination-audit.md` names it the **worst of the 33 UNMENTIONED constants** — nobody ever stated it.
+- **The constant:** `signal_runner.py:91` — `STRONG_PA_MULT = 1.5` is an unowned constant nobody stated. Its comment was corrected to clarify it is NOT the 84% rule gate.
 
 - **Answer would live:** `research/rule_ballot_batch0{1,2}.jsonl`. **Confirmed absent** from both.
-- **Default:** set the tolerance to the project's one tolerance unit — **25% of the previous candle's range** (`BAR_EXTREME_FRAC = 0.25`, `signal_runner.py:365`) — and delete `STRONG_PA_MULT`'s independent body gate rather than inventing a second number for the same rule.
+- **Default:** set the tolerance to the project's one tolerance unit — **25% of the previous candle's range** (`BAR_EXTREME_FRAC = 0.25`, `signal_runner.py:365`) — and leave `STRONG_PA_MULT` to `_aplus_stack` only.
 
 ### A7 · R8 (TASKS lane) — is a stop built from the entry bar's own extreme the stop he actually uses?
 

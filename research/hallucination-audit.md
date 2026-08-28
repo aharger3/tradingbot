@@ -46,7 +46,7 @@ Corpus sweep checking each hardcoded constant in signal_runner.py against resear
 
 | Parameter | Current Value | Reason | Importance |
 |---|---|---|---|
-| STRONG_PA_MULT | 1.5x avg body | No stated multiplier; only qualitative "strong PA" mentioned | CRITICAL - gates 84% reclaim |
+| STRONG_PA_MULT | 1.5x avg body | No stated multiplier; only qualitative "strong PA" mentioned | CRITICAL note: RULE84_LESSON=True short-circuits _strong_pa off the 84% code path entirely; only used in _aplus_stack (fires 2x in 45k signals) |
 | STOP_RANGE_MULT | 0.75x avg range | "Tight stops lose " mentioned; 0.75 multiplier never stated (OURS) | HIGH - human-proof gate |
 | B&R_MIN_RISK | 0.0015 * close | Relative threshold; 0.0015 multiplier territory not swept | HIGH - gates grade D |
 | S-score weights | clean+2, A+2, stop+2, non-PM+1, hammer+2, QQQ+1 | "Data-derived (24mo split), not course-taught" (OURS) | HIGH - drives tier selection |

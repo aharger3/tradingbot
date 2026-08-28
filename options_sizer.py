@@ -9,15 +9,58 @@ Workflow:
   6. Contracts = floor(max_loss / ((entry - stop) × 100))
 """
 
+import os
 from dataclasses import dataclass, field
 from datetime import datetime, date, time, timedelta, timezone
 from typing import Optional, Literal, List
+from zoneinfo import ZoneInfo
+
+import black_scholes as bs
+
+_ET = ZoneInfo("America/New_York")
 
 
 CONTRACT_MULTIPLIER = 100
 DEFAULT_MAX_LOSS = 1000.0
 DEFAULT_RR = 2.0
 DEFAULT_DELTA = 0.5  # ATM ≈ 0.5
+
+# ---- T2: ENABLE_CONTRACT_R -- the real pricer, DEFAULT OFF -------------------
+# `DEFAULT_DELTA = 0.5` is a flat linear delta and it was the entire options
+# model in this repo. It cannot express convexity (a winning 0DTE call's delta
+# climbs toward 1.0, so the runner earns MORE than the underlying move) or theta
+# (the same contract bleeds while it waits). Austin's runner thesis is a bet that
+# the first beats the second; a constant makes that bet unmeasurable.
+#
+# ON, `premium_risk` comes from repricing the contract at the stop with
+# `black_scholes`, instead of `stock_risk * 0.5`. OFF, this file behaves exactly
+# as it did before T2 -- the flag is checked in one place, `atm_delta()`, and its
+# OFF branch returns `DEFAULT_DELTA` before touching the pricer.
+#
+# The 2-year book (`research/g3_arm_ow1.json`, from `backtest_2y.py`) does not
+# import this module at all, so the book cannot move either way. That is asserted
+# in `research/t2_options_tape.py --selfcheck` and re-proved by regenerating the
+# book, not merely argued. See `research/t2_options_tape.md`.
+ENABLE_CONTRACT_R = os.getenv("ENABLE_CONTRACT_R", "0") not in ("0", "", "false", "off")
+
+
+def atm_delta(direction: str, spot: float, strike: float,
+              iv: Optional[float] = None,
+              minutes_to_expiry: Optional[float] = None) -> float:
+    """Delta for the sizer. `DEFAULT_DELTA` unless ENABLE_CONTRACT_R is on.
+
+    `iv` is annualised. `minutes_to_expiry` is RTH minutes (390 per session,
+    252 sessions per year). Both are required for the pricer -- there is no
+    options tape in this repo, so an IV has to be handed in by the caller and
+    there is no safe default to invent. Without them the flag degrades to
+    `DEFAULT_DELTA` rather than guessing.
+    """
+    if not ENABLE_CONTRACT_R:
+        return DEFAULT_DELTA
+    if not iv or not minutes_to_expiry or minutes_to_expiry <= 0 or spot <= 0:
+        return DEFAULT_DELTA
+    T = minutes_to_expiry / (390.0 * 252.0)
+    return abs(bs.delta(spot, strike, T, iv, call=(direction == "call")))
 
 # Grade → fraction of max loss to risk (SPEC2). C = alert-only, D = filtered upstream.
 # "X" is the skip grade (T5 rename); "D" kept as its old letter — both 0%.
@@ -122,7 +165,8 @@ def first_otm_strike(stock_price: float, symbol: str, direction: str) -> float:
 def weekly_expiration(now: Optional[datetime] = None) -> str:
     """OPUS-SPEC #6: nearest Friday (this week's weekly; today if Friday)."""
     if now is None:
-        now = datetime.now(timezone.utc) - timedelta(hours=4)  # approx ET
+        # T13: was `utcnow() - timedelta(hours=4)`, hardcoded EDT, wrong Nov-Mar.
+        now = datetime.now(_ET)
     d = now.date()
     return (d + timedelta(days=(4 - d.weekday()) % 7)).isoformat()
 
@@ -134,7 +178,8 @@ def nearest_expiration(now: Optional[datetime] = None) -> str:
     For others, you may get a 404 on snapshot — fallback handled in caller.
     """
     if now is None:
-        now = datetime.now(timezone.utc) - timedelta(hours=4)  # approx ET
+        # T13: was `utcnow() - timedelta(hours=4)`, hardcoded EDT, wrong Nov-Mar.
+        now = datetime.now(_ET)
     today = now.date()
     # Before 14:30 ET, use today (0DTE has plenty of value left)
     cutoff = time(14, 30)
@@ -158,10 +203,17 @@ def build_options_plan(
     delta_estimate: float = DEFAULT_DELTA,
     expiration: Optional[str] = None,
     strike: Optional[float] = None,
+    iv: Optional[float] = None,               # T2: annualised, ENABLE_CONTRACT_R only
+    minutes_to_expiry: Optional[float] = None,  # T2: RTH minutes, 390 per session
 ) -> OptionsPlan:
     """Build full options trade card.
 
     Premium sources (priority): Tastytrade (real-time) > delta estimate.
+
+    T2: with `ENABLE_CONTRACT_R` on AND `iv` / `minutes_to_expiry` supplied, the
+    premium risk is a full Black-Scholes reprice at the stock stop instead of
+    `stock_risk * 0.5`. Off (the default), or with either input missing, the
+    arithmetic below is bit-for-bit what it was before T2.
     """
     # 1. Stock-side risk/reward
     if direction == "call":
@@ -221,6 +273,17 @@ def build_options_plan(
     # Stop = entry - (stock_risk × delta × multiplier)
     # Premium moves roughly delta × stock_move (per share, no multiplier)
     premium_risk = round(stock_risk * delta_estimate, 2)
+    if ENABLE_CONTRACT_R and iv and minutes_to_expiry and minutes_to_expiry > 0:
+        # The premium actually lost when the underlying reaches the stop, priced
+        # rather than approximated. Strictly SMALLER than delta*stock_risk,
+        # because a long option is convex: the loss decelerates on the way down.
+        _T = minutes_to_expiry / (390.0 * 252.0)
+        _call = direction == "call"
+        _p0 = bs.price(stock_entry, strike, _T, iv, call=_call)
+        _pstop = bs.price(stock_stop, strike, _T, iv, call=_call)
+        premium_risk = round(max(_p0 - _pstop, 0.0), 2)
+        delta_estimate = atm_delta(direction, stock_entry, strike, iv, minutes_to_expiry)
+        quote_source += "+bs_premium_risk"
     if premium_risk < 0.05:
         premium_risk = 0.05  # min tick guard
 

@@ -77,8 +77,12 @@ class TastytradeFeed:
         refresh_token: Optional[str] = None,
         account_number: Optional[str] = None,
     ):
-        self.username = username or os.getenv("TASTYTRADE_USERNAME") or os.getenv("USERNAME")
-        self.password = password or os.getenv("TASTYTRADE_PASSWORD") or os.getenv("PASSWORD")
+        # NOTE: do NOT fall back to bare USERNAME / PASSWORD. On Windows, USERNAME
+        # is a built-in environment variable equal to the desktop account name, so
+        # the fallback silently POSTs the Windows login to tastytrade and the 400
+        # that comes back looks like a credential problem instead of a config one.
+        self.username = username or os.getenv("TASTYTRADE_USERNAME")
+        self.password = password or os.getenv("TASTYTRADE_PASSWORD")
         self.client_id = client_id or os.getenv("CLIENT_ID")
         self.client_secret = client_secret or os.getenv("CLIENT_SECRET")
         self.refresh_token = refresh_token or os.getenv("REFRESH_TOKEN")

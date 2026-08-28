@@ -1,0 +1,382 @@
+{
+ "ballot": {
+  "batch01": 20,
+  "batch02": 28,
+  "note_chars": 5423,
+  "total": 48
+ },
+ "book_keys": [
+  "meta",
+  "trades"
+ ],
+ "book_rows": 45193,
+ "book_traded": 1017,
+ "ci_ladder": [
+  {
+   "extra_S": 0,
+   "halfwidth": 0.19068949688022993,
+   "hi": 0.45185448721383886,
+   "k": 3,
+   "lo": 0.07047549345337902,
+   "n": 15
+  },
+  {
+   "extra_S": 15,
+   "halfwidth": 0.1390029462099446,
+   "hi": 0.3730569641763039,
+   "k": 6,
+   "lo": 0.09505107175641471,
+   "n": 30
+  },
+  {
+   "extra_S": 30,
+   "halfwidth": 0.1146342115673892,
+   "hi": 0.33822969119745905,
+   "k": 9,
+   "lo": 0.10896126806268062,
+   "n": 45
+  },
+  {
+   "extra_S": 60,
+   "halfwidth": 0.08949567562338631,
+   "hi": 0.30411282837475423,
+   "k": 15,
+   "lo": 0.1251214771279816,
+   "n": 75
+  },
+  {
+   "extra_S": 135,
+   "halfwidth": 0.06365025750233899,
+   "hi": 0.2711413308161901,
+   "k": 30,
+   "lo": 0.1438408158115121,
+   "n": 150
+  }
+ ],
+ "h2_lane1_returned": 59,
+ "h2_lane_sizes": {
+  "b_remap": 60,
+  "giveback": 30,
+  "silent_day": 30
+ },
+ "h2_outstanding": {
+  "b_remap": 1,
+  "giveback": 30,
+  "silent_day": 30
+ },
+ "h2_outstanding_total": 61,
+ "h2_taps_outstanding": 90,
+ "judged_symbol_days": 817,
+ "lane2_days": [
+  "AAPL 2025-01-16",
+  "AAPL 2025-08-25",
+  "AAPL 2025-09-11",
+  "AAPL 2026-07-08",
+  "ACHR 2026-04-10",
+  "AMZN 2025-09-25",
+  "IWM 2025-03-14",
+  "MARA 2026-03-02",
+  "NFLX 2026-04-22",
+  "NFLX 2026-05-12",
+  "PLTR 2025-09-02",
+  "QQQ 2025-02-18",
+  "QQQ 2026-06-30",
+  "QQQ 2026-07-07",
+  "QQQ 2026-07-09",
+  "QQQ 2026-07-15",
+  "QQQ 2026-07-16",
+  "QQQ 2026-07-20",
+  "QQQ 2026-07-23",
+  "QQQ 2026-07-24",
+  "QQQ 2026-07-27",
+  "QQQ 2026-08-03",
+  "QQQ 2026-08-04",
+  "QQQ 2026-08-10",
+  "TSLA 2026-05-21",
+  "TSLA 2026-06-03",
+  "TSLA 2026-06-08",
+  "TSLA 2026-06-10",
+  "TSLA 2026-06-29",
+  "TSLA 2026-07-23"
+ ],
+ "lane2_in_heldout": [
+  "AAPL 2025-01-16",
+  "AAPL 2025-08-25",
+  "AAPL 2025-09-11",
+  "AAPL 2026-07-08",
+  "ACHR 2026-04-10",
+  "AMZN 2025-09-25",
+  "IWM 2025-03-14",
+  "MARA 2026-03-02",
+  "NFLX 2026-04-22",
+  "NFLX 2026-05-12",
+  "PLTR 2025-09-02",
+  "QQQ 2025-02-18"
+ ],
+ "lane2_in_heldout_S": [
+  "AAPL 2025-01-16",
+  "AAPL 2025-08-25",
+  "AAPL 2025-09-11",
+  "AAPL 2026-07-08",
+  "ACHR 2026-04-10",
+  "AMZN 2025-09-25",
+  "IWM 2025-03-14",
+  "MARA 2026-03-02",
+  "NFLX 2026-04-22",
+  "NFLX 2026-05-12",
+  "PLTR 2025-09-02",
+  "QQQ 2025-02-18"
+ ],
+ "lane2_new_heldout_S": 0,
+ "lane2_new_info_taps": 30,
+ "lane2_repeat": 30,
+ "lane2_symbols": {
+  "AAPL": 4,
+  "ACHR": 1,
+  "AMZN": 1,
+  "IWM": 1,
+  "MARA": 1,
+  "NFLX": 2,
+  "PLTR": 1,
+  "QQQ": 13,
+  "TSLA": 6
+ },
+ "lane2_total_taps": 60,
+ "lane3_days": [
+  "AAPL 2024-08-23",
+  "AAPL 2025-03-25",
+  "ACHR 2025-05-15",
+  "AMD 2024-12-30",
+  "AMD 2025-11-07",
+  "AMZN 2024-11-26",
+  "AMZN 2026-03-20",
+  "COIN 2024-09-12",
+  "COIN 2026-02-11",
+  "GOOGL 2024-09-27",
+  "HOOD 2024-11-22",
+  "HOOD 2026-04-06",
+  "INTC 2025-09-26",
+  "INTC 2026-08-17",
+  "IREN 2025-09-25",
+  "IREN 2026-07-28",
+  "META 2024-08-22",
+  "MSFT 2025-11-24",
+  "MU 2025-01-21",
+  "MU 2026-03-30",
+  "NFLX 2025-01-21",
+  "NFLX 2026-06-03",
+  "NFLX 2026-07-23",
+  "NVDA 2025-01-23",
+  "NVDA 2025-04-11",
+  "NVDA 2025-10-17",
+  "NVDA 2026-05-27",
+  "ORCL 2024-11-08",
+  "PLTR 2025-05-29",
+  "PLTR 2025-08-22"
+ ],
+ "lane3_in_heldout": [],
+ "lane3_new_heldout_S": 0,
+ "lane3_repeat": 0,
+ "lane3_symbols": {
+  "AAPL": 2,
+  "ACHR": 1,
+  "AMD": 2,
+  "AMZN": 2,
+  "COIN": 2,
+  "GOOGL": 1,
+  "HOOD": 2,
+  "INTC": 2,
+  "IREN": 2,
+  "META": 1,
+  "MSFT": 1,
+  "MU": 2,
+  "NFLX": 3,
+  "NVDA": 4,
+  "ORCL": 1,
+  "PLTR": 2
+ },
+ "missed_now": 12,
+ "n_for_10pp": 60,
+ "n_for_5pp": 245,
+ "power": [
+  {
+   "p_double": 0.08507488587867089,
+   "p_now": 0.004329343270000003,
+   "q": 0.1
+  },
+  {
+   "p_double": 0.5401226702424216,
+   "p_now": 0.07255549952000005,
+   "q": 0.2
+  },
+  {
+   "p_double": 0.8889247767390765,
+   "p_now": 0.2763445304699998,
+   "q": 0.3
+  },
+  {
+   "p_double": 0.986550894301397,
+   "p_now": 0.5618217779200001,
+   "q": 0.4
+  },
+  {
+   "p_double": 0.9992280602455139,
+   "p_now": 0.80615234375,
+   "q": 0.5
+  }
+ ],
+ "recall_now": {
+  "halfwidth": 0.19068949688022993,
+  "k": 3,
+  "n": 15,
+  "p": 0.2,
+  "wilson_hi": 0.45185448721383886,
+  "wilson_lo": 0.07047549345337902
+ },
+ "sign_test_min_b": 5,
+ "t1_S": 15,
+ "t1_answered_total": 372,
+ "t1_cards": 100,
+ "t1_filled": {
+  "eblock": 58,
+  "emin": 58,
+  "grade": 100,
+  "setup": 57,
+  "stop": 56,
+  "why": 43
+ },
+ "t1_grades": {
+  "A": 27,
+  "C": 16,
+  "S": 15,
+  "X": 42
+ },
+ "t1_strata": {
+  "low": 20,
+  "offroster": 25,
+  "s_dropped": 28,
+  "s_traded": 12,
+  "silent": 15
+ },
+ "t1_typed_comments": 23,
+ "t2_cards": 100,
+ "t2_expected_S": 15,
+ "t2_graded": false,
+ "t2_overlap_t1": 0,
+ "t2_strata": {
+  "low": 25,
+  "offroster": 20,
+  "s_dropped": 28,
+  "s_traded": 12,
+  "silent": 15
+ },
+ "taps": [
+  {
+   "cards": 51,
+   "page": "omen-master-homework",
+   "q_per_card": 1.6274509803921569,
+   "questions": 83
+  },
+  {
+   "cards": 100,
+   "page": "omen-test-1",
+   "q_per_card": 7.0,
+   "questions": 700
+  },
+  {
+   "cards": 100,
+   "page": "omen-test-2",
+   "q_per_card": 7.0,
+   "questions": 700
+  },
+  {
+   "cards": 13,
+   "page": "qa-queue",
+   "q_per_card": 1.0,
+   "questions": 13
+  },
+  {
+   "cards": 15,
+   "page": "silent-day-autopsy",
+   "q_per_card": 5.0,
+   "questions": 75
+  },
+  {
+   "cards": 9,
+   "page": "head-to-head",
+   "q_per_card": 2.0,
+   "questions": 18
+  },
+  {
+   "cards": 12,
+   "page": "grader-calibration",
+   "q_per_card": 2.0,
+   "questions": 24
+  },
+  {
+   "cards": 120,
+   "page": "omen-h2-3lane",
+   "q_per_card": 1.25,
+   "questions": 150
+  }
+ ],
+ "w2": {
+  "best_mean_r": 0.9297,
+  "incumbent_mean_r": 0.8976,
+  "money_gate_mean_r": 2.0,
+  "short_by": 1.0703,
+  "span": 0.33219999999999994,
+  "worst_swept_mean_r": 0.5975
+ },
+ "yield": [
+  {
+   "S": 19,
+   "S_per_card": 0.1958762886597938,
+   "days": 60,
+   "file": "deck_marks_index_2026-08-19",
+   "rows": 97
+  },
+  {
+   "S": 9,
+   "S_per_card": 0.10344827586206896,
+   "days": 60,
+   "file": "deck_marks_tsla_2026-08-20",
+   "rows": 87
+  },
+  {
+   "S": 15,
+   "S_per_card": 1.0,
+   "days": 1,
+   "file": "probe_autopsy_2026-08-23",
+   "rows": 15
+  },
+  {
+   "S": 0,
+   "S_per_card": 0.0,
+   "days": 1,
+   "file": "probe_head2head_2026-08-24",
+   "rows": 9
+  },
+  {
+   "S": 10,
+   "S_per_card": 0.19607843137254902,
+   "days": 1,
+   "file": "probe_master_homework_2026-08-26",
+   "rows": 51
+  },
+  {
+   "S": 15,
+   "S_per_card": 0.15,
+   "days": 100,
+   "file": "probe_omen_test1_2026-08-27",
+   "rows": 100
+  },
+  {
+   "S": 5,
+   "S_per_card": 0.0847457627118644,
+   "days": 59,
+   "file": "deck_marks_h2_3lane_2026-08-28",
+   "rows": 59
+  }
+ ]
+}

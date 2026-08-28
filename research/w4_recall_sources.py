@@ -509,9 +509,11 @@ def build():
     A("")
     A("## The headline")
     A("")
-    A("**%d new gradeable symbol-days**, none of them already judged in any of the ten "
-      "mark corpora, all of them with archived bars so a card can actually be drawn."
-      % len(cand))
+    A("**%d new gradeable symbol-days**, none of them already judged in ANY existing "
+      "mark corpus (the ten `LEGACY_MARK_FILES` plus everything under "
+      "`research/marks/` — %d judged symbol-days in all), every one of them with "
+      "archived bars so a card can actually be drawn."
+      % (len(cand), len(h["already"])))
     A("")
     A("| provenance | days | what it means |")
     A("|---|---:|---|")

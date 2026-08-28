@@ -1,0 +1,275 @@
+{
+ "meta": {
+  "generated": "2026-08-27T17:51:28",
+  "first": "2024-08-21",
+  "last": "2026-08-21",
+  "sessions": 500,
+  "symbols": [
+   "NVDA",
+   "TSLA",
+   "AAPL",
+   "SPCX",
+   "MSFT",
+   "MU",
+   "INTC",
+   "PLTR",
+   "AMZN",
+   "META",
+   "AMD",
+   "GOOGL",
+   "ACHR",
+   "NFLX",
+   "ORCL",
+   "QQQ",
+   "SPY",
+   "IWM",
+   "SOFI",
+   "COIN",
+   "HOOD",
+   "IREN",
+   "AVGO",
+   "UBER",
+   "BABA",
+   "CRM",
+   "TSM",
+   "MARA"
+  ],
+  "risk_dollars": 1000.0,
+  "signals": 45193,
+  "traded": 1017
+ },
+ "n_rows": 45193,
+ "n_traded": 1017,
+ "missing_day": 0,
+ "missing_bar": 0,
+ "census_traded": {
+  "n": 1017,
+  "intrabar": 913,
+  "bar_extreme_only": 356,
+  "on_watch_only": 87,
+  "both": 468,
+  "neither": 2
+ },
+ "census_whole_book": {
+  "n": 45193,
+  "intrabar": 29377,
+  "bar_extreme_only": 10172,
+  "on_watch_only": 9109,
+  "both": 10094,
+  "neither": 2
+ },
+ "lvl_kind_bnr": {
+  "collapse": 23923,
+  "degenerate": 2218,
+  "squeeze": 1978,
+  "at_close": 12527,
+  "reject_at_close": 154
+ },
+ "lvl_kind_bnr_traded": {
+  "collapse": 791,
+  "squeeze": 74,
+  "at_close": 82
+ },
+ "degenerate": {
+  "n": 2218,
+  "traded": 0
+ },
+ "census_by_setup": {
+  "break_and_retest": {
+   "n": 947,
+   "intrabar": 865,
+   "on_watch": 561
+  },
+  "one_candle_rule": {
+   "n": 67,
+   "intrabar": 46,
+   "on_watch": 0
+  },
+  "reentry_84_rule": {
+   "n": 3,
+   "intrabar": 2,
+   "on_watch": 0
+  }
+ },
+ "on_watch_only": {
+  "n": 87,
+  "gain_median_booked_R": 0.45833333333334075,
+  "mean_r": 1.067425287356322
+ },
+ "funnel": {
+  "fill_moved": 28912,
+  "under_floor": 25079,
+  "under_floor_S": 4265,
+  "under_floor_traded": 3,
+  "rescued_by_structural": 5361,
+  "rescued_S": 1186,
+  "at_close_n": 11888,
+  "at_close_under_floor": 11114
+ },
+ "prize_all_traded": {
+  "n": 1017,
+  "booked_R_median": 0.3675903614457682,
+  "booked_R_mean": 0.6063238165894821,
+  "struct_n": 947,
+  "struct_R_median": 1.0,
+  "struct_R_mean": 0.8755352148471521
+ },
+ "prize_intrabar_fills": {
+  "n": 913,
+  "booked_R_median": 0.43650793650794867,
+  "booked_R_mean": 0.675325073473493,
+  "struct_n": 865,
+  "struct_R_median": 1.0,
+  "struct_R_mean": 0.9584750238767696
+ },
+ "prize_at_close_fills": {
+  "n": 104,
+  "booked_R_median": 0.0,
+  "booked_R_mean": 0.0005723979827326027,
+  "struct_n": 82,
+  "struct_R_median": 0.0,
+  "struct_R_mean": 0.0006213756932605085
+ },
+ "prize_quantiles_booked_R": {
+  "0.1": 0.012048192771090526,
+  "0.25": 0.11764705882350482,
+  "0.5": 0.3675903614457682,
+  "0.75": 0.8030303030303089,
+  "0.9": 1.4782608695652066
+ },
+ "D_stats": {
+  "median": 0.18499999999998806,
+  "sized_n": 409,
+  "pool_n": 947
+ },
+ "arms": {
+  "FULL POOL (read the MEDIAN)": {
+   "BOOKED (published, collapsed denominator)": {
+    "n": 947,
+    "mean": 0.9879598732840549,
+    "median": 0.602,
+    "win_pct": 53.643083421330516
+   },
+   "LEVEL / D  (shipped fill, re-denominated)": {
+    "n": 947,
+    "mean": 3.625827066070224,
+    "median": 0.7136470588235162,
+    "win_pct": 53.643083421330516
+   },
+   "CLOSE / D  (entry = the bar's close)": {
+    "n": 947,
+    "mean": 2.750291851223072,
+    "median": 0.02402439024399914,
+    "win_pct": 50.263991552270326
+   },
+   "TRIG  / D  (level + one tolerance unit)": {
+    "n": 947,
+    "mean": 2.837724918830745,
+    "median": 0.4992890636817383,
+    "win_pct": 53.537486800422386
+   },
+   "_deltas": {
+    "trig_minus_close_mean": 0.08743306760767311,
+    "trig_minus_close_median": 0.47526467343773915,
+    "level_minus_close_mean": 0.8755352148471522,
+    "booked_minus_level_mean": -2.637867192786169
+   }
+  },
+  "D >= floor  (read the MEAN)": {
+   "BOOKED (published, collapsed denominator)": {
+    "n": 409,
+    "mean": 1.3683667481662594,
+    "median": 0.969,
+    "win_pct": 57.946210268948654
+   },
+   "LEVEL / D  (shipped fill, re-denominated)": {
+    "n": 409,
+    "mean": 1.0882594814008593,
+    "median": 0.7136470588235162,
+    "win_pct": 57.946210268948654
+   },
+   "CLOSE / D  (entry = the bar's close)": {
+    "n": 409,
+    "mean": 0.37644567098459264,
+    "median": 0.05594999999998082,
+    "win_pct": 50.61124694376528
+   },
+   "TRIG  / D  (level + one tolerance unit)": {
+    "n": 409,
+    "mean": 0.8861358194584753,
+    "median": 0.4992890636817383,
+    "win_pct": 57.946210268948654
+   },
+   "_deltas": {
+    "trig_minus_close_mean": 0.5096901484738827,
+    "trig_minus_close_median": 0.44333906368175746,
+    "level_minus_close_mean": 0.7118138104162666,
+    "booked_minus_level_mean": 0.2801072667654001
+   }
+  }
+ },
+ "trig_kinds": {
+  "not_reached": 211,
+  "triggered": 605,
+  "opened_through": 131
+ },
+ "arms_S": {
+  "n": 105,
+  "booked": 1.248257142857143,
+  "level_D": 4.7926156560803195,
+  "close_D": 4.0073292946512975,
+  "trig_D": 4.2116262577808845
+ },
+ "tol_vs_floor": {
+  "tol_median": 0.13750000000000284,
+  "floor_median": 0.26109,
+  "tol_ge_floor": 143,
+  "n": 947
+ },
+ "selection": {
+  "traded_n": 947,
+  "dropped_n": 39690,
+  "traded_D_median": 0.18499999999998806,
+  "dropped_D_median": 0.09999999999999432,
+  "traded_D_over_prng_median": 0.34446397188049516,
+  "dropped_D_over_prng_median": 0.38565919941241
+ },
+ "proposed": {
+  "n": 38066,
+  "risk_median": 0.2300000000000182,
+  "clears_floor": 15153,
+  "clears_floor_pct": 39.80717700835391,
+  "clears_floor_S": 2623,
+  "premium_median": 0.1150000000000091,
+  "premium_under_20c": 26817
+ },
+ "floor": {
+  "S_signals": 7454,
+  "S_traded": 128,
+  "S_dropped": 7326,
+  "S_dropped_under_floor": 6210,
+  "S_dropped_under_floor_intrabar": 4330,
+  "S_dropped_rescued_structural": 1186,
+  "S_days_suppressed": 4487
+ },
+ "floor_in_tolerance_units": {
+  "median_over_prng": 0.97608311688314,
+  "in_tolerance_units": 3.90433246753256
+ },
+ "premium": {
+  "median": 0.20999999999999375,
+  "p10": 0.08500000000000085,
+  "p90": 0.5749999999999886,
+  "under_20c": 476,
+  "under_5c": 1,
+  "contracts_median": 47.619047619049034,
+  "contracts_max": 200.00000000001137
+ },
+ "time_half": {
+  "pool": 947,
+  "decidable": 736,
+  "not_reached": 211,
+  "opened_through": 131,
+  "range_contains_level": 637
+ }
+}

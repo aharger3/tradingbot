@@ -3,6 +3,15 @@
 Intraday signal engine. Break-and-retest / one-candle-rule setups on the 09:30–11:00 window.
 Repo `aharger3/tradingbot`, working copy `C:\Users\aharg\Desktop\Projects\tradingbot`.
 
+verify: python research/regression_gate.py
+
+This is the recall gate (`research/t16_regression_gate.md`): it fails if any mark that
+currently fires goes silent. It was RED for 16 days (`5e3677ea` → G12) with nobody noticing
+because nothing ran it. The Stop hook now runs it after every edit in this repo and blocks
+the turn on a non-zero exit — see `~/.claude/hooks/verify-before-done.py`. If it goes red,
+diagnose (stale baseline vs. real regression) before touching `research/baseline_3.8.json` —
+do not silently re-lock it.
+
 **Vault docs** (`C:\Users\aharg\Austin's Vault\`) — markdown only, never write code there:
 
 | doc | what it owns |

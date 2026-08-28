@@ -13,6 +13,7 @@ import json
 import sys
 from datetime import time as dtime
 from pathlib import Path
+from typing import Optional
 
 from signal_runner import _load_env_file
 _load_env_file(Path(__file__).parent / ".env")
@@ -35,36 +36,73 @@ def _in_rth(now) -> bool:
 
 
 def staleness() -> tuple:
-    """Return (age_minutes:int|None, timestamp_str:str, last_error:str|None).
-    age_minutes=None when the file is missing/unreadable."""
+    """Return (age_minutes:int|None, timestamp_str:str, last_error:str|None,
+    blind:bool). age_minutes=None when the file is missing/unreadable.
+
+    blind=True (T13) means the file is FRESH (a scan cycle really did run and
+    write it) but the cycle fetched zero bars for every symbol and fired zero
+    signals — the feed is blind even though the heartbeat looks healthy. This
+    is the 12-straight-session gap `research/x9_live_gap_premortem.md` found:
+    `_write_scanner_status` is called unconditionally at the end of every
+    cycle, so file age alone never trips on it.
+    """
     if not SCANNER_STATUS_PATH.exists():
-        return None, "", "scanner_status.json missing"
+        return None, "", "scanner_status.json missing", False
     try:
         data = json.loads(SCANNER_STATUS_PATH.read_text(encoding="utf-8"))
     except Exception as e:
-        return None, "", f"unreadable: {type(e).__name__}: {e}"
+        return None, "", f"unreadable: {type(e).__name__}: {e}", False
     ts = data.get("timestamp", "")
     if not ts:
-        return None, "", "no timestamp field"
+        return None, "", "no timestamp field", False
     try:
         from datetime import datetime
         stamp = datetime.fromisoformat(ts)
     except Exception as e:
-        return None, ts, f"bad timestamp: {e}"
+        return None, ts, f"bad timestamp: {e}", False
     if stamp.tzinfo is None:  # assume ET if naive
         from zoneinfo import ZoneInfo
         stamp = stamp.replace(tzinfo=ZoneInfo("America/New_York"))
     age_min = int((now_et() - stamp).total_seconds() // 60)
-    return age_min, ts, data.get("last_error")
+    bars_fetched = data.get("bars_fetched")
+    signals_today = data.get("signals_fired_today")
+    blind = (bars_fetched == 0 and signals_today == 0)
+    return age_min, ts, data.get("last_error"), blind
+
+
+def decide(age_min, blind: bool, now, in_rth: bool = None) -> Optional[str]:
+    """Pure decision function (T13, extracted for testability): given the
+    staleness() reading and the clock, return the alert reason string, or
+    None for "no alert". `in_rth` defaults to `_in_rth(now)`; a caller may
+    override it to test the blind-feed path without needing a real RTH clock.
+    """
+    if in_rth is None:
+        in_rth = _in_rth(now)
+    if age_min is None:
+        return "missing-file" if in_rth else None
+    if age_min < STALE_MIN:
+        return "blind-feed" if (blind and in_rth) else None
+    if not in_rth:
+        return None
+    return "stale-during-rth"
 
 
 def build_alert(age_min, ts, last_error, reason: str) -> dict:
-    desc = (f"Scanner heartbeat **{age_min if age_min is not None else '?'} min** old"
-            f" during RTH — scanner may be down.\n"
-            f"last timestamp: `{ts or 'none'}`\n"
-            f"last_error: `{last_error or 'none'}`")
+    if reason == "blind-feed":
+        title = "🚨 OMEN Scanner BLIND"
+        desc = (f"Scanner heartbeat is fresh ({age_min if age_min is not None else '?'} min old) "
+                f"but fetched **zero bars** for every symbol this cycle and fired zero signals — "
+                f"the feed is down even though the process is alive.\n"
+                f"last timestamp: `{ts or 'none'}`\n"
+                f"last_error: `{last_error or 'none'}`")
+    else:
+        title = "🚨 OMEN Scanner Stale"
+        desc = (f"Scanner heartbeat **{age_min if age_min is not None else '?'} min** old"
+                f" during RTH — scanner may be down.\n"
+                f"last timestamp: `{ts or 'none'}`\n"
+                f"last_error: `{last_error or 'none'}`")
     return {"embeds": [{
-        "title": "🚨 OMEN Scanner Stale",
+        "title": title,
         "description": desc,
         "color": 15158332,  # red
         "footer": {"text": f"sentry_scanner · trigger={reason}"},
@@ -80,25 +118,22 @@ def main():
     args = p.parse_args()
 
     now = now_et()
-    age_min, ts, last_error = staleness()
+    age_min, ts, last_error, blind = staleness()
 
     if args.test:
         reason = "test"
         if age_min is None:
             age_min, ts, last_error = 99, ts or "2026-07-13T00:00:00-04:00", last_error
-    elif age_min is None:
-        reason = "missing-file"
-        if not _in_rth(now):
-            print("stale(none) but outside RTH — no alert")
-            return
-    elif age_min < STALE_MIN:
-        print(f"fresh ({age_min} min) — no alert")
-        return
-    elif not _in_rth(now):
-        print(f"stale ({age_min} min) but outside RTH — no alert")
-        return
     else:
-        reason = "stale-during-rth"
+        reason = decide(age_min, blind, now)
+        if reason is None:
+            if age_min is None:
+                print("stale(none) but outside RTH — no alert")
+            elif age_min < STALE_MIN:
+                print(f"fresh ({age_min} min), bars_fetched ok — no alert")
+            else:
+                print(f"stale ({age_min} min) but outside RTH — no alert")
+            return
 
     payload = build_alert(age_min, ts, last_error, reason)
     if args.dry_run:

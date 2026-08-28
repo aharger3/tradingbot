@@ -234,6 +234,51 @@ RULE84_OFF = os.getenv("RULE84_OFF", "0").strip().lower() in ("1", "true", "yes"
 # A/B: research/p7_84_rule.md (three arms: strict / loose / S).
 RULE84_ARM_SGRADE = os.getenv("RULE84_ARM_SGRADE", "0").strip().lower() in ("1", "true", "yes", "on")
 
+# T-84 (RULE84_ARM_NOGATE, 2026-08-28) -- Austin settled the ladder question that
+# RULE84_STRICT and RULE84_ARM_SGRADE were both guessing at: "84 percent rule can
+# fire on S A or C, but we only will trade S of course." There is NO grade gate
+# at the ARM point -- any grade may arm it. (Whether an armed re-entry is later
+# TRADED is a separate, S-only decision downstream of arming; this flag only
+# touches arming.) FLAG-GATED, DEFAULT OFF. When ON, `_arm_84` skips the grade
+# gate entirely (grade_ok = True) and RULE84_STRICT / RULE84_ARM_SGRADE are
+# ignored, for the same reason RULE84_STRICT ignores RULE84_ARM_SGRADE when both
+# are set: these are readings of one arm point, not stacked gates. x3 census:
+# the grade gate admits 5 of 434 eligible stop-outs (98.8% of the funnel dies
+# there) -- this flag is what removing it measures.
+# A/B: research/t84_arm_ungate.md.
+RULE84_ARM_NOGATE = os.getenv("RULE84_ARM_NOGATE", "0").strip().lower() in ("1", "true", "yes", "on")
+
+# T-84: the reclaim-tolerance question ballot b01 q12-q15 never answered.
+# Austin: "as long as the close is not too far away from original entry" -- no
+# number given. Currently the reclaim clause (:2380 long / :2600 short) accepts
+# ANY close at or beyond the original entry price, unbounded. DO NOT INVENT A
+# NUMBER: this parameterises the cap in units of R (the original trade's own
+# risk, entry-to-stop) so it can be swept in the same units the qa-queue
+# `reclaim_tol` card already offers him (quarter_r / half_r / ...), and stays
+# OFF ("" = unbounded, current shipped behaviour, byte-identical) until Austin
+# picks one. Sweep: research/t84_arm_ungate.md; question already queued in
+# research/probes/qa-queue.html and research/x11_homework_roi.md batch 03.
+_RULE84_RECLAIM_TOL_RAW = os.getenv("RULE84_RECLAIM_TOL", "").strip()
+RULE84_RECLAIM_TOL = float(_RULE84_RECLAIM_TOL_RAW) if _RULE84_RECLAIM_TOL_RAW else None
+
+
+def _reclaim_tol_ok(close: float, entry_price: float, entry_stop) -> bool:
+    """T-84: is the reclaim close within `RULE84_RECLAIM_TOL` * R of the
+    original entry price, R = |entry_price - entry_stop|? `RULE84_RECLAIM_TOL
+    is None` (default, shipped) = unbounded = always True, i.e. a no-op.
+    Distance is unsigned so it caps a close that reclaims and then runs, in
+    EITHER direction; the reclaim clause's own >=/<= test already enforces
+    which side of the price counts. Falls back to True (unbounded) if R is
+    unknown or zero -- never invents a denominator."""
+    if RULE84_RECLAIM_TOL is None:
+        return True
+    if entry_stop is None:
+        return True
+    r = abs(entry_price - entry_stop)
+    if r <= 0:
+        return True
+    return abs(close - entry_price) / r <= RULE84_RECLAIM_TOL
+
 # omen-3.6 (S_GATE, 2026-08-06) -- the S gate fit from Austin's S/A/X verdicts,
 # FLAG-GATED, DEFAULT OFF. The gate (research/s_gate_spec.md, pre-registered in
 # T5 before any backtest) keeps only entries whose entry-bar displacement clears
@@ -733,6 +778,76 @@ INTRABAR_STOP_AT_BAR = os.getenv("INTRABAR_STOP_AT_BAR", "1").strip().lower() \
     in ("1", "true", "yes", "on")
 
 
+# ---------------------------------------------------------------------------
+# T24 -- THE STOP TAXONOMY. Austin, 2026-08-28:
+#
+#   "stops are wherever makes sense live. they are not pre known because we
+#    dont have HTF thesis from corpus yet. examples wick of OCR, candle entered
+#    on, break and retest of a level stop loss that level. most popular off the
+#    top of my head. market and limit orders a different beast."
+#
+# Three placements, and the SETUP picks which one applies:
+#
+#   (a) ocr_wick        the far wick of the one-candle-rule / order-block candle
+#   (b) candle_entered  the entry bar's own extreme
+#   (c) broken_level    the level the setup broke and retested
+#
+# WHAT THE ENGINE ALREADY DOES, measured before this flag was written
+# (research/t24_stop_taxonomy.md, over research/g3_arm_ow1.json's 1,017 traded
+# rows): the detectors ALREADY pick structurally -- break-and-retest sets
+# `stop = level_hi` (BNR_STOP_MODE="level", placement c) and the order block
+# sets `stop = block.low` (placement a). All 67 traded OCR rows keep the block
+# wick. But 803 of 947 traded B&R rows (84.8%) do NOT book the broken level:
+# `intrabar_stop` moves the stop onto the entry bar's own extreme whenever the
+# back-dated fill lands on the level-stop. So the shipped book is a HYBRID and
+# `entry_bar` is its honest name -- it is not one derivation applied to every
+# setup, and it is not the broken level on the family whose rule says so.
+#
+# VALUES
+#   entry_bar       DEFAULT. The shipped derivation, untouched. Byte-identical.
+#   candle_entered  (b) applied to every setup, unconditionally.
+#   ocr_wick        (a) applied to every setup; a setup with no order-block
+#                   candle on its bar falls back to the candle entered on,
+#                   because that is the only other candle in the picture.
+#   broken_level    (c) applied to every setup, unconditionally. NOT a
+#                   no-rescue arm: the placement is chosen before the fill is
+#                   priced, so `intrabar_stop` still runs behind it and B&R --
+#                   whose structural stop already IS the level -- behaves
+#                   exactly as it does today. The arm's whole delta is OCR and
+#                   the 84% re-entry.
+#   routed          the taxonomy: OCR -> ocr_wick, B&R -> broken_level,
+#                   everything else -> the shipped derivation.
+#
+# A placement is chosen BEFORE the fill is priced and before the grade is
+# computed, so it flows through the minimum-risk floor, the tight-stop skip,
+# the no-repeat level key and the R denominator -- which is the whole point of
+# the ticket. Nothing here is a default change: `entry_bar` returns the caller's
+# own float unchanged, so the flag-off engine is the flag-less engine.
+STOP_PLACEMENTS = ("entry_bar", "candle_entered", "ocr_wick",
+                   "broken_level", "routed")
+STOP_PLACEMENT = os.getenv("STOP_PLACEMENT", "entry_bar").strip().lower()
+if STOP_PLACEMENT not in STOP_PLACEMENTS:
+    raise ValueError("STOP_PLACEMENT must be one of %s, got %r"
+                     % (", ".join(STOP_PLACEMENTS), STOP_PLACEMENT))
+
+# ORDER TYPE IS NOT DECIDED HERE. Austin parked market-vs-limit in the same
+# message ("market and limit orders a different beast"), and it is exactly the
+# knob that decides whether a broken-level stop has any risk under it: a resting
+# LIMIT at the level fills AT the level, which IS the stop, so |entry - stop|
+# collapses to zero; a MARKET order fills at the bar's close, which is beyond
+# the level by construction, so the same stop carries real risk. Both
+# conventions are therefore expressible and NEITHER is chosen.
+#
+#   as_booked        DEFAULT. `fill_price` as shipped -- back-dated to the level
+#                    on an extreme close, the bar's close otherwise.
+#   market_on_close  the bar's close, always.
+STOP_FILL_ORDERS = ("as_booked", "market_on_close")
+STOP_FILL_ORDER = os.getenv("STOP_FILL_ORDER", "as_booked").strip().lower()
+if STOP_FILL_ORDER not in STOP_FILL_ORDERS:
+    raise ValueError("STOP_FILL_ORDER must be one of %s, got %r"
+                     % (", ".join(STOP_FILL_ORDERS), STOP_FILL_ORDER))
+
+
 # omen-5.0 T10 (PIVOT STRUCTURE AS A LEVEL, 2026-08-11) -- the level type the
 # engine has never had.
 #
@@ -1007,6 +1122,70 @@ def intrabar_stop(entry: float, stop: float, candle, is_long: bool) -> float:
     if (bar_stop < entry) if is_long else (bar_stop > entry):
         return bar_stop
     return stop
+
+
+def ocr_far_edge(candles, is_long: bool):
+    """The wick of the OCR candle on this bar, or None if there is no block.
+
+    `detect_order_block_setup` is the SAME function the one-candle-rule detector
+    already calls on this bar, so this is the engine's own definition of "the
+    OCR candle", not a second one. Called only when STOP_PLACEMENT asks for it,
+    so the default arm never pays for it and cannot be moved by it."""
+    block, _retest, _note = detect_order_block_setup(
+        candles, "bullish" if is_long else "bearish")
+    if block is None:
+        return None
+    return block.low if is_long else block.high
+
+
+def placed_stop(setup, structural_stop: float, candle, is_long: bool,
+                level_stop=None, ocr_stop=None) -> float:
+    """T24. Which of Austin's three stops this setup gets. See STOP_PLACEMENT.
+
+    `structural_stop` is the stop the detector picked for itself. Under the
+    DEFAULT `entry_bar` it is returned unchanged -- the same float in, the same
+    float out -- so the flag-off engine is the flag-less engine.
+
+    `ocr_stop` may be a callable so the order-block scan is only paid for by the
+    arms that need it. A candidate stop that does not sit on the LOSING side of
+    the bar's close is not a stop (it would size a trade at negative risk), so
+    the setup's own structural stop stands instead; the report counts those."""
+    if STOP_PLACEMENT == "entry_bar":
+        return structural_stop
+    bar = None
+    if candle is not None:
+        bar = candle.low if is_long else candle.high
+    if STOP_PLACEMENT == "candle_entered":
+        cand = bar
+    elif STOP_PLACEMENT == "broken_level":
+        cand = level_stop
+    elif STOP_PLACEMENT == "ocr_wick":
+        cand = ocr_stop() if callable(ocr_stop) else ocr_stop
+        if cand is None:
+            cand = bar          # no OCR candle -> the candle you entered on
+    else:                       # routed -- the taxonomy itself
+        if setup is SignalType.ONE_CANDLE_RULE:
+            cand = ocr_stop() if callable(ocr_stop) else ocr_stop
+        elif setup is SignalType.BREAK_AND_RETEST:
+            cand = level_stop
+        else:
+            return structural_stop
+    if cand is None or candle is None:
+        return structural_stop
+    if (cand >= candle.close) if is_long else (cand <= candle.close):
+        return structural_stop
+    return cand
+
+
+def order_fill(level: float, candle, is_long: bool,
+               session_hi=None, session_lo=None) -> float:
+    """The price the entry books. See STOP_FILL_ORDER -- order type is PARKED.
+
+    DEFAULT `as_booked` calls `fill_price` with the caller's own arguments, so
+    it is the shipped fill, not a re-derivation of it."""
+    if STOP_FILL_ORDER == "market_on_close":
+        return candle.close
+    return fill_price(level, candle, is_long, session_hi, session_lo)
 
 
 def floor_reference_risk(entry: float, stop: float, close: float,
@@ -2044,12 +2223,17 @@ class SignalRunner:
                     recent = self.candles[-11:-1]
                     avg_rng = (sum(c.high - c.low for c in recent) / len(recent)) if recent else 0.0
                     stop = level_hi - max(0.10, 0.10 * avg_rng)
+                # T24: which of Austin's three stops this setup gets. No-op on
+                # the default (STOP_PLACEMENT="entry_bar" returns `stop`).
+                stop = placed_stop(SignalType.BREAK_AND_RETEST, stop, current, True,
+                                   level_stop=level_hi,
+                                   ocr_stop=lambda: ocr_far_edge(self.candles, True))
                 # T3(b): close by default, intrabar at the level on an extreme close.
                 # ON WATCH overrides it: if the bar never closed through the level
                 # we are in on the trigger price, mid-bar, which is the entire
                 # point -- a bar that runs to HOD and closes there used to be
                 # either skipped or filled at a price that shot the R:R.
-                entry = fill_price(level_hi, current, is_long=True,
+                entry = order_fill(level_hi, current, is_long=True,
                                    session_hi=hod, session_lo=lod)
                 structural_stop = stop     # G13: before intrabar_stop reacts to the fill
                 stop = intrabar_stop(entry, stop, current, is_long=True)
@@ -2180,8 +2364,13 @@ class SignalRunner:
         block, retest, note = detect_order_block_setup(self.candles, "bullish")
         if (block is not None and retest in OB_RETEST_TYPES
                 and current.close > block.high and _volume_ok(self.candles)):
-            entry = fill_price(block.high, current, is_long=True)  # T3(b)
-            stock_risk = entry - block.low
+            entry = order_fill(block.high, current, is_long=True)  # T3(b)
+            # T24: the OCR candle's far wick is placement (a) and is what this
+            # detector already books; the flag can route it elsewhere. No-op on
+            # the default.
+            ob_stop = placed_stop(SignalType.ONE_CANDLE_RULE, block.low, current, True,
+                                  level_stop=block.high, ocr_stop=block.low)
+            stock_risk = entry - ob_stop
             # Grade PA at the block's own level, not the OR (a block far from the
             # OR could otherwise never grade above C)
             grade = self._grade_trade(current, lookback, block.high, block.low,
@@ -2199,7 +2388,7 @@ class SignalRunner:
                     "signal_type": SignalType.ONE_CANDLE_RULE,
                     "reason": f"Order block long — block ${block.low:.2f}-${block.high:.2f} (at {block.timestamp}), {retest} retest, {grade.value} PA",
                     "entry": entry,
-                    "stop": block.low,
+                    "stop": ob_stop,
                     "direction": "call",
                     "grade": grade.value,
                     "stop_level_name": "Order block low",
@@ -2236,6 +2425,7 @@ class SignalRunner:
         if (self.session.entry_price is not None
                 and self.session.entry_direction in (None, "call")
                 and current.close >= self.session.entry_price
+                and _reclaim_tol_ok(current.close, self.session.entry_price, self.session.entry_stop)
                 and current.is_bullish
                 and (RULE84_LESSON or self._strong_pa(current))):
             # Skip if close near high of day (risk/reward gone)
@@ -2253,8 +2443,13 @@ class SignalRunner:
             caps_ok = (attempts < RULE84_MAX_ATTEMPTS
                        and bar_time(current.timestamp) < SESSION_END)
             if day_range > 0 and (hod - current.close) / day_range > 0.2 and rr_ok and caps_ok:  # not too close to HOD
-                stop_84 = stop_chk
-                entry = fill_price(self.session.entry_price, current, is_long=True)  # T3(b)
+                # T24: `routed` leaves the 84% re-entry on its shipped stop --
+                # it is neither an OCR nor a break-and-retest. The three
+                # uniform arms do move it. No-op on the default.
+                stop_84 = placed_stop(SignalType.REENTRY_84_RULE, stop_chk, current, True,
+                                      level_stop=self.session.entry_price,
+                                      ocr_stop=lambda: ocr_far_edge(self.candles, True))
+                entry = order_fill(self.session.entry_price, current, is_long=True)  # T3(b)
                 stock_risk = entry - stop_84
                 self._attempts_84[key_84] = attempts + 1
                 grade = self._grade_trade(current, lookback,
@@ -2304,8 +2499,12 @@ class SignalRunner:
                     recent = self.candles[-11:-1]
                     avg_rng = (sum(c.high - c.low for c in recent) / len(recent)) if recent else 0.0
                     stop = level_lo + max(0.10, 0.10 * avg_rng)
+                # T24: mirror of the call side. No-op on the default.
+                stop = placed_stop(SignalType.BREAK_AND_RETEST, stop, current, False,
+                                   level_stop=level_lo,
+                                   ocr_stop=lambda: ocr_far_edge(self.candles, False))
                 # T3(b): close by default, intrabar at the level on an extreme close
-                entry = fill_price(level_lo, current, is_long=False,
+                entry = order_fill(level_lo, current, is_long=False,
                                    session_hi=hod, session_lo=lod)
                 structural_stop = stop     # G13: before intrabar_stop reacts to the fill
                 stop = intrabar_stop(entry, stop, current, is_long=False)
@@ -2405,8 +2604,11 @@ class SignalRunner:
         block, retest, note = detect_order_block_setup(self.candles, "bearish")
         if (block is not None and retest in OB_RETEST_TYPES
                 and current.close < block.low and _volume_ok(self.candles)):
-            entry = fill_price(block.low, current, is_long=False)  # T3(b)
-            stock_risk = block.high - entry
+            entry = order_fill(block.low, current, is_long=False)  # T3(b)
+            # T24: mirror of the call side. No-op on the default.
+            ob_stop = placed_stop(SignalType.ONE_CANDLE_RULE, block.high, current, False,
+                                  level_stop=block.low, ocr_stop=block.high)
+            stock_risk = ob_stop - entry
             # Grade at the block's own level (see call side)
             grade = self._grade_trade(current, lookback, block.high, block.low,
                                       is_long=False, htf_bias=self.htf_bias)
@@ -2421,7 +2623,7 @@ class SignalRunner:
                     "signal_type": SignalType.ONE_CANDLE_RULE,
                     "reason": f"Order block short — block ${block.low:.2f}-${block.high:.2f} (at {block.timestamp}), {retest} retest, {grade.value} PA",
                     "entry": entry,
-                    "stop": block.high,
+                    "stop": ob_stop,
                     "direction": "put",
                     "grade": grade.value,
                     "stop_level_name": "Order block high",
@@ -2454,6 +2656,7 @@ class SignalRunner:
         if (self.session.entry_price is not None
                 and self.session.entry_direction in (None, "put")
                 and current.close <= self.session.entry_price
+                and _reclaim_tol_ok(current.close, self.session.entry_price, self.session.entry_stop)
                 and current.is_bearish
                 and (RULE84_LESSON or self._strong_pa(current))):
             day_range = hod - lod
@@ -2471,8 +2674,11 @@ class SignalRunner:
             caps_ok = (attempts < RULE84_MAX_ATTEMPTS
                        and bar_time(current.timestamp) < SESSION_END)
             if day_range > 0 and (current.close - lod) / day_range > 0.2 and rr_ok and caps_ok:
-                stop_84 = stop_chk
-                entry = fill_price(self.session.entry_price, current, is_long=False)  # T3(b)
+                # T24: mirror of the call side. No-op on the default.
+                stop_84 = placed_stop(SignalType.REENTRY_84_RULE, stop_chk, current, False,
+                                      level_stop=self.session.entry_price,
+                                      ocr_stop=lambda: ocr_far_edge(self.candles, False))
+                entry = order_fill(self.session.entry_price, current, is_long=False)  # T3(b)
                 stock_risk = stop_84 - entry
                 self._attempts_84[key_84] = attempts + 1
                 grade = self._grade_trade(current, lookback,

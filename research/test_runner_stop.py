@@ -23,7 +23,9 @@ These are synthetic-bar cases, no archive needed. Run:
 """
 
 from __future__ import annotations
+import json
 import os
+import subprocess
 import sys
 
 _REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -199,9 +201,152 @@ CASES = [
 ]
 
 
+# ---------------------------------------------------------------------------
+# T24 -- one case per STOP PLACEMENT.
+#
+# Austin, 2026-08-28: "stops are wherever makes sense live... examples wick of
+# OCR, candle entered on, break and retest of a level stop loss that level."
+# Three placements, and the setup picks. `signal_runner.placed_stop` implements
+# them behind STOP_PLACEMENT, and this asserts each one lands on the structure
+# point it names -- and, first, that the DEFAULT returns the detector's own stop
+# untouched, which is the byte-identity claim stated as an assert.
+#
+# RED BEFORE: at 246873b7 `signal_runner.placed_stop` does not exist, so every
+# case below raises AttributeError. Reproduce with
+#   git show 246873b7:signal_runner.py > <tmp>/signal_runner.py
+# and importing that file: `hasattr(m, "placed_stop")` is False.
+#
+# One CHILD PROCESS per placement, because STOP_PLACEMENT is read once at import
+# of signal_runner -- the same shape as research/g13_floor_fix_ab.py's arms.
+
+_REPO = _REPO_ROOT
+
+# The synthetic bar every placement case is asked about. Four distinguishable
+# prices so no two placements can accidentally agree:
+#   structural 99.95   what the detector picked for itself
+#   bar low   100.05   the candle entered on
+#   level     100.10   the level a break-and-retest broke
+#   ocr wick   99.60   the far wick of the one-candle-rule candle
+_PLACEMENT_DRIVER = r"""
+import json, sys
+sys.path.insert(0, %r)
+import signal_runner as sr
+
+
+class C:
+    def __init__(s, o, h, l, c):
+        s.open, s.high, s.low, s.close = o, h, l, c
+
+
+bar = C(100.20, 100.90, 100.05, 100.80)
+sbar = C(99.80, 99.95, 99.10, 99.20)
+out = {
+    "placement": sr.STOP_PLACEMENT,
+    "fill_order": sr.STOP_FILL_ORDER,
+    "br": sr.placed_stop(sr.SignalType.BREAK_AND_RETEST, 99.95, bar, True,
+                         level_stop=100.10, ocr_stop=99.60),
+    "ocr": sr.placed_stop(sr.SignalType.ONE_CANDLE_RULE, 99.95, bar, True,
+                          level_stop=100.10, ocr_stop=99.60),
+    "r84": sr.placed_stop(sr.SignalType.REENTRY_84_RULE, 99.95, bar, True,
+                          level_stop=100.10, ocr_stop=99.60),
+    "br_short": sr.placed_stop(sr.SignalType.BREAK_AND_RETEST, 100.05, sbar, False,
+                               level_stop=99.90, ocr_stop=100.40),
+    # a candidate on the WRONG side of the close is not a stop: the detector's
+    # own structural stop must stand instead.
+    "wrong_side": sr.placed_stop(sr.SignalType.BREAK_AND_RETEST, 99.95, bar, True,
+                                 level_stop=100.95, ocr_stop=None),
+    "fill": sr.order_fill(100.10, bar, True),
+}
+print(json.dumps(out))
+"""
+
+
+def _placement_probe(placement, fill_order="as_booked"):
+    env = dict(os.environ, STOP_PLACEMENT=placement, STOP_FILL_ORDER=fill_order)
+    res = subprocess.run([sys.executable, "-c", _PLACEMENT_DRIVER % _REPO],
+                         cwd=_REPO, env=env, capture_output=True, text=True)
+    if res.returncode != 0:
+        raise AssertionError("STOP_PLACEMENT=%s child failed:\n%s"
+                             % (placement, res.stderr[-1500:]))
+    return json.loads(res.stdout.strip().splitlines()[-1])
+
+
+# placement -> {field: expected stop}. `br_short` mirrors the call side on a
+# short: bar high 99.95, level 99.90, ocr wick 100.40, structural 100.05.
+PLACEMENT_CASES = {
+    "entry_bar":      {"br": 99.95, "ocr": 99.95, "r84": 99.95,
+                       "br_short": 100.05, "wrong_side": 99.95},
+    "candle_entered": {"br": 100.05, "ocr": 100.05, "r84": 100.05,
+                       "br_short": 99.95, "wrong_side": 100.05},
+    # `wrong_side` hands ocr_stop=None, so ocr_wick falls back to the candle
+    # entered on (100.05) rather than to the structural stop -- the fallback is
+    # a real placement, not a failure, and it is asserted here on purpose.
+    "ocr_wick":       {"br": 99.60, "ocr": 99.60, "r84": 99.60,
+                       "br_short": 100.40, "wrong_side": 100.05},
+    "broken_level":   {"br": 100.10, "ocr": 100.10, "r84": 100.10,
+                       "br_short": 99.90, "wrong_side": 99.95},
+    "routed":         {"br": 100.10, "ocr": 99.60, "r84": 99.95,
+                       "br_short": 99.90, "wrong_side": 99.95},
+}
+
+
+def placement_failures():
+    """One case per placement. Returns (rows, failures)."""
+    rows, failures = [], []
+    for placement, want in PLACEMENT_CASES.items():
+        got = _placement_probe(placement)
+        if got["placement"] != placement:
+            failures.append("  STOP_PLACEMENT=%s: child reported %r"
+                            % (placement, got["placement"]))
+            continue
+        for field, expect in want.items():
+            actual = got[field]
+            rows.append(("STOP_PLACEMENT=%s %s" % (placement, field),
+                         placement, actual))
+            if abs(actual - expect) > EPS:
+                failures.append(
+                    "  STOP_PLACEMENT=%s %s: stop %.4f, expected %.4f -- the "
+                    "placement did not land on the structure point it names"
+                    % (placement, field, actual, expect))
+    # the DEFAULT must be `entry_bar`, or the shipped book moved.
+    import signal_runner as sr
+    if sr.STOP_PLACEMENT != "entry_bar":
+        failures.append("  default STOP_PLACEMENT is %r, must be 'entry_bar' -- "
+                        "any other default changes the shipped book"
+                        % sr.STOP_PLACEMENT)
+    if sr.STOP_FILL_ORDER != "as_booked":
+        failures.append("  default STOP_FILL_ORDER is %r, must be 'as_booked' -- "
+                        "order type is PARKED, not decided"
+                        % sr.STOP_FILL_ORDER)
+    # order type is parked: both conventions must be expressible, and the
+    # default one must be `fill_price` itself.
+    as_booked = _placement_probe("entry_bar", "as_booked")["fill"]
+    on_close = _placement_probe("entry_bar", "market_on_close")["fill"]
+    rows.append(("STOP_FILL_ORDER=as_booked fill", "fill", as_booked))
+    rows.append(("STOP_FILL_ORDER=market_on_close fill", "fill", on_close))
+    if abs(on_close - 100.80) > EPS:
+        failures.append("  STOP_FILL_ORDER=market_on_close filled at %.4f, the "
+                        "bar's close is 100.80" % on_close)
+    if abs(as_booked - on_close) < EPS:
+        failures.append("  the two order-type conventions produced the same "
+                        "fill on a bar that closes at its extreme -- one of "
+                        "them is not wired")
+    return rows, failures
+
+
 def main():
     failures = []
     rows = []
+
+    # T24 placements print as PRICES, not R, so they get their own block above
+    # the laddered R table rather than being formatted as R-multiples.
+    prows, pfail = placement_failures()
+    failures += pfail
+    pw = max(len(n) for n, _, _ in prows)
+    for name, _pid, px in prows:
+        print("%-*s  %8.4f" % (pw, name, px))
+    print()
+
     for name, bars_fn, entry_i, entry, stop, side in CASES:
         bars = bars_fn(side)
         if side == "S":

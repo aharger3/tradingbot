@@ -193,6 +193,7 @@ Every one of these is currently blocking a workstream and every one is a pick, n
 | 8 | Is a stop built from the entry bar's own extreme the stop he actually uses? | R8 |
 | 9 | The 13 questions in `qa-queue.html` — capital, durability slices, "decisive", win-rate basis, the downgrade variable list, the ON WATCH shape, the 84% reclaim tolerance, BE slippage, the corpus contract, SPY, the 47 unclaimed S rows, widening past QQQ/SPY/TSLA. **Built 2026-08-26, never returned.** | `build_qa.py` |
 | 10 | c6 `htf-bias-does-not-exist` came back **"undefined — you'll need to tell me what that is"**. A definition plus one pick. | ballot 02 |
+| 11 | Item 9's `reclaim_tol` card now has sensitivity evidence behind it, not just a recommended default: T-84 ungated the 84% rule's arming grade gate (`RULE84_ARM_NOGATE`) and swept the still-unstated reclaim tolerance (`RULE84_RECLAIM_TOL`, in R) against fires / held-out S recall / false fires. No number is shipped — DO NOT INVENT ONE — but the pick now has a table behind it instead of a guess. | `t84_arm_ungate.md` |
 
 ### What genuinely needs his eye on a chart
 

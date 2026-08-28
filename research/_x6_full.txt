@@ -1,0 +1,359 @@
+==============================================================================
+X6 -- WHY 160 S TRADES IN TWO YEARS
+book g3_arm_ow1.json  2024-08-21..2026-08-21  500 sessions  28 symbols  45193 detections  1017 traded
+==============================================================================
+
+## 1. COUNT -- the engine's S supply
+
+traded rows             1017
+  sgrade == S            128  (12.6%)
+  distinct S symbol-days 128
+detections (all)       45193
+  sgrade == S           7454  (16.5%)
+symbol-days replayed   11808
+
+Austin's implied rate: 3 S / week / symbol = 0.60 per symbol-day = 151 per symbol-year
+book spans 1.98 years of sessions
+
+symbol   symdays  S_trd  S_det  S/sym-day   S/sym-yr    gap x
+TSLA         493     12    373     0.0243        6.1     24.6
+NVDA         490      5    347     0.0102        2.6     58.8
+COIN         490     15    363     0.0306        7.7     19.6
+QQQ          489      1    273     0.0020        0.5    293.4
+MU           488      9    310     0.0184        4.6     32.5
+PLTR         488      8    320     0.0164        4.1     36.6
+ORCL         488      2    289     0.0041        1.0    146.4
+AMZN         487      2    304     0.0041        1.0    146.1
+AMD          486     10    317     0.0206        5.2     29.2
+NFLX         486      7    258     0.0144        3.6     41.7
+MSFT         485      9    250     0.0186        4.7     32.3
+GOOGL        485      4    301     0.0082        2.1     72.7
+AVGO         485      9    313     0.0186        4.7     32.3
+HOOD         484      3    333     0.0062        1.6     96.8
+AAPL         483      2    268     0.0041        1.0    144.9
+IWM          483      1    295     0.0021        0.5    289.8
+ACHR         481      0    293     0.0000        0.0      inf
+META         480      9    301     0.0187        4.7     32.0
+INTC         479      6    334     0.0125        3.2     47.9
+SPY          468      1    219     0.0021        0.5    280.8
+BABA         423      4    272     0.0095        2.4     63.4
+TSM          288      3    158     0.0104        2.6     57.6
+SOFI         277      0    201     0.0000        0.0      inf
+IREN         271      4    205     0.0148        3.7     40.6
+MARA         271      0    212     0.0000        0.0      inf
+CRM          269      2    161     0.0074        1.9     80.7
+UBER         268      0    162     0.0000        0.0      inf
+SPCX          43      0     22     0.0000        0.0      inf
+ALL        11808    128   7454     0.0108        2.7     55.3
+
+  THE SUPPLY LADDER (per symbol-year, 11808 symbol-days replayed)
+    Austin's eye, implied (3 S/wk/symbol)                  -     151.2 /symbol-year
+    engine DETECTIONS graded S by downgrade.py          7454     159.1 /symbol-year
+    ...of those, STRICT S (zero downgrades tripped)     1005      21.4 /symbol-year
+    engine ALERTS graded S                               174       3.7 /symbol-year
+    engine TRADES graded S (the book)                    128       2.7 /symbol-year
+
+  CONFLUENCE RESCUE (score = tripped - confluence; S means score <= 0)
+    S trades that tripped a downgrade and were rescued to S by the +1  105/128 = 82.0%
+    S detections likewise                                              6449/7454 = 86.5%
+    and the +1 is handed to 29833 of 45193 detections = 66.0% of the book
+
+S traded by month:
+  2024-08  S=  2 / traded= 16
+  2024-09  S=  3 / traded= 26
+  2024-10  S=  3 / traded= 21
+  2024-11  S=  4 / traded= 35
+  2024-12  S=  5 / traded= 28
+  2025-01  S= 10 / traded= 48
+  2025-02  S=  4 / traded= 35
+  2025-03  S=  4 / traded= 40
+  2025-04  S=  8 / traded= 67
+  2025-05  S=  5 / traded= 24
+  2025-06  S=  1 / traded= 26
+  2025-07  S=  5 / traded= 28
+  2025-08  S=  6 / traded= 37
+  2025-09  S=  4 / traded= 29
+  2025-10  S=  5 / traded= 45
+  2025-11  S=  4 / traded= 46
+  2025-12  S=  2 / traded= 35
+  2026-01  S=  7 / traded= 46
+  2026-02  S=  7 / traded= 54
+  2026-03  S=  8 / traded= 63
+  2026-04  S=  2 / traded= 49
+  2026-05  S= 12 / traded= 57
+  2026-06  S=  7 / traded= 71
+  2026-07  S=  6 / traded= 64
+  2026-08  S=  4 / traded= 27
+
+S traded by detector:
+  break_and_retest     traded  105   detected   6404   1.64% of detections traded
+  one_candle_rule      traded   22   detected   1049   2.10% of detections traded
+  reentry_84_rule      traded    1   detected      1   100.00% of detections traded
+
+
+## 2. OVERLAP -- his S set vs the engine's S set
+
+judged symbol-days (marked_card_ids parity): 817
+tiers resolved on Austin's ladder: {'S': 240, 'none': 278, 'C': 53, 'A': 232}   (off-ladder rows dropped: 17)
+
+Austin S symbol-days                      240
+  ... that the book actually replays       207  (in-window, in-roster)
+Engine S symbol-days (traded)              128
+Engine S symbol-days (any detection)      5125
+
+DAY-LEVEL AGREEMENT (both called S on the same symbol-day)
+  engine-traded-S  n=   4   = 1.9% of his replayable S days   = 3.1% of the engine's S days
+  engine-detected-S n=  99  = 47.8% of his replayable S days
+  engine traded ANYTHING on 32 of his 207 replayable S days (15.5%)
+
+WHAT GRADE THE ENGINE PUTS ON HIS DAYS (traded rows only)
+  on his 207 replayable S days        33 trades on  32 days   {'C': 20, 'A': 9, 'S': 4}
+  on his refused (none) days          65 trades on  65 days   {'A': 14, 'C': 47, 'S': 4}
+
+  AGREEMENT where BOTH called it S  (n=4 days)
+    setup agreement        4/4    100.0%
+    entry bar +/-3         1/1    100.0%   +/-1  1/1  100.0%
+    bar delta            min 0  median 0  mean 0.0  max 0
+
+  AGREEMENT where HE called S and the engine traded ANY grade  (n=32 days)
+    setup agreement       16/18    88.9%
+    entry bar +/-3        11/14    78.6%   +/-1  10/14  71.4%
+    bar delta            min 0  median 0  mean 5.4  max 55
+
+  the 4 days where both called S:
+    AMD_2025-11-21         his=BR    eng=BR                     bar his=12    eng=[12]           d=0
+    AMD_2026-01-08         his=BR    eng=BR                     bar his=None  eng=[18]           d=None
+    INTC_2026-01-26        his=BR    eng=BR                     bar his=None  eng=[10]           d=None
+    MSFT_2026-03-11        his=OCR   eng=OCR                    bar his=None  eng=[68]           d=None
+
+  the 32 days he called S where the engine traded ANY grade:
+    AAPL_2025-07-01        his=None  eng=BR       grades=C                bar his=None  eng=[23]             d=None
+    AAPL_2026-08-03        his=None  eng=BR       grades=C                bar his=None  eng=[6]              d=None
+    AMD_2025-11-21         his=BR    eng=BR       grades=S                bar his=12    eng=[12]             d=0
+    AMD_2026-01-08         his=BR    eng=BR       grades=S                bar his=None  eng=[18]             d=None
+    AMD_2026-03-24         his=BR    eng=BR       grades=C                bar his=None  eng=[81]             d=None
+    AMD_2026-05-13         his=BR    eng=BR       grades=C                bar his=None  eng=[11]             d=None
+    AMZN_2026-05-12        his=None  eng=BR       grades=A                bar his=None  eng=[13]             d=None
+    BABA_2025-04-01        his=None  eng=BR       grades=C                bar his=None  eng=[12]             d=None
+    COIN_2025-03-06        his=BR    eng=BR       grades=A                bar his=27    eng=[29]             d=2
+    COIN_2025-06-26        his=None  eng=BR       grades=A                bar his=18    eng=[18]             d=0
+    COIN_2026-02-10        his=BR    eng=BR       grades=A                bar his=None  eng=[14]             d=None
+    CRM_2025-06-02         his=None  eng=OCR      grades=A                bar his=27    eng=[32]             d=5
+    HOOD_2025-03-04        his=None  eng=BR       grades=C                bar his=44    eng=[44]             d=0
+    INTC_2026-01-26        his=BR    eng=BR       grades=S                bar his=None  eng=[10]             d=None
+    INTC_2026-06-10        his=BR    eng=BR       grades=C                bar his=None  eng=[12]             d=None
+    IREN_2025-10-14        his=BR    eng=BR       grades=C                bar his=None  eng=[11]             d=None
+    IREN_2026-05-21        his=BR    eng=BR       grades=A                bar his=9     eng=[9]              d=0
+    META_2025-08-11        his=OCR   eng=OCR      grades=C                bar his=43    eng=[43]             d=0
+    MSFT_2025-04-17        his=OTHER eng=BR       grades=C                bar his=13    eng=[13]             d=0
+    MSFT_2026-03-11        his=OCR   eng=OCR      grades=S                bar his=None  eng=[68]             d=None
+    MU_2026-03-09          his=BR    eng=BR       grades=C                bar his=19    eng=[19]             d=0
+    MU_2026-05-20          his=BR    eng=BR       grades=C                bar his=None  eng=[11]             d=None
+    NVDA_2024-09-03        his=None  eng=BR       grades=C                bar his=None  eng=[16]             d=None
+    NVDA_2024-12-16        his=OTHER eng=BR       grades=A                bar his=12    eng=[12]             d=0
+    NVDA_2025-09-29        his=OTHER eng=BR       grades=C                bar his=12    eng=[12]             d=0
+    ORCL_2025-11-03        his=OCR   eng=BR       grades=C                bar his=17    eng=[30]             d=13
+    QQQ_2026-06-29         his=None  eng=OCR      grades=C                bar his=None  eng=[52]             d=None
+    TSLA_2026-01-14        his=OCR   eng=OCR      grades=C                bar his=85    eng=[85]             d=0
+    TSLA_2026-05-19        his=None  eng=BR       grades=A,A              bar his=None  eng=[19, 27]         d=None
+    TSLA_2026-06-22        his=None  eng=BR       grades=C                bar his=None  eng=[12]             d=None
+    TSM_2026-02-17         his=BR    eng=BR       grades=C                bar his=None  eng=[29]             d=None
+    TSM_2026-02-23         his=BR    eng=OCR      grades=C                bar his=23    eng=[78]             d=55
+
+
+## 3. THE 'RANDOM S' -- engine S on days Austin refused
+
+engine traded-S rows on days he graded NONE : 4  (on 4 symbol-days)
+engine traded-S rows on days he graded S    : 4
+engine traded-S rows on days he never saw   : 107  (83.6% of all S trades)
+
+  at DETECTION granularity (bigger n):
+    detected-S rows on days he graded NONE : 157  on 112 of his 246 refused days
+    detected-S rows on days he graded S    : 146  on 99 of his 207 S days
+    confluence-rescued share, refused days 84.7%   S days 79.5%
+    -> the engine emits an S detection on 45.5% of the days he REFUSED
+       and on 47.8% of the days he called S
+
+  -- S on days he graded NONE (n=4)
+     level        pivot low=50%  OR low=25%  PML=25%
+     side         S=100%
+     slot         10:30=50%  09:30=25%  10:00=25%
+     seq          1=100%
+     bias         bearish=75%  neutral=25%
+     aligned      with=75%  n/a=25%
+     stopb        wide=50%  mid=50%
+     gapb         big gap=50%  flat=25%  small gap=25%
+     rangeb       normal=50%  big range=50%
+     vol_regime   n/a=25%  normal=25%  wild=25%
+     spy_trend    bear=50%  n/a=25%  bull=25%
+     confluence   yes=100%
+     tripped      1=75%  0=25%
+     setup        break_and_retest=100%
+     out          win=50%  loss=50%
+     scaled       True=50%  False=50%
+     tags         brocr=100%  clean=75%  disp=75%  hammer=50%  late=25%
+     downgrades   counter_trend_not_respected=50%  level_not_respected=25%
+     money        mean R +0.3535   win 50.0%
+
+  -- S on days he graded S (n=4)
+     level        OR low=50%  other=25%  PML=25%
+     side         S=100%
+     slot         09:30=75%  10:30=25%
+     seq          1=100%
+     bias         bearish=100%
+     aligned      with=100%
+     stopb        mid=100%
+     gapb         big gap=50%  flat=25%  small gap=25%
+     rangeb       big range=75%  normal=25%
+     vol_regime   calm=50%  normal=25%  wild=25%
+     spy_trend    bear=50%  bull=50%
+     confluence   yes=75%  no=25%
+     tripped      1=75%  0=25%
+     setup        break_and_retest=75%  one_candle_rule=25%
+     out          win=100%
+     scaled       True=100%
+     tags         brocr=75%  clean=75%  nodisp=75%
+     downgrades   counter_trend_not_respected=50%  level_not_respected=25%
+     money        mean R +3.9005   win 100.0%
+
+  -- all engine S trades (n=128)
+     level        other=18%  OR high=15%  pivot high=12%
+     side         L=54%  S=46%
+     slot         09:30=52%  10:00=34%  10:30=13%
+     seq          1=98%  2=2%
+     bias         bullish=52%  bearish=40%  neutral=7%
+     aligned      with=91%  n/a=9%
+     stopb        mid=84%  wide=11%  tight=3%
+     gapb         big gap=50%  small gap=31%  flat=19%
+     rangeb       big range=61%  normal=35%  quiet=4%
+     vol_regime   wild=37%  calm=32%  normal=30%
+     spy_trend    bull=66%  bear=33%  n/a=1%
+     confluence   yes=98%  no=2%
+     tripped      1=82%  0=18%
+     setup        break_and_retest=82%  one_candle_rule=17%  reentry_84_rule=1%
+     out          win=66%  loss=34%
+     scaled       True=66%  False=34%
+     tags         brocr=97%  nodisp=65%  clean=59%  late=23%  hammer=22%
+     downgrades   counter_trend_not_respected=64%  level_not_respected=11%  no_displacement=5%  exhausted=1%  stale_retest=1%
+     money        mean R +1.2829   win 66.4%
+
+  -- DETECTED S on days he graded NONE (n=157)
+     level        pivot high=25%  pivot low=25%  other=15%
+     side         S=54%  L=46%
+     slot         10:00=39%  10:30=36%  09:30=25%
+     seq          2=29%  1=26%  3=16%
+     bias         bearish=52%  bullish=42%  neutral=4%
+     aligned      against=48%  with=46%  n/a=6%
+     stopb        tight=76%  mid=13%  wide=11%
+     gapb         big gap=48%  small gap=32%  flat=20%
+     rangeb       big range=55%  normal=37%  quiet=8%
+     vol_regime   wild=38%  normal=36%  calm=24%
+     spy_trend    bull=61%  bear=38%  n/a=1%
+     confluence   yes=99%  no=1%
+     tripped      1=85%  0=15%
+     setup        break_and_retest=85%  one_candle_rule=15%
+     out          loss=62%  win=33%  open=3%
+     scaled       False=65%  True=35%
+     tags         brocr=99%  nodisp=61%  late=53%  hammer=34%  clean=32%
+     downgrades   counter_trend_not_respected=70%  level_not_respected=10%  exhausted=3%  no_displacement=3%
+     money        mean R +3.3996   win 33.1%
+
+  -- DETECTED S on days he graded S (n=146)
+     level        pivot low=22%  pivot high=20%  OR low=13%
+     side         S=53%  L=47%
+     slot         10:00=42%  09:30=35%  10:30=23%
+     seq          1=28%  2=25%  3=23%
+     bias         bearish=54%  bullish=38%  neutral=4%
+     aligned      with=55%  against=37%  n/a=8%
+     stopb        tight=86%  mid=10%  wide=3%
+     gapb         big gap=42%  small gap=40%  flat=18%
+     rangeb       big range=45%  normal=40%  quiet=15%
+     vol_regime   calm=37%  normal=35%  wild=28%
+     spy_trend    bull=62%  bear=38%
+     confluence   yes=99%  no=1%
+     tripped      1=79%  0=21%
+     setup        break_and_retest=88%  one_candle_rule=12%
+     out          loss=48%  win=47%  open=4%
+     scaled       False=53%  True=47%
+     tags         brocr=99%  nodisp=60%  clean=55%  hammer=40%  late=32%
+     downgrades   counter_trend_not_respected=64%  level_not_respected=8%  no_displacement=4%  exhausted=2%  no_retest=1%
+     money        mean R +4.2809   win 47.3%
+
+  biggest feature gaps, refused-day S vs S-day S, DETECTION granularity (n=157 vs n=146, pp):
+     _tags        clean                    refused  32.5%  vs S-day  55.5%   gap 23.0
+     _tags        late                     refused  52.9%  vs S-day  32.2%   gap 20.7
+     out          loss                     refused  62.4%  vs S-day  47.9%   gap 14.5
+     out          win                      refused  33.1%  vs S-day  47.3%   gap 14.2
+     slot         10:30                    refused  35.7%  vs S-day  22.6%   gap 13.1
+     vol_regime   calm                     refused  24.2%  vs S-day  37.0%   gap 12.8
+     scaled       True                     refused  35.0%  vs S-day  47.3%   gap 12.3
+     scaled       False                    refused  65.0%  vs S-day  52.7%   gap 12.3
+     aligned      against                  refused  47.8%  vs S-day  37.0%   gap 10.8
+     rangeb       big range                refused  54.8%  vs S-day  44.5%   gap 10.3
+     vol_regime   wild                     refused  38.2%  vs S-day  28.1%   gap 10.1
+     slot         09:30                    refused  24.8%  vs S-day  34.9%   gap 10.1
+     stopb        tight                    refused  75.8%  vs S-day  85.6%   gap 9.8
+     aligned      with                     refused  46.5%  vs S-day  54.8%   gap 8.3
+
+
+## 4. WHERE THE MISSING N IS -- w4's 198 candidates today
+
+w4 candidates                        198
+  already judged as of today           2
+  still NEW (never judged)           196
+  by provenance: {'austin_said': 62, 'third_party': 109, 'model_inferred': 25}
+  new AND on a book symbol           196
+  new AND inside the book window     158
+  new AND both                       158
+
+  ceiling on graded symbol-days if every candidate were harvested:
+    today                   817
+    + all 198 candidates   1013   (+24.0%)
+
+  and the S count is the binding number, not the day count:
+    Austin S symbol-days today       240
+    his S share of judged days      29.9%
+    expected S from 198 new days      59  (at his own historical S rate)
+
+
+## 5. THE THREE WAYS TO GET MORE S TRADES, PRICED
+
+held-out set: 100 cards  {'C': 16, 'none': 42, 'A': 27, 'S': 15}
+  of those, symbol-days this book carries at least one DETECTION for: 85 of 100 (S cards 11 of 15)
+  the rest are days the engine was structurally silent -- no arm below can reach them.
+  NOTE: the published held-out figures (3/15 S recall, 12/42 false fire) come from
+  research/t70_test1_score.py, which drives t4_engine_recall.run_day, a DIFFERENT
+  replay from this book. The arms below are all measured on THIS book, so the
+  deltas between them are comparable; the A0 absolute is not the published one.
+
+arm                                        S recall       false fire (X)   gate     book n
+A0 shipped (traded=True)                    1/15    6.7%   7/42     16.7%   -0.100     1017
+A1 alert or traded                          1/15    6.7%   9/42     21.4%   -0.148     1394
+A2 any detection graded S by downgrade.py   5/15   33.3%  27/42     64.3%   -0.310     7454
+A3 any detection graded S or A              6/15   40.0%  32/42     76.2%   -0.362    18509
+A4 any detection at all                    11/15   73.3%  38/42     90.5%   -0.171    45193
+
+  money price of each arm (win rate and MEDIAN R; mean is unusable off-book)
+  arm                                              n     win%  median R mean R (bad)
+  A0 shipped (traded=True)                      1017    52.9%    +0.566         +1.0   (0 non-traded rows)
+  A1 alert or traded                            1394    47.1%    -1.000         +0.8   (377 non-traded rows)
+  A2 any detection graded S by downgrade.py     7454    36.1%    -1.000         +9.5   (7326 non-traded rows)
+  A3 any detection graded S or A               18509    34.8%    -1.000         +8.5   (18130 non-traded rows)
+  A4 any detection at all                      45193    31.9%    -1.000         +9.8   (44176 non-traded rows)
+  evidence the mean is unusable: 1044 dropped-S rows have |entry-stop| < $0.01, max R in that population +16350
+
+(b) WIDEN THE UNIVERSE
+  held-out cards on a symbol the book does not carry : 0 of 100
+  held-out S cards off-roster                        : 0 of 15
+  Austin S days off-roster                           : 4 of 240  ({'DIA': 3, 'MSTR': 1})
+  Austin S days on-roster but outside the 2y window  : 20
+  w4 new candidates off-roster                       : 0 of 196
+
+(c) ACCEPT THE COUNT, IMPROVE PER-TRADE R
+  S           n= 128  mean R +1.2829  win 66.4%  total +164.2R
+  A           n= 251  mean R +0.9956  win 54.6%  total +249.9R
+  C           n= 638  mean R +0.8735  win 49.5%  total +557.3R
+  whole book  n=1017  mean R +0.9551  win 52.9%  total +971.4R
+  to reach mean R 2.0 at the S win rate (66.4%), wins must average +3.52R (they average +2.44R today)
+
+wrote research/_x6_out.json
