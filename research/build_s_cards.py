@@ -37,7 +37,7 @@ sys.path.insert(0, ROOT)
 
 import probe_chart
 import probe_page
-from build_deck import DECKS_DIR, candle_dict, marked_card_ids, pick
+from build_deck import DECKS_DIR, candle_dict, pick, seen_card_ids
 
 LEVEL_KEYS = ("pdh", "pdl", "pmh", "pml", "orh", "orl")
 
@@ -111,13 +111,14 @@ def main():
     ap.add_argument("--max-probe", type=int, default=2500)
     a = ap.parse_args()
 
-    cards, nf, ns, probed, nseen = pick(a.n, a.seed, a.max_probe)
+    own = os.path.join(DECKS_DIR, "%s-manifest.jsonl" % a.name)
+    cards, nf, ns, probed, nseen = pick(a.n, a.seed, a.max_probe, own)
     path, man = build(cards, a.name)
 
     ids = ["%s_%s" % (c["symbol"], c["day"]) for c in cards]
     assert len(set(ids)) == len(ids), "duplicate card_id inside the sweep"
-    repeats = set(ids) & marked_card_ids()
-    assert not repeats, "sweep repeats already-judged days: %s" % sorted(repeats)
+    repeats = set(ids) & seen_card_ids(own)
+    assert not repeats, "sweep repeats a day he has already seen: %s" % sorted(repeats)
     blob = open(path, encoding="utf-8").read()
     # The engine's answer must not be inferable from the page.
     assert "engine_fires" not in blob, "answer key leaked into the HTML"

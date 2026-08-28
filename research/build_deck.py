@@ -180,6 +180,44 @@ def marked_card_ids(per_source: dict | None = None) -> set[str]:
     return seen
 
 
+def served_card_ids(exclude: str | None = None) -> set[str]:
+    """Every symbol-day that has ever been PUT IN FRONT of him, graded or not.
+
+    Grading is not the only thing that spends his attention -- looking is. A card
+    served in an earlier deck and never exported back is still a chart he has
+    seen, and re-serving it is the waste his no-repeats rule exists to stop.
+
+    Every deck builder writes ``<name>-manifest.jsonl`` beside its HTML, so the
+    manifests are the served record. On 2026-08-28 there were 602 symbol-days
+    served but never graded back, all of them eligible for a new deck, which is
+    why the 100-card S sweep felt repetitive to him before any code noticed.
+    """
+    skip = os.path.abspath(exclude) if exclude else None
+    out: set[str] = set()
+    for path in sorted(glob.glob(os.path.join(HERE, "**", "*manifest*.jsonl"),
+                                 recursive=True)):
+        # A deck must not block itself: rebuilding under the same name would
+        # otherwise read the manifest it is about to overwrite and empty the pool.
+        if skip and os.path.abspath(path) == skip:
+            continue
+        for row in _rows(path):
+            ident = row.get("card_id") or row.get("id")
+            if isinstance(ident, str):
+                m = _ID_RE.search(ident)
+                if m:
+                    out.add("%s_%s" % (m.group(1), m.group(2)))
+    return out
+
+
+def seen_card_ids(exclude: str | None = None) -> set[str]:
+    """Judged OR served. This is what a new deck must exclude.
+
+    ``exclude`` is the manifest path this build is about to write, so a rebuild
+    under an existing name does not treat its own previous output as history.
+    """
+    return marked_card_ids() | served_card_ids(exclude)
+
+
 def universe() -> list[tuple[str, str]]:
     """(symbol, day) for every archived trading day."""
     out = []
@@ -217,16 +255,19 @@ def fire_count(symbol: str, day: str) -> int:
     return 0 if entries is None else len(entries)
 
 
-def pick(n: int, seed: int, max_probe: int):
+def pick(n: int, seed: int, max_probe: int, own_manifest: str | None = None):
     """Half fire days, half silent days, drawn at random, never already marked."""
     want = n // 2
     per_source: dict[str, int] = {}
-    seen = marked_card_ids(per_source)
+    judged = marked_card_ids(per_source)
+    served = served_card_ids(own_manifest)
+    seen = judged | served
     full = universe()
     pool = [(s, d) for s, d in full if "%s_%s" % (s, d) not in seen]
-    print("no-repeat guard: %d judged symbol-days across %d sources; "
-          "pool %d -> %d archived days"
-          % (len(seen), len(per_source), len(full), len(pool)))
+    print("no-repeat guard: %d judged + %d served-only = %d seen symbol-days "
+          "across %d mark sources; pool %d -> %d archived days"
+          % (len(judged), len(served - judged), len(seen), len(per_source),
+             len(full), len(pool)))
     for path, cnt in sorted(per_source.items(), key=lambda kv: -kv[1]):
         if cnt:
             print("    %5d  %s" % (cnt, os.path.relpath(path, ROOT)))
@@ -325,7 +366,7 @@ def main():
     ids = ["%s_%s" % (c["symbol"], c["day"]) for c in cards]
     assert len(set(ids)) == len(ids), "duplicate card_id inside the deck"
     # Checked against EVERY mark corpus, not just research/marks/ -- ticket 15.
-    repeats = set(ids) & marked_card_ids()
+    repeats = set(ids) & seen_card_ids()
     assert not repeats, "deck repeats already-judged days: %s" % sorted(repeats)
 
     print("Wrote %s" % path)

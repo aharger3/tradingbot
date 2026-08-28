@@ -13,7 +13,8 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 sys.path.insert(0, os.path.dirname(HERE))
 
-from build_deck import _judgement_key, marked_card_ids  # noqa: E402
+from build_deck import (_judgement_key, marked_card_ids,  # noqa: E402
+                        seen_card_ids, served_card_ids)
 
 # (row, expected key or None, what broke when this was missing)
 CASES = [
@@ -53,6 +54,36 @@ if len(pool) < FLOOR:
 else:
     print("ok   exclusion pool %d symbol-days (floor %d)" % (len(pool), FLOOR))
 
+# Being served a card spends his attention even when he never graded it. 499
+# symbol-days were served and never exported back, and all of them were eligible
+# for a new deck until 2026-08-28.
+SERVED_FLOOR, SEEN_FLOOR = 724, 1458
+served, seen = served_card_ids(), seen_card_ids()
+for name, got, floor in (("served", len(served), SERVED_FLOOR),
+                         ("seen (judged|served)", len(seen), SEEN_FLOOR)):
+    if got < floor:
+        print("FAIL %s pool shrank: %d < %d" % (name, got, floor))
+        fails += 1
+    else:
+        print("ok   %s pool %d (floor %d)" % (name, got, floor))
+
+# A rebuild must not read the manifest it is about to overwrite, or the pool
+# empties and the deck comes out with nothing in it.
+_own = os.path.join(HERE, "decks", "omen-s-accuracy-100-manifest.jsonl")
+if os.path.exists(_own):
+    if len(seen_card_ids(_own)) >= len(seen):
+        print("FAIL a deck does not exclude its own manifest -- rebuilds self-block")
+        fails += 1
+    else:
+        print("ok   a deck excludes its own manifest (%d -> %d)"
+              % (len(seen), len(seen_card_ids(_own))))
+
+if not seen >= pool:
+    print("FAIL seen_card_ids() does not contain every judged day")
+    fails += 1
+else:
+    print("ok   seen_card_ids() is a superset of marked_card_ids()")
+
 print()
-print("FAILED %d" % fails if fails else "all %d checks pass" % (len(CASES) + 1))
+print("FAILED %d" % fails if fails else "all %d checks pass" % (len(CASES) + 5))
 sys.exit(1 if fails else 0)
