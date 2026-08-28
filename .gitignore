@@ -138,3 +138,11 @@ research/_w12/*.log
 research/w3_arm_*.json
 research/_w3_*.json
 research/_w3_*.log
+
+# The morning artifact's summary block. research/*.html above exists for the
+# generated pages (decks, probes, the tape itself), all of which rebuild from a
+# script plus a book. This one is the opposite: hand-written source that a
+# script CONSUMES -- `research/build_bt2y_report.py --summary` injects it above
+# the scoreboard. Nothing regenerates it, so the wildcard would swallow it the
+# way research/*.jsonl swallowed the 5.2 decks.
+!research/h2_summary.html

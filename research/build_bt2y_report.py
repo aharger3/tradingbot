@@ -200,6 +200,33 @@ tr.lowsample:hover{opacity:.9}
 .note b{color:var(--ink)}
 footer{padding:22px 28px 60px;border-top:1px solid var(--line);color:var(--faint);font-size:12px}
 .pager{display:flex;gap:8px;align-items:center;margin-top:10px;color:var(--muted);font-size:12px}
+
+/* --- overnight summary block, injected via --summary; absent when unused --- */
+#summary{margin-bottom:34px}
+#summary .lede{font-family:"Instrument Serif",Georgia,serif;font-size:26px;line-height:1.28;
+  font-weight:400;letter-spacing:-.01em;max-width:34ch;margin:0 0 14px}
+#summary .lede em{font-style:italic;color:var(--accent)}
+#summary .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(232px,1fr));gap:12px}
+#summary .card{background:var(--surface);border:1px solid var(--line);border-radius:9px;
+  padding:13px 14px;display:flex;flex-direction:column;gap:6px;
+  border-left:3px solid var(--line)}
+#summary .card.win{border-left-color:var(--win)}
+#summary .card.loss{border-left-color:var(--loss)}
+#summary .card.warn{border-left-color:var(--warn)}
+#summary .card.open{border-left-color:var(--accent)}
+#summary .card .w{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+#summary .card .h{font-size:15px;font-weight:600;line-height:1.32;text-wrap:balance}
+#summary .card p{margin:0;color:var(--muted);font-size:13px;line-height:1.5}
+#summary .card p b{color:var(--ink)}
+#summary .card .src{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--faint);
+  margin-top:auto;padding-top:4px;word-break:break-all}
+#summary .ask{background:var(--accent-soft);border:1px solid var(--accent);border-radius:9px;
+  padding:14px 15px;margin-top:12px}
+#summary .ask .w{font-size:11px;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:6px}
+#summary .ask p{margin:0 0 8px;max-width:72ch}
+#summary .ask p:last-child{margin-bottom:0}
+#summary table{margin-top:10px}
 </style>
 
 <header class="top">
@@ -228,6 +255,7 @@ footer{padding:22px 28px 60px;border-top:1px solid var(--line);color:var(--faint
 </aside>
 
 <main>
+__SUMMARY__
   <section id="kpisec">
     <h2>Scoreboard <span class="hint" id="scope"></span></h2>
     <div class="kpis" id="kpis"></div>
@@ -725,8 +753,14 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--inp", default="research/bt2y_trades.json")
     ap.add_argument("--out", default="research/omen-2y-backtest.html")
+    ap.add_argument("--summary", default=None,
+                    help="HTML fragment injected above the scoreboard. Omit and the "
+                         "page renders exactly as it did before this option existed.")
     args = ap.parse_args()
 
+    summary = ""
+    if args.summary:
+        summary = Path(args.summary).read_text(encoding="utf-8")
     raw = json.loads((ROOT / args.inp).read_text(encoding="utf-8"))
     trades, meta = raw["trades"], raw["meta"]
     for t in trades:
@@ -743,7 +777,8 @@ def main():
             .replace("__NSIG__", "{:,}".format(meta["signals"]))
             .replace("__NTRADED__", "{:,}".format(meta["traded"]))
             .replace("__RISK__", str(int(meta["risk_dollars"])))
-            .replace("__MIN_SAMPLE_N__", str(MIN_SAMPLE_N)))
+            .replace("__MIN_SAMPLE_N__", str(MIN_SAMPLE_N))
+            .replace("__SUMMARY__", summary))
     out = ROOT / args.out
     out.write_text(html, encoding="utf-8")
     print("wrote %s (%.1f MB)" % (out, out.stat().st_size / 1e6))

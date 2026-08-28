@@ -1,0 +1,177 @@
+  <section id="summary">
+    <h2>Where it stands <span class="hint">overnight of 2026-08-27 &rarr; 28 &middot; nine workstreams, all committed</span></h2>
+
+    <p class="lede">Every gate still fails, and the reason is no longer
+    the grader. It is <em>two gates behind it</em>.</p>
+
+    <div class="cards">
+
+      <div class="card loss">
+        <div class="w">The money gate</div>
+        <div class="h">+0.9551 R against a 2.0 R gate</div>
+        <p>1,017 trades, median <b>+0.5660</b>, win rate 53.4%, <b>23 / 25</b> months green.
+        Turning ON WATCH off gives 1,091 trades at <b>+0.8416</b> and buys back a green
+        month (24 / 25) &mdash; it costs 0.1136 R and moves 0 of 45,193 signals on its own.
+        Both arms fail both gates. <b>No slice of this book passes 2.0 R that is not thin.</b></p>
+        <div class="src">research/h1_2y_nowatch.md &middot; f5ff006a</div>
+      </div>
+
+      <div class="card loss">
+        <div class="h">No fixed target can reach mean 2.0 R</div>
+        <p>Mean R = <span class="mono">w&middot;T &minus; (1&minus;w)</span>. A 2R target needs a
+        <b>100%</b> win rate and 53.8% touch it; 3R needs 75% and 41.1% touch it; 5R needs
+        50% and 26.2%; 8R needs 33.3% and 12.9%. <b>Every fixed target is short at every
+        achievable hit rate.</b> This is arithmetic, not a tuning result &mdash; the 2.0 R
+        mean cannot come from picking a better number to exit at.</p>
+        <div class="src">research/h1_2y_nowatch.md &sect;4</div>
+      </div>
+
+      <div class="card warn">
+        <div class="w">The give-back</div>
+        <div class="h">The tape offers +3.8436 R; the ladder keeps 21.9%</div>
+        <p>53.8% of trades touch 2R and <b>27.0%</b> finish there. 32.5% touch 4R and
+        <b>10.8%</b> finish there. Holding past 11:00 raises mean MFE to +4.8665 R and
+        <b>lowers</b> booked mean by 0.0295 R and one green month &mdash; the extra session
+        is not where the money is.</p>
+        <div class="src">research/h1_2y_nowatch.md &sect;3</div>
+      </div>
+
+      <div class="card win">
+        <div class="w">Runners</div>
+        <div class="h">Your S grade is the best separator on the board</div>
+        <p>A runner (MFE &ge; 4R) is <b>32.5%</b> of the book and carries <b>+3.0134 R</b>;
+        the middle 40.2% carries +0.2322; the dead 27.2% carries &minus;0.8538. Of every cut
+        available at entry time, your <b>S</b> is the strongest: <b>40.3%</b> runner rate,
+        +7.7 pts over base, highest mean MFE at +4.269 R. Intrabar fill is second at +3.3 pts.
+        Setup, pool and side are all noise.</p>
+        <div class="src">research/h1_2y_nowatch.md &sect;3</div>
+      </div>
+
+      <div class="card loss">
+        <div class="w">W1 &mdash; kill B</div>
+        <div class="h">The downgrade-count ladder is refuted</div>
+        <p>Scored against your 59 new verdicts it agrees <b>26 / 59 = 44.1%</b>, against
+        <b>52.5%</b> for always guessing X. Count thresholds, single variables, a weighted
+        score and every leave-one-out all sit inside that baseline. Held-out S recall goes
+        <b>3/15 &rarr; 2/15</b>; killing B alone goes to <b>0/15</b> and cuts the book
+        <b>95.3%</b>, to 48 trades. Seven symbols lose their entire book.</p>
+        <div class="src">research/w1_sac_ladder_ab.md &middot; d81fc730</div>
+      </div>
+
+      <div class="card open">
+        <div class="w">W1 + W12 &mdash; found twice, independently</div>
+        <div class="h">C is a trapdoor, and that is why killing B collapses</div>
+        <p>Two gates sit behind the grade. <b><span class="mono">SimTrade.counted</span>
+        excludes every C from the book</b> while spec &sect;1.2 says C is tradeable. And
+        <span class="mono">_route</span> runs <span class="mono">_min_viable_stop</span> on
+        <b>C alone</b>, where it <b>rejects 732 rows worth +1.0861 R and keeps 285 worth
+        +0.6188 R</b> &mdash; 0.4673 R backwards, 49&times; the &plusmn;0.0095 R bar.
+        Kill B, everything lands in C, and C is a hole. <b>Neither was shipped as a fix.</b></p>
+        <div class="src">research/w12_bug_sweep.md &middot; research/w12_tight_stop.py</div>
+      </div>
+
+      <div class="card warn">
+        <div class="w">W3 &mdash; the recall gate</div>
+        <div class="h">Green without moving the floor, and it bought no recall</div>
+        <p><span class="mono">s_grade</span> 5 &rarr; <b>13</b>, <b>0 marks dropped</b>,
+        including the one G13's structural floor could never reach. Untakeable
+        <b>73.3% &rarr; 1.1%</b>; months green <b>23/25 &rarr; 25/25</b>. The mechanism is a
+        clamped <i>fill</i>, not a retuned floor &mdash; a price the bar traded through.
+        <b>But held-out S recall is 3/15 &rarr; 3/15 and false fires go 12/42 &rarr; 21/42.</b>
+        Fifteen new days fire and not one is a day you graded S. Ships OFF.</p>
+        <div class="src">research/w3_recall_gate_fix.md &middot; fd30e067</div>
+      </div>
+
+      <div class="card open">
+        <div class="w">W5 &mdash; silent-S autopsy</div>
+        <div class="h">All 8 discarded S days die on one gate</div>
+        <p><span class="mono">stock_risk &lt; max($0.10, 0.0015 &times; close)</span> kills
+        <b>all 8</b> and 50 of their 58 signals. Priced over 12,834 archived days it is
+        <b>111,379 kills (79.7%)</b> holding <b>8,149</b> otherwise-silent days shut.
+        <span class="mono">B&amp;R_MIN_RISK</span> is one of the 33 constants you never stated.
+        The other 4 of 12 misses have no gate to name &mdash; the FSM dies at
+        <span class="mono">no_break</span> / <span class="mono">no_retest</span> and nothing
+        is ever emitted.</p>
+        <div class="src">research/w5_silent_s_autopsy.md &middot; 0a73f361</div>
+      </div>
+
+      <div class="card win">
+        <div class="w">W13 &mdash; scaling</div>
+        <div class="h">Scale-IN is the only lever that moves the mean</div>
+        <p>Best arm &mdash; hold to 11:00, <b>add 2.0&times; at +1R</b> &mdash; books
+        <b>+1.4697 R</b> against the same rig's incumbent +0.8976 &mdash; a lift of
+        <b>+0.5721 R</b>, 60&times; the error bar. The add leg's own mean is +0.2556 R per unit.
+        Scale-out loses to it decisively. It is still <b>0.53 R short</b> and it costs
+        durability: median <b>&minus;1.2500</b>, months green <b>20 / 25</b>. This is the
+        Scarface/JW mechanism, and on this book it does not finish the job by itself.</p>
+        <div class="src">research/w13_scaling.md &middot; 510aaf7c</div>
+      </div>
+
+      <div class="card win">
+        <div class="w">W2 &mdash; time-scaled exits</div>
+        <div class="h">One arm passes durability outright</div>
+        <p><span class="mono">flat_2.5r</span>: median <b>+2.5000</b>, mean +0.7537,
+        <b>25 / 25 months green</b> &mdash; the only arm in the sweep that never has a red
+        month. Its mean is lower than the ladder's. That is the trade the whole project
+        keeps arriving at: <b>durability and mean R are pulling in opposite directions.</b></p>
+        <div class="src">research/w2_time_ladder.md &middot; 52b82d9a</div>
+      </div>
+
+      <div class="card open">
+        <div class="w">W4 &mdash; recall supply</div>
+        <div class="h">198 new gradeable days, and Corpus has none of your S marks</div>
+        <p>All 138 Corpus files profiled: <b>1 Austin row in 10,379</b>, zero S marks. The
+        unlock was that Corpus never mined the channels you post in
+        (<span class="mono">post-your-gains</span>, <span class="mono">questions</span>).
+        250 raw &rarr; 222 distinct &rarr; <b>198</b> after the no-repeat guarantee.
+        Separately, <b>47 S-tier symbol-days</b> sit unclaimed inside
+        <span class="mono">recovered_reviews.jsonl</span> &mdash; the cheapest S-recall
+        work in the repo.</p>
+        <div class="src">research/w4_recall_sources.md &middot; 4cb7b919</div>
+      </div>
+
+      <div class="card warn">
+        <div class="w">W6 &mdash; TradeZella</div>
+        <div class="h">Detection is not the bottleneck; the gate is</div>
+        <p>Over your 271 days the engine <b>saw</b> a signal on <b>96%</b> and <b>took</b>
+        one on <b>48%</b>. Your median R is <b>+1.4368</b> against the engine's +0.4120,
+        on a lower mean. One caveat that landed overnight: every row is
+        <span class="mono">Account Name: Backtesting</span>. <b>It is a hand replay, not
+        real fills</b> &mdash; same hindsight class as a mark, not an independent check.</p>
+        <div class="src">research/w6_tz_recall_and_odds.md &middot; 26ba3f48</div>
+      </div>
+
+    </div>
+
+    <div class="ask">
+      <div class="w">What needs your answer</div>
+      <p><b>1. Does C trade?</b> The spec says yes, the engine says alert-only, and the
+      difference is 331 rows. This one answer decides whether killing B is survivable
+      &mdash; it is the difference between a 48-trade book and a real one. Nothing else on
+      this page is blocked as hard as this.</p>
+      <p><b>2. The risk floor.</b> <span class="mono">B&amp;R_MIN_RISK</span> is a constant
+      you never chose that gates 79.7% of all signals and every S day the engine threw away.
+      W3's clamped fill is the surgical version of opening it and it is written, tested and
+      shipping OFF behind <span class="mono">ENABLE_MIN_RISK_FILL_CLAMP</span>. It costs
+      false fires (12 &rarr; 21 of 42) and buys no S recall today. Turn it on, or hold it
+      until there is a selector?</p>
+      <p><b>3. 2.0 R or 2.5 R.</b> 67.5% of your own TradeZella trades intend exactly
+      2.0 R. W2 says <span class="mono">flat_2.5r</span> is the only durable arm. One of
+      those two readings is wrong and I cannot settle it from the tape.</p>
+      <p><b>4. A rules question, unresolved on purpose.</b>
+      <span class="mono">spec0b_levels_check.py</span> stays red because
+      <span class="mono">intrabar_stop</span>'s wick stop disagrees with SPEC0's level stop.
+      The only fix that greens it drops 588 of 1,017 trades. Left for you rather than
+      adjusted away.</p>
+      <p><b>5. Sixty more cards.</b> Lane 1 came back 59 of 60. Lanes 2 and 3 are still
+      open, and 198 fresh days are queued behind them.</p>
+    </div>
+
+    <p class="note" style="margin-top:12px">Everything below this line is the raw
+    two-year tape at HEAD &mdash; the same instrument as the first build, regenerated
+    against the current book. <b>Nothing on this page ships enabled.</b> Every flag from
+    every workstream defaults OFF, and the flag-off book is byte-identical to the control
+    by sha256 over all 45,193 rows. Built by
+    <span class="mono">research/build_bt2y_report.py --summary research/h2_summary.html</span>
+    from <span class="mono">research/g3_arm_ow1.json</span> at <em>this commit</em>.</p>
+  </section>
