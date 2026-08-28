@@ -140,8 +140,9 @@ The proof it is dead by construction, not by data:
   level by bar `i` requires a *later* cross — which would then have been the most recent
   one. Contradiction.
 
-So no value of `REJECT_BARS` recovers this rule. The 10 fires are the residue of the 154
-rows that do not close beyond the level.
+So no value of `REJECT_BARS` recovers this rule. The 10 surviving fires sit inside the
+154 rows (0.34%) whose graded bar does **not** close strictly beyond the level — the only
+rows where the contradiction above does not apply. `REJECT_BARS` was never the constraint.
 
 Priced by measuring the other reading — the rejection scanned from the **first** break of
 the session (`first_break_bar` in `research/w12_dg_probe.py`, measurement only, wired into
