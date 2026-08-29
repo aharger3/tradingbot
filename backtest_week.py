@@ -28,7 +28,8 @@ except ModuleNotFoundError:   # data_archive replay the research rows run on.
 
 from omen_bot import Candle, SignalType, TradeGrade
 from signal_runner import SignalRunner
-from stop_rule import stop_hit_on_close, stop_hit_on_wick, stop_fill_price
+from stop_rule import (stop_hit_on_close, stop_hit_on_wick, stop_fill_price,
+                       disaster_stop_price, disaster_stop_hit, DISASTER_STOP_R)
 
 # Austin's watchlist 2026-07-11: all stocks with ~200k+ daily options volume
 # (his rule — high options volume = cleaner moves, easier fills). SPY/QQQ stay
@@ -136,6 +137,26 @@ STOP_ON_CLOSE = os.getenv("STOP_ON_CLOSE", "1") not in ("0", "false")
 # no partial credit. PESSIMISTIC_FILL=0 reproduces the old behaviour exactly so
 # both arms backtest (research/t51_fill.md, research/t51_ev_honest.md).
 PESSIMISTIC_FILL = os.getenv("PESSIMISTIC_FILL", "1") not in ("0", "false")
+
+# ---- R1 / R2: the disaster stop (Austin, probe_master_2026-08-29) ----------
+# `fact_two_stops` verdict `both`; `fact_stop_floor_is_fiction` verdict `hard`,
+# note: "-1r is what we want max slippage -1.25".
+#
+# A resting order at entry -/+ DISASTER_STOP_R x original risk, filled on an
+# intrabar TOUCH, underneath the close-triggered LEVEL stop. -1.25R
+# (stop_rule.MAX_LOSS_R) is NOT a second stop: it stays the outer bound the
+# close-fill is clamped to, for the bars that gap straight past the resting
+# order.
+#
+# Tested BEFORE the level stop on every bar: a bar that touched -1R and then
+# closed further away was already out at -1R, so booking its close instead
+# would credit the trade with a loss it never took.
+#
+# Ships ON at his ratified number. DISASTER_STOP=0 restores the clamp-only book
+# every figure before 2026-08-29 was measured on; DISASTER_STOP_R sweeps where
+# the order rests (T1's arms).
+DISASTER_STOP = os.getenv("DISASTER_STOP", "1") not in ("0", "false", "off")
+DISASTER_R = float(os.getenv("DISASTER_STOP_R", str(DISASTER_STOP_R)))
 
 # ---- P8/G2: ENTRY_SCRATCH — Austin's failed-entry scratch, one bar late ----
 # Austin, 2026-08-11: "an entry taken intrabar that then closes back beyond the
@@ -314,6 +335,22 @@ def _stop_fill_px(t: "SimTrade", c: Candle, long: bool) -> float:
     return stop_fill_price(c.close, t.entry, abs(t.entry - t.stop), long)
 
 
+def _disaster_hit(t: "SimTrade", c: Candle, long: bool):
+    """R1/R2. The resting -1R order's fill price on bar ``c``, or None.
+
+    ``None`` when the flag is off or the bar never reached it. The fill IS the
+    resting price -- a stop order that is touched fills there -- so a disaster
+    stop-out books exactly -DISASTER_R, comfortably inside MAX_LOSS_R. Risk is
+    the trade's ORIGINAL entry-to-stop, never a moved runner stop."""
+    if not DISASTER_STOP:
+        return None
+    risk = abs(t.entry - t.stop)
+    if risk <= 0:
+        return None
+    px = disaster_stop_price(t.entry, risk, long, DISASTER_R)
+    return px if disaster_stop_hit(c.high, c.low, px, long) else None
+
+
 # P7/G1: the arm-gate funnel, counted in-process. Pure bookkeeping — reading or
 # ignoring it changes nothing. research/p7_84_rule.py resets it and prints it.
 ARM84_FUNNEL: Counter = Counter()
@@ -447,6 +484,12 @@ def _ladder_bar(t: "SimTrade", c: Candle, i: int, open_trades: list,
         # omen-5.1 T2: the stop is tested BEFORE the 1R scale rung, so a bar that
         # tags the scale level and closes beyond the stop already books the full
         # loss with no partial credit — pessimistic here without a flag.
+        dz = _disaster_hit(t, c, long)          # R1/R2: resting -1R, on touch
+        if dz is not None:
+            t.outcome, t.exit_price, t.exit_idx = "loss", dz, i
+            open_trades.remove(t)
+            _arm_84(t, runner, c)
+            return
         if _stop_hit(c, t.stop, long):
             t.outcome, t.exit_price, t.exit_idx = "loss", _stop_fill_px(t, c, long), i
             open_trades.remove(t)
@@ -459,7 +502,16 @@ def _ladder_bar(t: "SimTrade", c: Candle, i: int, open_trades: list,
         return
     stop_lv = t.runner_stop if (SCALE_PLAN == "hod_then_runner_be" and t.runner_stop) else t.stop
     hit_target = (c.high >= t.runner_target) if long else (c.low <= t.runner_target)
-    if _stop_hit(c, stop_lv, long):     # T4(a): close-based on the runner too
+    # R1/R2: the disaster stop survives the scale-out, but only while the
+    # runner is still working the ORIGINAL stop. Under SCALE_PLAN
+    # "hod_then_runner_be" the first rung raises the stop to break-even, and a
+    # resting BE order sits between price and -1R -- price cannot reach the
+    # disaster stop without crossing it first. A cap on the trade's total loss,
+    # not a trailing rung.
+    dz = _disaster_hit(t, c, long) if stop_lv == t.stop else None
+    if dz is not None:
+        t.exit_price, t.exit_idx = dz, i
+    elif _stop_hit(c, stop_lv, long):     # T4(a): close-based on the runner too
         # T11: the fill is this bar's CLOSE, floored at -1.25R of the ORIGINAL
         # risk -- so a runner whose stop had been raised to break-even can still
         # book a real loss, which is the whole point of the floor.
@@ -648,8 +700,18 @@ def simulate_day(symbol: str, day_iso: str, candles: List[Candle],
             # the level is not a stop-out — the CANDLE HAS TO CLOSE beyond it.
             # The target is unchanged: a target order fills intrabar.
             lv = t.runner_stop if t.be_taken else t.stop
+            # R1/R2: the resting -1R disaster stop, on TOUCH, tested first.
+            # Only while the stop is still the original one: once it has been
+            # raised to break-even the trade cannot lose 1R, and price has to
+            # cross the BE order on its way down to -1R anyway.
+            dz = None if t.be_taken else _disaster_hit(t, c, t.direction == "call")
             stopped = _stop_hit(c, lv, t.direction == "call")
             targeted = c.high >= t.target if t.direction == "call" else c.low <= t.target
+            if dz is not None:
+                t.outcome, t.exit_price, t.exit_idx = "loss", dz, i
+                open_trades.remove(t)
+                _arm_84(t, runner, c)
+                continue
             if stopped:  # both in one bar -> conservative: loss
                 # T11: fill at the triggering close, floored at -1.25R.
                 t.outcome, t.exit_price, t.exit_idx = (

@@ -95,3 +95,52 @@ def stop_hit_on_wick(high: float, low: float, level: float, long: bool) -> bool:
     must never call this — there is no env switch on the live side, on purpose.
     """
     return low <= level if long else high >= level
+
+
+# ---------------------------------------------------------------------------
+# R1 / R2 — the two-stop model (Austin, probe_master_2026-08-29)
+# ---------------------------------------------------------------------------
+#
+# R1, `fact_stop_floor_is_fiction`, verdict `hard`:
+#     "-1r is what we want max slippage -1.25"
+#
+# TWO numbers, both his, and they are not the same number:
+#
+#   * DISASTER_STOP_R = 1.0  — where the disaster stop RESTS. A live order
+#     sitting at entry -/+ 1R that fills on an intrabar TOUCH. This is the loss
+#     he plans for.
+#   * MAX_LOSS_R = 1.25      — the OUTER BOUND. Nothing may book past it, ever.
+#     It is what slippage on the resting order is allowed to cost, not a second
+#     stop level.
+#
+# R2, `fact_two_stops`, verdict `both`:
+#     "Level stop on the close, disaster stop on touch."
+#
+# So the wick rule is intact where it was always about: the LEVEL stop still
+# triggers only on a close (`stop_hit_on_close`). The disaster stop is not a
+# signal, it is a risk cap, and a cap that only checks closes is not a cap.
+# The two coexist; whichever comes first on a bar ends the trade, and the
+# disaster stop is tested FIRST because a bar that touched -1R and then closed
+# further away was already out at -1R.
+DISASTER_STOP_R = 1.0
+
+
+def disaster_stop_price(entry: float, risk: float, long: bool,
+                        stop_r: float = DISASTER_STOP_R) -> float:
+    """Where the resting disaster-stop order sits: ``stop_r`` R from ENTRY.
+
+    ``risk`` is the trade's ORIGINAL ``abs(entry - stop)``, for the same reason
+    `stop_fill_price` insists on it: after a scale-out the runner's stop has
+    moved, and re-basing the disaster stop on it would quietly turn -1R of the
+    whole trade into -1R of a fraction of it."""
+    return entry - stop_r * risk if long else entry + stop_r * risk
+
+
+def disaster_stop_hit(high: float, low: float, price: float, long: bool) -> bool:
+    """Did this bar TOUCH the resting disaster stop? Intrabar, wick included.
+
+    Deliberately not `stop_hit_on_close`. A resting order is simply there when
+    price arrives -- the same reason a limit target fills on a touch. Austin's
+    "closes, not wicks" rule is about the LEVEL stop, which is a signal; this is
+    a risk cap, and it is the one exception he named himself (verdict `both`)."""
+    return low <= price if long else high >= price
