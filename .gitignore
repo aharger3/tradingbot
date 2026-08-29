@@ -174,3 +174,11 @@ research/t3_scratch/
 # research/t2_ocr-detector.md, which IS tracked, as is every script behind it.
 research/_t2_ocr_strict_book.json
 research/_t2_probe.json
+
+# T23's leave-one-out arm books (research/t23_stack.md). ~70 MB each and fully
+# regenerable -- the exact command for every arm is in research/t23_stack.py's
+# ARMS table and in the report. The numbers read off them live in
+# research/t23_stack.json and research/t23_stack.md, both tracked, as is
+# research/t23_stack.py which made every one of them.
+research/_t23_arm_*.json
+research/_t23_stack_run.log

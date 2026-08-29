@@ -1,0 +1,367 @@
+{
+  "arms": {
+    "stack": {
+      "config": "X_LIFT=clean  MIN_STOP_PCT=0.08  LOSS_HALT=1   -- SHIPPED",
+      "book": "bt2y_trades.json",
+      "halt_applied": true,
+      "window": [
+        "2024-08-21",
+        "2026-08-21"
+      ],
+      "sessions": 500,
+      "signals": 76019,
+      "traded": 2437,
+      "mean_r": 0.5495,
+      "se_r": 0.0429,
+      "total_r": 1339.09,
+      "win_rate": 49.5,
+      "pf": 2.1067,
+      "max_dd_r": 17.13,
+      "months_green": "25/25",
+      "setups": {
+        "break_and_retest": 1935,
+        "reentry_84_rule": 123,
+        "one_candle_rule": 379
+      },
+      "sgrade": {
+        "C": 1614,
+        "S": 298,
+        "A": 525
+      },
+      "index_trades": 164,
+      "book_s_recall": "1/34",
+      "book_false_fire": "11/66",
+      "book_veto_yes": "3/13",
+      "book_veto_no": "9/27",
+      "book_funnel_S": {
+        "cards": 34,
+        "in_universe": 27,
+        "any_row": 25,
+        "fired_row": 2,
+        "traded_row": 1,
+        "symbols_not_in_book": [
+          "ARM",
+          "MSTR",
+          "SMCI"
+        ]
+      },
+      "book_funnel_refused": {
+        "cards": 66,
+        "in_universe": 59,
+        "any_row": 44,
+        "fired_row": 14,
+        "traded_row": 11,
+        "symbols_not_in_book": [
+          "ARM",
+          "MSTR",
+          "RIVN",
+          "SMCI"
+        ]
+      }
+    },
+    "-T10": {
+      "config": "X_LIFT=off    MIN_STOP_PCT=0.08  LOSS_HALT=1   -- leave out the recall lever",
+      "book": "_t23_arm_noxlift.json",
+      "halt_applied": true,
+      "window": [
+        "2024-08-21",
+        "2026-08-21"
+      ],
+      "sessions": 500,
+      "signals": 75953,
+      "traded": 1941,
+      "mean_r": 0.5621,
+      "se_r": 0.0521,
+      "total_r": 1091.03,
+      "win_rate": 44.56,
+      "pf": 2.0242,
+      "max_dd_r": 24.9,
+      "months_green": "25/25",
+      "setups": {
+        "break_and_retest": 1417,
+        "reentry_84_rule": 123,
+        "one_candle_rule": 401
+      },
+      "sgrade": {
+        "C": 1270,
+        "A": 415,
+        "S": 256
+      },
+      "index_trades": 93,
+      "book_s_recall": "1/34",
+      "book_false_fire": "12/66",
+      "book_veto_yes": "1/13",
+      "book_veto_no": "8/27",
+      "book_funnel_S": {
+        "cards": 34,
+        "in_universe": 27,
+        "any_row": 25,
+        "fired_row": 2,
+        "traded_row": 1,
+        "symbols_not_in_book": [
+          "ARM",
+          "MSTR",
+          "SMCI"
+        ]
+      },
+      "book_funnel_refused": {
+        "cards": 66,
+        "in_universe": 59,
+        "any_row": 44,
+        "fired_row": 15,
+        "traded_row": 12,
+        "symbols_not_in_book": [
+          "ARM",
+          "MSTR",
+          "RIVN",
+          "SMCI"
+        ]
+      }
+    },
+    "-T9": {
+      "config": "X_LIFT=clean  MIN_STOP_PCT=0     LOSS_HALT=1   -- leave out the stop-width floor",
+      "book": "_t23_arm_nostopfloor.json",
+      "halt_applied": true,
+      "window": [
+        "2024-08-21",
+        "2026-08-21"
+      ],
+      "sessions": 500,
+      "signals": 76022,
+      "traded": 2465,
+      "mean_r": 0.5498,
+      "se_r": 0.0425,
+      "total_r": 1355.35,
+      "win_rate": 49.69,
+      "pf": 2.111,
+      "max_dd_r": 15.4,
+      "months_green": "25/25",
+      "setups": {
+        "break_and_retest": 1960,
+        "reentry_84_rule": 129,
+        "one_candle_rule": 376
+      },
+      "sgrade": {
+        "C": 1620,
+        "S": 308,
+        "A": 537
+      },
+      "index_trades": 196,
+      "book_s_recall": "1/34",
+      "book_false_fire": "11/66",
+      "book_veto_yes": "3/13",
+      "book_veto_no": "9/27",
+      "book_funnel_S": {
+        "cards": 34,
+        "in_universe": 27,
+        "any_row": 25,
+        "fired_row": 2,
+        "traded_row": 1,
+        "symbols_not_in_book": [
+          "ARM",
+          "MSTR",
+          "SMCI"
+        ]
+      },
+      "book_funnel_refused": {
+        "cards": 66,
+        "in_universe": 59,
+        "any_row": 44,
+        "fired_row": 14,
+        "traded_row": 11,
+        "symbols_not_in_book": [
+          "ARM",
+          "MSTR",
+          "RIVN",
+          "SMCI"
+        ]
+      }
+    },
+    "-T20": {
+      "config": "X_LIFT=clean  MIN_STOP_PCT=0.08  LOSS_HALT=0   -- leave out the loss halt",
+      "book": "bt2y_trades.json",
+      "halt_applied": false,
+      "window": [
+        "2024-08-21",
+        "2026-08-21"
+      ],
+      "sessions": 500,
+      "signals": 76019,
+      "traded": 3294,
+      "mean_r": 0.5037,
+      "se_r": 0.0375,
+      "total_r": 1659.17,
+      "win_rate": 46.76,
+      "pf": 1.9619,
+      "max_dd_r": 31.17,
+      "months_green": "25/25",
+      "setups": {
+        "break_and_retest": 2403,
+        "reentry_84_rule": 321,
+        "one_candle_rule": 570
+      },
+      "sgrade": {
+        "C": 2140,
+        "A": 728,
+        "S": 426
+      },
+      "index_trades": 234,
+      "book_s_recall": "1/34",
+      "book_false_fire": "17/66",
+      "book_veto_yes": "5/13",
+      "book_veto_no": "11/27",
+      "book_funnel_S": {
+        "cards": 34,
+        "in_universe": 27,
+        "any_row": 25,
+        "fired_row": 2,
+        "traded_row": 1,
+        "symbols_not_in_book": [
+          "ARM",
+          "MSTR",
+          "SMCI"
+        ]
+      },
+      "book_funnel_refused": {
+        "cards": 66,
+        "in_universe": 59,
+        "any_row": 44,
+        "fired_row": 19,
+        "traded_row": 17,
+        "symbols_not_in_book": [
+          "ARM",
+          "MSTR",
+          "RIVN",
+          "SMCI"
+        ]
+      }
+    },
+    "t0_base": {
+      "config": "X_LIFT=off    MIN_STOP_PCT=0     LOSS_HALT=0   -- T0's shipped book",
+      "book": "_t23_arm_t0base.json",
+      "halt_applied": false,
+      "window": [
+        "2024-08-21",
+        "2026-08-21"
+      ],
+      "sessions": 500,
+      "signals": 75953,
+      "traded": 2595,
+      "mean_r": 0.5481,
+      "se_r": 0.0459,
+      "total_r": 1422.33,
+      "win_rate": 43.06,
+      "pf": 1.9732,
+      "max_dd_r": 32.43,
+      "months_green": "25/25",
+      "setups": {
+        "break_and_retest": 1704,
+        "reentry_84_rule": 319,
+        "one_candle_rule": 572
+      },
+      "sgrade": {
+        "C": 1677,
+        "A": 570,
+        "S": 348
+      },
+      "index_trades": 137,
+      "book_s_recall": "1/34",
+      "book_false_fire": "16/66",
+      "book_veto_yes": "3/13",
+      "book_veto_no": "9/27",
+      "book_funnel_S": {
+        "cards": 34,
+        "in_universe": 27,
+        "any_row": 25,
+        "fired_row": 2,
+        "traded_row": 1,
+        "symbols_not_in_book": [
+          "ARM",
+          "MSTR",
+          "SMCI"
+        ]
+      },
+      "book_funnel_refused": {
+        "cards": 66,
+        "in_universe": 59,
+        "any_row": 44,
+        "fired_row": 18,
+        "traded_row": 16,
+        "symbols_not_in_book": [
+          "ARM",
+          "MSTR",
+          "RIVN",
+          "SMCI"
+        ]
+      }
+    }
+  },
+  "marginals": [
+    {
+      "lever": "T10 X_LIFT=clean",
+      "arm": "-T10",
+      "marginal_mean_r": -0.0126,
+      "error_bar_95": 0.1324,
+      "null": true,
+      "solo_mean_r": -0.0426,
+      "sign_flip_vs_solo": false,
+      "traded_move": 496,
+      "win_rate_move": 4.94,
+      "months_green": "25/25 -> 25/25",
+      "book_s_recall": "1/34 -> 1/34"
+    },
+    {
+      "lever": "T9  MIN_STOP_PCT",
+      "arm": "-T9",
+      "marginal_mean_r": -0.0004,
+      "error_bar_95": 0.1184,
+      "null": true,
+      "solo_mean_r": -0.0462,
+      "sign_flip_vs_solo": false,
+      "traded_move": -28,
+      "win_rate_move": -0.19,
+      "months_green": "25/25 -> 25/25",
+      "book_s_recall": "1/34 -> 1/34"
+    },
+    {
+      "lever": "T20 loss halt",
+      "arm": "-T20",
+      "marginal_mean_r": 0.0458,
+      "error_bar_95": 0.1117,
+      "null": true,
+      "solo_mean_r": 0.0493,
+      "sign_flip_vs_solo": false,
+      "traded_move": -857,
+      "win_rate_move": 2.74,
+      "months_green": "25/25 -> 25/25",
+      "book_s_recall": "1/34 -> 1/34"
+    }
+  ],
+  "corpora": {
+    "s_sweep_S": 34,
+    "s_sweep_refused": 66,
+    "veto_yes": 13,
+    "veto_no": 27
+  },
+  "whole_stack_vs_t0": {
+    "mean_r": "+0.5481 -> +0.5495",
+    "move": 0.0014,
+    "error_bar_95": 0.1231,
+    "null": true,
+    "traded": "2595 -> 2437",
+    "win_rate": "43.06 -> 49.50",
+    "months_green": "25/25 -> 25/25",
+    "book_s_recall": "1/34 -> 1/34",
+    "sum_of_marginals": 0.0328
+  },
+  "money_gate": {
+    "reached": false,
+    "mean_r": 0.5495,
+    "target_mean_r": 2.0,
+    "shortfall_r": 1.4505,
+    "win_rate": 49.5,
+    "target_win_rate": 55.0,
+    "months_green": "25/25",
+    "durability_met": true
+  }
+}
