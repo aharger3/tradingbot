@@ -39,7 +39,12 @@ OUT_SIGNALS = os.path.join(HERE, "engine_signals.jsonl")
 OUT_ENTRIES = os.path.join(HERE, "engine_entries.jsonl")
 OUT_MD = os.path.join(HERE, "engine_recall.md")
 
-DEDUPE_BARS = 30        # backtest_week.DEDUPE_BARS — one entry per setup idea per 30 min
+# R16: mirrors backtest_week.dedupe_window() -- dedupe by LEVEL, not by clock.
+# Austin: "it doesent matter when the trade re sets up as long as it happens
+# during the window". Imported rather than copied so the recall harness and the
+# book can never disagree about what one idea is again.
+from backtest_week import dedupe_window as _dedupe_window  # noqa: E402
+DEDUPE_BARS = _dedupe_window()
 ENTRY_CUTOFF = "11:00:00"  # Scarface trades 9:30-11 only (production)
 TOL = 2                 # +/-2 bar join tolerance
 TIER_RANK = {"S": 3, "A": 2, "X": 1}

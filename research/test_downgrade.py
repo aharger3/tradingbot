@@ -58,9 +58,23 @@ def clean_long(n_after=6):
 print("clean setup trips nothing")
 bars = clean_long()
 i = len(bars) - 1
-res = dg.score(bars, i, LEVEL, True)
+res = dg.score(bars, i, LEVEL, True, enable_chase=False)
 check(res is not None, "score() returns a record")
 check(res["tripped"] == [], "no variable fires on a clean chart (got %s)" % res["tripped"])
+
+# R22 (Austin, probe_master_2026-08-29, fact_chase -> `downgrade`): chase is the
+# ninth variable and ships ON. This fixture walks 0.35 a bar past the level, so
+# by the entry bar it IS a chase -- "don't buy the top" -- and the same clean
+# chart costs one downgrade on the shipped ladder.
+res_chase = dg.score(bars, i, LEVEL, True)
+check(dg.ENABLE_CHASE_DOWNGRADE is True, "R22: chase ships ON as a downgrade variable")
+check(res_chase["tripped"] == ["chase"],
+      "R22: an entry far past the level trips chase and nothing else (got %s)"
+      % res_chase["tripped"])
+check(res_chase["n_tripped"] == res["n_tripped"] + 1,
+      "R22: chase costs exactly one downgrade, not a veto")
+check(res_chase["grade"] == "S" and res_chase["confluence"] is True,
+      "R22: ...and one downgrade against clean confluence is still S -- his +1 rule")
 check(res["grade"] == "S", "a clean chart grades S (got %s)" % res["grade"])
 
 # ---------------------------------------------------------------------------

@@ -111,6 +111,22 @@ ENABLE_MULTI_LEVEL_CONFLUENCE = False
 # the entry being graded.
 ENABLE_SEQUENCE_GATE = False
 
+# ---- R22: chase is a DOWNGRADE VARIABLE, not a tag -------------------------
+# Austin, probe_master_2026-08-29, fact_chase -> `downgrade`.
+#
+# His own "don't buy the top" rule. It was measured -- entries more than
+# CHASE_PCT past the broken level win 28.0% against 37.3% for the rest -- and
+# then left as a label that changed nothing, because the legacy tier already
+# screened most of them out and that tier is being deleted. He did not ask for
+# a block (`block` was on the card and he did not pick it); he asked for it to
+# cost a downgrade, which is what this is.
+#
+# CHASE_PCT mirrors signal_runner.CHASE_PCT. Ships ON: ratified. Set
+# ENABLE_CHASE_DOWNGRADE=False (or pass enable_chase=False) to restore the
+# eight-variable ladder every earlier sgrade number was measured on.
+CHASE_PCT = 0.005
+ENABLE_CHASE_DOWNGRADE = True
+
 
 # ---------------------------------------------------------------------------
 # small bar helpers -- every one is causal: nothing reads past `i`
@@ -400,6 +416,21 @@ def sequence_gate(entry_seq, is_84_reentry):
     return not is_84_reentry
 
 
+def chase(bars, i, level, is_long):
+    """R22. Did the entry bar close more than CHASE_PCT of price beyond the
+    broken level? "Don't buy the top."
+
+    Measured off the CLOSE and the level, which is the pair `score()` is handed
+    -- the same quantity signal_runner tags `[chase]` on, where for a
+    break-and-retest the stop IS the level so |entry - stop| is that distance."""
+    b = bars[i]
+    px = b["c"]
+    if not px or level is None:
+        return False
+    d = (px - level) if is_long else (level - px)
+    return d / px >= CHASE_PCT
+
+
 CHECKS = {
     "no_displacement": no_displacement,
     "stale_retest": stale_retest,
@@ -443,7 +474,8 @@ def has_confluence(bars, i, level, is_long):
 
 def score(bars, i, level, is_long, htf_bias=None, levels=None,
           enable_large_counter_body=None, enable_multi_level_confluence=None,
-          enable_sequence_gate=None, entry_seq=None, is_84_reentry=False):
+          enable_sequence_gate=None, entry_seq=None, is_84_reentry=False,
+          enable_chase=None):
     """Return the full grading record for the signal on bar ``i``.
 
     ``observations`` carries what the removed TradeGrade.D used to veto on. Austin
@@ -464,6 +496,9 @@ def score(bars, i, level, is_long, htf_bias=None, levels=None,
     SEPARATE upgrade from `has_confluence` (BR+OCR) -- either or both firing
     still costs only one point off `net`, since Austin has not been asked
     whether two independent +1s should stack.
+    ``enable_chase`` -- R22, ON by default: chase costs a downgrade. Pass
+    False to reproduce the eight-variable ladder every sgrade number before
+    2026-08-29 was measured on.
     ``enable_sequence_gate`` -- adds the tenth downgrade (ballot b2) when
     True; defaults to `ENABLE_SEQUENCE_GATE` (False). ``entry_seq`` and
     ``is_84_reentry`` are its inputs -- see `sequence_gate` and the module
@@ -476,8 +511,11 @@ def score(bars, i, level, is_long, htf_bias=None, levels=None,
     mlc_on = (ENABLE_MULTI_LEVEL_CONFLUENCE if enable_multi_level_confluence is None
               else enable_multi_level_confluence)
     seq_on = ENABLE_SEQUENCE_GATE if enable_sequence_gate is None else enable_sequence_gate
+    chase_on = ENABLE_CHASE_DOWNGRADE if enable_chase is None else enable_chase
 
     tripped = [name for name, fn in CHECKS.items() if fn(bars, i, level, is_long)]
+    if chase_on and chase(bars, i, level, is_long):
+        tripped.append("chase")
     if lcb_on and large_counter_body(bars, i, level, is_long):
         tripped.append("large_counter_body")
     if seq_on and sequence_gate(entry_seq, is_84_reentry):

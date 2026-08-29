@@ -65,7 +65,31 @@ def sscore_mult(reason: str) -> float:
     if s == 5:
         return 1.25
     return 1.0
-DEDUPE_BARS = 30  # same setup re-firing within 30 min = same trade idea
+# ---- R16: dedupe by LEVEL, not by clock ------------------------------------
+# Austin, probe_master_2026-08-29, fact_dedupe -> `level`:
+#   "it doesent matter when the trade re sets up as long as it happens during
+#    the window"
+# The KEY was already the level (the broken level's name for a break-and-retest,
+# the block price otherwise). What he deleted is the CLOCK around it: a level
+# that broke, retested, failed and set up again 12 minutes later was thrown away
+# as a duplicate of the first. It is a second trade.
+#
+# What survives is the only thing the clock was really needed for: the detector
+# re-fires on every bar while the setup is still standing there, and those are
+# one idea, not twenty. DEDUPE_MODE="level" suppresses a repeat only while the
+# same level is firing on CONSECUTIVE bars; one quiet bar and the next fire is a
+# new trade. DEDUPE_MODE="clock" restores the 30-minute window for the A/B.
+DEDUPE_MODE = os.getenv("DEDUPE_MODE", "level").strip().lower()
+DEDUPE_BARS = 30  # clock arm only: same setup re-firing within 30 min = one idea
+DEDUPE_CONTIG = 2  # level arm: suppress only a contiguous run of re-fires
+
+
+def dedupe_window() -> int:
+    """Bars of suppression after a fire. Read at call time so an A/B can flip
+    DEDUPE_MODE on the module without re-importing."""
+    return DEDUPE_BARS if DEDUPE_MODE == "clock" else DEDUPE_CONTIG
+
+
 REPORT_PATH = Path(__file__).parent / "backtest_report.md"
 
 # ---- Rule 6: Position Management (Scarface: scale 50% at HOD/breakeven) ----
@@ -747,7 +771,7 @@ def simulate_day(symbol: str, day_iso: str, candles: List[Candle],
                     if sig["signal_type"].value == "break_and_retest"
                     else round(sig["stop"], 2))
             key = (sig["signal_type"].value, sig["direction"], idea)
-            if key in seen and i - seen[key] < DEDUPE_BARS:
+            if key in seen and i - seen[key] < dedupe_window():   # R16
                 seen[key] = i  # still firing: extend suppression
                 continue
             seen[key] = i
@@ -839,7 +863,7 @@ def write_report(all_trades: List[SimTrade], days: List[str], notes: List[str]) 
               "- Data: yfinance 1-min RTH bars; walk-forward replay through SignalRunner.detect_signals",
               f"- $1000 risk per trade, 2R target -> win +$2000, loss -$1000, scratch = R x $1000 at EOD close",
               "- Stop+target same bar counted as loss (conservative)",
-              f"- Repeat fires of same setup within {DEDUPE_BARS} min deduped",
+              f"- Repeat fires of same setup deduped by {DEDUPE_MODE} ({dedupe_window()} bars)",
               ""]
 
     n, w, l, s, wr, pnl = _stats(fired)
