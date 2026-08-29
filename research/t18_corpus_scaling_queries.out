@@ -1,0 +1,302 @@
+
+================================================================================
+QUERY: scale out
+================================================================================
+Q: "scale out"
+
+=== TRADER_SAID (8) ===
+  [TRADER_SAID] research/scarface-rules-discord.md:137 [Mar] (Mar, trade-feedback.json, 2025-01-11) score=2 -- I was able to scale out 20% of my size.
+  [TRADER_SAID] research/scarface-rules-videos.md:985 [Scarface/jdub] (boot-camp-recordings_Day_13_Trameframe_Psychology.txt [2684s-2689s]) score=2 -- I scale 80% out of high of day, because I know that though I took the risk, QQQ if it breaks below this level, the momentum on Tesla may die.
+  [TRADER_SAID] research/scarface-rules-videos.md:1309 [Scarface/jdub] (boot-camp-recordings_Day_15_Conclusion_Final_Q_A.txt [2871s-2883s]) score=2 -- if you're trading wanted to contracts get one is hard but let's just say two get out a high of day for one and then your second one go for higher time frame key levels don't scale anything until higher time frame key ...
+  [TRADER_SAID] research/scarface-rules-videos.md:1963 [Scarface/jdub] (boot-camp-recordings_Day_4_Bread_Butter_Strategy.txt [832s-872s]) score=2 -- I scaled a high of day, Jack did not scale a high of day. So he came out with the losing day. I came out with $145 a day... Jack, he likes high reward trades. Therefore he was looking for the all-time highs on Google ...
+  [TRADER_SAID] research/scarface-rules-videos.md:2562 [Scarface/jdub] (boot-camp-recordings_Day_8_Scaling_With_Options.txt [213s-285s]) score=2 -- There's very rare times where you will want to scale into a position especially with the break and retests and how the break and retests works... you're only scaling out of positions
+  [TRADER_SAID] research/scarface-rules-videos.md:2563 [Scarface/jdub] (boot-camp-recordings_Day_8_Scaling_With_Options.txt [291s-301s]) score=2 -- Usually our trades work out right away or they'll typically go in there will hit your stop... usually they're pretty quick move so that is why you wouldn't want to scale into them
+  [TRADER_SAID] research/scarface-rules-videos.md:2777 [Scarface/jdub] (boot-camp-recordings_day-8-scaling-with-options [286s-301s]) score=2 -- Usually our trades work out right away or they'll typically go in and they will hit your software to away. Usually you won't see a ton of ranging around there. Usually they're pretty quick moves. That is why you would...
+  [TRADER_SAID] research/scarface-rules-videos.md:2830 [Scarface/jdub] (boot-camp-recordings_day-8-scaling-with-options [776s-787s]) score=2 -- Short term scalp trades. You don't really want to, if you're not very confident in your setup, right? You're always going to scale a little bit more or you're going to close out the whole position.
+
+=== DOC_CLAIMS (2) ===
+  [DOC_CLAIMS] research/scarface-rules-youtube.md:27 [?] score=2 -- 6. CONFIRMED: Scale Out at Key Levels — Always Take Partials
+  [DOC_CLAIMS] research/scarface-rules-youtube.md:18 [?] score=1 -- 3. CONFIRMED: The 84% Rule is a Re-Entry Strategy After Stop-Out
+
+=== CODE_COMMENT (2) ===
+  [CODE_COMMENT] signal_runner.py:318 [?] score=1 -- The rule is written out in Trading-Bot-Rulesets.md "Austin's Tiers (S / A /
+  [CODE_COMMENT] signal_runner.py:1658 [?] score=1 -- 84% Rule long (Austin 2026-07-05): stopped-out CALL, price reclaims the
+
+=== DERIVED (0) ===
+  (no matches)
+
+================================================================================
+QUERY: let winners run
+================================================================================
+Q: "let winners run"
+
+=== TRADER_SAID (8) ===
+  [TRADER_SAID] research/scarface-rules-videos.md:10065 [Scarface/jdub] (performance-coaching_Session_3_Discipline_Fundamentals.txt [761s-801s]) score=2 -- you have an amazing trade... double what you use to do on your winners and then you are feeling over confident like okay... the key for the markets now... and you start doing something crazy like okay, well, let's tak...
+  [TRADER_SAID] research/scarface-rules-videos.md:10508 [Scarface/jdub] (performance-coaching_Session_7_KPI_Extension_Risk_Management_for_Performance_transcript.txt [2772s-2785s]) score=2 -- on our losses, we are very optimistic waiting for the price to re wear... but on our winners, we are very pessimistic and we are looking at green and say, okay, well, let me take profit here
+  [TRADER_SAID] research/84rule-sizing-dossier.md:173 [Scarface/jdub] (3yiJ74UNjFI_transcript.txt) score=1 -- But if you use the 84 percent rule which is like you put on the exact same trade after after you get let's say you get stopped out. You put on the exact same trade like 84 percent of time it's going to work out
+  [TRADER_SAID] research/84rule-sizing-dossier.md:220 [Tony] (Tony, 2025-02-05 14:58:02) score=1 -- NVDA moving my stop to break even after this consolidation, want to see a push here. If not will reevaluate with 84% but won't let this trade go negative.
+  [TRADER_SAID] research/84rule-sizing-dossier.md:295 [caligold4723] (caligold4723, 2025-03-28) score=1 -- About to implement 84% as the first entry and 1st entry is always going to be light. Let's see what happens here
+  [TRADER_SAID] research/EXTRACTED_TRADING_RULES.md:26 [Scarface/jdub] (Day 5 / [125s-138s]) score=1 -- If there's no opening plays then we usually want to be patient so sometimes you'll hear us say Right let's wait for the first 15 to 30 minutes to play out. We don't want to be taking any trading opportunities
+  [TRADER_SAID] research/EXTRACTED_TRADING_RULES.md:65 [Scarface/jdub] (Day 5 / [1056s-1078s]) score=1 -- Gaps that consider filled when the wicks... Just basically has to fill the imbalance so in this case let's say for Tesla What is the gap fill you just want to mark out this The wick and then once it touches it I consi...
+  [TRADER_SAID] research/EXTRACTED_TRADING_RULES.md:291 [Scarface/jdub] (Day 5 / [4777s-4805s]) score=1 -- So the pop and fate is actually the exact opposite as the dip in rip But it's the but it's the opposite so Look for Clear trend towards the downside right consolidation slash retracement Pop into a key level right pre...
+
+=== DOC_CLAIMS (0) ===
+  (no matches)
+
+=== CODE_COMMENT (0) ===
+  (no matches)
+
+=== DERIVED (0) ===
+  (no matches)
+
+================================================================================
+QUERY: breakeven stop
+================================================================================
+Q: "breakeven stop"
+
+=== TRADER_SAID (8) ===
+  [TRADER_SAID] research/scarface-rules-mastermind.md:161 [Scarface/jdub] (mastermind-1-0_1460324, 00:46:37) score=4 -- After first scale: can move stop to breakeven (1:1), then hold runner.
+  [TRADER_SAID] research/scarface-rules-videos.md:7463 [Scarface/jdub] (mastermind-4-0_Lesson_2_My_Bread_Butter_Strategy_How_To_Draw_Key_Levels.txt [3516s-3534s]) score=4 -- We're not gonna change our stop loss until we break this low because once we break this low, then our stop simply just becomes breakeven, okay? Because once we break this low, and this is based off of trend too, this ...
+  [TRADER_SAID] research/84rule-sizing-dossier.md:197 [Tony] (Tony, 2025-05-01 14:29:02) score=3 -- TOOK TSLA 84% RULE here same stop same targets @everyone
+  [TRADER_SAID] research/84rule-sizing-dossier.md:220 [Tony] (Tony, 2025-02-05 14:58:02) score=3 -- NVDA moving my stop to break even after this consolidation, want to see a push here. If not will reevaluate with 84% but won't let this trade go negative.
+  [TRADER_SAID] research/84rule-sizing-dossier.md:248 [Luke] (Luke, 2025-02-05) score=3 -- Jdub said this morning that the 84% rule technically wasn't in play because my stop should have technically been at LOD.
+  [TRADER_SAID] research/EXTRACTED_TRADING_RULES.md:153 [Scarface/jdub] (Day 5 / [3570s-3813s]) score=3 -- Right if you're the first one Sometimes you might get fake dough All right, maybe if you had just strictly this level maybe you decided a very tight stop If you're the first one Right sometimes you can easily get fake...
+  [TRADER_SAID] research/EXTRACTED_TRADING_RULES.md:451 [Scarface/jdub] (Day 5 / [6117s-6128s]) score=3 -- When it taps into the order block the easiest is right you have an entry here Stop underneath and now you're looking forward high today
+  [TRADER_SAID] research/EXTRACTED_TRADING_RULES.md:458 [Scarface/jdub] (Day 5 / [6138s-6148s]) score=3 -- For waiting for entry confirmations you can have a few different things here Maybe tighten up your stop loss But if we're strictly talking about order blocks and she at the top the order block Stop at the below the or...
+
+=== DOC_CLAIMS (3) ===
+  [DOC_CLAIMS] research/84rule-sizing-dossier.md:31 [Section 3] (Section 3, line 52) score=3 -- Requirements: EXACT same setup + same stop + same targets + confluences + HTF alignment + relative strength/weakness; A-quality only (1450449 [00:23:31], [00:26:16]).
+  [DOC_CLAIMS] research/84rule-sizing-dossier.md:37 [Section 3] (Section 3, line 55) score=3 -- Psychology framing: stop loss always taken first; re-entry is separate decision (1450540 [00:16:25]).
+  [DOC_CLAIMS] research/scarface-rules-youtube.md:18 [?] score=1 -- 3. CONFIRMED: The 84% Rule is a Re-Entry Strategy After Stop-Out
+
+=== CODE_COMMENT (8) ===
+  [CODE_COMMENT] signal_runner.py:102 [?] score=3 -- Austin's chat def: strong-PA reclaim, stop under reclaim candle.
+  [CODE_COMMENT] signal_runner.py:637 [?] score=3 -- same 25% that governs the 84% reclaim and stop slippage. One tolerance unit.
+  [CODE_COMMENT] signal_runner.py:103 [?] score=1 -- RULE84_LESSON = True   # True = lesson-faithful (no PA gate, original stop)
+  [CODE_COMMENT] signal_runner.py:709 [?] score=1 -- Austin's own answer, written five times in the recovered reviews: the stop
+  [CODE_COMMENT] signal_runner.py:1669 [?] score=1 -- stop_chk = (self.session.entry_stop if RULE84_LESSON
+  [CODE_COMMENT] signal_runner.py:1706 [?] score=1 -- "stop_level_name": "Original stop" if RULE84_LESSON else "Reclaim candle low",
+  [CODE_COMMENT] signal_runner.py:1879 [?] score=1 -- stop_chk = (self.session.entry_stop if RULE84_LESSON
+  [CODE_COMMENT] signal_runner.py:1912 [?] score=1 -- "stop_level_name": "Original stop" if RULE84_LESSON else "Rejection candle high",
+
+=== DERIVED (1) ===
+  [DERIVED] research/hallucination-audit.md:168 [?] (group_23, 5748s-5774s) score=3 -- only move stop loss when market structure changes
+
+================================================================================
+QUERY: high of day scale
+================================================================================
+Q: "high of day scale"
+
+=== TRADER_SAID (8) ===
+  [TRADER_SAID] research/scarface-rules-discord.md:143 [xhD_SRbyMNE] (xhD_SRbyMNE, YouTube — confirmed in Discord practice) score=2 -- I don't move my stop unless I have a first high of day or low of day scale.
+  [TRADER_SAID] research/scarface-rules-videos.md:321 [Scarface/jdub] (bonus_How_To_Swing_Trade_Q_A.txt [2375s-2385s]) score=2 -- Take the same contracts, let's say three contracts every single time. And then scale one or two a high of day and then the last one you kind of let it ride or whatever.
+  [TRADER_SAID] research/scarface-rules-videos.md:430 [Scarface/jdub] (bonus_My_Bread_Butter_Strategy_How_To_Draw_Key_Levels_transcript.txt [1616s-1650s]) score=2 -- that high of day scale allows me to hold and therefore even if it comes back down near our stop loss... because I lock in high a day this means even if we come back to our stop loss here and break... I'm going to lose...
+  [TRADER_SAID] research/scarface-rules-videos.md:523 [Scarface/jdub] (bonus_My_Bread_Butter_Strategy_How_To_Draw_Key_Levels_transcript.txt [5748s-5754s]) score=2 -- after my high of day scale that doesn't mean I'm gonna let my stop go break even. Oh my stop loss was still still the same
+  [TRADER_SAID] research/scarface-rules-videos.md:985 [Scarface/jdub] (boot-camp-recordings_Day_13_Trameframe_Psychology.txt [2684s-2689s]) score=2 -- I scale 80% out of high of day, because I know that though I took the risk, QQQ if it breaks below this level, the momentum on Tesla may die.
+  [TRADER_SAID] research/scarface-rules-videos.md:1309 [Scarface/jdub] (boot-camp-recordings_Day_15_Conclusion_Final_Q_A.txt [2871s-2883s]) score=2 -- if you're trading wanted to contracts get one is hard but let's just say two get out a high of day for one and then your second one go for higher time frame key levels don't scale anything until higher time frame key ...
+  [TRADER_SAID] research/scarface-rules-videos.md:1963 [Scarface/jdub] (boot-camp-recordings_Day_4_Bread_Butter_Strategy.txt [832s-872s]) score=2 -- I scaled a high of day, Jack did not scale a high of day. So he came out with the losing day. I came out with $145 a day... Jack, he likes high reward trades. Therefore he was looking for the all-time highs on Google ...
+  [TRADER_SAID] research/scarface-rules-videos.md:2587 [Scarface/jdub] (boot-camp-recordings_Day_8_Scaling_With_Options.txt [2345s-2379s]) score=2 -- New highs of day or low of day... price pulled back made a new high this could be a scale point
+
+=== DOC_CLAIMS (2) ===
+  [DOC_CLAIMS] research/scarface-rules-videos.md:4591 [?] score=1 -- News Candle High/Low
+  [DOC_CLAIMS] research/scarface-rules-youtube.md:27 [?] score=1 -- 6. CONFIRMED: Scale Out at Key Levels — Always Take Partials
+
+=== CODE_COMMENT (3) ===
+  [CODE_COMMENT] signal_runner.py:565 [?] score=1 -- return entry >= candle.high - BAR_EXTREME_FRAC * rng
+  [CODE_COMMENT] signal_runner.py:946 [?] score=1 -- Premarket high/low (Scarface: PMH/PML are breakable structure like PDH/PDL)
+  [CODE_COMMENT] signal_runner.py:1912 [?] score=1 -- "stop_level_name": "Original stop" if RULE84_LESSON else "Rejection candle high",
+
+=== DERIVED (0) ===
+  (no matches)
+
+================================================================================
+QUERY: runner key level
+================================================================================
+Q: "runner key level"
+
+=== TRADER_SAID (8) ===
+  [TRADER_SAID] research/84rule-sizing-dossier.md:100 [Scarface/jdub] (mastermind-1-0_1453512, 00:01:28) score=2 -- Wait 5, 10, 15, 20 minutes. Come back to same area, same key level, same setup.
+  [TRADER_SAID] research/84rule-sizing-dossier.md:214 [Tony] (Tony, 2025-05-01 14:33:34) score=2 -- Perfect use of 84% rule today. Now take some off at hod this is the KEY level. Gold trailers for next levels which are far and therefore u should be taking hod scales but 290 + 293 key level.
+  [TRADER_SAID] research/84rule-sizing-dossier.md:292 [demchy19] (demchy19, 2024-10-14) score=2 -- I don't think this follows the 84% rule. If I understand correctly, the 84% rule applies when you have a plan for entering a stock at a specific key level (e.g., the 5-minute opening candle print), and the stock tries...
+  [TRADER_SAID] research/EXTRACTED_TRADING_RULES.md:44 [Scarface/jdub] (Day 5 / [499s-516s]) score=2 -- Gap above your key levels. In this case primarily our previous day highs and previous day lows. Old highs roll lows and what we would now want to see is a hold above our key level in Continuation primarily away from t...
+  [TRADER_SAID] research/EXTRACTED_TRADING_RULES.md:72 [Scarface/jdub] (Day 5 / [1204s-1233s]) score=2 -- Does a gap have to be completely filled or it can be partially exact that's a good question as well it can be partially filled. If there's a big gap in the chart and say something like Oracle It doesn't have to be fil...
+  [TRADER_SAID] research/EXTRACTED_TRADING_RULES.md:79 [Scarface/jdub] (Day 5 / [743s-789s]) score=2 -- Our immediate retest off of our previous day highs So this is actually entry model number one... immediate retest of a key level Which would be essentially our previous day high retest
+  [TRADER_SAID] research/EXTRACTED_TRADING_RULES.md:86 [Scarface/jdub] (Day 5 / [798s-809s]) score=2 -- Entry number two would be potentially like a reclaim or an order block Right either maybe it might be like a pre-market high it might be a reclaim back above a key level
+  [TRADER_SAID] research/EXTRACTED_TRADING_RULES.md:139 [Scarface/jdub] (Day 5 / [2554s-2571s]) score=2 -- Cartier other cartiers for me specifically gap into a key level Privacy high is per say low hold high all those Super liquidity break a structure and then we trade inside the gap
+
+=== DOC_CLAIMS (2) ===
+  [DOC_CLAIMS] research/scarface-rules-youtube.md:27 [?] score=1 -- 6. CONFIRMED: Scale Out at Key Levels — Always Take Partials
+  [DOC_CLAIMS] research/scarface-rules-youtube.md:30 [?] score=1 -- 7. CONFIRMED: The Opening Candle Print is a Critical Intraday Level
+
+=== CODE_COMMENT (8) ===
+  [CODE_COMMENT] signal_runner.py:492 [?] score=1 -- (a2) A level that keeps getting hit stops being a level. Austin: "that rule is
+  [CODE_COMMENT] signal_runner.py:757 [?] score=1 -- Austin's tier (MESH_S_VETO, T11(c)) read ONE computation. The traded level
+  [CODE_COMMENT] signal_runner.py:1074 [?] score=1 -- """Austin's A+ spec 2026-07-06: FIRST clean break of the level today,
+  [CODE_COMMENT] signal_runner.py:1084 [?] score=1 -- """Demote signals fighting the level map (Austin notes 2026-07-06).
+  [CODE_COMMENT] signal_runner.py:1420 [?] score=1 -- Clustered-level bars no longer hard-skip (Austin 2026-08-07,
+  [CODE_COMMENT] signal_runner.py:1508 [?] score=1 -- Austin 2026-07-10: level already broken earlier in the session
+  [CODE_COMMENT] signal_runner.py:1563 [?] score=1 -- T10: which KIND of level this B&R is keyed to. Austin's
+  [CODE_COMMENT] signal_runner.py:1573 [?] score=1 -- price retests the gap, never the raw level (Scarface: FVG = valid zone)
+
+=== DERIVED (4) ===
+  [DERIVED] research/hallucination-audit.md:59 [Neto] (Neto, coaching) score=2 -- OB alone is not edge. OB + key level confluence = edge
+  [DERIVED] research/hallucination-audit.md:28 [mm 4.0] (mm 4.0) score=1 -- First retest is best. Fresh level.
+  [DERIVED] research/hallucination-audit.md:29 [mm 5.0] (mm 5.0) score=1 -- 10-15 cents buffer below level for room
+  [DERIVED] research/hallucination-audit.md:70 [yt pGLsdLZahVY] (yt pGLsdLZahVY) score=1 -- I need to see some strong buying action near this level — not just going to enter off some random candle
+
+================================================================================
+QUERY: 50 percent scale
+================================================================================
+Q: "50 percent scale"
+
+=== TRADER_SAID (8) ===
+  [TRADER_SAID] research/scarface-rules-videos.md:1209 [Scarface/jdub] (boot-camp-recordings_Day_14_How_To_Grow_A_Small_Account.txt [1863s-1870s]) score=2 -- ideally, I believe anyways, is, like, likely, you know, 50 to 60 percent win rate at like a two to one
+  [TRADER_SAID] research/scarface-rules-videos.md:1211 [Scarface/jdub] (boot-camp-recordings_Day_14_How_To_Grow_A_Small_Account.txt [1871s-1877s]) score=2 -- you can even be in 40 to 50 percent though, and still be in profit
+  [TRADER_SAID] research/scarface-rules-videos.md:3494 [Scarface/jdub] (building-your-profitable-system_Lesson_6_Building_Logic.txt [1161s-1181s]) score=2 -- If I didn't take the first trade you can look to scale some at high day in this case you can do like 25% right higher time frames 50 and then 25 back towards upside.
+  [TRADER_SAID] research/scarface-rules-videos.md:3696 [Scarface/jdub] (building-your-profitable-system_Lesson_7_Futures_Vs_Options.txt [5965s-5981s]) score=2 -- I like scaling fours or you can scale right and when you scale in fours it's 25 25 25 25 or some people do like 50 and then like maybe 50 20 10 10 something like that
+  [TRADER_SAID] research/scarface-rules-videos.md:4980 [Hayden] (hayden-s-coaching_How_to_build_a_scaling_process_with_options_trading.txt [845s-854s]) score=2 -- If this number is above one... let's just say above one and you have a 50 percent win rate You're gonna be break even
+  [TRADER_SAID] research/scarface-rules-videos.md:6234 [Scarface/jdub] (mastermind-1-0_Lesson_4_How_To_Create_A_Winning_Day_Trading_System_How_To_H_transcript.txt [1808s-1818s]) score=2 -- if that option goes against you even a little bit... you will lose 40 to 50 percent of that option contracts value.
+  [TRADER_SAID] research/scarface-rules-videos.md:7747 [Scarface/jdub] (mastermind-4-0_Lesson_4_How_To_Create_A_Winning_Day_Trading_System_How_To_H_transcript.txt [5685s-5687s]) score=2 -- you can scale at whole numbers. For example, this 436.50 level
+  [TRADER_SAID] research/scarface-rules-videos.md:7915 [Scarface/jdub] (mastermind-4-0_Lesson_5_How_To_Grow_A_Trading_Account_How_To_Spot_Trade_Rel.txt [1748s-1756s]) score=2 -- when you trade too much and you're not taking A plus setups, well, you're only taking these subpar trades and those subpar trades have a much lower win rate than 50 percent
+
+=== DOC_CLAIMS (1) ===
+  [DOC_CLAIMS] research/scarface-rules-youtube.md:27 [?] score=1 -- 6. CONFIRMED: Scale Out at Key Levels — Always Take Partials
+
+=== CODE_COMMENT (0) ===
+  (no matches)
+
+=== DERIVED (0) ===
+  (no matches)
+
+================================================================================
+QUERY: half position out
+================================================================================
+Q: "half position out"
+
+=== TRADER_SAID (8) ===
+  [TRADER_SAID] research/scarface-rules-videos.md:5920 [Scarface/jdub] (mastermind-1-0_Lesson_1_Part_2_transcript.txt [1063s-1102s]) score=3 -- I'll click sell market... just to get into profits really quickly... sell 50... half the position... sometimes I do it for the opposite as well... if it's going against me really quickly, I'll click sell market and ge...
+  [TRADER_SAID] research/scarface-rules-videos.md:949 [Scarface/jdub] (boot-camp-recordings_Day_13_Trameframe_Psychology.txt [2028s-2037s]) score=2 -- Stay with the constant position if the market's doing really well or doing really bad. And what will happen is, overall, over a long period of time, at least it will balance out.
+  [TRADER_SAID] research/scarface-rules-videos.md:1147 [Scarface/jdub] (boot-camp-recordings_Day_14_How_To_Grow_A_Small_Account.txt [4373s-4392s]) score=2 -- trailing stops are good for if you already taken off like a position... you already scaled out and then yeah like maybe if it breaks down below like if you break structure maybe you have like a higher here or something
+  [TRADER_SAID] research/scarface-rules-videos.md:2562 [Scarface/jdub] (boot-camp-recordings_Day_8_Scaling_With_Options.txt [213s-285s]) score=2 -- There's very rare times where you will want to scale into a position especially with the break and retests and how the break and retests works... you're only scaling out of positions
+  [TRADER_SAID] research/scarface-rules-videos.md:2617 [Scarface/jdub] (boot-camp-recordings_Day_8_Scaling_With_Options.txt [2725s-2744s]) score=2 -- Google was at all time highs it broke out and it held that level i'm okay with my entry and everything like holding a few right but it's only like 10% of my position i already scaled that up like a majority of it
+  [TRADER_SAID] research/scarface-rules-videos.md:2622 [Scarface/jdub] (boot-camp-recordings_Day_8_Scaling_With_Options.txt [879s-885s]) score=2 -- With one to two contracts you want to close out your whole position
+  [TRADER_SAID] research/scarface-rules-videos.md:2775 [Scarface/jdub] (boot-camp-recordings_day-8-scaling-with-options [1020s-1054s]) score=2 -- your stop loss next. So you're not going to put it to price sorry yet, you're just going to put wherever you're going to close that position out... In this case, if you look at this drawing right here, it's just a clo...
+  [TRADER_SAID] research/scarface-rules-videos.md:2812 [Scarface/jdub] (boot-camp-recordings_day-8-scaling-with-options [873s-886s]) score=2 -- with one to two contracts, you want to close out your whole position
+
+=== DOC_CLAIMS (2) ===
+  [DOC_CLAIMS] research/scarface-rules-youtube.md:18 [?] score=1 -- 3. CONFIRMED: The 84% Rule is a Re-Entry Strategy After Stop-Out
+  [DOC_CLAIMS] research/scarface-rules-youtube.md:27 [?] score=1 -- 6. CONFIRMED: Scale Out at Key Levels — Always Take Partials
+
+=== CODE_COMMENT (2) ===
+  [CODE_COMMENT] signal_runner.py:318 [?] score=1 -- The rule is written out in Trading-Bot-Rulesets.md "Austin's Tiers (S / A /
+  [CODE_COMMENT] signal_runner.py:1658 [?] score=1 -- 84% Rule long (Austin 2026-07-05): stopped-out CALL, price reclaims the
+
+=== DERIVED (0) ===
+  (no matches)
+
+================================================================================
+QUERY: full position at hod range market
+================================================================================
+Q: "full position at hod range market"
+
+=== TRADER_SAID (8) ===
+  [TRADER_SAID] research/scarface-rules-videos.md:519 [Scarface/jdub] (bonus_My_Bread_Butter_Strategy_How_To_Draw_Key_Levels_transcript.txt [5966s-5970s]) score=4 -- if we're in a range market then I'm gonna take the full position off at high of day
+  [TRADER_SAID] research/scarface-rules-videos.md:7466 [Scarface/jdub] (mastermind-4-0_Lesson_2_My_Bread_Butter_Strategy_How_To_Draw_Key_Levels.txt [5954s-5971s]) score=4 -- For the trailers, it'll depend on the actual context of the market. Is QQQ trending? Is the market overall in a trend? Are we in a consolidated market, which means if we're in a range market, then I'm going to take th...
+  [TRADER_SAID] research/EXTRACTED_TRADING_RULES.md:476 [Scarface/jdub] (Day 5 / [6616s-6637s]) score=2 -- But basically with the opening ranges the first two the price range high and low stop a string the initial minutes after market open Typically the first one five 15 or 30 why matters Set the tone for the trading day a...
+  [TRADER_SAID] research/EXTRACTED_TRADING_RULES.md:511 [Scarface/jdub] (Day 5 / [6691s-6742s]) score=2 -- All one should be not used the opening range or be more cautious If we're in between its previous days high and lows and we're opening up right inside the middle of the range I'm usually hands off right specifically o...
+  [TRADER_SAID] research/scarface-rules-coaching-bonus.md:129 [coaching 2777317] (coaching 2777317, 00:26:10) score=2 -- Position sizing by day: tech names = full size; indices = 60%; Friday/OPEX = 60% on tech.
+  [TRADER_SAID] research/scarface-rules-coaching-bonus.md:143 [Scarface/jdub] (bonus_1461018, around 00:36:28) score=2 -- Trending market: take 25% (even 10-15%) at HOD. Choppy: take 50% or all at HOD.
+  [TRADER_SAID] research/scarface-rules-mastermind.md:60 [Scarface/jdub] (mastermind-4-0_1461037, 01:06:00) score=2 -- If QQQ market structure breaks against your thesis — cut remaining position.
+  [TRADER_SAID] research/scarface-rules-mastermind.md:152 [Scarface/jdub] (mastermind-4-0_1461032, 00:10:35) score=2 -- Trending market: take 20% off at HOD, hold majority to HTF target.
+
+=== DOC_CLAIMS (0) ===
+  (no matches)
+
+=== CODE_COMMENT (3) ===
+  [CODE_COMMENT] signal_runner.py:636 [?] score=1 -- fair FILL. "Too close" is BAR_EXTREME_FRAC of the session's own range -- the
+  [CODE_COMMENT] signal_runner.py:1112 [?] score=1 -- Open road to new HOD/LOD = Austin's A context (30d: 67% win)
+  [CODE_COMMENT] signal_runner.py:1125 [?] score=1 -- A+ reserved for the full stack (pattern-A+ hallucinated per Austin)
+
+=== DERIVED (4) ===
+  [DERIVED] research/hallucination-audit.md:34 [yt 7kajZjCStT8] (yt 7kajZjCStT8) score=1 -- I very rarely use the pre-market levels
+  [DERIVED] research/hallucination-audit.md:47 [bonus] (bonus) score=1 -- 2R must be achievable within the stock's average daily range — skip
+  [DERIVED] research/hallucination-audit.md:141 [?] score=1 -- New flags raised by the videos pass (B2 expanded 2026-07-13: full 36 groups analyzed)
+  [DERIVED] research/hallucination-audit.md:168 [?] (group_23, 5748s-5774s) score=1 -- only move stop loss when market structure changes
+
+================================================================================
+QUERY: trailer trending market
+================================================================================
+Q: "trailer trending market"
+
+=== TRADER_SAID (8) ===
+  [TRADER_SAID] research/84rule-sizing-dossier.md:109 [Scarface/jdub] (mastermind-5-0_1461067, 00:46:16) score=2 -- If market regime changed (trending → chopping), 84% rule does NOT apply.
+  [TRADER_SAID] research/84rule-sizing-dossier.md:183 [Scarface/jdub] (_-dz8WqgRB8_transcript.txt) score=2 -- Meta doesn't fall into the 84 percent rule because the market's not trending. 84 percent rule you need the market trending spy big move to the downside here.
+  [TRADER_SAID] research/EXTRACTED_TRADING_RULES.md:114 [Scarface/jdub] (Day 5 / [1334s-1543s]) score=2 -- This is specifically designed for a trending market... if the markets are trending we're gonna go into the next one that talk about is a gap fill But if the markets are trending You can expect these gaps to be left un...
+  [TRADER_SAID] research/EXTRACTED_TRADING_RULES.md:220 [Scarface/jdub] (Day 5 / [1979s-2024s]) score=2 -- So this is I consider day number one All right this can be any single day day number one specifically refers to a strong trending day any day that has news or just as a nice trend higher And then you can see in this c...
+  [TRADER_SAID] research/EXTRACTED_TRADING_RULES.md:437 [Scarface/jdub] (Day 5 / [6392s-6407s]) score=2 -- These work best in a trending market a trending market ski if the markets are trending then your order blocks are ultimately gonna fail And it's gonna reverse whereas if you have a trending market then they're they're...
+  [TRADER_SAID] research/scarface-rules-coaching-bonus.md:143 [Scarface/jdub] (bonus_1461018, around 00:36:28) score=2 -- Trending market: take 25% (even 10-15%) at HOD. Choppy: take 50% or all at HOD.
+  [TRADER_SAID] research/scarface-rules-mastermind.md:87 [Scarface/jdub] (mastermind-5-0_1461067, 00:46:16) score=2 -- If market regime changed (trending → chopping), 84% rule does NOT apply.
+  [TRADER_SAID] research/scarface-rules-mastermind.md:152 [Scarface/jdub] (mastermind-4-0_1461032, 00:10:35) score=2 -- Trending market: take 20% off at HOD, hold majority to HTF target.
+
+=== DOC_CLAIMS (0) ===
+  (no matches)
+
+=== CODE_COMMENT (0) ===
+  (no matches)
+
+=== DERIVED (2) ===
+  [DERIVED] research/hallucination-audit.md:34 [yt 7kajZjCStT8] (yt 7kajZjCStT8) score=1 -- I very rarely use the pre-market levels
+  [DERIVED] research/hallucination-audit.md:168 [?] (group_23, 5748s-5774s) score=1 -- only move stop loss when market structure changes
+
+================================================================================
+QUERY: choppy market take off all
+================================================================================
+Q: "choppy market take off all"
+
+=== TRADER_SAID (8) ===
+  [TRADER_SAID] research/scarface-rules-coaching-bonus.md:143 [Scarface/jdub] (bonus_1461018, around 00:36:28) score=6 -- Trending market: take 25% (even 10-15%) at HOD. Choppy: take 50% or all at HOD.
+  [TRADER_SAID] research/scarface-rules-mastermind.md:153 [Scarface/jdub] (mastermind-4-0_1461032, 00:10:08) score=6 -- Choppy market: take 100% off at HOD. Just scalp it.
+  [TRADER_SAID] research/scarface-rules-videos.md:8870 [Scarface/jdub] (mastermind-5-0_Lesson_4_How_To_Create_A_Winning_Day_Trading_System_How_To_H_transcript.txt [4479s-4482s]) score=6 -- If the market is choppy, for example, all of last week, I did not take a trade over 50 contracts.
+  [TRADER_SAID] research/scarface-rules-youtube.md:507 [Scarface/jdub] (qjItmSl400E_transcript.txt, [949s-982s]) score=6 -- If we're in a market where it's a little bit more, um choppy... I would take high of day and low of day as the majority scale... However, if I am in a market that is very trending... I will take let's say only 20 perc...
+  [TRADER_SAID] research/scarface-rules-mastermind.md:156 [Scarface/jdub] (mastermind-5-0_1461066, 00:25:12) score=5 -- In choppier market: take more off each level — 20→30, 30→35.
+  [TRADER_SAID] research/scarface-rules-videos.md:318 [Scarface/jdub] (bonus_How_To_Swing_Trade_Q_A.txt [2186s-2200s]) score=5 -- Choppy day, I'd take 50% off a high day then let the other 50% ride. Day where it's trending, I would take 25% off a high day or maybe even less 10% 15% off a high day and then let the rest ride.
+  [TRADER_SAID] research/scarface-rules-videos.md:319 [Scarface/jdub] (bonus_How_To_Swing_Trade_Q_A.txt [2224s-2233s]) score=5 -- if you have three contracts, for example, it's a choppy day take off two, right? If it's a choppy day take off two. If it's a trending day take off one
+  [TRADER_SAID] research/scarface-rules-videos.md:5913 [Scarface/jdub] (mastermind-1-0_Lesson_1_Part_2_transcript.txt [475s-512s]) score=5 -- Jay powtays... every single time Jerome Powell talks, you'll see that the market's going to spike to one side or another and that's also days I don't like to take any trades... before he talks, you'll see a lot of cho...
+
+=== DOC_CLAIMS (2) ===
+  [DOC_CLAIMS] research/scarface-rules-youtube.md:27 [?] score=1 -- 6. CONFIRMED: Scale Out at Key Levels — Always Take Partials
+  [DOC_CLAIMS] research/scarface-rules-youtube.md:36 [?] score=1 -- 9. CONFIRMED: Fridays are Risk-Off Days
+
+=== CODE_COMMENT (1) ===
+  [CODE_COMMENT] signal_runner.py:640 [?] score=1 -- signals at the session extreme (SESSION_EXTREME_FRAC, default 0.0 = off).
+
+=== DERIVED (5) ===
+  [DERIVED] research/hallucination-audit.md:34 [yt 7kajZjCStT8] (yt 7kajZjCStT8) score=1 -- I very rarely use the pre-market levels
+  [DERIVED] research/hallucination-audit.md:61 [Neto] (Neto) score=1 -- Don't take the 1 candle rule / OB rule in the last 5 minutes
+  [DERIVED] research/hallucination-audit.md:70 [yt pGLsdLZahVY] (yt pGLsdLZahVY) score=1 -- I need to see some strong buying action near this level — not just going to enter off some random candle
+  [DERIVED] research/hallucination-audit.md:127 [Day 10] (Day 10, :180-184) score=1 -- if there's nothing else to go off of
+  [DERIVED] research/hallucination-audit.md:168 [?] (group_23, 5748s-5774s) score=1 -- only move stop loss when market structure changes
+
+================================================================================
+QUERY: add to winner
+================================================================================
+Q: "add to winner"
+
+=== TRADER_SAID (8) ===
+  [TRADER_SAID] research/scarface-rules-videos.md:987 [Scarface/jdub] (boot-camp-recordings_Day_13_Trameframe_Psychology.txt [3146s-3160s]) score=1 -- QQQ and SPY gives me the same thing, NQ and ES would... I don't want to add an extra step when I just don't need to.
+  [TRADER_SAID] research/scarface-rules-videos.md:1083 [Scarface/jdub] (boot-camp-recordings_Day_14_How_To_Grow_A_Small_Account.txt [3927s-3963s]) score=1 -- there's really no reason to add contracts ever because if it bounces right in you buy in... it's going to either work it right away or it's not at all... there's never really a point to add more contracts
+  [TRADER_SAID] research/scarface-rules-videos.md:1333 [Scarface/jdub] (boot-camp-recordings_Day_15_Conclusion_Final_Q_A.txt [684s-695s]) score=1 -- if you're back testing the 5 and high and low on Tesla, right, then you back test that and then you add in KQ confirmation for the second back test. So that would be too back test in a row
+  [TRADER_SAID] research/scarface-rules-videos.md:2047 [Scarface/jdub] (boot-camp-recordings_Day_4_Bread_Butter_Strategy.txt [615s-637s]) score=1 -- I can give you the full roadmap, and I will give you the full roadmap on exactly wherever you are right now... However in the system, you need to add checkpoints for yourself, right? Because there's some things that, ...
+  [TRADER_SAID] research/scarface-rules-videos.md:2776 [Scarface/jdub] (boot-camp-recordings_day-8-scaling-with-options [734s-744s]) score=1 -- you never obviously re-add sides unless there's a plus setup. I would just ignore this. Just never, never add in size to these trades for the break and retest. Doesn't make sense.
+  [TRADER_SAID] research/scarface-rules-videos.md:3504 [Scarface/jdub] (building-your-profitable-system_Lesson_6_Building_Logic.txt [5269s-5286s]) score=1 -- If you sell 75% at high-day, and the thing runs super nice, then it's still going to be a nice winner because you still have your trailer's left, but you already sold 75% of your positions. Only thing you're working n...
+  [TRADER_SAID] research/scarface-rules-videos.md:4468 [Scarface/jdub] (building-your-profitable-system_Pop_Fade.txt [3762s-3768s]) score=1 -- take a smaller starter maybe on the entry number two and then add if it retests
+  [TRADER_SAID] research/scarface-rules-videos.md:4978 [Hayden] (hayden-s-coaching_How_to_build_a_scaling_process_with_options_trading.txt [780s-799s]) score=1 -- 48... 55 58 44... 67... 662... you guys all have a fairly good percent winner rate... It's actually like the you guys are way over, you know the needed the recommended amount
+
+=== DOC_CLAIMS (0) ===
+  (no matches)
+
+=== CODE_COMMENT (0) ===
+  (no matches)
+
+=== DERIVED (0) ===
+  (no matches)
