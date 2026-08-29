@@ -1,0 +1,349 @@
+{
+  "track": "T20 \u2014 loss-halt",
+  "method": "post-process existing backtest data",
+  "sessions": 500,
+  "halt_events": 266,
+  "stats_no_halt": {
+    "traded": 2595,
+    "wins": 1110,
+    "losses": 1468,
+    "scratches": 17,
+    "win_rate": 43.1,
+    "mean_r": 0.5481,
+    "total_pnl": 1422328.0,
+    "months_green": "25/25"
+  },
+  "stats_with_halt": {
+    "traded": 1693,
+    "wins": 766,
+    "losses": 918,
+    "scratches": 9,
+    "win_rate": 45.5,
+    "mean_r": 0.5974,
+    "total_pnl": 1011409.0,
+    "months_green": "25/25"
+  },
+  "impact": {
+    "traded_delta": -902,
+    "traded_pct": -34.8,
+    "mean_r_delta": 0.0493,
+    "mean_r_pct": 9.0,
+    "win_rate_delta": 2.4,
+    "pnl_delta": -410919.0,
+    "months_green_delta": 0
+  },
+  "halt_event_summary": {
+    "days_halted": 266,
+    "total_halted_trades": 902,
+    "total_halted_pnl": 410919.0,
+    "halted_wins": 344,
+    "halted_losses": 550,
+    "halted_win_rate": 38.5
+  },
+  "sample_halt_events": [
+    {
+      "day": "2024-08-21",
+      "traded_before_halt": 2,
+      "halted_count": 9,
+      "halted_pnl": -9000.0,
+      "halted_wins": 0,
+      "halted_losses": 9,
+      "halted_trades": [
+        {
+          "time": "10:03",
+          "setup": "one_candle_rule",
+          "outcome": "loss",
+          "pnl": -1000.0
+        },
+        {
+          "time": "10:05",
+          "setup": "one_candle_rule",
+          "outcome": "loss",
+          "pnl": -1000.0
+        },
+        {
+          "time": "10:10",
+          "setup": "one_candle_rule",
+          "outcome": "loss",
+          "pnl": -1000.0
+        },
+        {
+          "time": "10:11",
+          "setup": "one_candle_rule",
+          "outcome": "loss",
+          "pnl": -1000.0
+        },
+        {
+          "time": "10:24",
+          "setup": "break_and_retest",
+          "outcome": "loss",
+          "pnl": -1000.0
+        }
+      ]
+    },
+    {
+      "day": "2024-08-22",
+      "traded_before_halt": 2,
+      "halted_count": 8,
+      "halted_pnl": 6322.83,
+      "halted_wins": 4,
+      "halted_losses": 3,
+      "halted_trades": [
+        {
+          "time": "09:40",
+          "setup": "one_candle_rule",
+          "outcome": "loss",
+          "pnl": -1000.0
+        },
+        {
+          "time": "09:58",
+          "setup": "break_and_retest",
+          "outcome": "win",
+          "pnl": 454.66
+        },
+        {
+          "time": "09:59",
+          "setup": "one_candle_rule",
+          "outcome": "win",
+          "pnl": 856.25
+        },
+        {
+          "time": "10:02",
+          "setup": "break_and_retest",
+          "outcome": "win",
+          "pnl": 833.33
+        },
+        {
+          "time": "10:09",
+          "setup": "break_and_retest",
+          "outcome": "win",
+          "pnl": 1758.06
+        }
+      ]
+    },
+    {
+      "day": "2024-08-30",
+      "traded_before_halt": 3,
+      "halted_count": 3,
+      "halted_pnl": 1156.4,
+      "halted_wins": 2,
+      "halted_losses": 1,
+      "halted_trades": [
+        {
+          "time": "10:37",
+          "setup": "break_and_retest",
+          "outcome": "loss",
+          "pnl": -1000.0
+        },
+        {
+          "time": "10:56",
+          "setup": "reentry_84_rule",
+          "outcome": "win",
+          "pnl": 1314.29
+        },
+        {
+          "time": "10:59",
+          "setup": "break_and_retest",
+          "outcome": "win",
+          "pnl": 842.11
+        }
+      ]
+    },
+    {
+      "day": "2024-09-12",
+      "traded_before_halt": 2,
+      "halted_count": 2,
+      "halted_pnl": -2000.0,
+      "halted_wins": 0,
+      "halted_losses": 2,
+      "halted_trades": [
+        {
+          "time": "10:13",
+          "setup": "reentry_84_rule",
+          "outcome": "loss",
+          "pnl": -1000.0
+        },
+        {
+          "time": "10:38",
+          "setup": "break_and_retest",
+          "outcome": "loss",
+          "pnl": -1000.0
+        }
+      ]
+    },
+    {
+      "day": "2024-09-13",
+      "traded_before_halt": 2,
+      "halted_count": 7,
+      "halted_pnl": 8388.45,
+      "halted_wins": 3,
+      "halted_losses": 4,
+      "halted_trades": [
+        {
+          "time": "09:50",
+          "setup": "break_and_retest",
+          "outcome": "win",
+          "pnl": 4418.75
+        },
+        {
+          "time": "09:55",
+          "setup": "one_candle_rule",
+          "outcome": "loss",
+          "pnl": -1000.0
+        },
+        {
+          "time": "10:03",
+          "setup": "break_and_retest",
+          "outcome": "win",
+          "pnl": 2666.67
+        },
+        {
+          "time": "10:06",
+          "setup": "reentry_84_rule",
+          "outcome": "loss",
+          "pnl": -1000.0
+        },
+        {
+          "time": "10:17",
+          "setup": "reentry_84_rule",
+          "outcome": "loss",
+          "pnl": -1000.0
+        }
+      ]
+    },
+    {
+      "day": "2024-09-16",
+      "traded_before_halt": 2,
+      "halted_count": 3,
+      "halted_pnl": -3000.0,
+      "halted_wins": 0,
+      "halted_losses": 3,
+      "halted_trades": [
+        {
+          "time": "10:17",
+          "setup": "one_candle_rule",
+          "outcome": "loss",
+          "pnl": -1000.0
+        },
+        {
+          "time": "10:29",
+          "setup": "reentry_84_rule",
+          "outcome": "loss",
+          "pnl": -1000.0
+        },
+        {
+          "time": "10:37",
+          "setup": "one_candle_rule",
+          "outcome": "loss",
+          "pnl": -1000.0
+        }
+      ]
+    },
+    {
+      "day": "2024-09-19",
+      "traded_before_halt": 2,
+      "halted_count": 1,
+      "halted_pnl": -1000.0,
+      "halted_wins": 0,
+      "halted_losses": 1,
+      "halted_trades": [
+        {
+          "time": "10:54",
+          "setup": "break_and_retest",
+          "outcome": "loss",
+          "pnl": -1000.0
+        }
+      ]
+    },
+    {
+      "day": "2024-09-20",
+      "traded_before_halt": 2,
+      "halted_count": 4,
+      "halted_pnl": -4000.0,
+      "halted_wins": 0,
+      "halted_losses": 4,
+      "halted_trades": [
+        {
+          "time": "10:28",
+          "setup": "break_and_retest",
+          "outcome": "loss",
+          "pnl": -1000.0
+        },
+        {
+          "time": "10:36",
+          "setup": "break_and_retest",
+          "outcome": "loss",
+          "pnl": -1000.0
+        },
+        {
+          "time": "10:39",
+          "setup": "reentry_84_rule",
+          "outcome": "loss",
+          "pnl": -1000.0
+        },
+        {
+          "time": "10:39",
+          "setup": "reentry_84_rule",
+          "outcome": "loss",
+          "pnl": -1000.0
+        }
+      ]
+    },
+    {
+      "day": "2024-09-24",
+      "traded_before_halt": 3,
+      "halted_count": 2,
+      "halted_pnl": 4603.1900000000005,
+      "halted_wins": 2,
+      "halted_losses": 0,
+      "halted_trades": [
+        {
+          "time": "10:11",
+          "setup": "break_and_retest",
+          "outcome": "win",
+          "pnl": 3803.19
+        },
+        {
+          "time": "10:25",
+          "setup": "reentry_84_rule",
+          "outcome": "win",
+          "pnl": 800.0
+        }
+      ]
+    },
+    {
+      "day": "2024-09-26",
+      "traded_before_halt": 3,
+      "halted_count": 4,
+      "halted_pnl": -2694.16,
+      "halted_wins": 1,
+      "halted_losses": 3,
+      "halted_trades": [
+        {
+          "time": "09:56",
+          "setup": "reentry_84_rule",
+          "outcome": "win",
+          "pnl": 305.84
+        },
+        {
+          "time": "10:18",
+          "setup": "break_and_retest",
+          "outcome": "loss",
+          "pnl": -1000.0
+        },
+        {
+          "time": "10:20",
+          "setup": "one_candle_rule",
+          "outcome": "loss",
+          "pnl": -1000.0
+        },
+        {
+          "time": "10:53",
+          "setup": "one_candle_rule",
+          "outcome": "loss",
+          "pnl": -1000.0
+        }
+      ]
+    }
+  ]
+}
