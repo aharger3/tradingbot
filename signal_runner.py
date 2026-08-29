@@ -2375,13 +2375,16 @@ class SignalRunner:
             # OR could otherwise never grade above C)
             grade = self._grade_trade(current, lookback, block.high, block.low,
                                       is_long=True, htf_bias=self.htf_bias)
-            if stock_risk < 0.50:
-                grade = TradeGrade.D
-            # Austin 2026-07-10 review + 12mo split: OCR only earns its keep at
-            # A-grade with a TIGHT stop (10tr 40%W +$2k); B-grade 19%W −$13k and
-            # wide stops 0-for-11 −$10k. Demote the rest to alert-only.
-            if grade.value == "B":
-                grade = TradeGrade.C
+            # R3 (Austin, probe_master_2026-08-29, fact_ocr_demote -> `lift`):
+            #   "Ther is no B"
+            # The B->C demote that stood here made the one-candle rule unable to
+            # ship a tradeable grade on its own no matter how good the setup was
+            # -- 4,390 detections, 67 traded. Deleted.
+            # R4 (fact_ocr_min_risk -> `none`): "size to the stop". The flat
+            # $0.50 minimum stop that stood here benched every cheap stock and
+            # had no A/B behind it. Deleted. The 0.4%-of-price WIDE-stop gate
+            # below is a maximum, not a minimum, and is untouched by either
+            # answer -- T2 owns it.
             if stock_risk / current.close > 0.004:  # stop wider than 0.4% = 2R unreachable
                 grade = TradeGrade.D
             self._emit(signals, {
@@ -2612,11 +2615,8 @@ class SignalRunner:
             # Grade at the block's own level (see call side)
             grade = self._grade_trade(current, lookback, block.high, block.low,
                                       is_long=False, htf_bias=self.htf_bias)
-            if stock_risk < 0.50:
-                grade = TradeGrade.D
-            # Mirror of call side: A-grade + tight stop only (2026-07-10 split).
-            if grade.value == "B":
-                grade = TradeGrade.C
+            # R3 / R4: mirror of the call side -- demote and flat minimum
+            # both deleted. "Ther is no B" / "size to the stop".
             if stock_risk / current.close > 0.004:
                 grade = TradeGrade.D
             self._emit(signals, {
