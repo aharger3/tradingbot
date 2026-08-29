@@ -143,6 +143,23 @@ else:
     _SCALE_ENV = _SCALE_ENV.strip()
 SCALE_PLAN = None if _SCALE_ENV.lower() in ("", "none", "0", "off") else _SCALE_ENV
 
+# ---- R11 / T11: "enough movement" raises the stop to break-even ----------
+# Austin, probe_master_2026-08-29, fact_be_trigger, verdict `move`: "if we dont
+# hit price target 1, we dont raise the stop to BE, but we need to run stats on
+# with enough movement raising to BE" -- and separately, on the base case:
+# "can still focus on first PT move to BE".
+#
+# BE_TRIGGER="pt1" (default) is exactly today's F1 ladder behaviour: the stop
+# only moves to entry when the scale rung (causal HOD/LOD, "PT1") is touched --
+# see the `hod_then_runner_be` accelerator below. BE_TRIGGER="mfe" arms the
+# SAME stop-to-entry move on a plain favourable-excursion threshold
+# (BE_MOVE_R * original risk, tested against the bar's high/low -- MFE is a
+# wick concept, the stop that moves because of it is still close-triggered)
+# instead of waiting for the scale rung. Whichever fires first wins; once
+# `runner_stop` is set neither path re-arms it.
+BE_TRIGGER = os.getenv("BE_TRIGGER", "pt1").strip().lower()
+BE_MOVE_R = float(os.getenv("BE_MOVE_R", "0"))
+
 # omen-5.0 T4(a): the stop TRIGGERS on the candle CLOSE, not on a wick through
 # the level. Austin has written this five times in one grading batch — "stop out
 # happens when candle CLOSES below the level", "stop outs only happen when candle
@@ -508,23 +525,57 @@ def _ladder_bar(t: "SimTrade", c: Candle, i: int, open_trades: list,
         # omen-5.1 T2: the stop is tested BEFORE the 1R scale rung, so a bar that
         # tags the scale level and closes beyond the stop already books the full
         # loss with no partial credit — pessimistic here without a flag.
-        dz = _disaster_hit(t, c, long)          # R1/R2: resting -1R, on touch
+        #
+        # R11/T11-BE: before the scale rung fires, the working stop is either
+        # still the ORIGINAL stop (BE_TRIGGER="pt1", the shipped default) or --
+        # under BE_TRIGGER="mfe" -- already raised to entry once a prior bar's
+        # favourable excursion cleared BE_MOVE_R. `runner_stop` is the one flag
+        # for "the stop has moved", set by either path below.
+        stop_lv = t.runner_stop if t.runner_stop else t.stop
+        # R1/R2: once the stop has moved to breakeven the resting BE order sits
+        # between price and -1R, so the disaster stop cannot be touched first
+        # (same reasoning as the scaled branch below).
+        dz = _disaster_hit(t, c, long) if stop_lv == t.stop else None
         if dz is not None:
             t.outcome, t.exit_price, t.exit_idx = "loss", dz, i
             open_trades.remove(t)
             _arm_84(t, runner, c)
             return
-        if _stop_hit(c, t.stop, long):
-            t.outcome, t.exit_price, t.exit_idx = "loss", _stop_fill_px(t, c, long), i
+        if _stop_hit(c, stop_lv, long):
+            t.exit_price, t.exit_idx = _stop_fill_px(t, c, long), i
+            # A stop-out at the ORIGINAL stop is a real loss by construction
+            # (fill is at/beyond it). A stop-out at a BE-raised stop can book a
+            # small win, a scratch, or -- past the -1.25R floor's own worse-side
+            # -- still a real loss if the bar gapped hard; let the trade's own
+            # pnl (entry vs. exit_price) say which, same convention the scaled
+            # branch below already uses.
+            p_sign = (t.exit_price - t.entry) if long else (t.entry - t.exit_price)
+            t.outcome = "loss" if p_sign < 0 else ("win" if p_sign > 0 else "scratch")
             open_trades.remove(t)
-            _arm_84(t, runner, c)  # full stop-out arms 84%, scaled trades never do
+            if stop_lv == t.stop:
+                # full stop-out at ORIGINAL risk arms 84%; a BE-raised stop that
+                # gives back to (near) breakeven already had its risk cut --
+                # "stop was wrong" doesn't apply, same call the F1 ladder makes
+                # for every scaled trade.
+                _arm_84(t, runner, c)
             return
         if (c.high >= t.scale_level) if long else (c.low <= t.scale_level):
             t.scaled = True
             if SCALE_PLAN == "hod_then_runner_be":
                 t.runner_stop = t.entry  # accelerator: BE after first scale
+            return
+        # R11/T11-BE: "enough movement" arm, independent of the PT1 scale rung.
+        # Checked last (after this bar's disaster/stop/scale tests, which all
+        # read the PRE-arm stop) so the arm takes effect starting next bar --
+        # no look-ahead within the bar that crosses the threshold.
+        if BE_TRIGGER == "mfe" and not t.runner_stop and BE_MOVE_R > 0:
+            risk = abs(t.entry - t.stop)
+            if risk > 0:
+                mfe_r = (c.high - t.entry) / risk if long else (t.entry - c.low) / risk
+                if mfe_r >= BE_MOVE_R:
+                    t.runner_stop = t.entry
         return
-    stop_lv = t.runner_stop if (SCALE_PLAN == "hod_then_runner_be" and t.runner_stop) else t.stop
+    stop_lv = t.runner_stop if t.runner_stop else t.stop
     hit_target = (c.high >= t.runner_target) if long else (c.low <= t.runner_target)
     # R1/R2: the disaster stop survives the scale-out, but only while the
     # runner is still working the ORIGINAL stop. Under SCALE_PLAN
