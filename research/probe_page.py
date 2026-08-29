@@ -420,13 +420,42 @@ JS = r"""
     save(chip.closest('.card'));
   });
 
+  /* Typed notes are debounced 400ms so every keystroke is not a write. That
+     debounce is a hole on a phone: iOS and Android fire neither `beforeunload`
+     nor, reliably, anything else when the browser is backgrounded by a call, a
+     notification or the home button -- so a note typed and then interrupted
+     inside 400ms was gone. `visibilitychange` and `pagehide` ARE reliable on
+     mobile, and blur covers tapping straight from one field to another. Flush
+     on all of them, and on the debounce as before. Verified 2026-08-28 in
+     Chrome against the served page, not assumed. */
+  var pendingCards = [];
+  function queue(card){
+    if (pendingCards.indexOf(card) < 0) pendingCards.push(card);
+  }
+  function flush(){
+    var q = pendingCards.slice();
+    pendingCards.length = 0;
+    q.forEach(function(card){
+      clearTimeout(card._saveTimer);
+      save(card);
+    });
+  }
   document.addEventListener('input', function(e){
     var t = e.target;
     if (!t || !t.classList || !t.classList.contains('note')) return;
     var card = t.closest('.card');
+    queue(card);
     clearTimeout(card._saveTimer);
     card._saveTimer = setTimeout(function(){ save(card); }, 400);
   });
+  document.addEventListener('blur', function(e){
+    var t = e.target;
+    if (t && t.classList && t.classList.contains('note')) flush();
+  }, true);
+  document.addEventListener('visibilitychange', function(){
+    if (document.visibilityState === 'hidden') flush();
+  });
+  window.addEventListener('pagehide', flush);
 
   var exported = false;
   document.addEventListener('click', function(e){

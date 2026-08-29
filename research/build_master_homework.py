@@ -1,500 +1,411 @@
-"""build_master_homework.py -- OMEN 6: the one-hour merged homework page.
+"""build_master_homework.py -- one page, five lanes, one link.
+
+Austin, 2026-08-28, after two rounds of grilling and a lot of repeating himself:
+
+  "This should be a decently sized deck that will unblock a lot so you can have a
+   massive master spec night queue of tasks, I want to go though each codebases
+   and approve or deny and add or subtract facts, have this in the artifact."
+
+So the lanes are his complaints, in the order he raised them:
+
+  1  FACTS      every constant and convention the engine runs on, plain English,
+                keep / kill / change. No chart. This is the lane that unblocks
+                the overnight queue -- `research/master_facts.py`.
+  2  VETOES     40 setups the engine found and refused. Should it have fired?
+  3  RARE       one-candle-rule and 84%-rule setups the engine killed. He says
+                these should fire nearer the break-and-retest rate.
+  4  INDEX      QQQ / SPY / IWM days. 18 of 1,017 trades are indices and he
+                trades indices first with real money.
+  5  RUNNER     trades that ran past 2R. Where does he get out? This is the
+                mean-R question answered by his eye instead of by an exit sweep.
+
+Every chart lane obeys the no-repeat guarantee against ONE shared exclusion set
+built once at the top, so no two lanes can serve the same symbol-day and no lane
+can serve a day he has already been shown -- except lane 2, which deliberately
+re-serves the 40 cards published as `omen-x-vetoes` an hour earlier so that page
+can be retired rather than leaving him two links.
 
     python research/build_master_homework.py
-    -> research/probes/omen-master-homework.html
+    python research/build_master_homework.py --selfcheck
 
-Four decks became one page because Austin sits down once. In order:
-
-  1. GRADER CALIBRATION   the 12 disagreement cards from build_calibration.py,
-                          unchanged in substance -- that module's select() and
-                          card() are imported, not copied.
-  2. AUTOPSY RESCUE       the five silent-day cards that came back flagged
-                          NO_ANSWER_placeholder_text_only in
-                          marks/probe_autopsy_2026-08-23.jsonl. A placeholder
-                          leaked into the answer slot, so nothing he tapped
-                          survived. Rebuilt through build_probes.autopsy_card().
-  3. HEAD-TO-HEAD, PART 2 the 9 TSLA days in marks/probe_head2head_2026-08-24.jsonl.
-                          He answered "no" to all nine and the veto question was
-                          never asked. This asks the one missing question: which
-                          single thing killed each. build_probes.VETO_OPTS verbatim.
-  4. S-RECALL, FRESH      25 symbol-days he has never been judged on, drawn
-                          behind build_deck.marked_card_ids() -- the no-repeat
-                          guard that reads EVERY mark corpus, not just
-                          research/marks/. One question: is there an S here.
-                          The S denominator is 28 and the OMEN 6 gate is measured
-                          on it; 28 is too few to gate on.
-
-ANSWER SURVIVAL is the whole point of this build. Three previous artifacts lost
-his answers. This page therefore:
-  * carries probe_page.py's own localStorage save (per card, on every tap),
-    restore-on-load, visible saved indicator and editable export textarea;
-  * does NOT use the claude.ai `artifact` capability for persistence -- that is
-    exactly what silently dropped everything before;
-  * asserts at build time that no two cards share a data-cid, because a
-    duplicate cid means two cards writing the same localStorage slot and one of
-    them losing.
+Output: research/probes/<name>.html + <name>-manifest.jsonl (the answer key,
+which stays OUT of the HTML).
 """
 from __future__ import annotations
 
+import argparse
 import json
 import os
 import random
-import re
 import sys
-from collections import defaultdict
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 sys.path.insert(0, HERE)
 sys.path.insert(0, ROOT)
 
-import build_calibration as cal
-import build_deck as deck
-import build_probes as probes
 import probe_chart
 import probe_page
-from research.t60_baseline import load_day_cards
-from v52_scaleout_run import corpus_b_trades
+from build_deck import candle_dict, seen_card_ids, session_candles
+from master_facts import FACTS
+from research.t4_engine_recall import prior_day_levels, premarket_extremes
 
-OUT_DIR = os.path.join(HERE, "probes")
-MARKS = os.path.join(HERE, "marks")
-AUTOPSY_MARKS = os.path.join(MARKS, "probe_autopsy_2026-08-23.jsonl")
-H2H_MARKS = os.path.join(MARKS, "probe_head2head_2026-08-24.jsonl")
-SILENT = os.path.join(HERE, "t60_silent_days.jsonl")
+BOOK = os.path.join(HERE, "bt2y_trades.json")
+PROBES_DIR = os.path.join(HERE, "probes")
+XVETO_MANIFEST = os.path.join(PROBES_DIR, "omen-x-vetoes-manifest.jsonl")
+LEVEL_KEYS = ("pdh", "pdl", "pmh", "pml", "orh", "orl")
 
-DECK_ID = "omen-master-homework"
-OUT_NAME = "omen-master-homework.html"
-
-# Section 4 draw. TSLA and QQQ only: they are the two symbols in his live corpus
-# that the engine is allowed to trade (SPY is configured off), so a yes/no S call
-# on them lands in the same denominator the gate is measured on. 2026 only, to
-# keep the regime next to the corpus he already graded.
-SREC_SYMBOLS = ("TSLA", "QQQ")
-SREC_FROM = "2026-01-01"
-SREC_N = 25
-SREC_SEED = 24
-
-NO_ANSWER_FLAG = "NO_ANSWER_placeholder_text_only"
-
-
-# ---------------------------------------------------------------------------
-# section chrome
-# ---------------------------------------------------------------------------
-
-EXTRA_CSS = """
+LANE_CSS = """
 <style>
-.sec{display:block}
-.sechead{
-  margin:30px 0 16px; padding:15px 17px; border-radius:10px;
-  background:var(--surface-2); border:1px solid var(--rule-2); scroll-margin-top:64px;
-}
-.sechead .kicker{
-  font-family:"IBM Plex Mono",monospace; font-size:10.5px; font-weight:600;
-  letter-spacing:.14em; text-transform:uppercase; color:var(--accent);
-  display:block; margin:0 0 5px;
-}
-.sechead h2{
-  font-family:"IBM Plex Serif",Georgia,serif; font-weight:600; font-size:21px;
-  line-height:1.2; margin:0 0 6px; color:var(--ink);
-}
-.sechead p{margin:0; font-size:13.5px; color:var(--ink-2); max-width:66ch}
-.sechead p + p{margin-top:6px}
-.sechead code{
-  font-family:"IBM Plex Mono",monospace; font-size:12.5px;
-  background:var(--surface); padding:1px 5px; border-radius:4px;
-}
-.secprog{display:flex; align-items:center; gap:9px; margin:11px 0 0}
-.secprog .seccount{
-  font-family:"IBM Plex Mono",monospace; font-size:12px; font-weight:600;
-  font-variant-numeric:tabular-nums; color:var(--ink-2); white-space:nowrap;
-}
-.secprog .sectrack{
-  flex:1 1 60px; height:4px; background:var(--rule-2); border-radius:2px; overflow:hidden;
-}
-.secprog .secfill{height:100%; width:0%; background:var(--accent); transition:width .25s ease}
-.sec[data-complete="1"] .sechead{border-color:var(--accent)}
-.sec[data-complete="1"] .sechead .kicker::after{content:" — done"; color:var(--accent)}
-.endbar{
-  display:flex; gap:8px; flex-wrap:wrap; align-items:center;
-  margin:18px 0 0; padding-top:14px; border-top:1px solid var(--rule);
-}
-.q[data-tone="srec"] .chip[aria-pressed="true"]{
-  background:var(--up); border-color:var(--up); color:#fff;
-}
-@media (max-width:520px){.sechead{padding:13px 13px}.sechead h2{font-size:19px}}
+.lane{margin:38px 0 14px;padding:16px 18px;border-radius:10px;
+  background:var(--surface2,#f5f7fa);border:1px solid var(--line,#d5dae4)}
+.lane .n{font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted,#5a6377);margin:0 0 5px}
+.lane h2{font-size:21px;margin:0 0 7px;line-height:1.25}
+.lane p{margin:0;color:var(--muted,#5a6377);font-size:14px;line-height:1.55;max-width:62ch}
+.fact .where{font-family:ui-monospace,monospace;font-size:11.5px;
+  color:var(--faint,#8a93a6);margin:2px 0 0;word-break:break-word}
+.fact .cost{font-size:12.5px;margin:8px 0 0;padding:8px 10px;border-radius:7px;
+  background:var(--surface2,#f5f7fa);border-left:3px solid var(--accent,#1f5fd1)}
 </style>
 """
 
-EXTRA_JS = r"""
-<script>
-/* Section progress + a second Export button at the foot of the page. This runs
-   AFTER probe_page's own script (document order), so by the time a click reaches
-   here every .card already carries its refreshed data-done. Nothing here touches
-   storage -- probe_page.js owns saving, and only one thing should. */
-(function(){
-  function tally(){
-    Array.prototype.forEach.call(document.querySelectorAll('.sec'), function(sec){
-      var cs = sec.querySelectorAll('.card'), done = 0;
-      Array.prototype.forEach.call(cs, function(c){
-        if (c.getAttribute('data-done') === '1') done++;
-      });
-      var n = cs.length;
-      var cnt = sec.querySelector('.seccount');
-      if (cnt) cnt.textContent = done + ' / ' + n;
-      var fill = sec.querySelector('.secfill');
-      if (fill) fill.style.width = (n ? done * 100 / n : 0) + '%';
-      sec.setAttribute('data-complete', (n && done === n) ? '1' : '0');
-    });
-  }
-  document.addEventListener('click', function(e){
-    if (e.target.closest && e.target.closest('.exportjump')){
-      var b = document.getElementById('exportbtn');
-      if (b) b.click();
-      return;
-    }
-    tally();
-  });
-  document.addEventListener('input', tally);
-  tally();
-})();
-</script>
-"""
+
+def load_book() -> list[dict]:
+    with open(BOOK, encoding="utf-8") as f:
+        return json.load(f)["trades"]
 
 
-def section(num, kicker, title, paras, cards, minutes):
-    """A titled block of cards with its own live progress bar."""
-    body = "".join("<p>%s</p>" % p for p in paras)
-    return ('<section class="sec" data-complete="0" id="sec%d">'
-            '<div class="sechead"><span class="kicker">%s &middot; %d card%s '
-            '&middot; ~%d min</span><h2>%s</h2>%s'
-            '<div class="secprog"><span class="seccount">0 / %d</span>'
-            '<span class="sectrack"><span class="secfill"></span></span></div>'
-            '</div>%s</section>'
-            % (num, kicker, len(cards), "" if len(cards) == 1 else "s", minutes,
-               title, body, len(cards), "".join(cards)))
+def card_shell(cid: str, sym: str, ord_: str, inner: str, export: dict,
+               cls: str = "") -> str:
+    return ('<article class="card %s" data-cid="%s" data-grade="none" '
+            "data-done=\"0\" data-export='%s'>"
+            '<header class="card-h"><span class="sym">%s</span>'
+            '<span class="ord">%s</span></header>%s</article>'
+            % (cls, cid, json.dumps(export, sort_keys=True), sym, ord_, inner))
 
 
-def jsonl_rows(path):
-    with open(path, encoding="utf-8") as fh:
-        for line in fh:
-            line = line.strip()
-            if line:
-                yield json.loads(line)
+def lane(n: str, title: str, body: str) -> str:
+    return ('<div class="lane"><p class="n">%s</p><h2>%s</h2><p>%s</p></div>'
+            % (n, title, body))
 
 
-# ---------------------------------------------------------------------------
-# 1 -- grader calibration, imported wholesale
-# ---------------------------------------------------------------------------
+# ---------------------------------------------------------------- lane 1
+def fact_cards() -> tuple[str, list[dict]]:
+    html, man = [], []
+    for i, f in enumerate(FACTS, 1):
+        qs = probe_page.question(
+            "verdict", f["q"], f["b"], f["opts"], required=True)
+        extra = ('<section class="q fact" data-q="_where" data-required="0">'
+                 '<p class="where">%s</p><p class="cost">Costs today: %s</p>'
+                 "</section>" % (f["w"], f["c"]))
+        note = probe_page.question(
+            "note", "Anything to add or subtract",
+            "Optional. If a fact here is wrong, say so -- that is the point of "
+            "the lane.", [], required=False, note_placeholder="optional")
+        html.append(card_shell("fact_" + f["k"], "FACT", "%d/%d" % (i, len(FACTS)),
+                               qs + extra + note,
+                               {"lane": "facts", "fact": f["k"]}))
+        man.append({"card_id": "fact_" + f["k"], "lane": "facts",
+                    "fact": f["k"], "where": f["w"], "costs": f["c"]})
+    return "".join(html), man
 
-def build_calibration_section():
-    picked, harsh, soft = cal.select()
-    total = len(picked)
-    cards, days = [], []
-    for i, (sym, date, sig, klass, g) in enumerate(picked, 1):
-        html = cal.card(i, total, sym, date, sig, klass, g, cid_prefix="cal_")
-        if html:
-            cards.append(html)
-            days.append((sym, date))
-    return cards, days, len(harsh), len(soft)
+
+# ---------------------------------------------------------------- chart lanes
+def chart_card(sig: dict, question_html: str, lane_name: str,
+               marks: list | None = None, label: str | None = None) -> str | None:
+    candles = session_candles(sig["sym"], sig["day"])
+    if len(candles) < 60:
+        return None
+    pdh, pdl, _o, _c = prior_day_levels(sig["sym"], sig["day"])
+    pmh, pml = premarket_extremes(sig["sym"], sig["day"])
+    levels = {"pdh": pdh, "pdl": pdl, "pmh": pmh, "pml": pml,
+              "orh": max(c.high for c in candles[:5]),
+              "orl": min(c.low for c in candles[:5])}
+    levels = {k: (round(v, 2) if v is not None else None) for k, v in levels.items()}
+    svg = probe_chart.render([candle_dict(x) for x in candles], levels,
+                             marks=marks or [],
+                             label=label or "%s %s 09:30-11:00"
+                                             % (sig["sym"], sig["day"]))
+    return card_shell("%s_%s" % (sig["sym"], sig["day"]), sig["sym"],
+                      sig.get("et", "&nbsp;"), svg + question_html,
+                      {"lane": lane_name, "symbol": sig["sym"],
+                       "date": sig["day"], "et": sig.get("et", "")})
 
 
-# ---------------------------------------------------------------------------
-# 2 -- the five autopsy cards whose answers were lost
-# ---------------------------------------------------------------------------
+def entry_mark(r: dict) -> dict:
+    return {"i": r["entry_i"], "price": r["entry"], "stop": r["stop"],
+            "side": r["side"], "tag": r["et"]}
 
-def build_autopsy_section():
-    """Rebuild exactly the cards flagged NO_ANSWER in the 08-23 export."""
+
+def veto_lane(book: list[dict]) -> tuple[str, list[dict]]:
+    """Exactly the 40 cards already published as omen-x-vetoes, re-served here."""
     want = []
-    for row in jsonl_rows(AUTOPSY_MARKS):
-        if NO_ANSWER_FLAG in (row.get("flags") or []):
-            sym, date = row["card_id"].split("_", 1)
-            want.append((sym, date, row.get("grade") or "S"))
-    expected = {("TSLA", "2026-05-21"), ("QQQ", "2026-07-09"), ("QQQ", "2026-07-20"),
-                ("QQQ", "2026-07-24"), ("QQQ", "2026-08-03")}
-    got = {(s, d) for s, d, _g in want}
-    assert got == expected, "NO_ANSWER set drifted: %s" % sorted(got ^ expected)
-
-    # grade on file comes from the silent-days corpus, same source build_autopsy uses
-    silent = {(r["symbol"], r["date"]): r for r in jsonl_rows(SILENT)}
-    _days, marks = load_day_cards()
-    by_day = defaultdict(list)
-    for m in marks:
-        by_day[(m["symbol"], m["date"])].append(m)
-
-    want.sort(key=lambda t: (t[1], t[0]))
-    total = len(want)
-    cards, days = [], []
-    for i, (sym, date, grade) in enumerate(want, 1):
-        row = silent.get((sym, date))
-        grade = (row or {}).get("grade") or grade
-        candles = probes.session(sym, date)
-        assert len(candles) >= 60, "no session bars for %s %s" % (sym, date)
-        cards.append(probes.autopsy_card(i, total, sym, date, grade, candles,
-                                         by_day.get((sym, date), []),
-                                         cid_prefix="au_"))
-        days.append((sym, date))
-    return cards, days
-
-
-# ---------------------------------------------------------------------------
-# 3 -- head-to-head follow-up: the question that was never asked
-# ---------------------------------------------------------------------------
-
-def build_head2head_section():
-    answered = {}
-    for row in jsonl_rows(H2H_MARKS):
-        sym, date = row["card_id"].split("_", 1)
-        answered[(sym, date)] = row
-
-    days_cards, _marks = load_day_cards()
-    fired = defaultdict(list)
-    for t in corpus_b_trades():
-        fired[(t["symbol"], t["date"])].append(t)
-    none_days = {k for k, d in days_cards.items()
-                 if (d.get("grade") or "").strip() == "none"}
-    keys = sorted(k for k in none_days if k in fired)
-    assert set(keys) == set(answered), (
-        "head-to-head set drifted: %s" % sorted(set(keys) ^ set(answered)))
-
-    total = len(keys)
-    cards, days = [], []
-    for i, (sym, day) in enumerate(keys, 1):
-        candles = probes.session(sym, day)
-        if not candles:
+    with open(XVETO_MANIFEST, encoding="utf-8") as f:
+        for line in f:
+            if line.strip():
+                want.append(json.loads(line))
+    index = {(r["sym"], r["day"], r["et"]): r for r in book}
+    html, man = [], []
+    for w in want:
+        r = index.get((w["symbol"], w["date"], w["et"]))
+        if r is None:
             continue
-        lv = probes.levels_for(sym, day, candles)
-        ts = sorted(fired[(sym, day)], key=lambda t: t["entry_i"])
-        marks_svg = [{"i": t["entry_i"], "price": t["entry"], "stop": t["stop"],
-                      "side": t.get("side", "L"), "tag": "OMEN"} for t in ts]
-        entry_t = ", ".join(t.get("entry_t", "")[:5] for t in ts if t.get("entry_t"))
-        reason = (days_cards[(sym, day)].get("reason_none") or "").strip()
-        tags = [("you said: no", False),
-                ("%d engine fire%s" % (len(ts), "" if len(ts) == 1 else "s"), True)]
-        if reason:
-            tags.insert(0, ("day card: %s" % reason, False))
-        chart = probe_chart.render(candles, lv, marks_svg, "%s %s" % (sym, day))
-        body = [
-            '<article class="card" data-cid="h2_%s_%s" data-grade="none" data-done="0">'
-            % (sym, day),
-            probes.header(i, total, sym, day, tags),
-            '<div class="chartwrap">%s</div>' % chart, probes.LEGEND,
-            probe_page.question(
-                "veto", "Which single thing killed it?",
-                "OMEN entered at the amber line%s and you already told me you would "
-                "not have taken it. One tag only &mdash; your own rule: an X gets one "
-                "reason, not a list."
-                % (" at %s" % entry_t if entry_t else ""),
-                probes.VETO_OPTS, tone="veto",
-                note_placeholder="Optional: your reason in your own words"),
-            "</article>",
-        ]
-        cards.append("".join(body))
-        days.append((sym, day))
-    return cards, days
+        setup = ("break and retest" if r["setup"] == "break_and_retest"
+                 else "one candle rule")
+        qs = probe_page.question(
+            "grade", "Should this have fired?",
+            "A %s off the %s. The entry and stop it wanted are drawn. One tap."
+            % (setup, r["level"]),
+            [("s", "S"), ("a", "A"), ("c", "C"), ("no", "No trade")],
+            required=True)
+        qs += probe_page.question(
+            "why", "If No, what kills it", "Optional.", [], required=False,
+            note_placeholder="optional")
+        c = chart_card(r, qs, "vetoes", marks=[entry_mark(r)],
+                       label="%s %s &middot; proposed entry %s"
+                             % (r["sym"], r["day"], r["et"]))
+        if c:
+            html.append(c)
+            man.append({"card_id": "%s_%s" % (r["sym"], r["day"]), "lane": "vetoes",
+                        "symbol": r["sym"], "date": r["day"], "et": r["et"],
+                        "setup": r["setup"], "level": r["level"],
+                        "engine_grade": r["grade"], "engine_sgrade": r["sgrade"],
+                        "hindsight_r": r["r"]})
+    return "".join(html), man
 
 
-# ---------------------------------------------------------------------------
-# 4 -- fresh S-recall deck
-# ---------------------------------------------------------------------------
-
-SREC_OPTS = [
-    ("s", "Yes &mdash; there is an S here"),
-    ("no", "No S on this chart"),
-    ("unsure", "Can&rsquo;t tell from this chart"),
-]
-
-
-def build_srecall_section(exclude):
-    """25 symbol-days never judged in ANY mark corpus.
-
-    The guard is build_deck.marked_card_ids() and it is non-negotiable: it reads
-    research/marks/*.jsonl plus the legacy corpora outside that directory. A day
-    that repeats one he already answered burns the only scarce input in the
-    project. ``exclude`` additionally drops anything used earlier on this page.
-    """
-    seen = deck.marked_card_ids()
-    banned = set(seen) | {"%s_%s" % (s, d) for s, d in exclude}
-    pool = [(s, d) for s, d in deck.universe()
-            if s in SREC_SYMBOLS and d >= SREC_FROM
-            and "%s_%s" % (s, d) not in banned]
-    pool.sort()
-    rng = random.Random(SREC_SEED)
-    rng.shuffle(pool)
-
-    chosen, prepared = [], []
-    for sym, day in pool:
-        if len(chosen) >= SREC_N:
+def rare_lane(book, seen, n, rng) -> tuple[str, list[dict], set]:
+    """OCR and 84%-rule setups the engine detected and then killed."""
+    pool = [r for r in book
+            if r["setup"] in ("one_candle_rule", "reentry_84_rule")
+            and not r["traded"]
+            and "%s_%s" % (r["sym"], r["day"]) not in seen]
+    best = {}
+    for r in pool:
+        k = (r["sym"], r["day"])
+        if k not in best or r["et"] < best[k]["et"]:
+            best[k] = r
+    picks = list(best.values())
+    rng.shuffle(picks)
+    html, man, used = [], [], set()
+    for r in picks:
+        if len(html) >= n:
             break
-        candles = probes.session(sym, day)
-        if len(candles) < 60:
+        cid = "%s_%s" % (r["sym"], r["day"])
+        if cid in used:
             continue
-        chosen.append((sym, day))
-        prepared.append((sym, day, candles))
-    assert len(chosen) == SREC_N, "only %d fresh days available" % len(chosen)
-
-    # no positional tell by symbol
-    rng.shuffle(prepared)
-    total = len(prepared)
-    cards = []
-    for i, (sym, day, candles) in enumerate(prepared, 1):
-        lv = probes.levels_for(sym, day, candles)
-        chart = probe_chart.render(candles, lv, [], "%s %s" % (sym, day))
-        body = [
-            '<article class="card" data-cid="sr_%s_%s" data-grade="" data-done="0">'
-            % (sym, day),
-            probes.header(i, total, sym, day, [("never shown", False)]),
-            '<div class="chartwrap">%s</div>' % chart, probes.LEGEND,
-            probe_page.question(
-                "s_call", "Is there an S trade on this chart?",
-                "09:30&ndash;11:00 only, levels drawn. One tap. Nothing else to mark "
-                "&mdash; not the entry, not the stop, not the setup.",
-                SREC_OPTS, tone="srec",
-                note_placeholder="(optional) one line, only if you want to"),
-            "</article>",
-        ]
-        cards.append("".join(body))
-    return cards, chosen, len(seen), len(pool)
+        name = ("one candle rule" if r["setup"] == "one_candle_rule"
+                else "84% re-entry")
+        qs = probe_page.question(
+            "real", "Is this a real %s?" % name,
+            "The engine found it here and killed it. Entry and stop drawn. "
+            "You said these should fire nearer the break-and-retest rate -- this "
+            "lane finds out whether the setups are there and being thrown away, "
+            "or simply are not there.",
+            [("yes", "Yes -- should fire"), ("weak", "Real but not tradeable"),
+             ("no", "Not this setup at all")], required=True)
+        qs += probe_page.question(
+            "why", "What makes it one, or not", "Optional.", [], required=False,
+            note_placeholder="optional")
+        c = chart_card(r, qs, "rare", marks=[entry_mark(r)],
+                       label="%s %s &middot; %s at %s"
+                             % (r["sym"], r["day"], name, r["et"]))
+        if c:
+            html.append(c)
+            used.add(cid)
+            man.append({"card_id": cid, "lane": "rare", "symbol": r["sym"],
+                        "date": r["day"], "et": r["et"], "setup": r["setup"],
+                        "level": r["level"], "engine_grade": r["grade"],
+                        "engine_status": r["status"], "hindsight_r": r["r"]})
+    return "".join(html), man, used
 
 
-# ---------------------------------------------------------------------------
+def index_lane(book, seen, n, rng) -> tuple[str, list[dict], set]:
+    """Index days, entry UNMARKED -- the same question as the S sweep."""
+    idx = {(r["sym"], r["day"]) for r in book if r["cls"] == "etf"}
+    picks = [{"sym": s, "day": d} for s, d in sorted(idx)
+             if "%s_%s" % (s, d) not in seen]
+    rng.shuffle(picks)
+    html, man, used = [], [], set()
+    for p in picks:
+        if len(html) >= n:
+            break
+        qs = probe_page.question(
+            "s", "Is this an S day?",
+            "Six levels, 09:30 to 11:00, nothing drawn. Indices are 18 of the "
+            "book's 1,017 trades and they are what you said you will trade first "
+            "with real money -- so the engine needs your read on them "
+            "specifically.",
+            [("s", "S day"), ("no", "Not S")], required=True)
+        qs += probe_page.question(
+            "min", "The minute of the S entry candle",
+            "Only if you said S. HH:MM.", [], required=False,
+            note_placeholder="09:47")
+        c = chart_card(p, qs, "index")
+        if c:
+            html.append(c)
+            cid = "%s_%s" % (p["sym"], p["day"])
+            used.add(cid)
+            man.append({"card_id": cid, "lane": "index", "symbol": p["sym"],
+                        "date": p["day"]})
+    return "".join(html), man, used
 
-def build():
-    cal_cards, cal_days, n_harsh, n_soft = build_calibration_section()
-    au_cards, au_days = build_autopsy_section()
-    h2_cards, h2_days = build_head2head_section()
-    used = set(cal_days) | set(au_days) | set(h2_days)
-    sr_cards, sr_days, n_seen, n_pool = build_srecall_section(used)
 
-    s1 = section(
-        1, "Section 1", "The machine says these are wrong. Are they?",
-        ["Twelve charts where the grader and you <b>disagree</b>. The first six are "
-         "entries you took that it did not grade S; the last six are days you refused "
-         "that it graded S anyway. It shows its reasons &mdash; you say which reasons "
-         "are bad.",
-         "The thresholds behind those flags are <b>numbers I invented</b>. You gave the "
-         "eight variables; nobody set the constants. Every flag you reject is one whose "
-         "number is too tight, and that is the entire point of this section."],
-        cal_cards, 15)
+def runner_lane(book, seen, n, rng) -> tuple[str, list[dict], set]:
+    """Trades that ran past 2R. Where does he actually get out?"""
+    pool = [r for r in book if r["traded"] and r["r"] >= 2.0
+            and "%s_%s" % (r["sym"], r["day"]) not in seen]
+    rng.shuffle(pool)
+    html, man, used = [], [], set()
+    for r in pool:
+        if len(html) >= n:
+            break
+        cid = "%s_%s" % (r["sym"], r["day"])
+        if cid in used:
+            continue
+        qs = probe_page.question(
+            "exit", "Where do you get out of this one?",
+            "Entry and stop drawn, the whole 09:30-11:00 path visible. The engine "
+            "takes exactly 2x risk on every trade, which is why its average is "
+            "half your gate -- a flat 2R target can never average 2R. Tell it "
+            "what you would actually have done here.",
+            [("2r", "2R, done"), ("level", "Next level past 2R"),
+             ("trail", "Trail it behind structure"), ("hold", "Hold to 11:00")],
+            required=True)
+        qs += probe_page.question(
+            "px", "The price you would have exited at",
+            "Optional but the most useful thing on this card.", [],
+            required=False, note_placeholder="e.g. 214.80")
+        c = chart_card(r, qs, "runner", marks=[entry_mark(r)],
+                       label="%s %s &middot; entry %s, stop drawn"
+                             % (r["sym"], r["day"], r["et"]))
+        if c:
+            html.append(c)
+            used.add(cid)
+            man.append({"card_id": cid, "lane": "runner", "symbol": r["sym"],
+                        "date": r["day"], "et": r["et"],
+                        "engine_r": r["r"], "engine_exit": r["exit"],
+                        "engine_target": r["target"]})
+    return "".join(html), man, used
 
-    s2 = section(
-        2, "Section 2", "Five answers that never made it back.",
-        ["These five came back from the 08-23 autopsy with <b>nothing in the answer "
-         "slot</b> &mdash; a placeholder leaked in where your taps should have been, so "
-         "whatever you said on them was lost. Not your fault, and not asking you to "
-         "repeat the other ten.",
-         "Same questions as before: never <i>where</i> you entered &mdash; your entry is "
-         "already the amber line &mdash; only <b>what made it a trade</b>."],
-        au_cards, 10)
 
-    s3 = section(
-        3, "Section 3", "You said no nine times. Nine times, why?",
-        ["Every day OMEN fired on and you graded <code>none</code>. You already "
-         "answered the first half &mdash; <b>no</b> on all nine &mdash; but the follow-up "
-         "was never asked, so all I have on file is a refusal with no reason.",
-         "One tag each. These nine tags become the engine's <b>veto list</b>: the checks "
-         "it runs <i>after</i> it finds a setup. Nine days is the entire false-fire set "
-         "in the corpus, so each one is worth about eleven percent of that list."],
-        h2_cards, 8)
+# ---------------------------------------------------------------- build
+def build(name: str, n_rare: int, n_index: int, n_runner: int, seed: int):
+    os.makedirs(PROBES_DIR, exist_ok=True)
+    book = load_book()
+    own = os.path.join(PROBES_DIR, "%s-manifest.jsonl" % name)
+    seen = seen_card_ids(own)
+    # Lane 2 re-serves the x-veto forty on purpose, so they must not block
+    # themselves out of this page.
+    veto_html, veto_man = veto_lane(book)
+    seen |= {m["card_id"] for m in veto_man}
+    rng = random.Random(seed)
 
-    s4 = section(
-        4, "Section 4", "Twenty-five you have never seen.",
-        ["The OMEN 6 gate is measured on S-days and you have graded <b>28</b> of them. "
-         "Twenty-eight is too few to gate on &mdash; one disagreement moves recall by "
-         "three and a half points. This grows the denominator.",
-         "Not one of these repeats a day in any mark corpus (%d already-judged "
-         "symbol-days excluded, %d fresh days in the pool). No engine marks on the "
-         "chart, so there is nothing to agree or disagree with. <b>One tap each</b>: is "
-         "there an S on it. Nothing else &mdash; not the entry, not the stop."
-         % (n_seen, n_pool)],
-        sr_cards, 25)
+    rare_html, rare_man, used = rare_lane(book, seen, n_rare, rng)
+    seen |= used
+    index_html, index_man, used = index_lane(book, seen, n_index, rng)
+    seen |= used
+    runner_html, runner_man, _ = runner_lane(book, seen, n_runner, rng)
 
-    foot = ("<h2>Your answers cannot go anywhere</h2>"
-            "<p>Every tap writes to this browser the moment you make it. Close the tab, "
-            "lose the battery, come back next week &mdash; it is all still here. The "
-            "indicator at the top says <code>saved</code> each time it lands, and if "
-            "your browser ever refuses to store it, that indicator turns red and says "
-            "so. It does not fail quietly.</p>"
-            "<p>When you are done &mdash; or partway, it does not matter &mdash; hit "
-            "<b>Export</b>, then <b>Copy all</b>, and paste it into the chat. The box is "
-            "an ordinary editable text box, so ctrl/cmd+A then ctrl/cmd+C works even "
-            "where the button is blocked. <b>Download .jsonl</b> works too where the "
-            "browser allows it.</p>"
-            "<p>Order does not matter and you do not have to finish. Partial answers are "
-            "worth exactly as much per card as complete ones.</p>"
-            '<div class="endbar">'
-            '<button class="jump exportjump" type="button">Export &amp; copy</button>'
-            '<span class="hint">or scroll back up &mdash; the bar follows you</span>'
-            "</div>")
+    fact_html, fact_man = fact_cards()
+    body = "".join([
+        lane("Lane 1 &middot; %d cards &middot; no charts" % len(FACTS),
+             "The facts the engine runs on",
+             "Every constant and convention that is live right now, in plain "
+             "English, with what it costs. Keep it, kill it, or change it. "
+             "<b>This is the lane that unblocks the overnight queue</b> -- every "
+             "answer here becomes a task while you sleep."),
+        fact_html,
+        lane("Lane 2 &middot; %d cards" % len(veto_man),
+             "Setups the engine found and refused",
+             "On your 34 fresh S days the engine was never blind and its timing "
+             "was exact -- it reached your setup and graded it a no-trade. These "
+             "are that population. Tell it which refusals were wrong."),
+        veto_html,
+        lane("Lane 3 &middot; %d cards" % len(rare_man),
+             "The one-candle rule and the 84% rule",
+             "947 break-and-retests traded against 67 one-candle-rule and 3 "
+             "eighty-four-percents. You said that should be closer to even. These "
+             "are setups it detected and killed -- are they real?"),
+        rare_html,
+        lane("Lane 4 &middot; %d cards" % len(index_man),
+             "QQQ, SPY and IWM",
+             "18 index trades out of 1,017, against COIN's 104 on its own -- and "
+             "indices are what you said you will trade first with real money. "
+             "Nothing is drawn on these."),
+        index_html,
+        lane("Lane 5 &middot; %d cards" % len(runner_man),
+             "Where do you get out?",
+             "Every one of these ran past 2R and the engine took exactly 2R, "
+             "because that is all it ever takes. A flat 2R target can never "
+             "average 2R at any win rate. Your answers here are what replaces it."),
+        runner_html,
+    ])
 
+    total = len(fact_man) + len(veto_man) + len(rare_man) + len(index_man) + len(runner_man)
     html = probe_page.shell(
-        "OMEN Master Homework",
-        "OMEN 6 &middot; one sitting",
-        "One hour. Four things I cannot get any other way.",
-        "Fifty-one charts in four sections: <strong>tune the grader</strong>, "
-        "<strong>five answers that got lost</strong>, <strong>nine refusals that need a "
-        "reason</strong>, and <strong>twenty-five fresh days</strong> to make the S "
-        "denominator big enough to gate on. Every question is a tap. Nothing needs "
-        "typing. It saves as you go.",
-        EXTRA_CSS + s1 + s2 + s3 + s4, foot, DECK_ID)
-    html += EXTRA_JS
+        title="OMEN Master Homework",
+        eyebrow="OMEN &middot; 2026-08-28",
+        h1="Five lanes, one page",
+        lede="Saves every tap to this device as you go &mdash; close it, lose "
+             "signal, come back tomorrow, your answers are still here. "
+             "When you are done hit <b>Export &rarr; Copy all</b> and paste it "
+             "into the chat. Start with Lane 1; it needs no charts and it "
+             "unblocks the most.",
+        cards_html=body,
+        footer_html="%d cards. No symbol-day appears twice, and none of them is "
+                    "a day you have graded before &mdash; except Lane 2, which is "
+                    "the same forty published earlier today so you only need this "
+                    "one link." % total,
+        deck_id=name)
+    html = html.replace("</title>", "</title>" + LANE_CSS, 1)
 
-    counts = {"1 grader calibration": len(cal_cards),
-              "2 autopsy rescue": len(au_cards),
-              "3 head-to-head veto": len(h2_cards),
-              "4 fresh S-recall": len(sr_cards)}
-    return html, counts, {"harsh": n_harsh, "soft": n_soft,
-                          "excluded_marked_days": n_seen, "fresh_pool": n_pool}
-
-
-CID_RE = re.compile(r'<article class="card" data-cid="([^"]+)"')
-
-
-def verify(html, counts):
-    """Fail loudly. Every one of these has actually bitten this project."""
-    cids = CID_RE.findall(html)
-    dupes = sorted({c for c in cids if cids.count(c) > 1})
-    assert not dupes, "duplicate data-cid -- two cards share a save slot: %s" % dupes
-    assert len(cids) == sum(counts.values()), (
-        "card count mismatch: %d cards in HTML, %d expected"
-        % (len(cids), sum(counts.values())))
-
-    export = re.search(r'<textarea id="out"[^>]*>', html)
-    assert export, "no export textarea"
-    assert "readonly" not in export.group(0), "export box is readonly -- he cannot copy"
-    assert "readonly" not in html.lower(), "a readonly attribute leaked into the page"
-    assert "localStorage.setItem" in html, "no localStorage save"
-    assert 'id="exportbtn"' in html, "no #exportbtn"
-    assert 'id="saved"' in html, "no saved indicator"
-    assert "window.claude" not in html or "artifact" not in html.split("window.claude")[1][:400], \
-        "page leans on the artifact capability for persistence"
-
-    # every card must be countable by the sticky bar: at least one required question
-    for block in html.split('<article class="card"')[1:]:
-        card = block.split("</article>")[0]
-        assert 'data-required="1"' in card, (
-            "card with no required question would never count: %s"
-            % card[:80])
-    return cids
-
-
-def main():
-    html, counts, extra = build()
-    cids = verify(html, counts)
-    os.makedirs(OUT_DIR, exist_ok=True)
-    path = os.path.join(OUT_DIR, OUT_NAME)
+    path = os.path.join(PROBES_DIR, name + ".html")
     with open(path, "w", encoding="utf-8") as f:
         f.write(html)
+    man_rows = fact_man + veto_man + rare_man + index_man + runner_man
+    with open(own, "w", encoding="utf-8") as f:
+        for m in man_rows:
+            f.write(json.dumps(m, sort_keys=True) + "\n")
+    return path, own, man_rows
 
-    print("wrote %s  (%d bytes)" % (path, len(html)))
-    for name in sorted(counts):
-        print("  %-24s %2d cards" % (name, counts[name]))
-    print("  %-24s %2d cards, %d unique data-cid" % ("TOTAL", len(cids), len(set(cids))))
-    print("  calibration split: %d harsh / %d soft" % (extra["harsh"], extra["soft"]))
-    print("  S-recall guard: %d judged symbol-days excluded, %d fresh days in pool"
-          % (extra["excluded_marked_days"], extra["fresh_pool"]))
-    print("  checks: no readonly on export, localStorage.setItem present, "
-          "#exportbtn present, zero duplicate cids")
+
+def main() -> int:
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--name", default="omen-master-2026-08-28")
+    ap.add_argument("--rare", type=int, default=20)
+    ap.add_argument("--index", type=int, default=15)
+    ap.add_argument("--runner", type=int, default=15)
+    ap.add_argument("--seed", type=int, default=23)
+    ap.add_argument("--selfcheck", action="store_true")
+    a = ap.parse_args()
+    if a.selfcheck:
+        from master_facts import selfcheck
+        return selfcheck()
+
+    path, man, rows = build(a.name, a.rare, a.index, a.runner, a.seed)
+
+    ids = [r["card_id"] for r in rows]
+    assert len(set(ids)) == len(ids), "a card_id appears twice on the page"
+    chart_ids = {r["card_id"] for r in rows if r["lane"] != "facts"}
+    veto_ids = {r["card_id"] for r in rows if r["lane"] == "vetoes"}
+    stale = (chart_ids - veto_ids) & seen_card_ids(man)
+    assert not stale, "page serves a day he has already seen: %s" % sorted(stale)
+    blob = open(path, encoding="utf-8").read()
+    for leak in ("engine_grade", "hindsight_r", "skipped_d", "engine_r"):
+        assert leak not in blob, "answer key leaked into the HTML: %s" % leak
+    assert "localStorage" in blob, "the page lost its own save"
+
+    per = {}
+    for r in rows:
+        per[r["lane"]] = per.get(r["lane"], 0) + 1
+    print("Wrote %s" % path)
+    print("       %s  (answer key -- not served)" % man)
+    print("  lanes: %s" % per)
+    print("  total=%d  size=%.1f MB" % (len(rows), len(blob.encode("utf-8")) / 1e6))
+    return 0
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())

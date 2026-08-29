@@ -1,0 +1,123 @@
+{"card_id": "fact_stop_floor_is_fiction", "costs": "the clamp is worth +0.138R of the book's +0.834R; without it the book is +0.726R and max drawdown goes 14.5R -> 19.3R", "fact": "stop_floor_is_fiction", "lane": "facts", "where": "stop_rule.stop_fill_price / MAX_LOSS_R = 1.25"}
+{"card_id": "fact_two_stops", "costs": "unmeasured -- nobody has run an intrabar disaster stop arm", "fact": "two_stops", "lane": "facts", "where": "stop_rule.stop_hit_on_close / INTRABAR_STOP_AT_BAR"}
+{"card_id": "fact_ocr_demote", "costs": "OCR: 4,390 detections -> 67 traded (1.5%) at +0.334R. B&R: 40,800 -> 947 (2.3%) at +0.866R", "fact": "ocr_demote", "lane": "facts", "where": "signal_runner.py -- OCR B->C demote + 0.4% wide-stop gate"}
+{"card_id": "fact_ocr_min_risk", "costs": "unmeasured for OCR specifically; the same flat rule was measured as over-aggressive for B&R", "fact": "ocr_min_risk", "lane": "facts", "where": "signal_runner.py -- OCR/FVG/Flag min risk $0.50"}
+{"card_id": "fact_rule84_arming", "costs": "strict: 3 signals in 500 sessions at +1.986R. Open: 116 signals at +0.792R", "fact": "rule84_arming", "lane": "facts", "where": "signal_runner.RULE84_STRICT = 1"}
+{"card_id": "fact_rule84_arm_setups", "costs": "unmeasured -- the arming gate above shuts the door before this matters", "fact": "rule84_arm_setups", "lane": "facts", "where": "signal_runner.RULE84_ARM_ON"}
+{"card_id": "fact_index_share", "costs": "index rows: 18 trades. Equity rows: 999", "fact": "index_share", "lane": "facts", "where": "universe.INDEX_POOL / the min-risk gates"}
+{"card_id": "fact_per_symbol_cap", "costs": "unmeasured -- no per-symbol cap arm has been run", "fact": "per_symbol_cap", "lane": "facts", "where": "no cap exists"}
+{"card_id": "fact_blind_2r", "costs": "296 of 1,017 rows run past +2R, max +14.264R, mean MFE +4.099R", "fact": "blind_2r", "lane": "facts", "where": "signal_runner.py -- blind 2R target"}
+{"card_id": "fact_runner_size", "costs": "+0.955R vs +0.957R overall; on S only, 30/30/30/10 is +1.357R vs +1.283R", "fact": "runner_size", "lane": "facts", "where": "backtest_week.SCALE_PLAN = hod_then_runner_be"}
+{"card_id": "fact_be_stop", "costs": "break-even ends only 20 of 1,017 trades (2.0%)", "fact": "be_stop", "lane": "facts", "where": "backtest_week.py -- runner break-even move"}
+{"card_id": "fact_trade_floor", "costs": "cuts 10 of your 34 S days (29%); 09:30-09:45 is the best 15-min block measured", "fact": "trade_floor", "lane": "facts", "where": "backtest_week.TRADE_FLOOR"}
+{"card_id": "fact_session_end", "costs": "unmeasured for the runner half specifically", "fact": "session_end", "lane": "facts", "where": "signal_runner.SESSION_END = 11:00:00"}
+{"card_id": "fact_on_watch", "costs": "+0 on every metric over the 120 graded day-cards; never run at 2-year scale", "fact": "on_watch", "lane": "facts", "where": "signal_runner.ON_WATCH = 1, BAR_EXTREME_FRAC = 0.25"}
+{"card_id": "fact_min_risk_floor", "costs": "the floor deletes 86.7% of moved-fill signals; 6 of your S marks suppressed", "fact": "min_risk_floor", "lane": "facts", "where": "signal_runner.ENABLE_STRUCTURAL_RISK_FLOOR / ENABLE_MIN_RISK_FILL_CLAMP"}
+{"card_id": "fact_dedupe", "costs": "unmeasured -- no dedupe-window sweep exists", "fact": "dedupe", "lane": "facts", "where": "backtest_week.DEDUPE_BARS = 30"}
+{"card_id": "fact_no_repeat_entries", "costs": "41.8% of traded signals are 2nd-or-later on their symbol-day and survive this rule; they book +0.767R vs +1.092R for firsts", "fact": "no_repeat_entries", "lane": "facts", "where": "signal_runner.NO_REPEAT_ENTRIES = True"}
+{"card_id": "fact_arrival_order", "costs": "arrival order picks 95.3% of the book", "fact": "arrival_order", "lane": "facts", "where": "signal_runner._calibration_grade"}
+{"card_id": "fact_candle_shape", "costs": "7,219 of 7,485 clean-by-your-ladder signals are killed here", "fact": "candle_shape", "lane": "facts", "where": "signal_runner._grade_pa"}
+{"card_id": "fact_s_plus_per_day", "costs": "never binds today; would bind after the grader fix", "fact": "s_plus_per_day", "lane": "facts", "where": "signal_runner.S_PLUS_PER_DAY = 3"}
+{"card_id": "fact_counter_trend", "costs": "trips 89.5% of the book", "fact": "counter_trend", "lane": "facts", "where": "signal_runner._calibration_grade counter-trend cap"}
+{"card_id": "fact_chase", "costs": "chase entries 28.0% win vs 37.3% non-chase", "fact": "chase", "lane": "facts", "where": "signal_runner.CHASE_PCT = 0.005"}
+{"card_id": "fact_pm_levels", "costs": "negative both years; separately, premarket RANGE quartile spreads +0.902R across the book", "fact": "pm_levels", "lane": "facts", "where": "signal_runner.py -- PMH/PML cap to C"}
+{"card_id": "fact_consolidation", "costs": "unmeasured -- no sweep on the 0.5%", "fact": "consolidation", "lane": "facts", "where": "signal_runner._is_consolidation, 0.5%"}
+{"card_id": "fact_level_block", "costs": "unmeasured since the target change", "fact": "level_block", "lane": "facts", "where": "signal_runner.LEVEL_BLOCK_CAP = True"}
+{"card_id": "fact_pivot_levels", "costs": "pivot high/low is the most common level in the book", "fact": "pivot_levels", "lane": "facts", "where": "signal_runner.PIVOT_LEVELS = 1, strength 2, lookback 30"}
+{"card_id": "fact_level_retire", "costs": "unmeasured", "fact": "level_retire", "lane": "facts", "where": "signal_runner.LEVEL_RETIRE_TOUCHES = 2, cooldown 30"}
+{"card_id": "fact_options_model", "costs": "contract read +1.4988R vs underlying +0.8341R; win rate falls 53% -> 38% while mean R rises", "fact": "options_model", "lane": "facts", "where": "options_sizer.DEFAULT_DELTA = 0.5"}
+{"card_id": "fact_strike", "costs": "unmeasured", "fact": "strike", "lane": "facts", "where": "nothing implements it"}
+{"card_id": "fact_spread", "costs": "unmeasured -- and it is the largest unpriced cost in the project", "fact": "spread", "lane": "facts", "where": "nothing implements it"}
+{"card_id": "fact_loss_halt", "costs": "unmeasured in the two-year book", "fact": "loss_halt", "lane": "facts", "where": "live env var only, not in backtest_week"}
+{"card_id": "fact_risk_dollars", "costs": "a scale-in arm topped out at +1.4697R and was the only lever that moved the mean", "fact": "risk_dollars", "lane": "facts", "where": "backtest_week.RISK_DOLLARS = 1000.0"}
+{"card_id": "fact_retired_setups", "costs": "flag: 465 fires for -$57.6k over 12 months before it was benched", "fact": "retired_setups", "lane": "facts", "where": "signal_runner.RETIRED_SETUPS"}
+{"card_id": "AAPL_2026-05-08", "date": "2026-05-08", "engine_grade": "X", "engine_sgrade": "S", "et": "10:01", "hindsight_r": -1.25, "lane": "vetoes", "level": "OR high", "setup": "break_and_retest", "symbol": "AAPL"}
+{"card_id": "AAPL_2025-02-25", "date": "2025-02-25", "engine_grade": "X", "engine_sgrade": "S", "et": "10:31", "hindsight_r": -1.25, "lane": "vetoes", "level": "pivot low", "setup": "break_and_retest", "symbol": "AAPL"}
+{"card_id": "BABA_2026-02-17", "date": "2026-02-17", "engine_grade": "X", "engine_sgrade": "S", "et": "09:46", "hindsight_r": 5.083, "lane": "vetoes", "level": "OR low", "setup": "break_and_retest", "symbol": "BABA"}
+{"card_id": "MSFT_2024-09-11", "date": "2024-09-11", "engine_grade": "X", "engine_sgrade": "S", "et": "10:45", "hindsight_r": 4.235, "lane": "vetoes", "level": "pivot low", "setup": "break_and_retest", "symbol": "MSFT"}
+{"card_id": "MARA_2026-03-10", "date": "2026-03-10", "engine_grade": "X", "engine_sgrade": "S", "et": "09:49", "hindsight_r": 0.0, "lane": "vetoes", "level": "PDH", "setup": "break_and_retest", "symbol": "MARA"}
+{"card_id": "QQQ_2026-05-07", "date": "2026-05-07", "engine_grade": "X", "engine_sgrade": "S", "et": "10:24", "hindsight_r": 28.357, "lane": "vetoes", "level": "pivot high", "setup": "break_and_retest", "symbol": "QQQ"}
+{"card_id": "COIN_2024-09-12", "date": "2024-09-12", "engine_grade": "X", "engine_sgrade": "S", "et": "09:52", "hindsight_r": -1.25, "lane": "vetoes", "level": "OR low", "setup": "break_and_retest", "symbol": "COIN"}
+{"card_id": "AVGO_2026-05-13", "date": "2026-05-13", "engine_grade": "X", "engine_sgrade": "S", "et": "10:57", "hindsight_r": -1.25, "lane": "vetoes", "level": "pivot high", "setup": "break_and_retest", "symbol": "AVGO"}
+{"card_id": "BABA_2025-07-23", "date": "2025-07-23", "engine_grade": "X", "engine_sgrade": "S", "et": "09:58", "hindsight_r": 0.0, "lane": "vetoes", "level": "pivot low", "setup": "break_and_retest", "symbol": "BABA"}
+{"card_id": "MU_2025-11-12", "date": "2025-11-12", "engine_grade": "X", "engine_sgrade": "S", "et": "10:55", "hindsight_r": -1.25, "lane": "vetoes", "level": "pivot low", "setup": "break_and_retest", "symbol": "MU"}
+{"card_id": "GOOGL_2025-08-28", "date": "2025-08-28", "engine_grade": "X", "engine_sgrade": "S", "et": "09:46", "hindsight_r": -1.25, "lane": "vetoes", "level": "pivot high", "setup": "break_and_retest", "symbol": "GOOGL"}
+{"card_id": "PLTR_2025-05-02", "date": "2025-05-02", "engine_grade": "X", "engine_sgrade": "S", "et": "10:08", "hindsight_r": -1.151, "lane": "vetoes", "level": "other", "setup": "one_candle_rule", "symbol": "PLTR"}
+{"card_id": "INTC_2026-08-17", "date": "2026-08-17", "engine_grade": "X", "engine_sgrade": "S", "et": "10:53", "hindsight_r": -1.25, "lane": "vetoes", "level": "OR high", "setup": "break_and_retest", "symbol": "INTC"}
+{"card_id": "MU_2025-08-27", "date": "2025-08-27", "engine_grade": "X", "engine_sgrade": "S", "et": "10:23", "hindsight_r": -1.25, "lane": "vetoes", "level": "pivot high", "setup": "break_and_retest", "symbol": "MU"}
+{"card_id": "GOOGL_2025-04-17", "date": "2025-04-17", "engine_grade": "X", "engine_sgrade": "S", "et": "10:22", "hindsight_r": 11.083, "lane": "vetoes", "level": "pivot low", "setup": "break_and_retest", "symbol": "GOOGL"}
+{"card_id": "INTC_2024-11-20", "date": "2024-11-20", "engine_grade": "X", "engine_sgrade": "S", "et": "10:11", "hindsight_r": 0.25, "lane": "vetoes", "level": "other", "setup": "one_candle_rule", "symbol": "INTC"}
+{"card_id": "AVGO_2024-09-18", "date": "2024-09-18", "engine_grade": "X", "engine_sgrade": "S", "et": "09:41", "hindsight_r": -1.0, "lane": "vetoes", "level": "other", "setup": "one_candle_rule", "symbol": "AVGO"}
+{"card_id": "TSLA_2025-05-15", "date": "2025-05-15", "engine_grade": "X", "engine_sgrade": "S", "et": "10:22", "hindsight_r": -1.25, "lane": "vetoes", "level": "pivot high", "setup": "break_and_retest", "symbol": "TSLA"}
+{"card_id": "COIN_2025-03-13", "date": "2025-03-13", "engine_grade": "X", "engine_sgrade": "S", "et": "10:23", "hindsight_r": -1.035, "lane": "vetoes", "level": "other", "setup": "one_candle_rule", "symbol": "COIN"}
+{"card_id": "MU_2026-01-09", "date": "2026-01-09", "engine_grade": "X", "engine_sgrade": "S", "et": "09:42", "hindsight_r": 1.976, "lane": "vetoes", "level": "OR high", "setup": "break_and_retest", "symbol": "MU"}
+{"card_id": "TSM_2026-01-09", "date": "2026-01-09", "engine_grade": "X", "engine_sgrade": "S", "et": "09:46", "hindsight_r": 0.375, "lane": "vetoes", "level": "OR high", "setup": "break_and_retest", "symbol": "TSM"}
+{"card_id": "NVDA_2025-01-17", "date": "2025-01-17", "engine_grade": "X", "engine_sgrade": "S", "et": "09:55", "hindsight_r": -1.247, "lane": "vetoes", "level": "OR high", "setup": "break_and_retest", "symbol": "NVDA"}
+{"card_id": "HOOD_2025-02-06", "date": "2025-02-06", "engine_grade": "X", "engine_sgrade": "S", "et": "09:36", "hindsight_r": -1.25, "lane": "vetoes", "level": "PDH", "setup": "break_and_retest", "symbol": "HOOD"}
+{"card_id": "AMD_2025-05-19", "date": "2025-05-19", "engine_grade": "X", "engine_sgrade": "S", "et": "10:50", "hindsight_r": -1.25, "lane": "vetoes", "level": "pivot low", "setup": "break_and_retest", "symbol": "AMD"}
+{"card_id": "PLTR_2024-12-31", "date": "2024-12-31", "engine_grade": "X", "engine_sgrade": "S", "et": "10:28", "hindsight_r": -1.091, "lane": "vetoes", "level": "other", "setup": "one_candle_rule", "symbol": "PLTR"}
+{"card_id": "NFLX_2025-06-12", "date": "2025-06-12", "engine_grade": "X", "engine_sgrade": "S", "et": "10:07", "hindsight_r": -1.036, "lane": "vetoes", "level": "pivot low", "setup": "break_and_retest", "symbol": "NFLX"}
+{"card_id": "AMZN_2026-02-10", "date": "2026-02-10", "engine_grade": "X", "engine_sgrade": "S", "et": "09:46", "hindsight_r": -1.25, "lane": "vetoes", "level": "pivot low", "setup": "break_and_retest", "symbol": "AMZN"}
+{"card_id": "META_2026-03-27", "date": "2026-03-27", "engine_grade": "X", "engine_sgrade": "S", "et": "10:29", "hindsight_r": -1.25, "lane": "vetoes", "level": "pivot low", "setup": "break_and_retest", "symbol": "META"}
+{"card_id": "AVGO_2026-07-23", "date": "2026-07-23", "engine_grade": "X", "engine_sgrade": "S", "et": "10:57", "hindsight_r": 2.89, "lane": "vetoes", "level": "other", "setup": "one_candle_rule", "symbol": "AVGO"}
+{"card_id": "ORCL_2024-09-16", "date": "2024-09-16", "engine_grade": "X", "engine_sgrade": "S", "et": "10:08", "hindsight_r": -1.25, "lane": "vetoes", "level": "other", "setup": "one_candle_rule", "symbol": "ORCL"}
+{"card_id": "AAPL_2025-08-01", "date": "2025-08-01", "engine_grade": "X", "engine_sgrade": "S", "et": "10:07", "hindsight_r": -1.25, "lane": "vetoes", "level": "other", "setup": "one_candle_rule", "symbol": "AAPL"}
+{"card_id": "META_2025-12-22", "date": "2025-12-22", "engine_grade": "X", "engine_sgrade": "S", "et": "09:35", "hindsight_r": 0.93, "lane": "vetoes", "level": "PMH", "setup": "break_and_retest", "symbol": "META"}
+{"card_id": "ACHR_2025-12-19", "date": "2025-12-19", "engine_grade": "X", "engine_sgrade": "S", "et": "09:37", "hindsight_r": -1.25, "lane": "vetoes", "level": "PMH", "setup": "break_and_retest", "symbol": "ACHR"}
+{"card_id": "HOOD_2025-08-12", "date": "2025-08-12", "engine_grade": "X", "engine_sgrade": "S", "et": "10:20", "hindsight_r": -1.25, "lane": "vetoes", "level": "pivot low", "setup": "break_and_retest", "symbol": "HOOD"}
+{"card_id": "NFLX_2025-10-13", "date": "2025-10-13", "engine_grade": "X", "engine_sgrade": "S", "et": "09:41", "hindsight_r": -1.25, "lane": "vetoes", "level": "PML", "setup": "break_and_retest", "symbol": "NFLX"}
+{"card_id": "IWM_2024-10-15", "date": "2024-10-15", "engine_grade": "X", "engine_sgrade": "S", "et": "09:58", "hindsight_r": 11.786, "lane": "vetoes", "level": "OR high", "setup": "break_and_retest", "symbol": "IWM"}
+{"card_id": "MU_2024-10-17", "date": "2024-10-17", "engine_grade": "X", "engine_sgrade": "S", "et": "09:51", "hindsight_r": 0.511, "lane": "vetoes", "level": "other", "setup": "one_candle_rule", "symbol": "MU"}
+{"card_id": "IWM_2024-09-18", "date": "2024-09-18", "engine_grade": "X", "engine_sgrade": "S", "et": "10:02", "hindsight_r": 9.625, "lane": "vetoes", "level": "pivot low", "setup": "break_and_retest", "symbol": "IWM"}
+{"card_id": "PLTR_2026-05-27", "date": "2026-05-27", "engine_grade": "X", "engine_sgrade": "S", "et": "10:03", "hindsight_r": 0.0, "lane": "vetoes", "level": "OR high", "setup": "break_and_retest", "symbol": "PLTR"}
+{"card_id": "INTC_2024-11-21", "date": "2024-11-21", "engine_grade": "X", "engine_sgrade": "S", "et": "10:17", "hindsight_r": -1.182, "lane": "vetoes", "level": "pivot high", "setup": "break_and_retest", "symbol": "INTC"}
+{"card_id": "COIN_2026-06-17", "date": "2026-06-17", "engine_grade": "X", "engine_status": "skipped_d", "et": "09:50", "hindsight_r": -1.146, "lane": "rare", "level": "other", "setup": "one_candle_rule", "symbol": "COIN"}
+{"card_id": "UBER_2026-07-09", "date": "2026-07-09", "engine_grade": "X", "engine_status": "skipped_d", "et": "10:28", "hindsight_r": 3.346, "lane": "rare", "level": "other", "setup": "one_candle_rule", "symbol": "UBER"}
+{"card_id": "BABA_2026-01-06", "date": "2026-01-06", "engine_grade": "X", "engine_status": "skipped_d", "et": "10:46", "hindsight_r": 3.38, "lane": "rare", "level": "other", "setup": "one_candle_rule", "symbol": "BABA"}
+{"card_id": "MU_2025-04-30", "date": "2025-04-30", "engine_grade": "X", "engine_status": "skipped_d", "et": "09:55", "hindsight_r": -1.017, "lane": "rare", "level": "other", "setup": "one_candle_rule", "symbol": "MU"}
+{"card_id": "AAPL_2025-01-28", "date": "2025-01-28", "engine_grade": "X", "engine_status": "skipped_d", "et": "09:52", "hindsight_r": 1.006, "lane": "rare", "level": "other", "setup": "one_candle_rule", "symbol": "AAPL"}
+{"card_id": "PLTR_2024-09-04", "date": "2024-09-04", "engine_grade": "X", "engine_status": "skipped_d", "et": "10:47", "hindsight_r": -1.25, "lane": "rare", "level": "other", "setup": "one_candle_rule", "symbol": "PLTR"}
+{"card_id": "PLTR_2024-11-25", "date": "2024-11-25", "engine_grade": "X", "engine_status": "skipped_d", "et": "10:20", "hindsight_r": 7.625, "lane": "rare", "level": "other", "setup": "one_candle_rule", "symbol": "PLTR"}
+{"card_id": "CRM_2026-06-24", "date": "2026-06-24", "engine_grade": "X", "engine_status": "skipped_d", "et": "10:27", "hindsight_r": -1.25, "lane": "rare", "level": "other", "setup": "one_candle_rule", "symbol": "CRM"}
+{"card_id": "PLTR_2026-07-15", "date": "2026-07-15", "engine_grade": "X", "engine_status": "skipped_d", "et": "10:44", "hindsight_r": 0.706, "lane": "rare", "level": "other", "setup": "one_candle_rule", "symbol": "PLTR"}
+{"card_id": "NFLX_2024-08-22", "date": "2024-08-22", "engine_grade": "X", "engine_status": "skipped_d", "et": "10:12", "hindsight_r": 6.401, "lane": "rare", "level": "other", "setup": "one_candle_rule", "symbol": "NFLX"}
+{"card_id": "NFLX_2025-03-25", "date": "2025-03-25", "engine_grade": "X", "engine_status": "skipped_d", "et": "10:40", "hindsight_r": 0.075, "lane": "rare", "level": "other", "setup": "one_candle_rule", "symbol": "NFLX"}
+{"card_id": "AAPL_2026-04-10", "date": "2026-04-10", "engine_grade": "X", "engine_status": "skipped_d", "et": "10:26", "hindsight_r": 1.554, "lane": "rare", "level": "other", "setup": "one_candle_rule", "symbol": "AAPL"}
+{"card_id": "META_2025-12-03", "date": "2025-12-03", "engine_grade": "X", "engine_status": "skipped_d", "et": "10:20", "hindsight_r": -1.25, "lane": "rare", "level": "other", "setup": "one_candle_rule", "symbol": "META"}
+{"card_id": "GOOGL_2025-07-18", "date": "2025-07-18", "engine_grade": "X", "engine_status": "skipped_d", "et": "10:05", "hindsight_r": 1.583, "lane": "rare", "level": "other", "setup": "one_candle_rule", "symbol": "GOOGL"}
+{"card_id": "NVDA_2025-09-18", "date": "2025-09-18", "engine_grade": "X", "engine_status": "skipped_d", "et": "09:57", "hindsight_r": -1.198, "lane": "rare", "level": "other", "setup": "one_candle_rule", "symbol": "NVDA"}
+{"card_id": "NVDA_2026-04-10", "date": "2026-04-10", "engine_grade": "X", "engine_status": "skipped_d", "et": "09:55", "hindsight_r": -1.2, "lane": "rare", "level": "other", "setup": "one_candle_rule", "symbol": "NVDA"}
+{"card_id": "AMZN_2024-11-29", "date": "2024-11-29", "engine_grade": "X", "engine_status": "skipped_d", "et": "10:32", "hindsight_r": 3.176, "lane": "rare", "level": "other", "setup": "one_candle_rule", "symbol": "AMZN"}
+{"card_id": "AMD_2026-04-08", "date": "2026-04-08", "engine_grade": "X", "engine_status": "skipped_d", "et": "10:46", "hindsight_r": 1.173, "lane": "rare", "level": "other", "setup": "one_candle_rule", "symbol": "AMD"}
+{"card_id": "ACHR_2026-07-28", "date": "2026-07-28", "engine_grade": "X", "engine_status": "skipped_d", "et": "10:44", "hindsight_r": 3.579, "lane": "rare", "level": "other", "setup": "one_candle_rule", "symbol": "ACHR"}
+{"card_id": "HOOD_2025-04-29", "date": "2025-04-29", "engine_grade": "X", "engine_status": "skipped_d", "et": "10:20", "hindsight_r": -1.0, "lane": "rare", "level": "other", "setup": "one_candle_rule", "symbol": "HOOD"}
+{"card_id": "QQQ_2025-09-09", "date": "2025-09-09", "lane": "index", "symbol": "QQQ"}
+{"card_id": "SPY_2025-11-14", "date": "2025-11-14", "lane": "index", "symbol": "SPY"}
+{"card_id": "SPY_2024-12-12", "date": "2024-12-12", "lane": "index", "symbol": "SPY"}
+{"card_id": "QQQ_2026-04-17", "date": "2026-04-17", "lane": "index", "symbol": "QQQ"}
+{"card_id": "SPY_2024-12-16", "date": "2024-12-16", "lane": "index", "symbol": "SPY"}
+{"card_id": "IWM_2024-08-26", "date": "2024-08-26", "lane": "index", "symbol": "IWM"}
+{"card_id": "SPY_2026-05-15", "date": "2026-05-15", "lane": "index", "symbol": "SPY"}
+{"card_id": "QQQ_2024-09-10", "date": "2024-09-10", "lane": "index", "symbol": "QQQ"}
+{"card_id": "QQQ_2025-05-14", "date": "2025-05-14", "lane": "index", "symbol": "QQQ"}
+{"card_id": "IWM_2025-05-22", "date": "2025-05-22", "lane": "index", "symbol": "IWM"}
+{"card_id": "QQQ_2026-03-31", "date": "2026-03-31", "lane": "index", "symbol": "QQQ"}
+{"card_id": "QQQ_2025-06-30", "date": "2025-06-30", "lane": "index", "symbol": "QQQ"}
+{"card_id": "QQQ_2025-10-02", "date": "2025-10-02", "lane": "index", "symbol": "QQQ"}
+{"card_id": "IWM_2024-11-29", "date": "2024-11-29", "lane": "index", "symbol": "IWM"}
+{"card_id": "QQQ_2024-10-17", "date": "2024-10-17", "lane": "index", "symbol": "QQQ"}
+{"card_id": "PLTR_2026-07-29", "date": "2026-07-29", "engine_exit": 123.0, "engine_r": 3.46, "engine_target": 123.6, "et": "09:51", "lane": "runner", "symbol": "PLTR"}
+{"card_id": "ORCL_2026-04-27", "date": "2026-04-27", "engine_exit": 168.0, "engine_r": 2.518, "engine_target": 168.59, "et": "09:55", "lane": "runner", "symbol": "ORCL"}
+{"card_id": "IREN_2026-08-03", "date": "2026-08-03", "engine_exit": 38.0, "engine_r": 4.364, "engine_target": 37.13, "et": "09:40", "lane": "runner", "symbol": "IREN"}
+{"card_id": "AVGO_2026-07-08", "date": "2026-07-08", "engine_exit": 385.0, "engine_r": 4.647, "engine_target": 383.17, "et": "09:51", "lane": "runner", "symbol": "AVGO"}
+{"card_id": "COIN_2026-04-20", "date": "2026-04-20", "engine_exit": 205.0, "engine_r": 2.99, "engine_target": 204.45, "et": "10:02", "lane": "runner", "symbol": "COIN"}
+{"card_id": "NVDA_2024-08-23", "date": "2024-08-23", "engine_exit": 129.0, "engine_r": 4.344, "engine_target": 128.18, "et": "10:06", "lane": "runner", "symbol": "NVDA"}
+{"card_id": "TSLA_2024-10-31", "date": "2024-10-31", "engine_exit": 252.0, "engine_r": 4.175, "engine_target": 253.76, "et": "10:34", "lane": "runner", "symbol": "TSLA"}
+{"card_id": "MU_2026-03-26", "date": "2026-03-26", "engine_exit": 364.0, "engine_r": 2.409, "engine_target": 365.0, "et": "09:45", "lane": "runner", "symbol": "MU"}
+{"card_id": "TSLA_2026-05-13", "date": "2026-05-13", "engine_exit": 445.0, "engine_r": 3.353, "engine_target": 443.65, "et": "10:30", "lane": "runner", "symbol": "TSLA"}
+{"card_id": "COIN_2025-03-31", "date": "2025-03-31", "engine_exit": 165.0, "engine_r": 2.141, "engine_target": 165.25, "et": "09:39", "lane": "runner", "symbol": "COIN"}
+{"card_id": "ORCL_2026-06-08", "date": "2026-06-08", "engine_exit": 209.45, "engine_r": 3.618, "engine_target": 210.24, "et": "10:01", "lane": "runner", "symbol": "ORCL"}
+{"card_id": "AMZN_2026-05-04", "date": "2026-05-04", "engine_exit": 274.0, "engine_r": 4.984, "engine_target": 272.34, "et": "10:22", "lane": "runner", "symbol": "AMZN"}
+{"card_id": "META_2025-01-14", "date": "2025-01-14", "engine_exit": 602.49, "engine_r": 2.556, "engine_target": 600.04, "et": "09:39", "lane": "runner", "symbol": "META"}
+{"card_id": "TSLA_2025-08-13", "date": "2025-08-13", "engine_exit": 348.0, "engine_r": 3.898, "engine_target": 346.44, "et": "09:39", "lane": "runner", "symbol": "TSLA"}
+{"card_id": "COIN_2026-04-17", "date": "2026-04-17", "engine_exit": 208.0, "engine_r": 2.675, "engine_target": 207.63, "et": "09:59", "lane": "runner", "symbol": "COIN"}
