@@ -726,7 +726,13 @@ def simulate_day(symbol: str, day_iso: str, candles: List[Candle],
                 t.outcome, t.exit_price, t.exit_idx = "win", t.target, i
                 open_trades.remove(t)
 
-        # 2. detect signals as of this bar (open positions still managed after cutoff)
+        # 2. detect signals as of this bar. R13 (Austin, probe_master_2026-08-29,
+        # fact_session_end -> `manage`): 11:00 stops new ENTRIES, runners keep
+        # running. That is already what this `continue` does and has always
+        # done -- step 1 above marks every open position on every bar of the
+        # session and only step 2 is skipped -- so no backtest figure moves with
+        # R13. The live path is where the runner really was being cut by the
+        # clock (live_scanner.MANAGE_END).
         if ENTRY_CUTOFF and c.timestamp >= ENTRY_CUTOFF:
             continue
         runner.candles = candles[:i + 1]

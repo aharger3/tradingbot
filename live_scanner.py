@@ -124,6 +124,18 @@ def in_window(now: datetime, start: dtime, end: dtime) -> bool:
     return start <= t <= end
 
 
+# R13 (Austin, probe_master_2026-08-29, fact_session_end -> `manage`):
+#   11:00 stops new ENTRIES; a runner that is still working keeps running.
+#
+# ENTRY_CUTOFF (above) already does the entry half -- scan_once sets
+# `entries_ok = False` past it and keeps marking open paper positions. What was
+# missing is that the scan LOOP itself slept outside `--window`, so at 11:00 the
+# process stopped marking too and a live runner was flattened by the clock
+# rather than by the chart. MANAGE_END keeps the loop alive to the RTH close for
+# management only; it never re-opens entries.
+MANAGE_END = os.getenv("MANAGE_END", "16:00")
+
+
 # ---- yfinance fallback (Tastytrade device-challenge outage 2026-07-06) ----
 # ~1 min delayed; fine for paper. Used whenever the Tastytrade call throws.
 
@@ -754,9 +766,14 @@ def main():
             time.sleep(3600)
             continue
 
-        if not in_window(now, start, end):
+        # R13: the loop stays alive to MANAGE_END so open positions keep marking
+        # past 11:00. New entries are already stopped by ENTRY_CUTOFF inside
+        # scan_once, so this widens management only.
+        manage_end = max(end, parse_window("00:00-" + MANAGE_END)[1]) if MANAGE_END else end
+        if not in_window(now, start, manage_end):
             # Sleep until next window open
-            print(f"{now.strftime('%H:%M:%S')} ET outside window {args.window}, sleeping 60s")
+            print(f"{now.strftime('%H:%M:%S')} ET outside window {args.window}"
+                  f" (managing to {MANAGE_END}), sleeping 60s")
             time.sleep(60)
             continue
 
