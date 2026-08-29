@@ -14,13 +14,19 @@ vault still knows what "done" means.
 
 OMEN closes when all three are true at once, on one fixed measurement rig:
 
-| gate | target | where we stand (2026-08-28) |
+| gate | target | where we stand (2026-08-29, after T0) |
 |---|---|---|
-| **Recall** | fires on ≥90% of Austin's **S-grade** days it has never seen | **52.9%** (18 of 34) on the 100 fresh cards of 2026-08-28 — and the deck is 50/50 fire-silent by construction, so the true number is likely **worse**. Precision on the same sample is 36.0%. |
-| **Money** | ≥55% win rate, mean R ≥ 2.0 | **52.8% / +0.8341R** (was 52.9% / +0.9551R before the 2026-08-28 stop-fill fix; every earlier money number is stale) |
-| **Durability** | every month green, every slice | **23 of 25 months** green |
+| **Recall** | fires on >=90% of Austin's **S-grade** days it has never seen | **52.9%** (18 of 34) on the 100 fresh cards of 2026-08-28. **T0's ratified re-baseline did not move it: 18/34 before, 18/34 after, the same 16 misses card for card** (`research/t0_ratified_rebaseline.md`). Precision on the same sample is 35.3%. |
+| **Money** | >=55% win rate, mean R >= 2.0 | **43.1% / +0.5481R** on 2,595 trades after T0 landed R1-R27 (was 53.1% / +0.8341R on 1,017). The book got bigger and worse per trade; the fall is -0.2860R against a +/-0.1725R bar, so it is real. |
+| **Durability** | every month green | **25 of 25 months** -- MET for the first time (was 23 of 25). |
 
-Recall is the wound. Money is half-paid. Durability is nearly there.
+Recall is the wound. Money went backwards. Durability is **met**.
+
+**Re-baselined 2026-08-29 by T0** (`research/t0_ratified_rebaseline.md`,
+`research/t0_rebaseline.py`): Austin's 33 ratified answers landed as configuration,
+the two-year book went 1,017 -> 2,595 traded and +848R -> +1,422R total, and every
+money number above is from that book. Every earlier money figure in this file and in
+`research/omen6_backtest_truth.md` describes the pre-ratification engine.
 
 **Three things reframe all three rows, all measured 2026-08-28. Read them before acting on
 any number above.**
