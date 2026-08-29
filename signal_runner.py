@@ -695,6 +695,82 @@ CONFLUENCE_SETUP_ROUTES = os.getenv("CONFLUENCE_SETUP_ROUTES", "0").strip().lowe
 CONFLUENCE_BASE_SETUPS = frozenset({SignalType.BREAK_AND_RETEST,
                                     SignalType.ONE_CANDLE_RULE})
 
+# ---------------------------------------------------------------------------
+# T10 -- X_LIFT: the targeted lift of `_grade_pa` vetoes, fitted to Austin's own
+# verdicts on 40 of them. DEFAULT "off" -> byte-identical to the shipped engine.
+#
+# THE WOUND. 70,319 of the 75,953 signals in the two-year book are `X` --
+# `omen_bot.PriceActionAnalyzer._grade_pa` vetoed them on candle SHAPE and
+# `_route` skips them. T1 measured that the engine is NEVER silent on Austin's
+# 34 fresh S days and that its timing is exact; what it does instead is find the
+# setup and grade it `X`. So the recall wound is this pile.
+#
+# TWO ARMS EXISTED AND NEITHER IS SHIPPABLE. `off` (today) scores 3/15 held-out
+# S recall on the OMEN Test 1 cards; `on_all` (W1's SAC_LADDER_REGRADE_ALL,
+# research/w1_sac_ladder_ab.md) scores 6/15 and pays with a 12.5x book of 12,770
+# rows at 29% false-fire on days he refused. Nobody had run the middle.
+#
+# THE LABEL SET. On 2026-08-29 Austin graded 40 of these vetoes himself
+# (research/marks/probe_master_2026-08-29.jsonl, lane `vetoes`): 5 S, 4 A, 4 C,
+# 27 "no". S/A/C means the engine should have fired; "no" means the veto was
+# right. The arms below are the clauses of ONE sentence of his, in the order he
+# said them, so each step is a rule he stated and not a search result:
+#
+#   "s trades are all about being early and the most important thing is that
+#    clear break retest with displacement that happens quick and strong PA
+#    entry."   -- probe_master_2026-08-29, fact_ocr_demote
+#
+#   "br"     lift only `break_and_retest`. His verdict on the one-candle-rule /
+#            84% pool was 17 "not this setup at all" + 3 "weak" out of 20, and
+#            8 of the 9 OCR cards in the veto lane came back "no".
+#   "clean"  br AND the retest is [clean], not [late]   ("clear break retest")
+#   "pa"     clean AND strong PA entry: [hammer] or [disp]  ("strong PA entry")
+#   "disp"   pa AND the break leg displaced: [disp]     ("with displacement")
+#   "all"    lift every X. The `on_all` control, re-run on the T0 engine.
+#
+# THE STOP GUARD IS NOT OPTIONAL. A lifted signal is promoted to `B`, and a `B`
+# does not face `_min_viable_stop` -- that is exactly how W1's `on_all` book
+# came to read +7.4974 mean R on 12,770 rows: it is full of 2-cent stops on
+# $100 stocks, which is an arithmetic artefact of `R = |entry - stop|` and not a
+# tradeable edge. Every lift here must clear `_min_viable_stop` first, the same
+# bar a `C` clears. `all` carries the guard too, so the ladder and its control
+# differ in ONE thing.
+#
+# Measured by research/t10_x_lift_fitted.py; asserted by research/test_t10_x_lift.py.
+X_LIFT = os.getenv("X_LIFT", "off").strip().lower()
+X_LIFT_ARMS = ("off", "br", "clean", "pa", "disp", "all")
+
+
+def x_lift_qualifies(sig: dict, arm: str) -> bool:
+    """Does this vetoed signal satisfy the lift arm's clause of his sentence?
+
+    Reads only what the detector already put on the signal -- its setup and the
+    tags in its `reason` -- so nothing here can see a bar the engine had not
+    closed yet. The tag vocabulary is the detector's own
+    ([clean]/[late]/[hammer]/[disp]/[nodisp]), emitted at the B&R and OCR
+    emission sites before `_emit` hands the signal to `_route`.
+    """
+    if arm == "off" or arm not in X_LIFT_ARMS:
+        return False
+    if arm == "all":
+        return True
+    st = sig.get("base_signal_type") or sig.get("signal_type")
+    if st is not SignalType.BREAK_AND_RETEST:
+        return False
+    if arm == "br":
+        return True
+    reason = sig.get("reason", "")
+    if "[clean]" not in reason:
+        return False
+    if arm == "clean":
+        return True
+    if "[hammer]" not in reason and "[disp]" not in reason:
+        return False
+    if arm == "pa":
+        return True
+    return "[disp]" in reason
+
+
 # Clause 1: exactly three setups, nothing else is ever S. FAIR_VALUE_GAP and
 # FLAG are deliberately absent.
 # P3/G8: BR_OCR_CONFLUENCE is added deliberately. It is a break-and-retest AND
@@ -2071,6 +2147,41 @@ class SignalRunner:
                 sig["signal_type"].value)
         self._route(signals, sig)
 
+    def _apply_x_lift(self, sig: dict) -> bool:
+        """T10 X_LIFT. Un-veto a `_grade_pa` skip that satisfies the arm's clause
+        of Austin's sentence. Returns True if this signal was lifted.
+
+        DEFAULT "off" -> this is a no-op and the book is byte-identical.
+
+        CALLED FROM EVERY `_route`, WHICH IS WHY IT IS A METHOD. `_route` is
+        overridden by `backtest_week.BacktestRunner` (which delegates to super,
+        so it inherits this) and by the research replays, which do NOT -- and
+        `research/t4_engine_recall.CaptureRunner` is the replay the regression
+        gate, `t70_test1_score` and `t0_heldout_recall` all run on. The first
+        cut of this lever put the branch inline in `SignalRunner._route` and the
+        held-out recall of all six arms came back identical to `off`, because
+        the only rig that scores held-out recall never executed it. That is the
+        same bug class as `research/omen-rules-unreachable-in-code`: a real rule
+        that becomes a branch which cannot fire. Called AFTER `_grade_for_levels`
+        and `_calibration_grade` on purpose -- the lift removes the veto and
+        nothing else, so a lifted signal enters the rest of the chain as a plain
+        `B` and is never promoted to A/A+ by the clear-road rule on the way in.
+
+        The stop guard is not optional: a lifted signal is a `B`, and a `B` does
+        not face `_min_viable_stop`. That is exactly how W1's `on_all` book came
+        to read +7.4974 mean R on 12,770 rows -- it is full of 2-cent stops,
+        which is arithmetic on `R = |entry - stop|`, not edge.
+        """
+        if X_LIFT == "off" or sig.get("grade") not in _SKIP_GRADES:
+            return False
+        if not x_lift_qualifies(sig, X_LIFT):
+            return False
+        if not self._min_viable_stop(sig["entry"], sig["stop"], sig["direction"]):
+            return False
+        sig["grade"] = TradeGrade.B.value
+        sig["reason"] = sig.get("reason", "") + " [x-lift:%s]" % X_LIFT
+        return True
+
     def _route(self, signals: List[dict], sig: dict) -> None:
         """Accept viable signals; log D-grade / tight-stop skips for post-session analysis."""
         self._grade_for_levels(sig)
@@ -2134,6 +2245,7 @@ class SignalRunner:
                 return
             if bar - last >= LEVEL_RETIRE_COOLDOWN:
                 self._level_br_count[lv_key] = (done + 1, bar)
+        self._apply_x_lift(sig)
         if sig["grade"] not in _SKIP_GRADES:
             # omen-3.9 T5: enforce clause 3 as a routing rule. Once an idea
             # (symbol, direction, level NAME) has been accepted this session, a

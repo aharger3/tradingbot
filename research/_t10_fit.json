@@ -1,0 +1,1123 @@
+{
+  "n_cards": 40,
+  "ambiguous": [
+    [
+      "TSLA_2025-05-15",
+      2
+    ]
+  ],
+  "label_mix": {
+    "no": 27,
+    "c": 4,
+    "a": 4,
+    "s": 5
+  },
+  "still_vetoed": {
+    "skipped_d": 39,
+    "skipped_tight_stop": 1
+  },
+  "arms": {
+    "off": {
+      "lifted": 0,
+      "tp": 0,
+      "fp": 0,
+      "n_yes": 13,
+      "n_no": 27,
+      "recall": 0.0,
+      "precision": 0.0,
+      "false_fire_rate": 0.0,
+      "precision_ci": [
+        0.0,
+        0.0
+      ],
+      "his_S_lifted": 0,
+      "his_A_lifted": 0,
+      "his_C_lifted": 0,
+      "loo_worst_card": "TSM_2026-01-09",
+      "loo_worst_swing": 0.0,
+      "loo_min_precision": 0.0,
+      "loo_max_precision": 0.0,
+      "tp_cards": [],
+      "fp_cards": []
+    },
+    "br": {
+      "lifted": 31,
+      "tp": 12,
+      "fp": 19,
+      "n_yes": 13,
+      "n_no": 27,
+      "recall": 0.9230769230769231,
+      "precision": 0.3870967741935484,
+      "false_fire_rate": 0.7037037037037037,
+      "precision_ci": [
+        0.2373310141749316,
+        0.5617589138426603
+      ],
+      "his_S_lifted": 5,
+      "his_A_lifted": 4,
+      "his_C_lifted": 3,
+      "loo_worst_card": "TSM_2026-01-09",
+      "loo_worst_swing": 0.020430107526881736,
+      "loo_min_precision": 0.36666666666666664,
+      "loo_max_precision": 0.4,
+      "tp_cards": [
+        "AAPL_2026-05-08",
+        "ACHR_2025-12-19",
+        "BABA_2025-07-23",
+        "GOOGL_2025-04-17",
+        "GOOGL_2025-08-28",
+        "IWM_2024-10-15",
+        "MARA_2026-03-10",
+        "MSFT_2024-09-11",
+        "NVDA_2025-01-17",
+        "PLTR_2026-05-27",
+        "QQQ_2026-05-07",
+        "TSM_2026-01-09"
+      ],
+      "fp_cards": [
+        "AAPL_2025-02-25",
+        "AMD_2025-05-19",
+        "AMZN_2026-02-10",
+        "AVGO_2026-05-13",
+        "BABA_2026-02-17",
+        "COIN_2024-09-12",
+        "HOOD_2025-02-06",
+        "HOOD_2025-08-12",
+        "INTC_2024-11-21",
+        "INTC_2026-08-17",
+        "IWM_2024-09-18",
+        "META_2025-12-22",
+        "META_2026-03-27",
+        "MU_2025-08-27",
+        "MU_2025-11-12",
+        "MU_2026-01-09",
+        "NFLX_2025-06-12",
+        "NFLX_2025-10-13",
+        "TSLA_2025-05-15"
+      ]
+    },
+    "clean": {
+      "lifted": 21,
+      "tp": 10,
+      "fp": 11,
+      "n_yes": 13,
+      "n_no": 27,
+      "recall": 0.7692307692307693,
+      "precision": 0.47619047619047616,
+      "false_fire_rate": 0.4074074074074074,
+      "precision_ci": [
+        0.2834400609778204,
+        0.6763046542119987
+      ],
+      "his_S_lifted": 5,
+      "his_A_lifted": 2,
+      "his_C_lifted": 3,
+      "loo_worst_card": "TSM_2026-01-09",
+      "loo_worst_swing": 0.026190476190476153,
+      "loo_min_precision": 0.45,
+      "loo_max_precision": 0.5,
+      "tp_cards": [
+        "ACHR_2025-12-19",
+        "GOOGL_2025-04-17",
+        "GOOGL_2025-08-28",
+        "IWM_2024-10-15",
+        "MARA_2026-03-10",
+        "MSFT_2024-09-11",
+        "NVDA_2025-01-17",
+        "PLTR_2026-05-27",
+        "QQQ_2026-05-07",
+        "TSM_2026-01-09"
+      ],
+      "fp_cards": [
+        "AAPL_2025-02-25",
+        "AMZN_2026-02-10",
+        "BABA_2026-02-17",
+        "COIN_2024-09-12",
+        "HOOD_2025-02-06",
+        "INTC_2026-08-17",
+        "META_2025-12-22",
+        "META_2026-03-27",
+        "MU_2026-01-09",
+        "NFLX_2025-06-12",
+        "NFLX_2025-10-13"
+      ]
+    },
+    "pa": {
+      "lifted": 11,
+      "tp": 7,
+      "fp": 4,
+      "n_yes": 13,
+      "n_no": 27,
+      "recall": 0.5384615384615384,
+      "precision": 0.6363636363636364,
+      "false_fire_rate": 0.14814814814814814,
+      "precision_ci": [
+        0.3538011744516876,
+        0.8483352890779298
+      ],
+      "his_S_lifted": 4,
+      "his_A_lifted": 0,
+      "his_C_lifted": 3,
+      "loo_worst_card": "NFLX_2025-06-12",
+      "loo_worst_swing": 0.0636363636363636,
+      "loo_min_precision": 0.6,
+      "loo_max_precision": 0.7,
+      "tp_cards": [
+        "ACHR_2025-12-19",
+        "GOOGL_2025-04-17",
+        "IWM_2024-10-15",
+        "MARA_2026-03-10",
+        "MSFT_2024-09-11",
+        "PLTR_2026-05-27",
+        "QQQ_2026-05-07"
+      ],
+      "fp_cards": [
+        "BABA_2026-02-17",
+        "COIN_2024-09-12",
+        "HOOD_2025-02-06",
+        "NFLX_2025-06-12"
+      ]
+    },
+    "disp": {
+      "lifted": 5,
+      "tp": 3,
+      "fp": 2,
+      "n_yes": 13,
+      "n_no": 27,
+      "recall": 0.23076923076923078,
+      "precision": 0.6,
+      "false_fire_rate": 0.07407407407407407,
+      "precision_ci": [
+        0.23072428122047128,
+        0.8823792257998296
+      ],
+      "his_S_lifted": 1,
+      "his_A_lifted": 0,
+      "his_C_lifted": 2,
+      "loo_worst_card": "NFLX_2025-06-12",
+      "loo_worst_swing": 0.15000000000000002,
+      "loo_min_precision": 0.5,
+      "loo_max_precision": 0.75,
+      "tp_cards": [
+        "GOOGL_2025-04-17",
+        "IWM_2024-10-15",
+        "QQQ_2026-05-07"
+      ],
+      "fp_cards": [
+        "COIN_2024-09-12",
+        "NFLX_2025-06-12"
+      ]
+    },
+    "all": {
+      "lifted": 40,
+      "tp": 13,
+      "fp": 27,
+      "n_yes": 13,
+      "n_no": 27,
+      "recall": 1.0,
+      "precision": 0.325,
+      "false_fire_rate": 1.0,
+      "precision_ci": [
+        0.20084502229416662,
+        0.47982253813801606
+      ],
+      "his_S_lifted": 5,
+      "his_A_lifted": 4,
+      "his_C_lifted": 4,
+      "loo_worst_card": "TSM_2026-01-09",
+      "loo_worst_swing": 0.0173076923076923,
+      "loo_min_precision": 0.3076923076923077,
+      "loo_max_precision": 0.3333333333333333,
+      "tp_cards": [
+        "AAPL_2025-08-01",
+        "AAPL_2026-05-08",
+        "ACHR_2025-12-19",
+        "BABA_2025-07-23",
+        "GOOGL_2025-04-17",
+        "GOOGL_2025-08-28",
+        "IWM_2024-10-15",
+        "MARA_2026-03-10",
+        "MSFT_2024-09-11",
+        "NVDA_2025-01-17",
+        "PLTR_2026-05-27",
+        "QQQ_2026-05-07",
+        "TSM_2026-01-09"
+      ],
+      "fp_cards": [
+        "AAPL_2025-02-25",
+        "AMD_2025-05-19",
+        "AMZN_2026-02-10",
+        "AVGO_2024-09-18",
+        "AVGO_2026-05-13",
+        "AVGO_2026-07-23",
+        "BABA_2026-02-17",
+        "COIN_2024-09-12",
+        "COIN_2025-03-13",
+        "HOOD_2025-02-06",
+        "HOOD_2025-08-12",
+        "INTC_2024-11-20",
+        "INTC_2024-11-21",
+        "INTC_2026-08-17",
+        "IWM_2024-09-18",
+        "META_2025-12-22",
+        "META_2026-03-27",
+        "MU_2024-10-17",
+        "MU_2025-08-27",
+        "MU_2025-11-12",
+        "MU_2026-01-09",
+        "NFLX_2025-06-12",
+        "NFLX_2025-10-13",
+        "ORCL_2024-09-16",
+        "PLTR_2024-12-31",
+        "PLTR_2025-05-02",
+        "TSLA_2025-05-15"
+      ]
+    }
+  },
+  "control_search": [
+    {
+      "terms": [
+        "dir==call",
+        "stopb==tight"
+      ],
+      "n": 14,
+      "tp": 9,
+      "precision": 0.6428571428571429,
+      "recall": 0.6923076923076923,
+      "f1": 0.6666666666666666
+    },
+    {
+      "terms": [
+        "dir==call",
+        "stop_pct<0.15"
+      ],
+      "n": 14,
+      "tp": 9,
+      "precision": 0.6428571428571429,
+      "recall": 0.6923076923076923,
+      "f1": 0.6666666666666666
+    },
+    {
+      "terms": [
+        "dir==call",
+        "stop_pct<0.20"
+      ],
+      "n": 14,
+      "tp": 9,
+      "precision": 0.6428571428571429,
+      "recall": 0.6923076923076923,
+      "f1": 0.6666666666666666
+    },
+    {
+      "terms": [
+        "stopb==tight",
+        "tag:clean"
+      ],
+      "n": 18,
+      "tp": 10,
+      "precision": 0.5555555555555556,
+      "recall": 0.7692307692307693,
+      "f1": 0.6451612903225806
+    },
+    {
+      "terms": [
+        "stopb==tight",
+        "!tag:late"
+      ],
+      "n": 18,
+      "tp": 10,
+      "precision": 0.5555555555555556,
+      "recall": 0.7692307692307693,
+      "f1": 0.6451612903225806
+    },
+    {
+      "terms": [
+        "tag:clean",
+        "stop_pct<0.15"
+      ],
+      "n": 18,
+      "tp": 10,
+      "precision": 0.5555555555555556,
+      "recall": 0.7692307692307693,
+      "f1": 0.6451612903225806
+    },
+    {
+      "terms": [
+        "tag:clean",
+        "stop_pct<0.20"
+      ],
+      "n": 18,
+      "tp": 10,
+      "precision": 0.5555555555555556,
+      "recall": 0.7692307692307693,
+      "f1": 0.6451612903225806
+    },
+    {
+      "terms": [
+        "!tag:late",
+        "stop_pct<0.15"
+      ],
+      "n": 18,
+      "tp": 10,
+      "precision": 0.5555555555555556,
+      "recall": 0.7692307692307693,
+      "f1": 0.6451612903225806
+    },
+    {
+      "terms": [
+        "dir==call",
+        "tag:clean"
+      ],
+      "n": 12,
+      "tp": 8,
+      "precision": 0.6666666666666666,
+      "recall": 0.6153846153846154,
+      "f1": 0.64
+    },
+    {
+      "terms": [
+        "tag:clean",
+        "stop_pct<0.30"
+      ],
+      "n": 19,
+      "tp": 10,
+      "precision": 0.5263157894736842,
+      "recall": 0.7692307692307693,
+      "f1": 0.625
+    },
+    {
+      "terms": [
+        "!tag:late",
+        "stop_pct<0.20"
+      ],
+      "n": 19,
+      "tp": 10,
+      "precision": 0.5263157894736842,
+      "recall": 0.7692307692307693,
+      "f1": 0.625
+    },
+    {
+      "terms": [
+        "tag:clean",
+        "stop_pct<0.05"
+      ],
+      "n": 13,
+      "tp": 8,
+      "precision": 0.6153846153846154,
+      "recall": 0.6153846153846154,
+      "f1": 0.6153846153846154
+    }
+  ],
+  "reachability": {
+    "off": {
+      "x_rows": 70319,
+      "lifted": 0,
+      "pct": 0.0,
+      "book_pct": 0.0
+    },
+    "br": {
+      "x_rows": 70319,
+      "lifted": 65787,
+      "pct": 93.55508468550462,
+      "book_pct": 86.61540689637013
+    },
+    "clean": {
+      "x_rows": 70319,
+      "lifted": 20333,
+      "pct": 28.91537137900141,
+      "book_pct": 26.770502810948877
+    },
+    "pa": {
+      "x_rows": 70319,
+      "lifted": 7893,
+      "pct": 11.224562351569277,
+      "book_pct": 10.391952918252077
+    },
+    "disp": {
+      "x_rows": 70319,
+      "lifted": 4308,
+      "pct": 6.126366984740966,
+      "book_pct": 5.671928692744197
+    },
+    "all": {
+      "x_rows": 70319,
+      "lifted": 70319,
+      "pct": 100.0,
+      "book_pct": 92.582254815478
+    }
+  },
+  "cards": [
+    {
+      "card": "AAPL_2025-02-25",
+      "his": "no",
+      "setup": "break_and_retest",
+      "level": "pivot low",
+      "tags": [
+        "clean",
+        "nodisp",
+        "brocr"
+      ],
+      "status": "skipped_d",
+      "sgrade": "S",
+      "stop_pct": 0.008,
+      "aligned": "against",
+      "et": "10:31",
+      "r": -1.0
+    },
+    {
+      "card": "AAPL_2025-08-01",
+      "his": "c",
+      "setup": "one_candle_rule",
+      "level": "other",
+      "tags": [
+        "brocr"
+      ],
+      "status": "skipped_tight_stop",
+      "sgrade": "S",
+      "stop_pct": 0.208,
+      "aligned": "with",
+      "et": "10:07",
+      "r": -1.0
+    },
+    {
+      "card": "AAPL_2026-05-08",
+      "his": "a",
+      "setup": "break_and_retest",
+      "level": "OR high",
+      "tags": [
+        "late",
+        "nodisp",
+        "brocr"
+      ],
+      "status": "skipped_d",
+      "sgrade": "S",
+      "stop_pct": 0.082,
+      "aligned": "with",
+      "et": "10:01",
+      "r": -1.0
+    },
+    {
+      "card": "ACHR_2025-12-19",
+      "his": "s",
+      "setup": "break_and_retest",
+      "level": "PMH",
+      "tags": [
+        "clean",
+        "hammer",
+        "nodisp",
+        "brocr"
+      ],
+      "status": "skipped_d",
+      "sgrade": "A",
+      "stop_pct": 0.124,
+      "aligned": "against",
+      "et": "09:37",
+      "r": -1.0
+    },
+    {
+      "card": "AMD_2025-05-19",
+      "his": "no",
+      "setup": "break_and_retest",
+      "level": "pivot low",
+      "tags": [
+        "late",
+        "nodisp",
+        "brocr"
+      ],
+      "status": "skipped_d",
+      "sgrade": "S",
+      "stop_pct": 0.004,
+      "aligned": "against",
+      "et": "10:50",
+      "r": -1.0
+    },
+    {
+      "card": "AMZN_2026-02-10",
+      "his": "no",
+      "setup": "break_and_retest",
+      "level": "pivot low",
+      "tags": [
+        "clean",
+        "nodisp",
+        "brocr"
+      ],
+      "status": "skipped_d",
+      "sgrade": "S",
+      "stop_pct": 0.014,
+      "aligned": "with",
+      "et": "09:46",
+      "r": -1.0
+    },
+    {
+      "card": "AVGO_2024-09-18",
+      "his": "no",
+      "setup": "one_candle_rule",
+      "level": "other",
+      "tags": [
+        "brocr"
+      ],
+      "status": "skipped_d",
+      "sgrade": "S",
+      "stop_pct": 0.282,
+      "aligned": "with",
+      "et": "09:41",
+      "r": -1.0
+    },
+    {
+      "card": "AVGO_2026-05-13",
+      "his": "no",
+      "setup": "break_and_retest",
+      "level": "pivot high",
+      "tags": [
+        "late",
+        "hammer",
+        "nodisp",
+        "brocr"
+      ],
+      "status": "skipped_d",
+      "sgrade": "S",
+      "stop_pct": 0.002,
+      "aligned": "against",
+      "et": "10:57",
+      "r": -1.0
+    },
+    {
+      "card": "AVGO_2026-07-23",
+      "his": "no",
+      "setup": "one_candle_rule",
+      "level": "other",
+      "tags": [
+        "brocr"
+      ],
+      "status": "skipped_d",
+      "sgrade": "S",
+      "stop_pct": 0.174,
+      "aligned": "against",
+      "et": "10:57",
+      "r": 2.89
+    },
+    {
+      "card": "BABA_2025-07-23",
+      "his": "a",
+      "setup": "break_and_retest",
+      "level": "pivot low",
+      "tags": [
+        "late",
+        "hammer",
+        "nodisp",
+        "brocr"
+      ],
+      "status": "skipped_d",
+      "sgrade": "S",
+      "stop_pct": 0.0,
+      "aligned": "n/a",
+      "et": "09:58",
+      "r": 0.0
+    },
+    {
+      "card": "BABA_2026-02-17",
+      "his": "no",
+      "setup": "break_and_retest",
+      "level": "OR low",
+      "tags": [
+        "clean",
+        "hammer",
+        "nodisp",
+        "brocr"
+      ],
+      "status": "skipped_d",
+      "sgrade": "S",
+      "stop_pct": 0.115,
+      "aligned": "with",
+      "et": "09:46",
+      "r": 5.083
+    },
+    {
+      "card": "COIN_2024-09-12",
+      "his": "no",
+      "setup": "break_and_retest",
+      "level": "OR low",
+      "tags": [
+        "clean",
+        "disp",
+        "brocr"
+      ],
+      "status": "skipped_d",
+      "sgrade": "S",
+      "stop_pct": 0.041,
+      "aligned": "against",
+      "et": "09:52",
+      "r": -1.0
+    },
+    {
+      "card": "COIN_2025-03-13",
+      "his": "no",
+      "setup": "one_candle_rule",
+      "level": "other",
+      "tags": [
+        "brocr"
+      ],
+      "status": "skipped_d",
+      "sgrade": "A",
+      "stop_pct": 0.708,
+      "aligned": "with",
+      "et": "10:23",
+      "r": -1.0
+    },
+    {
+      "card": "GOOGL_2025-04-17",
+      "his": "c",
+      "setup": "break_and_retest",
+      "level": "pivot low",
+      "tags": [
+        "clean",
+        "disp",
+        "brocr"
+      ],
+      "status": "skipped_d",
+      "sgrade": "S",
+      "stop_pct": 0.039,
+      "aligned": "with",
+      "et": "10:22",
+      "r": 11.083
+    },
+    {
+      "card": "GOOGL_2025-08-28",
+      "his": "a",
+      "setup": "break_and_retest",
+      "level": "pivot high",
+      "tags": [
+        "clean",
+        "nodisp",
+        "brocr"
+      ],
+      "status": "skipped_d",
+      "sgrade": "S",
+      "stop_pct": 0.014,
+      "aligned": "against",
+      "et": "09:46",
+      "r": -1.0
+    },
+    {
+      "card": "HOOD_2025-02-06",
+      "his": "no",
+      "setup": "break_and_retest",
+      "level": "PDH",
+      "tags": [
+        "clean",
+        "hammer",
+        "nodisp",
+        "brocr"
+      ],
+      "status": "skipped_d",
+      "sgrade": "S",
+      "stop_pct": 0.348,
+      "aligned": "with",
+      "et": "09:36",
+      "r": -1.0
+    },
+    {
+      "card": "HOOD_2025-08-12",
+      "his": "no",
+      "setup": "break_and_retest",
+      "level": "pivot low",
+      "tags": [
+        "late",
+        "nodisp",
+        "brocr"
+      ],
+      "status": "skipped_d",
+      "sgrade": "S",
+      "stop_pct": 0.026,
+      "aligned": "with",
+      "et": "10:20",
+      "r": -1.0
+    },
+    {
+      "card": "INTC_2024-11-20",
+      "his": "no",
+      "setup": "one_candle_rule",
+      "level": "other",
+      "tags": [
+        "brocr"
+      ],
+      "status": "skipped_d",
+      "sgrade": "S",
+      "stop_pct": 0.378,
+      "aligned": "with",
+      "et": "10:11",
+      "r": 0.25
+    },
+    {
+      "card": "INTC_2024-11-21",
+      "his": "no",
+      "setup": "break_and_retest",
+      "level": "pivot high",
+      "tags": [
+        "late",
+        "nodisp",
+        "brocr"
+      ],
+      "status": "skipped_d",
+      "sgrade": "S",
+      "stop_pct": 0.114,
+      "aligned": "against",
+      "et": "10:17",
+      "r": -1.0
+    },
+    {
+      "card": "INTC_2026-08-17",
+      "his": "no",
+      "setup": "break_and_retest",
+      "level": "OR high",
+      "tags": [
+        "clean",
+        "nodisp",
+        "brocr"
+      ],
+      "status": "skipped_d",
+      "sgrade": "S",
+      "stop_pct": 0.109,
+      "aligned": "against",
+      "et": "10:53",
+      "r": -1.0
+    },
+    {
+      "card": "IWM_2024-09-18",
+      "his": "no",
+      "setup": "break_and_retest",
+      "level": "pivot low",
+      "tags": [
+        "late",
+        "nodisp",
+        "brocr"
+      ],
+      "status": "skipped_d",
+      "sgrade": "S",
+      "stop_pct": 0.009,
+      "aligned": "against",
+      "et": "10:02",
+      "r": -1.0
+    },
+    {
+      "card": "IWM_2024-10-15",
+      "his": "s",
+      "setup": "break_and_retest",
+      "level": "OR high",
+      "tags": [
+        "clean",
+        "hammer",
+        "disp",
+        "brocr"
+      ],
+      "status": "skipped_d",
+      "sgrade": "S",
+      "stop_pct": 0.031,
+      "aligned": "with",
+      "et": "09:58",
+      "r": 11.786
+    },
+    {
+      "card": "MARA_2026-03-10",
+      "his": "s",
+      "setup": "break_and_retest",
+      "level": "PDH",
+      "tags": [
+        "clean",
+        "hammer",
+        "nodisp",
+        "brocr"
+      ],
+      "status": "skipped_d",
+      "sgrade": "A",
+      "stop_pct": 0.0,
+      "aligned": "with",
+      "et": "09:49",
+      "r": 0.0
+    },
+    {
+      "card": "META_2025-12-22",
+      "his": "no",
+      "setup": "break_and_retest",
+      "level": "PMH",
+      "tags": [
+        "clean",
+        "nodisp"
+      ],
+      "status": "skipped_d",
+      "sgrade": "S",
+      "stop_pct": 0.283,
+      "aligned": "against",
+      "et": "09:35",
+      "r": 0.93
+    },
+    {
+      "card": "META_2026-03-27",
+      "his": "no",
+      "setup": "break_and_retest",
+      "level": "pivot low",
+      "tags": [
+        "clean",
+        "nodisp",
+        "brocr"
+      ],
+      "status": "skipped_d",
+      "sgrade": "S",
+      "stop_pct": 0.03,
+      "aligned": "with",
+      "et": "10:29",
+      "r": -1.0
+    },
+    {
+      "card": "MSFT_2024-09-11",
+      "his": "c",
+      "setup": "break_and_retest",
+      "level": "pivot low",
+      "tags": [
+        "clean",
+        "hammer",
+        "nodisp",
+        "brocr"
+      ],
+      "status": "skipped_d",
+      "sgrade": "S",
+      "stop_pct": 0.041,
+      "aligned": "against",
+      "et": "10:45",
+      "r": 4.235
+    },
+    {
+      "card": "MU_2024-10-17",
+      "his": "no",
+      "setup": "one_candle_rule",
+      "level": "other",
+      "tags": [
+        "brocr"
+      ],
+      "status": "skipped_d",
+      "sgrade": "S",
+      "stop_pct": 0.207,
+      "aligned": "with",
+      "et": "09:51",
+      "r": 0.511
+    },
+    {
+      "card": "MU_2025-08-27",
+      "his": "no",
+      "setup": "break_and_retest",
+      "level": "pivot high",
+      "tags": [
+        "late",
+        "hammer",
+        "nodisp",
+        "brocr"
+      ],
+      "status": "skipped_d",
+      "sgrade": "S",
+      "stop_pct": 0.043,
+      "aligned": "against",
+      "et": "10:23",
+      "r": -1.0
+    },
+    {
+      "card": "MU_2025-11-12",
+      "his": "no",
+      "setup": "break_and_retest",
+      "level": "pivot low",
+      "tags": [
+        "late",
+        "nodisp",
+        "brocr"
+      ],
+      "status": "skipped_d",
+      "sgrade": "S",
+      "stop_pct": 0.125,
+      "aligned": "with",
+      "et": "10:55",
+      "r": -1.0
+    },
+    {
+      "card": "MU_2026-01-09",
+      "his": "no",
+      "setup": "break_and_retest",
+      "level": "OR high",
+      "tags": [
+        "clean",
+        "nodisp",
+        "brocr"
+      ],
+      "status": "skipped_d",
+      "sgrade": "A",
+      "stop_pct": 0.368,
+      "aligned": "against",
+      "et": "09:42",
+      "r": 1.976
+    },
+    {
+      "card": "NFLX_2025-06-12",
+      "his": "no",
+      "setup": "break_and_retest",
+      "level": "pivot low",
+      "tags": [
+        "clean",
+        "disp",
+        "brocr"
+      ],
+      "status": "skipped_d",
+      "sgrade": "S",
+      "stop_pct": 0.046,
+      "aligned": "against",
+      "et": "10:07",
+      "r": -1.0
+    },
+    {
+      "card": "NFLX_2025-10-13",
+      "his": "no",
+      "setup": "break_and_retest",
+      "level": "PML",
+      "tags": [
+        "clean",
+        "nodisp",
+        "brocr"
+      ],
+      "status": "skipped_d",
+      "sgrade": "S",
+      "stop_pct": 0.075,
+      "aligned": "with",
+      "et": "09:41",
+      "r": -1.0
+    },
+    {
+      "card": "NVDA_2025-01-17",
+      "his": "a",
+      "setup": "break_and_retest",
+      "level": "OR high",
+      "tags": [
+        "clean",
+        "nodisp",
+        "brocr"
+      ],
+      "status": "skipped_d",
+      "sgrade": "S",
+      "stop_pct": 0.034,
+      "aligned": "against",
+      "et": "09:55",
+      "r": -1.0
+    },
+    {
+      "card": "ORCL_2024-09-16",
+      "his": "no",
+      "setup": "one_candle_rule",
+      "level": "other",
+      "tags": [
+        "brocr"
+      ],
+      "status": "skipped_d",
+      "sgrade": "S",
+      "stop_pct": 0.23,
+      "aligned": "with",
+      "et": "10:08",
+      "r": -1.0
+    },
+    {
+      "card": "PLTR_2024-12-31",
+      "his": "no",
+      "setup": "one_candle_rule",
+      "level": "other",
+      "tags": [
+        "brocr"
+      ],
+      "status": "skipped_d",
+      "sgrade": "S",
+      "stop_pct": 0.427,
+      "aligned": "against",
+      "et": "10:28",
+      "r": -1.0
+    },
+    {
+      "card": "PLTR_2025-05-02",
+      "his": "no",
+      "setup": "one_candle_rule",
+      "level": "other",
+      "tags": [
+        "brocr"
+      ],
+      "status": "skipped_d",
+      "sgrade": "S",
+      "stop_pct": 0.352,
+      "aligned": "against",
+      "et": "10:08",
+      "r": -1.0
+    },
+    {
+      "card": "PLTR_2026-05-27",
+      "his": "s",
+      "setup": "break_and_retest",
+      "level": "OR high",
+      "tags": [
+        "clean",
+        "hammer",
+        "nodisp",
+        "brocr"
+      ],
+      "status": "skipped_d",
+      "sgrade": "S",
+      "stop_pct": 0.0,
+      "aligned": "against",
+      "et": "10:03",
+      "r": 0.0
+    },
+    {
+      "card": "QQQ_2026-05-07",
+      "his": "c",
+      "setup": "break_and_retest",
+      "level": "pivot high",
+      "tags": [
+        "clean",
+        "disp",
+        "brocr"
+      ],
+      "status": "skipped_d",
+      "sgrade": "S",
+      "stop_pct": 0.007,
+      "aligned": "with",
+      "et": "10:24",
+      "r": 28.357
+    },
+    {
+      "card": "TSLA_2025-05-15",
+      "his": "no",
+      "setup": "break_and_retest",
+      "level": "pivot high",
+      "tags": [
+        "late",
+        "hammer",
+        "disp",
+        "brocr"
+      ],
+      "status": "skipped_d",
+      "sgrade": "S",
+      "stop_pct": 0.074,
+      "aligned": "with",
+      "et": "10:22",
+      "r": -1.0
+    },
+    {
+      "card": "TSM_2026-01-09",
+      "his": "s",
+      "setup": "break_and_retest",
+      "level": "OR high",
+      "tags": [
+        "clean",
+        "nodisp",
+        "brocr"
+      ],
+      "status": "skipped_d",
+      "sgrade": "S",
+      "stop_pct": 0.125,
+      "aligned": "against",
+      "et": "09:46",
+      "r": 0.375
+    }
+  ]
+}

@@ -141,6 +141,13 @@ class CaptureRunner(SignalRunner):
     def _route(self, signals, sig):
         self._grade_for_levels(sig)
         self._calibration_grade(sig)
+        # T10: this replay does NOT delegate to super()._route (it labels the
+        # rejection reason instead), so every gate the base grows has to be
+        # named here or it is inert in exactly the rig that scores held-out
+        # recall -- regression_gate, t70_test1_score and t0_heldout_recall all
+        # run through this class. `_apply_x_lift` is a no-op unless X_LIFT is
+        # set. research/test_t10_x_lift.py fails if this call disappears.
+        self._apply_x_lift(sig)
         if sig["grade"] != TradeGrade.D.value:
             if (sig["grade"] != "C"
                     or self._min_viable_stop(sig["entry"], sig["stop"], sig["direction"])):
