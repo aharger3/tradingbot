@@ -7,6 +7,9 @@ Standard (settled 2026-08-21, Projects/omen-decks.md):
   * Card = grade (S/A/C/none + legend) + trade type + entry + stop. No R:R.
   * Never repeats a symbol-day Austin has already judged, in ANY mark corpus --
     research/marks/*.jsonl plus the older files listed in LEGACY_MARK_FILES.
+  * Every card passes the T21 pre-filter (research/t21_card_filter.py) before it
+    can reach him. Austin, 2026-08-29: "you know better not to give me old
+    trades that don't fit my system." --no-prefilter turns it off.
   * Front-end comes from deck_ui.py. This file supplies data only.
 
     python research/build_deck.py                       # default mixed deck
@@ -31,6 +34,7 @@ sys.path.insert(0, HERE)
 sys.path.insert(0, ROOT)
 
 import deck_ui
+import t21_card_filter as card_filter
 from research.t4_engine_recall import (run_day, rth_candles, prior_day_levels,
                                        premarket_extremes)
 
@@ -248,15 +252,31 @@ def candle_dict(c) -> dict:
 
 
 def fire_count(symbol: str, day: str) -> int:
+    return day_fires(symbol, day)[0]
+
+
+def day_fires(symbol: str, day: str):
+    """(number of entries the engine would take, first entry minute "HH:MM"|None)."""
     try:
         entries, _sigs, _raw = run_day(symbol, day)
     except Exception:
-        return 0
-    return 0 if entries is None else len(entries)
+        return 0, None
+    if not entries:
+        return 0, None
+    return len(entries), entries[0]["timestamp"][:5]
 
 
-def pick(n: int, seed: int, max_probe: int, own_manifest: str | None = None):
-    """Half fire days, half silent days, drawn at random, never already marked."""
+def pick(n: int, seed: int, max_probe: int, own_manifest: str | None = None,
+         prefilter: bool = True):
+    """Half fire days, half silent days, drawn at random, never already marked,
+    and -- since T21 -- never a card the pre-filter says does not fit his system.
+
+    Austin, probe_master_2026-08-29.jsonl: "you know better not to give me old
+    trades that don't fit my system." He refused 64 of 90 cards in that probe.
+    ``prefilter`` runs research/t21_card_filter over every candidate before it
+    can reach a deck; see research/t21_card-selection.md for what it costs and
+    what it buys. Pass ``prefilter=False`` only to reproduce a pre-T21 deck.
+    """
     want = n // 2
     per_source: dict[str, int] = {}
     judged = marked_card_ids(per_source)
@@ -276,6 +296,8 @@ def pick(n: int, seed: int, max_probe: int, own_manifest: str | None = None):
 
     fire, silent = [], []
     probed = 0
+    dropped = 0
+    drop_reasons: dict[str, int] = {}
     for sym, day in pool:
         if len(fire) >= want and len(silent) >= want:
             break
@@ -285,10 +307,23 @@ def pick(n: int, seed: int, max_probe: int, own_manifest: str | None = None):
         if len(candles) < 60:
             continue
         probed += 1
-        n_fires = fire_count(sym, day)
+        n_fires, first_et = day_fires(sym, day)
         bucket = fire if n_fires > 0 else silent
         if len(bucket) >= want:
             continue
+        verdict = None
+        if prefilter:
+            feat = card_filter.features(sym, day, first_et)
+            if feat is None:
+                continue
+            ok, why = card_filter.verdict(feat)
+            if not ok:
+                dropped += 1
+                for w in why:
+                    drop_reasons[w] = drop_reasons.get(w, 0) + 1
+                continue
+            verdict = {"er_session": feat["er_session"], "reach_r": feat["reach_r"],
+                       "impulse_atr": feat["impulse_atr"], "et": feat["et"]}
         pdh, pdl, _o, _c = prior_day_levels(sym, day)
         pmh, pml = premarket_extremes(sym, day)
         # Opening range = first 5 RTH bars, same definition backtest_week.py:808,
@@ -297,9 +332,22 @@ def pick(n: int, seed: int, max_probe: int, own_manifest: str | None = None):
         orl = min(c.low for c in candles[:5]) if len(candles) >= 5 else None
         bucket.append({"symbol": sym, "day": day, "candles": candles,
                        "pdh": pdh, "pdl": pdl, "pmh": pmh, "pml": pml,
-                       "orh": orh, "orl": orl, "fires": n_fires})
+                       "orh": orh, "orl": orl, "fires": n_fires,
+                       "prefilter": verdict})
         if probed % 25 == 0:
-            print("  probed %d  fire=%d silent=%d" % (probed, len(fire), len(silent)))
+            print("  probed %d  fire=%d silent=%d prefilter-dropped=%d"
+                  % (probed, len(fire), len(silent), dropped))
+
+    if prefilter:
+        kept = len(fire) + len(silent)
+        print("T21 pre-filter: %d of %d probed days dropped (%.1f%%), %d kept"
+              % (dropped, dropped + kept,
+                 100 * dropped / (dropped + kept) if dropped + kept else 0, kept))
+        for w, c in sorted(drop_reasons.items(), key=lambda kv: -kv[1]):
+            print("    %-13s %d" % (w, c))
+    else:
+        print("T21 pre-filter: DISABLED -- this deck may repeat the cards "
+              "Austin refused 64 of 90 times")
 
     cards = fire + silent
     rng.shuffle(cards)          # no positional tell
@@ -342,7 +390,9 @@ def write_deck(cards, name: str, label: str) -> str:
             f.write(json.dumps({"card_id": "%s_%s" % (c["symbol"], c["day"]),
                                 "symbol": c["symbol"], "date": c["day"],
                                 "deck": name,
-                                "engine_fires_that_day": c["fires"]},
+                                "engine_fires_that_day": c["fires"],
+                                # T21: why this card was allowed in front of him
+                                "prefilter": c.get("prefilter")},
                                sort_keys=True) + "\n")
     return path
 
@@ -353,13 +403,16 @@ def main():
     ap.add_argument("--n", type=int, default=60)
     ap.add_argument("--seed", type=int, default=7)
     ap.add_argument("--max-probe", type=int, default=1200)
+    ap.add_argument("--no-prefilter", action="store_true",
+                    help="skip the T21 card pre-filter (reproduces a pre-T21 deck)")
     ap.add_argument("--label", default=None)
     a = ap.parse_args()
 
     if a.n > 60:
         raise SystemExit("deck standard caps a deck at 60 cards (asked for %d)" % a.n)
 
-    cards, nf, ns, probed, nseen = pick(a.n, a.seed, a.max_probe)
+    cards, nf, ns, probed, nseen = pick(a.n, a.seed, a.max_probe,
+                                        prefilter=not a.no_prefilter)
     label = a.label or ("mixed — %d cards, engine-fire days and silent days shuffled" % len(cards))
     path = write_deck(cards, a.name, label)
 
