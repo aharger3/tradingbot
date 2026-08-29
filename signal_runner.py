@@ -785,6 +785,23 @@ if ARRIVAL_LADDER not in ARRIVAL_LADDER_MODES:
 # anymore." Detection stays on -- the historical numbers stay comparable --
 # only routing stops. TRADE_RETIRED_SETUPS=1 is the one-variable-away
 # reversal, off by default like every other A/B flag in this file.
+#
+# T19 CLOSED R33, 2026-08-29 (research/t19_fvg-flag-verdict.md). Austin: "I
+# don't know anything about flag or FBG" -- verdict `keep the retired-setup
+# code, confirm FVG/flag against corpus or Scarface`. The corpus was searched
+# (research/search_fvg_flag.py, research/extract_mentor_refs.py): NEITHER setup
+# is taught anywhere in it -- not by Scarface, not in youtube_data/, not in
+# Discord or Circle. So the retirement is permanent and it now has a source,
+# not just a preference.
+#
+# THE CODE STAYS. T22 recommended deleting the detectors outright; R33's own
+# text is "**Keep** the retired-setup code", and a ratified answer outranks an
+# adjudication, so the deletion was NOT taken and this comment is the recorded
+# reason instead. What that buys: every historical number that counted an FVG
+# or flag signal stays reproducible, and research/test_retired_setups.py can
+# still prove that flipping TRADE_RETIRED_SETUPS is the only thing standing
+# between the code and a trade. Nothing routes; nothing ever will without that
+# one variable.
 RETIRED_SETUPS = frozenset({SignalType.FAIR_VALUE_GAP, SignalType.FLAG})
 TRADE_RETIRED_SETUPS = os.getenv("TRADE_RETIRED_SETUPS", "0").strip().lower() \
     in ("1", "true", "yes", "on")
@@ -877,8 +894,42 @@ CONFLUENCE_BASE_SETUPS = frozenset({SignalType.BREAK_AND_RETEST,
 # differ in ONE thing.
 #
 # Measured by research/t10_x_lift_fitted.py; asserted by research/test_t10_x_lift.py.
-X_LIFT = os.getenv("X_LIFT", "off").strip().lower()
+# T23 SHIPS THIS ON AT `clean`. It is the only lever in 21 tracks that moved
+# held-out S recall: 18/34 -> 23/34 (52.9% -> 67.6%), +5 S days gained and 0
+# lost, exact McNemar p=0.031, with precision 36.0% -> 40.4%, win rate
+# 42.8% -> 46.7% and max drawdown 32.43R -> 27.68R all moving the right way.
+# It enters on RECALL alone: its mean-R move (-0.0426 against a +/-0.1167 bar)
+# is a NULL and must never be quoted as a money result.
+# X_LIFT=off restores the pre-T23 routing for a leave-one-out arm.
+X_LIFT = os.getenv("X_LIFT", "clean").strip().lower()
 X_LIFT_ARMS = ("off", "br", "clean", "pa", "disp", "all")
+
+# T9/R30 -- the tight-RR floor on the UNDERLYING. Austin, probe_master
+# 2026-08-29: "I meant stock price not bid ask, but both are true." A signal
+# whose risk is under MIN_STOP_PCT of the entry price is skipped, because at
+# that width the R-multiple is an artefact of the denominator rather than a
+# tradeable edge. 0.08 removes 4.4% of the T0 book (115 rows) at ZERO held-out
+# S recall cost. EXEMPT: SignalType.ONE_CANDLE_RULE, because R4's verdict is
+# `none` -- "no minimum stop distance on OCR, size to the stop." Applied in
+# _route. Measured by research/t9_spread_tight_rr.py.
+MIN_STOP_PCT = float(os.getenv("MIN_STOP_PCT", "0.08"))
+
+# T3 -- "84 percent rule needs a reclaim and enters when that happens with SAME
+# STOP unless a new stop makes more sense" (Austin, probe_master 2026-08-29).
+# That qualifier had never been implemented in this codebase at all. T3 wrote a
+# literal, tested reading of it (rule84_source_stop: keep the original stop
+# unless the reclaim candle gives a TIGHTER still-valid one; wider never wins)
+# and buried it behind RULE84_SOURCE, whose other three clauses did not earn
+# their place (recall flat, whole-book move inside its bar, slice effect a
+# sizing artefact). T22: the settled piece "should be reachable independent of
+# the flag", so it gets its own switch here.
+#
+# DEFAULT OFF, and deliberately so: the qualifier alone has never been A/B'd --
+# every number in research/t3_rule84-from-source.md is the four-clause
+# composite. Turning it on without measuring it would be exactly the kind of
+# number this project has been burned by. RULE84_STOP_QUALIFIER=1 measures it.
+RULE84_STOP_QUALIFIER = os.getenv(
+    "RULE84_STOP_QUALIFIER", "0").strip().lower() in ("1", "true", "yes", "on")
 
 
 def x_lift_qualifies(sig: dict, arm: str) -> bool:
@@ -2516,6 +2567,28 @@ class SignalRunner:
                 sig["reason"] += " [skip: repeat idea]"
                 self._log_record(sig, status="skipped", skip_reason="repeat idea")
                 return
+            # T9/R30 — MIN_STOP_PCT. A stop narrower than 0.08% of the entry
+            # price is not a stop, it is a rounding error: the 115 rows below
+            # that line have a median R of a flat -1.0 and a positive MEAN only
+            # because a handful of 3-to-5-cent stops on $100-$630 names book
+            # triple-digit R multiples no real fill could realise (median
+            # removed stop $0.17, minimum $0.03). It is the same artefact class
+            # that inflated T3's 84% slice (AMD 2-cent stop, +187.5R) and
+            # produced W1's dead on_all +7.4974R. Costs zero held-out S recall
+            # at every threshold tested to 0.15% (18/34 before and after).
+            #
+            # SCOPED OFF THE ONE-CANDLE RULE. R4 is Austin's, verdict `none`:
+            # "no minimum stop distance on OCR, size to the stop." A book-wide
+            # floor would re-litigate a ratified answer, so OCR rows are exempt
+            # and the -0.0462R book cost measured in research/t9_spread-and-tight-rr.md
+            # is the UNSCOPED number. MIN_STOP_PCT=0 restores the pre-T23 book.
+            if (MIN_STOP_PCT > 0
+                    and sig.get("signal_type") is not SignalType.ONE_CANDLE_RULE
+                    and sig["entry"]
+                    and abs(sig["entry"] - sig["stop"]) / abs(sig["entry"]) * 100 < MIN_STOP_PCT):
+                sig["reason"] += " [skip: stop under %.2f%% of price]" % MIN_STOP_PCT
+                self._log_record(sig, status="skipped", skip_reason="min stop pct")
+                return
             # tight-stop skip only for C — it killed 42 of 303 labeled takes
             # (calibration 2026-07-06); B+ setups size to the stop instead
             if sig["grade"] != "C" or self._min_viable_stop(sig["entry"], sig["stop"], sig["direction"]):
@@ -2897,7 +2970,7 @@ class SignalRunner:
                 # uniform arms do move it. No-op on the default.
                 # T3: RULE84_SOURCE reads his own qualifier -- "same stop
                 # unless a new stop makes more sense" -- literally.
-                if RULE84_SOURCE:
+                if RULE84_SOURCE or RULE84_STOP_QUALIFIER:
                     stop_84 = rule84_source_stop(
                         self.session.entry_stop, current,
                         self.session.entry_price, is_long=True)
@@ -2931,7 +3004,8 @@ class SignalRunner:
                         "grade": grade.value,
                         "stop_level_name": (
                             ("Original stop" if abs(stop_84 - (self.session.entry_stop or stop_84)) < 1e-9
-                             else "Reclaim candle low (tighter)") if RULE84_SOURCE
+                             else "Reclaim candle low (tighter)")
+                            if (RULE84_SOURCE or RULE84_STOP_QUALIFIER)
                             else "Original stop" if RULE84_LESSON else "Reclaim candle low"),
                         "level_price": self.session.entry_price,
                         "stop_width_pct": round(stock_risk / current.close * 100, 2) if current.close else 0,
@@ -3141,7 +3215,7 @@ class SignalRunner:
                 # T24: mirror of the call side. No-op on the default.
                 # T3: RULE84_SOURCE reads his own qualifier literally — see
                 # the call side.
-                if RULE84_SOURCE:
+                if RULE84_SOURCE or RULE84_STOP_QUALIFIER:
                     stop_84 = rule84_source_stop(
                         self.session.entry_stop, current,
                         self.session.entry_price, is_long=False)
@@ -3171,7 +3245,8 @@ class SignalRunner:
                         "grade": grade.value,
                         "stop_level_name": (
                             ("Original stop" if abs(stop_84 - (self.session.entry_stop or stop_84)) < 1e-9
-                             else "Reclaim candle high (tighter)") if RULE84_SOURCE
+                             else "Reclaim candle high (tighter)")
+                            if (RULE84_SOURCE or RULE84_STOP_QUALIFIER)
                             else "Original stop" if RULE84_LESSON else "Rejection candle high"),
                         "level_price": self.session.entry_price,
                         "stop_width_pct": round(stock_risk / current.close * 100, 2) if current.close else 0,

@@ -62,11 +62,15 @@ SPACE = [(retest, ham, dsp)
 
 
 def main():
-    print("1. default off and inert")
-    check(sr.X_LIFT == os.getenv("X_LIFT", "off").strip().lower(),
+    print("1. shipped default, and every arm inert when it is off")
+    # T23 flipped the shipped default from `off` to `clean`: it is the only
+    # lever in the 7.1 wave that moved held-out S recall (18/34 -> 23/34,
+    # +5/-0, exact McNemar p=0.031). The A/B arms below are unchanged, so a
+    # leave-one-out run is still X_LIFT=off.
+    check(sr.X_LIFT == os.getenv("X_LIFT", "clean").strip().lower(),
           "X_LIFT reads its env var")
-    check(os.getenv("X_LIFT") is not None or sr.X_LIFT == "off",
-          "unset X_LIFT means 'off'")
+    check(os.getenv("X_LIFT") is not None or sr.X_LIFT == "clean",
+          "unset X_LIFT means the shipped arm 'clean'")
     for setup, *tags in [(BR, "clean", "hammer", "disp"), (OCR,)]:
         check(sr.x_lift_qualifies(sig(setup, *tags), "off") is False,
               "arm 'off' lifts nothing (%s)" % setup.value)

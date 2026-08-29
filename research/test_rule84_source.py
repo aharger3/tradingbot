@@ -127,13 +127,20 @@ if fired_on:
     check(fired_on[0]["direction"] == "call", "the fired signal is a call")
 
 # --- 3: the stop, "same unless a new one makes more sense" ---------------
+# NOTE (T23): this fixture's reclaim low used to be 99.95, a $0.05 stop on a
+# $100 entry = 0.05% of price. T9's MIN_STOP_PCT floor (0.08%, shipped ON) now
+# skips that in _route, and it is RIGHT to: a five-cent stop on a $100 name is
+# the exact artefact class that booked AMD 2025-11-07 at +187.5R off a two-cent
+# stop, which is T3's own austin_blocker. The fixture moved to a $0.20 stop
+# (0.20% of price) so it tests the STOP QUALIFIER and not the width floor.
+# The interaction itself is asserted below.
 tighter_reclaim = Candle(timestamp="09:39:00", open=99.90, high=100.25,
-                         low=99.95, close=100.20, volume=1000)  # low 99.95 > stop 99.00
+                         low=99.80, close=100.20, volume=1000)  # low 99.80 > stop 99.00
 fired = _fire(tighter_reclaim, entry_stop=99.00, source_flag="1")
 check(len(fired) == 1, "tighter-stop fixture arms under the flag")
 if fired:
-    check(abs(fired[0]["stop"] - 99.95) < 1e-9,
-          "a TIGHTER, still-valid natural stop (99.95) replaces the original (99.00)")
+    check(abs(fired[0]["stop"] - 99.80) < 1e-9,
+          "a TIGHTER, still-valid natural stop (99.80) replaces the original (99.00)")
     check("tighter" in fired[0]["stop_level_name"].lower(),
           "stop_level_name says so: %r" % fired[0]["stop_level_name"])
 
@@ -146,6 +153,21 @@ if fired:
           "a WIDER natural stop (98.50) does NOT override the original (99.00)")
     check(fired[0]["stop_level_name"] == "Original stop",
           "stop_level_name says so: %r" % fired[0]["stop_level_name"])
+
+# --- 3b: T23 stack interaction — T9's width floor bites the 84% re-entry ---
+# The qualifier can hand back a stop tighter than MIN_STOP_PCT of the entry.
+# When it does, the trade is skipped, not taken at a fictional risk. R4 exempts
+# the ONE-CANDLE RULE from the floor ("no minimum stop distance on OCR"); it
+# says nothing about the 84% re-entry, and T3's own blocker asks Austin to
+# settle that. Until he does, the floor governs here and this asserts it.
+print("")
+print("T23 interaction: MIN_STOP_PCT vs the 84% stop qualifier")
+sub_floor_reclaim = Candle(timestamp="09:39:00", open=99.90, high=100.25,
+                           low=99.95, close=100.20, volume=1000)  # $0.05 = 0.05%
+fired = _fire(sub_floor_reclaim, entry_stop=99.00, source_flag="1")
+check(len(fired) == 0,
+      "a $0.05 stop on a $100 entry (0.05% < MIN_STOP_PCT 0.08%) is SKIPPED, "
+      "not traded at a fictional risk")
 
 # --- unit-level: rule84_source_stop directly, both directions -------------
 print("\nrule84_source_stop — direct")

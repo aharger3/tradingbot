@@ -125,21 +125,27 @@ def main():
 
     print("\n-- the governing cost: his held-out S days (method rule 2)")
     # probe_s_sweep_2026-08-28.jsonl shares no card with probe_master and was
-    # never fitted on. The engine fires on 18 of the 34 days he called S; those
-    # 18 are the cards a filtered fire-half deck has to keep. A config that cuts
-    # refusals by throwing away his S days is not an improvement.
+    # never fitted on. Those cards are the ones a filtered fire-half deck has to
+    # keep: a config that cuts refusals by throwing away his S days is not an
+    # improvement.
+    #
+    # THE DENOMINATOR MOVES WITH THE ENGINE. T21 measured 18 of 34 on the T0
+    # engine; T23 shipped X_LIFT=clean and the engine now fires on 23 of the 34
+    # (that is the whole point of the lever). This test pins the RATIO the
+    # filter has to hold, not the engine's recall -- research/t23_stack.md owns
+    # that number and t23_heldout.json is where it is measured.
     sdays = F.s_day_engine_cards()
-    check("engine fires on 18 of his 34 held-out S days", len(sdays) == 18,
-          str(len(sdays)))
+    check("the engine fires on at least 18 of his 34 held-out S days",
+          len(sdays) >= 18, "%d/34" % len(sdays))
     kept = sum(1 for r in sdays if F.verdict(r["_f"], F.DEFAULT)[0])
-    check("shipped config keeps >=90% of them (17/18 = 94.4%)",
+    check("shipped config keeps >=90% of them",
           kept >= 0.90 * len(sdays), "%d/%d = %.1f%%"
           % (kept, len(sdays), 100 * kept / len(sdays)))
     four = {"late_window": "11:00", "min_er_session": 0.05,
             "max_reach_r": 8.0, "min_impulse_atr": 1.2}
     k4 = sum(1 for r in sdays if F.verdict(r["_f"], four)[0])
-    check("the rejected four-check fit keeps only 10/18 -- why it is not shipped",
-          k4 == 10, "%d/18" % k4)
+    check("the rejected four-check fit keeps materially fewer -- why it is not shipped",
+          k4 < 0.90 * len(sdays), "%d/%d" % (k4, len(sdays)))
 
     print("\n-- build_deck.pick() actually applies the filter")
     import build_deck

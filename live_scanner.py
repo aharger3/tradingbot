@@ -63,6 +63,7 @@ from market_data import fetch_spy_daily_closes
 # (−$22.1k/12mo combined; SMCI worst symbol in book at −$12.4k, SPY 0-for-5).
 # MicroStrategy removed from all pools per 2026-08-11 triage (universe.py).
 from universe import MAJOR_15, INDEX_POOL, OTHER_POOL, POOL_OF
+import loss_halt
 DEFAULT_SYMBOLS = MAJOR_15 + INDEX_POOL + OTHER_POOL
 DEFAULT_WINDOW = "09:30-11:00"
 
@@ -402,6 +403,11 @@ def scan_once(
                       f"{ev['outcome'].upper()} P&L ${ev['pnl']:.2f}")
                 if ev["outcome"] == "stop":
                     runner.session.record_loss()
+                    # R31: the halt is ACCOUNT-wide, not per symbol.
+                    # runner.session is one runner = one ticker, so the
+                    # per-session counter above can never see two losses
+                    # in a row on two different names. This one can.
+                    _account_streak["n"] += 1
                     # Lesson 6 canonical (A/B 2026-07-06: B&R-only arm was the
                     # difference between -$2k and +$450 on 30d): solid B&R
                     # stop-out arms ONE re-entry at original stop + target
@@ -411,6 +417,7 @@ def scan_once(
                         print(f"   🔁 84% rule armed for {symbol} at ${ev['stock_entry']:.2f}")
                 else:
                     runner.session.record_win()
+                    _account_streak["n"] = 0      # R31: a win resets it
 
         runner.candles = candles
         runner.symbol = symbol  # so detect_signals logs correct ticker
@@ -549,12 +556,24 @@ GOVERNOR_S_CAP = int(GOVERNOR_S_CAP) if GOVERNOR_S_CAP else None
 WATCH_DAILY_CAP = 5
 _watch_dings = {"n": 0}
 _s_trades_today: dict = {}  # symbol -> count of TRADE-tier S signals today.
+# R31: consecutive CLOSED losses across every symbol this session. Reset by
+# a win or a scratch. The scanner process is one session, so this is day-scoped
+# the same way _s_trades_today and _watch_dings are. loss_halt.py owns the rule.
+_account_streak = {"n": 0}
                             # Scanner restarts daily via schtask, so this
                             # resets free, same as _last_alert / _watch_dings.
 
 
 def _tier(runner: SignalRunner, sig: dict, grade: str, ts: str, symbol: str) -> str:
     s = runner.session
+    # R31 (verdict `both`) -- the two-consecutive-loss halt now runs in the
+    # LIVE path account-wide as well as in the backtest. Before T23 the
+    # only halt here was runner.session.consecutive_losses, and a runner is
+    # one ticker: two losses on two different symbols never halted
+    # anything. Open positions keep managing; this stops NEW entries only.
+    if (loss_halt.LOSS_HALT
+            and _account_streak["n"] >= loss_halt.HALT_AFTER_CONSECUTIVE_LOSSES):
+        return "WATCH"
     if getattr(sig["signal_type"], "value", "") == "reentry_84_rule":
         return "TRADE" if s.consecutive_losses < 2 else "WATCH"
     if grade != "A+":          # R12: no time floor -- the whole window trades

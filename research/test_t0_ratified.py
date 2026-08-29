@@ -100,14 +100,35 @@ check(sr.LEVEL_BLOCK_CAP is False and sr.MESH_S_VETO is False, "R25",
 check(sr.LEVEL_RETIRE_TOUCHES == 0, "R27",
       "LEVEL_RETIRE_TOUCHES deleted (verdict `delete`)")
 
+# ---- landed by T23 (the 7.1 stack), not by T0 ----------------------------
+import loss_halt
+check(loss_halt.LOSS_HALT is True and loss_halt.HALT_AFTER_CONSECUTIVE_LOSSES == 2,
+      "R31", "the two-consecutive-loss halt is ON (verdict `both`) -- "
+             "backtest_2y.main() and live_scanner._tier(), see loss_halt.py")
+check("import loss_halt" in open(os.path.join(ROOT, "live_scanner.py"), encoding="utf-8").read(),
+      "R31b", "and it is in the LIVE path too, account-wide -- that is what `both` means")
+check(sr.MIN_STOP_PCT > 0, "R30",
+      'the tight-RR floor on the UNDERLYING is live  ("I meant stock price not bid ask")')
+check(sr.MIN_STOP_PCT == 0.08, "R30b",
+      "at 0.08% of entry price -- zero held-out S recall cost (research/t9_spread-and-tight-rr.md)")
+# R4's verdict is `none`: no minimum stop distance on the one-candle rule. The
+# floor above must never re-litigate it, so OCR is exempt by name in _route.
+check("SignalType.ONE_CANDLE_RULE" in
+      open(os.path.join(ROOT, "signal_runner.py"), encoding="utf-8").read()
+      .split("MIN_STOP_PCT > 0")[1][:400],
+      "R4+R30", "and the one-candle rule is EXEMPT from it (R4 verdict `none`)")
+check(sr.RETIRED_SETUPS and sr.TRADE_RETIRED_SETUPS is False, "R33",
+      "FVG/flag confirmed corpus-absent and kept as retired code "
+      "(research/t19_fvg-flag-verdict.md) -- R33 says KEEP, so it was not deleted")
+
 print("""
 NOT asserted here, and why -- each is a measurement track, not a config flip:
   R7  index quota            -> T4      R8  symbol balance        -> T15
   R9  level target first     -> T5      R10 runner sizing         -> T5
   R11 BE on movement         -> T11     R19 candles beyond hammer -> T13
   R24 sweep the 0.5%         -> T16     R28 real contracts        -> T7
-  R29 strikes / futures      -> T8,T17  R30 spread + tight RR     -> T9
-  R31 loss halt both paths   -> T20     R33 confirm FVG/flag      -> T19
+  R29 strikes / futures      -> T8,T17
+LANDED BY T23 and asserted above: R30, R31, R33.
 """)
 print("%d failed" % len(FAIL))
 sys.exit(1 if FAIL else 0)

@@ -12,6 +12,7 @@ from collections import defaultdict
 from datetime import date, datetime, timedelta
 from pathlib import Path
 
+import loss_halt
 import polygon_feed as pf
 from research import downgrade as dg
 from backtest_week import simulate_day, htf_bias_for, RISK_DOLLARS
@@ -204,12 +205,22 @@ def main():
             prev = d
         print("[%s] %d sessions, %d signals" % (sym, len(day_bars), len(rows) - n0))
 
+    # R31 — the two-consecutive-loss halt, account-wide, causal on the exit.
+    # It has to run here and not inside simulate_day: the halt is a statement
+    # about the DAY across every symbol, and the loop above walks one symbol at
+    # a time. See loss_halt.py for why the counter advances on the close and not
+    # on the entry. LOSS_HALT=0 restores the unhalted book.
+    halted = loss_halt.apply_to_book(rows)
+    print("R31 loss halt: %d trades blocked (%s)"
+          % (halted, "ON" if loss_halt.LOSS_HALT else "OFF"))
+
     out = ROOT / args.out
     out.parent.mkdir(parents=True, exist_ok=True)
     meta = {"generated": datetime.now().isoformat(timespec="seconds"),
             "first": min(sessions), "last": max(sessions),
             "sessions": len(sessions), "symbols": syms,
             "risk_dollars": RISK_DOLLARS, "signals": len(rows),
+            "loss_halt": bool(loss_halt.LOSS_HALT), "halted": halted,
             "traded": sum(1 for r in rows if r["traded"])}
     out.write_text(json.dumps({"meta": meta, "trades": rows}, separators=(",", ":")),
                    encoding="utf-8")
