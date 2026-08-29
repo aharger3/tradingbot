@@ -7,9 +7,11 @@ Standard (settled 2026-08-21, Projects/omen-decks.md):
   * Card = grade (S/A/C/none + legend) + trade type + entry + stop. No R:R.
   * Never repeats a symbol-day Austin has already judged, in ANY mark corpus --
     research/marks/*.jsonl plus the older files listed in LEGACY_MARK_FILES.
-  * Every card passes the T21 pre-filter (research/t21_card_filter.py) before it
-    can reach him. Austin, 2026-08-29: "you know better not to give me old
-    trades that don't fit my system." --no-prefilter turns it off.
+  * Every FIRE card passes the T21 pre-filter (research/t21_card_filter.py)
+    before it can reach him. Austin, 2026-08-29: "you know better not to give me
+    old trades that don't fit my system." Silent-day cards pass untouched --
+    filtering them was measured and costs 9 of his 34 held-out S days for no
+    lift (research/t21_card-selection.md). --no-prefilter turns it all off.
   * Front-end comes from deck_ui.py. This file supplies data only.
 
     python research/build_deck.py                       # default mixed deck
@@ -273,9 +275,12 @@ def pick(n: int, seed: int, max_probe: int, own_manifest: str | None = None,
 
     Austin, probe_master_2026-08-29.jsonl: "you know better not to give me old
     trades that don't fit my system." He refused 64 of 90 cards in that probe.
-    ``prefilter`` runs research/t21_card_filter over every candidate before it
-    can reach a deck; see research/t21_card-selection.md for what it costs and
-    what it buys. Pass ``prefilter=False`` only to reproduce a pre-T21 deck.
+    ``prefilter`` runs research/t21_card_filter over every FIRE candidate before
+    it can reach a deck -- one rule: reject a card whose furthest watched level
+    ahead is more than 8R away. Silent-day candidates pass untouched, because
+    filtering them was measured and is pure cost (9 of his 34 held-out S days,
+    for a null lift). See research/t21_card-selection.md. Pass
+    ``prefilter=False`` only to reproduce a pre-T21 deck.
     """
     want = n // 2
     per_source: dict[str, int] = {}

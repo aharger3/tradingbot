@@ -82,23 +82,55 @@ SESSION_END = "11:00"
 
 # ---------------------------------------------------------------- thresholds
 # Not one of these numbers is Austin's. Each is fitted, and the fit is reported
-# with an out-of-sample estimate in research/t21_card-selection.md.
+# with its out-of-sample cost in research/t21_card-selection.md.
 #
-# `late_window` sits at 11:00, i.e. the window check only asserts the deck
-# standard's own 09:30-11:00 bound, because R13 is explicit that 10:45-11:00 is
-# "a bad ENTRY window, noted not banned". The sweep agrees: banning 10:45+ costs
-# more graded cards than it saves refusals.
+# AT THESE SETTINGS ONLY ONE CHECK CAN FIRE, and that is the finding, not an
+# oversight. `--tradeoff` sweeps 540 configs against two axes at once: how much
+# of Austin's attention the filter saves on probe_master, and how many of the
+# engine's cards it keeps on the 18 held-out S days the engine fires on. Every
+# config that leans on `chop` or `displacement` buys a point or two of lift by
+# throwing away his S days -- the fitted four-check version kept only 10 of 18
+# (55.6%). Method rule 2 says held-out recall governs, so the shipped point is
+# the only one on the frontier that keeps >=90% of them:
+#
+#   reach <= 8.0R   17/18 = 94.4% of his S-day cards kept, lift +25.4 pts, p=0.0211
+#   reach <= 6.0R   16/18 = 88.9%,                          lift +27.5 pts, p=0.0076
+#   reach <= 5.0R   15/18 = 83.3%,                          lift +30.7 pts, p=0.0019
+#
+# So of the five criteria the spec named, exactly one survives -- and it is the
+# INVERSE of one of them. "Plausible RR" becomes "reject implausible RR".
+#
+# `late_window` sits at 11:00 (the deck standard's own bound) because R13 is
+# explicit that 10:45-11:00 is "a bad ENTRY window, noted not banned".
 DEFAULT = {
-    "late_window": "11:00",       # reject entries at/after this clock time
-    "min_er_session": 0.05,       # Kaufman efficiency ratio 09:30-11:00
-    "max_reach_r": 8.0,           # R to the furthest watched level ahead
-    "min_impulse_atr": 1.2,       # best 3-bar close move in the prior 10, in ATR
+    "late_window": "11:00",       # 09:30-11:00; dead on engine-proposed cards
+    "min_er_session": 0.0,        # chop check OFF -- costs S days, see above
+    "max_reach_r": 8.0,           # THE filter: R to the furthest level ahead
+    "min_impulse_atr": 0.0,       # displacement check OFF -- costs S days
 }
 
+# The aggressive alternative, for Austin to choose between. Saves more of his
+# time (he sees 53 cards instead of 63 of 90) and costs 2 more S-day cards.
+AGGRESSIVE = dict(DEFAULT, max_reach_r=5.0)
+
 ALL_CHECKS = ("window", "chop", "reach", "displacement")
-# Checks that need a proposed entry minute. A whole-session card (a silent day
-# in a mixed deck) is judged on `chop` alone -- see features().
+# Checks that need a proposed entry minute.
 ENTRY_CHECKS = ("window", "reach", "displacement")
+
+# SHIPPED DEFAULT, and it is a measured decision, not an oversight.
+#
+# A whole-session card -- the silent half of a mixed deck -- has no proposed
+# entry, so only `chop` could be applied to it. Scored against the 100-card S
+# sweep (`--ssweep`), a corpus this filter was never fitted on, chop-only
+# filtering of session cards is NULL (+3.6 points, 95% CI [-17.6, +22.0],
+# Fisher p = 0.8170) and it THROWS AWAY 9 of the 34 days Austin called S.
+# Pure cost, no measured benefit, on the exact sample the recall gate uses.
+#
+# So session cards are passed through untouched. The silent half of a deck
+# exists to test whether the engine misses his S days; filtering it on a
+# statistic that cannot tell his S days apart can only damage that test.
+# Set FILTER_SESSION_CARDS = True to reproduce the rejected arm.
+FILTER_SESSION_CARDS = False
 
 
 # ------------------------------------------------------------------ features
@@ -224,16 +256,21 @@ def features(symbol: str, day: str, et: str | None = None) -> dict | None:
 
 
 # ------------------------------------------------------------------- verdict
-def verdict(feat: dict, cfg: dict = None, checks=ALL_CHECKS):
+def verdict(feat: dict, cfg: dict = None, checks=ALL_CHECKS,
+            filter_session=None):
     """(ok, reasons). ``reasons`` names every check the card failed.
 
-    A card with no proposed entry is judged on the session checks only; the
-    entry-anchored checks are skipped rather than failed, so a clean trending
-    day the engine was silent on still reaches the deck. That is the recall half
-    of a mixed deck and it must not be filtered away.
+    A card with NO proposed entry passes unconditionally by default -- see
+    FILTER_SESSION_CARDS above for the measurement that settled this. The
+    recall half of a mixed deck must not be filtered away by a statistic that
+    cannot tell his S days apart.
     """
     cfg = cfg or DEFAULT
+    if filter_session is None:
+        filter_session = FILTER_SESSION_CARDS
     if not feat.get("entry_anchored"):
+        if not filter_session:
+            return True, []
         checks = tuple(c for c in checks if c not in ENTRY_CHECKS)
     bad = []
     if "window" in checks and not (SESSION_START <= feat["et"] < cfg["late_window"]):
@@ -290,14 +327,14 @@ def load_labels():
 
 
 # -------------------------------------------------------------------- scoring
-def score(rows, cfg, checks=ALL_CHECKS):
+def score(rows, cfg, checks=ALL_CHECKS, filter_session=None):
     """Confusion against his verdicts. PASS is the positive class."""
     tp = fp = tn = fn = 0
     for r in rows:
         f = r.get("_f")
         if f is None:
             continue
-        ok = verdict(f, cfg, checks)[0]
+        ok = verdict(f, cfg, checks, filter_session)[0]
         if r["keep"] and ok:
             tp += 1
         elif r["keep"]:
@@ -402,6 +439,183 @@ def _fit_cfg(rows):
     return best or dict(DEFAULT)
 
 
+S_SWEEP = os.path.join(HERE, "marks", "probe_s_sweep_2026-08-28.jsonl")
+
+
+def s_sweep():
+    """The independent check: the 100-card S sweep of 2026-08-28, 34 S / 66 no.
+
+    This corpus was NOT used to build or fit the filter and shares no card with
+    probe_master. It is the governing held-out sample under method rule 2, and
+    the question it answers is the one that would sink the whole track: does the
+    pre-filter throw away the days Austin calls S?
+
+    Scored twice, because these are whole-day cards:
+      session mode -- no proposed entry, `chop` alone. This is exactly what the
+                      silent half of a mixed deck gets.
+      entry mode   -- anchored on the minute HE named in notes.min, where he
+                      named one. All four checks apply.
+    """
+    rows = []
+    with open(S_SWEEP, encoding="utf-8") as fh:
+        for line in fh:
+            r = json.loads(line)
+            et = (r.get("notes") or {}).get("min") or ""
+            et = et.strip()[:5].replace(" ", "")
+            if len(et) == 4 and et[1] == ":":     # "9:40" -> "09:40"
+                et = "0" + et
+            if len(et) != 5 or et[2] != ":":
+                et = None
+            rows.append({"card_id": r["card_id"], "symbol": r["symbol"],
+                         "day": r["date"], "et": et,
+                         "keep": (r.get("answers") or {}).get("s", [""])[0] == "s"})
+    print("S sweep: %d cards, %d he called S, %d he refused"
+          % (len(rows), sum(r["keep"] for r in rows),
+             sum(not r["keep"] for r in rows)))
+
+    # NOTE the third row is CONFOUNDED and is printed only to show its shape:
+    # only the 34 S cards carry a minute in notes.min, so the 64 non-S cards are
+    # session cards and pass unconditionally. Its "lift" is an artefact of that
+    # asymmetry, not a result. The uncofounded version of the same question is
+    # the SHIPPED CONFIGURATION block below, which anchors on the ENGINE's entry.
+    for mode, fs in (("session, chop applied  [REJECTED ARM]", True),
+                     ("session, passed through [SHIPPED]", False),
+                     ("entry on the minute HE named [CONFOUNDED, shape only]", True)):
+        use_et = mode.startswith("entry")
+        scored = []
+        for r in rows:
+            f = features(r["symbol"], r["day"], r["et"] if use_et else None)
+            if f is None:
+                continue
+            scored.append(dict(r, _f=f))
+        anch = sum(1 for r in scored if r["_f"]["entry_anchored"])
+        s = score(scored, DEFAULT, filter_session=fs)
+        npass, nfail = s["tp"] + s["fp"], s["tn"] + s["fn"]
+        d, lo, hi = newcombe_diff(s["tp"], npass, s["fn"], nfail) \
+            if (npass and nfail) else (0.0, 0.0, 0.0)
+        p = fisher_exact(s["tp"], s["fp"], s["fn"], s["tn"])
+        print("\n   --- %s mode (%d scoreable, %d entry-anchored)"
+              % (mode, len(scored), anch))
+        print("       %s" % _fmt(s))
+        print("       HIS S DAYS KEPT: %d of %d = %.1f%%   (the number that must not fall)"
+              % (s["tp"], s["tp"] + s["fn"],
+                 100 * s["recall"] if (s["tp"] + s["fn"]) else 0))
+        print("       S-rate of passing cards %.1f%% vs dropped %.1f%%  = %+.1f pts"
+              % (100 * s["precision"],
+                 100 * s["fn"] / nfail if nfail else 0, 100 * d))
+        print("       95%% CI [%+.1f, %+.1f]  Fisher p = %.4f   -> %s"
+              % (100 * lo, 100 * hi, p,
+                 "INSIDE its bar, NULL" if lo <= 0 <= hi else "outside its bar"))
+
+    # ---- the governing check for the SHIPPED configuration.
+    # A fire-half deck card is anchored on the ENGINE's proposed entry, not on
+    # Austin's minute. So the question that decides whether this filter is safe
+    # to ship is: on the days he called S, where the engine fires, does the
+    # filter throw the engine's card away? Method rule 2 -- held-out recall
+    # governs, not mean R.
+    from t4_engine_recall import run_day
+    print("\n   --- SHIPPED CONFIGURATION on the engine's own cards, S days only")
+    fires = kept = silent = 0
+    dropped = []
+    for r in rows:
+        if not r["keep"]:
+            continue
+        try:
+            ent, _s, _rw = run_day(r["symbol"], r["day"])
+        except Exception:
+            continue
+        if not ent:
+            silent += 1
+            continue
+        fires += 1
+        et = ent[0]["timestamp"][:5]
+        f = features(r["symbol"], r["day"], et)
+        if f is not None and verdict(f, DEFAULT)[0]:
+            kept += 1
+        else:
+            dropped.append((r["card_id"], et,
+                            verdict(f, DEFAULT)[1] if f else ["unscoreable"]))
+    lo, hi = wilson(kept, fires) if fires else (0, 0)
+    print("       of his %d S days: engine fires on %d, silent on %d"
+          % (sum(r['keep'] for r in rows), fires, silent))
+    print("       the filter KEEPS %d of those %d engine cards = %.1f%%  95%% CI [%.1f%%, %.1f%%]"
+          % (kept, fires, 100 * kept / fires if fires else 0, 100 * lo, 100 * hi))
+    for cid, et, why in dropped:
+        print("          DROPPED  %-20s et=%s  %s" % (cid, et, ",".join(why)))
+
+
+def s_day_engine_cards():
+    """The engine's own proposed card on every held-out S day it fires on.
+
+    34 S days in probe_s_sweep_2026-08-28.jsonl; the engine fires on 18 of them
+    (52.9%, the same recall DIRECTION.md carries). These 18 are the cards a
+    filtered fire-half deck would have to keep.
+    """
+    from t4_engine_recall import run_day
+    out = []
+    with open(S_SWEEP, encoding="utf-8") as fh:
+        for line in fh:
+            r = json.loads(line)
+            if (r.get("answers") or {}).get("s", [""])[0] != "s":
+                continue
+            try:
+                ent, _s, _rw = run_day(r["symbol"], r["date"])
+            except Exception:
+                continue
+            if not ent:
+                continue
+            f = features(r["symbol"], r["date"], ent[0]["timestamp"][:5])
+            if f is not None:
+                out.append({"card_id": r["card_id"], "_f": f, "keep": True})
+    return out
+
+
+def tradeoff():
+    """The frontier, and the number that should decide the shipped config.
+
+    x = how much of his attention the filter saves on probe_master
+    y = how many of the engine's cards it keeps on his held-out S days
+
+    Method rule 2: held-out recall governs. A config that cuts refusals but
+    throws away his S days is not an improvement, it is a different mistake.
+    """
+    rows = load_labels()
+    for r in rows:
+        r["_f"] = features(r["symbol"], r["day"], r["et"])
+    rows = [r for r in rows if r["_f"] is not None]
+    sdays = s_day_engine_cards()
+    print("probe_master: %d cards, %d graded" % (len(rows), sum(r["keep"] for r in rows)))
+    print("held-out S days the engine fires on: %d" % len(sdays))
+    print("\n%-58s %6s %7s %7s %7s %8s"
+          % ("config", "pass", "graded", "lift", "p", "S-KEPT"))
+    seen = []
+    for combo in itertools.product(*GRID.values()):
+        cfg = dict(zip(GRID, combo))
+        s = score(rows, cfg)
+        npass, nfail = s["tp"] + s["fp"], s["tn"] + s["fn"]
+        if not npass or not nfail:
+            continue
+        d, lo, _hi = newcombe_diff(s["tp"], npass, s["fn"], nfail)
+        skept = sum(1 for r in sdays if verdict(r["_f"], cfg)[0])
+        seen.append((skept / len(sdays) if sdays else 0, d, lo,
+                     fisher_exact(s["tp"], s["fp"], s["fn"], s["tn"]), cfg, s, skept))
+    # the frontier: for each S-retention level, the config with the biggest lift
+    best = {}
+    for sk, d, lo, p, cfg, s, skept in seen:
+        key = round(sk, 3)
+        if key not in best or d > best[key][1]:
+            best[key] = (sk, d, lo, p, cfg, s, skept)
+    for sk, d, lo, p, cfg, s, skept in sorted(best.values(), key=lambda x: -x[0]):
+        star = ""
+        if cfg == DEFAULT:
+            star = "  <== SHIPPED DEFAULT"
+        elif lo > 0 and sk >= 0.80:
+            star = "  <-- lift clears its bar AND keeps >=80% of his S days"
+        print("%-58s %5d %6.1f%% %+6.1f %7.4f %4d/%d = %5.1f%%%s"
+              % (json.dumps(cfg), s["tp"] + s["fp"], 100 * s["precision"],
+                 100 * d, p, skept, len(sdays), 100 * sk, star))
+
+
 # ------------------------------------------------------------------- driver
 def main():
     ap = argparse.ArgumentParser()
@@ -410,7 +624,20 @@ def main():
     ap.add_argument("--auc", action="store_true")
     ap.add_argument("--sweep", action="store_true")
     ap.add_argument("--cv", action="store_true")
+    ap.add_argument("--tradeoff", action="store_true",
+                    help="the frontier: refusal cut on probe_master vs "
+                         "retention of engine cards on his held-out S days")
+    ap.add_argument("--ssweep", action="store_true",
+                    help="score the filter against the 100-card S sweep, a "
+                         "corpus it was never fitted on and never saw")
     args = ap.parse_args()
+
+    if args.ssweep:
+        s_sweep()
+        return
+    if args.tradeoff:
+        tradeoff()
+        return
 
     rows = load_labels()
     for r in rows:
