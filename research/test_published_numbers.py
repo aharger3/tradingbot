@@ -63,6 +63,8 @@ def find_corresponding_script(md_path: Path) -> bool:
     XBOARD_MAPPING = {
         'x7_entry_surface_map.md': ['x7_launder_probe.py'],
         'x12_peer_premise.md': ['x12_peer_stats.py', 'x12_target_math.py', 'x12_scarface_exit.py'],
+        't3_rule84-from-source.md': ['t3_backtest_compare.py', 't3_spy1216_case.py',
+                                     'test_rule84_source.py', 't0_heldout_recall.py'],
     }
 
     # Historical allowlist: files whose scripts are archived, elsewhere, or don't need scripts

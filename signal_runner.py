@@ -270,6 +270,65 @@ RULE84_ARM_SGRADE = os.getenv("RULE84_ARM_SGRADE", "0").strip().lower() in ("1",
 # A/B: research/t84_arm_ungate.md.
 RULE84_ARM_NOGATE = os.getenv("RULE84_ARM_NOGATE", "0").strip().lower() in ("1", "true", "yes", "on")
 
+# T3 (RULE84_SOURCE, 2026-08-29) -- rewritten from the SOURCE, not from the
+# existing gates around it. Austin: "watch an 84 percent rule YouTube video
+# from Scarface to fix and implement this rule" -- the primary source is
+# already on disk: research/scarface-rules-videos.md, boot-camp-recordings
+# Day 5 "Every Setup" [7438s-8851s], corroborated by research/84rule-sizing-
+# dossier.md (84 verbatim quotes across the accelerator, mastermind, YouTube
+# and Discord). Two things the RECLAIM clause was doing that the source does
+# not ask for, and one thing the source asks for that it was not doing:
+#
+#   (1) NO PATTERN ON THE RECLAIM CANDLE. "There does not need to be a
+#       pattern on the second entry... it's a reclaim entry... And it says a
+#       reclaim of a key level. There does not need to be a pattern... Our
+#       signal really the only thing is a strong confirmation if it closes
+#       above" (Day 5 Every Setup, 7781s-7807s). The shipped clause required
+#       `current.is_bullish` / `current.is_bearish` on top of the close-
+#       through-the-level test -- a pattern requirement the source explicitly
+#       disclaims. RULE84_SOURCE drops it: the close through the level IS
+#       the signal, exactly as taught.
+#   (2) NO RR FLOOR, NO HOD-PROXIMITY VETO. The shipped clause additionally
+#       required >=1.5x remaining reward and >20% of the day's range still
+#       between the reclaim and HOD/LOD before it would even consider firing.
+#       Neither exists in the source -- those are this engine's own risk
+#       filters (2026-07-10 commit notes, no citation), and Austin's own
+#       words for what arms and fires the rule name only the reclaim itself:
+#       "84 percent rule needs a reclaim and enters when that happens with
+#       same stop unless a new stop makes more sense" (R6,
+#       probe_master_2026-08-29). RULE84_SOURCE drops both.
+#   (3) "SAME STOP UNLESS A NEW STOP MAKES MORE SENSE" was only ever "same
+#       stop" (RULE84_LESSON=True, unconditionally) -- his qualifier was
+#       never implemented. Read literally: `rule84_source_stop` below keeps
+#       the original stop by default and switches to the reclaim bar's own
+#       extreme only when that extreme is BOTH tighter (less risk) and still
+#       valid (on the losing side of the fill) -- a new stop "making more
+#       sense" means less risk for the same setup, never more.
+#
+# Sizing (accelerator "same size" vs. YouTube "can size up") and the arming
+# gate (which setups may arm the rule at all) are NOT this track -- R6/R32
+# and T-84/C9/P7 already settled those. FLAG-GATED, DEFAULT OFF: this is an
+# unvalidated rewrite pending its own 2-year A/B, same convention as every
+# other RULE84_* flag in this file. A/B: research/t3_rule84-from-source.md.
+RULE84_SOURCE = os.getenv("RULE84_SOURCE", "0").strip().lower() in ("1", "true", "yes", "on")
+
+
+def rule84_source_stop(original_stop, candle, entry: float, is_long: bool) -> float:
+    """T3: "same stop unless a new stop makes more sense". The source gives
+    no other stop rule for the reclaim than "the original stop and targets"
+    (Day 5 Every Setup, 7751s-7764s), so the ORIGINAL stop is the default.
+    His qualifier is read literally: the reclaim bar's own extreme is a new
+    stop that "makes more sense" only when it is TIGHTER than the original
+    (less risk, same setup) and still a real stop (on the losing side of the
+    fill) -- never wider, and never used if it would put the trade at zero or
+    negative risk."""
+    natural = candle.low if is_long else candle.high
+    if original_stop is None:
+        return natural
+    tighter = (natural > original_stop) if is_long else (natural < original_stop)
+    valid = (natural < entry) if is_long else (natural > entry)
+    return natural if (tighter and valid) else original_stop
+
 # T-84: the reclaim-tolerance question ballot b01 q12-q15 never answered.
 # Austin: "as long as the close is not too far away from original entry" -- no
 # number given. Currently the reclaim clause (:2380 long / :2600 short) accepts
@@ -2610,29 +2669,40 @@ class SignalRunner:
                 and self.session.entry_direction in (None, "call")
                 and current.close >= self.session.entry_price
                 and _reclaim_tol_ok(current.close, self.session.entry_price, self.session.entry_stop)
-                and current.is_bullish
-                and (RULE84_LESSON or self._strong_pa(current))):
-            # Skip if close near high of day (risk/reward gone)
+                and (RULE84_SOURCE or current.is_bullish)
+                and (RULE84_LESSON or RULE84_SOURCE or self._strong_pa(current))):
+            # Skip if close near high of day (risk/reward gone) -- T3: this
+            # veto and the RR floor below are NOT in the source (see
+            # RULE84_SOURCE docstring); dropped under the flag.
             day_range = hod - lod
             # 2026-07-10: remaining reward must still be >=1.5x risk at re-entry
             stop_chk = (self.session.entry_stop if RULE84_LESSON
                         and self.session.entry_stop is not None else current.low)
             tgt = self.session.entry_target
-            rr_ok = (tgt is not None and stop_chk < current.close
-                     and (tgt - current.close) >= 1.5 * (current.close - stop_chk))
+            rr_ok = RULE84_SOURCE or (
+                tgt is not None and stop_chk < current.close
+                and (tgt - current.close) >= 1.5 * (current.close - stop_chk))
+            near_hod = day_range > 0 and (hod - current.close) / day_range <= 0.2
             # T3(d): 2 attempts on ONE idea total (original + a single re-entry,
             # "2 is usual") and the reclaim must itself land before 11:00.
             key_84 = ("call", round(self.session.entry_price, NO_REPEAT_LEVEL_TICK))
             attempts = self._attempts_84.get(key_84, 1)   # the original entry is attempt 1
             caps_ok = (attempts < RULE84_MAX_ATTEMPTS
                        and bar_time(current.timestamp) < SESSION_END)
-            if day_range > 0 and (hod - current.close) / day_range > 0.2 and rr_ok and caps_ok:  # not too close to HOD
+            if (RULE84_SOURCE or not near_hod) and rr_ok and caps_ok:
                 # T24: `routed` leaves the 84% re-entry on its shipped stop --
                 # it is neither an OCR nor a break-and-retest. The three
                 # uniform arms do move it. No-op on the default.
-                stop_84 = placed_stop(SignalType.REENTRY_84_RULE, stop_chk, current, True,
-                                      level_stop=self.session.entry_price,
-                                      ocr_stop=lambda: ocr_far_edge(self.candles, True))
+                # T3: RULE84_SOURCE reads his own qualifier -- "same stop
+                # unless a new stop makes more sense" -- literally.
+                if RULE84_SOURCE:
+                    stop_84 = rule84_source_stop(
+                        self.session.entry_stop, current,
+                        self.session.entry_price, is_long=True)
+                else:
+                    stop_84 = placed_stop(SignalType.REENTRY_84_RULE, stop_chk, current, True,
+                                          level_stop=self.session.entry_price,
+                                          ocr_stop=lambda: ocr_far_edge(self.candles, True))
                 entry = order_fill(self.session.entry_price, current, is_long=True)  # T3(b)
                 stock_risk = entry - stop_84
                 self._attempts_84[key_84] = attempts + 1
@@ -2657,7 +2727,10 @@ class SignalRunner:
                         "target": self.session.entry_target,
                         "direction": "call",
                         "grade": grade.value,
-                        "stop_level_name": "Original stop" if RULE84_LESSON else "Reclaim candle low",
+                        "stop_level_name": (
+                            ("Original stop" if abs(stop_84 - (self.session.entry_stop or stop_84)) < 1e-9
+                             else "Reclaim candle low (tighter)") if RULE84_SOURCE
+                            else "Original stop" if RULE84_LESSON else "Reclaim candle low"),
                         "level_price": self.session.entry_price,
                         "stop_width_pct": round(stock_risk / current.close * 100, 2) if current.close else 0,
                     })
@@ -2836,27 +2909,38 @@ class SignalRunner:
                 and self.session.entry_direction in (None, "put")
                 and current.close <= self.session.entry_price
                 and _reclaim_tol_ok(current.close, self.session.entry_price, self.session.entry_stop)
-                and current.is_bearish
-                and (RULE84_LESSON or self._strong_pa(current))):
+                and (RULE84_SOURCE or current.is_bearish)
+                and (RULE84_LESSON or RULE84_SOURCE or self._strong_pa(current))):
             day_range = hod - lod
             # 2026-07-10: remaining reward must still be >=1.5x risk at re-entry
             # (12mo: avg re-entry had 1.4R left, some 0.6R — geometry gone)
+            # T3: neither this floor nor the LOD-proximity veto below is in
+            # the source (see RULE84_SOURCE docstring); dropped under the flag.
             stop_chk = (self.session.entry_stop if RULE84_LESSON
                         and self.session.entry_stop is not None else current.high)
             tgt = self.session.entry_target
-            rr_ok = (tgt is not None and stop_chk > current.close
-                     and (current.close - tgt) >= 1.5 * (stop_chk - current.close))
+            rr_ok = RULE84_SOURCE or (
+                tgt is not None and stop_chk > current.close
+                and (current.close - tgt) >= 1.5 * (stop_chk - current.close))
+            near_lod = day_range > 0 and (current.close - lod) / day_range <= 0.2
             # T3(d): mirror of the call side — 2 attempts on one idea, reclaim
             # before 11:00.
             key_84 = ("put", round(self.session.entry_price, NO_REPEAT_LEVEL_TICK))
             attempts = self._attempts_84.get(key_84, 1)
             caps_ok = (attempts < RULE84_MAX_ATTEMPTS
                        and bar_time(current.timestamp) < SESSION_END)
-            if day_range > 0 and (current.close - lod) / day_range > 0.2 and rr_ok and caps_ok:
+            if (RULE84_SOURCE or not near_lod) and rr_ok and caps_ok:
                 # T24: mirror of the call side. No-op on the default.
-                stop_84 = placed_stop(SignalType.REENTRY_84_RULE, stop_chk, current, False,
-                                      level_stop=self.session.entry_price,
-                                      ocr_stop=lambda: ocr_far_edge(self.candles, False))
+                # T3: RULE84_SOURCE reads his own qualifier literally — see
+                # the call side.
+                if RULE84_SOURCE:
+                    stop_84 = rule84_source_stop(
+                        self.session.entry_stop, current,
+                        self.session.entry_price, is_long=False)
+                else:
+                    stop_84 = placed_stop(SignalType.REENTRY_84_RULE, stop_chk, current, False,
+                                          level_stop=self.session.entry_price,
+                                          ocr_stop=lambda: ocr_far_edge(self.candles, False))
                 entry = order_fill(self.session.entry_price, current, is_long=False)  # T3(b)
                 stock_risk = stop_84 - entry
                 self._attempts_84[key_84] = attempts + 1
@@ -2877,7 +2961,10 @@ class SignalRunner:
                         "target": self.session.entry_target,
                         "direction": "put",
                         "grade": grade.value,
-                        "stop_level_name": "Original stop" if RULE84_LESSON else "Rejection candle high",
+                        "stop_level_name": (
+                            ("Original stop" if abs(stop_84 - (self.session.entry_stop or stop_84)) < 1e-9
+                             else "Reclaim candle high (tighter)") if RULE84_SOURCE
+                            else "Original stop" if RULE84_LESSON else "Rejection candle high"),
                         "level_price": self.session.entry_price,
                         "stop_width_pct": round(stock_risk / current.close * 100, 2) if current.close else 0,
                     })

@@ -153,3 +153,9 @@ research/_w3_*.log
 # The numbers read off it live in research/_t11_rescore.json, which IS tracked.
 research/t11_arm_ow1_closefill.json
 .tasty_challenge
+
+# T3's two 2-year books (research/t3_rule84-from-source.md), ~67 MB each and
+# regenerable with the two commands the report gives verbatim -- same rule as
+# research/bt2y_trades.json above. The numbers read off them live in the
+# report itself and in research/t3_backtest_compare.py's output, both tracked.
+research/t3_scratch/
