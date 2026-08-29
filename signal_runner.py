@@ -113,8 +113,13 @@ RULE84_LESSON = True   # True = lesson-faithful (no PA gate, original stop)
 # confluence trade must keep arming it — leaving it out would be a silent
 # behaviour change the moment CONFLUENCE_SETUP_ROUTES is flipped on. With the
 # flag OFF no signal ever carries the type, so this membership is a no-op today.
-RULE84_ARM_ON = frozenset({SignalType.BREAK_AND_RETEST, SignalType.ONE_CANDLE_RULE,
-                           SignalType.BR_OCR_CONFLUENCE})
+# R6 (Austin, probe_master_2026-08-29, fact_rule84_arm_setups -> `any`):
+#   "84 percent rule needs a reclaim and enters when that happens with same stop
+#    unless a new stop makes more sense."
+# His statement of the rule does not name the setup that failed, so the set is
+# now EVERY setup type. FVG and flag are retired (RETIRED_SETUPS) and emit
+# nothing today, so widening the set to them is a no-op rather than a revival.
+RULE84_ARM_ON = frozenset(SignalType)
 RULE84_ARM_BNR_ONLY = RULE84_ARM_ON == frozenset({SignalType.BREAK_AND_RETEST})
 
 # F2 stop-placement A/B (fable-spec-2026-07-12, audit #6). Ours was exactly AT
@@ -212,7 +217,13 @@ HTF_BIAS_GATE = os.getenv("HTF_BIAS_GATE", "0").strip().lower() in ("1", "true",
 # re-entries (grades them C) and lands exactly on the OFF arm's $75,489; with
 # STRICT removing the 47 B-origin laundered re-entries, A-tier heals anyway
 # (58tr 32.8%W -$2,393 -> 44tr 38.6%W +$6,162). n=4/yr caveat: F1 validates.
-RULE84_STRICT = os.getenv("RULE84_STRICT", "1").strip().lower() in ("1", "true", "yes", "on")
+# R6 (fact_rule84_arming -> `open`). Austin opened the arming gate: 7 of 472
+# chances to arm survived it and 3 re-entries fired in two years. p7_84_rule.md
+# priced the open arm at 116 re-entries and +0.792R -- positive, but UNDER the
+# book's own mean, so this is expected to dilute mean R while raising trade
+# count. That is his call and it ships at his answer. RULE84_STRICT=1 restores
+# the pre-2026-08-29 gate for the A/B.
+RULE84_STRICT = os.getenv("RULE84_STRICT", "0").strip().lower() in ("1", "true", "yes", "on")
 RULE84_OFF = os.getenv("RULE84_OFF", "0").strip().lower() in ("1", "true", "yes", "on")
 
 # P7/G1 (RULE84_ARM_SGRADE, 2026-08-26) — the third reading of the same rulebook
