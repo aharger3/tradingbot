@@ -1,0 +1,85 @@
+{
+  "futures_archive_symbols": [],
+  "equity_archive_symbol_count": 34,
+  "equity_archive_total_symbol_days": 16817,
+  "polygon_endpoint": "https://api.polygon.io/v2/aggs/ticker/{symbol}/range/1/minute/",
+  "prop_firm_mentions": {
+    "Vanquish": 9,
+    "Topstep": 21,
+    "Apex Trader Funding": 7,
+    "Bulenox": 2,
+    "MyFundedFutures": 3,
+    "TradeDay": 2,
+    "Earn2Trade": 2,
+    "Funded Futures Family": 1,
+    "FundedNext": 1
+  },
+  "prop_firm_mention_files": {
+    "Vanquish": [
+      "discord_data\\trading-floor.json",
+      "research\\austin_marks_v7.jsonl",
+      "research\\d3_risk_of_ruin.md",
+      "research\\deepseek-spec-2.md",
+      "research\\g4_prop_fit.md",
+      "research\\next-session-brief.md",
+      "research\\omen-task-queue.md",
+      "research\\recovered_reviews.jsonl",
+      "review-2026-07-10-rules.md"
+    ],
+    "Topstep": [
+      "_chunk_msgs_1.txt",
+      "_review_batches\\batch_004.json",
+      "_review_chunks\\chunk_1.json",
+      "_review_chunks_all.txt",
+      "_trade_reviews_mined.json",
+      "discord_data\\futures-alerts.json",
+      "discord_data\\trade-feedback.json",
+      "discord_data\\trading-floor.json",
+      "research\\deepseek-spec-2.md",
+      "research\\discord_curated\\short_side.txt",
+      "research\\discord_curated\\top_by_signal.txt",
+      "research\\discord_curated\\trade_reviews.txt",
+      "research\\discord_extracted\\all_extracted.jsonl",
+      "research\\discord_extracted\\bad_trade.jsonl",
+      "research\\discord_extracted\\exit.jsonl",
+      "research\\discord_extracted\\good_trade.jsonl",
+      "research\\discord_extracted\\rule_stmt.jsonl",
+      "research\\discord_extracted\\short_side.jsonl",
+      "research\\futures-propfirm-research.md",
+      "research\\g4_prop_fit.md",
+      "research\\omen-task-queue.md"
+    ],
+    "Apex Trader Funding": [
+      "discord_data\\trading-floor.json",
+      "research\\deepseek-spec-2.md",
+      "research\\discord_extracted\\all_extracted.jsonl",
+      "research\\discord_extracted\\exit.jsonl",
+      "research\\discord_extracted\\rule_stmt.jsonl",
+      "research\\futures-propfirm-research.md",
+      "research\\g4_prop_fit.md"
+    ],
+    "Bulenox": [
+      "discord_data\\trading-floor.json",
+      "research\\futures-propfirm-research.md"
+    ],
+    "MyFundedFutures": [
+      "research\\deepseek-spec-2.md",
+      "research\\futures-propfirm-research.md",
+      "research\\g4_prop_fit.md"
+    ],
+    "TradeDay": [
+      "research\\deepseek-spec-2.md",
+      "research\\futures-propfirm-research.md"
+    ],
+    "Earn2Trade": [
+      "research\\deepseek-spec-2.md",
+      "research\\futures-propfirm-research.md"
+    ],
+    "Funded Futures Family": [
+      "research\\futures-propfirm-research.md"
+    ],
+    "FundedNext": [
+      "research\\futures-propfirm-research.md"
+    ]
+  }
+}
