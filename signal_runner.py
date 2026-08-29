@@ -171,6 +171,8 @@ BNR_DISPLACEMENT_GATE = os.getenv("BNR_DISPLACEMENT_GATE", "1").strip().lower() 
 # `path_levels` / `path_target` for the target policy (T5) to consume, and the
 # reason string still names it so nothing about the setup becomes invisible.
 LEVEL_BLOCK_CAP = False
+# R21: the counter-day-trend cap, off. See _calibration_grade for the quote.
+COUNTER_TREND_CAP = os.getenv("COUNTER_TREND_CAP", "0").strip().lower() in ("1", "true", "yes", "on")
 CLEAR_FOR_APLUS = True   # A+/A require entry beyond ALL levels in trade direction
 STOP_RANGE_MULT = 0.75   # stop must be >= this x avg 1-min range ("human-proof")
 # T5 rename: "X" is the skip grade, "D" is its old letter — both rank 0 so
@@ -1723,12 +1725,28 @@ class SignalRunner:
         mins = int(t[:2]) * 60 + int(t[3:5]) - 570
         if ENABLE_SAC_LADDER:
             self._sac_ladder_grade(sig)
-        if not with_trend and _GRADE_RANK.get(sig["grade"], 0) > _GRADE_RANK["C"]:
-            sig["grade"] = TradeGrade.C.value
-            sig["reason"] += " [capped C: counter day trend]"
-        elif (not ENABLE_SAC_LADDER and not ENABLE_KILL_B_FLOOR
-              and with_trend and self._dir_fired[d] == 0 and 0 <= mins <= 90
-              and sig["grade"] == "C" and "capped C" not in sig["reason"]):
+        # R21 (probe_master_2026-08-29, fact_counter_trend -> `delete`):
+        #   "they should not cap or stop thing from happening... good for stats"
+        # The counter-day-trend cap is now a REPORTED OBSERVATION. It tripped on
+        # 89.5% of the book -- a gate that fires on nine signals in ten is not
+        # separating anything -- and the "trend" it read was the stock's own
+        # move that day, a stand-in for market direction that was never his
+        # rule. The field and the tag stay so every slice can still be cut on
+        # it; COUNTER_TREND_CAP=1 restores the cap for the A/B.
+        sig["counter_day_trend"] = not with_trend
+        if not with_trend:
+            sig["reason"] += " [obs: counter day trend]"
+            if COUNTER_TREND_CAP and _GRADE_RANK.get(sig["grade"], 0) > _GRADE_RANK["C"]:
+                sig["grade"] = TradeGrade.C.value
+                sig["reason"] += " [capped C: counter day trend]"
+        # R18 (fact_arrival_order -> `both`): "don't let it cap you of S
+        # opportunities". Arrival order is KEPT, and it is a FLOOR (C -> B) --
+        # it lifts a signal, it has never capped one, so it cannot cap an S.
+        # It stays exactly as measured; the downgrade count runs beside it and
+        # is attached to every row as `sgrade`.
+        if (not ENABLE_SAC_LADDER and not ENABLE_KILL_B_FLOOR
+                and with_trend and self._dir_fired[d] == 0 and 0 <= mins <= 90
+                and sig["grade"] == "C" and "capped C" not in sig["reason"]):
             sig["grade"] = TradeGrade.B.value
             sig["reason"] += " [floor B: first with-trend signal of the day]"
 
