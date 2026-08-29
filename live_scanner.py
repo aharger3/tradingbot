@@ -514,12 +514,15 @@ ALERT_COOLDOWN_MIN = 20
 # TRADE = S only. A and C are WATCH -- ding only, never auto-traded, same as
 # before. 84% re-entry is exempt from the grade check entirely (unchanged).
 #
-# TRADE_FLOOR ("09:40") is UNCHANGED and still a parameter, not a decision:
-# research/x8_time_blocks.md found 09:30-09:45 is the single best 15-minute
-# block (+1.1619R at 60.7% win) and 9 of the 15 held-out S entries land in it
-# -- so this floor is cutting the best window, not just the chop before it.
-# research/t25_governor.py measures the cost both ways; it does not silently
-# resolve it.
+# R12 (Austin, probe_master_2026-08-29, fact_trade_floor -> `drop`):
+#   "Entries can happen any time in our window, I don't know where you got they
+#    can't be before 9:40"
+# TRADE_FLOOR is DELETED. It was never ratified, it cut 10 of his 34 S days
+# (29%), and research/x8_time_blocks.md had already found 09:30-09:45 to be the
+# single best 15-minute block (+1.1619R at 60.7% win). The window is
+# SESSION_START..SESSION_END and nothing narrows it further. Note this gate is
+# the LIVE path only -- backtest_week has no floor, so no published backtest
+# figure moves with this commit.
 #
 # GOVERNOR_S_CAP replaces the old hard "first signal of the day, across ALL
 # symbols" rule with a per-symbol daily cap, PARAMETERIZED per Austin
@@ -532,7 +535,6 @@ ALERT_COOLDOWN_MIN = 20
 GOVERNOR_S_CAP = os.getenv("GOVERNOR_S_CAP")
 GOVERNOR_S_CAP = int(GOVERNOR_S_CAP) if GOVERNOR_S_CAP else None
 WATCH_DAILY_CAP = 5
-TRADE_FLOOR = "09:40"
 _watch_dings = {"n": 0}
 _s_trades_today: dict = {}  # symbol -> count of TRADE-tier S signals today.
                             # Scanner restarts daily via schtask, so this
@@ -543,7 +545,7 @@ def _tier(runner: SignalRunner, sig: dict, grade: str, ts: str, symbol: str) -> 
     s = runner.session
     if getattr(sig["signal_type"], "value", "") == "reentry_84_rule":
         return "TRADE" if s.consecutive_losses < 2 else "WATCH"
-    if grade != "A+" or ts[:5] < TRADE_FLOOR:
+    if grade != "A+":          # R12: no time floor -- the whole window trades
         return "WATCH"
     if s.consecutive_losses >= 2:
         return "WATCH"
