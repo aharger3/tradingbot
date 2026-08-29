@@ -1,0 +1,137 @@
+{
+  "meta": {
+    "sessions": 500,
+    "days_arg": 730,
+    "first": "2024-08-12",
+    "last": "2026-08-10"
+  },
+  "arms": {
+    "clamp": {
+      "traded": 2476,
+      "mean_r": 0.6698886106623586,
+      "sd_r": 2.5143385826588065,
+      "se_r": 0.05052990008903195,
+      "total_r": 1658.6442000000009,
+      "win_rate": 48.41463414634146,
+      "wins": 1191,
+      "losses": 1269,
+      "scratches": 16,
+      "months": 25,
+      "months_green": 25,
+      "pf": 2.105500427898447,
+      "max_dd_r": 32.739300000000185,
+      "worst_r": -1.25,
+      "best_r": 24.3478,
+      "exit_via": {
+        "disaster": 0,
+        "level": 1269,
+        "target": 1191,
+        "scratch": 16
+      }
+    },
+    "r100": {
+      "traded": 2548,
+      "mean_r": 0.537768092621664,
+      "sd_r": 2.335769380930665,
+      "se_r": 0.0462732762121115,
+      "total_r": 1370.2330999999997,
+      "win_rate": 42.82334384858044,
+      "wins": 1086,
+      "losses": 1450,
+      "scratches": 12,
+      "months": 25,
+      "months_green": 25,
+      "pf": 1.9495584715208298,
+      "max_dd_r": 32.43120000000022,
+      "worst_r": -1.0,
+      "best_r": 24.3478,
+      "exit_via": {
+        "disaster": 1444,
+        "level": 6,
+        "target": 1086,
+        "scratch": 12
+      }
+    },
+    "r125": {
+      "traded": 2507,
+      "mean_r": 0.5485526525727962,
+      "sd_r": 2.486224476316121,
+      "se_r": 0.0496550210907084,
+      "total_r": 1375.2214999999994,
+      "win_rate": 46.02728731942215,
+      "wins": 1147,
+      "losses": 1345,
+      "scratches": 15,
+      "months": 25,
+      "months_green": 24,
+      "pf": 1.842071195786087,
+      "max_dd_r": 34.82220000000018,
+      "worst_r": -1.25,
+      "best_r": 24.3478,
+      "exit_via": {
+        "disaster": 1120,
+        "level": 225,
+        "target": 1147,
+        "scratch": 15
+      }
+    },
+    "nofloor": {
+      "traded": 2476,
+      "mean_r": 0.52697802907916,
+      "sd_r": 2.6438145728106215,
+      "se_r": 0.053131939802944055,
+      "total_r": 1304.7976,
+      "win_rate": 48.25203252032521,
+      "wins": 1187,
+      "losses": 1273,
+      "scratches": 16,
+      "months": 25,
+      "months_green": 23,
+      "pf": 1.705131227983862,
+      "max_dd_r": 44.930000000000575,
+      "worst_r": -6.0625,
+      "best_r": 24.3478,
+      "exit_via": {
+        "disaster": 0,
+        "level": 1273,
+        "target": 1187,
+        "scratch": 16
+      }
+    }
+  },
+  "recovery_cost": [
+    {
+      "arm": "r100 (-1R, shipped default)",
+      "disaster_exits": 1444,
+      "matched_to_clamp": 1386,
+      "unmatched_or_duplicate_key": 58,
+      "would_have_won_under_clamp": 125,
+      "would_have_lost_under_clamp": 1256,
+      "would_have_scratched_under_clamp": 5,
+      "recovery_rate_pct": 9.0,
+      "mean_r_given_up_on_recovered_trades": 3.9725,
+      "total_r_given_up": 496.56
+    },
+    {
+      "arm": "r125 (-1.25R)",
+      "disaster_exits": 1120,
+      "matched_to_clamp": 1098,
+      "unmatched_or_duplicate_key": 22,
+      "would_have_won_under_clamp": 54,
+      "would_have_lost_under_clamp": 1043,
+      "would_have_scratched_under_clamp": 1,
+      "recovery_rate_pct": 4.9,
+      "mean_r_given_up_on_recovered_trades": 4.4763,
+      "total_r_given_up": 241.72
+    }
+  ],
+  "heldout_recall": {
+    "n_S": 34,
+    "fired_on_S": 18,
+    "recall_pct": 52.9,
+    "n_no": 66,
+    "fired_on_no": 32,
+    "precision_pct": 36.0,
+    "note": "detect_signals() never reads DISASTER_STOP/stop_fill_price (grep-confirmed) -- identical across all four T1 arms by construction; scored once against the shipped state."
+  }
+}
