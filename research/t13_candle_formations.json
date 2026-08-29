@@ -1,0 +1,103 @@
+{
+  "corpus_support": {
+    "large_wick_rejection": 3,
+    "bullish_engulfing": 2,
+    "hammer": 52,
+    "inverted_hammer": 20,
+    "shooting_star": 9
+  },
+  "mark_support": {
+    "hammer": 2,
+    "inverted_hammer": 0,
+    "shooting_star": 0,
+    "bullish_engulfing": 0,
+    "bearish_engulfing": 0,
+    "dragonfly_doji": 0,
+    "gravestone_doji": 0,
+    "doji": 0,
+    "marubozu": 0,
+    "piercing_line": 0,
+    "dark_cloud_cover": 0,
+    "three_line_strike": 0,
+    "morning_star": 0,
+    "evening_star": 0,
+    "spinning_top": 0,
+    "harami": 0,
+    "tweezer": 0,
+    "belt_hold": 0,
+    "kicker": 0,
+    "three_soldiers_crows": 0,
+    "island_reversal": 0,
+    "large_wick_rejection": 3,
+    "pin_bar": 0
+  },
+  "validated_formations": [
+    "hammer",
+    "inverted_hammer",
+    "shooting_star",
+    "bullish_engulfing",
+    "large_wick_rejection"
+  ],
+  "bt2y_formation_table": {
+    "n_signals": 75953,
+    "n_traded": 2595,
+    "rows": [
+      {
+        "formation": "no bullish/bearish PA at all (X, skip)",
+        "signals": 70319,
+        "trip_rate_pct": 92.582,
+        "traded": 0,
+        "mean_r": null
+      },
+      {
+        "formation": "plain retest, no named shape (C)",
+        "signals": 3039,
+        "trip_rate_pct": 4.001,
+        "traded": 0,
+        "mean_r": null
+      },
+      {
+        "formation": "large_lower_wick (bullish B)",
+        "signals": 1245,
+        "trip_rate_pct": 1.639,
+        "traded": 1245,
+        "mean_r": 0.5851
+      },
+      {
+        "formation": "large_upper_wick (bearish B)",
+        "signals": 1202,
+        "trip_rate_pct": 1.583,
+        "traded": 1202,
+        "mean_r": 0.5042
+      },
+      {
+        "formation": "other (A/L)",
+        "signals": 73,
+        "trip_rate_pct": 0.096,
+        "traded": 73,
+        "mean_r": 0.2245
+      },
+      {
+        "formation": "other (A/S)",
+        "signals": 68,
+        "trip_rate_pct": 0.09,
+        "traded": 68,
+        "mean_r": 0.8374
+      },
+      {
+        "formation": "inverted_hammer/shooting_star (bearish A+)",
+        "signals": 6,
+        "trip_rate_pct": 0.008,
+        "traded": 6,
+        "mean_r": 2.5783
+      },
+      {
+        "formation": "hammer (bullish A+)",
+        "signals": 1,
+        "trip_rate_pct": 0.001,
+        "traded": 1,
+        "mean_r": -1.0
+      }
+    ]
+  }
+}
