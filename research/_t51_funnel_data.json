@@ -11,11 +11,11 @@
       "days_with_setup": 489,
       "days_with_signal": 489,
       "surv_session_window": 489,
-      "surv_mesh_veto": 478,
-      "surv_displacement": 51,
+      "surv_mesh_veto": 477,
+      "surv_displacement": 44,
       "surv_level_retirement": 489,
       "surv_no_repeat": 489,
-      "surv_skip_grades_fired": 68,
+      "surv_skip_grades_fired": 61,
       "days_traded": 7,
       "counted_trades": 7,
       "no_setup_cells": 11,
@@ -25,9 +25,9 @@
         "displacement": 6
       },
       "sig_status": {
-        "skipped_d": 4596,
-        "fired": 92,
-        "skipped_repeat_entry": 31,
+        "skipped_d": 4619,
+        "fired": 80,
+        "skipped_repeat_entry": 20,
         "skipped_tight_stop": 9,
         "skipped_level_retired": 2
       },
@@ -38,11 +38,11 @@
         "B": 99
       },
       "c_cause": {
-        "pm_level": 2,
-        "other_cap": 38
+        "pm_level": 1,
+        "other_cap": 34
       },
-      "d_tight_stop": 4364,
-      "d_pattern": 232
+      "d_tight_stop": 4391,
+      "d_pattern": 228
     },
     "SPY": {
       "ran_cells": 500,
@@ -51,23 +51,23 @@
       "days_with_setup": 474,
       "days_with_signal": 474,
       "surv_session_window": 474,
-      "surv_mesh_veto": 466,
-      "surv_displacement": 31,
+      "surv_mesh_veto": 468,
+      "surv_displacement": 25,
       "surv_level_retirement": 474,
       "surv_no_repeat": 474,
-      "surv_skip_grades_fired": 42,
-      "days_traded": 5,
-      "counted_trades": 5,
+      "surv_skip_grades_fired": 36,
+      "days_traded": 4,
+      "counted_trades": 4,
       "no_setup_cells": 26,
       "cell_killer": {
         "_SKIP_GRADES": 466,
         "no_setup_formed": 26,
-        "displacement": 3
+        "displacement": 4
       },
       "sig_status": {
-        "skipped_d": 4406,
-        "fired": 57,
-        "skipped_repeat_entry": 9,
+        "skipped_d": 4421,
+        "fired": 46,
+        "skipped_repeat_entry": 5,
         "skipped_tight_stop": 6,
         "skipped_level_retired": 3
       },
@@ -78,11 +78,10 @@
         "A+": 48
       },
       "c_cause": {
-        "pm_level": 1,
-        "other_cap": 24
+        "other_cap": 20
       },
-      "d_tight_stop": 4299,
-      "d_pattern": 107
+      "d_tight_stop": 4290,
+      "d_pattern": 131
     },
     "IWM": {
       "ran_cells": 500,
@@ -91,11 +90,11 @@
       "days_with_setup": 488,
       "days_with_signal": 488,
       "surv_session_window": 488,
-      "surv_mesh_veto": 477,
-      "surv_displacement": 80,
+      "surv_mesh_veto": 479,
+      "surv_displacement": 62,
       "surv_level_retirement": 488,
       "surv_no_repeat": 488,
-      "surv_skip_grades_fired": 88,
+      "surv_skip_grades_fired": 70,
       "days_traded": 6,
       "counted_trades": 6,
       "no_setup_cells": 12,
@@ -105,11 +104,11 @@
         "displacement": 5
       },
       "sig_status": {
-        "skipped_d": 4953,
-        "fired": 112,
-        "skipped_tight_stop": 20,
-        "skipped_repeat_entry": 20,
-        "skipped_level_retired": 5
+        "skipped_d": 4992,
+        "fired": 84,
+        "skipped_tight_stop": 16,
+        "skipped_repeat_entry": 14,
+        "skipped_level_retired": 4
       },
       "pa_grades": {
         "C": 766,
@@ -118,11 +117,11 @@
         "B": 125
       },
       "c_cause": {
-        "other_cap": 29,
-        "pm_level": 3
+        "other_cap": 20,
+        "pm_level": 2
       },
-      "d_tight_stop": 4624,
-      "d_pattern": 329
+      "d_tight_stop": 4649,
+      "d_pattern": 343
     },
     "TSLA": {
       "ran_cells": 500,
@@ -131,24 +130,24 @@
       "days_with_setup": 494,
       "days_with_signal": 494,
       "surv_session_window": 494,
-      "surv_mesh_veto": 482,
-      "surv_displacement": 188,
+      "surv_mesh_veto": 483,
+      "surv_displacement": 172,
       "surv_level_retirement": 494,
       "surv_no_repeat": 494,
-      "surv_skip_grades_fired": 248,
-      "days_traded": 66,
-      "counted_trades": 66,
+      "surv_skip_grades_fired": 232,
+      "days_traded": 60,
+      "counted_trades": 60,
       "no_setup_cells": 6,
       "cell_killer": {
-        "_SKIP_GRADES": 382,
+        "_SKIP_GRADES": 392,
         "no_setup_formed": 6,
-        "displacement": 46
+        "displacement": 42
       },
       "sig_status": {
-        "skipped_d": 5307,
-        "fired": 424,
-        "skipped_repeat_entry": 132,
-        "skipped_tight_stop": 184,
+        "skipped_d": 5393,
+        "fired": 381,
+        "skipped_repeat_entry": 104,
+        "skipped_tight_stop": 169,
         "skipped_level_retired": 9
       },
       "pa_grades": {
@@ -158,12 +157,12 @@
         "A+": 45
       },
       "c_cause": {
-        "other_cap": 216,
+        "other_cap": 188,
         "counter_trend": 1,
-        "pm_level": 18
+        "pm_level": 17
       },
-      "d_tight_stop": 3737,
-      "d_pattern": 1570
+      "d_tight_stop": 3981,
+      "d_pattern": 1412
     }
   },
   "pooled_index": {
@@ -173,25 +172,25 @@
     "days_with_setup": 1451,
     "days_with_signal": 1451,
     "surv_session_window": 1451,
-    "surv_mesh_veto": 1421,
-    "surv_displacement": 162,
+    "surv_mesh_veto": 1424,
+    "surv_displacement": 131,
     "surv_level_retirement": 1451,
     "surv_no_repeat": 1451,
-    "surv_skip_grades_fired": 198,
-    "days_traded": 18,
-    "counted_trades": 18,
+    "surv_skip_grades_fired": 167,
+    "days_traded": 17,
+    "counted_trades": 17,
     "no_setup_cells": 49,
     "cell_killer": {
       "_SKIP_GRADES": 1419,
       "no_setup_formed": 49,
-      "displacement": 14
+      "displacement": 15
     },
     "sig_status": {
-      "skipped_d": 13955,
-      "fired": 261,
-      "skipped_repeat_entry": 60,
-      "skipped_tight_stop": 35,
-      "skipped_level_retired": 10
+      "skipped_d": 14032,
+      "fired": 210,
+      "skipped_repeat_entry": 39,
+      "skipped_tight_stop": 31,
+      "skipped_level_retired": 9
     },
     "pa_grades": {
       "D": 11713,
@@ -200,10 +199,10 @@
       "B": 341
     },
     "c_cause": {
-      "pm_level": 6,
-      "other_cap": 91
+      "pm_level": 3,
+      "other_cap": 74
     },
-    "d_tight_stop": 13287,
-    "d_pattern": 668
+    "d_tight_stop": 13330,
+    "d_pattern": 702
   }
 }

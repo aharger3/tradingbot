@@ -564,6 +564,35 @@ ENABLE_STRUCTURAL_RISK_FLOOR = os.getenv(
 ENABLE_MIN_RISK_FILL_CLAMP = os.getenv(
     "ENABLE_MIN_RISK_FILL_CLAMP", "0").strip().lower() in ("1", "true", "yes", "on")
 
+# --- T4: symbol-scaled minimum-risk floor (R7, index parity) ---------------
+#
+# B&R_MIN_RISK = max(0.10, 0.0015 x close) is a PRICE-level floor. For a
+# ~$570 index (QQQ) that is $0.85 minimum stop distance regardless of how the
+# symbol actually moves; for a ~$235 index (IWM) it is $0.35. research/t51
+# found this rule benches 93-98% of index D-grades (vs 70% for TSLA) because
+# indices sit at high absolute price with tight relative range -- their
+# structurally correct retest stops are almost always narrower in dollars
+# than a same-percent stock's, without being any less real a stop.
+#
+# ON: the floor is read against the symbol's OWN prior-20-session average
+# daily range instead of its price level (`min_risk_dollars`, set by the
+# backtest driver from data_archive; None => falls back to the 0.0015 x close
+# floor unchanged, so a symbol the driver has not primed behaves exactly as
+# before). Nothing else moves: the fill, the sizer denominator and the
+# selection score all keep reading the same post-fill `entry - stop`.
+#
+# OFF BY DEFAULT. A/B it with ENABLE_ATR_SCALED_MIN_RISK=1;
+# research/t4_index_parity.py prices both arms.
+ENABLE_ATR_SCALED_MIN_RISK = os.getenv(
+    "ENABLE_ATR_SCALED_MIN_RISK", "0").strip().lower() in ("1", "true", "yes", "on")
+
+# The multiplier against a symbol's prior-20-session average daily range.
+# Chosen so QQQ/SPY/IWM's floor lands close to what the flat 0.0015 x close
+# rule already asks of a ~$150 stock (which clears it easily) rather than
+# inventing a new number out of nowhere -- see research/t4_index_parity.md
+# for the calibration.
+MIN_RISK_ATR_MULT = 0.05
+
 # --- R3: WHICH grader the ten detection sites ask ---------------------------
 #
 # `omen_bot.PriceActionAnalyzer._grade_pa` grades candle SHAPES -- is this bar a
@@ -1458,13 +1487,22 @@ def floor_reference_risk(entry: float, stop: float, close: float,
 _FILL_CLAMP_TICK = 0.01
 
 
-def min_risk_floor(close: float) -> float:
+def min_risk_floor(close: float, scaled_dollars: Optional[float] = None) -> float:
     """B&R_MIN_RISK -- the minimum risk a break-and-retest has to carry.
 
+    Default (`scaled_dollars` None, or ENABLE_ATR_SCALED_MIN_RISK off):
     `max(0.10, 0.0015 x close)`, lifted verbatim out of the two B&R call sites
     so the floor and the clamp that respects it cannot drift apart. It is a
     HALLUCINATED constant in research/hallucination-audit.md's sense: Austin
-    never stated it. Nothing here changes its value."""
+    never stated it. Nothing here changes its value.
+
+    T4/R7: when ENABLE_ATR_SCALED_MIN_RISK is on and the caller supplied a
+    `scaled_dollars` (the symbol's own prior-20-session range x
+    MIN_RISK_ATR_MULT), the floor reads that instead -- still clamped at the
+    same $0.10 absolute minimum so a near-zero range can't zero the floor
+    out."""
+    if ENABLE_ATR_SCALED_MIN_RISK and scaled_dollars is not None:
+        return max(0.10, scaled_dollars)
     return max(0.10, 0.0015 * close)
 
 
@@ -1757,6 +1795,12 @@ class SignalRunner:
         self.post_to_discord = post_to_discord
         self.symbol = symbol
         self.log_signals = log_signals
+        # T4/R7: symbol's own prior-20-session avg daily range x
+        # MIN_RISK_ATR_MULT, in dollars. Set by the backtest driver; None
+        # (live_scanner, tests, any caller that doesn't prime it) means
+        # min_risk_floor() falls back to its 0.0015 x close default
+        # unchanged. Only read when ENABLE_ATR_SCALED_MIN_RISK is on.
+        self.min_risk_dollars: Optional[float] = None
 
         if post_to_discord:
             try:
@@ -2658,7 +2702,7 @@ class SignalRunner:
                 # risk this reads is ENABLE_STRUCTURAL_RISK_FLOOR's whole job —
                 # post-fill by default, pre-fill when the flag is on.
                 if floor_reference_risk(entry, stop, current.close, structural_stop,
-                                        True) < max(0.10, 0.0015 * current.close):
+                                        True) < min_risk_floor(current.close, self.min_risk_dollars):
                     grade = TradeGrade.D  # T3(b): an intrabar fill sitting on the stop has no trade to size
                 # OPUS-SPEC #1: displacement check on the B&R break leg —
                 # tag always, cap-at-C only when the gate is enabled. Placed
@@ -2938,7 +2982,7 @@ class SignalRunner:
                     grade = TradeGrade.C
                 # mirror of the call side — see the G13 note there
                 if floor_reference_risk(entry, stop, current.close, structural_stop,
-                                        False) < max(0.10, 0.0015 * current.close):
+                                        False) < min_risk_floor(current.close, self.min_risk_dollars):
                     grade = TradeGrade.D
                 # OPUS-SPEC #1: displacement tag + optional gate (see call side)
                 disp = self._bnr_displacement(level_lo, is_long=False)

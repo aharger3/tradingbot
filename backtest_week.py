@@ -733,12 +733,17 @@ def simulate_day(symbol: str, day_iso: str, candles: List[Candle],
                  pdh: Optional[float], pdl: Optional[float], bias: Optional[str],
                  pmh: Optional[float] = None, pml: Optional[float] = None,
                  pdo: Optional[float] = None, pdc: Optional[float] = None,
-                 qqq: Optional[dict] = None) -> List[SimTrade]:
+                 qqq: Optional[dict] = None,
+                 min_risk_dollars: Optional[float] = None) -> List[SimTrade]:
     runner = BacktestRunner(symbol)
     runner.pdh, runner.pdl, runner.htf_bias = pdh, pdl, bias
     runner.pmh, runner.pml = pmh, pml
     runner.pd_open, runner.pd_close = pdo, pdc  # [pdwick] tag inputs
     runner.qqq_breaks = qqq  # F4 [qqqA]/[qqqX] tag input
+    # T4/R7: symbol's own prior-20-session range x MIN_RISK_ATR_MULT, in
+    # dollars. None (the default) leaves min_risk_floor() reading its
+    # 0.0015 x close fallback -- see signal_runner.ENABLE_ATR_SCALED_MIN_RISK.
+    runner.min_risk_dollars = min_risk_dollars
 
     trades: List[SimTrade] = []
     open_trades: List[SimTrade] = []

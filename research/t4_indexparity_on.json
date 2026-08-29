@@ -1,0 +1,55 @@
+{
+ "arm": "on",
+ "mult": 0.05,
+ "total_traded": 694,
+ "by_pool": {
+  "index": {
+   "n": 127,
+   "mean_r": 0.4075,
+   "win_rate": 55.91,
+   "months_total": 25,
+   "months_green": 16,
+   "median_stop_pct": 0.095,
+   "pct_stop_under_015": 90.55
+  },
+  "equity": {
+   "n": 567,
+   "mean_r": 0.5079,
+   "win_rate": 51.68,
+   "months_total": 25,
+   "months_green": 22,
+   "median_stop_pct": 0.218,
+   "pct_stop_under_015": 22.4
+  }
+ },
+ "by_symbol_index": {
+  "QQQ": {
+   "n": 45,
+   "mean_r": 0.5422,
+   "win_rate": 60.0,
+   "months_total": 19,
+   "months_green": 12,
+   "median_stop_pct": 0.104,
+   "pct_stop_under_015": 86.67
+  },
+  "SPY": {
+   "n": 43,
+   "mean_r": 0.1737,
+   "win_rate": 46.51,
+   "months_total": 19,
+   "months_green": 9,
+   "median_stop_pct": 0.073,
+   "pct_stop_under_015": 97.67
+  },
+  "IWM": {
+   "n": 39,
+   "mean_r": 0.51,
+   "win_rate": 61.54,
+   "months_total": 20,
+   "months_green": 11,
+   "median_stop_pct": 0.099,
+   "pct_stop_under_015": 87.18
+  }
+ },
+ "equity_stop_under_015_pct": 22.4
+}
