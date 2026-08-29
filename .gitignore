@@ -159,3 +159,9 @@ research/t11_arm_ow1_closefill.json
 # research/bt2y_trades.json above. The numbers read off them live in the
 # report itself and in research/t3_backtest_compare.py's output, both tracked.
 research/t3_scratch/
+# T2: the OCR_STRICT arm's 2-year replay book. ~67 MB and fully regenerable with
+# `OCR_STRICT=1 python backtest_2y.py --days 730 --out research/_t2_ocr_strict_book.json`
+# (~20 min). Same story as research/p7_arm_*.json above; the finding lives in
+# research/t2_ocr-detector.md, which IS tracked, as is every script behind it.
+research/_t2_ocr_strict_book.json
+research/_t2_probe.json

@@ -400,8 +400,15 @@ def _is_isolated(candles: List[Candle], block_idx: int) -> bool:
     return overlap <= 1
 
 
-def detect_order_block_setup(candles: List[Candle], direction: str = "bullish"):
-    """Return (block, retest_type, note). block is None when no valid setup."""
+def detect_order_block_setup(candles: List[Candle], direction: str = "bullish",
+                             out: Optional[dict] = None):
+    """Return (block, retest_type, note). block is None when no valid setup.
+
+    `out`, when given, receives the setup's anatomy — block_idx, break_idx — so
+    a caller can grade the setup's QUALITY without re-running MarketStructure.
+    That is what `ocr_quality` below consumes; it is the same `out` pattern
+    `detect_break_retest` already uses for its stage funnel.
+    """
     structure = MarketStructure()
     structure.update(candles)
     blocks = structure.get_valid_order_blocks(candles, direction)
@@ -413,6 +420,8 @@ def detect_order_block_setup(candles: List[Candle], direction: str = "bullish"):
     break_idx = (structure.last_hh if direction == "bullish" else structure.last_ll)[2]
     block_idx = next(i for i in range(break_idx - 1, -1, -1)
                      if (candles[i].is_bearish if direction == "bullish" else candles[i].is_bullish))
+    if out is not None:
+        out["block_idx"], out["break_idx"] = block_idx, break_idx
     if not _is_isolated(candles, block_idx):
         return None, None, "Order block not isolated (consolidation), skipped"
     if not _has_displacement(candles, block_idx, break_idx, direction):
@@ -421,6 +430,87 @@ def detect_order_block_setup(candles: List[Candle], direction: str = "bullish"):
     if retest == "not_retesting":
         return None, None, "Price not at order block"
     return block, retest, f"Order block retest: {retest}"
+
+
+# --- T2: the one-candle rule as Austin defines it ----------------------------
+#
+# Austin, probe_master_2026-08-29, fact_ocr_demote:
+#   "s trades are all about being early and the most important thing is that
+#    clear break retest with displacement that happens quick and strong PA entry"
+#
+# In the same session he graded 20 one-candle-rule / 84% setups the engine had
+# detected and then killed, and returned 17 "not this setup at all", 3 "real but
+# not tradeable", ZERO real. R3 lifts the B->C demote ("Ther is no B") — he is
+# right, he has no B — but lifting it alone promotes exactly those 20 cards.
+# `ocr_quality` is what belongs BEHIND the lifted demote: his sentence, clause by
+# clause, scored on the anatomy `detect_order_block_setup` already computed.
+#
+# Every threshold below already existed in this engine with its own provenance.
+# The only new numbers are the two "quick" bar counts, and the sweep in
+# `research/t2_ocr_detector.py` is flat from 6/10 outward, so neither is
+# load-bearing.
+#
+#   clear break -> price LEFT the block after the break. Exactly the LEAVE step
+#                  `detect_break_retest` enforces ("price actually left, didn't
+#                  chop on it"); the OCR path never had it. 78.5% of detections.
+#   retest      -> OB_RETEST_TYPES, unchanged, already ("wick_only",). 100%.
+#   displacement-> _has_displacement, unchanged, DISPLACEMENT_MULT. 100%.
+#   quick       -> block->break and break->entry bar counts. 88.9%.
+#   strong PA   -> the entry candle closes in the trade's direction AND its body
+#                  is >= OCR_STRONG_PA_MULT x the average body of the prior 10
+#                  candles. That multiple IS signal_runner.STRONG_PA_MULT, the
+#                  engine's own definition of strong price action (the 84% rule's
+#                  reclaim gate), applied to the OCR entry candle. 4.3% — and
+#                  only 36.0% of today's OCR entries close in the trade's
+#                  direction at all.
+#
+# "being early" is measured and reported by the T2 script but deliberately NOT
+# gated here: chase is already its own downgrade variable under R22, and gating
+# it twice would make this a grader change instead of a detector change.
+OCR_QUICK_BLOCK_TO_BREAK = 6   # bars from the block to the structure break
+OCR_QUICK_BREAK_TO_ENTRY = 10  # bars from the break to the retest entry
+OCR_STRONG_PA_MULT = 1.5       # == signal_runner.STRONG_PA_MULT; kept here to
+                               # avoid an import cycle. research/test_t2_ocr.py
+                               # asserts the two are the same number.
+
+
+def ocr_quality(candles: List[Candle], block: Candle, block_idx: int,
+                break_idx: int, direction: str) -> dict:
+    """Score one order-block setup against Austin's sentence, clause by clause.
+
+    Returns {clause: bool} plus the continuous measurements behind them. The
+    entry candle is candles[-1] — the bar the detector fires on.
+    """
+    bull = direction == "bullish"
+    cur = candles[-1]
+    b_hi, b_lo = block.high, block.low
+
+    after = candles[break_idx:len(candles) - 1]
+    left = any((c.low > b_hi) if bull else (c.high < b_lo) for c in after)
+
+    prior = candles[max(0, len(candles) - 1 - 10):len(candles) - 1]
+    avg_body = (sum(c.body_size for c in prior) / len(prior)) if prior else 0.0
+    body_ratio = (cur.body_size / avg_body) if avg_body > 0 else float("inf")
+    dir_ok = cur.is_bullish if bull else cur.is_bearish
+
+    return {
+        "clear_break": bool(left),
+        "quick": (break_idx - block_idx) <= OCR_QUICK_BLOCK_TO_BREAK
+                 and (len(candles) - 1 - break_idx) <= OCR_QUICK_BREAK_TO_ENTRY,
+        "strong_pa": bool(dir_ok and body_ratio >= OCR_STRONG_PA_MULT),
+        "_body_ratio": body_ratio,
+        "_dir_ok": bool(dir_ok),
+        "_block_to_break": break_idx - block_idx,
+        "_break_to_entry": len(candles) - 1 - break_idx,
+    }
+
+
+def ocr_is_his(candles: List[Candle], block: Candle, block_idx: int,
+               break_idx: int, direction: str) -> bool:
+    """True when every clause of his sentence holds. Retest and displacement are
+    already enforced upstream by detect_order_block_setup + OB_RETEST_TYPES."""
+    q = ocr_quality(candles, block, block_idx, break_idx, direction)
+    return q["clear_break"] and q["quick"] and q["strong_pa"]
 
 
 def find_fvg(candles: List[Candle], direction: str = "bullish", lookback: int = 15):

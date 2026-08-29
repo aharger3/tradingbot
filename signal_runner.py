@@ -35,7 +35,7 @@ from omen_bot import (
     Candle, SignalType, TradeGrade, OpeningRangeAnalyzer, TradingSession,
     BreakAndRetestDetector, RuleOf84Detector, PriceActionAnalyzer,
     detect_order_block_setup, find_fvg, detect_flag_setup, detect_break_retest,
-    HTF_BIAS_VETO
+    HTF_BIAS_VETO, ocr_is_his, OCR_STRONG_PA_MULT
 )
 from discord_bot import DiscordSignalBot
 from position_sizer import compute_plan, SizingPlan
@@ -50,6 +50,14 @@ from predicates import is_s_gate
 # 28x @ 50% win if OB ever needs benching.
 OB_RETEST_TYPES = ("wick_only",)  # accepted retest strengths
 OB_VOLUME_MULT = 0.0  # entry candle volume >= mult x avg(prior 10); 0 = gate off
+
+# T2 (research/t2_ocr-detector.md). Austin's own definition of the setup, from
+# probe_master_2026-08-29: "clear break retest with displacement that happens
+# quick and strong PA entry". OFF by default — R3 is ratified and ships ON, this
+# is the NEW lever that belongs behind it and ships behind a flag (method rule 4).
+# ON, it takes the OCR slice from 5,394 detections to ~139 and rejects 19 of the
+# 20 killed setups he refused. See omen_bot.ocr_quality for the clause list.
+OCR_STRICT = os.getenv("OCR_STRICT", "0").strip().lower() in ("1", "true", "yes", "on")
 # 30d A/B 2026-07-05: FVG retests diluted B&R badly (206 trades @33% -$216 vs
 # 28 @50% +$1400 raw-level only; 0.1%-min-gap variant still +$277).
 # OPUS-SPEC #2: FVG retest zones (2026-07-12)
@@ -2601,7 +2609,13 @@ class SignalRunner:
                     break  # one FVG signal max per bar
 
         # Order block long: last red candle before the structural HH (SPEC3)
-        block, retest, note = detect_order_block_setup(self.candles, "bullish")
+        _ob = {}
+        block, retest, note = detect_order_block_setup(self.candles, "bullish", out=_ob)
+        # T2: his own definition of the setup, behind OCR_STRICT.
+        if (OCR_STRICT and block is not None and "block_idx" in _ob
+                and not ocr_is_his(self.candles, block, _ob["block_idx"],
+                                   _ob["break_idx"], "bullish")):
+            block = None
         if (block is not None and retest in OB_RETEST_TYPES
                 and current.close > block.high and _volume_ok(self.candles)):
             entry = order_fill(block.high, current, is_long=True)  # T3(b)
@@ -2856,7 +2870,13 @@ class SignalRunner:
                     break
 
         # Order block short: last green candle before the structural LL (SPEC3)
-        block, retest, note = detect_order_block_setup(self.candles, "bearish")
+        _ob = {}
+        block, retest, note = detect_order_block_setup(self.candles, "bearish", out=_ob)
+        # T2: mirror of the call side.
+        if (OCR_STRICT and block is not None and "block_idx" in _ob
+                and not ocr_is_his(self.candles, block, _ob["block_idx"],
+                                   _ob["break_idx"], "bearish")):
+            block = None
         if (block is not None and retest in OB_RETEST_TYPES
                 and current.close < block.low and _volume_ok(self.candles)):
             entry = order_fill(block.low, current, is_long=False)  # T3(b)
