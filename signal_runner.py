@@ -161,7 +161,16 @@ BNR_DISPLACEMENT_GATE = os.getenv("BNR_DISPLACEMENT_GATE", "1").strip().lower() 
 
 # Austin trade-notes review 2026-07-06 (91 trades): "middle of a bunch of levels,
 # probability goes down significantly"; likes trades where new HOD/LOD can be hit.
-LEVEL_BLOCK_CAP = True   # level inside the 2R path caps grade at C (alert-only)
+# R25 (Austin, probe_master_2026-08-29, fact_level_block -> `target`):
+#   "maybe we should shoot higher"
+# His 91-trade review said "middle of a bunch of levels, probability goes down
+# significantly" and this constant turned that into a cap at alert-only. With
+# the blind 2R target going away (R9) the same observation inverts: a level
+# sitting inside the path is where the trade is GOING -- scale point 2 or 3 --
+# not an obstacle to it. The cap is OFF; the level is recorded on the signal as
+# `path_levels` / `path_target` for the target policy (T5) to consume, and the
+# reason string still names it so nothing about the setup becomes invisible.
+LEVEL_BLOCK_CAP = False
 CLEAR_FOR_APLUS = True   # A+/A require entry beyond ALL levels in trade direction
 STOP_RANGE_MULT = 0.75   # stop must be >= this x avg 1-min range ("human-proof")
 # T5 rename: "X" is the skip grade, "D" is its old letter — both rank 0 so
@@ -926,7 +935,14 @@ LEVEL_RETIRE_COOLDOWN = int(os.getenv("LEVEL_RETIRE_COOLDOWN", "30"))
 #     duplicated, and routed into compute_austin_tier where it had no effect.
 #     The mesh set includes the T10 pivot levels; the engine-grade path
 #     (LEVEL_BLOCK_CAP) keeps the named-level set it was measured on.
-MESH_S_VETO = os.getenv("MESH_S_VETO", "1").strip().lower() in ("1", "true", "yes", "on")
+#
+# R25 (probe_master_2026-08-29, fact_level_block -> `target`, "maybe we should
+# shoot higher") inverts BOTH readers of that one computation, not just the
+# engine-grade one: if a level in the path is where the trade is going, it
+# cannot also be the reason the trade may never be an S. Default OFF.
+# MESH_S_VETO=1 restores the veto. `mesh_blocked` is still stamped on every
+# signal, so the observation survives as a reported field.
+MESH_S_VETO = os.getenv("MESH_S_VETO", "0").strip().lower() in ("1", "true", "yes", "on")
 
 # (e) S+ is a REPORTING RANK inside S, not a new tier letter. All S signals stay
 #     S and nothing is discarded -- Austin: "i dont want that discarded, just put
@@ -1651,6 +1667,13 @@ class SignalRunner:
         # T11(c): one computation, two readers — blocking_levels() is also what
         # the mesh S-veto reads. Ignores the traded level itself.
         blocking = blocking_levels(sig, levels)
+        if blocking:
+            # R25: the levels in the path, nearest first. A TARGET list, not a
+            # veto -- `path_target` is the nearest one and is what a
+            # level-first target policy takes as scale point 2 or 3.
+            sig["path_levels"] = list(blocking)
+            sig["path_target"] = blocking[0]
+            sig["reason"] += f" [path level ${blocking[0]:.2f}: scale target]"
         if LEVEL_BLOCK_CAP and blocking and _GRADE_RANK.get(grade, 0) > _GRADE_RANK["C"]:
             sig["grade"] = TradeGrade.C.value
             sig["reason"] += f" [capped C: level ${blocking[0]:.2f} blocks 2R path]"
