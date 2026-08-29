@@ -751,7 +751,12 @@ ENFORCE_NO_REPEAT = False
 # omen-3.9 ENFORCE_NO_REPEAT (name-keyed, default OFF) above: that one tracks
 # the same idea by level NAME for tier-clause-3 reporting; this one tracks it
 # by level PRICE and actually suppresses the duplicate entry.
-NO_REPEAT_ENTRIES = True
+# R17 (Austin, probe_master_2026-08-29, fact_no_repeat_entries -> `off`):
+# "the 84% rule already handles re-entries". 41.8% of traded signals were
+# 2nd-or-later on their symbol-day and survived this rule anyway; what it
+# actually blocked was the same LEVEL twice, which R16 says is a new trade as
+# long as it re-sets up inside the window. OFF.
+NO_REPEAT_ENTRIES = os.getenv("NO_REPEAT_ENTRIES", "0").strip().lower() in ("1", "true", "yes", "on")
 # Decimal places to round the level price to (cents = a sensible tick for the
 # options names OMEN trades). Mirrors t4_engine_recall's round(sig["stop"], 2).
 NO_REPEAT_LEVEL_TICK = 2
@@ -922,7 +927,10 @@ PIVOT_DEDUPE_FRAC = float(os.getenv("PIVOT_DEDUPE_FRAC", "0.001"))
 #      sitting near a price, which retires levels that never produced a signal;
 #      Austin's sentence counts the break-and-retests themselves, which is what
 #      _level_br_count holds. 0 disables retirement.
-LEVEL_RETIRE_TOUCHES = int(os.getenv("LEVEL_RETIRE_TOUCHES", "2"))
+# R27 (fact_level_retire -> `delete`). It was written as housekeeping, never as
+# his rule, and it was never measured. 0 = the routing block below is dead;
+# LEVEL_RETIRE_TOUCHES=2 restores it.
+LEVEL_RETIRE_TOUCHES = int(os.getenv("LEVEL_RETIRE_TOUCHES", "0"))
 # Two fires on the same level inside this many bars are ONE break-and-retest
 # having a second go at the entry, not two separate ones -- the same 30-bar
 # window backtest_week.DEDUPE_BARS uses to say two fires are one idea. Without
@@ -952,7 +960,12 @@ MESH_S_VETO = os.getenv("MESH_S_VETO", "0").strip().lower() in ("1", "true", "ye
 #     universe-wide are S+; "the top s trades which usually happen earlier in the
 #     day", so the rank is earliest-first, ties broken by engine grade then by
 #     confluence.
-S_PLUS_PER_DAY = int(os.getenv("S_PLUS_PER_DAY", "3"))
+# R20 (fact_s_plus_per_day -> `delete`): no cap. Quality over quantity, but he
+# wants to trade every day, and this cap never bound only because the engine
+# made 2 S in two years -- it would have bound the moment the grader was fixed.
+# 0 = uncapped. The constant survives as the switch a caller can still set;
+# rank_s_plus treats 0 as "rank everything S+, discard nothing".
+S_PLUS_PER_DAY = int(os.getenv("S_PLUS_PER_DAY", "0"))
 
 
 def _retest_tol() -> float:
@@ -1348,6 +1361,8 @@ def rank_s_plus(signals, per_day: Optional[int] = None) -> list:
     grouped by their "day" key so a multi-day set ranks per day, universe-wide,
     which a per-symbol runner cannot do on its own."""
     cap = S_PLUS_PER_DAY if per_day is None else per_day
+    if not cap:            # R20: 0 = no cap. Nothing is discarded either way.
+        cap = float("inf")
     by_day = {}
     for s in signals:
         if s.get("austin_tier") != "S":

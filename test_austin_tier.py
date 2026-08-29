@@ -157,16 +157,17 @@ check(kept[0]["austin_tier"] == "S", "a fired signal carries its computed tier")
 check(sr.idea_key(keep_sig) in runner._fired_ideas,
       "the fired S is recorded, so clause 3 can see it next time")
 
-# omen-4.0 T6 shipped NO_REPEAT_ENTRIES=True, which SUPPRESSES the second entry
-# on the same symbol+direction+level outright — so the omen-3.9 expectation of a
-# second additive row has been wrong (and this file unrunnable) since that row
-# landed. Settled behaviour: no second row; the 84% re-entry is the one exemption.
+# R17 (Austin, probe_master_2026-08-29, fact_no_repeat_entries -> `off`): the
+# omen-4.0 T6 suppression is OFF. The same level re-setting up inside the window
+# is a new trade (R16), and the 84% rule already owns the re-entry case. The
+# TIER still records that clause 3 saw the first one -- an observation, not a
+# gate, which is the shape every one of these rules is moving to.
 again = []
 second = dict(keep_sig)
 runner._route(again, second)
-check(sr.NO_REPEAT_ENTRIES is True, "NO_REPEAT_ENTRIES ships ON (omen-4.0 T6)")
-check(again == [], "the same idea does NOT route a second time — first available entry wins")
-check("repeat entry" in second["reason"], "...and the suppressed row says why")
+check(sr.NO_REPEAT_ENTRIES is False, "R17: NO_REPEAT_ENTRIES ships OFF")
+check(len(again) == 1, "R17: the same level routes again — a re-setup is a new trade")
+check("repeat entry" not in second["reason"], "...and nothing claims it was suppressed")
 check(second["austin_tier"] == "A",
       "...it is still tiered A, not S — clause 3 saw the first")
 
@@ -403,8 +404,9 @@ check(sr.BNR_DISPLACEMENT_GATE is True,
 check(sr.RULE7_MAX_BARS == 8 and sr.RULE_710_ENABLED is False,
       "(a) Rule 7's window is fitted to his S marks (8 bars) and left disarmed — it "
       "separates nothing at that value")
-check(sr.LEVEL_RETIRE_TOUCHES == 2, "(a2) the third break-and-retest retires the level")
-check(sr.S_PLUS_PER_DAY <= 3, "(e) S+ is capped at 3 a day")
+check(sr.LEVEL_RETIRE_TOUCHES == 0,
+      "R27: level retirement is deleted — it was housekeeping, never his rule")
+check(sr.S_PLUS_PER_DAY == 0, "R20: S_PLUS_PER_DAY is deleted — no cap")
 
 # (a) a B&R with no displacement can never be S, whatever the other clauses say
 no_disp = dict(sig(entry=100.40), displacement=False, stop=99.0)
@@ -423,8 +425,10 @@ check(sr.blocking_levels(mesh_sig, [101.5]) == [101.5],
       "(c) a level inside the entry-to-2R path is a blocking level")
 check(sr.blocking_levels(mesh_sig, [103.0, 98.0]) == [],
       "(c) levels outside the path, and the traded level itself, are not")
-check(tier(dict(sig(entry=100.40), mesh_blocked=True), [MID], set(), None) == "C",
-      "(c) an entry meshed between levels cannot be S — a veto, not a demotion")
+check(sr.MESH_S_VETO is False,
+      "R25: the mesh S-veto is off — a level in the path is a TARGET, not a cap")
+check(tier(dict(sig(entry=100.40), mesh_blocked=True), [MID], set(), None) == "S",
+      "R25: a meshed entry can be S again; `mesh_blocked` stays as an observation")
 check(tier(dict(sig(entry=100.40), mesh_blocked=False), [MID], set(), None) == "S",
       "(c) ...and clear road stays S")
 
@@ -433,8 +437,8 @@ day_sigs = [{"day": "2026-08-11", "timestamp": "09:%02d:00" % (35 + i),
              "austin_tier": "S", "grade": "B", "confluence": False}
             for i in range(5)]
 sr.rank_s_plus(day_sigs)
-check([s["s_rank"] for s in day_sigs] == ["S+", "S+", "S+", "S", "S"],
-      "(e) the earliest 3 S of the day are S+, the rest stay S")
+check([s["s_rank"] for s in day_sigs] == ["S+"] * 5,
+      "R20: with the cap deleted every S of the day ranks S+ — nothing is capped")
 check(all(s["austin_tier"] == "S" for s in day_sigs),
       "(e) nothing is discarded and nothing changes tier — S+ is a rank, not a letter")
 two_days = [{"day": "2026-08-10", "timestamp": "10:00:00", "austin_tier": "S", "grade": "B"},
@@ -474,8 +478,8 @@ for k in range(3):
                      "grade": TradeGrade.B.value, "stop_level_name": "OR high",
                      "stop_width_pct": 1.4})
     rounds.append(bool(got))
-check(rounds == [True, True, False],
-      "(a2) the third break-and-retest of the same level is not taken — the level is done")
+check(rounds == [True, True, True],
+      "R27: the third break-and-retest of the same level still trades — retirement deleted")
 
 
 print()

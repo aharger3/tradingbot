@@ -51,9 +51,10 @@ def _runner():
     return r
 
 
-# --- default is ON (the rule is settled and ships enforced) ---
-assert signal_runner.NO_REPEAT_ENTRIES is True, \
-    "NO_REPEAT_ENTRIES must default True (settled 2026-08-09)"
+# --- R17: default is OFF (Austin, probe_master_2026-08-29,
+# fact_no_repeat_entries -> `off`, "the 84% rule already handles re-entries") ---
+assert signal_runner.NO_REPEAT_ENTRIES is False, \
+    "NO_REPEAT_ENTRIES must default False (R17, ratified 2026-08-29)"
 
 
 # --- flag OFF: two entries on the same level both fire ---
