@@ -2288,11 +2288,13 @@ class SignalRunner:
                 if (BNR_DISPLACEMENT_GATE and not disp
                         and grade.value in ("A+", "A", "B")):
                     grade = TradeGrade.C
-                # PM-level B&R negative BOTH backtest years (24mo 2026-07-10:
-                # −$5k y1 / −$6k y2, 30-31%W) — alert-only. After promotions so
-                # the A+ stack can't lift it back.
-                if hi_name == "PMH" and grade.value in ("A+", "A", "B"):
-                    grade = TradeGrade.C
+                # R23 (Austin, probe_master_2026-08-29, fact_pm_levels ->
+                # `trade`): "THIS IS ONE OF THE 6 LEVELS WE WATCH, SO YES ITS
+                # TRADEABLE SUOULD HAVE ALWAYS BEEN". The cap-to-C that stood
+                # here is deleted. It was justified by the 24mo split
+                # (-$5k y1 / -$6k y2, 30-31%W), which is a P&L argument against
+                # a level he says he watches -- a downgrade case, not a veto.
+                # Expect PMH/PML rows to enter the book and drag it.
                 # Selection score (24mo split 2026-07-10): clean+2, A-grade+2,
                 # structural stop >=0.3% +2, non-PM +1. S>=4 = top-quality tier.
                 hammer = _confirm_candle(current, long=True)
@@ -2544,9 +2546,7 @@ class SignalRunner:
                 if (BNR_DISPLACEMENT_GATE and not disp
                         and grade.value in ("A+", "A", "B")):
                     grade = TradeGrade.C
-                # PM-level B&R: alert-only (see call side, 24mo both-years split)
-                if lo_name == "PML" and grade.value in ("A+", "A", "B"):
-                    grade = TradeGrade.C
+                # R23: premarket levels are TRADEABLE (see call side).
                 # Selection score — mirror of call side.
                 hammer = _confirm_candle(current, long=False)
                 sc = ((2 if "LATE" not in br_note else 0)
