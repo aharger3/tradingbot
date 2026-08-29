@@ -708,6 +708,50 @@ SAC_VARSET_SEQ = {"shipped": False, "w9c": True}
 # `X` is `TradeGrade.X`, which `_SKIP_GRADES` already means "do not trade".
 SAC_TIER = {"S": "A+", "A": "A", "C": "C", "X": "X"}
 
+# ---------------------------------------------------------------------------
+# T14 -- THE ARRIVAL-ORDER LADDER (R18).
+#
+# Austin, probe_master_2026-08-29, fact_arrival_order -> `both`:
+#   "keep both ... don't let it cap you of S opportunities"
+#
+# The fact the track exists for: `_calibration_grade`'s first-with-trend-signal-
+# of-the-day floor is what makes 95.3% of the traded book tradeable at all
+# (research/g4_dropped_s.md s6). Arrival order selects the book; the grader
+# selects almost none of it. Two arms have been run against that and each threw
+# one half away -- W1's ladder (ENABLE_SAC_LADDER) kept the downgrade count and
+# discarded arrival order (44.1% agreement against a 52.5% always-say-X
+# baseline, research/w1_sac_ladder_ab.md s2); the legacy chain keeps arrival
+# order and has no count. R18 says keep BOTH, with one hard constraint:
+# arrival order may PROMOTE and must NEVER CAP an S.
+#
+#   "s_promote"  THE ARM R18'S SENTENCE ASKS FOR, and the only one that cannot
+#                lose an S day: the incumbent chain runs UNCHANGED, and then any
+#                signal it left alert-only (`C`) whose downgrade count says S
+#                (net <= 0) is floored to tradeable as well. Today a clean S
+#                that is not first-with-trend of the day stays an alert -- that
+#                IS arrival order capping an S opportunity. This removes the
+#                cap without removing arrival order. A strict superset of `off`.
+#   "gate"       arrival order is spent as the ELIGIBILITY rule -- exactly the
+#                rows the `B` floor promotes, no more -- and the downgrade count
+#                decides WHAT they are. S = net <= 0, A = net == 1, C = net >= 2
+#                (Austin 2026-08-24: C is the floor, there is no X below it).
+#   "credit"     arrival order becomes a -1 CREDIT inside the count, the same
+#                shape as the confluence +1 he ratified 2026-08-24. Every signal
+#                the incumbent left tradeable is regraded off
+#                `net = tripped - confluence - arrival`. A late-but-clean signal
+#                can still be S; a first-but-dirty one still is not.
+#   "credit_all" "credit", also regrading the `_grade_pa` vetoes. The reach
+#                control, kept separate so the two levers never add unlabelled.
+#
+# DEFAULT "off" -- byte-identical to HEAD. research/test_t14_arrival_ladder.py
+# asserts that, asserts the S-safety invariant, and asserts every rung is
+# reachable. Priced by research/t14_arrival_ladder.py. Nothing ships.
+ARRIVAL_LADDER = os.getenv("ARRIVAL_LADDER", "off").strip().lower()
+ARRIVAL_LADDER_MODES = ("off", "s_promote", "gate", "credit", "credit_all")
+if ARRIVAL_LADDER not in ARRIVAL_LADDER_MODES:
+    raise ValueError("ARRIVAL_LADDER must be one of %s, got %r"
+                     % (", ".join(ARRIVAL_LADDER_MODES), ARRIVAL_LADDER))
+
 # Austin, 2026-08-24: "I don't trade FVG or FLAG. Those are not setups
 # anymore." Detection stays on -- the historical numbers stay comparable --
 # only routing stops. TRADE_RETIRED_SETUPS=1 is the one-variable-away
@@ -1881,8 +1925,15 @@ class SignalRunner:
         with_trend = (self.candles[-1].close >= self.candles[0].open) == (d == "call")
         t = self.candles[-1].timestamp[:5]
         mins = int(t[:2]) * 60 + int(t[3:5]) - 570
+        # T14: the arrival-order predicate, named once and attached to every
+        # signal, so "first with-trend signal of the day inside 90 min" stops
+        # being a condition buried in an `if` and becomes a measurable column.
+        arrival_first = (with_trend and self._dir_fired[d] == 0 and 0 <= mins <= 90)
+        sig["arrival_first"] = arrival_first
         if ENABLE_SAC_LADDER:
             self._sac_ladder_grade(sig)
+        elif ARRIVAL_LADDER in ("credit", "credit_all"):
+            self._arrival_ladder_grade(sig, arrival_first)
         # R21 (probe_master_2026-08-29, fact_counter_trend -> `delete`):
         #   "they should not cap or stop thing from happening... good for stats"
         # The counter-day-trend cap is now a REPORTED OBSERVATION. It tripped on
@@ -1903,10 +1954,27 @@ class SignalRunner:
         # It stays exactly as measured; the downgrade count runs beside it and
         # is attached to every row as `sgrade`.
         if (not ENABLE_SAC_LADDER and not ENABLE_KILL_B_FLOOR
-                and with_trend and self._dir_fired[d] == 0 and 0 <= mins <= 90
+                and arrival_first
                 and sig["grade"] == "C" and "capped C" not in sig["reason"]):
-            sig["grade"] = TradeGrade.B.value
-            sig["reason"] += " [floor B: first with-trend signal of the day]"
+            # WHICH grade the arrival promotion writes is the whole of T14; the
+            # population it promotes is identical in every branch, so the arms
+            # differ by the label and by nothing else.
+            if ARRIVAL_LADDER == "gate":
+                self._arrival_ladder_grade(sig, arrival_first, gate=True)
+            elif ARRIVAL_LADDER in ("off", "s_promote"):
+                sig["grade"] = TradeGrade.B.value
+                sig["reason"] += " [floor B: first with-trend signal of the day]"
+        # T14 / R18: "don't let it cap you of S opportunities". The incumbent
+        # chain above has now run untouched, so this branch can only ADD: a
+        # signal it left alert-only whose downgrade count says S is floored to
+        # tradeable even though arrival order did not reach it. Nothing here can
+        # lower a grade -- it is guarded on `grade == "C"` and only ever writes
+        # `B`, one rung up. `X` is NOT reached: a `_grade_pa` veto means the
+        # engine should not have fired at all, and lifting those is a separate
+        # lever (credit_all), never folded in here unlabelled.
+        if (ARRIVAL_LADDER == "s_promote" and sig["grade"] == "C"
+                and "capped C" not in sig["reason"]):
+            self._arrival_ladder_grade(sig, arrival_first, s_promote=True)
 
     def _sac_ladder_grade(self, sig: dict) -> None:
         """W1. Austin's S/A/C/X off the eight downgrade variables, as the FINAL
@@ -1977,6 +2045,82 @@ class SignalRunner:
             "" if SAC_LADDER_VARSET == "shipped" else "/" + SAC_LADDER_VARSET,
             his, net, "" if net == 1 else "s",
             ", confluence +1" if rec["confluence"] else "")
+
+    def _arrival_ladder_grade(self, sig: dict, arrival_first: bool,
+                              gate: bool = False,
+                              s_promote: bool = False) -> None:
+        """T14 / R18. The ladder that keeps arrival order AND the downgrade
+        count, in the three shapes that differ by where arrival order is spent.
+
+        ``s_promote=True`` -- arrival order is spent exactly as it is today and
+        is NOT re-spent here; this call only asks the count "is this an S?" and
+        floors it to tradeable if so. It is guarded at the call site on
+        ``grade == "C"`` and writes only ``B``, so it cannot lower a grade: that
+        is the R18 constraint ("never cap an S") enforced structurally rather
+        than measured after the fact.
+
+        ``gate=True`` -- arrival order is spent as the ELIGIBILITY rule and is
+        not counted again. Called only on the rows the `B` floor would have
+        promoted, so the population is identical to the incumbent's; the
+        downgrade count then says what they are.
+
+        neither -- arrival order is spent as a -1 CREDIT inside the count, the
+        same shape as the confluence +1 Austin ratified 2026-08-24, and every
+        signal the incumbent chain left tradeable is regraded.
+
+        The ladder is ``net <= 0 -> S``, ``net == 1 -> A``, ``net >= 2 -> C``.
+        That is Austin's floor as he stated it on 2026-08-24 -- C is the floor,
+        there is no X bucket below it -- and it is deliberately NOT W1's
+        ``3+ -> X``, which his own 59 verdicts refuted. `C` is alert-only in
+        this engine (`backtest_week.Trade.counted`), so the 2-and-worse bucket
+        leaves the traded book rather than being silently kept.
+
+        `B` is not in the range of `gate` or `credit`; killing `B` is the point
+        of those arms. `s_promote` writes `B` on purpose -- it is the incumbent
+        chain's own tradeable letter and that arm changes the population, not
+        the alphabet.
+
+        The level proxy is `sig["stop"]`, the same input `_sac_ladder_grade`,
+        `_label_confluence` and `backtest_2y.py` already grade every row with,
+        so this grade and the book's `sgrade` column are the same measurement.
+        `score()` returning None (no bars, or no level) is left alone under
+        `s_promote` -- absence of an input is not evidence of an S -- and graded
+        `X` in the arms where this call IS the grade, the convention
+        `downgrade.py` itself uses."""
+        if (not gate and not s_promote and ARRIVAL_LADDER != "credit_all"
+                and sig.get("grade") in _SKIP_GRADES):
+            return
+        from research import downgrade as dg     # never caught: an ImportError
+        # here would silently make an ON arm a copy of the OFF arm.
+        level = sig.get("stop")
+        bars = self._dg_bars() if self.candles else []
+        rec = (dg.score(bars, len(bars) - 1, level,
+                        sig.get("direction") == "call", htf_bias=self.htf_bias)
+               if bars and level is not None else None)
+        if rec is None:
+            if s_promote:
+                return          # ungradeable is not an S. Leave the alert alone.
+            sig["grade"] = SAC_TIER["X"]
+            sig["reason"] += " [T14 X: ungradeable (no bars or no level)]"
+            return
+        credit = 1 if (arrival_first and not gate and not s_promote) else 0
+        net = rec["net"] - credit
+        his = "S" if net <= 0 else ("A" if net == 1 else "C")
+        sig["arr_net"] = net
+        sig["arr_grade"] = his
+        if s_promote:
+            if his != "S":
+                return          # not an S -- the incumbent's `C` stands.
+            sig["grade"] = TradeGrade.B.value
+            sig["reason"] += " [T14/s_promote: count says S (net %d%s)%s]" % (
+                net, ", confluence +1" if rec["confluence"] else "",
+                "" if arrival_first else ", late arrival not capped")
+            return
+        sig["grade"] = SAC_TIER[his]
+        sig["reason"] += " [T14/%s %s: net %d%s%s]" % (
+            "gate" if gate else ARRIVAL_LADDER, his, net,
+            ", confluence +1" if rec["confluence"] else "",
+            ", arrival -1" if credit else "")
 
     def _qqq_aligned(self, ts: str, is_long: bool) -> Optional[bool]:
         """F4 Rule 4 (qqq-alignment-rules.md): QQQ broke a PD/PM key level in

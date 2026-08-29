@@ -152,6 +152,15 @@ research/_w3_*.log
 #   ON_WATCH=1 python backtest_2y.py --days 730 --out research/t11_arm_ow1_closefill.json
 # The numbers read off it live in research/_t11_rescore.json, which IS tracked.
 research/t11_arm_ow1_closefill.json
+
+# T14's arrival-order-ladder books (research/t14_arrival-ladder.md). One ~65 MB
+# backtest_2y.py output per arm, each regenerable in one command:
+#   ARRIVAL_LADDER=s_promote python backtest_2y.py --out research/_t14_book_s_promote.json
+# The per-card held-out scorings (research/_t14_cards_*.json, ~11 KB each) ARE
+# tracked and must stay tracked -- they are the gate measurement itself, and
+# research/t14_arrival_ladder.json carries every number the report quotes.
+research/_t14_book_*.json
+research/_t14_run.log
 .tasty_challenge
 
 # T3's two 2-year books (research/t3_rule84-from-source.md), ~67 MB each and
