@@ -1,0 +1,217 @@
+{
+  "book": "research\\bt2y_trades.json",
+  "n_traded": 2595,
+  "tight_rr": {
+    "book_mean_r": 0.5481,
+    "book_win_rate": 43.1,
+    "book_n": 2595,
+    "sweep": [
+      {
+        "threshold_stop_pct": 0.03,
+        "removed_n": 12,
+        "removed_pct_of_book": 0.46,
+        "removed_mean_r": 1.3208,
+        "removed_median_r": 0.073,
+        "removed_total_r": 15.85,
+        "removed_win_rate": 58.3,
+        "removed_by_sgrade": {
+          "C": 5,
+          "S": 3,
+          "A": 4
+        },
+        "kept_n": 2583,
+        "kept_mean_r": 0.5445,
+        "kept_win_rate": 43.0,
+        "book_mean_r_move": -0.0036,
+        "removed_vs_kept_mean_diff": 0.7763,
+        "removed_vs_kept_95pct_bar": 1.7404,
+        "removed_vs_kept_inside_bar": true
+      },
+      {
+        "threshold_stop_pct": 0.05,
+        "removed_n": 42,
+        "removed_pct_of_book": 1.62,
+        "removed_mean_r": 2.6308,
+        "removed_median_r": 0.073,
+        "removed_total_r": 110.49,
+        "removed_win_rate": 52.4,
+        "removed_by_sgrade": {
+          "S": 13,
+          "A": 12,
+          "C": 17
+        },
+        "kept_n": 2553,
+        "kept_mean_r": 0.5138,
+        "kept_win_rate": 42.9,
+        "book_mean_r_move": -0.0343,
+        "removed_vs_kept_mean_diff": 2.1169,
+        "removed_vs_kept_95pct_bar": 1.697,
+        "removed_vs_kept_inside_bar": false
+      },
+      {
+        "threshold_stop_pct": 0.08,
+        "removed_n": 115,
+        "removed_pct_of_book": 4.43,
+        "removed_mean_r": 1.5442,
+        "removed_median_r": -1.0,
+        "removed_total_r": 177.58,
+        "removed_win_rate": 44.7,
+        "removed_by_sgrade": {
+          "A": 35,
+          "S": 30,
+          "C": 50
+        },
+        "kept_n": 2480,
+        "kept_mean_r": 0.5019,
+        "kept_win_rate": 43.0,
+        "book_mean_r_move": -0.0462,
+        "removed_vs_kept_mean_diff": 1.0423,
+        "removed_vs_kept_95pct_bar": 0.7675,
+        "removed_vs_kept_inside_bar": false
+      },
+      {
+        "threshold_stop_pct": 0.1,
+        "removed_n": 192,
+        "removed_pct_of_book": 7.4,
+        "removed_mean_r": 1.1847,
+        "removed_median_r": -1.0,
+        "removed_total_r": 227.46,
+        "removed_win_rate": 40.4,
+        "removed_by_sgrade": {
+          "C": 91,
+          "A": 60,
+          "S": 41
+        },
+        "kept_n": 2403,
+        "kept_mean_r": 0.4972,
+        "kept_win_rate": 43.3,
+        "book_mean_r_move": -0.0509,
+        "removed_vs_kept_mean_diff": 0.6875,
+        "removed_vs_kept_95pct_bar": 0.5407,
+        "removed_vs_kept_inside_bar": false
+      },
+      {
+        "threshold_stop_pct": 0.15,
+        "removed_n": 312,
+        "removed_pct_of_book": 12.02,
+        "removed_mean_r": 0.797,
+        "removed_median_r": -1.0,
+        "removed_total_r": 248.66,
+        "removed_win_rate": 35.5,
+        "removed_by_sgrade": {
+          "C": 149,
+          "A": 86,
+          "S": 77
+        },
+        "kept_n": 2283,
+        "kept_mean_r": 0.5141,
+        "kept_win_rate": 44.1,
+        "book_mean_r_move": -0.034,
+        "removed_vs_kept_mean_diff": 0.2829,
+        "removed_vs_kept_95pct_bar": 0.3822,
+        "removed_vs_kept_inside_bar": true
+      }
+    ]
+  },
+  "heldout_recall_risk": {
+    "n_S_total": 34,
+    "n_fired_before": 18,
+    "unfired_cards": [
+      "ARM_2024-10-28",
+      "CRM_2026-02-11",
+      "MSFT_2025-12-30",
+      "IWM_2026-05-01",
+      "QQQ_2025-09-16",
+      "ACHR_2026-02-05",
+      "HOOD_2024-11-06",
+      "MSTR_2025-08-26",
+      "NFLX_2024-08-05",
+      "PLTR_2025-07-01",
+      "QQQ_2025-09-23",
+      "PLTR_2025-12-11",
+      "AMZN_2025-09-10",
+      "BABA_2026-06-12",
+      "PLTR_2024-09-20",
+      "MSTR_2026-07-17"
+    ],
+    "by_threshold": [
+      {
+        "threshold_stop_pct": 0.03,
+        "S_fires_that_would_be_filtered": 0,
+        "cards": [],
+        "recall_after": "18/34 = 52.9%"
+      },
+      {
+        "threshold_stop_pct": 0.05,
+        "S_fires_that_would_be_filtered": 0,
+        "cards": [],
+        "recall_after": "18/34 = 52.9%"
+      },
+      {
+        "threshold_stop_pct": 0.08,
+        "S_fires_that_would_be_filtered": 0,
+        "cards": [],
+        "recall_after": "18/34 = 52.9%"
+      },
+      {
+        "threshold_stop_pct": 0.1,
+        "S_fires_that_would_be_filtered": 0,
+        "cards": [],
+        "recall_after": "18/34 = 52.9%"
+      },
+      {
+        "threshold_stop_pct": 0.15,
+        "S_fires_that_would_be_filtered": 0,
+        "cards": [],
+        "recall_after": "18/34 = 52.9%"
+      }
+    ]
+  },
+  "spread_cost": {
+    "n_priced": 2595,
+    "n_unpriced_dropped": 0,
+    "base_contract_r_single_no_spread": 0.7498,
+    "modeled_premium_risk_median": 0.174,
+    "modeled_premium_risk_p10": 0.071,
+    "modeled_premium_risk_p90": 0.4082,
+    "breakeven_round_trip_spread_usd": 0.0952,
+    "sweep": [
+      {
+        "round_trip_spread_usd": 0.01,
+        "median_cost_contract_r": 0.0575,
+        "mean_cost_contract_r": 0.0788,
+        "book_single_after_cost": 0.671
+      },
+      {
+        "round_trip_spread_usd": 0.02,
+        "median_cost_contract_r": 0.1149,
+        "mean_cost_contract_r": 0.1576,
+        "book_single_after_cost": 0.5923
+      },
+      {
+        "round_trip_spread_usd": 0.05,
+        "median_cost_contract_r": 0.2874,
+        "mean_cost_contract_r": 0.3939,
+        "book_single_after_cost": 0.3559
+      },
+      {
+        "round_trip_spread_usd": 0.1,
+        "median_cost_contract_r": 0.5747,
+        "mean_cost_contract_r": 0.7878,
+        "book_single_after_cost": -0.038
+      },
+      {
+        "round_trip_spread_usd": 0.15,
+        "median_cost_contract_r": 0.8621,
+        "mean_cost_contract_r": 1.1817,
+        "book_single_after_cost": -0.4319
+      }
+    ],
+    "note": "IV modeled from Parkinson realized vol x 1.2, no real NBBO exists in this repo (Polygon options snapshot 403s, Tastytrade sandbox-only). Same caveat as t2_options_tape.py section A5, re-run on the AFTER book."
+  },
+  "symbol_liquidity_reachability": {
+    "traded_symbols": 28,
+    "traded_symbols_outside_universe.ALL_SYMS": [],
+    "conclusion": "reachability check per method rule 3: every traded symbol is inside universe.ALL_SYMS, which Austin already restricts to his own ~200k+ daily options-volume watchlist (universe.py's own comment: 'high options volume = cleaner moves, easier fills'). A symbol-level wide-spread filter has zero symbols left to remove -- there is no real NBBO feed in this repo to grade spread WITHIN a symbol's own chain (Polygon 403s, Tastytrade sandbox-only per broker/tastytrade.py), so that half of R30 cannot be measured beyond the per-contract $-spread sweep above. The filter he's actually pointing at is the geometry one, part (a)."
+  }
+}
