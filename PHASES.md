@@ -98,6 +98,37 @@ numbers on the eight variables, and it broke two things and added five.
 
 ---
 
+## Block 7 — after T1 (2026-08-28) — **the live block**
+
+T1 (`218a1c45`, `research/t1_entry_minute_autopsy.md`) refuted the hypothesis it was written
+to test and the answer is better: over Austin's 34 fresh S days the engine is **never silent**
+(0 of 34) and its timing on the 15 days it reaches his setup is **exact** (median +0.0 bars).
+It finds the trade and grades it `X`. **The miss is grading, end to end** — so every phase in
+this block is about what replaces `_grade_pa`, or about the fact that the live path does not
+run this book at all.
+
+Ordered cheapest-first by needle moved. Source: `Projects/omen-next-session.md`.
+
+| phase | task | lane | moves |
+|---|---|---|---|
+| **P26** | **T1b — the targeted `X` lift.** Third independent confirmation that `_grade_pa`'s `X` veto is the recall killer: `g4_dropped_s` (7,219 of 7,485 S signals graded X and dropped), W1's arm table (`on_all` is the **only** arm that buys held-out recall, 6/15 vs 3/15, and pays with a **12.5×** book of 12,770 trades), and T1's 9-of-15. **Nobody has run the middle.** `on_all` lifts every veto indiscriminately; T1 says his S days are specifically `X`-graded **break-and-retest or one-candle-rule setups at a level, at the right minute**. Regrade only those. It is the only untried point on the curve between `off` and `on_all`. ~2 hr. | green | **recall** |
+| **P27** | **T2 — reconcile `_tier()` with the backtest gate.** `live_scanner.py:546` promotes to TRADE only on `grade == "A+"`, which fires **twice in 45,193 signals**. The 1,017-trade book comes from `backtest_week`, a different gate. Under Austin's ladder `A+` reads as *"trade only S"* — right in spirit, wrong in reach, since the engine makes 2 S in two years. **Ship nothing else until the live path and the book trade the same set.** Note the 09:40 floor is a *backtest* constraint; live, the A+ gate kills everything before the floor is consulted. ~1 hr. | **red** | **real money — blocker** |
+| **P28** | **T3 — the arrival-order ladder, and nobody has tried it.** W1's S/A/C ladder scored **44.1% held-out recall against the legacy 52.5%** and was shelved — but **968 of the 1,000 traded `B` rows are `B` only because of `_calibration_grade`'s first-with-trend-signal-of-the-day floor.** That is arrival order, not grade. W1's ladder threw arrival order away and kept only the downgrade count; the legacy grader keeps arrival order and has no downgrade count. **Test a ladder that keeps both.** Neither arm has been run, and it is the only untried hypothesis that could beat 52.5%. ~2 hr. | green | **recall** |
+| **P29** | **T4 — drop the 09:40 `TRADE_FLOOR` in the backtest, re-score the 100 cards.** No longer a judgement call: the floor deletes **10 of his 34 S days (29%)**, 65% of his S entries land before 09:45, and `x8_time_blocks` already found 09:30–09:45 is the single best 15-minute block. Bounded and reversible. ~20 min. | green | **recall**, **money** |
+| **P30** | **T6 — re-run the options tape ex-ante, plus the strike sweep.** T2's contract advantage was **90% look-ahead** (`drange` priced the premium at the entry minute). Every table in `research/t2_options_tape.md` is void until it is redone on prior-session sigma. His q24 0DTE/1DTE ATM±1 sweep lands here. This is also where the runner-exit question has to be answered, since the instrument is options, not shares — and the honest ceiling to beat is the **+1.4988R** contract read from the X board. | amber | **money** |
+| **P31** | **P9/G3 still open — ON WATCH at 2-year scale.** Shipped ON by default, A/B'd only over the 120 graded day-cards, where it was +0 on every metric. It has never been flipped against the full rig. Cheap, and it is one of the few defaults nobody has priced. | green | hygiene |
+
+**Needs Austin before it can run** (also in `Projects/omen-open-questions.md`):
+
+| | |
+|---|---|
+| **R9** | **T5 — the ranker bottom-quartile filter.** +0.1568R, 23/25 months green, permutation P≈0.05%, **zero held-out recall cost** — the cheapest lever measured anywhere. It gets there by **removing 238 trades**, and he has asked for more trades, not fewer. His call, not an agent's. |
+| **R10** | **`GOVERNOR_S_CAP` is an integer** and his answer was *".8 S trades a day per symbol"*, which an integer cannot express. |
+| **R11** | **The −1.25R floor on contracts** — binds 4.3% of rows, caps the worst at −1.25R instead of −7.90R. |
+| **R12** | **Order type** — parked by his q12, but T24 prices it at **+0.7386R of the +0.8341R book**. Most of the book's edge is sitting on an unanswered question. |
+
+---
+
 ## Settled, no longer open
 
 - **The 09:30–11:00 window is correct.** The old "everything fires before 10:00" bug is

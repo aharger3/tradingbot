@@ -4,7 +4,7 @@ Read this **after** `CLAUDE.md` and **before** picking up work. `CLAUDE.md` hold
 invariants you must not break. This file holds the goal, where we stand against it, and
 what an agent is allowed to do without Austin in the room.
 
-Charted 2026-08-26. Supersedes nothing; it pulls the OMEN 6 destination
+Charted 2026-08-26, gates re-measured 2026-08-28. Supersedes nothing; it pulls the OMEN 6 destination
 (`Austin's Vault/.scratch/omen-6/map.md`) into the repo so an agent that never opens the
 vault still knows what "done" means.
 
@@ -14,13 +14,33 @@ vault still knows what "done" means.
 
 OMEN closes when all three are true at once, on one fixed measurement rig:
 
-| gate | target | where we stand (2026-08-26, 2-year replay, 1,016 traded signals) |
+| gate | target | where we stand (2026-08-28) |
 |---|---|---|
-| **Recall** | fires on ≥90% of Austin's **S-grade** days it has never seen | **17.9%** with today's grader; 42.9% with `research/downgrade.py` (t66) |
-| **Money** | ≥55% win rate, mean R ≥ 2.0 | **52.8% / +0.834R** (was 52.9% / +0.955R before the 2026-08-28 stop-fill fix) |
+| **Recall** | fires on ≥90% of Austin's **S-grade** days it has never seen | **52.9%** (18 of 34) on the 100 fresh cards of 2026-08-28 — and the deck is 50/50 fire-silent by construction, so the true number is likely **worse**. Precision on the same sample is 36.0%. |
+| **Money** | ≥55% win rate, mean R ≥ 2.0 | **52.8% / +0.8341R** (was 52.9% / +0.9551R before the 2026-08-28 stop-fill fix; every earlier money number is stale) |
 | **Durability** | every month green, every slice | **23 of 25 months** green |
 
 Recall is the wound. Money is half-paid. Durability is nearly there.
+
+**Three things reframe all three rows, all measured 2026-08-28. Read them before acting on
+any number above.**
+
+1. **The live scanner does not run this book.** `live_scanner._tier():546` promotes to TRADE
+   only on `grade == "A+"`, and `A+` fires **twice in 45,193 signals over two years**. The
+   1,017-trade book comes from `backtest_week`, a different gate. **Every number in this table
+   describes a system the live path would not trade.** This is the real-money blocker and it
+   outranks every gate.
+2. **The miss is grading, end to end.** T1 (`research/t1_entry_minute_autopsy.md`) found the
+   engine is **never silent** on his S days — 0 of 34 — and its timing is **exact** (median
+   +0.0 bars). It reaches his setup and grades it `X`. Zero of his 34 S days were graded S.
+3. **Mean R 2.0 is arithmetically unreachable on the current exit.** `mean R = wT − (1−w)`;
+   at 54% win the average *winner* must make **4.56R**, and every row plans exactly 2.000 R:R.
+   The whole exit family is worth **+0.06R** against a 1.10R gap. What clears the gate is the
+   **instrument** (the same rows as 0DTE ATM contracts read **+1.4988R**) and **selection**
+   (one-trade-per-day oracle **+2.2125R at 76.6% win**). See `Projects/omen-x-board.md`.
+
+**And the standing method finding: every A/B this project has run moves less than its own
+±1.5799R error bar.** Gate on held-out recall against the 100-card sample, never on mean R.
 
 Two supporting conditions, in scope because the gates are unreachable without them:
 

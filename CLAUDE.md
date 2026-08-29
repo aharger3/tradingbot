@@ -12,6 +12,9 @@ the turn on a non-zero exit — see `~/.claude/hooks/verify-before-done.py`. If 
 diagnose (stale baseline vs. real regression) before touching `research/baseline_3.8.json` —
 do not silently re-lock it.
 
+**Read next, in this order:** `DIRECTION.md` (the goal, the three gates, what an agent may
+do unattended, the session pickup protocol) → `PHASES.md` (the dispatch board) → `TASKS.md`.
+
 **Vault docs** (`C:\Users\aharg\Austin's Vault\`) — markdown only, never write code there:
 
 | doc | what it owns |
@@ -27,8 +30,9 @@ do not silently re-lock it.
 
 Austin's judgements are the only scarce input in this project. Bars can be re-pulled,
 backtests re-run, engines rewritten. **A grading session cannot be recreated.** What exists
-is 599 rows built over months, and the number only goes up by him sitting down and doing
-more.
+is **1,057 distinct judged symbol-days** built over months (count it with
+`research/build_deck.py::marked_card_ids()`, never by hand), and the number only goes up by
+him sitting down and doing more.
 
 ### Where they live
 
@@ -38,10 +42,10 @@ more.
 | `research/blind_marks_all.jsonl` | 260 | blind grading pass |
 | `research/recovered_reviews.jsonl` | 176 | prose reviews mined back out of chat |
 | `research/marks_clean.jsonl` | 117 | cleaned early corpus |
-| `research/marks/deck_marks_*.jsonl` | 184 | deck exports, one per grading session |
+| `research/marks/*.jsonl` | 518 | deck + probe exports, one file per grading session |
 | `research/mark_batch_0{2,3,4}_*.jsonl` | 123 | standalone batches |
 | `research/derived_marks_v{1,2}.jsonl` | 31 | derived, low confidence |
-| `research/rule_ballot_batch01.jsonl` | 20 | rule ballot — his rules, not his grades |
+| `research/rule_ballot_batch0{1,2}.jsonl` | 48 | rule ballots — his rules, not his grades |
 | `research/austin_verdicts.json` | — | a JSON list, not jsonl |
 
 `research/marks/LEDGER.md` is the provenance record: how human marks were separated from
@@ -102,7 +106,8 @@ Artifacts, and a phone cannot mark a chart with a pointer.
 | `research/t61_onwatch_ab.py` | A/B any detection flag over the 120 graded day-cards |
 | `research/test_runner_stop.py` | stops fire on closes, floor at −1.25R, wicks stop nothing |
 | `research/test_universe_single_source.py` | no module keeps a private ticker list |
-| `research/omen6_forward.py` | frozen-engine forward scoring; `freeze --force` VOIDS the book |
+| `backtest_2y.py` + `research/build_bt2y_report.py` | the 2-year book and its interactive report — **this is the money/durability rig** |
+| ~~`research/omen6_forward.py`~~ | **retired 2026-08-28.** Austin: *"no freezing, version snapshots for rollback."* The book has 0 trades booked; do not re-freeze without him saying so |
 
 `universe.py` is the single source of truth for symbols. Six modules used to keep private
 lists; a test fails the build if a new one appears.
@@ -111,13 +116,24 @@ lists; a test fails the build if a new one appears.
 
 - **Stops trigger on the candle CLOSE**, fill at that close, floored at **−1.25R**.
   Wicks stop nothing out. Austin settled this five times in one batch of marks.
+  **`stop_rule.stop_fill_price()` is the one fill definition** — every rig routes through it.
+  Before 2026-08-28 `backtest_week` triggered on the close and then filled at `t.stop`, so
+  every loss was −1.000R by construction and the floor was unreachable code; 458 of 474
+  stop-outs had already closed past 1R (`research/t11_stop_fill_fix.md`). Never re-implement
+  a fill locally.
 - **One tolerance unit: 25% of the previous candle's range** (`BAR_EXTREME_FRAC`). It
   governs the ON WATCH entry trigger, the 84% reclaim window, and stop slippage.
 - **The money gate is mean R = 2.0.** Win rate is a secondary read. Durability = **every
   month green**.
 - **R-multiples are the result; dollars are a sizing skin.** 1R = $1,000, and the instrument
   is options, not shares.
+- **Two grade ladders exist and must never be mixed.** Austin's is `S`/`A`/`C`/`none`
+  (`research/downgrade.py`, measured only, **not wired into detection**). The engine's legacy
+  ladder is `A+`/`A`/`B`/`C`/`X` (`signal_runner.py::_grade_pa`) and it is the one that gates
+  trades. `A+` fires twice in two years; `B` is 98% of the book; **`X` is not a grade**, it
+  means the engine should not have fired. Every new measurement carries both side by side.
 - **A = one downgrade, C = two**, off the eight variables in `omen-rulebook.md`.
+  `score = tripped − confluence`, floored at C.
 - Reproducibility is not assumed: 5.2's committed scale-out table could not be regenerated
   from committed code. **If you publish a number, commit the script that made it.**
 
