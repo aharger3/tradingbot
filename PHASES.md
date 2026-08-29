@@ -129,6 +129,31 @@ Ordered cheapest-first by needle moved. Source: `Projects/omen-next-session.md`.
 
 ---
 
+## Block 8 — decided 2026-08-28, nothing here is waiting on Austin
+
+Two grilling rounds settled fourteen questions. Full record with his words:
+`Austin's Vault/Projects/omen-rulebook.md`. These are the phases those answers create.
+
+| phase | task | lane |
+|---|---|---|
+| **P32** | **The target is the next structural level, not 2x risk.** Every row in the book plans **exactly 2.000 R:R** — a hard cap at twice risk, set regardless of where the next real level sits, and the opposite of his own rulebook line b4. Since `mean R = wT − (1−w)`, a flat 2R target **cannot produce mean 2.0R at any human win rate**. This is the only change on the board that makes the money gate arithmetically reachable, and the room is on the tape already: 296 rows run past +2R, max +14.264R, mean MFE +4.0992R. Needs the level-availability check at entry, which is **P21 — now promoted from candidate to prerequisite.** | green |
+| **P33** | **Delete `HTF_BIAS_VETO`.** It ships ON, gates **47.0% of the two-year book**, and has no author. Keep computing and reporting the value so it can be re-gated the day he defines the rule. Re-baseline everything it moves. | green |
+| **P34** | **Delete the legacy letters.** `A+` / `A` / `B` / `X` come out of every report, label and gate — *"a+ and b shouldnt exist if they do."* **The routing switch does not move yet:** he chose fix-the-grader-first, because the S/A/C ladder measures **44.1% held-out recall against the legacy 52.5%**. Live routes on S the moment P26 or P28 beats 52.5%. | green |
+| **P35** | **Ship the bottom-quartile filter ON** (`ranker[x13] >= p25`). +0.1568R, 23/25 months green, permutation P≈0.05%, zero held-out recall cost, and it drops the 25% of signals with the lowest premarket score — all four features computable at 09:29. Dropped rows book +0.44R, kept rows +1.11R. **Use T3's committed numbers; he explicitly asked for no new backtest to justify it.** | green |
+| **P36** | **Order type is limit at the level, no chase.** Make the fill model say so explicitly instead of assuming it. T24 prices this at **+0.7386R of the +0.8341R book** — roughly 90% of the measured edge was riding on an unstated assumption. | green |
+| **P37** | **Break-even slippage gets the initial stop's rule** — trigger on the close, fill at that close, so a BE exit can book a small loss instead of exactly zero. Retires the last unpriced assumption in the exit model. Expect it small (BE ends 20 of 1,017 trades); the point is that every runner figure was a ceiling until now. | green |
+| **P38** | **Re-anchor `level_not_respected` on the level's history before the setup** — how the level behaved on prior touches, not how bars behaved after the break. All three failed implementations measured after. **If this one also fails, delete the variable** — it currently downgrades 62.7% of signals in the wrong direction, which corrupts every S/A/C grade the ladder produces. | green |
+| **P39** | **The nine taken defaults**, each a small change with its reason recorded in the rulebook: C is alert-only · 84% tolerance = the one tolerance unit and `STRONG_PA_MULT` deleted · tight-stop gate applied to every grade before any retune · the `+1`s stay capped at +1 · `break_then_rejection` anchored on the session's first break · `STOP_TRIGGER_BUFFER_FRAC` stays 0 · the −1.25R floor binds on contracts · `GOVERNOR_S_CAP` deleted (**no per-day and no per-symbol cap — trade every S**) · card 11 counts as an OCR on the stop-usability test. | green |
+
+**Out with him now:**
+
+| | |
+|---|---|
+| **H1** | `research/probes/omen-x-vetoes.html` — 40 setups the engine found and refused, entry and stop drawn, one tap. Grades **P26's arm before it is built**. |
+| **H2** | `research/probes/omen-test-2.html` — 97 unseen symbol-days, **88% engine-silent** against the S sweep's 50/50. The honest held-out recall sample; the 52.9% figure is measured on a deck that flatters it. |
+
+---
+
 ## Settled, no longer open
 
 - **The 09:30–11:00 window is correct.** The old "everything fires before 10:00" bug is
