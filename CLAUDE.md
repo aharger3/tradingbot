@@ -54,8 +54,13 @@ From `research/marks/probe_g84_all_in_one_2026-08-30.jsonl`, 2026-08-30:
    earlier."* *"9:44 S entry as candle forming."* The engine is a median 24 minutes behind him.
 3. **The retest tolerance is the wrong unit.** *"it doesn't follow the 25 percent candle unit, its
    just if its close but didnt actually touch, within a few cents give or take."*
-   `BAR_EXTREME_FRAC` does not govern the retest. `research/g87_retest_tol.py` is the sweep he
-   asked for.
+   `BAR_EXTREME_FRAC` does not govern the retest. **Swept and answered 2026-08-30**
+   (`research/g87_retest_tol.py`): the best tolerance is **zero** — a limit resting exactly at the
+   level. Every widened tolerance loses money, because `intrabar_stop` collapses the risk
+   denominator to the tolerance itself. The follow-on `research/g88_level_limit.py` then killed
+   that arm's headline: 89.6% of its fills landed **before the signal bar**. Honest version —
+   limit resting strictly after the signal — is **$275/day against the shipped entry's $33**.
+   Real direction, not shippable: 69% of the bar, 27% win, 15/25 green.
 
 ## The working agreement
 
