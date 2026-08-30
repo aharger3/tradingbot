@@ -139,25 +139,38 @@ class CaptureRunner(SignalRunner):
         self.captured = []
 
     def _route(self, signals, sig):
-        self._grade_for_levels(sig)
-        self._calibration_grade(sig)
-        # T10: this replay does NOT delegate to super()._route (it labels the
-        # rejection reason instead), so every gate the base grows has to be
-        # named here or it is inert in exactly the rig that scores held-out
-        # recall -- regression_gate, t70_test1_score and t0_heldout_recall all
-        # run through this class. `_apply_x_lift` is a no-op unless X_LIFT is
-        # set. research/test_t10_x_lift.py fails if this call disappears.
-        self._apply_x_lift(sig)
-        if sig["grade"] != TradeGrade.D.value:
-            if (sig["grade"] != "C"
-                    or self._min_viable_stop(sig["entry"], sig["stop"], sig["direction"])):
-                sig["status"] = "fired"
-                self._dir_fired[sig["direction"]] = self._dir_fired.get(sig["direction"], 0) + 1
-                signals.append(sig)
-            else:
-                sig["status"] = "skipped_tight"
-        else:
+        """DELEGATE the accept/reject decision to the shipped router, then label
+        the outcome. G7.2 (recall278): this used to be a hand-rolled copy of
+        SignalRunner._route that never called super(), so every gate the base
+        grew after it was written was INERT in exactly the rig that scores
+        held-out S recall -- regression_gate, t70_test1_score and
+        t0_heldout_recall all run through this class. backtest_week.BacktestRunner
+        had the identical defect and was fixed in omen-5.0; this harness never
+        got that fix. Measured cost of the lie: the published held-out recall was
+        23/34, the engine's real answer is 22/34 (QQQ_2025-09-23 was a fire only
+        the copy took) -- research/g71_router_recall.json,
+        research/g72_recall278_report.md.
+
+        The subclass exists to CAPTURE what the base rejects, not to route
+        differently. `_apply_x_lift` is still reached, inside the real router
+        (signal_runner.py::_route), so research/test_t10_x_lift.py still holds.
+        """
+        before = len(signals)
+        super()._route(signals, sig)
+        if len(signals) > before:
+            sig["status"] = "fired"
+        elif sig["grade"] == TradeGrade.D.value:
             sig["status"] = "skipped_d"
+        elif sig.get("level_retired"):
+            sig["status"] = "skipped_level_retired"
+        elif "[skip: repeat entry]" in sig.get("reason", ""):
+            sig["status"] = "skipped_repeat_entry"
+        elif "[skip: repeat idea]" in sig.get("reason", ""):
+            sig["status"] = "skipped_repeat_idea"
+        elif "[skip: stop under" in sig.get("reason", ""):
+            sig["status"] = "skipped_min_stop_pct"
+        else:
+            sig["status"] = "skipped_tight"
         self.captured.append(sig)
 
 
