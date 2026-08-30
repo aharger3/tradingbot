@@ -346,14 +346,142 @@ Audited — all three target pages were already dark-correct. No changes needed.
 ### Corpus — Scarface and Jdub entry timing
 *Running.* `research/g81_mentor_timing.md`
 
-### Stops — the metrics you asked for
-*Running.* `research/g82_stop_provenance.md` · `research/g82_stop_ab.md`
+### Stops — **you did settle it, and the code has never run the rule you settled**
 
-### Artifact and the deck builder
-*Running.* `research/g82_artifact_cleanup.md` · `research/g82_deck_fix.md`
+Two answers, and they point opposite ways.
 
-### Homework
-*Running.* `research/probes/omen-master-homework.html`
+**On whether you agreed: you did. `CLAUDE.md` was right and the agent that doubted it was wrong.**
+The first pass claimed the "settled five times" citation was wrong and offered eight statements on
+a date it invented. The verifier could not reproduce any of it: counting every note in the
+80-card sitting that ties a close to a stop gives **exactly five** — lines 343, 357, 363, 367, 374
+of `austin_marks_v7.jsonl`. The claimed date appears in no mark file (`marked_at` is empty on all
+479 rows), and the report quoted a line of `backtest_week.py` that does not exist. **That report is
+refuted; do not cite it.** You settled close-only stops five times, plus two ballot answers, plus a
+ratification on 29 August.
+
+**On what the code does: it has never run that rule.** This is the finding.
+
+> The `-1R` "disaster stop" rests at **exactly the same price as your level stop** — risk is
+> entry minus stop, so entry minus one times risk *is* the stop — it is tested **first**, and it
+> is tested on a **touch**. A wick alone ends the trade. Close-only has therefore never been
+> measured, and the **−1.25R floor is unreachable dead code for the second time in this project.**
+
+The fingerprint is in the committed book: **0 of 1,225 losses are worse than −1.000R, and 1,207 are
+at exactly −1.0000R.** Losses are −1R by construction, exactly as they were before the last fill fix.
+
+Run properly, paired trade-by-trade on the 4,363 entries common to both books:
+
+| arm | vs shipped, per trade | 95% interval |
+|---|---:|---|
+| **close-only + the −1.25R floor** | **+$74.8** | +$51 to +$100 — excludes zero |
+| making profit legs wait for a close | **−$159.3** | −$177 to −$142 — excludes zero |
+
+**Your rule is the better arm, and your instinct on scale-outs was right twice over.** But the
+honest answer to the question you actually asked is **TIE**: +0.0843R a trade against the ±1.5799R
+bar. Take it because it is your rule and it is free, not because it is proven.
+
+**Nothing was switched on.** `DISASTER_STOP` still defaults to 1. Changing a shipped default is
+red-lane and it is yours to call.
+
+*Reports: `research/g82_stop_ab.md` (survived) · `research/g82_stop_provenance.md` (**refuted**).*
+
+### ⚠ The integrity finding — every number tonight sits on an uncommitted engine
+
+The verifier caught this and it outranks the rest of this section.
+
+**Eight engine files are modified and uncommitted in the working tree**, carrying three different
+agents' changes across several sessions:
+
+```
+signal_runner.py · backtest_week.py · backtest_2y.py · omen_bot.py
+paper_trader.py · options_sizer.py · stop_rule.py · live_scanner.py
+```
+
+One of them changes behaviour **by default**: `DEDUPE_FIRES_ONLY`, defaulting to on.
+
+| | committed engine | working tree |
+|---|---:|---:|
+| trades | **2,437** | **4,508** |
+| $ per session | **$2,678** | **$5,268** |
+
+**A fresh clone of this repo earns half what every number published tonight says.** The A/B
+comparisons are unharmed — all arms shared the same base, so directions and differences hold — but
+every *level* is roughly double the committed engine's.
+
+**The change itself is legitimate and already priced.** `research/g72_suppress_report.md` documents
+it: when the engine looked at a setup and said no, the backtest wrote that refusal down as "this
+level is taken" and then threw away the real trade that appeared on the same level a minute later.
+`signal_runner._route` already got this right for its own registry. It is a genuine bug fix worth
+$549 → $584 a trade, and it doubles the book because it stops discarding real trades.
+
+**It has simply never been committed**, and it has been silently underpinning published figures for
+a day. *This is the same failure shape as the mark-file trap: real work, correct work, invisible to
+anyone who looks at the repo instead of the disk.*
+
+**Recommended, and left for you because a shipped default is red-lane:** commit the dedupe fix with
+its report, then re-run and re-publish the headline figures against a clean tree. Nothing else in
+the tree should be committed without review.
+
+### Artifact — **there are no repeats, and that matters**
+
+No generator existed for `omen-71-verdict.html` at all — the page had been hand-assembled. One was
+written, so it is reproducible now.
+
+**Zero duplicates.** A stricter scan than the one requested found **0 repeated sentences, 0 repeated
+table rows, 0 repeated list items**, and the book behind it has no duplicate trades either — the 67
+same-minute pairs are distinct trades off different pivots.
+
+**So the "random repeats" you saw are on a different artifact, and that lead is still open.** Tell
+me which page and I will find them; do not assume it was this one.
+
+Two real defects were found and fixed: win rate **49.7% → 49.5%** and index trades **137 → 164**
+(137 was a different arm's number pasted into the stack column).
+
+**One thing the fix does not solve:** the page quotes the 29 August book — 2,437 trades, $1,339,000
+— while the book on disk now holds 4,508 and $2,634,000. **A $1.29M gap.** The generator hard-reads
+a dated snapshot with no freshness check, which is the same failure shape as the bug it just fixed,
+one level up. It should either assert the snapshot still matches or print which book it is quoting.
+
+*Report: `research/g82_artifact_cleanup.md`*
+
+### The deck builder — the defect is **five times worse** than reported
+
+The fix landed and survived: selection now carries a stated traded/silent quota per bucket, proved
+by `research/test_deck_selection.py`. But the headline number was refuted, and in the harsher
+direction.
+
+The report said 5 of your 30 cards were a trade the engine actually took. **That sums to 34 out of
+30 — arithmetically impossible.** Recomputed under the report's own rule: **1 of 30.** Four of the
+five it counted as "traded" were booked only *after* the engine had already taken a different trade
+that session — which is precisely the defect being fixed.
+
+> **One card in thirty showed you the trade the engine actually took.**
+
+*Report: `research/g82_deck_fix.md` — fix survived, numbers refuted.*
+
+### Homework — the master page is built
+
+**55 cards: 40 charts plus 15 mentor-rule ballot lines, across seven sections** — is this an S ·
+which signal on this chart · what minute would you enter · does the higher timeframe agree · is
+there displacement · where is the stop · the mentor ballot.
+
+**Zero repeats against all 1,677 symbol-days you have judged or been served** — verified the hard
+way, by reading card ids out of the shipped HTML rather than trusting the manifest. Save, restore
+and export were proven in a real Chrome at phone width, 15 of 15 checks green.
+
+Three caveats worth knowing before you sit down with it:
+
+1. **It links Google Fonts.** Answers and saving are unaffected and it degrades to fallback fonts,
+   but it is not fully offline. Being removed.
+2. **The entry-minute section shows the whole morning**, including everything after the candidate
+   entry. That matches the existing deck standard, but it means those answers carry hindsight and
+   cannot later serve as a clean recall baseline.
+3. **`probe_chart.py` grew an HOD/LOD rail** whose comment claims every existing caller renders
+   byte-identically. That is false — `g71_homework_build.py:264` already passes hod and lod, so
+   re-running that builder now draws two extra lines and shifts every candle. Fix before rebuilding
+   the older deck.
+
+*`research/probes/omen-master-homework.html` · builder `research/g82_master_homework.py`*
 
 ---
 
