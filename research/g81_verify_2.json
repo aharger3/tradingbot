@@ -1,0 +1,60 @@
+{
+  "funnel": {
+    "pool_rows": 3547,
+    "weekend_dropped": 79,
+    "after_weekday": 3468,
+    "after_universe": 2669,
+    "distinct_symdays_after_universe": 2253,
+    "distinct_symdays_with_bars": 2183,
+    "joined_rows": 2597,
+    "join_yield_pct": 73.2,
+    "joined_rows_posted_in_window": 1144
+  },
+  "n_with_stated_direction": 1962,
+  "B_same_side_fired": 784,
+  "B_same_side_pct": 40.0,
+  "B_same_side_booked": 707,
+  "B_in_window_n": 849,
+  "B_in_window_same_fired": 378,
+  "B_in_window_pct": 44.5,
+  "B_in_window_same_booked": 359,
+  "C_row_cases": {
+    "same_only": 668,
+    "opp_only": 424,
+    "both": 116,
+    "silent": 754
+  },
+  "C_row_any_signal": 1208,
+  "C_opp_only_pct_rows": 35.1,
+  "C_symbolday_cases": {
+    "same_only": 677,
+    "opp_only": 264,
+    "both": 94,
+    "silent": 661
+  },
+  "C_symbolday_any_signal": 1035,
+  "C_opp_only_pct_symboldays": 25.5,
+  "C_distinct_symdays_with_stated_dir": 1696,
+  "D_first_fire_minus_post": {
+    "n": 378,
+    "median": 0.0,
+    "mean": -2.79,
+    "min": -83,
+    "max": 78,
+    "neg": 187,
+    "zero": 19,
+    "pos": 172,
+    "within10": 144
+  },
+  "D_first_booked_minus_post": {
+    "n": 359,
+    "median": 0,
+    "mean": -3.52,
+    "min": -83,
+    "max": 78,
+    "neg": 179,
+    "zero": 19,
+    "pos": 161,
+    "within10": 137
+  }
+}

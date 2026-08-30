@@ -1,0 +1,322 @@
+{
+  "cards": [
+    {
+      "card_id": "BABA_2024-09-05",
+      "bucket": "BR",
+      "verdict": "yes",
+      "austin_minute": "9:56",
+      "engine_fired_minutes_this_bucket": [
+        "10:09"
+      ],
+      "engine_booked_minutes_this_bucket": [
+        "10:09"
+      ],
+      "gate": "booked (nothing stopped it)"
+    },
+    {
+      "card_id": "NFLX_2026-05-26",
+      "bucket": "84",
+      "verdict": "yes",
+      "austin_minute": "9:47",
+      "engine_fired_minutes_this_bucket": [],
+      "engine_booked_minutes_this_bucket": [
+        "10:17"
+      ],
+      "gate": "booked (nothing stopped it)"
+    },
+    {
+      "card_id": "NVDA_2026-05-11",
+      "bucket": "OCR",
+      "verdict": "yes",
+      "austin_minute": "9:43",
+      "engine_fired_minutes_this_bucket": [],
+      "engine_booked_minutes_this_bucket": [],
+      "gate": "no OCR-bucket fire that day -- router only accepted break_and_retest"
+    },
+    {
+      "card_id": "NFLX_2025-07-08",
+      "bucket": "OCR",
+      "verdict": "yes",
+      "austin_minute": "9:38",
+      "engine_fired_minutes_this_bucket": [],
+      "engine_booked_minutes_this_bucket": [],
+      "gate": "detected (raw) but graded X / skipped everywhere -- never fired"
+    },
+    {
+      "card_id": "COIN_2025-07-10",
+      "bucket": "84",
+      "verdict": "yes",
+      "austin_minute": "9:41",
+      "engine_fired_minutes_this_bucket": [],
+      "engine_booked_minutes_this_bucket": [
+        "10:45"
+      ],
+      "gate": "booked (nothing stopped it)"
+    },
+    {
+      "card_id": "TSLA_2025-09-03",
+      "bucket": "BR",
+      "verdict": "yes",
+      "austin_minute": "9:45",
+      "engine_fired_minutes_this_bucket": [],
+      "engine_booked_minutes_this_bucket": [],
+      "gate": "detected (raw) but graded X / skipped everywhere -- never fired"
+    },
+    {
+      "card_id": "AMD_2024-10-02",
+      "bucket": "BR",
+      "verdict": "yes",
+      "austin_minute": "9:36",
+      "engine_fired_minutes_this_bucket": [
+        "10:08",
+        "10:18"
+      ],
+      "engine_booked_minutes_this_bucket": [
+        "10:08"
+      ],
+      "gate": "booked (nothing stopped it)"
+    },
+    {
+      "card_id": "MSFT_2024-09-13",
+      "bucket": "84",
+      "verdict": "no",
+      "austin_minute": null,
+      "engine_fired_minutes_this_bucket": [],
+      "engine_booked_minutes_this_bucket": [
+        "10:17"
+      ],
+      "gate": "booked (nothing stopped it)"
+    },
+    {
+      "card_id": "MSFT_2025-08-29",
+      "bucket": "OCR",
+      "verdict": "yes",
+      "austin_minute": "9:38",
+      "engine_fired_minutes_this_bucket": [],
+      "engine_booked_minutes_this_bucket": [],
+      "gate": "no OCR-bucket fire that day -- router only accepted break_and_retest"
+    },
+    {
+      "card_id": "GOOGL_2024-10-29",
+      "bucket": "OCR",
+      "verdict": "yes",
+      "austin_minute": "10:47",
+      "engine_fired_minutes_this_bucket": [],
+      "engine_booked_minutes_this_bucket": [],
+      "gate": "no OCR-bucket fire that day -- router only accepted break_and_retest"
+    },
+    {
+      "card_id": "AAPL_2026-04-17",
+      "bucket": "84",
+      "verdict": "yes",
+      "austin_minute": "9:42",
+      "engine_fired_minutes_this_bucket": [],
+      "engine_booked_minutes_this_bucket": [
+        "10:14"
+      ],
+      "gate": "booked (nothing stopped it)"
+    },
+    {
+      "card_id": "TSM_2025-11-26",
+      "bucket": "BR",
+      "verdict": "no",
+      "austin_minute": null,
+      "engine_fired_minutes_this_bucket": [
+        "09:59",
+        "10:01"
+      ],
+      "engine_booked_minutes_this_bucket": [
+        "09:59",
+        "10:01"
+      ],
+      "gate": "booked (nothing stopped it)"
+    },
+    {
+      "card_id": "SPY_2025-05-21",
+      "bucket": "OCR",
+      "verdict": "yes",
+      "austin_minute": "9:45",
+      "engine_fired_minutes_this_bucket": [],
+      "engine_booked_minutes_this_bucket": [],
+      "gate": "detected (raw) but graded X / skipped everywhere -- never fired"
+    },
+    {
+      "card_id": "INTC_2026-03-24",
+      "bucket": "84",
+      "verdict": "yes",
+      "austin_minute": "9:38",
+      "engine_fired_minutes_this_bucket": [],
+      "engine_booked_minutes_this_bucket": [
+        "10:21"
+      ],
+      "gate": "booked (nothing stopped it)"
+    },
+    {
+      "card_id": "AVGO_2024-11-04",
+      "bucket": "BR",
+      "verdict": "yes",
+      "austin_minute": "9:47",
+      "engine_fired_minutes_this_bucket": [],
+      "engine_booked_minutes_this_bucket": [],
+      "gate": "detected (raw) but graded X / skipped everywhere -- never fired"
+    },
+    {
+      "card_id": "AMD_2025-09-08",
+      "bucket": "BR",
+      "verdict": "no",
+      "austin_minute": "10:37",
+      "engine_fired_minutes_this_bucket": [
+        "10:05"
+      ],
+      "engine_booked_minutes_this_bucket": [
+        "10:05"
+      ],
+      "gate": "booked (nothing stopped it)"
+    },
+    {
+      "card_id": "HOOD_2025-11-28",
+      "bucket": "84",
+      "verdict": "no",
+      "austin_minute": null,
+      "engine_fired_minutes_this_bucket": [],
+      "engine_booked_minutes_this_bucket": [
+        "10:21"
+      ],
+      "gate": "booked (nothing stopped it)"
+    },
+    {
+      "card_id": "IWM_2026-08-06",
+      "bucket": "OCR",
+      "verdict": "yes",
+      "austin_minute": "9:55",
+      "engine_fired_minutes_this_bucket": [
+        "10:07"
+      ],
+      "engine_booked_minutes_this_bucket": [
+        "10:07"
+      ],
+      "gate": "booked (nothing stopped it)"
+    },
+    {
+      "card_id": "TSM_2026-07-07",
+      "bucket": "84",
+      "verdict": "yes",
+      "austin_minute": "9:38",
+      "engine_fired_minutes_this_bucket": [],
+      "engine_booked_minutes_this_bucket": [],
+      "gate": "no 84-bucket fire that day -- router only accepted break_and_retest"
+    },
+    {
+      "card_id": "AMZN_2025-12-11",
+      "bucket": "BR",
+      "verdict": "yes",
+      "austin_minute": "9:40",
+      "engine_fired_minutes_this_bucket": [
+        "09:42",
+        "09:42"
+      ],
+      "engine_booked_minutes_this_bucket": [
+        "09:42"
+      ],
+      "gate": "booked (nothing stopped it)"
+    },
+    {
+      "card_id": "NVDA_2025-06-24",
+      "bucket": "OCR",
+      "verdict": "no",
+      "austin_minute": null,
+      "engine_fired_minutes_this_bucket": [],
+      "engine_booked_minutes_this_bucket": [],
+      "gate": "detected (raw) but graded X / skipped everywhere -- never fired"
+    },
+    {
+      "card_id": "ORCL_2025-02-18",
+      "bucket": "84",
+      "verdict": "no",
+      "austin_minute": null,
+      "engine_fired_minutes_this_bucket": [],
+      "engine_booked_minutes_this_bucket": [
+        "10:20"
+      ],
+      "gate": "booked (nothing stopped it)"
+    },
+    {
+      "card_id": "ACHR_2026-06-16",
+      "bucket": "BR",
+      "verdict": "yes",
+      "austin_minute": "9:57",
+      "engine_fired_minutes_this_bucket": [
+        "10:03"
+      ],
+      "engine_booked_minutes_this_bucket": [
+        "10:03"
+      ],
+      "gate": "booked (nothing stopped it)"
+    },
+    {
+      "card_id": "SPY_2026-06-17",
+      "bucket": "OCR",
+      "verdict": "yes",
+      "austin_minute": "9:48",
+      "engine_fired_minutes_this_bucket": [],
+      "engine_booked_minutes_this_bucket": [],
+      "gate": "detected (raw) but graded X / skipped everywhere -- never fired"
+    },
+    {
+      "card_id": "ACHR_2026-04-13",
+      "bucket": "OCR",
+      "verdict": "yes",
+      "austin_minute": "10:09",
+      "engine_fired_minutes_this_bucket": [],
+      "engine_booked_minutes_this_bucket": [],
+      "gate": "detected (raw) but graded X / skipped everywhere -- never fired"
+    },
+    {
+      "card_id": "AAPL_2026-03-11",
+      "bucket": "BR",
+      "verdict": "no",
+      "austin_minute": null,
+      "engine_fired_minutes_this_bucket": [],
+      "engine_booked_minutes_this_bucket": [],
+      "gate": "detected (raw) but graded X / skipped everywhere -- never fired"
+    },
+    {
+      "card_id": "META_2026-06-22",
+      "bucket": "84",
+      "verdict": "yes",
+      "austin_minute": "9:59",
+      "engine_fired_minutes_this_bucket": [],
+      "engine_booked_minutes_this_bucket": [
+        "10:15"
+      ],
+      "gate": "booked (nothing stopped it)"
+    },
+    {
+      "card_id": "QQQ_2024-08-26",
+      "bucket": "BR",
+      "verdict": "yes",
+      "austin_minute": "9:56",
+      "engine_fired_minutes_this_bucket": [],
+      "engine_booked_minutes_this_bucket": [],
+      "gate": "detected (raw) but graded X / skipped everywhere -- never fired"
+    },
+    {
+      "card_id": "QQQ_2025-12-22",
+      "bucket": "OCR",
+      "verdict": "no",
+      "austin_minute": null,
+      "engine_fired_minutes_this_bucket": [],
+      "engine_booked_minutes_this_bucket": [],
+      "gate": "detected (raw) but graded X / skipped everywhere -- never fired"
+    },
+    {
+      "card_id": "AVGO_2025-12-03",
+      "bucket": "84",
+      "verdict": "no",
+      "austin_minute": null,
+      "engine_fired_minutes_this_bucket": [],
+      "engine_booked_minutes_this_bucket": [],
+      "gate": "no 84-bucket fire that day -- router only accepted break_and_retest"
+    }
+  ]
+}

@@ -1,0 +1,1070 @@
+{
+  "book": {
+    "generated": "2026-08-29T18:38:17",
+    "sessions": 500,
+    "signals": 134012,
+    "traded": 4508
+  },
+  "risk_dollars": 1000.0,
+  "early_cutoff": "09:45",
+  "index_deadband_pct": 0.05,
+  "index_note": "0.05% deadband on the index move. The mentors say 'a clear direction', never a number; 0.05% is roughly a third of SPY's median 09:30-09:45 excursion and is reported with 0.00% and 0.10% beside it so the choice cannot hide a result.",
+  "candidates": {
+    "index_at_the_minute": {
+      "one_line": "Take the setup that is moving the same way the index is moving right now, measured from the 09:30 open to the close of the minute before the signal.",
+      "source": "course corpus, \"Wait for indices direction\": \"usually I wait for the indices to show me a clear direction or trend. Then after I understand the indices trend or direction, I go look for the one with relative strength or relative weakness\"; and \"A+ Setup Requires QQQ Confluence\": \"you see the a plus setup on one sticker only valid as an a plus when the conference with qqq is there as well\".",
+      "known_at": "the decision minute (index bars that already closed)"
+    },
+    "daily_bias": {
+      "one_line": "Take the setup that agrees with the symbol's own daily chart -- yesterday's close above or below its 20-session average.",
+      "source": "mentor corpus, Jdub: \"If you are day trading the timeframes you want to be looking at are the daily and hourly charts for higher timeframes\" and \"If you can consistently identify the daily bias then it will make trading alot easier\"; course corpus: \"My strategy my edge is so simple. It works with relevant key levels on the daily and the 15 minute chart\".",
+      "known_at": "09:29 (yesterday's close and the 20 before it)"
+    },
+    "hourly_bias_incumbent": {
+      "one_line": "Take the setup that agrees with the hourly chart -- the last hourly close before the bell against its 20-hour average. This is the formula already shipping inside HTF_BIAS_VETO, scored here as a selector instead of a veto.",
+      "source": "backtest_week.htf_bias_for(); it has NO author -- Austin, twice: \"we dont have any higher timeframe bias yet youll need to tell me what that is then.\" Carried as a candidate so the incumbent is measured on the same rig as the three with sources.",
+      "known_at": "09:29 (hourly closes strictly before the session)"
+    },
+    "alignment_stack": {
+      "one_line": "Count how many timeframes agree with the setup -- week, day, hour, and the index right now -- and take the setup with the most agreement.",
+      "source": "course corpus, \"Timeframe Alignment\": \"if you have an a plus setup in the market what you want to see is the weekly align you want to see the daily chart aligned you want to see the one hour aligned... basically when every single time frame is aligning that's when you're going to have an a plus opportunity\".",
+      "known_at": "the decision minute (three legs at 09:29, the index leg live)"
+    }
+  },
+  "step1_prize": {
+    "days": 499,
+    "candidates_total": 6170,
+    "candidates_per_day_median": 12,
+    "first": {
+      "trades": 499,
+      "win_pct": 66.7,
+      "total_dollars": 360380,
+      "per_trade": 722,
+      "mean_r": 0.722,
+      "per_day": 721,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 87,
+      "weeks": 105,
+      "worst_drawdown": 5993
+    },
+    "best": {
+      "trades": 499,
+      "win_pct": 99.0,
+      "total_dollars": 2089335,
+      "per_trade": 4187,
+      "mean_r": 4.187,
+      "per_day": 4179,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 105,
+      "weeks": 105,
+      "worst_drawdown": 2000
+    },
+    "worst": {
+      "trades": 499,
+      "win_pct": 1.0,
+      "total_dollars": -491021,
+      "per_trade": -984,
+      "mean_r": -0.984,
+      "per_day": -982,
+      "months_green": 0,
+      "months": 25,
+      "weeks_green": 0,
+      "weeks": 105,
+      "worst_drawdown": 491021
+    },
+    "coinflip_per_day": 522,
+    "first_is_best_days": 64,
+    "first_is_best_pct": 12.8,
+    "chance_is_best_pct": 10.1,
+    "gap_per_day": 3458,
+    "arrival_edge_over_chance_per_day": 199
+  },
+  "step3_selector": {
+    "arrival_order": {
+      "hit_best_days": 64,
+      "hit_best_pct": 12.8,
+      "trades": 499,
+      "win_pct": 66.7,
+      "total_dollars": 360380,
+      "per_trade": 722,
+      "mean_r": 0.722,
+      "per_day": 721,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 87,
+      "weeks": 105,
+      "worst_drawdown": 5993,
+      "vs_baseline_per_day": 0,
+      "ci95": [
+        0,
+        0
+      ],
+      "changed_days": 0
+    },
+    "index_at_the_minute": {
+      "hit_best_days": 61,
+      "hit_best_pct": 12.2,
+      "trades": 499,
+      "win_pct": 64.5,
+      "total_dollars": 306668,
+      "per_trade": 615,
+      "mean_r": 0.615,
+      "per_day": 613,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 83,
+      "weeks": 105,
+      "worst_drawdown": 7218,
+      "vs_baseline_per_day": -108,
+      "ci95": [
+        -249,
+        38
+      ],
+      "changed_days": 258
+    },
+    "daily_bias": {
+      "hit_best_days": 68,
+      "hit_best_pct": 13.6,
+      "trades": 499,
+      "win_pct": 63.9,
+      "total_dollars": 379940,
+      "per_trade": 761,
+      "mean_r": 0.761,
+      "per_day": 760,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 86,
+      "weeks": 105,
+      "worst_drawdown": 7000,
+      "vs_baseline_per_day": 39,
+      "ci95": [
+        -108,
+        187
+      ],
+      "changed_days": 204
+    },
+    "hourly_bias_incumbent": {
+      "hit_best_days": 75,
+      "hit_best_pct": 15.0,
+      "trades": 499,
+      "win_pct": 61.1,
+      "total_dollars": 381025,
+      "per_trade": 764,
+      "mean_r": 0.764,
+      "per_day": 762,
+      "months_green": 24,
+      "months": 25,
+      "weeks_green": 85,
+      "weeks": 105,
+      "worst_drawdown": 9071,
+      "vs_baseline_per_day": 41,
+      "ci95": [
+        -80,
+        157
+      ],
+      "changed_days": 173
+    },
+    "alignment_stack": {
+      "hit_best_days": 74,
+      "hit_best_pct": 14.8,
+      "trades": 499,
+      "win_pct": 58.8,
+      "total_dollars": 339489,
+      "per_trade": 680,
+      "mean_r": 0.68,
+      "per_day": 679,
+      "months_green": 24,
+      "months": 25,
+      "weeks_green": 80,
+      "weeks": 105,
+      "worst_drawdown": 7101,
+      "vs_baseline_per_day": -42,
+      "ci95": [
+        -215,
+        138
+      ],
+      "changed_days": 366
+    }
+  },
+  "step2_signal_information": {
+    "index_at_the_minute": {
+      "by_score": {
+        "-1": {
+          "n": 1677,
+          "mean_r": 0.491,
+          "se": 0.053
+        },
+        "0": {
+          "n": 985,
+          "mean_r": 0.576,
+          "se": 0.062
+        },
+        "1": {
+          "n": 3508,
+          "mean_r": 0.552,
+          "se": 0.029
+        }
+      },
+      "agrees_vs_disagrees": {
+        "agrees_mean_r": 0.552,
+        "disagrees_mean_r": 0.491,
+        "difference_r": 0.061,
+        "ci95_r": [
+          -0.058,
+          0.18
+        ],
+        "n_agrees": 3508,
+        "n_disagrees": 1677
+      }
+    },
+    "daily_bias": {
+      "by_score": {
+        "-1": {
+          "n": 2551,
+          "mean_r": 0.495,
+          "se": 0.036
+        },
+        "0": {
+          "n": 142,
+          "mean_r": 0.655,
+          "se": 0.165
+        },
+        "1": {
+          "n": 3477,
+          "mean_r": 0.568,
+          "se": 0.033
+        }
+      },
+      "agrees_vs_disagrees": {
+        "agrees_mean_r": 0.568,
+        "disagrees_mean_r": 0.495,
+        "difference_r": 0.073,
+        "ci95_r": [
+          -0.023,
+          0.169
+        ],
+        "n_agrees": 3477,
+        "n_disagrees": 2551
+      }
+    },
+    "hourly_bias_incumbent": {
+      "by_score": {
+        "-1": {
+          "n": 1346,
+          "mean_r": 0.488,
+          "se": 0.03
+        },
+        "0": {
+          "n": 427,
+          "mean_r": 0.599,
+          "se": 0.099
+        },
+        "1": {
+          "n": 4397,
+          "mean_r": 0.55,
+          "se": 0.031
+        }
+      },
+      "agrees_vs_disagrees": {
+        "agrees_mean_r": 0.55,
+        "disagrees_mean_r": 0.488,
+        "difference_r": 0.062,
+        "ci95_r": [
+          -0.023,
+          0.147
+        ],
+        "n_agrees": 4397,
+        "n_disagrees": 1346
+      }
+    },
+    "alignment_stack": {
+      "by_score": {
+        "0": {
+          "n": 368,
+          "mean_r": 0.434,
+          "se": 0.069
+        },
+        "1": {
+          "n": 1162,
+          "mean_r": 0.518,
+          "se": 0.05
+        },
+        "2": {
+          "n": 1400,
+          "mean_r": 0.548,
+          "se": 0.054
+        },
+        "3": {
+          "n": 1884,
+          "mean_r": 0.52,
+          "se": 0.047
+        },
+        "4": {
+          "n": 1356,
+          "mean_r": 0.604,
+          "se": 0.051
+        }
+      },
+      "agrees_vs_disagrees": null
+    }
+  },
+  "step4_wait": {
+    "arrival_order": {
+      "trades": 499,
+      "win_pct": 66.7,
+      "total_dollars": 360380,
+      "per_trade": 722,
+      "mean_r": 0.722,
+      "per_day": 721,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 87,
+      "weeks": 105,
+      "worst_drawdown": 5993,
+      "days_traded": 499,
+      "days_skipped": 0,
+      "days_moved": 0,
+      "vs_baseline_per_day": 0,
+      "ci95": [
+        0,
+        0
+      ]
+    },
+    "wait_to_0945_no_model": {
+      "trades": 498,
+      "win_pct": 61.4,
+      "total_dollars": 343989,
+      "per_trade": 691,
+      "mean_r": 0.691,
+      "per_day": 688,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 82,
+      "weeks": 105,
+      "worst_drawdown": 6000,
+      "days_traded": 498,
+      "days_skipped": 1,
+      "days_moved": 411,
+      "vs_baseline_per_day": -33,
+      "ci95": [
+        -226,
+        168
+      ]
+    },
+    "index_at_the_minute": {
+      "trades": 494,
+      "win_pct": 64.7,
+      "total_dollars": 324755,
+      "per_trade": 657,
+      "mean_r": 0.657,
+      "per_day": 650,
+      "months_green": 24,
+      "months": 25,
+      "weeks_green": 85,
+      "weeks": 105,
+      "worst_drawdown": 6218,
+      "days_traded": 494,
+      "days_skipped": 5,
+      "days_moved": 220,
+      "vs_baseline_per_day": -71,
+      "ci95": [
+        -206,
+        63
+      ]
+    },
+    "daily_bias": {
+      "trades": 498,
+      "win_pct": 64.6,
+      "total_dollars": 382263,
+      "per_trade": 768,
+      "mean_r": 0.768,
+      "per_day": 765,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 86,
+      "weeks": 105,
+      "worst_drawdown": 6000,
+      "days_traded": 498,
+      "days_skipped": 1,
+      "days_moved": 167,
+      "vs_baseline_per_day": 44,
+      "ci95": [
+        -82,
+        176
+      ]
+    },
+    "hourly_bias_incumbent": {
+      "trades": 496,
+      "win_pct": 62.3,
+      "total_dollars": 378152,
+      "per_trade": 762,
+      "mean_r": 0.762,
+      "per_day": 756,
+      "months_green": 24,
+      "months": 25,
+      "weeks_green": 83,
+      "weeks": 104,
+      "worst_drawdown": 8065,
+      "days_traded": 496,
+      "days_skipped": 3,
+      "days_moved": 138,
+      "vs_baseline_per_day": 35,
+      "ci95": [
+        -66,
+        140
+      ]
+    },
+    "alignment_stack": {
+      "trades": 494,
+      "win_pct": 62.7,
+      "total_dollars": 360258,
+      "per_trade": 729,
+      "mean_r": 0.729,
+      "per_day": 721,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 87,
+      "weeks": 105,
+      "worst_drawdown": 7027,
+      "days_traded": 494,
+      "days_skipped": 5,
+      "days_moved": 195,
+      "vs_baseline_per_day": 0,
+      "ci95": [
+        -133,
+        135
+      ]
+    }
+  },
+  "step4b_recall": {
+    "s_days_total": 309,
+    "s_days_the_book_trades": 154,
+    "of_those_first_entry_before_0945": 45,
+    "of_those_first_entry_before_0945_pct": 29.2,
+    "by_candidate": {
+      "index_at_the_minute": {
+        "s_days_kept": 138,
+        "s_days_lost": 16,
+        "kept_pct": 89.6
+      },
+      "daily_bias": {
+        "s_days_kept": 132,
+        "s_days_lost": 22,
+        "kept_pct": 85.7
+      },
+      "hourly_bias_incumbent": {
+        "s_days_kept": 142,
+        "s_days_lost": 12,
+        "kept_pct": 92.2
+      },
+      "alignment_stack": {
+        "s_days_kept": 129,
+        "s_days_lost": 25,
+        "kept_pct": 83.8
+      }
+    }
+  },
+  "step5_cross_check": {
+    "n_stated": 20,
+    "n_late": 20,
+    "cards_with_an_earlier_engine_signal": 10,
+    "his_minutes_before_0945": 9,
+    "his_minutes_at_or_before_0945": 11,
+    "his_minutes_before_0945_pct": 45.0,
+    "tally": {
+      "index_at_the_minute": {
+        "explained": 0,
+        "contradicted": 2,
+        "unknown": 18
+      },
+      "daily_bias": {
+        "explained": 0,
+        "contradicted": 4,
+        "unknown": 16
+      },
+      "hourly_bias_incumbent": {
+        "explained": 0,
+        "contradicted": 2,
+        "unknown": 18
+      },
+      "alignment_stack": {
+        "explained": 0,
+        "contradicted": 2,
+        "unknown": 18
+      }
+    },
+    "cards": [
+      {
+        "card": "AAPL_2026-04-17",
+        "his_minute": "09:42",
+        "late": true,
+        "engine_signals": [
+          "10:00",
+          "10:01",
+          "10:03",
+          "10:14",
+          "10:25",
+          "10:33",
+          "10:41",
+          "10:42",
+          "10:43"
+        ],
+        "had_earlier_signal": false,
+        "index_at_first_signal": "bull",
+        "index_at_his_minute": "bull",
+        "index_clarified_by_his_minute": false,
+        "index_at_the_minute": "no comparable pair",
+        "daily_bias": "no comparable pair",
+        "hourly_bias_incumbent": "no comparable pair",
+        "alignment_stack": "no comparable pair"
+      },
+      {
+        "card": "ACHR_2026-04-13",
+        "his_minute": "10:09",
+        "late": true,
+        "engine_signals": [
+          "09:41",
+          "10:17",
+          "10:33",
+          "10:57",
+          "10:58",
+          "10:59"
+        ],
+        "had_earlier_signal": true,
+        "index_at_first_signal": "flat",
+        "index_at_his_minute": "bull",
+        "index_clarified_by_his_minute": true,
+        "index_at_the_minute": "no comparable pair",
+        "daily_bias": "no comparable pair",
+        "hourly_bias_incumbent": "no comparable pair",
+        "alignment_stack": "no comparable pair"
+      },
+      {
+        "card": "ACHR_2026-06-16",
+        "his_minute": "09:57",
+        "late": true,
+        "engine_signals": [
+          "09:56",
+          "09:56",
+          "09:57",
+          "09:57",
+          "10:00",
+          "10:01",
+          "10:02",
+          "10:03",
+          "10:33"
+        ],
+        "had_earlier_signal": true,
+        "index_at_first_signal": "flat",
+        "index_at_his_minute": "flat",
+        "index_clarified_by_his_minute": false,
+        "index_at_the_minute": "silent at both",
+        "daily_bias": "would have taken the earlier one",
+        "hourly_bias_incumbent": "silent at both",
+        "alignment_stack": "silent at both"
+      },
+      {
+        "card": "AMD_2024-10-02",
+        "his_minute": "09:36",
+        "late": true,
+        "engine_signals": [
+          "10:04",
+          "10:05",
+          "10:07",
+          "10:08",
+          "10:15",
+          "10:17",
+          "10:18",
+          "10:23",
+          "10:24",
+          "10:25",
+          "10:34",
+          "10:35",
+          "10:36",
+          "10:57",
+          "10:57",
+          "10:59",
+          "10:59"
+        ],
+        "had_earlier_signal": false,
+        "index_at_first_signal": "bull",
+        "index_at_his_minute": "bear",
+        "index_clarified_by_his_minute": false,
+        "index_at_the_minute": "no comparable pair",
+        "daily_bias": "no comparable pair",
+        "hourly_bias_incumbent": "no comparable pair",
+        "alignment_stack": "no comparable pair"
+      },
+      {
+        "card": "AMZN_2025-12-11",
+        "his_minute": "09:40",
+        "late": true,
+        "engine_signals": [
+          "09:39",
+          "09:39",
+          "09:41",
+          "09:41",
+          "09:42",
+          "09:42",
+          "09:44",
+          "09:44",
+          "10:23",
+          "10:23",
+          "10:24",
+          "10:24",
+          "10:25",
+          "10:25",
+          "10:39",
+          "10:40",
+          "10:41"
+        ],
+        "had_earlier_signal": true,
+        "index_at_first_signal": "bull",
+        "index_at_his_minute": "flat",
+        "index_clarified_by_his_minute": false,
+        "index_at_the_minute": "would have taken the earlier one",
+        "daily_bias": "would have taken the earlier one",
+        "hourly_bias_incumbent": "would have taken the earlier one",
+        "alignment_stack": "would have taken the earlier one"
+      },
+      {
+        "card": "AVGO_2024-11-04",
+        "his_minute": "09:47",
+        "late": true,
+        "engine_signals": [
+          "09:38",
+          "09:39",
+          "09:40",
+          "09:47",
+          "09:49",
+          "10:05",
+          "10:06",
+          "10:07",
+          "10:20",
+          "10:21",
+          "10:22",
+          "10:23",
+          "10:24",
+          "10:25",
+          "10:45",
+          "10:45",
+          "10:46",
+          "10:47",
+          "10:50",
+          "10:51"
+        ],
+        "had_earlier_signal": true,
+        "index_at_first_signal": "bear",
+        "index_at_his_minute": "flat",
+        "index_clarified_by_his_minute": false,
+        "index_at_the_minute": "silent at both",
+        "daily_bias": "silent at both",
+        "hourly_bias_incumbent": "silent at both",
+        "alignment_stack": "silent at both"
+      },
+      {
+        "card": "BABA_2024-09-05",
+        "his_minute": "09:56",
+        "late": true,
+        "engine_signals": [
+          "10:06",
+          "10:07",
+          "10:08",
+          "10:09",
+          "10:31",
+          "10:32",
+          "10:33",
+          "10:34",
+          "10:35",
+          "10:36",
+          "10:54",
+          "10:54",
+          "10:56",
+          "10:56",
+          "10:58",
+          "10:58"
+        ],
+        "had_earlier_signal": false,
+        "index_at_first_signal": "bull",
+        "index_at_his_minute": "bull",
+        "index_clarified_by_his_minute": false,
+        "index_at_the_minute": "no comparable pair",
+        "daily_bias": "no comparable pair",
+        "hourly_bias_incumbent": "no comparable pair",
+        "alignment_stack": "no comparable pair"
+      },
+      {
+        "card": "COIN_2025-07-10",
+        "his_minute": "09:41",
+        "late": true,
+        "engine_signals": [
+          "10:00",
+          "10:02",
+          "10:03",
+          "10:04",
+          "10:05",
+          "10:05",
+          "10:05",
+          "10:06",
+          "10:06",
+          "10:22",
+          "10:29",
+          "10:30",
+          "10:30",
+          "10:31",
+          "10:32",
+          "10:33",
+          "10:40",
+          "10:44"
+        ],
+        "had_earlier_signal": false,
+        "index_at_first_signal": "bear",
+        "index_at_his_minute": "bear",
+        "index_clarified_by_his_minute": false,
+        "index_at_the_minute": "no comparable pair",
+        "daily_bias": "no comparable pair",
+        "hourly_bias_incumbent": "no comparable pair",
+        "alignment_stack": "no comparable pair"
+      },
+      {
+        "card": "GOOGL_2024-10-29",
+        "his_minute": "10:47",
+        "late": true,
+        "engine_signals": [
+          "09:47",
+          "09:52",
+          "09:54",
+          "09:56",
+          "09:57",
+          "10:01",
+          "10:03",
+          "10:04",
+          "10:06",
+          "10:25",
+          "10:30",
+          "10:31",
+          "10:32",
+          "10:33",
+          "10:34",
+          "10:59"
+        ],
+        "had_earlier_signal": true,
+        "index_at_first_signal": "bear",
+        "index_at_his_minute": "bull",
+        "index_clarified_by_his_minute": false,
+        "index_at_the_minute": "no comparable pair",
+        "daily_bias": "no comparable pair",
+        "hourly_bias_incumbent": "no comparable pair",
+        "alignment_stack": "no comparable pair"
+      },
+      {
+        "card": "INTC_2026-03-24",
+        "his_minute": "09:38",
+        "late": true,
+        "engine_signals": [
+          "09:45",
+          "09:46",
+          "09:47",
+          "09:48",
+          "10:14",
+          "10:21",
+          "10:29",
+          "10:29",
+          "10:37",
+          "10:39",
+          "10:45"
+        ],
+        "had_earlier_signal": false,
+        "index_at_first_signal": "bear",
+        "index_at_his_minute": "bull",
+        "index_clarified_by_his_minute": false,
+        "index_at_the_minute": "no comparable pair",
+        "daily_bias": "no comparable pair",
+        "hourly_bias_incumbent": "no comparable pair",
+        "alignment_stack": "no comparable pair"
+      },
+      {
+        "card": "META_2026-06-22",
+        "his_minute": "09:59",
+        "late": true,
+        "engine_signals": [
+          "09:40",
+          "10:08",
+          "10:09",
+          "10:09",
+          "10:09",
+          "10:10",
+          "10:11",
+          "10:12",
+          "10:15",
+          "10:38"
+        ],
+        "had_earlier_signal": true,
+        "index_at_first_signal": "bull",
+        "index_at_his_minute": "bull",
+        "index_clarified_by_his_minute": false,
+        "index_at_the_minute": "no comparable pair",
+        "daily_bias": "no comparable pair",
+        "hourly_bias_incumbent": "no comparable pair",
+        "alignment_stack": "no comparable pair"
+      },
+      {
+        "card": "MSFT_2025-08-29",
+        "his_minute": "09:38",
+        "late": true,
+        "engine_signals": [
+          "09:38",
+          "09:39",
+          "09:40",
+          "10:02",
+          "10:03",
+          "10:04",
+          "10:05",
+          "10:06",
+          "10:18",
+          "10:19",
+          "10:22",
+          "10:24",
+          "10:41",
+          "10:43"
+        ],
+        "had_earlier_signal": false,
+        "index_at_first_signal": "flat",
+        "index_at_his_minute": "flat",
+        "index_clarified_by_his_minute": false,
+        "index_at_the_minute": "no comparable pair",
+        "daily_bias": "no comparable pair",
+        "hourly_bias_incumbent": "no comparable pair",
+        "alignment_stack": "no comparable pair"
+      },
+      {
+        "card": "NFLX_2025-07-08",
+        "his_minute": "09:38",
+        "late": true,
+        "engine_signals": [
+          "10:01",
+          "10:02",
+          "10:04",
+          "10:06",
+          "10:07",
+          "10:10",
+          "10:11",
+          "10:12",
+          "10:24",
+          "10:25",
+          "10:27"
+        ],
+        "had_earlier_signal": false,
+        "index_at_first_signal": "bear",
+        "index_at_his_minute": "bear",
+        "index_clarified_by_his_minute": false,
+        "index_at_the_minute": "no comparable pair",
+        "daily_bias": "no comparable pair",
+        "hourly_bias_incumbent": "no comparable pair",
+        "alignment_stack": "no comparable pair"
+      },
+      {
+        "card": "NFLX_2026-05-26",
+        "his_minute": "09:47",
+        "late": true,
+        "engine_signals": [
+          "09:45",
+          "09:49",
+          "09:53",
+          "09:55",
+          "09:58",
+          "10:17",
+          "10:22",
+          "10:22",
+          "10:23",
+          "10:25",
+          "10:39",
+          "10:41",
+          "10:43",
+          "10:49",
+          "10:55",
+          "10:55",
+          "10:56",
+          "10:57",
+          "10:58",
+          "10:59"
+        ],
+        "had_earlier_signal": true,
+        "index_at_first_signal": "bull",
+        "index_at_his_minute": "bull",
+        "index_clarified_by_his_minute": false,
+        "index_at_the_minute": "silent at both",
+        "daily_bias": "would have taken the earlier one",
+        "hourly_bias_incumbent": "silent at both",
+        "alignment_stack": "silent at both"
+      },
+      {
+        "card": "NVDA_2026-05-11",
+        "his_minute": "09:43",
+        "late": true,
+        "engine_signals": [
+          "09:43",
+          "09:44",
+          "10:09",
+          "10:10",
+          "10:11",
+          "10:19",
+          "10:32",
+          "10:36",
+          "10:37",
+          "10:38",
+          "10:39"
+        ],
+        "had_earlier_signal": false,
+        "index_at_first_signal": "bull",
+        "index_at_his_minute": "bull",
+        "index_clarified_by_his_minute": false,
+        "index_at_the_minute": "no comparable pair",
+        "daily_bias": "no comparable pair",
+        "hourly_bias_incumbent": "no comparable pair",
+        "alignment_stack": "no comparable pair"
+      },
+      {
+        "card": "QQQ_2024-08-26",
+        "his_minute": "09:56",
+        "late": true,
+        "engine_signals": [
+          "09:52",
+          "09:54",
+          "09:55",
+          "10:24"
+        ],
+        "had_earlier_signal": true,
+        "index_at_first_signal": "flat",
+        "index_at_his_minute": "flat",
+        "index_clarified_by_his_minute": false,
+        "index_at_the_minute": "silent at both",
+        "daily_bias": "silent at both",
+        "hourly_bias_incumbent": "silent at both",
+        "alignment_stack": "silent at both"
+      },
+      {
+        "card": "SPY_2025-05-21",
+        "his_minute": "09:45",
+        "late": true,
+        "engine_signals": [
+          "10:17",
+          "10:18",
+          "10:19",
+          "10:33",
+          "10:35",
+          "10:36",
+          "10:37",
+          "10:38",
+          "10:39",
+          "10:40",
+          "10:50"
+        ],
+        "had_earlier_signal": false,
+        "index_at_first_signal": "bull",
+        "index_at_his_minute": "bull",
+        "index_clarified_by_his_minute": false,
+        "index_at_the_minute": "no comparable pair",
+        "daily_bias": "no comparable pair",
+        "hourly_bias_incumbent": "no comparable pair",
+        "alignment_stack": "no comparable pair"
+      },
+      {
+        "card": "SPY_2026-06-17",
+        "his_minute": "09:48",
+        "late": true,
+        "engine_signals": [
+          "09:48",
+          "09:53",
+          "10:42",
+          "10:44",
+          "10:47",
+          "10:48",
+          "10:49",
+          "10:51",
+          "10:52",
+          "10:53",
+          "10:53",
+          "10:54",
+          "10:54",
+          "10:55",
+          "10:55",
+          "10:55",
+          "10:56",
+          "10:56",
+          "10:57",
+          "10:57"
+        ],
+        "had_earlier_signal": false,
+        "index_at_first_signal": "flat",
+        "index_at_his_minute": "flat",
+        "index_clarified_by_his_minute": false,
+        "index_at_the_minute": "no comparable pair",
+        "daily_bias": "no comparable pair",
+        "hourly_bias_incumbent": "no comparable pair",
+        "alignment_stack": "no comparable pair"
+      },
+      {
+        "card": "TSLA_2025-09-03",
+        "his_minute": "09:45",
+        "late": true,
+        "engine_signals": [
+          "09:44",
+          "09:45",
+          "09:46",
+          "10:29",
+          "10:30",
+          "10:31"
+        ],
+        "had_earlier_signal": true,
+        "index_at_first_signal": "bull",
+        "index_at_his_minute": "bull",
+        "index_clarified_by_his_minute": false,
+        "index_at_the_minute": "silent at both",
+        "daily_bias": "would have taken the earlier one",
+        "hourly_bias_incumbent": "would have taken the earlier one",
+        "alignment_stack": "would have taken the earlier one"
+      },
+      {
+        "card": "TSM_2026-07-07",
+        "his_minute": "09:38",
+        "late": true,
+        "engine_signals": [
+          "09:37",
+          "09:38",
+          "09:40",
+          "09:50",
+          "10:32",
+          "10:54",
+          "10:54",
+          "10:57",
+          "10:57",
+          "10:58",
+          "10:59",
+          "10:59"
+        ],
+        "had_earlier_signal": true,
+        "index_at_first_signal": "bear",
+        "index_at_his_minute": "bear",
+        "index_clarified_by_his_minute": false,
+        "index_at_the_minute": "would have taken the earlier one",
+        "daily_bias": "silent at both",
+        "hourly_bias_incumbent": "silent at both",
+        "alignment_stack": "silent at both"
+      }
+    ],
+    "excluded": {
+      "MSFT_2024-09-13": "names the engine's minute: \"9:47 is what you liked\"",
+      "QQQ_2025-12-22": "names the engine's minute: \"9:45 its close i see what your seeing\"",
+      "TSM_2025-11-26": "names a candle, not an entry: \"the green candle at 9:35\"",
+      "AVGO_2025-12-03": "a hypothetical break he rejects: \"9:33 can be a great break\""
+    }
+  },
+  "index_deadband_sensitivity": {
+    "0.00%": 667,
+    "0.05%": 613,
+    "0.10%": 687
+  }
+}

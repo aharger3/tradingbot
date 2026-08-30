@@ -1,0 +1,2459 @@
+{
+  "router_check": {
+    "delegates_to_super": true,
+    "base_router": "signal_runner.SignalRunner._route"
+  },
+  "n_cards": 30,
+  "verdicts": {
+    "yes": 21,
+    "no": 9
+  },
+  "summary": {
+    "recall_on_yes": {
+      "detected": {
+        "k": 21,
+        "n": 21,
+        "pct": 100.0
+      },
+      "fired": {
+        "k": 14,
+        "n": 21,
+        "pct": 66.7
+      },
+      "traded": {
+        "k": 14,
+        "n": 21,
+        "pct": 66.7
+      }
+    },
+    "false_fire_on_no": {
+      "detected": {
+        "k": 9,
+        "n": 9,
+        "pct": 100.0
+      },
+      "fired": {
+        "k": 6,
+        "n": 9,
+        "pct": 66.7
+      },
+      "traded": {
+        "k": 5,
+        "n": 9,
+        "pct": 55.6
+      }
+    },
+    "discrimination": {
+      "note": "every card is already an engine-claimed S, so this asks only whether the subset the router BOOKS tracks his yes/no",
+      "booked_and_yes": 14,
+      "booked_and_no": 5,
+      "silent_and_yes": 7,
+      "silent_and_no": 4,
+      "fisher_exact_two_sided_p": 0.6871
+    },
+    "by_bucket": {
+      "84": {
+        "yes": {
+          "detected": {
+            "k": 6,
+            "n": 6,
+            "pct": 100.0
+          },
+          "fired": {
+            "k": 6,
+            "n": 6,
+            "pct": 100.0
+          },
+          "traded": {
+            "k": 6,
+            "n": 6,
+            "pct": 100.0
+          }
+        },
+        "no": {
+          "detected": {
+            "k": 4,
+            "n": 4,
+            "pct": 100.0
+          },
+          "fired": {
+            "k": 4,
+            "n": 4,
+            "pct": 100.0
+          },
+          "traded": {
+            "k": 3,
+            "n": 4,
+            "pct": 75.0
+          }
+        }
+      },
+      "OCR": {
+        "yes": {
+          "detected": {
+            "k": 8,
+            "n": 8,
+            "pct": 100.0
+          },
+          "fired": {
+            "k": 4,
+            "n": 8,
+            "pct": 50.0
+          },
+          "traded": {
+            "k": 4,
+            "n": 8,
+            "pct": 50.0
+          }
+        },
+        "no": {
+          "detected": {
+            "k": 2,
+            "n": 2,
+            "pct": 100.0
+          },
+          "fired": {
+            "k": 0,
+            "n": 2,
+            "pct": 0.0
+          },
+          "traded": {
+            "k": 0,
+            "n": 2,
+            "pct": 0.0
+          }
+        }
+      },
+      "BR": {
+        "yes": {
+          "detected": {
+            "k": 7,
+            "n": 7,
+            "pct": 100.0
+          },
+          "fired": {
+            "k": 4,
+            "n": 7,
+            "pct": 57.1
+          },
+          "traded": {
+            "k": 4,
+            "n": 7,
+            "pct": 57.1
+          }
+        },
+        "no": {
+          "detected": {
+            "k": 3,
+            "n": 3,
+            "pct": 100.0
+          },
+          "fired": {
+            "k": 2,
+            "n": 3,
+            "pct": 66.7
+          },
+          "traded": {
+            "k": 2,
+            "n": 3,
+            "pct": 66.7
+          }
+        }
+      }
+    },
+    "deck_silent": {
+      "n_not_traded_in_deck": 25,
+      "yes_on_those": 17,
+      "n_legacy_X_in_deck": 16,
+      "yes_on_legacy_X": 11,
+      "still_silent_today": 10,
+      "yes_and_still_silent_today": 7
+    },
+    "grade_ladders_on_fired_signals": {
+      "yes": {
+        "legacy_A+ABCX": {
+          "A": 1,
+          "B": 13,
+          "C": 3
+        },
+        "austin_SAC": {
+          "A": 3,
+          "C": 8,
+          "S": 6
+        }
+      },
+      "no": {
+        "legacy_A+ABCX": {
+          "B": 6,
+          "C": 3
+        },
+        "austin_SAC": {
+          "A": 3,
+          "C": 5,
+          "S": 1
+        }
+      }
+    },
+    "at_his_minute": {
+      "tol_0": {
+        "n": 21,
+        "detected": 4,
+        "fired": 1,
+        "booked": 1
+      },
+      "tol_1": {
+        "n": 21,
+        "detected": 8,
+        "fired": 2,
+        "booked": 2
+      },
+      "tol_2": {
+        "n": 21,
+        "detected": 10,
+        "fired": 5,
+        "booked": 5
+      },
+      "tol_3": {
+        "n": 21,
+        "detected": 10,
+        "fired": 5,
+        "booked": 5
+      },
+      "tol_5": {
+        "n": 21,
+        "detected": 10,
+        "fired": 5,
+        "booked": 5
+      }
+    },
+    "at_his_minute_by_bucket_tol2": {
+      "84": {
+        "n": 6,
+        "detected": 2,
+        "fired": 2,
+        "booked": 2
+      },
+      "OCR": {
+        "n": 8,
+        "detected": 3,
+        "fired": 2,
+        "booked": 2
+      },
+      "BR": {
+        "n": 7,
+        "detected": 5,
+        "fired": 1,
+        "booked": 1
+      }
+    },
+    "timing": {
+      "n_yes_with_stated_minute": 21,
+      "n_yes_stated_and_engine_fired": 14,
+      "n_yes_stated_and_engine_booked": 14,
+      "first_fire_minus_austin": {
+        "n": 14,
+        "min": -43,
+        "max": 41,
+        "median": 4.0,
+        "mean": 5.57,
+        "early_engine_before_austin": 2,
+        "exact": 1,
+        "late_engine_after_austin": 11,
+        "within_1min": 2,
+        "within_2min": 5,
+        "within_5min": 5,
+        "values": [
+          -43,
+          -19,
+          0,
+          1,
+          2,
+          2,
+          2,
+          6,
+          10,
+          12,
+          13,
+          19,
+          32,
+          41
+        ]
+      },
+      "nearest_fire_minus_austin": {
+        "n": 14,
+        "min": -43,
+        "max": 41,
+        "median": 4.0,
+        "mean": 5.57,
+        "early_engine_before_austin": 2,
+        "exact": 1,
+        "late_engine_after_austin": 11,
+        "within_1min": 2,
+        "within_2min": 5,
+        "within_5min": 5,
+        "values": [
+          -43,
+          -19,
+          0,
+          1,
+          2,
+          2,
+          2,
+          6,
+          10,
+          12,
+          13,
+          19,
+          32,
+          41
+        ]
+      },
+      "first_booked_minus_austin": {
+        "n": 14,
+        "min": -43,
+        "max": 41,
+        "median": 4.0,
+        "mean": 5.57,
+        "early_engine_before_austin": 2,
+        "exact": 1,
+        "late_engine_after_austin": 11,
+        "within_1min": 2,
+        "within_2min": 5,
+        "within_5min": 5,
+        "values": [
+          -43,
+          -19,
+          0,
+          1,
+          2,
+          2,
+          2,
+          6,
+          10,
+          12,
+          13,
+          19,
+          32,
+          41
+        ]
+      },
+      "nearest_booked_minus_austin": {
+        "n": 14,
+        "min": -22,
+        "max": 41,
+        "median": 8.0,
+        "mean": 9.57,
+        "early_engine_before_austin": 1,
+        "exact": 1,
+        "late_engine_after_austin": 12,
+        "within_1min": 2,
+        "within_2min": 5,
+        "within_5min": 5,
+        "values": [
+          -22,
+          0,
+          1,
+          2,
+          2,
+          2,
+          6,
+          10,
+          12,
+          13,
+          16,
+          19,
+          32,
+          41
+        ]
+      },
+      "deck_card_minus_austin": {
+        "n": 21,
+        "min": -4,
+        "max": 59,
+        "median": 24,
+        "mean": 25.43,
+        "early_engine_before_austin": 3,
+        "exact": 1,
+        "late_engine_after_austin": 17,
+        "within_1min": 3,
+        "within_2min": 3,
+        "within_5min": 4,
+        "values": [
+          -4,
+          -1,
+          -1,
+          0,
+          12,
+          12,
+          12,
+          12,
+          16,
+          23,
+          24,
+          28,
+          30,
+          32,
+          41,
+          43,
+          45,
+          48,
+          49,
+          54,
+          59
+        ]
+      },
+      "deck_card_minus_austin_all30": {
+        "n": 22,
+        "min": -4,
+        "max": 59,
+        "median": 23.5,
+        "mean": 24.27,
+        "early_engine_before_austin": 3,
+        "exact": 2,
+        "late_engine_after_austin": 17,
+        "within_1min": 4,
+        "within_2min": 4,
+        "within_5min": 5,
+        "values": [
+          -4,
+          -1,
+          -1,
+          0,
+          0,
+          12,
+          12,
+          12,
+          12,
+          16,
+          23,
+          24,
+          28,
+          30,
+          32,
+          41,
+          43,
+          45,
+          48,
+          49,
+          54,
+          59
+        ]
+      },
+      "per_card": [
+        {
+          "card_id": "BABA_2024-09-05",
+          "bucket": "BR",
+          "austin": "9:56",
+          "first_fire": "10:09",
+          "delta_first_fire": 13,
+          "delta_nearest_fire": 13,
+          "first_booked": "10:09",
+          "delta_first_booked": 13,
+          "deck_card_minute": "10:08",
+          "delta_deck_card": 12
+        },
+        {
+          "card_id": "NFLX_2026-05-26",
+          "bucket": "84",
+          "austin": "9:47",
+          "first_fire": "09:49",
+          "delta_first_fire": 2,
+          "delta_nearest_fire": 2,
+          "first_booked": "09:49",
+          "delta_first_booked": 2,
+          "deck_card_minute": "10:17",
+          "delta_deck_card": 30
+        },
+        {
+          "card_id": "NVDA_2026-05-11",
+          "bucket": "OCR",
+          "austin": "9:43",
+          "first_fire": "09:44",
+          "delta_first_fire": 1,
+          "delta_nearest_fire": 1,
+          "first_booked": "09:44",
+          "delta_first_booked": 1,
+          "deck_card_minute": "10:32",
+          "delta_deck_card": 49
+        },
+        {
+          "card_id": "NFLX_2025-07-08",
+          "bucket": "OCR",
+          "austin": "9:38",
+          "first_fire": null,
+          "delta_first_fire": null,
+          "delta_nearest_fire": null,
+          "first_booked": null,
+          "delta_first_booked": null,
+          "deck_card_minute": "10:01",
+          "delta_deck_card": 23
+        },
+        {
+          "card_id": "COIN_2025-07-10",
+          "bucket": "84",
+          "austin": "9:41",
+          "first_fire": "10:22",
+          "delta_first_fire": 41,
+          "delta_nearest_fire": 41,
+          "first_booked": "10:22",
+          "delta_first_booked": 41,
+          "deck_card_minute": "10:40",
+          "delta_deck_card": 59
+        },
+        {
+          "card_id": "TSLA_2025-09-03",
+          "bucket": "BR",
+          "austin": "9:45",
+          "first_fire": null,
+          "delta_first_fire": null,
+          "delta_nearest_fire": null,
+          "first_booked": null,
+          "delta_first_booked": null,
+          "deck_card_minute": "10:30",
+          "delta_deck_card": 45
+        },
+        {
+          "card_id": "AMD_2024-10-02",
+          "bucket": "BR",
+          "austin": "9:36",
+          "first_fire": "10:08",
+          "delta_first_fire": 32,
+          "delta_nearest_fire": 32,
+          "first_booked": "10:08",
+          "delta_first_booked": 32,
+          "deck_card_minute": "10:04",
+          "delta_deck_card": 28
+        },
+        {
+          "card_id": "MSFT_2025-08-29",
+          "bucket": "OCR",
+          "austin": "9:38",
+          "first_fire": "09:40",
+          "delta_first_fire": 2,
+          "delta_nearest_fire": 2,
+          "first_booked": "09:40",
+          "delta_first_booked": 2,
+          "deck_card_minute": "10:19",
+          "delta_deck_card": 41
+        },
+        {
+          "card_id": "GOOGL_2024-10-29",
+          "bucket": "OCR",
+          "austin": "10:47",
+          "first_fire": "10:04",
+          "delta_first_fire": -43,
+          "delta_nearest_fire": -43,
+          "first_booked": "10:04",
+          "delta_first_booked": -43,
+          "deck_card_minute": "10:59",
+          "delta_deck_card": 12
+        },
+        {
+          "card_id": "AAPL_2026-04-17",
+          "bucket": "84",
+          "austin": "9:42",
+          "first_fire": "10:01",
+          "delta_first_fire": 19,
+          "delta_nearest_fire": 19,
+          "first_booked": "10:01",
+          "delta_first_booked": 19,
+          "deck_card_minute": "10:14",
+          "delta_deck_card": 32
+        },
+        {
+          "card_id": "SPY_2025-05-21",
+          "bucket": "OCR",
+          "austin": "9:45",
+          "first_fire": null,
+          "delta_first_fire": null,
+          "delta_nearest_fire": null,
+          "first_booked": null,
+          "delta_first_booked": null,
+          "deck_card_minute": "10:33",
+          "delta_deck_card": 48
+        },
+        {
+          "card_id": "INTC_2026-03-24",
+          "bucket": "84",
+          "austin": "9:38",
+          "first_fire": "09:48",
+          "delta_first_fire": 10,
+          "delta_nearest_fire": 10,
+          "first_booked": "09:48",
+          "delta_first_booked": 10,
+          "deck_card_minute": "10:21",
+          "delta_deck_card": 43
+        },
+        {
+          "card_id": "AVGO_2024-11-04",
+          "bucket": "BR",
+          "austin": "9:47",
+          "first_fire": null,
+          "delta_first_fire": null,
+          "delta_nearest_fire": null,
+          "first_booked": null,
+          "delta_first_booked": null,
+          "deck_card_minute": "09:47",
+          "delta_deck_card": 0
+        },
+        {
+          "card_id": "IWM_2026-08-06",
+          "bucket": "OCR",
+          "austin": "9:55",
+          "first_fire": "10:07",
+          "delta_first_fire": 12,
+          "delta_nearest_fire": 12,
+          "first_booked": "10:07",
+          "delta_first_booked": 12,
+          "deck_card_minute": "10:07",
+          "delta_deck_card": 12
+        },
+        {
+          "card_id": "TSM_2026-07-07",
+          "bucket": "84",
+          "austin": "9:38",
+          "first_fire": "09:38",
+          "delta_first_fire": 0,
+          "delta_nearest_fire": 0,
+          "first_booked": "09:38",
+          "delta_first_booked": 0,
+          "deck_card_minute": "09:50",
+          "delta_deck_card": 12
+        },
+        {
+          "card_id": "AMZN_2025-12-11",
+          "bucket": "BR",
+          "austin": "9:40",
+          "first_fire": "09:42",
+          "delta_first_fire": 2,
+          "delta_nearest_fire": 2,
+          "first_booked": "09:42",
+          "delta_first_booked": 2,
+          "deck_card_minute": "09:39",
+          "delta_deck_card": -1
+        },
+        {
+          "card_id": "ACHR_2026-06-16",
+          "bucket": "BR",
+          "austin": "9:57",
+          "first_fire": "10:03",
+          "delta_first_fire": 6,
+          "delta_nearest_fire": 6,
+          "first_booked": "10:03",
+          "delta_first_booked": 6,
+          "deck_card_minute": "09:56",
+          "delta_deck_card": -1
+        },
+        {
+          "card_id": "SPY_2026-06-17",
+          "bucket": "OCR",
+          "austin": "9:48",
+          "first_fire": null,
+          "delta_first_fire": null,
+          "delta_nearest_fire": null,
+          "first_booked": null,
+          "delta_first_booked": null,
+          "deck_card_minute": "10:42",
+          "delta_deck_card": 54
+        },
+        {
+          "card_id": "ACHR_2026-04-13",
+          "bucket": "OCR",
+          "austin": "10:09",
+          "first_fire": null,
+          "delta_first_fire": null,
+          "delta_nearest_fire": null,
+          "first_booked": null,
+          "delta_first_booked": null,
+          "deck_card_minute": "10:33",
+          "delta_deck_card": 24
+        },
+        {
+          "card_id": "META_2026-06-22",
+          "bucket": "84",
+          "austin": "9:59",
+          "first_fire": "09:40",
+          "delta_first_fire": -19,
+          "delta_nearest_fire": -19,
+          "first_booked": "09:40",
+          "delta_first_booked": -19,
+          "deck_card_minute": "10:15",
+          "delta_deck_card": 16
+        },
+        {
+          "card_id": "QQQ_2024-08-26",
+          "bucket": "BR",
+          "austin": "9:56",
+          "first_fire": null,
+          "delta_first_fire": null,
+          "delta_nearest_fire": null,
+          "first_booked": null,
+          "delta_first_booked": null,
+          "deck_card_minute": "09:52",
+          "delta_deck_card": -4
+        }
+      ]
+    }
+  },
+  "cards": [
+    {
+      "card_id": "BABA_2024-09-05",
+      "symbol": "BABA",
+      "day": "2024-09-05",
+      "bucket": "BR",
+      "verdict": "yes",
+      "why_not": [],
+      "note": "9:56",
+      "claimed_setup": "BR+OCR",
+      "claimed_level": "PMH",
+      "deck_legacy_grade": "X",
+      "deck_traded": false,
+      "deck_entry_minute": "10:08",
+      "austin_minute": "9:56",
+      "austin_minute_notes": {},
+      "detected_minutes": [
+        "10:06",
+        "10:31",
+        "10:34",
+        "10:54",
+        "10:56",
+        "10:58"
+      ],
+      "n_raw_signals": 16,
+      "fired": [
+        {
+          "minute": "10:09",
+          "setup": "break_and_retest",
+          "dir": "call",
+          "legacy_grade": "B",
+          "austin_grade": "S",
+          "tripped": [],
+          "confluence": true,
+          "level": "PMH"
+        }
+      ],
+      "fired_minutes": [
+        "10:09"
+      ],
+      "booked": [
+        {
+          "minute": "10:09",
+          "setup": "break_and_retest",
+          "dir": "call",
+          "legacy_grade": "B",
+          "austin_grade": "S",
+          "outcome": "loss",
+          "level": "PMH"
+        }
+      ],
+      "booked_minutes": [
+        "10:09"
+      ],
+      "alert_only_minutes": [],
+      "delta_first_fire": 13,
+      "delta_nearest_fire": 13,
+      "delta_first_booked": 13,
+      "delta_nearest_booked": 13,
+      "delta_deck_card": 12
+    },
+    {
+      "card_id": "NFLX_2026-05-26",
+      "symbol": "NFLX",
+      "day": "2026-05-26",
+      "bucket": "84",
+      "verdict": "yes",
+      "why_not": [],
+      "note": "9:47 OCR stop green candle wick",
+      "claimed_setup": "84",
+      "claimed_level": "PML",
+      "deck_legacy_grade": "A",
+      "deck_traded": false,
+      "deck_entry_minute": "10:17",
+      "austin_minute": "9:47",
+      "austin_minute_notes": {},
+      "detected_minutes": [
+        "09:45",
+        "09:49",
+        "09:53",
+        "09:55",
+        "09:58",
+        "10:22",
+        "10:25",
+        "10:39",
+        "10:41",
+        "10:43",
+        "10:49",
+        "10:55",
+        "10:56"
+      ],
+      "n_raw_signals": 20,
+      "fired": [
+        {
+          "minute": "09:49",
+          "setup": "one_candle_rule",
+          "dir": "put",
+          "legacy_grade": "A",
+          "austin_grade": "S",
+          "tripped": [
+            "counter_trend_not_respected"
+          ],
+          "confluence": true,
+          "level": "Order block high"
+        }
+      ],
+      "fired_minutes": [
+        "09:49"
+      ],
+      "booked": [
+        {
+          "minute": "09:49",
+          "setup": "one_candle_rule",
+          "dir": "put",
+          "legacy_grade": "A",
+          "austin_grade": "S",
+          "outcome": "loss",
+          "level": "Order block high"
+        },
+        {
+          "minute": "10:17",
+          "setup": "reentry_84_rule",
+          "dir": "put",
+          "legacy_grade": "A",
+          "austin_grade": "S",
+          "outcome": "win",
+          "level": "Original stop"
+        }
+      ],
+      "booked_minutes": [
+        "09:49",
+        "10:17"
+      ],
+      "alert_only_minutes": [],
+      "delta_first_fire": 2,
+      "delta_nearest_fire": 2,
+      "delta_first_booked": 2,
+      "delta_nearest_booked": 2,
+      "delta_deck_card": 30
+    },
+    {
+      "card_id": "NVDA_2026-05-11",
+      "symbol": "NVDA",
+      "day": "2026-05-11",
+      "bucket": "OCR",
+      "verdict": "yes",
+      "why_not": [],
+      "note": "9:43",
+      "claimed_setup": "OCR",
+      "claimed_level": "PDH",
+      "deck_legacy_grade": "X",
+      "deck_traded": false,
+      "deck_entry_minute": "10:32",
+      "austin_minute": "9:43",
+      "austin_minute_notes": {},
+      "detected_minutes": [
+        "09:43",
+        "10:09",
+        "10:19",
+        "10:32",
+        "10:36"
+      ],
+      "n_raw_signals": 14,
+      "fired": [
+        {
+          "minute": "09:44",
+          "setup": "break_and_retest",
+          "dir": "call",
+          "legacy_grade": "B",
+          "austin_grade": "S",
+          "tripped": [
+            "no_displacement"
+          ],
+          "confluence": true,
+          "level": "PDH"
+        },
+        {
+          "minute": "10:11",
+          "setup": "break_and_retest",
+          "dir": "call",
+          "legacy_grade": "C",
+          "austin_grade": "A",
+          "tripped": [
+            "no_displacement",
+            "counter_trend_not_respected"
+          ],
+          "confluence": true,
+          "level": "PDH"
+        }
+      ],
+      "fired_minutes": [
+        "09:44",
+        "10:11"
+      ],
+      "booked": [
+        {
+          "minute": "09:44",
+          "setup": "break_and_retest",
+          "dir": "call",
+          "legacy_grade": "B",
+          "austin_grade": "S",
+          "outcome": "win",
+          "level": "PDH"
+        }
+      ],
+      "booked_minutes": [
+        "09:44"
+      ],
+      "alert_only_minutes": [
+        "10:11"
+      ],
+      "delta_first_fire": 1,
+      "delta_nearest_fire": 1,
+      "delta_first_booked": 1,
+      "delta_nearest_booked": 1,
+      "delta_deck_card": 49
+    },
+    {
+      "card_id": "NFLX_2025-07-08",
+      "symbol": "NFLX",
+      "day": "2025-07-08",
+      "bucket": "OCR",
+      "verdict": "yes",
+      "why_not": [],
+      "note": "9:38",
+      "claimed_setup": "OCR",
+      "claimed_level": "PDL",
+      "deck_legacy_grade": "B",
+      "deck_traded": false,
+      "deck_entry_minute": "10:01",
+      "austin_minute": "9:38",
+      "austin_minute_notes": {},
+      "detected_minutes": [
+        "10:01",
+        "10:02",
+        "10:04",
+        "10:06",
+        "10:10",
+        "10:24"
+      ],
+      "n_raw_signals": 12,
+      "fired": [],
+      "fired_minutes": [],
+      "booked": [],
+      "booked_minutes": [],
+      "alert_only_minutes": [],
+      "delta_deck_card": 23
+    },
+    {
+      "card_id": "COIN_2025-07-10",
+      "symbol": "COIN",
+      "day": "2025-07-10",
+      "bucket": "84",
+      "verdict": "yes",
+      "why_not": [],
+      "note": "9:41",
+      "claimed_setup": "84",
+      "claimed_level": "PDH",
+      "deck_legacy_grade": "B",
+      "deck_traded": true,
+      "deck_entry_minute": "10:40",
+      "austin_minute": "9:41",
+      "austin_minute_notes": {},
+      "detected_minutes": [
+        "10:00",
+        "10:02",
+        "10:05",
+        "10:19",
+        "10:22",
+        "10:29",
+        "10:30",
+        "10:31",
+        "10:44",
+        "10:58"
+      ],
+      "n_raw_signals": 22,
+      "fired": [
+        {
+          "minute": "10:22",
+          "setup": "break_and_retest",
+          "dir": "call",
+          "legacy_grade": "B",
+          "austin_grade": "C",
+          "tripped": [
+            "no_displacement",
+            "level_not_respected",
+            "counter_trend_not_respected"
+          ],
+          "confluence": true,
+          "level": "pivot high @09:53"
+        }
+      ],
+      "fired_minutes": [
+        "10:22"
+      ],
+      "booked": [
+        {
+          "minute": "10:22",
+          "setup": "break_and_retest",
+          "dir": "call",
+          "legacy_grade": "B",
+          "austin_grade": "C",
+          "outcome": "loss",
+          "level": "pivot high @09:53"
+        },
+        {
+          "minute": "10:45",
+          "setup": "reentry_84_rule",
+          "dir": "call",
+          "legacy_grade": "B",
+          "austin_grade": "C",
+          "outcome": "win",
+          "level": "Original stop"
+        }
+      ],
+      "booked_minutes": [
+        "10:22",
+        "10:45"
+      ],
+      "alert_only_minutes": [],
+      "delta_first_fire": 41,
+      "delta_nearest_fire": 41,
+      "delta_first_booked": 41,
+      "delta_nearest_booked": 41,
+      "delta_deck_card": 59
+    },
+    {
+      "card_id": "TSLA_2025-09-03",
+      "symbol": "TSLA",
+      "day": "2025-09-03",
+      "bucket": "BR",
+      "verdict": "yes",
+      "why_not": [],
+      "note": "9:45",
+      "claimed_setup": "BR+OCR",
+      "claimed_level": "PMH",
+      "deck_legacy_grade": "X",
+      "deck_traded": false,
+      "deck_entry_minute": "10:30",
+      "austin_minute": "9:45",
+      "austin_minute_notes": {},
+      "detected_minutes": [
+        "09:44",
+        "10:29"
+      ],
+      "n_raw_signals": 6,
+      "fired": [],
+      "fired_minutes": [],
+      "booked": [],
+      "booked_minutes": [],
+      "alert_only_minutes": [],
+      "delta_deck_card": 45
+    },
+    {
+      "card_id": "AMD_2024-10-02",
+      "symbol": "AMD",
+      "day": "2024-10-02",
+      "bucket": "BR",
+      "verdict": "yes",
+      "why_not": [],
+      "note": "9:36 and 84 percent rule happens yes",
+      "claimed_setup": "BR+OCR",
+      "claimed_level": "PMH",
+      "deck_legacy_grade": "X",
+      "deck_traded": false,
+      "deck_entry_minute": "10:04",
+      "austin_minute": "9:36",
+      "austin_minute_notes": {},
+      "detected_minutes": [
+        "10:04",
+        "10:07",
+        "10:15",
+        "10:17",
+        "10:23",
+        "10:34",
+        "10:57",
+        "10:59"
+      ],
+      "n_raw_signals": 17,
+      "fired": [
+        {
+          "minute": "10:08",
+          "setup": "break_and_retest",
+          "dir": "call",
+          "legacy_grade": "B",
+          "austin_grade": "S",
+          "tripped": [
+            "counter_trend_not_respected"
+          ],
+          "confluence": true,
+          "level": "PMH"
+        },
+        {
+          "minute": "10:18",
+          "setup": "break_and_retest",
+          "dir": "call",
+          "legacy_grade": "C",
+          "austin_grade": "C",
+          "tripped": [
+            "level_not_respected",
+            "counter_trend_not_respected",
+            "ocr_not_respected"
+          ],
+          "confluence": false,
+          "level": "pivot high @10:03"
+        }
+      ],
+      "fired_minutes": [
+        "10:08",
+        "10:18"
+      ],
+      "booked": [
+        {
+          "minute": "10:08",
+          "setup": "break_and_retest",
+          "dir": "call",
+          "legacy_grade": "B",
+          "austin_grade": "S",
+          "outcome": "win",
+          "level": "PMH"
+        }
+      ],
+      "booked_minutes": [
+        "10:08"
+      ],
+      "alert_only_minutes": [
+        "10:18"
+      ],
+      "delta_first_fire": 32,
+      "delta_nearest_fire": 32,
+      "delta_first_booked": 32,
+      "delta_nearest_booked": 32,
+      "delta_deck_card": 28
+    },
+    {
+      "card_id": "MSFT_2024-09-13",
+      "symbol": "MSFT",
+      "day": "2024-09-13",
+      "bucket": "84",
+      "verdict": "no",
+      "why_not": [
+        "level_not_respected"
+      ],
+      "note": "9:47 is what you liked but it broke above those levels and rejected them",
+      "claimed_setup": "84",
+      "claimed_level": "PMH",
+      "deck_legacy_grade": "A",
+      "deck_traded": false,
+      "deck_entry_minute": "10:17",
+      "austin_minute": null,
+      "austin_minute_notes": {
+        "not_his": "9:47",
+        "why": "naming the engine's minute"
+      },
+      "detected_minutes": [
+        "09:47",
+        "10:13",
+        "10:48"
+      ],
+      "n_raw_signals": 9,
+      "fired": [
+        {
+          "minute": "09:47",
+          "setup": "break_and_retest",
+          "dir": "call",
+          "legacy_grade": "B",
+          "austin_grade": "C",
+          "tripped": [
+            "counter_trend_not_respected",
+            "ocr_not_respected"
+          ],
+          "confluence": false,
+          "level": "PMH"
+        }
+      ],
+      "fired_minutes": [
+        "09:47"
+      ],
+      "booked": [
+        {
+          "minute": "09:47",
+          "setup": "break_and_retest",
+          "dir": "call",
+          "legacy_grade": "B",
+          "austin_grade": "C",
+          "outcome": "loss",
+          "level": "PMH"
+        },
+        {
+          "minute": "10:17",
+          "setup": "reentry_84_rule",
+          "dir": "call",
+          "legacy_grade": "B",
+          "austin_grade": "S",
+          "outcome": "loss",
+          "level": "Original stop"
+        }
+      ],
+      "booked_minutes": [
+        "09:47",
+        "10:17"
+      ],
+      "alert_only_minutes": []
+    },
+    {
+      "card_id": "MSFT_2025-08-29",
+      "symbol": "MSFT",
+      "day": "2025-08-29",
+      "bucket": "OCR",
+      "verdict": "yes",
+      "why_not": [],
+      "note": "BR OCB confluence, not perfect because no displacement but you get a +1 9:38 is the entry",
+      "claimed_setup": "OCR",
+      "claimed_level": "PDL",
+      "deck_legacy_grade": "C",
+      "deck_traded": false,
+      "deck_entry_minute": "10:19",
+      "austin_minute": "9:38",
+      "austin_minute_notes": {},
+      "detected_minutes": [
+        "09:38",
+        "10:02",
+        "10:18",
+        "10:22",
+        "10:24",
+        "10:41",
+        "10:43"
+      ],
+      "n_raw_signals": 15,
+      "fired": [
+        {
+          "minute": "09:40",
+          "setup": "break_and_retest",
+          "dir": "put",
+          "legacy_grade": "B",
+          "austin_grade": "A",
+          "tripped": [
+            "no_displacement",
+            "level_not_respected"
+          ],
+          "confluence": true,
+          "level": "PML"
+        }
+      ],
+      "fired_minutes": [
+        "09:40"
+      ],
+      "booked": [
+        {
+          "minute": "09:40",
+          "setup": "break_and_retest",
+          "dir": "put",
+          "legacy_grade": "B",
+          "austin_grade": "A",
+          "outcome": "win",
+          "level": "PML"
+        }
+      ],
+      "booked_minutes": [
+        "09:40"
+      ],
+      "alert_only_minutes": [],
+      "delta_first_fire": 2,
+      "delta_nearest_fire": 2,
+      "delta_first_booked": 2,
+      "delta_nearest_booked": 2,
+      "delta_deck_card": 41
+    },
+    {
+      "card_id": "GOOGL_2024-10-29",
+      "symbol": "GOOGL",
+      "day": "2024-10-29",
+      "bucket": "OCR",
+      "verdict": "yes",
+      "why_not": [],
+      "note": "10:47",
+      "claimed_setup": "OCR",
+      "claimed_level": "PDH",
+      "deck_legacy_grade": "C",
+      "deck_traded": false,
+      "deck_entry_minute": "10:59",
+      "austin_minute": "10:47",
+      "austin_minute_notes": {},
+      "detected_minutes": [
+        "09:47",
+        "09:52",
+        "09:54",
+        "09:56",
+        "10:01",
+        "10:03",
+        "10:06",
+        "10:30",
+        "10:59"
+      ],
+      "n_raw_signals": 15,
+      "fired": [
+        {
+          "minute": "10:04",
+          "setup": "break_and_retest",
+          "dir": "call",
+          "legacy_grade": "B",
+          "austin_grade": "C",
+          "tripped": [
+            "no_displacement",
+            "level_not_respected",
+            "counter_trend_not_respected",
+            "no_retest"
+          ],
+          "confluence": true,
+          "level": "pivot high @09:36"
+        }
+      ],
+      "fired_minutes": [
+        "10:04"
+      ],
+      "booked": [
+        {
+          "minute": "10:04",
+          "setup": "break_and_retest",
+          "dir": "call",
+          "legacy_grade": "B",
+          "austin_grade": "C",
+          "outcome": "loss",
+          "level": "pivot high @09:36"
+        },
+        {
+          "minute": "10:25",
+          "setup": "reentry_84_rule",
+          "dir": "call",
+          "legacy_grade": "B",
+          "austin_grade": "C",
+          "outcome": "loss",
+          "level": "Original stop"
+        }
+      ],
+      "booked_minutes": [
+        "10:04",
+        "10:25"
+      ],
+      "alert_only_minutes": [],
+      "delta_first_fire": -43,
+      "delta_nearest_fire": -43,
+      "delta_first_booked": -43,
+      "delta_nearest_booked": -22,
+      "delta_deck_card": 12
+    },
+    {
+      "card_id": "AAPL_2026-04-17",
+      "symbol": "AAPL",
+      "day": "2026-04-17",
+      "bucket": "84",
+      "verdict": "yes",
+      "why_not": [],
+      "note": "9:42",
+      "claimed_setup": "84",
+      "claimed_level": "PMH",
+      "deck_legacy_grade": "A",
+      "deck_traded": true,
+      "deck_entry_minute": "10:14",
+      "austin_minute": "9:42",
+      "austin_minute_notes": {},
+      "detected_minutes": [
+        "10:00",
+        "10:25",
+        "10:33",
+        "10:41"
+      ],
+      "n_raw_signals": 9,
+      "fired": [
+        {
+          "minute": "10:01",
+          "setup": "break_and_retest",
+          "dir": "call",
+          "legacy_grade": "B",
+          "austin_grade": "S",
+          "tripped": [
+            "counter_trend_not_respected"
+          ],
+          "confluence": true,
+          "level": "PMH"
+        }
+      ],
+      "fired_minutes": [
+        "10:01"
+      ],
+      "booked": [
+        {
+          "minute": "10:01",
+          "setup": "break_and_retest",
+          "dir": "call",
+          "legacy_grade": "B",
+          "austin_grade": "S",
+          "outcome": "loss",
+          "level": "PMH"
+        },
+        {
+          "minute": "10:14",
+          "setup": "reentry_84_rule",
+          "dir": "call",
+          "legacy_grade": "A",
+          "austin_grade": "S",
+          "outcome": "loss",
+          "level": "Original stop"
+        }
+      ],
+      "booked_minutes": [
+        "10:01",
+        "10:14"
+      ],
+      "alert_only_minutes": [],
+      "delta_first_fire": 19,
+      "delta_nearest_fire": 19,
+      "delta_first_booked": 19,
+      "delta_nearest_booked": 19,
+      "delta_deck_card": 32
+    },
+    {
+      "card_id": "TSM_2025-11-26",
+      "symbol": "TSM",
+      "day": "2025-11-26",
+      "bucket": "BR",
+      "verdict": "no",
+      "why_not": [
+        "other"
+      ],
+      "note": "i see what the entry would be but hard to get past the green  candle at 9:35 | pivot created hard to break",
+      "claimed_setup": "BR+OCR",
+      "claimed_level": "PMH",
+      "deck_legacy_grade": "X",
+      "deck_traded": false,
+      "deck_entry_minute": "10:39",
+      "austin_minute": null,
+      "austin_minute_notes": {
+        "not_his": "9:35",
+        "why": "a candle, not an entry"
+      },
+      "detected_minutes": [
+        "09:57",
+        "10:01",
+        "10:04",
+        "10:37",
+        "10:39",
+        "10:44",
+        "10:58"
+      ],
+      "n_raw_signals": 15,
+      "fired": [
+        {
+          "minute": "09:59",
+          "setup": "break_and_retest",
+          "dir": "put",
+          "legacy_grade": "B",
+          "austin_grade": "S",
+          "tripped": [
+            "level_not_respected"
+          ],
+          "confluence": true,
+          "level": "pivot low @09:38"
+        },
+        {
+          "minute": "10:01",
+          "setup": "break_and_retest",
+          "dir": "put",
+          "legacy_grade": "B",
+          "austin_grade": "A",
+          "tripped": [
+            "level_not_respected",
+            "counter_trend_not_respected"
+          ],
+          "confluence": true,
+          "level": "pivot low @09:38"
+        }
+      ],
+      "fired_minutes": [
+        "09:59",
+        "10:01"
+      ],
+      "booked": [
+        {
+          "minute": "09:59",
+          "setup": "break_and_retest",
+          "dir": "put",
+          "legacy_grade": "B",
+          "austin_grade": "S",
+          "outcome": "win",
+          "level": "pivot low @09:38"
+        },
+        {
+          "minute": "10:01",
+          "setup": "break_and_retest",
+          "dir": "put",
+          "legacy_grade": "B",
+          "austin_grade": "A",
+          "outcome": "win",
+          "level": "pivot low @09:38"
+        }
+      ],
+      "booked_minutes": [
+        "09:59",
+        "10:01"
+      ],
+      "alert_only_minutes": []
+    },
+    {
+      "card_id": "SPY_2025-05-21",
+      "symbol": "SPY",
+      "day": "2025-05-21",
+      "bucket": "OCR",
+      "verdict": "yes",
+      "why_not": [],
+      "note": "9:45 BR OCR confluence",
+      "claimed_setup": "OCR",
+      "claimed_level": "PDL",
+      "deck_legacy_grade": "C",
+      "deck_traded": false,
+      "deck_entry_minute": "10:33",
+      "austin_minute": "9:45",
+      "austin_minute_notes": {},
+      "detected_minutes": [
+        "10:17",
+        "10:33",
+        "10:35",
+        "10:38",
+        "10:50"
+      ],
+      "n_raw_signals": 11,
+      "fired": [],
+      "fired_minutes": [],
+      "booked": [],
+      "booked_minutes": [],
+      "alert_only_minutes": [],
+      "delta_deck_card": 48
+    },
+    {
+      "card_id": "INTC_2026-03-24",
+      "symbol": "INTC",
+      "day": "2026-03-24",
+      "bucket": "84",
+      "verdict": "yes",
+      "why_not": [],
+      "note": "entry at 9:38 and then a 84 reclaim correct, because the bigger pucture stop was it holder the opening candle",
+      "claimed_setup": "84",
+      "claimed_level": "PDL",
+      "deck_legacy_grade": "B",
+      "deck_traded": true,
+      "deck_entry_minute": "10:21",
+      "austin_minute": "9:38",
+      "austin_minute_notes": {},
+      "detected_minutes": [
+        "09:45",
+        "10:14",
+        "10:29",
+        "10:37",
+        "10:39",
+        "10:45"
+      ],
+      "n_raw_signals": 10,
+      "fired": [
+        {
+          "minute": "09:48",
+          "setup": "break_and_retest",
+          "dir": "put",
+          "legacy_grade": "B",
+          "austin_grade": "C",
+          "tripped": [
+            "no_displacement",
+            "level_not_respected",
+            "counter_trend_not_respected",
+            "chase"
+          ],
+          "confluence": true,
+          "level": "PDL"
+        }
+      ],
+      "fired_minutes": [
+        "09:48"
+      ],
+      "booked": [
+        {
+          "minute": "09:48",
+          "setup": "break_and_retest",
+          "dir": "put",
+          "legacy_grade": "B",
+          "austin_grade": "C",
+          "outcome": "loss",
+          "level": "PDL"
+        },
+        {
+          "minute": "10:21",
+          "setup": "reentry_84_rule",
+          "dir": "put",
+          "legacy_grade": "B",
+          "austin_grade": "S",
+          "outcome": "loss",
+          "level": "Original stop"
+        }
+      ],
+      "booked_minutes": [
+        "09:48",
+        "10:21"
+      ],
+      "alert_only_minutes": [],
+      "delta_first_fire": 10,
+      "delta_nearest_fire": 10,
+      "delta_first_booked": 10,
+      "delta_nearest_booked": 10,
+      "delta_deck_card": 43
+    },
+    {
+      "card_id": "AVGO_2024-11-04",
+      "symbol": "AVGO",
+      "day": "2024-11-04",
+      "bucket": "BR",
+      "verdict": "yes",
+      "why_not": [],
+      "note": "9:47",
+      "claimed_setup": "BR+OCR",
+      "claimed_level": "PDH",
+      "deck_legacy_grade": "X",
+      "deck_traded": false,
+      "deck_entry_minute": "09:47",
+      "austin_minute": "9:47",
+      "austin_minute_notes": {},
+      "detected_minutes": [
+        "09:38",
+        "09:47",
+        "09:49",
+        "10:05",
+        "10:20",
+        "10:45",
+        "10:50"
+      ],
+      "n_raw_signals": 20,
+      "fired": [],
+      "fired_minutes": [],
+      "booked": [],
+      "booked_minutes": [],
+      "alert_only_minutes": [],
+      "delta_deck_card": 0
+    },
+    {
+      "card_id": "AMD_2025-09-08",
+      "symbol": "AMD",
+      "day": "2025-09-08",
+      "bucket": "BR",
+      "verdict": "no",
+      "why_not": [
+        "no_displacement",
+        "late"
+      ],
+      "note": "10:37 but really no displacement from the original candles so i have to downgrade",
+      "claimed_setup": "BR+OCR",
+      "claimed_level": "PMH",
+      "deck_legacy_grade": "X",
+      "deck_traded": false,
+      "deck_entry_minute": "10:37",
+      "austin_minute": "10:37",
+      "austin_minute_notes": {
+        "note": "the setup he saw, then downgraded"
+      },
+      "detected_minutes": [
+        "10:05",
+        "10:09",
+        "10:13",
+        "10:18",
+        "10:37",
+        "10:43",
+        "10:53",
+        "10:55",
+        "10:57"
+      ],
+      "n_raw_signals": 16,
+      "fired": [
+        {
+          "minute": "10:05",
+          "setup": "break_and_retest",
+          "dir": "put",
+          "legacy_grade": "B",
+          "austin_grade": "C",
+          "tripped": [
+            "level_not_respected",
+            "counter_trend_not_respected",
+            "ocr_not_respected"
+          ],
+          "confluence": false,
+          "level": "PDL"
+        }
+      ],
+      "fired_minutes": [
+        "10:05"
+      ],
+      "booked": [
+        {
+          "minute": "10:05",
+          "setup": "break_and_retest",
+          "dir": "put",
+          "legacy_grade": "B",
+          "austin_grade": "C",
+          "outcome": "loss",
+          "level": "PDL"
+        }
+      ],
+      "booked_minutes": [
+        "10:05"
+      ],
+      "alert_only_minutes": [],
+      "delta_first_fire": -32,
+      "delta_nearest_fire": -32,
+      "delta_first_booked": -32,
+      "delta_nearest_booked": -32,
+      "delta_deck_card": 0
+    },
+    {
+      "card_id": "HOOD_2025-11-28",
+      "symbol": "HOOD",
+      "day": "2025-11-28",
+      "bucket": "84",
+      "verdict": "no",
+      "why_not": [
+        "chop",
+        "late"
+      ],
+      "note": "",
+      "claimed_setup": "84",
+      "claimed_level": "PDH",
+      "deck_legacy_grade": "B",
+      "deck_traded": false,
+      "deck_entry_minute": "10:21",
+      "austin_minute": null,
+      "austin_minute_notes": {},
+      "detected_minutes": [
+        "10:08",
+        "10:09",
+        "10:26",
+        "10:32",
+        "10:42"
+      ],
+      "n_raw_signals": 12,
+      "fired": [
+        {
+          "minute": "10:08",
+          "setup": "break_and_retest",
+          "dir": "call",
+          "legacy_grade": "B",
+          "austin_grade": "C",
+          "tripped": [
+            "no_displacement",
+            "level_not_respected",
+            "counter_trend_not_respected",
+            "ocr_not_respected"
+          ],
+          "confluence": false,
+          "level": "PDH"
+        }
+      ],
+      "fired_minutes": [
+        "10:08"
+      ],
+      "booked": [
+        {
+          "minute": "10:08",
+          "setup": "break_and_retest",
+          "dir": "call",
+          "legacy_grade": "B",
+          "austin_grade": "C",
+          "outcome": "loss",
+          "level": "PDH"
+        },
+        {
+          "minute": "10:21",
+          "setup": "reentry_84_rule",
+          "dir": "call",
+          "legacy_grade": "B",
+          "austin_grade": "S",
+          "outcome": "win",
+          "level": "Original stop"
+        }
+      ],
+      "booked_minutes": [
+        "10:08",
+        "10:21"
+      ],
+      "alert_only_minutes": []
+    },
+    {
+      "card_id": "IWM_2026-08-06",
+      "symbol": "IWM",
+      "day": "2026-08-06",
+      "bucket": "OCR",
+      "verdict": "yes",
+      "why_not": [],
+      "note": "9:%5",
+      "claimed_setup": "OCR",
+      "claimed_level": "PMH",
+      "deck_legacy_grade": "B",
+      "deck_traded": false,
+      "deck_entry_minute": "10:07",
+      "austin_minute": "9:55",
+      "austin_minute_notes": {
+        "typo": "9:%5"
+      },
+      "detected_minutes": [
+        "10:06",
+        "10:07"
+      ],
+      "n_raw_signals": 6,
+      "fired": [
+        {
+          "minute": "10:07",
+          "setup": "one_candle_rule",
+          "dir": "call",
+          "legacy_grade": "B",
+          "austin_grade": "S",
+          "tripped": [],
+          "confluence": true,
+          "level": "Order block low"
+        }
+      ],
+      "fired_minutes": [
+        "10:07"
+      ],
+      "booked": [
+        {
+          "minute": "10:07",
+          "setup": "one_candle_rule",
+          "dir": "call",
+          "legacy_grade": "B",
+          "austin_grade": "S",
+          "outcome": "win",
+          "level": "Order block low"
+        }
+      ],
+      "booked_minutes": [
+        "10:07"
+      ],
+      "alert_only_minutes": [],
+      "delta_first_fire": 12,
+      "delta_nearest_fire": 12,
+      "delta_first_booked": 12,
+      "delta_nearest_booked": 12,
+      "delta_deck_card": 12
+    },
+    {
+      "card_id": "TSM_2026-07-07",
+      "symbol": "TSM",
+      "day": "2026-07-07",
+      "bucket": "84",
+      "verdict": "yes",
+      "why_not": [],
+      "note": "9:38 and yes reclaim",
+      "claimed_setup": "84",
+      "claimed_level": "PML",
+      "deck_legacy_grade": "X",
+      "deck_traded": false,
+      "deck_entry_minute": "09:50",
+      "austin_minute": "9:38",
+      "austin_minute_notes": {},
+      "detected_minutes": [
+        "09:37",
+        "10:32",
+        "10:54",
+        "10:57",
+        "10:59"
+      ],
+      "n_raw_signals": 12,
+      "fired": [
+        {
+          "minute": "09:38",
+          "setup": "break_and_retest",
+          "dir": "put",
+          "legacy_grade": "B",
+          "austin_grade": "C",
+          "tripped": [
+            "level_not_respected",
+            "ocr_not_respected"
+          ],
+          "confluence": false,
+          "level": "PML"
+        }
+      ],
+      "fired_minutes": [
+        "09:38"
+      ],
+      "booked": [
+        {
+          "minute": "09:38",
+          "setup": "break_and_retest",
+          "dir": "put",
+          "legacy_grade": "B",
+          "austin_grade": "C",
+          "outcome": "loss",
+          "level": "PML"
+        }
+      ],
+      "booked_minutes": [
+        "09:38"
+      ],
+      "alert_only_minutes": [],
+      "delta_first_fire": 0,
+      "delta_nearest_fire": 0,
+      "delta_first_booked": 0,
+      "delta_nearest_booked": 0,
+      "delta_deck_card": 12
+    },
+    {
+      "card_id": "AMZN_2025-12-11",
+      "symbol": "AMZN",
+      "day": "2025-12-11",
+      "bucket": "BR",
+      "verdict": "yes",
+      "why_not": [],
+      "note": "9:40",
+      "claimed_setup": "BR",
+      "claimed_level": "PMH",
+      "deck_legacy_grade": "X",
+      "deck_traded": false,
+      "deck_entry_minute": "09:39",
+      "austin_minute": "9:40",
+      "austin_minute_notes": {},
+      "detected_minutes": [
+        "09:39",
+        "09:41",
+        "09:44",
+        "10:23",
+        "10:39"
+      ],
+      "n_raw_signals": 17,
+      "fired": [
+        {
+          "minute": "09:42",
+          "setup": "break_and_retest",
+          "dir": "call",
+          "legacy_grade": "B",
+          "austin_grade": "C",
+          "tripped": [
+            "level_not_respected",
+            "counter_trend_not_respected"
+          ],
+          "confluence": false,
+          "level": "OR high"
+        },
+        {
+          "minute": "09:42",
+          "setup": "break_and_retest",
+          "dir": "call",
+          "legacy_grade": "C",
+          "austin_grade": "C",
+          "tripped": [
+            "level_not_respected",
+            "counter_trend_not_respected"
+          ],
+          "confluence": false,
+          "level": "PMH"
+        }
+      ],
+      "fired_minutes": [
+        "09:42"
+      ],
+      "booked": [
+        {
+          "minute": "09:42",
+          "setup": "break_and_retest",
+          "dir": "call",
+          "legacy_grade": "B",
+          "austin_grade": "C",
+          "outcome": "loss",
+          "level": "OR high"
+        }
+      ],
+      "booked_minutes": [
+        "09:42"
+      ],
+      "alert_only_minutes": [
+        "09:42"
+      ],
+      "delta_first_fire": 2,
+      "delta_nearest_fire": 2,
+      "delta_first_booked": 2,
+      "delta_nearest_booked": 2,
+      "delta_deck_card": -1
+    },
+    {
+      "card_id": "NVDA_2025-06-24",
+      "symbol": "NVDA",
+      "day": "2025-06-24",
+      "bucket": "OCR",
+      "verdict": "no",
+      "why_not": [
+        "no_displacement"
+      ],
+      "note": "really good a trade i wish it was an S but it didnt displace from that wick, but technically it is an OCR and BR just neither of the parts have displacement",
+      "claimed_setup": "OCR",
+      "claimed_level": "PMH",
+      "deck_legacy_grade": "X",
+      "deck_traded": false,
+      "deck_entry_minute": "10:13",
+      "austin_minute": null,
+      "austin_minute_notes": {},
+      "detected_minutes": [
+        "10:13",
+        "10:23"
+      ],
+      "n_raw_signals": 4,
+      "fired": [],
+      "fired_minutes": [],
+      "booked": [],
+      "booked_minutes": [],
+      "alert_only_minutes": []
+    },
+    {
+      "card_id": "ORCL_2025-02-18",
+      "symbol": "ORCL",
+      "day": "2025-02-18",
+      "bucket": "84",
+      "verdict": "no",
+      "why_not": [
+        "other"
+      ],
+      "note": "took too long for the entry",
+      "claimed_setup": "84",
+      "claimed_level": "PMH",
+      "deck_legacy_grade": "B",
+      "deck_traded": false,
+      "deck_entry_minute": "10:20",
+      "austin_minute": null,
+      "austin_minute_notes": {},
+      "detected_minutes": [
+        "10:01",
+        "10:03",
+        "10:05",
+        "10:07",
+        "10:16",
+        "10:36",
+        "10:52"
+      ],
+      "n_raw_signals": 12,
+      "fired": [
+        {
+          "minute": "10:07",
+          "setup": "break_and_retest",
+          "dir": "call",
+          "legacy_grade": "B",
+          "austin_grade": "A",
+          "tripped": [
+            "level_not_respected",
+            "counter_trend_not_respected"
+          ],
+          "confluence": true,
+          "level": "PMH"
+        }
+      ],
+      "fired_minutes": [
+        "10:07"
+      ],
+      "booked": [
+        {
+          "minute": "10:07",
+          "setup": "break_and_retest",
+          "dir": "call",
+          "legacy_grade": "B",
+          "austin_grade": "A",
+          "outcome": "loss",
+          "level": "PMH"
+        },
+        {
+          "minute": "10:20",
+          "setup": "reentry_84_rule",
+          "dir": "call",
+          "legacy_grade": "B",
+          "austin_grade": "S",
+          "outcome": "win",
+          "level": "Original stop"
+        }
+      ],
+      "booked_minutes": [
+        "10:07",
+        "10:20"
+      ],
+      "alert_only_minutes": []
+    },
+    {
+      "card_id": "ACHR_2026-06-16",
+      "symbol": "ACHR",
+      "day": "2026-06-16",
+      "bucket": "BR",
+      "verdict": "yes",
+      "why_not": [],
+      "note": "9:57 as candle forming",
+      "claimed_setup": "BR+OCR",
+      "claimed_level": "PML",
+      "deck_legacy_grade": "X",
+      "deck_traded": false,
+      "deck_entry_minute": "09:56",
+      "austin_minute": "9:57",
+      "austin_minute_notes": {},
+      "detected_minutes": [
+        "09:56",
+        "10:00",
+        "10:33"
+      ],
+      "n_raw_signals": 10,
+      "fired": [
+        {
+          "minute": "10:03",
+          "setup": "break_and_retest",
+          "dir": "put",
+          "legacy_grade": "B",
+          "austin_grade": "A",
+          "tripped": [
+            "level_not_respected",
+            "chase"
+          ],
+          "confluence": true,
+          "level": "pivot low @09:38"
+        }
+      ],
+      "fired_minutes": [
+        "10:03"
+      ],
+      "booked": [
+        {
+          "minute": "10:03",
+          "setup": "break_and_retest",
+          "dir": "put",
+          "legacy_grade": "B",
+          "austin_grade": "A",
+          "outcome": "win",
+          "level": "pivot low @09:38"
+        }
+      ],
+      "booked_minutes": [
+        "10:03"
+      ],
+      "alert_only_minutes": [],
+      "delta_first_fire": 6,
+      "delta_nearest_fire": 6,
+      "delta_first_booked": 6,
+      "delta_nearest_booked": 6,
+      "delta_deck_card": -1
+    },
+    {
+      "card_id": "SPY_2026-06-17",
+      "symbol": "SPY",
+      "day": "2026-06-17",
+      "bucket": "OCR",
+      "verdict": "yes",
+      "why_not": [],
+      "note": "i see a fake out S trade at 9:48 because the red candle at 9:30 doesent look as distracting, and your s is good too but its tight on if theres displacement. and if you went with my trade it wouldve stopped out and reclaimed.",
+      "claimed_setup": "OCR",
+      "claimed_level": "PML",
+      "deck_legacy_grade": "X",
+      "deck_traded": false,
+      "deck_entry_minute": "10:42",
+      "austin_minute": "9:48",
+      "austin_minute_notes": {
+        "note": "his alternative; he also blessed the engine's"
+      },
+      "detected_minutes": [
+        "09:48",
+        "09:53",
+        "10:42",
+        "10:44",
+        "10:52",
+        "10:53"
+      ],
+      "n_raw_signals": 13,
+      "fired": [],
+      "fired_minutes": [],
+      "booked": [],
+      "booked_minutes": [],
+      "alert_only_minutes": [],
+      "delta_deck_card": 54
+    },
+    {
+      "card_id": "ACHR_2026-04-13",
+      "symbol": "ACHR",
+      "day": "2026-04-13",
+      "bucket": "OCR",
+      "verdict": "yes",
+      "why_not": [],
+      "note": "10:09 would never trade because look how the candles are but jsut good for you to know",
+      "claimed_setup": "OCR",
+      "claimed_level": "PMH",
+      "deck_legacy_grade": "X",
+      "deck_traded": false,
+      "deck_entry_minute": "10:33",
+      "austin_minute": "10:09",
+      "austin_minute_notes": {
+        "note": "yes, but 'would never trade'"
+      },
+      "detected_minutes": [
+        "09:41",
+        "10:17",
+        "10:33",
+        "10:57"
+      ],
+      "n_raw_signals": 6,
+      "fired": [],
+      "fired_minutes": [],
+      "booked": [],
+      "booked_minutes": [],
+      "alert_only_minutes": [],
+      "delta_deck_card": 24
+    },
+    {
+      "card_id": "AAPL_2026-03-11",
+      "symbol": "AAPL",
+      "day": "2026-03-11",
+      "bucket": "BR",
+      "verdict": "no",
+      "why_not": [
+        "chop"
+      ],
+      "note": "",
+      "claimed_setup": "BR+OCR",
+      "claimed_level": "PML",
+      "deck_legacy_grade": "X",
+      "deck_traded": false,
+      "deck_entry_minute": "10:29",
+      "austin_minute": null,
+      "austin_minute_notes": {},
+      "detected_minutes": [
+        "09:40",
+        "09:45",
+        "10:05",
+        "10:20",
+        "10:29",
+        "10:33",
+        "10:56"
+      ],
+      "n_raw_signals": 13,
+      "fired": [],
+      "fired_minutes": [],
+      "booked": [],
+      "booked_minutes": [],
+      "alert_only_minutes": []
+    },
+    {
+      "card_id": "META_2026-06-22",
+      "symbol": "META",
+      "day": "2026-06-22",
+      "bucket": "84",
+      "verdict": "yes",
+      "why_not": [],
+      "note": "9:59",
+      "claimed_setup": "84",
+      "claimed_level": "PML",
+      "deck_legacy_grade": "B",
+      "deck_traded": true,
+      "deck_entry_minute": "10:15",
+      "austin_minute": "9:59",
+      "austin_minute_notes": {},
+      "detected_minutes": [
+        "09:40",
+        "10:08",
+        "10:09",
+        "10:11",
+        "10:38"
+      ],
+      "n_raw_signals": 9,
+      "fired": [
+        {
+          "minute": "09:40",
+          "setup": "break_and_retest",
+          "dir": "put",
+          "legacy_grade": "B",
+          "austin_grade": "C",
+          "tripped": [
+            "no_displacement",
+            "level_not_respected",
+            "counter_trend_not_respected"
+          ],
+          "confluence": false,
+          "level": "PML"
+        }
+      ],
+      "fired_minutes": [
+        "09:40"
+      ],
+      "booked": [
+        {
+          "minute": "09:40",
+          "setup": "break_and_retest",
+          "dir": "put",
+          "legacy_grade": "B",
+          "austin_grade": "C",
+          "outcome": "loss",
+          "level": "PML"
+        },
+        {
+          "minute": "10:15",
+          "setup": "reentry_84_rule",
+          "dir": "put",
+          "legacy_grade": "B",
+          "austin_grade": "S",
+          "outcome": "win",
+          "level": "Original stop"
+        }
+      ],
+      "booked_minutes": [
+        "09:40",
+        "10:15"
+      ],
+      "alert_only_minutes": [],
+      "delta_first_fire": -19,
+      "delta_nearest_fire": -19,
+      "delta_first_booked": -19,
+      "delta_nearest_booked": 16,
+      "delta_deck_card": 16
+    },
+    {
+      "card_id": "QQQ_2024-08-26",
+      "symbol": "QQQ",
+      "day": "2024-08-26",
+      "bucket": "BR",
+      "verdict": "yes",
+      "why_not": [],
+      "note": "9:56 but i may be biased here because a break retest with no dispacement happens at 9:45, its not of the level just the wicks at the beginning of the day",
+      "claimed_setup": "BR+OCR",
+      "claimed_level": "PML",
+      "deck_legacy_grade": "X",
+      "deck_traded": false,
+      "deck_entry_minute": "09:52",
+      "austin_minute": "9:56",
+      "austin_minute_notes": {
+        "second": "9:45"
+      },
+      "detected_minutes": [
+        "09:52",
+        "09:54",
+        "10:24"
+      ],
+      "n_raw_signals": 4,
+      "fired": [],
+      "fired_minutes": [],
+      "booked": [],
+      "booked_minutes": [],
+      "alert_only_minutes": [],
+      "delta_deck_card": -4
+    },
+    {
+      "card_id": "QQQ_2025-12-22",
+      "symbol": "QQQ",
+      "day": "2025-12-22",
+      "bucket": "OCR",
+      "verdict": "no",
+      "why_not": [
+        "no_displacement",
+        "chop"
+      ],
+      "note": "9:45 its close i see what your seeing",
+      "claimed_setup": "OCR",
+      "claimed_level": "PDH",
+      "deck_legacy_grade": "X",
+      "deck_traded": false,
+      "deck_entry_minute": "10:43",
+      "austin_minute": null,
+      "austin_minute_notes": {
+        "not_his": "9:45",
+        "why": "naming the engine's minute"
+      },
+      "detected_minutes": [
+        "09:57",
+        "09:59",
+        "10:01",
+        "10:14",
+        "10:18",
+        "10:43",
+        "10:49"
+      ],
+      "n_raw_signals": 9,
+      "fired": [],
+      "fired_minutes": [],
+      "booked": [],
+      "booked_minutes": [],
+      "alert_only_minutes": []
+    },
+    {
+      "card_id": "AVGO_2025-12-03",
+      "symbol": "AVGO",
+      "day": "2025-12-03",
+      "bucket": "84",
+      "verdict": "no",
+      "why_not": [
+        "no_retest"
+      ],
+      "note": "i dont see anything: 9:33 can be a great break of pdl but the retest missed by a few cents",
+      "claimed_setup": "84",
+      "claimed_level": "PML",
+      "deck_legacy_grade": "A",
+      "deck_traded": true,
+      "deck_entry_minute": "10:59",
+      "austin_minute": null,
+      "austin_minute_notes": {
+        "not_his": "9:33",
+        "why": "a hypothetical break"
+      },
+      "detected_minutes": [
+        "10:20",
+        "10:22",
+        "10:25",
+        "10:27",
+        "10:29",
+        "10:42"
+      ],
+      "n_raw_signals": 18,
+      "fired": [
+        {
+          "minute": "10:22",
+          "setup": "break_and_retest",
+          "dir": "call",
+          "legacy_grade": "C",
+          "austin_grade": "C",
+          "tripped": [
+            "no_displacement",
+            "level_not_respected",
+            "counter_trend_not_respected"
+          ],
+          "confluence": true,
+          "level": "pivot high @10:04"
+        },
+        {
+          "minute": "10:22",
+          "setup": "break_and_retest",
+          "dir": "call",
+          "legacy_grade": "C",
+          "austin_grade": "C",
+          "tripped": [
+            "no_displacement",
+            "level_not_respected",
+            "counter_trend_not_respected"
+          ],
+          "confluence": true,
+          "level": "pivot high @10:09"
+        },
+        {
+          "minute": "10:44",
+          "setup": "break_and_retest",
+          "dir": "call",
+          "legacy_grade": "C",
+          "austin_grade": "A",
+          "tripped": [
+            "no_displacement",
+            "level_not_respected"
+          ],
+          "confluence": true,
+          "level": "pivot high @10:18"
+        }
+      ],
+      "fired_minutes": [
+        "10:22",
+        "10:44"
+      ],
+      "booked": [],
+      "booked_minutes": [],
+      "alert_only_minutes": [
+        "10:22",
+        "10:44"
+      ]
+    }
+  ]
+}
