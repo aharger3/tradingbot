@@ -29,8 +29,10 @@ from pathlib import Path
 from typing import List, Optional
 from zoneinfo import ZoneInfo
 
-from options_sizer import OptionsPlan
-from stop_rule import stop_hit_on_close, stop_fill_price
+import options_sizer
+from options_sizer import OptionsPlan, premium_at
+from stop_rule import (stop_hit_on_close, stop_fill_price,
+                       disaster_stop_price, disaster_stop_hit, DISASTER_STOP_R)
 
 _ET = ZoneInfo("America/New_York")
 
@@ -39,6 +41,50 @@ _ET = ZoneInfo("America/New_York")
 RULE6_ENABLED = False       # toggle for live paper trading
 RULE6_SCALE_PCT = 0.5       # scale out 50% at breakeven
 RULE6_BE_MULT = 1.0         # breakeven at 1R (entry +/- 1R risk)
+
+
+# ---- G7.2 liveexit: the RUNNER LEG, ported from backtest_week. DEFAULT OFF ----
+#
+# `research/g71_board.md` #1: "Live sells everything at 2R with no runner, and
+# half the money is above 2R. 94 of your 496 one-a-day trades (19%) ran past 2R,
+# and those 94 trades carry 50.1% of every dollar the strategy makes." The
+# backtest has scaled at the session high and let a runner go since F1; this
+# module closed the WHOLE position on the single target and had no second leg at
+# all (research/g71_rrcapv.md, verified).
+#
+# The switch is `OMEN_LIVE_LADDER`, read once in `options_sizer`, so there is one
+# flag and not two. It is OFF and Austin has not said to turn it on -- whether
+# the live card shows two rungs is his call (`research/g71_board.md`, "WHAT ONLY
+# AUSTIN CAN DECIDE" #5). With it off, every line below is skipped and this file
+# behaves exactly as it did before G7.2.
+#
+# The port is `backtest_week.py::_ladder_bar` bar for bar, including the two
+# things that make its numbers what they are and would silently fork if left
+# out. Both are deliberately scoped INSIDE the ladder path: the shipped
+# single-target live path is not mine to change, and board bug #2 (where the
+# disaster order rests) is a live open question with its own owner.
+#
+#   LADDER_DISASTER_STOP   backtest_week.DISASTER_STOP, ships ON there. A
+#                          resting order at entry -/+ 1R filled on an intrabar
+#                          TOUCH, tested BEFORE the level stop, and only while
+#                          the runner is still on the ORIGINAL stop.
+#   LADDER_PESSIMISTIC_FILL backtest_week.PESSIMISTIC_FILL, ships ON there. A
+#                          runner bar that tags the target AND closes beyond the
+#                          stop books no better than the trade's ORIGINAL stop.
+#
+# `research/g72_liveexit_parity.py` drives one geometry through
+# `backtest_week._ladder_bar` and through `PaperBook.mark` and asserts both book
+# the same R to 1e-9. That test is the deliverable as much as this code is.
+LADDER_SCALE_PCT = options_sizer.LIVE_LADDER_SCALE_PCT
+LADDER_PLAN = options_sizer.LIVE_LADDER_PLAN     # "hod_then_runner_be" | "hod_then_runner"
+LADDER_DISASTER_STOP = True
+LADDER_DISASTER_R = DISASTER_STOP_R
+LADDER_PESSIMISTIC_FILL = True
+
+
+def _ladder_on() -> bool:
+    """Read the switch at CALL time, not import time, so a test can flip it."""
+    return options_sizer.LIVE_LADDER
 
 
 def _now_et_iso() -> str:
@@ -80,11 +126,52 @@ class PaperPosition:
     opened_at: str
     grade: str = "?"
     setup: str = "?"
+    # G7.2 liveexit: the plan's pre-floor premium risk = its delta x stock risk.
+    # Read only by `_premium_at`. Zero on a hand-built position, which falls
+    # back to `entry_premium - stop_premium` (the same number unless the $0.05
+    # floor bound).
+    premium_risk: float = 0.0
     # Rule 6: breakeven scaling
     be_scale_level: float = 0.0   # stock price where 50% is scaled out
     be_exit_price: float = 0.0    # actual exit price when BE was hit
     runner_stop: float = 0.0      # stop for the runner after BE taken (raised to entry)
     be_taken: bool = False        # whether breakeven scale already fired
+    # ---- G7.2 liveexit: the runner leg (all zero/False unless the switch is on)
+    scale_level: float = 0.0        # session extreme as of the entry bar
+    runner_target: float = 0.0      # first key level beyond the scale rung
+    scale_premium: float = 0.0
+    runner_target_premium: float = 0.0
+    scale_pct: float = 0.0
+    scaled: bool = False            # first rung already filled
+    scale_contracts: int = 0        # contracts taken off at the rung
+    scale_pnl: float = 0.0          # dollars booked on that half
+
+    @property
+    def has_ladder(self) -> bool:
+        return self.scale_level > 0.0 and self.runner_target > 0.0
+
+    def _premium_at(self, stock_price: float) -> float:
+        """This plan's own stock-price -> premium map (`options_sizer.premium_at`).
+
+        The ratio is the plan's DELTA -- `premium_risk / stock_risk` -- so every
+        leg of this position is priced the way the sizer priced its target, and
+        booked R live equals the backtest's stock-side R because the ratio
+        cancels.
+
+        `premium_risk` is the sizer's pre-floor number and is carried on the
+        plan for exactly this reason (G7.2 liveexit, board #3). It is NOT
+        `entry_premium - stop_premium`: those two differ precisely when the
+        $0.05 floor bound, and using the floored one here would price the
+        UPSIDE off a number that means "the option went to zero" -- booking
+        $13.13 where the contract is worth $37.21. The fallback keeps positions
+        opened before this field existed working, where the two are equal
+        anyway.
+        """
+        prem_risk = self.premium_risk or (self.entry_premium - self.stop_premium)
+        return premium_at(
+            stock_price, self.stock_entry, self.entry_premium,
+            abs(self.stock_entry - self.stock_stop), prem_risk,
+            self.direction == "call")
 
     def _stop_fill_premium(self, close: float) -> float:
         """T11. The premium a close-triggered stop books, floored at -1.25R.
@@ -116,8 +203,11 @@ class PaperPosition:
             return self.stop_premium
         long = self.direction == "call"
         fill = stop_fill_price(close, self.stock_entry, srisk, long)
-        moved = (self.stock_entry - fill) if long else (fill - self.stock_entry)
-        return max(self.entry_premium - moved / srisk * prem_risk, 0.05)
+        # G7.2 liveexit: was an inline copy of the same three lines
+        # `options_sizer.premium_at` now holds. One map, one delta, one file --
+        # a second copy of a shared rule is exactly how the stop trigger forked
+        # for months (see stop_rule.py's header).
+        return self._premium_at(fill)
 
     def _check_stop(self, close: float) -> Optional[tuple]:
         """Check if stop was hit. Returns (exit_premium, outcome) or None.
@@ -160,6 +250,79 @@ class PaperPosition:
                 return self.be_scale_level
         return None
 
+    def _ladder_exit(self, high: float, low: float, close: float) -> Optional[tuple]:
+        """G7.2 liveexit. One bar of the ported ladder. `backtest_week::_ladder_bar`.
+
+        Returns `(exit_premium, outcome)` or None. `outcome == "scale"` is the
+        PARTIAL fill at the first rung -- the caller books that half and keeps
+        the runner open; every other outcome closes what is left.
+
+        Order of tests, and it is the backtest's order for the backtest's
+        reasons:
+
+          1. the resting disaster stop, on an intrabar TOUCH, and only while the
+             runner is still working the ORIGINAL stop. A bar that touched -1R
+             and then closed further away was already out at -1R, so booking its
+             close instead would credit the trade with a loss it never took.
+             Once the stop has moved to break-even the resting BE order sits
+             between price and -1R, so -1R is unreachable without crossing it.
+          2. the level stop, on the CLOSE (`stop_rule.stop_hit_on_close`), filled
+             at that close and floored at -1.25R of the ORIGINAL risk
+             (`stop_rule.stop_fill_price`). Tested BEFORE the scale rung, so a
+             bar that tags the rung and closes beyond the stop takes the full
+             loss with no partial credit.
+          3. the scale rung, on a TOUCH -- it is a resting limit order.
+          4. (runner only) the runner target, on a TOUCH, and under
+             `LADDER_PESSIMISTIC_FILL` a bar that tags it and STILL closes beyond
+             the stop books no better than the trade's original stop.
+
+        NOT ported: `backtest_week.BE_TRIGGER="mfe"`, the favourable-excursion
+        arm that raises the stop to break-even without waiting for the rung. Its
+        shipped default there is "pt1", which is the behaviour below; porting an
+        off-by-default research arm would be porting an opinion.
+        """
+        long = self.direction == "call"
+        srisk = abs(self.stock_entry - self.stock_stop)
+        stop_lv = self.runner_stop if self.runner_stop else self.stock_stop
+        on_original_stop = stop_lv == self.stock_stop
+
+        if LADDER_DISASTER_STOP and srisk > 0 and on_original_stop:
+            dz = disaster_stop_price(self.stock_entry, srisk, long, LADDER_DISASTER_R)
+            if disaster_stop_hit(high, low, dz, long):
+                return self._premium_at(dz), "disaster"
+
+        if not self.scaled:
+            if stop_hit_on_close(close, stop_lv, long):
+                return self._stop_fill_premium(close), "stop"
+            if (high >= self.scale_level) if long else (low <= self.scale_level):
+                # Priced through the plan's own delta map, unrounded: the CARD
+                # shows this to the cent, the book fills at the map's value, and
+                # rounding it here would put a half-cent of noise between the
+                # live book and the backtest's stock-side R.
+                return self._premium_at(self.scale_level), "scale"
+            return None
+
+        hit_target = (high >= self.runner_target) if long else (low <= self.runner_target)
+        if stop_hit_on_close(close, stop_lv, long):
+            fill = stop_fill_price(close, self.stock_entry, srisk, long)
+            if LADDER_PESSIMISTIC_FILL and hit_target:
+                fill = min(fill, self.stock_stop) if long else max(fill, self.stock_stop)
+            return self._premium_at(fill), "stop"
+        if hit_target:
+            return self._premium_at(self.runner_target), "target"
+        return None
+
+    def ladder_scale_contracts(self) -> int:
+        """How many contracts come off at the first rung.
+
+        Delegates to `options_sizer.ladder_scale_contracts` -- the sizer needs
+        the same split to state the card's reward, and two copies of a split
+        rule is how the stop trigger forked for months. See that function for
+        why an odd contract count cannot match the backtest's fractional half;
+        `research/g72_liveexit_parity.py` measures the gap rather than hiding it.
+        """
+        return options_sizer.ladder_scale_contracts(self.contracts, self.scale_pct)
+
     def exit_for(self, high: float, low: float, close: float) -> Optional[tuple]:
         """Return (exit_premium, outcome) if this candle hits stop or target, else None.
 
@@ -167,6 +330,13 @@ class PaperPosition:
         Stop checked before target: if a single candle straddles both, assume the
         worst case (stop) — conservative, matches real fill risk on fast moves.
         """
+        # G7.2 liveexit: the ported ladder owns the bar when it is switched on
+        # AND this plan carries rungs. Mutually exclusive with Rule 6 — they are
+        # two different scale plans, and backtest_week runs the ladder with
+        # RULE6_ENABLED = False for the same reason.
+        if _ladder_on() and self.has_ladder:
+            return self._ladder_exit(high, low, close)
+
         # If Rule 6 is disabled or BE already taken — use original binary logic
         if not RULE6_ENABLED:
             return self._check_stop(close) or self._check_target(high, low)
@@ -265,6 +435,15 @@ class PaperBook:
             occ_symbol=plan.occ_symbol,
             opened_at=ts or _now_et_iso(),
             grade=grade, setup=setup,
+            premium_risk=getattr(plan, "premium_risk", 0.0),
+            # G7.2 liveexit: carried straight off the plan. All zero unless
+            # OMEN_LIVE_LADDER is on and the caller handed the sizer a session
+            # extreme, so an unchanged live_scanner keeps its single-target card.
+            scale_level=getattr(plan, "scale_level", 0.0),
+            runner_target=getattr(plan, "runner_target", 0.0),
+            scale_premium=getattr(plan, "scale_premium", 0.0),
+            runner_target_premium=getattr(plan, "runner_target_premium", 0.0),
+            scale_pct=getattr(plan, "scale_pct", 0.0),
         )
         if RULE6_ENABLED:
             pos.be_scale_level = _calc_breakeven(
@@ -292,6 +471,71 @@ class PaperBook:
         for pos in self.open_positions:
             if pos.symbol != symbol.upper():
                 still_open.append(pos)
+                continue
+
+            if _ladder_on() and pos.has_ladder:
+                # ---- G7.2 liveexit: the ported two-rung exit ----------------
+                hit = pos.exit_for(high, low, close)
+                if hit is None:
+                    still_open.append(pos)
+                    continue
+                exit_premium, outcome = hit
+
+                if outcome == "scale":
+                    pos.scaled = True
+                    if LADDER_PLAN == "hod_then_runner_be":
+                        # backtest_week.py:592 -- the "_be" half of the shipped
+                        # SCALE_PLAN: the first rung also raises the runner's
+                        # stop to entry.
+                        pos.runner_stop = pos.stock_entry
+                    pos.scale_contracts = pos.ladder_scale_contracts()
+                    pos.scale_pnl = round(
+                        (exit_premium - pos.entry_premium) * 100 * pos.scale_contracts, 2)
+                    self.realized_total = round(self.realized_total + pos.scale_pnl, 2)
+                    run_ct = pos.contracts - pos.scale_contracts
+                    ev = {
+                        "event": "SCALE", "ts": ts, "symbol": pos.symbol,
+                        "direction": pos.direction, "strike": pos.strike,
+                        "outcome": "scale", "exit_premium": exit_premium,
+                        "entry_premium": pos.entry_premium,
+                        "scale_level": pos.scale_level,
+                        "contracts": pos.scale_contracts,
+                        "total_contracts": pos.contracts,
+                        "runner_contracts": run_ct,
+                        "runner_stop": pos.runner_stop,
+                        "runner_target": pos.runner_target,
+                        "pnl": pos.scale_pnl, "opened_at": pos.opened_at,
+                        "grade": pos.grade, "setup": pos.setup,
+                    }
+                    self._log(ev)
+                    closed.append(ev)
+                    if run_ct > 0:
+                        still_open.append(pos)
+                    continue
+
+                run_ct = pos.contracts - pos.scale_contracts
+                pnl = round((exit_premium - pos.entry_premium) * 100 * run_ct, 2)
+                self.realized_total = round(self.realized_total + pnl, 2)
+                ev = {
+                    "event": "CLOSE", "ts": ts, "symbol": pos.symbol,
+                    "direction": pos.direction, "strike": pos.strike,
+                    "outcome": outcome, "exit_premium": exit_premium,
+                    "entry_premium": pos.entry_premium,
+                    "contracts": run_ct, "total_contracts": pos.contracts,
+                    "pnl": pnl, "scale_pnl": pos.scale_pnl,
+                    # `trade_pnl` is the number to read: both legs of the trade.
+                    # `pnl` is the runner leg alone, matching how the Rule 6
+                    # path already reports a scaled trade's final close.
+                    "trade_pnl": round(pos.scale_pnl + pnl, 2),
+                    "scaled": pos.scaled,
+                    "scale_contracts": pos.scale_contracts,
+                    "opened_at": pos.opened_at, "grade": pos.grade,
+                    "setup": pos.setup, "stock_entry": pos.stock_entry,
+                    "stock_target": pos.stock_target, "stock_stop": pos.stock_stop,
+                    "runner_target": pos.runner_target,
+                }
+                self._log(ev)
+                closed.append(ev)
                 continue
 
             if RULE6_ENABLED and not pos.be_taken:
@@ -349,6 +593,64 @@ class PaperBook:
             if pos.be_taken:
                 ev["be_scaled"] = True
                 ev["be_exit_price"] = pos.be_exit_price
+            self._log(ev)
+            closed.append(ev)
+        self.open_positions = still_open
+        return closed
+
+    def close_open(self, symbol: str, close: float, ts: Optional[str] = None,
+                   outcome: str = "eod") -> List[dict]:
+        """Flatten every open position in `symbol` at `close`. The EOD leg.
+
+        G7.2 liveexit. `backtest_week.py:924-926` ends every session with
+
+            # EOD: whatever is open scratches at last close
+            for t in open_trades:
+                t.outcome, t.exit_price = "scratch", candles[-1].close
+
+        and this book had no equivalent at all: a runner that never reached its
+        level simply stayed open forever. That is not a rounding difference --
+        `research/g71_board.md` #6 measures the runner aiming at a round dollar
+        on 2,135 of 2,437 trades (87.6%), so a large share of runners are still
+        alive at the bell and the live book was recording nothing for any of
+        them. `research/g72_liveexit_parity.py` caught it: the "quiet session"
+        scenario booked +0.65R in the backtest and +0.30R live until this
+        existed.
+
+        Priced through the plan's own delta map like every other leg, so the
+        booked R is the backtest's stock-side R exactly.
+
+        NOT yet called from `live_scanner.py` -- that file belongs to another
+        ticket and this one may not touch it. It needs one line at MANAGE_END
+        (`live_scanner.py:137`, the RTH close the manage loop already runs to).
+        Until that line exists the runner leg is complete here and unflushed
+        there; it is written up in `research/g72_liveexit_report.md`.
+        """
+        ts = ts or _now_et_iso()
+        closed = []
+        still_open = []
+        for pos in self.open_positions:
+            if pos.symbol != symbol.upper():
+                still_open.append(pos)
+                continue
+            exit_premium = pos._premium_at(close)
+            run_ct = pos.contracts - pos.scale_contracts
+            pnl = round((exit_premium - pos.entry_premium) * 100 * run_ct, 2)
+            self.realized_total = round(self.realized_total + pnl, 2)
+            ev = {
+                "event": "CLOSE", "ts": ts, "symbol": pos.symbol,
+                "direction": pos.direction, "strike": pos.strike,
+                "outcome": outcome, "exit_premium": exit_premium,
+                "entry_premium": pos.entry_premium,
+                "contracts": run_ct, "total_contracts": pos.contracts,
+                "pnl": pnl, "scale_pnl": pos.scale_pnl,
+                "trade_pnl": round(pos.scale_pnl + pnl, 2),
+                "scaled": pos.scaled, "scale_contracts": pos.scale_contracts,
+                "opened_at": pos.opened_at, "grade": pos.grade,
+                "setup": pos.setup, "stock_entry": pos.stock_entry,
+                "stock_target": pos.stock_target, "stock_stop": pos.stock_stop,
+                "stock_exit": close,
+            }
             self._log(ev)
             closed.append(ev)
         self.open_positions = still_open
