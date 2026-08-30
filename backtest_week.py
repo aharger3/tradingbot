@@ -31,6 +31,21 @@ from signal_runner import SignalRunner
 from stop_rule import (stop_hit_on_close, stop_hit_on_wick, stop_fill_price,
                        disaster_stop_price, disaster_stop_hit, DISASTER_STOP_R,
                        MAX_LOSS_R)
+# The ONE entry fill, the twin of stop_rule above. This module never computes an
+# entry price of its own: `sig["entry"]` already came through `entry_fill` inside
+# `signal_runner.fill_price`, and the three forward-looking modes -- which the
+# engine cannot resolve, because it only ever sees `candles[:i + 1]` -- are
+# re-priced through the SAME function at the trade-creation site below.
+import entry_fill
+from entry_fill import ENTRY_FILL
+
+# Days the entry order never filled. One row per missed setup, appended by
+# `simulate_day`, read by `backtest_2y` and by anything comparing order types.
+# EMPTY on the shipped default -- a market order at the close always fills. It
+# exists because the alternative is what the first resting-limit arm did:
+# silently drop the days it could not get into, which makes a limit look like a
+# free option instead of a rule that misses trades.
+ENTRY_FILL_MISSES: List[dict] = []
 
 # Austin's watchlist 2026-07-11: all stocks with ~200k+ daily options volume
 # (his rule — high options volume = cleaner moves, easier fills). SPY/QQQ stay
@@ -865,12 +880,22 @@ def simulate_day(symbol: str, day_iso: str, candles: List[Candle],
     open_trades: List[SimTrade] = []
     probe: List[tuple] = []   # P8/G2, only under SCRATCH_PROBE=1
     seen = {}  # dedupe key -> last bar index it appeared
+    misses = ENTRY_FILL_MISSES
 
     for i in range(5, len(candles)):
         c = candles[i]
 
         # 1. update open sim positions against this bar
         for t in list(open_trades):
+            # A position cannot be managed before it is filled. NO-OP on the
+            # shipped fill (`entry_idx` is the signal bar and the trade is only
+            # appended after this loop has run for that bar, so the first
+            # managed bar is always entry_idx + 1). It matters only under the
+            # forward ENTRY_FILL modes, where the fill lands one or two bars
+            # after the signal and those bars must not be allowed to stop out a
+            # trade that does not exist yet.
+            if i <= t.entry_idx:
+                continue
             # P8/G2 ENTRY_SCRATCH, default OFF. Austin's failed-entry scratch on
             # the FIRST bar after entry — the earliest bar on which "taken
             # intrabar, then closes back beyond the level" can be true on a
@@ -952,6 +977,44 @@ def simulate_day(symbol: str, day_iso: str, candles: List[Candle],
                 continue
             if claims:
                 seen[key] = i
+            # ---- ONE ENTRY FILL (entry_fill.py). See the import block. ----
+            # On the shipped default (`close`) and on `published` there is
+            # nothing to do here: `sig["entry"]` IS `entry_fill`'s answer
+            # already, computed inside `signal_runner.fill_price` on the signal
+            # bar. The three forward modes are statements about bars the engine
+            # is structurally forbidden to see, so they are priced here, once,
+            # through the same function -- same setups, same stops, same exits,
+            # only the way IN changes (research/g80_ordertype_grid.md).
+            #
+            # A no-fill is a NO TRADE and it is COUNTED, not skipped: a resting
+            # limit that never traded is a day he did not get into, and pretending
+            # those days away is how a limit arm gets to look like a free option.
+            fill_i, fill_c = i, c
+            if entry_fill.needs_future_bars():
+                long_ = sig["direction"] == "call"
+                fill = entry_fill.entry_fill_price(
+                    sig.get("level_price", sig["stop"]) or sig["stop"], c, long_,
+                    future_bars=candles[i + 1:])
+                if not fill.filled:
+                    misses.append({"sym": symbol, "day": day_iso,
+                                   "et": c.timestamp[:5], "mode": ENTRY_FILL,
+                                   "setup": sig["signal_type"].value,
+                                   "reason": fill.reason})
+                    continue
+                sig["entry"] = fill.price
+                fill_i = i + fill.bar_offset
+                fill_c = candles[fill_i]
+                # The fill landed at or through the stop: there is no trade left
+                # in it (a limit resting ON a break-and-retest's level IS the
+                # stop). Counted as a miss rather than booked at zero risk.
+                if (sig["entry"] <= sig["stop"]) if long_ else (sig["entry"] >= sig["stop"]):
+                    misses.append({"sym": symbol, "day": day_iso,
+                                   "et": c.timestamp[:5], "mode": ENTRY_FILL,
+                                   "setup": sig["signal_type"].value,
+                                   "reason": "filled at %.2f, at or through the "
+                                             "stop %.2f — no risk left in it"
+                                             % (sig["entry"], sig["stop"])})
+                    continue
             risk = abs(sig["entry"] - sig["stop"])
             # 84% signals carry the ORIGINAL trade's target; everything else 2R
             target = sig.get("target") or (
@@ -987,9 +1050,10 @@ def simulate_day(symbol: str, day_iso: str, candles: List[Candle],
             t = SimTrade(symbol=symbol, day=day_iso,
                          signal_type=sig["signal_type"].value,
                          direction=sig["direction"], grade=sig["grade"],
-                         status=sig["status"], entry_time=c.timestamp,
+                         status=sig["status"], entry_time=fill_c.timestamp,
                          entry=sig["entry"], stop=sig["stop"], target=target,
-                         reason=sig["reason"], entry_idx=i, exit_idx=len(candles) - 1,
+                         reason=sig["reason"], entry_idx=fill_i,
+                         exit_idx=len(candles) - 1,
                          be_level=be_level, scale_level=scale_level,
                          runner_target=runner_tgt,
                          setup_type=getattr(_setup_type, "value", _setup_type),

@@ -261,13 +261,44 @@ print(json.dumps(out))
 """
 
 
-def _placement_probe(placement, fill_order="as_booked"):
+def _placement_probe(placement, fill_order="as_booked", entry_fill=None):
     env = dict(os.environ, STOP_PLACEMENT=placement, STOP_FILL_ORDER=fill_order)
+    # ENTRY_FILL decides what `as_booked` actually books (entry_fill.py,
+    # 2026-08-30). Passed explicitly wherever this file cares, popped otherwise,
+    # for the same isolation reason every probe here runs in a child at all.
+    env.pop("ENTRY_FILL", None)
+    if entry_fill:
+        env["ENTRY_FILL"] = entry_fill
     res = subprocess.run([sys.executable, "-c", _PLACEMENT_DRIVER % _REPO],
                          cwd=_REPO, env=env, capture_output=True, text=True)
     if res.returncode != 0:
         raise AssertionError("STOP_PLACEMENT=%s child failed:\n%s"
                              % (placement, res.stderr[-1500:]))
+    return json.loads(res.stdout.strip().splitlines()[-1])
+
+
+def _shipped_default_probe():
+    """What `signal_runner` actually ships when NOTHING sets the two flags.
+
+    Every other check in this file drives `STOP_PLACEMENT`/`STOP_FILL_ORDER`
+    explicitly in a child process, so it cannot be fooled by whatever the
+    CURRENT interpreter happens to have imported. This one used to be the
+    exception: it did `import signal_runner as sr` in-process and trusted
+    `sr.STOP_PLACEMENT`/`sr.STOP_FILL_ORDER` -- module-level constants latched
+    once, at first import, from `os.environ`. A host process that already
+    imported `signal_runner` earlier (or that exports either variable for an
+    unrelated arm) makes that assertion pass or fail on THAT stale state, not
+    on the shipped default -- the exact "stale assumption" bug class this file
+    exists to catch elsewhere. Popping both from the child's env forces the
+    isolated read `_placement_probe` already relies on for every other case.
+    """
+    env = dict(os.environ)
+    env.pop("STOP_PLACEMENT", None)
+    env.pop("STOP_FILL_ORDER", None)
+    res = subprocess.run([sys.executable, "-c", _PLACEMENT_DRIVER % _REPO],
+                         cwd=_REPO, env=env, capture_output=True, text=True)
+    if res.returncode != 0:
+        raise AssertionError("default-env child failed:\n%s" % res.stderr[-1500:])
     return json.loads(res.stdout.strip().splitlines()[-1])
 
 
@@ -308,21 +339,31 @@ def placement_failures():
                     "  STOP_PLACEMENT=%s %s: stop %.4f, expected %.4f -- the "
                     "placement did not land on the structure point it names"
                     % (placement, field, actual, expect))
-    # the DEFAULT must be `entry_bar`, or the shipped book moved.
-    import signal_runner as sr
-    if sr.STOP_PLACEMENT != "entry_bar":
-        failures.append("  default STOP_PLACEMENT is %r, must be 'entry_bar' -- "
-                        "any other default changes the shipped book"
-                        % sr.STOP_PLACEMENT)
-    if sr.STOP_FILL_ORDER != "as_booked":
-        failures.append("  default STOP_FILL_ORDER is %r, must be 'as_booked' -- "
-                        "order type is PARKED, not decided"
-                        % sr.STOP_FILL_ORDER)
-    # order type is parked: both conventions must be expressible, and the
+    # the DEFAULT must be `entry_bar` / `as_booked`, or the shipped book moved.
+    # Read in an isolated child with both env vars unset -- see
+    # `_shipped_default_probe` for why this cannot be an in-process import.
+    default = _shipped_default_probe()
+    if default["placement"] != "entry_bar":
+        failures.append("  shipped default STOP_PLACEMENT is %r, must be "
+                        "'entry_bar' -- any other default changes the shipped "
+                        "book" % default["placement"])
+    if default["fill_order"] != "as_booked":
+        failures.append("  shipped default STOP_FILL_ORDER is %r, must be "
+                        "'as_booked' -- order type is PARKED, not decided"
+                        % default["fill_order"])
+    # Order type is parked: both conventions must be expressible, and the
     # default one must be `fill_price` itself.
-    as_booked = _placement_probe("entry_bar", "as_booked")["fill"]
-    on_close = _placement_probe("entry_bar", "market_on_close")["fill"]
-    rows.append(("STOP_FILL_ORDER=as_booked fill", "fill", as_booked))
+    #
+    # 2026-08-30: `as_booked` means "whatever fill_price ships", and what
+    # fill_price ships CHANGED -- it now delegates to `entry_fill`, whose
+    # default is the signal minute's CLOSE (entry_fill.py, research/g85_entry_
+    # fill.md). So on the shipped default the two conventions agree, by design
+    # and not by breakage: both are the close. The distinctness this check
+    # exists to prove is now checked where the two genuinely differ, under
+    # ENTRY_FILL=published -- the old, unobtainable clamp.
+    as_booked = _placement_probe("entry_bar", "as_booked", "published")["fill"]
+    on_close = _placement_probe("entry_bar", "market_on_close", "published")["fill"]
+    rows.append(("STOP_FILL_ORDER=as_booked fill (ENTRY_FILL=published)", "fill", as_booked))
     rows.append(("STOP_FILL_ORDER=market_on_close fill", "fill", on_close))
     if abs(on_close - 100.80) > EPS:
         failures.append("  STOP_FILL_ORDER=market_on_close filled at %.4f, the "
@@ -331,6 +372,15 @@ def placement_failures():
         failures.append("  the two order-type conventions produced the same "
                         "fill on a bar that closes at its extreme -- one of "
                         "them is not wired")
+    # ...and the flip itself is asserted, so nobody can quietly put the
+    # unobtainable clamp back as the default without this going red.
+    shipped_fill = _placement_probe("entry_bar", "as_booked")["fill"]
+    rows.append(("shipped entry fill (ENTRY_FILL unset)", "fill", shipped_fill))
+    if abs(shipped_fill - 100.80) > EPS:
+        failures.append("  the SHIPPED entry fill is %.4f; it must be the signal "
+                        "minute's close, 100.80. ENTRY_FILL flipped to `close` on "
+                        "2026-08-30 because only 105 of 4,508 trades were "
+                        "obtainable at the old clamp" % shipped_fill)
     return rows, failures
 
 

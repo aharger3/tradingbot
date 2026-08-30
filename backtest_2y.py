@@ -15,7 +15,12 @@ from pathlib import Path
 import loss_halt
 import polygon_feed as pf
 from research import downgrade as dg
+import backtest_week as bw
 from backtest_week import simulate_day, htf_bias_for, RISK_DOLLARS
+# The ONE entry fill. Nothing is priced here -- this book records WHICH
+# fill it was run on, because a dollar figure in this repo is only live if
+# it names its fill as well as its book (DIRECTION.md, 2026-08-30).
+from entry_fill import ENTRY_FILL
 from backtest_12mo import hourly_from_1m, qqq_level_breaks
 from universe import (ALL_SYMS, INDEX_POOL, CORE_SYMBOLS, EXPERIMENTAL_SYMBOLS,
                       pool_for, has_archive)
@@ -281,10 +286,22 @@ def main():
 
     out = ROOT / args.out
     out.parent.mkdir(parents=True, exist_ok=True)
+    # The book NAMES ITS FILL. `entry_fill: "published"` marks a book priced at
+    # the pre-2026-08-30 clamp, which only 105 of 4,508 trades could actually
+    # have been filled at (research/g80_lookahead_refute.md) -- any reader of
+    # this JSON can now tell which of the two it is holding instead of guessing.
+    # `entry_misses` is days the entry order never filled: 0 on the shipped
+    # `close` default, non-zero only on the resting-limit arms, and it must be
+    # reported alongside the dollars rather than dropped.
+    misses = bw.ENTRY_FILL_MISSES
+    print("entry fill: %s — %d setups never filled%s"
+          % (ENTRY_FILL, len(misses),
+             " (NOT TRADES — count them against the days traded)" if misses else ""))
     meta = {"generated": datetime.now().isoformat(timespec="seconds"),
             "first": min(sessions), "last": max(sessions),
             "sessions": len(sessions), "symbols": syms,
             "risk_dollars": RISK_DOLLARS, "signals": len(rows),
+            "entry_fill": ENTRY_FILL, "entry_misses": len(misses),
             "loss_halt": bool(loss_halt.LOSS_HALT), "halted": halted,
             "traded": sum(1 for r in rows if r["traded"])}
     out.write_text(json.dumps({"meta": meta, "trades": rows}, separators=(",", ":")),

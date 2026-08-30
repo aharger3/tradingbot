@@ -38,6 +38,9 @@ from omen_bot import (
     HTF_BIAS_VETO, ocr_is_his, OCR_STRONG_PA_MULT
 )
 from discord_bot import DiscordSignalBot
+# The ONE entry fill, the way `stop_rule` is the one stop fill. `fill_price`
+# below delegates to it and computes no price of its own -- see entry_fill.py.
+import entry_fill
 from position_sizer import compute_plan, SizingPlan
 from signal_tracker import log_signal
 from predicates import is_s_gate
@@ -1363,29 +1366,54 @@ def in_session(ts) -> bool:
     return SESSION_START <= t < SESSION_END
 
 
+def close_is_bad_fill(candle, is_long: bool,
+                      session_hi=None, session_lo=None) -> bool:
+    """Is the signal bar's own close a BAD price to pay? The old T3(b) verdict.
+
+    Two ways it is: the close sits at the BAR's own extreme in the trade
+    direction (T3(b), 2026-08-11), or the bar closed jammed against the SESSION
+    extreme (ON WATCH, 2026-08-23). Austin, on the first: "those candles that
+    move fast and close at high of day or low of day, i just want to try to not
+    miss out."
+
+    This is a VERDICT, not a price. It used to be spelled inline in
+    `fill_price`, where it decided to back-date the entry onto the level; the
+    price that verdict implies now belongs to `entry_fill`, and only the
+    `published` mode still acts on it."""
+    if candle is None:
+        return False
+    probe = {"entry": candle.close, "direction": "call" if is_long else "put"}
+    return bool(bar_extreme_veto(probe, candle)
+                or (ON_WATCH and near_session_extreme(candle, is_long,
+                                                      session_hi, session_lo)))
+
+
 def fill_price(level: float, candle, is_long: bool,
                session_hi=None, session_lo=None) -> float:
-    """Austin 2026-08-11: fill at the close, except when the close sits inside
-    BAR_EXTREME_FRAC of the bar's own extreme in the trade direction — then fill
-    at the level, which is where he actually enters as the candle is forming.
+    """The price this entry books — DELEGATED to `entry_fill`, never computed here.
 
-    "those candles that move fast and close at high of day or low of day, i
-    just want to try to not miss out." The level is clamped into the bar's own
-    range: he cannot be filled at a price the bar never traded."""
-    if candle is None:
-        return level
-    if level is None:
-        return candle.close
-    probe = {"entry": candle.close, "direction": "call" if is_long else "put"}
-    # Two ways the close is a bad fill: it sits at the BAR's own extreme (T3(b),
-    # 2026-08-11), or the bar closed against the SESSION extreme (ON WATCH,
-    # 2026-08-23). Either one and the fill goes back to the level, clamped into
-    # the bar's range -- he cannot be filled where the bar never traded.
-    if not (bar_extreme_veto(probe, candle)
-            or (ON_WATCH and near_session_extreme(candle, is_long,
-                                                  session_hi, session_lo))):
-        return candle.close
-    return min(max(level, candle.low), candle.high)
+    **The default changed on 2026-08-30 and this is the change.** This function
+    used to return ``min(max(level, candle.low), candle.high)`` on an extreme
+    close: the LEVEL, a price the minute had already traded before the signal
+    existed. Only 105 of 4,508 trades (2.3%) were obtainable at it
+    (`research/g80_lookahead_refute.md`). It now returns the signal minute's
+    CLOSE, and `ENTRY_FILL=published` restores the old book exactly.
+
+    One fill definition, one module, the same cure `stop_rule.stop_fill_price`
+    got for the stop side. Nothing re-implements an entry price.
+
+    The three forward modes (`next_open`, `chase_once`, `limit_level`) cannot be
+    resolved here: this engine is fed a strict PREFIX of the session
+    (`backtest_week`: ``runner.candles = candles[:i + 1]``), which is exactly
+    what makes look-ahead structurally impossible inside it. So they book the
+    close PROVISIONALLY — that is the geometry the stop clamp, the minimum-risk
+    floor and the grade are computed on — and `backtest_week` re-prices the
+    entry once, at the trade-creation site, with the bars that come after."""
+    mode = "close" if entry_fill.needs_future_bars() else None
+    return entry_fill.entry_fill_price(
+        level, candle, is_long, mode=mode,
+        close_is_bad_fill=close_is_bad_fill(candle, is_long,
+                                            session_hi, session_lo)).price
 
 
 def near_session_extreme(candle, is_long: bool, session_hi, session_lo) -> bool:
