@@ -1,0 +1,71 @@
+{
+  "bar_per_day": 396.83,
+  "touch": {
+    "sessions": 500,
+    "shipped": {
+      "trades": 4508,
+      "win_pct": 59.4,
+      "total_dollars": 2633850.0,
+      "per_trade": 584.0,
+      "mean_r": 0.5843,
+      "per_day": 5268.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 100,
+      "weeks": 105,
+      "green_days_pct": 69.9,
+      "days_traded": 499,
+      "worst_drawdown": 11105.0
+    },
+    "one_a_day": {
+      "trades": 499,
+      "win_pct": 66.7,
+      "total_dollars": 360380.0,
+      "per_trade": 722.0,
+      "mean_r": 0.7222,
+      "per_day": 721.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 87,
+      "weeks": 105,
+      "green_days_pct": 66.7,
+      "days_traded": 499,
+      "worst_drawdown": 5993.0
+    }
+  },
+  "close": {
+    "sessions": 500,
+    "shipped": {
+      "trades": 4160,
+      "win_pct": 51.6,
+      "total_dollars": 1645306.0,
+      "per_trade": 396.0,
+      "mean_r": 0.3955,
+      "per_day": 3291.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 93,
+      "weeks": 105,
+      "green_days_pct": 57.7,
+      "days_traded": 499,
+      "worst_drawdown": 20277.0
+    },
+    "one_a_day": {
+      "trades": 499,
+      "win_pct": 59.3,
+      "total_dollars": 266474.0,
+      "per_trade": 534.0,
+      "mean_r": 0.534,
+      "per_day": 533.0,
+      "months_green": 21,
+      "months": 25,
+      "weeks_green": 75,
+      "weeks": 105,
+      "green_days_pct": 59.3,
+      "days_traded": 499,
+      "worst_drawdown": 7167.0
+    }
+  },
+  "delta_per_day_one_a_day": 188.0,
+  "delta_per_day_shipped": 1977.0
+}
