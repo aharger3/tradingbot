@@ -21,6 +21,7 @@ from backtest_week import simulate_day, htf_bias_for, RISK_DOLLARS
 # fill it was run on, because a dollar figure in this repo is only live if
 # it names its fill as well as its book (DIRECTION.md, 2026-08-30).
 from entry_fill import ENTRY_FILL
+from research import book_stamp
 from backtest_12mo import hourly_from_1m, qqq_level_breaks
 from universe import (ALL_SYMS, INDEX_POOL, CORE_SYMBOLS, EXPERIMENTAL_SYMBOLS,
                       pool_for, has_archive)
@@ -297,6 +298,13 @@ def main():
     print("entry fill: %s — %d setups never filled%s"
           % (ENTRY_FILL, len(misses),
              " (NOT TRADES — count them against the days traded)" if misses else ""))
+    # And the book SAYS WHO IT IS. Four files were called bt2y_trades.json in
+    # four days and no reader could tell which figure came from which
+    # (research/g85_honest_book.md). `stamp` carries the commit it was built
+    # from, whether the tree was dirty, the effective value of every
+    # behaviour-changing engine flag, and a fingerprint of the trades — so a
+    # report can call research/book_stamp.assert_book / assert_figure and find
+    # out that its number moved instead of quoting it anyway.
     meta = {"generated": datetime.now().isoformat(timespec="seconds"),
             "first": min(sessions), "last": max(sessions),
             "sessions": len(sessions), "symbols": syms,
@@ -304,6 +312,14 @@ def main():
             "entry_fill": ENTRY_FILL, "entry_misses": len(misses),
             "loss_halt": bool(loss_halt.LOSS_HALT), "halted": halted,
             "traded": sum(1 for r in rows if r["traded"])}
+    meta["stamp"] = book_stamp.stamp(rows, entry_fill=ENTRY_FILL,
+                                     entry_misses=len(misses),
+                                     out=str(args.out))
+    _de = meta["stamp"]["git"]["dirty_engine_py"]
+    print("book id %s from commit %s%s"
+          % (meta["stamp"]["book_id"], meta["stamp"]["git"]["commit"][:8],
+             " — DIRTY ENGINE, not rebuildable from that commit: %s" % ", ".join(_de)
+             if _de else ""))
     out.write_text(json.dumps({"meta": meta, "trades": rows}, separators=(",", ":")),
                    encoding="utf-8")
     print("wrote %s (%.1f MB) — %d signals, %d traded, %d sessions"
