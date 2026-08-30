@@ -26,6 +26,61 @@ TAG_RE = re.compile(r"\[([a-z0-9]+)\]")
 S_RE = re.compile(r" S(\d+)")
 LEVEL_RE = re.compile(r"(?:above|below) (PDH|PDL|PMH|PML|OR high|OR low|pivot high|pivot low)")
 
+# G7.1/labels. Austin, 2026-08-29: "so in homework also tell me what setup you
+# think it is", "remember BR and OCR is also a setup when both of them are
+# together." Both fields already exist on every signal (signal_runner.py
+# SignalRunner._label_confluence stamps setup_type; every emit site stamps
+# stop_level_name) and were being thrown away when SimTrade was built --
+# nothing here is computed, it is read off backtest_week.SimTrade now that it
+# carries the two fields through (research/g71_labeller.md). See
+# research/g72_labels_report.py for the distribution/sample this produces.
+SETUP_LABEL = {"break_and_retest": "break-and-retest",
+               "one_candle_rule": "one-candle-rule",
+               "br_ocr_confluence": "BR+OCR",
+               "reentry_84_rule": "other (84% re-entry)",
+               "fair_value_gap": "other (FVG)", "flag": "other (flag)"}
+
+# His six, named directly by Austin on 2026-08-29 (Projects/omen-rulebook.md,
+# "The six levels, named at last"): PDH, PDL, PMH, PML, HOD, LOD. NOTE this
+# corrects research/g71_labeller.md, which was written earlier the same day
+# and still guessed the opening range belonged in the six -- it does not.
+# "you know the 6 levels i watch thats it." The engine's stop_level_name
+# already spells these four ("PDH"/"PDL"/"PMH"/"PML") plus "HOD"/"LOD" when
+# HODLOD_PAIR is on (dormant today; F3 2026-07-11) -- no remapping needed,
+# only OR high/OR low have to be named honestly as NOT one of the six.
+HIS_SIX = {"PDH", "PDL", "PMH", "PML", "HOD", "LOD"}
+# The timeframe each level is DRAWN on. The ENTRY timeframe is 1m for every
+# row in this engine (polygon_feed.rth); the HTF bias is 1h
+# (backtest_12mo.hourly_from_1m). There is no other timeframe.
+LEVEL_TF = {"PDH": "1D", "PDL": "1D",
+            "PMH": "1m premarket", "PML": "1m premarket",
+            "HOD": "1m session extreme", "LOD": "1m session extreme"}
+
+
+def level_label(t):
+    """(level name -- his six spelled plainly, or 'not-his: <what it really
+    was>' -- and the timeframe it was drawn on), read off SimTrade.stop_level_
+    name. A label only: nothing here routes, grades or vetoes a trade."""
+    n = (t.stop_level_name or "").strip()
+    if n in HIS_SIX:
+        return n, LEVEL_TF[n]
+    if n in ("OR high", "OR low"):
+        return "not-his: " + n, "5m opening range"
+    if n.startswith("pivot"):
+        return "not-his: " + n, "1m intraday swing"
+    if n.startswith("Order block"):
+        return "not-his: order block", "1m single candle"
+    if n.startswith(("FVG", "Flag")):
+        return "not-his: " + n, "1m intraday"
+    if n:
+        # The 84% re-entry's stop_level_name spells the STOP ("Original
+        # stop" / "Reclaim candle low" / ...), never a level -- Austin's own
+        # rules confirm this is the one setup where "which level" is
+        # genuinely unrecoverable: the level is the prior failed entry, not
+        # a level the detector named. Reported honestly, not guessed at.
+        return "not-his: prior entry (84%)", "1m failed entry"
+    return "not-his: unnamed", "1m intraday"
+
 
 def archive_days(sym):
     d = ROOT / "data_archive" / sym
@@ -151,6 +206,7 @@ def main():
                 rec = dg.score(dbars, t.entry_idx, t.stop, t.direction == "call", bias)
                 risk = abs(t.entry - t.stop)
                 lv = LEVEL_RE.search(t.reason)
+                lvl_name, lvl_tf = level_label(t)
                 sm = S_RE.search(t.reason)
                 stop_pct = risk / t.entry * 100 if t.entry else 0.0
                 key = "fired" if t.status == "fired" else "skip"
@@ -163,6 +219,13 @@ def main():
                              "experimental" if sym in EXPERIMENTAL_SYMBOLS else "other"),
                     "day": d, "ym": d[:7], "yr": d[:4], "dow": dow,
                     "setup": t.signal_type, "dir": t.direction,
+                    # G7.1/labels: the labeller's answers, surfaced not derived.
+                    # `setup` above stays the BASE detector so nothing that
+                    # already groups on it moves; setup_label is the class
+                    # Austin names, BR+OCR as its own third class per his rule.
+                    "setup_label": SETUP_LABEL.get(t.setup_type or t.signal_type,
+                                                   t.setup_type or t.signal_type),
+                    "entry_tf": "1m", "bias_tf": "1h",
                     "grade": t.grade, "status": t.status,
                     "traded": bool(t.counted), "alert": bool(t.is_alert),
                     "et": t.entry_time[:5],
@@ -185,6 +248,8 @@ def main():
                                 "with" if (bias == "bullish") == (t.direction == "call")
                                 else "against"),
                     "level": lv.group(1) if lv else "other",
+                    "level_name": lvl_name, "level_tf": lvl_tf,
+                    "level_px": round(t.level_price or t.stop, 2),
                     "s": int(sm.group(1)) if sm else -1,
                     "tags": TAG_RE.findall(t.reason),
                     "seq": seq[key],
