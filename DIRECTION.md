@@ -1,12 +1,36 @@
 # DIRECTION — what this repo is trying to finish
 
+> ## ⚠ READ THIS BEFORE QUOTING ANY DOLLAR FIGURE BELOW
+>
+> **Measured 2026-08-30 and adversarially verified: the money numbers in this file are from a
+> fill nobody could have gotten.** `signal_runner.py:1330` fills at the level, and the signal
+> does not exist until the minute closes, so on most trades the book pays a price that printed
+> earlier in that same minute.
+>
+> **Only 105 of 4,508 trades — 2.3%, $111,556 — are genuinely obtainable at the book's price.**
+> 53.8% of intrabar fills sit at the bar's own extreme with the level *outside* the bar, where a
+> resting order fills nothing at all. Held fixed on the same trades, changing only the price
+> paid, mean R goes **+0.698 → +0.022**.
+>
+> Obtainable, one trade a day: **shares $48–$187, chase-once $68, same-day options $242–$346**,
+> against the money bar Austin set on 2026-08-30 of **$397/day (six figures a year)**.
+>
+> **A dollar figure in this repo is only live if it names its FILL as well as its book.**
+> See `OMEN-7.3.md` §4, `research/g80_lookahead_refute.md`, `research/g80_ordertype_grid.md`,
+> `research/g80_options_honest.md`, `research/g80_number_provenance.md`.
+>
+> The recall and durability rows below are unaffected — they do not depend on the fill.
+
 Read this **after** `CLAUDE.md` and **before** picking up work. `CLAUDE.md` holds the
 invariants you must not break. This file holds the goal, where we stand against it, and
 what an agent is allowed to do without Austin in the room.
 
-Charted 2026-08-26, gates re-measured 2026-08-28. Supersedes nothing; it pulls the OMEN 6 destination
-(`Austin's Vault/.scratch/omen-6/map.md`) into the repo so an agent that never opens the
-vault still knows what "done" means.
+**The current dispatch board is `OMEN-7.3.md`.** `PHASES.md` and `OMEN-7.2.md` are history.
+
+Charted 2026-08-26, gates re-measured 2026-08-28, money and recall re-measured again
+2026-08-29 after the G72 fix pass (`research/g72_after.md`). Supersedes nothing; it pulls
+the OMEN 6 destination (`Austin's Vault/.scratch/omen-6/map.md`) into the repo so an agent
+that never opens the vault still knows what "done" means.
 
 ---
 
@@ -14,19 +38,22 @@ vault still knows what "done" means.
 
 OMEN closes when all three are true at once, on one fixed measurement rig:
 
-| gate | target | where we stand (2026-08-29, after T0) |
+| gate | target | where we stand (2026-08-29, after G72) |
 |---|---|---|
-| **Recall** | fires on >=90% of Austin's **S-grade** days it has never seen | **52.9%** (18 of 34) on the 100 fresh cards of 2026-08-28. **T0's ratified re-baseline did not move it: 18/34 before, 18/34 after, the same 16 misses card for card** (`research/t0_ratified_rebaseline.md`). Precision on the same sample is 35.3%. |
-| **Money** | >=55% win rate, mean R >= 2.0 | **43.1% / +0.5481R** on 2,595 trades after T0 landed R1-R27 (was 53.1% / +0.8341R on 1,017). The book got bigger and worse per trade; the fall is -0.2860R against a +/-0.1725R bar, so it is real. |
-| **Durability** | every month green | **25 of 25 months** -- MET for the first time (was 23 of 25). |
+| **Recall** | fires on >=90% of Austin's **S-grade** days it has never seen | **58.6%** (163 of 278 S days, full graded corpus) / **64.7%** (22 of 34 on the original held-out sample) — `research/g72_recall278_paired.py`. **This is DOWN from the 23/34 the stack (T23) had reported, and it is an honesty fix, not a regression**: the rig that scores recall had been running its own hand-written copy of the engine's decision logic (`t4_engine_recall.CaptureRunner._route` never called `super()`), so gates the shipped engine grew after that copy was written were invisible to the only test that measures recall. The copy flattered the score by 3 days out of 278, always upward, never downward. It now delegates to the real router. Precision (fired on a graded `none` day) is 37.7% on the full corpus, 38.6% on the 34-card sample. Full detail: `research/g72_after.md`. |
+| **Money** | >=55% win rate, mean R >= 2.0 | **59.4% win, mean R 0.58** taking every signal the engine fires (4,508 trades, $2,633,850 over two years) — **66.7% win, mean R 0.72** one-trade-a-day (499 trades, $360,380). Both still far short of the 2.0R gate, and **today's fix pass did not move that meaningfully**: per-trade result moved $549 → $584 taking everything, which is noise. The book makes more money because it takes **1.85x as many trades** (2,437 → 4,508), not because each trade got better. Source: `research/g72_after_headline.py` over `research/bt2y_trades.json`; full detail `research/g72_after.md`. |
+| **Durability** | every month green | **25 of 25 months** both ways (all-trades and one-trade-a-day) — MET. Weekly: 100 of 105 all-trades (was 91), 87 of 105 one-trade-a-day (was 77). Worst drawdown $11,105 all-trades (was $14,714), $5,993 one-trade-a-day (was $20,100). |
 
-Recall is the wound. Money went backwards. Durability is **met**.
+Recall is still short of the gate. Money is nowhere near the gate — more dollars, not a
+better edge. Durability is met.
 
-**Re-baselined 2026-08-29 by T0** (`research/t0_ratified_rebaseline.md`,
-`research/t0_rebaseline.py`): Austin's 33 ratified answers landed as configuration,
-the two-year book went 1,017 -> 2,595 traded and +848R -> +1,422R total, and every
-money number above is from that book. Every earlier money figure in this file and in
-`research/omen6_backtest_truth.md` describes the pre-ratification engine.
+**Re-measured 2026-08-29 by the G72 fix pass** (`research/g72_after.md`,
+`research/g72_after_headline.py`, `research/g72_recall278_paired.py`): the two-year book
+(`research/bt2y_trades.json`) now holds **4,508** traded signals, up from T0's ratified
+**2,595** and this pass's own "before" figure of **2,437**. Every money and recall number
+above is from that book, measured today. Every earlier figure in this file, in
+`research/omen6_backtest_truth.md`, and in T0's re-baseline describes an earlier engine or
+(for recall) the earlier, buggy recall router.
 
 **Three things reframe all three rows, all measured 2026-08-28. Read them before acting on
 any number above.**
