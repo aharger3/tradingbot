@@ -217,6 +217,46 @@ two-cent spread gets to 87% of it, and that is the only route in sight.
 *Failed to run: the DeepSeek number-provenance sweep — the model is not reachable from this account
 (`deepseek/deepseek-chat` returned no-access). Re-queued on Sonnet.*
 
+### The book itself — **rebuilt on the honest fill, and the durability gate falls**
+
+`research/bt2y_trades.json` is no longer the published-fill book. It was re-run end to end with
+the entry filled at the signal minute's close, and the old file is preserved unchanged as
+`research/bt2y_trades_published_fill.json` so nothing already published becomes unreproducible.
+
+> **One trade a day, the book makes $28 a day — 7% of your $397 bar, short by $369. Taking every
+> signal it loses $283 a day. And months green go from 25 of 25 to 11 of 25.**
+
+| | published fill *(NOT OBTAINABLE)* | **close fill (the book now)** |
+|---|---:|---:|
+| one-a-day $/day · win · mean R | $721 · 66.7% · +0.72R | **$28 · 45.5% · +0.028R** |
+| one-a-day months green | 25 / 25 | **11 / 25** |
+| every signal $/day · win · mean R | $5,268 · 59.4% · +0.58R | **−$283 · 44.3% · −0.033R** |
+| every signal months green | 25 / 25 | **8 / 25** |
+| trades | 4,508 | 4,329 |
+| worst drawdown, one-a-day | $5,993 | $25,570 |
+
+**Trade count barely moved. The per-trade result went +$584 → −$33.** It is the price, not the
+selection — and the published arm re-runs today to $721/day exactly, so the control holds.
+
+**The three fills you can actually get are a tie**, paired day by day against close: next open
++$58 [−$15, $153], chase once −$43 [−$136, $51]. The only thing that separates from zero is the
+head start itself, **+$693 a day [$540, $823]** — last night's grid said +$613 from a different
+rig. Same answer twice.
+
+Under the rule you ratified — green months win — **the honest book is a FAIL at every risk
+size**, because multiplying a red month by a positive number leaves it red. $397 a day would
+need $14,179 of risk per trade.
+
+**Books now say who they are.** Every book carries its own fill, the commit it was built from,
+whether the engine was dirty, all 57 behaviour-changing flags and a fingerprint of its trades,
+and `research/book_stamp.py` lets a report assert its published figure against the book on disk
+before quoting it. Four files were called `bt2y_trades.json` in four days; that is what this
+ends.
+
+*Report: `research/g85_honest_book.md` · rebuild + check: `research/g85_honest_book.py`
+(`--check` re-derives all fourteen published figures) · `research/g85_entry_fill.md` is the
+fill itself.*
+
 ### The free 278 — **LANDED, and it reframes the accuracy problem entirely**
 
 You picked this over grading more cards. It cost under four minutes and it is the most

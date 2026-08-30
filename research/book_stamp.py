@@ -199,14 +199,26 @@ def assert_book(path, *, entry_fill=None, traded=None, signals=None,
     return meta
 
 
+_FIG_CACHE = {}
+
+
 def book_figures(path) -> dict:
-    """{'shipped': {...}, 'one_a_day': {...}} on the committed arithmetic."""
-    sys.path.insert(0, str(ROOT / "research"))
-    from g72_suppress_price import stats, shipped_rows, oneaday_rows  # noqa: E402
-    meta, rows = load_book(path)
-    nd = meta["sessions"]
-    return {"shipped": stats(shipped_rows(rows), nd),
-            "one_a_day": stats(oneaday_rows(rows), nd)}
+    """{'shipped'|'all': {...}, 'one_a_day': {...}} on the committed arithmetic.
+
+    Cached on (path, mtime): a report asserting fourteen figures should not
+    re-parse a 130 MB book fourteen times. 'all' is an alias for 'shipped' —
+    'take every signal the engine fires' is what both mean."""
+    key = (str(path), Path(path).stat().st_mtime_ns)
+    if key not in _FIG_CACHE:
+        sys.path.insert(0, str(ROOT / "research"))
+        from g72_suppress_price import stats, shipped_rows, oneaday_rows  # noqa: E402
+        meta, rows = load_book(path)
+        nd = meta["sessions"]
+        shipped = stats(shipped_rows(rows), nd)
+        _FIG_CACHE.clear()
+        _FIG_CACHE[key] = {"shipped": shipped, "all": shipped,
+                           "one_a_day": stats(oneaday_rows(rows), nd)}
+    return _FIG_CACHE[key]
 
 
 def assert_figure(path, policy, field, expected, tol=None):

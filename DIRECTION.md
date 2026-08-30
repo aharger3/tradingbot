@@ -1,10 +1,20 @@
 # DIRECTION — what this repo is trying to finish
 
-> ## ⚠ READ THIS BEFORE QUOTING ANY DOLLAR FIGURE BELOW
+> ## ⚠ THE BOOK WAS REBUILT ON AN HONEST FILL, 2026-08-30
 >
-> **Measured 2026-08-30 and adversarially verified: the money numbers in this file are from a
-> fill nobody could have gotten.** `signal_runner.py:1330` fills at the level, and the signal
-> does not exist until the minute closes, so on most trades the book pays a price that printed
+> **`research/bt2y_trades.json` is now the CLOSE-FILL book: 4,329 trades, and taking one trade
+> a day it makes $28 a day against his $397 bar — 7% of it. Taking every signal it loses $283
+> a day. Months green fell from 25 of 25 to 11 of 25 (one-a-day) and 8 of 25 (all trades).**
+> The only gate OMEN passed, it was passing on a price nobody could send. The old book is
+> preserved byte-identical at `research/bt2y_trades_published_fill.json`; every figure below
+> still marked "published fill" came from it. Full table, the tie between the three obtainable
+> fills, and what moved: **`research/g85_honest_book.md`**.
+>
+> Books now carry their own fill, commit, flags and fingerprint (`research/book_stamp.py`), and
+> a report can call `assert_figure` before it quotes a dollar.
+>
+> **Why the old numbers are dead.** `signal_runner.py:1330` filled at the level, and the signal
+> does not exist until the minute closes, so on most trades the book paid a price that printed
 > earlier in that same minute.
 >
 > **Only 105 of 4,508 trades — 2.3%, $111,556 — are genuinely obtainable at the book's price.**
@@ -41,11 +51,11 @@ OMEN closes when all three are true at once, on one fixed measurement rig:
 | gate | target | where we stand (2026-08-29, after G72) |
 |---|---|---|
 | **Recall** | fires on >=90% of Austin's **S-grade** days it has never seen | **58.6%** (163 of 278 S days, full graded corpus) / **64.7%** (22 of 34 on the original held-out sample) — `research/g72_recall278_paired.py`. **This is DOWN from the 23/34 the stack (T23) had reported, and it is an honesty fix, not a regression**: the rig that scores recall had been running its own hand-written copy of the engine's decision logic (`t4_engine_recall.CaptureRunner._route` never called `super()`), so gates the shipped engine grew after that copy was written were invisible to the only test that measures recall. The copy flattered the score by 3 days out of 278, always upward, never downward. It now delegates to the real router. Precision (fired on a graded `none` day) is 37.7% on the full corpus, 38.6% on the 34-card sample. Full detail: `research/g72_after.md`. |
-| **Money** | >=55% win rate, mean R >= 2.0 | **59.4% win, mean R 0.58** taking every signal the engine fires (4,508 trades, $2,633,850 over two years) — **66.7% win, mean R 0.72** one-trade-a-day (499 trades, $360,380). Both still far short of the 2.0R gate, and **today's fix pass did not move that meaningfully**: per-trade result moved $549 → $584 taking everything, which is noise. The book makes more money because it takes **1.85x as many trades** (2,437 → 4,508), not because each trade got better. Source: `research/g72_after_headline.py` over `research/bt2y_trades.json`; full detail `research/g72_after.md`. |
-| **Durability** | every month green | **25 of 25 months** both ways (all-trades and one-trade-a-day) — MET. Weekly: 100 of 105 all-trades (was 91), 87 of 105 one-trade-a-day (was 77). Worst drawdown $11,105 all-trades (was $14,714), $5,993 one-trade-a-day (was $20,100). |
+| **Money** | >=55% win rate, mean R >= 2.0 | **44.3% win, mean R −0.033** taking every signal (4,329 trades, **−$141,561** over two years) — **45.5% win, mean R +0.028** one-trade-a-day (500 trades, **+$13,893**, **$28/day = 7% of his $397 bar**). Re-measured 2026-08-30 on the honest close fill: `research/g85_honest_book.md`, `research/g85_honest_book.py --check`. *On the published fill — NOT OBTAINABLE — the same book reads 59.4% / 0.58R / $2,633,850 and 66.7% / 0.72R / $360,380; that arm is preserved at `research/bt2y_trades_published_fill.json`.* The trade count barely moved (4,508 → 4,329); the per-trade result went **+$584 → −$33**. It is the price paid to get in, not the selection. |
+| **Durability** | every month green | **FAIL — 11 of 25 months one-trade-a-day, 8 of 25 taking everything.** Weeks: 49 of 105 and 35 of 105. Worst drawdown $25,570 one-a-day, $194,012 all-trades. *This gate read 25 of 25 both ways until 2026-08-30, and it was passing on the unobtainable fill.* Sizing cannot fix it: multiplying a red month by a positive number leaves it red (`research/g83_sizing.md`). Published-fill control: 25/25, 100 and 87 weeks green, $11,105 / $5,993 drawdown. |
 
-Recall is still short of the gate. Money is nowhere near the gate — more dollars, not a
-better edge. Durability is met.
+Recall is still short of the gate. Money is nowhere near the gate. **Durability is no longer
+met** — it was the one gate OMEN passed, and it passed on a fill nobody could pay.
 
 **Re-measured 2026-08-29 by the G72 fix pass** (`research/g72_after.md`,
 `research/g72_after_headline.py`, `research/g72_recall278_paired.py`): the two-year book
