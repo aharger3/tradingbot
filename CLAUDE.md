@@ -3,14 +3,73 @@
 Intraday signal engine. Break-and-retest / one-candle-rule setups on the 09:30–11:00 window.
 Repo `aharger3/tradingbot`, working copy `C:\Users\aharg\Desktop\Projects\tradingbot`.
 
-verify: python research/regression_gate.py
+verify: python research/regression_gate.py && python research/test_runner_stop.py
 
-This is the recall gate (`research/t16_regression_gate.md`): it fails if any mark that
-currently fires goes silent. It was RED for 16 days (`5e3677ea` → G12) with nobody noticing
-because nothing ran it. The Stop hook now runs it after every edit in this repo and blocks
-the turn on a non-zero exit — see `~/.claude/hooks/verify-before-done.py`. If it goes red,
-diagnose (stale baseline vs. real regression) before touching `research/baseline_3.8.json` —
-do not silently re-lock it.
+---
+
+# THE LANE — read this before starting anything (set 2026-08-30)
+
+**One lane at a time. Nothing else gets worked on until the lane closes.**
+
+## Where the project actually stands
+
+| | honest fill (the default, today) |
+|---|---:|
+| one trade a day, first setup | **$28/day**, 45.5% win, 11/25 green months |
+| the same day's **best** setup (oracle ceiling) | **$2,948/day**, 99.6% win, **25/25 green** |
+| a coin flip among the day's setups | −$25/day |
+| Austin's bar | **$397/day** (six figures a year) |
+
+Read those four rows together, because they are the whole project:
+
+1. **The entry rule is not broken.** A $2,948/day ceiling at 25/25 green months is 7.4× the bar.
+   The setups are there, every month, in the book we already have.
+2. **Selection is broken, completely.** Arrival order beats random by $53/day out of a $2,973/day
+   spread. The engine takes the day's best setup on 12.8% of days; chance is 10.1%.
+3. **The bar is 14% of the way to the oracle.** To reach $397/day from a coin flip you need
+   $422 of the $2,973 spread. Not perfection — one seventh of it.
+4. **Nothing else is the bottleneck.** Not exits (+0.06R). Not sizing (green months are
+   scale-invariant). Not the grader. Not recall. **Which one of the day's setups to take.**
+
+`research/g86_honest_ceiling.py` prints this table. It is the only place these four numbers come
+from. If you want to quote them, run it.
+
+## Why every dollar figure before 2026-08-30 was wrong
+
+The engine filled at the level even when the level sat **outside the bar** — a price that did not
+exist. Only **105 of 4,508 trades** were obtainable at the book's own price. That is where
+"$721/day, 66.7% win, +0.8R" came from, and it is why the honest rebuild reads $28/day. The number
+did not get worse; the ruler got honest. Kill any figure that does not name its fill.
+
+## The working agreement
+
+- **Decide once, then build it until it works.** When Austin settles something, it gets
+  implemented, debugged, and tested to the point of confidence — not measured, reported, and left
+  as a finding. A report is not a deliverable. Working code with a passing test is.
+- **One lane at a time.** No parallel fan-out across unrelated questions. The measurement rigs
+  exist; they do not need re-running to justify new work.
+- **His time buys judgement, nothing else.** Charts and rule questions. Never a re-answered
+  question, never a menu.
+- **Every claim routes through a committed script.** No number without the file that made it.
+
+## What closes this lane
+
+A selector that, on the honest book, moves one-trade-a-day from $28/day toward $397/day **without
+losing S-day recall**, shipped in `signal_runner.py` behind a flag, with a test, and re-measured
+end to end. Nothing else counts as done.
+
+
+Two gates, both must pass. `regression_gate.py` is the recall gate
+(`research/t16_regression_gate.md`): it fails if any mark that currently fires goes silent. It
+was RED for 16 days (`5e3677ea` → G12) with nobody noticing because nothing ran it. The Stop
+hook now runs both after every edit in this repo and blocks the turn on a non-zero exit — see
+`~/.claude/hooks/verify-before-done.py`. If the recall gate goes red, diagnose (stale baseline
+vs. real regression) before touching `research/baseline_3.8.json` — do not silently re-lock it.
+
+`test_runner_stop.py` is the runner-stop safety selftest (break-even enforcement, the -1.25R
+floor, close-not-wick triggers, and the T24 stop-placement taxonomy in `signal_runner.py`).
+It went unwired to any gate the same way the recall gate once did — see
+`research/g72_stoptest_wiring.md`.
 
 **Read next, in this order:** `DIRECTION.md` (the goal, the three gates, what an agent may
 do unattended, the session pickup protocol) → `PHASES.md` (the dispatch board) → `TASKS.md`.
