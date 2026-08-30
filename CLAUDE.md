@@ -11,77 +11,73 @@ verify: python research/regression_gate.py && python research/test_runner_stop.p
 
 **One lane at a time. Nothing else gets worked on until the lane closes.**
 
+## What we are building, in his words
+
+> *"S trades are something — if I see it, I trade it every time. But obviously too many trades is
+> bad. So the goal is S trade accuracy be good, backtest numbers will continue to go up, and engine
+> is better at identifying the 1-3 S setups to take each day."* — Austin, 2026-08-30
+
+**This is a classifier, not a ranker.** Do not build anything that picks the best of the day's
+candidates, scores them against each other, or asks him which of two dots was better. He does not
+work that way and asking him to is wasting the only scarce input this project has.
+
+The target: **fire 1–3 times a day, and be right about them.**
+
 ## Where the project actually stands
 
-| | honest fill (the default, today) |
-|---|---:|
-| one trade a day, first setup | **$28/day**, 45.5% win, 11/25 green months |
-| the same day's **best** setup (oracle ceiling) | **$2,948/day**, 99.6% win, **25/25 green** |
-| a coin flip among the day's setups | −$25/day |
-| Austin's bar | **$397/day** (six figures a year) |
+| honest fill, one trade a day | $/day | win | green months |
+|---|---:|---:|---:|
+| the engine's first setup of the day | **$28** | 45.5% | 11/25 |
+| the same day's best setup (oracle ceiling) | **$2,948** | 99.6% | **25/25** |
+| a coin flip among the day's setups | −$25 | | |
+| **his bar** | **$397** | | |
 
-Read those four rows together, because they are the whole project:
+The oracle row is **not a plan** — it is proof the setups are there, every month, in the book we
+already have. The engine surfaces ~18.6 candidates a day and he takes 1–3. It currently trades a
+day he refused **62 times out of every 100** it trades (precision 39.5%). That gap is the project.
 
-1. **The entry rule is not broken.** A $2,948/day ceiling at 25/25 green months is 7.4× the bar.
-   The setups are there, every month, in the book we already have.
-2. **Selection is broken, completely.** Arrival order beats random by $53/day out of a $2,973/day
-   spread. The engine takes the day's best setup on 12.8% of days; chance is 10.1%.
-3. **The bar is 14% of the way to the oracle.** To reach $397/day from a coin flip you need
-   $422 of the $2,973 spread. Not perfection — one seventh of it.
-4. **Nothing else is the bottleneck.** Not exits (+0.06R). Not sizing (green months are
-   scale-invariant). Not the grader. Not recall. **Which one of the day's setups to take.**
-
-`research/g86_honest_ceiling.py` prints this table. It is the only place these four numbers come
-from. If you want to quote them, run it.
+`research/g86_honest_ceiling.py` prints the table. Run it rather than quoting it.
 
 ## Why every dollar figure before 2026-08-30 was wrong
 
 The engine filled at the level even when the level sat **outside the bar** — a price that did not
 exist. Only **105 of 4,508 trades** were obtainable at the book's own price. That is where
 "$721/day, 66.7% win, +0.8R" came from, and it is why the honest rebuild reads $28/day. The number
-did not get worse; the ruler got honest. Kill any figure that does not name its fill.
+did not get worse; the ruler got honest. **Kill any figure that does not name its fill.**
+
+## The three things his own marks say are broken
+
+From `research/marks/probe_g84_all_in_one_2026-08-30.jsonl`, 2026-08-30:
+
+1. **Precision.** On 3 of 6 cards he answered "neither" — both engine candidates were wrong.
+2. **Entry timing, even when the candle is right.** *"b candle right but entry is 3 candles
+   earlier."* *"9:44 S entry as candle forming."* The engine is a median 24 minutes behind him.
+3. **The retest tolerance is the wrong unit.** *"it doesn't follow the 25 percent candle unit, its
+   just if its close but didnt actually touch, within a few cents give or take."*
+   `BAR_EXTREME_FRAC` does not govern the retest. `research/g87_retest_tol.py` is the sweep he
+   asked for.
 
 ## The working agreement
 
-- **Decide once, then build it until it works.** When Austin settles something, it gets
-  implemented, debugged, and tested to the point of confidence — not measured, reported, and left
-  as a finding. A report is not a deliverable. Working code with a passing test is.
-- **One lane at a time.** No parallel fan-out across unrelated questions. The measurement rigs
-  exist; they do not need re-running to justify new work.
-- **His time buys judgement, nothing else.** Charts and rule questions. Never a re-answered
-  question, never a menu.
-- **Every claim routes through a committed script.** No number without the file that made it.
+- **Decide once, then build it until it works.** A report is not a deliverable. Working code with
+  a passing test is. Debug it to confidence before bringing it back.
+- **Think like a premier trader, not like Austin.** His words: *"you encapsulate my brain too much
+  … my thoughts and ideas are not gold, I'm just a regular guy trying to make some money."* Bring
+  trading judgement. His time buys the eye test on charts — nothing else.
+- **One lane at a time.** No parallel fan-out across unrelated questions.
+- **Every claim routes through a committed script**, and every dollar figure names its fill.
+- **Size-gate every money number.** 1R is a fixed $1,000, so a fill landing a cent from its stop is
+  a 100,000-share position and an R-multiple with a one-cent denominator. Ungated, the g87 sweep
+  printed **$15,119/day** — arithmetic, not money. `signal_runner.min_risk_floor` is the gate.
 
 ## What closes this lane
 
-A selector that, on the honest book, moves one-trade-a-day from $28/day toward $397/day **without
-losing S-day recall**, shipped in `signal_runner.py` behind a flag, with a test, and re-measured
-end to end. Nothing else counts as done.
+An S classifier that, on the honest book, fires **1–3 times a day**, lifts precision above 39.5%
+without losing S-day recall, and carries one-trade-a-day past **$397/day with every month green** —
+shipped in `signal_runner.py` behind a flag, with a test, re-measured end to end. Nothing else
+counts as done.
 
 
-Two gates, both must pass. `regression_gate.py` is the recall gate
-(`research/t16_regression_gate.md`): it fails if any mark that currently fires goes silent. It
-was RED for 16 days (`5e3677ea` → G12) with nobody noticing because nothing ran it. The Stop
-hook now runs both after every edit in this repo and blocks the turn on a non-zero exit — see
-`~/.claude/hooks/verify-before-done.py`. If the recall gate goes red, diagnose (stale baseline
-vs. real regression) before touching `research/baseline_3.8.json` — do not silently re-lock it.
-
-`test_runner_stop.py` is the runner-stop safety selftest (break-even enforcement, the -1.25R
-floor, close-not-wick triggers, and the T24 stop-placement taxonomy in `signal_runner.py`).
-It went unwired to any gate the same way the recall gate once did — see
-`research/g72_stoptest_wiring.md`.
-
-**Read next, in this order:** `DIRECTION.md` (the goal, the three gates, what an agent may
-do unattended, the session pickup protocol) → `PHASES.md` (the dispatch board) → `TASKS.md`.
-
-**Vault docs** (`C:\Users\aharg\Austin's Vault\`) — markdown only, never write code there:
-
-| doc | what it owns |
-|---|---|
-| `Projects/OMEN.md` | current state + version history |
-| `Projects/omen-rulebook.md` | **Austin's rules, with the sentence he said each one in** |
-| `Projects/omen-decks.md` | the deck standard |
-| `.scratch/omen-6/map.md` | the OMEN 6 wayfinder map + tickets |
 
 ---
 

@@ -9,9 +9,9 @@ import openai
 API_KEY = os.environ["DEEPSEEK_API_KEY"]
 BASE_URL = "https://api.deepseek.com"
 MODEL = "deepseek-chat"
-CHECKPOINT = r"C:\Users\aharg\tradingbot\research\youtube-checkpoint.json"
-BATCH_DIR = r"C:\Users\aharg\tradingbot\research\youtube_batches"
-OUTPUT_FILE = r"C:\Users\aharg\tradingbot\research\scarface-rules-youtube.md"
+CHECKPOINT = r"C:\Users\aharg\Desktop\Projects\tradingbot\research\youtube-checkpoint.json"
+BATCH_DIR = r"C:\Users\aharg\Desktop\Projects\tradingbot\research\youtube_batches"
+OUTPUT_FILE = r"C:\Users\aharg\Desktop\Projects\tradingbot\research\scarface-rules-youtube.md"
 BATCH_SIZE = 30  # files per compilation call
 MAX_WORKERS = 5
 

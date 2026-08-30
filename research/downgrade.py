@@ -84,8 +84,33 @@ ENABLE_LARGE_COUNTER_BODY = False
 
 # --- P19/W5: a second, independent +1, OFF by default -----------------------
 # Ballot batch 02, b5: "lets count bull/bear PA and below/above at least 5/6
-# levels i watch a +1." The six levels and why those six (not HOD/LOD/T10
-# pivots) are named in research/p18_p19_new_variables.md.
+# levels i watch a +1."
+#
+# TWO DIFFERENT SIXES. This tuple is NOT the set of levels Austin trades.
+#
+# On 2026-08-29 he named the levels he watches, and they are
+#     PDH  PDL  PMH  PML  HOD  LOD     "you know the 6 levels i watch thats it."
+# That set governs which levels a setup may BREAK, RETEST and TARGET. It lives
+# wherever level selection happens -- not here.
+#
+# This tuple is the CONFLUENCE TALLY, and it deliberately uses a different six:
+#     PDH  PDL  PMH  PML  ORH  ORL
+# every one of which is fixed before or at the open (ORH/ORL lock 09:34), so
+# nothing in the tally can leak hindsight. research/p18_p19_new_variables.md:53
+# gives the reason HOD/LOD are excluded and it is a good one: they are the
+# session's own extremes as of the entry bar, so on a long the close is at or
+# below HOD and at or above LOD *by construction*. They would hand the tally one
+# free point on essentially every signal.
+#
+# That swap was attempted on 2026-08-29 and reverted the same day. The attempt's
+# own analysis proved the problem: with HOD/LOD in, the pair contributes exactly
+# one of six on either side always, so "at least 5/6" silently becomes "all four
+# of PDH/PDL/PMH/PML on side" -- a strictly harder rule than the one Austin
+# ratified, arrived at by accident. `CONFLUENCE_MIN_LEVELS` is his number and
+# must not be quietly re-tuned to compensate for a roster change he did not make.
+#
+# If this ever should count his traded six, the threshold has to be re-derived
+# and re-ratified with him. It is not a one-line swap.
 CONFLUENCE_LEVELS = ("PDH", "PDL", "PMH", "PML", "ORH", "ORL")
 CONFLUENCE_MIN_LEVELS = 5   # Austin's own number (ballot b5: "at least 5/6")
 ENABLE_MULTI_LEVEL_CONFLUENCE = False

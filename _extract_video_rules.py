@@ -12,10 +12,10 @@ if sys.stdout.encoding and sys.stdout.encoding.lower() not in ('utf-8', 'utf8'):
 if sys.stderr.encoding and sys.stderr.encoding.lower() not in ('utf-8', 'utf8'):
     sys.stderr.reconfigure(encoding='utf-8')
 
-TRANSCRIPT_DIR = Path(r"C:\Users\aharg\tradingbot\research\video_transcripts")
-OUTPUT_FILE = Path(r"C:\Users\aharg\tradingbot\research\scarface-rules-videos.md")
-EXTRACTED_RULES = Path(r"C:\Users\aharg\tradingbot\research\EXTRACTED_TRADING_RULES.md")
-ACCELERATOR_RULES = Path(r"C:\Users\aharg\tradingbot\research\scarface-rules-accelerator.md")
+TRANSCRIPT_DIR = Path(r"C:\Users\aharg\Desktop\Projects\tradingbot\research\video_transcripts")
+OUTPUT_FILE = Path(r"C:\Users\aharg\Desktop\Projects\tradingbot\research\scarface-rules-videos.md")
+EXTRACTED_RULES = Path(r"C:\Users\aharg\Desktop\Projects\tradingbot\research\EXTRACTED_TRADING_RULES.md")
+ACCELERATOR_RULES = Path(r"C:\Users\aharg\Desktop\Projects\tradingbot\research\scarface-rules-accelerator.md")
 GROUPS_FILE = TRANSCRIPT_DIR / "_extract_groups.json"
 CHECKPOINT_DIR = TRANSCRIPT_DIR / "_extract_checkpoints"
 NOTES_DIR = CHECKPOINT_DIR / "_running_notes"

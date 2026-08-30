@@ -14,10 +14,25 @@ from __future__ import annotations
 W, H = 720, 330
 PAD_L, PAD_R, PAD_T, PAD_B = 4, 56, 10, 24
 
+# G7.2 (2026-08-29): HOD/LOD added. Austin named his six levels the same day --
+# PDH, PDL, PMH, PML, HOD, LOD -- and this renderer could not draw two of them,
+# so every card built on it was silently missing the level the engine misses most
+# (HOD, 413 symbol-days). ORH/ORL stay in the table because other pages draw the
+# opening range; a caller that does not want a level simply omits its key from
+# the `levels` dict, so every existing caller's SVG is byte-identical.
+#
+# NOT to be confused with downgrade.CONFLUENCE_LEVELS = (PDH, PDL, PMH, PML, ORH,
+# ORL). That is a different set for a different job -- the confluence tally, which
+# uses only levels fixed at or before the open so it cannot leak hindsight
+# (research/p18_p19_new_variables.md:53). Two sets, two jobs. Never merge them.
+#
+# HOD/LOD are RUNNING levels: the caller owns the anchor and must pass a value
+# computed from bars that had already closed, never from the whole session.
 LEVELS = [
     ("pdh", "PDH", "lvl-pd"), ("pdl", "PDL", "lvl-pd"),
     ("pmh", "PMH", "lvl-pm"), ("pml", "PML", "lvl-pm"),
     ("orh", "ORH", "lvl-or"), ("orl", "ORL", "lvl-or"),
+    ("hod", "HOD", "lvl-hl"), ("lod", "LOD", "lvl-hl"),
 ]
 
 
@@ -27,7 +42,7 @@ def _esc(s):
 
 
 def render(candles, levels, marks=None, label="", interactive=False,
-           hlines=None, vlines=None):
+           hlines=None, vlines=None, dots=None, xfmt=None):
     """candles: [{t,o,h,l,c,v}]  levels: {pdh:..}  marks: [{i,price,stop,side,tag}]
 
     ``hlines`` / ``vlines`` (H2 three-lane deck, 2026-08-28) are optional
@@ -39,7 +54,23 @@ def render(candles, levels, marks=None, label="", interactive=False,
         hlines = [{"price": 128.44, "label": "2R", "cls": "tgt"}]
         vlines = [{"i": 90, "label": "11:00", "cls": "clk"}]
 
-    The page owns the colours via ``.chart .tgt`` / ``.chart .clk``.
+    The page owns the colours via ``.chart .tgt`` / ``.chart .clk``. An hline may
+    also carry ``"at": bar_index``, which moves its label off the right-hand
+    gutter and onto the plot above that bar -- four labelled candidate stop lines
+    on one chart collide in the gutter and read fine when they are spread out.
+
+    ``dots`` (master homework, 2026-08-30) marks a bar with a small labelled
+    circle and NOTHING else -- no price rail, no arrow, no stop. It exists for
+    the questions that must point at a bar without telling him where the entry
+    or the stop goes: "which of these two setups is the trade" and "does the
+    higher timeframe agree with this one". Shape:
+
+        dots = [{"i": 14, "price": 128.44, "label": "A"}]
+
+    ``xfmt`` overrides the x-axis label. The default reads a clock out of a
+    1-minute timestamp; a daily chart needs its date instead, and passing
+    ``xfmt=lambda t: t[5:10]`` gives ``09-08``. Both default to off, so every
+    existing caller's SVG is byte-identical.
 
     ``interactive=True`` (OMEN Test 1) adds two things and changes nothing else:
 
@@ -57,6 +88,7 @@ def render(candles, levels, marks=None, label="", interactive=False,
     marks = marks or []
     hlines = hlines or []
     vlines = vlines or []
+    dots = dots or []
     n = len(candles)
     if not n:
         return '<div class="chart-missing">no bars</div>'
@@ -75,9 +107,13 @@ def render(candles, levels, marks=None, label="", interactive=False,
                 lo, hi = min(lo, v), max(hi, v)
     for h in hlines:
         # A 2R rail the tape never reached still has to be ON the chart, or the
-        # card asks him to judge a target he cannot see.
+        # card asks him to judge a target he cannot see. Same for a candidate
+        # stop that sits under the session low.
         if h.get("price") is not None:
             lo, hi = min(lo, h["price"]), max(hi, h["price"])
+    for d in dots:
+        if d.get("price") is not None:
+            lo, hi = min(lo, d["price"]), max(hi, d["price"])
     span = (hi - lo) or 1.0
     lo -= span * 0.04
     hi += span * 0.04
@@ -106,7 +142,8 @@ def render(candles, levels, marks=None, label="", interactive=False,
     for i in range(0, n, 15):
         out.append('<line class="grid" x1="%.1f" y1="%d" x2="%.1f" y2="%.1f"/>'
                    % (x(i), PAD_T, x(i), PAD_T + plot_h))
-        t = candles[i]["t"][11:16] if "T" in candles[i]["t"] else candles[i]["t"][:5]
+        raw = candles[i]["t"]
+        t = xfmt(raw) if xfmt else (raw[11:16] if "T" in raw else raw[:5])
         out.append('<text class="axis" x="%.1f" y="%.1f">%s</text>'
                    % (x(i), H - 8, _esc(t)))
 
@@ -147,9 +184,18 @@ def render(candles, levels, marks=None, label="", interactive=False,
             continue
         out.append('<line class="hrail %s" x1="%d" y1="%.1f" x2="%.1f" y2="%.1f"/>'
                    % (_esc(h.get("cls", "")), PAD_L, y(p), PAD_L + plot_w, y(p)))
-        out.append('<text class="hrail-t %s" x="%.1f" y="%.1f">%s %.2f</text>'
-                   % (_esc(h.get("cls", "")), PAD_L + plot_w + 4, y(p) + 3.4,
-                      _esc(h.get("label", "")), p))
+        at = h.get("at")
+        if at is not None and 0 <= at < n:
+            # Label on the plot, above the line, so several candidate lines can
+            # be told apart without stacking their labels in the gutter.
+            out.append('<text class="hrail-t %s" x="%.1f" y="%.1f" '
+                       'text-anchor="middle">%s %.2f</text>'
+                       % (_esc(h.get("cls", "")), x(at), y(p) - 4,
+                          _esc(h.get("label", "")), p))
+        else:
+            out.append('<text class="hrail-t %s" x="%.1f" y="%.1f">%s %.2f</text>'
+                       % (_esc(h.get("cls", "")), PAD_L + plot_w + 4, y(p) + 3.4,
+                          _esc(h.get("label", "")), p))
 
     for m in marks:
         cx, p = x(m["i"]), m.get("price")
@@ -169,6 +215,22 @@ def render(candles, levels, marks=None, label="", interactive=False,
                        % (PAD_L, y(s), PAD_L + plot_w, y(s)))
             out.append('<text class="stop-t" x="%.1f" y="%.1f">STOP %.2f</text>'
                        % (PAD_L + plot_w + 4, y(s) + 3.4, s))
+
+    for d in dots:
+        i, p = d.get("i"), d.get("price")
+        if i is None or p is None or not (0 <= i < n):
+            continue
+        cx, cy = x(i), y(p)
+        out.append('<circle class="dot %s" cx="%.1f" cy="%.1f" r="4.5"/>'
+                   % (_esc(d.get("cls", "")), cx, cy))
+        if d.get("label"):
+            # Above the dot, flipped below when the dot is near the top edge, so
+            # the label never falls off the plot.
+            up = cy - PAD_T > 18
+            out.append('<text class="dot-t %s" x="%.1f" y="%.1f" '
+                       'text-anchor="middle">%s</text>'
+                       % (_esc(d.get("cls", "")), cx, cy - 9 if up else cy + 15,
+                          _esc(d["label"])))
 
     if interactive:
         # Placeholders only. Every one of these is in the served markup; the page

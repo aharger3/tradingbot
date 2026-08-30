@@ -1,9 +1,9 @@
 """Batch transcribe all WAV files with checkpoint resume."""
 import os, subprocess, json
 
-AUDIO_DIR = r"C:\Users\aharg\tradingbot\research\audio_extracted"
-OUT_DIR = r"C:\Users\aharg\tradingbot\research\video_transcripts"
-SCRIPT = r"C:\Users\aharg\tradingbot\research\transcribe_one.py"
+AUDIO_DIR = r"C:\Users\aharg\Desktop\Projects\tradingbot\research\audio_extracted"
+OUT_DIR = r"C:\Users\aharg\Desktop\Projects\tradingbot\research\video_transcripts"
+SCRIPT = r"C:\Users\aharg\Desktop\Projects\tradingbot\research\transcribe_one.py"
 PYTHON = r"C:\Users\aharg\AppData\Local\Programs\Python\Python313\python.exe"
 os.makedirs(OUT_DIR, exist_ok=True)
 

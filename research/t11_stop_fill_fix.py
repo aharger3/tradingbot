@@ -29,6 +29,41 @@ This file is the guard. It asserts, in every rig that books a stop:
      measured against the **ORIGINAL** ``abs(entry - stop)``, never a risk
      re-based on the moved stop.
 
+TWO EXITS BOOK A LOSS, AND THEY LOOK ALIKE. READ THIS BEFORE EDITING.
+=====================================================================
+
+Since 2026-08-29 there is a SECOND, earlier loss exit: `DISASTER_STOP`
+(backtest_week.py:215, ships ON). It rests a real stop ORDER at -1R and fills
+on an intrabar TOUCH. A resting order that is touched fills AT its own price,
+so it books **exactly -1.0000R**, off the wick, before any candle has had a
+chance to close past 1R.
+
+That means, while the resting order is on, **-1.25R is unreachable — by design,
+not by mistake.** The two rules are both real and they compose in that order.
+
+The trap: "every loss is exactly -1R" was a REAL BUG on this project once.
+`backtest_week` used to trigger on the close and then fill at ``t.stop``, so
+every loss was -1.000R by construction and the floor was dead code — 458 of 474
+stop-outs had already closed past 1R (`research/x2_stop_floor_audit.md`).
+The healthy resting order and the old bug produce the SAME fingerprint in the
+book. Tell them apart in seconds:
+
+  * resting order (CORRECT): losses are exactly -1.0000R and the exit price is
+    the -1R order's price, reached INTRABAR. Set ``DISASTER_STOP=0`` and the
+    losses spread out to -1.1R, -1.25R, etc.
+  * the old bug (WRONG): losses are exactly -1.0000R **even with
+    ``DISASTER_STOP=0``**, because the close-fill path is filling at ``t.stop``.
+
+So this file exercises the two paths SEPARATELY, and never lets one hide the
+other. ``run()`` defaults to ``disaster=False`` so the close-fill sections below
+measure the close-fill path and nothing else; section 3b switches the resting
+order back ON and pins its own behaviour (exactly -1R on a touch, including on
+a pure wick). Both behaviours are correct and both are locked down here.
+Between 2026-08-28 and 2026-08-29 this file drove backtest_week with the
+resting order live and then asserted close-fill outcomes, and read red for a
+configuration the engine was never asked to produce
+(`research/g72_after_stopfloor.py` is the proof).
+
 Synthetic bars throughout, no archive and no network. Run:
 
     python research/t11_stop_fill_fix.py
@@ -98,6 +133,24 @@ if hasattr(stop_rule, "stop_fill_price"):
     check(getattr(xl, "MAX_LOSS_R", None) == getattr(stop_rule, "MAX_LOSS_R", None),
           "exit_lab.MAX_LOSS_R has not forked from stop_rule.MAX_LOSS_R")
 
+# The two loss exits are only separable while `bw.DISASTER_STOP` is the switch
+# that separates them. If it is renamed, `run(disaster=...)` would quietly set a
+# dead attribute and every section below would be measuring the wrong rule
+# again -- the exact blind spot that made this file read red. Fail loudly here.
+check(isinstance(getattr(bw, "DISASTER_STOP", None), bool),
+      "backtest_week.DISASTER_STOP is still the switch for the resting -1R order")
+check(abs(getattr(stop_rule, "DISASTER_STOP_R", 0.0) - 1.0) < EPS,
+      "the resting order rests at -1.00R, inside the -1.25R close-fill floor")
+check(getattr(stop_rule, "DISASTER_STOP_R", 0.0) < FLOOR_R,
+      "the resting order is INSIDE the floor — which is why -1.25R cannot bind "
+      "while it is on")
+# Ships ON at Austin's ratified number. Skipped, not failed, when the env var
+# is deliberately overriding it -- sweeps set DISASTER_STOP and must still be
+# able to run this file.
+if os.getenv("DISASTER_STOP") is None:
+    check(bw.DISASTER_STOP is True,
+          "backtest_week ships the resting -1R order ON by default")
+
 
 # ---------------------------------------------------------------------------
 # the shared fixture: a clean bullish B&R the engine really fires on
@@ -154,16 +207,29 @@ def _px(r_past):
     return round(ENTRY - r_past * RISK, 4)
 
 
-def run(day, scale_plan=None):
-    """One replay. ``scale_plan=None`` keeps the shipped default."""
-    prev = bw.SCALE_PLAN
+def run(day, scale_plan=None, disaster=False):
+    """One replay. ``scale_plan=None`` keeps the shipped default.
+
+    ``disaster`` switches the resting -1R order (``bw.DISASTER_STOP``) on or
+    off for this replay, and it defaults to **OFF** deliberately. The resting
+    order fills on a touch at exactly -1R, so with it ON it always reaches the
+    price before the close-fill path can, and every close-fill assertion below
+    would be answered by the wrong rule. Any NEW check added to this file
+    therefore measures the close-fill path unless it opts in — see section 3b,
+    which is the one place the resting order is switched back on.
+    """
+    prev = (bw.SCALE_PLAN, bw.DISASTER_STOP, bw.DISASTER_R)
     if scale_plan is not None:
         bw.SCALE_PLAN = scale_plan
+    bw.DISASTER_STOP = bool(disaster)
+    # pinned, not inherited: DISASTER_STOP_R sweeps move where the order rests,
+    # and this file's numbers are written for an order resting at -1R.
+    bw.DISASTER_R = stop_rule.DISASTER_STOP_R
     try:
         return bw.simulate_day("TEST", "2026-01-05", day, pdh=None, pdl=None,
                                bias="bullish" if day[0].close < 150 else "bearish")
     finally:
-        bw.SCALE_PLAN = prev
+        bw.SCALE_PLAN, bw.DISASTER_STOP, bw.DISASTER_R = prev
 
 
 def only(trades):
@@ -256,6 +322,65 @@ for label, mk_day in (("long", long_day), ("short", short_day)):
     check(abs(t.pnl / bw.RISK_DOLLARS - rebased) > EPS,
           "%s: the runner is not booked at 0R just because its stop sat at "
           "break-even" % label)
+
+
+# ---------------------------------------------------------------------------
+# 3b. the OTHER loss exit: the resting -1R order (DISASTER_STOP, ships ON)
+#
+# Everything above ran with the resting order OFF, on purpose. This section is
+# the other half: with it ON, a TOUCH of -1R fills AT -1R, so the loss is
+# exactly -1.0000R and the -1.25R floor never gets a chance to bind. That is
+# correct. It is also, on its own, indistinguishable from the 2026-08-28 bug in
+# which the close-fill path filled at ``t.stop`` and made every loss -1.000R by
+# construction. What separates them is the pair of sections: flip the order off
+# (sections 1-3) and the losses MUST spread to -1.1R and -1.25R. If section 3b
+# is green and section 1 is not, the close-fill path has regressed -- do not
+# "fix" it by turning the resting order back on.
+# ---------------------------------------------------------------------------
+
+print("\n3b. the resting -1R order ON (DISASTER_STOP, backtest_week.py:407)")
+
+# never reaches -1R (low 100.10 vs. the order at 100.00) and closes above the
+# stop: neither loss exit may fire.
+def shallow(i):
+    return _bar(i, 100.80, 100.90, 100.10, 100.70)
+
+
+for label, mk_day in (("long", long_day), ("short", short_day)):
+    # A bar that closes 1.6R past would floor at -1.25R on the close path — but
+    # its LOW crossed -1R first, and the resting order was already filled there.
+    t = only(run(mk_day(crater(15, 1.6)), disaster=True))
+    close_to(t.pnl / bw.RISK_DOLLARS, -1.0,
+             "%s: the resting order books EXACTLY -1R on a touch — it gets "
+             "there before the close can" % label)
+    check(t.outcome == "loss" and t.exit_idx == 15,
+          "%s: and it books on the touching bar (outcome=%s, exit_idx=%d)"
+          % (label, t.outcome, t.exit_idx))
+    want_px = ENTRY - RISK if mk_day is long_day else 200 - (ENTRY - RISK)
+    close_to(t.exit_price, want_px,
+             "%s: filled AT the resting order's own price, not at the close"
+             % label)
+
+    # Same bar, resting order off: the SAME code must now book -1.25R. This is
+    # the pair that tells the healthy resting order apart from the old bug.
+    t_off = only(run(mk_day(crater(15, 1.6))))
+    close_to(t_off.pnl / bw.RISK_DOLLARS, -FLOOR_R,
+             "%s: with the order OFF the same bar books -1.25R — so -1R above "
+             "is the ORDER, not a close-fill regression" % label)
+
+    # A pure WICK stops nothing on the close path (section 1) but DOES fill a
+    # resting order: an order sitting at 100.00 that price traded through is
+    # filled, wick or not. Both are right; they are different instruments.
+    t = only(run(mk_day(wick_only(15)), disaster=True))
+    close_to(t.pnl / bw.RISK_DOLLARS, -1.0,
+             "%s: a wick through -1R FILLS the resting order (a wick stops no "
+             "CLOSE-based stop — see section 1)" % label)
+
+    # and a bar that never reaches the order books nothing at all
+    t = only(run(mk_day(shallow(15)), disaster=True))
+    check(t.exit_idx != 15,
+          "%s: a bar that never touches -1R books nothing — the order fills on "
+          "a touch, it is not a constant (exit_idx=%d)" % (label, t.exit_idx))
 
 
 # ---------------------------------------------------------------------------
@@ -410,8 +535,11 @@ def main():
         for m in FAILS:
             print("  - " + m)
         sys.exit(1)
-    print("t11 stop-fill selftest ok: %d checks. Stops trigger on the close, "
-          "fill at that close, floored at -%.2fR; wicks stop nothing."
+    print("t11 stop-fill selftest ok: %d checks. Two loss exits, both pinned:\n"
+          "  close-fill  — triggers on a candle CLOSE, fills at that close, "
+          "floored at -%.2fR; wicks stop nothing.\n"
+          "  resting -1R — fills on an intrabar TOUCH at its own price, so it "
+          "books exactly -1.00R and the floor never binds while it is on."
           % (len(ROWS), FLOOR_R))
 
 

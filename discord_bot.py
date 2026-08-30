@@ -94,7 +94,7 @@ class DiscordSignalBot:
             {"name": "Contracts", "value": f"{plan.contracts}", "inline": True},
             {"name": "Entry", "value": f"${plan.entry_premium:.2f}", "inline": True},
             {"name": "Stop", "value": f"${plan.stop_premium:.2f}", "inline": True},
-            {"name": "Target (2R)", "value": f"${plan.target_premium:.2f}", "inline": True},
+            {"name": f"Target ({plan.rr:g}R)", "value": f"${plan.target_premium:.2f}", "inline": True},
         ]
         if stop_width_pct:
             stop_label = f"{stop_level_name or 'N/A'} ({stop_width_pct}%)"

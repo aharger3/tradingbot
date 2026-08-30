@@ -2,10 +2,10 @@
 import json, re, time
 from pathlib import Path
 
-CKPT = Path(r"C:\Users\aharg\tradingbot\research\video_transcripts\_extract_checkpoints")
-OUT = Path(r"C:\Users\aharg\tradingbot\research\scarface-rules-videos.md")
-EXTRACTED = Path(r"C:\Users\aharg\tradingbot\research\EXTRACTED_TRADING_RULES.md")
-GROUPS = Path(r"C:\Users\aharg\tradingbot\research\video_transcripts\_extract_groups.json")
+CKPT = Path(r"C:\Users\aharg\Desktop\Projects\tradingbot\research\video_transcripts\_extract_checkpoints")
+OUT = Path(r"C:\Users\aharg\Desktop\Projects\tradingbot\research\scarface-rules-videos.md")
+EXTRACTED = Path(r"C:\Users\aharg\Desktop\Projects\tradingbot\research\EXTRACTED_TRADING_RULES.md")
+GROUPS = Path(r"C:\Users\aharg\Desktop\Projects\tradingbot\research\video_transcripts\_extract_groups.json")
 
 with open(GROUPS, "r", encoding="utf-8") as f:
     groups = json.load(f)

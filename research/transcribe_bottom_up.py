@@ -3,9 +3,9 @@ Skips boot-camp recordings (other session owns those).
 Runs 2 parallel transcribe_one.py processes."""
 import subprocess, os, sys, time, glob
 
-AUDIO_DIR = r'C:\Users\aharg\tradingbot\research\audio_extracted'
-TRANS_DIR = r'C:\Users\aharg\tradingbot\research\video_transcripts'
-SCRIPT = r'C:\Users\aharg\tradingbot\research\transcribe_one.py'
+AUDIO_DIR = r'C:\Users\aharg\Desktop\Projects\tradingbot\research\audio_extracted'
+TRANS_DIR = r'C:\Users\aharg\Desktop\Projects\tradingbot\research\video_transcripts'
+SCRIPT = r'C:\Users\aharg\Desktop\Projects\tradingbot\research\transcribe_one.py'
 PY = r'C:\Users\aharg\AppData\Local\Programs\Python\Python313\python.exe'
 
 SKIP_PREFIXES = ['boot-camp-recordings']  # other session owns these

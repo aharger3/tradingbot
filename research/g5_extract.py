@@ -11,8 +11,8 @@ except ImportError:
     os.system(f'"{sys.executable}" -m pip install requests -q')
     import requests
 
-BASE = Path(r"C:\Users\aharg\tradingbot\research")
-YOUTUBE = Path(r"C:\Users\aharg\tradingbot\youtube_data")
+BASE = Path(r"C:\Users\aharg\Desktop\Projects\tradingbot\research")
+YOUTUBE = Path(r"C:\Users\aharg\Desktop\Projects\tradingbot\youtube_data")
 INTERIM = BASE / "_g5_interim"
 INTERIM.mkdir(exist_ok=True)
 

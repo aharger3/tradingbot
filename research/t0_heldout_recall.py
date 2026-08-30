@@ -34,6 +34,7 @@ sys.path.insert(0, HERE)
 sys.path.insert(0, ROOT)
 
 from research.t4_engine_recall import run_day  # noqa: E402
+import grade_read  # noqa: E402  the ONE grade reader -- see research/g72_onespelling.md
 
 SWEEP = os.path.join(HERE, "marks", "probe_s_sweep_2026-08-28.jsonl")
 MASTER = os.path.join(HERE, "marks", "probe_master_2026-08-29.jsonl")
@@ -84,9 +85,12 @@ def replay(pairs):
 
 
 def score_sweep():
-    cards = [r for r in rows(SWEEP) if r["answers"].get("s")]
-    his_s = [r for r in cards if r["answers"]["s"] == ["s"]]
-    his_no = [r for r in cards if r["answers"]["s"] != ["s"]]
+    # The S on these 100 cards is spelled `answers.s`, and every row also carries
+    # `grade: "none"` -- the page's untouched default. Read it through
+    # grade_read.read_grade so the field name can never hide the answer again.
+    cards = [r for r in rows(SWEEP) if grade_read.read_grade(r) is not None]
+    his_s = [r for r in cards if grade_read.is_s(r)]
+    his_no = [r for r in cards if not grade_read.is_s(r)]
     rep = replay({(r["symbol"], r["date"]) for r in cards})
 
     def fired(r):
@@ -115,7 +119,9 @@ def score_vetoes():
     tally = Counter()
     detail = []
     for r in cards:
-        g = r["answers"]["grade"][0].lower()
+        # one reader; "none" is his word for a refusal, "no" is this tally's
+        g = (grade_read.read_grade(r) or "no").lower()
+        g = "no" if g == "none" else g
         d = rep.get((r["symbol"], r["date"]), {})
         his_min = mins(r["et"]) if r.get("et") else None
         near = ([m for m in d.get("fired", []) if abs(m - his_min) <= NEAR]

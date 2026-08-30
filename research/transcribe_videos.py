@@ -3,7 +3,7 @@ import os, sys, time, glob, json
 from faster_whisper import WhisperModel
 
 PY313 = r"C:\Users\aharg\AppData\Local\Programs\Python\Python313\python.exe"
-BASE = r"C:\Users\aharg\tradingbot"
+BASE = r"C:\Users\aharg\Desktop\Projects\tradingbot"
 VIDEO_DIR = os.path.join(BASE, "circle_videos")
 AUDIO_DIR = os.path.join(BASE, "circle_audio")
 OUT_DIR = os.path.join(BASE, "research", "video_transcripts")

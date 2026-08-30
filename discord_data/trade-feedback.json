@@ -38577,5 +38577,622 @@
   ],
   "embeds": [],
   "reply_to": null
+ },
+ {
+  "id": "1523707190374961303",
+  "ts": "2026-07-06T15:08:23",
+  "author": "mustin98",
+  "content": "Entered TSLA on the retest of 5m range, PMH, and one candle rule\nLooking at 1m I drew a line on what I thought was the previous swing high and stopped out at the 10:47 candle close. Now it's running and wondering if there was something I missed. Looking at the 5m, it's all green candles and structure is intact but I was only looking at 1m when I closed the trade\n\nFeedback welcome. Thanks!",
+  "attachments": [
+   "https://cdn.discordapp.com/attachments/1219021113686888478/1523707190081355920/Screenshot_20260706-080404.png?ex=6a89bb67&is=6a8869e7&hm=5f7634c36485b7b50c2d257b337a44741b8dbcb4432402a7193fbc26a2f89ae3&"
+  ],
+  "embeds": [],
+  "reply_to": null
+ },
+ {
+  "id": "1523756172581273660",
+  "ts": "2026-07-06T18:23:01",
+  "author": "Luke",
+  "content": "Hey <@521466652660072468>, sick trade! You held onto this very well. The 10:42am EST candle had a very strong bullish reaction at previous HOD, so what I would do is wait for a candle close below that candle since that would show that the buyers are getting exhausted there and are no longer able to hold price above the area they previously defended. Hope that makes sense🙂",
+  "attachments": [],
+  "embeds": [],
+  "reply_to": "1523707190374961303"
+ },
+ {
+  "id": "1525909839799386123",
+  "ts": "2026-07-12T17:00:55",
+  "author": "305 Trader",
+  "content": "remember that wheb yog have a string thesis based on higher TF, 1H and 4H, it will happen often that the set up that works is at reentry. This is something we have to keep in mind. I even suggest you have a tight stop loss on the 1st attempt. So, when it doesnt work out you are stikl looking confident and strong to continue trading.",
+  "attachments": [],
+  "embeds": [],
+  "reply_to": "1521937629342597190"
+ },
+ {
+  "id": "1526356953218154547",
+  "ts": "2026-07-13T22:37:35",
+  "author": "JP400",
+  "content": "Hello. Two trades for people to look at. Pretty sure the SPY was a \"bad trade\" in that I accidentally bought the break  and not the retest. The QQQ was debatable... maybe trying to force the B&R. Anyone have any thoughts ?",
+  "attachments": [
+   "https://cdn.discordapp.com/attachments/1219021113686888478/1526356953092067438/SPY_and_QQQ_July_13_2026.png?ex=6a897bef&is=6a882a6f&hm=6113acb6c5e7dae001374711ff0fa75eb3d4dffbefb00e258d1f47017651f025&"
+  ],
+  "embeds": [],
+  "reply_to": null
+ },
+ {
+  "id": "1526959918295290078",
+  "ts": "2026-07-15T14:33:34",
+  "author": "KING 75",
+  "content": "originally had a bullish bias on the day....bearish break of 5ORB / PDH / PML.  Retest of PDH.  (Formation of a 5FVG).  1m bearish order block 9:39.  I-hammer candle entry 9:42.  2:1 RR.   1R at 29806.75  Additional confluences is that price rode the VWAP, 9EMA, and 21EMA down and a 5FVG retest for continuation downward.  Did I miss anything?  Thankls",
+  "attachments": [
+   "https://cdn.discordapp.com/attachments/1219021113686888478/1526959917850820649/NQ1_2026-07-15_09-52-05.png?ex=6a89b33d&is=6a8861bd&hm=5912857af914f5cca7f7c97c1c11ca7ccc5e97f73f7b4dd43d43e0539e24fcef&"
+  ],
+  "embeds": [],
+  "reply_to": null
+ },
+ {
+  "id": "1527116042093072477",
+  "ts": "2026-07-16T00:53:56",
+  "author": "305 Trader",
+  "content": "so, what is your question?",
+  "attachments": [],
+  "embeds": [],
+  "reply_to": "1526959918295290078"
+ },
+ {
+  "id": "1527116230387961958",
+  "ts": "2026-07-16T00:54:41",
+  "author": "KING 75",
+  "content": "did i follow all the rules, did i miss any of the confluences? did i get anything wrong?  was it a good trade or was it a bullshit lucky one?",
+  "attachments": [],
+  "embeds": [],
+  "reply_to": null
+ },
+ {
+  "id": "1527116841825337394",
+  "ts": "2026-07-16T00:57:07",
+  "author": "305 Trader",
+  "content": "your entries are waaaay too far from the strong key level or area. When you do that, you open yourself up for a big retracement of the price back to that key level which will kill your stop loss and account. Do not do it.",
+  "attachments": [],
+  "embeds": [],
+  "reply_to": "1526356953218154547"
+ },
+ {
+  "id": "1527117014299185369",
+  "ts": "2026-07-16T00:57:48",
+  "author": "305 Trader",
+  "content": "did you take a put right at that mark?",
+  "attachments": [],
+  "embeds": [],
+  "reply_to": "1527116230387961958"
+ },
+ {
+  "id": "1527117235787796733",
+  "ts": "2026-07-16T00:58:41",
+  "author": "KING 75",
+  "content": "it was a futures short",
+  "attachments": [],
+  "embeds": [],
+  "reply_to": "1527117014299185369"
+ },
+ {
+  "id": "1527122645496238190",
+  "ts": "2026-07-16T01:20:11",
+  "author": "305 Trader",
+  "content": "See<@463849184081215498> ok.your entry was a bit rushed. If you think the strongest level was the PML, you need a proper retest (two adverse candles or more) to that kl. Understand that in every structure, the areas of most liquidity which the market will always revisit are: the Pivot highs (Lower Highs) for a continuation in down trending move as well as the Pivot lows (Higher lows) for a reversal of that down trending move. Any level other than those ones: 29,895 and 29,940 in your inpulse are secondary. This is the most important lesson in market structure I have learned. And I wish this was taught with clarity. All these other things: Order blocks, 5 min ORB, FVG and PM levels are secondary, unless they are in confluence with what I explained here + Psycological levels. No wonder 29,940 is a Pivot high as well.",
+  "attachments": [],
+  "embeds": [],
+  "reply_to": null
+ },
+ {
+  "id": "1527122899729776860",
+  "ts": "2026-07-16T01:21:11",
+  "author": "305 Trader",
+  "content": "-impulse-",
+  "attachments": [],
+  "embeds": [],
+  "reply_to": null
+ },
+ {
+  "id": "1527123241972400228",
+  "ts": "2026-07-16T01:22:33",
+  "author": "305 Trader",
+  "content": "this is the reason why 29,895 was revisited before the impulse went in continuation. 29,895 was the nearest Pivot high or Lower high of your trend.",
+  "attachments": [],
+  "embeds": [],
+  "reply_to": null
+ },
+ {
+  "id": "1527124932260135035",
+  "ts": "2026-07-16T01:29:16",
+  "author": "305 Trader",
+  "content": "this is why Master traders often talk of two structures up or down from your entry as the real stop loss. This is why there is an 84% rule (a sexy name to this stop loss rule), which means just this. Two structures up or down is the real stop loss in your chart.",
+  "attachments": [],
+  "embeds": [],
+  "reply_to": null
+ },
+ {
+  "id": "1527129339278131200",
+  "ts": "2026-07-16T01:46:47",
+  "author": "JP400",
+  "content": "Hello <@1080561490576285706> You mean my entries are too far from my Stops ? Or my Stops are too far from the strong key level/area ? Or both !?",
+  "attachments": [],
+  "embeds": [],
+  "reply_to": "1527116841825337394"
+ },
+ {
+  "id": "1527130666830139507",
+  "ts": "2026-07-16T01:52:03",
+  "author": "305 Trader",
+  "content": "enter as close as possible to the nearest retest to the key level or area you have designated. Not far from it.",
+  "attachments": [],
+  "embeds": [],
+  "reply_to": "1527129339278131200"
+ },
+ {
+  "id": "1527130898049536180",
+  "ts": "2026-07-16T01:52:58",
+  "author": "JP400",
+  "content": "So probably the candle before, when it closed below the Order Block...",
+  "attachments": [],
+  "embeds": [],
+  "reply_to": "1527130666830139507"
+ },
+ {
+  "id": "1527139494774575235",
+  "ts": "2026-07-16T02:27:08",
+  "author": "KING 75",
+  "content": "Can you point me in the right direction of where I can learn more about market structure?  Thanks",
+  "attachments": [],
+  "embeds": [],
+  "reply_to": "1527122645496238190"
+ },
+ {
+  "id": "1527140099106803752",
+  "ts": "2026-07-16T02:29:32",
+  "author": "KING 75",
+  "content": "I definitely need more guidance regarding the pivot  structures in the trend.  Should they be on the actual TF I execute trades or on the HTF with other key levels?",
+  "attachments": [],
+  "embeds": [],
+  "reply_to": "1527122645496238190"
+ },
+ {
+  "id": "1527141782717075566",
+  "ts": "2026-07-16T02:36:13",
+  "author": "305 Trader",
+  "content": "There is a module in the Accelerator about market structure. Search in Youtube about Pivot highs and pivot lows of a structure. The higher the temporality or TF in which they are formed, the more liquidity they draw to them.",
+  "attachments": [],
+  "embeds": [],
+  "reply_to": null
+ },
+ {
+  "id": "1527142478245924912",
+  "ts": "2026-07-16T02:38:59",
+  "author": "305 Trader",
+  "content": "Everything is Pivot highs and pivot lows, supports and resistance around them. In all honesty, everything else anyone can teach here or anywhere else including fancy indicators is of secondary or even tertiary relevance. This and Risk management. You barely need anything else, is my most honest feedback after 4 years of trying many things.",
+  "attachments": [],
+  "embeds": [],
+  "reply_to": null
+ },
+ {
+  "id": "1527144921511886900",
+  "ts": "2026-07-16T02:48:42",
+  "author": "305 Trader",
+  "content": "29,880 ; 29,895 and 29,940 are in that sequence going higher, the pivot high points of your structure in your trend. The market will revisit those levels. You place your stop loss and or take profit limit orders right there depending on your direction of course.",
+  "attachments": [],
+  "embeds": [],
+  "reply_to": "1527140099106803752"
+ },
+ {
+  "id": "1527146973243641867",
+  "ts": "2026-07-16T02:56:51",
+  "author": "KING 75",
+  "content": "Thanks 305.   Thanks for your insight and feedback",
+  "attachments": [],
+  "embeds": [],
+  "reply_to": "1527142478245924912"
+ },
+ {
+  "id": "1527350402318602330",
+  "ts": "2026-07-16T16:25:12",
+  "author": "nasman",
+  "content": "trading view question: looking at tonys chart / screenshot for tesla on IG, his 9:38 candle is red, but on my trading view it shows as green. kinda confused why the discrepency",
+  "attachments": [],
+  "embeds": [],
+  "reply_to": null
+ },
+ {
+  "id": "1527350731655483452",
+  "ts": "2026-07-16T16:26:31",
+  "author": "nasman",
+  "content": "",
+  "attachments": [
+   "https://cdn.discordapp.com/attachments/1219021113686888478/1527350731227795659/image.png?ex=6a89cdb7&is=6a887c37&hm=492a37ed4601231dc07f1ffdb89ee2eee498fa817dbf38ef5920440e4a0a07e3&"
+  ],
+  "embeds": [],
+  "reply_to": null
+ },
+ {
+  "id": "1527350873217564835",
+  "ts": "2026-07-16T16:27:04",
+  "author": "nasman",
+  "content": "",
+  "attachments": [
+   "https://cdn.discordapp.com/attachments/1219021113686888478/1527350872730894377/image.png?ex=6a89cdd8&is=6a887c58&hm=60118a0d72f486ecf1ab01753160324b06ffc30e52bb38d3756b12536f26aa6b&"
+  ],
+  "embeds": [],
+  "reply_to": null
+ },
+ {
+  "id": "1527352132674654339",
+  "ts": "2026-07-16T16:32:05",
+  "author": "Harper",
+  "content": "click on the candle then go to symbol and **uncheck** \"Color bars based on previous close\"",
+  "attachments": [
+   "https://cdn.discordapp.com/attachments/1219021113686888478/1527352132750282813/image.png?ex=6a89cf05&is=6a887d85&hm=fa8ec606496653db57a3ca5b27a9c3c144c5cb85f924e6d4ad1a6a0c23cc05b4&"
+  ],
+  "embeds": [],
+  "reply_to": "1527350402318602330"
+ },
+ {
+  "id": "1527352443619377182",
+  "ts": "2026-07-16T16:33:19",
+  "author": "nasman",
+  "content": "mine is unchecked already.",
+  "attachments": [],
+  "embeds": [],
+  "reply_to": null
+ },
+ {
+  "id": "1527352674184462438",
+  "ts": "2026-07-16T16:34:14",
+  "author": "nasman",
+  "content": "still green",
+  "attachments": [],
+  "embeds": [],
+  "reply_to": null
+ },
+ {
+  "id": "1527352820037058560",
+  "ts": "2026-07-16T16:34:49",
+  "author": "Harper",
+  "content": "strange, try feeding all this info and images to chatgpt and ask what's happening",
+  "attachments": [],
+  "embeds": [],
+  "reply_to": null
+ },
+ {
+  "id": "1527355731056267375",
+  "ts": "2026-07-16T16:46:23",
+  "author": "nasman",
+  "content": "figured it out, apparently its the free CBOE one feed. Says i need to Purchase the official NASDAQ (Consolidated) real-time feed (usually around $2 to $3 USD/month).",
+  "attachments": [],
+  "embeds": [],
+  "reply_to": null
+ },
+ {
+  "id": "1527356516565520464",
+  "ts": "2026-07-16T16:49:30",
+  "author": "Harper",
+  "content": "nice work!",
+  "attachments": [],
+  "embeds": [],
+  "reply_to": "1527355731056267375"
+ },
+ {
+  "id": "1528104768914849822",
+  "ts": "2026-07-18T18:22:47",
+  "author": "emZen",
+  "content": "Can I please get some feedback like on my mental game. This is Friday. I watched MU OR B&R down but hesitated, it hit the key level and then reversed and I watched it go all the way up and still hesitated. I waited for PMH B&R then got in, got nervous and got out real fast for a quick scalp and it wound up being a 1:1 R&R. Then it came back down broke the lower time frame structure, but not the higher timeframe and then made a strong push up. I saw the PDH B&R and entered again...and then... it quickly tanked past my stop but technically did not break structure on higher timeframe, so I rode that bad boy all the way down. Which I KNOWWWWWW not to do! But I was watching the market range and figured it would range back up for a smaller loss. As I started managing loss it picked up momentum and I modified my out up and up and up and broke even, accidentally stopping out on a pop before I could modify into profit. So yeah, one small gain and a break even, but super sloppy execution...",
+  "attachments": [
+   "https://cdn.discordapp.com/attachments/1219021113686888478/1528104768256475146/image.png?ex=6a894037&is=6a87eeb7&hm=6267c9af7a351b9dea982c00bd28b0b2ae9072c810a650e34a34982ae16084f7&",
+   "https://cdn.discordapp.com/attachments/1219021113686888478/1528104768596086864/image.png?ex=6a894037&is=6a87eeb7&hm=0128333d960728d4817ea6534aad6799ff176b009c47dda16b7cf5f38302f170&"
+  ],
+  "embeds": [],
+  "reply_to": null
+ },
+ {
+  "id": "1528121547598987386",
+  "ts": "2026-07-18T19:29:28",
+  "author": "305 Trader",
+  "content": "<@1519821603041710354> If I was a new trader, MU would not be a stock to trade with. Extremely volatile and very expensive. I would trade the Qs as well as AMZN, or GOOGL and work on all my mental game. You already know you are working on your loss aversion which can wipe out your account. Watch videos on loss aversion and force yourself to a mechanical stop loss at least for your 1st trade of the day. This will create a new habit in you which is: respect the fact that the market is in control. But you can always control your dues paid to the governor (a said stop loss).",
+  "attachments": [],
+  "embeds": [],
+  "reply_to": null
+ },
+ {
+  "id": "1528988316915994664",
+  "ts": "2026-07-21T04:53:41",
+  "author": "alexi09.",
+  "content": "<@1325884177291280475> ,Took a PDH long setup on NVDA today.  Reason for picking this stock:    Semiconductors were starting to bounce back after last week’s sell-off. Bullish sentiment looked to be on semiconductors. NVDA was trending upward during premarket. While in the trade, describe your thought process and decisions: My plan was to enter at the retest of PDH, confirm it could hold the level and then place my stop below the retest candle.\n\nBased on the intraday trend and the strength of QQQ, I was only going to take 1/3rd of my position off at the break of HOD and then hold the remainder for the next daily resistance level at 208.7. This would have provided a 1:2 risk/reward. Once it hit PT#1, I moved my stop slightly below the last higher high instead of my entry.",
+  "attachments": [
+   "https://cdn.discordapp.com/attachments/1219021113686888478/1528988316417003550/image.png?ex=6a89d415&is=6a888295&hm=3c900732891ab62883de1349c398d4ec3b59d605cc272982f49baab7dc529816&",
+   "https://cdn.discordapp.com/attachments/1219021113686888478/1528988316832104638/image.png?ex=6a89d415&is=6a888295&hm=bab39011147d38b91cfb586ec02b13813fa4a00037f24f78d0039a8ec0132110&"
+  ],
+  "embeds": [],
+  "reply_to": null
+ },
+ {
+  "id": "1529347977074708583",
+  "ts": "2026-07-22T04:42:51",
+  "author": "alexi09.",
+  "content": "Ticker: AMD. Strategy: PMH Break and Retest Long. Describe in detail your reasoning for picking this stock:    Semis have been rebounding since the massive sell-off the week prior. AMD also had a massive news catalyst the day before. So this would be a day 2 continuation. While in the trade, describe your thought process and decisions    Plan was to enter at the retest of PMH. I was not going to wait for confirmation. This was more of “there’s a lower wick, buyers are present, enter.” I wanted to take profit around the 531 area because that was my calculated 1:2 risk/reward area and also where sellers had been previously present. Once it broke above that area I started scaling out as it got closer to the next daily resistance level.",
+  "attachments": [
+   "https://cdn.discordapp.com/attachments/1219021113686888478/1529347976546353304/image.png?ex=6a89d18b&is=6a88800b&hm=26395b98bc5cb9a8946b7cf5ee909db51e78e47c837b3663752d1e08b60dd657&",
+   "https://cdn.discordapp.com/attachments/1219021113686888478/1529347976873377913/image.png?ex=6a89d18b&is=6a88800b&hm=28921a24dfea659e1e295c5772deccccc72d092d29b0fb32f0bcfa70347bafee&"
+  ],
+  "embeds": [],
+  "reply_to": null
+ },
+ {
+  "id": "1529545586645143582",
+  "ts": "2026-07-22T17:48:05",
+  "author": "Secondbanana",
+  "content": "Break and retest of the PMH. Broke almost immediately this morning, retest hit a little later. Had my stop loss a little too tight and I stopped out right before the move. Hurts when this happens.",
+  "attachments": [
+   "https://cdn.discordapp.com/attachments/1219021113686888478/1529545586334760960/image.png?ex=6a893815&is=6a87e695&hm=60dec379d3264cab9748da096e3b4ec69e3ebdc6fbb4e0490f5eb476f9c411d6&"
+  ],
+  "embeds": [],
+  "reply_to": null
+ },
+ {
+  "id": "1530169106345627730",
+  "ts": "2026-07-24T11:05:44",
+  "author": "305 Trader",
+  "content": "why you didnt re-enter? If you have a strong thesis, and you got the market direction right you have to re-enter.",
+  "attachments": [],
+  "embeds": [],
+  "reply_to": "1529545586645143582"
+ },
+ {
+  "id": "1530206713108500673",
+  "ts": "2026-07-24T13:35:10",
+  "author": "Secondbanana",
+  "content": "That would have been great here. But I had already used my funds for the day. Smaller account.",
+  "attachments": [],
+  "embeds": [],
+  "reply_to": "1530169106345627730"
+ },
+ {
+  "id": "1530231598417711116",
+  "ts": "2026-07-24T15:14:03",
+  "author": "Erick",
+  "content": "Took INTC today , really aggressive entry on the 5min strategy. But 1:3 RR target hit.",
+  "attachments": [
+   "https://cdn.discordapp.com/attachments/1219021113686888478/1530231598367244318/IMG_1819.png?ex=6a89bcbb&is=6a886b3b&hm=9b904787b71b7bc6e895749abb4b6632792ecca8ee90c129a51b0af289c00730&"
+  ],
+  "embeds": [],
+  "reply_to": null
+ },
+ {
+  "id": "1530270436213129287",
+  "ts": "2026-07-24T17:48:23",
+  "author": "305 Trader",
+  "content": "ok keep this in mind. That you get stopped out trading in short time frame is very likely. So reduce your size to allow for: larger stop loss and the opportunity to re enter.",
+  "attachments": [],
+  "embeds": [],
+  "reply_to": "1530206713108500673"
+ },
+ {
+  "id": "1530574895736426547",
+  "ts": "2026-07-25T13:58:11",
+  "author": "alexi09.",
+  "content": "Date: 7-24-26. Ticker: TSLA. Strategy: BNR PDL Short. Describe in detail your reasoning for picking this stock: TSLA had earnings the day before and was selling off. With the indexes weak there was a good chance that TSLA would continue downward. While in the trade, describe your thought process and decisions: Plan was to hold this for continuation past LOD. This was because TSLA had earnings the day before and I thought there would be continuation downward. I was right, but my timing was off.",
+  "attachments": [
+   "https://cdn.discordapp.com/attachments/1219021113686888478/1530574894356627466/image.png?ex=6a89aaf3&is=6a885973&hm=cd97d22a5fd19c50c3f77ff918b75588cd7d8ccd3f8e4c6b282bc00ce8fa8f59&",
+   "https://cdn.discordapp.com/attachments/1219021113686888478/1530574894989971476/image.png?ex=6a89aaf3&is=6a885973&hm=ec4090efabd9e6d6f44a6951e8442c90845119ecd3c40f9dfbd0631a9468063a&",
+   "https://cdn.discordapp.com/attachments/1219021113686888478/1530574895405334629/image.png?ex=6a89aaf3&is=6a885973&hm=f7ca02f1c5c04022b0e7a7ee280a4b484e764c665fa84f5c237ed5450fb6d056&"
+  ],
+  "embeds": [],
+  "reply_to": null
+ },
+ {
+  "id": "1534056277355790527",
+  "ts": "2026-08-04T04:31:57",
+  "author": "alexi09.",
+  "content": "Date: 8/3/26. Ticker: TSLA. Strategy: BNR PDH. Describe in detail your reasoning for picking this stock:                                                                                    Looking at the higher time, this was consolidating at a support level. I thought this was going to make a strong move upward or downward. Once it broke above PDH, this was in play for me. While in the trade, describe your thought process and decisions:                           Plan was to hold until the break of HOD to take the 1st profit and to hold the remainder until it at least hit 1:2 risk/reward. I took 1/3rd off at break of HOD and then moved my stop below the last higher low. I was unfortunately stopped out once TSLA pulled back to that area and then completely took off without me.",
+  "attachments": [
+   "https://cdn.discordapp.com/attachments/1219021113686888478/1534056277028765716/image.png?ex=6a89cefd&is=6a887d7d&hm=189ce43535aa6c9f06b2aaa6586476f480ed87e76560c1335285a89cf3639456&"
+  ],
+  "embeds": [],
+  "reply_to": null
+ },
+ {
+  "id": "1535300304000524308",
+  "ts": "2026-08-07T14:55:16",
+  "author": "Secondbanana",
+  "content": "Simple B&R of 5m opening range on PLTR. Something I've been trying to work on is when the trade is going well, let it go. Trade the plan, not the gains. QQQ/SPY were still bullish and everything was indicating that this had room to go but I sold at the first moment of any kind of chop. Still great gains on the day, but if I had more patience and trusted in the plan, it would have been 3x more. \n\nOriginal goal was 170 psych number (and my goal was achieved after I sold). But I sold some off at HOD and panic cut runners at the first sign of chop. \n\nI guess this is more of a journal entry than a request for trade feed back. I've been working on journaling and wondering what to say to myself. Typing all of this out has given me some direction as to how to better journal for myself. So thanks for letting me mind vomit.\n\nEdit - I wasn't in the live trading session today and noticed that JDUB took a similar trade on PLTR. Feels good to be seeing the same thing as the big dogs when doing it on my own.",
+  "attachments": [
+   "https://cdn.discordapp.com/attachments/1219021113686888478/1535300303568506910/8.7.26.png?ex=6a89b854&is=6a8866d4&hm=1d2cd296105c6e3db0862bc7511f171807b16fc3384e445d5ea3d669d366fc4f&"
+  ],
+  "embeds": [],
+  "reply_to": null
+ },
+ {
+  "id": "1535321522225287189",
+  "ts": "2026-08-07T16:19:35",
+  "author": "Kam",
+  "content": "nice write up and nice trade! 💪",
+  "attachments": [],
+  "embeds": [],
+  "reply_to": "1535300304000524308"
+ },
+ {
+  "id": "1535323217609097276",
+  "ts": "2026-08-07T16:26:20",
+  "author": "Secondbanana",
+  "content": "Thank you!",
+  "attachments": [],
+  "embeds": [],
+  "reply_to": "1535321522225287189"
+ },
+ {
+  "id": "1535710019243212870",
+  "ts": "2026-08-08T18:03:20",
+  "author": "D8alot",
+  "content": "End of my first week here.  Had a good trade on SPY.  I’ve already made more than it cost me to join!",
+  "attachments": [
+   "https://cdn.discordapp.com/attachments/1219021113686888478/1535710019004268554/126A134F-D9F8-44CF-95FA-E2BEB08B9AB1.png?ex=6a893ba8&is=6a87ea28&hm=5e88b3f131911bba2472eca69849765b28555ce736888d4b0a033e77669edcd0&"
+  ],
+  "embeds": [],
+  "reply_to": null
+ },
+ {
+  "id": "1538028314785087499",
+  "ts": "2026-08-15T03:35:25",
+  "author": "Mike Y",
+  "content": "Paper Traded today but huge difference between TSLA and SPY price action!",
+  "attachments": [
+   "https://cdn.discordapp.com/attachments/1219021113686888478/1538028314185441402/zzzScreenshot_2026-08-14_175542.png?ex=6a89c1bd&is=6a88703d&hm=e94b24c4add952fec2ed2123cc527dc3416f67cd66ce0a3a15068c7044bf8c1f&"
+  ],
+  "embeds": [],
+  "reply_to": null
+ },
+ {
+  "id": "1538991220771004446",
+  "ts": "2026-08-17T19:21:40",
+  "author": "gary",
+  "content": "<@102723492838916096> it's the hardest thing to overcome that urge to Take the Money and Run honestly I hardly ever do it I don't know how Tony and Jack convince themselves not to Take the Money and Run. The one thing I will do is Take the Money and Run but then re-enter the trade in a share position not an option position with obviously less shares",
+  "attachments": [],
+  "embeds": [],
+  "reply_to": null
+ },
+ {
+  "id": "1539664444466929715",
+  "ts": "2026-08-19T15:56:49",
+  "author": "wakefieldcapital",
+  "content": "<@1325884177291280475> Took the NVDA PDL retest setup. The slight chop, kinda killed the cons but overall it was a decent move. \nTP1 - LOD and TP2 - 217 KL",
+  "attachments": [
+   "https://cdn.discordapp.com/attachments/1219021113686888478/1539664444161003640/Screenshot_2026-08-19_at_11.55.59_AM.png?ex=6a89c6c1&is=6a887541&hm=ebb2230aa4499497a88b82a1ee50a7830e4dced394f15b89d5d731b7b5469809&"
+  ],
+  "embeds": [],
+  "reply_to": null
+ },
+ {
+  "id": "1539672990256734289",
+  "ts": "2026-08-19T16:30:46",
+  "author": "Caso22",
+  "content": "<@1325884177291280475> Hey hayden I tried pltr today with a one candle rule/pdh retest. It was strong at market open but sadly the momentum died and I had to stop the trade. Can I have your opinion? \nEntry: 9:43 push above retest candle\nExit: 9:48 when it broke below the downclosed candle of 9:33.",
+  "attachments": [
+   "https://cdn.discordapp.com/attachments/1219021113686888478/1539672989858144396/08642C42-341D-4D27-89C5-7FD37FD7AFC4.png?ex=6a89ceb6&is=6a887d36&hm=0d5800823fe8a637c4a4d6560608013209d5b928fff541aaae253bf2ea41d8b4&"
+  ],
+  "embeds": [],
+  "reply_to": null
+ },
+ {
+  "id": "1539689142667972628",
+  "ts": "2026-08-19T17:34:57",
+  "author": "Kash",
+  "content": "Hi, i was looking at this trade entry as well, but I chose not to take it. My reasoning was that pltr already hit a key level and was rejecting/ reacting from it. So I was not comfortable taking long while qqq was showing weakness. In hindsight it is exactly what happened, the momentum died and pltr reversed on the 1 minute rejecting from the lower timeframe. Had it not hit the key level and qqq had been stronger or even sideways, I would have 100% take the trade.",
+  "attachments": [],
+  "embeds": [],
+  "reply_to": "1539672990256734289"
+ },
+ {
+  "id": "1539689347698397214",
+  "ts": "2026-08-19T17:35:46",
+  "author": "Kash",
+  "content": "Again this is my few cents on this trade",
+  "attachments": [],
+  "embeds": [],
+  "reply_to": null
+ },
+ {
+  "id": "1539703875018166433",
+  "ts": "2026-08-19T18:33:30",
+  "author": "Caso22",
+  "content": "After reviewing the trade again I know exactly what you mean. It already grabbed the next liquidity level which was the next daily key level. Will note that in my journal so it will not happen again and pay more attention to it.",
+  "attachments": [],
+  "embeds": [],
+  "reply_to": "1539689142667972628"
+ },
+ {
+  "id": "1539720721989640272",
+  "ts": "2026-08-19T19:40:26",
+  "author": "Sim K",
+  "content": "<@1325884177291280475> can you please provide your feedback. i could not enter aapl call today at color flip of 9:52 because it \nmoved up so fast. by the time it closed the hod was too close. \nshould i have entered at the close of 9:52 as\naapl was relatively strong or should i avoid because RR was too low at that time.",
+  "attachments": [
+   "https://cdn.discordapp.com/attachments/1219021113686888478/1539720721327071394/image.png?ex=6a89526a&is=6a8800ea&hm=4279eee7074a32d13420b8cda33682ea976b999a8b7ba95a1ce5ff2959f148b8&"
+  ],
+  "embeds": [],
+  "reply_to": null
+ },
+ {
+  "id": "1539752259943145503",
+  "ts": "2026-08-19T21:45:45",
+  "author": "Hayden",
+  "content": "Honestly nothing bad to say about this one whatsoever. Was textbook 👍 \n\n- Outside PDR \n- 5 Bar pattern entry\n- R/R decent to LOD\n- Good room for extra downside\n- Moving alongside Q's\n\nI'd grade this an A, would A+ IMO if HTF was more bearish leaning, but you can only get so much on your side",
+  "attachments": [],
+  "embeds": [],
+  "reply_to": "1539664444466929715"
+ },
+ {
+  "id": "1539754482194317344",
+  "ts": "2026-08-19T21:54:35",
+  "author": "Hayden",
+  "content": "LTF on this was a bit tricky, on the 1m price did pullback and slightly shift trend, also didn't get back to HOD for the next push after retesting the first OB while simultaneously hitting Mondays high. Those 3 things would be why I believe you could've avoided this one. Always remember your HTF thesis is level to level therefore there's no longer a long side trade at PDH now inside that range, would be best to wait for a break above Mondays High at that point. Will say it was also relatively strong which is a + and outside of PDR is always nice, we just had another high right above it",
+  "attachments": [
+   "https://cdn.discordapp.com/attachments/1219021113686888478/1539754481091088394/image.png?ex=6a8971db&is=6a88205b&hm=3fa49e3a413836c9d6d3c23afa9355fe36643cdabc627e086939efb229bee720&",
+   "https://cdn.discordapp.com/attachments/1219021113686888478/1539754481552597042/image.png?ex=6a8971db&is=6a88205b&hm=60f65ef5024d8f860756d57bb8112966be9cfdc3c9b26367a0526ff3cfe4ec56&"
+  ],
+  "embeds": [],
+  "reply_to": "1539672990256734289"
+ },
+ {
+  "id": "1539755497564016702",
+  "ts": "2026-08-19T21:58:37",
+  "author": "Hayden",
+  "content": "Always wait for a down close candle to draw an OB, just as you drew out the first one 👍 and missing the first trade was okay too if it didn't make sense risk wise to HOD, but always remember you can hold on to the trade a little longer as well, especially if you do have a good thesis. I like the first setup, was RS as well and outside PDR 🤝",
+  "attachments": [],
+  "embeds": [],
+  "reply_to": "1539720721989640272"
+ },
+ {
+  "id": "1539756561663266846",
+  "ts": "2026-08-19T22:02:51",
+  "author": "Caso22",
+  "content": "Thanks Hayden for the Feedback. Yeah after reviewing it in a calm manner it made complete sense what my mistake was. Normally I know if the level gets taken out you have to go for the next higher level. Was not able to identify it in market conditions. I will make a note in my journal and pay more attention so it will not happen again.",
+  "attachments": [],
+  "embeds": [],
+  "reply_to": "1539754482194317344"
+ },
+ {
+  "id": "1540001469736947722",
+  "ts": "2026-08-20T14:16:02",
+  "author": "MrFijiWater",
+  "content": "Switched to paper for this trade, so maybe I was a little careless. Thoughts?",
+  "attachments": [
+   "https://cdn.discordapp.com/attachments/1219021113686888478/1540001469372309596/image.png?ex=6a89af22&is=6a885da2&hm=7edacfb081a3750b0dcb95864417bc5c024d1403b7a8f18ebcabf1f20affb0d9&"
+  ],
+  "embeds": [],
+  "reply_to": null
+ },
+ {
+  "id": "1540004516542546011",
+  "ts": "2026-08-20T14:28:08",
+  "author": "MrFijiWater",
+  "content": "<@1325884177291280475> I see we roughly took the same trade, what are your thoughts? Market was definitely choppy, but what is there to learn from this?",
+  "attachments": [],
+  "embeds": [],
+  "reply_to": "1540001469736947722"
+ },
+ {
+  "id": "1540006776890593432",
+  "ts": "2026-08-20T14:37:07",
+  "author": "Hayden",
+  "content": "Don't think so, was a solid setup IMO just odds didn't play out in our favor 👍",
+  "attachments": [],
+  "embeds": [],
+  "reply_to": "1540004516542546011"
+ },
+ {
+  "id": "1540010471690866868",
+  "ts": "2026-08-20T14:51:48",
+  "author": "gt",
+  "content": "<@1325884177291280475> Can you please review my trade I entered spy calls at the retest of 5 min ORB high\n\nEntry Criterias:\n•Retest with displacement \n•Candle closure in my trade direction by engulfing retest candle. \n\nExit criteria- SL hit( candle closure below retest candle)\n\nProfit target was PDL",
+  "attachments": [
+   "https://cdn.discordapp.com/attachments/1219021113686888478/1540010471229497354/IMG_0778.png?ex=6a89b784&is=6a886604&hm=499b978478e89c2a597b9f4d0b1781282614135127da7182f2020085241b379f&"
+  ],
+  "embeds": [],
+  "reply_to": null
  }
 ]

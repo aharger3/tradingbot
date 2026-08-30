@@ -12,7 +12,7 @@ except ImportError:
     os.system(f'"{sys.executable}" -m pip install requests -q')
     import requests
 
-BASE = Path(r"C:\Users\aharg\tradingbot\research")
+BASE = Path(r"C:\Users\aharg\Desktop\Projects\tradingbot\research")
 TRANSCRIPTS = BASE / "video_transcripts"
 GROUPS_FILE = TRANSCRIPTS / "_extract_groups.json"
 EXISTING_EXTRACT = BASE / "EXTRACTED_TRADING_RULES.md"

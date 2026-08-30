@@ -1,7 +1,7 @@
 import json, re, os
 
-SRC = r'C:\Users\aharg\tradingbot\research\discord_extracted\all_extracted.jsonl'
-OUT = r'C:\Users\aharg\tradingbot\research\discord_curated'
+SRC = r'C:\Users\aharg\Desktop\Projects\tradingbot\research\discord_extracted\all_extracted.jsonl'
+OUT = r'C:\Users\aharg\Desktop\Projects\tradingbot\research\discord_curated'
 os.makedirs(OUT, exist_ok=True)
 
 print('Loading all_extracted...')

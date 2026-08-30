@@ -5,8 +5,8 @@
 import json, os, re, sys
 from collections import defaultdict
 
-BASE = r'C:\Users\aharg\tradingbot\discord_data'
-OUT = r'C:\Users\aharg\tradingbot\research\discord_extracted'
+BASE = r'C:\Users\aharg\Desktop\Projects\tradingbot\discord_data'
+OUT = r'C:\Users\aharg\Desktop\Projects\tradingbot\research\discord_extracted'
 
 os.makedirs(OUT, exist_ok=True)
 

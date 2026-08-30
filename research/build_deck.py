@@ -36,6 +36,7 @@ sys.path.insert(0, HERE)
 sys.path.insert(0, ROOT)
 
 import deck_ui
+import grade_read
 import t21_card_filter as card_filter
 from research.t4_engine_recall import (run_day, rth_candles, prior_day_levels,
                                        premarket_extremes)
@@ -75,7 +76,12 @@ LEGACY_MARK_FILES = [
 # The schemas disagree. Canonical day-cards carry card_id/symbol/date; the older
 # bar-level corpora carry id/symbol/day; one batch carries only `id`. The join is
 # always symbol + date.
-_GRADE_KEYS = ("austin_tier", "tier", "austin_grade", "grade", "verdict")
+#
+# The grade itself is read by `research/grade_read.py` and nowhere else -- it is
+# spelled eight different ways across these corpora, two of them inside the
+# `answers` dict where no grade-field reader could see them. This tuple is kept
+# only as the alias every caller already imports.
+_GRADE_KEYS = grade_read.SCALAR_FIELDS
 
 # A card_id may be prefixed by its section and suffixed by a bar index --
 # `cal_QQQ_2026-06-29_b10`, `sr_TSLA_2026-03-12`, `TSLA_2026-05-21_36`. Pull the
@@ -111,12 +117,13 @@ def _judgement_key(row: dict) -> str | None:
       them (BABA 2024-12-12, PLTR 2025-05-08) reached the 100-card S sweep on
       2026-08-28 and he spotted the repeat before the code did. ``_no_trade`` is
       the same thing as ``grade: "none"`` wearing a different field name.
+    * **The grade was spelled eight ways and this read five.** ``answers.s`` and
+      ``answers.s_call`` -- the yes/no S cards -- were only ever caught by the
+      catch-all "any answer at all" test below. ``grade_read.has_judgement`` is
+      the union of that old test and the eight-spelling reader, so the pool can
+      only grow (research/g72_onespelling.md).
     """
-    graded = any(str(row.get(k, "")).strip() for k in _GRADE_KEYS)
-    answers = row.get("answers")
-    answered = isinstance(answers, dict) and any(answers.values())
-    refused = bool(row.get("_no_trade"))
-    if not (graded or answered or refused):
+    if not grade_read.has_judgement(row):
         return None
     symbol = row.get("symbol")
     day = row.get("date") or row.get("day")
@@ -184,6 +191,39 @@ def marked_card_ids(per_source: dict | None = None) -> set[str]:
             per_source[path] = len(found)
         seen |= found
     return seen
+
+
+def graded_days() -> dict[str, set[str]]:
+    """``{SYMBOL_YYYY-MM-DD: {every grade any corpus gives that day}}``.
+
+    Grades come out of ``research/grade_read.py`` -- the one reader -- so a day
+    graded S in ``answers.s`` counts exactly like one graded S in ``austin_tier``.
+    A day appears here only if some corpus states a grade for it; days that are
+    judgements by attention alone (a stop price, ``_no_trade``) show as ``none``.
+    """
+    out: dict[str, set[str]] = {}
+    for path in mark_sources():
+        for row in _rows(path):
+            key = _judgement_key(row)
+            if not key:
+                continue
+            g = grade_read.read_grade(row)
+            if g is not None:
+                out.setdefault(key, set()).add(g)
+    return out
+
+
+def s_days() -> set[str]:
+    """**The one S-day count.** Every symbol-day Austin called S, any spelling.
+
+    Union rule: if any row in any corpus grades the day S, the day is S. The
+    recall question is "did the engine trade the day he liked", so one S bar is
+    an S day. 35 of these are contested -- S in one sitting, not-S in another --
+    and they are listed in ``research/g72_onespelling.md``; the union counts them
+    as S. Anything that needs a different rule must say so out loud and show its
+    own script.
+    """
+    return {k for k, grades in graded_days().items() if "S" in grades}
 
 
 def served_card_ids(exclude: str | None = None) -> set[str]:

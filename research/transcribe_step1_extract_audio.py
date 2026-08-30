@@ -2,7 +2,7 @@
 Outputs smaller audio files for faster transcription."""
 import os, subprocess, sys
 
-BASE = r"C:\Users\aharg\tradingbot"
+BASE = r"C:\Users\aharg\Desktop\Projects\tradingbot"
 VIDEO_DIR = os.path.join(BASE, "circle_videos")
 AUDIO_DIR = os.path.join(BASE, "circle_audio")
 AUDIO_EXTRACT_DIR = os.path.join(BASE, "research", "audio_extracted")

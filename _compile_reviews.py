@@ -3,7 +3,7 @@ import json
 from collections import Counter, defaultdict
 from pathlib import Path
 
-BASE = Path(r"C:\Users\aharg\tradingbot")
+BASE = Path(r"C:\Users\aharg\Desktop\Projects\tradingbot")
 OUT = BASE / "_all_trade_reviews.json"
 
 # Inline results from agents that returned JSON directly

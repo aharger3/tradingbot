@@ -3,8 +3,8 @@ import json, os, re, sys
 from collections import defaultdict
 from pathlib import Path
 
-DATA = Path(r"C:\Users\aharg\tradingbot\discord_data")
-OUT = Path(r"C:\Users\aharg\tradingbot\_trade_reviews_mined.json")
+DATA = Path(r"C:\Users\aharg\Desktop\Projects\tradingbot\discord_data")
+OUT = Path(r"C:\Users\aharg\Desktop\Projects\tradingbot\_trade_reviews_mined.json")
 
 # Priority order: check these for judgments
 REVIEW_FILES = [

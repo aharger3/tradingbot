@@ -128,10 +128,15 @@ def main():
     t4 = open(os.path.join(HERE, "t4_engine_recall.py"), encoding="utf-8").read()
     j = t4.find("def _route(self, signals, sig):")
     check(j > 0, "t4_engine_recall.CaptureRunner defines its own _route")
-    check("_apply_x_lift" in t4[j:j + 900],
-          "CaptureRunner._route calls _apply_x_lift -- this replay does not "
-          "delegate to super, and it is the rig regression_gate, t70_test1_score "
-          "and t0_heldout_recall all score on")
+    # G7.2 (recall278): CaptureRunner._route used to be a hand-rolled copy of the
+    # shipped router and had to name _apply_x_lift itself. It now delegates to
+    # super()._route, so it inherits the lift the same way BacktestRunner does --
+    # which is strictly stronger: every gate the base grows is live in the rig
+    # regression_gate, t70_test1_score and t0_heldout_recall all score on.
+    check("super()._route" in t4[j:j + 1600] or "_apply_x_lift" in t4[j:j + 1600],
+          "CaptureRunner._route reaches the lift -- either by delegating to "
+          "super()._route or by naming _apply_x_lift itself; it is the rig "
+          "regression_gate, t70_test1_score and t0_heldout_recall all score on")
     bw = open(os.path.join(ROOT, "backtest_week.py"), encoding="utf-8").read()
     k = bw.find("def _route(self, signals: List[dict], sig: dict) -> None:")
     check(k > 0 and "super()._route" in bw[k:k + 900],

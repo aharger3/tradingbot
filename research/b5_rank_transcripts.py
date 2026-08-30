@@ -12,7 +12,7 @@ import re, csv, sys
 from pathlib import Path
 from collections import Counter
 
-YOUTUBE = Path(r"C:\Users\aharg\tradingbot\youtube_data")
+YOUTUBE = Path(r"C:\Users\aharg\Desktop\Projects\tradingbot\youtube_data")
 
 # Weight
 TITLE_WT = 0.4
@@ -129,7 +129,7 @@ def main():
     results.sort(key=lambda x: (-x[0], -x[2], x[3]))
 
     # CSV
-    csv_path = Path(r"C:\Users\aharg\tradingbot\research") / "b5_ranking.csv"
+    csv_path = Path(r"C:\Users\aharg\Desktop\Projects\tradingbot\research") / "b5_ranking.csv"
     with open(csv_path, "w", newline="", encoding="utf-8") as f:
         w = csv.writer(f)
         w.writerow(["rank", "combined_score", "title_score", "content_score", "filename", "title", "size_bytes"])

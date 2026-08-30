@@ -8,8 +8,8 @@ _dirs = [d for p in site.getsitepackages()
          for d in glob.glob(os.path.join(p, "nvidia", "*", "bin"))]
 os.environ["PATH"] = os.pathsep.join(_dirs) + os.pathsep + os.environ["PATH"]
 
-AUDIO_DIR = r"C:\Users\aharg\tradingbot\research\audio_extracted"
-OUT_DIR = r"C:\Users\aharg\tradingbot\research\video_transcripts"
+AUDIO_DIR = r"C:\Users\aharg\Desktop\Projects\tradingbot\research\audio_extracted"
+OUT_DIR = r"C:\Users\aharg\Desktop\Projects\tradingbot\research\video_transcripts"
 os.makedirs(OUT_DIR, exist_ok=True)
 DONE_LOG = os.path.join(OUT_DIR, "_done.json")
 

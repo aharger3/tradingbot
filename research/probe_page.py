@@ -27,7 +27,7 @@ CSS = """
   --rule:#dbe2e0; --rule-2:#c3cecb;
   --accent:#0d6961; --accent-ink:#ffffff; --accent-soft:#dcece9;
   --up:#1d7a4c; --dn:#a63229; --entry:#a86a06; --stop:#8d3b33;
-  --lvl-pd:#5b6ea8; --lvl-pm:#8a5ea3; --lvl-or:#3f7f76;
+  --lvl-pd:#5b6ea8; --lvl-pm:#8a5ea3; --lvl-or:#3f7f76; --lvl-hl:#a8632f;
   --shadow:0 1px 2px rgba(19,30,28,.06),0 8px 24px -14px rgba(19,30,28,.28);
 }
 @media (prefers-color-scheme:dark){
@@ -37,7 +37,7 @@ CSS = """
     --rule:#25322f; --rule-2:#33433f;
     --accent:#54cfbe; --accent-ink:#07201d; --accent-soft:#16332f;
     --up:#48b57c; --dn:#e07068; --entry:#e0a340; --stop:#d47a70;
-    --lvl-pd:#8fa2dc; --lvl-pm:#bb92d1; --lvl-or:#6dbcb0;
+    --lvl-pd:#8fa2dc; --lvl-pm:#bb92d1; --lvl-or:#6dbcb0; --lvl-hl:#e09a5c;
     --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 28px -16px rgba(0,0,0,.7);
   }
 }
@@ -47,7 +47,7 @@ CSS = """
   --rule:#25322f; --rule-2:#33433f;
   --accent:#54cfbe; --accent-ink:#07201d; --accent-soft:#16332f;
   --up:#48b57c; --dn:#e07068; --entry:#e0a340; --stop:#d47a70;
-  --lvl-pd:#8fa2dc; --lvl-pm:#bb92d1; --lvl-or:#6dbcb0;
+  --lvl-pd:#8fa2dc; --lvl-pm:#bb92d1; --lvl-or:#6dbcb0; --lvl-hl:#e09a5c;
   --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 28px -16px rgba(0,0,0,.7);
 }
 *{box-sizing:border-box}
@@ -158,6 +158,7 @@ h1{
 .chart .lvl-pd{stroke:var(--lvl-pd); fill:var(--lvl-pd)}
 .chart .lvl-pm{stroke:var(--lvl-pm); fill:var(--lvl-pm)}
 .chart .lvl-or{stroke:var(--lvl-or); fill:var(--lvl-or)}
+.chart .lvl-hl{stroke:var(--lvl-hl); fill:var(--lvl-hl)}
 .chart .entry{stroke:var(--entry); stroke-width:1.3}
 .chart .entry-t{
   font-family:"IBM Plex Mono",monospace; font-size:9px; font-weight:600; fill:var(--entry);
@@ -331,7 +332,14 @@ JS = r"""
      always did.
        data-export  static JSON merged into the row (symbol, date, ...)
        window.probeRow(card, row)  page hook for values derived from the taps
-                                   (OMEN Test 1 uses it for entry_i/_t/_p, stop_p) */
+                                   (OMEN Test 1 uses it for entry_i/_t/_p, stop_p)
+       window.probeRows(card, row) page hook that SPLITS one card into several
+                                   rows -- return an array and those rows are
+                                   written instead of the single card row. The
+                                   master homework asks seven different questions
+                                   on one page and wants one row per answer, not
+                                   one row per card. Return nothing (or an empty
+                                   array) and the single-row shape is unchanged. */
   function jsonl(){
     var lines = [];
     cards().forEach(function(card){
@@ -351,6 +359,14 @@ JS = r"""
       }
       if (typeof window.probeRow === 'function'){
         try { window.probeRow(card, row); } catch (e) {}
+      }
+      if (typeof window.probeRows === 'function'){
+        var many = null;
+        try { many = window.probeRows(card, row); } catch (e) {}
+        if (many && many.length){
+          many.forEach(function(r){ lines.push(JSON.stringify(r)); });
+          return;
+        }
       }
       lines.push(JSON.stringify(row));
     });
@@ -385,11 +401,25 @@ JS = r"""
 
     if (e.target.closest('#dlbtn')){
       var m2 = document.getElementById('copymsg');
+      var text = jsonl() + '\n';
+      var name = 'probe_' + DECK + '.jsonl';
+      /* In the artifact viewer an <a download> click succeeds silently and saves
+         nothing, so the old path reported "downloaded" when it had not. Route
+         through the downloads capability when the viewer grants it (the artifact
+         must declare capabilities: {downloads: true}); the viewer may still
+         decline, which is a real outcome and is reported as one. */
+      if (DL && typeof DL.save === 'function'){
+        m2.textContent = 'saving…';
+        DL.save({filename: name, data: text}).then(
+          function(){ m2.textContent = 'downloaded'; },
+          function(){ m2.textContent = 'save declined — use Copy all'; });
+        return;
+      }
       try {
-        var blob = new Blob([jsonl() + '\n'], {type: 'application/x-ndjson'});
+        var blob = new Blob([text], {type: 'application/x-ndjson'});
         var a = document.createElement('a');
         a.href = URL.createObjectURL(blob);
-        a.download = 'probe_' + DECK + '.jsonl';
+        a.download = name;
         document.body.appendChild(a); a.click(); a.remove();
         m2.textContent = 'downloaded';
       } catch (err) {
@@ -476,6 +506,11 @@ JS = r"""
 
 def shell(title, eyebrow, h1, lede, cards_html, footer_html, deck_id):
     return "".join([
+        # Austin does homework on a phone. Without the viewport tag a mobile browser
+        # lays the page out at ~980px and he has to pinch-zoom every card; charset
+        # keeps the em-dashes readable when the file is opened straight off disk.
+        '<meta charset="utf-8">'
+        '<meta name="viewport" content="width=device-width, initial-scale=1">',
         "<title>%s</title>" % title, FONTS, CSS,
         '<div class="wrap">',
         '<div class="mast"><p class="eyebrow">%s</p><h1>%s</h1><p class="lede">%s</p></div>'

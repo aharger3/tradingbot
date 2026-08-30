@@ -120,7 +120,7 @@ def main():
     assert set(sr.DOWNGRADE_TIER) == {"S", "A", "C"}, (
         "downgrade.score() floors at C and has no X; every grade it can emit "
         "must have a tier here: %s" % sr.DOWNGRADE_TIER)
-    pa_alphabet = {"A+", "B", "C", "X"}      # every return of _grade_pa
+    pa_alphabet = {"A", "B", "C", "X"}       # every return of _grade_pa (A+ retired 2026-08-30)
     assert set(sr.DOWNGRADE_TIER.values()) <= pa_alphabet, (
         "the ON arm must emit from the same alphabet as the shipped grader, or "
         "a downstream cap sees a tier _grade_pa never makes: %s"
@@ -134,9 +134,10 @@ def main():
             "DOWNGRADE_TIER must be the inverse of t70_test1_score.LADDER, or "
             "the A/B and the held-out scorer are counting different things: "
             "his %s -> engine %s -> his %s" % (his, tier, LADDER[tier]))
-    assert sr.DOWNGRADE_TIER["A"] != "A", (
-        "his A maps onto the engine's B on purpose -- _grade_pa never emits A, "
-        "and introducing it would trip the LATE / PMH caps that read A+/A")
+    assert sr.DOWNGRADE_TIER["A"] != sr.DOWNGRADE_TIER["S"], (
+        "his A and his S must land on different engine letters or they are "
+        "no longer distinguishable to a downstream cap reading sig['grade']; "
+        "got A -> %s, S -> %s" % (sr.DOWNGRADE_TIER["A"], sr.DOWNGRADE_TIER["S"]))
 
     # ---- leg 1: THE ROUTING ---------------------------------------------
     off_grade, off_pa, off_score = _route_once(False)
@@ -173,7 +174,7 @@ def main():
             "on the OFF arm; got %s" % neutral)
         # and downgrade.score() has no X: the base can never be a skip
         base = runner._downgrade_grade(LEVEL_HI, True, None)
-        assert base.value in ("A+", "B", "C"), (
+        assert base.value in ("A", "B", "C"), (
             "downgrade.py floors at C -- the base grade is never a skip; got %s"
             % base)
         # score() cannot judge without a level, and that is a skip, not a guess

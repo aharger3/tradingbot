@@ -41,6 +41,14 @@ ALLOWED = {
     "universe.py": "the single source of truth",
     os.path.join("research", "test_universe_single_source.py"): "this test",
     "futures_feed.py": "futures contracts (ES/NQ/RTY), not the equity universe",
+    # Discord chat-mining vocabulary (research/corpus_sf/chat_vocab.py): real
+    # tickers OMEN never trades that appear in raw chat text, and uppercase
+    # tokens that look like tickers but are jargon/prose (a stop-word list --
+    # the inverse of a universe). Never fed into a backtest, the signal
+    # engine, or a symbol pool -- see the file's own docstring. This is a
+    # recognition dictionary for text parsing, not a private copy of the
+    # traded universe, so it is exempted rather than forced into universe.py.
+    os.path.join("research", "corpus_sf", "chat_vocab.py"): "chat-mining vocabulary, not a trading universe",
 }
 
 SKIP_DIRS = {".git", "__pycache__", "node_modules", "circle_data", "circle_videos",

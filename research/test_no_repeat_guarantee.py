@@ -29,6 +29,11 @@ CASES = [
      "a probe answer is a judgement even with grade=None"),
     ({"symbol": "MSFT", "day": "2025-12-30", "grade": "none"}, "MSFT_2025-12-30",
      'grade "none" is an explicit refusal, not a blank'),
+    ({"symbol": "NVDA", "day": "2026-08-03", "grade": "none",
+      "answers": {"s": ["s"]}}, "NVDA_2026-08-03",
+     "the S-sweep shape: grade 'none' in one field, the real S in answers.s"),
+    ({"symbol": "SPY", "day": "2026-06-02", "verdict": "s"}, "SPY_2026-06-02",
+     "austin_verdicts.json spells it lowercase in `verdict`"),
     ({"symbol": "AMD", "day": "2025-01-28"}, None,
      "no grade, no answers, no refusal -> not a judgement"),
     ({"symbol": "AMD", "day": "2025-01-28", "answers": {}}, None,
@@ -83,6 +88,26 @@ if os.path.exists(_own):
         print("ok   a deck excludes its own manifest (served %d -> %d)"
               % (len(served), len(served_card_ids(_own))))
 
+# Every S day he has ever named must be inside the exclusion pool, and there must
+# be at least as many of them as the day the eight spellings were unified
+# (research/g72_onespelling.md). 288 counts all five S-carrying field families;
+# a reader that regresses to the top-level `grade` field alone sees 240.
+from build_deck import s_days  # noqa: E402
+S_FLOOR = 288
+sdays = s_days()
+if len(sdays) < S_FLOOR:
+    print("FAIL S-day pool shrank: %d < %d -- a spelling stopped being read"
+          % (len(sdays), S_FLOOR))
+    fails += 1
+else:
+    print("ok   S-day pool %d symbol-days (floor %d)" % (len(sdays), S_FLOOR))
+if not sdays <= pool:
+    print("FAIL %d S days are not excluded from future decks: %s"
+          % (len(sdays - pool), sorted(sdays - pool)[:10]))
+    fails += 1
+else:
+    print("ok   every S day is inside the exclusion pool")
+
 if not seen >= pool:
     print("FAIL seen_card_ids() does not contain every judged day")
     fails += 1
@@ -90,5 +115,5 @@ else:
     print("ok   seen_card_ids() is a superset of marked_card_ids()")
 
 print()
-print("FAILED %d" % fails if fails else "all %d checks pass" % (len(CASES) + 5))
+print("FAILED %d" % fails if fails else "all %d checks pass" % (len(CASES) + 7))
 sys.exit(1 if fails else 0)

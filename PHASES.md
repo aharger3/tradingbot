@@ -1,5 +1,9 @@
 # PHASES — the dispatch board
 
+**Superseded 2026-08-29 by `OMEN-7.2.md`** as the dispatch board for this version — see its
+own header. `DIRECTION.md` still holds the invariants and the current gate numbers; this
+file is kept as the historical record of P1–P39 and is not re-read for current status.
+
 Everything in the queue, grouped into phases that can be handed to a subagent as a unit.
 `TASKS.md` holds the detail; this is the order and the parallelism. Lanes are from
 `DIRECTION.md`: **green** runs unattended, **amber** runs then flags, **red** needs Austin.
@@ -7,9 +11,13 @@ Everything in the queue, grouped into phases that can be handed to a subagent as
 To dispatch: say the phase number. Phases inside the same block are independent and can run
 at once; blocks are sequenced because a later one reads an earlier one's answer.
 
+Every trade count and R-figure below is a snapshot from when that phase ran (commit hash
+given), not the current book. The current book is **4,508 trades** (`research/g72_after.md`,
+2026-08-29) — see `DIRECTION.md` for the live gate numbers.
+
 ---
 
-## Block 1 — the entry side (running now)
+## Block 1 — the entry side (closed — all three done)
 
 The binding constraint. G7 proved the exit is already at the top of its family, so
 everything that closes the money gate is upstream of the fill.

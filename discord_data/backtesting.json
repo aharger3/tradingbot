@@ -7593,5 +7593,34 @@
   "attachments": [],
   "embeds": [],
   "reply_to": "1522610766778466417"
+ },
+ {
+  "id": "1524857251309949000",
+  "ts": "2026-07-09T19:18:19",
+  "author": "KING 75",
+  "content": "When backtesting, and I decide to test the B&R on the PMH/L …..I would STRICTLY test the PM levels but not include order blocks or 1CR to get a baseline?",
+  "attachments": [],
+  "embeds": [],
+  "reply_to": null
+ },
+ {
+  "id": "1525389818568114296",
+  "ts": "2026-07-11T06:34:33",
+  "author": "_ 𝖒𝖝2𝖑𝖈𝖐𝖉𝖎𝖓",
+  "content": "Got it , thank you so much!",
+  "attachments": [],
+  "embeds": [],
+  "reply_to": "1520967008252985494"
+ },
+ {
+  "id": "1525586043485556910",
+  "ts": "2026-07-11T19:34:16",
+  "author": "supadh-90",
+  "content": "I backtested the 5m Break and Retest on INTC in the month of June, it had a win %ge of 61%, I exited my trades strictly at 2R as part of backtest.",
+  "attachments": [
+   "https://cdn.discordapp.com/attachments/1272975902631788726/1525586043557118034/image.png?ex=6a8950f8&is=6a87ff78&hm=78887d5f332f462a69d59d1872d528cd101c0d14ba35832151298c6d794e7468&"
+  ],
+  "embeds": [],
+  "reply_to": null
  }
 ]

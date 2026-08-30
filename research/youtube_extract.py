@@ -9,8 +9,8 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 import openai
 
 # --- Config ---
-TRANSCRIPT_DIR = r"C:\Users\aharg\tradingbot\youtube_data"
-OUTPUT_DIR = r"C:\Users\aharg\tradingbot\research"
+TRANSCRIPT_DIR = r"C:\Users\aharg\Desktop\Projects\tradingbot\youtube_data"
+OUTPUT_DIR = r"C:\Users\aharg\Desktop\Projects\tradingbot\research"
 CHECKPOINT = os.path.join(OUTPUT_DIR, "youtube-checkpoint.json")
 OUTPUT_FILE = os.path.join(OUTPUT_DIR, "scarface-rules-youtube.md")
 MAX_WORKERS = 10
