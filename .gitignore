@@ -72,6 +72,13 @@ research/p7_arm_*.json
 # tracked -- the .md is deliberately outside this pattern.
 research/p8_*.json
 
+# G8.2's six per-arm 2-year replay books, ~138 MB each and 830 MB together.
+# Regenerable with `python research/g82_stop_ab.py --jobs 3` (about 30 min).
+# The findings live in research/g82_stop_ab.md and the priced numbers in
+# research/g82_stop_ab.json, both of which ARE tracked and are deliberately
+# outside this pattern. No judgement file is anywhere near this rule.
+research/_g82_books/
+
 # generated decks: rebuild with research/build_deck.py, never commit the HTML
 research/decks/**/*.html
 
@@ -182,3 +189,11 @@ research/_t2_probe.json
 # research/t23_stack.py which made every one of them.
 research/_t23_arm_*.json
 research/_t23_stack_run.log
+
+# g83: per-arm day-by-day replays, five files of ~1,145 days each. Regenerable
+# with `python research/g83_recall278.py` (about 4 minutes, five arms at once);
+# `python research/g83_recall278.py --reuse` re-scores them without replaying.
+# The scored output research/g83_recall278.json and the finding
+# research/g83_recall278.md ARE tracked.
+research/_g83_arms/
+research/_g83_run.log

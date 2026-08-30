@@ -217,10 +217,131 @@ two-cent spread gets to 87% of it, and that is the only route in sight.
 *Failed to run: the DeepSeek number-provenance sweep — the model is not reachable from this account
 (`deepseek/deepseek-chat` returned no-access). Re-queued on Sonnet.*
 
+### The free 278 — **LANDED, and it reframes the accuracy problem entirely**
+
+You picked this over grading more cards. It cost under four minutes and it is the most
+clarifying result of the night.
+
+> **The engine is not blind. It is undiscriminating.**
+>
+> It produces a signal on **97.4% of the days you graded S** — and on **97.6% of the days you
+> looked at and refused.** Those are the same number.
+
+| | days | engine takes a trade | 95% band |
+|---|---:|---:|---|
+| days you graded **S** | 303 | **59.1%** | 53.5 – 64.5 |
+| days you **refused** | 542 | **50.6%** | 46.4 – 54.7 |
+| days you graded A | 228 | 49.1% | 42.7 – 55.6 |
+| days you graded C | 58 | 65.5% | 52.7 – 76.4 |
+
+**Separation is +8.5 points, 95% band [1.5, 15.4]** — it clears zero, and only just. Precision is
+**39.5%**: of every 100 days it trades, 40 are yours and 60 are days you refused. Against the 90%
+gate it is **30.9 points short**, and the odds of seeing 179 of 303 if the true rate were 90% are
+about 1 in 10⁴⁴.
+
+**It fires on your C days more often than your A days.** Whatever it sorts on, it is not your grade.
+
+*Legacy ladder, side by side: of the entries it takes on your S days, 205 are graded B, 83 C, 3 A,
+and **zero A+**. The live scanner promotes to TRADE only on A+. **The live path would trade none of
+this.*** That is blocker 2 confirmed from a second direction.
+
+**What the bigger sample bought:** the answer went from **±15.7 points to ±5.5**, and the chance of
+spotting a real 10-point improvement went from **0.33 to 0.996**. Before today, a genuine
+improvement had a two-in-three chance of looking like nothing. *This is why you no longer have to
+grade to steer.*
+
+Two honesty checks passed: scored on the same 100 blind cards this run returns **22 of 34** — the
+post-router-fix figure, not the 23 the old photocopy reported — and the pool is **303** bar-backed
+S days, not 278, because the canonical reader found a ninth spelling of "S" and picked up last
+night's 30.
+
+*Report: `research/g83_recall278.md`. Canonical mark reader: `research/marks_pool.py`.*
+
 ### Accuracy — higher timeframe, displacement, the rare setups
 *Running.* `research/g81_marks30_score.md` · `research/g81_marks_pool.md` ·
 `research/g81_htf_thesis.md` · `research/g81_displacement.md` · `research/g81_rare_setups.md` ·
 `research/g81_rulebook_audit.md`
+
+### Sizing — **six figures is not reachable, and sizing cannot fix it**
+
+The direct answer to your question 1, and it is a hard no.
+
+> **No. Six figures a year is not reachable on the current engine — not at any risk size — and the
+> thing that stops it is not the money, it is the green months.**
+
+One trade a day, honest fill, $1,000 risk, 500 sessions. Every dollar figure scales linearly.
+
+| instrument | days traded | **$/day** | 95% range | **% of $397** | risk that reaches $397 | **green months** |
+|---|---:|---:|---|---:|---:|---:|
+| **options, same-day ATM, before spread** | 499 | **$346** | $180 – $508 | **87%** | $1,148 | **21 / 25** |
+| shares, after a penny round trip | 499 | $167 | $33 – $304 | 42% | $2,382 | 16 / 25 |
+| options, after a nickel round trip | 499 | $145 | −$20 – $310 | 37% | $2,738 | 15 / 25 |
+| index futures, SPY/QQQ/IWM only | 230 | $51 | −$42 – $143 | 13% | $7,819 | 13 / 25 |
+| *published fill, shares — control, not obtainable* | *499* | *$830* | *$696 – $963* | *209%* | *$478* | *25 / 25* |
+
+**The money half is closer than expected — 87% of the bar, and $1,148 of risk lands on $397 exactly.**
+The durability half is what fails, and it fails in a way sizing structurally cannot touch:
+**multiplying every day of a month by a positive constant cannot change the sign of that month's
+total.** Green months are scale-invariant. You ratified that green months win, so this is a fail,
+not a trade-off.
+
+**The biggest risk number that preserves 25 of 25 green months is $0.** Not "small" — there is not
+one. No honest-fill instrument in this book holds 25 of 25 at any size. The only arms that do are
+the published-fill controls, and that fill is a price nobody can send.
+
+*What this does NOT say: that the idea is dead. It says the current engine cannot get there, and
+the reason is now precisely located — the engine trades your refusals as often as your S days.
+Fixing discrimination is the only lever that moves both gates at once.*
+
+*Report: `research/g83_sizing.md` · dark interactive version: `research/g83_sizing.html`,
+published as a private artifact.*
+
+### Instruments — all three, side by side
+
+Options is closest at **$242–$346/day (61–87% of the bar)**; shares **$167–$187 (42–47%)**;
+index futures **$51–$55 (13–14%)**.
+
+**One stale number corrected:** `g71_propfirm.md` said a futures-only account sees an index signal
+on **139 of 500 sessions (27.8%)**. It is **230 of 500 (46.0%)**. Futures is less starved than
+believed — and still last, by a wide margin, because index setups simply carry less range.
+
+*Report: `research/g83_futures_arm.md`*
+
+### Scale-outs — **ratified, and there was no bug**
+
+You ratified that a profit target fills on touch. The code already does it, everywhere: the
+committed `backtest_week.py` compares against bar high/low at lines 562, 579 and 789, and
+`paper_trader.py` takes (high, low) at seven sites and never the close.
+
+So this became a guard instead of a fix. `research/test_scaleout_touch.py`, **34 checks, all
+green** — and mutation-verified: forcing close-based targets turns **10 of the 34 red**, so the
+test can genuinely fail rather than passing vacuously.
+
+**Priced anyway, because it had never been:** filling on touch rather than waiting for the close is
+worth **+$188/day and four green months**. Quote the $188 *difference*, not the level — both arms
+carry the entry-fill head start from section 1.
+
+*Report: `research/g83_scaleout_touch.md`*
+
+### Homework — the deep batch is built
+
+**60 dark charts**, one question ("is this an S?"), **an entry-minute box on every card** — because
+the minutes you wrote unprompted on twenty of last night's thirty turned out to be the most
+valuable field in the batch.
+
+Deliberate quota, stated on the page: **20 traded · 20 fired-and-refused · 20 engine-silent.** That
+mix exists because the old builder never asked whether the engine took the signal, so every
+precision number it produced measured the wrong object.
+
+**Zero repeats against a 1,617-symbol-day exclusion set.**
+
+*`research/probes/omen-deep-batch.html` · manifest `research/decks/g83-deep-batch-manifest.jsonl`
+(carries the answer key, kept out of the page).*
+
+### Dark theme
+
+Audited — all three target pages were already dark-correct. No changes needed.
+*Record: `research/g83_dark_theme.md`*
 
 ### Corpus — Scarface and Jdub entry timing
 *Running.* `research/g81_mentor_timing.md`
