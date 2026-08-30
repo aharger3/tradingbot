@@ -77,6 +77,13 @@ class SignalType(Enum):
 # is `signal_runner.ENABLE_SAC_LADDER`. It is built, it is measured, and it
 # ships OFF because it scored 44.1% held-out recall against the legacy 52.5%.
 # Turning it on is a judgement call with a price, not a cleanup.
+#
+# 2026-08-30: the letter itself is retired now, on a direct instruction, not
+# just translated at the display boundary above. `TradeGrade.A_PLUS` is an
+# alias of `TradeGrade.A` (see the enum below) and `_grade_pa` / the SAC/
+# downgrade tier maps no longer produce the string "A+" anywhere in the
+# lattice. This mapping keeps its "A+" key only so old data (logs, replays,
+# anything written before this change) still translates.
 HIS_LADDER = {"A+": "S", "A": "A", "B": "A", "C": "C", "X": "X", "D": "X"}
 
 
@@ -92,9 +99,17 @@ class TradeGrade(Enum):
     """omen-3.7 T5: `D` and `X` both mean SKIP, so `X` is now the canonical
     skip grade and `D` is kept as an alias (TradeGrade.D is TradeGrade.X) so
     nothing that reads the old letter breaks. TradeGrade("D") still resolves
-    via _missing_. Pure rename — no semantics changed."""
-    A_PLUS = "A+"
+    via _missing_. Pure rename — no semantics changed.
+
+    2026-08-30: `A+` is retired the same way -- `A` is now the top grade and
+    `A_PLUS` is kept as an alias (TradeGrade.A_PLUS is TradeGrade.A) so nothing
+    that still reads the old name breaks. TradeGrade("A+") does NOT resolve
+    (unlike "D"): nothing constructs a grade from that literal string going
+    forward, so there is nothing to alias at the string level -- see
+    HIS_LADDER / _GRADE_RANK / GRADE_SIZE_PCT, which keep their "A+" entries
+    only for old data still carrying the letter."""
     A = "A"
+    A_PLUS = "A"      # alias of A — the old top grade, A+ retired
     B = "B"
     C = "C"
     X = "X"          # skip / do not trade
@@ -219,12 +234,12 @@ class PriceActionAnalyzer:
         is_long: bool,
         htf_bias: Optional[str] = None,
     ) -> TradeGrade:
-        """Grade a potential signal A+ through D (D = skip).
+        """Grade a potential signal A through D (D = skip).
 
         htf_bias ('bullish'/'bearish'/'neutral'/None) gates the top grades:
         opposed trend = D when HTF_BIAS_VETO=1, which is the SHIPPED DEFAULT
         (see the comment block above the flag at module scope); neutral caps at
-        B (A+/A require HTF alignment per fable_rules); None = unknown, grade on
+        B (A requires HTF alignment per fable_rules); None = unknown, grade on
         PA alone (pre-SPEC0 behavior).
 
         W12, 2026-08-28: this docstring used to report the opposite default.
@@ -242,7 +257,7 @@ class PriceActionAnalyzer:
         if opposed and HTF_BIAS_VETO:
             return TradeGrade.D
         base = PriceActionAnalyzer._grade_pa(candle, lookback_candles, or_high, or_low, is_long)
-        if htf_bias == "neutral" and base in (TradeGrade.A_PLUS, TradeGrade.A):
+        if htf_bias == "neutral" and base == TradeGrade.A:
             return TradeGrade.B
         return base
 
@@ -260,9 +275,9 @@ class PriceActionAnalyzer:
         if is_long:
             if not candle.is_bullish:
                 return TradeGrade.D
-            # A+: hammer at key level
+            # A: hammer at key level (top grade — A+ retired)
             if (at_key_level and PriceActionAnalyzer.is_hammer_stick(candle, lookback_candles)):
-                return TradeGrade.A_PLUS
+                return TradeGrade.A
             # B: strong PA at key level
             if at_key_level and PriceActionAnalyzer.has_large_lower_wick(candle):
                 return TradeGrade.B
@@ -273,9 +288,9 @@ class PriceActionAnalyzer:
         else:
             if not candle.is_bearish:
                 return TradeGrade.D
-            # A+: inverted hammer at key level
+            # A: inverted hammer at key level (top grade — A+ retired)
             if (at_key_level and PriceActionAnalyzer.is_inverted_hammer(candle)):
-                return TradeGrade.A_PLUS
+                return TradeGrade.A
             # B: strong bearish PA at key level
             if at_key_level and PriceActionAnalyzer.has_large_upper_wick(candle):
                 return TradeGrade.B

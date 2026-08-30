@@ -488,6 +488,10 @@ def _emit_futures_signal(runner: SignalRunner, contract: str, candle, sig: dict)
     """
     from options_sizer import build_futures_plan
     grade = sig.get("grade", "?")
+    # 2026-08-30 (A+ retired): sac_grade is the untranslated S/A/C/X letter --
+    # see the SAC_TIER comment in signal_runner.py. his_grade() needs it, not
+    # the engine letter, or a true S now displays as "A" like his A does.
+    display_grade = sig.get("sac_grade", grade)
     alert_only = grade == "C"
     direction = "long" if sig["direction"] == "call" else "short"
     try:
@@ -501,7 +505,7 @@ def _emit_futures_signal(runner: SignalRunner, contract: str, candle, sig: dict)
 
     signal_type_val = sig["signal_type"].value if hasattr(sig["signal_type"], "value") else str(sig["signal_type"])
     icon = "⚠" if alert_only else "🚀"
-    print(f"{icon} OMEN FUTURES {signal_type_val.upper()} {direction.upper()}  Grade: {his_grade(grade)}")
+    print(f"{icon} OMEN FUTURES {signal_type_val.upper()} {direction.upper()}  Grade: {his_grade(display_grade)}")
     if alert_only:
         print("   C GRADE — ALERT ONLY, manual review (not auto-traded)")
     print(f"   {sig['reason']}")
@@ -514,7 +518,7 @@ def _emit_futures_signal(runner: SignalRunner, contract: str, candle, sig: dict)
         quote_source="futures_yfinance", status="alert" if alert_only else "fired",
     )
     if runner.post_to_discord and runner.discord:
-        ok = runner.discord.post_text(f"{icon} **OMEN** · Grade {his_grade(grade)}\n{sig['reason']}\n{plan.format_discord()}")
+        ok = runner.discord.post_text(f"{icon} **OMEN** · Grade {his_grade(display_grade)}\n{sig['reason']}\n{plan.format_discord()}")
         print("   ✓ Posted" if ok else "   ✗ Discord post failed")
     return not alert_only
 
@@ -525,10 +529,11 @@ ALERT_COOLDOWN_MIN = 20
 # T25 (2026-08-28, R-B): the tier gate trades Austin's ladder, not the legacy
 # engine grade. ENABLE_SAC_LADDER=1 (forced on above, live-process-only) makes
 # `sig["grade"]` come off `research/downgrade.py::score` via SAC_TIER
-# ({"S": "A+", "A": "A", "C": "C", "X": "X"} -- signal_runner.py:620) instead
-# of `_grade_pa`'s candle-shape verdict, so "A+" here already means his S, not
-# the legacy A+/A pool the old two-tier system traded (14 trades in 500
-# sessions over the 2-year book, research/x7_entry_surface_map.md section 0).
+# ({"S": "A", "A": "B", "C": "C", "X": "X"} -- signal_runner.py:620, A+ retired
+# 2026-08-30) instead of `_grade_pa`'s candle-shape verdict, so "A" here
+# already means his S, not the legacy A+/A pool the old two-tier system
+# traded (14 trades in 500 sessions over the 2-year book,
+# research/x7_entry_surface_map.md section 0).
 #
 # TRADE = S only. A and C are WATCH -- ding only, never auto-traded, same as
 # before. 84% re-entry is exempt from the grade check entirely (unchanged).
@@ -576,7 +581,11 @@ def _tier(runner: SignalRunner, sig: dict, grade: str, ts: str, symbol: str) -> 
         return "WATCH"
     if getattr(sig["signal_type"], "value", "") == "reentry_84_rule":
         return "TRADE" if s.consecutive_losses < 2 else "WATCH"
-    if grade != "A+":          # R12: no time floor -- the whole window trades
+    # 2026-08-30 (A+ retired): `grade` alone can no longer tell S apart from
+    # his A -- SAC_TIER now writes both to the engine's top grade `A`. Read
+    # the untranslated letter `_sac_ladder_grade` also writes to
+    # `sig["sac_grade"]` instead. R12: no time floor -- the whole window trades.
+    if sig.get("sac_grade") != "S":
         return "WATCH"
     if s.consecutive_losses >= 2:
         return "WATCH"
@@ -611,6 +620,10 @@ def _emit_signal(runner: SignalRunner, tasty_feed: TastytradeFeed, symbol: str, 
     if getattr(runner, "futures_mode", False):
         return _emit_futures_signal(runner, symbol, candle, sig)
     grade = sig.get("grade", "?")
+    # 2026-08-30 (A+ retired): sac_grade is the untranslated S/A/C/X letter --
+    # see the SAC_TIER comment in signal_runner.py. his_grade() needs it, not
+    # the engine letter, or a true S now displays as "A" like his A does.
+    display_grade = sig.get("sac_grade", grade)
     size_pct = GRADE_SIZE_PCT.get(grade, 0.6)
     # 84% re-entries run 2x size (Austin: double to recover first stop-out + profit)
     if getattr(sig["signal_type"], "value", "") == "reentry_84_rule":
@@ -646,7 +659,7 @@ def _emit_signal(runner: SignalRunner, tasty_feed: TastytradeFeed, symbol: str, 
 
     tag = "[PAPER] " if paper is not None else ""
     icon = "🎯" if tier == "TRADE" else "👀"
-    print(f"{icon} {tag}{tier} {signal_type_val.upper()} {sig['direction'].upper()}  Grade: {his_grade(grade)}  Stop: {stop_level} ({stop_width}%)")
+    print(f"{icon} {tag}{tier} {signal_type_val.upper()} {sig['direction'].upper()}  Grade: {his_grade(display_grade)}  Stop: {stop_level} ({stop_width}%)")
     if alert_only:
         print("   WATCH — ding only, not traded")
     print(f"   {sig['reason']}")
@@ -674,7 +687,7 @@ def _emit_signal(runner: SignalRunner, tasty_feed: TastytradeFeed, symbol: str, 
               f"{pos.direction.upper()} @ ${pos.entry_premium:.2f}")
     if runner.post_to_discord and runner.discord:
         ok = runner.discord.post_signal(sig["signal_type"], candle, sig["reason"], plan,
-                                         grade=grade, stop_level_name=stop_level, stop_width_pct=stop_width)
+                                         grade=display_grade, stop_level_name=stop_level, stop_width_pct=stop_width)
         print("   ✓ Posted" if ok else "   ✗ Discord post failed")
     return not alert_only
 

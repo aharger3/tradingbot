@@ -181,10 +181,11 @@ BNR_DISPLACEMENT_GATE = os.getenv("BNR_DISPLACEMENT_GATE", "1").strip().lower() 
 LEVEL_BLOCK_CAP = False
 # R21: the counter-day-trend cap, off. See _calibration_grade for the quote.
 COUNTER_TREND_CAP = os.getenv("COUNTER_TREND_CAP", "0").strip().lower() in ("1", "true", "yes", "on")
-CLEAR_FOR_APLUS = True   # A+/A require entry beyond ALL levels in trade direction
+CLEAR_FOR_APLUS = True   # A requires entry beyond ALL levels in trade direction (A+ retired)
 STOP_RANGE_MULT = 0.75   # stop must be >= this x avg 1-min range ("human-proof")
 # T5 rename: "X" is the skip grade, "D" is its old letter — both rank 0 so
-# either spelling compares correctly.
+# either spelling compares correctly. "A+" is kept the same way (2026-08-30,
+# A+ retired) for old data still carrying the letter — nothing produces it now.
 _GRADE_RANK = {"A+": 4, "A": 3, "B": 2, "C": 1, "X": 0, "D": 0}
 # Grade values that mean "skip" (TradeGrade.X, formerly TradeGrade.D)
 _SKIP_GRADES = ("X", "D")
@@ -624,7 +625,16 @@ ENABLE_DOWNGRADE_GRADER = os.getenv(
 # not its `A` on purpose -- `_grade_pa` can only ever emit A+/B/C/X, so the ON
 # arm emits from the SAME alphabet as the OFF arm and no downstream cap
 # (`if grade.value in ("A+", "A")`) sees a tier the shipped grader never makes.
-DOWNGRADE_TIER = {"S": "A+", "A": "B", "C": "C"}
+#
+# 2026-08-30: A+ retired -- `_grade_pa`'s alphabet is now A/B/C/X, so `S` lands
+# on the new top grade `A` instead. `A` (his) still lands on the engine's `B`,
+# unchanged, so the two his-tiers stay distinguishable in `sig["grade"]`
+# itself -- unlike SAC_TIER below, this flag has no forced-on live path and no
+# `sac_grade`-style raw-letter field, so `his_grade(TradeGrade.A)` cannot tell
+# a DOWNGRADE_TIER "S" apart from a `_grade_pa` "A" if this ON arm is ever
+# wired to something that displays to Austin. It is not today (OFF by
+# default, nothing forces it on) -- flagged here for whoever turns it on.
+DOWNGRADE_TIER = {"S": "A", "A": "B", "C": "C"}
 
 # --- W1: the grade remap. KILL B. -------------------------------------------
 #
@@ -731,11 +741,17 @@ SAC_VARSET_DROP = {"shipped": frozenset(),
 SAC_VARSET_SEQ = {"shipped": False, "w9c": True}
 
 # His S/A/C/X onto the engine's alphabet. `B` is deliberately NOT in the range:
-# killing it is the whole point of the flag. The round trip against
-# `research/t70_test1_score.LADDER` (A+ -> S, A -> A, C -> C, None -> X) is
-# exact, so the A/B and the held-out scorer count the same thing.
-# `X` is `TradeGrade.X`, which `_SKIP_GRADES` already means "do not trade".
-SAC_TIER = {"S": "A+", "A": "A", "C": "C", "X": "X"}
+# killing it is the whole point of the flag. `X` is `TradeGrade.X`, which
+# `_SKIP_GRADES` already means "do not trade".
+#
+# 2026-08-30: A+ retired -- `S` now lands on the engine's new top grade `A`,
+# same as his `A` always has. `S` and his `A` are no longer distinguishable
+# through `sig["grade"]` alone, which is why `_sac_ladder_grade` writes the
+# untranslated letter to `sig["sac_grade"]` too: `live_scanner._tier` (TRADE
+# iff `S`) and the Discord/print translation both read `sac_grade` when it is
+# set, so they still tell `S` and `A` apart even though the engine letter they
+# share does not.
+SAC_TIER = {"S": "A", "A": "A", "C": "C", "X": "X"}
 
 # ---------------------------------------------------------------------------
 # T14 -- THE ARRIVAL-ORDER LADDER (R18).
@@ -1235,9 +1251,51 @@ MESH_S_VETO = os.getenv("MESH_S_VETO", "0").strip().lower() in ("1", "true", "ye
 S_PLUS_PER_DAY = int(os.getenv("S_PLUS_PER_DAY", "0"))
 
 
+# G76 livefixes (2026-08-29) -- THE RETEST IS THE ONE PLACE THAT DEMANDS AN
+# EXACT TOUCH.
+#
+# Austin, on AVGO 2025-12-03 (probe_g71_homework_s3_2026-08-29.jsonl, read-only):
+#     "i dont see anything: 9:33 can be a great break of pdl but the retest
+#      missed by a few cents"
+# The retest came back to within 9 cents of PDL and the engine threw the setup
+# away, because step 3 of detect_break_retest is `c.low <= level` -- a literal
+# touch. BAR_EXTREME_FRAC (0.25 of a bar range) is this project's ONE tolerance
+# unit: it governs the ON WATCH entry trigger, the 84% reclaim window and stop
+# slippage. On that bar it is 51 cents, so the 9-cent miss is well inside it.
+# `research/g73_marks25_retest_cents.json` carries that arithmetic.
+#
+# The knob was already there (`retest_tol_mult`, added for DETECT_WIDE at 1.0x
+# = a WHOLE average candle). This makes the FRACTION selectable so the 0.25x
+# arm can be measured against the shipped 0.00x on the same code path, in the
+# recall gate, the day-cards and the two-year book alike.
+#
+# WHY THE SHIPPED DEFAULT IS STILL 0.0 AND NOT 0.25, MEASURED 2026-08-29
+# (`research/g76_livefixes_retest.md`):
+#
+#   recall  BETTER at 0.25 -- the 159-mark gate goes any_signal 83 -> 93 and
+#           s_grade 12 -> 15, and the 120 held-out day-cards go 58.6% -> 61.6%.
+#   money   BETTER at 0.25 on the honest (close-fill) book, WORSE on the
+#           published look-ahead book. Both moves are inside their own noise.
+#   BUT     `research/regression_gate.py` goes RED on exactly ONE mark,
+#           QQQ|2025-02-26|28, and it is NOT a lost detection: the same
+#           break-and-retest now fires at bar 24 instead of bar 26 (an X-grade
+#           signal the engine never trades either way), which falls outside the
+#           gate's +/-2-bar join. Re-locking `baseline_3.8.json` for that is
+#           Austin's call, not an agent's -- CLAUDE.md is explicit about not
+#           silently re-locking it. So the default stays at today's behaviour
+#           and the arm is one env var away:  OMEN_RETEST_TOL_FRAC=0.25
+RETEST_TOL_FRAC = float(os.getenv("OMEN_RETEST_TOL_FRAC", "0.0"))
+
+
 def _retest_tol() -> float:
-    """retest_tol_mult to hand detect_break_retest. 0.0 unless DETECT_WIDE."""
-    return DETECT_WIDE_RETEST_MULT if DETECT_WIDE else 0.0
+    """retest_tol_mult to hand detect_break_retest.
+
+    DETECT_WIDE (1.0x, a whole average candle) still wins if it is on -- it is
+    a separate, bigger, still-unshipped arm. Otherwise RETEST_TOL_FRAC, which
+    is BAR_EXTREME_FRAC: the level is a zone the width of the band every other
+    rule in this engine already uses.
+    """
+    return DETECT_WIDE_RETEST_MULT if DETECT_WIDE else RETEST_TOL_FRAC
 
 
 def setup_is_s_eligible(sig: dict) -> bool:
@@ -1952,7 +2010,7 @@ class SignalRunner:
         """Demote signals fighting the level map (Austin notes 2026-07-06).
 
         Level inside the 2R path -> cap at C (trade must have open road to a
-        new HOD/LOD). A+/A additionally require entry beyond every level in
+        new HOD/LOD). A additionally requires entry beyond every level in
         the trade direction (breakout conditions, not mid-range chop).
         """
         levels = getattr(self, "_active_levels", [])
@@ -1977,7 +2035,7 @@ class SignalRunner:
             sig["grade"] = TradeGrade.C.value
             sig["reason"] += f" [capped C: level ${blocking[0]:.2f} blocks 2R path]"
             return
-        if CLEAR_FOR_APLUS and grade in ("A+", "A", "B"):
+        if CLEAR_FOR_APLUS and grade in ("A", "B"):
             clear = (all(l <= entry for l in levels) if sig["direction"] == "call"
                      else all(l >= entry for l in levels))
             if not clear and grade != "B":
@@ -1992,13 +2050,14 @@ class SignalRunner:
                 else:
                     sig["grade"] = TradeGrade.A.value
                     sig["reason"] += " [B->A: breakout conditions, clear of all levels]"
+            # 2026-08-28 [A+ retired]: the full stack (first break, displacement,
+            # strong PA, open road) used to promote one rung further to A+.
+            # A is now the top grade, so the full stack still produces A -- the
+            # `elif sig["grade"] == "A+":` demotion this used to pair with is
+            # gone too, since nothing upstream can set that string any more.
             if clear and sig.get("aplus_stack"):
-                # First break of level today + displacement + strong PA + open road
-                sig["grade"] = TradeGrade.A_PLUS.value
-                sig["reason"] += " [A+: first break, displacement, strong PA, clear road]"
-            elif sig["grade"] == "A+":
-                # A+ reserved for the full stack (pattern-A+ hallucinated per Austin)
                 sig["grade"] = TradeGrade.A.value
+                sig["reason"] += " [A: first break, displacement, strong PA, clear road]"
 
     def _calibration_grade(self, sig: dict) -> None:
         """Calibration vs 133 labeled trades (Scarface replay + Austin charts,
@@ -2366,7 +2425,7 @@ class SignalRunner:
             return TradeGrade.D
         base = self._downgrade_grade(level_hi if is_long else level_lo, is_long,
                                      htf_bias)
-        if htf_bias == "neutral" and base in (TradeGrade.A_PLUS, TradeGrade.A):
+        if htf_bias == "neutral" and base == TradeGrade.A:
             return TradeGrade.B
         return base
 
@@ -2495,7 +2554,7 @@ class SignalRunner:
         # omen-3.6 S_GATE (default OFF): cap low-displacement candidate entries
         # to C (alert-only). Mirrors BNR_DISPLACEMENT_GATE / HTF_BIAS_GATE. OFF =
         # byte-identical to today. See research/s_gate_spec.md.
-        if S_GATE and sig["grade"] in ("A+", "A", "B") and not is_s_gate(self.candles):
+        if S_GATE and sig["grade"] in ("A", "B") and not is_s_gate(self.candles):
             sig["grade"] = TradeGrade.C.value
             sig["reason"] += " [capped C: S_GATE low displacement]"
         # omen-3.8 RULE_710_ENABLED (default OFF): Rules 7 (retest speed) and 10
@@ -2504,7 +2563,7 @@ class SignalRunner:
         # "no break candle -> null" case that made these rules unimplementable
         # in research/rule7_rule10.md cannot occur here. OFF = byte-identical to
         # today. See Trading-Bot-Rulesets.md "Rule 7" / "Rule 10".
-        if RULE_710_ENABLED and sig["grade"] in ("A+", "A", "B"):
+        if RULE_710_ENABLED and sig["grade"] in ("A", "B"):
             why = rule_710_reject(self.candles, sig.get("stop"))
             if why:
                 sig["grade"] = TradeGrade.C.value
@@ -2760,7 +2819,7 @@ class SignalRunner:
                                           is_long=True, htf_bias=self.htf_bias)
                 # Austin 2026-07-10: level already broken earlier in the session
                 # = dirty/late entry — cap at B (kept for the clean-vs-late A/B).
-                if "LATE" in br_note and grade.value in ("A+", "A"):
+                if "LATE" in br_note and grade.value == "A":
                     grade = TradeGrade.B
                 stack = current.is_bullish and self._aplus_stack(level_hi, is_long=True)
                 # Austin's A+ stack outranks candle patterns (30d: pattern grader
@@ -2782,7 +2841,7 @@ class SignalRunner:
                 # after promotions so the A+ stack can't lift it back.
                 disp = self._bnr_displacement(level_hi, is_long=True)
                 if (BNR_DISPLACEMENT_GATE and not disp
-                        and grade.value in ("A+", "A", "B")):
+                        and grade.value in ("A", "B")):
                     grade = TradeGrade.C
                 # R23 (Austin, probe_master_2026-08-29, fact_pm_levels ->
                 # `trade`): "THIS IS ONE OF THE 6 LEVELS WE WATCH, SO YES ITS
@@ -2795,7 +2854,7 @@ class SignalRunner:
                 # structural stop >=0.3% +2, non-PM +1. S>=4 = top-quality tier.
                 hammer = _confirm_candle(current, long=True)
                 sc = ((2 if "LATE" not in br_note else 0)
-                      + (2 if grade.value in ("A+", "A") else 0)
+                      + (2 if grade.value == "A" else 0)
                       + (2 if stock_risk / current.close >= 0.003 else 0)
                       + (0 if hi_name == "PMH" else 1)
                       + (2 if hammer else 0)
@@ -3046,7 +3105,7 @@ class SignalRunner:
                 stock_risk = stop - entry
                 grade = self._grade_trade(current, lookback, level_hi, level_lo,
                                           is_long=False, htf_bias=self.htf_bias)
-                if "LATE" in br_note and grade.value in ("A+", "A"):
+                if "LATE" in br_note and grade.value == "A":
                     grade = TradeGrade.B
                 stack = current.is_bearish and self._aplus_stack(level_lo, is_long=False)
                 if stack and grade.value in ("C",) + _SKIP_GRADES and self.htf_bias != "bullish":
@@ -3061,13 +3120,13 @@ class SignalRunner:
                 # OPUS-SPEC #1: displacement tag + optional gate (see call side)
                 disp = self._bnr_displacement(level_lo, is_long=False)
                 if (BNR_DISPLACEMENT_GATE and not disp
-                        and grade.value in ("A+", "A", "B")):
+                        and grade.value in ("A", "B")):
                     grade = TradeGrade.C
                 # R23: premarket levels are TRADEABLE (see call side).
                 # Selection score — mirror of call side.
                 hammer = _confirm_candle(current, long=False)
                 sc = ((2 if "LATE" not in br_note else 0)
-                      + (2 if grade.value in ("A+", "A") else 0)
+                      + (2 if grade.value == "A" else 0)
                       + (2 if stock_risk / current.close >= 0.003 else 0)
                       + (0 if lo_name == "PML" else 1)
                       + (2 if hammer else 0)
@@ -3260,7 +3319,7 @@ class SignalRunner:
         if HTF_BIAS_GATE and self.daily_bias in ("bullish", "bearish"):
             want = "call" if self.daily_bias == "bullish" else "put"
             for sig in signals:
-                if sig.get("direction") != want and sig.get("grade") in ("A+", "A", "B"):
+                if sig.get("direction") != want and sig.get("grade") in ("A", "B"):
                     sig["grade"] = "C"
                     sig["reason"] = sig.get("reason", "") + " [htf-block]"
 
