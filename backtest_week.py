@@ -29,7 +29,8 @@ except ModuleNotFoundError:   # data_archive replay the research rows run on.
 from omen_bot import Candle, SignalType, TradeGrade
 from signal_runner import SignalRunner
 from stop_rule import (stop_hit_on_close, stop_hit_on_wick, stop_fill_price,
-                       disaster_stop_price, disaster_stop_hit, DISASTER_STOP_R)
+                       disaster_stop_price, disaster_stop_hit, DISASTER_STOP_R,
+                       MAX_LOSS_R)
 
 # Austin's watchlist 2026-07-11: all stocks with ~200k+ daily options volume
 # (his rule — high options volume = cleaner moves, easier fills). SPY/QQQ stay
@@ -82,6 +83,22 @@ def sscore_mult(reason: str) -> float:
 DEDUPE_MODE = os.getenv("DEDUPE_MODE", "level").strip().lower()
 DEDUPE_BARS = 30  # clock arm only: same setup re-firing within 30 min = one idea
 DEDUPE_CONTIG = 2  # level arm: suppress only a contiguous run of re-fires
+
+# G7.2 (suppress): ONLY A FIRE MAY OPEN OR EXTEND THE SUPPRESSION WINDOW.
+# Until 2026-08-29 the `seen` map below was written by EVERY captured signal,
+# including the ones SignalRunner._route had just REJECTED -- D-grade, tight
+# stop, repeat idea, repeat entry, retired level. A reject on bar i therefore
+# silenced the real, tradeable fire on bar i+1 at the same level, and a run of
+# rejects rolled that window forward indefinitely. The dedupe exists to collapse
+# "the detector re-fires while the setup is still standing there" into one
+# TRADE; a signal that never became a trade has nothing to collapse.
+# signal_runner._route already gets this right for its own no-repeat registry --
+# "a tight-stop skip never fired, so it must not claim the level -- the first
+# AVAILABLE entry wins" -- and this makes the backtest agree with it.
+# DEDUPE_FIRES_ONLY=0 restores the old behaviour for the A/B.
+# Priced in research/g72_suppress_report.md by research/g72_suppress_price.py.
+DEDUPE_FIRES_ONLY = os.getenv("DEDUPE_FIRES_ONLY", "1").strip().lower() not in (
+    "0", "false", "no", "off")
 
 
 def dedupe_window() -> int:
@@ -199,6 +216,48 @@ PESSIMISTIC_FILL = os.getenv("PESSIMISTIC_FILL", "1") not in ("0", "false")
 DISASTER_STOP = os.getenv("DISASTER_STOP", "1") not in ("0", "false", "off")
 DISASTER_R = float(os.getenv("DISASTER_STOP_R", str(DISASTER_STOP_R)))
 
+# ---- G8.2: the four stop arms, for research/g82_stop_ab.py -----------------
+# Austin, on the close-only stop rule: it stands "if you have the metrics."
+# Nobody had run the plain A/B, so STOP_ARM names each arm as ONE word and every
+# arm is expressed here rather than by stacking three half-related env flags.
+#
+#   ""              the book as shipped. Untouched: close trigger + the resting
+#                   -1R disaster stop on touch + the -1.25R floor. Default, and
+#                   byte-identical to every figure published before today.
+#   "close_floor"   close trigger, fill at that close, floored at -1.25R, and
+#                   NO disaster stop. This is the rule CLAUDE.md actually states,
+#                   on its own, which the shipped book does not run.
+#   "close_nofloor" the same with the floor removed.
+#   "touch"         a resting stop order: triggers the moment price TOUCHES the
+#                   level, fills THERE -- or at the bar's open when the bar
+#                   gapped straight through it. No floor.
+#   "touch_floor"   the same, floored at -1.25R, so the floor is doing gap
+#                   protection and nothing else.
+#
+# Every named arm turns the disaster stop OFF, because each one states its own
+# complete stop semantics; leaving a second stop underneath would measure the
+# two together and that is exactly the confusion this A/B exists to end.
+STOP_ARM = os.getenv("STOP_ARM", "").strip().lower()
+_ARMS = ("", "close_floor", "close_nofloor", "touch", "touch_floor")
+if STOP_ARM not in _ARMS:
+    raise SystemExit("STOP_ARM must be one of %r, got %r" % (_ARMS, STOP_ARM))
+STOP_ARM_TOUCH = STOP_ARM.startswith("touch")
+STOP_ARM_FLOOR = STOP_ARM in ("close_floor", "touch_floor")
+
+# ---- G8.2: the two profit-leg arms ----------------------------------------
+# Austin believes a profit target fills the moment price TOUCHES it (a resting
+# limit order) and suspects the code may instead require a candle to CLOSE
+# through it. It does not -- every profit leg here is an intrabar touch and
+# always has been (`_target_hit` below, and the three call sites it replaced).
+# TARGET_ON_CLOSE=1 builds the arm he was worried about so the belief is
+# measured instead of asserted. Default 0 = touch = shipped, byte-identical.
+#
+# It governs all three profit legs together -- the blind-2R target, the ladder's
+# PT1 scale rung, and the runner target -- because they are the same kind of
+# order and splitting them would answer a question nobody asked.
+TARGET_ON_CLOSE = os.getenv("TARGET_ON_CLOSE", "0").strip().lower() in (
+    "1", "true", "yes", "on")
+
 # ---- P8/G2: ENTRY_SCRATCH — Austin's failed-entry scratch, one bar late ----
 # Austin, 2026-08-11: "an entry taken intrabar that then closes back beyond the
 # level is not a loss — scratch out at close, no 84 percent, this rule and
@@ -278,6 +337,18 @@ class SimTrade:
     # block (stop = the far side of the block) or when intrabar_stop() collapsed
     # the stop onto the entry bar's own extreme. Read only by ENTRY_SCRATCH.
     level_price: float = 0.0
+    # G7.1/labels. The two identity fields signal_runner stamps on every sig
+    # and this dataclass used to drop on the floor (research/g71_labeller.md).
+    # `setup_type` is SignalType.BR_OCR_CONFLUENCE whenever
+    # downgrade.has_confluence held on the entry bar
+    # (signal_runner._label_confluence), Austin's third setup class alongside
+    # break-and-retest and one-candle-rule. `stop_level_name` is the level the
+    # setup actually broke, spelled ("PDH" / "OR high" / "Order block low").
+    # Carrying them changes no fill, no grade and no P&L: backtest_2y was
+    # already re-deriving a worse version of both from the reason prose with a
+    # regex that cannot see an order block or the 84% rule.
+    setup_type: str = ""
+    stop_level_name: str = ""
 
     @property
     def counted(self) -> bool:
@@ -343,12 +414,33 @@ def _stop_hit(c: Candle, level: float, long: bool) -> bool:
     one rule, one function (G11). Reads the module-global STOP_ON_CLOSE on every
     call so research/t4_stop_on_close.py can still flip `bw.STOP_ON_CLOSE`.
     """
+    if STOP_ARM_TOUCH:
+        return _wick_hit(c, level, long)
+    if STOP_ARM:                    # the two close arms, disaster stop removed
+        return stop_hit_on_close(c.close, level, long)
     if STOP_ON_CLOSE:
         return stop_hit_on_close(c.close, level, long)
     return _wick_hit(c, level, long)
 
 
-def _stop_fill_px(t: "SimTrade", c: Candle, long: bool) -> float:
+def _target_hit(c: Candle, level: float, long: bool) -> bool:
+    """G8.2. Did this bar take a profit leg at ``level``?
+
+    A resting limit order fills on an intrabar TOUCH -- that is what this
+    returns by default, and what all three profit legs (the blind-2R target, the
+    ladder's PT1 scale rung, the runner target) have always done inline. The
+    function exists so the claim is checkable in one place instead of three, and
+    so TARGET_ON_CLOSE=1 can build the close-through arm Austin suspected was
+    already shipped. `stop_rule`'s own module docstring says the same thing:
+    "Targets are not stops... Only the STOP trigger moved to the close."
+    """
+    if TARGET_ON_CLOSE:
+        return c.close >= level if long else c.close <= level
+    return c.high >= level if long else c.low <= level
+
+
+def _stop_fill_px(t: "SimTrade", c: Candle, long: bool,
+                  level: Optional[float] = None) -> float:
     """T11. The price a close-triggered stop BOOKS on bar ``c``.
 
     The trigger is `_stop_hit` above; this is the other half of the same rule.
@@ -370,10 +462,29 @@ def _stop_fill_px(t: "SimTrade", c: Candle, long: bool) -> float:
     -1.25R measured off whichever stop happened to fire. Under STOP_ON_CLOSE=0
     (the retired wick trigger, kept only so t4_stop_on_close's A/B reproduces)
     there is no close to fill at, so the old `t.stop` fill stands.
+
+    G8.2: ``level`` is the stop that actually fired -- the original one, or the
+    runner's raised one. Only the named STOP_ARM arms read it, and they must:
+    a resting order fills where it RESTS, and a resting order at break-even
+    that filled at `t.stop` would book -1R for a trade that lost nothing. The
+    shipped path ignores it and is unchanged.
     """
+    risk = abs(t.entry - t.stop)
+    if STOP_ARM:
+        floor = MAX_LOSS_R if STOP_ARM_FLOOR else float("inf")
+        if STOP_ARM_TOUCH:
+            lv = t.stop if level is None else level
+            # A resting order fills at its own price -- unless the bar OPENED
+            # through it, in which case the fill is that open. This is the only
+            # way a touch arm can lose more than it planned, so it is also the
+            # only thing the -1.25R floor is protecting against here.
+            raw = min(lv, c.open) if long else max(lv, c.open)
+        else:
+            raw = c.close
+        return stop_fill_price(raw, t.entry, risk, long, floor)
     if not STOP_ON_CLOSE:
         return t.stop
-    return stop_fill_price(c.close, t.entry, abs(t.entry - t.stop), long)
+    return stop_fill_price(c.close, t.entry, risk, long)
 
 
 def _disaster_hit(t: "SimTrade", c: Candle, long: bool):
@@ -382,8 +493,13 @@ def _disaster_hit(t: "SimTrade", c: Candle, long: bool):
     ``None`` when the flag is off or the bar never reached it. The fill IS the
     resting price -- a stop order that is touched fills there -- so a disaster
     stop-out books exactly -DISASTER_R, comfortably inside MAX_LOSS_R. Risk is
-    the trade's ORIGINAL entry-to-stop, never a moved runner stop."""
-    if not DISASTER_STOP:
+    the trade's ORIGINAL entry-to-stop, never a moved runner stop.
+
+    G8.2: every named STOP_ARM removes it. Each arm states its own complete stop
+    semantics, and leaving this one underneath would measure two stops at once --
+    which is exactly what the shipped book does, and exactly why the close-only
+    rule has never actually been measured (research/g82_stop_ab.md)."""
+    if STOP_ARM or not DISASTER_STOP:
         return None
     risk = abs(t.entry - t.stop)
     if risk <= 0:
@@ -542,7 +658,7 @@ def _ladder_bar(t: "SimTrade", c: Candle, i: int, open_trades: list,
             _arm_84(t, runner, c)
             return
         if _stop_hit(c, stop_lv, long):
-            t.exit_price, t.exit_idx = _stop_fill_px(t, c, long), i
+            t.exit_price, t.exit_idx = _stop_fill_px(t, c, long, stop_lv), i
             # A stop-out at the ORIGINAL stop is a real loss by construction
             # (fill is at/beyond it). A stop-out at a BE-raised stop can book a
             # small win, a scratch, or -- past the -1.25R floor's own worse-side
@@ -559,7 +675,7 @@ def _ladder_bar(t: "SimTrade", c: Candle, i: int, open_trades: list,
                 # for every scaled trade.
                 _arm_84(t, runner, c)
             return
-        if (c.high >= t.scale_level) if long else (c.low <= t.scale_level):
+        if _target_hit(c, t.scale_level, long):
             t.scaled = True
             if SCALE_PLAN == "hod_then_runner_be":
                 t.runner_stop = t.entry  # accelerator: BE after first scale
@@ -576,7 +692,7 @@ def _ladder_bar(t: "SimTrade", c: Candle, i: int, open_trades: list,
                     t.runner_stop = t.entry
         return
     stop_lv = t.runner_stop if t.runner_stop else t.stop
-    hit_target = (c.high >= t.runner_target) if long else (c.low <= t.runner_target)
+    hit_target = _target_hit(c, t.runner_target, long)
     # R1/R2: the disaster stop survives the scale-out, but only while the
     # runner is still working the ORIGINAL stop. Under SCALE_PLAN
     # "hod_then_runner_be" the first rung raises the stop to break-even, and a
@@ -590,7 +706,7 @@ def _ladder_bar(t: "SimTrade", c: Candle, i: int, open_trades: list,
         # T11: the fill is this bar's CLOSE, floored at -1.25R of the ORIGINAL
         # risk -- so a runner whose stop had been raised to break-even can still
         # book a real loss, which is the whole point of the floor.
-        fill = _stop_fill_px(t, c, long)
+        fill = _stop_fill_px(t, c, long, stop_lv)
         if PESSIMISTIC_FILL and hit_target:
             # omen-5.1 T2 survives on top of it: a bar that tagged the runner
             # target and STILL closed beyond the stop books no BETTER than the
@@ -786,7 +902,7 @@ def simulate_day(symbol: str, day_iso: str, candles: List[Candle],
             # cross the BE order on its way down to -1R anyway.
             dz = None if t.be_taken else _disaster_hit(t, c, t.direction == "call")
             stopped = _stop_hit(c, lv, t.direction == "call")
-            targeted = c.high >= t.target if t.direction == "call" else c.low <= t.target
+            targeted = _target_hit(c, t.target, t.direction == "call")
             if dz is not None:
                 t.outcome, t.exit_price, t.exit_idx = "loss", dz, i
                 open_trades.remove(t)
@@ -795,7 +911,7 @@ def simulate_day(symbol: str, day_iso: str, candles: List[Candle],
             if stopped:  # both in one bar -> conservative: loss
                 # T11: fill at the triggering close, floored at -1.25R.
                 t.outcome, t.exit_price, t.exit_idx = (
-                    "loss", _stop_fill_px(t, c, t.direction == "call"), i)
+                    "loss", _stop_fill_px(t, c, t.direction == "call", lv), i)
                 open_trades.remove(t)
                 # Lesson 6 canonical: arm only off solid B&R stop-outs (Scarface:
                 # "can't be a one-minute order block with nothing else"). Shared
@@ -827,10 +943,15 @@ def simulate_day(symbol: str, day_iso: str, candles: List[Candle],
                     if sig["signal_type"].value == "break_and_retest"
                     else round(sig["stop"], 2))
             key = (sig["signal_type"].value, sig["direction"], idea)
+            # G7.2: a REJECT neither opens nor extends the window. See
+            # DEDUPE_FIRES_ONLY at the top of this file.
+            claims = sig.get("status") == "fired" or not DEDUPE_FIRES_ONLY
             if key in seen and i - seen[key] < dedupe_window():   # R16
-                seen[key] = i  # still firing: extend suppression
+                if claims:
+                    seen[key] = i  # still firing: extend suppression
                 continue
-            seen[key] = i
+            if claims:
+                seen[key] = i
             risk = abs(sig["entry"] - sig["stop"])
             # 84% signals carry the ORIGINAL trade's target; everything else 2R
             target = sig.get("target") or (
@@ -858,6 +979,11 @@ def simulate_day(symbol: str, day_iso: str, candles: List[Candle],
                     cands.append(math.ceil(scale_level) - 1.0)
                     runner_tgt = max(cands)
 
+            # G7.1/labels: setup_type is a SignalType enum when
+            # _label_confluence ran (every live/backtest sig does); absent on a
+            # hand-built sig from an older research replay -- fall back to the
+            # base signal_type rather than an empty string.
+            _setup_type = sig.get("setup_type", sig["signal_type"])
             t = SimTrade(symbol=symbol, day=day_iso,
                          signal_type=sig["signal_type"].value,
                          direction=sig["direction"], grade=sig["grade"],
@@ -865,7 +991,9 @@ def simulate_day(symbol: str, day_iso: str, candles: List[Candle],
                          entry=sig["entry"], stop=sig["stop"], target=target,
                          reason=sig["reason"], entry_idx=i, exit_idx=len(candles) - 1,
                          be_level=be_level, scale_level=scale_level,
-                         runner_target=runner_tgt)
+                         runner_target=runner_tgt,
+                         setup_type=getattr(_setup_type, "value", _setup_type),
+                         stop_level_name=sig.get("stop_level_name") or "")
             trades.append(t)
             if risk > 0:
                 # T4(b) was HERE and tested this bar's own close against
