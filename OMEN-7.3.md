@@ -257,10 +257,106 @@ night's 30.
 
 *Report: `research/g83_recall278.md`. Canonical mark reader: `research/marks_pool.py`.*
 
-### Accuracy — higher timeframe, displacement, the rare setups
-*Running.* `research/g81_marks30_score.md` · `research/g81_marks_pool.md` ·
-`research/g81_htf_thesis.md` · `research/g81_displacement.md` · `research/g81_rare_setups.md` ·
-`research/g81_rulebook_audit.md`
+### Accuracy — higher timeframe, displacement, the rare setups — **LANDED 2026-08-30 11:02**
+`research/g81_htf_thesis.md` · `research/g81_displacement.md` · `research/g81_marks30_score.md` ·
+`research/g81_marks_pool.md` · `research/g81_rare_setups.md`. Ten agents, 1.29M tokens, three
+adversarial verifiers. Committed `e6935bbd`.
+
+#### 1. Your higher-timeframe thesis — the prize is real, and it is not where we were looking
+
+You said: *"An S trade happens at 9:30 — but it would have been a better S trade 20 minutes later
+if I knew the longer time frame."* So we measured the ceiling first.
+
+| one trade a day, 499 sessions, 6,170 candidates | $/day | mean R | win |
+|---|---:|---:|---:|
+| **first** setup of the day (what the engine does now) | $721 | +0.722 | 66.7% |
+| **best** setup of the day (oracle, unreachable) | $4,179 | +4.187 | 99.0% |
+| coin flip among that day's setups | $522 | | |
+| **the prize** | **$3,458/day** | | |
+
+Arrival order is not nothing — it picks the day's best setup 12.8% of the time against 10.1% by
+chance, worth +$199/day over a coin flip. But **it leaves $3,458 a day on the table.**
+
+Then four definitions of "the longer time frame", every one a mentor sentence, scored as a
+selector and again as a wait rule:
+
+| arm | as selector | as wait rule |
+|---|---:|---:|
+| hourly bias (the incumbent `HTF_BIAS_VETO` formula) | **+$41/day** [−$80, +$157] | |
+| daily bias (yesterday's close vs 20-day SMA) | | **+$44/day** [−$82, +$176], 25/25 green |
+| index direction right now | −$108/day | |
+| all four stacked | −$42/day | |
+| **wait to 09:45 with no model at all (control)** | | **−$33/day** [−$226, +$168] |
+
+**Every arm is a tie inside the ±1.5799R bar, and the best one is barely distinguishable from
+waiting for no reason.** One interval clears zero — all four timeframes agreeing vs none agreeing,
++0.170R [+0.002, +0.338] — but it is non-monotone (3-of-4 sits *below* 2-of-4), which is the
+signature of a fluke, and it is still inside the standing bar.
+
+**The finding that reframes the whole idea.** On the 20 charts from your 2026-08-29 homework where
+you wrote an entry minute, the engine's *actionable* stream (fired-or-halted, not counting the
+121,368 rows it downgrade-skipped and never surfaced) had an earlier signal on **2 of 20**. On 18
+of 20 there was **nothing to wait through.** And your median entry was **24 minutes earlier** than
+the engine's chosen setup, not later.
+
+> **You are not late and the engine is not early. The engine is late, and you beat it by 24
+> minutes.** The lever is not "make it wait" — it is "make it early, then make it choose".
+
+Your stated minutes: 9 of 20 (45%) inside 09:30–09:45, median 09:45. (The brief's 65% does not
+reproduce.) The book's first entry on your S symbol-days is before 09:45 on 45 of 154 — 29.2%.
+
+#### 2. Displacement — already shipped, and it separates nothing
+
+Displacement is variable one of the eight and you ratified it a year ago (ballot q18). **The
+shipped check measures the breaking candle's fatness, not its distance from the level.**
+
+| | S days | days you refused |
+|---|---:|---:|
+| recall, displacement check **off** | 76.6% (206/269) | 75.2% (358/476) |
+| recall, displacement check **on** | **63.2%** (170/269) | **63.2%** (301/476) |
+| cost | −13.4 pt | −12.0 pt |
+
+Both arms land on the **same 63.2%**. The gap between your S days and your refusals goes from
++1.4 points to −0.0 — Fisher p = 1.000. It buys **+0.0136R** against a ±1.5799R bar. It trips on
+49.8% of 134,012 signals, the third-most trigger-happy of the eight variables.
+
+It also does not agree with you: of your three explicit no-displacement refusals, the shipped check
+trips on **0**. The one card it does trip on — MSFT 2025-08-29 — is one you **took**.
+
+**Caveat, and it is the reason nothing shipped.** The verifier found look-ahead in the proposed
+*separation* rewrite: `separation_atr` reads `bars[br:i+1]`, the entry bar's own completed extreme,
+while its docstring claims to be causal. Excluding it, the "one real, very large effect" collapses
+(22.9-point win gap to 10.1) and the money delta **flips sign**, +0.0359R to −0.1742R. That diff is
+blocked. Same bug class as the fill.
+
+#### 3. The mark pool is finally one number — **309 S days**
+
+`research/marks_pool.py` reads all 24 corpora and returns one grade per symbol-day:
+**309 S / 237 A / 58 C / 560 none = 1,178 judged.** 303 of the 309 have archived bars and can be
+replayed now. It found a **ninth spelling of "S"** and 25 S-days nobody had counted. Every prior
+figure — 154, 207, 288 — was a partial read.
+
+#### 4. What an independent verifier changed
+
+Three Opus verifiers rebuilt every headline from source without importing the authors' helpers.
+Two findings survived, one was refuted, and one report carried a **flatly false sentence** about
+the live engine:
+
+- **`HTF_BIAS_VETO` is not deleted — it ships ON and gates 47% of the book.** `omen_bot.py:29`
+  reads `os.getenv("HTF_BIAS_VETO", "1")`; `research/test_w12_grade_gates.py::W12-3` asserts it.
+  The report's one recommendation was written against a false picture of the engine. Corrected in
+  place. **The live question is now yours: should a veto with no author keep gating 47% of the book
+  on a +$41/day tie?**
+- The "10 of 20 had no earlier signal" figure counted rows the engine never emitted. Honestly it is
+  **18 of 20** — which cuts *for* the finding, not against it.
+- The mentor-timing report is **refuted on its unit** (see below).
+- Three cosmetic defects: a 499-vs-500 session divisor (worth 0.2%), a dead regex branch that
+  silently drops IWM_2026-08-06, and a `NOT_HIS_ENTRY` table that does nothing.
+
+#### 5. The rare-setup funnel did not run
+
+`build:raresetups` burned 220k tokens and 80 tool calls and returned a placeholder. Not attempted
+again tonight. `audit:rulebook` never started — the DeepSeek account is out of credit.
 
 ### Sizing — **six figures is not reachable, and sizing cannot fix it**
 
@@ -343,8 +439,26 @@ precision number it produced measured the wrong object.
 Audited — all three target pages were already dark-correct. No changes needed.
 *Record: `research/g83_dark_theme.md`*
 
-### Corpus — Scarface and Jdub entry timing
-*Running.* `research/g81_mentor_timing.md`
+### Corpus — Scarface and Jdub entry timing — **LANDED, then REFUTED on its unit**
+`research/g81_mentor_timing.md`. 3,547 mentor trades joined to OMEN's own sessions; **73% land on a
+covered symbol-day with bars**, which is the good news — the corpus is usable.
+
+What survives: OMEN fires on the mentor's side **30.3%** of the time (40.0% under the new honest
+fill). And **38.3% of its entries land within ten minutes of the mentor's post against a shuffle
+null of 27.5%** [22.7–32.5]. That is the real, modest co-timing signal, and the original report
+buried it in a column.
+
+What does not survive: the headline said *"on the 313 symbol-days (34.5%) OMEN's only signal was
+the OPPOSITE side"*. **Those are rows, not days.** Deduplicated: **201 of 783 = 25.7%**, or 23.4%
+restricted to in-window posts on days the mentors agreed with each other. 111 of the 313 sit on days
+where the mentors themselves took both sides. And "median 0 minutes, looks even" is a **shuffle
+null** — 2,000 draws give median 0 (95% band −3 to +2) and mean exactly −1.75, identical to the
+observed. Both clocks are truncated into the same 90-minute box, so median 0 is forced by
+construction and means nothing.
+
+Third lesson, and it is the `DIRECTION.md` banner again: **the script no longer reproduces its own
+numbers** because the entry fill changed underneath it at 10:29. Everything replays under
+`ENTRY_FILL=published`. A report that does not name its fill cannot be re-run.
 
 ### Stops — **you did settle it, and the code has never run the rule you settled**
 
@@ -636,6 +750,52 @@ the only gate OMEN currently passes: 25 of 25 green months becomes 22 of 25.
 line makes a red month cost more than a flat one.*
 
 </details>
+
+---
+
+## 5b. The next ballot — twelve one-liners, no charts
+
+These came out of tonight's measurement. Each is one yes/no or one sentence. None is in the code,
+none goes in without you. They are on the homework page too — answer here or there, not both.
+
+**Selection (the $3,458/day question)**
+
+1. Picking the day's **best** setup instead of its **first** is worth $3,458/day. Should selection
+   be the next thing we build?
+2. You entered a **median 24 minutes before** the engine's chosen setup on the thirty charts you
+   graded, and on 18 of 20 there was no earlier engine signal at all. Should we stop trying to make
+   the engine **wait** and start trying to make it **early**?
+3. `HTF_BIAS_VETO` **ships ON and gates 47% of the book** on a +$41/day tie, and it has no author.
+   Does it stay, or does it come out?
+
+**Which higher timeframe is yours** — pick any, all, or none. Each is one measured candidate.
+
+4. "The index is moving my way **right now**." (measured: −$108/day as a selector)
+5. "Yesterday's close is above its **20-day average**." (measured: +$44/day as a wait rule, 25/25
+   green months)
+6. "The week, the day, the hour **and** the index all agree." (measured: +0.170R when all four
+   align, but non-monotone)
+7. Do you accept **losing 12 of the 154 S days** the book reaches to buy a $35/day change that is
+   inside its own noise? (This is what any of the above costs.)
+
+**Displacement** — you gave it as your reason on four of nine refusals on 2026-08-29 **without
+being asked**.
+
+8. When you say displacement, is it the gap between price and **the level it broke**, or between
+   price and **the candles it came from**? On AMD 2025-09-08 the engine fired at exactly 10:37 —
+   the minute you named — measured 1.18 average candles of clear air above the level, and called it
+   a clean S with nothing tripped, where you wrote *"really no displacement from the original
+   candles."*
+9. The old ballot says BR+OCR confluence **forgives** missing displacement outright, but on MSFT
+   2025-08-29 you wrote *"no displacement but you get a +1."* Which is it — the downgrade never
+   trips, or it trips and the +1 cancels it?
+10. You wrote *"neither of the parts have displacement"* on a setup that was **both** a one-candle
+    rule and a break-and-retest. Does **each part** need its own displacement, so a setup can fail
+    on the one-candle leg alone even when the break was strong?
+11. Does the displacement have to be there **before the retest**, or does the move **after entry**
+    count too?
+12. Trades that never separated from the level win **38.6%** but their winners average **3.01R**
+    against 1.56R — same money, half the hit rate. Keep taking those, or refuse them?
 
 ---
 
