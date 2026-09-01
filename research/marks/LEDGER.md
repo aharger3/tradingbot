@@ -372,3 +372,35 @@ re-export before treating 59 as the lane total.
 
 Counts as a judgement for `marked_card_ids()`. Added to `LEGACY_MARK_FILES` in
 the same commit.
+
+## probe_g84_all_in_one_STANDING154_2026-09-01.jsonl — 154 rows, human
+
+**A near-miss on THE ONE RULE.** `probe_g84_all_in_one_2026-08-30.jsonl` holds only
+**7 of the 154 rows** Austin had actually answered. The other 147 lived nowhere but the
+page's localStorage from 2026-08-30 until he pasted the standing export on 2026-09-01.
+Every conclusion drawn from "the g84 marks" before this date was drawn from 4.5% of them.
+
+Verified a strict superset: all 7 rows of the 2026-08-30 file appear here by
+`(section, card_id)`. The old file stays on disk per the never-delete rule; it is
+superseded, not wrong.
+
+Sections: mentor_ballot 15, is_this_an_s 8, which_signal 6, what_minute 6, htf_agree 6,
+displacement 8, where_is_the_stop 6, take_the_trade 39 (source deck g75-deck2),
+deep_is_s 60 (source deck g83-deep-batch). The last two sections were folded into the
+g84 export from earlier decks, so this one file carries three decks' judgements.
+
+**Provenance:** pasted by Austin from the page's Export → Copy all, written to disk
+verbatim, JSON-validated row by row, `git add -f`, `git status` checked by eye (`A`).
+Covered by the `research/marks/*.jsonl` glob in `all_mark_files()`, so no
+`LEGACY_MARK_FILES` edit is required.
+
+## probe_trade_anatomy_2026-09-01.jsonl — 8 rows, human
+
+The g89 trade-anatomy deck (`research/g89_trade_anatomy.py`,
+`research/decks/omen-trade-anatomy.html`): eight engine trades on days he graded S,
+each broken into entry / stop / PT1 / BE / scale sizes / runner, with Austin marking
+**which components were wrong** rather than grading the trade. `grade` is null by
+design — the answer is the `answers.wrong` list plus the prose in `notes.wrong`.
+
+This is the first corpus that judges the engine's *exit plan*, not its selection.
+Counts as a judgement for `marked_card_ids()` via the glob.
