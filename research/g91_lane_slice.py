@@ -149,6 +149,41 @@ def path_risk(by_day: dict, limit: float, dd_budget: float) -> dict:
     }
 
 
+def his_s_rate() -> dict:
+    """How often HE calls a tape an S, by symbol -- the demand-side read.
+
+    The lane tables above are the engine's supply side: where its fill makes
+    money. This is the independent check that matters more -- on which symbols
+    does Austin's own eye find S setups? If the engine's best lane and his
+    highest S-rate are the same names, that is two independent lines agreeing.
+
+    CONFOUND, stated up front and NOT resolved here: deck cards were selected by
+    `build_deck`, not sampled at random, so a symbol's S-rate is the rate among
+    the days he was SHOWN, not among all its sessions. This is suggestive, not
+    causal. Read it as "his eye and the engine agree on where to look", never as
+    "index days are 1.4x more likely to be S".
+    """
+    from research import marks_pool as mp
+    pool = mp.canonical_pool()
+    sd = mp.s_days(pool)
+    per = defaultdict(lambda: [0, 0])
+    for k in pool:
+        per[k.rsplit("_", 1)[0]][0] += 1
+    for k in sd:
+        per[k.rsplit("_", 1)[0]][1] += 1
+    ji = sum(v[0] for k, v in per.items() if k in INDEX)
+    si = sum(v[1] for k, v in per.items() if k in INDEX)
+    return {
+        "judged": len(pool), "s_days": len(sd),
+        "baseline_pct": round(len(sd) / len(pool) * 100, 1),
+        "index_judged": ji, "index_s": si,
+        "index_pct": round(si / ji * 100, 1) if ji else None,
+        "by_symbol": {k: {"judged": v[0], "s": v[1],
+                          "pct": round(v[1] / v[0] * 100, 1) if v[0] else 0}
+                      for k, v in sorted(per.items(), key=lambda x: -x[1][0])},
+    }
+
+
 def months_green(by_day: dict) -> tuple:
     m = defaultdict(float)
     for d, v in by_day.items():
@@ -270,6 +305,34 @@ def main():
                      ("$%.0f" % p["max_r_for_dd"]) if p["max_r_for_dd"] else "-",
                      ("$%.2f/day" % p["funded_per_day"])
                      if p["funded_per_day"] is not None else "-"))
+    try:
+        sr = his_s_rate()
+    except Exception as e:                       # marks_pool is optional here
+        sr = None
+        print("  (his S-rate skipped: %s)" % e)
+    if sr:
+        md += ["", "## The demand side -- how often HE calls it an S", "",
+               "Independent of every number above: across **%d judged symbol-days** "
+               "(%d of them S), his baseline S-rate is **%.1f%%**. On QQQ/SPY/IWM "
+               "it is **%.1f%%** (%d of %d)." % (
+                   sr["judged"], sr["s_days"], sr["baseline_pct"],
+                   sr["index_pct"], sr["index_s"], sr["index_judged"]),
+               "",
+               "**Confound, unresolved:** deck cards were selected by `build_deck`, "
+               "not sampled at random, so these are rates among the days he was "
+               "SHOWN. Suggestive that his eye and the engine's best lane point at "
+               "the same names -- not proof that index days are richer in S.", "",
+               "| symbol | judged | S | S-rate |", "|---|---:|---:|---:|"]
+        for k, v in list(sr["by_symbol"].items())[:14]:
+            md.append("| %s%s | %d | %d | %.1f%% |"
+                      % (k, " **(index)**" if k in INDEX else "",
+                         v["judged"], v["s"], v["pct"]))
+        json.dump(sr, open(os.path.join(HERE, "g91_his_s_rate.json"), "w",
+                           encoding="utf-8"), indent=1)
+        print("\n  his S-rate: baseline %.1f%%, index %.1f%% (%d/%d judged)"
+              % (sr["baseline_pct"], sr["index_pct"], sr["index_s"],
+                 sr["index_judged"]))
+
     md += ["", "## What each lane is", ""]
     for r in out:
         md.append("- **%s** -- %s" % (r["lane"], r["why"]))

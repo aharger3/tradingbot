@@ -1,0 +1,180 @@
+{
+ "judged": 1246,
+ "s_days": 347,
+ "baseline_pct": 27.8,
+ "index_judged": 218,
+ "index_s": 83,
+ "index_pct": 38.1,
+ "by_symbol": {
+  "TSLA": {
+   "judged": 131,
+   "s": 29,
+   "pct": 22.1
+  },
+  "QQQ": {
+   "judged": 102,
+   "s": 43,
+   "pct": 42.2
+  },
+  "SPY": {
+   "judged": 76,
+   "s": 19,
+   "pct": 25.0
+  },
+  "PLTR": {
+   "judged": 59,
+   "s": 17,
+   "pct": 28.8
+  },
+  "NVDA": {
+   "judged": 52,
+   "s": 11,
+   "pct": 21.2
+  },
+  "AAPL": {
+   "judged": 52,
+   "s": 16,
+   "pct": 30.8
+  },
+  "MSFT": {
+   "judged": 51,
+   "s": 11,
+   "pct": 21.6
+  },
+  "AVGO": {
+   "judged": 48,
+   "s": 10,
+   "pct": 20.8
+  },
+  "COIN": {
+   "judged": 43,
+   "s": 9,
+   "pct": 20.9
+  },
+  "MU": {
+   "judged": 42,
+   "s": 12,
+   "pct": 28.6
+  },
+  "AMD": {
+   "judged": 41,
+   "s": 11,
+   "pct": 26.8
+  },
+  "HOOD": {
+   "judged": 40,
+   "s": 9,
+   "pct": 22.5
+  },
+  "IWM": {
+   "judged": 40,
+   "s": 21,
+   "pct": 52.5
+  },
+  "META": {
+   "judged": 39,
+   "s": 9,
+   "pct": 23.1
+  },
+  "NFLX": {
+   "judged": 36,
+   "s": 9,
+   "pct": 25.0
+  },
+  "AMZN": {
+   "judged": 36,
+   "s": 11,
+   "pct": 30.6
+  },
+  "ORCL": {
+   "judged": 34,
+   "s": 9,
+   "pct": 26.5
+  },
+  "BABA": {
+   "judged": 34,
+   "s": 12,
+   "pct": 35.3
+  },
+  "INTC": {
+   "judged": 33,
+   "s": 9,
+   "pct": 27.3
+  },
+  "CRM": {
+   "judged": 31,
+   "s": 6,
+   "pct": 19.4
+  },
+  "MARA": {
+   "judged": 31,
+   "s": 8,
+   "pct": 25.8
+  },
+  "GOOGL": {
+   "judged": 30,
+   "s": 8,
+   "pct": 26.7
+  },
+  "UBER": {
+   "judged": 25,
+   "s": 7,
+   "pct": 28.0
+  },
+  "MSTR": {
+   "judged": 24,
+   "s": 5,
+   "pct": 20.8
+  },
+  "SOFI": {
+   "judged": 22,
+   "s": 9,
+   "pct": 40.9
+  },
+  "IREN": {
+   "judged": 21,
+   "s": 3,
+   "pct": 14.3
+  },
+  "TSM": {
+   "judged": 20,
+   "s": 10,
+   "pct": 50.0
+  },
+  "ACHR": {
+   "judged": 16,
+   "s": 6,
+   "pct": 37.5
+  },
+  "SPCX": {
+   "judged": 12,
+   "s": 2,
+   "pct": 16.7
+  },
+  "GOOG": {
+   "judged": 10,
+   "s": 0,
+   "pct": 0.0
+  },
+  "DIA": {
+   "judged": 8,
+   "s": 3,
+   "pct": 37.5
+  },
+  "ARM": {
+   "judged": 4,
+   "s": 2,
+   "pct": 50.0
+  },
+  "SMCI": {
+   "judged": 2,
+   "s": 1,
+   "pct": 50.0
+  },
+  "RIVN": {
+   "judged": 1,
+   "s": 0,
+   "pct": 0.0
+  }
+ }
+}

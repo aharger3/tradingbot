@@ -28,6 +28,29 @@ Daily loss limit: **$2000**. Funded trailing max drawdown: **$2500**.
 | equities only | $32603 | 44.6% | 266.3% | $77 | $0.50/day |
 | core tier only | $34752 | 45.6% | n/a (book loses) | $72 | $-1.46/day |
 
+## The demand side -- how often HE calls it an S
+
+Independent of every number above: across **1246 judged symbol-days** (347 of them S), his baseline S-rate is **27.8%**. On QQQ/SPY/IWM it is **38.1%** (83 of 218).
+
+**Confound, unresolved:** deck cards were selected by `build_deck`, not sampled at random, so these are rates among the days he was SHOWN. Suggestive that his eye and the engine's best lane point at the same names -- not proof that index days are richer in S.
+
+| symbol | judged | S | S-rate |
+|---|---:|---:|---:|
+| TSLA | 131 | 29 | 22.1% |
+| QQQ **(index)** | 102 | 43 | 42.2% |
+| SPY **(index)** | 76 | 19 | 25.0% |
+| PLTR | 59 | 17 | 28.8% |
+| NVDA | 52 | 11 | 21.2% |
+| AAPL | 52 | 16 | 30.8% |
+| MSFT | 51 | 11 | 21.6% |
+| AVGO | 48 | 10 | 20.8% |
+| COIN | 43 | 9 | 20.9% |
+| MU | 42 | 12 | 28.6% |
+| AMD | 41 | 11 | 26.8% |
+| HOOD | 40 | 9 | 22.5% |
+| IWM **(index)** | 40 | 21 | 52.5% |
+| META | 39 | 9 | 23.1% |
+
 ## What each lane is
 
 - **full pool (shipped)** -- every symbol in the book -- the baseline every published figure uses
