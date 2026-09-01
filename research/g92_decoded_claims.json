@@ -1,0 +1,1766 @@
+{
+ "decoded": [
+  {
+   "axis": "exit_scale_out_ladder",
+   "headline": "Across all 8 trade-anatomy cards entry is still the most-flagged component (5/8), but every card also indicts the exit plan \u2014 a consistent 4-leg target ladder (near level, next level, 2R-or-better-level, HTF/median runner) emerges from just 2 cards, and one card names a real structural bug: the runner target sits closer than 2R instead of past it.",
+   "claims": [
+    {
+     "claim": "Entry is the most frequently rejected trade component in the anatomy corpus (5 of 8 cards), ahead of runner (3), be (3), pt1 (2), scale_size (2), stop (1), no_trade (1).",
+     "card_ids": [
+      "QQQ_2024-08-23",
+      "PLTR_2024-09-20",
+      "GOOGL_2024-10-15",
+      "PLTR_2024-10-23",
+      "QQQ_2025-02-25"
+     ],
+     "n_supporting": 5,
+     "n_relevant": 8,
+     "austin_quote": "you entered on an overextended break candle",
+     "strength": "hint",
+     "codeable_form": "tally(answers.wrong contains 'entry') == 5/8; component_rank = [entry:5, runner:3, be:3, pt1:2, scale_size:2, stop:1, no_trade:1] -- NOT-CODEABLE as a rule from 8 cards, report as a rank order only"
+    },
+    {
+     "claim": "He reconstructs a 4-leg target ladder, ordered nearest-to-farthest: PT1 = the immediate day-extreme opposite the entry (LOD on shorts / HOD on longs); PT2 = the next structural level price actually reached; PT3 = 2R (subject to the psych-number/HTF override, see claim on 2R precedence); PT4/runner = a target 'of choice' set from an HTF level or a median/average, not a fixed R-multiple.",
+     "card_ids": [
+      "PLTR_2024-09-20",
+      "GOOGL_2024-10-15"
+     ],
+     "n_supporting": 2,
+     "n_relevant": 3,
+     "austin_quote": "PT1 LOD PT2 was the level which it ended up hitting. PT 3 2r PT 4 runner target of choice based on HTF or medium average and those two never hit.",
+     "strength": "hint",
+     "codeable_form": "targets = [nearest_day_extreme(dir), next_hit_structural_level, apply_2R_override(entry,stop), choose(htf_level, median_average)] -- ordered list, NOT-CODEABLE precisely: 'the level' at PT2 and 'median/average' at PT4 are named but not formulaically defined"
+    },
+    {
+     "claim": "A separate, simpler 2-scale pattern is also described for at least one card: scale out at HOD, then move stop to breakeven or hold it, then take a second partial if price returns to the HOD area, then stop the remainder at breakeven.",
+     "card_ids": [
+      "QQQ_2024-08-23"
+     ],
+     "n_supporting": 1,
+     "n_relevant": 8,
+     "austin_quote": "i would scale out HOD and stop either BE, and/or stop held so maybe a 2nd scale of taking profit when it came back to the HOD area, stopping rest BE",
+     "strength": "single-card",
+     "codeable_form": "NOT-CODEABLE as a general rule from one card -- candidate procedure: on touch(HOD): scale_1(); set_stop(BE or hold); on revisit(HOD_area): scale_2(); set_stop(remaining, BE) -- needs confirmation this isn't card-specific"
+    },
+    {
+     "claim": "The raw 2R price target is overridden when a whole psychological (round-dollar) number or an HTF structural level sits between the entry and the 2R price / is close to the 2R price -- that level is targeted instead of 2R.",
+     "card_ids": [
+      "QQQ_2024-08-26",
+      "QQQ_2025-02-25"
+     ],
+     "n_supporting": 2,
+     "n_relevant": 3,
+     "austin_quote": "2r level is trumped by HTF levels and whole psych number if one is close",
+     "strength": "hint",
+     "codeable_form": "if exists(htf_level_or_round_number between entry and target_2R, within CLOSE_THRESHOLD): target = that_level else: target = target_2R -- CLOSE_THRESHOLD is NOT QUANTIFIED anywhere in either card; open question for Austin (dollars? percent of R? ticks?)"
+    },
+    {
+     "claim": "Scale-size splits should be conditional on whether the day is trending: a flatter split (e.g. 30/30/30/10) when it's trending, versus a front-loaded split (e.g. 50/20/10/10) that takes more size at the first (HOD) target sooner when it's not trending -- but the observable that decides 'trending' is not named.",
+     "card_ids": [
+      "GOOGL_2024-10-15"
+     ],
+     "n_supporting": 1,
+     "n_relevant": 8,
+     "austin_quote": "maybe we decide 30/30/30/10 and 50/20/10/10 based on how well the day is going to run or trend. if day is not trending, we want those HOD exits more money quicker",
+     "strength": "single-card",
+     "codeable_form": "split = trending_split(30,30,30,10) if is_trending(day) else chop_split(50,20,10,10) -- is_trending() is NOT QUANTIFIED: no ADX/HTF-slope/range-expansion metric is named in this or any other card, this is an open question for Austin"
+    },
+    {
+     "claim": "'be' (breakeven handling) is marked wrong on 3 of 8 cards, and in 2 of those 3 it co-occurs with 'entry' also being marked wrong (the third co-occurs with pt1+runner) -- suggesting, but not proving on this sample, that a mistimed entry cascades into a mistimed BE trigger since the BE level is set relative to entry price.",
+     "card_ids": [
+      "QQQ_2024-08-26",
+      "PLTR_2024-09-20",
+      "PLTR_2024-10-23"
+     ],
+     "n_supporting": 2,
+     "n_relevant": 3,
+     "austin_quote": "the entry shouldve been 6 candles earlier, you seem to enter on breaks which is a halucination we never trade that and you know it",
+     "strength": "hint",
+     "codeable_form": "NOT-CODEABLE as a rule -- correlational observation only, from 3 cards; the actual BE trigger logic (scale-then-BE-on-revisit) is only spelled out in a card that does NOT itself mark 'be' wrong (QQQ_2024-08-23), so the mechanism and the complaint don't come from the same card"
+    },
+    {
+     "claim": "He flags a structural bug: the engine places its 'runner' leg closer to entry than the 2R target, when a runner (defined elsewhere in this corpus as the last/farthest leg, sized from an HTF or median-average target) should by construction sit past 2R, not between entry and it -- and separately that the runner's realized R-multiple (~0.41R implied) undershoots the stated mean RR of 2.5R.",
+     "card_ids": [
+      "QQQ_2025-02-25",
+      "QQQ_2024-08-26"
+     ],
+     "n_supporting": 2,
+     "n_relevant": 2,
+     "austin_quote": "runner always the last one why is it in between 2 r?",
+     "strength": "hint",
+     "codeable_form": "assert distance(runner_target, entry) > distance(target_2R, entry) -- currently violated per this card; companion check: assert realized_R(runner_leg) >= mean_RR (2.5) rather than << 1R, per 'RUNNER PLAN - way too tight, if we know our mean RR is 2.5 we shouldnt be targeting .41'"
+    },
+    {
+     "claim": "Cross-referenced against the 154-card corpus, HTF/1h/4h pivot structures are independently named as the right basis for scaling targets, and a scale-out level being too close to a stop-out level is independently flagged as a real-world problem case -- both consistent with, but not new evidence beyond, the anatomy corpus's PT4/runner and PT1/PT2 language.",
+     "card_ids": [
+      "rule_08",
+      "TSM_2026-07-24"
+     ],
+     "n_supporting": 2,
+     "n_relevant": 2,
+     "austin_quote": "we already track PDH and PDL levels as the top 6, what would help is seeing those major levels and pivot structures at 1h and 4h for scaling targets",
+     "strength": "hint",
+     "codeable_form": "NOT-CODEABLE as a standalone rule -- corroborating context only, drawn from a different probe (mentor ballot / entry-timing) than the anatomy corpus"
+    }
+   ],
+   "unsupported_questions": [
+    "What is the actual distance/threshold for a psych-number or HTF level to count as 'close' enough to override the 2R target? (dollars, percent of R, ticks -- never stated)",
+    "What observable(s) decide whether 'the day is trending' for picking between the 30/30/30/10 and 50/20/10/10 scale splits? (ADX, HTF slope, range expansion, something else -- never named)",
+    "In the PT1/PT2/PT3/PT4 ladder, what exactly defines PT2 ('the level which it ended up hitting') when it isn't 2R and isn't the PT1 day-extreme -- is it a fixed rule (e.g. next pivot) or a case-by-case read?",
+    "When BE is set to 'stop held' vs 'stop BE' outright, what decides which of the two he wants -- price behavior, time, or something else?",
+    "Is the 2-scale HOD-then-revisit-HOD-then-BE pattern from QQQ_2024-08-23 a general rule or specific to that one setup? No other card in either corpus describes it."
+   ]
+  },
+  {
+   "axis": "stop placement, and the \"two stop options\" veto",
+   "headline": "Austin's stop is always anchored to a structural reference (the entry candle's body, the opening-range candle's body, or pivot structure) and never a bare price/fixed distance \u2014 and when two such references sit close together (\"two stop options\") the evidence shows a downgrade or a wait-for-a-cleaner-entry, not an automatic veto; a hard \"no\" only appeared when the stop-option complaint was compounded with a separate \"level not respected\" issue.",
+   "claims": [
+    {
+     "claim": "Of the 6 where_is_the_stop cards (answers B, C, none, A, C, none), both 'none' answers are refusals of the trade/entry itself (wrong timing or wrong setup) \u2014 not confusion between the 4 candidate stop prices. NFLX_2025-07-28 is rejected as too late in the day/mid-chop; SOFI_2025-11-07 is rejected because the offered entry isn't the one he'd take (he names 9:46 as 'the good trade' instead). Neither note discusses which of A/B/C/D looks like the right invalidation price.",
+     "card_ids": [
+      "NFLX_2025-07-28",
+      "SOFI_2025-11-07"
+     ],
+     "n_supporting": 2,
+     "n_relevant": 6,
+     "austin_quote": "not an entry too late in the day trading between day chop",
+     "strength": "strong",
+     "codeable_form": "IF stop_pick == 'none': classify as ENTRY_REJECTED (bad timing / wrong candle offered), route to the no-trade / entry-timing classifier \u2014 do NOT treat as an unresolved stop-selection case among A/B/C/D."
+    },
+    {
+     "claim": "Where he states a stop rationale at all, the stop is pinned to a structural anchor \u2014 'the candle entered on', the opening-range candle's body, or pivot structure \u2014 and any numeric adjustment he mentions elsewhere is a few-cents fine-tune around that anchor, never a standalone fixed-distance rule. Within the two assigned files this shows up explicitly on 2 of 6 where_is_the_stop cards plus 1 of 8 trade_anatomy cards (the only one graded wrong on 'stop'); it is heavily corroborated outside the assigned files (7 more instances in austin_marks_v7.jsonl / recovered_reviews.jsonl, e.g. 'stop a little lower at the lower body of the green one candle rule', 'lower the stop a couple cents maybe?') but those are cited as corroboration only, not counted in this claim's denominator.",
+     "card_ids": [
+      "MSFT_2026-08-10",
+      "NVDA_2024-09-03",
+      "IWM_2026-05-05"
+     ],
+     "n_supporting": 3,
+     "n_relevant": 14,
+     "austin_quote": "this and last one have been stop below the candle entered on.",
+     "strength": "hint",
+     "codeable_form": "stop_price = structural_anchor_price(entry_candle_body_extreme | opening_range_candle_body_extreme | nearest_pivot) [+/- a few cents]; reject any candidate stop rule expressed as entry_price - fixed_$_or_point_offset with no structural anchor."
+    },
+    {
+     "claim": "'Two stop options' (his phrase: 'lots of close stop options' / '2 stop loss options') is a real, recurring critique across 3 different decks (is_this_an_s, deep_is_s, trade_anatomy) \u2014 but the 3 instances do not agree it is a hard veto. TSLA_2025-05-16 is explicitly still called 'A trade' (a downgrade from S, not a kill). PLTR_2024-10-23's fix is to wait 6 candles for the cleaner OCR entry, not to skip the day. Only META_2024-09-30 lands on an outright 'no', and that note pairs the stop-option complaint with a second, distinct complaint ('not respecting level') \u2014 so the veto-strength evidence is confounded, not clean.",
+     "card_ids": [
+      "META_2024-09-30",
+      "TSLA_2025-05-16",
+      "PLTR_2024-10-23"
+     ],
+     "n_supporting": 3,
+     "n_relevant": 76,
+     "austin_quote": "its hard to enter a stock when there 2 stop loss options and you wouldve stayed in the trade if you went with the OCR entry 6 candles later.",
+     "strength": "hint",
+     "codeable_form": "AT candidate signal time: stop_refs = {nearby structural stop anchors (candle-body extremes / pivots) within an as-yet-uncalibrated proximity band of the primary anchor}. IF len(stop_refs) >= 2: downgrade one grade (S->A) by default, OR (preferred per PLTR_2024-10-23) defer entry until price action collapses stop_refs to 1 (e.g. wait for the OCR retest). Full veto (no_trade) only IF additionally level_respected == False \u2014 this combination is untested as an independent factor and needs more cards before shipping as a standalone veto."
+    },
+    {
+     "claim": "'i dont like bodies' appears exactly once in the two assigned files, as a hedge inside a sentence that then concedes the body-based stop would have been better anyway. This reads as in tension with (not obviously the same claim as) Austin's own routine elsewhere of pricing stops at a candle's upper/lower body \u2014 but that routine practice comes from other corpora, outside this axis's assigned files, so the tension is noted, not resolved. Separately: nothing here conflicts with the repo's settled close-trigger/wicks-stop-nothing rule \u2014 a body-edge stop (open/close level) is exactly the kind of price a close-based stop test evaluates against, so a candle-body stop reference and a close-trigger fill rule are complementary, not competing.",
+     "card_ids": [
+      "NVDA_2024-09-03"
+     ],
+     "n_supporting": 1,
+     "n_relevant": 1,
+     "austin_quote": "those 3 green candles even though i dont like bodies that wouldve been a better stop.",
+     "strength": "single-card",
+     "codeable_form": "NOT-CODEABLE from this evidence alone. Do not encode a general 'avoid candle-body stops' rule \u2014 this is one hedge on one card, and it does not name what alternative he'd have preferred instead of the body. Needs a direct question to Austin."
+    }
+   ],
+   "unsupported_questions": [
+    "Is 'two stop options' ever a standalone veto (no trade) on its own, or does it always require a second problem (like 'level not respected') to actually kill the trade? All 3 cards found point different directions (downgrade / wait for a cleaner entry / one compounded 'no') and none isolates the stop-option factor alone.",
+    "What is the proximity threshold for 'two stop options' \u2014 is there a cents/percent tolerance like the zero-tolerance retest rule (g87), or is it purely an eye-test judgment with no fixed unit?",
+    "In NVDA_2024-09-03, what does 'i dont like bodies' actually refer to \u2014 a general aversion to body-based stops (which would contradict his routine body-anchored stops seen elsewhere), or something specific to that chart (e.g. he'd have preferred a wick or a level instead)?",
+    "For the two 'none' answers in where_is_the_stop (NFLX_2025-07-28, SOFI_2025-11-07), should a future stop-pick UI even offer 4 stop-price choices when the real answer is 'this isn't the entry' \u2014 i.e. should entry-validity be asked before stop-selection, not folded into the same question?"
+   ]
+  },
+  {
+   "axis": "Displacement",
+   "headline": "Displacement is real, load-bearing vocabulary Austin uses unprompted across ~20 cards to justify S-vs-A entry grading, but the one probe section built specifically to test it (8 cards, all \"no\") is broken \u2014 zero contrast cases, and Austin himself flagged he couldn't trust it \u2014 so those 8 rows measure the deck, not him; the one usable signal from that section is his own definition sentence on card 8.",
+   "claims": [
+    {
+     "claim": "The dedicated 8-card 'displacement' probe section returned an identical answer (\"no\") on 8/8 cards, with notes filled in on only 1 of 8 \u2014 and on that 8th card Austin explicitly says the pattern is making him doubt the probe, not just the charts. This is evidence the probe section is broken (no contrast/'yes' cases were ever shown, so it never tested whether he CAN recognize displacement), not evidence about his judgment.",
+     "card_ids": [
+      "AVGO_2026-06-12",
+      "GOOGL_2025-06-24",
+      "NVDA_2026-02-27",
+      "SOFI_2026-01-16",
+      "UBER_2026-06-16",
+      "MU_2025-09-05",
+      "TSM_2025-09-05",
+      "COIN_2026-07-24"
+     ],
+     "n_supporting": 8,
+     "n_relevant": 8,
+     "austin_quote": "displaced and closed into the levels at 9:45, but these past 8 make me anxious you cant remember what it means. just one candle closes away and displaces itsself from other candles in some form, and the level in question",
+     "strength": "rule",
+     "codeable_form": "NOT-CODEABLE AS A TRADING RULE \u2014 this is a finding about instrument design, not price action. Predicate: probe_section_is_diagnostic(section) := section contains at least one positive AND one negative labeled example. The displacement section fails this (8/8 negative), so any per-card variance (or lack of it) inside it cannot be attributed to Austin's concept of displacement."
+    },
+    {
+     "claim": "Austin's own definition of displacement, stated once, in reaction to the broken probe: a single candle (read by us as the signal/entry candle) both (a) closes decisively away from \u2014 i.e. stands apart from \u2014 the immediately preceding cluster of candles, and (b) does so relative to the specific level being tested, with no fixed metric for how far/how many candles.",
+     "card_ids": [
+      "COIN_2026-07-24"
+     ],
+     "n_supporting": 1,
+     "n_relevant": 8,
+     "austin_quote": "just one candle closes away and displaces itsself from other candles in some form, and the level in question",
+     "strength": "single-card",
+     "codeable_form": "is_displaced(c, level, lookback=N) := (c.close is beyond `level` in the trade direction \u2014 a decisive close through the level, not a wick-only touch) AND (c's range/body does not meaningfully overlap the range of the preceding N candles, i.e. c visually separates from that recent cluster). MY INFERENCES, not his words: (1) 'one candle' = the signal/entry candle specifically, not any candle in the sequence \u2014 inferred from how the term is used elsewhere ('9:46 ... no displacement', tied to a specific entry minute); (2) the comparison set 'other candles' = a small lookback (I guessed N=3-5) based on his separate '2 candle distraction' language on NFLX_2025-05-07; (3) the non-overlap/'stands apart' mechanism for 'in some form' is a guess \u2014 he explicitly declines to give a metric, and that refusal echoes his refusal on retest tolerance ('you stress test and find the best metric yourself', rule_01 ballot) \u2014 so a hardcoded threshold here is an engineering choice he never made, not a rule extracted from him."
+    },
+    {
+     "claim": "In at least 5 cards, spontaneously (not inside the dedicated probe), 'no displacement' is the explicit stated reason an entry gets graded 'A' (his ladder) rather than S \u2014 the clearest is ACHR_2025-06-27, where he grades the whole card S but explicitly attributes it to a LATER entry, and downgrades the earlier entry to A by name because it lacks displacement.",
+     "card_ids": [
+      "AVGO_2025-03-28",
+      "MSFT_2026-07-28",
+      "ACHR_2025-06-27",
+      "AMZN_2025-10-07",
+      "AMZN_2025-11-21"
+     ],
+     "n_supporting": 5,
+     "n_relevant": 113,
+     "austin_quote": "9:39 A entry no displacement, S entry at 10",
+     "strength": "hint",
+     "codeable_form": "downgrade_to_A(entry) := is_S_candidate(entry) AND NOT is_displaced(entry.candle, entry.level) \u2014 used as a NECESSARY condition for the entry-level downgrade in these 5 instances. n_relevant=113 is every card outside the dedicated displacement section where an individual entry's quality is discussed in prose (take_the_trade=39 + deep_is_s=60 + is_this_an_s=8 + htf_agree=6); 5/113 is a real but sparse signal \u2014 call this a hint, not a rule, per house rule against overselling."
+    },
+    {
+     "claim": "In a broader set of 6 cards, 'no displacement' (or the structured why_not:no_displacement tag) is cited as a reason the whole card is NOT an S / not worth taking, without specifying A vs C.",
+     "card_ids": [
+      "AMD_2025-12-23",
+      "BABA_2025-01-15",
+      "HOOD_2024-11-15",
+      "MU_2026-03-18",
+      "ACHR_2026-06-30",
+      "AAPL_2025-03-05"
+     ],
+     "n_supporting": 6,
+     "n_relevant": 113,
+     "austin_quote": "long entry has no displacement so not S unless you knew",
+     "strength": "hint",
+     "codeable_form": "not_S(card) := ... no_displacement is one of the cited reasons (sometimes alone \u2014 AMD_2025-12-23 structured why_not:['no_displacement'] \u2014 sometimes alongside chop/level_not_respected \u2014 HOOD_2024-11-15). NOT-CODEABLE precisely as a standalone gate: in 5 of these 6 it's paired with or ambiguous against other named problems (chop, pivot-not-level, poor structure), so it functions as one of several disqualifiers, not an isolated veto rule."
+    },
+    {
+     "claim": "Direct contradiction, flagged by Austin himself: on AMZN_2025-11-21 he explicitly says his own displacement-based downgrade call contradicts what he said on a different AMZN card, and grades both entries A 'because of no displacement' anyway, on what he calls a 'range chop day of hell'.",
+     "card_ids": [
+      "AMZN_2025-11-21"
+     ],
+     "n_supporting": 1,
+     "n_relevant": 1,
+     "austin_quote": "this ex contradicts what i said about 22 amzn, because two losers on either side 9:35, 9:41, but both A trades because of no displacement, but that was a range chop day of hell",
+     "strength": "single-card",
+     "codeable_form": "NOT-CODEABLE \u2014 this is Austin flagging his own rule application as inconsistent across two similar cards, in real time, inside the marks. It is evidence the displacement\u2192A rule is applied with judgment/context (here: day regime, 'range chop') rather than mechanically, and that even he isn't fully confident it was applied the same way twice."
+    },
+    {
+     "claim": "Resolution of the apparent S-vs-'no displacement' contradiction: displacement functions as a SUFFICIENT confluence for S, not a strictly NECESSARY one \u2014 on 2 cards graded S he explicitly writes 'no displacement' about the entry candle but immediately supplies a named alternate confluence (OCR hold, wick-reclaim-of-level confluence, or strong PA) as the substitute that earns the S anyway.",
+     "card_ids": [
+      "NVDA_2025-06-03",
+      "PLTR_2025-07-17"
+     ],
+     "n_supporting": 2,
+     "n_relevant": 5,
+     "austin_quote": "10:04 no displacement but holding ocr at 9:56 and strong PA above the candles earlier and in the wick of those levels",
+     "strength": "hint",
+     "codeable_form": "is_S(entry) := is_displaced(entry) OR has_compensating_confluence(entry) where compensating_confluence in {ocr_hold, wick_reclaim_of_level, strong_PA_above_recent_candles}. n_relevant=5 = the S-graded deep_is_s cards where he discusses the entry's displacement status in prose at all (IWM_2026-05-12, AVGO_2025-02-20, ACHR_2025-06-27, NVDA_2025-06-03, PLTR_2025-07-17); 3 of the 5 show displacement present and consistent with the S grade, 2 of the 5 (counted here) show it explicitly absent yet still graded S via a named substitute \u2014 so displacement is the modal/default path to S, not the only one. NOT-CODEABLE precisely: no stated rule for how many substitute confluences are required, or whether they're weighted equally to displacement itself."
+    }
+   ],
+   "unsupported_questions": [
+    "What exact lookback window (\"other candles\") and what metric (\"in some form\") define displacement numerically \u2014 he explicitly declines to give one, mirroring his refusal to give a retest-tolerance metric.",
+    "Is displacement evaluated only on the entry/signal candle, or can an earlier candle in the sequence satisfy it (NFLX_2025-05-07: \"i belive displacement happens before\")?",
+    "When displacement is absent, is there a minimum required combination of substitute confluences (OCR hold / wick reclaim / strong PA / HTF bias), or does any one of them suffice?",
+    "Is Jdub's rule_14 framing (\"primary downgrade [from S to A] is no displacement and has a clear trend\") something Austin wants shipped as a literal engine rule, or just agreement with the general shape of it in a ballot exercise?",
+    "Does 'diss' (AVGO_2025-02-20: \"holds that one candle diss into it a little\") mean displacement, or something else \u2014 the same card also uses the full word 'displacement' separately, so the two may not be synonyms.",
+    "Is the AMZN_2025-11-21 self-flagged contradiction resolved by day regime (his own explanation: 'range chop day of hell'), or is it simply inconsistent application that a codeable rule cannot capture?"
+   ]
+  },
+  {
+   "axis": "entry_timing",
+   "headline": "Where a comparable engine timestamp exists, Austin's named entry is earlier than the engine's in 10 of 12 cases (1 to 58 minutes earlier); the two apparent exceptions turn out to be a different question type or a different complaint (break-vs-retest), not a \"too early\" complaint \u2014 so the lateness asymmetry is total in the strict sense.",
+   "claims": [
+    {
+     "claim": "Strict, literal-timestamp deltas (his named minute vs. the engine's field in the SAME row): engine is later in all 7 cases. Deltas (his minus engine, minutes) = -2, -10, -3, -13, -58, -19, -1. Median = -10 min, mean = -15.1 min, range -58 to -1 (spread 57 min).",
+     "card_ids": [
+      "TSM_2025-11-03",
+      "HOOD_2025-12-23",
+      "TSLA_2025-03-25",
+      "MSFT_2026-08-10",
+      "SOFI_2025-11-07",
+      "GOOGL_2024-10-15",
+      "QQQ_2025-02-25"
+     ],
+     "n_supporting": 7,
+     "n_relevant": 34,
+     "austin_quote": "looking for a reversal and inbetween a lot of stuff. the good trade here is 9:46",
+     "strength": "strong",
+     "codeable_form": "For each row carrying both an engine timestamp field (setup_et/entry_et/dot_A_et/dot_B_et/et) and a literal clock-time Austin names as his entry: delta_min = austin_minute - engine_minute. Observed set: {TSM_2025-11-03: dot_B_et 09:46 vs 9:44 -> -2; HOOD_2025-12-23: setup_et 09:56 vs 9:46 -> -10; TSLA_2025-03-25: setup_et 09:43 vs 9:40 -> -3; MSFT_2026-08-10: entry_et 09:46 vs 9:33 -> -13; SOFI_2025-11-07: entry_et 10:44 vs 9:46 -> -58; GOOGL_2024-10-15: et 10:02 vs 9:43 -> -19; QQQ_2025-02-25: et 09:47 vs 9:46 -> -1}. n_relevant=34 is every row in the two files carrying an engine timestamp field at all (the pool that COULD have produced a comparable literal delta); only 7 did."
+    },
+    {
+     "claim": "Adding the 4 cases where he states the offset in candle-count language rather than a literal clock time ('N candles earlier/later', 1-min candles so N candles = N minutes) gives 10 of 12 comparable cards pointing the same direction (engine late). Combined n=10 late: median -6.5 min, mean -12.2 min, range -58 to -1.",
+     "card_ids": [
+      "TSM_2025-11-03",
+      "UBER_2025-10-21",
+      "HOOD_2025-12-23",
+      "TSLA_2025-03-25",
+      "SPCX_2026-08-03",
+      "MSFT_2026-08-10",
+      "SOFI_2025-11-07",
+      "GOOGL_2024-10-15",
+      "QQQ_2025-02-25",
+      "PLTR_2024-09-20"
+     ],
+     "n_supporting": 10,
+     "n_relevant": 12,
+     "austin_quote": "a entry wrong, b candle right but entry is 3 candles earlier",
+     "strength": "strong",
+     "codeable_form": "Same as above but also parse notes text for the pattern '(\\d+) candles? (earlier|later)' and apply that offset (in minutes, assuming 1-min bars) to the row's engine timestamp field. UBER_2025-10-21: dot_B_et 10:24, '3 candles earlier' -> -3. SPCX_2026-08-03: setup_et 09:44, '3 candles earlie[r]' -> -3. PLTR_2024-09-20 (trade_anatomy): et 10:11, 'entry shouldve been 6 candles earlier' -> -6. n_relevant=12 is every row in either file where he named ANY comparable minute or candle-offset alongside an engine timestamp (the full denominator for this axis's minute-level claims)."
+    },
+    {
+     "claim": "\"As candle forming\" (or CAPS variants) appears 11 times across the two files and is used consistently to mean an intrabar fill during the signal candle's formation, not waiting for that candle's close \u2014 corroborating the zero-tolerance limit-at-the-level finding already logged in CLAUDE.md (g87/g88). One card makes the close-vs-forming contrast explicit and even notes that a clean candle-close entry is sometimes fine.",
+     "card_ids": [
+      "TSM_2025-11-03",
+      "NVDA_2024-12-24",
+      "IWM_2026-05-05",
+      "SOFI_2025-11-21",
+      "QQQ_2024-09-25",
+      "MU_2025-09-23",
+      "UBER_2026-04-20",
+      "TSM_2026-07-24",
+      "NVDA_2025-06-03",
+      "IWM_2025-08-15",
+      "PLTR_2024-10-23"
+     ],
+     "n_supporting": 11,
+     "n_relevant": 88,
+     "austin_quote": "AS CANDLE FORMING, see on that candle close you get a bad entry? and its hard to enter a stock when there 2 stop loss options and you wouldve stayed in the trade if you went with the OCR entry 6 candles later.",
+     "strength": "strong",
+     "codeable_form": "NOT-CODEABLE AS A TIMESTAMP RULE DIRECTLY \u2014 but codeable as a fill-mode flag: entry_fill_mode = 'intrabar_limit_at_level' (fires while the signal candle is still open, at the level, per the already-shipped zero-tolerance limit finding) vs current 'candle_close' mode. n_relevant=88 is every card in the two files where he named ANY specific entry minute at all (the pool where this phrase could plausibly have appeared); it appeared in 11 of those. Within the 11 uses, meaning is 11/11 consistent (no card uses the phrase to mean anything other than an intrabar/pre-close fill), which is why the claim on MEANING is rated strong despite the low base rate of the phrase itself."
+    },
+    {
+     "claim": "Two distinct complaints exist and are not the same thing: (a) pure lateness on an otherwise-correct signal/candle, and (b) the engine anchoring to the BREAK candle instead of the RETEST (OCR) candle \u2014 a structural/mechanism complaint, not just a minute-count complaint. UBER_2025-10-21 proves they're separable ('b candle right but entry is 3 candles earlier' = correct candle, wrong minute only). The mentor-ballot note on rule_03 explicitly frames (a) as a symptom of (b): lateness is called a bug whose fix is entering during the retest.",
+     "card_ids": [
+      "UBER_2025-10-21",
+      "HOOD_2025-12-23",
+      "TSLA_2025-03-25",
+      "QQQ_2024-08-23",
+      "PLTR_2024-09-20",
+      "PLTR_2024-10-23",
+      "rule_03"
+     ],
+     "n_supporting": 6,
+     "n_relevant": 34,
+     "austin_quote": "sounds like the same thing i always say, but engine entering late is a bug, should always be entering while the restest is occuring, just always need that displacement for S trades",
+     "strength": "hint",
+     "codeable_form": "Two separate flags on each graded miss: is_late (entry_et later than Austin's named/offset minute) and is_break_not_retest (Austin's notes name 'break'/'break candle'/'no break and retest' as the reason, i.e. the engine anchored its entry to the initial level-break bar rather than the subsequent retest/OCR bar). Only 6 of the 34 timestamp-bearing cards name the break-vs-retest mechanism explicitly, so this is a hint on cause, not a settled rule; UBER_2025-10-21 is the cleanest case showing lateness can occur with NO break/retest complaint (pure timing miss on a correctly identified retest), so the two flags must stay independent, not collapsed into one."
+    },
+    {
+     "claim": "No card in either file has Austin saying the engine entered too early on a signal he agreed was valid. Of the 12 comparable cards, the only two with a positive (engine-earlier) delta are not true 'too early' complaints: COIN_2026-07-24 answers a different question (when displacement/confirmation happened, not his preferred entry) and PLTR_2024-10-23 is a break-vs-retest complaint (he wants the LATER retest candle instead of the engine's earlier break candle) \u2014 the asymmetry (engine late, never early) holds for every card where he actually states an entry preference.",
+     "card_ids": [
+      "COIN_2026-07-24",
+      "PLTR_2024-10-23"
+     ],
+     "n_supporting": 0,
+     "n_relevant": 12,
+     "austin_quote": "displaced and closed into the levels at 9:45, but these past 8 make me anxious you cant remember what it means",
+     "strength": "hint",
+     "codeable_form": "NOT-CODEABLE as a positive rule (absence of evidence, not a rule to encode) \u2014 but usable as a guardrail: any future 'engine too early' claim must be checked against whether the miss is (a) a genuine preferred-entry-earlier-than-engine statement, versus (b) a displacement/confirmation-timing note or (c) a break-vs-retest structural note, before it's counted, because both of the only two positive-delta cards found here were (b) or (c), not (a)."
+    }
+   ],
+   "unsupported_questions": [
+    "Is the engine's lateness ALWAYS caused by anchoring to the break candle instead of the retest (as rule_03 claims), or are there independent, unexplained-cause late entries? MSFT_2026-08-10, SOFI_2025-11-07, GOOGL_2024-10-15 and QQQ_2025-02-25 show clear lateness with no break/retest language at all in the note \u2014 the marks can't settle whether that's because the cause genuinely differs or because he just didn't bother restating a rule he'd already stated elsewhere.",
+    "Does 'as candle forming' mean a limit resting at the level for every setup, or only for some (BABA_2026-05-06 says candle-close entries are sometimes fine and 'look cleaner')? The 11 cards don't establish which setups tolerate a close-wait and which require the intrabar fill.",
+    "Are the 1-to-58-minute strict deltas (n=7) and the 3-minute 'N candles' deltas (n=4) really the same underlying phenomenon at different scales, or is the 58-minute SOFI outlier a different failure mode (e.g. the engine missing an early setup entirely and only firing on a much later, unrelated one)? The marks give the number but not the mechanism.",
+    "Do these 1-minute candle assumptions (used to convert 'N candles earlier' into minutes) hold across all decks reviewed here, or does any deck use a different bar timeframe that would change the candle-to-minute conversion?",
+    "Is the true base rate of the 'as candle forming' entry style higher than 11/88 suggests, given that many of the other 77 minute-naming cards may simply not have needed to distinguish forming-vs-close because the question asked (e.g. 'which signal', 'where is the stop') didn't call for it?"
+   ]
+  },
+  {
+   "axis": "veto_vocabulary",
+   "headline": "\"Chop\" fires in 15/22 (68%) of his structured refusals and is entangled with \"level_not_respected\" (co-occurs in 8 of the 9 level_not_respected cards) rather than being an independent reason \u2014 but the free text shows \"chop\" is at least 3-4 distinct chart states his checkbox conflates into one word, and neither \"exhausted\" (candle count) nor \"late\" (wall-clock time) has a threshold anywhere in the corpus.",
+   "claims": [
+    {
+     "claim": "Of the 22 cards he structurally refused with a why_not tag (17 in take_the_trade, 5 in is_this_an_s), chop is checked more than any other reason (15/22, 68%); level_not_respected is second (9/22, 41%); late and exhausted tie for third (4/22 each, 18%); no_displacement and no_retest are rare (2/22 and 1/22).",
+     "card_ids": [
+      "COIN_2024-10-29",
+      "GOOGL_2025-03-14",
+      "META_2025-05-16",
+      "MU_2026-03-18",
+      "MARA_2025-10-01",
+      "AMD_2025-04-23",
+      "MSFT_2026-01-05",
+      "HOOD_2024-11-15",
+      "META_2025-02-13",
+      "TSLA_2026-02-20",
+      "HOOD_2025-06-03",
+      "SPY_2025-08-06",
+      "ORCL_2024-11-06",
+      "CRM_2026-05-15",
+      "PLTR_2024-09-13"
+     ],
+     "n_supporting": 15,
+     "n_relevant": 22,
+     "austin_quote": "No consistent pattern of candles. At first, there's large red candles, small green candles, and then the breakout happens with the same large red candles. so maybe downgrade but i do see the s your getting at",
+     "strength": "rule",
+     "codeable_form": "P(chop in why_not | card refused) \u2248 0.68 (15/22); if implementing a veto-reason ranker, 'chop' must be the primary bucket, not one of seven equal-weight tags."
+    },
+    {
+     "claim": "level_not_respected almost never fires alone \u2014 it co-occurs with chop in 8 of the 9 cards where he checked it. He is using them as one entangled judgment about level behavior, not two independent failure modes.",
+     "card_ids": [
+      "COIN_2024-10-29",
+      "GOOGL_2025-03-14",
+      "META_2025-05-16",
+      "HOOD_2024-11-15",
+      "AMD_2025-04-23",
+      "SPY_2025-08-06",
+      "ORCL_2024-11-06",
+      "CRM_2026-05-15"
+     ],
+     "n_supporting": 8,
+     "n_relevant": 9,
+     "austin_quote": "9:40 looks good on paper but look at the crazy choppines as previoiusly it closed below orl",
+     "strength": "strong",
+     "codeable_form": "P(chop in why_not | level_not_respected in why_not) = 8/9 \u2248 0.89 \u2192 in a rule engine, treat level_not_respected as a subtype of the chop veto (chop-at-a-level), not a second independent feature that adds separate signal."
+    },
+    {
+     "claim": "Chop-state A \u2014 level-chop: price oscillates through/around a specific level without a decisive break, distinct from generic range chop away from any level.",
+     "card_ids": [
+      "NVDA_2025-09-04",
+      "AAPL_2025-03-05",
+      "META_2024-12-12",
+      "MU_2026-03-18"
+     ],
+     "n_supporting": 4,
+     "n_relevant": 30,
+     "austin_quote": "too much chop around levels",
+     "strength": "hint",
+     "codeable_form": "NOT-CODEABLE precisely: flag CHOP_AT_LEVEL when price crosses a level repeatedly without a close beyond it for N candles \u2014 N is never given, so this can be detected qualitatively (repeated level touches, no decisive close) but not thresholded from these marks."
+    },
+    {
+     "claim": "Chop-state B \u2014 post-displacement collapse: a real breakout/displacement candle fires, then the follow-through dies into unreadable candles before any retest forms, so the entry window closes even though the setup 'looked' real.",
+     "card_ids": [
+      "PLTR_2024-09-13",
+      "AAPL_2024-10-23"
+     ],
+     "n_supporting": 2,
+     "n_relevant": 30,
+     "austin_quote": "strong PA then a lot of chop and no clear entries",
+     "strength": "hint",
+     "codeable_form": "NOT-CODEABLE precisely: flag CHOP_POST_DISPLACEMENT when a qualifying displacement candle is followed by K candles that give back range without a clean retest structure \u2014 'clean retest' is not defined numerically in these two cards."
+    },
+    {
+     "claim": "Chop-state C \u2014 range/consolidation wall: price never leaves a defined high/low band all morning, so there's no breakout attempt to even judge, described as a 'wall' rather than noise around a break.",
+     "card_ids": [
+      "MSFT_2026-01-05",
+      "MARA_2025-10-01"
+     ],
+     "n_supporting": 2,
+     "n_relevant": 30,
+     "austin_quote": "you wanted 10:28 entry i bet but hod is a consolidation wall and too hard to target",
+     "strength": "hint",
+     "codeable_form": "Partially codeable: CHOP_RANGE_WALL as 'price contained inside a fixed high/low band since open with no decision-level test' is a measurable band-containment check; the 'too hard to target' judgment on top of it is not codeable from these two cards."
+    },
+    {
+     "claim": "Chop-state D \u2014 trending-but-choppy: an HTF/session directional bias exists, but individual candles are inconsistent enough that no clean entry candle forms within the trend, so he sits out despite having a bias.",
+     "card_ids": [
+      "MARA_2025-11-21",
+      "AMD_2025-04-23",
+      "AMD_2025-12-15"
+     ],
+     "n_supporting": 3,
+     "n_relevant": 30,
+     "austin_quote": "9:40, everything else a sit out because of the down trend choppiness",
+     "strength": "hint",
+     "codeable_form": "NOT-CODEABLE: 'choppy within a trend' has no stated metric (e.g. body-to-range ratio, ATR) distinguishing it from state A or C in these cards."
+    },
+    {
+     "claim": "Chop is not always a hard veto \u2014 on one card he checked the chop why_not tag while still marking the trade a yes, treating chop as a downgrade note rather than a disqualifier.",
+     "card_ids": [
+      "CRM_2025-10-09"
+     ],
+     "n_supporting": 1,
+     "n_relevant": 16,
+     "austin_quote": "No consistent pattern of candles. At first, there's large red candles, small green candles, and then the breakout happens with the same large red candles. so maybe downgrade but i do see the s your getting at",
+     "strength": "single-card",
+     "codeable_form": "NOT enough data to codify 'chop downgrades but doesn't veto' as a rule \u2014 this is 1 card against 15 chop-tagged outright refusals; do not build a severity-scaled chop penalty from this alone."
+    },
+    {
+     "claim": "He never states a repeatable candle-count threshold for 'exhausted'/'too many candles in between' anywhere in the two probe files. The only card with an actual number is a trade_anatomy critique, not a why_not tag, and it is a single instance.",
+     "card_ids": [
+      "HOOD_2025-11-07",
+      "UBER_2026-08-11",
+      "PLTR_2024-09-20",
+      "GOOGL_2024-10-01",
+      "PLTR_2024-09-13"
+     ],
+     "n_supporting": 1,
+     "n_relevant": 5,
+     "austin_quote": "10:01 couldve been entry i woudlve been faked out, but the wick on it was too much and have to push through 10 candles of consolidation. the entry shouldve been 6 candles earlier, you seem to enter on breaks which is a halucination we never trade that and you know it.",
+     "strength": "single-card",
+     "codeable_form": "NOT-CODEABLE as a threshold: the one numeric data point (rejects a 10-candle-deep entry, wants one ~6 candles earlier, implying ~4 acceptable) is a single card in a different section (trade_anatomy, not why_not) and cannot be generalized into 'veto if retest occurs more than K candles after break.' The four why_not='exhausted' cards give zero numbers ('too many candles in between', 'its been too long') \u2014 largest accepted and smallest rejected N cannot be stated because N is never given on either side."
+    },
+    {
+     "claim": "There is no clean wall-clock cutoff for 'late.' The latest accepted S/A trade in the corpus is 10:40 (flagged as late but still taken), while every card tagged 'late' as a refusal reason sits at 10:34 or after \u2014 but rejections for unrelated reasons (chop, no displacement) happen just as often at 9:34-10:13, so time alone does not predict the verdict.",
+     "card_ids": [
+      "BABA_2025-03-14",
+      "UBER_2026-08-11",
+      "UBER_2026-04-20",
+      "NFLX_2025-07-28",
+      "GOOGL_2024-10-01",
+      "MARA_2025-10-01"
+     ],
+     "n_supporting": 6,
+     "n_relevant": 6,
+     "austin_quote": "not an entry too late in the day trading between day chop",
+     "strength": "hint",
+     "codeable_form": "NOT-CODEABLE as `if entry_time > T: veto`. Accepted-with-caveat exists at 10:40 (BABA_2025-03-14, 'but late in day'); explicit late-refusals sit at 10:34 (UBER_2026-08-11, tagged exhausted not late), 10:45 (UBER_2026-04-20), and 10:48 (NFLX_2025-07-28, where_is_the_stop section). A card at 10:28 (MARA_2025-10-01) is refused for consolidation-wall reasons with no late tag at all. The data supports a soft zone (roughly 10:30-10:48 is where lateness starts getting mentioned) but not a hard cutoff, and n is small (6 cards total touch 'late' language)."
+    },
+    {
+     "claim": "25 of the 25 refusals in the deep_is_s section (the largest refusal pool in the file) carry zero structured why_not tags \u2014 that field is simply absent from the probe template there. All of his reasoning for those 25 refusals lives only in free-text notes.entry, not in any checkbox.",
+     "card_ids": [
+      "SPY_2025-07-16",
+      "TSLA_2025-09-26",
+      "META_2026-08-06",
+      "COIN_2025-05-22",
+      "AMD_2026-04-16",
+      "NVDA_2025-09-04",
+      "MSFT_2024-12-18",
+      "AAPL_2025-03-05",
+      "AVGO_2025-06-04",
+      "SPY_2025-04-14",
+      "ACHR_2026-05-08",
+      "INTC_2025-01-29",
+      "QQQ_2024-11-08",
+      "MSFT_2025-06-13",
+      "HOOD_2024-10-23",
+      "AAPL_2026-01-06",
+      "NVDA_2024-11-21",
+      "TSLA_2025-05-16",
+      "COIN_2026-03-09",
+      "ACHR_2026-06-30",
+      "META_2024-12-12",
+      "MARA_2025-11-17",
+      "CRM_2025-08-28",
+      "CRM_2025-08-21"
+     ],
+     "n_supporting": 25,
+     "n_relevant": 25,
+     "austin_quote": "too much chop around levels",
+     "strength": "rule",
+     "codeable_form": "N/A - instrument observation, not a trading rule: any downstream analysis of deep_is_s refusal reasons must parse notes.entry text (no structured taxonomy exists there), and the take_the_trade/is_this_an_s why_not tallies above cover only 22 of the corpus's 47 total refused cards (17+5+25)."
+    },
+    {
+     "claim": "A recurring but minor veto driver, distinct from chop/level/late, is ambiguous risk definition: the setup presents two plausible stop-loss placements/entries and he can't commit to one.",
+     "card_ids": [
+      "META_2024-09-30",
+      "PLTR_2024-10-23",
+      "TSLA_2025-05-16",
+      "ACHR_2026-05-08"
+     ],
+     "n_supporting": 4,
+     "n_relevant": 47,
+     "austin_quote": "not respecting level, 2 stop losses to choose from",
+     "strength": "hint",
+     "codeable_form": "Partially codeable: flag AMBIGUOUS_STOP when the level-detection logic surfaces >=2 plausible stop candidates for one setup \u2014 whether that count is already computable in the current codebase is unverified here; only 4 cards mention this across 47 total refusals."
+    }
+   ],
+   "unsupported_questions": [
+    "Is there an actual candle-count number he'd commit to for 'exhausted' if asked directly (e.g. 'reject if retest happens more than N candles after the break')? The marks show a single 10-candles-rejected/6-candles-earlier-accepted data point and nothing else numeric.",
+    "Is 'late' really about wall-clock time, or is it a proxy for 'the index/HTF trend has already played out by then' \u2014 several late-tagged cards also mention downtrend/consolidation context, so cause vs. correlation isn't settled.",
+    "Is 'chop' formally one veto reason with 'level_not_respected' as a symptom he sometimes tags separately, or are they meant to be two independently meaningful checkboxes that he's just applying inconsistently? The 89% co-occurrence rate doesn't distinguish these.",
+    "Why does chop sometimes downgrade an accepted trade (CRM_2025-10-09) instead of vetoing it outright \u2014 is there a severity threshold (e.g. how much of the pattern is chop vs. clean) he's applying intuitively?",
+    "Since deep_is_s (25 refusals, the largest pool) has no why_not checkbox at all, would he actually tag those 25 cards the same way if given the same taxonomy, or does the free-text-only format change what he chooses to mention?",
+    "Does 'ambiguous stop / two stop options' function as its own veto reason in his head, or is it just a restatement of level_not_respected/chop when he can't tell which level actually mattered?"
+   ]
+  },
+  {
+   "axis": "WHAT MAKES AN S",
+   "headline": "No single trigger is sufficient for S \u2014 chop (15/22 \"no\" reasons) and level-disrespect (9/22) are his dominant disqualifiers, BR+OCR confluence is a correlated bonus he still overrides in both directions (rejects 4 of 5 engine-labeled BR+OCR setups; grants S twice while writing \"no displacement\"), and this deck's 58.3% S rate is a pre-filtered sample, not the true daily selectivity target.",
+   "claims": [
+    {
+     "claim": "Base rate: on the 60-card deep_is_s deck (g83-deep-batch), Austin graded S on 35/60 cards (58.3%). This is NOT the classifier's true target selectivity \u2014 the deck is a pre-filtered set of already-flagged candidates, not the raw ~18.6 candidates/day CLAUDE.md describes.",
+     "card_ids": [
+      "MU_2025-09-23",
+      "PLTR_2026-02-05",
+      "SPY_2025-07-16",
+      "INTC_2025-04-29",
+      "TSM_2026-04-21",
+      "TSLA_2025-09-26",
+      "META_2026-08-06",
+      "TSM_2026-04-24",
+      "IWM_2026-05-12",
+      "COIN_2025-05-22",
+      "UBER_2026-04-20",
+      "ORCL_2025-06-03",
+      "SOFI_2025-09-05",
+      "AMD_2026-04-16",
+      "NVDA_2025-09-04",
+      "SPY_2025-10-28",
+      "MSFT_2024-12-18",
+      "AAPL_2025-03-05",
+      "INTC_2026-03-30",
+      "AVGO_2025-06-04",
+      "SPY_2025-04-14",
+      "ACHR_2026-05-08",
+      "UBER_2026-03-19",
+      "QQQ_2025-08-25",
+      "IWM_2025-07-03",
+      "TSM_2026-07-24"
+     ],
+     "n_supporting": 35,
+     "n_relevant": 60,
+     "austin_quote": "so we need to make note of that or just be finding our S trade edge as a smaller sample since were looking for 1 and done S trades a day.",
+     "strength": "strong",
+     "codeable_form": "count(is_s==True in deep_is_s_deck)/count(deep_is_s_deck) == 35/60 == 0.583 on this specific deck; do not treat this fraction as the live-engine selectivity target since the deck's cards are already pre-filtered candidates."
+    },
+    {
+     "claim": "DOWNGRADE-ONLY: 'chop' (inconsistent, alternating small-body candles / no clean directional run) is Austin's single most common reason to reject a setup \u2014 named in 15 of 22 cards where he gave a coded reason for saying no.",
+     "card_ids": [
+      "COIN_2024-10-29",
+      "GOOGL_2025-03-14",
+      "META_2025-05-16",
+      "MU_2026-03-18",
+      "AMD_2025-04-23",
+      "MSFT_2026-01-05",
+      "MARA_2025-10-01",
+      "AMD_2025-07-09",
+      "HOOD_2024-11-15",
+      "META_2025-02-13",
+      "TSLA_2026-02-20",
+      "CRM_2026-05-15",
+      "HOOD_2025-06-03",
+      "SPY_2025-08-06",
+      "ORCL_2024-11-06",
+      "PLTR_2024-09-13",
+      "MARA_2025-11-17"
+     ],
+     "n_supporting": 15,
+     "n_relevant": 22,
+     "austin_quote": "chopping in different areas everywhere",
+     "strength": "rule",
+     "codeable_form": "IF candle_sequence since the level break shows non-monotonic small-body alternation (chop_flag==True) THEN veto S. Exception exists: CRM_2025-10-09 had explicit chop yet was still graded S with a self-described 'maybe downgrade' caveat, so this is a strong veto, not an absolute one."
+    },
+    {
+     "claim": "DOWNGRADE-ONLY: failing to hold / respect the reference level after the claimed break (price closes back through PDH/PDL/PMH/PML/ORH/ORL, or offers two competing stop-loss options) is the second most common rejection reason \u2014 9 of 22 no-verdicts.",
+     "card_ids": [
+      "COIN_2024-10-29",
+      "GOOGL_2025-03-14",
+      "META_2025-05-16",
+      "AMD_2025-04-23",
+      "CRM_2026-04-15",
+      "SPY_2025-08-06",
+      "ORCL_2024-11-06",
+      "CRM_2026-05-15",
+      "META_2024-09-30"
+     ],
+     "n_supporting": 9,
+     "n_relevant": 22,
+     "austin_quote": "not respecting level, 2 stop losses to choose from",
+     "strength": "strong",
+     "codeable_form": "IF price_closes_back_through(reference_level) after the claimed break OR count(plausible_stop_levels) > 1 THEN veto S. level_respected==False -> is_s=False in 9/22 explained no-cases."
+    },
+    {
+     "claim": "CONFLUENCE-BONUS, explicitly NOT SUFFICIENT: when the deck itself pre-labeled a card's claimed_setup as 'BR+OCR', Austin still rejected it 4 of 5 times \u2014 the label alone does not make a trade S.",
+     "card_ids": [
+      "AMD_2025-12-23",
+      "HOOD_2025-11-07",
+      "GOOGL_2024-10-01",
+      "META_2024-09-30",
+      "CRM_2025-10-09"
+     ],
+     "n_supporting": 4,
+     "n_relevant": 5,
+     "austin_quote": "so maybe downgrade but i do see the s your getting at",
+     "strength": "hint",
+     "codeable_form": "claimed_setup=='BR+OCR' must not be used as an is_s gate: precision on this label alone was 1/5 (and that 1 carried a downgrade caveat). Decompose into separately-checked sub-conditions (level held, displacement present, not chop, not exhausted) rather than trusting a single confluence flag."
+    },
+    {
+     "claim": "CONFLUENCE-BONUS, strongly correlated: among the 24 deep_is_s 'S' calls where Austin wrote a substantive reason (not just a timestamp), 10 explicitly cite BR/OCR-type confluence at the level. Every card (6/6, small n) where his note contains the literal phrase 'BR OCR' (or the equivalent 'OCR and...BR') anywhere in this whole corpus was graded S.",
+     "card_ids": [
+      "AAPL_2025-08-08",
+      "SPY_2025-12-04",
+      "UBER_2026-03-19",
+      "BABA_2026-05-06",
+      "TSLA_2024-09-20",
+      "ORCL_2024-09-11"
+     ],
+     "n_supporting": 6,
+     "n_relevant": 6,
+     "austin_quote": "9:51 BR OCR - see how its just easier with the confluence, and when S trades can be entered on candle close it just looks cleaner and is easier.",
+     "strength": "hint",
+     "codeable_form": "feature: has_literal_BR_OCR_confluence_note (from a broader detector for break+retest-at-level plus an open/close-range touch). Weight positively (10/24 = 42% of substantively-explained S calls cite it, and 6/6 literal-phrase cards were S), but do not gate on it \u2014 see the insufficiency and non-necessity claims above/below."
+    },
+    {
+     "claim": "BR/OCR confluence is explicitly NOT NECESSARY: at least one card was graded S while Austin stated plainly that neither BR nor OCR was present, substituting pivot-structure-plus-wick and displacement as the justification instead.",
+     "card_ids": [
+      "IWM_2026-05-12"
+     ],
+     "n_supporting": 1,
+     "n_relevant": 1,
+     "austin_quote": "9:49 i could consider that as the entry because theres no BR or OCR in that consolidation phase, bear flag to start the day, and that entry candle wicked back into the pivot structure and bottom of candle at 9:44, which signals me that this has the ability to run and have good RR. and entry has displacement too.",
+     "strength": "single-card",
+     "codeable_form": "has_BR_OCR_confluence must not be coded as a hard AND-gate for is_s; a pivot-structure-reclaim-with-displacement path can independently qualify. Only one clear instance found \u2014 treat as a documented exception, not a second predicate branch, until more cards test it."
+    },
+    {
+     "claim": "Displacement's necessity is contested: a rule-ballot statement calls it always required, and it appears as the stated reason for 2 rejections, but Austin also graded S twice while writing 'no displacement,' substituting an earlier OCR/level touch or strong wick PA as justification.",
+     "card_ids": [
+      "rule_03",
+      "SPY_2025-07-16",
+      "ACHR_2026-06-30",
+      "NVDA_2025-06-03",
+      "PLTR_2025-07-17"
+     ],
+     "n_supporting": 2,
+     "n_relevant": 4,
+     "austin_quote": "9:46 as candle forming above ORH, no displacement but 9:30 ocr wick confluence with pmh",
+     "strength": "hint",
+     "codeable_form": "displacement_present cannot be coded as a hard AND-gate for is_s without producing 2 false negatives in this sample (NVDA_2025-06-03, PLTR_2025-07-17). Candidate resolution \u2014 untested in this corpus \u2014 is that displacement can occur earlier at the level's formation rather than on the literal retest/entry candle; flagged as an open question below rather than assumed."
+    },
+    {
+     "claim": "NECESSARY (engine-execution level, from a separate anatomy deck): entries must fire off the retest, not off the break candle itself \u2014 entering on the break is explicitly called an engine error, not a style choice.",
+     "card_ids": [
+      "PLTR_2024-09-20",
+      "rule_03"
+     ],
+     "n_supporting": 2,
+     "n_relevant": 2,
+     "austin_quote": "you seem to enter on breaks which is a halucination we never trade that and you know it.",
+     "strength": "hint",
+     "codeable_form": "entry_trigger must require entry_bar > break_bar with an intervening retest of the level (entry on the break bar itself is invalid, independent of grade). Only 2 explicit statements of this exact rule found (1 anatomy card + 1 rule-ballot line) despite emphatic language \u2014 treat as under-sampled, not fully proven."
+    },
+    {
+     "claim": "The apparent 'close-entry OK when confluence present' reading does not hold up against the deck: 'as candle forming' (intrabar) entries are attached to S grades on confluence cards too, so the single quote suggesting close-entry is fine is outweighed, not confirmed, by the cards around it.",
+     "card_ids": [
+      "NVDA_2025-06-03",
+      "IWM_2025-08-15",
+      "BABA_2026-05-06"
+     ],
+     "n_supporting": 2,
+     "n_relevant": 3,
+     "austin_quote": "10:00 as candle forming, 10 oclock candles usually have volitility good to note, earlier entry 9:53 pissible all off the OCR",
+     "strength": "hint",
+     "codeable_form": "Do not code entry_style=='on_close' as acceptable-when-confluence; 2 of the 3 relevant cards graded S while explicitly preferring an intrabar ('as candle forming') entry even with confluence present. The single close-entry-approving card (BABA_2026-05-06) reads as a subjective aside ('looks cleaner'), not a rule \u2014 ask Austin directly rather than coding either branch."
+    },
+    {
+     "claim": "Sequencing pattern: in every discussed case, an A-grade or chop trade fired earlier in the session before the day's actual S trade appeared \u2014 small sample, but 3/3 consistent, and worth testing as a same-day prior-signal-count feature.",
+     "card_ids": [
+      "PLTR_2026-02-05",
+      "ACHR_2025-06-27",
+      "INTC_2025-02-24"
+     ],
+     "n_supporting": 3,
+     "n_relevant": 3,
+     "austin_quote": "10:01, slightly earlier a entries but this is the first S which is rare for an s after a but we get this ocr displacement and level confluence with ORL",
+     "strength": "hint",
+     "codeable_form": "feature candidate: count_of_A_or_chop_signals_earlier_same_session, tested as a positive predictor of the next clean confluence signal being graded S. Only 3 supporting cards total in this corpus \u2014 not enough to gate on, worth flagging for a larger sweep."
+    },
+    {
+     "claim": "Methodological caveat for whoever trains the classifier: take_the_trade section 'take==yes' is NOT a clean proxy for is_s \u2014 at least 5 of 22 yes-take cards are explicitly labeled 'A trade' by Austin in the very same note, meaning he'd take some A-grade setups too.",
+     "card_ids": [
+      "AAPL_2024-10-23",
+      "MSFT_2026-07-28",
+      "UBER_2026-08-04",
+      "AMZN_2025-11-21",
+      "TSLA_2025-01-10"
+     ],
+     "n_supporting": 5,
+     "n_relevant": 22,
+     "austin_quote": "9:50 a trade no displacement",
+     "strength": "hint",
+     "codeable_form": "Do not use take_the_trade.answers.take=='yes' directly as an is_s training label. First filter by presence/absence of explicit grade language ('S'/'A trade') in the note, or drop take_the_trade rows from the S-target training set entirely and rely on deep_is_s / is_this_an_s sections instead."
+    }
+   ],
+   "unsupported_questions": [
+    "Does displacement need to occur on the literal entry/retest candle, or is displacement earlier in the level's formation (e.g. the original OCR touch) sufficient even when the retest candle itself shows none? Two S grades (NVDA_2025-06-03, PLTR_2025-07-17) hinge on this and the corpus doesn't resolve it.",
+    "Is candle-close entry ever genuinely acceptable, or was BABA_2026-05-06 ('looks cleaner') describing a feeling rather than a rule the engine should implement \u2014 should entry always be intrabar regardless of confluence?",
+    "What separates CRM_2025-10-09 (chop present, still graded S with a 'maybe downgrade' caveat) from the 14 other chop cases graded no \u2014 is there a chop-severity threshold, or does strong confluence sometimes override the chop veto?",
+    "Is the A-then-S same-day sequencing pattern (3/3 cases) something worth encoding as a same-day prior-signal-count feature, or is it incidental to just 3 cards?",
+    "When the deck's own 'BR+OCR' setup label was rejected 4 of 5 times, which specific sub-condition (level held, displacement, timing/exhaustion) was actually doing the rejecting in each case \u2014 should 'BR+OCR' be decomposed into separately-gated checks rather than trusted as one flag?"
+   ]
+  },
+  {
+   "axis": "process",
+   "headline": "Austin's process complaints aren't chart notes: he names one specific, already-corrected engine bug still alive (entering on the break candle itself instead of waiting for a confirmed retest), he explicitly separates what he's delegating to the agent (metric calibration, edge-finding on ambiguous no-displacement cases) from what stays his own eye (stop placement), and he pinpoints exact cards where the homework deck itself failed to show him what he needed to grade -- including one contradiction he flags on himself.",
+   "claims": [
+    {
+     "claim": "The engine still fires entries on the break candle itself rather than waiting for a confirmed retest -- a bug Austin says he already corrected the agent on once before. He names it generically in the rule ballot (rule_03: 'engine entering late is a bug, should always be entering while the restest is occuring, just always need that displacement for S trades') and then hits the identical mechanism four separate times against real charts, twice using language ('same problem as previous', 'you know it') that says this is a repeat, not a one-off. Concrete process failure: signal_runner's entry trigger accepts the break-candle's close as a valid entry point instead of requiring the subsequent retest-and-reclaim to actually complete. Fix: gate entry firing on a confirmed post-break retest bar (existing BAR_EXTREME_FRAC/OCR logic), and hard-reject any candidate whose entry bar equals its break bar.",
+     "card_ids": [
+      "rule_03",
+      "PLTR_2024-09-20",
+      "HOOD_2025-12-23",
+      "TSLA_2025-03-25",
+      "QQQ_2024-08-23"
+     ],
+     "n_supporting": 5,
+     "n_relevant": 29,
+     "austin_quote": "10:01 couldve been entry i woudlve been faked out, but the wick on it was too much and have to push through 10 candles of consolidation. the entry shouldve been 6 candles earlier, you seem to enter on breaks which is a halucination we never trade that and you know it.",
+     "strength": "strong",
+     "codeable_form": "reject_entry_if(entry_bar_index == break_bar_index); require a confirmed retest bar (price returns to/through level and closes on the reclaim side, tolerance per BAR_EXTREME_FRAC/OCR rules) strictly before an entry can fire."
+    },
+    {
+     "claim": "On the retest-tolerance rule he is explicitly delegating the calibration work to the agent while reserving only his qualitative description. 'You stress test and find the best metric yourself' hands off exactly the kind of numeric sweep the agent should run (this matches the later g87/g88 zero-tolerance work in CLAUDE.md) -- he is not proposing a number himself, he's handing over the search and keeping only the felt criterion: close-but-not-touching, 'a few cents give or take,' independent of candle size (i.e. not BAR_EXTREME_FRAC).",
+     "card_ids": [
+      "rule_01"
+     ],
+     "n_supporting": 1,
+     "n_relevant": 1,
+     "austin_quote": "except it doesn't follow the  25 percent candle unit, its just if its close but didnt actually touch, within a few cents give or take, you stress test and find the best metric yourself",
+     "strength": "single-card",
+     "codeable_form": "retest_tolerance = agent-calibrated small fixed-cents value (from backtest sweep), not BAR_EXTREME_FRAC * prev_candle_range; report the sweep back to him, don't ask him to pick a number in the abstract."
+    },
+    {
+     "claim": "On stop placement he draws the opposite line: this stays his eye, not a formula. He is pre-empting any move to wire a proposed stop-distance number into signal_runner as a hard rule -- the number is a sanity-check reference only.",
+     "card_ids": [
+      "rule_15"
+     ],
+     "n_supporting": 1,
+     "n_relevant": 1,
+     "austin_quote": "our eyes have been finding good stops, but that number is a good ballpark for referance how we do things",
+     "strength": "single-card",
+     "codeable_form": "NOT-CODEABLE as a stop-placement rule -- he is explicitly refusing codification here. Only usable as a diagnostic bound: flag_if(stop_distance falls far outside the historical eyeballed range) for QA, never as the placement mechanism itself."
+    },
+    {
+     "claim": "Three separate cards, spread across two different probe sections, land on the exact same open problem named in THE LANE: he can't tell which of several plausible no-displacement entries (if any) is worth delegating as an S trade, and he's asking for a measured/odds-based answer rather than doing the eyeballing himself card by card. On TSM_2026-07-24 he goes further and tells the agent how to measure it: as a smaller, separately-tracked sample rather than pooled with clear-displacement S examples.",
+     "card_ids": [
+      "AAPL_2024-10-23",
+      "AMZN_2025-10-07",
+      "TSM_2026-07-24"
+     ],
+     "n_supporting": 3,
+     "n_relevant": 99,
+     "austin_quote": "9:38 a trade but wouldnt been in and out and these candles turned very choppy, and hopfully engine will be able to identify better one and done S trades",
+     "strength": "hint",
+     "codeable_form": "NOT directly codeable as one predicate -- codeable as a data-pipeline instruction: partition the training/eval sample by displacement flag before fitting the S-classifier, and report per-partition precision/recall separately rather than pooling."
+    },
+    {
+     "claim": "Two trade-anatomy cards attack the runner/PT logic as a systemic design flaw rather than a one-off critique: runner target is being placed in the middle of the scale-out sequence instead of always being the last (smallest) tranche, and a flat 2R target is used even when it falls between real levels (PDL, whole psych numbers) that should take priority.",
+     "card_ids": [
+      "QQQ_2024-08-26",
+      "QQQ_2025-02-25"
+     ],
+     "n_supporting": 2,
+     "n_relevant": 8,
+     "austin_quote": "RUNNER PLAN - way too tight, if we know our mean RR is 2.5 we shouldnt be targeting .41, this one ran. there was reall levels to target, 2 r and PDL, when 2r falls between a whole psych number target that instead.",
+     "strength": "hint",
+     "codeable_form": "if abs(2R_price - nearest_major_level_or_whole_dollar) < epsilon: target = that level, else target = 2R_price; runner tranche must be ordered strictly after every named PT, never inserted before the highest-numbered target."
+    },
+    {
+     "claim": "Three cards are explicit homework-instrument failures -- Austin says the deck did not show him what he needed, and each names a different missing element: (1) MU_2024-10-09 (stop_pick) -- the OCR/level the entry is supposedly referencing isn't visible relative to price ('too far away from the PDL'), so he can't confirm it's even a real entry; (2) ORCL_2025-04-02 (stop_pick) -- the entry candle itself isn't legible enough to confirm the setup; (3) QQQ_2024-08-26 (trade_anatomy) -- the card surfaces the exit/target plan for critique but doesn't show the entry or stop, so he can grade the runner plan but explicitly cannot grade entry and stop.",
+     "card_ids": [
+      "MU_2024-10-09",
+      "ORCL_2025-04-02",
+      "QQQ_2024-08-26"
+     ],
+     "n_supporting": 3,
+     "n_relevant": 147,
+     "austin_quote": "this may not be an entry because i dont see a OCR or the level its referencing because its too far away from the PDL",
+     "strength": "hint",
+     "codeable_form": "NOT-CODEABLE as a trading rule -- instrument fixes: render the referenced OCR/level on-chart for stop_pick cards; zoom/highlight the entry candle distinctly; and for trade_anatomy cards, either always render entry+stop markers or split the 'wrong[]' taxonomy so exit-only critique doesn't imply entry/stop were judgeable when they weren't shown."
+    },
+    {
+     "claim": "The 'displacement' probe section served Austin 8 consecutive cards that all resolved to the same answer (displacement: no), and only on the 8th does he flag it -- not as a chart observation but as a complaint aimed straight at the agent's reliability across the run, distinct from the underlying deck-curation problem of drawing 8 identical-outcome cards in a row.",
+     "card_ids": [
+      "AVGO_2026-06-12",
+      "GOOGL_2025-06-24",
+      "NVDA_2026-02-27",
+      "SOFI_2026-01-16",
+      "UBER_2026-06-16",
+      "MU_2025-09-05",
+      "TSM_2025-09-05",
+      "COIN_2026-07-24"
+     ],
+     "n_supporting": 1,
+     "n_relevant": 8,
+     "austin_quote": "displaced and closed into the levels at 9:45, but these past 8 make me anxious you cant remember what it means. just one candle closes away and displaces itsself from other candles in some form, and the level in question",
+     "strength": "hint",
+     "codeable_form": "NOT-CODEABLE as a trading rule -- codeable as a deck-construction constraint: build_deck.py's displacement-section sampler should stratify so a section doesn't serve a long run of identical ground-truth answers."
+    },
+    {
+     "claim": "The stop_pick section (where_is_the_stop) presents trades for stop selection without any quality pre-filter, so at least one card forced Austin to editorialize that the trade itself was weak before he could even answer the intended question -- a process complaint about what the probe is asking him to spend time on.",
+     "card_ids": [
+      "BABA_2025-11-21"
+     ],
+     "n_supporting": 1,
+     "n_relevant": 6,
+     "austin_quote": "this is a low grade trade in case you didnt know",
+     "strength": "single-card",
+     "codeable_form": "NOT-CODEABLE as a trading rule -- instrument fix: pre-filter or grade-flag low-quality trades out of the stop-selection probe, which should test 'given a real setup, where's the right stop,' not implicitly also ask 'is this even a trade.'"
+    },
+    {
+     "claim": "He pushes back directly on a prior agent claim about risk: 'you said easy to measure, but i dont want it to mess up my main levels.' This is skepticism of a specific characterization ('easy to measure') applied to something that touches his foundational PDH/PDL/PMH/PML level definitions, which every setup depends on.",
+     "card_ids": [
+      "rule_05"
+     ],
+     "n_supporting": 1,
+     "n_relevant": 1,
+     "austin_quote": "you said easy to measure, but i dont want it to mess up my main levels",
+     "strength": "single-card",
+     "codeable_form": "NOT-CODEABLE as a trading rule -- procedural fix: any change to level-computation code ships with a before/after diff against the last-known-good level set for a sample of days, not just a claim that it's low-risk."
+    },
+    {
+     "claim": "Austin flags an open self-contradiction on the same setup type. On t1_AMZN_2025-08-22 (graded A) he writes that a no-displacement alternate entry 'worked better' than the marked one. On AMZN_2025-11-21 (this batch) he takes a no-displacement long and, in the same note, flags that both surrounding candidates (9:35, 9:41) are no-displacement 'A trades' that both lost, on a day he calls 'a range chop day of hell' -- and says outright this contradicts what he said about the earlier AMZN card. He does not resolve it himself; it reads as a genuine grey zone (no-displacement A-trades may only pay off when the day is trending, not when it's chop) rather than a settled rule, and is a direct candidate to re-ask him.",
+     "card_ids": [
+      "AMZN_2025-11-21",
+      "t1_AMZN_2025-08-22"
+     ],
+     "n_supporting": 1,
+     "n_relevant": 2,
+     "austin_quote": "this ex contradicts what i said about 22 amzn, because two losers on either side 9:35, 9:41, but both A trades because of no displacement, but that was a range chop day of hell",
+     "strength": "single-card",
+     "codeable_form": "NOT-CODEABLE -- exactly the kind of case that needs a direct re-ask rather than an inferred rule."
+    }
+   ],
+   "unsupported_questions": [
+    "Is a no-displacement 'A' entry ever worth taking, or does it only work when the day is trending (08-22 AMZN, where the no-displacement entry 'worked better') and lose on chop days (11-21 AMZN, 'two losers... range chop day of hell') -- i.e. is tradeability conditional on day character rather than the entry itself?",
+    "For the retest tolerance: rule_01 hands the calibration to the agent ('a few cents give or take') -- is g87/g88's zero-tolerance finding actually what he meant, or does he want a small nonzero cents-based band tested specifically?",
+    "For the no-displacement ambiguous entries he flags three separate times (AAPL 10-23, AMZN 10-07, TSM 07-24) -- does he want the S-classifier trained on a separate, smaller no-displacement sub-sample as he suggests on TSM_2026-07-24, or folded into the main model with a feature flag?",
+    "Runner/PT sequencing (QQQ 08-26, QQQ 02-25): does he want a hard rule -- runner always last, 2R defers to a nearby whole-dollar or major level -- coded into every setup, or is this specific to those two high-RR cases?",
+    "The displacement section's 8/8-identical run: was that a genuine build_deck.py curation accident, or did the underlying week just lack positive displacement examples? Worth confirming which, since it changes whether the deck builder needs a stratification fix or nothing at all.",
+    "rule_08 asks for 1h/4h pivot/major-level context beyond the existing PDH/PDL top-6 for scaling targets -- is this a real feature request worth building, or would it just add levels he already track by eye?"
+   ]
+  },
+  {
+   "axis": "15-rule mentor ballot (mentor_ballot section, probe_g84_all_in_one_STANDING154_2026-09-01.jsonl, cards rule_01..rule_15) \u2014 rule text sourced from research/g82_master_homework.py MENTOR_BALLOT list (index 0-14 maps 1:1 to rule_01-15, same order, verified by who/quote match). probe_trade_anatomy_2026-09-01.jsonl has no mentor_ballot rows and was not source material for this axis.",
+   "headline": "He ratified 10 of 15 mentor rules and skipped 5 \u2014 but 5 of the 10 yeses (chop-anchor, wait-for-reaction, per-ticker weighting, scale-out, starters) aren't in the engine, and the loudest single finding is rule_11: he wants live trading narrowed to the existing 10-ticker CORE_SYMBOLS tier while live_scanner.py currently scans all 29.",
+   "claims": [
+    {
+     "claim": "Complete census: of 15 mentor-rule ballot items, Austin answered yes on 10 (rules 1,2,3,5,6,7,9,12,14) and skip on 5 (rules 4,8,10,11,13,15). This is an exhaustive count, not a sample.",
+     "card_ids": [
+      "rule_01",
+      "rule_02",
+      "rule_03",
+      "rule_04",
+      "rule_05",
+      "rule_06",
+      "rule_07",
+      "rule_08",
+      "rule_09",
+      "rule_10",
+      "rule_11",
+      "rule_12",
+      "rule_13",
+      "rule_14",
+      "rule_15"
+     ],
+     "n_supporting": 15,
+     "n_relevant": 15,
+     "austin_quote": "(tally across all 15 cards' answers.ballot field: 10x [\"yes\"], 5x [\"skip\"])",
+     "strength": "rule",
+     "codeable_form": "NOT-CODEABLE as a single predicate -- this is a bookkeeping count over the ballot cards, not a trading rule."
+    },
+    {
+     "claim": "Rule 1 (Neto: 'retest is never to the penny, always close to the line') -- yes, but his caveat rejects the mentor's own framing in favor of measurement, and the shipped default already implements the zero-tolerance answer his own g87 sweep found.",
+     "card_ids": [
+      "rule_01"
+     ],
+     "n_supporting": 1,
+     "n_relevant": 1,
+     "austin_quote": "except it doesn't follow the  25 percent candle unit, its just if its close but didnt actually touch, within a few cents give or take, you stress test and find the best metric yourself",
+     "strength": "single-card",
+     "codeable_form": "retest_tol_mult (a cents-band around the level counted as a valid retest touch): signal_runner.py already carries this knob (DETECT_WIDE / DETECT_WIDE_RETEST_MULT, default DETECT_WIDE=False = exact touch = retest_tol_mult 0.0). g87_retest_tol.py already swept it and found zero is the money-maximizing value -- SHIPPED already, though the mentor's language ('close to the line') would suggest widening, which the engine's own research contradicts."
+    },
+    {
+     "claim": "Rule 2 (Scarface: chop should be measured by the strength of the breaking close, not bars after it) -- yes, and the shipped downgrade code does the OPPOSITE of what he ratified.",
+     "card_ids": [
+      "rule_02"
+     ],
+     "n_supporting": 1,
+     "n_relevant": 1,
+     "austin_quote": "these are for 84 percent rules really, but can help as the downgrade too, not entering stong PA when copping on levels, or level clean but strong PA never comes",
+     "strength": "single-card",
+     "codeable_form": "level_not_respected(bars,i,level,is_long) in research/downgrade.py (line ~241) counts bars in a 12-bar window whose CLOSE sits within epsilon of the level (a touches-count / bars-after metric). Scarface's ratified rule asks for a different anchor entirely: score the strength of the BREAKOUT bar's own close (e.g. close position within its range at the break bar) as the chop discriminator. NOT shipped as specified -- the docstring itself notes 'failed three implementations' before landing on the current touches-count version."
+    },
+    {
+     "claim": "Rule 3 (Neto: break, displacement, retest, THEN wait for the reaction on the level -- entering ON the retest is a bug) -- yes, engine currently enters at the retest bar itself, not after a confirming reaction bar.",
+     "card_ids": [
+      "rule_03"
+     ],
+     "n_supporting": 1,
+     "n_relevant": 1,
+     "austin_quote": "sounds like the same thing i always say, but engine entering late is a bug, should always be entering while the restest is occuring, just always need that displacement for S trades",
+     "strength": "single-card",
+     "codeable_form": "Add a post-retest confirmation step: after detect_break_retest resolves the retest bar, require the NEXT bar to close favorably before firing the signal, rather than grading/firing on the retest bar itself (current: grade_trade / _confirm_candle are evaluated on `current` = the retest bar, e.g. signal_runner.py ~2810-2895). NOT shipped. NOTE: his own note complicates a literal 'wait for reaction' reading -- he says entering LATE is the bug, i.e. he wants the retest-bar entry, not a delayed one; this rule may already reflect what the engine does and the ballot yes may be about displacement, not timing. Flag for Austin, don't code blind."
+    },
+    {
+     "claim": "Rule 4 (Scarface: needs to break HOD/LOD before entry) -- SKIP, with a real counter-proposal: HOD/LOD break is not a precondition, only a bias-confirmation nicety.",
+     "card_ids": [
+      "rule_04"
+     ],
+     "n_supporting": 1,
+     "n_relevant": 1,
+     "austin_quote": "trades are targeting HOD/LOD they dont need to break it before seeing entry, but that helps certainly, because then you have a stronger bias for which way the stock is trending",
+     "strength": "single-card",
+     "codeable_form": "COUNTER-PROPOSAL (not the mentor's rule): treat a prior HOD/LOD break as a soft bias-strength BONUS (e.g. +1 to grade score, similar to the hammer/displacement bumps in compute_austin_tier), never as a hard entry gate. Do not implement Scarface's literal precondition."
+    },
+    {
+     "claim": "Rule 5 (Neto: backtest per-ticker whether pre-market, prior-day, or ORB levels work best) -- yes, no per-symbol level weighting exists in the engine.",
+     "card_ids": [
+      "rule_05"
+     ],
+     "n_supporting": 1,
+     "n_relevant": 1,
+     "austin_quote": "you said easy to measure, but i dont want it to mess up my main levels",
+     "strength": "single-card",
+     "codeable_form": "Per-symbol level-priority weighting: for each universe symbol, backtest which of the six static levels {PMH,PML,PDH,PDL,HOD,LOD} predicts best, and weight/prioritize accordingly instead of the current flat treatment (hb.levels_for/six_at return all six with no per-symbol weighting). NOT shipped. His caveat is a real constraint: don't let this reshuffle the six-levels list itself, only how they're prioritized per symbol."
+    },
+    {
+     "claim": "Rule 6 (Neto: scale profits out more aggressively when reward potential is smaller) -- yes, no scale-out mechanism exists anywhere in signal_runner.py.",
+     "card_ids": [
+      "rule_06"
+     ],
+     "n_supporting": 1,
+     "n_relevant": 1,
+     "austin_quote": "(no note recorded on this card -- answers.ballot was [\"yes\"] with notes: {}. No Austin quote exists for this rule; do not treat the mentor's own quote as his words.)",
+     "strength": "single-card",
+     "codeable_form": "Scale-out sizing keyed to reward-at-entry (e.g. distance to the next reference level, or ATR-normalized room): larger partial exit (~50%) when target room is shallow, smaller (~30%) when there's more room. NOT shipped -- grep for scale_out/scale-out across signal_runner.py and downgrade.py returns nothing; the engine has a single stop/target per trade, no partial-exit ladder."
+    },
+    {
+     "claim": "Rule 7 (Lauren/Mamba/Jdub: weekly/daily/4H trend + liquidity zones, paired with market conditions and HTF trend) -- yes, but he flags it as an open question, and only a partial version is built.",
+     "card_ids": [
+      "rule_07"
+     ],
+     "n_supporting": 1,
+     "n_relevant": 1,
+     "austin_quote": "all of this alligns with me, but how would we shape it into day trading?",
+     "strength": "single-card",
+     "codeable_form": "Multi-timeframe (weekly/daily/4H) trend + liquidity-zone bias filter, gating or grading entries against market conditions. PARTIALLY built: HTF_BIAS_GATE (signal_runner.py:220) + daily_trend_bias() (line 1862) implement ONLY a single daily-candle trend proxy, default OFF. The weekly and 4H layers, and 'liquidity zones' specifically, are not built at all. Austin's own note is an open question ('how would we shape it into day trading') -- this is not a settled spec, ask him before building further."
+    },
+    {
+     "claim": "Rule 8 (Hayden: highest-probability trades are outside the previous day's range / above-below key levels) -- SKIP, with a concrete counter-proposal: add 1h/4h pivot structures as scaling targets, since PDH/PDL are already covered.",
+     "card_ids": [
+      "rule_08"
+     ],
+     "n_supporting": 1,
+     "n_relevant": 1,
+     "austin_quote": "we already track PDH and PDL levels as the top 6, what would help is seeing those major levels and pivot structures at 1h and 4h for scaling targets",
+     "strength": "single-card",
+     "codeable_form": "COUNTER-PROPOSAL: compute pivot/structure levels on the 1h and 4h timeframe and surface them as SCALING TARGETS (partial-exit price levels), not as entry filters. LINK: this connects directly to the exit-ladder axis finding '2R trumped by HTF levels' -- both point at using higher-timeframe structural levels to govern where partial exits happen, rather than a fixed R-multiple target. Flag this connection explicitly to whoever owns the exit-ladder axis; it was not independently re-derived here, it's the same idea surfacing on two separate probes."
+    },
+    {
+     "claim": "Rule 9 (Neto: hammer or inverted-hammer candle at the level, body respecting it) -- yes, ALREADY SHIPPED and unconditional (not flag-gated).",
+     "card_ids": [
+      "rule_09"
+     ],
+     "n_supporting": 1,
+     "n_relevant": 1,
+     "austin_quote": "i always names shape as just hammer, but if neto has an explanation of good bullish candles for cleaner code, then use it",
+     "strength": "single-card",
+     "codeable_form": "ALREADY DONE: _confirm_candle(c, long) in signal_runner.py (line 82) implements exactly this -- lower_wick >= body_size and close in upper half of range (long), mirrored for short. Called unconditionally at every B&R/OCR entry (lines 2883, 2986, 3086, 3155, 3327) and contributes to grade score. No further code needed for this rule."
+    },
+    {
+     "claim": "Rule 10 (Mamba: use opening price as reference target when no level applies) -- SKIP, and this is a harder rejection than the other skips: no counter-proposal, no partial agreement.",
+     "card_ids": [
+      "rule_10"
+     ],
+     "n_supporting": 1,
+     "n_relevant": 1,
+     "austin_quote": "i dont see or hear anything to trade based on this thesis",
+     "strength": "single-card",
+     "codeable_form": "NOT-CODEABLE / do not build: unlike rules 4, 8, 11, 13, 15, this skip carries no counter-proposal -- it's a flat veto of the idea itself. Do not add opening-price as a seventh reference target."
+    },
+    {
+     "claim": "Rule 11 (Neto/Scarface: trade only 4 names on a consistent basis, one ticker one setup) -- SKIP, with a specific universe counter-proposal directly relevant to today's lane: keep the existing 10-symbol CORE_SYMBOLS tier for live decisions, keep the full pool for research.",
+     "card_ids": [
+      "rule_11"
+     ],
+     "n_supporting": 1,
+     "n_relevant": 1,
+     "austin_quote": "10 tickers is a good sample size, and still tracking the main pool for data for edge refinement.",
+     "strength": "single-card",
+     "codeable_form": "He is NOT ratifying the mentors' 4-name concentration idea. He IS endorsing a 10-symbol live universe, and 10 is not arbitrary: universe.py::CORE_SYMBOLS already IS exactly 10 tickers (TSLA, NVDA, AAPL, AMD, META, GOOGL, AMZN, MSFT, PLTR, QQQ), Austin's own 2026-07-11 watchlist split. But live_scanner.py::DEFAULT_SYMBOLS is currently MAJOR_15+INDEX_POOL+OTHER_POOL = ALL_SYMS = 29 symbols -- the live scanner is NOT narrowed to CORE_SYMBOLS today. Reading this note plainly: narrow the LIVE engine's watch list to CORE_SYMBOLS (10), keep BACKTEST_SYMBOLS / ALL_SYMS (the full ~24-29 pool) for research/edge-refinement measurement work, which is exactly the existing CORE_SYMBOLS vs BACKTEST_SYMBOLS split already coded -- it just isn't wired into live_scanner's default. This bears directly on a lane decision: it is one card (n=1/1), a hint by the house rule even though the underlying infrastructure (CORE_SYMBOLS) already exists -- confirm with Austin before flipping live_scanner's default, don't infer it silently."
+    },
+    {
+     "claim": "Rule 12 (Jdub/Neto: always take 1 OTM strike or the contract with the most volume) -- yes, this exact rule already exists in code, flag-gated off.",
+     "card_ids": [
+      "rule_12"
+     ],
+     "n_supporting": 1,
+     "n_relevant": 1,
+     "austin_quote": "first piece of statement most important, because picking the most volume option could be all over the board any given expiry date",
+     "strength": "single-card",
+     "codeable_form": "options_sizer.py::SCARFACE_CONTRACT (line 342) already implements 'first OTM strike + nearest Friday weekly expiry' -- exactly this rule -- but defaults to False (ships ATM/0DTE instead). His note prioritizes the OTM-strike half over the most-volume half ('first piece of statement most important'). research/d1_scarface_ab.py is a pre-built A/B harness for validating the flip before shipping it. Ratifying = run d1, then flip SCARFACE_CONTRACT to True if it holds."
+    },
+    {
+     "claim": "Rule 13 (Neto: predefined hours, max trades/day, mandatory break after ONE loss, only predefined setups) -- SKIP, but his note agrees with the principle in general terms without committing to the specific 'break after one loss' mechanism.",
+     "card_ids": [
+      "rule_13"
+     ],
+     "n_supporting": 1,
+     "n_relevant": 1,
+     "austin_quote": "rules like max trades could prevent us from blowing an account in one day.",
+     "strength": "single-card",
+     "codeable_form": "AMBIGUOUS SKIP: his note doesn't disagree with a max-trades circuit breaker in principle, it just doesn't ratify Neto's specific parameter (halt after exactly one loss). COUNTER-PROPOSAL is implicit, not stated: some max-trades-per-day cap, unspecified threshold. Do not code a specific number from this card alone -- ask Austin what the cap should be before building a circuit breaker."
+    },
+    {
+     "claim": "Rule 14 (Jdub: on A+ setups, take a smaller 'starter' position rather than skip a less-than-perfect entry) -- yes, but he redefines WHICH setups qualify (his own A/no-displacement framing, not Jdub's A+).",
+     "card_ids": [
+      "rule_14"
+     ],
+     "n_supporting": 1,
+     "n_relevant": 1,
+     "austin_quote": "this could be implemented. starters for A trades that primary downgrade is no displacement and has a clear trend.",
+     "strength": "single-card",
+     "codeable_form": "Add a reduced-size 'starter' entry mode for setups graded A (his S/A/C ladder) whose ONLY downgrade reason is missing displacement, with an otherwise clear trend -- take a starter position instead of skipping, rather than Jdub's literal 'A+' framing (A+ is a legacy-ladder tier that fires ~2x in 2 years, functionally almost never -- coding to A+ would ship a feature that almost never triggers). NOT shipped -- grep for starter_position/scale_in returns nothing in signal_runner.py; research/w13_scaling.py explores scale-OUT sizing only, not scale-in starters."
+    },
+    {
+     "claim": "Rule 15 (Neto: wider stop-loss, 18-25% of contract premium at entry) -- SKIP, he trusts the current stop-placement process and treats the number as a reference ballpark, not a rule to implement.",
+     "card_ids": [
+      "rule_15"
+     ],
+     "n_supporting": 1,
+     "n_relevant": 1,
+     "austin_quote": "our eyes have been finding good stops, but that number is a good ballpark for referance how we do things",
+     "strength": "single-card",
+     "codeable_form": "NOT-CODEABLE as a hard cap per this card: he's declining to replace eye-tested stop placement with a formulaic premium-percentage bound. Soft counter-proposal: log 18-25%-of-premium as a SANITY-CHECK reference range against which future stop placements can be compared/reported, not a constraint the engine enforces."
+    }
+   ],
+   "unsupported_questions": [
+    "Rule 3: does 'wait for the reaction' mean delay entry past the retest bar, or does his own 'entering late is a bug' note mean the ballot yes was only about requiring displacement, not about timing? The single card is internally ambiguous on this.",
+    "Rule 7: 'how would we shape it into day trading?' is his own open question about the weekly/4H/liquidity-zone layer -- he hasn't answered it himself yet, so nothing here settles what to build.",
+    "Rule 11: does narrowing live_scanner's DEFAULT_SYMBOLS to CORE_SYMBOLS (10) mean OTHER_POOL symbols (SOFI, COIN, HOOD, IREN, AVGO, UBER, BABA, CRM, TSM, MARA) and QQQ/SPY/IWM get dropped from live scanning entirely, or just deprioritized? One card doesn't say.",
+    "Rule 13: what's the actual max-trades-per-day threshold, and is 'mandatory break after one loss' something he wants, or something he's declining without saying so? The skip doesn't clarify.",
+    "Rule 2: the docstring in downgrade.py says a close-strength anchor for chop has 'failed three implementations' already -- what were those three attempts and why would a fourth succeed? Not answerable from the marks."
+   ]
+  },
+  {
+   "axis": "The A/S boundary and the downgrade ladder",
+   "headline": "Austin does take A-grade trades \u2014 7 of 22 \"yes\" verdicts in the take-the-trade deck are explicitly A, not S, so the classifier cannot be S-only \u2014 and while his two most-named downgrade reasons (no displacement, level not respected/stale retest) are already coded in downgrade.py's eight variables, a third reason he repeats across independent cards \u2014 overhead levels blocking the path to target \u2014 has no variable at all.",
+   "claims": [
+    {
+     "claim": "No displacement is Austin's most-cited reason for calling something an A trade instead of S, and he separately names it THE primary A-trade downgrade when reacting to a mentor's ballot rule.",
+     "card_ids": [
+      "AVGO_2025-03-28",
+      "MSFT_2026-07-28",
+      "AMZN_2025-10-07",
+      "AMZN_2025-11-21",
+      "ACHR_2025-06-27",
+      "rule_14",
+      "TSM_2025-10-21"
+     ],
+     "n_supporting": 5,
+     "n_relevant": 13,
+     "austin_quote": "9:50 a trade no displacement",
+     "strength": "strong",
+     "codeable_form": "Already implemented and already in the rulebook: downgrade.no_displacement(bars, break_bar, level, is_long) \u2014 break-candle body < DISP_BODY_MULT(1.5) x avg prior body. 5 of 13 explicit A-trade cards name this outright (AVGO's 10:03 entry, MSFT, both AMZN 2025-10-07 and 2025-11-21 entries, ACHR). TSM_2025-10-21 frames displacement as literally the S-vs-A axis he's undecided on ('hard to tell if displacement for an A or S trade'). rule_14 is his own endorsement of a mentor-sourced ballot item ('starters for A trades that primary downgrade is no displacement and has a clear trend') \u2014 corroborating, but a meta-rule response (who: Jdub), not a per-chart grading, so not folded into the card count."
+    },
+    {
+     "claim": "Level not respected \u2014 the candle closing through, or not clearly above, the level instead of reacting off it \u2014 is a named A-trade downgrade, matching the existing level_not_respected variable and the entry_bar_off_level observation.",
+     "card_ids": [
+      "INTC_2024-08-23",
+      "TSLA_2025-05-16",
+      "META_2024-12-12"
+     ],
+     "n_supporting": 3,
+     "n_relevant": 13,
+     "austin_quote": "9:59 A TRADE because didnt respect PMH",
+     "strength": "hint",
+     "codeable_form": "Already implemented: downgrade.level_not_respected (>=CHOP_TOUCHES closes within eps of the level) and score()'s observations.entry_bar_off_level ('not above level' in META_2024-12-12). 3 of 13 explicit A-trade cards cite this."
+    },
+    {
+     "claim": "Too many candles between the break and the entry, or too much chop before entering, is a named A-trade downgrade \u2014 matching stale_retest and/or the CHOP_TOUCHES half of level_not_respected.",
+     "card_ids": [
+      "HOOD_2025-11-07",
+      "AAPL_2024-10-23",
+      "META_2024-12-12"
+     ],
+     "n_supporting": 3,
+     "n_relevant": 13,
+     "austin_quote": "9:53 is a A trade because too many candles in between",
+     "strength": "hint",
+     "codeable_form": "Already implemented: downgrade.stale_retest \u2014 (retest_bar_index - break_bar_index) > STALE_BARS(10). His phrase 'too many candles in between' is stale_retest's exact shape (gap between break and retest), while 'too many candles of chop' (META) sounds more like level_not_respected's CHOP_TOUCHES. His UI tag on HOOD_2025-11-07 was 'exhausted', not 'stale' or 'chop' \u2014 a tag/prose mismatch worth asking him about directly (see unsupported_questions)."
+    },
+    {
+     "claim": "Overhead/major levels sitting between entry and target \u2014 making the RR path hard to hit \u2014 recur as a downgrade/quality complaint across independent cards and probe sections, and this is NOT one of the eight rulebook variables or the four later unratified additions (chase, large_counter_body, multi_level_confluence, sequence_gate).",
+     "card_ids": [
+      "UBER_2026-08-04",
+      "MARA_2025-10-01",
+      "TSM_2026-07-24",
+      "QQQ_2025-02-25"
+     ],
+     "n_supporting": 4,
+     "n_relevant": 6,
+     "austin_quote": "10:02 A trade because theres major levels it needs to break for good rr.",
+     "strength": "hint",
+     "codeable_form": "NOT-CODEABLE AS SHIPPED \u2014 no function in downgrade.py measures this. Proposed predicate: count how many of the six watched levels (PDH/PDL/PMH/PML/HOD/LOD) sit strictly between the entry price and the trade's 2R target; if count >= 1, trip a new downgrade variable (e.g. path_blocked). This is a genuine 4th recurring theme distinct from the eight: MARA_2025-10-01 ('hod is a consolidation wall and too hard to target', a take=no decision), TSM_2026-07-24 (a card he still marked S but flagged 'this one woulve had trouble with the scale out LOD since its close to that even with better entry... so we need to make note of that'), and trade_anatomy's QQQ_2025-02-25 ('2r level is trumped by HTF levels and whole psych number if one is close') all hit the same idea from different angles \u2014 a level sitting in the way degrades trade quality independent of entry/displacement/level-respect. Denominator (6) is every card in both files that discusses RR/target-path quality at all; this is a small, low-n but structurally repeating pattern, not a rule."
+    },
+    {
+     "claim": "\"Too many trades before\" (this isn't the first entry of the day on the symbol) is cited once as a reason for grading an otherwise-clean entry A instead of S \u2014 matching the sequence_gate variable that already exists in downgrade.py but is unratified/OFF by default.",
+     "card_ids": [
+      "AVGO_2025-03-28"
+     ],
+     "n_supporting": 1,
+     "n_relevant": 13,
+     "austin_quote": "the cleanest looking entry 10:11 im counting as an A, S price action but to many trades before",
+     "strength": "single-card",
+     "codeable_form": "Already implemented but unshipped: downgrade.sequence_gate(entry_seq, is_84_reentry) \u2014 trips when entry_seq > 1 and it is not the sanctioned 84%-rule re-entry (ENABLE_SEQUENCE_GATE=False). Only one card in these two files evidences it directly; do not treat as confirming the gate's exact threshold or mechanics, only that the underlying concept ('too many trades before' costs a grade) is real in his vocabulary."
+    },
+    {
+     "claim": "Austin takes A-grade trades, not just S \u2014 the classifier target is not S-only.",
+     "card_ids": [
+      "AVGO_2025-03-28",
+      "AAPL_2024-10-23",
+      "MSFT_2026-07-28",
+      "UBER_2026-08-04",
+      "AMZN_2025-10-07",
+      "AMZN_2025-11-21",
+      "TSLA_2025-01-10"
+     ],
+     "n_supporting": 7,
+     "n_relevant": 22,
+     "austin_quote": "9:50 a trade no displacement",
+     "strength": "strong",
+     "codeable_form": "Engine spec change: surface signal_runner trades graded in {S, A}, not {S} only. Measured directly from the take_the_trade section (source_deck g75-deck2, rounds 1-13): of 22 cards where he answered take=yes, 7 have notes that explicitly grade the entry 'A trade' / 'A entry' rather than S (AVGO 10:03 & 10:11, AAPL 9:38, MSFT 9:50, UBER 10:02, both AMZN cards, TSLA 10:06-with-a-'?'). By contrast the one card in this deck where he names a C trade (UBER_2026-08-11, 'c trade because its been too long') he marks take=no \u2014 consistent with S and A both being tradeable and C not."
+    }
+   ],
+   "unsupported_questions": [
+    "HOOD_2025-11-07: he checked the 'exhausted' tag but his prose reason is \"too many candles in between\" (a staleness/gap description, not a distance-from-open one). Does his 'exhausted' mean ATR-distance-from-the-open (what EXHAUSTED_ATR currently measures), or does it mean elapsed time/candles since the move happened (closer to stale_retest)? A single mismatched card can't settle this \u2014 worth asking directly.",
+    "META_2024-12-12: he writes \"A trade with downgrades\" (plural) for a card citing two issues (not above level + too many candles of chop). The arithmetic ladder in downgrade.py floors two-or-more tripped variables at C, not A. Does he actually mean this one is a C, or does his casual 'downgrades' plural not imply the strict two-strikes-to-C rule?",
+    "TSLA_2025-01-10: \"A trade? beacuse candles start to slow\" \u2014 his own question mark signals he isn't sure of the grade. What does 'candles start to slow' mean as a measurable quantity (a momentum/velocity threshold), and is it a distinct downgrade from exhausted, or the same idea in different words? Only one card, and he himself is uncertain.",
+    "TSLA_2025-05-16: \"lots of close stop options\" is named alongside \"closed below the ORH\" as a reason for the A grade. Is ambiguous/multiple stop placement itself a downgrade factor in his mind, or just incidental color next to the real reason (level not respected)? Only one card mentions it.",
+    "NVDA_2024-12-24 and IWM_2026-05-05 both pair an A grade with \"AS CANDLE FORMING\" / \"as candle forming\" in the same note. Is entering as the candle is still forming itself a cause of the A downgrade (an early-entry penalty), or just a timing note that happens to sit next to the real reason? Two cards, both ambiguous on causation."
+   ]
+  }
+ ],
+ "grounded": [
+  {
+   "axis": "stop_placement",
+   "groundings": [
+    {
+     "claim": "Claim 1: 'none' answers on where_is_the_stop cards are entry-timing/setup refusals, not A/B/C/D stop-price confusion \u2014 codeable_form proposes an ENTRY_REJECTED classifier that routes 'none' away from stop-selection.",
+     "code_status": "absent",
+     "evidence": "grep across signal_runner.py and research/downgrade.py for any 'none'-grade branching found zero hits outside research/*.py analysis scripts (t60_baseline.py, t61_onwatch_ab.py, downgrade_tune.py etc.), and those all treat grade=='none' as a measurement bucket (counting 'none_days' for recall/precision denominators), never as a routed classifier that distinguishes entry-timing refusal from stop-selection ambiguity. downgrade.py's own scorer (research/downgrade.py:553) only ever emits 'S'/'A'/'C' \u2014 it floors at C and never produces 'none' itself; 'none' is exclusively a human mark value, consistent with CLAUDE.md's statement that Austin's S/A/C/none ladder is 'measured only, not wired into detection.' No ENTRY_REJECTED or equivalent no-trade/entry-timing classifier exists anywhere in signal_runner.py.",
+     "build_cost": "medium",
+     "note": "The claim's underlying observation (two 'none' cards read as entry/timing refusals, not stop confusion) is a data-reading claim about marks, not a code claim, and nothing in code contradicts it. But the codeable_form itself is entirely unbuilt \u2014 there is no stop_pick=='none' branch anywhere to check against, so this is a green-field proposal, not a partially-wired rule."
+    },
+    {
+     "claim": "Claim 2: where he states a stop rationale, the stop is pinned to a structural anchor (candle entered on, opening-range candle body, or pivot structure), never a standalone fixed-distance offset \u2014 codeable_form: stop_price = structural_anchor_price(entry_candle_body_extreme | opening_range_candle_body_extreme | nearest_pivot).",
+     "code_status": "partial",
+     "evidence": "signal_runner.py:1536-1568 `placed_stop()` implements exactly this family of anchors behind the STOP_PLACEMENT flag (STOP_PLACEMENTS tuple at line 1139: 'entry_bar','candle_entered','ocr_wick','broken_level','routed'). 'candle_entered' -> stop = candle.low/high (line 1552-1553); 'broken_level' -> stop = level_stop (the broken structural level); 'ocr_wick' -> the OCR candle's far wick (order_block_wick_stop, line ~1520-1533); 'routed' sends BREAK_AND_RETEST to the level and ONE_CANDLE_RULE to the OCR wick (lines 1558-1565). Pivot structure feeds the same B&R path as named levels via pivot_levels()/T10 (lines 1445-1490, 2779-2794), so 'nearest pivot' is also a real structural stop input. This is a fixed-distance-free, anchor-based model exactly as the claim describes -- BUT it is gated behind an env flag (default STOP_PLACEMENT='entry_bar', which returns the detector's own structural_stop unchanged) and is NOT the shipped default path; and every anchor used is the candle's low/high (wick extreme), never open/close (body) -- 'candle_entered' uses candle.low/candle.high, not a body price. grep for '.body'/'candle.open' as a stop reference in signal_runner.py returns zero hits.",
+     "build_cost": "small",
+     "note": "The mechanism the claim wants (structural-anchor stop, not fixed-offset) already exists and is wired end-to-end (min-risk floor, R denominator, no-repeat key per the T24 comment). The gap to close for shipping is just flipping/routing STOP_PLACEMENT, not building new logic. But note the claim's own phrase 'opening-range candle body' is imprecise against the code: the implementation is wick-extreme (low/high), not body (open/close) -- worth flagging since claim 4 (same axis) separately surfaces Austin saying 'i dont like bodies,' which is actually consistent with the code using wicks, not in tension with it as claim 4's own text suggests."
+    },
+    {
+     "claim": "Claim 3: 'two stop options' is a real recurring critique but not a clean veto \u2014 codeable_form proposes counting nearby structural stop anchors within a proximity band and downgrading/deferring/vetoing when >=2 exist, combined with level_not_respected.",
+     "code_status": "absent",
+     "evidence": "No stop-candidate-counting, ambiguity-detection, or 'multiple stop options' logic exists anywhere in signal_runner.py or research/downgrade.py -- grep for 'two.stop|stop_option|ambiguous|multiple.*stop' returns nothing. `placed_stop()` (signal_runner.py:1536) always picks exactly ONE stop per STOP_PLACEMENT mode; there is no code path that enumerates multiple structural candidates and compares their proximity. The claim's second, corroborating factor DOES exist: `level_not_respected()` in research/downgrade.py:243-249 is a real, wired downgrade factor ('candles CLOSING AT the level, or chopping on it, instead of reacting off it') feeding score() at line 500+, which floors the S/A/C grade -- so the 'level not respected' half of the META_2024-09-30 combo is codeable and already coded as a downgrade input; only the 'two stop options' half is unimplemented.",
+     "build_cost": "medium",
+     "note": "Correctly flagged as a hint-strength claim by its own denominator (3 supporting / 76 relevant) and the veto-vs-downgrade ambiguity is real -- there is no existing code to check the codeable_form against because the feature doesn't exist yet in any form, unreachable or otherwise. This is genuinely new logic, not a dead branch."
+    },
+    {
+     "claim": "Claim 4: 'i dont like bodies' is a single-card hedge, explicitly marked NOT-CODEABLE -- claim asserts possible tension with Austin's other routine of pricing stops at a candle's body, but says stop_rule.py's close-trigger/wicks-stop-nothing rule is complementary, not competing, with a body-edge stop reference.",
+     "code_status": "unreachable",
+     "evidence": "stop_rule.py:37-41 `stop_hit_on_close()` confirms the settled TRIGGER rule (close-based, wicks stop nothing) is about WHEN a stop fires, entirely independent of WHERE the stop PRICE sits -- consistent with the claim's own reasoning that a body-price stop and a close-trigger fill rule don't conflict. Separately, and this is the load-bearing finding: signal_runner.py's actual structural-stop implementation (placed_stop(), STOP_PLACEMENT='candle_entered') uses candle.low/candle.high -- i.e. it ALREADY avoids the body and uses the wick extreme, for every stop-placement mode in the codebase. So there is no code path anywhere that prices a stop at a candle body (open/close) to be in tension with 'i dont like bodies' in the first place -- the claim's own hedge about a possible tension is moot against the actual code, because the code was never using bodies. The claim correctly declines to propose a rule (NOT-CODEABLE), which matches the code: there's nothing to encode or contradict.",
+     "build_cost": "trivial",
+     "note": "This claim is self-consistently marked non-actionable and the grounding pass agrees for an additional reason not in the claim text: the codebase's only implemented structural-stop mode already sides with 'not bodies' (wick extremes throughout placed_stop()), so the tension the claim flags against 'Austin's own routine elsewhere' doesn't actually show up against THIS repo's code -- it would only show up against other marks corpora, which are out of scope for this axis's assigned files."
+    }
+   ]
+  },
+  {
+   "axis": "exit_ladder",
+   "groundings": [
+    {
+     "claim": "Entry is the most frequently rejected trade component in the anatomy corpus (5/8 cards), ranked ahead of runner/be/pt1/scale_size/stop/no_trade.",
+     "code_status": "absent",
+     "evidence": "No tally/rank code exists anywhere in signal_runner.py, stop_rule.py, backtest_2y.py, or research/downgrade.py. This is a manual count over graded-card metadata (mark files), not something the engine computes or stores. Nothing in the runtime contradicts it either -- it's simply outside the code's scope.",
+     "build_cost": "small",
+     "note": "Codeable only as a one-off counting script over research/marks/*.jsonl 'wrong' fields, not as an engine rule."
+    },
+    {
+     "claim": "A 4-leg target ladder (PT1=day extreme, PT2=next structural level hit, PT3=2R w/ override, PT4/runner=HTF-or-median 'target of choice') is what the engine reconstructs.",
+     "code_status": "absent",
+     "evidence": "backtest_week.py's shipped ladder (SCALE_PLAN='hod_then_runner_be', SimTrade fields at lines 342-349, target math at lines 1024-1043) is a 2-LEG model: scale_level (HOD/LOD as-of entry, the '1R rung') + one runner_target chosen as min/max of {PDH/PMH or PDL/PML, next whole-dollar}. There is no separate PT2 'next level actually reached' leg distinct from the runner, no PT3=2R leg with an override rule, and no PT4 defined from an HTF level or median/average. The unscaled blind-2R `target` field (line ~1024) is a THIRD, mutually-exclusive path used only when SCALE_PLAN is off -- it's never a leg alongside the ladder.",
+     "build_cost": "large",
+     "note": "Card-described 4-leg structure would require a real rewrite of SimTrade + _ladder_bar (backtest_week.py:642-736), not a parameter tweak."
+    },
+    {
+     "claim": "A simpler 2-scale pattern: scale at HOD, stop BE-or-hold, second scale on revisit to the HOD area, stop remainder at BE.",
+     "code_status": "absent",
+     "evidence": "RULE6_ENABLED (backtest_week.py:128-136) is the only 'scale-then-BE' code, and it is (a) a SINGLE scale at entry+-1R, not at HOD, (b) OFF by default per a 12mo A/B synthesis, and (c) has no 'revisit the level' second rung -- _ladder_bar (lines 642-736) checks scale_level once (`_target_hit` -> t.scaled=True) and never re-arms a second partial. No 'revisit'/re-touch logic exists in the file.",
+     "build_cost": "medium",
+     "note": "Confirms the claim's own single-card caveat -- nothing in the codebase generalizes this pattern beyond RULE6's already-shelved single scale."
+    },
+    {
+     "claim": "The raw 2R target is overridden by an HTF level or whole psych-dollar number when one sits close to 2R.",
+     "code_status": "partial",
+     "evidence": "Two separate, uncoordinated mechanisms exist, neither matching the claimed 'close-to-2R override': (1) signal_runner.py blocking_levels()/_grade_for_levels() (lines 1696-1710, 2036-2065) finds levels inside the entry-to-2R path and DOWNGRADES the trade to grade C (MESH_S_VETO/LEVEL_BLOCK_CAP) -- it does not retarget. It stamps sig['path_target'] as future-target-policy metadata ('R25... is what a level-first target policy takes'), but grep confirms path_target/path_levels are never read anywhere else in the shipped tree -- dead metadata. (2) backtest_week.py's runner_target ladder (lines 1032-1043) UNCONDITIONALLY replaces the blind-2R idea with the nearest PDH/PMH/whole-dollar level beyond the scale point for every scaled trade -- there is no proximity/closeness check to the 2R price anywhere, and no CLOSE_THRESHOLD constant exists in the codebase.",
+     "build_cost": "medium",
+     "note": "Confirms the codeable_form's own flag that CLOSE_THRESHOLD is unquantified, and goes further: no threshold concept of any kind is wired in -- one path is a grade-cap, the other is an unconditional level substitution."
+    },
+    {
+     "claim": "Scale-size split (30/30/30/10 vs 50/20/10/10) should be conditional on whether the day is trending.",
+     "code_status": "absent",
+     "evidence": "No variable split exists anywhere. RULE6_SCALE_PCT is a flat 0.5 constant (backtest_week.py:133); the F1 ladder's pnl() hardcodes '0.5 * scale_r + 0.5 * run_r' (line 397-402) -- always 50/50, two legs, never three or four. daily_trend_bias() (signal_runner.py:1862) exists but only feeds HTF_BIAS_GATE (a signal-veto, bullish/bearish/neutral), never a size-split decision; downgrade.py's counter_trend_not_respected() is likewise a grade check, not a split selector.",
+     "build_cost": "large",
+     "note": "Would need a new N-way split model plus a trending classifier repurposed from daily_trend_bias(), and rewiring pnl() off its fixed 0.5/0.5."
+    },
+    {
+     "claim": "'be' wrong co-occurs with 'entry' wrong in 2/3 cards, suggesting mistimed entry cascades into mistimed BE since BE is set relative to entry price.",
+     "code_status": "absent",
+     "evidence": "No code measures or asserts this correlation -- it's a 3-card corpus observation. The structural premise is real in code, though: be_level in backtest_week.py (RULE6, ~line 1024) and the BE_TRIGGER='pt1'/'mfe' stop-raise (lines 180-192, 668-693) are both computed as offsets from sig['entry'], so an entry-timing error would mechanically shift the BE level too -- consistent with, but not proof of, the claim.",
+     "build_cost": "small",
+     "note": "The claim itself stays correlational/not-codeable as written; only the entry-dependency premise is code-confirmed."
+    },
+    {
+     "claim": "The runner leg lands closer to entry than the 2R target when it should sit past 2R by construction, and its realized R-multiple (~0.41R) undershoots the stated mean RR of 2.5.",
+     "code_status": "implemented",
+     "evidence": "Confirmed live bug, unguarded. backtest_week.py runner_tgt (lines 1032-1043) is computed purely as 'nearest PDH/PMH/whole-dollar level beyond the scale (HOD/LOD) point' -- it never compares against t.target (the 2R price computed separately at ~line 1024). Since scale_level can be only a small fraction of a risk unit away from entry (whatever the day's HOD is as-of the signal bar) and the whole-dollar fallback is just the next $1 level, runner_tgt routinely lands well inside the entry-to-2R distance -- exactly Austin's complaint. pnl() (lines 396-402) uses t.scale_level and t.exit_price directly and never checks runner distance against target at all, so nothing in the code prevents or even flags this. Separately, options_sizer.py:37 does carry `DEFAULT_RR = 2.5` as a target ratio, but it is not wired as a check against any realized runner R-multiple anywhere in backtest_week.py.",
+     "build_cost": "small",
+     "note": "A guard (`assert/clamp: runner_tgt beyond target`) is a small code change; deciding the actual desired policy (always push runner past 2R vs. accept a closer real level) is Austin's call, not an engineering one."
+    },
+    {
+     "claim": "HTF 1h/4h pivot structures should be the basis for scaling targets (independently named in the wider corpus).",
+     "code_status": "absent",
+     "evidence": "pivot_levels() (signal_runner.py:1445-1488) computes swing pivots on the SAME intraday candle series the signal trades on -- not resampled to 1h/4h -- and feeds the MESH S-veto / rule10 noise-count, never the exit ladder. backtest_week.py does fetch 1h bars (yf.download(..., interval='1h'), line 813) but only for htf_bias_for(), a bullish/bearish/neutral GATE, not a level source; no 4h data is fetched anywhere in the repo for any purpose.",
+     "build_cost": "medium",
+     "note": "1h bars are already in hand for bias; turning them into pivot levels and wiring those into runner_tgt's candidate list is a bounded extension. 4h would need new data plumbing first."
+    }
+   ]
+  },
+  {
+   "axis": "confluence_and_s",
+   "groundings": [
+    {
+     "claim": "Base rate: 35/60 (58.3%) S on the deep_is_s deck, not the live selectivity target.",
+     "code_status": "absent",
+     "evidence": "No code computes or asserts this ratio. It is a mark-file/deck statistic, not a rule signal_runner.py, stop_rule.py, backtest_2y.py or downgrade.py implements. research/downgrade.py exists precisely because deck-level S-rate framing was rejected in favor of a per-signal S/A/C score (score = tripped - confluence, floored at C) that is measured against the whole 2-year book, not a pre-filtered 60-card deck. The claim's own caveat (don't treat this as engine selectivity) is consistent with how the code is actually structured -- there is no single 'selectivity' constant to check it against.",
+     "build_cost": "trivial",
+     "note": "Not a code-groundable rule; it's a corpus statistic. Fine as measured context, nothing to implement or contradict."
+    },
+    {
+     "claim": "Chop (non-monotonic candle alternation at the level) is a veto for S.",
+     "code_status": "contradicted",
+     "evidence": "research/downgrade.py:243-248 `level_not_respected()` is the closest code analogue ('candles CLOSING AT the level, or chopping on it... instead of reacting off it', CHOP_TOUCHES=2 closes within 0.25*ATR of the level). But it is explicitly NOT a veto: score() (downgrade.py:500-567) sums it into `tripped`, and net = tripped - confluence is floored at C, never auto-skipped -- the docstring (downgrade.py:17-21) says the old hard-veto mechanism (`TradeGrade.D`) was killed at Austin's own request ('nothing is auto-skipped by candle shape ever again'). Worse: signal_runner.py:717 records that a 2026-08-28 re-measurement (`w9_downgrade_signs.md`) found `level_not_respected` is WRONG-SIGNED -- it fires on 62.7% of the book and tripped trades outperform clean ones (+1.0046R n=640 vs +0.8711R n=377), i.e. treating it as a reason to reject actively marks BETTER trades worse in the measured data. Additionally downgrade.py is not wired into the live engine at all (ENABLE_DOWNGRADE_GRADER defaults 0, signal_runner.py:610-620), so even as a soft downgrade it has zero effect on what currently trades.",
+     "build_cost": "medium",
+     "note": "If this claim is used to justify a hard chop veto, that is the exact bug class CLAUDE.md warns about in reverse -- a real rule (Austin says chop) got encoded once, was found to be wrong-signed, and the associated hard-veto machinery was deliberately deleted. Any classifier rebuild should NOT resurrect chop as a gate without re-deriving the sign."
+    },
+    {
+     "claim": "Level-not-respected / two competing stop levels is the 2nd most common rejection reason.",
+     "code_status": "partial",
+     "evidence": "Same function, research/downgrade.py:243-248 `level_not_respected`, covers 'not respecting the level' but only via closes-at-level chop counting -- it does not detect or encode 'two competing stop-loss options to choose from' at all; nothing in stop_rule.py or signal_runner.py picks between ambiguous stop levels. stop_rule.py:101-129 does implement a genuinely different 'two stops' concept (R1/R2, disaster stop tested on touch + level stop on close), which is a different mechanism entirely (risk management, not setup-selection ambiguity) and should not be conflated with this claim. Same wrong-sign and not-wired-into-engine caveats as above apply to the level_not_respected half.",
+     "build_cost": "medium",
+     "note": "The 'two candidate stop levels' half of this claim has no code representation anywhere in the four files -- would need new detection logic, not just re-enabling an existing flag."
+    },
+    {
+     "claim": "BR+OCR label alone is not sufficient for S (4/5 rejected).",
+     "code_status": "implemented",
+     "evidence": "research/downgrade.py:475-493 `has_confluence()` is exactly this: BR+OCR is a +1 that can only cancel ONE downgrade (score():549-553, `confl = confl_br_ocr or confl_ml; net = len(tripped) - (1 if confl else 0)`), never a standalone gate to S. The docstring at downgrade.py:472-474 states it outright: 'confluence: an UPGRADE, not a neutral.' signal_runner.py:839-846 (P3/G8 CONFLUENCE_SETUP_ROUTES) reiterates: it 'IS already the +1 in Austin's grade arithmetic... this ticket adds A LABEL AND A COUNT, not a gate.'",
+     "build_cost": "trivial",
+     "note": "Code already matches this claim's codeable_form precisely -- decompose into sub-conditions rather than trust the label is exactly what has_confluence + the 8-variable score already do."
+    },
+    {
+     "claim": "BR/OCR literal-phrase confluence correlates with S but isn't required (weight, don't gate).",
+     "code_status": "implemented",
+     "evidence": "Same has_confluence() / score() as above. signal_runner.py:845-846 cites a matching measured effect: 'already worth +6.5 points of win rate on the 2-year book (55.8% with, 49.3% without, n=609/407)' -- i.e. the codebase already treats BR+OCR as a positive correlate worth tracking, not a gate, matching the claim's 'weight positively, do not gate' instruction almost exactly.",
+     "build_cost": "trivial",
+     "note": "No new code needed; this claim describes behavior the scoring function already has."
+    },
+    {
+     "claim": "BR/OCR is not necessary -- pivot+wick+displacement can independently qualify as S.",
+     "code_status": "implemented",
+     "evidence": "downgrade.py's score() computes S whenever net<=0 regardless of confluence (downgrade.py:552-553); has_confluence is additive only, never required. So a clean signal with zero tripped downgrade variables and no BR/OCR confluence still grades S under the shipped scoring function -- structurally consistent with the claim.",
+     "build_cost": "trivial",
+     "note": "Single-card claim strength is appropriately conservative; code doesn't need or contradict it either way, it's simply compatible."
+    },
+    {
+     "claim": "Displacement's necessity is contested; can't be a hard AND-gate.",
+     "code_status": "implemented",
+     "evidence": "research/downgrade.py:188-202 `no_displacement()` is one of the eight VARIABLES (downgrade.py:64-73) summed into `tripped`, not an AND-gate -- a signal with no_displacement=True but zero other trips still nets to A (one downgrade), not an auto-reject, and if confluence fires it can still net to S. This matches the claim's own codeable_form exactly (do not code as a hard AND-gate).",
+     "build_cost": "trivial",
+     "note": "Matches the shipped design already; the claim's proposed resolution (displacement could occur earlier, at level formation) is untested in code -- no_displacement() (downgrade.py:195) measures displacement specifically on the break bar, so an 'earlier displacement' path is genuinely absent and would be new work."
+    },
+    {
+     "claim": "Entries must fire off the retest, not the break candle itself (hard rule).",
+     "code_status": "implemented",
+     "evidence": "detect_break_retest (imported signal_runner.py:37, referenced through 'break-and-retest' detection logic e.g. signal_runner.py:1261-1293 on retest_tol_mult) structurally requires an ordered break-then-retest sequence before a BREAK_AND_RETEST signal can fire at all -- the detector's own step 3 is a literal retest-touch check (signal_runner.py:1264, 'step 3 of detect_break_retest is `c.low <= level`'). A signal cannot exist without an intervening retest bar by construction, so entering on the break bar alone is already structurally excluded from the detector, matching the claim, even though the explicit English framing ('entering on the break is an engine error') isn't written as a standalone assertion anywhere.",
+     "build_cost": "trivial",
+     "note": "Under-sampled in the marks per the claim, but the code-level guarantee is broader and stronger than 2 quotes -- it's baked into the detector's control flow, not an optional check."
+    },
+    {
+     "claim": "'As candle forming' (intrabar) entries preferred over on-close even with confluence.",
+     "code_status": "contradicted",
+     "evidence": "entry_fill.py:33-46 lists the ONLY five entry modes (published/close/next_open/chase_once/limit_level) and states 'THE DEFAULT CHANGED ON 2026-08-30... The entry is now the signal minute's CLOSE' (entry_fill.py:82, ENTRY_FILL default = 'close'). There is no intrabar / 'as candle forming' fill mode anywhere in the five -- an entry before the signal bar closes is not a representable order in the current code. This directly opposes the claim's preference for intrabar entries, and the codebase's own CLAUDE.md-documented g87/g88 sweep found the closest attempt at an earlier fill (a resting limit) had 89.6% of its fills land BEFORE the signal bar existed (look-ahead), which is why 'close' was kept as the shippable default despite being later than Austin's marks suggest he wants.",
+     "build_cost": "large",
+     "note": "This is a live, acknowledged tension (not a bug) -- CLAUDE.md itself documents intraday-entry timing as an open, unresolved gap (median 24 minutes behind him) and g88's honest intrabar-limit arm ($275/day) was found not shippable. Implementing a true intrabar entry mode would need new fill-time semantics, not a flag flip."
+    },
+    {
+     "claim": "Sequencing: an earlier A/chop signal same-session predicts the day's S trade (3/3).",
+     "code_status": "partial",
+     "evidence": "Related but opposite-direction machinery exists: downgrade.py:118-137 `sequence_gate()` / `ENABLE_SEQUENCE_GATE` DOWNGRADES a 2nd+ same-symbol-same-day entry (unless it's the 84%-rule re-entry) -- it penalizes lateness, it does not reward a later signal for having an earlier A/chop precede it. signal_runner.py's T14 `ARRIVAL_LADDER` (around signal_runner.py:760-800) separately tracks arrival order but as an eligibility/promotion mechanism, not a same-day-prior-signal-count feature predicting S. No code computes 'count_of_A_or_chop_signals_earlier_same_session' as a predictive feature for the next signal's grade.",
+     "build_cost": "medium",
+     "note": "The infrastructure to compute entry_seq per symbol-day already exists (downgrade.py's sequence_gate caller contract, downgrade.py:126-136) and could be repurposed to build this feature, but the feature itself is absent and would need new code, not a flag flip."
+    },
+    {
+     "claim": "take_the_trade=='yes' is not a clean is_s proxy (mixes in A-grade trades).",
+     "code_status": "absent",
+     "evidence": "This is a claim about the marks/deck data schema (take_the_trade section vs deep_is_s section), not about signal_runner.py/stop_rule.py/backtest_2y.py/downgrade.py behavior -- none of those four files read or interpret a 'take_the_trade' field. It's a caveat for whoever builds a training pipeline off the mark corpus, not a code rule to ground.",
+     "build_cost": "trivial",
+     "note": "Correctly out of scope for the four grounding files; nothing to confirm or contradict in code."
+    }
+   ]
+  },
+  {
+   "axis": "veto_vocabulary",
+   "groundings": [
+    {
+     "claim": "Chop should be the primary veto bucket (checked 15/22 refusals, 68%) in a veto-reason ranker.",
+     "code_status": "absent",
+     "evidence": "No standalone chop check is reachable from the engine. predicates.py:256 def is_chop_market() exists (10+ consecutive small-body candles, body/range<0.3 \u2014 Austin's own '10 or 11 chop candles' quote) but grep of signal_runner.py, backtest_week.py, backtest_2y.py, live_scanner.py, omen_bot.py finds zero references to is_chop_market/is_x_signal \u2014 it's called only by research/mark_features.py (offline feature extraction). The repo's own audit confirms this: research/g74_rescore30_score.py:410-411 MAP dict hard-codes `\"chop\": (None, \"absent\")` as an engine check. The nearest wired proxy, downgrade.py::level_not_respected, is empirically WRONG-SIGNED per the W9 sweep cited at signal_runner.py:717-724 \u2014 it fires on 62.7% of the book and correlates with BETTER trades (+1.0046R tripped vs +0.8711R clean), the opposite of a veto signal.",
+     "build_cost": "medium"
+    },
+    {
+     "claim": "level_not_respected co-occurs with chop 8/9 times and should be treated as a subtype of a chop veto.",
+     "code_status": "contradicted",
+     "evidence": "The co-occurrence is partly an artifact of the instrument itself: research/g71_homework_build.py:222 and research/g75_deck2_build.py:154 both define the level_not_respected checkbox label as 'level not respected \u2014 closing on it / chopping on it', so 'chop' and 'level_not_respected' are worded as near-synonyms in the probe he's answering. Separately, downgrade.py:243-248 implements level_not_respected (>=2 closes within epsilon of the level over a 12-bar window, CHOP_TOUCHES=2) and it IS wired as an offline-measurable engine check, but signal_runner.py:717-724 documents it is wrong-signed (research/w9_downgrade_signs.md): tripped trades average +1.0046R vs clean +0.8711R. The codebase's own W9 fix ('w9c' variant, signal_runner.py:743) explicitly DROPS level_not_respected to restore a monotonic grade ladder. Strengthening its role as claimed would compound a variable the code already found backwards.",
+     "build_cost": "small"
+    },
+    {
+     "claim": "Chop-state A: level-chop, price oscillating around a specific level without a decisive break, distinct from generic range chop.",
+     "code_status": "absent",
+     "evidence": "predicates.py:256 is_chop_market only counts consecutive small-body candles anywhere \u2014 no level-proximity gate. downgrade.py:243-248 level_not_respected checks proximity to A specific level but not a distinct 'oscillation vs decisive break' state, and it's the wrong-signed variable noted above. No code distinguishes level-chop from generic chop.",
+     "build_cost": "needs-research"
+    },
+    {
+     "claim": "Chop-state B: post-displacement collapse \u2014 real breakout candle fires, then follow-through dies before a retest forms.",
+     "code_status": "partial",
+     "evidence": "The building-block primitives exist separately: downgrade.py:188-201 no_displacement() detects a weak break bar, and downgrade.py:228-241 stale_retest() / downgrade.py:296-302 no_retest() detect a retest that's late or absent after a break. No function in downgrade.py or signal_runner.py composes 'displaced == True, then no_retest/stale_retest == True' into a single post-displacement-collapse check.",
+     "build_cost": "small"
+    },
+    {
+     "claim": "Chop-state C: range/consolidation wall \u2014 price never leaves a band all morning, no breakout attempt to judge.",
+     "code_status": "partial",
+     "evidence": "predicates.py:256 is_chop_market's consecutive-small-body-candle test (threshold=10) would likely fire on a genuine all-morning wall, but it never checks price containment inside a fixed high/low band \u2014 it only reads candle body/range ratios. No band-containment-since-open check exists anywhere in predicates.py, downgrade.py, or signal_runner.py.",
+     "build_cost": "small"
+    },
+    {
+     "claim": "Chop-state D: trending-but-choppy \u2014 an HTF/session bias exists but no clean entry candle forms within it.",
+     "code_status": "absent",
+     "evidence": "No code combines an HTF-bias read (signal_runner.py has htf_bias plumbing referenced at research/downgrade.py:500 score() signature) with a per-candle 'clean enough to enter' test. counter_trend_not_respected (downgrade.py:262-283) is the closest existing check but measures un-bought-back counter candles, not general candle inconsistency within an established trend.",
+     "build_cost": "needs-research"
+    },
+    {
+     "claim": "Chop is sometimes a downgrade rather than a hard veto (one CRM card graded yes despite a checked chop tag).",
+     "code_status": "implemented",
+     "evidence": "This matches downgrade.py's actual design, not an edge case. score() (downgrade.py:500+) never hard-vetoes on any single variable; it floors at grade C (research/downgrade.py:15-24, 'C is the floor... nothing below it, and nothing is auto-skipped by candle shape ever again \u2014 that was TradeGrade.D, which he asked to be removed entirely (2026-08-24)'). level_not_respected/chop-like signals only add to a downgrade COUNT (S/A/C), never an outright reject in the committed design.",
+     "build_cost": "trivial"
+    },
+    {
+     "claim": "No repeatable candle-count threshold for 'exhausted' exists in his marks; the one numeric data point is from a different section.",
+     "code_status": "contradicted",
+     "evidence": "downgrade.py:251-259 exhausted() is implemented, but on an entirely different unit than candle-count: it's ATR-distance from the session open (`abs(close - session_open) >= EXHAUSTED_ATR * atr`), EXHAUSTED_ATR=10.0. The module comment (downgrade.py:55-59) notes this constant was already tuned once \u2014 3.0 was tried and rejected because it flagged every ordinary trend day as exhausted on 1-minute bars \u2014 and is still flagged 'AUSTIN HAS NOT SET' a guess. The claim's 'no candle-count number given' holds, but it's moot: the shipped proxy for exhaustion doesn't count candles at all.",
+     "build_cost": "trivial"
+    },
+    {
+     "claim": "No hard wall-clock cutoff exists for 'late'; refusals and non-late refusals both occur in similar windows.",
+     "code_status": "absent",
+     "evidence": "No LATE_HOUR/time-cutoff constant exists in signal_runner.py. The only related time gate is arrival_first = 0<=mins<=90 (signal_runner.py:2113), a GRADING-credit window (first with-trend signal of the day) not a lateness veto, applied identically whether ON or OFF (signal_runner.py:2299 comment 'late arrival not capped'). Independently, research/g74_rescore30_score.py:411 MAP dict hard-codes `\"late\": (None, \"absent\")` as an engine check, confirming this from the repo's own audit script.",
+     "build_cost": "medium"
+    },
+    {
+     "claim": "The deep_is_s probe section (25 refusals) carries no structured why_not tags \u2014 reasoning lives only in free-text notes.entry.",
+     "code_status": "implemented",
+     "evidence": "Confirmed exactly. research/g84_one_page.py render_deep() (lines 1085-1109, the deep_is_s section) builds only an 's' (S/no) question and an 'entry' free-text question \u2014 no `question(\"why_not\", ...)` call exists there, unlike render_is_s (line 860-863) and render_take (line 1072-1075) which both include the why_not checkbox block with hb.NO_REASONS / g75b.NO_REASONS.",
+     "build_cost": "trivial"
+    },
+    {
+     "claim": "Ambiguous stop-loss placement (2+ plausible stops) is a minor but real veto driver; unclear if the count is already computable.",
+     "code_status": "partial",
+     "evidence": "It is already computable, just not live. research/g82_master_homework.py:706-725 stop_candidates() computes up to 4 distinct stop-price 'families' per entry (candle extreme, level, pivot \u2014 via signal_runner.pivot_levels, the engine's own swing/no-lookahead logic \u2014 and a disaster-% stop), and pick_stop() (line ~729) already filters to cards where all 4 disagree by more than one tolerance unit. This exists only in the offline probe-generation script (research/g82_master_homework.py) \u2014 no AMBIGUOUS_STOP flag or equivalent veto is wired into signal_runner.py's live detection path.",
+     "build_cost": "small"
+    }
+   ]
+  },
+  {
+   "axis": "entry_timing",
+   "groundings": [
+    {
+     "claim": "Engine is later than Austin in all 7 literal-timestamp cases (median -10min, mean -15.1min).",
+     "code_status": "implemented",
+     "evidence": "entry_fill.py:82 `ENTRY_FILL = os.getenv(\"ENTRY_FILL\", \"close\")` \u2014 the shipped default books every entry at the SIGNAL BAR'S OWN CLOSE (entry_fill.py:236 `if m == \"close\": return EntryFill(candle.close, ...)`). signal_runner.py:1391-1412 `fill_price()` delegates to this with mode='close'. Because `backtest_week` feeds the runner `candles[:i+1]` (signal_runner.py:1405-1410 docstring), the engine literally cannot react until a bar has fully closed, so any entry it books is definitionally at-or-after the close of whatever bar triggered it \u2014 structurally consistent with 'engine is always late, never early'.",
+     "build_cost": "trivial",
+     "note": "This is deliberate, not a bug: it is the 2026-08-30 honest-fill fix (entry_fill.py module docstring) replacing the old unobtainable 'published' clamp-to-level fill. The lateness the marks describe is a real, intended consequence of that design, not a defect to patch in isolation."
+    },
+    {
+     "claim": "Adding candle-count offsets, 10/12 comparable cards show engine late (median -6.5min).",
+     "code_status": "implemented",
+     "evidence": "Same mechanism as above (entry_fill.py:82,236; signal_runner.py:1391-1412). Additionally for BREAK_AND_RETEST specifically, omen_bot.py:615-730 `detect_break_retest` requires an ordered break\u2192leave\u2192retest\u2192CONFIRM state machine, and the CONFIRM step (omen_bot.py:627-628, enforced at 705-707) may lag the retest touch by up to `max_confirm_gap=3` bars (3 minutes on 1-min bars) before the entry candle is accepted \u2014 a second, independent source of the multi-minute lag the marks report.",
+     "build_cost": "small",
+     "note": "The 3-bar confirm-gap ceiling is a tunable parameter (`max_confirm_gap`, default 3) at the detect_break_retest call sites (signal_runner.py:2810, 3112) with no override passed \u2014 worth flagging as a lever if lateness needs reducing, but changing it is a real behavior change, not a bugfix."
+    },
+    {
+     "claim": "\"As candle forming\" / intrabar fill at the level, corroborating a zero-tolerance limit finding \u2014 codeable as entry_fill_mode='intrabar_limit_at_level'.",
+     "code_status": "contradicted",
+     "evidence": "entry_fill.py module docstring: 'An order cannot rest before the order exists... The signal bar itself is never scanned for a limit fill, no matter how far through the level it traded' (enforced by `_assert_causal`, entry_fill.py ~line 149-167, which raises `LookAheadError` on any bar at-or-before the signal bar). The g87/g88 zero-tolerance finding CLAUDE.md cites also only arms 'at arm_index()+1 \u2014 the first bar AFTER the setup left the level' (research/g87_retest_tol.py docstring), never inside the signal bar itself. No shipped or swept mode fires during the still-forming signal candle.",
+     "build_cost": "needs-research",
+     "note": "UNREACHABLE BRANCH FOUND, matching the CLAUDE.md bug class: signal_runner.py:2825-2831 comment claims an intrabar/mid-bar ON WATCH override ('we are in on the trigger price, mid-bar'), and fill_price() (signal_runner.py:1391-1416) always computes `close_is_bad_fill(...)` and passes it into entry_fill_price as `close_is_bad_fill=`. But entry_fill.py:211 states '`close_is_bad_fill` ONLY `published` reads it' \u2014 and `published` is not the default (`close` is, entry_fill.py:82,236). So under the shipped config, that verdict is computed on every call and silently discarded; the mid-bar override the inline comment describes cannot fire. A true intrabar-forming entry would require deliberately reintroducing look-ahead the module was built specifically to forbid \u2014 a real design decision, not a small patch."
+    },
+    {
+     "claim": "Engine anchors entries to the BREAK candle instead of the RETEST/OCR candle \u2014 a structural complaint distinct from pure lateness.",
+     "code_status": "contradicted",
+     "evidence": "omen_bot.py:615-730 `detect_break_retest`'s FSM already anchors the entry to the CONFIRM candle (the one that closes back through the level, within `max_confirm_gap` of the retest touch \u2014 omen_bot.py:626-628, 692-699, 705), not the initial BREAK candle (state 'seek_break', omen_bot.py:680-684). signal_runner.py:2830 `entry = order_fill(level_hi, current, is_long=True, ...)` prices and timestamps the trade off `current`, which at that point in the loop IS the confirm candle, not the break candle.",
+     "build_cost": "small",
+     "note": "The claim's stated MECHANISM (break-candle anchoring) does not match the code, but the underlying complaint is still grounded: the real gap is retest-touch vs confirm-candle-CLOSE (up to 3 bars, priced at that candle's close per claim 1/2's mechanism), which is functionally the same lateness Austin is naming, just mislabeled as 'break vs retest' rather than 'confirm-gap + close-only fill'. Worth correcting before this becomes a codeable spec."
+    },
+    {
+     "claim": "No card shows the engine entering too early on a signal Austin agreed was valid \u2014 asymmetry (late-or-on-time, never early).",
+     "code_status": "implemented",
+     "evidence": "Structural corroboration, not a corpus fact to verify in code: entry_fill.py's 'close' default (line 236) always books at `candle.close` \u2014 the LAST price of the signal bar \u2014 and detection (omen_bot.py detect_break_retest, and the analogous OCR/pattern detectors) requires a full bar CLOSE to confirm (omen_bot.py:658-660, 'the CLOSE decides'). There is no shipped code path that can price or timestamp an entry before the earliest instant a human could also have confirmed the same close, so the engine can only match or lag a discretionary trader's confirmation \u2014 never lead it \u2014 which is exactly the asymmetry claimed.",
+     "build_cost": "trivial",
+     "note": "This claim itself (absence of a marks-corpus counterexample) isn't a code claim, but the code explains WHY the asymmetry should exist rather than being incidental to a small sample: it is a direct consequence of the close-driven design, so it's decent grounding for the guardrail's premise."
+    }
+   ]
+  },
+  {
+   "axis": "a_vs_s_boundary",
+   "groundings": [
+    {
+     "claim": "No displacement is Austin's most-cited A-trade downgrade reason (5/13 cards) and matches downgrade.no_displacement.",
+     "code_status": "implemented",
+     "evidence": "research/downgrade.py:188-202 def no_displacement(bars,i,level,is_long): finds the break bar via _break_bar (candle that CLOSED through the level), compares its body to DISP_BODY_MULT(1.5)x the average of the prior 10 bars' bodies. Registered in VARIABLES tuple (line 65) and CHECKS dict (line 460), invoked from score(). Logic is reachable and matches the described semantics exactly (break-candle strength, not entry-candle).",
+     "build_cost": "trivial",
+     "note": "downgrade.score() is deliberately NOT wired into live detection (module header, line ~30-34: 'DELIBERATELY NOT WIRED INTO THE ENGINE YET... Measure, then wire'), gated behind ENABLE_DOWNGRADE_GRADER env var in signal_runner.py:621-622 (default OFF). That's an intentional feature-flag gate, not the unreachable-branch bug class -- the function itself is correct and reachable when the flag is on."
+    },
+    {
+     "claim": "Level not respected (closing through/chopping on the level) is a named A-trade downgrade matching downgrade.level_not_respected and observations.entry_bar_off_level.",
+     "code_status": "implemented",
+     "evidence": "research/downgrade.py:243-248 def level_not_respected: counts closes within eps of the level over a 12-bar window, trips at >=CHOP_TOUCHES(2). Separately, downgrade.py:559 observations dict sets entry_bar_off_level = (low > level+eps) for longs / (high < level-eps) for shorts -- a reported-only field, not a downgrade input. Both exist and are reachable, registered/called correctly.",
+     "build_cost": "trivial",
+     "note": "Same unwired-by-default status as above; not a bug, a measurement-before-ship gate."
+    },
+    {
+     "claim": "Too many candles between break and entry / too much chop is a named A-trade downgrade matching stale_retest and/or CHOP_TOUCHES.",
+     "code_status": "implemented",
+     "evidence": "research/downgrade.py:228-240 def stale_retest: finds break bar and retest bar (first bar touching the level after the break), trips if (retest_index - break_index) > STALE_BARS(10). STALE_BARS is explicitly flagged in the file header as the one constant Austin himself ratified (rule_ballot_batch02, b11, 'if you want a number ill say 10'), unlike the other guessed constants. Reachable, correctly wired into score() (line ~546 region via CHECKS/VARIABLES).",
+     "build_cost": "trivial",
+     "note": "Claim's own hedge (HOOD_2025-11-07 tagged 'exhausted' not 'stale') is accurate -- 'exhausted' is a separate downgrade.exhausted() variable (EXHAUSTED_ATR threshold), a genuinely different check from stale_retest, so that card is weak/ambiguous support as the claim itself flags."
+    },
+    {
+     "claim": "Overhead/major levels between entry and target ('path_blocked') is a real recurring theme NOT covered by any existing downgrade variable, including the 4 unratified additions.",
+     "code_status": "absent",
+     "evidence": "grep across research/downgrade.py for path_blocked/overhead/major_level/RR-path/target-related terms returns zero hits. The 8 ratified variables (VARIABLES tuple, downgrade.py:63-72) and the later additions -- chase (line 153), large_counter_body (ENABLE_LARGE_COUNTER_BODY, line ~103, OFF), multi_level_confluence (ENABLE_MULTI_LEVEL_CONFLUENCE, line ~127, OFF), sequence_gate (ENABLE_SEQUENCE_GATE, line 137, OFF) -- confirm no function measures distance-to-target vs. intervening levels. The claim's core 'not codeable as shipped' assertion is correct.",
+     "build_cost": "medium",
+     "note": "The claim's own parenthetical is wrong on one fact: it lists chase alongside large_counter_body/multi_level_confluence/sequence_gate as all 'later unratified additions.' Chase is NOT unratified -- downgrade.py:149-153 states 'Ships ON: ratified' and ENABLE_CHASE_DOWNGRADE=True by default (the only one of the four that defaults True). Only large_counter_body, multi_level_confluence, and sequence_gate remain unratified/OFF. This mischaracterization should be corrected before this claim is used to argue precedent for adding a 5th unratified variable."
+    },
+    {
+     "claim": "'Too many trades before' (sequence) costs a grade, matching downgrade.sequence_gate, which exists but is unratified/OFF.",
+     "code_status": "implemented",
+     "evidence": "research/downgrade.py:427-441 def sequence_gate(entry_seq, is_84_reentry): returns False if entry_seq is None/<=1, else `not is_84_reentry`. Module comment (lines 129-137) documents entry_seq as 1-based ordinal of same-symbol same-day entries, caller-supplied. ENABLE_SEQUENCE_GATE=False at line 137 (default OFF, unlike chase). Function logic is reachable and correctly implements the described 'no repeat unless 84% reentry' rule; no dead-branch bug found.",
+     "build_cost": "trivial",
+     "note": "Claim correctly identifies this as single-card support, not confirmation of exact mechanics/threshold -- appropriately hedged."
+    },
+    {
+     "claim": "Austin takes A-grade trades too (7/22 take=yes cards graded A, not S) -- classifier target should not be S-only.",
+     "code_status": "contradicted",
+     "evidence": "Current shipped code targets S-only for live trading: signal_runner.py comment at line ~747-756 states 'live_scanner._tier (TRADE iff S)' explicitly, and SAC_TIER/DOWNGRADE_TIER mappings (lines 640, 757) both route S and his-A onto the engine's shared top letter grade but the trade-fire gate itself keys on austin_tier==\"S\" (signal_runner.py:2617-2618: `if sig['austin_tier'] == 'S': s_rank = 'S'`). compute_austin_tier (line 1742) returns S/A/C but only S triggers the trade-taken path per the cited comment. This is a data/behavior claim about Austin's marks, not a code-implementation claim -- and it correctly identifies that current code's live-fire target IS S-only, which is what it's arguing should change.",
+     "build_cost": "medium",
+     "note": "codeable_form is honest that this is a proposed spec change ('Engine spec change: surface trades graded {S,A}'), not something already implemented. Grounding here confirms the premise (engine currently fires S-only) is accurate, so the proposed change is a real, well-scoped gap rather than a misreading of existing behavior. This also sits in tension with THE LANE's stated target in CLAUDE.md ('S trade accuracy... 1-3 S setups') -- worth flagging to Austin as a possible scope question, not silently expanding the lane."
+    }
+   ]
+  },
+  {
+   "axis": "displacement",
+   "groundings": [
+    {
+     "claim": "The dedicated 8-card 'displacement' probe returned identical 'no' answers with almost no notes \u2014 evidence the probe instrument is broken (no contrast cases), not evidence about his judgment.",
+     "code_status": "unreachable",
+     "evidence": "research/build_probes.py:96 defines a single CONFIRM_OPTS entry ('displacement','Displacement candle') and :233 a VERDICT-adjacent 'no_displacement' label; there is no code path in build_probes.py that seeds a positive/contrast displacement example into a card deck \u2014 cards are drawn from the mark corpus, not constructed pairs. This is not a signal_runner/stop_rule/backtest rule at all (correctly flagged NOT-CODEABLE), so 'code_status' here describes the probe generator, not a trading rule: no branch exists that could have produced a 'yes' card, so an all-'no' 8/8 result cannot discriminate anything \u2014 the claim's diagnosis is structurally correct.",
+     "build_cost": "small",
+     "note": "Real fix (if wanted) is a probe-design change (seed 1-2 known-displaced examples), not a signal_runner change."
+    },
+    {
+     "claim": "Austin's own definition of displacement: a single (entry/signal) candle closes decisively away from the level AND stands apart from the preceding cluster, with no fixed metric \u2014 my inferred 'non-overlap with recent candles' mechanism is a guess, not his words.",
+     "code_status": "contradicted",
+     "evidence": "signal_runner.py:2009-2025 `_bnr_displacement` and omen_bot.py:388-400 `_has_displacement` both implement displacement as a BODY-SIZE test only (break-leg candle body >= 1.5x avg body of 10 prior candles, plus a T11(a) no-touch-of-level clause) \u2014 never a distance/overlap measurement. But research/g81_displacement.py (committed, read-only measurement script) already ran exactly this question and concluded the shipped body-size check is wrong: Austin's own words ('from the original candles', 'not of the level just the wicks') and all three cited mentor quotes describe a SEPARATION/DISTANCE, matching your inferred mechanism almost exactly \u2014 Neto: 'ACTUAL SEPARATION FROM THE CANDLES TO THE KEY LEVEL'. g81 found the shipped check costs 13.4pp of recall on his own S days for +0.0136R (inside the \u00b11.58R error bar) and proposed (research/g81_displacement.md, 'Proposed changes. Nothing is applied.') swapping in a separation_atr() test \u2014 never wired into downgrade.py or signal_runner.py as of this check.",
+     "build_cost": "small",
+     "note": "Your 'non-overlap' inference is not a guess in isolation \u2014 a prior committed research pass (g81) reached the same conclusion from his own words and unwired mentor quotes, and it is sitting unshipped. This upgrades the claim's confidence well past 'single-card, my inference'."
+    },
+    {
+     "claim": "'No displacement' spontaneously downgrades an S-candidate entry to A (not just excludes it) \u2014 clearest case ACHR_2025-06-27.",
+     "code_status": "partial",
+     "evidence": "The authoritative rule (vault omen-rulebook.md:266-296, ratified 2026-08-23, ballot q18) is exactly this: 'S = zero tripped, A = one, C = two' with no_displacement as variable #1 \u2014 one trip alone means A, matching your claim precisely. research/downgrade.py:500 `score()` implements this faithfully (grade = S \u2212 tripped + confluence bonus). BUT signal_runner.py's separate, also-named 'Austin's Tiers' implementation, `compute_austin_tier` (line 1742, T11(a), lines 1759-1767), does NOT implement this: it caps a no-displacement B&R straight to 'C', skipping 'A' entirely, unconditionally ('never be S, whatever the other clauses say') \u2014 no single-trip-equals-A path exists in that function at all.",
+     "build_cost": "medium",
+     "note": "Two live 'S/A/C' implementations disagree on this exact point. downgrade.py::score() matches your claim (A on one trip); signal_runner.py::compute_austin_tier contradicts it (hard C). Both are reported-only, not wired to trade execution (confirmed: 'AUSTIN_TIER_ENABLED... Reported only \u2014 nothing below branches on it', signal_runner.py:2604), so neither currently changes what trades fire, but they log/measure different answers to the same question."
+    },
+    {
+     "claim": "'No displacement' (or why_not:no_displacement) cited as reason a card isn't S/worth taking, without specifying A vs C, sometimes paired with other disqualifiers.",
+     "code_status": "implemented",
+     "evidence": "Matches signal_runner.py's compute_austin_tier behavior directly: BNR_DISPLACEMENT_GATE (default ON, line 170) + sig.get('displacement') is False => hard-return 'C' for any BREAK_AND_RETEST/BR_OCR_CONFLUENCE signal (lines 1764-1767), i.e. never S, consistent with 'not S' framing. Trading-Bot-Rulesets.md clause 5 (lines 305-315) states this in prose as the source. Your claim's caveat that it's often bundled with other disqualifiers is separately true in code: `no_displacement` is one of 8 independent trip conditions in downgrade.py's score(), so in that ladder it never acts as an isolated veto either \u2014 consistent with your 'not codeable as a standalone gate' conclusion.",
+     "build_cost": "trivial",
+     "note": "none"
+    },
+    {
+     "claim": "Austin flags his own displacement-based A-call on AMZN_2025-11-21 as contradicting a different AMZN card ('22 amzn'), on a 'range chop day of hell' \u2014 evidence the rule is applied with judgment/context, not mechanically.",
+     "code_status": "absent",
+     "evidence": "No code anywhere in signal_runner.py, downgrade.py, or omen_bot.py conditions the displacement check on day-regime/chop context \u2014 `_bnr_displacement`, `_has_displacement`, and `no_displacement()` all evaluate a fixed window of prior candles with no day-level state. This is faithfully NOT-CODEABLE as claimed: it's evidence about the human applying a mechanical rule inconsistently under context he calls 'chop', and no code path currently models chop-day context into the displacement check at all (nor does the rulebook mention such an exception).",
+     "build_cost": "needs-research",
+     "note": "If this were ever to be coded, it would require a new 'day regime / chop' variable \u2014 none exists today that modulates displacement specifically."
+    },
+    {
+     "claim": "Displacement is a sufficient-but-not-necessary confluence for S: on 2 cards graded S with 'no displacement' stated, a named alternate confluence (OCR hold, wick-reclaim, strong PA) substitutes to still earn S.",
+     "code_status": "partial",
+     "evidence": "This is the RATIFIED rule, stated explicitly and with more precision than the claim's inference: vault omen-rulebook.md:281-297 (ballot q18, settled 2026-08-23) \u2014 'grade = S \u2212 downgrades + confluence bonus', so 'a setup with one downgrade and clean BR+OCR confluence is still S.' research/downgrade.py:475-493 `has_confluence()` implements exactly this (BR+OCR confluence, geometrically defined, +1 offset) and is exercised by score(). HOWEVER signal_runner.py::compute_austin_tier explicitly does the opposite for the one named exemption it touches: the T11(a) comment (lines 159-167) says BR_OCR_CONFLUENCE 'keeps the SAME clause-5 veto it had as a plain B&R' \u2014 i.e. the code that actually sits in signal_runner.py (the file this axis is graded against) hard-vetoes to C even when BR+OCR confluence is present, contradicting the ratified offset rule. The other two ratified exemptions (a flag opening the day; a longer-timeframe thesis) are, per research/g81_displacement.md:271-287, 'implemented nowhere' in any file.",
+     "build_cost": "small",
+     "note": "Your inferred substitute set (ocr_hold, wick_reclaim, strong_PA) is close but not exact \u2014 the ratified/coded exemption is specifically BR+OCR confluence (geometrically defined: OCR's far edge on the correct side of the level, usable as a stop) via downgrade.py, not 'strong PA' or a bare wick reclaim; those aren't named confluence types in either the rulebook or downgrade.py. And signal_runner.py's own displacement gate \u2014 the code most directly named by this axis \u2014 currently overrides even the one ratified exemption it references, so 'S via compensating confluence' is real in the rulebook and in downgrade.py, but contradicted in signal_runner.py's live gate logic."
+    }
+   ]
+  },
+  {
+   "axis": "meta_process",
+   "groundings": [
+    {
+     "claim": "Entry fires on the break candle itself instead of waiting for a confirmed retest (repeat bug per Austin).",
+     "code_status": "contradicted",
+     "evidence": "omen_bot.py:615-724 detect_break_retest() runs an explicit 4-state machine (seek_break -> seek_leave -> seek_retest -> hold/confirm) where each transition requires a LATER candle than the one that triggered the prior state; break_idx and the confirming/entry candle (cur = w[-1]) can never be the same index by construction. The OCR path (omen_bot.py:418-447 detect_order_block_setup) is the same shape: entry is candles[-1] (the retest candle scored by check_retest_type), separate from break_idx/block_idx computed earlier in the same call. Neither live setup path can fire an entry on its own break bar.",
+     "build_cost": "trivial",
+     "note": "The suggested fix (reject_entry_if entry_bar==break_bar) is already true by construction in both shipped detectors, so there's nothing to gate. What CLAUDE.md itself documents as real and unresolved is the OPPOSITE direction problem -- entries arriving too LATE (median 24 min behind Austin's eye, per the tradingbot CLAUDE.md 'three things his own marks say are broken'), not entries firing on the break candle. If the marks genuinely show the engine entering ON the break, that discrepancy is worth a direct re-ask of which chart/timestamp, since the code forecloses it structurally for B&R and OCR."
+    },
+    {
+     "claim": "Retest tolerance should be an agent-calibrated small fixed-cents value ('a few cents give or take'), found by sweep, not BAR_EXTREME_FRAC.",
+     "code_status": "implemented",
+     "evidence": "signal_runner.py:1270-1293 (RETEST_TOL_FRAC / _retest_tol()) documents exactly this sweep already ran (research/g76_livefixes_retest.md, research/g73_marks25_retest_cents.json) and the tradingbot CLAUDE.md's g87/g88 section states the outcome explicitly: 'the best tolerance is zero -- a limit resting exactly at the level.' Shipped default is RETEST_TOL_FRAC = os.getenv('OMEN_RETEST_TOL_FRAC','0.0') = 0.0, i.e. exact touch, not a nonzero cents band.",
+     "build_cost": "trivial",
+     "note": "The delegation-and-sweep instruction was followed, but the claim's own codeable_form ('small fixed cents value') is wrong about the answer the sweep produced -- it came back zero, not a small positive tolerance. Report this as resolved-but-contradicts-the-hypothesized-number, not open work."
+    },
+    {
+     "claim": "Stop placement stays discretionary/eyeballed; no formula should be hard-wired into signal_runner.",
+     "code_status": "implemented",
+     "evidence": "signal_runner.py:1139-1141 defines STOP_PLACEMENTS as a set of alternate stop-derivation modes (entry_bar/candle_entered/ocr_wick/...) behind STOP_PLACEMENT=os.getenv(...,'entry_bar') -- i.e. multiple candidate placements exist as measured arms, none is forced as THE rule. stop_rule.py fixes only the FILL mechanics once a stop is already chosen (close-trigger, floor at -1.25R via stop_fill_price()), never where a discretionary stop is drawn.",
+     "build_cost": "trivial",
+     "note": "Consistent with Austin's line -- there is no hard-coded stop-distance formula overriding the chart-read stop. Nothing to build; this is a real, currently-respected constraint."
+    },
+    {
+     "claim": "No-displacement entries should be partitioned separately from clear-displacement S examples in training/eval, not pooled.",
+     "code_status": "partial",
+     "evidence": "research/downgrade.py:65,188-197,460 already computes and names a `no_displacement` boolean per trade (one of the 8 downgrade variables gating A vs C in omen-rulebook.md's ladder). No script in research/ was found that then reports precision/recall SPLIT by that flag -- it's consumed only as a grade-demotion input, not as a reporting partition.",
+     "build_cost": "small",
+     "note": "The flag to partition on already exists in the codebase; building the per-partition precision/recall report is a filter+groupby on existing downgrade.py output, not new detection logic."
+    },
+    {
+     "claim": "Runner/PT target should retarget to the nearest real level (PDL, whole-dollar) instead of a flat 2R when that level sits inside the 2R path; runner tranche must never be inserted before the highest-numbered target.",
+     "code_status": "partial",
+     "evidence": "signal_runner.py:170-182, 2040-2064: R25 already computes the exact thing requested -- `blocking_levels(sig, levels)` finds levels inside the entry-to-2R path and stamps `sig['path_levels']` / `sig['path_target'] = blocking[0]` with the comment 'a TARGET list, not a veto ... what a level-first target policy takes as scale point 2 or 3, for the target policy (T5) to consume.' LEVEL_BLOCK_CAP=False means the old behavior (capping grade at C when a level blocks the path) is OFF. But `path_target`/`path_levels` are written and never read anywhere else in the repo (grep across signal_runner.py, backtest_2y.py, research/*.py finds only the write site and one doc reference in research/g71_faraway.py) -- no runner/scale-out/PT logic actually consumes it to move the target off the flat 2R.",
+     "build_cost": "medium",
+     "note": "Textbook instance of the CLAUDE.md-documented bug class, just not a dead branch -- a data field computed and stamped ('for T5 to consume') whose consumer (T5's actual target-policy / scale-out ordering) was never built. Austin's runner-ordering complaint (QQQ_2024-08-26/2025-02-25) maps directly onto this gap: the level-priority data exists, the exit-sequencing logic that would use it does not."
+    },
+    {
+     "claim": "Instrument fixes (missing OCR/level render, illegible entry candle, entry/stop not shown on trade_anatomy cards) -- not a trading rule, a deck-rendering gap.",
+     "code_status": "absent",
+     "evidence": "research/build_probes.py and research/build_deck.py were checked for stop_pick/where_is_the_stop and trade_anatomy card builders; no OCR/level-overlay rendering or entry/stop marker toggle logic was found in build_probes.py (only autopsy/displacement/scanner_should card builders were located). Not enough of the deck-building code was traced to say definitively whether entry/stop markers exist elsewhere (e.g. a separate stop_pick module not present under this name in the current tree).",
+     "build_cost": "needs-research",
+     "note": "This claim is explicitly NOT-CODEABLE as a trading rule per its own text -- it's a homework-instrument/rendering fix. Locate the actual stop_pick/trade_anatomy card builder (name may have changed) before scoping the render fix."
+    },
+    {
+     "claim": "Displacement probe section served 8 consecutive identical-answer cards -- deck sampler should stratify by ground-truth outcome.",
+     "code_status": "contradicted",
+     "evidence": "research/build_probes.py:182 (`rng.shuffle(rows)`, autopsy section) and the general pattern in that file: rows are drawn via random.Random(SEED).shuffle with no groupby/stratification on the outcome field (e.g. 'displacement: no'). No stratified-sampling logic was found anywhere in build_probes.py.",
+     "build_cost": "small",
+     "note": "Confirms the complaint's premise: the sampler is a plain shuffle, not stratified, so a long run of one ground-truth answer is expected behavior, not a fluke. Fix is a groupby-and-interleave on the outcome field before slicing N cards -- localized to build_probes.py's row-selection step."
+    },
+    {
+     "claim": "stop_pick probe section has no quality pre-filter, so Austin has to editorialize that a trade is low-grade before answering the intended stop question.",
+     "code_status": "absent",
+     "evidence": "grep for stop_pick/where_is_the_stop across research/build_probes.py and research/build_deck.py returned no matches -- the module/section that builds this probe was not located in the current tree under those names.",
+     "build_cost": "needs-research",
+     "note": "Can't confirm or deny a pre-filter exists without finding the actual card-builder for this probe type (may live under a different function/file name, or may be an older probe generation no longer in research/). Explicitly NOT-CODEABLE as a trading rule per the claim itself."
+    },
+    {
+     "claim": "Pushback on 'easy to measure' framing for a change touching PDH/PDL/PMH/PML level computation -- any level-code change should ship a before/after diff, not just a low-risk claim.",
+     "code_status": "absent",
+     "evidence": "No regression/diff-against-last-known-good-levels harness was located for level computation specifically in the files reviewed (signal_runner.py, stop_rule.py, backtest_2y.py, research/downgrade.py). research/regression_gate.py (referenced elsewhere in this CLAUDE.md as the mark-recall gate) is a different check -- it gates signal detections against a locked baseline, not level values themselves.",
+     "build_cost": "small",
+     "note": "NOT-CODEABLE as a trading rule (procedural only, per the claim). If adopted, a small script diffing PDH/PDL/PMH/PML across a fixed day sample before/after any levels.py-style change would close this; nothing like it exists today."
+    },
+    {
+     "claim": "Open self-contradiction: no-displacement A-trades 'worked better' on one AMZN card but lost on both sides of another AMZN card on a chop day -- an unresolved grey zone (trend vs chop), not a settled rule.",
+     "code_status": "unreachable",
+     "evidence": "No code claim to ground -- this is a direct conflict between two of Austin's own marks (t1_AMZN_2025-08-22 vs AMZN_2025-11-21), and no file in signal_runner.py/stop_rule.py/backtest_2y.py/research/downgrade.py encodes a trend-vs-chop conditional on the no_displacement variable (research/downgrade.py:188-197 treats no_displacement as a flat boolean with no day-regime interaction term).",
+     "build_cost": "needs-research",
+     "note": "Genuinely not codeable from the code alone -- the claim itself says this needs a direct re-ask. Confirmed there is no existing trend/chop-conditional logic in downgrade.py that already resolves the contradiction one way or the other."
+    }
+   ]
+  },
+  {
+   "axis": "mentor_ballot",
+   "groundings": [
+    {
+     "claim": "Census: 10 yes (rules 1,2,3,5,6,7,9,12,14) / 5 skip (rules 4,8,10,11,13,15) across 15 mentor ballot cards.",
+     "code_status": "contradicted",
+     "evidence": "research/marks/probe_g84_all_in_one_STANDING154_2026-09-01.jsonl (dated today, 2026-09-01 -- the up-to-date consolidated file; the 2026-08-30 file only has rule_01) actually shows YES on rule_01,02,03,05,06,07,09,12,14 = 9 cards and SKIP on rule_04,08,10,11,13,15 = 6 cards. The claim's own listed rule numbers are correct (9 yes-numbers, 6 skip-numbers) but it mislabels the counts as '10' and '5' -- off by one on each side. 9+6=15 matches n_relevant, so this is a counting/transcription error, not a wrong rule set.",
+     "build_cost": "trivial",
+     "note": "Fix the two numbers in the summary sentence from 10/5 to 9/6; the per-rule breakdown underneath is already right and every individual rule_XX claim below matches this file's answers exactly."
+    },
+    {
+     "claim": "Rule 1: retest tolerance is zero-touch, already shipped, and matches g87's money-maximizing finding.",
+     "code_status": "partial",
+     "evidence": "signal_runner.py:1290 RETEST_TOL_FRAC=os.getenv('OMEN_RETEST_TOL_FRAC','0.0') and DETECT_WIDE=False (line 409) confirm the shipped detection tolerance is exact-touch (0.0), matching Austin's zero-tolerance answer. BUT research/g87_retest_tol.md's AT_LEVEL arm ($469/day) is exactly the number research/g88_level_limit.md calls out and kills: 'It kills g87's headline... 89.6% of those fills land BEFORE the signal bar... Both numbers are dead; do not quote either.' g88's own BOOK_floor row shows the ACTUAL shipped entry earns $33/day honestly, not $469. The mechanism that does earn money honestly ($275/day) is a resting limit strictly after the signal bar -- not what signal_runner.py's order_fill/intrabar_stop entry implements.",
+     "build_cost": "small",
+     "note": "The zero-tolerance DETECTION knob is genuinely shipped and correctly cited. But calling this 'the money-maximizing answer, SHIPPED already' oversells it: the $ figure that would justify it was explicitly retracted one script later (g88) for look-ahead. Correct framing: detection tolerance is right; execution/fill price is a separate, still-open question where the honest number is $275/day via a mechanism not yet in signal_runner.py."
+    },
+    {
+     "claim": "Rule 2: level_not_respected measures touches-in-window, not breaking-close strength as Scarface's rule asks; docstring notes 'failed three implementations.'",
+     "code_status": "contradicted",
+     "evidence": "research/downgrade.py:243-248 level_not_respected(bars,i,level,is_long) counts closes within epsilon of the level over a 12-bar window (a chop/touch count), confirming the core claim that it measures something other than the strength of the breakout bar's own close. However grep -n 'implementation' research/downgrade.py and git log on the file return nothing -- there is no 'failed three implementations' text anywhere in the file or its history. The actual docstring is just: 'Austin's own words: candles CLOSING AT the level, or chopping on it, instead of reacting off it.'",
+     "build_cost": "medium",
+     "note": "The 'failed three implementations' detail is fabricated / not grounded -- strike it from the claim. The substantive point (touches-count != breaking-close-strength) holds."
+    },
+    {
+     "claim": "Rule 3: entry currently happens on the retest bar itself, no post-retest confirmation/reaction bar is required.",
+     "code_status": "implemented",
+     "evidence": "signal_runner.py:2810-2895 (B&R long branch): detect_break_retest resolves br_note on `self.candles` up to `current`; grade_trade, _confirm_candle(current,...), order_fill, and _emit are all evaluated on `current` -- the same bar the retest condition fires on, with an explicit ON WATCH comment (line ~2825) that a bar which 'never closed through the level, we are in on the trigger price, mid-bar' -- i.e. entry during the retest bar, not after a subsequent reaction bar.",
+     "build_cost": "medium",
+     "note": "This confirms the code fact, but it undercuts the claim's own codeable_form direction: Austin's quote says entering LATE is the bug and he wants entry WHILE the retest occurs -- which is what the code already does. The claim's own flag ('this rule may already reflect what the engine does') is the correct read; do not build a delayed-confirmation-bar step from this card."
+    },
+    {
+     "claim": "Rule 4 counter-proposal: treat HOD/LOD break as a soft bias-strength bonus, not a hard entry gate.",
+     "code_status": "absent",
+     "evidence": "grep for a HOD/LOD precondition gate in signal_runner.py's B&R/OCR entry paths (2790-3350) finds none -- HOD/LOD are used as level pairs (line 2777 hod_lv/lod_lv) and as A+ stack/bias inputs but never as a hard require-broken-before-entry gate. No soft bonus scoring for a prior HOD/LOD break exists either (the selection score block at ~2870-2880 has no such term).",
+     "build_cost": "small"
+    },
+    {
+     "claim": "Rule 5: no per-symbol level-priority weighting exists; cited as hb.levels_for/six_at.",
+     "code_status": "absent",
+     "evidence": "No module or function named `hb`, `levels_for`, or `six_at` exists in the live/backtest engine (only in disconnected research/build_*.py one-off scripts and stale .claude/worktrees copies). The real level construction lives inline in signal_runner.py's SignalRunner: self.pdh/pdl/pmh/pml (lines 1889-1896) plus hod/lod and pivot_levels feed level_pairs.append(...) uniformly (lines 2761-2798) with no per-symbol weighting logic anywhere in that block.",
+     "build_cost": "medium",
+     "note": "The substantive claim (no per-symbol weighting) is correct; the code citation 'hb.levels_for/six_at' is wrong and should be replaced with signal_runner.py:2740-2798's level_pairs construction."
+    },
+    {
+     "claim": "Rule 6: no scale-out mechanism exists anywhere in signal_runner.py.",
+     "code_status": "absent",
+     "evidence": "grep -rn 'scale_out|scale-out|SCALE_OUT' signal_runner.py research/downgrade.py returns only one hit, a doc comment in research/downgrade.py:36 referencing an old 'scale-out table nobody could reproduce' -- not code. No partial-exit/ladder logic exists in signal_runner.py.",
+     "build_cost": "medium"
+    },
+    {
+     "claim": "Rule 7: only a partial single-daily-candle HTF trend filter is built (HTF_BIAS_GATE), default off; weekly/4H and liquidity zones are not built.",
+     "code_status": "partial",
+     "evidence": "signal_runner.py:220 HTF_BIAS_GATE = os.getenv('HTF_BIAS_GATE','0')... (default off), and daily_trend_bias() at line 1862 is confirmed as a single daily-candle trend proxy (period=20). Used at line 3347: 'if HTF_BIAS_GATE and self.daily_bias in (\"bullish\",\"bearish\"):' capping counter-trend signals. No weekly or 4H timeframe logic, and no liquidity-zone concept, appears anywhere in signal_runner.py.",
+     "build_cost": "needs-research"
+    },
+    {
+     "claim": "Rule 12: SCARFACE_CONTRACT (first-OTM strike + weekly expiry) already exists as a flag, default off; ratify by running d1_scarface_ab.py then flipping the flag.",
+     "code_status": "unreachable",
+     "evidence": "options_sizer.py:342 SCARFACE_CONTRACT=False, read at lines 434/437 to pick first_otm_strike/weekly_expiration vs nearest_strike/nearest_expiration -- confirmed it exists. BUT research/d1_scarface_ab.py's own header (already run, not a to-do) concludes: 'SCARFACE_CONTRACT is a no-op on the 12mo backtest P&L by construction' -- the realized-P&L path (backtest_week.simulate_day -> SimTrade.pnl) never imports options_sizer at all, and even where the flag IS read (the live/paper card path), the sizer normalizes max_loss to a flat $1000 regardless of strike/expiry, so premium/contracts/max_loss come out bit-identical between arms ('So A == B, bit-identical, on the 12mo backtest').",
+     "build_cost": "needs-research",
+     "note": "This is the CLAUDE.md-documented bug class: a flag that looks like it gates a real trading decision but is structurally disconnected from the code path that computes the money numbers this project reports. The claim's instruction ('run d1, then flip if it holds') is stale -- d1 has already run and already shown flipping it can never move any backtest dollar figure; only live card presentation and (unmeasured) gamma/theta at real premiums would differ."
+    },
+    {
+     "claim": "Rule 14: no starter/scale-in position sizing exists; w13_scaling.py explores scale-out only.",
+     "code_status": "absent",
+     "evidence": "grep for starter_position/scale_in in signal_runner.py returns nothing. research/w13_scaling.py:1-16 header confirms its scope is scale-OUT sizing as a mean-R lever (Scarface/JW 2:1 R:R framing), not a scale-in starter-position feature.",
+     "build_cost": "medium"
+    },
+    {
+     "claim": "Rule 9: hammer/inverted-hammer confirmation already shipped unconditionally at every B&R/OCR entry.",
+     "code_status": "implemented",
+     "evidence": "signal_runner.py:82 _confirm_candle(c,long); called unconditionally at lines 2883, 2986, 3086 (comment path), 3155, 3327 across both long and short B&R branches, each feeding the selection score (+2 if hammer) and the [hammer] tag on the emitted signal.",
+     "build_cost": "trivial"
+    },
+    {
+     "claim": "Rule 11: CORE_SYMBOLS (10 tickers) exists but live_scanner's DEFAULT_SYMBOLS is the full 29-symbol pool, not narrowed to CORE_SYMBOLS.",
+     "code_status": "partial",
+     "evidence": "universe.py:74-75 CORE_SYMBOLS = ['TSLA','NVDA','AAPL','AMD','META','GOOGL','AMZN','MSFT','PLTR','QQQ'] (10, confirmed by direct import/len check). live_scanner.py:65-67 DEFAULT_SYMBOLS = MAJOR_15 + INDEX_POOL + OTHER_POOL (15+3+11=29, confirmed = ALL_SYMS via universe.py comment 'Everything in live_scanner DEFAULT_SYMBOLS minus MAJOR_15 and INDEX_POOL'). The 10-vs-29 gap is real and current.",
+     "build_cost": "small",
+     "note": "Infra (CORE_SYMBOLS) is already there; wiring live_scanner's default to it is a small, mechanical change -- but per the claim's own caveat, confirm with Austin before flipping a live default silently."
+    },
+    {
+     "claim": "Rules 4/8/10/11/13/15 (skips) and Rule 15 in particular have no shippable code today.",
+     "code_status": "absent",
+     "evidence": "Consistent with the individual checks above (rule 4, 5, 6, 8, 14 all confirmed absent in code); no evidence search was needed for rule 10/13/15 since the claims explicitly recommend not coding anything from them.",
+     "build_cost": "trivial"
+    }
+   ]
+  }
+ ]
+}
