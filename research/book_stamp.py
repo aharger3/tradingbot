@@ -68,7 +68,11 @@ FLAG_SOURCES = (
         "PIVOT_LEVELS", "PIVOT_STRENGTH", "PIVOT_LOOKBACK",
         "LEVEL_RETIRE_TOUCHES", "LEVEL_RETIRE_COOLDOWN", "MESH_S_VETO",
         "S_PLUS_PER_DAY", "RETEST_TOL_FRAC", "ARRIVAL_LADDER",
-        "TRADE_RETIRED_SETUPS", "CONFLUENCE_SETUP_ROUTES", "SAC_LADDER_VARSET")),
+        "TRADE_RETIRED_SETUPS", "CONFLUENCE_SETUP_ROUTES", "SAC_LADDER_VARSET",
+        # 2026-09-02: the three C-cap gates in _route were all missing from this
+        # list, so a book built with any of them on was indistinguishable from
+        # one built without — the exact confusion the stamp exists to end.
+        "RETEST_REQUIRED", "S_GATE", "RULE_710_ENABLED")),
 )
 
 # The figures a report is allowed to assert on, and how far each may drift
