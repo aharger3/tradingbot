@@ -239,11 +239,32 @@ is fundable yet; the account type is not the blocker, the edge is.** Prop firms
 are futures desks and do not fund equity-options traders — that fork is real and
 premature.
 
-**`RETEST_REQUIRED` shipped behind a flag** (`signal_runner.py`, default OFF,
-`research/g93_retest_gate_ab.py`, `research/test_retest_gate.py`). `no_retest`
-was a ratified variable with no consumer. It trips on **99 of the 500 days'
-first picks**. Full pool $28→$36/day (11→15/25 green); +chase $73/day; index
-$51→$82/day (13→16/25 green). Max drawdown falls in every arm.
+**`RETEST_REQUIRED` is ON by default** (`signal_runner.py`, 2026-09-02).
+`downgrade.no_retest` was a ratified variable with no consumer; it trips on **99
+of the 500 days' first picks**. Priced on a MATCHED book pair — same commit, same
+498 sessions, only the flag differs
+(`research/bt2y_trades_retest_{off,on}.json`, `research/g94_retest_book_compare.py`):
+
+| lane | cand/day | $/day | green months | max DD |
+|---|---:|---:|---:|---:|
+| full pool | 18.8 → 16.5 | $27 → **$25** | 10 → **13**/25 | $25.6k → **$21.7k** |
+| index QQQ/SPY/IWM | 2.3 → 2.2 | $49 → **$65** | 13 → **15**/25 | $19.4k → **$15.7k** |
+
+**Shipped for durability, not $/day.** −$2/day on the full pool is inside the
+±1.58R error bar; +3 green months and −15% drawdown is the gate this file names.
+
+**`research/g93_retest_gate_ab.py` is a superseded FORECAST — do not quote it.**
+It predicted $36/day and 14.2 cand/day; the real book says $25 and 16.5. A
+selection arm cannot model `backtest_week.DEDUPE_FIRES_ONLY`: only a *fired*
+signal claims the dedupe suppression window, so capping one to C **releases** it
+and previously-suppressed candidates on the same level become rows. Any C-cap
+gate in this engine adds candidates as well as removing them.
+
+**`research/bt2y_trades.json` is stale** — built 2026-08-30, different commit,
+`downgrade.py` dirty, 500-session window, `RETEST_REQUIRED` not stamped. It is
+the OFF-arm book for the pre-2026-09-02 figures only. The current-default book is
+`research/bt2y_trades_retest_on.json`. Never A/B against a book built on a
+different day: `--days 730` counts back from today.
 
 **Do not re-propose wiring `research/downgrade.py` as the fire gate.** It is
 measured and negative: gating on `sgrade=='S'` is **−$29/day**, and
