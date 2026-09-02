@@ -1,0 +1,934 @@
+{
+ "verdicts": [
+  {
+   "axis": "exit_scale_out_ladder",
+   "n_claims_checked": 9,
+   "verdicts": [
+    {
+     "claim": "HEADLINE: 'Across all 8 trade-anatomy cards entry is still the most-flagged component (5/8), but every card also indicts the exit plan - a consistent 4-leg target ladder...'",
+     "verdict": "REFUTED",
+     "reason": "'every card also indicts the exit plan' is false. Counting answers.wrong for any exit component (pt1|runner|be|scale_size): 6 of 8 cards, not 8. GOOGL_2024-10-15 flags entry ONLY and GOOGL_2024-10-29 flags no_trade only ('I dont see anything to be honest'). 'Consistent 4-leg target ladder' is also wrong: the two cards it comes from order the legs differently (see claim 2). The entry=5/8 half of the headline is correct.",
+     "recomputed_support": "exit-component flagged on 6/8 cards (08-23, 08-26, 09-03, 09-20, 10-23, 02-25); claimed/implied 8/8. entry 5/8 confirmed.",
+     "corrected_strength": "hint",
+     "counterexamples": [
+      "GOOGL_2024-10-15",
+      "GOOGL_2024-10-29"
+     ]
+    },
+    {
+     "claim": "Entry is the most frequently rejected trade component in the anatomy corpus (5 of 8 cards), ahead of runner (3), be (3), pt1 (2), scale_size (2), stop (1)",
+     "verdict": "HOLDS",
+     "reason": "I re-tallied answers.wrong across all 8 rows independently: entry 5, runner 3, be 3, pt1 2, scale_size 2, stop 1, no_trade 1 - exact match, and all 5 cited entry cards are the right 5. Quote 'you entered on an overextended break candle' is verbatim in QQQ_2024-08-23. One caveat the claim does not disclose: GOOGL_2024-10-15 checks the entry box but its note opens 'entry fine but i see downgrades because earlier entry is 9:43', so one of the 5 is a soft rejection at best. Not enough to overturn the tally, but the rank order is the whole claim - it establishes nothing about why.",
+     "recomputed_support": "5/8 for entry; full rank order reproduced exactly as stated. n_relevant 8 is the honest denominator (whole corpus).",
+     "corrected_strength": "hint",
+     "counterexamples": []
+    },
+    {
+     "claim": "He reconstructs a 4-leg target ladder, ordered nearest-to-farthest: PT1 = day-extreme, PT2 = next structural level reached, PT3 = 2R, PT4/runner = HTF or median/average",
+     "verdict": "OVERSOLD",
+     "reason": "The specific ORDERING is single-card. PLTR_2024-09-20 gives [LOD, the level it hit, 2r, runner HTF/median]. The second cited card, GOOGL_2024-10-15, gives 'OCR PT HOD, 2r, median, best average for runner' - that is [HOD, 2R, median, average], with 2R at leg TWO and no 'next structural level' leg at all. The two cards do not agree on PT2/PT3, so calling it a reconstructed consistent ladder from 2 cards inflates 1 card of evidence. n_relevant=3 is also unexplained and flattering: 5 of the 8 cards discuss targets (08-26 '2 r and PDL', 09-03 'first PT LOD', 09-20, 10-15, 02-25), so the honest denominator is 5.",
+     "recomputed_support": "1/5 for the stated ordering (PLTR_2024-09-20 only); 2/5 for 'a four-leg ladder exists'. Claimed 2/3.",
+     "corrected_strength": "single-card",
+     "counterexamples": [
+      "GOOGL_2024-10-15"
+     ]
+    },
+    {
+     "claim": "A separate, simpler 2-scale pattern: scale out at HOD, stop to BE or hold, second partial on return to HOD area, stop remainder at BE",
+     "verdict": "HOLDS",
+     "reason": "Quote is byte-verbatim in QQQ_2024-08-23 (the claim drops only the leading 'and'). Card exists, is a call so HOD is the correct extreme, n_supporting=1 and strength 'single-card' are both honestly stated, n_relevant=8 is the full corpus, and the claim hedges with 'for at least one card' and 'needs confirmation this isn't card-specific'. I searched the other 7 anatomy cards and the 154-card corpus: no other card describes a revisit-the-extreme second scale, which the decode itself lists as an open question. Nothing to refute.",
+     "recomputed_support": "1/8, matching the claim exactly.",
+     "corrected_strength": "single-card",
+     "counterexamples": []
+    },
+    {
+     "claim": "The raw 2R price target is overridden when a whole psychological (round-dollar) number or an HTF structural level sits between entry and the 2R price",
+     "verdict": "OVERSOLD",
+     "reason": "The two arms are not equally supported and the claim presents them as one 2-card finding. The psych-number arm has 2 cards: QQQ_2024-08-26 'when 2r falls between a whole psych number target that instead' and QQQ_2025-02-25 'whole psych number if one is close'. The HTF arm has ONE card - only QQQ_2025-02-25 says 'trumped by HTF levels'; 08-26 never mentions HTF. So the HTF half is single-card dressed as a hint. n_relevant=3 is also unexplained and flattering: 4 cards mention 2R (08-26, 09-20, 10-15, 02-25). Quote is verbatim.",
+     "recomputed_support": "psych-number arm 2/4; HTF arm 1/4. Claimed 2/3 for both arms jointly.",
+     "corrected_strength": "hint",
+     "counterexamples": []
+    },
+    {
+     "claim": "Scale-size splits should be conditional on whether the day is trending: 30/30/30/10 when trending vs 50/20/10/10 when not",
+     "verdict": "OVERSOLD",
+     "reason": "Quote is verbatim, card exists, strength 'single-card' is correctly stated - but two things are the decoder's, not his. (1) He never assigns which split goes with which condition; he says 'we decide 30/30/30/10 and 50/20/10/10 based on how well the day is going to run or trend' and then only that non-trending wants HOD exits sooner. The mapping trending->30/30/30/10 is inference presented inside the claim sentence. (2) 'should be conditional' upgrades 'maybe we decide' - a musing on one card - into a prescription. The 'e.g.' hedges the numbers but not the direction or the modality.",
+     "recomputed_support": "1/8, matching the claim; but 0/8 cards state the split-to-condition mapping the claim asserts.",
+     "corrected_strength": "single-card",
+     "counterexamples": []
+    },
+    {
+     "claim": "'be' is marked wrong on 3 of 8 cards, 2 of 3 co-occurring with 'entry' - suggesting a mistimed entry cascades into a mistimed BE trigger",
+     "verdict": "OVERSOLD",
+     "reason": "The tally is exactly right (be: 08-26, 09-20, 10-23; two co-occur with entry, the third with pt1+runner) and the quote is verbatim with typos intact. The cascade suggestion is what oversells. The claim never discloses the other side of the 2x2: of the 5 cards where entry is marked wrong, 3 carry NO be complaint (QQQ_2024-08-23, GOOGL_2024-10-15, QQQ_2025-02-25). So entry-wrong predicts be-wrong 2 times out of 5 - below the corpus base rate story the claim implies. Worse, the one be-card without entry (QQQ_2024-08-26) says 'cant critique entry and stop because cant see', so it is not evidence of BE failing independently either. The hedge 'suggesting, but not proving on this sample' does not substitute for showing the disconfirming cards.",
+     "recomputed_support": "be 3/8 confirmed; co-occurrence 2 of 5 entry-wrong cards, with 3 undisclosed non-co-occurrences. Claimed 2/3.",
+     "corrected_strength": "hint",
+     "counterexamples": [
+      "QQQ_2024-08-23",
+      "GOOGL_2024-10-15",
+      "QQQ_2025-02-25"
+     ]
+    },
+    {
+     "claim": "Structural bug: the engine places its 'runner' leg closer to entry than the 2R target - and separately the runner's realized R-multiple (~0.41R implied) undershoots the stated mean RR of 2.5R",
+     "verdict": "OVERSOLD",
+     "reason": "Two different complaints from two different cards are bundled to reach n_supporting=2. The headline bug - runner sitting inside 2R - is stated on ONE card only ('runner always the last one why is it in between 2 r?', QQQ_2025-02-25). QQQ_2024-08-26 says something else: the runner TARGET is too tight in R terms. Also a transcription slip: he writes 'we shouldnt be targeting .41' - that is a target, and the claim restates it as 'the runner's realized R-multiple (~0.41R implied)'. Realized vs targeted is exactly the distinction this project's honest-fill reset exists to protect. n_relevant=2 is self-selected: 3 cards flag runner wrong (08-23 as well), giving 100% support only because the third was excluded from the denominator.",
+     "recomputed_support": "ordering bug 1/3 runner-flagged cards (1/8 corpus); 'runner target too tight' 1/3. Claimed 2/2.",
+     "corrected_strength": "single-card",
+     "counterexamples": [
+      "QQQ_2024-08-23"
+     ]
+    },
+    {
+     "claim": "Cross-referenced against the 154-card corpus, HTF/1h/4h pivots are independently named as the basis for scaling targets, and a scale-out level being too close to a stop-out level is independently flagged",
+     "verdict": "OVERSOLD",
+     "reason": "Both card_ids exist in the 154-file and the rule_08 quote is byte-verbatim, and the 1h/4h-pivots half genuinely holds (single-card, mentor_ballot section, Hayden's rule, answered 'skip'). The second half misreads its card. TSM_2026-07-24 reads: '...as it moves below the ORL is a good entry. this one woulve had trouble with the scale out LOD since its close to that even with better entry.' The word 'stop' does not appear anywhere in that note - I grepped it. 'that' refers to the ORL/entry area, so the card says the scale target sits too close to the ENTRY, not to a stop-out level. The claim also supplies no quote for this half, only for rule_08. Note the whole 154-card corpus contains just 3 tokens matching scal* - this is 2 isolated mentions, not independent corroboration.",
+     "recomputed_support": "1/154 for the 1h/4h pivot half; 0/154 for 'scale-out too close to a stop-out level' as written. Claimed 2/2.",
+     "corrected_strength": "single-card",
+     "counterexamples": [
+      "TSM_2026-07-24"
+     ]
+    }
+   ]
+  },
+  {
+   "axis": "stop placement, and the \"two stop options\" veto",
+   "n_claims_checked": 4,
+   "verdicts": [
+    {
+     "claim": "Of the 6 where_is_the_stop cards (answers B, C, none, A, C, none), both 'none' answers are refusals of the trade/entr",
+     "verdict": "OVERSOLD",
+     "reason": "Card ids exist (NFLX_2025-07-28, SOFI_2025-11-07 both in the g84 STANDING154 file, section where_is_the_stop). The quote 'not an entry too late in the day trading between day chop' is VERBATIM (1 hit, NFLX). The answer sequence B, C, none, A, C, none is correct in file order. But two things are oversold. (1) STRENGTH: n_supporting=2 is labelled 'strong'; by the house rule n_supporting<=2 is at most a hint. (2) The claim's distinguishing observation \u2014 'Neither note discusses which of A/B/C/D looks like the right invalidation price' \u2014 is true of ALL SIX notes, not just the two 'none' ones; no note in the section mentions A/B/C/D. Presenting it as what separates the 'none' cards is vacuous. Worse, the codeable_form ('IF stop_pick == none: classify as ENTRY_REJECTED') does not survive the other four cards: MU_2024-10-09 wrote 'this may not be an entry because i dont see a OCR or the level its referencing' and still picked B; ORCL_2025-04-02 wrote 'little difficult to confirm setup and what the entry candle looks like' and picked A; BABA_2025-11-21 wrote 'this is a low grade trade in case you didnt know' and picked C. Entry/setup doubt is present on 5 of 6 cards while only 2 answered 'none', so 'none' is not the signal for entry-rejection. None of this was disclosed.",
+     "recomputed_support": "n_relevant = 6 (I counted exactly 6 rows with section=='where_is_the_stop'; matches). n_supporting = 2 (matches). But 5 of the 6 notes voice entry/setup doubt, which is the fact the codeable rule turns on.",
+     "counterexamples": [
+      "MU_2024-10-09",
+      "ORCL_2025-04-02",
+      "BABA_2025-11-21"
+     ],
+     "corrected_strength": "hint"
+    },
+    {
+     "claim": "Where he states a stop rationale at all, the stop is pinned to a structural anchor \u2014 'the candle entered on', the openin",
+     "verdict": "OVERSOLD",
+     "reason": "All three cited ids exist and the quote 'this and last one have been stop below the candle entered on.' is VERBATIM (1 hit, MSFT_2026-08-10). But the claim's own accounting is wrong and it hides in-file counterevidence. (1) SECTION MISCOUNT: it says the evidence is '2 of 6 where_is_the_stop cards plus 1 of 8 trade_anatomy cards'. Only ONE of the six where_is_the_stop cards (MSFT_2026-08-10) states a stop rationale. NVDA_2024-09-03 is section trade_anatomy and IWM_2026-05-05 is section take_the_trade \u2014 so the real composition is 1 where_is_the_stop + 1 trade_anatomy + 1 take_the_trade, and the stated denominator of 14 (6+8) does not even contain one of its own three supporting cards. (2) MISSED SUPPORT: GOOGL_2024-10-15 (trade_anatomy) says 'earlier entry is 9:43 OCR stop body of opening range OCR PT HOD' \u2014 a fourth structural-anchor instance, uncounted. (3) UNDISCLOSED COUNTEREXAMPLES to 'never a bare price/fixed distance': QQQ_2024-08-23 prescribes 'stop either BE, and/or stop held ... stopping rest BE' \u2014 breakeven is anchored to entry price, not to structure; NVDA_2024-09-03's own leading complaint is distance language ('a little farther up stop'); and mentor_ballot rule_15 (Neto, 'a wider stop-loss \u2014 usually 18-25% of the contract premium at entry') drew 'our eyes have been finding good stops, but that number is a good ballpark for referance how we do things' \u2014 an in-corpus stop judgement that partly concedes a fixed-percentage rule, excluded from the denominator and never mentioned.",
+     "recomputed_support": "I recomputed by scanning all 162 rows for 'stop' in notes: 19 rows mention a stop. Structural-anchor rationales = 4 (MSFT_2026-08-10, IWM_2026-05-05, NVDA_2024-09-03, GOOGL_2024-10-15), not the 3 claimed. Non-structural stop rationales = at least 2 (QQQ_2024-08-23 BE-anchored; rule_15 percent-of-premium). Honest denominator if take_the_trade is included (it must be, since IWM is a supporting card) = 6+8+39 = 53, not 14.",
+     "counterexamples": [
+      "QQQ_2024-08-23",
+      "rule_15",
+      "GOOGL_2024-10-15"
+     ],
+     "corrected_strength": "hint"
+    },
+    {
+     "claim": "'Two stop options' (his phrase: 'lots of close stop options' / '2 stop loss options') is a real, recurring critique acros",
+     "verdict": "OVERSOLD",
+     "reason": "All three cards exist; the long quote from PLTR_2024-10-23 is VERBATIM (1 hit), as are 'lots of close stop options' (TSLA) and '2 stop losses to choose from' (META). The three-decks observation checks out (source_deck = omen-master-homework / g83-deep-batch / omen-trade-anatomy). Two problems. (1) FACTUALLY WRONG ON TSLA: the claim says 'Only META_2024-09-30 lands on an outright no'. TSLA_2025-05-16's recorded answer is answers.s == ['no']. The deep_is_s field is binary in this file (35 's' / 25 'no' \u2014 there is no 'A' option), so his recorded verdict on TSLA is a 'no'; the 'A trade' wording lives only in a separate free-text entry note. TWO of the three cards recorded a no, not one. That error runs in the direction that flatters the 'downgrade, not a kill' reading. (2) UNDISCLOSED CONFOUNDS: the claim isolates confounding to META ('not respecting level'), but TSLA is equally compounded \u2014 'lots of close stop options AND the candle closed below the ORH' \u2014 and PLTR is compounded too ('AS CANDLE FORMING, see on that candle close you get a bad entry?', with wrong = entry/scale_size/be). All 3 of 3 instances are confounded; none isolates the stop-option factor. The unsupported_questions section partly admits this, but the claim body does not.",
+     "recomputed_support": "n_supporting = 3 (confirmed: exactly 3 stop-option mentions in all 162 rows). n_relevant claimed 76 = is_this_an_s(8) + deep_is_s(60) + trade_anatomy(8); the arithmetic is right but the denominator excludes take_the_trade(39) and where_is_the_stop(6), where the same critique could have appeared. Over all 147 chart cards (162 minus 15 mentor_ballot rows) it is 3/147 = 2.0%, not 3/76 = 3.9%.",
+     "counterexamples": [
+      "TSLA_2025-05-16",
+      "PLTR_2024-10-23"
+     ],
+     "corrected_strength": "hint"
+    },
+    {
+     "claim": "'i dont like bodies' appears exactly once in the two assigned files, as a hedge inside a sentence that then concedes the ",
+     "verdict": "REFUTED",
+     "reason": "The counting half is right: 'i dont like bodies' has exactly 1 hit across both files, the full quote 'those 3 green candles even though i dont like bodies that wouldve been a better stop.' is VERBATIM in NVDA_2024-09-03, and the card exists. But the claim makes a checkable statement about the assigned files that is FALSE: 'that routine practice [pricing stops at a candle's upper/lower body] comes from other corpora, outside this axis's assigned files, so the tension is noted, not resolved.' The body-anchored routine is INSIDE the assigned files, twice: IWM_2026-05-05 \u2014 'the stop which woudlve been at the upper body of the opening range candle'; GOOGL_2024-10-15 \u2014 '9:43 OCR stop body of opening range OCR'. A third in-file card bears on bodies vs wicks (MARA_2026-06-16: 'its above all the bodies and is in the territory of the Wicks'). Grep for 'bod' returns 4 hits across the two files, of which the claim surfaced only one. The tension it says cannot be resolved from these files is directly addressable from these files, and the claim's denominator of n_relevant = 1 is the single most flattering number available.",
+     "recomputed_support": "n_supporting = 1 (correct, and correctly labelled single-card). n_relevant = 1 is wrong: 4 rows in the two assigned files mention candle bodies (NVDA_2024-09-03, IWM_2026-05-05, GOOGL_2024-10-15, MARA_2026-06-16), and 2 of them are body-anchored stop prescriptions that cut against the hedge.",
+     "counterexamples": [
+      "IWM_2026-05-05",
+      "GOOGL_2024-10-15",
+      "MARA_2026-06-16"
+     ],
+     "corrected_strength": "single-card"
+    }
+   ]
+  },
+  {
+   "axis": "Displacement",
+   "n_claims_checked": 6,
+   "verdicts": [
+    {
+     "claim": "The dedicated 8-card 'displacement' probe section returned an identical answer (\"no\") on 8/8 cards, with notes filled in on only 1 of 8 \u2014 and on that 8th card Austin ex",
+     "verdict": "REFUTED",
+     "reason": "The counting half holds: all 8 card_ids exist, all 8 answers are displacement:[\"no\"], exactly 1 of 8 (COIN_2026-07-24) carries a note, and the quote is byte-verbatim. But the load-bearing diagnosis \u2014 'no contrast/yes cases were ever shown, so it never tested whether he CAN recognize displacement' \u2014 is false on three independent checks. (1) The committed builder research/g82_master_homework.py::pick_displacement draws from DISP_BUCKETS = tiny(want 2), boundary(3), clear(1), big(2); the wants sum to exactly 8 and exactly 8 cards were emitted, so every bucket filled \u2014 3 of the 8 charts had separation >= 1.25 ATR (1 'clear', 2 'big'). Contrast cases WERE shown by construction; the section was explicitly built to straddle the boundary. (2) The card offers three chips YES / NO / CAN'T TELL and probe_page.question renders every chip aria-pressed=\"false\" with no default, so 8 'no' answers are 8 deliberate presses, not an untouched field. (3) On COIN_2026-07-24 he identifies displacement on that very chart ('displaced and closed into the levels at 9:45') \u2014 inside the section he demonstrably recognizes the thing. The correct reading is the opposite of the claim: his eye rejected 3 charts the separation metric scored as displaced, which is a finding about the metric. Accepting this claim would discard 8 real judgements as instrument noise \u2014 the exact harm the no-oversell rule exists to prevent. Note also his 'you cant remember what it means' addresses us/the engine, not the deck's composition.",
+     "recomputed_support": "8/8 'no' and 1/8 notes CONFIRMED as claimed; but n_relevant=8 conceals that the 8 were bucketed 2 tiny / 3 boundary / 1 clear / 2 big by separation_atr, i.e. 3 designed contrast cases.",
+     "counterexamples": [
+      "COIN_2026-07-24"
+     ],
+     "corrected_strength": "hint"
+    },
+    {
+     "claim": "Austin's own definition of displacement, stated once, in reaction to the broken probe: a single candle ... closes decisively away from ... the immediately preceding cluster",
+     "verdict": "OVERSOLD",
+     "reason": "Quote byte-verbatim on COIN_2026-07-24, correctly labelled single-card, and 'stated once' checks out \u2014 no other row in the 162 defines the term (rule_03's 'just always need that displacement for S trades' asserts, it does not define). The overreach is in codeable_form clause (a): 'c.close is beyond `level` in the trade direction \u2014 a decisive close through the level, not a wick-only touch.' The only directional word he used in that same sentence is the opposite one \u2014 'displaced and closed INTO the levels at 9:45' \u2014 and his definition sentence says only 'and the level in question', with no through/beyond. The codeable form silently inverts his preposition and presents it as a direct reading, unlike clauses (1)(2)(3) which are honestly flagged as inferences. His refusal to give a metric ('in some form') is reported accurately.",
+     "recomputed_support": "1 supporting card of 8 in section, 1 of 162 in corpus \u2014 matches the claim. n_relevant=8 is defensible but the definition is really 1/162.",
+     "counterexamples": [],
+     "corrected_strength": "single-card"
+    },
+    {
+     "claim": "In at least 5 cards, spontaneously (not inside the dedicated probe), 'no displacement' is the explicit stated reason an entry gets graded 'A' (his ladder) rather than S",
+     "verdict": "OVERSOLD",
+     "reason": "All 5 cards exist and each genuinely names no-displacement as the A-downgrade reason (AVGO_2025-03-28 'another channel with no displacement A entry 10:03'; MSFT_2026-07-28 '9:50 a trade no displacement'; ACHR_2025-06-27 quote verbatim; AMZN_2025-10-07 '9:34 A entry no displacement from opening candle'; AMZN_2025-11-21 'both A trades because of no displacement'). Undisclosed counterexample: SPY_2025-07-16 (deep_is_s) \u2014 'could be considered as an S 9:43 even though no displacement because its early and there could be HTF bias.' That is an entry he would consider S with displacement absent, and it appears nowhere in this axis \u2014 not in this claim's card list, not in claim 6's, not in the unsupported_questions card references. Its codeable_form calls no-displacement a NECESSARY condition for the downgrade; SPY cuts directly against that and was not surfaced. Two further near-cases also went uncounted: NVDA_2025-11-21 ('9:37 is your no displacement option') and TSM_2025-10-21 ('hard to tell if displacement for an A or S trade'). Separately, the denominator's description does not match its number: n_relevant=113 is described as cards 'where an individual entry's quality is discussed in prose', but 113 is simply every row in take_the_trade+deep_is_s+is_this_an_s+htf_agree; only 93 of them carry any prose note at all. That error runs conservative, so it deflates rather than flatters.",
+     "recomputed_support": "5/113 CONFIRMED as arithmetic (39+60+8+6=113 matches my section counts exactly). Prose-bearing subset is 93, and only 20 of the 113 mention displacement at all \u2014 so the honest framing is 5 of the 20 displacement-discussing cards, not 5 of 113.",
+     "counterexamples": [
+      "SPY_2025-07-16"
+     ],
+     "corrected_strength": "hint"
+    },
+    {
+     "claim": "In a broader set of 6 cards, 'no displacement' (or the structured why_not:no_displacement tag) is cited as a reason the whole card is NOT an S / not worth taking, without specifying A vs C.",
+     "verdict": "HOLDS",
+     "reason": "All 6 verified in the corpus and each does what the claim says: AMD_2025-12-23 (structured why_not:['no_displacement'], no prose), BABA_2025-01-15 (quote verbatim), HOOD_2024-11-15 (why_not:['chop','no_displacement','level_not_respected']), MU_2026-03-18 ('didnt like the Br of pivot not levels and no displacement'), ACHR_2026-06-30 ('the break above orh has no displacement'), AAPL_2025-03-05 ('no displacement and chopping around PML'). Quote byte-verbatim, denominator arithmetic correct, strength correctly capped at hint. One recount error in the codeable_form, in the conservative direction: it says 'in 5 of these 6 it's paired with or ambiguous against other named problems'. I count 3 paired (HOOD, MU, AAPL) and 3 standalone (AMD, BABA, ACHR_2026-06-30) \u2014 so no-displacement stands alone more often than the claim admits. No undisclosed counterexamples found.",
+     "recomputed_support": "6/113 CONFIRMED. Same denominator caveat as claim 3: 20 of the 113 discuss displacement, so 6/20 is the informative ratio.",
+     "counterexamples": [],
+     "corrected_strength": "hint"
+    },
+    {
+     "claim": "Direct contradiction, flagged by Austin himself: on AMZN_2025-11-21 he explicitly says his own displacement-based downgrade call contradicts what he said on a different AMZN card",
+     "verdict": "OVERSOLD",
+     "reason": "Card exists, quote is byte-verbatim, and he does flag an inconsistency and does grade both entries A. But the claim asserts the contradiction is with 'a different AMZN card', and that card is not in either cited corpus file. The five AMZN rows here are AMZN_2025-11-14, AMZN_2025-10-07, AMZN_2025-11-21, AMZN_2024-12-06, AMZN_2024-12-19 \u2014 none dated the 22nd. AMZN_2025-01-22 and AMZN_2026-06-22 exist in other mark files but were never opened or cited, and '22 amzn' could equally be a deck index rather than a date. So the cross-card contradiction is reported as established when only one half of it was read; nobody has checked whether the other card actually says what he remembers it saying. The claim should have disclosed that the referent is unresolvable inside the cited corpus. n_relevant=1 is also a self-selected denominator (1/1 = 100% by construction); the honest comparison set is the 5 AMZN cards present, or the 20 displacement-discussing cards.",
+     "recomputed_support": "1/1 as stated, but the second card of the alleged pair is absent from both cited files \u2014 0 of the 5 in-corpus AMZN cards is dated the 22nd.",
+     "counterexamples": [],
+     "corrected_strength": "single-card"
+    },
+    {
+     "claim": "Resolution of the apparent S-vs-'no displacement' contradiction: displacement functions as a SUFFICIENT confluence for S, not a strictly NECESSARY one \u2014 on 2 cards graded S he explicitly writes 'no displacement'",
+     "verdict": "OVERSOLD",
+     "reason": "The two supporting cards are real and exact \u2014 NVDA_2025-06-03 (s, '9:46 as candle forming above ORH, no displacement but 9:30 ocr wick confluence with pmh') and PLTR_2025-07-17 (s, quote byte-verbatim) \u2014 and n_relevant=5 recomputes correctly as the S-graded deep_is_s cards mentioning displacement. Three defects. (1) The supporting arithmetic is wrong: '3 of the 5 show displacement present and consistent with the S grade' counts ACHR_2025-06-27, whose note says the opposite about the only entry it discusses \u2014 '9:39 A entry no displacement, S entry at 10' never states displacement at the 10:00 S entry. Only 2 of 5 (IWM_2026-05-12 'entry has displacement too'; AVGO_2025-02-20 'it looks like displacement') actually state it. Worse, ACHR_2025-06-27 is simultaneously claim 3's flagship no-displacement->A example \u2014 one card is being used two contradictory ways inside the same axis. (2) The denominator is narrowed to deep_is_s only, which flatters: widen it to every card where he treats a setup as S and discusses displacement and NFLX_2025-05-07 ('i belive displacement happens before') and INTC_2025-02-24 ('we get this ocr displacement and level confluence with ORL') join as displacement-present cases, making it 2/7 rather than 2/5. (3) SPY_2025-07-16 is a third, undisclosed instance of the very pattern the claim describes \u2014 no displacement, S considered anyway, substitute named ('because its early and there could be HTF bias') \u2014 so the substitute set {ocr_hold, wick_reclaim, strong_PA} is incomplete against the corpus; HTF bias appears only buried in unsupported_questions.",
+     "recomputed_support": "2 supporting of 5 in the stated denominator CONFIRMED; but the claim's internal '3 of 5 displacement present' recomputes to 2 of 5, and widening to all S-treated displacement cards gives 2/7.",
+     "counterexamples": [
+      "ACHR_2025-06-27",
+      "SPY_2025-07-16"
+     ],
+     "corrected_strength": "hint"
+    }
+   ]
+  },
+  {
+   "axis": "entry_timing",
+   "n_claims_checked": 5,
+   "verdicts": [
+    {
+     "claim": "Strict, literal-timestamp deltas (his named minute vs. the engine's field in the SAME row): engine is later in all 7 c",
+     "verdict": "OVERSOLD",
+     "corrected_strength": "hint",
+     "recomputed_support": "7/7 deltas verify exactly against the corpus (TSM -2, HOOD -10, TSLA -3, MSFT -13, SOFI -58, GOOGL -19, QQQ -1); median -10, mean -15.14, range -58..-1 all reproduce. n_relevant: I count 34 rows carrying setup_et/entry_et/dot_A_et/dot_B_et/et - matches. BUT 105 further rows carry `entry_minute` with `entry_minute_given: true` (an engine-supplied entry timestamp shown on the card); 107 rows carry an engine minute of some kind and 85 carry BOTH an engine minute and a minute/candle-offset Austin named. The honest comparable denominator is 85, not 34.",
+     "counterexamples": [
+      "ACHR_2025-06-27",
+      "ORCL_2024-09-11",
+      "AVGO_2025-03-28",
+      "AMD_2026-04-16",
+      "INTC_2025-02-24",
+      "TSM_2025-10-21",
+      "AMZN_2025-10-07",
+      "AMZN_2025-11-21",
+      "MU_2025-09-23",
+      "ACHR_2026-05-08",
+      "GOOGL_2025-09-15",
+      "PLTR_2025-04-07"
+     ],
+     "reason": "The seven deltas are real and the denominator is honest for the field list it names - but that field list silently drops `entry_minute`, the engine's entry timestamp on 105 of the 162 rows. In the dropped pool 73 rows have him naming a minute: 55 echo the engine's minute exactly, and of the 18 naming an alternative the split is 9 earlier / 9 later. Direction is not one-sided once the omitted rows are counted, so this is a hint about a narrow probe format, not a strong finding about the engine."
+    },
+    {
+     "claim": "Adding the 4 cases where he states the offset in candle-count language rather than a literal clock time ('N candles ea",
+     "verdict": "REFUTED",
+     "corrected_strength": "hint",
+     "recomputed_support": "The 10 deltas as the claim itself documents them are -2, -10, -3, -13, -58, -19, -1, -3 (UBER), -3 (SPCX), -6 (PLTR_2024-09-20). Sorted: -58,-19,-13,-10,-6,-3,-3,-3,-2,-1. Median = (-6 + -3)/2 = -4.5, mean = -118/10 = -11.8. The claim states median -6.5, mean -12.2. Those are only reachable if PLTR_2024-09-20 is scored -10 (et 10:11 vs his '10:01'), contradicting the claim's own codeable_form: \"et 10:11, 'entry shouldve been 6 candles earlier' -> -6\". n_relevant recomputed = 85, not 12.",
+     "counterexamples": [
+      "PLTR_2024-09-20",
+      "ACHR_2025-06-27",
+      "ORCL_2024-09-11",
+      "AVGO_2025-03-28",
+      "ACHR_2026-05-08",
+      "GOOGL_2025-09-15"
+     ],
+     "reason": "Two independent failures. (1) The headline statistics do not reproduce from the claim's own stated delta set - it used two different values for PLTR_2024-09-20 inside the same claim (-10 for the stats, -6 in the codeable_form). Recomputed median is -4.5, a 2-minute error on a claim whose entire point is minute-level precision. (2) n_relevant=12 is a subset of the 34-row pool; the real pool of rows carrying an engine minute alongside a named minute or candle-offset is 85. 10/85 is not '10 of 12'."
+    },
+    {
+     "claim": "\"As candle forming\" (or CAPS variants) appears 11 times across the two files and is used consistently to mean an intra",
+     "verdict": "OVERSOLD",
+     "corrected_strength": "hint",
+     "recomputed_support": "Exact. Case-insensitive 'candle forming' appears in exactly 11 cards and they are exactly the 11 cited ids. n_relevant recomputed = 88 rows whose notes name a clock time - matches the claimed 88 to the row. Quote verbatim in PLTR_2024-10-23. Meaning consistency 11/11 confirmed by reading all 11 notes; none uses the phrase to mean anything but an intrabar fill.",
+     "counterexamples": [
+      "BABA_2026-05-06"
+     ],
+     "reason": "The countable core is the cleanest thing in this axis - 11/11 and 88/88 verify exactly. Two overreaches. (a) 'One card makes the close-vs-forming contrast explicit AND even notes that a clean candle-close entry is sometimes fine' stitches two cards: the contrast is PLTR_2024-10-23, but 'when S trades can be entered on candle close it just looks cleaner and is easier' is BABA_2026-05-06, which is not in card_ids at all (it appears only in unsupported_questions). (b) 'corroborating the zero-tolerance limit-at-the-level finding (g87/g88)' is unearned: 'as candle forming' establishes WHEN (intrabar, not at close) and says nothing about WHERE (a limit resting exactly at the level). Separate propositions; 11 cards of timing language cannot corroborate a price-tolerance result."
+    },
+    {
+     "claim": "Two distinct complaints exist and are not the same thing: (a) pure lateness on an otherwise-correct signal/candle, and",
+     "verdict": "OVERSOLD",
+     "corrected_strength": "hint",
+     "recomputed_support": "n_supporting claimed as 6 ('Only 6 of the 34 timestamp-bearing cards name the break-vs-retest mechanism explicitly'). Grepping break|retest|restest across the 34-row pool returns 4: HOOD_2025-12-23 ('you entered off no break and retest or anything'), TSLA_2025-03-25 ('just entering on a break'), QQQ_2024-08-23 ('an overextended break candle'), PLTR_2024-09-20 ('you seem to enter on breaks which is a halucination'). Whole-corpus rows with break/retest language = 10. rule_03 quote is verbatim; all 7 cited ids exist.",
+     "counterexamples": [
+      "UBER_2025-10-21",
+      "PLTR_2024-10-23"
+     ],
+     "reason": "The proposition (lateness and break-vs-retest are separable) survives, but the count is inflated. Two of the six cards contain no break/retest language whatsoever: UBER_2025-10-21 ('a entry wrong, b candle right but entry is 3 candles earlier') is cited in the SAME claim as the proof of separability, i.e. explicitly a non-break case, and PLTR_2024-10-23 names OCR and candle-close, never a break. Counting the separability-proof card inside the break-mechanism denominator is double-dipping. Recomputed n_supporting for the mechanism = 4 of 34."
+    },
+    {
+     "claim": "No card in either file has Austin saying the engine entered too early on a signal he agreed was valid. Of the 12 compa",
+     "verdict": "REFUTED",
+     "corrected_strength": "unsupported",
+     "recomputed_support": "n_supporting=0 for an absence claim, n_relevant=12. The 12-card denominator is the artifact: it is a subset of the 34-row pool only, and the absence does not survive the 73 `entry_minute` rows where he names a minute. At least 4 cards have his preferred entry LATER than the engine's timestamp; ACHR_2025-06-27 is unambiguous and graded S.",
+     "counterexamples": [
+      "ACHR_2025-06-27",
+      "ORCL_2024-09-11",
+      "AVGO_2025-03-28",
+      "AMD_2026-04-16",
+      "PLTR_2024-10-23"
+     ],
+     "reason": "ACHR_2025-06-27 kills it outright: engine entry_minute 09:39 with entry_minute_given=true, his answer is s:['s'] (he agreed the signal was valid), and his note is '9:39 A entry no displacement, S entry at 10' - he downgrades the ENGINE'S OWN minute to an A and puts the S entry 21 minutes later. That is exactly 'the engine entered too early on a signal he agreed was valid'. ORCL_2024-09-11 (graded S, engine 09:39, '9:39 OCR and 10:03 BR i like') and AVGO_2025-03-28 (engine 09:38, two stop-outs, 'the cleanest looking entry 10:11') are the same shape. AMD_2026-04-16 ('9:40 is probably where you wanted to enter, but that downtrend forming needed extra confirmation') is a wait-longer complaint. And the rescue of its own cited PLTR_2024-10-23 as 'a break-vs-retest complaint' is invented - that note contains no break language at all; it says the OCR entry 6 candles LATER would have kept him in the trade, which is an engine-too-early statement. INTC_2025-02-24 further cuts against the framing ('slightly earlier a entries but this is the first S' - there the engine's later minute is correct). The axis headline, 'the lateness asymmetry is total in the strict sense', rests on this claim and falls with it."
+    }
+   ]
+  },
+  {
+   "axis": "veto_vocabulary",
+   "n_claims_checked": 11,
+   "verdicts": [
+    {
+     "claim": "Of the 22 cards he structurally refused with a why_not tag (17 in take_the_trade, 5 in is_this_an_s), chop is checked more th",
+     "verdict": "OVERSOLD",
+     "reason": "Every count in the claim TEXT reproduces exactly, and all 15 cited ids exist. What is oversold is the packaging: strength 'rule' plus a codeable_form that writes the conditional as P(chop in why_not | card refused) = 0.68, silently dropping the 'has a why_not checkbox' condition that claim 10 itself establishes covers only 22 of 47 refusals. Over all refused cards the rate is 15/47 = 32%, less than half the figure a rule engine would ingest. Separately, the austin_quote is from CRM_2025-10-09, the one chop-tagged card he ACCEPTED, i.e. not a member of the 15-card supporting set it is illustrating.",
+     "recomputed_support": "I recounted from the file: 23 cards carry a why_not array; 22 of them are refusals (17 take_the_trade 'no' + 5 is_this_an_s 'no'), the 23rd (CRM_2025-10-09) is a 'yes'. chop 15/22 (68.2%), level_not_respected 9/22 (40.9%), late 4/22, exhausted 4/22, no_displacement 2/22, no_retest 1/22. Matches the claim exactly.",
+     "counterexamples": [],
+     "corrected_strength": "strong"
+    },
+    {
+     "claim": "level_not_respected almost never fires alone \u2014 it co-occurs with chop in 8 of the 9 cards where he checked it.",
+     "verdict": "HOLDS",
+     "reason": "Arithmetic exact and the denominator is the full enumerated set, not a flattering slice. The sole exception is CRM_2026-04-15 (why_not = ['level_not_respected'] alone); the claim discloses '8 of 9' but does not name it, which is a small transparency miss, not an oversell. Quote 'y9:40 looks good on paper but look at the crazy choppines as previoiusly it closed below orl' is verbatim in AMD_2025-04-23, which is one of the 8 cited cards. Note for the house rule: 9 cards is a thin base for the codeable_form's instruction to collapse a checkbox into a subtype.",
+     "recomputed_support": "9 cards carry level_not_respected (COIN_2024-10-29, GOOGL_2025-03-14, META_2025-05-16, AMD_2025-04-23, HOOD_2024-11-15, CRM_2026-04-15, SPY_2025-08-06, ORCL_2024-11-06, CRM_2026-05-15). 8 of those also carry chop; CRM_2026-04-15 does not. 8/9 = 0.889, as claimed.",
+     "counterexamples": [
+      "CRM_2026-04-15"
+     ],
+     "corrected_strength": "strong"
+    },
+    {
+     "claim": "Chop-state A \u2014 level-chop: price oscillates through/around a specific level without a decisive break, distinct from generic ran",
+     "verdict": "OVERSOLD",
+     "reason": "MU_2026-03-18 is cited as support but its own free text says the opposite of level-chop: 'almost opportunity but i didnt like the Br of pivot not levels and no displacement'. He explicitly says the break was of a PIVOT, NOT levels, and the failure was no displacement. It carries why_not = ['chop'] with no level_not_respected tag. Using it as a level-chop instance inflates the count and, worse, it is direct evidence the chop checkbox absorbs non-level failures. The other three (NVDA_2025-09-04 'too much chop around levels', AAPL_2025-03-05 'chopping around PML', META_2024-12-12 'too many candles of chop struggling to get over PMH') genuinely support.",
+     "recomputed_support": "3/30, not 4/30. The n_relevant of 30 is honest: I independently reconstructed it as the union of 16 chop-tagged cards and 16 cards with 'chop' in free text = 30 distinct cards.",
+     "counterexamples": [
+      "MU_2026-03-18"
+     ],
+     "corrected_strength": "hint"
+    },
+    {
+     "claim": "Chop-state B \u2014 post-displacement collapse: a real breakout/displacement candle fires, then the follow-through dies into unreada",
+     "vertict": "OVERSOLD",
+     "verdict": "OVERSOLD",
+     "reason": "The claim's mechanism is 'the entry window closes' \u2014 i.e. no trade. But one of its two cards, AAPL_2024-10-23, is an ACCEPTED card: answers = {'take': ['yes'], 'entry': ['long']}, note '9:38 a trade but wouldnt been in and out and these candles turned very choppy'. He took it. That leaves PLTR_2024-09-13 ('strong PA then a lot of chop and no clear entries') as the only card where the window actually closed. n_supporting == 1 is single-card by the stated rule.",
+     "recomputed_support": "1/30 clean, not 2/30. Second card contradicts the stated mechanism rather than supporting it.",
+     "counterexamples": [
+      "AAPL_2024-10-23"
+     ],
+     "corrected_strength": "single-card"
+    },
+    {
+     "claim": "Chop-state C \u2014 range/consolidation wall: price never leaves a defined high/low band all morning, so there's no breakout attempt",
+     "verdict": "HOLDS",
+     "reason": "Both cited cards carry text that supports the state on its own terms. MARA_2025-10-01: 'you wanted 10:28 entry i bet but hod is a consolidation wall and too hard to target' (verbatim, matches the austin_quote). MSFT_2026-01-05: 'stock in range, higher highs in range after bear flag to start day' \u2014 genuine band containment, not a bare checkbox. Both are refusals. n_supporting == 2, and the claim already self-labels 'hint' and flags the 'too hard to target' half as not codeable. This is the only chop-state claim that does not stretch its cards.",
+     "recomputed_support": "2/30, as claimed. Both cards verified to carry independent supporting free text.",
+     "counterexamples": [],
+     "corrected_strength": "hint"
+    },
+    {
+     "claim": "Chop-state D \u2014 trending-but-choppy: an HTF/session directional bias exists, but individual candles are inconsistent enough that",
+     "verdict": "OVERSOLD",
+     "reason": "Two of the three cited cards cut against the claim. (1) AMD_2025-12-15 is an htf_agree card whose answer is htf = ['cannot_tell'] \u2014 an explicit statement that he could NOT read a directional bias, which is the precise negation of the claim's premise that 'an HTF/session directional bias exists'. Its note 'stock is choppy and no s entries on the stock' names no trend. (2) AMD_2025-04-23's note is level language, not trend language: 'previoiusly it closed below orl'; it is already spent as the quote card for claim 2's level-chop entanglement, so it is being double-counted across two mutually exclusive chop states. (3) Even MARA_2025-11-21, the quote card, is take = ['yes'] with entry_minute 09:40 \u2014 he TOOK a trade there, contradicting 'so he sits out despite having a bias'; only 'everything else' was a sit-out. An uncited card, AMD_2026-04-16 ('that downtrend forming needed extra confirmation, and then it consolidated after'), would have supported this claim better than any of the three chosen.",
+     "recomputed_support": "1/30 at best (MARA_2025-11-21, and that one is an accepted card), not 3/30.",
+     "counterexamples": [
+      "AMD_2025-12-15",
+      "AMD_2025-04-23",
+      "MARA_2025-11-21"
+     ],
+     "corrected_strength": "single-card"
+    },
+    {
+     "claim": "Chop is not always a hard veto \u2014 on one card he checked the chop why_not tag while still marking the trade a yes",
+     "verdict": "HOLDS",
+     "reason": "Literally exact. CRM_2025-10-09 is the unique row with 'chop' in why_not and is_s = ['yes']; the long austin_quote reproduces verbatim including 'so maybe downgrade but i do see the s your getting at'. n_relevant = 16 checks out as the count of chop-tagged cards (15 refusals + this one). The claim correctly refuses to build a severity rule from one card. Worth flagging for the parent, though it strengthens rather than weakens the claim: four further ACCEPTED cards describe chop in free text without the checkbox \u2014 AMD_2025-07-09 ('10:05 S option in my opinion but a lot of chop'), SOFI_2025-11-21, AAPL_2024-10-23, PLTR_2026-02-05 ('9:54 is the first S but earlier a trades show up in the chop'). The codeable_form's '1 card against 15' understates the accepted side by 4x.",
+     "recomputed_support": "1/16, as claimed. Independently, 5 accepted cards total mention chop when free text is included.",
+     "counterexamples": [],
+     "corrected_strength": "single-card"
+    },
+    {
+     "claim": "He never states a repeatable candle-count threshold for 'exhausted'/'too many candles in between' anywhere in the two probe fil",
+     "verdict": "OVERSOLD",
+     "reason": "The claim's uniqueness assertion ('The only card with an actual number is a trade_anatomy critique ... and it is a single instance') is false. I grepped every numeric candle count in both files and found five, not one: PLTR_2024-09-20 (the cited '10 candles' / '6 candles earlier'), PLTR_2024-10-23 ('you wouldve stayed in the trade if you went with the OCR entry 6 candles later'), UBER_2025-10-21 ('b candle right but entry is 3 candles earlier'), SPCX_2026-08-03 ('S entry 3 candles earlie'). PLTR_2024-10-23 is the damaging one: same trade_anatomy section, same candle-distance unit, and it points the OPPOSITE way \u2014 there he wants an entry 6 candles LATER, which directly undercuts the claim's derived arithmetic '~4 acceptable'. That inference was built from one card while a second card in the same section contradicts its direction, and it was not disclosed. The core negative (no threshold exists) survives; the 'single instance' framing does not.",
+     "recomputed_support": "1/5 as stated for the exhausted tag itself, but 5 cards in the corpus carry candle-count numbers and 2 of them bear on entry depth. The 4 exhausted-tagged cards do give zero numbers, which I confirmed: 'too many candles in between' (HOOD_2025-11-07), 'its been too long' (UBER_2026-08-11), 'strong PA then a lot of chop' (PLTR_2024-09-13), 'trade options that shouldve shown up earlier didnt' (GOOGL_2024-10-01).",
+     "counterexamples": [
+      "PLTR_2024-10-23",
+      "UBER_2025-10-21",
+      "SPCX_2026-08-03"
+     ],
+     "corrected_strength": "single-card"
+    },
+    {
+     "claim": "There is no clean wall-clock cutoff for 'late.' The latest accepted S/A trade in the corpus is 10:40 (flagged as late but still",
+     "verdict": "REFUTED",
+     "reason": "The load-bearing half \u2014 'every card tagged late as a refusal reason sits at 10:34 or after' \u2014 is not supported and is contradicted. Exactly four cards carry late in why_not: COIN_2024-10-29, GOOGL_2025-03-14, META_2025-05-16, GOOGL_2024-10-01. Three of them have NO time anywhere (COIN and GOOGL_2025-03-14 have no notes at all; GOOGL_2024-10-01's note is 'trade options that shouldve shown up earlier didnt'). The one that does name a time says 10:30 \u2014 BEFORE the asserted 10:34 floor. Worse, none of those four appears in the claim's own card_ids except GOOGL_2024-10-01, and the three cards the codeable_form calls 'explicit late-refusals' carry no late tag at all: UBER_2026-08-11 is tagged exhausted (the codeable_form admits this and cites it anyway), while UBER_2026-04-20 and NFLX_2025-07-28 sit in deep_is_s and where_is_the_stop, sections whose template has no why_not field. Structural point the claim never discloses: every g84 row has et = None \u2014 there is no time field on these cards at all, so every clock time in this claim is scraped out of his prose. The '10:40 latest accepted' half does check out.",
+     "recomputed_support": "Late-tagged refusals: 4, not the 6 cited, and the cited set overlaps them by 1. Of the 4, timed = 1, and that one reads 10:30, below the claimed floor. Latest accepted time independently verified across all 'yes'/'s' cards: 10:40 (BABA_2025-03-14), next 10:20 (COIN_2025-11-21) \u2014 that part holds.",
+     "counterexamples": [
+      "META_2025-05-16",
+      "COIN_2024-10-29",
+      "GOOGL_2025-03-14",
+      "UBER_2026-08-11"
+     ],
+     "corrected_strength": "hint"
+    },
+    {
+     "claim": "25 of the 25 refusals in the deep_is_s section (the largest refusal pool in the file) carry zero structured why_not tags \u2014 that",
+     "verdict": "OVERSOLD",
+     "reason": "The instrument fact is right and I confirmed it in source, not just data: research/g84_one_page.py emits a why_not question block only twice, at lines 863 (is_this_an_s) and 1074 (take_the_trade); the deep_is_s builder at line 1110/1342 has none. 25 deep_is_s rows are s = ['no'] and none has a why_not key. Two problems. (1) The card_ids array lists 24 ids, not 25 \u2014 UBER_2026-04-20 is omitted while n_supporting says 25. (2) The sentence 'All of his reasoning for those 25 refusals lives only in free-text notes.entry' is false for 9 of the 25, which have an EMPTY notes.entry and therefore carry no reasoning in any form. 36% of the file's largest refusal pool is a bare 'no' \u2014 a materially different fact from 'the reasoning moved to free text', and the one most likely to mislead a downstream parser into expecting text that is not there.",
+     "recomputed_support": "25/25 on the checkbox absence (verified). But 9/25 have no free text either: META_2026-08-06, AVGO_2025-06-04, INTC_2025-01-29, QQQ_2024-11-08, MSFT_2025-06-13, HOOD_2024-10-23, AAPL_2026-01-06, COIN_2026-03-09, CRM_2025-08-28. Cited id count is 24 vs a claimed 25. The 17+5+25=47 total-refusal arithmetic does reproduce.",
+     "counterexamples": [
+      "META_2026-08-06",
+      "AVGO_2025-06-04",
+      "INTC_2025-01-29",
+      "QQQ_2024-11-08",
+      "MSFT_2025-06-13",
+      "HOOD_2024-10-23",
+      "AAPL_2026-01-06",
+      "COIN_2026-03-09",
+      "CRM_2025-08-28"
+     ],
+     "corrected_strength": "strong"
+    },
+    {
+     "claim": "A recurring but minor veto driver, distinct from chop/level/late, is ambiguous risk definition: the setup presents two plausible",
+     "verdict": "OVERSOLD",
+     "reason": "Two of the four cards do not belong in the stated denominator or category. (1) PLTR_2024-10-23 is a trade_anatomy row with grade = null and answers = {'wrong': [...]} \u2014 it is a post-hoc critique of a trade the engine took, not one of the 47 refusals the n_relevant = 47 denominator is drawn from, so the ratio mixes two populations. Its text is the strongest evidence in the set ('its hard to enter a stock when there 2 stop loss options'), which makes the misplacement consequential rather than cosmetic. (2) ACHR_2026-05-08's note is '9:38 9:52 possible entries but candles are ugly for S' \u2014 two candidate ENTRY TIMES rejected on candle quality, with no stop mentioned; it reads as a chop/ugly-candle refusal, not an ambiguous-risk one. Clean support within the refusal pool is 2: META_2024-09-30 ('not respecting level, 2 stop losses to choose from', verbatim) and TSLA_2025-05-16 ('lots of close stop options').",
+     "recomputed_support": "2/47 inside the refusal pool, plus 1 trade_anatomy card outside it \u2014 not 4/47.",
+     "counterexamples": [
+      "ACHR_2026-05-08",
+      "PLTR_2024-10-23"
+     ],
+     "corrected_strength": "hint"
+    }
+   ]
+  },
+  {
+   "axis": "WHAT MAKES AN S",
+   "n_claims_checked": 11,
+   "verdicts": [
+    {
+     "claim": "Base rate: on the 60-card deep_is_s deck (g83-deep-batch), Austin graded S on 35/60 cards (58.3%).",
+     "verdict": "HOLDS",
+     "reason": "Arithmetic recomputes exactly: 60 deep_is_s rows, Counter is 35 {\"s\":[\"s\"]} / 25 {\"s\":[\"no\"]} = 58.3%. Quote is verbatim in TSM_2026-07-24. Defect worth flagging but not fatal: the 26 card_ids listed under n_supporting=35 are a mix \u2014 14 are S and 12 are explicit \"no\" (SPY_2025-07-16, TSLA_2025-09-26, META_2026-08-06, COIN_2025-05-22, UBER_2026-04-20, AMD_2026-04-16, NVDA_2025-09-04, MSFT_2024-12-18, AAPL_2025-03-05, AVGO_2025-06-04, SPY_2025-04-14, ACHR_2026-05-08). They read as deck exemplars, not supporters. Also, the 'pre-filtered candidates' half of the claim comes from CLAUDE.md, not from the quoted card \u2014 Austin's line is about a smaller sample for 1-and-done S trades, which is adjacent but not the same statement.",
+     "recomputed_support": "35/60 = 58.3%, matches claimed exactly. All 26 cited card_ids exist.",
+     "corrected_strength": "strong",
+     "counterexamples": []
+    },
+    {
+     "claim": "DOWNGRADE-ONLY: 'chop' is Austin's single most common reason to reject a setup \u2014 named in 15 of 22 cards where he gave a coded reason for saying no.",
+     "verdict": "OVERSOLD",
+     "reason": "The count is right \u2014 I independently recomputed the coded-why_not no-verdicts (take_the_trade take==no plus is_this_an_s is_s==no, both with a why_not array) as exactly 22 rows, with chop in 15. But (a) the card_ids list pads the true 15 with two cards that are not in it: AMD_2025-07-09 is a take==YES card ('10:05 S option in my opinion but a lot of chop') cited as a chop-rejection, and MARA_2025-11-17 is a deep_is_s row with no coded why_not at all and so is outside the 22 denominator \u2014 which is also where the headline quote comes from, so the quote sourcing a 'coded reason' claim is itself an uncoded card. (b) strength 'rule' is not earned: there are at least five positive-verdict cards in this corpus with chop explicitly named, and only one (CRM_2025-10-09) is disclosed. A veto with five documented overrides is 'strong', not a rule.",
+     "recomputed_support": "15/22 on coded why_not \u2014 matches the claimed fraction exactly. But only 15 of the 17 cited card_ids belong to that 15; AMD_2025-07-09 and MARA_2025-11-17 do not.",
+     "corrected_strength": "strong",
+     "counterexamples": [
+      "AMD_2025-07-09",
+      "PLTR_2026-02-05",
+      "SOFI_2025-11-21",
+      "AAPL_2024-10-23",
+      "MARA_2025-11-21"
+     ]
+    },
+    {
+     "claim": "DOWNGRADE-ONLY: failing to hold / respect the reference level after the claimed break ... is the second most common rejection reason \u2014 9 of 22 no-verdicts.",
+     "verdict": "OVERSOLD",
+     "reason": "The fraction 9/22 recomputes, but the membership does not match the claim's own definition. By the coded why_not field the nine are COIN_2024-10-29, GOOGL_2025-03-14, META_2025-05-16, AMD_2025-04-23, HOOD_2024-11-15, CRM_2026-04-15, SPY_2025-08-06, ORCL_2024-11-06, CRM_2026-05-15. The claim silently swaps HOOD_2024-11-15 out and META_2024-09-30 in \u2014 META is coded why_not=['other'], and it is only level-related in prose. Since the claim's own wording explicitly folds in 'offers two competing stop-loss options' (i.e. the META prose), the honest count under its own definition is 10/22, not 9. Separately, the hard-veto codeable_form ('price_closes_back_through(level) -> veto S') has an undisclosed counterexample: MSFT_2026-08-10, where Austin writes 'i like the S entry at 9:33 because even though previous candle closes below slightly, its a quick BR early in the day.'",
+     "recomputed_support": "9/22 by coded field, 10/22 under the claim's own broader definition. Denominator 22 verified independently.",
+     "corrected_strength": "strong",
+     "counterexamples": [
+      "MSFT_2026-08-10"
+     ]
+    },
+    {
+     "claim": "CONFLUENCE-BONUS, explicitly NOT SUFFICIENT: when the deck pre-labeled claimed_setup as 'BR+OCR', Austin still rejected it 4 of 5 times.",
+     "verdict": "HOLDS",
+     "reason": "Verified against the claimed_setup field directly. Exactly five rows carry claimed_setup=='BR+OCR': AMD_2025-12-23 (no), HOOD_2025-11-07 (no), GOOGL_2024-10-01 (no), META_2024-09-30 (no), CRM_2025-10-09 (yes, with the 'so maybe downgrade' caveat). 4/5 rejected, exactly as claimed. Quote verbatim in CRM_2025-10-09. Strength 'hint' at n_supporting=4 is conservative, not inflated. No counterexamples exist \u2014 this is the complete population of that label in the corpus.",
+     "recomputed_support": "4/5 \u2014 matches claimed exactly; the denominator is the entire BR+OCR population, not a chosen subset.",
+     "corrected_strength": "hint",
+     "counterexamples": []
+    },
+    {
+     "claim": "CONFLUENCE-BONUS, strongly correlated: 10 of 24 substantively-explained deep_is_s S calls cite BR/OCR confluence; every card (6/6) whose note contains 'BR OCR' anywhere in the corpus was graded S.",
+     "verdict": "OVERSOLD",
+     "reason": "Two defects. (1) The denominator 24 does not recompute. Of the 35 deep_is_s S grades, 14 notes are a bare timestamp ('9:43', '9:48', '9:40', '9:59', '9:43', '9:46', '10:01', '10:05', '9:39', '10:04', '9:48', '9:40', '9:49', '9:59'), leaving 21 substantive, not 24. The numerator 10 is right (deep_is_s S cards citing OCR/BR as present: UBER_2026-03-19, BABA_2026-05-06, NVDA_2025-06-03, CRM_2026-04-20, IWM_2025-08-15, NFLX_2024-09-19, ORCL_2024-09-11, PLTR_2025-07-17, TSLA_2024-09-20, AMD_2026-07-30), so the true fraction is 10/21 = 48%, not 42%. (2) '6/6 ... was graded S' is false for one member: SPY_2025-12-04 is a what_minute row whose only answer is a direction pick ({'entry_minute':['short']}) \u2014 there is no S/is_s grade field on it at all. Austin's prose says 'S TRADE', but that is his aside, not a graded verdict, and dressing it as a grade is exactly the paraphrase drift the house rule forbids. The conclusion survives (5/5 actually-graded cards were S) but the stated evidence does not.",
+     "recomputed_support": "10/21 substantive S calls cite BR/OCR (claimed 10/24). Literal-phrase set: 5 graded-S cards plus SPY_2025-12-04 which carries no grade field, so 5/5, not 6/6.",
+     "corrected_strength": "hint",
+     "counterexamples": []
+    },
+    {
+     "claim": "BR/OCR confluence is explicitly NOT NECESSARY: at least one card graded S while Austin stated neither BR nor OCR was present.",
+     "verdict": "HOLDS",
+     "reason": "IWM_2026-05-12 exists, is deep_is_s with answers {'s':['s']}, and the full quote is verbatim including his typos. It is an existence claim over n=1 and is correctly labeled 'single-card', with the codeable_form explicitly warning not to build a second predicate branch on it. This is the only claim in the axis whose strength label is exactly right for its evidence. No counterexample is possible to an existence claim; I checked anyway that no other card contradicts the reading.",
+     "recomputed_support": "1/1 \u2014 the single cited card verified in file, verdict and quote both exact.",
+     "corrected_strength": "single-card",
+     "counterexamples": []
+    },
+    {
+     "claim": "Displacement's necessity is contested: a rule-ballot statement calls it always required, it is the stated reason for 2 rejections, but Austin graded S twice while writing 'no displacement'.",
+     "verdict": "OVERSOLD",
+     "reason": "The rejection count is badly understated and n_relevant=4 corresponds to no recomputable population. Displacement is named as a reason to reject or downgrade in at least 7 cards: SPY_2025-07-16, AAPL_2025-03-05, ACHR_2026-06-30 (deep no), MU_2026-03-18 (take no), HOOD_2024-11-15 and AMD_2025-12-23 (coded why_not=no_displacement), and BABA_2025-01-15 ('long entry has no displacement so not S unless you knew'). Worse, the claim omits an entire consistent body of cards where Austin uses missing displacement precisely to demote S to A: rule_14 ('starters for A trades that primary downgrade is no displacement'), AMZN_2025-11-21 ('both A trades because of no displacement'), MSFT_2026-07-28 ('9:50 a trade no displacement'), AMZN_2025-10-07, AVGO_2025-03-28, ACHR_2025-06-27 ('9:39 A entry no displacement, S entry at 10'). Against ~13 cards treating displacement as the S/A discriminator, 2 S-with-no-displacement exceptions is a rare override, not a 'contested' predicate. The framing understates a near-rule. Quote is verbatim in NVDA_2025-06-03; all cited ids exist.",
+     "recomputed_support": "Rejections/downgrades citing displacement: 7 explicit (claim said 2), plus 6 more A-grade demotions. S-grades overriding it: 2 clean (NVDA_2025-06-03, PLTR_2025-07-17), 3 if NFLX_2025-05-07 ('displacement happens before') counts. n_relevant=4 does not recompute from any field.",
+     "corrected_strength": "hint",
+     "counterexamples": [
+      "rule_14",
+      "AMZN_2025-11-21",
+      "MSFT_2026-07-28",
+      "AMZN_2025-10-07",
+      "AVGO_2025-03-28",
+      "ACHR_2025-06-27",
+      "BABA_2025-01-15",
+      "MU_2026-03-18",
+      "AAPL_2025-03-05",
+      "HOOD_2024-11-15",
+      "AMD_2025-12-23"
+     ]
+    },
+    {
+     "claim": "NECESSARY: entries must fire off the retest, not off the break candle itself \u2014 entering on the break is an engine error.",
+     "verdict": "HOLDS",
+     "reason": "Both cited ids exist. The quote 'you seem to enter on breaks which is a halucination we never trade that and you know it.' is verbatim in PLTR_2024-09-20 (trade_anatomy), typo 'halucination' intact. rule_03 independently says 'should always be entering while the restest is occuring'. Strength 'hint' at n=2 respects the n<=2 ceiling, and the codeable_form self-flags as under-sampled. There is a third undisclosed supporting card \u2014 QQQ_2024-08-23, 'you entered on an overextended break candle' \u2014 which strengthens rather than undercuts it. No counterexamples found.",
+     "recomputed_support": "2/2 cited verified; a third supporting card (QQQ_2024-08-23) exists and was not counted, so the claim is if anything undercounted.",
+     "corrected_strength": "hint",
+     "counterexamples": []
+    },
+    {
+     "claim": "The 'close-entry OK when confluence present' reading does not hold up: 2 of 3 relevant cards graded S while preferring an intrabar 'as candle forming' entry even with confluence.",
+     "verdict": "OVERSOLD",
+     "reason": "n_relevant=3 is a hand-picked denominator. 'as candle forming' appears in 11 cards corpus-wide (TSM_2025-11-03, NVDA_2024-12-24, IWM_2026-05-05, SOFI_2025-11-21, QQQ_2024-09-25, MU_2025-09-23, UBER_2026-04-20, TSM_2026-07-24, NVDA_2025-06-03, IWM_2025-08-15, PLTR_2024-10-23) \u2014 the claim picks 3. More seriously, it hides a direct counterexample to its own conclusion: CRM_2026-04-20 is graded S with the note '9:41 OCR and strong candle close above orh' \u2014 OCR confluence plus an explicit approving reference to the candle CLOSE, which is precisely the pattern the claim says is 'outweighed, not confirmed'. MSFT_2026-08-10 cuts the same way ('i like the S entry at 9:33 because even though previous candle closes below slightly'). With CRM disclosed the score is 2-for / 2-against, not 2-of-3, and the claim resolves to genuinely undetermined rather than leaning against close entry. The correct move \u2014 'ask Austin directly' \u2014 is already in the codeable_form, but the prose overstates the lean.",
+     "recomputed_support": "2 intrabar-preferring vs 2 close-approving among confluence cards (BABA_2026-05-06 and CRM_2026-04-20 on the close side). Claimed 2/3; I get 2/4 with a wider, non-cherry-picked denominator of 11 'as candle forming' cards.",
+     "corrected_strength": "hint",
+     "counterexamples": [
+      "CRM_2026-04-20",
+      "MSFT_2026-08-10"
+     ]
+    },
+    {
+     "claim": "Sequencing pattern: in every discussed case, an A-grade or chop trade fired earlier in the session before the day's actual S trade appeared \u2014 3/3 consistent.",
+     "verdict": "REFUTED",
+     "reason": "The universal is false and the corpus contains the refutation. IWM_2026-05-05 (take_the_trade, take=yes) reads '10:06 a as candle forming. 9:34 is great too actually s and it wouldve taken a while and not hit the stop' \u2014 the S is at 9:34 and the A at 10:06, i.e. S BEFORE A, in a discussed case, undisclosed. Worse, the claim's own supporting quote contains its own contradiction: INTC_2025-02-24 says 'this is the first S which is rare for an s after a', so Austin is explicitly telling us the A-then-S ordering is RARE at the same moment the claim cites him as evidence that it is universal, and proposes it as a positive predictor. Also, two of the three 'earlier' cases the claim leans on (IWM_2025-08-15, AMD_2026-07-30) describe earlier OCR entries, not A-grade or chop trades. All cited ids exist and the quote is verbatim, but the inference inverts the speaker.",
+     "recomputed_support": "3 supporting cards found as claimed, but 'every discussed case' is falsified by IWM_2026-05-05, and Austin's own cited words call the pattern rare rather than typical.",
+     "corrected_strength": "hint",
+     "counterexamples": [
+      "IWM_2026-05-05",
+      "INTC_2025-02-24"
+     ]
+    },
+    {
+     "claim": "Methodological caveat: take_the_trade 'take==yes' is NOT a clean proxy for is_s \u2014 at least 5 of 22 yes-take cards are explicitly labeled 'A trade'.",
+     "verdict": "HOLDS",
+     "reason": "Denominator verified: exactly 22 take_the_trade rows have take==['yes'] (out of 39 in that section). The five cited cards all exist and all carry explicit A-grade language. The quote '9:50 a trade no displacement' is verbatim in MSFT_2026-07-28, lowercase 'a trade' preserved. The claim is stated as 'at least 5' and is conservative: I find 8 yes-take cards with A-grade language (adding AVGO_2025-03-28, INTC_2025-02-24, AMZN_2025-10-07). Understated in the safe direction, and the codeable_form's advice (drop take_the_trade rows from the S-target training set) is if anything better supported than the claim says.",
+     "recomputed_support": "8/22 yes-take cards carry explicit A-grade language; claim said 'at least 5 of 22'. Denominator 22 verified independently.",
+     "corrected_strength": "hint",
+     "counterexamples": []
+    }
+   ]
+  },
+  {
+   "axis": "process",
+   "n_claims_checked": 10,
+   "verdicts": [
+    {
+     "claim": "The engine still fires entries on the break candle itself rather than waiting for a confirmed retest -- a bug Austin says he already",
+     "verdict": "OVERSOLD",
+     "reason": "All 5 ids exist and the quote is verbatim (a truncated but unaltered prefix of PLTR_2024-09-20). But the evidence is stitched from two OPPOSITE error directions and the fix contradicts the corpus. (a) rule_03 is counted as supporting and its literal text says the reverse: 'engine entering late is a bug, should always be entering while the restest is occuring'. (b) HOOD_2025-12-23 does not say break-candle entry at all; it says 'you entered off no break and retest or anything'. Only 3 cards actually state the named mechanism (PLTR_2024-09-20 'you seem to enter on breaks', TSLA_2025-03-25 'just entering on a break', QQQ_2024-08-23 'you entered on an overextended break candle'). (c) The codeable_form ('require a confirmed retest bar ... strictly before an entry can fire') pushes entries LATER, which is the complaint on 5 cards asking for earlier entries and is flatly incompatible with the 11 cards where he enters 'as candle forming' -- including PLTR_2024-10-23, 'see on that candle close you get a bad entry?'. Even the cited support card says 'the entry shouldve been 6 candles earlier'. 'strong' is not earned at 3 clean cards.",
+     "recomputed_support": "3 clean supporting cards, not 5 (rule_03 and HOOD_2025-12-23 do not state the mechanism). n_relevant=29 is not reproducible from the corpus: I count 26 cards that present a specific engine setup time for critique (which_signal 6 + htf_agree 6 + where_is_the_stop 6 + trade_anatomy 8), or 115 counting every card carrying an engine entry minute. No slice gives 29.",
+     "corrected_strength": "hint",
+     "counterexamples": [
+      "rule_03",
+      "HOOD_2025-12-23",
+      "UBER_2025-10-21",
+      "SPCX_2026-08-03",
+      "AMD_2026-07-30",
+      "GOOGL_2024-10-01",
+      "PLTR_2024-10-23",
+      "QQQ_2026-06-24",
+      "GOOGL_2024-10-15",
+      "MSFT_2026-08-10",
+      "AAPL_2025-08-08"
+     ]
+    },
+    {
+     "claim": "On the retest-tolerance rule he is explicitly delegating the calibration work to the agent while reserving only his quali",
+     "verdict": "OVERSOLD",
+     "reason": "Card exists, quote is verbatim to the double space in 'the  25 percent', and the core reading ('you stress test and find the best metric yourself' = delegation) is exactly right. The oversell is the embedded corroboration: '(this matches the later g87/g88 zero-tolerance work in CLAUDE.md)'. His own words in the same sentence are 'if its close but didnt actually touch, within a few cents give or take' -- a strictly NONZERO tolerance. A zero tolerance is a limit resting exactly at the level, i.e. a touch, which is the thing he says did not happen. The claim recruits his mark as confirmation of a finding it contradicts; the file's own unsupported_questions section admits this, which makes the in-claim assertion worse, not better.",
+     "recomputed_support": "1 supporting card of 1 relevant (rule_01 is the only tolerance-rule ballot row) -- denominator confirmed, strength label correct.",
+     "corrected_strength": "single-card",
+     "counterexamples": []
+    },
+    {
+     "claim": "On stop placement he draws the opposite line: this stays his eye, not a formula. He is pre-empting any move to wire a pro",
+     "verdict": "OVERSOLD",
+     "reason": "Quote verbatim and rule_15 exists (ballot 'skip'). Two problems. (1) Mis-mapping: rule_15's text (research/g82_master_homework.py MENTOR_BALLOT[14], Neto) is 'a wider stop-loss -- usually 18-25% of the contract premium at entry', and the card's own change note says 'Your stop is on the underlying; this caps what it may cost in the contract.' It is an options-premium cost cap, not a stop-DISTANCE rule for signal_runner. The claim recasts it as the latter to build a 'he refuses codification of stop placement' position. (2) Undisclosed counterexamples: he repeatedly states mechanical, codeable stop placements elsewhere in this same corpus, and the entire where_is_the_stop section is him supplying stop-selection training data.",
+     "recomputed_support": "1 supporting card, but n_relevant=1 is the flattering part: I count >=12 cards in this corpus that bear on stop placement (6 where_is_the_stop rows plus NVDA_2024-09-03, PLTR_2024-10-23, IWM_2026-05-05, TSLA_2025-05-16, META_2024-09-30, GOOGL_2024-10-15, QQQ_2024-08-23, GOOGL_2025-09-15).",
+     "corrected_strength": "single-card",
+     "counterexamples": [
+      "MSFT_2026-08-10",
+      "NVDA_2024-09-03",
+      "IWM_2026-05-05",
+      "TSLA_2025-05-16",
+      "GOOGL_2024-10-15",
+      "PLTR_2024-10-23",
+      "META_2024-09-30"
+     ]
+    },
+    {
+     "claim": "Three separate cards, spread across two different probe sections, land on the exact same open problem named in THE LANE: h",
+     "verdict": "OVERSOLD",
+     "reason": "All 3 ids exist and the quote is verbatim, but only ONE card carries the claim. (a) AAPL_2024-10-23 -- the card whose quote was chosen as the headline -- never mentions displacement; its note is about chop and one-and-done S trades. (b) TSM_2026-07-24's 'smaller sample' line is about scale-out to LOD and 1-and-done S trades; the words 'rather than pooled with clear-displacement S examples' appear nowhere -- that is invented, and the codeable_form (partition by displacement flag) rests entirely on the invention. (c) Only AMZN_2025-10-07 actually says it: 'these are ones we got to figure out if odds in out favor to delegate as S trades'. Worse, the premise 'he can't tell' is contradicted across the corpus: of 22 displacement-mentioning cards he decides it himself, decisively, on at least 8. TSM_2025-10-21 ('hard to tell if displacement for an a or s trade') is a genuine second ambiguity card and was not cited.",
+     "recomputed_support": "1 clean supporting card, not 3. n_relevant=99 does check out (take_the_trade 39 + deep_is_s 60), but the honest relevant set for 'no-displacement entries' is the 22 cards that mention displacement, of which ~2 express the ambiguity.",
+     "corrected_strength": "single-card",
+     "counterexamples": [
+      "ACHR_2025-06-27",
+      "NVDA_2025-06-03",
+      "PLTR_2025-07-17",
+      "SPY_2025-07-16",
+      "BABA_2025-01-15",
+      "ACHR_2026-06-30",
+      "AAPL_2025-03-05",
+      "MSFT_2026-07-28",
+      "rule_14"
+     ]
+    },
+    {
+     "claim": "Two trade-anatomy cards attack the runner/PT logic as a systemic design flaw rather than a one-off critique: runner targe",
+     "verdict": "HOLDS",
+     "reason": "Both ids exist in trade_anatomy, quote is a verbatim prefix of QQQ_2024-08-26. Runner-ordering is stated outright on QQQ_2025-02-25 ('runner always the last one why is it in between 2 r?'); the 2R-yields-to-real-levels half is stated on both ('when 2r falls between a whole psych number target that instead' / '2r level is trumped by HTF levels and whole psych number if one is close'). n_relevant=8 is the correct trade_anatomy denominator and 'hint' is honestly labelled. I found no counterexamples; two further cards corroborate runner-last ordering (PLTR_2024-09-20 'PT 3 2r PT 4 runner target of choice', GOOGL_2024-10-15 'PT HOD, 2r, median, best average for runner'). Only caveat: the ordering half rests on one card, the target half on two.",
+     "recomputed_support": "2/8 as claimed; ordering sub-point 1/8 supported directly, 3/8 with the two corroborating cards.",
+     "corrected_strength": "hint",
+     "counterexamples": []
+    },
+    {
+     "claim": "Three cards are explicit homework-instrument failures -- Austin says the deck did not show him what he needed, and each n",
+     "verdict": "HOLDS",
+     "reason": "All 3 ids exist, quote verbatim, and each note says what the claim says it says: MU_2024-10-09 'i dont see a OCR or the level its referencing'; ORCL_2025-04-02 'little difficult to confirm setup and what the entry candle looks like'; QQQ_2024-08-26 'cant critique entry and stop because cant see'. n_relevant=147 is reproducible and honest (162 rows minus the 15 mentor_ballot rows, i.e. every chart card). Strength 'hint' at 3 cards is correctly labelled and the codeable_form is scoped as instrument fixes, not a trading rule. Nothing found that cuts against it; if anything it undercounts (SPCX_2026-08-03 'indices were in a major downtrend, but that doesn't make sense' reads as a fourth instrument complaint, and 4 of 6 htf_agree rows answered cannot_tell).",
+     "recomputed_support": "3/147, matches. Undercount rather than overcount -- a 4th candidate (SPCX_2026-08-03) exists and was not claimed.",
+     "corrected_strength": "hint",
+     "counterexamples": []
+    },
+    {
+     "claim": "The 'displacement' probe section served Austin 8 consecutive cards that all resolved to the same answer (displacement: no",
+     "verdict": "OVERSOLD",
+     "reason": "Factually the run checks out -- all 8 ids exist, they are consecutive in the file, every recorded answer is displacement:no, and the quote is verbatim. Two defects. (1) Strength: n_supporting=1 is labelled 'hint'; by the stated rule a single card is 'single-card', and the whole reading rests on one note. (2) The 8th card's own prose contradicts its recorded answer -- COIN_2026-07-24 is filed displacement:'no' while he writes 'displaced and closed into the levels at 9:45'. So '8 cards all resolved to the same answer' is true of the answer field and false of his actual judgement on card 8, and the claim presents the run as ground truth without disclosing that conflict.",
+     "recomputed_support": "1 supporting card of 8 relevant -- denominator correct, strength label one notch too high.",
+     "corrected_strength": "single-card",
+     "counterexamples": [
+      "COIN_2026-07-24"
+     ]
+    },
+    {
+     "claim": "The stop_pick section (where_is_the_stop) presents trades for stop selection without any quality pre-filter, so at least ",
+     "verdict": "HOLDS",
+     "reason": "Card exists, quote verbatim, n_relevant=6 is exactly the where_is_the_stop section, strength 'single-card' at n_supporting=1 is correctly labelled, and the hedge 'at least one card' is literally accurate. If anything it is understated: 4 of the 6 stop_pick rows editorialise that the presented trade is weak or not an entry before answering (MU_2024-10-09, NFLX_2025-07-28, BABA_2025-11-21, SOFI_2025-11-07), and two of those answered stop_pick 'none'. Understating is not overselling, so this stands.",
+     "recomputed_support": "1/6 as claimed; the honest support is 4/6 in the same direction. No counterexamples.",
+     "corrected_strength": "single-card",
+     "counterexamples": []
+    },
+    {
+     "claim": "He pushes back directly on a prior agent claim about risk: 'you said easy to measure, but i dont want it to mess up my ma",
+     "verdict": "OVERSOLD",
+     "reason": "Quote verbatim and the card exists, but the framing drops the answer field. rule_05's ballot answer is 'yes' -- he APPROVED the rule and attached a caveat; 'pushes back directly' reads as rejection and is not what the mark records. The subject is also mis-stated: rule_05 (MENTOR_BALLOT[4], Neto) is 'backtest and define if it works better for your ticker on the Pre Market levels, Previous Day levels, 1min/5min ORB', and the card's change note says 'Cheap to measure' -- a COST characterisation about per-ticker level weighting, not 'a prior agent claim about risk'. His concern about his main levels is real; the pushback framing and the 'about risk' label are not.",
+     "recomputed_support": "1 of 1 relevant, correct -- but the row's answers field ({'ballot': ['yes']}) is undisclosed and reverses the valence.",
+     "corrected_strength": "single-card",
+     "counterexamples": [
+      "rule_05"
+     ]
+    },
+    {
+     "claim": "Austin flags an open self-contradiction on the same setup type. On t1_AMZN_2025-08-22 (graded A) he writes that a no-displ",
+     "verdict": "CARD_NOT_FOUND",
+     "reason": "t1_AMZN_2025-08-22 is NOT in either corpus file of record (154+8 rows, grepped: zero hits). It lives in research/marks/probe_omen_test1_2026-08-27.jsonl, where it does check out (grade 'A', note '9:57 was an earlier put entry as candle forming not LOD stop out but trade other way worked better just no displacement') -- so the gloss is defensible, but the entire 'contradiction' rests on a card outside the stated corpus and the claim does not say so. Secondary oversell: on AMZN_2025-11-21 the claim asserts 'he takes a no-displacement long'; the row records take:yes / entry:long with no entry minute and no displacement statement about his own entry -- his note only calls the two SURROUNDING candidates (9:35, 9:41) no-displacement A trades. That the taken entry itself lacked displacement is inference, not text.",
+     "recomputed_support": "1 of the 2 cited cards is in the corpus (AMZN_2025-11-21, quote verbatim). n_relevant=2 counts a card that is not in the corpus, so the real in-corpus figure is 1/1.",
+     "corrected_strength": "single-card",
+     "counterexamples": [
+      "t1_AMZN_2025-08-22"
+     ]
+    }
+   ]
+  },
+  {
+   "axis": "15-rule mentor ballot (mentor_ballot section, probe_g84_all_in_one_STANDING154_2026-09-01.jsonl, cards rule_01..rule_15)",
+   "n_claims_checked": 16,
+   "verdicts": [
+    {
+     "claim": "Complete census: of 15 mentor-rule ballot items, Austin answered yes on 10 (rules 1,2,3,5,6,7,9,12,14) and skip on 5 (rules 4,",
+     "verdict": "REFUTED",
+     "reason": "The headline numbers are wrong and they contradict the claim's own enumerated lists. I re-tallied answers.ballot across all 15 rule_ rows: yes on rule_01,02,03,05,06,07,09,12,14 = NINE; skip on rule_04,08,10,11,13,15 = SIX. 9+6=15. The claim says '10 ... and skip on 5' while listing 9 and 6. The per-rule lists are correct; the two summary integers are not, and the axis headline repeats the error ('ratified 10 of 15 ... skipped 5'). Exhaustiveness itself checks out: exactly 15 rows carry card_id rule_NN, section mentor_ballot, and the who-fields map 1:1 onto research/g82_master_homework.py MENTOR_BALLOT indices 0-14 in order. probe_trade_anatomy_2026-09-01.jsonl confirmed to hold 8 trade_anatomy rows and zero ballot rows.",
+     "recomputed_support": "9 yes / 6 skip out of 15 (claimed 10/5). n_relevant=15 correct, n_supporting=15 correct as a card count.",
+     "corrected_strength": "rule",
+     "counterexamples": [
+      "rule_04",
+      "rule_08",
+      "rule_10",
+      "rule_11",
+      "rule_13",
+      "rule_15"
+     ]
+    },
+    {
+     "claim": "Rule 1 (Neto: 'retest is never to the penny, always close to the line') -- yes, but his caveat rejects the mentor's own fra",
+     "verdict": "HOLDS",
+     "reason": "rule_01 exists; ballot ['yes']; austin_quote is byte-identical to notes.ballot including the double space in 'the  25 percent' and the typo-free-but-informal 'you stress test and find the best metric yourself'. Code side checks out too: signal_runner.py:409 DETECT_WIDE=False, :1290 RETEST_TOL_FRAC=float(getenv(...,'0.0')), :1301 returns RETEST_TOL_FRAC when DETECT_WIDE is off -- so the shipped default really is zero tolerance, and research/g87_retest_tol.py exists.",
+     "recomputed_support": "1/1. Only one card bears on the retest tolerance; no other row in either file mentions tolerance.",
+     "counterexamples": []
+    },
+    {
+     "claim": "Rule 2 (Scarface: chop should be measured by the strength of the breaking close, not bars after it) -- yes, and the shippe",
+     "verdict": "OVERSOLD",
+     "reason": "Ballot fact and austin_quote are exact (verbatim including 'copping on levels'). But the claim props itself up with a fabricated code citation: \"the docstring itself notes 'failed three implementations'\". That phrase does not exist in research/downgrade.py at all. The actual docstring of level_not_respected (line 243, not ~241) reads: 'Austin's own words: candles CLOSING AT the level, or chopping on it, instead of reacting off it.' The 'failed three implementations' wording comes from the ballot page copy in research/g82_master_homework.py's own `change` blurb -- i.e. from the prompt shown to Austin, re-attributed to the engine's source. The mechanical description (12-bar window, closes within eps, CHOP_TOUCHES=2) is accurate.",
+     "recomputed_support": "1/1 cards. The corroborating code quotation is 0/1 -- it is not in the file it is attributed to.",
+     "corrected_strength": "single-card",
+     "counterexamples": []
+    },
+    {
+     "claim": "Rule 3 (Neto: break, displacement, retest, THEN wait for the reaction on the level -- entering ON the retest is a bug) -- ",
+     "verdict": "OVERSOLD",
+     "reason": "Quote is verbatim ('restest', 'occuring' preserved). But n_relevant=1 is chosen far too narrowly for what the claim actually asserts -- a direction on entry timing. The same 154-row file contains 13 further cards where he pushes entry EARLIER, never later: 'b candle right but entry is 3 candles earlier', '9:44 S entry as candle forming', 'S entry 3 candles earlie', 'AS CANDLE FORMING', and nine more 'as candle forming' marks. Zero cards in either file ask for a delayed confirmation bar. His own rule_03 note says the opposite of the mentor rule he is voting yes on ('engine entering late is a bug, should always be entering while the restest is occuring'). The codeable_form does flag this, but the claim sentence still books rule 3 as a ratified wait-for-reaction rule and the axis headline lists 'wait-for-reaction' among the yeses to build. On the entry-timing question the honest denominator is 14, and 13 of 14 cut against a post-retest delay.",
+     "recomputed_support": "1/1 for the ballot vote; on the timing direction I count 0 supporting / 14 relevant, with 13 explicitly demanding an earlier entry.",
+     "corrected_strength": "single-card",
+     "counterexamples": [
+      "TSM_2025-11-03",
+      "UBER_2025-10-21",
+      "NVDA_2024-12-24",
+      "SPCX_2026-08-03",
+      "IWM_2026-05-05",
+      "SOFI_2025-11-21",
+      "QQQ_2024-09-25",
+      "MU_2025-09-23",
+      "UBER_2026-04-20",
+      "TSM_2026-07-24",
+      "NVDA_2025-06-03",
+      "IWM_2025-08-15",
+      "PLTR_2025-07-17"
+     ]
+    },
+    {
+     "claim": "Rule 4 (Scarface: needs to break HOD/LOD before entry) -- SKIP, with a real counter-proposal: HOD/LOD break is not a preco",
+     "verdict": "HOLDS",
+     "reason": "rule_04 exists, ballot ['skip'], quote byte-identical ('dont', 'HOD/LOD' casing preserved). The reading -- target, not precondition, with bias value -- is what the note literally says. Mentor text at g82_master_homework.py MENTOR_BALLOT[3] (Scarface, 'need this to break to hod or lod') matches the paraphrase. No corpus card contradicts.",
+     "recomputed_support": "1/1.",
+     "corrected_strength": "single-card",
+     "counterexamples": []
+    },
+    {
+     "claim": "Rule 5 (Neto: backtest per-ticker whether pre-market, prior-day, or ORB levels work best) -- yes, no per-symbol level weig",
+     "verdict": "HOLDS",
+     "reason": "rule_05 exists, ballot ['yes'], quote exact including 'i dont want it'. Mentor text matches MENTOR_BALLOT[4]. The caveat is correctly carried forward as a constraint rather than inflated into an endorsement. Note the support is thin by construction -- eleven words, one card -- and the claim labels itself single-card, which is the correct strength.",
+     "recomputed_support": "1/1.",
+     "corrected_strength": "single-card",
+     "counterexamples": []
+    },
+    {
+     "claim": "Rule 6 (Neto: scale profits out more aggressively when reward potential is smaller) -- yes, no scale-out mechanism exists ",
+     "verdict": "HOLDS",
+     "reason": "This one is honestly reported: notes is literally {} on rule_06 and the claim says so in the quote field instead of borrowing the mentor's words. Ballot ['yes'] confirmed. grep for scale_out/scale-out/partial in signal_runner.py returns nothing, so the substantive code claim stands. One nit that does not change the verdict: the parenthetical 'grep ... across signal_runner.py and downgrade.py returns nothing' is not literally true -- research/downgrade.py:36 contains the string 'scale-out table nobody could reproduce' in a comment. No mechanism there, so the point survives. Worth stating plainly: a bare yes-click with no note is the weakest evidence in this axis.",
+     "recomputed_support": "1/1 cards, 0 words of Austin text.",
+     "corrected_strength": "single-card",
+     "counterexamples": []
+    },
+    {
+     "claim": "Rule 7 (Lauren/Mamba/Jdub: weekly/daily/4H trend + liquidity zones, paired with market conditions and HTF trend) -- yes, b",
+     "verdict": "HOLDS",
+     "reason": "rule_07 exists, ballot ['yes'], quote exact ('alligns' typo preserved). who='Lauren, Mamba and Jdub' matches MENTOR_BALLOT[6]. Code claims verified: signal_runner.py:220 HTF_BIAS_GATE defaults to '0' (off), :1862 daily_trend_bias exists and is a single daily-close proxy; no weekly/4H or liquidity-zone code. The claim correctly refuses to treat an open question as a settled spec.",
+     "recomputed_support": "1/1.",
+     "corrected_strength": "single-card",
+     "counterexamples": []
+    },
+    {
+     "claim": "Rule 8 (Hayden: highest-probability trades are outside the previous day's range / above-below key levels) -- SKIP, with a ",
+     "verdict": "HOLDS",
+     "reason": "rule_08 exists, ballot ['skip'], quote exact. who='Hayden' matches MENTOR_BALLOT[7]. The counter-proposal (1h/4h pivot structures as scaling targets) is his own words, not an inference. The cross-axis link is explicitly labelled as not independently re-derived, which is the correct disclosure.",
+     "recomputed_support": "1/1.",
+     "corrected_strength": "single-card",
+     "counterexamples": []
+    },
+    {
+     "claim": "Rule 9 (Neto: hammer or inverted-hammer candle at the level, body respecting it) -- yes, ALREADY SHIPPED and unconditional",
+     "verdict": "OVERSOLD",
+     "reason": "Ballot ['yes'] and the quote are exact. The 'already shipped, no further code needed' conclusion is overstated three ways. (a) One of the five cited call sites is wrong: signal_runner.py:2986 contains no _confirm_candle call; the real sites are 2883, 3086, 3155, 3327 -- four, not five. (b) '_confirm_candle implements exactly this' is false on the half of the mentor rule that matters: the function tests lower_wick >= body_size and close in the upper half of range (lines 82-91); it never tests whether the body respects the LEVEL, which is the clause Austin's note is about. (c) 'unconditional' is misleading -- at 2883/3155 the result is a +2 term in a selection score (line 2887), not an entry gate, and at 3086/3327 it only decorates the reason string. So the rule is a scoring bonus, not a shipped requirement.",
+     "recomputed_support": "1/1 cards; 4/5 cited code line numbers correct.",
+     "corrected_strength": "single-card",
+     "counterexamples": []
+    },
+    {
+     "claim": "Rule 10 (Mamba: use opening price as reference target when no level applies) -- SKIP, and this is a harder rejection than ",
+     "verdict": "HOLDS",
+     "reason": "rule_10 exists, ballot ['skip'], quote exact ('i dont see or hear anything to trade based on this thesis'). who='Mamba' matches MENTOR_BALLOT[9]. It is genuinely the only skip with no counter-proposal in its note -- I checked all six skips: 04, 08, 11, 13, 15 each carry an alternative, 10 does not. The 'harder rejection' reading is supported by the text.",
+     "recomputed_support": "1/1, and 1/6 across the skip set for the no-counter-proposal property.",
+     "corrected_strength": "single-card",
+     "counterexamples": []
+    },
+    {
+     "claim": "Rule 11 (Neto/Scarface: trade only 4 names on a consistent basis, one ticker one setup) -- SKIP, with a specific universe ",
+     "verdict": "OVERSOLD",
+     "reason": "The card is real, ballot ['skip'], and the quote is exact. What is not in the card is the identity of the ten tickers. He wrote '10 tickers is a good sample size' and named none; the claim converts that into 'narrow the LIVE engine's watch list to CORE_SYMBOLS' -- a specific ten-name list from universe.py:74 -- and the axis headline elevates it to 'the loudest single finding'. The same 154-row session cuts against that mapping hard: of the 60 cards he graded positively (s / is_s yes / take yes), 39 are on symbols OUTSIDE CORE_SYMBOLS, spanning 16 distinct non-core names, including most of the cleanest S calls (TSM_2026-04-21, IWM_2026-05-12, ORCL_2025-06-03, BABA_2026-05-06, AVGO_2025-02-20). None of that is disclosed. Code facts are right (CORE_SYMBOLS=10 with INCLUDE_SPY_IN_BACKTEST=False, live_scanner.DEFAULT_SYMBOLS=29, BACKTEST_SYMBOLS=24) but they do not license the ticker identity. The claim's own closing caveat ('confirm with Austin before flipping') is the only thing keeping this from REFUTED.",
+     "recomputed_support": "1/1 for 'ten is the right live count'; 0/1 for 'those ten are CORE_SYMBOLS'. Against it: 39 of 60 positively-graded cards in the same file are non-core.",
+     "corrected_strength": "single-card",
+     "counterexamples": [
+      "TSM_2026-04-21",
+      "TSM_2026-04-24",
+      "TSM_2026-07-24",
+      "IWM_2026-05-12",
+      "IWM_2025-07-03",
+      "IWM_2025-08-15",
+      "ORCL_2025-06-03",
+      "ORCL_2025-10-02",
+      "ORCL_2024-09-11",
+      "BABA_2026-05-06",
+      "CRM_2026-04-20",
+      "AVGO_2025-02-20",
+      "AVGO_2025-03-04",
+      "INTC_2025-04-29",
+      "INTC_2026-03-30",
+      "NFLX_2025-04-01",
+      "NFLX_2024-09-19",
+      "MU_2025-09-23",
+      "MU_2026-04-29",
+      "SOFI_2025-09-05",
+      "COIN_2025-11-21",
+      "MARA_2025-11-21",
+      "ACHR_2025-06-27",
+      "IREN_2025-09-05",
+      "SPY_2025-10-28",
+      "UBER_2026-03-19"
+     ]
+    },
+    {
+     "claim": "Rule 12 (Jdub/Neto: always take 1 OTM strike or the contract with the most volume) -- yes, this exact rule already exists ",
+     "verdict": "HOLDS",
+     "reason": "rule_12 exists, ballot ['yes'], quote exact. who='Jdub and Neto' matches MENTOR_BALLOT[11]. Code verified: options_sizer.py:342 SCARFACE_CONTRACT=False with the comment 'True = first OTM strike + nearest Friday expiration', consumed at 434/437; research/d1_scarface_ab.py exists. The note-reading ('first piece of statement most important' = prioritise the OTM half) is literal.",
+     "recomputed_support": "1/1.",
+     "corrected_strength": "single-card",
+     "counterexamples": []
+    },
+    {
+     "claim": "Rule 13 (Neto: predefined hours, max trades/day, mandatory break after ONE loss, only predefined setups) -- SKIP, but his ",
+     "verdict": "HOLDS",
+     "reason": "rule_13 exists, ballot ['skip'], quote exact. The claim is unusually careful here: it labels the skip ambiguous, notes the implicit counter-proposal is unstated, and explicitly refuses to code a threshold from one card. That is the correct handling of a one-card hint.",
+     "recomputed_support": "1/1.",
+     "corrected_strength": "single-card",
+     "counterexamples": []
+    },
+    {
+     "claim": "Rule 14 (Jdub: on A+ setups, take a smaller 'starter' position rather than skip a less-than-perfect entry) -- yes, but he ",
+     "verdict": "OVERSOLD",
+     "reason": "Ballot ['yes'] and the quote are exact, and the A-vs-A+ re-framing is genuinely what his note says. But the supporting code assertion is false: 'research/w13_scaling.py explores scale-OUT sizing only, not scale-in starters' -- that file defines scale_in_leg() at line 208 and calls it at 315 and 549. Prior scale-IN work exists and the claim tells the next reader it does not, which is exactly the kind of error that gets a wheel reinvented. The narrower grep claim (no starter_position/scale_in in signal_runner.py) is true.",
+     "recomputed_support": "1/1 cards; the 'no prior scale-in work' half is 0/1 -- contradicted by research/w13_scaling.py:208.",
+     "corrected_strength": "single-card",
+     "counterexamples": []
+    },
+    {
+     "claim": "Rule 15 (Neto: wider stop-loss, 18-25% of contract premium at entry) -- SKIP, he trusts the current stop-placement process",
+     "verdict": "HOLDS",
+     "reason": "rule_15 exists, ballot ['skip'], quote exact ('referance' typo preserved). who='Neto' matches MENTOR_BALLOT[14]. The claim reads 'our eyes have been finding good stops' as trust in eye-tested placement rather than in the engine, and its codeable_form says so explicitly, so the nearby where_is_the_stop cards where he rejects the engine's stop options (MU_2024-10-09, NFLX_2025-07-28, SOFI_2025-11-07 answered 'none'/'may not be an entry') do not contradict it -- those are setup rejections, not stop-quality complaints. Recorded here so the next reader does not mistake this for engine-level trust.",
+     "recomputed_support": "1/1.",
+     "corrected_strength": "single-card",
+     "counterexamples": []
+    }
+   ]
+  },
+  {
+   "axis": "The A/S boundary and the downgrade ladder",
+   "n_claims_checked": 6,
+   "verdicts": [
+    {
+     "claim": "No displacement is Austin's most-cited reason for calling something an A trade instead of S, and he separately names it THE primary A-trade downgrade when reacting to a mentor's ballot rule.",
+     "verdict": "OVERSOLD",
+     "reason": "Ids all exist; quote '9:50 a trade no displacement' is verbatim in MSFT_2026-07-28 (1 hit) and rule_14's clause is verbatim. Two problems. (1) The denominator is understated: I counted 17 chart cards in the two files that explicitly name an A grade, not 13 (the claim's set omits at least INTC_2025-02-24, NVDA_2024-12-24, META_2025-05-16, PLTR_2026-02-05, IWM_2026-05-05). 5/17 = 29%, not 38%. (2) Undisclosed counterexamples destroy the implied 'no displacement => A': he grades two cards S while explicitly noting no displacement (NVDA_2025-06-03 'no displacement but 9:30 ocr wick confluence with pmh'; PLTR_2025-07-17 '10:04 no displacement but holding ocr'), and in five other cards no-displacement produces a flat refusal, not an A (AMD_2025-12-23, ACHR_2026-06-30, HOOD_2024-11-15, MU_2026-03-18, BABA_2025-01-15). It is the modal A-reason, but 5 cards out of 17 with 7 cards cutting the other way is a hint, not 'strong'.",
+     "recomputed_support": "5 supporting cards (AVGO_2025-03-28, MSFT_2026-07-28, AMZN_2025-10-07, AMZN_2025-11-21, ACHR_2025-06-27) \u2014 matches the claimed 5. Denominator recomputed at 17 A-naming chart cards, NOT the claimed 13.",
+     "corrected_strength": "hint",
+     "counterexamples": [
+      "NVDA_2025-06-03",
+      "PLTR_2025-07-17",
+      "SPY_2025-07-16",
+      "AMD_2025-12-23",
+      "ACHR_2026-06-30",
+      "HOOD_2024-11-15",
+      "MU_2026-03-18",
+      "BABA_2025-01-15"
+     ]
+    },
+    {
+     "claim": "Level not respected \u2014 the candle closing through, or not clearly above, the level instead of reacting off it \u2014 is a named A-trade downgrade, matching the existing level_not_respected variable and the entry_bar_off_level observation.",
+     "verdict": "OVERSOLD",
+     "reason": "Ids exist; '9:59 A TRADE because didnt respect PMH' is verbatim (1 hit in INTC_2024-08-23). The three cards do support it. But the denominator is the same understated 13 (recomputed 17), and \u2014 undisclosed \u2014 the level_not_respected reason far more often accompanies a REFUSAL than an A downgrade in this corpus: 9 cards where he tags level_not_respected or writes 'not respecting level' and answers take=no / is_s=no. Reporting it only as an A-grade downgrade hides that its dominant meaning in his marks is 'do not take'. Code assertion checked and correct: downgrade.VARIABLES contains level_not_respected, and entry_bar_off_level exists at downgrade.py:559.",
+     "recomputed_support": "3 supporting cards (INTC_2024-08-23, TSLA_2025-05-16, META_2024-12-12) \u2014 matches 3. Denominator recomputed at 17, not the claimed 13. Same-reason-but-refused cards: 9.",
+     "corrected_strength": "hint",
+     "counterexamples": [
+      "COIN_2024-10-29",
+      "GOOGL_2025-03-14",
+      "HOOD_2024-11-15",
+      "SPY_2025-08-06",
+      "ORCL_2024-11-06",
+      "CRM_2026-05-15",
+      "CRM_2026-04-15",
+      "AMD_2025-04-23",
+      "META_2024-09-30",
+      "MSFT_2024-12-18"
+     ]
+    },
+    {
+     "claim": "Too many candles between the break and the entry, or too much chop before entering, is a named A-trade downgrade \u2014 matching stale_retest and/or the CHOP_TOUCHES half of level_not_respected.",
+     "verdict": "OVERSOLD",
+     "reason": "Ids exist; '9:53 is a A trade because too many candles in between' is verbatim (1 hit, HOOD_2025-11-07). But one of the three supporting cards does not say what the claim says: AAPL_2024-10-23 reads '9:38 a trade but wouldnt been in and out and these candles turned very choppy' \u2014 chop AFTER the entry, not candles between break and entry, and the same note ends 'hopfully engine will be able to identify better one and done S trades'. Real support is 2 cards (HOOD, META_2024-12-12). Undisclosed counterexamples: the same 'too many candles' language elsewhere yields a refusal or a C, not an A \u2014 SPY_2025-04-14 ('too many candles and too choppy', is_s no), UBER_2026-08-11 ('c trade because its been too long', take=no), NFLX_2025-07-28 ('not an entry too late in the day'), PLTR_2024-09-20 ('push through 10 candles of consolidation', entry marked wrong).",
+     "recomputed_support": "2 supporting cards, not the claimed 3 (AAPL_2024-10-23 describes post-entry chop). Denominator recomputed at 17 A-naming cards, not the claimed 13 \u2192 2/17.",
+     "corrected_strength": "hint",
+     "counterexamples": [
+      "SPY_2025-04-14",
+      "UBER_2026-08-11",
+      "NFLX_2025-07-28",
+      "PLTR_2024-09-20"
+     ]
+    },
+    {
+     "claim": "Overhead/major levels sitting between entry and target \u2014 making the RR path hard to hit \u2014 recur as a downgrade/quality complaint across independent cards and probe sections, and this is NOT one of the eight rulebook variables or the four later unratified additions.",
+     "verdict": "OVERSOLD",
+     "reason": "All four ids exist and all four quotes are verbatim (UBER_2026-08-04, MARA_2025-10-01, TSM_2026-07-24, QQQ_2025-02-25 \u2014 1 hit each). The code half is correct: downgrade.VARIABLES is exactly the eight named, CHECKS has no path/overhead function. Two defects. (1) The denominator is badly flattering: n_relevant=6 is described as 'every card in both files that discusses RR/target-path quality at all', but I counted 14 such cards (12 chart cards plus rule_04 and rule_08) \u2014 4/12 = 33%, not the implied 67%. (2) The parenthetical is wrong on one of the four 'unratified additions': ENABLE_CHASE_DOWNGRADE = True at downgrade.py:153, so chase is shipped, unlike large_counter_body / multi_level_confluence / sequence_gate which are all False. Minor quote hygiene: the TSM_2026-07-24 excerpt inserts '...' where the source has only a sentence break ('even with better entry. so we need to make note of that').",
+     "recomputed_support": "4 supporting cards \u2014 matches. Denominator recomputed at 14 (12 excluding the two mentor_ballot rows), NOT the claimed 6.",
+     "corrected_strength": "hint",
+     "counterexamples": [
+      "QQQ_2024-08-26",
+      "NVDA_2024-09-03",
+      "GOOGL_2024-10-15",
+      "IWM_2026-05-12",
+      "MU_2026-04-29",
+      "QQQ_2024-08-23",
+      "TSM_2026-04-21"
+     ]
+    },
+    {
+     "claim": "\"Too many trades before\" is cited once as a reason for grading an otherwise-clean entry A instead of S \u2014 matching the sequence_gate variable that already exists in downgrade.py but is unratified/OFF by default.",
+     "verdict": "HOLDS",
+     "reason": "Quote is verbatim (1 hit, AVGO_2025-03-28). Correctly self-labeled single-card and explicitly hedged against inferring the gate's threshold. Code assertion verified: downgrade.sequence_gate at line 427, ENABLE_SEQUENCE_GATE = False at line 137, and it is not in VARIABLES/CHECKS. One inherited defect worth recording: n_relevant=13 is the same understated A-card denominator (recomputed 17), though the ratio does not carry any weight in a single-card claim. Context the claim does not give: INTC_2025-02-24 shows a later-sequence entry he still grades S ('this is the first S which is rare for an s after a'), i.e. he treats it as a tendency, not a gate \u2014 which is consistent with, not contrary to, the hedged wording.",
+     "recomputed_support": "1 supporting card \u2014 matches the claimed 1. Denominator recomputed at 17, not the claimed 13.",
+     "corrected_strength": "single-card",
+     "counterexamples": []
+    },
+    {
+     "claim": "Austin takes A-grade trades, not just S \u2014 the classifier target is not S-only.",
+     "verdict": "OVERSOLD",
+     "reason": "This is the axis headline and it drives an engine spec change, so it gets the hardest look. Ids all exist; the take=yes denominator of 22 is the one number in this axis I could reproduce exactly (22 take=yes, 17 take=no in the take_the_trade section). But the inference from 'the note names an A' to 'he takes A trades' fails on 4 of the 7 cited cards, and the claim discloses none of it: AAPL_2024-10-23 says the A entry 'wouldnt been in and out' and ends 'hopfully engine will be able to identify better one and done S trades'; AMZN_2025-11-21 calls both A entries 'two losers on either side' on 'a range chop day of hell'; AMZN_2025-10-07 is an open question, not a decision ('these are ones we got to figure out if odds in out favor to delegate as S trades'); TSLA_2025-01-10 carries his own question mark ('A trade? beacuse candles start to slow'). Worse, when both an A and an S exist on a card he names the S as the entry, every time I could find: INTC_2025-02-24 ('slightly earlier a entries but this is the first S'), PLTR_2026-02-05 ('9:54 is the first S but earlier a trades show up in the chop'), ACHR_2025-06-27 ('9:39 A entry no displacement, S entry at 10'), and TSM_2026-07-24 states the goal outright: 'were looking for 1 and done S trades a day'. What the corpus supports is 'A grades appear in his vocabulary and sometimes label the only entry on a day he answered take=yes' \u2014 not 'the classifier cannot be S-only'.",
+     "recomputed_support": "7 A-naming cards among 22 take=yes \u2014 the count matches, and is arguably conservative (IWM_2026-05-05 and TSM_2025-10-21 also name an A). But only 3 of the 7 (AVGO, MSFT, UBER) are unhedged; 4 carry his own negation, loss report, or question mark.",
+     "corrected_strength": "hint",
+     "counterexamples": [
+      "AAPL_2024-10-23",
+      "AMZN_2025-11-21",
+      "AMZN_2025-10-07",
+      "TSLA_2025-01-10",
+      "INTC_2025-02-24",
+      "PLTR_2026-02-05",
+      "ACHR_2025-06-27",
+      "TSM_2026-07-24"
+     ]
+    }
+   ]
+  }
+ ],
+ "critic": "## 1. In his prose, owned by no axis\n\n**(a) The 84% reclaim \u2014 a stop-out is part of his plan, not the end of it. 5 cards, 0 claims.** `\"84\"` appears once in the entire decode, inside a quoted rule_02 string, never analyzed.\n\n- `GOOGL_2025-09-15` **graded S**: \"9:46 because of all those green candles, i would do a stop out and 84 percent reclaim at 9:56-57\"\n- `MU_2026-04-29` **graded S**: \"9:52 - stop out and 84 reclaim wouldve worked out but only for LOD\"\n- `AVGO_2025-03-28` take=yes: \"9:38 long, stopped out by 84 once so two Ls, then another channel...\"\n- `SOFI_2025-11-21` take=yes: \"a lot of chop happened so if lost on trade, 84 percent likely should not be considered\" \u2014 the arming *condition*\n- `rule_02`: \"these are for 84 percent rules really, but can help as the downgrade too\"\n\nFive supporting cards beats every claim in the decode except the chop tally. Owner: its own axis; failing that `exit_scale_out_ladder` (it is the loss branch of the trade plan). Expanded in \u00a75.\n\n**(b) \"strong PA\" as a variable separate from displacement \u2014 and rule_02's actual request.** rule_02 gives a two-sided spec: \"not entering stong PA when copping on levels, **or level clean but strong PA never comes**.\" `AVGO_2025-02-20` separates the two ingredients explicitly: \"it looks like displacement **and weak PA**.\" The mentor-ballot axis read rule_02 as being about chop measurement and `level_not_respected`'s 12-bar window. What he asked for is that the strong-PA measure *that already exists* \u2014 `signal_runner.py:102 STRONG_PA_MULT = 1.5`, used only to gate the 84% reclaim \u2014 \"can help as the downgrade too.\" `downgrade.VARIABLES` (lines 64-73) has no `strong_pa`. A one-line, already-coded, ratified feature request, unrecorded.\n\n**(c) He names one of the eight shipped downgrade variables and gives its tolerance.** `NFLX_2025-05-07`, graded S: \"two candle distraction at 9:33-34 but **those break rejection patterns like that are forgivable**. and look how this one ran.\" That is `downgrade.break_then_rejection` (line 284, `REJECT_BARS`). He is saying two bars is forgivable. No axis touched it. Owner: the A/S downgrade-ladder axis.\n\n**(d) Pivot \u2260 level, as a refusal reason.** `MU_2026-03-18`: \"almost opportunity but i didnt like the **Br of pivot not levels** and no displacement.\" The decode cited this card three times (chop-state A, displacement, veto) and never read the sentence. Against it: `IWM_2026-05-12` (S) uses pivots positively \u2014 \"that entry candle wicked back into the **pivot structure**\" \u2014 and rule_08 asks for \"major levels and **pivot structures** at 1h and 4h for scaling targets.\" So pivots are legitimate as targets and HTF structure, but he rejects them as the *break reference*. `bt2y_trades.json`'s largest single reason bucket is \"B&R long \u2014 prior breakout above **pivot** hi\" at 37,281 rows. Nobody checked it. Owner: a \"what counts as a level\" axis that does not exist.\n\n**(e) The HTF \"sweet spot\", codeable and quoted nowhere.** `MARA_2026-06-16`, the only `htf: agrees` card in the file and his longest note: \"even though it was a bearish close the previous day it was at a **sweet spot**. You can see the sweet spot because it's **above all the bodies and is in the territory of the Wicks**.\" That is a testable definition of a good HTF starting condition. \"sweet spot\" = 0 hits in the decode; the stop axis opened this card only to grep `bod`.\n\n**(f) His stated RR distribution, against the repo's gate.** `QQQ_2024-08-26`: \"if we know our mean RR is 2.5\"; `QQQ_2025-02-25`: \"hit all the targets to average in the **higher quartile** of trades. **3-4r?**\" CLAUDE.md's money gate is mean R = 2.0; `options_sizer.py:37 DEFAULT_RR = 2.5`. \"quartile\" = 0 hits in the decode. Owner: exit axis.\n\n**(g) A second trade type.** `TSM_2026-04-21`, graded S: \"10:03 **hod scalp**.\" \"scalp\" = 0 hits in the decode. A scalp cannot carry the 4-leg ladder.\n\n**(h) Named patterns with zero coverage:** \"**double fakeout**\" (`NVDA_2025-11-21`), and **bear flag** used to opposite verdicts on two cards \u2014 `IWM_2026-05-12` S, \"bear flag to start the day\" vs `MSFT_2026-01-05` refused, \"higher highs in range after bear flag to start day\". That pair is exactly what separates a variable from a slogan; no axis paired them.\n\n## 2. Instructions and questions to us, filed as chart observations\n\n- `rule_07`, ballot **yes**: \"all of this alligns with me, **but how would we shape it into day trading?**\" \u2014 an open request for a proposal on weekly/daily/4H trend, booked as a ratified rule with an implementation note. Never answered.\n- `COIN_2026-07-24`: \"these past 8 make me anxious **you cant remember what it means**.\" Two axes read this as evidence the deck was broken. It is a complaint about *us* \u2014 the definition of displacement is not written anywhere he can see. He then wrote it himself in the same box. The action is to commit his definition, not rebuild the probe.\n- `TSM_2026-07-24`: \"9:40 as candle forming \u2014 **for on watch if we need help with that**.\" An unprompted offer to grade ON WATCH cards. ON WATCH is where the intrabar-fill defect lives (`signal_runner.py:2825` claims a mid-bar override; `fill_price()` 1391-1416 always computes `close_is_bad_fill`). The scarcest resource in the project volunteered at the exact point of the biggest known bug, and it was decoded inside a scale-out claim.\n- `AMZN_2025-10-07`: \"these are ones **we got to figure out if odds in out favor** to delegate as S trades\" \u2014 an explicit assignment to measure no-displacement early entries. Folded into a process claim whose other two cards do not say it.\n- `MARA_2025-10-01`: \"**you wanted 10:28 entry i bet** but hod is a consolidation wall and too hard to target.\" He is modelling the engine and pre-labelling a false positive *with its cause* \u2014 precision training data \u2014 filed as chop-state C.\n- `SPCX_2026-08-03`: \"indices were in a major downtrend, **but that doesn't make sense**.\" He is disputing a fact the card asserted. The process axis counted three instrument failures and this was not one of them.\n- `rule_09`: \"if neto has an explanation of good bullish candles **for cleaner code, then use it**\" \u2014 permission to replace his own \"just hammer\" definition. The ballot axis concluded \"already shipped, no further code needed\"; he was authorising new code.\n- `BABA_2025-11-21`: \"this is a low grade trade **in case you didnt know**\" \u2014 deck-construction feedback, read as a stop-pick note.\n- `rule_05`: \"**you said easy to measure**, but i dont want it to mess up my main levels\" \u2014 a constraint on an experiment, on a row whose answer is `ballot: yes`.\n- `QQQ_2025-02-25`: \"**why is it in between 2 r?**\" (decoded, correctly) and \"**3-4r?**\" (dropped).\n\n## 3. Where two axes contradict, adjudicated from the cards\n\n**(i) `process` claim 1 vs the whole `entry_timing` axis and `rule_03`.** The process fix reads \"require a confirmed retest bar ... **strictly before** an entry can fire\" \u2014 it ships entries later. `rule_03` is the refutation in his own hand: \"engine entering late is a bug, should always be entering **while the restest is occuring**.\" `PLTR_2024-10-23`: \"AS CANDLE FORMING, **see on that candle close you get a bad entry?**\" Zero of 162 cards ask for an extra confirmation bar. **Adjudication: the confirmation is that the break bar and the retest bar must be different bars \u2014 \"you entered on an overextended break candle\" (`QQQ_2024-08-23`) \u2014 and the fill happens intrabar on the retest bar. Both axes collapse to that one sentence.** The mentor-ballot axis's \"wait-for-reaction\" yes on rule_03 inherits the same error.\n\n**(ii) Displacement's status: three axes, three answers, same cards.** `Displacement` c6 says sufficient-not-necessary; `WHAT MAKES AN S` c7 says near-rule; `A/S boundary` c1 says no-displacement\u2192A. The cards show **three** outcomes, and the deciding variable is not displacement:\n- S with a named substitute: `NVDA_2025-06-03` \"no displacement but 9:30 ocr wick confluence with pmh\"; `PLTR_2025-07-17` \"no displacement but holding ocr at 9:56 and strong PA\"; `SPY_2025-07-16` \"even though no displacement **because its early and there could be HTF bias**\".\n- A with no substitute named: `MSFT_2026-07-28`, `AMZN_2025-10-07`, `AVGO_2025-03-28`.\n- Refused when a *second* defect co-fires: `MU_2026-03-18` (+pivot-not-level), `HOOD_2024-11-15` (+chop +level), `ACHR_2026-06-30`, `AMD_2025-12-23`.\n\n**Adjudication: displacement is one member of a substitutable confluence set \u2014 {displacement, OCR hold, wick reclaim of level, strong PA, early+HTF bias}. S if \u22651 member present and no veto; A if none present and no veto; no if a veto fires.** That reproduces all ~20 displacement cards; none of the three axes stated it.\n\n**(iii) `stop` claim 2 vs `exit` claim 4 and `NVDA_2024-09-03`.** \"Always structural, never a bare price/fixed distance\" collides with `QQQ_2024-08-23`'s \"stop either **BE**, and/or stop held... **stopping rest BE**\" (entry-anchored) and `NVDA_2024-09-03`'s \"**a little farther up stop** wouldve allowed you to stay in trade\" (a distance). **Adjudication: two stops in one plan, and each axis saw one. Initial stop is structural \u2014 \"stop below the candle entered on\" (`MSFT_2026-08-10`), \"upper body of the opening range candle\" (`IWM_2026-05-05`), \"stop body of opening range\" (`GOOGL_2024-10-15`). Post-first-target stop is BE, entry-anchored.** Nobody modelled the transition \u2014 which is precisely what all three \"be\" complaints are about.\n\n**(iv) `veto` claim 9's 10:34 late-floor vs the A/S ladder.** `BABA_2025-03-14` S at \"10:40 but late in day\"; `UBER_2026-04-20` \"10:45 ... i can see but late in the day so it has its downgrades\"; `META_2025-05-16` \"A opportunity 10:30\"; `UBER_2026-08-11` \"10:34 **c trade** because its been too long\". **Adjudication: late is never a veto in his prose. It is a downgrade unit that walks S\u2192A\u2192C with the clock, and it produced a refusal only once it reached C.** That reconciles the veto axis with the A/S axis without a cutoff.\n\n**(v) `A/S boundary` claim 6 (\"the classifier cannot be S-only\") vs his own words.** `TSM_2026-07-24`: \"were looking for **1 and done S trades a day**.\" `AAPL_2024-10-23` \u2014 the very card cited as proof he takes A trades \u2014 ends \"hopfully engine will be able to identify better **one and done S trades**.\" On every card carrying both grades he names the S as the entry: `INTC_2025-02-24` \"slightly earlier a entries but **this is the first S**\"; `PLTR_2026-02-05` \"**9:54 is the first S** but earlier a trades show up in the chop\"; `ACHR_2025-06-27` \"9:39 A entry no displacement, **S entry at 10**\". **Adjudication: the target is S. The A labels are what the engine should downgrade, not orders to fire on them; they appear because the probe asked \"would you take this chart\" rather than \"is this today's trade\".**\n\n## 4. Merges \u2014 same claim, different names\n\n**M1. Targets are structural; R is the fallback.** Merge `exit` c3 (4-leg ladder) + `exit` c5 (psych/HTF override of 2R) + `process` c5 (runner/PT design flaw) + `A/S` c4 (overhead levels block RR) + `exit` c9 first half + `rule_08`. One rule: **the ladder is a list of real levels from entry to the HTF/median runner; 2R is inserted only where no level sits nearby; and the distance to the FIRST level is itself a setup-quality variable.** Supporting cards, merged: `QQQ_2024-08-26`, `QQQ_2025-02-25`, `PLTR_2024-09-20`, `GOOGL_2024-10-15`, `NVDA_2024-09-03`, `UBER_2026-08-04` (\"theres major levels it needs to break for good rr\"), `MARA_2025-10-01`, `TSM_2026-07-24`, `rule_08` = **9 cards** \u2014 the best-supported finding in the decode, currently shattered across four axes at 1-2 cards each and every fragment labelled \"hint\".\n\n**M2. Chop and level_not_respected are one variable, not two.** `veto` c2 (8/9 co-occurrence) + chop-state A + `WHAT MAKES AN S` c3 + `A/S` c2. His merged name for it is rule_02's \"**copping on levels**\", and `downgrade.py:243`'s docstring already says it: \"candles CLOSING AT the level, or chopping on it, instead of reacting off it.\" The 8-of-9 co-occurrence is an artefact of the form offering one concept as two checkboxes \u2014 not a finding.\n\n**M3. \"Two stop options\" is one claim held twice.** `stop` c3 and `veto` c11 cite the same `META_2024-09-30` / `TSLA_2025-05-16` / `PLTR_2024-10-23` and reach different strengths. Merge, and re-home it: `PLTR_2024-10-23`'s mechanism \u2014 \"**its hard to enter** a stock when there 2 stop loss options\" \u2014 is entry hesitation, so it belongs to entry_timing, not to stops.\n\n**M4. The broken-displacement-probe claim exists twice** \u2014 `Displacement` c1 and `process` c7, same 8 rows, same conclusion, both refuted by `DISP_BUCKETS`. Merge and drop.\n\n**M5. `exit` c7 (\"be\" cascades from entry) is not an exit finding.** BE fires off the entry price, so it is `entry_timing` c1 restated on a 3-card denominator. Folding it in removes a double-count.\n\n**M6. `entry_timing` c1 + c2 + c3 are one measurement.** Literal-minute deltas, candle-count deltas, and the 11 \"as candle forming\" cards all measure the same fact: **the engine fills at a bar close, he fills inside the bar.** A close-based fill is \u2265 the intrabar trigger *by construction* \u2014 which is why every delta is negative. The \"lateness asymmetry\" is arithmetic, and stating it three ways triple-counted it into a headline.\n\n## 5. The one thing the whole decode underweighted\n\n**That in his plan a stop-out is a step, not an ending \u2014 the 84% reclaim.**\n\nFive cards, zero claims. Two are **S grades whose stated plan includes being stopped out**: \"i would do a stop out and 84 percent reclaim at 9:56-57\" (`GOOGL_2025-09-15`), \"stop out and 84 reclaim wouldve worked out but only for LOD\" (`MU_2026-04-29`). One counts a stopped-out, multi-entry day as a take: \"stopped out by 84 once so **two Ls**, then another channel... and the cleanest looking entry 10:11\" (`AVGO_2025-03-28`). One gives the arming condition: \"a lot of chop happened so if lost on trade, 84 percent likely **should not be considered**\" (`SOFI_2025-11-21`). And `rule_02` says where the measure lives.\n\nWhy this outranks everything else in the corpus:\n\n1. **It is live code, not a request.** `SignalType.REENTRY_84_RULE` is one of \"the three setups Austin trades\" (`signal_runner.py:1306`). Four marks landed on shipped behaviour and no axis read them against it. `downgrade.sequence_gate(entry_seq, is_84_reentry)` (line 427) already takes the re-entry as an argument and is `ENABLE_SEQUENCE_GATE = False` (line 137).\n\n2. **It breaks the unit every headline number in THE LANE is quoted on.** From `research/bt2y_trades.json`: 635 armed re-entries, **83 traded** (13%), mean **\u22120.117R**, 32.5% win, **\u2212$9,707** over two years, on 73 of 500 days. Days whose *first* traded row is an 84% re-entry: **0 of 500** \u2014 necessarily, since a re-entry is always the second trade of an idea. So \"the engine's first setup of the day, $28/day\" and the \"$2,948/day oracle ceiling\" are both measured on a book that **structurally cannot contain** the setup he names on cards he grades S. `research/g86_honest_ceiling.py` contains no reference to the re-entry at all. The one-trade-a-day policy and the 84% rule are mutually exclusive, and the project is running both.\n\n3. **It reframes the precision number the lane exists to fix.** The lane scores a day the engine traded and he refused as a false positive. `AVGO_2025-03-28` is a four-entry, two-loss, stopped-out-and-re-entered day he marked **take=yes** \u2014 under the current unit that day is judged on its first dot and his actual verdict is unrepresentable. An unknown share of the \"62 out of 100\" is days where he accepted the *sequence*, not the first candidate.\n\n4. **And sequence is what he says sets the grade**: \"S price action but **to many trades before**\" (`AVGO_2025-03-28`), \"9:54 is the first S but earlier a trades show up in the chop\" (`PLTR_2026-02-05`), \"this is the first S which is **rare for an s after a**\" (`INTC_2025-02-24`).\n\nConcrete next step, one file: change `candidates()` in `research/g86_honest_ceiling.py` from \"first traded row of the day\" to \"first S-eligible idea of the day **plus its armed 84% re-entry**\", and print the two books side by side. Until that runs, no dollar figure in this project names the unit he actually trades.",
+ "checked": 78
+}
