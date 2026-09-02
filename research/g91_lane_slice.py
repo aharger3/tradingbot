@@ -62,7 +62,12 @@ OUT_JSON = os.path.join(HERE, "g91_lane_slice.json")
 OUT_MD = os.path.join(HERE, "g91_lane_slice.md")
 
 # The lanes. Each is a predicate over a book row.
-INDEX = {"QQQ", "SPY", "IWM"}
+# INDEX is imported, never re-typed: research/test_universe_single_source.py
+# exists because six modules once kept private ticker lists. It happens not to
+# flag a constant spelled `INDEX`, which is a gap in the detector and not a
+# licence to keep a copy here.
+import universe                                # noqa: E402
+INDEX = frozenset(universe.INDEX_POOL)
 TEN = {"QQQ", "SPY", "NVDA", "TSLA", "AAPL", "AMD", "META", "MSFT", "AMZN", "GOOGL"}
 
 LANES = [

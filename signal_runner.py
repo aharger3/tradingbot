@@ -170,8 +170,9 @@ HODLOD_PAIR = False  # F3 12mo 2026-07-11: 19 tr/yr standalone, 33.3%W −$228,
 BNR_DISPLACEMENT_GATE = os.getenv("BNR_DISPLACEMENT_GATE", "1").strip().lower() \
     in ("1", "true", "yes", "on")
 
-# g93 RETEST_REQUIRED (2026-09-01), DEFAULT OFF, same convention as the three
-# gates around it: cap to C (alert-only), never suppress the row.
+# g93 RETEST_REQUIRED (2026-09-01), DEFAULT **ON** since 2026-09-02, same
+# convention as the three gates around it: cap to C (alert-only), never suppress
+# the row.
 #
 # `research/downgrade.py::no_retest` is a RATIFIED variable -- it is in
 # `downgrade.VARIABLES`, it is causal, and it is computed on every row of the
@@ -196,13 +197,28 @@ BNR_DISPLACEMENT_GATE = os.getenv("BNR_DISPLACEMENT_GATE", "1").strip().lower() 
 # The break bar is not the retest bar; this gate refuses only the case where a
 # retest never happened at all, and leaves every fill exactly where it was.
 #
-# Measured on the honest book (research/g93_retest_gate_ab.py), one trade a day,
-# 1R = $1,000, against the $28/day baseline:
-#   full pool   18.6 -> 14.2 cand/day   $28 -> $36/day   11 -> 15/25 green
-#   index lane   2.3 ->  1.8 cand/day   $51 -> $74/day   13 -> 16/25 green
-# It is the only change measured this session that moves candidates/day toward
-# the 1-3 target and $/day UP at the same time.
-RETEST_REQUIRED = os.getenv("RETEST_REQUIRED", "0").strip().lower() \
+# MEASURED ON THE REAL BOOK, not forecast. research/g94_retest_book_compare.py
+# against a matched OFF/ON pair -- same commit, same 498 sessions, only this flag
+# differs (research/bt2y_trades_retest_{off,on}.json). One trade a day, 1R=$1,000:
+#
+#   full pool   18.8 -> 16.5 cand/day   $27 -> $25/day   10 -> 13/25 green
+#               max drawdown $25,647 -> $21,709  (-15%)
+#   index lane   2.3 ->  2.2 cand/day   $49 -> $65/day   13 -> 15/25 green
+#               max drawdown $19,426 -> $15,665  (-19%)
+#
+# TURNED ON FOR DURABILITY, NOT FOR $/DAY. On the full pool the money is flat to
+# -$2/day, inside the +-1.58R error bar every A/B in this repo lives inside. What
+# moved is the gate CLAUDE.md actually names -- "durability = every month green"
+# -- by +3 months, with drawdown down 15%. The index lane gains on both.
+#
+# The earlier selection-arm forecast (research/g93_retest_gate_ab.py: $36/day
+# full pool, 14.2 cand/day) DID NOT HOLD and is superseded. It could not model
+# the second-order effect that dominates: `backtest_week.DEDUPE_FIRES_ONLY`
+# means only a FIRED signal claims the dedupe suppression window, so capping one
+# to C releases that window and later candidates on the same level -- previously
+# suppressed -- become rows. The candidate count therefore falls to 16.5/day, not
+# the 14.2 a pure removal predicted. Quote g94, never g93.
+RETEST_REQUIRED = os.getenv("RETEST_REQUIRED", "1").strip().lower() \
     in ("1", "true", "yes", "on")
 
 # Austin trade-notes review 2026-07-06 (91 trades): "middle of a bunch of levels,

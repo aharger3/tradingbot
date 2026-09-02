@@ -8,22 +8,24 @@ it against a real `backtest_2y.py` run with `RETEST_REQUIRED=1`.
     RETEST_REQUIRED=1 python backtest_2y.py --out research/bt2y_trades_retest_on.json
     python research/g94_retest_book_compare.py
 
-WHAT MUST MATCH, AND WHAT MAY NOT. Detection is unchanged by a C cap, so the
-candidate POPULATION must be identical row-for-row; only grades move. If signal
-count differs at all, the wiring is touching detection and the gate is wrong.
+THE INVARIANT THIS SCRIPT ORIGINALLY ASSERTED WAS WRONG, and the correction is
+the most useful thing it now knows. "A C cap cannot change the candidate
+population" is false in this engine, by design:
 
-The MONEY may legitimately differ, and pretending otherwise would be the mistake:
+  * `backtest_week.DEDUPE_FIRES_ONLY` defaults to 1, and at
+    backtest_week.py:973 only a signal whose `status == "fired"` claims or
+    extends the dedupe suppression window. A capped candidate is not fired, so
+    it RELEASES the window and later candidates on the same level -- previously
+    suppressed -- become rows. That is why the ON book has MORE signals.
+  * the 84% re-entry is a detection that only exists if a prior trade stopped
+    out, so capping one removes its re-entry entirely.
+  * `loss_halt` halts a symbol after 2 consecutive losses; changing which trades
+    are taken moves the halt pattern, opening and closing whole days.
 
-  * `loss_halt` halts a symbol after 2 consecutive losses. Removing trades
-    changes which losses are consecutive, so the halt pattern moves and days the
-    selection arm never modelled open or close.
-  * the 84% re-entry arms off a stop-out that may no longer be taken.
-  * dedupe is per level and per window; a capped row changes what the next row
-    de-dupes against.
-
-So the selection arm is a FORECAST, not a specification. This script reports the
-gap and names it. A large gap is information about the flag's second-order
-effects, not automatically a bug — but a gap in the SIGNAL COUNT is always a bug.
+All three are trade-SEQUENCE effects. None can be modelled by a selection arm
+over a fixed book, which is precisely why g93's table is a FORECAST and this
+re-run is the answer. The population delta is reported and classified by setup
+type; what must NOT change is any row present in both books.
 """
 from __future__ import annotations
 
@@ -39,7 +41,13 @@ sys.path.insert(0, HERE)
 import g86_honest_ceiling as g86                  # noqa: E402
 import g91_lane_slice as g91                      # noqa: E402
 
-OFF = os.path.join(HERE, "bt2y_trades.json")
+# The matched pair: same commit, same window, ONLY the flag differs. The
+# shipped research/bt2y_trades.json is NOT usable as the OFF arm here -- it was
+# built 2026-08-30 at a different commit with research/downgrade.py dirty, and
+# --days 730 counts back from today so its window is 500 sessions to the ON
+# book's 498. Comparing against it confounds the flag with three days of
+# calendar and one dirty engine file.
+OFF = os.path.join(HERE, "bt2y_trades_retest_off.json")
 ON = os.path.join(HERE, "bt2y_trades_retest_on.json")
 OUT_MD = os.path.join(HERE, "g94_retest_book_compare.md")
 
@@ -50,6 +58,23 @@ FORECAST = {"per_day": 36.0, "cands_per_day": 14.2, "green_n": 15, "win": 46.9}
 def load(p):
     b = json.load(open(p, encoding="utf-8"))
     return (b["trades"], b.get("meta", {})) if isinstance(b, dict) else (b, {})
+
+
+def common_window(off, on):
+    """Restrict both books to the sessions they share.
+
+    `backtest_2y.py --days 730` counts back from TODAY, so a book built on
+    2026-08-30 and one built on 2026-09-02 cover different windows (500 vs 498
+    sessions here) and differ in signal count for a reason that has nothing to do
+    with the flag. Detection is independent per session, so intersecting the day
+    sets gives an exact controlled comparison without paying for a second
+    four-hour rebuild. Without this the "detection unchanged" gate below fails on
+    the calendar rather than on the code, which would be a false alarm loud
+    enough to bury the real result.
+    """
+    days = {r["day"] for r in off} & {r["day"] for r in on}
+    return ([r for r in off if r["day"] in days],
+            [r for r in on if r["day"] in days], days)
 
 
 def oneaday(rows, pred=lambda r: True):
@@ -88,18 +113,38 @@ def main():
              mon.get("stamp", {}).get("flags", {}).get(
                  "signal_runner.RETEST_REQUIRED", "NOT STAMPED")))
 
-    # --- the hard gate: detection must not have moved --------------------
-    ok_pop = len(off) == len(on)
-    print("\nDETECTION UNCHANGED: %s (%d vs %d signals)"
-          % ("PASS" if ok_pop else "*** FAIL ***", len(off), len(on)))
-    if ok_pop:
-        key = lambda r: (r["day"], r["sym"], r["et"], r["dir"])
-        same = sum(1 for a, b in zip(sorted(off, key=key), sorted(on, key=key))
-                   if key(a) == key(b))
-        print("  row-for-row identity on (day, sym, et, dir): %d/%d" % (same, len(off)))
+    # --- control for the calendar before comparing anything --------------
+    raw_off, raw_on = len(off), len(on)
+    off, on, days = common_window(off, on)
+    print("\ncommon window: %d sessions %s..%s  (dropped %d OFF rows, %d ON rows "
+          "that fall outside it)"
+          % (len(days), min(days), max(days), raw_off - len(off), raw_on - len(on)))
+
+    # --- the real gate: no SHARED row may move ---------------------------
+    import collections
+    key = lambda r: (r["day"], r["sym"], r["et"], r["dir"])
+    mo = {key(r): r for r in off}
+    mn = {key(r): r for r in on}
+    shared = set(mo) & set(mn)
+    moved = [k for k in shared
+             if abs(mo[k]["entry"] - mn[k]["entry"]) > 1e-9
+             or abs(mo[k]["stop"] - mn[k]["stop"]) > 1e-9]
+    print("SHARED ROWS UNMOVED: %s (%d shared; %d with a changed entry or stop)"
+          % ("PASS" if not moved else "*** FAIL ***", len(shared), len(moved)))
+    for k in moved[:3]:
+        print("      %s entry %.4f->%.4f stop %.4f->%.4f"
+              % (k, mo[k]["entry"], mn[k]["entry"], mo[k]["stop"], mn[k]["stop"]))
+
+    # The population delta is EXPECTED (see the module docstring): a capped row
+    # releases the dedupe window, and the 84% re-entry is itself a detection.
+    oo, nn = set(mo) - set(mn), set(mn) - set(mo)
+    print("population delta: %d OFF-only, %d ON-only  (expected -- dedupe release "
+          "+ 84%% re-entry, NOT a wiring bug)" % (len(oo), len(nn)))
+    for lab, sset, m in (("  OFF-only", oo, mo), ("  ON-only ", nn, mn)):
+        print("%s by setup: %s" % (lab, dict(collections.Counter(
+            m[k]["setup"] for k in sset))))
 
     # --- what actually moved ---------------------------------------------
-    import collections
     go = collections.Counter(r["grade"] for r in off)
     gn = collections.Counter(r["grade"] for r in on)
     print("\ngrade mix   %-28s -> %s" % (dict(sorted(go.items())),
@@ -150,8 +195,11 @@ def main():
     md = ["# g94 -- RETEST_REQUIRED, the real 2-year book", "",
           "`RETEST_REQUIRED=1 python backtest_2y.py`. OFF book "
           "`research/bt2y_trades.json`, ON book `research/bt2y_trades_retest_on.json`.",
-          "", "Detection unchanged: **%s** (%d vs %d signals). Rows carrying the "
-          "cap: **%d**." % ("PASS" if ok_pop else "FAIL", len(off), len(on), capped),
+          "", "Shared rows unmoved: **%s** (%d shared, %d moved). Population "
+          "delta %d OFF-only / %d ON-only -- expected, from dedupe release and "
+          "the 84%% re-entry. Rows carrying the cap: **%d**."
+          % ("PASS" if not moved else "FAIL", len(shared), len(moved),
+             len(oo), len(nn), capped),
           "", "| lane | metric | OFF | ON | delta |", "|---|---|---:|---:|---:|"]
     for lane, a, b in rows_md:
         for k, lab, fmt in (("cands_per_day", "cand/day", "%.1f"),

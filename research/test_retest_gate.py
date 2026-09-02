@@ -144,14 +144,26 @@ def main():
         "no_retest did not fire on a break that never returned to the level"
     print("  predicate: retest tape False, run-away tape True  OK")
 
-    # -- 1. OFF is byte-identical ------------------------------------------
-    for name, bars in (("retest", clean_break_and_retest()),
-                       ("no-retest", break_and_run())):
-        off = run(bars, False)
-        base = run(bars, sr.RETEST_REQUIRED)   # whatever the module default is
-        assert [s["grade"] for s in off] == [s["grade"] for s in base], \
-            "%s: OFF differs from the shipped default" % name
-    print("  1. OFF == shipped default on both tapes  OK")
+    # -- 1. the flag is ON by default, and OFF still disables it ------------
+    # This assertion used to read "OFF == the shipped default", which was
+    # meaningful only while the default was OFF. It shipped ON on 2026-09-02
+    # (research/g94_retest_book_compare.py: +3 green months, -15% max drawdown on
+    # the full pool), so that comparison would now be OFF-vs-ON and pass
+    # vacuously on any tape where the two agree. What is worth asserting instead
+    # is that the default is what the book was priced with, and that the escape
+    # hatch still works.
+    assert sr.RETEST_REQUIRED is True, \
+        "RETEST_REQUIRED default is %r; research/bt2y_trades_retest_on.json and " \
+        "every figure quoted from it assume ON" % sr.RETEST_REQUIRED
+    os.environ["RETEST_REQUIRED"] = "0"
+    import importlib
+    assert importlib.reload(sr).RETEST_REQUIRED is False, \
+        "RETEST_REQUIRED=0 no longer disables the gate -- the A/B escape hatch " \
+        "is gone and the flag can never be measured again"
+    os.environ.pop("RETEST_REQUIRED", None)
+    importlib.reload(sr)
+    assert sr.RETEST_REQUIRED is True, "module did not reload back to the default"
+    print("  1. default is ON; RETEST_REQUIRED=0 still disables it  OK")
 
     # -- 2/3. ON caps the run-away, spares the retest -----------------------
     on_clean = run(clean_break_and_retest(), True)
