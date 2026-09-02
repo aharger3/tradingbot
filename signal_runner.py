@@ -170,6 +170,41 @@ HODLOD_PAIR = False  # F3 12mo 2026-07-11: 19 tr/yr standalone, 33.3%W −$228,
 BNR_DISPLACEMENT_GATE = os.getenv("BNR_DISPLACEMENT_GATE", "1").strip().lower() \
     in ("1", "true", "yes", "on")
 
+# g93 RETEST_REQUIRED (2026-09-01), DEFAULT OFF, same convention as the three
+# gates around it: cap to C (alert-only), never suppress the row.
+#
+# `research/downgrade.py::no_retest` is a RATIFIED variable -- it is in
+# `downgrade.VARIABLES`, it is causal, and it is computed on every row of the
+# 2-year book. It has only ever contributed a point to a score. Nothing in the
+# engine has ever refused to fire on it. That is the repo's recurring bug class
+# from CLAUDE.md ("a real rule becomes a branch that can never be true"), in its
+# other form: not a dead branch, a rule with no consumer.
+#
+# Austin says the same thing in three separate probe sections, and it is the
+# complaint he is angriest about:
+#   "you seem to enter on breaks which is a halucination we never trade that
+#    and you know it"                                    (PLTR_2024-09-20)
+#   "you entered off no break and retest or anything"    (HOOD_2025-12-23)
+#   "same problem as previous just entering on a break"  (TSLA_2025-03-25)
+#   "you entered on an overextended break candle"        (QQQ_2024-08-23)
+#   rule_03, ballot YES: "should always be entering while the restest is
+#    occuring"
+#
+# WHAT THIS IS NOT. It does not add a confirmation bar and it does not move any
+# fill later. `rule_03` in his own hand calls a late entry "a bug", and 11 cards
+# say "as candle forming" -- ZERO of the 162 marks ask the engine to wait longer.
+# The break bar is not the retest bar; this gate refuses only the case where a
+# retest never happened at all, and leaves every fill exactly where it was.
+#
+# Measured on the honest book (research/g93_retest_gate_ab.py), one trade a day,
+# 1R = $1,000, against the $28/day baseline:
+#   full pool   18.6 -> 14.2 cand/day   $28 -> $36/day   11 -> 15/25 green
+#   index lane   2.3 ->  1.8 cand/day   $51 -> $74/day   13 -> 16/25 green
+# It is the only change measured this session that moves candidates/day toward
+# the 1-3 target and $/day UP at the same time.
+RETEST_REQUIRED = os.getenv("RETEST_REQUIRED", "0").strip().lower() \
+    in ("1", "true", "yes", "on")
+
 # Austin trade-notes review 2026-07-06 (91 trades): "middle of a bunch of levels,
 # probability goes down significantly"; likes trades where new HOD/LOD can be hit.
 # R25 (Austin, probe_master_2026-08-29, fact_level_block -> `target`):
@@ -2596,6 +2631,21 @@ class SignalRunner:
             if why:
                 sig["grade"] = TradeGrade.C.value
                 sig["reason"] += f" [capped C: {why}]"
+        # g93 RETEST_REQUIRED (default OFF): a break that never retested the
+        # level is not a break-and-retest. Same seam, same C cap, same inputs as
+        # the SAC ladder's own dg.score call (`sig["stop"]` is the retested level
+        # under the shipped BNR_STOP_MODE="level"), so the two can never disagree
+        # about which level they are asking about.
+        if RETEST_REQUIRED and sig["grade"] in ("A", "B"):
+            from research import downgrade as dg   # never caught: a swallowed
+            # ImportError would silently make the ON arm a copy of the OFF arm,
+            # which is exactly how an unmeasurable flag gets shipped.
+            level = sig.get("stop")
+            bars = self._dg_bars() if self.candles else []
+            if bars and level is not None and dg.no_retest(
+                    bars, len(bars) - 1, level, sig.get("direction") == "call"):
+                sig["grade"] = TradeGrade.C.value
+                sig["reason"] += " [capped C: RETEST_REQUIRED no retest]"
         # omen-3.9 T4: austin_tier is now COMPUTED (S/A/C) from Austin's four
         # clauses, not a None slot. Reported only — nothing below branches on
         # it, and TRADE_S_ONLY is read nowhere in this version. See

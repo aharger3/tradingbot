@@ -1,0 +1,166 @@
+{
+ "full": {
+  "reachability": {
+   "book_rows": 127188,
+   "pickable": 9322,
+   "pickable_no_retest": 2228,
+   "pickable_pct": 23.9,
+   "firsts": 500,
+   "firsts_no_retest": 99,
+   "firsts_pct": 19.8
+  },
+  "arms": {
+   "baseline": {
+    "cands_per_day": 18.6,
+    "days": 500,
+    "stats": {
+     "trades": 500,
+     "win_pct": 45.5,
+     "total_dollars": 13893,
+     "per_trade": 28,
+     "mean_r": 0.028,
+     "per_day": 28,
+     "pct_of_bar": 7.0,
+     "months_green": 11,
+     "months": 25,
+     "weeks_green": 49,
+     "weeks": 105,
+     "worst_drawdown": -25570
+    },
+    "green": "11/25",
+    "green_n": 11,
+    "max_dd": 25569.99,
+    "max_r_for_dd": 98,
+    "funded_per_day": 2.72
+   },
+   "retest": {
+    "cands_per_day": 14.2,
+    "days": 499,
+    "stats": {
+     "trades": 499,
+     "win_pct": 46.9,
+     "total_dollars": 18000,
+     "per_trade": 36,
+     "mean_r": 0.036,
+     "per_day": 36,
+     "pct_of_bar": 9.1,
+     "months_green": 15,
+     "months": 25,
+     "weeks_green": 49,
+     "weeks": 105,
+     "worst_drawdown": -19655
+    },
+    "green": "15/25",
+    "green_n": 15,
+    "max_dd": 19654.54,
+    "max_r_for_dd": 127,
+    "funded_per_day": 4.59
+   },
+   "retest+chase": {
+    "cands_per_day": 11.1,
+    "days": 499,
+    "stats": {
+     "trades": 499,
+     "win_pct": 48.3,
+     "total_dollars": 36316,
+     "per_trade": 73,
+     "mean_r": 0.073,
+     "per_day": 73,
+     "pct_of_bar": 18.3,
+     "months_green": 14,
+     "months": 25,
+     "weeks_green": 51,
+     "weeks": 105,
+     "worst_drawdown": -16672
+    },
+    "green": "14/25",
+    "green_n": 14,
+    "max_dd": 16671.77,
+    "max_r_for_dd": 150,
+    "funded_per_day": 10.91
+   }
+  }
+ },
+ "index": {
+  "reachability": {
+   "book_rows": 13420,
+   "pickable": 919,
+   "pickable_no_retest": 181,
+   "pickable_pct": 19.7,
+   "firsts": 402,
+   "firsts_no_retest": 78,
+   "firsts_pct": 19.4
+  },
+  "arms": {
+   "baseline": {
+    "cands_per_day": 2.3,
+    "days": 402,
+    "stats": {
+     "trades": 402,
+     "win_pct": 49.4,
+     "total_dollars": 20578,
+     "per_trade": 51,
+     "mean_r": 0.051,
+     "per_day": 51,
+     "pct_of_bar": 12.9,
+     "months_green": 13,
+     "months": 25,
+     "weeks_green": 50,
+     "weeks": 105,
+     "worst_drawdown": -19406
+    },
+    "green": "13/25",
+    "green_n": 13,
+    "max_dd": 19405.77,
+    "max_r_for_dd": 129,
+    "funded_per_day": 6.59
+   },
+   "retest": {
+    "cands_per_day": 2.0,
+    "days": 365,
+    "stats": {
+     "trades": 365,
+     "win_pct": 49.7,
+     "total_dollars": 29764,
+     "per_trade": 82,
+     "mean_r": 0.082,
+     "per_day": 82,
+     "pct_of_bar": 20.5,
+     "months_green": 16,
+     "months": 25,
+     "weeks_green": 51,
+     "weeks": 105,
+     "worst_drawdown": -13353
+    },
+    "green": "16/25",
+    "green_n": 16,
+    "max_dd": 13353.42,
+    "max_r_for_dd": 187,
+    "funded_per_day": 15.27
+   },
+   "retest+chase": {
+    "cands_per_day": 2.0,
+    "days": 365,
+    "stats": {
+     "trades": 365,
+     "win_pct": 49.7,
+     "total_dollars": 29764,
+     "per_trade": 82,
+     "mean_r": 0.082,
+     "per_day": 82,
+     "pct_of_bar": 20.5,
+     "months_green": 16,
+     "months": 25,
+     "weeks_green": 51,
+     "weeks": 105,
+     "worst_drawdown": -13353
+    },
+    "green": "16/25",
+    "green_n": 16,
+    "max_dd": 13353.42,
+    "max_r_for_dd": 187,
+    "funded_per_day": 15.27
+   }
+  }
+ }
+}
