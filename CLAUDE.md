@@ -204,3 +204,78 @@ lists; a test fails the build if a new one appears.
 `POLYGON_API_KEY` is interpolated into request URLs and **appears in full in any traceback**.
 Filter tool output (`grep -v apiKey`) before showing it. `youtube_oauth_token.json`,
 `client_secret.json` and `*.credentials.json` are credentials and are never committed.
+
+---
+
+# Session 2026-09-01/02 — what changed
+
+**The g84 marks were 4.5% saved.** `probe_g84_all_in_one_2026-08-30.jsonl` held
+7 rows; Austin had answered **154**. The other 147 lived only in the page's
+localStorage. Every read of "the g84 marks" between 2026-08-30 and 2026-09-01 was
+a read of seven cards. Recovered verbatim as
+`research/marks/probe_g84_all_in_one_STANDING154_2026-09-01.jsonl`, verified a
+strict superset. **The page is not storage. Export the standing set at the end of
+every grading session and check `git status` by eye.**
+
+**Every dollar figure before 2026-08-30 was the fill, not the edge.** Isolated
+this session on the same trades, same count:
+
+| book | trades | total | $/day | mean R | win |
+|---|---:|---:|---:|---:|---:|
+| published (unobtainable fill) | 4,508 | **+$2,633,850** | $5,278 | +0.584R | 59.4% |
+| honest (obtainable fill) | 4,329 | **−$141,561** | −$283 | −0.033R | 44.1% |
+
+The $2.6M he remembers is real and it is in `bt2y_trades_published_fill.json`.
+It is also entirely the fill. When he points at the old artifacts, show him this
+table rather than arguing.
+
+**The lane is measured, not argued** (`research/g91_lane_slice.py`). Index
+QQQ/SPY/IWM: 2.3 cand/day, $51/day, 13/25 green. Full pool: 18.6 cand/day,
+$28/day, 11/25 green. **Pool stays FULL** — the index oracle ceiling is $437/day
+against his $397 bar, so narrowing caps the project at its own target even with a
+perfect classifier; the full pool's $2,948/day ceiling is the only one with room.
+At a $2,500 funded trailing drawdown every lane sizes to 1R ≈ $77–187. **No lane
+is fundable yet; the account type is not the blocker, the edge is.** Prop firms
+are futures desks and do not fund equity-options traders — that fork is real and
+premature.
+
+**`RETEST_REQUIRED` shipped behind a flag** (`signal_runner.py`, default OFF,
+`research/g93_retest_gate_ab.py`, `research/test_retest_gate.py`). `no_retest`
+was a ratified variable with no consumer. It trips on **99 of the 500 days'
+first picks**. Full pool $28→$36/day (11→15/25 green); +chase $73/day; index
+$51→$82/day (13→16/25 green). Max drawdown falls in every arm.
+
+**Do not re-propose wiring `research/downgrade.py` as the fire gate.** It is
+measured and negative: gating on `sgrade=='S'` is **−$29/day**, and
+`research/r3_downgrade_grader_ab.md` had already priced it (S recall +0, false
+fires 29%→33%, traded signals 1,017→1,310). `ENABLE_DOWNGRADE_GRADER=0` is a
+decision, not an oversight.
+
+**`compute_austin_tier` is reported only** — "nothing below branches on it". Its
+T11(a) no-displacement→C cap therefore costs no recall today, but it contradicts
+his marks: `NVDA_2025-06-03` and `PLTR_2025-07-17` are both graded **S** with "no
+displacement" in the note, rescued by OCR confluence. Two cards is a hint, not a
+rule — but it falsifies a hard cap.
+
+**His scope call, 2026-09-01:** *"I want signals only. A does nothing. Just A
+signals, then we're going to turn A into actually fire for money."* S fires. A is
+recorded and does not trade, pending promotion later.
+
+## The daily pass
+
+`research/daily_run.cmd`, scheduled task **OmenDailyHomework**, weekdays 16:15
+ET → `research/daily_fetch.py` then `research/daily_homework.py`, deck to
+`research/decks/omen-daily-<day>.html`, log to `journal/daily-<day>.log`.
+One card per **symbol**, not per signal: 2026-09-01 produced 269 candidates and
+fired 50 across 29 symbols against the 1–3 he takes.
+
+## Data sources, as of 2026-09-01
+
+- **Polygon: 403 NOT_AUTHORIZED** on recent timeframes. `data_archive` stopped at
+  2026-08-27 and cannot reach today on this plan.
+- **Tastytrade: HTTP 401 invalid_credentials.** The live scanner does not fail on
+  this — it falls through to yfinance and logs `HTF unknown` on every symbol, so
+  live runs currently have **no higher-timeframe bias at all**
+  (`journal/scanner-2026-09-01.log`). Unfixed.
+- **yfinance** is the only source reaching the current session. ~30 days of
+  1-minute history, premarket included.
