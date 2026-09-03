@@ -1,0 +1,94 @@
+{
+  "book": "research\\bt2y_trades.json",
+  "meta": {
+    "generated": "2026-08-29T18:38:17",
+    "first": "2024-08-21",
+    "last": "2026-08-21",
+    "sessions": 500,
+    "signals": 134012,
+    "traded": 4508,
+    "halted": 1662,
+    "loss_halt": true
+  },
+  "risk_dollars": 1000.0,
+  "board_prose_shipped_drawdown": 17132,
+  "shipped": {
+    "now": {
+      "trades": 4508,
+      "win_pct": 59.4,
+      "total_dollars": 2633850.0,
+      "per_trade": 584.0,
+      "mean_r": 0.5843,
+      "per_day": 5268.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 100,
+      "weeks": 105,
+      "green_days_pct": 69.9,
+      "days_traded": 499,
+      "worst_drawdown": 11105.0
+    },
+    "board": {
+      "trades": 2437,
+      "win_pct": 49.5,
+      "per_day": 2700,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 91,
+      "weeks": 105,
+      "worst_drawdown": 14714,
+      "note": "board table row 'Everything, as shipped today'"
+    },
+    "delta": {
+      "trades": 2071,
+      "win_pct": 9.9,
+      "per_day": 2568.0,
+      "months_green": 0,
+      "weeks_green": 9,
+      "worst_drawdown": -3609.0
+    }
+  },
+  "one_a_day": {
+    "now": {
+      "trades": 499,
+      "win_pct": 66.7,
+      "total_dollars": 360380.0,
+      "per_trade": 722.0,
+      "mean_r": 0.7222,
+      "per_day": 721.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 87,
+      "weeks": 105,
+      "green_days_pct": 66.7,
+      "days_traded": 499,
+      "worst_drawdown": 5993.0
+    },
+    "board": {
+      "trades": 496,
+      "win_pct": 54.9,
+      "per_day": 611,
+      "months_green": 22,
+      "months": 25,
+      "weeks_green": 77,
+      "weeks": 105,
+      "worst_drawdown": 20100,
+      "note": "board table row 'First trade only, then done'"
+    },
+    "delta": {
+      "trades": 3,
+      "win_pct": 11.8,
+      "per_day": 110.0,
+      "months_green": 3,
+      "weeks_green": 10,
+      "worst_drawdown": -14107.0
+    }
+  },
+  "labels": {
+    "traded_rows": 4508,
+    "with_setup_label": 4508,
+    "with_level_name": 4508,
+    "setup_label_pct": 100.0,
+    "level_name_pct": 100.0
+  }
+}

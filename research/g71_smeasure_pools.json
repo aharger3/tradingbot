@@ -1,0 +1,2178 @@
+{
+  "enumerator": "research/build_deck.py::marked_card_ids (verbatim) + g71 S extractor",
+  "guard_keys_total": 1147,
+  "keys_with_an_S_opinion": 1147,
+  "S_days_unanimous": 235,
+  "S_days_contested": 53,
+  "S_days_any": 288,
+  "notS_days_unanimous": 859,
+  "keys_in_more_than_one_corpus": 357,
+  "contested_across_corpora": 35,
+  "contested_within_one_corpus_only": 18,
+  "rows_self_contradicting": 3,
+  "per_source": {
+    "marks/deck_marks_h2_3lane_2026-08-28.jsonl": {
+      "judgement_keys": 59,
+      "S_rows": 5
+    },
+    "marks/deck_marks_index_2026-08-19.jsonl": {
+      "judgement_keys": 59,
+      "S_rows": 19
+    },
+    "marks/deck_marks_tsla_2026-08-20.jsonl": {
+      "judgement_keys": 60,
+      "S_rows": 9
+    },
+    "marks/probe_autopsy_2026-08-23.jsonl": {
+      "judgement_keys": 15,
+      "S_rows": 15
+    },
+    "marks/probe_head2head_2026-08-24.jsonl": {
+      "judgement_keys": 9,
+      "S_rows": 0
+    },
+    "marks/probe_master_2026-08-29.jsonl": {
+      "judgement_keys": 90,
+      "S_rows": 8
+    },
+    "marks/probe_master_homework_2026-08-26.jsonl": {
+      "judgement_keys": 51,
+      "S_rows": 16
+    },
+    "marks/probe_omen_test1_2026-08-27.jsonl": {
+      "judgement_keys": 100,
+      "S_rows": 15
+    },
+    "marks/probe_s_sweep_2026-08-28.jsonl": {
+      "judgement_keys": 100,
+      "S_rows": 34
+    },
+    "austin_marks_v7.jsonl": {
+      "judgement_keys": 478,
+      "S_rows": 139
+    },
+    "blind_marks_all.jsonl": {
+      "judgement_keys": 260,
+      "S_rows": 50
+    },
+    "marks_clean.jsonl": {
+      "judgement_keys": 117,
+      "S_rows": 50
+    },
+    "mark_batch_02_grades.jsonl": {
+      "judgement_keys": 60,
+      "S_rows": 35
+    },
+    "mark_batch_03_regrades.jsonl": {
+      "judgement_keys": 29,
+      "S_rows": 13
+    },
+    "mark_batch_04_grades.jsonl": {
+      "judgement_keys": 35,
+      "S_rows": 4
+    },
+    "derived_marks_v1.jsonl": {
+      "judgement_keys": 14,
+      "S_rows": 8
+    },
+    "derived_marks_v2.jsonl": {
+      "judgement_keys": 18,
+      "S_rows": 10
+    },
+    "recovered_reviews.jsonl": {
+      "judgement_keys": 176,
+      "S_rows": 57
+    },
+    "austin_verdicts.json": {
+      "judgement_keys": 162,
+      "S_rows": 78
+    }
+  },
+  "across_corpus_conflicts": [
+    {
+      "key": "AMD_2025-06-05",
+      "S_in": [
+        "austin_marks_v7.jsonl",
+        "austin_verdicts.json",
+        "mark_batch_03_regrades.jsonl"
+      ],
+      "notS_in": [
+        "mark_batch_02_grades.jsonl"
+      ],
+      "counts": {
+        "austin_marks_v7.jsonl": {
+          "S": 1,
+          "notS": 0
+        },
+        "austin_verdicts.json": {
+          "S": 1,
+          "notS": 0
+        },
+        "mark_batch_02_grades.jsonl": {
+          "S": 0,
+          "notS": 1
+        },
+        "mark_batch_03_regrades.jsonl": {
+          "S": 1,
+          "notS": 0
+        }
+      },
+      "day_votes_S": [
+        "austin_marks_v7.jsonl",
+        "austin_verdicts.json",
+        "mark_batch_03_regrades.jsonl"
+      ],
+      "day_votes_notS": [
+        "mark_batch_02_grades.jsonl"
+      ]
+    },
+    {
+      "key": "AMD_2026-05-14",
+      "S_in": [
+        "austin_marks_v7.jsonl",
+        "derived_marks_v1.jsonl"
+      ],
+      "notS_in": [
+        "austin_marks_v7.jsonl",
+        "austin_verdicts.json",
+        "mark_batch_02_grades.jsonl",
+        "mark_batch_04_grades.jsonl"
+      ],
+      "counts": {
+        "austin_marks_v7.jsonl": {
+          "S": 3,
+          "notS": 4
+        },
+        "austin_verdicts.json": {
+          "S": 0,
+          "notS": 1
+        },
+        "derived_marks_v1.jsonl": {
+          "S": 3,
+          "notS": 0
+        },
+        "mark_batch_02_grades.jsonl": {
+          "S": 0,
+          "notS": 1
+        },
+        "mark_batch_04_grades.jsonl": {
+          "S": 0,
+          "notS": 3
+        }
+      },
+      "day_votes_S": [
+        "austin_marks_v7.jsonl",
+        "derived_marks_v1.jsonl"
+      ],
+      "day_votes_notS": [
+        "austin_verdicts.json",
+        "mark_batch_02_grades.jsonl",
+        "mark_batch_04_grades.jsonl"
+      ]
+    },
+    {
+      "key": "COIN_2025-10-21",
+      "S_in": [
+        "austin_marks_v7.jsonl",
+        "austin_verdicts.json",
+        "mark_batch_02_grades.jsonl",
+        "mark_batch_04_grades.jsonl"
+      ],
+      "notS_in": [
+        "austin_marks_v7.jsonl",
+        "derived_marks_v1.jsonl",
+        "mark_batch_02_grades.jsonl"
+      ],
+      "counts": {
+        "austin_marks_v7.jsonl": {
+          "S": 1,
+          "notS": 3
+        },
+        "austin_verdicts.json": {
+          "S": 1,
+          "notS": 0
+        },
+        "derived_marks_v1.jsonl": {
+          "S": 0,
+          "notS": 2
+        },
+        "mark_batch_02_grades.jsonl": {
+          "S": 1,
+          "notS": 2
+        },
+        "mark_batch_04_grades.jsonl": {
+          "S": 1,
+          "notS": 0
+        }
+      },
+      "day_votes_S": [
+        "austin_marks_v7.jsonl",
+        "austin_verdicts.json",
+        "mark_batch_02_grades.jsonl",
+        "mark_batch_04_grades.jsonl"
+      ],
+      "day_votes_notS": [
+        "derived_marks_v1.jsonl"
+      ]
+    },
+    {
+      "key": "GOOGL_2024-10-15",
+      "S_in": [
+        "austin_marks_v7.jsonl",
+        "austin_verdicts.json",
+        "derived_marks_v1.jsonl",
+        "mark_batch_02_grades.jsonl"
+      ],
+      "notS_in": [
+        "austin_marks_v7.jsonl",
+        "mark_batch_04_grades.jsonl"
+      ],
+      "counts": {
+        "austin_marks_v7.jsonl": {
+          "S": 3,
+          "notS": 2
+        },
+        "austin_verdicts.json": {
+          "S": 1,
+          "notS": 0
+        },
+        "derived_marks_v1.jsonl": {
+          "S": 2,
+          "notS": 0
+        },
+        "mark_batch_02_grades.jsonl": {
+          "S": 1,
+          "notS": 0
+        },
+        "mark_batch_04_grades.jsonl": {
+          "S": 0,
+          "notS": 2
+        }
+      },
+      "day_votes_S": [
+        "austin_marks_v7.jsonl",
+        "austin_verdicts.json",
+        "derived_marks_v1.jsonl",
+        "mark_batch_02_grades.jsonl"
+      ],
+      "day_votes_notS": [
+        "mark_batch_04_grades.jsonl"
+      ]
+    },
+    {
+      "key": "GOOGL_2025-08-07",
+      "S_in": [
+        "austin_marks_v7.jsonl",
+        "austin_verdicts.json",
+        "mark_batch_02_grades.jsonl"
+      ],
+      "notS_in": [
+        "austin_marks_v7.jsonl",
+        "mark_batch_04_grades.jsonl"
+      ],
+      "counts": {
+        "austin_marks_v7.jsonl": {
+          "S": 1,
+          "notS": 1
+        },
+        "austin_verdicts.json": {
+          "S": 1,
+          "notS": 0
+        },
+        "mark_batch_02_grades.jsonl": {
+          "S": 1,
+          "notS": 0
+        },
+        "mark_batch_04_grades.jsonl": {
+          "S": 0,
+          "notS": 1
+        }
+      },
+      "day_votes_S": [
+        "austin_marks_v7.jsonl",
+        "austin_verdicts.json",
+        "mark_batch_02_grades.jsonl"
+      ],
+      "day_votes_notS": [
+        "mark_batch_04_grades.jsonl"
+      ]
+    },
+    {
+      "key": "IREN_2026-05-21",
+      "S_in": [
+        "recovered_reviews.jsonl"
+      ],
+      "notS_in": [
+        "austin_marks_v7.jsonl",
+        "blind_marks_all.jsonl",
+        "marks_clean.jsonl"
+      ],
+      "counts": {
+        "austin_marks_v7.jsonl": {
+          "S": 0,
+          "notS": 1
+        },
+        "blind_marks_all.jsonl": {
+          "S": 0,
+          "notS": 1
+        },
+        "marks_clean.jsonl": {
+          "S": 0,
+          "notS": 1
+        },
+        "recovered_reviews.jsonl": {
+          "S": 1,
+          "notS": 0
+        }
+      },
+      "day_votes_S": [
+        "recovered_reviews.jsonl"
+      ],
+      "day_votes_notS": [
+        "austin_marks_v7.jsonl",
+        "blind_marks_all.jsonl",
+        "marks_clean.jsonl"
+      ]
+    },
+    {
+      "key": "IWM_2025-10-21",
+      "S_in": [
+        "austin_verdicts.json",
+        "mark_batch_02_grades.jsonl"
+      ],
+      "notS_in": [
+        "austin_marks_v7.jsonl",
+        "mark_batch_03_regrades.jsonl"
+      ],
+      "counts": {
+        "austin_marks_v7.jsonl": {
+          "S": 0,
+          "notS": 1
+        },
+        "austin_verdicts.json": {
+          "S": 1,
+          "notS": 0
+        },
+        "mark_batch_02_grades.jsonl": {
+          "S": 1,
+          "notS": 0
+        },
+        "mark_batch_03_regrades.jsonl": {
+          "S": 0,
+          "notS": 1
+        }
+      },
+      "day_votes_S": [
+        "austin_verdicts.json",
+        "mark_batch_02_grades.jsonl"
+      ],
+      "day_votes_notS": [
+        "austin_marks_v7.jsonl",
+        "mark_batch_03_regrades.jsonl"
+      ]
+    },
+    {
+      "key": "IWM_2026-07-24",
+      "S_in": [
+        "austin_verdicts.json",
+        "mark_batch_02_grades.jsonl"
+      ],
+      "notS_in": [
+        "austin_marks_v7.jsonl",
+        "mark_batch_03_regrades.jsonl"
+      ],
+      "counts": {
+        "austin_marks_v7.jsonl": {
+          "S": 0,
+          "notS": 1
+        },
+        "austin_verdicts.json": {
+          "S": 1,
+          "notS": 0
+        },
+        "mark_batch_02_grades.jsonl": {
+          "S": 1,
+          "notS": 0
+        },
+        "mark_batch_03_regrades.jsonl": {
+          "S": 0,
+          "notS": 1
+        }
+      },
+      "day_votes_S": [
+        "austin_verdicts.json",
+        "mark_batch_02_grades.jsonl"
+      ],
+      "day_votes_notS": [
+        "austin_marks_v7.jsonl",
+        "mark_batch_03_regrades.jsonl"
+      ]
+    },
+    {
+      "key": "MARA_2024-12-17",
+      "S_in": [
+        "austin_marks_v7.jsonl",
+        "austin_verdicts.json",
+        "mark_batch_04_grades.jsonl"
+      ],
+      "notS_in": [
+        "austin_marks_v7.jsonl",
+        "derived_marks_v1.jsonl"
+      ],
+      "counts": {
+        "austin_marks_v7.jsonl": {
+          "S": 1,
+          "notS": 2
+        },
+        "austin_verdicts.json": {
+          "S": 1,
+          "notS": 0
+        },
+        "derived_marks_v1.jsonl": {
+          "S": 0,
+          "notS": 2
+        },
+        "mark_batch_04_grades.jsonl": {
+          "S": 1,
+          "notS": 0
+        }
+      },
+      "day_votes_S": [
+        "austin_marks_v7.jsonl",
+        "austin_verdicts.json",
+        "mark_batch_04_grades.jsonl"
+      ],
+      "day_votes_notS": [
+        "derived_marks_v1.jsonl"
+      ]
+    },
+    {
+      "key": "MSFT_2025-03-04",
+      "S_in": [
+        "austin_marks_v7.jsonl",
+        "austin_verdicts.json"
+      ],
+      "notS_in": [
+        "austin_marks_v7.jsonl",
+        "mark_batch_02_grades.jsonl"
+      ],
+      "counts": {
+        "austin_marks_v7.jsonl": {
+          "S": 1,
+          "notS": 1
+        },
+        "austin_verdicts.json": {
+          "S": 1,
+          "notS": 0
+        },
+        "mark_batch_02_grades.jsonl": {
+          "S": 0,
+          "notS": 1
+        }
+      },
+      "day_votes_S": [
+        "austin_marks_v7.jsonl",
+        "austin_verdicts.json"
+      ],
+      "day_votes_notS": [
+        "mark_batch_02_grades.jsonl"
+      ]
+    },
+    {
+      "key": "MSFT_2025-03-20",
+      "S_in": [
+        "austin_verdicts.json",
+        "mark_batch_02_grades.jsonl"
+      ],
+      "notS_in": [
+        "austin_marks_v7.jsonl",
+        "mark_batch_03_regrades.jsonl"
+      ],
+      "counts": {
+        "austin_marks_v7.jsonl": {
+          "S": 0,
+          "notS": 1
+        },
+        "austin_verdicts.json": {
+          "S": 1,
+          "notS": 0
+        },
+        "mark_batch_02_grades.jsonl": {
+          "S": 1,
+          "notS": 0
+        },
+        "mark_batch_03_regrades.jsonl": {
+          "S": 0,
+          "notS": 1
+        }
+      },
+      "day_votes_S": [
+        "austin_verdicts.json",
+        "mark_batch_02_grades.jsonl"
+      ],
+      "day_votes_notS": [
+        "austin_marks_v7.jsonl",
+        "mark_batch_03_regrades.jsonl"
+      ]
+    },
+    {
+      "key": "MU_2026-01-28",
+      "S_in": [
+        "austin_marks_v7.jsonl",
+        "austin_verdicts.json",
+        "derived_marks_v1.jsonl",
+        "mark_batch_02_grades.jsonl"
+      ],
+      "notS_in": [
+        "austin_marks_v7.jsonl",
+        "mark_batch_03_regrades.jsonl",
+        "mark_batch_04_grades.jsonl"
+      ],
+      "counts": {
+        "austin_marks_v7.jsonl": {
+          "S": 1,
+          "notS": 3
+        },
+        "austin_verdicts.json": {
+          "S": 1,
+          "notS": 0
+        },
+        "derived_marks_v1.jsonl": {
+          "S": 1,
+          "notS": 0
+        },
+        "mark_batch_02_grades.jsonl": {
+          "S": 1,
+          "notS": 0
+        },
+        "mark_batch_03_regrades.jsonl": {
+          "S": 0,
+          "notS": 1
+        },
+        "mark_batch_04_grades.jsonl": {
+          "S": 0,
+          "notS": 2
+        }
+      },
+      "day_votes_S": [
+        "austin_marks_v7.jsonl",
+        "austin_verdicts.json",
+        "derived_marks_v1.jsonl",
+        "mark_batch_02_grades.jsonl"
+      ],
+      "day_votes_notS": [
+        "mark_batch_03_regrades.jsonl",
+        "mark_batch_04_grades.jsonl"
+      ]
+    },
+    {
+      "key": "NVDA_2024-11-18",
+      "S_in": [
+        "austin_verdicts.json"
+      ],
+      "notS_in": [
+        "austin_marks_v7.jsonl",
+        "derived_marks_v2.jsonl",
+        "mark_batch_03_regrades.jsonl",
+        "mark_batch_04_grades.jsonl"
+      ],
+      "counts": {
+        "austin_marks_v7.jsonl": {
+          "S": 0,
+          "notS": 3
+        },
+        "austin_verdicts.json": {
+          "S": 1,
+          "notS": 0
+        },
+        "derived_marks_v2.jsonl": {
+          "S": 0,
+          "notS": 1
+        },
+        "mark_batch_03_regrades.jsonl": {
+          "S": 0,
+          "notS": 1
+        },
+        "mark_batch_04_grades.jsonl": {
+          "S": 0,
+          "notS": 1
+        }
+      },
+      "day_votes_S": [
+        "austin_verdicts.json"
+      ],
+      "day_votes_notS": [
+        "austin_marks_v7.jsonl",
+        "derived_marks_v2.jsonl",
+        "mark_batch_03_regrades.jsonl",
+        "mark_batch_04_grades.jsonl"
+      ]
+    },
+    {
+      "key": "NVDA_2024-12-16",
+      "S_in": [
+        "austin_marks_v7.jsonl",
+        "derived_marks_v1.jsonl"
+      ],
+      "notS_in": [
+        "austin_marks_v7.jsonl",
+        "austin_verdicts.json",
+        "mark_batch_02_grades.jsonl",
+        "mark_batch_04_grades.jsonl"
+      ],
+      "counts": {
+        "austin_marks_v7.jsonl": {
+          "S": 1,
+          "notS": 4
+        },
+        "austin_verdicts.json": {
+          "S": 0,
+          "notS": 1
+        },
+        "derived_marks_v1.jsonl": {
+          "S": 1,
+          "notS": 0
+        },
+        "mark_batch_02_grades.jsonl": {
+          "S": 0,
+          "notS": 1
+        },
+        "mark_batch_04_grades.jsonl": {
+          "S": 0,
+          "notS": 3
+        }
+      },
+      "day_votes_S": [
+        "austin_marks_v7.jsonl",
+        "derived_marks_v1.jsonl"
+      ],
+      "day_votes_notS": [
+        "austin_verdicts.json",
+        "mark_batch_02_grades.jsonl",
+        "mark_batch_04_grades.jsonl"
+      ]
+    },
+    {
+      "key": "ORCL_2025-03-28",
+      "S_in": [
+        "austin_verdicts.json"
+      ],
+      "notS_in": [
+        "austin_marks_v7.jsonl",
+        "mark_batch_02_grades.jsonl",
+        "mark_batch_03_regrades.jsonl"
+      ],
+      "counts": {
+        "austin_marks_v7.jsonl": {
+          "S": 0,
+          "notS": 1
+        },
+        "austin_verdicts.json": {
+          "S": 1,
+          "notS": 0
+        },
+        "mark_batch_02_grades.jsonl": {
+          "S": 0,
+          "notS": 1
+        },
+        "mark_batch_03_regrades.jsonl": {
+          "S": 0,
+          "notS": 1
+        }
+      },
+      "day_votes_S": [
+        "austin_verdicts.json"
+      ],
+      "day_votes_notS": [
+        "austin_marks_v7.jsonl",
+        "mark_batch_02_grades.jsonl",
+        "mark_batch_03_regrades.jsonl"
+      ]
+    },
+    {
+      "key": "ORCL_2025-11-03",
+      "S_in": [
+        "austin_verdicts.json",
+        "mark_batch_02_grades.jsonl"
+      ],
+      "notS_in": [
+        "austin_marks_v7.jsonl",
+        "mark_batch_02_grades.jsonl",
+        "mark_batch_04_grades.jsonl"
+      ],
+      "counts": {
+        "austin_marks_v7.jsonl": {
+          "S": 0,
+          "notS": 2
+        },
+        "austin_verdicts.json": {
+          "S": 1,
+          "notS": 0
+        },
+        "mark_batch_02_grades.jsonl": {
+          "S": 1,
+          "notS": 1
+        },
+        "mark_batch_04_grades.jsonl": {
+          "S": 0,
+          "notS": 1
+        }
+      },
+      "day_votes_S": [
+        "austin_verdicts.json",
+        "mark_batch_02_grades.jsonl"
+      ],
+      "day_votes_notS": [
+        "austin_marks_v7.jsonl",
+        "mark_batch_04_grades.jsonl"
+      ]
+    },
+    {
+      "key": "PLTR_2024-10-23",
+      "S_in": [
+        "austin_verdicts.json",
+        "derived_marks_v1.jsonl"
+      ],
+      "notS_in": [
+        "austin_marks_v7.jsonl",
+        "mark_batch_02_grades.jsonl",
+        "mark_batch_04_grades.jsonl"
+      ],
+      "counts": {
+        "austin_marks_v7.jsonl": {
+          "S": 0,
+          "notS": 3
+        },
+        "austin_verdicts.json": {
+          "S": 1,
+          "notS": 0
+        },
+        "derived_marks_v1.jsonl": {
+          "S": 1,
+          "notS": 0
+        },
+        "mark_batch_02_grades.jsonl": {
+          "S": 0,
+          "notS": 1
+        },
+        "mark_batch_04_grades.jsonl": {
+          "S": 0,
+          "notS": 2
+        }
+      },
+      "day_votes_S": [
+        "austin_verdicts.json",
+        "derived_marks_v1.jsonl"
+      ],
+      "day_votes_notS": [
+        "austin_marks_v7.jsonl",
+        "mark_batch_02_grades.jsonl",
+        "mark_batch_04_grades.jsonl"
+      ]
+    },
+    {
+      "key": "PLTR_2025-09-18",
+      "S_in": [
+        "austin_marks_v7.jsonl",
+        "austin_verdicts.json",
+        "mark_batch_02_grades.jsonl",
+        "mark_batch_03_regrades.jsonl"
+      ],
+      "notS_in": [
+        "austin_marks_v7.jsonl",
+        "mark_batch_04_grades.jsonl"
+      ],
+      "counts": {
+        "austin_marks_v7.jsonl": {
+          "S": 1,
+          "notS": 2
+        },
+        "austin_verdicts.json": {
+          "S": 1,
+          "notS": 0
+        },
+        "mark_batch_02_grades.jsonl": {
+          "S": 1,
+          "notS": 0
+        },
+        "mark_batch_03_regrades.jsonl": {
+          "S": 1,
+          "notS": 0
+        },
+        "mark_batch_04_grades.jsonl": {
+          "S": 0,
+          "notS": 2
+        }
+      },
+      "day_votes_S": [
+        "austin_marks_v7.jsonl",
+        "austin_verdicts.json",
+        "mark_batch_02_grades.jsonl",
+        "mark_batch_03_regrades.jsonl"
+      ],
+      "day_votes_notS": [
+        "mark_batch_04_grades.jsonl"
+      ]
+    },
+    {
+      "key": "PLTR_2025-12-10",
+      "S_in": [
+        "recovered_reviews.jsonl"
+      ],
+      "notS_in": [
+        "austin_marks_v7.jsonl"
+      ],
+      "counts": {
+        "austin_marks_v7.jsonl": {
+          "S": 0,
+          "notS": 1
+        },
+        "recovered_reviews.jsonl": {
+          "S": 1,
+          "notS": 0
+        }
+      },
+      "day_votes_S": [
+        "recovered_reviews.jsonl"
+      ],
+      "day_votes_notS": [
+        "austin_marks_v7.jsonl"
+      ]
+    },
+    {
+      "key": "QQQ_2024-01-04",
+      "S_in": [
+        "austin_verdicts.json"
+      ],
+      "notS_in": [
+        "austin_marks_v7.jsonl",
+        "derived_marks_v2.jsonl",
+        "mark_batch_03_regrades.jsonl"
+      ],
+      "counts": {
+        "austin_marks_v7.jsonl": {
+          "S": 0,
+          "notS": 2
+        },
+        "austin_verdicts.json": {
+          "S": 1,
+          "notS": 0
+        },
+        "derived_marks_v2.jsonl": {
+          "S": 0,
+          "notS": 1
+        },
+        "mark_batch_03_regrades.jsonl": {
+          "S": 0,
+          "notS": 1
+        }
+      },
+      "day_votes_S": [
+        "austin_verdicts.json"
+      ],
+      "day_votes_notS": [
+        "austin_marks_v7.jsonl",
+        "derived_marks_v2.jsonl",
+        "mark_batch_03_regrades.jsonl"
+      ]
+    },
+    {
+      "key": "QQQ_2024-05-08",
+      "S_in": [
+        "austin_verdicts.json"
+      ],
+      "notS_in": [
+        "austin_marks_v7.jsonl",
+        "mark_batch_03_regrades.jsonl"
+      ],
+      "counts": {
+        "austin_marks_v7.jsonl": {
+          "S": 0,
+          "notS": 1
+        },
+        "austin_verdicts.json": {
+          "S": 1,
+          "notS": 0
+        },
+        "mark_batch_03_regrades.jsonl": {
+          "S": 0,
+          "notS": 1
+        }
+      },
+      "day_votes_S": [
+        "austin_verdicts.json"
+      ],
+      "day_votes_notS": [
+        "austin_marks_v7.jsonl",
+        "mark_batch_03_regrades.jsonl"
+      ]
+    },
+    {
+      "key": "QQQ_2024-10-03",
+      "S_in": [
+        "austin_marks_v7.jsonl",
+        "austin_verdicts.json"
+      ],
+      "notS_in": [
+        "austin_marks_v7.jsonl",
+        "mark_batch_02_grades.jsonl"
+      ],
+      "counts": {
+        "austin_marks_v7.jsonl": {
+          "S": 1,
+          "notS": 1
+        },
+        "austin_verdicts.json": {
+          "S": 1,
+          "notS": 0
+        },
+        "mark_batch_02_grades.jsonl": {
+          "S": 0,
+          "notS": 1
+        }
+      },
+      "day_votes_S": [
+        "austin_marks_v7.jsonl",
+        "austin_verdicts.json"
+      ],
+      "day_votes_notS": [
+        "mark_batch_02_grades.jsonl"
+      ]
+    },
+    {
+      "key": "QQQ_2024-12-16",
+      "S_in": [
+        "austin_verdicts.json"
+      ],
+      "notS_in": [
+        "austin_marks_v7.jsonl",
+        "derived_marks_v2.jsonl",
+        "mark_batch_03_regrades.jsonl"
+      ],
+      "counts": {
+        "austin_marks_v7.jsonl": {
+          "S": 0,
+          "notS": 2
+        },
+        "austin_verdicts.json": {
+          "S": 1,
+          "notS": 0
+        },
+        "derived_marks_v2.jsonl": {
+          "S": 0,
+          "notS": 1
+        },
+        "mark_batch_03_regrades.jsonl": {
+          "S": 0,
+          "notS": 1
+        }
+      },
+      "day_votes_S": [
+        "austin_verdicts.json"
+      ],
+      "day_votes_notS": [
+        "austin_marks_v7.jsonl",
+        "derived_marks_v2.jsonl",
+        "mark_batch_03_regrades.jsonl"
+      ]
+    },
+    {
+      "key": "QQQ_2025-03-18",
+      "S_in": [
+        "austin_verdicts.json"
+      ],
+      "notS_in": [
+        "austin_marks_v7.jsonl",
+        "mark_batch_02_grades.jsonl",
+        "mark_batch_03_regrades.jsonl"
+      ],
+      "counts": {
+        "austin_marks_v7.jsonl": {
+          "S": 0,
+          "notS": 1
+        },
+        "austin_verdicts.json": {
+          "S": 1,
+          "notS": 0
+        },
+        "mark_batch_02_grades.jsonl": {
+          "S": 0,
+          "notS": 1
+        },
+        "mark_batch_03_regrades.jsonl": {
+          "S": 0,
+          "notS": 1
+        }
+      },
+      "day_votes_S": [
+        "austin_verdicts.json"
+      ],
+      "day_votes_notS": [
+        "austin_marks_v7.jsonl",
+        "mark_batch_02_grades.jsonl",
+        "mark_batch_03_regrades.jsonl"
+      ]
+    },
+    {
+      "key": "QQQ_2025-06-24",
+      "S_in": [
+        "austin_verdicts.json"
+      ],
+      "notS_in": [
+        "austin_marks_v7.jsonl",
+        "mark_batch_02_grades.jsonl"
+      ],
+      "counts": {
+        "austin_marks_v7.jsonl": {
+          "S": 0,
+          "notS": 1
+        },
+        "austin_verdicts.json": {
+          "S": 1,
+          "notS": 0
+        },
+        "mark_batch_02_grades.jsonl": {
+          "S": 0,
+          "notS": 1
+        }
+      },
+      "day_votes_S": [
+        "austin_verdicts.json"
+      ],
+      "day_votes_notS": [
+        "austin_marks_v7.jsonl",
+        "mark_batch_02_grades.jsonl"
+      ]
+    },
+    {
+      "key": "QQQ_2026-02-11",
+      "S_in": [
+        "austin_verdicts.json",
+        "mark_batch_02_grades.jsonl"
+      ],
+      "notS_in": [
+        "austin_marks_v7.jsonl",
+        "mark_batch_02_grades.jsonl",
+        "mark_batch_03_regrades.jsonl"
+      ],
+      "counts": {
+        "austin_marks_v7.jsonl": {
+          "S": 0,
+          "notS": 3
+        },
+        "austin_verdicts.json": {
+          "S": 2,
+          "notS": 0
+        },
+        "mark_batch_02_grades.jsonl": {
+          "S": 1,
+          "notS": 1
+        },
+        "mark_batch_03_regrades.jsonl": {
+          "S": 0,
+          "notS": 2
+        }
+      },
+      "day_votes_S": [
+        "austin_verdicts.json",
+        "mark_batch_02_grades.jsonl"
+      ],
+      "day_votes_notS": [
+        "austin_marks_v7.jsonl",
+        "mark_batch_03_regrades.jsonl"
+      ]
+    },
+    {
+      "key": "QQQ_2026-07-24",
+      "S_in": [
+        "marks/deck_marks_index_2026-08-19.jsonl",
+        "marks/probe_autopsy_2026-08-23.jsonl",
+        "marks/probe_master_homework_2026-08-26.jsonl"
+      ],
+      "notS_in": [
+        "recovered_reviews.jsonl"
+      ],
+      "counts": {
+        "marks/deck_marks_index_2026-08-19.jsonl": {
+          "S": 1,
+          "notS": 0
+        },
+        "marks/probe_autopsy_2026-08-23.jsonl": {
+          "S": 1,
+          "notS": 0
+        },
+        "marks/probe_master_homework_2026-08-26.jsonl": {
+          "S": 2,
+          "notS": 0
+        },
+        "recovered_reviews.jsonl": {
+          "S": 0,
+          "notS": 1
+        }
+      },
+      "day_votes_S": [
+        "marks/deck_marks_index_2026-08-19.jsonl",
+        "marks/probe_autopsy_2026-08-23.jsonl",
+        "marks/probe_master_homework_2026-08-26.jsonl"
+      ],
+      "day_votes_notS": [
+        "recovered_reviews.jsonl"
+      ]
+    },
+    {
+      "key": "QQQ_2026-07-31",
+      "S_in": [
+        "marks/probe_master_homework_2026-08-26.jsonl"
+      ],
+      "notS_in": [
+        "marks/deck_marks_index_2026-08-19.jsonl"
+      ],
+      "counts": {
+        "marks/deck_marks_index_2026-08-19.jsonl": {
+          "S": 0,
+          "notS": 1
+        },
+        "marks/probe_master_homework_2026-08-26.jsonl": {
+          "S": 1,
+          "notS": 0
+        }
+      },
+      "day_votes_S": [
+        "marks/probe_master_homework_2026-08-26.jsonl"
+      ],
+      "day_votes_notS": [
+        "marks/deck_marks_index_2026-08-19.jsonl"
+      ]
+    },
+    {
+      "key": "SPY_2024-04-03",
+      "S_in": [
+        "austin_verdicts.json"
+      ],
+      "notS_in": [
+        "austin_marks_v7.jsonl",
+        "mark_batch_03_regrades.jsonl"
+      ],
+      "counts": {
+        "austin_marks_v7.jsonl": {
+          "S": 0,
+          "notS": 1
+        },
+        "austin_verdicts.json": {
+          "S": 1,
+          "notS": 0
+        },
+        "mark_batch_03_regrades.jsonl": {
+          "S": 0,
+          "notS": 1
+        }
+      },
+      "day_votes_S": [
+        "austin_verdicts.json"
+      ],
+      "day_votes_notS": [
+        "austin_marks_v7.jsonl",
+        "mark_batch_03_regrades.jsonl"
+      ]
+    },
+    {
+      "key": "SPY_2024-06-11",
+      "S_in": [
+        "austin_verdicts.json"
+      ],
+      "notS_in": [
+        "austin_marks_v7.jsonl",
+        "mark_batch_03_regrades.jsonl"
+      ],
+      "counts": {
+        "austin_marks_v7.jsonl": {
+          "S": 0,
+          "notS": 1
+        },
+        "austin_verdicts.json": {
+          "S": 1,
+          "notS": 0
+        },
+        "mark_batch_03_regrades.jsonl": {
+          "S": 0,
+          "notS": 1
+        }
+      },
+      "day_votes_S": [
+        "austin_verdicts.json"
+      ],
+      "day_votes_notS": [
+        "austin_marks_v7.jsonl",
+        "mark_batch_03_regrades.jsonl"
+      ]
+    },
+    {
+      "key": "SPY_2024-09-19",
+      "S_in": [
+        "austin_verdicts.json"
+      ],
+      "notS_in": [
+        "austin_marks_v7.jsonl",
+        "mark_batch_03_regrades.jsonl"
+      ],
+      "counts": {
+        "austin_marks_v7.jsonl": {
+          "S": 0,
+          "notS": 1
+        },
+        "austin_verdicts.json": {
+          "S": 1,
+          "notS": 0
+        },
+        "mark_batch_03_regrades.jsonl": {
+          "S": 0,
+          "notS": 1
+        }
+      },
+      "day_votes_S": [
+        "austin_verdicts.json"
+      ],
+      "day_votes_notS": [
+        "austin_marks_v7.jsonl",
+        "mark_batch_03_regrades.jsonl"
+      ]
+    },
+    {
+      "key": "SPY_2025-03-18",
+      "S_in": [
+        "austin_marks_v7.jsonl",
+        "austin_verdicts.json",
+        "mark_batch_03_regrades.jsonl",
+        "mark_batch_04_grades.jsonl"
+      ],
+      "notS_in": [
+        "mark_batch_02_grades.jsonl"
+      ],
+      "counts": {
+        "austin_marks_v7.jsonl": {
+          "S": 1,
+          "notS": 0
+        },
+        "austin_verdicts.json": {
+          "S": 1,
+          "notS": 0
+        },
+        "mark_batch_02_grades.jsonl": {
+          "S": 0,
+          "notS": 1
+        },
+        "mark_batch_03_regrades.jsonl": {
+          "S": 1,
+          "notS": 0
+        },
+        "mark_batch_04_grades.jsonl": {
+          "S": 1,
+          "notS": 0
+        }
+      },
+      "day_votes_S": [
+        "austin_marks_v7.jsonl",
+        "austin_verdicts.json",
+        "mark_batch_03_regrades.jsonl",
+        "mark_batch_04_grades.jsonl"
+      ],
+      "day_votes_notS": [
+        "mark_batch_02_grades.jsonl"
+      ]
+    },
+    {
+      "key": "SPY_2026-03-02",
+      "S_in": [
+        "austin_verdicts.json",
+        "mark_batch_02_grades.jsonl"
+      ],
+      "notS_in": [
+        "austin_marks_v7.jsonl",
+        "mark_batch_03_regrades.jsonl"
+      ],
+      "counts": {
+        "austin_marks_v7.jsonl": {
+          "S": 0,
+          "notS": 1
+        },
+        "austin_verdicts.json": {
+          "S": 1,
+          "notS": 0
+        },
+        "mark_batch_02_grades.jsonl": {
+          "S": 1,
+          "notS": 0
+        },
+        "mark_batch_03_regrades.jsonl": {
+          "S": 0,
+          "notS": 1
+        }
+      },
+      "day_votes_S": [
+        "austin_verdicts.json",
+        "mark_batch_02_grades.jsonl"
+      ],
+      "day_votes_notS": [
+        "austin_marks_v7.jsonl",
+        "mark_batch_03_regrades.jsonl"
+      ]
+    },
+    {
+      "key": "TSLA_2024-06-24",
+      "S_in": [
+        "austin_verdicts.json"
+      ],
+      "notS_in": [
+        "austin_marks_v7.jsonl",
+        "derived_marks_v1.jsonl",
+        "mark_batch_04_grades.jsonl"
+      ],
+      "counts": {
+        "austin_marks_v7.jsonl": {
+          "S": 0,
+          "notS": 3
+        },
+        "austin_verdicts.json": {
+          "S": 1,
+          "notS": 0
+        },
+        "derived_marks_v1.jsonl": {
+          "S": 0,
+          "notS": 1
+        },
+        "mark_batch_04_grades.jsonl": {
+          "S": 0,
+          "notS": 2
+        }
+      },
+      "day_votes_S": [
+        "austin_verdicts.json"
+      ],
+      "day_votes_notS": [
+        "austin_marks_v7.jsonl",
+        "derived_marks_v1.jsonl",
+        "mark_batch_04_grades.jsonl"
+      ]
+    },
+    {
+      "key": "TSLA_2026-07-09",
+      "S_in": [
+        "austin_marks_v7.jsonl",
+        "recovered_reviews.jsonl"
+      ],
+      "notS_in": [
+        "marks/deck_marks_tsla_2026-08-20.jsonl"
+      ],
+      "counts": {
+        "austin_marks_v7.jsonl": {
+          "S": 1,
+          "notS": 0
+        },
+        "marks/deck_marks_tsla_2026-08-20.jsonl": {
+          "S": 0,
+          "notS": 1
+        },
+        "recovered_reviews.jsonl": {
+          "S": 1,
+          "notS": 0
+        }
+      },
+      "day_votes_S": [
+        "austin_marks_v7.jsonl",
+        "recovered_reviews.jsonl"
+      ],
+      "day_votes_notS": [
+        "marks/deck_marks_tsla_2026-08-20.jsonl"
+      ]
+    }
+  ],
+  "within_corpus_conflicts": [
+    {
+      "key": "AAPL_2024-03-28",
+      "S_in": [
+        "austin_marks_v7.jsonl",
+        "derived_marks_v2.jsonl"
+      ],
+      "notS_in": [
+        "austin_marks_v7.jsonl"
+      ],
+      "counts": {
+        "austin_marks_v7.jsonl": {
+          "S": 1,
+          "notS": 1
+        },
+        "derived_marks_v2.jsonl": {
+          "S": 1,
+          "notS": 0
+        }
+      },
+      "day_votes_S": [
+        "austin_marks_v7.jsonl",
+        "derived_marks_v2.jsonl"
+      ],
+      "day_votes_notS": []
+    },
+    {
+      "key": "AAPL_2025-01-13",
+      "S_in": [
+        "austin_marks_v7.jsonl",
+        "derived_marks_v2.jsonl"
+      ],
+      "notS_in": [
+        "austin_marks_v7.jsonl"
+      ],
+      "counts": {
+        "austin_marks_v7.jsonl": {
+          "S": 2,
+          "notS": 1
+        },
+        "derived_marks_v2.jsonl": {
+          "S": 2,
+          "notS": 0
+        }
+      },
+      "day_votes_S": [
+        "austin_marks_v7.jsonl",
+        "derived_marks_v2.jsonl"
+      ],
+      "day_votes_notS": []
+    },
+    {
+      "key": "AMD_2024-11-11",
+      "S_in": [
+        "austin_marks_v7.jsonl",
+        "derived_marks_v2.jsonl"
+      ],
+      "notS_in": [
+        "austin_marks_v7.jsonl"
+      ],
+      "counts": {
+        "austin_marks_v7.jsonl": {
+          "S": 1,
+          "notS": 1
+        },
+        "derived_marks_v2.jsonl": {
+          "S": 1,
+          "notS": 0
+        }
+      },
+      "day_votes_S": [
+        "austin_marks_v7.jsonl",
+        "derived_marks_v2.jsonl"
+      ],
+      "day_votes_notS": []
+    },
+    {
+      "key": "COIN_2026-04-09",
+      "S_in": [
+        "austin_marks_v7.jsonl",
+        "austin_verdicts.json",
+        "mark_batch_02_grades.jsonl"
+      ],
+      "notS_in": [
+        "austin_marks_v7.jsonl",
+        "mark_batch_02_grades.jsonl"
+      ],
+      "counts": {
+        "austin_marks_v7.jsonl": {
+          "S": 1,
+          "notS": 1
+        },
+        "austin_verdicts.json": {
+          "S": 1,
+          "notS": 0
+        },
+        "mark_batch_02_grades.jsonl": {
+          "S": 1,
+          "notS": 1
+        }
+      },
+      "day_votes_S": [
+        "austin_marks_v7.jsonl",
+        "austin_verdicts.json",
+        "mark_batch_02_grades.jsonl"
+      ],
+      "day_votes_notS": []
+    },
+    {
+      "key": "INTC_2025-02-27",
+      "S_in": [
+        "austin_marks_v7.jsonl",
+        "derived_marks_v2.jsonl"
+      ],
+      "notS_in": [
+        "austin_marks_v7.jsonl"
+      ],
+      "counts": {
+        "austin_marks_v7.jsonl": {
+          "S": 1,
+          "notS": 1
+        },
+        "derived_marks_v2.jsonl": {
+          "S": 1,
+          "notS": 0
+        }
+      },
+      "day_votes_S": [
+        "austin_marks_v7.jsonl",
+        "derived_marks_v2.jsonl"
+      ],
+      "day_votes_notS": []
+    },
+    {
+      "key": "IWM_2024-02-28",
+      "S_in": [
+        "austin_marks_v7.jsonl",
+        "austin_verdicts.json",
+        "mark_batch_03_regrades.jsonl"
+      ],
+      "notS_in": [
+        "austin_marks_v7.jsonl",
+        "austin_verdicts.json"
+      ],
+      "counts": {
+        "austin_marks_v7.jsonl": {
+          "S": 1,
+          "notS": 1
+        },
+        "austin_verdicts.json": {
+          "S": 1,
+          "notS": 1
+        },
+        "mark_batch_03_regrades.jsonl": {
+          "S": 1,
+          "notS": 0
+        }
+      },
+      "day_votes_S": [
+        "austin_marks_v7.jsonl",
+        "austin_verdicts.json",
+        "mark_batch_03_regrades.jsonl"
+      ],
+      "day_votes_notS": []
+    },
+    {
+      "key": "IWM_2025-09-05",
+      "S_in": [
+        "austin_marks_v7.jsonl",
+        "austin_verdicts.json"
+      ],
+      "notS_in": [
+        "austin_marks_v7.jsonl",
+        "austin_verdicts.json"
+      ],
+      "counts": {
+        "austin_marks_v7.jsonl": {
+          "S": 1,
+          "notS": 1
+        },
+        "austin_verdicts.json": {
+          "S": 1,
+          "notS": 1
+        }
+      },
+      "day_votes_S": [
+        "austin_marks_v7.jsonl",
+        "austin_verdicts.json"
+      ],
+      "day_votes_notS": []
+    },
+    {
+      "key": "MSFT_2025-04-17",
+      "S_in": [
+        "austin_marks_v7.jsonl",
+        "derived_marks_v2.jsonl"
+      ],
+      "notS_in": [
+        "austin_marks_v7.jsonl"
+      ],
+      "counts": {
+        "austin_marks_v7.jsonl": {
+          "S": 1,
+          "notS": 1
+        },
+        "derived_marks_v2.jsonl": {
+          "S": 1,
+          "notS": 0
+        }
+      },
+      "day_votes_S": [
+        "austin_marks_v7.jsonl",
+        "derived_marks_v2.jsonl"
+      ],
+      "day_votes_notS": []
+    },
+    {
+      "key": "MSFT_2026-01-20",
+      "S_in": [
+        "austin_marks_v7.jsonl",
+        "austin_verdicts.json",
+        "mark_batch_02_grades.jsonl"
+      ],
+      "notS_in": [
+        "austin_marks_v7.jsonl",
+        "mark_batch_02_grades.jsonl"
+      ],
+      "counts": {
+        "austin_marks_v7.jsonl": {
+          "S": 1,
+          "notS": 1
+        },
+        "austin_verdicts.json": {
+          "S": 1,
+          "notS": 0
+        },
+        "mark_batch_02_grades.jsonl": {
+          "S": 1,
+          "notS": 1
+        }
+      },
+      "day_votes_S": [
+        "austin_marks_v7.jsonl",
+        "austin_verdicts.json",
+        "mark_batch_02_grades.jsonl"
+      ],
+      "day_votes_notS": []
+    },
+    {
+      "key": "MSTR_2025-12-12",
+      "S_in": [
+        "austin_marks_v7.jsonl",
+        "derived_marks_v2.jsonl"
+      ],
+      "notS_in": [
+        "austin_marks_v7.jsonl"
+      ],
+      "counts": {
+        "austin_marks_v7.jsonl": {
+          "S": 1,
+          "notS": 1
+        },
+        "derived_marks_v2.jsonl": {
+          "S": 1,
+          "notS": 0
+        }
+      },
+      "day_votes_S": [
+        "austin_marks_v7.jsonl",
+        "derived_marks_v2.jsonl"
+      ],
+      "day_votes_notS": []
+    },
+    {
+      "key": "NVDA_2025-09-29",
+      "S_in": [
+        "austin_marks_v7.jsonl",
+        "derived_marks_v2.jsonl"
+      ],
+      "notS_in": [
+        "austin_marks_v7.jsonl"
+      ],
+      "counts": {
+        "austin_marks_v7.jsonl": {
+          "S": 1,
+          "notS": 1
+        },
+        "derived_marks_v2.jsonl": {
+          "S": 1,
+          "notS": 0
+        }
+      },
+      "day_votes_S": [
+        "austin_marks_v7.jsonl",
+        "derived_marks_v2.jsonl"
+      ],
+      "day_votes_notS": []
+    },
+    {
+      "key": "QQQ_2024-03-05",
+      "S_in": [
+        "austin_marks_v7.jsonl",
+        "austin_verdicts.json"
+      ],
+      "notS_in": [
+        "austin_marks_v7.jsonl",
+        "austin_verdicts.json"
+      ],
+      "counts": {
+        "austin_marks_v7.jsonl": {
+          "S": 1,
+          "notS": 1
+        },
+        "austin_verdicts.json": {
+          "S": 1,
+          "notS": 1
+        }
+      },
+      "day_votes_S": [
+        "austin_marks_v7.jsonl",
+        "austin_verdicts.json"
+      ],
+      "day_votes_notS": []
+    },
+    {
+      "key": "QQQ_2025-01-10",
+      "S_in": [
+        "austin_marks_v7.jsonl",
+        "austin_verdicts.json",
+        "mark_batch_02_grades.jsonl"
+      ],
+      "notS_in": [
+        "austin_marks_v7.jsonl",
+        "mark_batch_02_grades.jsonl"
+      ],
+      "counts": {
+        "austin_marks_v7.jsonl": {
+          "S": 2,
+          "notS": 2
+        },
+        "austin_verdicts.json": {
+          "S": 1,
+          "notS": 0
+        },
+        "mark_batch_02_grades.jsonl": {
+          "S": 1,
+          "notS": 2
+        }
+      },
+      "day_votes_S": [
+        "austin_marks_v7.jsonl",
+        "austin_verdicts.json",
+        "mark_batch_02_grades.jsonl"
+      ],
+      "day_votes_notS": []
+    },
+    {
+      "key": "QQQ_2025-02-25",
+      "S_in": [
+        "austin_marks_v7.jsonl",
+        "austin_verdicts.json"
+      ],
+      "notS_in": [
+        "austin_marks_v7.jsonl",
+        "austin_verdicts.json"
+      ],
+      "counts": {
+        "austin_marks_v7.jsonl": {
+          "S": 1,
+          "notS": 1
+        },
+        "austin_verdicts.json": {
+          "S": 1,
+          "notS": 1
+        }
+      },
+      "day_votes_S": [
+        "austin_marks_v7.jsonl",
+        "austin_verdicts.json"
+      ],
+      "day_votes_notS": []
+    },
+    {
+      "key": "QQQ_2025-12-05",
+      "S_in": [
+        "austin_marks_v7.jsonl",
+        "austin_verdicts.json",
+        "mark_batch_02_grades.jsonl"
+      ],
+      "notS_in": [
+        "austin_marks_v7.jsonl",
+        "mark_batch_02_grades.jsonl"
+      ],
+      "counts": {
+        "austin_marks_v7.jsonl": {
+          "S": 1,
+          "notS": 1
+        },
+        "austin_verdicts.json": {
+          "S": 2,
+          "notS": 0
+        },
+        "mark_batch_02_grades.jsonl": {
+          "S": 1,
+          "notS": 1
+        }
+      },
+      "day_votes_S": [
+        "austin_marks_v7.jsonl",
+        "austin_verdicts.json",
+        "mark_batch_02_grades.jsonl"
+      ],
+      "day_votes_notS": []
+    },
+    {
+      "key": "SPCX_2026-06-30",
+      "S_in": [
+        "austin_marks_v7.jsonl",
+        "derived_marks_v2.jsonl"
+      ],
+      "notS_in": [
+        "austin_marks_v7.jsonl"
+      ],
+      "counts": {
+        "austin_marks_v7.jsonl": {
+          "S": 1,
+          "notS": 1
+        },
+        "derived_marks_v2.jsonl": {
+          "S": 1,
+          "notS": 0
+        }
+      },
+      "day_votes_S": [
+        "austin_marks_v7.jsonl",
+        "derived_marks_v2.jsonl"
+      ],
+      "day_votes_notS": []
+    },
+    {
+      "key": "TSLA_2024-01-03",
+      "S_in": [
+        "austin_marks_v7.jsonl",
+        "derived_marks_v2.jsonl"
+      ],
+      "notS_in": [
+        "austin_marks_v7.jsonl"
+      ],
+      "counts": {
+        "austin_marks_v7.jsonl": {
+          "S": 1,
+          "notS": 1
+        },
+        "derived_marks_v2.jsonl": {
+          "S": 1,
+          "notS": 0
+        }
+      },
+      "day_votes_S": [
+        "austin_marks_v7.jsonl",
+        "derived_marks_v2.jsonl"
+      ],
+      "day_votes_notS": []
+    },
+    {
+      "key": "TSLA_2024-03-27",
+      "S_in": [
+        "austin_marks_v7.jsonl",
+        "austin_verdicts.json",
+        "mark_batch_04_grades.jsonl"
+      ],
+      "notS_in": [
+        "austin_marks_v7.jsonl",
+        "mark_batch_04_grades.jsonl"
+      ],
+      "counts": {
+        "austin_marks_v7.jsonl": {
+          "S": 2,
+          "notS": 2
+        },
+        "austin_verdicts.json": {
+          "S": 1,
+          "notS": 0
+        },
+        "mark_batch_04_grades.jsonl": {
+          "S": 1,
+          "notS": 2
+        }
+      },
+      "day_votes_S": [
+        "austin_marks_v7.jsonl",
+        "austin_verdicts.json",
+        "mark_batch_04_grades.jsonl"
+      ],
+      "day_votes_notS": []
+    }
+  ],
+  "S_days_unanimous_list": [
+    "AAPL_2024-12-20",
+    "AAPL_2025-01-10",
+    "AAPL_2025-01-16",
+    "AAPL_2025-07-01",
+    "AAPL_2025-08-25",
+    "AAPL_2025-09-04",
+    "AAPL_2025-09-11",
+    "AAPL_2026-04-06",
+    "AAPL_2026-07-08",
+    "AAPL_2026-07-22",
+    "AAPL_2026-08-03",
+    "ACHR_2025-12-19",
+    "ACHR_2026-02-05",
+    "ACHR_2026-04-10",
+    "AMD_2025-10-24",
+    "AMD_2025-11-13",
+    "AMD_2025-11-21",
+    "AMD_2026-01-08",
+    "AMD_2026-03-24",
+    "AMD_2026-05-13",
+    "AMZN_2025-01-22",
+    "AMZN_2025-09-10",
+    "AMZN_2025-09-25",
+    "AMZN_2026-01-14",
+    "AMZN_2026-05-11",
+    "AMZN_2026-05-12",
+    "AMZN_2026-06-15",
+    "AMZN_2026-07-23",
+    "ARM_2024-10-28",
+    "ARM_2024-11-11",
+    "AVGO_2024-08-07",
+    "AVGO_2025-02-07",
+    "AVGO_2025-05-02",
+    "AVGO_2025-08-14",
+    "AVGO_2025-10-10",
+    "AVGO_2026-06-25",
+    "AVGO_2026-06-29",
+    "BABA_2024-12-17",
+    "BABA_2025-02-05",
+    "BABA_2025-04-01",
+    "BABA_2025-04-07",
+    "BABA_2025-07-22",
+    "BABA_2025-08-28",
+    "BABA_2026-02-04",
+    "BABA_2026-05-08",
+    "BABA_2026-06-12",
+    "COIN_2025-03-06",
+    "COIN_2025-06-26",
+    "COIN_2025-12-18",
+    "COIN_2026-02-10",
+    "COIN_2026-04-07",
+    "COIN_2026-06-12",
+    "CRM_2025-06-02",
+    "CRM_2025-09-19",
+    "CRM_2025-10-16",
+    "CRM_2026-02-11",
+    "DIA_2024-09-06",
+    "DIA_2026-04-06",
+    "DIA_2026-05-07",
+    "GOOGL_2024-11-20",
+    "GOOGL_2025-09-05",
+    "GOOGL_2025-11-24",
+    "GOOGL_2026-03-13",
+    "HOOD_2024-10-31",
+    "HOOD_2024-11-06",
+    "HOOD_2025-03-04",
+    "HOOD_2025-09-15",
+    "HOOD_2025-12-11",
+    "HOOD_2026-02-05",
+    "HOOD_2026-03-23",
+    "HOOD_2026-04-13",
+    "HOOD_2026-07-10",
+    "INTC_2026-01-26",
+    "INTC_2026-01-27",
+    "INTC_2026-02-02",
+    "INTC_2026-05-15",
+    "INTC_2026-06-10",
+    "IREN_2025-10-14",
+    "IREN_2026-05-01",
+    "IWM_2024-03-22",
+    "IWM_2024-04-03",
+    "IWM_2024-08-22",
+    "IWM_2024-10-15",
+    "IWM_2025-03-14",
+    "IWM_2025-04-10",
+    "IWM_2025-04-14",
+    "IWM_2025-06-10",
+    "IWM_2025-08-20",
+    "IWM_2025-12-01",
+    "IWM_2025-12-04",
+    "IWM_2026-05-01",
+    "IWM_2026-05-28",
+    "MARA_2024-08-02",
+    "MARA_2024-10-18",
+    "MARA_2025-07-18",
+    "MARA_2025-08-22",
+    "MARA_2026-03-02",
+    "MARA_2026-03-10",
+    "MARA_2026-07-09",
+    "META_2024-08-27",
+    "META_2025-05-01",
+    "META_2025-08-11",
+    "META_2026-03-04",
+    "META_2026-03-05",
+    "META_2026-04-07",
+    "META_2026-04-29",
+    "META_2026-05-05",
+    "MSFT_2024-12-02",
+    "MSFT_2025-03-13",
+    "MSFT_2025-08-08",
+    "MSFT_2025-12-30",
+    "MSFT_2026-01-02",
+    "MSFT_2026-03-11",
+    "MSTR_2025-01-27",
+    "MSTR_2025-08-26",
+    "MSTR_2026-03-13",
+    "MSTR_2026-07-17",
+    "MU_2025-03-28",
+    "MU_2025-06-25",
+    "MU_2025-08-12",
+    "MU_2025-11-07",
+    "MU_2026-02-09",
+    "MU_2026-03-09",
+    "MU_2026-03-31",
+    "MU_2026-04-16",
+    "MU_2026-05-20",
+    "NFLX_2024-08-05",
+    "NFLX_2025-07-25",
+    "NFLX_2026-04-22",
+    "NFLX_2026-05-12",
+    "NVDA_2024-02-26",
+    "NVDA_2024-09-03",
+    "NVDA_2024-12-20",
+    "NVDA_2025-04-29",
+    "NVDA_2025-11-28",
+    "NVDA_2026-05-08",
+    "ORCL_2025-05-06",
+    "ORCL_2025-07-08",
+    "ORCL_2026-01-16",
+    "ORCL_2026-06-24",
+    "PLTR_2024-03-11",
+    "PLTR_2024-08-20",
+    "PLTR_2024-09-20",
+    "PLTR_2025-07-01",
+    "PLTR_2025-09-02",
+    "PLTR_2025-09-15",
+    "PLTR_2025-12-11",
+    "PLTR_2025-12-15",
+    "PLTR_2026-01-06",
+    "PLTR_2026-03-31",
+    "PLTR_2026-05-27",
+    "QQQ_2024-03-15",
+    "QQQ_2024-08-08",
+    "QQQ_2024-08-23",
+    "QQQ_2025-01-16",
+    "QQQ_2025-02-18",
+    "QQQ_2025-02-26",
+    "QQQ_2025-03-17",
+    "QQQ_2025-08-01",
+    "QQQ_2025-08-08",
+    "QQQ_2025-09-09",
+    "QQQ_2025-09-16",
+    "QQQ_2025-09-23",
+    "QQQ_2025-12-30",
+    "QQQ_2026-02-09",
+    "QQQ_2026-02-12",
+    "QQQ_2026-03-04",
+    "QQQ_2026-06-29",
+    "QQQ_2026-06-30",
+    "QQQ_2026-07-07",
+    "QQQ_2026-07-09",
+    "QQQ_2026-07-15",
+    "QQQ_2026-07-16",
+    "QQQ_2026-07-20",
+    "QQQ_2026-07-23",
+    "QQQ_2026-07-27",
+    "QQQ_2026-08-03",
+    "QQQ_2026-08-04",
+    "QQQ_2026-08-10",
+    "SMCI_2025-11-17",
+    "SOFI_2024-08-05",
+    "SOFI_2024-10-30",
+    "SOFI_2025-03-12",
+    "SOFI_2025-06-18",
+    "SOFI_2025-10-03",
+    "SOFI_2026-01-09",
+    "SOFI_2026-02-10",
+    "SOFI_2026-04-17",
+    "SPCX_2026-06-25",
+    "SPY_2024-12-16",
+    "SPY_2025-11-14",
+    "SPY_2025-11-19",
+    "SPY_2026-03-03",
+    "SPY_2026-03-05",
+    "SPY_2026-07-07",
+    "SPY_2026-07-09",
+    "SPY_2026-07-20",
+    "SPY_2026-07-21",
+    "SPY_2026-07-27",
+    "SPY_2026-08-04",
+    "TSLA_2024-04-22",
+    "TSLA_2025-06-27",
+    "TSLA_2025-09-05",
+    "TSLA_2025-10-07",
+    "TSLA_2025-11-21",
+    "TSLA_2025-12-15",
+    "TSLA_2025-12-24",
+    "TSLA_2026-01-14",
+    "TSLA_2026-01-16",
+    "TSLA_2026-02-18",
+    "TSLA_2026-03-04",
+    "TSLA_2026-03-12",
+    "TSLA_2026-04-08",
+    "TSLA_2026-04-22",
+    "TSLA_2026-05-19",
+    "TSLA_2026-05-21",
+    "TSLA_2026-06-03",
+    "TSLA_2026-06-08",
+    "TSLA_2026-06-10",
+    "TSLA_2026-06-22",
+    "TSLA_2026-06-29",
+    "TSLA_2026-07-23",
+    "TSLA_2026-07-30",
+    "TSM_2026-01-09",
+    "TSM_2026-02-02",
+    "TSM_2026-02-11",
+    "TSM_2026-02-17",
+    "TSM_2026-02-23",
+    "TSM_2026-05-29",
+    "UBER_2024-09-10",
+    "UBER_2025-02-07",
+    "UBER_2025-03-12",
+    "UBER_2025-08-13",
+    "UBER_2025-09-11",
+    "UBER_2026-07-06"
+  ],
+  "S_days_contested_list": [
+    "AAPL_2024-03-28",
+    "AAPL_2025-01-13",
+    "AMD_2024-11-11",
+    "AMD_2025-06-05",
+    "AMD_2026-05-14",
+    "COIN_2025-10-21",
+    "COIN_2026-04-09",
+    "GOOGL_2024-10-15",
+    "GOOGL_2025-08-07",
+    "INTC_2025-02-27",
+    "IREN_2026-05-21",
+    "IWM_2024-02-28",
+    "IWM_2025-09-05",
+    "IWM_2025-10-21",
+    "IWM_2026-07-24",
+    "MARA_2024-12-17",
+    "MSFT_2025-03-04",
+    "MSFT_2025-03-20",
+    "MSFT_2025-04-17",
+    "MSFT_2026-01-20",
+    "MSTR_2025-12-12",
+    "MU_2026-01-28",
+    "NVDA_2024-11-18",
+    "NVDA_2024-12-16",
+    "NVDA_2025-09-29",
+    "ORCL_2025-03-28",
+    "ORCL_2025-11-03",
+    "PLTR_2024-10-23",
+    "PLTR_2025-09-18",
+    "PLTR_2025-12-10",
+    "QQQ_2024-01-04",
+    "QQQ_2024-03-05",
+    "QQQ_2024-05-08",
+    "QQQ_2024-10-03",
+    "QQQ_2024-12-16",
+    "QQQ_2025-01-10",
+    "QQQ_2025-02-25",
+    "QQQ_2025-03-18",
+    "QQQ_2025-06-24",
+    "QQQ_2025-12-05",
+    "QQQ_2026-02-11",
+    "QQQ_2026-07-24",
+    "QQQ_2026-07-31",
+    "SPCX_2026-06-30",
+    "SPY_2024-04-03",
+    "SPY_2024-06-11",
+    "SPY_2024-09-19",
+    "SPY_2025-03-18",
+    "SPY_2026-03-02",
+    "TSLA_2024-01-03",
+    "TSLA_2024-03-27",
+    "TSLA_2024-06-24",
+    "TSLA_2026-07-09"
+  ]
+}

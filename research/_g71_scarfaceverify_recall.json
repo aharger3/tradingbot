@@ -1,0 +1,6848 @@
+[
+{
+"card_id": "NVDA_2024-04-11",
+"symbol": "NVDA",
+"day": "2024-04-11",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 9,
+"n_raw": 16,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "META_2024-04-16",
+"symbol": "META",
+"day": "2024-04-16",
+"tier": "T2",
+"dir": "put",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 1,
+"n_raw": 1,
+"fired_dirs": [],
+"sig_dirs": [
+"put"
+],
+"grades": []
+},
+{
+"card_id": "TSLA_2024-04-23",
+"symbol": "TSLA",
+"day": "2024-04-23",
+"tier": "T2",
+"dir": "put",
+"no_archive": false,
+"n_fired": 2,
+"n_sig": 9,
+"n_raw": 20,
+"fired_dirs": [
+"call",
+"put"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "QQQ_2024-04-23",
+"symbol": "QQQ",
+"day": "2024-04-23",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 2,
+"n_sig": 11,
+"n_raw": 24,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "NVDA_2024-05-08",
+"symbol": "NVDA",
+"day": "2024-05-08",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 13,
+"n_raw": 20,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "NVDA_2024-05-10",
+"symbol": "NVDA",
+"day": "2024-05-10",
+"tier": "T1",
+"dir": "call",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 9,
+"n_raw": 14,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "AMD_2024-05-17",
+"symbol": "AMD",
+"day": "2024-05-17",
+"tier": "T1",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 10,
+"n_raw": 16,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "AAPL_2024-05-17",
+"symbol": "AAPL",
+"day": "2024-05-17",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 4,
+"n_raw": 12,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "TSLA_2024-05-22",
+"symbol": "TSLA",
+"day": "2024-05-22",
+"tier": "T2",
+"dir": "put",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 20,
+"n_raw": 42,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "NVDA_2024-05-30",
+"symbol": "NVDA",
+"day": "2024-05-30",
+"tier": "T2",
+"dir": "put",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 5,
+"n_raw": 9,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "TSLA_2024-05-30",
+"symbol": "TSLA",
+"day": "2024-05-30",
+"tier": "T1",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 1,
+"n_raw": 1,
+"fired_dirs": [],
+"sig_dirs": [
+"call"
+],
+"grades": []
+},
+{
+"card_id": "TSLA_2024-06-05",
+"symbol": "TSLA",
+"day": "2024-06-05",
+"tier": "T1",
+"dir": "put",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 5,
+"n_raw": 7,
+"fired_dirs": [
+"put"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "QQQ_2024-06-21",
+"symbol": "QQQ",
+"day": "2024-06-21",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 3,
+"n_raw": 3,
+"fired_dirs": [],
+"sig_dirs": [
+"put"
+],
+"grades": []
+},
+{
+"card_id": "AMD_2024-07-05",
+"symbol": "AMD",
+"day": "2024-07-05",
+"tier": "T1",
+"dir": "call",
+"no_archive": false,
+"n_fired": 4,
+"n_sig": 8,
+"n_raw": 16,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "QQQ_2024-07-05",
+"symbol": "QQQ",
+"day": "2024-07-05",
+"tier": "T1",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 10,
+"n_raw": 20,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "AAPL_2024-07-10",
+"symbol": "AAPL",
+"day": "2024-07-10",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 14,
+"n_raw": 27,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "TSLA_2024-07-10",
+"symbol": "TSLA",
+"day": "2024-07-10",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 7,
+"n_raw": 14,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "TSLA_2024-07-15",
+"symbol": "TSLA",
+"day": "2024-07-15",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 10,
+"n_raw": 15,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "NVDA_2024-07-16",
+"symbol": "NVDA",
+"day": "2024-07-16",
+"tier": "T1",
+"dir": "put",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 10,
+"n_raw": 16,
+"fired_dirs": [],
+"sig_dirs": [
+"call"
+],
+"grades": []
+},
+{
+"card_id": "QQQ_2024-07-16",
+"symbol": "QQQ",
+"day": "2024-07-16",
+"tier": "T2",
+"dir": "put",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 3,
+"n_raw": 8,
+"fired_dirs": [],
+"sig_dirs": [
+"put"
+],
+"grades": []
+},
+{
+"card_id": "TSLA_2024-07-25",
+"symbol": "TSLA",
+"day": "2024-07-25",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 6,
+"n_raw": 9,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "AMZN_2024-08-02",
+"symbol": "AMZN",
+"day": "2024-08-02",
+"tier": "T2",
+"dir": "put",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 5,
+"n_raw": 6,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "AAPL_2024-08-07",
+"symbol": "AAPL",
+"day": "2024-08-07",
+"tier": "T1",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 2,
+"n_raw": 2,
+"fired_dirs": [],
+"sig_dirs": [
+"call"
+],
+"grades": []
+},
+{
+"card_id": "AMD_2024-08-07",
+"symbol": "AMD",
+"day": "2024-08-07",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 9,
+"n_raw": 17,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "QQQ_2024-08-09",
+"symbol": "QQQ",
+"day": "2024-08-09",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 1,
+"n_raw": 1,
+"fired_dirs": [],
+"sig_dirs": [
+"put"
+],
+"grades": []
+},
+{
+"card_id": "QQQ_2024-08-14",
+"symbol": "QQQ",
+"day": "2024-08-14",
+"tier": "T2",
+"dir": "put",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 8,
+"n_raw": 11,
+"fired_dirs": [],
+"sig_dirs": [
+"put"
+],
+"grades": []
+},
+{
+"card_id": "AAPL_2024-08-21",
+"symbol": "AAPL",
+"day": "2024-08-21",
+"tier": "T1",
+"dir": "call",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 6,
+"n_raw": 7,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"A"
+]
+},
+{
+"card_id": "QQQ_2024-08-30",
+"symbol": "QQQ",
+"day": "2024-08-30",
+"tier": "T2",
+"dir": "put",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 7,
+"n_raw": 11,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "AAPL_2024-09-05",
+"symbol": "AAPL",
+"day": "2024-09-05",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 1,
+"n_raw": 1,
+"fired_dirs": [],
+"sig_dirs": [
+"put"
+],
+"grades": []
+},
+{
+"card_id": "TSLA_2024-09-10",
+"symbol": "TSLA",
+"day": "2024-09-10",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 11,
+"n_raw": 19,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "QQQ_2024-09-10",
+"symbol": "QQQ",
+"day": "2024-09-10",
+"tier": "T2",
+"dir": "put",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 1,
+"n_raw": 2,
+"fired_dirs": [],
+"sig_dirs": [
+"call"
+],
+"grades": []
+},
+{
+"card_id": "NVDA_2024-09-10",
+"symbol": "NVDA",
+"day": "2024-09-10",
+"tier": "T2",
+"dir": "put",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 15,
+"n_raw": 28,
+"fired_dirs": [
+"put"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "NVDA_2024-10-16",
+"symbol": "NVDA",
+"day": "2024-10-16",
+"tier": "T1",
+"dir": "put",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 2,
+"n_raw": 2,
+"fired_dirs": [],
+"sig_dirs": [
+"call"
+],
+"grades": []
+},
+{
+"card_id": "AAPL_2024-10-18",
+"symbol": "AAPL",
+"day": "2024-10-18",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 2,
+"n_raw": 3,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "NVDA_2024-10-22",
+"symbol": "NVDA",
+"day": "2024-10-22",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 3,
+"n_raw": 6,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "QQQ_2024-10-31",
+"symbol": "QQQ",
+"day": "2024-10-31",
+"tier": "T2",
+"dir": "put",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 7,
+"n_raw": 12,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "TSLA_2024-11-08",
+"symbol": "TSLA",
+"day": "2024-11-08",
+"tier": "T2",
+"dir": "put",
+"no_archive": false,
+"n_fired": 4,
+"n_sig": 7,
+"n_raw": 21,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"A+",
+"B",
+"C"
+]
+},
+{
+"card_id": "AAPL_2024-11-08",
+"symbol": "AAPL",
+"day": "2024-11-08",
+"tier": "T1",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 4,
+"n_raw": 16,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "TSLA_2024-11-13",
+"symbol": "TSLA",
+"day": "2024-11-13",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 2,
+"n_sig": 9,
+"n_raw": 15,
+"fired_dirs": [
+"put"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "NVDA_2024-11-13",
+"symbol": "NVDA",
+"day": "2024-11-13",
+"tier": "T2",
+"dir": "put",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 7,
+"n_raw": 12,
+"fired_dirs": [],
+"sig_dirs": [
+"put"
+],
+"grades": []
+},
+{
+"card_id": "NVDA_2024-11-15",
+"symbol": "NVDA",
+"day": "2024-11-15",
+"tier": "T2",
+"dir": "put",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 3,
+"n_raw": 4,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "TSLA_2024-11-15",
+"symbol": "TSLA",
+"day": "2024-11-15",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 2,
+"n_sig": 8,
+"n_raw": 15,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B",
+"C"
+]
+},
+{
+"card_id": "TSLA_2024-11-20",
+"symbol": "TSLA",
+"day": "2024-11-20",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 2,
+"n_sig": 5,
+"n_raw": 8,
+"fired_dirs": [
+"call",
+"put"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B",
+"C"
+]
+},
+{
+"card_id": "TSLA_2024-11-22",
+"symbol": "TSLA",
+"day": "2024-11-22",
+"tier": "T1",
+"dir": "call",
+"no_archive": false,
+"n_fired": 4,
+"n_sig": 11,
+"n_raw": 32,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B",
+"C"
+]
+},
+{
+"card_id": "MSFT_2024-12-04",
+"symbol": "MSFT",
+"day": "2024-12-04",
+"tier": "T1",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 4,
+"n_raw": 6,
+"fired_dirs": [],
+"sig_dirs": [
+"call"
+],
+"grades": []
+},
+{
+"card_id": "TSLA_2024-12-04",
+"symbol": "TSLA",
+"day": "2024-12-04",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 8,
+"n_raw": 12,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"C"
+]
+},
+{
+"card_id": "NVDA_2024-12-06",
+"symbol": "NVDA",
+"day": "2024-12-06",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 3,
+"n_raw": 10,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "TSLA_2024-12-13",
+"symbol": "TSLA",
+"day": "2024-12-13",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 2,
+"n_sig": 6,
+"n_raw": 10,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B",
+"C"
+]
+},
+{
+"card_id": "AAPL_2024-12-13",
+"symbol": "AAPL",
+"day": "2024-12-13",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 1,
+"n_raw": 1,
+"fired_dirs": [],
+"sig_dirs": [
+"put"
+],
+"grades": []
+},
+{
+"card_id": "QQQ_2024-12-13",
+"symbol": "QQQ",
+"day": "2024-12-13",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 4,
+"n_raw": 5,
+"fired_dirs": [],
+"sig_dirs": [
+"put"
+],
+"grades": []
+},
+{
+"card_id": "TSLA_2024-12-17",
+"symbol": "TSLA",
+"day": "2024-12-17",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 2,
+"n_sig": 9,
+"n_raw": 17,
+"fired_dirs": [
+"call",
+"put"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "AAPL_2024-12-17",
+"symbol": "AAPL",
+"day": "2024-12-17",
+"tier": "T1",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 7,
+"n_raw": 11,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "TSLA_2024-12-19",
+"symbol": "TSLA",
+"day": "2024-12-19",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 3,
+"n_raw": 6,
+"fired_dirs": [],
+"sig_dirs": [
+"put"
+],
+"grades": []
+},
+{
+"card_id": "TSLA_2025-01-02",
+"symbol": "TSLA",
+"day": "2025-01-02",
+"tier": "T2",
+"dir": "put",
+"no_archive": false,
+"n_fired": 2,
+"n_sig": 9,
+"n_raw": 13,
+"fired_dirs": [
+"put"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B",
+"C"
+]
+},
+{
+"card_id": "NVDA_2025-01-02",
+"symbol": "NVDA",
+"day": "2025-01-02",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 14,
+"n_raw": 19,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "QQQ_2025-01-08",
+"symbol": "QQQ",
+"day": "2025-01-08",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 4,
+"n_raw": 8,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "TSLA_2025-01-08",
+"symbol": "TSLA",
+"day": "2025-01-08",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 6,
+"n_raw": 9,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "TSLA_2025-01-14",
+"symbol": "TSLA",
+"day": "2025-01-14",
+"tier": "T1",
+"dir": "call",
+"no_archive": false,
+"n_fired": 2,
+"n_sig": 10,
+"n_raw": 22,
+"fired_dirs": [
+"put"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B",
+"C"
+]
+},
+{
+"card_id": "TSLA_2025-01-17",
+"symbol": "TSLA",
+"day": "2025-01-17",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 13,
+"n_raw": 14,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "AMD_2025-01-17",
+"symbol": "AMD",
+"day": "2025-01-17",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 2,
+"n_sig": 6,
+"n_raw": 14,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "AMZN_2025-01-21",
+"symbol": "AMZN",
+"day": "2025-01-21",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 3,
+"n_raw": 5,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "AMD_2025-01-21",
+"symbol": "AMD",
+"day": "2025-01-21",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 13,
+"n_raw": 28,
+"fired_dirs": [
+"put"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "NVDA_2025-01-22",
+"symbol": "NVDA",
+"day": "2025-01-22",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 3,
+"n_raw": 6,
+"fired_dirs": [],
+"sig_dirs": [
+"call"
+],
+"grades": []
+},
+{
+"card_id": "QQQ_2025-01-23",
+"symbol": "QQQ",
+"day": "2025-01-23",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 8,
+"n_raw": 12,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "QQQ_2025-01-24",
+"symbol": "QQQ",
+"day": "2025-01-24",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 14,
+"n_raw": 20,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "AAPL_2025-01-27",
+"symbol": "AAPL",
+"day": "2025-01-27",
+"tier": "T1",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 3,
+"n_raw": 4,
+"fired_dirs": [],
+"sig_dirs": [
+"call"
+],
+"grades": []
+},
+{
+"card_id": "GOOGL_2025-01-31",
+"symbol": "GOOGL",
+"day": "2025-01-31",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 17,
+"n_raw": 36,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "AAPL_2025-01-31",
+"symbol": "AAPL",
+"day": "2025-01-31",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 6,
+"n_raw": 8,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "QQQ_2025-02-05",
+"symbol": "QQQ",
+"day": "2025-02-05",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 6,
+"n_raw": 10,
+"fired_dirs": [],
+"sig_dirs": [
+"call"
+],
+"grades": []
+},
+{
+"card_id": "NVDA_2025-02-05",
+"symbol": "NVDA",
+"day": "2025-02-05",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 2,
+"n_sig": 19,
+"n_raw": 34,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "NVDA_2025-02-07",
+"symbol": "NVDA",
+"day": "2025-02-07",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 2,
+"n_sig": 10,
+"n_raw": 15,
+"fired_dirs": [
+"put"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B",
+"C"
+]
+},
+{
+"card_id": "AAPL_2025-02-11",
+"symbol": "AAPL",
+"day": "2025-02-11",
+"tier": "T1",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 1,
+"n_raw": 2,
+"fired_dirs": [],
+"sig_dirs": [
+"call"
+],
+"grades": []
+},
+{
+"card_id": "AMD_2025-02-11",
+"symbol": "AMD",
+"day": "2025-02-11",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 6,
+"n_raw": 8,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "NVDA_2025-02-11",
+"symbol": "NVDA",
+"day": "2025-02-11",
+"tier": "T2",
+"dir": "put",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 10,
+"n_raw": 18,
+"fired_dirs": [],
+"sig_dirs": [
+"call"
+],
+"grades": []
+},
+{
+"card_id": "AAPL_2025-02-14",
+"symbol": "AAPL",
+"day": "2025-02-14",
+"tier": "T1",
+"dir": "call",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 11,
+"n_raw": 16,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "TSLA_2025-02-19",
+"symbol": "TSLA",
+"day": "2025-02-19",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 9,
+"n_raw": 15,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "AAPL_2025-02-21",
+"symbol": "AAPL",
+"day": "2025-02-21",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 3,
+"n_raw": 7,
+"fired_dirs": [],
+"sig_dirs": [
+"put"
+],
+"grades": []
+},
+{
+"card_id": "QQQ_2025-02-21",
+"symbol": "QQQ",
+"day": "2025-02-21",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 11,
+"n_raw": 26,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "TSLA_2025-02-21",
+"symbol": "TSLA",
+"day": "2025-02-21",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 6,
+"n_sig": 19,
+"n_raw": 30,
+"fired_dirs": [
+"put"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B",
+"C"
+]
+},
+{
+"card_id": "AAPL_2025-02-25",
+"symbol": "AAPL",
+"day": "2025-02-25",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 6,
+"n_raw": 16,
+"fired_dirs": [],
+"sig_dirs": [
+"put"
+],
+"grades": []
+},
+{
+"card_id": "QQQ_2025-02-28",
+"symbol": "QQQ",
+"day": "2025-02-28",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 9,
+"n_raw": 18,
+"fired_dirs": [],
+"sig_dirs": [
+"call"
+],
+"grades": []
+},
+{
+"card_id": "QQQ_2025-03-07",
+"symbol": "QQQ",
+"day": "2025-03-07",
+"tier": "T2",
+"dir": "put",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 5,
+"n_raw": 9,
+"fired_dirs": [
+"put"
+],
+"sig_dirs": [
+"put"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "AAPL_2025-03-07",
+"symbol": "AAPL",
+"day": "2025-03-07",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 2,
+"n_raw": 3,
+"fired_dirs": [],
+"sig_dirs": [
+"call"
+],
+"grades": []
+},
+{
+"card_id": "AAPL_2025-03-11",
+"symbol": "AAPL",
+"day": "2025-03-11",
+"tier": "T2",
+"dir": "put",
+"no_archive": false,
+"n_fired": 5,
+"n_sig": 17,
+"n_raw": 30,
+"fired_dirs": [
+"put"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B",
+"C"
+]
+},
+{
+"card_id": "NVDA_2025-03-11",
+"symbol": "NVDA",
+"day": "2025-03-11",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 3,
+"n_sig": 6,
+"n_raw": 15,
+"fired_dirs": [
+"put"
+],
+"sig_dirs": [
+"put"
+],
+"grades": [
+"C"
+]
+},
+{
+"card_id": "TSLA_2025-03-13",
+"symbol": "TSLA",
+"day": "2025-03-13",
+"tier": "T1",
+"dir": "put",
+"no_archive": false,
+"n_fired": 3,
+"n_sig": 5,
+"n_raw": 13,
+"fired_dirs": [
+"put"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B",
+"C"
+]
+},
+{
+"card_id": "TSLA_2025-03-18",
+"symbol": "TSLA",
+"day": "2025-03-18",
+"tier": "T2",
+"dir": "put",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 13,
+"n_raw": 16,
+"fired_dirs": [
+"put"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "AAPL_2025-03-21",
+"symbol": "AAPL",
+"day": "2025-03-21",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 9,
+"n_raw": 11,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "TSLA_2025-03-21",
+"symbol": "TSLA",
+"day": "2025-03-21",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 2,
+"n_sig": 8,
+"n_raw": 17,
+"fired_dirs": [
+"put"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"C"
+]
+},
+{
+"card_id": "TSLA_2025-03-24",
+"symbol": "TSLA",
+"day": "2025-03-24",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 4,
+"n_raw": 8,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "TSLA_2025-03-28",
+"symbol": "TSLA",
+"day": "2025-03-28",
+"tier": "T2",
+"dir": "put",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 9,
+"n_raw": 14,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "QQQ_2025-03-28",
+"symbol": "QQQ",
+"day": "2025-03-28",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 3,
+"n_raw": 6,
+"fired_dirs": [
+"put"
+],
+"sig_dirs": [
+"put"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "NVDA_2025-03-31",
+"symbol": "NVDA",
+"day": "2025-03-31",
+"tier": "T2",
+"dir": "put",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 9,
+"n_raw": 16,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "TSLA_2025-03-31",
+"symbol": "TSLA",
+"day": "2025-03-31",
+"tier": "T2",
+"dir": "put",
+"no_archive": false,
+"n_fired": 2,
+"n_sig": 12,
+"n_raw": 20,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B",
+"C"
+]
+},
+{
+"card_id": "QQQ_2025-03-31",
+"symbol": "QQQ",
+"day": "2025-03-31",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 3,
+"n_raw": 5,
+"fired_dirs": [
+"put"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "TSLA_2025-04-04",
+"symbol": "TSLA",
+"day": "2025-04-04",
+"tier": "T2",
+"dir": "put",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 4,
+"n_raw": 6,
+"fired_dirs": [
+"put"
+],
+"sig_dirs": [
+"put"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "QQQ_2025-04-04",
+"symbol": "QQQ",
+"day": "2025-04-04",
+"tier": "T2",
+"dir": "put",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 3,
+"n_raw": 4,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "AMD_2025-04-08",
+"symbol": "AMD",
+"day": "2025-04-08",
+"tier": "T1",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 9,
+"n_raw": 13,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "TSLA_2025-04-11",
+"symbol": "TSLA",
+"day": "2025-04-11",
+"tier": "T2",
+"dir": "put",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 11,
+"n_raw": 27,
+"fired_dirs": [
+"put"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "AMD_2025-04-11",
+"symbol": "AMD",
+"day": "2025-04-11",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 3,
+"n_sig": 11,
+"n_raw": 19,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "NVDA_2025-04-15",
+"symbol": "NVDA",
+"day": "2025-04-15",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 8,
+"n_raw": 19,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "TSLA_2025-04-15",
+"symbol": "TSLA",
+"day": "2025-04-15",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 2,
+"n_sig": 11,
+"n_raw": 24,
+"fired_dirs": [
+"call",
+"put"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B",
+"C"
+]
+},
+{
+"card_id": "NVDA_2025-04-24",
+"symbol": "NVDA",
+"day": "2025-04-24",
+"tier": "T1",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 10,
+"n_raw": 20,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "TSLA_2025-04-25",
+"symbol": "TSLA",
+"day": "2025-04-25",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 5,
+"n_raw": 10,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "TSLA_2025-04-28",
+"symbol": "TSLA",
+"day": "2025-04-28",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 9,
+"n_raw": 15,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "AMD_2025-05-01",
+"symbol": "AMD",
+"day": "2025-05-01",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 10,
+"n_raw": 20,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "TSLA_2025-05-01",
+"symbol": "TSLA",
+"day": "2025-05-01",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 8,
+"n_raw": 11,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "QQQ_2025-05-01",
+"symbol": "QQQ",
+"day": "2025-05-01",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 7,
+"n_raw": 17,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call"
+],
+"grades": [
+"C"
+]
+},
+{
+"card_id": "QQQ_2025-05-07",
+"symbol": "QQQ",
+"day": "2025-05-07",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 7,
+"n_raw": 14,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "TSLA_2025-05-09",
+"symbol": "TSLA",
+"day": "2025-05-09",
+"tier": "T2",
+"dir": "put",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 6,
+"n_raw": 11,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "TSLA_2025-05-13",
+"symbol": "TSLA",
+"day": "2025-05-13",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 11,
+"n_raw": 29,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "NVDA_2025-05-13",
+"symbol": "NVDA",
+"day": "2025-05-13",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 3,
+"n_sig": 7,
+"n_raw": 18,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call"
+],
+"grades": [
+"B",
+"C"
+]
+},
+{
+"card_id": "QQQ_2025-05-16",
+"symbol": "QQQ",
+"day": "2025-05-16",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 3,
+"n_raw": 3,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "TSLA_2025-05-16",
+"symbol": "TSLA",
+"day": "2025-05-16",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 5,
+"n_raw": 14,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "NVDA_2025-05-19",
+"symbol": "NVDA",
+"day": "2025-05-19",
+"tier": "T1",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 1,
+"n_raw": 4,
+"fired_dirs": [],
+"sig_dirs": [
+"call"
+],
+"grades": []
+},
+{
+"card_id": "AMD_2025-05-21",
+"symbol": "AMD",
+"day": "2025-05-21",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 7,
+"n_raw": 12,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "NVDA_2025-05-21",
+"symbol": "NVDA",
+"day": "2025-05-21",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 2,
+"n_sig": 10,
+"n_raw": 13,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call"
+],
+"grades": [
+"B",
+"C"
+]
+},
+{
+"card_id": "TSLA_2025-05-30",
+"symbol": "TSLA",
+"day": "2025-05-30",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 5,
+"n_sig": 11,
+"n_raw": 24,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call"
+],
+"grades": [
+"B",
+"C"
+]
+},
+{
+"card_id": "QQQ_2025-05-30",
+"symbol": "QQQ",
+"day": "2025-05-30",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 4,
+"n_raw": 8,
+"fired_dirs": [
+"put"
+],
+"sig_dirs": [
+"put"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "TSLA_2025-06-03",
+"symbol": "TSLA",
+"day": "2025-06-03",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 2,
+"n_sig": 5,
+"n_raw": 9,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"C"
+]
+},
+{
+"card_id": "NVDA_2025-06-03",
+"symbol": "NVDA",
+"day": "2025-06-03",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 3,
+"n_raw": 3,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "AAPL_2025-06-03",
+"symbol": "AAPL",
+"day": "2025-06-03",
+"tier": "T1",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 1,
+"n_raw": 2,
+"fired_dirs": [],
+"sig_dirs": [
+"call"
+],
+"grades": []
+},
+{
+"card_id": "NVDA_2025-06-04",
+"symbol": "NVDA",
+"day": "2025-06-04",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 7,
+"n_raw": 12,
+"fired_dirs": [],
+"sig_dirs": [
+"put"
+],
+"grades": []
+},
+{
+"card_id": "AAPL_2025-06-04",
+"symbol": "AAPL",
+"day": "2025-06-04",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 6,
+"n_raw": 11,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "NVDA_2025-06-06",
+"symbol": "NVDA",
+"day": "2025-06-06",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 8,
+"n_raw": 13,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "QQQ_2025-06-10",
+"symbol": "QQQ",
+"day": "2025-06-10",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 4,
+"n_raw": 6,
+"fired_dirs": [],
+"sig_dirs": [
+"call"
+],
+"grades": []
+},
+{
+"card_id": "AMD_2025-06-10",
+"symbol": "AMD",
+"day": "2025-06-10",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 2,
+"n_sig": 12,
+"n_raw": 24,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B",
+"C"
+]
+},
+{
+"card_id": "AAPL_2025-06-10",
+"symbol": "AAPL",
+"day": "2025-06-10",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 4,
+"n_raw": 7,
+"fired_dirs": [],
+"sig_dirs": [
+"call"
+],
+"grades": []
+},
+{
+"card_id": "NVDA_2025-06-10",
+"symbol": "NVDA",
+"day": "2025-06-10",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 2,
+"n_raw": 2,
+"fired_dirs": [],
+"sig_dirs": [
+"put"
+],
+"grades": []
+},
+{
+"card_id": "TSLA_2025-06-10",
+"symbol": "TSLA",
+"day": "2025-06-10",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 10,
+"n_raw": 17,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "TSLA_2025-06-13",
+"symbol": "TSLA",
+"day": "2025-06-13",
+"tier": "T1",
+"dir": "call",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 8,
+"n_raw": 13,
+"fired_dirs": [
+"put"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"C"
+]
+},
+{
+"card_id": "AMD_2025-06-17",
+"symbol": "AMD",
+"day": "2025-06-17",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 4,
+"n_sig": 12,
+"n_raw": 23,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B",
+"C"
+]
+},
+{
+"card_id": "QQQ_2025-06-17",
+"symbol": "QQQ",
+"day": "2025-06-17",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 3,
+"n_raw": 4,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "TSLA_2025-06-20",
+"symbol": "TSLA",
+"day": "2025-06-20",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 7,
+"n_raw": 7,
+"fired_dirs": [],
+"sig_dirs": [
+"put"
+],
+"grades": []
+},
+{
+"card_id": "AMD_2025-06-20",
+"symbol": "AMD",
+"day": "2025-06-20",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 4,
+"n_raw": 9,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "TSLA_2025-06-25",
+"symbol": "TSLA",
+"day": "2025-06-25",
+"tier": "T2",
+"dir": "put",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 9,
+"n_raw": 18,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"C"
+]
+},
+{
+"card_id": "NVDA_2025-06-25",
+"symbol": "NVDA",
+"day": "2025-06-25",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 8,
+"n_raw": 11,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "AMD_2025-06-25",
+"symbol": "AMD",
+"day": "2025-06-25",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 3,
+"n_raw": 3,
+"fired_dirs": [],
+"sig_dirs": [
+"put"
+],
+"grades": []
+},
+{
+"card_id": "NVDA_2025-06-27",
+"symbol": "NVDA",
+"day": "2025-06-27",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 9,
+"n_raw": 16,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "AMD_2025-06-27",
+"symbol": "AMD",
+"day": "2025-06-27",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 2,
+"n_sig": 7,
+"n_raw": 14,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B",
+"C"
+]
+},
+{
+"card_id": "TSLA_2025-06-27",
+"symbol": "TSLA",
+"day": "2025-06-27",
+"tier": "T1",
+"dir": "call",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 4,
+"n_raw": 8,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "AAPL_2025-07-02",
+"symbol": "AAPL",
+"day": "2025-07-02",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 3,
+"n_raw": 4,
+"fired_dirs": [],
+"sig_dirs": [
+"put"
+],
+"grades": []
+},
+{
+"card_id": "NVDA_2025-07-02",
+"symbol": "NVDA",
+"day": "2025-07-02",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 3,
+"n_raw": 6,
+"fired_dirs": [],
+"sig_dirs": [
+"call"
+],
+"grades": []
+},
+{
+"card_id": "AAPL_2025-07-03",
+"symbol": "AAPL",
+"day": "2025-07-03",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 8,
+"n_raw": 15,
+"fired_dirs": [],
+"sig_dirs": [
+"call"
+],
+"grades": []
+},
+{
+"card_id": "NVDA_2025-07-08",
+"symbol": "NVDA",
+"day": "2025-07-08",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 6,
+"n_raw": 6,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "TSLA_2025-07-08",
+"symbol": "TSLA",
+"day": "2025-07-08",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 1,
+"n_raw": 6,
+"fired_dirs": [],
+"sig_dirs": [
+"call"
+],
+"grades": []
+},
+{
+"card_id": "QQQ_2025-07-08",
+"symbol": "QQQ",
+"day": "2025-07-08",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 2,
+"n_raw": 4,
+"fired_dirs": [],
+"sig_dirs": [
+"put"
+],
+"grades": []
+},
+{
+"card_id": "NVDA_2025-07-11",
+"symbol": "NVDA",
+"day": "2025-07-11",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 2,
+"n_sig": 7,
+"n_raw": 15,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B",
+"C"
+]
+},
+{
+"card_id": "NVDA_2025-07-15",
+"symbol": "NVDA",
+"day": "2025-07-15",
+"tier": "T1",
+"dir": "call",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 5,
+"n_raw": 8,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "AMD_2025-07-15",
+"symbol": "AMD",
+"day": "2025-07-15",
+"tier": "T1",
+"dir": "call",
+"no_archive": false,
+"n_fired": 2,
+"n_sig": 14,
+"n_raw": 30,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "TSLA_2025-07-18",
+"symbol": "TSLA",
+"day": "2025-07-18",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 5,
+"n_raw": 9,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "QQQ_2025-07-21",
+"symbol": "QQQ",
+"day": "2025-07-21",
+"tier": "T1",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 4,
+"n_raw": 12,
+"fired_dirs": [],
+"sig_dirs": [
+"call"
+],
+"grades": []
+},
+{
+"card_id": "AAPL_2025-07-22",
+"symbol": "AAPL",
+"day": "2025-07-22",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 2,
+"n_sig": 16,
+"n_raw": 40,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "QQQ_2025-07-22",
+"symbol": "QQQ",
+"day": "2025-07-22",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 2,
+"n_raw": 4,
+"fired_dirs": [],
+"sig_dirs": [
+"call"
+],
+"grades": []
+},
+{
+"card_id": "AMD_2025-07-23",
+"symbol": "AMD",
+"day": "2025-07-23",
+"tier": "T1",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 3,
+"n_raw": 6,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "NVDA_2025-07-24",
+"symbol": "NVDA",
+"day": "2025-07-24",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 14,
+"n_raw": 26,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "QQQ_2025-07-24",
+"symbol": "QQQ",
+"day": "2025-07-24",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 3,
+"n_raw": 3,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "TSLA_2025-07-25",
+"symbol": "TSLA",
+"day": "2025-07-25",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 3,
+"n_sig": 15,
+"n_raw": 30,
+"fired_dirs": [
+"put"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"C"
+]
+},
+{
+"card_id": "NVDA_2025-07-25",
+"symbol": "NVDA",
+"day": "2025-07-25",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 1,
+"n_raw": 1,
+"fired_dirs": [],
+"sig_dirs": [
+"put"
+],
+"grades": []
+},
+{
+"card_id": "AMD_2025-07-25",
+"symbol": "AMD",
+"day": "2025-07-25",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 9,
+"n_raw": 19,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "NVDA_2025-07-28",
+"symbol": "NVDA",
+"day": "2025-07-28",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 4,
+"n_raw": 9,
+"fired_dirs": [],
+"sig_dirs": [
+"call"
+],
+"grades": []
+},
+{
+"card_id": "AMD_2025-07-28",
+"symbol": "AMD",
+"day": "2025-07-28",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 4,
+"n_raw": 7,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "NVDA_2025-07-31",
+"symbol": "NVDA",
+"day": "2025-07-31",
+"tier": "T2",
+"dir": "put",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 5,
+"n_raw": 9,
+"fired_dirs": [
+"put"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "META_2025-07-31",
+"symbol": "META",
+"day": "2025-07-31",
+"tier": "T1",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 10,
+"n_raw": 19,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "PLTR_2025-07-31",
+"symbol": "PLTR",
+"day": "2025-07-31",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 12,
+"n_raw": 25,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "AAPL_2025-08-06",
+"symbol": "AAPL",
+"day": "2025-08-06",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 6,
+"n_raw": 11,
+"fired_dirs": [],
+"sig_dirs": [
+"call"
+],
+"grades": []
+},
+{
+"card_id": "TSLA_2025-08-08",
+"symbol": "TSLA",
+"day": "2025-08-08",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 4,
+"n_raw": 7,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "QQQ_2025-08-08",
+"symbol": "QQQ",
+"day": "2025-08-08",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 3,
+"n_raw": 13,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "AAPL_2025-08-12",
+"symbol": "AAPL",
+"day": "2025-08-12",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 4,
+"n_raw": 7,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "GOOGL_2025-08-12",
+"symbol": "GOOGL",
+"day": "2025-08-12",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 6,
+"n_raw": 9,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "QQQ_2025-08-14",
+"symbol": "QQQ",
+"day": "2025-08-14",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 7,
+"n_raw": 11,
+"fired_dirs": [],
+"sig_dirs": [
+"call"
+],
+"grades": []
+},
+{
+"card_id": "AMD_2025-08-14",
+"symbol": "AMD",
+"day": "2025-08-14",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 7,
+"n_raw": 10,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "AMZN_2025-08-14",
+"symbol": "AMZN",
+"day": "2025-08-14",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 3,
+"n_raw": 3,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "NVDA_2025-08-14",
+"symbol": "NVDA",
+"day": "2025-08-14",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 3,
+"n_raw": 5,
+"fired_dirs": [],
+"sig_dirs": [
+"call"
+],
+"grades": []
+},
+{
+"card_id": "TSLA_2025-08-19",
+"symbol": "TSLA",
+"day": "2025-08-19",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 1,
+"n_raw": 2,
+"fired_dirs": [],
+"sig_dirs": [
+"call"
+],
+"grades": []
+},
+{
+"card_id": "AAPL_2025-08-19",
+"symbol": "AAPL",
+"day": "2025-08-19",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 10,
+"n_raw": 23,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "QQQ_2025-08-21",
+"symbol": "QQQ",
+"day": "2025-08-21",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 7,
+"n_raw": 11,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "TSLA_2025-08-21",
+"symbol": "TSLA",
+"day": "2025-08-21",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 11,
+"n_raw": 22,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "NVDA_2025-08-21",
+"symbol": "NVDA",
+"day": "2025-08-21",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 11,
+"n_raw": 23,
+"fired_dirs": [
+"put"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "TSLA_2025-08-22",
+"symbol": "TSLA",
+"day": "2025-08-22",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 4,
+"n_sig": 8,
+"n_raw": 11,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "TSLA_2025-08-26",
+"symbol": "TSLA",
+"day": "2025-08-26",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 3,
+"n_raw": 5,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "AMD_2025-08-26",
+"symbol": "AMD",
+"day": "2025-08-26",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 3,
+"n_sig": 6,
+"n_raw": 17,
+"fired_dirs": [
+"call",
+"put"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B",
+"C"
+]
+},
+{
+"card_id": "TSLA_2025-08-29",
+"symbol": "TSLA",
+"day": "2025-08-29",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 3,
+"n_sig": 8,
+"n_raw": 10,
+"fired_dirs": [
+"call",
+"put"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B",
+"C"
+]
+},
+{
+"card_id": "NVDA_2025-08-29",
+"symbol": "NVDA",
+"day": "2025-08-29",
+"tier": "T2",
+"dir": "put",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 9,
+"n_raw": 18,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "QQQ_2025-08-29",
+"symbol": "QQQ",
+"day": "2025-08-29",
+"tier": "T2",
+"dir": "put",
+"no_archive": false,
+"n_fired": 2,
+"n_sig": 9,
+"n_raw": 21,
+"fired_dirs": [
+"put"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "TSLA_2025-09-03",
+"symbol": "TSLA",
+"day": "2025-09-03",
+"tier": "T2",
+"dir": "put",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 2,
+"n_raw": 6,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "NVDA_2025-09-03",
+"symbol": "NVDA",
+"day": "2025-09-03",
+"tier": "T2",
+"dir": "put",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 5,
+"n_raw": 7,
+"fired_dirs": [
+"put"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "AMD_2025-09-03",
+"symbol": "AMD",
+"day": "2025-09-03",
+"tier": "T1",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 1,
+"n_raw": 1,
+"fired_dirs": [],
+"sig_dirs": [
+"call"
+],
+"grades": []
+},
+{
+"card_id": "TSLA_2025-09-05",
+"symbol": "TSLA",
+"day": "2025-09-05",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 9,
+"n_raw": 18,
+"fired_dirs": [
+"put"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "AAPL_2025-09-05",
+"symbol": "AAPL",
+"day": "2025-09-05",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 6,
+"n_raw": 6,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "NVDA_2025-09-05",
+"symbol": "NVDA",
+"day": "2025-09-05",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 2,
+"n_sig": 9,
+"n_raw": 14,
+"fired_dirs": [
+"call",
+"put"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "AMD_2025-09-09",
+"symbol": "AMD",
+"day": "2025-09-09",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 3,
+"n_raw": 8,
+"fired_dirs": [],
+"sig_dirs": [
+"call"
+],
+"grades": []
+},
+{
+"card_id": "TSLA_2025-09-12",
+"symbol": "TSLA",
+"day": "2025-09-12",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 0,
+"n_raw": 0,
+"fired_dirs": [],
+"sig_dirs": [],
+"grades": []
+},
+{
+"card_id": "QQQ_2025-09-12",
+"symbol": "QQQ",
+"day": "2025-09-12",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 2,
+"n_raw": 2,
+"fired_dirs": [],
+"sig_dirs": [
+"call"
+],
+"grades": []
+},
+{
+"card_id": "QQQ_2025-09-16",
+"symbol": "QQQ",
+"day": "2025-09-16",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 5,
+"n_raw": 7,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "AAPL_2025-09-16",
+"symbol": "AAPL",
+"day": "2025-09-16",
+"tier": "T1",
+"dir": "call",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 3,
+"n_raw": 7,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "TSLA_2025-09-16",
+"symbol": "TSLA",
+"day": "2025-09-16",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 10,
+"n_raw": 21,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "TSLA_2025-09-18",
+"symbol": "TSLA",
+"day": "2025-09-18",
+"tier": "T1",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 5,
+"n_raw": 6,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "NVDA_2025-09-18",
+"symbol": "NVDA",
+"day": "2025-09-18",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 1,
+"n_raw": 3,
+"fired_dirs": [
+"put"
+],
+"sig_dirs": [
+"put"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "PLTR_2025-09-18",
+"symbol": "PLTR",
+"day": "2025-09-18",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 4,
+"n_raw": 9,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "AMD_2025-09-18",
+"symbol": "AMD",
+"day": "2025-09-18",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 2,
+"n_raw": 3,
+"fired_dirs": [],
+"sig_dirs": [
+"call"
+],
+"grades": []
+},
+{
+"card_id": "AAPL_2025-09-23",
+"symbol": "AAPL",
+"day": "2025-09-23",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 4,
+"n_raw": 5,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "QQQ_2025-09-23",
+"symbol": "QQQ",
+"day": "2025-09-23",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 6,
+"n_raw": 13,
+"fired_dirs": [
+"put"
+],
+"sig_dirs": [
+"put"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "PLTR_2025-09-23",
+"symbol": "PLTR",
+"day": "2025-09-23",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 8,
+"n_raw": 11,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "AAPL_2025-09-26",
+"symbol": "AAPL",
+"day": "2025-09-26",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 0,
+"n_raw": 0,
+"fired_dirs": [],
+"sig_dirs": [],
+"grades": []
+},
+{
+"card_id": "TSLA_2025-09-26",
+"symbol": "TSLA",
+"day": "2025-09-26",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 11,
+"n_raw": 23,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "AMD_2025-09-26",
+"symbol": "AMD",
+"day": "2025-09-26",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 7,
+"n_raw": 8,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "TSLA_2025-09-29",
+"symbol": "TSLA",
+"day": "2025-09-29",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 3,
+"n_sig": 6,
+"n_raw": 16,
+"fired_dirs": [
+"put"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "NVDA_2025-09-29",
+"symbol": "NVDA",
+"day": "2025-09-29",
+"tier": "T1",
+"dir": "call",
+"no_archive": false,
+"n_fired": 2,
+"n_sig": 8,
+"n_raw": 12,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B",
+"C"
+]
+},
+{
+"card_id": "TSLA_2025-10-03",
+"symbol": "TSLA",
+"day": "2025-10-03",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 6,
+"n_raw": 12,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "AAPL_2025-10-03",
+"symbol": "AAPL",
+"day": "2025-10-03",
+"tier": "T1",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 6,
+"n_raw": 7,
+"fired_dirs": [],
+"sig_dirs": [
+"call"
+],
+"grades": []
+},
+{
+"card_id": "QQQ_2025-10-03",
+"symbol": "QQQ",
+"day": "2025-10-03",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 0,
+"n_raw": 0,
+"fired_dirs": [],
+"sig_dirs": [],
+"grades": []
+},
+{
+"card_id": "AMD_2025-10-06",
+"symbol": "AMD",
+"day": "2025-10-06",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 2,
+"n_sig": 6,
+"n_raw": 10,
+"fired_dirs": [
+"call",
+"put"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B",
+"C"
+]
+},
+{
+"card_id": "TSLA_2025-10-06",
+"symbol": "TSLA",
+"day": "2025-10-06",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 5,
+"n_raw": 6,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "AAPL_2025-10-06",
+"symbol": "AAPL",
+"day": "2025-10-06",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 1,
+"n_raw": 4,
+"fired_dirs": [],
+"sig_dirs": [
+"put"
+],
+"grades": []
+},
+{
+"card_id": "NVDA_2025-10-06",
+"symbol": "NVDA",
+"day": "2025-10-06",
+"tier": "T1",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 7,
+"n_raw": 15,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "QQQ_2025-10-09",
+"symbol": "QQQ",
+"day": "2025-10-09",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 6,
+"n_raw": 11,
+"fired_dirs": [
+"put"
+],
+"sig_dirs": [
+"put"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "TSLA_2025-10-09",
+"symbol": "TSLA",
+"day": "2025-10-09",
+"tier": "T1",
+"dir": "put",
+"no_archive": false,
+"n_fired": 3,
+"n_sig": 19,
+"n_raw": 34,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"C"
+]
+},
+{
+"card_id": "NVDA_2025-10-09",
+"symbol": "NVDA",
+"day": "2025-10-09",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 4,
+"n_raw": 8,
+"fired_dirs": [],
+"sig_dirs": [
+"put"
+],
+"grades": []
+},
+{
+"card_id": "TSLA_2025-10-10",
+"symbol": "TSLA",
+"day": "2025-10-10",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 6,
+"n_raw": 11,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "QQQ_2025-10-10",
+"symbol": "QQQ",
+"day": "2025-10-10",
+"tier": "T1",
+"dir": "call",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 3,
+"n_raw": 7,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "NVDA_2025-10-10",
+"symbol": "NVDA",
+"day": "2025-10-10",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 5,
+"n_raw": 11,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "AMD_2025-10-14",
+"symbol": "AMD",
+"day": "2025-10-14",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 7,
+"n_raw": 8,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "AMD_2025-10-16",
+"symbol": "AMD",
+"day": "2025-10-16",
+"tier": "T1",
+"dir": "call",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 6,
+"n_raw": 8,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "TSLA_2025-10-16",
+"symbol": "TSLA",
+"day": "2025-10-16",
+"tier": "T1",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 5,
+"n_raw": 12,
+"fired_dirs": [],
+"sig_dirs": [
+"call"
+],
+"grades": []
+},
+{
+"card_id": "NVDA_2025-10-16",
+"symbol": "NVDA",
+"day": "2025-10-16",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 7,
+"n_raw": 10,
+"fired_dirs": [],
+"sig_dirs": [
+"call"
+],
+"grades": []
+},
+{
+"card_id": "TSLA_2025-10-17",
+"symbol": "TSLA",
+"day": "2025-10-17",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 3,
+"n_raw": 3,
+"fired_dirs": [],
+"sig_dirs": [
+"call"
+],
+"grades": []
+},
+{
+"card_id": "NVDA_2025-10-17",
+"symbol": "NVDA",
+"day": "2025-10-17",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 5,
+"n_raw": 7,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "QQQ_2025-10-22",
+"symbol": "QQQ",
+"day": "2025-10-22",
+"tier": "T2",
+"dir": "put",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 3,
+"n_raw": 7,
+"fired_dirs": [],
+"sig_dirs": [
+"put"
+],
+"grades": []
+},
+{
+"card_id": "NVDA_2025-10-22",
+"symbol": "NVDA",
+"day": "2025-10-22",
+"tier": "T1",
+"dir": "call",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 9,
+"n_raw": 12,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "GOOGL_2025-10-22",
+"symbol": "GOOGL",
+"day": "2025-10-22",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 3,
+"n_raw": 7,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "AMD_2025-10-24",
+"symbol": "AMD",
+"day": "2025-10-24",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 2,
+"n_sig": 7,
+"n_raw": 14,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B",
+"C"
+]
+},
+{
+"card_id": "NVDA_2025-10-24",
+"symbol": "NVDA",
+"day": "2025-10-24",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 4,
+"n_raw": 9,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "NVDA_2025-10-29",
+"symbol": "NVDA",
+"day": "2025-10-29",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 5,
+"n_raw": 5,
+"fired_dirs": [],
+"sig_dirs": [
+"call"
+],
+"grades": []
+},
+{
+"card_id": "AMD_2025-10-29",
+"symbol": "AMD",
+"day": "2025-10-29",
+"tier": "T1",
+"dir": "call",
+"no_archive": false,
+"n_fired": 2,
+"n_sig": 7,
+"n_raw": 18,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "AAPL_2025-10-31",
+"symbol": "AAPL",
+"day": "2025-10-31",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 7,
+"n_raw": 14,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "NVDA_2025-10-31",
+"symbol": "NVDA",
+"day": "2025-10-31",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 3,
+"n_raw": 6,
+"fired_dirs": [],
+"sig_dirs": [
+"put"
+],
+"grades": []
+},
+{
+"card_id": "TSLA_2025-10-31",
+"symbol": "TSLA",
+"day": "2025-10-31",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 2,
+"n_sig": 4,
+"n_raw": 12,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call"
+],
+"grades": [
+"B",
+"C"
+]
+},
+{
+"card_id": "AMZN_2025-10-31",
+"symbol": "AMZN",
+"day": "2025-10-31",
+"tier": "T1",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 8,
+"n_raw": 13,
+"fired_dirs": [],
+"sig_dirs": [
+"put"
+],
+"grades": []
+},
+{
+"card_id": "AMD_2025-11-05",
+"symbol": "AMD",
+"day": "2025-11-05",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 3,
+"n_sig": 16,
+"n_raw": 33,
+"fired_dirs": [
+"put"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"C"
+]
+},
+{
+"card_id": "TSLA_2025-11-05",
+"symbol": "TSLA",
+"day": "2025-11-05",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 6,
+"n_sig": 20,
+"n_raw": 32,
+"fired_dirs": [
+"put"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B",
+"C"
+]
+},
+{
+"card_id": "TSLA_2025-11-07",
+"symbol": "TSLA",
+"day": "2025-11-07",
+"tier": "T2",
+"dir": "put",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 11,
+"n_raw": 21,
+"fired_dirs": [],
+"sig_dirs": [
+"put"
+],
+"grades": []
+},
+{
+"card_id": "AMD_2025-11-12",
+"symbol": "AMD",
+"day": "2025-11-12",
+"tier": "T1",
+"dir": "call",
+"no_archive": false,
+"n_fired": 3,
+"n_sig": 5,
+"n_raw": 12,
+"fired_dirs": [
+"call",
+"put"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "TSLA_2025-11-12",
+"symbol": "TSLA",
+"day": "2025-11-12",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 3,
+"n_raw": 9,
+"fired_dirs": [
+"put"
+],
+"sig_dirs": [
+"put"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "NVDA_2025-11-12",
+"symbol": "NVDA",
+"day": "2025-11-12",
+"tier": "T1",
+"dir": "put",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 0,
+"n_raw": 0,
+"fired_dirs": [],
+"sig_dirs": [],
+"grades": []
+},
+{
+"card_id": "AAPL_2025-11-12",
+"symbol": "AAPL",
+"day": "2025-11-12",
+"tier": "T1",
+"dir": "put",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 2,
+"n_raw": 4,
+"fired_dirs": [],
+"sig_dirs": [
+"put"
+],
+"grades": []
+},
+{
+"card_id": "TSLA_2025-11-14",
+"symbol": "TSLA",
+"day": "2025-11-14",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 4,
+"n_raw": 6,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "TSLA_2025-11-19",
+"symbol": "TSLA",
+"day": "2025-11-19",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 2,
+"n_raw": 2,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "AAPL_2025-11-19",
+"symbol": "AAPL",
+"day": "2025-11-19",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 8,
+"n_raw": 13,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "GOOGL_2025-11-19",
+"symbol": "GOOGL",
+"day": "2025-11-19",
+"tier": "T1",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 1,
+"n_raw": 2,
+"fired_dirs": [],
+"sig_dirs": [
+"call"
+],
+"grades": []
+},
+{
+"card_id": "AMD_2025-11-21",
+"symbol": "AMD",
+"day": "2025-11-21",
+"tier": "T2",
+"dir": "put",
+"no_archive": false,
+"n_fired": 9,
+"n_sig": 20,
+"n_raw": 43,
+"fired_dirs": [
+"put"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B",
+"C"
+]
+},
+{
+"card_id": "TSLA_2025-11-21",
+"symbol": "TSLA",
+"day": "2025-11-21",
+"tier": "T2",
+"dir": "put",
+"no_archive": false,
+"n_fired": 4,
+"n_sig": 11,
+"n_raw": 17,
+"fired_dirs": [
+"put"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B",
+"C"
+]
+},
+{
+"card_id": "AAPL_2025-12-03",
+"symbol": "AAPL",
+"day": "2025-12-03",
+"tier": "T1",
+"dir": "call",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 7,
+"n_raw": 9,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "TSLA_2025-12-05",
+"symbol": "TSLA",
+"day": "2025-12-05",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 2,
+"n_sig": 7,
+"n_raw": 15,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B",
+"C"
+]
+},
+{
+"card_id": "NVDA_2025-12-08",
+"symbol": "NVDA",
+"day": "2025-12-08",
+"tier": "T1",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 6,
+"n_raw": 8,
+"fired_dirs": [],
+"sig_dirs": [
+"call"
+],
+"grades": []
+},
+{
+"card_id": "AMD_2025-12-08",
+"symbol": "AMD",
+"day": "2025-12-08",
+"tier": "T1",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 8,
+"n_raw": 11,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "TSLA_2025-12-12",
+"symbol": "TSLA",
+"day": "2025-12-12",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 2,
+"n_sig": 4,
+"n_raw": 10,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B",
+"C"
+]
+},
+{
+"card_id": "TSLA_2025-12-17",
+"symbol": "TSLA",
+"day": "2025-12-17",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 9,
+"n_raw": 15,
+"fired_dirs": [
+"put"
+],
+"sig_dirs": [
+"put"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "NVDA_2025-12-17",
+"symbol": "NVDA",
+"day": "2025-12-17",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 8,
+"n_raw": 11,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "NVDA_2025-12-23",
+"symbol": "NVDA",
+"day": "2025-12-23",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 3,
+"n_raw": 7,
+"fired_dirs": [],
+"sig_dirs": [
+"call"
+],
+"grades": []
+},
+{
+"card_id": "QQQ_2025-12-23",
+"symbol": "QQQ",
+"day": "2025-12-23",
+"tier": "T2",
+"dir": "put",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 2,
+"n_raw": 6,
+"fired_dirs": [],
+"sig_dirs": [
+"call"
+],
+"grades": []
+},
+{
+"card_id": "TSLA_2025-12-23",
+"symbol": "TSLA",
+"day": "2025-12-23",
+"tier": "T2",
+"dir": "put",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 4,
+"n_raw": 5,
+"fired_dirs": [],
+"sig_dirs": [
+"put"
+],
+"grades": []
+},
+{
+"card_id": "AAPL_2025-12-24",
+"symbol": "AAPL",
+"day": "2025-12-24",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 6,
+"n_raw": 7,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "NVDA_2025-12-26",
+"symbol": "NVDA",
+"day": "2025-12-26",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 5,
+"n_raw": 8,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "TSLA_2025-12-26",
+"symbol": "TSLA",
+"day": "2025-12-26",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 4,
+"n_raw": 10,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "NVDA_2025-12-29",
+"symbol": "NVDA",
+"day": "2025-12-29",
+"tier": "T2",
+"dir": "put",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 5,
+"n_raw": 11,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "TSLA_2025-12-29",
+"symbol": "TSLA",
+"day": "2025-12-29",
+"tier": "T2",
+"dir": "put",
+"no_archive": false,
+"n_fired": 2,
+"n_sig": 9,
+"n_raw": 20,
+"fired_dirs": [
+"put"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "NVDA_2025-12-31",
+"symbol": "NVDA",
+"day": "2025-12-31",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 5,
+"n_raw": 6,
+"fired_dirs": [],
+"sig_dirs": [
+"call"
+],
+"grades": []
+},
+{
+"card_id": "QQQ_2025-12-31",
+"symbol": "QQQ",
+"day": "2025-12-31",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 3,
+"n_raw": 3,
+"fired_dirs": [],
+"sig_dirs": [
+"put"
+],
+"grades": []
+},
+{
+"card_id": "AMD_2026-01-02",
+"symbol": "AMD",
+"day": "2026-01-02",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 4,
+"n_sig": 7,
+"n_raw": 12,
+"fired_dirs": [
+"call",
+"put"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"A",
+"B",
+"C"
+]
+},
+{
+"card_id": "NVDA_2026-01-02",
+"symbol": "NVDA",
+"day": "2026-01-02",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 2,
+"n_raw": 5,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "AMZN_2026-01-07",
+"symbol": "AMZN",
+"day": "2026-01-07",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 7,
+"n_raw": 13,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "TSLA_2026-01-07",
+"symbol": "TSLA",
+"day": "2026-01-07",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 8,
+"n_raw": 11,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "QQQ_2026-01-07",
+"symbol": "QQQ",
+"day": "2026-01-07",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 4,
+"n_raw": 9,
+"fired_dirs": [],
+"sig_dirs": [
+"call"
+],
+"grades": []
+},
+{
+"card_id": "NVDA_2026-01-07",
+"symbol": "NVDA",
+"day": "2026-01-07",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 5,
+"n_raw": 9,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "TSLA_2026-01-09",
+"symbol": "TSLA",
+"day": "2026-01-09",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 4,
+"n_raw": 9,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "GOOGL_2026-01-09",
+"symbol": "GOOGL",
+"day": "2026-01-09",
+"tier": "T1",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 1,
+"n_raw": 2,
+"fired_dirs": [],
+"sig_dirs": [
+"call"
+],
+"grades": []
+},
+{
+"card_id": "AMD_2026-01-13",
+"symbol": "AMD",
+"day": "2026-01-13",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 2,
+"n_sig": 11,
+"n_raw": 16,
+"fired_dirs": [
+"put"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"C"
+]
+},
+{
+"card_id": "GOOGL_2026-01-13",
+"symbol": "GOOGL",
+"day": "2026-01-13",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 2,
+"n_sig": 4,
+"n_raw": 5,
+"fired_dirs": [
+"call",
+"put"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "NVDA_2026-01-16",
+"symbol": "NVDA",
+"day": "2026-01-16",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 10,
+"n_raw": 16,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "TSLA_2026-01-16",
+"symbol": "TSLA",
+"day": "2026-01-16",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 2,
+"n_sig": 7,
+"n_raw": 13,
+"fired_dirs": [
+"put"
+],
+"sig_dirs": [
+"put"
+],
+"grades": [
+"C"
+]
+},
+{
+"card_id": "AMD_2026-01-23",
+"symbol": "AMD",
+"day": "2026-01-23",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 2,
+"n_sig": 9,
+"n_raw": 12,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "TSLA_2026-01-23",
+"symbol": "TSLA",
+"day": "2026-01-23",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 10,
+"n_raw": 22,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "MU_2026-01-23",
+"symbol": "MU",
+"day": "2026-01-23",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 2,
+"n_sig": 4,
+"n_raw": 6,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call"
+],
+"grades": [
+"B",
+"C"
+]
+},
+{
+"card_id": "QQQ_2026-01-23",
+"symbol": "QQQ",
+"day": "2026-01-23",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 0,
+"n_raw": 0,
+"fired_dirs": [],
+"sig_dirs": [],
+"grades": []
+},
+{
+"card_id": "NVDA_2026-01-28",
+"symbol": "NVDA",
+"day": "2026-01-28",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 6,
+"n_raw": 7,
+"fired_dirs": [],
+"sig_dirs": [
+"put"
+],
+"grades": []
+},
+{
+"card_id": "MU_2026-01-30",
+"symbol": "MU",
+"day": "2026-01-30",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 2,
+"n_raw": 6,
+"fired_dirs": [],
+"sig_dirs": [
+"put"
+],
+"grades": []
+},
+{
+"card_id": "META_2026-01-30",
+"symbol": "META",
+"day": "2026-01-30",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 8,
+"n_raw": 11,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"C"
+]
+},
+{
+"card_id": "AAPL_2026-02-06",
+"symbol": "AAPL",
+"day": "2026-02-06",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 4,
+"n_sig": 11,
+"n_raw": 26,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B",
+"C"
+]
+},
+{
+"card_id": "TSLA_2026-02-06",
+"symbol": "TSLA",
+"day": "2026-02-06",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 3,
+"n_sig": 12,
+"n_raw": 20,
+"fired_dirs": [
+"call",
+"put"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B",
+"C"
+]
+},
+{
+"card_id": "AMD_2026-02-06",
+"symbol": "AMD",
+"day": "2026-02-06",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 8,
+"n_raw": 17,
+"fired_dirs": [
+"put"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "AMD_2026-02-13",
+"symbol": "AMD",
+"day": "2026-02-13",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 5,
+"n_raw": 7,
+"fired_dirs": [
+"put"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"C"
+]
+},
+{
+"card_id": "TSLA_2026-02-13",
+"symbol": "TSLA",
+"day": "2026-02-13",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 5,
+"n_raw": 7,
+"fired_dirs": [
+"put"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "NVDA_2026-02-13",
+"symbol": "NVDA",
+"day": "2026-02-13",
+"tier": "T2",
+"dir": "put",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 1,
+"n_raw": 1,
+"fired_dirs": [],
+"sig_dirs": [
+"call"
+],
+"grades": []
+},
+{
+"card_id": "QQQ_2026-03-03",
+"symbol": "QQQ",
+"day": "2026-03-03",
+"tier": "T2",
+"dir": "put",
+"no_archive": false,
+"n_fired": 4,
+"n_sig": 6,
+"n_raw": 20,
+"fired_dirs": [
+"put"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B",
+"C"
+]
+},
+{
+"card_id": "TSLA_2026-03-03",
+"symbol": "TSLA",
+"day": "2026-03-03",
+"tier": "T2",
+"dir": "put",
+"no_archive": false,
+"n_fired": 2,
+"n_sig": 9,
+"n_raw": 14,
+"fired_dirs": [
+"put"
+],
+"sig_dirs": [
+"put"
+],
+"grades": [
+"B",
+"C"
+]
+},
+{
+"card_id": "AAPL_2026-03-03",
+"symbol": "AAPL",
+"day": "2026-03-03",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 13,
+"n_raw": 19,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "PLTR_2026-03-06",
+"symbol": "PLTR",
+"day": "2026-03-06",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 6,
+"n_raw": 11,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "NVDA_2026-03-06",
+"symbol": "NVDA",
+"day": "2026-03-06",
+"tier": "T2",
+"dir": "put",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 0,
+"n_raw": 0,
+"fired_dirs": [],
+"sig_dirs": [],
+"grades": []
+},
+{
+"card_id": "TSLA_2026-03-06",
+"symbol": "TSLA",
+"day": "2026-03-06",
+"tier": "T2",
+"dir": "put",
+"no_archive": false,
+"n_fired": 2,
+"n_sig": 7,
+"n_raw": 11,
+"fired_dirs": [
+"put"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B",
+"C"
+]
+},
+{
+"card_id": "QQQ_2026-03-09",
+"symbol": "QQQ",
+"day": "2026-03-09",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 4,
+"n_raw": 9,
+"fired_dirs": [
+"put"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "AMD_2026-03-09",
+"symbol": "AMD",
+"day": "2026-03-09",
+"tier": "T2",
+"dir": "put",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 9,
+"n_raw": 15,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "TSLA_2026-03-09",
+"symbol": "TSLA",
+"day": "2026-03-09",
+"tier": "T2",
+"dir": "put",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 7,
+"n_raw": 17,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "AMD_2026-03-10",
+"symbol": "AMD",
+"day": "2026-03-10",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 6,
+"n_raw": 14,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "PLTR_2026-03-12",
+"symbol": "PLTR",
+"day": "2026-03-12",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 11,
+"n_raw": 16,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "AMD_2026-03-20",
+"symbol": "AMD",
+"day": "2026-03-20",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 5,
+"n_raw": 7,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "QQQ_2026-03-20",
+"symbol": "QQQ",
+"day": "2026-03-20",
+"tier": "T2",
+"dir": "put",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 12,
+"n_raw": 15,
+"fired_dirs": [
+"put"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "MU_2026-03-20",
+"symbol": "MU",
+"day": "2026-03-20",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 2,
+"n_sig": 11,
+"n_raw": 22,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "TSLA_2026-03-20",
+"symbol": "TSLA",
+"day": "2026-03-20",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 2,
+"n_sig": 5,
+"n_raw": 8,
+"fired_dirs": [
+"put"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"A",
+"C"
+]
+},
+{
+"card_id": "TSLA_2026-03-27",
+"symbol": "TSLA",
+"day": "2026-03-27",
+"tier": "T2",
+"dir": "put",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 7,
+"n_raw": 11,
+"fired_dirs": [
+"put"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"A"
+]
+},
+{
+"card_id": "AMD_2026-04-02",
+"symbol": "AMD",
+"day": "2026-04-02",
+"tier": "T1",
+"dir": "call",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 2,
+"n_raw": 3,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "AMD_2026-04-10",
+"symbol": "AMD",
+"day": "2026-04-10",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 3,
+"n_sig": 13,
+"n_raw": 25,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B",
+"C"
+]
+},
+{
+"card_id": "NVDA_2026-04-10",
+"symbol": "NVDA",
+"day": "2026-04-10",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 4,
+"n_raw": 8,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "TSLA_2026-04-10",
+"symbol": "TSLA",
+"day": "2026-04-10",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 7,
+"n_raw": 8,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "NVDA_2026-04-17",
+"symbol": "NVDA",
+"day": "2026-04-17",
+"tier": "T1",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 3,
+"n_raw": 3,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "MU_2026-04-22",
+"symbol": "MU",
+"day": "2026-04-22",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 7,
+"n_raw": 9,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "AMD_2026-04-24",
+"symbol": "AMD",
+"day": "2026-04-24",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 5,
+"n_raw": 11,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "NVDA_2026-04-24",
+"symbol": "NVDA",
+"day": "2026-04-24",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 4,
+"n_raw": 8,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "MU_2026-04-29",
+"symbol": "MU",
+"day": "2026-04-29",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 2,
+"n_sig": 2,
+"n_raw": 9,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call"
+],
+"grades": [
+"B",
+"C"
+]
+},
+{
+"card_id": "INTC_2026-04-29",
+"symbol": "INTC",
+"day": "2026-04-29",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 2,
+"n_sig": 8,
+"n_raw": 18,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call"
+],
+"grades": [
+"B",
+"C"
+]
+},
+{
+"card_id": "TSLA_2026-05-01",
+"symbol": "TSLA",
+"day": "2026-05-01",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 10,
+"n_raw": 20,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "PLTR_2026-05-01",
+"symbol": "PLTR",
+"day": "2026-05-01",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 5,
+"n_raw": 10,
+"fired_dirs": [],
+"sig_dirs": [
+"call"
+],
+"grades": []
+},
+{
+"card_id": "MU_2026-05-01",
+"symbol": "MU",
+"day": "2026-05-01",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 1,
+"n_raw": 1,
+"fired_dirs": [],
+"sig_dirs": [
+"put"
+],
+"grades": []
+},
+{
+"card_id": "AAPL_2026-05-01",
+"symbol": "AAPL",
+"day": "2026-05-01",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 1,
+"n_raw": 1,
+"fired_dirs": [],
+"sig_dirs": [
+"call"
+],
+"grades": []
+},
+{
+"card_id": "AAPL_2026-05-08",
+"symbol": "AAPL",
+"day": "2026-05-08",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 6,
+"n_raw": 11,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call"
+],
+"grades": [
+"A"
+]
+},
+{
+"card_id": "TSLA_2026-05-08",
+"symbol": "TSLA",
+"day": "2026-05-08",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 5,
+"n_sig": 7,
+"n_raw": 16,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B",
+"C"
+]
+},
+{
+"card_id": "NVDA_2026-05-08",
+"symbol": "NVDA",
+"day": "2026-05-08",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 7,
+"n_raw": 15,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "INTC_2026-05-08",
+"symbol": "INTC",
+"day": "2026-05-08",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 3,
+"n_sig": 8,
+"n_raw": 16,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B",
+"C"
+]
+},
+{
+"card_id": "AAPL_2026-05-15",
+"symbol": "AAPL",
+"day": "2026-05-15",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 4,
+"n_raw": 8,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "TSLA_2026-05-15",
+"symbol": "TSLA",
+"day": "2026-05-15",
+"tier": "T2",
+"dir": "put",
+"no_archive": false,
+"n_fired": 3,
+"n_sig": 7,
+"n_raw": 11,
+"fired_dirs": [
+"call",
+"put"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B",
+"C"
+]
+},
+{
+"card_id": "MU_2026-05-18",
+"symbol": "MU",
+"day": "2026-05-18",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 8,
+"n_raw": 17,
+"fired_dirs": [],
+"sig_dirs": [
+"put"
+],
+"grades": []
+},
+{
+"card_id": "QQQ_2026-05-18",
+"symbol": "QQQ",
+"day": "2026-05-18",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 2,
+"n_raw": 2,
+"fired_dirs": [],
+"sig_dirs": [
+"put"
+],
+"grades": []
+},
+{
+"card_id": "TSLA_2026-05-18",
+"symbol": "TSLA",
+"day": "2026-05-18",
+"tier": "T2",
+"dir": "put",
+"no_archive": false,
+"n_fired": 2,
+"n_sig": 6,
+"n_raw": 14,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"C"
+]
+},
+{
+"card_id": "AAPL_2026-05-22",
+"symbol": "AAPL",
+"day": "2026-05-22",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 9,
+"n_raw": 18,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "MU_2026-05-27",
+"symbol": "MU",
+"day": "2026-05-27",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 3,
+"n_sig": 7,
+"n_raw": 14,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"C"
+]
+},
+{
+"card_id": "QQQ_2026-05-27",
+"symbol": "QQQ",
+"day": "2026-05-27",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 4,
+"n_raw": 6,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "AAPL_2026-06-05",
+"symbol": "AAPL",
+"day": "2026-06-05",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 8,
+"n_raw": 13,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "AVGO_2026-06-05",
+"symbol": "AVGO",
+"day": "2026-06-05",
+"tier": "T2",
+"dir": "put",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 5,
+"n_raw": 7,
+"fired_dirs": [
+"put"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "TSLA_2026-06-12",
+"symbol": "TSLA",
+"day": "2026-06-12",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 3,
+"n_sig": 11,
+"n_raw": 21,
+"fired_dirs": [
+"put"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B",
+"C"
+]
+},
+{
+"card_id": "AMD_2026-06-12",
+"symbol": "AMD",
+"day": "2026-06-12",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 2,
+"n_sig": 6,
+"n_raw": 7,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B",
+"C"
+]
+},
+{
+"card_id": "INTC_2026-06-12",
+"symbol": "INTC",
+"day": "2026-06-12",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 2,
+"n_sig": 10,
+"n_raw": 16,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B",
+"C"
+]
+},
+{
+"card_id": "QQQ_2026-06-12",
+"symbol": "QQQ",
+"day": "2026-06-12",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 2,
+"n_sig": 5,
+"n_raw": 9,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call"
+],
+"grades": [
+"C"
+]
+},
+{
+"card_id": "NVDA_2026-06-26",
+"symbol": "NVDA",
+"day": "2026-06-26",
+"tier": "T2",
+"dir": "put",
+"no_archive": false,
+"n_fired": 2,
+"n_sig": 16,
+"n_raw": 31,
+"fired_dirs": [
+"put"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B",
+"C"
+]
+},
+{
+"card_id": "QQQ_2026-06-26",
+"symbol": "QQQ",
+"day": "2026-06-26",
+"tier": "T2",
+"dir": "put",
+"no_archive": false,
+"n_fired": 3,
+"n_sig": 22,
+"n_raw": 29,
+"fired_dirs": [
+"call",
+"put"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B",
+"C"
+]
+},
+{
+"card_id": "AMD_2026-06-26",
+"symbol": "AMD",
+"day": "2026-06-26",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 5,
+"n_raw": 9,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "MU_2026-06-26",
+"symbol": "MU",
+"day": "2026-06-26",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 1,
+"n_raw": 3,
+"fired_dirs": [],
+"sig_dirs": [
+"call"
+],
+"grades": []
+},
+{
+"card_id": "TSLA_2026-07-10",
+"symbol": "TSLA",
+"day": "2026-07-10",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 2,
+"n_sig": 7,
+"n_raw": 7,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B",
+"C"
+]
+},
+{
+"card_id": "AAPL_2026-07-10",
+"symbol": "AAPL",
+"day": "2026-07-10",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 8,
+"n_raw": 10,
+"fired_dirs": [],
+"sig_dirs": [
+"put"
+],
+"grades": []
+},
+{
+"card_id": "QQQ_2026-07-10",
+"symbol": "QQQ",
+"day": "2026-07-10",
+"tier": "T2",
+"dir": "put",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 6,
+"n_raw": 11,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "TSLA_2026-07-17",
+"symbol": "TSLA",
+"day": "2026-07-17",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 3,
+"n_raw": 3,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "NVDA_2026-07-17",
+"symbol": "NVDA",
+"day": "2026-07-17",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 5,
+"n_raw": 11,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "AMD_2026-07-17",
+"symbol": "AMD",
+"day": "2026-07-17",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 2,
+"n_sig": 4,
+"n_raw": 6,
+"fired_dirs": [
+"put"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"C"
+]
+},
+{
+"card_id": "TSLA_2026-07-23",
+"symbol": "TSLA",
+"day": "2026-07-23",
+"tier": "T2",
+"dir": "put",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 5,
+"n_raw": 9,
+"fired_dirs": [
+"put"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "AAPL_2026-07-24",
+"symbol": "AAPL",
+"day": "2026-07-24",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 12,
+"n_raw": 23,
+"fired_dirs": [],
+"sig_dirs": [
+"call"
+],
+"grades": []
+},
+{
+"card_id": "AAPL_2026-07-27",
+"symbol": "AAPL",
+"day": "2026-07-27",
+"tier": "T1",
+"dir": "call",
+"no_archive": false,
+"n_fired": 2,
+"n_sig": 5,
+"n_raw": 12,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call"
+],
+"grades": [
+"B",
+"C"
+]
+},
+{
+"card_id": "QQQ_2026-07-27",
+"symbol": "QQQ",
+"day": "2026-07-27",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 3,
+"n_sig": 7,
+"n_raw": 17,
+"fired_dirs": [
+"put"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B",
+"C"
+]
+},
+{
+"card_id": "AMD_2026-07-31",
+"symbol": "AMD",
+"day": "2026-07-31",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 7,
+"n_raw": 14,
+"fired_dirs": [
+"put"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "TSLA_2026-07-31",
+"symbol": "TSLA",
+"day": "2026-07-31",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 6,
+"n_raw": 7,
+"fired_dirs": [
+"put"
+],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "NVDA_2026-07-31",
+"symbol": "NVDA",
+"day": "2026-07-31",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 10,
+"n_raw": 21,
+"fired_dirs": [],
+"sig_dirs": [
+"call",
+"put"
+],
+"grades": []
+},
+{
+"card_id": "TSLA_2026-08-07",
+"symbol": "TSLA",
+"day": "2026-08-07",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 2,
+"n_raw": 3,
+"fired_dirs": [],
+"sig_dirs": [
+"call"
+],
+"grades": []
+},
+{
+"card_id": "NVDA_2026-08-07",
+"symbol": "NVDA",
+"day": "2026-08-07",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 1,
+"n_sig": 10,
+"n_raw": 17,
+"fired_dirs": [
+"call"
+],
+"sig_dirs": [
+"call"
+],
+"grades": [
+"B"
+]
+},
+{
+"card_id": "AAPL_2026-08-14",
+"symbol": "AAPL",
+"day": "2026-08-14",
+"tier": "T2",
+"dir": "call",
+"no_archive": true,
+"n_fired": 0,
+"n_sig": 0,
+"n_raw": 0,
+"fired_dirs": [],
+"sig_dirs": [],
+"grades": []
+},
+{
+"card_id": "TSLA_2026-08-14",
+"symbol": "TSLA",
+"day": "2026-08-14",
+"tier": "T2",
+"dir": "call",
+"no_archive": true,
+"n_fired": 0,
+"n_sig": 0,
+"n_raw": 0,
+"fired_dirs": [],
+"sig_dirs": [],
+"grades": []
+},
+{
+"card_id": "TSLA_2026-08-21",
+"symbol": "TSLA",
+"day": "2026-08-21",
+"tier": "T2",
+"dir": "call",
+"no_archive": false,
+"n_fired": 0,
+"n_sig": 1,
+"n_raw": 1,
+"fired_dirs": [],
+"sig_dirs": [
+"put"
+],
+"grades": []
+},
+{
+"card_id": "AMD_2026-08-21",
+"symbol": "AMD",
+"day": "2026-08-21",
+"tier": "T2",
+"dir": "call",
+"no_archive": true,
+"n_fired": 0,
+"n_sig": 0,
+"n_raw": 0,
+"fired_dirs": [],
+"sig_dirs": [],
+"grades": []
+}
+]

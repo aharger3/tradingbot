@@ -1,0 +1,331 @@
+{
+ "meta": {
+  "sessions": 500,
+  "days_in_book": 500,
+  "traded_rows": 4508,
+  "candidate_days": 499,
+  "candidates": 6170
+ },
+ "control_book_pnl_one_a_day_UNGATED": {
+  "trades": 499,
+  "win_pct": 66.7,
+  "total_dollars": 360380,
+  "mean_r": 0.7222,
+  "per_day": 721,
+  "months_green": 25,
+  "months": 25,
+  "weeks_green": 87,
+  "weeks": 105,
+  "ci": [
+   721,
+   579,
+   869
+  ]
+ },
+ "control_book_pnl_everything_UNGATED": {
+  "trades": 4508,
+  "win_pct": 59.4,
+  "total_dollars": 2633850,
+  "mean_r": 0.5843,
+  "per_day": 5268,
+  "months_green": 25,
+  "months": 25,
+  "weeks_green": 100,
+  "weeks": 105
+ },
+ "gate": {
+  "rows_with_no_bars": 0,
+  "traded_rows_scored": 4508,
+  "traded_rows_sizeable": 3821,
+  "traded_rows_dropped": 687
+ },
+ "control_book_pnl_one_a_day_GATED": {
+  "trades": 499,
+  "win_pct": 64.5,
+  "total_dollars": 340483,
+  "mean_r": 0.6823,
+  "per_day": 681,
+  "months_green": 24,
+  "months": 25,
+  "weeks_green": 85,
+  "weeks": 105,
+  "ci": [
+   681,
+   536,
+   832
+  ],
+  "days_missed": 0
+ },
+ "control_book_pnl_everything_GATED": {
+  "trades": 3821,
+  "win_pct": 59.5,
+  "total_dollars": 2174273,
+  "mean_r": 0.569,
+  "per_day": 4349,
+  "months_green": 25,
+  "months": 25,
+  "weeks_green": 97,
+  "weeks": 105
+ },
+ "policies": {
+  "B_ungated": {
+   "everything": {
+    "trades": 4508,
+    "win_pct": 45.4,
+    "total_dollars": -1045,
+    "mean_r": -0.0002,
+    "per_day": -2,
+    "months_green": 11,
+    "months": 25,
+    "weeks_green": 50,
+    "weeks": 105
+   },
+   "one_a_day": {
+    "trades": 499,
+    "win_pct": 51.6,
+    "total_dollars": 30002,
+    "mean_r": 0.0601,
+    "per_day": 60,
+    "months_green": 13,
+    "months": 25,
+    "weeks_green": 58,
+    "weeks": 105
+   },
+   "one_a_day_days_missed": 0,
+   "fills": 4508,
+   "no_fills": 0,
+   "one_a_day_ci": [
+    60,
+    -31,
+    156
+   ]
+  },
+  "B_GATED": {
+   "everything": {
+    "trades": 4130,
+    "win_pct": 45.7,
+    "total_dollars": -40554,
+    "mean_r": -0.0098,
+    "per_day": -81,
+    "months_green": 11,
+    "months": 25,
+    "weeks_green": 45,
+    "weeks": 105
+   },
+   "one_a_day": {
+    "trades": 499,
+    "win_pct": 50.6,
+    "total_dollars": 23803,
+    "mean_r": 0.0477,
+    "per_day": 48,
+    "months_green": 13,
+    "months": 25,
+    "weeks_green": 57,
+    "weeks": 105
+   },
+   "one_a_day_days_missed": 0,
+   "fills": 4130,
+   "no_fills": 378,
+   "one_a_day_ci": [
+    48,
+    -42,
+    142
+   ]
+  },
+  "C_ungated": {
+   "everything": {
+    "trades": 4508,
+    "win_pct": 45.6,
+    "total_dollars": 28326,
+    "mean_r": 0.0063,
+    "per_day": 57,
+    "months_green": 12,
+    "months": 25,
+    "weeks_green": 56,
+    "weeks": 105
+   },
+   "one_a_day": {
+    "trades": 499,
+    "win_pct": 53.2,
+    "total_dollars": 43323,
+    "mean_r": 0.0868,
+    "per_day": 87,
+    "months_green": 13,
+    "months": 25,
+    "weeks_green": 59,
+    "weeks": 105
+   },
+   "one_a_day_days_missed": 0,
+   "fills": 4508,
+   "no_fills": 0,
+   "one_a_day_ci": [
+    87,
+    -17,
+    199
+   ]
+  },
+  "C_GATED": {
+   "everything": {
+    "trades": 4092,
+    "win_pct": 46.1,
+    "total_dollars": -28702,
+    "mean_r": -0.007,
+    "per_day": -57,
+    "months_green": 12,
+    "months": 25,
+    "weeks_green": 50,
+    "weeks": 105
+   },
+   "one_a_day": {
+    "trades": 499,
+    "win_pct": 52.4,
+    "total_dollars": 16685,
+    "mean_r": 0.0334,
+    "per_day": 33,
+    "months_green": 12,
+    "months": 25,
+    "weeks_green": 56,
+    "weeks": 105
+   },
+   "one_a_day_days_missed": 0,
+   "fills": 4092,
+   "no_fills": 416,
+   "one_a_day_ci": [
+    33,
+    -48,
+    120
+   ]
+  },
+  "D_ungated": {
+   "everything": {
+    "trades": 4502,
+    "win_pct": 44.3,
+    "total_dollars": 262452,
+    "mean_r": 0.0583,
+    "per_day": 525,
+    "months_green": 15,
+    "months": 25,
+    "weeks_green": 55,
+    "weeks": 105
+   },
+   "one_a_day": {
+    "trades": 499,
+    "win_pct": 51.0,
+    "total_dollars": 65787,
+    "mean_r": 0.1318,
+    "per_day": 132,
+    "months_green": 13,
+    "months": 25,
+    "weeks_green": 58,
+    "weeks": 105
+   },
+   "one_a_day_days_missed": 0,
+   "fills": 4502,
+   "no_fills": 6,
+   "one_a_day_ci": [
+    132,
+    -19,
+    334
+   ]
+  },
+  "D_GATED": {
+   "everything": {
+    "trades": 3889,
+    "win_pct": 46.4,
+    "total_dollars": 107732,
+    "mean_r": 0.0277,
+    "per_day": 215,
+    "months_green": 12,
+    "months": 25,
+    "weeks_green": 51,
+    "weeks": 105
+   },
+   "one_a_day": {
+    "trades": 499,
+    "win_pct": 52.0,
+    "total_dollars": 33907,
+    "mean_r": 0.0679,
+    "per_day": 68,
+    "months_green": 14,
+    "months": 25,
+    "weeks_green": 58,
+    "weeks": 105
+   },
+   "one_a_day_days_missed": 0,
+   "fills": 3889,
+   "no_fills": 619,
+   "one_a_day_ci": [
+    68,
+    -26,
+    167
+   ]
+  }
+ },
+ "paired_control_minus_policy_one_a_day_GATED": {
+  "B": {
+   "mean_dollars_per_day": 633,
+   "ci95": [
+    541,
+    732
+   ],
+   "excludes_zero": true
+  },
+  "C": {
+   "mean_dollars_per_day": 648,
+   "ci95": [
+    547,
+    753
+   ],
+   "excludes_zero": true
+  },
+  "D": {
+   "mean_dollars_per_day": 613,
+   "ci95": [
+    497,
+    731
+   ],
+   "excludes_zero": true
+  }
+ },
+ "arithmetic": {
+  "control_one_a_day_GATED": {
+   "n": 499,
+   "wins": 322,
+   "losses": 177,
+   "scratches": 0,
+   "mean_winner_R": 1.5984,
+   "mean_loser_R": -0.9843,
+   "worst_R": -1.0,
+   "best_R": 10.0737,
+   "mean_R_actual": 0.6823,
+   "mean_R_from_wT_minus_1mw": 0.6823,
+   "win_pct": 64.5
+  },
+  "control_everything_GATED": {
+   "n": 3821,
+   "wins": 2271,
+   "losses": 1548,
+   "scratches": 2,
+   "mean_winner_R": 1.6244,
+   "mean_loser_R": -0.9785,
+   "worst_R": -1.0,
+   "best_R": 14.2636,
+   "mean_R_actual": 0.569,
+   "mean_R_from_wT_minus_1mw": 0.5693,
+   "win_pct": 59.5
+  },
+  "control_everything_book": {
+   "n": 4508,
+   "wins": 2678,
+   "losses": 1828,
+   "scratches": 2,
+   "mean_winner_R": 1.6493,
+   "mean_loser_R": -0.9754,
+   "worst_R": -1.0,
+   "best_R": 24.348,
+   "mean_R_actual": 0.5843,
+   "mean_R_from_wT_minus_1mw": 0.5845,
+   "win_pct": 59.4
+  }
+ }
+}

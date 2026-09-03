@@ -1,0 +1,97 @@
+{
+  "pool_total": 1263,
+  "s_total": 347,
+  "none_total": 607,
+  "structural_lens": {
+    "break_and_retest": {
+      "n_S": 32
+    },
+    "one_candle_rule": {
+      "n_S": 0
+    },
+    "br_ocr_confluence": {
+      "n_S": 88
+    },
+    "reentry_84": {
+      "n_S": 0
+    },
+    "other": {
+      "n_S": 0
+    }
+  },
+  "s_days_no_traded_candidate": 227,
+  "claimed_lens": [
+    {
+      "family": "break_and_retest",
+      "n_tag": 101,
+      "n_S": 34,
+      "n_none": 6,
+      "n_X": 0,
+      "s_rate": 0.33663366336633666,
+      "ev_r": 0.5541,
+      "n_trades": 11,
+      "win_rate": 0.8182,
+      "yearly_R": 45.1747
+    },
+    {
+      "family": "one_candle_rule",
+      "n_tag": 64,
+      "n_S": 29,
+      "n_none": 25,
+      "n_X": 0,
+      "s_rate": 0.453125,
+      "ev_r": -0.4356,
+      "n_trades": 5,
+      "win_rate": 0.2,
+      "yearly_R": -18.9261
+    },
+    {
+      "family": "br_ocr_confluence",
+      "n_tag": 14,
+      "n_S": 8,
+      "n_none": 0,
+      "n_X": 0,
+      "s_rate": 0.5714285714285714,
+      "ev_r": 1.076,
+      "n_trades": 1,
+      "win_rate": 1.0,
+      "yearly_R": 33.894
+    },
+    {
+      "family": "order_block",
+      "n_tag": 12,
+      "n_S": 9,
+      "n_none": 0,
+      "n_X": 0,
+      "s_rate": 0.75,
+      "ev_r": null,
+      "n_trades": 0,
+      "win_rate": null,
+      "yearly_R": null
+    },
+    {
+      "family": "reentry_84",
+      "n_tag": 47,
+      "n_S": 12,
+      "n_none": 25,
+      "n_X": 0,
+      "s_rate": 0.2553191489361702,
+      "ev_r": -0.292,
+      "n_trades": 7,
+      "win_rate": 0.4286,
+      "yearly_R": -42.924
+    },
+    {
+      "family": "other",
+      "n_tag": 9,
+      "n_S": 4,
+      "n_none": 0,
+      "n_X": 0,
+      "s_rate": 0.4444444444444444,
+      "ev_r": null,
+      "n_trades": 0,
+      "win_rate": null,
+      "yearly_R": null
+    }
+  ]
+}

@@ -1,0 +1,772 @@
+{
+ "n_firsts": 498,
+ "no_bars": 0,
+ "gated": 54,
+ "n_measured": 444,
+ "n_runner": 103,
+ "runner_pct": 23.2,
+ "runner_threshold_r": 3.0,
+ "trials": 5000,
+ "n_cat_tested": 71,
+ "n_num_tested": 14,
+ "n_tested_total": 85,
+ "bonferroni_p": 0.000588,
+ "expected_false_positives_at_p05": 4.2,
+ "categorical": [
+  {
+   "field": "rangeb",
+   "value": "big range",
+   "n": 264,
+   "runner_rate_in_pct": 28.0,
+   "runner_rate_out_pct": 16.1,
+   "diff_pp": 11.9,
+   "p": 0.0046
+  },
+  {
+   "field": "level_tf",
+   "value": "1D",
+   "n": 92,
+   "runner_rate_in_pct": 12.0,
+   "runner_rate_out_pct": 26.1,
+   "diff_pp": -14.2,
+   "p": 0.0056
+  },
+  {
+   "field": "dow",
+   "value": "Tue",
+   "n": 94,
+   "runner_rate_in_pct": 33.0,
+   "runner_rate_out_pct": 20.6,
+   "diff_pp": 12.4,
+   "p": 0.0142
+  },
+  {
+   "field": "rangeb",
+   "value": "quiet",
+   "n": 34,
+   "runner_rate_in_pct": 5.9,
+   "runner_rate_out_pct": 24.6,
+   "diff_pp": -18.8,
+   "p": 0.0166
+  },
+  {
+   "field": "tag",
+   "value": "chase",
+   "n": 152,
+   "runner_rate_in_pct": 16.4,
+   "runner_rate_out_pct": 26.7,
+   "diff_pp": -10.3,
+   "p": 0.0176
+  },
+  {
+   "field": "downgrade",
+   "value": "chase",
+   "n": 152,
+   "runner_rate_in_pct": 16.4,
+   "runner_rate_out_pct": 26.7,
+   "diff_pp": -10.3,
+   "p": 0.0176
+  },
+  {
+   "field": "stopb",
+   "value": "mid",
+   "n": 195,
+   "runner_rate_in_pct": 27.7,
+   "runner_rate_out_pct": 19.7,
+   "diff_pp": 8.0,
+   "p": 0.0578
+  },
+  {
+   "field": "level",
+   "value": "PDH",
+   "n": 54,
+   "runner_rate_in_pct": 13.0,
+   "runner_rate_out_pct": 24.6,
+   "diff_pp": -11.7,
+   "p": 0.061
+  },
+  {
+   "field": "level_name",
+   "value": "PDH",
+   "n": 54,
+   "runner_rate_in_pct": 13.0,
+   "runner_rate_out_pct": 24.6,
+   "diff_pp": -11.7,
+   "p": 0.061
+  },
+  {
+   "field": "level",
+   "value": "PDL",
+   "n": 38,
+   "runner_rate_in_pct": 10.5,
+   "runner_rate_out_pct": 24.4,
+   "diff_pp": -13.9,
+   "p": 0.0752
+  },
+  {
+   "field": "level_name",
+   "value": "PDL",
+   "n": 38,
+   "runner_rate_in_pct": 10.5,
+   "runner_rate_out_pct": 24.4,
+   "diff_pp": -13.9,
+   "p": 0.0752
+  },
+  {
+   "field": "tier",
+   "value": "core",
+   "n": 190,
+   "runner_rate_in_pct": 27.4,
+   "runner_rate_out_pct": 20.1,
+   "diff_pp": 7.3,
+   "p": 0.0876
+  },
+  {
+   "field": "level",
+   "value": "OR high",
+   "n": 75,
+   "runner_rate_in_pct": 30.7,
+   "runner_rate_out_pct": 21.7,
+   "diff_pp": 9.0,
+   "p": 0.0998
+  },
+  {
+   "field": "level_name",
+   "value": "not-his: OR high",
+   "n": 75,
+   "runner_rate_in_pct": 30.7,
+   "runner_rate_out_pct": 21.7,
+   "diff_pp": 9.0,
+   "p": 0.0998
+  },
+  {
+   "field": "downgrade",
+   "value": "no_retest",
+   "n": 29,
+   "runner_rate_in_pct": 10.3,
+   "runner_rate_out_pct": 24.1,
+   "diff_pp": -13.8,
+   "p": 0.1098
+  },
+  {
+   "field": "rangeb",
+   "value": "normal",
+   "n": 146,
+   "runner_rate_in_pct": 18.5,
+   "runner_rate_out_pct": 25.5,
+   "diff_pp": -7.0,
+   "p": 0.116
+  },
+  {
+   "field": "stopb",
+   "value": "very wide",
+   "n": 71,
+   "runner_rate_in_pct": 15.5,
+   "runner_rate_out_pct": 24.7,
+   "diff_pp": -9.2,
+   "p": 0.1202
+  },
+  {
+   "field": "vol_regime",
+   "value": "wild",
+   "n": 173,
+   "runner_rate_in_pct": 27.2,
+   "runner_rate_out_pct": 20.7,
+   "diff_pp": 6.5,
+   "p": 0.1338
+  },
+  {
+   "field": "vol_regime",
+   "value": "calm",
+   "n": 138,
+   "runner_rate_in_pct": 18.8,
+   "runner_rate_out_pct": 25.2,
+   "diff_pp": -6.3,
+   "p": 0.1386
+  },
+  {
+   "field": "tripped_bucket",
+   "value": "tripped=3",
+   "n": 144,
+   "runner_rate_in_pct": 18.8,
+   "runner_rate_out_pct": 25.3,
+   "diff_pp": -6.6,
+   "p": 0.1622
+  },
+  {
+   "field": "downgrade",
+   "value": "no_displacement",
+   "n": 268,
+   "runner_rate_in_pct": 20.9,
+   "runner_rate_out_pct": 26.7,
+   "diff_pp": -5.8,
+   "p": 0.163
+  },
+  {
+   "field": "sgrade",
+   "value": "C",
+   "n": 247,
+   "runner_rate_in_pct": 20.6,
+   "runner_rate_out_pct": 26.4,
+   "diff_pp": -5.7,
+   "p": 0.174
+  },
+  {
+   "field": "tier",
+   "value": "experimental",
+   "n": 233,
+   "runner_rate_in_pct": 20.6,
+   "runner_rate_out_pct": 26.1,
+   "diff_pp": -5.5,
+   "p": 0.1754
+  },
+  {
+   "field": "dow",
+   "value": "Thu",
+   "n": 85,
+   "runner_rate_in_pct": 17.6,
+   "runner_rate_out_pct": 24.5,
+   "diff_pp": -6.9,
+   "p": 0.1926
+  },
+  {
+   "field": "tag",
+   "value": "disp",
+   "n": 64,
+   "runner_rate_in_pct": 29.7,
+   "runner_rate_out_pct": 22.1,
+   "diff_pp": 7.6,
+   "p": 0.1998
+  },
+  {
+   "field": "downgrade",
+   "value": "ocr_not_respected",
+   "n": 28,
+   "runner_rate_in_pct": 32.1,
+   "runner_rate_out_pct": 22.6,
+   "diff_pp": 9.5,
+   "p": 0.2533
+  },
+  {
+   "field": "spy_trend",
+   "value": "bull",
+   "n": 312,
+   "runner_rate_in_pct": 24.7,
+   "runner_rate_out_pct": 19.7,
+   "diff_pp": 5.0,
+   "p": 0.2715
+  },
+  {
+   "field": "tag",
+   "value": "nodisp",
+   "n": 378,
+   "runner_rate_in_pct": 22.2,
+   "runner_rate_out_pct": 28.8,
+   "diff_pp": -6.6,
+   "p": 0.2755
+  },
+  {
+   "field": "aligned",
+   "value": "against",
+   "n": 166,
+   "runner_rate_in_pct": 20.5,
+   "runner_rate_out_pct": 24.8,
+   "diff_pp": -4.3,
+   "p": 0.2951
+  },
+  {
+   "field": "dow",
+   "value": "Fri",
+   "n": 85,
+   "runner_rate_in_pct": 18.8,
+   "runner_rate_out_pct": 24.2,
+   "diff_pp": -5.4,
+   "p": 0.3201
+  },
+  {
+   "field": "level_tf",
+   "value": "1m premarket",
+   "n": 200,
+   "runner_rate_in_pct": 25.5,
+   "runner_rate_out_pct": 21.3,
+   "diff_pp": 4.2,
+   "p": 0.3203
+  },
+  {
+   "field": "dow",
+   "value": "Mon",
+   "n": 90,
+   "runner_rate_in_pct": 18.9,
+   "runner_rate_out_pct": 24.3,
+   "diff_pp": -5.4,
+   "p": 0.3215
+  },
+  {
+   "field": "tripped_bucket",
+   "value": "tripped=0",
+   "n": 24,
+   "runner_rate_in_pct": 33.3,
+   "runner_rate_out_pct": 22.6,
+   "diff_pp": 10.7,
+   "p": 0.3217
+  },
+  {
+   "field": "spy_trend",
+   "value": "bear",
+   "n": 131,
+   "runner_rate_in_pct": 19.8,
+   "runner_rate_out_pct": 24.6,
+   "diff_pp": -4.8,
+   "p": 0.3253
+  },
+  {
+   "field": "side",
+   "value": "S",
+   "n": 207,
+   "runner_rate_in_pct": 21.3,
+   "runner_rate_out_pct": 24.9,
+   "diff_pp": -3.6,
+   "p": 0.3641
+  },
+  {
+   "field": "dir",
+   "value": "put",
+   "n": 207,
+   "runner_rate_in_pct": 21.3,
+   "runner_rate_out_pct": 24.9,
+   "diff_pp": -3.6,
+   "p": 0.3641
+  },
+  {
+   "field": "side",
+   "value": "L",
+   "n": 237,
+   "runner_rate_in_pct": 24.9,
+   "runner_rate_out_pct": 21.3,
+   "diff_pp": 3.6,
+   "p": 0.3641
+  },
+  {
+   "field": "dir",
+   "value": "call",
+   "n": 237,
+   "runner_rate_in_pct": 24.9,
+   "runner_rate_out_pct": 21.3,
+   "diff_pp": 3.6,
+   "p": 0.3641
+  },
+  {
+   "field": "sgrade",
+   "value": "A",
+   "n": 118,
+   "runner_rate_in_pct": 26.3,
+   "runner_rate_out_pct": 22.1,
+   "diff_pp": 4.2,
+   "p": 0.3675
+  },
+  {
+   "field": "bias",
+   "value": "bearish",
+   "n": 194,
+   "runner_rate_in_pct": 21.1,
+   "runner_rate_out_pct": 24.8,
+   "diff_pp": -3.7,
+   "p": 0.3707
+  },
+  {
+   "field": "tripped_bucket",
+   "value": "tripped=2",
+   "n": 147,
+   "runner_rate_in_pct": 25.9,
+   "runner_rate_out_pct": 21.9,
+   "diff_pp": 4.0,
+   "p": 0.3947
+  },
+  {
+   "field": "dow",
+   "value": "Wed",
+   "n": 90,
+   "runner_rate_in_pct": 26.7,
+   "runner_rate_out_pct": 22.3,
+   "diff_pp": 4.4,
+   "p": 0.4199
+  },
+  {
+   "field": "downgrade",
+   "value": "counter_trend_not_respected",
+   "n": 273,
+   "runner_rate_in_pct": 24.5,
+   "runner_rate_out_pct": 21.1,
+   "diff_pp": 3.5,
+   "p": 0.4227
+  },
+  {
+   "field": "tier",
+   "value": "other",
+   "n": 21,
+   "runner_rate_in_pct": 14.3,
+   "runner_rate_out_pct": 23.6,
+   "diff_pp": -9.4,
+   "p": 0.4381
+  },
+  {
+   "field": "sgrade",
+   "value": "S",
+   "n": 79,
+   "runner_rate_in_pct": 26.6,
+   "runner_rate_out_pct": 22.5,
+   "diff_pp": 4.1,
+   "p": 0.4641
+  },
+  {
+   "field": "level_tf",
+   "value": "5m opening range",
+   "n": 137,
+   "runner_rate_in_pct": 25.5,
+   "runner_rate_out_pct": 22.1,
+   "diff_pp": 3.4,
+   "p": 0.4661
+  },
+  {
+   "field": "pool",
+   "value": "other",
+   "n": 170,
+   "runner_rate_in_pct": 21.2,
+   "runner_rate_out_pct": 24.5,
+   "diff_pp": -3.3,
+   "p": 0.4743
+  },
+  {
+   "field": "pool",
+   "value": "equity",
+   "n": 261,
+   "runner_rate_in_pct": 24.5,
+   "runner_rate_out_pct": 21.3,
+   "diff_pp": 3.2,
+   "p": 0.4813
+  },
+  {
+   "field": "bias",
+   "value": "neutral",
+   "n": 27,
+   "runner_rate_in_pct": 29.6,
+   "runner_rate_out_pct": 22.8,
+   "diff_pp": 6.8,
+   "p": 0.4851
+  },
+  {
+   "field": "aligned",
+   "value": "with",
+   "n": 248,
+   "runner_rate_in_pct": 24.6,
+   "runner_rate_out_pct": 21.4,
+   "diff_pp": 3.2,
+   "p": 0.4877
+  },
+  {
+   "field": "stopb",
+   "value": "wide",
+   "n": 178,
+   "runner_rate_in_pct": 21.3,
+   "runner_rate_out_pct": 24.4,
+   "diff_pp": -3.1,
+   "p": 0.4939
+  },
+  {
+   "field": "level",
+   "value": "PML",
+   "n": 100,
+   "runner_rate_in_pct": 26.0,
+   "runner_rate_out_pct": 22.4,
+   "diff_pp": 3.6,
+   "p": 0.5019
+  },
+  {
+   "field": "level_name",
+   "value": "PML",
+   "n": 100,
+   "runner_rate_in_pct": 26.0,
+   "runner_rate_out_pct": 22.4,
+   "diff_pp": 3.6,
+   "p": 0.5019
+  },
+  {
+   "field": "level",
+   "value": "OR low",
+   "n": 62,
+   "runner_rate_in_pct": 19.4,
+   "runner_rate_out_pct": 23.8,
+   "diff_pp": -4.5,
+   "p": 0.5257
+  },
+  {
+   "field": "level_name",
+   "value": "not-his: OR low",
+   "n": 62,
+   "runner_rate_in_pct": 19.4,
+   "runner_rate_out_pct": 23.8,
+   "diff_pp": -4.5,
+   "p": 0.5257
+  },
+  {
+   "field": "bias",
+   "value": "bullish",
+   "n": 220,
+   "runner_rate_in_pct": 24.5,
+   "runner_rate_out_pct": 21.9,
+   "diff_pp": 2.7,
+   "p": 0.5725
+  },
+  {
+   "field": "setup_label",
+   "value": "BR+OCR",
+   "n": 297,
+   "runner_rate_in_pct": 23.9,
+   "runner_rate_out_pct": 21.8,
+   "diff_pp": 2.1,
+   "p": 0.6319
+  },
+  {
+   "field": "confluence",
+   "value": "yes",
+   "n": 297,
+   "runner_rate_in_pct": 23.9,
+   "runner_rate_out_pct": 21.8,
+   "diff_pp": 2.1,
+   "p": 0.6319
+  },
+  {
+   "field": "tag",
+   "value": "brocr",
+   "n": 297,
+   "runner_rate_in_pct": 23.9,
+   "runner_rate_out_pct": 21.8,
+   "diff_pp": 2.1,
+   "p": 0.6319
+  },
+  {
+   "field": "confluence",
+   "value": "no",
+   "n": 147,
+   "runner_rate_in_pct": 21.8,
+   "runner_rate_out_pct": 23.9,
+   "diff_pp": -2.1,
+   "p": 0.6319
+  },
+  {
+   "field": "gapb",
+   "value": "small gap",
+   "n": 166,
+   "runner_rate_in_pct": 24.7,
+   "runner_rate_out_pct": 22.3,
+   "diff_pp": 2.4,
+   "p": 0.6395
+  },
+  {
+   "field": "tag",
+   "value": "hammer",
+   "n": 78,
+   "runner_rate_in_pct": 25.6,
+   "runner_rate_out_pct": 22.7,
+   "diff_pp": 3.0,
+   "p": 0.6661
+  },
+  {
+   "field": "level",
+   "value": "PMH",
+   "n": 100,
+   "runner_rate_in_pct": 25.0,
+   "runner_rate_out_pct": 22.7,
+   "diff_pp": 2.3,
+   "p": 0.6917
+  },
+  {
+   "field": "level_name",
+   "value": "PMH",
+   "n": 100,
+   "runner_rate_in_pct": 25.0,
+   "runner_rate_out_pct": 22.7,
+   "diff_pp": 2.3,
+   "p": 0.6917
+  },
+  {
+   "field": "setup_label",
+   "value": "break-and-retest",
+   "n": 146,
+   "runner_rate_in_pct": 21.9,
+   "runner_rate_out_pct": 23.8,
+   "diff_pp": -1.9,
+   "p": 0.7133
+  },
+  {
+   "field": "gapb",
+   "value": "flat",
+   "n": 78,
+   "runner_rate_in_pct": 21.8,
+   "runner_rate_out_pct": 23.5,
+   "diff_pp": -1.7,
+   "p": 0.7702
+  },
+  {
+   "field": "gapb",
+   "value": "big gap",
+   "n": 200,
+   "runner_rate_in_pct": 22.5,
+   "runner_rate_out_pct": 23.8,
+   "diff_pp": -1.3,
+   "p": 0.8218
+  },
+  {
+   "field": "tripped_bucket",
+   "value": "tripped=1",
+   "n": 75,
+   "runner_rate_in_pct": 24.0,
+   "runner_rate_out_pct": 23.0,
+   "diff_pp": 1.0,
+   "p": 0.8798
+  },
+  {
+   "field": "vol_regime",
+   "value": "normal",
+   "n": 132,
+   "runner_rate_in_pct": 22.7,
+   "runner_rate_out_pct": 23.4,
+   "diff_pp": -0.7,
+   "p": 0.9092
+  },
+  {
+   "field": "downgrade",
+   "value": "level_not_respected",
+   "n": 276,
+   "runner_rate_in_pct": 23.2,
+   "runner_rate_out_pct": 23.2,
+   "diff_pp": -0.0,
+   "p": 1.0
+  },
+  {
+   "field": "tripped_bucket",
+   "value": "tripped=4",
+   "n": 46,
+   "runner_rate_in_pct": 23.9,
+   "runner_rate_out_pct": 23.1,
+   "diff_pp": 0.8,
+   "p": 1.0
+  }
+ ],
+ "numeric": [
+  {
+   "field": "stop_pct",
+   "n": 444,
+   "mean_runner": 0.3891,
+   "mean_non_runner": 0.4924,
+   "diff": -0.1033,
+   "p": 0.006
+  },
+  {
+   "field": "drange (day range %)",
+   "n": 444,
+   "mean_runner": 4.8679,
+   "mean_non_runner": 4.082,
+   "diff": 0.7859,
+   "p": 0.0194
+  },
+  {
+   "field": "minutes_since_open",
+   "n": 444,
+   "mean_runner": 10.4466,
+   "mean_non_runner": 9.5455,
+   "diff": 0.9011,
+   "p": 0.0332
+  },
+  {
+   "field": "risk_dollars",
+   "n": 444,
+   "mean_runner": 0.7649,
+   "mean_non_runner": 0.9082,
+   "diff": -0.1433,
+   "p": 0.1316
+  },
+  {
+   "field": "dret (day return %)",
+   "n": 444,
+   "mean_runner": 0.6488,
+   "mean_non_runner": 0.1417,
+   "diff": 0.5071,
+   "p": 0.1394
+  },
+  {
+   "field": "tripped_n",
+   "n": 444,
+   "mean_runner": 2.1748,
+   "mean_non_runner": 2.3519,
+   "diff": -0.1771,
+   "p": 0.1592
+  },
+  {
+   "field": "n_downgrades",
+   "n": 444,
+   "mean_runner": 2.1748,
+   "mean_non_runner": 2.3519,
+   "diff": -0.1771,
+   "p": 0.1592
+  },
+  {
+   "field": "gap_abs",
+   "n": 444,
+   "mean_runner": 1.6284,
+   "mean_non_runner": 1.4322,
+   "diff": 0.1962,
+   "p": 0.3719
+  },
+  {
+   "field": "planned_rr (target R)",
+   "n": 444,
+   "mean_runner": 2.0013,
+   "mean_non_runner": 1.9992,
+   "diff": 0.0021,
+   "p": 0.3849
+  },
+  {
+   "field": "n_tags",
+   "n": 444,
+   "mean_runner": 3.1262,
+   "mean_non_runner": 3.1935,
+   "diff": -0.0673,
+   "p": 0.4519
+  },
+  {
+   "field": "s (engine score)",
+   "n": 444,
+   "mean_runner": 4.5146,
+   "mean_non_runner": 4.6012,
+   "diff": -0.0866,
+   "p": 0.6099
+  },
+  {
+   "field": "gap",
+   "n": 444,
+   "mean_runner": 0.3906,
+   "mean_non_runner": 0.2775,
+   "diff": 0.113,
+   "p": 0.6857
+  },
+  {
+   "field": "entry_price",
+   "n": 444,
+   "mean_runner": 219.209,
+   "mean_non_runner": 215.2779,
+   "diff": 3.9311,
+   "p": 0.8222
+  },
+  {
+   "field": "level_dist_r",
+   "n": 444,
+   "mean_runner": 1.0,
+   "mean_non_runner": 0.9957,
+   "diff": 0.0043,
+   "p": 1.0
+  }
+ ],
+ "significant_at_p05": 9,
+ "significant_at_bonferroni": 0
+}

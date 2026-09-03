@@ -1,0 +1,112 @@
+{
+  "book": "research/bt2y_trades.json",
+  "generated": "2026-08-29T03:14:29",
+  "traded": 2437,
+  "days": 496,
+  "total_r": 1339.09,
+  "trade_level": {
+    "max_dd_r": 17.13,
+    "max_dd_usd": 17132.0,
+    "peak": "2025-08-22 10:04 TSLA",
+    "trough": "2025-09-12 10:05 META",
+    "recovered": "2025-09-22 10:14 TSM",
+    "trades_in_dd": 73,
+    "sessions_in_dd": 15,
+    "top6": [
+      {
+        "depth": 17.13,
+        "peak": "2025-08-22 10:04 TSLA",
+        "trough": "2025-09-12 10:05 META",
+        "recovered": "2025-09-22 10:14 TSM"
+      },
+      {
+        "depth": 15.4,
+        "peak": "2025-10-13 10:06 COIN",
+        "trough": "2025-10-31 10:05 META",
+        "recovered": "2025-11-18 09:46 MU"
+      },
+      {
+        "depth": 12.92,
+        "peak": "2024-11-27 09:44 AMZN",
+        "trough": "2024-12-06 10:00 IWM",
+        "recovered": "2024-12-16 10:10 TSLA"
+      },
+      {
+        "depth": 11.6,
+        "peak": "2024-09-09 10:24 AVGO",
+        "trough": "2024-09-24 10:09 NVDA",
+        "recovered": "2024-10-01 10:25 TSLA"
+      },
+      {
+        "depth": 11.41,
+        "peak": "2026-02-06 09:57 AAPL",
+        "trough": "2026-02-12 09:46 MU",
+        "recovered": "2026-02-18 09:50 HOOD"
+      },
+      {
+        "depth": 11.0,
+        "peak": "2025-05-20 09:51 AVGO",
+        "trough": "2025-05-28 10:00 QQQ",
+        "recovered": "2025-05-30 10:48 GOOGL"
+      }
+    ]
+  },
+  "day_level": {
+    "max_dd_r": 14.71,
+    "max_dd_usd": 14714.0,
+    "peak": "2025-08-28",
+    "trough": "2025-09-11",
+    "recovered": "2025-09-22",
+    "sessions_in_dd": 10,
+    "top6": [
+      {
+        "depth": 14.71,
+        "peak": "2025-08-28",
+        "trough": "2025-09-11",
+        "recovered": "2025-09-22"
+      },
+      {
+        "depth": 11.0,
+        "peak": "2025-05-20",
+        "trough": "2025-05-28",
+        "recovered": "2025-05-30"
+      },
+      {
+        "depth": 10.6,
+        "peak": "2024-09-09",
+        "trough": "2024-09-24",
+        "recovered": "2024-10-01"
+      },
+      {
+        "depth": 10.24,
+        "peak": "2025-10-20",
+        "trough": "2025-10-28",
+        "recovered": "2025-11-06"
+      },
+      {
+        "depth": 10.02,
+        "peak": "2024-11-26",
+        "trough": "2024-12-06",
+        "recovered": "2024-12-16"
+      },
+      {
+        "depth": 8.33,
+        "peak": "2026-06-23",
+        "trough": "2026-06-26",
+        "recovered": "2026-06-29"
+      }
+    ]
+  },
+  "streaks": {
+    "max_consec_losing_trades": 11,
+    "run_from": "2025-05-21 10:02 AMZN",
+    "run_to": "2025-05-28 10:00 QQQ",
+    "max_consec_losing_days": 6,
+    "day_run_from": "2025-10-21",
+    "day_run_to": "2025-10-28",
+    "worst_day": "2026-06-26",
+    "worst_day_r": -5.78,
+    "max_trades_one_day": 22,
+    "busiest_day": "2025-08-22"
+  }
+}

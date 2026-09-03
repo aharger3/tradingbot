@@ -1,0 +1,2456 @@
+{
+ "n_S": 278,
+ "base_recall": 163,
+ "rows": [
+  {
+   "score": "pm_er_full",
+   "knowable_at": "09:30",
+   "threshold": 0.0095,
+   "book_kept_pct": 90.0,
+   "oneaday": {
+    "trades": 499,
+    "win_pct": 65.3,
+    "total_dollars": 337155.0,
+    "per_trade": 676.0,
+    "mean_r": 0.6757,
+    "per_day": 674.0,
+    "months_green": 23,
+    "months": 25,
+    "weeks_green": 85,
+    "weeks": 105,
+    "green_days_pct": 65.3,
+    "days_traded": 499,
+    "worst_drawdown": 5993.0
+   },
+   "oneaday_delta_per_day": -46.0,
+   "oneaday_delta_ci95": [
+    -108.0,
+    18.0
+   ],
+   "clears_bar": false,
+   "S_recall_n": 152,
+   "S_recall_pct": 54.7,
+   "S_recall_delta_pts": -4.0
+  },
+  {
+   "score": "pm_er_full",
+   "knowable_at": "09:30",
+   "threshold": 0.0189,
+   "book_kept_pct": 80.0,
+   "oneaday": {
+    "trades": 499,
+    "win_pct": 65.7,
+    "total_dollars": 347110.0,
+    "per_trade": 696.0,
+    "mean_r": 0.6956,
+    "per_day": 694.0,
+    "months_green": 25,
+    "months": 25,
+    "weeks_green": 89,
+    "weeks": 105,
+    "green_days_pct": 65.7,
+    "days_traded": 499,
+    "worst_drawdown": 6000.0
+   },
+   "oneaday_delta_per_day": -27.0,
+   "oneaday_delta_ci95": [
+    -116.0,
+    65.0
+   ],
+   "clears_bar": false,
+   "S_recall_n": 138,
+   "S_recall_pct": 49.6,
+   "S_recall_delta_pts": -9.0
+  },
+  {
+   "score": "pm_er_full",
+   "knowable_at": "09:30",
+   "threshold": 0.0286,
+   "book_kept_pct": 70.0,
+   "oneaday": {
+    "trades": 497,
+    "win_pct": 64.6,
+    "total_dollars": 336092.0,
+    "per_trade": 676.0,
+    "mean_r": 0.6762,
+    "per_day": 672.0,
+    "months_green": 24,
+    "months": 25,
+    "weeks_green": 84,
+    "weeks": 105,
+    "green_days_pct": 64.6,
+    "days_traded": 497,
+    "worst_drawdown": 7000.0
+   },
+   "oneaday_delta_per_day": -49.0,
+   "oneaday_delta_ci95": [
+    -148.0,
+    55.0
+   ],
+   "clears_bar": false,
+   "S_recall_n": 121,
+   "S_recall_pct": 43.5,
+   "S_recall_delta_pts": -15.1
+  },
+  {
+   "score": "pm_er_full",
+   "knowable_at": "09:30",
+   "threshold": 0.0394,
+   "book_kept_pct": 60.0,
+   "oneaday": {
+    "trades": 495,
+    "win_pct": 65.7,
+    "total_dollars": 347968.0,
+    "per_trade": 703.0,
+    "mean_r": 0.703,
+    "per_day": 696.0,
+    "months_green": 25,
+    "months": 25,
+    "weeks_green": 82,
+    "weeks": 105,
+    "green_days_pct": 65.7,
+    "days_traded": 495,
+    "worst_drawdown": 5000.0
+   },
+   "oneaday_delta_per_day": -25.0,
+   "oneaday_delta_ci95": [
+    -138.0,
+    92.0
+   ],
+   "clears_bar": false,
+   "S_recall_n": 108,
+   "S_recall_pct": 38.8,
+   "S_recall_delta_pts": -19.8
+  },
+  {
+   "score": "pm_er_full",
+   "knowable_at": "09:30",
+   "threshold": 0.0508,
+   "book_kept_pct": 50.0,
+   "oneaday": {
+    "trades": 489,
+    "win_pct": 62.8,
+    "total_dollars": 338990.0,
+    "per_trade": 693.0,
+    "mean_r": 0.6932,
+    "per_day": 678.0,
+    "months_green": 25,
+    "months": 25,
+    "weeks_green": 85,
+    "weeks": 105,
+    "green_days_pct": 62.8,
+    "days_traded": 489,
+    "worst_drawdown": 5000.0
+   },
+   "oneaday_delta_per_day": -43.0,
+   "oneaday_delta_ci95": [
+    -195.0,
+    118.0
+   ],
+   "clears_bar": false,
+   "S_recall_n": 90,
+   "S_recall_pct": 32.4,
+   "S_recall_delta_pts": -26.3
+  },
+  {
+   "score": "pm_er_full",
+   "knowable_at": "09:30",
+   "threshold": 0.0648,
+   "book_kept_pct": 39.9,
+   "oneaday": {
+    "trades": 482,
+    "win_pct": 60.8,
+    "total_dollars": 314558.0,
+    "per_trade": 653.0,
+    "mean_r": 0.6526,
+    "per_day": 629.0,
+    "months_green": 24,
+    "months": 25,
+    "weeks_green": 87,
+    "weeks": 105,
+    "green_days_pct": 60.8,
+    "days_traded": 482,
+    "worst_drawdown": 6276.0
+   },
+   "oneaday_delta_per_day": -92.0,
+   "oneaday_delta_ci95": [
+    -254.0,
+    73.0
+   ],
+   "clears_bar": false,
+   "S_recall_n": 71,
+   "S_recall_pct": 25.5,
+   "S_recall_delta_pts": -33.1
+  },
+  {
+   "score": "pm_er_full",
+   "knowable_at": "09:30",
+   "threshold": 0.0799,
+   "book_kept_pct": 30.0,
+   "oneaday": {
+    "trades": 447,
+    "win_pct": 60.3,
+    "total_dollars": 263870.0,
+    "per_trade": 590.0,
+    "mean_r": 0.5903,
+    "per_day": 528.0,
+    "months_green": 25,
+    "months": 25,
+    "weeks_green": 76,
+    "weeks": 105,
+    "green_days_pct": 60.2,
+    "days_traded": 447,
+    "worst_drawdown": 8071.0
+   },
+   "oneaday_delta_per_day": -193.0,
+   "oneaday_delta_ci95": [
+    -358.0,
+    -29.0
+   ],
+   "clears_bar": true,
+   "S_recall_n": 51,
+   "S_recall_pct": 18.3,
+   "S_recall_delta_pts": -40.3
+  },
+  {
+   "score": "pm_er_0800",
+   "knowable_at": "09:30",
+   "threshold": 0.0177,
+   "book_kept_pct": 90.0,
+   "oneaday": {
+    "trades": 499,
+    "win_pct": 67.5,
+    "total_dollars": 364135.0,
+    "per_trade": 730.0,
+    "mean_r": 0.7297,
+    "per_day": 728.0,
+    "months_green": 24,
+    "months": 25,
+    "weeks_green": 86,
+    "weeks": 105,
+    "green_days_pct": 67.5,
+    "days_traded": 499,
+    "worst_drawdown": 7065.0
+   },
+   "oneaday_delta_per_day": 8.0,
+   "oneaday_delta_ci95": [
+    -44.0,
+    65.0
+   ],
+   "clears_bar": false,
+   "S_recall_n": 151,
+   "S_recall_pct": 54.3,
+   "S_recall_delta_pts": -4.3
+  },
+  {
+   "score": "pm_er_0800",
+   "knowable_at": "09:30",
+   "threshold": 0.0354,
+   "book_kept_pct": 80.0,
+   "oneaday": {
+    "trades": 499,
+    "win_pct": 66.9,
+    "total_dollars": 361910.0,
+    "per_trade": 725.0,
+    "mean_r": 0.7253,
+    "per_day": 724.0,
+    "months_green": 25,
+    "months": 25,
+    "weeks_green": 90,
+    "weeks": 105,
+    "green_days_pct": 66.9,
+    "days_traded": 499,
+    "worst_drawdown": 6115.0
+   },
+   "oneaday_delta_per_day": 3.0,
+   "oneaday_delta_ci95": [
+    -100.0,
+    107.0
+   ],
+   "clears_bar": false,
+   "S_recall_n": 134,
+   "S_recall_pct": 48.2,
+   "S_recall_delta_pts": -10.4
+  },
+  {
+   "score": "pm_er_0800",
+   "knowable_at": "09:30",
+   "threshold": 0.0524,
+   "book_kept_pct": 70.0,
+   "oneaday": {
+    "trades": 499,
+    "win_pct": 67.1,
+    "total_dollars": 378435.0,
+    "per_trade": 758.0,
+    "mean_r": 0.7584,
+    "per_day": 757.0,
+    "months_green": 24,
+    "months": 25,
+    "weeks_green": 86,
+    "weeks": 105,
+    "green_days_pct": 67.1,
+    "days_traded": 499,
+    "worst_drawdown": 6000.0
+   },
+   "oneaday_delta_per_day": 36.0,
+   "oneaday_delta_ci95": [
+    -89.0,
+    160.0
+   ],
+   "clears_bar": false,
+   "S_recall_n": 121,
+   "S_recall_pct": 43.5,
+   "S_recall_delta_pts": -15.1
+  },
+  {
+   "score": "pm_er_0800",
+   "knowable_at": "09:30",
+   "threshold": 0.0715,
+   "book_kept_pct": 60.0,
+   "oneaday": {
+    "trades": 497,
+    "win_pct": 64.4,
+    "total_dollars": 342087.0,
+    "per_trade": 688.0,
+    "mean_r": 0.6883,
+    "per_day": 684.0,
+    "months_green": 23,
+    "months": 25,
+    "weeks_green": 85,
+    "weeks": 105,
+    "green_days_pct": 64.4,
+    "days_traded": 497,
+    "worst_drawdown": 7294.0
+   },
+   "oneaday_delta_per_day": -37.0,
+   "oneaday_delta_ci95": [
+    -170.0,
+    96.0
+   ],
+   "clears_bar": false,
+   "S_recall_n": 102,
+   "S_recall_pct": 36.7,
+   "S_recall_delta_pts": -21.9
+  },
+  {
+   "score": "pm_er_0800",
+   "knowable_at": "09:30",
+   "threshold": 0.0927,
+   "book_kept_pct": 50.0,
+   "oneaday": {
+    "trades": 488,
+    "win_pct": 62.9,
+    "total_dollars": 335827.0,
+    "per_trade": 688.0,
+    "mean_r": 0.6882,
+    "per_day": 672.0,
+    "months_green": 23,
+    "months": 25,
+    "weeks_green": 84,
+    "weeks": 105,
+    "green_days_pct": 62.9,
+    "days_traded": 488,
+    "worst_drawdown": 7543.0
+   },
+   "oneaday_delta_per_day": -49.0,
+   "oneaday_delta_ci95": [
+    -199.0,
+    102.0
+   ],
+   "clears_bar": false,
+   "S_recall_n": 82,
+   "S_recall_pct": 29.5,
+   "S_recall_delta_pts": -29.1
+  },
+  {
+   "score": "pm_er_0800",
+   "knowable_at": "09:30",
+   "threshold": 0.1159,
+   "book_kept_pct": 40.0,
+   "oneaday": {
+    "trades": 483,
+    "win_pct": 62.7,
+    "total_dollars": 328368.0,
+    "per_trade": 680.0,
+    "mean_r": 0.6799,
+    "per_day": 657.0,
+    "months_green": 25,
+    "months": 25,
+    "weeks_green": 81,
+    "weeks": 105,
+    "green_days_pct": 62.7,
+    "days_traded": 483,
+    "worst_drawdown": 8575.0
+   },
+   "oneaday_delta_per_day": -64.0,
+   "oneaday_delta_ci95": [
+    -220.0,
+    97.0
+   ],
+   "clears_bar": false,
+   "S_recall_n": 70,
+   "S_recall_pct": 25.2,
+   "S_recall_delta_pts": -33.5
+  },
+  {
+   "score": "pm_er_0800",
+   "knowable_at": "09:30",
+   "threshold": 0.1478,
+   "book_kept_pct": 30.0,
+   "oneaday": {
+    "trades": 449,
+    "win_pct": 61.9,
+    "total_dollars": 250089.0,
+    "per_trade": 557.0,
+    "mean_r": 0.557,
+    "per_day": 500.0,
+    "months_green": 23,
+    "months": 25,
+    "weeks_green": 82,
+    "weeks": 105,
+    "green_days_pct": 61.9,
+    "days_traded": 449,
+    "worst_drawdown": 8259.0
+   },
+   "oneaday_delta_per_day": -221.0,
+   "oneaday_delta_ci95": [
+    -384.0,
+    -55.0
+   ],
+   "clears_bar": true,
+   "S_recall_n": 48,
+   "S_recall_pct": 17.3,
+   "S_recall_delta_pts": -41.4
+  },
+  {
+   "score": "prior_day_er",
+   "knowable_at": "09:30",
+   "threshold": 0.0192,
+   "book_kept_pct": 90.0,
+   "oneaday": {
+    "trades": 499,
+    "win_pct": 66.1,
+    "total_dollars": 351559.0,
+    "per_trade": 705.0,
+    "mean_r": 0.7045,
+    "per_day": 703.0,
+    "months_green": 23,
+    "months": 25,
+    "weeks_green": 88,
+    "weeks": 105,
+    "green_days_pct": 66.1,
+    "days_traded": 499,
+    "worst_drawdown": 8369.0
+   },
+   "oneaday_delta_per_day": -18.0,
+   "oneaday_delta_ci95": [
+    -76.0,
+    42.0
+   ],
+   "clears_bar": false,
+   "S_recall_n": 142,
+   "S_recall_pct": 51.1,
+   "S_recall_delta_pts": -7.6
+  },
+  {
+   "score": "prior_day_er",
+   "knowable_at": "09:30",
+   "threshold": 0.0379,
+   "book_kept_pct": 79.9,
+   "oneaday": {
+    "trades": 498,
+    "win_pct": 65.1,
+    "total_dollars": 353197.0,
+    "per_trade": 709.0,
+    "mean_r": 0.7092,
+    "per_day": 706.0,
+    "months_green": 22,
+    "months": 25,
+    "weeks_green": 89,
+    "weeks": 105,
+    "green_days_pct": 65.1,
+    "days_traded": 498,
+    "worst_drawdown": 7694.0
+   },
+   "oneaday_delta_per_day": -14.0,
+   "oneaday_delta_ci95": [
+    -111.0,
+    82.0
+   ],
+   "clears_bar": false,
+   "S_recall_n": 128,
+   "S_recall_pct": 46.0,
+   "S_recall_delta_pts": -12.6
+  },
+  {
+   "score": "prior_day_er",
+   "knowable_at": "09:30",
+   "threshold": 0.0566,
+   "book_kept_pct": 70.0,
+   "oneaday": {
+    "trades": 497,
+    "win_pct": 64.6,
+    "total_dollars": 362153.0,
+    "per_trade": 729.0,
+    "mean_r": 0.7287,
+    "per_day": 724.0,
+    "months_green": 24,
+    "months": 25,
+    "weeks_green": 85,
+    "weeks": 105,
+    "green_days_pct": 64.6,
+    "days_traded": 497,
+    "worst_drawdown": 7170.0
+   },
+   "oneaday_delta_per_day": 4.0,
+   "oneaday_delta_ci95": [
+    -118.0,
+    136.0
+   ],
+   "clears_bar": false,
+   "S_recall_n": 109,
+   "S_recall_pct": 39.2,
+   "S_recall_delta_pts": -19.4
+  },
+  {
+   "score": "prior_day_er",
+   "knowable_at": "09:30",
+   "threshold": 0.0749,
+   "book_kept_pct": 59.9,
+   "oneaday": {
+    "trades": 496,
+    "win_pct": 66.1,
+    "total_dollars": 374640.0,
+    "per_trade": 755.0,
+    "mean_r": 0.7553,
+    "per_day": 749.0,
+    "months_green": 24,
+    "months": 25,
+    "weeks_green": 88,
+    "weeks": 105,
+    "green_days_pct": 66.1,
+    "days_traded": 496,
+    "worst_drawdown": 8000.0
+   },
+   "oneaday_delta_per_day": 29.0,
+   "oneaday_delta_ci95": [
+    -94.0,
+    149.0
+   ],
+   "clears_bar": false,
+   "S_recall_n": 89,
+   "S_recall_pct": 32.0,
+   "S_recall_delta_pts": -26.6
+  },
+  {
+   "score": "prior_day_er",
+   "knowable_at": "09:30",
+   "threshold": 0.0975,
+   "book_kept_pct": 49.9,
+   "oneaday": {
+    "trades": 488,
+    "win_pct": 64.8,
+    "total_dollars": 336910.0,
+    "per_trade": 690.0,
+    "mean_r": 0.6904,
+    "per_day": 674.0,
+    "months_green": 24,
+    "months": 25,
+    "weeks_green": 87,
+    "weeks": 105,
+    "green_days_pct": 64.8,
+    "days_traded": 488,
+    "worst_drawdown": 8000.0
+   },
+   "oneaday_delta_per_day": -47.0,
+   "oneaday_delta_ci95": [
+    -190.0,
+    94.0
+   ],
+   "clears_bar": false,
+   "S_recall_n": 73,
+   "S_recall_pct": 26.3,
+   "S_recall_delta_pts": -32.4
+  },
+  {
+   "score": "prior_day_er",
+   "knowable_at": "09:30",
+   "threshold": 0.1201,
+   "book_kept_pct": 40.0,
+   "oneaday": {
+    "trades": 476,
+    "win_pct": 63.4,
+    "total_dollars": 328206.0,
+    "per_trade": 690.0,
+    "mean_r": 0.6895,
+    "per_day": 656.0,
+    "months_green": 23,
+    "months": 25,
+    "weeks_green": 83,
+    "weeks": 105,
+    "green_days_pct": 63.4,
+    "days_traded": 476,
+    "worst_drawdown": 12137.0
+   },
+   "oneaday_delta_per_day": -64.0,
+   "oneaday_delta_ci95": [
+    -217.0,
+    92.0
+   ],
+   "clears_bar": false,
+   "S_recall_n": 53,
+   "S_recall_pct": 19.1,
+   "S_recall_delta_pts": -39.6
+  },
+  {
+   "score": "prior_day_er",
+   "knowable_at": "09:30",
+   "threshold": 0.1471,
+   "book_kept_pct": 30.0,
+   "oneaday": {
+    "trades": 444,
+    "win_pct": 61.3,
+    "total_dollars": 292585.0,
+    "per_trade": 659.0,
+    "mean_r": 0.659,
+    "per_day": 585.0,
+    "months_green": 23,
+    "months": 25,
+    "weeks_green": 75,
+    "weeks": 105,
+    "green_days_pct": 61.3,
+    "days_traded": 444,
+    "worst_drawdown": 13613.0
+   },
+   "oneaday_delta_per_day": -136.0,
+   "oneaday_delta_ci95": [
+    -300.0,
+    27.0
+   ],
+   "clears_bar": false,
+   "S_recall_n": 41,
+   "S_recall_pct": 14.7,
+   "S_recall_delta_pts": -43.9
+  },
+  {
+   "score": "prior5_er",
+   "knowable_at": "09:30",
+   "threshold": 0.068,
+   "book_kept_pct": 90.0,
+   "oneaday": {
+    "trades": 498,
+    "win_pct": 66.9,
+    "total_dollars": 368159.0,
+    "per_trade": 739.0,
+    "mean_r": 0.7393,
+    "per_day": 736.0,
+    "months_green": 23,
+    "months": 25,
+    "weeks_green": 88,
+    "weeks": 105,
+    "green_days_pct": 66.9,
+    "days_traded": 498,
+    "worst_drawdown": 8000.0
+   },
+   "oneaday_delta_per_day": 16.0,
+   "oneaday_delta_ci95": [
+    -48.0,
+    81.0
+   ],
+   "clears_bar": false,
+   "S_recall_n": 141,
+   "S_recall_pct": 50.7,
+   "S_recall_delta_pts": -7.9
+  },
+  {
+   "score": "prior5_er",
+   "knowable_at": "09:30",
+   "threshold": 0.0814,
+   "book_kept_pct": 79.9,
+   "oneaday": {
+    "trades": 498,
+    "win_pct": 67.1,
+    "total_dollars": 391426.0,
+    "per_trade": 786.0,
+    "mean_r": 0.786,
+    "per_day": 783.0,
+    "months_green": 25,
+    "months": 25,
+    "weeks_green": 91,
+    "weeks": 105,
+    "green_days_pct": 67.1,
+    "days_traded": 498,
+    "worst_drawdown": 7000.0
+   },
+   "oneaday_delta_per_day": 62.0,
+   "oneaday_delta_ci95": [
+    -41.0,
+    164.0
+   ],
+   "clears_bar": false,
+   "S_recall_n": 130,
+   "S_recall_pct": 46.8,
+   "S_recall_delta_pts": -11.9
+  },
+  {
+   "score": "prior5_er",
+   "knowable_at": "09:30",
+   "threshold": 0.0912,
+   "book_kept_pct": 70.0,
+   "oneaday": {
+    "trades": 495,
+    "win_pct": 65.3,
+    "total_dollars": 361811.0,
+    "per_trade": 731.0,
+    "mean_r": 0.7309,
+    "per_day": 724.0,
+    "months_green": 25,
+    "months": 25,
+    "weeks_green": 87,
+    "weeks": 105,
+    "green_days_pct": 65.3,
+    "days_traded": 495,
+    "worst_drawdown": 6738.0
+   },
+   "oneaday_delta_per_day": 3.0,
+   "oneaday_delta_ci95": [
+    -115.0,
+    123.0
+   ],
+   "clears_bar": false,
+   "S_recall_n": 112,
+   "S_recall_pct": 40.3,
+   "S_recall_delta_pts": -18.3
+  },
+  {
+   "score": "prior5_er",
+   "knowable_at": "09:30",
+   "threshold": 0.1008,
+   "book_kept_pct": 59.9,
+   "oneaday": {
+    "trades": 490,
+    "win_pct": 63.5,
+    "total_dollars": 330081.0,
+    "per_trade": 674.0,
+    "mean_r": 0.6736,
+    "per_day": 660.0,
+    "months_green": 24,
+    "months": 25,
+    "weeks_green": 86,
+    "weeks": 105,
+    "green_days_pct": 63.5,
+    "days_traded": 490,
+    "worst_drawdown": 6256.0
+   },
+   "oneaday_delta_per_day": -61.0,
+   "oneaday_delta_ci95": [
+    -182.0,
+    60.0
+   ],
+   "clears_bar": false,
+   "S_recall_n": 96,
+   "S_recall_pct": 34.5,
+   "S_recall_delta_pts": -24.1
+  },
+  {
+   "score": "prior5_er",
+   "knowable_at": "09:30",
+   "threshold": 0.1098,
+   "book_kept_pct": 50.0,
+   "oneaday": {
+    "trades": 481,
+    "win_pct": 63.2,
+    "total_dollars": 335023.0,
+    "per_trade": 697.0,
+    "mean_r": 0.6965,
+    "per_day": 670.0,
+    "months_green": 24,
+    "months": 25,
+    "weeks_green": 90,
+    "weeks": 105,
+    "green_days_pct": 63.2,
+    "days_traded": 481,
+    "worst_drawdown": 5199.0
+   },
+   "oneaday_delta_per_day": -51.0,
+   "oneaday_delta_ci95": [
+    -200.0,
+    98.0
+   ],
+   "clears_bar": false,
+   "S_recall_n": 78,
+   "S_recall_pct": 28.1,
+   "S_recall_delta_pts": -30.6
+  },
+  {
+   "score": "prior5_er",
+   "knowable_at": "09:30",
+   "threshold": 0.1192,
+   "book_kept_pct": 40.0,
+   "oneaday": {
+    "trades": 463,
+    "win_pct": 63.7,
+    "total_dollars": 351451.0,
+    "per_trade": 759.0,
+    "mean_r": 0.7591,
+    "per_day": 703.0,
+    "months_green": 24,
+    "months": 25,
+    "weeks_green": 86,
+    "weeks": 105,
+    "green_days_pct": 63.7,
+    "days_traded": 463,
+    "worst_drawdown": 4716.0
+   },
+   "oneaday_delta_per_day": -18.0,
+   "oneaday_delta_ci95": [
+    -181.0,
+    148.0
+   ],
+   "clears_bar": false,
+   "S_recall_n": 61,
+   "S_recall_pct": 21.9,
+   "S_recall_delta_pts": -36.7
+  },
+  {
+   "score": "prior5_er",
+   "knowable_at": "09:30",
+   "threshold": 0.1299,
+   "book_kept_pct": 30.0,
+   "oneaday": {
+    "trades": 431,
+    "win_pct": 64.0,
+    "total_dollars": 328074.0,
+    "per_trade": 761.0,
+    "mean_r": 0.7612,
+    "per_day": 656.0,
+    "months_green": 25,
+    "months": 25,
+    "weeks_green": 82,
+    "weeks": 104,
+    "green_days_pct": 64.0,
+    "days_traded": 431,
+    "worst_drawdown": 6000.0
+   },
+   "oneaday_delta_per_day": -65.0,
+   "oneaday_delta_ci95": [
+    -231.0,
+    97.0
+   ],
+   "clears_bar": false,
+   "S_recall_n": 44,
+   "S_recall_pct": 15.8,
+   "S_recall_delta_pts": -42.8
+  },
+  {
+   "score": "daily_er_10",
+   "knowable_at": "09:30",
+   "threshold": 0.0587,
+   "book_kept_pct": 89.8,
+   "oneaday": {
+    "trades": 499,
+    "win_pct": 67.1,
+    "total_dollars": 353439.0,
+    "per_trade": 708.0,
+    "mean_r": 0.7083,
+    "per_day": 707.0,
+    "months_green": 23,
+    "months": 25,
+    "weeks_green": 90,
+    "weeks": 105,
+    "green_days_pct": 67.1,
+    "days_traded": 499,
+    "worst_drawdown": 5993.0
+   },
+   "oneaday_delta_per_day": -14.0,
+   "oneaday_delta_ci95": [
+    -78.0,
+    50.0
+   ],
+   "clears_bar": false,
+   "S_recall_n": 141,
+   "S_recall_pct": 50.7,
+   "S_recall_delta_pts": -7.9
+  },
+  {
+   "score": "daily_er_10",
+   "knowable_at": "09:30",
+   "threshold": 0.1166,
+   "book_kept_pct": 79.8,
+   "oneaday": {
+    "trades": 499,
+    "win_pct": 66.9,
+    "total_dollars": 342522.0,
+    "per_trade": 686.0,
+    "mean_r": 0.6864,
+    "per_day": 685.0,
+    "months_green": 24,
+    "months": 25,
+    "weeks_green": 88,
+    "weeks": 105,
+    "green_days_pct": 66.9,
+    "days_traded": 499,
+    "worst_drawdown": 6913.0
+   },
+   "oneaday_delta_per_day": -36.0,
+   "oneaday_delta_ci95": [
+    -116.0,
+    41.0
+   ],
+   "clears_bar": false,
+   "S_recall_n": 124,
+   "S_recall_pct": 44.6,
+   "S_recall_delta_pts": -14.0
+  },
+  {
+   "score": "daily_er_10",
+   "knowable_at": "09:30",
+   "threshold": 0.174,
+   "book_kept_pct": 69.9,
+   "oneaday": {
+    "trades": 499,
+    "win_pct": 64.7,
+    "total_dollars": 309497.0,
+    "per_trade": 620.0,
+    "mean_r": 0.6202,
+    "per_day": 619.0,
+    "months_green": 24,
+    "months": 25,
+    "weeks_green": 86,
+    "weeks": 105,
+    "green_days_pct": 64.5,
+    "days_traded": 499,
+    "worst_drawdown": 5304.0
+   },
+   "oneaday_delta_per_day": -102.0,
+   "oneaday_delta_ci95": [
+    -208.0,
+    -0.0
+   ],
+   "clears_bar": true,
+   "S_recall_n": 105,
+   "S_recall_pct": 37.8,
+   "S_recall_delta_pts": -20.9
+  },
+  {
+   "score": "daily_er_10",
+   "knowable_at": "09:30",
+   "threshold": 0.2294,
+   "book_kept_pct": 59.9,
+   "oneaday": {
+    "trades": 495,
+    "win_pct": 62.8,
+    "total_dollars": 290152.0,
+    "per_trade": 586.0,
+    "mean_r": 0.5862,
+    "per_day": 580.0,
+    "months_green": 24,
+    "months": 25,
+    "weeks_green": 83,
+    "weeks": 105,
+    "green_days_pct": 62.6,
+    "days_traded": 495,
+    "worst_drawdown": 8533.0
+   },
+   "oneaday_delta_per_day": -140.0,
+   "oneaday_delta_ci95": [
+    -265.0,
+    -18.0
+   ],
+   "clears_bar": true,
+   "S_recall_n": 90,
+   "S_recall_pct": 32.4,
+   "S_recall_delta_pts": -26.3
+  },
+  {
+   "score": "daily_er_10",
+   "knowable_at": "09:30",
+   "threshold": 0.291,
+   "book_kept_pct": 49.9,
+   "oneaday": {
+    "trades": 491,
+    "win_pct": 63.1,
+    "total_dollars": 284590.0,
+    "per_trade": 580.0,
+    "mean_r": 0.5796,
+    "per_day": 569.0,
+    "months_green": 22,
+    "months": 25,
+    "weeks_green": 81,
+    "weeks": 105,
+    "green_days_pct": 62.9,
+    "days_traded": 491,
+    "worst_drawdown": 6554.0
+   },
+   "oneaday_delta_per_day": -152.0,
+   "oneaday_delta_ci95": [
+    -284.0,
+    -23.0
+   ],
+   "clears_bar": true,
+   "S_recall_n": 76,
+   "S_recall_pct": 27.3,
+   "S_recall_delta_pts": -31.3
+  },
+  {
+   "score": "daily_er_10",
+   "knowable_at": "09:30",
+   "threshold": 0.3637,
+   "book_kept_pct": 39.9,
+   "oneaday": {
+    "trades": 476,
+    "win_pct": 60.8,
+    "total_dollars": 235707.0,
+    "per_trade": 495.0,
+    "mean_r": 0.4952,
+    "per_day": 471.0,
+    "months_green": 24,
+    "months": 25,
+    "weeks_green": 75,
+    "weeks": 105,
+    "green_days_pct": 60.7,
+    "days_traded": 476,
+    "worst_drawdown": 5206.0
+   },
+   "oneaday_delta_per_day": -249.0,
+   "oneaday_delta_ci95": [
+    -400.0,
+    -95.0
+   ],
+   "clears_bar": true,
+   "S_recall_n": 55,
+   "S_recall_pct": 19.8,
+   "S_recall_delta_pts": -38.8
+  },
+  {
+   "score": "daily_er_10",
+   "knowable_at": "09:30",
+   "threshold": 0.4408,
+   "book_kept_pct": 29.9,
+   "oneaday": {
+    "trades": 446,
+    "win_pct": 58.9,
+    "total_dollars": 217977.0,
+    "per_trade": 489.0,
+    "mean_r": 0.4887,
+    "per_day": 436.0,
+    "months_green": 23,
+    "months": 25,
+    "weeks_green": 73,
+    "weeks": 105,
+    "green_days_pct": 58.7,
+    "days_traded": 446,
+    "worst_drawdown": 7888.0
+   },
+   "oneaday_delta_per_day": -285.0,
+   "oneaday_delta_ci95": [
+    -447.0,
+    -122.0
+   ],
+   "clears_bar": true,
+   "S_recall_n": 43,
+   "S_recall_pct": 15.5,
+   "S_recall_delta_pts": -43.2
+  },
+  {
+   "score": "daily_er_20",
+   "knowable_at": "09:30",
+   "threshold": 0.0363,
+   "book_kept_pct": 89.8,
+   "oneaday": {
+    "trades": 499,
+    "win_pct": 66.3,
+    "total_dollars": 377648.0,
+    "per_trade": 757.0,
+    "mean_r": 0.7568,
+    "per_day": 755.0,
+    "months_green": 25,
+    "months": 25,
+    "weeks_green": 87,
+    "weeks": 105,
+    "green_days_pct": 66.3,
+    "days_traded": 499,
+    "worst_drawdown": 5465.0
+   },
+   "oneaday_delta_per_day": 35.0,
+   "oneaday_delta_ci95": [
+    -35.0,
+    108.0
+   ],
+   "clears_bar": false,
+   "S_recall_n": 143,
+   "S_recall_pct": 51.4,
+   "S_recall_delta_pts": -7.2
+  },
+  {
+   "score": "daily_er_20",
+   "knowable_at": "09:30",
+   "threshold": 0.0748,
+   "book_kept_pct": 79.8,
+   "oneaday": {
+    "trades": 499,
+    "win_pct": 66.3,
+    "total_dollars": 369596.0,
+    "per_trade": 741.0,
+    "mean_r": 0.7407,
+    "per_day": 739.0,
+    "months_green": 25,
+    "months": 25,
+    "weeks_green": 85,
+    "weeks": 105,
+    "green_days_pct": 66.3,
+    "days_traded": 499,
+    "worst_drawdown": 5433.0
+   },
+   "oneaday_delta_per_day": 18.0,
+   "oneaday_delta_ci95": [
+    -71.0,
+    110.0
+   ],
+   "clears_bar": false,
+   "S_recall_n": 124,
+   "S_recall_pct": 44.6,
+   "S_recall_delta_pts": -14.0
+  },
+  {
+   "score": "daily_er_20",
+   "knowable_at": "09:30",
+   "threshold": 0.1109,
+   "book_kept_pct": 69.8,
+   "oneaday": {
+    "trades": 499,
+    "win_pct": 65.9,
+    "total_dollars": 341433.0,
+    "per_trade": 684.0,
+    "mean_r": 0.6842,
+    "per_day": 683.0,
+    "months_green": 24,
+    "months": 25,
+    "weeks_green": 84,
+    "weeks": 105,
+    "green_days_pct": 65.7,
+    "days_traded": 499,
+    "worst_drawdown": 6433.0
+   },
+   "oneaday_delta_per_day": -38.0,
+   "oneaday_delta_ci95": [
+    -137.0,
+    62.0
+   ],
+   "clears_bar": false,
+   "S_recall_n": 111,
+   "S_recall_pct": 39.9,
+   "S_recall_delta_pts": -18.7
+  },
+  {
+   "score": "daily_er_20",
+   "knowable_at": "09:30",
+   "threshold": 0.1519,
+   "book_kept_pct": 59.9,
+   "oneaday": {
+    "trades": 496,
+    "win_pct": 64.0,
+    "total_dollars": 314936.0,
+    "per_trade": 635.0,
+    "mean_r": 0.635,
+    "per_day": 630.0,
+    "months_green": 25,
+    "months": 25,
+    "weeks_green": 83,
+    "weeks": 105,
+    "green_days_pct": 63.9,
+    "days_traded": 496,
+    "worst_drawdown": 6433.0
+   },
+   "oneaday_delta_per_day": -91.0,
+   "oneaday_delta_ci95": [
+    -205.0,
+    25.0
+   ],
+   "clears_bar": false,
+   "S_recall_n": 89,
+   "S_recall_pct": 32.0,
+   "S_recall_delta_pts": -26.6
+  },
+  {
+   "score": "daily_er_20",
+   "knowable_at": "09:30",
+   "threshold": 0.2001,
+   "book_kept_pct": 49.9,
+   "oneaday": {
+    "trades": 492,
+    "win_pct": 60.7,
+    "total_dollars": 270061.0,
+    "per_trade": 549.0,
+    "mean_r": 0.5489,
+    "per_day": 540.0,
+    "months_green": 23,
+    "months": 25,
+    "weeks_green": 81,
+    "weeks": 105,
+    "green_days_pct": 60.6,
+    "days_traded": 492,
+    "worst_drawdown": 9000.0
+   },
+   "oneaday_delta_per_day": -181.0,
+   "oneaday_delta_ci95": [
+    -310.0,
+    -52.0
+   ],
+   "clears_bar": true,
+   "S_recall_n": 71,
+   "S_recall_pct": 25.5,
+   "S_recall_delta_pts": -33.1
+  },
+  {
+   "score": "daily_er_20",
+   "knowable_at": "09:30",
+   "threshold": 0.2523,
+   "book_kept_pct": 39.9,
+   "oneaday": {
+    "trades": 481,
+    "win_pct": 60.8,
+    "total_dollars": 273544.0,
+    "per_trade": 569.0,
+    "mean_r": 0.5687,
+    "per_day": 547.0,
+    "months_green": 25,
+    "months": 25,
+    "weeks_green": 79,
+    "weeks": 105,
+    "green_days_pct": 60.7,
+    "days_traded": 481,
+    "worst_drawdown": 8365.0
+   },
+   "oneaday_delta_per_day": -174.0,
+   "oneaday_delta_ci95": [
+    -326.0,
+    -26.0
+   ],
+   "clears_bar": true,
+   "S_recall_n": 49,
+   "S_recall_pct": 17.6,
+   "S_recall_delta_pts": -41.0
+  },
+  {
+   "score": "daily_er_20",
+   "knowable_at": "09:30",
+   "threshold": 0.3148,
+   "book_kept_pct": 30.0,
+   "oneaday": {
+    "trades": 450,
+    "win_pct": 60.8,
+    "total_dollars": 248086.0,
+    "per_trade": 551.0,
+    "mean_r": 0.5513,
+    "per_day": 496.0,
+    "months_green": 22,
+    "months": 25,
+    "weeks_green": 80,
+    "weeks": 105,
+    "green_days_pct": 60.7,
+    "days_traded": 450,
+    "worst_drawdown": 8546.0
+   },
+   "oneaday_delta_per_day": -225.0,
+   "oneaday_delta_ci95": [
+    -382.0,
+    -70.0
+   ],
+   "clears_bar": true,
+   "S_recall_n": 34,
+   "S_recall_pct": 12.2,
+   "S_recall_delta_pts": -46.4
+  },
+  {
+   "score": "gap_prior_range",
+   "knowable_at": "09:30",
+   "threshold": 0.0424,
+   "book_kept_pct": 89.9,
+   "oneaday": {
+    "trades": 499,
+    "win_pct": 66.7,
+    "total_dollars": 365117.0,
+    "per_trade": 732.0,
+    "mean_r": 0.7317,
+    "per_day": 730.0,
+    "months_green": 24,
+    "months": 25,
+    "weeks_green": 87,
+    "weeks": 105,
+    "green_days_pct": 66.7,
+    "days_traded": 499,
+    "worst_drawdown": 5993.0
+   },
+   "oneaday_delta_per_day": 9.0,
+   "oneaday_delta_ci95": [
+    -49.0,
+    74.0
+   ],
+   "clears_bar": false,
+   "S_recall_n": 150,
+   "S_recall_pct": 54.0,
+   "S_recall_delta_pts": -4.7
+  },
+  {
+   "score": "gap_prior_range",
+   "knowable_at": "09:30",
+   "threshold": 0.0919,
+   "book_kept_pct": 79.9,
+   "oneaday": {
+    "trades": 499,
+    "win_pct": 66.1,
+    "total_dollars": 366044.0,
+    "per_trade": 734.0,
+    "mean_r": 0.7336,
+    "per_day": 732.0,
+    "months_green": 24,
+    "months": 25,
+    "weeks_green": 87,
+    "weeks": 105,
+    "green_days_pct": 66.1,
+    "days_traded": 499,
+    "worst_drawdown": 5864.0
+   },
+   "oneaday_delta_per_day": 11.0,
+   "oneaday_delta_ci95": [
+    -70.0,
+    95.0
+   ],
+   "clears_bar": false,
+   "S_recall_n": 142,
+   "S_recall_pct": 51.1,
+   "S_recall_delta_pts": -7.6
+  },
+  {
+   "score": "gap_prior_range",
+   "knowable_at": "09:30",
+   "threshold": 0.148,
+   "book_kept_pct": 70.0,
+   "oneaday": {
+    "trades": 497,
+    "win_pct": 64.8,
+    "total_dollars": 332337.0,
+    "per_trade": 669.0,
+    "mean_r": 0.6687,
+    "per_day": 665.0,
+    "months_green": 24,
+    "months": 25,
+    "weeks_green": 88,
+    "weeks": 105,
+    "green_days_pct": 64.8,
+    "days_traded": 497,
+    "worst_drawdown": 6000.0
+   },
+   "oneaday_delta_per_day": -56.0,
+   "oneaday_delta_ci95": [
+    -172.0,
+    56.0
+   ],
+   "clears_bar": false,
+   "S_recall_n": 132,
+   "S_recall_pct": 47.5,
+   "S_recall_delta_pts": -11.2
+  },
+  {
+   "score": "gap_prior_range",
+   "knowable_at": "09:30",
+   "threshold": 0.2012,
+   "book_kept_pct": 60.0,
+   "oneaday": {
+    "trades": 494,
+    "win_pct": 63.4,
+    "total_dollars": 300918.0,
+    "per_trade": 609.0,
+    "mean_r": 0.6091,
+    "per_day": 602.0,
+    "months_green": 24,
+    "months": 25,
+    "weeks_green": 84,
+    "weeks": 105,
+    "green_days_pct": 63.4,
+    "days_traded": 494,
+    "worst_drawdown": 8000.0
+   },
+   "oneaday_delta_per_day": -119.0,
+   "oneaday_delta_ci95": [
+    -253.0,
+    8.0
+   ],
+   "clears_bar": false,
+   "S_recall_n": 112,
+   "S_recall_pct": 40.3,
+   "S_recall_delta_pts": -18.3
+  },
+  {
+   "score": "gap_prior_range",
+   "knowable_at": "09:30",
+   "threshold": 0.2654,
+   "book_kept_pct": 49.9,
+   "oneaday": {
+    "trades": 479,
+    "win_pct": 63.3,
+    "total_dollars": 306037.0,
+    "per_trade": 639.0,
+    "mean_r": 0.6389,
+    "per_day": 612.0,
+    "months_green": 23,
+    "months": 25,
+    "weeks_green": 84,
+    "weeks": 105,
+    "green_days_pct": 63.3,
+    "days_traded": 479,
+    "worst_drawdown": 7000.0
+   },
+   "oneaday_delta_per_day": -109.0,
+   "oneaday_delta_ci95": [
+    -255.0,
+    42.0
+   ],
+   "clears_bar": false,
+   "S_recall_n": 93,
+   "S_recall_pct": 33.5,
+   "S_recall_delta_pts": -25.2
+  },
+  {
+   "score": "gap_prior_range",
+   "knowable_at": "09:30",
+   "threshold": 0.3424,
+   "book_kept_pct": 40.0,
+   "oneaday": {
+    "trades": 466,
+    "win_pct": 63.3,
+    "total_dollars": 311348.0,
+    "per_trade": 668.0,
+    "mean_r": 0.6681,
+    "per_day": 623.0,
+    "months_green": 24,
+    "months": 25,
+    "weeks_green": 80,
+    "weeks": 105,
+    "green_days_pct": 63.3,
+    "days_traded": 466,
+    "worst_drawdown": 7301.0
+   },
+   "oneaday_delta_per_day": -98.0,
+   "oneaday_delta_ci95": [
+    -265.0,
+    71.0
+   ],
+   "clears_bar": false,
+   "S_recall_n": 78,
+   "S_recall_pct": 28.1,
+   "S_recall_delta_pts": -30.6
+  },
+  {
+   "score": "gap_prior_range",
+   "knowable_at": "09:30",
+   "threshold": 0.4557,
+   "book_kept_pct": 30.0,
+   "oneaday": {
+    "trades": 428,
+    "win_pct": 60.0,
+    "total_dollars": 279355.0,
+    "per_trade": 653.0,
+    "mean_r": 0.6527,
+    "per_day": 559.0,
+    "months_green": 24,
+    "months": 25,
+    "weeks_green": 80,
+    "weeks": 105,
+    "green_days_pct": 60.0,
+    "days_traded": 428,
+    "worst_drawdown": 8492.0
+   },
+   "oneaday_delta_per_day": -162.0,
+   "oneaday_delta_ci95": [
+    -339.0,
+    17.0
+   ],
+   "clears_bar": false,
+   "S_recall_n": 58,
+   "S_recall_pct": 20.9,
+   "S_recall_delta_pts": -37.8
+  },
+  {
+   "score": "er_to_entry",
+   "knowable_at": "entry",
+   "threshold": 0.0413,
+   "book_kept_pct": 90.0,
+   "oneaday": {
+    "trades": 499,
+    "win_pct": 66.7,
+    "total_dollars": 350510.0,
+    "per_trade": 702.0,
+    "mean_r": 0.7024,
+    "per_day": 701.0,
+    "months_green": 25,
+    "months": 25,
+    "weeks_green": 88,
+    "weeks": 105,
+    "green_days_pct": 66.7,
+    "days_traded": 499,
+    "worst_drawdown": 5993.0
+   },
+   "oneaday_delta_per_day": -20.0,
+   "oneaday_delta_ci95": [
+    -77.0,
+    31.0
+   ],
+   "clears_bar": false,
+   "S_recall_n": 154,
+   "S_recall_pct": 55.4,
+   "S_recall_delta_pts": -3.2
+  },
+  {
+   "score": "er_to_entry",
+   "knowable_at": "entry",
+   "threshold": 0.0765,
+   "book_kept_pct": 80.0,
+   "oneaday": {
+    "trades": 499,
+    "win_pct": 67.1,
+    "total_dollars": 340224.0,
+    "per_trade": 682.0,
+    "mean_r": 0.6818,
+    "per_day": 680.0,
+    "months_green": 25,
+    "months": 25,
+    "weeks_green": 87,
+    "weeks": 105,
+    "green_days_pct": 67.1,
+    "days_traded": 499,
+    "worst_drawdown": 5993.0
+   },
+   "oneaday_delta_per_day": -40.0,
+   "oneaday_delta_ci95": [
+    -103.0,
+    17.0
+   ],
+   "clears_bar": false,
+   "S_recall_n": 145,
+   "S_recall_pct": 52.2,
+   "S_recall_delta_pts": -6.5
+  },
+  {
+   "score": "er_to_entry",
+   "knowable_at": "entry",
+   "threshold": 0.1102,
+   "book_kept_pct": 70.0,
+   "oneaday": {
+    "trades": 498,
+    "win_pct": 68.1,
+    "total_dollars": 362806.0,
+    "per_trade": 729.0,
+    "mean_r": 0.7285,
+    "per_day": 726.0,
+    "months_green": 25,
+    "months": 25,
+    "weeks_green": 90,
+    "weeks": 105,
+    "green_days_pct": 68.1,
+    "days_traded": 498,
+    "worst_drawdown": 5000.0
+   },
+   "oneaday_delta_per_day": 5.0,
+   "oneaday_delta_ci95": [
+    -71.0,
+    82.0
+   ],
+   "clears_bar": false,
+   "S_recall_n": 130,
+   "S_recall_pct": 46.8,
+   "S_recall_delta_pts": -11.9
+  },
+  {
+   "score": "er_to_entry",
+   "knowable_at": "entry",
+   "threshold": 0.1482,
+   "book_kept_pct": 60.0,
+   "oneaday": {
+    "trades": 498,
+    "win_pct": 69.3,
+    "total_dollars": 383507.0,
+    "per_trade": 770.0,
+    "mean_r": 0.7701,
+    "per_day": 767.0,
+    "months_green": 25,
+    "months": 25,
+    "weeks_green": 91,
+    "weeks": 105,
+    "green_days_pct": 69.3,
+    "days_traded": 498,
+    "worst_drawdown": 5000.0
+   },
+   "oneaday_delta_per_day": 46.0,
+   "oneaday_delta_ci95": [
+    -41.0,
+    139.0
+   ],
+   "clears_bar": false,
+   "S_recall_n": 124,
+   "S_recall_pct": 44.6,
+   "S_recall_delta_pts": -14.0
+  },
+  {
+   "score": "er_to_entry",
+   "knowable_at": "entry",
+   "threshold": 0.1876,
+   "book_kept_pct": 50.0,
+   "oneaday": {
+    "trades": 494,
+    "win_pct": 69.4,
+    "total_dollars": 375396.0,
+    "per_trade": 760.0,
+    "mean_r": 0.7599,
+    "per_day": 751.0,
+    "months_green": 24,
+    "months": 25,
+    "weeks_green": 88,
+    "weeks": 105,
+    "green_days_pct": 69.4,
+    "days_traded": 494,
+    "worst_drawdown": 5000.0
+   },
+   "oneaday_delta_per_day": 30.0,
+   "oneaday_delta_ci95": [
+    -70.0,
+    138.0
+   ],
+   "clears_bar": false,
+   "S_recall_n": 112,
+   "S_recall_pct": 40.3,
+   "S_recall_delta_pts": -18.3
+  },
+  {
+   "score": "er_to_entry",
+   "knowable_at": "entry",
+   "threshold": 0.2302,
+   "book_kept_pct": 40.0,
+   "oneaday": {
+    "trades": 489,
+    "win_pct": 70.1,
+    "total_dollars": 362683.0,
+    "per_trade": 742.0,
+    "mean_r": 0.7417,
+    "per_day": 725.0,
+    "months_green": 24,
+    "months": 25,
+    "weeks_green": 85,
+    "weeks": 105,
+    "green_days_pct": 70.1,
+    "days_traded": 489,
+    "worst_drawdown": 5000.0
+   },
+   "oneaday_delta_per_day": 5.0,
+   "oneaday_delta_ci95": [
+    -104.0,
+    123.0
+   ],
+   "clears_bar": false,
+   "S_recall_n": 96,
+   "S_recall_pct": 34.5,
+   "S_recall_delta_pts": -24.1
+  },
+  {
+   "score": "er_to_entry",
+   "knowable_at": "entry",
+   "threshold": 0.284,
+   "book_kept_pct": 30.0,
+   "oneaday": {
+    "trades": 470,
+    "win_pct": 71.6,
+    "total_dollars": 360266.0,
+    "per_trade": 767.0,
+    "mean_r": 0.7665,
+    "per_day": 721.0,
+    "months_green": 24,
+    "months": 25,
+    "weeks_green": 86,
+    "weeks": 105,
+    "green_days_pct": 71.5,
+    "days_traded": 470,
+    "worst_drawdown": 6750.0
+   },
+   "oneaday_delta_per_day": -0.0,
+   "oneaday_delta_ci95": [
+    -117.0,
+    116.0
+   ],
+   "clears_bar": false,
+   "S_recall_n": 82,
+   "S_recall_pct": 29.5,
+   "S_recall_delta_pts": -29.1
+  },
+  {
+   "score": "er_or0945",
+   "knowable_at": "09:45",
+   "threshold": 0.045,
+   "book_kept_pct": 90.9,
+   "oneaday": {
+    "trades": 499,
+    "win_pct": 67.1,
+    "total_dollars": 366796.0,
+    "per_trade": 735.0,
+    "mean_r": 0.7351,
+    "per_day": 734.0,
+    "months_green": 25,
+    "months": 25,
+    "weeks_green": 87,
+    "weeks": 105,
+    "green_days_pct": 67.1,
+    "days_traded": 499,
+    "worst_drawdown": 5993.0
+   },
+   "oneaday_delta_per_day": 13.0,
+   "oneaday_delta_ci95": [
+    -4.0,
+    36.0
+   ],
+   "clears_bar": false,
+   "S_recall_n": 151,
+   "S_recall_pct": 54.3,
+   "S_recall_delta_pts": -4.3
+  },
+  {
+   "score": "er_or0945",
+   "knowable_at": "09:45",
+   "threshold": 0.0922,
+   "book_kept_pct": 81.8,
+   "oneaday": {
+    "trades": 499,
+    "win_pct": 67.3,
+    "total_dollars": 370500.0,
+    "per_trade": 742.0,
+    "mean_r": 0.7425,
+    "per_day": 741.0,
+    "months_green": 25,
+    "months": 25,
+    "weeks_green": 87,
+    "weeks": 105,
+    "green_days_pct": 67.3,
+    "days_traded": 499,
+    "worst_drawdown": 5993.0
+   },
+   "oneaday_delta_per_day": 20.0,
+   "oneaday_delta_ci95": [
+    -5.0,
+    52.0
+   ],
+   "clears_bar": false,
+   "S_recall_n": 141,
+   "S_recall_pct": 50.7,
+   "S_recall_delta_pts": -7.9
+  },
+  {
+   "score": "er_or0945",
+   "knowable_at": "09:45",
+   "threshold": 0.1409,
+   "book_kept_pct": 72.7,
+   "oneaday": {
+    "trades": 499,
+    "win_pct": 66.5,
+    "total_dollars": 353579.0,
+    "per_trade": 709.0,
+    "mean_r": 0.7086,
+    "per_day": 707.0,
+    "months_green": 25,
+    "months": 25,
+    "weeks_green": 87,
+    "weeks": 105,
+    "green_days_pct": 66.5,
+    "days_traded": 499,
+    "worst_drawdown": 5993.0
+   },
+   "oneaday_delta_per_day": -14.0,
+   "oneaday_delta_ci95": [
+    -59.0,
+    29.0
+   ],
+   "clears_bar": false,
+   "S_recall_n": 131,
+   "S_recall_pct": 47.1,
+   "S_recall_delta_pts": -11.5
+  },
+  {
+   "score": "er_or0945",
+   "knowable_at": "09:45",
+   "threshold": 0.1916,
+   "book_kept_pct": 63.9,
+   "oneaday": {
+    "trades": 498,
+    "win_pct": 66.9,
+    "total_dollars": 361049.0,
+    "per_trade": 725.0,
+    "mean_r": 0.725,
+    "per_day": 722.0,
+    "months_green": 25,
+    "months": 25,
+    "weeks_green": 87,
+    "weeks": 105,
+    "green_days_pct": 66.9,
+    "days_traded": 498,
+    "worst_drawdown": 5993.0
+   },
+   "oneaday_delta_per_day": 1.0,
+   "oneaday_delta_ci95": [
+    -59.0,
+    64.0
+   ],
+   "clears_bar": false,
+   "S_recall_n": 119,
+   "S_recall_pct": 42.8,
+   "S_recall_delta_pts": -15.8
+  },
+  {
+   "score": "er_or0945",
+   "knowable_at": "09:45",
+   "threshold": 0.2444,
+   "book_kept_pct": 55.8,
+   "oneaday": {
+    "trades": 496,
+    "win_pct": 66.7,
+    "total_dollars": 357872.0,
+    "per_trade": 722.0,
+    "mean_r": 0.7215,
+    "per_day": 716.0,
+    "months_green": 25,
+    "months": 25,
+    "weeks_green": 86,
+    "weeks": 105,
+    "green_days_pct": 66.7,
+    "days_traded": 496,
+    "worst_drawdown": 5993.0
+   },
+   "oneaday_delta_per_day": -5.0,
+   "oneaday_delta_ci95": [
+    -65.0,
+    57.0
+   ],
+   "clears_bar": false,
+   "S_recall_n": 110,
+   "S_recall_pct": 39.6,
+   "S_recall_delta_pts": -19.1
+  },
+  {
+   "score": "er_or0945",
+   "knowable_at": "09:45",
+   "threshold": 0.2989,
+   "book_kept_pct": 47.3,
+   "oneaday": {
+    "trades": 488,
+    "win_pct": 67.0,
+    "total_dollars": 343195.0,
+    "per_trade": 703.0,
+    "mean_r": 0.7033,
+    "per_day": 686.0,
+    "months_green": 24,
+    "months": 25,
+    "weeks_green": 86,
+    "weeks": 105,
+    "green_days_pct": 67.0,
+    "days_traded": 488,
+    "worst_drawdown": 5993.0
+   },
+   "oneaday_delta_per_day": -34.0,
+   "oneaday_delta_ci95": [
+    -93.0,
+    22.0
+   ],
+   "clears_bar": false,
+   "S_recall_n": 102,
+   "S_recall_pct": 36.7,
+   "S_recall_delta_pts": -21.9
+  },
+  {
+   "score": "er_or0945",
+   "knowable_at": "09:45",
+   "threshold": 0.366,
+   "book_kept_pct": 39.2,
+   "oneaday": {
+    "trades": 481,
+    "win_pct": 67.2,
+    "total_dollars": 336442.0,
+    "per_trade": 699.0,
+    "mean_r": 0.6995,
+    "per_day": 673.0,
+    "months_green": 23,
+    "months": 25,
+    "weeks_green": 84,
+    "weeks": 105,
+    "green_days_pct": 67.2,
+    "days_traded": 481,
+    "worst_drawdown": 5993.0
+   },
+   "oneaday_delta_per_day": -48.0,
+   "oneaday_delta_ci95": [
+    -116.0,
+    17.0
+   ],
+   "clears_bar": false,
+   "S_recall_n": 88,
+   "S_recall_pct": 31.7,
+   "S_recall_delta_pts": -27.0
+  },
+  {
+   "score": "er_or1000",
+   "knowable_at": "10:00",
+   "threshold": 0.036,
+   "book_kept_pct": 93.5,
+   "oneaday": {
+    "trades": 499,
+    "win_pct": 66.7,
+    "total_dollars": 360380.0,
+    "per_trade": 722.0,
+    "mean_r": 0.7222,
+    "per_day": 721.0,
+    "months_green": 25,
+    "months": 25,
+    "weeks_green": 87,
+    "weeks": 105,
+    "green_days_pct": 66.7,
+    "days_traded": 499,
+    "worst_drawdown": 5993.0
+   },
+   "oneaday_delta_per_day": 0.0,
+   "oneaday_delta_ci95": [
+    0.0,
+    0.0
+   ],
+   "clears_bar": false,
+   "S_recall_n": 160,
+   "S_recall_pct": 57.6,
+   "S_recall_delta_pts": -1.1
+  },
+  {
+   "score": "er_or1000",
+   "knowable_at": "10:00",
+   "threshold": 0.0643,
+   "book_kept_pct": 86.7,
+   "oneaday": {
+    "trades": 499,
+    "win_pct": 66.5,
+    "total_dollars": 357047.0,
+    "per_trade": 716.0,
+    "mean_r": 0.7155,
+    "per_day": 714.0,
+    "months_green": 25,
+    "months": 25,
+    "weeks_green": 87,
+    "weeks": 105,
+    "green_days_pct": 66.5,
+    "days_traded": 499,
+    "worst_drawdown": 5993.0
+   },
+   "oneaday_delta_per_day": -7.0,
+   "oneaday_delta_ci95": [
+    -20.0,
+    0.0
+   ],
+   "clears_bar": false,
+   "S_recall_n": 154,
+   "S_recall_pct": 55.4,
+   "S_recall_delta_pts": -3.2
+  },
+  {
+   "score": "er_or1000",
+   "knowable_at": "10:00",
+   "threshold": 0.0976,
+   "book_kept_pct": 80.0,
+   "oneaday": {
+    "trades": 499,
+    "win_pct": 66.5,
+    "total_dollars": 357047.0,
+    "per_trade": 716.0,
+    "mean_r": 0.7155,
+    "per_day": 714.0,
+    "months_green": 25,
+    "months": 25,
+    "weeks_green": 87,
+    "weeks": 105,
+    "green_days_pct": 66.5,
+    "days_traded": 499,
+    "worst_drawdown": 5993.0
+   },
+   "oneaday_delta_per_day": -7.0,
+   "oneaday_delta_ci95": [
+    -20.0,
+    0.0
+   ],
+   "clears_bar": false,
+   "S_recall_n": 152,
+   "S_recall_pct": 54.7,
+   "S_recall_delta_pts": -4.0
+  },
+  {
+   "score": "er_or1000",
+   "knowable_at": "10:00",
+   "threshold": 0.132,
+   "book_kept_pct": 73.8,
+   "oneaday": {
+    "trades": 499,
+    "win_pct": 66.5,
+    "total_dollars": 357047.0,
+    "per_trade": 716.0,
+    "mean_r": 0.7155,
+    "per_day": 714.0,
+    "months_green": 25,
+    "months": 25,
+    "weeks_green": 87,
+    "weeks": 105,
+    "green_days_pct": 66.5,
+    "days_traded": 499,
+    "worst_drawdown": 5993.0
+   },
+   "oneaday_delta_per_day": -7.0,
+   "oneaday_delta_ci95": [
+    -20.0,
+    0.0
+   ],
+   "clears_bar": false,
+   "S_recall_n": 151,
+   "S_recall_pct": 54.3,
+   "S_recall_delta_pts": -4.3
+  },
+  {
+   "score": "er_or1000",
+   "knowable_at": "10:00",
+   "threshold": 0.1692,
+   "book_kept_pct": 67.9,
+   "oneaday": {
+    "trades": 499,
+    "win_pct": 66.5,
+    "total_dollars": 357047.0,
+    "per_trade": 716.0,
+    "mean_r": 0.7155,
+    "per_day": 714.0,
+    "months_green": 25,
+    "months": 25,
+    "weeks_green": 87,
+    "weeks": 105,
+    "green_days_pct": 66.5,
+    "days_traded": 499,
+    "worst_drawdown": 5993.0
+   },
+   "oneaday_delta_per_day": -7.0,
+   "oneaday_delta_ci95": [
+    -20.0,
+    0.0
+   ],
+   "clears_bar": false,
+   "S_recall_n": 147,
+   "S_recall_pct": 52.9,
+   "S_recall_delta_pts": -5.8
+  },
+  {
+   "score": "er_or1000",
+   "knowable_at": "10:00",
+   "threshold": 0.2088,
+   "book_kept_pct": 62.2,
+   "oneaday": {
+    "trades": 497,
+    "win_pct": 66.4,
+    "total_dollars": 358117.0,
+    "per_trade": 721.0,
+    "mean_r": 0.7206,
+    "per_day": 716.0,
+    "months_green": 25,
+    "months": 25,
+    "weeks_green": 86,
+    "weeks": 105,
+    "green_days_pct": 66.4,
+    "days_traded": 497,
+    "worst_drawdown": 5993.0
+   },
+   "oneaday_delta_per_day": -5.0,
+   "oneaday_delta_ci95": [
+    -12.0,
+    1.0
+   ],
+   "clears_bar": false,
+   "S_recall_n": 140,
+   "S_recall_pct": 50.4,
+   "S_recall_delta_pts": -8.3
+  },
+  {
+   "score": "er_or1000",
+   "knowable_at": "10:00",
+   "threshold": 0.2545,
+   "book_kept_pct": 57.1,
+   "oneaday": {
+    "trades": 496,
+    "win_pct": 66.7,
+    "total_dollars": 372062.0,
+    "per_trade": 750.0,
+    "mean_r": 0.7501,
+    "per_day": 744.0,
+    "months_green": 25,
+    "months": 25,
+    "weeks_green": 87,
+    "weeks": 105,
+    "green_days_pct": 66.7,
+    "days_traded": 496,
+    "worst_drawdown": 5993.0
+   },
+   "oneaday_delta_per_day": 23.0,
+   "oneaday_delta_ci95": [
+    -25.0,
+    103.0
+   ],
+   "clears_bar": false,
+   "S_recall_n": 132,
+   "S_recall_pct": 47.5,
+   "S_recall_delta_pts": -11.2
+  },
+  {
+   "score": "er_session",
+   "knowable_at": "HINDSIGHT",
+   "threshold": 0.0186,
+   "book_kept_pct": 90.0,
+   "oneaday": {
+    "trades": 499,
+    "win_pct": 66.9,
+    "total_dollars": 360972.0,
+    "per_trade": 723.0,
+    "mean_r": 0.7234,
+    "per_day": 722.0,
+    "months_green": 25,
+    "months": 25,
+    "weeks_green": 86,
+    "weeks": 105,
+    "green_days_pct": 66.9,
+    "days_traded": 499,
+    "worst_drawdown": 5993.0
+   },
+   "oneaday_delta_per_day": 1.0,
+   "oneaday_delta_ci95": [
+    -44.0,
+    49.0
+   ],
+   "clears_bar": false,
+   "S_recall_n": 150,
+   "S_recall_pct": 54.0,
+   "S_recall_delta_pts": -4.7
+  },
+  {
+   "score": "er_session",
+   "knowable_at": "HINDSIGHT",
+   "threshold": 0.036,
+   "book_kept_pct": 80.1,
+   "oneaday": {
+    "trades": 498,
+    "win_pct": 67.9,
+    "total_dollars": 371013.0,
+    "per_trade": 745.0,
+    "mean_r": 0.745,
+    "per_day": 742.0,
+    "months_green": 24,
+    "months": 25,
+    "weeks_green": 88,
+    "weeks": 105,
+    "green_days_pct": 67.9,
+    "days_traded": 498,
+    "worst_drawdown": 6333.0
+   },
+   "oneaday_delta_per_day": 21.0,
+   "oneaday_delta_ci95": [
+    -57.0,
+    105.0
+   ],
+   "clears_bar": false,
+   "S_recall_n": 139,
+   "S_recall_pct": 50.0,
+   "S_recall_delta_pts": -8.6
+  },
+  {
+   "score": "er_session",
+   "knowable_at": "HINDSIGHT",
+   "threshold": 0.0562,
+   "book_kept_pct": 70.0,
+   "oneaday": {
+    "trades": 497,
+    "win_pct": 69.8,
+    "total_dollars": 399997.0,
+    "per_trade": 805.0,
+    "mean_r": 0.8048,
+    "per_day": 800.0,
+    "months_green": 24,
+    "months": 25,
+    "weeks_green": 90,
+    "weeks": 105,
+    "green_days_pct": 69.8,
+    "days_traded": 497,
+    "worst_drawdown": 6333.0
+   },
+   "oneaday_delta_per_day": 79.0,
+   "oneaday_delta_ci95": [
+    -18.0,
+    181.0
+   ],
+   "clears_bar": false,
+   "S_recall_n": 124,
+   "S_recall_pct": 44.6,
+   "S_recall_delta_pts": -14.0
+  },
+  {
+   "score": "er_session",
+   "knowable_at": "HINDSIGHT",
+   "threshold": 0.0772,
+   "book_kept_pct": 60.0,
+   "oneaday": {
+    "trades": 495,
+    "win_pct": 70.9,
+    "total_dollars": 432808.0,
+    "per_trade": 874.0,
+    "mean_r": 0.8744,
+    "per_day": 866.0,
+    "months_green": 25,
+    "months": 25,
+    "weeks_green": 92,
+    "weeks": 105,
+    "green_days_pct": 70.9,
+    "days_traded": 495,
+    "worst_drawdown": 5864.0
+   },
+   "oneaday_delta_per_day": 145.0,
+   "oneaday_delta_ci95": [
+    21.0,
+    272.0
+   ],
+   "clears_bar": true,
+   "S_recall_n": 112,
+   "S_recall_pct": 40.3,
+   "S_recall_delta_pts": -18.3
+  },
+  {
+   "score": "er_session",
+   "knowable_at": "HINDSIGHT",
+   "threshold": 0.1006,
+   "book_kept_pct": 50.0,
+   "oneaday": {
+    "trades": 488,
+    "win_pct": 72.3,
+    "total_dollars": 443636.0,
+    "per_trade": 909.0,
+    "mean_r": 0.9091,
+    "per_day": 887.0,
+    "months_green": 25,
+    "months": 25,
+    "weeks_green": 97,
+    "weeks": 105,
+    "green_days_pct": 72.3,
+    "days_traded": 488,
+    "worst_drawdown": 3735.0
+   },
+   "oneaday_delta_per_day": 167.0,
+   "oneaday_delta_ci95": [
+    25.0,
+    312.0
+   ],
+   "clears_bar": true,
+   "S_recall_n": 95,
+   "S_recall_pct": 34.2,
+   "S_recall_delta_pts": -24.5
+  },
+  {
+   "score": "er_session",
+   "knowable_at": "HINDSIGHT",
+   "threshold": 0.1247,
+   "book_kept_pct": 40.0,
+   "oneaday": {
+    "trades": 478,
+    "win_pct": 74.3,
+    "total_dollars": 461695.0,
+    "per_trade": 966.0,
+    "mean_r": 0.9659,
+    "per_day": 923.0,
+    "months_green": 25,
+    "months": 25,
+    "weeks_green": 98,
+    "weeks": 105,
+    "green_days_pct": 74.3,
+    "days_traded": 478,
+    "worst_drawdown": 4000.0
+   },
+   "oneaday_delta_per_day": 203.0,
+   "oneaday_delta_ci95": [
+    46.0,
+    363.0
+   ],
+   "clears_bar": true,
+   "S_recall_n": 77,
+   "S_recall_pct": 27.7,
+   "S_recall_delta_pts": -30.9
+  },
+  {
+   "score": "er_session",
+   "knowable_at": "HINDSIGHT",
+   "threshold": 0.1525,
+   "book_kept_pct": 30.0,
+   "oneaday": {
+    "trades": 440,
+    "win_pct": 77.5,
+    "total_dollars": 487081.0,
+    "per_trade": 1107.0,
+    "mean_r": 1.107,
+    "per_day": 974.0,
+    "months_green": 24,
+    "months": 25,
+    "weeks_green": 99,
+    "weeks": 105,
+    "green_days_pct": 77.5,
+    "days_traded": 440,
+    "worst_drawdown": 4000.0
+   },
+   "oneaday_delta_per_day": 253.0,
+   "oneaday_delta_ci95": [
+    94.0,
+    417.0
+   ],
+   "clears_bar": true,
+   "S_recall_n": 60,
+   "S_recall_pct": 21.6,
+   "S_recall_delta_pts": -37.1
+  }
+ ],
+ "day_quality_lift": {
+  "er_or0945": {
+   "n": 812,
+   "base_S_rate_pct": 34.2,
+   "quartiles": [
+    {
+     "quartile": "choppiest 25%",
+     "n": 203,
+     "S": 53,
+     "S_rate_pct": 26.1,
+     "range": [
+      0.0,
+      0.12024932544081487
+     ]
+    },
+    {
+     "quartile": "2nd",
+     "n": 203,
+     "S": 60,
+     "S_rate_pct": 29.6,
+     "range": [
+      0.1206605307611023,
+      0.24909668035748514
+     ]
+    },
+    {
+     "quartile": "3rd",
+     "n": 203,
+     "S": 78,
+     "S_rate_pct": 38.4,
+     "range": [
+      0.2495974235104671,
+      0.4070172926871681
+     ]
+    },
+    {
+     "quartile": "trendiest 25%",
+     "n": 203,
+     "S": 87,
+     "S_rate_pct": 42.9,
+     "range": [
+      0.4095019806173529,
+      0.9206766917293286
+     ]
+    }
+   ]
+  },
+  "er_or1000": {
+   "n": 812,
+   "base_S_rate_pct": 34.2,
+   "quartiles": [
+    {
+     "quartile": "choppiest 25%",
+     "n": 203,
+     "S": 43,
+     "S_rate_pct": 21.2,
+     "range": [
+      0.000324569944823635,
+      0.08532376087256606
+     ]
+    },
+    {
+     "quartile": "2nd",
+     "n": 203,
+     "S": 52,
+     "S_rate_pct": 25.6,
+     "range": [
+      0.08535721187914254,
+      0.16574292609191388
+     ]
+    },
+    {
+     "quartile": "3rd",
+     "n": 203,
+     "S": 80,
+     "S_rate_pct": 39.4,
+     "range": [
+      0.16639683396294372,
+      0.2790551006301683
+     ]
+    },
+    {
+     "quartile": "trendiest 25%",
+     "n": 203,
+     "S": 103,
+     "S_rate_pct": 50.7,
+     "range": [
+      0.28049503483029437,
+      0.8224333100664662
+     ]
+    }
+   ]
+  },
+  "er_session": {
+   "n": 812,
+   "base_S_rate_pct": 34.2,
+   "quartiles": [
+    {
+     "quartile": "choppiest 25%",
+     "n": 203,
+     "S": 48,
+     "S_rate_pct": 23.6,
+     "range": [
+      0.0,
+      0.047214815177240646
+     ]
+    },
+    {
+     "quartile": "2nd",
+     "n": 203,
+     "S": 59,
+     "S_rate_pct": 29.1,
+     "range": [
+      0.04726323370543886,
+      0.0939612374835212
+     ]
+    },
+    {
+     "quartile": "3rd",
+     "n": 203,
+     "S": 77,
+     "S_rate_pct": 37.9,
+     "range": [
+      0.09521053663272092,
+      0.15883707791925608
+     ]
+    },
+    {
+     "quartile": "trendiest 25%",
+     "n": 203,
+     "S": 94,
+     "S_rate_pct": 46.3,
+     "range": [
+      0.159433585369101,
+      0.46816984216047247
+     ]
+    }
+   ]
+  }
+ }
+}

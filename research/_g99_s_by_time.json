@@ -1,0 +1,237 @@
+{
+ "meta": {
+  "mark_collection": {
+   "n_rows_seen": 2112,
+   "n_s_or_none": 989,
+   "n_no_time": 727
+  },
+  "book_collection": {
+   "n_traded": 4022,
+   "n_no_et": 0
+  },
+  "book_sessions": 498,
+  "book_traded_total": 4022,
+  "n_S_bucketed": 189,
+  "n_refusal_bucketed": 73,
+  "n_S_or_refusal_total": 989,
+  "n_S_or_refusal_no_time": 727
+ },
+ "bins": [
+  {
+   "bin": "09:30",
+   "his_S": 1,
+   "his_refusal": 1,
+   "his_total_marks": 2,
+   "his_S_rate": 0.5,
+   "engine_n_fired_traded": 0,
+   "engine_n_scored": 0,
+   "engine_n_dropped_size_gate": 0,
+   "engine_ev_r": null,
+   "engine_win_rate": null
+  },
+  {
+   "bin": "09:35",
+   "his_S": 33,
+   "his_refusal": 7,
+   "his_total_marks": 40,
+   "his_S_rate": 0.825,
+   "engine_n_fired_traded": 421,
+   "engine_n_scored": 373,
+   "engine_n_dropped_size_gate": 48,
+   "engine_ev_r": -0.0503,
+   "engine_win_rate": 0.4611
+  },
+  {
+   "bin": "09:40",
+   "his_S": 36,
+   "his_refusal": 7,
+   "his_total_marks": 43,
+   "his_S_rate": 0.8372,
+   "engine_n_fired_traded": 898,
+   "engine_n_scored": 771,
+   "engine_n_dropped_size_gate": 127,
+   "engine_ev_r": 0.0483,
+   "engine_win_rate": 0.4955
+  },
+  {
+   "bin": "09:45",
+   "his_S": 31,
+   "his_refusal": 3,
+   "his_total_marks": 34,
+   "his_S_rate": 0.9118,
+   "engine_n_fired_traded": 683,
+   "engine_n_scored": 588,
+   "engine_n_dropped_size_gate": 95,
+   "engine_ev_r": -0.0623,
+   "engine_win_rate": 0.4575
+  },
+  {
+   "bin": "09:50",
+   "his_S": 17,
+   "his_refusal": 7,
+   "his_total_marks": 24,
+   "his_S_rate": 0.7083,
+   "engine_n_fired_traded": 391,
+   "engine_n_scored": 324,
+   "engine_n_dropped_size_gate": 67,
+   "engine_ev_r": -0.0377,
+   "engine_win_rate": 0.5062
+  },
+  {
+   "bin": "09:55",
+   "his_S": 18,
+   "his_refusal": 5,
+   "his_total_marks": 23,
+   "his_S_rate": 0.7826,
+   "engine_n_fired_traded": 319,
+   "engine_n_scored": 260,
+   "engine_n_dropped_size_gate": 59,
+   "engine_ev_r": -0.0404,
+   "engine_win_rate": 0.45
+  },
+  {
+   "bin": "10:00",
+   "his_S": 21,
+   "his_refusal": 3,
+   "his_total_marks": 24,
+   "his_S_rate": 0.875,
+   "engine_n_fired_traded": 318,
+   "engine_n_scored": 275,
+   "engine_n_dropped_size_gate": 43,
+   "engine_ev_r": -0.0737,
+   "engine_win_rate": 0.4327
+  },
+  {
+   "bin": "10:05",
+   "his_S": 9,
+   "his_refusal": 5,
+   "his_total_marks": 14,
+   "his_S_rate": 0.6429,
+   "engine_n_fired_traded": 212,
+   "engine_n_scored": 176,
+   "engine_n_dropped_size_gate": 36,
+   "engine_ev_r": -0.0685,
+   "engine_win_rate": 0.4205
+  },
+  {
+   "bin": "10:10",
+   "his_S": 5,
+   "his_refusal": 3,
+   "his_total_marks": 8,
+   "his_S_rate": 0.625,
+   "engine_n_fired_traded": 152,
+   "engine_n_scored": 125,
+   "engine_n_dropped_size_gate": 27,
+   "engine_ev_r": -0.09,
+   "engine_win_rate": 0.416
+  },
+  {
+   "bin": "10:15",
+   "his_S": 7,
+   "his_refusal": 1,
+   "his_total_marks": 8,
+   "his_S_rate": 0.875,
+   "engine_n_fired_traded": 137,
+   "engine_n_scored": 118,
+   "engine_n_dropped_size_gate": 19,
+   "engine_ev_r": -0.2575,
+   "engine_win_rate": 0.3136
+  },
+  {
+   "bin": "10:20",
+   "his_S": 7,
+   "his_refusal": 8,
+   "his_total_marks": 15,
+   "his_S_rate": 0.4667,
+   "engine_n_fired_traded": 97,
+   "engine_n_scored": 79,
+   "engine_n_dropped_size_gate": 18,
+   "engine_ev_r": -0.1823,
+   "engine_win_rate": 0.3418
+  },
+  {
+   "bin": "10:25",
+   "his_S": 0,
+   "his_refusal": 5,
+   "his_total_marks": 5,
+   "his_S_rate": 0.0,
+   "engine_n_fired_traded": 94,
+   "engine_n_scored": 74,
+   "engine_n_dropped_size_gate": 20,
+   "engine_ev_r": 0.0006,
+   "engine_win_rate": 0.4189
+  },
+  {
+   "bin": "10:30",
+   "his_S": 2,
+   "his_refusal": 6,
+   "his_total_marks": 8,
+   "his_S_rate": 0.25,
+   "engine_n_fired_traded": 87,
+   "engine_n_scored": 73,
+   "engine_n_dropped_size_gate": 14,
+   "engine_ev_r": 0.1455,
+   "engine_win_rate": 0.3836
+  },
+  {
+   "bin": "10:35",
+   "his_S": 0,
+   "his_refusal": 0,
+   "his_total_marks": 0,
+   "his_S_rate": null,
+   "engine_n_fired_traded": 63,
+   "engine_n_scored": 51,
+   "engine_n_dropped_size_gate": 12,
+   "engine_ev_r": -0.1945,
+   "engine_win_rate": 0.2549
+  },
+  {
+   "bin": "10:40",
+   "his_S": 1,
+   "his_refusal": 3,
+   "his_total_marks": 4,
+   "his_S_rate": 0.25,
+   "engine_n_fired_traded": 42,
+   "engine_n_scored": 35,
+   "engine_n_dropped_size_gate": 7,
+   "engine_ev_r": -0.2177,
+   "engine_win_rate": 0.3143
+  },
+  {
+   "bin": "10:45",
+   "his_S": 0,
+   "his_refusal": 4,
+   "his_total_marks": 4,
+   "his_S_rate": 0.0,
+   "engine_n_fired_traded": 42,
+   "engine_n_scored": 31,
+   "engine_n_dropped_size_gate": 11,
+   "engine_ev_r": -0.2246,
+   "engine_win_rate": 0.4194
+  },
+  {
+   "bin": "10:50",
+   "his_S": 0,
+   "his_refusal": 2,
+   "his_total_marks": 2,
+   "his_S_rate": 0.0,
+   "engine_n_fired_traded": 37,
+   "engine_n_scored": 25,
+   "engine_n_dropped_size_gate": 12,
+   "engine_ev_r": 0.3425,
+   "engine_win_rate": 0.48
+  },
+  {
+   "bin": "10:55",
+   "his_S": 1,
+   "his_refusal": 3,
+   "his_total_marks": 4,
+   "his_S_rate": 0.25,
+   "engine_n_fired_traded": 29,
+   "engine_n_scored": 24,
+   "engine_n_dropped_size_gate": 5,
+   "engine_ev_r": -0.2948,
+   "engine_win_rate": 0.2917
+  }
+ ]
+}

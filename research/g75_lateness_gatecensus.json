@@ -1,0 +1,21 @@
+{
+ "early": {
+  "no_structure_break": 2434,
+  "not_isolated": 1696,
+  "no_displacement": 238,
+  "block_broken_or_absent": 1531,
+  "not_at_block": 77,
+  "PASS": 6,
+  "retest_too_deep": 18
+ },
+ "late": {
+  "not_isolated": 5270,
+  "block_broken_or_absent": 7735,
+  "not_at_block": 622,
+  "no_displacement": 538,
+  "PASS": 58,
+  "retest_too_deep": 192,
+  "no_structure_break": 155
+ },
+ "n_days": 120
+}

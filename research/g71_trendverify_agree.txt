@@ -1,0 +1,44 @@
+book: 76019 signals, 2437 traded, 28 symbols
+  AAPL   498 days
+  ACHR   493 days
+  AMD    494 days
+  AMZN   495 days
+  AVGO   494 days
+  BABA   435 days
+  COIN   494 days
+  CRM    276 days
+  GOOGL  494 days
+  HOOD   494 days
+  INTC   495 days
+  IREN   273 days
+  IWM    493 days
+  MARA   278 days
+  META   495 days
+  MSFT   498 days
+  MU     497 days
+  NFLX   494 days
+  NVDA   498 days
+  ORCL   494 days
+  PLTR   497 days
+  QQQ    500 days
+  SOFI   282 days
+  SPCX   385 days
+  SPY    494 days
+  TSLA   498 days
+  TSM    297 days
+  UBER   275 days
+
+SANITY hourly-vs-book['bias'] column: {'match': 76003, 'MISMATCH': 16}
+SANITY daily reimpl vs t4.htf_bias on 120 random pairs: 0 mismatches
+
+ALL signals (n=76019)
+  directional-both: 70436  same 47629  flip 22807  agree 67.6%
+  neutral-on-one-side: 4206   uncomputable: 1377
+  STRICT (incl. neutral, exact string match): 47659/74642 = 63.9%
+  drift: {'bullish|bullish': 26020, 'bearish|bearish': 21609, 'bearish|bullish': 12044, 'bullish|bearish': 10763, 'neutral|bullish': 1971, 'neutral|bearish': 1363, 'bearish|neutral': 516, 'bullish|None': 410, 'bearish|None': 401, 'bullish|neutral': 326, 'None|bullish': 315, 'None|None': 158, 'None|bearish': 44, 'neutral|None': 31, 'neutral|neutral': 30, 'None|neutral': 18}
+
+TRADED rows (n=2437)
+  directional-both: 2228  same 1504  flip 724  agree 67.5%
+  neutral-on-one-side: 177   uncomputable: 32
+  STRICT (incl. neutral, exact string match): 1507/2405 = 62.7%
+  drift: {'bullish|bullish': 800, 'bearish|bearish': 704, 'bearish|bullish': 395, 'bullish|bearish': 329, 'neutral|bullish': 93, 'neutral|bearish': 58, 'None|bullish': 15, 'bearish|neutral': 14, 'bullish|neutral': 9, 'bullish|None': 6, 'bearish|None': 6, 'neutral|neutral': 3, 'None|None': 3, 'None|bearish': 2}

@@ -1,0 +1,24 @@
+{
+  "set": "probe_s_sweep_2026-08-28 (100 blind cards)",
+  "n_cards": 100,
+  "n_S": 34,
+  "n_no": 66,
+  "fired_on_S": 23,
+  "fired_on_no": 35,
+  "recall_pct": 67.6,
+  "precision_pct": 39.7,
+  "unreplayable_days": 0,
+  "missed_S": [
+    "AMZN_2025-09-10",
+    "BABA_2026-06-12",
+    "CRM_2026-02-11",
+    "IWM_2026-05-01",
+    "MSFT_2025-12-30",
+    "MSTR_2025-08-26",
+    "MSTR_2026-07-17",
+    "NFLX_2024-08-05",
+    "PLTR_2024-09-20",
+    "PLTR_2025-12-11",
+    "QQQ_2025-09-16"
+  ]
+}

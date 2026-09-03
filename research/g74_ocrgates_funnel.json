@@ -1,0 +1,113 @@
+{
+  "meta": {
+    "generated": "2026-08-29T21:53:59",
+    "first": "2024-08-21",
+    "last": "2026-08-21",
+    "sessions": 500,
+    "symbols": [
+      "NVDA",
+      "TSLA",
+      "AAPL",
+      "SPCX",
+      "MSFT",
+      "MU",
+      "INTC",
+      "PLTR",
+      "AMZN",
+      "META",
+      "AMD",
+      "GOOGL",
+      "ACHR",
+      "NFLX",
+      "ORCL",
+      "QQQ",
+      "SPY",
+      "IWM",
+      "SOFI",
+      "COIN",
+      "HOOD",
+      "IREN",
+      "AVGO",
+      "UBER",
+      "BABA",
+      "CRM",
+      "TSM",
+      "MARA"
+    ],
+    "risk_dollars": 1000.0,
+    "signals": 134012,
+    "loss_halt": true,
+    "halted": 1662,
+    "traded": 4508
+  },
+  "ocr_detection": {
+    "calls": 2048716,
+    "no_order_block": 1161237,
+    "block_not_isolated": 717441,
+    "detected": 28718,
+    "reaches_emit": 6990,
+    "would_fail_max_stop_0.4pct": 1760,
+    "would_fail_flat_50c": 4048,
+    "would_fail_relative_floor": 2455,
+    "no_displacement": 74568,
+    "not_retesting": 66752,
+    "retest_strength": 21728,
+    "retest_strength:partial_body": 11875,
+    "retest_strength:full_body": 9853
+  },
+  "br_detection": {
+    "calls": 10076639,
+    "too_short": 0,
+    "no_confirm_close": 7431091,
+    "adverse_wick": 603539,
+    "no_break": 1208864,
+    "no_leave": 221145,
+    "no_retest": 457396,
+    "stale_retest": 24352,
+    "passed": 130252
+  },
+  "emitted": {
+    "break_and_retest": 130252,
+    "one_candle_rule": 6990,
+    "reentry_84_rule": 587
+  },
+  "routed": {
+    "break_and_retest|fired|A": 16,
+    "break_and_retest|fired|A+": 17,
+    "break_and_retest|fired|B": 5528,
+    "break_and_retest|fired|C": 3328,
+    "break_and_retest|skipped_d|X": 117476,
+    "break_and_retest|skipped_tight_stop|B": 66,
+    "break_and_retest|skipped_tight_stop|C": 3821,
+    "one_candle_rule|fired|A": 96,
+    "one_candle_rule|fired|B": 699,
+    "one_candle_rule|fired|C": 169,
+    "one_candle_rule|skipped_d|X": 5693,
+    "one_candle_rule|skipped_tight_stop|C": 333,
+    "reentry_84_rule|fired|A": 86,
+    "reentry_84_rule|fired|B": 400,
+    "reentry_84_rule|skipped_d|X": 82,
+    "reentry_84_rule|skipped_tight_stop|A": 2,
+    "reentry_84_rule|skipped_tight_stop|B": 17
+  },
+  "in_book": {
+    "break_and_retest": 126616,
+    "one_candle_rule": 6809,
+    "reentry_84_rule": 587
+  },
+  "traded": {
+    "break_and_retest": 3820,
+    "one_candle_rule": 482,
+    "reentry_84_rule": 206
+  },
+  "halted": {
+    "break_and_retest": 1100,
+    "reentry_84_rule": 280,
+    "one_candle_rule": 282
+  },
+  "dedupe_killed": {
+    "break_and_retest": 3636,
+    "one_candle_rule": 181,
+    "reentry_84_rule": 0
+  }
+}

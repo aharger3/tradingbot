@@ -1,0 +1,10 @@
+{
+ "arm": "S3_pivot",
+ "picks": {
+  "pivot": 132838,
+  "fallback_structural": 5172
+ },
+ "reasons": {},
+ "min_tradable_abs": 0.05,
+ "max_stop_pct": 0.006
+}

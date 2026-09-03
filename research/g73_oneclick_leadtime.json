@@ -1,0 +1,99 @@
+{
+  "book": "C:\\Users\\aharg\\Desktop\\Projects\\tradingbot\\research\\bt2y_trades.json",
+  "sessions": 500,
+  "levels_shipped": {
+    "intraday: pivot": {
+      "trades": 1401,
+      "dollars": 846594.0,
+      "mean_r": 0.604,
+      "per_day": 1693.0,
+      "share_of_dollars_pct": 32.1
+    },
+    "intraday: opening range": {
+      "trades": 1175,
+      "dollars": 766039.0,
+      "mean_r": 0.652,
+      "per_day": 1532.0,
+      "share_of_dollars_pct": 29.1
+    },
+    "pre-bell": {
+      "trades": 1244,
+      "dollars": 710166.0,
+      "mean_r": 0.571,
+      "per_day": 1420.0,
+      "share_of_dollars_pct": 27.0
+    },
+    "intraday: order block": {
+      "trades": 482,
+      "dollars": 338865.0,
+      "mean_r": 0.703,
+      "per_day": 678.0,
+      "share_of_dollars_pct": 12.9
+    },
+    "intraday: prior entry (84%)": {
+      "trades": 206,
+      "dollars": -27815.0,
+      "mean_r": -0.135,
+      "per_day": -56.0,
+      "share_of_dollars_pct": -1.1
+    }
+  },
+  "levels_one_a_day": {
+    "pre-bell": {
+      "trades": 287,
+      "dollars": 191287.0,
+      "mean_r": 0.667,
+      "per_day": 383.0,
+      "share_of_dollars_pct": 53.1
+    },
+    "intraday: opening range": {
+      "trades": 177,
+      "dollars": 129890.0,
+      "mean_r": 0.734,
+      "per_day": 260.0,
+      "share_of_dollars_pct": 36.0
+    },
+    "intraday: pivot": {
+      "trades": 26,
+      "dollars": 34250.0,
+      "mean_r": 1.317,
+      "per_day": 68.0,
+      "share_of_dollars_pct": 9.5
+    },
+    "intraday: order block": {
+      "trades": 9,
+      "dollars": 4953.0,
+      "mean_r": 0.55,
+      "per_day": 10.0,
+      "share_of_dollars_pct": 1.4
+    }
+  },
+  "resting_limit_at_level": {
+    "limit at the level fills": {
+      "trades": 2144,
+      "dollars": 1132879.0,
+      "mean_r": 0.528,
+      "per_day": 2266.0
+    },
+    "level never traded -- resting limit misses": {
+      "trades": 2364,
+      "dollars": 1500971.0,
+      "mean_r": 0.635,
+      "per_day": 3002.0
+    }
+  },
+  "one_a_day_entry_clock": {
+    "09:30": {
+      "trades": 490,
+      "dollars": 349690.0
+    },
+    "10:00": {
+      "trades": 8,
+      "dollars": 8357.0
+    },
+    "10:30": {
+      "trades": 1,
+      "dollars": 2333.0
+    }
+  }
+}

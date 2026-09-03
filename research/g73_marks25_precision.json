@@ -1,0 +1,3307 @@
+{
+ "generated": "g73_marks25_precision.py",
+ "n_cards": 25,
+ "precision": {
+  "overall": {
+   "yes": 16,
+   "n": 25,
+   "rate": 0.64,
+   "wilson95": [
+    0.4452,
+    0.7975
+   ],
+   "wilson_width_pts": 35.2
+  },
+  "by_arm": {
+   "84": {
+    "yes": 6,
+    "n": 10,
+    "rate": 0.6,
+    "wilson95": [
+     0.3127,
+     0.8318
+    ],
+    "wilson_width_pts": 51.9,
+    "jeffreys95": [
+     0.3037,
+     0.8469
+    ],
+    "cards": [
+     "NFLX_2026-05-26",
+     "COIN_2025-07-10",
+     "MSFT_2024-09-13",
+     "AAPL_2026-04-17",
+     "INTC_2026-03-24",
+     "HOOD_2025-11-28",
+     "TSM_2026-07-07",
+     "ORCL_2025-02-18",
+     "META_2026-06-22",
+     "AVGO_2025-12-03"
+    ]
+   },
+   "OCR": {
+    "yes": 6,
+    "n": 8,
+    "rate": 0.75,
+    "wilson95": [
+     0.4093,
+     0.9285
+    ],
+    "wilson_width_pts": 51.9,
+    "jeffreys95": [
+     0.4084,
+     0.944
+    ],
+    "cards": [
+     "MSFT_2025-08-29",
+     "GOOGL_2024-10-29",
+     "SPY_2025-05-21",
+     "IWM_2026-08-06",
+     "NVDA_2025-06-24",
+     "SPY_2026-06-17",
+     "ACHR_2026-04-13",
+     "QQQ_2025-12-22"
+    ]
+   },
+   "BR": {
+    "yes": 4,
+    "n": 7,
+    "rate": 0.5714,
+    "wilson95": [
+     0.2505,
+     0.8418
+    ],
+    "wilson_width_pts": 59.1,
+    "jeffreys95": [
+     0.2345,
+     0.8611
+    ],
+    "cards": [
+     "TSM_2025-11-26",
+     "AVGO_2024-11-04",
+     "AMD_2025-09-08",
+     "AMZN_2025-12-11",
+     "ACHR_2026-06-16",
+     "AAPL_2026-03-11",
+     "QQQ_2024-08-26"
+    ]
+   }
+  },
+  "pairwise": {
+   "84_vs_OCR": {
+    "intervals_overlap": true,
+    "fisher_p_two_sided": 0.638,
+    "separated_at_0.05": false
+   },
+   "84_vs_BR": {
+    "intervals_overlap": true,
+    "fisher_p_two_sided": 1.0,
+    "separated_at_0.05": false
+   },
+   "OCR_vs_BR": {
+    "intervals_overlap": true,
+    "fisher_p_two_sided": 0.6084,
+    "separated_at_0.05": false
+   }
+  },
+  "note": "Every pairwise interval overlaps. At n=7..10 the 95% interval is 40-60 points wide, so the arms are not ranked by this sample and no reading of it supports 'the 84% rule is better than break-and-retest'."
+ },
+ "rejection_reasons": {
+  "tally": {
+   "level_not_respected": 1,
+   "other": 2,
+   "no_displacement": 3,
+   "late": 2,
+   "chop": 3,
+   "no_retest": 1
+  },
+  "rows": [
+   {
+    "reason": "no_displacement",
+    "count": 3,
+    "engine_variable": "no_displacement",
+    "engine_has_this_check": "same question",
+    "fired_on": 0,
+    "cards": [
+     {
+      "card_id": "AMD_2025-09-08",
+      "engine_et": "10:37",
+      "engine_downgrades": [],
+      "engine_variable_fired": false,
+      "er_session": 0.0054,
+      "note": "10:37 but really no displacement from the original candles so i have to downgrade"
+     },
+     {
+      "card_id": "NVDA_2025-06-24",
+      "engine_et": "10:13",
+      "engine_downgrades": [],
+      "engine_variable_fired": false,
+      "er_session": 0.1156,
+      "note": "really good a trade i wish it was an S but it didnt displace from that wick, but technically it is an OCR and BR just neither of the parts have displacement"
+     },
+     {
+      "card_id": "QQQ_2025-12-22",
+      "engine_et": "10:43",
+      "engine_downgrades": [
+       "counter_trend_not_respected"
+      ],
+      "engine_variable_fired": false,
+      "er_session": 0.1245,
+      "note": "9:45 its close i see what your seeing"
+     }
+    ]
+   },
+   {
+    "reason": "chop",
+    "count": 3,
+    "engine_variable": "level_not_respected",
+    "engine_has_this_check": "PARTIAL -- the engine only knows chop ON THE LEVEL (closes sitting on it). It has no whole-session chop variable in the ladder.",
+    "fired_on": 0,
+    "cards": [
+     {
+      "card_id": "HOOD_2025-11-28",
+      "engine_et": "10:21",
+      "engine_downgrades": [
+       "counter_trend_not_respected"
+      ],
+      "engine_variable_fired": false,
+      "er_session": 0.0485,
+      "note": ""
+     },
+     {
+      "card_id": "AAPL_2026-03-11",
+      "engine_et": "10:29",
+      "engine_downgrades": [],
+      "engine_variable_fired": false,
+      "er_session": 0.0433,
+      "note": ""
+     },
+     {
+      "card_id": "QQQ_2025-12-22",
+      "engine_et": "10:43",
+      "engine_downgrades": [
+       "counter_trend_not_respected"
+      ],
+      "engine_variable_fired": false,
+      "er_session": 0.1245,
+      "note": "9:45 its close i see what your seeing"
+     }
+    ]
+   },
+   {
+    "reason": "other",
+    "count": 2,
+    "engine_variable": null,
+    "engine_has_this_check": "free text -- read the note",
+    "fired_on": 0,
+    "cards": [
+     {
+      "card_id": "TSM_2025-11-26",
+      "engine_et": "10:39",
+      "engine_downgrades": [],
+      "engine_variable_fired": null,
+      "er_session": 0.0124,
+      "note": "i see what the entry would be but hard to get past the green  candle at 9:35 pivot created hard to break"
+     },
+     {
+      "card_id": "ORCL_2025-02-18",
+      "engine_et": "10:20",
+      "engine_downgrades": [
+       "counter_trend_not_respected"
+      ],
+      "engine_variable_fired": null,
+      "er_session": 0.1402,
+      "note": "took too long for the entry"
+     }
+    ]
+   },
+   {
+    "reason": "late",
+    "count": 2,
+    "engine_variable": null,
+    "engine_has_this_check": "ABSENT -- signal_runner's [late] tag means 'the level was already broken earlier in the session' (omen_bot.py:696), a DIRTY-LEVEL test, not a clock test. Nothing in downgrade.VARIABLES asks how far into the session the entry is, and the only clock rule is the 09:30-11:00 window (SESSION_END), which 10:37 passes.",
+    "fired_on": 0,
+    "cards": [
+     {
+      "card_id": "AMD_2025-09-08",
+      "engine_et": "10:37",
+      "engine_downgrades": [],
+      "engine_variable_fired": null,
+      "er_session": 0.0054,
+      "note": "10:37 but really no displacement from the original candles so i have to downgrade"
+     },
+     {
+      "card_id": "HOOD_2025-11-28",
+      "engine_et": "10:21",
+      "engine_downgrades": [
+       "counter_trend_not_respected"
+      ],
+      "engine_variable_fired": null,
+      "er_session": 0.0485,
+      "note": ""
+     }
+    ]
+   },
+   {
+    "reason": "level_not_respected",
+    "count": 1,
+    "engine_variable": "level_not_respected",
+    "engine_has_this_check": "same question",
+    "fired_on": 0,
+    "cards": [
+     {
+      "card_id": "MSFT_2024-09-13",
+      "engine_et": "10:17",
+      "engine_downgrades": [],
+      "engine_variable_fired": false,
+      "er_session": 0.0985,
+      "note": "9:47 is what you liked but it broke above those levels and rejected them"
+     }
+    ]
+   },
+   {
+    "reason": "no_retest",
+    "count": 1,
+    "engine_variable": "no_retest",
+    "engine_has_this_check": "same question",
+    "fired_on": 1,
+    "cards": [
+     {
+      "card_id": "AVGO_2025-12-03",
+      "engine_et": "10:59",
+      "engine_downgrades": [
+       "no_retest"
+      ],
+      "engine_variable_fired": true,
+      "er_session": 0.0632,
+      "note": "i dont see anything: 9:33 can be a great break of pdl but the retest missed by a few cents"
+     }
+    ]
+   }
+  ],
+  "cannot_compute": [
+   "other",
+   "late"
+  ],
+  "er_session_probe": {
+   "what": "t21_card_filter already computes a session efficiency ratio (er_session) on every card. Nothing gates on it. If 'chop' is a real variable, the chop cards should sit low.",
+   "chop_cards": {
+    "HOOD_2025-11-28": 0.0485,
+    "AAPL_2026-03-11": 0.0433,
+    "QQQ_2025-12-22": 0.1245
+   },
+   "mean_er_chop": 0.0721,
+   "mean_er_yes": 0.128,
+   "mean_er_all": 0.108,
+   "caveat": "n=3 chop cards. Directional only, not a result."
+  }
+ },
+ "book_meta": {
+  "generated": "2026-08-29T18:38:17",
+  "first": "2024-08-21",
+  "last": "2026-08-21",
+  "sessions": 500,
+  "symbols": [
+   "NVDA",
+   "TSLA",
+   "AAPL",
+   "SPCX",
+   "MSFT",
+   "MU",
+   "INTC",
+   "PLTR",
+   "AMZN",
+   "META",
+   "AMD",
+   "GOOGL",
+   "ACHR",
+   "NFLX",
+   "ORCL",
+   "QQQ",
+   "SPY",
+   "IWM",
+   "SOFI",
+   "COIN",
+   "HOOD",
+   "IREN",
+   "AVGO",
+   "UBER",
+   "BABA",
+   "CRM",
+   "TSM",
+   "MARA"
+  ],
+  "risk_dollars": 1000.0,
+  "signals": 134012,
+  "loss_halt": true,
+  "halted": 1662,
+  "traded": 4508
+ },
+ "displacement": {
+  "why": "The engine tests displacement in TWO places and neither agrees with him here: downgrade.no_displacement (fired on 0 of his 3 no-displacement rejections) and the legacy [nodisp] tag.",
+  "legacy_nodisp_tag_on_yes_cards": 4,
+  "legacy_nodisp_tag_on_no_cards": 3,
+  "nodisp_tag_by_bucket": {
+   "BR": 7
+  },
+  "cards_with_nodisp_tag": [
+   "TSM_2025-11-26",
+   "AVGO_2024-11-04",
+   "AMD_2025-09-08",
+   "AMZN_2025-12-11",
+   "ACHR_2026-06-16",
+   "AAPL_2026-03-11",
+   "QQQ_2024-08-26"
+  ],
+  "unmatched_rows": [],
+  "structural": "[nodisp] is emitted only on the break-and-retest path (signal_runner writes it beside the B&R note). Two of his three no-displacement rejections are OCR cards, where no displacement test of any kind runs.",
+  "rows": [
+   {
+    "card_id": "NFLX_2026-05-26",
+    "bucket": "84",
+    "is_s": true,
+    "why_not": [],
+    "matched_book_row": true,
+    "tags": [],
+    "legacy_nodisp_tag": false,
+    "legacy_late_tag": false,
+    "downgrade_no_displacement": false
+   },
+   {
+    "card_id": "COIN_2025-07-10",
+    "bucket": "84",
+    "is_s": true,
+    "why_not": [],
+    "matched_book_row": true,
+    "tags": [
+     "hammer"
+    ],
+    "legacy_nodisp_tag": false,
+    "legacy_late_tag": false,
+    "downgrade_no_displacement": false
+   },
+   {
+    "card_id": "MSFT_2024-09-13",
+    "bucket": "84",
+    "is_s": false,
+    "why_not": [
+     "level_not_respected"
+    ],
+    "matched_book_row": true,
+    "tags": [],
+    "legacy_nodisp_tag": false,
+    "legacy_late_tag": false,
+    "downgrade_no_displacement": false
+   },
+   {
+    "card_id": "MSFT_2025-08-29",
+    "bucket": "OCR",
+    "is_s": true,
+    "why_not": [],
+    "matched_book_row": true,
+    "tags": [
+     "brocr"
+    ],
+    "legacy_nodisp_tag": false,
+    "legacy_late_tag": false,
+    "downgrade_no_displacement": false
+   },
+   {
+    "card_id": "GOOGL_2024-10-29",
+    "bucket": "OCR",
+    "is_s": true,
+    "why_not": [],
+    "matched_book_row": true,
+    "tags": [
+     "brocr"
+    ],
+    "legacy_nodisp_tag": false,
+    "legacy_late_tag": false,
+    "downgrade_no_displacement": false
+   },
+   {
+    "card_id": "AAPL_2026-04-17",
+    "bucket": "84",
+    "is_s": true,
+    "why_not": [],
+    "matched_book_row": true,
+    "tags": [],
+    "legacy_nodisp_tag": false,
+    "legacy_late_tag": false,
+    "downgrade_no_displacement": false
+   },
+   {
+    "card_id": "TSM_2025-11-26",
+    "bucket": "BR",
+    "is_s": false,
+    "why_not": [
+     "other"
+    ],
+    "matched_book_row": true,
+    "tags": [
+     "late",
+     "nodisp",
+     "brocr"
+    ],
+    "legacy_nodisp_tag": true,
+    "legacy_late_tag": true,
+    "downgrade_no_displacement": false
+   },
+   {
+    "card_id": "SPY_2025-05-21",
+    "bucket": "OCR",
+    "is_s": true,
+    "why_not": [],
+    "matched_book_row": true,
+    "tags": [
+     "brocr"
+    ],
+    "legacy_nodisp_tag": false,
+    "legacy_late_tag": false,
+    "downgrade_no_displacement": false
+   },
+   {
+    "card_id": "INTC_2026-03-24",
+    "bucket": "84",
+    "is_s": true,
+    "why_not": [],
+    "matched_book_row": true,
+    "tags": [],
+    "legacy_nodisp_tag": false,
+    "legacy_late_tag": false,
+    "downgrade_no_displacement": true
+   },
+   {
+    "card_id": "AVGO_2024-11-04",
+    "bucket": "BR",
+    "is_s": true,
+    "why_not": [],
+    "matched_book_row": true,
+    "tags": [
+     "clean",
+     "hammer",
+     "nodisp",
+     "brocr"
+    ],
+    "legacy_nodisp_tag": true,
+    "legacy_late_tag": false,
+    "downgrade_no_displacement": false
+   },
+   {
+    "card_id": "AMD_2025-09-08",
+    "bucket": "BR",
+    "is_s": false,
+    "why_not": [
+     "no_displacement",
+     "late"
+    ],
+    "matched_book_row": true,
+    "tags": [
+     "clean",
+     "nodisp",
+     "brocr"
+    ],
+    "legacy_nodisp_tag": true,
+    "legacy_late_tag": false,
+    "downgrade_no_displacement": false
+   },
+   {
+    "card_id": "HOOD_2025-11-28",
+    "bucket": "84",
+    "is_s": false,
+    "why_not": [
+     "chop",
+     "late"
+    ],
+    "matched_book_row": true,
+    "tags": [],
+    "legacy_nodisp_tag": false,
+    "legacy_late_tag": false,
+    "downgrade_no_displacement": false
+   },
+   {
+    "card_id": "IWM_2026-08-06",
+    "bucket": "OCR",
+    "is_s": true,
+    "why_not": [],
+    "matched_book_row": true,
+    "tags": [
+     "brocr"
+    ],
+    "legacy_nodisp_tag": false,
+    "legacy_late_tag": false,
+    "downgrade_no_displacement": false
+   },
+   {
+    "card_id": "TSM_2026-07-07",
+    "bucket": "84",
+    "is_s": true,
+    "why_not": [],
+    "matched_book_row": true,
+    "tags": [
+     "hammer"
+    ],
+    "legacy_nodisp_tag": false,
+    "legacy_late_tag": false,
+    "downgrade_no_displacement": false
+   },
+   {
+    "card_id": "AMZN_2025-12-11",
+    "bucket": "BR",
+    "is_s": true,
+    "why_not": [],
+    "matched_book_row": true,
+    "tags": [
+     "clean",
+     "nodisp"
+    ],
+    "legacy_nodisp_tag": true,
+    "legacy_late_tag": false,
+    "downgrade_no_displacement": false
+   },
+   {
+    "card_id": "NVDA_2025-06-24",
+    "bucket": "OCR",
+    "is_s": false,
+    "why_not": [
+     "no_displacement"
+    ],
+    "matched_book_row": true,
+    "tags": [
+     "brocr"
+    ],
+    "legacy_nodisp_tag": false,
+    "legacy_late_tag": false,
+    "downgrade_no_displacement": false
+   },
+   {
+    "card_id": "ORCL_2025-02-18",
+    "bucket": "84",
+    "is_s": false,
+    "why_not": [
+     "other"
+    ],
+    "matched_book_row": true,
+    "tags": [],
+    "legacy_nodisp_tag": false,
+    "legacy_late_tag": false,
+    "downgrade_no_displacement": false
+   },
+   {
+    "card_id": "ACHR_2026-06-16",
+    "bucket": "BR",
+    "is_s": true,
+    "why_not": [],
+    "matched_book_row": true,
+    "tags": [
+     "late",
+     "nodisp",
+     "brocr"
+    ],
+    "legacy_nodisp_tag": true,
+    "legacy_late_tag": true,
+    "downgrade_no_displacement": false
+   },
+   {
+    "card_id": "SPY_2026-06-17",
+    "bucket": "OCR",
+    "is_s": true,
+    "why_not": [],
+    "matched_book_row": true,
+    "tags": [
+     "brocr"
+    ],
+    "legacy_nodisp_tag": false,
+    "legacy_late_tag": false,
+    "downgrade_no_displacement": false
+   },
+   {
+    "card_id": "ACHR_2026-04-13",
+    "bucket": "OCR",
+    "is_s": true,
+    "why_not": [],
+    "matched_book_row": true,
+    "tags": [
+     "brocr"
+    ],
+    "legacy_nodisp_tag": false,
+    "legacy_late_tag": false,
+    "downgrade_no_displacement": false
+   },
+   {
+    "card_id": "AAPL_2026-03-11",
+    "bucket": "BR",
+    "is_s": false,
+    "why_not": [
+     "chop"
+    ],
+    "matched_book_row": true,
+    "tags": [
+     "clean",
+     "nodisp",
+     "brocr"
+    ],
+    "legacy_nodisp_tag": true,
+    "legacy_late_tag": false,
+    "downgrade_no_displacement": false
+   },
+   {
+    "card_id": "META_2026-06-22",
+    "bucket": "84",
+    "is_s": true,
+    "why_not": [],
+    "matched_book_row": true,
+    "tags": [],
+    "legacy_nodisp_tag": false,
+    "legacy_late_tag": false,
+    "downgrade_no_displacement": false
+   },
+   {
+    "card_id": "QQQ_2024-08-26",
+    "bucket": "BR",
+    "is_s": true,
+    "why_not": [],
+    "matched_book_row": true,
+    "tags": [
+     "clean",
+     "nodisp",
+     "brocr"
+    ],
+    "legacy_nodisp_tag": true,
+    "legacy_late_tag": false,
+    "downgrade_no_displacement": false
+   },
+   {
+    "card_id": "QQQ_2025-12-22",
+    "bucket": "OCR",
+    "is_s": false,
+    "why_not": [
+     "no_displacement",
+     "chop"
+    ],
+    "matched_book_row": true,
+    "tags": [
+     "brocr"
+    ],
+    "legacy_nodisp_tag": false,
+    "legacy_late_tag": false,
+    "downgrade_no_displacement": false
+   },
+   {
+    "card_id": "AVGO_2025-12-03",
+    "bucket": "84",
+    "is_s": false,
+    "why_not": [
+     "no_retest"
+    ],
+    "matched_book_row": true,
+    "tags": [],
+    "legacy_nodisp_tag": false,
+    "legacy_late_tag": false,
+    "downgrade_no_displacement": false
+   }
+  ]
+ },
+ "entry_minute": {
+  "parsed": 20,
+  "unparsed": 5,
+  "intent_mix": {
+   "entry": 15,
+   "narration": 2,
+   "candidate": 3
+  },
+  "unparseable_detail": [
+   {
+    "card_id": "HOOD_2025-11-28",
+    "tokens": [],
+    "note": ""
+   },
+   {
+    "card_id": "IWM_2026-08-06",
+    "tokens": [
+     "9:%5"
+    ],
+    "note": "9:%5"
+   },
+   {
+    "card_id": "NVDA_2025-06-24",
+    "tokens": [],
+    "note": "really good a trade i wish it was an S but it didnt displace from that wick, but technically it is an OCR and BR just neither of the parts have displacement"
+   },
+   {
+    "card_id": "ORCL_2025-02-18",
+    "tokens": [],
+    "note": "took too long for the entry"
+   },
+   {
+    "card_id": "AAPL_2026-03-11",
+    "tokens": [],
+    "note": ""
+   }
+  ],
+  "vs_card_signal": {
+   "n": 20,
+   "min": -4,
+   "max": 86,
+   "median": 30.0,
+   "mean": 30.15,
+   "exact_0": 2,
+   "within_1": 4,
+   "within_3": 4,
+   "within_5": 5,
+   "engine_later": 15,
+   "engine_earlier": 3,
+   "values": [
+    -4,
+    -1,
+    -1,
+    0,
+    0,
+    12,
+    12,
+    16,
+    24,
+    30,
+    30,
+    32,
+    41,
+    43,
+    48,
+    54,
+    58,
+    59,
+    64,
+    86
+   ]
+  },
+  "vs_nearest_any_engine_signal": {
+   "n": 20,
+   "min": -2,
+   "max": 47,
+   "median": 3.5,
+   "mean": 9.1,
+   "exact_0": 7,
+   "within_1": 9,
+   "within_3": 10,
+   "within_5": 10,
+   "engine_later": 10,
+   "engine_earlier": 3,
+   "values": [
+    -2,
+    -1,
+    -1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    7,
+    8,
+    9,
+    12,
+    12,
+    18,
+    19,
+    22,
+    32,
+    47
+   ]
+  },
+  "vs_nearest_S_signal": {
+   "n": 20,
+   "min": -2,
+   "max": 51,
+   "median": 14.0,
+   "mean": 15.65,
+   "exact_0": 4,
+   "within_1": 6,
+   "within_3": 7,
+   "within_5": 7,
+   "engine_later": 13,
+   "engine_earlier": 3,
+   "values": [
+    -2,
+    -1,
+    -1,
+    0,
+    0,
+    0,
+    0,
+    12,
+    12,
+    12,
+    16,
+    18,
+    19,
+    23,
+    24,
+    27,
+    28,
+    32,
+    43,
+    51
+   ]
+  },
+  "vs_nearest_traded_signal": {
+   "n": 12,
+   "min": -43,
+   "max": 86,
+   "median": 8.0,
+   "mean": 10.5,
+   "exact_0": 1,
+   "within_1": 1,
+   "within_3": 3,
+   "within_5": 3,
+   "engine_later": 9,
+   "engine_earlier": 2,
+   "values": [
+    -43,
+    -39,
+    0,
+    2,
+    2,
+    6,
+    10,
+    16,
+    19,
+    26,
+    41,
+    86
+   ]
+  },
+  "vs_bucket_first_signal": {
+   "n": 20,
+   "min": -39,
+   "max": 86,
+   "median": 27.0,
+   "mean": 25.6,
+   "exact_0": 0,
+   "within_1": 2,
+   "within_3": 2,
+   "within_5": 3,
+   "engine_later": 15,
+   "engine_earlier": 5,
+   "values": [
+    -39,
+    -9,
+    -4,
+    -1,
+    -1,
+    12,
+    12,
+    16,
+    22,
+    24,
+    30,
+    30,
+    32,
+    40,
+    43,
+    48,
+    54,
+    58,
+    59,
+    86
+   ]
+  },
+  "vs_bucket_first_S_signal": {
+   "n": 20,
+   "min": -4,
+   "max": 86,
+   "median": 27.0,
+   "mean": 28.05,
+   "exact_0": 2,
+   "within_1": 4,
+   "within_3": 4,
+   "within_5": 5,
+   "engine_later": 15,
+   "engine_earlier": 3,
+   "values": [
+    -4,
+    -1,
+    -1,
+    0,
+    0,
+    12,
+    12,
+    16,
+    23,
+    24,
+    30,
+    30,
+    32,
+    40,
+    43,
+    48,
+    54,
+    58,
+    59,
+    86
+   ]
+  },
+  "ENTRY_INTENT_ONLY": {
+   "n": 15,
+   "vs_card_signal": {
+    "n": 15,
+    "min": -4,
+    "max": 59,
+    "median": 24,
+    "mean": 24.33,
+    "exact_0": 1,
+    "within_1": 3,
+    "within_3": 3,
+    "within_5": 4,
+    "engine_later": 11,
+    "engine_earlier": 3,
+    "values": [
+     -4,
+     -1,
+     -1,
+     0,
+     12,
+     12,
+     16,
+     24,
+     30,
+     32,
+     41,
+     43,
+     48,
+     54,
+     59
+    ]
+   },
+   "vs_nearest_any_engine_signal": {
+    "n": 15,
+    "min": -2,
+    "max": 32,
+    "median": 0,
+    "mean": 6.73,
+    "exact_0": 5,
+    "within_1": 7,
+    "within_3": 8,
+    "within_5": 8,
+    "engine_later": 7,
+    "engine_earlier": 3,
+    "values": [
+     -2,
+     -1,
+     -1,
+     0,
+     0,
+     0,
+     0,
+     0,
+     7,
+     8,
+     9,
+     12,
+     18,
+     19,
+     32
+    ]
+   },
+   "vs_bucket_first_signal": {
+    "n": 15,
+    "min": -9,
+    "max": 59,
+    "median": 24,
+    "mean": 23.67,
+    "exact_0": 0,
+    "within_1": 2,
+    "within_3": 2,
+    "within_5": 3,
+    "engine_later": 11,
+    "engine_earlier": 4,
+    "values": [
+     -9,
+     -4,
+     -1,
+     -1,
+     12,
+     12,
+     16,
+     24,
+     30,
+     32,
+     40,
+     43,
+     48,
+     54,
+     59
+    ]
+   }
+  },
+  "rows": [
+   {
+    "card_id": "NFLX_2026-05-26",
+    "bucket": "84",
+    "is_s": true,
+    "time_intent": "entry",
+    "intent_reason": "'9:47 OCR stop green candle wick'",
+    "his_time": "09:47",
+    "his_all_times": [
+     "09:47"
+    ],
+    "engine_card_et": "10:17",
+    "offset_card_min": 30,
+    "n_engine_signals_that_day": 18,
+    "engine_first_et": "09:45",
+    "engine_last_et": "10:59",
+    "bucket_first_et": "10:17",
+    "offset_bucket_first_min": 30,
+    "bucket_first_S_et": "10:17",
+    "offset_bucket_first_S_min": 30,
+    "nearest_any_et": "09:45",
+    "offset_nearest_any_min": -2,
+    "nearest_S_et": "09:45",
+    "offset_nearest_S_min": -2,
+    "nearest_traded_et": null,
+    "offset_nearest_traded_min": null,
+    "note": "9:47 OCR stop green candle wick"
+   },
+   {
+    "card_id": "COIN_2025-07-10",
+    "bucket": "84",
+    "is_s": true,
+    "time_intent": "entry",
+    "intent_reason": "bare time, yes card",
+    "his_time": "09:41",
+    "his_all_times": [
+     "09:41"
+    ],
+    "engine_card_et": "10:40",
+    "offset_card_min": 59,
+    "n_engine_signals_that_day": 14,
+    "engine_first_et": "10:00",
+    "engine_last_et": "10:44",
+    "bucket_first_et": "10:40",
+    "offset_bucket_first_min": 59,
+    "bucket_first_S_et": "10:40",
+    "offset_bucket_first_S_min": 59,
+    "nearest_any_et": "10:00",
+    "offset_nearest_any_min": 19,
+    "nearest_S_et": "10:00",
+    "offset_nearest_S_min": 19,
+    "nearest_traded_et": "10:22",
+    "offset_nearest_traded_min": 41,
+    "note": "9:41"
+   },
+   {
+    "card_id": "MSFT_2024-09-13",
+    "bucket": "84",
+    "is_s": false,
+    "time_intent": "narration",
+    "intent_reason": "'9:47 is what YOU liked' -- he is naming the engine's pick, not his own",
+    "his_time": "09:47",
+    "his_all_times": [
+     "09:47"
+    ],
+    "engine_card_et": "10:17",
+    "offset_card_min": 30,
+    "n_engine_signals_that_day": 10,
+    "engine_first_et": "09:47",
+    "engine_last_et": "10:49",
+    "bucket_first_et": "10:17",
+    "offset_bucket_first_min": 30,
+    "bucket_first_S_et": "10:17",
+    "offset_bucket_first_S_min": 30,
+    "nearest_any_et": "09:47",
+    "offset_nearest_any_min": 0,
+    "nearest_S_et": "10:15",
+    "offset_nearest_S_min": 28,
+    "nearest_traded_et": null,
+    "offset_nearest_traded_min": null,
+    "note": "9:47 is what you liked but it broke above those levels and rejected them"
+   },
+   {
+    "card_id": "MSFT_2025-08-29",
+    "bucket": "OCR",
+    "is_s": true,
+    "time_intent": "entry",
+    "intent_reason": "'9:38 is the entry'",
+    "his_time": "09:38",
+    "his_all_times": [
+     "09:38"
+    ],
+    "engine_card_et": "10:19",
+    "offset_card_min": 41,
+    "n_engine_signals_that_day": 14,
+    "engine_first_et": "09:38",
+    "engine_last_et": "10:43",
+    "bucket_first_et": "10:18",
+    "offset_bucket_first_min": 40,
+    "bucket_first_S_et": "10:18",
+    "offset_bucket_first_S_min": 40,
+    "nearest_any_et": "09:38",
+    "offset_nearest_any_min": 0,
+    "nearest_S_et": "10:05",
+    "offset_nearest_S_min": 27,
+    "nearest_traded_et": "09:40",
+    "offset_nearest_traded_min": 2,
+    "note": "BR OCB confluence, not perfect because no displacement but you get a +1 9:38 is the entry"
+   },
+   {
+    "card_id": "GOOGL_2024-10-29",
+    "bucket": "OCR",
+    "is_s": true,
+    "time_intent": "entry",
+    "intent_reason": "bare time, yes card",
+    "his_time": "10:47",
+    "his_all_times": [
+     "10:47"
+    ],
+    "engine_card_et": "10:59",
+    "offset_card_min": 12,
+    "n_engine_signals_that_day": 16,
+    "engine_first_et": "09:47",
+    "engine_last_et": "10:59",
+    "bucket_first_et": "10:59",
+    "offset_bucket_first_min": 12,
+    "bucket_first_S_et": "10:59",
+    "offset_bucket_first_S_min": 12,
+    "nearest_any_et": "10:59",
+    "offset_nearest_any_min": 12,
+    "nearest_S_et": "10:59",
+    "offset_nearest_S_min": 12,
+    "nearest_traded_et": "10:04",
+    "offset_nearest_traded_min": -43,
+    "note": "10:47"
+   },
+   {
+    "card_id": "AAPL_2026-04-17",
+    "bucket": "84",
+    "is_s": true,
+    "time_intent": "entry",
+    "intent_reason": "bare time, yes card",
+    "his_time": "09:42",
+    "his_all_times": [
+     "09:42"
+    ],
+    "engine_card_et": "10:14",
+    "offset_card_min": 32,
+    "n_engine_signals_that_day": 9,
+    "engine_first_et": "10:00",
+    "engine_last_et": "10:43",
+    "bucket_first_et": "10:14",
+    "offset_bucket_first_min": 32,
+    "bucket_first_S_et": "10:14",
+    "offset_bucket_first_S_min": 32,
+    "nearest_any_et": "10:00",
+    "offset_nearest_any_min": 18,
+    "nearest_S_et": "10:00",
+    "offset_nearest_S_min": 18,
+    "nearest_traded_et": "10:01",
+    "offset_nearest_traded_min": 19,
+    "note": "9:42"
+   },
+   {
+    "card_id": "TSM_2025-11-26",
+    "bucket": "BR",
+    "is_s": false,
+    "time_intent": "narration",
+    "intent_reason": "'hard to get past the green candle at 9:35' -- an obstacle, not an entry",
+    "his_time": "09:35",
+    "his_all_times": [
+     "09:35"
+    ],
+    "engine_card_et": "10:39",
+    "offset_card_min": 64,
+    "n_engine_signals_that_day": 14,
+    "engine_first_et": "09:57",
+    "engine_last_et": "10:59",
+    "bucket_first_et": "09:57",
+    "offset_bucket_first_min": 22,
+    "bucket_first_S_et": "09:58",
+    "offset_bucket_first_S_min": 23,
+    "nearest_any_et": "09:57",
+    "offset_nearest_any_min": 22,
+    "nearest_S_et": "09:58",
+    "offset_nearest_S_min": 23,
+    "nearest_traded_et": "10:01",
+    "offset_nearest_traded_min": 26,
+    "note": "i see what the entry would be but hard to get past the green  candle at 9:35 pivot created hard to break"
+   },
+   {
+    "card_id": "SPY_2025-05-21",
+    "bucket": "OCR",
+    "is_s": true,
+    "time_intent": "entry",
+    "intent_reason": "'9:45 BR OCR confluence'",
+    "his_time": "09:45",
+    "his_all_times": [
+     "09:45"
+    ],
+    "engine_card_et": "10:33",
+    "offset_card_min": 48,
+    "n_engine_signals_that_day": 11,
+    "engine_first_et": "10:17",
+    "engine_last_et": "10:50",
+    "bucket_first_et": "10:33",
+    "offset_bucket_first_min": 48,
+    "bucket_first_S_et": "10:33",
+    "offset_bucket_first_S_min": 48,
+    "nearest_any_et": "10:17",
+    "offset_nearest_any_min": 32,
+    "nearest_S_et": "10:17",
+    "offset_nearest_S_min": 32,
+    "nearest_traded_et": null,
+    "offset_nearest_traded_min": null,
+    "note": "9:45 BR OCR confluence"
+   },
+   {
+    "card_id": "INTC_2026-03-24",
+    "bucket": "84",
+    "is_s": true,
+    "time_intent": "entry",
+    "intent_reason": "'entry at 9:38'",
+    "his_time": "09:38",
+    "his_all_times": [
+     "09:38"
+    ],
+    "engine_card_et": "10:21",
+    "offset_card_min": 43,
+    "n_engine_signals_that_day": 10,
+    "engine_first_et": "09:45",
+    "engine_last_et": "10:45",
+    "bucket_first_et": "10:21",
+    "offset_bucket_first_min": 43,
+    "bucket_first_S_et": "10:21",
+    "offset_bucket_first_S_min": 43,
+    "nearest_any_et": "09:45",
+    "offset_nearest_any_min": 7,
+    "nearest_S_et": "10:21",
+    "offset_nearest_S_min": 43,
+    "nearest_traded_et": "09:48",
+    "offset_nearest_traded_min": 10,
+    "note": "entry at 9:38 and then a 84 reclaim correct, because the bigger pucture stop was it holder the opening candle"
+   },
+   {
+    "card_id": "AVGO_2024-11-04",
+    "bucket": "BR",
+    "is_s": true,
+    "time_intent": "entry",
+    "intent_reason": "bare time, yes card",
+    "his_time": "09:47",
+    "his_all_times": [
+     "09:47"
+    ],
+    "engine_card_et": "09:47",
+    "offset_card_min": 0,
+    "n_engine_signals_that_day": 19,
+    "engine_first_et": "09:38",
+    "engine_last_et": "10:51",
+    "bucket_first_et": "09:38",
+    "offset_bucket_first_min": -9,
+    "bucket_first_S_et": "09:47",
+    "offset_bucket_first_S_min": 0,
+    "nearest_any_et": "09:47",
+    "offset_nearest_any_min": 0,
+    "nearest_S_et": "09:47",
+    "offset_nearest_S_min": 0,
+    "nearest_traded_et": null,
+    "offset_nearest_traded_min": null,
+    "note": "9:47"
+   },
+   {
+    "card_id": "AMD_2025-09-08",
+    "bucket": "BR",
+    "is_s": false,
+    "time_intent": "candidate",
+    "intent_reason": "'10:37 but really no displacement ... so i have to downgrade'",
+    "his_time": "10:37",
+    "his_all_times": [
+     "10:37"
+    ],
+    "engine_card_et": "10:37",
+    "offset_card_min": 0,
+    "n_engine_signals_that_day": 13,
+    "engine_first_et": "09:58",
+    "engine_last_et": "10:57",
+    "bucket_first_et": "09:58",
+    "offset_bucket_first_min": -39,
+    "bucket_first_S_et": "10:37",
+    "offset_bucket_first_S_min": 0,
+    "nearest_any_et": "10:37",
+    "offset_nearest_any_min": 0,
+    "nearest_S_et": "10:37",
+    "offset_nearest_S_min": 0,
+    "nearest_traded_et": "09:58",
+    "offset_nearest_traded_min": -39,
+    "note": "10:37 but really no displacement from the original candles so i have to downgrade"
+   },
+   {
+    "card_id": "HOOD_2025-11-28",
+    "status": "no time given",
+    "unparseable": [],
+    "note": ""
+   },
+   {
+    "card_id": "IWM_2026-08-06",
+    "status": "no time given",
+    "unparseable": [
+     "9:%5"
+    ],
+    "note": "9:%5"
+   },
+   {
+    "card_id": "TSM_2026-07-07",
+    "bucket": "84",
+    "is_s": true,
+    "time_intent": "entry",
+    "intent_reason": "'9:38 and yes reclaim'",
+    "his_time": "09:38",
+    "his_all_times": [
+     "09:38"
+    ],
+    "engine_card_et": "09:50",
+    "offset_card_min": 12,
+    "n_engine_signals_that_day": 9,
+    "engine_first_et": "09:37",
+    "engine_last_et": "10:59",
+    "bucket_first_et": "09:50",
+    "offset_bucket_first_min": 12,
+    "bucket_first_S_et": "09:50",
+    "offset_bucket_first_S_min": 12,
+    "nearest_any_et": "09:38",
+    "offset_nearest_any_min": 0,
+    "nearest_S_et": "09:50",
+    "offset_nearest_S_min": 12,
+    "nearest_traded_et": "09:38",
+    "offset_nearest_traded_min": 0,
+    "note": "9:38 and yes reclaim"
+   },
+   {
+    "card_id": "AMZN_2025-12-11",
+    "bucket": "BR",
+    "is_s": true,
+    "time_intent": "entry",
+    "intent_reason": "bare time, yes card",
+    "his_time": "09:40",
+    "his_all_times": [
+     "09:40"
+    ],
+    "engine_card_et": "09:39",
+    "offset_card_min": -1,
+    "n_engine_signals_that_day": 10,
+    "engine_first_et": "09:39",
+    "engine_last_et": "10:41",
+    "bucket_first_et": "09:39",
+    "offset_bucket_first_min": -1,
+    "bucket_first_S_et": "09:39",
+    "offset_bucket_first_S_min": -1,
+    "nearest_any_et": "09:39",
+    "offset_nearest_any_min": -1,
+    "nearest_S_et": "09:39",
+    "offset_nearest_S_min": -1,
+    "nearest_traded_et": "09:42",
+    "offset_nearest_traded_min": 2,
+    "note": "9:40"
+   },
+   {
+    "card_id": "NVDA_2025-06-24",
+    "status": "no time given",
+    "unparseable": [],
+    "note": "really good a trade i wish it was an S but it didnt displace from that wick, but technically it is an OCR and BR just neither of the parts have displacement"
+   },
+   {
+    "card_id": "ORCL_2025-02-18",
+    "status": "no time given",
+    "unparseable": [],
+    "note": "took too long for the entry"
+   },
+   {
+    "card_id": "ACHR_2026-06-16",
+    "bucket": "BR",
+    "is_s": true,
+    "time_intent": "entry",
+    "intent_reason": "'9:57 as candle forming'",
+    "his_time": "09:57",
+    "his_all_times": [
+     "09:57"
+    ],
+    "engine_card_et": "09:56",
+    "offset_card_min": -1,
+    "n_engine_signals_that_day": 7,
+    "engine_first_et": "09:56",
+    "engine_last_et": "10:33",
+    "bucket_first_et": "09:56",
+    "offset_bucket_first_min": -1,
+    "bucket_first_S_et": "09:56",
+    "offset_bucket_first_S_min": -1,
+    "nearest_any_et": "09:57",
+    "offset_nearest_any_min": 0,
+    "nearest_S_et": "09:57",
+    "offset_nearest_S_min": 0,
+    "nearest_traded_et": "10:03",
+    "offset_nearest_traded_min": 6,
+    "note": "9:57 as candle forming"
+   },
+   {
+    "card_id": "SPY_2026-06-17",
+    "bucket": "OCR",
+    "is_s": true,
+    "time_intent": "entry",
+    "intent_reason": "'i see a fake out S trade at 9:48'",
+    "his_time": "09:48",
+    "his_all_times": [
+     "09:48",
+     "09:30"
+    ],
+    "engine_card_et": "10:42",
+    "offset_card_min": 54,
+    "n_engine_signals_that_day": 14,
+    "engine_first_et": "09:48",
+    "engine_last_et": "10:57",
+    "bucket_first_et": "10:42",
+    "offset_bucket_first_min": 54,
+    "bucket_first_S_et": "10:42",
+    "offset_bucket_first_S_min": 54,
+    "nearest_any_et": "09:48",
+    "offset_nearest_any_min": 0,
+    "nearest_S_et": "09:48",
+    "offset_nearest_S_min": 0,
+    "nearest_traded_et": null,
+    "offset_nearest_traded_min": null,
+    "note": "i see a fake out S trade at 9:48 because the red candle at 9:30 doesent look as distracting, and your s is good too but its tight on if theres displacement. and if you went with my trade it wouldve stopped out and reclaimed."
+   },
+   {
+    "card_id": "ACHR_2026-04-13",
+    "bucket": "OCR",
+    "is_s": true,
+    "time_intent": "entry",
+    "intent_reason": "'10:09 would never trade because look how the candles are' -- the minute is his, the trade is not",
+    "his_time": "10:09",
+    "his_all_times": [
+     "10:09"
+    ],
+    "engine_card_et": "10:33",
+    "offset_card_min": 24,
+    "n_engine_signals_that_day": 6,
+    "engine_first_et": "09:41",
+    "engine_last_et": "10:59",
+    "bucket_first_et": "10:33",
+    "offset_bucket_first_min": 24,
+    "bucket_first_S_et": "10:33",
+    "offset_bucket_first_S_min": 24,
+    "nearest_any_et": "10:17",
+    "offset_nearest_any_min": 8,
+    "nearest_S_et": "10:33",
+    "offset_nearest_S_min": 24,
+    "nearest_traded_et": null,
+    "offset_nearest_traded_min": null,
+    "note": "10:09 would never trade because look how the candles are but jsut good for you to know"
+   },
+   {
+    "card_id": "AAPL_2026-03-11",
+    "status": "no time given",
+    "unparseable": [],
+    "note": ""
+   },
+   {
+    "card_id": "META_2026-06-22",
+    "bucket": "84",
+    "is_s": true,
+    "time_intent": "entry",
+    "intent_reason": "bare time, yes card",
+    "his_time": "09:59",
+    "his_all_times": [
+     "09:59"
+    ],
+    "engine_card_et": "10:15",
+    "offset_card_min": 16,
+    "n_engine_signals_that_day": 8,
+    "engine_first_et": "09:40",
+    "engine_last_et": "10:38",
+    "bucket_first_et": "10:15",
+    "offset_bucket_first_min": 16,
+    "bucket_first_S_et": "10:15",
+    "offset_bucket_first_S_min": 16,
+    "nearest_any_et": "10:08",
+    "offset_nearest_any_min": 9,
+    "nearest_S_et": "10:15",
+    "offset_nearest_S_min": 16,
+    "nearest_traded_et": "10:15",
+    "offset_nearest_traded_min": 16,
+    "note": "9:59"
+   },
+   {
+    "card_id": "QQQ_2024-08-26",
+    "bucket": "BR",
+    "is_s": true,
+    "time_intent": "entry",
+    "intent_reason": "'9:56 but i may be biased' -- the 9:45 in the same note is the thing biasing him, not an entry",
+    "his_time": "09:56",
+    "his_all_times": [
+     "09:56",
+     "09:45"
+    ],
+    "engine_card_et": "09:52",
+    "offset_card_min": -4,
+    "n_engine_signals_that_day": 4,
+    "engine_first_et": "09:52",
+    "engine_last_et": "10:24",
+    "bucket_first_et": "09:52",
+    "offset_bucket_first_min": -4,
+    "bucket_first_S_et": "09:52",
+    "offset_bucket_first_S_min": -4,
+    "nearest_any_et": "09:55",
+    "offset_nearest_any_min": -1,
+    "nearest_S_et": "09:55",
+    "offset_nearest_S_min": -1,
+    "nearest_traded_et": null,
+    "offset_nearest_traded_min": null,
+    "note": "9:56 but i may be biased here because a break retest with no dispacement happens at 9:45, its not of the level just the wicks at the beginning of the day"
+   },
+   {
+    "card_id": "QQQ_2025-12-22",
+    "bucket": "OCR",
+    "is_s": false,
+    "time_intent": "candidate",
+    "intent_reason": "'9:45 its close i see what your seeing'",
+    "his_time": "09:45",
+    "his_all_times": [
+     "09:45"
+    ],
+    "engine_card_et": "10:43",
+    "offset_card_min": 58,
+    "n_engine_signals_that_day": 9,
+    "engine_first_et": "09:57",
+    "engine_last_et": "10:50",
+    "bucket_first_et": "10:43",
+    "offset_bucket_first_min": 58,
+    "bucket_first_S_et": "10:43",
+    "offset_bucket_first_S_min": 58,
+    "nearest_any_et": "09:57",
+    "offset_nearest_any_min": 12,
+    "nearest_S_et": "09:57",
+    "offset_nearest_S_min": 12,
+    "nearest_traded_et": null,
+    "offset_nearest_traded_min": null,
+    "note": "9:45 its close i see what your seeing"
+   },
+   {
+    "card_id": "AVGO_2025-12-03",
+    "bucket": "84",
+    "is_s": false,
+    "time_intent": "candidate",
+    "intent_reason": "'9:33 can be a great break of pdl but the retest missed by a few cents'",
+    "his_time": "09:33",
+    "his_all_times": [
+     "09:33"
+    ],
+    "engine_card_et": "10:59",
+    "offset_card_min": 86,
+    "n_engine_signals_that_day": 13,
+    "engine_first_et": "10:20",
+    "engine_last_et": "10:59",
+    "bucket_first_et": "10:59",
+    "offset_bucket_first_min": 86,
+    "bucket_first_S_et": "10:59",
+    "offset_bucket_first_S_min": 86,
+    "nearest_any_et": "10:20",
+    "offset_nearest_any_min": 47,
+    "nearest_S_et": "10:24",
+    "offset_nearest_S_min": 51,
+    "nearest_traded_et": "10:59",
+    "offset_nearest_traded_min": 86,
+    "note": "i dont see anything: 9:33 can be a great break of pdl but the retest missed by a few cents"
+   }
+  ],
+  "at_his_minute": {
+   "n": 15,
+   "engine_has_a_signal_within_2min": 8,
+   "engine_silent_within_2min": 7,
+   "silent_cards": [
+    "COIN_2025-07-10",
+    "GOOGL_2024-10-29",
+    "AAPL_2026-04-17",
+    "SPY_2025-05-21",
+    "INTC_2026-03-24",
+    "ACHR_2026-04-13",
+    "META_2026-06-22"
+   ],
+   "has_signal_but_took_no_trade": [
+    "NFLX_2026-05-26",
+    "AVGO_2024-11-04",
+    "ACHR_2026-06-16",
+    "SPY_2026-06-17",
+    "QQQ_2024-08-26"
+   ],
+   "took_a_trade_at_his_minute": [
+    "MSFT_2025-08-29",
+    "TSM_2026-07-07",
+    "AMZN_2025-12-11"
+   ],
+   "rows": [
+    {
+     "card_id": "NFLX_2026-05-26",
+     "his_time": "09:47",
+     "bucket": "84",
+     "engine_rows_within_2min": 2,
+     "setups": [
+      "break_and_retest",
+      "one_candle_rule"
+     ],
+     "sgrades": {
+      "S": 2
+     },
+     "legacy_grades": {
+      "X": 1,
+      "A": 1
+     },
+     "traded": 0,
+     "detail": [
+      {
+       "et": "09:45",
+       "setup": "break_and_retest",
+       "dir": "put",
+       "level": "PDL",
+       "sgrade": "S",
+       "grade": "X",
+       "traded": false,
+       "r": -1.0,
+       "downgrades": [
+        "counter_trend_not_respected"
+       ]
+      },
+      {
+       "et": "09:49",
+       "setup": "one_candle_rule",
+       "dir": "put",
+       "level": "not-his: order block",
+       "sgrade": "S",
+       "grade": "A",
+       "traded": false,
+       "r": -1.0,
+       "downgrades": [
+        "counter_trend_not_respected"
+       ]
+      }
+     ]
+    },
+    {
+     "card_id": "COIN_2025-07-10",
+     "his_time": "09:41",
+     "bucket": "84",
+     "engine_rows_within_2min": 0,
+     "setups": [],
+     "sgrades": {},
+     "legacy_grades": {},
+     "traded": 0,
+     "detail": []
+    },
+    {
+     "card_id": "MSFT_2025-08-29",
+     "his_time": "09:38",
+     "bucket": "OCR",
+     "engine_rows_within_2min": 3,
+     "setups": [
+      "break_and_retest"
+     ],
+     "sgrades": {
+      "C": 1,
+      "A": 2
+     },
+     "legacy_grades": {
+      "X": 2,
+      "B": 1
+     },
+     "traded": 1,
+     "detail": [
+      {
+       "et": "09:38",
+       "setup": "break_and_retest",
+       "dir": "put",
+       "level": "PML",
+       "sgrade": "C",
+       "grade": "X",
+       "traded": false,
+       "r": 25.439,
+       "downgrades": [
+        "no_displacement",
+        "level_not_respected",
+        "counter_trend_not_respected"
+       ]
+      },
+      {
+       "et": "09:39",
+       "setup": "break_and_retest",
+       "dir": "put",
+       "level": "PML",
+       "sgrade": "A",
+       "grade": "X",
+       "traded": false,
+       "r": 3.822,
+       "downgrades": [
+        "no_displacement",
+        "level_not_respected"
+       ]
+      },
+      {
+       "et": "09:40",
+       "setup": "break_and_retest",
+       "dir": "put",
+       "level": "PML",
+       "sgrade": "A",
+       "grade": "B",
+       "traded": true,
+       "r": 1.256,
+       "downgrades": [
+        "no_displacement",
+        "level_not_respected"
+       ]
+      }
+     ]
+    },
+    {
+     "card_id": "GOOGL_2024-10-29",
+     "his_time": "10:47",
+     "bucket": "OCR",
+     "engine_rows_within_2min": 0,
+     "setups": [],
+     "sgrades": {},
+     "legacy_grades": {},
+     "traded": 0,
+     "detail": []
+    },
+    {
+     "card_id": "AAPL_2026-04-17",
+     "his_time": "09:42",
+     "bucket": "84",
+     "engine_rows_within_2min": 0,
+     "setups": [],
+     "sgrades": {},
+     "legacy_grades": {},
+     "traded": 0,
+     "detail": []
+    },
+    {
+     "card_id": "SPY_2025-05-21",
+     "his_time": "09:45",
+     "bucket": "OCR",
+     "engine_rows_within_2min": 0,
+     "setups": [],
+     "sgrades": {},
+     "legacy_grades": {},
+     "traded": 0,
+     "detail": []
+    },
+    {
+     "card_id": "INTC_2026-03-24",
+     "his_time": "09:38",
+     "bucket": "84",
+     "engine_rows_within_2min": 0,
+     "setups": [],
+     "sgrades": {},
+     "legacy_grades": {},
+     "traded": 0,
+     "detail": []
+    },
+    {
+     "card_id": "AVGO_2024-11-04",
+     "his_time": "09:47",
+     "bucket": "BR",
+     "engine_rows_within_2min": 2,
+     "setups": [
+      "break_and_retest"
+     ],
+     "sgrades": {
+      "S": 2
+     },
+     "legacy_grades": {
+      "X": 2
+     },
+     "traded": 0,
+     "detail": [
+      {
+       "et": "09:47",
+       "setup": "break_and_retest",
+       "dir": "call",
+       "level": "PDH",
+       "sgrade": "S",
+       "grade": "X",
+       "traded": false,
+       "r": 2.86,
+       "downgrades": []
+      },
+      {
+       "et": "09:49",
+       "setup": "break_and_retest",
+       "dir": "call",
+       "level": "PDH",
+       "sgrade": "S",
+       "grade": "X",
+       "traded": false,
+       "r": -1.0,
+       "downgrades": []
+      }
+     ]
+    },
+    {
+     "card_id": "TSM_2026-07-07",
+     "his_time": "09:38",
+     "bucket": "84",
+     "engine_rows_within_2min": 3,
+     "setups": [
+      "break_and_retest"
+     ],
+     "sgrades": {
+      "A": 1,
+      "C": 2
+     },
+     "legacy_grades": {
+      "X": 2,
+      "B": 1
+     },
+     "traded": 1,
+     "detail": [
+      {
+       "et": "09:37",
+       "setup": "break_and_retest",
+       "dir": "put",
+       "level": "PML",
+       "sgrade": "A",
+       "grade": "X",
+       "traded": false,
+       "r": -1.0,
+       "downgrades": [
+        "ocr_not_respected"
+       ]
+      },
+      {
+       "et": "09:38",
+       "setup": "break_and_retest",
+       "dir": "put",
+       "level": "PML",
+       "sgrade": "C",
+       "grade": "B",
+       "traded": true,
+       "r": -1.0,
+       "downgrades": [
+        "level_not_respected",
+        "ocr_not_respected"
+       ]
+      },
+      {
+       "et": "09:40",
+       "setup": "break_and_retest",
+       "dir": "put",
+       "level": "PML",
+       "sgrade": "C",
+       "grade": "X",
+       "traded": false,
+       "r": -1.0,
+       "downgrades": [
+        "counter_trend_not_respected",
+        "ocr_not_respected"
+       ]
+      }
+     ]
+    },
+    {
+     "card_id": "AMZN_2025-12-11",
+     "his_time": "09:40",
+     "bucket": "BR",
+     "engine_rows_within_2min": 6,
+     "setups": [
+      "break_and_retest"
+     ],
+     "sgrades": {
+      "S": 2,
+      "C": 4
+     },
+     "legacy_grades": {
+      "X": 4,
+      "B": 1,
+      "C": 1
+     },
+     "traded": 1,
+     "detail": [
+      {
+       "et": "09:39",
+       "setup": "break_and_retest",
+       "dir": "call",
+       "level": "not-his: OR high",
+       "sgrade": "S",
+       "grade": "X",
+       "traded": false,
+       "r": -1.0,
+       "downgrades": []
+      },
+      {
+       "et": "09:39",
+       "setup": "break_and_retest",
+       "dir": "call",
+       "level": "PMH",
+       "sgrade": "S",
+       "grade": "X",
+       "traded": false,
+       "r": -1.0,
+       "downgrades": []
+      },
+      {
+       "et": "09:41",
+       "setup": "break_and_retest",
+       "dir": "call",
+       "level": "not-his: OR high",
+       "sgrade": "C",
+       "grade": "X",
+       "traded": false,
+       "r": 0.0,
+       "downgrades": [
+        "level_not_respected",
+        "counter_trend_not_respected"
+       ]
+      },
+      {
+       "et": "09:41",
+       "setup": "break_and_retest",
+       "dir": "call",
+       "level": "PMH",
+       "sgrade": "C",
+       "grade": "X",
+       "traded": false,
+       "r": 0.0,
+       "downgrades": [
+        "level_not_respected",
+        "counter_trend_not_respected"
+       ]
+      },
+      {
+       "et": "09:42",
+       "setup": "break_and_retest",
+       "dir": "call",
+       "level": "not-his: OR high",
+       "sgrade": "C",
+       "grade": "B",
+       "traded": true,
+       "r": -1.0,
+       "downgrades": [
+        "level_not_respected",
+        "counter_trend_not_respected"
+       ]
+      },
+      {
+       "et": "09:42",
+       "setup": "break_and_retest",
+       "dir": "call",
+       "level": "PMH",
+       "sgrade": "C",
+       "grade": "C",
+       "traded": false,
+       "r": -1.0,
+       "downgrades": [
+        "level_not_respected",
+        "counter_trend_not_respected"
+       ]
+      }
+     ]
+    },
+    {
+     "card_id": "ACHR_2026-06-16",
+     "his_time": "09:57",
+     "bucket": "BR",
+     "engine_rows_within_2min": 4,
+     "setups": [
+      "break_and_retest"
+     ],
+     "sgrades": {
+      "S": 4
+     },
+     "legacy_grades": {
+      "X": 4
+     },
+     "traded": 0,
+     "detail": [
+      {
+       "et": "09:56",
+       "setup": "break_and_retest",
+       "dir": "put",
+       "level": "not-his: OR low",
+       "sgrade": "S",
+       "grade": "X",
+       "traded": false,
+       "r": 14.445,
+       "downgrades": []
+      },
+      {
+       "et": "09:56",
+       "setup": "break_and_retest",
+       "dir": "put",
+       "level": "PML",
+       "sgrade": "S",
+       "grade": "X",
+       "traded": false,
+       "r": 14.445,
+       "downgrades": []
+      },
+      {
+       "et": "09:57",
+       "setup": "break_and_retest",
+       "dir": "put",
+       "level": "not-his: OR low",
+       "sgrade": "S",
+       "grade": "X",
+       "traded": false,
+       "r": 1049.0,
+       "downgrades": [
+        "chase"
+       ]
+      },
+      {
+       "et": "09:57",
+       "setup": "break_and_retest",
+       "dir": "put",
+       "level": "PML",
+       "sgrade": "S",
+       "grade": "X",
+       "traded": false,
+       "r": 1049.0,
+       "downgrades": [
+        "chase"
+       ]
+      }
+     ]
+    },
+    {
+     "card_id": "SPY_2026-06-17",
+     "his_time": "09:48",
+     "bucket": "OCR",
+     "engine_rows_within_2min": 1,
+     "setups": [
+      "break_and_retest"
+     ],
+     "sgrades": {
+      "S": 1
+     },
+     "legacy_grades": {
+      "X": 1
+     },
+     "traded": 0,
+     "detail": [
+      {
+       "et": "09:48",
+       "setup": "break_and_retest",
+       "dir": "call",
+       "level": "not-his: OR high",
+       "sgrade": "S",
+       "grade": "X",
+       "traded": false,
+       "r": -1.0,
+       "downgrades": [
+        "counter_trend_not_respected"
+       ]
+      }
+     ]
+    },
+    {
+     "card_id": "ACHR_2026-04-13",
+     "his_time": "10:09",
+     "bucket": "OCR",
+     "engine_rows_within_2min": 0,
+     "setups": [],
+     "sgrades": {},
+     "legacy_grades": {},
+     "traded": 0,
+     "detail": []
+    },
+    {
+     "card_id": "META_2026-06-22",
+     "his_time": "09:59",
+     "bucket": "84",
+     "engine_rows_within_2min": 0,
+     "setups": [],
+     "sgrades": {},
+     "legacy_grades": {},
+     "traded": 0,
+     "detail": []
+    },
+    {
+     "card_id": "QQQ_2024-08-26",
+     "his_time": "09:56",
+     "bucket": "BR",
+     "engine_rows_within_2min": 2,
+     "setups": [
+      "break_and_retest"
+     ],
+     "sgrades": {
+      "S": 2
+     },
+     "legacy_grades": {
+      "X": 2
+     },
+     "traded": 0,
+     "detail": [
+      {
+       "et": "09:54",
+       "setup": "break_and_retest",
+       "dir": "put",
+       "level": "PML",
+       "sgrade": "S",
+       "grade": "X",
+       "traded": false,
+       "r": 3.409,
+       "downgrades": []
+      },
+      {
+       "et": "09:55",
+       "setup": "break_and_retest",
+       "dir": "put",
+       "level": "PML",
+       "sgrade": "S",
+       "grade": "X",
+       "traded": false,
+       "r": 1.622,
+       "downgrades": []
+      }
+     ]
+    }
+   ]
+  },
+  "by_arm": {
+   "84": {
+    "vs_card": {
+     "n": 8,
+     "min": 12,
+     "max": 86,
+     "median": 31.0,
+     "mean": 38.5,
+     "exact_0": 0,
+     "within_1": 0,
+     "within_3": 0,
+     "within_5": 0,
+     "engine_later": 8,
+     "engine_earlier": 0,
+     "values": [
+      12,
+      16,
+      30,
+      30,
+      32,
+      43,
+      59,
+      86
+     ]
+    },
+    "vs_nearest_any": {
+     "n": 8,
+     "min": -2,
+     "max": 47,
+     "median": 8.0,
+     "mean": 12.25,
+     "exact_0": 2,
+     "within_1": 2,
+     "within_3": 3,
+     "within_5": 3,
+     "engine_later": 5,
+     "engine_earlier": 1,
+     "values": [
+      -2,
+      0,
+      0,
+      7,
+      9,
+      18,
+      19,
+      47
+     ]
+    }
+   },
+   "OCR": {
+    "vs_card": {
+     "n": 6,
+     "min": 12,
+     "max": 58,
+     "median": 44.5,
+     "mean": 39.5,
+     "exact_0": 0,
+     "within_1": 0,
+     "within_3": 0,
+     "within_5": 0,
+     "engine_later": 6,
+     "engine_earlier": 0,
+     "values": [
+      12,
+      24,
+      41,
+      48,
+      54,
+      58
+     ]
+    },
+    "vs_nearest_any": {
+     "n": 6,
+     "min": 0,
+     "max": 32,
+     "median": 10.0,
+     "mean": 10.67,
+     "exact_0": 2,
+     "within_1": 2,
+     "within_3": 2,
+     "within_5": 2,
+     "engine_later": 4,
+     "engine_earlier": 0,
+     "values": [
+      0,
+      0,
+      8,
+      12,
+      12,
+      32
+     ]
+    }
+   },
+   "BR": {
+    "vs_card": {
+     "n": 6,
+     "min": -4,
+     "max": 64,
+     "median": -0.5,
+     "mean": 9.67,
+     "exact_0": 2,
+     "within_1": 4,
+     "within_3": 4,
+     "within_5": 5,
+     "engine_later": 1,
+     "engine_earlier": 3,
+     "values": [
+      -4,
+      -1,
+      -1,
+      0,
+      0,
+      64
+     ]
+    },
+    "vs_nearest_any": {
+     "n": 6,
+     "min": -1,
+     "max": 22,
+     "median": 0.0,
+     "mean": 3.33,
+     "exact_0": 3,
+     "within_1": 5,
+     "within_3": 5,
+     "within_5": 5,
+     "engine_later": 1,
+     "engine_earlier": 2,
+     "values": [
+      -1,
+      -1,
+      0,
+      0,
+      0,
+      22
+     ]
+    }
+   }
+  }
+ },
+ "money_on_these_25_days": {
+  "days_with_a_trade": 13,
+  "trades": 17,
+  "pnl": -5886.000000000001,
+  "yes_days": {
+   "days": 9,
+   "trades": 13,
+   "pnl": -3567.82
+  },
+  "no_days": {
+   "days": 4,
+   "trades": 4,
+   "pnl": -2318.18
+  },
+  "rows": [
+   {
+    "card_id": "AAPL_2026-04-17",
+    "austin_says_S": true,
+    "n_trades": 2,
+    "pnl": -2000.0,
+    "ets": [
+     "10:01",
+     "10:14"
+    ],
+    "r": [
+     -1.0,
+     -1.0
+    ]
+   },
+   {
+    "card_id": "ACHR_2026-06-16",
+    "austin_says_S": true,
+    "n_trades": 1,
+    "pnl": 2086.42,
+    "ets": [
+     "10:03"
+    ],
+    "r": [
+     2.086
+    ]
+   },
+   {
+    "card_id": "AMD_2025-09-08",
+    "austin_says_S": false,
+    "n_trades": 1,
+    "pnl": -1000.0,
+    "ets": [
+     "09:58"
+    ],
+    "r": [
+     -1.0
+    ]
+   },
+   {
+    "card_id": "AMZN_2025-12-11",
+    "austin_says_S": true,
+    "n_trades": 1,
+    "pnl": -1000.0,
+    "ets": [
+     "09:42"
+    ],
+    "r": [
+     -1.0
+    ]
+   },
+   {
+    "card_id": "AVGO_2025-12-03",
+    "austin_says_S": false,
+    "n_trades": 1,
+    "pnl": -1000.0,
+    "ets": [
+     "10:59"
+    ],
+    "r": [
+     -1.0
+    ]
+   },
+   {
+    "card_id": "COIN_2025-07-10",
+    "austin_says_S": true,
+    "n_trades": 2,
+    "pnl": -2000.0,
+    "ets": [
+     "10:22",
+     "10:40"
+    ],
+    "r": [
+     -1.0,
+     -1.0
+    ]
+   },
+   {
+    "card_id": "GOOGL_2024-10-29",
+    "austin_says_S": true,
+    "n_trades": 1,
+    "pnl": -1000.0,
+    "ets": [
+     "10:04"
+    ],
+    "r": [
+     -1.0
+    ]
+   },
+   {
+    "card_id": "HOOD_2025-11-28",
+    "austin_says_S": false,
+    "n_trades": 1,
+    "pnl": -1000.0,
+    "ets": [
+     "10:08"
+    ],
+    "r": [
+     -1.0
+    ]
+   },
+   {
+    "card_id": "INTC_2026-03-24",
+    "austin_says_S": true,
+    "n_trades": 2,
+    "pnl": -2000.0,
+    "ets": [
+     "09:48",
+     "10:21"
+    ],
+    "r": [
+     -1.0,
+     -1.0
+    ]
+   },
+   {
+    "card_id": "META_2026-06-22",
+    "austin_says_S": true,
+    "n_trades": 2,
+    "pnl": 2090.22,
+    "ets": [
+     "09:40",
+     "10:15"
+    ],
+    "r": [
+     -1.0,
+     3.09
+    ]
+   },
+   {
+    "card_id": "MSFT_2025-08-29",
+    "austin_says_S": true,
+    "n_trades": 1,
+    "pnl": 1255.54,
+    "ets": [
+     "09:40"
+    ],
+    "r": [
+     1.256
+    ]
+   },
+   {
+    "card_id": "TSM_2025-11-26",
+    "austin_says_S": false,
+    "n_trades": 1,
+    "pnl": 681.82,
+    "ets": [
+     "10:01"
+    ],
+    "r": [
+     0.682
+    ]
+   },
+   {
+    "card_id": "TSM_2026-07-07",
+    "austin_says_S": true,
+    "n_trades": 1,
+    "pnl": -1000.0,
+    "ets": [
+     "09:38"
+    ],
+    "r": [
+     -1.0
+    ]
+   }
+  ],
+  "days_with_no_trade": 12,
+  "per_trade": -346.24,
+  "note": "1R = $1,000, book research/bt2y_trades.json rebuilt 2026-08-29 18:38. These are the engine's OWN best days by its own S-grader."
+ },
+ "corpus": {
+  "corpus_judged_symbol_days_before": 1147,
+  "cards_already_in_corpus": [],
+  "new_symbol_days": 25,
+  "new_S_days": 16,
+  "S_days_before": 287
+ },
+ "what_this_can_and_cannot_measure": {
+  "precision_measured": {
+   "definition": "of the symbol-days the engine BOTH fired on AND graded S on Austin's ladder (downgrade.py), what share does his eye also call S",
+   "value": "16/25 = 64.0%",
+   "wilson95": [
+    0.4452,
+    0.7975
+   ]
+  },
+  "recall_NOT_measurable_here": "Every card was selected because the engine fired and graded it S. Recall asks the opposite question -- of HIS S days, how many does the engine reach -- and a sample conditioned on the engine firing has recall 25/25 by construction. Pooling these 25 into the recall number would move it up for free. They are excluded.",
+  "recall_side_effect": "The 16 new yes-days DO enlarge the S pool for the NEXT recall measurement, and on all 16 the engine already fires, so the honest arithmetic is stated in the report rather than folded in here.",
+  "different_precision_already_on_the_board": "g72_recall278_paired reports precision 37.7% -- 'the engine fired on a day Austin graded none'. That is a DAY-level question over an unselected corpus. This page's 64% is a SIGNAL-level question over days the engine's own S-grader already picked. They are not the same number and must never be compared as though they were."
+ },
+ "cards": [
+  {
+   "card_id": "NFLX_2026-05-26",
+   "symbol": "NFLX",
+   "date": "2026-05-26",
+   "bucket": "84",
+   "claimed_setup": "84",
+   "claimed_level": "PML",
+   "is_s": true,
+   "why_not": [],
+   "note": "9:47 OCR stop green candle wick",
+   "his_times": [
+    "09:47"
+   ],
+   "his_times_min": [
+    587
+   ],
+   "unparseable_time_tokens": [],
+   "engine_et": "10:17",
+   "engine_setup": "reentry_84_rule",
+   "engine_downgrades": [],
+   "engine_tripped": "0",
+   "engine_confluence": "yes",
+   "legacy_grade": "A",
+   "traded": false,
+   "r": 0.509,
+   "out": "win",
+   "dir": "put",
+   "s_signals_that_day": 5,
+   "er_session": 0.1687,
+   "impulse_atr": 1.6432
+  },
+  {
+   "card_id": "COIN_2025-07-10",
+   "symbol": "COIN",
+   "date": "2025-07-10",
+   "bucket": "84",
+   "claimed_setup": "84",
+   "claimed_level": "PDH",
+   "is_s": true,
+   "why_not": [],
+   "note": "9:41",
+   "his_times": [
+    "09:41"
+   ],
+   "his_times_min": [
+    581
+   ],
+   "unparseable_time_tokens": [],
+   "engine_et": "10:40",
+   "engine_setup": "reentry_84_rule",
+   "engine_downgrades": [],
+   "engine_tripped": "0",
+   "engine_confluence": "yes",
+   "legacy_grade": "B",
+   "traded": true,
+   "r": -1.0,
+   "out": "loss",
+   "dir": "call",
+   "s_signals_that_day": 2,
+   "er_session": 0.0822,
+   "impulse_atr": 1.413
+  },
+  {
+   "card_id": "MSFT_2024-09-13",
+   "symbol": "MSFT",
+   "date": "2024-09-13",
+   "bucket": "84",
+   "claimed_setup": "84",
+   "claimed_level": "PMH",
+   "is_s": false,
+   "why_not": [
+    "level_not_respected"
+   ],
+   "note": "9:47 is what you liked but it broke above those levels and rejected them",
+   "his_times": [
+    "09:47"
+   ],
+   "his_times_min": [
+    587
+   ],
+   "unparseable_time_tokens": [],
+   "engine_et": "10:17",
+   "engine_setup": "reentry_84_rule",
+   "engine_downgrades": [],
+   "engine_tripped": "0",
+   "engine_confluence": "yes",
+   "legacy_grade": "A",
+   "traded": false,
+   "r": -1.0,
+   "out": "loss",
+   "dir": "call",
+   "s_signals_that_day": 3,
+   "er_session": 0.0985,
+   "impulse_atr": 1.5164
+  },
+  {
+   "card_id": "MSFT_2025-08-29",
+   "symbol": "MSFT",
+   "date": "2025-08-29",
+   "bucket": "OCR",
+   "claimed_setup": "OCR",
+   "claimed_level": "PDL",
+   "is_s": true,
+   "why_not": [],
+   "note": "BR OCB confluence, not perfect because no displacement but you get a +1 9:38 is the entry",
+   "his_times": [
+    "09:38"
+   ],
+   "his_times_min": [
+    578
+   ],
+   "unparseable_time_tokens": [],
+   "engine_et": "10:19",
+   "engine_setup": "one_candle_rule",
+   "engine_downgrades": [],
+   "engine_tripped": "0",
+   "engine_confluence": "yes",
+   "legacy_grade": "C",
+   "traded": false,
+   "r": -1.0,
+   "out": "loss",
+   "dir": "call",
+   "s_signals_that_day": 6,
+   "er_session": 0.0723,
+   "impulse_atr": 1.6925
+  },
+  {
+   "card_id": "GOOGL_2024-10-29",
+   "symbol": "GOOGL",
+   "date": "2024-10-29",
+   "bucket": "OCR",
+   "claimed_setup": "OCR",
+   "claimed_level": "PDH",
+   "is_s": true,
+   "why_not": [],
+   "note": "10:47",
+   "his_times": [
+    "10:47"
+   ],
+   "his_times_min": [
+    647
+   ],
+   "unparseable_time_tokens": [],
+   "engine_et": "10:59",
+   "engine_setup": "one_candle_rule",
+   "engine_downgrades": [],
+   "engine_tripped": "0",
+   "engine_confluence": "yes",
+   "legacy_grade": "C",
+   "traded": false,
+   "r": 1.357,
+   "out": "win",
+   "dir": "call",
+   "s_signals_that_day": 2,
+   "er_session": 0.1263,
+   "impulse_atr": 1.5226
+  },
+  {
+   "card_id": "AAPL_2026-04-17",
+   "symbol": "AAPL",
+   "date": "2026-04-17",
+   "bucket": "84",
+   "claimed_setup": "84",
+   "claimed_level": "PMH",
+   "is_s": true,
+   "why_not": [],
+   "note": "9:42",
+   "his_times": [
+    "09:42"
+   ],
+   "his_times_min": [
+    582
+   ],
+   "unparseable_time_tokens": [],
+   "engine_et": "10:14",
+   "engine_setup": "reentry_84_rule",
+   "engine_downgrades": [
+    "counter_trend_not_respected"
+   ],
+   "engine_tripped": "1",
+   "engine_confluence": "yes",
+   "legacy_grade": "A",
+   "traded": true,
+   "r": -1.0,
+   "out": "loss",
+   "dir": "call",
+   "s_signals_that_day": 4,
+   "er_session": 0.1791,
+   "impulse_atr": 0.612
+  },
+  {
+   "card_id": "TSM_2025-11-26",
+   "symbol": "TSM",
+   "date": "2025-11-26",
+   "bucket": "BR",
+   "claimed_setup": "BR+OCR",
+   "claimed_level": "PMH",
+   "is_s": false,
+   "why_not": [
+    "other"
+   ],
+   "note": "i see what the entry would be but hard to get past the green  candle at 9:35 pivot created hard to break",
+   "his_times": [
+    "09:35"
+   ],
+   "his_times_min": [
+    575
+   ],
+   "unparseable_time_tokens": [],
+   "engine_et": "10:39",
+   "engine_setup": "break_and_retest",
+   "engine_downgrades": [],
+   "engine_tripped": "0",
+   "engine_confluence": "yes",
+   "legacy_grade": "X",
+   "traded": false,
+   "r": -1.0,
+   "out": "loss",
+   "dir": "call",
+   "s_signals_that_day": 4,
+   "er_session": 0.0124,
+   "impulse_atr": 1.8903
+  },
+  {
+   "card_id": "SPY_2025-05-21",
+   "symbol": "SPY",
+   "date": "2025-05-21",
+   "bucket": "OCR",
+   "claimed_setup": "OCR",
+   "claimed_level": "PDL",
+   "is_s": true,
+   "why_not": [],
+   "note": "9:45 BR OCR confluence",
+   "his_times": [
+    "09:45"
+   ],
+   "his_times_min": [
+    585
+   ],
+   "unparseable_time_tokens": [],
+   "engine_et": "10:33",
+   "engine_setup": "one_candle_rule",
+   "engine_downgrades": [],
+   "engine_tripped": "0",
+   "engine_confluence": "yes",
+   "legacy_grade": "C",
+   "traded": false,
+   "r": -1.0,
+   "out": "loss",
+   "dir": "put",
+   "s_signals_that_day": 5,
+   "er_session": 0.1106,
+   "impulse_atr": 1.931
+  },
+  {
+   "card_id": "INTC_2026-03-24",
+   "symbol": "INTC",
+   "date": "2026-03-24",
+   "bucket": "84",
+   "claimed_setup": "84",
+   "claimed_level": "PDL",
+   "is_s": true,
+   "why_not": [],
+   "note": "entry at 9:38 and then a 84 reclaim correct, because the bigger pucture stop was it holder the opening candle",
+   "his_times": [
+    "09:38"
+   ],
+   "his_times_min": [
+    578
+   ],
+   "unparseable_time_tokens": [],
+   "engine_et": "10:21",
+   "engine_setup": "reentry_84_rule",
+   "engine_downgrades": [
+    "no_displacement"
+   ],
+   "engine_tripped": "1",
+   "engine_confluence": "yes",
+   "legacy_grade": "B",
+   "traded": true,
+   "r": -1.0,
+   "out": "loss",
+   "dir": "put",
+   "s_signals_that_day": 1,
+   "er_session": 0.0343,
+   "impulse_atr": 1.9949
+  },
+  {
+   "card_id": "AVGO_2024-11-04",
+   "symbol": "AVGO",
+   "date": "2024-11-04",
+   "bucket": "BR",
+   "claimed_setup": "BR+OCR",
+   "claimed_level": "PDH",
+   "is_s": true,
+   "why_not": [],
+   "note": "9:47",
+   "his_times": [
+    "09:47"
+   ],
+   "his_times_min": [
+    587
+   ],
+   "unparseable_time_tokens": [],
+   "engine_et": "09:47",
+   "engine_setup": "break_and_retest",
+   "engine_downgrades": [],
+   "engine_tripped": "0",
+   "engine_confluence": "yes",
+   "legacy_grade": "X",
+   "traded": false,
+   "r": 2.86,
+   "out": "win",
+   "dir": "call",
+   "s_signals_that_day": 7,
+   "er_session": 0.0872,
+   "impulse_atr": 1.3435
+  },
+  {
+   "card_id": "AMD_2025-09-08",
+   "symbol": "AMD",
+   "date": "2025-09-08",
+   "bucket": "BR",
+   "claimed_setup": "BR+OCR",
+   "claimed_level": "PMH",
+   "is_s": false,
+   "why_not": [
+    "no_displacement",
+    "late"
+   ],
+   "note": "10:37 but really no displacement from the original candles so i have to downgrade",
+   "his_times": [
+    "10:37"
+   ],
+   "his_times_min": [
+    637
+   ],
+   "unparseable_time_tokens": [],
+   "engine_et": "10:37",
+   "engine_setup": "break_and_retest",
+   "engine_downgrades": [],
+   "engine_tripped": "0",
+   "engine_confluence": "yes",
+   "legacy_grade": "X",
+   "traded": false,
+   "r": 0.0,
+   "out": "open",
+   "dir": "call",
+   "s_signals_that_day": 4,
+   "er_session": 0.0054,
+   "impulse_atr": 1.4624
+  },
+  {
+   "card_id": "HOOD_2025-11-28",
+   "symbol": "HOOD",
+   "date": "2025-11-28",
+   "bucket": "84",
+   "claimed_setup": "84",
+   "claimed_level": "PDH",
+   "is_s": false,
+   "why_not": [
+    "chop",
+    "late"
+   ],
+   "note": "",
+   "his_times": [],
+   "his_times_min": [],
+   "unparseable_time_tokens": [],
+   "engine_et": "10:21",
+   "engine_setup": "reentry_84_rule",
+   "engine_downgrades": [
+    "counter_trend_not_respected"
+   ],
+   "engine_tripped": "1",
+   "engine_confluence": "yes",
+   "legacy_grade": "B",
+   "traded": false,
+   "r": 0.507,
+   "out": "win",
+   "dir": "call",
+   "s_signals_that_day": 6,
+   "er_session": 0.0485,
+   "impulse_atr": 0.7644
+  },
+  {
+   "card_id": "IWM_2026-08-06",
+   "symbol": "IWM",
+   "date": "2026-08-06",
+   "bucket": "OCR",
+   "claimed_setup": "OCR",
+   "claimed_level": "PMH",
+   "is_s": true,
+   "why_not": [],
+   "note": "9:%5",
+   "his_times": [],
+   "his_times_min": [],
+   "unparseable_time_tokens": [
+    "9:%5"
+   ],
+   "engine_et": "10:07",
+   "engine_setup": "one_candle_rule",
+   "engine_downgrades": [],
+   "engine_tripped": "0",
+   "engine_confluence": "yes",
+   "legacy_grade": "B",
+   "traded": false,
+   "r": 2.294,
+   "out": "win",
+   "dir": "call",
+   "s_signals_that_day": 3,
+   "er_session": 0.1032,
+   "impulse_atr": 2.0975
+  },
+  {
+   "card_id": "TSM_2026-07-07",
+   "symbol": "TSM",
+   "date": "2026-07-07",
+   "bucket": "84",
+   "claimed_setup": "84",
+   "claimed_level": "PML",
+   "is_s": true,
+   "why_not": [],
+   "note": "9:38 and yes reclaim",
+   "his_times": [
+    "09:38"
+   ],
+   "his_times_min": [
+    578
+   ],
+   "unparseable_time_tokens": [],
+   "engine_et": "09:50",
+   "engine_setup": "reentry_84_rule",
+   "engine_downgrades": [
+    "counter_trend_not_respected"
+   ],
+   "engine_tripped": "1",
+   "engine_confluence": "yes",
+   "legacy_grade": "X",
+   "traded": false,
+   "r": 0.339,
+   "out": "win",
+   "dir": "put",
+   "s_signals_that_day": 6,
+   "er_session": 0.1564,
+   "impulse_atr": 1.3514
+  },
+  {
+   "card_id": "AMZN_2025-12-11",
+   "symbol": "AMZN",
+   "date": "2025-12-11",
+   "bucket": "BR",
+   "claimed_setup": "BR",
+   "claimed_level": "PMH",
+   "is_s": true,
+   "why_not": [],
+   "note": "9:40",
+   "his_times": [
+    "09:40"
+   ],
+   "his_times_min": [
+    580
+   ],
+   "unparseable_time_tokens": [],
+   "engine_et": "09:39",
+   "engine_setup": "break_and_retest",
+   "engine_downgrades": [],
+   "engine_tripped": "0",
+   "engine_confluence": "no",
+   "legacy_grade": "X",
+   "traded": false,
+   "r": -1.0,
+   "out": "loss",
+   "dir": "call",
+   "s_signals_that_day": 2,
+   "er_session": 0.0211,
+   "impulse_atr": 1.7632
+  },
+  {
+   "card_id": "NVDA_2025-06-24",
+   "symbol": "NVDA",
+   "date": "2025-06-24",
+   "bucket": "OCR",
+   "claimed_setup": "OCR",
+   "claimed_level": "PMH",
+   "is_s": false,
+   "why_not": [
+    "no_displacement"
+   ],
+   "note": "really good a trade i wish it was an S but it didnt displace from that wick, but technically it is an OCR and BR just neither of the parts have displacement",
+   "his_times": [],
+   "his_times_min": [],
+   "unparseable_time_tokens": [],
+   "engine_et": "10:13",
+   "engine_setup": "one_candle_rule",
+   "engine_downgrades": [],
+   "engine_tripped": "0",
+   "engine_confluence": "yes",
+   "legacy_grade": "X",
+   "traded": false,
+   "r": -1.0,
+   "out": "loss",
+   "dir": "put",
+   "s_signals_that_day": 3,
+   "er_session": 0.1156,
+   "impulse_atr": 1.7227
+  },
+  {
+   "card_id": "ORCL_2025-02-18",
+   "symbol": "ORCL",
+   "date": "2025-02-18",
+   "bucket": "84",
+   "claimed_setup": "84",
+   "claimed_level": "PMH",
+   "is_s": false,
+   "why_not": [
+    "other"
+   ],
+   "note": "took too long for the entry",
+   "his_times": [],
+   "his_times_min": [],
+   "unparseable_time_tokens": [],
+   "engine_et": "10:20",
+   "engine_setup": "reentry_84_rule",
+   "engine_downgrades": [
+    "counter_trend_not_respected"
+   ],
+   "engine_tripped": "1",
+   "engine_confluence": "yes",
+   "legacy_grade": "B",
+   "traded": false,
+   "r": 4.621,
+   "out": "win",
+   "dir": "call",
+   "s_signals_that_day": 1,
+   "er_session": 0.1402,
+   "impulse_atr": 1.8366
+  },
+  {
+   "card_id": "ACHR_2026-06-16",
+   "symbol": "ACHR",
+   "date": "2026-06-16",
+   "bucket": "BR",
+   "claimed_setup": "BR+OCR",
+   "claimed_level": "PML",
+   "is_s": true,
+   "why_not": [],
+   "note": "9:57 as candle forming",
+   "his_times": [
+    "09:57"
+   ],
+   "his_times_min": [
+    597
+   ],
+   "unparseable_time_tokens": [],
+   "engine_et": "09:56",
+   "engine_setup": "break_and_retest",
+   "engine_downgrades": [],
+   "engine_tripped": "0",
+   "engine_confluence": "yes",
+   "legacy_grade": "X",
+   "traded": false,
+   "r": 14.445,
+   "out": "win",
+   "dir": "put",
+   "s_signals_that_day": 4,
+   "er_session": 0.1491,
+   "impulse_atr": 2.1486
+  },
+  {
+   "card_id": "SPY_2026-06-17",
+   "symbol": "SPY",
+   "date": "2026-06-17",
+   "bucket": "OCR",
+   "claimed_setup": "OCR",
+   "claimed_level": "PML",
+   "is_s": true,
+   "why_not": [],
+   "note": "i see a fake out S trade at 9:48 because the red candle at 9:30 doesent look as distracting, and your s is good too but its tight on if theres displacement. and if you went with my trade it wouldve stopped out and reclaimed.",
+   "his_times": [
+    "09:48",
+    "09:30"
+   ],
+   "his_times_min": [
+    588,
+    570
+   ],
+   "unparseable_time_tokens": [],
+   "engine_et": "10:42",
+   "engine_setup": "one_candle_rule",
+   "engine_downgrades": [],
+   "engine_tripped": "0",
+   "engine_confluence": "yes",
+   "legacy_grade": "X",
+   "traded": false,
+   "r": -1.0,
+   "out": "loss",
+   "dir": "put",
+   "s_signals_that_day": 2,
+   "er_session": 0.091,
+   "impulse_atr": 2.2946
+  },
+  {
+   "card_id": "ACHR_2026-04-13",
+   "symbol": "ACHR",
+   "date": "2026-04-13",
+   "bucket": "OCR",
+   "claimed_setup": "OCR",
+   "claimed_level": "PMH",
+   "is_s": true,
+   "why_not": [],
+   "note": "10:09 would never trade because look how the candles are but jsut good for you to know",
+   "his_times": [
+    "10:09"
+   ],
+   "his_times_min": [
+    609
+   ],
+   "unparseable_time_tokens": [],
+   "engine_et": "10:33",
+   "engine_setup": "one_candle_rule",
+   "engine_downgrades": [],
+   "engine_tripped": "0",
+   "engine_confluence": "yes",
+   "legacy_grade": "X",
+   "traded": false,
+   "r": -1.0,
+   "out": "loss",
+   "dir": "call",
+   "s_signals_that_day": 1,
+   "er_session": 0.2446,
+   "impulse_atr": 3.1068
+  },
+  {
+   "card_id": "AAPL_2026-03-11",
+   "symbol": "AAPL",
+   "date": "2026-03-11",
+   "bucket": "BR",
+   "claimed_setup": "BR+OCR",
+   "claimed_level": "PML",
+   "is_s": false,
+   "why_not": [
+    "chop"
+   ],
+   "note": "",
+   "his_times": [],
+   "his_times_min": [],
+   "unparseable_time_tokens": [],
+   "engine_et": "10:29",
+   "engine_setup": "break_and_retest",
+   "engine_downgrades": [],
+   "engine_tripped": "0",
+   "engine_confluence": "yes",
+   "legacy_grade": "X",
+   "traded": false,
+   "r": 0.0,
+   "out": "open",
+   "dir": "put",
+   "s_signals_that_day": 1,
+   "er_session": 0.0433,
+   "impulse_atr": 1.6981
+  },
+  {
+   "card_id": "META_2026-06-22",
+   "symbol": "META",
+   "date": "2026-06-22",
+   "bucket": "84",
+   "claimed_setup": "84",
+   "claimed_level": "PML",
+   "is_s": true,
+   "why_not": [],
+   "note": "9:59",
+   "his_times": [
+    "09:59"
+   ],
+   "his_times_min": [
+    599
+   ],
+   "unparseable_time_tokens": [],
+   "engine_et": "10:15",
+   "engine_setup": "reentry_84_rule",
+   "engine_downgrades": [
+    "counter_trend_not_respected"
+   ],
+   "engine_tripped": "1",
+   "engine_confluence": "yes",
+   "legacy_grade": "B",
+   "traded": true,
+   "r": 3.09,
+   "out": "win",
+   "dir": "put",
+   "s_signals_that_day": 1,
+   "er_session": 0.1886,
+   "impulse_atr": 1.3567
+  },
+  {
+   "card_id": "QQQ_2024-08-26",
+   "symbol": "QQQ",
+   "date": "2024-08-26",
+   "bucket": "BR",
+   "claimed_setup": "BR+OCR",
+   "claimed_level": "PML",
+   "is_s": true,
+   "why_not": [],
+   "note": "9:56 but i may be biased here because a break retest with no dispacement happens at 9:45, its not of the level just the wicks at the beginning of the day",
+   "his_times": [
+    "09:56",
+    "09:45"
+   ],
+   "his_times_min": [
+    596,
+    585
+   ],
+   "unparseable_time_tokens": [],
+   "engine_et": "09:52",
+   "engine_setup": "break_and_retest",
+   "engine_downgrades": [],
+   "engine_tripped": "0",
+   "engine_confluence": "yes",
+   "legacy_grade": "X",
+   "traded": false,
+   "r": 7.136,
+   "out": "win",
+   "dir": "put",
+   "s_signals_that_day": 4,
+   "er_session": 0.2339,
+   "impulse_atr": 1.7733
+  },
+  {
+   "card_id": "QQQ_2025-12-22",
+   "symbol": "QQQ",
+   "date": "2025-12-22",
+   "bucket": "OCR",
+   "claimed_setup": "OCR",
+   "claimed_level": "PDH",
+   "is_s": false,
+   "why_not": [
+    "no_displacement",
+    "chop"
+   ],
+   "note": "9:45 its close i see what your seeing",
+   "his_times": [
+    "09:45"
+   ],
+   "his_times_min": [
+    585
+   ],
+   "unparseable_time_tokens": [],
+   "engine_et": "10:43",
+   "engine_setup": "one_candle_rule",
+   "engine_downgrades": [
+    "counter_trend_not_respected"
+   ],
+   "engine_tripped": "1",
+   "engine_confluence": "yes",
+   "legacy_grade": "X",
+   "traded": false,
+   "r": -1.0,
+   "out": "loss",
+   "dir": "put",
+   "s_signals_that_day": 7,
+   "er_session": 0.1245,
+   "impulse_atr": 1.9799
+  },
+  {
+   "card_id": "AVGO_2025-12-03",
+   "symbol": "AVGO",
+   "date": "2025-12-03",
+   "bucket": "84",
+   "claimed_setup": "84",
+   "claimed_level": "PML",
+   "is_s": false,
+   "why_not": [
+    "no_retest"
+   ],
+   "note": "i dont see anything: 9:33 can be a great break of pdl but the retest missed by a few cents",
+   "his_times": [
+    "09:33"
+   ],
+   "his_times_min": [
+    573
+   ],
+   "unparseable_time_tokens": [],
+   "engine_et": "10:59",
+   "engine_setup": "reentry_84_rule",
+   "engine_downgrades": [
+    "no_retest"
+   ],
+   "engine_tripped": "1",
+   "engine_confluence": "yes",
+   "legacy_grade": "A",
+   "traded": true,
+   "r": -1.0,
+   "out": "loss",
+   "dir": "put",
+   "s_signals_that_day": 3,
+   "er_session": 0.0632,
+   "impulse_atr": 2.0259
+  }
+ ]
+}

@@ -1,0 +1,108 @@
+{
+ "symbol": "AVGO",
+ "day": "2025-12-03",
+ "his_minute": "09:33",
+ "level": "PDL",
+ "level_px": 379.79,
+ "drawn_levels": {
+  "hod": 380.55,
+  "lod": 370.65,
+  "pdh": 393.5,
+  "pdl": 379.79,
+  "pmh": 383.8,
+  "pml": 376.89
+ },
+ "shipped_retest_tolerance": {
+  "DETECT_WIDE": false,
+  "effective_mult": 0.0,
+  "means": "exact touch -- the retest bar must trade AT or through the level",
+  "DETECT_WIDE_RETEST_MULT_if_on": 1.0,
+  "BAR_EXTREME_FRAC": 0.25
+ },
+ "his_bar_index": 3,
+ "his_bar": {
+  "t": "09:33",
+  "o": 379.52,
+  "h": 379.7,
+  "l": 377.65,
+  "c": 377.93
+ },
+ "direction": "short (entry below PDL)",
+ "break_bar": {
+  "index": 0,
+  "t": "09:30",
+  "close": 379.03
+ },
+ "avg_bar_range_12_at_his_bar": 2.0338,
+ "window_bars": 4,
+ "leave_bar": {
+  "index": 1,
+  "t": "09:31"
+ },
+ "closest_approach": {
+  "bar": "09:33",
+  "bars_after_leave": 2,
+  "miss_dollars": 0.09,
+  "miss_cents": 9.0,
+  "miss_in_bar_ranges": 0.0443,
+  "miss_pct_of_price": 0.0237,
+  "touched": false
+ },
+ "verdict": {
+  "exact_touch_would_fire": false,
+  "at_BAR_EXTREME_FRAC_0.25_would_fire": true,
+  "at_DETECT_WIDE_1.00_would_fire": true,
+  "tolerance_needed_in_bar_ranges": 0.0443
+ },
+ "tolerance_in_cents": {
+  "shipped_0.00x": 0.0,
+  "BAR_EXTREME_FRAC_0.25x": 50.8,
+  "DETECT_WIDE_1.00x": 203.4
+ },
+ "approach_track": [
+  {
+   "t": "09:30",
+   "miss_cents": -75.5
+  },
+  {
+   "t": "09:31",
+   "miss_cents": 8.0
+  },
+  {
+   "t": "09:32",
+   "miss_cents": 44.0
+  },
+  {
+   "t": "09:33",
+   "miss_cents": 9.0
+  },
+  {
+   "t": "09:34",
+   "miss_cents": 174.0
+  },
+  {
+   "t": "09:35",
+   "miss_cents": 209.3
+  },
+  {
+   "t": "09:36",
+   "miss_cents": 360.6
+  },
+  {
+   "t": "09:37",
+   "miss_cents": 375.0
+  },
+  {
+   "t": "09:38",
+   "miss_cents": 414.0
+  },
+  {
+   "t": "09:39",
+   "miss_cents": 514.0
+  },
+  {
+   "t": "09:40",
+   "miss_cents": 645.0
+  }
+ ]
+}

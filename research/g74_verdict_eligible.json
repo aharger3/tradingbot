@@ -1,0 +1,17 @@
+{
+ "84": {
+  "s_days": 70,
+  "eligible": 25,
+  "thin": 0
+ },
+ "OCR": {
+  "s_days": 964,
+  "eligible": 84,
+  "thin": 0
+ },
+ "BR": {
+  "s_days": 5467,
+  "eligible": 1577,
+  "thin": 0
+ }
+}

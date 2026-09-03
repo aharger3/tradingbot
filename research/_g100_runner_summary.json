@@ -1,0 +1,74 @@
+{
+  "total_measured": 444,
+  "runners": 103,
+  "non_runners": 341,
+  "runner_rate_pct": 23.2,
+  "gated_below_min_risk": 54,
+  "no_bars": 0,
+  "significant_separators": [
+    {
+      "field": "rangeb",
+      "value": "big range",
+      "with_runners": 74,
+      "with_total": 264,
+      "with_rate_pct": 28.0,
+      "without_rate_pct": 16.1,
+      "delta_pp": 11.9,
+      "p_value": 0.0035,
+      "chi2": 8.53,
+      "multiplier": 1.74
+    },
+    {
+      "field": "dow",
+      "value": "Tue",
+      "with_runners": 31,
+      "with_total": 94,
+      "with_rate_pct": 33.0,
+      "without_rate_pct": 20.6,
+      "delta_pp": 12.4,
+      "p_value": 0.0114,
+      "chi2": 6.4,
+      "multiplier": 1.6
+    },
+    {
+      "field": "level",
+      "value": "pivot high",
+      "with_runners": 4,
+      "with_total": 7,
+      "with_rate_pct": 57.1,
+      "without_rate_pct": 22.7,
+      "delta_pp": 34.4,
+      "p_value": 0.032,
+      "chi2": 4.6,
+      "multiplier": 2.52,
+      "note": "tiny sample (n=7)"
+    },
+    {
+      "field": "stopb",
+      "value": "mid",
+      "with_runners": 54,
+      "with_total": 195,
+      "with_rate_pct": 27.7,
+      "without_rate_pct": 19.7,
+      "delta_pp": 8.0,
+      "p_value": 0.0471,
+      "chi2": 3.94,
+      "multiplier": 1.41
+    }
+  ],
+  "non_significant_fields": [
+    "setup",
+    "setup_label",
+    "level_name",
+    "tripped",
+    "confluence",
+    "bias",
+    "aligned",
+    "tier",
+    "seq",
+    "gapb",
+    "pool",
+    "vol_regime",
+    "hour"
+  ]
+}

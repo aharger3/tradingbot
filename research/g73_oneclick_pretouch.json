@@ -1,0 +1,69 @@
+{
+  "book": "C:\\Users\\aharg\\Desktop\\Projects\\tradingbot\\research\\bt2y_trades.json",
+  "warning_minutes_from_first_touch": {
+    "n": 499,
+    "p10": 5,
+    "median": 8,
+    "p90": 14
+  },
+  "warning_minutes_from_last_touch": {
+    "n": 499,
+    "p10": 1,
+    "median": 2,
+    "p90": 3
+  },
+  "touches_before_the_signal_all": {
+    "1": {
+      "days": 3,
+      "dollars": -1396.0,
+      "mean_r": -0.465
+    },
+    "2": {
+      "days": 50,
+      "dollars": 49675.0,
+      "mean_r": 0.993
+    },
+    "3": {
+      "days": 104,
+      "dollars": 58888.0,
+      "mean_r": 0.566
+    },
+    "4": {
+      "days": 133,
+      "dollars": 92507.0,
+      "mean_r": 0.696
+    },
+    "5+": {
+      "days": 209,
+      "dollars": 160707.0,
+      "mean_r": 0.769
+    }
+  },
+  "touches_before_the_signal_prebell_only": {
+    "1": {
+      "days": 3,
+      "dollars": -1396.0,
+      "mean_r": -0.465
+    },
+    "2": {
+      "days": 41,
+      "dollars": 39778.0,
+      "mean_r": 0.97
+    },
+    "3": {
+      "days": 59,
+      "dollars": 16490.0,
+      "mean_r": 0.279
+    },
+    "4": {
+      "days": 65,
+      "dollars": 47584.0,
+      "mean_r": 0.732
+    },
+    "5+": {
+      "days": 119,
+      "dollars": 88832.0,
+      "mean_r": 0.746
+    }
+  }
+}

@@ -1,0 +1,263 @@
+{
+  "Q1_distinguish_52.9_from_90": {
+    "H0": 0.9,
+    "truth": 0.529,
+    "alpha": 0.05,
+    "test": "exact binomial, two-sided",
+    "n_S_where_point_estimate_rejects": {
+      "n_S": 6,
+      "graded_cards": {
+        "blind_sweep_0.340": 18,
+        "corpus_0.253": 24
+      }
+    },
+    "n_S_for_power": {
+      "0.8": {
+        "n_S": 11,
+        "graded_cards": {
+          "blind_sweep_0.340": 33,
+          "corpus_0.253": 44
+        }
+      },
+      "0.9": {
+        "n_S": 15,
+        "graded_cards": {
+          "blind_sweep_0.340": 45,
+          "corpus_0.253": 60
+        }
+      },
+      "0.95": {
+        "n_S": 17,
+        "graded_cards": {
+          "blind_sweep_0.340": 50,
+          "corpus_0.253": 68
+        }
+      }
+    },
+    "at_n_S_34": {
+      "observed_k": 18,
+      "recall": 0.5294,
+      "wilson95": [
+        0.3674,
+        0.6855
+      ],
+      "p_value_vs_0.90": 7.484424826915559e-08,
+      "power_to_reject_0.90": 0.9987
+    }
+  },
+  "Q2_detect_10pt_change_unpaired": {
+    "0.8": {
+      "n_S_per_arm": 382,
+      "graded_cards_per_arm": {
+        "blind_sweep_0.340": 1124,
+        "corpus_0.253": 1509
+      },
+      "total_graded_cards_both_arms": {
+        "blind_sweep_0.340": 2248,
+        "corpus_0.253": 3018
+      }
+    },
+    "0.9": {
+      "n_S_per_arm": 511,
+      "graded_cards_per_arm": {
+        "blind_sweep_0.340": 1503,
+        "corpus_0.253": 2018
+      },
+      "total_graded_cards_both_arms": {
+        "blind_sweep_0.340": 3006,
+        "corpus_0.253": 4036
+      }
+    },
+    "by_delta_power80_n_S_per_arm": {
+      "5pt": 1551,
+      "10pt": 382,
+      "15pt": 166,
+      "20pt": 91,
+      "25pt": 56,
+      "37pt": 23
+    }
+  },
+  "Q3_detect_10pt_change_paired_mcnemar": {
+    "note": "same cards, two engine configs; n falls as discordance falls",
+    "power": 0.8,
+    "delta": 0.1,
+    "by_discordance": {
+      "discordance_0.12": {
+        "n_S": 92,
+        "p10": 0.11,
+        "p01": 0.01,
+        "graded_cards": {
+          "blind_sweep_0.340": 271,
+          "corpus_0.253": 364
+        }
+      },
+      "discordance_0.15": {
+        "n_S": 116,
+        "p10": 0.125,
+        "p01": 0.025,
+        "graded_cards": {
+          "blind_sweep_0.340": 342,
+          "corpus_0.253": 458
+        }
+      },
+      "discordance_0.20": {
+        "n_S": 155,
+        "p10": 0.15,
+        "p01": 0.05,
+        "graded_cards": {
+          "blind_sweep_0.340": 456,
+          "corpus_0.253": 612
+        }
+      },
+      "discordance_0.30": {
+        "n_S": 234,
+        "p10": 0.2,
+        "p01": 0.1,
+        "graded_cards": {
+          "blind_sweep_0.340": 689,
+          "corpus_0.253": 924
+        }
+      },
+      "discordance_0.40": {
+        "n_S": 312,
+        "p10": 0.25,
+        "p01": 0.15,
+        "graded_cards": {
+          "blind_sweep_0.340": 918,
+          "corpus_0.253": 1232
+        }
+      },
+      "discordance_0.50": {
+        "n_S": 391,
+        "p10": 0.3,
+        "p01": 0.2,
+        "graded_cards": {
+          "blind_sweep_0.340": 1150,
+          "corpus_0.253": 1544
+        }
+      }
+    }
+  },
+  "Q4_curve": [
+    {
+      "n_S": 17,
+      "graded_cards_corpus_rate": 68,
+      "wilson95_lo": 0.31,
+      "wilson95_hi": 0.738,
+      "ci_halfwidth_pts": 21.4,
+      "power_vs_gate_0.90": 0.958,
+      "power_10pt_unpaired": 0.084,
+      "power_10pt_paired_psi0.30": 0.11
+    },
+    {
+      "n_S": 25,
+      "graded_cards_corpus_rate": 99,
+      "wilson95_lo": 0.335,
+      "wilson95_hi": 0.7,
+      "ci_halfwidth_pts": 18.2,
+      "power_vs_gate_0.90": 0.984,
+      "power_10pt_unpaired": 0.106,
+      "power_10pt_paired_psi0.30": 0.143
+    },
+    {
+      "n_S": 34,
+      "graded_cards_corpus_rate": 135,
+      "wilson95_lo": 0.367,
+      "wilson95_hi": 0.685,
+      "ci_halfwidth_pts": 15.9,
+      "power_vs_gate_0.90": 0.999,
+      "power_10pt_unpaired": 0.129,
+      "power_10pt_paired_psi0.30": 0.181
+    },
+    {
+      "n_S": 50,
+      "graded_cards_corpus_rate": 198,
+      "wilson95_lo": 0.385,
+      "wilson95_hi": 0.652,
+      "ci_halfwidth_pts": 13.3,
+      "power_vs_gate_0.90": 1.0,
+      "power_10pt_unpaired": 0.171,
+      "power_10pt_paired_psi0.30": 0.248
+    },
+    {
+      "n_S": 75,
+      "graded_cards_corpus_rate": 297,
+      "wilson95_lo": 0.422,
+      "wilson95_hi": 0.642,
+      "ci_halfwidth_pts": 11.0,
+      "power_vs_gate_0.90": 1.0,
+      "power_10pt_unpaired": 0.235,
+      "power_10pt_paired_psi0.30": 0.35
+    },
+    {
+      "n_S": 100,
+      "graded_cards_corpus_rate": 395,
+      "wilson95_lo": 0.433,
+      "wilson95_hi": 0.625,
+      "ci_halfwidth_pts": 9.6,
+      "power_vs_gate_0.90": 1.0,
+      "power_10pt_unpaired": 0.298,
+      "power_10pt_paired_psi0.30": 0.446
+    },
+    {
+      "n_S": 150,
+      "graded_cards_corpus_rate": 593,
+      "wilson95_lo": 0.447,
+      "wilson95_hi": 0.605,
+      "ci_halfwidth_pts": 7.9,
+      "power_vs_gate_0.90": 1.0,
+      "power_10pt_unpaired": 0.418,
+      "power_10pt_paired_psi0.30": 0.611
+    },
+    {
+      "n_S": 200,
+      "graded_cards_corpus_rate": 790,
+      "wilson95_lo": 0.461,
+      "wilson95_hi": 0.598,
+      "ci_halfwidth_pts": 6.9,
+      "power_vs_gate_0.90": 1.0,
+      "power_10pt_unpaired": 0.526,
+      "power_10pt_paired_psi0.30": 0.737
+    },
+    {
+      "n_S": 278,
+      "graded_cards_corpus_rate": 1098,
+      "wilson95_lo": 0.47,
+      "wilson95_hi": 0.587,
+      "ci_halfwidth_pts": 5.8,
+      "power_vs_gate_0.90": 1.0,
+      "power_10pt_unpaired": 0.666,
+      "power_10pt_paired_psi0.30": 0.865
+    },
+    {
+      "n_S": 287,
+      "graded_cards_corpus_rate": 1134,
+      "wilson95_lo": 0.472,
+      "wilson95_hi": 0.587,
+      "ci_halfwidth_pts": 5.7,
+      "power_vs_gate_0.90": 1.0,
+      "power_10pt_unpaired": 0.68,
+      "power_10pt_paired_psi0.30": 0.875
+    },
+    {
+      "n_S": 400,
+      "graded_cards_corpus_rate": 1580,
+      "wilson95_lo": 0.481,
+      "wilson95_hi": 0.578,
+      "ci_halfwidth_pts": 4.9,
+      "power_vs_gate_0.90": 1.0,
+      "power_10pt_unpaired": 0.818,
+      "power_10pt_paired_psi0.30": 0.957
+    },
+    {
+      "n_S": 500,
+      "graded_cards_corpus_rate": 1974,
+      "wilson95_lo": 0.484,
+      "wilson95_hi": 0.571,
+      "ci_halfwidth_pts": 4.4,
+      "power_vs_gate_0.90": 1.0,
+      "power_10pt_unpaired": 0.894,
+      "power_10pt_paired_psi0.30": 0.985
+    }
+  ]
+}

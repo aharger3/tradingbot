@@ -1,0 +1,22 @@
+{
+ "arm": "S4_bestrr",
+ "picks": {
+  "level": 57437,
+  "candle": 54728,
+  "pivot": 12852,
+  "fallback_structural": 12583
+ },
+ "reasons": {
+  "pivot:past_ceiling": 36626,
+  "level:too_tight": 31808,
+  "candle:too_tight": 23092,
+  "candle:past_ceiling": 3438,
+  "level:past_ceiling": 7423,
+  "pivot:wrong_side": 5166,
+  "pivot:too_tight": 6339,
+  "candle:wrong_side": 1987,
+  "level:wrong_side": 41
+ },
+ "min_tradable_abs": 0.05,
+ "max_stop_pct": 0.006
+}

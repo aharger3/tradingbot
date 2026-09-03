@@ -1,0 +1,143 @@
+{
+ "router_delegates_to_shipped_engine": true,
+ "pool": {
+  "total_judged": 1178,
+  "with_bars": 1145,
+  "grade_mix_all": {
+   "S": 309,
+   "none": 560,
+   "C": 58,
+   "A": 237,
+   "B": 14
+  },
+  "grade_mix_with_bars": {
+   "S": 303,
+   "none": 542,
+   "C": 58,
+   "A": 228,
+   "B": 14
+  },
+  "x_only_days_in_none_bucket": 192,
+  "contested_days": 70
+ },
+ "my_recall_S": {
+  "k": 179,
+  "n": 303,
+  "pct": 59.1,
+  "wilson95_pct": [
+   53.5,
+   64.5
+  ]
+ },
+ "my_false_fire_none": {
+  "k": 274,
+  "n": 542,
+  "pct": 50.6,
+  "wilson95_pct": [
+   46.4,
+   54.7
+  ]
+ },
+ "my_fire_A": {
+  "k": 112,
+  "n": 228,
+  "pct": 49.1,
+  "wilson95_pct": [
+   42.7,
+   55.6
+  ]
+ },
+ "my_fire_C": {
+  "k": 38,
+  "n": 58,
+  "pct": 65.5,
+  "wilson95_pct": [
+   52.7,
+   76.4
+  ]
+ },
+ "my_separation": {
+  "points": 8.5,
+  "newcombe95_pts": [
+   1.5,
+   15.4
+  ],
+  "bootstrap95_pts": [
+   1.5,
+   15.4
+  ]
+ },
+ "my_detection_any_signal": {
+  "S_pct": 97.4,
+  "none_pct": 97.6
+ },
+ "robustness_X_only_removed_from_refusals": {
+  "refusals_n": 350,
+  "false_fire_pct": 43.7,
+  "separation_pts": 15.4,
+  "newcombe95_pts": [
+   7.7,
+   22.8
+  ]
+ },
+ "robustness_contested_days_removed": {
+  "S_n": 250,
+  "refusals_n": 542,
+  "recall_pct": 58.0,
+  "false_fire_pct": 50.6,
+  "separation_pts": 7.4,
+  "newcombe95_pts": [
+   -0.0,
+   14.7
+  ]
+ },
+ "agreement_with_their_saved_replay": {
+  "days_compared": 0,
+  "disagreements": 0,
+  "sample": [],
+  "keys_only_mine": 1145,
+  "keys_only_theirs": 2
+ },
+ "their_published": {
+  "recall_S": {
+   "half_width_pts": 5.5,
+   "k": 179,
+   "n": 303,
+   "pct": 59.1,
+   "wilson95_pct": [
+    53.5,
+    64.5
+   ]
+  },
+  "false_fire_none": {
+   "half_width_pts": 4.2,
+   "k": 274,
+   "n": 542,
+   "pct": 50.6,
+   "wilson95_pct": [
+    46.4,
+    54.7
+   ]
+  },
+  "separation": {
+   "beats_coin_flip": true,
+   "newcombe95_pts": [
+    1.5,
+    15.4
+   ],
+   "points": 8.5
+  },
+  "pool": {
+   "grade_mix_with_bars": {
+    "A": 228,
+    "B": 14,
+    "C": 58,
+    "S": 303,
+    "none": 542
+   },
+   "source": "research/marks_pool.py (nine spellings, 24 corpora)",
+   "total_judged_symbol_days": 1178,
+   "with_bars": 1145
+  }
+ }
+}

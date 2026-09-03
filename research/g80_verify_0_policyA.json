@@ -1,0 +1,126 @@
+{
+ "A_open_ungated": {
+  "everything": {
+   "trades": 4251,
+   "win_pct": 51.7,
+   "total_dollars": 18597840,
+   "mean_r": 4.3749,
+   "per_day": 37196,
+   "months_green": 25,
+   "months": 25,
+   "weeks_green": 105,
+   "weeks": 105
+  },
+  "one_a_day": {
+   "trades": 499,
+   "win_pct": 67.9,
+   "total_dollars": 4123170,
+   "mean_r": 8.2629,
+   "per_day": 8246,
+   "months_green": 24,
+   "months": 25,
+   "weeks_green": 97,
+   "weeks": 105
+  },
+  "one_a_day_days_missed": 0,
+  "fills": 4251,
+  "one_a_day_ci": [
+   8246,
+   5835,
+   11138
+  ]
+ },
+ "A_open_GATED": {
+  "everything": {
+   "trades": 2531,
+   "win_pct": 46.9,
+   "total_dollars": 962458,
+   "mean_r": 0.3803,
+   "per_day": 1925,
+   "months_green": 23,
+   "months": 25,
+   "weeks_green": 81,
+   "weeks": 105
+  },
+  "one_a_day": {
+   "trades": 494,
+   "win_pct": 56.8,
+   "total_dollars": 291108,
+   "mean_r": 0.5893,
+   "per_day": 582,
+   "months_green": 23,
+   "months": 25,
+   "weeks_green": 79,
+   "weeks": 105
+  },
+  "one_a_day_days_missed": 5,
+  "fills": 2531,
+  "one_a_day_ci": [
+   582,
+   430,
+   738
+  ]
+ },
+ "A_after_ungated": {
+  "everything": {
+   "trades": 3250,
+   "win_pct": 23.0,
+   "total_dollars": 2637091,
+   "mean_r": 0.8114,
+   "per_day": 5274,
+   "months_green": 21,
+   "months": 25,
+   "weeks_green": 63,
+   "weeks": 105
+  },
+  "one_a_day": {
+   "trades": 499,
+   "win_pct": 25.3,
+   "total_dollars": 529859,
+   "mean_r": 1.0618,
+   "per_day": 1060,
+   "months_green": 14,
+   "months": 25,
+   "weeks_green": 47,
+   "weeks": 105
+  },
+  "one_a_day_days_missed": 0,
+  "fills": 3250,
+  "one_a_day_ci": [
+   1060,
+   203,
+   2139
+  ]
+ },
+ "A_after_GATED": {
+  "everything": {
+   "trades": 1772,
+   "win_pct": 29.4,
+   "total_dollars": 78425,
+   "mean_r": 0.0443,
+   "per_day": 157,
+   "months_green": 14,
+   "months": 25,
+   "weeks_green": 58,
+   "weeks": 105
+  },
+  "one_a_day": {
+   "trades": 483,
+   "win_pct": 31.5,
+   "total_dollars": 45981,
+   "mean_r": 0.0952,
+   "per_day": 92,
+   "months_green": 13,
+   "months": 25,
+   "weeks_green": 51,
+   "weeks": 105
+  },
+  "one_a_day_days_missed": 16,
+  "fills": 1772,
+  "one_a_day_ci": [
+   92,
+   -87,
+   290
+  ]
+ }
+}

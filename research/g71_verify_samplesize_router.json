@@ -1,0 +1,66 @@
+{
+  "router": "delegating (backtest_week shape)",
+  "replayed": 1100,
+  "by_grade": {
+    "A": {
+      "n": 227,
+      "fired": 112,
+      "det": 222,
+      "recall_pct": 49.3,
+      "detect_pct": 97.8
+    },
+    "C": {
+      "n": 57,
+      "fired": 38,
+      "det": 53,
+      "recall_pct": 66.7,
+      "detect_pct": 93.0
+    },
+    "S": {
+      "n": 281,
+      "fired": 164,
+      "det": 273,
+      "recall_pct": 58.4,
+      "detect_pct": 97.2
+    },
+    "none": {
+      "n": 535,
+      "fired": 269,
+      "det": 522,
+      "recall_pct": 50.3,
+      "detect_pct": 97.6
+    }
+  },
+  "pairwise_z": {
+    "S_vs_A": {
+      "z": 2.03,
+      "p": 0.0424,
+      "bonf6": 0.2542
+    },
+    "S_vs_C": {
+      "z": -1.166,
+      "p": 0.2437,
+      "bonf6": 1.0
+    },
+    "S_vs_none": {
+      "z": 2.198,
+      "p": 0.0279,
+      "bonf6": 0.1676
+    },
+    "A_vs_C": {
+      "z": -2.343,
+      "p": 0.0191,
+      "bonf6": 0.1148
+    },
+    "A_vs_none": {
+      "z": -0.238,
+      "p": 0.8122,
+      "bonf6": 1.0
+    },
+    "C_vs_none": {
+      "z": 2.354,
+      "p": 0.0186,
+      "bonf6": 0.1115
+    }
+  }
+}

@@ -1,0 +1,731 @@
+[
+ {
+  "card": "ACHR_2026-02-05",
+  "min": "09:59",
+  "n_all": 5,
+  "pick_dir": "put",
+  "pick_et": "09:57",
+  "pick_gap": 2,
+  "n5": 2,
+  "dirs5": [
+   "put"
+  ],
+  "n15": 3,
+  "dirs15": [
+   "call",
+   "put"
+  ],
+  "grades_all": {
+   "X": 5
+  },
+  "status_all": {
+   "skipped_d": 5
+  }
+ },
+ {
+  "card": "AMZN_2025-09-10",
+  "min": "09:38",
+  "n_all": 3,
+  "pick_dir": "put",
+  "pick_et": "10:26",
+  "pick_gap": 48,
+  "n5": 0,
+  "dirs5": [],
+  "n15": 0,
+  "dirs15": [],
+  "grades_all": {
+   "X": 3
+  },
+  "status_all": {
+   "skipped_d": 3
+  }
+ },
+ {
+  "card": "ARM_2024-10-28",
+  "min": "09:39",
+  "n_all": 4,
+  "pick_dir": "call",
+  "pick_et": "09:39",
+  "pick_gap": 0,
+  "n5": 1,
+  "dirs5": [
+   "call"
+  ],
+  "n15": 1,
+  "dirs15": [
+   "call"
+  ],
+  "grades_all": {
+   "X": 3,
+   "B": 1
+  },
+  "status_all": {
+   "skipped_d": 3,
+   "fired": 1
+  }
+ },
+ {
+  "card": "ARM_2024-11-11",
+  "min": "10:12",
+  "n_all": 15,
+  "pick_dir": "put",
+  "pick_et": "10:16",
+  "pick_gap": 4,
+  "n5": 1,
+  "dirs5": [
+   "put"
+  ],
+  "n15": 4,
+  "dirs15": [
+   "put"
+  ],
+  "grades_all": {
+   "X": 13,
+   "B": 1,
+   "C": 1
+  },
+  "status_all": {
+   "skipped_d": 13,
+   "fired": 2
+  }
+ },
+ {
+  "card": "AVGO_2025-05-02",
+  "min": "09:42",
+  "n_all": 9,
+  "pick_dir": "put",
+  "pick_et": "09:51",
+  "pick_gap": 9,
+  "n5": 0,
+  "dirs5": [],
+  "n15": 1,
+  "dirs15": [
+   "put"
+  ],
+  "grades_all": {
+   "X": 8,
+   "B": 1
+  },
+  "status_all": {
+   "skipped_d": 8,
+   "fired": 1
+  }
+ },
+ {
+  "card": "AVGO_2025-10-10",
+  "min": "09:47",
+  "n_all": 18,
+  "pick_dir": "call",
+  "pick_et": "09:46",
+  "pick_gap": 1,
+  "n5": 3,
+  "dirs5": [
+   "call"
+  ],
+  "n15": 4,
+  "dirs15": [
+   "call"
+  ],
+  "grades_all": {
+   "X": 16,
+   "C": 2
+  },
+  "status_all": {
+   "skipped_d": 16,
+   "fired": 2
+  }
+ },
+ {
+  "card": "BABA_2025-02-05",
+  "min": "09:41",
+  "n_all": 10,
+  "pick_dir": "call",
+  "pick_et": "09:40",
+  "pick_gap": 1,
+  "n5": 1,
+  "dirs5": [
+   "call"
+  ],
+  "n15": 1,
+  "dirs15": [
+   "call"
+  ],
+  "grades_all": {
+   "X": 10
+  },
+  "status_all": {
+   "skipped_d": 10
+  }
+ },
+ {
+  "card": "BABA_2025-04-07",
+  "min": "10:10",
+  "n_all": 8,
+  "pick_dir": "call",
+  "pick_et": "10:19",
+  "pick_gap": 9,
+  "n5": 0,
+  "dirs5": [],
+  "n15": 3,
+  "dirs15": [
+   "call",
+   "put"
+  ],
+  "grades_all": {
+   "X": 6,
+   "C": 2
+  },
+  "status_all": {
+   "skipped_d": 6,
+   "skipped_tight": 2
+  }
+ },
+ {
+  "card": "BABA_2025-08-28",
+  "min": "09:44",
+  "n_all": 5,
+  "pick_dir": "call",
+  "pick_et": "09:46",
+  "pick_gap": 2,
+  "n5": 1,
+  "dirs5": [
+   "call"
+  ],
+  "n15": 1,
+  "dirs15": [
+   "call"
+  ],
+  "grades_all": {
+   "X": 5
+  },
+  "status_all": {
+   "skipped_d": 5
+  }
+ },
+ {
+  "card": "BABA_2026-06-12",
+  "min": "09:39",
+  "n_all": 6,
+  "pick_dir": "call",
+  "pick_et": "10:04",
+  "pick_gap": 25,
+  "n5": 0,
+  "dirs5": [],
+  "n15": 0,
+  "dirs15": [],
+  "grades_all": {
+   "X": 6
+  },
+  "status_all": {
+   "skipped_d": 6
+  }
+ },
+ {
+  "card": "COIN_2026-04-07",
+  "min": "09:42",
+  "n_all": 12,
+  "pick_dir": "put",
+  "pick_et": "09:38",
+  "pick_gap": 4,
+  "n5": 1,
+  "dirs5": [
+   "put"
+  ],
+  "n15": 1,
+  "dirs15": [
+   "put"
+  ],
+  "grades_all": {
+   "X": 12
+  },
+  "status_all": {
+   "skipped_d": 12
+  }
+ },
+ {
+  "card": "CRM_2025-09-19",
+  "min": "09:40",
+  "n_all": 6,
+  "pick_dir": "put",
+  "pick_et": "09:40",
+  "pick_gap": 0,
+  "n5": 1,
+  "dirs5": [
+   "put"
+  ],
+  "n15": 1,
+  "dirs15": [
+   "put"
+  ],
+  "grades_all": {
+   "X": 6
+  },
+  "status_all": {
+   "skipped_d": 6
+  }
+ },
+ {
+  "card": "CRM_2026-02-11",
+  "min": "09:42",
+  "n_all": 1,
+  "pick_dir": "put",
+  "pick_et": "10:50",
+  "pick_gap": 68,
+  "n5": 0,
+  "dirs5": [],
+  "n15": 0,
+  "dirs15": [],
+  "grades_all": {
+   "X": 1
+  },
+  "status_all": {
+   "skipped_d": 1
+  }
+ },
+ {
+  "card": "HOOD_2024-11-06",
+  "min": "10:19",
+  "n_all": 1,
+  "pick_dir": "call",
+  "pick_et": "10:18",
+  "pick_gap": 1,
+  "n5": 1,
+  "dirs5": [
+   "call"
+  ],
+  "n15": 1,
+  "dirs15": [
+   "call"
+  ],
+  "grades_all": {
+   "X": 1
+  },
+  "status_all": {
+   "skipped_d": 1
+  }
+ },
+ {
+  "card": "IWM_2026-05-01",
+  "min": "09:43",
+  "n_all": 6,
+  "pick_dir": "put",
+  "pick_et": "09:43",
+  "pick_gap": 0,
+  "n5": 4,
+  "dirs5": [
+   "put"
+  ],
+  "n15": 4,
+  "dirs15": [
+   "put"
+  ],
+  "grades_all": {
+   "X": 6
+  },
+  "status_all": {
+   "skipped_d": 6
+  }
+ },
+ {
+  "card": "MARA_2025-07-18",
+  "min": "09:38",
+  "n_all": 6,
+  "pick_dir": "call",
+  "pick_et": "09:46",
+  "pick_gap": 8,
+  "n5": 0,
+  "dirs5": [],
+  "n15": 1,
+  "dirs15": [
+   "call"
+  ],
+  "grades_all": {
+   "X": 6
+  },
+  "status_all": {
+   "skipped_d": 6
+  }
+ },
+ {
+  "card": "MSFT_2025-03-13",
+  "min": "09:49",
+  "n_all": 4,
+  "pick_dir": "put",
+  "pick_et": "09:49",
+  "pick_gap": 0,
+  "n5": 2,
+  "dirs5": [
+   "put"
+  ],
+  "n15": 2,
+  "dirs15": [
+   "put"
+  ],
+  "grades_all": {
+   "X": 4
+  },
+  "status_all": {
+   "skipped_d": 4
+  }
+ },
+ {
+  "card": "MSFT_2025-12-30",
+  "min": "09:44",
+  "n_all": 5,
+  "pick_dir": "call",
+  "pick_et": "09:44",
+  "pick_gap": 0,
+  "n5": 3,
+  "dirs5": [
+   "call"
+  ],
+  "n15": 5,
+  "dirs15": [
+   "call"
+  ],
+  "grades_all": {
+   "X": 5
+  },
+  "status_all": {
+   "skipped_d": 5
+  }
+ },
+ {
+  "card": "MSTR_2025-01-27",
+  "min": "09:52",
+  "n_all": 10,
+  "pick_dir": "call",
+  "pick_et": "10:00",
+  "pick_gap": 8,
+  "n5": 0,
+  "dirs5": [],
+  "n15": 1,
+  "dirs15": [
+   "call"
+  ],
+  "grades_all": {
+   "X": 10
+  },
+  "status_all": {
+   "skipped_d": 10
+  }
+ },
+ {
+  "card": "MSTR_2025-08-26",
+  "min": "09:38",
+  "n_all": 2,
+  "pick_dir": "call",
+  "pick_et": "10:00",
+  "pick_gap": 22,
+  "n5": 0,
+  "dirs5": [],
+  "n15": 0,
+  "dirs15": [],
+  "grades_all": {
+   "X": 2
+  },
+  "status_all": {
+   "skipped_d": 2
+  }
+ },
+ {
+  "card": "MSTR_2026-03-13",
+  "min": "09:41",
+  "n_all": 11,
+  "pick_dir": "put",
+  "pick_et": "09:41",
+  "pick_gap": 0,
+  "n5": 1,
+  "dirs5": [
+   "put"
+  ],
+  "n15": 2,
+  "dirs15": [
+   "call",
+   "put"
+  ],
+  "grades_all": {
+   "X": 9,
+   "B": 1,
+   "C": 1
+  },
+  "status_all": {
+   "skipped_d": 9,
+   "fired": 1,
+   "skipped_tight": 1
+  }
+ },
+ {
+  "card": "MSTR_2026-07-17",
+  "min": "09:42",
+  "n_all": 1,
+  "pick_dir": "put",
+  "pick_et": "09:45",
+  "pick_gap": 3,
+  "n5": 1,
+  "dirs5": [
+   "put"
+  ],
+  "n15": 1,
+  "dirs15": [
+   "put"
+  ],
+  "grades_all": {
+   "X": 1
+  },
+  "status_all": {
+   "skipped_d": 1
+  }
+ },
+ {
+  "card": "MU_2025-06-25",
+  "min": "09:38",
+  "n_all": 6,
+  "pick_dir": "call",
+  "pick_et": "10:08",
+  "pick_gap": 30,
+  "n5": 0,
+  "dirs5": [],
+  "n15": 0,
+  "dirs15": [],
+  "grades_all": {
+   "X": 5,
+   "C": 1
+  },
+  "status_all": {
+   "skipped_d": 5,
+   "skipped_tight": 1
+  }
+ },
+ {
+  "card": "NFLX_2024-08-05",
+  "min": "09:52",
+  "n_all": 2,
+  "pick_dir": "put",
+  "pick_et": "10:35",
+  "pick_gap": 43,
+  "n5": 0,
+  "dirs5": [],
+  "n15": 0,
+  "dirs15": [],
+  "grades_all": {
+   "X": 2
+  },
+  "status_all": {
+   "skipped_d": 2
+  }
+ },
+ {
+  "card": "NVDA_2025-04-29",
+  "min": "09:56",
+  "n_all": 6,
+  "pick_dir": "call",
+  "pick_et": "10:01",
+  "pick_gap": 5,
+  "n5": 1,
+  "dirs5": [
+   "call"
+  ],
+  "n15": 2,
+  "dirs15": [
+   "call"
+  ],
+  "grades_all": {
+   "X": 6
+  },
+  "status_all": {
+   "skipped_d": 6
+  }
+ },
+ {
+  "card": "PLTR_2024-03-11",
+  "min": "09:43",
+  "n_all": 11,
+  "pick_dir": "call",
+  "pick_et": "09:43",
+  "pick_gap": 0,
+  "n5": 2,
+  "dirs5": [
+   "call"
+  ],
+  "n15": 2,
+  "dirs15": [
+   "call"
+  ],
+  "grades_all": {
+   "X": 10,
+   "B": 1
+  },
+  "status_all": {
+   "skipped_d": 10,
+   "fired": 1
+  }
+ },
+ {
+  "card": "PLTR_2024-09-20",
+  "min": "09:41",
+  "n_all": 9,
+  "pick_dir": "put",
+  "pick_et": "10:05",
+  "pick_gap": 24,
+  "n5": 0,
+  "dirs5": [],
+  "n15": 0,
+  "dirs15": [],
+  "grades_all": {
+   "X": 9
+  },
+  "status_all": {
+   "skipped_d": 9
+  }
+ },
+ {
+  "card": "PLTR_2025-07-01",
+  "min": "09:34",
+  "n_all": 4,
+  "pick_dir": "put",
+  "pick_et": "10:18",
+  "pick_gap": 44,
+  "n5": 0,
+  "dirs5": [],
+  "n15": 0,
+  "dirs15": [],
+  "grades_all": {
+   "X": 4
+  },
+  "status_all": {
+   "skipped_d": 4
+  }
+ },
+ {
+  "card": "PLTR_2025-12-11",
+  "min": "09:52",
+  "n_all": 6,
+  "pick_dir": "put",
+  "pick_et": "09:52",
+  "pick_gap": 0,
+  "n5": 1,
+  "dirs5": [
+   "put"
+  ],
+  "n15": 2,
+  "dirs15": [
+   "put"
+  ],
+  "grades_all": {
+   "X": 6
+  },
+  "status_all": {
+   "skipped_d": 6
+  }
+ },
+ {
+  "card": "QQQ_2025-09-16",
+  "min": "09:36",
+  "n_all": 5,
+  "pick_dir": "put",
+  "pick_et": "09:35",
+  "pick_gap": 1,
+  "n5": 1,
+  "dirs5": [
+   "put"
+  ],
+  "n15": 4,
+  "dirs15": [
+   "call",
+   "put"
+  ],
+  "grades_all": {
+   "X": 5
+  },
+  "status_all": {
+   "skipped_d": 5
+  }
+ },
+ {
+  "card": "QQQ_2025-09-23",
+  "min": "09:39",
+  "n_all": 6,
+  "pick_dir": "put",
+  "pick_et": "09:39",
+  "pick_gap": 0,
+  "n5": 2,
+  "dirs5": [
+   "put"
+  ],
+  "n15": 3,
+  "dirs15": [
+   "put"
+  ],
+  "grades_all": {
+   "X": 6
+  },
+  "status_all": {
+   "skipped_d": 6
+  }
+ },
+ {
+  "card": "SMCI_2025-11-17",
+  "min": "10:06",
+  "n_all": 10,
+  "pick_dir": "put",
+  "pick_et": "10:05",
+  "pick_gap": 1,
+  "n5": 1,
+  "dirs5": [
+   "put"
+  ],
+  "n15": 3,
+  "dirs15": [
+   "put"
+  ],
+  "grades_all": {
+   "B": 1,
+   "X": 9
+  },
+  "status_all": {
+   "fired": 1,
+   "skipped_d": 9
+  }
+ },
+ {
+  "card": "SPCX_2026-06-25",
+  "min": "09:48",
+  "n_all": 4,
+  "pick_dir": "call",
+  "pick_et": "10:24",
+  "pick_gap": 36,
+  "n5": 0,
+  "dirs5": [],
+  "n15": 0,
+  "dirs15": [],
+  "grades_all": {
+   "X": 4
+  },
+  "status_all": {
+   "skipped_d": 4
+  }
+ },
+ {
+  "card": "TSM_2026-02-02",
+  "min": "09:36",
+  "n_all": 2,
+  "pick_dir": "call",
+  "pick_et": "09:35",
+  "pick_gap": 1,
+  "n5": 1,
+  "dirs5": [
+   "call"
+  ],
+  "n15": 1,
+  "dirs15": [
+   "call"
+  ],
+  "grades_all": {
+   "X": 2
+  },
+  "status_all": {
+   "skipped_d": 2
+  }
+ }
+]

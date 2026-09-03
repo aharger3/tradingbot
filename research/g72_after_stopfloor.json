@@ -1,0 +1,24 @@
+{
+  "book_loss_shape": {
+    "book_generated": "2026-08-29T18:38:17",
+    "traded_rows": 4508,
+    "losing_rows": 1828,
+    "exactly_minus_1R": 1775,
+    "worse_than_minus_1R": 0,
+    "at_the_minus_125_floor": 0,
+    "worst_loss_R": -1.0
+  },
+  "t11_with_resting_order_ON": {
+    "disaster_stop": "1",
+    "exit": 0,
+    "failing_checks": 0,
+    "last_line": "  resting -1R \u00e2\u20ac\u201d fills on an intrabar TOUCH at its own price, so it books exactly -1.00R and the floor never binds while it is on."
+  },
+  "t11_with_resting_order_OFF": {
+    "disaster_stop": "0",
+    "exit": 0,
+    "failing_checks": 0,
+    "last_line": "  resting -1R \u00e2\u20ac\u201d fills on an intrabar TOUCH at its own price, so it books exactly -1.00R and the floor never binds while it is on."
+  },
+  "verdict": "engine correct, and t11 now controls the resting order itself (green with it on and off) -- the blind spot is fixed"
+}

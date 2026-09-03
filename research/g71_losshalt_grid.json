@@ -1,0 +1,2481 @@
+{
+ "meta": {
+  "generated": "2026-08-29T03:14:29",
+  "first": "2024-08-21",
+  "last": "2026-08-21",
+  "sessions": 500,
+  "symbols": [
+   "NVDA",
+   "TSLA",
+   "AAPL",
+   "SPCX",
+   "MSFT",
+   "MU",
+   "INTC",
+   "PLTR",
+   "AMZN",
+   "META",
+   "AMD",
+   "GOOGL",
+   "ACHR",
+   "NFLX",
+   "ORCL",
+   "QQQ",
+   "SPY",
+   "IWM",
+   "SOFI",
+   "COIN",
+   "HOOD",
+   "IREN",
+   "AVGO",
+   "UBER",
+   "BABA",
+   "CRM",
+   "TSM",
+   "MARA"
+  ],
+  "risk_dollars": 1000.0,
+  "signals": 76019,
+  "loss_halt": true,
+  "halted": 857,
+  "traded": 2437
+ },
+ "sessions": 500,
+ "candidates": 3294,
+ "grid": {
+  "halt=1 stopwin=N floor=-1R": {
+   "trades": 1515,
+   "total_r": 989.11,
+   "mean_r_trade": 0.6529,
+   "sd_r_trade": 2.0469,
+   "se_mean_r": 0.0526,
+   "win_rate": 53.4,
+   "wins": 809,
+   "losses": 699,
+   "scratches": 7,
+   "traded_days": 496,
+   "mean_r_traded_day": 1.994,
+   "mean_r_session": 1.978,
+   "trades_per_traded_day": 3.05,
+   "months_green": 23,
+   "months_total": 25,
+   "weeks_green": 87,
+   "weeks_total": 105,
+   "max_dd_r": -16.45,
+   "worst_day_r": -3.48,
+   "best_day_r": 36.86,
+   "prop_breaches": {
+    "50k@2%": 204,
+    "50k@3%": 46,
+    "100k@2%": 37,
+    "100k@3%": 6
+   },
+   "arm": {
+    "halt_n": 1,
+    "stop_win": false,
+    "r_floor": -1.0
+   },
+   "r_per_dd": 60.1,
+   "boot_total_r": {
+    "delta": -670.06,
+    "lo95": -898.18,
+    "hi95": -461.03
+   }
+  },
+  "halt=1 stopwin=N floor=-2R": {
+   "trades": 1524,
+   "total_r": 984.69,
+   "mean_r_trade": 0.6461,
+   "sd_r_trade": 2.0457,
+   "se_mean_r": 0.0524,
+   "win_rate": 53.1,
+   "wins": 810,
+   "losses": 707,
+   "scratches": 7,
+   "traded_days": 496,
+   "mean_r_traded_day": 1.985,
+   "mean_r_session": 1.969,
+   "trades_per_traded_day": 3.07,
+   "months_green": 23,
+   "months_total": 25,
+   "weeks_green": 88,
+   "weeks_total": 105,
+   "max_dd_r": -16.45,
+   "worst_day_r": -5.78,
+   "best_day_r": 36.86,
+   "prop_breaches": {
+    "50k@2%": 203,
+    "50k@3%": 47,
+    "100k@2%": 40,
+    "100k@3%": 8
+   },
+   "arm": {
+    "halt_n": 1,
+    "stop_win": false,
+    "r_floor": -2.0
+   },
+   "r_per_dd": 59.9,
+   "boot_total_r": {
+    "delta": -674.48,
+    "lo95": -900.91,
+    "hi95": -463.35
+   }
+  },
+  "halt=1 stopwin=N floor=-3R": {
+   "trades": 1524,
+   "total_r": 984.69,
+   "mean_r_trade": 0.6461,
+   "sd_r_trade": 2.0457,
+   "se_mean_r": 0.0524,
+   "win_rate": 53.1,
+   "wins": 810,
+   "losses": 707,
+   "scratches": 7,
+   "traded_days": 496,
+   "mean_r_traded_day": 1.985,
+   "mean_r_session": 1.969,
+   "trades_per_traded_day": 3.07,
+   "months_green": 23,
+   "months_total": 25,
+   "weeks_green": 88,
+   "weeks_total": 105,
+   "max_dd_r": -16.45,
+   "worst_day_r": -5.78,
+   "best_day_r": 36.86,
+   "prop_breaches": {
+    "50k@2%": 203,
+    "50k@3%": 47,
+    "100k@2%": 40,
+    "100k@3%": 8
+   },
+   "arm": {
+    "halt_n": 1,
+    "stop_win": false,
+    "r_floor": -3.0
+   },
+   "r_per_dd": 59.9,
+   "boot_total_r": {
+    "delta": -674.48,
+    "lo95": -900.91,
+    "hi95": -463.35
+   }
+  },
+  "halt=1 stopwin=N floor=none": {
+   "trades": 1524,
+   "total_r": 984.69,
+   "mean_r_trade": 0.6461,
+   "sd_r_trade": 2.0457,
+   "se_mean_r": 0.0524,
+   "win_rate": 53.1,
+   "wins": 810,
+   "losses": 707,
+   "scratches": 7,
+   "traded_days": 496,
+   "mean_r_traded_day": 1.985,
+   "mean_r_session": 1.969,
+   "trades_per_traded_day": 3.07,
+   "months_green": 23,
+   "months_total": 25,
+   "weeks_green": 88,
+   "weeks_total": 105,
+   "max_dd_r": -16.45,
+   "worst_day_r": -5.78,
+   "best_day_r": 36.86,
+   "prop_breaches": {
+    "50k@2%": 203,
+    "50k@3%": 47,
+    "100k@2%": 40,
+    "100k@3%": 8
+   },
+   "arm": {
+    "halt_n": 1,
+    "stop_win": false,
+    "r_floor": null
+   },
+   "r_per_dd": 59.9,
+   "boot_total_r": {
+    "delta": -674.48,
+    "lo95": -900.91,
+    "hi95": -463.35
+   },
+   "max_1r_dollars": {
+    "50k@2%": 173,
+    "50k@3%": 259,
+    "100k@2%": 346,
+    "100k@3%": 519
+   }
+  },
+  "halt=1 stopwin=Y floor=-1R": {
+   "trades": 806,
+   "total_r": 536.31,
+   "mean_r_trade": 0.6654,
+   "sd_r_trade": 1.8979,
+   "se_mean_r": 0.0669,
+   "win_rate": 55.3,
+   "wins": 446,
+   "losses": 358,
+   "scratches": 2,
+   "traded_days": 496,
+   "mean_r_traded_day": 1.081,
+   "mean_r_session": 1.073,
+   "trades_per_traded_day": 1.62,
+   "months_green": 24,
+   "months_total": 25,
+   "weeks_green": 85,
+   "weeks_total": 105,
+   "max_dd_r": -19.11,
+   "worst_day_r": -3.39,
+   "best_day_r": 15.27,
+   "prop_breaches": {
+    "50k@2%": 190,
+    "50k@3%": 36,
+    "100k@2%": 34,
+    "100k@3%": 5
+   },
+   "arm": {
+    "halt_n": 1,
+    "stop_win": true,
+    "r_floor": -1.0
+   },
+   "r_per_dd": 28.1,
+   "boot_total_r": {
+    "delta": -1122.86,
+    "lo95": -1377.57,
+    "hi95": -874.91
+   }
+  },
+  "halt=1 stopwin=Y floor=-2R": {
+   "trades": 806,
+   "total_r": 536.31,
+   "mean_r_trade": 0.6654,
+   "sd_r_trade": 1.8979,
+   "se_mean_r": 0.0669,
+   "win_rate": 55.3,
+   "wins": 446,
+   "losses": 358,
+   "scratches": 2,
+   "traded_days": 496,
+   "mean_r_traded_day": 1.081,
+   "mean_r_session": 1.073,
+   "trades_per_traded_day": 1.62,
+   "months_green": 24,
+   "months_total": 25,
+   "weeks_green": 85,
+   "weeks_total": 105,
+   "max_dd_r": -19.11,
+   "worst_day_r": -3.39,
+   "best_day_r": 15.27,
+   "prop_breaches": {
+    "50k@2%": 190,
+    "50k@3%": 36,
+    "100k@2%": 34,
+    "100k@3%": 5
+   },
+   "arm": {
+    "halt_n": 1,
+    "stop_win": true,
+    "r_floor": -2.0
+   },
+   "r_per_dd": 28.1,
+   "boot_total_r": {
+    "delta": -1122.86,
+    "lo95": -1377.57,
+    "hi95": -874.91
+   }
+  },
+  "halt=1 stopwin=Y floor=-3R": {
+   "trades": 806,
+   "total_r": 536.31,
+   "mean_r_trade": 0.6654,
+   "sd_r_trade": 1.8979,
+   "se_mean_r": 0.0669,
+   "win_rate": 55.3,
+   "wins": 446,
+   "losses": 358,
+   "scratches": 2,
+   "traded_days": 496,
+   "mean_r_traded_day": 1.081,
+   "mean_r_session": 1.073,
+   "trades_per_traded_day": 1.62,
+   "months_green": 24,
+   "months_total": 25,
+   "weeks_green": 85,
+   "weeks_total": 105,
+   "max_dd_r": -19.11,
+   "worst_day_r": -3.39,
+   "best_day_r": 15.27,
+   "prop_breaches": {
+    "50k@2%": 190,
+    "50k@3%": 36,
+    "100k@2%": 34,
+    "100k@3%": 5
+   },
+   "arm": {
+    "halt_n": 1,
+    "stop_win": true,
+    "r_floor": -3.0
+   },
+   "r_per_dd": 28.1,
+   "boot_total_r": {
+    "delta": -1122.86,
+    "lo95": -1377.57,
+    "hi95": -874.91
+   }
+  },
+  "halt=1 stopwin=Y floor=none": {
+   "trades": 806,
+   "total_r": 536.31,
+   "mean_r_trade": 0.6654,
+   "sd_r_trade": 1.8979,
+   "se_mean_r": 0.0669,
+   "win_rate": 55.3,
+   "wins": 446,
+   "losses": 358,
+   "scratches": 2,
+   "traded_days": 496,
+   "mean_r_traded_day": 1.081,
+   "mean_r_session": 1.073,
+   "trades_per_traded_day": 1.62,
+   "months_green": 24,
+   "months_total": 25,
+   "weeks_green": 85,
+   "weeks_total": 105,
+   "max_dd_r": -19.11,
+   "worst_day_r": -3.39,
+   "best_day_r": 15.27,
+   "prop_breaches": {
+    "50k@2%": 190,
+    "50k@3%": 36,
+    "100k@2%": 34,
+    "100k@3%": 5
+   },
+   "arm": {
+    "halt_n": 1,
+    "stop_win": true,
+    "r_floor": null
+   },
+   "r_per_dd": 28.1,
+   "boot_total_r": {
+    "delta": -1122.86,
+    "lo95": -1377.57,
+    "hi95": -874.91
+   }
+  },
+  "halt=2 stopwin=N floor=-1R": {
+   "trades": 1900,
+   "total_r": 1204.92,
+   "mean_r_trade": 0.6342,
+   "sd_r_trade": 2.169,
+   "se_mean_r": 0.0498,
+   "win_rate": 51.2,
+   "wins": 973,
+   "losses": 914,
+   "scratches": 13,
+   "traded_days": 496,
+   "mean_r_traded_day": 2.429,
+   "mean_r_session": 2.41,
+   "trades_per_traded_day": 3.83,
+   "months_green": 25,
+   "months_total": 25,
+   "weeks_green": 88,
+   "weeks_total": 105,
+   "max_dd_r": -17.45,
+   "worst_day_r": -3.48,
+   "best_day_r": 37.77,
+   "prop_breaches": {
+    "50k@2%": 230,
+    "50k@3%": 62,
+    "100k@2%": 41,
+    "100k@3%": 6
+   },
+   "arm": {
+    "halt_n": 2,
+    "stop_win": false,
+    "r_floor": -1.0
+   },
+   "r_per_dd": 69.0,
+   "boot_total_r": {
+    "delta": -454.25,
+    "lo95": -635.43,
+    "hi95": -287.53
+   }
+  },
+  "halt=2 stopwin=N floor=-2R": {
+   "trades": 2424,
+   "total_r": 1337.92,
+   "mean_r_trade": 0.5519,
+   "sd_r_trade": 2.1195,
+   "se_mean_r": 0.0431,
+   "win_rate": 49.3,
+   "wins": 1194,
+   "losses": 1213,
+   "scratches": 17,
+   "traded_days": 496,
+   "mean_r_traded_day": 2.697,
+   "mean_r_session": 2.676,
+   "trades_per_traded_day": 4.89,
+   "months_green": 25,
+   "months_total": 25,
+   "weeks_green": 90,
+   "weeks_total": 105,
+   "max_dd_r": -13.71,
+   "worst_day_r": -5.78,
+   "best_day_r": 37.77,
+   "prop_breaches": {
+    "50k@2%": 171,
+    "50k@3%": 148,
+    "100k@2%": 123,
+    "100k@3%": 36
+   },
+   "arm": {
+    "halt_n": 2,
+    "stop_win": false,
+    "r_floor": -2.0
+   },
+   "r_per_dd": 97.6,
+   "boot_total_r": {
+    "delta": -321.24,
+    "lo95": -487.43,
+    "hi95": -174.79
+   },
+   "max_1r_dollars": {
+    "50k@2%": 173,
+    "50k@3%": 259,
+    "100k@2%": 346,
+    "100k@3%": 519
+   }
+  },
+  "halt=2 stopwin=N floor=-3R": {
+   "trades": 2435,
+   "total_r": 1341.09,
+   "mean_r_trade": 0.5508,
+   "sd_r_trade": 2.1197,
+   "se_mean_r": 0.043,
+   "win_rate": 49.2,
+   "wins": 1198,
+   "losses": 1220,
+   "scratches": 17,
+   "traded_days": 496,
+   "mean_r_traded_day": 2.704,
+   "mean_r_session": 2.682,
+   "trades_per_traded_day": 4.91,
+   "months_green": 25,
+   "months_total": 25,
+   "weeks_green": 91,
+   "weeks_total": 105,
+   "max_dd_r": -14.71,
+   "worst_day_r": -5.78,
+   "best_day_r": 37.77,
+   "prop_breaches": {
+    "50k@2%": 170,
+    "50k@3%": 147,
+    "100k@2%": 120,
+    "100k@3%": 37
+   },
+   "arm": {
+    "halt_n": 2,
+    "stop_win": false,
+    "r_floor": -3.0
+   },
+   "r_per_dd": 91.2,
+   "boot_total_r": {
+    "delta": -318.08,
+    "lo95": -480.34,
+    "hi95": -171.3
+   }
+  },
+  "halt=2 stopwin=N floor=none": {
+   "trades": 2437,
+   "total_r": 1339.09,
+   "mean_r_trade": 0.5495,
+   "sd_r_trade": 2.1192,
+   "se_mean_r": 0.0429,
+   "win_rate": 49.2,
+   "wins": 1198,
+   "losses": 1222,
+   "scratches": 17,
+   "traded_days": 496,
+   "mean_r_traded_day": 2.7,
+   "mean_r_session": 2.678,
+   "trades_per_traded_day": 4.91,
+   "months_green": 25,
+   "months_total": 25,
+   "weeks_green": 91,
+   "weeks_total": 105,
+   "max_dd_r": -14.71,
+   "worst_day_r": -5.78,
+   "best_day_r": 37.77,
+   "prop_breaches": {
+    "50k@2%": 170,
+    "50k@3%": 147,
+    "100k@2%": 120,
+    "100k@3%": 37
+   },
+   "arm": {
+    "halt_n": 2,
+    "stop_win": false,
+    "r_floor": null
+   },
+   "r_per_dd": 91.0,
+   "boot_total_r": {
+    "delta": -320.08,
+    "lo95": -482.33,
+    "hi95": -173.34
+   },
+   "max_1r_dollars": {
+    "50k@2%": 173,
+    "50k@3%": 259,
+    "100k@2%": 346,
+    "100k@3%": 519
+   }
+  },
+  "halt=2 stopwin=Y floor=-1R": {
+   "trades": 810,
+   "total_r": 537.05,
+   "mean_r_trade": 0.663,
+   "sd_r_trade": 1.899,
+   "se_mean_r": 0.0667,
+   "win_rate": 55.2,
+   "wins": 447,
+   "losses": 361,
+   "scratches": 2,
+   "traded_days": 496,
+   "mean_r_traded_day": 1.083,
+   "mean_r_session": 1.074,
+   "trades_per_traded_day": 1.63,
+   "months_green": 24,
+   "months_total": 25,
+   "weeks_green": 84,
+   "weeks_total": 105,
+   "max_dd_r": -19.11,
+   "worst_day_r": -3.39,
+   "best_day_r": 15.27,
+   "prop_breaches": {
+    "50k@2%": 192,
+    "50k@3%": 36,
+    "100k@2%": 34,
+    "100k@3%": 5
+   },
+   "arm": {
+    "halt_n": 2,
+    "stop_win": true,
+    "r_floor": -1.0
+   },
+   "r_per_dd": 28.1,
+   "boot_total_r": {
+    "delta": -1122.12,
+    "lo95": -1376.89,
+    "hi95": -874.23
+   }
+  },
+  "halt=2 stopwin=Y floor=-2R": {
+   "trades": 1098,
+   "total_r": 647.7,
+   "mean_r_trade": 0.5899,
+   "sd_r_trade": 1.9193,
+   "se_mean_r": 0.0579,
+   "win_rate": 53.3,
+   "wins": 585,
+   "losses": 511,
+   "scratches": 2,
+   "traded_days": 496,
+   "mean_r_traded_day": 1.306,
+   "mean_r_session": 1.295,
+   "trades_per_traded_day": 2.21,
+   "months_green": 24,
+   "months_total": 25,
+   "weeks_green": 86,
+   "weeks_total": 105,
+   "max_dd_r": -16.64,
+   "worst_day_r": -4.0,
+   "best_day_r": 15.27,
+   "prop_breaches": {
+    "50k@2%": 123,
+    "50k@3%": 105,
+    "100k@2%": 96,
+    "100k@3%": 21
+   },
+   "arm": {
+    "halt_n": 2,
+    "stop_win": true,
+    "r_floor": -2.0
+   },
+   "r_per_dd": 38.9,
+   "boot_total_r": {
+    "delta": -1011.47,
+    "lo95": -1255.69,
+    "hi95": -770.16
+   }
+  },
+  "halt=2 stopwin=Y floor=-3R": {
+   "trades": 1098,
+   "total_r": 647.7,
+   "mean_r_trade": 0.5899,
+   "sd_r_trade": 1.9193,
+   "se_mean_r": 0.0579,
+   "win_rate": 53.3,
+   "wins": 585,
+   "losses": 511,
+   "scratches": 2,
+   "traded_days": 496,
+   "mean_r_traded_day": 1.306,
+   "mean_r_session": 1.295,
+   "trades_per_traded_day": 2.21,
+   "months_green": 24,
+   "months_total": 25,
+   "weeks_green": 86,
+   "weeks_total": 105,
+   "max_dd_r": -16.64,
+   "worst_day_r": -4.0,
+   "best_day_r": 15.27,
+   "prop_breaches": {
+    "50k@2%": 123,
+    "50k@3%": 105,
+    "100k@2%": 96,
+    "100k@3%": 21
+   },
+   "arm": {
+    "halt_n": 2,
+    "stop_win": true,
+    "r_floor": -3.0
+   },
+   "r_per_dd": 38.9,
+   "boot_total_r": {
+    "delta": -1011.47,
+    "lo95": -1255.69,
+    "hi95": -770.16
+   }
+  },
+  "halt=2 stopwin=Y floor=none": {
+   "trades": 1098,
+   "total_r": 647.7,
+   "mean_r_trade": 0.5899,
+   "sd_r_trade": 1.9193,
+   "se_mean_r": 0.0579,
+   "win_rate": 53.3,
+   "wins": 585,
+   "losses": 511,
+   "scratches": 2,
+   "traded_days": 496,
+   "mean_r_traded_day": 1.306,
+   "mean_r_session": 1.295,
+   "trades_per_traded_day": 2.21,
+   "months_green": 24,
+   "months_total": 25,
+   "weeks_green": 86,
+   "weeks_total": 105,
+   "max_dd_r": -16.64,
+   "worst_day_r": -4.0,
+   "best_day_r": 15.27,
+   "prop_breaches": {
+    "50k@2%": 123,
+    "50k@3%": 105,
+    "100k@2%": 96,
+    "100k@3%": 21
+   },
+   "arm": {
+    "halt_n": 2,
+    "stop_win": true,
+    "r_floor": null
+   },
+   "r_per_dd": 38.9,
+   "boot_total_r": {
+    "delta": -1011.47,
+    "lo95": -1255.69,
+    "hi95": -770.16
+   }
+  },
+  "halt=3 stopwin=N floor=-1R": {
+   "trades": 2013,
+   "total_r": 1241.38,
+   "mean_r_trade": 0.6167,
+   "sd_r_trade": 2.1715,
+   "se_mean_r": 0.0484,
+   "win_rate": 50.4,
+   "wins": 1014,
+   "losses": 984,
+   "scratches": 15,
+   "traded_days": 496,
+   "mean_r_traded_day": 2.503,
+   "mean_r_session": 2.483,
+   "trades_per_traded_day": 4.06,
+   "months_green": 25,
+   "months_total": 25,
+   "weeks_green": 88,
+   "weeks_total": 105,
+   "max_dd_r": -17.45,
+   "worst_day_r": -3.48,
+   "best_day_r": 37.77,
+   "prop_breaches": {
+    "50k@2%": 241,
+    "50k@3%": 68,
+    "100k@2%": 42,
+    "100k@3%": 6
+   },
+   "arm": {
+    "halt_n": 3,
+    "stop_win": false,
+    "r_floor": -1.0
+   },
+   "r_per_dd": 71.1,
+   "boot_total_r": {
+    "delta": -417.79,
+    "lo95": -594.84,
+    "hi95": -252.03
+   }
+  },
+  "halt=3 stopwin=N floor=-2R": {
+   "trades": 2599,
+   "total_r": 1366.5,
+   "mean_r_trade": 0.5258,
+   "sd_r_trade": 2.1134,
+   "se_mean_r": 0.0415,
+   "win_rate": 48.2,
+   "wins": 1254,
+   "losses": 1326,
+   "scratches": 19,
+   "traded_days": 496,
+   "mean_r_traded_day": 2.755,
+   "mean_r_session": 2.733,
+   "trades_per_traded_day": 5.24,
+   "months_green": 25,
+   "months_total": 25,
+   "weeks_green": 91,
+   "weeks_total": 105,
+   "max_dd_r": -14.94,
+   "worst_day_r": -5.78,
+   "best_day_r": 37.77,
+   "prop_breaches": {
+    "50k@2%": 180,
+    "50k@3%": 159,
+    "100k@2%": 138,
+    "100k@3%": 37
+   },
+   "arm": {
+    "halt_n": 3,
+    "stop_win": false,
+    "r_floor": -2.0
+   },
+   "r_per_dd": 91.5,
+   "boot_total_r": {
+    "delta": -292.67,
+    "lo95": -452.37,
+    "hi95": -152.1
+   },
+   "max_1r_dollars": {
+    "50k@2%": 173,
+    "50k@3%": 259,
+    "100k@2%": 346,
+    "100k@3%": 519
+   }
+  },
+  "halt=3 stopwin=N floor=-3R": {
+   "trades": 2839,
+   "total_r": 1472.02,
+   "mean_r_trade": 0.5185,
+   "sd_r_trade": 2.1239,
+   "se_mean_r": 0.0399,
+   "win_rate": 48.0,
+   "wins": 1364,
+   "losses": 1456,
+   "scratches": 19,
+   "traded_days": 496,
+   "mean_r_traded_day": 2.968,
+   "mean_r_session": 2.944,
+   "trades_per_traded_day": 5.72,
+   "months_green": 24,
+   "months_total": 25,
+   "weeks_green": 93,
+   "weeks_total": 105,
+   "max_dd_r": -18.71,
+   "worst_day_r": -6.78,
+   "best_day_r": 37.77,
+   "prop_breaches": {
+    "50k@2%": 149,
+    "50k@3%": 125,
+    "100k@2%": 103,
+    "100k@3%": 70
+   },
+   "arm": {
+    "halt_n": 3,
+    "stop_win": false,
+    "r_floor": -3.0
+   },
+   "r_per_dd": 78.7,
+   "boot_total_r": {
+    "delta": -187.15,
+    "lo95": -327.77,
+    "hi95": -66.77
+   }
+  },
+  "halt=3 stopwin=N floor=none": {
+   "trades": 2863,
+   "total_r": 1465.89,
+   "mean_r_trade": 0.512,
+   "sd_r_trade": 2.1222,
+   "se_mean_r": 0.0397,
+   "win_rate": 47.9,
+   "wins": 1370,
+   "losses": 1474,
+   "scratches": 19,
+   "traded_days": 496,
+   "mean_r_traded_day": 2.955,
+   "mean_r_session": 2.932,
+   "trades_per_traded_day": 5.77,
+   "months_green": 24,
+   "months_total": 25,
+   "weeks_green": 92,
+   "weeks_total": 105,
+   "max_dd_r": -18.71,
+   "worst_day_r": -7.59,
+   "best_day_r": 37.77,
+   "prop_breaches": {
+    "50k@2%": 148,
+    "50k@3%": 124,
+    "100k@2%": 102,
+    "100k@3%": 69
+   },
+   "arm": {
+    "halt_n": 3,
+    "stop_win": false,
+    "r_floor": null
+   },
+   "r_per_dd": 78.3,
+   "boot_total_r": {
+    "delta": -193.28,
+    "lo95": -329.85,
+    "hi95": -76.27
+   }
+  },
+  "halt=3 stopwin=Y floor=-1R": {
+   "trades": 811,
+   "total_r": 539.05,
+   "mean_r_trade": 0.6647,
+   "sd_r_trade": 1.8984,
+   "se_mean_r": 0.0667,
+   "win_rate": 55.2,
+   "wins": 448,
+   "losses": 361,
+   "scratches": 2,
+   "traded_days": 496,
+   "mean_r_traded_day": 1.087,
+   "mean_r_session": 1.078,
+   "trades_per_traded_day": 1.64,
+   "months_green": 24,
+   "months_total": 25,
+   "weeks_green": 84,
+   "weeks_total": 105,
+   "max_dd_r": -19.11,
+   "worst_day_r": -3.39,
+   "best_day_r": 15.27,
+   "prop_breaches": {
+    "50k@2%": 192,
+    "50k@3%": 36,
+    "100k@2%": 34,
+    "100k@3%": 5
+   },
+   "arm": {
+    "halt_n": 3,
+    "stop_win": true,
+    "r_floor": -1.0
+   },
+   "r_per_dd": 28.2,
+   "boot_total_r": {
+    "delta": -1120.12,
+    "lo95": -1373.56,
+    "hi95": -872.23
+   }
+  },
+  "halt=3 stopwin=Y floor=-2R": {
+   "trades": 1106,
+   "total_r": 644.69,
+   "mean_r_trade": 0.5829,
+   "sd_r_trade": 1.9164,
+   "se_mean_r": 0.0576,
+   "win_rate": 53.1,
+   "wins": 587,
+   "losses": 517,
+   "scratches": 2,
+   "traded_days": 496,
+   "mean_r_traded_day": 1.3,
+   "mean_r_session": 1.289,
+   "trades_per_traded_day": 2.23,
+   "months_green": 24,
+   "months_total": 25,
+   "weeks_green": 86,
+   "weeks_total": 105,
+   "max_dd_r": -16.64,
+   "worst_day_r": -4.0,
+   "best_day_r": 15.27,
+   "prop_breaches": {
+    "50k@2%": 123,
+    "50k@3%": 108,
+    "100k@2%": 99,
+    "100k@3%": 21
+   },
+   "arm": {
+    "halt_n": 3,
+    "stop_win": true,
+    "r_floor": -2.0
+   },
+   "r_per_dd": 38.7,
+   "boot_total_r": {
+    "delta": -1014.48,
+    "lo95": -1258.59,
+    "hi95": -772.67
+   }
+  },
+  "halt=3 stopwin=Y floor=-3R": {
+   "trades": 1232,
+   "total_r": 687.53,
+   "mean_r_trade": 0.5581,
+   "sd_r_trade": 1.9303,
+   "se_mean_r": 0.055,
+   "win_rate": 52.4,
+   "wins": 646,
+   "losses": 584,
+   "scratches": 2,
+   "traded_days": 496,
+   "mean_r_traded_day": 1.386,
+   "mean_r_session": 1.375,
+   "trades_per_traded_day": 2.48,
+   "months_green": 25,
+   "months_total": 25,
+   "weeks_green": 89,
+   "weeks_total": 105,
+   "max_dd_r": -17.53,
+   "worst_day_r": -5.0,
+   "best_day_r": 17.65,
+   "prop_breaches": {
+    "50k@2%": 98,
+    "50k@3%": 81,
+    "100k@2%": 66,
+    "100k@3%": 50
+   },
+   "arm": {
+    "halt_n": 3,
+    "stop_win": true,
+    "r_floor": -3.0
+   },
+   "r_per_dd": 39.2,
+   "boot_total_r": {
+    "delta": -971.64,
+    "lo95": -1212.13,
+    "hi95": -736.18
+   }
+  },
+  "halt=3 stopwin=Y floor=none": {
+   "trades": 1232,
+   "total_r": 687.53,
+   "mean_r_trade": 0.5581,
+   "sd_r_trade": 1.9303,
+   "se_mean_r": 0.055,
+   "win_rate": 52.4,
+   "wins": 646,
+   "losses": 584,
+   "scratches": 2,
+   "traded_days": 496,
+   "mean_r_traded_day": 1.386,
+   "mean_r_session": 1.375,
+   "trades_per_traded_day": 2.48,
+   "months_green": 25,
+   "months_total": 25,
+   "weeks_green": 89,
+   "weeks_total": 105,
+   "max_dd_r": -17.53,
+   "worst_day_r": -5.0,
+   "best_day_r": 17.65,
+   "prop_breaches": {
+    "50k@2%": 98,
+    "50k@3%": 81,
+    "100k@2%": 66,
+    "100k@3%": 50
+   },
+   "arm": {
+    "halt_n": 3,
+    "stop_win": true,
+    "r_floor": null
+   },
+   "r_per_dd": 39.2,
+   "boot_total_r": {
+    "delta": -971.64,
+    "lo95": -1212.13,
+    "hi95": -736.18
+   }
+  },
+  "halt=4 stopwin=N floor=-1R": {
+   "trades": 2047,
+   "total_r": 1236.64,
+   "mean_r_trade": 0.6041,
+   "sd_r_trade": 2.1676,
+   "se_mean_r": 0.0479,
+   "win_rate": 49.9,
+   "wins": 1021,
+   "losses": 1011,
+   "scratches": 15,
+   "traded_days": 496,
+   "mean_r_traded_day": 2.493,
+   "mean_r_session": 2.473,
+   "trades_per_traded_day": 4.13,
+   "months_green": 25,
+   "months_total": 25,
+   "weeks_green": 90,
+   "weeks_total": 105,
+   "max_dd_r": -17.45,
+   "worst_day_r": -3.48,
+   "best_day_r": 37.77,
+   "prop_breaches": {
+    "50k@2%": 243,
+    "50k@3%": 71,
+    "100k@2%": 44,
+    "100k@3%": 6
+   },
+   "arm": {
+    "halt_n": 4,
+    "stop_win": false,
+    "r_floor": -1.0
+   },
+   "r_per_dd": 70.9,
+   "boot_total_r": {
+    "delta": -422.53,
+    "lo95": -597.79,
+    "hi95": -257.42
+   }
+  },
+  "halt=4 stopwin=N floor=-2R": {
+   "trades": 2662,
+   "total_r": 1371.07,
+   "mean_r_trade": 0.5151,
+   "sd_r_trade": 2.1127,
+   "se_mean_r": 0.0409,
+   "win_rate": 47.7,
+   "wins": 1271,
+   "losses": 1372,
+   "scratches": 19,
+   "traded_days": 496,
+   "mean_r_traded_day": 2.764,
+   "mean_r_session": 2.742,
+   "trades_per_traded_day": 5.37,
+   "months_green": 25,
+   "months_total": 25,
+   "weeks_green": 91,
+   "weeks_total": 105,
+   "max_dd_r": -15.94,
+   "worst_day_r": -5.78,
+   "best_day_r": 37.77,
+   "prop_breaches": {
+    "50k@2%": 180,
+    "50k@3%": 164,
+    "100k@2%": 146,
+    "100k@3%": 37
+   },
+   "arm": {
+    "halt_n": 4,
+    "stop_win": false,
+    "r_floor": -2.0
+   },
+   "r_per_dd": 86.0,
+   "boot_total_r": {
+    "delta": -288.1,
+    "lo95": -443.71,
+    "hi95": -148.42
+   }
+  },
+  "halt=4 stopwin=N floor=-3R": {
+   "trades": 2935,
+   "total_r": 1484.2,
+   "mean_r_trade": 0.5057,
+   "sd_r_trade": 2.1197,
+   "se_mean_r": 0.0391,
+   "win_rate": 47.5,
+   "wins": 1394,
+   "losses": 1522,
+   "scratches": 19,
+   "traded_days": 496,
+   "mean_r_traded_day": 2.992,
+   "mean_r_session": 2.968,
+   "trades_per_traded_day": 5.92,
+   "months_green": 25,
+   "months_total": 25,
+   "weeks_green": 93,
+   "weeks_total": 105,
+   "max_dd_r": -22.19,
+   "worst_day_r": -6.78,
+   "best_day_r": 37.77,
+   "prop_breaches": {
+    "50k@2%": 145,
+    "50k@3%": 127,
+    "100k@2%": 107,
+    "100k@3%": 77
+   },
+   "arm": {
+    "halt_n": 4,
+    "stop_win": false,
+    "r_floor": -3.0
+   },
+   "r_per_dd": 66.9,
+   "boot_total_r": {
+    "delta": -174.97,
+    "lo95": -312.29,
+    "hi95": -59.77
+   }
+  },
+  "halt=4 stopwin=N floor=none": {
+   "trades": 3084,
+   "total_r": 1516.41,
+   "mean_r_trade": 0.4917,
+   "sd_r_trade": 2.1125,
+   "se_mean_r": 0.038,
+   "win_rate": 46.9,
+   "wins": 1446,
+   "losses": 1617,
+   "scratches": 21,
+   "traded_days": 496,
+   "mean_r_traded_day": 3.057,
+   "mean_r_session": 3.033,
+   "trades_per_traded_day": 6.22,
+   "months_green": 25,
+   "months_total": 25,
+   "weeks_green": 93,
+   "weeks_total": 105,
+   "max_dd_r": -25.19,
+   "worst_day_r": -9.59,
+   "best_day_r": 37.77,
+   "prop_breaches": {
+    "50k@2%": 134,
+    "50k@3%": 112,
+    "100k@2%": 92,
+    "100k@3%": 63
+   },
+   "arm": {
+    "halt_n": 4,
+    "stop_win": false,
+    "r_floor": null
+   },
+   "r_per_dd": 60.2,
+   "boot_total_r": {
+    "delta": -142.76,
+    "lo95": -262.76,
+    "hi95": -47.22
+   }
+  },
+  "halt=4 stopwin=Y floor=-1R": {
+   "trades": 811,
+   "total_r": 539.05,
+   "mean_r_trade": 0.6647,
+   "sd_r_trade": 1.8984,
+   "se_mean_r": 0.0667,
+   "win_rate": 55.2,
+   "wins": 448,
+   "losses": 361,
+   "scratches": 2,
+   "traded_days": 496,
+   "mean_r_traded_day": 1.087,
+   "mean_r_session": 1.078,
+   "trades_per_traded_day": 1.64,
+   "months_green": 24,
+   "months_total": 25,
+   "weeks_green": 84,
+   "weeks_total": 105,
+   "max_dd_r": -19.11,
+   "worst_day_r": -3.39,
+   "best_day_r": 15.27,
+   "prop_breaches": {
+    "50k@2%": 192,
+    "50k@3%": 36,
+    "100k@2%": 34,
+    "100k@3%": 5
+   },
+   "arm": {
+    "halt_n": 4,
+    "stop_win": true,
+    "r_floor": -1.0
+   },
+   "r_per_dd": 28.2,
+   "boot_total_r": {
+    "delta": -1120.12,
+    "lo95": -1373.56,
+    "hi95": -872.23
+   }
+  },
+  "halt=4 stopwin=Y floor=-2R": {
+   "trades": 1106,
+   "total_r": 644.69,
+   "mean_r_trade": 0.5829,
+   "sd_r_trade": 1.9164,
+   "se_mean_r": 0.0576,
+   "win_rate": 53.1,
+   "wins": 587,
+   "losses": 517,
+   "scratches": 2,
+   "traded_days": 496,
+   "mean_r_traded_day": 1.3,
+   "mean_r_session": 1.289,
+   "trades_per_traded_day": 2.23,
+   "months_green": 24,
+   "months_total": 25,
+   "weeks_green": 86,
+   "weeks_total": 105,
+   "max_dd_r": -16.64,
+   "worst_day_r": -4.0,
+   "best_day_r": 15.27,
+   "prop_breaches": {
+    "50k@2%": 123,
+    "50k@3%": 108,
+    "100k@2%": 99,
+    "100k@3%": 21
+   },
+   "arm": {
+    "halt_n": 4,
+    "stop_win": true,
+    "r_floor": -2.0
+   },
+   "r_per_dd": 38.7,
+   "boot_total_r": {
+    "delta": -1014.48,
+    "lo95": -1258.59,
+    "hi95": -772.67
+   }
+  },
+  "halt=4 stopwin=Y floor=-3R": {
+   "trades": 1235,
+   "total_r": 687.31,
+   "mean_r_trade": 0.5565,
+   "sd_r_trade": 1.9292,
+   "se_mean_r": 0.0549,
+   "win_rate": 52.4,
+   "wins": 647,
+   "losses": 586,
+   "scratches": 2,
+   "traded_days": 496,
+   "mean_r_traded_day": 1.386,
+   "mean_r_session": 1.375,
+   "trades_per_traded_day": 2.49,
+   "months_green": 25,
+   "months_total": 25,
+   "weeks_green": 88,
+   "weeks_total": 105,
+   "max_dd_r": -17.53,
+   "worst_day_r": -5.0,
+   "best_day_r": 17.65,
+   "prop_breaches": {
+    "50k@2%": 98,
+    "50k@3%": 80,
+    "100k@2%": 65,
+    "100k@3%": 50
+   },
+   "arm": {
+    "halt_n": 4,
+    "stop_win": true,
+    "r_floor": -3.0
+   },
+   "r_per_dd": 39.2,
+   "boot_total_r": {
+    "delta": -971.86,
+    "lo95": -1212.97,
+    "hi95": -735.17
+   }
+  },
+  "halt=4 stopwin=Y floor=none": {
+   "trades": 1296,
+   "total_r": 698.38,
+   "mean_r_trade": 0.5389,
+   "sd_r_trade": 1.9294,
+   "se_mean_r": 0.0536,
+   "win_rate": 51.5,
+   "wins": 667,
+   "losses": 627,
+   "scratches": 2,
+   "traded_days": 496,
+   "mean_r_traded_day": 1.408,
+   "mean_r_session": 1.397,
+   "trades_per_traded_day": 2.61,
+   "months_green": 23,
+   "months_total": 25,
+   "weeks_green": 87,
+   "weeks_total": 105,
+   "max_dd_r": -19.39,
+   "worst_day_r": -8.0,
+   "best_day_r": 17.65,
+   "prop_breaches": {
+    "50k@2%": 93,
+    "50k@3%": 72,
+    "100k@2%": 58,
+    "100k@3%": 41
+   },
+   "arm": {
+    "halt_n": 4,
+    "stop_win": true,
+    "r_floor": null
+   },
+   "r_per_dd": 36.0,
+   "boot_total_r": {
+    "delta": -960.79,
+    "lo95": -1199.08,
+    "hi95": -727.94
+   }
+  },
+  "halt=none stopwin=N floor=-1R": {
+   "trades": 2077,
+   "total_r": 1256.49,
+   "mean_r_trade": 0.605,
+   "sd_r_trade": 2.1743,
+   "se_mean_r": 0.0477,
+   "win_rate": 49.6,
+   "wins": 1031,
+   "losses": 1030,
+   "scratches": 16,
+   "traded_days": 496,
+   "mean_r_traded_day": 2.533,
+   "mean_r_session": 2.513,
+   "trades_per_traded_day": 4.19,
+   "months_green": 25,
+   "months_total": 25,
+   "weeks_green": 90,
+   "weeks_total": 105,
+   "max_dd_r": -17.45,
+   "worst_day_r": -3.48,
+   "best_day_r": 37.77,
+   "prop_breaches": {
+    "50k@2%": 244,
+    "50k@3%": 72,
+    "100k@2%": 44,
+    "100k@3%": 6
+   },
+   "arm": {
+    "halt_n": null,
+    "stop_win": false,
+    "r_floor": -1.0
+   },
+   "r_per_dd": 72.0,
+   "boot_total_r": {
+    "delta": -402.68,
+    "lo95": -577.44,
+    "hi95": -243.41
+   }
+  },
+  "halt=none stopwin=N floor=-2R": {
+   "trades": 2702,
+   "total_r": 1389.84,
+   "mean_r_trade": 0.5144,
+   "sd_r_trade": 2.1182,
+   "se_mean_r": 0.0408,
+   "win_rate": 47.5,
+   "wins": 1283,
+   "losses": 1399,
+   "scratches": 20,
+   "traded_days": 496,
+   "mean_r_traded_day": 2.802,
+   "mean_r_session": 2.78,
+   "trades_per_traded_day": 5.45,
+   "months_green": 25,
+   "months_total": 25,
+   "weeks_green": 91,
+   "weeks_total": 105,
+   "max_dd_r": -15.94,
+   "worst_day_r": -5.78,
+   "best_day_r": 37.77,
+   "prop_breaches": {
+    "50k@2%": 180,
+    "50k@3%": 167,
+    "100k@2%": 152,
+    "100k@3%": 38
+   },
+   "arm": {
+    "halt_n": null,
+    "stop_win": false,
+    "r_floor": -2.0
+   },
+   "r_per_dd": 87.2,
+   "boot_total_r": {
+    "delta": -269.33,
+    "lo95": -417.51,
+    "hi95": -137.15
+   },
+   "max_1r_dollars": {
+    "50k@2%": 173,
+    "50k@3%": 259,
+    "100k@2%": 346,
+    "100k@3%": 519
+   }
+  },
+  "halt=none stopwin=N floor=-3R": {
+   "trades": 2985,
+   "total_r": 1531.47,
+   "mean_r_trade": 0.5131,
+   "sd_r_trade": 2.1342,
+   "se_mean_r": 0.0391,
+   "win_rate": 47.4,
+   "wins": 1414,
+   "losses": 1551,
+   "scratches": 20,
+   "traded_days": 496,
+   "mean_r_traded_day": 3.088,
+   "mean_r_session": 3.063,
+   "trades_per_traded_day": 6.02,
+   "months_green": 25,
+   "months_total": 25,
+   "weeks_green": 92,
+   "weeks_total": 105,
+   "max_dd_r": -22.19,
+   "worst_day_r": -6.78,
+   "best_day_r": 37.77,
+   "prop_breaches": {
+    "50k@2%": 142,
+    "50k@3%": 126,
+    "100k@2%": 109,
+    "100k@3%": 79
+   },
+   "arm": {
+    "halt_n": null,
+    "stop_win": false,
+    "r_floor": -3.0
+   },
+   "r_per_dd": 69.0,
+   "boot_total_r": {
+    "delta": -127.7,
+    "lo95": -258.26,
+    "hi95": -24.99
+   }
+  },
+  "halt=none stopwin=N floor=none": {
+   "trades": 3294,
+   "total_r": 1659.17,
+   "mean_r_trade": 0.5037,
+   "sd_r_trade": 2.1505,
+   "se_mean_r": 0.0375,
+   "win_rate": 46.4,
+   "wins": 1530,
+   "losses": 1742,
+   "scratches": 22,
+   "traded_days": 496,
+   "mean_r_traded_day": 3.345,
+   "mean_r_session": 3.318,
+   "trades_per_traded_day": 6.64,
+   "months_green": 25,
+   "months_total": 25,
+   "weeks_green": 93,
+   "weeks_total": 105,
+   "max_dd_r": -27.89,
+   "worst_day_r": -10.59,
+   "best_day_r": 37.77,
+   "prop_breaches": {
+    "50k@2%": 122,
+    "50k@3%": 102,
+    "100k@2%": 84,
+    "100k@3%": 52
+   },
+   "arm": {
+    "halt_n": null,
+    "stop_win": false,
+    "r_floor": null
+   },
+   "r_per_dd": 59.5,
+   "max_1r_dollars": {
+    "50k@2%": 94,
+    "50k@3%": 141,
+    "100k@2%": 188,
+    "100k@3%": 283
+   }
+  },
+  "halt=none stopwin=Y floor=-1R": {
+   "trades": 811,
+   "total_r": 539.05,
+   "mean_r_trade": 0.6647,
+   "sd_r_trade": 1.8984,
+   "se_mean_r": 0.0667,
+   "win_rate": 55.2,
+   "wins": 448,
+   "losses": 361,
+   "scratches": 2,
+   "traded_days": 496,
+   "mean_r_traded_day": 1.087,
+   "mean_r_session": 1.078,
+   "trades_per_traded_day": 1.64,
+   "months_green": 24,
+   "months_total": 25,
+   "weeks_green": 84,
+   "weeks_total": 105,
+   "max_dd_r": -19.11,
+   "worst_day_r": -3.39,
+   "best_day_r": 15.27,
+   "prop_breaches": {
+    "50k@2%": 192,
+    "50k@3%": 36,
+    "100k@2%": 34,
+    "100k@3%": 5
+   },
+   "arm": {
+    "halt_n": null,
+    "stop_win": true,
+    "r_floor": -1.0
+   },
+   "r_per_dd": 28.2,
+   "boot_total_r": {
+    "delta": -1120.12,
+    "lo95": -1373.56,
+    "hi95": -872.23
+   }
+  },
+  "halt=none stopwin=Y floor=-2R": {
+   "trades": 1106,
+   "total_r": 644.69,
+   "mean_r_trade": 0.5829,
+   "sd_r_trade": 1.9164,
+   "se_mean_r": 0.0576,
+   "win_rate": 53.1,
+   "wins": 587,
+   "losses": 517,
+   "scratches": 2,
+   "traded_days": 496,
+   "mean_r_traded_day": 1.3,
+   "mean_r_session": 1.289,
+   "trades_per_traded_day": 2.23,
+   "months_green": 24,
+   "months_total": 25,
+   "weeks_green": 86,
+   "weeks_total": 105,
+   "max_dd_r": -16.64,
+   "worst_day_r": -4.0,
+   "best_day_r": 15.27,
+   "prop_breaches": {
+    "50k@2%": 123,
+    "50k@3%": 108,
+    "100k@2%": 99,
+    "100k@3%": 21
+   },
+   "arm": {
+    "halt_n": null,
+    "stop_win": true,
+    "r_floor": -2.0
+   },
+   "r_per_dd": 38.7,
+   "boot_total_r": {
+    "delta": -1014.48,
+    "lo95": -1258.59,
+    "hi95": -772.67
+   }
+  },
+  "halt=none stopwin=Y floor=-3R": {
+   "trades": 1235,
+   "total_r": 687.31,
+   "mean_r_trade": 0.5565,
+   "sd_r_trade": 1.9292,
+   "se_mean_r": 0.0549,
+   "win_rate": 52.4,
+   "wins": 647,
+   "losses": 586,
+   "scratches": 2,
+   "traded_days": 496,
+   "mean_r_traded_day": 1.386,
+   "mean_r_session": 1.375,
+   "trades_per_traded_day": 2.49,
+   "months_green": 25,
+   "months_total": 25,
+   "weeks_green": 88,
+   "weeks_total": 105,
+   "max_dd_r": -17.53,
+   "worst_day_r": -5.0,
+   "best_day_r": 17.65,
+   "prop_breaches": {
+    "50k@2%": 98,
+    "50k@3%": 80,
+    "100k@2%": 65,
+    "100k@3%": 50
+   },
+   "arm": {
+    "halt_n": null,
+    "stop_win": true,
+    "r_floor": -3.0
+   },
+   "r_per_dd": 39.2,
+   "boot_total_r": {
+    "delta": -971.86,
+    "lo95": -1212.97,
+    "hi95": -735.17
+   }
+  },
+  "halt=none stopwin=Y floor=none": {
+   "trades": 1362,
+   "total_r": 742.17,
+   "mean_r_trade": 0.5449,
+   "sd_r_trade": 1.9902,
+   "se_mean_r": 0.0539,
+   "win_rate": 51.0,
+   "wins": 694,
+   "losses": 666,
+   "scratches": 2,
+   "traded_days": 496,
+   "mean_r_traded_day": 1.496,
+   "mean_r_session": 1.484,
+   "trades_per_traded_day": 2.75,
+   "months_green": 21,
+   "months_total": 25,
+   "weeks_green": 87,
+   "weeks_total": 105,
+   "max_dd_r": -27.39,
+   "worst_day_r": -10.0,
+   "best_day_r": 33.68,
+   "prop_breaches": {
+    "50k@2%": 88,
+    "50k@3%": 68,
+    "100k@2%": 52,
+    "100k@3%": 36
+   },
+   "arm": {
+    "halt_n": null,
+    "stop_win": true,
+    "r_floor": null
+   },
+   "r_per_dd": 27.1,
+   "boot_total_r": {
+    "delta": -917.0,
+    "lo95": -1143.74,
+    "hi95": -689.98
+   }
+  }
+ },
+ "s_continuation": {
+  "halt=1 stopwin=N floor=none": {
+   "trades": 1524,
+   "total_r": 984.69,
+   "mean_r_trade": 0.6461,
+   "sd_r_trade": 2.0457,
+   "se_mean_r": 0.0524,
+   "win_rate": 53.1,
+   "wins": 810,
+   "losses": 707,
+   "scratches": 7,
+   "traded_days": 496,
+   "mean_r_traded_day": 1.985,
+   "mean_r_session": 1.969,
+   "trades_per_traded_day": 3.07,
+   "months_green": 23,
+   "months_total": 25,
+   "weeks_green": 88,
+   "weeks_total": 105,
+   "max_dd_r": -16.45,
+   "worst_day_r": -5.78,
+   "best_day_r": 36.86,
+   "prop_breaches": {
+    "50k@2%": 203,
+    "50k@3%": 47,
+    "100k@2%": 40,
+    "100k@3%": 8
+   },
+   "r_per_dd": 59.9
+  },
+  "halt=1 stopwin=N floor=none +Scont": {
+   "trades": 1867,
+   "total_r": 1031.33,
+   "mean_r_trade": 0.5524,
+   "sd_r_trade": 2.0011,
+   "se_mean_r": 0.0463,
+   "win_rate": 50.9,
+   "wins": 951,
+   "losses": 909,
+   "scratches": 7,
+   "traded_days": 496,
+   "mean_r_traded_day": 2.079,
+   "mean_r_session": 2.063,
+   "trades_per_traded_day": 3.76,
+   "months_green": 23,
+   "months_total": 25,
+   "weeks_green": 82,
+   "weeks_total": 105,
+   "max_dd_r": -16.61,
+   "worst_day_r": -5.0,
+   "best_day_r": 36.86,
+   "prop_breaches": {
+    "50k@2%": 176,
+    "50k@3%": 94,
+    "100k@2%": 82,
+    "100k@3%": 23
+   },
+   "r_per_dd": 62.1,
+   "boot_vs_plain": {
+    "delta": 46.64,
+    "lo95": -16.88,
+    "hi95": 114.03
+   }
+  },
+  "halt=1 stopwin=N floor=none +Sprof": {
+   "trades": 1799,
+   "total_r": 1023.19,
+   "mean_r_trade": 0.5688,
+   "sd_r_trade": 2.0061,
+   "se_mean_r": 0.0473,
+   "win_rate": 51.5,
+   "wins": 927,
+   "losses": 865,
+   "scratches": 7,
+   "traded_days": 496,
+   "mean_r_traded_day": 2.063,
+   "mean_r_session": 2.046,
+   "trades_per_traded_day": 3.63,
+   "months_green": 23,
+   "months_total": 25,
+   "weeks_green": 82,
+   "weeks_total": 105,
+   "max_dd_r": -16.61,
+   "worst_day_r": -5.0,
+   "best_day_r": 36.86,
+   "prop_breaches": {
+    "50k@2%": 175,
+    "50k@3%": 94,
+    "100k@2%": 82,
+    "100k@3%": 23
+   },
+   "r_per_dd": 61.6,
+   "boot_vs_plain": {
+    "delta": 38.5,
+    "lo95": -16.14,
+    "hi95": 99.72
+   }
+  },
+  "halt=1 stopwin=N floor=-2R": {
+   "trades": 1524,
+   "total_r": 984.69,
+   "mean_r_trade": 0.6461,
+   "sd_r_trade": 2.0457,
+   "se_mean_r": 0.0524,
+   "win_rate": 53.1,
+   "wins": 810,
+   "losses": 707,
+   "scratches": 7,
+   "traded_days": 496,
+   "mean_r_traded_day": 1.985,
+   "mean_r_session": 1.969,
+   "trades_per_traded_day": 3.07,
+   "months_green": 23,
+   "months_total": 25,
+   "weeks_green": 88,
+   "weeks_total": 105,
+   "max_dd_r": -16.45,
+   "worst_day_r": -5.78,
+   "best_day_r": 36.86,
+   "prop_breaches": {
+    "50k@2%": 203,
+    "50k@3%": 47,
+    "100k@2%": 40,
+    "100k@3%": 8
+   },
+   "r_per_dd": 59.9
+  },
+  "halt=1 stopwin=N floor=-2R +Scont": {
+   "trades": 1855,
+   "total_r": 1034.69,
+   "mean_r_trade": 0.5578,
+   "sd_r_trade": 2.0046,
+   "se_mean_r": 0.0465,
+   "win_rate": 51.1,
+   "wins": 947,
+   "losses": 901,
+   "scratches": 7,
+   "traded_days": 496,
+   "mean_r_traded_day": 2.086,
+   "mean_r_session": 2.069,
+   "trades_per_traded_day": 3.74,
+   "months_green": 23,
+   "months_total": 25,
+   "weeks_green": 82,
+   "weeks_total": 105,
+   "max_dd_r": -16.61,
+   "worst_day_r": -5.0,
+   "best_day_r": 36.86,
+   "prop_breaches": {
+    "50k@2%": 176,
+    "50k@3%": 94,
+    "100k@2%": 82,
+    "100k@3%": 21
+   },
+   "r_per_dd": 62.3,
+   "boot_vs_plain": {
+    "delta": 50.0,
+    "lo95": -13.31,
+    "hi95": 116.72
+   }
+  },
+  "halt=1 stopwin=N floor=-2R +Sprof": {
+   "trades": 1787,
+   "total_r": 1026.55,
+   "mean_r_trade": 0.5745,
+   "sd_r_trade": 2.0099,
+   "se_mean_r": 0.0475,
+   "win_rate": 51.7,
+   "wins": 923,
+   "losses": 857,
+   "scratches": 7,
+   "traded_days": 496,
+   "mean_r_traded_day": 2.07,
+   "mean_r_session": 2.053,
+   "trades_per_traded_day": 3.6,
+   "months_green": 23,
+   "months_total": 25,
+   "weeks_green": 82,
+   "weeks_total": 105,
+   "max_dd_r": -16.61,
+   "worst_day_r": -5.0,
+   "best_day_r": 36.86,
+   "prop_breaches": {
+    "50k@2%": 175,
+    "50k@3%": 94,
+    "100k@2%": 82,
+    "100k@3%": 21
+   },
+   "r_per_dd": 61.8,
+   "boot_vs_plain": {
+    "delta": 41.86,
+    "lo95": -11.93,
+    "hi95": 101.75
+   }
+  },
+  "halt=2 stopwin=N floor=none": {
+   "trades": 2437,
+   "total_r": 1339.09,
+   "mean_r_trade": 0.5495,
+   "sd_r_trade": 2.1192,
+   "se_mean_r": 0.0429,
+   "win_rate": 49.2,
+   "wins": 1198,
+   "losses": 1222,
+   "scratches": 17,
+   "traded_days": 496,
+   "mean_r_traded_day": 2.7,
+   "mean_r_session": 2.678,
+   "trades_per_traded_day": 4.91,
+   "months_green": 25,
+   "months_total": 25,
+   "weeks_green": 91,
+   "weeks_total": 105,
+   "max_dd_r": -14.71,
+   "worst_day_r": -5.78,
+   "best_day_r": 37.77,
+   "prop_breaches": {
+    "50k@2%": 170,
+    "50k@3%": 147,
+    "100k@2%": 120,
+    "100k@3%": 37
+   },
+   "r_per_dd": 91.0
+  },
+  "halt=2 stopwin=N floor=none +Scont": {
+   "trades": 2620,
+   "total_r": 1378.65,
+   "mean_r_trade": 0.5262,
+   "sd_r_trade": 2.0994,
+   "se_mean_r": 0.041,
+   "win_rate": 48.6,
+   "wins": 1274,
+   "losses": 1328,
+   "scratches": 18,
+   "traded_days": 496,
+   "mean_r_traded_day": 2.78,
+   "mean_r_session": 2.757,
+   "trades_per_traded_day": 5.28,
+   "months_green": 25,
+   "months_total": 25,
+   "weeks_green": 92,
+   "weeks_total": 105,
+   "max_dd_r": -16.71,
+   "worst_day_r": -6.33,
+   "best_day_r": 37.77,
+   "prop_breaches": {
+    "50k@2%": 157,
+    "50k@3%": 135,
+    "100k@2%": 105,
+    "100k@3%": 46
+   },
+   "r_per_dd": 82.5,
+   "boot_vs_plain": {
+    "delta": 39.57,
+    "lo95": -11.67,
+    "hi95": 95.15
+   }
+  },
+  "halt=2 stopwin=N floor=none +Sprof": {
+   "trades": 2593,
+   "total_r": 1392.53,
+   "mean_r_trade": 0.537,
+   "sd_r_trade": 2.1041,
+   "se_mean_r": 0.0413,
+   "win_rate": 48.9,
+   "wins": 1269,
+   "losses": 1306,
+   "scratches": 18,
+   "traded_days": 496,
+   "mean_r_traded_day": 2.808,
+   "mean_r_session": 2.785,
+   "trades_per_traded_day": 5.23,
+   "months_green": 25,
+   "months_total": 25,
+   "weeks_green": 93,
+   "weeks_total": 105,
+   "max_dd_r": -16.71,
+   "worst_day_r": -6.33,
+   "best_day_r": 37.77,
+   "prop_breaches": {
+    "50k@2%": 155,
+    "50k@3%": 134,
+    "100k@2%": 105,
+    "100k@3%": 46
+   },
+   "r_per_dd": 83.3,
+   "boot_vs_plain": {
+    "delta": 53.44,
+    "lo95": 4.44,
+    "hi95": 109.41
+   }
+  },
+  "halt=2 stopwin=N floor=-2R": {
+   "trades": 2424,
+   "total_r": 1337.92,
+   "mean_r_trade": 0.5519,
+   "sd_r_trade": 2.1195,
+   "se_mean_r": 0.0431,
+   "win_rate": 49.3,
+   "wins": 1194,
+   "losses": 1213,
+   "scratches": 17,
+   "traded_days": 496,
+   "mean_r_traded_day": 2.697,
+   "mean_r_session": 2.676,
+   "trades_per_traded_day": 4.89,
+   "months_green": 25,
+   "months_total": 25,
+   "weeks_green": 90,
+   "weeks_total": 105,
+   "max_dd_r": -13.71,
+   "worst_day_r": -5.78,
+   "best_day_r": 37.77,
+   "prop_breaches": {
+    "50k@2%": 171,
+    "50k@3%": 148,
+    "100k@2%": 123,
+    "100k@3%": 36
+   },
+   "r_per_dd": 97.6
+  },
+  "halt=2 stopwin=N floor=-2R +Scont": {
+   "trades": 2591,
+   "total_r": 1368.6,
+   "mean_r_trade": 0.5282,
+   "sd_r_trade": 2.1005,
+   "se_mean_r": 0.0413,
+   "win_rate": 48.7,
+   "wins": 1262,
+   "losses": 1311,
+   "scratches": 18,
+   "traded_days": 496,
+   "mean_r_traded_day": 2.759,
+   "mean_r_session": 2.737,
+   "trades_per_traded_day": 5.22,
+   "months_green": 25,
+   "months_total": 25,
+   "weeks_green": 89,
+   "weeks_total": 105,
+   "max_dd_r": -15.71,
+   "worst_day_r": -5.44,
+   "best_day_r": 37.77,
+   "prop_breaches": {
+    "50k@2%": 160,
+    "50k@3%": 139,
+    "100k@2%": 111,
+    "100k@3%": 49
+   },
+   "r_per_dd": 87.1,
+   "boot_vs_plain": {
+    "delta": 30.68,
+    "lo95": -19.37,
+    "hi95": 86.55
+   }
+  },
+  "halt=2 stopwin=N floor=-2R +Sprof": {
+   "trades": 2564,
+   "total_r": 1382.48,
+   "mean_r_trade": 0.5392,
+   "sd_r_trade": 2.1052,
+   "se_mean_r": 0.0416,
+   "win_rate": 49.0,
+   "wins": 1257,
+   "losses": 1289,
+   "scratches": 18,
+   "traded_days": 496,
+   "mean_r_traded_day": 2.787,
+   "mean_r_session": 2.765,
+   "trades_per_traded_day": 5.17,
+   "months_green": 25,
+   "months_total": 25,
+   "weeks_green": 91,
+   "weeks_total": 105,
+   "max_dd_r": -15.71,
+   "worst_day_r": -5.44,
+   "best_day_r": 37.77,
+   "prop_breaches": {
+    "50k@2%": 158,
+    "50k@3%": 138,
+    "100k@2%": 111,
+    "100k@3%": 49
+   },
+   "r_per_dd": 88.0,
+   "boot_vs_plain": {
+    "delta": 44.55,
+    "lo95": -4.18,
+    "hi95": 98.38
+   }
+  },
+  "halt=3 stopwin=N floor=none": {
+   "trades": 2863,
+   "total_r": 1465.89,
+   "mean_r_trade": 0.512,
+   "sd_r_trade": 2.1222,
+   "se_mean_r": 0.0397,
+   "win_rate": 47.9,
+   "wins": 1370,
+   "losses": 1474,
+   "scratches": 19,
+   "traded_days": 496,
+   "mean_r_traded_day": 2.955,
+   "mean_r_session": 2.932,
+   "trades_per_traded_day": 5.77,
+   "months_green": 24,
+   "months_total": 25,
+   "weeks_green": 92,
+   "weeks_total": 105,
+   "max_dd_r": -18.71,
+   "worst_day_r": -7.59,
+   "best_day_r": 37.77,
+   "prop_breaches": {
+    "50k@2%": 148,
+    "50k@3%": 124,
+    "100k@2%": 102,
+    "100k@3%": 69
+   },
+   "r_per_dd": 78.3
+  },
+  "halt=3 stopwin=N floor=none +Scont": {
+   "trades": 2957,
+   "total_r": 1496.27,
+   "mean_r_trade": 0.506,
+   "sd_r_trade": 2.118,
+   "se_mean_r": 0.0389,
+   "win_rate": 47.6,
+   "wins": 1408,
+   "losses": 1529,
+   "scratches": 20,
+   "traded_days": 496,
+   "mean_r_traded_day": 3.017,
+   "mean_r_session": 2.993,
+   "trades_per_traded_day": 5.96,
+   "months_green": 25,
+   "months_total": 25,
+   "weeks_green": 94,
+   "weeks_total": 105,
+   "max_dd_r": -20.71,
+   "worst_day_r": -7.59,
+   "best_day_r": 37.77,
+   "prop_breaches": {
+    "50k@2%": 140,
+    "50k@3%": 116,
+    "100k@2%": 93,
+    "100k@3%": 61
+   },
+   "r_per_dd": 72.2,
+   "boot_vs_plain": {
+    "delta": 30.38,
+    "lo95": -7.97,
+    "hi95": 77.22
+   }
+  },
+  "halt=3 stopwin=N floor=none +Sprof": {
+   "trades": 2948,
+   "total_r": 1503.12,
+   "mean_r_trade": 0.5099,
+   "sd_r_trade": 2.1197,
+   "se_mean_r": 0.039,
+   "win_rate": 47.7,
+   "wins": 1407,
+   "losses": 1521,
+   "scratches": 20,
+   "traded_days": 496,
+   "mean_r_traded_day": 3.03,
+   "mean_r_session": 3.006,
+   "trades_per_traded_day": 5.94,
+   "months_green": 25,
+   "months_total": 25,
+   "weeks_green": 94,
+   "weeks_total": 105,
+   "max_dd_r": -20.71,
+   "worst_day_r": -7.59,
+   "best_day_r": 37.77,
+   "prop_breaches": {
+    "50k@2%": 140,
+    "50k@3%": 116,
+    "100k@2%": 93,
+    "100k@3%": 61
+   },
+   "r_per_dd": 72.6,
+   "boot_vs_plain": {
+    "delta": 37.23,
+    "lo95": -0.78,
+    "hi95": 83.3
+   }
+  },
+  "halt=3 stopwin=N floor=-2R": {
+   "trades": 2599,
+   "total_r": 1366.5,
+   "mean_r_trade": 0.5258,
+   "sd_r_trade": 2.1134,
+   "se_mean_r": 0.0415,
+   "win_rate": 48.2,
+   "wins": 1254,
+   "losses": 1326,
+   "scratches": 19,
+   "traded_days": 496,
+   "mean_r_traded_day": 2.755,
+   "mean_r_session": 2.733,
+   "trades_per_traded_day": 5.24,
+   "months_green": 25,
+   "months_total": 25,
+   "weeks_green": 91,
+   "weeks_total": 105,
+   "max_dd_r": -14.94,
+   "worst_day_r": -5.78,
+   "best_day_r": 37.77,
+   "prop_breaches": {
+    "50k@2%": 180,
+    "50k@3%": 159,
+    "100k@2%": 138,
+    "100k@3%": 37
+   },
+   "r_per_dd": 91.5
+  },
+  "halt=3 stopwin=N floor=-2R +Scont": {
+   "trades": 2727,
+   "total_r": 1405.27,
+   "mean_r_trade": 0.5153,
+   "sd_r_trade": 2.1037,
+   "se_mean_r": 0.0403,
+   "win_rate": 48.0,
+   "wins": 1308,
+   "losses": 1399,
+   "scratches": 20,
+   "traded_days": 496,
+   "mean_r_traded_day": 2.833,
+   "mean_r_session": 2.811,
+   "trades_per_traded_day": 5.5,
+   "months_green": 25,
+   "months_total": 25,
+   "weeks_green": 92,
+   "weeks_total": 105,
+   "max_dd_r": -16.94,
+   "worst_day_r": -5.44,
+   "best_day_r": 37.77,
+   "prop_breaches": {
+    "50k@2%": 163,
+    "50k@3%": 143,
+    "100k@2%": 123,
+    "100k@3%": 51
+   },
+   "r_per_dd": 83.0,
+   "boot_vs_plain": {
+    "delta": 38.76,
+    "lo95": -9.4,
+    "hi95": 92.27
+   }
+  },
+  "halt=3 stopwin=N floor=-2R +Sprof": {
+   "trades": 2718,
+   "total_r": 1412.11,
+   "mean_r_trade": 0.5195,
+   "sd_r_trade": 2.1055,
+   "se_mean_r": 0.0404,
+   "win_rate": 48.1,
+   "wins": 1307,
+   "losses": 1391,
+   "scratches": 20,
+   "traded_days": 496,
+   "mean_r_traded_day": 2.847,
+   "mean_r_session": 2.824,
+   "trades_per_traded_day": 5.48,
+   "months_green": 25,
+   "months_total": 25,
+   "weeks_green": 92,
+   "weeks_total": 105,
+   "max_dd_r": -16.94,
+   "worst_day_r": -5.44,
+   "best_day_r": 37.77,
+   "prop_breaches": {
+    "50k@2%": 163,
+    "50k@3%": 143,
+    "100k@2%": 123,
+    "100k@3%": 51
+   },
+   "r_per_dd": 83.4,
+   "boot_vs_plain": {
+    "delta": 45.61,
+    "lo95": -2.06,
+    "hi95": 99.18
+   }
+  },
+  "halt=none stopwin=N floor=none +Scont": {
+   "trades": 3294,
+   "total_r": 1659.17,
+   "mean_r_trade": 0.5037,
+   "sd_r_trade": 2.1505,
+   "se_mean_r": 0.0375,
+   "win_rate": 46.4,
+   "wins": 1530,
+   "losses": 1742,
+   "scratches": 22,
+   "traded_days": 496,
+   "mean_r_traded_day": 3.345,
+   "mean_r_session": 3.318,
+   "trades_per_traded_day": 6.64,
+   "months_green": 25,
+   "months_total": 25,
+   "weeks_green": 93,
+   "weeks_total": 105,
+   "max_dd_r": -27.89,
+   "worst_day_r": -10.59,
+   "best_day_r": 37.77,
+   "prop_breaches": {
+    "50k@2%": 122,
+    "50k@3%": 102,
+    "100k@2%": 84,
+    "100k@3%": 52
+   },
+   "r_per_dd": 59.5,
+   "boot_vs_plain": {
+    "delta": 0.0,
+    "lo95": 0.0,
+    "hi95": 0.0
+   }
+  },
+  "halt=none stopwin=N floor=none +Sprof": {
+   "trades": 3294,
+   "total_r": 1659.17,
+   "mean_r_trade": 0.5037,
+   "sd_r_trade": 2.1505,
+   "se_mean_r": 0.0375,
+   "win_rate": 46.4,
+   "wins": 1530,
+   "losses": 1742,
+   "scratches": 22,
+   "traded_days": 496,
+   "mean_r_traded_day": 3.345,
+   "mean_r_session": 3.318,
+   "trades_per_traded_day": 6.64,
+   "months_green": 25,
+   "months_total": 25,
+   "weeks_green": 93,
+   "weeks_total": 105,
+   "max_dd_r": -27.89,
+   "worst_day_r": -10.59,
+   "best_day_r": 37.77,
+   "prop_breaches": {
+    "50k@2%": 122,
+    "50k@3%": 102,
+    "100k@2%": 84,
+    "100k@3%": 52
+   },
+   "r_per_dd": 59.5,
+   "boot_vs_plain": {
+    "delta": 0.0,
+    "lo95": 0.0,
+    "hi95": 0.0
+   }
+  },
+  "halt=none stopwin=N floor=-2R": {
+   "trades": 2702,
+   "total_r": 1389.84,
+   "mean_r_trade": 0.5144,
+   "sd_r_trade": 2.1182,
+   "se_mean_r": 0.0408,
+   "win_rate": 47.5,
+   "wins": 1283,
+   "losses": 1399,
+   "scratches": 20,
+   "traded_days": 496,
+   "mean_r_traded_day": 2.802,
+   "mean_r_session": 2.78,
+   "trades_per_traded_day": 5.45,
+   "months_green": 25,
+   "months_total": 25,
+   "weeks_green": 91,
+   "weeks_total": 105,
+   "max_dd_r": -15.94,
+   "worst_day_r": -5.78,
+   "best_day_r": 37.77,
+   "prop_breaches": {
+    "50k@2%": 180,
+    "50k@3%": 167,
+    "100k@2%": 152,
+    "100k@3%": 38
+   },
+   "r_per_dd": 87.2
+  },
+  "halt=none stopwin=N floor=-2R +Scont": {
+   "trades": 2817,
+   "total_r": 1438.12,
+   "mean_r_trade": 0.5105,
+   "sd_r_trade": 2.1113,
+   "se_mean_r": 0.0398,
+   "win_rate": 47.4,
+   "wins": 1335,
+   "losses": 1461,
+   "scratches": 21,
+   "traded_days": 496,
+   "mean_r_traded_day": 2.899,
+   "mean_r_session": 2.876,
+   "trades_per_traded_day": 5.68,
+   "months_green": 25,
+   "months_total": 25,
+   "weeks_green": 91,
+   "weeks_total": 105,
+   "max_dd_r": -17.94,
+   "worst_day_r": -5.44,
+   "best_day_r": 37.77,
+   "prop_breaches": {
+    "50k@2%": 161,
+    "50k@3%": 148,
+    "100k@2%": 134,
+    "100k@3%": 52
+   },
+   "r_per_dd": 80.2,
+   "boot_vs_plain": {
+    "delta": 48.28,
+    "lo95": 1.36,
+    "hi95": 102.08
+   }
+  },
+  "halt=none stopwin=N floor=-2R +Sprof": {
+   "trades": 2817,
+   "total_r": 1438.12,
+   "mean_r_trade": 0.5105,
+   "sd_r_trade": 2.1113,
+   "se_mean_r": 0.0398,
+   "win_rate": 47.4,
+   "wins": 1335,
+   "losses": 1461,
+   "scratches": 21,
+   "traded_days": 496,
+   "mean_r_traded_day": 2.899,
+   "mean_r_session": 2.876,
+   "trades_per_traded_day": 5.68,
+   "months_green": 25,
+   "months_total": 25,
+   "weeks_green": 91,
+   "weeks_total": 105,
+   "max_dd_r": -17.94,
+   "worst_day_r": -5.44,
+   "best_day_r": 37.77,
+   "prop_breaches": {
+    "50k@2%": 161,
+    "50k@3%": 148,
+    "100k@2%": 134,
+    "100k@3%": 52
+   },
+   "r_per_dd": 80.2,
+   "boot_vs_plain": {
+    "delta": 48.28,
+    "lo95": 1.36,
+    "hi95": 102.08
+   }
+  }
+ },
+ "head_to_head": {
+  "R floor -2R  vs  the shipped halt=2": {
+   "a": "halt=none stopwin=N floor=-2R",
+   "b": "halt=2 stopwin=N floor=none",
+   "delta": 50.75,
+   "lo95": -12.71,
+   "hi95": 118.54
+  },
+  "halt=3 + -2R  vs  the shipped halt=2": {
+   "a": "halt=3 stopwin=N floor=-2R",
+   "b": "halt=2 stopwin=N floor=none",
+   "delta": 27.42,
+   "lo95": -22.98,
+   "hi95": 84.51
+  },
+  "halt=3 + -2R  vs  no governor": {
+   "a": "halt=3 stopwin=N floor=-2R",
+   "b": "halt=none stopwin=N floor=none",
+   "delta": -292.67,
+   "lo95": -452.37,
+   "hi95": -152.1
+  },
+  "R floor -2R  vs  no governor": {
+   "a": "halt=none stopwin=N floor=-2R",
+   "b": "halt=none stopwin=N floor=none",
+   "delta": -269.33,
+   "lo95": -417.51,
+   "hi95": -137.15
+  }
+ },
+ "edge_by_streak": {
+  "0": {
+   "n": 1894,
+   "mean_r": 0.6003,
+   "se": 0.0474,
+   "win_rate": 51.8
+  },
+  "1": {
+   "n": 762,
+   "mean_r": 0.391,
+   "se": 0.0833,
+   "win_rate": 42.1
+  },
+  "2": {
+   "n": 320,
+   "mean_r": 0.308,
+   "se": 0.1168,
+   "win_rate": 40.3
+  },
+  "3": {
+   "n": 173,
+   "mean_r": 0.193,
+   "se": 0.1444,
+   "win_rate": 33.5
+  },
+  "4": {
+   "n": 145,
+   "mean_r": 0.6359,
+   "se": 0.223,
+   "win_rate": 40.0
+  }
+ },
+ "edge_by_day_r": {
+  "<=-3R": {
+   "n": 254,
+   "mean_r": 0.3767,
+   "se": 0.1417,
+   "win_rate": 37.0
+  },
+  "-3..-2R": {
+   "n": 227,
+   "mean_r": 0.4806,
+   "se": 0.1472,
+   "win_rate": 45.8
+  },
+  "-2..-1R": {
+   "n": 444,
+   "mean_r": 0.2882,
+   "se": 0.0915,
+   "win_rate": 44.1
+  },
+  "-1..0R": {
+   "n": 1001,
+   "mean_r": 0.6251,
+   "se": 0.0627,
+   "win_rate": 53.1
+  },
+  "green": {
+   "n": 1368,
+   "mean_r": 0.5122,
+   "se": 0.062,
+   "win_rate": 45.5
+  }
+ }
+}

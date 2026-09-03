@@ -1,0 +1,1629 @@
+{
+  "book": "bt2y_trades_retest_on.json",
+  "sessions": 498,
+  "min_risk_floor_source": "signal_runner.min_risk_floor",
+  "per_symbol_ev": {
+    "ACHR": {
+      "ev_r": -0.2741,
+      "n": 42,
+      "n_input": 314,
+      "n_dropped_size_gate": 272,
+      "size_gate_applicable": true,
+      "win_rate": 0.3333,
+      "avg_win_R": 0.5481,
+      "avg_loss_R": 0.6851,
+      "profit_factor": 0.4,
+      "total_R": -11.511,
+      "max_drawdown_R": -11.868,
+      "months_green": "4/13",
+      "expectancy_per_day": -338.56,
+      "r_stability": -0.3795,
+      "yearly_R": -85.3168,
+      "risk_dollars": 1000.0,
+      "sessions_used": 34
+    },
+    "IREN": {
+      "ev_r": -0.1581,
+      "n": 245,
+      "n_input": 255,
+      "n_dropped_size_gate": 10,
+      "size_gate_applicable": true,
+      "win_rate": 0.3673,
+      "avg_win_R": 0.9577,
+      "avg_loss_R": 0.8059,
+      "profit_factor": 0.69,
+      "total_R": -38.725,
+      "max_drawdown_R": -40.32,
+      "months_green": "6/15",
+      "expectancy_per_day": -237.58,
+      "r_stability": -0.1441,
+      "yearly_R": -59.8693,
+      "risk_dollars": 1000.0,
+      "sessions_used": 163
+    },
+    "MSFT": {
+      "ev_r": -0.1399,
+      "n": 221,
+      "n_input": 380,
+      "n_dropped_size_gate": 159,
+      "size_gate_applicable": true,
+      "win_rate": 0.4299,
+      "avg_win_R": 0.7477,
+      "avg_loss_R": 0.8091,
+      "profit_factor": 0.6968,
+      "total_R": -30.908,
+      "max_drawdown_R": -37.87,
+      "months_green": "10/25",
+      "expectancy_per_day": -187.32,
+      "r_stability": -0.1472,
+      "yearly_R": -47.2049,
+      "risk_dollars": 1000.0,
+      "sessions_used": 165
+    },
+    "NFLX": {
+      "ev_r": -0.1063,
+      "n": 214,
+      "n_input": 224,
+      "n_dropped_size_gate": 10,
+      "size_gate_applicable": true,
+      "win_rate": 0.3925,
+      "avg_win_R": 0.9832,
+      "avg_loss_R": 0.8166,
+      "profit_factor": 0.784,
+      "total_R": -22.75,
+      "max_drawdown_R": -34.361,
+      "months_green": "10/24",
+      "expectancy_per_day": -123.64,
+      "r_stability": -0.092,
+      "yearly_R": -31.1576,
+      "risk_dollars": 1000.0,
+      "sessions_used": 184
+    },
+    "META": {
+      "ev_r": -0.0951,
+      "n": 357,
+      "n_input": 459,
+      "n_dropped_size_gate": 102,
+      "size_gate_applicable": true,
+      "win_rate": 0.4286,
+      "avg_win_R": 0.7966,
+      "avg_loss_R": 0.7639,
+      "profit_factor": 0.7821,
+      "total_R": -33.959,
+      "max_drawdown_R": -41.453,
+      "months_green": "7/25",
+      "expectancy_per_day": -138.61,
+      "r_stability": -0.0898,
+      "yearly_R": -34.9293,
+      "risk_dollars": 1000.0,
+      "sessions_used": 245
+    },
+    "MU": {
+      "ev_r": -0.0929,
+      "n": 372,
+      "n_input": 375,
+      "n_dropped_size_gate": 3,
+      "size_gate_applicable": true,
+      "win_rate": 0.3978,
+      "avg_win_R": 0.9991,
+      "avg_loss_R": 0.8144,
+      "profit_factor": 0.8106,
+      "total_R": -34.559,
+      "max_drawdown_R": -48.0,
+      "months_green": "7/24",
+      "expectancy_per_day": -127.06,
+      "r_stability": -0.0778,
+      "yearly_R": -32.0179,
+      "risk_dollars": 1000.0,
+      "sessions_used": 272
+    },
+    "AAPL": {
+      "ev_r": -0.081,
+      "n": 253,
+      "n_input": 281,
+      "n_dropped_size_gate": 28,
+      "size_gate_applicable": true,
+      "win_rate": 0.4348,
+      "avg_win_R": 0.822,
+      "avg_loss_R": 0.7756,
+      "profit_factor": 0.8152,
+      "total_R": -20.498,
+      "max_drawdown_R": -31.841,
+      "months_green": "8/25",
+      "expectancy_per_day": -104.58,
+      "r_stability": -0.0768,
+      "yearly_R": -26.3546,
+      "risk_dollars": 1000.0,
+      "sessions_used": 196
+    },
+    "GOOGL": {
+      "ev_r": -0.0797,
+      "n": 285,
+      "n_input": 309,
+      "n_dropped_size_gate": 24,
+      "size_gate_applicable": true,
+      "win_rate": 0.4,
+      "avg_win_R": 0.8531,
+      "avg_loss_R": 0.7057,
+      "profit_factor": 0.8106,
+      "total_R": -22.717,
+      "max_drawdown_R": -27.605,
+      "months_green": "10/25",
+      "expectancy_per_day": -103.73,
+      "r_stability": -0.081,
+      "yearly_R": -26.1401,
+      "risk_dollars": 1000.0,
+      "sessions_used": 219
+    },
+    "PLTR": {
+      "ev_r": -0.0735,
+      "n": 365,
+      "n_input": 367,
+      "n_dropped_size_gate": 2,
+      "size_gate_applicable": true,
+      "win_rate": 0.4027,
+      "avg_win_R": 1.0578,
+      "avg_loss_R": 0.8441,
+      "profit_factor": 0.8529,
+      "total_R": -26.82,
+      "max_drawdown_R": -45.336,
+      "months_green": "8/25",
+      "expectancy_per_day": -94.11,
+      "r_stability": -0.0573,
+      "yearly_R": -23.7145,
+      "risk_dollars": 1000.0,
+      "sessions_used": 285
+    },
+    "QQQ": {
+      "ev_r": -0.0694,
+      "n": 115,
+      "n_input": 365,
+      "n_dropped_size_gate": 250,
+      "size_gate_applicable": true,
+      "win_rate": 0.5304,
+      "avg_win_R": 0.4399,
+      "avg_loss_R": 0.6568,
+      "profit_factor": 0.7708,
+      "total_R": -7.978,
+      "max_drawdown_R": -10.797,
+      "months_green": "9/21",
+      "expectancy_per_day": -83.98,
+      "r_stability": -0.102,
+      "yearly_R": -21.1627,
+      "risk_dollars": 1000.0,
+      "sessions_used": 95
+    },
+    "COIN": {
+      "ev_r": -0.0611,
+      "n": 461,
+      "n_input": 461,
+      "n_dropped_size_gate": 0,
+      "size_gate_applicable": true,
+      "win_rate": 0.4056,
+      "avg_win_R": 1.0494,
+      "avg_loss_R": 0.8191,
+      "profit_factor": 0.8744,
+      "total_R": -28.18,
+      "max_drawdown_R": -38.528,
+      "months_green": "10/25",
+      "expectancy_per_day": -90.32,
+      "r_stability": -0.0475,
+      "yearly_R": -22.7608,
+      "risk_dollars": 1000.0,
+      "sessions_used": 312
+    },
+    "HOOD": {
+      "ev_r": -0.0544,
+      "n": 349,
+      "n_input": 351,
+      "n_dropped_size_gate": 2,
+      "size_gate_applicable": true,
+      "win_rate": 0.3983,
+      "avg_win_R": 1.0569,
+      "avg_loss_R": 0.8053,
+      "profit_factor": 0.8856,
+      "total_R": -18.984,
+      "max_drawdown_R": -52.84,
+      "months_green": "11/24",
+      "expectancy_per_day": -71.91,
+      "r_stability": -0.0396,
+      "yearly_R": -18.1211,
+      "risk_dollars": 1000.0,
+      "sessions_used": 264
+    },
+    "BABA": {
+      "ev_r": -0.0439,
+      "n": 221,
+      "n_input": 229,
+      "n_dropped_size_gate": 8,
+      "size_gate_applicable": true,
+      "win_rate": 0.457,
+      "avg_win_R": 0.8178,
+      "avg_loss_R": 0.7756,
+      "profit_factor": 0.8949,
+      "total_R": -9.701,
+      "max_drawdown_R": -24.513,
+      "months_green": "10/22",
+      "expectancy_per_day": -53.3,
+      "r_stability": -0.0436,
+      "yearly_R": -13.4322,
+      "risk_dollars": 1000.0,
+      "sessions_used": 182
+    },
+    "SOFI": {
+      "ev_r": -0.0349,
+      "n": 120,
+      "n_input": 137,
+      "n_dropped_size_gate": 17,
+      "size_gate_applicable": true,
+      "win_rate": 0.4167,
+      "avg_win_R": 0.7894,
+      "avg_loss_R": 0.6328,
+      "profit_factor": 0.904,
+      "total_R": -4.192,
+      "max_drawdown_R": -12.704,
+      "months_green": "5/14",
+      "expectancy_per_day": -42.34,
+      "r_stability": -0.0329,
+      "yearly_R": -10.6705,
+      "risk_dollars": 1000.0,
+      "sessions_used": 99
+    },
+    "TSLA": {
+      "ev_r": -0.0342,
+      "n": 435,
+      "n_input": 450,
+      "n_dropped_size_gate": 15,
+      "size_gate_applicable": true,
+      "win_rate": 0.4713,
+      "avg_win_R": 0.8455,
+      "avg_loss_R": 0.8183,
+      "profit_factor": 0.9209,
+      "total_R": -14.881,
+      "max_drawdown_R": -28.982,
+      "months_green": "9/24",
+      "expectancy_per_day": -52.4,
+      "r_stability": -0.0297,
+      "yearly_R": -13.2043,
+      "risk_dollars": 1000.0,
+      "sessions_used": 284
+    },
+    "TSM": {
+      "ev_r": -0.0136,
+      "n": 201,
+      "n_input": 205,
+      "n_dropped_size_gate": 4,
+      "size_gate_applicable": true,
+      "win_rate": 0.4677,
+      "avg_win_R": 0.8607,
+      "avg_loss_R": 0.7891,
+      "profit_factor": 0.9672,
+      "total_R": -2.741,
+      "max_drawdown_R": -14.506,
+      "months_green": "7/16",
+      "expectancy_per_day": -19.58,
+      "r_stability": -0.012,
+      "yearly_R": -4.9338,
+      "risk_dollars": 1000.0,
+      "sessions_used": 140
+    },
+    "AVGO": {
+      "ev_r": -0.0097,
+      "n": 388,
+      "n_input": 396,
+      "n_dropped_size_gate": 8,
+      "size_gate_applicable": true,
+      "win_rate": 0.4613,
+      "avg_win_R": 0.97,
+      "avg_loss_R": 0.8487,
+      "profit_factor": 0.9788,
+      "total_R": -3.753,
+      "max_drawdown_R": -30.024,
+      "months_green": "10/25",
+      "expectancy_per_day": -13.5,
+      "r_stability": -0.0078,
+      "yearly_R": -3.402,
+      "risk_dollars": 1000.0,
+      "sessions_used": 278
+    },
+    "AMZN": {
+      "ev_r": -0.0008,
+      "n": 283,
+      "n_input": 297,
+      "n_dropped_size_gate": 14,
+      "size_gate_applicable": true,
+      "win_rate": 0.4417,
+      "avg_win_R": 0.8598,
+      "avg_loss_R": 0.6949,
+      "profit_factor": 0.9979,
+      "total_R": -0.229,
+      "max_drawdown_R": -21.702,
+      "months_green": "13/25",
+      "expectancy_per_day": -1.06,
+      "r_stability": -0.0008,
+      "yearly_R": -0.2659,
+      "risk_dollars": 1000.0,
+      "sessions_used": 217
+    },
+    "MARA": {
+      "ev_r": -0.0003,
+      "n": 66,
+      "n_input": 191,
+      "n_dropped_size_gate": 125,
+      "size_gate_applicable": true,
+      "win_rate": 0.4242,
+      "avg_win_R": 0.5864,
+      "avg_loss_R": 0.4442,
+      "profit_factor": 0.9989,
+      "total_R": -0.018,
+      "max_drawdown_R": -5.215,
+      "months_green": "8/16",
+      "expectancy_per_day": -0.32,
+      "r_stability": -0.0004,
+      "yearly_R": -0.0796,
+      "risk_dollars": 1000.0,
+      "sessions_used": 57
+    },
+    "CRM": {
+      "ev_r": 0.0058,
+      "n": 206,
+      "n_input": 209,
+      "n_dropped_size_gate": 3,
+      "size_gate_applicable": true,
+      "win_rate": 0.4903,
+      "avg_win_R": 0.7716,
+      "avg_loss_R": 0.7308,
+      "profit_factor": 1.0156,
+      "total_R": 1.194,
+      "max_drawdown_R": -19.225,
+      "months_green": "8/17",
+      "expectancy_per_day": 8.35,
+      "r_stability": 0.0057,
+      "yearly_R": 2.1041,
+      "risk_dollars": 1000.0,
+      "sessions_used": 143
+    },
+    "ORCL": {
+      "ev_r": 0.0083,
+      "n": 321,
+      "n_input": 328,
+      "n_dropped_size_gate": 7,
+      "size_gate_applicable": true,
+      "win_rate": 0.4143,
+      "avg_win_R": 1.0882,
+      "avg_loss_R": 0.7557,
+      "profit_factor": 1.0188,
+      "total_R": 2.667,
+      "max_drawdown_R": -16.634,
+      "months_green": "13/25",
+      "expectancy_per_day": 11.3,
+      "r_stability": 0.0063,
+      "yearly_R": 2.8478,
+      "risk_dollars": 1000.0,
+      "sessions_used": 236
+    },
+    "IWM": {
+      "ev_r": 0.0171,
+      "n": 202,
+      "n_input": 245,
+      "n_dropped_size_gate": 43,
+      "size_gate_applicable": true,
+      "win_rate": 0.4653,
+      "avg_win_R": 0.6296,
+      "avg_loss_R": 0.5208,
+      "profit_factor": 1.0619,
+      "total_R": 3.45,
+      "max_drawdown_R": -12.112,
+      "months_green": "14/24",
+      "expectancy_per_day": 20.18,
+      "r_stability": 0.0215,
+      "yearly_R": 5.0842,
+      "risk_dollars": 1000.0,
+      "sessions_used": 171
+    },
+    "UBER": {
+      "ev_r": 0.0323,
+      "n": 151,
+      "n_input": 158,
+      "n_dropped_size_gate": 7,
+      "size_gate_applicable": true,
+      "win_rate": 0.404,
+      "avg_win_R": 1.1423,
+      "avg_loss_R": 0.72,
+      "profit_factor": 1.0754,
+      "total_R": 4.884,
+      "max_drawdown_R": -15.299,
+      "months_green": "6/15",
+      "expectancy_per_day": 37.0,
+      "r_stability": 0.0235,
+      "yearly_R": 9.324,
+      "risk_dollars": 1000.0,
+      "sessions_used": 132
+    },
+    "SPY": {
+      "ev_r": 0.0356,
+      "n": 43,
+      "n_input": 252,
+      "n_dropped_size_gate": 209,
+      "size_gate_applicable": true,
+      "win_rate": 0.4884,
+      "avg_win_R": 0.7449,
+      "avg_loss_R": 0.6415,
+      "profit_factor": 1.1083,
+      "total_R": 1.529,
+      "max_drawdown_R": -7.176,
+      "months_green": "3/11",
+      "expectancy_per_day": 49.32,
+      "r_stability": 0.0364,
+      "yearly_R": 12.4293,
+      "risk_dollars": 1000.0,
+      "sessions_used": 31
+    },
+    "INTC": {
+      "ev_r": 0.0423,
+      "n": 229,
+      "n_input": 240,
+      "n_dropped_size_gate": 11,
+      "size_gate_applicable": true,
+      "win_rate": 0.3974,
+      "avg_win_R": 1.0561,
+      "avg_loss_R": 0.6308,
+      "profit_factor": 1.112,
+      "total_R": 9.679,
+      "max_drawdown_R": -15.505,
+      "months_green": "11/24",
+      "expectancy_per_day": 54.68,
+      "r_stability": 0.0289,
+      "yearly_R": 13.7803,
+      "risk_dollars": 1000.0,
+      "sessions_used": 177
+    },
+    "AMD": {
+      "ev_r": 0.0439,
+      "n": 350,
+      "n_input": 352,
+      "n_dropped_size_gate": 2,
+      "size_gate_applicable": true,
+      "win_rate": 0.4429,
+      "avg_win_R": 1.1362,
+      "avg_loss_R": 0.8243,
+      "profit_factor": 1.0957,
+      "total_R": 15.38,
+      "max_drawdown_R": -30.109,
+      "months_green": "13/25",
+      "expectancy_per_day": 56.96,
+      "r_stability": 0.0306,
+      "yearly_R": 14.3547,
+      "risk_dollars": 1000.0,
+      "sessions_used": 270
+    },
+    "NVDA": {
+      "ev_r": 0.0847,
+      "n": 349,
+      "n_input": 352,
+      "n_dropped_size_gate": 3,
+      "size_gate_applicable": true,
+      "win_rate": 0.447,
+      "avg_win_R": 1.1039,
+      "avg_loss_R": 0.7391,
+      "profit_factor": 1.2073,
+      "total_R": 29.574,
+      "max_drawdown_R": -13.401,
+      "months_green": "12/25",
+      "expectancy_per_day": 113.75,
+      "r_stability": 0.0668,
+      "yearly_R": 28.664,
+      "risk_dollars": 1000.0,
+      "sessions_used": 260
+    },
+    "SPCX": {
+      "ev_r": 0.5014,
+      "n": 45,
+      "n_input": 45,
+      "n_dropped_size_gate": 0,
+      "size_gate_applicable": true,
+      "win_rate": 0.5556,
+      "avg_win_R": 1.5278,
+      "avg_loss_R": 0.7815,
+      "profit_factor": 2.4435,
+      "total_R": 22.563,
+      "max_drawdown_R": -4.109,
+      "months_green": "2/4",
+      "expectancy_per_day": 902.52,
+      "r_stability": 0.2371,
+      "yearly_R": 227.435,
+      "risk_dollars": 1000.0,
+      "sessions_used": 25
+    }
+  },
+  "top5_by_evr_n20": [
+    "SPY",
+    "INTC",
+    "AMD",
+    "NVDA",
+    "SPCX"
+  ],
+  "bottom5_by_evr_n20": [
+    "ACHR",
+    "IREN",
+    "MSFT",
+    "NFLX",
+    "META"
+  ],
+  "slices": [
+    {
+      "slice": "full_28",
+      "symbols": [
+        "AAPL",
+        "ACHR",
+        "AMD",
+        "AMZN",
+        "AVGO",
+        "BABA",
+        "COIN",
+        "CRM",
+        "GOOGL",
+        "HOOD",
+        "INTC",
+        "IREN",
+        "IWM",
+        "MARA",
+        "META",
+        "MSFT",
+        "MU",
+        "NFLX",
+        "NVDA",
+        "ORCL",
+        "PLTR",
+        "QQQ",
+        "SOFI",
+        "SPCX",
+        "SPY",
+        "TSLA",
+        "TSM",
+        "UBER"
+      ],
+      "n_symbols": 28,
+      "n_days_with_first": 498,
+      "n_sizeable_for_prop_eval": 444,
+      "scoreboard": {
+        "ev_r": 0.0377,
+        "n": 444,
+        "n_input": 498,
+        "n_dropped_size_gate": 54,
+        "size_gate_applicable": true,
+        "win_rate": 0.4595,
+        "avg_win_R": 0.9048,
+        "avg_loss_R": 0.7023,
+        "profit_factor": 1.0996,
+        "total_R": 16.726,
+        "max_drawdown_R": -20.415,
+        "months_green": "12/25",
+        "expectancy_per_day": 33.59,
+        "r_stability": 0.0344,
+        "yearly_R": 8.4638,
+        "risk_dollars": 1000.0,
+        "sessions_used": 498
+      },
+      "prop_eval": {
+        "verdict": "FAIL",
+        "risk_per_trade_shown": 500,
+        "result": {
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "fail_day": "2024-09-13",
+          "final_equity": 25.0,
+          "final_equity_pct": 0.05,
+          "days_traded": 9,
+          "max_drawdown_seen_dollars": -2003.0,
+          "max_drawdown_seen_pct": -4.006,
+          "best_day_dollars": 3000.0,
+          "best_day_pct_of_profit": 12000.0,
+          "params": {
+            "account_size": 50000.0,
+            "profit_target_pct": 0.08,
+            "trailing_dd_pct": 0.04,
+            "daily_loss_limit_pct": 0.02,
+            "min_trading_days": 5,
+            "consistency_pct": 0.3,
+            "dd_mode": "eod"
+          }
+        }
+      },
+      "prop_eval_all_levels": [
+        {
+          "risk": 100,
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "final_equity_pct": 3.201,
+          "max_drawdown_seen_pct": -4.083
+        },
+        {
+          "risk": 150,
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "final_equity_pct": -2.472,
+          "max_drawdown_seen_pct": -4.04
+        },
+        {
+          "risk": 200,
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "final_equity_pct": -2.296,
+          "max_drawdown_seen_pct": -4.387
+        },
+        {
+          "risk": 250,
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "final_equity_pct": -2.224,
+          "max_drawdown_seen_pct": -4.252
+        },
+        {
+          "risk": 300,
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "final_equity_pct": -1.843,
+          "max_drawdown_seen_pct": -4.277
+        },
+        {
+          "risk": 500,
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "final_equity_pct": 0.05,
+          "max_drawdown_seen_pct": -4.006
+        },
+        {
+          "risk": 750,
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "final_equity_pct": 1.575,
+          "max_drawdown_seen_pct": -4.509
+        },
+        {
+          "risk": 1000,
+          "passed": false,
+          "fail_reason": "daily_loss_limit",
+          "final_equity_pct": 0.0,
+          "max_drawdown_seen_pct": 0.0
+        },
+        {
+          "risk": 2000,
+          "passed": false,
+          "fail_reason": "daily_loss_limit",
+          "final_equity_pct": 0.0,
+          "max_drawdown_seen_pct": 0.0
+        },
+        {
+          "risk": 5000,
+          "passed": false,
+          "fail_reason": "daily_loss_limit",
+          "final_equity_pct": 0.0,
+          "max_drawdown_seen_pct": 0.0
+        }
+      ]
+    },
+    {
+      "slice": "index_only_QQQ_SPY_IWM",
+      "symbols": [
+        "IWM",
+        "QQQ",
+        "SPY"
+      ],
+      "n_symbols": 3,
+      "n_days_with_first": 388,
+      "n_sizeable_for_prop_eval": 179,
+      "scoreboard": {
+        "ev_r": -0.0256,
+        "n": 179,
+        "n_input": 388,
+        "n_dropped_size_gate": 209,
+        "size_gate_applicable": true,
+        "win_rate": 0.4693,
+        "avg_win_R": 0.5712,
+        "avg_loss_R": 0.5592,
+        "profit_factor": 0.9127,
+        "total_R": -4.587,
+        "max_drawdown_R": -12.799,
+        "months_green": "11/24",
+        "expectancy_per_day": -9.21,
+        "r_stability": -0.0333,
+        "yearly_R": -2.3211,
+        "risk_dollars": 1000.0,
+        "sessions_used": 498
+      },
+      "prop_eval": {
+        "verdict": "FAIL",
+        "risk_per_trade_shown": 500,
+        "result": {
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "fail_day": "2024-11-06",
+          "final_equity": -2062.0,
+          "final_equity_pct": -4.124,
+          "days_traded": 20,
+          "max_drawdown_seen_dollars": -2174.0,
+          "max_drawdown_seen_pct": -4.348,
+          "best_day_dollars": 494.5,
+          "best_day_pct_of_profit": null,
+          "params": {
+            "account_size": 50000.0,
+            "profit_target_pct": 0.08,
+            "trailing_dd_pct": 0.04,
+            "daily_loss_limit_pct": 0.02,
+            "min_trading_days": 5,
+            "consistency_pct": 0.3,
+            "dd_mode": "eod"
+          }
+        }
+      },
+      "prop_eval_all_levels": [
+        {
+          "risk": 100,
+          "passed": false,
+          "fail_reason": "profit_target_not_reached",
+          "final_equity_pct": -0.917,
+          "max_drawdown_seen_pct": -2.56
+        },
+        {
+          "risk": 150,
+          "passed": false,
+          "fail_reason": "profit_target_not_reached",
+          "final_equity_pct": -1.376,
+          "max_drawdown_seen_pct": -3.84
+        },
+        {
+          "risk": 200,
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "final_equity_pct": -1.375,
+          "max_drawdown_seen_pct": -4.122
+        },
+        {
+          "risk": 250,
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "final_equity_pct": -0.723,
+          "max_drawdown_seen_pct": -4.157
+        },
+        {
+          "risk": 300,
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "final_equity_pct": -0.337,
+          "max_drawdown_seen_pct": -4.458
+        },
+        {
+          "risk": 500,
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "final_equity_pct": -4.124,
+          "max_drawdown_seen_pct": -4.348
+        },
+        {
+          "risk": 750,
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "final_equity_pct": -4.428,
+          "max_drawdown_seen_pct": -4.764
+        },
+        {
+          "risk": 1000,
+          "passed": false,
+          "fail_reason": "daily_loss_limit",
+          "final_equity_pct": 0.0,
+          "max_drawdown_seen_pct": 0.0
+        },
+        {
+          "risk": 2000,
+          "passed": false,
+          "fail_reason": "daily_loss_limit",
+          "final_equity_pct": 0.0,
+          "max_drawdown_seen_pct": 0.0
+        },
+        {
+          "risk": 5000,
+          "passed": false,
+          "fail_reason": "daily_loss_limit",
+          "final_equity_pct": 0.0,
+          "max_drawdown_seen_pct": 0.0
+        }
+      ]
+    },
+    {
+      "slice": "QQQ_SPY_only",
+      "symbols": [
+        "QQQ",
+        "SPY"
+      ],
+      "n_symbols": 2,
+      "n_days_with_first": 322,
+      "n_sizeable_for_prop_eval": 88,
+      "scoreboard": {
+        "ev_r": -0.0839,
+        "n": 88,
+        "n_input": 322,
+        "n_dropped_size_gate": 234,
+        "size_gate_applicable": true,
+        "win_rate": 0.5,
+        "avg_win_R": 0.4338,
+        "avg_loss_R": 0.6015,
+        "profit_factor": 0.7212,
+        "total_R": -7.38,
+        "max_drawdown_R": -8.747,
+        "months_green": "9/21",
+        "expectancy_per_day": -14.82,
+        "r_stability": -0.1275,
+        "yearly_R": -3.7345,
+        "risk_dollars": 1000.0,
+        "sessions_used": 498
+      },
+      "prop_eval": {
+        "verdict": "FAIL",
+        "risk_per_trade_shown": 500,
+        "result": {
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "fail_day": "2024-12-23",
+          "final_equity": -2084.0,
+          "final_equity_pct": -4.168,
+          "days_traded": 11,
+          "max_drawdown_seen_dollars": -2084.0,
+          "max_drawdown_seen_pct": -4.168,
+          "best_day_dollars": 271.0,
+          "best_day_pct_of_profit": null,
+          "params": {
+            "account_size": 50000.0,
+            "profit_target_pct": 0.08,
+            "trailing_dd_pct": 0.04,
+            "daily_loss_limit_pct": 0.02,
+            "min_trading_days": 5,
+            "consistency_pct": 0.3,
+            "dd_mode": "eod"
+          }
+        }
+      },
+      "prop_eval_all_levels": [
+        {
+          "risk": 100,
+          "passed": false,
+          "fail_reason": "profit_target_not_reached",
+          "final_equity_pct": -1.476,
+          "max_drawdown_seen_pct": -1.749
+        },
+        {
+          "risk": 150,
+          "passed": false,
+          "fail_reason": "profit_target_not_reached",
+          "final_equity_pct": -2.214,
+          "max_drawdown_seen_pct": -2.624
+        },
+        {
+          "risk": 200,
+          "passed": false,
+          "fail_reason": "profit_target_not_reached",
+          "final_equity_pct": -2.952,
+          "max_drawdown_seen_pct": -3.499
+        },
+        {
+          "risk": 250,
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "final_equity_pct": -4.373,
+          "max_drawdown_seen_pct": -4.373
+        },
+        {
+          "risk": 300,
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "final_equity_pct": -4.048,
+          "max_drawdown_seen_pct": -4.048
+        },
+        {
+          "risk": 500,
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "final_equity_pct": -4.168,
+          "max_drawdown_seen_pct": -4.168
+        },
+        {
+          "risk": 750,
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "final_equity_pct": -4.752,
+          "max_drawdown_seen_pct": -4.752
+        },
+        {
+          "risk": 1000,
+          "passed": false,
+          "fail_reason": "daily_loss_limit",
+          "final_equity_pct": -0.51,
+          "max_drawdown_seen_pct": -0.51
+        },
+        {
+          "risk": 2000,
+          "passed": false,
+          "fail_reason": "daily_loss_limit",
+          "final_equity_pct": -1.02,
+          "max_drawdown_seen_pct": -1.02
+        },
+        {
+          "risk": 5000,
+          "passed": false,
+          "fail_reason": "daily_loss_limit",
+          "final_equity_pct": 0.0,
+          "max_drawdown_seen_pct": 0.0
+        }
+      ]
+    },
+    {
+      "slice": "equities_only_MAJOR_15",
+      "symbols": [
+        "AAPL",
+        "ACHR",
+        "AMD",
+        "AMZN",
+        "GOOGL",
+        "INTC",
+        "META",
+        "MSFT",
+        "MU",
+        "NFLX",
+        "NVDA",
+        "ORCL",
+        "PLTR",
+        "SPCX",
+        "TSLA"
+      ],
+      "n_symbols": 15,
+      "n_days_with_first": 497,
+      "n_sizeable_for_prop_eval": 453,
+      "scoreboard": {
+        "ev_r": 0.0266,
+        "n": 453,
+        "n_input": 497,
+        "n_dropped_size_gate": 44,
+        "size_gate_applicable": true,
+        "win_rate": 0.468,
+        "avg_win_R": 0.8516,
+        "avg_loss_R": 0.702,
+        "profit_factor": 1.0715,
+        "total_R": 12.042,
+        "max_drawdown_R": -18.862,
+        "months_green": "12/25",
+        "expectancy_per_day": 24.18,
+        "r_stability": 0.0247,
+        "yearly_R": 6.0935,
+        "risk_dollars": 1000.0,
+        "sessions_used": 498
+      },
+      "prop_eval": {
+        "verdict": "FAIL",
+        "risk_per_trade_shown": 500,
+        "result": {
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "fail_day": "2024-09-13",
+          "final_equity": 25.0,
+          "final_equity_pct": 0.05,
+          "days_traded": 9,
+          "max_drawdown_seen_dollars": -2003.0,
+          "max_drawdown_seen_pct": -4.006,
+          "best_day_dollars": 3000.0,
+          "best_day_pct_of_profit": 12000.0,
+          "params": {
+            "account_size": 50000.0,
+            "profit_target_pct": 0.08,
+            "trailing_dd_pct": 0.04,
+            "daily_loss_limit_pct": 0.02,
+            "min_trading_days": 5,
+            "consistency_pct": 0.3,
+            "dd_mode": "eod"
+          }
+        }
+      },
+      "prop_eval_all_levels": [
+        {
+          "risk": 100,
+          "passed": false,
+          "fail_reason": "profit_target_not_reached",
+          "final_equity_pct": 2.408,
+          "max_drawdown_seen_pct": -3.772
+        },
+        {
+          "risk": 150,
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "final_equity_pct": -2.4,
+          "max_drawdown_seen_pct": -4.167
+        },
+        {
+          "risk": 200,
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "final_equity_pct": -1.697,
+          "max_drawdown_seen_pct": -4.053
+        },
+        {
+          "risk": 250,
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "final_equity_pct": -2.266,
+          "max_drawdown_seen_pct": -4.293
+        },
+        {
+          "risk": 300,
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "final_equity_pct": -1.696,
+          "max_drawdown_seen_pct": -4.13
+        },
+        {
+          "risk": 500,
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "final_equity_pct": 0.05,
+          "max_drawdown_seen_pct": -4.006
+        },
+        {
+          "risk": 750,
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "final_equity_pct": 1.575,
+          "max_drawdown_seen_pct": -4.509
+        },
+        {
+          "risk": 1000,
+          "passed": false,
+          "fail_reason": "daily_loss_limit",
+          "final_equity_pct": 0.0,
+          "max_drawdown_seen_pct": 0.0
+        },
+        {
+          "risk": 2000,
+          "passed": false,
+          "fail_reason": "daily_loss_limit",
+          "final_equity_pct": 0.0,
+          "max_drawdown_seen_pct": 0.0
+        },
+        {
+          "risk": 5000,
+          "passed": false,
+          "fail_reason": "daily_loss_limit",
+          "final_equity_pct": 0.0,
+          "max_drawdown_seen_pct": 0.0
+        }
+      ]
+    },
+    {
+      "slice": "core_tier",
+      "symbols": [
+        "AAPL",
+        "AMD",
+        "AMZN",
+        "GOOGL",
+        "META",
+        "MSFT",
+        "NVDA",
+        "PLTR",
+        "QQQ",
+        "TSLA"
+      ],
+      "n_symbols": 10,
+      "n_days_with_first": 497,
+      "n_sizeable_for_prop_eval": 449,
+      "scoreboard": {
+        "ev_r": -0.0449,
+        "n": 449,
+        "n_input": 497,
+        "n_dropped_size_gate": 48,
+        "size_gate_applicable": true,
+        "win_rate": 0.4432,
+        "avg_win_R": 0.7734,
+        "avg_loss_R": 0.699,
+        "profit_factor": 0.8842,
+        "total_R": -20.156,
+        "max_drawdown_R": -39.203,
+        "months_green": "9/25",
+        "expectancy_per_day": -40.47,
+        "r_stability": -0.0449,
+        "yearly_R": -10.1994,
+        "risk_dollars": 1000.0,
+        "sessions_used": 498
+      },
+      "prop_eval": {
+        "verdict": "FAIL",
+        "risk_per_trade_shown": 500,
+        "result": {
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "fail_day": "2024-09-13",
+          "final_equity": -1972.0,
+          "final_equity_pct": -3.944,
+          "days_traded": 8,
+          "max_drawdown_seen_dollars": -2003.0,
+          "max_drawdown_seen_pct": -4.006,
+          "best_day_dollars": 395.0,
+          "best_day_pct_of_profit": null,
+          "params": {
+            "account_size": 50000.0,
+            "profit_target_pct": 0.08,
+            "trailing_dd_pct": 0.04,
+            "daily_loss_limit_pct": 0.02,
+            "min_trading_days": 5,
+            "consistency_pct": 0.3,
+            "dd_mode": "eod"
+          }
+        }
+      },
+      "prop_eval_all_levels": [
+        {
+          "risk": 100,
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "final_equity_pct": -0.652,
+          "max_drawdown_seen_pct": -4.003
+        },
+        {
+          "risk": 150,
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "final_equity_pct": -4.052,
+          "max_drawdown_seen_pct": -4.07
+        },
+        {
+          "risk": 200,
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "final_equity_pct": -3.995,
+          "max_drawdown_seen_pct": -4.02
+        },
+        {
+          "risk": 250,
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "final_equity_pct": -4.095,
+          "max_drawdown_seen_pct": -4.127
+        },
+        {
+          "risk": 300,
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "final_equity_pct": -4.265,
+          "max_drawdown_seen_pct": -4.302
+        },
+        {
+          "risk": 500,
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "final_equity_pct": -3.944,
+          "max_drawdown_seen_pct": -4.006
+        },
+        {
+          "risk": 750,
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "final_equity_pct": -4.416,
+          "max_drawdown_seen_pct": -4.509
+        },
+        {
+          "risk": 1000,
+          "passed": false,
+          "fail_reason": "daily_loss_limit",
+          "final_equity_pct": 0.0,
+          "max_drawdown_seen_pct": 0.0
+        },
+        {
+          "risk": 2000,
+          "passed": false,
+          "fail_reason": "daily_loss_limit",
+          "final_equity_pct": 0.0,
+          "max_drawdown_seen_pct": 0.0
+        },
+        {
+          "risk": 5000,
+          "passed": false,
+          "fail_reason": "daily_loss_limit",
+          "final_equity_pct": 0.0,
+          "max_drawdown_seen_pct": 0.0
+        }
+      ]
+    },
+    {
+      "slice": "experimental_tier",
+      "symbols": [
+        "AVGO",
+        "BABA",
+        "COIN",
+        "CRM",
+        "HOOD",
+        "INTC",
+        "IREN",
+        "MARA",
+        "MU",
+        "NFLX",
+        "ORCL",
+        "SOFI",
+        "TSM",
+        "UBER"
+      ],
+      "n_symbols": 14,
+      "n_days_with_first": 493,
+      "n_sizeable_for_prop_eval": 472,
+      "scoreboard": {
+        "ev_r": 0.0482,
+        "n": 472,
+        "n_input": 493,
+        "n_dropped_size_gate": 21,
+        "size_gate_applicable": true,
+        "win_rate": 0.4555,
+        "avg_win_R": 0.9574,
+        "avg_loss_R": 0.7151,
+        "profit_factor": 1.1244,
+        "total_R": 22.77,
+        "max_drawdown_R": -12.402,
+        "months_green": "13/25",
+        "expectancy_per_day": 45.72,
+        "r_stability": 0.0415,
+        "yearly_R": 11.5222,
+        "risk_dollars": 1000.0,
+        "sessions_used": 498
+      },
+      "prop_eval": {
+        "verdict": "PASS",
+        "risk_per_trade_shown": 150,
+        "result": {
+          "passed": true,
+          "fail_reason": null,
+          "fail_day": null,
+          "final_equity": 4022.85,
+          "final_equity_pct": 8.046,
+          "days_traded": 443,
+          "max_drawdown_seen_dollars": -1860.3,
+          "max_drawdown_seen_pct": -3.721,
+          "best_day_dollars": 1002.0,
+          "best_day_pct_of_profit": 24.91,
+          "params": {
+            "account_size": 50000.0,
+            "profit_target_pct": 0.08,
+            "trailing_dd_pct": 0.04,
+            "daily_loss_limit_pct": 0.02,
+            "min_trading_days": 5,
+            "consistency_pct": 0.3,
+            "dd_mode": "eod"
+          }
+        }
+      },
+      "prop_eval_all_levels": [
+        {
+          "risk": 100,
+          "passed": false,
+          "fail_reason": "profit_target_not_reached",
+          "final_equity_pct": 4.554,
+          "max_drawdown_seen_pct": -2.48
+        },
+        {
+          "risk": 150,
+          "passed": true,
+          "fail_reason": null,
+          "final_equity_pct": 8.046,
+          "max_drawdown_seen_pct": -3.721
+        },
+        {
+          "risk": 200,
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "final_equity_pct": 4.295,
+          "max_drawdown_seen_pct": -4.051
+        },
+        {
+          "risk": 250,
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "final_equity_pct": 5.98,
+          "max_drawdown_seen_pct": -4.453
+        },
+        {
+          "risk": 300,
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "final_equity_pct": -0.536,
+          "max_drawdown_seen_pct": -4.029
+        },
+        {
+          "risk": 500,
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "final_equity_pct": 1.259,
+          "max_drawdown_seen_pct": -4.563
+        },
+        {
+          "risk": 750,
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "final_equity_pct": 4.127,
+          "max_drawdown_seen_pct": -4.607
+        },
+        {
+          "risk": 1000,
+          "passed": false,
+          "fail_reason": "daily_loss_limit",
+          "final_equity_pct": 0.0,
+          "max_drawdown_seen_pct": 0.0
+        },
+        {
+          "risk": 2000,
+          "passed": false,
+          "fail_reason": "daily_loss_limit",
+          "final_equity_pct": 0.0,
+          "max_drawdown_seen_pct": 0.0
+        },
+        {
+          "risk": 5000,
+          "passed": false,
+          "fail_reason": "daily_loss_limit",
+          "final_equity_pct": 0.0,
+          "max_drawdown_seen_pct": 0.0
+        }
+      ]
+    },
+    {
+      "slice": "top5_by_evr_n20",
+      "symbols": [
+        "AMD",
+        "INTC",
+        "NVDA",
+        "SPCX",
+        "SPY"
+      ],
+      "n_symbols": 5,
+      "n_days_with_first": 436,
+      "n_sizeable_for_prop_eval": 375,
+      "scoreboard": {
+        "ev_r": 0.0024,
+        "n": 375,
+        "n_input": 436,
+        "n_dropped_size_gate": 61,
+        "size_gate_applicable": true,
+        "win_rate": 0.4533,
+        "avg_win_R": 0.8853,
+        "avg_loss_R": 0.7298,
+        "profit_factor": 1.0059,
+        "total_R": 0.885,
+        "max_drawdown_R": -29.772,
+        "months_green": "13/25",
+        "expectancy_per_day": 1.78,
+        "r_stability": 0.0021,
+        "yearly_R": 0.4478,
+        "risk_dollars": 1000.0,
+        "sessions_used": 498
+      },
+      "prop_eval": {
+        "verdict": "FAIL",
+        "risk_per_trade_shown": 500,
+        "result": {
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "fail_day": "2024-10-11",
+          "final_equity": 248.5,
+          "final_equity_pct": 0.497,
+          "days_traded": 22,
+          "max_drawdown_seen_dollars": -2348.0,
+          "max_drawdown_seen_pct": -4.696,
+          "best_day_dollars": 2276.0,
+          "best_day_pct_of_profit": 915.9,
+          "params": {
+            "account_size": 50000.0,
+            "profit_target_pct": 0.08,
+            "trailing_dd_pct": 0.04,
+            "daily_loss_limit_pct": 0.02,
+            "min_trading_days": 5,
+            "consistency_pct": 0.3,
+            "dd_mode": "eod"
+          }
+        }
+      },
+      "prop_eval_all_levels": [
+        {
+          "risk": 100,
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "final_equity_pct": 0.188,
+          "max_drawdown_seen_pct": -4.078
+        },
+        {
+          "risk": 150,
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "final_equity_pct": 2.123,
+          "max_drawdown_seen_pct": -4.277
+        },
+        {
+          "risk": 200,
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "final_equity_pct": 4.511,
+          "max_drawdown_seen_pct": -4.022
+        },
+        {
+          "risk": 250,
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "final_equity_pct": 6.639,
+          "max_drawdown_seen_pct": -4.028
+        },
+        {
+          "risk": 300,
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "final_equity_pct": 1.714,
+          "max_drawdown_seen_pct": -4.137
+        },
+        {
+          "risk": 500,
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "final_equity_pct": 0.497,
+          "max_drawdown_seen_pct": -4.696
+        },
+        {
+          "risk": 750,
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "final_equity_pct": 3.745,
+          "max_drawdown_seen_pct": -4.044
+        },
+        {
+          "risk": 1000,
+          "passed": false,
+          "fail_reason": "daily_loss_limit",
+          "final_equity_pct": 0.0,
+          "max_drawdown_seen_pct": 0.0
+        },
+        {
+          "risk": 2000,
+          "passed": false,
+          "fail_reason": "daily_loss_limit",
+          "final_equity_pct": 0.0,
+          "max_drawdown_seen_pct": 0.0
+        },
+        {
+          "risk": 5000,
+          "passed": false,
+          "fail_reason": "daily_loss_limit",
+          "final_equity_pct": 0.0,
+          "max_drawdown_seen_pct": 0.0
+        }
+      ]
+    },
+    {
+      "slice": "bottom5_by_evr_n20",
+      "symbols": [
+        "ACHR",
+        "IREN",
+        "META",
+        "MSFT",
+        "NFLX"
+      ],
+      "n_symbols": 5,
+      "n_days_with_first": 459,
+      "n_sizeable_for_prop_eval": 327,
+      "scoreboard": {
+        "ev_r": -0.0836,
+        "n": 327,
+        "n_input": 459,
+        "n_dropped_size_gate": 132,
+        "size_gate_applicable": true,
+        "win_rate": 0.4404,
+        "avg_win_R": 0.7414,
+        "avg_loss_R": 0.7328,
+        "profit_factor": 0.7961,
+        "total_R": -27.339,
+        "max_drawdown_R": -28.527,
+        "months_green": "8/25",
+        "expectancy_per_day": -54.9,
+        "r_stability": -0.0905,
+        "yearly_R": -13.8342,
+        "risk_dollars": 1000.0,
+        "sessions_used": 498
+      },
+      "prop_eval": {
+        "verdict": "FAIL",
+        "risk_per_trade_shown": 500,
+        "result": {
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "fail_day": "2024-09-12",
+          "final_equity": -1986.0,
+          "final_equity_pct": -3.972,
+          "days_traded": 7,
+          "max_drawdown_seen_dollars": -2069.0,
+          "max_drawdown_seen_pct": -4.138,
+          "best_day_dollars": 83.0,
+          "best_day_pct_of_profit": null,
+          "params": {
+            "account_size": 50000.0,
+            "profit_target_pct": 0.08,
+            "trailing_dd_pct": 0.04,
+            "daily_loss_limit_pct": 0.02,
+            "min_trading_days": 5,
+            "consistency_pct": 0.3,
+            "dd_mode": "eod"
+          }
+        }
+      },
+      "prop_eval_all_levels": [
+        {
+          "risk": 100,
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "final_equity_pct": -4.024,
+          "max_drawdown_seen_pct": -4.057
+        },
+        {
+          "risk": 150,
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "final_equity_pct": -4.104,
+          "max_drawdown_seen_pct": -4.154
+        },
+        {
+          "risk": 200,
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "final_equity_pct": -4.224,
+          "max_drawdown_seen_pct": -4.291
+        },
+        {
+          "risk": 250,
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "final_equity_pct": -4.234,
+          "max_drawdown_seen_pct": -4.317
+        },
+        {
+          "risk": 300,
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "final_equity_pct": -4.138,
+          "max_drawdown_seen_pct": -4.237
+        },
+        {
+          "risk": 500,
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "final_equity_pct": -3.972,
+          "max_drawdown_seen_pct": -4.138
+        },
+        {
+          "risk": 750,
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "final_equity_pct": -4.458,
+          "max_drawdown_seen_pct": -4.707
+        },
+        {
+          "risk": 1000,
+          "passed": false,
+          "fail_reason": "daily_loss_limit",
+          "final_equity_pct": 0.332,
+          "max_drawdown_seen_pct": 0.0
+        },
+        {
+          "risk": 2000,
+          "passed": false,
+          "fail_reason": "daily_loss_limit",
+          "final_equity_pct": 0.664,
+          "max_drawdown_seen_pct": 0.0
+        },
+        {
+          "risk": 5000,
+          "passed": false,
+          "fail_reason": "daily_loss_limit",
+          "final_equity_pct": 1.66,
+          "max_drawdown_seen_pct": 0.0
+        }
+      ]
+    }
+  ]
+}

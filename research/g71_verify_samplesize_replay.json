@@ -1,0 +1,4481 @@
+{
+  "replayed": 1100,
+  "errors": 0,
+  "by_grade": {
+    "A": {
+      "n": 227,
+      "fired": 113,
+      "det": 222,
+      "recall_pct": 49.8,
+      "detect_pct": 97.8
+    },
+    "C": {
+      "n": 57,
+      "fired": 39,
+      "det": 53,
+      "recall_pct": 68.4,
+      "detect_pct": 93.0
+    },
+    "S": {
+      "n": 281,
+      "fired": 167,
+      "det": 273,
+      "recall_pct": 59.4,
+      "detect_pct": 97.2
+    },
+    "none": {
+      "n": 535,
+      "fired": 274,
+      "det": 522,
+      "recall_pct": 51.2,
+      "detect_pct": 97.6
+    }
+  },
+  "none_clean_of_page_default": {
+    "n": 500,
+    "fired": 254,
+    "recall_pct": 50.8
+  },
+  "n_default_only_none_days": 35,
+  "pairwise_z": {
+    "S_vs_A": {
+      "z": 2.174,
+      "p": 0.0297
+    },
+    "S_vs_C": {
+      "z": -1.269,
+      "p": 0.2046
+    },
+    "S_vs_none": {
+      "z": 2.238,
+      "p": 0.0252
+    },
+    "A_vs_C": {
+      "z": -2.523,
+      "p": 0.0116
+    },
+    "A_vs_none": {
+      "z": -0.362,
+      "p": 0.717
+    },
+    "C_vs_none": {
+      "z": 2.474,
+      "p": 0.0134
+    },
+    "S_vs_none_cleaned": {
+      "z": 2.322,
+      "p": 0.0202
+    }
+  },
+  "bonferroni_6": {
+    "S_vs_A": 0.1782,
+    "S_vs_C": 1.0,
+    "S_vs_none": 0.1512,
+    "A_vs_C": 0.0696,
+    "A_vs_none": 1.0,
+    "C_vs_none": 0.0804
+  },
+  "fired": {
+    "AAPL_2024-01-02": {
+      "entries": 0,
+      "signals": 10
+    },
+    "AAPL_2024-03-28": {
+      "entries": 1,
+      "signals": 8
+    },
+    "AAPL_2024-10-28": {
+      "entries": 0,
+      "signals": 6
+    },
+    "AAPL_2024-11-04": {
+      "entries": 0,
+      "signals": 4
+    },
+    "AAPL_2024-12-20": {
+      "entries": 0,
+      "signals": 8
+    },
+    "AAPL_2024-12-31": {
+      "entries": 0,
+      "signals": 4
+    },
+    "AAPL_2025-01-10": {
+      "entries": 2,
+      "signals": 4
+    },
+    "AAPL_2025-01-13": {
+      "entries": 1,
+      "signals": 7
+    },
+    "AAPL_2025-01-16": {
+      "entries": 0,
+      "signals": 0
+    },
+    "AAPL_2025-01-28": {
+      "entries": 1,
+      "signals": 6
+    },
+    "AAPL_2025-02-19": {
+      "entries": 1,
+      "signals": 4
+    },
+    "AAPL_2025-02-24": {
+      "entries": 1,
+      "signals": 5
+    },
+    "AAPL_2025-02-25": {
+      "entries": 0,
+      "signals": 6
+    },
+    "AAPL_2025-03-12": {
+      "entries": 1,
+      "signals": 4
+    },
+    "AAPL_2025-03-24": {
+      "entries": 0,
+      "signals": 7
+    },
+    "AAPL_2025-03-28": {
+      "entries": 1,
+      "signals": 12
+    },
+    "AAPL_2025-04-01": {
+      "entries": 1,
+      "signals": 8
+    },
+    "AAPL_2025-06-03": {
+      "entries": 0,
+      "signals": 1
+    },
+    "AAPL_2025-06-11": {
+      "entries": 0,
+      "signals": 6
+    },
+    "AAPL_2025-06-12": {
+      "entries": 1,
+      "signals": 10
+    },
+    "AAPL_2025-07-01": {
+      "entries": 1,
+      "signals": 4
+    },
+    "AAPL_2025-07-21": {
+      "entries": 1,
+      "signals": 4
+    },
+    "AAPL_2025-08-01": {
+      "entries": 1,
+      "signals": 6
+    },
+    "AAPL_2025-08-25": {
+      "entries": 0,
+      "signals": 1
+    },
+    "AAPL_2025-09-04": {
+      "entries": 2,
+      "signals": 10
+    },
+    "AAPL_2025-09-09": {
+      "entries": 0,
+      "signals": 10
+    },
+    "AAPL_2025-09-11": {
+      "entries": 0,
+      "signals": 3
+    },
+    "AAPL_2025-09-15": {
+      "entries": 0,
+      "signals": 6
+    },
+    "AAPL_2025-10-01": {
+      "entries": 1,
+      "signals": 4
+    },
+    "AAPL_2025-10-06": {
+      "entries": 0,
+      "signals": 1
+    },
+    "AAPL_2025-10-10": {
+      "entries": 0,
+      "signals": 3
+    },
+    "AAPL_2025-11-13": {
+      "entries": 0,
+      "signals": 10
+    },
+    "AAPL_2025-12-11": {
+      "entries": 0,
+      "signals": 3
+    },
+    "AAPL_2025-12-22": {
+      "entries": 0,
+      "signals": 15
+    },
+    "AAPL_2026-01-22": {
+      "entries": 0,
+      "signals": 5
+    },
+    "AAPL_2026-04-06": {
+      "entries": 0,
+      "signals": 4
+    },
+    "AAPL_2026-04-10": {
+      "entries": 1,
+      "signals": 8
+    },
+    "AAPL_2026-04-14": {
+      "entries": 0,
+      "signals": 3
+    },
+    "AAPL_2026-05-06": {
+      "entries": 0,
+      "signals": 7
+    },
+    "AAPL_2026-05-08": {
+      "entries": 1,
+      "signals": 6
+    },
+    "AAPL_2026-06-10": {
+      "entries": 1,
+      "signals": 12
+    },
+    "AAPL_2026-06-25": {
+      "entries": 3,
+      "signals": 5
+    },
+    "AAPL_2026-07-06": {
+      "entries": 2,
+      "signals": 7
+    },
+    "AAPL_2026-07-08": {
+      "entries": 0,
+      "signals": 2
+    },
+    "AAPL_2026-07-22": {
+      "entries": 0,
+      "signals": 3
+    },
+    "AAPL_2026-08-03": {
+      "entries": 1,
+      "signals": 9
+    },
+    "ACHR_2024-12-02": {
+      "entries": 0,
+      "signals": 10
+    },
+    "ACHR_2025-03-17": {
+      "entries": 0,
+      "signals": 8
+    },
+    "ACHR_2025-10-07": {
+      "entries": 3,
+      "signals": 15
+    },
+    "ACHR_2025-12-11": {
+      "entries": 0,
+      "signals": 7
+    },
+    "ACHR_2025-12-19": {
+      "entries": 0,
+      "signals": 11
+    },
+    "ACHR_2026-02-05": {
+      "entries": 1,
+      "signals": 5
+    },
+    "ACHR_2026-03-06": {
+      "entries": 1,
+      "signals": 3
+    },
+    "ACHR_2026-03-30": {
+      "entries": 0,
+      "signals": 0
+    },
+    "ACHR_2026-04-10": {
+      "entries": 1,
+      "signals": 5
+    },
+    "ACHR_2026-05-29": {
+      "entries": 0,
+      "signals": 4
+    },
+    "ACHR_2026-07-28": {
+      "entries": 2,
+      "signals": 13
+    },
+    "AMD_2024-09-27": {
+      "entries": 1,
+      "signals": 7
+    },
+    "AMD_2024-10-22": {
+      "entries": 0,
+      "signals": 20
+    },
+    "AMD_2024-10-24": {
+      "entries": 1,
+      "signals": 4
+    },
+    "AMD_2024-11-11": {
+      "entries": 0,
+      "signals": 5
+    },
+    "AMD_2025-01-28": {
+      "entries": 0,
+      "signals": 6
+    },
+    "AMD_2025-03-18": {
+      "entries": 0,
+      "signals": 10
+    },
+    "AMD_2025-03-28": {
+      "entries": 0,
+      "signals": 13
+    },
+    "AMD_2025-04-04": {
+      "entries": 0,
+      "signals": 1
+    },
+    "AMD_2025-04-24": {
+      "entries": 0,
+      "signals": 3
+    },
+    "AMD_2025-05-19": {
+      "entries": 0,
+      "signals": 12
+    },
+    "AMD_2025-06-05": {
+      "entries": 0,
+      "signals": 2
+    },
+    "AMD_2025-06-23": {
+      "entries": 1,
+      "signals": 7
+    },
+    "AMD_2025-06-25": {
+      "entries": 0,
+      "signals": 3
+    },
+    "AMD_2025-07-28": {
+      "entries": 1,
+      "signals": 4
+    },
+    "AMD_2025-08-27": {
+      "entries": 1,
+      "signals": 7
+    },
+    "AMD_2025-09-16": {
+      "entries": 0,
+      "signals": 5
+    },
+    "AMD_2025-09-19": {
+      "entries": 2,
+      "signals": 13
+    },
+    "AMD_2025-10-14": {
+      "entries": 1,
+      "signals": 7
+    },
+    "AMD_2025-10-24": {
+      "entries": 2,
+      "signals": 7
+    },
+    "AMD_2025-11-13": {
+      "entries": 2,
+      "signals": 9
+    },
+    "AMD_2025-11-14": {
+      "entries": 2,
+      "signals": 5
+    },
+    "AMD_2025-11-21": {
+      "entries": 9,
+      "signals": 20
+    },
+    "AMD_2025-12-22": {
+      "entries": 1,
+      "signals": 8
+    },
+    "AMD_2026-01-08": {
+      "entries": 1,
+      "signals": 5
+    },
+    "AMD_2026-02-13": {
+      "entries": 1,
+      "signals": 5
+    },
+    "AMD_2026-03-03": {
+      "entries": 2,
+      "signals": 6
+    },
+    "AMD_2026-03-04": {
+      "entries": 0,
+      "signals": 7
+    },
+    "AMD_2026-03-10": {
+      "entries": 0,
+      "signals": 6
+    },
+    "AMD_2026-03-24": {
+      "entries": 2,
+      "signals": 8
+    },
+    "AMD_2026-03-25": {
+      "entries": 1,
+      "signals": 6
+    },
+    "AMD_2026-04-08": {
+      "entries": 0,
+      "signals": 14
+    },
+    "AMD_2026-04-14": {
+      "entries": 2,
+      "signals": 7
+    },
+    "AMD_2026-04-21": {
+      "entries": 2,
+      "signals": 8
+    },
+    "AMD_2026-05-13": {
+      "entries": 1,
+      "signals": 7
+    },
+    "AMD_2026-05-14": {
+      "entries": 4,
+      "signals": 7
+    },
+    "AMZN_2024-09-12": {
+      "entries": 0,
+      "signals": 8
+    },
+    "AMZN_2024-09-27": {
+      "entries": 0,
+      "signals": 7
+    },
+    "AMZN_2024-10-22": {
+      "entries": 1,
+      "signals": 3
+    },
+    "AMZN_2024-11-29": {
+      "entries": 1,
+      "signals": 6
+    },
+    "AMZN_2025-01-22": {
+      "entries": 0,
+      "signals": 5
+    },
+    "AMZN_2025-02-11": {
+      "entries": 0,
+      "signals": 6
+    },
+    "AMZN_2025-03-14": {
+      "entries": 3,
+      "signals": 9
+    },
+    "AMZN_2025-06-12": {
+      "entries": 1,
+      "signals": 3
+    },
+    "AMZN_2025-08-14": {
+      "entries": 0,
+      "signals": 3
+    },
+    "AMZN_2025-08-22": {
+      "entries": 2,
+      "signals": 10
+    },
+    "AMZN_2025-09-10": {
+      "entries": 0,
+      "signals": 3
+    },
+    "AMZN_2025-09-25": {
+      "entries": 0,
+      "signals": 0
+    },
+    "AMZN_2025-10-16": {
+      "entries": 1,
+      "signals": 13
+    },
+    "AMZN_2025-11-24": {
+      "entries": 1,
+      "signals": 8
+    },
+    "AMZN_2025-12-02": {
+      "entries": 0,
+      "signals": 7
+    },
+    "AMZN_2025-12-04": {
+      "entries": 0,
+      "signals": 5
+    },
+    "AMZN_2025-12-09": {
+      "entries": 0,
+      "signals": 3
+    },
+    "AMZN_2026-01-14": {
+      "entries": 0,
+      "signals": 7
+    },
+    "AMZN_2026-02-06": {
+      "entries": 1,
+      "signals": 7
+    },
+    "AMZN_2026-02-10": {
+      "entries": 0,
+      "signals": 3
+    },
+    "AMZN_2026-02-17": {
+      "entries": 2,
+      "signals": 15
+    },
+    "AMZN_2026-02-18": {
+      "entries": 0,
+      "signals": 17
+    },
+    "AMZN_2026-03-09": {
+      "entries": 0,
+      "signals": 4
+    },
+    "AMZN_2026-03-13": {
+      "entries": 1,
+      "signals": 13
+    },
+    "AMZN_2026-04-10": {
+      "entries": 0,
+      "signals": 8
+    },
+    "AMZN_2026-05-04": {
+      "entries": 1,
+      "signals": 2
+    },
+    "AMZN_2026-05-11": {
+      "entries": 0,
+      "signals": 3
+    },
+    "AMZN_2026-05-12": {
+      "entries": 1,
+      "signals": 8
+    },
+    "AMZN_2026-06-15": {
+      "entries": 0,
+      "signals": 4
+    },
+    "AMZN_2026-07-07": {
+      "entries": 0,
+      "signals": 2
+    },
+    "AMZN_2026-07-17": {
+      "entries": 0,
+      "signals": 7
+    },
+    "AMZN_2026-07-23": {
+      "entries": 2,
+      "signals": 7
+    },
+    "ARM_2024-10-28": {
+      "entries": 1,
+      "signals": 4
+    },
+    "ARM_2024-11-11": {
+      "entries": 4,
+      "signals": 15
+    },
+    "ARM_2025-05-01": {
+      "entries": 3,
+      "signals": 8
+    },
+    "ARM_2026-04-29": {
+      "entries": 0,
+      "signals": 6
+    },
+    "AVGO_2024-08-07": {
+      "entries": 0,
+      "signals": 0
+    },
+    "AVGO_2024-08-15": {
+      "entries": 1,
+      "signals": 10
+    },
+    "AVGO_2024-09-18": {
+      "entries": 1,
+      "signals": 15
+    },
+    "AVGO_2024-11-29": {
+      "entries": 0,
+      "signals": 5
+    },
+    "AVGO_2024-12-06": {
+      "entries": 1,
+      "signals": 7
+    },
+    "AVGO_2025-01-10": {
+      "entries": 1,
+      "signals": 8
+    },
+    "AVGO_2025-01-14": {
+      "entries": 1,
+      "signals": 3
+    },
+    "AVGO_2025-01-17": {
+      "entries": 0,
+      "signals": 8
+    },
+    "AVGO_2025-01-31": {
+      "entries": 0,
+      "signals": 3
+    },
+    "AVGO_2025-02-07": {
+      "entries": 0,
+      "signals": 2
+    },
+    "AVGO_2025-04-10": {
+      "entries": 0,
+      "signals": 5
+    },
+    "AVGO_2025-04-25": {
+      "entries": 0,
+      "signals": 4
+    },
+    "AVGO_2025-04-28": {
+      "entries": 1,
+      "signals": 8
+    },
+    "AVGO_2025-05-02": {
+      "entries": 3,
+      "signals": 9
+    },
+    "AVGO_2025-05-14": {
+      "entries": 1,
+      "signals": 5
+    },
+    "AVGO_2025-06-30": {
+      "entries": 0,
+      "signals": 0
+    },
+    "AVGO_2025-08-14": {
+      "entries": 1,
+      "signals": 3
+    },
+    "AVGO_2025-08-25": {
+      "entries": 1,
+      "signals": 9
+    },
+    "AVGO_2025-09-24": {
+      "entries": 0,
+      "signals": 5
+    },
+    "AVGO_2025-09-26": {
+      "entries": 6,
+      "signals": 6
+    },
+    "AVGO_2025-09-29": {
+      "entries": 1,
+      "signals": 5
+    },
+    "AVGO_2025-10-10": {
+      "entries": 3,
+      "signals": 18
+    },
+    "AVGO_2025-10-28": {
+      "entries": 1,
+      "signals": 4
+    },
+    "AVGO_2025-12-17": {
+      "entries": 2,
+      "signals": 6
+    },
+    "AVGO_2025-12-23": {
+      "entries": 0,
+      "signals": 4
+    },
+    "AVGO_2026-01-28": {
+      "entries": 2,
+      "signals": 9
+    },
+    "AVGO_2026-02-10": {
+      "entries": 2,
+      "signals": 23
+    },
+    "AVGO_2026-02-13": {
+      "entries": 1,
+      "signals": 10
+    },
+    "AVGO_2026-03-11": {
+      "entries": 2,
+      "signals": 11
+    },
+    "AVGO_2026-03-24": {
+      "entries": 4,
+      "signals": 13
+    },
+    "AVGO_2026-04-09": {
+      "entries": 0,
+      "signals": 10
+    },
+    "AVGO_2026-04-14": {
+      "entries": 0,
+      "signals": 3
+    },
+    "AVGO_2026-04-23": {
+      "entries": 1,
+      "signals": 8
+    },
+    "AVGO_2026-05-13": {
+      "entries": 0,
+      "signals": 2
+    },
+    "AVGO_2026-05-19": {
+      "entries": 5,
+      "signals": 10
+    },
+    "AVGO_2026-06-25": {
+      "entries": 1,
+      "signals": 5
+    },
+    "AVGO_2026-06-29": {
+      "entries": 1,
+      "signals": 2
+    },
+    "AVGO_2026-06-30": {
+      "entries": 0,
+      "signals": 6
+    },
+    "AVGO_2026-07-08": {
+      "entries": 0,
+      "signals": 13
+    },
+    "AVGO_2026-07-16": {
+      "entries": 0,
+      "signals": 4
+    },
+    "AVGO_2026-07-23": {
+      "entries": 2,
+      "signals": 8
+    },
+    "AVGO_2026-07-27": {
+      "entries": 0,
+      "signals": 0
+    },
+    "AVGO_2026-08-10": {
+      "entries": 1,
+      "signals": 4
+    },
+    "BABA_2024-11-22": {
+      "entries": 0,
+      "signals": 5
+    },
+    "BABA_2024-12-12": {
+      "entries": 0,
+      "signals": 2
+    },
+    "BABA_2024-12-17": {
+      "entries": 0,
+      "signals": 4
+    },
+    "BABA_2024-12-30": {
+      "entries": 0,
+      "signals": 5
+    },
+    "BABA_2025-02-05": {
+      "entries": 1,
+      "signals": 10
+    },
+    "BABA_2025-02-19": {
+      "entries": 1,
+      "signals": 4
+    },
+    "BABA_2025-03-19": {
+      "entries": 0,
+      "signals": 3
+    },
+    "BABA_2025-04-01": {
+      "entries": 1,
+      "signals": 8
+    },
+    "BABA_2025-04-07": {
+      "entries": 2,
+      "signals": 8
+    },
+    "BABA_2025-07-16": {
+      "entries": 0,
+      "signals": 8
+    },
+    "BABA_2025-07-22": {
+      "entries": 0,
+      "signals": 2
+    },
+    "BABA_2025-07-23": {
+      "entries": 0,
+      "signals": 7
+    },
+    "BABA_2025-08-28": {
+      "entries": 1,
+      "signals": 5
+    },
+    "BABA_2025-09-17": {
+      "entries": 0,
+      "signals": 0
+    },
+    "BABA_2025-10-02": {
+      "entries": 0,
+      "signals": 4
+    },
+    "BABA_2025-12-26": {
+      "entries": 0,
+      "signals": 3
+    },
+    "BABA_2026-01-06": {
+      "entries": 0,
+      "signals": 7
+    },
+    "BABA_2026-01-20": {
+      "entries": 0,
+      "signals": 3
+    },
+    "BABA_2026-01-30": {
+      "entries": 0,
+      "signals": 11
+    },
+    "BABA_2026-02-04": {
+      "entries": 1,
+      "signals": 4
+    },
+    "BABA_2026-02-05": {
+      "entries": 2,
+      "signals": 5
+    },
+    "BABA_2026-02-17": {
+      "entries": 0,
+      "signals": 1
+    },
+    "BABA_2026-05-07": {
+      "entries": 0,
+      "signals": 0
+    },
+    "BABA_2026-05-08": {
+      "entries": 0,
+      "signals": 12
+    },
+    "BABA_2026-05-14": {
+      "entries": 1,
+      "signals": 6
+    },
+    "BABA_2026-05-22": {
+      "entries": 1,
+      "signals": 7
+    },
+    "BABA_2026-06-12": {
+      "entries": 0,
+      "signals": 6
+    },
+    "BABA_2026-06-29": {
+      "entries": 0,
+      "signals": 5
+    },
+    "BABA_2026-07-01": {
+      "entries": 0,
+      "signals": 9
+    },
+    "BABA_2026-07-27": {
+      "entries": 0,
+      "signals": 4
+    },
+    "COIN_2024-04-29": {
+      "entries": 1,
+      "signals": 10
+    },
+    "COIN_2024-06-05": {
+      "entries": 1,
+      "signals": 5
+    },
+    "COIN_2024-09-12": {
+      "entries": 3,
+      "signals": 8
+    },
+    "COIN_2024-09-20": {
+      "entries": 4,
+      "signals": 15
+    },
+    "COIN_2025-01-17": {
+      "entries": 1,
+      "signals": 17
+    },
+    "COIN_2025-02-28": {
+      "entries": 0,
+      "signals": 2
+    },
+    "COIN_2025-03-06": {
+      "entries": 1,
+      "signals": 13
+    },
+    "COIN_2025-03-13": {
+      "entries": 2,
+      "signals": 6
+    },
+    "COIN_2025-03-31": {
+      "entries": 2,
+      "signals": 4
+    },
+    "COIN_2025-06-26": {
+      "entries": 2,
+      "signals": 10
+    },
+    "COIN_2025-08-05": {
+      "entries": 0,
+      "signals": 4
+    },
+    "COIN_2025-08-13": {
+      "entries": 2,
+      "signals": 3
+    },
+    "COIN_2025-09-15": {
+      "entries": 5,
+      "signals": 17
+    },
+    "COIN_2025-10-09": {
+      "entries": 3,
+      "signals": 8
+    },
+    "COIN_2025-10-21": {
+      "entries": 1,
+      "signals": 9
+    },
+    "COIN_2025-10-30": {
+      "entries": 2,
+      "signals": 9
+    },
+    "COIN_2025-11-07": {
+      "entries": 2,
+      "signals": 14
+    },
+    "COIN_2025-12-01": {
+      "entries": 1,
+      "signals": 2
+    },
+    "COIN_2025-12-02": {
+      "entries": 3,
+      "signals": 10
+    },
+    "COIN_2025-12-10": {
+      "entries": 1,
+      "signals": 7
+    },
+    "COIN_2025-12-18": {
+      "entries": 1,
+      "signals": 4
+    },
+    "COIN_2025-12-30": {
+      "entries": 2,
+      "signals": 6
+    },
+    "COIN_2026-01-22": {
+      "entries": 0,
+      "signals": 9
+    },
+    "COIN_2026-01-30": {
+      "entries": 1,
+      "signals": 10
+    },
+    "COIN_2026-02-10": {
+      "entries": 1,
+      "signals": 7
+    },
+    "COIN_2026-03-04": {
+      "entries": 3,
+      "signals": 6
+    },
+    "COIN_2026-04-07": {
+      "entries": 1,
+      "signals": 12
+    },
+    "COIN_2026-04-09": {
+      "entries": 1,
+      "signals": 4
+    },
+    "COIN_2026-04-17": {
+      "entries": 1,
+      "signals": 7
+    },
+    "COIN_2026-04-20": {
+      "entries": 4,
+      "signals": 19
+    },
+    "COIN_2026-05-06": {
+      "entries": 0,
+      "signals": 4
+    },
+    "COIN_2026-05-18": {
+      "entries": 1,
+      "signals": 1
+    },
+    "COIN_2026-05-26": {
+      "entries": 1,
+      "signals": 7
+    },
+    "COIN_2026-06-12": {
+      "entries": 1,
+      "signals": 7
+    },
+    "COIN_2026-06-16": {
+      "entries": 3,
+      "signals": 10
+    },
+    "COIN_2026-06-17": {
+      "entries": 0,
+      "signals": 5
+    },
+    "COIN_2026-07-02": {
+      "entries": 1,
+      "signals": 8
+    },
+    "COIN_2026-07-27": {
+      "entries": 2,
+      "signals": 7
+    },
+    "CRM_2025-05-02": {
+      "entries": 0,
+      "signals": 6
+    },
+    "CRM_2025-06-02": {
+      "entries": 1,
+      "signals": 2
+    },
+    "CRM_2025-07-02": {
+      "entries": 0,
+      "signals": 3
+    },
+    "CRM_2025-08-20": {
+      "entries": 0,
+      "signals": 4
+    },
+    "CRM_2025-09-03": {
+      "entries": 0,
+      "signals": 2
+    },
+    "CRM_2025-09-19": {
+      "entries": 1,
+      "signals": 6
+    },
+    "CRM_2025-09-26": {
+      "entries": 2,
+      "signals": 13
+    },
+    "CRM_2025-10-16": {
+      "entries": 1,
+      "signals": 5
+    },
+    "CRM_2025-10-27": {
+      "entries": 0,
+      "signals": 12
+    },
+    "CRM_2025-10-31": {
+      "entries": 1,
+      "signals": 7
+    },
+    "CRM_2025-11-10": {
+      "entries": 2,
+      "signals": 13
+    },
+    "CRM_2025-11-18": {
+      "entries": 1,
+      "signals": 1
+    },
+    "CRM_2025-12-04": {
+      "entries": 1,
+      "signals": 10
+    },
+    "CRM_2025-12-09": {
+      "entries": 1,
+      "signals": 9
+    },
+    "CRM_2026-01-29": {
+      "entries": 1,
+      "signals": 3
+    },
+    "CRM_2026-02-11": {
+      "entries": 0,
+      "signals": 1
+    },
+    "CRM_2026-05-04": {
+      "entries": 3,
+      "signals": 6
+    },
+    "CRM_2026-05-07": {
+      "entries": 1,
+      "signals": 12
+    },
+    "CRM_2026-05-14": {
+      "entries": 2,
+      "signals": 6
+    },
+    "CRM_2026-06-01": {
+      "entries": 4,
+      "signals": 7
+    },
+    "CRM_2026-06-24": {
+      "entries": 0,
+      "signals": 10
+    },
+    "CRM_2026-07-07": {
+      "entries": 0,
+      "signals": 6
+    },
+    "CRM_2026-07-16": {
+      "entries": 0,
+      "signals": 1
+    },
+    "DIA_2026-05-07": {
+      "entries": 0,
+      "signals": 3
+    },
+    "GOOGL_2024-07-30": {
+      "entries": 0,
+      "signals": 9
+    },
+    "GOOGL_2024-09-03": {
+      "entries": 1,
+      "signals": 10
+    },
+    "GOOGL_2024-10-15": {
+      "entries": 1,
+      "signals": 6
+    },
+    "GOOGL_2024-11-07": {
+      "entries": 0,
+      "signals": 2
+    },
+    "GOOGL_2024-11-20": {
+      "entries": 1,
+      "signals": 6
+    },
+    "GOOGL_2025-02-28": {
+      "entries": 1,
+      "signals": 6
+    },
+    "GOOGL_2025-04-17": {
+      "entries": 1,
+      "signals": 7
+    },
+    "GOOGL_2025-07-18": {
+      "entries": 0,
+      "signals": 8
+    },
+    "GOOGL_2025-08-07": {
+      "entries": 0,
+      "signals": 5
+    },
+    "GOOGL_2025-08-25": {
+      "entries": 2,
+      "signals": 14
+    },
+    "GOOGL_2025-08-28": {
+      "entries": 3,
+      "signals": 7
+    },
+    "GOOGL_2025-08-29": {
+      "entries": 1,
+      "signals": 9
+    },
+    "GOOGL_2025-09-05": {
+      "entries": 1,
+      "signals": 8
+    },
+    "GOOGL_2025-10-16": {
+      "entries": 2,
+      "signals": 13
+    },
+    "GOOGL_2025-11-24": {
+      "entries": 0,
+      "signals": 0
+    },
+    "GOOGL_2025-12-18": {
+      "entries": 0,
+      "signals": 3
+    },
+    "GOOGL_2025-12-24": {
+      "entries": 0,
+      "signals": 6
+    },
+    "GOOGL_2026-01-07": {
+      "entries": 0,
+      "signals": 11
+    },
+    "GOOGL_2026-01-20": {
+      "entries": 3,
+      "signals": 13
+    },
+    "GOOGL_2026-02-13": {
+      "entries": 1,
+      "signals": 6
+    },
+    "GOOGL_2026-02-20": {
+      "entries": 1,
+      "signals": 6
+    },
+    "GOOGL_2026-03-03": {
+      "entries": 1,
+      "signals": 12
+    },
+    "GOOGL_2026-03-13": {
+      "entries": 0,
+      "signals": 9
+    },
+    "GOOGL_2026-05-06": {
+      "entries": 1,
+      "signals": 6
+    },
+    "GOOGL_2026-05-27": {
+      "entries": 5,
+      "signals": 10
+    },
+    "GOOGL_2026-05-28": {
+      "entries": 1,
+      "signals": 7
+    },
+    "GOOG_2025-04-04": {
+      "entries": 1,
+      "signals": 2
+    },
+    "GOOG_2025-06-10": {
+      "entries": 1,
+      "signals": 4
+    },
+    "GOOG_2025-12-08": {
+      "entries": 2,
+      "signals": 5
+    },
+    "GOOG_2026-02-23": {
+      "entries": 2,
+      "signals": 8
+    },
+    "HOOD_2024-07-15": {
+      "entries": 0,
+      "signals": 6
+    },
+    "HOOD_2024-07-31": {
+      "entries": 0,
+      "signals": 10
+    },
+    "HOOD_2024-09-25": {
+      "entries": 0,
+      "signals": 10
+    },
+    "HOOD_2024-10-31": {
+      "entries": 2,
+      "signals": 4
+    },
+    "HOOD_2024-11-06": {
+      "entries": 1,
+      "signals": 1
+    },
+    "HOOD_2024-11-18": {
+      "entries": 5,
+      "signals": 13
+    },
+    "HOOD_2025-01-21": {
+      "entries": 0,
+      "signals": 7
+    },
+    "HOOD_2025-02-06": {
+      "entries": 0,
+      "signals": 7
+    },
+    "HOOD_2025-02-14": {
+      "entries": 1,
+      "signals": 2
+    },
+    "HOOD_2025-02-24": {
+      "entries": 1,
+      "signals": 7
+    },
+    "HOOD_2025-03-04": {
+      "entries": 1,
+      "signals": 6
+    },
+    "HOOD_2025-04-02": {
+      "entries": 2,
+      "signals": 10
+    },
+    "HOOD_2025-04-29": {
+      "entries": 0,
+      "signals": 2
+    },
+    "HOOD_2025-06-23": {
+      "entries": 0,
+      "signals": 9
+    },
+    "HOOD_2025-07-01": {
+      "entries": 1,
+      "signals": 6
+    },
+    "HOOD_2025-08-01": {
+      "entries": 4,
+      "signals": 8
+    },
+    "HOOD_2025-08-04": {
+      "entries": 1,
+      "signals": 11
+    },
+    "HOOD_2025-08-12": {
+      "entries": 0,
+      "signals": 12
+    },
+    "HOOD_2025-09-10": {
+      "entries": 1,
+      "signals": 8
+    },
+    "HOOD_2025-09-15": {
+      "entries": 0,
+      "signals": 2
+    },
+    "HOOD_2025-09-16": {
+      "entries": 3,
+      "signals": 6
+    },
+    "HOOD_2025-12-11": {
+      "entries": 1,
+      "signals": 3
+    },
+    "HOOD_2025-12-29": {
+      "entries": 1,
+      "signals": 5
+    },
+    "HOOD_2026-02-05": {
+      "entries": 0,
+      "signals": 6
+    },
+    "HOOD_2026-02-10": {
+      "entries": 0,
+      "signals": 1
+    },
+    "HOOD_2026-02-12": {
+      "entries": 1,
+      "signals": 6
+    },
+    "HOOD_2026-03-23": {
+      "entries": 0,
+      "signals": 19
+    },
+    "HOOD_2026-03-27": {
+      "entries": 2,
+      "signals": 8
+    },
+    "HOOD_2026-04-13": {
+      "entries": 2,
+      "signals": 3
+    },
+    "HOOD_2026-04-20": {
+      "entries": 1,
+      "signals": 6
+    },
+    "HOOD_2026-04-22": {
+      "entries": 0,
+      "signals": 7
+    },
+    "HOOD_2026-05-19": {
+      "entries": 2,
+      "signals": 5
+    },
+    "HOOD_2026-06-03": {
+      "entries": 0,
+      "signals": 17
+    },
+    "HOOD_2026-06-26": {
+      "entries": 1,
+      "signals": 6
+    },
+    "HOOD_2026-07-07": {
+      "entries": 1,
+      "signals": 12
+    },
+    "HOOD_2026-07-10": {
+      "entries": 0,
+      "signals": 5
+    },
+    "HOOD_2026-07-21": {
+      "entries": 2,
+      "signals": 8
+    },
+    "INTC_2024-01-23": {
+      "entries": 0,
+      "signals": 14
+    },
+    "INTC_2024-02-07": {
+      "entries": 0,
+      "signals": 14
+    },
+    "INTC_2024-06-13": {
+      "entries": 0,
+      "signals": 5
+    },
+    "INTC_2024-08-30": {
+      "entries": 0,
+      "signals": 0
+    },
+    "INTC_2024-11-20": {
+      "entries": 0,
+      "signals": 8
+    },
+    "INTC_2024-11-21": {
+      "entries": 0,
+      "signals": 5
+    },
+    "INTC_2024-11-22": {
+      "entries": 0,
+      "signals": 8
+    },
+    "INTC_2025-01-17": {
+      "entries": 0,
+      "signals": 8
+    },
+    "INTC_2025-01-21": {
+      "entries": 0,
+      "signals": 8
+    },
+    "INTC_2025-02-27": {
+      "entries": 1,
+      "signals": 7
+    },
+    "INTC_2025-03-18": {
+      "entries": 1,
+      "signals": 9
+    },
+    "INTC_2025-04-14": {
+      "entries": 1,
+      "signals": 8
+    },
+    "INTC_2025-04-17": {
+      "entries": 1,
+      "signals": 2
+    },
+    "INTC_2025-06-05": {
+      "entries": 0,
+      "signals": 6
+    },
+    "INTC_2025-06-09": {
+      "entries": 0,
+      "signals": 7
+    },
+    "INTC_2025-06-20": {
+      "entries": 0,
+      "signals": 4
+    },
+    "INTC_2025-08-21": {
+      "entries": 0,
+      "signals": 8
+    },
+    "INTC_2025-11-03": {
+      "entries": 0,
+      "signals": 5
+    },
+    "INTC_2025-12-04": {
+      "entries": 1,
+      "signals": 9
+    },
+    "INTC_2026-01-26": {
+      "entries": 1,
+      "signals": 4
+    },
+    "INTC_2026-01-27": {
+      "entries": 0,
+      "signals": 9
+    },
+    "INTC_2026-02-02": {
+      "entries": 1,
+      "signals": 10
+    },
+    "INTC_2026-02-25": {
+      "entries": 0,
+      "signals": 5
+    },
+    "INTC_2026-05-15": {
+      "entries": 1,
+      "signals": 9
+    },
+    "INTC_2026-06-10": {
+      "entries": 2,
+      "signals": 10
+    },
+    "INTC_2026-07-13": {
+      "entries": 1,
+      "signals": 10
+    },
+    "INTC_2026-08-17": {
+      "entries": 1,
+      "signals": 21
+    },
+    "IREN_2025-08-22": {
+      "entries": 1,
+      "signals": 10
+    },
+    "IREN_2025-09-10": {
+      "entries": 1,
+      "signals": 13
+    },
+    "IREN_2025-09-25": {
+      "entries": 2,
+      "signals": 5
+    },
+    "IREN_2025-09-30": {
+      "entries": 3,
+      "signals": 15
+    },
+    "IREN_2025-10-14": {
+      "entries": 3,
+      "signals": 9
+    },
+    "IREN_2025-10-16": {
+      "entries": 0,
+      "signals": 4
+    },
+    "IREN_2025-12-16": {
+      "entries": 3,
+      "signals": 8
+    },
+    "IREN_2026-01-05": {
+      "entries": 1,
+      "signals": 3
+    },
+    "IREN_2026-02-10": {
+      "entries": 1,
+      "signals": 14
+    },
+    "IREN_2026-03-04": {
+      "entries": 0,
+      "signals": 0
+    },
+    "IREN_2026-03-10": {
+      "entries": 1,
+      "signals": 16
+    },
+    "IREN_2026-03-18": {
+      "entries": 0,
+      "signals": 4
+    },
+    "IREN_2026-03-19": {
+      "entries": 0,
+      "signals": 4
+    },
+    "IREN_2026-04-08": {
+      "entries": 1,
+      "signals": 10
+    },
+    "IREN_2026-05-01": {
+      "entries": 3,
+      "signals": 17
+    },
+    "IREN_2026-05-21": {
+      "entries": 0,
+      "signals": 5
+    },
+    "IREN_2026-06-02": {
+      "entries": 1,
+      "signals": 5
+    },
+    "IREN_2026-06-03": {
+      "entries": 2,
+      "signals": 7
+    },
+    "IREN_2026-06-12": {
+      "entries": 1,
+      "signals": 7
+    },
+    "IREN_2026-08-03": {
+      "entries": 0,
+      "signals": 6
+    },
+    "IWM_2024-02-28": {
+      "entries": 0,
+      "signals": 8
+    },
+    "IWM_2024-03-04": {
+      "entries": 0,
+      "signals": 9
+    },
+    "IWM_2024-03-22": {
+      "entries": 0,
+      "signals": 3
+    },
+    "IWM_2024-03-27": {
+      "entries": 0,
+      "signals": 6
+    },
+    "IWM_2024-04-03": {
+      "entries": 0,
+      "signals": 3
+    },
+    "IWM_2024-06-21": {
+      "entries": 0,
+      "signals": 10
+    },
+    "IWM_2024-08-01": {
+      "entries": 1,
+      "signals": 5
+    },
+    "IWM_2024-08-22": {
+      "entries": 0,
+      "signals": 4
+    },
+    "IWM_2024-08-26": {
+      "entries": 0,
+      "signals": 11
+    },
+    "IWM_2024-09-18": {
+      "entries": 1,
+      "signals": 9
+    },
+    "IWM_2024-09-24": {
+      "entries": 0,
+      "signals": 3
+    },
+    "IWM_2024-10-15": {
+      "entries": 0,
+      "signals": 1
+    },
+    "IWM_2024-11-29": {
+      "entries": 0,
+      "signals": 10
+    },
+    "IWM_2025-02-18": {
+      "entries": 0,
+      "signals": 2
+    },
+    "IWM_2025-03-14": {
+      "entries": 0,
+      "signals": 10
+    },
+    "IWM_2025-04-02": {
+      "entries": 0,
+      "signals": 7
+    },
+    "IWM_2025-04-10": {
+      "entries": 3,
+      "signals": 9
+    },
+    "IWM_2025-04-14": {
+      "entries": 1,
+      "signals": 13
+    },
+    "IWM_2025-05-02": {
+      "entries": 1,
+      "signals": 9
+    },
+    "IWM_2025-05-22": {
+      "entries": 0,
+      "signals": 8
+    },
+    "IWM_2025-06-10": {
+      "entries": 0,
+      "signals": 6
+    },
+    "IWM_2025-06-23": {
+      "entries": 0,
+      "signals": 2
+    },
+    "IWM_2025-07-07": {
+      "entries": 0,
+      "signals": 2
+    },
+    "IWM_2025-07-11": {
+      "entries": 0,
+      "signals": 1
+    },
+    "IWM_2025-08-20": {
+      "entries": 0,
+      "signals": 3
+    },
+    "IWM_2025-09-05": {
+      "entries": 1,
+      "signals": 6
+    },
+    "IWM_2025-09-25": {
+      "entries": 0,
+      "signals": 6
+    },
+    "IWM_2025-10-21": {
+      "entries": 0,
+      "signals": 6
+    },
+    "IWM_2025-12-01": {
+      "entries": 0,
+      "signals": 5
+    },
+    "IWM_2025-12-04": {
+      "entries": 2,
+      "signals": 6
+    },
+    "IWM_2026-02-11": {
+      "entries": 0,
+      "signals": 1
+    },
+    "IWM_2026-05-01": {
+      "entries": 0,
+      "signals": 6
+    },
+    "IWM_2026-05-28": {
+      "entries": 0,
+      "signals": 10
+    },
+    "IWM_2026-06-09": {
+      "entries": 0,
+      "signals": 2
+    },
+    "IWM_2026-06-24": {
+      "entries": 0,
+      "signals": 8
+    },
+    "IWM_2026-07-24": {
+      "entries": 0,
+      "signals": 4
+    },
+    "MARA_2024-09-09": {
+      "entries": 0,
+      "signals": 2
+    },
+    "MARA_2024-10-18": {
+      "entries": 6,
+      "signals": 12
+    },
+    "MARA_2024-12-17": {
+      "entries": 4,
+      "signals": 12
+    },
+    "MARA_2025-04-02": {
+      "entries": 0,
+      "signals": 7
+    },
+    "MARA_2025-05-14": {
+      "entries": 1,
+      "signals": 9
+    },
+    "MARA_2025-07-18": {
+      "entries": 1,
+      "signals": 6
+    },
+    "MARA_2025-07-30": {
+      "entries": 0,
+      "signals": 5
+    },
+    "MARA_2025-08-06": {
+      "entries": 0,
+      "signals": 11
+    },
+    "MARA_2025-08-18": {
+      "entries": 0,
+      "signals": 4
+    },
+    "MARA_2025-08-22": {
+      "entries": 0,
+      "signals": 4
+    },
+    "MARA_2025-09-05": {
+      "entries": 0,
+      "signals": 5
+    },
+    "MARA_2025-09-12": {
+      "entries": 0,
+      "signals": 3
+    },
+    "MARA_2025-10-06": {
+      "entries": 3,
+      "signals": 21
+    },
+    "MARA_2025-10-13": {
+      "entries": 2,
+      "signals": 9
+    },
+    "MARA_2025-10-24": {
+      "entries": 0,
+      "signals": 7
+    },
+    "MARA_2026-01-15": {
+      "entries": 0,
+      "signals": 10
+    },
+    "MARA_2026-02-17": {
+      "entries": 0,
+      "signals": 8
+    },
+    "MARA_2026-03-02": {
+      "entries": 0,
+      "signals": 0
+    },
+    "MARA_2026-03-10": {
+      "entries": 0,
+      "signals": 13
+    },
+    "MARA_2026-04-20": {
+      "entries": 1,
+      "signals": 11
+    },
+    "MARA_2026-04-22": {
+      "entries": 0,
+      "signals": 16
+    },
+    "MARA_2026-05-11": {
+      "entries": 0,
+      "signals": 7
+    },
+    "MARA_2026-06-02": {
+      "entries": 1,
+      "signals": 6
+    },
+    "MARA_2026-06-24": {
+      "entries": 0,
+      "signals": 7
+    },
+    "MARA_2026-07-09": {
+      "entries": 1,
+      "signals": 3
+    },
+    "MARA_2026-07-17": {
+      "entries": 1,
+      "signals": 3
+    },
+    "MARA_2026-07-20": {
+      "entries": 1,
+      "signals": 6
+    },
+    "MARA_2026-07-27": {
+      "entries": 1,
+      "signals": 7
+    },
+    "META_2024-05-09": {
+      "entries": 2,
+      "signals": 17
+    },
+    "META_2024-08-27": {
+      "entries": 0,
+      "signals": 1
+    },
+    "META_2024-09-25": {
+      "entries": 1,
+      "signals": 6
+    },
+    "META_2024-12-23": {
+      "entries": 2,
+      "signals": 8
+    },
+    "META_2025-01-14": {
+      "entries": 2,
+      "signals": 10
+    },
+    "META_2025-02-05": {
+      "entries": 1,
+      "signals": 4
+    },
+    "META_2025-02-27": {
+      "entries": 0,
+      "signals": 5
+    },
+    "META_2025-03-05": {
+      "entries": 0,
+      "signals": 3
+    },
+    "META_2025-04-10": {
+      "entries": 2,
+      "signals": 6
+    },
+    "META_2025-05-01": {
+      "entries": 1,
+      "signals": 10
+    },
+    "META_2025-07-03": {
+      "entries": 0,
+      "signals": 0
+    },
+    "META_2025-07-17": {
+      "entries": 3,
+      "signals": 7
+    },
+    "META_2025-08-11": {
+      "entries": 1,
+      "signals": 2
+    },
+    "META_2025-08-21": {
+      "entries": 0,
+      "signals": 9
+    },
+    "META_2025-09-18": {
+      "entries": 1,
+      "signals": 13
+    },
+    "META_2025-09-23": {
+      "entries": 2,
+      "signals": 7
+    },
+    "META_2025-11-07": {
+      "entries": 2,
+      "signals": 6
+    },
+    "META_2025-11-18": {
+      "entries": 2,
+      "signals": 11
+    },
+    "META_2025-12-03": {
+      "entries": 0,
+      "signals": 6
+    },
+    "META_2025-12-22": {
+      "entries": 1,
+      "signals": 6
+    },
+    "META_2026-01-16": {
+      "entries": 2,
+      "signals": 5
+    },
+    "META_2026-01-27": {
+      "entries": 0,
+      "signals": 6
+    },
+    "META_2026-03-04": {
+      "entries": 3,
+      "signals": 4
+    },
+    "META_2026-03-05": {
+      "entries": 1,
+      "signals": 6
+    },
+    "META_2026-03-27": {
+      "entries": 0,
+      "signals": 4
+    },
+    "META_2026-03-31": {
+      "entries": 1,
+      "signals": 9
+    },
+    "META_2026-04-07": {
+      "entries": 0,
+      "signals": 9
+    },
+    "META_2026-04-15": {
+      "entries": 1,
+      "signals": 5
+    },
+    "META_2026-04-29": {
+      "entries": 1,
+      "signals": 9
+    },
+    "META_2026-05-05": {
+      "entries": 1,
+      "signals": 4
+    },
+    "META_2026-05-22": {
+      "entries": 0,
+      "signals": 6
+    },
+    "META_2026-06-10": {
+      "entries": 1,
+      "signals": 6
+    },
+    "META_2026-07-09": {
+      "entries": 2,
+      "signals": 5
+    },
+    "META_2026-07-15": {
+      "entries": 0,
+      "signals": 1
+    },
+    "MSFT_2024-01-25": {
+      "entries": 1,
+      "signals": 5
+    },
+    "MSFT_2024-06-07": {
+      "entries": 0,
+      "signals": 0
+    },
+    "MSFT_2024-09-11": {
+      "entries": 0,
+      "signals": 5
+    },
+    "MSFT_2024-11-04": {
+      "entries": 1,
+      "signals": 5
+    },
+    "MSFT_2024-11-12": {
+      "entries": 0,
+      "signals": 4
+    },
+    "MSFT_2024-12-02": {
+      "entries": 2,
+      "signals": 8
+    },
+    "MSFT_2025-01-30": {
+      "entries": 1,
+      "signals": 9
+    },
+    "MSFT_2025-02-28": {
+      "entries": 2,
+      "signals": 5
+    },
+    "MSFT_2025-03-04": {
+      "entries": 2,
+      "signals": 11
+    },
+    "MSFT_2025-03-06": {
+      "entries": 0,
+      "signals": 1
+    },
+    "MSFT_2025-03-11": {
+      "entries": 0,
+      "signals": 11
+    },
+    "MSFT_2025-03-13": {
+      "entries": 2,
+      "signals": 4
+    },
+    "MSFT_2025-03-20": {
+      "entries": 1,
+      "signals": 6
+    },
+    "MSFT_2025-04-11": {
+      "entries": 0,
+      "signals": 5
+    },
+    "MSFT_2025-04-17": {
+      "entries": 1,
+      "signals": 7
+    },
+    "MSFT_2025-05-19": {
+      "entries": 0,
+      "signals": 2
+    },
+    "MSFT_2025-06-04": {
+      "entries": 4,
+      "signals": 10
+    },
+    "MSFT_2025-07-02": {
+      "entries": 0,
+      "signals": 2
+    },
+    "MSFT_2025-07-28": {
+      "entries": 0,
+      "signals": 0
+    },
+    "MSFT_2025-08-06": {
+      "entries": 0,
+      "signals": 4
+    },
+    "MSFT_2025-08-08": {
+      "entries": 0,
+      "signals": 4
+    },
+    "MSFT_2025-08-15": {
+      "entries": 0,
+      "signals": 0
+    },
+    "MSFT_2025-08-26": {
+      "entries": 1,
+      "signals": 5
+    },
+    "MSFT_2025-09-25": {
+      "entries": 0,
+      "signals": 1
+    },
+    "MSFT_2025-10-21": {
+      "entries": 1,
+      "signals": 3
+    },
+    "MSFT_2025-11-07": {
+      "entries": 2,
+      "signals": 9
+    },
+    "MSFT_2025-11-18": {
+      "entries": 5,
+      "signals": 13
+    },
+    "MSFT_2025-12-24": {
+      "entries": 0,
+      "signals": 2
+    },
+    "MSFT_2025-12-30": {
+      "entries": 0,
+      "signals": 5
+    },
+    "MSFT_2026-01-02": {
+      "entries": 3,
+      "signals": 9
+    },
+    "MSFT_2026-01-20": {
+      "entries": 3,
+      "signals": 14
+    },
+    "MSFT_2026-02-09": {
+      "entries": 0,
+      "signals": 0
+    },
+    "MSFT_2026-02-11": {
+      "entries": 0,
+      "signals": 3
+    },
+    "MSFT_2026-03-02": {
+      "entries": 0,
+      "signals": 1
+    },
+    "MSFT_2026-03-11": {
+      "entries": 0,
+      "signals": 3
+    },
+    "MSFT_2026-03-12": {
+      "entries": 1,
+      "signals": 8
+    },
+    "MSFT_2026-03-30": {
+      "entries": 4,
+      "signals": 7
+    },
+    "MSFT_2026-04-17": {
+      "entries": 0,
+      "signals": 4
+    },
+    "MSFT_2026-05-08": {
+      "entries": 0,
+      "signals": 7
+    },
+    "MSFT_2026-05-12": {
+      "entries": 1,
+      "signals": 3
+    },
+    "MSFT_2026-06-02": {
+      "entries": 2,
+      "signals": 8
+    },
+    "MSFT_2026-06-10": {
+      "entries": 1,
+      "signals": 12
+    },
+    "MSFT_2026-06-29": {
+      "entries": 0,
+      "signals": 0
+    },
+    "MSFT_2026-07-07": {
+      "entries": 2,
+      "signals": 10
+    },
+    "MSFT_2026-08-17": {
+      "entries": 2,
+      "signals": 3
+    },
+    "MSTR_2024-01-02": {
+      "entries": 1,
+      "signals": 2
+    },
+    "MSTR_2024-03-20": {
+      "entries": 1,
+      "signals": 5
+    },
+    "MSTR_2024-04-24": {
+      "entries": 3,
+      "signals": 6
+    },
+    "MSTR_2024-08-08": {
+      "entries": 1,
+      "signals": 6
+    },
+    "MSTR_2024-08-14": {
+      "entries": 2,
+      "signals": 9
+    },
+    "MSTR_2024-09-26": {
+      "entries": 7,
+      "signals": 15
+    },
+    "MSTR_2024-10-16": {
+      "entries": 0,
+      "signals": 2
+    },
+    "MSTR_2024-12-17": {
+      "entries": 2,
+      "signals": 10
+    },
+    "MSTR_2025-01-14": {
+      "entries": 2,
+      "signals": 5
+    },
+    "MSTR_2025-01-27": {
+      "entries": 2,
+      "signals": 10
+    },
+    "MSTR_2025-04-14": {
+      "entries": 1,
+      "signals": 11
+    },
+    "MSTR_2025-04-22": {
+      "entries": 0,
+      "signals": 2
+    },
+    "MSTR_2025-08-26": {
+      "entries": 0,
+      "signals": 2
+    },
+    "MSTR_2025-12-05": {
+      "entries": 2,
+      "signals": 3
+    },
+    "MSTR_2025-12-12": {
+      "entries": 4,
+      "signals": 14
+    },
+    "MSTR_2026-01-13": {
+      "entries": 0,
+      "signals": 1
+    },
+    "MSTR_2026-01-27": {
+      "entries": 2,
+      "signals": 8
+    },
+    "MSTR_2026-03-13": {
+      "entries": 2,
+      "signals": 11
+    },
+    "MSTR_2026-04-02": {
+      "entries": 3,
+      "signals": 14
+    },
+    "MSTR_2026-04-22": {
+      "entries": 1,
+      "signals": 8
+    },
+    "MSTR_2026-05-21": {
+      "entries": 3,
+      "signals": 19
+    },
+    "MSTR_2026-06-01": {
+      "entries": 7,
+      "signals": 14
+    },
+    "MSTR_2026-06-12": {
+      "entries": 2,
+      "signals": 6
+    },
+    "MSTR_2026-07-17": {
+      "entries": 0,
+      "signals": 1
+    },
+    "MU_2024-01-02": {
+      "entries": 1,
+      "signals": 9
+    },
+    "MU_2024-01-05": {
+      "entries": 0,
+      "signals": 1
+    },
+    "MU_2024-09-09": {
+      "entries": 1,
+      "signals": 5
+    },
+    "MU_2024-10-17": {
+      "entries": 2,
+      "signals": 7
+    },
+    "MU_2024-12-23": {
+      "entries": 1,
+      "signals": 6
+    },
+    "MU_2025-03-28": {
+      "entries": 1,
+      "signals": 3
+    },
+    "MU_2025-04-30": {
+      "entries": 2,
+      "signals": 11
+    },
+    "MU_2025-05-06": {
+      "entries": 0,
+      "signals": 4
+    },
+    "MU_2025-06-23": {
+      "entries": 0,
+      "signals": 6
+    },
+    "MU_2025-06-25": {
+      "entries": 1,
+      "signals": 6
+    },
+    "MU_2025-07-09": {
+      "entries": 0,
+      "signals": 5
+    },
+    "MU_2025-07-17": {
+      "entries": 1,
+      "signals": 6
+    },
+    "MU_2025-08-12": {
+      "entries": 3,
+      "signals": 9
+    },
+    "MU_2025-08-27": {
+      "entries": 0,
+      "signals": 6
+    },
+    "MU_2025-09-19": {
+      "entries": 0,
+      "signals": 4
+    },
+    "MU_2025-10-13": {
+      "entries": 2,
+      "signals": 5
+    },
+    "MU_2025-11-07": {
+      "entries": 1,
+      "signals": 2
+    },
+    "MU_2025-11-12": {
+      "entries": 1,
+      "signals": 6
+    },
+    "MU_2025-12-08": {
+      "entries": 2,
+      "signals": 11
+    },
+    "MU_2025-12-16": {
+      "entries": 0,
+      "signals": 8
+    },
+    "MU_2026-01-09": {
+      "entries": 6,
+      "signals": 16
+    },
+    "MU_2026-01-20": {
+      "entries": 3,
+      "signals": 8
+    },
+    "MU_2026-01-23": {
+      "entries": 2,
+      "signals": 4
+    },
+    "MU_2026-01-28": {
+      "entries": 0,
+      "signals": 8
+    },
+    "MU_2026-02-09": {
+      "entries": 1,
+      "signals": 9
+    },
+    "MU_2026-02-19": {
+      "entries": 1,
+      "signals": 6
+    },
+    "MU_2026-03-02": {
+      "entries": 1,
+      "signals": 5
+    },
+    "MU_2026-03-09": {
+      "entries": 1,
+      "signals": 4
+    },
+    "MU_2026-03-19": {
+      "entries": 0,
+      "signals": 1
+    },
+    "MU_2026-03-24": {
+      "entries": 3,
+      "signals": 9
+    },
+    "MU_2026-03-26": {
+      "entries": 4,
+      "signals": 16
+    },
+    "MU_2026-03-31": {
+      "entries": 0,
+      "signals": 10
+    },
+    "MU_2026-04-16": {
+      "entries": 0,
+      "signals": 5
+    },
+    "MU_2026-05-19": {
+      "entries": 1,
+      "signals": 3
+    },
+    "MU_2026-05-20": {
+      "entries": 3,
+      "signals": 20
+    },
+    "MU_2026-05-22": {
+      "entries": 1,
+      "signals": 4
+    },
+    "MU_2026-06-16": {
+      "entries": 4,
+      "signals": 7
+    },
+    "MU_2026-06-24": {
+      "entries": 0,
+      "signals": 4
+    },
+    "MU_2026-07-24": {
+      "entries": 1,
+      "signals": 6
+    },
+    "NFLX_2024-08-05": {
+      "entries": 0,
+      "signals": 2
+    },
+    "NFLX_2024-08-22": {
+      "entries": 0,
+      "signals": 12
+    },
+    "NFLX_2024-09-04": {
+      "entries": 0,
+      "signals": 12
+    },
+    "NFLX_2024-09-11": {
+      "entries": 0,
+      "signals": 9
+    },
+    "NFLX_2024-11-08": {
+      "entries": 0,
+      "signals": 6
+    },
+    "NFLX_2024-11-21": {
+      "entries": 0,
+      "signals": 6
+    },
+    "NFLX_2025-01-07": {
+      "entries": 1,
+      "signals": 6
+    },
+    "NFLX_2025-02-19": {
+      "entries": 0,
+      "signals": 6
+    },
+    "NFLX_2025-03-14": {
+      "entries": 0,
+      "signals": 7
+    },
+    "NFLX_2025-03-25": {
+      "entries": 1,
+      "signals": 3
+    },
+    "NFLX_2025-06-12": {
+      "entries": 1,
+      "signals": 12
+    },
+    "NFLX_2025-06-25": {
+      "entries": 1,
+      "signals": 15
+    },
+    "NFLX_2025-07-25": {
+      "entries": 0,
+      "signals": 4
+    },
+    "NFLX_2025-09-16": {
+      "entries": 1,
+      "signals": 10
+    },
+    "NFLX_2025-09-29": {
+      "entries": 0,
+      "signals": 10
+    },
+    "NFLX_2025-10-02": {
+      "entries": 1,
+      "signals": 6
+    },
+    "NFLX_2025-10-13": {
+      "entries": 0,
+      "signals": 1
+    },
+    "NFLX_2025-10-15": {
+      "entries": 0,
+      "signals": 9
+    },
+    "NFLX_2025-11-25": {
+      "entries": 1,
+      "signals": 10
+    },
+    "NFLX_2025-12-10": {
+      "entries": 0,
+      "signals": 2
+    },
+    "NFLX_2025-12-22": {
+      "entries": 1,
+      "signals": 2
+    },
+    "NFLX_2026-01-06": {
+      "entries": 1,
+      "signals": 7
+    },
+    "NFLX_2026-01-16": {
+      "entries": 0,
+      "signals": 6
+    },
+    "NFLX_2026-02-03": {
+      "entries": 0,
+      "signals": 5
+    },
+    "NFLX_2026-03-16": {
+      "entries": 0,
+      "signals": 2
+    },
+    "NFLX_2026-03-24": {
+      "entries": 0,
+      "signals": 6
+    },
+    "NFLX_2026-04-22": {
+      "entries": 0,
+      "signals": 5
+    },
+    "NFLX_2026-05-11": {
+      "entries": 0,
+      "signals": 6
+    },
+    "NFLX_2026-05-12": {
+      "entries": 0,
+      "signals": 5
+    },
+    "NFLX_2026-07-02": {
+      "entries": 0,
+      "signals": 8
+    },
+    "NFLX_2026-07-17": {
+      "entries": 0,
+      "signals": 7
+    },
+    "NVDA_2024-01-03": {
+      "entries": 0,
+      "signals": 4
+    },
+    "NVDA_2024-02-08": {
+      "entries": 0,
+      "signals": 8
+    },
+    "NVDA_2024-02-26": {
+      "entries": 0,
+      "signals": 7
+    },
+    "NVDA_2024-04-30": {
+      "entries": 1,
+      "signals": 5
+    },
+    "NVDA_2024-08-23": {
+      "entries": 4,
+      "signals": 7
+    },
+    "NVDA_2024-09-03": {
+      "entries": 1,
+      "signals": 10
+    },
+    "NVDA_2024-09-06": {
+      "entries": 2,
+      "signals": 6
+    },
+    "NVDA_2024-10-31": {
+      "entries": 0,
+      "signals": 5
+    },
+    "NVDA_2024-11-06": {
+      "entries": 1,
+      "signals": 2
+    },
+    "NVDA_2024-11-13": {
+      "entries": 0,
+      "signals": 7
+    },
+    "NVDA_2024-11-18": {
+      "entries": 1,
+      "signals": 4
+    },
+    "NVDA_2024-11-19": {
+      "entries": 0,
+      "signals": 8
+    },
+    "NVDA_2024-12-16": {
+      "entries": 2,
+      "signals": 9
+    },
+    "NVDA_2024-12-20": {
+      "entries": 2,
+      "signals": 10
+    },
+    "NVDA_2024-12-30": {
+      "entries": 0,
+      "signals": 3
+    },
+    "NVDA_2025-01-17": {
+      "entries": 2,
+      "signals": 24
+    },
+    "NVDA_2025-01-23": {
+      "entries": 1,
+      "signals": 6
+    },
+    "NVDA_2025-03-05": {
+      "entries": 4,
+      "signals": 7
+    },
+    "NVDA_2025-03-25": {
+      "entries": 0,
+      "signals": 1
+    },
+    "NVDA_2025-04-01": {
+      "entries": 3,
+      "signals": 17
+    },
+    "NVDA_2025-04-10": {
+      "entries": 0,
+      "signals": 1
+    },
+    "NVDA_2025-04-29": {
+      "entries": 1,
+      "signals": 6
+    },
+    "NVDA_2025-05-21": {
+      "entries": 2,
+      "signals": 10
+    },
+    "NVDA_2025-05-22": {
+      "entries": 0,
+      "signals": 10
+    },
+    "NVDA_2025-07-10": {
+      "entries": 0,
+      "signals": 5
+    },
+    "NVDA_2025-07-16": {
+      "entries": 0,
+      "signals": 9
+    },
+    "NVDA_2025-09-18": {
+      "entries": 1,
+      "signals": 1
+    },
+    "NVDA_2025-09-29": {
+      "entries": 2,
+      "signals": 8
+    },
+    "NVDA_2025-10-07": {
+      "entries": 0,
+      "signals": 9
+    },
+    "NVDA_2025-11-07": {
+      "entries": 2,
+      "signals": 8
+    },
+    "NVDA_2025-11-12": {
+      "entries": 0,
+      "signals": 0
+    },
+    "NVDA_2025-11-24": {
+      "entries": 2,
+      "signals": 11
+    },
+    "NVDA_2025-11-28": {
+      "entries": 1,
+      "signals": 12
+    },
+    "NVDA_2025-12-08": {
+      "entries": 0,
+      "signals": 6
+    },
+    "NVDA_2025-12-12": {
+      "entries": 2,
+      "signals": 7
+    },
+    "NVDA_2026-02-04": {
+      "entries": 1,
+      "signals": 7
+    },
+    "NVDA_2026-02-05": {
+      "entries": 1,
+      "signals": 17
+    },
+    "NVDA_2026-02-17": {
+      "entries": 1,
+      "signals": 8
+    },
+    "NVDA_2026-04-08": {
+      "entries": 0,
+      "signals": 6
+    },
+    "NVDA_2026-04-10": {
+      "entries": 0,
+      "signals": 4
+    },
+    "NVDA_2026-05-08": {
+      "entries": 1,
+      "signals": 7
+    },
+    "NVDA_2026-05-19": {
+      "entries": 1,
+      "signals": 11
+    },
+    "NVDA_2026-05-21": {
+      "entries": 0,
+      "signals": 5
+    },
+    "NVDA_2026-06-25": {
+      "entries": 1,
+      "signals": 12
+    },
+    "NVDA_2026-07-08": {
+      "entries": 0,
+      "signals": 14
+    },
+    "NVDA_2026-07-10": {
+      "entries": 2,
+      "signals": 5
+    },
+    "NVDA_2026-07-17": {
+      "entries": 0,
+      "signals": 5
+    },
+    "ORCL_2024-08-26": {
+      "entries": 0,
+      "signals": 9
+    },
+    "ORCL_2024-09-03": {
+      "entries": 2,
+      "signals": 8
+    },
+    "ORCL_2024-09-16": {
+      "entries": 1,
+      "signals": 4
+    },
+    "ORCL_2024-09-25": {
+      "entries": 1,
+      "signals": 9
+    },
+    "ORCL_2025-02-20": {
+      "entries": 1,
+      "signals": 5
+    },
+    "ORCL_2025-03-03": {
+      "entries": 0,
+      "signals": 6
+    },
+    "ORCL_2025-03-28": {
+      "entries": 0,
+      "signals": 6
+    },
+    "ORCL_2025-05-06": {
+      "entries": 1,
+      "signals": 5
+    },
+    "ORCL_2025-05-20": {
+      "entries": 0,
+      "signals": 9
+    },
+    "ORCL_2025-07-08": {
+      "entries": 1,
+      "signals": 8
+    },
+    "ORCL_2025-08-21": {
+      "entries": 2,
+      "signals": 5
+    },
+    "ORCL_2025-08-28": {
+      "entries": 0,
+      "signals": 1
+    },
+    "ORCL_2025-09-05": {
+      "entries": 5,
+      "signals": 12
+    },
+    "ORCL_2025-09-17": {
+      "entries": 1,
+      "signals": 3
+    },
+    "ORCL_2025-10-21": {
+      "entries": 1,
+      "signals": 11
+    },
+    "ORCL_2025-10-23": {
+      "entries": 1,
+      "signals": 13
+    },
+    "ORCL_2025-10-24": {
+      "entries": 1,
+      "signals": 8
+    },
+    "ORCL_2025-11-03": {
+      "entries": 5,
+      "signals": 14
+    },
+    "ORCL_2025-12-08": {
+      "entries": 5,
+      "signals": 12
+    },
+    "ORCL_2026-01-16": {
+      "entries": 1,
+      "signals": 5
+    },
+    "ORCL_2026-02-27": {
+      "entries": 1,
+      "signals": 11
+    },
+    "ORCL_2026-04-08": {
+      "entries": 1,
+      "signals": 8
+    },
+    "ORCL_2026-04-27": {
+      "entries": 0,
+      "signals": 13
+    },
+    "ORCL_2026-05-04": {
+      "entries": 5,
+      "signals": 4
+    },
+    "ORCL_2026-05-15": {
+      "entries": 3,
+      "signals": 9
+    },
+    "ORCL_2026-06-03": {
+      "entries": 4,
+      "signals": 9
+    },
+    "ORCL_2026-06-08": {
+      "entries": 1,
+      "signals": 5
+    },
+    "ORCL_2026-06-09": {
+      "entries": 0,
+      "signals": 8
+    },
+    "ORCL_2026-06-24": {
+      "entries": 2,
+      "signals": 6
+    },
+    "ORCL_2026-07-28": {
+      "entries": 4,
+      "signals": 12
+    },
+    "PLTR_2024-01-02": {
+      "entries": 0,
+      "signals": 0
+    },
+    "PLTR_2024-02-02": {
+      "entries": 0,
+      "signals": 4
+    },
+    "PLTR_2024-03-11": {
+      "entries": 1,
+      "signals": 11
+    },
+    "PLTR_2024-06-06": {
+      "entries": 2,
+      "signals": 2
+    },
+    "PLTR_2024-08-20": {
+      "entries": 0,
+      "signals": 9
+    },
+    "PLTR_2024-08-28": {
+      "entries": 0,
+      "signals": 4
+    },
+    "PLTR_2024-09-04": {
+      "entries": 0,
+      "signals": 3
+    },
+    "PLTR_2024-09-17": {
+      "entries": 0,
+      "signals": 10
+    },
+    "PLTR_2024-09-20": {
+      "entries": 0,
+      "signals": 9
+    },
+    "PLTR_2024-10-23": {
+      "entries": 1,
+      "signals": 7
+    },
+    "PLTR_2024-10-31": {
+      "entries": 0,
+      "signals": 1
+    },
+    "PLTR_2024-11-25": {
+      "entries": 1,
+      "signals": 9
+    },
+    "PLTR_2024-12-31": {
+      "entries": 0,
+      "signals": 7
+    },
+    "PLTR_2025-01-06": {
+      "entries": 1,
+      "signals": 9
+    },
+    "PLTR_2025-05-02": {
+      "entries": 3,
+      "signals": 18
+    },
+    "PLTR_2025-05-08": {
+      "entries": 0,
+      "signals": 2
+    },
+    "PLTR_2025-06-04": {
+      "entries": 2,
+      "signals": 7
+    },
+    "PLTR_2025-06-09": {
+      "entries": 2,
+      "signals": 7
+    },
+    "PLTR_2025-06-30": {
+      "entries": 0,
+      "signals": 4
+    },
+    "PLTR_2025-07-01": {
+      "entries": 2,
+      "signals": 4
+    },
+    "PLTR_2025-07-11": {
+      "entries": 0,
+      "signals": 4
+    },
+    "PLTR_2025-07-15": {
+      "entries": 2,
+      "signals": 21
+    },
+    "PLTR_2025-08-05": {
+      "entries": 2,
+      "signals": 11
+    },
+    "PLTR_2025-08-06": {
+      "entries": 1,
+      "signals": 5
+    },
+    "PLTR_2025-08-15": {
+      "entries": 2,
+      "signals": 5
+    },
+    "PLTR_2025-08-18": {
+      "entries": 0,
+      "signals": 4
+    },
+    "PLTR_2025-08-21": {
+      "entries": 1,
+      "signals": 8
+    },
+    "PLTR_2025-09-02": {
+      "entries": 0,
+      "signals": 2
+    },
+    "PLTR_2025-09-15": {
+      "entries": 0,
+      "signals": 8
+    },
+    "PLTR_2025-09-18": {
+      "entries": 1,
+      "signals": 4
+    },
+    "PLTR_2025-10-01": {
+      "entries": 2,
+      "signals": 11
+    },
+    "PLTR_2025-10-31": {
+      "entries": 3,
+      "signals": 6
+    },
+    "PLTR_2025-11-03": {
+      "entries": 0,
+      "signals": 7
+    },
+    "PLTR_2025-11-07": {
+      "entries": 1,
+      "signals": 4
+    },
+    "PLTR_2025-11-21": {
+      "entries": 4,
+      "signals": 11
+    },
+    "PLTR_2025-12-08": {
+      "entries": 2,
+      "signals": 6
+    },
+    "PLTR_2025-12-10": {
+      "entries": 0,
+      "signals": 9
+    },
+    "PLTR_2025-12-11": {
+      "entries": 0,
+      "signals": 6
+    },
+    "PLTR_2025-12-15": {
+      "entries": 1,
+      "signals": 19
+    },
+    "PLTR_2025-12-16": {
+      "entries": 2,
+      "signals": 6
+    },
+    "PLTR_2025-12-26": {
+      "entries": 1,
+      "signals": 6
+    },
+    "PLTR_2026-01-06": {
+      "entries": 0,
+      "signals": 2
+    },
+    "PLTR_2026-01-16": {
+      "entries": 0,
+      "signals": 0
+    },
+    "PLTR_2026-02-18": {
+      "entries": 0,
+      "signals": 3
+    },
+    "PLTR_2026-03-31": {
+      "entries": 0,
+      "signals": 13
+    },
+    "PLTR_2026-04-14": {
+      "entries": 0,
+      "signals": 2
+    },
+    "PLTR_2026-05-06": {
+      "entries": 2,
+      "signals": 2
+    },
+    "PLTR_2026-05-27": {
+      "entries": 1,
+      "signals": 8
+    },
+    "PLTR_2026-06-03": {
+      "entries": 0,
+      "signals": 9
+    },
+    "PLTR_2026-06-29": {
+      "entries": 0,
+      "signals": 7
+    },
+    "PLTR_2026-07-15": {
+      "entries": 1,
+      "signals": 14
+    },
+    "PLTR_2026-07-20": {
+      "entries": 0,
+      "signals": 6
+    },
+    "PLTR_2026-07-22": {
+      "entries": 0,
+      "signals": 10
+    },
+    "PLTR_2026-07-29": {
+      "entries": 1,
+      "signals": 11
+    },
+    "QQQ_2024-01-04": {
+      "entries": 0,
+      "signals": 0
+    },
+    "QQQ_2024-01-30": {
+      "entries": 1,
+      "signals": 3
+    },
+    "QQQ_2024-02-01": {
+      "entries": 0,
+      "signals": 0
+    },
+    "QQQ_2024-02-22": {
+      "entries": 0,
+      "signals": 7
+    },
+    "QQQ_2024-02-23": {
+      "entries": 0,
+      "signals": 12
+    },
+    "QQQ_2024-03-05": {
+      "entries": 1,
+      "signals": 3
+    },
+    "QQQ_2024-03-15": {
+      "entries": 2,
+      "signals": 12
+    },
+    "QQQ_2024-05-08": {
+      "entries": 0,
+      "signals": 0
+    },
+    "QQQ_2024-07-24": {
+      "entries": 0,
+      "signals": 6
+    },
+    "QQQ_2024-08-08": {
+      "entries": 2,
+      "signals": 15
+    },
+    "QQQ_2024-08-23": {
+      "entries": 2,
+      "signals": 6
+    },
+    "QQQ_2024-09-10": {
+      "entries": 0,
+      "signals": 1
+    },
+    "QQQ_2024-10-03": {
+      "entries": 1,
+      "signals": 5
+    },
+    "QQQ_2024-10-17": {
+      "entries": 0,
+      "signals": 5
+    },
+    "QQQ_2024-11-15": {
+      "entries": 1,
+      "signals": 12
+    },
+    "QQQ_2024-12-16": {
+      "entries": 0,
+      "signals": 6
+    },
+    "QQQ_2024-12-23": {
+      "entries": 0,
+      "signals": 5
+    },
+    "QQQ_2025-01-10": {
+      "entries": 2,
+      "signals": 7
+    },
+    "QQQ_2025-01-14": {
+      "entries": 1,
+      "signals": 8
+    },
+    "QQQ_2025-01-16": {
+      "entries": 0,
+      "signals": 8
+    },
+    "QQQ_2025-01-28": {
+      "entries": 1,
+      "signals": 8
+    },
+    "QQQ_2025-02-18": {
+      "entries": 0,
+      "signals": 0
+    },
+    "QQQ_2025-02-25": {
+      "entries": 1,
+      "signals": 11
+    },
+    "QQQ_2025-02-26": {
+      "entries": 0,
+      "signals": 9
+    },
+    "QQQ_2025-03-03": {
+      "entries": 0,
+      "signals": 2
+    },
+    "QQQ_2025-03-04": {
+      "entries": 0,
+      "signals": 7
+    },
+    "QQQ_2025-03-17": {
+      "entries": 0,
+      "signals": 7
+    },
+    "QQQ_2025-03-18": {
+      "entries": 0,
+      "signals": 6
+    },
+    "QQQ_2025-04-17": {
+      "entries": 1,
+      "signals": 5
+    },
+    "QQQ_2025-05-07": {
+      "entries": 0,
+      "signals": 7
+    },
+    "QQQ_2025-05-14": {
+      "entries": 0,
+      "signals": 2
+    },
+    "QQQ_2025-05-16": {
+      "entries": 0,
+      "signals": 3
+    },
+    "QQQ_2025-06-24": {
+      "entries": 0,
+      "signals": 3
+    },
+    "QQQ_2025-06-25": {
+      "entries": 0,
+      "signals": 3
+    },
+    "QQQ_2025-06-30": {
+      "entries": 0,
+      "signals": 7
+    },
+    "QQQ_2025-07-01": {
+      "entries": 0,
+      "signals": 2
+    },
+    "QQQ_2025-08-01": {
+      "entries": 3,
+      "signals": 8
+    },
+    "QQQ_2025-08-08": {
+      "entries": 0,
+      "signals": 3
+    },
+    "QQQ_2025-09-09": {
+      "entries": 0,
+      "signals": 6
+    },
+    "QQQ_2025-09-16": {
+      "entries": 0,
+      "signals": 5
+    },
+    "QQQ_2025-09-23": {
+      "entries": 1,
+      "signals": 6
+    },
+    "QQQ_2025-10-02": {
+      "entries": 1,
+      "signals": 8
+    },
+    "QQQ_2025-10-29": {
+      "entries": 1,
+      "signals": 2
+    },
+    "QQQ_2025-12-05": {
+      "entries": 1,
+      "signals": 6
+    },
+    "QQQ_2025-12-16": {
+      "entries": 0,
+      "signals": 4
+    },
+    "QQQ_2025-12-17": {
+      "entries": 4,
+      "signals": 10
+    },
+    "QQQ_2025-12-30": {
+      "entries": 1,
+      "signals": 3
+    },
+    "QQQ_2026-01-02": {
+      "entries": 0,
+      "signals": 4
+    },
+    "QQQ_2026-01-14": {
+      "entries": 1,
+      "signals": 4
+    },
+    "QQQ_2026-01-15": {
+      "entries": 0,
+      "signals": 4
+    },
+    "QQQ_2026-01-21": {
+      "entries": 0,
+      "signals": 8
+    },
+    "QQQ_2026-02-02": {
+      "entries": 0,
+      "signals": 4
+    },
+    "QQQ_2026-02-04": {
+      "entries": 1,
+      "signals": 7
+    },
+    "QQQ_2026-02-09": {
+      "entries": 1,
+      "signals": 5
+    },
+    "QQQ_2026-02-10": {
+      "entries": 0,
+      "signals": 1
+    },
+    "QQQ_2026-02-11": {
+      "entries": 1,
+      "signals": 3
+    },
+    "QQQ_2026-02-12": {
+      "entries": 1,
+      "signals": 6
+    },
+    "QQQ_2026-03-04": {
+      "entries": 0,
+      "signals": 4
+    },
+    "QQQ_2026-03-06": {
+      "entries": 1,
+      "signals": 3
+    },
+    "QQQ_2026-03-31": {
+      "entries": 0,
+      "signals": 4
+    },
+    "QQQ_2026-04-17": {
+      "entries": 0,
+      "signals": 3
+    },
+    "QQQ_2026-05-05": {
+      "entries": 0,
+      "signals": 9
+    },
+    "QQQ_2026-05-07": {
+      "entries": 1,
+      "signals": 12
+    },
+    "QQQ_2026-05-08": {
+      "entries": 0,
+      "signals": 1
+    },
+    "QQQ_2026-05-14": {
+      "entries": 0,
+      "signals": 6
+    },
+    "QQQ_2026-06-05": {
+      "entries": 0,
+      "signals": 3
+    },
+    "QQQ_2026-06-25": {
+      "entries": 0,
+      "signals": 4
+    },
+    "QQQ_2026-06-29": {
+      "entries": 3,
+      "signals": 5
+    },
+    "QQQ_2026-06-30": {
+      "entries": 0,
+      "signals": 7
+    },
+    "QQQ_2026-07-01": {
+      "entries": 1,
+      "signals": 3
+    },
+    "QQQ_2026-07-02": {
+      "entries": 0,
+      "signals": 5
+    },
+    "QQQ_2026-07-06": {
+      "entries": 0,
+      "signals": 13
+    },
+    "QQQ_2026-07-07": {
+      "entries": 1,
+      "signals": 7
+    },
+    "QQQ_2026-07-08": {
+      "entries": 2,
+      "signals": 6
+    },
+    "QQQ_2026-07-09": {
+      "entries": 1,
+      "signals": 4
+    },
+    "QQQ_2026-07-10": {
+      "entries": 0,
+      "signals": 6
+    },
+    "QQQ_2026-07-13": {
+      "entries": 0,
+      "signals": 1
+    },
+    "QQQ_2026-07-14": {
+      "entries": 1,
+      "signals": 12
+    },
+    "QQQ_2026-07-15": {
+      "entries": 0,
+      "signals": 2
+    },
+    "QQQ_2026-07-16": {
+      "entries": 1,
+      "signals": 5
+    },
+    "QQQ_2026-07-17": {
+      "entries": 2,
+      "signals": 4
+    },
+    "QQQ_2026-07-20": {
+      "entries": 2,
+      "signals": 6
+    },
+    "QQQ_2026-07-21": {
+      "entries": 0,
+      "signals": 8
+    },
+    "QQQ_2026-07-22": {
+      "entries": 0,
+      "signals": 1
+    },
+    "QQQ_2026-07-23": {
+      "entries": 0,
+      "signals": 1
+    },
+    "QQQ_2026-07-24": {
+      "entries": 0,
+      "signals": 4
+    },
+    "QQQ_2026-07-27": {
+      "entries": 3,
+      "signals": 7
+    },
+    "QQQ_2026-07-28": {
+      "entries": 0,
+      "signals": 9
+    },
+    "QQQ_2026-07-29": {
+      "entries": 0,
+      "signals": 1
+    },
+    "QQQ_2026-07-30": {
+      "entries": 1,
+      "signals": 5
+    },
+    "QQQ_2026-07-31": {
+      "entries": 2,
+      "signals": 14
+    },
+    "QQQ_2026-08-03": {
+      "entries": 0,
+      "signals": 5
+    },
+    "QQQ_2026-08-04": {
+      "entries": 1,
+      "signals": 4
+    },
+    "QQQ_2026-08-05": {
+      "entries": 2,
+      "signals": 9
+    },
+    "QQQ_2026-08-06": {
+      "entries": 1,
+      "signals": 3
+    },
+    "QQQ_2026-08-07": {
+      "entries": 1,
+      "signals": 8
+    },
+    "QQQ_2026-08-10": {
+      "entries": 0,
+      "signals": 1
+    },
+    "QQQ_2026-08-11": {
+      "entries": 2,
+      "signals": 11
+    },
+    "RIVN_2025-12-29": {
+      "entries": 0,
+      "signals": 4
+    },
+    "SMCI_2025-11-17": {
+      "entries": 3,
+      "signals": 10
+    },
+    "SMCI_2026-02-09": {
+      "entries": 0,
+      "signals": 6
+    },
+    "SOFI_2024-10-30": {
+      "entries": 1,
+      "signals": 4
+    },
+    "SOFI_2024-11-07": {
+      "entries": 0,
+      "signals": 7
+    },
+    "SOFI_2025-06-18": {
+      "entries": 0,
+      "signals": 7
+    },
+    "SOFI_2025-07-29": {
+      "entries": 0,
+      "signals": 2
+    },
+    "SOFI_2025-08-08": {
+      "entries": 0,
+      "signals": 3
+    },
+    "SOFI_2025-10-03": {
+      "entries": 0,
+      "signals": 6
+    },
+    "SOFI_2026-01-09": {
+      "entries": 1,
+      "signals": 12
+    },
+    "SOFI_2026-01-22": {
+      "entries": 0,
+      "signals": 10
+    },
+    "SOFI_2026-02-10": {
+      "entries": 0,
+      "signals": 2
+    },
+    "SOFI_2026-03-11": {
+      "entries": 0,
+      "signals": 18
+    },
+    "SOFI_2026-04-16": {
+      "entries": 1,
+      "signals": 3
+    },
+    "SOFI_2026-04-17": {
+      "entries": 1,
+      "signals": 14
+    },
+    "SOFI_2026-05-20": {
+      "entries": 1,
+      "signals": 6
+    },
+    "SOFI_2026-07-16": {
+      "entries": 1,
+      "signals": 6
+    },
+    "SPCX_2024-01-30": {
+      "entries": 0,
+      "signals": 0
+    },
+    "SPCX_2026-06-15": {
+      "entries": 3,
+      "signals": 7
+    },
+    "SPCX_2026-06-16": {
+      "entries": 2,
+      "signals": 7
+    },
+    "SPCX_2026-06-24": {
+      "entries": 2,
+      "signals": 12
+    },
+    "SPCX_2026-06-25": {
+      "entries": 2,
+      "signals": 4
+    },
+    "SPCX_2026-06-29": {
+      "entries": 2,
+      "signals": 8
+    },
+    "SPCX_2026-06-30": {
+      "entries": 6,
+      "signals": 14
+    },
+    "SPCX_2026-07-01": {
+      "entries": 0,
+      "signals": 4
+    },
+    "SPCX_2026-07-13": {
+      "entries": 0,
+      "signals": 5
+    },
+    "SPCX_2026-07-15": {
+      "entries": 1,
+      "signals": 6
+    },
+    "SPCX_2026-07-30": {
+      "entries": 1,
+      "signals": 12
+    },
+    "SPCX_2026-08-04": {
+      "entries": 2,
+      "signals": 6
+    },
+    "SPY_2024-02-22": {
+      "entries": 1,
+      "signals": 2
+    },
+    "SPY_2024-02-23": {
+      "entries": 0,
+      "signals": 5
+    },
+    "SPY_2024-04-03": {
+      "entries": 2,
+      "signals": 10
+    },
+    "SPY_2024-05-14": {
+      "entries": 0,
+      "signals": 6
+    },
+    "SPY_2024-06-11": {
+      "entries": 0,
+      "signals": 2
+    },
+    "SPY_2024-07-11": {
+      "entries": 0,
+      "signals": 3
+    },
+    "SPY_2024-08-30": {
+      "entries": 0,
+      "signals": 6
+    },
+    "SPY_2024-09-19": {
+      "entries": 1,
+      "signals": 5
+    },
+    "SPY_2024-09-23": {
+      "entries": 1,
+      "signals": 8
+    },
+    "SPY_2024-10-10": {
+      "entries": 0,
+      "signals": 8
+    },
+    "SPY_2024-10-15": {
+      "entries": 0,
+      "signals": 0
+    },
+    "SPY_2024-10-22": {
+      "entries": 0,
+      "signals": 5
+    },
+    "SPY_2024-11-19": {
+      "entries": 0,
+      "signals": 11
+    },
+    "SPY_2024-12-03": {
+      "entries": 0,
+      "signals": 3
+    },
+    "SPY_2024-12-12": {
+      "entries": 0,
+      "signals": 4
+    },
+    "SPY_2024-12-16": {
+      "entries": 0,
+      "signals": 6
+    },
+    "SPY_2025-02-20": {
+      "entries": 1,
+      "signals": 2
+    },
+    "SPY_2025-02-21": {
+      "entries": 1,
+      "signals": 8
+    },
+    "SPY_2025-03-18": {
+      "entries": 0,
+      "signals": 6
+    },
+    "SPY_2025-04-04": {
+      "entries": 4,
+      "signals": 10
+    },
+    "SPY_2025-05-15": {
+      "entries": 0,
+      "signals": 1
+    },
+    "SPY_2025-06-02": {
+      "entries": 0,
+      "signals": 6
+    },
+    "SPY_2025-06-11": {
+      "entries": 1,
+      "signals": 1
+    },
+    "SPY_2025-07-01": {
+      "entries": 1,
+      "signals": 4
+    },
+    "SPY_2025-07-09": {
+      "entries": 0,
+      "signals": 3
+    },
+    "SPY_2025-09-25": {
+      "entries": 0,
+      "signals": 5
+    },
+    "SPY_2025-11-05": {
+      "entries": 0,
+      "signals": 8
+    },
+    "SPY_2025-11-14": {
+      "entries": 0,
+      "signals": 3
+    },
+    "SPY_2025-11-19": {
+      "entries": 1,
+      "signals": 5
+    },
+    "SPY_2025-12-02": {
+      "entries": 0,
+      "signals": 6
+    },
+    "SPY_2026-01-08": {
+      "entries": 0,
+      "signals": 3
+    },
+    "SPY_2026-02-09": {
+      "entries": 0,
+      "signals": 4
+    },
+    "SPY_2026-03-02": {
+      "entries": 0,
+      "signals": 1
+    },
+    "SPY_2026-03-03": {
+      "entries": 1,
+      "signals": 6
+    },
+    "SPY_2026-03-05": {
+      "entries": 1,
+      "signals": 3
+    },
+    "SPY_2026-03-12": {
+      "entries": 2,
+      "signals": 8
+    },
+    "SPY_2026-03-25": {
+      "entries": 0,
+      "signals": 7
+    },
+    "SPY_2026-04-17": {
+      "entries": 0,
+      "signals": 3
+    },
+    "SPY_2026-04-29": {
+      "entries": 0,
+      "signals": 0
+    },
+    "SPY_2026-05-05": {
+      "entries": 0,
+      "signals": 10
+    },
+    "SPY_2026-05-15": {
+      "entries": 0,
+      "signals": 2
+    },
+    "SPY_2026-06-29": {
+      "entries": 3,
+      "signals": 5
+    },
+    "SPY_2026-06-30": {
+      "entries": 1,
+      "signals": 2
+    },
+    "SPY_2026-07-01": {
+      "entries": 1,
+      "signals": 4
+    },
+    "SPY_2026-07-02": {
+      "entries": 3,
+      "signals": 8
+    },
+    "SPY_2026-07-06": {
+      "entries": 0,
+      "signals": 4
+    },
+    "SPY_2026-07-07": {
+      "entries": 0,
+      "signals": 10
+    },
+    "SPY_2026-07-08": {
+      "entries": 0,
+      "signals": 6
+    },
+    "SPY_2026-07-09": {
+      "entries": 2,
+      "signals": 4
+    },
+    "SPY_2026-07-10": {
+      "entries": 0,
+      "signals": 5
+    },
+    "SPY_2026-07-13": {
+      "entries": 0,
+      "signals": 2
+    },
+    "SPY_2026-07-14": {
+      "entries": 0,
+      "signals": 1
+    },
+    "SPY_2026-07-15": {
+      "entries": 0,
+      "signals": 2
+    },
+    "SPY_2026-07-16": {
+      "entries": 1,
+      "signals": 3
+    },
+    "SPY_2026-07-17": {
+      "entries": 0,
+      "signals": 1
+    },
+    "SPY_2026-07-20": {
+      "entries": 1,
+      "signals": 10
+    },
+    "SPY_2026-07-21": {
+      "entries": 0,
+      "signals": 5
+    },
+    "SPY_2026-07-22": {
+      "entries": 1,
+      "signals": 4
+    },
+    "SPY_2026-07-23": {
+      "entries": 0,
+      "signals": 2
+    },
+    "SPY_2026-07-24": {
+      "entries": 0,
+      "signals": 1
+    },
+    "SPY_2026-07-27": {
+      "entries": 1,
+      "signals": 12
+    },
+    "SPY_2026-07-28": {
+      "entries": 0,
+      "signals": 4
+    },
+    "SPY_2026-07-29": {
+      "entries": 0,
+      "signals": 6
+    },
+    "SPY_2026-07-30": {
+      "entries": 0,
+      "signals": 9
+    },
+    "SPY_2026-07-31": {
+      "entries": 0,
+      "signals": 6
+    },
+    "SPY_2026-08-04": {
+      "entries": 0,
+      "signals": 9
+    },
+    "SPY_2026-08-05": {
+      "entries": 1,
+      "signals": 5
+    },
+    "SPY_2026-08-06": {
+      "entries": 1,
+      "signals": 4
+    },
+    "SPY_2026-08-07": {
+      "entries": 1,
+      "signals": 3
+    },
+    "SPY_2026-08-10": {
+      "entries": 0,
+      "signals": 1
+    },
+    "TSLA_2024-01-03": {
+      "entries": 2,
+      "signals": 10
+    },
+    "TSLA_2024-01-08": {
+      "entries": 0,
+      "signals": 1
+    },
+    "TSLA_2024-01-12": {
+      "entries": 2,
+      "signals": 10
+    },
+    "TSLA_2024-01-17": {
+      "entries": 1,
+      "signals": 6
+    },
+    "TSLA_2024-01-24": {
+      "entries": 0,
+      "signals": 1
+    },
+    "TSLA_2024-01-29": {
+      "entries": 7,
+      "signals": 11
+    },
+    "TSLA_2024-02-05": {
+      "entries": 4,
+      "signals": 8
+    },
+    "TSLA_2024-02-14": {
+      "entries": 0,
+      "signals": 5
+    },
+    "TSLA_2024-03-14": {
+      "entries": 1,
+      "signals": 5
+    },
+    "TSLA_2024-03-27": {
+      "entries": 2,
+      "signals": 15
+    },
+    "TSLA_2024-04-22": {
+      "entries": 0,
+      "signals": 4
+    },
+    "TSLA_2024-06-24": {
+      "entries": 1,
+      "signals": 2
+    },
+    "TSLA_2024-08-01": {
+      "entries": 1,
+      "signals": 3
+    },
+    "TSLA_2024-08-05": {
+      "entries": 1,
+      "signals": 10
+    },
+    "TSLA_2024-09-25": {
+      "entries": 0,
+      "signals": 8
+    },
+    "TSLA_2024-10-22": {
+      "entries": 0,
+      "signals": 1
+    },
+    "TSLA_2024-10-31": {
+      "entries": 0,
+      "signals": 6
+    },
+    "TSLA_2024-12-03": {
+      "entries": 0,
+      "signals": 13
+    },
+    "TSLA_2024-12-11": {
+      "entries": 0,
+      "signals": 14
+    },
+    "TSLA_2025-03-03": {
+      "entries": 0,
+      "signals": 5
+    },
+    "TSLA_2025-04-16": {
+      "entries": 1,
+      "signals": 4
+    },
+    "TSLA_2025-04-17": {
+      "entries": 2,
+      "signals": 9
+    },
+    "TSLA_2025-05-15": {
+      "entries": 0,
+      "signals": 5
+    },
+    "TSLA_2025-05-22": {
+      "entries": 0,
+      "signals": 4
+    },
+    "TSLA_2025-06-12": {
+      "entries": 1,
+      "signals": 6
+    },
+    "TSLA_2025-06-27": {
+      "entries": 1,
+      "signals": 4
+    },
+    "TSLA_2025-07-07": {
+      "entries": 6,
+      "signals": 15
+    },
+    "TSLA_2025-08-07": {
+      "entries": 0,
+      "signals": 5
+    },
+    "TSLA_2025-08-13": {
+      "entries": 3,
+      "signals": 8
+    },
+    "TSLA_2025-08-25": {
+      "entries": 0,
+      "signals": 4
+    },
+    "TSLA_2025-08-28": {
+      "entries": 0,
+      "signals": 2
+    },
+    "TSLA_2025-09-05": {
+      "entries": 1,
+      "signals": 9
+    },
+    "TSLA_2025-10-07": {
+      "entries": 1,
+      "signals": 11
+    },
+    "TSLA_2025-10-08": {
+      "entries": 3,
+      "signals": 8
+    },
+    "TSLA_2025-10-28": {
+      "entries": 2,
+      "signals": 6
+    },
+    "TSLA_2025-11-21": {
+      "entries": 4,
+      "signals": 11
+    },
+    "TSLA_2025-12-02": {
+      "entries": 0,
+      "signals": 4
+    },
+    "TSLA_2025-12-15": {
+      "entries": 1,
+      "signals": 14
+    },
+    "TSLA_2025-12-18": {
+      "entries": 3,
+      "signals": 7
+    },
+    "TSLA_2025-12-24": {
+      "entries": 1,
+      "signals": 8
+    },
+    "TSLA_2026-01-08": {
+      "entries": 1,
+      "signals": 5
+    },
+    "TSLA_2026-01-14": {
+      "entries": 2,
+      "signals": 4
+    },
+    "TSLA_2026-01-16": {
+      "entries": 2,
+      "signals": 7
+    },
+    "TSLA_2026-01-23": {
+      "entries": 1,
+      "signals": 10
+    },
+    "TSLA_2026-01-26": {
+      "entries": 0,
+      "signals": 4
+    },
+    "TSLA_2026-02-02": {
+      "entries": 0,
+      "signals": 1
+    },
+    "TSLA_2026-02-04": {
+      "entries": 2,
+      "signals": 8
+    },
+    "TSLA_2026-02-11": {
+      "entries": 0,
+      "signals": 0
+    },
+    "TSLA_2026-02-12": {
+      "entries": 1,
+      "signals": 6
+    },
+    "TSLA_2026-02-18": {
+      "entries": 0,
+      "signals": 7
+    },
+    "TSLA_2026-03-03": {
+      "entries": 2,
+      "signals": 9
+    },
+    "TSLA_2026-03-04": {
+      "entries": 0,
+      "signals": 4
+    },
+    "TSLA_2026-03-12": {
+      "entries": 4,
+      "signals": 8
+    },
+    "TSLA_2026-03-17": {
+      "entries": 2,
+      "signals": 12
+    },
+    "TSLA_2026-03-18": {
+      "entries": 0,
+      "signals": 2
+    },
+    "TSLA_2026-03-26": {
+      "entries": 0,
+      "signals": 10
+    },
+    "TSLA_2026-03-30": {
+      "entries": 2,
+      "signals": 4
+    },
+    "TSLA_2026-04-07": {
+      "entries": 1,
+      "signals": 6
+    },
+    "TSLA_2026-04-08": {
+      "entries": 0,
+      "signals": 2
+    },
+    "TSLA_2026-04-09": {
+      "entries": 1,
+      "signals": 12
+    },
+    "TSLA_2026-04-22": {
+      "entries": 2,
+      "signals": 10
+    },
+    "TSLA_2026-04-23": {
+      "entries": 1,
+      "signals": 2
+    },
+    "TSLA_2026-04-30": {
+      "entries": 0,
+      "signals": 11
+    },
+    "TSLA_2026-05-07": {
+      "entries": 2,
+      "signals": 7
+    },
+    "TSLA_2026-05-13": {
+      "entries": 2,
+      "signals": 7
+    },
+    "TSLA_2026-05-14": {
+      "entries": 0,
+      "signals": 8
+    },
+    "TSLA_2026-05-15": {
+      "entries": 3,
+      "signals": 7
+    },
+    "TSLA_2026-05-18": {
+      "entries": 2,
+      "signals": 6
+    },
+    "TSLA_2026-05-19": {
+      "entries": 0,
+      "signals": 4
+    },
+    "TSLA_2026-05-20": {
+      "entries": 3,
+      "signals": 8
+    },
+    "TSLA_2026-05-21": {
+      "entries": 0,
+      "signals": 5
+    },
+    "TSLA_2026-05-22": {
+      "entries": 1,
+      "signals": 3
+    },
+    "TSLA_2026-05-26": {
+      "entries": 0,
+      "signals": 7
+    },
+    "TSLA_2026-05-27": {
+      "entries": 0,
+      "signals": 2
+    },
+    "TSLA_2026-05-28": {
+      "entries": 1,
+      "signals": 4
+    },
+    "TSLA_2026-05-29": {
+      "entries": 1,
+      "signals": 2
+    },
+    "TSLA_2026-06-01": {
+      "entries": 1,
+      "signals": 8
+    },
+    "TSLA_2026-06-02": {
+      "entries": 2,
+      "signals": 7
+    },
+    "TSLA_2026-06-03": {
+      "entries": 1,
+      "signals": 4
+    },
+    "TSLA_2026-06-04": {
+      "entries": 0,
+      "signals": 4
+    },
+    "TSLA_2026-06-05": {
+      "entries": 1,
+      "signals": 6
+    },
+    "TSLA_2026-06-08": {
+      "entries": 1,
+      "signals": 13
+    },
+    "TSLA_2026-06-09": {
+      "entries": 1,
+      "signals": 2
+    },
+    "TSLA_2026-06-10": {
+      "entries": 3,
+      "signals": 11
+    },
+    "TSLA_2026-06-11": {
+      "entries": 1,
+      "signals": 4
+    },
+    "TSLA_2026-06-12": {
+      "entries": 3,
+      "signals": 11
+    },
+    "TSLA_2026-06-15": {
+      "entries": 1,
+      "signals": 7
+    },
+    "TSLA_2026-06-16": {
+      "entries": 1,
+      "signals": 5
+    },
+    "TSLA_2026-06-17": {
+      "entries": 0,
+      "signals": 4
+    },
+    "TSLA_2026-06-18": {
+      "entries": 0,
+      "signals": 1
+    },
+    "TSLA_2026-06-22": {
+      "entries": 2,
+      "signals": 7
+    },
+    "TSLA_2026-06-23": {
+      "entries": 2,
+      "signals": 7
+    },
+    "TSLA_2026-06-24": {
+      "entries": 2,
+      "signals": 6
+    },
+    "TSLA_2026-06-25": {
+      "entries": 3,
+      "signals": 5
+    },
+    "TSLA_2026-06-26": {
+      "entries": 3,
+      "signals": 14
+    },
+    "TSLA_2026-06-29": {
+      "entries": 1,
+      "signals": 4
+    },
+    "TSLA_2026-06-30": {
+      "entries": 1,
+      "signals": 9
+    },
+    "TSLA_2026-07-01": {
+      "entries": 2,
+      "signals": 7
+    },
+    "TSLA_2026-07-02": {
+      "entries": 0,
+      "signals": 2
+    },
+    "TSLA_2026-07-06": {
+      "entries": 0,
+      "signals": 8
+    },
+    "TSLA_2026-07-07": {
+      "entries": 0,
+      "signals": 5
+    },
+    "TSLA_2026-07-08": {
+      "entries": 0,
+      "signals": 10
+    },
+    "TSLA_2026-07-09": {
+      "entries": 1,
+      "signals": 8
+    },
+    "TSLA_2026-07-10": {
+      "entries": 2,
+      "signals": 7
+    },
+    "TSLA_2026-07-13": {
+      "entries": 3,
+      "signals": 7
+    },
+    "TSLA_2026-07-14": {
+      "entries": 0,
+      "signals": 2
+    },
+    "TSLA_2026-07-15": {
+      "entries": 2,
+      "signals": 6
+    },
+    "TSLA_2026-07-16": {
+      "entries": 0,
+      "signals": 9
+    },
+    "TSLA_2026-07-17": {
+      "entries": 0,
+      "signals": 3
+    },
+    "TSLA_2026-07-20": {
+      "entries": 2,
+      "signals": 8
+    },
+    "TSLA_2026-07-21": {
+      "entries": 1,
+      "signals": 8
+    },
+    "TSLA_2026-07-22": {
+      "entries": 0,
+      "signals": 14
+    },
+    "TSLA_2026-07-23": {
+      "entries": 1,
+      "signals": 5
+    },
+    "TSLA_2026-07-24": {
+      "entries": 3,
+      "signals": 6
+    },
+    "TSLA_2026-07-27": {
+      "entries": 1,
+      "signals": 4
+    },
+    "TSLA_2026-07-28": {
+      "entries": 4,
+      "signals": 16
+    },
+    "TSLA_2026-07-29": {
+      "entries": 0,
+      "signals": 3
+    },
+    "TSLA_2026-07-30": {
+      "entries": 2,
+      "signals": 9
+    },
+    "TSLA_2026-07-31": {
+      "entries": 1,
+      "signals": 6
+    },
+    "TSLA_2026-08-03": {
+      "entries": 2,
+      "signals": 12
+    },
+    "TSLA_2026-08-04": {
+      "entries": 0,
+      "signals": 3
+    },
+    "TSLA_2026-08-05": {
+      "entries": 2,
+      "signals": 8
+    },
+    "TSLA_2026-08-06": {
+      "entries": 1,
+      "signals": 10
+    },
+    "TSLA_2026-08-07": {
+      "entries": 0,
+      "signals": 2
+    },
+    "TSLA_2026-08-10": {
+      "entries": 0,
+      "signals": 6
+    },
+    "TSM_2025-09-08": {
+      "entries": 0,
+      "signals": 5
+    },
+    "TSM_2025-09-09": {
+      "entries": 1,
+      "signals": 4
+    },
+    "TSM_2025-10-01": {
+      "entries": 0,
+      "signals": 0
+    },
+    "TSM_2025-10-07": {
+      "entries": 1,
+      "signals": 5
+    },
+    "TSM_2025-11-18": {
+      "entries": 4,
+      "signals": 7
+    },
+    "TSM_2026-01-09": {
+      "entries": 0,
+      "signals": 7
+    },
+    "TSM_2026-02-02": {
+      "entries": 1,
+      "signals": 2
+    },
+    "TSM_2026-02-11": {
+      "entries": 0,
+      "signals": 4
+    },
+    "TSM_2026-02-17": {
+      "entries": 1,
+      "signals": 6
+    },
+    "TSM_2026-02-23": {
+      "entries": 1,
+      "signals": 11
+    },
+    "TSM_2026-05-29": {
+      "entries": 0,
+      "signals": 5
+    },
+    "UBER_2025-02-07": {
+      "entries": 2,
+      "signals": 6
+    },
+    "UBER_2025-03-12": {
+      "entries": 2,
+      "signals": 3
+    },
+    "UBER_2025-07-15": {
+      "entries": 1,
+      "signals": 4
+    },
+    "UBER_2025-07-31": {
+      "entries": 1,
+      "signals": 9
+    },
+    "UBER_2025-08-13": {
+      "entries": 1,
+      "signals": 6
+    },
+    "UBER_2025-09-11": {
+      "entries": 0,
+      "signals": 6
+    },
+    "UBER_2025-09-12": {
+      "entries": 1,
+      "signals": 8
+    },
+    "UBER_2025-09-18": {
+      "entries": 0,
+      "signals": 11
+    },
+    "UBER_2025-10-13": {
+      "entries": 1,
+      "signals": 8
+    },
+    "UBER_2025-10-28": {
+      "entries": 0,
+      "signals": 5
+    },
+    "UBER_2026-01-06": {
+      "entries": 1,
+      "signals": 19
+    },
+    "UBER_2026-02-11": {
+      "entries": 1,
+      "signals": 3
+    },
+    "UBER_2026-02-19": {
+      "entries": 0,
+      "signals": 13
+    },
+    "UBER_2026-02-25": {
+      "entries": 0,
+      "signals": 6
+    },
+    "UBER_2026-03-09": {
+      "entries": 0,
+      "signals": 4
+    },
+    "UBER_2026-05-14": {
+      "entries": 1,
+      "signals": 3
+    },
+    "UBER_2026-06-03": {
+      "entries": 1,
+      "signals": 11
+    },
+    "UBER_2026-06-08": {
+      "entries": 1,
+      "signals": 10
+    },
+    "UBER_2026-06-09": {
+      "entries": 0,
+      "signals": 4
+    },
+    "UBER_2026-06-29": {
+      "entries": 2,
+      "signals": 14
+    },
+    "UBER_2026-07-06": {
+      "entries": 0,
+      "signals": 8
+    },
+    "UBER_2026-07-09": {
+      "entries": 0,
+      "signals": 4
+    }
+  },
+  "errors_detail": []
+}

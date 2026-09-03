@@ -1,0 +1,355 @@
+{
+ "census": [
+  {
+   "source": "working tree (uncommitted)",
+   "generated": "2026-08-29T18:38:17",
+   "sessions": 500,
+   "signals": 134012,
+   "traded_meta": 4508,
+   "traded_counted": 4508,
+   "halted": 1662,
+   "everything": {
+    "trades": 4508,
+    "win_pct": 59.4,
+    "total_dollars": 2633850.0,
+    "per_trade": 584.0,
+    "mean_r": 0.5843,
+    "per_day": 5268.0,
+    "per_month": 105354.0,
+    "months_green": 25,
+    "months": 25,
+    "worst_drawdown": 11105.0
+   },
+   "one_a_day": {
+    "trades": 499,
+    "win_pct": 66.7,
+    "total_dollars": 360380.0,
+    "per_trade": 722.0,
+    "mean_r": 0.7222,
+    "per_day": 721.0,
+    "per_month": 14415.0,
+    "months_green": 25,
+    "months": 25,
+    "worst_drawdown": 5993.0
+   },
+   "one_a_day_live_2R_clip": {
+    "trades": 499,
+    "win_pct": 66.7,
+    "total_dollars": 241723.0,
+    "per_trade": 484.0,
+    "mean_r": 0.4844,
+    "per_day": 483.0,
+    "per_month": 9669.0,
+    "months_green": 23,
+    "months": 25,
+    "worst_drawdown": 5993.0
+   },
+   "worst_loss_r": -1.0,
+   "losses_past_1R": 0
+  },
+  {
+   "source": "commit 145d564e  2026-08-29  T23: the stack re-run, and the recall metric is measured on ",
+   "generated": "2026-08-29T03:14:29",
+   "sessions": 500,
+   "signals": 76019,
+   "traded_meta": 2437,
+   "traded_counted": 2437,
+   "halted": 857,
+   "everything": {
+    "trades": 2437,
+    "win_pct": 49.7,
+    "total_dollars": 1339071.0,
+    "per_trade": 549.0,
+    "mean_r": 0.5495,
+    "per_day": 2678.0,
+    "per_month": 53563.0,
+    "months_green": 25,
+    "months": 25,
+    "worst_drawdown": 17135.0
+   },
+   "one_a_day": {
+    "trades": 496,
+    "win_pct": 55.0,
+    "total_dollars": 303285.0,
+    "per_trade": 611.0,
+    "mean_r": 0.6115,
+    "per_day": 607.0,
+    "per_month": 12131.0,
+    "months_green": 22,
+    "months": 25,
+    "worst_drawdown": 20137.0
+   },
+   "one_a_day_live_2R_clip": {
+    "trades": 496,
+    "win_pct": 55.0,
+    "total_dollars": 151374.0,
+    "per_trade": 305.0,
+    "mean_r": 0.3052,
+    "per_day": 303.0,
+    "per_month": 6055.0,
+    "months_green": 21,
+    "months": 25,
+    "worst_drawdown": 22699.0
+   },
+   "worst_loss_r": -1.0,
+   "losses_past_1R": 0
+  },
+  {
+   "source": "commit 9edd2ba7  2026-08-29  T0: the ratified re-baseline -- 2,595 trades, every month gr",
+   "generated": "2026-08-29T01:03:25",
+   "sessions": 500,
+   "signals": 75953,
+   "traded_meta": 2595,
+   "traded_counted": 2595,
+   "halted": null,
+   "everything": {
+    "trades": 2595,
+    "win_pct": 43.4,
+    "total_dollars": 1422328.0,
+    "per_trade": 548.0,
+    "mean_r": 0.5481,
+    "per_day": 2845.0,
+    "per_month": 56893.0,
+    "months_green": 25,
+    "months": 25,
+    "worst_drawdown": 32431.0
+   },
+   "one_a_day": {
+    "trades": 490,
+    "win_pct": 50.6,
+    "total_dollars": 321193.0,
+    "per_trade": 655.0,
+    "mean_r": 0.6555,
+    "per_day": 642.0,
+    "per_month": 12848.0,
+    "months_green": 23,
+    "months": 25,
+    "worst_drawdown": 12650.0
+   },
+   "one_a_day_live_2R_clip": {
+    "trades": 490,
+    "win_pct": 50.6,
+    "total_dollars": 122050.0,
+    "per_trade": 249.0,
+    "mean_r": 0.2491,
+    "per_day": 244.0,
+    "per_month": 4882.0,
+    "months_green": 21,
+    "months": 25,
+    "worst_drawdown": 17698.0
+   },
+   "worst_loss_r": -1.0,
+   "losses_past_1R": 0
+  },
+  {
+   "source": "commit 3bd2ef1a  2026-08-28  OMEN 7.0 wave 1: 16 tracks, and two of them were refuted",
+   "generated": "2026-08-26T12:28:00",
+   "sessions": 500,
+   "signals": 45175,
+   "traded_meta": 1016,
+   "traded_counted": 1016,
+   "halted": null,
+   "everything": {
+    "trades": 1016,
+    "win_pct": 53.4,
+    "total_dollars": 972380.0,
+    "per_trade": 957.0,
+    "mean_r": 0.9571,
+    "per_day": 1945.0,
+    "per_month": 38895.0,
+    "months_green": 23,
+    "months": 25,
+    "worst_drawdown": 11438.0
+   },
+   "one_a_day": {
+    "trades": 414,
+    "win_pct": 58.5,
+    "total_dollars": 438693.0,
+    "per_trade": 1060.0,
+    "mean_r": 1.0596,
+    "per_day": 877.0,
+    "per_month": 17548.0,
+    "months_green": 24,
+    "months": 25,
+    "worst_drawdown": 7224.0
+   },
+   "one_a_day_live_2R_clip": {
+    "trades": 414,
+    "win_pct": 58.5,
+    "total_dollars": 216958.0,
+    "per_trade": 524.0,
+    "mean_r": 0.5241,
+    "per_day": 434.0,
+    "per_month": 8678.0,
+    "months_green": 23,
+    "months": 25,
+    "worst_drawdown": 7320.0
+   },
+   "worst_loss_r": -1.0,
+   "losses_past_1R": 0
+  }
+ ],
+ "published": {
+  "everything": {
+   "trades": 4508,
+   "win_pct": 59.4,
+   "total_dollars": 2633850.0,
+   "per_trade": 584.0,
+   "mean_r": 0.5843,
+   "per_day": 5268.0,
+   "per_month": 105354.0,
+   "months_green": 25,
+   "months": 25,
+   "worst_drawdown": 11105.0
+  },
+  "one_a_day": {
+   "trades": 499,
+   "win_pct": 66.7,
+   "total_dollars": 360380.0,
+   "per_trade": 722.0,
+   "mean_r": 0.7222,
+   "per_day": 721.0,
+   "per_month": 14415.0,
+   "months_green": 25,
+   "months": 25,
+   "worst_drawdown": 5993.0
+  },
+  "everything_ci": {
+   "label": "published, everything",
+   "days": 500,
+   "per_day": 5268.0,
+   "ci95_low": 4596.0,
+   "ci95_high": 5958.0,
+   "crosses_zero": false
+  },
+  "one_a_day_ci": {
+   "label": "published, one a day",
+   "days": 500,
+   "per_day": 721.0,
+   "ci95_low": 577.0,
+   "ci95_high": 870.0,
+   "crosses_zero": false
+  }
+ },
+ "diagnostics": {
+  "rows_attempted": 4508,
+  "bars_missing_or_last_bar": 0,
+  "published_fill_not_takeable": 0,
+  "close_fill_not_takeable": 0,
+  "head_start_mean_r": 0.5801,
+  "head_start_median_r": 0.4347,
+  "head_start_mean_dollars": 580.0,
+  "head_start_pct_positive": 87.5,
+  "head_start_pct_over_half_r": 44.8,
+  "head_start_pct_over_1r": 17.5,
+  "n_measured": 4508
+ },
+ "matched_pair": {
+  "published_fill": {
+   "everything": {
+    "trades": 4508,
+    "win_pct": 56.8,
+    "total_dollars": 2815389.0,
+    "per_trade": 625.0,
+    "mean_r": 0.6245,
+    "per_day": 5631.0,
+    "per_month": 112616.0,
+    "months_green": 25,
+    "months": 25,
+    "worst_drawdown": 16265.0
+   },
+   "one_a_day": {
+    "trades": 499,
+    "win_pct": 64.3,
+    "total_dollars": 429989.0,
+    "per_trade": 862.0,
+    "mean_r": 0.8617,
+    "per_day": 860.0,
+    "per_month": 17200.0,
+    "months_green": 25,
+    "months": 25,
+    "worst_drawdown": 9703.0
+   },
+   "everything_ci": {
+    "label": "published_fill, everything",
+    "days": 500,
+    "per_day": 5631.0,
+    "ci95_low": 5013.0,
+    "ci95_high": 6253.0,
+    "crosses_zero": false
+   },
+   "one_a_day_ci": {
+    "label": "published_fill, one a day",
+    "days": 500,
+    "per_day": 860.0,
+    "ci95_low": 723.0,
+    "ci95_high": 994.0,
+    "crosses_zero": false
+   },
+   "exit_mix": {
+    "target": 2543,
+    "stop": 1936,
+    "eod": 29
+   }
+  },
+  "entry_minute_close": {
+   "everything": {
+    "trades": 4508,
+    "win_pct": 39.2,
+    "total_dollars": 324753.0,
+    "per_trade": 72.0,
+    "mean_r": 0.072,
+    "per_day": 650.0,
+    "per_month": 12990.0,
+    "months_green": 17,
+    "months": 25,
+    "worst_drawdown": 71252.0
+   },
+   "one_a_day": {
+    "trades": 499,
+    "win_pct": 43.1,
+    "total_dollars": 93378.0,
+    "per_trade": 187.0,
+    "mean_r": 0.1871,
+    "per_day": 187.0,
+    "per_month": 3735.0,
+    "months_green": 17,
+    "months": 25,
+    "worst_drawdown": 17925.0
+   },
+   "everything_ci": {
+    "label": "entry_minute_close, everything",
+    "days": 500,
+    "per_day": 650.0,
+    "ci95_low": 149.0,
+    "ci95_high": 1153.0,
+    "crosses_zero": false
+   },
+   "one_a_day_ci": {
+    "label": "entry_minute_close, one a day",
+    "days": 500,
+    "per_day": 187.0,
+    "ci95_low": 54.0,
+    "ci95_high": 322.0,
+    "crosses_zero": false
+   },
+   "exit_mix": {
+    "target": 1699,
+    "stop": 2697,
+    "eod": 112
+   }
+  }
+ },
+ "fill_cost": {
+  "everything": {
+   "mean_daily_change": -4981.0,
+   "ci95_low": -5395.0,
+   "ci95_high": -4583.0
+  },
+  "one_a_day": {
+   "mean_daily_change": -673.0,
+   "ci95_low": -785.0,
+   "ci95_high": -563.0
+  }
+ }
+}

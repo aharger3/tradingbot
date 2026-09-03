@@ -1,0 +1,278 @@
+{
+  "taxonomy": {
+    "n_rows_total_corpus": 2274,
+    "n_rows_with_any_structured_refusal_field": 113,
+    "raw_field_counts": {
+      "reason_none": {
+        "chop / no structure": 7,
+        "range too tight": 1,
+        "no level": 2,
+        "missed it": 10
+      },
+      "answers.why_not": {
+        "level_not_respected": 11,
+        "other": 9,
+        "no_displacement": 8,
+        "late": 8,
+        "chop": 22,
+        "no_retest": 3,
+        "exhausted": 4
+      },
+      "answers.why": {
+        "chop": 30,
+        "too_extended": 1,
+        "no_setup": 11,
+        "no_level": 1
+      },
+      "answers.take==no": 26,
+      "answers.take==yes (NOT a refusal, excluded)": 22
+    },
+    "clustered_ranked": [
+      [
+        "chop / no structure",
+        70
+      ],
+      [
+        "take:no (no reason given)",
+        26
+      ],
+      [
+        "late / missed it",
+        18
+      ],
+      [
+        "level not respected",
+        11
+      ],
+      [
+        "other (unspecified)",
+        9
+      ],
+      [
+        "no displacement",
+        8
+      ],
+      [
+        "exhausted move",
+        5
+      ],
+      [
+        "no level present",
+        3
+      ],
+      [
+        "no retest",
+        3
+      ],
+      [
+        "range too tight",
+        1
+      ]
+    ],
+    "literal_detail": {
+      "chop / no structure": {
+        "reason_none:chop / no structure": 7,
+        "answers.why_not:chop": 22,
+        "answers.why:chop": 30,
+        "answers.why:no_setup": 11
+      },
+      "range too tight": {
+        "reason_none:range too tight": 1
+      },
+      "no level present": {
+        "reason_none:no level": 2,
+        "answers.why:no_level": 1
+      },
+      "late / missed it": {
+        "reason_none:missed it": 10,
+        "answers.why_not:late": 8
+      },
+      "level not respected": {
+        "answers.why_not:level_not_respected": 11
+      },
+      "other (unspecified)": {
+        "answers.why_not:other": 9
+      },
+      "no displacement": {
+        "answers.why_not:no_displacement": 8
+      },
+      "no retest": {
+        "answers.why_not:no_retest": 3
+      },
+      "exhausted move": {
+        "answers.why_not:exhausted": 4,
+        "answers.why:too_extended": 1
+      }
+    }
+  },
+  "prose_scan": {
+    "n_none_rows": 462,
+    "n_none_rows_with_free_text_note": 107,
+    "keyword_hits_ranked": [
+      [
+        "chop",
+        16
+      ],
+      [
+        "displacement",
+        7
+      ],
+      [
+        "late",
+        7
+      ],
+      [
+        "extended",
+        2
+      ],
+      [
+        "no level",
+        1
+      ]
+    ],
+    "caveat": "keyword sweep over free text, not a parse; a note can match zero or multiple keywords; counts are a hint, n_relevant = n_none_rows_with_free_text_note."
+  },
+  "precision_prize": {
+    "n_refused_symbol_days_canonical": 607,
+    "n_refused_symbol_days_explicit_none": 415,
+    "n_refused_symbol_days_X_only_engine_refusal": 192,
+    "n_refused_symbol_days_covered_by_book": 510,
+    "n_refused_symbol_days_NOT_in_book_window": 97,
+    "engine_fired_but_skipped_on_refused_days": 413,
+    "engine_TRADED_on_refused_days": {
+      "n_trades": 168,
+      "n_distinct_symbol_days": 146,
+      "scoreboard": {
+        "ev_r": -0.3008,
+        "n": 137,
+        "n_input": 168,
+        "n_dropped_size_gate": 31,
+        "size_gate_applicable": true,
+        "win_rate": 0.365,
+        "avg_win_R": 0.6844,
+        "avg_loss_R": 0.867,
+        "profit_factor": 0.4537,
+        "total_R": -41.207,
+        "max_drawdown_R": -43.237,
+        "months_green": "7/23",
+        "expectancy_per_day": -245.28,
+        "r_stability": -0.3384,
+        "yearly_R": -61.8105,
+        "risk_dollars": 1000.0,
+        "sessions_used": 168
+      }
+    },
+    "engine_TRADED_on_EXPLICIT_refused_days_only": {
+      "n_trades": 113,
+      "scoreboard": {
+        "ev_r": -0.2625,
+        "n": 87,
+        "n_input": 113,
+        "n_dropped_size_gate": 26,
+        "size_gate_applicable": true,
+        "win_rate": 0.3678,
+        "avg_win_R": 0.7192,
+        "avg_loss_R": 0.8337,
+        "profit_factor": 0.5019,
+        "total_R": -22.84,
+        "max_drawdown_R": -26.997,
+        "months_green": "6/23",
+        "expectancy_per_day": -202.12,
+        "r_stability": -0.2876,
+        "yearly_R": -50.9352,
+        "risk_dollars": 1000.0,
+        "sessions_used": 113
+      }
+    },
+    "first_of_day_arm": {
+      "all_sessions": {
+        "n": 498,
+        "scoreboard": {
+          "ev_r": 0.0377,
+          "n": 444,
+          "n_input": 498,
+          "n_dropped_size_gate": 54,
+          "size_gate_applicable": true,
+          "win_rate": 0.4595,
+          "avg_win_R": 0.9048,
+          "avg_loss_R": 0.7023,
+          "profit_factor": 1.0996,
+          "total_R": 16.726,
+          "max_drawdown_R": -20.415,
+          "months_green": "12/25",
+          "expectancy_per_day": 33.59,
+          "r_stability": 0.0344,
+          "yearly_R": 8.4638,
+          "risk_dollars": 1000.0,
+          "sessions_used": 498
+        }
+      },
+      "on_refused_days": {
+        "n": 26,
+        "scoreboard": {
+          "ev_r": -0.1665,
+          "n": 24,
+          "n_input": 26,
+          "n_dropped_size_gate": 2,
+          "size_gate_applicable": true,
+          "win_rate": 0.4167,
+          "avg_win_R": 0.7886,
+          "avg_loss_R": 0.8487,
+          "profit_factor": 0.6637,
+          "total_R": -3.996,
+          "max_drawdown_R": -7.922,
+          "months_green": "6/17",
+          "expectancy_per_day": -153.69,
+          "r_stability": -0.1612,
+          "yearly_R": -38.7305,
+          "risk_dollars": 1000.0,
+          "sessions_used": 26
+        }
+      },
+      "on_explicit_refused_days_only": {
+        "n": 19,
+        "scoreboard": {
+          "ev_r": -0.136,
+          "n": 17,
+          "n_input": 19,
+          "n_dropped_size_gate": 2,
+          "size_gate_applicable": true,
+          "win_rate": 0.4118,
+          "avg_win_R": 0.922,
+          "avg_loss_R": 0.8766,
+          "profit_factor": 0.7363,
+          "total_R": -2.312,
+          "max_drawdown_R": -6.238,
+          "months_green": "6/14",
+          "expectancy_per_day": -121.68,
+          "r_stability": -0.1196,
+          "yearly_R": -30.6644,
+          "risk_dollars": 1000.0,
+          "sessions_used": 19
+        }
+      },
+      "on_NOT_refused_days": {
+        "n": 472,
+        "scoreboard": {
+          "ev_r": 0.0493,
+          "n": 420,
+          "n_input": 472,
+          "n_dropped_size_gate": 52,
+          "size_gate_applicable": true,
+          "win_rate": 0.4619,
+          "avg_win_R": 0.9108,
+          "avg_loss_R": 0.6932,
+          "profit_factor": 1.1329,
+          "total_R": 20.722,
+          "max_drawdown_R": -16.729,
+          "months_green": "14/25",
+          "expectancy_per_day": 43.9,
+          "r_stability": 0.0449,
+          "yearly_R": 11.0634,
+          "risk_dollars": 1000.0,
+          "sessions_used": 472
+        }
+      }
+    }
+  }
+}

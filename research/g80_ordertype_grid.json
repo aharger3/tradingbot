@@ -1,0 +1,1102 @@
+{
+ "meta": {
+  "book": {
+   "generated": "2026-08-29T18:38:17",
+   "first": "2024-08-21",
+   "last": "2026-08-21",
+   "sessions": 500,
+   "symbols": [
+    "NVDA",
+    "TSLA",
+    "AAPL",
+    "SPCX",
+    "MSFT",
+    "MU",
+    "INTC",
+    "PLTR",
+    "AMZN",
+    "META",
+    "AMD",
+    "GOOGL",
+    "ACHR",
+    "NFLX",
+    "ORCL",
+    "QQQ",
+    "SPY",
+    "IWM",
+    "SOFI",
+    "COIN",
+    "HOOD",
+    "IREN",
+    "AVGO",
+    "UBER",
+    "BABA",
+    "CRM",
+    "TSM",
+    "MARA"
+   ],
+   "risk_dollars": 1000.0,
+   "signals": 134012,
+   "loss_halt": true,
+   "halted": 1662,
+   "traded": 4508
+  },
+  "policies": {
+   "BOOK": "BOOK  shipped fill (control)",
+   "A": "A  resting limit @ level, stop = entry bar's low",
+   "A2": "A2 resting limit @ level, structural stop held",
+   "B": "B  market at the signal minute's close",
+   "C": "C  market at the next minute's open",
+   "D": "D  limit 1 bar, then market (chase once)",
+   "E": "E  limit at the level, 3-bar expiry"
+  },
+  "risk_dollars": 1000.0,
+  "cutoff": "11:00:00"
+ },
+ "harness_proof": {
+  "traded_rows_repriced": 4508,
+  "same_outcome_word": 4503,
+  "same_exit_price": 4488,
+  "r_delta_mean": -0.00049,
+  "r_delta_median": 0.0,
+  "r_delta_max_abs": 3.0732,
+  "r_within_0p005": 3887,
+  "r_within_0p05": 4345,
+  "why_r_differs": "backtest_2y writes entry/stop rounded to the cent; the risk denominator here is the rounded one",
+  "sample_exit_differences": [
+   {
+    "sym": "PLTR",
+    "day": "2024-08-29",
+    "et": "09:56",
+    "setup": "break_and_retest",
+    "book_exit": 31.5,
+    "harness_exit": 31.52,
+    "book_r": 0.146,
+    "harness_r": 0.1667
+   },
+   {
+    "sym": "INTC",
+    "day": "2024-09-17",
+    "et": "09:42",
+    "setup": "break_and_retest",
+    "book_exit": 21.55,
+    "harness_exit": 21.48,
+    "book_r": 0.508,
+    "harness_r": 0.75
+   },
+   {
+    "sym": "PLTR",
+    "day": "2025-01-10",
+    "et": "10:55",
+    "setup": "break_and_retest",
+    "book_exit": 66.06,
+    "harness_exit": 65.95,
+    "book_r": 3.143,
+    "harness_r": 3.4546
+   },
+   {
+    "sym": "NFLX",
+    "day": "2025-01-31",
+    "et": "09:37",
+    "setup": "break_and_retest",
+    "book_exit": 97.97,
+    "harness_exit": 99.0,
+    "book_r": 0.768,
+    "harness_r": 3.8412
+   },
+   {
+    "sym": "ACHR",
+    "day": "2025-02-25",
+    "et": "09:53",
+    "setup": "break_and_retest",
+    "book_exit": 7.96,
+    "harness_exit": 7.95,
+    "book_r": 0.826,
+    "harness_r": 0.8333
+   },
+   {
+    "sym": "PLTR",
+    "day": "2025-04-17",
+    "et": "10:18",
+    "setup": "break_and_retest",
+    "book_exit": 93.82,
+    "harness_exit": 93.73,
+    "book_r": 2.056,
+    "harness_r": 2.25
+   },
+   {
+    "sym": "ACHR",
+    "day": "2025-04-24",
+    "et": "09:43",
+    "setup": "break_and_retest",
+    "book_exit": 8.42,
+    "harness_exit": 8.375,
+    "book_r": 0.267,
+    "harness_r": 0.0312
+   },
+   {
+    "sym": "ACHR",
+    "day": "2025-07-01",
+    "et": "10:37",
+    "setup": "break_and_retest",
+    "book_exit": 10.01,
+    "harness_exit": 10.015,
+    "book_r": 0.25,
+    "harness_r": 0.2917
+   },
+   {
+    "sym": "AVGO",
+    "day": "2025-09-19",
+    "et": "09:48",
+    "setup": "break_and_retest",
+    "book_exit": 345.0,
+    "harness_exit": 341.26,
+    "book_r": 1.529,
+    "harness_r": -1.0
+   },
+   {
+    "sym": "COIN",
+    "day": "2025-12-31",
+    "et": "10:10",
+    "setup": "one_candle_rule",
+    "book_exit": 230.09,
+    "harness_exit": 230.41,
+    "book_r": 0.689,
+    "harness_r": -1.0
+   },
+   {
+    "sym": "INTC",
+    "day": "2026-01-29",
+    "et": "09:55",
+    "setup": "break_and_retest",
+    "book_exit": 48.16,
+    "harness_exit": 48.2297,
+    "book_r": 0.348,
+    "harness_r": 0.6029
+   },
+   {
+    "sym": "MARA",
+    "day": "2026-03-24",
+    "et": "10:23",
+    "setup": "break_and_retest",
+    "book_exit": 8.54,
+    "harness_exit": 8.545,
+    "book_r": 0.129,
+    "harness_r": 0.125
+   }
+  ]
+ },
+ "arming": {
+  "break_and_retest / br_state_machine": 4903,
+  "break_and_retest / level_printed_by_bar": 16,
+  "break_and_retest / untraced": 1,
+  "one_candle_rule / level_printed_by_bar": 764,
+  "reentry_84_rule / level_printed_by_bar": 379,
+  "reentry_84_rule / untraced": 107
+ },
+ "policy_A_lead_bars": {
+  "n": 5714,
+  "median": 3.0,
+  "mean": 4.72,
+  "filled_before_signal": 5472,
+  "filled_on_signal_bar": 238,
+  "filled_after_signal": 4
+ },
+ "grid": {},
+ "risk_geometry": {
+  "BOOK": {
+   "n": 4508,
+   "median_book_risk_over_policy_risk": 1.0,
+   "p90": 1.0,
+   "max": 1.0,
+   "pct_below_engine_size_floor": 11.1
+  },
+  "A": {
+   "n": 4186,
+   "median_book_risk_over_policy_risk": 2.282,
+   "p90": 16.47,
+   "max": 234.0,
+   "pct_below_engine_size_floor": 44.2
+  },
+  "A2": {
+   "n": 1949,
+   "median_book_risk_over_policy_risk": 1.0,
+   "p90": 3.5,
+   "max": 78.0,
+   "pct_below_engine_size_floor": 20.6
+  },
+  "B": {
+   "n": 4508,
+   "median_book_risk_over_policy_risk": 0.697,
+   "p90": 1.0,
+   "max": 1.1,
+   "pct_below_engine_size_floor": 6.1
+  },
+  "C": {
+   "n": 4508,
+   "median_book_risk_over_policy_risk": 0.697,
+   "p90": 1.0,
+   "max": 2.7,
+   "pct_below_engine_size_floor": 6.7
+  },
+  "D": {
+   "n": 4502,
+   "median_book_risk_over_policy_risk": 0.751,
+   "p90": 1.17,
+   "max": 66.0,
+   "pct_below_engine_size_floor": 9.9
+  },
+  "E": {
+   "n": 1865,
+   "median_book_risk_over_policy_risk": 1.0,
+   "p90": 2.17,
+   "max": 85.0,
+   "pct_below_engine_size_floor": 19.9
+  }
+ },
+ "grid_as_specified": {
+  "BOOK": {
+   "name": "BOOK  shipped fill (control)",
+   "fills": 4508,
+   "no_fills": 0,
+   "no_fill_reasons": {},
+   "fill_kinds": {
+    "shipped": 6170
+   },
+   "untakeable_if_stop_held_at_book_stop": 0,
+   "everything": {
+    "trades": 4508,
+    "win_pct": 59.4,
+    "total_dollars": 2631662.0,
+    "mean_r": 0.5838,
+    "per_day": 5263.0,
+    "per_month": 105266.0,
+    "months_green": 25,
+    "months": 25,
+    "weeks_green": 100,
+    "weeks": 105,
+    "worst_drawdown": 11105.0
+   },
+   "everything_ci": {
+    "per_day": 5263.0,
+    "ci95_low": 4592.0,
+    "ci95_high": 5954.0
+   },
+   "one_a_day": {
+    "trades": 499,
+    "win_pct": 66.7,
+    "total_dollars": 360172.0,
+    "mean_r": 0.7218,
+    "per_day": 720.0,
+    "per_month": 14407.0,
+    "months_green": 25,
+    "months": 25,
+    "weeks_green": 87,
+    "weeks": 105,
+    "worst_drawdown": 5993.0
+   },
+   "one_a_day_ci": {
+    "per_day": 720.0,
+    "ci95_low": 577.0,
+    "ci95_high": 870.0
+   },
+   "one_a_day_days_traded": 499,
+   "one_a_day_days_missed": 0,
+   "one_a_day_candidate_depth": {
+    "1": 499
+   },
+   "exit_mix": {
+    "loss": 1825,
+    "win": 2644,
+    "scratch": 39
+   }
+  },
+  "A": {
+   "name": "A  resting limit @ level, stop = entry bar's low",
+   "fills": 4189,
+   "no_fills": 319,
+   "no_fill_reasons": {
+    "risk_collapsed_even_after_intrabar_stop": 348,
+    "arming_bar_untraced": 108
+   },
+   "fill_kinds": {
+    "limit_filled_early": 5472,
+    "limit_filled_on_signal_bar": 238,
+    "limit_filled_late": 4
+   },
+   "untakeable_if_stop_held_at_book_stop": 3286,
+   "everything": {
+    "trades": 4189,
+    "win_pct": 37.1,
+    "total_dollars": 23262374.0,
+    "mean_r": 5.5532,
+    "per_day": 46525.0,
+    "per_month": 930495.0,
+    "months_green": 25,
+    "months": 25,
+    "weeks_green": 104,
+    "weeks": 105,
+    "worst_drawdown": 20370.0
+   },
+   "everything_ci": {
+    "per_day": 46525.0,
+    "ci95_low": 40915.0,
+    "ci95_high": 52424.0
+   },
+   "one_a_day": {
+    "trades": 499,
+    "win_pct": 39.1,
+    "total_dollars": 3257301.0,
+    "mean_r": 6.5277,
+    "per_day": 6515.0,
+    "per_month": 130292.0,
+    "months_green": 25,
+    "months": 25,
+    "weeks_green": 86,
+    "weeks": 105,
+    "worst_drawdown": 12107.0
+   },
+   "one_a_day_ci": {
+    "per_day": 6515.0,
+    "ci95_low": 4339.0,
+    "ci95_high": 9368.0
+   },
+   "one_a_day_days_traded": 499,
+   "one_a_day_days_missed": 0,
+   "one_a_day_candidate_depth": {
+    "1": 463,
+    "2": 34,
+    "3": 2
+   },
+   "exit_mix": {
+    "loss": 2632,
+    "win": 1532,
+    "scratch": 25
+   }
+  },
+  "A2": {
+   "name": "A2 resting limit @ level, structural stop held",
+   "fills": 1949,
+   "no_fills": 2559,
+   "no_fill_reasons": {
+    "risk_collapsed_even_after_intrabar_stop": 3286,
+    "arming_bar_untraced": 108
+   },
+   "fill_kinds": {
+    "limit_filled_early": 2559,
+    "limit_filled_on_signal_bar": 217
+   },
+   "untakeable_if_stop_held_at_book_stop": 3286,
+   "everything": {
+    "trades": 1949,
+    "win_pct": 20.6,
+    "total_dollars": 2208998.0,
+    "mean_r": 1.1334,
+    "per_day": 4418.0,
+    "per_month": 88360.0,
+    "months_green": 19,
+    "months": 25,
+    "weeks_green": 58,
+    "weeks": 105,
+    "worst_drawdown": 70720.0
+   },
+   "everything_ci": {
+    "per_day": 4418.0,
+    "ci95_low": 2315.0,
+    "ci95_high": 6876.0
+   },
+   "one_a_day": {
+    "trades": 491,
+    "win_pct": 15.1,
+    "total_dollars": 73591.0,
+    "mean_r": 0.1499,
+    "per_day": 147.0,
+    "per_month": 2944.0,
+    "months_green": 7,
+    "months": 25,
+    "weeks_green": 23,
+    "weeks": 105,
+    "worst_drawdown": 106901.0
+   },
+   "one_a_day_ci": {
+    "per_day": 147.0,
+    "ci95_low": -437.0,
+    "ci95_high": 1107.0
+   },
+   "one_a_day_days_traded": 491,
+   "one_a_day_days_missed": 8,
+   "one_a_day_candidate_depth": {
+    "1": 200,
+    "2": 119,
+    "3": 69,
+    "4": 103
+   },
+   "exit_mix": {
+    "loss": 1545,
+    "win": 392,
+    "scratch": 12
+   }
+  },
+  "B": {
+   "name": "B  market at the signal minute's close",
+   "fills": 4508,
+   "no_fills": 0,
+   "no_fill_reasons": {},
+   "fill_kinds": {
+    "market_close": 6170
+   },
+   "untakeable_if_stop_held_at_book_stop": 0,
+   "everything": {
+    "trades": 4508,
+    "win_pct": 45.4,
+    "total_dollars": -1045.0,
+    "mean_r": -0.0002,
+    "per_day": -2.0,
+    "per_month": -42.0,
+    "months_green": 11,
+    "months": 25,
+    "weeks_green": 50,
+    "weeks": 105,
+    "worst_drawdown": 113987.0
+   },
+   "everything_ci": {
+    "per_day": -2.0,
+    "ci95_low": -358.0,
+    "ci95_high": 354.0
+   },
+   "one_a_day": {
+    "trades": 499,
+    "win_pct": 51.6,
+    "total_dollars": 30002.0,
+    "mean_r": 0.0601,
+    "per_day": 60.0,
+    "per_month": 1200.0,
+    "months_green": 13,
+    "months": 25,
+    "weeks_green": 58,
+    "weeks": 105,
+    "worst_drawdown": 23690.0
+   },
+   "one_a_day_ci": {
+    "per_day": 60.0,
+    "ci95_low": -32.0,
+    "ci95_high": 156.0
+   },
+   "one_a_day_days_traded": 499,
+   "one_a_day_days_missed": 0,
+   "one_a_day_candidate_depth": {
+    "1": 499
+   },
+   "exit_mix": {
+    "loss": 2445,
+    "win": 2015,
+    "scratch": 48
+   }
+  },
+  "C": {
+   "name": "C  market at the next minute's open",
+   "fills": 4508,
+   "no_fills": 0,
+   "no_fill_reasons": {},
+   "fill_kinds": {
+    "market_next_open": 6170
+   },
+   "untakeable_if_stop_held_at_book_stop": 0,
+   "everything": {
+    "trades": 4508,
+    "win_pct": 45.6,
+    "total_dollars": 28326.0,
+    "mean_r": 0.0063,
+    "per_day": 57.0,
+    "per_month": 1133.0,
+    "months_green": 12,
+    "months": 25,
+    "weeks_green": 56,
+    "weeks": 105,
+    "worst_drawdown": 95551.0
+   },
+   "everything_ci": {
+    "per_day": 57.0,
+    "ci95_low": -304.0,
+    "ci95_high": 421.0
+   },
+   "one_a_day": {
+    "trades": 499,
+    "win_pct": 53.2,
+    "total_dollars": 43323.0,
+    "mean_r": 0.0868,
+    "per_day": 87.0,
+    "per_month": 1733.0,
+    "months_green": 13,
+    "months": 25,
+    "weeks_green": 59,
+    "weeks": 105,
+    "worst_drawdown": 17156.0
+   },
+   "one_a_day_ci": {
+    "per_day": 87.0,
+    "ci95_low": -18.0,
+    "ci95_high": 199.0
+   },
+   "one_a_day_days_traded": 499,
+   "one_a_day_days_missed": 0,
+   "one_a_day_candidate_depth": {
+    "1": 499
+   },
+   "exit_mix": {
+    "loss": 2437,
+    "win": 2025,
+    "scratch": 46
+   }
+  },
+  "D": {
+   "name": "D  limit 1 bar, then market (chase once)",
+   "fills": 4502,
+   "no_fills": 6,
+   "no_fill_reasons": {
+    "risk_collapsed_even_after_intrabar_stop": 8
+   },
+   "fill_kinds": {
+    "chased_market": 4168,
+    "limit_filled": 1994
+   },
+   "untakeable_if_stop_held_at_book_stop": 115,
+   "everything": {
+    "trades": 4502,
+    "win_pct": 44.3,
+    "total_dollars": 262452.0,
+    "mean_r": 0.0583,
+    "per_day": 525.0,
+    "per_month": 10498.0,
+    "months_green": 15,
+    "months": 25,
+    "weeks_green": 55,
+    "weeks": 105,
+    "worst_drawdown": 72171.0
+   },
+   "everything_ci": {
+    "per_day": 525.0,
+    "ci95_low": -1.0,
+    "ci95_high": 1127.0
+   },
+   "one_a_day": {
+    "trades": 499,
+    "win_pct": 51.0,
+    "total_dollars": 65787.0,
+    "mean_r": 0.1318,
+    "per_day": 132.0,
+    "per_month": 2631.0,
+    "months_green": 13,
+    "months": 25,
+    "weeks_green": 58,
+    "weeks": 105,
+    "worst_drawdown": 13005.0
+   },
+   "one_a_day_ci": {
+    "per_day": 132.0,
+    "ci95_low": -21.0,
+    "ci95_high": 335.0
+   },
+   "one_a_day_days_traded": 499,
+   "one_a_day_days_missed": 0,
+   "one_a_day_candidate_depth": {
+    "1": 497,
+    "2": 2
+   },
+   "exit_mix": {
+    "loss": 2495,
+    "win": 1964,
+    "scratch": 43
+   }
+  },
+  "E": {
+   "name": "E  limit at the level, 3-bar expiry",
+   "fills": 1867,
+   "no_fills": 2641,
+   "no_fill_reasons": {
+    "limit_never_touched": 3443,
+    "risk_collapsed_even_after_intrabar_stop": 31
+   },
+   "fill_kinds": {
+    "limit_filled": 2696
+   },
+   "untakeable_if_stop_held_at_book_stop": 443,
+   "everything": {
+    "trades": 1867,
+    "win_pct": 30.2,
+    "total_dollars": 855451.0,
+    "mean_r": 0.4582,
+    "per_day": 1711.0,
+    "per_month": 34218.0,
+    "months_green": 17,
+    "months": 25,
+    "weeks_green": 59,
+    "weeks": 105,
+    "worst_drawdown": 51600.0
+   },
+   "everything_ci": {
+    "per_day": 1711.0,
+    "ci95_low": 677.0,
+    "ci95_high": 2991.0
+   },
+   "one_a_day": {
+    "trades": 494,
+    "win_pct": 33.2,
+    "total_dollars": 296769.0,
+    "mean_r": 0.6007,
+    "per_day": 594.0,
+    "per_month": 11871.0,
+    "months_green": 16,
+    "months": 25,
+    "weeks_green": 47,
+    "weeks": 105,
+    "worst_drawdown": 39154.0
+   },
+   "one_a_day_ci": {
+    "per_day": 594.0,
+    "ci95_low": 116.0,
+    "ci95_high": 1289.0
+   },
+   "one_a_day_days_traded": 494,
+   "one_a_day_days_missed": 5,
+   "one_a_day_candidate_depth": {
+    "1": 187,
+    "2": 115,
+    "3": 77,
+    "4": 115
+   },
+   "exit_mix": {
+    "loss": 1301,
+    "win": 552,
+    "scratch": 14
+   }
+  }
+ },
+ "grid_size_gated": {
+  "BOOK": {
+   "name": "BOOK  shipped fill (control)",
+   "fills": 3821,
+   "no_fills": 687,
+   "no_fill_reasons": {},
+   "fill_kinds": {
+    "shipped": 6170
+   },
+   "untakeable_if_stop_held_at_book_stop": 0,
+   "everything": {
+    "trades": 3821,
+    "win_pct": 59.5,
+    "total_dollars": 2174640.0,
+    "mean_r": 0.5691,
+    "per_day": 4349.0,
+    "per_month": 86986.0,
+    "months_green": 25,
+    "months": 25,
+    "weeks_green": 97,
+    "weeks": 105,
+    "worst_drawdown": 12620.0
+   },
+   "everything_ci": {
+    "per_day": 4349.0,
+    "ci95_low": 3783.0,
+    "ci95_high": 4932.0
+   },
+   "one_a_day": {
+    "trades": 499,
+    "win_pct": 64.5,
+    "total_dollars": 341325.0,
+    "mean_r": 0.684,
+    "per_day": 683.0,
+    "per_month": 13653.0,
+    "months_green": 24,
+    "months": 25,
+    "weeks_green": 85,
+    "weeks": 105,
+    "worst_drawdown": 5993.0
+   },
+   "one_a_day_ci": {
+    "per_day": 683.0,
+    "ci95_low": 536.0,
+    "ci95_high": 835.0
+   },
+   "one_a_day_days_traded": 499,
+   "one_a_day_days_missed": 0,
+   "one_a_day_candidate_depth": {
+    "1": 458,
+    "2": 32,
+    "3": 8,
+    "4": 1
+   },
+   "exit_mix": {
+    "loss": 1544,
+    "win": 2254,
+    "scratch": 23
+   }
+  },
+  "A": {
+   "name": "A  resting limit @ level, stop = entry bar's low",
+   "fills": 1666,
+   "no_fills": 2842,
+   "no_fill_reasons": {
+    "risk_collapsed_even_after_intrabar_stop": 348,
+    "arming_bar_untraced": 108
+   },
+   "fill_kinds": {
+    "limit_filled_early": 5472,
+    "limit_filled_on_signal_bar": 238,
+    "limit_filled_late": 4
+   },
+   "untakeable_if_stop_held_at_book_stop": 3286,
+   "everything": {
+    "trades": 1666,
+    "win_pct": 20.2,
+    "total_dollars": -426497.0,
+    "mean_r": -0.256,
+    "per_day": -853.0,
+    "per_month": -17060.0,
+    "months_green": 5,
+    "months": 25,
+    "weeks_green": 29,
+    "weeks": 105,
+    "worst_drawdown": 443281.0
+   },
+   "everything_ci": {
+    "per_day": -853.0,
+    "ci95_low": -1190.0,
+    "ci95_high": -478.0
+   },
+   "one_a_day": {
+    "trades": 479,
+    "win_pct": 19.2,
+    "total_dollars": -126076.0,
+    "mean_r": -0.2632,
+    "per_day": -252.0,
+    "per_month": -5043.0,
+    "months_green": 6,
+    "months": 25,
+    "weeks_green": 35,
+    "weeks": 105,
+    "worst_drawdown": 129121.0
+   },
+   "one_a_day_ci": {
+    "per_day": -252.0,
+    "ci95_low": -404.0,
+    "ci95_high": -89.0
+   },
+   "one_a_day_days_traded": 479,
+   "one_a_day_days_missed": 20,
+   "one_a_day_candidate_depth": {
+    "1": 219,
+    "2": 125,
+    "3": 60,
+    "4": 75
+   },
+   "exit_mix": {
+    "loss": 1327,
+    "win": 336,
+    "scratch": 3
+   }
+  },
+  "A2": {
+   "name": "A2 resting limit @ level, structural stop held",
+   "fills": 1378,
+   "no_fills": 3130,
+   "no_fill_reasons": {
+    "risk_collapsed_even_after_intrabar_stop": 3286,
+    "arming_bar_untraced": 108
+   },
+   "fill_kinds": {
+    "limit_filled_early": 2559,
+    "limit_filled_on_signal_bar": 217
+   },
+   "untakeable_if_stop_held_at_book_stop": 3286,
+   "everything": {
+    "trades": 1378,
+    "win_pct": 12.6,
+    "total_dollars": -817243.0,
+    "mean_r": -0.5931,
+    "per_day": -1634.0,
+    "per_month": -32690.0,
+    "months_green": 0,
+    "months": 25,
+    "weeks_green": 8,
+    "weeks": 105,
+    "worst_drawdown": 817396.0
+   },
+   "everything_ci": {
+    "per_day": -1634.0,
+    "ci95_low": -1862.0,
+    "ci95_high": -1386.0
+   },
+   "one_a_day": {
+    "trades": 474,
+    "win_pct": 11.0,
+    "total_dollars": -317354.0,
+    "mean_r": -0.6695,
+    "per_day": -635.0,
+    "per_month": -12694.0,
+    "months_green": 1,
+    "months": 25,
+    "weeks_green": 11,
+    "weeks": 105,
+    "worst_drawdown": 317354.0
+   },
+   "one_a_day_ci": {
+    "per_day": -635.0,
+    "ci95_low": -728.0,
+    "ci95_high": -528.0
+   },
+   "one_a_day_days_traded": 474,
+   "one_a_day_days_missed": 25,
+   "one_a_day_candidate_depth": {
+    "1": 180,
+    "2": 112,
+    "3": 61,
+    "4": 121
+   },
+   "exit_mix": {
+    "loss": 1202,
+    "win": 173,
+    "scratch": 3
+   }
+  },
+  "B": {
+   "name": "B  market at the signal minute's close",
+   "fills": 4130,
+   "no_fills": 378,
+   "no_fill_reasons": {},
+   "fill_kinds": {
+    "market_close": 6170
+   },
+   "untakeable_if_stop_held_at_book_stop": 0,
+   "everything": {
+    "trades": 4130,
+    "win_pct": 45.7,
+    "total_dollars": -40554.0,
+    "mean_r": -0.0098,
+    "per_day": -81.0,
+    "per_month": -1622.0,
+    "months_green": 11,
+    "months": 25,
+    "weeks_green": 45,
+    "weeks": 105,
+    "worst_drawdown": 123190.0
+   },
+   "everything_ci": {
+    "per_day": -81.0,
+    "ci95_low": -389.0,
+    "ci95_high": 234.0
+   },
+   "one_a_day": {
+    "trades": 499,
+    "win_pct": 50.6,
+    "total_dollars": 23803.0,
+    "mean_r": 0.0477,
+    "per_day": 48.0,
+    "per_month": 952.0,
+    "months_green": 13,
+    "months": 25,
+    "weeks_green": 57,
+    "weeks": 105,
+    "worst_drawdown": 23165.0
+   },
+   "one_a_day_ci": {
+    "per_day": 48.0,
+    "ci95_low": -42.0,
+    "ci95_high": 141.0
+   },
+   "one_a_day_days_traded": 499,
+   "one_a_day_days_missed": 0,
+   "one_a_day_candidate_depth": {
+    "1": 480,
+    "2": 18,
+    "3": 1
+   },
+   "exit_mix": {
+    "loss": 2232,
+    "win": 1862,
+    "scratch": 36
+   }
+  },
+  "C": {
+   "name": "C  market at the next minute's open",
+   "fills": 4092,
+   "no_fills": 416,
+   "no_fill_reasons": {},
+   "fill_kinds": {
+    "market_next_open": 6170
+   },
+   "untakeable_if_stop_held_at_book_stop": 0,
+   "everything": {
+    "trades": 4092,
+    "win_pct": 46.1,
+    "total_dollars": -28702.0,
+    "mean_r": -0.007,
+    "per_day": -57.0,
+    "per_month": -1148.0,
+    "months_green": 12,
+    "months": 25,
+    "weeks_green": 50,
+    "weeks": 105,
+    "worst_drawdown": 112137.0
+   },
+   "everything_ci": {
+    "per_day": -57.0,
+    "ci95_low": -356.0,
+    "ci95_high": 245.0
+   },
+   "one_a_day": {
+    "trades": 499,
+    "win_pct": 52.4,
+    "total_dollars": 16685.0,
+    "mean_r": 0.0334,
+    "per_day": 33.0,
+    "per_month": 667.0,
+    "months_green": 12,
+    "months": 25,
+    "weeks_green": 56,
+    "weeks": 105,
+    "worst_drawdown": 23483.0
+   },
+   "one_a_day_ci": {
+    "per_day": 33.0,
+    "ci95_low": -51.0,
+    "ci95_high": 117.0
+   },
+   "one_a_day_days_traded": 499,
+   "one_a_day_days_missed": 0,
+   "one_a_day_candidate_depth": {
+    "1": 474,
+    "2": 24,
+    "3": 1
+   },
+   "exit_mix": {
+    "loss": 2196,
+    "win": 1861,
+    "scratch": 35
+   }
+  },
+  "D": {
+   "name": "D  limit 1 bar, then market (chase once)",
+   "fills": 3889,
+   "no_fills": 619,
+   "no_fill_reasons": {
+    "risk_collapsed_even_after_intrabar_stop": 8
+   },
+   "fill_kinds": {
+    "chased_market": 4168,
+    "limit_filled": 1994
+   },
+   "untakeable_if_stop_held_at_book_stop": 115,
+   "everything": {
+    "trades": 3889,
+    "win_pct": 46.4,
+    "total_dollars": 107732.0,
+    "mean_r": 0.0277,
+    "per_day": 215.0,
+    "per_month": 4309.0,
+    "months_green": 12,
+    "months": 25,
+    "weeks_green": 51,
+    "weeks": 105,
+    "worst_drawdown": 66127.0
+   },
+   "everything_ci": {
+    "per_day": 215.0,
+    "ci95_low": -115.0,
+    "ci95_high": 555.0
+   },
+   "one_a_day": {
+    "trades": 499,
+    "win_pct": 52.0,
+    "total_dollars": 33907.0,
+    "mean_r": 0.0679,
+    "per_day": 68.0,
+    "per_month": 1356.0,
+    "months_green": 14,
+    "months": 25,
+    "weeks_green": 58,
+    "weeks": 105,
+    "worst_drawdown": 14194.0
+   },
+   "one_a_day_ci": {
+    "per_day": 68.0,
+    "ci95_low": -26.0,
+    "ci95_high": 165.0
+   },
+   "one_a_day_days_traded": 499,
+   "one_a_day_days_missed": 0,
+   "one_a_day_candidate_depth": {
+    "1": 463,
+    "2": 33,
+    "3": 3
+   },
+   "exit_mix": {
+    "loss": 2074,
+    "win": 1780,
+    "scratch": 35
+   }
+  },
+  "E": {
+   "name": "E  limit at the level, 3-bar expiry",
+   "fills": 1330,
+   "no_fills": 3178,
+   "no_fill_reasons": {
+    "limit_never_touched": 3443,
+    "risk_collapsed_even_after_intrabar_stop": 31
+   },
+   "fill_kinds": {
+    "limit_filled": 2696
+   },
+   "untakeable_if_stop_held_at_book_stop": 443,
+   "everything": {
+    "trades": 1330,
+    "win_pct": 32.9,
+    "total_dollars": 121543.0,
+    "mean_r": 0.0914,
+    "per_day": 243.0,
+    "per_month": 4862.0,
+    "months_green": 17,
+    "months": 25,
+    "weeks_green": 55,
+    "weeks": 105,
+    "worst_drawdown": 33582.0
+   },
+   "everything_ci": {
+    "per_day": 243.0,
+    "ci95_low": -45.0,
+    "ci95_high": 548.0
+   },
+   "one_a_day": {
+    "trades": 467,
+    "win_pct": 33.9,
+    "total_dollars": 23092.0,
+    "mean_r": 0.0494,
+    "per_day": 46.0,
+    "per_month": 924.0,
+    "months_green": 16,
+    "months": 25,
+    "weeks_green": 49,
+    "weeks": 105,
+    "worst_drawdown": 43268.0
+   },
+   "one_a_day_ci": {
+    "per_day": 46.0,
+    "ci95_low": -95.0,
+    "ci95_high": 197.0
+   },
+   "one_a_day_days_traded": 467,
+   "one_a_day_days_missed": 32,
+   "one_a_day_candidate_depth": {
+    "1": 156,
+    "2": 99,
+    "3": 65,
+    "4": 147
+   },
+   "exit_mix": {
+    "loss": 890,
+    "win": 431,
+    "scratch": 9
+   }
+  }
+ }
+}

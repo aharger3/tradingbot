@@ -1,0 +1,514 @@
+{
+ "meta": {
+  "book_meta": {
+   "generated": "2026-08-29T03:14:29",
+   "first": "2024-08-21",
+   "last": "2026-08-21",
+   "sessions": 500,
+   "signals": 76019,
+   "traded": 2437,
+   "loss_halt": true,
+   "halted": 857
+  },
+  "counted_stream": 3294,
+  "shipped_traded": 2437,
+  "candidate_days": 496,
+  "months": 25,
+  "weeks": 105,
+  "first_signal_outcome": {
+   "loss": 223,
+   "win": 271,
+   "scratch": 2
+  },
+  "first_signal_mean_r": 0.6115,
+  "first_signal_sgrade": {
+   "A": 106,
+   "C": 341,
+   "S": 49
+  },
+  "first_signal_grade": {
+   "B": 496
+  },
+  "counted_per_day_mean": 6.64,
+  "days_with_S_counted": 281,
+  "days_with_S_anyfired": 315,
+  "S_counted_rows": 426,
+  "sgrade_counted": {
+   "C": 2140,
+   "A": 728,
+   "S": 426
+  },
+  "mean_r_by_sgrade_counted": {
+   "S": 0.2721,
+   "A": 0.5517,
+   "C": 0.5335
+  },
+  "winrate_by_sgrade_counted": {
+   "S": 46.82,
+   "A": 47.99,
+   "C": 46.33
+  },
+  "seq_position_mean_r": {
+   "1": {
+    "n": 496,
+    "mean_r": 0.6115,
+    "win_rate": 55.0
+   },
+   "2": {
+    "n": 485,
+    "mean_r": 0.6069,
+    "win_rate": 50.7
+   },
+   "3": {
+    "n": 460,
+    "mean_r": 0.4114,
+    "win_rate": 46.5
+   },
+   "4": {
+    "n": 406,
+    "mean_r": 0.4804,
+    "win_rate": 47.8
+   },
+   "5": {
+    "n": 346,
+    "mean_r": 0.4311,
+    "win_rate": 44.2
+   },
+   "6+": {
+    "n": 1101,
+    "mean_r": 0.4796,
+    "win_rate": 42.5
+   }
+  },
+  "mean_r_by_legacy_grade_counted": {
+   "A+": {
+    "n": 7,
+    "mean_r": 2.0671
+   },
+   "A": {
+    "n": 143,
+    "mean_r": 0.4505
+   },
+   "B": {
+    "n": 3144,
+    "mean_r": 0.5026
+   },
+   "C": {
+    "n": 0,
+    "mean_r": 0.0
+   }
+  },
+  "paired_vs_P0seq": {
+   "P1": {
+    "mean_day_delta_vs_P0seq": -1.2639,
+    "se": 0.1685,
+    "t": -7.5,
+    "significant_2se": true
+   },
+   "P2": {
+    "mean_day_delta_vs_P0seq": -1.0698,
+    "se": 0.1574,
+    "t": -6.8,
+    "significant_2se": true
+   },
+   "P3": {
+    "mean_day_delta_vs_P0seq": -0.9228,
+    "se": 0.1459,
+    "t": -6.32,
+    "significant_2se": true
+   },
+   "P4": {
+    "mean_day_delta_vs_P0seq": -0.9786,
+    "se": 0.1515,
+    "t": -6.46,
+    "significant_2se": true
+   },
+   "P5": {
+    "mean_day_delta_vs_P0seq": -1.6939,
+    "se": 0.1879,
+    "t": -9.02,
+    "significant_2se": true
+   },
+   "P0": {
+    "mean_day_delta_vs_P0seq": 0.8244,
+    "se": 0.2072,
+    "t": 3.98,
+    "significant_2se": true
+   },
+   "ORACLE": {
+    "mean_day_delta_vs_P0seq": 1.565,
+    "se": 0.1389,
+    "t": 11.27,
+    "significant_2se": true
+   }
+  },
+  "red_months": {
+   "P1": [
+    "2025-06 -3.9R",
+    "2025-09 -6.9R",
+    "2025-10 -4.4R"
+   ],
+   "P2": [
+    "2025-05 -3.9R",
+    "2025-09 -7.3R",
+    "2025-10 -5.9R"
+   ],
+   "P3": [
+    "2025-05 -8.7R",
+    "2025-09 -9.1R"
+   ],
+   "P4": [
+    "2025-05 -3.9R",
+    "2025-09 -10.9R"
+   ],
+   "P5": [
+    "2024-08 -0.8R",
+    "2024-12 -7.9R",
+    "2025-03 -1.2R",
+    "2025-05 -4.1R",
+    "2025-06 -2.7R",
+    "2025-07 -5.1R",
+    "2025-09 -2.4R",
+    "2025-10 -3.6R",
+    "2025-11 -0.6R",
+    "2026-02 -5.5R",
+    "2026-05 -6.8R"
+   ],
+   "P0seq": [
+    "2025-09 -8.7R"
+   ],
+   "P0": [],
+   "ORACLE": []
+  },
+  "p0_max_concurrent_positions": {
+   "mean": 2.37,
+   "max": 18,
+   "days_with_2plus": 368,
+   "days_with_4plus": 66
+  }
+ },
+ "policies": [
+  {
+   "policy": "P0 shipped (all signals, R31 halt ON)",
+   "note": "the book as it ships today",
+   "trades": 2437,
+   "wins": 1198,
+   "losses": 1222,
+   "scratch": 17,
+   "win_rate": 49.5,
+   "mean_r_trade": 0.5495,
+   "mean_r_day_all": 2.6998,
+   "mean_r_day_active": 2.6998,
+   "total_r": 1339.09,
+   "days_traded": 496,
+   "green_days": 288,
+   "months_green": 25,
+   "months_total": 25,
+   "weeks_green": 91,
+   "weeks_total": 105,
+   "max_dd_r": 14.71,
+   "max_red_streak_days": 6,
+   "trades_per_active_day": 4.91,
+   "pct_of_oracle_totalR": 78.5
+  },
+  {
+   "policy": "P0u all counted (R31 halt OFF)",
+   "note": "take everything, no halt",
+   "trades": 3294,
+   "wins": 1530,
+   "losses": 1742,
+   "scratch": 22,
+   "win_rate": 46.76,
+   "mean_r_trade": 0.5037,
+   "mean_r_day_all": 3.3451,
+   "mean_r_day_active": 3.3451,
+   "total_r": 1659.17,
+   "days_traded": 496,
+   "green_days": 337,
+   "months_green": 25,
+   "months_total": 25,
+   "weeks_green": 93,
+   "weeks_total": 105,
+   "max_dd_r": 27.89,
+   "max_red_streak_days": 5,
+   "trades_per_active_day": 6.64,
+   "pct_of_oracle_totalR": 97.2
+  },
+  {
+   "policy": "P1 first signal only",
+   "note": "one trade a day, whatever came first",
+   "trades": 496,
+   "wins": 271,
+   "losses": 223,
+   "scratch": 2,
+   "win_rate": 54.86,
+   "mean_r_trade": 0.6115,
+   "mean_r_day_all": 0.6115,
+   "mean_r_day_active": 0.6115,
+   "total_r": 303.29,
+   "days_traded": 496,
+   "green_days": 273,
+   "months_green": 22,
+   "months_total": 25,
+   "weeks_green": 77,
+   "weeks_total": 105,
+   "max_dd_r": 20.14,
+   "max_red_streak_days": 6,
+   "trades_per_active_day": 1.0,
+   "pct_of_oracle_totalR": 17.8
+  },
+  {
+   "policy": "P2 first; win=done; 2 losses=done",
+   "note": "his sentence, literally",
+   "trades": 705,
+   "wins": 369,
+   "losses": 334,
+   "scratch": 2,
+   "win_rate": 52.49,
+   "mean_r_trade": 0.5668,
+   "mean_r_day_all": 0.8056,
+   "mean_r_day_active": 0.8056,
+   "total_r": 399.56,
+   "days_traded": 496,
+   "green_days": 341,
+   "months_green": 22,
+   "months_total": 25,
+   "weeks_green": 83,
+   "weeks_total": 105,
+   "max_dd_r": 16.34,
+   "max_red_streak_days": 5,
+   "trades_per_active_day": 1.42,
+   "pct_of_oracle_totalR": 23.4
+  },
+  {
+   "policy": "P3 until day is net green (no cap)",
+   "note": "keep trading until youve hit profit",
+   "trades": 972,
+   "wins": 473,
+   "losses": 496,
+   "scratch": 3,
+   "win_rate": 48.81,
+   "mean_r_trade": 0.4861,
+   "mean_r_day_all": 0.9526,
+   "mean_r_day_active": 0.9526,
+   "total_r": 472.5,
+   "days_traded": 496,
+   "green_days": 390,
+   "months_green": 23,
+   "months_total": 25,
+   "weeks_green": 87,
+   "weeks_total": 105,
+   "max_dd_r": 15.92,
+   "max_red_streak_days": 5,
+   "trades_per_active_day": 1.96,
+   "pct_of_oracle_totalR": 27.7
+  },
+  {
+   "policy": "P4 until net green, 3-loss cap",
+   "note": "",
+   "trades": 861,
+   "wins": 432,
+   "losses": 426,
+   "scratch": 3,
+   "win_rate": 50.35,
+   "mean_r_trade": 0.5166,
+   "mean_r_day_all": 0.8968,
+   "mean_r_day_active": 0.8968,
+   "total_r": 444.82,
+   "days_traded": 496,
+   "green_days": 379,
+   "months_green": 23,
+   "months_total": 25,
+   "weeks_green": 85,
+   "weeks_total": 105,
+   "max_dd_r": 12.93,
+   "max_red_streak_days": 5,
+   "trades_per_active_day": 1.74,
+   "pct_of_oracle_totalR": 26.1
+  },
+  {
+   "policy": "P5 P2 on S only (counted stream)",
+   "note": "S proxy = downgrade.py sgrade=='S'",
+   "trades": 327,
+   "wins": 150,
+   "losses": 177,
+   "scratch": 0,
+   "win_rate": 45.87,
+   "mean_r_trade": 0.2753,
+   "mean_r_day_all": 0.1815,
+   "mean_r_day_active": 0.3204,
+   "total_r": 90.04,
+   "days_traded": 281,
+   "green_days": 140,
+   "months_green": 14,
+   "months_total": 25,
+   "weeks_green": 59,
+   "weeks_total": 105,
+   "max_dd_r": 15.65,
+   "max_red_streak_days": 6,
+   "trades_per_active_day": 1.16,
+   "pct_of_oracle_totalR": 5.3
+  },
+  {
+   "policy": "P5b P2 on S only (incl. legacy-C alerts)",
+   "note": "what 'trade S' routing would enter",
+   "trades": 378,
+   "wins": 168,
+   "losses": 208,
+   "scratch": 2,
+   "win_rate": 44.68,
+   "mean_r_trade": 0.2944,
+   "mean_r_day_all": 0.2244,
+   "mean_r_day_active": 0.3533,
+   "total_r": 111.3,
+   "days_traded": 315,
+   "green_days": 159,
+   "months_green": 16,
+   "months_total": 25,
+   "weeks_green": 57,
+   "weeks_total": 105,
+   "max_dd_r": 13.03,
+   "max_red_streak_days": 7,
+   "trades_per_active_day": 1.2,
+   "pct_of_oracle_totalR": 6.5
+  },
+  {
+   "policy": "P3s until net green, S only",
+   "note": "P3 on the S stream",
+   "trades": 340,
+   "wins": 155,
+   "losses": 185,
+   "scratch": 0,
+   "win_rate": 45.59,
+   "mean_r_trade": 0.2754,
+   "mean_r_day_all": 0.1888,
+   "mean_r_day_active": 0.3333,
+   "total_r": 93.65,
+   "days_traded": 281,
+   "green_days": 144,
+   "months_green": 14,
+   "months_total": 25,
+   "weeks_green": 59,
+   "weeks_total": 105,
+   "max_dd_r": 16.65,
+   "max_red_streak_days": 6,
+   "trades_per_active_day": 1.21,
+   "pct_of_oracle_totalR": 5.5
+  },
+  {
+   "policy": "P0seq every counted signal, 1 at a time",
+   "note": "control: concurrency removed, no stop rule",
+   "trades": 1865,
+   "wins": 859,
+   "losses": 996,
+   "scratch": 10,
+   "win_rate": 46.31,
+   "mean_r_trade": 0.4988,
+   "mean_r_day_all": 1.8754,
+   "mean_r_day_active": 1.8754,
+   "total_r": 930.2,
+   "days_traded": 496,
+   "green_days": 315,
+   "months_green": 24,
+   "months_total": 25,
+   "weeks_green": 93,
+   "weeks_total": 105,
+   "max_dd_r": 27.81,
+   "max_red_streak_days": 5,
+   "trades_per_active_day": 3.76,
+   "pct_of_oracle_totalR": 54.5
+  },
+  {
+   "policy": "ORACLE best-single-trade/day",
+   "note": "ceiling, look-ahead",
+   "trades": 496,
+   "wins": 456,
+   "losses": 32,
+   "scratch": 8,
+   "win_rate": 93.44,
+   "mean_r_trade": 3.4404,
+   "mean_r_day_all": 3.4404,
+   "mean_r_day_active": 3.4404,
+   "total_r": 1706.43,
+   "days_traded": 496,
+   "green_days": 464,
+   "months_green": 25,
+   "months_total": 25,
+   "weeks_green": 105,
+   "weeks_total": 105,
+   "max_dd_r": 4.0,
+   "max_red_streak_days": 4,
+   "trades_per_active_day": 1.0,
+   "pct_of_oracle_totalR": 100.0
+  },
+  {
+   "policy": "ANTI-ORACLE worst-single-trade/day",
+   "note": "floor, look-ahead",
+   "trades": 496,
+   "wins": 26,
+   "losses": 470,
+   "scratch": 0,
+   "win_rate": 5.24,
+   "mean_r_trade": -0.8812,
+   "mean_r_day_all": -0.8812,
+   "mean_r_day_active": -0.8812,
+   "total_r": -437.1,
+   "days_traded": 496,
+   "green_days": 26,
+   "months_green": 0,
+   "months_total": 25,
+   "weeks_green": 1,
+   "weeks_total": 105,
+   "max_dd_r": 437.1,
+   "max_red_streak_days": 147,
+   "trades_per_active_day": 1.0,
+   "pct_of_oracle_totalR": -25.6
+  },
+  {
+   "policy": "RANDOM one-per-day (EV control)",
+   "note": "scaled below; EV of a random single pick",
+   "trades": 496,
+   "wins": -1,
+   "losses": -1,
+   "scratch": -1,
+   "win_rate": 47.19,
+   "mean_r_trade": 0.511,
+   "mean_r_day_all": 0.511,
+   "mean_r_day_active": -1,
+   "total_r": 253.45,
+   "days_traded": -1,
+   "green_days": -1,
+   "months_green": -1,
+   "months_total": 25,
+   "weeks_green": -1,
+   "weeks_total": 105,
+   "max_dd_r": -1,
+   "max_red_streak_days": -1,
+   "trades_per_active_day": -1,
+   "pct_of_oracle_totalR": 14.9
+  },
+  {
+   "policy": "LAST signal of the day only",
+   "note": "control for P1",
+   "trades": 496,
+   "wins": 205,
+   "losses": 283,
+   "scratch": 8,
+   "win_rate": 42.01,
+   "mean_r_trade": 0.5251,
+   "mean_r_day_all": 0.5251,
+   "mean_r_day_active": 0.5251,
+   "total_r": 260.43,
+   "days_traded": 496,
+   "green_days": 212,
+   "months_green": 22,
+   "months_total": 25,
+   "weeks_green": 73,
+   "weeks_total": 105,
+   "max_dd_r": 9.55,
+   "max_red_streak_days": 6,
+   "trades_per_active_day": 1.0,
+   "pct_of_oracle_totalR": 15.3
+  }
+ ]
+}

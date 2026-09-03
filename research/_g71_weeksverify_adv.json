@@ -1,0 +1,559 @@
+{
+ "independent_repro": {
+  "n_trades": 2437,
+  "weeks": 105,
+  "mu": 0.5495,
+  "sigma": 2.1192,
+  "mu_over_sigma": 0.2593,
+  "tpw": 23.21,
+  "mean_week": 12.7532,
+  "sd_week": 12.7014,
+  "week_sharpe": 1.0041,
+  "corr_drag": 1.244,
+  "green_weeks": 91,
+  "green_pct": 86.67,
+  "req_50": {
+   "p_wk": 99.342,
+   "z": 2.479,
+   "n_need": 141.5,
+   "x_vol": 6.1,
+   "mu_sig_need": 0.6403
+  },
+  "req_80": {
+   "p_wk": 99.7877,
+   "z": 2.859,
+   "n_need": 188.2,
+   "x_vol": 8.1,
+   "mu_sig_need": 0.7383
+  },
+  "req_95": {
+   "p_wk": 99.9512,
+   "z": 3.297,
+   "n_need": 250.3,
+   "x_vol": 10.8,
+   "mu_sig_need": 0.8514
+  }
+ },
+ "calibration": [
+  {
+   "policy": "W2-5 stop when green or -5R week",
+   "tpw": 2.51,
+   "drag": 0.765,
+   "sharpe": 0.6008,
+   "model_p": 72.6,
+   "obs_p": 93.33,
+   "err_pts": 20.73,
+   "implied_sharpe": 1.5008,
+   "sharpe_ratio_obs_over_model": 2.498
+  },
+  {
+   "policy": "W2-8 stop when green or -8R week",
+   "tpw": 2.9,
+   "drag": 0.659,
+   "sharpe": 0.7405,
+   "model_p": 77.05,
+   "obs_p": 96.19,
+   "err_pts": 19.14,
+   "implied_sharpe": 1.7732,
+   "sharpe_ratio_obs_over_model": 2.395
+  },
+  {
+   "policy": "W1 stop the WEEK when net green",
+   "tpw": 3.04,
+   "drag": 0.611,
+   "sharpe": 0.8234,
+   "model_p": 79.49,
+   "obs_p": 97.14,
+   "err_pts": 17.65,
+   "implied_sharpe": 1.9018,
+   "sharpe_ratio_obs_over_model": 2.31
+  },
+  {
+   "policy": "W2-3 stop when green or -3R week",
+   "tpw": 1.99,
+   "drag": 0.851,
+   "sharpe": 0.4982,
+   "model_p": 69.08,
+   "obs_p": 84.76,
+   "err_pts": 15.68,
+   "implied_sharpe": 1.0262,
+   "sharpe_ratio_obs_over_model": 2.06
+  },
+  {
+   "policy": "W3 P3 daily + stop week when green",
+   "tpw": 2.51,
+   "drag": 0.765,
+   "sharpe": 0.5666,
+   "model_p": 71.45,
+   "obs_p": 85.71,
+   "err_pts": 14.26,
+   "implied_sharpe": 1.0674,
+   "sharpe_ratio_obs_over_model": 1.884
+  },
+  {
+   "policy": "P5b P2 on S only (incl legacy-C)",
+   "tpw": 3.6,
+   "drag": 1.0,
+   "sharpe": 0.3013,
+   "model_p": 61.84,
+   "obs_p": 54.29,
+   "err_pts": -7.55,
+   "implied_sharpe": 0.1077,
+   "sharpe_ratio_obs_over_model": 0.358
+  },
+  {
+   "policy": "CAP-3 first 3/day, seq",
+   "tpw": 12.73,
+   "drag": 0.992,
+   "sharpe": 0.9251,
+   "model_p": 82.25,
+   "obs_p": 89.52,
+   "err_pts": 7.27,
+   "implied_sharpe": 1.2547,
+   "sharpe_ratio_obs_over_model": 1.356
+  },
+  {
+   "policy": "P0seq all counted, 1 at a time",
+   "tpw": 17.76,
+   "drag": 1.014,
+   "sharpe": 0.9688,
+   "model_p": 83.37,
+   "obs_p": 88.57,
+   "err_pts": 5.2,
+   "implied_sharpe": 1.204,
+   "sharpe_ratio_obs_over_model": 1.243
+  },
+  {
+   "policy": "CAP-8 first 8/day, seq",
+   "tpw": 17.74,
+   "drag": 1.011,
+   "sharpe": 0.9689,
+   "model_p": 83.37,
+   "obs_p": 88.57,
+   "err_pts": 5.2,
+   "implied_sharpe": 1.204,
+   "sharpe_ratio_obs_over_model": 1.243
+  },
+  {
+   "policy": "CAP-10 first 10/day, seq",
+   "tpw": 17.76,
+   "drag": 1.014,
+   "sharpe": 0.9688,
+   "model_p": 83.37,
+   "obs_p": 88.57,
+   "err_pts": 5.2,
+   "implied_sharpe": 1.204,
+   "sharpe_ratio_obs_over_model": 1.243
+  },
+  {
+   "policy": "CAP-12 first 12/day, seq",
+   "tpw": 17.76,
+   "drag": 1.014,
+   "sharpe": 0.9688,
+   "model_p": 83.37,
+   "obs_p": 88.57,
+   "err_pts": 5.2,
+   "implied_sharpe": 1.204,
+   "sharpe_ratio_obs_over_model": 1.243
+  },
+  {
+   "policy": "CAP-16 first 16/day, seq",
+   "tpw": 17.76,
+   "drag": 1.014,
+   "sharpe": 0.9688,
+   "model_p": 83.37,
+   "obs_p": 88.57,
+   "err_pts": 5.2,
+   "implied_sharpe": 1.204,
+   "sharpe_ratio_obs_over_model": 1.243
+  },
+  {
+   "policy": "CAP-24 first 24/day, seq",
+   "tpw": 17.76,
+   "drag": 1.014,
+   "sharpe": 0.9688,
+   "model_p": 83.37,
+   "obs_p": 88.57,
+   "err_pts": 5.2,
+   "implied_sharpe": 1.204,
+   "sharpe_ratio_obs_over_model": 1.243
+  },
+  {
+   "policy": "CAP-5 first 5/day, seq",
+   "tpw": 16.59,
+   "drag": 1.061,
+   "sharpe": 0.8699,
+   "model_p": 80.78,
+   "obs_p": 85.71,
+   "err_pts": 4.93,
+   "implied_sharpe": 1.0674,
+   "sharpe_ratio_obs_over_model": 1.227
+  },
+  {
+   "policy": "P5 P2 on S only (counted)",
+   "tpw": 3.11,
+   "drag": 1.01,
+   "sharpe": 0.2734,
+   "model_p": 60.77,
+   "obs_p": 56.19,
+   "err_pts": -4.58,
+   "implied_sharpe": 0.1558,
+   "sharpe_ratio_obs_over_model": 0.57
+  },
+  {
+   "policy": "P3 until day net green (no cap)",
+   "tpw": 9.26,
+   "drag": 0.96,
+   "sharpe": 0.7874,
+   "model_p": 78.45,
+   "obs_p": 82.86,
+   "err_pts": 4.41,
+   "implied_sharpe": 0.9486,
+   "sharpe_ratio_obs_over_model": 1.205
+  },
+  {
+   "policy": "P0u all counted (R31 off, concurrent)",
+   "tpw": 31.37,
+   "drag": 1.295,
+   "sharpe": 1.0132,
+   "model_p": 84.45,
+   "obs_p": 88.57,
+   "err_pts": 4.12,
+   "implied_sharpe": 1.204,
+   "sharpe_ratio_obs_over_model": 1.188
+  },
+  {
+   "policy": "CAP-6 first 6/day, seq",
+   "tpw": 17.32,
+   "drag": 1.015,
+   "sharpe": 0.9278,
+   "model_p": 82.32,
+   "obs_p": 85.71,
+   "err_pts": 3.39,
+   "implied_sharpe": 1.0674,
+   "sharpe_ratio_obs_over_model": 1.15
+  },
+  {
+   "policy": "P4 until net green, 3-loss cap",
+   "tpw": 8.2,
+   "drag": 0.972,
+   "sharpe": 0.7803,
+   "model_p": 78.24,
+   "obs_p": 80.95,
+   "err_pts": 2.71,
+   "implied_sharpe": 0.8761,
+   "sharpe_ratio_obs_over_model": 1.123
+  },
+  {
+   "policy": "P0 shipped (R31 on, concurrent)",
+   "tpw": 23.21,
+   "drag": 1.244,
+   "sharpe": 1.0041,
+   "model_p": 84.23,
+   "obs_p": 86.67,
+   "err_pts": 2.44,
+   "implied_sharpe": 1.1109,
+   "sharpe_ratio_obs_over_model": 1.106
+  },
+  {
+   "policy": "CAP-4 first 4/day, seq",
+   "tpw": 15.16,
+   "drag": 1.0,
+   "sharpe": 0.9335,
+   "model_p": 82.47,
+   "obs_p": 84.76,
+   "err_pts": 2.29,
+   "implied_sharpe": 1.0262,
+   "sharpe_ratio_obs_over_model": 1.099
+  },
+  {
+   "policy": "P1 first signal only",
+   "tpw": 4.72,
+   "drag": 1.051,
+   "sharpe": 0.6767,
+   "model_p": 75.07,
+   "obs_p": 73.33,
+   "err_pts": -1.74,
+   "implied_sharpe": 0.6228,
+   "sharpe_ratio_obs_over_model": 0.92
+  },
+  {
+   "policy": "CAP-1 first 1/day, seq",
+   "tpw": 4.72,
+   "drag": 1.051,
+   "sharpe": 0.6767,
+   "model_p": 75.07,
+   "obs_p": 73.33,
+   "err_pts": -1.74,
+   "implied_sharpe": 0.6228,
+   "sharpe_ratio_obs_over_model": 0.92
+  },
+  {
+   "policy": "P2 first; win=done; 2 losses=done",
+   "tpw": 6.71,
+   "drag": 0.968,
+   "sharpe": 0.7788,
+   "model_p": 78.2,
+   "obs_p": 79.05,
+   "err_pts": 0.85,
+   "implied_sharpe": 0.8082,
+   "sharpe_ratio_obs_over_model": 1.038
+  },
+  {
+   "policy": "CAP-2 first 2/day, seq",
+   "tpw": 9.14,
+   "drag": 0.994,
+   "sharpe": 0.8391,
+   "model_p": 79.93,
+   "obs_p": 80.0,
+   "err_pts": 0.07,
+   "implied_sharpe": 0.8416,
+   "sharpe_ratio_obs_over_model": 1.003
+  }
+ ],
+ "drag_vs_volume": {
+  "points": [
+   [
+    4.72,
+    1.051
+   ],
+   [
+    4.72,
+    1.051
+   ],
+   [
+    6.71,
+    0.968
+   ],
+   [
+    8.2,
+    0.972
+   ],
+   [
+    9.14,
+    0.994
+   ],
+   [
+    9.26,
+    0.96
+   ],
+   [
+    12.73,
+    0.992
+   ],
+   [
+    15.16,
+    1.0
+   ],
+   [
+    16.59,
+    1.061
+   ],
+   [
+    17.32,
+    1.015
+   ],
+   [
+    17.74,
+    1.011
+   ],
+   [
+    17.76,
+    1.014
+   ],
+   [
+    17.76,
+    1.014
+   ],
+   [
+    17.76,
+    1.014
+   ],
+   [
+    17.76,
+    1.014
+   ],
+   [
+    17.76,
+    1.014
+   ],
+   [
+    23.21,
+    1.244
+   ],
+   [
+    31.37,
+    1.295
+   ]
+  ],
+  "fit": "drag = 0.8309 + 0.0805*ln(tpw)",
+  "slope": 0.0805,
+  "drag_at_141.5": 1.229,
+  "drag_at_23.2": 1.084,
+  "n_need_with_drag_of_n": 137.7,
+  "x_vol_with_drag_of_n": 5.9
+ },
+ "block_scaling_test": [
+  {
+   "k_weeks": 1,
+   "blocks": 99,
+   "green": 84,
+   "obs_p": 84.85,
+   "model_p": 84.23,
+   "err_pts": 0.62,
+   "sd_obs": 13.516,
+   "sd_iid_pred": 12.701
+  },
+  {
+   "k_weeks": 2,
+   "blocks": 49,
+   "green": 46,
+   "obs_p": 93.88,
+   "model_p": 92.22,
+   "err_pts": 1.66,
+   "sd_obs": 19.231,
+   "sd_iid_pred": 17.962
+  },
+  {
+   "k_weeks": 3,
+   "blocks": 33,
+   "green": 32,
+   "obs_p": 96.97,
+   "model_p": 95.9,
+   "err_pts": 1.07,
+   "sd_obs": 24.279,
+   "sd_iid_pred": 21.999
+  },
+  {
+   "k_weeks": 4,
+   "blocks": 24,
+   "green": 23,
+   "obs_p": 95.83,
+   "model_p": 97.77,
+   "err_pts": -1.94,
+   "sd_obs": 22.525,
+   "sd_iid_pred": 25.403
+  },
+  {
+   "k_weeks": 5,
+   "blocks": 19,
+   "green": 19,
+   "obs_p": 100.0,
+   "model_p": 98.76,
+   "err_pts": 1.24,
+   "sd_obs": 30.418,
+   "sd_iid_pred": 28.401
+  },
+  {
+   "k_weeks": 6,
+   "blocks": 16,
+   "green": 16,
+   "obs_p": 100.0,
+   "model_p": 99.3,
+   "err_pts": 0.7,
+   "sd_obs": 31.096,
+   "sd_iid_pred": 31.112
+  },
+  {
+   "k_weeks": 8,
+   "blocks": 12,
+   "green": 12,
+   "obs_p": 100.0,
+   "model_p": 99.77,
+   "err_pts": 0.23,
+   "sd_obs": 34.606,
+   "sd_iid_pred": 35.925
+  }
+ ],
+ "candidate_rate_audit": {
+  "sessions_in_book": 500,
+  "claim_says_candidates_per_day": 6.64,
+  "counted_stream_(traded+halted)": 3294,
+  "counted_per_day": 6.64,
+  "fired_or_halted_signals": 4344,
+  "fired_any_per_day": 8.69,
+  "fired_any_per_week": 41.37,
+  "plus_skipped_tight_stop": 2051,
+  "pre_stopfilter_candidates_per_week": 60.9,
+  "all_signal_rows": 76019,
+  "all_rows_per_week": 724.0,
+  "fired_but_not_traded_concurrency_blocked": 1050
+ },
+ "empirical_p_all_green": {
+  "P0 shipped (R31 on, concurrent)": {
+   "obs_green_pct": 86.67,
+   "p_all_105_green_iid_resample": 0.0,
+   "p_all_105_green_binom": 0.0
+  },
+  "P0u all counted (R31 off, concurrent)": {
+   "obs_green_pct": 88.57,
+   "p_all_105_green_iid_resample": 0.0,
+   "p_all_105_green_binom": 3e-06
+  },
+  "P0seq all counted, 1 at a time": {
+   "obs_green_pct": 88.57,
+   "p_all_105_green_iid_resample": 0.0,
+   "p_all_105_green_binom": 3e-06
+  },
+  "P1 first signal only": {
+   "obs_green_pct": 73.33,
+   "p_all_105_green_iid_resample": 0.0,
+   "p_all_105_green_binom": 0.0
+  },
+  "P2 first; win=done; 2 losses=done": {
+   "obs_green_pct": 79.05,
+   "p_all_105_green_iid_resample": 0.0,
+   "p_all_105_green_binom": 0.0
+  },
+  "P3 until day net green (no cap)": {
+   "obs_green_pct": 82.86,
+   "p_all_105_green_iid_resample": 0.0,
+   "p_all_105_green_binom": 0.0
+  },
+  "P4 until net green, 3-loss cap": {
+   "obs_green_pct": 80.95,
+   "p_all_105_green_iid_resample": 0.0,
+   "p_all_105_green_binom": 0.0
+  },
+  "P5 P2 on S only (counted)": {
+   "obs_green_pct": 56.19,
+   "p_all_105_green_iid_resample": 0.0,
+   "p_all_105_green_binom": 0.0
+  },
+  "P5b P2 on S only (incl legacy-C)": {
+   "obs_green_pct": 54.29,
+   "p_all_105_green_iid_resample": 0.0,
+   "p_all_105_green_binom": 0.0
+  },
+  "ORACLE best single trade/day": {
+   "obs_green_pct": 100.0,
+   "p_all_105_green_iid_resample": 1.0,
+   "p_all_105_green_binom": 1.0
+  },
+  "W1 stop the WEEK when net green": {
+   "obs_green_pct": 97.14,
+   "p_all_105_green_iid_resample": 0.0496,
+   "p_all_105_green_binom": 0.047512
+  },
+  "W2-3 stop when green or -3R week": {
+   "obs_green_pct": 84.76,
+   "p_all_105_green_iid_resample": 0.0,
+   "p_all_105_green_binom": 0.0
+  },
+  "W2-5 stop when green or -5R week": {
+   "obs_green_pct": 93.33,
+   "p_all_105_green_iid_resample": 0.0011,
+   "p_all_105_green_binom": 0.000712
+  },
+  "W2-8 stop when green or -8R week": {
+   "obs_green_pct": 96.19,
+   "p_all_105_green_iid_resample": 0.0171,
+   "p_all_105_green_binom": 0.016929
+  },
+  "W3 P3 daily + stop week when green": {
+   "obs_green_pct": 85.71,
+   "p_all_105_green_iid_resample": 0.0,
+   "p_all_105_green_binom": 0.0
+  }
+ }
+}

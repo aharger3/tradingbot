@@ -1,0 +1,90 @@
+{
+  "STALE_18_34": {
+    "recall": 0.5294,
+    "wilson95": [
+      0.367,
+      0.685
+    ],
+    "p_vs_0.90": 7.484424826915548e-08,
+    "power_reject_0.90_at_n34": 0.9987,
+    "n_S_80pct_power_vs_gate": 11,
+    "n_S_per_arm_10pt_unpaired_80": 382,
+    "power_10pt_unpaired_n34": 0.129,
+    "power_10pt_unpaired_n25": 0.106
+  },
+  "CURRENT_23_34": {
+    "recall": 0.6765,
+    "wilson95": [
+      0.508,
+      0.809
+    ],
+    "p_vs_0.90": 0.0006394026845999259,
+    "power_reject_0.90_at_n34": 0.9034,
+    "n_S_80pct_power_vs_gate": 23,
+    "n_S_per_arm_10pt_unpaired_80": 311,
+    "power_10pt_unpaired_n34": 0.149,
+    "power_10pt_unpaired_n25": 0.12
+  },
+  "measured_discordance": {
+    "n_arm_pairs": 66,
+    "min": 0.0,
+    "median": 0.147,
+    "max": 0.441,
+    "pairs": [
+      [
+        0.441,
+        "g71_ladder_recall_sac_all.json",
+        "g71_ladder_recall_sac_xlift.json"
+      ],
+      [
+        0.412,
+        "g71_ladder_recall_sac_all.json",
+        "g71_scanners_recall_noxlift.json"
+      ],
+      [
+        0.412,
+        "g71_ladder_recall_sac_all.json",
+        "g71_scanners_recall_nopivot.json"
+      ],
+      [
+        0.412,
+        "g71_ladder_recall_sac_all.json",
+        "g71_recall_no_pivot.json"
+      ],
+      [
+        0.353,
+        "g71_ladder_recall_sac.json",
+        "g71_ladder_recall_sac_all.json"
+      ]
+    ]
+  },
+  "paired_at_measured_psi": {
+    "psi_0.088": {
+      "n_S_for_80pct_10pt": null,
+      "power_10pt_at_n34": 0.0,
+      "power_10pt_at_n25": 0.0
+    },
+    "psi_0.147": {
+      "n_S_for_80pct_10pt": 113,
+      "power_10pt_at_n34": 0.325,
+      "power_10pt_at_n25": 0.248
+    },
+    "psi_0.176": {
+      "n_S_for_80pct_10pt": 136,
+      "power_10pt_at_n34": 0.279,
+      "power_10pt_at_n25": 0.214
+    },
+    "psi_0.300": {
+      "n_S_for_80pct_10pt": 234,
+      "power_10pt_at_n34": 0.181,
+      "power_10pt_at_n25": 0.143
+    }
+  },
+  "austin_25_cards": {
+    "n_S_at_corpus_rate_0.2533": 6.3,
+    "n_S_at_sweep_rate_0.34": 8.5,
+    "paired_power_10pt_psi0.30_n_S_6": 0.062,
+    "paired_power_10pt_psi0.30_n_S_9": 0.075,
+    "claim_says_86pct_invisible_which_is_n_S_25": 0.857
+  }
+}

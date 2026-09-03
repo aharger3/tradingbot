@@ -1,0 +1,373 @@
+{
+ "summary": {
+  "counterfactual_on_the_30": {
+   "day dropped -- engine refused this whole chart": 15,
+   "same chart, different signal": 14,
+   "unchanged": 1
+  },
+  "closeness_to_his_minute_minutes": {
+   "n_cards_with_a_minute_and_a_real_trade": 14,
+   "median_abs_gap_the_card": 27.5,
+   "median_abs_gap_the_real_trade": 19.0,
+   "real_trade_closer_on": 7,
+   "within_4_min_card": 3,
+   "within_4_min_real": 4
+  },
+  "precision": {
+   "all_30_nominations": "21/30 = 70%  (95% CI 52-83%)",
+   "cards_that_were_a_booked_trade": "4/5 = 80%  (95% CI 38-96%)",
+   "cards_that_were_the_day's_first_booked_trade": "0/1",
+   "arms_of_the_booked_cards": {
+    "84": 5
+   }
+  },
+  "book_wide": {
+   "symbol_days_the_engine_traded": 3740,
+   "first_trade_not_S_on_his_ladder": "3228 of 3740 = 86%",
+   "meaning": "the g71 rule only ever looked at sgrade=='S' rows (g71_homework_build.py:276), so on those days it could not have picked the engine's real trade even by accident",
+   "arm_of_the_real_first_trade": {
+    "BR": 3340,
+    "OCR": 378,
+    "84": 22
+   },
+   "days_booking_more_than_one_setup": 258,
+   "sgrade_of_the_real_first_trade": {
+    "C": 2409,
+    "S": 512,
+    "A": 819
+   }
+  }
+ },
+ "cards": [
+  {
+   "card_id": "BABA_2024-09-05",
+   "he_said": "yes",
+   "his_minute": "09:56",
+   "card": "BR 10:08 call on PMH",
+   "card_traded": false,
+   "real": null,
+   "verdict": "day dropped -- engine refused this whole chart",
+   "minutes_card_vs_his": 12,
+   "minutes_real_vs_his": null
+  },
+  {
+   "card_id": "NFLX_2026-05-26",
+   "he_said": "yes",
+   "his_minute": "09:47",
+   "card": "84 10:17 put on PML",
+   "card_traded": false,
+   "real": null,
+   "verdict": "day dropped -- engine refused this whole chart",
+   "minutes_card_vs_his": 30,
+   "minutes_real_vs_his": null
+  },
+  {
+   "card_id": "NVDA_2026-05-11",
+   "he_said": "yes",
+   "his_minute": "09:43",
+   "card": "OCR 10:32 put on PDH",
+   "card_traded": false,
+   "real": "BR 09:44 call on PDH  +3.43R",
+   "verdict": "same chart, different signal",
+   "minutes_card_vs_his": 49,
+   "minutes_real_vs_his": 1
+  },
+  {
+   "card_id": "NFLX_2025-07-08",
+   "he_said": "yes",
+   "his_minute": "09:38",
+   "card": "OCR 10:01 put on PDL",
+   "card_traded": false,
+   "real": "BR 10:25 put on not-his: pivot low @10:15  +0.43R",
+   "verdict": "same chart, different signal",
+   "minutes_card_vs_his": 23,
+   "minutes_real_vs_his": 47
+  },
+  {
+   "card_id": "COIN_2025-07-10",
+   "he_said": "yes",
+   "his_minute": "09:41",
+   "card": "84 10:40 call on PDH",
+   "card_traded": true,
+   "real": "BR 10:22 call on PDH  -1.00R",
+   "verdict": "same chart, different signal",
+   "minutes_card_vs_his": 59,
+   "minutes_real_vs_his": 41
+  },
+  {
+   "card_id": "TSLA_2025-09-03",
+   "he_said": "yes",
+   "his_minute": "09:45",
+   "card": "BR 10:30 call on PMH",
+   "card_traded": false,
+   "real": null,
+   "verdict": "day dropped -- engine refused this whole chart",
+   "minutes_card_vs_his": 45,
+   "minutes_real_vs_his": null
+  },
+  {
+   "card_id": "AMD_2024-10-02",
+   "he_said": "yes",
+   "his_minute": "09:36",
+   "card": "BR 10:04 call on PMH",
+   "card_traded": false,
+   "real": null,
+   "verdict": "day dropped -- engine refused this whole chart",
+   "minutes_card_vs_his": 28,
+   "minutes_real_vs_his": null
+  },
+  {
+   "card_id": "MSFT_2024-09-13",
+   "he_said": "no",
+   "his_minute": "09:47",
+   "card": "84 10:17 call on PMH",
+   "card_traded": false,
+   "real": null,
+   "verdict": "day dropped -- engine refused this whole chart",
+   "minutes_card_vs_his": 30,
+   "minutes_real_vs_his": null
+  },
+  {
+   "card_id": "MSFT_2025-08-29",
+   "he_said": "yes",
+   "his_minute": "09:38",
+   "card": "OCR 10:19 call on PDL",
+   "card_traded": false,
+   "real": "BR 09:40 put on PML  +1.26R",
+   "verdict": "same chart, different signal",
+   "minutes_card_vs_his": 41,
+   "minutes_real_vs_his": 2
+  },
+  {
+   "card_id": "GOOGL_2024-10-29",
+   "he_said": "yes",
+   "his_minute": "10:47",
+   "card": "OCR 10:59 call on PDH",
+   "card_traded": false,
+   "real": "BR 10:04 call on not-his: pivot high @09:36  -1.00R",
+   "verdict": "same chart, different signal",
+   "minutes_card_vs_his": 12,
+   "minutes_real_vs_his": -43
+  },
+  {
+   "card_id": "AAPL_2026-04-17",
+   "he_said": "yes",
+   "his_minute": "09:42",
+   "card": "84 10:14 call on PMH",
+   "card_traded": true,
+   "real": "BR 10:01 call on PMH  -1.00R",
+   "verdict": "same chart, different signal",
+   "minutes_card_vs_his": 32,
+   "minutes_real_vs_his": 19
+  },
+  {
+   "card_id": "TSM_2025-11-26",
+   "he_said": "no",
+   "his_minute": "09:35",
+   "card": "BR 10:39 call on PMH",
+   "card_traded": false,
+   "real": "BR 10:01 put on not-his: pivot low @09:38  +0.68R",
+   "verdict": "same chart, different signal",
+   "minutes_card_vs_his": 64,
+   "minutes_real_vs_his": 26
+  },
+  {
+   "card_id": "SPY_2025-05-21",
+   "he_said": "yes",
+   "his_minute": "09:45",
+   "card": "OCR 10:33 put on PDL",
+   "card_traded": false,
+   "real": null,
+   "verdict": "day dropped -- engine refused this whole chart",
+   "minutes_card_vs_his": 48,
+   "minutes_real_vs_his": null
+  },
+  {
+   "card_id": "INTC_2026-03-24",
+   "he_said": "yes",
+   "his_minute": "09:38",
+   "card": "84 10:21 put on PDL",
+   "card_traded": true,
+   "real": "BR 09:48 put on PDL  -1.00R",
+   "verdict": "same chart, different signal",
+   "minutes_card_vs_his": 43,
+   "minutes_real_vs_his": 10
+  },
+  {
+   "card_id": "AVGO_2024-11-04",
+   "he_said": "yes",
+   "his_minute": "09:47",
+   "card": "BR 09:47 call on PDH",
+   "card_traded": false,
+   "real": null,
+   "verdict": "day dropped -- engine refused this whole chart",
+   "minutes_card_vs_his": 0,
+   "minutes_real_vs_his": null
+  },
+  {
+   "card_id": "AMD_2025-09-08",
+   "he_said": "no",
+   "his_minute": "10:37",
+   "card": "BR 10:37 call on PMH",
+   "card_traded": false,
+   "real": "BR 09:58 put on PDL  -1.00R",
+   "verdict": "same chart, different signal",
+   "minutes_card_vs_his": 0,
+   "minutes_real_vs_his": -39
+  },
+  {
+   "card_id": "HOOD_2025-11-28",
+   "he_said": "no",
+   "his_minute": null,
+   "card": "84 10:21 call on PDH",
+   "card_traded": false,
+   "real": "BR 10:08 call on PDH  -1.00R",
+   "verdict": "same chart, different signal",
+   "minutes_card_vs_his": null,
+   "minutes_real_vs_his": null
+  },
+  {
+   "card_id": "IWM_2026-08-06",
+   "he_said": "yes",
+   "his_minute": null,
+   "card": "OCR 10:07 call on PMH",
+   "card_traded": false,
+   "real": null,
+   "verdict": "day dropped -- engine refused this whole chart",
+   "minutes_card_vs_his": null,
+   "minutes_real_vs_his": null
+  },
+  {
+   "card_id": "TSM_2026-07-07",
+   "he_said": "yes",
+   "his_minute": "09:38",
+   "card": "84 09:50 put on PML",
+   "card_traded": false,
+   "real": "BR 09:38 put on PML  -1.00R",
+   "verdict": "same chart, different signal",
+   "minutes_card_vs_his": 12,
+   "minutes_real_vs_his": 0
+  },
+  {
+   "card_id": "AMZN_2025-12-11",
+   "he_said": "yes",
+   "his_minute": "09:40",
+   "card": "BR 09:39 call on PMH",
+   "card_traded": false,
+   "real": "BR 09:42 call on not-his: OR high  -1.00R",
+   "verdict": "same chart, different signal",
+   "minutes_card_vs_his": -1,
+   "minutes_real_vs_his": 2
+  },
+  {
+   "card_id": "NVDA_2025-06-24",
+   "he_said": "no",
+   "his_minute": null,
+   "card": "OCR 10:13 put on PMH",
+   "card_traded": false,
+   "real": null,
+   "verdict": "day dropped -- engine refused this whole chart",
+   "minutes_card_vs_his": null,
+   "minutes_real_vs_his": null
+  },
+  {
+   "card_id": "ORCL_2025-02-18",
+   "he_said": "no",
+   "his_minute": null,
+   "card": "84 10:20 call on PMH",
+   "card_traded": false,
+   "real": null,
+   "verdict": "day dropped -- engine refused this whole chart",
+   "minutes_card_vs_his": null,
+   "minutes_real_vs_his": null
+  },
+  {
+   "card_id": "ACHR_2026-06-16",
+   "he_said": "yes",
+   "his_minute": "09:57",
+   "card": "BR 09:56 put on PML",
+   "card_traded": false,
+   "real": "BR 10:03 put on not-his: pivot low @09:38  +2.09R",
+   "verdict": "same chart, different signal",
+   "minutes_card_vs_his": -1,
+   "minutes_real_vs_his": 6
+  },
+  {
+   "card_id": "SPY_2026-06-17",
+   "he_said": "yes",
+   "his_minute": "09:48",
+   "card": "OCR 10:42 put on PML",
+   "card_traded": false,
+   "real": null,
+   "verdict": "day dropped -- engine refused this whole chart",
+   "minutes_card_vs_his": 54,
+   "minutes_real_vs_his": null
+  },
+  {
+   "card_id": "ACHR_2026-04-13",
+   "he_said": "yes",
+   "his_minute": "10:09",
+   "card": "OCR 10:33 call on PMH",
+   "card_traded": false,
+   "real": null,
+   "verdict": "day dropped -- engine refused this whole chart",
+   "minutes_card_vs_his": 24,
+   "minutes_real_vs_his": null
+  },
+  {
+   "card_id": "AAPL_2026-03-11",
+   "he_said": "no",
+   "his_minute": null,
+   "card": "BR 10:29 put on PML",
+   "card_traded": false,
+   "real": null,
+   "verdict": "day dropped -- engine refused this whole chart",
+   "minutes_card_vs_his": null,
+   "minutes_real_vs_his": null
+  },
+  {
+   "card_id": "META_2026-06-22",
+   "he_said": "yes",
+   "his_minute": "09:59",
+   "card": "84 10:15 put on PML",
+   "card_traded": true,
+   "real": "BR 09:40 put on PML  -1.00R",
+   "verdict": "same chart, different signal",
+   "minutes_card_vs_his": 16,
+   "minutes_real_vs_his": -19
+  },
+  {
+   "card_id": "QQQ_2024-08-26",
+   "he_said": "yes",
+   "his_minute": "09:56",
+   "card": "BR 09:52 put on PML",
+   "card_traded": false,
+   "real": null,
+   "verdict": "day dropped -- engine refused this whole chart",
+   "minutes_card_vs_his": -4,
+   "minutes_real_vs_his": null
+  },
+  {
+   "card_id": "QQQ_2025-12-22",
+   "he_said": "no",
+   "his_minute": "09:45",
+   "card": "OCR 10:43 put on PDH",
+   "card_traded": false,
+   "real": null,
+   "verdict": "day dropped -- engine refused this whole chart",
+   "minutes_card_vs_his": 58,
+   "minutes_real_vs_his": null
+  },
+  {
+   "card_id": "AVGO_2025-12-03",
+   "he_said": "no",
+   "his_minute": "09:33",
+   "card": "84 10:59 put on PML",
+   "card_traded": true,
+   "real": "84 10:59 put on not-his: prior entry (84%)  -1.00R",
+   "verdict": "unchanged",
+   "minutes_card_vs_his": 86,
+   "minutes_real_vs_his": 86
+  }
+ ]
+}

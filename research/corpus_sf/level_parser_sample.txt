@@ -1,0 +1,90 @@
+[01] 2024-08-13 backtesting.jsonl QQQ  level=OR tf=day price=None  mined=other
+     "Here are my ORB backtesting results for ORB on qqq for the past few years. Ignore all numbers bc they they're meaninless except for RR and win percent. They all started with 10k and a 5% risk/trade since I know thatll be a common question. "
+
+[02] 2025-08-07 futures_alerts.jsonl NQ  level=PMH tf=day price=None  mined=None
+     'NQ over 23606 PT premarket high and 23700'
+
+[03] 2025-03-27 general_chat.jsonl TSLA  level=OR tf=day price=None  mined=other
+     'Well, those are great news. The fact you can actually identify setups and have a preferred entry criteria tells me you’re not on square 1. \n\nFirst, let’s work on your strike selection, looks like your choosing far OTM, is it because of the '
+
+[04] 2025-01-31 jdub_alerts.jsonl NQ  level=KEYLEVEL tf=generic price=None  mined=None
+     'The key level to watch out for coming into today is going to be the 528 on this ticker and 21844 on the NQ'
+
+[05] 2025-07-15 jdub_alerts.jsonl QQQ  level=PMH tf=day price=560.0  mined=None
+     'What I would like to see is the reaction that we have off your 626 and 628 on SPY as for the QQQ its going to be the PMH 560.'
+
+[06] 2025-11-18 jdub_alerts.jsonl META  level=PDL tf=day price=None  mined=None
+     'As for my main watches today lets keep an eye out for TSLA off the 412, AMZN off PDL, and Meta off PDL.'
+
+[07] 2026-03-06 jdub_alerts.jsonl TSLA  level=PDL tf=day price=None  mined=pdl
+     'We can also keep an eye out on TSLA PDL, AMD PDL.'
+
+[08] 2026-05-29 jdub_alerts.jsonl INTC  level=PDH tf=day price=None  mined=pdh
+     'Main watches today will be INTC higher timeframe break above PDH, AMD above PDH, NVDA above PDH.'
+
+[09] 2026-08-17 jdub_alerts.jsonl AMD  level=PDH tf=day price=None  mined=pdh
+     'Other names like AMD, NBIS are in play as well above the PDH.'
+
+[10] 2025-03-14 misc.jsonl META  level=PML tf=day price=None  mined=pml
+     'the order block is valid, without any context I really like the setup. If qqq was bearish and if meta hadn’t swept pml yet, I would take that setup'
+
+[11] 2025-10-22 misc.jsonl MSFT  level=PMH tf=day price=None  mined=pmh
+     'Hi Team, I tried PMH retest on Microsoft (MSFT) with engulfer confirmation candle (9.51 AM), Scaled 25 percent of positions at HOD and 25 % more on next pop. For rest of the positions I have moved stop to slighly above breakeven and got sto'
+
+[12] 2026-07-06 misc.jsonl TSLA  level=PMH tf=day price=None  mined=pmh
+     "Entered TSLA on the retest of 5m range, PMH, and one candle rule\nLooking at 1m I drew a line on what I thought was the previous swing high and stopped out at the 10:47 candle close. Now it's running and wondering if there was something I mi"
+
+[13] 2024-10-07 misc.jsonl NVDA  level=KEYLEVEL tf=generic price=127.67  mined=None
+     'Key level for NVDA 127.67'
+
+[14] 2025-01-23 misc.jsonl QQQ  level=PDL tf=day price=529.29  mined=pdl
+     'QQQ looking weak premarket now. My main play is looking for weakness/retest at the PDL (529.29) with the target being the gap fill level. If we reverse and bounce at the PDL levels then I will see how we are shaping up for the 5ORB. '
+
+[15] 2025-05-15 misc.jsonl TSLA  level=PDL tf=day price=None  mined=pdl
+     'TSLA looks super choppy to me, has been stuck between 2nd 5 min candle close and PDL almost the entire day'
+
+[16] 2025-12-02 misc.jsonl AAPL  level=ATH tf=htf price=None  mined=other
+     'AAPL in play also above ATH for breakout continuation - elevated RVOL in the PM ( but big move yesterday and might need some consolidation, more of a scalp if anything sets up '
+
+[17] 2026-06-15 misc.jsonl GOOGL  level=ATH tf=htf price=None  mined=other
+     'Can you please give me some feedback on options trade - loner expiration - on Google to ATH? Would this be a good entry if the stock closes above the yellow line?'
+
+[18] 2024-08-09 pooled_trades.jsonl QQQ  level=PDC tf=day price=None  mined=None
+     'Qqq rejecting previous day close'
+
+[19] 2025-02-05 pooled_trades.jsonl SPY  level=PDH tf=day price=None  mined=pdh
+     'Good morning guys!\n\nComing into today, after AMD earnings market came down a bit.\n\nHere are my top watches:\n\nNVDA PDH RETEST\n\nSPY PUSH ABOVE PDH & RETEST\n\n& \n\nQQQ PM RETEST \n\nLet’s see how the market opens @everyone'
+
+[20] 2025-05-09 pooled_trades.jsonl NVDA  level=TRENDLINE tf=struct price=None  mined=pmh
+     'Good morning everyone!\n\nMarket looking good coming into open.\n\nSpy as long as we break PM high has room up.\n\nMy main watches:\n\nTSLA previous day high retest\n\nNVDA break and retest of trend line \n\nBoth look good for continuation move up.\n\n@e'
+
+[21] 2025-08-12 pooled_trades.jsonl GOOGL  level=ORDERBLOCK tf=struct price=None  mined=hod
+     '205 calls for HOD is plan on googl is we pullback into the one candle rule @everyone'
+
+[22] 2025-10-10 pooled_trades.jsonl AAPL  level=ORDERBLOCK tf=struct price=None  mined=None
+     'AAPL one candle rule retest @everyone'
+
+[23] 2026-01-16 pooled_trades.jsonl MU  level=KEYLEVEL tf=generic price=None  mined=pmh
+     'MU 1m BNR LONG \n\nBias: Bullish open drive\nKey Level: PM High 359.90 / 1st Candle High 359.02\n\nBreak: MU breaks above key level with momentum\n Retest: Pulls back + holds trendline / breakout zone\n Entry: Buy calls on the retest hold + next p'
+
+[24] 2026-06-03 pooled_trades.jsonl SPY  level=PDL tf=day price=None  mined=pdl
+     "SPY we are in its prev day's range, would like it to maintain above 757.50 at a minimum for upside momentum, if we break that, next support we have is PDL"
+
+[25] 2024-06-21 scarface_alerts.jsonl SPY  level=LOD tf=day price=None  mined=lod
+     'SPY potential here for LOD retest'
+
+[26] 2025-03-07 scarface_alerts.jsonl AAPL  level=HOD tf=day price=None  mined=hod
+     'AAPL back at hod with qqq pushing @everyone'
+
+[27] 2025-06-17 scarface_alerts.jsonl AMD  level=HOD tf=day price=None  mined=hod
+     'Here’s amd trying to pop hod again let’s see if buyers are strong today @everyone'
+
+[28] 2025-08-21 scarface_alerts.jsonl NVDA  level=PDH tf=day price=None  mined=pdh
+     'NVDA this reclaim is still valid just would need to see VERY strong buyers above PDH \n\nWill keep an eye on it \n\n(If QQQ breaks hod)\n\n@everyone'
+
+[29] 2025-10-29 scarface_alerts.jsonl NVDA  level=HOD tf=day price=None  mined=hod
+     'Let’s see hod for NVDA @everyone'
+
+[30] 2026-02-06 scarface_alerts.jsonl NVDA  level=PDH tf=day price=None  mined=pdh
+     'NVDA you’d like PDH to hold @everyone'
+

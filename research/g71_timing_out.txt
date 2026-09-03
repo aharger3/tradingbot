@@ -1,0 +1,191 @@
+book: 2437 traded rows, mean R +0.5495, WR 49.16%
+match index: 2436 bound, 1 unbound
+k=0 identity: 2436/2437 exact, 0 mismatched, 1 unbuildable
+  ran k=-2 arm T: 2401 rows
+  ran k=-1 arm T: 2420 rows
+  ran k=+0 arm T: 2436 rows
+  ran k=+1 arm T: 2436 rows
+  ran k=+2 arm T: 2436 rows
+  ran k=-2 arm S: 1788 rows
+  ran k=-1 arm S: 1625 rows
+  ran k=+0 arm S: 2436 rows
+  ran k=+1 arm S: 2191 rows
+  ran k=+2 arm S: 2056 rows
+support arm T: 2401 of 2437 rows
+support arm S: 1190 of 2437 rows
+
+== R SURFACE (each arm on its own support) ==
+arm  k         n    meanR      WR%       totR    delta k=0     95% boot CI on delta
+T      -2   2401   0.8717    49.27     2093.0      +0.3184       [+0.2435, +0.3961]
+T      -1   2401   1.2722    57.23     3054.7      +0.7189       [+0.6567, +0.7829]
+T      +0   2401   0.5533    49.65     1328.6      +0.0000       [+0.0000, +0.0000]
+T      +1   2401   0.5141    48.06     1234.3      -0.0392       [-0.1041, +0.0266]
+T      +2   2401   0.5585    47.40     1341.0      +0.0052       [-0.0736, +0.0876]
+S      -2   1190   2.0534    33.70     2443.6      +1.3699       [+0.0170, +3.7184]
+S      -1   1190   0.8707    32.94     1036.2      +0.1872       [-0.0860, +0.4847]
+S      +0   1190   0.6835    57.06      813.4      +0.0000       [+0.0000, +0.0000]
+S      +1   1190   0.6813    53.28      810.8      -0.0022       [-0.1343, +0.1483]
+S      +2   1190   0.7723    51.68      919.0      +0.0887       [-0.1601, +0.3805]
+
+rows whose shifted risk falls under B&R_MIN_RISK (engine would have called them skipped_tight_stop):
+  arm T: k=-2 370  k=-1 370  k=+0 370  k=+1 370  k=+2 372
+  arm S: k=-2 546  k=-1 736  k=+0 210  k=+1 317  k=+2 343
+
+== setup (arm T, delta mean R vs k=0) ==
+bucket                      n     k=-2     k=-1     k=+0     k=+1     k=+2
+break_and_retest         1901  +0.3514  +0.8174  +0.0000  -0.0403  -0.0212
+one_candle_rule           377  +0.1022  +0.2427  +0.0000  -0.1497  +0.0587
+reentry_84_rule           123  +0.4702  +0.6566  +0.0000  +0.3157  +0.2491
+
+== side (arm T, delta mean R vs k=0) ==
+bucket                      n     k=-2     k=-1     k=+0     k=+1     k=+2
+long                     1280  +0.2257  +0.6924  +0.0000  -0.0503  -0.0124
+short                    1121  +0.4241  +0.7492  +0.0000  -0.0267  +0.0253
+
+== time-of-day (slot) (arm T, delta mean R vs k=0) ==
+bucket                      n     k=-2     k=-1     k=+0     k=+1     k=+2
+09:30                    1234  +0.3827  +0.8350  +0.0000  -0.0865  -0.0250
+10:00                     813  +0.3191  +0.6285  +0.0000  +0.0674  +0.0103
+10:30                     354  +0.0924  +0.5221  +0.0000  -0.1195  +0.0987
+
+== entry bar bucket (arm T, delta mean R vs k=0) ==
+bucket                      n     k=-2     k=-1     k=+0     k=+1     k=+2
+bar 15-29                 797  +0.3738  +0.7819  +0.0000  -0.0961  +0.0020
+bar 30-44                 512  +0.2742  +0.6242  +0.0000  +0.0094  -0.0226
+bar 5-14                  437  +0.3991  +0.9318  +0.0000  -0.0690  -0.0743
+bar 60+                   354  +0.0924  +0.5221  +0.0000  -0.1195  +0.0987
+bar 45-59                 301  +0.3955  +0.6357  +0.0000  +0.1662  +0.0662
+
+== symbol (arm T, delta mean R vs k=0) ==
+bucket                      n     k=-2     k=-1     k=+0     k=+1     k=+2
+COIN                      202  +0.5486  +0.8973  +0.0000  +0.1237  +0.1028
+TSLA                      166  +0.3997  +0.7447  +0.0000  -0.0007  -0.1132
+MU                        146  +0.5388  +0.8557  +0.0000  -0.1860  +0.0080
+HOOD                      133  +0.0635  +0.8531  +0.0000  -0.0085  -0.0021
+PLTR                      131  -0.1032  +0.7683  +0.0000  +0.0873  -0.2025
+AMD                       124  +0.5586  +1.0003  +0.0000  +0.0941  +0.2833
+AVGO                      123  +0.5223  +0.7096  +0.0000  +0.1724  +0.2650
+META                      121  +0.2737  +0.5627  +0.0000  +0.0499  -0.1429
+ORCL                      103  +0.2715  +0.5650  +0.0000  -0.1215  -0.0660
+NVDA                      102  +0.5881  +0.8895  +0.0000  -0.1808  +0.0452
+MSFT                       92  +0.3550  +0.4702  +0.0000  +0.0623  +0.2694
+IREN                       87  +0.0496  +0.6839  +0.0000  -0.1297  -0.1140
+AAPL                       80  +0.2233  +0.4594  +0.0000  -0.0481  -0.0289
+AMZN                       79  +0.2963  +0.4676  +0.0000  -0.2815  -0.3516
+GOOGL                      73  -0.1623  +0.5086  +0.0000  -0.4088  -0.1717
+NFLX                       72  +0.4898  +0.7157  +0.0000  +0.0080  +0.1793
+INTC                       69  +0.3618  +0.8958  +0.0000  -0.1253  -0.1208
+QQQ                        68  +0.3616  +0.5390  +0.0000  +0.0151  -0.0659
+CRM                        64  -0.0221  +0.4376  +0.0000  -0.7471  -0.0285
+BABA                       61  +0.1900  +0.6350  +0.0000  -0.0329  +0.2277
+TSM                        61  +0.4158  +0.8830  +0.0000  -0.0502  +0.0437
+SPY                        55  +0.5304  +0.5749  +0.0000  -0.0406  +0.0358
+UBER                       42  +0.3524  +1.0155  +0.0000  -0.1030  -0.2572
+IWM                        40  -0.0940  +0.2518  +0.0000  -0.0374  +0.2211
+
+== austin ladder (sgrade) (arm T, delta mean R vs k=0) ==
+bucket                      n     k=-2     k=-1     k=+0     k=+1     k=+2
+C                        1593  +0.4208  +0.8016  +0.0000  -0.0301  -0.0381
+A                         517  +0.0743  +0.5623  +0.0000  -0.0974  +0.0161
+S                         291  +0.1912  +0.5448  +0.0000  +0.0139  +0.2225
+
+== legacy grade (arm T, delta mean R vs k=0) ==
+bucket                      n     k=-2     k=-1     k=+0     k=+1     k=+2
+B                        2326  +0.3296  +0.7274  +0.0000  -0.0536  -0.0027
+A                          71  -0.0385  +0.3896  +0.0000  +0.4250  +0.2395
+
+== year-month (arm T, delta mean R vs k=0) ==
+bucket                      n     k=-2     k=-1     k=+0     k=+1     k=+2
+2026-07                   160  -0.0420  +0.6082  +0.0000  -0.1738  -0.3188
+2026-06                   138  +0.3894  +0.8706  +0.0000  +0.0046  -0.1479
+2026-03                   130  +0.1288  +0.6046  +0.0000  -0.2801  -0.1871
+2025-10                   126  +0.6219  +0.7497  +0.0000  -0.0932  +0.3673
+2026-05                   122  +0.3640  +0.7733  +0.0000  -0.0456  +0.0287
+2025-04                   121  +0.4909  +0.9233  +0.0000  -0.1285  -0.1962
+2025-08                   117  +0.4682  +0.8648  +0.0000  +0.4208  +0.4274
+2025-03                   106  +0.2731  +0.5948  +0.0000  -0.0785  -0.0431
+2025-12                   106  +0.4094  +0.8558  +0.0000  -0.0863  -0.1736
+2026-01                   101  +0.1197  +0.7083  +0.0000  -0.1314  -0.1509
+2025-09                    99  +0.3870  +0.5788  +0.0000  +0.1287  +0.0412
+2026-04                    97  +0.3464  +0.8878  +0.0000  -0.1941  +0.0818
+2026-02                    95  +0.5793  +0.7942  +0.0000  +0.0950  -0.0979
+2025-01                    93  +0.2918  +0.9143  +0.0000  +0.2147  +0.1353
+2024-10                    92  +0.2401  +0.4391  +0.0000  -0.0446  +0.1280
+2025-02                    92  +0.4011  +0.6428  +0.0000  +0.1620  -0.0865
+2025-07                    86  +0.3452  +0.6151  +0.0000  +0.0107  +0.1874
+2025-11                    86  +0.4591  +0.9170  +0.0000  -0.0213  +0.2764
+2025-05                    75  +0.1510  +0.4271  +0.0000  -0.1266  -0.3362
+2024-12                    69  +0.3691  +0.6519  +0.0000  -0.0651  -0.0020
+2026-08                    69  +0.1384  +0.4945  +0.0000  -0.3169  -0.2264
+2024-11                    67  -0.1416  +0.7174  +0.0000  -0.2844  +0.1812
+2024-09                    66  +0.3415  +0.6581  +0.0000  +0.1430  +0.3255
+2025-06                    58  +0.4828  +0.4917  +0.0000  +0.2024  +0.2707
+2024-08                    30  +0.3206  +1.2228  +0.0000  -0.5114  +0.0993
+
+== BOOK LEVEL — R31 loss halt re-applied per k (arm T) ==
+k       traded    meanR       totR      WR%
+-2        2165   0.8751     1894.7    48.41
+-1        2331   1.2837     2992.3    56.46
++0        2394   0.5564     1332.1    49.21
++1        2159   0.5239     1131.1    48.31
++2        2087   0.5634     1175.9    47.20
+
+== DURABILITY — months green (arm T) ==
+  k=-2: 25/25 months green
+  k=-1: 25/25 months green
+  k=+0: 25/25 months green
+  k=+1: 25/25 months green
+  k=+2: 25/25 months green
+
+== THE LOOK-AHEAD, MEASURED — bar i's own move in R ==
+  signed move of the ENTRY bar, close[i]-close[i-1], in R:
+    n=2401  mean +0.7974 R  median +0.7424 R  95% boot [+0.7694, +0.8258]
+    favourable on 2243 of 2401 (93.4%)
+  k=-1's measured gain was +0.7189 R. If those two agree, the surface's
+  peak is bar i's own confirmation move, not a better entry.
+
+  k=-1 vs k=0, per trade: better 1296 / same 988 / worse 117  (median delta +0.1333 R)
+
+== ARGMAX k per trade (arm T) ==
+  k=-2 best on   492 / 2401 (20.5%)
+  k=-1 best on   697 / 2401 (29.0%)
+  k=+0 best on   905 / 2401 (37.7%)
+  k=+1 best on   121 / 2401 (5.0%)
+  k=+2 best on   186 / 2401 (7.7%)
+  perfect-hindsight oracle over k: mean R +1.6780 (vs +0.5533 at k=0)
+
+== T12 SECTION 4, RE-PRICED — swap to an earlier candidate ==
+candidates dropped as untakeable: {'under B&R_MIN_RISK': 1288, 'skipped_tight_stop': 19}
+traded rows with a TAKEABLE candidate 1-6 bars earlier, same direction: 203 of 2401 (8.5%)
+
+  NEAREST earlier candidate — n=203, median offset -3.0 bars, sgrade mix {'C': 119, 'S': 42, 'A': 42}
+    engine took : mean R +0.4737, WR 49.8%, total +96.2R
+    swapped     : mean R +0.5074, WR 44.3%, total +103.0R
+    delta       : +0.0337 R/trade, 95% boot [-0.3051, +0.3516]  total +6.8R
+    median 1R   : taken $0.610 -> swapped $0.500  (ratio 0.82x)
+
+  best AUSTIN-ladder candidate (S>A>C) — n=203, median offset -3.0 bars, sgrade mix {'C': 117, 'S': 44, 'A': 42}
+    engine took : mean R +0.4737, WR 49.8%, total +96.2R
+    swapped     : mean R +0.4884, WR 43.8%, total +99.1R
+    delta       : +0.0146 R/trade, 95% boot [-0.3182, +0.3329]  total +3.0R
+    median 1R   : taken $0.610 -> swapped $0.500  (ratio 0.82x)
+
+  S-on-his-ladder candidates only — n=44, median offset -3.0 bars, sgrade mix {'S': 44}
+    engine took : mean R -0.0164, WR 50.0%, total -0.7R
+    swapped     : mean R +0.4226, WR 40.9%, total +18.6R
+    delta       : +0.4390 R/trade, 95% boot [-0.0412, +0.9552]  total +19.3R
+    median 1R   : taken $0.555 -> swapped $0.508  (ratio 0.92x)
+
+  nearest, and only 1-2 bars back (his 'one candle') — n=82, median offset -2.0 bars, sgrade mix {'C': 50, 'A': 16, 'S': 16}
+    engine took : mean R +0.4571, WR 52.4%, total +37.5R
+    swapped     : mean R +0.5811, WR 46.3%, total +47.7R
+    delta       : +0.1240 R/trade, 95% boot [-0.3345, +0.5965]  total +10.2R
+    median 1R   : taken $0.610 -> swapped $0.480  (ratio 0.79x)
+
+  1-2 bars back AND S on his ladder — the tradable arm — n=17, median offset -2.0 bars, sgrade mix {'S': 17}
+    engine took : mean R -0.0416, WR 52.9%, total -0.7R
+    swapped     : mean R +0.6730, WR 52.9%, total +11.4R
+    delta       : +0.7146 R/trade, 95% boot [+0.1833, +1.3136]  total +12.1R
+    median 1R   : taken $0.450 -> swapped $0.492  (ratio 1.09x)
+
+wrote C:\Users\aharg\Desktop\Projects\tradingbot\research\g71_timing.json

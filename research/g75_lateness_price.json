@@ -1,0 +1,112 @@
+{
+ "split": {
+  "one_candle_rule": {
+   "early_n": 97,
+   "late_n": 385,
+   "early_mean_r": 0.5251,
+   "late_mean_r": 0.7479,
+   "diff": -0.2228,
+   "ci": [
+    -0.7045,
+    0.2598
+   ],
+   "early_win": 50.5,
+   "late_win": 41.0
+  },
+  "break_and_retest": {
+   "early_n": 2234,
+   "late_n": 1586,
+   "early_mean_r": 0.6457,
+   "late_mean_r": 0.555,
+   "diff": 0.0907,
+   "ci": [
+    -0.018,
+    0.1993
+   ],
+   "early_win": 65.5,
+   "late_win": 60.3
+  },
+  "reentry_84_rule": {
+   "early_n": 45,
+   "late_n": 161,
+   "early_mean_r": -0.3352,
+   "late_mean_r": -0.0791,
+   "diff": -0.2561,
+   "ci": [
+    -0.744,
+    0.2943
+   ],
+   "early_win": 20.0,
+   "late_win": 26.7
+  }
+ },
+ "already_there": {
+  "late_ocr": 385,
+  "had_earlier": 90,
+  "had_earlier_br": 72,
+  "earlier_per_trade": 744.0,
+  "ocr_per_trade": 896.0
+ },
+ "ceiling": {
+  "all_now": {
+   "trades": 4508,
+   "win_pct": 59.4,
+   "total_dollars": 2633850.0,
+   "per_trade": 584.0,
+   "mean_r": 0.5843,
+   "per_day": 5268.0,
+   "months_green": 25,
+   "months": 25,
+   "weeks_green": 100,
+   "weeks": 105,
+   "green_days_pct": 69.9,
+   "days_traded": 499,
+   "worst_drawdown": 11105.0
+  },
+  "all_early_only": {
+   "trades": 4123,
+   "win_pct": 61.2,
+   "total_dollars": 2345916.0,
+   "per_trade": 569.0,
+   "mean_r": 0.569,
+   "per_day": 4692.0,
+   "months_green": 25,
+   "months": 25,
+   "weeks_green": 100,
+   "weeks": 105,
+   "green_days_pct": 72.9,
+   "days_traded": 499,
+   "worst_drawdown": 12441.0
+  },
+  "oneaday_now": {
+   "trades": 499,
+   "win_pct": 66.7,
+   "total_dollars": 360380.0,
+   "per_trade": 722.0,
+   "mean_r": 0.7222,
+   "per_day": 721.0,
+   "months_green": 25,
+   "months": 25,
+   "weeks_green": 87,
+   "weeks": 105,
+   "green_days_pct": 66.7,
+   "days_traded": 499,
+   "worst_drawdown": 5993.0
+  },
+  "oneaday_early_only": {
+   "trades": 499,
+   "win_pct": 66.7,
+   "total_dollars": 360380.0,
+   "per_trade": 722.0,
+   "mean_r": 0.7222,
+   "per_day": 721.0,
+   "months_green": 25,
+   "months": 25,
+   "weeks_green": 87,
+   "weeks": 105,
+   "green_days_pct": 66.7,
+   "days_traded": 499,
+   "worst_drawdown": 5993.0
+  }
+ }
+}

@@ -1,0 +1,10 @@
+{
+ "n_days": 120,
+ "first_structure_break_med": 9.0,
+ "first_valid_block_med": 51,
+ "first_entryable_block_med": 48,
+ "distinct_blocks_med": 1.0,
+ "distinct_blocks_mean": 0.66,
+ "days_with_no_structure_break": 0,
+ "days_with_no_valid_block": 57
+}

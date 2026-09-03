@@ -1,0 +1,332 @@
+{
+ "generated_by": "research/g73_mentorbook_why.py",
+ "f_survivorship": {
+  "dollar_census": {
+   "stated_dollar_figures": 54,
+   "positive": 54,
+   "negative": 0,
+   "zero": 0,
+   "min": 267.51,
+   "median": 3092.5,
+   "max": 12500.0,
+   "note": "a coin that lands heads this many times in a row is not a coin",
+   "p_if_half_were_losers": 0.0
+  },
+  "reporting_rate_by_channel": {
+   "futures_alerts.jsonl": {
+    "instances": 588,
+    "followed_up": 23,
+    "report_rate": 3.9,
+    "never_mentioned_again": 565,
+    "win": 18,
+    "loss": 1,
+    "be": 4,
+    "claimed_win_rate": 94.7,
+    "live_alert_room": true
+   },
+   "gains.jsonl": {
+    "instances": 380,
+    "followed_up": 380,
+    "report_rate": 100.0,
+    "never_mentioned_again": 0,
+    "win": 238,
+    "loss": 137,
+    "be": 5,
+    "claimed_win_rate": 63.5,
+    "live_alert_room": false
+   },
+   "jdub_alerts.jsonl": {
+    "instances": 131,
+    "followed_up": 9,
+    "report_rate": 6.9,
+    "never_mentioned_again": 122,
+    "win": 4,
+    "loss": 4,
+    "be": 1,
+    "claimed_win_rate": 50.0,
+    "live_alert_room": true
+   },
+   "misc.jsonl": {
+    "instances": 1655,
+    "followed_up": 265,
+    "report_rate": 16.0,
+    "never_mentioned_again": 1390,
+    "win": 100,
+    "loss": 146,
+    "be": 19,
+    "claimed_win_rate": 40.7,
+    "live_alert_room": false
+   },
+   "pre_market_live.jsonl": {
+    "instances": 9,
+    "followed_up": 0,
+    "report_rate": 0.0,
+    "never_mentioned_again": 9,
+    "win": 0,
+    "loss": 0,
+    "be": 0,
+    "claimed_win_rate": null,
+    "live_alert_room": true
+   },
+   "reviews_futures.jsonl": {
+    "instances": 45,
+    "followed_up": 39,
+    "report_rate": 86.7,
+    "never_mentioned_again": 6,
+    "win": 39,
+    "loss": 0,
+    "be": 0,
+    "claimed_win_rate": 100.0,
+    "live_alert_room": false
+   },
+   "reviews_options.jsonl": {
+    "instances": 19,
+    "followed_up": 17,
+    "report_rate": 89.5,
+    "never_mentioned_again": 2,
+    "win": 17,
+    "loss": 0,
+    "be": 0,
+    "claimed_win_rate": 100.0,
+    "live_alert_room": false
+   },
+   "scarface_alerts.jsonl": {
+    "instances": 720,
+    "followed_up": 247,
+    "report_rate": 34.3,
+    "never_mentioned_again": 473,
+    "win": 177,
+    "loss": 52,
+    "be": 18,
+    "claimed_win_rate": 77.3,
+    "live_alert_room": true
+   }
+  },
+  "tape_test_live_rooms": {
+   "claimed_win": {
+    "n": 65,
+    "win": 47.7,
+    "mean_r": 0.4308,
+    "dollars": 430.77
+   },
+   "claimed_loss": {
+    "n": 17,
+    "win": 5.9,
+    "mean_r": -0.8235,
+    "dollars": -823.53
+   },
+   "never_mentioned_again": {
+    "n": 147,
+    "win": 28.6,
+    "mean_r": -0.1429,
+    "dollars": -142.86
+   },
+   "all_calls": {
+    "n": 235,
+    "win": 31.5,
+    "mean_r": -0.0553,
+    "dollars": -55.32
+   },
+   "win_vs_unreported": {
+    "diff": 0.5736,
+    "ci": [
+     0.1538,
+     0.9987
+    ],
+    "p": 0.0091
+   },
+   "win_vs_loss": {
+    "diff": 1.2543,
+    "ci": [
+     0.7167,
+     1.7077
+    ],
+    "p": 0.0015
+   },
+   "claimed_win_rate": 79.3,
+   "tape_win_rate_all_calls": 31.5,
+   "reads": "if claimed wins beat the tape and claimed losses lose on the tape, the mentor is telling the truth about what he reports; if the calls he never mentions again look like the losses, the high average is what he leaves out, not what he does"
+  },
+  "tape_test_retrospective_channels_INVALID": {
+   "claimed_win": {
+    "n": 221,
+    "win": 29.9,
+    "mean_r": -0.1041,
+    "dollars": -104.07
+   },
+   "claimed_loss": {
+    "n": 155,
+    "win": 32.3,
+    "mean_r": -0.0323,
+    "dollars": -32.26
+   },
+   "why_invalid": "post-your-gains and chat posts land after the trade is over, so a bracket entered at the post minute is not the mentor's trade. Reported for completeness, not evidence."
+  },
+  "scarface_win_rate_reconstructed": {
+   "claimed": 79.0,
+   "claimed_n": 81,
+   "with_silence_scored_by_tape": 47.5,
+   "silent_calls": 138,
+   "silent_that_worked_on_tape": 40,
+   "omen_one_trade_a_day_win_rate": 65.9
+  }
+ },
+ "a_day_selection": {
+  "on_mentor_days": {
+   "n": 819,
+   "win": 59.8,
+   "mean_r": 0.6748,
+   "dollars": 674.77
+  },
+  "elsewhere": {
+   "n": 3689,
+   "win": 59.3,
+   "mean_r": 0.5642,
+   "dollars": 564.18
+  },
+  "difference": {
+   "diff": 0.1106,
+   "ci": [
+    -0.035,
+    0.2613
+   ],
+   "p": 0.1245
+  },
+  "reads": "positive and significant = they pick better days"
+ },
+ "b_symbol_selection": {
+  "omen_book_mean_r": 0.5843,
+  "reweighted_to_mentor_symbol_mix": 0.6133,
+  "lift": 0.029,
+  "mentor_top_symbols": [
+   [
+    "TSLA",
+    490
+   ],
+   [
+    "NVDA",
+    425
+   ],
+   [
+    "QQQ",
+    350
+   ],
+   [
+    "SPY",
+    327
+   ],
+   [
+    "AMD",
+    264
+   ],
+   [
+    "AAPL",
+    250
+   ],
+   [
+    "AMZN",
+    122
+   ],
+   [
+    "PLTR",
+    103
+   ],
+   [
+    "META",
+    72
+   ],
+   [
+    "MSFT",
+    64
+   ]
+  ],
+  "reads": "lift is what trading their symbol mix alone would be worth"
+ },
+ "c_entry_timing": {
+  "synthetic_by_slot": {
+   "09:30-10:00": {
+    "n": 150,
+    "win": 34.7,
+    "mean_r": 0.04,
+    "dollars": 40.0,
+    "total": 6000.0,
+    "ci": [
+     -0.18,
+     0.28
+    ],
+    "mfe": 1.233
+   },
+   "10:00-10:30": {
+    "n": 229,
+    "win": 32.8,
+    "mean_r": -0.0175,
+    "dollars": -17.47,
+    "total": -4000.0,
+    "ci": [
+     -0.2009,
+     0.1659
+    ],
+    "mfe": 1.181
+   },
+   "10:30-11:00": {
+    "n": 143,
+    "win": 35.7,
+    "mean_r": 0.0699,
+    "dollars": 69.93,
+    "total": 10000.0,
+    "ci": [
+     -0.1608,
+     0.3007
+    ],
+    "mfe": 1.302
+   },
+   "11:00-12:30": {
+    "n": 271,
+    "win": 33.9,
+    "mean_r": 0.0185,
+    "dollars": 18.45,
+    "total": 5000.0,
+    "ci": [
+     -0.1476,
+     0.1956
+    ],
+    "mfe": 1.199
+   },
+   "12:30-16:00": {
+    "n": 248,
+    "win": 25.8,
+    "mean_r": -0.2258,
+    "dollars": -225.81,
+    "total": -56000.0,
+    "ci": [
+     -0.3831,
+     -0.0565
+    ],
+    "mfe": 1.165
+   }
+  },
+  "mentor_median_minute_after_open": 64,
+  "omen_median_minute_after_open": 28.0,
+  "mentor_pct_in_first_90": 59.2,
+  "omen_pct_in_first_90": 100.0
+ },
+ "d_exits": {
+  "n": 1041,
+  "mean_mfe_r": 1.206,
+  "median_mfe_r": 0.987,
+  "pct_reaching_1R": 50.0,
+  "pct_reaching_2R": 32.1,
+  "pct_reaching_4R": 0.4,
+  "perfect_exit_mean_r": 1.206,
+  "bracket_mean_r": -0.0375,
+  "reads": "perfect_exit is an oracle -- it sells the exact high of the session after the call. It is the ceiling on every exit idea, not an achievable number."
+ },
+ "e_sizing": {
+  "instances_with_a_stated_entry": 49,
+  "instances_with_a_stated_stop": 19,
+  "instances_with_a_stated_R": 76,
+  "instances_with_a_stated_dollar": 54,
+  "of_3547": 3547,
+  "verdict": "not measurable. Risk per trade is never stated, so a dollar figure cannot be turned into an R and cannot be compared to OMEN's 1R = $1,000."
+ }
+}

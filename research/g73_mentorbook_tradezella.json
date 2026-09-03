@@ -1,0 +1,127 @@
+{
+ "verdict": {
+  "format": "TradeZella Generic CSV",
+  "doc": "https://help.tradezella.com/en/articles/8239862-how-to-import-trades-from-unsupported-broker-into-tradezella-via-generic-csv-file-upload",
+  "doc_read": "2026-08-29",
+  "doc_revision_shown": "Updated this week (no explicit date published)",
+  "columns": [
+   "Date",
+   "Time",
+   "Symbol",
+   "Buy/Sell",
+   "Quantity",
+   "Price",
+   "Spread",
+   "Expiration",
+   "Strike",
+   "Call/Put",
+   "Commission",
+   "Fees"
+  ],
+  "row_granularity": "one row per execution (fill); a round trip needs 2+ rows",
+  "pooled_instances": 3547,
+  "rows_meeting_every_mandatory_column": 4,
+  "rows_that_could_close_a_trade": 0,
+  "blocking_fields": [
+   "Quantity \u2014 no schema field; these men post option strikes and dollar P&L, never a contract count in a parseable place",
+   "Price \u2014 49 of 3,547 rows state an entry; ZERO state an exit fill, so even those 49 import as open positions with no P&L",
+   "Expiration / Strike / Call/Put \u2014 mandatory for options, and the corpus holds no parsed field for any of the three"
+  ],
+  "answer": "No. TradeZella's generic importer wants executions, and the corpus holds opinions. The blocker is not a mapping anyone could write -- the exit fill does not exist in the data at any confidence level."
+ },
+ "column_census": {
+  "Date": {
+   "present": 3547,
+   "of": 3547,
+   "pct": 100.0,
+   "mandatory": true,
+   "conditional_on_options": false
+  },
+  "Time": {
+   "present": 3547,
+   "of": 3547,
+   "pct": 100.0,
+   "mandatory": true,
+   "conditional_on_options": false
+  },
+  "Symbol": {
+   "present": 3547,
+   "of": 3547,
+   "pct": 100.0,
+   "mandatory": true,
+   "conditional_on_options": false
+  },
+  "Buy/Sell": {
+   "present": 2795,
+   "of": 3547,
+   "pct": 78.8,
+   "mandatory": true,
+   "conditional_on_options": false
+  },
+  "Quantity": {
+   "present": 0,
+   "of": 3547,
+   "pct": 0.0,
+   "mandatory": true,
+   "conditional_on_options": false,
+   "note": "no field in the corpus schema. Prose mentions a contract count in 91 of 3547 rows."
+  },
+  "Price": {
+   "present": 49,
+   "of": 3547,
+   "pct": 1.4,
+   "mandatory": true,
+   "conditional_on_options": false,
+   "note": "entry only. There is NO exit price anywhere in the corpus, so no row can close a trade."
+  },
+  "Spread": {
+   "present": 3547,
+   "of": 3547,
+   "pct": 100.0,
+   "mandatory": true,
+   "conditional_on_options": false
+  },
+  "Expiration": {
+   "present": 0,
+   "of": 3547,
+   "pct": 0.0,
+   "mandatory": false,
+   "conditional_on_options": true,
+   "note": "96 rows name something date-like in prose"
+  },
+  "Strike": {
+   "present": 0,
+   "of": 3547,
+   "pct": 0.0,
+   "mandatory": false,
+   "conditional_on_options": true,
+   "note": "269 rows name a strike in prose"
+  },
+  "Call/Put": {
+   "present": 0,
+   "of": 3547,
+   "pct": 0.0,
+   "mandatory": false,
+   "conditional_on_options": true
+  },
+  "Commission": {
+   "present": 0,
+   "of": 3547,
+   "pct": 0.0,
+   "mandatory": false,
+   "conditional_on_options": false
+  },
+  "Fees": {
+   "present": 0,
+   "of": 3547,
+   "pct": 0.0,
+   "mandatory": false,
+   "conditional_on_options": false
+  }
+ },
+ "prose_only": {
+  "Strike in prose": 269,
+  "Expiration in prose": 96,
+  "Quantity in prose": 91
+ }
+}

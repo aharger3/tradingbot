@@ -1,0 +1,856 @@
+{
+  "n_S_days_pool": 347,
+  "n_S_days_with_prose": 295,
+  "n_nonS_days_pool": 916,
+  "n_nonS_days_with_prose": 453,
+  "terms": [
+    {
+      "term": "one candle rule (ocr)",
+      "n_S": 91,
+      "n_S_total": 295,
+      "rate_S": 0.3085,
+      "n_nonS": 64,
+      "n_nonS_total": 453,
+      "rate_nonS": 0.1413,
+      "lift_S_over_nonS": 2.183
+    },
+    {
+      "term": "retest tolerance / touch",
+      "n_S": 64,
+      "n_S_total": 295,
+      "rate_S": 0.2169,
+      "n_nonS": 93,
+      "n_nonS_total": 453,
+      "rate_nonS": 0.2053,
+      "lift_S_over_nonS": 1.057
+    },
+    {
+      "term": "hod/lod",
+      "n_S": 43,
+      "n_S_total": 295,
+      "rate_S": 0.1458,
+      "n_nonS": 50,
+      "n_nonS_total": 453,
+      "rate_nonS": 0.1104,
+      "lift_S_over_nonS": 1.321
+    },
+    {
+      "term": "break and retest (br)",
+      "n_S": 34,
+      "n_S_total": 295,
+      "rate_S": 0.1153,
+      "n_nonS": 45,
+      "n_nonS_total": 453,
+      "rate_nonS": 0.0993,
+      "lift_S_over_nonS": 1.16
+    },
+    {
+      "term": "stop wording -- wick",
+      "n_S": 29,
+      "n_S_total": 295,
+      "rate_S": 0.0983,
+      "n_nonS": 15,
+      "n_nonS_total": 453,
+      "rate_nonS": 0.0331,
+      "lift_S_over_nonS": 2.969
+    },
+    {
+      "term": "displacement",
+      "n_S": 26,
+      "n_S_total": 295,
+      "rate_S": 0.0881,
+      "n_nonS": 54,
+      "n_nonS_total": 453,
+      "rate_nonS": 0.1192,
+      "lift_S_over_nonS": 0.739
+    },
+    {
+      "term": "as candle forming",
+      "n_S": 23,
+      "n_S_total": 295,
+      "rate_S": 0.078,
+      "n_nonS": 22,
+      "n_nonS_total": 453,
+      "rate_nonS": 0.0486,
+      "lift_S_over_nonS": 1.605
+    },
+    {
+      "term": "br+ocr / confluence",
+      "n_S": 22,
+      "n_S_total": 295,
+      "rate_S": 0.0746,
+      "n_nonS": 5,
+      "n_nonS_total": 453,
+      "rate_nonS": 0.011,
+      "lift_S_over_nonS": 6.757
+    },
+    {
+      "term": "late / entry timing",
+      "n_S": 14,
+      "n_S_total": 295,
+      "rate_S": 0.0475,
+      "n_nonS": 17,
+      "n_nonS_total": 453,
+      "rate_nonS": 0.0375,
+      "lift_S_over_nonS": 1.265
+    },
+    {
+      "term": "pdh/pdl/pml",
+      "n_S": 14,
+      "n_S_total": 295,
+      "rate_S": 0.0475,
+      "n_nonS": 14,
+      "n_nonS_total": 453,
+      "rate_nonS": 0.0309,
+      "lift_S_over_nonS": 1.536
+    },
+    {
+      "term": "stop wording -- close",
+      "n_S": 13,
+      "n_S_total": 295,
+      "rate_S": 0.0441,
+      "n_nonS": 9,
+      "n_nonS_total": 453,
+      "rate_nonS": 0.0199,
+      "lift_S_over_nonS": 2.218
+    },
+    {
+      "term": "too many candles",
+      "n_S": 7,
+      "n_S_total": 295,
+      "rate_S": 0.0237,
+      "n_nonS": 7,
+      "n_nonS_total": 453,
+      "rate_nonS": 0.0155,
+      "lift_S_over_nonS": 1.536
+    },
+    {
+      "term": "chop",
+      "n_S": 6,
+      "n_S_total": 295,
+      "rate_S": 0.0203,
+      "n_nonS": 91,
+      "n_nonS_total": 453,
+      "rate_nonS": 0.2009,
+      "lift_S_over_nonS": 0.101
+    },
+    {
+      "term": "trend / htf",
+      "n_S": 5,
+      "n_S_total": 295,
+      "rate_S": 0.0169,
+      "n_nonS": 11,
+      "n_nonS_total": 453,
+      "rate_nonS": 0.0243,
+      "lift_S_over_nonS": 0.698
+    },
+    {
+      "term": "exhausted / extended",
+      "n_S": 4,
+      "n_S_total": 295,
+      "rate_S": 0.0136,
+      "n_nonS": 11,
+      "n_nonS_total": 453,
+      "rate_nonS": 0.0243,
+      "lift_S_over_nonS": 0.558
+    },
+    {
+      "term": "reject / rejection",
+      "n_S": 3,
+      "n_S_total": 295,
+      "rate_S": 0.0102,
+      "n_nonS": 2,
+      "n_nonS_total": 453,
+      "rate_nonS": 0.0044,
+      "lift_S_over_nonS": 2.303
+    },
+    {
+      "term": "size of move / rr",
+      "n_S": 3,
+      "n_S_total": 295,
+      "rate_S": 0.0102,
+      "n_nonS": 0,
+      "n_nonS_total": 453,
+      "rate_nonS": 0.0,
+      "lift_S_over_nonS": "inf"
+    },
+    {
+      "term": "volume",
+      "n_S": 1,
+      "n_S_total": 295,
+      "rate_S": 0.0034,
+      "n_nonS": 1,
+      "n_nonS_total": 453,
+      "rate_nonS": 0.0022,
+      "lift_S_over_nonS": 1.536
+    },
+    {
+      "term": "whole dollar level",
+      "n_S": 0,
+      "n_S_total": 295,
+      "rate_S": 0.0,
+      "n_nonS": 0,
+      "n_nonS_total": 453,
+      "rate_nonS": 0.0,
+      "lift_S_over_nonS": 0
+    },
+    {
+      "term": "level not respected",
+      "n_S": 0,
+      "n_S_total": 295,
+      "rate_S": 0.0,
+      "n_nonS": 0,
+      "n_nonS_total": 453,
+      "rate_nonS": 0.0,
+      "lift_S_over_nonS": 0
+    },
+    {
+      "term": "no clear entry",
+      "n_S": 0,
+      "n_S_total": 295,
+      "rate_S": 0.0,
+      "n_nonS": 2,
+      "n_nonS_total": 453,
+      "rate_nonS": 0.0044,
+      "lift_S_over_nonS": 0.0
+    },
+    {
+      "term": "psychological level",
+      "n_S": 0,
+      "n_S_total": 295,
+      "rate_S": 0.0,
+      "n_nonS": 1,
+      "n_nonS_total": 453,
+      "rate_nonS": 0.0022,
+      "lift_S_over_nonS": 0.0
+    },
+    {
+      "term": "vwap",
+      "n_S": 0,
+      "n_S_total": 295,
+      "rate_S": 0.0,
+      "n_nonS": 0,
+      "n_nonS_total": 453,
+      "rate_nonS": 0.0,
+      "lift_S_over_nonS": 0
+    },
+    {
+      "term": "gap",
+      "n_S": 0,
+      "n_S_total": 295,
+      "rate_S": 0.0,
+      "n_nonS": 0,
+      "n_nonS_total": 453,
+      "rate_nonS": 0.0,
+      "lift_S_over_nonS": 0
+    }
+  ],
+  "samples": {
+    "displacement": [
+      {
+        "key": "AMD_2025-11-13",
+        "source": "recovered_reviews.jsonl",
+        "field": "note",
+        "text": "break and straddle but then displacement comes and you get the strong pa retest, stop at pivot and level"
+      },
+      {
+        "key": "ACHR_2025-06-27",
+        "source": "marks/probe_g84_all_in_one_STANDING154_2026-09-01.jsonl",
+        "field": "notes.entry",
+        "text": "9:39 A entry no displacement, S entry at 10"
+      },
+      {
+        "key": "NFLX_2025-05-07",
+        "source": "marks/probe_g84_all_in_one_STANDING154_2026-09-01.jsonl",
+        "field": "notes.is_s",
+        "text": "10:06 because i belive displacement happens before, two candle distraction at9:33-34 but those break rejection patterns like that are forgivable. and look how this one ran"
+      },
+      {
+        "key": "NVDA_2025-06-03",
+        "source": "marks/probe_g84_all_in_one_STANDING154_2026-09-01.jsonl",
+        "field": "notes.entry",
+        "text": "9:46 as candle forming above ORH, no displacement but 9:30 ocr wick confluence with pmh"
+      },
+      {
+        "key": "UBER_2025-03-12",
+        "source": "austin_marks_v7.jsonl",
+        "field": "note",
+        "text": "stock respected green candle rest of the way, break ant retest displacement"
+      },
+      {
+        "key": "ORCL_2025-11-03",
+        "source": "austin_marks_v7.jsonl",
+        "field": "note",
+        "text": "my entry s criteria but late entry, because earlier one existed with less displacement"
+      }
+    ],
+    "chop": [
+      {
+        "key": "SPY_2026-03-02",
+        "source": "austin_marks_v7.jsonl",
+        "field": "note",
+        "text": "candles look a little choppier wicks on both sides"
+      },
+      {
+        "key": "PLTR_2026-02-05",
+        "source": "marks/probe_g84_all_in_one_STANDING154_2026-09-01.jsonl",
+        "field": "notes.entry",
+        "text": "9:54 is the first S but earlier a trades show up in the chop"
+      },
+      {
+        "key": "QQQ_2026-07-24",
+        "source": "marks/probe_master_homework_2026-08-26.jsonl",
+        "field": "notes.missing",
+        "text": "chop and slower moving candles, and entry candle have to get as candle forming not low of day"
+      },
+      {
+        "key": "QQQ_2026-02-12",
+        "source": "marks/probe_master_homework_2026-08-26.jsonl",
+        "field": "notes.s_call",
+        "text": "10:04 S entry, double chop areas but PA and below a lot of levels"
+      },
+      {
+        "key": "CRM_2025-10-09",
+        "source": "marks/probe_g84_all_in_one_STANDING154_2026-09-01.jsonl",
+        "field": "answers.why_not",
+        "text": "chop"
+      },
+      {
+        "key": "TSLA_2024-06-24",
+        "source": "austin_marks_v7.jsonl",
+        "field": "note",
+        "text": "too choppy no displacement"
+      }
+    ],
+    "as candle forming": [
+      {
+        "key": "QQQ_2026-07-07",
+        "source": "marks/deck_marks_index_2026-08-19.jsonl",
+        "field": "notes",
+        "text": "enter as candle forming, put stop in a good place wick of our"
+      },
+      {
+        "key": "AAPL_2026-04-06",
+        "source": "recovered_reviews.jsonl",
+        "field": "note",
+        "text": "try to get a better fill as the candle is forming not at HOD"
+      },
+      {
+        "key": "IWM_2025-08-15",
+        "source": "marks/probe_g84_all_in_one_STANDING154_2026-09-01.jsonl",
+        "field": "notes.entry",
+        "text": "10:00 as candle forming, 10 oclock candles usually have volitility good to note, earlier entry 9:53 pissible all off the OCR"
+      },
+      {
+        "key": "SPY_2025-11-14",
+        "source": "marks/probe_master_2026-08-29.jsonl",
+        "field": "notes.min",
+        "text": "9:41 as candle forming (get good fill)"
+      },
+      {
+        "key": "NVDA_2025-06-03",
+        "source": "marks/probe_g84_all_in_one_STANDING154_2026-09-01.jsonl",
+        "field": "notes.entry",
+        "text": "9:46 as candle forming above ORH, no displacement but 9:30 ocr wick confluence with pmh"
+      },
+      {
+        "key": "QQQ_2026-08-04",
+        "source": "marks/deck_marks_index_2026-08-19.jsonl",
+        "field": "notes",
+        "text": "as candle forming"
+      }
+    ],
+    "too many candles": [
+      {
+        "key": "AAPL_2024-03-28",
+        "source": "austin_marks_v7.jsonl",
+        "field": "note",
+        "text": "4 candles after is an S entry OCR"
+      },
+      {
+        "key": "INTC_2025-02-27",
+        "source": "austin_marks_v7.jsonl",
+        "field": "note",
+        "text": "I see an entry 14 candles later an S entry, your I would need to see what happened earlier, and I dont trade past 11 am remember"
+      },
+      {
+        "key": "PLTR_2024-10-23",
+        "source": "marks/probe_trade_anatomy_2026-09-01.jsonl",
+        "field": "notes.wrong",
+        "text": "AS CANDLE FORMING, see on that candle close you get a bad entry? and its hard to enter a stock when there 2 stop loss options and you wouldve stayed in the trade if you went with the OCR entry 6 candles later."
+      },
+      {
+        "key": "MU_2026-02-09",
+        "source": "austin_marks_v7.jsonl",
+        "field": "note",
+        "text": "first well understanding ive seen, however stop out would've been 5 candles later because thats when the close below happened"
+      },
+      {
+        "key": "TSLA_2024-01-03",
+        "source": "austin_marks_v7.jsonl",
+        "field": "note",
+        "text": "2 or 3 candles later is a S BR for puts"
+      },
+      {
+        "key": "AMD_2026-05-14",
+        "source": "austin_marks_v7.jsonl",
+        "field": "note",
+        "text": "later s entry 8 candles later OCR"
+      }
+    ],
+    "br+ocr / confluence": [
+      {
+        "key": "BABA_2026-05-06",
+        "source": "marks/probe_g84_all_in_one_STANDING154_2026-09-01.jsonl",
+        "field": "notes.entry",
+        "text": "9:51 BR OCR - see how its just easier with the confluence, and when S trades can be entered on candle close it just looks cleaner and is easier."
+      },
+      {
+        "key": "AAPL_2025-01-16",
+        "source": "marks/probe_omen_test1_2026-08-27.jsonl",
+        "field": "setup",
+        "text": "BR+OCR"
+      },
+      {
+        "key": "IWM_2025-04-14",
+        "source": "marks/probe_omen_test1_2026-08-27.jsonl",
+        "field": "setup",
+        "text": "BR+OCR"
+      },
+      {
+        "key": "SPY_2025-05-21",
+        "source": "marks/probe_g71_homework_s3_2026-08-29.jsonl",
+        "field": "notes.is_s",
+        "text": "9:45 BR OCR confluence"
+      },
+      {
+        "key": "NVDA_2025-06-03",
+        "source": "marks/probe_g84_all_in_one_STANDING154_2026-09-01.jsonl",
+        "field": "notes.entry",
+        "text": "9:46 as candle forming above ORH, no displacement but 9:30 ocr wick confluence with pmh"
+      },
+      {
+        "key": "UBER_2026-03-19",
+        "source": "marks/probe_g84_all_in_one_STANDING154_2026-09-01.jsonl",
+        "field": "notes.entry",
+        "text": "9:39 BR OCR confluence"
+      }
+    ],
+    "one candle rule (ocr)": [
+      {
+        "key": "BABA_2026-05-06",
+        "source": "marks/probe_g84_all_in_one_STANDING154_2026-09-01.jsonl",
+        "field": "notes.entry",
+        "text": "9:51 BR OCR - see how its just easier with the confluence, and when S trades can be entered on candle close it just looks cleaner and is easier."
+      },
+      {
+        "key": "AAPL_2026-07-08",
+        "source": "marks/probe_omen_test1_2026-08-27.jsonl",
+        "field": "setup",
+        "text": "OCR"
+      },
+      {
+        "key": "COIN_2025-12-18",
+        "source": "austin_marks_v7.jsonl",
+        "field": "note",
+        "text": "6 candles before might've been an entry, hard to tell, with 930 respected as one candle rule if it was touched but your entry is clean too"
+      },
+      {
+        "key": "QQQ_2026-06-29",
+        "source": "marks/probe_master_homework_2026-08-26.jsonl",
+        "field": "notes.reject",
+        "text": "the engine entered one candle late, thats why it doesn't see the textbook s trade OCR"
+      },
+      {
+        "key": "IWM_2024-04-03",
+        "source": "austin_marks_v7.jsonl",
+        "field": "setup",
+        "text": "OCR"
+      },
+      {
+        "key": "NVDA_2026-05-08",
+        "source": "austin_marks_v7.jsonl",
+        "field": "setup",
+        "text": "Break & retest,One candle rule"
+      }
+    ],
+    "break and retest (br)": [
+      {
+        "key": "BABA_2026-05-06",
+        "source": "marks/probe_g84_all_in_one_STANDING154_2026-09-01.jsonl",
+        "field": "notes.entry",
+        "text": "9:51 BR OCR - see how its just easier with the confluence, and when S trades can be entered on candle close it just looks cleaner and is easier."
+      },
+      {
+        "key": "AAPL_2025-01-16",
+        "source": "marks/probe_omen_test1_2026-08-27.jsonl",
+        "field": "setup",
+        "text": "BR+OCR"
+      },
+      {
+        "key": "IWM_2025-04-14",
+        "source": "marks/probe_omen_test1_2026-08-27.jsonl",
+        "field": "setup",
+        "text": "BR+OCR"
+      },
+      {
+        "key": "SPY_2025-05-21",
+        "source": "marks/probe_g71_homework_s3_2026-08-29.jsonl",
+        "field": "notes.is_s",
+        "text": "9:45 BR OCR confluence"
+      },
+      {
+        "key": "UBER_2026-03-19",
+        "source": "marks/probe_g84_all_in_one_STANDING154_2026-09-01.jsonl",
+        "field": "notes.entry",
+        "text": "9:39 BR OCR confluence"
+      },
+      {
+        "key": "AAPL_2025-08-08",
+        "source": "marks/probe_g84_all_in_one_STANDING154_2026-09-01.jsonl",
+        "field": "notes.is_s",
+        "text": "10:00 S BR OCR confluence if isnt marked as such"
+      }
+    ],
+    "whole dollar level": [],
+    "hod/lod": [
+      {
+        "key": "AAPL_2026-04-06",
+        "source": "recovered_reviews.jsonl",
+        "field": "note",
+        "text": "try to get a better fill as the candle is forming not at HOD"
+      },
+      {
+        "key": "META_2026-03-04",
+        "source": "recovered_reviews.jsonl",
+        "field": "note",
+        "text": "dont want hod really stock overextended a little"
+      },
+      {
+        "key": "MARA_2025-08-22",
+        "source": "austin_marks_v7.jsonl",
+        "field": "note",
+        "text": "took a while to tap hod so maybe scale out slightly before? or get a better entry of that strong green candle"
+      },
+      {
+        "key": "QQQ_2026-07-15",
+        "source": "marks/probe_autopsy_2026-08-23.jsonl",
+        "field": "notes.missing",
+        "text": "the green candle before entry may have missed entry by a cent or two, and usually these work out. not sure if should be a seperate rule or something to study/backtest. also conflicting info, probably wanted to wait for candle close on this one because of the level right there, and it did close below the level, but its near LOD. but the bear PA beginning of the day enough to keep it S, and this stock was a runner it went all the way to PDL"
+      },
+      {
+        "key": "COIN_2025-10-21",
+        "source": "austin_marks_v7.jsonl",
+        "field": "note",
+        "text": "my mark is a better entry by far yes and s quality. blue line entry is C because between tight levels and a consolidation pivot it would have to break for low of day, and red mark is a c as well | but earlier entry 5 candles earlier as the candle is closing weak not at low of day | my mark is a better entry by far yes and s quality. blue line entry is C because between tight levels and a consolidation pivot it would have to break for low of day, and red mark is a c as well"
+      },
+      {
+        "key": "TSLA_2025-10-07",
+        "source": "recovered_reviews.jsonl",
+        "field": "note",
+        "text": "lots more candles before retest but I dont mind with the way it wicked and tapped from so far away, that makes me confident, took a while but we hit the hod, 9 candles before is also an order block"
+      }
+    ],
+    "stop wording -- wick": [
+      {
+        "key": "IWM_2024-04-03",
+        "source": "austin_marks_v7.jsonl",
+        "field": "note",
+        "text": "large wick before candle entry gives confidence even though it's not the absolute strongest green candle"
+      },
+      {
+        "key": "QQQ_2026-07-07",
+        "source": "marks/deck_marks_index_2026-08-19.jsonl",
+        "field": "notes",
+        "text": "enter as candle forming, put stop in a good place wick of our"
+      },
+      {
+        "key": "NFLX_2026-05-26",
+        "source": "marks/probe_g71_homework_s3_2026-08-29.jsonl",
+        "field": "notes.is_s",
+        "text": "9:47 OCR stop green candle wick"
+      },
+      {
+        "key": "NVDA_2025-06-03",
+        "source": "marks/probe_g84_all_in_one_STANDING154_2026-09-01.jsonl",
+        "field": "notes.entry",
+        "text": "9:46 as candle forming above ORH, no displacement but 9:30 ocr wick confluence with pmh"
+      },
+      {
+        "key": "TSLA_2025-10-07",
+        "source": "recovered_reviews.jsonl",
+        "field": "note",
+        "text": "lots more candles before retest but I dont mind with the way it wicked and tapped from so far away, that makes me confident, took a while but we hit the hod, 9 candles before is also an order block"
+      },
+      {
+        "key": "QQQ_2026-07-27",
+        "source": "marks/probe_autopsy_2026-08-23.jsonl",
+        "field": "notes.missing",
+        "text": "these are risky because the large wicks look like errors or market makers messing around, but it did happen twice and the PA was clean."
+      }
+    ],
+    "stop wording -- close": [
+      {
+        "key": "QQQ_2026-07-15",
+        "source": "marks/probe_autopsy_2026-08-23.jsonl",
+        "field": "notes.missing",
+        "text": "the green candle before entry may have missed entry by a cent or two, and usually these work out. not sure if should be a seperate rule or something to study/backtest. also conflicting info, probably wanted to wait for candle close on this one because of the level right there, and it did close below the level, but its near LOD. but the bear PA beginning of the day enough to keep it S, and this stock was a runner it went all the way to PDL"
+      },
+      {
+        "key": "QQQ_2026-08-10",
+        "source": "marks/probe_autopsy_2026-08-23.jsonl",
+        "field": "notes.missing",
+        "text": "see to clarify what ive been talking about. i forgot my OCR definition is simple its in the name \"one candle\" so one candle thats the opposite color of the way its trending. so thats how we can try to start marking it. this is A trade because entry doesent close below level and its more of a pivot structure break and a \"two candle\" rule lol"
+      },
+      {
+        "key": "PLTR_2024-10-23",
+        "source": "marks/probe_trade_anatomy_2026-09-01.jsonl",
+        "field": "notes.wrong",
+        "text": "AS CANDLE FORMING, see on that candle close you get a bad entry? and its hard to enter a stock when there 2 stop loss options and you wouldve stayed in the trade if you went with the OCR entry 6 candles later."
+      },
+      {
+        "key": "MU_2026-02-09",
+        "source": "austin_marks_v7.jsonl",
+        "field": "note",
+        "text": "first well understanding ive seen, however stop out would've been 5 candles later because thats when the close below happened"
+      },
+      {
+        "key": "NFLX_2026-05-12",
+        "source": "marks/probe_omen_test1_2026-08-27.jsonl",
+        "field": "notes.setup",
+        "text": "two candles earlier couldve been S entry too but extra confirmation was the strong close above that nearby level"
+      },
+      {
+        "key": "IWM_2025-10-21",
+        "source": "austin_marks_v7.jsonl",
+        "field": "note",
+        "text": "1 candle earlier is the entry, marking A because 4 candles before the mark is a bullish candle and price never got close below those levels, so it looks riskier not knowing if it's gonna run"
+      }
+    ],
+    "late / entry timing": [
+      {
+        "key": "GOOGL_2024-10-29",
+        "source": "marks/probe_trade_anatomy_2026-09-01.jsonl",
+        "field": "notes.wrong",
+        "text": "I dont see anything to be honest unless its very late in the day when it starts running"
+      },
+      {
+        "key": "QQQ_2026-06-29",
+        "source": "marks/probe_master_homework_2026-08-26.jsonl",
+        "field": "notes.reject",
+        "text": "the engine entered one candle late, thats why it doesn't see the textbook s trade OCR"
+      },
+      {
+        "key": "BABA_2025-03-14",
+        "source": "marks/probe_g84_all_in_one_STANDING154_2026-09-01.jsonl",
+        "field": "notes.entry",
+        "text": "10:40 but late in day"
+      },
+      {
+        "key": "COIN_2025-10-21",
+        "source": "austin_marks_v7.jsonl",
+        "field": "note",
+        "text": "my mark is a better entry by far yes and s quality. blue line entry is C because between tight levels and a consolidation pivot it would have to break for low of day, and red mark is a c as well | but earlier entry 5 candles earlier as the candle is closing weak not at low of day | my mark is a better entry by far yes and s quality. blue line entry is C because between tight levels and a consolidation pivot it would have to break for low of day, and red mark is a c as well"
+      },
+      {
+        "key": "AMD_2025-11-21",
+        "source": "austin_marks_v7.jsonl",
+        "field": "note",
+        "text": "almost earlier entry 5 candles earlier,"
+      },
+      {
+        "key": "ORCL_2025-11-03",
+        "source": "austin_marks_v7.jsonl",
+        "field": "note",
+        "text": "my entry s criteria but late entry, because earlier one existed with less displacement"
+      }
+    ],
+    "exhausted / extended": [
+      {
+        "key": "META_2026-03-04",
+        "source": "recovered_reviews.jsonl",
+        "field": "note",
+        "text": "dont want hod really stock overextended a little"
+      },
+      {
+        "key": "QQQ_2024-08-23",
+        "source": "marks/probe_trade_anatomy_2026-09-01.jsonl",
+        "field": "notes.wrong",
+        "text": "I see entry of hammerstick candle that touched PMH, you entered on an overextended break candle. and i would scale out HOD and stop either BE, and/or stop held so maybe a 2nd scale of taking profit when it came back to the HOD area, stopping rest BE"
+      },
+      {
+        "key": "TSM_2026-02-23",
+        "source": "austin_marks_v7.jsonl",
+        "field": "note",
+        "text": "little overextended because higher highs but clean break and retest happens up there make sure to save somehow. im going to try not to type much because i need your opinion, were really not oging anywhere. the grading is hard because if i type s, somethimes your trade wasnt an s and mine was, but it gets graded as a loss, when couldve been a win, or couldve been a no trade if i know all the context of the candles. so audits can come from me but they need to be way more specific. i think i need a diagram to complete or artifact of all the questions to optimize the system, i did that a while ago at the beginning maybe it will help. but this project is taking so much time and the problem is its not running untill i brainstorm a big loop which finishes in 45 minutes. not great use of my time. brainstormed agent who learns the system and knows it and can actively improve. hard to build and i dropped hermes, but if thats the easiest agents to set up maybe we need it. and i probably need to invest more into this project money wise to save time, but i also want to be efficient with tokens. thats why i break projects into specs. but efficient with time is this project needs to run somehow 24/7 even when im brainstorming or you give me a artifact or different human task. what do you estimate how long this project should take at least this heavy lifting until its profatable and need less insane monitering? even with breaking updates into master specs, the projects so complicated that we are not making progress. once again all the data extraction. i need a difinitive answer of how we can use it to improve the trading? if something can run without my attention 24 hours, surely its all the data we have about scarface and jdub, from servers i paid a lot of money to get acess to. when its me brainstorming and one session master speccing, fine but loop finishes in 1h and i brainstorm 5 hours, and some things should be running always somehow. i probably need to invest more money, and claude max is probably the best way to go. im so stupid with money ill save and wont spend anything but ill buy expensive services, not a materialist, a minimalist who wants to have a bunch of money, so i can start taking more acting classes dance classes have agentic agents managing my acting career so i can do what i love and not live lavish, but be a secret millionare. part of me thinks i should switch to futures and tastytrade doesent work so we would have to find something else, because futures can scale and copy trade. only vanquish is there for options and can only buy 1 account at a time. or maybe i can buy 10 and copy trade them right before passing challenge as some kind of loophole for leverage but probably not. problem is i learned the options system my expertiese is not in futures. and they dont trade futures so we would be backtesting coming up with our own attempts of sucess. lots here, what are your thoughts?"
+      },
+      {
+        "key": "QQQ_2026-02-11",
+        "source": "austin_marks_v7.jsonl",
+        "field": "note",
+        "text": "little overextended the stock, and didn't get past pml"
+      }
+    ],
+    "level not respected": [],
+    "no clear entry": [],
+    "retest tolerance / touch": [
+      {
+        "key": "COIN_2025-12-18",
+        "source": "austin_marks_v7.jsonl",
+        "field": "note",
+        "text": "6 candles before might've been an entry, hard to tell, with 930 respected as one candle rule if it was touched but your entry is clean too"
+      },
+      {
+        "key": "AMD_2025-11-13",
+        "source": "recovered_reviews.jsonl",
+        "field": "note",
+        "text": "break and straddle but then displacement comes and you get the strong pa retest, stop at pivot and level"
+      },
+      {
+        "key": "NVDA_2026-05-08",
+        "source": "austin_marks_v7.jsonl",
+        "field": "setup",
+        "text": "Break & retest,One candle rule"
+      },
+      {
+        "key": "TSLA_2025-06-27",
+        "source": "austin_marks_v7.jsonl",
+        "field": "setup",
+        "text": "Break & retest"
+      },
+      {
+        "key": "UBER_2025-03-12",
+        "source": "austin_marks_v7.jsonl",
+        "field": "note",
+        "text": "stock respected green candle rest of the way, break ant retest displacement"
+      },
+      {
+        "key": "COIN_2025-03-06",
+        "source": "austin_marks_v7.jsonl",
+        "field": "setup",
+        "text": "Order block,Break & retest"
+      }
+    ],
+    "psychological level": [],
+    "vwap": [],
+    "pdh/pdl/pml": [
+      {
+        "key": "NVDA_2025-06-03",
+        "source": "marks/probe_g84_all_in_one_STANDING154_2026-09-01.jsonl",
+        "field": "notes.entry",
+        "text": "9:46 as candle forming above ORH, no displacement but 9:30 ocr wick confluence with pmh"
+      },
+      {
+        "key": "IWM_2026-07-24",
+        "source": "austin_marks_v7.jsonl",
+        "field": "note",
+        "text": "never broke that PML earlier"
+      },
+      {
+        "key": "QQQ_2026-07-15",
+        "source": "marks/probe_autopsy_2026-08-23.jsonl",
+        "field": "notes.missing",
+        "text": "the green candle before entry may have missed entry by a cent or two, and usually these work out. not sure if should be a seperate rule or something to study/backtest. also conflicting info, probably wanted to wait for candle close on this one because of the level right there, and it did close below the level, but its near LOD. but the bear PA beginning of the day enough to keep it S, and this stock was a runner it went all the way to PDL"
+      },
+      {
+        "key": "QQQ_2024-08-23",
+        "source": "marks/probe_trade_anatomy_2026-09-01.jsonl",
+        "field": "notes.wrong",
+        "text": "I see entry of hammerstick candle that touched PMH, you entered on an overextended break candle. and i would scale out HOD and stop either BE, and/or stop held so maybe a 2nd scale of taking profit when it came back to the HOD area, stopping rest BE"
+      },
+      {
+        "key": "UBER_2024-09-10",
+        "source": "austin_marks_v7.jsonl",
+        "field": "note",
+        "text": "could be entry slightly earlier I just didn't like that the entry was above pml"
+      },
+      {
+        "key": "TSLA_2026-06-03",
+        "source": "marks/probe_autopsy_2026-08-23.jsonl",
+        "field": "notes.missing",
+        "text": "this one is both, 9 candles before entry is the clear OCR wick stop confluence with the pmh break."
+      }
+    ],
+    "gap": [],
+    "trend / htf": [
+      {
+        "key": "GOOGL_2024-10-15",
+        "source": "marks/probe_trade_anatomy_2026-09-01.jsonl",
+        "field": "notes.wrong",
+        "text": "entry fine but i see downgrades because earlier entry is 9:43 OCR stop body of opening range OCR PT HOD, 2r, median, best average for runner. and maybe we decide 30/30/30/10 and 50/20/10/10 based on how well the day is going to run or trend. if day is not trending, we want those HOD exits more money quicker"
+      },
+      {
+        "key": "ORCL_2025-03-28",
+        "source": "austin_marks_v7.jsonl",
+        "field": "note",
+        "text": "here to be s you draw a trend link would like a second confirmation candle with strength to break that line"
+      },
+      {
+        "key": "PLTR_2024-09-20",
+        "source": "marks/probe_trade_anatomy_2026-09-01.jsonl",
+        "field": "notes.wrong",
+        "text": "10:01 couldve been entry i woudlve been faked out, but the wick on it was too much and have to push through 10 candles of consolidation. the entry shouldve been 6 candles earlier, you seem to enter on breaks which is a halucination we never trade that and you know it. PT1 LOD PT2 was the level which it ended up hitting. PT 3 2r PT 4 runner target of choice based on HTF or medium average and those two never hit. 2r maybe hit because you had a bad RR entry."
+      },
+      {
+        "key": "AAPL_2025-08-25",
+        "source": "marks/probe_omen_test1_2026-08-27.jsonl",
+        "field": "notes.setup",
+        "text": "barely missed no displacement but can be forgiven with such an early trade like this and/or HTF thesis"
+      },
+      {
+        "key": "QQQ_2025-02-25",
+        "source": "marks/probe_trade_anatomy_2026-09-01.jsonl",
+        "field": "notes.wrong",
+        "text": "9:46 puts looks like better entry, runner always the last one why is it in between 2 r? 2r level is trumped by HTF levels and whole psych number if one is close. this one shouldve been scaled out, hit all the targets to average in the higher quartile of trades. 3-4r?"
+      }
+    ],
+    "volume": [
+      {
+        "key": "SOFI_2025-10-03",
+        "source": "recovered_reviews.jsonl",
+        "field": "note",
+        "text": "yes you try these, maybe these cheap stocks in our system down perform well even though they have high options volume. target low of day you dont have to go right to 2000 you can target the little more extra of the wick"
+      }
+    ],
+    "reject / rejection": [
+      {
+        "key": "NFLX_2025-05-07",
+        "source": "marks/probe_g84_all_in_one_STANDING154_2026-09-01.jsonl",
+        "field": "notes.is_s",
+        "text": "10:06 because i belive displacement happens before, two candle distraction at9:33-34 but those break rejection patterns like that are forgivable. and look how this one ran"
+      },
+      {
+        "key": "AAPL_2024-12-20",
+        "source": "austin_marks_v7.jsonl",
+        "field": "note",
+        "text": "I like break and retests where there was one fast candle and one rejection at 931 and 932 but can pay attention to other pivots instead like 930 and the 1010 pivot area or just the order block 2 before entry"
+      },
+      {
+        "key": "QQQ_2026-07-20",
+        "source": "marks/probe_master_homework_2026-08-26.jsonl",
+        "field": "notes.reject",
+        "text": "a because it broke above orh and rejected, but clear break retest weak PA"
+      }
+    ],
+    "size of move / rr": [
+      {
+        "key": "QQQ_2024-08-26",
+        "source": "marks/probe_trade_anatomy_2026-09-01.jsonl",
+        "field": "notes.wrong",
+        "text": "RUNNER PLAN - way too tight, if we know our mean RR is 2.5 we shouldnt be targeting .41, this one ran. there was reall levels to target, 2 r and PDL, when 2r falls between a whole psych number target that instead. cant critique entry and stop because cant see but as long as it was clean with displacement"
+      },
+      {
+        "key": "PLTR_2024-09-20",
+        "source": "marks/probe_trade_anatomy_2026-09-01.jsonl",
+        "field": "notes.wrong",
+        "text": "10:01 couldve been entry i woudlve been faked out, but the wick on it was too much and have to push through 10 candles of consolidation. the entry shouldve been 6 candles earlier, you seem to enter on breaks which is a halucination we never trade that and you know it. PT1 LOD PT2 was the level which it ended up hitting. PT 3 2r PT 4 runner target of choice based on HTF or medium average and those two never hit. 2r maybe hit because you had a bad RR entry."
+      },
+      {
+        "key": "IWM_2026-05-12",
+        "source": "marks/probe_g84_all_in_one_STANDING154_2026-09-01.jsonl",
+        "field": "notes.entry",
+        "text": "9:49 i could consider that as the entry because theres no BR or OCR in that consolidation phase, bear flag to start the day, and that entry candle wicked back into the pivot structure and bottom of candle at 9:44, which signals me that this has the ability to run and have good RR. and entry has displacement too."
+      }
+    ]
+  }
+}

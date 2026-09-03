@@ -1,0 +1,230 @@
+{
+  "geometry": {
+    "head": {
+      "trades": 4508,
+      "median_risk_dollars": 0.48,
+      "median_risk_pct_of_price": 0.2403,
+      "median_target_distance_pct": 0.4796,
+      "pct_risk_under_10c": 4.4,
+      "outcomes": {
+        "loss": 1824,
+        "win": 2646,
+        "scratch": 38
+      },
+      "win_pct_of_all": 58.7
+    },
+    "close": {
+      "trades": 4333,
+      "median_risk_dollars": 0.54,
+      "median_risk_pct_of_price": 0.2955,
+      "median_target_distance_pct": 0.5888,
+      "pct_risk_under_10c": 5.7,
+      "outcomes": {
+        "win": 1904,
+        "loss": 2397,
+        "scratch": 32
+      },
+      "win_pct_of_all": 43.9
+    },
+    "next_open": {
+      "trades": 4309,
+      "median_risk_dollars": 0.54,
+      "median_risk_pct_of_price": 0.2925,
+      "median_target_distance_pct": 0.5843,
+      "pct_risk_under_10c": 5.3,
+      "outcomes": {
+        "win": 1940,
+        "loss": 2336,
+        "scratch": 33
+      },
+      "win_pct_of_all": 45.0
+    },
+    "limit": {
+      "trades": 1803,
+      "median_risk_dollars": 0.42,
+      "median_risk_pct_of_price": 0.2123,
+      "median_target_distance_pct": 0.4262,
+      "pct_risk_under_10c": 3.1,
+      "outcomes": {
+        "loss": 1222,
+        "win": 575,
+        "scratch": 6
+      },
+      "win_pct_of_all": 31.9
+    },
+    "late1": {
+      "trades": 3924,
+      "median_risk_dollars": 0.59,
+      "median_risk_pct_of_price": 0.3433,
+      "median_target_distance_pct": 0.6798,
+      "pct_risk_under_10c": 5.6,
+      "outcomes": {
+        "win": 1540,
+        "loss": 2357,
+        "scratch": 27
+      },
+      "win_pct_of_all": 39.2
+    },
+    "late2": {
+      "trades": 3779,
+      "median_risk_dollars": 0.63,
+      "median_risk_pct_of_price": 0.3835,
+      "median_target_distance_pct": 0.7672,
+      "pct_risk_under_10c": 5.5,
+      "outcomes": {
+        "loss": 2312,
+        "win": 1444,
+        "scratch": 23
+      },
+      "win_pct_of_all": 38.2
+    },
+    "late5": {
+      "trades": 3755,
+      "median_risk_dollars": 0.71,
+      "median_risk_pct_of_price": 0.4665,
+      "median_target_distance_pct": 0.9318,
+      "pct_risk_under_10c": 4.8,
+      "outcomes": {
+        "loss": 2360,
+        "win": 1374,
+        "scratch": 21
+      },
+      "win_pct_of_all": 36.6
+    }
+  },
+  "limit": {
+    "orders_placed": 3426,
+    "never_filled": 306,
+    "never_filled_pct": 8.9,
+    "lag_minutes": {
+      "median": 1.0,
+      "mean": 3.16,
+      "p90": 7.0,
+      "filled_next_minute_pct": 68.2
+    },
+    "gap_through_leaves_fill_past_stop": 0,
+    "unfilled_by_setup": {
+      "break_and_retest": 157,
+      "one_candle_rule": 137,
+      "reentry_84_rule": 12
+    },
+    "filled_by_setup": {
+      "break_and_retest": 1987,
+      "reentry_84_rule": 415,
+      "one_candle_rule": 718
+    },
+    "days_with_an_order": 494,
+    "days_first_order_never_filled": 39
+  },
+  "time_of_day_one_a_day": {
+    "head": {
+      "n": 499,
+      "before_10am": 490,
+      "before_10am_pct": 98.2,
+      "median_et": "09:41"
+    },
+    "close": {
+      "n": 500,
+      "before_10am": 500,
+      "before_10am_pct": 100.0,
+      "median_et": "09:39"
+    },
+    "next_open": {
+      "n": 500,
+      "before_10am": 500,
+      "before_10am_pct": 100.0,
+      "median_et": "09:40"
+    },
+    "limit": {
+      "n": 493,
+      "before_10am": 398,
+      "before_10am_pct": 80.7,
+      "median_et": "09:47"
+    },
+    "late1": {
+      "n": 500,
+      "before_10am": 500,
+      "before_10am_pct": 100.0,
+      "median_et": "09:41"
+    },
+    "late2": {
+      "n": 500,
+      "before_10am": 500,
+      "before_10am_pct": 100.0,
+      "median_et": "09:41"
+    },
+    "late5": {
+      "n": 500,
+      "before_10am": 500,
+      "before_10am_pct": 100.0,
+      "median_et": "09:44"
+    }
+  },
+  "free_R_at_signal": {
+    "head": {
+      "n": 4508,
+      "median_R_already_won_at_signal": 0.4347,
+      "mean_R_already_won_at_signal": 0.58,
+      "pct_already_up_half_R": 44.8,
+      "pct_already_up_1R": 17.5
+    },
+    "close": {
+      "n": 4333,
+      "median_R_already_won_at_signal": 0.0,
+      "mean_R_already_won_at_signal": 0.0,
+      "pct_already_up_half_R": 0.0,
+      "pct_already_up_1R": 0.0
+    },
+    "limit": {
+      "n": 1803,
+      "median_R_already_won_at_signal": 0.3333,
+      "mean_R_already_won_at_signal": 0.49,
+      "pct_already_up_half_R": 33.6,
+      "pct_already_up_1R": 11.9
+    }
+  },
+  "survival_vs_head": {
+    "close": {
+      "trades": 4186,
+      "shared_with_head": 754,
+      "new": 3432,
+      "lost_from_head": 3661,
+      "shared_pct_of_head": 17.1
+    },
+    "next_open": {
+      "trades": 4174,
+      "shared_with_head": 747,
+      "new": 3427,
+      "lost_from_head": 3668,
+      "shared_pct_of_head": 16.9
+    },
+    "limit": {
+      "trades": 1790,
+      "shared_with_head": 1290,
+      "new": 500,
+      "lost_from_head": 3125,
+      "shared_pct_of_head": 29.2
+    },
+    "late1": {
+      "trades": 3791,
+      "shared_with_head": 630,
+      "new": 3161,
+      "lost_from_head": 3785,
+      "shared_pct_of_head": 14.3
+    },
+    "late2": {
+      "trades": 3661,
+      "shared_with_head": 512,
+      "new": 3149,
+      "lost_from_head": 3903,
+      "shared_pct_of_head": 11.6
+    },
+    "late5": {
+      "trades": 3605,
+      "shared_with_head": 477,
+      "new": 3128,
+      "lost_from_head": 3938,
+      "shared_pct_of_head": 10.8
+    }
+  }
+}

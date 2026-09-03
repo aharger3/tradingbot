@@ -1,0 +1,107 @@
+G7.2 track `sixlevels` -- the engine change this ticket measured.
+
+NOT APPLIED. `signal_runner.py` is owned by another item on this board and other agents are
+editing it in parallel, so this pass measured the change without touching the file: the
+rigs (research/g72_sixlevels_book.py, research/g72_sixlevels_recall.py) read signal_runner's
+source, apply an ASSERTED one-line substitution to a copy in memory, and exec that into
+sys.modules. Nothing was written to any shipped file.
+
+The numbers are in research/g72_sixlevels_report.md. Read it before applying: only the
+first hunk is recommended for default-ON.
+
+Austin, 2026-08-29 (Projects/omen-rulebook.md, "The six levels, named at last"):
+
+    PDH  PDL  PMH  PML  HOD  LOD
+    "you know the 6 levels i watch thats it."
+    "only the 6 levels, but you can still visualize those pivots."
+
+=============================================================================
+HUNK 1 -- RECOMMENDED, default ON. HOD/LOD, with the staleness gates relaxed.
+Measured: win rate 55.9% -> 57.4%, +$338,455 over two years, +7 of his 278
+bar-backed S days and none lost, 25/25 green months, drawdown unchanged.
+Paired against the old book on the 5,980 shared trades: +0.0004 +/- 0.0008 R,
+i.e. it only adds, it never moves an existing trade.
+=============================================================================
+
+--- a/signal_runner.py
++++ b/signal_runner.py
+@@ signal_runner.py:148
+-HODLOD_PAIR = False  # F3 12mo 2026-07-11: 19 tr/yr standalone, 33.3%W −$228,
+-                     # tier drag 43.4→42.5 — no edge as specced. OFF.
++# G7.2 2026-08-29: ON. Austin named HOD and LOD as two of his six levels, and
++# HOD alone is the engine's single biggest level miss -- 413 symbol-days where
++# a human named it and the engine had no level for it
++# (research/corpus_sf/level_grading.md). The July A/B that switched this off
++# measured it at the staleness settings below, which made it nearly dead: 85
++# trades in two years and zero extra S days (research/g72_sixlevels_report.md).
++HODLOD_PAIR = os.getenv("HODLOD_PAIR", "1").strip().lower() in ("1", "true", "yes", "on")
++# How stale the session extreme has to be to count as a break-and-retest level.
++# It has to be SOME way stale -- a level you break and retest must have been set
++# before the retest window, or the pattern cannot exist -- so the 12-bar FSM
++# window is the floor. The old 43/30 pair was not about the pattern: it was
++# chosen so the HOD would not duplicate the OPENING RANGE high, which pushed
++# the first possible HOD entry out to 10:13 on a session that ends at 11:00.
++HODLOD_MIN_BARS = int(os.getenv("HODLOD_MIN_BARS", "20"))    # was 43
++HODLOD_MIN_AGE = int(os.getenv("HODLOD_MIN_AGE", "12"))      # was 30
+
+@@ signal_runner.py:2679
+-        if HODLOD_PAIR and len(self.candles) >= 43:
++        if HODLOD_PAIR and len(self.candles) >= HODLOD_MIN_BARS:
+
+@@ signal_runner.py:2687
+-            hod_lv = hi_val if hi_age >= 30 and not dup(hi_val) else None
+-            lod_lv = lo_val if lo_age >= 30 and not dup(lo_val) else None
++            hod_lv = hi_val if hi_age >= HODLOD_MIN_AGE and not dup(hi_val) else None
++            lod_lv = lo_val if lo_age >= HODLOD_MIN_AGE and not dup(lo_val) else None
+
+=============================================================================
+HUNK 2 -- NOT recommended for default-ON. The opening range out of the GATING
+set. Money is the best on the board (+$81/day under one-trade-a-day, drawdown
+$19,980 -> $17,936) but it costs 42 of his 278 S days and 5 of the 34 held-out
+cards, and precision falls too. Ship the flag OFF and let Austin rule.
+=============================================================================
+
+@@ beside PIVOT_LEVELS, signal_runner.py:1162
++# Is the 5-minute opening range allowed to GATE -- to generate a
++# break-and-retest entry and therefore a stop? It is NOT one of Austin's six,
++# and in the mentor corpus ORH/ORL rank 16th and 17th out of everything a human
++# names (research/corpus_sf/level_grading.md). It is also, measured, carrying
++# 42 of his S days, so this stays ON until he sees that number
++# (research/g72_sixlevels_report.md section 2).
++OR_GATES = os.getenv("OR_GATES", "1").strip().lower() in ("1", "true", "yes", "on")
+
+@@ signal_runner.py:2672
+-        level_pairs = [("OR high", "OR low", or_high, or_low)]
++        # or_high/or_low are still computed above, still sit in _active_levels
++        # for chop grading, and every deck still draws them. OR_GATES=0 only
++        # stops them generating an entry, a stop or a target.
++        level_pairs = [("OR high", "OR low", or_high, or_low)] if OR_GATES else []
+
+@@ signal_runner.py:2686 -- required whenever OR_GATES is 0
+-            dup = lambda v: any(abs(v - l) / l < 0.001 for l in self._active_levels)
++            # Dedupe HOD/LOD against the other four levels he watches. With the
++            # opening range left in this list, a session high set in the first
++            # five minutes is discarded as "the OR high again" -- and that is
++            # exactly the HOD he says he watches. Worth +1 held-out card and
++            # +3 corpus S days on its own.
++            _dupset = self._active_levels if OR_GATES else [
++                l for l in (self.pdh, self.pdl, self.pmh, self.pml) if l]
++            dup = lambda v: any(abs(v - l) / l < 0.001 for l in _dupset)
+
+=============================================================================
+HUNK 3 -- NOT recommended for default-ON. Pivot structure gates nothing.
+Money is flat to the dollar ($539 -> $538 per trade) and drawdown improves a
+third ($19,980 -> $13,338), and precision rises 39.7% -> 47.4% -- but it costs
+30 of his 278 S days and drops a green month. A real trade, his call.
+Note this REFUTES the board line "pivot levels carry zero of your held-out S
+days": that check was run on five specific cards; across all 278 it is thirty.
+=============================================================================
+
+@@ signal_runner.py:1162
+-PIVOT_LEVELS = os.getenv("PIVOT_LEVELS", "1").strip().lower() in ("1", "true", "yes", "on")
++# "only the 6 levels, but you can still visualize those pivots." A pivot is not
++# one of his six. Set to 0 and a pivot gates nothing -- not entry, not the stop,
++# not the target. Nothing in the deck or chart builders reads this flag, so it
++# costs no visualisation (and none exists today: no deck draws a pivot).
++# Default stays 1: measured at -30 of his S days (research/g72_sixlevels_report.md).
++PIVOT_LEVELS = os.getenv("PIVOT_LEVELS", "1").strip().lower() in ("1", "true", "yes", "on")

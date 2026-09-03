@@ -1,0 +1,3273 @@
+{
+ "base": {
+  "all_trades": {
+   "trades": 4508,
+   "win_pct": 59.4,
+   "total_dollars": 2633850.0,
+   "per_trade": 584.0,
+   "mean_r": 0.5843,
+   "per_day": 5268.0,
+   "months_green": 25,
+   "months": 25,
+   "weeks_green": 100,
+   "weeks": 105,
+   "green_days_pct": 69.9,
+   "days_traded": 499,
+   "worst_drawdown": 11105.0
+  },
+  "one_a_day": {
+   "trades": 499,
+   "win_pct": 66.7,
+   "total_dollars": 360380.0,
+   "per_trade": 722.0,
+   "mean_r": 0.7222,
+   "per_day": 721.0,
+   "months_green": 25,
+   "months": 25,
+   "weeks_green": 87,
+   "weeks": 105,
+   "green_days_pct": 66.7,
+   "days_traded": 499,
+   "worst_drawdown": 5993.0
+  }
+ },
+ "arms": {
+  "pm_er_full": {
+   "knowable_at": "09:30",
+   "coverage_pct": 100.0,
+   "rows_filter_may_touch": 6170,
+   "cuts": {
+    "0.0095": {
+     "threshold": 0.0095,
+     "kept_pct": 90.0,
+     "all_trades": {
+      "trades": 4169,
+      "win_pct": 59.7,
+      "total_dollars": 2472537.0,
+      "per_trade": 593.0,
+      "mean_r": 0.5931,
+      "per_day": 4945.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 102,
+      "weeks": 105,
+      "green_days_pct": 68.7,
+      "days_traded": 499,
+      "worst_drawdown": 11745.0
+     },
+     "one_a_day": {
+      "trades": 499,
+      "win_pct": 65.3,
+      "total_dollars": 337155.0,
+      "per_trade": 676.0,
+      "mean_r": 0.6757,
+      "per_day": 674.0,
+      "months_green": 23,
+      "months": 25,
+      "weeks_green": 85,
+      "weeks": 105,
+      "green_days_pct": 65.3,
+      "days_traded": 499,
+      "worst_drawdown": 5993.0
+     },
+     "oneaday_delta_per_day": -46.0,
+     "oneaday_delta_ci95": [
+      -108.0,
+      18.0
+     ],
+     "clears_bar": false
+    },
+    "0.0189": {
+     "threshold": 0.0189,
+     "kept_pct": 80.0,
+     "all_trades": {
+      "trades": 3744,
+      "win_pct": 59.3,
+      "total_dollars": 2253028.0,
+      "per_trade": 602.0,
+      "mean_r": 0.6018,
+      "per_day": 4506.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 98,
+      "weeks": 105,
+      "green_days_pct": 67.3,
+      "days_traded": 499,
+      "worst_drawdown": 12395.0
+     },
+     "one_a_day": {
+      "trades": 499,
+      "win_pct": 65.7,
+      "total_dollars": 347110.0,
+      "per_trade": 696.0,
+      "mean_r": 0.6956,
+      "per_day": 694.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 89,
+      "weeks": 105,
+      "green_days_pct": 65.7,
+      "days_traded": 499,
+      "worst_drawdown": 6000.0
+     },
+     "oneaday_delta_per_day": -27.0,
+     "oneaday_delta_ci95": [
+      -116.0,
+      65.0
+     ],
+     "clears_bar": false
+    },
+    "0.0286": {
+     "threshold": 0.0286,
+     "kept_pct": 70.0,
+     "all_trades": {
+      "trades": 3326,
+      "win_pct": 59.3,
+      "total_dollars": 2044998.0,
+      "per_trade": 615.0,
+      "mean_r": 0.6149,
+      "per_day": 4090.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 97,
+      "weeks": 105,
+      "green_days_pct": 65.6,
+      "days_traded": 497,
+      "worst_drawdown": 16608.0
+     },
+     "one_a_day": {
+      "trades": 497,
+      "win_pct": 64.6,
+      "total_dollars": 336092.0,
+      "per_trade": 676.0,
+      "mean_r": 0.6762,
+      "per_day": 672.0,
+      "months_green": 24,
+      "months": 25,
+      "weeks_green": 84,
+      "weeks": 105,
+      "green_days_pct": 64.6,
+      "days_traded": 497,
+      "worst_drawdown": 7000.0
+     },
+     "oneaday_delta_per_day": -49.0,
+     "oneaday_delta_ci95": [
+      -148.0,
+      55.0
+     ],
+     "clears_bar": false
+    },
+    "0.0394": {
+     "threshold": 0.0394,
+     "kept_pct": 60.0,
+     "all_trades": {
+      "trades": 2906,
+      "win_pct": 58.8,
+      "total_dollars": 1762504.0,
+      "per_trade": 607.0,
+      "mean_r": 0.6065,
+      "per_day": 3525.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 97,
+      "weeks": 105,
+      "green_days_pct": 65.7,
+      "days_traded": 495,
+      "worst_drawdown": 15595.0
+     },
+     "one_a_day": {
+      "trades": 495,
+      "win_pct": 65.7,
+      "total_dollars": 347968.0,
+      "per_trade": 703.0,
+      "mean_r": 0.703,
+      "per_day": 696.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 82,
+      "weeks": 105,
+      "green_days_pct": 65.7,
+      "days_traded": 495,
+      "worst_drawdown": 5000.0
+     },
+     "oneaday_delta_per_day": -25.0,
+     "oneaday_delta_ci95": [
+      -138.0,
+      92.0
+     ],
+     "clears_bar": false
+    },
+    "0.0508": {
+     "threshold": 0.0508,
+     "kept_pct": 50.0,
+     "all_trades": {
+      "trades": 2474,
+      "win_pct": 58.1,
+      "total_dollars": 1476419.0,
+      "per_trade": 597.0,
+      "mean_r": 0.5968,
+      "per_day": 2953.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 94,
+      "weeks": 105,
+      "green_days_pct": 61.3,
+      "days_traded": 489,
+      "worst_drawdown": 13868.0
+     },
+     "one_a_day": {
+      "trades": 489,
+      "win_pct": 62.8,
+      "total_dollars": 338990.0,
+      "per_trade": 693.0,
+      "mean_r": 0.6932,
+      "per_day": 678.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 85,
+      "weeks": 105,
+      "green_days_pct": 62.8,
+      "days_traded": 489,
+      "worst_drawdown": 5000.0
+     },
+     "oneaday_delta_per_day": -43.0,
+     "oneaday_delta_ci95": [
+      -195.0,
+      118.0
+     ],
+     "clears_bar": false
+    },
+    "0.0648": {
+     "threshold": 0.0648,
+     "kept_pct": 39.9,
+     "all_trades": {
+      "trades": 2022,
+      "win_pct": 57.9,
+      "total_dollars": 1189474.0,
+      "per_trade": 588.0,
+      "mean_r": 0.5883,
+      "per_day": 2379.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 93,
+      "weeks": 105,
+      "green_days_pct": 60.0,
+      "days_traded": 482,
+      "worst_drawdown": 12900.0
+     },
+     "one_a_day": {
+      "trades": 482,
+      "win_pct": 60.8,
+      "total_dollars": 314558.0,
+      "per_trade": 653.0,
+      "mean_r": 0.6526,
+      "per_day": 629.0,
+      "months_green": 24,
+      "months": 25,
+      "weeks_green": 87,
+      "weeks": 105,
+      "green_days_pct": 60.8,
+      "days_traded": 482,
+      "worst_drawdown": 6276.0
+     },
+     "oneaday_delta_per_day": -92.0,
+     "oneaday_delta_ci95": [
+      -254.0,
+      73.0
+     ],
+     "clears_bar": false
+    },
+    "0.0799": {
+     "threshold": 0.0799,
+     "kept_pct": 30.0,
+     "all_trades": {
+      "trades": 1562,
+      "win_pct": 58.1,
+      "total_dollars": 914918.0,
+      "per_trade": 586.0,
+      "mean_r": 0.5857,
+      "per_day": 1830.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 88,
+      "weeks": 105,
+      "green_days_pct": 61.3,
+      "days_traded": 447,
+      "worst_drawdown": 12683.0
+     },
+     "one_a_day": {
+      "trades": 447,
+      "win_pct": 60.3,
+      "total_dollars": 263870.0,
+      "per_trade": 590.0,
+      "mean_r": 0.5903,
+      "per_day": 528.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 76,
+      "weeks": 105,
+      "green_days_pct": 60.2,
+      "days_traded": 447,
+      "worst_drawdown": 8071.0
+     },
+     "oneaday_delta_per_day": -193.0,
+     "oneaday_delta_ci95": [
+      -358.0,
+      -29.0
+     ],
+     "clears_bar": true
+    }
+   }
+  },
+  "pm_er_0800": {
+   "knowable_at": "09:30",
+   "coverage_pct": 100.0,
+   "rows_filter_may_touch": 6170,
+   "cuts": {
+    "0.0177": {
+     "threshold": 0.0177,
+     "kept_pct": 90.0,
+     "all_trades": {
+      "trades": 4174,
+      "win_pct": 59.3,
+      "total_dollars": 2479383.0,
+      "per_trade": 594.0,
+      "mean_r": 0.594,
+      "per_day": 4959.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 101,
+      "weeks": 105,
+      "green_days_pct": 69.9,
+      "days_traded": 499,
+      "worst_drawdown": 12220.0
+     },
+     "one_a_day": {
+      "trades": 499,
+      "win_pct": 67.5,
+      "total_dollars": 364135.0,
+      "per_trade": 730.0,
+      "mean_r": 0.7297,
+      "per_day": 728.0,
+      "months_green": 24,
+      "months": 25,
+      "weeks_green": 86,
+      "weeks": 105,
+      "green_days_pct": 67.5,
+      "days_traded": 499,
+      "worst_drawdown": 7065.0
+     },
+     "oneaday_delta_per_day": 8.0,
+     "oneaday_delta_ci95": [
+      -44.0,
+      65.0
+     ],
+     "clears_bar": false
+    },
+    "0.0354": {
+     "threshold": 0.0354,
+     "kept_pct": 80.0,
+     "all_trades": {
+      "trades": 3744,
+      "win_pct": 58.9,
+      "total_dollars": 2201273.0,
+      "per_trade": 588.0,
+      "mean_r": 0.5879,
+      "per_day": 4403.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 98,
+      "weeks": 105,
+      "green_days_pct": 68.1,
+      "days_traded": 499,
+      "worst_drawdown": 14220.0
+     },
+     "one_a_day": {
+      "trades": 499,
+      "win_pct": 66.9,
+      "total_dollars": 361910.0,
+      "per_trade": 725.0,
+      "mean_r": 0.7253,
+      "per_day": 724.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 90,
+      "weeks": 105,
+      "green_days_pct": 66.9,
+      "days_traded": 499,
+      "worst_drawdown": 6115.0
+     },
+     "oneaday_delta_per_day": 3.0,
+     "oneaday_delta_ci95": [
+      -100.0,
+      107.0
+     ],
+     "clears_bar": false
+    },
+    "0.0524": {
+     "threshold": 0.0524,
+     "kept_pct": 70.0,
+     "all_trades": {
+      "trades": 3274,
+      "win_pct": 58.5,
+      "total_dollars": 1896609.0,
+      "per_trade": 579.0,
+      "mean_r": 0.5793,
+      "per_day": 3793.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 96,
+      "weeks": 105,
+      "green_days_pct": 67.9,
+      "days_traded": 499,
+      "worst_drawdown": 13787.0
+     },
+     "one_a_day": {
+      "trades": 499,
+      "win_pct": 67.1,
+      "total_dollars": 378435.0,
+      "per_trade": 758.0,
+      "mean_r": 0.7584,
+      "per_day": 757.0,
+      "months_green": 24,
+      "months": 25,
+      "weeks_green": 86,
+      "weeks": 105,
+      "green_days_pct": 67.1,
+      "days_traded": 499,
+      "worst_drawdown": 6000.0
+     },
+     "oneaday_delta_per_day": 36.0,
+     "oneaday_delta_ci95": [
+      -89.0,
+      160.0
+     ],
+     "clears_bar": false
+    },
+    "0.0715": {
+     "threshold": 0.0715,
+     "kept_pct": 60.0,
+     "all_trades": {
+      "trades": 2870,
+      "win_pct": 58.2,
+      "total_dollars": 1606977.0,
+      "per_trade": 560.0,
+      "mean_r": 0.5599,
+      "per_day": 3214.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 97,
+      "weeks": 105,
+      "green_days_pct": 65.0,
+      "days_traded": 497,
+      "worst_drawdown": 11787.0
+     },
+     "one_a_day": {
+      "trades": 497,
+      "win_pct": 64.4,
+      "total_dollars": 342087.0,
+      "per_trade": 688.0,
+      "mean_r": 0.6883,
+      "per_day": 684.0,
+      "months_green": 23,
+      "months": 25,
+      "weeks_green": 85,
+      "weeks": 105,
+      "green_days_pct": 64.4,
+      "days_traded": 497,
+      "worst_drawdown": 7294.0
+     },
+     "oneaday_delta_per_day": -37.0,
+     "oneaday_delta_ci95": [
+      -170.0,
+      96.0
+     ],
+     "clears_bar": false
+    },
+    "0.0927": {
+     "threshold": 0.0927,
+     "kept_pct": 50.0,
+     "all_trades": {
+      "trades": 2408,
+      "win_pct": 58.0,
+      "total_dollars": 1339156.0,
+      "per_trade": 556.0,
+      "mean_r": 0.5561,
+      "per_day": 2678.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 97,
+      "weeks": 105,
+      "green_days_pct": 62.7,
+      "days_traded": 488,
+      "worst_drawdown": 11114.0
+     },
+     "one_a_day": {
+      "trades": 488,
+      "win_pct": 62.9,
+      "total_dollars": 335827.0,
+      "per_trade": 688.0,
+      "mean_r": 0.6882,
+      "per_day": 672.0,
+      "months_green": 23,
+      "months": 25,
+      "weeks_green": 84,
+      "weeks": 105,
+      "green_days_pct": 62.9,
+      "days_traded": 488,
+      "worst_drawdown": 7543.0
+     },
+     "oneaday_delta_per_day": -49.0,
+     "oneaday_delta_ci95": [
+      -199.0,
+      102.0
+     ],
+     "clears_bar": false
+    },
+    "0.1159": {
+     "threshold": 0.1159,
+     "kept_pct": 40.0,
+     "all_trades": {
+      "trades": 2004,
+      "win_pct": 58.3,
+      "total_dollars": 1119230.0,
+      "per_trade": 558.0,
+      "mean_r": 0.5585,
+      "per_day": 2238.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 96,
+      "weeks": 105,
+      "green_days_pct": 61.3,
+      "days_traded": 483,
+      "worst_drawdown": 14418.0
+     },
+     "one_a_day": {
+      "trades": 483,
+      "win_pct": 62.7,
+      "total_dollars": 328368.0,
+      "per_trade": 680.0,
+      "mean_r": 0.6799,
+      "per_day": 657.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 81,
+      "weeks": 105,
+      "green_days_pct": 62.7,
+      "days_traded": 483,
+      "worst_drawdown": 8575.0
+     },
+     "oneaday_delta_per_day": -64.0,
+     "oneaday_delta_ci95": [
+      -220.0,
+      97.0
+     ],
+     "clears_bar": false
+    },
+    "0.1478": {
+     "threshold": 0.1478,
+     "kept_pct": 30.0,
+     "all_trades": {
+      "trades": 1560,
+      "win_pct": 58.1,
+      "total_dollars": 798686.0,
+      "per_trade": 512.0,
+      "mean_r": 0.512,
+      "per_day": 1597.0,
+      "months_green": 24,
+      "months": 25,
+      "weeks_green": 90,
+      "weeks": 105,
+      "green_days_pct": 61.5,
+      "days_traded": 449,
+      "worst_drawdown": 13067.0
+     },
+     "one_a_day": {
+      "trades": 449,
+      "win_pct": 61.9,
+      "total_dollars": 250089.0,
+      "per_trade": 557.0,
+      "mean_r": 0.557,
+      "per_day": 500.0,
+      "months_green": 23,
+      "months": 25,
+      "weeks_green": 82,
+      "weeks": 105,
+      "green_days_pct": 61.9,
+      "days_traded": 449,
+      "worst_drawdown": 8259.0
+     },
+     "oneaday_delta_per_day": -221.0,
+     "oneaday_delta_ci95": [
+      -384.0,
+      -55.0
+     ],
+     "clears_bar": true
+    }
+   }
+  },
+  "prior_day_er": {
+   "knowable_at": "09:30",
+   "coverage_pct": 99.9,
+   "rows_filter_may_touch": 6170,
+   "cuts": {
+    "0.0192": {
+     "threshold": 0.0192,
+     "kept_pct": 90.0,
+     "all_trades": {
+      "trades": 4141,
+      "win_pct": 59.3,
+      "total_dollars": 2457401.0,
+      "per_trade": 593.0,
+      "mean_r": 0.5934,
+      "per_day": 4915.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 99,
+      "weeks": 105,
+      "green_days_pct": 69.5,
+      "days_traded": 499,
+      "worst_drawdown": 11920.0
+     },
+     "one_a_day": {
+      "trades": 499,
+      "win_pct": 66.1,
+      "total_dollars": 351559.0,
+      "per_trade": 705.0,
+      "mean_r": 0.7045,
+      "per_day": 703.0,
+      "months_green": 23,
+      "months": 25,
+      "weeks_green": 88,
+      "weeks": 105,
+      "green_days_pct": 66.1,
+      "days_traded": 499,
+      "worst_drawdown": 8369.0
+     },
+     "oneaday_delta_per_day": -18.0,
+     "oneaday_delta_ci95": [
+      -76.0,
+      42.0
+     ],
+     "clears_bar": false
+    },
+    "0.0379": {
+     "threshold": 0.0379,
+     "kept_pct": 79.9,
+     "all_trades": {
+      "trades": 3701,
+      "win_pct": 58.8,
+      "total_dollars": 2169911.0,
+      "per_trade": 586.0,
+      "mean_r": 0.5863,
+      "per_day": 4340.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 100,
+      "weeks": 105,
+      "green_days_pct": 67.9,
+      "days_traded": 498,
+      "worst_drawdown": 10338.0
+     },
+     "one_a_day": {
+      "trades": 498,
+      "win_pct": 65.1,
+      "total_dollars": 353197.0,
+      "per_trade": 709.0,
+      "mean_r": 0.7092,
+      "per_day": 706.0,
+      "months_green": 22,
+      "months": 25,
+      "weeks_green": 89,
+      "weeks": 105,
+      "green_days_pct": 65.1,
+      "days_traded": 498,
+      "worst_drawdown": 7694.0
+     },
+     "oneaday_delta_per_day": -14.0,
+     "oneaday_delta_ci95": [
+      -111.0,
+      82.0
+     ],
+     "clears_bar": false
+    },
+    "0.0566": {
+     "threshold": 0.0566,
+     "kept_pct": 70.0,
+     "all_trades": {
+      "trades": 3313,
+      "win_pct": 58.2,
+      "total_dollars": 1908353.0,
+      "per_trade": 576.0,
+      "mean_r": 0.576,
+      "per_day": 3817.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 98,
+      "weeks": 105,
+      "green_days_pct": 67.0,
+      "days_traded": 497,
+      "worst_drawdown": 11309.0
+     },
+     "one_a_day": {
+      "trades": 497,
+      "win_pct": 64.6,
+      "total_dollars": 362153.0,
+      "per_trade": 729.0,
+      "mean_r": 0.7287,
+      "per_day": 724.0,
+      "months_green": 24,
+      "months": 25,
+      "weeks_green": 85,
+      "weeks": 105,
+      "green_days_pct": 64.6,
+      "days_traded": 497,
+      "worst_drawdown": 7170.0
+     },
+     "oneaday_delta_per_day": 4.0,
+     "oneaday_delta_ci95": [
+      -118.0,
+      136.0
+     ],
+     "clears_bar": false
+    },
+    "0.0749": {
+     "threshold": 0.0749,
+     "kept_pct": 59.9,
+     "all_trades": {
+      "trades": 2900,
+      "win_pct": 58.3,
+      "total_dollars": 1696729.0,
+      "per_trade": 585.0,
+      "mean_r": 0.5851,
+      "per_day": 3393.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 95,
+      "weeks": 105,
+      "green_days_pct": 66.1,
+      "days_traded": 496,
+      "worst_drawdown": 9656.0
+     },
+     "one_a_day": {
+      "trades": 496,
+      "win_pct": 66.1,
+      "total_dollars": 374640.0,
+      "per_trade": 755.0,
+      "mean_r": 0.7553,
+      "per_day": 749.0,
+      "months_green": 24,
+      "months": 25,
+      "weeks_green": 88,
+      "weeks": 105,
+      "green_days_pct": 66.1,
+      "days_traded": 496,
+      "worst_drawdown": 8000.0
+     },
+     "oneaday_delta_per_day": 29.0,
+     "oneaday_delta_ci95": [
+      -94.0,
+      149.0
+     ],
+     "clears_bar": false
+    },
+    "0.0975": {
+     "threshold": 0.0975,
+     "kept_pct": 49.9,
+     "all_trades": {
+      "trades": 2463,
+      "win_pct": 58.1,
+      "total_dollars": 1390005.0,
+      "per_trade": 564.0,
+      "mean_r": 0.5644,
+      "per_day": 2780.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 90,
+      "weeks": 105,
+      "green_days_pct": 64.5,
+      "days_traded": 488,
+      "worst_drawdown": 12002.0
+     },
+     "one_a_day": {
+      "trades": 488,
+      "win_pct": 64.8,
+      "total_dollars": 336910.0,
+      "per_trade": 690.0,
+      "mean_r": 0.6904,
+      "per_day": 674.0,
+      "months_green": 24,
+      "months": 25,
+      "weeks_green": 87,
+      "weeks": 105,
+      "green_days_pct": 64.8,
+      "days_traded": 488,
+      "worst_drawdown": 8000.0
+     },
+     "oneaday_delta_per_day": -47.0,
+     "oneaday_delta_ci95": [
+      -190.0,
+      94.0
+     ],
+     "clears_bar": false
+    },
+    "0.1201": {
+     "threshold": 0.1201,
+     "kept_pct": 40.0,
+     "all_trades": {
+      "trades": 2010,
+      "win_pct": 56.2,
+      "total_dollars": 1082731.0,
+      "per_trade": 539.0,
+      "mean_r": 0.5387,
+      "per_day": 2165.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 89,
+      "weeks": 105,
+      "green_days_pct": 60.3,
+      "days_traded": 476,
+      "worst_drawdown": 14502.0
+     },
+     "one_a_day": {
+      "trades": 476,
+      "win_pct": 63.4,
+      "total_dollars": 328206.0,
+      "per_trade": 690.0,
+      "mean_r": 0.6895,
+      "per_day": 656.0,
+      "months_green": 23,
+      "months": 25,
+      "weeks_green": 83,
+      "weeks": 105,
+      "green_days_pct": 63.4,
+      "days_traded": 476,
+      "worst_drawdown": 12137.0
+     },
+     "oneaday_delta_per_day": -64.0,
+     "oneaday_delta_ci95": [
+      -217.0,
+      92.0
+     ],
+     "clears_bar": false
+    },
+    "0.1471": {
+     "threshold": 0.1471,
+     "kept_pct": 30.0,
+     "all_trades": {
+      "trades": 1533,
+      "win_pct": 55.9,
+      "total_dollars": 803034.0,
+      "per_trade": 524.0,
+      "mean_r": 0.5238,
+      "per_day": 1606.0,
+      "months_green": 24,
+      "months": 25,
+      "weeks_green": 79,
+      "weeks": 105,
+      "green_days_pct": 58.8,
+      "days_traded": 444,
+      "worst_drawdown": 16033.0
+     },
+     "one_a_day": {
+      "trades": 444,
+      "win_pct": 61.3,
+      "total_dollars": 292585.0,
+      "per_trade": 659.0,
+      "mean_r": 0.659,
+      "per_day": 585.0,
+      "months_green": 23,
+      "months": 25,
+      "weeks_green": 75,
+      "weeks": 105,
+      "green_days_pct": 61.3,
+      "days_traded": 444,
+      "worst_drawdown": 13613.0
+     },
+     "oneaday_delta_per_day": -136.0,
+     "oneaday_delta_ci95": [
+      -300.0,
+      27.0
+     ],
+     "clears_bar": false
+    }
+   }
+  },
+  "prior5_er": {
+   "knowable_at": "09:30",
+   "coverage_pct": 99.9,
+   "rows_filter_may_touch": 6170,
+   "cuts": {
+    "0.0680": {
+     "threshold": 0.068,
+     "kept_pct": 90.0,
+     "all_trades": {
+      "trades": 4116,
+      "win_pct": 59.1,
+      "total_dollars": 2479623.0,
+      "per_trade": 602.0,
+      "mean_r": 0.6024,
+      "per_day": 4959.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 101,
+      "weeks": 105,
+      "green_days_pct": 69.5,
+      "days_traded": 498,
+      "worst_drawdown": 11412.0
+     },
+     "one_a_day": {
+      "trades": 498,
+      "win_pct": 66.9,
+      "total_dollars": 368159.0,
+      "per_trade": 739.0,
+      "mean_r": 0.7393,
+      "per_day": 736.0,
+      "months_green": 23,
+      "months": 25,
+      "weeks_green": 88,
+      "weeks": 105,
+      "green_days_pct": 66.9,
+      "days_traded": 498,
+      "worst_drawdown": 8000.0
+     },
+     "oneaday_delta_per_day": 16.0,
+     "oneaday_delta_ci95": [
+      -48.0,
+      81.0
+     ],
+     "clears_bar": false
+    },
+    "0.0814": {
+     "threshold": 0.0814,
+     "kept_pct": 79.9,
+     "all_trades": {
+      "trades": 3676,
+      "win_pct": 58.5,
+      "total_dollars": 2175321.0,
+      "per_trade": 592.0,
+      "mean_r": 0.5918,
+      "per_day": 4351.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 101,
+      "weeks": 105,
+      "green_days_pct": 68.5,
+      "days_traded": 498,
+      "worst_drawdown": 11412.0
+     },
+     "one_a_day": {
+      "trades": 498,
+      "win_pct": 67.1,
+      "total_dollars": 391426.0,
+      "per_trade": 786.0,
+      "mean_r": 0.786,
+      "per_day": 783.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 91,
+      "weeks": 105,
+      "green_days_pct": 67.1,
+      "days_traded": 498,
+      "worst_drawdown": 7000.0
+     },
+     "oneaday_delta_per_day": 62.0,
+     "oneaday_delta_ci95": [
+      -41.0,
+      164.0
+     ],
+     "clears_bar": false
+    },
+    "0.0912": {
+     "threshold": 0.0912,
+     "kept_pct": 70.0,
+     "all_trades": {
+      "trades": 3255,
+      "win_pct": 58.5,
+      "total_dollars": 1971371.0,
+      "per_trade": 606.0,
+      "mean_r": 0.6056,
+      "per_day": 3943.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 98,
+      "weeks": 105,
+      "green_days_pct": 67.5,
+      "days_traded": 495,
+      "worst_drawdown": 13369.0
+     },
+     "one_a_day": {
+      "trades": 495,
+      "win_pct": 65.3,
+      "total_dollars": 361811.0,
+      "per_trade": 731.0,
+      "mean_r": 0.7309,
+      "per_day": 724.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 87,
+      "weeks": 105,
+      "green_days_pct": 65.3,
+      "days_traded": 495,
+      "worst_drawdown": 6738.0
+     },
+     "oneaday_delta_per_day": 3.0,
+     "oneaday_delta_ci95": [
+      -115.0,
+      123.0
+     ],
+     "clears_bar": false
+    },
+    "0.1008": {
+     "threshold": 0.1008,
+     "kept_pct": 59.9,
+     "all_trades": {
+      "trades": 2860,
+      "win_pct": 58.5,
+      "total_dollars": 1765486.0,
+      "per_trade": 617.0,
+      "mean_r": 0.6173,
+      "per_day": 3531.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 91,
+      "weeks": 105,
+      "green_days_pct": 65.5,
+      "days_traded": 490,
+      "worst_drawdown": 13967.0
+     },
+     "one_a_day": {
+      "trades": 490,
+      "win_pct": 63.5,
+      "total_dollars": 330081.0,
+      "per_trade": 674.0,
+      "mean_r": 0.6736,
+      "per_day": 660.0,
+      "months_green": 24,
+      "months": 25,
+      "weeks_green": 86,
+      "weeks": 105,
+      "green_days_pct": 63.5,
+      "days_traded": 490,
+      "worst_drawdown": 6256.0
+     },
+     "oneaday_delta_per_day": -61.0,
+     "oneaday_delta_ci95": [
+      -182.0,
+      60.0
+     ],
+     "clears_bar": false
+    },
+    "0.1098": {
+     "threshold": 0.1098,
+     "kept_pct": 50.0,
+     "all_trades": {
+      "trades": 2476,
+      "win_pct": 58.5,
+      "total_dollars": 1549616.0,
+      "per_trade": 626.0,
+      "mean_r": 0.6259,
+      "per_day": 3099.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 93,
+      "weeks": 105,
+      "green_days_pct": 66.5,
+      "days_traded": 481,
+      "worst_drawdown": 11358.0
+     },
+     "one_a_day": {
+      "trades": 481,
+      "win_pct": 63.2,
+      "total_dollars": 335023.0,
+      "per_trade": 697.0,
+      "mean_r": 0.6965,
+      "per_day": 670.0,
+      "months_green": 24,
+      "months": 25,
+      "weeks_green": 90,
+      "weeks": 105,
+      "green_days_pct": 63.2,
+      "days_traded": 481,
+      "worst_drawdown": 5199.0
+     },
+     "oneaday_delta_per_day": -51.0,
+     "oneaday_delta_ci95": [
+      -200.0,
+      98.0
+     ],
+     "clears_bar": false
+    },
+    "0.1192": {
+     "threshold": 0.1192,
+     "kept_pct": 40.0,
+     "all_trades": {
+      "trades": 2041,
+      "win_pct": 58.2,
+      "total_dollars": 1320217.0,
+      "per_trade": 647.0,
+      "mean_r": 0.6468,
+      "per_day": 2640.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 90,
+      "weeks": 105,
+      "green_days_pct": 65.4,
+      "days_traded": 463,
+      "worst_drawdown": 12849.0
+     },
+     "one_a_day": {
+      "trades": 463,
+      "win_pct": 63.7,
+      "total_dollars": 351451.0,
+      "per_trade": 759.0,
+      "mean_r": 0.7591,
+      "per_day": 703.0,
+      "months_green": 24,
+      "months": 25,
+      "weeks_green": 86,
+      "weeks": 105,
+      "green_days_pct": 63.7,
+      "days_traded": 463,
+      "worst_drawdown": 4716.0
+     },
+     "oneaday_delta_per_day": -18.0,
+     "oneaday_delta_ci95": [
+      -181.0,
+      148.0
+     ],
+     "clears_bar": false
+    },
+    "0.1299": {
+     "threshold": 0.1299,
+     "kept_pct": 30.0,
+     "all_trades": {
+      "trades": 1611,
+      "win_pct": 57.4,
+      "total_dollars": 1003366.0,
+      "per_trade": 623.0,
+      "mean_r": 0.6228,
+      "per_day": 2007.0,
+      "months_green": 24,
+      "months": 25,
+      "weeks_green": 85,
+      "weeks": 104,
+      "green_days_pct": 61.9,
+      "days_traded": 431,
+      "worst_drawdown": 13609.0
+     },
+     "one_a_day": {
+      "trades": 431,
+      "win_pct": 64.0,
+      "total_dollars": 328074.0,
+      "per_trade": 761.0,
+      "mean_r": 0.7612,
+      "per_day": 656.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 82,
+      "weeks": 104,
+      "green_days_pct": 64.0,
+      "days_traded": 431,
+      "worst_drawdown": 6000.0
+     },
+     "oneaday_delta_per_day": -65.0,
+     "oneaday_delta_ci95": [
+      -231.0,
+      97.0
+     ],
+     "clears_bar": false
+    }
+   }
+  },
+  "daily_er_10": {
+   "knowable_at": "09:30",
+   "coverage_pct": 99.8,
+   "rows_filter_may_touch": 6170,
+   "cuts": {
+    "0.0587": {
+     "threshold": 0.0587,
+     "kept_pct": 89.8,
+     "all_trades": {
+      "trades": 4103,
+      "win_pct": 59.1,
+      "total_dollars": 2361643.0,
+      "per_trade": 576.0,
+      "mean_r": 0.5756,
+      "per_day": 4723.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 101,
+      "weeks": 105,
+      "green_days_pct": 68.7,
+      "days_traded": 499,
+      "worst_drawdown": 10690.0
+     },
+     "one_a_day": {
+      "trades": 499,
+      "win_pct": 67.1,
+      "total_dollars": 353439.0,
+      "per_trade": 708.0,
+      "mean_r": 0.7083,
+      "per_day": 707.0,
+      "months_green": 23,
+      "months": 25,
+      "weeks_green": 90,
+      "weeks": 105,
+      "green_days_pct": 67.1,
+      "days_traded": 499,
+      "worst_drawdown": 5993.0
+     },
+     "oneaday_delta_per_day": -14.0,
+     "oneaday_delta_ci95": [
+      -78.0,
+      50.0
+     ],
+     "clears_bar": false
+    },
+    "0.1166": {
+     "threshold": 0.1166,
+     "kept_pct": 79.8,
+     "all_trades": {
+      "trades": 3688,
+      "win_pct": 58.8,
+      "total_dollars": 2143154.0,
+      "per_trade": 581.0,
+      "mean_r": 0.5811,
+      "per_day": 4286.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 98,
+      "weeks": 105,
+      "green_days_pct": 66.9,
+      "days_traded": 499,
+      "worst_drawdown": 12190.0
+     },
+     "one_a_day": {
+      "trades": 499,
+      "win_pct": 66.9,
+      "total_dollars": 342522.0,
+      "per_trade": 686.0,
+      "mean_r": 0.6864,
+      "per_day": 685.0,
+      "months_green": 24,
+      "months": 25,
+      "weeks_green": 88,
+      "weeks": 105,
+      "green_days_pct": 66.9,
+      "days_traded": 499,
+      "worst_drawdown": 6913.0
+     },
+     "oneaday_delta_per_day": -36.0,
+     "oneaday_delta_ci95": [
+      -116.0,
+      41.0
+     ],
+     "clears_bar": false
+    },
+    "0.1740": {
+     "threshold": 0.174,
+     "kept_pct": 69.9,
+     "all_trades": {
+      "trades": 3287,
+      "win_pct": 58.1,
+      "total_dollars": 1834613.0,
+      "per_trade": 558.0,
+      "mean_r": 0.5581,
+      "per_day": 3669.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 96,
+      "weeks": 105,
+      "green_days_pct": 64.1,
+      "days_traded": 499,
+      "worst_drawdown": 13172.0
+     },
+     "one_a_day": {
+      "trades": 499,
+      "win_pct": 64.7,
+      "total_dollars": 309497.0,
+      "per_trade": 620.0,
+      "mean_r": 0.6202,
+      "per_day": 619.0,
+      "months_green": 24,
+      "months": 25,
+      "weeks_green": 86,
+      "weeks": 105,
+      "green_days_pct": 64.5,
+      "days_traded": 499,
+      "worst_drawdown": 5304.0
+     },
+     "oneaday_delta_per_day": -102.0,
+     "oneaday_delta_ci95": [
+      -208.0,
+      -0.0
+     ],
+     "clears_bar": true
+    },
+    "0.2294": {
+     "threshold": 0.2294,
+     "kept_pct": 59.9,
+     "all_trades": {
+      "trades": 2889,
+      "win_pct": 57.4,
+      "total_dollars": 1525435.0,
+      "per_trade": 528.0,
+      "mean_r": 0.528,
+      "per_day": 3051.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 93,
+      "weeks": 105,
+      "green_days_pct": 60.6,
+      "days_traded": 495,
+      "worst_drawdown": 10979.0
+     },
+     "one_a_day": {
+      "trades": 495,
+      "win_pct": 62.8,
+      "total_dollars": 290152.0,
+      "per_trade": 586.0,
+      "mean_r": 0.5862,
+      "per_day": 580.0,
+      "months_green": 24,
+      "months": 25,
+      "weeks_green": 83,
+      "weeks": 105,
+      "green_days_pct": 62.6,
+      "days_traded": 495,
+      "worst_drawdown": 8533.0
+     },
+     "oneaday_delta_per_day": -140.0,
+     "oneaday_delta_ci95": [
+      -265.0,
+      -18.0
+     ],
+     "clears_bar": true
+    },
+    "0.2910": {
+     "threshold": 0.291,
+     "kept_pct": 49.9,
+     "all_trades": {
+      "trades": 2472,
+      "win_pct": 57.9,
+      "total_dollars": 1348801.0,
+      "per_trade": 546.0,
+      "mean_r": 0.5456,
+      "per_day": 2698.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 89,
+      "weeks": 105,
+      "green_days_pct": 60.9,
+      "days_traded": 491,
+      "worst_drawdown": 13061.0
+     },
+     "one_a_day": {
+      "trades": 491,
+      "win_pct": 63.1,
+      "total_dollars": 284590.0,
+      "per_trade": 580.0,
+      "mean_r": 0.5796,
+      "per_day": 569.0,
+      "months_green": 22,
+      "months": 25,
+      "weeks_green": 81,
+      "weeks": 105,
+      "green_days_pct": 62.9,
+      "days_traded": 491,
+      "worst_drawdown": 6554.0
+     },
+     "oneaday_delta_per_day": -152.0,
+     "oneaday_delta_ci95": [
+      -284.0,
+      -23.0
+     ],
+     "clears_bar": true
+    },
+    "0.3637": {
+     "threshold": 0.3637,
+     "kept_pct": 39.9,
+     "all_trades": {
+      "trades": 2011,
+      "win_pct": 57.3,
+      "total_dollars": 1097114.0,
+      "per_trade": 546.0,
+      "mean_r": 0.5456,
+      "per_day": 2194.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 88,
+      "weeks": 105,
+      "green_days_pct": 61.8,
+      "days_traded": 476,
+      "worst_drawdown": 11402.0
+     },
+     "one_a_day": {
+      "trades": 476,
+      "win_pct": 60.8,
+      "total_dollars": 235707.0,
+      "per_trade": 495.0,
+      "mean_r": 0.4952,
+      "per_day": 471.0,
+      "months_green": 24,
+      "months": 25,
+      "weeks_green": 75,
+      "weeks": 105,
+      "green_days_pct": 60.7,
+      "days_traded": 476,
+      "worst_drawdown": 5206.0
+     },
+     "oneaday_delta_per_day": -249.0,
+     "oneaday_delta_ci95": [
+      -400.0,
+      -95.0
+     ],
+     "clears_bar": true
+    },
+    "0.4408": {
+     "threshold": 0.4408,
+     "kept_pct": 29.9,
+     "all_trades": {
+      "trades": 1531,
+      "win_pct": 56.7,
+      "total_dollars": 804231.0,
+      "per_trade": 525.0,
+      "mean_r": 0.5253,
+      "per_day": 1608.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 88,
+      "weeks": 105,
+      "green_days_pct": 59.6,
+      "days_traded": 446,
+      "worst_drawdown": 10500.0
+     },
+     "one_a_day": {
+      "trades": 446,
+      "win_pct": 58.9,
+      "total_dollars": 217977.0,
+      "per_trade": 489.0,
+      "mean_r": 0.4887,
+      "per_day": 436.0,
+      "months_green": 23,
+      "months": 25,
+      "weeks_green": 73,
+      "weeks": 105,
+      "green_days_pct": 58.7,
+      "days_traded": 446,
+      "worst_drawdown": 7888.0
+     },
+     "oneaday_delta_per_day": -285.0,
+     "oneaday_delta_ci95": [
+      -447.0,
+      -122.0
+     ],
+     "clears_bar": true
+    }
+   }
+  },
+  "daily_er_20": {
+   "knowable_at": "09:30",
+   "coverage_pct": 99.8,
+   "rows_filter_may_touch": 6170,
+   "cuts": {
+    "0.0363": {
+     "threshold": 0.0363,
+     "kept_pct": 89.8,
+     "all_trades": {
+      "trades": 4126,
+      "win_pct": 59.1,
+      "total_dollars": 2416987.0,
+      "per_trade": 586.0,
+      "mean_r": 0.5858,
+      "per_day": 4834.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 100,
+      "weeks": 105,
+      "green_days_pct": 69.7,
+      "days_traded": 499,
+      "worst_drawdown": 10338.0
+     },
+     "one_a_day": {
+      "trades": 499,
+      "win_pct": 66.3,
+      "total_dollars": 377648.0,
+      "per_trade": 757.0,
+      "mean_r": 0.7568,
+      "per_day": 755.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 87,
+      "weeks": 105,
+      "green_days_pct": 66.3,
+      "days_traded": 499,
+      "worst_drawdown": 5465.0
+     },
+     "oneaday_delta_per_day": 35.0,
+     "oneaday_delta_ci95": [
+      -35.0,
+      108.0
+     ],
+     "clears_bar": false
+    },
+    "0.0748": {
+     "threshold": 0.0748,
+     "kept_pct": 79.8,
+     "all_trades": {
+      "trades": 3738,
+      "win_pct": 59.1,
+      "total_dollars": 2187150.0,
+      "per_trade": 585.0,
+      "mean_r": 0.5851,
+      "per_day": 4374.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 100,
+      "weeks": 105,
+      "green_days_pct": 70.1,
+      "days_traded": 499,
+      "worst_drawdown": 10772.0
+     },
+     "one_a_day": {
+      "trades": 499,
+      "win_pct": 66.3,
+      "total_dollars": 369596.0,
+      "per_trade": 741.0,
+      "mean_r": 0.7407,
+      "per_day": 739.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 85,
+      "weeks": 105,
+      "green_days_pct": 66.3,
+      "days_traded": 499,
+      "worst_drawdown": 5433.0
+     },
+     "oneaday_delta_per_day": 18.0,
+     "oneaday_delta_ci95": [
+      -71.0,
+      110.0
+     ],
+     "clears_bar": false
+    },
+    "0.1109": {
+     "threshold": 0.1109,
+     "kept_pct": 69.8,
+     "all_trades": {
+      "trades": 3326,
+      "win_pct": 58.4,
+      "total_dollars": 1876541.0,
+      "per_trade": 564.0,
+      "mean_r": 0.5642,
+      "per_day": 3753.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 100,
+      "weeks": 105,
+      "green_days_pct": 67.3,
+      "days_traded": 499,
+      "worst_drawdown": 11154.0
+     },
+     "one_a_day": {
+      "trades": 499,
+      "win_pct": 65.9,
+      "total_dollars": 341433.0,
+      "per_trade": 684.0,
+      "mean_r": 0.6842,
+      "per_day": 683.0,
+      "months_green": 24,
+      "months": 25,
+      "weeks_green": 84,
+      "weeks": 105,
+      "green_days_pct": 65.7,
+      "days_traded": 499,
+      "worst_drawdown": 6433.0
+     },
+     "oneaday_delta_per_day": -38.0,
+     "oneaday_delta_ci95": [
+      -137.0,
+      62.0
+     ],
+     "clears_bar": false
+    },
+    "0.1519": {
+     "threshold": 0.1519,
+     "kept_pct": 59.9,
+     "all_trades": {
+      "trades": 2928,
+      "win_pct": 58.1,
+      "total_dollars": 1664220.0,
+      "per_trade": 568.0,
+      "mean_r": 0.5684,
+      "per_day": 3328.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 98,
+      "weeks": 105,
+      "green_days_pct": 65.5,
+      "days_traded": 496,
+      "worst_drawdown": 11549.0
+     },
+     "one_a_day": {
+      "trades": 496,
+      "win_pct": 64.0,
+      "total_dollars": 314936.0,
+      "per_trade": 635.0,
+      "mean_r": 0.635,
+      "per_day": 630.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 83,
+      "weeks": 105,
+      "green_days_pct": 63.9,
+      "days_traded": 496,
+      "worst_drawdown": 6433.0
+     },
+     "oneaday_delta_per_day": -91.0,
+     "oneaday_delta_ci95": [
+      -205.0,
+      25.0
+     ],
+     "clears_bar": false
+    },
+    "0.2001": {
+     "threshold": 0.2001,
+     "kept_pct": 49.9,
+     "all_trades": {
+      "trades": 2486,
+      "win_pct": 57.3,
+      "total_dollars": 1329219.0,
+      "per_trade": 535.0,
+      "mean_r": 0.5347,
+      "per_day": 2658.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 93,
+      "weeks": 105,
+      "green_days_pct": 63.0,
+      "days_traded": 492,
+      "worst_drawdown": 11278.0
+     },
+     "one_a_day": {
+      "trades": 492,
+      "win_pct": 60.7,
+      "total_dollars": 270061.0,
+      "per_trade": 549.0,
+      "mean_r": 0.5489,
+      "per_day": 540.0,
+      "months_green": 23,
+      "months": 25,
+      "weeks_green": 81,
+      "weeks": 105,
+      "green_days_pct": 60.6,
+      "days_traded": 492,
+      "worst_drawdown": 9000.0
+     },
+     "oneaday_delta_per_day": -181.0,
+     "oneaday_delta_ci95": [
+      -310.0,
+      -52.0
+     ],
+     "clears_bar": true
+    },
+    "0.2523": {
+     "threshold": 0.2523,
+     "kept_pct": 39.9,
+     "all_trades": {
+      "trades": 2047,
+      "win_pct": 56.5,
+      "total_dollars": 1087695.0,
+      "per_trade": 531.0,
+      "mean_r": 0.5314,
+      "per_day": 2175.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 93,
+      "weeks": 105,
+      "green_days_pct": 62.0,
+      "days_traded": 481,
+      "worst_drawdown": 11811.0
+     },
+     "one_a_day": {
+      "trades": 481,
+      "win_pct": 60.8,
+      "total_dollars": 273544.0,
+      "per_trade": 569.0,
+      "mean_r": 0.5687,
+      "per_day": 547.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 79,
+      "weeks": 105,
+      "green_days_pct": 60.7,
+      "days_traded": 481,
+      "worst_drawdown": 8365.0
+     },
+     "oneaday_delta_per_day": -174.0,
+     "oneaday_delta_ci95": [
+      -326.0,
+      -26.0
+     ],
+     "clears_bar": true
+    },
+    "0.3148": {
+     "threshold": 0.3148,
+     "kept_pct": 30.0,
+     "all_trades": {
+      "trades": 1589,
+      "win_pct": 57.1,
+      "total_dollars": 887766.0,
+      "per_trade": 559.0,
+      "mean_r": 0.5587,
+      "per_day": 1776.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 88,
+      "weeks": 105,
+      "green_days_pct": 62.7,
+      "days_traded": 450,
+      "worst_drawdown": 10547.0
+     },
+     "one_a_day": {
+      "trades": 450,
+      "win_pct": 60.8,
+      "total_dollars": 248086.0,
+      "per_trade": 551.0,
+      "mean_r": 0.5513,
+      "per_day": 496.0,
+      "months_green": 22,
+      "months": 25,
+      "weeks_green": 80,
+      "weeks": 105,
+      "green_days_pct": 60.7,
+      "days_traded": 450,
+      "worst_drawdown": 8546.0
+     },
+     "oneaday_delta_per_day": -225.0,
+     "oneaday_delta_ci95": [
+      -382.0,
+      -70.0
+     ],
+     "clears_bar": true
+    }
+   }
+  },
+  "gap_prior_range": {
+   "knowable_at": "09:30",
+   "coverage_pct": 99.9,
+   "rows_filter_may_touch": 6170,
+   "cuts": {
+    "0.0424": {
+     "threshold": 0.0424,
+     "kept_pct": 89.9,
+     "all_trades": {
+      "trades": 4132,
+      "win_pct": 59.2,
+      "total_dollars": 2427261.0,
+      "per_trade": 587.0,
+      "mean_r": 0.5874,
+      "per_day": 4855.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 101,
+      "weeks": 105,
+      "green_days_pct": 67.9,
+      "days_traded": 499,
+      "worst_drawdown": 12576.0
+     },
+     "one_a_day": {
+      "trades": 499,
+      "win_pct": 66.7,
+      "total_dollars": 365117.0,
+      "per_trade": 732.0,
+      "mean_r": 0.7317,
+      "per_day": 730.0,
+      "months_green": 24,
+      "months": 25,
+      "weeks_green": 87,
+      "weeks": 105,
+      "green_days_pct": 66.7,
+      "days_traded": 499,
+      "worst_drawdown": 5993.0
+     },
+     "oneaday_delta_per_day": 9.0,
+     "oneaday_delta_ci95": [
+      -49.0,
+      74.0
+     ],
+     "clears_bar": false
+    },
+    "0.0919": {
+     "threshold": 0.0919,
+     "kept_pct": 79.9,
+     "all_trades": {
+      "trades": 3759,
+      "win_pct": 59.2,
+      "total_dollars": 2277589.0,
+      "per_trade": 606.0,
+      "mean_r": 0.6059,
+      "per_day": 4555.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 99,
+      "weeks": 105,
+      "green_days_pct": 67.5,
+      "days_traded": 499,
+      "worst_drawdown": 12000.0
+     },
+     "one_a_day": {
+      "trades": 499,
+      "win_pct": 66.1,
+      "total_dollars": 366044.0,
+      "per_trade": 734.0,
+      "mean_r": 0.7336,
+      "per_day": 732.0,
+      "months_green": 24,
+      "months": 25,
+      "weeks_green": 87,
+      "weeks": 105,
+      "green_days_pct": 66.1,
+      "days_traded": 499,
+      "worst_drawdown": 5864.0
+     },
+     "oneaday_delta_per_day": 11.0,
+     "oneaday_delta_ci95": [
+      -70.0,
+      95.0
+     ],
+     "clears_bar": false
+    },
+    "0.1480": {
+     "threshold": 0.148,
+     "kept_pct": 70.0,
+     "all_trades": {
+      "trades": 3280,
+      "win_pct": 59.2,
+      "total_dollars": 1958990.0,
+      "per_trade": 597.0,
+      "mean_r": 0.5973,
+      "per_day": 3918.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 98,
+      "weeks": 105,
+      "green_days_pct": 65.6,
+      "days_traded": 497,
+      "worst_drawdown": 12218.0
+     },
+     "one_a_day": {
+      "trades": 497,
+      "win_pct": 64.8,
+      "total_dollars": 332337.0,
+      "per_trade": 669.0,
+      "mean_r": 0.6687,
+      "per_day": 665.0,
+      "months_green": 24,
+      "months": 25,
+      "weeks_green": 88,
+      "weeks": 105,
+      "green_days_pct": 64.8,
+      "days_traded": 497,
+      "worst_drawdown": 6000.0
+     },
+     "oneaday_delta_per_day": -56.0,
+     "oneaday_delta_ci95": [
+      -172.0,
+      56.0
+     ],
+     "clears_bar": false
+    },
+    "0.2012": {
+     "threshold": 0.2012,
+     "kept_pct": 60.0,
+     "all_trades": {
+      "trades": 2837,
+      "win_pct": 58.7,
+      "total_dollars": 1760673.0,
+      "per_trade": 621.0,
+      "mean_r": 0.6206,
+      "per_day": 3521.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 95,
+      "weeks": 105,
+      "green_days_pct": 63.6,
+      "days_traded": 494,
+      "worst_drawdown": 13295.0
+     },
+     "one_a_day": {
+      "trades": 494,
+      "win_pct": 63.4,
+      "total_dollars": 300918.0,
+      "per_trade": 609.0,
+      "mean_r": 0.6091,
+      "per_day": 602.0,
+      "months_green": 24,
+      "months": 25,
+      "weeks_green": 84,
+      "weeks": 105,
+      "green_days_pct": 63.4,
+      "days_traded": 494,
+      "worst_drawdown": 8000.0
+     },
+     "oneaday_delta_per_day": -119.0,
+     "oneaday_delta_ci95": [
+      -253.0,
+      8.0
+     ],
+     "clears_bar": false
+    },
+    "0.2654": {
+     "threshold": 0.2654,
+     "kept_pct": 49.9,
+     "all_trades": {
+      "trades": 2397,
+      "win_pct": 58.9,
+      "total_dollars": 1441726.0,
+      "per_trade": 601.0,
+      "mean_r": 0.6015,
+      "per_day": 2883.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 90,
+      "weeks": 105,
+      "green_days_pct": 62.8,
+      "days_traded": 479,
+      "worst_drawdown": 13678.0
+     },
+     "one_a_day": {
+      "trades": 479,
+      "win_pct": 63.3,
+      "total_dollars": 306037.0,
+      "per_trade": 639.0,
+      "mean_r": 0.6389,
+      "per_day": 612.0,
+      "months_green": 23,
+      "months": 25,
+      "weeks_green": 84,
+      "weeks": 105,
+      "green_days_pct": 63.3,
+      "days_traded": 479,
+      "worst_drawdown": 7000.0
+     },
+     "oneaday_delta_per_day": -109.0,
+     "oneaday_delta_ci95": [
+      -255.0,
+      42.0
+     ],
+     "clears_bar": false
+    },
+    "0.3424": {
+     "threshold": 0.3424,
+     "kept_pct": 40.0,
+     "all_trades": {
+      "trades": 2039,
+      "win_pct": 60.0,
+      "total_dollars": 1308840.0,
+      "per_trade": 642.0,
+      "mean_r": 0.6419,
+      "per_day": 2618.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 93,
+      "weeks": 105,
+      "green_days_pct": 63.7,
+      "days_traded": 466,
+      "worst_drawdown": 13636.0
+     },
+     "one_a_day": {
+      "trades": 466,
+      "win_pct": 63.3,
+      "total_dollars": 311348.0,
+      "per_trade": 668.0,
+      "mean_r": 0.6681,
+      "per_day": 623.0,
+      "months_green": 24,
+      "months": 25,
+      "weeks_green": 80,
+      "weeks": 105,
+      "green_days_pct": 63.3,
+      "days_traded": 466,
+      "worst_drawdown": 7301.0
+     },
+     "oneaday_delta_per_day": -98.0,
+     "oneaday_delta_ci95": [
+      -265.0,
+      71.0
+     ],
+     "clears_bar": false
+    },
+    "0.4557": {
+     "threshold": 0.4557,
+     "kept_pct": 30.0,
+     "all_trades": {
+      "trades": 1556,
+      "win_pct": 58.7,
+      "total_dollars": 994926.0,
+      "per_trade": 639.0,
+      "mean_r": 0.6394,
+      "per_day": 1990.0,
+      "months_green": 23,
+      "months": 25,
+      "weeks_green": 88,
+      "weeks": 105,
+      "green_days_pct": 59.8,
+      "days_traded": 428,
+      "worst_drawdown": 16064.0
+     },
+     "one_a_day": {
+      "trades": 428,
+      "win_pct": 60.0,
+      "total_dollars": 279355.0,
+      "per_trade": 653.0,
+      "mean_r": 0.6527,
+      "per_day": 559.0,
+      "months_green": 24,
+      "months": 25,
+      "weeks_green": 80,
+      "weeks": 105,
+      "green_days_pct": 60.0,
+      "days_traded": 428,
+      "worst_drawdown": 8492.0
+     },
+     "oneaday_delta_per_day": -162.0,
+     "oneaday_delta_ci95": [
+      -339.0,
+      17.0
+     ],
+     "clears_bar": false
+    }
+   }
+  },
+  "er_to_entry": {
+   "knowable_at": "entry",
+   "coverage_pct": 100.0,
+   "rows_filter_may_touch": 6170,
+   "cuts": {
+    "0.0413": {
+     "threshold": 0.0413,
+     "kept_pct": 90.0,
+     "all_trades": {
+      "trades": 4215,
+      "win_pct": 61.0,
+      "total_dollars": 2498352.0,
+      "per_trade": 593.0,
+      "mean_r": 0.5927,
+      "per_day": 4997.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 100,
+      "weeks": 105,
+      "green_days_pct": 71.5,
+      "days_traded": 499,
+      "worst_drawdown": 9883.0
+     },
+     "one_a_day": {
+      "trades": 499,
+      "win_pct": 66.7,
+      "total_dollars": 350510.0,
+      "per_trade": 702.0,
+      "mean_r": 0.7024,
+      "per_day": 701.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 88,
+      "weeks": 105,
+      "green_days_pct": 66.7,
+      "days_traded": 499,
+      "worst_drawdown": 5993.0
+     },
+     "oneaday_delta_per_day": -20.0,
+     "oneaday_delta_ci95": [
+      -77.0,
+      31.0
+     ],
+     "clears_bar": false
+    },
+    "0.0765": {
+     "threshold": 0.0765,
+     "kept_pct": 80.0,
+     "all_trades": {
+      "trades": 3925,
+      "win_pct": 63.3,
+      "total_dollars": 2391017.0,
+      "per_trade": 609.0,
+      "mean_r": 0.6092,
+      "per_day": 4782.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 101,
+      "weeks": 105,
+      "green_days_pct": 73.1,
+      "days_traded": 499,
+      "worst_drawdown": 10338.0
+     },
+     "one_a_day": {
+      "trades": 499,
+      "win_pct": 67.1,
+      "total_dollars": 340224.0,
+      "per_trade": 682.0,
+      "mean_r": 0.6818,
+      "per_day": 680.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 87,
+      "weeks": 105,
+      "green_days_pct": 67.1,
+      "days_traded": 499,
+      "worst_drawdown": 5993.0
+     },
+     "oneaday_delta_per_day": -40.0,
+     "oneaday_delta_ci95": [
+      -103.0,
+      17.0
+     ],
+     "clears_bar": false
+    },
+    "0.1102": {
+     "threshold": 0.1102,
+     "kept_pct": 70.0,
+     "all_trades": {
+      "trades": 3557,
+      "win_pct": 65.1,
+      "total_dollars": 2225526.0,
+      "per_trade": 626.0,
+      "mean_r": 0.6257,
+      "per_day": 4451.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 100,
+      "weeks": 105,
+      "green_days_pct": 72.7,
+      "days_traded": 498,
+      "worst_drawdown": 9000.0
+     },
+     "one_a_day": {
+      "trades": 498,
+      "win_pct": 68.1,
+      "total_dollars": 362806.0,
+      "per_trade": 729.0,
+      "mean_r": 0.7285,
+      "per_day": 726.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 90,
+      "weeks": 105,
+      "green_days_pct": 68.1,
+      "days_traded": 498,
+      "worst_drawdown": 5000.0
+     },
+     "oneaday_delta_per_day": 5.0,
+     "oneaday_delta_ci95": [
+      -71.0,
+      82.0
+     ],
+     "clears_bar": false
+    },
+    "0.1482": {
+     "threshold": 0.1482,
+     "kept_pct": 60.0,
+     "all_trades": {
+      "trades": 3181,
+      "win_pct": 66.6,
+      "total_dollars": 2052697.0,
+      "per_trade": 645.0,
+      "mean_r": 0.6453,
+      "per_day": 4105.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 101,
+      "weeks": 105,
+      "green_days_pct": 73.9,
+      "days_traded": 498,
+      "worst_drawdown": 10649.0
+     },
+     "one_a_day": {
+      "trades": 498,
+      "win_pct": 69.3,
+      "total_dollars": 383507.0,
+      "per_trade": 770.0,
+      "mean_r": 0.7701,
+      "per_day": 767.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 91,
+      "weeks": 105,
+      "green_days_pct": 69.3,
+      "days_traded": 498,
+      "worst_drawdown": 5000.0
+     },
+     "oneaday_delta_per_day": 46.0,
+     "oneaday_delta_ci95": [
+      -41.0,
+      139.0
+     ],
+     "clears_bar": false
+    },
+    "0.1876": {
+     "threshold": 0.1876,
+     "kept_pct": 50.0,
+     "all_trades": {
+      "trades": 2767,
+      "win_pct": 68.0,
+      "total_dollars": 1816317.0,
+      "per_trade": 656.0,
+      "mean_r": 0.6564,
+      "per_day": 3633.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 102,
+      "weeks": 105,
+      "green_days_pct": 77.1,
+      "days_traded": 494,
+      "worst_drawdown": 9538.0
+     },
+     "one_a_day": {
+      "trades": 494,
+      "win_pct": 69.4,
+      "total_dollars": 375396.0,
+      "per_trade": 760.0,
+      "mean_r": 0.7599,
+      "per_day": 751.0,
+      "months_green": 24,
+      "months": 25,
+      "weeks_green": 88,
+      "weeks": 105,
+      "green_days_pct": 69.4,
+      "days_traded": 494,
+      "worst_drawdown": 5000.0
+     },
+     "oneaday_delta_per_day": 30.0,
+     "oneaday_delta_ci95": [
+      -70.0,
+      138.0
+     ],
+     "clears_bar": false
+    },
+    "0.2302": {
+     "threshold": 0.2302,
+     "kept_pct": 40.0,
+     "all_trades": {
+      "trades": 2292,
+      "win_pct": 70.3,
+      "total_dollars": 1592374.0,
+      "per_trade": 695.0,
+      "mean_r": 0.6948,
+      "per_day": 3185.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 100,
+      "weeks": 105,
+      "green_days_pct": 77.3,
+      "days_traded": 489,
+      "worst_drawdown": 9000.0
+     },
+     "one_a_day": {
+      "trades": 489,
+      "win_pct": 70.1,
+      "total_dollars": 362683.0,
+      "per_trade": 742.0,
+      "mean_r": 0.7417,
+      "per_day": 725.0,
+      "months_green": 24,
+      "months": 25,
+      "weeks_green": 85,
+      "weeks": 105,
+      "green_days_pct": 70.1,
+      "days_traded": 489,
+      "worst_drawdown": 5000.0
+     },
+     "oneaday_delta_per_day": 5.0,
+     "oneaday_delta_ci95": [
+      -104.0,
+      123.0
+     ],
+     "clears_bar": false
+    },
+    "0.2840": {
+     "threshold": 0.284,
+     "kept_pct": 30.0,
+     "all_trades": {
+      "trades": 1751,
+      "win_pct": 72.0,
+      "total_dollars": 1241915.0,
+      "per_trade": 709.0,
+      "mean_r": 0.7093,
+      "per_day": 2484.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 99,
+      "weeks": 105,
+      "green_days_pct": 76.8,
+      "days_traded": 470,
+      "worst_drawdown": 7415.0
+     },
+     "one_a_day": {
+      "trades": 470,
+      "win_pct": 71.6,
+      "total_dollars": 360266.0,
+      "per_trade": 767.0,
+      "mean_r": 0.7665,
+      "per_day": 721.0,
+      "months_green": 24,
+      "months": 25,
+      "weeks_green": 86,
+      "weeks": 105,
+      "green_days_pct": 71.5,
+      "days_traded": 470,
+      "worst_drawdown": 6750.0
+     },
+     "oneaday_delta_per_day": -0.0,
+     "oneaday_delta_ci95": [
+      -117.0,
+      116.0
+     ],
+     "clears_bar": false
+    }
+   }
+  },
+  "er_or0945": {
+   "knowable_at": "09:45",
+   "coverage_pct": 100.0,
+   "rows_filter_may_touch": 5208,
+   "cuts": {
+    "0.0450": {
+     "threshold": 0.045,
+     "kept_pct": 90.9,
+     "all_trades": {
+      "trades": 4192,
+      "win_pct": 59.3,
+      "total_dollars": 2471701.0,
+      "per_trade": 590.0,
+      "mean_r": 0.5896,
+      "per_day": 4943.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 101,
+      "weeks": 105,
+      "green_days_pct": 70.9,
+      "days_traded": 499,
+      "worst_drawdown": 11441.0
+     },
+     "one_a_day": {
+      "trades": 499,
+      "win_pct": 67.1,
+      "total_dollars": 366796.0,
+      "per_trade": 735.0,
+      "mean_r": 0.7351,
+      "per_day": 734.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 87,
+      "weeks": 105,
+      "green_days_pct": 67.1,
+      "days_traded": 499,
+      "worst_drawdown": 5993.0
+     },
+     "oneaday_delta_per_day": 13.0,
+     "oneaday_delta_ci95": [
+      -4.0,
+      36.0
+     ],
+     "clears_bar": false
+    },
+    "0.0922": {
+     "threshold": 0.0922,
+     "kept_pct": 81.8,
+     "all_trades": {
+      "trades": 3843,
+      "win_pct": 59.1,
+      "total_dollars": 2189243.0,
+      "per_trade": 570.0,
+      "mean_r": 0.5697,
+      "per_day": 4378.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 101,
+      "weeks": 105,
+      "green_days_pct": 69.5,
+      "days_traded": 499,
+      "worst_drawdown": 13479.0
+     },
+     "one_a_day": {
+      "trades": 499,
+      "win_pct": 67.3,
+      "total_dollars": 370500.0,
+      "per_trade": 742.0,
+      "mean_r": 0.7425,
+      "per_day": 741.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 87,
+      "weeks": 105,
+      "green_days_pct": 67.3,
+      "days_traded": 499,
+      "worst_drawdown": 5993.0
+     },
+     "oneaday_delta_per_day": 20.0,
+     "oneaday_delta_ci95": [
+      -5.0,
+      52.0
+     ],
+     "clears_bar": false
+    },
+    "0.1409": {
+     "threshold": 0.1409,
+     "kept_pct": 72.7,
+     "all_trades": {
+      "trades": 3506,
+      "win_pct": 59.1,
+      "total_dollars": 2018133.0,
+      "per_trade": 576.0,
+      "mean_r": 0.5756,
+      "per_day": 4036.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 98,
+      "weeks": 105,
+      "green_days_pct": 69.7,
+      "days_traded": 499,
+      "worst_drawdown": 13136.0
+     },
+     "one_a_day": {
+      "trades": 499,
+      "win_pct": 66.5,
+      "total_dollars": 353579.0,
+      "per_trade": 709.0,
+      "mean_r": 0.7086,
+      "per_day": 707.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 87,
+      "weeks": 105,
+      "green_days_pct": 66.5,
+      "days_traded": 499,
+      "worst_drawdown": 5993.0
+     },
+     "oneaday_delta_per_day": -14.0,
+     "oneaday_delta_ci95": [
+      -59.0,
+      29.0
+     ],
+     "clears_bar": false
+    },
+    "0.1916": {
+     "threshold": 0.1916,
+     "kept_pct": 63.9,
+     "all_trades": {
+      "trades": 3153,
+      "win_pct": 59.3,
+      "total_dollars": 1836764.0,
+      "per_trade": 583.0,
+      "mean_r": 0.5825,
+      "per_day": 3674.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 99,
+      "weeks": 105,
+      "green_days_pct": 67.9,
+      "days_traded": 498,
+      "worst_drawdown": 10561.0
+     },
+     "one_a_day": {
+      "trades": 498,
+      "win_pct": 66.9,
+      "total_dollars": 361049.0,
+      "per_trade": 725.0,
+      "mean_r": 0.725,
+      "per_day": 722.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 87,
+      "weeks": 105,
+      "green_days_pct": 66.9,
+      "days_traded": 498,
+      "worst_drawdown": 5993.0
+     },
+     "oneaday_delta_per_day": 1.0,
+     "oneaday_delta_ci95": [
+      -59.0,
+      64.0
+     ],
+     "clears_bar": false
+    },
+    "0.2444": {
+     "threshold": 0.2444,
+     "kept_pct": 55.8,
+     "all_trades": {
+      "trades": 2824,
+      "win_pct": 59.5,
+      "total_dollars": 1612386.0,
+      "per_trade": 571.0,
+      "mean_r": 0.571,
+      "per_day": 3225.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 98,
+      "weeks": 105,
+      "green_days_pct": 68.1,
+      "days_traded": 496,
+      "worst_drawdown": 13468.0
+     },
+     "one_a_day": {
+      "trades": 496,
+      "win_pct": 66.7,
+      "total_dollars": 357872.0,
+      "per_trade": 722.0,
+      "mean_r": 0.7215,
+      "per_day": 716.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 86,
+      "weeks": 105,
+      "green_days_pct": 66.7,
+      "days_traded": 496,
+      "worst_drawdown": 5993.0
+     },
+     "oneaday_delta_per_day": -5.0,
+     "oneaday_delta_ci95": [
+      -65.0,
+      57.0
+     ],
+     "clears_bar": false
+    },
+    "0.2989": {
+     "threshold": 0.2989,
+     "kept_pct": 47.3,
+     "all_trades": {
+      "trades": 2437,
+      "win_pct": 59.6,
+      "total_dollars": 1380712.0,
+      "per_trade": 567.0,
+      "mean_r": 0.5666,
+      "per_day": 2761.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 96,
+      "weeks": 105,
+      "green_days_pct": 68.6,
+      "days_traded": 488,
+      "worst_drawdown": 12419.0
+     },
+     "one_a_day": {
+      "trades": 488,
+      "win_pct": 67.0,
+      "total_dollars": 343195.0,
+      "per_trade": 703.0,
+      "mean_r": 0.7033,
+      "per_day": 686.0,
+      "months_green": 24,
+      "months": 25,
+      "weeks_green": 86,
+      "weeks": 105,
+      "green_days_pct": 67.0,
+      "days_traded": 488,
+      "worst_drawdown": 5993.0
+     },
+     "oneaday_delta_per_day": -34.0,
+     "oneaday_delta_ci95": [
+      -93.0,
+      22.0
+     ],
+     "clears_bar": false
+    },
+    "0.3660": {
+     "threshold": 0.366,
+     "kept_pct": 39.2,
+     "all_trades": {
+      "trades": 2090,
+      "win_pct": 59.5,
+      "total_dollars": 1168169.0,
+      "per_trade": 559.0,
+      "mean_r": 0.5589,
+      "per_day": 2336.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 94,
+      "weeks": 105,
+      "green_days_pct": 65.5,
+      "days_traded": 481,
+      "worst_drawdown": 12419.0
+     },
+     "one_a_day": {
+      "trades": 481,
+      "win_pct": 67.2,
+      "total_dollars": 336442.0,
+      "per_trade": 699.0,
+      "mean_r": 0.6995,
+      "per_day": 673.0,
+      "months_green": 23,
+      "months": 25,
+      "weeks_green": 84,
+      "weeks": 105,
+      "green_days_pct": 67.2,
+      "days_traded": 481,
+      "worst_drawdown": 5993.0
+     },
+     "oneaday_delta_per_day": -48.0,
+     "oneaday_delta_ci95": [
+      -116.0,
+      17.0
+     ],
+     "clears_bar": false
+    }
+   }
+  },
+  "er_or1000": {
+   "knowable_at": "10:00",
+   "coverage_pct": 100.0,
+   "rows_filter_may_touch": 3529,
+   "cuts": {
+    "0.0360": {
+     "threshold": 0.036,
+     "kept_pct": 93.5,
+     "all_trades": {
+      "trades": 4319,
+      "win_pct": 59.3,
+      "total_dollars": 2533443.0,
+      "per_trade": 587.0,
+      "mean_r": 0.5866,
+      "per_day": 5067.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 99,
+      "weeks": 105,
+      "green_days_pct": 70.1,
+      "days_traded": 499,
+      "worst_drawdown": 11146.0
+     },
+     "one_a_day": {
+      "trades": 499,
+      "win_pct": 66.7,
+      "total_dollars": 360380.0,
+      "per_trade": 722.0,
+      "mean_r": 0.7222,
+      "per_day": 721.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 87,
+      "weeks": 105,
+      "green_days_pct": 66.7,
+      "days_traded": 499,
+      "worst_drawdown": 5993.0
+     },
+     "oneaday_delta_per_day": 0.0,
+     "oneaday_delta_ci95": [
+      0.0,
+      0.0
+     ],
+     "clears_bar": false
+    },
+    "0.0643": {
+     "threshold": 0.0643,
+     "kept_pct": 86.7,
+     "all_trades": {
+      "trades": 4139,
+      "win_pct": 59.6,
+      "total_dollars": 2444044.0,
+      "per_trade": 590.0,
+      "mean_r": 0.5905,
+      "per_day": 4888.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 101,
+      "weeks": 105,
+      "green_days_pct": 70.5,
+      "days_traded": 499,
+      "worst_drawdown": 11146.0
+     },
+     "one_a_day": {
+      "trades": 499,
+      "win_pct": 66.5,
+      "total_dollars": 357047.0,
+      "per_trade": 716.0,
+      "mean_r": 0.7155,
+      "per_day": 714.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 87,
+      "weeks": 105,
+      "green_days_pct": 66.5,
+      "days_traded": 499,
+      "worst_drawdown": 5993.0
+     },
+     "oneaday_delta_per_day": -7.0,
+     "oneaday_delta_ci95": [
+      -20.0,
+      0.0
+     ],
+     "clears_bar": false
+    },
+    "0.0976": {
+     "threshold": 0.0976,
+     "kept_pct": 80.0,
+     "all_trades": {
+      "trades": 3902,
+      "win_pct": 60.3,
+      "total_dollars": 2364146.0,
+      "per_trade": 606.0,
+      "mean_r": 0.6059,
+      "per_day": 4728.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 100,
+      "weeks": 105,
+      "green_days_pct": 69.5,
+      "days_traded": 499,
+      "worst_drawdown": 13523.0
+     },
+     "one_a_day": {
+      "trades": 499,
+      "win_pct": 66.5,
+      "total_dollars": 357047.0,
+      "per_trade": 716.0,
+      "mean_r": 0.7155,
+      "per_day": 714.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 87,
+      "weeks": 105,
+      "green_days_pct": 66.5,
+      "days_traded": 499,
+      "worst_drawdown": 5993.0
+     },
+     "oneaday_delta_per_day": -7.0,
+     "oneaday_delta_ci95": [
+      -20.0,
+      0.0
+     ],
+     "clears_bar": false
+    },
+    "0.1320": {
+     "threshold": 0.132,
+     "kept_pct": 73.8,
+     "all_trades": {
+      "trades": 3665,
+      "win_pct": 60.7,
+      "total_dollars": 2195725.0,
+      "per_trade": 599.0,
+      "mean_r": 0.5991,
+      "per_day": 4391.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 100,
+      "weeks": 105,
+      "green_days_pct": 70.3,
+      "days_traded": 499,
+      "worst_drawdown": 13523.0
+     },
+     "one_a_day": {
+      "trades": 499,
+      "win_pct": 66.5,
+      "total_dollars": 357047.0,
+      "per_trade": 716.0,
+      "mean_r": 0.7155,
+      "per_day": 714.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 87,
+      "weeks": 105,
+      "green_days_pct": 66.5,
+      "days_traded": 499,
+      "worst_drawdown": 5993.0
+     },
+     "oneaday_delta_per_day": -7.0,
+     "oneaday_delta_ci95": [
+      -20.0,
+      0.0
+     ],
+     "clears_bar": false
+    },
+    "0.1692": {
+     "threshold": 0.1692,
+     "kept_pct": 67.9,
+     "all_trades": {
+      "trades": 3448,
+      "win_pct": 61.0,
+      "total_dollars": 2078541.0,
+      "per_trade": 603.0,
+      "mean_r": 0.6028,
+      "per_day": 4157.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 98,
+      "weeks": 105,
+      "green_days_pct": 70.5,
+      "days_traded": 499,
+      "worst_drawdown": 13637.0
+     },
+     "one_a_day": {
+      "trades": 499,
+      "win_pct": 66.5,
+      "total_dollars": 357047.0,
+      "per_trade": 716.0,
+      "mean_r": 0.7155,
+      "per_day": 714.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 87,
+      "weeks": 105,
+      "green_days_pct": 66.5,
+      "days_traded": 499,
+      "worst_drawdown": 5993.0
+     },
+     "oneaday_delta_per_day": -7.0,
+     "oneaday_delta_ci95": [
+      -20.0,
+      0.0
+     ],
+     "clears_bar": false
+    },
+    "0.2088": {
+     "threshold": 0.2088,
+     "kept_pct": 62.2,
+     "all_trades": {
+      "trades": 3236,
+      "win_pct": 61.7,
+      "total_dollars": 1952870.0,
+      "per_trade": 603.0,
+      "mean_r": 0.6035,
+      "per_day": 3906.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 99,
+      "weeks": 105,
+      "green_days_pct": 71.2,
+      "days_traded": 497,
+      "worst_drawdown": 12637.0
+     },
+     "one_a_day": {
+      "trades": 497,
+      "win_pct": 66.4,
+      "total_dollars": 358117.0,
+      "per_trade": 721.0,
+      "mean_r": 0.7206,
+      "per_day": 716.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 86,
+      "weeks": 105,
+      "green_days_pct": 66.4,
+      "days_traded": 497,
+      "worst_drawdown": 5993.0
+     },
+     "oneaday_delta_per_day": -5.0,
+     "oneaday_delta_ci95": [
+      -12.0,
+      1.0
+     ],
+     "clears_bar": false
+    },
+    "0.2545": {
+     "threshold": 0.2545,
+     "kept_pct": 57.1,
+     "all_trades": {
+      "trades": 3043,
+      "win_pct": 62.3,
+      "total_dollars": 1861381.0,
+      "per_trade": 612.0,
+      "mean_r": 0.6117,
+      "per_day": 3723.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 101,
+      "weeks": 105,
+      "green_days_pct": 71.6,
+      "days_traded": 496,
+      "worst_drawdown": 12810.0
+     },
+     "one_a_day": {
+      "trades": 496,
+      "win_pct": 66.7,
+      "total_dollars": 372062.0,
+      "per_trade": 750.0,
+      "mean_r": 0.7501,
+      "per_day": 744.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 87,
+      "weeks": 105,
+      "green_days_pct": 66.7,
+      "days_traded": 496,
+      "worst_drawdown": 5993.0
+     },
+     "oneaday_delta_per_day": 23.0,
+     "oneaday_delta_ci95": [
+      -25.0,
+      103.0
+     ],
+     "clears_bar": false
+    }
+   }
+  },
+  "er_session": {
+   "knowable_at": "HINDSIGHT",
+   "coverage_pct": 100.0,
+   "rows_filter_may_touch": 6170,
+   "cuts": {
+    "0.0186": {
+     "threshold": 0.0186,
+     "kept_pct": 90.0,
+     "all_trades": {
+      "trades": 4201,
+      "win_pct": 60.4,
+      "total_dollars": 2577410.0,
+      "per_trade": 614.0,
+      "mean_r": 0.6135,
+      "per_day": 5155.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 101,
+      "weeks": 105,
+      "green_days_pct": 71.3,
+      "days_traded": 499,
+      "worst_drawdown": 10765.0
+     },
+     "one_a_day": {
+      "trades": 499,
+      "win_pct": 66.9,
+      "total_dollars": 360972.0,
+      "per_trade": 723.0,
+      "mean_r": 0.7234,
+      "per_day": 722.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 86,
+      "weeks": 105,
+      "green_days_pct": 66.9,
+      "days_traded": 499,
+      "worst_drawdown": 5993.0
+     },
+     "oneaday_delta_per_day": 1.0,
+     "oneaday_delta_ci95": [
+      -44.0,
+      49.0
+     ],
+     "clears_bar": false
+    },
+    "0.0360": {
+     "threshold": 0.036,
+     "kept_pct": 80.1,
+     "all_trades": {
+      "trades": 3877,
+      "win_pct": 61.8,
+      "total_dollars": 2580842.0,
+      "per_trade": 666.0,
+      "mean_r": 0.6657,
+      "per_day": 5162.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 103,
+      "weeks": 105,
+      "green_days_pct": 72.9,
+      "days_traded": 498,
+      "worst_drawdown": 10080.0
+     },
+     "one_a_day": {
+      "trades": 498,
+      "win_pct": 67.9,
+      "total_dollars": 371013.0,
+      "per_trade": 745.0,
+      "mean_r": 0.745,
+      "per_day": 742.0,
+      "months_green": 24,
+      "months": 25,
+      "weeks_green": 88,
+      "weeks": 105,
+      "green_days_pct": 67.9,
+      "days_traded": 498,
+      "worst_drawdown": 6333.0
+     },
+     "oneaday_delta_per_day": 21.0,
+     "oneaday_delta_ci95": [
+      -57.0,
+      105.0
+     ],
+     "clears_bar": false
+    },
+    "0.0562": {
+     "threshold": 0.0562,
+     "kept_pct": 70.0,
+     "all_trades": {
+      "trades": 3532,
+      "win_pct": 63.9,
+      "total_dollars": 2537124.0,
+      "per_trade": 718.0,
+      "mean_r": 0.7183,
+      "per_day": 5074.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 101,
+      "weeks": 105,
+      "green_days_pct": 74.2,
+      "days_traded": 497,
+      "worst_drawdown": 10830.0
+     },
+     "one_a_day": {
+      "trades": 497,
+      "win_pct": 69.8,
+      "total_dollars": 399997.0,
+      "per_trade": 805.0,
+      "mean_r": 0.8048,
+      "per_day": 800.0,
+      "months_green": 24,
+      "months": 25,
+      "weeks_green": 90,
+      "weeks": 105,
+      "green_days_pct": 69.8,
+      "days_traded": 497,
+      "worst_drawdown": 6333.0
+     },
+     "oneaday_delta_per_day": 79.0,
+     "oneaday_delta_ci95": [
+      -18.0,
+      181.0
+     ],
+     "clears_bar": false
+    },
+    "0.0772": {
+     "threshold": 0.0772,
+     "kept_pct": 60.0,
+     "all_trades": {
+      "trades": 3126,
+      "win_pct": 66.1,
+      "total_dollars": 2467074.0,
+      "per_trade": 789.0,
+      "mean_r": 0.7892,
+      "per_day": 4934.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 101,
+      "weeks": 105,
+      "green_days_pct": 75.8,
+      "days_traded": 495,
+      "worst_drawdown": 7000.0
+     },
+     "one_a_day": {
+      "trades": 495,
+      "win_pct": 70.9,
+      "total_dollars": 432808.0,
+      "per_trade": 874.0,
+      "mean_r": 0.8744,
+      "per_day": 866.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 92,
+      "weeks": 105,
+      "green_days_pct": 70.9,
+      "days_traded": 495,
+      "worst_drawdown": 5864.0
+     },
+     "oneaday_delta_per_day": 145.0,
+     "oneaday_delta_ci95": [
+      21.0,
+      272.0
+     ],
+     "clears_bar": true
+    },
+    "0.1006": {
+     "threshold": 0.1006,
+     "kept_pct": 50.0,
+     "all_trades": {
+      "trades": 2701,
+      "win_pct": 69.4,
+      "total_dollars": 2450722.0,
+      "per_trade": 907.0,
+      "mean_r": 0.9073,
+      "per_day": 4901.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 103,
+      "weeks": 105,
+      "green_days_pct": 78.3,
+      "days_traded": 488,
+      "worst_drawdown": 7602.0
+     },
+     "one_a_day": {
+      "trades": 488,
+      "win_pct": 72.3,
+      "total_dollars": 443636.0,
+      "per_trade": 909.0,
+      "mean_r": 0.9091,
+      "per_day": 887.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 97,
+      "weeks": 105,
+      "green_days_pct": 72.3,
+      "days_traded": 488,
+      "worst_drawdown": 3735.0
+     },
+     "oneaday_delta_per_day": 167.0,
+     "oneaday_delta_ci95": [
+      25.0,
+      312.0
+     ],
+     "clears_bar": true
+    },
+    "0.1247": {
+     "threshold": 0.1247,
+     "kept_pct": 40.0,
+     "all_trades": {
+      "trades": 2227,
+      "win_pct": 72.3,
+      "total_dollars": 2189832.0,
+      "per_trade": 983.0,
+      "mean_r": 0.9833,
+      "per_day": 4380.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 105,
+      "weeks": 105,
+      "green_days_pct": 80.5,
+      "days_traded": 478,
+      "worst_drawdown": 7000.0
+     },
+     "one_a_day": {
+      "trades": 478,
+      "win_pct": 74.3,
+      "total_dollars": 461695.0,
+      "per_trade": 966.0,
+      "mean_r": 0.9659,
+      "per_day": 923.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 98,
+      "weeks": 105,
+      "green_days_pct": 74.3,
+      "days_traded": 478,
+      "worst_drawdown": 4000.0
+     },
+     "oneaday_delta_per_day": 203.0,
+     "oneaday_delta_ci95": [
+      46.0,
+      363.0
+     ],
+     "clears_bar": true
+    },
+    "0.1525": {
+     "threshold": 0.1525,
+     "kept_pct": 30.0,
+     "all_trades": {
+      "trades": 1735,
+      "win_pct": 75.4,
+      "total_dollars": 1833856.0,
+      "per_trade": 1057.0,
+      "mean_r": 1.057,
+      "per_day": 3668.0,
+      "months_green": 25,
+      "months": 25,
+      "weeks_green": 103,
+      "weeks": 105,
+      "green_days_pct": 83.2,
+      "days_traded": 440,
+      "worst_drawdown": 7062.0
+     },
+     "one_a_day": {
+      "trades": 440,
+      "win_pct": 77.5,
+      "total_dollars": 487081.0,
+      "per_trade": 1107.0,
+      "mean_r": 1.107,
+      "per_day": 974.0,
+      "months_green": 24,
+      "months": 25,
+      "weeks_green": 99,
+      "weeks": 105,
+      "green_days_pct": 77.5,
+      "days_traded": 440,
+      "worst_drawdown": 4000.0
+     },
+     "oneaday_delta_per_day": 253.0,
+     "oneaday_delta_ci95": [
+      94.0,
+      417.0
+     ],
+     "clears_bar": true
+    }
+   }
+  }
+ },
+ "sessions": 500,
+ "risk_dollars": 1000.0,
+ "clock_controls": {
+  "only_before_09:45": {
+   "all_trades": {
+    "trades": 950,
+    "win_pct": 65.4,
+    "total_dollars": 614600.0,
+    "per_trade": 647.0,
+    "mean_r": 0.6469,
+    "per_day": 1229.0,
+    "months_green": 24,
+    "months": 25,
+    "weeks_green": 91,
+    "weeks": 105,
+    "green_days_pct": 68.4,
+    "days_traded": 412,
+    "worst_drawdown": 11822.0
+   },
+   "one_a_day": {
+    "trades": 412,
+    "win_pct": 66.3,
+    "total_dollars": 290708.0,
+    "per_trade": 706.0,
+    "mean_r": 0.7056,
+    "per_day": 581.0,
+    "months_green": 23,
+    "months": 25,
+    "weeks_green": 84,
+    "weeks": 105,
+    "green_days_pct": 66.3,
+    "days_traded": 412,
+    "worst_drawdown": 5993.0
+   },
+   "kept_pct": 15.6,
+   "oneaday_delta_per_day": -139.0,
+   "oneaday_delta_ci95": [
+    -204.0,
+    -80.0
+   ]
+  },
+  "only_before_10:00": {
+   "all_trades": {
+    "trades": 2376,
+    "win_pct": 64.0,
+    "total_dollars": 1478359.0,
+    "per_trade": 622.0,
+    "mean_r": 0.6222,
+    "per_day": 2957.0,
+    "months_green": 25,
+    "months": 25,
+    "weeks_green": 101,
+    "weeks": 105,
+    "green_days_pct": 73.1,
+    "days_traded": 490,
+    "worst_drawdown": 10365.0
+   },
+   "one_a_day": {
+    "trades": 490,
+    "win_pct": 66.5,
+    "total_dollars": 349690.0,
+    "per_trade": 714.0,
+    "mean_r": 0.7137,
+    "per_day": 699.0,
+    "months_green": 25,
+    "months": 25,
+    "weeks_green": 87,
+    "weeks": 105,
+    "green_days_pct": 66.5,
+    "days_traded": 490,
+    "worst_drawdown": 5993.0
+   },
+   "kept_pct": 42.8,
+   "oneaday_delta_per_day": -21.0,
+   "oneaday_delta_ci95": [
+    -47.0,
+    -1.0
+   ]
+  }
+ }
+}

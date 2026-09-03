@@ -1,0 +1,470 @@
+{
+ "calendar_days": 499,
+ "arms": {
+  "base": {
+   "label": "shipped today (OR gates, HOD/LOD off, pivots on)",
+   "meta_signals": 134012,
+   "meta_traded": 4508,
+   "all_trades": {
+    "n": 6170,
+    "win_pct": 55.9,
+    "per_trade_dollars": 539,
+    "total_dollars": 3328654,
+    "mean_r": 0.5395,
+    "months_green": 25,
+    "months_total": 25,
+    "weeks_green": 103,
+    "weeks_total": 105,
+    "max_dd_dollars": 19980,
+    "green_days": 398,
+    "days_traded": 499
+   },
+   "one_a_day": {
+    "n": 499,
+    "win_pct": 66.6,
+    "per_trade_dollars": 722,
+    "total_dollars": 360380,
+    "mean_r": 0.7222,
+    "months_green": 25,
+    "months_total": 25,
+    "weeks_green": 87,
+    "weeks_total": 105,
+    "max_dd_dollars": 5993,
+    "green_days": 333,
+    "days_traded": 499,
+    "per_day_dollars": 722,
+    "per_month_dollars": 15162
+   },
+   "level_mix_all": {
+    "pivot structure": 1997,
+    "opening range": 1432,
+    "order block": 764,
+    "PMH": 501,
+    "prior entry (84%)": 486,
+    "PML": 457,
+    "PDH": 286,
+    "PDL": 247
+   },
+   "level_mix_one_a_day": {
+    "opening range": 177,
+    "PMH": 100,
+    "PML": 85,
+    "PDH": 52,
+    "PDL": 50,
+    "pivot structure": 26,
+    "order block": 9
+   }
+  },
+  "hodlod": {
+   "label": "+ HOD/LOD turned on, F3 staleness gates as shipped",
+   "meta_signals": 135465,
+   "meta_traded": 4552,
+   "all_trades": {
+    "n": 6248,
+    "win_pct": 55.9,
+    "per_trade_dollars": 536,
+    "total_dollars": 3351514,
+    "mean_r": 0.5364,
+    "months_green": 25,
+    "months_total": 25,
+    "weeks_green": 103,
+    "weeks_total": 105,
+    "max_dd_dollars": 19980,
+    "green_days": 398,
+    "days_traded": 499
+   },
+   "one_a_day": {
+    "n": 499,
+    "win_pct": 66.4,
+    "per_trade_dollars": 716,
+    "total_dollars": 357047,
+    "mean_r": 0.7155,
+    "months_green": 25,
+    "months_total": 25,
+    "weeks_green": 87,
+    "weeks_total": 105,
+    "max_dd_dollars": 5993,
+    "green_days": 332,
+    "days_traded": 499,
+    "per_day_dollars": 716,
+    "per_month_dollars": 15036
+   },
+   "level_mix_all": {
+    "pivot structure": 1989,
+    "opening range": 1432,
+    "order block": 764,
+    "PMH": 500,
+    "prior entry (84%)": 489,
+    "PML": 456,
+    "PDH": 286,
+    "PDL": 247,
+    "LOD": 45,
+    "HOD": 40
+   },
+   "level_mix_one_a_day": {
+    "opening range": 176,
+    "PMH": 100,
+    "PML": 85,
+    "PDH": 52,
+    "PDL": 50,
+    "pivot structure": 26,
+    "order block": 9,
+    "LOD": 1
+   },
+   "paired_vs_base_all": {
+    "shared": 6045,
+    "moved": 1,
+    "mean_delta_r": -0.0,
+    "ci95": 0.0,
+    "mean_delta_dollars": 0
+   },
+   "paired_vs_base_one_a_day": {
+    "shared": 498,
+    "moved": 0,
+    "mean_delta_r": 0.0,
+    "ci95": 0.0,
+    "mean_delta_dollars": 0
+   }
+  },
+  "hodfast": {
+   "label": "+ HOD/LOD turned on with the F3 staleness gates relaxed",
+   "meta_signals": 146954,
+   "meta_traded": 4985,
+   "all_trades": {
+    "n": 6964,
+    "win_pct": 57.4,
+    "per_trade_dollars": 527,
+    "total_dollars": 3667109,
+    "mean_r": 0.5266,
+    "months_green": 25,
+    "months_total": 25,
+    "weeks_green": 103,
+    "weeks_total": 105,
+    "max_dd_dollars": 19980,
+    "green_days": 399,
+    "days_traded": 499
+   },
+   "one_a_day": {
+    "n": 499,
+    "win_pct": 66.8,
+    "per_trade_dollars": 731,
+    "total_dollars": 364664,
+    "mean_r": 0.7308,
+    "months_green": 25,
+    "months_total": 25,
+    "weeks_green": 87,
+    "weeks_total": 105,
+    "max_dd_dollars": 5993,
+    "green_days": 334,
+    "days_traded": 499,
+    "per_day_dollars": 731,
+    "per_month_dollars": 15351
+   },
+   "level_mix_all": {
+    "pivot structure": 1775,
+    "opening range": 1427,
+    "order block": 761,
+    "HOD": 532,
+    "PMH": 499,
+    "prior entry (84%)": 497,
+    "LOD": 488,
+    "PML": 456,
+    "PDH": 284,
+    "PDL": 245
+   },
+   "level_mix_one_a_day": {
+    "opening range": 175,
+    "PMH": 100,
+    "PML": 85,
+    "PDH": 52,
+    "PDL": 50,
+    "pivot structure": 19,
+    "order block": 9,
+    "HOD": 6,
+    "LOD": 3
+   },
+   "paired_vs_base_all": {
+    "shared": 5980,
+    "moved": 20,
+    "mean_delta_r": 0.0004,
+    "ci95": 0.0008,
+    "mean_delta_dollars": 0
+   },
+   "paired_vs_base_one_a_day": {
+    "shared": 495,
+    "moved": 0,
+    "mean_delta_r": 0.0,
+    "ci95": 0.0,
+    "mean_delta_dollars": 0
+   }
+  },
+  "noor": {
+   "label": "- opening range out of the gating set",
+   "meta_signals": 110809,
+   "meta_traded": 3638,
+   "all_trades": {
+    "n": 5033,
+    "win_pct": 54.2,
+    "per_trade_dollars": 552,
+    "total_dollars": 2777871,
+    "mean_r": 0.5519,
+    "months_green": 25,
+    "months_total": 25,
+    "weeks_green": 102,
+    "weeks_total": 105,
+    "max_dd_dollars": 17936,
+    "green_days": 386,
+    "days_traded": 499
+   },
+   "one_a_day": {
+    "n": 499,
+    "win_pct": 66.9,
+    "per_trade_dollars": 803,
+    "total_dollars": 400644,
+    "mean_r": 0.8029,
+    "months_green": 25,
+    "months_total": 25,
+    "weeks_green": 89,
+    "weeks_total": 105,
+    "max_dd_dollars": 5000,
+    "green_days": 335,
+    "days_traded": 499,
+    "per_day_dollars": 803,
+    "per_month_dollars": 16863
+   },
+   "level_mix_all": {
+    "pivot structure": 2217,
+    "order block": 779,
+    "PMH": 551,
+    "PML": 511,
+    "prior entry (84%)": 389,
+    "PDH": 313,
+    "PDL": 273
+   },
+   "level_mix_one_a_day": {
+    "PMH": 135,
+    "PML": 119,
+    "pivot structure": 78,
+    "PDH": 78,
+    "PDL": 62,
+    "order block": 27
+   },
+   "paired_vs_base_all": {
+    "shared": 4634,
+    "moved": 57,
+    "mean_delta_r": 0.0067,
+    "ci95": 0.0062,
+    "mean_delta_dollars": 7
+   },
+   "paired_vs_base_one_a_day": {
+    "shared": 332,
+    "moved": 9,
+    "mean_delta_r": 0.0294,
+    "ci95": 0.0587,
+    "mean_delta_dollars": 29
+   }
+  },
+  "nopivot": {
+   "label": "- pivots gate nothing",
+   "meta_signals": 56821,
+   "meta_traded": 3310,
+   "all_trades": {
+    "n": 4272,
+    "win_pct": 54.0,
+    "per_trade_dollars": 538,
+    "total_dollars": 2297327,
+    "mean_r": 0.5378,
+    "months_green": 25,
+    "months_total": 25,
+    "weeks_green": 99,
+    "weeks_total": 105,
+    "max_dd_dollars": 13338,
+    "green_days": 364,
+    "days_traded": 499
+   },
+   "one_a_day": {
+    "n": 499,
+    "win_pct": 65.0,
+    "per_trade_dollars": 709,
+    "total_dollars": 353780,
+    "mean_r": 0.709,
+    "months_green": 24,
+    "months_total": 25,
+    "weeks_green": 87,
+    "weeks_total": 105,
+    "max_dd_dollars": 5993,
+    "green_days": 325,
+    "days_traded": 499,
+    "per_day_dollars": 709,
+    "per_month_dollars": 14889
+   },
+   "level_mix_all": {
+    "opening range": 1528,
+    "order block": 796,
+    "PMH": 522,
+    "PML": 485,
+    "prior entry (84%)": 371,
+    "PDH": 305,
+    "PDL": 265
+   },
+   "level_mix_one_a_day": {
+    "opening range": 189,
+    "PMH": 102,
+    "PML": 88,
+    "PDH": 54,
+    "PDL": 51,
+    "order block": 15
+   },
+   "paired_vs_base_all": {
+    "shared": 4008,
+    "moved": 15,
+    "mean_delta_r": 0.0003,
+    "ci95": 0.0021,
+    "mean_delta_dollars": 0
+   },
+   "paired_vs_base_one_a_day": {
+    "shared": 473,
+    "moved": 0,
+    "mean_delta_r": 0.0,
+    "ci95": 0.0,
+    "mean_delta_dollars": 0
+   }
+  },
+  "sixlevels": {
+   "label": "HIS SIX (PDH PDL PMH PML HOD LOD), F3 gates as shipped",
+   "meta_signals": 36114,
+   "meta_traded": 2402,
+   "all_trades": {
+    "n": 3042,
+    "win_pct": 51.0,
+    "per_trade_dollars": 528,
+    "total_dollars": 1607513,
+    "mean_r": 0.5284,
+    "months_green": 25,
+    "months_total": 25,
+    "weeks_green": 96,
+    "weeks_total": 105,
+    "max_dd_dollars": 10810,
+    "green_days": 346,
+    "days_traded": 497
+   },
+   "one_a_day": {
+    "n": 497,
+    "win_pct": 64.2,
+    "per_trade_dollars": 749,
+    "total_dollars": 372079,
+    "mean_r": 0.7486,
+    "months_green": 25,
+    "months_total": 25,
+    "weeks_green": 84,
+    "weeks_total": 105,
+    "max_dd_dollars": 4451,
+    "green_days": 320,
+    "days_traded": 497,
+    "per_day_dollars": 746,
+    "per_month_dollars": 15666
+   },
+   "level_mix_all": {
+    "order block": 822,
+    "PMH": 583,
+    "PML": 550,
+    "PDH": 336,
+    "PDL": 291,
+    "prior entry (84%)": 266,
+    "LOD": 102,
+    "HOD": 92
+   },
+   "level_mix_one_a_day": {
+    "PMH": 152,
+    "PML": 134,
+    "PDH": 82,
+    "PDL": 68,
+    "order block": 57,
+    "HOD": 2,
+    "LOD": 2
+   },
+   "paired_vs_base_all": {
+    "shared": 2643,
+    "moved": 69,
+    "mean_delta_r": 0.012,
+    "ci95": 0.0107,
+    "mean_delta_dollars": 12
+   },
+   "paired_vs_base_one_a_day": {
+    "shared": 305,
+    "moved": 9,
+    "mean_delta_r": 0.032,
+    "ci95": 0.0639,
+    "mean_delta_dollars": 32
+   }
+  },
+  "sixfast": {
+   "label": "HIS SIX, F3 staleness gates relaxed (>=20 bars in, extreme >=12 bars old)",
+   "meta_signals": 50655,
+   "meta_traded": 3378,
+   "all_trades": {
+    "n": 4387,
+    "win_pct": 56.9,
+    "per_trade_dollars": 538,
+    "total_dollars": 2359056,
+    "mean_r": 0.5377,
+    "months_green": 25,
+    "months_total": 25,
+    "weeks_green": 99,
+    "weeks_total": 105,
+    "max_dd_dollars": 9938,
+    "green_days": 384,
+    "days_traded": 498
+   },
+   "one_a_day": {
+    "n": 498,
+    "win_pct": 66.1,
+    "per_trade_dollars": 731,
+    "total_dollars": 364137,
+    "mean_r": 0.7312,
+    "months_green": 25,
+    "months_total": 25,
+    "weeks_green": 85,
+    "weeks_total": 105,
+    "max_dd_dollars": 6000,
+    "green_days": 330,
+    "days_traded": 498,
+    "per_day_dollars": 730,
+    "per_month_dollars": 15330
+   },
+   "level_mix_all": {
+    "HOD": 815,
+    "order block": 799,
+    "LOD": 760,
+    "PMH": 565,
+    "PML": 535,
+    "PDH": 324,
+    "prior entry (84%)": 305,
+    "PDL": 284
+   },
+   "level_mix_one_a_day": {
+    "PMH": 138,
+    "PML": 124,
+    "PDH": 78,
+    "PDL": 61,
+    "HOD": 35,
+    "LOD": 34,
+    "order block": 28
+   },
+   "paired_vs_base_all": {
+    "shared": 3403,
+    "moved": 147,
+    "mean_delta_r": 0.0097,
+    "ci95": 0.0084,
+    "mean_delta_dollars": 10
+   },
+   "paired_vs_base_one_a_day": {
+    "shared": 313,
+    "moved": 10,
+    "mean_delta_r": 0.0307,
+    "ci95": 0.0623,
+    "mean_delta_dollars": 31
+   }
+  }
+ }
+}

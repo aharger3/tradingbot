@@ -1,0 +1,1604 @@
+{
+ "book": "bt2y_trades_retest_on.json",
+ "sessions": 498,
+ "n_first_of_day": 498,
+ "targets_swept": [
+  1.0,
+  1.25,
+  1.5,
+  1.75,
+  2.0,
+  2.25,
+  2.5,
+  2.75,
+  3.0,
+  3.25,
+  3.5,
+  3.75,
+  4.0,
+  4.25,
+  4.5,
+  4.75,
+  5.0,
+  5.25,
+  5.5,
+  5.75,
+  6.0
+ ],
+ "n_arms": 21,
+ "risk_dollars": 1000.0,
+ "account_size": 50000.0,
+ "risk_levels_swept": [
+  100,
+  250,
+  500,
+  1000,
+  2000,
+  5000
+ ],
+ "arms": {
+  "1.0": {
+   "target_R": 1.0,
+   "ev_r": 0.0062,
+   "n": 444,
+   "n_dropped_size_gate": 54,
+   "win_rate": 0.5023,
+   "hit_rate": 0.5023,
+   "avg_win_R": 1.0,
+   "avg_loss_R": 0.9966,
+   "profit_factor": 1.0125,
+   "total_R": 2.75,
+   "yearly_R": 1.3916,
+   "max_drawdown_R": -23.25,
+   "months_green": "11/25",
+   "expectancy_per_day": 5.52,
+   "prop_eval_at_1000": {
+    "passed": false,
+    "fail_reason": "daily_loss_limit",
+    "fail_day": "2024-09-03",
+    "final_equity_pct": 0.0,
+    "max_drawdown_seen_pct": 0.0
+   },
+   "prop_eval_any_pass_risk": null,
+   "prop_eval_by_risk": {
+    "100": {
+     "passed": false,
+     "fail_reason": "trailing_drawdown",
+     "fail_day": "2026-06-25",
+     "final_equity_pct": 1.15,
+     "max_drawdown_seen_pct": -4.05
+    },
+    "250": {
+     "passed": false,
+     "fail_reason": "trailing_drawdown",
+     "fail_day": "2025-01-21",
+     "final_equity_pct": 0.0,
+     "max_drawdown_seen_pct": -4.5
+    },
+    "500": {
+     "passed": false,
+     "fail_reason": "trailing_drawdown",
+     "fail_day": "2024-09-11",
+     "final_equity_pct": -5.0,
+     "max_drawdown_seen_pct": -5.0
+    },
+    "1000": {
+     "passed": false,
+     "fail_reason": "daily_loss_limit",
+     "fail_day": "2024-09-03",
+     "final_equity_pct": 0.0,
+     "max_drawdown_seen_pct": 0.0
+    },
+    "2000": {
+     "passed": false,
+     "fail_reason": "daily_loss_limit",
+     "fail_day": "2024-09-03",
+     "final_equity_pct": 0.0,
+     "max_drawdown_seen_pct": 0.0
+    },
+    "5000": {
+     "passed": false,
+     "fail_reason": "daily_loss_limit",
+     "fail_day": "2024-09-03",
+     "final_equity_pct": 0.0,
+     "max_drawdown_seen_pct": 0.0
+    }
+   },
+   "exit_reasons": {
+    "stop": 248,
+    "target": 249,
+    "eod_flat": 1
+   }
+  },
+  "1.25": {
+   "target_R": 1.25,
+   "ev_r": 0.0376,
+   "n": 444,
+   "n_dropped_size_gate": 54,
+   "win_rate": 0.4595,
+   "hit_rate": 0.4595,
+   "avg_win_R": 1.25,
+   "avg_loss_R": 0.993,
+   "profit_factor": 1.07,
+   "total_R": 16.6912,
+   "yearly_R": 8.4461,
+   "max_drawdown_R": -22.0,
+   "months_green": "13/25",
+   "expectancy_per_day": 33.52,
+   "prop_eval_at_1000": {
+    "passed": false,
+    "fail_reason": "daily_loss_limit",
+    "fail_day": "2024-09-03",
+    "final_equity_pct": 0.0,
+    "max_drawdown_seen_pct": 0.0
+   },
+   "prop_eval_any_pass_risk": null,
+   "prop_eval_by_risk": {
+    "100": {
+     "passed": false,
+     "fail_reason": "trailing_drawdown",
+     "fail_day": "2026-06-26",
+     "final_equity_pct": 2.788,
+     "max_drawdown_seen_pct": -4.05
+    },
+    "250": {
+     "passed": false,
+     "fail_reason": "trailing_drawdown",
+     "fail_day": "2025-01-21",
+     "final_equity_pct": 2.596,
+     "max_drawdown_seen_pct": -4.25
+    },
+    "500": {
+     "passed": false,
+     "fail_reason": "trailing_drawdown",
+     "fail_day": "2024-09-11",
+     "final_equity_pct": -4.75,
+     "max_drawdown_seen_pct": -4.75
+    },
+    "1000": {
+     "passed": false,
+     "fail_reason": "daily_loss_limit",
+     "fail_day": "2024-09-03",
+     "final_equity_pct": 0.0,
+     "max_drawdown_seen_pct": 0.0
+    },
+    "2000": {
+     "passed": false,
+     "fail_reason": "daily_loss_limit",
+     "fail_day": "2024-09-03",
+     "final_equity_pct": 0.0,
+     "max_drawdown_seen_pct": 0.0
+    },
+    "5000": {
+     "passed": false,
+     "fail_reason": "daily_loss_limit",
+     "fail_day": "2024-09-03",
+     "final_equity_pct": 0.0,
+     "max_drawdown_seen_pct": 0.0
+    }
+   },
+   "exit_reasons": {
+    "stop": 267,
+    "target": 229,
+    "eod_flat": 2
+   }
+  },
+  "1.5": {
+   "target_R": 1.5,
+   "ev_r": 0.0494,
+   "n": 444,
+   "n_dropped_size_gate": 54,
+   "win_rate": 0.4189,
+   "hit_rate": 0.4189,
+   "avg_win_R": 1.4959,
+   "avg_loss_R": 0.9934,
+   "profit_factor": 1.0855,
+   "total_R": 21.9209,
+   "yearly_R": 11.0925,
+   "max_drawdown_R": -23.5203,
+   "months_green": "13/25",
+   "expectancy_per_day": 44.02,
+   "prop_eval_at_1000": {
+    "passed": false,
+    "fail_reason": "daily_loss_limit",
+    "fail_day": "2024-09-03",
+    "final_equity_pct": 0.0,
+    "max_drawdown_seen_pct": 0.0
+   },
+   "prop_eval_any_pass_risk": 100,
+   "prop_eval_by_risk": {
+    "100": {
+     "passed": true,
+     "fail_reason": null,
+     "fail_day": null,
+     "final_equity_pct": 8.288,
+     "max_drawdown_seen_pct": -2.6
+    },
+    "250": {
+     "passed": false,
+     "fail_reason": "trailing_drawdown",
+     "fail_day": "2024-09-23",
+     "final_equity_pct": -4.029,
+     "max_drawdown_seen_pct": -4.029
+    },
+    "500": {
+     "passed": false,
+     "fail_reason": "trailing_drawdown",
+     "fail_day": "2024-09-11",
+     "final_equity_pct": -4.5,
+     "max_drawdown_seen_pct": -4.5
+    },
+    "1000": {
+     "passed": false,
+     "fail_reason": "daily_loss_limit",
+     "fail_day": "2024-09-03",
+     "final_equity_pct": 0.0,
+     "max_drawdown_seen_pct": 0.0
+    },
+    "2000": {
+     "passed": false,
+     "fail_reason": "daily_loss_limit",
+     "fail_day": "2024-09-03",
+     "final_equity_pct": 0.0,
+     "max_drawdown_seen_pct": 0.0
+    },
+    "5000": {
+     "passed": false,
+     "fail_reason": "daily_loss_limit",
+     "fail_day": "2024-09-03",
+     "final_equity_pct": 0.0,
+     "max_drawdown_seen_pct": 0.0
+    }
+   },
+   "exit_reasons": {
+    "stop": 286,
+    "target": 208,
+    "eod_flat": 4
+   }
+  },
+  "1.75": {
+   "target_R": 1.75,
+   "ev_r": 0.0781,
+   "n": 444,
+   "n_dropped_size_gate": 54,
+   "win_rate": 0.3941,
+   "hit_rate": 0.3941,
+   "avg_win_R": 1.7256,
+   "avg_loss_R": 0.9937,
+   "profit_factor": 1.1297,
+   "total_R": 34.6797,
+   "yearly_R": 17.5487,
+   "max_drawdown_R": -22.7969,
+   "months_green": "13/25",
+   "expectancy_per_day": 69.64,
+   "prop_eval_at_1000": {
+    "passed": false,
+    "fail_reason": "daily_loss_limit",
+    "fail_day": "2024-09-03",
+    "final_equity_pct": 0.0,
+    "max_drawdown_seen_pct": 0.0
+   },
+   "prop_eval_any_pass_risk": 100,
+   "prop_eval_by_risk": {
+    "100": {
+     "passed": true,
+     "fail_reason": null,
+     "fail_day": null,
+     "final_equity_pct": 8.089,
+     "max_drawdown_seen_pct": -2.65
+    },
+    "250": {
+     "passed": false,
+     "fail_reason": "trailing_drawdown",
+     "fail_day": "2024-09-24",
+     "final_equity_pct": -4.279,
+     "max_drawdown_seen_pct": -4.279
+    },
+    "500": {
+     "passed": false,
+     "fail_reason": "trailing_drawdown",
+     "fail_day": "2024-09-11",
+     "final_equity_pct": -4.25,
+     "max_drawdown_seen_pct": -4.25
+    },
+    "1000": {
+     "passed": false,
+     "fail_reason": "daily_loss_limit",
+     "fail_day": "2024-09-03",
+     "final_equity_pct": 0.0,
+     "max_drawdown_seen_pct": 0.0
+    },
+    "2000": {
+     "passed": false,
+     "fail_reason": "daily_loss_limit",
+     "fail_day": "2024-09-03",
+     "final_equity_pct": 0.0,
+     "max_drawdown_seen_pct": 0.0
+    },
+    "5000": {
+     "passed": false,
+     "fail_reason": "daily_loss_limit",
+     "fail_day": "2024-09-03",
+     "final_equity_pct": 0.0,
+     "max_drawdown_seen_pct": 0.0
+    }
+   },
+   "exit_reasons": {
+    "stop": 300,
+    "target": 188,
+    "eod_flat": 10
+   }
+  },
+  "2.0": {
+   "target_R": 2.0,
+   "ev_r": 0.0395,
+   "n": 444,
+   "n_dropped_size_gate": 54,
+   "win_rate": 0.3514,
+   "hit_rate": 0.3514,
+   "avg_win_R": 1.9477,
+   "avg_loss_R": 0.9941,
+   "profit_factor": 1.0612,
+   "total_R": 17.5284,
+   "yearly_R": 8.8698,
+   "max_drawdown_R": -30.2743,
+   "months_green": "13/25",
+   "expectancy_per_day": 35.2,
+   "prop_eval_at_1000": {
+    "passed": false,
+    "fail_reason": "daily_loss_limit",
+    "fail_day": "2024-09-03",
+    "final_equity_pct": 0.0,
+    "max_drawdown_seen_pct": 0.0
+   },
+   "prop_eval_any_pass_risk": 100,
+   "prop_eval_by_risk": {
+    "100": {
+     "passed": true,
+     "fail_reason": null,
+     "fail_day": null,
+     "final_equity_pct": 8.361,
+     "max_drawdown_seen_pct": -4.0
+    },
+    "250": {
+     "passed": false,
+     "fail_reason": "trailing_drawdown",
+     "fail_day": "2024-09-19",
+     "final_equity_pct": -4.5,
+     "max_drawdown_seen_pct": -4.5
+    },
+    "500": {
+     "passed": false,
+     "fail_reason": "trailing_drawdown",
+     "fail_day": "2024-09-12",
+     "final_equity_pct": -5.0,
+     "max_drawdown_seen_pct": -5.0
+    },
+    "1000": {
+     "passed": false,
+     "fail_reason": "daily_loss_limit",
+     "fail_day": "2024-09-03",
+     "final_equity_pct": 0.0,
+     "max_drawdown_seen_pct": 0.0
+    },
+    "2000": {
+     "passed": false,
+     "fail_reason": "daily_loss_limit",
+     "fail_day": "2024-09-03",
+     "final_equity_pct": 0.0,
+     "max_drawdown_seen_pct": 0.0
+    },
+    "5000": {
+     "passed": false,
+     "fail_reason": "daily_loss_limit",
+     "fail_day": "2024-09-03",
+     "final_equity_pct": 0.0,
+     "max_drawdown_seen_pct": 0.0
+    }
+   },
+   "exit_reasons": {
+    "stop": 319,
+    "target": 167,
+    "eod_flat": 12
+   }
+  },
+  "2.25": {
+   "target_R": 2.25,
+   "ev_r": 0.0661,
+   "n": 444,
+   "n_dropped_size_gate": 54,
+   "win_rate": 0.3378,
+   "hit_rate": 0.3378,
+   "avg_win_R": 2.1444,
+   "avg_loss_R": 0.9942,
+   "profit_factor": 1.1004,
+   "total_R": 29.3553,
+   "yearly_R": 14.8545,
+   "max_drawdown_R": -27.6739,
+   "months_green": "14/25",
+   "expectancy_per_day": 58.95,
+   "prop_eval_at_1000": {
+    "passed": false,
+    "fail_reason": "daily_loss_limit",
+    "fail_day": "2024-09-03",
+    "final_equity_pct": 0.0,
+    "max_drawdown_seen_pct": 0.0
+   },
+   "prop_eval_any_pass_risk": 100,
+   "prop_eval_by_risk": {
+    "100": {
+     "passed": true,
+     "fail_reason": null,
+     "fail_day": null,
+     "final_equity_pct": 8.004,
+     "max_drawdown_seen_pct": -3.901
+    },
+    "250": {
+     "passed": false,
+     "fail_reason": "trailing_drawdown",
+     "fail_day": "2024-09-19",
+     "final_equity_pct": -4.375,
+     "max_drawdown_seen_pct": -4.375
+    },
+    "500": {
+     "passed": false,
+     "fail_reason": "trailing_drawdown",
+     "fail_day": "2024-09-12",
+     "final_equity_pct": -4.75,
+     "max_drawdown_seen_pct": -4.75
+    },
+    "1000": {
+     "passed": false,
+     "fail_reason": "daily_loss_limit",
+     "fail_day": "2024-09-03",
+     "final_equity_pct": 0.0,
+     "max_drawdown_seen_pct": 0.0
+    },
+    "2000": {
+     "passed": false,
+     "fail_reason": "daily_loss_limit",
+     "fail_day": "2024-09-03",
+     "final_equity_pct": 0.0,
+     "max_drawdown_seen_pct": 0.0
+    },
+    "5000": {
+     "passed": false,
+     "fail_reason": "daily_loss_limit",
+     "fail_day": "2024-09-03",
+     "final_equity_pct": 0.0,
+     "max_drawdown_seen_pct": 0.0
+    }
+   },
+   "exit_reasons": {
+    "stop": 325,
+    "target": 155,
+    "eod_flat": 18
+   }
+  },
+  "2.5": {
+   "target_R": 2.5,
+   "ev_r": 0.0954,
+   "n": 444,
+   "n_dropped_size_gate": 54,
+   "win_rate": 0.3266,
+   "hit_rate": 0.3266,
+   "avg_win_R": 2.3425,
+   "avg_loss_R": 0.9943,
+   "profit_factor": 1.1425,
+   "total_R": 42.3544,
+   "yearly_R": 21.4324,
+   "max_drawdown_R": -25.7283,
+   "months_green": "14/25",
+   "expectancy_per_day": 85.05,
+   "prop_eval_at_1000": {
+    "passed": false,
+    "fail_reason": "daily_loss_limit",
+    "fail_day": "2024-09-03",
+    "final_equity_pct": 0.0,
+    "max_drawdown_seen_pct": 0.0
+   },
+   "prop_eval_any_pass_risk": 100,
+   "prop_eval_by_risk": {
+    "100": {
+     "passed": true,
+     "fail_reason": null,
+     "fail_day": null,
+     "final_equity_pct": 8.254,
+     "max_drawdown_seen_pct": -3.651
+    },
+    "250": {
+     "passed": false,
+     "fail_reason": "trailing_drawdown",
+     "fail_day": "2024-09-19",
+     "final_equity_pct": -4.25,
+     "max_drawdown_seen_pct": -4.25
+    },
+    "500": {
+     "passed": false,
+     "fail_reason": "trailing_drawdown",
+     "fail_day": "2024-09-12",
+     "final_equity_pct": -4.5,
+     "max_drawdown_seen_pct": -4.5
+    },
+    "1000": {
+     "passed": false,
+     "fail_reason": "daily_loss_limit",
+     "fail_day": "2024-09-03",
+     "final_equity_pct": 0.0,
+     "max_drawdown_seen_pct": 0.0
+    },
+    "2000": {
+     "passed": false,
+     "fail_reason": "daily_loss_limit",
+     "fail_day": "2024-09-03",
+     "final_equity_pct": 0.0,
+     "max_drawdown_seen_pct": 0.0
+    },
+    "5000": {
+     "passed": false,
+     "fail_reason": "daily_loss_limit",
+     "fail_day": "2024-09-03",
+     "final_equity_pct": 0.0,
+     "max_drawdown_seen_pct": 0.0
+    }
+   },
+   "exit_reasons": {
+    "stop": 333,
+    "target": 143,
+    "eod_flat": 22
+   }
+  },
+  "2.75": {
+   "target_R": 2.75,
+   "ev_r": 0.072,
+   "n": 444,
+   "n_dropped_size_gate": 54,
+   "win_rate": 0.3063,
+   "hit_rate": 0.3063,
+   "avg_win_R": 2.4872,
+   "avg_loss_R": 0.9945,
+   "profit_factor": 1.1043,
+   "total_R": 31.948,
+   "yearly_R": 16.1665,
+   "max_drawdown_R": -36.9119,
+   "months_green": "13/25",
+   "expectancy_per_day": 64.15,
+   "prop_eval_at_1000": {
+    "passed": false,
+    "fail_reason": "daily_loss_limit",
+    "fail_day": "2024-09-03",
+    "final_equity_pct": 0.0,
+    "max_drawdown_seen_pct": 0.0
+   },
+   "prop_eval_any_pass_risk": null,
+   "prop_eval_by_risk": {
+    "100": {
+     "passed": false,
+     "fail_reason": "trailing_drawdown",
+     "fail_day": "2025-01-27",
+     "final_equity_pct": -2.173,
+     "max_drawdown_seen_pct": -4.063
+    },
+    "250": {
+     "passed": false,
+     "fail_reason": "trailing_drawdown",
+     "fail_day": "2024-09-19",
+     "final_equity_pct": -4.125,
+     "max_drawdown_seen_pct": -4.125
+    },
+    "500": {
+     "passed": false,
+     "fail_reason": "trailing_drawdown",
+     "fail_day": "2024-09-12",
+     "final_equity_pct": -4.25,
+     "max_drawdown_seen_pct": -4.25
+    },
+    "1000": {
+     "passed": false,
+     "fail_reason": "daily_loss_limit",
+     "fail_day": "2024-09-03",
+     "final_equity_pct": 0.0,
+     "max_drawdown_seen_pct": 0.0
+    },
+    "2000": {
+     "passed": false,
+     "fail_reason": "daily_loss_limit",
+     "fail_day": "2024-09-03",
+     "final_equity_pct": 0.0,
+     "max_drawdown_seen_pct": 0.0
+    },
+    "5000": {
+     "passed": false,
+     "fail_reason": "daily_loss_limit",
+     "fail_day": "2024-09-03",
+     "final_equity_pct": 0.0,
+     "max_drawdown_seen_pct": 0.0
+    }
+   },
+   "exit_reasons": {
+    "stop": 342,
+    "target": 127,
+    "eod_flat": 29
+   }
+  },
+  "3.0": {
+   "target_R": 3.0,
+   "ev_r": 0.0791,
+   "n": 444,
+   "n_dropped_size_gate": 54,
+   "win_rate": 0.295,
+   "hit_rate": 0.295,
+   "avg_win_R": 2.637,
+   "avg_loss_R": 0.9946,
+   "profit_factor": 1.1132,
+   "total_R": 35.1395,
+   "yearly_R": 17.7814,
+   "max_drawdown_R": -36.1619,
+   "months_green": "12/25",
+   "expectancy_per_day": 70.56,
+   "prop_eval_at_1000": {
+    "passed": false,
+    "fail_reason": "daily_loss_limit",
+    "fail_day": "2024-09-03",
+    "final_equity_pct": 0.0,
+    "max_drawdown_seen_pct": 0.0
+   },
+   "prop_eval_any_pass_risk": null,
+   "prop_eval_by_risk": {
+    "100": {
+     "passed": false,
+     "fail_reason": "trailing_drawdown",
+     "fail_day": "2025-01-28",
+     "final_equity_pct": -2.815,
+     "max_drawdown_seen_pct": -4.163
+    },
+    "250": {
+     "passed": false,
+     "fail_reason": "trailing_drawdown",
+     "fail_day": "2024-09-20",
+     "final_equity_pct": -4.5,
+     "max_drawdown_seen_pct": -4.5
+    },
+    "500": {
+     "passed": false,
+     "fail_reason": "trailing_drawdown",
+     "fail_day": "2024-09-13",
+     "final_equity_pct": -5.0,
+     "max_drawdown_seen_pct": -5.0
+    },
+    "1000": {
+     "passed": false,
+     "fail_reason": "daily_loss_limit",
+     "fail_day": "2024-09-03",
+     "final_equity_pct": 0.0,
+     "max_drawdown_seen_pct": 0.0
+    },
+    "2000": {
+     "passed": false,
+     "fail_reason": "daily_loss_limit",
+     "fail_day": "2024-09-03",
+     "final_equity_pct": 0.0,
+     "max_drawdown_seen_pct": 0.0
+    },
+    "5000": {
+     "passed": false,
+     "fail_reason": "daily_loss_limit",
+     "fail_day": "2024-09-03",
+     "final_equity_pct": 0.0,
+     "max_drawdown_seen_pct": 0.0
+    }
+   },
+   "exit_reasons": {
+    "stop": 347,
+    "target": 116,
+    "eod_flat": 35
+   }
+  },
+  "3.25": {
+   "target_R": 3.25,
+   "ev_r": 0.0745,
+   "n": 444,
+   "n_dropped_size_gate": 54,
+   "win_rate": 0.2815,
+   "hit_rate": 0.2815,
+   "avg_win_R": 2.7801,
+   "avg_loss_R": 0.9887,
+   "profit_factor": 1.1053,
+   "total_R": 33.0931,
+   "yearly_R": 16.7459,
+   "max_drawdown_R": -34.1977,
+   "months_green": "13/25",
+   "expectancy_per_day": 66.45,
+   "prop_eval_at_1000": {
+    "passed": false,
+    "fail_reason": "daily_loss_limit",
+    "fail_day": "2024-09-03",
+    "final_equity_pct": 0.0,
+    "max_drawdown_seen_pct": 0.0
+   },
+   "prop_eval_any_pass_risk": null,
+   "prop_eval_by_risk": {
+    "100": {
+     "passed": false,
+     "fail_reason": "trailing_drawdown",
+     "fail_day": "2025-01-24",
+     "final_equity_pct": -1.99,
+     "max_drawdown_seen_pct": -4.038
+    },
+    "250": {
+     "passed": false,
+     "fail_reason": "trailing_drawdown",
+     "fail_day": "2024-09-20",
+     "final_equity_pct": -4.375,
+     "max_drawdown_seen_pct": -4.5
+    },
+    "500": {
+     "passed": false,
+     "fail_reason": "trailing_drawdown",
+     "fail_day": "2024-09-13",
+     "final_equity_pct": -4.75,
+     "max_drawdown_seen_pct": -5.0
+    },
+    "1000": {
+     "passed": false,
+     "fail_reason": "daily_loss_limit",
+     "fail_day": "2024-09-03",
+     "final_equity_pct": 0.0,
+     "max_drawdown_seen_pct": 0.0
+    },
+    "2000": {
+     "passed": false,
+     "fail_reason": "daily_loss_limit",
+     "fail_day": "2024-09-03",
+     "final_equity_pct": 0.0,
+     "max_drawdown_seen_pct": 0.0
+    },
+    "5000": {
+     "passed": false,
+     "fail_reason": "daily_loss_limit",
+     "fail_day": "2024-09-03",
+     "final_equity_pct": 0.0,
+     "max_drawdown_seen_pct": 0.0
+    }
+   },
+   "exit_reasons": {
+    "stop": 352,
+    "target": 106,
+    "eod_flat": 40
+   }
+  },
+  "3.5": {
+   "target_R": 3.5,
+   "ev_r": 0.1174,
+   "n": 444,
+   "n_dropped_size_gate": 54,
+   "win_rate": 0.2815,
+   "hit_rate": 0.2815,
+   "avg_win_R": 2.9322,
+   "avg_loss_R": 0.9887,
+   "profit_factor": 1.1657,
+   "total_R": 52.1106,
+   "yearly_R": 26.3692,
+   "max_drawdown_R": -33.586,
+   "months_green": "14/25",
+   "expectancy_per_day": 104.64,
+   "prop_eval_at_1000": {
+    "passed": false,
+    "fail_reason": "daily_loss_limit",
+    "fail_day": "2024-09-03",
+    "final_equity_pct": 0.0,
+    "max_drawdown_seen_pct": 0.0
+   },
+   "prop_eval_any_pass_risk": null,
+   "prop_eval_by_risk": {
+    "100": {
+     "passed": false,
+     "fail_reason": "trailing_drawdown",
+     "fail_day": "2025-01-27",
+     "final_equity_pct": -1.44,
+     "max_drawdown_seen_pct": -4.188
+    },
+    "250": {
+     "passed": false,
+     "fail_reason": "trailing_drawdown",
+     "fail_day": "2024-09-20",
+     "final_equity_pct": -4.25,
+     "max_drawdown_seen_pct": -4.5
+    },
+    "500": {
+     "passed": false,
+     "fail_reason": "trailing_drawdown",
+     "fail_day": "2024-09-13",
+     "final_equity_pct": -4.5,
+     "max_drawdown_seen_pct": -5.0
+    },
+    "1000": {
+     "passed": false,
+     "fail_reason": "daily_loss_limit",
+     "fail_day": "2024-09-03",
+     "final_equity_pct": 0.0,
+     "max_drawdown_seen_pct": 0.0
+    },
+    "2000": {
+     "passed": false,
+     "fail_reason": "daily_loss_limit",
+     "fail_day": "2024-09-03",
+     "final_equity_pct": 0.0,
+     "max_drawdown_seen_pct": 0.0
+    },
+    "5000": {
+     "passed": false,
+     "fail_reason": "daily_loss_limit",
+     "fail_day": "2024-09-03",
+     "final_equity_pct": 0.0,
+     "max_drawdown_seen_pct": 0.0
+    }
+   },
+   "exit_reasons": {
+    "stop": 353,
+    "target": 103,
+    "eod_flat": 42
+   }
+  },
+  "3.75": {
+   "target_R": 3.75,
+   "ev_r": 0.1506,
+   "n": 444,
+   "n_dropped_size_gate": 54,
+   "win_rate": 0.2793,
+   "hit_rate": 0.2793,
+   "avg_win_R": 3.083,
+   "avg_loss_R": 0.9888,
+   "profit_factor": 1.212,
+   "total_R": 66.872,
+   "yearly_R": 33.8389,
+   "max_drawdown_R": -37.086,
+   "months_green": "14/25",
+   "expectancy_per_day": 134.28,
+   "prop_eval_at_1000": {
+    "passed": false,
+    "fail_reason": "daily_loss_limit",
+    "fail_day": "2024-09-03",
+    "final_equity_pct": 0.0,
+    "max_drawdown_seen_pct": 0.0
+   },
+   "prop_eval_any_pass_risk": null,
+   "prop_eval_by_risk": {
+    "100": {
+     "passed": false,
+     "fail_reason": "trailing_drawdown",
+     "fail_day": "2025-01-27",
+     "final_equity_pct": -0.807,
+     "max_drawdown_seen_pct": -4.138
+    },
+    "250": {
+     "passed": false,
+     "fail_reason": "trailing_drawdown",
+     "fail_day": "2024-09-20",
+     "final_equity_pct": -4.125,
+     "max_drawdown_seen_pct": -4.5
+    },
+    "500": {
+     "passed": false,
+     "fail_reason": "trailing_drawdown",
+     "fail_day": "2024-09-13",
+     "final_equity_pct": -4.25,
+     "max_drawdown_seen_pct": -5.0
+    },
+    "1000": {
+     "passed": false,
+     "fail_reason": "daily_loss_limit",
+     "fail_day": "2024-09-03",
+     "final_equity_pct": 0.0,
+     "max_drawdown_seen_pct": 0.0
+    },
+    "2000": {
+     "passed": false,
+     "fail_reason": "daily_loss_limit",
+     "fail_day": "2024-09-03",
+     "final_equity_pct": 0.0,
+     "max_drawdown_seen_pct": 0.0
+    },
+    "5000": {
+     "passed": false,
+     "fail_reason": "daily_loss_limit",
+     "fail_day": "2024-09-03",
+     "final_equity_pct": 0.0,
+     "max_drawdown_seen_pct": 0.0
+    }
+   },
+   "exit_reasons": {
+    "stop": 354,
+    "target": 97,
+    "eod_flat": 47
+   }
+  },
+  "4.0": {
+   "target_R": 4.0,
+   "ev_r": 0.1484,
+   "n": 444,
+   "n_dropped_size_gate": 54,
+   "win_rate": 0.2725,
+   "hit_rate": 0.2725,
+   "avg_win_R": 3.1761,
+   "avg_loss_R": 0.9889,
+   "profit_factor": 1.2069,
+   "total_R": 65.8955,
+   "yearly_R": 33.3447,
+   "max_drawdown_R": -36.6752,
+   "months_green": "13/25",
+   "expectancy_per_day": 132.32,
+   "prop_eval_at_1000": {
+    "passed": false,
+    "fail_reason": "daily_loss_limit",
+    "fail_day": "2024-09-03",
+    "final_equity_pct": 0.0,
+    "max_drawdown_seen_pct": 0.0
+   },
+   "prop_eval_any_pass_risk": null,
+   "prop_eval_by_risk": {
+    "100": {
+     "passed": false,
+     "fail_reason": "trailing_drawdown",
+     "fail_day": "2025-01-27",
+     "final_equity_pct": -0.316,
+     "max_drawdown_seen_pct": -4.088
+    },
+    "250": {
+     "passed": false,
+     "fail_reason": "trailing_drawdown",
+     "fail_day": "2024-09-20",
+     "final_equity_pct": -4.0,
+     "max_drawdown_seen_pct": -4.5
+    },
+    "500": {
+     "passed": false,
+     "fail_reason": "trailing_drawdown",
+     "fail_day": "2024-09-13",
+     "final_equity_pct": -4.0,
+     "max_drawdown_seen_pct": -5.0
+    },
+    "1000": {
+     "passed": false,
+     "fail_reason": "daily_loss_limit",
+     "fail_day": "2024-09-03",
+     "final_equity_pct": 0.0,
+     "max_drawdown_seen_pct": 0.0
+    },
+    "2000": {
+     "passed": false,
+     "fail_reason": "daily_loss_limit",
+     "fail_day": "2024-09-03",
+     "final_equity_pct": 0.0,
+     "max_drawdown_seen_pct": 0.0
+    },
+    "5000": {
+     "passed": false,
+     "fail_reason": "daily_loss_limit",
+     "fail_day": "2024-09-03",
+     "final_equity_pct": 0.0,
+     "max_drawdown_seen_pct": 0.0
+    }
+   },
+   "exit_reasons": {
+    "stop": 357,
+    "target": 86,
+    "eod_flat": 55
+   }
+  },
+  "4.25": {
+   "target_R": 4.25,
+   "ev_r": 0.1656,
+   "n": 444,
+   "n_dropped_size_gate": 54,
+   "win_rate": 0.2703,
+   "hit_rate": 0.2703,
+   "avg_win_R": 3.2744,
+   "avg_loss_R": 0.9889,
+   "profit_factor": 1.2301,
+   "total_R": 73.5056,
+   "yearly_R": 37.1956,
+   "max_drawdown_R": -35.1752,
+   "months_green": "13/25",
+   "expectancy_per_day": 147.6,
+   "prop_eval_at_1000": {
+    "passed": false,
+    "fail_reason": "daily_loss_limit",
+    "fail_day": "2024-09-03",
+    "final_equity_pct": 0.0,
+    "max_drawdown_seen_pct": 0.0
+   },
+   "prop_eval_any_pass_risk": null,
+   "prop_eval_by_risk": {
+    "100": {
+     "passed": false,
+     "fail_reason": "trailing_drawdown",
+     "fail_day": "2025-01-27",
+     "final_equity_pct": -1.325,
+     "max_drawdown_seen_pct": -4.038
+    },
+    "250": {
+     "passed": false,
+     "fail_reason": "trailing_drawdown",
+     "fail_day": "2024-09-20",
+     "final_equity_pct": -3.875,
+     "max_drawdown_seen_pct": -4.5
+    },
+    "500": {
+     "passed": false,
+     "fail_reason": "trailing_drawdown",
+     "fail_day": "2024-09-13",
+     "final_equity_pct": -3.75,
+     "max_drawdown_seen_pct": -5.0
+    },
+    "1000": {
+     "passed": false,
+     "fail_reason": "daily_loss_limit",
+     "fail_day": "2024-09-03",
+     "final_equity_pct": 0.0,
+     "max_drawdown_seen_pct": 0.0
+    },
+    "2000": {
+     "passed": false,
+     "fail_reason": "daily_loss_limit",
+     "fail_day": "2024-09-03",
+     "final_equity_pct": 0.0,
+     "max_drawdown_seen_pct": 0.0
+    },
+    "5000": {
+     "passed": false,
+     "fail_reason": "daily_loss_limit",
+     "fail_day": "2024-09-03",
+     "final_equity_pct": 0.0,
+     "max_drawdown_seen_pct": 0.0
+    }
+   },
+   "exit_reasons": {
+    "stop": 358,
+    "target": 80,
+    "eod_flat": 60
+   }
+  },
+  "4.5": {
+   "target_R": 4.5,
+   "ev_r": 0.1617,
+   "n": 444,
+   "n_dropped_size_gate": 54,
+   "win_rate": 0.268,
+   "hit_rate": 0.268,
+   "avg_win_R": 3.2959,
+   "avg_loss_R": 0.9889,
+   "profit_factor": 1.2241,
+   "total_R": 71.792,
+   "yearly_R": 36.3285,
+   "max_drawdown_R": -33.6752,
+   "months_green": "13/25",
+   "expectancy_per_day": 144.16,
+   "prop_eval_at_1000": {
+    "passed": false,
+    "fail_reason": "daily_loss_limit",
+    "fail_day": "2024-09-03",
+    "final_equity_pct": 0.0,
+    "max_drawdown_seen_pct": 0.0
+   },
+   "prop_eval_any_pass_risk": null,
+   "prop_eval_by_risk": {
+    "100": {
+     "passed": false,
+     "fail_reason": "trailing_drawdown",
+     "fail_day": "2025-01-28",
+     "final_equity_pct": -1.118,
+     "max_drawdown_seen_pct": -4.188
+    },
+    "250": {
+     "passed": false,
+     "fail_reason": "trailing_drawdown",
+     "fail_day": "2024-09-20",
+     "final_equity_pct": -3.75,
+     "max_drawdown_seen_pct": -4.5
+    },
+    "500": {
+     "passed": false,
+     "fail_reason": "trailing_drawdown",
+     "fail_day": "2024-09-13",
+     "final_equity_pct": -3.5,
+     "max_drawdown_seen_pct": -5.0
+    },
+    "1000": {
+     "passed": false,
+     "fail_reason": "daily_loss_limit",
+     "fail_day": "2024-09-03",
+     "final_equity_pct": 0.0,
+     "max_drawdown_seen_pct": 0.0
+    },
+    "2000": {
+     "passed": false,
+     "fail_reason": "daily_loss_limit",
+     "fail_day": "2024-09-03",
+     "final_equity_pct": 0.0,
+     "max_drawdown_seen_pct": 0.0
+    },
+    "5000": {
+     "passed": false,
+     "fail_reason": "daily_loss_limit",
+     "fail_day": "2024-09-03",
+     "final_equity_pct": 0.0,
+     "max_drawdown_seen_pct": 0.0
+    }
+   },
+   "exit_reasons": {
+    "stop": 359,
+    "target": 69,
+    "eod_flat": 70
+   }
+  },
+  "4.75": {
+   "target_R": 4.75,
+   "ev_r": 0.1535,
+   "n": 444,
+   "n_dropped_size_gate": 54,
+   "win_rate": 0.2635,
+   "hit_rate": 0.2635,
+   "avg_win_R": 3.3336,
+   "avg_loss_R": 0.9874,
+   "profit_factor": 1.2117,
+   "total_R": 68.1339,
+   "yearly_R": 34.4774,
+   "max_drawdown_R": -32.1752,
+   "months_green": "13/25",
+   "expectancy_per_day": 136.82,
+   "prop_eval_at_1000": {
+    "passed": false,
+    "fail_reason": "daily_loss_limit",
+    "fail_day": "2024-09-03",
+    "final_equity_pct": 0.0,
+    "max_drawdown_seen_pct": 0.0
+   },
+   "prop_eval_any_pass_risk": null,
+   "prop_eval_by_risk": {
+    "100": {
+     "passed": false,
+     "fail_reason": "trailing_drawdown",
+     "fail_day": "2025-01-28",
+     "final_equity_pct": -1.802,
+     "max_drawdown_seen_pct": -4.138
+    },
+    "250": {
+     "passed": false,
+     "fail_reason": "trailing_drawdown",
+     "fail_day": "2024-09-20",
+     "final_equity_pct": -3.625,
+     "max_drawdown_seen_pct": -4.5
+    },
+    "500": {
+     "passed": false,
+     "fail_reason": "trailing_drawdown",
+     "fail_day": "2024-09-13",
+     "final_equity_pct": -3.25,
+     "max_drawdown_seen_pct": -5.0
+    },
+    "1000": {
+     "passed": false,
+     "fail_reason": "daily_loss_limit",
+     "fail_day": "2024-09-03",
+     "final_equity_pct": 0.0,
+     "max_drawdown_seen_pct": 0.0
+    },
+    "2000": {
+     "passed": false,
+     "fail_reason": "daily_loss_limit",
+     "fail_day": "2024-09-03",
+     "final_equity_pct": 0.0,
+     "max_drawdown_seen_pct": 0.0
+    },
+    "5000": {
+     "passed": false,
+     "fail_reason": "daily_loss_limit",
+     "fail_day": "2024-09-03",
+     "final_equity_pct": 0.0,
+     "max_drawdown_seen_pct": 0.0
+    }
+   },
+   "exit_reasons": {
+    "stop": 360,
+    "target": 63,
+    "eod_flat": 75
+   }
+  },
+  "5.0": {
+   "target_R": 5.0,
+   "ev_r": 0.1399,
+   "n": 444,
+   "n_dropped_size_gate": 54,
+   "win_rate": 0.2613,
+   "hit_rate": 0.2613,
+   "avg_win_R": 3.319,
+   "avg_loss_R": 0.9875,
+   "profit_factor": 1.1924,
+   "total_R": 62.1106,
+   "yearly_R": 31.4294,
+   "max_drawdown_R": -40.1792,
+   "months_green": "13/25",
+   "expectancy_per_day": 124.72,
+   "prop_eval_at_1000": {
+    "passed": false,
+    "fail_reason": "daily_loss_limit",
+    "fail_day": "2024-09-03",
+    "final_equity_pct": 0.0,
+    "max_drawdown_seen_pct": 0.0
+   },
+   "prop_eval_any_pass_risk": null,
+   "prop_eval_by_risk": {
+    "100": {
+     "passed": false,
+     "fail_reason": "trailing_drawdown",
+     "fail_day": "2025-01-28",
+     "final_equity_pct": -1.741,
+     "max_drawdown_seen_pct": -4.088
+    },
+    "250": {
+     "passed": false,
+     "fail_reason": "trailing_drawdown",
+     "fail_day": "2024-09-20",
+     "final_equity_pct": -3.5,
+     "max_drawdown_seen_pct": -4.5
+    },
+    "500": {
+     "passed": false,
+     "fail_reason": "trailing_drawdown",
+     "fail_day": "2024-09-13",
+     "final_equity_pct": -3.0,
+     "max_drawdown_seen_pct": -5.0
+    },
+    "1000": {
+     "passed": false,
+     "fail_reason": "daily_loss_limit",
+     "fail_day": "2024-09-03",
+     "final_equity_pct": 0.0,
+     "max_drawdown_seen_pct": 0.0
+    },
+    "2000": {
+     "passed": false,
+     "fail_reason": "daily_loss_limit",
+     "fail_day": "2024-09-03",
+     "final_equity_pct": 0.0,
+     "max_drawdown_seen_pct": 0.0
+    },
+    "5000": {
+     "passed": false,
+     "fail_reason": "daily_loss_limit",
+     "fail_day": "2024-09-03",
+     "final_equity_pct": 0.0,
+     "max_drawdown_seen_pct": 0.0
+    }
+   },
+   "exit_reasons": {
+    "stop": 361,
+    "target": 54,
+    "eod_flat": 83
+   }
+  },
+  "5.25": {
+   "target_R": 5.25,
+   "ev_r": 0.1408,
+   "n": 444,
+   "n_dropped_size_gate": 54,
+   "win_rate": 0.259,
+   "hit_rate": 0.259,
+   "avg_win_R": 3.36,
+   "avg_loss_R": 0.9875,
+   "profit_factor": 1.193,
+   "total_R": 62.5034,
+   "yearly_R": 31.6282,
+   "max_drawdown_R": -39.4292,
+   "months_green": "12/25",
+   "expectancy_per_day": 125.51,
+   "prop_eval_at_1000": {
+    "passed": false,
+    "fail_reason": "daily_loss_limit",
+    "fail_day": "2024-09-03",
+    "final_equity_pct": 0.0,
+    "max_drawdown_seen_pct": 0.0
+   },
+   "prop_eval_any_pass_risk": null,
+   "prop_eval_by_risk": {
+    "100": {
+     "passed": false,
+     "fail_reason": "trailing_drawdown",
+     "fail_day": "2025-01-28",
+     "final_equity_pct": -2.091,
+     "max_drawdown_seen_pct": -4.038
+    },
+    "250": {
+     "passed": false,
+     "fail_reason": "trailing_drawdown",
+     "fail_day": "2024-09-20",
+     "final_equity_pct": -3.375,
+     "max_drawdown_seen_pct": -4.5
+    },
+    "500": {
+     "passed": false,
+     "fail_reason": "trailing_drawdown",
+     "fail_day": "2024-09-13",
+     "final_equity_pct": -2.75,
+     "max_drawdown_seen_pct": -5.0
+    },
+    "1000": {
+     "passed": false,
+     "fail_reason": "daily_loss_limit",
+     "fail_day": "2024-09-03",
+     "final_equity_pct": 0.0,
+     "max_drawdown_seen_pct": 0.0
+    },
+    "2000": {
+     "passed": false,
+     "fail_reason": "daily_loss_limit",
+     "fail_day": "2024-09-03",
+     "final_equity_pct": 0.0,
+     "max_drawdown_seen_pct": 0.0
+    },
+    "5000": {
+     "passed": false,
+     "fail_reason": "daily_loss_limit",
+     "fail_day": "2024-09-03",
+     "final_equity_pct": 0.0,
+     "max_drawdown_seen_pct": 0.0
+    }
+   },
+   "exit_reasons": {
+    "stop": 362,
+    "target": 51,
+    "eod_flat": 85
+   }
+  },
+  "5.5": {
+   "target_R": 5.5,
+   "ev_r": 0.1504,
+   "n": 444,
+   "n_dropped_size_gate": 54,
+   "win_rate": 0.259,
+   "hit_rate": 0.259,
+   "avg_win_R": 3.3972,
+   "avg_loss_R": 0.9875,
+   "profit_factor": 1.2062,
+   "total_R": 66.7835,
+   "yearly_R": 33.7941,
+   "max_drawdown_R": -38.6792,
+   "months_green": "12/25",
+   "expectancy_per_day": 134.1,
+   "prop_eval_at_1000": {
+    "passed": false,
+    "fail_reason": "daily_loss_limit",
+    "fail_day": "2024-09-03",
+    "final_equity_pct": 0.0,
+    "max_drawdown_seen_pct": 0.0
+   },
+   "prop_eval_any_pass_risk": null,
+   "prop_eval_by_risk": {
+    "100": {
+     "passed": false,
+     "fail_reason": "trailing_drawdown",
+     "fail_day": "2025-01-29",
+     "final_equity_pct": -2.119,
+     "max_drawdown_seen_pct": -4.188
+    },
+    "250": {
+     "passed": false,
+     "fail_reason": "trailing_drawdown",
+     "fail_day": "2024-09-20",
+     "final_equity_pct": -3.25,
+     "max_drawdown_seen_pct": -4.5
+    },
+    "500": {
+     "passed": false,
+     "fail_reason": "trailing_drawdown",
+     "fail_day": "2024-09-13",
+     "final_equity_pct": -2.5,
+     "max_drawdown_seen_pct": -5.0
+    },
+    "1000": {
+     "passed": false,
+     "fail_reason": "daily_loss_limit",
+     "fail_day": "2024-09-03",
+     "final_equity_pct": 0.0,
+     "max_drawdown_seen_pct": 0.0
+    },
+    "2000": {
+     "passed": false,
+     "fail_reason": "daily_loss_limit",
+     "fail_day": "2024-09-03",
+     "final_equity_pct": 0.0,
+     "max_drawdown_seen_pct": 0.0
+    },
+    "5000": {
+     "passed": false,
+     "fail_reason": "daily_loss_limit",
+     "fail_day": "2024-09-03",
+     "final_equity_pct": 0.0,
+     "max_drawdown_seen_pct": 0.0
+    }
+   },
+   "exit_reasons": {
+    "stop": 362,
+    "target": 47,
+    "eod_flat": 89
+   }
+  },
+  "5.75": {
+   "target_R": 5.75,
+   "ev_r": 0.1295,
+   "n": 444,
+   "n_dropped_size_gate": 54,
+   "win_rate": 0.2568,
+   "hit_rate": 0.2568,
+   "avg_win_R": 3.3543,
+   "avg_loss_R": 0.9875,
+   "profit_factor": 1.177,
+   "total_R": 57.4974,
+   "yearly_R": 29.0951,
+   "max_drawdown_R": -40.5098,
+   "months_green": "12/25",
+   "expectancy_per_day": 115.46,
+   "prop_eval_at_1000": {
+    "passed": false,
+    "fail_reason": "daily_loss_limit",
+    "fail_day": "2024-09-03",
+    "final_equity_pct": 0.0,
+    "max_drawdown_seen_pct": 0.0
+   },
+   "prop_eval_any_pass_risk": null,
+   "prop_eval_by_risk": {
+    "100": {
+     "passed": false,
+     "fail_reason": "trailing_drawdown",
+     "fail_day": "2025-01-29",
+     "final_equity_pct": -1.869,
+     "max_drawdown_seen_pct": -4.138
+    },
+    "250": {
+     "passed": false,
+     "fail_reason": "trailing_drawdown",
+     "fail_day": "2024-09-20",
+     "final_equity_pct": -3.125,
+     "max_drawdown_seen_pct": -4.5
+    },
+    "500": {
+     "passed": false,
+     "fail_reason": "trailing_drawdown",
+     "fail_day": "2024-09-13",
+     "final_equity_pct": -2.25,
+     "max_drawdown_seen_pct": -5.0
+    },
+    "1000": {
+     "passed": false,
+     "fail_reason": "daily_loss_limit",
+     "fail_day": "2024-09-03",
+     "final_equity_pct": 0.0,
+     "max_drawdown_seen_pct": 0.0
+    },
+    "2000": {
+     "passed": false,
+     "fail_reason": "daily_loss_limit",
+     "fail_day": "2024-09-03",
+     "final_equity_pct": 0.0,
+     "max_drawdown_seen_pct": 0.0
+    },
+    "5000": {
+     "passed": false,
+     "fail_reason": "daily_loss_limit",
+     "fail_day": "2024-09-03",
+     "final_equity_pct": 0.0,
+     "max_drawdown_seen_pct": 0.0
+    }
+   },
+   "exit_reasons": {
+    "stop": 363,
+    "target": 42,
+    "eod_flat": 93
+   }
+  },
+  "6.0": {
+   "target_R": 6.0,
+   "ev_r": 0.1312,
+   "n": 444,
+   "n_dropped_size_gate": 54,
+   "win_rate": 0.2545,
+   "hit_rate": 0.2545,
+   "avg_win_R": 3.3994,
+   "avg_loss_R": 0.9876,
+   "profit_factor": 1.1787,
+   "total_R": 58.2342,
+   "yearly_R": 29.4679,
+   "max_drawdown_R": -40.0098,
+   "months_green": "12/25",
+   "expectancy_per_day": 116.94,
+   "prop_eval_at_1000": {
+    "passed": false,
+    "fail_reason": "daily_loss_limit",
+    "fail_day": "2024-09-03",
+    "final_equity_pct": 0.0,
+    "max_drawdown_seen_pct": 0.0
+   },
+   "prop_eval_any_pass_risk": null,
+   "prop_eval_by_risk": {
+    "100": {
+     "passed": false,
+     "fail_reason": "trailing_drawdown",
+     "fail_day": "2025-01-29",
+     "final_equity_pct": -1.619,
+     "max_drawdown_seen_pct": -4.088
+    },
+    "250": {
+     "passed": false,
+     "fail_reason": "trailing_drawdown",
+     "fail_day": "2024-09-20",
+     "final_equity_pct": -3.0,
+     "max_drawdown_seen_pct": -4.5
+    },
+    "500": {
+     "passed": false,
+     "fail_reason": "trailing_drawdown",
+     "fail_day": "2024-09-13",
+     "final_equity_pct": -2.0,
+     "max_drawdown_seen_pct": -5.0
+    },
+    "1000": {
+     "passed": false,
+     "fail_reason": "daily_loss_limit",
+     "fail_day": "2024-09-03",
+     "final_equity_pct": 0.0,
+     "max_drawdown_seen_pct": 0.0
+    },
+    "2000": {
+     "passed": false,
+     "fail_reason": "daily_loss_limit",
+     "fail_day": "2024-09-03",
+     "final_equity_pct": 0.0,
+     "max_drawdown_seen_pct": 0.0
+    },
+    "5000": {
+     "passed": false,
+     "fail_reason": "daily_loss_limit",
+     "fail_day": "2024-09-03",
+     "final_equity_pct": 0.0,
+     "max_drawdown_seen_pct": 0.0
+    }
+   },
+   "exit_reasons": {
+    "stop": 364,
+    "target": 40,
+    "eod_flat": 94
+   }
+  }
+ },
+ "ev_maximizing_target": 4.25,
+ "ev_maximizing_ev_r": 0.1656,
+ "prop_eval_maximizing_at_1000": [],
+ "prop_eval_maximizing_any_size": [
+  [
+   1.5,
+   100
+  ],
+  [
+   1.75,
+   100
+  ],
+  [
+   2.0,
+   100
+  ],
+  [
+   2.25,
+   100
+  ],
+  [
+   2.5,
+   100
+  ]
+ ],
+ "same_target": false,
+ "min_risk_floor_source": "signal_runner.min_risk_floor",
+ "not_modelled": [
+  "R2 entry-candle-revisit exit"
+ ]
+}

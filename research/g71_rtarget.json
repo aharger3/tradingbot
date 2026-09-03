@@ -1,0 +1,368 @@
+{
+ "book": "research/bt2y_trades.json",
+ "generated": "2026-08-29T03:14:29",
+ "trials": 40000,
+ "seed": 84,
+ "measured": {
+  "P1": {
+   "n_trades": 496,
+   "win_pct": 54.86,
+   "mean_r_trade": 0.6115,
+   "mean_r_day": 0.6115,
+   "sd_r_day": 1.8681
+  },
+  "P2": {
+   "n_trades": 705,
+   "win_pct": 52.49,
+   "mean_r_trade": 0.5668,
+   "mean_r_day": 0.8056,
+   "sd_r_day": 2.1952
+  },
+  "P4": {
+   "n_trades": 861,
+   "win_pct": 50.35,
+   "mean_r_trade": 0.5166,
+   "mean_r_day": 0.8968,
+   "sd_r_day": 2.376
+  }
+ },
+ "scenarios": {
+  "today_book": {
+   "label": "today's headline book (all signals, ~4.91/day)",
+   "kind": "parametric",
+   "note": "DIRECTION.md 2026-08-29 money row -- NOT one-trade-and-done",
+   "day_mean_r": 2.6912,
+   "day_sd_r": 3.9415,
+   "avg_winner_needed_R": 2.5919,
+   "usd_day_at_1k": 2691.0,
+   "usd_month_at_1k": 56498.0,
+   "usd_month_sd_at_1k": 18075.0,
+   "p_green_month": 0.9993,
+   "p_green_week": 0.9534,
+   "dd12mo_p95_r": 17.82
+  },
+  "today_1": {
+   "label": "today's headline rate, but ONE trade a day",
+   "kind": "parametric",
+   "note": "apples-to-apples: 43.1%/+0.5481R at 1 trade/day",
+   "day_mean_r": 0.5481,
+   "day_sd_r": 1.7788,
+   "avg_winner_needed_R": 2.5919,
+   "usd_day_at_1k": 548.0,
+   "usd_month_at_1k": 11498.0,
+   "usd_month_sd_at_1k": 8115.0,
+   "p_green_month": 0.9444,
+   "p_green_week": 0.7116,
+   "dd12mo_p95_r": 16.0
+  },
+  "p1": {
+   "label": "P1 one trade a day, first signal (MEASURED)",
+   "kind": "empirical",
+   "note": "54.86% win / +0.6115R per trade, 496 days",
+   "day_mean_r": 0.6115,
+   "day_sd_r": 1.8681,
+   "avg_winner_needed_R": null,
+   "usd_day_at_1k": 611.0,
+   "usd_month_at_1k": 12797.0,
+   "usd_month_sd_at_1k": 8441.0,
+   "p_green_month": 0.9417,
+   "p_green_week": 0.7349,
+   "dd12mo_p95_r": 12.84
+  },
+  "p1_live": {
+   "label": "P1 on the LIVE exit (every winner clipped at 2.0R)",
+   "kind": "empirical",
+   "note": "options_sizer DEFAULT_RR=2.0 + whole-position exit; research/g71_rrcap.md",
+   "day_mean_r": 0.3052,
+   "day_sd_r": 1.2602,
+   "avg_winner_needed_R": null,
+   "usd_day_at_1k": 305.0,
+   "usd_month_at_1k": 6386.0,
+   "usd_month_sd_at_1k": 5717.0,
+   "p_green_month": 0.8681,
+   "p_green_week": 0.7002,
+   "dd12mo_p95_r": 14.17
+  },
+  "p2": {
+   "label": "P2 first; win=done; 2 losses=done (MEASURED)",
+   "kind": "empirical",
+   "note": "his sentence literally; 1.42 trades/active day",
+   "day_mean_r": 0.8056,
+   "day_sd_r": 2.1952,
+   "avg_winner_needed_R": null,
+   "usd_day_at_1k": 806.0,
+   "usd_month_at_1k": 16897.0,
+   "usd_month_sd_at_1k": 10011.0,
+   "p_green_month": 0.9662,
+   "p_green_week": 0.8065,
+   "dd12mo_p95_r": 14.0
+  },
+  "p4": {
+   "label": "P4 until net green, 3-loss cap (MEASURED)",
+   "kind": "empirical",
+   "note": "1.74 trades/active day",
+   "day_mean_r": 0.8968,
+   "day_sd_r": 2.376,
+   "avg_winner_needed_R": null,
+   "usd_day_at_1k": 897.0,
+   "usd_month_at_1k": 18852.0,
+   "usd_month_sd_at_1k": 11307.0,
+   "p_green_month": 0.9644,
+   "p_green_week": 0.8313,
+   "dd12mo_p95_r": 16.98
+  },
+  "gate": {
+   "label": "the money gate 55% / 2.0R, one trade a day",
+   "kind": "parametric",
+   "note": "requires a 5.455R average WINNER",
+   "day_mean_r": 2.0,
+   "day_sd_r": 2.7136,
+   "avg_winner_needed_R": 4.4545,
+   "usd_day_at_1k": 2000.0,
+   "usd_month_at_1k": 41926.0,
+   "usd_month_sd_at_1k": 12538.0,
+   "p_green_month": 0.9999,
+   "p_green_week": 0.9822,
+   "dd12mo_p95_r": 9.0
+  },
+  "mid": {
+   "label": "realistic intermediate: 55% win, 1.20R mean, 1/day",
+   "kind": "parametric",
+   "note": "P1's win rate held, average winner 1.915R -> 3.0R",
+   "day_mean_r": 1.2,
+   "day_sd_r": 1.99,
+   "avg_winner_needed_R": 3.0,
+   "usd_day_at_1k": 1200.0,
+   "usd_month_at_1k": 25215.0,
+   "usd_month_sd_at_1k": 9172.0,
+   "p_green_month": 0.9959,
+   "p_green_week": 0.8691,
+   "dd12mo_p95_r": 10.0
+  }
+ },
+ "prop_10pct": {
+  "today_book|no time cap": {
+   "risk": 600,
+   "p_fail": 0.09525,
+   "p_blow": 0.09525,
+   "p_expire": 0.0,
+   "p_pass": 0.90475,
+   "med_days": 6
+  },
+  "today_book|30-day eval": {
+   "risk": 600,
+   "p_fail": 0.094,
+   "p_blow": 0.09355,
+   "p_expire": 0.00045,
+   "p_pass": 0.906,
+   "med_days": 6
+  },
+  "today_1|no time cap": {
+   "risk": 400,
+   "p_fail": 0.09945,
+   "p_blow": 0.09945,
+   "p_expire": 0.0,
+   "p_pass": 0.90055,
+   "med_days": 36
+  },
+  "today_1|30-day eval": null,
+  "p1|no time cap": {
+   "risk": 550,
+   "p_fail": 0.0956,
+   "p_blow": 0.0956,
+   "p_expire": 0.0,
+   "p_pass": 0.9044,
+   "med_days": 24
+  },
+  "p1|30-day eval": null,
+  "p1_live|no time cap": {
+   "risk": 375,
+   "p_fail": 0.07965,
+   "p_blow": 0.07965,
+   "p_expire": 0.0,
+   "p_pass": 0.92035,
+   "med_days": 69
+  },
+  "p1_live|30-day eval": null,
+  "p2|no time cap": {
+   "risk": 475,
+   "p_fail": 0.09805,
+   "p_blow": 0.09805,
+   "p_expire": 0.0,
+   "p_pass": 0.90195,
+   "med_days": 21
+  },
+  "p2|30-day eval": null,
+  "p4|no time cap": {
+   "risk": 375,
+   "p_fail": 0.09045,
+   "p_blow": 0.09045,
+   "p_expire": 0.0,
+   "p_pass": 0.90955,
+   "med_days": 24
+  },
+  "p4|30-day eval": null,
+  "gate|no time cap": {
+   "risk": 975,
+   "p_fail": 0.0564,
+   "p_blow": 0.0564,
+   "p_expire": 0.0,
+   "p_pass": 0.9436,
+   "med_days": 5
+  },
+  "gate|30-day eval": {
+   "risk": 975,
+   "p_fail": 0.05815,
+   "p_blow": 0.05815,
+   "p_expire": 0.0,
+   "p_pass": 0.94185,
+   "med_days": 5
+  },
+  "mid|no time cap": {
+   "risk": 775,
+   "p_fail": 0.05135,
+   "p_blow": 0.05135,
+   "p_expire": 0.0,
+   "p_pass": 0.94865,
+   "med_days": 9
+  },
+  "mid|30-day eval": {
+   "risk": 775,
+   "p_fail": 0.07145,
+   "p_blow": 0.046,
+   "p_expire": 0.02545,
+   "p_pass": 0.92855,
+   "med_days": 8
+  }
+ },
+ "funded_12mo": {
+  "today_book|250": {
+   "e_paid_12mo": 150618.2855,
+   "med_paid": 163824.0139,
+   "p_alive_12mo": 0.7972,
+   "p_dead_month1": 0.0032,
+   "p05_paid": 37992.9234,
+   "p95_paid": 192411.0789
+  },
+  "today_book|500": {
+   "e_paid_12mo": 289340.3798,
+   "med_paid": 325952.0882,
+   "p_alive_12mo": 0.7639,
+   "p_dead_month1": 0.0425,
+   "p05_paid": 20329.4664,
+   "p95_paid": 384218.0974
+  },
+  "today_1|250": {
+   "e_paid_12mo": 28940.4689,
+   "med_paid": 30982.7726,
+   "p_alive_12mo": 0.7231,
+   "p_dead_month1": 0.0005,
+   "p05_paid": 6257.3666,
+   "p95_paid": 43554.3503
+  },
+  "today_1|500": {
+   "e_paid_12mo": 51633.8072,
+   "med_paid": 59993.9675,
+   "p_alive_12mo": 0.6361,
+   "p_dead_month1": 0.0712,
+   "p05_paid": 0.0,
+   "p95_paid": 87208.7007
+  },
+  "p1|250": {
+   "e_paid_12mo": 34732.6372,
+   "med_paid": 35768.5,
+   "p_alive_12mo": 0.8837,
+   "p_dead_month1": 0.0,
+   "p05_paid": 14830.0,
+   "p95_paid": 48682.0
+  },
+  "p1|500": {
+   "e_paid_12mo": 66151.5853,
+   "med_paid": 70893.0,
+   "p_alive_12mo": 0.8272,
+   "p_dead_month1": 0.0268,
+   "p05_paid": 1979.5,
+   "p95_paid": 97248.0
+  },
+  "p1_live|250": {
+   "e_paid_12mo": 16215.4283,
+   "med_paid": 16666.75,
+   "p_alive_12mo": 0.8252,
+   "p_dead_month1": 0.0001,
+   "p05_paid": 4831.5,
+   "p95_paid": 25230.0
+  },
+  "p1_live|500": {
+   "e_paid_12mo": 29477.6813,
+   "med_paid": 32538.0,
+   "p_alive_12mo": 0.7164,
+   "p_dead_month1": 0.0322,
+   "p05_paid": 0.0,
+   "p95_paid": 50691.0
+  },
+  "p2|250": {
+   "e_paid_12mo": 43981.6438,
+   "med_paid": 47020.0,
+   "p_alive_12mo": 0.7765,
+   "p_dead_month1": 0.0009,
+   "p05_paid": 10267.75,
+   "p95_paid": 62854.0
+  },
+  "p2|500": {
+   "e_paid_12mo": 81696.8814,
+   "med_paid": 92413.5,
+   "p_alive_12mo": 0.7154,
+   "p_dead_month1": 0.0593,
+   "p05_paid": 0.0,
+   "p95_paid": 125717.5
+  },
+  "p4|250": {
+   "e_paid_12mo": 45514.7004,
+   "med_paid": 50684.25,
+   "p_alive_12mo": 0.6532,
+   "p_dead_month1": 0.0038,
+   "p05_paid": 6625.5,
+   "p95_paid": 68956.75
+  },
+  "p4|500": {
+   "e_paid_12mo": 81524.7249,
+   "med_paid": 97751.0,
+   "p_alive_12mo": 0.574,
+   "p_dead_month1": 0.1037,
+   "p05_paid": 0.0,
+   "p95_paid": 138541.5
+  },
+  "gate|250": {
+   "e_paid_12mo": 122699.4368,
+   "med_paid": 123081.8182,
+   "p_alive_12mo": 0.9802,
+   "p_dead_month1": 0.0001,
+   "p05_paid": 103990.9091,
+   "p95_paid": 140809.0909
+  },
+  "gate|500": {
+   "e_paid_12mo": 244347.4977,
+   "med_paid": 248990.9091,
+   "p_alive_12mo": 0.9735,
+   "p_dead_month1": 0.0053,
+   "p05_paid": 208081.8182,
+   "p95_paid": 284445.4545
+  },
+  "mid|250": {
+   "e_paid_12mo": 72473.6175,
+   "med_paid": 72900.0,
+   "p_alive_12mo": 0.9718,
+   "p_dead_month1": 0.0,
+   "p05_paid": 58900.0,
+   "p95_paid": 85900.0
+  },
+  "mid|500": {
+   "e_paid_12mo": 143723.28,
+   "med_paid": 145900.0,
+   "p_alive_12mo": 0.9609,
+   "p_dead_month1": 0.0095,
+   "p05_paid": 113900.0,
+   "p95_paid": 171900.0
+  }
+ }
+}

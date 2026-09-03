@@ -1,0 +1,521 @@
+{
+  "book": "bt2y_trades_retest_on.json",
+  "sessions": 498,
+  "n_traded": 4022,
+  "n_first_of_day": 498,
+  "min_risk_floor_source": "signal_runner.min_risk_floor",
+  "pop_a_first_of_day": {
+    "1_signal_bar_close_SHIPPED": {
+      "causal": true,
+      "shippable": true,
+      "n_candidates": 498,
+      "n_no_fill_or_unsimulatable": 0,
+      "ev_r_scoreboard": {
+        "ev_r": 0.0377,
+        "n": 444,
+        "n_input": 498,
+        "n_dropped_size_gate": 54,
+        "size_gate_applicable": true,
+        "win_rate": 0.4595,
+        "avg_win_R": 0.9048,
+        "avg_loss_R": 0.7023,
+        "profit_factor": 1.0996,
+        "total_R": 16.726,
+        "max_drawdown_R": -20.415,
+        "months_green": "12/25",
+        "expectancy_per_day": 33.59,
+        "r_stability": 0.0344,
+        "yearly_R": 8.4638,
+        "risk_dollars": 1000.0,
+        "sessions_used": 498
+      },
+      "prop_eval": {
+        "100": {
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "fail_day": "2026-07-02",
+          "final_equity_pct": 2.326,
+          "max_dd_pct": -4.125
+        },
+        "250": {
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "fail_day": "2024-10-11",
+          "final_equity_pct": -2.036,
+          "max_dd_pct": -4.064
+        },
+        "500": {
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "fail_day": "2024-09-13",
+          "final_equity_pct": 0.05,
+          "max_dd_pct": -4.006
+        },
+        "1000": {
+          "passed": false,
+          "fail_reason": "daily_loss_limit",
+          "fail_day": "2024-09-03",
+          "final_equity_pct": 0.0,
+          "max_dd_pct": 0.0
+        },
+        "2000": {
+          "passed": false,
+          "fail_reason": "daily_loss_limit",
+          "fail_day": "2024-09-03",
+          "final_equity_pct": 0.0,
+          "max_dd_pct": 0.0
+        }
+      },
+      "note": "exact book row['r'], no resimulation"
+    },
+    "2_one_bar_earlier": {
+      "causal": false,
+      "shippable": false,
+      "n_candidates": 498,
+      "n_no_fill_or_unsimulatable": 1,
+      "no_fill_breakdown": {
+        "zero_risk": 1
+      },
+      "ev_r_scoreboard": {
+        "ev_r": 1.4072,
+        "n": 158,
+        "n_input": 497,
+        "n_dropped_size_gate": 339,
+        "size_gate_applicable": true,
+        "win_rate": 0.4114,
+        "avg_win_R": 4.8436,
+        "avg_loss_R": 0.9945,
+        "profit_factor": 3.404,
+        "total_R": 222.3447,
+        "max_drawdown_R": -6.4632,
+        "months_green": "22/25",
+        "expectancy_per_day": 446.48,
+        "r_stability": 0.4368,
+        "yearly_R": 112.5118,
+        "risk_dollars": 1000.0,
+        "sessions_used": 498
+      },
+      "prop_eval": null,
+      "note": "UNSHIPPABLE (lookahead) -- requires knowing at bar entry_i-1 that the setup would go on to confirm on entry_i (>= the decision bar) -- lookahead by construction. Priced for the record only, not scored as a candidate arm."
+    },
+    "3_two_bars_earlier": {
+      "causal": false,
+      "shippable": false,
+      "n_candidates": 498,
+      "n_no_fill_or_unsimulatable": 0,
+      "no_fill_breakdown": {},
+      "ev_r_scoreboard": {
+        "ev_r": 0.9567,
+        "n": 230,
+        "n_input": 498,
+        "n_dropped_size_gate": 268,
+        "size_gate_applicable": true,
+        "win_rate": 0.4217,
+        "avg_win_R": 3.6055,
+        "avg_loss_R": 0.975,
+        "profit_factor": 2.6969,
+        "total_R": 220.0487,
+        "max_drawdown_R": -12.0,
+        "months_green": "16/25",
+        "expectancy_per_day": 441.86,
+        "r_stability": 0.3363,
+        "yearly_R": 111.3499,
+        "risk_dollars": 1000.0,
+        "sessions_used": 498
+      },
+      "prop_eval": null,
+      "note": "UNSHIPPABLE (lookahead) -- requires knowing at bar entry_i-2 that the setup would go on to confirm on entry_i (>= the decision bar) -- lookahead by construction. Priced for the record only, not scored as a candidate arm."
+    },
+    "4_resting_limit_after_signal_bar": {
+      "causal": true,
+      "shippable": true,
+      "n_candidates": 498,
+      "n_no_fill_or_unsimulatable": 167,
+      "no_fill_breakdown": {
+        "limit_never_touched": 130,
+        "zero_risk": 37
+      },
+      "ev_r_scoreboard": {
+        "ev_r": 0.6036,
+        "n": 88,
+        "n_input": 331,
+        "n_dropped_size_gate": 243,
+        "size_gate_applicable": true,
+        "win_rate": 0.2841,
+        "avg_win_R": 4.6447,
+        "avg_loss_R": 1.0,
+        "profit_factor": 1.8431,
+        "total_R": 53.1167,
+        "max_drawdown_R": -8.7333,
+        "months_green": "13/22",
+        "expectancy_per_day": 106.66,
+        "r_stability": 0.2008,
+        "yearly_R": 26.8783,
+        "risk_dollars": 1000.0,
+        "sessions_used": 498
+      },
+      "prop_eval": {
+        "100": {
+          "passed": true,
+          "fail_reason": null,
+          "fail_day": null,
+          "final_equity_pct": 89.251,
+          "max_dd_pct": -3.0
+        },
+        "250": {
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "fail_day": "2024-09-16",
+          "final_equity_pct": -4.5,
+          "max_dd_pct": -4.5
+        },
+        "500": {
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "fail_day": "2024-09-10",
+          "final_equity_pct": -5.0,
+          "max_dd_pct": -5.0
+        },
+        "1000": {
+          "passed": false,
+          "fail_reason": "daily_loss_limit",
+          "fail_day": "2024-09-03",
+          "final_equity_pct": 0.0,
+          "max_dd_pct": 0.0
+        },
+        "2000": {
+          "passed": false,
+          "fail_reason": "daily_loss_limit",
+          "fail_day": "2024-09-03",
+          "final_equity_pct": 0.0,
+          "max_dd_pct": 0.0
+        }
+      },
+      "note": "order placed at signal-bar close, live entry_i+1..11:00, fills on first touch; causal, uses only bars at/after the decision bar's own close"
+    },
+    "5_retest_touch_on_signal_bar": {
+      "causal": true,
+      "shippable": true,
+      "n_candidates": 498,
+      "n_no_fill_or_unsimulatable": 321,
+      "no_fill_breakdown": {
+        "no_touch_on_signal_bar": 298,
+        "zero_risk": 23
+      },
+      "ev_r_scoreboard": {
+        "ev_r": 2.1458,
+        "n": 25,
+        "n_input": 177,
+        "n_dropped_size_gate": 152,
+        "size_gate_applicable": true,
+        "win_rate": 0.52,
+        "avg_win_R": 5.0495,
+        "avg_loss_R": 1.0,
+        "profit_factor": 5.4703,
+        "total_R": 53.644,
+        "max_drawdown_R": -3.0,
+        "months_green": "10/16",
+        "expectancy_per_day": 107.72,
+        "r_stability": 0.575,
+        "yearly_R": 27.1452,
+        "risk_dollars": 1000.0,
+        "sessions_used": 498
+      },
+      "prop_eval": {
+        "100": {
+          "passed": true,
+          "fail_reason": null,
+          "fail_day": null,
+          "final_equity_pct": 36.16,
+          "max_dd_pct": -1.0
+        },
+        "250": {
+          "passed": true,
+          "fail_reason": null,
+          "fail_day": null,
+          "final_equity_pct": 90.4,
+          "max_dd_pct": -2.5
+        },
+        "500": {
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "fail_day": "2024-10-29",
+          "final_equity_pct": 140.8,
+          "max_dd_pct": -5.0
+        },
+        "1000": {
+          "passed": false,
+          "fail_reason": "daily_loss_limit",
+          "fail_day": "2024-09-10",
+          "final_equity_pct": 0.0,
+          "max_dd_pct": 0.0
+        },
+        "2000": {
+          "passed": false,
+          "fail_reason": "daily_loss_limit",
+          "fail_day": "2024-09-10",
+          "final_equity_pct": 0.0,
+          "max_dd_pct": 0.0
+        }
+      },
+      "note": "fills at level_px the moment entry_i's own bar range contains it -- same-bar, intrabar; the B&R level was established by an earlier break (inherent to the setup), so a resting order is causal here"
+    }
+  },
+  "pop_b_full_traded": {
+    "1_signal_bar_close_SHIPPED": {
+      "causal": true,
+      "shippable": true,
+      "n_candidates": 4022,
+      "n_no_fill_or_unsimulatable": 0,
+      "ev_r_scoreboard": {
+        "ev_r": -0.0416,
+        "n": 3402,
+        "n_input": 4022,
+        "n_dropped_size_gate": 620,
+        "size_gate_applicable": true,
+        "win_rate": 0.4491,
+        "avg_win_R": 0.7989,
+        "avg_loss_R": 0.73,
+        "profit_factor": 0.8961,
+        "total_R": -141.542,
+        "max_drawdown_R": -168.943,
+        "months_green": "6/25",
+        "expectancy_per_day": -284.22,
+        "r_stability": -0.0408,
+        "yearly_R": -71.6237,
+        "risk_dollars": 1000.0,
+        "sessions_used": 498
+      },
+      "prop_eval": {
+        "100": {
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "fail_day": "2024-09-23",
+          "final_equity_pct": -4.001,
+          "max_dd_pct": -4.001
+        },
+        "250": {
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "fail_day": "2024-09-05",
+          "final_equity_pct": -4.579,
+          "max_dd_pct": -4.579
+        },
+        "500": {
+          "passed": false,
+          "fail_reason": "daily_loss_limit",
+          "fail_day": "2024-09-03",
+          "final_equity_pct": 0.0,
+          "max_dd_pct": 0.0
+        },
+        "1000": {
+          "passed": false,
+          "fail_reason": "daily_loss_limit",
+          "fail_day": "2024-09-03",
+          "final_equity_pct": 0.0,
+          "max_dd_pct": 0.0
+        },
+        "2000": {
+          "passed": false,
+          "fail_reason": "daily_loss_limit",
+          "fail_day": "2024-09-03",
+          "final_equity_pct": 0.0,
+          "max_dd_pct": 0.0
+        }
+      },
+      "note": "exact book row['r'], no resimulation"
+    },
+    "2_one_bar_earlier": {
+      "causal": false,
+      "shippable": false,
+      "n_candidates": 4022,
+      "n_no_fill_or_unsimulatable": 3,
+      "no_fill_breakdown": {
+        "zero_risk": 3
+      },
+      "ev_r_scoreboard": {
+        "ev_r": 1.0428,
+        "n": 1226,
+        "n_input": 4019,
+        "n_dropped_size_gate": 2793,
+        "size_gate_applicable": true,
+        "win_rate": 0.3817,
+        "avg_win_R": 4.345,
+        "avg_loss_R": 0.9961,
+        "profit_factor": 2.6933,
+        "total_R": 1278.4548,
+        "max_drawdown_R": -17.3326,
+        "months_green": "24/25",
+        "expectancy_per_day": 2567.18,
+        "r_stability": 0.3399,
+        "yearly_R": 646.9289,
+        "risk_dollars": 1000.0,
+        "sessions_used": 498
+      },
+      "prop_eval": null,
+      "note": "UNSHIPPABLE (lookahead) -- requires knowing at bar entry_i-1 that the setup would go on to confirm on entry_i (>= the decision bar) -- lookahead by construction. Priced for the record only, not scored as a candidate arm."
+    },
+    "3_two_bars_earlier": {
+      "causal": false,
+      "shippable": false,
+      "n_candidates": 4022,
+      "n_no_fill_or_unsimulatable": 0,
+      "no_fill_breakdown": {},
+      "ev_r_scoreboard": {
+        "ev_r": 0.754,
+        "n": 1592,
+        "n_input": 4022,
+        "n_dropped_size_gate": 2430,
+        "size_gate_applicable": true,
+        "win_rate": 0.3951,
+        "avg_win_R": 3.4227,
+        "avg_loss_R": 0.9891,
+        "profit_factor": 2.2602,
+        "total_R": 1200.3565,
+        "max_drawdown_R": -15.2331,
+        "months_green": "24/25",
+        "expectancy_per_day": 2410.35,
+        "r_stability": 0.2804,
+        "yearly_R": 607.4093,
+        "risk_dollars": 1000.0,
+        "sessions_used": 498
+      },
+      "prop_eval": null,
+      "note": "UNSHIPPABLE (lookahead) -- requires knowing at bar entry_i-2 that the setup would go on to confirm on entry_i (>= the decision bar) -- lookahead by construction. Priced for the record only, not scored as a candidate arm."
+    },
+    "4_resting_limit_after_signal_bar": {
+      "causal": true,
+      "shippable": true,
+      "n_candidates": 4022,
+      "n_no_fill_or_unsimulatable": 1241,
+      "no_fill_breakdown": {
+        "limit_never_touched": 1037,
+        "zero_risk": 204
+      },
+      "ev_r_scoreboard": {
+        "ev_r": 0.0017,
+        "n": 620,
+        "n_input": 2781,
+        "n_dropped_size_gate": 2161,
+        "size_gate_applicable": true,
+        "win_rate": 0.2048,
+        "avg_win_R": 3.8902,
+        "avg_loss_R": 1.0,
+        "profit_factor": 1.0021,
+        "total_R": 1.0568,
+        "max_drawdown_R": -90.8168,
+        "months_green": "12/25",
+        "expectancy_per_day": 2.12,
+        "r_stability": 0.0007,
+        "yearly_R": 0.5348,
+        "risk_dollars": 1000.0,
+        "sessions_used": 498
+      },
+      "prop_eval": {
+        "100": {
+          "passed": true,
+          "fail_reason": null,
+          "fail_day": null,
+          "final_equity_pct": 337.602,
+          "max_dd_pct": -3.74
+        },
+        "250": {
+          "passed": false,
+          "fail_reason": "daily_loss_limit",
+          "fail_day": "2024-09-09",
+          "final_equity_pct": 193.988,
+          "max_dd_pct": -1.0
+        },
+        "500": {
+          "passed": false,
+          "fail_reason": "daily_loss_limit",
+          "fail_day": "2024-09-05",
+          "final_equity_pct": 37.652,
+          "max_dd_pct": 0.0
+        },
+        "1000": {
+          "passed": false,
+          "fail_reason": "daily_loss_limit",
+          "fail_day": "2024-09-05",
+          "final_equity_pct": 75.304,
+          "max_dd_pct": 0.0
+        },
+        "2000": {
+          "passed": false,
+          "fail_reason": "daily_loss_limit",
+          "fail_day": "2024-09-05",
+          "final_equity_pct": 150.608,
+          "max_dd_pct": 0.0
+        }
+      },
+      "note": "order placed at signal-bar close, live entry_i+1..11:00, fills on first touch; causal, uses only bars at/after the decision bar's own close"
+    },
+    "5_retest_touch_on_signal_bar": {
+      "causal": true,
+      "shippable": true,
+      "n_candidates": 4022,
+      "n_no_fill_or_unsimulatable": 2653,
+      "no_fill_breakdown": {
+        "no_touch_on_signal_bar": 2537,
+        "zero_risk": 116
+      },
+      "ev_r_scoreboard": {
+        "ev_r": 1.4379,
+        "n": 272,
+        "n_input": 1369,
+        "n_dropped_size_gate": 1097,
+        "size_gate_applicable": true,
+        "win_rate": 0.4669,
+        "avg_win_R": 4.1933,
+        "avg_loss_R": 0.9755,
+        "profit_factor": 3.7649,
+        "total_R": 391.1,
+        "max_drawdown_R": -9.0,
+        "months_green": "20/24",
+        "expectancy_per_day": 785.34,
+        "r_stability": 0.4465,
+        "yearly_R": 197.906,
+        "risk_dollars": 1000.0,
+        "sessions_used": 498
+      },
+      "prop_eval": {
+        "100": {
+          "passed": true,
+          "fail_reason": null,
+          "fail_day": null,
+          "final_equity_pct": 112.628,
+          "max_dd_pct": -0.8
+        },
+        "250": {
+          "passed": true,
+          "fail_reason": null,
+          "fail_day": null,
+          "final_equity_pct": 281.569,
+          "max_dd_pct": -2.0
+        },
+        "500": {
+          "passed": false,
+          "fail_reason": "daily_loss_limit",
+          "fail_day": "2024-09-18",
+          "final_equity_pct": 138.482,
+          "max_dd_pct": -1.0
+        },
+        "1000": {
+          "passed": false,
+          "fail_reason": "daily_loss_limit",
+          "fail_day": "2024-09-03",
+          "final_equity_pct": 0.0,
+          "max_dd_pct": 0.0
+        },
+        "2000": {
+          "passed": false,
+          "fail_reason": "daily_loss_limit",
+          "fail_day": "2024-09-03",
+          "final_equity_pct": 0.0,
+          "max_dd_pct": 0.0
+        }
+      },
+      "note": "fills at level_px the moment entry_i's own bar range contains it -- same-bar, intrabar; the B&R level was established by an earlier break (inherent to the setup), so a resting order is causal here"
+    }
+  }
+}

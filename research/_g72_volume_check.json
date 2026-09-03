@@ -1,0 +1,150 @@
+{
+ "50000": {
+  "blocked": 12,
+  "checked": 861,
+  "pct": 1.394
+ },
+ "100000": {
+  "blocked": 32,
+  "checked": 861,
+  "pct": 3.717
+ },
+ "200000": {
+  "blocked": 92,
+  "checked": 861,
+  "pct": 10.685
+ },
+ "450000": {
+  "blocked": 218,
+  "checked": 861,
+  "pct": 25.319
+ },
+ "by_symbol_200k": {
+  "AMD": {
+   "blocked": 0,
+   "n": 49
+  },
+  "SPY": {
+   "blocked": 0,
+   "n": 9
+  },
+  "TSLA": {
+   "blocked": 0,
+   "n": 58
+  },
+  "MSFT": {
+   "blocked": 0,
+   "n": 35
+  },
+  "PLTR": {
+   "blocked": 0,
+   "n": 61
+  },
+  "AMZN": {
+   "blocked": 0,
+   "n": 28
+  },
+  "META": {
+   "blocked": 0,
+   "n": 40
+  },
+  "COIN": {
+   "blocked": 16,
+   "n": 79
+  },
+  "NVDA": {
+   "blocked": 0,
+   "n": 32
+  },
+  "HOOD": {
+   "blocked": 10,
+   "n": 50
+  },
+  "NFLX": {
+   "blocked": 3,
+   "n": 32
+  },
+  "MU": {
+   "blocked": 2,
+   "n": 42
+  },
+  "QQQ": {
+   "blocked": 0,
+   "n": 21
+  },
+  "TSM": {
+   "blocked": 2,
+   "n": 22
+  },
+  "IWM": {
+   "blocked": 0,
+   "n": 14
+  },
+  "GOOGL": {
+   "blocked": 0,
+   "n": 32
+  },
+  "AAPL": {
+   "blocked": 0,
+   "n": 24
+  },
+  "AVGO": {
+   "blocked": 3,
+   "n": 42
+  },
+  "INTC": {
+   "blocked": 2,
+   "n": 18
+  },
+  "BABA": {
+   "blocked": 5,
+   "n": 22
+  },
+  "ORCL": {
+   "blocked": 6,
+   "n": 33
+  },
+  "ACHR": {
+   "blocked": 15,
+   "n": 17
+  },
+  "CRM": {
+   "blocked": 6,
+   "n": 21
+  },
+  "UBER": {
+   "blocked": 5,
+   "n": 16
+  },
+  "IREN": {
+   "blocked": 4,
+   "n": 33
+  },
+  "MARA": {
+   "blocked": 13,
+   "n": 13
+  },
+  "SOFI": {
+   "blocked": 0,
+   "n": 10
+  },
+  "SPCX": {
+   "blocked": 0,
+   "n": 8
+  }
+ },
+ "income_with_volume_cap": {
+  "50000": {
+   "free_net_mo": 1747.61,
+   "capped_net_mo": 1715.8
+  },
+  "100000": {
+   "free_net_mo": 3530.85,
+   "capped_net_mo": 3436.88
+  },
+  "200000": {
+   "free_net_mo": 7077.41,
+   "capped_net_mo": 6610.66
+  }
+ }
+}

@@ -1,0 +1,8 @@
+f86e03fe867d323e764b2ea82b8e62d5 *backtest_week.py
+c3221d1a79df96ed191fdff9e2a2797c *backtest_2y.py
+d6547993ca0458a6ba2ba2f409185b1a *signal_runner.py
+30ebfc501c261328fd3ede2ac330a822 *stop_rule.py
+484c49d7cafce70e795c908695d69615 *loss_halt.py
+418b62095275d89fe60c84ccc19e37b8 *omen_bot.py
+4f7b1561ab81216542e52f2d495b7471 *polygon_feed.py
+48f9dabbcadeeb2cd39e2ee7dfcff4af *universe.py

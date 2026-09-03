@@ -1,0 +1,194 @@
+{
+  "bar_per_day": 396.83,
+  "sessions": 500,
+  "book_generated": "2026-08-29T18:38:17",
+  "diagnostics": {
+    "attempted": 4508,
+    "no_bars": 0,
+    "no_fill": 0,
+    "not_takeable": 0,
+    "no_sigma": 3,
+    "no_contract": 45
+  },
+  "recomputed": {
+    "options_raw": {
+      "days_traded": 499,
+      "sessions": 500,
+      "mean_daily_r": 0.345751,
+      "per_day": 345.8,
+      "distance_to_397": -51.1,
+      "pct_of_397": 87.1,
+      "risk_for_397": 1148.0,
+      "months_green": 21,
+      "months": 25,
+      "durability_pass": false
+    },
+    "options_nickel": {
+      "days_traded": 499,
+      "sessions": 500,
+      "mean_daily_r": 0.144921,
+      "per_day": 144.9,
+      "distance_to_397": -251.9,
+      "pct_of_397": 36.5,
+      "risk_for_397": 2738.0,
+      "months_green": 15,
+      "months": 25,
+      "durability_pass": false
+    },
+    "shares_penny": {
+      "days_traded": 499,
+      "sessions": 500,
+      "mean_daily_r": 0.166607,
+      "per_day": 166.6,
+      "distance_to_397": -230.2,
+      "pct_of_397": 42.0,
+      "risk_for_397": 2382.0,
+      "months_green": 16,
+      "months": 25,
+      "durability_pass": false
+    }
+  },
+  "green_months_by_scale": {
+    "0.25": 21,
+    "1.0": 21,
+    "3.0": 21,
+    "17.5": 21
+  },
+  "scale_invariant": true,
+  "vs_page_series": {
+    "B/options_raw": {
+      "my_days": 499,
+      "their_days": 499,
+      "days_match": true,
+      "worst_abs_R_diff": 0.0,
+      "worst_day": "2026-08-21",
+      "their_stats": {
+        "days_traded": 499,
+        "sessions": 500,
+        "mean_daily_r": 0.345751,
+        "per_day": 345.8,
+        "distance_to_397": -51.1,
+        "pct_of_397": 87.1,
+        "risk_for_397": 1148.0,
+        "months_green": 21,
+        "months": 25,
+        "durability_pass": false
+      },
+      "identical": true
+    },
+    "B/options": {
+      "my_days": 499,
+      "their_days": 499,
+      "days_match": true,
+      "worst_abs_R_diff": 0.0,
+      "worst_day": "2026-08-21",
+      "their_stats": {
+        "days_traded": 499,
+        "sessions": 500,
+        "mean_daily_r": 0.144921,
+        "per_day": 144.9,
+        "distance_to_397": -251.9,
+        "pct_of_397": 36.5,
+        "risk_for_397": 2738.0,
+        "months_green": 15,
+        "months": 25,
+        "durability_pass": false
+      },
+      "identical": true
+    },
+    "B/shares": {
+      "my_days": 499,
+      "their_days": 499,
+      "days_match": true,
+      "worst_abs_R_diff": 0.0,
+      "worst_day": "2026-08-21",
+      "their_stats": {
+        "days_traded": 499,
+        "sessions": 500,
+        "mean_daily_r": 0.166607,
+        "per_day": 166.6,
+        "distance_to_397": -230.2,
+        "pct_of_397": 42.0,
+        "risk_for_397": 2382.0,
+        "months_green": 16,
+        "months": 25,
+        "durability_pass": false
+      },
+      "identical": true
+    }
+  },
+  "page_claims": {
+    "B/shares": {
+      "per_day_at_1k": 167.0,
+      "risk_for_397": 2382.0,
+      "months_green": 16,
+      "months": 25,
+      "durability_pass": false,
+      "pct_of_397_at_1k": 42.0
+    },
+    "B/shares_raw": {
+      "per_day_at_1k": 187.0,
+      "risk_for_397": 2125.0,
+      "months_green": 17,
+      "months": 25,
+      "durability_pass": false,
+      "pct_of_397_at_1k": 47.1
+    },
+    "B/options": {
+      "per_day_at_1k": 145.0,
+      "risk_for_397": 2738.0,
+      "months_green": 15,
+      "months": 25,
+      "durability_pass": false,
+      "pct_of_397_at_1k": 36.5
+    },
+    "B/options_raw": {
+      "per_day_at_1k": 346.0,
+      "risk_for_397": 1148.0,
+      "months_green": 21,
+      "months": 25,
+      "durability_pass": false,
+      "pct_of_397_at_1k": 87.1
+    },
+    "B/index": {
+      "per_day_at_1k": 51.0,
+      "risk_for_397": 7819.0,
+      "months_green": 13,
+      "months": 25,
+      "durability_pass": false,
+      "pct_of_397_at_1k": 12.8
+    },
+    "B/index_raw": {
+      "per_day_at_1k": 58.0,
+      "risk_for_397": 6822.0,
+      "months_green": 13,
+      "months": 25,
+      "durability_pass": false,
+      "pct_of_397_at_1k": 14.7
+    },
+    "PUB/shares": {
+      "per_day_at_1k": 830.0,
+      "risk_for_397": 478.0,
+      "months_green": 25,
+      "months": 25,
+      "durability_pass": true,
+      "pct_of_397_at_1k": 209.1
+    },
+    "PUB/options": {
+      "per_day_at_1k": 806.0,
+      "risk_for_397": 492.0,
+      "months_green": 25,
+      "months": 25,
+      "durability_pass": true,
+      "pct_of_397_at_1k": 203.1
+    },
+    "PUB/index": {
+      "per_day_at_1k": 300.0,
+      "risk_for_397": 1321.0,
+      "months_green": 21,
+      "months": 25,
+      "durability_pass": false,
+      "pct_of_397_at_1k": 75.7
+    }
+  }
+}

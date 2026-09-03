@@ -1,0 +1,543 @@
+{
+ "cases": [
+  {
+   "card_id": "ACHR_2026-04-13",
+   "bucket": "OCR",
+   "his": 39,
+   "eng": 63,
+   "late": 24,
+   "dir": "call",
+   "level_name": "not-his: order block",
+   "level_px": 5.42,
+   "first_structure_bar": 32,
+   "first_structure_clock": "10:02",
+   "ocr_at_his": {
+    "break_idx": null,
+    "block_idx": null,
+    "stage": "block_broken_or_absent"
+   },
+   "ocr_at_eng": {
+    "break_idx": 62,
+    "block_idx": 60,
+    "retest": "wick_only",
+    "block_hi": 5.42,
+    "block_lo": 5.41,
+    "stage": "PASS",
+    "q": {
+     "clear_break": false,
+     "quick": true,
+     "strong_pa": false,
+     "_body_ratio": 0.53,
+     "_dir_ok": true,
+     "_block_to_break": 2,
+     "_break_to_entry": 1
+    },
+    "stop_pct": 0.278
+   },
+   "eng_block_clock": "10:30",
+   "eng_break_clock": "10:32",
+   "ocr_stage_census_to_fire": {
+    "no_structure_break": 27,
+    "block_broken_or_absent": 31,
+    "PASS": 1
+   },
+   "br_at_his": "no_confirm_close",
+   "br_first_bar": null,
+   "br_first_clock": null
+  },
+  {
+   "card_id": "GOOGL_2024-10-29",
+   "bucket": "OCR",
+   "his": 77,
+   "eng": 89,
+   "late": 12,
+   "dir": "call",
+   "level_name": "not-his: order block",
+   "level_px": 168.79,
+   "first_structure_bar": 16,
+   "first_structure_clock": "9:46",
+   "ocr_at_his": {
+    "break_idx": 73,
+    "block_idx": 70,
+    "stage": "not_isolated"
+   },
+   "ocr_at_eng": {
+    "break_idx": 88,
+    "block_idx": 86,
+    "retest": "wick_only",
+    "block_hi": 168.79,
+    "block_lo": 168.65,
+    "stage": "PASS",
+    "q": {
+     "clear_break": true,
+     "quick": true,
+     "strong_pa": true,
+     "_body_ratio": 1.881,
+     "_dir_ok": true,
+     "_block_to_break": 2,
+     "_break_to_entry": 1
+    },
+    "stop_pct": 0.178
+   },
+   "eng_block_clock": "10:56",
+   "eng_break_clock": "10:58",
+   "ocr_stage_census_to_fire": {
+    "no_structure_break": 11,
+    "not_isolated": 50,
+    "block_broken_or_absent": 19,
+    "no_displacement": 4,
+    "PASS": 1
+   },
+   "br_at_his": "no_confirm_close",
+   "br_first_bar": null,
+   "br_first_clock": null
+  },
+  {
+   "card_id": "MSFT_2025-08-29",
+   "bucket": "OCR",
+   "his": 8,
+   "eng": 49,
+   "late": 41,
+   "dir": "call",
+   "level_name": "not-his: order block",
+   "level_px": 505.57,
+   "first_structure_bar": 21,
+   "first_structure_clock": "9:51",
+   "ocr_at_his": {
+    "stage": "no_structure_break",
+    "block_idx": null,
+    "break_idx": null
+   },
+   "ocr_at_eng": {
+    "break_idx": 47,
+    "block_idx": 45,
+    "retest": "wick_only",
+    "block_hi": 505.57,
+    "block_lo": 505.33,
+    "stage": "PASS",
+    "q": {
+     "clear_break": true,
+     "quick": true,
+     "strong_pa": false,
+     "_body_ratio": 1.469,
+     "_dir_ok": true,
+     "_block_to_break": 2,
+     "_break_to_entry": 2
+    },
+    "stop_pct": 0.121
+   },
+   "eng_block_clock": "10:15",
+   "eng_break_clock": "10:17",
+   "ocr_stage_census_to_fire": {
+    "no_structure_break": 16,
+    "not_isolated": 15,
+    "block_broken_or_absent": 12,
+    "PASS": 2
+   },
+   "br_at_his": "no_break",
+   "br_first_bar": null,
+   "br_first_clock": null
+  },
+  {
+   "card_id": "NFLX_2025-07-08",
+   "bucket": "OCR",
+   "his": 8,
+   "eng": 31,
+   "late": 23,
+   "dir": "put",
+   "level_name": "not-his: order block",
+   "level_px": 127.64,
+   "first_structure_bar": 13,
+   "first_structure_clock": "9:43",
+   "ocr_at_his": {
+    "stage": "no_structure_break",
+    "block_idx": null,
+    "break_idx": null
+   },
+   "ocr_at_eng": {
+    "break_idx": 30,
+    "block_idx": 28,
+    "retest": "wick_only",
+    "block_hi": 127.832,
+    "block_lo": 127.6385,
+    "stage": "PASS",
+    "q": {
+     "clear_break": false,
+     "quick": true,
+     "strong_pa": false,
+     "_body_ratio": 0.172,
+     "_dir_ok": true,
+     "_block_to_break": 2,
+     "_break_to_entry": 1
+    },
+    "stop_pct": 0.179
+   },
+   "eng_block_clock": "9:58",
+   "eng_break_clock": "10:00",
+   "ocr_stage_census_to_fire": {
+    "no_structure_break": 8,
+    "not_isolated": 18,
+    "PASS": 1
+   },
+   "br_at_his": "no_confirm_close",
+   "br_first_bar": null,
+   "br_first_clock": null
+  },
+  {
+   "card_id": "NVDA_2026-05-11",
+   "bucket": "OCR",
+   "his": 13,
+   "eng": 62,
+   "late": 49,
+   "dir": "put",
+   "level_name": "not-his: order block",
+   "level_px": 217.93,
+   "first_structure_bar": 26,
+   "first_structure_clock": "9:56",
+   "ocr_at_his": {
+    "stage": "no_structure_break",
+    "block_idx": null,
+    "break_idx": null
+   },
+   "ocr_at_eng": {
+    "break_idx": 61,
+    "block_idx": 60,
+    "retest": "wick_only",
+    "block_hi": 218.38,
+    "block_lo": 217.93,
+    "stage": "PASS",
+    "q": {
+     "clear_break": false,
+     "quick": true,
+     "strong_pa": false,
+     "_body_ratio": 1.465,
+     "_dir_ok": false,
+     "_block_to_break": 1,
+     "_break_to_entry": 1
+    },
+    "stop_pct": 0.216
+   },
+   "eng_block_clock": "10:30",
+   "eng_break_clock": "10:31",
+   "ocr_stage_census_to_fire": {
+    "no_structure_break": 21,
+    "not_isolated": 26,
+    "block_broken_or_absent": 10,
+    "PASS": 1
+   },
+   "br_at_his": "no_confirm_close",
+   "br_first_bar": 32,
+   "br_first_clock": "10:02"
+  },
+  {
+   "card_id": "SPY_2025-05-21",
+   "bucket": "OCR",
+   "his": 15,
+   "eng": 63,
+   "late": 48,
+   "dir": "put",
+   "level_name": "not-his: order block",
+   "level_px": 589.62,
+   "first_structure_bar": 8,
+   "first_structure_clock": "9:38",
+   "ocr_at_his": {
+    "break_idx": null,
+    "block_idx": null,
+    "stage": "block_broken_or_absent"
+   },
+   "ocr_at_eng": {
+    "break_idx": 59,
+    "block_idx": 56,
+    "retest": "wick_only",
+    "block_hi": 590.0886,
+    "block_lo": 589.625,
+    "stage": "PASS",
+    "q": {
+     "clear_break": false,
+     "quick": true,
+     "strong_pa": false,
+     "_body_ratio": 0.817,
+     "_dir_ok": true,
+     "_block_to_break": 3,
+     "_break_to_entry": 4
+    },
+    "stop_pct": 0.132
+   },
+   "eng_block_clock": "10:26",
+   "eng_break_clock": "10:29",
+   "ocr_stage_census_to_fire": {
+    "no_structure_break": 3,
+    "not_isolated": 25,
+    "block_broken_or_absent": 27,
+    "retest_too_deep": 3,
+    "PASS": 1
+   },
+   "br_at_his": "no_confirm_close",
+   "br_first_bar": null,
+   "br_first_clock": null
+  },
+  {
+   "card_id": "SPY_2026-06-17",
+   "bucket": "OCR",
+   "his": 18,
+   "eng": 72,
+   "late": 54,
+   "dir": "put",
+   "level_name": "not-his: order block",
+   "level_px": 750.09,
+   "first_structure_bar": 4,
+   "first_structure_clock": "9:34",
+   "ocr_at_his": {
+    "break_idx": null,
+    "block_idx": null,
+    "stage": "block_broken_or_absent"
+   },
+   "ocr_at_eng": {
+    "break_idx": 71,
+    "block_idx": 67,
+    "retest": "wick_only",
+    "block_hi": 750.39,
+    "block_lo": 750.085,
+    "stage": "PASS",
+    "q": {
+     "clear_break": true,
+     "quick": true,
+     "strong_pa": false,
+     "_body_ratio": 1.13,
+     "_dir_ok": false,
+     "_block_to_break": 4,
+     "_break_to_entry": 1
+    },
+    "stop_pct": 0.045
+   },
+   "eng_block_clock": "10:37",
+   "eng_break_clock": "10:41",
+   "ocr_stage_census_to_fire": {
+    "block_broken_or_absent": 38,
+    "not_isolated": 29,
+    "PASS": 1
+   },
+   "br_at_his": "no_confirm_close",
+   "br_first_bar": null,
+   "br_first_clock": null
+  },
+  {
+   "card_id": "ACHR_2026-06-16",
+   "bucket": "BR",
+   "his": 27,
+   "eng": 26,
+   "late": -1,
+   "dir": "put",
+   "level_name": "PML",
+   "level_px": 5.48,
+   "first_structure_bar": 9,
+   "first_structure_clock": "9:39",
+   "ocr_at_his": {
+    "break_idx": 25,
+    "block_idx": 23,
+    "stage": "not_isolated"
+   },
+   "ocr_at_eng": {
+    "break_idx": 25,
+    "block_idx": 23,
+    "stage": "not_isolated"
+   },
+   "eng_block_clock": "9:53",
+   "eng_break_clock": "9:55",
+   "ocr_stage_census_to_fire": {
+    "no_structure_break": 4,
+    "block_broken_or_absent": 9,
+    "not_isolated": 9
+   },
+   "br_at_his": "passed",
+   "br_first_bar": 26,
+   "br_first_clock": "9:56"
+  },
+  {
+   "card_id": "AMD_2024-10-02",
+   "bucket": "BR",
+   "his": 6,
+   "eng": 34,
+   "late": 28,
+   "dir": "call",
+   "level_name": "PMH",
+   "level_px": 160.69,
+   "first_structure_bar": 22,
+   "first_structure_clock": "9:52",
+   "ocr_at_his": {
+    "stage": "no_structure_break",
+    "block_idx": null,
+    "break_idx": null
+   },
+   "ocr_at_eng": {
+    "break_idx": 33,
+    "block_idx": 31,
+    "stage": "not_at_block"
+   },
+   "eng_block_clock": "10:01",
+   "eng_break_clock": "10:03",
+   "ocr_stage_census_to_fire": {
+    "no_structure_break": 17,
+    "not_at_block": 10,
+    "not_isolated": 3
+   },
+   "br_at_his": "no_confirm_close",
+   "br_first_bar": 34,
+   "br_first_clock": "10:04"
+  },
+  {
+   "card_id": "AMZN_2025-12-11",
+   "bucket": "BR",
+   "his": 10,
+   "eng": 9,
+   "late": -1,
+   "dir": "call",
+   "level_name": "PMH",
+   "level_px": 230.99,
+   "first_structure_bar": null,
+   "first_structure_clock": null,
+   "ocr_at_his": {
+    "stage": "no_structure_break",
+    "block_idx": null,
+    "break_idx": null
+   },
+   "ocr_at_eng": {
+    "stage": "no_structure_break",
+    "block_idx": null,
+    "break_idx": null
+   },
+   "ocr_stage_census_to_fire": {
+    "no_structure_break": 5
+   },
+   "br_at_his": "adverse_wick",
+   "br_first_bar": 9,
+   "br_first_clock": "9:39"
+  },
+  {
+   "card_id": "AVGO_2024-11-04",
+   "bucket": "BR",
+   "his": 17,
+   "eng": 17,
+   "late": 0,
+   "dir": "call",
+   "level_name": "PDH",
+   "level_px": 171.33,
+   "first_structure_bar": 12,
+   "first_structure_clock": "9:42",
+   "ocr_at_his": {
+    "break_idx": 16,
+    "block_idx": 15,
+    "stage": "no_displacement"
+   },
+   "ocr_at_eng": {
+    "break_idx": 16,
+    "block_idx": 15,
+    "stage": "no_displacement"
+   },
+   "eng_block_clock": "9:45",
+   "eng_break_clock": "9:46",
+   "ocr_stage_census_to_fire": {
+    "no_structure_break": 7,
+    "not_isolated": 5,
+    "no_displacement": 1
+   },
+   "br_at_his": "passed",
+   "br_first_bar": 17,
+   "br_first_clock": "9:47"
+  },
+  {
+   "card_id": "BABA_2024-09-05",
+   "bucket": "BR",
+   "his": 26,
+   "eng": 38,
+   "late": 12,
+   "dir": "call",
+   "level_name": "PMH",
+   "level_px": 82.29,
+   "first_structure_bar": 10,
+   "first_structure_clock": "9:40",
+   "ocr_at_his": {
+    "break_idx": null,
+    "block_idx": null,
+    "stage": "block_broken_or_absent"
+   },
+   "ocr_at_eng": {
+    "break_idx": 32,
+    "block_idx": 30,
+    "stage": "not_isolated"
+   },
+   "eng_block_clock": "10:00",
+   "eng_break_clock": "10:02",
+   "ocr_stage_census_to_fire": {
+    "no_structure_break": 5,
+    "not_isolated": 11,
+    "no_displacement": 4,
+    "block_broken_or_absent": 14
+   },
+   "br_at_his": "no_confirm_close",
+   "br_first_bar": 36,
+   "br_first_clock": "10:06"
+  },
+  {
+   "card_id": "QQQ_2024-08-26",
+   "bucket": "BR",
+   "his": 26,
+   "eng": 22,
+   "late": -4,
+   "dir": "put",
+   "level_name": "PML",
+   "level_px": 479.06,
+   "first_structure_bar": 21,
+   "first_structure_clock": "9:51",
+   "ocr_at_his": {
+    "break_idx": 24,
+    "block_idx": 22,
+    "stage": "not_isolated"
+   },
+   "ocr_at_eng": {
+    "break_idx": 20,
+    "block_idx": 16,
+    "stage": "no_displacement"
+   },
+   "eng_block_clock": "9:46",
+   "eng_break_clock": "9:50",
+   "ocr_stage_census_to_fire": {
+    "no_structure_break": 16,
+    "no_displacement": 2
+   },
+   "br_at_his": "adverse_wick",
+   "br_first_bar": 22,
+   "br_first_clock": "9:52"
+  },
+  {
+   "card_id": "TSLA_2025-09-03",
+   "bucket": "BR",
+   "his": 15,
+   "eng": 60,
+   "late": 45,
+   "dir": "call",
+   "level_name": "PMH",
+   "level_px": 336.0,
+   "first_structure_bar": 11,
+   "first_structure_clock": "9:41",
+   "ocr_at_his": {
+    "break_idx": 14,
+    "block_idx": 12,
+    "stage": "not_isolated"
+   },
+   "ocr_at_eng": {
+    "break_idx": null,
+    "block_idx": null,
+    "stage": "block_broken_or_absent"
+   },
+   "ocr_stage_census_to_fire": {
+    "no_structure_break": 6,
+    "not_isolated": 31,
+    "block_broken_or_absent": 19
+   },
+   "br_at_his": "no_confirm_close",
+   "br_first_bar": 59,
+   "br_first_clock": "10:29"
+  }
+ ]
+}

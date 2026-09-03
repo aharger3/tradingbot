@@ -1,0 +1,374 @@
+{
+  "bars_available": {
+    "no": 33,
+    "yes": 1230
+  },
+  "contested_days": {
+    "n_days": 70,
+    "n_rows_across_those_days": 345,
+    "resolution_rule": "best-grade-wins ladder S > A > B > C > none (X ties with none): the same union rule build_deck.s_days() already uses for S alone, carried uniformly down the whole ladder. Two corpora that AGREE are not a conflict, just a dedup at the symbol-day key -- only disagreement counts as 'contested'.",
+    "sample": [
+      {
+        "key": "AAPL_2024-03-28",
+        "raw_grades": [
+          "S",
+          "X"
+        ],
+        "resolved_to": "S",
+        "sources": [
+          "austin_marks_v7.jsonl",
+          "derived_marks_v2.jsonl"
+        ]
+      },
+      {
+        "key": "AAPL_2025-01-13",
+        "raw_grades": [
+          "A",
+          "S"
+        ],
+        "resolved_to": "S",
+        "sources": [
+          "austin_marks_v7.jsonl",
+          "derived_marks_v2.jsonl"
+        ]
+      },
+      {
+        "key": "AAPL_2025-09-09",
+        "raw_grades": [
+          "C",
+          "X"
+        ],
+        "resolved_to": "C",
+        "sources": [
+          "austin_marks_v7.jsonl"
+        ]
+      },
+      {
+        "key": "AMD_2024-11-11",
+        "raw_grades": [
+          "A",
+          "S"
+        ],
+        "resolved_to": "S",
+        "sources": [
+          "austin_marks_v7.jsonl",
+          "derived_marks_v2.jsonl"
+        ]
+      },
+      {
+        "key": "AMD_2025-06-05",
+        "raw_grades": [
+          "A",
+          "S"
+        ],
+        "resolved_to": "S",
+        "sources": [
+          "austin_marks_v7.jsonl",
+          "austin_verdicts.json",
+          "mark_batch_02_grades.jsonl",
+          "mark_batch_03_regrades.jsonl"
+        ]
+      },
+      {
+        "key": "AMD_2026-05-14",
+        "raw_grades": [
+          "A",
+          "C",
+          "S",
+          "X"
+        ],
+        "resolved_to": "S",
+        "sources": [
+          "austin_marks_v7.jsonl",
+          "austin_verdicts.json",
+          "derived_marks_v1.jsonl",
+          "mark_batch_02_grades.jsonl",
+          "mark_batch_04_grades.jsonl"
+        ]
+      },
+      {
+        "key": "AMZN_2026-04-10",
+        "raw_grades": [
+          "A",
+          "X"
+        ],
+        "resolved_to": "A",
+        "sources": [
+          "austin_marks_v7.jsonl",
+          "austin_verdicts.json",
+          "mark_batch_02_grades.jsonl",
+          "mark_batch_04_grades.jsonl"
+        ]
+      },
+      {
+        "key": "AMZN_2026-07-17",
+        "raw_grades": [
+          "A",
+          "C"
+        ],
+        "resolved_to": "A",
+        "sources": [
+          "austin_marks_v7.jsonl",
+          "austin_verdicts.json",
+          "mark_batch_04_grades.jsonl"
+        ]
+      },
+      {
+        "key": "COIN_2025-10-21",
+        "raw_grades": [
+          "C",
+          "S",
+          "X"
+        ],
+        "resolved_to": "S",
+        "sources": [
+          "austin_marks_v7.jsonl",
+          "austin_verdicts.json",
+          "derived_marks_v1.jsonl",
+          "mark_batch_02_grades.jsonl",
+          "mark_batch_04_grades.jsonl"
+        ]
+      },
+      {
+        "key": "COIN_2026-03-04",
+        "raw_grades": [
+          "A",
+          "X"
+        ],
+        "resolved_to": "A",
+        "sources": [
+          "austin_marks_v7.jsonl",
+          "austin_verdicts.json",
+          "mark_batch_02_grades.jsonl"
+        ]
+      },
+      {
+        "key": "COIN_2026-04-09",
+        "raw_grades": [
+          "A",
+          "S"
+        ],
+        "resolved_to": "S",
+        "sources": [
+          "austin_marks_v7.jsonl",
+          "austin_verdicts.json",
+          "mark_batch_02_grades.jsonl"
+        ]
+      },
+      {
+        "key": "GOOGL_2024-10-15",
+        "raw_grades": [
+          "S",
+          "X"
+        ],
+        "resolved_to": "S",
+        "sources": [
+          "austin_marks_v7.jsonl",
+          "austin_verdicts.json",
+          "derived_marks_v1.jsonl",
+          "mark_batch_02_grades.jsonl",
+          "mark_batch_04_grades.jsonl"
+        ]
+      },
+      {
+        "key": "GOOGL_2025-08-07",
+        "raw_grades": [
+          "S",
+          "X"
+        ],
+        "resolved_to": "S",
+        "sources": [
+          "austin_marks_v7.jsonl",
+          "austin_verdicts.json",
+          "mark_batch_02_grades.jsonl",
+          "mark_batch_04_grades.jsonl"
+        ]
+      },
+      {
+        "key": "HOOD_2026-05-19",
+        "raw_grades": [
+          "A",
+          "X"
+        ],
+        "resolved_to": "A",
+        "sources": [
+          "austin_marks_v7.jsonl",
+          "austin_verdicts.json",
+          "mark_batch_02_grades.jsonl"
+        ]
+      },
+      {
+        "key": "INTC_2025-02-27",
+        "raw_grades": [
+          "S",
+          "X"
+        ],
+        "resolved_to": "S",
+        "sources": [
+          "austin_marks_v7.jsonl",
+          "derived_marks_v2.jsonl"
+        ]
+      }
+    ]
+  },
+  "grade_counts": {
+    "A": 237,
+    "C": 58,
+    "S": 347,
+    "none": 607
+  },
+  "grade_counts_footnote": {
+    "B_days": 14,
+    "B_folded_into": "counted as its own bucket above the C/none ladder, never merged into A or C -- 14 days",
+    "none_bucket_breakdown": {
+      "X_only_refusal_aimed_at_engine": 192,
+      "explicit_none": 415,
+      "note": "both fold into the single 'none' count above; kept distinct here so an engine-refusal is never mistaken for a day-level 'I would not trade this'."
+    }
+  },
+  "per_source": {
+    "austin_marks_v7.jsonl": {
+      "rows_with_grade": 479,
+      "rows_with_judgement_key": 479
+    },
+    "austin_verdicts.json": {
+      "rows_with_grade": 162,
+      "rows_with_judgement_key": 162
+    },
+    "blind_marks_all.jsonl": {
+      "rows_with_grade": 260,
+      "rows_with_judgement_key": 260
+    },
+    "derived_marks_v1.jsonl": {
+      "rows_with_grade": 14,
+      "rows_with_judgement_key": 14
+    },
+    "derived_marks_v2.jsonl": {
+      "rows_with_grade": 18,
+      "rows_with_judgement_key": 18
+    },
+    "mark_batch_02_grades.jsonl": {
+      "rows_with_grade": 60,
+      "rows_with_judgement_key": 60
+    },
+    "mark_batch_03_regrades.jsonl": {
+      "rows_with_grade": 29,
+      "rows_with_judgement_key": 29
+    },
+    "mark_batch_04_grades.jsonl": {
+      "rows_with_grade": 35,
+      "rows_with_judgement_key": 35
+    },
+    "marks/deck_marks_h2_3lane_2026-08-28.jsonl": {
+      "rows_with_grade": 59,
+      "rows_with_judgement_key": 59
+    },
+    "marks/deck_marks_index_2026-08-19.jsonl": {
+      "rows_with_grade": 60,
+      "rows_with_judgement_key": 60
+    },
+    "marks/deck_marks_tsla_2026-08-20.jsonl": {
+      "rows_with_grade": 60,
+      "rows_with_judgement_key": 60
+    },
+    "marks/probe_autopsy_2026-08-23.jsonl": {
+      "rows_with_grade": 15,
+      "rows_with_judgement_key": 15
+    },
+    "marks/probe_g71_homework_s3_2026-08-29.jsonl": {
+      "rows_with_grade": 25,
+      "rows_with_judgement_key": 25
+    },
+    "marks/probe_g71_homework_s3_2026-08-29_complete.jsonl": {
+      "rows_with_grade": 30,
+      "rows_with_judgement_key": 30
+    },
+    "marks/probe_g84_all_in_one_2026-08-30.jsonl": {
+      "rows_with_grade": 0,
+      "rows_with_judgement_key": 6
+    },
+    "marks/probe_g84_all_in_one_STANDING154_2026-09-01.jsonl": {
+      "rows_with_grade": 85,
+      "rows_with_judgement_key": 139
+    },
+    "marks/probe_head2head_2026-08-24.jsonl": {
+      "rows_with_grade": 9,
+      "rows_with_judgement_key": 9
+    },
+    "marks/probe_master_2026-08-29.jsonl": {
+      "rows_with_grade": 90,
+      "rows_with_judgement_key": 90
+    },
+    "marks/probe_master_homework_2026-08-26.jsonl": {
+      "rows_with_grade": 51,
+      "rows_with_judgement_key": 51
+    },
+    "marks/probe_omen_test1_2026-08-27.jsonl": {
+      "rows_with_grade": 100,
+      "rows_with_judgement_key": 100
+    },
+    "marks/probe_s_sweep_2026-08-28.jsonl": {
+      "rows_with_grade": 100,
+      "rows_with_judgement_key": 100
+    },
+    "marks/probe_trade_anatomy_2026-09-01.jsonl": {
+      "rows_with_grade": 0,
+      "rows_with_judgement_key": 8
+    },
+    "marks_clean.jsonl": {
+      "rows_with_grade": 117,
+      "rows_with_judgement_key": 117
+    },
+    "recovered_reviews.jsonl": {
+      "rows_with_grade": 176,
+      "rows_with_judgement_key": 176
+    }
+  },
+  "spellings": {
+    "_no_trade": {
+      "S_rows": 0,
+      "rows": 143
+    },
+    "answers.grade": {
+      "S_rows": 30,
+      "rows": 258
+    },
+    "answers.is_s": {
+      "S_rows": 40,
+      "rows": 63
+    },
+    "answers.s": {
+      "S_rows": 72,
+      "rows": 175
+    },
+    "answers.s_call": {
+      "S_rows": 5,
+      "rows": 25
+    },
+    "answers.your_grade": {
+      "S_rows": 3,
+      "rows": 12
+    },
+    "austin_grade": {
+      "S_rows": 35,
+      "rows": 60
+    },
+    "austin_tier": {
+      "S_rows": 206,
+      "rows": 673
+    },
+    "grade": {
+      "S_rows": 78,
+      "rows": 578
+    },
+    "tier": {
+      "S_rows": 125,
+      "rows": 312
+    },
+    "verdict": {
+      "S_rows": 78,
+      "rows": 162
+    }
+  },
+  "total_symbol_days": 1263
+}

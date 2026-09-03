@@ -1,0 +1,369 @@
+{
+ "meta": {
+  "generated": "2026-08-29T03:14:29",
+  "first": "2024-08-21",
+  "last": "2026-08-21",
+  "sessions": 500,
+  "symbols": [
+   "NVDA",
+   "TSLA",
+   "AAPL",
+   "SPCX",
+   "MSFT",
+   "MU",
+   "INTC",
+   "PLTR",
+   "AMZN",
+   "META",
+   "AMD",
+   "GOOGL",
+   "ACHR",
+   "NFLX",
+   "ORCL",
+   "QQQ",
+   "SPY",
+   "IWM",
+   "SOFI",
+   "COIN",
+   "HOOD",
+   "IREN",
+   "AVGO",
+   "UBER",
+   "BABA",
+   "CRM",
+   "TSM",
+   "MARA"
+  ],
+  "risk_dollars": 1000.0,
+  "signals": 76019,
+  "loss_halt": true,
+  "halted": 857,
+  "traded": 2437
+ },
+ "policies": {
+  "P1 first only": {
+   "trades": 496,
+   "days": 496,
+   "per_day": 1.0,
+   "mean_r": 0.6115
+  },
+  "P2 win=done, 2 losses=done": {
+   "trades": 705,
+   "days": 496,
+   "per_day": 1.421,
+   "mean_r": 0.5668
+  },
+  "P3 until green": {
+   "trades": 972,
+   "days": 496,
+   "per_day": 1.96,
+   "mean_r": 0.4861
+  },
+  "P4 until green, 3-loss cap": {
+   "trades": 861,
+   "days": 496,
+   "per_day": 1.736,
+   "mean_r": 0.5166
+  }
+ },
+ "stop_pct_pctiles": {
+  "10": 0.0012330000000000002,
+  "25": 0.00169,
+  "50": 0.00223,
+  "75": 0.0032600000000000003,
+  "90": 0.00517,
+  "99": 0.012181400000000004
+ },
+ "ttp_accounts": [
+  {
+   "bp": 5000,
+   "price": 59,
+   "risk": 11.15,
+   "gross_mo": 179.23,
+   "net_mo": 125.46,
+   "day_mean": 8.53,
+   "day_sd": 32.41,
+   "bp_capped_frac": 0.865
+  },
+  {
+   "bp": 25000,
+   "price": 120,
+   "risk": 55.75,
+   "gross_mo": 1213.25,
+   "net_mo": 849.27,
+   "day_mean": 57.77,
+   "day_sd": 156.9,
+   "bp_capped_frac": 0.865
+  },
+  {
+   "bp": 50000,
+   "price": 285,
+   "risk": 111.5,
+   "gross_mo": 2496.58,
+   "net_mo": 1747.61,
+   "day_mean": 118.88,
+   "day_sd": 312.59,
+   "bp_capped_frac": 0.865
+  },
+  {
+   "bp": 100000,
+   "price": 545,
+   "risk": 223.0,
+   "gross_mo": 5044.07,
+   "net_mo": 3530.85,
+   "day_mean": 240.19,
+   "day_sd": 624.25,
+   "bp_capped_frac": 0.865
+  },
+  {
+   "bp": 200000,
+   "price": 1475,
+   "risk": 446.0,
+   "gross_mo": 10110.59,
+   "net_mo": 7077.41,
+   "day_mean": 481.46,
+   "day_sd": 1248.13,
+   "bp_capped_frac": 0.865
+  }
+ ],
+ "bp_for_5k_net": 143053.0,
+ "paths": {
+  "A TTP 50k FLEX ($285)": {
+   "pass_day_median": 23.0,
+   "first_payout_day_median": 34.0,
+   "paid_12mo_mean": 18419.42,
+   "paid_12mo_p10": 13919.96,
+   "paid_12mo_p50": 18445.94,
+   "paid_12mo_p90": 22889.47,
+   "fees_mean": 300.68,
+   "evals_mean": 1.05,
+   "funded_busts_mean": 0.052,
+   "p_buffer_gone": 0.0
+  },
+  "A TTP 100k FLEX ($545)": {
+   "pass_day_median": 23.0,
+   "first_payout_day_median": 34.0,
+   "paid_12mo_mean": 37186.12,
+   "paid_12mo_p10": 28341.66,
+   "paid_12mo_p50": 37211.86,
+   "paid_12mo_p90": 45735.63,
+   "fees_mean": 571.84,
+   "evals_mean": 1.05,
+   "funded_busts_mean": 0.047,
+   "p_buffer_gone": 0.0
+  },
+  "A TTP 200k FLEX ($1,475)": {
+   "pass_day_median": 23.0,
+   "first_payout_day_median": 34.0,
+   "paid_12mo_mean": 74337.82,
+   "paid_12mo_p10": 56661.35,
+   "paid_12mo_p50": 74100.82,
+   "paid_12mo_p90": 92052.0,
+   "fees_mean": 1548.93,
+   "evals_mean": 1.05,
+   "funded_busts_mean": 0.048,
+   "p_buffer_gone": 0.0
+  },
+  "A TTP 25k FLEX ($120)": {
+   "pass_day_median": 24.0,
+   "first_payout_day_median": 36.0,
+   "paid_12mo_mean": 8885.07,
+   "paid_12mo_p10": 6697.86,
+   "paid_12mo_p50": 8870.82,
+   "paid_12mo_p90": 11130.43,
+   "fees_mean": 128.28,
+   "evals_mean": 1.07,
+   "funded_busts_mean": 0.066,
+   "p_buffer_gone": 0.0
+  },
+  "A-stress TTP 50k FLEX ($285)": {
+   "paid_12mo_mean": 16502.33,
+   "fees_mean": 337.51,
+   "evals_mean": 1.18
+  },
+  "A-stress TTP 200k FLEX ($1,475)": {
+   "paid_12mo_mean": 67803.72,
+   "fees_mean": 1666.75,
+   "evals_mean": 1.13
+  },
+  "B": {
+   "p_pass_single": 1.0,
+   "fiction": {
+    "1": 1.0,
+    "2": 1.0,
+    "3": 1.0,
+    "5": 1.0
+   },
+   "reality": 1.0
+  },
+  "CD": [
+   {
+    "path": "C shares, cash 1:1, $0.01 spread",
+    "month1_mean": 538.98,
+    "eq12_med": 18669.41,
+    "eq12_p10": 16173.03,
+    "eq12_p90": 21583.19,
+    "p_ruin": 0.0,
+    "p_half": 0.0
+   },
+   {
+    "path": "C shares, 2:1",
+    "month1_mean": 1066.64,
+    "eq12_med": 33310.89,
+    "eq12_p10": 25196.41,
+    "eq12_p90": 44220.44,
+    "p_ruin": 0.0,
+    "p_half": 0.0
+   },
+   {
+    "path": "C shares, 4:1",
+    "month1_mean": 2048.94,
+    "eq12_med": 86332.67,
+    "eq12_p10": 52226.23,
+    "eq12_p90": 144804.7,
+    "p_ruin": 0.0,
+    "p_half": 0.0
+   },
+   {
+    "path": "C shares, 4:1, $0.02 spread",
+    "month1_mean": 1881.51,
+    "eq12_med": 73795.07,
+    "eq12_p10": 44723.42,
+    "eq12_p90": 121230.93,
+    "p_ruin": 0.0,
+    "p_half": 0.0
+   },
+   {
+    "path": "D 0DTE, 2% risk, $0.01 spread",
+    "month1_mean": 1285.99,
+    "eq12_med": 39721.43,
+    "eq12_p10": 22358.56,
+    "eq12_p90": 70019.69,
+    "p_ruin": 0.0,
+    "p_half": 0.0
+   },
+   {
+    "path": "D 0DTE, 2% risk, $0.02 spread",
+    "month1_mean": 1040.54,
+    "eq12_med": 30261.01,
+    "eq12_p10": 16590.94,
+    "eq12_p90": 54267.82,
+    "p_ruin": 0.0,
+    "p_half": 0.0
+   },
+   {
+    "path": "D 0DTE, 2% risk, $0.05 spread",
+    "month1_mean": 269.42,
+    "eq12_med": 11789.61,
+    "eq12_p10": 6403.91,
+    "eq12_p90": 21547.71,
+    "p_ruin": 0.0,
+    "p_half": 0.0352
+   },
+   {
+    "path": "D 0DTE, 5% risk, $0.02 spread",
+    "month1_mean": 1154.85,
+    "eq12_med": 33558.46,
+    "eq12_p10": 17674.12,
+    "eq12_p90": 61576.53,
+    "p_ruin": 0.0,
+    "p_half": 0.0
+   }
+  ],
+  "E": {
+   "prop_paid": 18376.3,
+   "prop_fees": 301.64,
+   "sleeve_pl": 6803.79,
+   "sleeve_ruin": 0.0,
+   "combined": 24878.45
+  }
+ },
+ "net_per_bp_per_month": 0.034952,
+ "legal_max_bp_one_signal": 200000,
+ "degradation": [
+  {
+   "h": 0.0,
+   "mean_r": 0.5166,
+   "prop_paid": 74599.29,
+   "prop_fees": 1547.64,
+   "prop_p_pass": 1.0,
+   "prop_p_buffer_gone": 0.0,
+   "self_eq_med": 87937.84,
+   "self_eq_p10": 53757.31,
+   "self_p_ruin": 0.0,
+   "self_p_half": 0.0
+  },
+  {
+   "h": 0.15,
+   "mean_r": 0.3666,
+   "prop_paid": 49542.18,
+   "prop_fees": 1907.91,
+   "prop_p_pass": 1.0,
+   "prop_p_buffer_gone": 0.0,
+   "self_eq_med": 43480.12,
+   "self_eq_p10": 25557.43,
+   "self_p_ruin": 0.0,
+   "self_p_half": 0.0
+  },
+  {
+   "h": 0.3,
+   "mean_r": 0.2166,
+   "prop_paid": 26185.91,
+   "prop_fees": 2928.61,
+   "prop_p_pass": 0.9966,
+   "prop_p_buffer_gone": 0.0001,
+   "self_eq_med": 20760.15,
+   "self_eq_p10": 11909.46,
+   "self_p_ruin": 0.0,
+   "self_p_half": 0.0
+  },
+  {
+   "h": 0.45,
+   "mean_r": 0.0666,
+   "prop_paid": 9436.88,
+   "prop_fees": 4619.33,
+   "prop_p_pass": 0.9196,
+   "prop_p_buffer_gone": 0.0121,
+   "self_eq_med": 9931.9,
+   "self_eq_p10": 5596.19,
+   "self_p_ruin": 0.0,
+   "self_p_half": 0.062
+  },
+  {
+   "h": 0.5166,
+   "mean_r": 0.0,
+   "prop_paid": 5282.26,
+   "prop_fees": 5737.75,
+   "prop_p_pass": 0.8114,
+   "prop_p_buffer_gone": 0.0584,
+   "self_eq_med": 7279.31,
+   "self_eq_p10": 4117.8,
+   "self_p_ruin": 0.0,
+   "self_p_half": 0.1988
+  },
+  {
+   "h": 0.65,
+   "mean_r": -0.1334,
+   "prop_paid": 1376.51,
+   "prop_fees": 8182.93,
+   "prop_p_pass": 0.4846,
+   "prop_p_buffer_gone": 0.3666,
+   "self_eq_med": 3810.47,
+   "self_eq_p10": 2075.95,
+   "self_p_ruin": 0.0036,
+   "self_p_half": 0.7248
+  },
+  {
+   "h": 0.8,
+   "mean_r": -0.2834,
+   "prop_paid": 219.65,
+   "prop_fees": 10023.18,
+   "prop_p_pass": 0.1686,
+   "prop_p_buffer_gone": 0.8726,
+   "self_eq_med": 1868.58,
+   "self_eq_p10": 996.18,
+   "self_p_ruin": 0.1176,
+   "self_p_half": 0.984
+  }
+ ]
+}

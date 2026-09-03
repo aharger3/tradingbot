@@ -1,0 +1,329 @@
+{
+ "arm": "sac_xlift",
+ "sweep": {
+  "set": "probe_s_sweep_2026-08-28 (100 blind cards)",
+  "n_cards": 100,
+  "n_S": 34,
+  "n_no": 66,
+  "fired_on_S": 17,
+  "fired_on_no": 24,
+  "recall_pct": 50.0,
+  "precision_pct": 41.5,
+  "unreplayable_days": 0,
+  "missed_S": [
+   "AMZN_2025-09-10",
+   "ARM_2024-10-28",
+   "BABA_2025-02-05",
+   "BABA_2025-04-07",
+   "BABA_2026-06-12",
+   "CRM_2026-02-11",
+   "IWM_2026-05-01",
+   "MARA_2025-07-18",
+   "MSFT_2025-12-30",
+   "MSTR_2025-08-26",
+   "MSTR_2026-03-13",
+   "MSTR_2026-07-17",
+   "NFLX_2024-08-05",
+   "NVDA_2025-04-29",
+   "PLTR_2024-09-20",
+   "PLTR_2025-12-11",
+   "QQQ_2025-09-16"
+  ]
+ },
+ "vetoes": {
+  "set": "probe_master_2026-08-29 lane=vetoes (40 engine vetoes he graded)",
+  "n_cards": 40,
+  "his_S": 5,
+  "fired_on_his_S": 0,
+  "his_A": 4,
+  "fired_on_his_A": 0,
+  "his_C": 4,
+  "fired_on_his_C": 1,
+  "his_no": 27,
+  "fired_on_his_no": 3,
+  "recall_SA_pct": 0.0,
+  "false_fire_pct": 11.1,
+  "detail": [
+   {
+    "card": "AAPL_2026-05-08",
+    "his_grade": "a",
+    "fired": false,
+    "et": "10:01",
+    "error": null
+   },
+   {
+    "card": "AAPL_2025-02-25",
+    "his_grade": "no",
+    "fired": false,
+    "et": "10:31",
+    "error": null
+   },
+   {
+    "card": "BABA_2026-02-17",
+    "his_grade": "no",
+    "fired": false,
+    "et": "09:46",
+    "error": null
+   },
+   {
+    "card": "MSFT_2024-09-11",
+    "his_grade": "c",
+    "fired": false,
+    "et": "10:45",
+    "error": null
+   },
+   {
+    "card": "MARA_2026-03-10",
+    "his_grade": "s",
+    "fired": false,
+    "et": "09:49",
+    "error": null
+   },
+   {
+    "card": "QQQ_2026-05-07",
+    "his_grade": "c",
+    "fired": false,
+    "et": "10:24",
+    "error": null
+   },
+   {
+    "card": "COIN_2024-09-12",
+    "his_grade": "no",
+    "fired": false,
+    "et": "09:52",
+    "error": null
+   },
+   {
+    "card": "AVGO_2026-05-13",
+    "his_grade": "no",
+    "fired": false,
+    "et": "10:57",
+    "error": null
+   },
+   {
+    "card": "BABA_2025-07-23",
+    "his_grade": "a",
+    "fired": false,
+    "et": "09:58",
+    "error": null
+   },
+   {
+    "card": "MU_2025-11-12",
+    "his_grade": "no",
+    "fired": false,
+    "et": "10:55",
+    "error": null
+   },
+   {
+    "card": "GOOGL_2025-08-28",
+    "his_grade": "a",
+    "fired": false,
+    "et": "09:46",
+    "error": null
+   },
+   {
+    "card": "PLTR_2025-05-02",
+    "his_grade": "no",
+    "fired": false,
+    "et": "10:08",
+    "error": null
+   },
+   {
+    "card": "INTC_2026-08-17",
+    "his_grade": "no",
+    "fired": false,
+    "et": "10:53",
+    "error": null
+   },
+   {
+    "card": "MU_2025-08-27",
+    "his_grade": "no",
+    "fired": false,
+    "et": "10:23",
+    "error": null
+   },
+   {
+    "card": "GOOGL_2025-04-17",
+    "his_grade": "c",
+    "fired": false,
+    "et": "10:22",
+    "error": null
+   },
+   {
+    "card": "INTC_2024-11-20",
+    "his_grade": "no",
+    "fired": false,
+    "et": "10:11",
+    "error": null
+   },
+   {
+    "card": "AVGO_2024-09-18",
+    "his_grade": "no",
+    "fired": false,
+    "et": "09:41",
+    "error": null
+   },
+   {
+    "card": "TSLA_2025-05-15",
+    "his_grade": "no",
+    "fired": false,
+    "et": "10:22",
+    "error": null
+   },
+   {
+    "card": "COIN_2025-03-13",
+    "his_grade": "no",
+    "fired": false,
+    "et": "10:23",
+    "error": null
+   },
+   {
+    "card": "MU_2026-01-09",
+    "his_grade": "no",
+    "fired": true,
+    "et": "09:42",
+    "error": null
+   },
+   {
+    "card": "TSM_2026-01-09",
+    "his_grade": "s",
+    "fired": false,
+    "et": "09:46",
+    "error": null
+   },
+   {
+    "card": "NVDA_2025-01-17",
+    "his_grade": "a",
+    "fired": false,
+    "et": "09:55",
+    "error": null
+   },
+   {
+    "card": "HOOD_2025-02-06",
+    "his_grade": "no",
+    "fired": false,
+    "et": "09:36",
+    "error": null
+   },
+   {
+    "card": "AMD_2025-05-19",
+    "his_grade": "no",
+    "fired": false,
+    "et": "10:50",
+    "error": null
+   },
+   {
+    "card": "PLTR_2024-12-31",
+    "his_grade": "no",
+    "fired": false,
+    "et": "10:28",
+    "error": null
+   },
+   {
+    "card": "NFLX_2025-06-12",
+    "his_grade": "no",
+    "fired": false,
+    "et": "10:07",
+    "error": null
+   },
+   {
+    "card": "AMZN_2026-02-10",
+    "his_grade": "no",
+    "fired": false,
+    "et": "09:46",
+    "error": null
+   },
+   {
+    "card": "META_2026-03-27",
+    "his_grade": "no",
+    "fired": false,
+    "et": "10:29",
+    "error": null
+   },
+   {
+    "card": "AVGO_2026-07-23",
+    "his_grade": "no",
+    "fired": false,
+    "et": "10:57",
+    "error": null
+   },
+   {
+    "card": "ORCL_2024-09-16",
+    "his_grade": "no",
+    "fired": false,
+    "et": "10:08",
+    "error": null
+   },
+   {
+    "card": "AAPL_2025-08-01",
+    "his_grade": "c",
+    "fired": true,
+    "et": "10:07",
+    "error": null
+   },
+   {
+    "card": "META_2025-12-22",
+    "his_grade": "no",
+    "fired": true,
+    "et": "09:35",
+    "error": null
+   },
+   {
+    "card": "ACHR_2025-12-19",
+    "his_grade": "s",
+    "fired": false,
+    "et": "09:37",
+    "error": null
+   },
+   {
+    "card": "HOOD_2025-08-12",
+    "his_grade": "no",
+    "fired": false,
+    "et": "10:20",
+    "error": null
+   },
+   {
+    "card": "NFLX_2025-10-13",
+    "his_grade": "no",
+    "fired": false,
+    "et": "09:41",
+    "error": null
+   },
+   {
+    "card": "IWM_2024-10-15",
+    "his_grade": "s",
+    "fired": false,
+    "et": "09:58",
+    "error": null
+   },
+   {
+    "card": "MU_2024-10-17",
+    "his_grade": "no",
+    "fired": true,
+    "et": "09:51",
+    "error": null
+   },
+   {
+    "card": "IWM_2024-09-18",
+    "his_grade": "no",
+    "fired": false,
+    "et": "10:02",
+    "error": null
+   },
+   {
+    "card": "PLTR_2026-05-27",
+    "his_grade": "s",
+    "fired": false,
+    "et": "10:03",
+    "error": null
+   },
+   {
+    "card": "INTC_2024-11-21",
+    "his_grade": "no",
+    "fired": false,
+    "et": "10:17",
+    "error": null
+   }
+  ]
+ }
+}

@@ -1,0 +1,42 @@
+{
+ "total_messages": 21441,
+ "image_only_no_text": 2239,
+ "text_plus_image": 8748,
+ "extracted_rows": 492,
+ "messages_with_rows": 444,
+ "with_symbol": 492,
+ "with_direction": 492,
+ "with_outcome": 492,
+ "with_setup": 64,
+ "with_level_name": 64,
+ "with_level_price": 6,
+ "with_entry": 3,
+ "with_stop": 2,
+ "with_target": 5,
+ "with_r_multiple": 17,
+ "with_image": 320,
+ "confidence": {
+  "high": 223,
+  "medium": 225,
+  "low": 44
+ },
+ "outcome_mix": {
+  "win": 310,
+  "loss": 174,
+  "be": 8
+ },
+ "direction_mix": {
+  "long": 214,
+  "short": 278
+ },
+ "skip_reasons": {
+  "no_symbol": 11726,
+  "no_text": 2445,
+  "no_direction": 4748,
+  "hypothetical_or_question": 948,
+  "no_outcome": 1088,
+  "ambiguous": 42
+ },
+ "date_min": "2024-04-04T15:07:26-04:00",
+ "date_max": "2026-07-27T11:12:02-04:00"
+}

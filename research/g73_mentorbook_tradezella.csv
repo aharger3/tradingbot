@@ -1,0 +1,5 @@
+Date,Time,Symbol,Buy/Sell,Quantity,Price,Spread,Expiration,Strike,Call/Put,Commission,Fees
+1/7/26,10:20:27,AMZN,Buy,4,242.8,Option,,,,,
+6/9/26,11:11:27,QQQ,Sell,1,10.0,Option,,,,,
+6/17/26,09:02:24,QQQ,Sell,1,6.0,Option,,,,,
+7/27/26,11:12:02,SPY,Sell,5,0.6,Option,,,,,

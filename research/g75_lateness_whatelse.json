@@ -1,0 +1,394 @@
+{
+ "cards": [
+  {
+   "card_id": "ACHR_2026-04-13",
+   "bucket": "OCR",
+   "his": 39,
+   "eng": 63,
+   "late": 24,
+   "verdict": "absent",
+   "near": []
+  },
+  {
+   "card_id": "GOOGL_2024-10-29",
+   "bucket": "OCR",
+   "his": 77,
+   "eng": 89,
+   "late": 12,
+   "verdict": "absent",
+   "near": []
+  },
+  {
+   "card_id": "MSFT_2025-08-29",
+   "bucket": "OCR",
+   "his": 8,
+   "eng": 49,
+   "late": 41,
+   "verdict": "fired",
+   "near": [
+    {
+     "timestamp": "09:38:00",
+     "signal_type": "break_and_retest",
+     "direction": "put",
+     "grade": "X",
+     "status": "skipped_d",
+     "stop_level": "PML"
+    },
+    {
+     "timestamp": "09:39:00",
+     "signal_type": "break_and_retest",
+     "direction": "put",
+     "grade": "X",
+     "status": "skipped_d",
+     "stop_level": "PML"
+    },
+    {
+     "timestamp": "09:40:00",
+     "signal_type": "break_and_retest",
+     "direction": "put",
+     "grade": "B",
+     "status": "fired",
+     "stop_level": "PML"
+    },
+    {
+     "timestamp": "09:41:00",
+     "signal_type": "break_and_retest",
+     "direction": "put",
+     "grade": "B",
+     "status": "fired",
+     "stop_level": "PML"
+    }
+   ]
+  },
+  {
+   "card_id": "NFLX_2025-07-08",
+   "bucket": "OCR",
+   "his": 8,
+   "eng": 31,
+   "late": 23,
+   "verdict": "absent",
+   "near": []
+  },
+  {
+   "card_id": "NVDA_2026-05-11",
+   "bucket": "OCR",
+   "his": 13,
+   "eng": 62,
+   "late": 49,
+   "verdict": "fired",
+   "near": [
+    {
+     "timestamp": "09:43:00",
+     "signal_type": "break_and_retest",
+     "direction": "call",
+     "grade": "X",
+     "status": "skipped_d",
+     "stop_level": "PDH"
+    },
+    {
+     "timestamp": "09:44:00",
+     "signal_type": "break_and_retest",
+     "direction": "call",
+     "grade": "B",
+     "status": "fired",
+     "stop_level": "PDH"
+    },
+    {
+     "timestamp": "09:45:00",
+     "signal_type": "break_and_retest",
+     "direction": "call",
+     "grade": "C",
+     "status": "fired",
+     "stop_level": "PDH"
+    },
+    {
+     "timestamp": "09:46:00",
+     "signal_type": "break_and_retest",
+     "direction": "call",
+     "grade": "C",
+     "status": "fired",
+     "stop_level": "PDH"
+    }
+   ]
+  },
+  {
+   "card_id": "SPY_2025-05-21",
+   "bucket": "OCR",
+   "his": 15,
+   "eng": 63,
+   "late": 48,
+   "verdict": "absent",
+   "near": []
+  },
+  {
+   "card_id": "SPY_2026-06-17",
+   "bucket": "OCR",
+   "his": 18,
+   "eng": 72,
+   "late": 54,
+   "verdict": "detected_then_vetoed",
+   "near": [
+    {
+     "timestamp": "09:48:00",
+     "signal_type": "break_and_retest",
+     "direction": "call",
+     "grade": "X",
+     "status": "skipped_d",
+     "stop_level": "OR high"
+    }
+   ]
+  },
+  {
+   "card_id": "ACHR_2026-06-16",
+   "bucket": "BR",
+   "his": 27,
+   "eng": 26,
+   "late": -1,
+   "verdict": "detected_then_vetoed",
+   "near": [
+    {
+     "timestamp": "09:56:00",
+     "signal_type": "break_and_retest",
+     "direction": "put",
+     "grade": "X",
+     "status": "skipped_d",
+     "stop_level": "OR low"
+    },
+    {
+     "timestamp": "09:56:00",
+     "signal_type": "break_and_retest",
+     "direction": "put",
+     "grade": "X",
+     "status": "skipped_d",
+     "stop_level": "PML"
+    },
+    {
+     "timestamp": "09:57:00",
+     "signal_type": "break_and_retest",
+     "direction": "put",
+     "grade": "X",
+     "status": "skipped_d",
+     "stop_level": "OR low"
+    },
+    {
+     "timestamp": "09:57:00",
+     "signal_type": "break_and_retest",
+     "direction": "put",
+     "grade": "X",
+     "status": "skipped_d",
+     "stop_level": "PML"
+    },
+    {
+     "timestamp": "10:00:00",
+     "signal_type": "break_and_retest",
+     "direction": "put",
+     "grade": "X",
+     "status": "skipped_d",
+     "stop_level": "pivot low @09:38"
+    },
+    {
+     "timestamp": "10:01:00",
+     "signal_type": "break_and_retest",
+     "direction": "put",
+     "grade": "X",
+     "status": "skipped_d",
+     "stop_level": "pivot low @09:38"
+    }
+   ]
+  },
+  {
+   "card_id": "AMD_2024-10-02",
+   "bucket": "BR",
+   "his": 6,
+   "eng": 34,
+   "late": 28,
+   "verdict": "absent",
+   "near": []
+  },
+  {
+   "card_id": "AMZN_2025-12-11",
+   "bucket": "BR",
+   "his": 10,
+   "eng": 9,
+   "late": -1,
+   "verdict": "fired",
+   "near": [
+    {
+     "timestamp": "09:39:00",
+     "signal_type": "break_and_retest",
+     "direction": "call",
+     "grade": "X",
+     "status": "skipped_d",
+     "stop_level": "OR high"
+    },
+    {
+     "timestamp": "09:39:00",
+     "signal_type": "break_and_retest",
+     "direction": "call",
+     "grade": "X",
+     "status": "skipped_d",
+     "stop_level": "PMH"
+    },
+    {
+     "timestamp": "09:41:00",
+     "signal_type": "break_and_retest",
+     "direction": "call",
+     "grade": "X",
+     "status": "skipped_d",
+     "stop_level": "OR high"
+    },
+    {
+     "timestamp": "09:41:00",
+     "signal_type": "break_and_retest",
+     "direction": "call",
+     "grade": "X",
+     "status": "skipped_d",
+     "stop_level": "PMH"
+    },
+    {
+     "timestamp": "09:42:00",
+     "signal_type": "break_and_retest",
+     "direction": "call",
+     "grade": "B",
+     "status": "fired",
+     "stop_level": "OR high"
+    },
+    {
+     "timestamp": "09:42:00",
+     "signal_type": "break_and_retest",
+     "direction": "call",
+     "grade": "C",
+     "status": "fired",
+     "stop_level": "PMH"
+    },
+    {
+     "timestamp": "09:44:00",
+     "signal_type": "break_and_retest",
+     "direction": "call",
+     "grade": "X",
+     "status": "skipped_d",
+     "stop_level": "OR high"
+    },
+    {
+     "timestamp": "09:44:00",
+     "signal_type": "break_and_retest",
+     "direction": "call",
+     "grade": "X",
+     "status": "skipped_d",
+     "stop_level": "PMH"
+    }
+   ]
+  },
+  {
+   "card_id": "AVGO_2024-11-04",
+   "bucket": "BR",
+   "his": 17,
+   "eng": 17,
+   "late": 0,
+   "verdict": "detected_then_vetoed",
+   "near": [
+    {
+     "timestamp": "09:47:00",
+     "signal_type": "break_and_retest",
+     "direction": "call",
+     "grade": "X",
+     "status": "skipped_d",
+     "stop_level": "PDH"
+    },
+    {
+     "timestamp": "09:49:00",
+     "signal_type": "break_and_retest",
+     "direction": "call",
+     "grade": "X",
+     "status": "skipped_d",
+     "stop_level": "PDH"
+    }
+   ]
+  },
+  {
+   "card_id": "BABA_2024-09-05",
+   "bucket": "BR",
+   "his": 26,
+   "eng": 38,
+   "late": 12,
+   "verdict": "absent",
+   "near": []
+  },
+  {
+   "card_id": "QQQ_2024-08-26",
+   "bucket": "BR",
+   "his": 26,
+   "eng": 22,
+   "late": -4,
+   "verdict": "detected_then_vetoed",
+   "near": [
+    {
+     "timestamp": "09:52:00",
+     "signal_type": "break_and_retest",
+     "direction": "put",
+     "grade": "X",
+     "status": "skipped_d",
+     "stop_level": "PML"
+    },
+    {
+     "timestamp": "09:54:00",
+     "signal_type": "break_and_retest",
+     "direction": "put",
+     "grade": "X",
+     "status": "skipped_d",
+     "stop_level": "PML"
+    },
+    {
+     "timestamp": "09:55:00",
+     "signal_type": "break_and_retest",
+     "direction": "put",
+     "grade": "X",
+     "status": "skipped_d",
+     "stop_level": "PML"
+    }
+   ]
+  },
+  {
+   "card_id": "TSLA_2025-09-03",
+   "bucket": "BR",
+   "his": 15,
+   "eng": 60,
+   "late": 45,
+   "verdict": "detected_then_vetoed",
+   "near": [
+    {
+     "timestamp": "09:44:00",
+     "signal_type": "break_and_retest",
+     "direction": "put",
+     "grade": "X",
+     "status": "skipped_d",
+     "stop_level": "PML"
+    },
+    {
+     "timestamp": "09:45:00",
+     "signal_type": "break_and_retest",
+     "direction": "put",
+     "grade": "X",
+     "status": "skipped_d",
+     "stop_level": "PML"
+    },
+    {
+     "timestamp": "09:46:00",
+     "signal_type": "break_and_retest",
+     "direction": "put",
+     "grade": "X",
+     "status": "skipped_d",
+     "stop_level": "PML"
+    }
+   ]
+  }
+ ],
+ "verdict": {
+  "OCR|absent": 4,
+  "OCR|fired": 2,
+  "OCR|detected_then_vetoed": 1,
+  "BR|detected_then_vetoed": 4,
+  "BR|absent": 2,
+  "BR|fired": 1
+ }
+}

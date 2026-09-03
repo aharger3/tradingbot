@@ -1,0 +1,678 @@
+{
+ "cards": [
+  {
+   "card_id": "BABA_2024-09-05",
+   "bucket": "BR",
+   "yes": 1,
+   "r": -1.0,
+   "outcome": "loss",
+   "traded": false,
+   "status": "skipped_d",
+   "stop_pct": 0.13,
+   "stopb": "tight",
+   "risk_cents": 11.0,
+   "et": "10:08",
+   "tripped": "0",
+   "legacy_grade": "X",
+   "s_signals_that_day": 5
+  },
+  {
+   "card_id": "NFLX_2026-05-26",
+   "bucket": "84",
+   "yes": 1,
+   "r": 0.509,
+   "outcome": "win",
+   "traded": false,
+   "status": "halted",
+   "stop_pct": 0.307,
+   "stopb": "mid",
+   "risk_cents": 27.0,
+   "et": "10:17",
+   "tripped": "0",
+   "legacy_grade": "A",
+   "s_signals_that_day": 5
+  },
+  {
+   "card_id": "NVDA_2026-05-11",
+   "bucket": "OCR",
+   "yes": 1,
+   "r": -1.0,
+   "outcome": "loss",
+   "traded": false,
+   "status": "skipped_d",
+   "stop_pct": 0.216,
+   "stopb": "mid",
+   "risk_cents": 47.0,
+   "et": "10:32",
+   "tripped": "0",
+   "legacy_grade": "X",
+   "s_signals_that_day": 2
+  },
+  {
+   "card_id": "NFLX_2025-07-08",
+   "bucket": "OCR",
+   "yes": 1,
+   "r": -1.0,
+   "outcome": "loss",
+   "traded": false,
+   "status": "halted",
+   "stop_pct": 0.179,
+   "stopb": "mid",
+   "risk_cents": 23.0,
+   "et": "10:01",
+   "tripped": "0",
+   "legacy_grade": "B",
+   "s_signals_that_day": 1
+  },
+  {
+   "card_id": "COIN_2025-07-10",
+   "bucket": "84",
+   "yes": 1,
+   "r": -1.0,
+   "outcome": "loss",
+   "traded": true,
+   "status": "fired",
+   "stop_pct": 0.21,
+   "stopb": "mid",
+   "risk_cents": 79.0,
+   "et": "10:40",
+   "tripped": "0",
+   "legacy_grade": "B",
+   "s_signals_that_day": 2
+  },
+  {
+   "card_id": "TSLA_2025-09-03",
+   "bucket": "BR",
+   "yes": 1,
+   "r": 164.5,
+   "outcome": "win",
+   "traded": false,
+   "status": "skipped_d",
+   "stop_pct": 0.003,
+   "stopb": "tight",
+   "risk_cents": 1.0,
+   "et": "10:30",
+   "tripped": "0",
+   "legacy_grade": "X",
+   "s_signals_that_day": 2
+  },
+  {
+   "card_id": "AMD_2024-10-02",
+   "bucket": "BR",
+   "yes": 1,
+   "r": -1.0,
+   "outcome": "loss",
+   "traded": false,
+   "status": "skipped_d",
+   "stop_pct": 0.026,
+   "stopb": "tight",
+   "risk_cents": 4.0,
+   "et": "10:04",
+   "tripped": "0",
+   "legacy_grade": "X",
+   "s_signals_that_day": 7
+  },
+  {
+   "card_id": "MSFT_2024-09-13",
+   "bucket": "84",
+   "yes": 0,
+   "r": -1.0,
+   "outcome": "loss",
+   "traded": false,
+   "status": "halted",
+   "stop_pct": 0.152,
+   "stopb": "mid",
+   "risk_cents": 65.0,
+   "et": "10:17",
+   "tripped": "0",
+   "legacy_grade": "A",
+   "s_signals_that_day": 3
+  },
+  {
+   "card_id": "MSFT_2025-08-29",
+   "bucket": "OCR",
+   "yes": 1,
+   "r": -1.0,
+   "outcome": "loss",
+   "traded": false,
+   "status": "skipped_tight_stop",
+   "stop_pct": 0.047,
+   "stopb": "tight",
+   "risk_cents": 24.0,
+   "et": "10:19",
+   "tripped": "0",
+   "legacy_grade": "C",
+   "s_signals_that_day": 6
+  },
+  {
+   "card_id": "GOOGL_2024-10-29",
+   "bucket": "OCR",
+   "yes": 1,
+   "r": 1.357,
+   "outcome": "win",
+   "traded": false,
+   "status": "skipped_tight_stop",
+   "stop_pct": 0.083,
+   "stopb": "tight",
+   "risk_cents": 14.0,
+   "et": "10:59",
+   "tripped": "0",
+   "legacy_grade": "C",
+   "s_signals_that_day": 2
+  },
+  {
+   "card_id": "AAPL_2026-04-17",
+   "bucket": "84",
+   "yes": 1,
+   "r": -1.0,
+   "outcome": "loss",
+   "traded": true,
+   "status": "fired",
+   "stop_pct": 0.156,
+   "stopb": "mid",
+   "risk_cents": 42.0,
+   "et": "10:14",
+   "tripped": "1",
+   "legacy_grade": "A",
+   "s_signals_that_day": 4
+  },
+  {
+   "card_id": "TSM_2025-11-26",
+   "bucket": "BR",
+   "yes": 0,
+   "r": -1.0,
+   "outcome": "loss",
+   "traded": false,
+   "status": "skipped_d",
+   "stop_pct": 0.096,
+   "stopb": "tight",
+   "risk_cents": 28.0,
+   "et": "10:39",
+   "tripped": "0",
+   "legacy_grade": "X",
+   "s_signals_that_day": 4
+  },
+  {
+   "card_id": "SPY_2025-05-21",
+   "bucket": "OCR",
+   "yes": 1,
+   "r": -1.0,
+   "outcome": "loss",
+   "traded": false,
+   "status": "fired",
+   "stop_pct": 0.079,
+   "stopb": "tight",
+   "risk_cents": 47.0,
+   "et": "10:33",
+   "tripped": "0",
+   "legacy_grade": "C",
+   "s_signals_that_day": 5
+  },
+  {
+   "card_id": "INTC_2026-03-24",
+   "bucket": "84",
+   "yes": 1,
+   "r": -1.0,
+   "outcome": "loss",
+   "traded": true,
+   "status": "fired",
+   "stop_pct": 0.413,
+   "stopb": "wide",
+   "risk_cents": 18.0,
+   "et": "10:21",
+   "tripped": "1",
+   "legacy_grade": "B",
+   "s_signals_that_day": 1
+  },
+  {
+   "card_id": "AVGO_2024-11-04",
+   "bucket": "BR",
+   "yes": 1,
+   "r": 2.86,
+   "outcome": "win",
+   "traded": false,
+   "status": "skipped_d",
+   "stop_pct": 0.05,
+   "stopb": "tight",
+   "risk_cents": 9.0,
+   "et": "09:47",
+   "tripped": "0",
+   "legacy_grade": "X",
+   "s_signals_that_day": 7
+  },
+  {
+   "card_id": "AMD_2025-09-08",
+   "bucket": "BR",
+   "yes": 0,
+   "r": 0.0,
+   "outcome": "open",
+   "traded": false,
+   "status": "skipped_d",
+   "stop_pct": 0.0,
+   "stopb": "tight",
+   "risk_cents": 0.0,
+   "et": "10:37",
+   "tripped": "0",
+   "legacy_grade": "X",
+   "s_signals_that_day": 4
+  },
+  {
+   "card_id": "HOOD_2025-11-28",
+   "bucket": "84",
+   "yes": 0,
+   "r": 0.507,
+   "outcome": "win",
+   "traded": false,
+   "status": "halted",
+   "stop_pct": 0.185,
+   "stopb": "mid",
+   "risk_cents": 24.0,
+   "et": "10:21",
+   "tripped": "1",
+   "legacy_grade": "B",
+   "s_signals_that_day": 6
+  },
+  {
+   "card_id": "IWM_2026-08-06",
+   "bucket": "OCR",
+   "yes": 1,
+   "r": 2.294,
+   "outcome": "win",
+   "traded": false,
+   "status": "halted",
+   "stop_pct": 0.057,
+   "stopb": "tight",
+   "risk_cents": 17.0,
+   "et": "10:07",
+   "tripped": "0",
+   "legacy_grade": "B",
+   "s_signals_that_day": 3
+  },
+  {
+   "card_id": "TSM_2026-07-07",
+   "bucket": "84",
+   "yes": 1,
+   "r": 0.339,
+   "outcome": "win",
+   "traded": false,
+   "status": "skipped_d",
+   "stop_pct": 0.475,
+   "stopb": "wide",
+   "risk_cents": 207.0,
+   "et": "09:50",
+   "tripped": "1",
+   "legacy_grade": "X",
+   "s_signals_that_day": 6
+  },
+  {
+   "card_id": "AMZN_2025-12-11",
+   "bucket": "BR",
+   "yes": 1,
+   "r": -1.0,
+   "outcome": "loss",
+   "traded": false,
+   "status": "skipped_d",
+   "stop_pct": 0.017,
+   "stopb": "tight",
+   "risk_cents": 4.0,
+   "et": "09:39",
+   "tripped": "0",
+   "legacy_grade": "X",
+   "s_signals_that_day": 2
+  },
+  {
+   "card_id": "NVDA_2025-06-24",
+   "bucket": "OCR",
+   "yes": 0,
+   "r": -1.0,
+   "outcome": "loss",
+   "traded": false,
+   "status": "skipped_d",
+   "stop_pct": 0.181,
+   "stopb": "mid",
+   "risk_cents": 26.0,
+   "et": "10:13",
+   "tripped": "0",
+   "legacy_grade": "X",
+   "s_signals_that_day": 3
+  },
+  {
+   "card_id": "ORCL_2025-02-18",
+   "bucket": "84",
+   "yes": 0,
+   "r": 4.621,
+   "outcome": "win",
+   "traded": false,
+   "status": "halted",
+   "stop_pct": 0.186,
+   "stopb": "mid",
+   "risk_cents": 33.0,
+   "et": "10:20",
+   "tripped": "1",
+   "legacy_grade": "B",
+   "s_signals_that_day": 1
+  },
+  {
+   "card_id": "ACHR_2026-06-16",
+   "bucket": "BR",
+   "yes": 1,
+   "r": 14.445,
+   "outcome": "win",
+   "traded": false,
+   "status": "skipped_d",
+   "stop_pct": 0.117,
+   "stopb": "tight",
+   "risk_cents": 1.0,
+   "et": "09:56",
+   "tripped": "0",
+   "legacy_grade": "X",
+   "s_signals_that_day": 4
+  },
+  {
+   "card_id": "SPY_2026-06-17",
+   "bucket": "OCR",
+   "yes": 1,
+   "r": -1.0,
+   "outcome": "loss",
+   "traded": false,
+   "status": "skipped_d",
+   "stop_pct": 0.045,
+   "stopb": "tight",
+   "risk_cents": 34.0,
+   "et": "10:42",
+   "tripped": "0",
+   "legacy_grade": "X",
+   "s_signals_that_day": 2
+  },
+  {
+   "card_id": "ACHR_2026-04-13",
+   "bucket": "OCR",
+   "yes": 1,
+   "r": -1.0,
+   "outcome": "loss",
+   "traded": false,
+   "status": "skipped_d",
+   "stop_pct": 0.278,
+   "stopb": "mid",
+   "risk_cents": 2.0,
+   "et": "10:33",
+   "tripped": "0",
+   "legacy_grade": "X",
+   "s_signals_that_day": 1
+  },
+  {
+   "card_id": "AAPL_2026-03-11",
+   "bucket": "BR",
+   "yes": 0,
+   "r": 0.0,
+   "outcome": "open",
+   "traded": false,
+   "status": "skipped_d",
+   "stop_pct": 0.0,
+   "stopb": "tight",
+   "risk_cents": 0.0,
+   "et": "10:29",
+   "tripped": "0",
+   "legacy_grade": "X",
+   "s_signals_that_day": 1
+  },
+  {
+   "card_id": "META_2026-06-22",
+   "bucket": "84",
+   "yes": 1,
+   "r": 3.09,
+   "outcome": "win",
+   "traded": true,
+   "status": "fired",
+   "stop_pct": 0.242,
+   "stopb": "mid",
+   "risk_cents": 139.0,
+   "et": "10:15",
+   "tripped": "1",
+   "legacy_grade": "B",
+   "s_signals_that_day": 1
+  },
+  {
+   "card_id": "QQQ_2024-08-26",
+   "bucket": "BR",
+   "yes": 1,
+   "r": 7.136,
+   "outcome": "win",
+   "traded": false,
+   "status": "skipped_d",
+   "stop_pct": 0.023,
+   "stopb": "tight",
+   "risk_cents": 11.0,
+   "et": "09:52",
+   "tripped": "0",
+   "legacy_grade": "X",
+   "s_signals_that_day": 4
+  },
+  {
+   "card_id": "QQQ_2025-12-22",
+   "bucket": "OCR",
+   "yes": 0,
+   "r": -1.0,
+   "outcome": "loss",
+   "traded": false,
+   "status": "skipped_d",
+   "stop_pct": 0.048,
+   "stopb": "tight",
+   "risk_cents": 30.0,
+   "et": "10:43",
+   "tripped": "1",
+   "legacy_grade": "X",
+   "s_signals_that_day": 7
+  },
+  {
+   "card_id": "AVGO_2025-12-03",
+   "bucket": "84",
+   "yes": 0,
+   "r": -1.0,
+   "outcome": "loss",
+   "traded": true,
+   "status": "fired",
+   "stop_pct": 0.205,
+   "stopb": "mid",
+   "risk_cents": 77.0,
+   "et": "10:59",
+   "tripped": "1",
+   "legacy_grade": "A",
+   "s_signals_that_day": 3
+  }
+ ],
+ "selection": {
+  "OCR": {
+   "s_signals": 1395,
+   "s_days": 977,
+   "one_in": 97.7
+  },
+  "BR": {
+   "s_signals": 16412,
+   "s_days": 6065,
+   "one_in": 606.5
+  },
+  "84": {
+   "s_signals": 70,
+   "s_days": 70,
+   "one_in": 7.0
+  }
+ },
+ "selection_zero": {
+  "OCR": 156,
+  "BR": 1111,
+  "84": 6
+ },
+ "minutes": {
+  "OCR": [
+   [
+    "NVDA_2026-05-11",
+    13,
+    62,
+    49
+   ],
+   [
+    "NFLX_2025-07-08",
+    8,
+    31,
+    23
+   ],
+   [
+    "MSFT_2025-08-29",
+    8,
+    49,
+    41
+   ],
+   [
+    "GOOGL_2024-10-29",
+    77,
+    89,
+    12
+   ],
+   [
+    "SPY_2025-05-21",
+    15,
+    63,
+    48
+   ],
+   [
+    "SPY_2026-06-17",
+    18,
+    72,
+    54
+   ],
+   [
+    "ACHR_2026-04-13",
+    39,
+    63,
+    24
+   ]
+  ],
+  "BR": [
+   [
+    "BABA_2024-09-05",
+    26,
+    38,
+    12
+   ],
+   [
+    "TSLA_2025-09-03",
+    15,
+    60,
+    45
+   ],
+   [
+    "AMD_2024-10-02",
+    6,
+    34,
+    28
+   ],
+   [
+    "AVGO_2024-11-04",
+    17,
+    17,
+    0
+   ],
+   [
+    "AMZN_2025-12-11",
+    10,
+    9,
+    -1
+   ],
+   [
+    "ACHR_2026-06-16",
+    27,
+    26,
+    -1
+   ],
+   [
+    "QQQ_2024-08-26",
+    26,
+    22,
+    -4
+   ]
+  ],
+  "84": [
+   [
+    "NFLX_2026-05-26",
+    17,
+    47,
+    30
+   ],
+   [
+    "COIN_2025-07-10",
+    11,
+    70,
+    59
+   ],
+   [
+    "AAPL_2026-04-17",
+    12,
+    44,
+    32
+   ],
+   [
+    "INTC_2026-03-24",
+    8,
+    51,
+    43
+   ],
+   [
+    "TSM_2026-07-07",
+    8,
+    20,
+    12
+   ],
+   [
+    "META_2026-06-22",
+    29,
+    45,
+    16
+   ]
+  ]
+ },
+ "predictors": {
+  "session trendiness (ER)": {
+   "yes": 0.14498571428571433,
+   "no": 0.0724,
+   "auc": 0.783068783068783,
+   "p": 0.014049297535123243
+  },
+  "impulse / ATR": {
+   "yes": 1.7173000000000003,
+   "no": 1.655188888888889,
+   "auc": 0.47619047619047616,
+   "p": 0.8568071596420179
+  },
+  "engine entry minute": {
+   "yes": 45.19047619047619,
+   "no": 60.888888888888886,
+   "auc": 0.2724867724867725,
+   "p": 0.053347332633368334
+  },
+  "reach to 2R (R)": {
+   "yes": 3.1064952380952384,
+   "no": 2.9112222222222224,
+   "auc": 0.5185185185185185,
+   "p": 0.8946052697365132
+  },
+  "engine downgrades": {
+   "yes": 0.19047619047619047,
+   "no": 0.4444444444444444,
+   "auc": 0.373015873015873,
+   "p": 0.19354032298385082
+  },
+  "S signals that day": {
+   "yes": 3.4285714285714284,
+   "no": 3.5555555555555554,
+   "auc": 0.47883597883597884,
+   "p": 0.8674566271686416
+  },
+  "risk (cents)": {
+   "yes": 36.23809523809524,
+   "no": 31.444444444444443,
+   "auc": 0.4523809523809524,
+   "p": 0.6985650717464127
+  }
+ }
+}

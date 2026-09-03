@@ -1,0 +1,21 @@
+{
+ "early": {
+  "no_confirm_close": 9338,
+  "no_leave": 150,
+  "no_retest": 417,
+  "adverse_wick": 642,
+  "no_break": 1312,
+  "passed": 117,
+  "stale_retest": 24
+ },
+ "late": {
+  "no_confirm_close": 21349,
+  "no_leave": 235,
+  "adverse_wick": 1865,
+  "stale_retest": 34,
+  "no_break": 4954,
+  "no_retest": 523,
+  "passed": 180
+ },
+ "n_days": 120
+}

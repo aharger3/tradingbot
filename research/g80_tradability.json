@@ -1,0 +1,65 @@
+{
+  "params": {
+    "spread_frac_of_bar_range": 0.1,
+    "spread_floor_dollars": 0.01,
+    "min_stop_multiple_of_spread": 2.0
+  },
+  "counts": {
+    "traded_rows": 4508,
+    "bar_lookup_failed": 0,
+    "usable_rows": 4508,
+    "untradeable_rows": 19,
+    "tradeable_rows": 4489
+  },
+  "book_as_is": {
+    "label": "all traded rows (book, as-is)",
+    "n": 4508,
+    "total_pnl": 2633849.6599999983,
+    "dollars_per_day_all": 5278.255831663323,
+    "trading_days_spanned": 499,
+    "win_rate_pct": 59.19463087248322,
+    "mean_r": 0.5842699645075421,
+    "one_a_day_n": 499,
+    "one_a_day_total_pnl": 350713.85999999987,
+    "one_a_day_dollars_per_day": 702.8333867735469,
+    "months_green": 25,
+    "months_total": 25
+  },
+  "book_tradeable_only": {
+    "label": "tradeable only (stop >= 2x spread proxy)",
+    "n": 4489,
+    "total_pnl": 2575564.0999999987,
+    "dollars_per_day_all": 5161.451102204406,
+    "trading_days_spanned": 499,
+    "win_rate_pct": 59.2226465962705,
+    "mean_r": 0.5737587435954555,
+    "one_a_day_n": 499,
+    "one_a_day_total_pnl": 339609.6299999999,
+    "one_a_day_dollars_per_day": 680.5804208416831,
+    "months_green": 25,
+    "months_total": 25
+  },
+  "stop_distance_distribution": {
+    "n": 4508,
+    "cents_mean": 67.39285714285714,
+    "cents_median": 48.0,
+    "cents_p10": 14.0,
+    "cents_p90": 129.0,
+    "pct_of_price_mean": 0.3168160381543922,
+    "pct_of_price_median": 0.2403,
+    "pct_of_price_p10": 0.14096999999999998,
+    "pct_of_price_p90": 0.5994900000000001,
+    "n_under_10c": 182,
+    "pct_under_10c": 4.037267080745342
+  },
+  "crosscheck_vs_g71_t9": {
+    "untradeable_n": 19,
+    "untradeable_pct_of_book": 0.42147293700088734,
+    "untradeable_mean_r": 3.067684210526316,
+    "untradeable_total_pnl": 58285.56,
+    "untradeable_win_rate_pct": 52.63157894736842,
+    "tradeable_n": 4489,
+    "tradeable_mean_r": 0.5737587435954555,
+    "tradeable_win_rate_pct": 59.2226465962705
+  }
+}

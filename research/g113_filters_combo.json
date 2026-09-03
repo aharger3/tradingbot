@@ -1,0 +1,5760 @@
+{
+ "book": "bt2y_trades_retest_on.json",
+ "sessions": 498,
+ "risk_dollars": 1000.0,
+ "min_risk_floor_source": "signal_runner.min_risk_floor",
+ "baseline_no_veto": {
+  "ev_r": 0.0377,
+  "n": 444,
+  "n_input": 498,
+  "n_dropped_size_gate": 54,
+  "size_gate_applicable": true,
+  "win_rate": 0.4595,
+  "avg_win_R": 0.9048,
+  "avg_loss_R": 0.7023,
+  "profit_factor": 1.0996,
+  "total_R": 16.726,
+  "max_drawdown_R": -20.415,
+  "months_green": "12/25",
+  "expectancy_per_day": 33.59,
+  "r_stability": 0.0344,
+  "yearly_R": 8.4638,
+  "risk_dollars": 1000.0,
+  "sessions_used": 498
+ },
+ "baseline_matches_ruling": true,
+ "vars": [
+  "no_displacement",
+  "stale_retest",
+  "level_not_respected",
+  "exhausted",
+  "counter_trend_not_respected",
+  "break_then_rejection",
+  "no_retest",
+  "ocr_not_respected",
+  "chase"
+ ],
+ "noop_vars": [
+  "break_then_rejection"
+ ],
+ "n_tested": {
+  "2way": 36,
+  "3way": 84
+ },
+ "results": {
+  "2way": [
+   {
+    "combo": [
+     "no_displacement",
+     "stale_retest"
+    ],
+    "is_noop": false,
+    "contains_noop_var": false,
+    "days_with_trade": 496,
+    "days_all_vetoed": 2,
+    "ev_r": -0.0094,
+    "n": 427,
+    "n_input": 496,
+    "n_dropped_size_gate": 69,
+    "size_gate_applicable": true,
+    "win_rate": 0.4286,
+    "avg_win_R": 0.9316,
+    "avg_loss_R": 0.7181,
+    "profit_factor": 0.977,
+    "total_R": -4.007,
+    "max_drawdown_R": -29.774,
+    "months_green": "10/25",
+    "expectancy_per_day": -8.05,
+    "r_stability": -0.0084,
+    "yearly_R": -2.0276,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "no_displacement",
+     "level_not_respected"
+    ],
+    "is_noop": false,
+    "contains_noop_var": false,
+    "days_with_trade": 470,
+    "days_all_vetoed": 28,
+    "ev_r": -0.0425,
+    "n": 408,
+    "n_input": 470,
+    "n_dropped_size_gate": 62,
+    "size_gate_applicable": true,
+    "win_rate": 0.4142,
+    "avg_win_R": 0.9275,
+    "avg_loss_R": 0.7284,
+    "profit_factor": 0.9004,
+    "total_R": -17.339,
+    "max_drawdown_R": -40.578,
+    "months_green": "12/25",
+    "expectancy_per_day": -34.82,
+    "r_stability": -0.0366,
+    "yearly_R": -8.774,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "no_displacement",
+     "exhausted"
+    ],
+    "is_noop": false,
+    "contains_noop_var": false,
+    "days_with_trade": 495,
+    "days_all_vetoed": 3,
+    "ev_r": -0.0094,
+    "n": 426,
+    "n_input": 495,
+    "n_dropped_size_gate": 69,
+    "size_gate_applicable": true,
+    "win_rate": 0.4296,
+    "avg_win_R": 0.9316,
+    "avg_loss_R": 0.721,
+    "profit_factor": 0.9771,
+    "total_R": -3.989,
+    "max_drawdown_R": -29.774,
+    "months_green": "10/25",
+    "expectancy_per_day": -8.01,
+    "r_stability": -0.0084,
+    "yearly_R": -2.0185,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "no_displacement",
+     "counter_trend_not_respected"
+    ],
+    "is_noop": false,
+    "contains_noop_var": false,
+    "days_with_trade": 358,
+    "days_all_vetoed": 140,
+    "ev_r": -0.1066,
+    "n": 301,
+    "n_input": 358,
+    "n_dropped_size_gate": 57,
+    "size_gate_applicable": true,
+    "win_rate": 0.4086,
+    "avg_win_R": 0.5989,
+    "avg_loss_R": 0.5974,
+    "profit_factor": 0.6967,
+    "total_R": -32.075,
+    "max_drawdown_R": -32.754,
+    "months_green": "8/25",
+    "expectancy_per_day": -64.41,
+    "r_stability": -0.1317,
+    "yearly_R": -16.2307,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "no_displacement",
+     "break_then_rejection"
+    ],
+    "is_noop": false,
+    "contains_noop_var": true,
+    "days_with_trade": 496,
+    "days_all_vetoed": 2,
+    "ev_r": -0.0094,
+    "n": 427,
+    "n_input": 496,
+    "n_dropped_size_gate": 69,
+    "size_gate_applicable": true,
+    "win_rate": 0.4286,
+    "avg_win_R": 0.9316,
+    "avg_loss_R": 0.7181,
+    "profit_factor": 0.977,
+    "total_R": -4.007,
+    "max_drawdown_R": -29.774,
+    "months_green": "10/25",
+    "expectancy_per_day": -8.05,
+    "r_stability": -0.0084,
+    "yearly_R": -2.0276,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "no_displacement",
+     "no_retest"
+    ],
+    "is_noop": false,
+    "contains_noop_var": false,
+    "days_with_trade": 495,
+    "days_all_vetoed": 3,
+    "ev_r": 0.0007,
+    "n": 439,
+    "n_input": 495,
+    "n_dropped_size_gate": 56,
+    "size_gate_applicable": true,
+    "win_rate": 0.4374,
+    "avg_win_R": 0.9533,
+    "avg_loss_R": 0.7428,
+    "profit_factor": 1.0017,
+    "total_R": 0.306,
+    "max_drawdown_R": -28.908,
+    "months_green": "9/25",
+    "expectancy_per_day": 0.61,
+    "r_stability": 0.0006,
+    "yearly_R": 0.1548,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "no_displacement",
+     "ocr_not_respected"
+    ],
+    "is_noop": false,
+    "contains_noop_var": false,
+    "days_with_trade": 496,
+    "days_all_vetoed": 2,
+    "ev_r": 0.0231,
+    "n": 431,
+    "n_input": 496,
+    "n_dropped_size_gate": 65,
+    "size_gate_applicable": true,
+    "win_rate": 0.4385,
+    "avg_win_R": 0.943,
+    "avg_loss_R": 0.6982,
+    "profit_factor": 1.0591,
+    "total_R": 9.953,
+    "max_drawdown_R": -16.872,
+    "months_green": "10/25",
+    "expectancy_per_day": 19.99,
+    "r_stability": 0.0206,
+    "yearly_R": 5.0365,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "no_displacement",
+     "chase"
+    ],
+    "is_noop": false,
+    "contains_noop_var": false,
+    "days_with_trade": 492,
+    "days_all_vetoed": 6,
+    "ev_r": 0.0106,
+    "n": 436,
+    "n_input": 492,
+    "n_dropped_size_gate": 56,
+    "size_gate_applicable": true,
+    "win_rate": 0.4335,
+    "avg_win_R": 1.0259,
+    "avg_loss_R": 0.7695,
+    "profit_factor": 1.0243,
+    "total_R": 4.6,
+    "max_drawdown_R": -34.097,
+    "months_green": "12/25",
+    "expectancy_per_day": 9.24,
+    "r_stability": 0.0088,
+    "yearly_R": 2.3277,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "stale_retest",
+     "level_not_respected"
+    ],
+    "is_noop": false,
+    "contains_noop_var": false,
+    "days_with_trade": 495,
+    "days_all_vetoed": 3,
+    "ev_r": -0.0568,
+    "n": 426,
+    "n_input": 495,
+    "n_dropped_size_gate": 69,
+    "size_gate_applicable": true,
+    "win_rate": 0.4484,
+    "avg_win_R": 0.7993,
+    "avg_loss_R": 0.759,
+    "profit_factor": 0.8633,
+    "total_R": -24.179,
+    "max_drawdown_R": -39.254,
+    "months_green": "9/25",
+    "expectancy_per_day": -48.55,
+    "r_stability": -0.0548,
+    "yearly_R": -12.2352,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "stale_retest",
+     "exhausted"
+    ],
+    "is_noop": false,
+    "contains_noop_var": false,
+    "days_with_trade": 498,
+    "days_all_vetoed": 0,
+    "ev_r": 0.0377,
+    "n": 444,
+    "n_input": 498,
+    "n_dropped_size_gate": 54,
+    "size_gate_applicable": true,
+    "win_rate": 0.4595,
+    "avg_win_R": 0.9048,
+    "avg_loss_R": 0.7023,
+    "profit_factor": 1.0996,
+    "total_R": 16.726,
+    "max_drawdown_R": -20.415,
+    "months_green": "12/25",
+    "expectancy_per_day": 33.59,
+    "r_stability": 0.0344,
+    "yearly_R": 8.4638,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "stale_retest",
+     "counter_trend_not_respected"
+    ],
+    "is_noop": false,
+    "contains_noop_var": false,
+    "days_with_trade": 456,
+    "days_all_vetoed": 42,
+    "ev_r": -0.079,
+    "n": 394,
+    "n_input": 456,
+    "n_dropped_size_gate": 62,
+    "size_gate_applicable": true,
+    "win_rate": 0.4416,
+    "avg_win_R": 0.5741,
+    "avg_loss_R": 0.601,
+    "profit_factor": 0.7625,
+    "total_R": -31.119,
+    "max_drawdown_R": -31.687,
+    "months_green": "8/25",
+    "expectancy_per_day": -62.49,
+    "r_stability": -0.1012,
+    "yearly_R": -15.747,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "stale_retest",
+     "break_then_rejection"
+    ],
+    "is_noop": false,
+    "contains_noop_var": true,
+    "days_with_trade": 498,
+    "days_all_vetoed": 0,
+    "ev_r": 0.0377,
+    "n": 444,
+    "n_input": 498,
+    "n_dropped_size_gate": 54,
+    "size_gate_applicable": true,
+    "win_rate": 0.4595,
+    "avg_win_R": 0.9048,
+    "avg_loss_R": 0.7023,
+    "profit_factor": 1.0996,
+    "total_R": 16.726,
+    "max_drawdown_R": -20.415,
+    "months_green": "12/25",
+    "expectancy_per_day": 33.59,
+    "r_stability": 0.0344,
+    "yearly_R": 8.4638,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "stale_retest",
+     "no_retest"
+    ],
+    "is_noop": false,
+    "contains_noop_var": false,
+    "days_with_trade": 497,
+    "days_all_vetoed": 1,
+    "ev_r": 0.0505,
+    "n": 449,
+    "n_input": 497,
+    "n_dropped_size_gate": 48,
+    "size_gate_applicable": true,
+    "win_rate": 0.4655,
+    "avg_win_R": 0.9213,
+    "avg_loss_R": 0.7107,
+    "profit_factor": 1.1336,
+    "total_R": 22.689,
+    "max_drawdown_R": -15.655,
+    "months_green": "14/25",
+    "expectancy_per_day": 45.56,
+    "r_stability": 0.0458,
+    "yearly_R": 11.4812,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "stale_retest",
+     "ocr_not_respected"
+    ],
+    "is_noop": false,
+    "contains_noop_var": false,
+    "days_with_trade": 497,
+    "days_all_vetoed": 1,
+    "ev_r": -0.0123,
+    "n": 444,
+    "n_input": 497,
+    "n_dropped_size_gate": 53,
+    "size_gate_applicable": true,
+    "win_rate": 0.4505,
+    "avg_win_R": 0.8206,
+    "avg_loss_R": 0.6979,
+    "profit_factor": 0.9677,
+    "total_R": -5.47,
+    "max_drawdown_R": -20.853,
+    "months_green": "10/25",
+    "expectancy_per_day": -10.98,
+    "r_stability": -0.0122,
+    "yearly_R": -2.768,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "stale_retest",
+     "chase"
+    ],
+    "is_noop": false,
+    "contains_noop_var": false,
+    "days_with_trade": 498,
+    "days_all_vetoed": 0,
+    "ev_r": 0.0571,
+    "n": 459,
+    "n_input": 498,
+    "n_dropped_size_gate": 39,
+    "size_gate_applicable": true,
+    "win_rate": 0.4662,
+    "avg_win_R": 1.0012,
+    "avg_loss_R": 0.7676,
+    "profit_factor": 1.1393,
+    "total_R": 26.197,
+    "max_drawdown_R": -21.449,
+    "months_green": "13/25",
+    "expectancy_per_day": 52.6,
+    "r_stability": 0.048,
+    "yearly_R": 13.2563,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "level_not_respected",
+     "exhausted"
+    ],
+    "is_noop": false,
+    "contains_noop_var": false,
+    "days_with_trade": 494,
+    "days_all_vetoed": 4,
+    "ev_r": -0.0535,
+    "n": 425,
+    "n_input": 494,
+    "n_dropped_size_gate": 69,
+    "size_gate_applicable": true,
+    "win_rate": 0.4471,
+    "avg_win_R": 0.8159,
+    "avg_loss_R": 0.7628,
+    "profit_factor": 0.8721,
+    "total_R": -22.724,
+    "max_drawdown_R": -35.199,
+    "months_green": "9/25",
+    "expectancy_per_day": -45.63,
+    "r_stability": -0.051,
+    "yearly_R": -11.4989,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "level_not_respected",
+     "counter_trend_not_respected"
+    ],
+    "is_noop": false,
+    "contains_noop_var": false,
+    "days_with_trade": 334,
+    "days_all_vetoed": 164,
+    "ev_r": -0.1167,
+    "n": 291,
+    "n_input": 334,
+    "n_dropped_size_gate": 43,
+    "size_gate_applicable": true,
+    "win_rate": 0.4433,
+    "avg_win_R": 0.5106,
+    "avg_loss_R": 0.62,
+    "profit_factor": 0.6598,
+    "total_R": -33.96,
+    "max_drawdown_R": -34.403,
+    "months_green": "7/25",
+    "expectancy_per_day": -68.19,
+    "r_stability": -0.1615,
+    "yearly_R": -17.1846,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "level_not_respected",
+     "break_then_rejection"
+    ],
+    "is_noop": false,
+    "contains_noop_var": true,
+    "days_with_trade": 496,
+    "days_all_vetoed": 2,
+    "ev_r": -0.059,
+    "n": 427,
+    "n_input": 496,
+    "n_dropped_size_gate": 69,
+    "size_gate_applicable": true,
+    "win_rate": 0.4473,
+    "avg_win_R": 0.7993,
+    "avg_loss_R": 0.76,
+    "profit_factor": 0.8584,
+    "total_R": -25.179,
+    "max_drawdown_R": -39.254,
+    "months_green": "9/25",
+    "expectancy_per_day": -50.56,
+    "r_stability": -0.0569,
+    "yearly_R": -12.7412,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "level_not_respected",
+     "no_retest"
+    ],
+    "is_noop": false,
+    "contains_noop_var": false,
+    "days_with_trade": 494,
+    "days_all_vetoed": 4,
+    "ev_r": -0.0323,
+    "n": 431,
+    "n_input": 494,
+    "n_dropped_size_gate": 63,
+    "size_gate_applicable": true,
+    "win_rate": 0.4478,
+    "avg_win_R": 0.8712,
+    "avg_loss_R": 0.7715,
+    "profit_factor": 0.9236,
+    "total_R": -13.915,
+    "max_drawdown_R": -28.822,
+    "months_green": "12/25",
+    "expectancy_per_day": -27.94,
+    "r_stability": -0.0298,
+    "yearly_R": -7.0413,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "level_not_respected",
+     "ocr_not_respected"
+    ],
+    "is_noop": false,
+    "contains_noop_var": false,
+    "days_with_trade": 487,
+    "days_all_vetoed": 11,
+    "ev_r": -0.0632,
+    "n": 423,
+    "n_input": 487,
+    "n_dropped_size_gate": 64,
+    "size_gate_applicable": true,
+    "win_rate": 0.4444,
+    "avg_win_R": 0.7691,
+    "avg_loss_R": 0.7353,
+    "profit_factor": 0.8439,
+    "total_R": -26.744,
+    "max_drawdown_R": -34.701,
+    "months_green": "10/25",
+    "expectancy_per_day": -53.7,
+    "r_stability": -0.0652,
+    "yearly_R": -13.5331,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "level_not_respected",
+     "chase"
+    ],
+    "is_noop": false,
+    "contains_noop_var": false,
+    "days_with_trade": 490,
+    "days_all_vetoed": 8,
+    "ev_r": -0.0208,
+    "n": 438,
+    "n_input": 490,
+    "n_dropped_size_gate": 52,
+    "size_gate_applicable": true,
+    "win_rate": 0.4543,
+    "avg_win_R": 0.952,
+    "avg_loss_R": 0.8342,
+    "profit_factor": 0.9542,
+    "total_R": -9.094,
+    "max_drawdown_R": -34.601,
+    "months_green": "12/25",
+    "expectancy_per_day": -18.26,
+    "r_stability": -0.0173,
+    "yearly_R": -4.6018,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "exhausted",
+     "counter_trend_not_respected"
+    ],
+    "is_noop": false,
+    "contains_noop_var": false,
+    "days_with_trade": 445,
+    "days_all_vetoed": 53,
+    "ev_r": -0.0707,
+    "n": 382,
+    "n_input": 445,
+    "n_dropped_size_gate": 63,
+    "size_gate_applicable": true,
+    "win_rate": 0.445,
+    "avg_win_R": 0.5811,
+    "avg_loss_R": 0.599,
+    "profit_factor": 0.7853,
+    "total_R": -27.004,
+    "max_drawdown_R": -27.909,
+    "months_green": "9/25",
+    "expectancy_per_day": -54.22,
+    "r_stability": -0.0902,
+    "yearly_R": -13.6647,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "exhausted",
+     "break_then_rejection"
+    ],
+    "is_noop": false,
+    "contains_noop_var": true,
+    "days_with_trade": 498,
+    "days_all_vetoed": 0,
+    "ev_r": 0.0377,
+    "n": 444,
+    "n_input": 498,
+    "n_dropped_size_gate": 54,
+    "size_gate_applicable": true,
+    "win_rate": 0.4595,
+    "avg_win_R": 0.9048,
+    "avg_loss_R": 0.7023,
+    "profit_factor": 1.0996,
+    "total_R": 16.726,
+    "max_drawdown_R": -20.415,
+    "months_green": "12/25",
+    "expectancy_per_day": 33.59,
+    "r_stability": 0.0344,
+    "yearly_R": 8.4638,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "exhausted",
+     "no_retest"
+    ],
+    "is_noop": false,
+    "contains_noop_var": false,
+    "days_with_trade": 497,
+    "days_all_vetoed": 1,
+    "ev_r": 0.052,
+    "n": 449,
+    "n_input": 497,
+    "n_dropped_size_gate": 48,
+    "size_gate_applicable": true,
+    "win_rate": 0.4655,
+    "avg_win_R": 0.9243,
+    "avg_loss_R": 0.7107,
+    "profit_factor": 1.1374,
+    "total_R": 23.334,
+    "max_drawdown_R": -15.655,
+    "months_green": "14/25",
+    "expectancy_per_day": 46.86,
+    "r_stability": 0.047,
+    "yearly_R": 11.8076,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "exhausted",
+     "ocr_not_respected"
+    ],
+    "is_noop": false,
+    "contains_noop_var": false,
+    "days_with_trade": 497,
+    "days_all_vetoed": 1,
+    "ev_r": -0.0123,
+    "n": 444,
+    "n_input": 497,
+    "n_dropped_size_gate": 53,
+    "size_gate_applicable": true,
+    "win_rate": 0.4505,
+    "avg_win_R": 0.8206,
+    "avg_loss_R": 0.6979,
+    "profit_factor": 0.9677,
+    "total_R": -5.47,
+    "max_drawdown_R": -20.853,
+    "months_green": "10/25",
+    "expectancy_per_day": -10.98,
+    "r_stability": -0.0122,
+    "yearly_R": -2.768,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "exhausted",
+     "chase"
+    ],
+    "is_noop": false,
+    "contains_noop_var": false,
+    "days_with_trade": 498,
+    "days_all_vetoed": 0,
+    "ev_r": 0.0571,
+    "n": 459,
+    "n_input": 498,
+    "n_dropped_size_gate": 39,
+    "size_gate_applicable": true,
+    "win_rate": 0.4662,
+    "avg_win_R": 1.0012,
+    "avg_loss_R": 0.7676,
+    "profit_factor": 1.1393,
+    "total_R": 26.197,
+    "max_drawdown_R": -21.449,
+    "months_green": "13/25",
+    "expectancy_per_day": 52.6,
+    "r_stability": 0.048,
+    "yearly_R": 13.2563,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "counter_trend_not_respected",
+     "break_then_rejection"
+    ],
+    "is_noop": false,
+    "contains_noop_var": true,
+    "days_with_trade": 456,
+    "days_all_vetoed": 42,
+    "ev_r": -0.079,
+    "n": 394,
+    "n_input": 456,
+    "n_dropped_size_gate": 62,
+    "size_gate_applicable": true,
+    "win_rate": 0.4416,
+    "avg_win_R": 0.5741,
+    "avg_loss_R": 0.601,
+    "profit_factor": 0.7625,
+    "total_R": -31.119,
+    "max_drawdown_R": -31.687,
+    "months_green": "8/25",
+    "expectancy_per_day": -62.49,
+    "r_stability": -0.1012,
+    "yearly_R": -15.747,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "counter_trend_not_respected",
+     "no_retest"
+    ],
+    "is_noop": false,
+    "contains_noop_var": false,
+    "days_with_trade": 450,
+    "days_all_vetoed": 48,
+    "ev_r": -0.053,
+    "n": 394,
+    "n_input": 450,
+    "n_dropped_size_gate": 56,
+    "size_gate_applicable": true,
+    "win_rate": 0.4442,
+    "avg_win_R": 0.6338,
+    "avg_loss_R": 0.6074,
+    "profit_factor": 0.8415,
+    "total_R": -20.885,
+    "max_drawdown_R": -21.453,
+    "months_green": "10/25",
+    "expectancy_per_day": -41.94,
+    "r_stability": -0.063,
+    "yearly_R": -10.5683,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "counter_trend_not_respected",
+     "ocr_not_respected"
+    ],
+    "is_noop": false,
+    "contains_noop_var": false,
+    "days_with_trade": 451,
+    "days_all_vetoed": 47,
+    "ev_r": -0.0883,
+    "n": 391,
+    "n_input": 451,
+    "n_dropped_size_gate": 60,
+    "size_gate_applicable": true,
+    "win_rate": 0.4348,
+    "avg_win_R": 0.5735,
+    "avg_loss_R": 0.6028,
+    "profit_factor": 0.7386,
+    "total_R": -34.514,
+    "max_drawdown_R": -35.013,
+    "months_green": "8/25",
+    "expectancy_per_day": -69.31,
+    "r_stability": -0.1131,
+    "yearly_R": -17.4649,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "counter_trend_not_respected",
+     "chase"
+    ],
+    "is_noop": false,
+    "contains_noop_var": false,
+    "days_with_trade": 424,
+    "days_all_vetoed": 74,
+    "ev_r": -0.0584,
+    "n": 384,
+    "n_input": 424,
+    "n_dropped_size_gate": 40,
+    "size_gate_applicable": true,
+    "win_rate": 0.4583,
+    "avg_win_R": 0.6319,
+    "avg_loss_R": 0.6456,
+    "profit_factor": 0.8322,
+    "total_R": -22.424,
+    "max_drawdown_R": -26.957,
+    "months_green": "8/25",
+    "expectancy_per_day": -45.03,
+    "r_stability": -0.0686,
+    "yearly_R": -11.3471,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "break_then_rejection",
+     "no_retest"
+    ],
+    "is_noop": false,
+    "contains_noop_var": true,
+    "days_with_trade": 497,
+    "days_all_vetoed": 1,
+    "ev_r": 0.0505,
+    "n": 449,
+    "n_input": 497,
+    "n_dropped_size_gate": 48,
+    "size_gate_applicable": true,
+    "win_rate": 0.4655,
+    "avg_win_R": 0.9213,
+    "avg_loss_R": 0.7107,
+    "profit_factor": 1.1336,
+    "total_R": 22.689,
+    "max_drawdown_R": -15.655,
+    "months_green": "14/25",
+    "expectancy_per_day": 45.56,
+    "r_stability": 0.0458,
+    "yearly_R": 11.4812,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "break_then_rejection",
+     "ocr_not_respected"
+    ],
+    "is_noop": false,
+    "contains_noop_var": true,
+    "days_with_trade": 497,
+    "days_all_vetoed": 1,
+    "ev_r": -0.0123,
+    "n": 444,
+    "n_input": 497,
+    "n_dropped_size_gate": 53,
+    "size_gate_applicable": true,
+    "win_rate": 0.4505,
+    "avg_win_R": 0.8206,
+    "avg_loss_R": 0.6979,
+    "profit_factor": 0.9677,
+    "total_R": -5.47,
+    "max_drawdown_R": -20.853,
+    "months_green": "10/25",
+    "expectancy_per_day": -10.98,
+    "r_stability": -0.0122,
+    "yearly_R": -2.768,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "break_then_rejection",
+     "chase"
+    ],
+    "is_noop": false,
+    "contains_noop_var": true,
+    "days_with_trade": 498,
+    "days_all_vetoed": 0,
+    "ev_r": 0.0571,
+    "n": 459,
+    "n_input": 498,
+    "n_dropped_size_gate": 39,
+    "size_gate_applicable": true,
+    "win_rate": 0.4662,
+    "avg_win_R": 1.0012,
+    "avg_loss_R": 0.7676,
+    "profit_factor": 1.1393,
+    "total_R": 26.197,
+    "max_drawdown_R": -21.449,
+    "months_green": "13/25",
+    "expectancy_per_day": 52.6,
+    "r_stability": 0.048,
+    "yearly_R": 13.2563,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "no_retest",
+     "ocr_not_respected"
+    ],
+    "is_noop": false,
+    "contains_noop_var": false,
+    "days_with_trade": 497,
+    "days_all_vetoed": 1,
+    "ev_r": -0.0007,
+    "n": 449,
+    "n_input": 497,
+    "n_dropped_size_gate": 48,
+    "size_gate_applicable": true,
+    "win_rate": 0.4566,
+    "avg_win_R": 0.8355,
+    "avg_loss_R": 0.7061,
+    "profit_factor": 0.9983,
+    "total_R": -0.299,
+    "max_drawdown_R": -19.554,
+    "months_green": "12/25",
+    "expectancy_per_day": -0.6,
+    "r_stability": -0.0007,
+    "yearly_R": -0.1513,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "no_retest",
+     "chase"
+    ],
+    "is_noop": false,
+    "contains_noop_var": false,
+    "days_with_trade": 497,
+    "days_all_vetoed": 1,
+    "ev_r": 0.0739,
+    "n": 464,
+    "n_input": 497,
+    "n_dropped_size_gate": 33,
+    "size_gate_applicable": true,
+    "win_rate": 0.4806,
+    "avg_win_R": 1.0062,
+    "avg_loss_R": 0.7887,
+    "profit_factor": 1.1805,
+    "total_R": 34.31,
+    "max_drawdown_R": -14.274,
+    "months_green": "13/25",
+    "expectancy_per_day": 68.9,
+    "r_stability": 0.0616,
+    "yearly_R": 17.3617,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "ocr_not_respected",
+     "chase"
+    ],
+    "is_noop": false,
+    "contains_noop_var": false,
+    "days_with_trade": 497,
+    "days_all_vetoed": 1,
+    "ev_r": 0.0043,
+    "n": 459,
+    "n_input": 497,
+    "n_dropped_size_gate": 38,
+    "size_gate_applicable": true,
+    "win_rate": 0.4641,
+    "avg_win_R": 0.8932,
+    "avg_loss_R": 0.7653,
+    "profit_factor": 1.0105,
+    "total_R": 1.979,
+    "max_drawdown_R": -24.825,
+    "months_green": "11/25",
+    "expectancy_per_day": 3.97,
+    "r_stability": 0.004,
+    "yearly_R": 1.0014,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   }
+  ],
+  "3way": [
+   {
+    "combo": [
+     "no_displacement",
+     "stale_retest",
+     "level_not_respected"
+    ],
+    "is_noop": false,
+    "contains_noop_var": false,
+    "days_with_trade": 469,
+    "days_all_vetoed": 29,
+    "ev_r": -0.0401,
+    "n": 407,
+    "n_input": 469,
+    "n_dropped_size_gate": 62,
+    "size_gate_applicable": true,
+    "win_rate": 0.4152,
+    "avg_win_R": 0.9275,
+    "avg_loss_R": 0.7273,
+    "profit_factor": 0.9056,
+    "total_R": -16.339,
+    "max_drawdown_R": -40.578,
+    "months_green": "12/25",
+    "expectancy_per_day": -32.81,
+    "r_stability": -0.0346,
+    "yearly_R": -8.2679,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "no_displacement",
+     "stale_retest",
+     "exhausted"
+    ],
+    "is_noop": false,
+    "contains_noop_var": false,
+    "days_with_trade": 495,
+    "days_all_vetoed": 3,
+    "ev_r": -0.0094,
+    "n": 426,
+    "n_input": 495,
+    "n_dropped_size_gate": 69,
+    "size_gate_applicable": true,
+    "win_rate": 0.4296,
+    "avg_win_R": 0.9316,
+    "avg_loss_R": 0.721,
+    "profit_factor": 0.9771,
+    "total_R": -3.989,
+    "max_drawdown_R": -29.774,
+    "months_green": "10/25",
+    "expectancy_per_day": -8.01,
+    "r_stability": -0.0084,
+    "yearly_R": -2.0185,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "no_displacement",
+     "stale_retest",
+     "counter_trend_not_respected"
+    ],
+    "is_noop": false,
+    "contains_noop_var": false,
+    "days_with_trade": 358,
+    "days_all_vetoed": 140,
+    "ev_r": -0.1066,
+    "n": 301,
+    "n_input": 358,
+    "n_dropped_size_gate": 57,
+    "size_gate_applicable": true,
+    "win_rate": 0.4086,
+    "avg_win_R": 0.5989,
+    "avg_loss_R": 0.5974,
+    "profit_factor": 0.6967,
+    "total_R": -32.075,
+    "max_drawdown_R": -32.754,
+    "months_green": "8/25",
+    "expectancy_per_day": -64.41,
+    "r_stability": -0.1317,
+    "yearly_R": -16.2307,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "no_displacement",
+     "stale_retest",
+     "break_then_rejection"
+    ],
+    "is_noop": false,
+    "contains_noop_var": true,
+    "days_with_trade": 496,
+    "days_all_vetoed": 2,
+    "ev_r": -0.0094,
+    "n": 427,
+    "n_input": 496,
+    "n_dropped_size_gate": 69,
+    "size_gate_applicable": true,
+    "win_rate": 0.4286,
+    "avg_win_R": 0.9316,
+    "avg_loss_R": 0.7181,
+    "profit_factor": 0.977,
+    "total_R": -4.007,
+    "max_drawdown_R": -29.774,
+    "months_green": "10/25",
+    "expectancy_per_day": -8.05,
+    "r_stability": -0.0084,
+    "yearly_R": -2.0276,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "no_displacement",
+     "stale_retest",
+     "no_retest"
+    ],
+    "is_noop": false,
+    "contains_noop_var": false,
+    "days_with_trade": 495,
+    "days_all_vetoed": 3,
+    "ev_r": 0.0007,
+    "n": 439,
+    "n_input": 495,
+    "n_dropped_size_gate": 56,
+    "size_gate_applicable": true,
+    "win_rate": 0.4374,
+    "avg_win_R": 0.9533,
+    "avg_loss_R": 0.7428,
+    "profit_factor": 1.0017,
+    "total_R": 0.306,
+    "max_drawdown_R": -28.908,
+    "months_green": "9/25",
+    "expectancy_per_day": 0.61,
+    "r_stability": 0.0006,
+    "yearly_R": 0.1548,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "no_displacement",
+     "stale_retest",
+     "ocr_not_respected"
+    ],
+    "is_noop": false,
+    "contains_noop_var": false,
+    "days_with_trade": 495,
+    "days_all_vetoed": 3,
+    "ev_r": 0.0255,
+    "n": 430,
+    "n_input": 495,
+    "n_dropped_size_gate": 65,
+    "size_gate_applicable": true,
+    "win_rate": 0.4395,
+    "avg_win_R": 0.943,
+    "avg_loss_R": 0.697,
+    "profit_factor": 1.0655,
+    "total_R": 10.953,
+    "max_drawdown_R": -15.872,
+    "months_green": "10/25",
+    "expectancy_per_day": 21.99,
+    "r_stability": 0.0227,
+    "yearly_R": 5.5425,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "no_displacement",
+     "stale_retest",
+     "chase"
+    ],
+    "is_noop": false,
+    "contains_noop_var": false,
+    "days_with_trade": 492,
+    "days_all_vetoed": 6,
+    "ev_r": 0.0106,
+    "n": 436,
+    "n_input": 492,
+    "n_dropped_size_gate": 56,
+    "size_gate_applicable": true,
+    "win_rate": 0.4335,
+    "avg_win_R": 1.0259,
+    "avg_loss_R": 0.7695,
+    "profit_factor": 1.0243,
+    "total_R": 4.6,
+    "max_drawdown_R": -34.097,
+    "months_green": "12/25",
+    "expectancy_per_day": 9.24,
+    "r_stability": 0.0088,
+    "yearly_R": 2.3277,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "no_displacement",
+     "level_not_respected",
+     "exhausted"
+    ],
+    "is_noop": false,
+    "contains_noop_var": false,
+    "days_with_trade": 465,
+    "days_all_vetoed": 33,
+    "ev_r": -0.0021,
+    "n": 401,
+    "n_input": 465,
+    "n_dropped_size_gate": 64,
+    "size_gate_applicable": true,
+    "win_rate": 0.4264,
+    "avg_win_R": 0.9767,
+    "avg_loss_R": 0.7297,
+    "profit_factor": 0.995,
+    "total_R": -0.833,
+    "max_drawdown_R": -29.952,
+    "months_green": "13/25",
+    "expectancy_per_day": -1.67,
+    "r_stability": -0.0017,
+    "yearly_R": -0.4215,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "no_displacement",
+     "level_not_respected",
+     "counter_trend_not_respected"
+    ],
+    "is_noop": false,
+    "contains_noop_var": false,
+    "days_with_trade": 245,
+    "days_all_vetoed": 253,
+    "ev_r": -0.1381,
+    "n": 211,
+    "n_input": 245,
+    "n_dropped_size_gate": 34,
+    "size_gate_applicable": true,
+    "win_rate": 0.3934,
+    "avg_win_R": 0.541,
+    "avg_loss_R": 0.5785,
+    "profit_factor": 0.6064,
+    "total_R": -29.149,
+    "max_drawdown_R": -31.233,
+    "months_green": "8/25",
+    "expectancy_per_day": -58.53,
+    "r_stability": -0.1913,
+    "yearly_R": -14.7501,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "no_displacement",
+     "level_not_respected",
+     "break_then_rejection"
+    ],
+    "is_noop": false,
+    "contains_noop_var": true,
+    "days_with_trade": 470,
+    "days_all_vetoed": 28,
+    "ev_r": -0.0425,
+    "n": 408,
+    "n_input": 470,
+    "n_dropped_size_gate": 62,
+    "size_gate_applicable": true,
+    "win_rate": 0.4142,
+    "avg_win_R": 0.9275,
+    "avg_loss_R": 0.7284,
+    "profit_factor": 0.9004,
+    "total_R": -17.339,
+    "max_drawdown_R": -40.578,
+    "months_green": "12/25",
+    "expectancy_per_day": -34.82,
+    "r_stability": -0.0366,
+    "yearly_R": -8.774,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "no_displacement",
+     "level_not_respected",
+     "no_retest"
+    ],
+    "is_noop": false,
+    "contains_noop_var": false,
+    "days_with_trade": 467,
+    "days_all_vetoed": 31,
+    "ev_r": -0.0274,
+    "n": 412,
+    "n_input": 467,
+    "n_dropped_size_gate": 55,
+    "size_gate_applicable": true,
+    "win_rate": 0.415,
+    "avg_win_R": 0.9824,
+    "avg_loss_R": 0.744,
+    "profit_factor": 0.937,
+    "total_R": -11.304,
+    "max_drawdown_R": -38.501,
+    "months_green": "11/25",
+    "expectancy_per_day": -22.7,
+    "r_stability": -0.0229,
+    "yearly_R": -5.7201,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "no_displacement",
+     "level_not_respected",
+     "ocr_not_respected"
+    ],
+    "is_noop": false,
+    "contains_noop_var": false,
+    "days_with_trade": 458,
+    "days_all_vetoed": 40,
+    "ev_r": -0.0409,
+    "n": 400,
+    "n_input": 458,
+    "n_dropped_size_gate": 58,
+    "size_gate_applicable": true,
+    "win_rate": 0.4175,
+    "avg_win_R": 0.8899,
+    "avg_loss_R": 0.708,
+    "profit_factor": 0.9008,
+    "total_R": -16.358,
+    "max_drawdown_R": -37.548,
+    "months_green": "10/25",
+    "expectancy_per_day": -32.85,
+    "r_stability": -0.0368,
+    "yearly_R": -8.2775,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "no_displacement",
+     "level_not_respected",
+     "chase"
+    ],
+    "is_noop": false,
+    "contains_noop_var": false,
+    "days_with_trade": 450,
+    "days_all_vetoed": 48,
+    "ev_r": -0.0754,
+    "n": 401,
+    "n_input": 450,
+    "n_dropped_size_gate": 49,
+    "size_gate_applicable": true,
+    "win_rate": 0.3915,
+    "avg_win_R": 1.054,
+    "avg_loss_R": 0.8022,
+    "profit_factor": 0.8454,
+    "total_R": -30.252,
+    "max_drawdown_R": -48.59,
+    "months_green": "9/25",
+    "expectancy_per_day": -60.75,
+    "r_stability": -0.0596,
+    "yearly_R": -15.3082,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "no_displacement",
+     "exhausted",
+     "counter_trend_not_respected"
+    ],
+    "is_noop": false,
+    "contains_noop_var": false,
+    "days_with_trade": 340,
+    "days_all_vetoed": 158,
+    "ev_r": -0.1082,
+    "n": 290,
+    "n_input": 340,
+    "n_dropped_size_gate": 50,
+    "size_gate_applicable": true,
+    "win_rate": 0.4,
+    "avg_win_R": 0.6149,
+    "avg_loss_R": 0.5936,
+    "profit_factor": 0.6946,
+    "total_R": -31.365,
+    "max_drawdown_R": -32.45,
+    "months_green": "8/25",
+    "expectancy_per_day": -62.98,
+    "r_stability": -0.1326,
+    "yearly_R": -15.8714,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "no_displacement",
+     "exhausted",
+     "break_then_rejection"
+    ],
+    "is_noop": false,
+    "contains_noop_var": true,
+    "days_with_trade": 495,
+    "days_all_vetoed": 3,
+    "ev_r": -0.0094,
+    "n": 426,
+    "n_input": 495,
+    "n_dropped_size_gate": 69,
+    "size_gate_applicable": true,
+    "win_rate": 0.4296,
+    "avg_win_R": 0.9316,
+    "avg_loss_R": 0.721,
+    "profit_factor": 0.9771,
+    "total_R": -3.989,
+    "max_drawdown_R": -29.774,
+    "months_green": "10/25",
+    "expectancy_per_day": -8.01,
+    "r_stability": -0.0084,
+    "yearly_R": -2.0185,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "no_displacement",
+     "exhausted",
+     "no_retest"
+    ],
+    "is_noop": false,
+    "contains_noop_var": false,
+    "days_with_trade": 493,
+    "days_all_vetoed": 5,
+    "ev_r": 0.0129,
+    "n": 437,
+    "n_input": 493,
+    "n_dropped_size_gate": 56,
+    "size_gate_applicable": true,
+    "win_rate": 0.4416,
+    "avg_win_R": 0.9618,
+    "avg_loss_R": 0.7406,
+    "profit_factor": 1.0314,
+    "total_R": 5.656,
+    "max_drawdown_R": -27.186,
+    "months_green": "10/25",
+    "expectancy_per_day": 11.36,
+    "r_stability": 0.0113,
+    "yearly_R": 2.8621,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "no_displacement",
+     "exhausted",
+     "ocr_not_respected"
+    ],
+    "is_noop": false,
+    "contains_noop_var": false,
+    "days_with_trade": 495,
+    "days_all_vetoed": 3,
+    "ev_r": 0.0239,
+    "n": 431,
+    "n_input": 495,
+    "n_dropped_size_gate": 64,
+    "size_gate_applicable": true,
+    "win_rate": 0.4385,
+    "avg_win_R": 0.943,
+    "avg_loss_R": 0.6967,
+    "profit_factor": 1.0615,
+    "total_R": 10.322,
+    "max_drawdown_R": -16.854,
+    "months_green": "10/25",
+    "expectancy_per_day": 20.73,
+    "r_stability": 0.0213,
+    "yearly_R": 5.2232,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "no_displacement",
+     "exhausted",
+     "chase"
+    ],
+    "is_noop": false,
+    "contains_noop_var": false,
+    "days_with_trade": 488,
+    "days_all_vetoed": 10,
+    "ev_r": 0.0127,
+    "n": 433,
+    "n_input": 488,
+    "n_dropped_size_gate": 55,
+    "size_gate_applicable": true,
+    "win_rate": 0.4365,
+    "avg_win_R": 1.0161,
+    "avg_loss_R": 0.7676,
+    "profit_factor": 1.0295,
+    "total_R": 5.499,
+    "max_drawdown_R": -33.097,
+    "months_green": "12/25",
+    "expectancy_per_day": 11.04,
+    "r_stability": 0.0106,
+    "yearly_R": 2.7826,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "no_displacement",
+     "counter_trend_not_respected",
+     "break_then_rejection"
+    ],
+    "is_noop": false,
+    "contains_noop_var": true,
+    "days_with_trade": 358,
+    "days_all_vetoed": 140,
+    "ev_r": -0.1066,
+    "n": 301,
+    "n_input": 358,
+    "n_dropped_size_gate": 57,
+    "size_gate_applicable": true,
+    "win_rate": 0.4086,
+    "avg_win_R": 0.5989,
+    "avg_loss_R": 0.5974,
+    "profit_factor": 0.6967,
+    "total_R": -32.075,
+    "max_drawdown_R": -32.754,
+    "months_green": "8/25",
+    "expectancy_per_day": -64.41,
+    "r_stability": -0.1317,
+    "yearly_R": -16.2307,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "no_displacement",
+     "counter_trend_not_respected",
+     "no_retest"
+    ],
+    "is_noop": false,
+    "contains_noop_var": false,
+    "days_with_trade": 332,
+    "days_all_vetoed": 166,
+    "ev_r": -0.096,
+    "n": 285,
+    "n_input": 332,
+    "n_dropped_size_gate": 47,
+    "size_gate_applicable": true,
+    "win_rate": 0.3965,
+    "avg_win_R": 0.6741,
+    "avg_loss_R": 0.6055,
+    "profit_factor": 0.7356,
+    "total_R": -27.373,
+    "max_drawdown_R": -28.052,
+    "months_green": "8/25",
+    "expectancy_per_day": -54.97,
+    "r_stability": -0.1105,
+    "yearly_R": -13.8514,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "no_displacement",
+     "counter_trend_not_respected",
+     "ocr_not_respected"
+    ],
+    "is_noop": false,
+    "contains_noop_var": false,
+    "days_with_trade": 348,
+    "days_all_vetoed": 150,
+    "ev_r": -0.1056,
+    "n": 294,
+    "n_input": 348,
+    "n_dropped_size_gate": 54,
+    "size_gate_applicable": true,
+    "win_rate": 0.4082,
+    "avg_win_R": 0.5915,
+    "avg_loss_R": 0.5897,
+    "profit_factor": 0.6958,
+    "total_R": -31.034,
+    "max_drawdown_R": -31.713,
+    "months_green": "7/25",
+    "expectancy_per_day": -62.32,
+    "r_stability": -0.1308,
+    "yearly_R": -15.704,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "no_displacement",
+     "counter_trend_not_respected",
+     "chase"
+    ],
+    "is_noop": false,
+    "contains_noop_var": false,
+    "days_with_trade": 294,
+    "days_all_vetoed": 204,
+    "ev_r": -0.1312,
+    "n": 257,
+    "n_input": 294,
+    "n_dropped_size_gate": 37,
+    "size_gate_applicable": true,
+    "win_rate": 0.4125,
+    "avg_win_R": 0.6208,
+    "avg_loss_R": 0.6634,
+    "profit_factor": 0.6612,
+    "total_R": -33.712,
+    "max_drawdown_R": -34.391,
+    "months_green": "7/25",
+    "expectancy_per_day": -67.69,
+    "r_stability": -0.159,
+    "yearly_R": -17.0591,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "no_displacement",
+     "break_then_rejection",
+     "no_retest"
+    ],
+    "is_noop": false,
+    "contains_noop_var": true,
+    "days_with_trade": 495,
+    "days_all_vetoed": 3,
+    "ev_r": 0.0007,
+    "n": 439,
+    "n_input": 495,
+    "n_dropped_size_gate": 56,
+    "size_gate_applicable": true,
+    "win_rate": 0.4374,
+    "avg_win_R": 0.9533,
+    "avg_loss_R": 0.7428,
+    "profit_factor": 1.0017,
+    "total_R": 0.306,
+    "max_drawdown_R": -28.908,
+    "months_green": "9/25",
+    "expectancy_per_day": 0.61,
+    "r_stability": 0.0006,
+    "yearly_R": 0.1548,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "no_displacement",
+     "break_then_rejection",
+     "ocr_not_respected"
+    ],
+    "is_noop": false,
+    "contains_noop_var": true,
+    "days_with_trade": 496,
+    "days_all_vetoed": 2,
+    "ev_r": 0.0231,
+    "n": 431,
+    "n_input": 496,
+    "n_dropped_size_gate": 65,
+    "size_gate_applicable": true,
+    "win_rate": 0.4385,
+    "avg_win_R": 0.943,
+    "avg_loss_R": 0.6982,
+    "profit_factor": 1.0591,
+    "total_R": 9.953,
+    "max_drawdown_R": -16.872,
+    "months_green": "10/25",
+    "expectancy_per_day": 19.99,
+    "r_stability": 0.0206,
+    "yearly_R": 5.0365,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "no_displacement",
+     "break_then_rejection",
+     "chase"
+    ],
+    "is_noop": false,
+    "contains_noop_var": true,
+    "days_with_trade": 492,
+    "days_all_vetoed": 6,
+    "ev_r": 0.0106,
+    "n": 436,
+    "n_input": 492,
+    "n_dropped_size_gate": 56,
+    "size_gate_applicable": true,
+    "win_rate": 0.4335,
+    "avg_win_R": 1.0259,
+    "avg_loss_R": 0.7695,
+    "profit_factor": 1.0243,
+    "total_R": 4.6,
+    "max_drawdown_R": -34.097,
+    "months_green": "12/25",
+    "expectancy_per_day": 9.24,
+    "r_stability": 0.0088,
+    "yearly_R": 2.3277,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "no_displacement",
+     "no_retest",
+     "ocr_not_respected"
+    ],
+    "is_noop": false,
+    "contains_noop_var": false,
+    "days_with_trade": 494,
+    "days_all_vetoed": 4,
+    "ev_r": -0.0062,
+    "n": 437,
+    "n_input": 494,
+    "n_dropped_size_gate": 57,
+    "size_gate_applicable": true,
+    "win_rate": 0.4325,
+    "avg_win_R": 0.9442,
+    "avg_loss_R": 0.7335,
+    "profit_factor": 0.985,
+    "total_R": -2.722,
+    "max_drawdown_R": -20.988,
+    "months_green": "10/25",
+    "expectancy_per_day": -5.47,
+    "r_stability": -0.0055,
+    "yearly_R": -1.3774,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "no_displacement",
+     "no_retest",
+     "chase"
+    ],
+    "is_noop": false,
+    "contains_noop_var": false,
+    "days_with_trade": 491,
+    "days_all_vetoed": 7,
+    "ev_r": 0.0182,
+    "n": 446,
+    "n_input": 491,
+    "n_dropped_size_gate": 45,
+    "size_gate_applicable": true,
+    "win_rate": 0.4462,
+    "avg_win_R": 1.0456,
+    "avg_loss_R": 0.8096,
+    "profit_factor": 1.0405,
+    "total_R": 8.096,
+    "max_drawdown_R": -37.234,
+    "months_green": "12/25",
+    "expectancy_per_day": 16.26,
+    "r_stability": 0.0148,
+    "yearly_R": 4.0968,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "no_displacement",
+     "ocr_not_respected",
+     "chase"
+    ],
+    "is_noop": false,
+    "contains_noop_var": false,
+    "days_with_trade": 490,
+    "days_all_vetoed": 8,
+    "ev_r": 0.0386,
+    "n": 434,
+    "n_input": 490,
+    "n_dropped_size_gate": 56,
+    "size_gate_applicable": true,
+    "win_rate": 0.4539,
+    "avg_win_R": 0.9875,
+    "avg_loss_R": 0.7533,
+    "profit_factor": 1.0943,
+    "total_R": 16.769,
+    "max_drawdown_R": -17.834,
+    "months_green": "12/25",
+    "expectancy_per_day": 33.67,
+    "r_stability": 0.033,
+    "yearly_R": 8.4855,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "stale_retest",
+     "level_not_respected",
+     "exhausted"
+    ],
+    "is_noop": false,
+    "contains_noop_var": false,
+    "days_with_trade": 493,
+    "days_all_vetoed": 5,
+    "ev_r": -0.0512,
+    "n": 424,
+    "n_input": 493,
+    "n_dropped_size_gate": 69,
+    "size_gate_applicable": true,
+    "win_rate": 0.4481,
+    "avg_win_R": 0.8159,
+    "avg_loss_R": 0.7618,
+    "profit_factor": 0.8771,
+    "total_R": -21.724,
+    "max_drawdown_R": -35.199,
+    "months_green": "9/25",
+    "expectancy_per_day": -43.62,
+    "r_stability": -0.0488,
+    "yearly_R": -10.9929,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "stale_retest",
+     "level_not_respected",
+     "counter_trend_not_respected"
+    ],
+    "is_noop": false,
+    "contains_noop_var": false,
+    "days_with_trade": 334,
+    "days_all_vetoed": 164,
+    "ev_r": -0.1167,
+    "n": 291,
+    "n_input": 334,
+    "n_dropped_size_gate": 43,
+    "size_gate_applicable": true,
+    "win_rate": 0.4433,
+    "avg_win_R": 0.5106,
+    "avg_loss_R": 0.62,
+    "profit_factor": 0.6598,
+    "total_R": -33.96,
+    "max_drawdown_R": -34.403,
+    "months_green": "7/25",
+    "expectancy_per_day": -68.19,
+    "r_stability": -0.1615,
+    "yearly_R": -17.1846,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "stale_retest",
+     "level_not_respected",
+     "break_then_rejection"
+    ],
+    "is_noop": false,
+    "contains_noop_var": true,
+    "days_with_trade": 495,
+    "days_all_vetoed": 3,
+    "ev_r": -0.0568,
+    "n": 426,
+    "n_input": 495,
+    "n_dropped_size_gate": 69,
+    "size_gate_applicable": true,
+    "win_rate": 0.4484,
+    "avg_win_R": 0.7993,
+    "avg_loss_R": 0.759,
+    "profit_factor": 0.8633,
+    "total_R": -24.179,
+    "max_drawdown_R": -39.254,
+    "months_green": "9/25",
+    "expectancy_per_day": -48.55,
+    "r_stability": -0.0548,
+    "yearly_R": -12.2352,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "stale_retest",
+     "level_not_respected",
+     "no_retest"
+    ],
+    "is_noop": false,
+    "contains_noop_var": false,
+    "days_with_trade": 493,
+    "days_all_vetoed": 5,
+    "ev_r": -0.03,
+    "n": 430,
+    "n_input": 493,
+    "n_dropped_size_gate": 63,
+    "size_gate_applicable": true,
+    "win_rate": 0.4488,
+    "avg_win_R": 0.8712,
+    "avg_loss_R": 0.7705,
+    "profit_factor": 0.9287,
+    "total_R": -12.915,
+    "max_drawdown_R": -28.822,
+    "months_green": "12/25",
+    "expectancy_per_day": -25.93,
+    "r_stability": -0.0277,
+    "yearly_R": -6.5353,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "stale_retest",
+     "level_not_respected",
+     "ocr_not_respected"
+    ],
+    "is_noop": false,
+    "contains_noop_var": false,
+    "days_with_trade": 487,
+    "days_all_vetoed": 11,
+    "ev_r": -0.0632,
+    "n": 423,
+    "n_input": 487,
+    "n_dropped_size_gate": 64,
+    "size_gate_applicable": true,
+    "win_rate": 0.4444,
+    "avg_win_R": 0.7691,
+    "avg_loss_R": 0.7353,
+    "profit_factor": 0.8439,
+    "total_R": -26.744,
+    "max_drawdown_R": -34.701,
+    "months_green": "10/25",
+    "expectancy_per_day": -53.7,
+    "r_stability": -0.0652,
+    "yearly_R": -13.5331,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "stale_retest",
+     "level_not_respected",
+     "chase"
+    ],
+    "is_noop": false,
+    "contains_noop_var": false,
+    "days_with_trade": 490,
+    "days_all_vetoed": 8,
+    "ev_r": -0.0208,
+    "n": 438,
+    "n_input": 490,
+    "n_dropped_size_gate": 52,
+    "size_gate_applicable": true,
+    "win_rate": 0.4543,
+    "avg_win_R": 0.952,
+    "avg_loss_R": 0.8342,
+    "profit_factor": 0.9542,
+    "total_R": -9.094,
+    "max_drawdown_R": -34.601,
+    "months_green": "12/25",
+    "expectancy_per_day": -18.26,
+    "r_stability": -0.0173,
+    "yearly_R": -4.6018,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "stale_retest",
+     "exhausted",
+     "counter_trend_not_respected"
+    ],
+    "is_noop": false,
+    "contains_noop_var": false,
+    "days_with_trade": 445,
+    "days_all_vetoed": 53,
+    "ev_r": -0.0707,
+    "n": 382,
+    "n_input": 445,
+    "n_dropped_size_gate": 63,
+    "size_gate_applicable": true,
+    "win_rate": 0.445,
+    "avg_win_R": 0.5811,
+    "avg_loss_R": 0.599,
+    "profit_factor": 0.7853,
+    "total_R": -27.004,
+    "max_drawdown_R": -27.909,
+    "months_green": "9/25",
+    "expectancy_per_day": -54.22,
+    "r_stability": -0.0902,
+    "yearly_R": -13.6647,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "stale_retest",
+     "exhausted",
+     "break_then_rejection"
+    ],
+    "is_noop": false,
+    "contains_noop_var": true,
+    "days_with_trade": 498,
+    "days_all_vetoed": 0,
+    "ev_r": 0.0377,
+    "n": 444,
+    "n_input": 498,
+    "n_dropped_size_gate": 54,
+    "size_gate_applicable": true,
+    "win_rate": 0.4595,
+    "avg_win_R": 0.9048,
+    "avg_loss_R": 0.7023,
+    "profit_factor": 1.0996,
+    "total_R": 16.726,
+    "max_drawdown_R": -20.415,
+    "months_green": "12/25",
+    "expectancy_per_day": 33.59,
+    "r_stability": 0.0344,
+    "yearly_R": 8.4638,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "stale_retest",
+     "exhausted",
+     "no_retest"
+    ],
+    "is_noop": false,
+    "contains_noop_var": false,
+    "days_with_trade": 497,
+    "days_all_vetoed": 1,
+    "ev_r": 0.052,
+    "n": 449,
+    "n_input": 497,
+    "n_dropped_size_gate": 48,
+    "size_gate_applicable": true,
+    "win_rate": 0.4655,
+    "avg_win_R": 0.9243,
+    "avg_loss_R": 0.7107,
+    "profit_factor": 1.1374,
+    "total_R": 23.334,
+    "max_drawdown_R": -15.655,
+    "months_green": "14/25",
+    "expectancy_per_day": 46.86,
+    "r_stability": 0.047,
+    "yearly_R": 11.8076,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "stale_retest",
+     "exhausted",
+     "ocr_not_respected"
+    ],
+    "is_noop": false,
+    "contains_noop_var": false,
+    "days_with_trade": 497,
+    "days_all_vetoed": 1,
+    "ev_r": -0.0123,
+    "n": 444,
+    "n_input": 497,
+    "n_dropped_size_gate": 53,
+    "size_gate_applicable": true,
+    "win_rate": 0.4505,
+    "avg_win_R": 0.8206,
+    "avg_loss_R": 0.6979,
+    "profit_factor": 0.9677,
+    "total_R": -5.47,
+    "max_drawdown_R": -20.853,
+    "months_green": "10/25",
+    "expectancy_per_day": -10.98,
+    "r_stability": -0.0122,
+    "yearly_R": -2.768,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "stale_retest",
+     "exhausted",
+     "chase"
+    ],
+    "is_noop": false,
+    "contains_noop_var": false,
+    "days_with_trade": 498,
+    "days_all_vetoed": 0,
+    "ev_r": 0.0571,
+    "n": 459,
+    "n_input": 498,
+    "n_dropped_size_gate": 39,
+    "size_gate_applicable": true,
+    "win_rate": 0.4662,
+    "avg_win_R": 1.0012,
+    "avg_loss_R": 0.7676,
+    "profit_factor": 1.1393,
+    "total_R": 26.197,
+    "max_drawdown_R": -21.449,
+    "months_green": "13/25",
+    "expectancy_per_day": 52.6,
+    "r_stability": 0.048,
+    "yearly_R": 13.2563,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "stale_retest",
+     "counter_trend_not_respected",
+     "break_then_rejection"
+    ],
+    "is_noop": false,
+    "contains_noop_var": true,
+    "days_with_trade": 456,
+    "days_all_vetoed": 42,
+    "ev_r": -0.079,
+    "n": 394,
+    "n_input": 456,
+    "n_dropped_size_gate": 62,
+    "size_gate_applicable": true,
+    "win_rate": 0.4416,
+    "avg_win_R": 0.5741,
+    "avg_loss_R": 0.601,
+    "profit_factor": 0.7625,
+    "total_R": -31.119,
+    "max_drawdown_R": -31.687,
+    "months_green": "8/25",
+    "expectancy_per_day": -62.49,
+    "r_stability": -0.1012,
+    "yearly_R": -15.747,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "stale_retest",
+     "counter_trend_not_respected",
+     "no_retest"
+    ],
+    "is_noop": false,
+    "contains_noop_var": false,
+    "days_with_trade": 450,
+    "days_all_vetoed": 48,
+    "ev_r": -0.053,
+    "n": 394,
+    "n_input": 450,
+    "n_dropped_size_gate": 56,
+    "size_gate_applicable": true,
+    "win_rate": 0.4442,
+    "avg_win_R": 0.6338,
+    "avg_loss_R": 0.6074,
+    "profit_factor": 0.8415,
+    "total_R": -20.885,
+    "max_drawdown_R": -21.453,
+    "months_green": "10/25",
+    "expectancy_per_day": -41.94,
+    "r_stability": -0.063,
+    "yearly_R": -10.5683,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "stale_retest",
+     "counter_trend_not_respected",
+     "ocr_not_respected"
+    ],
+    "is_noop": false,
+    "contains_noop_var": false,
+    "days_with_trade": 451,
+    "days_all_vetoed": 47,
+    "ev_r": -0.0883,
+    "n": 391,
+    "n_input": 451,
+    "n_dropped_size_gate": 60,
+    "size_gate_applicable": true,
+    "win_rate": 0.4348,
+    "avg_win_R": 0.5735,
+    "avg_loss_R": 0.6028,
+    "profit_factor": 0.7386,
+    "total_R": -34.514,
+    "max_drawdown_R": -35.013,
+    "months_green": "8/25",
+    "expectancy_per_day": -69.31,
+    "r_stability": -0.1131,
+    "yearly_R": -17.4649,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "stale_retest",
+     "counter_trend_not_respected",
+     "chase"
+    ],
+    "is_noop": false,
+    "contains_noop_var": false,
+    "days_with_trade": 424,
+    "days_all_vetoed": 74,
+    "ev_r": -0.0584,
+    "n": 384,
+    "n_input": 424,
+    "n_dropped_size_gate": 40,
+    "size_gate_applicable": true,
+    "win_rate": 0.4583,
+    "avg_win_R": 0.6319,
+    "avg_loss_R": 0.6456,
+    "profit_factor": 0.8322,
+    "total_R": -22.424,
+    "max_drawdown_R": -26.957,
+    "months_green": "8/25",
+    "expectancy_per_day": -45.03,
+    "r_stability": -0.0686,
+    "yearly_R": -11.3471,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "stale_retest",
+     "break_then_rejection",
+     "no_retest"
+    ],
+    "is_noop": false,
+    "contains_noop_var": true,
+    "days_with_trade": 497,
+    "days_all_vetoed": 1,
+    "ev_r": 0.0505,
+    "n": 449,
+    "n_input": 497,
+    "n_dropped_size_gate": 48,
+    "size_gate_applicable": true,
+    "win_rate": 0.4655,
+    "avg_win_R": 0.9213,
+    "avg_loss_R": 0.7107,
+    "profit_factor": 1.1336,
+    "total_R": 22.689,
+    "max_drawdown_R": -15.655,
+    "months_green": "14/25",
+    "expectancy_per_day": 45.56,
+    "r_stability": 0.0458,
+    "yearly_R": 11.4812,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "stale_retest",
+     "break_then_rejection",
+     "ocr_not_respected"
+    ],
+    "is_noop": false,
+    "contains_noop_var": true,
+    "days_with_trade": 497,
+    "days_all_vetoed": 1,
+    "ev_r": -0.0123,
+    "n": 444,
+    "n_input": 497,
+    "n_dropped_size_gate": 53,
+    "size_gate_applicable": true,
+    "win_rate": 0.4505,
+    "avg_win_R": 0.8206,
+    "avg_loss_R": 0.6979,
+    "profit_factor": 0.9677,
+    "total_R": -5.47,
+    "max_drawdown_R": -20.853,
+    "months_green": "10/25",
+    "expectancy_per_day": -10.98,
+    "r_stability": -0.0122,
+    "yearly_R": -2.768,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "stale_retest",
+     "break_then_rejection",
+     "chase"
+    ],
+    "is_noop": false,
+    "contains_noop_var": true,
+    "days_with_trade": 498,
+    "days_all_vetoed": 0,
+    "ev_r": 0.0571,
+    "n": 459,
+    "n_input": 498,
+    "n_dropped_size_gate": 39,
+    "size_gate_applicable": true,
+    "win_rate": 0.4662,
+    "avg_win_R": 1.0012,
+    "avg_loss_R": 0.7676,
+    "profit_factor": 1.1393,
+    "total_R": 26.197,
+    "max_drawdown_R": -21.449,
+    "months_green": "13/25",
+    "expectancy_per_day": 52.6,
+    "r_stability": 0.048,
+    "yearly_R": 13.2563,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "stale_retest",
+     "no_retest",
+     "ocr_not_respected"
+    ],
+    "is_noop": false,
+    "contains_noop_var": false,
+    "days_with_trade": 497,
+    "days_all_vetoed": 1,
+    "ev_r": -0.0007,
+    "n": 449,
+    "n_input": 497,
+    "n_dropped_size_gate": 48,
+    "size_gate_applicable": true,
+    "win_rate": 0.4566,
+    "avg_win_R": 0.8355,
+    "avg_loss_R": 0.7061,
+    "profit_factor": 0.9983,
+    "total_R": -0.299,
+    "max_drawdown_R": -19.554,
+    "months_green": "12/25",
+    "expectancy_per_day": -0.6,
+    "r_stability": -0.0007,
+    "yearly_R": -0.1513,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "stale_retest",
+     "no_retest",
+     "chase"
+    ],
+    "is_noop": false,
+    "contains_noop_var": false,
+    "days_with_trade": 497,
+    "days_all_vetoed": 1,
+    "ev_r": 0.0739,
+    "n": 464,
+    "n_input": 497,
+    "n_dropped_size_gate": 33,
+    "size_gate_applicable": true,
+    "win_rate": 0.4806,
+    "avg_win_R": 1.0062,
+    "avg_loss_R": 0.7887,
+    "profit_factor": 1.1805,
+    "total_R": 34.31,
+    "max_drawdown_R": -14.274,
+    "months_green": "13/25",
+    "expectancy_per_day": 68.9,
+    "r_stability": 0.0616,
+    "yearly_R": 17.3617,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "stale_retest",
+     "ocr_not_respected",
+     "chase"
+    ],
+    "is_noop": false,
+    "contains_noop_var": false,
+    "days_with_trade": 497,
+    "days_all_vetoed": 1,
+    "ev_r": 0.0043,
+    "n": 459,
+    "n_input": 497,
+    "n_dropped_size_gate": 38,
+    "size_gate_applicable": true,
+    "win_rate": 0.4641,
+    "avg_win_R": 0.8932,
+    "avg_loss_R": 0.7653,
+    "profit_factor": 1.0105,
+    "total_R": 1.979,
+    "max_drawdown_R": -24.825,
+    "months_green": "11/25",
+    "expectancy_per_day": 3.97,
+    "r_stability": 0.004,
+    "yearly_R": 1.0014,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "level_not_respected",
+     "exhausted",
+     "counter_trend_not_respected"
+    ],
+    "is_noop": false,
+    "contains_noop_var": false,
+    "days_with_trade": 323,
+    "days_all_vetoed": 175,
+    "ev_r": -0.113,
+    "n": 281,
+    "n_input": 323,
+    "n_dropped_size_gate": 42,
+    "size_gate_applicable": true,
+    "win_rate": 0.4448,
+    "avg_win_R": 0.5102,
+    "avg_loss_R": 0.6163,
+    "profit_factor": 0.6675,
+    "total_R": -31.764,
+    "max_drawdown_R": -32.613,
+    "months_green": "8/25",
+    "expectancy_per_day": -63.78,
+    "r_stability": -0.1565,
+    "yearly_R": -16.0733,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "level_not_respected",
+     "exhausted",
+     "break_then_rejection"
+    ],
+    "is_noop": false,
+    "contains_noop_var": true,
+    "days_with_trade": 494,
+    "days_all_vetoed": 4,
+    "ev_r": -0.0535,
+    "n": 425,
+    "n_input": 494,
+    "n_dropped_size_gate": 69,
+    "size_gate_applicable": true,
+    "win_rate": 0.4471,
+    "avg_win_R": 0.8159,
+    "avg_loss_R": 0.7628,
+    "profit_factor": 0.8721,
+    "total_R": -22.724,
+    "max_drawdown_R": -35.199,
+    "months_green": "9/25",
+    "expectancy_per_day": -45.63,
+    "r_stability": -0.051,
+    "yearly_R": -11.4989,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "level_not_respected",
+     "exhausted",
+     "no_retest"
+    ],
+    "is_noop": false,
+    "contains_noop_var": false,
+    "days_with_trade": 492,
+    "days_all_vetoed": 6,
+    "ev_r": -0.0183,
+    "n": 428,
+    "n_input": 492,
+    "n_dropped_size_gate": 64,
+    "size_gate_applicable": true,
+    "win_rate": 0.4509,
+    "avg_win_R": 0.8969,
+    "avg_loss_R": 0.7766,
+    "profit_factor": 0.9566,
+    "total_R": -7.849,
+    "max_drawdown_R": -25.108,
+    "months_green": "12/25",
+    "expectancy_per_day": -15.76,
+    "r_stability": -0.0166,
+    "yearly_R": -3.9718,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "level_not_respected",
+     "exhausted",
+     "ocr_not_respected"
+    ],
+    "is_noop": false,
+    "contains_noop_var": false,
+    "days_with_trade": 484,
+    "days_all_vetoed": 14,
+    "ev_r": -0.0412,
+    "n": 418,
+    "n_input": 484,
+    "n_dropped_size_gate": 66,
+    "size_gate_applicable": true,
+    "win_rate": 0.4522,
+    "avg_win_R": 0.7957,
+    "avg_loss_R": 0.7383,
+    "profit_factor": 0.8973,
+    "total_R": -17.206,
+    "max_drawdown_R": -27.922,
+    "months_green": "9/25",
+    "expectancy_per_day": -34.55,
+    "r_stability": -0.0416,
+    "yearly_R": -8.7067,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "level_not_respected",
+     "exhausted",
+     "chase"
+    ],
+    "is_noop": false,
+    "contains_noop_var": false,
+    "days_with_trade": 485,
+    "days_all_vetoed": 13,
+    "ev_r": -0.0145,
+    "n": 433,
+    "n_input": 485,
+    "n_dropped_size_gate": 52,
+    "size_gate_applicable": true,
+    "win_rate": 0.4573,
+    "avg_win_R": 0.9506,
+    "avg_loss_R": 0.8312,
+    "profit_factor": 0.9676,
+    "total_R": -6.296,
+    "max_drawdown_R": -26.45,
+    "months_green": "11/25",
+    "expectancy_per_day": -12.64,
+    "r_stability": -0.0122,
+    "yearly_R": -3.1859,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "level_not_respected",
+     "counter_trend_not_respected",
+     "break_then_rejection"
+    ],
+    "is_noop": false,
+    "contains_noop_var": true,
+    "days_with_trade": 334,
+    "days_all_vetoed": 164,
+    "ev_r": -0.1167,
+    "n": 291,
+    "n_input": 334,
+    "n_dropped_size_gate": 43,
+    "size_gate_applicable": true,
+    "win_rate": 0.4433,
+    "avg_win_R": 0.5106,
+    "avg_loss_R": 0.62,
+    "profit_factor": 0.6598,
+    "total_R": -33.96,
+    "max_drawdown_R": -34.403,
+    "months_green": "7/25",
+    "expectancy_per_day": -68.19,
+    "r_stability": -0.1615,
+    "yearly_R": -17.1846,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "level_not_respected",
+     "counter_trend_not_respected",
+     "no_retest"
+    ],
+    "is_noop": false,
+    "contains_noop_var": false,
+    "days_with_trade": 324,
+    "days_all_vetoed": 174,
+    "ev_r": -0.0997,
+    "n": 283,
+    "n_input": 324,
+    "n_dropped_size_gate": 41,
+    "size_gate_applicable": true,
+    "win_rate": 0.4488,
+    "avg_win_R": 0.5642,
+    "avg_loss_R": 0.6443,
+    "profit_factor": 0.7175,
+    "total_R": -28.215,
+    "max_drawdown_R": -30.481,
+    "months_green": "7/25",
+    "expectancy_per_day": -56.66,
+    "r_stability": -0.1264,
+    "yearly_R": -14.2775,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "level_not_respected",
+     "counter_trend_not_respected",
+     "ocr_not_respected"
+    ],
+    "is_noop": false,
+    "contains_noop_var": false,
+    "days_with_trade": 324,
+    "days_all_vetoed": 174,
+    "ev_r": -0.108,
+    "n": 282,
+    "n_input": 324,
+    "n_dropped_size_gate": 42,
+    "size_gate_applicable": true,
+    "win_rate": 0.4433,
+    "avg_win_R": 0.5202,
+    "avg_loss_R": 0.612,
+    "profit_factor": 0.6811,
+    "total_R": -30.443,
+    "max_drawdown_R": -32.951,
+    "months_green": "8/25",
+    "expectancy_per_day": -61.13,
+    "r_stability": -0.1489,
+    "yearly_R": -15.4049,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "level_not_respected",
+     "counter_trend_not_respected",
+     "chase"
+    ],
+    "is_noop": false,
+    "contains_noop_var": false,
+    "days_with_trade": 263,
+    "days_all_vetoed": 235,
+    "ev_r": -0.1285,
+    "n": 235,
+    "n_input": 263,
+    "n_dropped_size_gate": 28,
+    "size_gate_applicable": true,
+    "win_rate": 0.4596,
+    "avg_win_R": 0.5481,
+    "avg_loss_R": 0.7038,
+    "profit_factor": 0.6622,
+    "total_R": -30.195,
+    "max_drawdown_R": -30.715,
+    "months_green": "6/25",
+    "expectancy_per_day": -60.63,
+    "r_stability": -0.1678,
+    "yearly_R": -15.2794,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "level_not_respected",
+     "break_then_rejection",
+     "no_retest"
+    ],
+    "is_noop": false,
+    "contains_noop_var": true,
+    "days_with_trade": 494,
+    "days_all_vetoed": 4,
+    "ev_r": -0.0323,
+    "n": 431,
+    "n_input": 494,
+    "n_dropped_size_gate": 63,
+    "size_gate_applicable": true,
+    "win_rate": 0.4478,
+    "avg_win_R": 0.8712,
+    "avg_loss_R": 0.7715,
+    "profit_factor": 0.9236,
+    "total_R": -13.915,
+    "max_drawdown_R": -28.822,
+    "months_green": "12/25",
+    "expectancy_per_day": -27.94,
+    "r_stability": -0.0298,
+    "yearly_R": -7.0413,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "level_not_respected",
+     "break_then_rejection",
+     "ocr_not_respected"
+    ],
+    "is_noop": false,
+    "contains_noop_var": true,
+    "days_with_trade": 487,
+    "days_all_vetoed": 11,
+    "ev_r": -0.0632,
+    "n": 423,
+    "n_input": 487,
+    "n_dropped_size_gate": 64,
+    "size_gate_applicable": true,
+    "win_rate": 0.4444,
+    "avg_win_R": 0.7691,
+    "avg_loss_R": 0.7353,
+    "profit_factor": 0.8439,
+    "total_R": -26.744,
+    "max_drawdown_R": -34.701,
+    "months_green": "10/25",
+    "expectancy_per_day": -53.7,
+    "r_stability": -0.0652,
+    "yearly_R": -13.5331,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "level_not_respected",
+     "break_then_rejection",
+     "chase"
+    ],
+    "is_noop": false,
+    "contains_noop_var": true,
+    "days_with_trade": 490,
+    "days_all_vetoed": 8,
+    "ev_r": -0.0208,
+    "n": 438,
+    "n_input": 490,
+    "n_dropped_size_gate": 52,
+    "size_gate_applicable": true,
+    "win_rate": 0.4543,
+    "avg_win_R": 0.952,
+    "avg_loss_R": 0.8342,
+    "profit_factor": 0.9542,
+    "total_R": -9.094,
+    "max_drawdown_R": -34.601,
+    "months_green": "12/25",
+    "expectancy_per_day": -18.26,
+    "r_stability": -0.0173,
+    "yearly_R": -4.6018,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "level_not_respected",
+     "no_retest",
+     "ocr_not_respected"
+    ],
+    "is_noop": false,
+    "contains_noop_var": false,
+    "days_with_trade": 486,
+    "days_all_vetoed": 12,
+    "ev_r": -0.0645,
+    "n": 424,
+    "n_input": 486,
+    "n_dropped_size_gate": 62,
+    "size_gate_applicable": true,
+    "win_rate": 0.4363,
+    "avg_win_R": 0.7955,
+    "avg_loss_R": 0.7364,
+    "profit_factor": 0.8433,
+    "total_R": -27.345,
+    "max_drawdown_R": -39.104,
+    "months_green": "10/25",
+    "expectancy_per_day": -54.91,
+    "r_stability": -0.0659,
+    "yearly_R": -13.8372,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "level_not_respected",
+     "no_retest",
+     "chase"
+    ],
+    "is_noop": false,
+    "contains_noop_var": false,
+    "days_with_trade": 488,
+    "days_all_vetoed": 10,
+    "ev_r": 0.0009,
+    "n": 444,
+    "n_input": 488,
+    "n_dropped_size_gate": 44,
+    "size_gate_applicable": true,
+    "win_rate": 0.4572,
+    "avg_win_R": 0.9952,
+    "avg_loss_R": 0.8402,
+    "profit_factor": 1.0019,
+    "total_R": 0.388,
+    "max_drawdown_R": -29.607,
+    "months_green": "12/25",
+    "expectancy_per_day": 0.78,
+    "r_stability": 0.0007,
+    "yearly_R": 0.1963,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "level_not_respected",
+     "ocr_not_respected",
+     "chase"
+    ],
+    "is_noop": false,
+    "contains_noop_var": false,
+    "days_with_trade": 478,
+    "days_all_vetoed": 20,
+    "ev_r": -0.0359,
+    "n": 432,
+    "n_input": 478,
+    "n_dropped_size_gate": 46,
+    "size_gate_applicable": true,
+    "win_rate": 0.456,
+    "avg_win_R": 0.8878,
+    "avg_loss_R": 0.8137,
+    "profit_factor": 0.9186,
+    "total_R": -15.504,
+    "max_drawdown_R": -29.783,
+    "months_green": "11/25",
+    "expectancy_per_day": -31.13,
+    "r_stability": -0.0316,
+    "yearly_R": -7.8454,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "exhausted",
+     "counter_trend_not_respected",
+     "break_then_rejection"
+    ],
+    "is_noop": false,
+    "contains_noop_var": true,
+    "days_with_trade": 445,
+    "days_all_vetoed": 53,
+    "ev_r": -0.0707,
+    "n": 382,
+    "n_input": 445,
+    "n_dropped_size_gate": 63,
+    "size_gate_applicable": true,
+    "win_rate": 0.445,
+    "avg_win_R": 0.5811,
+    "avg_loss_R": 0.599,
+    "profit_factor": 0.7853,
+    "total_R": -27.004,
+    "max_drawdown_R": -27.909,
+    "months_green": "9/25",
+    "expectancy_per_day": -54.22,
+    "r_stability": -0.0902,
+    "yearly_R": -13.6647,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "exhausted",
+     "counter_trend_not_respected",
+     "no_retest"
+    ],
+    "is_noop": false,
+    "contains_noop_var": false,
+    "days_with_trade": 439,
+    "days_all_vetoed": 59,
+    "ev_r": -0.044,
+    "n": 383,
+    "n_input": 439,
+    "n_dropped_size_gate": 56,
+    "size_gate_applicable": true,
+    "win_rate": 0.4465,
+    "avg_win_R": 0.6422,
+    "avg_loss_R": 0.6032,
+    "profit_factor": 0.867,
+    "total_R": -16.85,
+    "max_drawdown_R": -17.989,
+    "months_green": "10/25",
+    "expectancy_per_day": -33.84,
+    "r_stability": -0.0521,
+    "yearly_R": -8.5265,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "exhausted",
+     "counter_trend_not_respected",
+     "ocr_not_respected"
+    ],
+    "is_noop": false,
+    "contains_noop_var": false,
+    "days_with_trade": 439,
+    "days_all_vetoed": 59,
+    "ev_r": -0.0808,
+    "n": 378,
+    "n_input": 439,
+    "n_dropped_size_gate": 61,
+    "size_gate_applicable": true,
+    "win_rate": 0.4365,
+    "avg_win_R": 0.5834,
+    "avg_loss_R": 0.6009,
+    "profit_factor": 0.7591,
+    "total_R": -30.545,
+    "max_drawdown_R": -31.45,
+    "months_green": "9/25",
+    "expectancy_per_day": -61.34,
+    "r_stability": -0.1029,
+    "yearly_R": -15.4565,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "exhausted",
+     "counter_trend_not_respected",
+     "chase"
+    ],
+    "is_noop": false,
+    "contains_noop_var": false,
+    "days_with_trade": 409,
+    "days_all_vetoed": 89,
+    "ev_r": -0.0517,
+    "n": 368,
+    "n_input": 409,
+    "n_dropped_size_gate": 41,
+    "size_gate_applicable": true,
+    "win_rate": 0.4592,
+    "avg_win_R": 0.6491,
+    "avg_loss_R": 0.6501,
+    "profit_factor": 0.8523,
+    "total_R": -19.013,
+    "max_drawdown_R": -23.598,
+    "months_green": "7/25",
+    "expectancy_per_day": -38.18,
+    "r_stability": -0.0599,
+    "yearly_R": -9.621,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "exhausted",
+     "break_then_rejection",
+     "no_retest"
+    ],
+    "is_noop": false,
+    "contains_noop_var": true,
+    "days_with_trade": 497,
+    "days_all_vetoed": 1,
+    "ev_r": 0.052,
+    "n": 449,
+    "n_input": 497,
+    "n_dropped_size_gate": 48,
+    "size_gate_applicable": true,
+    "win_rate": 0.4655,
+    "avg_win_R": 0.9243,
+    "avg_loss_R": 0.7107,
+    "profit_factor": 1.1374,
+    "total_R": 23.334,
+    "max_drawdown_R": -15.655,
+    "months_green": "14/25",
+    "expectancy_per_day": 46.86,
+    "r_stability": 0.047,
+    "yearly_R": 11.8076,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "exhausted",
+     "break_then_rejection",
+     "ocr_not_respected"
+    ],
+    "is_noop": false,
+    "contains_noop_var": true,
+    "days_with_trade": 497,
+    "days_all_vetoed": 1,
+    "ev_r": -0.0123,
+    "n": 444,
+    "n_input": 497,
+    "n_dropped_size_gate": 53,
+    "size_gate_applicable": true,
+    "win_rate": 0.4505,
+    "avg_win_R": 0.8206,
+    "avg_loss_R": 0.6979,
+    "profit_factor": 0.9677,
+    "total_R": -5.47,
+    "max_drawdown_R": -20.853,
+    "months_green": "10/25",
+    "expectancy_per_day": -10.98,
+    "r_stability": -0.0122,
+    "yearly_R": -2.768,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "exhausted",
+     "break_then_rejection",
+     "chase"
+    ],
+    "is_noop": false,
+    "contains_noop_var": true,
+    "days_with_trade": 498,
+    "days_all_vetoed": 0,
+    "ev_r": 0.0571,
+    "n": 459,
+    "n_input": 498,
+    "n_dropped_size_gate": 39,
+    "size_gate_applicable": true,
+    "win_rate": 0.4662,
+    "avg_win_R": 1.0012,
+    "avg_loss_R": 0.7676,
+    "profit_factor": 1.1393,
+    "total_R": 26.197,
+    "max_drawdown_R": -21.449,
+    "months_green": "13/25",
+    "expectancy_per_day": 52.6,
+    "r_stability": 0.048,
+    "yearly_R": 13.2563,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "exhausted",
+     "no_retest",
+     "ocr_not_respected"
+    ],
+    "is_noop": false,
+    "contains_noop_var": false,
+    "days_with_trade": 497,
+    "days_all_vetoed": 1,
+    "ev_r": 0.0008,
+    "n": 449,
+    "n_input": 497,
+    "n_dropped_size_gate": 48,
+    "size_gate_applicable": true,
+    "win_rate": 0.4566,
+    "avg_win_R": 0.8387,
+    "avg_loss_R": 0.7061,
+    "profit_factor": 1.002,
+    "total_R": 0.346,
+    "max_drawdown_R": -19.554,
+    "months_green": "12/25",
+    "expectancy_per_day": 0.69,
+    "r_stability": 0.0008,
+    "yearly_R": 0.1751,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "exhausted",
+     "no_retest",
+     "chase"
+    ],
+    "is_noop": false,
+    "contains_noop_var": false,
+    "days_with_trade": 497,
+    "days_all_vetoed": 1,
+    "ev_r": 0.0753,
+    "n": 464,
+    "n_input": 497,
+    "n_dropped_size_gate": 33,
+    "size_gate_applicable": true,
+    "win_rate": 0.4806,
+    "avg_win_R": 1.0091,
+    "avg_loss_R": 0.7887,
+    "profit_factor": 1.1839,
+    "total_R": 34.955,
+    "max_drawdown_R": -14.274,
+    "months_green": "13/25",
+    "expectancy_per_day": 70.19,
+    "r_stability": 0.0627,
+    "yearly_R": 17.6881,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "exhausted",
+     "ocr_not_respected",
+     "chase"
+    ],
+    "is_noop": false,
+    "contains_noop_var": false,
+    "days_with_trade": 497,
+    "days_all_vetoed": 1,
+    "ev_r": 0.0043,
+    "n": 459,
+    "n_input": 497,
+    "n_dropped_size_gate": 38,
+    "size_gate_applicable": true,
+    "win_rate": 0.4641,
+    "avg_win_R": 0.8932,
+    "avg_loss_R": 0.7653,
+    "profit_factor": 1.0105,
+    "total_R": 1.979,
+    "max_drawdown_R": -24.825,
+    "months_green": "11/25",
+    "expectancy_per_day": 3.97,
+    "r_stability": 0.004,
+    "yearly_R": 1.0014,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "counter_trend_not_respected",
+     "break_then_rejection",
+     "no_retest"
+    ],
+    "is_noop": false,
+    "contains_noop_var": true,
+    "days_with_trade": 450,
+    "days_all_vetoed": 48,
+    "ev_r": -0.053,
+    "n": 394,
+    "n_input": 450,
+    "n_dropped_size_gate": 56,
+    "size_gate_applicable": true,
+    "win_rate": 0.4442,
+    "avg_win_R": 0.6338,
+    "avg_loss_R": 0.6074,
+    "profit_factor": 0.8415,
+    "total_R": -20.885,
+    "max_drawdown_R": -21.453,
+    "months_green": "10/25",
+    "expectancy_per_day": -41.94,
+    "r_stability": -0.063,
+    "yearly_R": -10.5683,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "counter_trend_not_respected",
+     "break_then_rejection",
+     "ocr_not_respected"
+    ],
+    "is_noop": false,
+    "contains_noop_var": true,
+    "days_with_trade": 451,
+    "days_all_vetoed": 47,
+    "ev_r": -0.0883,
+    "n": 391,
+    "n_input": 451,
+    "n_dropped_size_gate": 60,
+    "size_gate_applicable": true,
+    "win_rate": 0.4348,
+    "avg_win_R": 0.5735,
+    "avg_loss_R": 0.6028,
+    "profit_factor": 0.7386,
+    "total_R": -34.514,
+    "max_drawdown_R": -35.013,
+    "months_green": "8/25",
+    "expectancy_per_day": -69.31,
+    "r_stability": -0.1131,
+    "yearly_R": -17.4649,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "counter_trend_not_respected",
+     "break_then_rejection",
+     "chase"
+    ],
+    "is_noop": false,
+    "contains_noop_var": true,
+    "days_with_trade": 424,
+    "days_all_vetoed": 74,
+    "ev_r": -0.0584,
+    "n": 384,
+    "n_input": 424,
+    "n_dropped_size_gate": 40,
+    "size_gate_applicable": true,
+    "win_rate": 0.4583,
+    "avg_win_R": 0.6319,
+    "avg_loss_R": 0.6456,
+    "profit_factor": 0.8322,
+    "total_R": -22.424,
+    "max_drawdown_R": -26.957,
+    "months_green": "8/25",
+    "expectancy_per_day": -45.03,
+    "r_stability": -0.0686,
+    "yearly_R": -11.3471,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "counter_trend_not_respected",
+     "no_retest",
+     "ocr_not_respected"
+    ],
+    "is_noop": false,
+    "contains_noop_var": false,
+    "days_with_trade": 446,
+    "days_all_vetoed": 52,
+    "ev_r": -0.061,
+    "n": 391,
+    "n_input": 446,
+    "n_dropped_size_gate": 55,
+    "size_gate_applicable": true,
+    "win_rate": 0.4399,
+    "avg_win_R": 0.6277,
+    "avg_loss_R": 0.6074,
+    "profit_factor": 0.8191,
+    "total_R": -23.838,
+    "max_drawdown_R": -24.337,
+    "months_green": "10/25",
+    "expectancy_per_day": -47.87,
+    "r_stability": -0.0736,
+    "yearly_R": -12.0626,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "counter_trend_not_respected",
+     "no_retest",
+     "chase"
+    ],
+    "is_noop": false,
+    "contains_noop_var": false,
+    "days_with_trade": 417,
+    "days_all_vetoed": 81,
+    "ev_r": -0.0471,
+    "n": 380,
+    "n_input": 417,
+    "n_dropped_size_gate": 37,
+    "size_gate_applicable": true,
+    "win_rate": 0.4632,
+    "avg_win_R": 0.6653,
+    "avg_loss_R": 0.6617,
+    "profit_factor": 0.8674,
+    "total_R": -17.894,
+    "max_drawdown_R": -23.818,
+    "months_green": "8/25",
+    "expectancy_per_day": -35.93,
+    "r_stability": -0.0527,
+    "yearly_R": -9.0548,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "counter_trend_not_respected",
+     "ocr_not_respected",
+     "chase"
+    ],
+    "is_noop": false,
+    "contains_noop_var": false,
+    "days_with_trade": 414,
+    "days_all_vetoed": 84,
+    "ev_r": -0.056,
+    "n": 377,
+    "n_input": 414,
+    "n_dropped_size_gate": 37,
+    "size_gate_applicable": true,
+    "win_rate": 0.4536,
+    "avg_win_R": 0.6407,
+    "avg_loss_R": 0.6373,
+    "profit_factor": 0.8385,
+    "total_R": -21.095,
+    "max_drawdown_R": -24.38,
+    "months_green": "8/25",
+    "expectancy_per_day": -42.36,
+    "r_stability": -0.0656,
+    "yearly_R": -10.6746,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "break_then_rejection",
+     "no_retest",
+     "ocr_not_respected"
+    ],
+    "is_noop": false,
+    "contains_noop_var": true,
+    "days_with_trade": 497,
+    "days_all_vetoed": 1,
+    "ev_r": -0.0007,
+    "n": 449,
+    "n_input": 497,
+    "n_dropped_size_gate": 48,
+    "size_gate_applicable": true,
+    "win_rate": 0.4566,
+    "avg_win_R": 0.8355,
+    "avg_loss_R": 0.7061,
+    "profit_factor": 0.9983,
+    "total_R": -0.299,
+    "max_drawdown_R": -19.554,
+    "months_green": "12/25",
+    "expectancy_per_day": -0.6,
+    "r_stability": -0.0007,
+    "yearly_R": -0.1513,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "break_then_rejection",
+     "no_retest",
+     "chase"
+    ],
+    "is_noop": false,
+    "contains_noop_var": true,
+    "days_with_trade": 497,
+    "days_all_vetoed": 1,
+    "ev_r": 0.0739,
+    "n": 464,
+    "n_input": 497,
+    "n_dropped_size_gate": 33,
+    "size_gate_applicable": true,
+    "win_rate": 0.4806,
+    "avg_win_R": 1.0062,
+    "avg_loss_R": 0.7887,
+    "profit_factor": 1.1805,
+    "total_R": 34.31,
+    "max_drawdown_R": -14.274,
+    "months_green": "13/25",
+    "expectancy_per_day": 68.9,
+    "r_stability": 0.0616,
+    "yearly_R": 17.3617,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "break_then_rejection",
+     "ocr_not_respected",
+     "chase"
+    ],
+    "is_noop": false,
+    "contains_noop_var": true,
+    "days_with_trade": 497,
+    "days_all_vetoed": 1,
+    "ev_r": 0.0043,
+    "n": 459,
+    "n_input": 497,
+    "n_dropped_size_gate": 38,
+    "size_gate_applicable": true,
+    "win_rate": 0.4641,
+    "avg_win_R": 0.8932,
+    "avg_loss_R": 0.7653,
+    "profit_factor": 1.0105,
+    "total_R": 1.979,
+    "max_drawdown_R": -24.825,
+    "months_green": "11/25",
+    "expectancy_per_day": 3.97,
+    "r_stability": 0.004,
+    "yearly_R": 1.0014,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   },
+   {
+    "combo": [
+     "no_retest",
+     "ocr_not_respected",
+     "chase"
+    ],
+    "is_noop": false,
+    "contains_noop_var": false,
+    "days_with_trade": 497,
+    "days_all_vetoed": 1,
+    "ev_r": 0.0062,
+    "n": 464,
+    "n_input": 497,
+    "n_dropped_size_gate": 33,
+    "size_gate_applicable": true,
+    "win_rate": 0.4698,
+    "avg_win_R": 0.8961,
+    "avg_loss_R": 0.7823,
+    "profit_factor": 1.015,
+    "total_R": 2.896,
+    "max_drawdown_R": -18.764,
+    "months_green": "12/25",
+    "expectancy_per_day": 5.82,
+    "r_stability": 0.0058,
+    "yearly_R": 1.4654,
+    "risk_dollars": 1000.0,
+    "sessions_used": 498
+   }
+  ]
+ },
+ "holdout_top_arms": {
+  "2way": [
+   {
+    "combo": [
+     "no_retest",
+     "chase"
+    ],
+    "full": {
+     "ev_r": 0.0739,
+     "n": 464
+    },
+    "year1": {
+     "ev_r": 0.1723,
+     "n": 227
+    },
+    "year2": {
+     "ev_r": -0.0203,
+     "n": 237
+    },
+    "sign_consistent": false
+   },
+   {
+    "combo": [
+     "stale_retest",
+     "chase"
+    ],
+    "full": {
+     "ev_r": 0.0571,
+     "n": 459
+    },
+    "year1": {
+     "ev_r": 0.1848,
+     "n": 226
+    },
+    "year2": {
+     "ev_r": -0.0669,
+     "n": 233
+    },
+    "sign_consistent": false
+   },
+   {
+    "combo": [
+     "exhausted",
+     "chase"
+    ],
+    "full": {
+     "ev_r": 0.0571,
+     "n": 459
+    },
+    "year1": {
+     "ev_r": 0.1848,
+     "n": 226
+    },
+    "year2": {
+     "ev_r": -0.0669,
+     "n": 233
+    },
+    "sign_consistent": false
+   },
+   {
+    "combo": [
+     "break_then_rejection",
+     "chase"
+    ],
+    "full": {
+     "ev_r": 0.0571,
+     "n": 459
+    },
+    "year1": {
+     "ev_r": 0.1848,
+     "n": 226
+    },
+    "year2": {
+     "ev_r": -0.0669,
+     "n": 233
+    },
+    "sign_consistent": false
+   },
+   {
+    "combo": [
+     "exhausted",
+     "no_retest"
+    ],
+    "full": {
+     "ev_r": 0.052,
+     "n": 449
+    },
+    "year1": {
+     "ev_r": 0.1275,
+     "n": 229
+    },
+    "year2": {
+     "ev_r": -0.0266,
+     "n": 220
+    },
+    "sign_consistent": false
+   },
+   {
+    "combo": [
+     "stale_retest",
+     "no_retest"
+    ],
+    "full": {
+     "ev_r": 0.0505,
+     "n": 449
+    },
+    "year1": {
+     "ev_r": 0.1247,
+     "n": 229
+    },
+    "year2": {
+     "ev_r": -0.0266,
+     "n": 220
+    },
+    "sign_consistent": false
+   },
+   {
+    "combo": [
+     "break_then_rejection",
+     "no_retest"
+    ],
+    "full": {
+     "ev_r": 0.0505,
+     "n": 449
+    },
+    "year1": {
+     "ev_r": 0.1247,
+     "n": 229
+    },
+    "year2": {
+     "ev_r": -0.0266,
+     "n": 220
+    },
+    "sign_consistent": false
+   },
+   {
+    "combo": [
+     "stale_retest",
+     "exhausted"
+    ],
+    "full": {
+     "ev_r": 0.0377,
+     "n": 444
+    },
+    "year1": {
+     "ev_r": 0.1343,
+     "n": 228
+    },
+    "year2": {
+     "ev_r": -0.0644,
+     "n": 216
+    },
+    "sign_consistent": false
+   },
+   {
+    "combo": [
+     "stale_retest",
+     "break_then_rejection"
+    ],
+    "full": {
+     "ev_r": 0.0377,
+     "n": 444
+    },
+    "year1": {
+     "ev_r": 0.1343,
+     "n": 228
+    },
+    "year2": {
+     "ev_r": -0.0644,
+     "n": 216
+    },
+    "sign_consistent": false
+   },
+   {
+    "combo": [
+     "exhausted",
+     "break_then_rejection"
+    ],
+    "full": {
+     "ev_r": 0.0377,
+     "n": 444
+    },
+    "year1": {
+     "ev_r": 0.1343,
+     "n": 228
+    },
+    "year2": {
+     "ev_r": -0.0644,
+     "n": 216
+    },
+    "sign_consistent": false
+   }
+  ],
+  "3way": [
+   {
+    "combo": [
+     "exhausted",
+     "no_retest",
+     "chase"
+    ],
+    "full": {
+     "ev_r": 0.0753,
+     "n": 464
+    },
+    "year1": {
+     "ev_r": 0.1752,
+     "n": 227
+    },
+    "year2": {
+     "ev_r": -0.0203,
+     "n": 237
+    },
+    "sign_consistent": false
+   },
+   {
+    "combo": [
+     "stale_retest",
+     "no_retest",
+     "chase"
+    ],
+    "full": {
+     "ev_r": 0.0739,
+     "n": 464
+    },
+    "year1": {
+     "ev_r": 0.1723,
+     "n": 227
+    },
+    "year2": {
+     "ev_r": -0.0203,
+     "n": 237
+    },
+    "sign_consistent": false
+   },
+   {
+    "combo": [
+     "break_then_rejection",
+     "no_retest",
+     "chase"
+    ],
+    "full": {
+     "ev_r": 0.0739,
+     "n": 464
+    },
+    "year1": {
+     "ev_r": 0.1723,
+     "n": 227
+    },
+    "year2": {
+     "ev_r": -0.0203,
+     "n": 237
+    },
+    "sign_consistent": false
+   },
+   {
+    "combo": [
+     "stale_retest",
+     "exhausted",
+     "chase"
+    ],
+    "full": {
+     "ev_r": 0.0571,
+     "n": 459
+    },
+    "year1": {
+     "ev_r": 0.1848,
+     "n": 226
+    },
+    "year2": {
+     "ev_r": -0.0669,
+     "n": 233
+    },
+    "sign_consistent": false
+   },
+   {
+    "combo": [
+     "stale_retest",
+     "break_then_rejection",
+     "chase"
+    ],
+    "full": {
+     "ev_r": 0.0571,
+     "n": 459
+    },
+    "year1": {
+     "ev_r": 0.1848,
+     "n": 226
+    },
+    "year2": {
+     "ev_r": -0.0669,
+     "n": 233
+    },
+    "sign_consistent": false
+   },
+   {
+    "combo": [
+     "exhausted",
+     "break_then_rejection",
+     "chase"
+    ],
+    "full": {
+     "ev_r": 0.0571,
+     "n": 459
+    },
+    "year1": {
+     "ev_r": 0.1848,
+     "n": 226
+    },
+    "year2": {
+     "ev_r": -0.0669,
+     "n": 233
+    },
+    "sign_consistent": false
+   },
+   {
+    "combo": [
+     "stale_retest",
+     "exhausted",
+     "no_retest"
+    ],
+    "full": {
+     "ev_r": 0.052,
+     "n": 449
+    },
+    "year1": {
+     "ev_r": 0.1275,
+     "n": 229
+    },
+    "year2": {
+     "ev_r": -0.0266,
+     "n": 220
+    },
+    "sign_consistent": false
+   },
+   {
+    "combo": [
+     "exhausted",
+     "break_then_rejection",
+     "no_retest"
+    ],
+    "full": {
+     "ev_r": 0.052,
+     "n": 449
+    },
+    "year1": {
+     "ev_r": 0.1275,
+     "n": 229
+    },
+    "year2": {
+     "ev_r": -0.0266,
+     "n": 220
+    },
+    "sign_consistent": false
+   },
+   {
+    "combo": [
+     "stale_retest",
+     "break_then_rejection",
+     "no_retest"
+    ],
+    "full": {
+     "ev_r": 0.0505,
+     "n": 449
+    },
+    "year1": {
+     "ev_r": 0.1247,
+     "n": 229
+    },
+    "year2": {
+     "ev_r": -0.0266,
+     "n": 220
+    },
+    "sign_consistent": false
+   },
+   {
+    "combo": [
+     "no_displacement",
+     "ocr_not_respected",
+     "chase"
+    ],
+    "full": {
+     "ev_r": 0.0386,
+     "n": 434
+    },
+    "year1": {
+     "ev_r": 0.0942,
+     "n": 215
+    },
+    "year2": {
+     "ev_r": -0.0159,
+     "n": 219
+    },
+    "sign_consistent": false
+   }
+  ]
+ },
+ "baseline_year1": {
+  "ev_r": 0.1343,
+  "n": 228,
+  "n_input": 249,
+  "n_dropped_size_gate": 21,
+  "size_gate_applicable": true,
+  "win_rate": 0.4912,
+  "avg_win_R": 0.9796,
+  "avg_loss_R": 0.6877,
+  "profit_factor": 1.3873,
+  "total_R": 30.629,
+  "max_drawdown_R": -13.539,
+  "months_green": "8/12",
+  "expectancy_per_day": 123.01,
+  "r_stability": 0.1117,
+  "yearly_R": 30.998,
+  "risk_dollars": 1000.0,
+  "sessions_used": 249
+ },
+ "baseline_year2": {
+  "ev_r": -0.0644,
+  "n": 216,
+  "n_input": 249,
+  "n_dropped_size_gate": 33,
+  "size_gate_applicable": true,
+  "win_rate": 0.4259,
+  "avg_win_R": 0.8138,
+  "avg_loss_R": 0.7159,
+  "profit_factor": 0.8434,
+  "total_R": -13.903,
+  "max_drawdown_R": -20.415,
+  "months_green": "4/13",
+  "expectancy_per_day": -55.84,
+  "r_stability": -0.0668,
+  "yearly_R": -14.0705,
+  "risk_dollars": 1000.0,
+  "sessions_used": 249
+ },
+ "n_sign_consistent": 40,
+ "robust_arms": [
+  {
+   "label": "2way",
+   "combo": [
+    "no_displacement",
+    "ocr_not_respected"
+   ],
+   "full_ev_r": 0.0231,
+   "full_n": 431,
+   "year1_ev_r": 0.0259,
+   "year1_n": 217,
+   "year2_ev_r": 0.0202,
+   "year2_n": 214,
+   "sign_consistent": true,
+   "robust_positive": true
+  },
+  {
+   "label": "3way",
+   "combo": [
+    "no_displacement",
+    "stale_retest",
+    "ocr_not_respected"
+   ],
+   "full_ev_r": 0.0255,
+   "full_n": 430,
+   "year1_ev_r": 0.0307,
+   "year1_n": 216,
+   "year2_ev_r": 0.0202,
+   "year2_n": 214,
+   "sign_consistent": true,
+   "robust_positive": true
+  },
+  {
+   "label": "3way",
+   "combo": [
+    "no_displacement",
+    "exhausted",
+    "ocr_not_respected"
+   ],
+   "full_ev_r": 0.0239,
+   "full_n": 431,
+   "year1_ev_r": 0.0276,
+   "year1_n": 217,
+   "year2_ev_r": 0.0202,
+   "year2_n": 214,
+   "sign_consistent": true,
+   "robust_positive": true
+  },
+  {
+   "label": "3way",
+   "combo": [
+    "no_displacement",
+    "break_then_rejection",
+    "ocr_not_respected"
+   ],
+   "full_ev_r": 0.0231,
+   "full_n": 431,
+   "year1_ev_r": 0.0259,
+   "year1_n": 217,
+   "year2_ev_r": 0.0202,
+   "year2_n": 214,
+   "sign_consistent": true,
+   "robust_positive": true
+  }
+ ],
+ "full_scan": [
+  {
+   "label": "2way",
+   "combo": [
+    "no_displacement",
+    "stale_retest"
+   ],
+   "full_ev_r": -0.0094,
+   "full_n": 427,
+   "year1_ev_r": 0.0454,
+   "year1_n": 219,
+   "year2_ev_r": -0.0671,
+   "year2_n": 208,
+   "sign_consistent": false,
+   "robust_positive": false
+  },
+  {
+   "label": "2way",
+   "combo": [
+    "no_displacement",
+    "level_not_respected"
+   ],
+   "full_ev_r": -0.0425,
+   "full_n": 408,
+   "year1_ev_r": 0.0501,
+   "year1_n": 200,
+   "year2_ev_r": -0.1315,
+   "year2_n": 208,
+   "sign_consistent": false,
+   "robust_positive": false
+  },
+  {
+   "label": "2way",
+   "combo": [
+    "no_displacement",
+    "exhausted"
+   ],
+   "full_ev_r": -0.0094,
+   "full_n": 426,
+   "year1_ev_r": 0.0457,
+   "year1_n": 218,
+   "year2_ev_r": -0.0671,
+   "year2_n": 208,
+   "sign_consistent": false,
+   "robust_positive": false
+  },
+  {
+   "label": "2way",
+   "combo": [
+    "no_displacement",
+    "counter_trend_not_respected"
+   ],
+   "full_ev_r": -0.1066,
+   "full_n": 301,
+   "year1_ev_r": -0.1112,
+   "year1_n": 139,
+   "year2_ev_r": -0.1026,
+   "year2_n": 162,
+   "sign_consistent": true,
+   "robust_positive": false
+  },
+  {
+   "label": "2way",
+   "combo": [
+    "no_displacement",
+    "break_then_rejection"
+   ],
+   "full_ev_r": -0.0094,
+   "full_n": 427,
+   "year1_ev_r": 0.0454,
+   "year1_n": 219,
+   "year2_ev_r": -0.0671,
+   "year2_n": 208,
+   "sign_consistent": false,
+   "robust_positive": false
+  },
+  {
+   "label": "2way",
+   "combo": [
+    "no_displacement",
+    "no_retest"
+   ],
+   "full_ev_r": 0.0007,
+   "full_n": 439,
+   "year1_ev_r": 0.0817,
+   "year1_n": 220,
+   "year2_ev_r": -0.0807,
+   "year2_n": 219,
+   "sign_consistent": false,
+   "robust_positive": false
+  },
+  {
+   "label": "2way",
+   "combo": [
+    "no_displacement",
+    "ocr_not_respected"
+   ],
+   "full_ev_r": 0.0231,
+   "full_n": 431,
+   "year1_ev_r": 0.0259,
+   "year1_n": 217,
+   "year2_ev_r": 0.0202,
+   "year2_n": 214,
+   "sign_consistent": true,
+   "robust_positive": true
+  },
+  {
+   "label": "2way",
+   "combo": [
+    "no_displacement",
+    "chase"
+   ],
+   "full_ev_r": 0.0106,
+   "full_n": 436,
+   "year1_ev_r": 0.0975,
+   "year1_n": 217,
+   "year2_ev_r": -0.0756,
+   "year2_n": 219,
+   "sign_consistent": false,
+   "robust_positive": false
+  },
+  {
+   "label": "2way",
+   "combo": [
+    "stale_retest",
+    "level_not_respected"
+   ],
+   "full_ev_r": -0.0568,
+   "full_n": 426,
+   "year1_ev_r": 0.0365,
+   "year1_n": 216,
+   "year2_ev_r": -0.1527,
+   "year2_n": 210,
+   "sign_consistent": false,
+   "robust_positive": false
+  },
+  {
+   "label": "2way",
+   "combo": [
+    "stale_retest",
+    "exhausted"
+   ],
+   "full_ev_r": 0.0377,
+   "full_n": 444,
+   "year1_ev_r": 0.1343,
+   "year1_n": 228,
+   "year2_ev_r": -0.0644,
+   "year2_n": 216,
+   "sign_consistent": false,
+   "robust_positive": false
+  },
+  {
+   "label": "2way",
+   "combo": [
+    "stale_retest",
+    "counter_trend_not_respected"
+   ],
+   "full_ev_r": -0.079,
+   "full_n": 394,
+   "year1_ev_r": -0.0695,
+   "year1_n": 196,
+   "year2_ev_r": -0.0884,
+   "year2_n": 198,
+   "sign_consistent": true,
+   "robust_positive": false
+  },
+  {
+   "label": "2way",
+   "combo": [
+    "stale_retest",
+    "break_then_rejection"
+   ],
+   "full_ev_r": 0.0377,
+   "full_n": 444,
+   "year1_ev_r": 0.1343,
+   "year1_n": 228,
+   "year2_ev_r": -0.0644,
+   "year2_n": 216,
+   "sign_consistent": false,
+   "robust_positive": false
+  },
+  {
+   "label": "2way",
+   "combo": [
+    "stale_retest",
+    "no_retest"
+   ],
+   "full_ev_r": 0.0505,
+   "full_n": 449,
+   "year1_ev_r": 0.1247,
+   "year1_n": 229,
+   "year2_ev_r": -0.0266,
+   "year2_n": 220,
+   "sign_consistent": false,
+   "robust_positive": false
+  },
+  {
+   "label": "2way",
+   "combo": [
+    "stale_retest",
+    "ocr_not_respected"
+   ],
+   "full_ev_r": -0.0123,
+   "full_n": 444,
+   "year1_ev_r": 0.0536,
+   "year1_n": 227,
+   "year2_ev_r": -0.0813,
+   "year2_n": 217,
+   "sign_consistent": false,
+   "robust_positive": false
+  },
+  {
+   "label": "2way",
+   "combo": [
+    "stale_retest",
+    "chase"
+   ],
+   "full_ev_r": 0.0571,
+   "full_n": 459,
+   "year1_ev_r": 0.1848,
+   "year1_n": 226,
+   "year2_ev_r": -0.0669,
+   "year2_n": 233,
+   "sign_consistent": false,
+   "robust_positive": false
+  },
+  {
+   "label": "2way",
+   "combo": [
+    "level_not_respected",
+    "exhausted"
+   ],
+   "full_ev_r": -0.0535,
+   "full_n": 425,
+   "year1_ev_r": 0.0245,
+   "year1_n": 216,
+   "year2_ev_r": -0.134,
+   "year2_n": 209,
+   "sign_consistent": false,
+   "robust_positive": false
+  },
+  {
+   "label": "2way",
+   "combo": [
+    "level_not_respected",
+    "counter_trend_not_respected"
+   ],
+   "full_ev_r": -0.1167,
+   "full_n": 291,
+   "year1_ev_r": -0.0703,
+   "year1_n": 131,
+   "year2_ev_r": -0.1547,
+   "year2_n": 160,
+   "sign_consistent": true,
+   "robust_positive": false
+  },
+  {
+   "label": "2way",
+   "combo": [
+    "level_not_respected",
+    "break_then_rejection"
+   ],
+   "full_ev_r": -0.059,
+   "full_n": 427,
+   "year1_ev_r": 0.0317,
+   "year1_n": 217,
+   "year2_ev_r": -0.1527,
+   "year2_n": 210,
+   "sign_consistent": false,
+   "robust_positive": false
+  },
+  {
+   "label": "2way",
+   "combo": [
+    "level_not_respected",
+    "no_retest"
+   ],
+   "full_ev_r": -0.0323,
+   "full_n": 431,
+   "year1_ev_r": 0.0399,
+   "year1_n": 220,
+   "year2_ev_r": -0.1076,
+   "year2_n": 211,
+   "sign_consistent": false,
+   "robust_positive": false
+  },
+  {
+   "label": "2way",
+   "combo": [
+    "level_not_respected",
+    "ocr_not_respected"
+   ],
+   "full_ev_r": -0.0632,
+   "full_n": 423,
+   "year1_ev_r": 0.0004,
+   "year1_n": 215,
+   "year2_ev_r": -0.129,
+   "year2_n": 208,
+   "sign_consistent": false,
+   "robust_positive": false
+  },
+  {
+   "label": "2way",
+   "combo": [
+    "level_not_respected",
+    "chase"
+   ],
+   "full_ev_r": -0.0208,
+   "full_n": 438,
+   "year1_ev_r": 0.0596,
+   "year1_n": 216,
+   "year2_ev_r": -0.0989,
+   "year2_n": 222,
+   "sign_consistent": false,
+   "robust_positive": false
+  },
+  {
+   "label": "2way",
+   "combo": [
+    "exhausted",
+    "counter_trend_not_respected"
+   ],
+   "full_ev_r": -0.0707,
+   "full_n": 382,
+   "year1_ev_r": -0.0714,
+   "year1_n": 190,
+   "year2_ev_r": -0.0699,
+   "year2_n": 192,
+   "sign_consistent": true,
+   "robust_positive": false
+  },
+  {
+   "label": "2way",
+   "combo": [
+    "exhausted",
+    "break_then_rejection"
+   ],
+   "full_ev_r": 0.0377,
+   "full_n": 444,
+   "year1_ev_r": 0.1343,
+   "year1_n": 228,
+   "year2_ev_r": -0.0644,
+   "year2_n": 216,
+   "sign_consistent": false,
+   "robust_positive": false
+  },
+  {
+   "label": "2way",
+   "combo": [
+    "exhausted",
+    "no_retest"
+   ],
+   "full_ev_r": 0.052,
+   "full_n": 449,
+   "year1_ev_r": 0.1275,
+   "year1_n": 229,
+   "year2_ev_r": -0.0266,
+   "year2_n": 220,
+   "sign_consistent": false,
+   "robust_positive": false
+  },
+  {
+   "label": "2way",
+   "combo": [
+    "exhausted",
+    "ocr_not_respected"
+   ],
+   "full_ev_r": -0.0123,
+   "full_n": 444,
+   "year1_ev_r": 0.0536,
+   "year1_n": 227,
+   "year2_ev_r": -0.0813,
+   "year2_n": 217,
+   "sign_consistent": false,
+   "robust_positive": false
+  },
+  {
+   "label": "2way",
+   "combo": [
+    "exhausted",
+    "chase"
+   ],
+   "full_ev_r": 0.0571,
+   "full_n": 459,
+   "year1_ev_r": 0.1848,
+   "year1_n": 226,
+   "year2_ev_r": -0.0669,
+   "year2_n": 233,
+   "sign_consistent": false,
+   "robust_positive": false
+  },
+  {
+   "label": "2way",
+   "combo": [
+    "counter_trend_not_respected",
+    "break_then_rejection"
+   ],
+   "full_ev_r": -0.079,
+   "full_n": 394,
+   "year1_ev_r": -0.0695,
+   "year1_n": 196,
+   "year2_ev_r": -0.0884,
+   "year2_n": 198,
+   "sign_consistent": true,
+   "robust_positive": false
+  },
+  {
+   "label": "2way",
+   "combo": [
+    "counter_trend_not_respected",
+    "no_retest"
+   ],
+   "full_ev_r": -0.053,
+   "full_n": 394,
+   "year1_ev_r": -0.0574,
+   "year1_n": 194,
+   "year2_ev_r": -0.0487,
+   "year2_n": 200,
+   "sign_consistent": true,
+   "robust_positive": false
+  },
+  {
+   "label": "2way",
+   "combo": [
+    "counter_trend_not_respected",
+    "ocr_not_respected"
+   ],
+   "full_ev_r": -0.0883,
+   "full_n": 391,
+   "year1_ev_r": -0.0774,
+   "year1_n": 195,
+   "year2_ev_r": -0.0991,
+   "year2_n": 196,
+   "sign_consistent": true,
+   "robust_positive": false
+  },
+  {
+   "label": "2way",
+   "combo": [
+    "counter_trend_not_respected",
+    "chase"
+   ],
+   "full_ev_r": -0.0584,
+   "full_n": 384,
+   "year1_ev_r": -0.02,
+   "year1_n": 187,
+   "year2_ev_r": -0.0948,
+   "year2_n": 197,
+   "sign_consistent": true,
+   "robust_positive": false
+  },
+  {
+   "label": "2way",
+   "combo": [
+    "break_then_rejection",
+    "no_retest"
+   ],
+   "full_ev_r": 0.0505,
+   "full_n": 449,
+   "year1_ev_r": 0.1247,
+   "year1_n": 229,
+   "year2_ev_r": -0.0266,
+   "year2_n": 220,
+   "sign_consistent": false,
+   "robust_positive": false
+  },
+  {
+   "label": "2way",
+   "combo": [
+    "break_then_rejection",
+    "ocr_not_respected"
+   ],
+   "full_ev_r": -0.0123,
+   "full_n": 444,
+   "year1_ev_r": 0.0536,
+   "year1_n": 227,
+   "year2_ev_r": -0.0813,
+   "year2_n": 217,
+   "sign_consistent": false,
+   "robust_positive": false
+  },
+  {
+   "label": "2way",
+   "combo": [
+    "break_then_rejection",
+    "chase"
+   ],
+   "full_ev_r": 0.0571,
+   "full_n": 459,
+   "year1_ev_r": 0.1848,
+   "year1_n": 226,
+   "year2_ev_r": -0.0669,
+   "year2_n": 233,
+   "sign_consistent": false,
+   "robust_positive": false
+  },
+  {
+   "label": "2way",
+   "combo": [
+    "no_retest",
+    "ocr_not_respected"
+   ],
+   "full_ev_r": -0.0007,
+   "full_n": 449,
+   "year1_ev_r": 0.0538,
+   "year1_n": 228,
+   "year2_ev_r": -0.0569,
+   "year2_n": 221,
+   "sign_consistent": false,
+   "robust_positive": false
+  },
+  {
+   "label": "2way",
+   "combo": [
+    "no_retest",
+    "chase"
+   ],
+   "full_ev_r": 0.0739,
+   "full_n": 464,
+   "year1_ev_r": 0.1723,
+   "year1_n": 227,
+   "year2_ev_r": -0.0203,
+   "year2_n": 237,
+   "sign_consistent": false,
+   "robust_positive": false
+  },
+  {
+   "label": "2way",
+   "combo": [
+    "ocr_not_respected",
+    "chase"
+   ],
+   "full_ev_r": 0.0043,
+   "full_n": 459,
+   "year1_ev_r": 0.0756,
+   "year1_n": 226,
+   "year2_ev_r": -0.0649,
+   "year2_n": 233,
+   "sign_consistent": false,
+   "robust_positive": false
+  },
+  {
+   "label": "3way",
+   "combo": [
+    "no_displacement",
+    "stale_retest",
+    "level_not_respected"
+   ],
+   "full_ev_r": -0.0401,
+   "full_n": 407,
+   "year1_ev_r": 0.0554,
+   "year1_n": 199,
+   "year2_ev_r": -0.1315,
+   "year2_n": 208,
+   "sign_consistent": false,
+   "robust_positive": false
+  },
+  {
+   "label": "3way",
+   "combo": [
+    "no_displacement",
+    "stale_retest",
+    "exhausted"
+   ],
+   "full_ev_r": -0.0094,
+   "full_n": 426,
+   "year1_ev_r": 0.0457,
+   "year1_n": 218,
+   "year2_ev_r": -0.0671,
+   "year2_n": 208,
+   "sign_consistent": false,
+   "robust_positive": false
+  },
+  {
+   "label": "3way",
+   "combo": [
+    "no_displacement",
+    "stale_retest",
+    "counter_trend_not_respected"
+   ],
+   "full_ev_r": -0.1066,
+   "full_n": 301,
+   "year1_ev_r": -0.1112,
+   "year1_n": 139,
+   "year2_ev_r": -0.1026,
+   "year2_n": 162,
+   "sign_consistent": true,
+   "robust_positive": false
+  },
+  {
+   "label": "3way",
+   "combo": [
+    "no_displacement",
+    "stale_retest",
+    "break_then_rejection"
+   ],
+   "full_ev_r": -0.0094,
+   "full_n": 427,
+   "year1_ev_r": 0.0454,
+   "year1_n": 219,
+   "year2_ev_r": -0.0671,
+   "year2_n": 208,
+   "sign_consistent": false,
+   "robust_positive": false
+  },
+  {
+   "label": "3way",
+   "combo": [
+    "no_displacement",
+    "stale_retest",
+    "no_retest"
+   ],
+   "full_ev_r": 0.0007,
+   "full_n": 439,
+   "year1_ev_r": 0.0817,
+   "year1_n": 220,
+   "year2_ev_r": -0.0807,
+   "year2_n": 219,
+   "sign_consistent": false,
+   "robust_positive": false
+  },
+  {
+   "label": "3way",
+   "combo": [
+    "no_displacement",
+    "stale_retest",
+    "ocr_not_respected"
+   ],
+   "full_ev_r": 0.0255,
+   "full_n": 430,
+   "year1_ev_r": 0.0307,
+   "year1_n": 216,
+   "year2_ev_r": 0.0202,
+   "year2_n": 214,
+   "sign_consistent": true,
+   "robust_positive": true
+  },
+  {
+   "label": "3way",
+   "combo": [
+    "no_displacement",
+    "stale_retest",
+    "chase"
+   ],
+   "full_ev_r": 0.0106,
+   "full_n": 436,
+   "year1_ev_r": 0.0975,
+   "year1_n": 217,
+   "year2_ev_r": -0.0756,
+   "year2_n": 219,
+   "sign_consistent": false,
+   "robust_positive": false
+  },
+  {
+   "label": "3way",
+   "combo": [
+    "no_displacement",
+    "level_not_respected",
+    "exhausted"
+   ],
+   "full_ev_r": -0.0021,
+   "full_n": 401,
+   "year1_ev_r": 0.0807,
+   "year1_n": 197,
+   "year2_ev_r": -0.082,
+   "year2_n": 204,
+   "sign_consistent": false,
+   "robust_positive": false
+  },
+  {
+   "label": "3way",
+   "combo": [
+    "no_displacement",
+    "level_not_respected",
+    "counter_trend_not_respected"
+   ],
+   "full_ev_r": -0.1381,
+   "full_n": 211,
+   "year1_ev_r": -0.0497,
+   "year1_n": 90,
+   "year2_ev_r": -0.2039,
+   "year2_n": 121,
+   "sign_consistent": true,
+   "robust_positive": false
+  },
+  {
+   "label": "3way",
+   "combo": [
+    "no_displacement",
+    "level_not_respected",
+    "break_then_rejection"
+   ],
+   "full_ev_r": -0.0425,
+   "full_n": 408,
+   "year1_ev_r": 0.0501,
+   "year1_n": 200,
+   "year2_ev_r": -0.1315,
+   "year2_n": 208,
+   "sign_consistent": false,
+   "robust_positive": false
+  },
+  {
+   "label": "3way",
+   "combo": [
+    "no_displacement",
+    "level_not_respected",
+    "no_retest"
+   ],
+   "full_ev_r": -0.0274,
+   "full_n": 412,
+   "year1_ev_r": 0.0708,
+   "year1_n": 201,
+   "year2_ev_r": -0.121,
+   "year2_n": 211,
+   "sign_consistent": false,
+   "robust_positive": false
+  },
+  {
+   "label": "3way",
+   "combo": [
+    "no_displacement",
+    "level_not_respected",
+    "ocr_not_respected"
+   ],
+   "full_ev_r": -0.0409,
+   "full_n": 400,
+   "year1_ev_r": 0.0411,
+   "year1_n": 194,
+   "year2_ev_r": -0.1182,
+   "year2_n": 206,
+   "sign_consistent": false,
+   "robust_positive": false
+  },
+  {
+   "label": "3way",
+   "combo": [
+    "no_displacement",
+    "level_not_respected",
+    "chase"
+   ],
+   "full_ev_r": -0.0754,
+   "full_n": 401,
+   "year1_ev_r": 0.0054,
+   "year1_n": 196,
+   "year2_ev_r": -0.1527,
+   "year2_n": 205,
+   "sign_consistent": false,
+   "robust_positive": false
+  },
+  {
+   "label": "3way",
+   "combo": [
+    "no_displacement",
+    "exhausted",
+    "counter_trend_not_respected"
+   ],
+   "full_ev_r": -0.1082,
+   "full_n": 290,
+   "year1_ev_r": -0.1139,
+   "year1_n": 136,
+   "year2_ev_r": -0.1031,
+   "year2_n": 154,
+   "sign_consistent": true,
+   "robust_positive": false
+  },
+  {
+   "label": "3way",
+   "combo": [
+    "no_displacement",
+    "exhausted",
+    "break_then_rejection"
+   ],
+   "full_ev_r": -0.0094,
+   "full_n": 426,
+   "year1_ev_r": 0.0457,
+   "year1_n": 218,
+   "year2_ev_r": -0.0671,
+   "year2_n": 208,
+   "sign_consistent": false,
+   "robust_positive": false
+  },
+  {
+   "label": "3way",
+   "combo": [
+    "no_displacement",
+    "exhausted",
+    "no_retest"
+   ],
+   "full_ev_r": 0.0129,
+   "full_n": 437,
+   "year1_ev_r": 0.0989,
+   "year1_n": 218,
+   "year2_ev_r": -0.0726,
+   "year2_n": 219,
+   "sign_consistent": false,
+   "robust_positive": false
+  },
+  {
+   "label": "3way",
+   "combo": [
+    "no_displacement",
+    "exhausted",
+    "ocr_not_respected"
+   ],
+   "full_ev_r": 0.0239,
+   "full_n": 431,
+   "year1_ev_r": 0.0276,
+   "year1_n": 217,
+   "year2_ev_r": 0.0202,
+   "year2_n": 214,
+   "sign_consistent": true,
+   "robust_positive": true
+  },
+  {
+   "label": "3way",
+   "combo": [
+    "no_displacement",
+    "exhausted",
+    "chase"
+   ],
+   "full_ev_r": 0.0127,
+   "full_n": 433,
+   "year1_ev_r": 0.0979,
+   "year1_n": 215,
+   "year2_ev_r": -0.0713,
+   "year2_n": 218,
+   "sign_consistent": false,
+   "robust_positive": false
+  },
+  {
+   "label": "3way",
+   "combo": [
+    "no_displacement",
+    "counter_trend_not_respected",
+    "break_then_rejection"
+   ],
+   "full_ev_r": -0.1066,
+   "full_n": 301,
+   "year1_ev_r": -0.1112,
+   "year1_n": 139,
+   "year2_ev_r": -0.1026,
+   "year2_n": 162,
+   "sign_consistent": true,
+   "robust_positive": false
+  },
+  {
+   "label": "3way",
+   "combo": [
+    "no_displacement",
+    "counter_trend_not_respected",
+    "no_retest"
+   ],
+   "full_ev_r": -0.096,
+   "full_n": 285,
+   "year1_ev_r": -0.0926,
+   "year1_n": 130,
+   "year2_ev_r": -0.099,
+   "year2_n": 155,
+   "sign_consistent": true,
+   "robust_positive": false
+  },
+  {
+   "label": "3way",
+   "combo": [
+    "no_displacement",
+    "counter_trend_not_respected",
+    "ocr_not_respected"
+   ],
+   "full_ev_r": -0.1056,
+   "full_n": 294,
+   "year1_ev_r": -0.0969,
+   "year1_n": 135,
+   "year2_ev_r": -0.1129,
+   "year2_n": 159,
+   "sign_consistent": true,
+   "robust_positive": false
+  },
+  {
+   "label": "3way",
+   "combo": [
+    "no_displacement",
+    "counter_trend_not_respected",
+    "chase"
+   ],
+   "full_ev_r": -0.1312,
+   "full_n": 257,
+   "year1_ev_r": -0.133,
+   "year1_n": 121,
+   "year2_ev_r": -0.1295,
+   "year2_n": 136,
+   "sign_consistent": true,
+   "robust_positive": false
+  },
+  {
+   "label": "3way",
+   "combo": [
+    "no_displacement",
+    "break_then_rejection",
+    "no_retest"
+   ],
+   "full_ev_r": 0.0007,
+   "full_n": 439,
+   "year1_ev_r": 0.0817,
+   "year1_n": 220,
+   "year2_ev_r": -0.0807,
+   "year2_n": 219,
+   "sign_consistent": false,
+   "robust_positive": false
+  },
+  {
+   "label": "3way",
+   "combo": [
+    "no_displacement",
+    "break_then_rejection",
+    "ocr_not_respected"
+   ],
+   "full_ev_r": 0.0231,
+   "full_n": 431,
+   "year1_ev_r": 0.0259,
+   "year1_n": 217,
+   "year2_ev_r": 0.0202,
+   "year2_n": 214,
+   "sign_consistent": true,
+   "robust_positive": true
+  },
+  {
+   "label": "3way",
+   "combo": [
+    "no_displacement",
+    "break_then_rejection",
+    "chase"
+   ],
+   "full_ev_r": 0.0106,
+   "full_n": 436,
+   "year1_ev_r": 0.0975,
+   "year1_n": 217,
+   "year2_ev_r": -0.0756,
+   "year2_n": 219,
+   "sign_consistent": false,
+   "robust_positive": false
+  },
+  {
+   "label": "3way",
+   "combo": [
+    "no_displacement",
+    "no_retest",
+    "ocr_not_respected"
+   ],
+   "full_ev_r": -0.0062,
+   "full_n": 437,
+   "year1_ev_r": 0.0044,
+   "year1_n": 219,
+   "year2_ev_r": -0.0169,
+   "year2_n": 218,
+   "sign_consistent": false,
+   "robust_positive": false
+  },
+  {
+   "label": "3way",
+   "combo": [
+    "no_displacement",
+    "no_retest",
+    "chase"
+   ],
+   "full_ev_r": 0.0182,
+   "full_n": 446,
+   "year1_ev_r": 0.1429,
+   "year1_n": 218,
+   "year2_ev_r": -0.1011,
+   "year2_n": 228,
+   "sign_consistent": false,
+   "robust_positive": false
+  },
+  {
+   "label": "3way",
+   "combo": [
+    "no_displacement",
+    "ocr_not_respected",
+    "chase"
+   ],
+   "full_ev_r": 0.0386,
+   "full_n": 434,
+   "year1_ev_r": 0.0942,
+   "year1_n": 215,
+   "year2_ev_r": -0.0159,
+   "year2_n": 219,
+   "sign_consistent": false,
+   "robust_positive": false
+  },
+  {
+   "label": "3way",
+   "combo": [
+    "stale_retest",
+    "level_not_respected",
+    "exhausted"
+   ],
+   "full_ev_r": -0.0512,
+   "full_n": 424,
+   "year1_ev_r": 0.0292,
+   "year1_n": 215,
+   "year2_ev_r": -0.134,
+   "year2_n": 209,
+   "sign_consistent": false,
+   "robust_positive": false
+  },
+  {
+   "label": "3way",
+   "combo": [
+    "stale_retest",
+    "level_not_respected",
+    "counter_trend_not_respected"
+   ],
+   "full_ev_r": -0.1167,
+   "full_n": 291,
+   "year1_ev_r": -0.0703,
+   "year1_n": 131,
+   "year2_ev_r": -0.1547,
+   "year2_n": 160,
+   "sign_consistent": true,
+   "robust_positive": false
+  },
+  {
+   "label": "3way",
+   "combo": [
+    "stale_retest",
+    "level_not_respected",
+    "break_then_rejection"
+   ],
+   "full_ev_r": -0.0568,
+   "full_n": 426,
+   "year1_ev_r": 0.0365,
+   "year1_n": 216,
+   "year2_ev_r": -0.1527,
+   "year2_n": 210,
+   "sign_consistent": false,
+   "robust_positive": false
+  },
+  {
+   "label": "3way",
+   "combo": [
+    "stale_retest",
+    "level_not_respected",
+    "no_retest"
+   ],
+   "full_ev_r": -0.03,
+   "full_n": 430,
+   "year1_ev_r": 0.0447,
+   "year1_n": 219,
+   "year2_ev_r": -0.1076,
+   "year2_n": 211,
+   "sign_consistent": false,
+   "robust_positive": false
+  },
+  {
+   "label": "3way",
+   "combo": [
+    "stale_retest",
+    "level_not_respected",
+    "ocr_not_respected"
+   ],
+   "full_ev_r": -0.0632,
+   "full_n": 423,
+   "year1_ev_r": 0.0004,
+   "year1_n": 215,
+   "year2_ev_r": -0.129,
+   "year2_n": 208,
+   "sign_consistent": false,
+   "robust_positive": false
+  },
+  {
+   "label": "3way",
+   "combo": [
+    "stale_retest",
+    "level_not_respected",
+    "chase"
+   ],
+   "full_ev_r": -0.0208,
+   "full_n": 438,
+   "year1_ev_r": 0.0596,
+   "year1_n": 216,
+   "year2_ev_r": -0.0989,
+   "year2_n": 222,
+   "sign_consistent": false,
+   "robust_positive": false
+  },
+  {
+   "label": "3way",
+   "combo": [
+    "stale_retest",
+    "exhausted",
+    "counter_trend_not_respected"
+   ],
+   "full_ev_r": -0.0707,
+   "full_n": 382,
+   "year1_ev_r": -0.0714,
+   "year1_n": 190,
+   "year2_ev_r": -0.0699,
+   "year2_n": 192,
+   "sign_consistent": true,
+   "robust_positive": false
+  },
+  {
+   "label": "3way",
+   "combo": [
+    "stale_retest",
+    "exhausted",
+    "break_then_rejection"
+   ],
+   "full_ev_r": 0.0377,
+   "full_n": 444,
+   "year1_ev_r": 0.1343,
+   "year1_n": 228,
+   "year2_ev_r": -0.0644,
+   "year2_n": 216,
+   "sign_consistent": false,
+   "robust_positive": false
+  },
+  {
+   "label": "3way",
+   "combo": [
+    "stale_retest",
+    "exhausted",
+    "no_retest"
+   ],
+   "full_ev_r": 0.052,
+   "full_n": 449,
+   "year1_ev_r": 0.1275,
+   "year1_n": 229,
+   "year2_ev_r": -0.0266,
+   "year2_n": 220,
+   "sign_consistent": false,
+   "robust_positive": false
+  },
+  {
+   "label": "3way",
+   "combo": [
+    "stale_retest",
+    "exhausted",
+    "ocr_not_respected"
+   ],
+   "full_ev_r": -0.0123,
+   "full_n": 444,
+   "year1_ev_r": 0.0536,
+   "year1_n": 227,
+   "year2_ev_r": -0.0813,
+   "year2_n": 217,
+   "sign_consistent": false,
+   "robust_positive": false
+  },
+  {
+   "label": "3way",
+   "combo": [
+    "stale_retest",
+    "exhausted",
+    "chase"
+   ],
+   "full_ev_r": 0.0571,
+   "full_n": 459,
+   "year1_ev_r": 0.1848,
+   "year1_n": 226,
+   "year2_ev_r": -0.0669,
+   "year2_n": 233,
+   "sign_consistent": false,
+   "robust_positive": false
+  },
+  {
+   "label": "3way",
+   "combo": [
+    "stale_retest",
+    "counter_trend_not_respected",
+    "break_then_rejection"
+   ],
+   "full_ev_r": -0.079,
+   "full_n": 394,
+   "year1_ev_r": -0.0695,
+   "year1_n": 196,
+   "year2_ev_r": -0.0884,
+   "year2_n": 198,
+   "sign_consistent": true,
+   "robust_positive": false
+  },
+  {
+   "label": "3way",
+   "combo": [
+    "stale_retest",
+    "counter_trend_not_respected",
+    "no_retest"
+   ],
+   "full_ev_r": -0.053,
+   "full_n": 394,
+   "year1_ev_r": -0.0574,
+   "year1_n": 194,
+   "year2_ev_r": -0.0487,
+   "year2_n": 200,
+   "sign_consistent": true,
+   "robust_positive": false
+  },
+  {
+   "label": "3way",
+   "combo": [
+    "stale_retest",
+    "counter_trend_not_respected",
+    "ocr_not_respected"
+   ],
+   "full_ev_r": -0.0883,
+   "full_n": 391,
+   "year1_ev_r": -0.0774,
+   "year1_n": 195,
+   "year2_ev_r": -0.0991,
+   "year2_n": 196,
+   "sign_consistent": true,
+   "robust_positive": false
+  },
+  {
+   "label": "3way",
+   "combo": [
+    "stale_retest",
+    "counter_trend_not_respected",
+    "chase"
+   ],
+   "full_ev_r": -0.0584,
+   "full_n": 384,
+   "year1_ev_r": -0.02,
+   "year1_n": 187,
+   "year2_ev_r": -0.0948,
+   "year2_n": 197,
+   "sign_consistent": true,
+   "robust_positive": false
+  },
+  {
+   "label": "3way",
+   "combo": [
+    "stale_retest",
+    "break_then_rejection",
+    "no_retest"
+   ],
+   "full_ev_r": 0.0505,
+   "full_n": 449,
+   "year1_ev_r": 0.1247,
+   "year1_n": 229,
+   "year2_ev_r": -0.0266,
+   "year2_n": 220,
+   "sign_consistent": false,
+   "robust_positive": false
+  },
+  {
+   "label": "3way",
+   "combo": [
+    "stale_retest",
+    "break_then_rejection",
+    "ocr_not_respected"
+   ],
+   "full_ev_r": -0.0123,
+   "full_n": 444,
+   "year1_ev_r": 0.0536,
+   "year1_n": 227,
+   "year2_ev_r": -0.0813,
+   "year2_n": 217,
+   "sign_consistent": false,
+   "robust_positive": false
+  },
+  {
+   "label": "3way",
+   "combo": [
+    "stale_retest",
+    "break_then_rejection",
+    "chase"
+   ],
+   "full_ev_r": 0.0571,
+   "full_n": 459,
+   "year1_ev_r": 0.1848,
+   "year1_n": 226,
+   "year2_ev_r": -0.0669,
+   "year2_n": 233,
+   "sign_consistent": false,
+   "robust_positive": false
+  },
+  {
+   "label": "3way",
+   "combo": [
+    "stale_retest",
+    "no_retest",
+    "ocr_not_respected"
+   ],
+   "full_ev_r": -0.0007,
+   "full_n": 449,
+   "year1_ev_r": 0.0538,
+   "year1_n": 228,
+   "year2_ev_r": -0.0569,
+   "year2_n": 221,
+   "sign_consistent": false,
+   "robust_positive": false
+  },
+  {
+   "label": "3way",
+   "combo": [
+    "stale_retest",
+    "no_retest",
+    "chase"
+   ],
+   "full_ev_r": 0.0739,
+   "full_n": 464,
+   "year1_ev_r": 0.1723,
+   "year1_n": 227,
+   "year2_ev_r": -0.0203,
+   "year2_n": 237,
+   "sign_consistent": false,
+   "robust_positive": false
+  },
+  {
+   "label": "3way",
+   "combo": [
+    "stale_retest",
+    "ocr_not_respected",
+    "chase"
+   ],
+   "full_ev_r": 0.0043,
+   "full_n": 459,
+   "year1_ev_r": 0.0756,
+   "year1_n": 226,
+   "year2_ev_r": -0.0649,
+   "year2_n": 233,
+   "sign_consistent": false,
+   "robust_positive": false
+  },
+  {
+   "label": "3way",
+   "combo": [
+    "level_not_respected",
+    "exhausted",
+    "counter_trend_not_respected"
+   ],
+   "full_ev_r": -0.113,
+   "full_n": 281,
+   "year1_ev_r": -0.0724,
+   "year1_n": 127,
+   "year2_ev_r": -0.1466,
+   "year2_n": 154,
+   "sign_consistent": true,
+   "robust_positive": false
+  },
+  {
+   "label": "3way",
+   "combo": [
+    "level_not_respected",
+    "exhausted",
+    "break_then_rejection"
+   ],
+   "full_ev_r": -0.0535,
+   "full_n": 425,
+   "year1_ev_r": 0.0245,
+   "year1_n": 216,
+   "year2_ev_r": -0.134,
+   "year2_n": 209,
+   "sign_consistent": false,
+   "robust_positive": false
+  },
+  {
+   "label": "3way",
+   "combo": [
+    "level_not_respected",
+    "exhausted",
+    "no_retest"
+   ],
+   "full_ev_r": -0.0183,
+   "full_n": 428,
+   "year1_ev_r": 0.0447,
+   "year1_n": 219,
+   "year2_ev_r": -0.0844,
+   "year2_n": 209,
+   "sign_consistent": false,
+   "robust_positive": false
+  },
+  {
+   "label": "3way",
+   "combo": [
+    "level_not_respected",
+    "exhausted",
+    "ocr_not_respected"
+   ],
+   "full_ev_r": -0.0412,
+   "full_n": 418,
+   "year1_ev_r": 0.0199,
+   "year1_n": 212,
+   "year2_ev_r": -0.104,
+   "year2_n": 206,
+   "sign_consistent": false,
+   "robust_positive": false
+  },
+  {
+   "label": "3way",
+   "combo": [
+    "level_not_respected",
+    "exhausted",
+    "chase"
+   ],
+   "full_ev_r": -0.0145,
+   "full_n": 433,
+   "year1_ev_r": 0.0351,
+   "year1_n": 214,
+   "year2_ev_r": -0.0631,
+   "year2_n": 219,
+   "sign_consistent": false,
+   "robust_positive": false
+  },
+  {
+   "label": "3way",
+   "combo": [
+    "level_not_respected",
+    "counter_trend_not_respected",
+    "break_then_rejection"
+   ],
+   "full_ev_r": -0.1167,
+   "full_n": 291,
+   "year1_ev_r": -0.0703,
+   "year1_n": 131,
+   "year2_ev_r": -0.1547,
+   "year2_n": 160,
+   "sign_consistent": true,
+   "robust_positive": false
+  },
+  {
+   "label": "3way",
+   "combo": [
+    "level_not_respected",
+    "counter_trend_not_respected",
+    "no_retest"
+   ],
+   "full_ev_r": -0.0997,
+   "full_n": 283,
+   "year1_ev_r": -0.0638,
+   "year1_n": 126,
+   "year2_ev_r": -0.1285,
+   "year2_n": 157,
+   "sign_consistent": true,
+   "robust_positive": false
+  },
+  {
+   "label": "3way",
+   "combo": [
+    "level_not_respected",
+    "counter_trend_not_respected",
+    "ocr_not_respected"
+   ],
+   "full_ev_r": -0.108,
+   "full_n": 282,
+   "year1_ev_r": -0.0548,
+   "year1_n": 128,
+   "year2_ev_r": -0.1521,
+   "year2_n": 154,
+   "sign_consistent": true,
+   "robust_positive": false
+  },
+  {
+   "label": "3way",
+   "combo": [
+    "level_not_respected",
+    "counter_trend_not_respected",
+    "chase"
+   ],
+   "full_ev_r": -0.1285,
+   "full_n": 235,
+   "year1_ev_r": -0.0923,
+   "year1_n": 103,
+   "year2_ev_r": -0.1567,
+   "year2_n": 132,
+   "sign_consistent": true,
+   "robust_positive": false
+  },
+  {
+   "label": "3way",
+   "combo": [
+    "level_not_respected",
+    "break_then_rejection",
+    "no_retest"
+   ],
+   "full_ev_r": -0.0323,
+   "full_n": 431,
+   "year1_ev_r": 0.0399,
+   "year1_n": 220,
+   "year2_ev_r": -0.1076,
+   "year2_n": 211,
+   "sign_consistent": false,
+   "robust_positive": false
+  },
+  {
+   "label": "3way",
+   "combo": [
+    "level_not_respected",
+    "break_then_rejection",
+    "ocr_not_respected"
+   ],
+   "full_ev_r": -0.0632,
+   "full_n": 423,
+   "year1_ev_r": 0.0004,
+   "year1_n": 215,
+   "year2_ev_r": -0.129,
+   "year2_n": 208,
+   "sign_consistent": false,
+   "robust_positive": false
+  },
+  {
+   "label": "3way",
+   "combo": [
+    "level_not_respected",
+    "break_then_rejection",
+    "chase"
+   ],
+   "full_ev_r": -0.0208,
+   "full_n": 438,
+   "year1_ev_r": 0.0596,
+   "year1_n": 216,
+   "year2_ev_r": -0.0989,
+   "year2_n": 222,
+   "sign_consistent": false,
+   "robust_positive": false
+  },
+  {
+   "label": "3way",
+   "combo": [
+    "level_not_respected",
+    "no_retest",
+    "ocr_not_respected"
+   ],
+   "full_ev_r": -0.0645,
+   "full_n": 424,
+   "year1_ev_r": 0.0085,
+   "year1_n": 215,
+   "year2_ev_r": -0.1395,
+   "year2_n": 209,
+   "sign_consistent": false,
+   "robust_positive": false
+  },
+  {
+   "label": "3way",
+   "combo": [
+    "level_not_respected",
+    "no_retest",
+    "chase"
+   ],
+   "full_ev_r": 0.0009,
+   "full_n": 444,
+   "year1_ev_r": 0.0872,
+   "year1_n": 221,
+   "year2_ev_r": -0.0847,
+   "year2_n": 223,
+   "sign_consistent": false,
+   "robust_positive": false
+  },
+  {
+   "label": "3way",
+   "combo": [
+    "level_not_respected",
+    "ocr_not_respected",
+    "chase"
+   ],
+   "full_ev_r": -0.0359,
+   "full_n": 432,
+   "year1_ev_r": 0.0245,
+   "year1_n": 213,
+   "year2_ev_r": -0.0946,
+   "year2_n": 219,
+   "sign_consistent": false,
+   "robust_positive": false
+  },
+  {
+   "label": "3way",
+   "combo": [
+    "exhausted",
+    "counter_trend_not_respected",
+    "break_then_rejection"
+   ],
+   "full_ev_r": -0.0707,
+   "full_n": 382,
+   "year1_ev_r": -0.0714,
+   "year1_n": 190,
+   "year2_ev_r": -0.0699,
+   "year2_n": 192,
+   "sign_consistent": true,
+   "robust_positive": false
+  },
+  {
+   "label": "3way",
+   "combo": [
+    "exhausted",
+    "counter_trend_not_respected",
+    "no_retest"
+   ],
+   "full_ev_r": -0.044,
+   "full_n": 383,
+   "year1_ev_r": -0.0591,
+   "year1_n": 189,
+   "year2_ev_r": -0.0293,
+   "year2_n": 194,
+   "sign_consistent": true,
+   "robust_positive": false
+  },
+  {
+   "label": "3way",
+   "combo": [
+    "exhausted",
+    "counter_trend_not_respected",
+    "ocr_not_respected"
+   ],
+   "full_ev_r": -0.0808,
+   "full_n": 378,
+   "year1_ev_r": -0.0807,
+   "year1_n": 188,
+   "year2_ev_r": -0.0809,
+   "year2_n": 190,
+   "sign_consistent": true,
+   "robust_positive": false
+  },
+  {
+   "label": "3way",
+   "combo": [
+    "exhausted",
+    "counter_trend_not_respected",
+    "chase"
+   ],
+   "full_ev_r": -0.0517,
+   "full_n": 368,
+   "year1_ev_r": -0.0261,
+   "year1_n": 179,
+   "year2_ev_r": -0.0759,
+   "year2_n": 189,
+   "sign_consistent": true,
+   "robust_positive": false
+  },
+  {
+   "label": "3way",
+   "combo": [
+    "exhausted",
+    "break_then_rejection",
+    "no_retest"
+   ],
+   "full_ev_r": 0.052,
+   "full_n": 449,
+   "year1_ev_r": 0.1275,
+   "year1_n": 229,
+   "year2_ev_r": -0.0266,
+   "year2_n": 220,
+   "sign_consistent": false,
+   "robust_positive": false
+  },
+  {
+   "label": "3way",
+   "combo": [
+    "exhausted",
+    "break_then_rejection",
+    "ocr_not_respected"
+   ],
+   "full_ev_r": -0.0123,
+   "full_n": 444,
+   "year1_ev_r": 0.0536,
+   "year1_n": 227,
+   "year2_ev_r": -0.0813,
+   "year2_n": 217,
+   "sign_consistent": false,
+   "robust_positive": false
+  },
+  {
+   "label": "3way",
+   "combo": [
+    "exhausted",
+    "break_then_rejection",
+    "chase"
+   ],
+   "full_ev_r": 0.0571,
+   "full_n": 459,
+   "year1_ev_r": 0.1848,
+   "year1_n": 226,
+   "year2_ev_r": -0.0669,
+   "year2_n": 233,
+   "sign_consistent": false,
+   "robust_positive": false
+  },
+  {
+   "label": "3way",
+   "combo": [
+    "exhausted",
+    "no_retest",
+    "ocr_not_respected"
+   ],
+   "full_ev_r": 0.0008,
+   "full_n": 449,
+   "year1_ev_r": 0.0566,
+   "year1_n": 228,
+   "year2_ev_r": -0.0569,
+   "year2_n": 221,
+   "sign_consistent": false,
+   "robust_positive": false
+  },
+  {
+   "label": "3way",
+   "combo": [
+    "exhausted",
+    "no_retest",
+    "chase"
+   ],
+   "full_ev_r": 0.0753,
+   "full_n": 464,
+   "year1_ev_r": 0.1752,
+   "year1_n": 227,
+   "year2_ev_r": -0.0203,
+   "year2_n": 237,
+   "sign_consistent": false,
+   "robust_positive": false
+  },
+  {
+   "label": "3way",
+   "combo": [
+    "exhausted",
+    "ocr_not_respected",
+    "chase"
+   ],
+   "full_ev_r": 0.0043,
+   "full_n": 459,
+   "year1_ev_r": 0.0756,
+   "year1_n": 226,
+   "year2_ev_r": -0.0649,
+   "year2_n": 233,
+   "sign_consistent": false,
+   "robust_positive": false
+  },
+  {
+   "label": "3way",
+   "combo": [
+    "counter_trend_not_respected",
+    "break_then_rejection",
+    "no_retest"
+   ],
+   "full_ev_r": -0.053,
+   "full_n": 394,
+   "year1_ev_r": -0.0574,
+   "year1_n": 194,
+   "year2_ev_r": -0.0487,
+   "year2_n": 200,
+   "sign_consistent": true,
+   "robust_positive": false
+  },
+  {
+   "label": "3way",
+   "combo": [
+    "counter_trend_not_respected",
+    "break_then_rejection",
+    "ocr_not_respected"
+   ],
+   "full_ev_r": -0.0883,
+   "full_n": 391,
+   "year1_ev_r": -0.0774,
+   "year1_n": 195,
+   "year2_ev_r": -0.0991,
+   "year2_n": 196,
+   "sign_consistent": true,
+   "robust_positive": false
+  },
+  {
+   "label": "3way",
+   "combo": [
+    "counter_trend_not_respected",
+    "break_then_rejection",
+    "chase"
+   ],
+   "full_ev_r": -0.0584,
+   "full_n": 384,
+   "year1_ev_r": -0.02,
+   "year1_n": 187,
+   "year2_ev_r": -0.0948,
+   "year2_n": 197,
+   "sign_consistent": true,
+   "robust_positive": false
+  },
+  {
+   "label": "3way",
+   "combo": [
+    "counter_trend_not_respected",
+    "no_retest",
+    "ocr_not_respected"
+   ],
+   "full_ev_r": -0.061,
+   "full_n": 391,
+   "year1_ev_r": -0.0653,
+   "year1_n": 193,
+   "year2_ev_r": -0.0567,
+   "year2_n": 198,
+   "sign_consistent": true,
+   "robust_positive": false
+  },
+  {
+   "label": "3way",
+   "combo": [
+    "counter_trend_not_respected",
+    "no_retest",
+    "chase"
+   ],
+   "full_ev_r": -0.0471,
+   "full_n": 380,
+   "year1_ev_r": -0.0272,
+   "year1_n": 182,
+   "year2_ev_r": -0.0654,
+   "year2_n": 198,
+   "sign_consistent": true,
+   "robust_positive": false
+  },
+  {
+   "label": "3way",
+   "combo": [
+    "counter_trend_not_respected",
+    "ocr_not_respected",
+    "chase"
+   ],
+   "full_ev_r": -0.056,
+   "full_n": 377,
+   "year1_ev_r": -0.0273,
+   "year1_n": 185,
+   "year2_ev_r": -0.0836,
+   "year2_n": 192,
+   "sign_consistent": true,
+   "robust_positive": false
+  },
+  {
+   "label": "3way",
+   "combo": [
+    "break_then_rejection",
+    "no_retest",
+    "ocr_not_respected"
+   ],
+   "full_ev_r": -0.0007,
+   "full_n": 449,
+   "year1_ev_r": 0.0538,
+   "year1_n": 228,
+   "year2_ev_r": -0.0569,
+   "year2_n": 221,
+   "sign_consistent": false,
+   "robust_positive": false
+  },
+  {
+   "label": "3way",
+   "combo": [
+    "break_then_rejection",
+    "no_retest",
+    "chase"
+   ],
+   "full_ev_r": 0.0739,
+   "full_n": 464,
+   "year1_ev_r": 0.1723,
+   "year1_n": 227,
+   "year2_ev_r": -0.0203,
+   "year2_n": 237,
+   "sign_consistent": false,
+   "robust_positive": false
+  },
+  {
+   "label": "3way",
+   "combo": [
+    "break_then_rejection",
+    "ocr_not_respected",
+    "chase"
+   ],
+   "full_ev_r": 0.0043,
+   "full_n": 459,
+   "year1_ev_r": 0.0756,
+   "year1_n": 226,
+   "year2_ev_r": -0.0649,
+   "year2_n": 233,
+   "sign_consistent": false,
+   "robust_positive": false
+  },
+  {
+   "label": "3way",
+   "combo": [
+    "no_retest",
+    "ocr_not_respected",
+    "chase"
+   ],
+   "full_ev_r": 0.0062,
+   "full_n": 464,
+   "year1_ev_r": 0.0534,
+   "year1_n": 227,
+   "year2_ev_r": -0.0389,
+   "year2_n": 237,
+   "sign_consistent": false,
+   "robust_positive": false
+  }
+ ]
+}

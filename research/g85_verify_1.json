@@ -1,0 +1,66 @@
+{
+ "close  (research/bt2y_trades.json)": {
+  "sessions": 500,
+  "distinct_days_in_file": 500,
+  "declared_fill": "close",
+  "declared_traded": 4329,
+  "every_signal": {
+   "trades": 4329,
+   "win_pct": 44.1,
+   "mean_r": -0.0327,
+   "total_dollars": -141561.0,
+   "total_dollars_from_r_column": -141570.0,
+   "per_day": -283.0,
+   "pct_of_bar": -71.3,
+   "short_by": 680.0,
+   "months_green": 8,
+   "months": 25,
+   "worst_drawdown": 193999.0
+  },
+  "one_a_day": {
+   "trades": 500,
+   "win_pct": 45.4,
+   "mean_r": 0.0278,
+   "total_dollars": 13893.0,
+   "total_dollars_from_r_column": 13890.0,
+   "per_day": 28.0,
+   "pct_of_bar": 7.0,
+   "short_by": 369.0,
+   "months_green": 11,
+   "months": 25,
+   "worst_drawdown": 25570.0
+  }
+ },
+ "published (preserved, NOT OBTAINABLE)": {
+  "sessions": 500,
+  "distinct_days_in_file": 500,
+  "declared_fill": null,
+  "declared_traded": 4508,
+  "every_signal": {
+   "trades": 4508,
+   "win_pct": 59.4,
+   "mean_r": 0.5843,
+   "total_dollars": 2633850.0,
+   "total_dollars_from_r_column": 2633889.0,
+   "per_day": 5268.0,
+   "pct_of_bar": 1326.9,
+   "short_by": -4871.0,
+   "months_green": 25,
+   "months": 25,
+   "worst_drawdown": 7980.0
+  },
+  "one_a_day": {
+   "trades": 499,
+   "win_pct": 66.7,
+   "mean_r": 0.7222,
+   "total_dollars": 360380.0,
+   "total_dollars_from_r_column": 360380.0,
+   "per_day": 721.0,
+   "pct_of_bar": 181.6,
+   "short_by": -324.0,
+   "months_green": 25,
+   "months": 25,
+   "worst_drawdown": 5993.0
+  }
+ }
+}

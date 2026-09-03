@@ -1,0 +1,2349 @@
+{
+ "what": "the engine measured at Austin's stated entry minute, not at the day",
+ "near_bars": 2,
+ "mark_files_readonly": [
+  "C:\\Users\\aharg\\Desktop\\Projects\\tradingbot\\research\\marks\\probe_g71_homework_s3_2026-08-29_complete.jsonl",
+  "C:\\Users\\aharg\\Desktop\\Projects\\tradingbot\\research\\marks\\probe_s_sweep_2026-08-28.jsonl"
+ ],
+ "sample_A_rows": [
+  {
+   "card_id": "BABA_2024-09-05",
+   "symbol": "BABA",
+   "date": "2024-09-05",
+   "bucket": "BR",
+   "claimed_setup": "BR+OCR",
+   "is_s": true,
+   "why_not": [],
+   "note": "9:56",
+   "his_times": [
+    "9:56"
+   ],
+   "his_minute": 596,
+   "unparseable_tokens": [],
+   "time_intent": "entry",
+   "intent_quote": "\"9:56\"",
+   "verdict": "SILENT",
+   "n_signals_in_band": 0,
+   "grades_in_band": [],
+   "setups_in_band": [],
+   "n_signals_that_day": 22,
+   "engine_active_that_day": true,
+   "engine_first_et": "9:40",
+   "engine_last_et": "10:58",
+   "nearest_any_et": "10:06",
+   "offset_nearest_any": 10,
+   "nearest_fired_et": "9:41",
+   "offset_nearest_fired": -15,
+   "took_any_trade_that_day": true,
+   "bands": {
+    "0": "SILENT",
+    "1": "SILENT",
+    "2": "SILENT",
+    "5": "SILENT"
+   }
+  },
+  {
+   "card_id": "NFLX_2026-05-26",
+   "symbol": "NFLX",
+   "date": "2026-05-26",
+   "bucket": "84",
+   "claimed_setup": "84",
+   "is_s": true,
+   "why_not": [],
+   "note": "9:47 OCR stop green candle wick",
+   "his_times": [
+    "9:47"
+   ],
+   "his_minute": 587,
+   "unparseable_tokens": [],
+   "time_intent": "entry",
+   "intent_quote": "\"9:47 OCR stop green candle wick\"",
+   "verdict": "FIRED",
+   "n_signals_in_band": 2,
+   "grades_in_band": [
+    "A",
+    "X"
+   ],
+   "setups_in_band": [
+    "break_and_retest",
+    "one_candle_rule"
+   ],
+   "n_signals_that_day": 25,
+   "engine_active_that_day": true,
+   "engine_first_et": "9:41",
+   "engine_last_et": "10:59",
+   "nearest_any_et": "9:45",
+   "offset_nearest_any": -2,
+   "nearest_fired_et": "9:49",
+   "offset_nearest_fired": 2,
+   "took_any_trade_that_day": true,
+   "bands": {
+    "0": "SILENT",
+    "1": "SILENT",
+    "2": "FIRED",
+    "5": "FIRED"
+   }
+  },
+  {
+   "card_id": "NVDA_2026-05-11",
+   "symbol": "NVDA",
+   "date": "2026-05-11",
+   "bucket": "OCR",
+   "claimed_setup": "OCR",
+   "is_s": true,
+   "why_not": [],
+   "note": "9:43",
+   "his_times": [
+    "9:43"
+   ],
+   "his_minute": 583,
+   "unparseable_tokens": [],
+   "time_intent": "entry",
+   "intent_quote": "\"9:43\"",
+   "verdict": "FIRED",
+   "n_signals_in_band": 4,
+   "grades_in_band": [
+    "B",
+    "C",
+    "X"
+   ],
+   "setups_in_band": [
+    "break_and_retest"
+   ],
+   "n_signals_that_day": 16,
+   "engine_active_that_day": true,
+   "engine_first_et": "9:42",
+   "engine_last_et": "10:40",
+   "nearest_any_et": "9:43",
+   "offset_nearest_any": 0,
+   "nearest_fired_et": "9:44",
+   "offset_nearest_fired": 1,
+   "took_any_trade_that_day": true,
+   "bands": {
+    "0": "DETECTED",
+    "1": "FIRED",
+    "2": "FIRED",
+    "5": "FIRED"
+   }
+  },
+  {
+   "card_id": "NFLX_2025-07-08",
+   "symbol": "NFLX",
+   "date": "2025-07-08",
+   "bucket": "OCR",
+   "claimed_setup": "OCR",
+   "is_s": true,
+   "why_not": [],
+   "note": "9:38",
+   "his_times": [
+    "9:38"
+   ],
+   "his_minute": 578,
+   "unparseable_tokens": [],
+   "time_intent": "entry",
+   "intent_quote": "\"9:38\"",
+   "verdict": "DETECTED",
+   "n_signals_in_band": 3,
+   "grades_in_band": [
+    "X"
+   ],
+   "setups_in_band": [
+    "break_and_retest"
+   ],
+   "n_signals_that_day": 16,
+   "engine_active_that_day": true,
+   "engine_first_et": "9:38",
+   "engine_last_et": "10:27",
+   "nearest_any_et": "9:38",
+   "offset_nearest_any": 0,
+   "nearest_fired_et": null,
+   "offset_nearest_fired": null,
+   "took_any_trade_that_day": false,
+   "bands": {
+    "0": "DETECTED",
+    "1": "DETECTED",
+    "2": "DETECTED",
+    "5": "DETECTED"
+   }
+  },
+  {
+   "card_id": "COIN_2025-07-10",
+   "symbol": "COIN",
+   "date": "2025-07-10",
+   "bucket": "84",
+   "claimed_setup": "84",
+   "is_s": true,
+   "why_not": [],
+   "note": "9:41",
+   "his_times": [
+    "9:41"
+   ],
+   "his_minute": 581,
+   "unparseable_tokens": [],
+   "time_intent": "entry",
+   "intent_quote": "\"9:41\"",
+   "verdict": "SILENT",
+   "n_signals_in_band": 0,
+   "grades_in_band": [],
+   "setups_in_band": [],
+   "n_signals_that_day": 29,
+   "engine_active_that_day": true,
+   "engine_first_et": "10:00",
+   "engine_last_et": "10:59",
+   "nearest_any_et": "10:00",
+   "offset_nearest_any": 19,
+   "nearest_fired_et": "10:22",
+   "offset_nearest_fired": 41,
+   "took_any_trade_that_day": true,
+   "bands": {
+    "0": "SILENT",
+    "1": "SILENT",
+    "2": "SILENT",
+    "5": "SILENT"
+   }
+  },
+  {
+   "card_id": "TSLA_2025-09-03",
+   "symbol": "TSLA",
+   "date": "2025-09-03",
+   "bucket": "BR",
+   "claimed_setup": "BR+OCR",
+   "is_s": true,
+   "why_not": [],
+   "note": "9:45",
+   "his_times": [
+    "9:45"
+   ],
+   "his_minute": 585,
+   "unparseable_tokens": [],
+   "time_intent": "entry",
+   "intent_quote": "\"9:45\"",
+   "verdict": "DETECTED",
+   "n_signals_in_band": 4,
+   "grades_in_band": [
+    "X"
+   ],
+   "setups_in_band": [
+    "break_and_retest"
+   ],
+   "n_signals_that_day": 10,
+   "engine_active_that_day": true,
+   "engine_first_et": "9:38",
+   "engine_last_et": "10:31",
+   "nearest_any_et": "9:45",
+   "offset_nearest_any": 0,
+   "nearest_fired_et": null,
+   "offset_nearest_fired": null,
+   "took_any_trade_that_day": false,
+   "bands": {
+    "0": "DETECTED",
+    "1": "DETECTED",
+    "2": "DETECTED",
+    "5": "DETECTED"
+   }
+  },
+  {
+   "card_id": "AMD_2024-10-02",
+   "symbol": "AMD",
+   "date": "2024-10-02",
+   "bucket": "BR",
+   "claimed_setup": "BR+OCR",
+   "is_s": true,
+   "why_not": [],
+   "note": "9:36 and 84 percent rule happens yes",
+   "his_times": [
+    "9:36"
+   ],
+   "his_minute": 576,
+   "unparseable_tokens": [],
+   "time_intent": "entry",
+   "intent_quote": "\"9:36 and 84 percent rule happens yes\"",
+   "verdict": "SILENT",
+   "n_signals_in_band": 0,
+   "grades_in_band": [],
+   "setups_in_band": [],
+   "n_signals_that_day": 23,
+   "engine_active_that_day": true,
+   "engine_first_et": "10:04",
+   "engine_last_et": "10:59",
+   "nearest_any_et": "10:04",
+   "offset_nearest_any": 28,
+   "nearest_fired_et": "10:08",
+   "offset_nearest_fired": 32,
+   "took_any_trade_that_day": true,
+   "bands": {
+    "0": "SILENT",
+    "1": "SILENT",
+    "2": "SILENT",
+    "5": "SILENT"
+   }
+  },
+  {
+   "card_id": "MSFT_2024-09-13",
+   "symbol": "MSFT",
+   "date": "2024-09-13",
+   "bucket": "84",
+   "claimed_setup": "84",
+   "is_s": false,
+   "why_not": [
+    "level_not_respected"
+   ],
+   "note": "9:47 is what you liked but it broke above those levels and rejected them",
+   "his_times": [
+    "9:47"
+   ],
+   "his_minute": 587,
+   "unparseable_tokens": [],
+   "time_intent": "narration",
+   "intent_quote": "\"9:47 is what you liked but it broke above those levels and rejected them\" -- the minute is the ENGINE'S, quoted back. Not his entry.",
+   "verdict": "FIRED",
+   "n_signals_in_band": 3,
+   "grades_in_band": [
+    "B",
+    "X"
+   ],
+   "setups_in_band": [
+    "break_and_retest"
+   ],
+   "n_signals_that_day": 16,
+   "engine_active_that_day": true,
+   "engine_first_et": "9:47",
+   "engine_last_et": "10:49",
+   "nearest_any_et": "9:47",
+   "offset_nearest_any": 0,
+   "nearest_fired_et": "9:47",
+   "offset_nearest_fired": 0,
+   "took_any_trade_that_day": true,
+   "bands": {
+    "0": "FIRED",
+    "1": "FIRED",
+    "2": "FIRED",
+    "5": "FIRED"
+   }
+  },
+  {
+   "card_id": "MSFT_2025-08-29",
+   "symbol": "MSFT",
+   "date": "2025-08-29",
+   "bucket": "OCR",
+   "claimed_setup": "OCR",
+   "is_s": true,
+   "why_not": [],
+   "note": "BR OCB confluence, not perfect because no displacement but you get a +1 9:38 is the entry",
+   "his_times": [
+    "9:38"
+   ],
+   "his_minute": 578,
+   "unparseable_tokens": [],
+   "time_intent": "entry",
+   "intent_quote": "\"...9:38 is the entry\"",
+   "verdict": "FIRED",
+   "n_signals_in_band": 4,
+   "grades_in_band": [
+    "B",
+    "X"
+   ],
+   "setups_in_band": [
+    "break_and_retest"
+   ],
+   "n_signals_that_day": 19,
+   "engine_active_that_day": true,
+   "engine_first_et": "9:37",
+   "engine_last_et": "10:43",
+   "nearest_any_et": "9:38",
+   "offset_nearest_any": 0,
+   "nearest_fired_et": "9:40",
+   "offset_nearest_fired": 2,
+   "took_any_trade_that_day": true,
+   "bands": {
+    "0": "DETECTED",
+    "1": "DETECTED",
+    "2": "FIRED",
+    "5": "FIRED"
+   }
+  },
+  {
+   "card_id": "GOOGL_2024-10-29",
+   "symbol": "GOOGL",
+   "date": "2024-10-29",
+   "bucket": "OCR",
+   "claimed_setup": "OCR",
+   "is_s": true,
+   "why_not": [],
+   "note": "10:47",
+   "his_times": [
+    "10:47"
+   ],
+   "his_minute": 647,
+   "unparseable_tokens": [],
+   "time_intent": "entry",
+   "intent_quote": "\"10:47\"",
+   "verdict": "SILENT",
+   "n_signals_in_band": 0,
+   "grades_in_band": [],
+   "setups_in_band": [],
+   "n_signals_that_day": 16,
+   "engine_active_that_day": true,
+   "engine_first_et": "9:47",
+   "engine_last_et": "10:59",
+   "nearest_any_et": "10:59",
+   "offset_nearest_any": 12,
+   "nearest_fired_et": "10:04",
+   "offset_nearest_fired": -43,
+   "took_any_trade_that_day": true,
+   "bands": {
+    "0": "SILENT",
+    "1": "SILENT",
+    "2": "SILENT",
+    "5": "SILENT"
+   }
+  },
+  {
+   "card_id": "AAPL_2026-04-17",
+   "symbol": "AAPL",
+   "date": "2026-04-17",
+   "bucket": "84",
+   "claimed_setup": "84",
+   "is_s": true,
+   "why_not": [],
+   "note": "9:42",
+   "his_times": [
+    "9:42"
+   ],
+   "his_minute": 582,
+   "unparseable_tokens": [],
+   "time_intent": "entry",
+   "intent_quote": "\"9:42\"",
+   "verdict": "SILENT",
+   "n_signals_in_band": 0,
+   "grades_in_band": [],
+   "setups_in_band": [],
+   "n_signals_that_day": 15,
+   "engine_active_that_day": true,
+   "engine_first_et": "10:00",
+   "engine_last_et": "10:44",
+   "nearest_any_et": "10:00",
+   "offset_nearest_any": 18,
+   "nearest_fired_et": "10:01",
+   "offset_nearest_fired": 19,
+   "took_any_trade_that_day": true,
+   "bands": {
+    "0": "SILENT",
+    "1": "SILENT",
+    "2": "SILENT",
+    "5": "SILENT"
+   }
+  },
+  {
+   "card_id": "TSM_2025-11-26",
+   "symbol": "TSM",
+   "date": "2025-11-26",
+   "bucket": "BR",
+   "claimed_setup": "BR+OCR",
+   "is_s": false,
+   "why_not": [
+    "other"
+   ],
+   "note": "i see what the entry would be but hard to get past the green  candle at 9:35 | pivot created hard to break",
+   "his_times": [
+    "9:35"
+   ],
+   "his_minute": 575,
+   "unparseable_tokens": [],
+   "time_intent": "narration",
+   "intent_quote": "\"hard to get past the green candle at 9:35\" -- he is naming an obstacle, not an entry",
+   "verdict": "SILENT",
+   "n_signals_in_band": 0,
+   "grades_in_band": [],
+   "setups_in_band": [],
+   "n_signals_that_day": 22,
+   "engine_active_that_day": true,
+   "engine_first_et": "9:57",
+   "engine_last_et": "10:59",
+   "nearest_any_et": "9:57",
+   "offset_nearest_any": 22,
+   "nearest_fired_et": "9:59",
+   "offset_nearest_fired": 24,
+   "took_any_trade_that_day": true,
+   "bands": {
+    "0": "SILENT",
+    "1": "SILENT",
+    "2": "SILENT",
+    "5": "SILENT"
+   }
+  },
+  {
+   "card_id": "SPY_2025-05-21",
+   "symbol": "SPY",
+   "date": "2025-05-21",
+   "bucket": "OCR",
+   "claimed_setup": "OCR",
+   "is_s": true,
+   "why_not": [],
+   "note": "9:45 BR OCR confluence",
+   "his_times": [
+    "9:45"
+   ],
+   "his_minute": 585,
+   "unparseable_tokens": [],
+   "time_intent": "entry",
+   "intent_quote": "\"9:45 BR OCR confluence\"",
+   "verdict": "SILENT",
+   "n_signals_in_band": 0,
+   "grades_in_band": [],
+   "setups_in_band": [],
+   "n_signals_that_day": 22,
+   "engine_active_that_day": true,
+   "engine_first_et": "9:48",
+   "engine_last_et": "10:50",
+   "nearest_any_et": "9:48",
+   "offset_nearest_any": 3,
+   "nearest_fired_et": null,
+   "offset_nearest_fired": null,
+   "took_any_trade_that_day": false,
+   "bands": {
+    "0": "SILENT",
+    "1": "SILENT",
+    "2": "SILENT",
+    "5": "DETECTED"
+   }
+  },
+  {
+   "card_id": "INTC_2026-03-24",
+   "symbol": "INTC",
+   "date": "2026-03-24",
+   "bucket": "84",
+   "claimed_setup": "84",
+   "is_s": true,
+   "why_not": [],
+   "note": "entry at 9:38 and then a 84 reclaim correct, because the bigger pucture stop was it holder the opening candle",
+   "his_times": [
+    "9:38"
+   ],
+   "his_minute": 578,
+   "unparseable_tokens": [],
+   "time_intent": "entry",
+   "intent_quote": "\"entry at 9:38 and then a 84 reclaim\"",
+   "verdict": "SILENT",
+   "n_signals_in_band": 0,
+   "grades_in_band": [],
+   "setups_in_band": [],
+   "n_signals_that_day": 21,
+   "engine_active_that_day": true,
+   "engine_first_et": "9:45",
+   "engine_last_et": "10:56",
+   "nearest_any_et": "9:45",
+   "offset_nearest_any": 7,
+   "nearest_fired_et": "9:48",
+   "offset_nearest_fired": 10,
+   "took_any_trade_that_day": true,
+   "bands": {
+    "0": "SILENT",
+    "1": "SILENT",
+    "2": "SILENT",
+    "5": "SILENT"
+   }
+  },
+  {
+   "card_id": "AVGO_2024-11-04",
+   "symbol": "AVGO",
+   "date": "2024-11-04",
+   "bucket": "BR",
+   "claimed_setup": "BR+OCR",
+   "is_s": true,
+   "why_not": [],
+   "note": "9:47",
+   "his_times": [
+    "9:47"
+   ],
+   "his_minute": 587,
+   "unparseable_tokens": [],
+   "time_intent": "entry",
+   "intent_quote": "\"9:47\"",
+   "verdict": "DETECTED",
+   "n_signals_in_band": 2,
+   "grades_in_band": [
+    "X"
+   ],
+   "setups_in_band": [
+    "break_and_retest"
+   ],
+   "n_signals_that_day": 24,
+   "engine_active_that_day": true,
+   "engine_first_et": "9:38",
+   "engine_last_et": "10:51",
+   "nearest_any_et": "9:47",
+   "offset_nearest_any": 0,
+   "nearest_fired_et": null,
+   "offset_nearest_fired": null,
+   "took_any_trade_that_day": false,
+   "bands": {
+    "0": "DETECTED",
+    "1": "DETECTED",
+    "2": "DETECTED",
+    "5": "DETECTED"
+   }
+  },
+  {
+   "card_id": "AMD_2025-09-08",
+   "symbol": "AMD",
+   "date": "2025-09-08",
+   "bucket": "BR",
+   "claimed_setup": "BR+OCR",
+   "is_s": false,
+   "why_not": [
+    "no_displacement",
+    "late"
+   ],
+   "note": "10:37 but really no displacement from the original candles so i have to downgrade",
+   "his_times": [
+    "10:37"
+   ],
+   "his_minute": 637,
+   "unparseable_tokens": [],
+   "time_intent": "candidate",
+   "intent_quote": "\"10:37 but really no displacement ... so i have to downgrade\" -- his read of where it was, then a no",
+   "verdict": "DETECTED",
+   "n_signals_in_band": 3,
+   "grades_in_band": [
+    "X"
+   ],
+   "setups_in_band": [
+    "break_and_retest"
+   ],
+   "n_signals_that_day": 17,
+   "engine_active_that_day": true,
+   "engine_first_et": "10:05",
+   "engine_last_et": "10:57",
+   "nearest_any_et": "10:37",
+   "offset_nearest_any": 0,
+   "nearest_fired_et": "10:05",
+   "offset_nearest_fired": -32,
+   "took_any_trade_that_day": true,
+   "bands": {
+    "0": "DETECTED",
+    "1": "DETECTED",
+    "2": "DETECTED",
+    "5": "DETECTED"
+   }
+  },
+  {
+   "card_id": "HOOD_2025-11-28",
+   "symbol": "HOOD",
+   "date": "2025-11-28",
+   "bucket": "84",
+   "claimed_setup": "84",
+   "is_s": false,
+   "why_not": [
+    "chop",
+    "late"
+   ],
+   "note": "",
+   "his_times": [],
+   "his_minute": null,
+   "unparseable_tokens": [],
+   "time_intent": "unclassified",
+   "intent_quote": "",
+   "verdict": "no_minute_given"
+  },
+  {
+   "card_id": "IWM_2026-08-06",
+   "symbol": "IWM",
+   "date": "2026-08-06",
+   "bucket": "OCR",
+   "claimed_setup": "OCR",
+   "is_s": true,
+   "why_not": [],
+   "note": "9:%5",
+   "his_times": [],
+   "his_minute": null,
+   "unparseable_tokens": [
+    "9:%5"
+   ],
+   "time_intent": "unparseable",
+   "intent_quote": "\"9:%5\" -- a typo. Never guessed.",
+   "verdict": "no_minute_given"
+  },
+  {
+   "card_id": "TSM_2026-07-07",
+   "symbol": "TSM",
+   "date": "2026-07-07",
+   "bucket": "84",
+   "claimed_setup": "84",
+   "is_s": true,
+   "why_not": [],
+   "note": "9:38 and yes reclaim",
+   "his_times": [
+    "9:38"
+   ],
+   "his_minute": 578,
+   "unparseable_tokens": [],
+   "time_intent": "entry",
+   "intent_quote": "\"9:38 and yes reclaim\"",
+   "verdict": "FIRED",
+   "n_signals_in_band": 4,
+   "grades_in_band": [
+    "B",
+    "X"
+   ],
+   "setups_in_band": [
+    "break_and_retest"
+   ],
+   "n_signals_that_day": 21,
+   "engine_active_that_day": true,
+   "engine_first_et": "9:37",
+   "engine_last_et": "10:59",
+   "nearest_any_et": "9:38",
+   "offset_nearest_any": 0,
+   "nearest_fired_et": "9:38",
+   "offset_nearest_fired": 0,
+   "took_any_trade_that_day": true,
+   "bands": {
+    "0": "FIRED",
+    "1": "FIRED",
+    "2": "FIRED",
+    "5": "FIRED"
+   }
+  },
+  {
+   "card_id": "AMZN_2025-12-11",
+   "symbol": "AMZN",
+   "date": "2025-12-11",
+   "bucket": "BR",
+   "claimed_setup": "BR",
+   "is_s": true,
+   "why_not": [],
+   "note": "9:40",
+   "his_times": [
+    "9:40"
+   ],
+   "his_minute": 580,
+   "unparseable_tokens": [],
+   "time_intent": "entry",
+   "intent_quote": "\"9:40\"",
+   "verdict": "FIRED",
+   "n_signals_in_band": 6,
+   "grades_in_band": [
+    "B",
+    "C",
+    "X"
+   ],
+   "setups_in_band": [
+    "break_and_retest"
+   ],
+   "n_signals_that_day": 22,
+   "engine_active_that_day": true,
+   "engine_first_et": "9:39",
+   "engine_last_et": "10:46",
+   "nearest_any_et": "9:39",
+   "offset_nearest_any": -1,
+   "nearest_fired_et": "9:42",
+   "offset_nearest_fired": 2,
+   "took_any_trade_that_day": true,
+   "bands": {
+    "0": "SILENT",
+    "1": "DETECTED",
+    "2": "FIRED",
+    "5": "FIRED"
+   }
+  },
+  {
+   "card_id": "NVDA_2025-06-24",
+   "symbol": "NVDA",
+   "date": "2025-06-24",
+   "bucket": "OCR",
+   "claimed_setup": "OCR",
+   "is_s": false,
+   "why_not": [
+    "no_displacement"
+   ],
+   "note": "really good a trade i wish it was an S but it didnt displace from that wick, but technically it is an OCR and BR just neither of the parts have displacement",
+   "his_times": [],
+   "his_minute": null,
+   "unparseable_tokens": [],
+   "time_intent": "unclassified",
+   "intent_quote": "",
+   "verdict": "no_minute_given"
+  },
+  {
+   "card_id": "ORCL_2025-02-18",
+   "symbol": "ORCL",
+   "date": "2025-02-18",
+   "bucket": "84",
+   "claimed_setup": "84",
+   "is_s": false,
+   "why_not": [
+    "other"
+   ],
+   "note": "took too long for the entry",
+   "his_times": [],
+   "his_minute": null,
+   "unparseable_tokens": [],
+   "time_intent": "unclassified",
+   "intent_quote": "",
+   "verdict": "no_minute_given"
+  },
+  {
+   "card_id": "ACHR_2026-06-16",
+   "symbol": "ACHR",
+   "date": "2026-06-16",
+   "bucket": "BR",
+   "claimed_setup": "BR+OCR",
+   "is_s": true,
+   "why_not": [],
+   "note": "9:57 as candle forming",
+   "his_times": [
+    "9:57"
+   ],
+   "his_minute": 597,
+   "unparseable_tokens": [],
+   "time_intent": "entry",
+   "intent_quote": "\"9:57 as candle forming\"",
+   "verdict": "DETECTED",
+   "n_signals_in_band": 4,
+   "grades_in_band": [
+    "X"
+   ],
+   "setups_in_band": [
+    "break_and_retest"
+   ],
+   "n_signals_that_day": 12,
+   "engine_active_that_day": true,
+   "engine_first_et": "9:56",
+   "engine_last_et": "10:33",
+   "nearest_any_et": "9:57",
+   "offset_nearest_any": 0,
+   "nearest_fired_et": "10:03",
+   "offset_nearest_fired": 6,
+   "took_any_trade_that_day": true,
+   "bands": {
+    "0": "DETECTED",
+    "1": "DETECTED",
+    "2": "DETECTED",
+    "5": "DETECTED"
+   }
+  },
+  {
+   "card_id": "SPY_2026-06-17",
+   "symbol": "SPY",
+   "date": "2026-06-17",
+   "bucket": "OCR",
+   "claimed_setup": "OCR",
+   "is_s": true,
+   "why_not": [],
+   "note": "i see a fake out S trade at 9:48 because the red candle at 9:30 doesent look as distracting, and your s is good too but its tight on if theres displacement. and if you went with my trade it wouldve stopped out and reclaimed.",
+   "his_times": [
+    "9:48",
+    "9:30"
+   ],
+   "his_minute": 588,
+   "unparseable_tokens": [],
+   "time_intent": "entry",
+   "intent_quote": "\"i see a fake out S trade at 9:48 ... and if you went with my trade it wouldve stopped out and reclaimed\"",
+   "verdict": "DETECTED",
+   "n_signals_in_band": 1,
+   "grades_in_band": [
+    "X"
+   ],
+   "setups_in_band": [
+    "break_and_retest"
+   ],
+   "n_signals_that_day": 16,
+   "engine_active_that_day": true,
+   "engine_first_et": "9:48",
+   "engine_last_et": "10:57",
+   "nearest_any_et": "9:48",
+   "offset_nearest_any": 0,
+   "nearest_fired_et": null,
+   "offset_nearest_fired": null,
+   "took_any_trade_that_day": false,
+   "bands": {
+    "0": "DETECTED",
+    "1": "DETECTED",
+    "2": "DETECTED",
+    "5": "DETECTED"
+   }
+  },
+  {
+   "card_id": "ACHR_2026-04-13",
+   "symbol": "ACHR",
+   "date": "2026-04-13",
+   "bucket": "OCR",
+   "claimed_setup": "OCR",
+   "is_s": true,
+   "why_not": [],
+   "note": "10:09 would never trade because look how the candles are but jsut good for you to know",
+   "his_times": [
+    "10:09"
+   ],
+   "his_minute": 609,
+   "unparseable_tokens": [],
+   "time_intent": "entry_not_tradeable",
+   "intent_quote": "\"10:09 would never trade because look how the candles are but jsut good for you to know\" -- the minute is his, the TRADE is not",
+   "verdict": "SILENT",
+   "n_signals_in_band": 0,
+   "grades_in_band": [],
+   "setups_in_band": [],
+   "n_signals_that_day": 8,
+   "engine_active_that_day": true,
+   "engine_first_et": "9:41",
+   "engine_last_et": "10:59",
+   "nearest_any_et": "10:15",
+   "offset_nearest_any": 6,
+   "nearest_fired_et": null,
+   "offset_nearest_fired": null,
+   "took_any_trade_that_day": false,
+   "bands": {
+    "0": "SILENT",
+    "1": "SILENT",
+    "2": "SILENT",
+    "5": "SILENT"
+   }
+  },
+  {
+   "card_id": "AAPL_2026-03-11",
+   "symbol": "AAPL",
+   "date": "2026-03-11",
+   "bucket": "BR",
+   "claimed_setup": "BR+OCR",
+   "is_s": false,
+   "why_not": [
+    "chop"
+   ],
+   "note": "",
+   "his_times": [],
+   "his_minute": null,
+   "unparseable_tokens": [],
+   "time_intent": "unclassified",
+   "intent_quote": "",
+   "verdict": "no_minute_given"
+  },
+  {
+   "card_id": "META_2026-06-22",
+   "symbol": "META",
+   "date": "2026-06-22",
+   "bucket": "84",
+   "claimed_setup": "84",
+   "is_s": true,
+   "why_not": [],
+   "note": "9:59",
+   "his_times": [
+    "9:59"
+   ],
+   "his_minute": 599,
+   "unparseable_tokens": [],
+   "time_intent": "entry",
+   "intent_quote": "\"9:59\"",
+   "verdict": "SILENT",
+   "n_signals_in_band": 0,
+   "grades_in_band": [],
+   "setups_in_band": [],
+   "n_signals_that_day": 18,
+   "engine_active_that_day": true,
+   "engine_first_et": "9:40",
+   "engine_last_et": "10:59",
+   "nearest_any_et": "9:52",
+   "offset_nearest_any": -7,
+   "nearest_fired_et": "9:40",
+   "offset_nearest_fired": -19,
+   "took_any_trade_that_day": true,
+   "bands": {
+    "0": "SILENT",
+    "1": "SILENT",
+    "2": "SILENT",
+    "5": "SILENT"
+   }
+  },
+  {
+   "card_id": "QQQ_2024-08-26",
+   "symbol": "QQQ",
+   "date": "2024-08-26",
+   "bucket": "BR",
+   "claimed_setup": "BR+OCR",
+   "is_s": true,
+   "why_not": [],
+   "note": "9:56 but i may be biased here because a break retest with no dispacement happens at 9:45, its not of the level just the wicks at the beginning of the day",
+   "his_times": [
+    "9:56",
+    "9:45"
+   ],
+   "his_minute": 596,
+   "unparseable_tokens": [],
+   "time_intent": "entry",
+   "intent_quote": "\"9:56 but i may be biased here because a break retest with no dispacement happens at 9:45\" -- 9:56 is the entry, 9:45 is narration of another candle",
+   "verdict": "DETECTED",
+   "n_signals_in_band": 2,
+   "grades_in_band": [
+    "X"
+   ],
+   "setups_in_band": [
+    "break_and_retest"
+   ],
+   "n_signals_that_day": 9,
+   "engine_active_that_day": true,
+   "engine_first_et": "9:48",
+   "engine_last_et": "10:41",
+   "nearest_any_et": "9:55",
+   "offset_nearest_any": -1,
+   "nearest_fired_et": null,
+   "offset_nearest_fired": null,
+   "took_any_trade_that_day": false,
+   "bands": {
+    "0": "SILENT",
+    "1": "DETECTED",
+    "2": "DETECTED",
+    "5": "DETECTED"
+   }
+  },
+  {
+   "card_id": "QQQ_2025-12-22",
+   "symbol": "QQQ",
+   "date": "2025-12-22",
+   "bucket": "OCR",
+   "claimed_setup": "OCR",
+   "is_s": false,
+   "why_not": [
+    "no_displacement",
+    "chop"
+   ],
+   "note": "9:45 its close i see what your seeing",
+   "his_times": [
+    "9:45"
+   ],
+   "his_minute": 585,
+   "unparseable_tokens": [],
+   "time_intent": "candidate",
+   "intent_quote": "\"9:45 its close i see what your seeing\"",
+   "verdict": "SILENT",
+   "n_signals_in_band": 0,
+   "grades_in_band": [],
+   "setups_in_band": [],
+   "n_signals_that_day": 13,
+   "engine_active_that_day": true,
+   "engine_first_et": "9:57",
+   "engine_last_et": "10:59",
+   "nearest_any_et": "9:57",
+   "offset_nearest_any": 12,
+   "nearest_fired_et": null,
+   "offset_nearest_fired": null,
+   "took_any_trade_that_day": false,
+   "bands": {
+    "0": "SILENT",
+    "1": "SILENT",
+    "2": "SILENT",
+    "5": "SILENT"
+   }
+  },
+  {
+   "card_id": "AVGO_2025-12-03",
+   "symbol": "AVGO",
+   "date": "2025-12-03",
+   "bucket": "84",
+   "claimed_setup": "84",
+   "is_s": false,
+   "why_not": [
+    "no_retest"
+   ],
+   "note": "i dont see anything: 9:33 can be a great break of pdl but the retest missed by a few cents",
+   "his_times": [
+    "9:33"
+   ],
+   "his_minute": 573,
+   "unparseable_tokens": [],
+   "time_intent": "candidate",
+   "intent_quote": "\"9:33 can be a great break of pdl but the retest missed by a few cents\"",
+   "verdict": "SILENT",
+   "n_signals_in_band": 0,
+   "grades_in_band": [],
+   "setups_in_band": [],
+   "n_signals_that_day": 24,
+   "engine_active_that_day": true,
+   "engine_first_et": "10:20",
+   "engine_last_et": "10:59",
+   "nearest_any_et": "10:20",
+   "offset_nearest_any": 47,
+   "nearest_fired_et": "10:22",
+   "offset_nearest_fired": 49,
+   "took_any_trade_that_day": true,
+   "bands": {
+    "0": "SILENT",
+    "1": "SILENT",
+    "2": "SILENT",
+    "5": "SILENT"
+   }
+  }
+ ],
+ "sample_A_all30": {
+  "label": "all 30 homework cards",
+  "cards_with_a_usable_minute": 25,
+  "AT THE MINUTE": {
+   "SILENT_no_signal_at_all": 12,
+   "DETECTED_saw_it_refused_to_trade": 7,
+   "FIRED_took_the_trade": 6,
+   "no_bars_archived": 0,
+   "took_the_trade_pct": 24.0
+  },
+  "AT THE DAY": {
+   "engine_produced_at_least_one_signal": 25,
+   "never_silent_pct": 100.0,
+   "took_at_least_one_trade": 17
+  },
+  "TIMING, every card, nothing dropped": {
+   "n": 25,
+   "median": 0,
+   "mean": 6.92,
+   "min": -7,
+   "max": 47,
+   "within_2": 13
+  },
+  "TIMING, only the cards it reached (the conditioned number)": {
+   "n": 13,
+   "median": 0,
+   "mean": -0.31,
+   "min": -2,
+   "max": 0,
+   "within_2": 13
+  },
+  "bands": {
+   "0": {
+    "SILENT": 15,
+    "DETECTED": 8,
+    "FIRED": 2
+   },
+   "1": {
+    "SILENT": 13,
+    "DETECTED": 9,
+    "FIRED": 3
+   },
+   "2": {
+    "SILENT": 12,
+    "DETECTED": 7,
+    "FIRED": 6
+   },
+   "5": {
+    "SILENT": 11,
+    "DETECTED": 8,
+    "FIRED": 6
+   }
+  }
+ },
+ "sample_A_yes_only": {
+  "label": "the 21 he graded S",
+  "cards_with_a_usable_minute": 20,
+  "AT THE MINUTE": {
+   "SILENT_no_signal_at_all": 9,
+   "DETECTED_saw_it_refused_to_trade": 6,
+   "FIRED_took_the_trade": 5,
+   "no_bars_archived": 0,
+   "took_the_trade_pct": 25.0
+  },
+  "AT THE DAY": {
+   "engine_produced_at_least_one_signal": 20,
+   "never_silent_pct": 100.0,
+   "took_at_least_one_trade": 13
+  },
+  "TIMING, every card, nothing dropped": {
+   "n": 20,
+   "median": 0.0,
+   "mean": 4.6,
+   "min": -7,
+   "max": 28,
+   "within_2": 11
+  },
+  "TIMING, only the cards it reached (the conditioned number)": {
+   "n": 11,
+   "median": 0,
+   "mean": -0.36,
+   "min": -2,
+   "max": 0,
+   "within_2": 11
+  },
+  "bands": {
+   "0": {
+    "SILENT": 12,
+    "DETECTED": 7,
+    "FIRED": 1
+   },
+   "1": {
+    "SILENT": 10,
+    "DETECTED": 8,
+    "FIRED": 2
+   },
+   "2": {
+    "SILENT": 9,
+    "DETECTED": 6,
+    "FIRED": 5
+   },
+   "5": {
+    "SILENT": 8,
+    "DETECTED": 7,
+    "FIRED": 5
+   }
+  }
+ },
+ "sample_A_entry_intent_only": {
+  "label": "only clock times he meant as an entry",
+  "cards_with_a_usable_minute": 20,
+  "AT THE MINUTE": {
+   "SILENT_no_signal_at_all": 9,
+   "DETECTED_saw_it_refused_to_trade": 6,
+   "FIRED_took_the_trade": 5,
+   "no_bars_archived": 0,
+   "took_the_trade_pct": 25.0
+  },
+  "AT THE DAY": {
+   "engine_produced_at_least_one_signal": 20,
+   "never_silent_pct": 100.0,
+   "took_at_least_one_trade": 13
+  },
+  "TIMING, every card, nothing dropped": {
+   "n": 20,
+   "median": 0.0,
+   "mean": 4.6,
+   "min": -7,
+   "max": 28,
+   "within_2": 11
+  },
+  "TIMING, only the cards it reached (the conditioned number)": {
+   "n": 11,
+   "median": 0,
+   "mean": -0.36,
+   "min": -2,
+   "max": 0,
+   "within_2": 11
+  },
+  "bands": {
+   "0": {
+    "SILENT": 12,
+    "DETECTED": 7,
+    "FIRED": 1
+   },
+   "1": {
+    "SILENT": 10,
+    "DETECTED": 8,
+    "FIRED": 2
+   },
+   "2": {
+    "SILENT": 9,
+    "DETECTED": 6,
+    "FIRED": 5
+   },
+   "5": {
+    "SILENT": 8,
+    "DETECTED": 7,
+    "FIRED": 5
+   }
+  }
+ },
+ "sample_B_rows": [
+  {
+   "card_id": "CRM_2025-09-19",
+   "symbol": "CRM",
+   "date": "2025-09-19",
+   "is_s": true,
+   "note": "9:40",
+   "his_minute": 580,
+   "unparseable_tokens": [],
+   "verdict": "FIRED",
+   "n_signals_in_band": 3,
+   "grades_in_band": [
+    "B",
+    "C",
+    "X"
+   ],
+   "setups_in_band": [
+    "break_and_retest"
+   ],
+   "n_signals_that_day": 12,
+   "engine_active_that_day": true,
+   "engine_first_et": "9:40",
+   "engine_last_et": "10:27",
+   "nearest_any_et": "9:40",
+   "offset_nearest_any": 0,
+   "nearest_fired_et": "9:41",
+   "offset_nearest_fired": 1,
+   "took_any_trade_that_day": true,
+   "bands": {
+    "0": "DETECTED",
+    "1": "FIRED",
+    "2": "FIRED",
+    "5": "FIRED"
+   }
+  },
+  {
+   "card_id": "ARM_2024-10-28",
+   "symbol": "ARM",
+   "date": "2024-10-28",
+   "is_s": true,
+   "note": "9:39",
+   "his_minute": 579,
+   "unparseable_tokens": [],
+   "verdict": "DETECTED",
+   "n_signals_in_band": 1,
+   "grades_in_band": [
+    "X"
+   ],
+   "setups_in_band": [
+    "break_and_retest"
+   ],
+   "n_signals_that_day": 8,
+   "engine_active_that_day": true,
+   "engine_first_et": "9:39",
+   "engine_last_et": "10:29",
+   "nearest_any_et": "9:39",
+   "offset_nearest_any": 0,
+   "nearest_fired_et": "10:28",
+   "offset_nearest_fired": 49,
+   "took_any_trade_that_day": true,
+   "bands": {
+    "0": "DETECTED",
+    "1": "DETECTED",
+    "2": "DETECTED",
+    "5": "DETECTED"
+   }
+  },
+  {
+   "card_id": "MSTR_2025-01-27",
+   "symbol": "MSTR",
+   "date": "2025-01-27",
+   "is_s": true,
+   "note": "9:52 | missed by couple cents",
+   "his_minute": 592,
+   "unparseable_tokens": [],
+   "verdict": "FIRED",
+   "n_signals_in_band": 4,
+   "grades_in_band": [
+    "B",
+    "C",
+    "X"
+   ],
+   "setups_in_band": [
+    "break_and_retest"
+   ],
+   "n_signals_that_day": 31,
+   "engine_active_that_day": true,
+   "engine_first_et": "9:51",
+   "engine_last_et": "10:54",
+   "nearest_any_et": "9:52",
+   "offset_nearest_any": 0,
+   "nearest_fired_et": "9:52",
+   "offset_nearest_fired": 0,
+   "took_any_trade_that_day": true,
+   "bands": {
+    "0": "FIRED",
+    "1": "FIRED",
+    "2": "FIRED",
+    "5": "FIRED"
+   }
+  },
+  {
+   "card_id": "SMCI_2025-11-17",
+   "symbol": "SMCI",
+   "date": "2025-11-17",
+   "is_s": true,
+   "note": "10:06",
+   "his_minute": 606,
+   "unparseable_tokens": [],
+   "verdict": "FIRED",
+   "n_signals_in_band": 8,
+   "grades_in_band": [
+    "B",
+    "C",
+    "X"
+   ],
+   "setups_in_band": [
+    "break_and_retest"
+   ],
+   "n_signals_that_day": 30,
+   "engine_active_that_day": true,
+   "engine_first_et": "9:42",
+   "engine_last_et": "10:53",
+   "nearest_any_et": "10:06",
+   "offset_nearest_any": 0,
+   "nearest_fired_et": "10:08",
+   "offset_nearest_fired": 2,
+   "took_any_trade_that_day": true,
+   "bands": {
+    "0": "DETECTED",
+    "1": "DETECTED",
+    "2": "FIRED",
+    "5": "FIRED"
+   }
+  },
+  {
+   "card_id": "ARM_2024-11-11",
+   "symbol": "ARM",
+   "date": "2024-11-11",
+   "is_s": true,
+   "note": "10:12",
+   "his_minute": 612,
+   "unparseable_tokens": [],
+   "verdict": "SILENT",
+   "n_signals_in_band": 0,
+   "grades_in_band": [],
+   "setups_in_band": [],
+   "n_signals_that_day": 20,
+   "engine_active_that_day": true,
+   "engine_first_et": "9:35",
+   "engine_last_et": "10:55",
+   "nearest_any_et": "10:16",
+   "offset_nearest_any": 4,
+   "nearest_fired_et": "10:01",
+   "offset_nearest_fired": -11,
+   "took_any_trade_that_day": true,
+   "bands": {
+    "0": "SILENT",
+    "1": "SILENT",
+    "2": "SILENT",
+    "5": "DETECTED"
+   }
+  },
+  {
+   "card_id": "BABA_2025-08-28",
+   "symbol": "BABA",
+   "date": "2025-08-28",
+   "is_s": true,
+   "note": "9:44",
+   "his_minute": 584,
+   "unparseable_tokens": [],
+   "verdict": "DETECTED",
+   "n_signals_in_band": 1,
+   "grades_in_band": [
+    "X"
+   ],
+   "setups_in_band": [
+    "break_and_retest"
+   ],
+   "n_signals_that_day": 17,
+   "engine_active_that_day": true,
+   "engine_first_et": "9:35",
+   "engine_last_et": "10:24",
+   "nearest_any_et": "9:46",
+   "offset_nearest_any": 2,
+   "nearest_fired_et": "9:47",
+   "offset_nearest_fired": 3,
+   "took_any_trade_that_day": true,
+   "bands": {
+    "0": "SILENT",
+    "1": "SILENT",
+    "2": "DETECTED",
+    "5": "FIRED"
+   }
+  },
+  {
+   "card_id": "CRM_2026-02-11",
+   "symbol": "CRM",
+   "date": "2026-02-11",
+   "is_s": true,
+   "note": "9:42 | as candle forming not lod",
+   "his_minute": 582,
+   "unparseable_tokens": [],
+   "verdict": "SILENT",
+   "n_signals_in_band": 0,
+   "grades_in_band": [],
+   "setups_in_band": [],
+   "n_signals_that_day": 4,
+   "engine_active_that_day": true,
+   "engine_first_et": "10:33",
+   "engine_last_et": "10:50",
+   "nearest_any_et": "10:33",
+   "offset_nearest_any": 51,
+   "nearest_fired_et": null,
+   "offset_nearest_fired": null,
+   "took_any_trade_that_day": false,
+   "bands": {
+    "0": "SILENT",
+    "1": "SILENT",
+    "2": "SILENT",
+    "5": "SILENT"
+   }
+  },
+  {
+   "card_id": "TSM_2026-02-02",
+   "symbol": "TSM",
+   "date": "2026-02-02",
+   "is_s": true,
+   "note": "9:36",
+   "his_minute": 576,
+   "unparseable_tokens": [],
+   "verdict": "FIRED",
+   "n_signals_in_band": 4,
+   "grades_in_band": [
+    "B",
+    "C",
+    "X"
+   ],
+   "setups_in_band": [
+    "break_and_retest"
+   ],
+   "n_signals_that_day": 8,
+   "engine_active_that_day": true,
+   "engine_first_et": "9:35",
+   "engine_last_et": "9:55",
+   "nearest_any_et": "9:36",
+   "offset_nearest_any": 0,
+   "nearest_fired_et": "9:36",
+   "offset_nearest_fired": 0,
+   "took_any_trade_that_day": true,
+   "bands": {
+    "0": "FIRED",
+    "1": "FIRED",
+    "2": "FIRED",
+    "5": "FIRED"
+   }
+  },
+  {
+   "card_id": "BABA_2025-02-05",
+   "symbol": "BABA",
+   "date": "2025-02-05",
+   "is_s": true,
+   "note": "9:41",
+   "his_minute": 581,
+   "unparseable_tokens": [],
+   "verdict": "FIRED",
+   "n_signals_in_band": 4,
+   "grades_in_band": [
+    "B",
+    "C",
+    "X"
+   ],
+   "setups_in_band": [
+    "break_and_retest"
+   ],
+   "n_signals_that_day": 27,
+   "engine_active_that_day": true,
+   "engine_first_et": "9:40",
+   "engine_last_et": "10:59",
+   "nearest_any_et": "9:41",
+   "offset_nearest_any": 0,
+   "nearest_fired_et": "9:41",
+   "offset_nearest_fired": 0,
+   "took_any_trade_that_day": true,
+   "bands": {
+    "0": "FIRED",
+    "1": "FIRED",
+    "2": "FIRED",
+    "5": "FIRED"
+   }
+  },
+  {
+   "card_id": "MSFT_2025-12-30",
+   "symbol": "MSFT",
+   "date": "2025-12-30",
+   "is_s": true,
+   "note": "9:44 | A candle entry wouldve been 9:36, rare s entry after an a",
+   "his_minute": 584,
+   "unparseable_tokens": [],
+   "verdict": "DETECTED",
+   "n_signals_in_band": 2,
+   "grades_in_band": [
+    "X"
+   ],
+   "setups_in_band": [
+    "break_and_retest"
+   ],
+   "n_signals_that_day": 8,
+   "engine_active_that_day": true,
+   "engine_first_et": "9:36",
+   "engine_last_et": "9:55",
+   "nearest_any_et": "9:44",
+   "offset_nearest_any": 0,
+   "nearest_fired_et": null,
+   "offset_nearest_fired": null,
+   "took_any_trade_that_day": false,
+   "bands": {
+    "0": "DETECTED",
+    "1": "DETECTED",
+    "2": "DETECTED",
+    "5": "DETECTED"
+   }
+  },
+  {
+   "card_id": "PLTR_2024-03-11",
+   "symbol": "PLTR",
+   "date": "2024-03-11",
+   "is_s": true,
+   "note": "9:43",
+   "his_minute": 583,
+   "unparseable_tokens": [],
+   "verdict": "FIRED",
+   "n_signals_in_band": 2,
+   "grades_in_band": [
+    "B",
+    "X"
+   ],
+   "setups_in_band": [
+    "break_and_retest"
+   ],
+   "n_signals_that_day": 29,
+   "engine_active_that_day": true,
+   "engine_first_et": "9:38",
+   "engine_last_et": "10:59",
+   "nearest_any_et": "9:43",
+   "offset_nearest_any": 0,
+   "nearest_fired_et": "9:45",
+   "offset_nearest_fired": 2,
+   "took_any_trade_that_day": true,
+   "bands": {
+    "0": "DETECTED",
+    "1": "DETECTED",
+    "2": "FIRED",
+    "5": "FIRED"
+   }
+  },
+  {
+   "card_id": "IWM_2026-05-01",
+   "symbol": "IWM",
+   "date": "2026-05-01",
+   "is_s": true,
+   "note": "9:43 | orl close above clear stop",
+   "his_minute": 583,
+   "unparseable_tokens": [],
+   "verdict": "DETECTED",
+   "n_signals_in_band": 8,
+   "grades_in_band": [
+    "X"
+   ],
+   "setups_in_band": [
+    "break_and_retest"
+   ],
+   "n_signals_that_day": 21,
+   "engine_active_that_day": true,
+   "engine_first_et": "9:41",
+   "engine_last_et": "10:59",
+   "nearest_any_et": "9:43",
+   "offset_nearest_any": 0,
+   "nearest_fired_et": null,
+   "offset_nearest_fired": null,
+   "took_any_trade_that_day": false,
+   "bands": {
+    "0": "DETECTED",
+    "1": "DETECTED",
+    "2": "DETECTED",
+    "5": "DETECTED"
+   }
+  },
+  {
+   "card_id": "QQQ_2025-09-16",
+   "symbol": "QQQ",
+   "date": "2025-09-16",
+   "is_s": true,
+   "note": "9:36",
+   "his_minute": 576,
+   "unparseable_tokens": [],
+   "verdict": "DETECTED",
+   "n_signals_in_band": 1,
+   "grades_in_band": [
+    "X"
+   ],
+   "setups_in_band": [
+    "one_candle_rule"
+   ],
+   "n_signals_that_day": 7,
+   "engine_active_that_day": true,
+   "engine_first_et": "9:35",
+   "engine_last_et": "9:53",
+   "nearest_any_et": "9:35",
+   "offset_nearest_any": -1,
+   "nearest_fired_et": null,
+   "offset_nearest_fired": null,
+   "took_any_trade_that_day": false,
+   "bands": {
+    "0": "SILENT",
+    "1": "DETECTED",
+    "2": "DETECTED",
+    "5": "DETECTED"
+   }
+  },
+  {
+   "card_id": "BABA_2025-04-07",
+   "symbol": "BABA",
+   "date": "2025-04-07",
+   "is_s": true,
+   "note": "10:10",
+   "his_minute": 610,
+   "unparseable_tokens": [],
+   "verdict": "SILENT",
+   "n_signals_in_band": 0,
+   "grades_in_band": [],
+   "setups_in_band": [],
+   "n_signals_that_day": 21,
+   "engine_active_that_day": true,
+   "engine_first_et": "9:40",
+   "engine_last_et": "10:43",
+   "nearest_any_et": "10:19",
+   "offset_nearest_any": 9,
+   "nearest_fired_et": "10:37",
+   "offset_nearest_fired": 27,
+   "took_any_trade_that_day": true,
+   "bands": {
+    "0": "SILENT",
+    "1": "SILENT",
+    "2": "SILENT",
+    "5": "SILENT"
+   }
+  },
+  {
+   "card_id": "ACHR_2026-02-05",
+   "symbol": "ACHR",
+   "date": "2026-02-05",
+   "is_s": true,
+   "note": "9:59",
+   "his_minute": 599,
+   "unparseable_tokens": [],
+   "verdict": "DETECTED",
+   "n_signals_in_band": 2,
+   "grades_in_band": [
+    "X"
+   ],
+   "setups_in_band": [
+    "break_and_retest"
+   ],
+   "n_signals_that_day": 12,
+   "engine_active_that_day": true,
+   "engine_first_et": "9:35",
+   "engine_last_et": "9:58",
+   "nearest_any_et": "9:58",
+   "offset_nearest_any": -1,
+   "nearest_fired_et": "9:36",
+   "offset_nearest_fired": -23,
+   "took_any_trade_that_day": true,
+   "bands": {
+    "0": "SILENT",
+    "1": "DETECTED",
+    "2": "DETECTED",
+    "5": "DETECTED"
+   }
+  },
+  {
+   "card_id": "AVGO_2025-05-02",
+   "symbol": "AVGO",
+   "date": "2025-05-02",
+   "is_s": true,
+   "note": "9:42 | if we dont hit price target 1, we dont raise the stop to BE, but we need to run stats on with enough movement raising to BE",
+   "his_minute": 582,
+   "unparseable_tokens": [],
+   "verdict": "SILENT",
+   "n_signals_in_band": 0,
+   "grades_in_band": [],
+   "setups_in_band": [],
+   "n_signals_that_day": 24,
+   "engine_active_that_day": true,
+   "engine_first_et": "9:38",
+   "engine_last_et": "10:58",
+   "nearest_any_et": "9:38",
+   "offset_nearest_any": -4,
+   "nearest_fired_et": "10:06",
+   "offset_nearest_fired": 24,
+   "took_any_trade_that_day": true,
+   "bands": {
+    "0": "SILENT",
+    "1": "SILENT",
+    "2": "SILENT",
+    "5": "DETECTED"
+   }
+  },
+  {
+   "card_id": "HOOD_2024-11-06",
+   "symbol": "HOOD",
+   "date": "2024-11-06",
+   "is_s": true,
+   "note": "10:19 | as candle forming not HOD",
+   "his_minute": 619,
+   "unparseable_tokens": [],
+   "verdict": "FIRED",
+   "n_signals_in_band": 3,
+   "grades_in_band": [
+    "B",
+    "X"
+   ],
+   "setups_in_band": [
+    "break_and_retest"
+   ],
+   "n_signals_that_day": 11,
+   "engine_active_that_day": true,
+   "engine_first_et": "10:05",
+   "engine_last_et": "10:20",
+   "nearest_any_et": "10:19",
+   "offset_nearest_any": 0,
+   "nearest_fired_et": "10:20",
+   "offset_nearest_fired": 1,
+   "took_any_trade_that_day": true,
+   "bands": {
+    "0": "DETECTED",
+    "1": "FIRED",
+    "2": "FIRED",
+    "5": "FIRED"
+   }
+  },
+  {
+   "card_id": "MSTR_2025-08-26",
+   "symbol": "MSTR",
+   "date": "2025-08-26",
+   "is_s": true,
+   "note": "9:38",
+   "his_minute": 578,
+   "unparseable_tokens": [],
+   "verdict": "SILENT",
+   "n_signals_in_band": 0,
+   "grades_in_band": [],
+   "setups_in_band": [],
+   "n_signals_that_day": 4,
+   "engine_active_that_day": true,
+   "engine_first_et": "10:00",
+   "engine_last_et": "10:39",
+   "nearest_any_et": "10:00",
+   "offset_nearest_any": 22,
+   "nearest_fired_et": null,
+   "offset_nearest_fired": null,
+   "took_any_trade_that_day": false,
+   "bands": {
+    "0": "SILENT",
+    "1": "SILENT",
+    "2": "SILENT",
+    "5": "SILENT"
+   }
+  },
+  {
+   "card_id": "NFLX_2024-08-05",
+   "symbol": "NFLX",
+   "date": "2024-08-05",
+   "is_s": true,
+   "note": "9:52",
+   "his_minute": 592,
+   "unparseable_tokens": [],
+   "verdict": "DETECTED",
+   "n_signals_in_band": 4,
+   "grades_in_band": [
+    "X"
+   ],
+   "setups_in_band": [
+    "break_and_retest"
+   ],
+   "n_signals_that_day": 12,
+   "engine_active_that_day": true,
+   "engine_first_et": "9:51",
+   "engine_last_et": "10:44",
+   "nearest_any_et": "9:52",
+   "offset_nearest_any": 0,
+   "nearest_fired_et": null,
+   "offset_nearest_fired": null,
+   "took_any_trade_that_day": false,
+   "bands": {
+    "0": "DETECTED",
+    "1": "DETECTED",
+    "2": "DETECTED",
+    "5": "DETECTED"
+   }
+  },
+  {
+   "card_id": "MSFT_2025-03-13",
+   "symbol": "MSFT",
+   "date": "2025-03-13",
+   "is_s": true,
+   "note": "9:49 | as candle forming not lod. a entry few candles earlier",
+   "his_minute": 589,
+   "unparseable_tokens": [],
+   "verdict": "FIRED",
+   "n_signals_in_band": 4,
+   "grades_in_band": [
+    "B",
+    "X"
+   ],
+   "setups_in_band": [
+    "break_and_retest"
+   ],
+   "n_signals_that_day": 13,
+   "engine_active_that_day": true,
+   "engine_first_et": "9:47",
+   "engine_last_et": "10:59",
+   "nearest_any_et": "9:49",
+   "offset_nearest_any": 0,
+   "nearest_fired_et": "9:51",
+   "offset_nearest_fired": 2,
+   "took_any_trade_that_day": true,
+   "bands": {
+    "0": "DETECTED",
+    "1": "DETECTED",
+    "2": "FIRED",
+    "5": "FIRED"
+   }
+  },
+  {
+   "card_id": "SPCX_2026-06-25",
+   "symbol": "SPCX",
+   "date": "2026-06-25",
+   "is_s": true,
+   "note": "9:48",
+   "his_minute": 588,
+   "unparseable_tokens": [],
+   "verdict": "SILENT",
+   "n_signals_in_band": 0,
+   "grades_in_band": [],
+   "setups_in_band": [],
+   "n_signals_that_day": 10,
+   "engine_active_that_day": true,
+   "engine_first_et": "10:24",
+   "engine_last_et": "10:57",
+   "nearest_any_et": "10:24",
+   "offset_nearest_any": 36,
+   "nearest_fired_et": "10:39",
+   "offset_nearest_fired": 51,
+   "took_any_trade_that_day": true,
+   "bands": {
+    "0": "SILENT",
+    "1": "SILENT",
+    "2": "SILENT",
+    "5": "SILENT"
+   }
+  },
+  {
+   "card_id": "AVGO_2025-10-10",
+   "symbol": "AVGO",
+   "date": "2025-10-10",
+   "is_s": true,
+   "note": "9:47",
+   "his_minute": 587,
+   "unparseable_tokens": [],
+   "verdict": "FIRED",
+   "n_signals_in_band": 5,
+   "grades_in_band": [
+    "B",
+    "X"
+   ],
+   "setups_in_band": [
+    "break_and_retest"
+   ],
+   "n_signals_that_day": 39,
+   "engine_active_that_day": true,
+   "engine_first_et": "9:46",
+   "engine_last_et": "10:57",
+   "nearest_any_et": "9:47",
+   "offset_nearest_any": 0,
+   "nearest_fired_et": "9:48",
+   "offset_nearest_fired": 1,
+   "took_any_trade_that_day": true,
+   "bands": {
+    "0": "DETECTED",
+    "1": "FIRED",
+    "2": "FIRED",
+    "5": "FIRED"
+   }
+  },
+  {
+   "card_id": "MU_2025-06-25",
+   "symbol": "MU",
+   "date": "2025-06-25",
+   "is_s": true,
+   "note": "9:38",
+   "his_minute": 578,
+   "unparseable_tokens": [],
+   "verdict": "SILENT",
+   "n_signals_in_band": 0,
+   "grades_in_band": [],
+   "setups_in_band": [],
+   "n_signals_that_day": 13,
+   "engine_active_that_day": true,
+   "engine_first_et": "10:08",
+   "engine_last_et": "10:56",
+   "nearest_any_et": "10:08",
+   "offset_nearest_any": 30,
+   "nearest_fired_et": "10:37",
+   "offset_nearest_fired": 59,
+   "took_any_trade_that_day": true,
+   "bands": {
+    "0": "SILENT",
+    "1": "SILENT",
+    "2": "SILENT",
+    "5": "SILENT"
+   }
+  },
+  {
+   "card_id": "PLTR_2025-07-01",
+   "symbol": "PLTR",
+   "date": "2025-07-01",
+   "is_s": true,
+   "note": "9:34",
+   "his_minute": 574,
+   "unparseable_tokens": [],
+   "verdict": "SILENT",
+   "n_signals_in_band": 0,
+   "grades_in_band": [],
+   "setups_in_band": [],
+   "n_signals_that_day": 21,
+   "engine_active_that_day": true,
+   "engine_first_et": "9:40",
+   "engine_last_et": "10:36",
+   "nearest_any_et": "9:40",
+   "offset_nearest_any": 6,
+   "nearest_fired_et": "9:41",
+   "offset_nearest_fired": 7,
+   "took_any_trade_that_day": true,
+   "bands": {
+    "0": "SILENT",
+    "1": "SILENT",
+    "2": "SILENT",
+    "5": "SILENT"
+   }
+  },
+  {
+   "card_id": "NVDA_2025-04-29",
+   "symbol": "NVDA",
+   "date": "2025-04-29",
+   "is_s": true,
+   "note": "9:56",
+   "his_minute": 596,
+   "unparseable_tokens": [],
+   "verdict": "SILENT",
+   "n_signals_in_band": 0,
+   "grades_in_band": [],
+   "setups_in_band": [],
+   "n_signals_that_day": 19,
+   "engine_active_that_day": true,
+   "engine_first_et": "9:49",
+   "engine_last_et": "10:59",
+   "nearest_any_et": "10:01",
+   "offset_nearest_any": 5,
+   "nearest_fired_et": "10:02",
+   "offset_nearest_fired": 6,
+   "took_any_trade_that_day": true,
+   "bands": {
+    "0": "SILENT",
+    "1": "SILENT",
+    "2": "SILENT",
+    "5": "DETECTED"
+   }
+  },
+  {
+   "card_id": "QQQ_2025-09-23",
+   "symbol": "QQQ",
+   "date": "2025-09-23",
+   "is_s": true,
+   "note": "9:39",
+   "his_minute": 579,
+   "unparseable_tokens": [],
+   "verdict": "DETECTED",
+   "n_signals_in_band": 3,
+   "grades_in_band": [
+    "B",
+    "X"
+   ],
+   "setups_in_band": [
+    "break_and_retest"
+   ],
+   "n_signals_that_day": 15,
+   "engine_active_that_day": true,
+   "engine_first_et": "9:39",
+   "engine_last_et": "10:38",
+   "nearest_any_et": "9:39",
+   "offset_nearest_any": 0,
+   "nearest_fired_et": null,
+   "offset_nearest_fired": null,
+   "took_any_trade_that_day": false,
+   "bands": {
+    "0": "DETECTED",
+    "1": "DETECTED",
+    "2": "DETECTED",
+    "5": "DETECTED"
+   }
+  },
+  {
+   "card_id": "MSTR_2026-03-13",
+   "symbol": "MSTR",
+   "date": "2026-03-13",
+   "is_s": true,
+   "note": "9:41",
+   "his_minute": 581,
+   "unparseable_tokens": [],
+   "verdict": "DETECTED",
+   "n_signals_in_band": 2,
+   "grades_in_band": [
+    "X"
+   ],
+   "setups_in_band": [
+    "break_and_retest"
+   ],
+   "n_signals_that_day": 24,
+   "engine_active_that_day": true,
+   "engine_first_et": "9:41",
+   "engine_last_et": "10:55",
+   "nearest_any_et": "9:41",
+   "offset_nearest_any": 0,
+   "nearest_fired_et": "9:53",
+   "offset_nearest_fired": 12,
+   "took_any_trade_that_day": true,
+   "bands": {
+    "0": "DETECTED",
+    "1": "DETECTED",
+    "2": "DETECTED",
+    "5": "DETECTED"
+   }
+  },
+  {
+   "card_id": "PLTR_2025-12-11",
+   "symbol": "PLTR",
+   "date": "2025-12-11",
+   "is_s": true,
+   "note": "9:52",
+   "his_minute": 592,
+   "unparseable_tokens": [],
+   "verdict": "FIRED",
+   "n_signals_in_band": 4,
+   "grades_in_band": [
+    "B",
+    "X"
+   ],
+   "setups_in_band": [
+    "break_and_retest",
+    "one_candle_rule"
+   ],
+   "n_signals_that_day": 20,
+   "engine_active_that_day": true,
+   "engine_first_et": "9:35",
+   "engine_last_et": "10:56",
+   "nearest_any_et": "9:52",
+   "offset_nearest_any": 0,
+   "nearest_fired_et": "9:54",
+   "offset_nearest_fired": 2,
+   "took_any_trade_that_day": true,
+   "bands": {
+    "0": "DETECTED",
+    "1": "DETECTED",
+    "2": "FIRED",
+    "5": "FIRED"
+   }
+  },
+  {
+   "card_id": "COIN_2026-04-07",
+   "symbol": "COIN",
+   "date": "2026-04-07",
+   "is_s": true,
+   "note": "9:42",
+   "his_minute": 582,
+   "unparseable_tokens": [],
+   "verdict": "FIRED",
+   "n_signals_in_band": 2,
+   "grades_in_band": [
+    "B",
+    "X"
+   ],
+   "setups_in_band": [
+    "break_and_retest"
+   ],
+   "n_signals_that_day": 30,
+   "engine_active_that_day": true,
+   "engine_first_et": "9:38",
+   "engine_last_et": "10:57",
+   "nearest_any_et": "9:40",
+   "offset_nearest_any": -2,
+   "nearest_fired_et": "9:40",
+   "offset_nearest_fired": -2,
+   "took_any_trade_that_day": true,
+   "bands": {
+    "0": "SILENT",
+    "1": "SILENT",
+    "2": "FIRED",
+    "5": "FIRED"
+   }
+  },
+  {
+   "card_id": "MARA_2025-07-18",
+   "symbol": "MARA",
+   "date": "2025-07-18",
+   "is_s": true,
+   "note": "9:38",
+   "his_minute": 578,
+   "unparseable_tokens": [],
+   "verdict": "SILENT",
+   "n_signals_in_band": 0,
+   "grades_in_band": [],
+   "setups_in_band": [],
+   "n_signals_that_day": 16,
+   "engine_active_that_day": true,
+   "engine_first_et": "9:42",
+   "engine_last_et": "10:56",
+   "nearest_any_et": "9:42",
+   "offset_nearest_any": 4,
+   "nearest_fired_et": "9:47",
+   "offset_nearest_fired": 9,
+   "took_any_trade_that_day": true,
+   "bands": {
+    "0": "SILENT",
+    "1": "SILENT",
+    "2": "SILENT",
+    "5": "DETECTED"
+   }
+  },
+  {
+   "card_id": "AMZN_2025-09-10",
+   "symbol": "AMZN",
+   "date": "2025-09-10",
+   "is_s": true,
+   "note": "9:38 | as candle forming not lod",
+   "his_minute": 578,
+   "unparseable_tokens": [],
+   "verdict": "SILENT",
+   "n_signals_in_band": 0,
+   "grades_in_band": [],
+   "setups_in_band": [],
+   "n_signals_that_day": 16,
+   "engine_active_that_day": true,
+   "engine_first_et": "10:26",
+   "engine_last_et": "10:56",
+   "nearest_any_et": "10:26",
+   "offset_nearest_any": 48,
+   "nearest_fired_et": null,
+   "offset_nearest_fired": null,
+   "took_any_trade_that_day": false,
+   "bands": {
+    "0": "SILENT",
+    "1": "SILENT",
+    "2": "SILENT",
+    "5": "SILENT"
+   }
+  },
+  {
+   "card_id": "BABA_2026-06-12",
+   "symbol": "BABA",
+   "date": "2026-06-12",
+   "is_s": true,
+   "note": "9:39",
+   "his_minute": 579,
+   "unparseable_tokens": [],
+   "verdict": "SILENT",
+   "n_signals_in_band": 0,
+   "grades_in_band": [],
+   "setups_in_band": [],
+   "n_signals_that_day": 9,
+   "engine_active_that_day": true,
+   "engine_first_et": "10:04",
+   "engine_last_et": "10:33",
+   "nearest_any_et": "10:04",
+   "offset_nearest_any": 25,
+   "nearest_fired_et": null,
+   "offset_nearest_fired": null,
+   "took_any_trade_that_day": false,
+   "bands": {
+    "0": "SILENT",
+    "1": "SILENT",
+    "2": "SILENT",
+    "5": "SILENT"
+   }
+  },
+  {
+   "card_id": "PLTR_2024-09-20",
+   "symbol": "PLTR",
+   "date": "2024-09-20",
+   "is_s": true,
+   "note": "9:41",
+   "his_minute": 581,
+   "unparseable_tokens": [],
+   "verdict": "SILENT",
+   "n_signals_in_band": 0,
+   "grades_in_band": [],
+   "setups_in_band": [],
+   "n_signals_that_day": 27,
+   "engine_active_that_day": true,
+   "engine_first_et": "10:01",
+   "engine_last_et": "10:43",
+   "nearest_any_et": "10:01",
+   "offset_nearest_any": 20,
+   "nearest_fired_et": null,
+   "offset_nearest_fired": null,
+   "took_any_trade_that_day": false,
+   "bands": {
+    "0": "SILENT",
+    "1": "SILENT",
+    "2": "SILENT",
+    "5": "SILENT"
+   }
+  },
+  {
+   "card_id": "MSTR_2026-07-17",
+   "symbol": "MSTR",
+   "date": "2026-07-17",
+   "is_s": true,
+   "note": "9:42",
+   "his_minute": 582,
+   "unparseable_tokens": [],
+   "verdict": "SILENT",
+   "n_signals_in_band": 0,
+   "grades_in_band": [],
+   "setups_in_band": [],
+   "n_signals_that_day": 9,
+   "engine_active_that_day": true,
+   "engine_first_et": "9:45",
+   "engine_last_et": "10:39",
+   "nearest_any_et": "9:45",
+   "offset_nearest_any": 3,
+   "nearest_fired_et": "9:58",
+   "offset_nearest_fired": 16,
+   "took_any_trade_that_day": true,
+   "bands": {
+    "0": "SILENT",
+    "1": "SILENT",
+    "2": "SILENT",
+    "5": "DETECTED"
+   }
+  }
+ ],
+ "sample_B_S_days": {
+  "label": "the S days of the blind sweep",
+  "cards_with_a_usable_minute": 34,
+  "AT THE MINUTE": {
+   "SILENT_no_signal_at_all": 14,
+   "DETECTED_saw_it_refused_to_trade": 9,
+   "FIRED_took_the_trade": 11,
+   "no_bars_archived": 0,
+   "took_the_trade_pct": 32.4
+  },
+  "AT THE DAY": {
+   "engine_produced_at_least_one_signal": 34,
+   "never_silent_pct": 100.0,
+   "took_at_least_one_trade": 24
+  },
+  "TIMING, every card, nothing dropped": {
+   "n": 34,
+   "median": 0.0,
+   "mean": 7.56,
+   "min": -4,
+   "max": 51,
+   "within_2": 20
+  },
+  "TIMING, only the cards it reached (the conditioned number)": {
+   "n": 20,
+   "median": 0.0,
+   "mean": -0.1,
+   "min": -2,
+   "max": 2,
+   "within_2": 20
+  },
+  "bands": {
+   "0": {
+    "SILENT": 18,
+    "DETECTED": 13,
+    "FIRED": 3
+   },
+   "1": {
+    "SILENT": 16,
+    "DETECTED": 12,
+    "FIRED": 6
+   },
+   "2": {
+    "SILENT": 14,
+    "DETECTED": 9,
+    "FIRED": 11
+   },
+   "5": {
+    "SILENT": 9,
+    "DETECTED": 13,
+    "FIRED": 12
+   }
+  }
+ },
+ "unparseable": {
+  "IWM_2026-08-06": [
+   "9:%5"
+  ]
+ }
+}

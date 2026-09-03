@@ -1,0 +1,1217 @@
+{
+  "sessions": 498,
+  "n_arms_tested": 18,
+  "bucket_scores": {
+    "09:30": 0.0153,
+    "09:45": -0.0322,
+    "10:00": -0.0652,
+    "10:15": -0.0781,
+    "10:30": -0.0205,
+    "10:45": -0.0205
+  },
+  "best_bucket": "09:30",
+  "results": [
+    {
+      "arm": "1. first candidate of day (shipped)",
+      "unshippable_reason": null,
+      "caution": null,
+      "ev_r": 0.0377,
+      "n": 444,
+      "n_dropped_size_gate": 54,
+      "trades_per_day": 0.892,
+      "win_rate": 0.4595,
+      "avg_win_R": 0.9048,
+      "avg_loss_R": 0.7023,
+      "profit_factor": 1.0996,
+      "months_green": "12/25",
+      "expectancy_per_day": 33.59,
+      "yearly_R": 8.4638,
+      "max_drawdown_R": -20.415,
+      "prop_eval": {
+        "passed": false,
+        "fail_reason": "daily_loss_limit",
+        "fail_day": "2024-09-03",
+        "final_equity_pct": 0.0,
+        "max_drawdown_seen_pct": 0.0
+      },
+      "risk_sweep": [
+        {
+          "risk_per_trade": 25,
+          "passed": false,
+          "fail_reason": "profit_target_not_reached",
+          "fail_day": "2026-09-02",
+          "final_equity_pct": 0.836,
+          "max_drawdown_seen_pct": -1.021
+        },
+        {
+          "risk_per_trade": 50,
+          "passed": false,
+          "fail_reason": "profit_target_not_reached",
+          "fail_day": "2026-09-02",
+          "final_equity_pct": 1.673,
+          "max_drawdown_seen_pct": -2.041
+        },
+        {
+          "risk_per_trade": 100,
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "fail_day": "2026-08-03",
+          "final_equity_pct": 3.201,
+          "max_drawdown_seen_pct": -4.083
+        },
+        {
+          "risk_per_trade": 250,
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "fail_day": "2024-11-01",
+          "final_equity_pct": -2.224,
+          "max_drawdown_seen_pct": -4.252
+        },
+        {
+          "risk_per_trade": 500,
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "fail_day": "2024-09-13",
+          "final_equity_pct": 0.05,
+          "max_drawdown_seen_pct": -4.006
+        },
+        {
+          "risk_per_trade": 1000,
+          "passed": false,
+          "fail_reason": "daily_loss_limit",
+          "fail_day": "2024-09-03",
+          "final_equity_pct": 0.0,
+          "max_drawdown_seen_pct": 0.0
+        },
+        {
+          "risk_per_trade": 2000,
+          "passed": false,
+          "fail_reason": "daily_loss_limit",
+          "fail_day": "2024-09-03",
+          "final_equity_pct": 0.0,
+          "max_drawdown_seen_pct": 0.0
+        },
+        {
+          "risk_per_trade": 5000,
+          "passed": false,
+          "fail_reason": "daily_loss_limit",
+          "fail_day": "2024-09-03",
+          "final_equity_pct": 0.0,
+          "max_drawdown_seen_pct": 0.0
+        }
+      ],
+      "passes_at_risk_per_trade": null
+    },
+    {
+      "arm": "2. first candidate after 09:45",
+      "unshippable_reason": null,
+      "caution": null,
+      "ev_r": -0.0441,
+      "n": 433,
+      "n_dropped_size_gate": 65,
+      "trades_per_day": 0.869,
+      "win_rate": 0.4711,
+      "avg_win_R": 0.7529,
+      "avg_loss_R": 0.7573,
+      "profit_factor": 0.8895,
+      "months_green": "10/25",
+      "expectancy_per_day": -38.32,
+      "yearly_R": -9.6565,
+      "max_drawdown_R": -29.766,
+      "prop_eval": {
+        "passed": false,
+        "fail_reason": "daily_loss_limit",
+        "fail_day": "2024-09-05",
+        "final_equity_pct": 0.332,
+        "max_drawdown_seen_pct": 0.0
+      },
+      "risk_sweep": [
+        {
+          "risk_per_trade": 25,
+          "passed": false,
+          "fail_reason": "profit_target_not_reached",
+          "fail_day": "2026-09-02",
+          "final_equity_pct": -0.954,
+          "max_drawdown_seen_pct": -1.488
+        },
+        {
+          "risk_per_trade": 50,
+          "passed": false,
+          "fail_reason": "profit_target_not_reached",
+          "fail_day": "2026-09-02",
+          "final_equity_pct": -1.908,
+          "max_drawdown_seen_pct": -2.977
+        },
+        {
+          "risk_per_trade": 100,
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "fail_day": "2025-10-23",
+          "final_equity_pct": -3.337,
+          "max_drawdown_seen_pct": -4.077
+        },
+        {
+          "risk_per_trade": 250,
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "fail_day": "2024-10-17",
+          "final_equity_pct": -2.568,
+          "max_drawdown_seen_pct": -4.418
+        },
+        {
+          "risk_per_trade": 500,
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "fail_day": "2024-10-04",
+          "final_equity_pct": -0.845,
+          "max_drawdown_seen_pct": -4.544
+        },
+        {
+          "risk_per_trade": 1000,
+          "passed": false,
+          "fail_reason": "daily_loss_limit",
+          "fail_day": "2024-09-05",
+          "final_equity_pct": 0.332,
+          "max_drawdown_seen_pct": 0.0
+        },
+        {
+          "risk_per_trade": 2000,
+          "passed": false,
+          "fail_reason": "daily_loss_limit",
+          "fail_day": "2024-09-05",
+          "final_equity_pct": 0.664,
+          "max_drawdown_seen_pct": 0.0
+        },
+        {
+          "risk_per_trade": 5000,
+          "passed": false,
+          "fail_reason": "daily_loss_limit",
+          "fail_day": "2024-09-05",
+          "final_equity_pct": 1.66,
+          "max_drawdown_seen_pct": 0.0
+        }
+      ],
+      "passes_at_risk_per_trade": null
+    },
+    {
+      "arm": "3. first candidate in best bucket (09:30)",
+      "unshippable_reason": null,
+      "caution": "bucket selected in-sample off this same book; needs an out-of-sample check before shipping",
+      "ev_r": 0.0203,
+      "n": 402,
+      "n_dropped_size_gate": 50,
+      "trades_per_day": 0.807,
+      "win_rate": 0.4527,
+      "avg_win_R": 0.8971,
+      "avg_loss_R": 0.7083,
+      "profit_factor": 1.0527,
+      "months_green": "13/25",
+      "expectancy_per_day": 16.4,
+      "yearly_R": 4.1332,
+      "max_drawdown_R": -20.241,
+      "prop_eval": {
+        "passed": false,
+        "fail_reason": "daily_loss_limit",
+        "fail_day": "2024-09-03",
+        "final_equity_pct": 0.0,
+        "max_drawdown_seen_pct": 0.0
+      },
+      "risk_sweep": [
+        {
+          "risk_per_trade": 25,
+          "passed": false,
+          "fail_reason": "profit_target_not_reached",
+          "fail_day": "2026-09-02",
+          "final_equity_pct": 0.408,
+          "max_drawdown_seen_pct": -1.012
+        },
+        {
+          "risk_per_trade": 50,
+          "passed": false,
+          "fail_reason": "profit_target_not_reached",
+          "fail_day": "2026-09-02",
+          "final_equity_pct": 0.817,
+          "max_drawdown_seen_pct": -2.024
+        },
+        {
+          "risk_per_trade": 100,
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "fail_day": "2026-08-27",
+          "final_equity_pct": 1.626,
+          "max_drawdown_seen_pct": -4.048
+        },
+        {
+          "risk_per_trade": 250,
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "fail_day": "2024-12-30",
+          "final_equity_pct": -1.77,
+          "max_drawdown_seen_pct": -4.299
+        },
+        {
+          "risk_per_trade": 500,
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "fail_day": "2024-09-13",
+          "final_equity_pct": 1.05,
+          "max_drawdown_seen_pct": -4.006
+        },
+        {
+          "risk_per_trade": 1000,
+          "passed": false,
+          "fail_reason": "daily_loss_limit",
+          "fail_day": "2024-09-03",
+          "final_equity_pct": 0.0,
+          "max_drawdown_seen_pct": 0.0
+        },
+        {
+          "risk_per_trade": 2000,
+          "passed": false,
+          "fail_reason": "daily_loss_limit",
+          "fail_day": "2024-09-03",
+          "final_equity_pct": 0.0,
+          "max_drawdown_seen_pct": 0.0
+        },
+        {
+          "risk_per_trade": 5000,
+          "passed": false,
+          "fail_reason": "daily_loss_limit",
+          "fail_day": "2024-09-03",
+          "final_equity_pct": 0.0,
+          "max_drawdown_seen_pct": 0.0
+        }
+      ],
+      "passes_at_risk_per_trade": null
+    },
+    {
+      "arm": "4a. LITERAL best-of-2, sgrade (S/A/C)",
+      "unshippable_reason": "requires knowing signal 2 before acting on an earlier one in the window -- lookahead",
+      "caution": null,
+      "ev_r": 0.0113,
+      "n": 446,
+      "n_dropped_size_gate": 52,
+      "trades_per_day": 0.896,
+      "win_rate": 0.4574,
+      "avg_win_R": 0.8567,
+      "avg_loss_R": 0.7013,
+      "profit_factor": 1.0298,
+      "months_green": "13/25",
+      "expectancy_per_day": 10.14,
+      "yearly_R": 2.5559,
+      "max_drawdown_R": -19.405,
+      "prop_eval": null
+    },
+    {
+      "arm": "4b. causal proxy best-of-2, sgrade (S/A/C)",
+      "unshippable_reason": null,
+      "caution": null,
+      "ev_r": 0.0312,
+      "n": 434,
+      "n_dropped_size_gate": 64,
+      "trades_per_day": 0.871,
+      "win_rate": 0.4654,
+      "avg_win_R": 0.8569,
+      "avg_loss_R": 0.6906,
+      "profit_factor": 1.085,
+      "months_green": "15/25",
+      "expectancy_per_day": 27.23,
+      "yearly_R": 6.8622,
+      "max_drawdown_R": -22.909,
+      "prop_eval": {
+        "passed": false,
+        "fail_reason": "daily_loss_limit",
+        "fail_day": "2024-09-03",
+        "final_equity_pct": 0.0,
+        "max_drawdown_seen_pct": 0.0
+      },
+      "risk_sweep": [
+        {
+          "risk_per_trade": 25,
+          "passed": false,
+          "fail_reason": "profit_target_not_reached",
+          "fail_day": "2026-09-02",
+          "final_equity_pct": 0.678,
+          "max_drawdown_seen_pct": -1.145
+        },
+        {
+          "risk_per_trade": 50,
+          "passed": false,
+          "fail_reason": "profit_target_not_reached",
+          "fail_day": "2026-09-02",
+          "final_equity_pct": 1.356,
+          "max_drawdown_seen_pct": -2.291
+        },
+        {
+          "risk_per_trade": 100,
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "fail_day": "2026-03-27",
+          "final_equity_pct": 1.688,
+          "max_drawdown_seen_pct": -4.063
+        },
+        {
+          "risk_per_trade": 250,
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "fail_day": "2025-01-13",
+          "final_equity_pct": 2.965,
+          "max_drawdown_seen_pct": -4.402
+        },
+        {
+          "risk_per_trade": 500,
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "fail_day": "2024-10-02",
+          "final_equity_pct": 3.966,
+          "max_drawdown_seen_pct": -4.172
+        },
+        {
+          "risk_per_trade": 1000,
+          "passed": false,
+          "fail_reason": "daily_loss_limit",
+          "fail_day": "2024-09-03",
+          "final_equity_pct": 0.0,
+          "max_drawdown_seen_pct": 0.0
+        },
+        {
+          "risk_per_trade": 2000,
+          "passed": false,
+          "fail_reason": "daily_loss_limit",
+          "fail_day": "2024-09-03",
+          "final_equity_pct": 0.0,
+          "max_drawdown_seen_pct": 0.0
+        },
+        {
+          "risk_per_trade": 5000,
+          "passed": false,
+          "fail_reason": "daily_loss_limit",
+          "fail_day": "2024-09-03",
+          "final_equity_pct": 0.0,
+          "max_drawdown_seen_pct": 0.0
+        }
+      ],
+      "passes_at_risk_per_trade": null
+    },
+    {
+      "arm": "4a. LITERAL best-of-2, legacy grade (A/B present)",
+      "unshippable_reason": "requires knowing signal 2 before acting on an earlier one in the window -- lookahead",
+      "caution": null,
+      "ev_r": 0.0335,
+      "n": 445,
+      "n_dropped_size_gate": 53,
+      "trades_per_day": 0.894,
+      "win_rate": 0.4584,
+      "avg_win_R": 0.8974,
+      "avg_loss_R": 0.7007,
+      "profit_factor": 1.0885,
+      "months_green": "12/25",
+      "expectancy_per_day": 29.9,
+      "yearly_R": 7.5352,
+      "max_drawdown_R": -20.415,
+      "prop_eval": null
+    },
+    {
+      "arm": "4b. causal proxy best-of-2, legacy grade (A/B present)",
+      "unshippable_reason": null,
+      "caution": null,
+      "ev_r": -0.0042,
+      "n": 433,
+      "n_dropped_size_gate": 65,
+      "trades_per_day": 0.869,
+      "win_rate": 0.4688,
+      "avg_win_R": 0.7848,
+      "avg_loss_R": 0.7037,
+      "profit_factor": 0.9887,
+      "months_green": "12/25",
+      "expectancy_per_day": -3.67,
+      "yearly_R": -0.925,
+      "max_drawdown_R": -27.228,
+      "prop_eval": {
+        "passed": false,
+        "fail_reason": "daily_loss_limit",
+        "fail_day": "2024-09-05",
+        "final_equity_pct": 4.228,
+        "max_drawdown_seen_pct": 0.0
+      },
+      "risk_sweep": [
+        {
+          "risk_per_trade": 25,
+          "passed": false,
+          "fail_reason": "profit_target_not_reached",
+          "fail_day": "2026-09-02",
+          "final_equity_pct": -0.091,
+          "max_drawdown_seen_pct": -1.361
+        },
+        {
+          "risk_per_trade": 50,
+          "passed": false,
+          "fail_reason": "profit_target_not_reached",
+          "fail_day": "2026-09-02",
+          "final_equity_pct": -0.183,
+          "max_drawdown_seen_pct": -2.723
+        },
+        {
+          "risk_per_trade": 100,
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "fail_day": "2026-01-12",
+          "final_equity_pct": -0.752,
+          "max_drawdown_seen_pct": -4.125
+        },
+        {
+          "risk_per_trade": 250,
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "fail_day": "2024-11-07",
+          "final_equity_pct": -1.106,
+          "max_drawdown_seen_pct": -4.188
+        },
+        {
+          "risk_per_trade": 500,
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "fail_day": "2024-10-15",
+          "final_equity_pct": 1.163,
+          "max_drawdown_seen_pct": -5.0
+        },
+        {
+          "risk_per_trade": 1000,
+          "passed": false,
+          "fail_reason": "daily_loss_limit",
+          "fail_day": "2024-09-05",
+          "final_equity_pct": 4.228,
+          "max_drawdown_seen_pct": 0.0
+        },
+        {
+          "risk_per_trade": 2000,
+          "passed": false,
+          "fail_reason": "daily_loss_limit",
+          "fail_day": "2024-09-05",
+          "final_equity_pct": 8.456,
+          "max_drawdown_seen_pct": 0.0
+        },
+        {
+          "risk_per_trade": 5000,
+          "passed": false,
+          "fail_reason": "daily_loss_limit",
+          "fail_day": "2024-09-05",
+          "final_equity_pct": 21.14,
+          "max_drawdown_seen_pct": 0.0
+        }
+      ],
+      "passes_at_risk_per_trade": null
+    },
+    {
+      "arm": "4a. LITERAL best-of-3, sgrade (S/A/C)",
+      "unshippable_reason": "requires knowing signal 3 before acting on an earlier one in the window -- lookahead",
+      "caution": null,
+      "ev_r": 0.0226,
+      "n": 444,
+      "n_dropped_size_gate": 54,
+      "trades_per_day": 0.892,
+      "win_rate": 0.4572,
+      "avg_win_R": 0.887,
+      "avg_loss_R": 0.7055,
+      "profit_factor": 1.0591,
+      "months_green": "13/25",
+      "expectancy_per_day": 20.19,
+      "yearly_R": 5.0871,
+      "max_drawdown_R": -17.284,
+      "prop_eval": null
+    },
+    {
+      "arm": "4b. causal proxy best-of-3, sgrade (S/A/C)",
+      "unshippable_reason": null,
+      "caution": null,
+      "ev_r": 0.0355,
+      "n": 432,
+      "n_dropped_size_gate": 66,
+      "trades_per_day": 0.867,
+      "win_rate": 0.4861,
+      "avg_win_R": 0.8125,
+      "avg_loss_R": 0.6996,
+      "profit_factor": 1.0986,
+      "months_green": "12/25",
+      "expectancy_per_day": 30.75,
+      "yearly_R": 7.7498,
+      "max_drawdown_R": -13.071,
+      "prop_eval": {
+        "passed": false,
+        "fail_reason": "daily_loss_limit",
+        "fail_day": "2024-09-03",
+        "final_equity_pct": 0.0,
+        "max_drawdown_seen_pct": 0.0
+      },
+      "risk_sweep": [
+        {
+          "risk_per_trade": 25,
+          "passed": false,
+          "fail_reason": "profit_target_not_reached",
+          "fail_day": "2026-09-02",
+          "final_equity_pct": 0.766,
+          "max_drawdown_seen_pct": -0.654
+        },
+        {
+          "risk_per_trade": 50,
+          "passed": false,
+          "fail_reason": "profit_target_not_reached",
+          "fail_day": "2026-09-02",
+          "final_equity_pct": 1.532,
+          "max_drawdown_seen_pct": -1.307
+        },
+        {
+          "risk_per_trade": 100,
+          "passed": false,
+          "fail_reason": "profit_target_not_reached",
+          "fail_day": "2026-09-02",
+          "final_equity_pct": 3.063,
+          "max_drawdown_seen_pct": -2.614
+        },
+        {
+          "risk_per_trade": 250,
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "fail_day": "2024-11-07",
+          "final_equity_pct": -1.587,
+          "max_drawdown_seen_pct": -4.471
+        },
+        {
+          "risk_per_trade": 500,
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "fail_day": "2024-09-18",
+          "final_equity_pct": 1.524,
+          "max_drawdown_seen_pct": -4.242
+        },
+        {
+          "risk_per_trade": 1000,
+          "passed": false,
+          "fail_reason": "daily_loss_limit",
+          "fail_day": "2024-09-03",
+          "final_equity_pct": 0.0,
+          "max_drawdown_seen_pct": 0.0
+        },
+        {
+          "risk_per_trade": 2000,
+          "passed": false,
+          "fail_reason": "daily_loss_limit",
+          "fail_day": "2024-09-03",
+          "final_equity_pct": 0.0,
+          "max_drawdown_seen_pct": 0.0
+        },
+        {
+          "risk_per_trade": 5000,
+          "passed": false,
+          "fail_reason": "daily_loss_limit",
+          "fail_day": "2024-09-03",
+          "final_equity_pct": 0.0,
+          "max_drawdown_seen_pct": 0.0
+        }
+      ],
+      "passes_at_risk_per_trade": null
+    },
+    {
+      "arm": "4a. LITERAL best-of-3, legacy grade (A/B present)",
+      "unshippable_reason": "requires knowing signal 3 before acting on an earlier one in the window -- lookahead",
+      "caution": null,
+      "ev_r": 0.0295,
+      "n": 445,
+      "n_dropped_size_gate": 53,
+      "trades_per_day": 0.894,
+      "win_rate": 0.4584,
+      "avg_win_R": 0.8974,
+      "avg_loss_R": 0.708,
+      "profit_factor": 1.0774,
+      "months_green": "12/25",
+      "expectancy_per_day": 26.4,
+      "yearly_R": 6.6522,
+      "max_drawdown_R": -20.415,
+      "prop_eval": null
+    },
+    {
+      "arm": "4b. causal proxy best-of-3, legacy grade (A/B present)",
+      "unshippable_reason": null,
+      "caution": null,
+      "ev_r": 0.0066,
+      "n": 421,
+      "n_dropped_size_gate": 77,
+      "trades_per_day": 0.845,
+      "win_rate": 0.4893,
+      "avg_win_R": 0.7562,
+      "avg_loss_R": 0.7117,
+      "profit_factor": 1.0181,
+      "months_green": "13/25",
+      "expectancy_per_day": 5.56,
+      "yearly_R": 1.4002,
+      "max_drawdown_R": -18.346,
+      "prop_eval": {
+        "passed": false,
+        "fail_reason": "daily_loss_limit",
+        "fail_day": "2024-09-03",
+        "final_equity_pct": 0.0,
+        "max_drawdown_seen_pct": 0.0
+      },
+      "risk_sweep": [
+        {
+          "risk_per_trade": 25,
+          "passed": false,
+          "fail_reason": "profit_target_not_reached",
+          "fail_day": "2026-09-02",
+          "final_equity_pct": 0.138,
+          "max_drawdown_seen_pct": -0.917
+        },
+        {
+          "risk_per_trade": 50,
+          "passed": false,
+          "fail_reason": "profit_target_not_reached",
+          "fail_day": "2026-09-02",
+          "final_equity_pct": 0.277,
+          "max_drawdown_seen_pct": -1.835
+        },
+        {
+          "risk_per_trade": 100,
+          "passed": false,
+          "fail_reason": "profit_target_not_reached",
+          "fail_day": "2026-09-02",
+          "final_equity_pct": 0.553,
+          "max_drawdown_seen_pct": -3.669
+        },
+        {
+          "risk_per_trade": 250,
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "fail_day": "2024-10-16",
+          "final_equity_pct": -3.954,
+          "max_drawdown_seen_pct": -4.084
+        },
+        {
+          "risk_per_trade": 500,
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "fail_day": "2024-09-16",
+          "final_equity_pct": -3.916,
+          "max_drawdown_seen_pct": -4.177
+        },
+        {
+          "risk_per_trade": 1000,
+          "passed": false,
+          "fail_reason": "daily_loss_limit",
+          "fail_day": "2024-09-03",
+          "final_equity_pct": 0.0,
+          "max_drawdown_seen_pct": 0.0
+        },
+        {
+          "risk_per_trade": 2000,
+          "passed": false,
+          "fail_reason": "daily_loss_limit",
+          "fail_day": "2024-09-03",
+          "final_equity_pct": 0.0,
+          "max_drawdown_seen_pct": 0.0
+        },
+        {
+          "risk_per_trade": 5000,
+          "passed": false,
+          "fail_reason": "daily_loss_limit",
+          "fail_day": "2024-09-03",
+          "final_equity_pct": 0.0,
+          "max_drawdown_seen_pct": 0.0
+        }
+      ],
+      "passes_at_risk_per_trade": null
+    },
+    {
+      "arm": "4a. LITERAL best-of-5, sgrade (S/A/C)",
+      "unshippable_reason": "requires knowing signal 5 before acting on an earlier one in the window -- lookahead",
+      "caution": null,
+      "ev_r": -0.0048,
+      "n": 441,
+      "n_dropped_size_gate": 57,
+      "trades_per_day": 0.886,
+      "win_rate": 0.4467,
+      "avg_win_R": 0.8616,
+      "avg_loss_R": 0.7043,
+      "profit_factor": 0.9878,
+      "months_green": "11/25",
+      "expectancy_per_day": -4.21,
+      "yearly_R": -1.0616,
+      "max_drawdown_R": -20.737,
+      "prop_eval": null
+    },
+    {
+      "arm": "4b. causal proxy best-of-5, sgrade (S/A/C)",
+      "unshippable_reason": null,
+      "caution": null,
+      "ev_r": -0.0132,
+      "n": 431,
+      "n_dropped_size_gate": 67,
+      "trades_per_day": 0.865,
+      "win_rate": 0.4733,
+      "avg_win_R": 0.789,
+      "avg_loss_R": 0.734,
+      "profit_factor": 0.966,
+      "months_green": "12/25",
+      "expectancy_per_day": -11.39,
+      "yearly_R": -2.8702,
+      "max_drawdown_R": -22.645,
+      "prop_eval": {
+        "passed": false,
+        "fail_reason": "daily_loss_limit",
+        "fail_day": "2024-09-03",
+        "final_equity_pct": 0.0,
+        "max_drawdown_seen_pct": 0.0
+      },
+      "risk_sweep": [
+        {
+          "risk_per_trade": 25,
+          "passed": false,
+          "fail_reason": "profit_target_not_reached",
+          "fail_day": "2026-09-02",
+          "final_equity_pct": -0.284,
+          "max_drawdown_seen_pct": -1.132
+        },
+        {
+          "risk_per_trade": 50,
+          "passed": false,
+          "fail_reason": "profit_target_not_reached",
+          "fail_day": "2026-09-02",
+          "final_equity_pct": -0.567,
+          "max_drawdown_seen_pct": -2.264
+        },
+        {
+          "risk_per_trade": 100,
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "fail_day": "2026-06-23",
+          "final_equity_pct": -2.068,
+          "max_drawdown_seen_pct": -4.001
+        },
+        {
+          "risk_per_trade": 250,
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "fail_day": "2025-08-27",
+          "final_equity_pct": 0.611,
+          "max_drawdown_seen_pct": -4.222
+        },
+        {
+          "risk_per_trade": 500,
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "fail_day": "2024-09-18",
+          "final_equity_pct": 0.601,
+          "max_drawdown_seen_pct": -4.342
+        },
+        {
+          "risk_per_trade": 1000,
+          "passed": false,
+          "fail_reason": "daily_loss_limit",
+          "fail_day": "2024-09-03",
+          "final_equity_pct": 0.0,
+          "max_drawdown_seen_pct": 0.0
+        },
+        {
+          "risk_per_trade": 2000,
+          "passed": false,
+          "fail_reason": "daily_loss_limit",
+          "fail_day": "2024-09-03",
+          "final_equity_pct": 0.0,
+          "max_drawdown_seen_pct": 0.0
+        },
+        {
+          "risk_per_trade": 5000,
+          "passed": false,
+          "fail_reason": "daily_loss_limit",
+          "fail_day": "2024-09-03",
+          "final_equity_pct": 0.0,
+          "max_drawdown_seen_pct": 0.0
+        }
+      ],
+      "passes_at_risk_per_trade": null
+    },
+    {
+      "arm": "4a. LITERAL best-of-5, legacy grade (A/B present)",
+      "unshippable_reason": "requires knowing signal 5 before acting on an earlier one in the window -- lookahead",
+      "caution": null,
+      "ev_r": 0.0253,
+      "n": 444,
+      "n_dropped_size_gate": 54,
+      "trades_per_day": 0.892,
+      "win_rate": 0.4572,
+      "avg_win_R": 0.8925,
+      "avg_loss_R": 0.708,
+      "profit_factor": 1.0662,
+      "months_green": "12/25",
+      "expectancy_per_day": 22.6,
+      "yearly_R": 5.6948,
+      "max_drawdown_R": -20.415,
+      "prop_eval": null
+    },
+    {
+      "arm": "4b. causal proxy best-of-5, legacy grade (A/B present)",
+      "unshippable_reason": null,
+      "caution": null,
+      "ev_r": -0.0193,
+      "n": 427,
+      "n_dropped_size_gate": 71,
+      "trades_per_day": 0.857,
+      "win_rate": 0.4848,
+      "avg_win_R": 0.7792,
+      "avg_loss_R": 0.7706,
+      "profit_factor": 0.9514,
+      "months_green": "11/25",
+      "expectancy_per_day": -16.53,
+      "yearly_R": -4.1656,
+      "max_drawdown_R": -17.225,
+      "prop_eval": {
+        "passed": false,
+        "fail_reason": "daily_loss_limit",
+        "fail_day": "2024-09-03",
+        "final_equity_pct": 0.0,
+        "max_drawdown_seen_pct": 0.0
+      },
+      "risk_sweep": [
+        {
+          "risk_per_trade": 25,
+          "passed": false,
+          "fail_reason": "profit_target_not_reached",
+          "fail_day": "2026-09-02",
+          "final_equity_pct": -0.412,
+          "max_drawdown_seen_pct": -0.861
+        },
+        {
+          "risk_per_trade": 50,
+          "passed": false,
+          "fail_reason": "profit_target_not_reached",
+          "fail_day": "2026-09-02",
+          "final_equity_pct": -0.823,
+          "max_drawdown_seen_pct": -1.722
+        },
+        {
+          "risk_per_trade": 100,
+          "passed": false,
+          "fail_reason": "profit_target_not_reached",
+          "fail_day": "2026-09-02",
+          "final_equity_pct": -1.646,
+          "max_drawdown_seen_pct": -3.445
+        },
+        {
+          "risk_per_trade": 250,
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "fail_day": "2024-10-08",
+          "final_equity_pct": -4.054,
+          "max_drawdown_seen_pct": -4.054
+        },
+        {
+          "risk_per_trade": 500,
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "fail_day": "2024-09-13",
+          "final_equity_pct": -4.275,
+          "max_drawdown_seen_pct": -4.275
+        },
+        {
+          "risk_per_trade": 1000,
+          "passed": false,
+          "fail_reason": "daily_loss_limit",
+          "fail_day": "2024-09-03",
+          "final_equity_pct": 0.0,
+          "max_drawdown_seen_pct": 0.0
+        },
+        {
+          "risk_per_trade": 2000,
+          "passed": false,
+          "fail_reason": "daily_loss_limit",
+          "fail_day": "2024-09-03",
+          "final_equity_pct": 0.0,
+          "max_drawdown_seen_pct": 0.0
+        },
+        {
+          "risk_per_trade": 5000,
+          "passed": false,
+          "fail_reason": "daily_loss_limit",
+          "fail_day": "2024-09-03",
+          "final_equity_pct": 0.0,
+          "max_drawdown_seen_pct": 0.0
+        }
+      ],
+      "passes_at_risk_per_trade": null
+    },
+    {
+      "arm": "5. one trade then stop win-or-lose",
+      "unshippable_reason": null,
+      "caution": "identical by construction to arm 1 (both cap at exactly one trade/day) -- reported, not double-counted",
+      "ev_r": 0.0377,
+      "n": 444,
+      "n_dropped_size_gate": 54,
+      "trades_per_day": 0.892,
+      "win_rate": 0.4595,
+      "avg_win_R": 0.9048,
+      "avg_loss_R": 0.7023,
+      "profit_factor": 1.0996,
+      "months_green": "12/25",
+      "expectancy_per_day": 33.59,
+      "yearly_R": 8.4638,
+      "max_drawdown_R": -20.415,
+      "prop_eval": {
+        "passed": false,
+        "fail_reason": "daily_loss_limit",
+        "fail_day": "2024-09-03",
+        "final_equity_pct": 0.0,
+        "max_drawdown_seen_pct": 0.0
+      },
+      "risk_sweep": [
+        {
+          "risk_per_trade": 25,
+          "passed": false,
+          "fail_reason": "profit_target_not_reached",
+          "fail_day": "2026-09-02",
+          "final_equity_pct": 0.836,
+          "max_drawdown_seen_pct": -1.021
+        },
+        {
+          "risk_per_trade": 50,
+          "passed": false,
+          "fail_reason": "profit_target_not_reached",
+          "fail_day": "2026-09-02",
+          "final_equity_pct": 1.673,
+          "max_drawdown_seen_pct": -2.041
+        },
+        {
+          "risk_per_trade": 100,
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "fail_day": "2026-08-03",
+          "final_equity_pct": 3.201,
+          "max_drawdown_seen_pct": -4.083
+        },
+        {
+          "risk_per_trade": 250,
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "fail_day": "2024-11-01",
+          "final_equity_pct": -2.224,
+          "max_drawdown_seen_pct": -4.252
+        },
+        {
+          "risk_per_trade": 500,
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "fail_day": "2024-09-13",
+          "final_equity_pct": 0.05,
+          "max_drawdown_seen_pct": -4.006
+        },
+        {
+          "risk_per_trade": 1000,
+          "passed": false,
+          "fail_reason": "daily_loss_limit",
+          "fail_day": "2024-09-03",
+          "final_equity_pct": 0.0,
+          "max_drawdown_seen_pct": 0.0
+        },
+        {
+          "risk_per_trade": 2000,
+          "passed": false,
+          "fail_reason": "daily_loss_limit",
+          "fail_day": "2024-09-03",
+          "final_equity_pct": 0.0,
+          "max_drawdown_seen_pct": 0.0
+        },
+        {
+          "risk_per_trade": 5000,
+          "passed": false,
+          "fail_reason": "daily_loss_limit",
+          "fail_day": "2024-09-03",
+          "final_equity_pct": 0.0,
+          "max_drawdown_seen_pct": 0.0
+        }
+      ],
+      "passes_at_risk_per_trade": null
+    },
+    {
+      "arm": "6. stop after first win (keep trying through a loss)",
+      "unshippable_reason": null,
+      "caution": null,
+      "ev_r": -0.0509,
+      "n": 997,
+      "n_dropped_size_gate": 152,
+      "trades_per_day": 2.002,
+      "win_rate": 0.4343,
+      "avg_win_R": 0.8428,
+      "avg_loss_R": 0.741,
+      "profit_factor": 0.8779,
+      "months_green": "10/25",
+      "expectancy_per_day": -101.92,
+      "yearly_R": -25.6843,
+      "max_drawdown_R": -62.739,
+      "prop_eval": {
+        "passed": false,
+        "fail_reason": "daily_loss_limit",
+        "fail_day": "2024-09-05",
+        "final_equity_pct": -1.556,
+        "max_drawdown_seen_pct": -1.668
+      },
+      "risk_sweep": [
+        {
+          "risk_per_trade": 25,
+          "passed": false,
+          "fail_reason": "profit_target_not_reached",
+          "fail_day": "2026-09-02",
+          "final_equity_pct": -2.538,
+          "max_drawdown_seen_pct": -3.113
+        },
+        {
+          "risk_per_trade": 50,
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "fail_day": "2025-11-07",
+          "final_equity_pct": -3.582,
+          "max_drawdown_seen_pct": -4.36
+        },
+        {
+          "risk_per_trade": 100,
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "fail_day": "2024-12-31",
+          "final_equity_pct": -2.667,
+          "max_drawdown_seen_pct": -4.139
+        },
+        {
+          "risk_per_trade": 250,
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "fail_day": "2024-10-10",
+          "final_equity_pct": -2.749,
+          "max_drawdown_seen_pct": -5.298
+        },
+        {
+          "risk_per_trade": 500,
+          "passed": false,
+          "fail_reason": "daily_loss_limit",
+          "fail_day": "2024-09-12",
+          "final_equity_pct": 5.097,
+          "max_drawdown_seen_pct": -2.506
+        },
+        {
+          "risk_per_trade": 1000,
+          "passed": false,
+          "fail_reason": "daily_loss_limit",
+          "fail_day": "2024-09-05",
+          "final_equity_pct": -1.556,
+          "max_drawdown_seen_pct": -1.668
+        },
+        {
+          "risk_per_trade": 2000,
+          "passed": false,
+          "fail_reason": "daily_loss_limit",
+          "fail_day": "2024-09-03",
+          "final_equity_pct": 0.0,
+          "max_drawdown_seen_pct": 0.0
+        },
+        {
+          "risk_per_trade": 5000,
+          "passed": false,
+          "fail_reason": "daily_loss_limit",
+          "fail_day": "2024-09-03",
+          "final_equity_pct": 0.0,
+          "max_drawdown_seen_pct": 0.0
+        }
+      ],
+      "passes_at_risk_per_trade": null
+    },
+    {
+      "arm": "7. stop after first loss (keep trying through a win)",
+      "unshippable_reason": null,
+      "caution": null,
+      "ev_r": 0.0532,
+      "n": 848,
+      "n_dropped_size_gate": 128,
+      "trades_per_day": 1.703,
+      "win_rate": 0.4953,
+      "avg_win_R": 0.8107,
+      "avg_loss_R": 0.6918,
+      "profit_factor": 1.1527,
+      "months_green": "11/25",
+      "expectancy_per_day": 90.55,
+      "yearly_R": 22.8197,
+      "max_drawdown_R": -31.816,
+      "prop_eval": {
+        "passed": false,
+        "fail_reason": "daily_loss_limit",
+        "fail_day": "2024-09-03",
+        "final_equity_pct": 0.0,
+        "max_drawdown_seen_pct": 0.0
+      },
+      "risk_sweep": [
+        {
+          "risk_per_trade": 25,
+          "passed": false,
+          "fail_reason": "profit_target_not_reached",
+          "fail_day": "2026-09-02",
+          "final_equity_pct": 2.255,
+          "max_drawdown_seen_pct": -1.59
+        },
+        {
+          "risk_per_trade": 50,
+          "passed": false,
+          "fail_reason": "profit_target_not_reached",
+          "fail_day": "2026-09-02",
+          "final_equity_pct": 4.51,
+          "max_drawdown_seen_pct": -3.18
+        },
+        {
+          "risk_per_trade": 100,
+          "passed": true,
+          "fail_reason": null,
+          "fail_day": null,
+          "final_equity_pct": 8.424,
+          "max_drawdown_seen_pct": -2.133
+        },
+        {
+          "risk_per_trade": 250,
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "fail_day": "2024-11-01",
+          "final_equity_pct": -0.609,
+          "max_drawdown_seen_pct": -4.482
+        },
+        {
+          "risk_per_trade": 500,
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "fail_day": "2024-09-13",
+          "final_equity_pct": 3.739,
+          "max_drawdown_seen_pct": -4.006
+        },
+        {
+          "risk_per_trade": 1000,
+          "passed": false,
+          "fail_reason": "daily_loss_limit",
+          "fail_day": "2024-09-03",
+          "final_equity_pct": 0.0,
+          "max_drawdown_seen_pct": 0.0
+        },
+        {
+          "risk_per_trade": 2000,
+          "passed": false,
+          "fail_reason": "daily_loss_limit",
+          "fail_day": "2024-09-03",
+          "final_equity_pct": 0.0,
+          "max_drawdown_seen_pct": 0.0
+        },
+        {
+          "risk_per_trade": 5000,
+          "passed": false,
+          "fail_reason": "daily_loss_limit",
+          "fail_day": "2024-09-03",
+          "final_equity_pct": 0.0,
+          "max_drawdown_seen_pct": 0.0
+        }
+      ],
+      "passes_at_risk_per_trade": [
+        100
+      ]
+    }
+  ]
+}

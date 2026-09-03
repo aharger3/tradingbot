@@ -1,0 +1,7 @@
+{
+ "arm": "S2_candle",
+ "picks": {},
+ "reasons": {},
+ "min_tradable_abs": 0.05,
+ "max_stop_pct": 0.006
+}

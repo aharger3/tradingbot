@@ -1,0 +1,170 @@
+{
+ "NVDA": {
+  "spread_prop": 0.000598,
+  "px": 207.61,
+  "spread_abs": 0.1242,
+  "n_days": 90
+ },
+ "TSLA": {
+  "spread_prop": 0.000697,
+  "px": 391.37,
+  "spread_abs": 0.273,
+  "n_days": 90
+ },
+ "AAPL": {
+  "spread_prop": 0.00036,
+  "px": 300.46,
+  "spread_abs": 0.1082,
+  "n_days": 90
+ },
+ "SPCX": {
+  "spread_prop": 0.00109,
+  "px": 139.01,
+  "spread_abs": 0.1516,
+  "n_days": 43
+ },
+ "MSFT": {
+  "spread_prop": 0.000468,
+  "px": 410.58,
+  "spread_abs": 0.192,
+  "n_days": 90
+ },
+ "MU": {
+  "spread_prop": 0.001243,
+  "px": 879.78,
+  "spread_abs": 1.0937,
+  "n_days": 90
+ },
+ "INTC": {
+  "spread_prop": 0.001254,
+  "px": 105.31,
+  "spread_abs": 0.132,
+  "n_days": 90
+ },
+ "PLTR": {
+  "spread_prop": 0.000813,
+  "px": 134.2,
+  "spread_abs": 0.1091,
+  "n_days": 90
+ },
+ "AMZN": {
+  "spread_prop": 0.000418,
+  "px": 251.08,
+  "spread_abs": 0.1048,
+  "n_days": 90
+ },
+ "META": {
+  "spread_prop": 0.000509,
+  "px": 606.35,
+  "spread_abs": 0.3083,
+  "n_days": 90
+ },
+ "AMD": {
+  "spread_prop": 0.001108,
+  "px": 483.63,
+  "spread_abs": 0.536,
+  "n_days": 90
+ },
+ "GOOGL": {
+  "spread_prop": 0.000433,
+  "px": 358.71,
+  "spread_abs": 0.1553,
+  "n_days": 90
+ },
+ "ACHR": {
+  "spread_prop": 0.001224,
+  "px": 5.48,
+  "spread_abs": 0.0067,
+  "n_days": 90
+ },
+ "NFLX": {
+  "spread_prop": 0.000425,
+  "px": 82.03,
+  "spread_abs": 0.0348,
+  "n_days": 90
+ },
+ "ORCL": {
+  "spread_prop": 0.000843,
+  "px": 167.84,
+  "spread_abs": 0.1415,
+  "n_days": 90
+ },
+ "QQQ": {
+  "spread_prop": 0.000252,
+  "px": 711.06,
+  "spread_abs": 0.1795,
+  "n_days": 90
+ },
+ "SPY": {
+  "spread_prop": 0.000145,
+  "px": 739.5,
+  "spread_abs": 0.1072,
+  "n_days": 90
+ },
+ "IWM": {
+  "spread_prop": 0.000245,
+  "px": 289.42,
+  "spread_abs": 0.071,
+  "n_days": 90
+ },
+ "SOFI": {
+  "spread_prop": 0.000836,
+  "px": 17.11,
+  "spread_abs": 0.0143,
+  "n_days": 90
+ },
+ "COIN": {
+  "spread_prop": 0.000964,
+  "px": 169.47,
+  "spread_abs": 0.1633,
+  "n_days": 90
+ },
+ "HOOD": {
+  "spread_prop": 0.00095,
+  "px": 87.84,
+  "spread_abs": 0.0835,
+  "n_days": 90
+ },
+ "IREN": {
+  "spread_prop": 0.001495,
+  "px": 46.81,
+  "spread_abs": 0.07,
+  "n_days": 90
+ },
+ "AVGO": {
+  "spread_prop": 0.000702,
+  "px": 396.41,
+  "spread_abs": 0.2782,
+  "n_days": 90
+ },
+ "UBER": {
+  "spread_prop": 0.000501,
+  "px": 73.04,
+  "spread_abs": 0.0366,
+  "n_days": 90
+ },
+ "BABA": {
+  "spread_prop": 0.000356,
+  "px": 124.99,
+  "spread_abs": 0.0445,
+  "n_days": 90
+ },
+ "CRM": {
+  "spread_prop": 0.000641,
+  "px": 176.01,
+  "spread_abs": 0.1128,
+  "n_days": 90
+ },
+ "TSM": {
+  "spread_prop": 0.000602,
+  "px": 414.57,
+  "spread_abs": 0.2497,
+  "n_days": 90
+ },
+ "MARA": {
+  "spread_prop": 0.001257,
+  "px": 12.26,
+  "spread_abs": 0.0154,
+  "n_days": 90
+ }
+}
