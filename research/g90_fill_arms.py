@@ -197,21 +197,32 @@ def run_symbol(args):
                     entry = level
                 elif arm == "limit_level":
                     # The honest resting-limit fill: the order can only be
-                    # placed once the signal exists (the CONFIRM bar), and can
-                    # never be booked on an EARLIER bar -- that is precisely
+                    # placed once the signal EXISTS -- which is the CONFIRM
+                    # bar's CLOSE (that close is what satisfies
+                    # `current.close > level`; everything before it, including
+                    # that same bar's own low/high, happened before the order
+                    # could have been placed). So the order can never be
+                    # credited a fill using the confirm bar's own range --
+                    # only bars strictly AFTER it. FIXED 2026-09-03 after
+                    # adversarial review: the first cut scanned from
+                    # `entry_idx` (the confirm bar itself), which let 96% of
+                    # "fills" ride on that bar's own pre-close wick -- exactly
                     # the "fill traded before the signal existed" lookahead
-                    # omen-blockers.md attributes to the 2026-08-30 rebuild
-                    # (research/g80_lookahead_refute.md; not reproducible here,
-                    # see module docstring). So this scans FORWARD ONLY, from
-                    # the confirm bar for RETEST_WINDOW bars (then the order is
-                    # cancelled as stale), for the first bar whose
-                    # range crosses `level` -- and, matching "2,067 filled at
-                    # the minute's own extreme, where no resting order fills at
-                    # all," a touch landing exactly on that bar's own high/low
-                    # (within EXTREME_BUF of the bar's range) does not count as
-                    # a fill: the level must sit strictly inside the bar.
-                    hi = min(len(candles), entry_idx + 1 + RETEST_WINDOW)
-                    for j in range(entry_idx, hi):
+                    # class omen-blockers.md attributes to the 2026-08-30
+                    # rebuild (research/g80_lookahead_refute.md; not
+                    # reproducible here, see module docstring), just moved one
+                    # bar later than the earlier-bar case this arm already
+                    # guarded against. Scans FORWARD ONLY from entry_idx+1 for
+                    # RETEST_WINDOW bars (then the order is cancelled as
+                    # stale), for the first bar whose range crosses `level` --
+                    # and, matching "2,067 filled at the minute's own extreme,
+                    # where no resting order fills at all," a touch landing
+                    # exactly on that bar's own high/low (within EXTREME_BUF of
+                    # the bar's range) does not count as a fill: the level must
+                    # sit strictly inside the bar.
+                    lo = entry_idx + 1
+                    hi = min(len(candles), lo + RETEST_WINDOW)
+                    for j in range(lo, hi):
                         cj = candles[j]
                         rng = cj.high - cj.low
                         buf = EXTREME_BUF * rng
@@ -378,44 +389,73 @@ def main():
     L.append("")
 
     ab, ll, no, co = stats["as_booked"], stats["limit_level"], stats["next_open"], stats["chase_once"]
+    L.append("## Adversarial pass\n")
+    L.append(
+        f"A first cut of `limit_level` scanned its forward window starting AT the "
+        f"confirmation bar itself. The adversarial reviewer (2026-09-03) killed that "
+        f"result: the confirm bar's own low/high reflect price action that happened "
+        f"BEFORE that bar's close -- and the close is the only thing that makes the "
+        f"signal exist. Crediting a fill off that same bar's pre-close wick is the "
+        f"identical causal-impossibility class of lookahead this arm exists to "
+        f"exclude, just moved one bar later than the earlier-bar case it already "
+        f"guarded against. 96% of the first cut's 790 filled trades rode this bug "
+        f"(hand-verified against raw archive bars). **Fixed**: the scan now starts at "
+        f"`entry_idx + 1`, never the confirm bar itself. `next_open` was independently "
+        f"re-derived from the raw fills per the row's own required check and "
+        f"**confirmed** -- no lookahead found after a genuine attempt, hand-walked "
+        f"against raw bars. `chase_once`'s divergence from `next_open`'s trade count "
+        f"was also challenged: it rests entirely on `CHASE_PCT`, a constant borrowed "
+        f"from an unrelated tagging use elsewhere in `signal_runner.py`, not a defined "
+        f"'how far Austin will chase' threshold -- **its specific numeric proximity to "
+        f"the vault's +0.028R figure is not a meaningful match**, just two numbers "
+        f"landing close by coincidence. The table above reflects the fix; the number "
+        f"originally published for `limit_level` was +0.7537R (793 filled, matching "
+        f"as_booked almost exactly) and is retracted.\n")
     L.append("## Verdict\n")
     L.append(
-        f"**The +0.03R ceiling in `omen-blockers.md` does not reproduce.** as_booked "
-        f"(+{ab['mean_r']:.4f}R) and limit_level (+{ll['mean_r']:.4f}R) come out "
-        f"within 0.002R of each other, both 25/25 green months -- a properly "
-        f"non-lookahead resting-limit fill (order can only be placed once the "
-        f"signal exists, cancelled if unfilled after {RETEST_WINDOW} bars, and a "
-        f"touch at the exact bar extreme does not count -- see the arm definitions "
-        f"above) does NOT collapse the edge the way the vault's headline number "
-        f"claims. as_booked's +{ab['mean_r']:.4f}R also lands close to the vault's "
-        f"pre-rebuild +0.72R figure, so this reconstruction is tracking the same "
-        f"quantity the vault's older numbers describe.\n")
+        f"**The vault's +0.72R -> +0.028R collapse partially reproduces, but not "
+        f"to the vault's magnitude.** as_booked (+{ab['mean_r']:.4f}R, {ab['n']} "
+        f"trades) and the corrected limit_level (+{ll['mean_r']:.4f}R, {ll['n']} "
+        f"trades, {ll['green_months']}/{ll['months']} green months) are NOT close: "
+        f"a properly non-lookahead resting-limit fill (order can only be placed once "
+        f"the signal exists, on a LATER bar than confirmation, cancelled if unfilled "
+        f"after {RETEST_WINDOW} bars, and a touch at the exact bar extreme does not "
+        f"count) costs roughly {100*(1 - ll['mean_r']/ab['mean_r']):.0f}% of the "
+        f"as-booked edge -- a real, large haircut, in the direction the vault's "
+        f"ceiling claims. But it lands at +{ll['mean_r']:.4f}R, not the vault's "
+        f"+0.028R: a meaningfully-positive, mostly-green-months book, not a dead one. "
+        f"as_booked's +{ab['mean_r']:.4f}R lands close to the vault's pre-rebuild "
+        f"+0.72R figure, so this reconstruction is tracking the same quantity the "
+        f"vault's older numbers describe.\n")
     L.append(
         f"**Austin's actual method (next_open, market at the signal bar's close) "
         f"pays +{no['mean_r']:.4f}R, ${no['dollar_day']:,.0f}/day, {no['green_months']}/{no['months']} "
-        f"green months.** That is real and comfortably above zero -- not the "
-        f"dramatic collapse the ceiling claim describes, but also well below the "
-        f"as_booked/limit_level number: the fill is not free, it costs roughly "
-        f"{100*(1 - no['mean_r']/ab['mean_r']):.0f}% of the as-booked edge, mostly "
-        f"through a lower win rate (next bar's open has already moved past the "
-        f"confirmation price), not through the strategy having no edge at all.\n")
+        f"green months -- essentially the SAME number as the corrected limit_level "
+        f"(+{ll['mean_r']:.4f}R).** That convergence is itself informative: a passive "
+        f"resting order and a market order sent at the close land in the same place, "
+        f"which is what you'd expect once limit_level is honestly scanning only bars "
+        f"AFTER confirmation -- the two arms are answering the same practical "
+        f"question (what do you get once you can no longer act on the confirm bar's "
+        f"own range) from different mechanisms.\n")
     L.append(
         f"**chase_once (+{co['mean_r']:.4f}R, only {co['green_months']}/{co['months']} green "
-        f"months) is the arm that actually lands near the vault's +0.028R ceiling "
-        f"figure.** That is worth flagging plainly: it raises the possibility that "
-        f"whatever the lost 2026-08-30 rebuild measured was closer in spirit to "
-        f"'pay up to get filled' than to a passive resting order -- but this is "
-        f"circumstantial (one number landing close to another), not a claim about "
-        f"what that code did, since that code is not recoverable from this repo "
-        f"(see below).\n")
+        f"months) is the worst-paying arm, and the adversarial pass found its "
+        f"apparent proximity to the vault's +0.028R figure is not a principled "
+        f"match** -- it rides on a borrowed, ungrounded constant (see Adversarial "
+        f"pass above). Treat it as \"paying up costs real edge,\" not as \"this is "
+        f"what the lost rebuild measured.\"\n")
     L.append(
-        f"**Answering R1's question directly: the ceiling is not a property of "
-        f"the strategy at the honest-fill definition this script can reconstruct.** "
-        f"A genuinely obtainable resting-limit fill pays within noise of the naive "
-        f"back-dated one, and Austin's own stated method (market at candle close) "
-        f"still pays a real, positive, mostly-green-months edge. The one arm that "
-        f"resembles the vault's ceiling number is the one that pays up rather than "
-        f"waits -- an execution-discipline question, not a strategy-is-dead one.\n")
+        f"**Answering R1's question directly: the ceiling is directionally real but "
+        f"not to the magnitude the vault claims.** The naive back-dated fill "
+        f"(+{ab['mean_r']:.4f}R) overstates the edge; an honestly-obtainable fill, "
+        f"however it's realized (resting limit or market-at-close), pays roughly "
+        f"+0.26-0.28R -- a real, mostly-green-months edge, not the near-zero "
+        f"+0.03R the vault's headline number describes. `omen-blockers.md`'s specific "
+        f"+0.028R figure and 11/25 green-months claim do not reproduce from this "
+        f"repo's committed code at any of the four fill definitions tested; the "
+        f"closest arm to it (`chase_once`) is not a principled match. Austin's eye "
+        f"test and the code both being right is consistent with what this row found: "
+        f"the strategy is not dead, but the fill is not free either.\n")
 
     L.append("## What could not be reconstructed\n")
     L.append(
