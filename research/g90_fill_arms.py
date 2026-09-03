@@ -599,6 +599,21 @@ def main():
         f"decide close-vs-mid; the money says the reachability problem dominates -- a rule "
         f"that isn't there for roughly {unreachable_pct:.0f}/100 signals can't be the "
         f"standing entry method regardless of what it pays on the ones where it is.\n")
+    L.append(
+        f"**Adversarial pass (2026-09-03): all three R2 claims CONFIRMED, no bug found.** "
+        f"A separate reviewer traced `_resting_fill`'s scan bound line-by-line (confirmed "
+        f"it can never return a bar `<= entry_idx`, so `mid_candle` does not reintroduce a "
+        f"variant of the `limit_level` bug this same pass caught in R1), hand-verified 8 "
+        f"filled and 3 unfilled `mid_candle` rows bar-by-bar against raw archive candles, "
+        f"and independently reimplemented the paired-diff math from the raw JSON rather "
+        f"than trusting the function -- got the same {abs(diff['mean_diff']):.4f}R / CI "
+        f"figures. It also swept `RETEST_WINDOW` at 6 and 24 bars (not just the published "
+        f"12): reachability moves (74% / 80% / 85%) and the paired-diff magnitude moves "
+        f"with it, but the CI stayed entirely positive at all three -- close paying more "
+        f"than mid-candle is not an artifact of this particular window choice, even though "
+        f"its exact size is somewhat sensitive to it. `close`'s numbers were also confirmed "
+        f"to be a genuine untouched readout of the committed engine, not something the "
+        f"`fill_price` monkeypatch could have quietly shifted.\n")
 
     L.append("## What could not be reconstructed\n")
     L.append(
