@@ -203,10 +203,15 @@ research/_g83_run.log
 # youtube_oauth_token.json / client_secret.json / *.credentials.json.
 .disc_token_tmp
 
-# The two 2-year replay books, 126 MB and 132 MB. GitHub refuses any blob over
-# 100 MB, so they were stripped out of local history on 2026-09-03 and are
-# ignored from here on. Both are regenerable with `python backtest_2y.py`, and
-# the findings that read off them are tracked markdown. No judgement file is
-# anywhere near this rule.
+# The 2-year replay books are 126-132 MB each and GitHub refuses any blob over
+# 100 MB, so they were stripped out of local history on 2026-09-03 and the raw
+# .json is ignored from here on. They are NOT regenerable: published_fill was
+# built with the pre-2026-08-30 fill code, and `--days 730` counts back from
+# today, so no re-run reproduces any of them byte-for-byte. Each travels as a
+# 7 MB gzip beside it (research/bt2y_trades*.json.gz, tracked). After a clone:
+#   gzip -dk research/bt2y_trades*.json.gz
+# No judgement file is anywhere near this rule.
 research/bt2y_trades.json
 research/bt2y_trades_published_fill.json
+research/bt2y_trades_retest_on.json
+research/bt2y_trades_retest_off.json

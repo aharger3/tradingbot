@@ -264,7 +264,8 @@ gate in this engine adds candidates as well as removing them.
 `downgrade.py` dirty, 500-session window, `RETEST_REQUIRED` not stamped. It is
 the OFF-arm book for the pre-2026-09-02 figures only. The current-default book is
 `research/bt2y_trades_retest_on.json`. Never A/B against a book built on a
-different day: `--days 730` counts back from today.
+different day: `--days 730` counts back from today. All four books travel as `research/bt2y_trades*.json.gz`
+(7 MB each, 18x); after a clone run `gzip -dk research/bt2y_trades*.json.gz`.
 
 **Do not re-propose wiring `research/downgrade.py` as the fire gate.** It is
 measured and negative: gating on `sgrade=='S'` is **−$29/day**, and
