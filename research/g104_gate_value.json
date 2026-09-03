@@ -1,0 +1,602 @@
+{
+ "n": 498,
+ "sessions": 498,
+ "arms": {
+  "sgrade": {
+   "everything (shipped backtest)": {
+    "n": 498,
+    "book": {
+     "trades": 498,
+     "win_pct": 46.5,
+     "total_dollars": 16899,
+     "per_trade": 34,
+     "mean_r": 0.034,
+     "per_day": 34,
+     "pct_of_bar": 8.5,
+     "months_green": 13,
+     "months": 25,
+     "weeks_green": 46,
+     "weeks": 105,
+     "worst_drawdown": -21405
+    },
+    "ladder": {
+     "trades": 498,
+     "win_pct": 39.8,
+     "total_dollars": 50114,
+     "per_trade": 101,
+     "mean_r": 0.101,
+     "per_day": 101,
+     "pct_of_bar": 25.3,
+     "months_green": 12,
+     "months": 25,
+     "weeks_green": 56,
+     "weeks": 105,
+     "worst_drawdown": -20438
+    },
+    "runner_pct": 23.5
+   },
+   "sgrade S only  <- LIVE GATE": {
+    "n": 88,
+    "book": {
+     "trades": 88,
+     "win_pct": 47.7,
+     "total_dollars": 13498,
+     "per_trade": 153,
+     "mean_r": 0.153,
+     "per_day": 27,
+     "pct_of_bar": 6.8,
+     "months_green": 15,
+     "months": 25,
+     "weeks_green": 32,
+     "weeks": 65,
+     "worst_drawdown": -6647
+    },
+    "ladder": {
+     "trades": 88,
+     "win_pct": 40.9,
+     "total_dollars": 6838,
+     "per_trade": 78,
+     "mean_r": 0.078,
+     "per_day": 14,
+     "pct_of_bar": 3.5,
+     "months_green": 12,
+     "months": 25,
+     "weeks_green": 25,
+     "weeks": 65,
+     "worst_drawdown": -7274
+    },
+    "runner_pct": 26.1
+   },
+   "sgrade S or A": {
+    "n": 218,
+    "book": {
+     "trades": 218,
+     "win_pct": 47.9,
+     "total_dollars": 20242,
+     "per_trade": 93,
+     "mean_r": 0.093,
+     "per_day": 41,
+     "pct_of_bar": 10.2,
+     "months_green": 14,
+     "months": 25,
+     "weeks_green": 47,
+     "weeks": 97,
+     "worst_drawdown": -9528
+    },
+    "ladder": {
+     "trades": 218,
+     "win_pct": 39.4,
+     "total_dollars": 38869,
+     "per_trade": 178,
+     "mean_r": 0.178,
+     "per_day": 78,
+     "pct_of_bar": 19.7,
+     "months_green": 13,
+     "months": 25,
+     "weeks_green": 50,
+     "weeks": 97,
+     "worst_drawdown": -11090
+    },
+    "runner_pct": 26.6
+   },
+   "sgrade C only": {
+    "n": 280,
+    "book": {
+     "trades": 280,
+     "win_pct": 45.4,
+     "total_dollars": -3343,
+     "per_trade": -12,
+     "mean_r": -0.012,
+     "per_day": -7,
+     "pct_of_bar": -1.7,
+     "months_green": 11,
+     "months": 24,
+     "weeks_green": 43,
+     "weeks": 103,
+     "worst_drawdown": -19648
+    },
+    "ladder": {
+     "trades": 280,
+     "win_pct": 40.0,
+     "total_dollars": 11245,
+     "per_trade": 40,
+     "mean_r": 0.04,
+     "per_day": 23,
+     "pct_of_bar": 5.7,
+     "months_green": 13,
+     "months": 24,
+     "weeks_green": 44,
+     "weeks": 103,
+     "worst_drawdown": -19730
+    },
+    "runner_pct": 21.1
+   }
+  },
+  "chase": {
+   "everything": {
+    "n": 498,
+    "book": {
+     "trades": 498,
+     "win_pct": 46.5,
+     "total_dollars": 16899,
+     "per_trade": 34,
+     "mean_r": 0.034,
+     "per_day": 34,
+     "pct_of_bar": 8.5,
+     "months_green": 13,
+     "months": 25,
+     "weeks_green": 46,
+     "weeks": 105,
+     "worst_drawdown": -21405
+    },
+    "ladder": {
+     "trades": 498,
+     "win_pct": 39.8,
+     "total_dollars": 50114,
+     "per_trade": 101,
+     "mean_r": 0.101,
+     "per_day": 101,
+     "pct_of_bar": 25.3,
+     "months_green": 12,
+     "months": 25,
+     "weeks_green": 56,
+     "weeks": 105,
+     "worst_drawdown": -20438
+    },
+    "runner_pct": 23.5
+   },
+   "minus chase": {
+    "n": 333,
+    "book": {
+     "trades": 333,
+     "win_pct": 47.1,
+     "total_dollars": 31308,
+     "per_trade": 94,
+     "mean_r": 0.094,
+     "per_day": 63,
+     "pct_of_bar": 15.8,
+     "months_green": 12,
+     "months": 25,
+     "weeks_green": 51,
+     "weeks": 105,
+     "worst_drawdown": -16098
+    },
+    "ladder": {
+     "trades": 333,
+     "win_pct": 41.4,
+     "total_dollars": 56909,
+     "per_trade": 171,
+     "mean_r": 0.171,
+     "per_day": 114,
+     "pct_of_bar": 28.8,
+     "months_green": 13,
+     "months": 25,
+     "weeks_green": 58,
+     "weeks": 105,
+     "worst_drawdown": -15736
+    },
+    "runner_pct": 26.7
+   },
+   "minus chase, minus nodisp": {
+    "n": 51,
+    "book": {
+     "trades": 51,
+     "win_pct": 52.9,
+     "total_dollars": 13759,
+     "per_trade": 270,
+     "mean_r": 0.27,
+     "per_day": 28,
+     "pct_of_bar": 7.0,
+     "months_green": 13,
+     "months": 22,
+     "weeks_green": 21,
+     "weeks": 41,
+     "worst_drawdown": -8364
+    },
+    "ladder": {
+     "trades": 51,
+     "win_pct": 54.9,
+     "total_dollars": 25957,
+     "per_trade": 509,
+     "mean_r": 0.509,
+     "per_day": 52,
+     "pct_of_bar": 13.1,
+     "months_green": 13,
+     "months": 22,
+     "weeks_green": 21,
+     "weeks": 41,
+     "worst_drawdown": -7206
+    },
+    "runner_pct": 31.4
+   },
+   "minus chase, sgrade S or A": {
+    "n": 166,
+    "book": {
+     "trades": 166,
+     "win_pct": 48.8,
+     "total_dollars": 25989,
+     "per_trade": 157,
+     "mean_r": 0.157,
+     "per_day": 52,
+     "pct_of_bar": 13.1,
+     "months_green": 14,
+     "months": 25,
+     "weeks_green": 48,
+     "weeks": 93,
+     "worst_drawdown": -8102
+    },
+    "ladder": {
+     "trades": 166,
+     "win_pct": 41.6,
+     "total_dollars": 39290,
+     "per_trade": 237,
+     "mean_r": 0.237,
+     "per_day": 79,
+     "pct_of_bar": 19.9,
+     "months_green": 16,
+     "months": 25,
+     "weeks_green": 44,
+     "weeks": 93,
+     "worst_drawdown": -8748
+    },
+    "runner_pct": 28.9
+   }
+  },
+  "setup": {
+   "break_and_retest": {
+    "n": 495,
+    "book": {
+     "trades": 495,
+     "win_pct": 46.4,
+     "total_dollars": 17586,
+     "per_trade": 36,
+     "mean_r": 0.036,
+     "per_day": 35,
+     "pct_of_bar": 8.9,
+     "months_green": 12,
+     "months": 25,
+     "weeks_green": 47,
+     "weeks": 105,
+     "worst_drawdown": -21405
+    },
+    "ladder": {
+     "trades": 495,
+     "win_pct": 39.6,
+     "total_dollars": 49362,
+     "per_trade": 100,
+     "mean_r": 0.1,
+     "per_day": 99,
+     "pct_of_bar": 25.0,
+     "months_green": 12,
+     "months": 25,
+     "weeks_green": 56,
+     "weeks": 105,
+     "worst_drawdown": -20438
+    },
+    "runner_pct": 23.6
+   },
+   "one_candle_rule": {
+    "n": 3,
+    "book": {
+     "trades": 3,
+     "win_pct": 66.7,
+     "total_dollars": -688,
+     "per_trade": -229,
+     "mean_r": -0.229,
+     "per_day": -1,
+     "pct_of_bar": -0.3,
+     "months_green": 2,
+     "months": 3,
+     "weeks_green": 2,
+     "weeks": 3,
+     "worst_drawdown": -1000
+    },
+    "ladder": {
+     "trades": 3,
+     "win_pct": 66.7,
+     "total_dollars": 752,
+     "per_trade": 251,
+     "mean_r": 0.251,
+     "per_day": 2,
+     "pct_of_bar": 0.4,
+     "months_green": 2,
+     "months": 3,
+     "weeks_green": 2,
+     "weeks": 3,
+     "worst_drawdown": -1000
+    },
+    "runner_pct": 0.0
+   }
+  },
+  "tags": {
+   "brocr": {
+    "n": 335,
+    "book": {
+     "trades": 335,
+     "win_pct": 46.4,
+     "total_dollars": 9968,
+     "per_trade": 30,
+     "mean_r": 0.03,
+     "per_day": 20,
+     "pct_of_bar": 5.0,
+     "months_green": 14,
+     "months": 25,
+     "weeks_green": 51,
+     "weeks": 104,
+     "worst_drawdown": -15743
+    },
+    "ladder": {
+     "trades": 335,
+     "win_pct": 38.2,
+     "total_dollars": 35132,
+     "per_trade": 105,
+     "mean_r": 0.105,
+     "per_day": 71,
+     "pct_of_bar": 17.8,
+     "months_green": 13,
+     "months": 25,
+     "weeks_green": 54,
+     "weeks": 104,
+     "worst_drawdown": -14333
+    },
+    "runner_pct": 24.5
+   },
+   "chase": {
+    "n": 165,
+    "book": {
+     "trades": 165,
+     "win_pct": 45.1,
+     "total_dollars": -14409,
+     "per_trade": -87,
+     "mean_r": -0.087,
+     "per_day": -29,
+     "pct_of_bar": -7.3,
+     "months_green": 10,
+     "months": 24,
+     "weeks_green": 35,
+     "weeks": 86,
+     "worst_drawdown": -15785
+    },
+    "ladder": {
+     "trades": 165,
+     "win_pct": 36.4,
+     "total_dollars": -6795,
+     "per_trade": -41,
+     "mean_r": -0.041,
+     "per_day": -14,
+     "pct_of_bar": -3.4,
+     "months_green": 11,
+     "months": 24,
+     "weeks_green": 34,
+     "weeks": 86,
+     "worst_drawdown": -15629
+    },
+    "runner_pct": 17.0
+   },
+   "clean": {
+    "n": 482,
+    "book": {
+     "trades": 482,
+     "win_pct": 46.6,
+     "total_dollars": 16896,
+     "per_trade": 35,
+     "mean_r": 0.035,
+     "per_day": 34,
+     "pct_of_bar": 8.5,
+     "months_green": 12,
+     "months": 25,
+     "weeks_green": 48,
+     "weeks": 105,
+     "worst_drawdown": -20551
+    },
+    "ladder": {
+     "trades": 482,
+     "win_pct": 39.6,
+     "total_dollars": 44886,
+     "per_trade": 93,
+     "mean_r": 0.093,
+     "per_day": 90,
+     "pct_of_bar": 22.7,
+     "months_green": 12,
+     "months": 25,
+     "weeks_green": 55,
+     "weeks": 105,
+     "worst_drawdown": -19438
+    },
+    "runner_pct": 23.2
+   },
+   "disp": {
+    "n": 73,
+    "book": {
+     "trades": 73,
+     "win_pct": 50.7,
+     "total_dollars": 15275,
+     "per_trade": 209,
+     "mean_r": 0.209,
+     "per_day": 31,
+     "pct_of_bar": 7.7,
+     "months_green": 13,
+     "months": 22,
+     "weeks_green": 25,
+     "weeks": 53,
+     "worst_drawdown": -10733
+    },
+    "ladder": {
+     "trades": 73,
+     "win_pct": 47.9,
+     "total_dollars": 27359,
+     "per_trade": 375,
+     "mean_r": 0.375,
+     "per_day": 55,
+     "pct_of_bar": 13.8,
+     "months_green": 12,
+     "months": 22,
+     "weeks_green": 25,
+     "weeks": 53,
+     "worst_drawdown": -11287
+    },
+    "runner_pct": 28.8
+   },
+   "hammer": {
+    "n": 85,
+    "book": {
+     "trades": 85,
+     "win_pct": 47.1,
+     "total_dollars": 13161,
+     "per_trade": 155,
+     "mean_r": 0.155,
+     "per_day": 26,
+     "pct_of_bar": 6.7,
+     "months_green": 13,
+     "months": 25,
+     "weeks_green": 31,
+     "weeks": 64,
+     "worst_drawdown": -7132
+    },
+    "ladder": {
+     "trades": 85,
+     "win_pct": 40.0,
+     "total_dollars": 6474,
+     "per_trade": 76,
+     "mean_r": 0.076,
+     "per_day": 13,
+     "pct_of_bar": 3.3,
+     "months_green": 12,
+     "months": 25,
+     "weeks_green": 30,
+     "weeks": 64,
+     "worst_drawdown": -8461
+    },
+    "runner_pct": 25.9
+   },
+   "late": {
+    "n": 13,
+    "book": {
+     "trades": 13,
+     "win_pct": 38.5,
+     "total_dollars": 691,
+     "per_trade": 53,
+     "mean_r": 0.053,
+     "per_day": 1,
+     "pct_of_bar": 0.3,
+     "months_green": 4,
+     "months": 11,
+     "weeks_green": 5,
+     "weeks": 12,
+     "worst_drawdown": -3853
+    },
+    "ladder": {
+     "trades": 13,
+     "win_pct": 38.5,
+     "total_dollars": 4476,
+     "per_trade": 344,
+     "mean_r": 0.344,
+     "per_day": 9,
+     "pct_of_bar": 2.3,
+     "months_green": 5,
+     "months": 11,
+     "weeks_green": 5,
+     "weeks": 12,
+     "worst_drawdown": -5446
+    },
+    "runner_pct": 38.5
+   },
+   "nodisp": {
+    "n": 422,
+    "book": {
+     "trades": 422,
+     "win_pct": 45.6,
+     "total_dollars": 2311,
+     "per_trade": 5,
+     "mean_r": 0.005,
+     "per_day": 5,
+     "pct_of_bar": 1.2,
+     "months_green": 12,
+     "months": 25,
+     "weeks_green": 47,
+     "weeks": 105,
+     "worst_drawdown": -20653
+    },
+    "ladder": {
+     "trades": 422,
+     "win_pct": 38.2,
+     "total_dollars": 22003,
+     "per_trade": 52,
+     "mean_r": 0.052,
+     "per_day": 44,
+     "pct_of_bar": 11.1,
+     "months_green": 13,
+     "months": 25,
+     "weeks_green": 49,
+     "weeks": 105,
+     "worst_drawdown": -18882
+    },
+    "runner_pct": 22.7
+   }
+  },
+  "downgrades": {
+   "chase": {
+    "n": 165,
+    "pct": 33.1,
+    "ladder_r_tripped": -0.0412,
+    "ladder_r_clean": 0.1709,
+    "sign_ok": true
+   },
+   "counter_trend_not_respected": {
+    "n": 317,
+    "pct": 63.7,
+    "ladder_r_tripped": 0.1926,
+    "ladder_r_clean": -0.0604,
+    "sign_ok": false
+   },
+   "level_not_respected": {
+    "n": 312,
+    "pct": 62.7,
+    "ladder_r_tripped": 0.055,
+    "ladder_r_clean": 0.1772,
+    "sign_ok": true
+   },
+   "no_displacement": {
+    "n": 300,
+    "pct": 60.2,
+    "ladder_r_tripped": 0.0514,
+    "ladder_r_clean": 0.1752,
+    "sign_ok": true
+   },
+   "no_retest": {
+    "n": 35,
+    "pct": 7.0,
+    "ladder_r_tripped": 0.1738,
+    "ladder_r_clean": 0.0951,
+    "sign_ok": false
+   },
+   "ocr_not_respected": {
+    "n": 34,
+    "pct": 6.8,
+    "ladder_r_tripped": 0.2184,
+    "ladder_r_clean": 0.092,
+    "sign_ok": false
+   }
+  }
+ }
+}

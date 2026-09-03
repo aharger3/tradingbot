@@ -1,0 +1,120 @@
+{
+ "judged": 1263,
+ "s_days": 347,
+ "priced": 592,
+ "sessions": 498,
+ "arms": {
+  "every judged day": {
+   "label": "every judged day",
+   "n": 592,
+   "book_per_trade": -112,
+   "book_mean_r": -0.1118,
+   "book_win": 42.1,
+   "ladder_per_trade": -37,
+   "ladder_mean_r": -0.0368,
+   "ladder_win": 38.5,
+   "runner_pct": 19.9,
+   "early_pct": 23.1
+  },
+  "he graded S": {
+   "label": "he graded S",
+   "n": 169,
+   "book_per_trade": 36,
+   "book_mean_r": 0.0357,
+   "book_win": 50.3,
+   "ladder_per_trade": 297,
+   "ladder_mean_r": 0.2966,
+   "ladder_win": 50.9,
+   "runner_pct": 29.0,
+   "early_pct": 31.4
+  },
+  "he did NOT grade S": {
+   "label": "he did NOT grade S",
+   "n": 423,
+   "book_per_trade": -171,
+   "book_mean_r": -0.1708,
+   "book_win": 38.8,
+   "ladder_per_trade": -170,
+   "ladder_mean_r": -0.1699,
+   "ladder_win": 33.6,
+   "runner_pct": 16.3,
+   "early_pct": 19.9
+  },
+  "perm_book": {
+   "obs_r": 0.2065,
+   "p": 0.0142,
+   "n_s": 169,
+   "n_not": 423
+  },
+  "perm_ladder": {
+   "obs_r": 0.4665,
+   "p": 0.0,
+   "n_s": 169,
+   "n_not": 423
+  },
+  "perm_runner": {
+   "obs": 0.1268,
+   "p": 0.0003
+  },
+  "one_a_day_S_book": {
+   "traded": {
+    "trades": 139,
+    "win_pct": 54.7,
+    "total_dollars": 13031,
+    "per_trade": 94,
+    "mean_r": 0.094,
+    "per_day": 94,
+    "pct_of_bar": 23.6,
+    "months_green": 13,
+    "months": 24,
+    "weeks_green": 49,
+    "weeks": 79,
+    "worst_drawdown": -6860
+   },
+   "all_sessions": {
+    "trades": 139,
+    "win_pct": 54.7,
+    "total_dollars": 13031,
+    "per_trade": 94,
+    "mean_r": 0.094,
+    "per_day": 26,
+    "pct_of_bar": 6.6,
+    "months_green": 13,
+    "months": 24,
+    "weeks_green": 49,
+    "weeks": 79,
+    "worst_drawdown": -6860
+   }
+  },
+  "one_a_day_S_ladder": {
+   "traded": {
+    "trades": 139,
+    "win_pct": 56.1,
+    "total_dollars": 55149,
+    "per_trade": 397,
+    "mean_r": 0.397,
+    "per_day": 397,
+    "pct_of_bar": 99.9,
+    "months_green": 17,
+    "months": 24,
+    "weeks_green": 47,
+    "weeks": 79,
+    "worst_drawdown": -5501
+   },
+   "all_sessions": {
+    "trades": 139,
+    "win_pct": 56.1,
+    "total_dollars": 55149,
+    "per_trade": 397,
+    "mean_r": 0.397,
+    "per_day": 111,
+    "pct_of_bar": 27.9,
+    "months_green": 17,
+    "months": 24,
+    "weeks_green": 47,
+    "weeks": 79,
+    "worst_drawdown": -5501
+   }
+  }
+ }
+}

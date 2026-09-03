@@ -1,0 +1,235 @@
+{
+ "sessions": 498,
+ "arrival_buckets": {
+  "<09:45": 1234,
+  "09:45-09:59": 1964,
+  "10:00-10:29": 2450,
+  "10:30+": 1241
+ },
+ "arms": {
+  "A first of day (shipped)": {
+   "days": 498,
+   "book": {
+    "trades": 498,
+    "win_pct": 46.5,
+    "total_dollars": 16899,
+    "per_trade": 34,
+    "mean_r": 0.034,
+    "per_day": 34,
+    "pct_of_bar": 8.5,
+    "months_green": 13,
+    "months": 25,
+    "weeks_green": 46,
+    "weeks": 105,
+    "worst_drawdown": -21405
+   },
+   "ladder": {
+    "trades": 498,
+    "win_pct": 39.8,
+    "total_dollars": 50114,
+    "per_trade": 101,
+    "mean_r": 0.101,
+    "per_day": 101,
+    "pct_of_bar": 25.3,
+    "months_green": 12,
+    "months": 25,
+    "weeks_green": 56,
+    "weeks": 105,
+    "worst_drawdown": -20438
+   },
+   "runner_pct": 23.5
+  },
+  "B first at/after 09:45": {
+   "days": 498,
+   "book": {
+    "trades": 498,
+    "win_pct": 47.1,
+    "total_dollars": -25616,
+    "per_trade": -51,
+    "mean_r": -0.051,
+    "per_day": -51,
+    "pct_of_bar": -13.0,
+    "months_green": 10,
+    "months": 25,
+    "weeks_green": 37,
+    "weeks": 105,
+    "worst_drawdown": -35061
+   },
+   "ladder": {
+    "trades": 498,
+    "win_pct": 37.3,
+    "total_dollars": -9681,
+    "per_trade": -19,
+    "mean_r": -0.019,
+    "per_day": -19,
+    "pct_of_bar": -4.9,
+    "months_green": 10,
+    "months": 25,
+    "weeks_green": 44,
+    "weeks": 105,
+    "worst_drawdown": -27835
+   },
+   "runner_pct": 21.9
+  },
+  "C first at/after 09:50": {
+   "days": 498,
+   "book": {
+    "trades": 498,
+    "win_pct": 46.1,
+    "total_dollars": -24164,
+    "per_trade": -49,
+    "mean_r": -0.049,
+    "per_day": -49,
+    "pct_of_bar": -12.2,
+    "months_green": 6,
+    "months": 25,
+    "weeks_green": 36,
+    "weeks": 105,
+    "worst_drawdown": -31864
+   },
+   "ladder": {
+    "trades": 498,
+    "win_pct": 35.5,
+    "total_dollars": -17347,
+    "per_trade": -35,
+    "mean_r": -0.035,
+    "per_day": -35,
+    "pct_of_bar": -8.8,
+    "months_green": 11,
+    "months": 25,
+    "weeks_green": 44,
+    "weeks": 105,
+    "worst_drawdown": -30352
+   },
+   "runner_pct": 20.1
+  },
+  "D first at/after 10:00": {
+   "days": 493,
+   "book": {
+    "trades": 493,
+    "win_pct": 36.9,
+    "total_dollars": -54038,
+    "per_trade": -110,
+    "mean_r": -0.11,
+    "per_day": -109,
+    "pct_of_bar": -27.3,
+    "months_green": 9,
+    "months": 25,
+    "weeks_green": 31,
+    "weeks": 105,
+    "worst_drawdown": -73390
+   },
+   "ladder": {
+    "trades": 493,
+    "win_pct": 32.9,
+    "total_dollars": -65435,
+    "per_trade": -133,
+    "mean_r": -0.133,
+    "per_day": -131,
+    "pct_of_bar": -33.1,
+    "months_green": 9,
+    "months": 25,
+    "weeks_green": 34,
+    "weeks": 105,
+    "worst_drawdown": -75336
+   },
+   "runner_pct": 17.4
+  },
+  "E B + open not chop": {
+   "days": 497,
+   "book": {
+    "trades": 497,
+    "win_pct": 47.7,
+    "total_dollars": -13697,
+    "per_trade": -28,
+    "mean_r": -0.028,
+    "per_day": -28,
+    "pct_of_bar": -6.9,
+    "months_green": 10,
+    "months": 25,
+    "weeks_green": 36,
+    "weeks": 105,
+    "worst_drawdown": -30657
+   },
+   "ladder": {
+    "trades": 497,
+    "win_pct": 37.4,
+    "total_dollars": 3232,
+    "per_trade": 7,
+    "mean_r": 0.007,
+    "per_day": 6,
+    "pct_of_bar": 1.6,
+    "months_green": 11,
+    "months": 25,
+    "weeks_green": 43,
+    "weeks": 105,
+    "worst_drawdown": -27148
+   },
+   "runner_pct": 21.7
+  },
+  "F B + open trending": {
+   "days": 353,
+   "book": {
+    "trades": 353,
+    "win_pct": 42.9,
+    "total_dollars": -28783,
+    "per_trade": -82,
+    "mean_r": -0.082,
+    "per_day": -58,
+    "pct_of_bar": -14.6,
+    "months_green": 9,
+    "months": 25,
+    "weeks_green": 39,
+    "weeks": 104,
+    "worst_drawdown": -35773
+   },
+   "ladder": {
+    "trades": 353,
+    "win_pct": 36.8,
+    "total_dollars": 605,
+    "per_trade": 2,
+    "mean_r": 0.002,
+    "per_day": 1,
+    "pct_of_bar": 0.3,
+    "months_green": 13,
+    "months": 25,
+    "weeks_green": 47,
+    "weeks": 104,
+    "worst_drawdown": -30516
+   },
+   "runner_pct": 17.3
+  },
+  "G B + trending, aligned": {
+   "days": 345,
+   "book": {
+    "trades": 345,
+    "win_pct": 43.9,
+    "total_dollars": -24262,
+    "per_trade": -70,
+    "mean_r": -0.07,
+    "per_day": -49,
+    "pct_of_bar": -12.3,
+    "months_green": 9,
+    "months": 25,
+    "weeks_green": 42,
+    "weeks": 104,
+    "worst_drawdown": -32735
+   },
+   "ladder": {
+    "trades": 345,
+    "win_pct": 37.1,
+    "total_dollars": 6802,
+    "per_trade": 20,
+    "mean_r": 0.02,
+    "per_day": 14,
+    "pct_of_bar": 3.4,
+    "months_green": 13,
+    "months": 25,
+    "weeks_green": 48,
+    "weeks": 104,
+    "worst_drawdown": -26110
+   },
+   "runner_pct": 17.7
+  }
+ }
+}
