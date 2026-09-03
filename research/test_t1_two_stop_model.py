@@ -80,4 +80,5 @@ check(abs(rc["total_r_given_up"] - (3.5 - -1.0)) < 1e-9,
       "R given up on the recovered trade is the clamp outcome minus the disaster exit's own R")
 
 print("\n%d checks, %d failed" % (7 + 8, len(FAIL)))
-sys.exit(1 if FAIL else 0)
+if __name__ == "__main__":
+    sys.exit(1 if FAIL else 0)  # ponytail: gated so pytest can collect the repo (2026-09-03)

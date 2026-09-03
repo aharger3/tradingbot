@@ -116,4 +116,5 @@ else:
 
 print()
 print("FAILED %d" % fails if fails else "all %d checks pass" % (len(CASES) + 7))
-sys.exit(1 if fails else 0)
+if __name__ == "__main__":
+    sys.exit(1 if fails else 0)  # ponytail: gated so pytest can collect the repo (2026-09-03)

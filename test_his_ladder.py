@@ -68,4 +68,5 @@ check(not raw, "no live_scanner line prints or posts an untranslated grade: %s" 
 
 print()
 print("FAILED %d" % fails if fails else "all checks pass")
-sys.exit(1 if fails else 0)
+if __name__ == "__main__":
+    sys.exit(1 if fails else 0)  # ponytail: gated so pytest can collect the repo (2026-09-03)

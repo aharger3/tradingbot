@@ -131,4 +131,5 @@ NOT asserted here, and why -- each is a measurement track, not a config flip:
 LANDED BY T23 and asserted above: R30, R31, R33.
 """)
 print("%d failed" % len(FAIL))
-sys.exit(1 if FAIL else 0)
+if __name__ == "__main__":
+    sys.exit(1 if FAIL else 0)  # ponytail: gated so pytest can collect the repo (2026-09-03)

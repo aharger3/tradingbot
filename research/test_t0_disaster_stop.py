@@ -82,4 +82,5 @@ check(bw._disaster_hit(t, bar(99.5, 99.6, 98.0, 99.4), True) is None,
 bw.DISASTER_STOP = True
 
 print("\n%d checks, %d failed" % (6 + 1, len(FAIL)))
-sys.exit(1 if FAIL else 0)
+if __name__ == "__main__":
+    sys.exit(1 if FAIL else 0)  # ponytail: gated so pytest can collect the repo (2026-09-03)
