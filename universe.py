@@ -66,10 +66,16 @@ for _name, _pool in [
 #     Any recall number computed over CORE_SYMBOLS therefore ignores a quarter
 #     of his own judgements.
 #
-# NOT flipped unilaterally: six backtest modules import CORE_SYMBOLS and every
-# published number would move. Ratification is Q12 in
-# .scratch/omen-6/qa-queue.md. Flip this one flag to include SPY everywhere.
-INCLUDE_SPY_IN_BACKTEST = False
+# Flipped 2026-09-03 by OMEN 8.1 S4, per Austin's 2026-08-28 ratification
+# ("Decisions taken 2026-08-28" in omen-x-board.md: "flip it on"). Turned out
+# moot for backtest_2y.py, the current money/durability rig -- it gets its
+# universe from ALL_SYMS/INDEX_POOL above, which already carried SPY
+# unconditionally. This flag now only changes CORE_SYMBOLS/BACKTEST_SYMBOLS,
+# consumed by the older standalone scripts (backtest_week.py's own CLI,
+# check_24mo.py, backtest_regimes*.py, and a few research/ scripts). Their
+# published numbers move now, as intended. research/g113_spy_baseline.md has
+# the full account, including SPY's own recall/money/durability slice.
+INCLUDE_SPY_IN_BACKTEST = True
 
 CORE_SYMBOLS = ["TSLA", "NVDA", "AAPL", "AMD", "META",
                 "GOOGL", "AMZN", "MSFT", "PLTR", "QQQ"]
