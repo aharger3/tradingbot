@@ -1,0 +1,432 @@
+{
+ "n_sessions": 498,
+ "baseline_first_of_day_pday": 33.93,
+ "buckets": {
+  "09:35-09:39": {
+   "n": 380,
+   "mean_r": -0.0552,
+   "win_pct": 46.2,
+   "pct_2r_alive": 31.1,
+   "pct_3r_alive": 18.7,
+   "mfe_measured": 380,
+   "dollars_per_day": -22.79,
+   "days_taken": 241
+  },
+  "09:40-09:44": {
+   "n": 854,
+   "mean_r": 0.0467,
+   "win_pct": 49.9,
+   "pct_2r_alive": 34.4,
+   "pct_3r_alive": 23.1,
+   "mfe_measured": 854,
+   "dollars_per_day": 47.28,
+   "days_taken": 381
+  },
+  "09:45-09:49": {
+   "n": 832,
+   "mean_r": -0.0727,
+   "win_pct": 46.2,
+   "pct_2r_alive": 31.1,
+   "pct_3r_alive": 20.2,
+   "mfe_measured": 832,
+   "dollars_per_day": -41.78,
+   "days_taken": 375
+  },
+  "09:50-09:54": {
+   "n": 603,
+   "mean_r": 0.0298,
+   "win_pct": 50.8,
+   "pct_2r_alive": 33.5,
+   "pct_3r_alive": 21.9,
+   "mfe_measured": 603,
+   "dollars_per_day": 15.26,
+   "days_taken": 326
+  },
+  "09:55-09:59": {
+   "n": 529,
+   "mean_r": -0.0392,
+   "win_pct": 46.1,
+   "pct_2r_alive": 31.6,
+   "pct_3r_alive": 22.7,
+   "mfe_measured": 529,
+   "dollars_per_day": -58.7,
+   "days_taken": 309
+  },
+  "10:00-10:04": {
+   "n": 593,
+   "mean_r": -0.053,
+   "win_pct": 41.4,
+   "pct_2r_alive": 26.0,
+   "pct_3r_alive": 18.4,
+   "mfe_measured": 593,
+   "dollars_per_day": -56.26,
+   "days_taken": 314
+  },
+  "10:05-10:09": {
+   "n": 468,
+   "mean_r": -0.0432,
+   "win_pct": 41.8,
+   "pct_2r_alive": 30.3,
+   "pct_3r_alive": 19.7,
+   "mfe_measured": 468,
+   "dollars_per_day": -44.01,
+   "days_taken": 275
+  },
+  "10:10-10:14": {
+   "n": 413,
+   "mean_r": -0.1077,
+   "win_pct": 38.8,
+   "pct_2r_alive": 28.8,
+   "pct_3r_alive": 20.3,
+   "mfe_measured": 413,
+   "dollars_per_day": -74.44,
+   "days_taken": 259
+  },
+  "10:15-10:19": {
+   "n": 371,
+   "mean_r": -0.0736,
+   "win_pct": 36.7,
+   "pct_2r_alive": 27.2,
+   "pct_3r_alive": 17.0,
+   "mfe_measured": 371,
+   "dollars_per_day": -27.57,
+   "days_taken": 250
+  },
+  "10:20-10:24": {
+   "n": 300,
+   "mean_r": -0.0966,
+   "win_pct": 39.1,
+   "pct_2r_alive": 29.7,
+   "pct_3r_alive": 17.0,
+   "mfe_measured": 300,
+   "dollars_per_day": -39.98,
+   "days_taken": 200
+  },
+  "10:25-10:29": {
+   "n": 305,
+   "mean_r": -0.0654,
+   "win_pct": 38.4,
+   "pct_2r_alive": 24.9,
+   "pct_3r_alive": 14.4,
+   "mfe_measured": 305,
+   "dollars_per_day": 1.33,
+   "days_taken": 196
+  },
+  "10:30-10:34": {
+   "n": 322,
+   "mean_r": -0.0147,
+   "win_pct": 37.9,
+   "pct_2r_alive": 24.8,
+   "pct_3r_alive": 14.9,
+   "mfe_measured": 322,
+   "dollars_per_day": 5.49,
+   "days_taken": 209
+  },
+  "10:35-10:39": {
+   "n": 212,
+   "mean_r": -0.1189,
+   "win_pct": 34.9,
+   "pct_2r_alive": 25.0,
+   "pct_3r_alive": 11.8,
+   "mfe_measured": 212,
+   "dollars_per_day": -16.88,
+   "days_taken": 167
+  },
+  "10:40-10:44": {
+   "n": 204,
+   "mean_r": 0.0725,
+   "win_pct": 39.2,
+   "pct_2r_alive": 26.0,
+   "pct_3r_alive": 11.8,
+   "mfe_measured": 204,
+   "dollars_per_day": 36.05,
+   "days_taken": 158
+  },
+  "10:45-10:49": {
+   "n": 180,
+   "mean_r": -0.1787,
+   "win_pct": 36.3,
+   "pct_2r_alive": 17.2,
+   "pct_3r_alive": 6.1,
+   "mfe_measured": 180,
+   "dollars_per_day": -37.58,
+   "days_taken": 138
+  },
+  "10:50-10:54": {
+   "n": 157,
+   "mean_r": 0.0108,
+   "win_pct": 36.8,
+   "pct_2r_alive": 14.6,
+   "pct_3r_alive": 3.8,
+   "mfe_measured": 157,
+   "dollars_per_day": 14.54,
+   "days_taken": 130
+  },
+  "10:55-10:59": {
+   "n": 166,
+   "mean_r": 0.1215,
+   "win_pct": 37.6,
+   "pct_2r_alive": 4.8,
+   "pct_3r_alive": 1.2,
+   "mfe_measured": 166,
+   "dollars_per_day": 15.27,
+   "days_taken": 124
+  }
+ },
+ "his_labels_by_bucket": {
+  "09:35-09:39": {
+   "n": 47,
+   "s": 16,
+   "s_rate": 34.0
+  },
+  "09:40-09:44": {
+   "n": 90,
+   "s": 37,
+   "s_rate": 41.1
+  },
+  "09:45-09:49": {
+   "n": 84,
+   "s": 33,
+   "s_rate": 39.3
+  },
+  "09:50-09:54": {
+   "n": 56,
+   "s": 16,
+   "s_rate": 28.6
+  },
+  "09:55-09:59": {
+   "n": 49,
+   "s": 10,
+   "s_rate": 20.4
+  },
+  "10:00-10:04": {
+   "n": 59,
+   "s": 15,
+   "s_rate": 25.4
+  },
+  "10:05-10:09": {
+   "n": 39,
+   "s": 11,
+   "s_rate": 28.2
+  },
+  "10:10-10:14": {
+   "n": 26,
+   "s": 5,
+   "s_rate": 19.2
+  },
+  "10:15-10:19": {
+   "n": 28,
+   "s": 3,
+   "s_rate": 10.7
+  },
+  "10:20-10:24": {
+   "n": 19,
+   "s": 2,
+   "s_rate": 10.5
+  },
+  "10:25-10:29": {
+   "n": 23,
+   "s": 5,
+   "s_rate": 21.7
+  },
+  "10:30-10:34": {
+   "n": 20,
+   "s": 4,
+   "s_rate": 20.0
+  },
+  "10:35-10:39": {
+   "n": 14,
+   "s": 2,
+   "s_rate": 14.3
+  },
+  "10:40-10:44": {
+   "n": 8,
+   "s": 2,
+   "s_rate": 25.0
+  },
+  "10:45-10:49": {
+   "n": 12,
+   "s": 6,
+   "s_rate": 50.0
+  },
+  "10:50-10:54": {
+   "n": 10,
+   "s": 1,
+   "s_rate": 10.0
+  },
+  "10:55-10:59": {
+   "n": 8,
+   "s": 1,
+   "s_rate": 12.5
+  }
+ },
+ "judged_with_candidate": 592,
+ "judged_s": 169,
+ "top_causal_features": [
+  {
+   "feature": "downgrade=counter_trend_not_respected",
+   "per_covered_day": 60.75,
+   "per_all_day": 60.63,
+   "days": 497
+  },
+  {
+   "feature": "level_tf=1m failed entry",
+   "per_covered_day": 133.76,
+   "per_all_day": 54.25,
+   "days": 202
+  },
+  {
+   "feature": "tripped=tripped4",
+   "per_covered_day": 69.4,
+   "per_all_day": 54.21,
+   "days": 389
+  },
+  {
+   "feature": "level_tf=1m premarket",
+   "per_covered_day": 57.99,
+   "per_all_day": 50.77,
+   "days": 436
+  },
+  {
+   "feature": "bucket=09:40-09:44",
+   "per_covered_day": 61.8,
+   "per_all_day": 47.28,
+   "days": 381
+  },
+  {
+   "feature": "downgrade=ocr_not_respected",
+   "per_covered_day": 48.8,
+   "per_all_day": 40.37,
+   "days": 412
+  },
+  {
+   "feature": "cls=stock",
+   "per_covered_day": 39.76,
+   "per_all_day": 39.76,
+   "days": 498
+  },
+  {
+   "feature": "level_tf=5m opening range",
+   "per_covered_day": 39.85,
+   "per_all_day": 38.25,
+   "days": 478
+  },
+  {
+   "feature": "bucket=10:40-10:44",
+   "per_covered_day": 113.64,
+   "per_all_day": 36.05,
+   "days": 158
+  },
+  {
+   "feature": "dow=Wed",
+   "per_covered_day": 167.22,
+   "per_all_day": 34.59,
+   "days": 103
+  },
+  {
+   "feature": "seq=seq1",
+   "per_covered_day": 32.29,
+   "per_all_day": 32.29,
+   "days": 498
+  },
+  {
+   "feature": "grade=B",
+   "per_covered_day": 32.25,
+   "per_all_day": 32.25,
+   "days": 498
+  },
+  {
+   "feature": "tag=nodisp",
+   "per_covered_day": 31.41,
+   "per_all_day": 31.41,
+   "days": 498
+  },
+  {
+   "feature": "tag=clean",
+   "per_covered_day": 31.22,
+   "per_all_day": 31.22,
+   "days": 498
+  },
+  {
+   "feature": "confluence=yes",
+   "per_covered_day": 30.88,
+   "per_all_day": 30.82,
+   "days": 497
+  },
+  {
+   "feature": "tag=brocr",
+   "per_covered_day": 30.88,
+   "per_all_day": 30.82,
+   "days": 497
+  },
+  {
+   "feature": "tier=experimental",
+   "per_covered_day": 30.05,
+   "per_all_day": 29.69,
+   "days": 492
+  },
+  {
+   "feature": "tripped=tripped5",
+   "per_covered_day": 105.16,
+   "per_all_day": 27.24,
+   "days": 129
+  },
+  {
+   "feature": "dow=Mon",
+   "per_covered_day": 141.09,
+   "per_all_day": 27.2,
+   "days": 96
+  },
+  {
+   "feature": "bias=bullish",
+   "per_covered_day": 28.48,
+   "per_all_day": 26.36,
+   "days": 461
+  }
+ ],
+ "features_beating_first_of_day": 10,
+ "day_end_policies": {
+  "A first regardless (shipped)": {
+   "dollars_per_day": 33.93,
+   "days_traded": 498
+  },
+  "B first at/after best T (10:40)": {
+   "dollars_per_day": 68.33,
+   "days_traded": 332
+  },
+  "C first in best window (09:40-09:44) only": {
+   "dollars_per_day": 47.28,
+   "days_traded": 381
+  },
+  "D best window (09:40-09:44), else first regardless": {
+   "dollars_per_day": 62.23,
+   "days_traded": 498
+  }
+ },
+ "best_bucket": "09:40-09:44",
+ "best_T_minute": 640,
+ "best_T_pday": 68.33,
+ "half_split_check": {
+  "A first regardless": {
+   "half1_pday": 135.71,
+   "half1_days": 249,
+   "half2_pday": -67.85,
+   "half2_days": 249,
+   "positive_both_halves": false
+  },
+  "B first at/after best T (10:40)": {
+   "half1_pday": -35.85,
+   "half1_days": 151,
+   "half2_pday": 172.52,
+   "half2_days": 181,
+   "positive_both_halves": false
+  },
+  "C first in best window (09:40-09:44) only": {
+   "half1_pday": 112.46,
+   "half1_days": 181,
+   "half2_pday": -17.9,
+   "half2_days": 200,
+   "positive_both_halves": false
+  }
+ }
+}
