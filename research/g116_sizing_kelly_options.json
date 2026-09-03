@@ -1,0 +1,534 @@
+{
+ "meta": {
+  "book": "bt2y_trades_retest_on.json",
+  "rows_traded": 4022,
+  "min_risk_floor_source": "signal_runner.min_risk_floor",
+  "tape_real_prints": 276
+ },
+ "arms": {
+  "A_base": {
+   "desc": "first size-gated candidate of the day (SHIPPED unit)",
+   "n": 495,
+   "ev_r": 0.0356,
+   "win_rate": 0.4626,
+   "avg_win_R": 0.8983,
+   "avg_loss_R": 0.7099,
+   "profit_factor": 1.0936,
+   "total_R": 17.601,
+   "max_drawdown_R": -21.577,
+   "months_green": "13/25",
+   "r_stability": 0.0328
+  },
+  "B_no1D": {
+   "desc": "A, veto prior-day levels (PDH/PDL)",
+   "n": 490,
+   "ev_r": 0.1033,
+   "win_rate": 0.4939,
+   "avg_win_R": 0.8984,
+   "avg_loss_R": 0.6725,
+   "profit_factor": 1.3035,
+   "total_R": 50.615,
+   "max_drawdown_R": -12.489,
+   "months_green": "17/25",
+   "r_stability": 0.0942
+  },
+  "C_no1D_noThu": {
+   "desc": "B, and skip Thursdays",
+   "n": 395,
+   "ev_r": 0.1688,
+   "win_rate": 0.519,
+   "avg_win_R": 0.9272,
+   "avg_loss_R": 0.6495,
+   "profit_factor": 1.5403,
+   "total_R": 66.671,
+   "max_drawdown_R": -9.452,
+   "months_green": "18/25",
+   "r_stability": 0.1493
+  },
+  "D_nochase": {
+   "desc": "A, veto chase (stop wider than 0.5% of price)",
+   "n": 479,
+   "ev_r": 0.0698,
+   "win_rate": 0.4739,
+   "avg_win_R": 0.9914,
+   "avg_loss_R": 0.7605,
+   "profit_factor": 1.1744,
+   "total_R": 33.423,
+   "max_drawdown_R": -23.482,
+   "months_green": "13/25",
+   "r_stability": 0.0591
+  }
+ },
+ "risk_sweep": {
+  "A_base": [
+   {
+    "risk_pct": 0.0025,
+    "risk_dollars": 125.0,
+    "passed": true,
+    "rule": "-",
+    "day": "2025-07-02",
+    "months": 9.921971252566735,
+    "final_equity_pct": 8.026,
+    "max_dd_pct": -3.495
+   },
+   {
+    "risk_pct": 0.005,
+    "risk_dollars": 250.0,
+    "passed": false,
+    "rule": "trailing_drawdown",
+    "day": "2024-10-31",
+    "months": 1.9055441478439425,
+    "final_equity_pct": -2.087,
+    "max_dd_pct": -4.115
+   },
+   {
+    "risk_pct": 0.0075,
+    "risk_dollars": 375.0,
+    "passed": false,
+    "rule": "trailing_drawdown",
+    "day": "2024-10-07",
+    "months": 1.1170431211498972,
+    "final_equity_pct": -1.429,
+    "max_dd_pct": -4.471
+   },
+   {
+    "risk_pct": 0.01,
+    "risk_dollars": 500.0,
+    "passed": false,
+    "rule": "trailing_drawdown",
+    "day": "2024-09-13",
+    "months": 0.32854209445585214,
+    "final_equity_pct": 0.05,
+    "max_dd_pct": -4.006
+   },
+   {
+    "risk_pct": 0.0125,
+    "risk_dollars": 625.0,
+    "passed": false,
+    "rule": "trailing_drawdown",
+    "day": "2024-09-13",
+    "months": 0.32854209445585214,
+    "final_equity_pct": 0.062,
+    "max_dd_pct": -5.008
+   },
+   {
+    "risk_pct": 0.015,
+    "risk_dollars": 750.0,
+    "passed": false,
+    "rule": "trailing_drawdown",
+    "day": "2024-09-12",
+    "months": 0.29568788501026694,
+    "final_equity_pct": 1.575,
+    "max_dd_pct": -4.509
+   },
+   {
+    "risk_pct": 0.02,
+    "risk_dollars": 1000.0,
+    "passed": false,
+    "rule": "daily_loss_limit",
+    "day": "2024-09-03",
+    "months": 0.0,
+    "final_equity_pct": 0.0,
+    "max_dd_pct": 0.0
+   },
+   {
+    "risk_pct": 0.025,
+    "risk_dollars": 1250.0,
+    "passed": false,
+    "rule": "daily_loss_limit",
+    "day": "2024-09-03",
+    "months": 0.0,
+    "final_equity_pct": 0.0,
+    "max_dd_pct": 0.0
+   },
+   {
+    "risk_pct": 0.03,
+    "risk_dollars": 1500.0,
+    "passed": false,
+    "rule": "daily_loss_limit",
+    "day": "2024-09-03",
+    "months": 0.0,
+    "final_equity_pct": 0.0,
+    "max_dd_pct": 0.0
+   }
+  ],
+  "B_no1D": [
+   {
+    "risk_pct": 0.0025,
+    "risk_dollars": 125.0,
+    "passed": true,
+    "rule": "-",
+    "day": "2025-07-02",
+    "months": 9.921971252566735,
+    "final_equity_pct": 8.579,
+    "max_dd_pct": -3.122
+   },
+   {
+    "risk_pct": 0.005,
+    "risk_dollars": 250.0,
+    "passed": false,
+    "rule": "trailing_drawdown",
+    "day": "2024-11-01",
+    "months": 1.9383983572895278,
+    "final_equity_pct": -1.046,
+    "max_dd_pct": -4.404
+   },
+   {
+    "risk_pct": 0.0075,
+    "risk_dollars": 375.0,
+    "passed": false,
+    "rule": "trailing_drawdown",
+    "day": "2024-10-07",
+    "months": 1.1170431211498972,
+    "final_equity_pct": 0.883,
+    "max_dd_pct": -4.154
+   },
+   {
+    "risk_pct": 0.01,
+    "risk_dollars": 500.0,
+    "passed": false,
+    "rule": "trailing_drawdown",
+    "day": "2024-10-02",
+    "months": 0.9527720739219713,
+    "final_equity_pct": 2.083,
+    "max_dd_pct": -4.633
+   },
+   {
+    "risk_pct": 0.0125,
+    "risk_dollars": 625.0,
+    "passed": false,
+    "rule": "trailing_drawdown",
+    "day": "2024-09-30",
+    "months": 0.8870636550308009,
+    "final_equity_pct": 4.085,
+    "max_dd_pct": -4.31
+   },
+   {
+    "risk_pct": 0.015,
+    "risk_dollars": 750.0,
+    "passed": false,
+    "rule": "trailing_drawdown",
+    "day": "2024-09-16",
+    "months": 0.4271047227926078,
+    "final_equity_pct": 5.574,
+    "max_dd_pct": -4.5
+   },
+   {
+    "risk_pct": 0.02,
+    "risk_dollars": 1000.0,
+    "passed": false,
+    "rule": "daily_loss_limit",
+    "day": "2024-09-03",
+    "months": 0.0,
+    "final_equity_pct": 0.0,
+    "max_dd_pct": 0.0
+   },
+   {
+    "risk_pct": 0.025,
+    "risk_dollars": 1250.0,
+    "passed": false,
+    "rule": "daily_loss_limit",
+    "day": "2024-09-03",
+    "months": 0.0,
+    "final_equity_pct": 0.0,
+    "max_dd_pct": 0.0
+   },
+   {
+    "risk_pct": 0.03,
+    "risk_dollars": 1500.0,
+    "passed": false,
+    "rule": "daily_loss_limit",
+    "day": "2024-09-03",
+    "months": 0.0,
+    "final_equity_pct": 0.0,
+    "max_dd_pct": 0.0
+   }
+  ],
+  "C_no1D_noThu": [
+   {
+    "risk_pct": 0.0025,
+    "risk_dollars": 125.0,
+    "passed": true,
+    "rule": "-",
+    "day": "2025-07-02",
+    "months": 9.921971252566735,
+    "final_equity_pct": 8.93,
+    "max_dd_pct": -2.363
+   },
+   {
+    "risk_pct": 0.005,
+    "risk_dollars": 250.0,
+    "passed": false,
+    "rule": "trailing_drawdown",
+    "day": "2024-10-30",
+    "months": 1.8726899383983573,
+    "final_equity_pct": -0.368,
+    "max_dd_pct": -4.226
+   },
+   {
+    "risk_pct": 0.0075,
+    "risk_dollars": 375.0,
+    "passed": false,
+    "rule": "trailing_drawdown",
+    "day": "2024-10-11",
+    "months": 1.2484599589322383,
+    "final_equity_pct": 1.528,
+    "max_dd_pct": -4.258
+   },
+   {
+    "risk_pct": 0.01,
+    "risk_dollars": 500.0,
+    "passed": false,
+    "rule": "trailing_drawdown",
+    "day": "2024-10-07",
+    "months": 1.1170431211498972,
+    "final_equity_pct": 2.88,
+    "max_dd_pct": -4.836
+   },
+   {
+    "risk_pct": 0.0125,
+    "risk_dollars": 625.0,
+    "passed": false,
+    "rule": "trailing_drawdown",
+    "day": "2024-10-02",
+    "months": 0.9527720739219713,
+    "final_equity_pct": 4.761,
+    "max_dd_pct": -4.884
+   },
+   {
+    "risk_pct": 0.015,
+    "risk_dollars": 750.0,
+    "passed": false,
+    "rule": "trailing_drawdown",
+    "day": "2024-09-30",
+    "months": 0.8870636550308009,
+    "final_equity_pct": 7.491,
+    "max_dd_pct": -4.083
+   },
+   {
+    "risk_pct": 0.02,
+    "risk_dollars": 1000.0,
+    "passed": false,
+    "rule": "daily_loss_limit",
+    "day": "2024-09-03",
+    "months": 0.0,
+    "final_equity_pct": 0.0,
+    "max_dd_pct": 0.0
+   },
+   {
+    "risk_pct": 0.025,
+    "risk_dollars": 1250.0,
+    "passed": false,
+    "rule": "daily_loss_limit",
+    "day": "2024-09-03",
+    "months": 0.0,
+    "final_equity_pct": 0.0,
+    "max_dd_pct": 0.0
+   },
+   {
+    "risk_pct": 0.03,
+    "risk_dollars": 1500.0,
+    "passed": false,
+    "rule": "daily_loss_limit",
+    "day": "2024-09-03",
+    "months": 0.0,
+    "final_equity_pct": 0.0,
+    "max_dd_pct": 0.0
+   }
+  ],
+  "D_nochase": [
+   {
+    "risk_pct": 0.0025,
+    "risk_dollars": 125.0,
+    "passed": true,
+    "rule": "-",
+    "day": "2025-04-17",
+    "months": 7.425051334702259,
+    "final_equity_pct": 8.505,
+    "max_dd_pct": -3.572
+   },
+   {
+    "risk_pct": 0.005,
+    "risk_dollars": 250.0,
+    "passed": false,
+    "rule": "trailing_drawdown",
+    "day": "2024-12-16",
+    "months": 3.4168377823408624,
+    "final_equity_pct": 5.907,
+    "max_dd_pct": -4.075
+   },
+   {
+    "risk_pct": 0.0075,
+    "risk_dollars": 375.0,
+    "passed": false,
+    "rule": "trailing_drawdown",
+    "day": "2024-11-05",
+    "months": 2.0698151950718686,
+    "final_equity_pct": 2.48,
+    "max_dd_pct": -4.165
+   },
+   {
+    "risk_pct": 0.01,
+    "risk_dollars": 500.0,
+    "passed": false,
+    "rule": "trailing_drawdown",
+    "day": "2024-09-13",
+    "months": 0.32854209445585214,
+    "final_equity_pct": 0.05,
+    "max_dd_pct": -4.006
+   },
+   {
+    "risk_pct": 0.0125,
+    "risk_dollars": 625.0,
+    "passed": false,
+    "rule": "trailing_drawdown",
+    "day": "2024-09-13",
+    "months": 0.32854209445585214,
+    "final_equity_pct": 0.062,
+    "max_dd_pct": -5.008
+   },
+   {
+    "risk_pct": 0.015,
+    "risk_dollars": 750.0,
+    "passed": false,
+    "rule": "trailing_drawdown",
+    "day": "2024-09-12",
+    "months": 0.29568788501026694,
+    "final_equity_pct": 1.575,
+    "max_dd_pct": -4.509
+   },
+   {
+    "risk_pct": 0.02,
+    "risk_dollars": 1000.0,
+    "passed": false,
+    "rule": "daily_loss_limit",
+    "day": "2024-09-03",
+    "months": 0.0,
+    "final_equity_pct": 0.0,
+    "max_dd_pct": 0.0
+   },
+   {
+    "risk_pct": 0.025,
+    "risk_dollars": 1250.0,
+    "passed": false,
+    "rule": "daily_loss_limit",
+    "day": "2024-09-03",
+    "months": 0.0,
+    "final_equity_pct": 0.0,
+    "max_dd_pct": 0.0
+   },
+   {
+    "risk_pct": 0.03,
+    "risk_dollars": 1500.0,
+    "passed": false,
+    "rule": "daily_loss_limit",
+    "day": "2024-09-03",
+    "months": 0.0,
+    "final_equity_pct": 0.0,
+    "max_dd_pct": 0.0
+   }
+  ]
+ },
+ "kelly": {
+  "A_base": {
+   "full_kelly": 0.03196654510621638,
+   "quarter_kelly": 0.007991636276554095,
+   "two_outcome_kelly": 0.0533999540883574,
+   "eval_max_risk_pct": 0.0025,
+   "kelly_over_eval": 12.786618042486552
+  },
+  "B_no1D": {
+   "full_kelly": 0.09912209747748593,
+   "quarter_kelly": 0.024780524369371483,
+   "two_outcome_kelly": 0.17108897436831114,
+   "eval_max_risk_pct": 0.003,
+   "kelly_over_eval": 33.040699159161974
+  },
+  "C_no1D_noThu": {
+   "full_kelly": 0.16483952696631432,
+   "quarter_kelly": 0.04120988174157858,
+   "two_outcome_kelly": 0.28031003473170124,
+   "eval_max_risk_pct": 0.004,
+   "kelly_over_eval": 41.20988174157858
+  },
+  "D_nochase": {
+   "full_kelly": 0.05543308905816785,
+   "quarter_kelly": 0.013858272264541963,
+   "two_outcome_kelly": 0.09247896140868013,
+   "eval_max_risk_pct": 0.0025,
+   "kelly_over_eval": 22.17323562326714
+  }
+ },
+ "tape": {
+  "n": 276,
+  "median_prem_pct_of_spot": 0.008587602221591266,
+  "p10": 0.004010282776349614,
+  "p90": 0.016378450282673762,
+  "median_prem": 1.89,
+  "median_spot": 206.75
+ },
+ "options_floor": {
+  "A_base": {
+   "med_risk_1ct": 31.499999999999773,
+   "min_risk_1ct": 5.000000000000071,
+   "max_risk_1ct": 344.4999999999993,
+   "med_cost_1ct": 159.45459805050663,
+   "pct_cost_over_1000": 0.0,
+   "med_risk_pct_of_1k": 3.1499999999999773
+  },
+  "B_no1D": {
+   "med_risk_1ct": 29.999999999999716,
+   "min_risk_1ct": 5.499999999999972,
+   "max_risk_1ct": 344.4999999999993,
+   "med_cost_1ct": 159.30002121051797,
+   "pct_cost_over_1000": 0.0,
+   "med_risk_pct_of_1k": 2.9999999999999716
+  },
+  "C_no1D_noThu": {
+   "med_risk_1ct": 31.000000000000227,
+   "min_risk_1ct": 5.499999999999972,
+   "max_risk_1ct": 344.4999999999993,
+   "med_cost_1ct": 162.8381133258136,
+   "pct_cost_over_1000": 0.0,
+   "med_risk_pct_of_1k": 3.1000000000000227
+  },
+  "D_nochase": {
+   "med_risk_1ct": 29.49999999999875,
+   "min_risk_1ct": 5.000000000000071,
+   "max_risk_1ct": 162.99999999999955,
+   "med_cost_1ct": 188.6782084105817,
+   "pct_cost_over_1000": 0.0,
+   "med_risk_pct_of_1k": 2.949999999999875
+  }
+ },
+ "thousand": {
+  "A_base": {
+   "risk_per_trade": 31.499999999999773,
+   "risk_pct_of_1k": 3.1499999999999773,
+   "max_dd_R": -21.577,
+   "worst_dd_dollars": 679.6754999999952,
+   "survives_1k": true
+  },
+  "B_no1D": {
+   "risk_per_trade": 29.999999999999716,
+   "risk_pct_of_1k": 2.9999999999999716,
+   "max_dd_R": -12.489,
+   "worst_dd_dollars": 374.6699999999965,
+   "survives_1k": true
+  },
+  "C_no1D_noThu": {
+   "risk_per_trade": 31.000000000000227,
+   "risk_pct_of_1k": 3.1000000000000227,
+   "max_dd_R": -9.452,
+   "worst_dd_dollars": 293.01200000000216,
+   "survives_1k": true
+  },
+  "D_nochase": {
+   "risk_per_trade": 29.49999999999875,
+   "risk_pct_of_1k": 2.949999999999875,
+   "max_dd_R": -23.482,
+   "worst_dd_dollars": 692.7189999999706,
+   "survives_1k": true
+  }
+ }
+}

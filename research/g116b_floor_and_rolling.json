@@ -1,0 +1,431 @@
+{
+ "median_prem_pct_of_spot": 0.008587602221591266,
+ "fine_grid": {
+  "A_base": [
+   {
+    "risk_pct": 0.001,
+    "passed": false,
+    "rule": "profit_target_not_reached"
+   },
+   {
+    "risk_pct": 0.0015,
+    "passed": false,
+    "rule": "profit_target_not_reached"
+   },
+   {
+    "risk_pct": 0.002,
+    "passed": false,
+    "rule": "trailing_drawdown"
+   },
+   {
+    "risk_pct": 0.0025,
+    "passed": true,
+    "rule": null
+   },
+   {
+    "risk_pct": 0.003,
+    "passed": false,
+    "rule": "trailing_drawdown"
+   },
+   {
+    "risk_pct": 0.0035,
+    "passed": false,
+    "rule": "trailing_drawdown"
+   },
+   {
+    "risk_pct": 0.004,
+    "passed": false,
+    "rule": "trailing_drawdown"
+   },
+   {
+    "risk_pct": 0.0045,
+    "passed": false,
+    "rule": "trailing_drawdown"
+   },
+   {
+    "risk_pct": 0.005,
+    "passed": false,
+    "rule": "trailing_drawdown"
+   },
+   {
+    "risk_pct": 0.006,
+    "passed": false,
+    "rule": "trailing_drawdown"
+   },
+   {
+    "risk_pct": 0.0075,
+    "passed": false,
+    "rule": "trailing_drawdown"
+   },
+   {
+    "risk_pct": 0.01,
+    "passed": false,
+    "rule": "trailing_drawdown"
+   }
+  ],
+  "B_no1D": [
+   {
+    "risk_pct": 0.001,
+    "passed": false,
+    "rule": "profit_target_not_reached"
+   },
+   {
+    "risk_pct": 0.0015,
+    "passed": true,
+    "rule": null
+   },
+   {
+    "risk_pct": 0.002,
+    "passed": true,
+    "rule": null
+   },
+   {
+    "risk_pct": 0.0025,
+    "passed": true,
+    "rule": null
+   },
+   {
+    "risk_pct": 0.003,
+    "passed": true,
+    "rule": null
+   },
+   {
+    "risk_pct": 0.0035,
+    "passed": false,
+    "rule": "trailing_drawdown"
+   },
+   {
+    "risk_pct": 0.004,
+    "passed": false,
+    "rule": "trailing_drawdown"
+   },
+   {
+    "risk_pct": 0.0045,
+    "passed": false,
+    "rule": "trailing_drawdown"
+   },
+   {
+    "risk_pct": 0.005,
+    "passed": false,
+    "rule": "trailing_drawdown"
+   },
+   {
+    "risk_pct": 0.006,
+    "passed": false,
+    "rule": "trailing_drawdown"
+   },
+   {
+    "risk_pct": 0.0075,
+    "passed": false,
+    "rule": "trailing_drawdown"
+   },
+   {
+    "risk_pct": 0.01,
+    "passed": false,
+    "rule": "trailing_drawdown"
+   }
+  ],
+  "C_no1D_noThu": [
+   {
+    "risk_pct": 0.001,
+    "passed": false,
+    "rule": "profit_target_not_reached"
+   },
+   {
+    "risk_pct": 0.0015,
+    "passed": true,
+    "rule": null
+   },
+   {
+    "risk_pct": 0.002,
+    "passed": true,
+    "rule": null
+   },
+   {
+    "risk_pct": 0.0025,
+    "passed": true,
+    "rule": null
+   },
+   {
+    "risk_pct": 0.003,
+    "passed": true,
+    "rule": null
+   },
+   {
+    "risk_pct": 0.0035,
+    "passed": true,
+    "rule": null
+   },
+   {
+    "risk_pct": 0.004,
+    "passed": true,
+    "rule": null
+   },
+   {
+    "risk_pct": 0.0045,
+    "passed": false,
+    "rule": "trailing_drawdown"
+   },
+   {
+    "risk_pct": 0.005,
+    "passed": false,
+    "rule": "trailing_drawdown"
+   },
+   {
+    "risk_pct": 0.006,
+    "passed": false,
+    "rule": "trailing_drawdown"
+   },
+   {
+    "risk_pct": 0.0075,
+    "passed": false,
+    "rule": "trailing_drawdown"
+   },
+   {
+    "risk_pct": 0.01,
+    "passed": false,
+    "rule": "trailing_drawdown"
+   }
+  ],
+  "D_nochase": [
+   {
+    "risk_pct": 0.001,
+    "passed": false,
+    "rule": "profit_target_not_reached"
+   },
+   {
+    "risk_pct": 0.0015,
+    "passed": true,
+    "rule": null
+   },
+   {
+    "risk_pct": 0.002,
+    "passed": true,
+    "rule": null
+   },
+   {
+    "risk_pct": 0.0025,
+    "passed": true,
+    "rule": null
+   },
+   {
+    "risk_pct": 0.003,
+    "passed": false,
+    "rule": "trailing_drawdown"
+   },
+   {
+    "risk_pct": 0.0035,
+    "passed": false,
+    "rule": "trailing_drawdown"
+   },
+   {
+    "risk_pct": 0.004,
+    "passed": false,
+    "rule": "trailing_drawdown"
+   },
+   {
+    "risk_pct": 0.0045,
+    "passed": false,
+    "rule": "trailing_drawdown"
+   },
+   {
+    "risk_pct": 0.005,
+    "passed": false,
+    "rule": "trailing_drawdown"
+   },
+   {
+    "risk_pct": 0.006,
+    "passed": false,
+    "rule": "trailing_drawdown"
+   },
+   {
+    "risk_pct": 0.0075,
+    "passed": false,
+    "rule": "trailing_drawdown"
+   },
+   {
+    "risk_pct": 0.01,
+    "passed": false,
+    "rule": "trailing_drawdown"
+   }
+  ]
+ },
+ "rolling": {
+  "A_base": [
+   {
+    "risk_pct": 0.0025,
+    "starts": 436,
+    "pass_pct": 30.045871559633028,
+    "y1_pass_pct": 52.82258064516129,
+    "y2_pass_pct": 0.0
+   },
+   {
+    "risk_pct": 0.0035,
+    "starts": 436,
+    "pass_pct": 20.642201834862384,
+    "y1_pass_pct": 36.29032258064516,
+    "y2_pass_pct": 0.0
+   },
+   {
+    "risk_pct": 0.005,
+    "starts": 436,
+    "pass_pct": 21.10091743119266,
+    "y1_pass_pct": 37.096774193548384,
+    "y2_pass_pct": 0.0
+   }
+  ],
+  "B_no1D": [
+   {
+    "risk_pct": 0.0025,
+    "starts": 431,
+    "pass_pct": 38.74709976798144,
+    "y1_pass_pct": 68.44262295081967,
+    "y2_pass_pct": 0.0
+   },
+   {
+    "risk_pct": 0.0035,
+    "starts": 431,
+    "pass_pct": 37.12296983758701,
+    "y1_pass_pct": 65.57377049180327,
+    "y2_pass_pct": 0.0
+   },
+   {
+    "risk_pct": 0.005,
+    "starts": 431,
+    "pass_pct": 47.79582366589327,
+    "y1_pass_pct": 70.49180327868852,
+    "y2_pass_pct": 18.181818181818183
+   }
+  ],
+  "C_no1D_noThu": [
+   {
+    "risk_pct": 0.0025,
+    "starts": 336,
+    "pass_pct": 48.80952380952381,
+    "y1_pass_pct": 83.6734693877551,
+    "y2_pass_pct": 0.0
+   },
+   {
+    "risk_pct": 0.0035,
+    "starts": 336,
+    "pass_pct": 57.73809523809524,
+    "y1_pass_pct": 98.9795918367347,
+    "y2_pass_pct": 0.0
+   },
+   {
+    "risk_pct": 0.005,
+    "starts": 336,
+    "pass_pct": 72.32142857142857,
+    "y1_pass_pct": 92.85714285714286,
+    "y2_pass_pct": 43.57142857142857
+   }
+  ],
+  "D_nochase": [
+   {
+    "risk_pct": 0.0025,
+    "starts": 420,
+    "pass_pct": 29.285714285714285,
+    "y1_pass_pct": 51.680672268907564,
+    "y2_pass_pct": 0.0
+   },
+   {
+    "risk_pct": 0.0035,
+    "starts": 420,
+    "pass_pct": 20.476190476190474,
+    "y1_pass_pct": 36.134453781512605,
+    "y2_pass_pct": 0.0
+   },
+   {
+    "risk_pct": 0.005,
+    "starts": 420,
+    "pass_pct": 20.0,
+    "y1_pass_pct": 35.294117647058826,
+    "y2_pass_pct": 0.0
+   }
+  ]
+ },
+ "floor": {
+  "A_base": {
+   "p10": 9.000000000000163,
+   "median": 31.499999999999773,
+   "p90": 84.49999999999989,
+   "pct_le_2_50": 0.0,
+   "pct_le_10": 10.707070707070708,
+   "min_account_for_0_25pct": 12599.999999999909
+  },
+  "B_no1D": {
+   "p10": 9.499999999999975,
+   "median": 29.999999999999716,
+   "p90": 85.99999999999852,
+   "pct_le_2_50": 0.0,
+   "pct_le_10": 10.408163265306122,
+   "min_account_for_0_25pct": 11999.999999999885
+  },
+  "C_no1D_noThu": {
+   "p10": 9.000000000000163,
+   "median": 31.000000000000227,
+   "p90": 84.99999999999943,
+   "pct_le_2_50": 0.0,
+   "pct_le_10": 10.886075949367088,
+   "min_account_for_0_25pct": 12400.000000000091
+  },
+  "D_nochase": {
+   "p10": 12.0000000000001,
+   "median": 29.49999999999875,
+   "p90": 74.50000000000045,
+   "pct_le_2_50": 0.0,
+   "pct_le_10": 6.8893528183716075,
+   "min_account_for_0_25pct": 11799.9999999995
+  }
+ },
+ "thousand_sim": {
+  "A_base": {
+   "taken": 493,
+   "skipped": 2,
+   "final": 731.4749999999775,
+   "peak": 1900.0069999999969,
+   "trough": 400.50499999999636,
+   "max_dd_pct": 63.93115920099367,
+   "ruin": false,
+   "risk_pct_median": 3.1499999999999773,
+   "risk_pct_p90": 8.449999999999989,
+   "risk_pct_worst": 34.44999999999993
+  },
+  "B_no1D": {
+   "taken": 489,
+   "skipped": 1,
+   "final": 1759.1634999999892,
+   "peak": 2583.427000000005,
+   "trough": 451.18300000000147,
+   "max_dd_pct": 57.79395903277903,
+   "ruin": false,
+   "risk_pct_median": 2.9999999999999716,
+   "risk_pct_p90": 8.599999999999852,
+   "risk_pct_worst": 34.44999999999993
+  },
+  "C_no1D_noThu": {
+   "taken": 395,
+   "skipped": 0,
+   "final": 2457.9099999999858,
+   "peak": 2821.056999999999,
+   "trough": 543.9544999999987,
+   "max_dd_pct": 49.70374507282017,
+   "ruin": false,
+   "risk_pct_median": 3.1000000000000227,
+   "risk_pct_p90": 8.499999999999943,
+   "risk_pct_worst": 34.44999999999993
+  },
+  "D_nochase": {
+   "taken": 479,
+   "skipped": 0,
+   "final": 1411.6199999999753,
+   "peak": 2323.6539999999854,
+   "trough": 606.678499999989,
+   "max_dd_pct": 47.9310953009733,
+   "ruin": false,
+   "risk_pct_median": 2.949999999999875,
+   "risk_pct_p90": 7.4500000000000455,
+   "risk_pct_worst": 16.299999999999955
+  }
+ }
+}
