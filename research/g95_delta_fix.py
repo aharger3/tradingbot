@@ -33,7 +33,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 sys.path.insert(0, ROOT)
 
-from options_sizer import build_options_plan
+from options_sizer import build_options_plan, DEFAULT_SPREAD
 
 SOURCE_ROWS = os.path.join(HERE, "g90_fill_arms_rows.json")
 OUT_MD = os.path.join(HERE, "g95_delta_fix.md")
@@ -52,7 +52,13 @@ def price_arm(symbol, direction, entry, stop, delta_estimate):
     )
     stock_risk = abs(entry - stop)
     true_premium_risk = max(round(stock_risk * TRUE_DELTA, 2), 0.05)
-    actual = round(true_premium_risk * 100 * plan.contracts, 2)
+    # R7: build_options_plan now charges DEFAULT_SPREAD on every no-live-quote
+    # plan (which this script's plans always are), so "actual" has to include
+    # it too, or this row's own reported/actual convergence breaks the moment
+    # R7 lands on top of it -- the round-trip spread is real money, not a
+    # rounding artifact to average away.
+    true_per_contract_risk = true_premium_risk + DEFAULT_SPREAD
+    actual = round(true_per_contract_risk * 100 * plan.contracts, 2)
     reported = plan.max_loss
     gap_pct = (100.0 * abs(reported - actual) / reported) if reported else None
     return dict(contracts=plan.contracts, reported=reported, actual=actual,

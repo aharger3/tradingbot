@@ -43,6 +43,19 @@ DEFAULT_RR = 2.0
 # formula, not two competing estimates. See research/g95_delta_fix.md.
 DEFAULT_DELTA = 0.42
 
+# OMEN 8.0 R7 (2026-09-03). `omen-x-board.md:180-181`: "A $0.05 round-trip
+# option spread costs a further -0.2042R; entry and exit are both booked at
+# the mid, so spread is currently charged to nothing." True before this row --
+# `entry_premium` was the mid on both the live-quote and no-quote paths, and
+# stop/target were derived from that same mid, so a round trip never paid
+# anything for crossing the spread. Used as the fallback below when a live
+# quote's own bid/ask isn't available (the same repo-has-no-options-chain
+# situation R6 already documented for DEFAULT_DELTA -- this is Austin's stated
+# figure, not independently re-derived, because there is nothing here to
+# re-derive it from). When a real bid/ask IS available, that observed width is
+# used instead, so this default only fires on the estimate path.
+DEFAULT_SPREAD = 0.05
+
 # Grade → fraction of max loss to risk (SPEC2). C = alert-only, D = filtered upstream.
 # "X" is the skip grade (T5 rename); "D" kept as its old letter — both 0%.
 GRADE_SIZE_PCT = {"A+": 1.0, "A": 0.8, "B": 0.6, "C": 0.4, "X": 0.0, "D": 0.0}
@@ -241,18 +254,56 @@ def build_options_plan(
     if occ_symbol and occ_symbol.startswith(" "):
         option_warnings.append("no liquidity")
 
-    # 4. Stop + target in PREMIUM terms
+    # 4. Stop + target in PREMIUM terms, off the mid
     # Stop = entry - (stock_risk × delta × multiplier)
     # Premium moves roughly delta × stock_move (per share, no multiplier)
     premium_risk = round(stock_risk * delta_estimate, 2)
     if premium_risk < 0.05:
         premium_risk = 0.05  # min tick guard
 
-    stop_premium = round(max(entry_premium - premium_risk, 0.05), 2)
-    target_premium = round(entry_premium + (rr * premium_risk), 2)
+    mid_premium = entry_premium
+    mid_stop = round(max(mid_premium - premium_risk, 0.05), 2)
+    mid_target = round(mid_premium + (rr * premium_risk), 2)
 
-    # 5. Contracts
-    per_contract_risk = (entry_premium - stop_premium) * CONTRACT_MULTIPLIER
+    # R7: charge the round-trip spread instead of booking entry AND exit at
+    # the mid. Buy at the ask (mid + half the spread); sell to close at the
+    # bid (mid - half the spread), on EITHER the stop or the target -- the
+    # spread hits a round trip once, whether it closes as a win or a loss,
+    # split as half on the way in and half on the way out. Uses the real
+    # observed bid/ask width when a live quote gave us one; DEFAULT_SPREAD
+    # otherwise.
+    spread = bid_ask_spread if bid_ask_spread > 0 else DEFAULT_SPREAD
+    half_spread = spread / 2.0
+
+    # Round the RISK and REWARD amounts ONCE each, as coherent quantities --
+    # not entry/stop/target independently, which is what let two separate
+    # roundings of the same half-cent-boundary (0.05/2) drift a full cent
+    # apart and made the displayed card and the reported max_loss/max_reward
+    # disagree by up to ~10% on cheap, near-the-floor contracts (found by
+    # adversarial review). entry_premium anchors the card; stop_premium and
+    # target_premium are DERIVED from it and these two already-rounded
+    # amounts via plain +/-, so `entry - stop` and `target - entry` equal
+    # premium_risk_per_share/reward_per_share EXACTLY -- the card and the
+    # dollar figures are now the same numbers, not two independent estimates
+    # of them.
+    premium_risk_per_share = round((mid_premium - mid_stop) + spread, 2)
+    reward_per_share = round((mid_target - mid_premium) - spread, 2)
+
+    entry_premium = round(mid_premium + half_spread, 2)                        # pay the ask
+    stop_premium = round(max(entry_premium - premium_risk_per_share, 0.05), 2)  # receive the bid
+    target_premium = round(max(entry_premium + reward_per_share, 0.05), 2)      # receive the bid
+
+    # 5. Contracts -- sized off entry_premium/stop_premium, the SAME already-
+    # coherent numbers on the card, not premium_risk_per_share directly. On a
+    # cheap, near-the-floor contract the $0.05 stop-premium floor above can
+    # clamp the REALIZED distance tighter than the unclamped model risk
+    # (e.g. deep ITM-equivalent premium_risk that would send stop_premium
+    # negative) -- sizing off the clamped, actually-displayed distance means
+    # `contracts` reflects what the floor really allows, not a theoretical
+    # number nobody's stop is at. This also makes max_loss and
+    # `(entry-stop)*100*contracts` equal in every case, floor included, not
+    # just the ones where the floor never binds.
+    per_contract_risk = round((entry_premium - stop_premium) * CONTRACT_MULTIPLIER, 2)
     contracts = int(max_loss // per_contract_risk) if per_contract_risk > 0 else 0
 
     return OptionsPlan(
@@ -265,7 +316,16 @@ def build_options_plan(
         target_premium=target_premium,
         contracts=contracts,
         max_loss=round(per_contract_risk * contracts, 2),
-        max_reward=round(per_contract_risk * contracts * rr, 2),
+        # R7: was `per_contract_risk * contracts * rr` -- a synthetic RR
+        # multiple, decoupled from the actual target side and so blind to the
+        # spread this row charges (it would have OVERSTATED the reward, since
+        # risk grows by the full spread but a risk*rr multiple scales that
+        # growth up instead of reflecting the target side's OWN spread loss).
+        # Computed from target_premium/entry_premium, the same card numbers,
+        # not reward_per_share directly -- same reasoning as per_contract_risk
+        # above (the target-side floor guard can clamp the realized distance
+        # too), so this and `target_premium - entry_premium` always agree.
+        max_reward=round((target_premium - entry_premium) * CONTRACT_MULTIPLIER * contracts, 2),
         stock_entry=round(stock_entry, 2),
         stock_stop=round(stock_stop, 2),
         stock_target=round(stock_target, 2),
