@@ -215,3 +215,7 @@ research/bt2y_trades.json
 research/bt2y_trades_published_fill.json
 research/bt2y_trades_retest_on.json
 research/bt2y_trades_retest_off.json
+
+# Replay paper ledgers (live_scanner.py --replay). Simulated fills for a day
+# that already happened -- never the real book (journal/paper-trades.jsonl).
+journal/replay-*.jsonl

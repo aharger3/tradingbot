@@ -144,6 +144,7 @@ from signal_runner import SignalRunner
 from signal_runner import ENABLE_SAC_LADDER as _LIVE_ENABLE_SAC_LADDER
 from signal_runner import SAC_LADDER_VARSET as _LIVE_SAC_LADDER_VARSET
 from tastytrade_feed import TastytradeFeed
+import notify_ntfy                     # the phone lane; never raises (ticket 01)
 from signal_tracker import log_signal
 from regime_detector import (
     RegimeDetector, RegimeConfig,
@@ -201,8 +202,17 @@ OMEN_LOGO = r"""
 """
 
 
+# Replay clock (omen-8 ticket 01). When `--replay` is on, the whole scanner runs
+# against an archived day with the wall clock simulated, so a full session plays
+# through in seconds and the push logic is exercised end to end instead of
+# unit-tested in pieces. None in every other mode, which is every real run.
+_SIM_NOW: datetime | None = None
+
+
 def now_et() -> datetime:
-    """Current time in US Eastern, DST-aware."""
+    """Current time in US Eastern, DST-aware — or the replay clock."""
+    if _SIM_NOW is not None:
+        return _SIM_NOW
     return datetime.now(ZoneInfo("America/New_York"))
 
 
@@ -418,6 +428,17 @@ def scan_once(
 ) -> int:
     """Scan each symbol once, post novel signals, return count fired."""
     fired = 0
+    # The push day rolls with the calendar date. The scanner sleeps outside the
+    # window and is relaunched daily by its schtask, so the first scan of a
+    # session is the first one after 09:30 ET -- which is where ticket 01 says
+    # the once-a-day flag resets.
+    _roll_session_push(now_et().date().isoformat())
+    # The 11:00 summary, once, on the first cycle at or past the window end.
+    # It sits ABOVE the session-halt gate below on purpose: two consecutive
+    # losses return early from this function, and a halted day is exactly the
+    # day Austin most needs the summary for.
+    if now_et().strftime("%H:%M") >= SESSION_SUMMARY_AT:
+        push_summary(paper)
     # Delivery counters (Task 1): reset per cycle, logged at end so scanner-*.log
     # shows Discord health even on quiet days.
     discord = getattr(runner, "discord", None)
@@ -503,10 +524,12 @@ def scan_once(
             last = candles[-1]
             # close= is the stop trigger (G11): a wick through the stop stops
             # nothing out. high/low still drive the target and the Rule 6 scale.
+            _session_push["last_close"][symbol] = last.close
             for ev in paper.mark(symbol, high=last.high, low=last.low,
                                  close=last.close, ts=last.timestamp):
                 print(f"   📕 PAPER CLOSE {ev['symbol']} {ev['direction'].upper()} "
                       f"{ev['outcome'].upper()} P&L ${ev['pnl']:.2f}")
+                _on_paper_exit(runner, ev)
                 if ev["outcome"] == "stop":
                     runner.session.record_loss()
                     # R31: the halt is ACCOUNT-wide, not per symbol.
@@ -675,6 +698,260 @@ _account_streak = {"n": 0}
                             # resets free, same as _last_alert / _watch_dings.
 
 
+# ===========================================================================
+# THE PHONE LANE (omen-8 ticket 01)
+# ===========================================================================
+# ONE push a day, at the moment OMEN would trade, because Austin is away from
+# the keyboard when the window is open. Discord keeps everything it posts
+# today -- this lane is strictly narrower and strictly additive.
+#
+# What reaches the phone, and nothing else:
+#   1. the FIRST size-gated S promotion of the session,
+#   2. that trade's exit (stop / target / 11:00 flat),
+#   3. one 11:00 summary.
+# Later S promotions still go to Discord exactly as they do now.
+#
+# Austin, 2026-09-03, on the prior-day-level veto that this ticket originally
+# specified as unconditional: "PDH/PDL are good levels in my eyes." So the
+# veto is a FLAG, default OFF -- the push goes to the first size-gated S
+# regardless of which level it retested. The veto arm is still tracked every
+# day and reported side by side in the 11:00 summary, so the two arms are
+# compared on live data without ever having to ask him again.
+OMEN_LIVE_1D_VETO = os.getenv("OMEN_LIVE_1D_VETO", "0") == "1"
+# The window closes at 11:00 and the summary goes out on the first cycle at or
+# past it. Not tied to ENTRY_CUTOFF: that one gates NEW ENTRIES and Austin has
+# moved it before; this is when he reads the day.
+SESSION_SUMMARY_AT = os.getenv("OMEN_SUMMARY_AT", "11:00")
+
+
+def _level_tf(level_name: str) -> str:
+    """The timeframe a retested level is DRAWN on -- "1D" for PDH/PDL.
+
+    Single owner: `backtest_2y.LEVEL_TF`, added by commit 82f5639d ("Name the
+    level a trade broke, and say which timeframe it was drawn on"). Imported
+    lazily because backtest_2y pulls the whole offline stack (~2.6s) and this
+    is only reached on a TRADE-tier promotion, a handful of times a session.
+
+    A live signal carries `stop_level_name` -- a plain string like "PDH",
+    "OR high", "Order block low". There is no `level_tf` field on a live
+    signal; only the offline book has one. Anything that is not PDH/PDL is
+    reported as not-1D, which is the honest read: those are the only two of
+    his six levels drawn on the daily chart.
+    """
+    name = (level_name or "").strip()
+    try:
+        from backtest_2y import LEVEL_TF
+    except Exception:                      # offline stack missing -> still safe
+        LEVEL_TF = {"PDH": "1D", "PDL": "1D"}
+    return LEVEL_TF.get(name, "intraday")
+
+
+# Per-day push state. Reset on the date roll, which for this process is 09:30:
+# the scanner is launched by a daily schtask and `scan_once` sleeps outside the
+# window, so the first scan of a session is the first one after 09:30 ET.
+_session_push: dict = {
+    "date": None,
+    "pushed": False,          # the one phone push has gone out
+    "exit_pushed": False,     # ...and so has its exit
+    "summary_pushed": False,
+    "push_rec": None,         # the trade that went to the phone
+    "veto_first": None,       # first S that is NOT on a 1D level (the other arm)
+    "trades": [],             # every size-gated S promotion today, in order
+    "exits": [],              # every closed paper leg today
+    "last_close": {},         # symbol -> most recent close seen this session
+}
+
+
+def _roll_session_push(day: str) -> None:
+    """Start a fresh push day. Idempotent within a session."""
+    if _session_push["date"] == day:
+        return
+    _session_push.update(date=day, pushed=False, exit_pushed=False,
+                         summary_pushed=False, push_rec=None, veto_first=None,
+                         trades=[], exits=[], last_close={})
+
+
+def _note_s_trade(rec: dict) -> bool:
+    """Record a size-gated S promotion; True if it is the one for the phone."""
+    _session_push["trades"].append(rec)
+    if _session_push["veto_first"] is None and rec["level_tf"] != "1D":
+        _session_push["veto_first"] = rec
+    if _session_push["pushed"]:
+        return False
+    if OMEN_LIVE_1D_VETO and rec["level_tf"] == "1D":
+        return False           # veto arm ON: wait for a non-prior-day level
+    _session_push["pushed"] = True
+    _session_push["push_rec"] = rec
+    return True
+
+
+def _push_s_signal(rec: dict) -> bool:
+    """The one trade alert. Plain English, no ticket ids, no jargon."""
+    side = "CALL" if rec["direction"] == "call" else "PUT"
+    title = f"OMEN S {rec['symbol']} {side}"
+    body = (
+        f"{rec['ts']} ET  ·  {rec['setup'].replace('_', ' ')}\n"
+        f"Entry   {rec['entry']:.2f}\n"
+        f"Stop    {rec['stop']:.2f}\n"
+        f"Target  {rec['target']:.2f}\n"
+        f"Size    {rec['contracts']} contracts\n"
+        f"Tier    {rec['tier']} (his S)\n"
+        f"Level   {rec['level']}"
+        + (" (prior day)" if rec["level_tf"] == "1D" else "")
+    )
+    return notify_ntfy.push(title, body, priority="high", tags="rocket")
+
+
+def _push_exit(rec: dict, ev: dict) -> bool:
+    """The pushed trade closed. Entry, exit, R."""
+    r = ev.get("r")
+    title = f"OMEN {rec['symbol']} {ev['outcome'].upper()}  {r:+.2f}R" \
+        if r is not None else f"OMEN {rec['symbol']} {ev['outcome'].upper()}"
+    body = (
+        f"{ev.get('ts', '')} ET\n"
+        f"Entry   ${ev.get('entry_premium', 0):.2f}\n"
+        f"Exit    ${ev.get('exit_premium', 0):.2f}\n"
+        f"P&L     ${ev.get('trade_pnl', ev.get('pnl', 0)):+,.2f}"
+        + (f"  ({r:+.2f}R)" if r is not None else "")
+    )
+    tag = "white_check_mark" if (r or 0) > 0 else "x"
+    return notify_ntfy.push(title, body, priority="high", tags=tag)
+
+
+def _open_runner_lines(paper) -> list:
+    """One line per still-open runner: symbol, entry, current R.
+
+    Austin, 2026-09-03: "could still be active trades from runners, it would
+    report that too." R is the STOCK-side R against the last close this
+    scanner saw, which is the number he reads a chart in.
+    """
+    lines = []
+    for pos in getattr(paper, "open_positions", []) or []:
+        last = _session_push["last_close"].get(pos.symbol)
+        risk = abs(pos.stock_entry - pos.stock_stop)
+        if last is None or risk <= 0:
+            lines.append(f"  {pos.symbol} {pos.direction.upper()} "
+                         f"entry {pos.stock_entry:.2f} — still open, no mark")
+            continue
+        r = ((last - pos.stock_entry) if pos.direction == "call"
+             else (pos.stock_entry - last)) / risk
+        lines.append(f"  {pos.symbol} {pos.direction.upper()} "
+                     f"entry {pos.stock_entry:.2f} — open, {r:+.2f}R")
+    return lines
+
+
+def build_summary_text(paper=None) -> str:
+    """The 11:00 summary, as a plain string.
+
+    Austin, 2026-09-03: AUGUR's daily structure (this text, the homework link,
+    the evening reveal) goes to a Slack channel; the live S push stays on ntfy.
+    So this returns a STRING and posts nothing -- the Slack poster reuses it
+    verbatim when it exists. Nothing here builds a Slack payload.
+
+    Both arms are always reported. Arm A is what actually fired (the first
+    size-gated S of the day, any level). Arm B is the same rule with prior-day
+    highs and lows vetoed. They differ only on days whose first S retested a
+    PDH or a PDL, and reporting both every day is how the two get compared
+    without asking him again.
+    """
+    day = _session_push["date"] or "today"
+    out = [f"OMEN 11:00 — {day}", ""]
+
+    trades = _session_push["trades"]
+    if not trades:
+        out.append("No S setup today. Nothing traded.")
+    else:
+        out.append(f"{len(trades)} S setup(s) fired:")
+        for rec in trades:
+            ex = rec.get("exit")
+            if ex is None:
+                tail = "still open"
+            elif ex.get("r") is not None:
+                tail = f"{ex['outcome']} {ex['r']:+.2f}R (${ex['pnl']:+,.2f})"
+            else:
+                tail = f"{ex['outcome']} ${ex['pnl']:+,.2f}"
+            side = "CALL" if rec["direction"] == "call" else "PUT"
+            out.append(f"  {rec['ts']} {rec['symbol']} {side} @ {rec['entry']:.2f}"
+                       f"  [{rec['level']}] — {tail}")
+
+    a = _session_push["push_rec"]
+    b = _session_push["veto_first"]
+    out += ["", "The one trade, both arms:"]
+    out.append("  taken   (any level): " +
+               (f"{a['symbol']} {a['direction'].upper()} @ {a['entry']:.2f} "
+                f"[{a['level']}]" if a else "no trade"))
+    out.append("  would-be (no prior-day levels): " +
+               (f"{b['symbol']} {b['direction'].upper()} @ {b['entry']:.2f} "
+                f"[{b['level']}]" if b else "no trade"))
+    if a and b and a is b:
+        out.append("  same trade either way today.")
+    elif a and not b:
+        out.append("  the prior-day veto would have sat this day out.")
+
+    if paper is not None:
+        open_lines = _open_runner_lines(paper)
+        if open_lines:
+            out += ["", "Still open (runners):"] + open_lines
+
+    return "\n".join(out)
+
+
+def push_summary(paper=None) -> bool:
+    """Send the 11:00 summary once per session."""
+    if _session_push["summary_pushed"]:
+        return False
+    _session_push["summary_pushed"] = True
+    return notify_ntfy.push(f"OMEN 11:00 — {_session_push['date'] or 'today'}",
+                            build_summary_text(paper),
+                            priority="default", tags="bar_chart")
+
+
+def _on_paper_exit(runner, ev: dict) -> None:
+    """A live paper position closed: Discord, then the phone.
+
+    `discord_bot.post_trade_result` has existed since the bot was written and
+    had ZERO callers -- every closed paper trade was logged to the journal and
+    nothing ever reported it. This is the event it was written for.
+
+    Only a real CLOSE counts. A `SCALE` / `BE_SCALE` event is a leg coming off,
+    not the trade ending, and pushing on one would spend the day's single exit
+    notification on a partial.
+    """
+    if ev.get("event") not in (None, "CLOSE"):
+        return
+
+    # R, against the risk this card was actually sized to. `trade_pnl` is both
+    # legs of a scaled trade; `pnl` is the runner leg alone (paper_trader.py).
+    #
+    # Pair with the EARLIEST still-unmatched promotion on that symbol. Matching
+    # on symbol alone silently reported one trade's exit against every trade
+    # that name fired today -- on 2026-09-02's replay AAPL fired twice and both
+    # rows showed the first exit.
+    rec = next((t for t in _session_push["trades"]
+                if t["symbol"] == ev.get("symbol") and "exit" not in t), None)
+    pnl = ev.get("trade_pnl", ev.get("pnl"))
+    max_loss = (rec or {}).get("max_loss") or 0.0
+    ev = dict(ev)
+    ev["r"] = round(pnl / max_loss, 3) if (max_loss and pnl is not None) else None
+    ev["pnl"] = pnl
+    _session_push["exits"].append(ev)
+    if rec is not None:
+        rec["exit"] = ev
+
+    discord = getattr(runner, "discord", None)
+    if getattr(runner, "post_to_discord", False) and discord is not None:
+        try:
+            discord.post_trade_result(ev)
+        except Exception as e:                       # never kill the scan cycle
+            print(f"   ✗ Discord trade result failed: {e}")
+
+    pushed = _session_push["push_rec"]
+    if (pushed and not _session_push["exit_pushed"]
+            and ev.get("symbol") == pushed["symbol"]):
+        _session_push["exit_pushed"] = True
+        _push_exit(pushed, ev)
+
+
 def _tier(runner: SignalRunner, sig: dict, grade: str, ts: str, symbol: str) -> str:
     s = runner.session
     # R31 (verdict `both`) -- the two-consecutive-loss halt now runs in the
@@ -803,7 +1080,167 @@ def _emit_signal(runner: SignalRunner, tasty_feed: TastytradeFeed, symbol: str, 
         ok = runner.discord.post_signal(sig["signal_type"], candle, sig["reason"], plan,
                                          grade=display_grade, stop_level_name=stop_level, stop_width_pct=stop_width)
         print("   ✓ Posted" if ok else "   ✗ Discord post failed")
+
+    # ---- the phone lane (ticket 01) ------------------------------------
+    # Strictly after Discord, strictly additive: Discord posts every signal it
+    # posts today, and this sends at most one of them on to Austin's phone.
+    # `_tier` returns TRADE for an armed 84% re-entry regardless of its grade
+    # (see the parity block at the top of this file, item 3), so the S check
+    # here is explicit rather than inherited from `tier`.
+    if (not alert_only and sig.get("sac_grade") == "S"
+            and getattr(plan, "contracts", 0) >= 1):
+        rec = {
+            "symbol": symbol, "direction": sig["direction"],
+            "ts": candle.timestamp, "setup": signal_type_val,
+            "entry": sig["entry"], "stop": sig["stop"],
+            "target": getattr(plan, "stock_target", 0.0),
+            "contracts": plan.contracts, "tier": tier,
+            "level": stop_level or "unnamed",
+            "level_tf": _level_tf(stop_level),
+            # The risk this card was sized against, carried so the exit can
+            # report a real R instead of dividing by a hardcoded 1R.
+            "max_loss": DEFAULT_MAX_LOSS * size_pct,
+        }
+        if _note_s_trade(rec):
+            _push_s_signal(rec)
     return not alert_only
+
+
+# ===========================================================================
+# REPLAY (omen-8 ticket 01)
+# ===========================================================================
+# There is no other replay mode in this file. `backtest_week.simulate_day` and
+# `replay_scarface.py` replay the ENGINE, not the SCANNER -- neither one runs
+# `scan_once`, so neither exercises the tier gate, the governor, the paper book
+# or the push logic. This does: the same `scan_once` the live process runs,
+# against archived 1-minute bars, with `now_et()` simulated. A whole session
+# plays through in seconds.
+
+
+class ReplayFeed:
+    """A TastytradeFeed stand-in backed by `data_archive` CSVs.
+
+    Implements only the four methods `scan_once` / `get_daily_context` call.
+    It deliberately does NOT implement `fetch_option_quote`, so
+    `options_sizer.build_options_plan` falls through to its delta estimate --
+    there are no historical option quotes on disk, and inventing one would put
+    a fabricated premium into a card that looks exactly like a real one.
+    """
+
+    def __init__(self, day: str, symbols):
+        import polygon_feed as pf
+        self._pf = pf
+        self.day = day
+        self.bars = {}
+        for sym in symbols:
+            try:
+                allb = pf.fetch_day(sym, day)
+            except Exception:
+                allb = []
+            if allb:
+                self.bars[sym] = allb
+        self.symbols = sorted(self.bars)
+
+    def validate_credentials(self):
+        return True
+
+    def _now_hhmmss(self) -> str:
+        return now_et().strftime("%H:%M:%S")
+
+    def fetch_recent_bars(self, symbol: str, lookback_minutes: int = 60):
+        allb = self.bars.get(symbol)
+        if not allb:
+            return []
+        cut = self._now_hhmmss()
+        seen = [c for c in self._pf.rth(allb) if c.timestamp <= cut]
+        return seen[-lookback_minutes:]
+
+    def _prior_day_bars(self, symbol: str):
+        """The last archived session strictly before `self.day`."""
+        import glob as _glob
+        d = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                         "data_archive", symbol)
+        days = sorted(os.path.basename(p)[:-4]
+                      for p in _glob.glob(os.path.join(d, "*.csv")))
+        prior = [x for x in days if x < self.day]
+        if not prior:
+            return []
+        try:
+            return self._pf.fetch_day(symbol, prior[-1])
+        except Exception:
+            return []
+
+    def fetch_daily_levels(self, symbol: str):
+        """(pdh, pdl, pd_open, pd_close) off the prior archived session."""
+        pb = self._pf.rth(self._prior_day_bars(symbol))
+        if not pb:
+            raise ValueError(f"no prior-day archive for {symbol}")
+        return (max(c.high for c in pb), min(c.low for c in pb),
+                pb[0].open, pb[-1].close)
+
+    def fetch_premarket_levels(self, symbol: str):
+        return self._pf.premarket_hi_lo(self.bars.get(symbol) or [])
+
+    def fetch_htf_bias(self, symbol: str):
+        # Same hardcoded None the live yfinance fallback returns (see the
+        # parity block, item 4). HTF_BIAS_GATE is off in both paths, so this
+        # changes nothing -- it just does not pretend to know.
+        return None
+
+
+def run_replay(day: str, symbols, paper_on: bool = True,
+               start: str = "09:30", end: str = "11:05",
+               ledger_path=None) -> int:
+    """Play one archived session through `scan_once`, minute by minute.
+
+    The paper book writes to `journal/replay-<day>.jsonl`, NEVER to the live
+    `journal/paper-trades.jsonl`. A replayed session is a simulation of a day
+    that already happened; letting it append to the real ledger would put
+    invented fills in the book Austin reads his paper results out of.
+    """
+    global _SIM_NOW
+    feed = ReplayFeed(day, symbols)
+    if not feed.symbols:
+        print(f"REPLAY {day}: no archived bars for any of {len(list(symbols))} "
+              f"symbols — nothing to replay.")
+        return 1
+    print(f"REPLAY {day}: {len(feed.symbols)} symbols with archive "
+          f"({', '.join(feed.symbols[:12])}{' ...' if len(feed.symbols) > 12 else ''})")
+
+    runner = SignalRunner(post_to_discord=False)
+    paper = None
+    if paper_on:
+        from paper_trader import PaperBook
+        paper = PaperBook(ledger_path=Path(ledger_path) if ledger_path else
+                          (Path(__file__).parent / "journal" / f"replay-{day}.jsonl"))
+        print(f"  replay paper ledger: {paper.ledger_path.name}")
+
+    y, m, d = (int(x) for x in day.split("-"))
+    tz = ZoneInfo("America/New_York")
+    sh, sm = (int(x) for x in start.split(":"))
+    eh, em = (int(x) for x in end.split(":"))
+    cur = datetime(y, m, d, sh, sm, tzinfo=tz)
+    stop_at = datetime(y, m, d, eh, em, tzinfo=tz)
+
+    seen: Set[str] = set()
+    fired = 0
+    try:
+        while cur <= stop_at:
+            _SIM_NOW = cur
+            fired += scan_once(runner, feed, feed.symbols, seen, paper,
+                               max_trades=int(os.getenv("MAX_TRADES_PER_DAY", "3")),
+                               max_consecutive_losses=int(
+                                   os.getenv("CONSECUTIVE_LOSS_HALT", "2")),
+                               regime_detector=None)
+            cur += timedelta(minutes=1)
+    finally:
+        _SIM_NOW = None
+
+    print(f"\nREPLAY {day} done: {fired} signals fired.")
+    print("-" * 60)
+    print(build_summary_text(paper))
+    print("-" * 60)
+    return 0
 
 
 def main():
@@ -819,9 +1256,22 @@ def main():
                         help="Paper-trade simulation: log fired signals + mark to stop/target in journal/paper-trades.jsonl")
     parser.add_argument("--futures", nargs="?", const="ES", default=None, metavar="CONTRACT",
                         help="Futures mode (SPEC15): trade ES/NQ/RTY via yfinance feed instead of stock options")
+    parser.add_argument("--replay", metavar="YYYY-MM-DD", default=None,
+                        help="Replay one archived session through the real scan loop "
+                             "with the wall clock simulated (ticket 01)")
+    parser.add_argument("--ntfy-topic", default=None,
+                        help=f"ntfy topic for this run; overrides ${notify_ntfy.TOPIC_ENV}")
     args = parser.parse_args()
 
+    # A topic given on the command line is the topic for the whole process --
+    # notify_ntfy resolves from the env, so set it once here rather than
+    # threading it through every call site.
+    if args.ntfy_topic:
+        os.environ[notify_ntfy.TOPIC_ENV] = args.ntfy_topic
+
     print(OMEN_LOGO)
+    if args.replay:
+        sys.exit(run_replay(args.replay, args.symbols, paper_on=True))
     start, end = parse_window(args.window)
     runner = SignalRunner(post_to_discord=not args.no_discord)
     if args.futures:
