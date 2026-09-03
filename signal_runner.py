@@ -31,10 +31,17 @@ def _load_env_file(path: Path) -> None:
 
 _load_env_file(Path(__file__).parent / ".env")
 
+import omen_bot  # module reference, not just names -- HTF_GRADE_VETO below
+                 # must see runtime flips (research scripts patch it on the
+                 # module object, `omen_bot.HTF_GRADE_VETO = True`, the same
+                 # pattern `bw.LADDER_MODE`/`sr.fill_price` already use
+                 # elsewhere in this repo), which `from omen_bot import
+                 # HTF_GRADE_VETO` would silently miss (it copies the value at
+                 # import time, it does not stay bound to the module).
 from omen_bot import (
     Candle, SignalType, TradeGrade, OpeningRangeAnalyzer, TradingSession,
     BreakAndRetestDetector, RuleOf84Detector, PriceActionAnalyzer,
-    detect_order_block_setup, find_fvg, detect_flag_setup, detect_break_retest
+    detect_order_block_setup, find_fvg, detect_flag_setup, detect_break_retest,
 )
 from discord_bot import DiscordSignalBot
 from position_sizer import compute_plan, SizingPlan
@@ -1511,11 +1518,18 @@ class SignalRunner:
                     grade = TradeGrade.B
                 stack = current.is_bullish and self._aplus_stack(level_hi, is_long=True)
                 # Austin's A+ stack outranks candle patterns (30d: pattern grader
-                # D-benched 38 of 53 stack setups) — floor B unless HTF opposed
-                if stack and grade.value in ("C",) + _SKIP_GRADES and self.htf_bias != "bearish":
+                # D-benched 38 of 53 stack setups) — floor B unless HTF opposed.
+                # OMEN 8.0 R4: "HTF opposed" can only be the reason a D showed up
+                # when HTF_GRADE_VETO is actually live -- with it at its shipped
+                # default (off), grade_trade never returns D for opposition, so
+                # every D here is pattern-caused regardless of htf_bias, and
+                # gating this exclusion on the flag stops it silently
+                # withholding a real promotion once HTF_GRADE_VETO is off.
+                htf_opposed_long = omen_bot.HTF_GRADE_VETO and self.htf_bias == "bearish"
+                if stack and grade.value in ("C",) + _SKIP_GRADES and not htf_opposed_long:
                     grade = TradeGrade.B
                 elif (grade == TradeGrade.D and current.is_bullish
-                        and self.htf_bias != "bearish"):
+                        and not htf_opposed_long):
                     # valid confirmation entry, pattern-D only -> alert tier
                     grade = TradeGrade.C
                 if stock_risk < max(0.10, 0.0015 * current.close):  # relative min (flat $0.50 benched sub-$50 stocks)
@@ -1738,10 +1752,13 @@ class SignalRunner:
                 if "LATE" in br_note and grade.value in ("A+", "A"):
                     grade = TradeGrade.B
                 stack = current.is_bearish and self._aplus_stack(level_lo, is_long=False)
-                if stack and grade.value in ("C",) + _SKIP_GRADES and self.htf_bias != "bullish":
+                # OMEN 8.0 R4: same fix as the long side above -- gate the "HTF
+                # opposed" exclusion on HTF_GRADE_VETO actually being live.
+                htf_opposed_short = omen_bot.HTF_GRADE_VETO and self.htf_bias == "bullish"
+                if stack and grade.value in ("C",) + _SKIP_GRADES and not htf_opposed_short:
                     grade = TradeGrade.B
                 elif (grade == TradeGrade.D and current.is_bearish
-                        and self.htf_bias != "bullish"):
+                        and not htf_opposed_short):
                     grade = TradeGrade.C
                 if stock_risk < max(0.10, 0.0015 * current.close):
                     grade = TradeGrade.D

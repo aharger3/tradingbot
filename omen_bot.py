@@ -1,8 +1,30 @@
 """Omen Trading Bot - Signal Detection Engine"""
 
+import os
 from dataclasses import dataclass
 from typing import Optional, List
 from enum import Enum
+
+# OMEN 8.0 R4 (2026-09-03). `omen-rulebook.md:855` says the OLD flag by this
+# name -- "HTF_BIAS_VETO shipped ON and gated 47.0% of the two-year book on a
+# formula (SMA20-of-hourly) nobody wrote" -- was "Deleted 2026-08-28. The value
+# is still computed and reported, so it can be re-gated on the day he defines
+# the rule." The name really is gone: this is the only place it appears in
+# this file now, a citation, not a symbol. But the VETO BEHAVIOR it named was
+# never actually removed -- it survived, unconditional and un-flagged, inside
+# `grade_trade` below (any `htf_bias` opposed to the trade direction
+# hard-returned D, live and backtest both, since `bias_from`/`fetch_htf_bias`
+# populate a real value on almost every call -- only each symbol's ~19-day SMA
+# warm-up or a live fetch failure leaves it None). That contradicted "not a
+# rule, so it is not a veto" as directly as the old env var stuck on ON would
+# have. HTF_GRADE_VETO
+# is that behavior re-flagged under its actual current name and location:
+# default OFF, so `htf_bias` is still threaded through and available for the
+# softer "neutral caps at B" read, but an opposed bias no longer hard-vetoes
+# to D until this is explicitly turned back on -- the "re-gate on the day he
+# defines the rule" path, now real again. `test_htf_grade_veto_default.py`
+# asserts the shipped default.
+HTF_GRADE_VETO = os.getenv("HTF_GRADE_VETO", "0").strip().lower() in ("1", "true", "yes", "on")
 
 
 class SignalType(Enum):
@@ -153,12 +175,14 @@ class PriceActionAnalyzer:
     ) -> TradeGrade:
         """Grade a potential signal A+ through D (D = skip).
 
-        htf_bias ('bullish'/'bearish'/'neutral'/None) gates the top grades:
-        opposed trend = D (counter-trend, course says skip); neutral caps at
-        B (A+/A require HTF alignment per fable_rules); None = unknown,
-        grade on PA alone (pre-SPEC0 behavior).
+        htf_bias ('bullish'/'bearish'/'neutral'/None): neutral caps at B
+        (A+/A require HTF alignment per fable_rules); None = unknown, grade on
+        PA alone (pre-SPEC0 behavior). An OPPOSED bias hard-vetoes to D only
+        when HTF_GRADE_VETO is explicitly turned on (default OFF, OMEN 8.0 R4)
+        -- htf_bias is still computed and threaded through either way, per
+        `omen-rulebook.md`'s "not a rule, so it is not a veto."
         """
-        if htf_bias in ("bullish", "bearish"):
+        if HTF_GRADE_VETO and htf_bias in ("bullish", "bearish"):
             aligned = (htf_bias == "bullish") == is_long
             if not aligned:
                 return TradeGrade.D
