@@ -1,0 +1,480 @@
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>AUGUR — does it understand your system?</title><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:wght@500;600&display=swap">
+<style>
+:root{
+  --bg:#f3f5f4; --surface:#ffffff; --surface-2:#eceff0;
+  --ink:#131e1c; --ink-2:#4c5b58; --ink-3:#7b8b87;
+  --rule:#dbe2e0; --rule-2:#c3cecb;
+  --accent:#0d6961; --accent-ink:#ffffff; --accent-soft:#dcece9;
+  --up:#1d7a4c; --dn:#a63229; --entry:#a86a06; --stop:#8d3b33;
+  --lvl-pd:#5b6ea8; --lvl-pm:#8a5ea3; --lvl-or:#3f7f76; --lvl-hl:#a8632f;
+  --shadow:0 1px 2px rgba(19,30,28,.06),0 8px 24px -14px rgba(19,30,28,.28);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0d1211; --surface:#151d1c; --surface-2:#1d2726;
+    --ink:#e7edeb; --ink-2:#a3b3af; --ink-3:#7d8d89;
+    --rule:#25322f; --rule-2:#33433f;
+    --accent:#54cfbe; --accent-ink:#07201d; --accent-soft:#16332f;
+    --up:#48b57c; --dn:#e07068; --entry:#e0a340; --stop:#d47a70;
+    --lvl-pd:#8fa2dc; --lvl-pm:#bb92d1; --lvl-or:#6dbcb0; --lvl-hl:#e09a5c;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 28px -16px rgba(0,0,0,.7);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0d1211; --surface:#151d1c; --surface-2:#1d2726;
+  --ink:#e7edeb; --ink-2:#a3b3af; --ink-3:#7d8d89;
+  --rule:#25322f; --rule-2:#33433f;
+  --accent:#54cfbe; --accent-ink:#07201d; --accent-soft:#16332f;
+  --up:#48b57c; --dn:#e07068; --entry:#e0a340; --stop:#d47a70;
+  --lvl-pd:#8fa2dc; --lvl-pm:#bb92d1; --lvl-or:#6dbcb0; --lvl-hl:#e09a5c;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 28px -16px rgba(0,0,0,.7);
+}
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:"IBM Plex Sans",system-ui,-apple-system,Segoe UI,sans-serif;
+  font-size:16px; line-height:1.5; -webkit-text-size-adjust:100%;
+}
+.wrap{max-width:800px; margin:0 auto; padding:0 14px 96px}
+
+/* masthead */
+.mast{padding:28px 0 18px; border-bottom:1px solid var(--rule)}
+.eyebrow{
+  font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:11px; font-weight:500;
+  letter-spacing:.14em; text-transform:uppercase; color:var(--accent); margin:0 0 8px;
+}
+h1{
+  font-family:"IBM Plex Serif",Georgia,serif; font-weight:600;
+  font-size:clamp(26px,6vw,36px); line-height:1.15; margin:0 0 10px; text-wrap:balance;
+}
+.lede{margin:0; color:var(--ink-2); font-size:15px; max-width:62ch}
+.lede strong{color:var(--ink); font-weight:600}
+
+/* sticky progress */
+.bar{
+  position:sticky; top:0; z-index:20; background:var(--bg);
+  border-bottom:1px solid var(--rule); margin:0 -14px 20px; padding:9px 14px;
+  display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+}
+.bar .count{
+  font-family:"IBM Plex Mono",monospace; font-size:13px; font-weight:600;
+  font-variant-numeric:tabular-nums; color:var(--ink); white-space:nowrap;
+}
+.track{flex:1 1 60px; height:4px; background:var(--rule); border-radius:2px; overflow:hidden}
+.fill{height:100%; width:0%; background:var(--accent); transition:width .25s ease}
+.saved{
+  font-family:"IBM Plex Mono",monospace; font-size:10px; font-weight:600;
+  letter-spacing:.08em; text-transform:uppercase; color:var(--ink-3);
+  white-space:nowrap; transition:color .2s;
+}
+.saved[data-state="just"]{color:var(--accent)}
+.saved[data-state="fail"]{color:var(--stop)}
+.jump{
+  font:600 12px/1 "IBM Plex Sans",sans-serif; letter-spacing:.03em;
+  background:var(--accent); color:var(--accent-ink); border:0; border-radius:999px;
+  padding:9px 14px; cursor:pointer; white-space:nowrap;
+}
+.jump:hover{filter:brightness(1.08)}
+.jump:focus-visible{outline:2px solid var(--ink); outline-offset:2px}
+.jump.alt{background:transparent; color:var(--accent); box-shadow:inset 0 0 0 1px var(--accent)}
+
+/* export drawer */
+.drawer{
+  background:var(--surface); border:1px solid var(--rule); border-radius:10px;
+  padding:14px 16px; margin:0 0 18px; box-shadow:var(--shadow);
+}
+.drawer-btns{display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin:10px 0}
+.drawer textarea{
+  width:100%; min-height:200px; resize:vertical;
+  font:400 12px/1.45 "IBM Plex Mono",ui-monospace,monospace; color:var(--ink);
+  background:var(--surface-2); border:1px solid var(--rule-2); border-radius:8px;
+  padding:10px; white-space:pre; overflow-x:auto;
+}
+
+/* cards */
+.card{
+  background:var(--surface); border:1px solid var(--rule); border-radius:10px;
+  box-shadow:var(--shadow); margin:0 0 18px; overflow:hidden; scroll-margin-top:64px;
+}
+.card[data-done="1"]{border-color:var(--accent)}
+.card > header{
+  display:flex; align-items:baseline; gap:10px; flex-wrap:wrap;
+  padding:13px 16px; border-bottom:1px solid var(--rule); background:var(--surface-2);
+}
+.idx{
+  font-family:"IBM Plex Mono",monospace; font-size:11px; font-weight:600;
+  color:var(--ink-3); font-variant-numeric:tabular-nums;
+}
+.tick{
+  font-family:"IBM Plex Mono",monospace; font-size:16px; font-weight:600;
+  letter-spacing:.02em;
+}
+.when{font-family:"IBM Plex Mono",monospace; font-size:13px; color:var(--ink-2)}
+.tags{margin-left:auto; display:flex; gap:6px; flex-wrap:wrap; align-items:center}
+.tag{
+  font-family:"IBM Plex Mono",monospace; font-size:10px; font-weight:600;
+  letter-spacing:.08em; text-transform:uppercase; padding:3px 7px; border-radius:4px;
+  background:var(--accent-soft); color:var(--accent); border:1px solid transparent;
+}
+.tag.warn{background:transparent; color:var(--stop); border-color:var(--stop)}
+.done-dot{width:8px; height:8px; border-radius:50%; background:var(--rule-2); flex:none}
+.card[data-done="1"] .done-dot{background:var(--accent)}
+
+/* chart */
+.chartwrap{padding:10px 6px 4px; background:var(--surface)}
+.chart{width:100%; height:auto; display:block}
+.chart .grid{stroke:var(--rule); stroke-width:.6}
+.chart .axis{
+  font-family:"IBM Plex Mono",monospace; font-size:9px; fill:var(--ink-3);
+  text-anchor:middle;
+}
+.chart .wk{stroke-width:1}
+.chart .bd{stroke-width:.5}
+.chart .up{stroke:var(--up); fill:var(--up)}
+.chart .dn{stroke:var(--dn); fill:var(--dn)}
+.chart .lvl{stroke-width:1; stroke-dasharray:5 4; opacity:.85}
+.chart .lvl-t{font-family:"IBM Plex Mono",monospace; font-size:9px; font-weight:500}
+.chart .lvl-pd{stroke:var(--lvl-pd); fill:var(--lvl-pd)}
+.chart .lvl-pm{stroke:var(--lvl-pm); fill:var(--lvl-pm)}
+.chart .lvl-or{stroke:var(--lvl-or); fill:var(--lvl-or)}
+.chart .lvl-hl{stroke:var(--lvl-hl); fill:var(--lvl-hl)}
+.chart .entry{stroke:var(--entry); stroke-width:1.3}
+.chart .entry-t{
+  font-family:"IBM Plex Mono",monospace; font-size:9px; font-weight:600; fill:var(--entry);
+}
+.chart .arrow{fill:var(--entry)}
+.chart .stopl{stroke:var(--stop); stroke-width:1; stroke-dasharray:2 3}
+.chart .stop-t{
+  font-family:"IBM Plex Mono",monospace; font-size:9px; font-weight:600; fill:var(--stop);
+}
+.legend{
+  display:flex; gap:14px; flex-wrap:wrap; padding:2px 16px 12px;
+  font-family:"IBM Plex Mono",monospace; font-size:10px; color:var(--ink-3);
+}
+.legend b{font-weight:600}
+
+/* questions */
+.q{padding:14px 16px; border-top:1px solid var(--rule)}
+.q h3{margin:0 0 3px; font-size:14px; font-weight:600; line-height:1.35; color:var(--ink)}
+.q .hint{margin:0 0 10px; font-size:12.5px; color:var(--ink-3)}
+.chips{display:flex; flex-wrap:wrap; gap:7px}
+.chip{
+  font:500 13.5px/1.2 "IBM Plex Sans",sans-serif; color:var(--ink-2);
+  background:var(--surface); border:1px solid var(--rule-2); border-radius:8px;
+  padding:10px 12px; min-height:42px; cursor:pointer; text-align:left;
+  transition:background .12s,border-color .12s,color .12s;
+}
+.chip:hover{border-color:var(--accent)}
+.chip:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+.chip[aria-pressed="true"]{
+  background:var(--accent); border-color:var(--accent); color:var(--accent-ink);
+  font-weight:600;
+}
+.q[data-tone="veto"] .chip[aria-pressed="true"]{
+  background:var(--stop); border-color:var(--stop); color:#fff;
+}
+textarea.note{
+  width:100%; margin-top:8px; min-height:56px; resize:vertical;
+  font:400 14px/1.5 "IBM Plex Sans",sans-serif; color:var(--ink);
+  background:var(--surface-2); border:1px solid var(--rule-2); border-radius:8px;
+  padding:9px 11px;
+}
+textarea.note:focus-visible{outline:2px solid var(--accent); outline-offset:1px}
+
+/* footer */
+.foot{
+  margin-top:26px; padding:16px; border:1px dashed var(--rule-2); border-radius:10px;
+  font-size:13.5px; color:var(--ink-2);
+}
+.foot h2{
+  font-family:"IBM Plex Serif",Georgia,serif; font-size:16px; font-weight:600;
+  margin:0 0 6px; color:var(--ink);
+}
+.foot code{
+  font-family:"IBM Plex Mono",monospace; font-size:12.5px; background:var(--surface-2);
+  padding:1px 5px; border-radius:4px;
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+@media (max-width:520px){
+  .wrap{padding:0 10px 96px}
+  .bar{margin:0 -10px 16px; padding:8px 10px}
+  .chip{flex:1 1 calc(50% - 4px); min-width:0}
+  .q{padding:13px 12px}
+  .card > header{padding:11px 12px}
+}
+</style>
+<div class="wrap"><div class="mast"><p class="eyebrow">AUGUR &middot; onboarding</p><h1>AUGUR states your system back to you.</h1><p class="lede">40 statements, one per card, each with where it came from. Tap <b>right</b>, <b>wrong</b>, or <b>partly</b>, and write the correction &mdash; that comment is the whole point of this page, more than the tap is. About <strong>20&ndash;25 minutes</strong> for all of it, or do it in pieces; it saves as you go.</p></div><div class="bar" data-deck="augur-understanding"><span class="count" id="count">0 / 0</span><span class="track"><span class="fill" id="fill"></span></span><span class="saved" id="saved">saved</span><button class="jump" type="button">Next unanswered</button><button class="jump alt" type="button" id="exportbtn">Export</button></div><div class="drawer" id="drawer" hidden><p class="hint"><b>Select all the text in the box below and copy it</b> (the box is editable, so ctrl/cmd+A then ctrl/cmd+C works even where the Copy button is blocked), then paste it into the chat. Download works too when the browser allows it.</p><div class="drawer-btns"><button class="jump" type="button" id="copybtn">Copy all</button><button class="jump alt" type="button" id="dlbtn">Download .jsonl</button><span class="hint" id="copymsg"></span></div><textarea id="out" spellcheck="false"></textarea></div><p class="eyebrow" style="margin:26px 0 10px">Setups</p><article class="card" data-cid="S1" data-done="0" data-export='{"group": "setups", "confidence": "settled", "statement_id": "S1"}'><header><span class="idx">01/40</span><span style="font-family:'IBM Plex Serif',Georgia,serif;font-size:17px;font-weight:600;flex:1 1 100%;line-height:1.35">Break-and-retest is your bread-and-butter setup: price breaks a level, then comes back to retest it before you take the trade.</span><span class="tags"><span class="tag">settled</span><span class="done-dot"></span></span></header><div class="q" style="border-top:0;padding-bottom:0"><p class="hint" style="margin:0 0 8px"><b style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)">Source</b></p><div style="border-left:3px solid var(--accent);padding:8px 0 8px 12px;font-size:13.5px;color:var(--ink-2)">947 of 1,017 traded rows in the two-year book are break-and-retest (<code>omen-rulebook.md</code>, &ldquo;Kill B and A+ outright,&rdquo; 2026-08-29).</div></div><section class="q" data-q="verdict" data-multi="0" data-required="1"><h3>Right, wrong, or partly?</h3><p class="hint">Tap one, then correct AUGUR below &mdash; the comment is the point, not the tap.</p><div class="chips"><button class="chip" type="button" data-v="right" aria-pressed="false">Right</button><button class="chip" type="button" data-v="wrong" aria-pressed="false">Wrong</button><button class="chip" type="button" data-v="partly" aria-pressed="false">Partly</button></div><textarea class="note" data-note="verdict" placeholder="Correct me — what's actually true"></textarea></section></article><article class="card" data-cid="S2" data-done="0" data-export='{"group": "setups", "confidence": "settled", "statement_id": "S2"}'><header><span class="idx">02/40</span><span style="font-family:'IBM Plex Serif',Georgia,serif;font-size:17px;font-weight:600;flex:1 1 100%;line-height:1.35">The one-candle rule (OCR) is your name for an order block: one candle the opposite color of the trend, that price is expected to respect, then break, and retest.</span><span class="tags"><span class="tag">settled</span><span class="done-dot"></span></span></header><div class="q" style="border-top:0;padding-bottom:0"><p class="hint" style="margin:0 0 8px"><b style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)">Source</b></p><div style="border-left:3px solid var(--accent);padding:8px 0 8px 12px;font-size:13.5px;color:var(--ink-2)">&ldquo;i forgot my OCR definition is simple, it's in the name 'one candle' &mdash; one candle that's the opposite color of the way it's trending.&rdquo; &mdash; Austin, 2026-08-23.</div></div><section class="q" data-q="verdict" data-multi="0" data-required="1"><h3>Right, wrong, or partly?</h3><p class="hint">Tap one, then correct AUGUR below &mdash; the comment is the point, not the tap.</p><div class="chips"><button class="chip" type="button" data-v="right" aria-pressed="false">Right</button><button class="chip" type="button" data-v="wrong" aria-pressed="false">Wrong</button><button class="chip" type="button" data-v="partly" aria-pressed="false">Partly</button></div><textarea class="note" data-note="verdict" placeholder="Correct me — what's actually true"></textarea></section></article><article class="card" data-cid="S3" data-done="0" data-export='{"group": "setups", "confidence": "settled", "statement_id": "S3"}'><header><span class="idx">03/40</span><span style="font-family:'IBM Plex Serif',Georgia,serif;font-size:17px;font-weight:600;flex:1 1 100%;line-height:1.35">An OCR candle only counts if it would work as the stop &mdash; the test is &ldquo;would the candle be good to use as the stop?&rdquo;, not how big or clean it looks.</span><span class="tags"><span class="tag">settled</span><span class="done-dot"></span></span></header><div class="q" style="border-top:0;padding-bottom:0"><p class="hint" style="margin:0 0 8px"><b style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)">Source</b></p><div style="border-left:3px solid var(--accent);padding:8px 0 8px 12px;font-size:13.5px;color:var(--ink-2)"><code>omen-rulebook.md</code>, card 11, ratified &ldquo;Round two,&rdquo; 2026-08-28.</div></div><section class="q" data-q="verdict" data-multi="0" data-required="1"><h3>Right, wrong, or partly?</h3><p class="hint">Tap one, then correct AUGUR below &mdash; the comment is the point, not the tap.</p><div class="chips"><button class="chip" type="button" data-v="right" aria-pressed="false">Right</button><button class="chip" type="button" data-v="wrong" aria-pressed="false">Wrong</button><button class="chip" type="button" data-v="partly" aria-pressed="false">Partly</button></div><textarea class="note" data-note="verdict" placeholder="Correct me — what's actually true"></textarea></section></article><article class="card" data-cid="S4" data-done="0" data-export='{"group": "setups", "confidence": "settled", "statement_id": "S4"}'><header><span class="idx">04/40</span><span style="font-family:'IBM Plex Serif',Georgia,serif;font-size:17px;font-weight:600;flex:1 1 100%;line-height:1.35">The 84% rule is a re-entry modifier that fires after a stop-out, not a standalone setup &mdash; it re-enters the price you originally entered on (not just the level), on a candle close that reclaims it.</span><span class="tags"><span class="tag">settled</span><span class="done-dot"></span></span></header><div class="q" style="border-top:0;padding-bottom:0"><p class="hint" style="margin:0 0 8px"><b style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)">Source</b></p><div style="border-left:3px solid var(--accent);padding:8px 0 8px 12px;font-size:13.5px;color:var(--ink-2)">rule ballot batch01 q12/q13 &mdash; Austin, 2026-08-23.</div></div><section class="q" data-q="verdict" data-multi="0" data-required="1"><h3>Right, wrong, or partly?</h3><p class="hint">Tap one, then correct AUGUR below &mdash; the comment is the point, not the tap.</p><div class="chips"><button class="chip" type="button" data-v="right" aria-pressed="false">Right</button><button class="chip" type="button" data-v="wrong" aria-pressed="false">Wrong</button><button class="chip" type="button" data-v="partly" aria-pressed="false">Partly</button></div><textarea class="note" data-note="verdict" placeholder="Correct me — what's actually true"></textarea></section></article><article class="card" data-cid="S5" data-done="0" data-export='{"group": "setups", "confidence": "settled", "statement_id": "S5"}'><header><span class="idx">05/40</span><span style="font-family:'IBM Plex Serif',Georgia,serif;font-size:17px;font-weight:600;flex:1 1 100%;line-height:1.35">Break-and-retest with an OCR at the same level (BR+OCR) is its own third setup, and it's worth a +1 upgrade to the grade &mdash; not just a rebate against a downgrade.</span><span class="tags"><span class="tag">settled</span><span class="done-dot"></span></span></header><div class="q" style="border-top:0;padding-bottom:0"><p class="hint" style="margin:0 0 8px"><b style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)">Source</b></p><div style="border-left:3px solid var(--accent);padding:8px 0 8px 12px;font-size:13.5px;color:var(--ink-2)">&ldquo;remember BR and OCR is also a setup when both of them are together&rdquo; and &ldquo;we also need to work BR and OCR as +1 upgrade not downgrade confluence.&rdquo; &mdash; Austin, 2026-08-29.</div></div><section class="q" data-q="verdict" data-multi="0" data-required="1"><h3>Right, wrong, or partly?</h3><p class="hint">Tap one, then correct AUGUR below &mdash; the comment is the point, not the tap.</p><div class="chips"><button class="chip" type="button" data-v="right" aria-pressed="false">Right</button><button class="chip" type="button" data-v="wrong" aria-pressed="false">Wrong</button><button class="chip" type="button" data-v="partly" aria-pressed="false">Partly</button></div><textarea class="note" data-note="verdict" placeholder="Correct me — what's actually true"></textarea></section></article><article class="card" data-cid="S6" data-done="0" data-export='{"group": "setups", "confidence": "measured", "statement_id": "S6"}'><header><span class="idx">06/40</span><span style="font-family:'IBM Plex Serif',Georgia,serif;font-size:17px;font-weight:600;flex:1 1 100%;line-height:1.35">Order block is a setup family you rate highly &mdash; 9 of 12 tagged cards graded S &mdash; that the engine currently has no detector for at all: a coverage hole, not a weak signal.</span><span class="tags"><span class="tag">measured</span><span class="done-dot"></span></span></header><div class="q" style="border-top:0;padding-bottom:0"><p class="hint" style="margin:0 0 8px"><b style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)">Source</b></p><div style="border-left:3px solid var(--accent);padding:8px 0 8px 12px;font-size:13.5px;color:var(--ink-2)"><code>research/MORNING_REPORT.md</code> &sect;3 HINTS. n=12, thin &mdash; flagged as a hint in its own source.</div></div><section class="q" data-q="verdict" data-multi="0" data-required="1"><h3>Right, wrong, or partly?</h3><p class="hint">Tap one, then correct AUGUR below &mdash; the comment is the point, not the tap.</p><div class="chips"><button class="chip" type="button" data-v="right" aria-pressed="false">Right</button><button class="chip" type="button" data-v="wrong" aria-pressed="false">Wrong</button><button class="chip" type="button" data-v="partly" aria-pressed="false">Partly</button></div><textarea class="note" data-note="verdict" placeholder="Correct me — what's actually true"></textarea></section></article><p class="eyebrow" style="margin:26px 0 10px">Levels</p><article class="card" data-cid="L1" data-done="0" data-export='{"group": "levels", "confidence": "settled", "statement_id": "L1"}'><header><span class="idx">07/40</span><span style="font-family:'IBM Plex Serif',Georgia,serif;font-size:17px;font-weight:600;flex:1 1 100%;line-height:1.35">The six levels you break, retest and target are PDH, PDL, PMH, PML, ORH, ORL &mdash; the opening range counts, HOD and LOD do not.</span><span class="tags"><span class="tag">settled</span><span class="done-dot"></span></span></header><div class="q" style="border-top:0;padding-bottom:0"><p class="hint" style="margin:0 0 8px"><b style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)">Source</b></p><div style="border-left:3px solid var(--accent);padding:8px 0 8px 12px;font-size:13.5px;color:var(--ink-2)">&ldquo;the level confusion was probably me, the 6 levels have always been correct.&rdquo; &mdash; Austin, 2026-08-29 (superseding an earlier answer the same day that named HOD/LOD instead).</div></div><section class="q" data-q="verdict" data-multi="0" data-required="1"><h3>Right, wrong, or partly?</h3><p class="hint">Tap one, then correct AUGUR below &mdash; the comment is the point, not the tap.</p><div class="chips"><button class="chip" type="button" data-v="right" aria-pressed="false">Right</button><button class="chip" type="button" data-v="wrong" aria-pressed="false">Wrong</button><button class="chip" type="button" data-v="partly" aria-pressed="false">Partly</button></div><textarea class="note" data-note="verdict" placeholder="Correct me — what's actually true"></textarea></section></article><article class="card" data-cid="L2" data-done="0" data-export='{"group": "levels", "confidence": "settled", "statement_id": "L2"}'><header><span class="idx">08/40</span><span style="font-family:'IBM Plex Serif',Georgia,serif;font-size:17px;font-weight:600;flex:1 1 100%;line-height:1.35">Pivot-structure levels can be drawn on a chart for context, but they never gate an entry, a stop, or a target.</span><span class="tags"><span class="tag">settled</span><span class="done-dot"></span></span></header><div class="q" style="border-top:0;padding-bottom:0"><p class="hint" style="margin:0 0 8px"><b style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)">Source</b></p><div style="border-left:3px solid var(--accent);padding:8px 0 8px 12px;font-size:13.5px;color:var(--ink-2)">&ldquo;only the 6 levels, but you can still visualize those pivots.&rdquo; &mdash; Austin, 2026-08-29.</div></div><section class="q" data-q="verdict" data-multi="0" data-required="1"><h3>Right, wrong, or partly?</h3><p class="hint">Tap one, then correct AUGUR below &mdash; the comment is the point, not the tap.</p><div class="chips"><button class="chip" type="button" data-v="right" aria-pressed="false">Right</button><button class="chip" type="button" data-v="wrong" aria-pressed="false">Wrong</button><button class="chip" type="button" data-v="partly" aria-pressed="false">Partly</button></div><textarea class="note" data-note="verdict" placeholder="Correct me — what's actually true"></textarea></section></article><article class="card" data-cid="L3" data-done="0" data-export='{"group": "levels", "confidence": "settled", "statement_id": "L3"}'><header><span class="idx">09/40</span><span style="font-family:'IBM Plex Serif',Georgia,serif;font-size:17px;font-weight:600;flex:1 1 100%;line-height:1.35">PDH and PDL are good levels to trade, full stop &mdash; even though a measured backtest found avoiding them adds real edge, you ruled that a flag to watch, not a rule to ship.</span><span class="tags"><span class="tag">settled</span><span class="done-dot"></span></span></header><div class="q" style="border-top:0;padding-bottom:0"><p class="hint" style="margin:0 0 8px"><b style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)">Source</b></p><div style="border-left:3px solid var(--accent);padding:8px 0 8px 12px;font-size:13.5px;color:var(--ink-2)">&ldquo;PDHPDL are good levels.&rdquo; &mdash; Austin, 2026-09-03 evening (<code>AUGUR.md</code>, &ldquo;Rulings 2026-09-03, evening&rdquo;).</div></div><section class="q" data-q="verdict" data-multi="0" data-required="1"><h3>Right, wrong, or partly?</h3><p class="hint">Tap one, then correct AUGUR below &mdash; the comment is the point, not the tap.</p><div class="chips"><button class="chip" type="button" data-v="right" aria-pressed="false">Right</button><button class="chip" type="button" data-v="wrong" aria-pressed="false">Wrong</button><button class="chip" type="button" data-v="partly" aria-pressed="false">Partly</button></div><textarea class="note" data-note="verdict" placeholder="Correct me — what's actually true"></textarea></section></article><article class="card" data-cid="L4" data-done="0" data-export='{"group": "levels", "confidence": "settled", "statement_id": "L4"}'><header><span class="idx">10/40</span><span style="font-family:'IBM Plex Serif',Georgia,serif;font-size:17px;font-weight:600;flex:1 1 100%;line-height:1.35">There is no higher-timeframe bias rule in your system today &mdash; you've said twice you'd need to be told what one even means, so nothing gets to veto a trade on &ldquo;the higher timeframe disagrees.&rdquo;</span><span class="tags"><span class="tag">settled</span><span class="done-dot"></span></span></header><div class="q" style="border-top:0;padding-bottom:0"><p class="hint" style="margin:0 0 8px"><b style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)">Source</b></p><div style="border-left:3px solid var(--accent);padding:8px 0 8px 12px;font-size:13.5px;color:var(--ink-2)">&ldquo;we dont have any higher timeframe bias yet youll need to tell me what that is then.&rdquo; &mdash; Austin, ballot batch02 c6, 2026-08-27.</div></div><section class="q" data-q="verdict" data-multi="0" data-required="1"><h3>Right, wrong, or partly?</h3><p class="hint">Tap one, then correct AUGUR below &mdash; the comment is the point, not the tap.</p><div class="chips"><button class="chip" type="button" data-v="right" aria-pressed="false">Right</button><button class="chip" type="button" data-v="wrong" aria-pressed="false">Wrong</button><button class="chip" type="button" data-v="partly" aria-pressed="false">Partly</button></div><textarea class="note" data-note="verdict" placeholder="Correct me — what's actually true"></textarea></section></article><p class="eyebrow" style="margin:26px 0 10px">Entry</p><article class="card" data-cid="EN1" data-done="0" data-export='{"group": "entry", "confidence": "settled", "statement_id": "EN1"}'><header><span class="idx">11/40</span><span style="font-family:'IBM Plex Serif',Georgia,serif;font-size:17px;font-weight:600;flex:1 1 100%;line-height:1.35">You enter as the candle is forming, not waiting for its close &mdash; especially near HOD/LOD, so you don't pay a bad price.</span><span class="tags"><span class="tag">settled</span><span class="done-dot"></span></span></header><div class="q" style="border-top:0;padding-bottom:0"><p class="hint" style="margin:0 0 8px"><b style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)">Source</b></p><div style="border-left:3px solid var(--accent);padding:8px 0 8px 12px;font-size:13.5px;color:var(--ink-2)">&ldquo;as candle forming not lod/HOD&rdquo; recurs across the mark corpus (14 of 58 graded note fields, per <code>OMEN.md:124</code>); most recently &ldquo;candle close for most, some as candle forming so i dont get a bad fill at high of day&rdquo; &mdash; Austin, 2026-08-30. Restated 20+ times.</div></div><section class="q" data-q="verdict" data-multi="0" data-required="1"><h3>Right, wrong, or partly?</h3><p class="hint">Tap one, then correct AUGUR below &mdash; the comment is the point, not the tap.</p><div class="chips"><button class="chip" type="button" data-v="right" aria-pressed="false">Right</button><button class="chip" type="button" data-v="wrong" aria-pressed="false">Wrong</button><button class="chip" type="button" data-v="partly" aria-pressed="false">Partly</button></div><textarea class="note" data-note="verdict" placeholder="Correct me — what's actually true"></textarea></section></article><article class="card" data-cid="EN2" data-done="0" data-export='{"group": "entry", "confidence": "settled", "statement_id": "EN2"}'><header><span class="idx">12/40</span><span style="font-family:'IBM Plex Serif',Georgia,serif;font-size:17px;font-weight:600;flex:1 1 100%;line-height:1.35">That forming-candle entry is not a separate rule &mdash; it belongs to ON WATCH, the state where the engine watches a level mid-bar instead of waiting for the close.</span><span class="tags"><span class="tag">settled</span><span class="done-dot"></span></span></header><div class="q" style="border-top:0;padding-bottom:0"><p class="hint" style="margin:0 0 8px"><b style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)">Source</b></p><div style="border-left:3px solid var(--accent);padding:8px 0 8px 12px;font-size:13.5px;color:var(--ink-2)">&ldquo;it should exist already its called ON WATCH... it had to do with on watch and mid candle entries.&rdquo; &mdash; Austin, 2026-08-28/30.</div></div><section class="q" data-q="verdict" data-multi="0" data-required="1"><h3>Right, wrong, or partly?</h3><p class="hint">Tap one, then correct AUGUR below &mdash; the comment is the point, not the tap.</p><div class="chips"><button class="chip" type="button" data-v="right" aria-pressed="false">Right</button><button class="chip" type="button" data-v="wrong" aria-pressed="false">Wrong</button><button class="chip" type="button" data-v="partly" aria-pressed="false">Partly</button></div><textarea class="note" data-note="verdict" placeholder="Correct me — what's actually true"></textarea></section></article><article class="card" data-cid="EN3" data-done="0" data-export='{"group": "entry", "confidence": "settled", "statement_id": "EN3"}'><header><span class="idx">13/40</span><span style="font-family:'IBM Plex Serif',Georgia,serif;font-size:17px;font-weight:600;flex:1 1 100%;line-height:1.35">Most entries are fine waiting for the close &mdash; the early-entry exception exists specifically for setups running toward the high or low of day, where waiting would wreck the risk-reward.</span><span class="tags"><span class="tag">settled</span><span class="done-dot"></span></span></header><div class="q" style="border-top:0;padding-bottom:0"><p class="hint" style="margin:0 0 8px"><b style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)">Source</b></p><div style="border-left:3px solid var(--accent);padding:8px 0 8px 12px;font-size:13.5px;color:var(--ink-2)">&ldquo;most entries work at candle close, but some that are close to hod, you want to get a good fill and not one that will have bad RR.&rdquo; &mdash; Austin, ballot batch02 b3, 2026-08-27.</div></div><section class="q" data-q="verdict" data-multi="0" data-required="1"><h3>Right, wrong, or partly?</h3><p class="hint">Tap one, then correct AUGUR below &mdash; the comment is the point, not the tap.</p><div class="chips"><button class="chip" type="button" data-v="right" aria-pressed="false">Right</button><button class="chip" type="button" data-v="wrong" aria-pressed="false">Wrong</button><button class="chip" type="button" data-v="partly" aria-pressed="false">Partly</button></div><textarea class="note" data-note="verdict" placeholder="Correct me — what's actually true"></textarea></section></article><article class="card" data-cid="EN4" data-done="0" data-export='{"group": "entry", "confidence": "settled", "statement_id": "EN4"}'><header><span class="idx">14/40</span><span style="font-family:'IBM Plex Serif',Georgia,serif;font-size:17px;font-weight:600;flex:1 1 100%;line-height:1.35">Earlier in the day is better, and you'd rather end the day early &mdash; the earliest S setup usually has the best odds, though you've named one exception: a later setup with a materially better target can beat an earlier one.</span><span class="tags"><span class="tag">settled</span><span class="done-dot"></span></span></header><div class="q" style="border-top:0;padding-bottom:0"><p class="hint" style="margin:0 0 8px"><b style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)">Source</b></p><div style="border-left:3px solid var(--accent);padding:8px 0 8px 12px;font-size:13.5px;color:var(--ink-2)">&ldquo;a golden rule the earlier in the day you trade, the more common it is for S trades and higher probability. you want to end the day early.&rdquo; &mdash; Austin, 2026-08-28; exception from &ldquo;sometimes we dont want to take the earliest s because...&rdquo; &mdash; Austin, 2026-08-29.</div></div><section class="q" data-q="verdict" data-multi="0" data-required="1"><h3>Right, wrong, or partly?</h3><p class="hint">Tap one, then correct AUGUR below &mdash; the comment is the point, not the tap.</p><div class="chips"><button class="chip" type="button" data-v="right" aria-pressed="false">Right</button><button class="chip" type="button" data-v="wrong" aria-pressed="false">Wrong</button><button class="chip" type="button" data-v="partly" aria-pressed="false">Partly</button></div><textarea class="note" data-note="verdict" placeholder="Correct me — what's actually true"></textarea></section></article><p class="eyebrow" style="margin:26px 0 10px">Stop</p><article class="card" data-cid="ST1" data-done="0" data-export='{"group": "stop", "confidence": "settled", "statement_id": "ST1"}'><header><span class="idx">15/40</span><span style="font-family:'IBM Plex Serif',Georgia,serif;font-size:17px;font-weight:600;flex:1 1 100%;line-height:1.35">A stop triggers on the candle's CLOSE beyond the level &mdash; a wick through it, alone, does not take you out.</span><span class="tags"><span class="tag">settled</span><span class="done-dot"></span></span></header><div class="q" style="border-top:0;padding-bottom:0"><p class="hint" style="margin:0 0 8px"><b style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)">Source</b></p><div style="border-left:3px solid var(--accent);padding:8px 0 8px 12px;font-size:13.5px;color:var(--ink-2)">rule ballot batch01 q1 &mdash; Austin, 2026-08-23; reaffirmed &ldquo;stop losses are candle close you're right&rdquo; &mdash; Austin, 2026-08-30. Restated at least thirteen dated times, per the rulebook's own count.</div></div><section class="q" data-q="verdict" data-multi="0" data-required="1"><h3>Right, wrong, or partly?</h3><p class="hint">Tap one, then correct AUGUR below &mdash; the comment is the point, not the tap.</p><div class="chips"><button class="chip" type="button" data-v="right" aria-pressed="false">Right</button><button class="chip" type="button" data-v="wrong" aria-pressed="false">Wrong</button><button class="chip" type="button" data-v="partly" aria-pressed="false">Partly</button></div><textarea class="note" data-note="verdict" placeholder="Correct me — what's actually true"></textarea></section></article><article class="card" data-cid="ST2" data-done="0" data-export='{"group": "stop", "confidence": "settled", "statement_id": "ST2"}'><header><span class="idx">16/40</span><span style="font-family:'IBM Plex Serif',Georgia,serif;font-size:17px;font-weight:600;flex:1 1 100%;line-height:1.35">The hard floor on any one loss is &minus;1R &mdash; the earlier &minus;1.25R disaster-stop clamp has been dropped for a simpler number.</span><span class="tags"><span class="tag">settled</span><span class="done-dot"></span></span></header><div class="q" style="border-top:0;padding-bottom:0"><p class="hint" style="margin:0 0 8px"><b style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)">Source</b></p><div style="border-left:3px solid var(--accent);padding:8px 0 8px 12px;font-size:13.5px;color:var(--ink-2)">&ldquo;1R is simpler so why not go with that? no stocks should be running to &minus;10R&rdquo; &mdash; Austin, 2026-09-03 evening (<code>AUGUR.md</code>, &ldquo;Rulings 2026-09-03, evening&rdquo;).</div></div><section class="q" data-q="verdict" data-multi="0" data-required="1"><h3>Right, wrong, or partly?</h3><p class="hint">Tap one, then correct AUGUR below &mdash; the comment is the point, not the tap.</p><div class="chips"><button class="chip" type="button" data-v="right" aria-pressed="false">Right</button><button class="chip" type="button" data-v="wrong" aria-pressed="false">Wrong</button><button class="chip" type="button" data-v="partly" aria-pressed="false">Partly</button></div><textarea class="note" data-note="verdict" placeholder="Correct me — what's actually true"></textarea></section></article><article class="card" data-cid="ST3" data-done="0" data-export='{"group": "stop", "confidence": "settled", "statement_id": "ST3"}'><header><span class="idx">17/40</span><span style="font-family:'IBM Plex Serif',Georgia,serif;font-size:17px;font-weight:600;flex:1 1 100%;line-height:1.35">A break-even stop is close-based too, not wick-based, and because it fills at that close it can book a small loss instead of landing at exactly zero.</span><span class="tags"><span class="tag">settled</span><span class="done-dot"></span></span></header><div class="q" style="border-top:0;padding-bottom:0"><p class="hint" style="margin:0 0 8px"><b style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)">Source</b></p><div style="border-left:3px solid var(--accent);padding:8px 0 8px 12px;font-size:13.5px;color:var(--ink-2)"><code>omen-rulebook.md</code>, &ldquo;Break-even slippage &mdash; same rule as the initial stop,&rdquo; 2026-08-28.</div></div><section class="q" data-q="verdict" data-multi="0" data-required="1"><h3>Right, wrong, or partly?</h3><p class="hint">Tap one, then correct AUGUR below &mdash; the comment is the point, not the tap.</p><div class="chips"><button class="chip" type="button" data-v="right" aria-pressed="false">Right</button><button class="chip" type="button" data-v="wrong" aria-pressed="false">Wrong</button><button class="chip" type="button" data-v="partly" aria-pressed="false">Partly</button></div><textarea class="note" data-note="verdict" placeholder="Correct me — what's actually true"></textarea></section></article><article class="card" data-cid="ST4" data-done="0" data-export='{"group": "stop", "confidence": "settled", "statement_id": "ST4"}'><header><span class="idx">18/40</span><span style="font-family:'IBM Plex Serif',Georgia,serif;font-size:17px;font-weight:600;flex:1 1 100%;line-height:1.35">The stop is picked per-trade from three structural candidates &mdash; the wick of the OCR, the candle you entered on, or the level that broke on a break-and-retest &mdash; whichever gives the best tradable risk-reward, with a disaster stop underneath.</span><span class="tags"><span class="tag">settled</span><span class="done-dot"></span></span></header><div class="q" style="border-top:0;padding-bottom:0"><p class="hint" style="margin:0 0 8px"><b style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)">Source</b></p><div style="border-left:3px solid var(--accent);padding:8px 0 8px 12px;font-size:13.5px;color:var(--ink-2)">&ldquo;stops go where they make sense... wick of OCR, candle entered on, break and retest of a level stop loss that level.&rdquo; &mdash; Austin, 2026-08-29.</div></div><section class="q" data-q="verdict" data-multi="0" data-required="1"><h3>Right, wrong, or partly?</h3><p class="hint">Tap one, then correct AUGUR below &mdash; the comment is the point, not the tap.</p><div class="chips"><button class="chip" type="button" data-v="right" aria-pressed="false">Right</button><button class="chip" type="button" data-v="wrong" aria-pressed="false">Wrong</button><button class="chip" type="button" data-v="partly" aria-pressed="false">Partly</button></div><textarea class="note" data-note="verdict" placeholder="Correct me — what's actually true"></textarea></section></article><article class="card" data-cid="ST5" data-done="0" data-export='{"group": "stop", "confidence": "inferred", "statement_id": "ST5"}'><header><span class="idx">19/40</span><span style="font-family:'IBM Plex Serif',Georgia,serif;font-size:17px;font-weight:600;flex:1 1 100%;line-height:1.35">AUGUR infers you don't have one fixed answer for wick-vs-level on a stop: your own marks name three different anchors on three different cards (a candle's body, its low, its wick), and you've called the tension genuinely unresolved.</span><span class="tags"><span class="tag warn">inferred</span><span class="done-dot"></span></span></header><div class="q" style="border-top:0;padding-bottom:0"><p class="hint" style="margin:0 0 8px"><b style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)">Source</b></p><div style="border-left:3px solid var(--accent);padding:8px 0 8px 12px;font-size:13.5px;color:var(--ink-2)">&ldquo;if its tight and you have to chose the wick or the level, choose the wick&rdquo; (AMZN 2026-01-14) vs. &ldquo;those 3 green candles even though i dont like bodies that wouldve been a better stop&rdquo; (NVDA 2024-09-03) vs. &ldquo;stop body of opening range&rdquo; (GOOGL 2024-10-15) &mdash; <code>research/g92_master_spec.md</code>, Contradictions &sect;5. n&asymp;6 cards. Never stated by you as one rule.</div></div><section class="q" data-q="verdict" data-multi="0" data-required="1"><h3>Right, wrong, or partly?</h3><p class="hint">Tap one, then correct AUGUR below &mdash; the comment is the point, not the tap.</p><div class="chips"><button class="chip" type="button" data-v="right" aria-pressed="false">Right</button><button class="chip" type="button" data-v="wrong" aria-pressed="false">Wrong</button><button class="chip" type="button" data-v="partly" aria-pressed="false">Partly</button></div><textarea class="note" data-note="verdict" placeholder="Correct me — what's actually true"></textarea></section></article><p class="eyebrow" style="margin:26px 0 10px">Target &amp; exits</p><article class="card" data-cid="EX1" data-done="0" data-export='{"group": "exits", "confidence": "settled", "statement_id": "EX1"}'><header><span class="idx">20/40</span><span style="font-family:'IBM Plex Serif',Georgia,serif;font-size:17px;font-weight:600;flex:1 1 100%;line-height:1.35">The target isn't a flat 2R &mdash; it's the next real structural level (a PDH/PMH/whole dollar), with 2R used as the fallback only when nothing else sits close.</span><span class="tags"><span class="tag">settled</span><span class="done-dot"></span></span></header><div class="q" style="border-top:0;padding-bottom:0"><p class="hint" style="margin:0 0 8px"><b style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)">Source</b></p><div style="border-left:3px solid var(--accent);padding:8px 0 8px 12px;font-size:13.5px;color:var(--ink-2)">&ldquo;its about sizing for the mean 2rr, so if there are no other levels to target... harder to trade.&rdquo; &mdash; Austin, ballot batch02 b4, 2026-08-27; ratified as &ldquo;the target is the next structural level, not 2x risk,&rdquo; 2026-08-28.</div></div><section class="q" data-q="verdict" data-multi="0" data-required="1"><h3>Right, wrong, or partly?</h3><p class="hint">Tap one, then correct AUGUR below &mdash; the comment is the point, not the tap.</p><div class="chips"><button class="chip" type="button" data-v="right" aria-pressed="false">Right</button><button class="chip" type="button" data-v="wrong" aria-pressed="false">Wrong</button><button class="chip" type="button" data-v="partly" aria-pressed="false">Partly</button></div><textarea class="note" data-note="verdict" placeholder="Correct me — what's actually true"></textarea></section></article><article class="card" data-cid="EX2" data-done="0" data-export='{"group": "exits", "confidence": "settled", "statement_id": "EX2"}'><header><span class="idx">21/40</span><span style="font-family:'IBM Plex Serif',Georgia,serif;font-size:17px;font-weight:600;flex:1 1 100%;line-height:1.35">Your stated scale-out ladder is 30% off at HOD (LOD on puts), 30% at 2R or the nearest of your six levels, 30% on a break of trend/structure, and a 10% runner trailed to break-even.</span><span class="tags"><span class="tag">settled</span><span class="done-dot"></span></span></header><div class="q" style="border-top:0;padding-bottom:0"><p class="hint" style="margin:0 0 8px"><b style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)">Source</b></p><div style="border-left:3px solid var(--accent);padding:8px 0 8px 12px;font-size:13.5px;color:var(--ink-2)">&ldquo;scalling 30 HOD, 30, 2r or nearest level, other 30 break of trend/structure/10 runner stop loss break even.&rdquo; &mdash; Austin, 2026-08-29. His stated numbers &mdash; not yet what the shipped code runs.</div></div><section class="q" data-q="verdict" data-multi="0" data-required="1"><h3>Right, wrong, or partly?</h3><p class="hint">Tap one, then correct AUGUR below &mdash; the comment is the point, not the tap.</p><div class="chips"><button class="chip" type="button" data-v="right" aria-pressed="false">Right</button><button class="chip" type="button" data-v="wrong" aria-pressed="false">Wrong</button><button class="chip" type="button" data-v="partly" aria-pressed="false">Partly</button></div><textarea class="note" data-note="verdict" placeholder="Correct me — what's actually true"></textarea></section></article><article class="card" data-cid="EX3" data-done="0" data-export='{"group": "exits", "confidence": "settled", "statement_id": "EX3"}'><header><span class="idx">22/40</span><span style="font-family:'IBM Plex Serif',Georgia,serif;font-size:17px;font-weight:600;flex:1 1 100%;line-height:1.35">One trade a day is the actual goal: you take the first S setup that shows up, and if it wins, you're done for the day.</span><span class="tags"><span class="tag">settled</span><span class="done-dot"></span></span></header><div class="q" style="border-top:0;padding-bottom:0"><p class="hint" style="margin:0 0 8px"><b style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)">Source</b></p><div style="border-left:3px solid var(--accent);padding:8px 0 8px 12px;font-size:13.5px;color:var(--ink-2)">&ldquo;we trade the s trade that comes up first, and if it wins, were done for the day.&rdquo; &mdash; Austin, 2026-08-29.</div></div><section class="q" data-q="verdict" data-multi="0" data-required="1"><h3>Right, wrong, or partly?</h3><p class="hint">Tap one, then correct AUGUR below &mdash; the comment is the point, not the tap.</p><div class="chips"><button class="chip" type="button" data-v="right" aria-pressed="false">Right</button><button class="chip" type="button" data-v="wrong" aria-pressed="false">Wrong</button><button class="chip" type="button" data-v="partly" aria-pressed="false">Partly</button></div><textarea class="note" data-note="verdict" placeholder="Correct me — what's actually true"></textarea></section></article><article class="card" data-cid="EX4" data-done="0" data-export='{"group": "exits", "confidence": "settled", "statement_id": "EX4"}'><header><span class="idx">23/40</span><span style="font-family:'IBM Plex Serif',Georgia,serif;font-size:17px;font-weight:600;flex:1 1 100%;line-height:1.35">The two-loss-halt question was left open on purpose, and the answer that came back: three losses ends the day, with a &minus;$2,000 floor &mdash; not the two-loss rule you first mentioned, once the money showed a trade taken after two losses still profits on average.</span><span class="tags"><span class="tag">settled</span><span class="done-dot"></span></span></header><div class="q" style="border-top:0;padding-bottom:0"><p class="hint" style="margin:0 0 8px"><b style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)">Source</b></p><div style="border-left:3px solid var(--accent);padding:8px 0 8px 12px;font-size:13.5px;color:var(--ink-2)">&ldquo;we dont know if 2 losers in a row is a stopping point, keep trading s trades until youve hit profit... 2 consecutive halts is bad, but overtrading is too, subagents will find the medium&rdquo; &mdash; Austin, 2026-08-29; resolved same day, <code>omen-rulebook.md</code> &ldquo;The day rule &mdash; settled.&rdquo;</div></div><section class="q" data-q="verdict" data-multi="0" data-required="1"><h3>Right, wrong, or partly?</h3><p class="hint">Tap one, then correct AUGUR below &mdash; the comment is the point, not the tap.</p><div class="chips"><button class="chip" type="button" data-v="right" aria-pressed="false">Right</button><button class="chip" type="button" data-v="wrong" aria-pressed="false">Wrong</button><button class="chip" type="button" data-v="partly" aria-pressed="false">Partly</button></div><textarea class="note" data-note="verdict" placeholder="Correct me — what's actually true"></textarea></section></article><article class="card" data-cid="EX5" data-done="0" data-export='{"group": "exits", "confidence": "settled", "statement_id": "EX5"}'><header><span class="idx">24/40</span><span style="font-family:'IBM Plex Serif',Georgia,serif;font-size:17px;font-weight:600;flex:1 1 100%;line-height:1.35">Green weeks are a target you watch &mdash; 87% &mdash; not a hard constraint the whole strategy has to bend around, since chasing 100% costs most of the income.</span><span class="tags"><span class="tag">settled</span><span class="done-dot"></span></span></header><div class="q" style="border-top:0;padding-bottom:0"><p class="hint" style="margin:0 0 8px"><b style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)">Source</b></p><div style="border-left:3px solid var(--accent);padding:8px 0 8px 12px;font-size:13.5px;color:var(--ink-2)">&ldquo;87% is the target, keep the money.&rdquo; &mdash; Austin, 2026-08-29.</div></div><section class="q" data-q="verdict" data-multi="0" data-required="1"><h3>Right, wrong, or partly?</h3><p class="hint">Tap one, then correct AUGUR below &mdash; the comment is the point, not the tap.</p><div class="chips"><button class="chip" type="button" data-v="right" aria-pressed="false">Right</button><button class="chip" type="button" data-v="wrong" aria-pressed="false">Wrong</button><button class="chip" type="button" data-v="partly" aria-pressed="false">Partly</button></div><textarea class="note" data-note="verdict" placeholder="Correct me — what's actually true"></textarea></section></article><p class="eyebrow" style="margin:26px 0 10px">Grading</p><article class="card" data-cid="GR1" data-done="0" data-export='{"group": "grading", "confidence": "settled", "statement_id": "GR1"}'><header><span class="idx">25/40</span><span style="font-family:'IBM Plex Serif',Georgia,serif;font-size:17px;font-weight:600;flex:1 1 100%;line-height:1.35">Your grade is arithmetic, not a feel call: S is clean, A is one tripped downgrade, C is two &mdash; S minus downgrades plus a confluence bonus, floored at C once three or more variables trip.</span><span class="tags"><span class="tag">settled</span><span class="done-dot"></span></span></header><div class="q" style="border-top:0;padding-bottom:0"><p class="hint" style="margin:0 0 8px"><b style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)">Source</b></p><div style="border-left:3px solid var(--accent);padding:8px 0 8px 12px;font-size:13.5px;color:var(--ink-2)">&ldquo;S = clean. A = one variable downgrade. C = two variable downgrade.&rdquo; &mdash; Austin, 2026-08-23; floor rule from Q&amp;A batch 04, 2026-08-28.</div></div><section class="q" data-q="verdict" data-multi="0" data-required="1"><h3>Right, wrong, or partly?</h3><p class="hint">Tap one, then correct AUGUR below &mdash; the comment is the point, not the tap.</p><div class="chips"><button class="chip" type="button" data-v="right" aria-pressed="false">Right</button><button class="chip" type="button" data-v="wrong" aria-pressed="false">Wrong</button><button class="chip" type="button" data-v="partly" aria-pressed="false">Partly</button></div><textarea class="note" data-note="verdict" placeholder="Correct me — what's actually true"></textarea></section></article><article class="card" data-cid="GR2" data-done="0" data-export='{"group": "grading", "confidence": "settled", "statement_id": "GR2"}'><header><span class="idx">26/40</span><span style="font-family:'IBM Plex Serif',Georgia,serif;font-size:17px;font-weight:600;flex:1 1 100%;line-height:1.35">Confluence &mdash; BR+OCR together, or price on the right side of most of the levels you watch &mdash; is worth one upgrade point, capped: the two upgrade paths don't stack, and you've called confluence rare, under 1 in 5 setups.</span><span class="tags"><span class="tag">settled</span><span class="done-dot"></span></span></header><div class="q" style="border-top:0;padding-bottom:0"><p class="hint" style="margin:0 0 8px"><b style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)">Source</b></p><div style="border-left:3px solid var(--accent);padding:8px 0 8px 12px;font-size:13.5px;color:var(--ink-2)">ballot batch02 b5, 2026-08-27; &ldquo;rare, under 1 in 5&rdquo; &mdash; Austin, 2026-08-24/28.</div></div><section class="q" data-q="verdict" data-multi="0" data-required="1"><h3>Right, wrong, or partly?</h3><p class="hint">Tap one, then correct AUGUR below &mdash; the comment is the point, not the tap.</p><div class="chips"><button class="chip" type="button" data-v="right" aria-pressed="false">Right</button><button class="chip" type="button" data-v="wrong" aria-pressed="false">Wrong</button><button class="chip" type="button" data-v="partly" aria-pressed="false">Partly</button></div><textarea class="note" data-note="verdict" placeholder="Correct me — what's actually true"></textarea></section></article><article class="card" data-cid="GR3" data-done="0" data-export='{"group": "grading", "confidence": "settled", "statement_id": "GR3"}'><header><span class="idx">27/40</span><span style="font-family:'IBM Plex Serif',Georgia,serif;font-size:17px;font-weight:600;flex:1 1 100%;line-height:1.35">Nine variables can cost a grade: no displacement, a stale retest, a level not being respected, an exhausted stock, disrespected counter-trend candles, a break that got rejected, no retest at all, an OCR not honored, and &mdash; added later &mdash; an oversized red-body candle sitting inside recent chop.</span><span class="tags"><span class="tag">settled</span><span class="done-dot"></span></span></header><div class="q" style="border-top:0;padding-bottom:0"><p class="hint" style="margin:0 0 8px"><b style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)">Source</b></p><div style="border-left:3px solid var(--accent);padding:8px 0 8px 12px;font-size:13.5px;color:var(--ink-2)"><code>omen-rulebook.md</code>, &ldquo;The downgrade list &mdash; settled 2026-08-23&rdquo; plus ballot batch02 b6.</div></div><section class="q" data-q="verdict" data-multi="0" data-required="1"><h3>Right, wrong, or partly?</h3><p class="hint">Tap one, then correct AUGUR below &mdash; the comment is the point, not the tap.</p><div class="chips"><button class="chip" type="button" data-v="right" aria-pressed="false">Right</button><button class="chip" type="button" data-v="wrong" aria-pressed="false">Wrong</button><button class="chip" type="button" data-v="partly" aria-pressed="false">Partly</button></div><textarea class="note" data-note="verdict" placeholder="Correct me — what's actually true"></textarea></section></article><article class="card" data-cid="GR4" data-done="0" data-export='{"group": "grading", "confidence": "measured", "statement_id": "GR4"}'><header><span class="idx">28/40</span><span style="font-family:'IBM Plex Serif',Georgia,serif;font-size:17px;font-weight:600;flex:1 1 100%;line-height:1.35">AUGUR reads chop &mdash; closing at, or chopping around, a level instead of reacting off it &mdash; as your sharpest tell between an S day and a refusal: it shows up in 2% of your S-day notes against 20% of your non-S notes, a 10x gap.</span><span class="tags"><span class="tag">measured</span><span class="done-dot"></span></span></header><div class="q" style="border-top:0;padding-bottom:0"><p class="hint" style="margin:0 0 8px"><b style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)">Source</b></p><div style="border-left:3px solid var(--accent);padding:8px 0 8px 12px;font-size:13.5px;color:var(--ink-2)"><code>research/MORNING_REPORT.md</code> &sect;3, &ldquo;Chop is the discriminator&rdquo; (n=295 S-day notes, 453 non-S notes). From your own marks &mdash; not a sentence you've said this way.</div></div><section class="q" data-q="verdict" data-multi="0" data-required="1"><h3>Right, wrong, or partly?</h3><p class="hint">Tap one, then correct AUGUR below &mdash; the comment is the point, not the tap.</p><div class="chips"><button class="chip" type="button" data-v="right" aria-pressed="false">Right</button><button class="chip" type="button" data-v="wrong" aria-pressed="false">Wrong</button><button class="chip" type="button" data-v="partly" aria-pressed="false">Partly</button></div><textarea class="note" data-note="verdict" placeholder="Correct me — what's actually true"></textarea></section></article><article class="card" data-cid="GR5" data-done="0" data-export='{"group": "grading", "confidence": "settled", "statement_id": "GR5"}'><header><span class="idx">29/40</span><span style="font-family:'IBM Plex Serif',Georgia,serif;font-size:17px;font-weight:600;flex:1 1 100%;line-height:1.35">C is graded and logged for the record, but never surfaced as an alert and never traded &mdash; only S ever gets traded.</span><span class="tags"><span class="tag">settled</span><span class="done-dot"></span></span></header><div class="q" style="border-top:0;padding-bottom:0"><p class="hint" style="margin:0 0 8px"><b style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)">Source</b></p><div style="border-left:3px solid var(--accent);padding:8px 0 8px 12px;font-size:13.5px;color:var(--ink-2)">&ldquo;i dont need physical alerts, its just to collect data. the priority is always S.&rdquo; &mdash; Austin, Q&amp;A batch 04, 2026-08-28.</div></div><section class="q" data-q="verdict" data-multi="0" data-required="1"><h3>Right, wrong, or partly?</h3><p class="hint">Tap one, then correct AUGUR below &mdash; the comment is the point, not the tap.</p><div class="chips"><button class="chip" type="button" data-v="right" aria-pressed="false">Right</button><button class="chip" type="button" data-v="wrong" aria-pressed="false">Wrong</button><button class="chip" type="button" data-v="partly" aria-pressed="false">Partly</button></div><textarea class="note" data-note="verdict" placeholder="Correct me — what's actually true"></textarea></section></article><article class="card" data-cid="GR6" data-done="0" data-export='{"group": "grading", "confidence": "inferred", "statement_id": "GR6"}'><header><span class="idx">30/40</span><span style="font-family:'IBM Plex Serif',Georgia,serif;font-size:17px;font-weight:600;flex:1 1 100%;line-height:1.35">AUGUR infers displacement is not a hard requirement for S but one of several substitutable signals &mdash; displacement, an OCR holding, a wick reclaim of the level, strong price action, or being early with an HTF read &mdash; because you have both demanded it flatly and graded S trades that had none.</span><span class="tags"><span class="tag warn">inferred</span><span class="done-dot"></span></span></header><div class="q" style="border-top:0;padding-bottom:0"><p class="hint" style="margin:0 0 8px"><b style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)">Source</b></p><div style="border-left:3px solid var(--accent);padding:8px 0 8px 12px;font-size:13.5px;color:var(--ink-2)">&ldquo;just always need that displacement for S trades&rdquo; (rule ballot, rule_03) against &ldquo;9:46 as candle forming above ORH, no displacement but 9:30 ocr wick confluence with pmh&rdquo; (NVDA 2025-06-03, graded S) and two more S grades carrying no displacement &mdash; <code>research/g92_master_spec.md</code>, Contradictions &sect;2. n&asymp;20 cards across three homework sections. You have never been asked whether displacement should be one variable among several.</div></div><section class="q" data-q="verdict" data-multi="0" data-required="1"><h3>Right, wrong, or partly?</h3><p class="hint">Tap one, then correct AUGUR below &mdash; the comment is the point, not the tap.</p><div class="chips"><button class="chip" type="button" data-v="right" aria-pressed="false">Right</button><button class="chip" type="button" data-v="wrong" aria-pressed="false">Wrong</button><button class="chip" type="button" data-v="partly" aria-pressed="false">Partly</button></div><textarea class="note" data-note="verdict" placeholder="Correct me — what's actually true"></textarea></section></article><p class="eyebrow" style="margin:26px 0 10px">Instrument &amp; sizing</p><article class="card" data-cid="IN1" data-done="0" data-export='{"group": "instrument", "confidence": "settled", "statement_id": "IN1"}'><header><span class="idx">31/40</span><span style="font-family:'IBM Plex Serif',Georgia,serif;font-size:17px;font-weight:600;flex:1 1 100%;line-height:1.35">All three instruments &mdash; options, shares through a prop firm, and futures &mdash; stay open; nothing has been narrowed to just one.</span><span class="tags"><span class="tag">settled</span><span class="done-dot"></span></span></header><div class="q" style="border-top:0;padding-bottom:0"><p class="hint" style="margin:0 0 8px"><b style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)">Source</b></p><div style="border-left:3px solid var(--accent);padding:8px 0 8px 12px;font-size:13.5px;color:var(--ink-2)">&ldquo;Option one is fine... Index and futures is a good option too, so leave options open.&rdquo; &mdash; Austin, 2026-08-30.</div></div><section class="q" data-q="verdict" data-multi="0" data-required="1"><h3>Right, wrong, or partly?</h3><p class="hint">Tap one, then correct AUGUR below &mdash; the comment is the point, not the tap.</p><div class="chips"><button class="chip" type="button" data-v="right" aria-pressed="false">Right</button><button class="chip" type="button" data-v="wrong" aria-pressed="false">Wrong</button><button class="chip" type="button" data-v="partly" aria-pressed="false">Partly</button></div><textarea class="note" data-note="verdict" placeholder="Correct me — what's actually true"></textarea></section></article><article class="card" data-cid="IN2" data-done="0" data-export='{"group": "instrument", "confidence": "settled", "statement_id": "IN2"}'><header><span class="idx">32/40</span><span style="font-family:'IBM Plex Serif',Georgia,serif;font-size:17px;font-weight:600;flex:1 1 100%;line-height:1.35">Position size is meant to come from whichever prop firm's own drawdown rules you're trading under, not from a dollar figure you're personally comfortable with.</span><span class="tags"><span class="tag">settled</span><span class="done-dot"></span></span></header><div class="q" style="border-top:0;padding-bottom:0"><p class="hint" style="margin:0 0 8px"><b style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)">Source</b></p><div style="border-left:3px solid var(--accent);padding:8px 0 8px 12px;font-size:13.5px;color:var(--ink-2)">&ldquo;the way i would decide risk per trade now is based on the prop firm im going to be using, read its rules and what makes sense for my strategy and profit goals.&rdquo; &mdash; Austin, 2026-08-29.</div></div><section class="q" data-q="verdict" data-multi="0" data-required="1"><h3>Right, wrong, or partly?</h3><p class="hint">Tap one, then correct AUGUR below &mdash; the comment is the point, not the tap.</p><div class="chips"><button class="chip" type="button" data-v="right" aria-pressed="false">Right</button><button class="chip" type="button" data-v="wrong" aria-pressed="false">Wrong</button><button class="chip" type="button" data-v="partly" aria-pressed="false">Partly</button></div><textarea class="note" data-note="verdict" placeholder="Correct me — what's actually true"></textarea></section></article><article class="card" data-cid="IN3" data-done="0" data-export='{"group": "instrument", "confidence": "settled", "statement_id": "IN3"}'><header><span class="idx">33/40</span><span style="font-family:'IBM Plex Serif',Georgia,serif;font-size:17px;font-weight:600;flex:1 1 100%;line-height:1.35">The near-term prop target is Vanquish Trader's $50k Advanced Options plan: a 10% profit target, a 5% end-of-day trailing drawdown, a 4-day minimum, and a 100% profit split once funded &mdash; the only fee-based evaluation found that permits options, and the engine is meant to fire separately for whichever firm you're under.</span><span class="tags"><span class="tag">settled</span><span class="done-dot"></span></span></header><div class="q" style="border-top:0;padding-bottom:0"><p class="hint" style="margin:0 0 8px"><b style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)">Source</b></p><div style="border-left:3px solid var(--accent);padding:8px 0 8px 12px;font-size:13.5px;color:var(--ink-2)"><code>AUGUR.md</code>, &ldquo;Decided 2026-09-03&rdquo; and its Research section (verified against Vanquish's own pages; underlyings and same-day expiry unconfirmed); &ldquo;the trading bot would need to have its separate firing that works with the prop firm stocks&rdquo; &mdash; Austin, 2026-09-03.</div></div><section class="q" data-q="verdict" data-multi="0" data-required="1"><h3>Right, wrong, or partly?</h3><p class="hint">Tap one, then correct AUGUR below &mdash; the comment is the point, not the tap.</p><div class="chips"><button class="chip" type="button" data-v="right" aria-pressed="false">Right</button><button class="chip" type="button" data-v="wrong" aria-pressed="false">Wrong</button><button class="chip" type="button" data-v="partly" aria-pressed="false">Partly</button></div><textarea class="note" data-note="verdict" placeholder="Correct me — what's actually true"></textarea></section></article><article class="card" data-cid="IN4" data-done="0" data-export='{"group": "instrument", "confidence": "measured", "statement_id": "IN4"}'><header><span class="idx">34/40</span><span style="font-family:'IBM Plex Serif',Georgia,serif;font-size:17px;font-weight:600;flex:1 1 100%;line-height:1.35">AUGUR infers a $1,000 account cannot actually run this in options: on real option prices, one contract is the whole sizing grid, and a typical stop cannot be bought at 1% of $1,000 &mdash; the arithmetic needs roughly $12,000 before one contract matches what a prop evaluation would allow you to risk.</span><span class="tags"><span class="tag">measured</span><span class="done-dot"></span></span></header><div class="q" style="border-top:0;padding-bottom:0"><p class="hint" style="margin:0 0 8px"><b style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)">Source</b></p><div style="border-left:3px solid var(--accent);padding:8px 0 8px 12px;font-size:13.5px;color:var(--ink-2)"><code>research/MORNING_REPORT.md</code> &sect;5, &ldquo;The $1,000 question&rdquo; (priced against 276 real Alpaca 0DTE ATM option prints). Derived from real option prices &mdash; not something you've stated.</div></div><section class="q" data-q="verdict" data-multi="0" data-required="1"><h3>Right, wrong, or partly?</h3><p class="hint">Tap one, then correct AUGUR below &mdash; the comment is the point, not the tap.</p><div class="chips"><button class="chip" type="button" data-v="right" aria-pressed="false">Right</button><button class="chip" type="button" data-v="wrong" aria-pressed="false">Wrong</button><button class="chip" type="button" data-v="partly" aria-pressed="false">Partly</button></div><textarea class="note" data-note="verdict" placeholder="Correct me — what's actually true"></textarea></section></article><p class="eyebrow" style="margin:26px 0 10px">What he has refused</p><article class="card" data-cid="RF1" data-done="0" data-export='{"group": "refused", "confidence": "settled", "statement_id": "RF1"}'><header><span class="idx">35/40</span><span style="font-family:'IBM Plex Serif',Georgia,serif;font-size:17px;font-weight:600;flex:1 1 100%;line-height:1.35">The legacy A+/A/B/C/X engine grade ladder is dead &mdash; you've never used it and have said so more than once; only your own S/A/C/none ladder counts anywhere a number is reported.</span><span class="tags"><span class="tag">settled</span><span class="done-dot"></span></span></header><div class="q" style="border-top:0;padding-bottom:0"><p class="hint" style="margin:0 0 8px"><b style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)">Source</b></p><div style="border-left:3px solid var(--accent);padding:8px 0 8px 12px;font-size:13.5px;color:var(--ink-2)">&ldquo;a+ shouldnt exist. a+ and b shouldnt exist if they do.&rdquo; &mdash; Austin, 2026-08-28 (&ldquo;the fifth time of asking,&rdquo; per <code>omen-rulebook.md</code>, 2026-08-29).</div></div><section class="q" data-q="verdict" data-multi="0" data-required="1"><h3>Right, wrong, or partly?</h3><p class="hint">Tap one, then correct AUGUR below &mdash; the comment is the point, not the tap.</p><div class="chips"><button class="chip" type="button" data-v="right" aria-pressed="false">Right</button><button class="chip" type="button" data-v="wrong" aria-pressed="false">Wrong</button><button class="chip" type="button" data-v="partly" aria-pressed="false">Partly</button></div><textarea class="note" data-note="verdict" placeholder="Correct me — what's actually true"></textarea></section></article><article class="card" data-cid="RF2" data-done="0" data-export='{"group": "refused", "confidence": "settled", "statement_id": "RF2"}'><header><span class="idx">36/40</span><span style="font-family:'IBM Plex Serif',Georgia,serif;font-size:17px;font-weight:600;flex:1 1 100%;line-height:1.35">Nobody gets to refute your S marks &mdash; they're ground truth backed by real work, and a report may say the engine's own label disagrees with you, but never that your judgement was wrong or noisy.</span><span class="tags"><span class="tag">settled</span><span class="done-dot"></span></span></header><div class="q" style="border-top:0;padding-bottom:0"><p class="hint" style="margin:0 0 8px"><b style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)">Source</b></p><div style="border-left:3px solid var(--accent);padding:8px 0 8px 12px;font-size:13.5px;color:var(--ink-2)">&ldquo;you cant refute my s marks they are important and hard work and stats have been backing them up.&rdquo; &mdash; Austin, 2026-08-28.</div></div><section class="q" data-q="verdict" data-multi="0" data-required="1"><h3>Right, wrong, or partly?</h3><p class="hint">Tap one, then correct AUGUR below &mdash; the comment is the point, not the tap.</p><div class="chips"><button class="chip" type="button" data-v="right" aria-pressed="false">Right</button><button class="chip" type="button" data-v="wrong" aria-pressed="false">Wrong</button><button class="chip" type="button" data-v="partly" aria-pressed="false">Partly</button></div><textarea class="note" data-note="verdict" placeholder="Correct me — what's actually true"></textarea></section></article><article class="card" data-cid="RF3" data-done="0" data-export='{"group": "refused", "confidence": "settled", "statement_id": "RF3"}'><header><span class="idx">37/40</span><span style="font-family:'IBM Plex Serif',Georgia,serif;font-size:17px;font-weight:600;flex:1 1 100%;line-height:1.35">A symbol-day you've already graded must never be shown to you again &mdash; even being served the repeat counts as wasting your time, whether or not you re-grade it.</span><span class="tags"><span class="tag">settled</span><span class="done-dot"></span></span></header><div class="q" style="border-top:0;padding-bottom:0"><p class="hint" style="margin:0 0 8px"><b style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)">Source</b></p><div style="border-left:3px solid var(--accent);padding:8px 0 8px 12px;font-size:13.5px;color:var(--ink-2)">&ldquo;i never want to see stock repeats of stocks i have already graded, beacuse how is that worth my time?&rdquo; &mdash; Austin, 2026-08-29.</div></div><section class="q" data-q="verdict" data-multi="0" data-required="1"><h3>Right, wrong, or partly?</h3><p class="hint">Tap one, then correct AUGUR below &mdash; the comment is the point, not the tap.</p><div class="chips"><button class="chip" type="button" data-v="right" aria-pressed="false">Right</button><button class="chip" type="button" data-v="wrong" aria-pressed="false">Wrong</button><button class="chip" type="button" data-v="partly" aria-pressed="false">Partly</button></div><textarea class="note" data-note="verdict" placeholder="Correct me — what's actually true"></textarea></section></article><article class="card" data-cid="RF4" data-done="0" data-export='{"group": "refused", "confidence": "settled", "statement_id": "RF4"}'><header><span class="idx">38/40</span><span style="font-family:'IBM Plex Serif',Georgia,serif;font-size:17px;font-weight:600;flex:1 1 100%;line-height:1.35">A stop too tight to survive real spread and slippage is not a valid stop, no matter how good it makes the backtested R look &mdash; &ldquo;robot-tradable&rdquo; is a hard constraint, not a nice-to-have.</span><span class="tags"><span class="tag">settled</span><span class="done-dot"></span></span></header><div class="q" style="border-top:0;padding-bottom:0"><p class="hint" style="margin:0 0 8px"><b style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)">Source</b></p><div style="border-left:3px solid var(--accent);padding:8px 0 8px 12px;font-size:13.5px;color:var(--ink-2)">&ldquo;i want trades that can realistically be done by a robot and where it wont get killed or destroyed by fills or too tight rr.&rdquo; &mdash; Austin, 2026-08-29.</div></div><section class="q" data-q="verdict" data-multi="0" data-required="1"><h3>Right, wrong, or partly?</h3><p class="hint">Tap one, then correct AUGUR below &mdash; the comment is the point, not the tap.</p><div class="chips"><button class="chip" type="button" data-v="right" aria-pressed="false">Right</button><button class="chip" type="button" data-v="wrong" aria-pressed="false">Wrong</button><button class="chip" type="button" data-v="partly" aria-pressed="false">Partly</button></div><textarea class="note" data-note="verdict" placeholder="Correct me — what's actually true"></textarea></section></article><article class="card" data-cid="RF5" data-done="0" data-export='{"group": "refused", "confidence": "settled", "statement_id": "RF5"}'><header><span class="idx">39/40</span><span style="font-family:'IBM Plex Serif',Georgia,serif;font-size:17px;font-weight:600;flex:1 1 100%;line-height:1.35">FVG and flag patterns stay computed in the code but never gate a trade and never get counted as one of your setups &mdash; you keep them visible without trading them.</span><span class="tags"><span class="tag">settled</span><span class="done-dot"></span></span></header><div class="q" style="border-top:0;padding-bottom:0"><p class="hint" style="margin:0 0 8px"><b style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)">Source</b></p><div style="border-left:3px solid var(--accent);padding:8px 0 8px 12px;font-size:13.5px;color:var(--ink-2)">&ldquo;sure keep fvg and flag but they are not setups i trade and they dont do anything im sure.&rdquo; &mdash; Austin, 2026-08-29.</div></div><section class="q" data-q="verdict" data-multi="0" data-required="1"><h3>Right, wrong, or partly?</h3><p class="hint">Tap one, then correct AUGUR below &mdash; the comment is the point, not the tap.</p><div class="chips"><button class="chip" type="button" data-v="right" aria-pressed="false">Right</button><button class="chip" type="button" data-v="wrong" aria-pressed="false">Wrong</button><button class="chip" type="button" data-v="partly" aria-pressed="false">Partly</button></div><textarea class="note" data-note="verdict" placeholder="Correct me — what's actually true"></textarea></section></article><article class="card" data-cid="RF6" data-done="0" data-export='{"group": "refused", "confidence": "settled", "statement_id": "RF6"}'><header><span class="idx">40/40</span><span style="font-family:'IBM Plex Serif',Georgia,serif;font-size:17px;font-weight:600;flex:1 1 100%;line-height:1.35">You've refused to widen the graded set past QQQ, SPY and TSLA for now, and refused to re-open the 47 extra low-confidence rows from old chat mining just to grow the S-day count &mdash; not because they're wrong, just not the best use of your time right now.</span><span class="tags"><span class="tag">settled</span><span class="done-dot"></span></span></header><div class="q" style="border-top:0;padding-bottom:0"><p class="hint" style="margin:0 0 8px"><b style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)">Source</b></p><div style="border-left:3px solid var(--accent);padding:8px 0 8px 12px;font-size:13.5px;color:var(--ink-2)">Q&amp;A batch01 defaults (&ldquo;no, that is OMEN 7&rdquo; / &ldquo;No. Gate on 154.&rdquo;) &mdash; Austin, 2026-08-23/24; <code>omen-blockers.md</code>, &ldquo;Already settled&rdquo; table.</div></div><section class="q" data-q="verdict" data-multi="0" data-required="1"><h3>Right, wrong, or partly?</h3><p class="hint">Tap one, then correct AUGUR below &mdash; the comment is the point, not the tap.</p><div class="chips"><button class="chip" type="button" data-v="right" aria-pressed="false">Right</button><button class="chip" type="button" data-v="wrong" aria-pressed="false">Wrong</button><button class="chip" type="button" data-v="partly" aria-pressed="false">Partly</button></div><textarea class="note" data-note="verdict" placeholder="Correct me — what's actually true"></textarea></section></article><div class="foot"><h2>How this gets used</h2><p>Every tap and every note saves in this page as you go. Hit <b>Export</b> at the top, then <b>Copy all</b>, and paste it into the chat &mdash; the export returns to <code>research/marks/</code> with no round trip.</p><p>40 statements, 35 settled (your own words, dated), 3 measured (a number counted from your marks, not a sentence you said), 2 inferred (AUGUR pieced this together across contradicting marks and has never asked you directly). The <b>inferred</b> ones are the ones most worth a wrong or partly tap.</p><p>Full sourcing for every statement: <code>research/augur_understanding.md</code>.</p></div></div>
+<script>
+(function(){
+  /* In the claude.ai artifact viewer a plain <a download> is inert and the async
+     clipboard is blocked. Ask for the downloads capability if it is there; the
+     editable textarea is the fallback that always works. */
+  var DL = null;
+  try {
+    if (window.claude && typeof window.claude.use === 'function'){
+      window.claude.use('downloads').then(function(d){ DL = d; }, function(){});
+    }
+  } catch (e) {}
+
+  var bar = document.querySelector('.bar');
+  var DECK = (bar && bar.getAttribute('data-deck')) || 'probe';
+  var KEY = 'omen-probe:' + DECK + ':';
+
+  function cards(){ return Array.prototype.slice.call(document.querySelectorAll('.card')); }
+  function qs(card){ return Array.prototype.slice.call(card.querySelectorAll('.q[data-q]')); }
+
+  /* localStorage throws in private mode. Say so loudly rather than losing answers. */
+  var storeOk = true;
+  try { localStorage.setItem(KEY + '_probe', '1'); localStorage.removeItem(KEY + '_probe'); }
+  catch (e) { storeOk = false; }
+
+  function cardState(card){
+    var picked = {}, notes = {};
+    qs(card).forEach(function(q){
+      var k = q.getAttribute('data-q'), vals = [];
+      q.querySelectorAll('.chip[aria-pressed="true"]').forEach(function(c){
+        vals.push(c.getAttribute('data-v'));
+      });
+      if (vals.length) picked[k] = vals;
+      var t = q.querySelector('textarea.note');
+      if (t && t.value.trim()) notes[k] = t.value.trim();
+    });
+    return {picked: picked, notes: notes};
+  }
+
+  var flagTimer = null;
+  function flag(state, text){
+    var el = document.getElementById('saved');
+    if (!el) return;
+    el.setAttribute('data-state', state);
+    el.textContent = text;
+    if (state === 'just'){
+      clearTimeout(flagTimer);
+      flagTimer = setTimeout(function(){ el.setAttribute('data-state', ''); }, 1400);
+    }
+  }
+
+  function save(card){
+    if (!storeOk){ flag('fail', 'no local save - export before closing'); return; }
+    try {
+      localStorage.setItem(KEY + card.getAttribute('data-cid'),
+                           JSON.stringify(cardState(card)));
+      flag('just', 'saved');
+    } catch (e) { flag('fail', 'save failed - export now'); }
+  }
+
+  function restore(){
+    if (!storeOk) return;
+    cards().forEach(function(card){
+      var raw = localStorage.getItem(KEY + card.getAttribute('data-cid'));
+      if (!raw) return;
+      var st;
+      try { st = JSON.parse(raw); } catch (e) { return; }
+      qs(card).forEach(function(q){
+        var k = q.getAttribute('data-q');
+        (((st.picked || {})[k]) || []).forEach(function(v){
+          var chip = q.querySelector('.chip[data-v="' + v + '"]');
+          if (chip) chip.setAttribute('aria-pressed', 'true');
+        });
+        var t = q.querySelector('textarea.note');
+        if (t && (st.notes || {})[k]) t.value = st.notes[k];
+      });
+    });
+  }
+
+  function answered(card){
+    var req = card.querySelectorAll('.q[data-required="1"]');
+    for (var i = 0; i < req.length; i++){
+      if (!req[i].querySelector('.chip[aria-pressed="true"]')) return false;
+    }
+    return req.length > 0;
+  }
+
+  function refresh(){
+    var cs = cards(), done = 0;
+    cs.forEach(function(c){
+      var d = answered(c) ? '1' : '0';
+      c.setAttribute('data-done', d);
+      if (d === '1') done++;
+    });
+    var cnt = document.getElementById('count');
+    if (cnt) cnt.textContent = done + ' / ' + cs.length;
+    var fill = document.getElementById('fill');
+    if (fill) fill.style.width = (cs.length ? (done * 100 / cs.length) : 0) + '%';
+  }
+
+  /* Export row shape is a contract: research/marks/probe_*.jsonl must all parse
+     with one reader. These two extension points ADD keys to a row and never
+     rename or drop one, so a page that uses neither exports exactly what it
+     always did.
+       data-export  static JSON merged into the row (symbol, date, ...)
+       window.probeRow(card, row)  page hook for values derived from the taps
+                                   (OMEN Test 1 uses it for entry_i/_t/_p, stop_p)
+       window.probeRows(card, row) page hook that SPLITS one card into several
+                                   rows -- return an array and those rows are
+                                   written instead of the single card row. The
+                                   master homework asks seven different questions
+                                   on one page and wants one row per answer, not
+                                   one row per card. Return nothing (or an empty
+                                   array) and the single-row shape is unchanged. */
+  function jsonl(){
+    var lines = [];
+    cards().forEach(function(card){
+      var st = cardState(card);
+      if (!Object.keys(st.picked).length && !Object.keys(st.notes).length) return;
+      var row = {
+        type: 'probe', probe: DECK, card_id: card.getAttribute('data-cid'),
+        grade: card.getAttribute('data-grade') || null,
+        answers: st.picked, notes: st.notes
+      };
+      var stat = card.getAttribute('data-export');
+      if (stat){
+        try {
+          var ex = JSON.parse(stat);
+          for (var k in ex) if (Object.prototype.hasOwnProperty.call(ex, k)) row[k] = ex[k];
+        } catch (e) {}
+      }
+      if (typeof window.probeRow === 'function'){
+        try { window.probeRow(card, row); } catch (e) {}
+      }
+      if (typeof window.probeRows === 'function'){
+        var many = null;
+        try { many = window.probeRows(card, row); } catch (e) {}
+        if (many && many.length){
+          many.forEach(function(r){ lines.push(JSON.stringify(r)); });
+          return;
+        }
+      }
+      lines.push(JSON.stringify(row));
+    });
+    return lines.join('\n');
+  }
+
+  document.addEventListener('click', function(e){
+    if (!e.target.closest) return;
+
+    if (e.target.closest('#exportbtn')){
+      var d = document.getElementById('drawer'), o = document.getElementById('out');
+      var text = jsonl();
+      o.value = text || '(nothing answered yet)';
+      d.hidden = false;
+      d.scrollIntoView({behavior: 'smooth', block: 'start'});
+      o.focus(); o.select();
+      return;
+    }
+
+    if (e.target.closest('#copybtn')){
+      var box = document.getElementById('out'), msg = document.getElementById('copymsg');
+      box.select(); box.setSelectionRange(0, 999999);
+      var say = function(ok){ msg.textContent = ok ? 'copied' : 'select the text and copy'; };
+      if (navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(box.value).then(function(){ say(true); },
+                                                      function(){ say(false); });
+      } else {
+        try { say(document.execCommand('copy')); } catch (err) { say(false); }
+      }
+      return;
+    }
+
+    if (e.target.closest('#dlbtn')){
+      var m2 = document.getElementById('copymsg');
+      var text = jsonl() + '\n';
+      var name = 'probe_' + DECK + '.jsonl';
+      /* In the artifact viewer an <a download> click succeeds silently and saves
+         nothing, so the old path reported "downloaded" when it had not. Route
+         through the downloads capability when the viewer grants it (the artifact
+         must declare capabilities: {downloads: true}); the viewer may still
+         decline, which is a real outcome and is reported as one. */
+      if (DL && typeof DL.save === 'function'){
+        m2.textContent = 'saving…';
+        DL.save({filename: name, data: text}).then(
+          function(){ m2.textContent = 'downloaded'; },
+          function(){ m2.textContent = 'save declined — use Copy all'; });
+        return;
+      }
+      try {
+        var blob = new Blob([text], {type: 'application/x-ndjson'});
+        var a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = name;
+        document.body.appendChild(a); a.click(); a.remove();
+        m2.textContent = 'downloaded';
+      } catch (err) {
+        m2.textContent = 'download blocked here - use Copy all';
+      }
+      return;
+    }
+
+    var chip = e.target.closest('.chip');
+    if (!chip){
+      if (e.target.closest('.jump')){
+        var next = cards().filter(function(c){
+          return c.getAttribute('data-done') !== '1';
+        })[0];
+        if (next) next.scrollIntoView({behavior: 'smooth', block: 'start'});
+      }
+      return;
+    }
+    var q = chip.closest('.q');
+    var on = chip.getAttribute('aria-pressed') === 'true';
+    if (q.getAttribute('data-multi') !== '1'){
+      q.querySelectorAll('.chip').forEach(function(o){
+        o.setAttribute('aria-pressed', 'false');
+      });
+    }
+    chip.setAttribute('aria-pressed', on ? 'false' : 'true');
+    refresh();
+    save(chip.closest('.card'));
+  });
+
+  /* Typed notes are debounced 400ms so every keystroke is not a write. That
+     debounce is a hole on a phone: iOS and Android fire neither `beforeunload`
+     nor, reliably, anything else when the browser is backgrounded by a call, a
+     notification or the home button -- so a note typed and then interrupted
+     inside 400ms was gone. `visibilitychange` and `pagehide` ARE reliable on
+     mobile, and blur covers tapping straight from one field to another. Flush
+     on all of them, and on the debounce as before. Verified 2026-08-28 in
+     Chrome against the served page, not assumed. */
+  var pendingCards = [];
+  function queue(card){
+    if (pendingCards.indexOf(card) < 0) pendingCards.push(card);
+  }
+  function flush(){
+    var q = pendingCards.slice();
+    pendingCards.length = 0;
+    q.forEach(function(card){
+      clearTimeout(card._saveTimer);
+      save(card);
+    });
+  }
+  document.addEventListener('input', function(e){
+    var t = e.target;
+    if (!t || !t.classList || !t.classList.contains('note')) return;
+    var card = t.closest('.card');
+    queue(card);
+    clearTimeout(card._saveTimer);
+    card._saveTimer = setTimeout(function(){ save(card); }, 400);
+  });
+  document.addEventListener('blur', function(e){
+    var t = e.target;
+    if (t && t.classList && t.classList.contains('note')) flush();
+  }, true);
+  document.addEventListener('visibilitychange', function(){
+    if (document.visibilityState === 'hidden') flush();
+  });
+  window.addEventListener('pagehide', flush);
+
+  var exported = false;
+  document.addEventListener('click', function(e){
+    if (e.target.closest && e.target.closest('#exportbtn')) exported = true;
+  }, true);
+  window.addEventListener('beforeunload', function(e){
+    if (exported || !jsonl()) return;
+    e.preventDefault(); e.returnValue = '';
+  });
+
+  restore();
+  refresh();
+  if (!storeOk) flag('fail', 'no local save - export before closing');
+})();
+</script>
