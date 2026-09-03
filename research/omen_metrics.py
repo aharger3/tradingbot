@@ -467,13 +467,31 @@ def demo():
 # main() -- score the book's own first-of-day arm at several risk levels
 # ==========================================================================
 
-def first_of_day_arm(rows):
+def first_of_day_arm(rows, size_gate=True):
     """The one-trade-a-day candidate stream, arrival order, across all
     symbols: fired-and-traded rows, plus rows the account-wide loss-halt
     blocked (under a strict one-a-day policy that halt cannot have fired
     yet, so those days are live again). Identical construction to
     research/g86_honest_ceiling.py::candidates + the first-of-day pick.
-    Returns one row per day, sorted chronologically."""
+    Returns one row per day, sorted chronologically.
+
+    THE PICK-THEN-GATE BUG (omen-8 ticket 12a, fixed 2026-09-03). This used to
+    return `v[0]` unconditionally and let `ev_r_scoreboard`'s size gate drop it
+    downstream. That is not "one trade a day": if the day's FIRST candidate was
+    too tight to size, the whole DAY vanished from the arm, rather than the
+    trade falling through to the next candidate that could actually be traded.
+    A real account does not skip the session because the 09:31 setup had a
+    four-cent stop; it takes the next one.
+
+    Two owners of one decision is what made it invisible -- selection here,
+    gating there -- so the gate now runs INSIDE selection, through the same
+    `_row_is_sizeable` predicate `ev_r_scoreboard` uses. Nothing is
+    reimplemented; a row with no entry/stop (predicate returns None) is not
+    gateable and is taken, exactly as the scoreboard treats it.
+
+    `size_gate=False` reproduces the old pick-then-gate stream so the
+    before/after is measurable from committed code.
+    """
     def ekey(r):
         return (r["day"], r["et"], r["sym"])
 
@@ -484,7 +502,12 @@ def first_of_day_arm(rows):
     firsts = []
     for day in sorted(by_day):
         v = sorted(by_day[day], key=ekey)
-        firsts.append(v[0])
+        if not size_gate:
+            firsts.append(v[0])
+            continue
+        pick = next((r for r in v if _row_is_sizeable(r) is not False), None)
+        if pick is not None:
+            firsts.append(pick)
     return firsts
 
 
