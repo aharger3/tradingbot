@@ -61,6 +61,11 @@ LEGACY_MARK_FILES = [
     # verdicts on engine-proposed B-only signals. Pasted into chat, not exported
     # to disk by the page, so this file is the only copy in the repo.
     "marks/deck_marks_h2_3lane_2026-08-28.jsonl",
+    # Two confirmed regrades (TSLA 2026-05-21, QQQ 2026-07-24, both S -> A),
+    # captured in-session 2026-09-03. Already inside the research/marks/ glob;
+    # named here as well so the guard survives the file being moved. Listing a
+    # path twice is harmless -- mark_sources() feeds a set union.
+    "marks/regrade_confirm_2026-09-03.jsonl",
     "austin_marks_v7.jsonl",      # terminal file; v2-v6 are fully contained in it
     "blind_marks_all.jsonl",
     "marks_clean.jsonl",

@@ -404,3 +404,22 @@ design — the answer is the `answers.wrong` list plus the prose in `notes.wrong
 
 This is the first corpus that judges the engine's *exit plan*, not its selection.
 Counts as a judgement for `marked_card_ids()` via the glob.
+
+## regrade_confirm_2026-09-03.jsonl — 2 rows, human
+
+Two symbol-days whose original cards carried `answers.regrade = ["to_a"]` but no
+settled grade: **TSLA 2026-05-21** and **QQQ 2026-07-24** (the latter also graded
+both C and S across earlier passes). Austin confirmed both **S -> A** in-session
+on 2026-09-03 via multiple choice, so `supersedes_grade: "S"` is recorded on each
+row rather than editing the original corpora — nothing is rewritten, the older
+grades stay where they are.
+
+**Why it counts:** it is the first corpus that resolves a *contested* grade rather
+than adding a new one, which is what makes `answers.regrade` wirable at all
+(omen-8 ticket 15). Covered by the `research/marks/*.jsonl` glob in
+`mark_sources()`, and additionally named in `LEGACY_MARK_FILES` so the no-repeat
+guard survives the file being moved.
+
+**Provenance:** written in-session from his own answers, JSON-validated row by row,
+`git status` checked by eye. `.gitignore` line 97 (`!research/marks/**`) un-ignores
+it, so no `git add -f` was needed — confirmed with `git check-ignore -v`.
