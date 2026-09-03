@@ -474,22 +474,65 @@ _last_alert: dict = {}  # (symbol, direction) -> minutes-since-midnight of last 
 ALERT_COOLDOWN_MIN = 20
 
 # Two-tier (Austin 2026-07-07): quality over quantity, one trade and done.
-# TRADE = first A/A+ of the day across ALL symbols, at or after 09:40 ET
-# (30d sim 2026-07-07: 12tr 58% +$10.8k; first-B+-anytime was 20tr 25% -$6k —
-# the 09:30-09:40 chop and B-grade spray are what governor must skip).
+# TRADE = the first S of the day across ALL symbols, at or after 09:40 ET.
 # 84% re-entry exempt while consecutive losses < 2. Everything else fired =
 # WATCH, ding only, capped per day. Scanner restarts daily via schtask,
 # so counters reset free.
+#
+# omen-8.0 R5 (2026-09-03) — THE CLASSIFICATION CLAUSE WAS A LEFTOVER, NOW FIXED.
+# This gate used to read `grade not in ("A+", "A")`, where `grade` is
+# PriceActionAnalyzer.grade_trade's A+/A/B/C/D candle-shape ladder. That ladder
+# is the RETIRED scheme. Austin settled his own trading set on 2026-08-24 —
+# "trading set | S only" (Projects/omen-blockers.md, "Already settled — do not
+# re-ask") — on the S/A/C tier `signal_runner.compute_austin_tier` computes from
+# his four clauses (setup eligibility, bar-extreme fill quality, freshness, HTF
+# opposition). Those are different classifications of different things: nothing
+# maps A+/A onto S, and signal_runner's own comment says so outright ("there is
+# no such mapping, and none is invented here"). Every OTHER consumer of the tier
+# already filters on austin_tier == "S" (rank_s_plus, mark_s_plus, t8's book);
+# the live path was the last place still gating on the retired ladder, so the
+# live bot and every published number described two different systems.
+# `research/g94_live_tier.md` has the promotion counts under both.
+#
+# What survived the migration, and why — these are OPERATIONAL limits ("how
+# often do we act"), not classification ("which signals count"), so they are
+# orthogonal to the scheme change and are carried across untouched:
+#   * TRADE_FLOOR 09:40 — 30d sim 2026-07-07: first-A+/A-after-09:40 ran 12tr
+#     58% +$10.8k, first-B+-anytime 20tr 25% −$6k. The 09:30-09:40 chop is what
+#     the governor must skip; it is a time-of-day rule, not a grade rule.
+#   * signals_today == 0 — "one trade and done", same 2026-07-07 session.
+#   * consecutive_losses < 2 — the session loss halt (config.yaml
+#     consecutive_loss_halt, TradingSession.day_ended).
+#   * the 84% re-entry exemption — Austin's sanctioned second bite at an idea
+#     that already passed this gate and stopped out. It never referenced the
+#     retired ladder, so there is nothing here to migrate; see g94's report for
+#     why it is deliberately left alone rather than S-gated too.
+#
+# FAIL-CLOSED: a signal with no austin_tier (a dict from some other producer, or
+# AUSTIN_TIER_ENABLED turned off in signal_runner) can never be promoted. It
+# posts as a WATCH ding instead. Turning the tier off therefore stops the live
+# bot trading rather than making it trade everything — which is the safe
+# direction for a real-money gate, but it does mean AUSTIN_TIER_ENABLED=False
+# silently disarms live trading. Nothing else in this file reads austin_tier.
 WATCH_DAILY_CAP = 5
 TRADE_FLOOR = "09:40"
 _watch_dings = {"n": 0}
 
 
-def _tier(runner: SignalRunner, sig: dict, grade: str, ts: str) -> str:
+def _tier(runner: SignalRunner, sig: dict, ts: str) -> str:
+    """TRADE or WATCH for one signal, under Austin's settled S/A/C scheme.
+
+    `sig["austin_tier"]` is stamped by SignalRunner._route (via
+    compute_austin_tier) on every signal detect_signals returns, which is the
+    only way a sig reaches this function on the options path. The engine's
+    A+/A/B/C/D `grade` is deliberately NOT read here any more — it still drives
+    position sizing (options_sizer.GRADE_SIZE_PCT) and the futures alert-only
+    rule, which are separate questions.
+    """
     s = runner.session
     if getattr(sig["signal_type"], "value", "") == "reentry_84_rule":
         return "TRADE" if s.consecutive_losses < 2 else "WATCH"
-    if grade not in ("A+", "A") or ts[:5] < TRADE_FLOOR:
+    if sig.get("austin_tier") != "S" or ts[:5] < TRADE_FLOOR:
         return "WATCH"
     return "TRADE" if s.signals_today == 0 and s.consecutive_losses < 2 else "WATCH"
 
@@ -524,7 +567,7 @@ def _emit_signal(runner: SignalRunner, tasty_feed: TastytradeFeed, symbol: str, 
     # 84% re-entries run 2x size (Austin: double to recover first stop-out + profit)
     if getattr(sig["signal_type"], "value", "") == "reentry_84_rule":
         size_pct *= 2.0
-    tier = _tier(runner, sig, grade, candle.timestamp)
+    tier = _tier(runner, sig, candle.timestamp)
     alert_only = tier != "TRADE"
     if alert_only:
         if _watch_dings["n"] >= WATCH_DAILY_CAP:
@@ -551,7 +594,12 @@ def _emit_signal(runner: SignalRunner, tasty_feed: TastytradeFeed, symbol: str, 
 
     tag = "[PAPER] " if paper is not None else ""
     icon = "🎯" if tier == "TRADE" else "👀"
-    print(f"{icon} {tag}{tier} {signal_type_val.upper()} {sig['direction'].upper()}  Grade: {grade}  Stop: {stop_level} ({stop_width}%)")
+    # omen-8.0 R5: austin_tier is what TRADE/WATCH now turns on, so it is
+    # printed and logged next to the engine grade — otherwise a promotion (or a
+    # refusal) is unauditable after the fact.
+    austin_tier = sig.get("austin_tier")
+    print(f"{icon} {tag}{tier} {signal_type_val.upper()} {sig['direction'].upper()}  "
+          f"Tier: {austin_tier or '?'}  Grade: {grade}  Stop: {stop_level} ({stop_width}%)")
     if alert_only:
         print("   WATCH — ding only, not traded")
     print(f"   {sig['reason']}")
@@ -570,6 +618,7 @@ def _emit_signal(runner: SignalRunner, tasty_feed: TastytradeFeed, symbol: str, 
         stop_width_pct=stop_width,
         quote_source=plan.quote_source if hasattr(plan, "quote_source") else "estimated",
         status="alert" if alert_only else "fired",
+        austin_tier=austin_tier,
     )
 
     if paper is not None and not alert_only:
