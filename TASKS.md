@@ -7,6 +7,10 @@ red = needs Austin).
 
 ---
 
+2026-09-03: history rewritten to drop two >100MB JSON books (bt2y_trades.json, bt2y_trades_published_fill.json) that GitHub refused; every local commit from eb4f4f8e onward has a new hash; pre-rewrite tip preserved as tag backup/main-pre-filter-2026-09-03. Files are on disk, ignored, regenerable via backtest_2y.py.
+
+---
+
 ## Green — unattended
 
 | # | task | why it matters | check that proves it |

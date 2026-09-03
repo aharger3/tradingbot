@@ -202,3 +202,11 @@ research/_g83_run.log
 # earlier session. Credential-shaped, never to be committed. Same class as
 # youtube_oauth_token.json / client_secret.json / *.credentials.json.
 .disc_token_tmp
+
+# The two 2-year replay books, 126 MB and 132 MB. GitHub refuses any blob over
+# 100 MB, so they were stripped out of local history on 2026-09-03 and are
+# ignored from here on. Both are regenerable with `python backtest_2y.py`, and
+# the findings that read off them are tracked markdown. No judgement file is
+# anywhere near this rule.
+research/bt2y_trades.json
+research/bt2y_trades_published_fill.json
