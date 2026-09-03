@@ -199,6 +199,59 @@ def shipped_path_checks():
     t, open_trades = _run_ladder_bar(100.0, 99.0, "call", bar_short)
     check("a wick that never reaches the level stops nothing", t in open_trades)
 
+    # ---- Austin, 2026-09-03: -1R HARD, INCLUDING AFTER THE BE MOVE -------
+    # "1r is simpler so why not go with that? no stocks should be running to
+    # -10R."
+    #
+    # THE HOLE THIS CLOSES. Once `runner_stop` is raised to break-even,
+    # `_ladder_bar` stops testing the disaster order (`dz = _disaster_hit(...)
+    # if stop_lv == t.stop else None`) -- correct on any continuous path,
+    # because a resting BE order sits between price and -1R and fills first.
+    # A GAP crosses both at once. The BE-raised stop then filled at the CLOSE
+    # with only the -1.25R floor beneath it, so a bar that gapped ~9R booked
+    # -1.25R, and with DISASTER_STOP off it booked the whole gap. That is the
+    # "-10R" shape. `_stop_fill_px` now floors every close-triggered fill at
+    # DISASTER_R.
+    #
+    # NOT tested here, because it is deliberately NOT the behaviour: re-arming
+    # the disaster order on touch after the BE move. A bar that wicks through
+    # BE and -1R and closes back above BE must NOT be stopped out -- firing the
+    # disaster order there would manufacture a -1R loss on a trade whose stop
+    # was at break-even. The ruling caps losses; it does not invent them.
+    for direction, entry, stop, bar_ in (
+        ("call", 100.0, 99.0, _candle(95.0, 95.5, 90.0, 91.0)),
+        ("put", 100.0, 101.0, _candle(105.0, 110.0, 104.5, 109.0)),
+    ):
+        t = _mktrade(entry, stop, direction)
+        t.runner_stop = t.entry            # the BE move, as _ladder_bar sets it
+        open_trades = [t]
+        runner = bw.BacktestRunner("TEST")
+        runner.candles = _flat_runner(entry)
+        bw._ladder_bar(t, bar_, 11, open_trades, runner)
+        risk = abs(entry - stop)
+        r = (t.exit_price - entry) / risk if direction == "call" \
+            else (entry - t.exit_price) / risk
+        check("BE-raised stop, bar gaps straight through: books no worse than "
+              "-1.000R (%s)" % direction,
+              r >= -1.0 - EPS,
+              "booked %.4fR at exit_price %.4f -- a gap through a break-even "
+              "stop fell past -1R, which Austin's 2026-09-03 ruling forbids"
+              % (r, t.exit_price))
+        check("BE-raised stop, gap-through closes the trade (%s)" % direction,
+              t not in open_trades)
+
+    # A BE-raised stop that fires on a NORMAL bar must still book its own
+    # (near-scratch) result -- the floor is a cap, not a replacement.
+    t = _mktrade(100.0, 99.0, "call")
+    t.runner_stop = t.entry
+    open_trades = [t]
+    runner = bw.BacktestRunner("TEST")
+    runner.candles = _flat_runner(100.0)
+    bw._ladder_bar(t, _candle(100.1, 100.2, 99.8, 99.95), 11, open_trades, runner)
+    check("a BE stop firing normally still books ~breakeven, not -1R",
+          t not in open_trades and (t.exit_price - 100.0) / 1.0 > -0.5,
+          "exit_price=%r" % t.exit_price)
+
     return rows, failures
 
 

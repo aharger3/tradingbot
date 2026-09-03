@@ -177,8 +177,16 @@ lists; a test fails the build if a new one appears.
 
 ### Rules that hold everywhere
 
-- **Stops trigger on the candle CLOSE**, fill at that close, floored at **−1.25R**.
-  Wicks stop nothing out. Austin settled this five times in one batch of marks.
+- **Max loss is −1R hard. There is no −1.25R clamp.** Austin, 2026-09-03: *"1R is
+  simpler so why not go with that? no stocks should be running to −10R."* Two stops,
+  both his (R1/R2, 2026-08-29): the **level stop** triggers on the candle CLOSE and
+  fills at that close, and the **disaster stop** is a resting order at exactly 1R from
+  entry that fills on an intrabar TOUCH. Because `DISASTER_STOP_R = 1.0`, the disaster
+  order sits *on* the level stop, so nothing books worse than **−1.000R** — 0 of 2,216
+  losses in the two-year book do. The old "wicks stop nothing out / floored at −1.25R"
+  line described `research/exit_lab.py`, a lab model with no disaster stop that the
+  shipped book never calls; the `verify:` gate was testing it instead of the real path
+  until 2026-09-03. `stop_rule.py` owns the trigger, the fill and the floor.
   **`stop_rule.stop_fill_price()` is the one fill definition** — every rig routes through it.
   Before 2026-08-28 `backtest_week` triggered on the close and then filled at `t.stop`, so
   every loss was −1.000R by construction and the floor was unreachable code; 458 of 474

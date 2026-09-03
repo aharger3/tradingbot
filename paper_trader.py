@@ -174,7 +174,7 @@ class PaperPosition:
             self.direction == "call")
 
     def _stop_fill_premium(self, close: float) -> float:
-        """T11. The premium a close-triggered stop books, floored at -1.25R.
+        """T11. The premium a close-triggered stop books, floored at -1.000R.
 
         The bar closed beyond the stop, so the position is out at market on that
         close — not at the plan's precomputed `stop_premium`, which is exactly
@@ -185,8 +185,11 @@ class PaperPosition:
         The stock-side fill comes from the ONE shared clamp,
         `stop_rule.stop_fill_price`, anchored on the ORIGINAL entry and the
         ORIGINAL `abs(stock_entry - stock_stop)` — so a runner whose stop was
-        raised to break-even still floors at -1.25R of the whole trade, not of
-        some re-based fraction.
+        raised to break-even still floors at -1.000R of the whole trade, not of
+        some re-based fraction. That break-even case is the only one the floor
+        can actually bind on, and it is the one Austin's 2026-09-03 ruling is
+        about: on the original stop the resting disaster order at 1R has already
+        fired on touch.
 
         That stock price becomes a premium through the plan's OWN delta map: the
         plan already priced `stock_stop` at `stop_premium`, so
@@ -202,7 +205,17 @@ class PaperPosition:
         if srisk <= 0 or prem_risk <= 0:
             return self.stop_premium
         long = self.direction == "call"
-        fill = stop_fill_price(close, self.stock_entry, srisk, long)
+        # Austin, 2026-09-03: -1R hard, no -1.25R clamp, on the premium side too.
+        # This needs no live quote: the clamp is applied to the STOCK price and
+        # then mapped through the plan's own delta, so a stock fill capped at
+        # -1.000R maps to a premium capped at -1.000R of premium risk by the
+        # same ratio. What it CANNOT do is promise a real broker fill: the map
+        # is linear and a real option is convex, so the true loss at a gap is
+        # SMALLER than this. The cap therefore errs pessimistic, which is the
+        # safe direction; a live-quote-exact premium stop needs an options tape
+        # this repo does not have.
+        fill = stop_fill_price(close, self.stock_entry, srisk, long,
+                               DISASTER_STOP_R)
         # G7.2 liveexit: was an inline copy of the same three lines
         # `options_sizer.premium_at` now holds. One map, one delta, one file --
         # a second copy of a shared rule is exactly how the stop trigger forked

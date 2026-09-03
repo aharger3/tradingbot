@@ -2,8 +2,15 @@
 
 CLAUDE.md, "Rules that hold everywhere":
 
-    Stops trigger on the candle CLOSE, fill at that close, floored at -1.25R.
-    Wicks stop nothing out. Austin settled this five times in one batch of marks.
+    Max loss is -1R HARD. There is no -1.25R clamp.
+
+Austin, 2026-09-03: *"1R is simpler so why not go with that? no stocks should be
+running to -10R."* `MAX_LOSS_R = 1.25` below is NOT a second stop level and is no
+longer reachable on any shipped fill: `backtest_week._stop_fill_px` floors every
+close-triggered fill at `DISASTER_STOP_R` (1.0), including after a runner stop has
+moved to break-even, which was the one gap a gapping bar could still fall through.
+`MAX_LOSS_R` survives only for `research/exit_lab.py` — a lab module with no
+disaster stop at all, where 1.25 is genuinely its own model's floor.
 
 `Trading-Bot-Rulesets.md`, Austin's Trading Rules clause 1 (167-171): *"Stop-outs
 happen on the close, not the wick. A trade is stopped out only when a candle

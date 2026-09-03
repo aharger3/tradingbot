@@ -410,6 +410,10 @@ PESSIMISTIC_FILL = os.getenv("PESSIMISTIC_FILL", "1") not in ("0", "false")
 # the order rests (T1's arms).
 DISASTER_STOP = os.getenv("DISASTER_STOP", "1") not in ("0", "false", "off")
 DISASTER_R = float(os.getenv("DISASTER_STOP_R", str(DISASTER_STOP_R)))
+# Austin, 2026-09-03: stops are -1R hard, no -1.25R clamp, ever. See the long
+# note in `_stop_fill_px`. 0/unset = his ruling (floor at DISASTER_R); set it to
+# 1.25 to reproduce every book built before this commit.
+_STOP_FILL_FLOOR_R = float(os.getenv("STOP_FILL_FLOOR_R", "0") or 0) or None
 
 # ---- G8.2: the four stop arms, for research/g82_stop_ab.py -----------------
 # Austin, on the close-only stop rule: it stands "if you have the metrics."
@@ -731,7 +735,33 @@ def _stop_fill_px(t: "SimTrade", c: Candle, long: bool,
         return stop_fill_price(raw, t.entry, risk, long, floor)
     if not STOP_ON_CLOSE:
         return t.stop
-    return stop_fill_price(c.close, t.entry, risk, long)
+    # Austin, 2026-09-03: "1R is simpler so why not go with that? no stocks
+    # should be running to -10R." -1R HARD, no -1.25R clamp, on every fill this
+    # engine books.
+    #
+    # On the ORIGINAL stop this is a no-op and always was: `_disaster_hit` is
+    # tested first and fires on a TOUCH of -1R, so a bar that reaches this line
+    # never went past -1R and its close cannot be beyond it either.
+    #
+    # The reachable case is the one his ruling is actually about. Once the
+    # runner stop has moved to break-even, `_ladder_bar` stops testing the
+    # disaster order (a resting BE order sits between price and -1R, so on any
+    # continuous path it fills first). A GAP crosses both at once, and the
+    # BE-raised stop then filled at the close with only the -1.25R floor under
+    # it -- that is the -10R shape he is ruling out. Flooring at DISASTER_R
+    # caps it at exactly -1.000R of the trade's ORIGINAL risk.
+    #
+    # Deliberately NOT done: re-arming the disaster order on touch after the BE
+    # move. A bar that wicks through BE and -1R and closes back above BE does
+    # not stop a close-triggered BE stop out today, and firing the disaster
+    # order there would MANUFACTURE a -1R loss on a trade whose stop was at
+    # break-even. The ruling caps losses; it does not invent them.
+    # STOP_FILL_FLOOR_R overrides it, so the before/after A/B for this ruling
+    # is reproducible from committed code rather than from a patch that only
+    # ever existed in one session: STOP_FILL_FLOOR_R=1.25 restores the old
+    # behaviour exactly. Unset = his ruling.
+    floor_r = _STOP_FILL_FLOOR_R or (DISASTER_R if DISASTER_STOP else MAX_LOSS_R)
+    return stop_fill_price(c.close, t.entry, risk, long, floor_r)
 
 
 def _disaster_hit(t: "SimTrade", c: Candle, long: bool):
