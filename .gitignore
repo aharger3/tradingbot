@@ -197,3 +197,8 @@ research/_t23_stack_run.log
 # research/g83_recall278.md ARE tracked.
 research/_g83_arms/
 research/_g83_run.log
+
+# .disc_token_tmp: a scratch Discord token dropped in the repo root by an
+# earlier session. Credential-shaped, never to be committed. Same class as
+# youtube_oauth_token.json / client_secret.json / *.credentials.json.
+.disc_token_tmp
