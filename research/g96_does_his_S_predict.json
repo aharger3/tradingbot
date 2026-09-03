@@ -1,0 +1,32 @@
+{
+ "lane": "full",
+ "judged": 1246,
+ "s_days": 347,
+ "overlap": 667,
+ "s_overlap": 201,
+ "arms": {
+  "first candidate of the day": {
+   "n_s": 201,
+   "n_non": 466,
+   "mean_s": 0.0351,
+   "mean_non": -0.1222,
+   "gap_r": 0.1573,
+   "p": 0.0366
+  },
+  "every candidate (mean R)": {
+   "n_s": 295,
+   "n_non": 657,
+   "mean_s": -0.0508,
+   "mean_non": -0.1122,
+   "gap_r": 0.0614,
+   "p": 0.2042
+  }
+ },
+ "s_only": {
+  "sessions_with_s": 162,
+  "total": 7065.81,
+  "per_s_session": 43.62,
+  "per_all_session": 21.28,
+  "green": "11/24"
+ }
+}

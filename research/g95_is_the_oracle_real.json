@@ -1,0 +1,93 @@
+{
+ "lane": "full",
+ "days": 498,
+ "cands_per_day": 16.52008032128514,
+ "first_per_day": 25.31,
+ "coinflip_per_day": -26.16,
+ "oracle_per_day": 2684.09,
+ "anti_oracle_per_day": -991.24,
+ "null_oracle_per_day": 2762.58,
+ "null_range": [
+  2565.29,
+  2963.19
+ ],
+ "oracle_vs_null_pct": 97.2,
+ "q1": "THE ORACLE IS ARITHMETIC. Taking the max of the same number of random draws from the book's own outcome pool reaches the same place (real is 97% of null, inside the null's own range). It is NOT proof the setups are there -- it is proof that 18 draws have a big maximum. No classifier can chase it.",
+ "chance_pct": 7.4,
+ "p_needed_for_bar": 15.6,
+ "features_beating_first": 14,
+ "top_features": [
+  {
+   "feature": "dow=Wed",
+   "per_covered_day": 211.58,
+   "per_all_day": 43.76,
+   "days": 103
+  },
+  {
+   "feature": "dow=Mon",
+   "per_covered_day": 111.06,
+   "per_all_day": 21.41,
+   "days": 96
+  },
+  {
+   "feature": "vol_regime=wild",
+   "per_covered_day": 110.31,
+   "per_all_day": 42.53,
+   "days": 192
+  },
+  {
+   "feature": "setup_label=other (84% re-entry)",
+   "per_covered_day": 84.6,
+   "per_all_day": 37.04,
+   "days": 218
+  },
+  {
+   "feature": "setup=reentry_84_rule",
+   "per_covered_day": 84.6,
+   "per_all_day": 37.04,
+   "days": 218
+  },
+  {
+   "feature": "level=not-his: prior entry (84%)",
+   "per_covered_day": 84.6,
+   "per_all_day": 37.04,
+   "days": 218
+  },
+  {
+   "feature": "downgrade=ocr_not_respected",
+   "per_covered_day": 65.09,
+   "per_all_day": 56.86,
+   "days": 435
+  },
+  {
+   "feature": "pool=index",
+   "per_covered_day": 64.91,
+   "per_all_day": 50.58,
+   "days": 388
+  },
+  {
+   "feature": "tripped=4",
+   "per_covered_day": 60.89,
+   "per_all_day": 52.09,
+   "days": 426
+  },
+  {
+   "feature": "tier=experimental",
+   "per_covered_day": 51.41,
+   "per_all_day": 50.9,
+   "days": 493
+  },
+  {
+   "feature": "level=PMH",
+   "per_covered_day": 50.19,
+   "per_all_day": 34.57,
+   "days": 343
+  },
+  {
+   "feature": "dow=Tue",
+   "per_covered_day": 44.52,
+   "per_all_day": 9.21,
+   "days": 103
+  }
+ ]
+}
