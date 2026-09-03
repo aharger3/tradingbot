@@ -1,0 +1,222 @@
+{
+  "aplus_only": {
+    "promotions": 18,
+    "dings": 2495,
+    "trade_days": 18,
+    "on_s_day": 6,
+    "on_s_symday": 2,
+    "s_symday_recall": 2,
+    "s_symdays_hit": [
+      [
+        "MARA",
+        "2026-07-09"
+      ],
+      [
+        "TSLA",
+        "2025-11-21"
+      ]
+    ]
+  },
+  "old": {
+    "promotions": 37,
+    "dings": 2495,
+    "trade_days": 34,
+    "on_s_day": 13,
+    "on_s_symday": 3,
+    "s_symday_recall": 3,
+    "s_symdays_hit": [
+      [
+        "MARA",
+        "2026-07-09"
+      ],
+      [
+        "TSLA",
+        "2025-11-21"
+      ],
+      [
+        "TSLA",
+        "2026-01-14"
+      ]
+    ]
+  },
+  "new": {
+    "promotions": 254,
+    "dings": 2493,
+    "trade_days": 253,
+    "on_s_day": 55,
+    "on_s_symday": 8,
+    "s_symday_recall": 8,
+    "s_symdays_hit": [
+      [
+        "AAPL",
+        "2025-01-10"
+      ],
+      [
+        "MSFT",
+        "2024-12-02"
+      ],
+      [
+        "MU",
+        "2025-11-07"
+      ],
+      [
+        "MU",
+        "2026-02-09"
+      ],
+      [
+        "NVDA",
+        "2024-12-16"
+      ],
+      [
+        "QQQ",
+        "2024-08-23"
+      ],
+      [
+        "TSLA",
+        "2025-11-21"
+      ],
+      [
+        "TSM",
+        "2026-02-23"
+      ]
+    ]
+  },
+  "new_notC": {
+    "promotions": 218,
+    "dings": 2493,
+    "trade_days": 217,
+    "on_s_day": 45,
+    "on_s_symday": 8,
+    "s_symday_recall": 8,
+    "s_symdays_hit": [
+      [
+        "AAPL",
+        "2025-01-10"
+      ],
+      [
+        "MSFT",
+        "2024-12-02"
+      ],
+      [
+        "MU",
+        "2025-11-07"
+      ],
+      [
+        "MU",
+        "2026-02-09"
+      ],
+      [
+        "NVDA",
+        "2024-12-16"
+      ],
+      [
+        "QQQ",
+        "2024-08-23"
+      ],
+      [
+        "TSLA",
+        "2025-11-21"
+      ],
+      [
+        "TSM",
+        "2026-02-23"
+      ]
+    ]
+  },
+  "new_reentryS": {
+    "promotions": 251,
+    "dings": 2493,
+    "trade_days": 251,
+    "on_s_day": 54,
+    "on_s_symday": 8,
+    "s_symday_recall": 8,
+    "s_symdays_hit": [
+      [
+        "AAPL",
+        "2025-01-10"
+      ],
+      [
+        "MSFT",
+        "2024-12-02"
+      ],
+      [
+        "MU",
+        "2025-11-07"
+      ],
+      [
+        "MU",
+        "2026-02-09"
+      ],
+      [
+        "NVDA",
+        "2024-12-16"
+      ],
+      [
+        "QQQ",
+        "2024-08-23"
+      ],
+      [
+        "TSLA",
+        "2025-11-21"
+      ],
+      [
+        "TSM",
+        "2026-02-23"
+      ]
+    ]
+  },
+  "new_nofloor": {
+    "promotions": 257,
+    "dings": 2493,
+    "trade_days": 256,
+    "on_s_day": 56,
+    "on_s_symday": 8,
+    "s_symday_recall": 8,
+    "s_symdays_hit": [
+      [
+        "AAPL",
+        "2025-01-10"
+      ],
+      [
+        "MSFT",
+        "2024-12-02"
+      ],
+      [
+        "MU",
+        "2025-11-07"
+      ],
+      [
+        "MU",
+        "2026-02-09"
+      ],
+      [
+        "NVDA",
+        "2024-12-16"
+      ],
+      [
+        "QQQ",
+        "2024-08-23"
+      ],
+      [
+        "TSLA",
+        "2025-11-21"
+      ],
+      [
+        "TSM",
+        "2026-02-23"
+      ]
+    ]
+  },
+  "sample": {
+    "days_run": 11923,
+    "symbols": 29,
+    "captured": 135533,
+    "fired": 10138,
+    "s_tier_refused_upstream": 8329,
+    "s_tier_refused_as_engine_x": 8181,
+    "s_marks": 130,
+    "s_symdays": 118,
+    "start": "2024-08-12",
+    "end": "2026-08-11"
+  }
+}

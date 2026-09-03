@@ -35,17 +35,54 @@ DEFAULT_MAX_LOSS = 1000.0
 # at today). 5R (+$62/trade, CI touches zero [-$0, +$122]) does not clear its
 # own bar on this book either -- not taken, per the ticket's own scope.
 DEFAULT_RR = 2.5
-DEFAULT_DELTA = 0.5  # ATM ≈ 0.5
+# OMEN 8.0 R6 (2026-09-03). Was 0.5 ("ATM ~= 0.5") -- assumed at-the-money,
+# never measured. The spec's own citation (omen-rulebook.md:1574) doesn't
+# exist -- the rulebook is 995 lines -- and `research/sizing.py`'s docstring
+# says outright why: "this repo has 1-minute underlying bars and no options
+# chain, so there is no way to reconstruct an actual option fill from the
+# archive." There is no data in this repo to independently re-derive 0.42
+# from, or to refute it with; it is applied here as Austin's own stated
+# measurement (the spec: "measured delta is 0.42"), the same way a rulebook
+# ruling is trusted elsewhere when its supporting citation has been lost but
+# the ruling itself hasn't been contradicted by anything reproducible.
+#
+# Why 0.5 was wrong in a specific, priceable direction, not just "off": this
+# constant sizes contracts via `premium_risk = stock_risk * delta_estimate`,
+# so a HIGHER assumed delta makes each contract look riskier per dollar of
+# stock stop distance, and `contracts = max_loss // per_contract_risk` buys
+# FEWER of them to stay under budget. At the true (lower) delta, the option's
+# real premium move on a stop-out is smaller than the model assumed, so the
+# position that was undersized for the (wrong, higher) delta realizes LESS
+# real dollar risk than the budget it was sized against -- $840 realized on a
+# $1,000 budget at delta 0.5 vs a true 0.42 (stock_risk cancels: the ratio is
+# exactly 0.42/0.5 = 0.84, independent of stock_risk or max_loss). Setting
+# DEFAULT_DELTA to the true value removes the gap by construction -- reported
+# and actual converge to the same number because they become the same
+# formula, not two competing estimates. See research/g95_delta_fix.md.
+DEFAULT_DELTA = 0.42
+
+# OMEN 8.0 R7 (2026-09-03). `omen-x-board.md:180-181`: "A $0.05 round-trip
+# option spread costs a further -0.2042R; entry and exit are both booked at
+# the mid, so spread is currently charged to nothing." True before this row --
+# `entry_premium` was the mid on both the live-quote and no-quote paths, and
+# stop/target were derived from that same mid, so a round trip never paid
+# anything for crossing the spread. Used as the fallback below when a live
+# quote's own bid/ask isn't available (the same repo-has-no-options-chain
+# situation R6 already documented for DEFAULT_DELTA -- this is Austin's stated
+# figure, not independently re-derived, because there is nothing here to
+# re-derive it from). When a real bid/ask IS available, that observed width is
+# used instead, so this default only fires on the estimate path.
+DEFAULT_SPREAD = 0.05
 
 # ---- T2: ENABLE_CONTRACT_R -- the real pricer, DEFAULT OFF -------------------
-# `DEFAULT_DELTA = 0.5` is a flat linear delta and it was the entire options
+# `DEFAULT_DELTA` (0.42 since R6) is a flat linear delta and it was the entire options
 # model in this repo. It cannot express convexity (a winning 0DTE call's delta
 # climbs toward 1.0, so the runner earns MORE than the underlying move) or theta
 # (the same contract bleeds while it waits). Austin's runner thesis is a bet that
 # the first beats the second; a constant makes that bet unmeasurable.
 #
 # ON, `premium_risk` comes from repricing the contract at the stop with
-# `black_scholes`, instead of `stock_risk * 0.5`. OFF, this file behaves exactly
+# `black_scholes`, instead of `stock_risk * DEFAULT_DELTA`. OFF, this file behaves exactly
 # as it did before T2 -- the flag is checked in one place, `atm_delta()`, and its
 # OFF branch returns `DEFAULT_DELTA` before touching the pricer.
 #
@@ -103,7 +140,7 @@ def premium_at(stock_price: float, stock_entry: float, entry_premium: float,
     `(premium_at(P) - entry_premium) / premium_risk`, which cancels to
     `(P - stock_entry) / stock_risk`, the backtest's stock-side R exactly.
 
-    Linear, which is what this whole module assumes (`DEFAULT_DELTA = 0.5`);
+    Linear, which is what this whole module assumes (`DEFAULT_DELTA`, 0.42);
     there is no options tape in this repo to do better, and ENABLE_CONTRACT_R
     is the flag that replaces the assumption when one exists.
 
@@ -265,8 +302,10 @@ class OptionsPlan:
     # G7.2 liveexit (board #3): the delta-implied premium move over the stock
     # stop distance, BEFORE the $0.05 floor. This is the delta this plan was
     # built with, and it is what `premium_at` needs to price any leg. It is NOT
-    # `entry_premium - stop_premium` -- those differ exactly when the floor
-    # binds, and that difference is the whole of board bug #3.
+    # `entry_premium - stop_premium` -- those differ when the floor binds (the
+    # whole of board bug #3) and, since OMEN 8.0 R7, by the round-trip spread
+    # the card now charges on top. `premium_at` prices legs off the plan's own
+    # delta, so it must keep reading THIS number, not the card's stop distance.
     premium_risk: float = 0.0
 
     @property
@@ -277,8 +316,10 @@ class OptionsPlan:
     def booked_rr(self) -> float:
         """The reward:risk this card ACTUALLY pays, not the `rr` it aimed at.
 
-        Equal to `rr` on 98.6% of rows. Bigger whenever the $0.05 floor bound,
-        because the loss is capped by the premium while the gain is not.
+        Bigger than `rr` whenever the $0.05 floor bound, because the loss is
+        capped by the premium while the gain is not. SMALLER than `rr` in the
+        ordinary case since OMEN 8.0 R7: the round-trip spread widens the risk
+        leg and narrows the reward leg, so a card that aims at `rr` books less.
         """
         risk = self.entry_premium - self.stop_premium
         return (self.target_premium - self.entry_premium) / risk if risk > 0 else 0.0
@@ -307,9 +348,19 @@ class OptionsPlan:
             # "sell all at 2.5R" next to a target worth 7.5R was the card lying
             # to itself; on the 98.6% of rows where the floor never binds these
             # two are the same number and the card reads exactly as it always did.
-            r_label = (f"{self.rr:g}R" if abs(self.booked_rr - self.rr) < 0.05
-                       else f"{self.booked_rr:.1f}R — the $0.05 stop floor caps "
-                            f"the loss, so this pays more than {self.rr:g}R")
+            if abs(self.booked_rr - self.rr) < 0.05:
+                r_label = f"{self.rr:g}R"
+            elif self.booked_rr > self.rr:
+                r_label = (f"{self.booked_rr:.1f}R — the $0.05 stop floor caps "
+                           f"the loss, so this pays more than {self.rr:g}R")
+            else:
+                # OMEN 8.0 R7. The round-trip spread is charged to both legs,
+                # so the card books less than the ratio it aims at. Saying
+                # "pays more" here (the only branch that existed before R7)
+                # would be the same card-lying-to-itself bug in a new place.
+                r_label = (f"{self.booked_rr:.1f}R — the round-trip spread is "
+                           f"charged to both legs, so this pays less than the "
+                           f"{self.rr:g}R it aims at")
             lines += f"Target:     ${self.target_premium:.2f}  (sell all at {r_label})\n"
         lines += (
             f"Contracts:  {self.contracts}  → max loss ${self.max_loss:.0f} / max reward ${self.max_reward:.0f}\n"
@@ -414,7 +465,7 @@ def build_options_plan(
 
     T2: with `ENABLE_CONTRACT_R` on AND `iv` / `minutes_to_expiry` supplied, the
     premium risk is a full Black-Scholes reprice at the stock stop instead of
-    `stock_risk * 0.5`. Off (the default), or with either input missing, the
+    `stock_risk * DEFAULT_DELTA`. Off (the default), or with either input missing, the
     arithmetic below is bit-for-bit what it was before T2.
     """
     # 1. Stock-side risk/reward
@@ -523,17 +574,51 @@ def build_options_plan(
     # $37.21 at 816.40 on a 0.5 delta; a floored target would book $13.13 --
     # a $2,408-a-contract gain thrown away for the sake of a tidier ratio.
     # `research/g72_liveexit_report.md` carries that arithmetic.
-    stop_premium = round(max(entry_premium - premium_risk, 0.05), 2)
-    # This IS `premium_at(stock_target, ...)`: the map's ratio is
+    mid_premium = entry_premium
+    mid_stop = round(max(mid_premium - premium_risk, 0.05), 2)
+    # This IS `premium_at(stock_target, ...)` off the mid: the map's ratio is
     # `(stock_target - stock_entry) / stock_risk`, which is `rr` exactly. Spelt
     # algebraically because computing it through the division reintroduces `rr`
     # as 2.4999999999 and tips the cent rounding on 578 of the book's 4,508
     # traded rows by $0.01 -- a shipped price moving for no reason at all.
     # Nothing else here needs the divide, so nothing else pays for it.
-    target_premium = round(entry_premium + (rr * premium_risk), 2)
+    mid_target = round(mid_premium + (rr * premium_risk), 2)
 
-    # 5. Contracts
-    per_contract_risk = (entry_premium - stop_premium) * CONTRACT_MULTIPLIER
+    # OMEN 8.0 R7: charge the round-trip spread instead of booking entry AND
+    # exit at the mid. Buy at the ask (mid + half the spread); sell to close at
+    # the bid (mid - half the spread), on EITHER the stop or the target -- the
+    # spread hits a round trip once, whether it closes as a win or a loss,
+    # split as half on the way in and half on the way out. Uses the real
+    # observed bid/ask width when a live quote gave us one; DEFAULT_SPREAD
+    # otherwise. Read off the module global so a caller (and the R7 test) can
+    # set it to 0.0 to price the no-spread counterfactual.
+    spread = bid_ask_spread if bid_ask_spread > 0 else DEFAULT_SPREAD
+    half_spread = spread / 2.0
+
+    # Round the RISK and REWARD amounts ONCE each, as coherent quantities --
+    # not entry/stop/target independently, which is what let two separate
+    # roundings of the same half-cent boundary drift a full cent apart and made
+    # the displayed card and the reported max_loss/max_reward disagree on
+    # cheap, near-the-floor contracts. `entry_premium` anchors the card;
+    # `stop_premium` and `target_premium` are DERIVED from the rounded entry
+    # and these two already-rounded amounts by plain +/-, so `entry - stop` and
+    # `target - entry` equal them EXACTLY -- the card and the dollar figures are
+    # the same numbers, not two independent estimates of them.
+    premium_risk_per_share = round((mid_premium - mid_stop) + spread, 2)
+    reward_per_share = round((mid_target - mid_premium) - spread, 2)
+
+    entry_premium = round(mid_premium + half_spread, 2)                          # pay the ask
+    stop_premium = round(max(entry_premium - premium_risk_per_share, 0.05), 2)   # receive the bid
+    target_premium = round(max(entry_premium + reward_per_share, 0.05), 2)       # receive the bid
+
+    # 5. Contracts -- sized off entry_premium/stop_premium, the SAME already-
+    # coherent numbers on the card, not premium_risk_per_share directly. The
+    # $0.05 stop-premium floor above can clamp the REALIZED distance tighter
+    # than the unclamped model risk on a cheap contract; sizing off the clamped,
+    # actually-displayed distance means `contracts` reflects what the floor
+    # really allows. This also makes `max_loss` and `(entry-stop)*100*contracts`
+    # equal in every case, floor included, not just where the floor never binds.
+    per_contract_risk = round((entry_premium - stop_premium) * CONTRACT_MULTIPLIER, 2)
     contracts = int(max_loss // per_contract_risk) if per_contract_risk > 0 else 0
 
     # 6. G7.2 liveexit: the ladder rungs, priced through the SAME delta map as

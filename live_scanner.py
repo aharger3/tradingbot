@@ -678,6 +678,14 @@ def _emit_signal(runner: SignalRunner, tasty_feed: TastytradeFeed, symbol: str, 
         stop_width_pct=stop_width,
         quote_source=plan.quote_source if hasattr(plan, "quote_source") else "estimated",
         status="alert" if alert_only else "fired",
+        # Ported from the cloud branch's OMEN 8.0 R5. `signal_tracker.log_signal`
+        # has taken `austin_tier` since omen-3.9 T4 and `signal_runner` already
+        # passes it, but this path -- the one that actually promotes to TRADE --
+        # never did, so a live promotion (or refusal) was unauditable after the
+        # fact from the signal log alone. The engine `grade` above cannot stand
+        # in for it: A+ was retired 2026-08-30 and SAC_TIER writes both his S
+        # and his A to the top letter `A`.
+        austin_tier=sig.get("austin_tier"),
     )
 
     if paper is not None and not alert_only:
