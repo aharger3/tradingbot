@@ -1,5 +1,8 @@
 # tradingbot — OMEN
 
+**New here? Read `SWARM.md` first** — the base-hash rule, the done rule, and the
+never-lose-a-mark rule, in one page. This file is the detail underneath it.
+
 Intraday signal engine. Break-and-retest / one-candle-rule setups on the 09:30–11:00 window.
 Repo `aharger3/tradingbot`, working copy `C:\Users\aharg\Desktop\Projects\tradingbot`.
 
