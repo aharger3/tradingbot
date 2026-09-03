@@ -14,10 +14,20 @@ Run `research/daily_fetch.py` first -- this reads the archive, it does not fetch
 
 TWO MODES, TWO INSTRUMENTS. `--mode full` (the default, unchanged) is the 16:15
 REVEAL: the whole tape, one card per symbol, everything the engine produced.
-`--mode s-blind` is AUGUR's 11:05 deck -- bars cut at 11:00, only the symbol-days
-worth his attention, the engine's own call drawn on the chart, and a comment box
-as the primary field. See the block above `BLIND_END` for why it exists and why
-the cut is where it is. It writes omen-daily-<day>-s.html; the two never collide.
+`--mode s-blind` is AUGUR's 11:05 deck -- **deck kind 3**, settled by grilling
+2026-09-03 and specified in `Projects/omen-decks.md`. It is not a smaller reveal;
+it is the opposite instrument:
+
+  * every card is cut at the bar the ENGINE ACTED ON, not at a fixed clock, so
+    the tape stops where the decision was;
+  * for every fire card, one SILENT symbol-day from the same session cut to the
+    same bar index, shuffled in, so length is not a tell;
+  * the engine's grade, direction, entry, stop, target, reasons and even whether
+    the card is a fire or a silent day are HELD OUT. They go to the sidecar
+    `research/daily_<day>_s.json`, which is the evening reveal's answer key;
+  * the marks are Test 2's, and the comment box is the primary field.
+
+It writes omen-daily-<day>-s.html; the two modes never collide.
 
 WHY ONE CARD PER SYMBOL AND NOT ONE PER SIGNAL. On 2026-09-01 the engine produced
 **269 candidates and fired 50** across 29 symbols. He takes 1-3 a day. A card per
@@ -48,7 +58,10 @@ WHAT HIS OWN MARKS SAID WAS WRONG WITH THE LAST DECK, and what is fixed here
 from __future__ import annotations
 
 import argparse
+import collections
 import json
+import random
+import re
 import sys
 from pathlib import Path
 
@@ -75,31 +88,47 @@ WIN_START, WIN_END = "09:30:00", "11:00:00"
 # candidate the engine produced. This mode is the opposite instrument and runs
 # four hours earlier, while the day is still live:
 #
-#   blind      bars stop at 11:00, so he is marking a chart he could actually
-#              have traded, not one whose afternoon already answered the question
-#   selective  cards are the symbol-days worth his attention, not all 29
+#   blind      the session stops at 11:00 and each CARD stops at the bar the
+#              engine acted on, so he is marking the chart a trader actually had
+#              in front of him, not one whose next hour answered the question
+#   held out   nothing about the engine's call is on the card, not even whether
+#              there was one -- that is the sidecar's job
+#   selective  cards are the symbol-days worth his attention, plus a matched
+#              silent day for each, so "something is here" is not the default
 #   comment    the comment box is the point. Austin, 2026-09-02: "you need to
 #              take my homework more seriously and not just worry about the
 #              filters i click its about the comments."
 #
-# WHY THE CUT IS 10:59 AND NOT 11:00. The T8 entry capture (reused verbatim from
+# WHY THE SESSION CUT IS 10:59 AND NOT 11:00. This is the OUTER bound; each card
+# is cut earlier, at its own fire bar. The T8 entry capture (reused verbatim from
 # `build_omen_test1`) is a quarter-hour block plus a minute inside it: six blocks
 # of fifteen bars, 09:30-10:59, exactly 90. A 91st bar at 11:00 would be on the
 # chart and unreachable by every chip on the card. The engine agrees -- it takes
 # no new entry at or after 11:00 (`backtest_week.ENTRY_CUTOFF`) -- so nothing is
-# lost, and the grid and the tape end on the same candle.
+# lost, and the grid and the tape end on the same candle. Per card the grid is
+# trimmed further, to the blocks that fit that card's own tape.
 BLIND_END = "10:59:00"
 BLIND_BARS = 90
 SBLIND_CAP = 60          # Projects/omen-decks.md; his number, not a saving
+# A card cut before 09:45 is not a chart, it is an opening range. The shallowest
+# fire seen so far is bar 14 (09:44), which is exactly this floor.
+SBLIND_MIN_BARS = 15
 
 # Austin, 2026-09-03: "OCR and 84 percent rule need closer look at or emphasis in
-# the cards, not sure why firing less should always be working." So an OCR or an
-# 84% re-entry puts a symbol-day on the deck at ANY grade and whatever the gates
-# did with it, tagged with the gate that killed it -- he is being asked whether
-# the gate was wrong, which is a question the reveal deck cannot pose.
-# BR_OCR_CONFLUENCE is in here because it carries an OCR leg: it IS a one-candle
-# rule that also happens to be a break-and-retest (omen_bot.SignalType).
-OCR84_SETUPS = {"one_candle_rule", "br_ocr_confluence", "reentry_84_rule"}
+# the cards, not sure why firing less should always be working." So a one-candle
+# rule or an 84% re-entry puts a symbol-day on the deck at ANY grade, even when
+# every gate killed it.
+#
+# BR_OCR_CONFLUENCE IS DELIBERATELY NOT HERE, and this is a selection decision,
+# not a claim that a confluence signal is not an OCR -- it is one, and it still
+# counts as an OCR everywhere else in this file. It sits on 183 of the 226
+# candidates of 2026-09-02, i.e. on 28 of 29 symbols. Using it as a SELECTION
+# trigger therefore makes every symbol-day a fire card, which leaves no silent
+# partner for any of them and collapses deck kind 3's whole no-tell design
+# (29 symbols cannot supply 28 silent days). Measured both ways on 09-02 and
+# 09-03: under the strict reading every pure OCR/84 symbol-day already carries
+# an S, so his emphasis costs zero extra cards and loses nothing.
+OCR84_SETUPS = {"one_candle_rule", "reentry_84_rule"}
 
 SETUP_LABEL = {
     "break_and_retest": "break &amp; retest",
@@ -276,7 +305,7 @@ def _f(v):
 
 
 # ---------------------------------------------------------------------------
-# s-blind: selection
+# s-blind: selection (deck kind 3, Projects/omen-decks.md, 2026-09-03)
 # ---------------------------------------------------------------------------
 
 def gate_verdict(t) -> str:
@@ -344,60 +373,131 @@ def _sig_row(t) -> dict:
     }
 
 
-def card_rank(sigs) -> int:
-    """Deck order. Lower sorts first; 9 means "not on this deck".
+def first_bar(sigs, pred) -> int | None:
+    """Index of the earliest candidate matching `pred`, or None."""
+    hits = [s["i"] for s in sigs if s["i"] is not None and pred(s)]
+    return min(hits) if hits else None
 
-    S fires, then S the gates killed, then OCR/84% at any grade, then the
-    S-adjacent A rows if there is room under the 60-card cap.
+
+def classify(sigs) -> tuple:
+    """(kind, cut index) for one symbol-day, or (None, first candidate index).
+
+    A FIRE card is a symbol-day the engine had an opinion about, and the cut is
+    the bar that opinion landed on -- the first S fire, else the first S at all,
+    else the first one-candle-rule or 84% candidate. A symbol-day with none of
+    those is a SILENT candidate, and what comes back instead is the bar its
+    first candidate of ANY kind appeared on, which is how deep a silent tape can
+    be cut before it stops being silent.
     """
-    if any(s["tier"] == "S" and s["fired"] for s in sigs):
-        return 0
-    if any(s["tier"] == "S" for s in sigs):
-        return 1
-    if any(s["ocr84"] for s in sigs):
-        return 2
-    if any(s["tier"] == "A" for s in sigs):
-        return 3
-    return 9
+    i = first_bar(sigs, lambda s: s["tier"] == "S" and s["fired"])
+    if i is not None:
+        return "S fired", i
+    i = first_bar(sigs, lambda s: s["tier"] == "S")
+    if i is not None:
+        return "S gated", i
+    i = first_bar(sigs, lambda s: s["ocr84"])
+    if i is not None:
+        return "OCR / 84%", i
+    return None, first_bar(sigs, lambda s: True)
 
 
-RANK_LABEL = {0: "S fired", 1: "S, gated", 2: "OCR / 84%", 3: "A, S-adjacent"}
+def match_silent(fires, pool):
+    """Pair each fire card with a silent symbol-day cut to the SAME bar index.
+
+    `fires` is [(sym, kind, cut)], `pool` is [(sym, first_candidate_index)] where
+    a symbol that never produced a candidate carries None. A silent card cut at
+    bar k is only honestly silent if that symbol's first candidate is after k, so
+    this is an interval matching, and it is solved the classic way: hand out the
+    DEEPEST cuts first and give each the SHALLOWEST silent tape that still covers
+    it, so the deep-silent symbols stay available for the deep fires.
+
+    THE UNIVERSE IS THE BINDING CONSTRAINT, NOT THIS FUNCTION. 29 symbols cannot
+    supply one silent partner for every fire card once most of them fire, and a
+    card cut at 10:57 needs a symbol that produced nothing for 87 minutes --
+    usually there is none. It returns what actually exists; the caller reports
+    the shortfall rather than papering over it by repeating a symbol.
+    """
+    INF = 10 ** 9
+    avail = sorted(((f if f is not None else INF), s) for s, f in pool)
+    out = []
+    for sym, _kind, cut in sorted(fires, key=lambda x: -x[2]):
+        for j, (f, s2) in enumerate(avail):
+            if f > cut:
+                out.append((s2, cut))
+                avail.pop(j)
+                break
+    return out
 
 
 def sblind_collect(day: str, symbols) -> tuple:
-    """(cards, stats). Applies the no-repeat guard and the 60-card cap."""
+    """(cards, stats). Kind 3: fire-bar cut, matched silent cards, engine held out."""
     marked = deck.marked_card_ids()
-    cards, repeats, nobars = [], [], []
+    scan, repeats, nobars = {}, [], []
     for sym in symbols:
-        cid = "%s_%s" % (sym, day)
-        if cid in marked:
+        if "%s_%s" % (sym, day) in marked:
             # THE NO-REPEAT GUARANTEE (CLAUDE.md). A symbol-day he has already
             # judged -- in ANY corpus, `grade: "none"` included -- never comes
             # back. His felt sense of a repeat has beaten this code three times.
-            repeats.append(cid)
+            repeats.append("%s_%s" % (sym, day))
             continue
         bars, levels, trades = day_signals(sym, day, cut=BLIND_END)
-        if not bars:
+        if not bars or len(bars) < SBLIND_MIN_BARS:
             nobars.append(sym)
             continue
-        sigs = [_sig_row(t) for t in trades]
-        rank = card_rank(sigs)
-        if rank == 9:
-            continue
-        cards.append({
-            "symbol": sym, "day": day, "rank": rank,
+        at = {c.timestamp[:5]: i for i, c in enumerate(bars)}
+        scan[sym] = {
             "bars": [{"t": c.timestamp, "o": c.open, "h": c.high,
-                      "l": c.low, "c": c.close} for c in bars
-                     if WIN_START <= c.timestamp <= BLIND_END],
-            "levels": levels, "signals": sigs,
+                      "l": c.low, "c": c.close} for c in bars],
+            "levels": levels,
+            "sigs": [dict(_sig_row(t), i=at.get(t.entry_time[:5]))
+                     for t in trades],
+        }
+
+    fires, pool = [], []
+    for sym, d in scan.items():
+        kind, i = classify(d["sigs"])
+        if kind is None:
+            pool.append((sym, i))
+        elif i is not None and i + 1 >= SBLIND_MIN_BARS:
+            fires.append((sym, kind, i))
+
+    picked = [(sym, kind, cut, False) for sym, kind, cut in fires]
+    for sym, cut in match_silent(fires, pool):
+        picked.append((sym, "silent", cut, True))
+
+    # The cap, in the order the standard names: OCR/84 rows that are not S go
+    # first, then silent cards, and an S fire is never dropped.
+    if len(picked) > SBLIND_CAP:
+        order = {"S fired": 0, "S gated": 1, "silent": 2, "OCR / 84%": 3}
+        picked.sort(key=lambda p: order.get(p[1], 4))
+        picked = picked[:SBLIND_CAP]
+
+    cards = []
+    for sym, kind, cut, silent in picked:
+        d = scan[sym]
+        cards.append({
+            "symbol": sym, "day": day, "kind": kind, "silent": silent,
+            "cut_i": cut, "cut_t": d["bars"][cut]["t"][:5],
+            # WHAT HE SEES.
+            "bars": d["bars"][:cut + 1],
+            "levels": d["levels"],
+            # HELD OUT (deck kind 3). The engine's grade, direction, entry,
+            # stop, target, reasons AND whether this card is a fire or a silent
+            # day. None of it reaches the HTML; it is here for the evening
+            # reveal card and for scoring his marks against the engine.
+            "signals": d["sigs"],
         })
-        print("  [%s] %d candidates, %s" % (sym, len(sigs), RANK_LABEL[rank]))
-    cards.sort(key=lambda c: (c["rank"],
-                              -sum(1 for s in c["signals"] if s["fired"]),
-                              -len(c["signals"]), c["symbol"]))
-    stats = {"repeats": repeats, "nobars": nobars, "before_cap": len(cards)}
-    if len(cards) > SBLIND_CAP:
-        cards = cards[:SBLIND_CAP]
+
+    # Order random. A deck sorted by anything is a deck whose order is a hint,
+    # and the whole point of kind 3 is that a card carries no tell. Seeded on the
+    # session, so rebuilding the same day gives the same deck.
+    random.Random("augur-%s" % day).shuffle(cards)
+
+    n_silent = sum(1 for c in cards if c["silent"])
+    stats = {"repeats": repeats, "nobars": nobars, "fires": len(fires),
+             "silent": n_silent, "pool": len(pool),
+             "unmatched": len(fires) - n_silent,
+             "by_kind": collections.Counter(c["kind"] for c in cards)}
     return cards, stats
 
 
@@ -408,43 +508,28 @@ def sblind_collect(day: str, symbols) -> tuple:
 SBLIND_CSS = """
 <style>
 /* 60 charts is a lot of SVG for a phone; let the browser skip the offscreen ones */
-.card{content-visibility:auto; contain-intrinsic-size:auto 1000px}
-.tape{display:flex;flex-wrap:wrap;gap:7px;margin:10px 16px 2px}
-.tape span{background:var(--surface-2);border:1px solid var(--rule);border-radius:6px;
-  padding:3px 8px;font-size:11.5px;font-family:"IBM Plex Mono",monospace;
-  font-variant-numeric:tabular-nums;color:var(--ink-2)}
-.tape span.fired{border-color:var(--entry);color:var(--entry)}
-.tape span.gated{border-color:var(--stop);color:var(--stop)}
-.sigs{width:calc(100% - 32px);border-collapse:collapse;margin:10px 16px 4px;font-size:12.5px}
-.sigs th{text-align:left;font-weight:600;color:var(--ink-3);padding:4px 6px;
-  border-bottom:1px solid var(--rule);font-size:10px;letter-spacing:.06em;
-  text-transform:uppercase;font-family:"IBM Plex Mono",monospace}
-.sigs td{padding:5px 6px;border-bottom:1px solid var(--rule);
-  font-variant-numeric:tabular-nums;vertical-align:top}
-.sigs td.k{white-space:nowrap;font-weight:600;font-family:"IBM Plex Mono",monospace}
-.sigs tr.fired td.k{color:var(--entry)}
-.sigs tr.gated td{opacity:.72}
-.sigs td.v{font-size:11.5px;color:var(--ink-3)}
-.sigs tr.fired td.v{color:var(--entry)}
-.why{margin:0 16px 12px;font-size:11.5px;color:var(--ink-3);line-height:1.45;
-  font-family:"IBM Plex Mono",monospace;word-break:break-word}
-.chart .dot.f{fill:var(--entry)} .chart text.dot-t.f{fill:var(--entry)}
-.chart .dot.s{fill:var(--ink-3)} .chart text.dot-t.s{fill:var(--ink-3)}
-.chart .hrail.tgt{stroke:var(--up);stroke-width:1;stroke-dasharray:6 3;opacity:.85}
-.chart .hrail-t.tgt{font-family:"IBM Plex Mono",monospace;font-size:9px;
-  font-weight:600;fill:var(--up)}
+.card{content-visibility:auto; contain-intrinsic-size:auto 900px}
+.chip[hidden]{display:none!important}
 
-/* progressive disclosure: the entry capture only once he says it is tradeable.
-   The COMMENT never hides -- it is the primary field, and a card he refuses is
-   exactly the card whose comment is worth most. */
+/* PROGRESSIVE DISCLOSURE, and it is also the card's economics: an ungraded card
+   shows one question, a `none` card costs one tap plus a comment, and only a
+   card he would actually trade asks for an entry and a stop. */
+.card[data-g=""] .q[data-q="setup"],
 .card[data-g=""] .q[data-q="eblock"],
 .card[data-g=""] .q[data-q="emin"],
 .card[data-g=""] .q[data-q="stop"],
 .card[data-g=""] .readout,
+.card[data-g="X"] .q[data-q="setup"],
 .card[data-g="X"] .q[data-q="eblock"],
 .card[data-g="X"] .q[data-q="emin"],
 .card[data-g="X"] .q[data-q="stop"],
-.card[data-g="X"] .readout{display:none}
+.card[data-g="X"] .readout,
+.card[data-g="C"] .q[data-q="eblock"],
+.card[data-g="C"] .q[data-q="emin"],
+.card[data-g="C"] .q[data-q="stop"],
+.card[data-g="C"] .readout{display:none}
+/* "why not" is a question about a refusal, so it exists only on a refusal */
+.card:not([data-g="X"]) .q[data-q="why"]{display:none}
 
 .q[data-q="grade"] .chip{flex:1 1 calc(50% - 4px);font-weight:600}
 .q[data-q="grade"] .chip[data-v="X"][aria-pressed="true"]{
@@ -478,10 +563,9 @@ SBLIND_CSS = """
 .chart .usermark .ustop-t{font-family:"IBM Plex Mono",monospace;font-size:9px;
   font-weight:600;fill:var(--stop)}
 
-/* THE PRIMARY FIELD. Everything above it is one tap; this is the part that
-   turns into a rule. It gets the accent border and the tall box. */
+/* THE PRIMARY FIELD, and it sits directly under the grade because that is the
+   order he answers in. Austin: "its about the comments." */
 .q[data-q="comment"]{background:var(--accent-soft);border-top:1px solid var(--accent)}
-.q[data-q="comment"] h3{color:var(--ink)}
 .q[data-q="comment"] textarea.note{min-height:104px;background:var(--surface);
   border-color:var(--accent)}
 @media (max-width:520px){.q[data-q="emin"] .chip{min-width:46px}}
@@ -495,69 +579,81 @@ SBLIND_GRADE_OPTS = [
     ("X", "none &mdash; I would not trade this"),
 ]
 
+# Deck kind 3 names six: BR / OCR / BR+OCR / 84 / OB / other. `build_omen_test1`
+# has five -- it predates the order block being asked about on its own -- so the
+# list lives here rather than being imported, and OB is the one addition.
+SBLIND_SETUP_OPTS = [
+    ("BR", "BR &mdash; break &amp; retest"),
+    ("OCR", "OCR &mdash; one candle rule"),
+    ("BR+OCR", "BR + OCR"),
+    ("84", "84% re-entry"),
+    ("OB", "OB &mdash; order block"),
+    ("other", "Something else"),
+]
+
+# No engine entry/stop/target keys: the call is held out on kind 3, so the only
+# entry and stop this chart will ever carry are his own.
 SBLIND_LEGEND = ('<div class="legend">'
                  '<span><b style="color:var(--lvl-pd)">- - PDH/PDL</b> prior day</span>'
                  '<span><b style="color:var(--lvl-pm)">- - PMH/PML</b> premarket</span>'
                  '<span><b style="color:var(--lvl-or)">- - ORH/ORL</b> first 5 min</span>'
-                 '<span><b style="color:var(--entry)">&#9650; engine entry</b></span>'
-                 '<span><b style="color:var(--stop)">engine stop</b></span>'
-                 '<span><b style="color:var(--up)">- - target</b></span></div>')
-
-
-def _bar_index(card) -> dict:
-    """HH:MM -> bar index, over the bars actually on this card's chart."""
-    return {b["t"][:5]: i for i, b in enumerate(card["bars"])}
-
-
-def _primary(sigs):
-    """The candidate whose call gets DRAWN. Same precedence the deck is ordered
-    by, so the line on the chart is the reason the card is on the deck."""
-    if not sigs:
-        return None
-    def key(s):
-        return (0 if (s["tier"] == "S" and s["fired"]) else
-                1 if s["tier"] == "S" else
-                2 if s["ocr84"] else 3, s["et"])
-    return sorted(sigs, key=key)[0]
+                 '<span><b style="color:var(--entry)">&#9650; your entry</b></span>'
+                 '<span><b style="color:var(--stop)">your stop</b></span></div>')
 
 
 def sblind_questions(card) -> str:
     """**THE ONE SWAPPABLE PIECE.** Every question on a blind card, in order.
 
-    Austin, 2026-09-03: AUGUR must not build decks in any format except the one
-    being decided. The card format is still being grilled, so it is fenced off
-    HERE and nowhere else -- selection (`sblind_collect`), blindness
-    (`day_signals(cut=...)`), the chart, delivery and the return path are all
-    format-independent and settled. Replacing this function replaces the format;
-    nothing else in the file has to move.
+    Deck kind 3's mark set, which is Test 2's ("anything that is a continuation
+    of previous cards stuff I liked"): grade, then the COMMENT, then why-not on a
+    refusal, then setup, then the entry capture and the stop rail on a card he
+    would actually trade. The comment sits directly under the grade because that
+    is the order he answers in, and because it is the field this whole instrument
+    exists to collect.
 
     Two contracts it must keep, because the rest of the machinery reads them:
 
     * **Exactly one question carries `required=1`.** `probe_page.js::answered()`
       returns False when a card has no required question at all, so a card with
       none can never read as done and the progress bar sits at zero forever.
-    * **The keys are the export schema.** `grade` / `eblock` / `emin` / `stop`
-      are read by `build_omen_test1.EXTRA_JS`, which promotes them to top-level
-      `entry_i` / `entry_t` / `entry_p` / `stop_p` / `side` on every exported
-      row. Rename one here and the returned marks lose that field silently.
+    * **The keys are the export schema.** `grade` / `eblock` / `emin` / `stop` /
+      `setup` are read by `build_omen_test1.EXTRA_JS`, which promotes them to
+      top-level `entry_i` / `entry_t` / `entry_p` / `entered_before_close` /
+      `stop_p` / `stop_src` / `side` / `setup` on every exported row. Rename one
+      here and the returned marks lose that field silently.
     """
     stop_chips = "".join(
         '<button class="chip stopchip" type="button" data-v="%.2f" data-src="%s" '
         'aria-pressed="false">%.2f<small>%s</small><span class="risk"></span></button>'
         % (p, lab, p, lab) for p, lab in t1.stop_candidates(card["bars"],
                                                             card["levels"]))
+    n_blocks = -(-len(card["bars"]) // 15)          # ceil; the JS hides the rest
     return "".join([
         pp.question(
             "grade", "Your grade.",
             "S clean &middot; A one downgrade &middot; C two &middot; "
-            "<b>none = you would not take this</b>. The entry capture below "
-            "only appears once you say it is tradeable.",
+            "<b>none = you would not take this</b>.",
             SBLIND_GRADE_OPTS),
+        pp.question(
+            "comment", "What did you see?",
+            "This is the part that becomes a rule &mdash; write something on "
+            "every card, including the ones you would not touch.",
+            [], required=False,
+            note_placeholder="What you saw. Where you would enter and stop. "
+                             "What the engine missed."),
+        pp.question(
+            "why", "Why not?", "One tap. Optional.", t1.WHY_OPTS,
+            required=False, tone="veto"),
+        pp.question(
+            "setup", "What kind of trade is it?",
+            "If it is none of these, say <b>Something else</b> and one line "
+            "about what it is.", SBLIND_SETUP_OPTS, required=False,
+            note_placeholder="(optional) what the setup actually was"),
         pp.question(
             "eblock", "Entry &mdash; which quarter hour?",
             "Tap the block, then the minute inside it. The chart shades the "
             "block and drops your line on the bar.",
-            t1.block_opts(), required=False),
+            t1.block_opts()[:n_blocks], required=False),
         pp.question(
             "emin", "&hellip; and which minute?",
             "These relabel to the clock as soon as a block is chosen. Entry "
@@ -573,134 +669,111 @@ def sblind_questions(card) -> str:
         'fills in once the entry is set.</p><div class="chips stoprail">%s</div>'
         '<textarea class="note" data-note="stop" placeholder="(optional) exact '
         'stop price if none of these is it"></textarea></section>' % stop_chips,
-        pp.question(
-            "comment", "What did you see?",
-            "This is the part that becomes a rule. Anything: why the engine was "
-            "wrong, what the gate should have done, what you would have waited "
-            "for. One line is worth more than a tap.",
-            [], required=False,
-            note_placeholder="What you saw. Where you'd enter and stop. "
-                             "What the engine missed."),
     ])
 
 
 def sblind_card_html(card, n, total) -> str:
-    sym, day, sigs = card["symbol"], card["day"], card["signals"]
-    at = _bar_index(card)
-    lead = _primary(sigs)
+    """One card. THE ENGINE IS NOT ON IT.
 
-    marks, hlines, dots = [], [], []
-    if lead is not None and lead["et"] in at:
-        i = at[lead["et"]]
-        marks.append({"i": i, "price": lead["entry"], "stop": lead["stop"],
-                      "side": "L" if lead["dir"] == "call" else "S",
-                      "tag": "ENGINE"})
-        hlines.append({"price": lead["target"], "label": "TARGET", "cls": "tgt"})
-    for s in sigs:
-        if s is lead or s["et"] not in at:
-            continue
-        dots.append({"i": at[s["et"]], "price": s["entry"],
-                     "label": "%s %s" % (s["et"], s["tier"] or s["grade"]),
-                     "cls": "f" if s["fired"] else "s"})
-
-    chart = pc.render(card["bars"], card["levels"], marks=marks, hlines=hlines,
-                      dots=dots, interactive=True,
-                      label="%s %s  09:30-11:00" % (sym, day))
-
-    fired = [s for s in sigs if s["fired"]]
-    tape = ['<span>%s</span>' % RANK_LABEL[card["rank"]],
-            '<span><b>%d</b> candidates</span>' % len(sigs)]
-    if fired:
-        tape.append('<span class="fired"><b>%d</b> fired, first %s</span>'
-                    % (len(fired), fired[0]["et"]))
-    else:
-        tape.append('<span class="gated">none fired</span>')
-    if any(s["ocr84"] for s in sigs):
-        tape.append('<span class="fired">OCR / 84%</span>')
-    lv = card["levels"]
-    tape.append("<span>PDH %s / PDL %s</span>" % (_f(lv["pdh"]), _f(lv["pdl"])))
-    tape.append("<span>PMH %s / PML %s</span>" % (_f(lv["pmh"]), _f(lv["pml"])))
-
-    rows = "".join(
-        '<tr class="%s"><td class="k">%s</td><td>%s</td><td>%s</td><td>%s</td>'
-        '<td>%s</td><td>%s / %s / %s</td><td class="v">%s</td></tr>'
-        % ("fired" if s["fired"] else "gated", s["et"],
-           "long" if s["dir"] == "call" else "short",
-           s["tier"] or s["grade"], s["setup_label"], s["level_label"],
-           "%.2f" % s["entry"], "%.2f" % s["stop"], "%.2f" % s["target"],
-           s["verdict"])
-        for s in sigs)
-    table = ('<table class="sigs"><tr><th>ET</th><th>Side</th><th>Tier</th>'
-             '<th>Setup</th><th>Level broken</th><th>Entry / stop / target</th>'
-             '<th>What happened to it</th></tr>%s</table>' % rows) if rows else ""
-    why = ('<p class="why">%s</p>' % lead["reason"]) if (lead and lead["reason"]) else ""
-
+    No grade, no direction, no entry, no stop, no target, no reasons, and
+    nothing that says whether this is a day the engine fired on. The chart is
+    candles from 09:30 to the cut, six level lines with their prices, and the
+    placeholders his own taps move. `data-export` carries the symbol, the date
+    and the length of the tape; everything else the returned row needs is joined
+    back from the sidecar, which he never sees.
+    """
+    sym, day = card["symbol"], card["day"]
+    chart = pc.render(card["bars"], card["levels"], interactive=True,
+                      label="%s %s" % (sym, day))
     closes = json.dumps([round(b["c"], 2) for b in card["bars"]],
                         separators=(",", ":"))
-    export = json.dumps({
-        "symbol": sym, "date": day, "mode": "s-blind", "deck_rank": card["rank"],
-        "engine_tiers": sorted({s["tier"] for s in sigs if s["tier"]}),
-        "engine_setups": sorted({s["setup"] for s in sigs}),
-        "engine_verdicts": sorted({s["verdict"] for s in sigs}),
-        "engine_n": len(sigs), "engine_fired": len(fired),
-        "engine_entry": lead["entry"] if lead else None,
-        "engine_stop": lead["stop"] if lead else None,
-        "engine_target": lead["target"] if lead else None,
-        "engine_level": lead["level"] if lead else None,
-        "engine_et": lead["et"] if lead else None,
-    }, separators=(",", ":"), sort_keys=True)
-
+    export = json.dumps({"symbol": sym, "date": day, "mode": "s-blind",
+                         "n_bars": len(card["bars"])},
+                        separators=(",", ":"), sort_keys=True)
     head = ('<header><span class="idx">%03d/%03d</span>'
             '<span class="tick">%s</span><span class="when">%s</span>'
-            '<span class="tags"><span class="tag">09:30&ndash;11:00</span>'
+            '<span class="tags"><span class="tag">from 09:30</span>'
             '<span class="done-dot"></span></span></header>'
             % (n, total, sym, day))
-
     return "".join([
         '<article class="card" data-cid="%s_%s" data-n="%d" data-grade="" '
-        'data-done="0" data-g="" data-closes=\'%s\' data-export=\'%s\'>'
-        % (sym, day, n, closes, export),
+        'data-done="0" data-g="" data-nbars="%d" data-closes=\'%s\' '
+        'data-export=\'%s\'>' % (sym, day, n, len(card["bars"]), closes, export),
         head,
         '<div class="chartwrap">%s</div>' % chart, SBLIND_LEGEND,
-        '<div class="tape">%s</div>' % "".join(tape), table, why,
         sblind_questions(card),
         "</article>",
     ])
 
 
+# `build_omen_test1.EXTRA_JS` bounds the entry index with a MODULE-WIDE `BARS`,
+# because Test 1's hundred charts are all exactly 90 bars. Kind 3's are not --
+# every card is cut at its own bar -- so the bound is rewritten, once, to read
+# the card's own `data-nbars`. The assertion in `sblind_build` fails the build if
+# that line ever moves: without it he could tap a minute that is not on his chart
+# and the export would carry an entry the tape never had.
+_BARS_SRC = "if (i >= 0 && i < BARS){"
+_BARS_DST = "if (i >= 0 && i < (+card.getAttribute('data-nbars') || BARS)){"
+
+# The minute chips for bars that are not on THIS card. The block list is already
+# trimmed at build time; the minute chips cannot be, because they are shared
+# `+0..+14` offsets that only mean a clock once a block has been picked.
+SBLIND_JS = r"""
+<script>
+(function(){
+  function each(l, f){ Array.prototype.forEach.call(l, f); }
+  function clamp(card){
+    var n = +card.getAttribute('data-nbars') || 0;
+    if (!n) return;
+    var b = card.querySelector('.q[data-q="eblock"] .chip[aria-pressed="true"]');
+    var base = b ? parseInt(b.getAttribute('data-v'), 10) * 15 : null;
+    each(card.querySelectorAll('.q[data-q="emin"] .chip'), function(c){
+      var off = parseInt(c.getAttribute('data-v'), 10);
+      c.hidden = (base !== null) && (base + off >= n);
+    });
+  }
+  document.addEventListener('click', function(e){
+    var card = e.target.closest && e.target.closest('.card');
+    if (card) clamp(card);
+  });
+  each(document.querySelectorAll('.card'), clamp);
+})();
+</script>
+"""
+
+
 def sblind_build(day: str, symbols) -> tuple:
     cards, stats = sblind_collect(day, symbols)
     if not cards:
-        raise SystemExit("no S / OCR / 84%% cards for %s -- nothing to send" % day)
+        raise SystemExit("no cards for %s -- nothing to send" % day)
     total = len(cards)
-    by_rank = {}
-    for c in cards:
-        by_rank[RANK_LABEL[c["rank"]]] = by_rank.get(RANK_LABEL[c["rank"]], 0) + 1
-    n_ocr = sum(1 for c in cards if any(s["ocr84"] for s in c["signals"]))
-    n_fired = sum(1 for c in cards for s in c["signals"] if s["fired"])
+    js = t1.EXTRA_JS.replace("__BARS__", str(BLIND_BARS))
+    assert _BARS_SRC in js, (
+        "build_omen_test1.EXTRA_JS no longer bounds the entry index with %r -- "
+        "kind 3 cards are cut at different bars and MUST clamp per card"
+        % _BARS_SRC)
+    js = js.replace(_BARS_SRC, _BARS_DST)
 
     html = pp.shell(
         title="OMEN blind - %s" % day,
         eyebrow="blind homework - %s" % day,
-        h1="What the engine saw before 11:00",
-        lede="%d charts, cut at 11:00 &mdash; you are seeing exactly what it "
-             "saw. The engine&rsquo;s own call is drawn on each one. Grade it, "
-             "mark where you would have got in and where the stop goes, and "
-             "<b>write a comment</b>. The comment is the part that changes the "
-             "engine. Everything saves as you go; Export when you are done."
-             % total,
+        h1="What was on the tape this morning",
+        lede="%d charts from this session. Each one stops where it stops and "
+             "you are told nothing else &mdash; not what the engine thought, "
+             "not whether it thought anything at all. Grade it, say what kind "
+             "of trade it is, mark your entry and stop if you would take it, "
+             "and <b>write a comment on every card</b>. Everything saves as you "
+             "go; Export when you are done." % total,
         cards_html=(SBLIND_CSS
                     + "".join(sblind_card_html(c, i, total)
                               for i, c in enumerate(cards, 1))),
-        footer_html="Bars: 09:30&ndash;10:59 only, from research/daily_fetch.py. "
-                    "Signals: backtest_week.simulate_day on those bars alone. "
-                    "Tier is the S/A/C ladder. &ldquo;What happened to it&rdquo; "
-                    "names the gate that stopped a candidate becoming a trade "
-                    "&mdash; say so if the gate was wrong.",
+        footer_html="1-minute candles from 09:30, cut where they are cut. "
+                    "Levels: prior day high/low, premarket high/low, and the "
+                    "opening range. Nothing after the last candle is on this "
+                    "page, and neither is anything the engine did.",
         deck_id="daily-%s" % day,
-    ) + t1.EXTRA_JS.replace("__BARS__", str(BLIND_BARS))
-    stats.update({"total": total, "by_rank": by_rank, "ocr84_cards": n_ocr,
-                  "fired": n_fired})
+    ) + js + SBLIND_JS
+    stats["total"] = total
     return cards, html, stats
 
 
@@ -768,23 +841,84 @@ def demo():
     demo_sblind(day)
 
 
+# Prices the card legitimately shows: every bar close (`data-closes`, which the
+# mid-candle fill capture needs), every structural stop-rail chip, and the six
+# level labels inside the chart. An engine entry is a candle close BY
+# CONSTRUCTION and an engine stop is usually one of those very levels -- on QQQ
+# 2026-09-03 the stop IS the premarket high the card is required to draw -- so a
+# naive "is this number in the HTML" test fires on every card and proves nothing.
+# The leak test therefore strips all three, and separately asserts that none of
+# the SVG classes that
+# DRAW a call -- entry rail, stop rail, target rail, arrow, candidate dot -- is
+# in the markup at all. Those exist only when `marks`/`hlines`/`dots` are passed
+# to probe_chart.render, and kind 3 passes none.
+_CHART_PRICE_BLOCKS = (re.compile(r"data-closes='[^']*'"),
+                       re.compile(r'<div class="chips stoprail">.*?</div>', re.S),
+                       re.compile(r'<svg class="chart".*?</svg>', re.S))
+_ENGINE_SVG = ('class="entry"', 'class="stopl"', 'class="arrow"',
+               'class="dot ', 'class="hrail ', 'class="entry-t"',
+               'class="stop-t"', 'class="dot-t')
+# Checked against the card's HEAD ONLY -- header, chart, legend -- because that
+# is the whole of the card built from engine data. The question copy below it is
+# fixed prose reviewed here, and it legitimately says "engine" ("What the engine
+# missed"), which is a prompt, not a leak.
+_ENGINE_WORDS = ("fired", "gated", "silent", "candidate", "austin_tier",
+                 "verdict", "tier", "engine")
+
+
+def leak_check(card, html: str) -> None:
+    """Fail if anything the card is supposed to hold back reached the markup.
+
+    Deck kind 3 holds out the engine's grade, direction, entry, stop, target,
+    reasons AND whether the day was a fire or a silent one. A leak here breaks
+    nothing visibly; it quietly turns a blind test into a leading question, and
+    the marks it produces cannot be told apart from honest ones afterwards.
+    """
+    sym = card["symbol"]
+    for cls in _ENGINE_SVG:
+        assert cls not in html, "%s: the chart draws the engine (%s)" % (sym, cls)
+    head = html[:html.index('<section class="q"')]
+    for w in _ENGINE_WORDS:
+        assert w not in head, "%s: the word %r is on the card" % (sym, w)
+    export = json.loads(re.search(r"data-export='([^']*)'", html).group(1))
+    assert set(export) == {"symbol", "date", "mode", "n_bars"},         "%s: data-export carries %r" % (sym, sorted(export))
+    prose = html
+    for rx in _CHART_PRICE_BLOCKS:
+        prose = rx.sub("", prose)
+    for sig in card["signals"]:
+        for field in ("entry", "stop", "target"):
+            assert ("%.2f" % sig[field]) not in prose, (
+                "%s: engine %s %.2f is on the card outside the chart's own data"
+                % (sym, field, sig[field]))
+        assert sig["verdict"] not in prose, "%s: a gate verdict is on the card" % sym
+        if sig["reason"]:
+            assert sig["reason"] not in prose, "%s: an engine reason is on the card" % sym
+        if sig["tier"]:
+            assert ">%s<" % sig["tier"] not in prose,                 "%s: an engine tier is on the card" % sym
+
+
 def demo_sblind(day: str | None = None):
-    """Self-check for --mode s-blind. Two things can silently ruin this deck.
+    """Self-check for --mode s-blind. Three things silently ruin a kind 3 deck.
 
-    **The blindness.** A card that carries one bar past 11:00 is not blind, and
-    nothing on the page would say so -- he would simply be marking a chart that
-    already told him the answer, and the mark would be worthless without anyone
-    knowing. Asserted on the bars themselves, not on the flag that produced them.
+    **The blindness.** A card carrying one bar past 11:00 is not blind, and
+    nothing on the page would say so -- he would be marking a chart that already
+    told him the answer, and the mark would be worthless without anyone knowing.
+    Asserted on the bars themselves, never on the flag that produced them.
 
-    **The reachable grid.** The entry capture is six quarter-hour blocks of
-    fifteen minutes. If the tape is longer than the grid, the last bars are on
-    the chart and unreachable by every chip on the card -- the same bug class as
-    a rule that becomes a branch which can never be true.
+    **The leak.** Kind 3 holds the engine's whole call back. A grade, an entry
+    price or a fire/silent marker reaching the markup does not break anything
+    visibly; it just quietly turns a blind test into a leading question. So the
+    built HTML is searched for the sidecar's own numbers.
+
+    **The unreachable minute.** Every card is cut at its own bar, so the entry
+    grid has to be clamped per card. A chip he can tap that names a minute not on
+    his chart writes an entry the tape never had -- the same bug class as a rule
+    that becomes a branch which can never be true.
     """
     day = day or latest_archived_day()
     assert BLIND_BARS == len(t1.BLOCKS) * 15, (
-        "the entry grid covers %d bars but the tape is %d -- bars past the last "
-        "block are unmarkable" % (len(t1.BLOCKS) * 15, BLIND_BARS))
+        "the entry grid covers %d bars but the window is %d"
+        % (len(t1.BLOCKS) * 15, BLIND_BARS))
     bars, levels, trades = day_signals("TSLA", day, cut=BLIND_END)
     assert bars, "TSLA %s produced no blind bars" % day
     assert bars[0].timestamp.startswith("09:30"), bars[0].timestamp
@@ -794,13 +928,28 @@ def demo_sblind(day: str | None = None):
     for t in trades:
         assert t.entry_time <= BLIND_END, (
             "candidate at %s is past the blind cut" % t.entry_time)
-    sigs = [_sig_row(t) for t in trades]
-    assert all(s["verdict"] for s in sigs), "a candidate with no gate verdict"
-    assert all("[" not in s["verdict"] for s in sigs), \
-        "a gate verdict leaked an engine tag: %r" % [s["verdict"] for s in sigs]
-    print("demo OK -- s-blind %s TSLA: %d bars to %s, %d candidates, "
-          "grid covers every bar" % (day, len(bars), bars[-1].timestamp[:5],
-                                     len(sigs)))
+
+    cards, st = sblind_collect(day, ["TSLA", "AMZN", "QQQ", "SPY", "NVDA", "MU"])
+    assert cards, "no cards from the six-symbol sample"
+    for c in cards:
+        n = len(c["bars"])
+        assert n == c["cut_i"] + 1, "card %s: %d bars but cut_i %d" % (
+            c["symbol"], n, c["cut_i"])
+        assert n >= SBLIND_MIN_BARS, "card %s cut at %d bars" % (c["symbol"], n)
+        assert c["bars"][0]["t"].startswith("09:30"), c["bars"][0]["t"]
+        assert c["bars"][-1]["t"] <= BLIND_END, c["bars"][-1]["t"]
+        if c["silent"]:
+            # A silent card must be silent on the tape SHOWN, not merely
+            # unremarkable somewhere later in the morning.
+            early = [s for s in c["signals"]
+                     if s["i"] is not None and s["i"] <= c["cut_i"]]
+            assert not early, "silent card %s has %d candidates on screen" % (
+                c["symbol"], len(early))
+        html = sblind_card_html(c, 1, 1)
+        leak_check(c, html)
+    print("demo OK -- s-blind %s: %d cards, %d silent, every card cut at its own "
+          "bar, no engine field on any card"
+          % (day, len(cards), sum(1 for c in cards if c["silent"])))
 
 
 def main():
@@ -827,21 +976,25 @@ def main():
         DECKS.mkdir(parents=True, exist_ok=True)
         out = DECKS / ("omen-daily-%s-s.html" % day)
         out.write_text(html, encoding="utf-8")
+        # THE SIDECAR IS THE ANSWER KEY. It carries everything the card holds
+        # back -- kind, cut bar, and every candidate with its tier, gate verdict,
+        # entry, stop, target and reason -- for the evening reveal and for
+        # scoring his marks. It is never served to him.
         js = ROOT / "research" / ("daily_%s_s.json" % day)
         js.write_text(json.dumps({"day": day, "mode": "s-blind",
                                   "cards": cards}, indent=1), encoding="utf-8")
-        print("\n%s blind deck: %d cards (%d candidates fired), "
-              "%d carry an OCR or 84%% candidate"
-              % (day, st["total"], st["fired"], st["ocr84_cards"]))
-        for k in ("S fired", "S, gated", "OCR / 84%", "A, S-adjacent"):
-            if st["by_rank"].get(k):
-                print("  %-14s %d" % (k, st["by_rank"][k]))
-        print("  no-repeat guard held back %d symbol-days; %d symbols had no bars"
-              % (len(st["repeats"]), len(st["nobars"])))
-        if st["before_cap"] > SBLIND_CAP:
-            print("  capped at %d (had %d)" % (SBLIND_CAP, st["before_cap"]))
+        print()
+        print("%s blind deck: %d cards" % (day, st["total"]))
+        for k in ("S fired", "S gated", "OCR / 84%", "silent"):
+            if st["by_kind"].get(k):
+                print("  %-11s %d" % (k, st["by_kind"][k]))
+        print("  %d fire cards, %d matched with a silent day; %d could not be "
+              "matched (only %d symbol-days were silent at all)"
+              % (st["fires"], st["silent"], st["unmatched"], st["pool"]))
+        print("  no-repeat guard held back %d symbol-days; %d symbols had too "
+              "few bars" % (len(st["repeats"]), len(st["nobars"])))
         print("  deck -> %s" % out)
-        print("  data -> %s" % js)
+        print("  key  -> %s" % js)
         return
 
     print("building the daily pass for %s over %d symbols" % (day, len(syms)))
