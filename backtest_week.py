@@ -501,6 +501,35 @@ SCRATCH_PROBE_ON = os.getenv("SCRATCH_PROBE", "0").strip().lower() \
     in ("1", "true", "yes", "on")
 SCRATCH_PROBE: List[dict] = []
 
+# ---- R2 (Austin, 2026-09-03 ruling) — the gave-it-back EXIT --------------
+# "A trade that ran and came back through its entry candle is dead. Exit at
+# that close; do not wait for the stop." Objective, causal, needs no new
+# data -- no fitted threshold, no MFE precondition: the boundary is the
+# ENTRY CANDLE's own range (`t.entry_candle_lo` / `_hi`, captured once at
+# trade creation from the fill bar), not `t.level_price` (the retested
+# level, read only by ENTRY_SCRATCH above) and not `t.stop`.
+#
+# Distinct from `omen_bot.detect_break_retest`'s pre-entry gave-it-back
+# veto (a candidate never taken at all): this is an IN-TRADE exit, checked
+# on every bar of an open position, not only the bar after entry.
+#
+# Bar-ordered and causal, checked in `_ladder_bar` / `_ladder_bar_4` / the
+# binary path AFTER the disaster stop and the level stop -- so a bar that
+# satisfies both this and the stop goes to the STOP, matching the
+# "conservative: stop wins ties" convention already in this file. The fill
+# is `_stop_fill_px` (which itself is nothing but `stop_rule.stop_fill_price`)
+# -- never a locally invented price.
+#
+# Default OFF, byte-identical to the shipped book when off.
+# research/g112_gave_it_back_exit.py measures it.
+GAVE_IT_BACK_EXIT = os.getenv("GAVE_IT_BACK_EXIT", "0").strip().lower() not in (
+    "0", "false", "off", "")
+
+# Pure bookkeeping, the way ARM84_FUNNEL is bookkeeping: one tick per trade
+# whose exit `_gave_it_back` decided. Reading or ignoring it changes nothing;
+# research/g113_gave_it_back_exit.py resets it and reads it back.
+GAVE_IT_BACK_FUNNEL: Counter = Counter()
+
 
 @dataclass
 class SimTrade:
@@ -532,6 +561,12 @@ class SimTrade:
     # block (stop = the far side of the block) or when intrabar_stop() collapsed
     # the stop onto the entry bar's own extreme. Read only by ENTRY_SCRATCH.
     level_price: float = 0.0
+    # R2 (Austin, 2026-09-03 ruling): the ENTRY CANDLE's own extreme, captured
+    # once at trade creation from the fill bar -- low for a long, high for a
+    # short. NOT `level_price` (the retested level) and NOT `stop`: read only
+    # by `_gave_it_back` below, flag-gated GAVE_IT_BACK_EXIT.
+    entry_candle_lo: float = 0.0
+    entry_candle_hi: float = 0.0
     # G7.1/labels. The two identity fields signal_runner stamps on every sig
     # and this dataclass used to drop on the floor (research/g71_labeller.md).
     # `setup_type` is SignalType.BR_OCR_CONFLUENCE whenever
@@ -815,6 +850,25 @@ def _entry_scratch(t: "SimTrade", c: Candle) -> Optional[float]:
     return None
 
 
+def _gave_it_back(t: "SimTrade", c: Candle, long: bool) -> bool:
+    """R2 (Austin, 2026-09-03 ruling). Did bar ``c`` close back through the
+    ENTRY CANDLE's own range -- below its low for a long, above its high for
+    a short? ``False`` whenever the flag is off, so this is a no-op on the
+    shipped book. No MFE precondition: "ran and came back" is the rule's
+    plain-language framing, not a fitted threshold to encode -- the check
+    itself is unconditional on every open bar, same as the stop it sits
+    beside."""
+    if not GAVE_IT_BACK_EXIT:
+        return False
+    lv = t.entry_candle_lo if long else t.entry_candle_hi
+    hit = (c.close < lv) if long else (c.close > lv)
+    if hit:
+        GAVE_IT_BACK_FUNNEL["fired"] += 1
+        if t.counted:
+            GAVE_IT_BACK_FUNNEL["fired_counted"] += 1
+    return hit
+
+
 def _probe_row(t: "SimTrade", c: Candle, nxt: Optional[Candle], level: float) -> dict:
     """P8/G2 measurement, no behaviour. Where the entry bar's close and the next
     bar's close sit relative to the retested level and the stop.
@@ -887,6 +941,17 @@ def _ladder_bar(t: "SimTrade", c: Candle, i: int, open_trades: list,
                 # for every scaled trade.
                 _arm_84(t, runner, c)
             return
+        # R2 (Austin, 2026-09-03 ruling): the gave-it-back exit, checked AFTER
+        # the disaster/level stop above (so a bar that satisfies both goes to
+        # the STOP) and before the scale rung, so a give-back on this bar
+        # cannot be masked by a target that also tagged. No 84% arm -- like
+        # ENTRY_SCRATCH, this is a discretionary exit, not a "stop was wrong."
+        if _gave_it_back(t, c, long):
+            t.exit_price, t.exit_idx = _stop_fill_px(t, c, long, stop_lv), i
+            p_sign = (t.exit_price - t.entry) if long else (t.entry - t.exit_price)
+            t.outcome = "loss" if p_sign < 0 else ("win" if p_sign > 0 else "scratch")
+            open_trades.remove(t)
+            return
         if _target_hit(c, t.scale_level, long):
             t.scaled = True
             if SCALE_PLAN == "hod_then_runner_be":
@@ -928,6 +993,11 @@ def _ladder_bar(t: "SimTrade", c: Candle, i: int, open_trades: list,
             fill = min(fill, t.stop) if long else max(fill, t.stop)
         t.exit_price = fill
         t.exit_idx = i
+    # R2: same veto, checked after the (disaster/level) stop above so the
+    # stop still wins a shared bar, and before the runner target so a
+    # give-back on this bar is never masked by a target that also tagged.
+    elif _gave_it_back(t, c, long):
+        t.exit_price, t.exit_idx = _stop_fill_px(t, c, long, stop_lv), i
     elif hit_target:
         t.exit_price, t.exit_idx = t.runner_target, i
     else:
@@ -1002,6 +1072,20 @@ def _ladder_bar_4(t: "SimTrade", c: Candle, i: int, open_trades: list,
         _close(fill, by_sign=True)
         if stop_lv == t.stop and not had_fills:
             _arm_84(t, runner, c)
+        return
+
+    # 4.5. R2 (Austin, 2026-09-03 ruling): the gave-it-back exit -- checked
+    # after the (disaster/level) stop above, so the stop still wins a shared
+    # bar, and before any rung fills below, so a give-back on this bar can
+    # never be masked by a rung that also touched. Books the remaining
+    # unfilled weight at the close, same as the disaster stop and the level
+    # stop above. No 84% arm -- a discretionary exit, not a "stop was wrong."
+    if _gave_it_back(t, c, long):
+        fill = _stop_fill_px(t, c, long, stop_lv)
+        remaining = round(1.0 - _weight_filled(), 9)
+        if remaining > 1e-9:
+            t.fills.append((remaining, fill))
+        _close(fill, by_sign=True)
         return
 
     # 5. fill every touched rung, in order, each at its own price; the stop
@@ -1235,6 +1319,17 @@ def simulate_day(symbol: str, day_iso: str, candles: List[Candle],
                 # with the ladder path via _arm_84 so C9's RULE84_STRICT/RULE84_OFF
                 # gate applies here too (binary-2R path = default config).
                 _arm_84(t, runner, c)
+            # R2 (Austin, 2026-09-03 ruling): the gave-it-back exit, checked
+            # after the disaster/level stop above (stop wins a shared bar)
+            # and before the target, so a give-back is never masked by a
+            # target that also tagged this bar. No 84% arm (ENTRY_SCRATCH's
+            # same convention): a discretionary exit, not "stop was wrong."
+            elif _gave_it_back(t, c, t.direction == "call"):
+                t.exit_price, t.exit_idx = _stop_fill_px(t, c, t.direction == "call", lv), i
+                p_sign = ((t.exit_price - t.entry) if t.direction == "call"
+                          else (t.entry - t.exit_price))
+                t.outcome = "loss" if p_sign < 0 else ("win" if p_sign > 0 else "scratch")
+                open_trades.remove(t)
             elif targeted:
                 t.outcome, t.exit_price, t.exit_idx = "win", t.target, i
                 open_trades.remove(t)
@@ -1381,7 +1476,8 @@ def simulate_day(symbol: str, day_iso: str, candles: List[Candle],
                          be_level=be_level, scale_level=scale_level,
                          runner_target=runner_tgt, rungs=rungs,
                          setup_type=getattr(_setup_type, "value", _setup_type),
-                         stop_level_name=sig.get("stop_level_name") or "")
+                         stop_level_name=sig.get("stop_level_name") or "",
+                         entry_candle_lo=fill_c.low, entry_candle_hi=fill_c.high)
             trades.append(t)
             if risk > 0:
                 # T4(b) was HERE and tested this bar's own close against
