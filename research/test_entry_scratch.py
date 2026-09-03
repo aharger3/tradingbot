@@ -230,4 +230,7 @@ check(on.outcome == "scratch",
       "is why it is measured and not shipped (%s)" % on.outcome)
 
 print("\n%d checks failed" % len(FAILS))
-sys.exit(1 if FAILS else 0)
+if __name__ == "__main__":
+    # ponytail: a module-scope sys.exit made `python -m pytest -q` unable to collect the
+    # whole repo (2026-09-03); the checks above still run on import, only the exit is gated.
+    sys.exit(1 if FAILS else 0)
