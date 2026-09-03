@@ -107,6 +107,78 @@ def push(title: str, body: str, priority: str = "default",
     return False
 
 
+MAX_ATTACH_BYTES = 15 * 1024 * 1024      # ntfy.sh's documented per-file ceiling
+
+
+def attach(path, title: str, body: str = "", filename: str | None = None,
+           priority: str = "default", tags=None,
+           topic: str | None = None) -> bool:
+    """PUT one FILE to the topic as an ntfy attachment. Returns True on a 2xx.
+
+    AUGUR's 11:05 lane (omen-8 ticket 02). The homework deck is a single
+    self-contained HTML file -- charts are static SVG rendered in Python and
+    persistence is localStorage, so the file IS the app and there is nothing to
+    host. ntfy stores the attachment and the phone notification carries a link
+    to it, which is the whole delivery: no server, no account, no round trip.
+
+    The headless-artifact route was tried first on 2026-09-03 and the `claude`
+    CLI on this box answered "Credit balance is too low", so it is not a lane
+    that can be scheduled. This is.
+
+    Same never-raise contract as `push`: every failure path returns False and
+    logs one line. A deck that failed to send is a bad morning, not a crash.
+
+    NOTE the notification body cannot be sent alongside a file in one request --
+    ntfy reads the body FROM the file on an attachment PUT. `body`, when given,
+    goes out as a separate ordinary push first, so the phone shows the sentence
+    and the file arrives under it.
+    """
+    resolved = resolve_topic(topic)
+    if resolved is None:
+        _log(f"{TOPIC_ENV} unset — not sending {path}")
+        return False
+    try:
+        data = open(path, "rb").read()
+    except OSError as e:
+        _log(f"cannot read {path}: {type(e).__name__}: {e}")
+        return False
+    if len(data) > MAX_ATTACH_BYTES:
+        _log(f"{path} is {len(data)} bytes, over ntfy's {MAX_ATTACH_BYTES} "
+             f"limit — not sending")
+        return False
+
+    if body:
+        push(title, body, priority=priority, tags=tags, topic=resolved)
+
+    def _hdr(v: str) -> str:
+        return v.encode("latin-1", "replace").decode("latin-1")
+
+    import os.path
+    headers = {"Title": _hdr(title), "Priority": _hdr(priority),
+               "Filename": _hdr(filename or os.path.basename(str(path)))}
+    if tags:
+        headers["Tags"] = _hdr(tags if isinstance(tags, str)
+                               else ",".join(str(t) for t in tags))
+    url = f"{NTFY_BASE}/{resolved}"
+    last = ""
+    for attempt in (1, 2):
+        try:
+            # A 770 KB upload over a phone-grade link needs more than the 8s a
+            # text push gets; the retry then costs at most another minute.
+            resp = requests.put(url, data=data, headers=headers, timeout=60)
+            if resp.ok:
+                _log(f"attached {headers['Filename']} ({len(data)} bytes) to "
+                     f"{resolved} [{resp.status_code}]")
+                return True
+            last = f"HTTP {resp.status_code}"
+        except Exception as e:                      # noqa: BLE001 — see docstring
+            last = f"{type(e).__name__}: {str(e)[:120]}"
+        if attempt == 1:
+            _log(f"attach attempt 1 failed ({last}), retrying once")
+    _log(f"FAILED to attach {path} to {resolved} after 2 attempts ({last})")
+    return False
+
+
 if __name__ == "__main__":
     import argparse
 
@@ -117,6 +189,14 @@ if __name__ == "__main__":
                                       "Reply not needed.")
     ap.add_argument("--priority", default="default")
     ap.add_argument("--tags", default=None)
+    ap.add_argument("--file", default=None,
+                    help="send this file as an attachment instead of a text push")
+    ap.add_argument("--filename", default=None, help="name the phone shows")
     a = ap.parse_args()
-    ok = push(a.title, a.body, priority=a.priority, tags=a.tags, topic=a.topic)
+    if a.file:
+        ok = attach(a.file, a.title, body=a.body, filename=a.filename,
+                    priority=a.priority, tags=a.tags, topic=a.topic)
+    else:
+        ok = push(a.title, a.body, priority=a.priority, tags=a.tags,
+                  topic=a.topic)
     sys.exit(0 if ok else 1)
