@@ -1,11 +1,11 @@
 # g96 -- does Austin's S label predict the engine's money?
 
-Book `research/bt2y_trades_retest_on.json`, full lane, 1R = $1,000, honest close fill. 1246 judged symbol-days, 347 of them S; the engine had a candidate on 667 of them (201 S, 466 not).
+Book `research/bt2y_trades_retest_on.json`, full lane, 1R = $1,000, honest close fill. 1263 judged symbol-days, 347 of them S; the engine had a candidate on 683 of them (201 S, 482 not).
 
 | policy on the symbol-day | S days | non-S days | gap | perm p |
 |---|---:|---:|---:|---:|
-| first candidate of the day | +0.0351R (n=201) | -0.1222R (n=466) | +0.1573R | 0.0366 |
-| every candidate (mean R) | -0.0508R (n=295) | -0.1122R (n=657) | +0.0614R | 0.2042 |
+| first candidate of the day | +0.0351R (n=201) | -0.1301R (n=482) | +0.1652R | 0.0266 |
+| every candidate (mean R) | -0.0508R (n=295) | -0.1233R (n=677) | +0.0725R | 0.1560 |
 
 ## Trading only the S symbol-days (first candidate)
 

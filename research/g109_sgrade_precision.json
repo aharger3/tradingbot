@@ -1,0 +1,52 @@
+{
+ "first candidate": {
+  "n": 683,
+  "s_days": 201,
+  "base_rate": 29.4,
+  "grades": {
+   "S": {
+    "n": 120,
+    "tp": 42,
+    "precision": 35.0,
+    "recall": 20.9
+   },
+   "A": {
+    "n": 167,
+    "tp": 48,
+    "precision": 28.7,
+    "recall": 23.9
+   },
+   "C": {
+    "n": 396,
+    "tp": 111,
+    "precision": 28.0,
+    "recall": 55.2
+   }
+  }
+ },
+ "first size-gated candidate": {
+  "n": 592,
+  "s_days": 169,
+  "base_rate": 28.5,
+  "grades": {
+   "S": {
+    "n": 109,
+    "tp": 36,
+    "precision": 33.0,
+    "recall": 21.3
+   },
+   "A": {
+    "n": 140,
+    "tp": 38,
+    "precision": 27.1,
+    "recall": 22.5
+   },
+   "C": {
+    "n": 343,
+    "tp": 95,
+    "precision": 27.7,
+    "recall": 56.2
+   }
+  }
+ }
+}
