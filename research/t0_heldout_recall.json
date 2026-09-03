@@ -4,43 +4,34 @@
     "n_cards": 100,
     "n_S": 34,
     "n_no": 66,
-    "fired_on_S": 18,
-    "fired_on_no": 33,
-    "recall_pct": 52.9,
-    "precision_pct": 35.3,
-    "unreplayable_days": 0,
+    "fired_on_S": 27,
+    "fired_on_no": 41,
+    "recall_pct": 79.4,
+    "precision_pct": 39.7,
+    "unreplayable_days": 2,
     "missed_S": [
-      "ACHR_2026-02-05",
       "AMZN_2025-09-10",
-      "ARM_2024-10-28",
       "BABA_2026-06-12",
       "CRM_2026-02-11",
-      "HOOD_2024-11-06",
-      "IWM_2026-05-01",
       "MSFT_2025-12-30",
       "MSTR_2025-08-26",
       "MSTR_2026-07-17",
-      "NFLX_2024-08-05",
-      "PLTR_2024-09-20",
-      "PLTR_2025-07-01",
-      "PLTR_2025-12-11",
-      "QQQ_2025-09-16",
-      "QQQ_2025-09-23"
+      "NFLX_2024-08-05"
     ]
   },
   "vetoes": {
     "set": "probe_master_2026-08-29 lane=vetoes (40 engine vetoes he graded)",
     "n_cards": 40,
     "his_S": 5,
-    "fired_on_his_S": 0,
+    "fired_on_his_S": 3,
     "his_A": 4,
-    "fired_on_his_A": 0,
+    "fired_on_his_A": 1,
     "his_C": 4,
-    "fired_on_his_C": 0,
+    "fired_on_his_C": 2,
     "his_no": 27,
-    "fired_on_his_no": 2,
-    "recall_SA_pct": 0.0,
-    "false_fire_pct": 7.4,
+    "fired_on_his_no": 3,
+    "recall_SA_pct": 44.4,
+    "false_fire_pct": 11.1,
     "detail": [
       {
         "card": "AAPL_2026-05-08",
@@ -66,21 +57,21 @@
       {
         "card": "MSFT_2024-09-11",
         "his_grade": "c",
-        "fired": false,
+        "fired": true,
         "et": "10:45",
         "error": null
       },
       {
         "card": "MARA_2026-03-10",
         "his_grade": "s",
-        "fired": false,
+        "fired": true,
         "et": "09:49",
         "error": null
       },
       {
         "card": "QQQ_2026-05-07",
         "his_grade": "c",
-        "fired": false,
+        "fired": true,
         "et": "10:24",
         "error": null
       },
@@ -185,14 +176,14 @@
       {
         "card": "TSM_2026-01-09",
         "his_grade": "s",
-        "fired": false,
+        "fired": true,
         "et": "09:46",
         "error": null
       },
       {
         "card": "NVDA_2025-01-17",
         "his_grade": "a",
-        "fired": false,
+        "fired": true,
         "et": "09:55",
         "error": null
       },
@@ -241,7 +232,7 @@
       {
         "card": "AVGO_2026-07-23",
         "his_grade": "no",
-        "fired": false,
+        "fired": true,
         "et": "10:57",
         "error": null
       },
@@ -269,7 +260,7 @@
       {
         "card": "ACHR_2025-12-19",
         "his_grade": "s",
-        "fired": false,
+        "fired": true,
         "et": "09:37",
         "error": null
       },
