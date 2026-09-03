@@ -76,7 +76,6 @@ LEGACY_MARK_FILES = [
     "derived_marks_v2.jsonl",
     "recovered_reviews.jsonl",
     "austin_verdicts.json",       # a JSON list, not jsonl
-    "marks/zz-ingest-selftest_2026-09-03.jsonl",
 ]
 
 # The schemas disagree. Canonical day-cards carry card_id/symbol/date; the older
