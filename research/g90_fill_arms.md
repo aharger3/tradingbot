@@ -1,6 +1,6 @@
-# OMEN 8.0 R1 -- the four fill arms, priced against each other
+# OMEN 8.0 R1/R2 -- the fill arms, priced against each other
 
-`2024-08-12` to `2026-08-11`, 29 symbols (MAJOR_15, INDEX_POOL, OTHER_POOL), 11923 symbol-days. 925 traded signals (fired, engine grade != C, `reentry_84_rule` excluded -- see script docstring) form the ONE signal set every arm below is scored on. Blind 2R exit (`LADDER_MODE=None`), `STOP_ON_CLOSE=1` -- the committed stop rule, unchanged. $1,000 risk/trade.
+`2024-08-12` to `2026-08-11`, 29 symbols (MAJOR_15, INDEX_POOL, OTHER_POOL), 11923 symbol-days. 925 traded signals (fired, engine grade != C, `reentry_84_rule` excluded -- see script docstring) form the ONE signal set every arm below is scored on. Blind 2R exit (`LADDER_MODE=None`), `STOP_ON_CLOSE=1` -- the committed stop rule, unchanged. $1,000 risk/trade. `close` (R2's comparator) is the committed engine's own unmodified default fill -- not a fifth reconstruction, the actual `fill_price()` result from the same run.
 
 ## Result
 
@@ -10,8 +10,11 @@
 | limit_level | 659 | 266 | 45.9% | +0.2760 | 25 | 21/25 | $438 |
 | next_open | 925 | 0 | 41.8% | +0.2551 | 25 | 22/25 | $569 |
 | chase_once | 785 | 140 | 35.1% | +0.0564 | 25 | 14/25 | $107 |
+| close | 925 | 0 | 57.9% | +0.7382 | 25 | 25/25 | $1,645 |
+| mid_candle | 742 | 183 | 47.0% | +0.2381 | 25 | 20/25 | $426 |
 
-Trade counts by arm: {'as_booked': 793, 'limit_level': 659, 'next_open': 925, 'chase_once': 785}. **All four differ** -- the fill mode is genuinely changing which trades exist, not just relabeling P&L on an identical set.
+R1 trade counts by arm: {'as_booked': 793, 'limit_level': 659, 'next_open': 925, 'chase_once': 785}. **All four differ** -- the fill mode is genuinely changing which trades exist, not just relabeling P&L on an identical set.
+R2 (`mid_candle`): 742 of 925 signals (80%) ever had a later bar trade back to the confirm bar's own midpoint within 12 bars; the rest (183) never did.
 
 ## Adversarial pass
 
@@ -26,6 +29,14 @@ A first cut of `limit_level` scanned its forward window starting AT the confirma
 **chase_once (+0.0564R, only 14/25 green months) is the worst-paying arm, and the adversarial pass found its apparent proximity to the vault's +0.028R figure is not a principled match** -- it rides on a borrowed, ungrounded constant (see Adversarial pass above). Treat it as "paying up costs real edge," not as "this is what the lost rebuild measured."
 
 **Answering R1's question directly: the ceiling is directionally real but not to the magnitude the vault claims.** The naive back-dated fill (+0.7552R) overstates the edge; an honestly-obtainable fill, however it's realized (resting limit or market-at-close), pays roughly +0.26-0.28R -- a real, mostly-green-months edge, not the near-zero +0.03R the vault's headline number describes. `omen-blockers.md`'s specific +0.028R figure and 11/25 green-months claim do not reproduce from this repo's committed code at any of the four fill definitions tested; the closest arm to it (`chase_once`) is not a principled match. Austin's eye test and the code both being right is consistent with what this row found: the strategy is not dead, but the fill is not free either.
+
+## R2 -- mid-candle entry as a fifth arm
+
+**Mid-candle is reachable in real time only 80% of the time, and only as a resting order, never as the confirm bar's own fill.** The midpoint of a bar's range is knowable at the exact same instant as that bar's close (both are properties of the completed bar) -- never before it, so there is no way to place an order at that price ahead of the bar that defines it. The only causally coherent reading is a resting order placed the instant the midpoint becomes known, filled if a LATER bar (within 12) trades back to it. Under that reading, `mid_candle` filled 742 of 925 signals (80%) -- for the other 183, price never returned to the confirm bar's own midpoint at all, so mid-candle entry was simply not obtainable for those trades, independent of what it would have paid.
+
+**Close vs mid, paired over the 742 signals where both filled: mid_candle pays LESS than close by 0.2458R (95% CI [+0.1538, +0.3378]).** Unpaired headline numbers: close +0.7382R (925 trades, 25/25 green) vs mid_candle +0.2381R (742 trades, 20/25 green). Austin's own question -- is mid-candle worth the money over entering at the close -- is answered by the paired figure, not the unpaired one: the unpaired numbers compare different (and unequal-sized) trade sets, since `mid_candle` drops every signal price never returned to the midpoint for.
+
+**Verdict: mid-candle is usable, with caveats.** It is unreachable outright for about 20% of signals -- price never traded back to the confirm bar's own midpoint within 12 bars; and it pays LESS than close, and the 95% CI excludes zero on the signals where it IS reachable. Austin asked for the money to decide close-vs-mid; the money says the reachability problem dominates -- a rule that isn't there for roughly 20/100 signals can't be the standing entry method regardless of what it pays on the ones where it is.
 
 ## What could not be reconstructed
 

@@ -48,6 +48,16 @@ signal bar's index within its day):
   "don't buy the top" threshold, already in the codebase) away from the
   structural level -- past that, he does not chase, he passes.
 
+**R2 adds a fifth arm**, `mid_candle`: entry = the midpoint of the confirm bar's
+own [low, high], rather than its close. Like `limit_level`, this price is only
+knowable at the same instant as the bar's close -- never earlier -- so it is
+scored the same way: a resting order placed once the midpoint is known, filled
+only if a LATER bar (within RETEST_WINDOW) trades back to it. R2 also reports
+`close`, the committed engine's own unmodified default fill (`fill_price()`,
+reusing `committed_entry`/`committed_r` already captured per row) as the
+comparator Austin actually asked for: does mid-candle pay more than the close
+he already gets, once reachability is accounted for.
+
 Reentries (`REENTRY_84_RULE`) are excluded: their target carries forward from
 the original stopped-out trade rather than being 2R from a fresh entry, which
 does not survive an entry-fill swap without re-deriving a second research
@@ -78,7 +88,7 @@ OUT_ROWS = os.path.join(HERE, "g90_fill_arms_rows.json")
 POOLS = [("MAJOR_15", MAJOR_15), ("INDEX_POOL", INDEX_POOL), ("OTHER_POOL", OTHER_POOL)]
 ALL_SYMBOLS = sorted({s for _, p in POOLS for s in p})
 
-ARMS = ["as_booked", "limit_level", "next_open", "chase_once"]
+ARMS = ["as_booked", "limit_level", "next_open", "chase_once", "mid_candle"]
 RISK_DOLLARS = 1000.0
 EXTREME_BUF = 0.05  # fraction of a bar's own range excluded at each end (no
                      # resting order credited for catching the exact tick)
@@ -185,6 +195,7 @@ def run_symbol(args):
 
             row = {"symbol": symbol, "day": day, "setup": t.signal_type, "dir": t.direction,
                    "grade": t.grade, "committed_entry": t.entry, "committed_r": round(t.pnl / 1000.0, 4),
+                   "committed_outcome": t.outcome,
                    "level": level, "stop": stop, "entry_idx": entry_idx}
 
             for arm in ARMS:
@@ -220,15 +231,23 @@ def run_symbol(args):
                     # exactly on that bar's own high/low (within EXTREME_BUF of
                     # the bar's range) does not count as a fill: the level must
                     # sit strictly inside the bar.
-                    lo = entry_idx + 1
-                    hi = min(len(candles), lo + RETEST_WINDOW)
-                    for j in range(lo, hi):
-                        cj = candles[j]
-                        rng = cj.high - cj.low
-                        buf = EXTREME_BUF * rng
-                        if cj.low + buf <= level <= cj.high - buf:
-                            entry, fill_bar_idx = level, j
-                            break
+                    entry, fill_bar_idx = _resting_fill(candles, entry_idx + 1, level)
+                elif arm == "mid_candle":
+                    # R2: an arm entering at the MIDPOINT of the confirm bar's
+                    # own [low, high] instead of its close. That price is only
+                    # knowable at the same instant as the close itself (both
+                    # are properties of the completed bar) -- never earlier --
+                    # so, exactly like limit_level, it cannot be booked on the
+                    # confirm bar's own range (that would be the identical
+                    # lookahead class the adversarial pass killed there). The
+                    # only causally coherent reading is a resting order placed
+                    # at the midpoint once it's known, filled if a LATER bar
+                    # trades back to it within RETEST_WINDOW. If that never
+                    # happens, mid-candle was not reachable in real time for
+                    # that trade -- exactly the question R2's adversarial
+                    # check asks.
+                    mid = (entry_candle.high + entry_candle.low) / 2.0
+                    entry, fill_bar_idx = _resting_fill(candles, entry_idx + 1, mid)
                 elif arm in ("next_open", "chase_once"):
                     nxt_idx = entry_idx + 1
                     if nxt_idx < len(candles):
@@ -261,7 +280,7 @@ def run_symbol(args):
                 # actually filled on.
                 fill_candle = candles[fill_bar_idx]
                 outcome = exit_price = exit_idx = None
-                if arm in ("as_booked", "limit_level"):
+                if arm in ("as_booked", "limit_level", "mid_candle"):
                     closed_back = (fill_candle.close < stop if is_long else fill_candle.close > stop)
                     if closed_back:
                         outcome, exit_price, exit_idx = "scratch", fill_candle.close, fill_bar_idx
@@ -279,6 +298,23 @@ def run_symbol(args):
     bw.BacktestRunner = orig_backtest_runner
     sr.fill_price = orig_fill_price
     return symbol, out_rows, days_run
+
+
+def _resting_fill(candles, start_idx, target_price):
+    """Shared resting-order fill: the first bar at or after `start_idx` (never
+    earlier -- see limit_level/mid_candle call sites) whose range crosses
+    `target_price`, cancelled as stale after RETEST_WINDOW bars. A touch
+    landing exactly on that bar's own high/low doesn't count (EXTREME_BUF) --
+    "no resting order fills at the minute's own extreme." Returns
+    (price, bar_idx) or (None, None) if never filled."""
+    hi = min(len(candles), start_idx + RETEST_WINDOW)
+    for j in range(start_idx, hi):
+        cj = candles[j]
+        rng = cj.high - cj.low
+        buf = EXTREME_BUF * rng
+        if cj.low + buf <= target_price <= cj.high - buf:
+            return target_price, j
+    return None, None
 
 
 def _stop_hit_close(c, level, is_long):
@@ -332,6 +368,51 @@ def arm_stats(rows, arm):
                 unfilled=len(rows) - n)
 
 
+def close_stats(rows):
+    """R2's 'close' comparator: the committed engine's own default fill
+    (`fill_price()`, unmodified -- candle.close in the normal case, clamped to
+    the level only near a bar/session extreme). Every row has one; nothing to
+    filter for 'filled'. Reuses `committed_entry`/`committed_r`/
+    `committed_outcome`, captured from the SAME blind-2R run every arm above
+    is scored on -- no separate computation needed."""
+    n = len(rows)
+    wins = sum(1 for r in rows if r["committed_outcome"] == "win")
+    losses = sum(1 for r in rows if r["committed_outcome"] == "loss")
+    dec = wins + losses
+    wr = round(100.0 * wins / dec, 1) if dec else None
+    total_r = sum(r["committed_r"] for r in rows)
+    mean_r = round(total_r / n, 4) if n else None
+    by_month = defaultdict(float)
+    for r in rows:
+        by_month[_month(r["day"])] += r["committed_r"]
+    months = len(by_month)
+    green_months = sum(1 for v in by_month.values() if v > 0)
+    total_days = len({r["day"] for r in rows})
+    dollar_day = round(total_r * RISK_DOLLARS / total_days, 2) if total_days else None
+    return dict(n=n, wins=wins, losses=losses, wr=wr, mean_r=mean_r, total_r=round(total_r, 2),
+                months=months, green_months=green_months, dollar_day=dollar_day, unfilled=0)
+
+
+def paired_diff_ci(rows, arm_a_r, arm_b_r):
+    """95% CI on the mean of (arm_a_r - arm_b_r), over rows where BOTH sides
+    have a value -- a like-for-like paired comparison, not two independent
+    means. Normal approximation (n is in the hundreds here)."""
+    diffs = []
+    for r in rows:
+        a = arm_a_r(r)
+        b = arm_b_r(r)
+        if a is not None and b is not None:
+            diffs.append(a - b)
+    n = len(diffs)
+    if n < 2:
+        return dict(n=n, mean_diff=None, lo=None, hi=None)
+    mean_diff = sum(diffs) / n
+    var = sum((d - mean_diff) ** 2 for d in diffs) / (n - 1)
+    se = (var / n) ** 0.5
+    return dict(n=n, mean_diff=round(mean_diff, 4),
+                lo=round(mean_diff - 1.96 * se, 4), hi=round(mean_diff + 1.96 * se, 4))
+
+
 def main():
     import argparse
     ap = argparse.ArgumentParser()
@@ -356,21 +437,26 @@ def main():
     total_days = sum(per_sym_days.values())
     print(f"\ntotal signals: {len(all_rows)}  total symbol-days: {total_days}")
 
+    ORIG_ARMS = ["as_booked", "limit_level", "next_open", "chase_once"]  # R1's four
     stats = {arm: arm_stats(all_rows, arm) for arm in ARMS}
+    stats["close"] = close_stats(all_rows)
+    DISPLAY_ARMS = ["as_booked", "limit_level", "next_open", "chase_once", "close", "mid_candle"]
 
     L = []
-    L.append("# OMEN 8.0 R1 -- the four fill arms, priced against each other\n")
+    L.append("# OMEN 8.0 R1/R2 -- the fill arms, priced against each other\n")
     L.append(f"`{a.start}` to `{a.end}`, {len(syms)} symbols "
              f"({', '.join(n for n, _ in POOLS)}), {total_days} symbol-days. "
              f"{len(all_rows)} traded signals (fired, engine grade != C, "
              f"`reentry_84_rule` excluded -- see script docstring) form the ONE "
              f"signal set every arm below is scored on. Blind 2R exit "
              f"(`LADDER_MODE=None`), `STOP_ON_CLOSE=1` -- the committed stop rule, "
-             f"unchanged. $1,000 risk/trade.\n")
+             f"unchanged. $1,000 risk/trade. `close` (R2's comparator) is the "
+             f"committed engine's own unmodified default fill -- not a fifth "
+             f"reconstruction, the actual `fill_price()` result from the same run.\n")
     L.append("## Result\n")
     L.append("| arm | trades | unfilled | win rate | mean R | months | green months | $/day |")
     L.append("|---|---:|---:|---:|---:|---:|---:|---:|")
-    for arm in ARMS:
+    for arm in DISPLAY_ARMS:
         s = stats[arm]
         wr = f"{s['wr']}%" if s["wr"] is not None else "--"
         mr = f"{s['mean_r']:+.4f}" if s["mean_r"] is not None else "--"
@@ -379,13 +465,17 @@ def main():
                  f"{s['green_months']}/{s['months']} | {dd} |")
     L.append("")
 
-    counts = {arm: stats[arm]["n"] for arm in ARMS}
-    L.append(f"Trade counts by arm: {counts}. "
+    counts = {arm: stats[arm]["n"] for arm in ORIG_ARMS}
+    L.append(f"R1 trade counts by arm: {counts}. "
              + ("**All four differ** -- the fill mode is genuinely changing which "
                 "trades exist, not just relabeling P&L on an identical set."
                 if len(set(counts.values())) == len(counts)
                 else "**WARNING: two or more arms report an identical trade count** "
                 "-- the mode may not be doing anything."))
+    L.append(f"R2 (`mid_candle`): {stats['mid_candle']['n']} of {len(all_rows)} signals "
+             f"({100*stats['mid_candle']['n']/len(all_rows):.0f}%) ever had a later bar "
+             f"trade back to the confirm bar's own midpoint within {RETEST_WINDOW} bars; "
+             f"the rest ({stats['mid_candle']['unfilled']}) never did.")
     L.append("")
 
     ab, ll, no, co = stats["as_booked"], stats["limit_level"], stats["next_open"], stats["chase_once"]
@@ -456,6 +546,59 @@ def main():
         f"closest arm to it (`chase_once`) is not a principled match. Austin's eye "
         f"test and the code both being right is consistent with what this row found: "
         f"the strategy is not dead, but the fill is not free either.\n")
+
+    mc = stats["mid_candle"]
+    cl = stats["close"]
+    diff = paired_diff_ci(all_rows, lambda r: r["committed_r"],
+                          lambda r: r["mid_candle"]["r"] if r["mid_candle"].get("filled") else None)
+    L.append("## R2 -- mid-candle entry as a fifth arm\n")
+    reachable_pct = 100 * mc["n"] / len(all_rows)
+    L.append(
+        f"**Mid-candle is reachable in real time only {reachable_pct:.0f}% of the time, "
+        f"and only as a resting order, never as the confirm bar's own fill.** The "
+        f"midpoint of a bar's range is knowable at the exact same instant as that bar's "
+        f"close (both are properties of the completed bar) -- never before it, so there is "
+        f"no way to place an order at that price ahead of the bar that defines it. The only "
+        f"causally coherent reading is a resting order placed the instant the midpoint "
+        f"becomes known, filled if a LATER bar (within {RETEST_WINDOW}) trades back to it. "
+        f"Under that reading, `mid_candle` filled {mc['n']} of {len(all_rows)} signals "
+        f"({reachable_pct:.0f}%) -- for the other {mc['unfilled']}, price never returned to "
+        f"the confirm bar's own midpoint at all, so mid-candle entry was simply not "
+        f"obtainable for those trades, independent of what it would have paid.\n")
+    if diff["mean_diff"] is not None:
+        sign = "pays MORE than" if diff["mean_diff"] < 0 else "pays LESS than"
+        L.append(
+            f"**Close vs mid, paired over the {diff['n']} signals where both filled: "
+            f"mid_candle {sign} close by {abs(diff['mean_diff']):.4f}R "
+            f"(95% CI [{diff['lo']:+.4f}, {diff['hi']:+.4f}]).** "
+            f"Unpaired headline numbers: close +{cl['mean_r']:.4f}R ({cl['n']} trades, "
+            f"{cl['green_months']}/{cl['months']} green) vs mid_candle "
+            f"+{mc['mean_r']:.4f}R ({mc['n']} trades, {mc['green_months']}/{mc['months']} "
+            f"green). Austin's own question -- is mid-candle worth the money over entering "
+            f"at the close -- is answered by the paired figure, not the unpaired one: the "
+            f"unpaired numbers compare different (and unequal-sized) trade sets, since "
+            f"`mid_candle` drops every signal price never returned to the midpoint for.\n")
+    unreachable_pct = 100 - reachable_pct
+    pays_more = diff["mean_diff"] is not None and diff["mean_diff"] < 0
+    ci_excludes_zero = diff["lo"] is not None and (diff["lo"] > 0 or diff["hi"] < 0)
+    verdict_bits = []
+    verdict_bits.append(
+        f"unreachable outright for about {unreachable_pct:.0f}% of signals -- price never "
+        f"traded back to the confirm bar's own midpoint within {RETEST_WINDOW} bars")
+    if diff["mean_diff"] is not None:
+        verdict_bits.append(
+            ("it pays more than close, and the 95% CI excludes zero" if pays_more and ci_excludes_zero
+             else "it pays more than close, but the 95% CI straddles zero -- not distinguishable from noise" if pays_more
+             else "it pays LESS than close, and the 95% CI excludes zero" if ci_excludes_zero
+             else "it pays about the same as close -- the 95% CI straddles zero")
+            + " on the signals where it IS reachable")
+    L.append(
+        f"**Verdict: mid-candle is " +
+        ("not usable as a standing rule" if unreachable_pct >= 50 else "usable, with caveats") +
+        f".** It is " + "; and ".join(verdict_bits) + f". Austin asked for the money to "
+        f"decide close-vs-mid; the money says the reachability problem dominates -- a rule "
+        f"that isn't there for roughly {unreachable_pct:.0f}/100 signals can't be the "
+        f"standing entry method regardless of what it pays on the ones where it is.\n")
 
     L.append("## What could not be reconstructed\n")
     L.append(
