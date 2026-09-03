@@ -2,10 +2,7 @@
   "timestamp": "2026-09-02T11:05:00-04:00",
   "symbols_scanned": [
     "AAPL",
-    "NVDA",
-    "QQQ",
-    "SPY",
-    "TSLA"
+    "QQQ"
   ],
   "bars_fetched": null,
   "signals_fired_today": 2,
