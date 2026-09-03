@@ -17,6 +17,92 @@ import sys
 import time
 import argparse
 
+# ============================================================================
+# LIVE / BACKTEST PARITY — read before trusting any $/day figure against a
+# live signal, and before touching any flag in this file. Audited 2026-09-03
+# against research/MASTER_SPEC.md and research/bt2y_trades_retest_on.json's
+# own stamp (meta.stamp.flags). Every module this file imports for signal
+# detection and sizing (SignalRunner, stop_rule, loss_halt, options_sizer) is
+# SHARED code — live and backtest_week.py both call it, so a flag neither
+# process overrides is identical in both by construction. Grep confirms this
+# file sets exactly ONE such flag (`git grep -n "os.environ\[" live_scanner.py`
+# / `os.environ.setdefault` — one hit, below). Everything past item 1 is a
+# live-only construct layered on top, with no flag and no backtest analog.
+#
+# 1. ENABLE_SAC_LADDER — forced to "1" two lines down, live-process-only.
+#    signal_runner.py:724 defaults it "0". research/bt2y_trades_retest_on.json
+#    — the book every $/day figure in MASTER_SPEC.md is measured on — was
+#    built at that default (backtest_2y.py never sets the var either); its
+#    own stamp does not even list ENABLE_SAC_LADDER among meta.stamp.flags
+#    (research/book_stamp.py's FLAG_SOURCES omits it), so the book cannot be
+#    checked after the fact for which arm produced it.
+#    Effect: live grades every signal through the eight-variable S/A/C/X
+#    downgrade ladder (research/downgrade.py::score); the book grades through
+#    the legacy _grade_pa A+/A/B/C/X ladder — a different classifier scoring
+#    a different thing (MASTER_SPEC §2.4: the SAC ladder is 33.0% precise
+#    against a 28.5% base rate, and one of its eight variables,
+#    counter_trend_not_respected, is wrong-signed on 63.7% of the book).
+#    STATUS: NOT changed here — the comment on the setdefault line below is
+#    Austin's own: "Flipping it changes what trades, which is Austin's
+#    call." BLOCKER, money impact folded into item 2.
+#
+# 2. The live TRADE gate (`_tier`, further down) fires on `sac_grade == "S"`
+#    alone. There is no backtest flag for this — SignalRunner never filters
+#    by grade on its own; every rig that turns fired signals into a dollar
+#    figure (backtest_week.py, research/g*.py) takes every signal that clears
+#    routing + min_risk_floor, and MASTER_SPEC's reporting layer then slices
+#    that down to "the first size-gated candidate of the day" as a RESEARCH
+#    SELECTION, not an engine gate. `_tier`'s S-only filter is a second,
+#    live-only, narrower selection stacked on top of item 1's ladder.
+#    MASTER_SPEC §0 / bug 3: 88 of 498 sessions have a size-gated `S`
+#    (0.18 trades/day, $14/day laddered) against $101/day for taking the
+#    first size-gated candidate of any grade. −$87/day.
+#    STATUS: not changed — this is Austin's "fire 1-3 times a day" (THE LANE)
+#    implemented literally as "S only"; whether that is the right
+#    operationalization is exactly what THE LANE is still deriving. BLOCKER,
+#    not a bug to silently revert.
+#
+# 3. `_tier`'s `reentry_84_rule` branch returns TRADE/WATCH off
+#    `s.consecutive_losses` BEFORE the `sac_grade == "S"` check runs — an
+#    armed 84% re-entry trades regardless of its own grade. signal_runner.py
+#    has no such bypass: S_ELIGIBLE_SETUPS (signal_runner.py:1042) lists
+#    REENTRY_84_RULE as an ordinary member of the graded pool — a re-entry is
+#    exempted from the *no-repeat-idea* skip there, never from grading
+#    itself. Austin, T-84: "84 percent rule can fire on S, A or C, but we
+#    only will trade S of course." 52 of 57 traded re-entries in the book are
+#    non-S (39 C, 13 A) and book +$4,752 on the bypass (MASTER_SPEC bug 10).
+#    STATUS: not changed. MASTER_SPEC's own instruction: "fix it by deciding,
+#    not by reverting" — reordering the check silently discards $4,752 of
+#    booked P&L on a call Austin has not confirmed against the live path.
+#    BLOCKER.
+#
+# 4. HTF bias is a hardcoded `None` on the yfinance fallback (`_yf_daily_context`
+#    below returns bias=None unconditionally) and on any `fetch_htf_bias`
+#    exception. The backtest computes a real bias on 126,198 of 127,152 rows
+#    (99.2%) via polygon_feed — there is no live yfinance equivalent for the
+#    1h/4h HTF trend read at all; this is a missing capability, not a flag
+#    divergence. `HTF_BIAS_GATE` defaults OFF in both paths, so today this
+#    changes nothing on its own, but it means live can never be tightened by
+#    it and any future HTF-conditioned rule is silently blind live. See the
+#    fetch diagnosis near `main()` for WHY the fallback is being hit on every
+#    symbol right now.
+#    STATUS: cannot be fixed inside this file — needs either a Tastytrade
+#    fetch_htf_bias that returns, or a real yfinance-sourced HTF computation,
+#    which exists nowhere in this repo today. BLOCKER.
+#
+# Everything else this file touches at import time (MIN_STOP_PCT,
+# RETEST_REQUIRED, BNR_DISPLACEMENT_GATE, X_LIFT, SAC_LADDER_VARSET,
+# MESH_S_VETO, every other signal_runner.py flag; RISK_DOLLARS/DISASTER_R/
+# stop-fill mechanics in stop_rule.py) is left at its module default, so it
+# is byte-identical to whatever backtest_week.py/backtest_2y.py measured at
+# their own defaults for everything except items 1-4 above.
+#
+# STOP_AFTER_WIN / ENTRY_CUTOFF / SKIP_NEWS / MANAGE_END / MAX_TRADES_PER_DAY
+# / GOVERNOR_S_CAP (below) are live-only session-management knobs — when to
+# stop SCANNING, not what to grade or trade — with no backtest_week.py
+# analog; they are outside this parity audit.
+# ============================================================================
+
 # T25 (2026-08-28, Austin R-B: "governor changes to match the book"): the live
 # path grades off Austin's S/A/C ladder, not the legacy A+/A tier. This must be
 # set BEFORE signal_runner is imported below — ENABLE_SAC_LADDER is read once,
@@ -49,6 +135,14 @@ from signal_runner import _load_env_file
 _load_env_file(Path(__file__).parent / ".env")
 
 from signal_runner import SignalRunner
+# Read the live-effective values of the ladder flags this process forced/left
+# at default (see the LIVE / BACKTEST PARITY block above) so scanner_status.json
+# and the startup banner can say which grading arm actually ran, instead of
+# leaving every live figure impossible to compare to a backtest arm after the
+# fact — the exact hole MASTER_SPEC.md bug 5 names. Reading, not gating:
+# nothing below changes what trades.
+from signal_runner import ENABLE_SAC_LADDER as _LIVE_ENABLE_SAC_LADDER
+from signal_runner import SAC_LADDER_VARSET as _LIVE_SAC_LADDER_VARSET
 from tastytrade_feed import TastytradeFeed
 from signal_tracker import log_signal
 from regime_detector import (
@@ -277,6 +371,13 @@ def _write_scanner_status(symbols, signals_today, session, regime_action,
     return path never reaches the fetch loop). A scan that ran the loop and
     fetched bars for zero symbols is a BLIND cycle — see sentry_scanner.py,
     which trips on this even when the file itself is fresh.
+
+    `grading_arm` (2026-09-03, see the LIVE / BACKTEST PARITY block at the top
+    of this file): the live-effective values of the two flags that decide
+    which classifier graded today's signals. Read-only stamp so a $/day figure
+    quoted from this process can be matched to the correct backtest arm
+    instead of being silently compared to the wrong one (MASTER_SPEC bug 5) —
+    writing it here changes nothing about what trades.
     """
     status = {
         "timestamp": now_et().isoformat(),
@@ -293,6 +394,11 @@ def _write_scanner_status(symbols, signals_today, session, regime_action,
         "qqq_state": qqq_breaks,  # F4 Rule 4: {"up","dn"} break times or None
         "last_error": last_error,
         "webhooks": {"posted": posted, "failed": failed},
+        "grading_arm": {
+            "enable_sac_ladder": _LIVE_ENABLE_SAC_LADDER,
+            "sac_ladder_varset": _LIVE_SAC_LADDER_VARSET,
+            "book_default_enable_sac_ladder": False,  # backtest_2y.py never sets it
+        },
     }
     SCANNER_STATUS_PATH.parent.mkdir(parents=True, exist_ok=True)
     tmp = SCANNER_STATUS_PATH.with_suffix(".tmp")

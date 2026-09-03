@@ -1,25 +1,58 @@
-"""Runner-stop enforcement selftest for research/exit_lab.py (OMEN 6 ticket 02).
+"""research/test_runner_stop.py — the stop the SHIPPED book actually runs.
 
-The 5.2 scale-out table reported a worst trade of -12.46R on ``30_30_30_10``.
-``exit_lab``'s own module docstring states the runner rule as:
+Rewritten 2026-09-03 (Austin's R1 ruling; see CLAUDE.md and MASTER_SPEC.md
+section 1). The old version of this file imported only `research/exit_lab.py`,
+which has ZERO occurrences of the word "disaster" and fills every stop off the
+bar's close alone. `backtest_week.py` — the module that built every $/day
+figure in this repo, including `research/bt2y_trades_retest_on.json` — never
+calls exit_lab. This file ran three times on 2026-09-03 and printed PASS on
+`research/exit_lab.py` while the code that actually manages the shipped book's
+trades (`backtest_week._ladder_bar`, `backtest_week._disaster_hit`,
+`backtest_week._stop_hit`) went completely unexercised by the `verify:` gate.
 
-    after tranche 1 the stop moves to entry (break-even)
+R1, Austin, 2026-09-03, verbatim: "MAX LOSS IS -1R HARD. THE LEVEL STOP IS
+FINAL. If price closes past the level you retested, you're out at that close,
+full stop. The '-1.25R floor' is FICTION and has never fired: 0 of 2,216
+losses in the book are worse than -1.000R, because DISASTER_R=1.0 puts the
+disaster stop exactly on the level stop. He chose this option knowing it means
+the book's two years of results stay valid. So: DELETE the -1.25R rule
+everywhere it is claimed... Do not 'wire the floor'. Remove the claim, keep
+the behaviour."
 
-If that stop is actually enforced, the runner leg can never realise worse than
-0R, so a laddered policy's floor is tranche 1's weight on a full stop-out.
+That mechanism, in one line of algebra: `disaster_stop_price(entry, risk,
+long, 1.0)` IS `stop`, because 1R *is* `abs(entry - stop)` by definition. The
+resting disaster order therefore sits exactly at the level, fires on an
+intrabar TOUCH (not a close), and books exactly -1.000R no matter how far the
+bar guns past it. That also means CLAUDE.md's OLD claim "wicks stop nothing
+out" is not what the shipped book does either — MASTER_SPEC section 1: "the
+book's stops fill on a wick, at the level, at exactly -1.000R." Section 1
+below proves both halves: the close-only trigger would NOT have fired on a
+wick-and-close-back bar, and the trade is stopped out anyway, at the level,
+because a resting order fills where it rests.
 
-Since ticket 17 that floor is -1.25R, not -1.0R: Austin's stop rule (ballot q1)
-triggers on the candle CLOSE and fills at that close, so a bar that closes far
-beyond the stop books more than a clean -1.0R. -1.25R is his stated worst case
-and exit_lab clamps there. Anything below it is a bug.
+THREE SECTIONS:
 
-The second half of this file is the other half of ticket 17: a day that wicks
-through the stop on every bar and closes above it every time. Austin does not get
-stopped out on that day. Under the old wick-based test he booked -1.0R on it.
+  1. THE SHIPPED PATH. Drives `backtest_week`'s own functions directly --
+     `stop_rule.disaster_stop_price`, `backtest_week._disaster_hit`,
+     `backtest_week._stop_hit`, and `backtest_week._ladder_bar` itself (the
+     function that actually built the 2-year book: `OMEN_LADDER_MODE`
+     defaults to "B" = `SCALE_PLAN="hod_then_runner_be"` = `_ladder_bar`) --
+     plus a check against the real book on disk. THIS is the section that
+     must go red if the floor becomes reachable again or the stop trigger
+     changes.
+  2. EXIT_LAB — LAB COVERAGE, NOT THE SHIPPED PATH. `research/exit_lab.py` is
+     a real, actively-used research module (~20 other scripts import it) for
+     exploring ATR-trail / break-even-runner scale-out POLICIES that
+     `backtest_week.py` does not ship. It genuinely has no disaster stop, so
+     its own -1.25R floor genuinely is reachable in ITS model -- that is not
+     a bug, it is a different, simpler world than the one the shipped book
+     runs in. Kept here so nobody again mistakes it for section 1.
+  3. STOP PLACEMENT (signal_runner, the live path). Unrelated to the trigger/
+     fill bug above -- WHERE the stop sits (structural / candle-entered /
+     level / OCR wick), not when it fires. Real, shipped, untouched by this
+     rewrite.
 
-These are synthetic-bar cases, no archive needed. Run:
-
-    python research/test_runner_stop.py
+Run:  python research/test_runner_stop.py
 """
 
 from __future__ import annotations
@@ -32,7 +65,10 @@ _REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 if _REPO_ROOT not in sys.path:
     sys.path.insert(0, _REPO_ROOT)
 
-from research.exit_lab import (  # noqa: E402
+import backtest_week as bw                        # noqa: E402
+import stop_rule                                   # noqa: E402
+from omen_bot import Candle                         # noqa: E402
+from research.exit_lab import (                     # noqa: E402
     CLOCK_BAR,
     MAX_LOSS_R,
     hod_only,
@@ -40,16 +76,200 @@ from research.exit_lab import (  # noqa: E402
     policy_50_20_20_10,
 )
 
+EPS = 1e-9
+
+
+# ===========================================================================
+# SECTION 1 -- THE SHIPPED PATH (R1)
+# ===========================================================================
+
+def _candle(o, h, l, c):
+    return Candle("09:46:00", o, h, l, c, 1000)
+
+
+def _mktrade(entry=100.0, stop=99.0, direction="call",
+            scale_far=50.0, runner_far=80.0):
+    """A real `backtest_week.SimTrade`, scale/runner rungs placed far away so
+    a stop-out case can never accidentally clip a scale rung instead."""
+    risk = abs(entry - stop)
+    target = entry + 2 * risk if direction == "call" else entry - 2 * risk
+    sign = 1.0 if direction == "call" else -1.0
+    return bw.SimTrade(symbol="TEST", day="2026-01-02", signal_type="break_and_retest",
+                       direction=direction, grade="B", status="fired",
+                       entry_time="09:45:00", entry=entry, stop=stop, target=target,
+                       reason="test", entry_idx=10, exit_idx=10,
+                       scale_level=entry + sign * scale_far,
+                       runner_target=entry + sign * runner_far)
+
+
+def _flat_runner(entry, n=11):
+    return [_candle(entry, entry + 0.2, entry - 0.2, entry) for _ in range(n)]
+
+
+def _run_ladder_bar(entry, stop, direction, bar_):
+    """Fires the REAL `backtest_week._ladder_bar` -- the function that
+    manages every open trade in `research/bt2y_trades_retest_on.json` --
+    against one hand-built bar. Returns the trade after it is processed."""
+    t = _mktrade(entry, stop, direction)
+    open_trades = [t]
+    runner = bw.BacktestRunner("TEST")
+    runner.candles = _flat_runner(entry)
+    bw._ladder_bar(t, bar_, 11, open_trades, runner)
+    return t, open_trades
+
+
+def shipped_path_checks():
+    """Every row here drives real `backtest_week`/`stop_rule` code, never a
+    reimplementation of it. Returns (rows, failures)."""
+    rows, failures = [], []
+
+    def check(name, cond, detail=""):
+        rows.append((name, cond))
+        if not cond:
+            failures.append("  %s%s" % (name, (": " + detail) if detail else "")
+                            + "  [SECTION 1: THE SHIPPED PATH]")
+
+    # ---- the algebra R1 depends on: disaster price IS the level stop -----
+    # `disaster_stop_price(entry, risk, long, 1.0)` is `stop`, not "usually
+    # close to it" -- exactly it, because 1R *is* abs(entry - stop). This is
+    # the whole mechanism the rest of this section measures; if it stops
+    # being true the two stops are no longer the same order.
+    for direction, entry, stop in (("call", 100.0, 99.0), ("put", 50.0, 51.0),
+                                   ("call", 7.31, 7.19)):
+        long = direction == "call"
+        risk = abs(entry - stop)
+        px = stop_rule.disaster_stop_price(entry, risk, long, bw.DISASTER_R)
+        check("disaster price == level stop when DISASTER_R=1.0 (%s %.2f/%.2f)"
+             % (direction, entry, stop),
+             bw.DISASTER_R != 1.0 or abs(px - stop) < EPS,
+             "disaster=%.4f level=%.4f DISASTER_R=%.3f" % (px, stop, bw.DISASTER_R))
+
+    # ---- the shipped config itself, not only its consequences ------------
+    # A silent flag flip (someone edits a default in backtest_week.py, or
+    # runs this file under a different env) must show up HERE first.
+    check("DISASTER_STOP is ON by default (the ratified R1/R2 config)",
+         bw.DISASTER_STOP is True, "got %r" % bw.DISASTER_STOP)
+    check("DISASTER_R == 1.0 (the number that makes the floor unreachable)",
+         bw.DISASTER_R == 1.0, "got %r" % bw.DISASTER_R)
+    check("STOP_ON_CLOSE is ON by default (the level stop's own trigger)",
+         bw.STOP_ON_CLOSE is True, "got %r" % bw.STOP_ON_CLOSE)
+    check("shipped SCALE_PLAN is the ladder that built the real book",
+         bw.SCALE_PLAN == "hod_then_runner_be", "got %r" % bw.SCALE_PLAN)
+
+    # ---- the flagship R1 proof: gap straight through, book exactly -1R ---
+    # A bar whose CLOSE lands roughly -9R away -- if the old (wrong) module's
+    # -1.25R floor were live, this is exactly the shape that would reach it.
+    # Fired through the real `_ladder_bar`, not a reimplementation.
+    for direction, entry, stop, bar_ in (
+        ("call", 100.0, 99.0, _candle(95.0, 95.5, 90.0, 91.0)),
+        ("put", 100.0, 101.0, _candle(105.0, 110.0, 104.5, 109.0)),
+    ):
+        t, open_trades = _run_ladder_bar(entry, stop, direction, bar_)
+        risk = abs(entry - stop)
+        r = (t.exit_price - entry) / risk if direction == "call" \
+            else (entry - t.exit_price) / risk
+        check("gap-through books exactly -1.000R, never -1.25R (%s)" % direction,
+             abs(r - (-1.0)) < EPS,
+             "booked %.4fR at exit_price %.4f -- the -1.25R floor fired, which "
+             "R1 says must never happen under the shipped DISASTER_R=1.0"
+             % (r, t.exit_price))
+        check("gap-through closes the trade, not left open (%s)" % direction,
+             t not in open_trades)
+
+    # ---- R2, corrected: a wick that reaches the level stops the trade even
+    # though the CLOSE never does. The resting disaster order fills where it
+    # rests, on touch -- CLAUDE.md's retired "wicks stop nothing out" is not
+    # what the shipped book does once DISASTER_R=1.0 sits under it. -------
+    for direction, entry, stop, bar_ in (
+        ("call", 100.0, 99.0, _candle(100.2, 100.3, 98.5, 99.5)),   # wick to 98.5, closes 99.5 (above stop)
+        ("put", 100.0, 101.0, _candle(99.8, 101.5, 99.7, 100.5)),   # wick to 101.5, closes 100.5 (below stop)
+    ):
+        long = direction == "call"
+        close_would_not_trigger = not stop_rule.stop_hit_on_close(bar_.close, stop, long)
+        t, open_trades = _run_ladder_bar(entry, stop, direction, bar_)
+        check("the close-only trigger would NOT have fired (%s)" % direction,
+             close_would_not_trigger)
+        check("the resting disaster order stops it out on the wick anyway (%s)"
+             % direction,
+             abs(t.exit_price - stop) < EPS and t not in open_trades,
+             "exit_price=%r still_open=%s" % (t.exit_price, t in open_trades))
+
+    # ---- and a wick that never reaches the level stops nothing at all ----
+    bar_short = _candle(100.2, 100.3, 99.2, 100.1)   # low 99.2, stop is 99.0 -- never touched
+    t, open_trades = _run_ladder_bar(100.0, 99.0, "call", bar_short)
+    check("a wick that never reaches the level stops nothing", t in open_trades)
+
+    return rows, failures
+
+
+def real_book_checks():
+    """The loss distribution R1 cites, checked against the actual 2-year
+    book on disk. Loud SKIP if the archive isn't present locally -- the same
+    convention `research/test_retest_gate.py`'s `_real_book_cap` uses --
+    never a silent pass."""
+    rows, failures = [], []
+    path = os.path.join(_REPO_ROOT, "research", "bt2y_trades_retest_on.json")
+    if not os.path.exists(path):
+        print("  SKIP  real-book check: %s not found locally "
+              "(it is currently untracked in git -- commit it, or this "
+              "check never runs on a fresh clone)" % path)
+        return rows, failures
+
+    with open(path) as f:
+        book = json.load(f)
+    traded = [t for t in book.get("trades", []) if t.get("traded")]
+    if not traded:
+        print("  SKIP  real-book check: 0 traded rows in %s" % path)
+        return rows, failures
+    rs = [t["r"] for t in traded]
+    losses = [r for r in rs if r < 0]
+    n_below = sum(1 for r in rs if r < -1.0 - EPS)
+    n_between = sum(1 for r in rs if -1.25 + EPS < r < -1.0 - EPS)
+
+    def check(name, cond, detail=""):
+        rows.append((name, cond))
+        if not cond:
+            failures.append("  %s%s" % (name, (": " + detail) if detail else "")
+                            + "  [SECTION 1: THE SHIPPED PATH]")
+
+    check("real book (%d traded rows): min(r) == -1.000 exactly" % len(traded),
+         abs(min(rs) - (-1.0)) < EPS, "min(r)=%.6f" % min(rs))
+    check("real book: 0 rows worse than -1.000R", n_below == 0,
+         "%d rows < -1.0" % n_below)
+    check("real book: 0 rows between -1.25R and -1.000R -- the floor never binds",
+         n_between == 0, "%d rows in (-1.25,-1.0)" % n_between)
+    print("  (reachability: %d real losses on the book, none worse than "
+          "-1.000R -- the disaster-stop branch this section tests is not a "
+          "hypothetical, it is what actually happened 4,022 times)"
+         % len(losses))
+    return rows, failures
+
+
+# ===========================================================================
+# SECTION 2 -- EXIT_LAB: LAB COVERAGE, NOT THE SHIPPED PATH
+# ===========================================================================
+# `research/exit_lab.py` explores scale-out POLICIES (ATR trail, HOD-only,
+# laddered break-even runners) that `backtest_week.py` does not ship, and it
+# has no disaster stop at all -- zero occurrences of the word in the module.
+# Its own -1.25R clamp is therefore genuinely reachable IN THIS MODEL'S OWN
+# WORLD, which is not a contradiction of R1: R1 is about the book that
+# actually trades. The 5.2 scale-out table reported a worst trade of
+# -12.46R on `30_30_30_10`; if exit_lab's break-even-after-tranche-1 rule is
+# actually enforced, the runner leg can never realise worse than 0R, so a
+# laddered policy's floor is tranche 1's weight on a full stop-out.
+
 LADDERED = {
     "30_30_30_10": policy_30_30_30_10,
     "50_20_20_10": policy_50_20_20_10,
 }
 
-FLOOR = -MAX_LOSS_R
-EPS = 1e-9
+FLOOR = -MAX_LOSS_R  # exit_lab's own floor -- real in ITS model, see above.
 
 
 def _bar(o, h, l, c):
+    """exit_lab's own bar shape: a plain dict, not a `Candle`. Every
+    exit_lab function below indexes bars as `bars[i]["h"]`, never `.high` --
+    do not swap this for section 1's `_candle`."""
     return {"o": o, "h": h, "l": l, "c": c, "v": 1000}
 
 
@@ -81,12 +301,17 @@ def wick_through_stop(side="L"):
     """Every bar spikes through the stop and closes back on the right side.
 
     This is the shape Austin described five times in one batch of marks: the
-    wick takes out the level, the close does not, and the trade is still on. A
-    wick-based stop books a loss here; a close-based one books the winner.
+    wick takes out the level, the close does not. IN EXIT_LAB'S OWN MODEL
+    (no disaster stop, close-only trigger) this books a winner. Section 1
+    above measures the SAME shape against `backtest_week` and gets the
+    opposite answer -- the resting disaster order stops it out anyway,
+    because it rests exactly at the level. Both are correct, for the model
+    each one is testing; that is the entire point of splitting this file
+    into two sections.
 
-    Built per side rather than by mirroring -- the mirror of a rising day is not
-    a falling day with the same wick geometry, and getting that wrong silently
-    turns the short case into a different test.
+    Built per side rather than by mirroring -- the mirror of a rising day is
+    not a falling day with the same wick geometry, and getting that wrong
+    silently turns the short case into a different test.
     """
     bars = [_bar(100.0, 100.4, 99.6, 100.0) for _ in range(21)]
     for k in range(10):
@@ -102,7 +327,6 @@ def wick_through_stop(side="L"):
     while len(bars) <= CLOCK_BAR:
         bars.append(_bar(last, last + 0.2, last - 0.2, last))
     return bars
-
 
 
 def stop_then_rally(side="L"):
@@ -129,7 +353,6 @@ def stop_then_rally(side="L"):
         bars = [_bar(200 - b["o"], 200 - b["l"], 200 - b["h"], 200 - b["c"])
                 for b in bars]
     return bars
-
 
 
 def hod_bar_craters(side="L"):
@@ -171,7 +394,8 @@ def hod_bar_craters(side="L"):
 
 
 # `hod_only` is not a laddered policy, so it gets its own list. The floor is
-# the same one every other case asserts: nothing books below -1.25R.
+# the same one every other case in this section asserts: nothing books below
+# -1.25R, in exit_lab's own (disaster-stop-free) model.
 HOD_CASES = [
     ("hod_bar_craters long", hod_bar_craters, 20, 100.0, 99.00, "L"),
     ("hod_bar_craters short", hod_bar_craters, 20, 100.0, 101.00, "S"),
@@ -185,7 +409,8 @@ STOPPED_CASES = [
     ("stop_then_rally short", stop_then_rally, 20, 100.0, 101.00, "S"),
 ]
 
-# Cases that must NOT stop out at all -- the close never goes beyond the stop.
+# Cases that must NOT stop out at all in exit_lab's own model -- the close
+# never goes beyond the stop, and exit_lab has no touch-based stop underneath.
 POSITIVE_CASES = [
     ("wick_through_stop long", wick_through_stop, 20, 100.0, 99.00, "L"),
     ("wick_through_stop short", wick_through_stop, 20, 100.0, 101.00, "S"),
@@ -201,8 +426,78 @@ CASES = [
 ]
 
 
-# ---------------------------------------------------------------------------
-# T24 -- one case per STOP PLACEMENT.
+def exit_lab_checks():
+    """(rows, failures) over every exit_lab case above -- section 2 only."""
+    rows, failures = [], []
+
+    for name, bars_fn, entry_i, entry, stop, side in CASES:
+        bars = bars_fn(side)
+        if side == "S":
+            entry, stop = 200 - entry, 200 - stop
+        for pid, fn in LADDERED.items():
+            r = fn(bars, entry_i, entry, stop, side)
+            rows.append((name, pid, r))
+            if r < FLOOR - EPS:
+                failures.append(
+                    f"  {name} / {pid}: realised {r:+.4f}R, exit_lab's own floor "
+                    f"is {FLOOR:+.2f}R (break-even stop on the runner was not "
+                    f"enforced)  [SECTION 2: exit_lab, not the shipped path]"
+                )
+
+    for name, bars_fn, entry_i, entry, stop, side in STOPPED_CASES:
+        bars = bars_fn(side)
+        if side == "S":
+            entry, stop = 200 - entry, 200 - stop
+        for pid, fn in LADDERED.items():
+            r = fn(bars, entry_i, entry, stop, side)
+            rows.append((name, pid, r))
+            if r > -1.0 + EPS:
+                failures.append(
+                    f"  {name} / {pid}: realised {r:+.4f}R on a trade whose close "
+                    f"went through the ORIGINAL stop before any tranche exited -- "
+                    f"100% of the position is out at that close, so this must be a "
+                    f"full stop-out (<= -1.00R), not a partial one  "
+                    f"[SECTION 2: exit_lab, not the shipped path]"
+                )
+            if r < FLOOR - EPS:
+                failures.append(
+                    f"  {name} / {pid}: realised {r:+.4f}R, exit_lab's own floor "
+                    f"is {FLOOR:+.2f}R  [SECTION 2: exit_lab, not the shipped path]"
+                )
+
+    for name, bars_fn, entry_i, entry, stop, side in HOD_CASES:
+        bars = bars_fn(side)          # already side-correct, do not mirror
+        r = hod_only(bars, entry_i, entry, stop, side)
+        rows.append((name, "hod_only", r))
+        if r < FLOOR - EPS:
+            failures.append(
+                f"  {name} / hod_only: realised {r:+.4f}R, exit_lab's own floor "
+                f"is {FLOOR:+.2f}R (the stop was not live on the HOD exit bar "
+                f"itself)  [SECTION 2: exit_lab, not the shipped path]"
+            )
+
+    for name, bars_fn, entry_i, entry, stop, side in POSITIVE_CASES:
+        bars = bars_fn(side)          # already side-correct, do not mirror
+        for pid, fn in LADDERED.items():
+            r = fn(bars, entry_i, entry, stop, side)
+            rows.append((name, pid, r))
+            if r <= 0:
+                failures.append(
+                    f"  {name} / {pid}: realised {r:+.4f}R on a day whose closes "
+                    f"never went beyond the stop, in exit_lab's own (disaster-"
+                    f"stop-free) model -- a wick stopped it out  "
+                    f"[SECTION 2: exit_lab, not the shipped path]"
+                )
+
+    return rows, failures
+
+
+# ===========================================================================
+# SECTION 3 -- STOP PLACEMENT (signal_runner, the live path)
+# ===========================================================================
+# Unrelated to the trigger/fill bug sections 1-2 are about: WHERE the stop
+# sits (structural / candle-entered / broken level / OCR wick / routed), not
+# WHEN it fires. Real, shipped, untouched by this rewrite.
 #
 # Austin, 2026-08-28: "stops are wherever makes sense live... examples wick of
 # OCR, candle entered on, break and retest of a level stop loss that level."
@@ -327,7 +622,8 @@ def placement_failures():
     for placement, want in PLACEMENT_CASES.items():
         got = _placement_probe(placement)
         if got["placement"] != placement:
-            failures.append("  STOP_PLACEMENT=%s: child reported %r"
+            failures.append("  STOP_PLACEMENT=%s: child reported %r  "
+                            "[SECTION 3: stop placement]"
                             % (placement, got["placement"]))
             continue
         for field, expect in want.items():
@@ -337,7 +633,8 @@ def placement_failures():
             if abs(actual - expect) > EPS:
                 failures.append(
                     "  STOP_PLACEMENT=%s %s: stop %.4f, expected %.4f -- the "
-                    "placement did not land on the structure point it names"
+                    "placement did not land on the structure point it names  "
+                    "[SECTION 3: stop placement]"
                     % (placement, field, actual, expect))
     # the DEFAULT must be `entry_bar` / `as_booked`, or the shipped book moved.
     # Read in an isolated child with both env vars unset -- see
@@ -346,11 +643,11 @@ def placement_failures():
     if default["placement"] != "entry_bar":
         failures.append("  shipped default STOP_PLACEMENT is %r, must be "
                         "'entry_bar' -- any other default changes the shipped "
-                        "book" % default["placement"])
+                        "book  [SECTION 3: stop placement]" % default["placement"])
     if default["fill_order"] != "as_booked":
         failures.append("  shipped default STOP_FILL_ORDER is %r, must be "
-                        "'as_booked' -- order type is PARKED, not decided"
-                        % default["fill_order"])
+                        "'as_booked' -- order type is PARKED, not decided  "
+                        "[SECTION 3: stop placement]" % default["fill_order"])
     # Order type is parked: both conventions must be expressible, and the
     # default one must be `fill_price` itself.
     #
@@ -367,11 +664,11 @@ def placement_failures():
     rows.append(("STOP_FILL_ORDER=market_on_close fill", "fill", on_close))
     if abs(on_close - 100.80) > EPS:
         failures.append("  STOP_FILL_ORDER=market_on_close filled at %.4f, the "
-                        "bar's close is 100.80" % on_close)
+                        "bar's close is 100.80  [SECTION 3: stop placement]" % on_close)
     if abs(as_booked - on_close) < EPS:
         failures.append("  the two order-type conventions produced the same "
                         "fill on a bar that closes at its extreme -- one of "
-                        "them is not wired")
+                        "them is not wired  [SECTION 3: stop placement]")
     # ...and the flip itself is asserted, so nobody can quietly put the
     # unobtainable clamp back as the default without this going red.
     shipped_fill = _placement_probe("entry_bar", "as_booked")["fill"]
@@ -380,93 +677,57 @@ def placement_failures():
         failures.append("  the SHIPPED entry fill is %.4f; it must be the signal "
                         "minute's close, 100.80. ENTRY_FILL flipped to `close` on "
                         "2026-08-30 because only 105 of 4,508 trades were "
-                        "obtainable at the old clamp" % shipped_fill)
+                        "obtainable at the old clamp  [SECTION 3: stop placement]"
+                        % shipped_fill)
     return rows, failures
 
 
 def main():
     failures = []
-    rows = []
 
-    # T24 placements print as PRICES, not R, so they get their own block above
-    # the laddered R table rather than being formatted as R-multiples.
-    prows, pfail = placement_failures()
-    failures += pfail
-    pw = max(len(n) for n, _, _ in prows)
-    for name, _pid, px in prows:
-        print("%-*s  %8.4f" % (pw, name, px))
+    print("SECTION 1 -- THE SHIPPED PATH (backtest_week + stop_rule, R1)")
+    print("-" * 72)
+    s1_rows, s1_fail = shipped_path_checks()
+    rb_rows, rb_fail = real_book_checks()
+    failures += s1_fail + rb_fail
+    for name, ok in s1_rows + rb_rows:
+        print(("  ok  " if ok else "  FAIL") + "  " + name)
     print()
 
-    for name, bars_fn, entry_i, entry, stop, side in CASES:
-        bars = bars_fn(side)
-        if side == "S":
-            entry, stop = 200 - entry, 200 - stop
-        for pid, fn in LADDERED.items():
-            r = fn(bars, entry_i, entry, stop, side)
-            rows.append((name, pid, r))
-            if r < FLOOR - EPS:
-                failures.append(
-                    f"  {name} / {pid}: realised {r:+.4f}R, floor is {FLOOR:+.2f}R "
-                    f"(break-even stop on the runner was not enforced)"
-                )
-
-    for name, bars_fn, entry_i, entry, stop, side in STOPPED_CASES:
-        bars = bars_fn(side)
-        if side == "S":
-            entry, stop = 200 - entry, 200 - stop
-        for pid, fn in LADDERED.items():
-            r = fn(bars, entry_i, entry, stop, side)
-            rows.append((name, pid, r))
-            if r > -1.0 + EPS:
-                failures.append(
-                    f"  {name} / {pid}: realised {r:+.4f}R on a trade whose close "
-                    f"went through the ORIGINAL stop before any tranche exited -- "
-                    f"100% of the position is out at that close, so this must be a "
-                    f"full stop-out (<= -1.00R), not a partial one"
-                )
-            if r < FLOOR - EPS:
-                failures.append(
-                    f"  {name} / {pid}: realised {r:+.4f}R, floor is {FLOOR:+.2f}R"
-                )
-
-    for name, bars_fn, entry_i, entry, stop, side in HOD_CASES:
-        bars = bars_fn(side)          # already side-correct, do not mirror
-        r = hod_only(bars, entry_i, entry, stop, side)
-        rows.append((name, "hod_only", r))
-        if r < FLOOR - EPS:
-            failures.append(
-                f"  {name} / hod_only: realised {r:+.4f}R, floor is {FLOOR:+.2f}R "
-                f"(the stop was not live on the HOD exit bar itself)"
-            )
-
-    for name, bars_fn, entry_i, entry, stop, side in POSITIVE_CASES:
-        bars = bars_fn(side)          # already side-correct, do not mirror
-        for pid, fn in LADDERED.items():
-            r = fn(bars, entry_i, entry, stop, side)
-            rows.append((name, pid, r))
-            if r <= 0:
-                failures.append(
-                    f"  {name} / {pid}: realised {r:+.4f}R on a day whose closes "
-                    f"never went beyond the stop -- a wick stopped it out"
-                )
-
-    width = max(len(n) for n, _, _ in rows)
-    for name, pid, r in rows:
+    print("SECTION 2 -- EXIT_LAB (lab coverage, NOT the shipped path)")
+    print("-" * 72)
+    s2_rows, s2_fail = exit_lab_checks()
+    failures += s2_fail
+    width = max(len(n) for n, _, _ in s2_rows)
+    for name, pid, r in s2_rows:
         positive = any(name == pn for pn, _, _, _, _, _ in POSITIVE_CASES)
         bad = (r <= 0) if positive else (r < FLOOR - EPS)
         flag = "  FAIL" if bad else ""
         print(f"{name:<{width}}  {pid:<12} {r:+8.4f}R{flag}")
+    print()
 
+    print("SECTION 3 -- STOP PLACEMENT (signal_runner, the live path)")
+    print("-" * 72)
+    s3_rows, s3_fail = placement_failures()
+    failures += s3_fail
+    pw = max(len(n) for n, _, _ in s3_rows)
+    for name, _pid, px in s3_rows:
+        print("%-*s  %8.4f" % (pw, name, px))
+    print()
+
+    total_checks = len(s1_rows) + len(rb_rows) + len(s2_rows) + len(s3_rows)
     if failures:
-        print()
-        print(f"RUNNER-STOP SELFTEST FAILED: {len(failures)} of {len(rows)} "
-              f"laddered results are wrong.")
+        print(f"RUNNER-STOP SELFTEST FAILED: {len(failures)} of {total_checks} "
+              f"checks are wrong.")
         print("\n".join(failures))
         sys.exit(1)
 
-    print()
-    print(f"runner-stop selftest ok: {len(rows)} laddered results, "
-          f"stop-outs floored at {FLOOR:+.2f}R, wick-only days never stopped out")
+    print(f"runner-stop selftest ok: {total_checks} checks across 3 sections. "
+          f"Section 1 (the shipped path): max loss is -1R hard, the level "
+          f"stop is final, the -1.25R floor is fiction and did not fire "
+          f"(R1). Section 2 (exit_lab, its own model): floored at "
+          f"{FLOOR:+.2f}R, wick-only days never stopped out. Section 3: "
+          f"stop placement lands on the structure point it names.")
 
 
 if __name__ == "__main__":
