@@ -18,7 +18,7 @@ from collections import Counter, defaultdict
 from dataclasses import dataclass, field
 from datetime import date, datetime, timedelta
 from pathlib import Path
-from typing import List, Optional
+from typing import List, Optional, Tuple
 
 import pandas as pd
 try:                          # yfinance is a settled dead end for OMEN; only the
@@ -38,6 +38,13 @@ from stop_rule import (stop_hit_on_close, stop_hit_on_wick, stop_fill_price,
 # re-priced through the SAME function at the trade-creation site below.
 import entry_fill
 from entry_fill import ENTRY_FILL
+
+# The exit ladder (MASTER SPEC, lane: exits). `build_rungs` is the one pure
+# function that turns entry/stop/direction + a causal level pool into 1-4
+# profit rungs -- see levels_ladder.py's module docstring for the frozen
+# contract. Imported unconditionally (cheap, no I/O) so SCALE_PLAN=four_rung
+# can be selected at runtime without a reimport.
+import levels_ladder as ladder
 
 # Days the entry order never filled. One row per missed setup, appended by
 # `simulate_day`, read by `backtest_2y` and by anything comparing order types.
@@ -174,6 +181,179 @@ if _SCALE_ENV is None:
 else:
     _SCALE_ENV = _SCALE_ENV.strip()
 SCALE_PLAN = None if _SCALE_ENV.lower() in ("", "none", "0", "off") else _SCALE_ENV
+# OMEN_SCALE_PLAN="four_rung" selects the new engine below (`_ladder_bar_4`),
+# a sibling of `_ladder_bar` -- see "THE EXIT LADDER" flags immediately below.
+
+# ---- THE EXIT LADDER (MASTER SPEC, lane: exits, g99/ga1) ------------------
+# Austin, on the anatomy cards: "way too tight, if we know our mean RR is 2.5
+# we shouldnt be targeting .41" / "2r level is trumped by HTF levels and
+# whole psych number if one is close." g99_rung_recon.py measured why: the
+# TWO-rung F1 ladder's `runner_tgt` (backtest_week.py:1032-1043, unchanged
+# above) is computed from levels beyond `scale_level` and never compared to
+# the 2R `target` a few lines up -- so it lands INSIDE 2R on 303/444 (68.2%)
+# of first-of-day trades, median 1.30R. LADDER_RUNNER_GUARD (below) is the
+# two-line fix, measured alone; OMEN_SCALE_PLAN=four_rung is the full
+# four-rung replacement (levels_ladder.build_rungs), a new sibling engine
+# that leaves `_ladder_bar` and every existing SCALE_PLAN value untouched.
+#
+# Every flag here defaults to today's shipped behaviour -- with SCALE_PLAN
+# != "four_rung" and LADDER_RUNNER_GUARD=0, not one line of an existing path
+# executes differently (byte-identical; research/test_exit_ladder.py's
+# `test_shipped_default_byte_identical` is the proof).
+LADDER_RUNNER_GUARD = os.getenv("LADDER_RUNNER_GUARD", "0").strip().lower() not in (
+    "0", "false", "off", "")
+
+
+def _parse_ladder_weights(s: str) -> Tuple[float, float, float, float]:
+    """"30/30/30/10" (percentages, the usual spelling) or "0.3/0.3/0.3/0.1"
+    (already fractions) -> a 4-tuple summing to 1.0. Detected by magnitude:
+    a sum > 1.5 is read as percentages."""
+    parts = [float(x) for x in s.split("/")]
+    if len(parts) != 4:
+        raise SystemExit("LADDER_WEIGHTS must be 4 slash-separated numbers "
+                         "(e.g. \"30/30/30/10\"), got %r" % s)
+    total = sum(parts)
+    if total <= 0:
+        raise SystemExit("LADDER_WEIGHTS must sum to a positive number, got %r" % s)
+    scaled = [p / 100.0 for p in parts] if total > 1.5 else parts
+    return tuple(scaled)
+
+
+def _parse_psych_tol(s: str) -> Tuple[str, float]:
+    """"0.25r" / "0.10c" / "0.05pct" (or "%") -> (unit, value)."""
+    s = s.strip().lower()
+    for suffix, unit in (("pct", "pct"), ("%", "pct"), ("r", "r"), ("c", "c")):
+        if s.endswith(suffix):
+            try:
+                return unit, float(s[: -len(suffix)])
+            except ValueError:
+                break
+    raise SystemExit("LADDER_PSYCH_TOL must end in r/c/pct (e.g. \"0.25r\"), got %r" % s)
+
+
+def _parse_rung_gap(s: str) -> float:
+    """"0.20r" (or a bare number) -> the fraction of risk, as a float."""
+    s = s.strip().lower()
+    return float(s[:-1]) if s.endswith("r") else float(s)
+
+
+LADDER_WEIGHTS = _parse_ladder_weights(os.getenv("LADDER_WEIGHTS", "30/30/30/10"))
+LADDER_PSYCH_TOL = _parse_psych_tol(os.getenv("LADDER_PSYCH_TOL", "0.25r"))
+LADDER_PSYCH_STEP = float(os.getenv("LADDER_PSYCH_STEP", "1.00"))
+LADDER_PT4_MODE = os.getenv("LADDER_PT4_MODE", "max").strip().lower()
+LADDER_PT4_R = float(os.getenv("LADDER_PT4_R", "4.0"))
+LADDER_MIN_RUNG_GAP = _parse_rung_gap(os.getenv("LADDER_MIN_RUNG_GAP", "0.20r"))
+LADDER_TRAIL = os.getenv("LADDER_TRAIL", "be").strip().lower()
+if LADDER_TRAIL not in ("be", "prev_rung"):
+    raise SystemExit("LADDER_TRAIL must be 'be' or 'prev_rung', got %r" % LADDER_TRAIL)
+
+# LADDER_TREND_TEST (spec section 4): a MEASURED OPTION ONLY, off by default.
+# "daily" reads the already-threaded `bias` (signal_runner.daily_trend_bias,
+# causal: SMA20 of PRIOR sessions' daily closes) against the trade direction.
+# "qqq" reads `runner.qqq_breaks` (live_scanner.compute_qqq_breaks) and
+# requires the break to be strictly EARLIER than the entry bar's own
+# timestamp -- the causal half of the comparison. Per his sentence ("if day
+# is not trending, we want those HOD exits more money quicker"): trending ->
+# 30/30/30/10, not trending -> 50/20/20/10, REGARDLESS of LADDER_WEIGHTS --
+# these two vectors are the arm definition, not a knob.
+LADDER_TREND_TEST = os.getenv("LADDER_TREND_TEST", "off").strip().lower()
+if LADDER_TREND_TEST not in ("off", "daily", "qqq"):
+    raise SystemExit("LADDER_TREND_TEST must be 'off'/'daily'/'qqq', got %r" % LADDER_TREND_TEST)
+_TREND_WEIGHTS_ON = (0.30, 0.30, 0.30, 0.10)
+_TREND_WEIGHTS_OFF = (0.50, 0.20, 0.20, 0.10)
+# Reachability bookkeeping (P7/G1 pattern) -- research/ga1_ladder_replay.py
+# reads this to enforce the spec's 15%/85% reachability gate on the arm.
+LADDER_TREND_FUNNEL: Counter = Counter()
+
+# LADDER_HTF_PIVOTS: the spec's last build-order item -- 1h/4h pivots.
+# `research/htf_levels.py` (htf_level_beyond / htf_candles / htf_pivots)
+# landed from a parallel session while this pass was in flight, but it reads
+# its own bars off the Polygon archive by symbol/day, not this module's
+# `candles` list (which `fetch_week`/`backtest_12mo` source from
+# yfinance/Polygon depending on caller) -- wiring it in here risks a second,
+# silently different data source per level. NOT wired in this pass, which is
+# scoped to backtest_week.py; see this build's `blockers`. The flag is
+# defined for book-stamp/env parity and defaults OFF (today's book is
+# unaffected either way); turning it ON degrades to "no HTF pivots added"
+# with one warning rather than pretending to have wired it.
+LADDER_HTF_PIVOTS = os.getenv("LADDER_HTF_PIVOTS", "0").strip().lower() not in (
+    "0", "false", "off", "")
+_htf_pivots_warned = False
+
+
+def _warn_htf_pivots_once() -> None:
+    global _htf_pivots_warned
+    if not _htf_pivots_warned:
+        print("[backtest_week] LADDER_HTF_PIVOTS=1 requested but is not wired "
+             "into backtest_week.py yet (research/htf_levels.py exists but "
+             "reads its own archive bars, not this module's `candles`) -- "
+             "proceeding WITHOUT 1h/4h pivots (named_levels still carries "
+             "PDH/PDL/PMH/PML/OR/1m pivots).", file=sys.stderr)
+        _htf_pivots_warned = True
+
+
+def _named_level_pool(candles: List[Candle], i: int,
+                      pdh: Optional[float], pdl: Optional[float],
+                      pmh: Optional[float], pml: Optional[float]) -> dict:
+    """The causal level pool `build_rungs` draws PT2/PT3-substitute/PT4-structure
+    candidates from -- PDH/PDL, PMH/PML, OR high/low, and same-timeframe
+    pivots (`signal_runner.pivot_levels`, always called with `as_of=i` so a
+    pivot needing bars past the entry bar is never returned). 1h/4h pivots
+    join this pool only under LADDER_HTF_PIVOTS (see above)."""
+    levels = {}
+    if pdh is not None:
+        levels["PDH"] = pdh
+    if pdl is not None:
+        levels["PDL"] = pdl
+    if pmh is not None:
+        levels["PMH"] = pmh
+    if pml is not None:
+        levels["PML"] = pml
+    # Opening range (first 5 bars) -- causal for every i >= 5, which is where
+    # the day loop in simulate_day starts.
+    levels["ORH"] = max(cd.high for cd in candles[:5])
+    levels["ORL"] = min(cd.low for cd in candles[:5])
+    from signal_runner import pivot_levels as _pivot_levels
+    for pv in _pivot_levels(candles[: i + 1], as_of=i):
+        levels[pv["name"]] = pv["price"]
+    if LADDER_HTF_PIVOTS:
+        _warn_htf_pivots_once()
+    return levels
+
+
+def _ladder_weights(direction: str, bias: Optional[str], qqq: Optional[dict],
+                    entry_ts: str) -> Tuple[float, float, float, float]:
+    """LADDER_TREND_TEST arm selection (spec section 4). "off" (default)
+    always returns LADDER_WEIGHTS; "daily"/"qqq" pick between the two fixed
+    vectors above by whether the day reads as trending, and count which
+    vector each row selected so the reachability gate (>=15%, <=85%) can be
+    checked without a second pass."""
+    if LADDER_TREND_TEST == "off":
+        return LADDER_WEIGHTS
+    if LADDER_TREND_TEST == "daily":
+        if bias is None:
+            LADDER_TREND_FUNNEL["bias_none"] += 1
+            trending = False
+        else:
+            trending = (bias == "bullish" and direction == "call") or \
+                      (bias == "bearish" and direction == "put")
+    else:  # "qqq"
+        ts = (qqq or {}).get("up" if direction == "call" else "dn")
+        trending = bool(ts) and ts < entry_ts
+    LADDER_TREND_FUNNEL["trending" if trending else "chop"] += 1
+    return _TREND_WEIGHTS_ON if trending else _TREND_WEIGHTS_OFF
+
+
+def _psych_tol_r(risk: float, entry: float) -> float:
+    """LADDER_PSYCH_TOL converted to a fraction of risk, for the runner
+    guard's own precedence check (legacy two-rung plans only)."""
+    unit, value = LADDER_PSYCH_TOL
+    if unit == "r":
+        return value
+    if unit == "c":
+        return value / risk if risk else 0.0
+    return (value / 100.0 * entry) / risk if risk else 0.0
+
 
 # ---- R11 / T11: "enough movement" raises the stop to break-even ----------
 # Austin, probe_master_2026-08-29, fact_be_trigger, verdict `move`: "if we dont
@@ -364,6 +544,15 @@ class SimTrade:
     # regex that cannot see an order block or the 84% rule.
     setup_type: str = ""
     stop_level_name: str = ""
+    # THE EXIT LADDER (spec 5.3): SCALE_PLAN=four_rung only. `rungs` is the
+    # frozen `levels_ladder.Rung` list this trade was built with (empty on
+    # every other plan -- the `pnl` branch below reads this to decide which
+    # P&L model applies, so an empty tuple is a real behavioural switch, not
+    # just bookkeeping). `fills` accumulates (weight, price) in BAR ORDER as
+    # rungs fire, a stop books the remainder, or the EOD flush closes it out;
+    # sum(weight for weight, _ in fills) == 1.0 once the trade is done.
+    rungs: tuple = ()
+    fills: list = field(default_factory=list)
 
     @property
     def counted(self) -> bool:
@@ -392,6 +581,14 @@ class SimTrade:
 
         # D2: S-score-scaled risk (flag-gated; 1.0x = flat $1k when OFF).
         risk_dollars = RISK_DOLLARS * sscore_mult(self.reason)
+
+        # THE EXIT LADDER (spec 5.3): SCALE_PLAN=four_rung. Weighted R across
+        # every (weight, price) fill, at the trade's ORIGINAL entry/risk --
+        # never a raised runner_stop, same convention `_stop_fill_px` uses.
+        if self.rungs:
+            sign = 1 if self.direction == "call" else -1
+            return round(sum(w * sign * (px - self.entry) / risk
+                             for w, px in self.fills) * risk_dollars, 2)
 
         # F1 ladder: 50% filled at scale_level + 50% at exit_price
         if self.scaled:
@@ -740,6 +937,98 @@ def _ladder_bar(t: "SimTrade", c: Candle, i: int, open_trades: list,
     open_trades.remove(t)
 
 
+def _ladder_bar_4(t: "SimTrade", c: Candle, i: int, open_trades: list,
+                  runner: "BacktestRunner") -> None:
+    """THE EXIT LADDER (spec 5.4). Per-bar management for a SCALE_PLAN=
+    four_rung trade. A new sibling of `_ladder_bar` above -- that function is
+    NOT modified, so every other SCALE_PLAN value is untouched by this one.
+
+    Same two non-negotiables as everywhere else in this file: the stop wins
+    any bar that touches both a rung and the stop (no partial credit), and
+    every fill routes through `_stop_fill_px` / `_disaster_hit`, never a
+    locally invented price."""
+    long = t.direction == "call"
+    # 1. the working stop -- original until the first rung fills, then
+    #    breakeven or the last-filled rung's price per LADDER_TRAIL.
+    stop_lv = t.runner_stop if t.runner_stop else t.stop
+
+    def _weight_filled() -> float:
+        return sum(w for w, _ in t.fills)
+
+    def _close(exit_price: float, by_sign: bool) -> None:
+        t.exit_price, t.exit_idx = exit_price, i
+        if by_sign:
+            p = t.pnl
+            t.outcome = "win" if p > 0 else ("loss" if p < 0 else "scratch")
+        open_trades.remove(t)
+
+    # 2. disaster stop -- resting -1R order, on TOUCH, only while the stop is
+    #    still the ORIGINAL one (same guard `_ladder_bar` uses: once raised,
+    #    a resting order between price and -1R must be crossed first).
+    dz = _disaster_hit(t, c, long) if stop_lv == t.stop else None
+    if dz is not None:
+        had_fills = bool(t.fills)
+        remaining = round(1.0 - _weight_filled(), 9)
+        if remaining > 1e-9:
+            t.fills.append((remaining, dz))
+        _close(dz, by_sign=True)
+        if not had_fills:
+            _arm_84(t, runner, c)
+        return
+
+    # 3. which of the still-open rungs did this bar touch -- a PREFIX of the
+    #    unfilled rungs, since they are strictly monotonic in the trade's
+    #    direction: reaching a farther rung's price means reaching every
+    #    nearer one too.
+    unfilled = t.rungs[len(t.fills):]
+    touched = []
+    for r in unfilled:
+        if _target_hit(c, r.price, long):
+            touched.append(r)
+        else:
+            break
+
+    # 4. THE STOP WINS THE BAR. A bar that closes beyond the stop books the
+    #    remaining weight at the stop's fill -- no rung on THIS bar fills,
+    #    even if `touched` is non-empty (omen-5.1 T2's same-bar tie).
+    if _stop_hit(c, stop_lv, long):
+        fill = _stop_fill_px(t, c, long, stop_lv)
+        if PESSIMISTIC_FILL and touched:
+            fill = min(fill, t.stop) if long else max(fill, t.stop)
+        had_fills = bool(t.fills)
+        remaining = round(1.0 - _weight_filled(), 9)
+        if remaining > 1e-9:
+            t.fills.append((remaining, fill))
+        _close(fill, by_sign=True)
+        if stop_lv == t.stop and not had_fills:
+            _arm_84(t, runner, c)
+        return
+
+    # 5. fill every touched rung, in order, each at its own price; the stop
+    #    trails after the FIRST fill of the trade's life, per LADDER_TRAIL.
+    if touched:
+        for r in touched:
+            t.fills.append((r.weight, r.price))
+        t.runner_stop = t.entry if LADDER_TRAIL == "be" else touched[-1].price
+
+    # 6. every rung filled -> the trade is done.
+    if len(t.fills) == len(t.rungs):
+        _close(t.fills[-1][1], by_sign=True)
+        return
+
+    # 7. R11/T11-BE's "enough movement" arm, independent of any rung -- same
+    #    as `_ladder_bar`'s own copy, checked last so it takes effect
+    #    starting next bar (no look-ahead within the bar that crosses it).
+    if BE_TRIGGER == "mfe" and not t.runner_stop and BE_MOVE_R > 0:
+        risk = abs(t.entry - t.stop)
+        if risk > 0:
+            mfe_r = (c.high - t.entry) / risk if long else (t.entry - c.low) / risk
+            if mfe_r >= BE_MOVE_R:
+                t.runner_stop = t.entry
+    # else: still open, unfilled weight carries to the next bar (or the EOD
+    # flush in simulate_day, which appends it at the session's last close).
+
+
 class BacktestRunner(SignalRunner):
     """Capture ALL signals including D-grade and tight-stop skips."""
 
@@ -908,6 +1197,9 @@ def simulate_day(symbol: str, day_iso: str, candles: List[Candle],
                     t.outcome, t.exit_price, t.exit_idx = "scratch", px, i
                     open_trades.remove(t)
                     continue
+            if SCALE_PLAN == "four_rung":
+                _ladder_bar_4(t, c, i, open_trades, runner)
+                continue
             if SCALE_PLAN:
                 _ladder_bar(t, c, i, open_trades, runner)
                 continue
@@ -1030,7 +1322,24 @@ def simulate_day(symbol: str, day_iso: str, candles: List[Candle],
             # F1 ladder: scale trigger = session extreme as-of entry bar (no
             # lookahead); runner target = first key level beyond the scale point
             scale_level = runner_tgt = 0.0
-            if SCALE_PLAN and risk > 0:
+            rungs: tuple = ()
+            if SCALE_PLAN == "four_rung" and risk > 0:
+                # THE EXIT LADDER (spec 1/2): every rung is a price, causal at
+                # the entry bar, built by the one pure function in
+                # levels_ladder.py. `bias`/`qqq` are simulate_day's own params
+                # -- already causal, already threaded through for exactly this.
+                session_extreme = (max(cd.high for cd in candles[:i + 1])
+                                   if sig["direction"] == "call"
+                                   else min(cd.low for cd in candles[:i + 1]))
+                named_levels = _named_level_pool(candles, i, pdh, pdl, pmh, pml)
+                rungs = tuple(ladder.build_rungs(
+                    sig["entry"], sig["stop"], sig["direction"],
+                    session_extreme=session_extreme, named_levels=named_levels,
+                    weights=_ladder_weights(sig["direction"], bias, qqq, fill_c.timestamp),
+                    psych_step=LADDER_PSYCH_STEP, psych_tol=LADDER_PSYCH_TOL,
+                    pt4_mode=LADDER_PT4_MODE, pt4_r=LADDER_PT4_R,
+                    min_gap_r=LADDER_MIN_RUNG_GAP))
+            elif SCALE_PLAN and risk > 0:
                 if sig["direction"] == "call":
                     scale_level = max(cd.high for cd in candles[:i + 1])
                     cands = [x for x in (pdh, pmh) if x is not None and x > scale_level]
@@ -1041,6 +1350,21 @@ def simulate_day(symbol: str, day_iso: str, candles: List[Candle],
                     cands = [x for x in (pdl, pml) if x is not None and x < scale_level]
                     cands.append(math.ceil(scale_level) - 1.0)
                     runner_tgt = max(cands)
+                # THE RUNNER GUARD (spec section 3, LADDER_RUNNER_GUARD, default
+                # OFF). `runner_tgt` above and `target` (2R, a few lines up) are
+                # computed independently and NEVER compared -- measured on
+                # 444 first-of-day trades, `runner_tgt` lands inside the 2R
+                # target on 303 (68.2%), median 1.30R. A near runner is only
+                # legitimate when the precedence rule (section 2's tolerance,
+                # reused here) put it there deliberately; otherwise it is the
+                # whole-dollar fallback geometry bug and 2R wins.
+                if LADDER_RUNNER_GUARD:
+                    floor_px = target  # entry +/- 2*risk, computed above
+                    tol_r = _psych_tol_r(risk, sig["entry"])
+                    cur_r = ((runner_tgt - sig["entry"]) / risk if sig["direction"] == "call"
+                            else (sig["entry"] - runner_tgt) / risk)
+                    if cur_r < 2.0 - tol_r:
+                        runner_tgt = floor_px
 
             # G7.1/labels: setup_type is a SignalType enum when
             # _label_confluence ran (every live/backtest sig does); absent on a
@@ -1055,7 +1379,7 @@ def simulate_day(symbol: str, day_iso: str, candles: List[Candle],
                          reason=sig["reason"], entry_idx=fill_i,
                          exit_idx=len(candles) - 1,
                          be_level=be_level, scale_level=scale_level,
-                         runner_target=runner_tgt,
+                         runner_target=runner_tgt, rungs=rungs,
                          setup_type=getattr(_setup_type, "value", _setup_type),
                          stop_level_name=sig.get("stop_level_name") or "")
             trades.append(t)
@@ -1074,8 +1398,16 @@ def simulate_day(symbol: str, day_iso: str, candles: List[Candle],
                     probe.append((_probe_row(t, c, nxt, t.level_price), t))
                 open_trades.append(t)
 
-    # EOD: whatever is open scratches at last close
+    # EOD: whatever is open scratches at last close. THE EXIT LADDER (spec
+    # 5.4 step 8): a four_rung trade still holding unfilled weight books that
+    # remainder at the session's last close FIRST, so its `pnl` (weighted
+    # across every fill) is correct -- still labeled "scratch", same as every
+    # other EOD flush here, never win/loss by construction.
     for t in open_trades:
+        if t.rungs:
+            remaining = round(1.0 - sum(w for w, _ in t.fills), 9)
+            if remaining > 1e-9:
+                t.fills.append((remaining, candles[-1].close))
         t.outcome, t.exit_price = "scratch", candles[-1].close
     for row, t in probe:   # P8/G2: outcomes are only known once the day is done
         row["out"] = t.outcome
