@@ -57,7 +57,22 @@ FLAG_SOURCES = (
         "DEDUPE_CONTIG", "BE_TRIGGER", "BE_MOVE_R", "STOP_ON_CLOSE",
         "PESSIMISTIC_FILL", "DISASTER_STOP", "DISASTER_R", "STOP_ARM",
         "TARGET_ON_CLOSE", "ENTRY_SCRATCH", "SCRATCH_PROBE_ON", "SCALE_PLAN",
-        "SSCORE_SIZING", "RULE6_ENABLED")),
+        "SSCORE_SIZING", "RULE6_ENABLED",
+        # 2026-09-02, the four-rung exit ladder. Eleven flags landed unstamped,
+        # which is the same hole the three _route C-cap gates left and the exact
+        # confusion this file exists to end -- a book built with the ladder on
+        # was indistinguishable from one built without it. SCALE_PLAN alone does
+        # not cover them: LADDER_RUNNER_GUARD changes the book while
+        # SCALE_PLAN is still the shipped default.
+        "LADDER_RUNNER_GUARD", "LADDER_WEIGHTS", "LADDER_PSYCH_TOL",
+        "LADDER_PSYCH_STEP", "LADDER_PT4_MODE", "LADDER_PT4_R",
+        "LADDER_MIN_RUNG_GAP", "LADDER_TREND_TEST",
+        "LADDER_TRAIL", "LADDER_HTF_PIVOTS")),
+        # NOT stamped, deliberately: backtest_week.LADDER_TREND_FUNNEL is a
+        # Counter that ACCUMULATES during a run (backtest_week.py:266, 335, 343).
+        # It is a diagnostic, not a flag. Stamping it would make the stamp -- and
+        # anything derived from it -- depend on how much of the book had been
+        # simulated when it was read, which is the opposite of a fingerprint.
     ("signal_runner", (
         "ON_WATCH", "OCR_STRICT", "BNR_DISPLACEMENT_GATE", "COUNTER_TREND_CAP",
         "GRADE_FIX", "HTF_BIAS_GATE", "RULE84_OFF", "RULE84_STRICT",
