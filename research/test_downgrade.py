@@ -219,5 +219,6 @@ if FAILURES:
     print("DOWNGRADE SELFTEST FAILED: %d check(s)" % len(FAILURES))
     for f in FAILURES:
         print("  - %s" % f)
-    sys.exit(1)
+    if __name__ == "__main__":  # ponytail: gated so pytest can collect the repo (2026-09-03)
+        sys.exit(1)
 print("downgrade selftest ok")

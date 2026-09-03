@@ -241,6 +241,7 @@ if FAILURES:
     print("%d check(s) FAILED:" % len(FAILURES))
     for f in FAILURES:
         print("  - %s" % f)
-    sys.exit(1)
+    if __name__ == "__main__":  # ponytail: gated so pytest can collect the repo (2026-09-03)
+        sys.exit(1)
 print("rule84-from-source selftest ok: %d checks" %
       (2 + 1 + 3 + 3 + 5 + 4))

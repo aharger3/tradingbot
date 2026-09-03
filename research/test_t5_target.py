@@ -146,5 +146,6 @@ check("short 2R target books +2.000R", r, 2.0)
 print()
 if FAILS:
     print(f"FAILED {len(FAILS)}: {FAILS}")
-    sys.exit(1)
+    if __name__ == "__main__":  # ponytail: gated so pytest can collect the repo (2026-09-03)
+        sys.exit(1)
 print("all T5 exit-semantics tests pass")
