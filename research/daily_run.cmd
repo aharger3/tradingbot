@@ -28,5 +28,18 @@ if errorlevel 1 (
 )
 
 echo deck: research\decks\omen-daily-%DAY%.html >> "%LOG%"
+
+REM OMEN 8.1 S3: regression_gate.py used to run only by hand and went
+REM silently red for 16 days (5e3677ea, 2026-08-11) unnoticed. It now runs
+REM every weekday and its verdict lands in this log -- non-fatal to the
+REM deck build (a detection regression is a finding, not a fetch/build
+REM failure), but no longer invisible.
+echo --- regression gate --- >> "%LOG%"
+python research\regression_gate.py >> "%LOG%" 2>&1
+if errorlevel 1 (
+  echo REGRESSION GATE: FAIL -- a baseline-fired mark went silent, see above >> "%LOG%"
+) else (
+  echo REGRESSION GATE: PASS >> "%LOG%"
+)
 type "%LOG%"
 endlocal

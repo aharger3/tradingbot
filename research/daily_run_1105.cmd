@@ -39,6 +39,19 @@ if errorlevel 1 (
   exit /b 1
 )
 
+REM OMEN 8.1 S3: same non-fatal, log-only regression check as daily_run.cmd's
+REM 16:15 pass (research/g112_regression_gate.md) -- this pass is a second
+REM daily entry point and the gate going silently red on one path while the
+REM other logs it is the same blind spot in miniature. Local log only, never
+REM reaches deliver_homework.py / the phone push below.
+echo --- regression gate --- >> "%LOG%"
+python research\regression_gate.py >> "%LOG%" 2>&1
+if errorlevel 1 (
+  echo REGRESSION GATE: FAIL -- a baseline-fired mark went silent, see above >> "%LOG%"
+) else (
+  echo REGRESSION GATE: PASS >> "%LOG%"
+)
+
 REM Mirrors to Desktop\AI-Outputs\omen-daily\ and pushes the file to the phone.
 python research\deliver_homework.py --day %DAY% >> "%LOG%" 2>&1
 if errorlevel 1 (
