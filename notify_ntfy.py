@@ -128,10 +128,12 @@ def attach(path, title: str, body: str = "", filename: str | None = None,
     Same never-raise contract as `push`: every failure path returns False and
     logs one line. A deck that failed to send is a bad morning, not a crash.
 
-    NOTE the notification body cannot be sent alongside a file in one request --
-    ntfy reads the body FROM the file on an attachment PUT. `body`, when given,
-    goes out as a separate ordinary push first, so the phone shows the sentence
-    and the file arrives under it.
+    ONE NOTIFICATION, NOT TWO. On an attachment PUT the request body IS the
+    file, so the sentence travels in the `Message` header instead; ntfy turns a
+    literal backslash-n there into a real newline, which is why `body` is escaped
+    rather than sent raw (a raw newline in an HTTP header is not sendable at
+    all). The first cut of this function pushed the text separately and then the
+    file, and his phone buzzed twice for one deck.
     """
     resolved = resolve_topic(topic)
     if resolved is None:
@@ -147,15 +149,17 @@ def attach(path, title: str, body: str = "", filename: str | None = None,
              f"limit — not sending")
         return False
 
-    if body:
-        push(title, body, priority=priority, tags=tags, topic=resolved)
-
     def _hdr(v: str) -> str:
         return v.encode("latin-1", "replace").decode("latin-1")
 
     import os.path
     headers = {"Title": _hdr(title), "Priority": _hdr(priority),
                "Filename": _hdr(filename or os.path.basename(str(path)))}
+    if body:
+        # Newlines are escaped for the header and ntfy unescapes them; a stray
+        # carriage return would be a header-injection vector, so both go.
+        headers["Message"] = _hdr(
+            body.replace(chr(13), "").replace(chr(10), chr(92) + "n"))
     if tags:
         headers["Tags"] = _hdr(tags if isinstance(tags, str)
                                else ",".join(str(t) for t in tags))
