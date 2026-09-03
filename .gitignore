@@ -219,3 +219,65 @@ research/bt2y_trades_retest_off.json
 # Replay paper ledgers (live_scanner.py --replay). Simulated fills for a day
 # that already happened -- never the real book (journal/paper-trades.jsonl).
 journal/replay-*.jsonl
+
+# ---- 2026-09-03 triage of the untracked pile (1,154 files) ----
+
+# Per-arm 2-year replay books and caches from the g71-g75 research wave, 10-144 MB
+# each and 3.2 GB together. Each is regenerable from the research script that
+# names it (g72_sixlevels_book.py, g71_levels_compare.py, g71_stops.py,
+# g71_ladder_bt2y_arm.py, g75_trendfilter_cache.py, g71_trend_cache.py, ...) and
+# the numbers read off them live in the tracked .md/.json of the same prefix.
+# Named one by one on purpose: a pattern here would swallow the small result
+# tables beside them. Four are over GitHub's 100 MB limit. No judgement file is
+# anywhere near this rule.
+research/_g71_trend_cache.json
+research/_g71s_D_075.json
+research/_g71s_D_125.json
+research/_g71s_D_150.json
+research/_g71s_D_200.json
+research/_g71s_D_off.json
+research/_g71s_S0_shipped.json
+research/_g71s_S1_level.json
+research/_g71s_S2_candle.json
+research/_g71s_S3_pivot.json
+research/_g71s_S4_bestrr.json
+research/_g72_clamp1250.json
+research/_g72_none.json
+research/_g72_none_recheck.json
+research/_g72_shipped.json
+research/_g72_touch_1250.json
+research/_g72_touch_1500.json
+research/_g72_touch_2000.json
+research/_g72_touch_2500.json
+research/_g72_touch_3000.json
+research/_g72_touch_4000.json
+research/_g72_touch_5000.json
+research/g71_arm_base.json
+research/g71_arm_both.json
+research/g71_arm_no_pivot.json
+research/g71_arm_six_target.json
+research/g71_ladder_bt2y_noab.json
+research/g71_ladder_bt2y_sac_all.json
+research/g71_ladder_bt2y_sac_xlift.json
+research/g71_ladderv_instr_book.json
+research/g71_runner_probe.json
+research/g72_arm_base.json
+research/g72_arm_hodfast.json
+research/g72_arm_hodlod.json
+research/g72_arm_noor.json
+research/g72_arm_nopivot.json
+research/g72_arm_sixfast.json
+research/g72_arm_sixlevels.json
+research/g75_trendfilter_cache.json
+
+# research/g71_levelsv_*.py verification replay books, 307 MB.
+research/_v/
+
+# g76 rebuild arms: twelve books of 2-8 MB from research/g76_rebuild_book.py.
+# The verdict is research/g76_rebuild_verdict.md and the numbers
+# research/g76_rebuild_numbers.json, both tracked.
+research/g76_book_*.json
+research/g76_livefixes_retest_head.json
+
+# Claude Code worktrees live inside the repo and are never part of it.
+.claude/worktrees/
