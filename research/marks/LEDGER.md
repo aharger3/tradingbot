@@ -423,3 +423,18 @@ guard survives the file being moved.
 **Provenance:** written in-session from his own answers, JSON-validated row by row,
 `git status` checked by eye. `.gitignore` line 97 (`!research/marks/**`) un-ignores
 it, so no `git add -f` was needed — confirmed with `git check-ignore -v`.
+
+## zz-ingest-selftest_2026-09-03.jsonl — 3 rows, human
+
+Austin's export from the `zz-ingest-selftest` page, pasted back and ingested by
+`research/marks_ingest.py` on 2026-09-03. 2 of the 3 rows carry a written
+comment. 0 re-pasted rows already present in `research/marks/` were
+skipped, and 3 rows were dropped as non-judgements (no card_id, or
+neither answers nor notes).
+
+**Why it counts:** every row is a judgement he made on a chart —
+a grade, an entry, a stop, or prose about what the engine missed.
+
+**Provenance:** written append-only, JSON-validated row by row,
+`git add -f` then `git status` re-read to confirm it staged. Named in
+`build_deck.py::LEGACY_MARK_FILES` in the same commit.
