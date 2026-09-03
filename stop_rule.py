@@ -2,8 +2,9 @@
 
 CLAUDE.md, "Rules that hold everywhere":
 
-    Stops trigger on the candle CLOSE, fill at that close, floored at -1.25R.
-    Wicks stop nothing out. Austin settled this five times in one batch of marks.
+    Stops trigger on the candle CLOSE, fill at that close. Max loss is -1R
+    hard: the level stop is final. Wicks stop nothing out. Austin settled
+    this five times in one batch of marks.
 
 `Trading-Bot-Rulesets.md`, Austin's Trading Rules clause 1 (167-171): *"Stop-outs
 happen on the close, not the wick. A trade is stopped out only when a candle
@@ -24,10 +25,14 @@ module imports nothing, so the live path pays no backtest import cost for it.
 
 `stop_fill_price` is the other half of the rule and lives here for the same
 reason: the FILL convention had forked too. `research/exit_lab.py` booked the
-close and floored it at -1.25R; `backtest_week.py` and `paper_trader.py` booked
-the stop price, which is -1.000R by construction and made the floor dead code
-in every shipped rig (research/x2_stop_floor_audit.md, 2026-08-28). One trigger,
-one fill, one floor, one module.
+close and floored it at a claimed -1.25R; `backtest_week.py` and
+`paper_trader.py` booked the stop price, which is -1.000R by construction —
+and, per Austin's 2026-09-03 ruling R1, that -1.25R floor was never a live
+rule to begin with: DISASTER_STOP_R = 1.0 below rests the disaster stop
+exactly on the level stop, so no trade the shipped configuration produces can
+ever reach a close-triggered floor past -1R. 0 of 2,216 losses in
+`research/bt2y_trades_retest_on.json` book worse than -1.000R. One trigger,
+one fill, one module.
 
 **Targets are not stops.** A resting limit target fills on an intrabar TOUCH, and
 so does Rule 6's break-even scale-out — both are limit orders that are simply
@@ -41,20 +46,32 @@ def stop_hit_on_close(close: float, level: float, long: bool) -> bool:
     """The settled rule: a stop triggers only when the bar CLOSES beyond it.
 
     The trigger only. What that trigger FILLS at is ``stop_fill_price`` below —
-    the same close, floored at -1.25R. Until 2026-08-28 this docstring claimed
-    the fill stayed at the level ("Austin's stop order still rests there"), and
-    every caller obeyed it. `research/x2_stop_floor_audit.md` measured the price
-    of that reading: 458 of the book's 474 stop-outs (96.6%) were triggered by a
-    candle that had ALREADY closed past 1R — median -1.35R, worst -4.36R — and
-    all 474 were booked as exactly -1.000R. The -1.25R floor CLAUDE.md states was
-    therefore unreachable code. Austin, 2026-08-28: "fix stop out 1.25 max
-    slippage this needs to be fixed now."
+    the same close, clamped by ``floor_r``. Until 2026-08-28 this docstring
+    claimed the fill stayed at the level ("Austin's stop order still rests
+    there"), and every caller obeyed it. `research/x2_stop_floor_audit.md`
+    measured the price of that reading: 458 of the book's 474 stop-outs
+    (96.6%) were triggered by a candle that had ALREADY closed past 1R —
+    median -1.35R, worst -4.36R — and all 474 were booked as exactly -1.000R.
+
+    R1 (Austin, 2026-09-03): max loss is -1R hard, the level stop is final.
+    The -1.25R clamp below (``MAX_LOSS_R``) is an outer bound the shipped
+    configuration never reaches, not a live rule — see the note above
+    ``MAX_LOSS_R`` for why, and keep it that way; do not wire it to fire.
     """
     return close <= level if long else close >= level
 
 
-# Austin's stated worst case, rule ballot batch 01 q1: "a 1m candle close below
-# is exit, max slippage -1.25r which is 1.25k based on current position sizing."
+# NOT a live rule. Austin floated this worst-case number in rule ballot batch
+# 01 q1 ("a 1m candle close below is exit, max slippage -1.25r which is 1.25k
+# based on current position sizing"), and CLAUDE.md and this module both
+# claimed it as an operating floor until Austin's 2026-09-03 ruling R1: "max
+# loss is -1R hard, the level stop is final." DISASTER_STOP_R = 1.0 below
+# rests the disaster stop exactly on the level stop and fires on an intrabar
+# TOUCH -- before a close-triggered fill could ever run past -1R -- so this
+# constant is an outer bound the shipped configuration never reaches, not a
+# second stop. 0 of 2,216 losses in research/bt2y_trades_retest_on.json book
+# worse than -1.000R. Kept only because backtest_week.py imports it as
+# `floor_r`'s default; do not wire it to actually fire.
 MAX_LOSS_R = 1.25
 
 
@@ -64,15 +81,21 @@ def stop_fill_price(close: float, entry: float, risk: float, long: bool,
 
     You are out at market once the bar closes beyond the stop, so the fill is
     that CLOSE — worse than the stop price by however far the bar ran — clamped
-    so the realised loss can never exceed ``floor_r`` R.
+    at ``floor_r`` R as an outer bound the fill can never exceed. Per R1
+    (Austin, 2026-09-03) that clamp is not a live rule: DISASTER_STOP_R = 1.0
+    already exits every trade on an intrabar touch at -1R before a close-
+    triggered fill could run past it, so ``floor_r``'s default (``MAX_LOSS_R``
+    = 1.25) never binds in the shipped configuration -- 0 of 2,216 losses in
+    research/bt2y_trades_retest_on.json book worse than -1.000R. It stays here
+    as belt-and-suspenders only; do not treat it as a second stop.
 
     ``risk`` is the trade's ORIGINAL ``abs(entry - stop)`` and ``entry`` its
     ORIGINAL entry, always. Both are deliberately taken from the caller rather
     than from whichever stop fired: after a scale-out the runner's stop has
     moved (to break-even, or up a trail) and re-basing the denominator on it
-    would quietly turn -1.25R of the WHOLE position into -1.25R of a fraction
-    of it. The floor is a total-loss floor on the trade, not a slippage
-    allowance per stop.
+    would quietly turn ``floor_r`` R of the WHOLE position into ``floor_r`` R
+    of a fraction of it. The clamp is a total-loss bound on the trade, not a
+    slippage allowance per stop.
 
     Monotone and side-symmetric: on a long it can only raise the fill, on a
     short only lower it, so it never invents a better-than-close exit on the
@@ -122,6 +145,15 @@ def stop_hit_on_wick(high: float, low: float, level: float, long: bool) -> bool:
 # The two coexist; whichever comes first on a bar ends the trade, and the
 # disaster stop is tested FIRST because a bar that touched -1R and then closed
 # further away was already out at -1R.
+#
+# NOTE the label collision: the "R1" above is this file's own name for the
+# probe_master_2026-08-29 finding, not Austin's separate 2026-09-03 ruling R1
+# ("max loss is -1R hard, the level stop is final") that this module was
+# updated for on that date. They agree -- the floor was fiction both times --
+# but they are two different sessions. Confirmed again on the shipped book:
+# 0 of 2,216 losses in research/bt2y_trades_retest_on.json fall past -1.000R,
+# because DISASTER_STOP_R below puts the disaster stop exactly on the level
+# stop and it is tested first.
 DISASTER_STOP_R = 1.0
 
 
