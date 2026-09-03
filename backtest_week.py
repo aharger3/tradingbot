@@ -583,6 +583,16 @@ class SimTrade:
     # regex that cannot see an order block or the 84% rule.
     setup_type: str = ""
     stop_level_name: str = ""
+    # AUGUR (omen-8 ticket 02). The SETTLED S/A/C ladder, computed by
+    # `signal_runner.compute_austin_tier` and stamped on every routed sig since
+    # omen-3.9 T4 -- and dropped on the floor here, exactly like setup_type and
+    # stop_level_name were before G7.1. `grade` beside it is the LEGACY
+    # A+/A/B/C/X engine ladder, which is a different ladder answering a
+    # different question (omen-two-grade-ladders): the 11:05 blind deck selects
+    # on S, and re-deriving it downstream would mean a second implementation of
+    # Austin's four clauses. Reported only -- no fill, no grade and no P&L moves.
+    # "" when AUSTIN_TIER_ENABLED is off, so nothing can mistake it for a "C".
+    austin_tier: str = ""
     # THE EXIT LADDER (spec 5.3): SCALE_PLAN=four_rung only. `rungs` is the
     # frozen `levels_ladder.Rung` list this trade was built with (empty on
     # every other plan -- the `pnl` branch below reads this to decide which
@@ -1507,6 +1517,7 @@ def simulate_day(symbol: str, day_iso: str, candles: List[Candle],
                          runner_target=runner_tgt, rungs=rungs,
                          setup_type=getattr(_setup_type, "value", _setup_type),
                          stop_level_name=sig.get("stop_level_name") or "",
+                         austin_tier=sig.get("austin_tier") or "",
                          entry_candle_lo=fill_c.low, entry_candle_hi=fill_c.high)
             trades.append(t)
             if risk > 0:

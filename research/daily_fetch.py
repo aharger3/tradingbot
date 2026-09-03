@@ -40,6 +40,23 @@ from polygon_feed import ARCHIVE                   # noqa: E402
 HEADER = ["Datetime", "Open", "High", "Low", "Close", "Adj Close", "Volume"]
 
 
+def last_minute(path: Path) -> str:
+    """"HH:MM" of the last bar in an archive file, or "" if unreadable.
+
+    Reads the tail rather than the whole file: this is called once per symbol
+    per pass and the files run to ~900 rows.
+    """
+    try:
+        rows = path.read_text(encoding="utf-8").rstrip().splitlines()
+    except OSError:
+        return ""
+    for line in reversed(rows[1:]):          # skip the header
+        ts = line.split(",", 1)[0]
+        if "T" in ts:
+            return ts.split("T", 1)[1][:5]
+    return ""
+
+
 def _frame(symbol: str, period: str):
     """yfinance 1-minute frame including premarket, columns flattened."""
     import yfinance as yf
@@ -53,20 +70,43 @@ def _frame(symbol: str, period: str):
     return df.tz_convert("America/New_York")
 
 
-def write_day(symbol: str, day_iso: str, df, force: bool = False) -> int:
+def write_day(symbol: str, day_iso: str, df, force: bool = False,
+              until: str | None = None) -> int:
     """Write one symbol-day to the archive in polygon_feed's exact format.
 
     Returns rows written; 0 means "nothing to do" (already present, or the day
     is not in this frame). Never overwrites a Polygon-written file unless
     --force: Polygon is the higher-fidelity source and stays authoritative
     wherever it reached.
+
+    ``until`` ("HH:MM", exclusive) truncates the day. AUGUR's 11:05 pass wants
+    an archive that PHYSICALLY STOPS at 11:00: the deck is blind homework, and a
+    blind deck built from a file that holds the afternoon is one accidental
+    `WIN_END` away from showing Austin the answer. The truncation is defensive
+    depth, not the only guard -- `daily_homework.py --mode s-blind` cuts the
+    window again on its own -- but it is the cheap one, and it is the one that
+    survives somebody later pointing a different rig at the same file.
+
+    A truncated file NEVER overwrites a full one: the 16:15 reveal pass reads
+    the same archive and needs the whole session. Truncation therefore writes
+    only where nothing is on disk yet, or where the existing file is itself
+    already short of `until` (i.e. an earlier truncated pass).
     """
     out = ARCHIVE / symbol / f"{day_iso}.csv"
     if out.exists() and not force:
         return 0
+    if until and out.exists() and last_minute(out) >= until:
+        # --force --until against a file that already holds more of the session.
+        # Shortening it would silently delete the afternoon out from under the
+        # 16:15 reveal pass, which reads this same archive.
+        return 0
     day = df[df.index.strftime("%Y-%m-%d") == day_iso]
     if day.empty:
         return 0
+    if until:
+        day = day[day.index.strftime("%H:%M") < until]
+        if day.empty:
+            return 0
     out.parent.mkdir(parents=True, exist_ok=True)
     n = 0
     with open(out, "w", newline="", encoding="utf-8") as f:
@@ -86,7 +126,7 @@ def write_day(symbol: str, day_iso: str, df, force: bool = False) -> int:
     return n
 
 
-def fill(symbols, period="5d", day=None, force=False) -> dict:
+def fill(symbols, period="5d", day=None, force=False, until=None) -> dict:
     got = {}
     for i, sym in enumerate(symbols, 1):
         try:
@@ -99,7 +139,7 @@ def fill(symbols, period="5d", day=None, force=False) -> dict:
             continue
         days = [day] if day else sorted({d for d in df.index.strftime("%Y-%m-%d")})
         for d in days:
-            n = write_day(sym, d, df, force=force)
+            n = write_day(sym, d, df, force=force, until=until)
             if n:
                 got.setdefault(d, []).append(sym)
                 print(f"  [{sym}] {d}: {n} bars")
@@ -142,6 +182,9 @@ def main():
     ap.add_argument("--period", default="5d", help="yfinance lookback (max 8d for 1m)")
     ap.add_argument("--sym", help="one symbol instead of the universe")
     ap.add_argument("--force", action="store_true", help="overwrite existing files")
+    ap.add_argument("--until", help="stop the written day at this clock time, "
+                                    "exclusive (HH:MM). AUGUR's 11:05 pass uses "
+                                    "--until 11:00 so the archive itself is blind.")
     ap.add_argument("--demo", action="store_true", help="run the self-check only")
     a = ap.parse_args()
 
@@ -150,13 +193,21 @@ def main():
         return
 
     syms = [a.sym] if a.sym else universe.ALL_SYMS
-    print(f"filling archive from yfinance: {len(syms)} symbols, period={a.period}")
-    got = fill(syms, period=a.period, day=a.day, force=a.force)
+    print(f"filling archive from yfinance: {len(syms)} symbols, period={a.period}"
+          + (f", until {a.until}" if a.until else ""))
+    got = fill(syms, period=a.period, day=a.day, force=a.force, until=a.until)
     if not got:
         print("nothing written (already archived, or no data)")
     for d in sorted(got):
         print(f"{d}: {len(got[d])} symbols")
-    demo()
+    # The self-check reads the LATEST archived TSLA day and asserts >=300 RTH
+    # bars. A --until pass writes a deliberately short day, so that assertion is
+    # a false alarm by construction -- skip it and say so.
+    if a.until:
+        print(f"demo skipped -- --until {a.until} writes a partial session "
+              f"by design")
+    else:
+        demo()
 
 
 if __name__ == "__main__":
