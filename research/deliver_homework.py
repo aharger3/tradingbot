@@ -52,17 +52,23 @@ def deck_paths(day: str) -> tuple[Path, Path]:
             ROOT / "research" / ("daily_%s_s.json" % day))
 
 
-def summarise(data_path: Path) -> tuple[int, int]:
-    """(cards, cards carrying an OCR or 84% candidate). (0, 0) if unreadable --
-    the count decorates the notification, it does not gate the send."""
+def summarise(data_path: Path) -> int:
+    """How many cards. 0 if unreadable -- the count decorates the notification,
+    it does not gate the send.
+
+    THIS IS THE ONLY NUMBER THAT MAY LEAVE THE SIDECAR. The sidecar is deck kind
+    3's answer key: it says which cards are fires, which are silent, and what the
+    engine graded each one. A push that says "18 of these fired" hands him the
+    base rate before he opens the deck, and a blind test with a known base rate
+    is not blind. The earlier version of this function returned an OCR count and
+    the body printed it; that was a leak and it is why the return type is now a
+    single int.
+    """
     try:
         data = json.loads(data_path.read_text(encoding="utf-8"))
     except (OSError, ValueError):
-        return 0, 0
-    cards = data.get("cards") or []
-    ocr = sum(1 for c in cards
-              if any(s.get("ocr84") for s in c.get("signals", [])))
-    return len(cards), ocr
+        return 0
+    return len(data.get("cards") or [])
 
 
 def mirror(deck: Path, day: str) -> Path | None:
@@ -76,33 +82,37 @@ def mirror(deck: Path, day: str) -> Path | None:
         return None
 
 
-def body_for(day: str, n_cards: int, n_ocr: int) -> str:
-    """Plain English. Austin reads this on a lock screen -- no flag names, no
-    ticket ids, no letters from a retired ladder."""
-    lines = [
-        "%d charts from this morning, all cut at 11:00 - you are seeing exactly "
-        "what the engine saw, nothing after." % n_cards,
-    ]
-    if n_ocr:
-        lines.append("%d of them have a one-candle-rule or 84%% setup on the "
-                     "tape. Some of those never traded; the card says which gate "
-                     "stopped it. Tell me if the gate was wrong." % n_ocr)
-    lines.append("Grade each one, mark where you would have got in and where the "
-                 "stop goes, and write a comment. The comment is the part that "
-                 "changes the engine.")
-    lines.append("When you are done: Export, then Copy all, and paste it back.")
-    return "\n\n".join(lines)
+# A blank line between the push body's paragraphs.
+SEP = chr(10) * 2
 
 
-def deliver(day: str, dry_run: bool = False, topic: str | None = None) -> bool:
+def body_for(n_cards: int) -> str:
+    """Plain English, and it says nothing about the engine.
+
+    Austin reads this on a lock screen -- no flag names, no ticket ids, no
+    letters from a retired ladder, and (see `summarise`) no count of what fired.
+    """
+    return SEP.join([
+        "%d charts from this morning. Each one stops where it stops - that is "
+        "all you get, and it is all a trader would have had." % n_cards,
+        "Grade every card, say what kind of trade it is, and mark your entry "
+        "and stop on the ones you would take.",
+        "Write a comment on every card, including the ones you would not touch. "
+        "The comment is the part that changes the engine.",
+        "When you are done: Export, then Copy all, and paste it back.",
+    ])
+
+
+def deliver(day: str, dry_run: bool = False, topic: str | None = None,
+            title_suffix: str = "") -> bool:
     deck, data = deck_paths(day)
     if not deck.exists():
         print("no deck for %s at %s -- run daily_homework.py --mode s-blind first"
               % (day, deck))
         return False
-    n_cards, n_ocr = summarise(data)
-    title = "AUGUR homework %s, %d cards" % (day, n_cards)
-    body = body_for(day, n_cards, n_ocr)
+    n_cards = summarise(data)
+    title = "AUGUR homework %s%s, %d cards" % (day, title_suffix, n_cards)
+    body = body_for(n_cards)
 
     saved = mirror(deck, day)
     if saved:
@@ -129,8 +139,11 @@ def main():
                     help="ntfy topic; defaults to $OMEN_NTFY_TOPIC")
     ap.add_argument("--dry-run", action="store_true",
                     help="mirror and print, send nothing")
+    ap.add_argument("--title-suffix", default="",
+                    help='appended to the title, e.g. " (test)"')
     a = ap.parse_args()
-    sys.exit(0 if deliver(a.day, dry_run=a.dry_run, topic=a.topic) else 1)
+    sys.exit(0 if deliver(a.day, dry_run=a.dry_run, topic=a.topic,
+                          title_suffix=a.title_suffix) else 1)
 
 
 if __name__ == "__main__":
