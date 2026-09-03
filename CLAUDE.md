@@ -164,7 +164,7 @@ Artifacts, and a phone cannot mark a chart with a pointer.
 |---|---|
 | `research/t60_baseline.py` | the baseline: money gate, durability slices, recall |
 | `research/t61_onwatch_ab.py` | A/B any detection flag over the 120 graded day-cards |
-| `research/test_runner_stop.py` | stops fire on closes at −1R hard, wicks stop nothing |
+| `research/test_runner_stop.py` | stops fire on closes, floor at −1.25R, wicks stop nothing |
 | `research/test_universe_single_source.py` | no module keeps a private ticker list |
 | `backtest_2y.py` + `research/build_bt2y_report.py` | the 2-year book and its interactive report — **this is the money/durability rig** |
 | ~~`research/omen6_forward.py`~~ | **retired 2026-08-28.** Austin: *"no freezing, version snapshots for rollback."* The book has 0 trades booked; do not re-freeze without him saying so |
@@ -174,20 +174,13 @@ lists; a test fails the build if a new one appears.
 
 ### Rules that hold everywhere
 
-- **Stops trigger on the candle CLOSE**, fill at that close. **Max loss is −1R hard — the
-  level stop is final** (Austin, ruling R1, 2026-09-03). Wicks stop nothing out. Austin
-  settled the close-trigger five times in one batch of marks.
+- **Stops trigger on the candle CLOSE**, fill at that close, floored at **−1.25R**.
+  Wicks stop nothing out. Austin settled this five times in one batch of marks.
   **`stop_rule.stop_fill_price()` is the one fill definition** — every rig routes through it.
   Before 2026-08-28 `backtest_week` triggered on the close and then filled at `t.stop`, so
-  every loss was −1.000R by construction; 458 of 474 stop-outs had already closed past 1R
-  (`research/t11_stop_fill_fix.md`). A **−1.25R floor was claimed here and in
-  `stop_rule.MAX_LOSS_R`'s docstring for a time — it never fired.** `stop_rule.DISASTER_STOP_R
-  = 1.0` rests the disaster stop exactly on the level stop and is tested on an intrabar touch
-  before any close-triggered fill could run past −1R, so the floor is an outer bound the
-  shipped configuration never reaches, not a live rule: 0 of 2,216 losses in
-  `research/bt2y_trades_retest_on.json` book worse than −1.000R. Do not wire the floor to
-  fire — the claim was wrong, the behaviour (max loss −1R) was already correct. Never
-  re-implement a fill locally.
+  every loss was −1.000R by construction and the floor was unreachable code; 458 of 474
+  stop-outs had already closed past 1R (`research/t11_stop_fill_fix.md`). Never re-implement
+  a fill locally.
 - **One tolerance unit: 25% of the previous candle's range** (`BAR_EXTREME_FRAC`). It
   governs the ON WATCH entry trigger, the 84% reclaim window, and stop slippage.
 - **The money gate is mean R = 2.0.** Win rate is a secondary read. Durability = **every
