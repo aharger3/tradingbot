@@ -1,0 +1,1200 @@
+{
+  "n_candidates": 498,
+  "n_scored": 444,
+  "n_gated": 54,
+  "n_nobars": 0,
+  "results": {
+    "SHIPPED (book's committed fill, scale_plan=hod_then_runner_be)": {
+      "scoreboard": {
+        "ev_r": 0.0377,
+        "n": 444,
+        "n_input": 444,
+        "n_dropped_size_gate": 0,
+        "size_gate_applicable": true,
+        "win_rate": 0.4595,
+        "avg_win_R": 0.9048,
+        "avg_loss_R": 0.7023,
+        "profit_factor": 1.0996,
+        "total_R": 16.726,
+        "max_drawdown_R": -20.415,
+        "months_green": "12/25",
+        "expectancy_per_day": 37.67,
+        "r_stability": 0.0344,
+        "yearly_R": 9.4931,
+        "risk_dollars": 1000.0,
+        "sessions_used": 444
+      },
+      "prop_eval": {
+        "$1000": {
+          "passed": false,
+          "fail_reason": "daily_loss_limit",
+          "fail_day": "2024-09-03",
+          "final_equity": 0.0,
+          "final_equity_pct": 0.0,
+          "days_traded": 1,
+          "max_drawdown_seen_dollars": 0.0,
+          "max_drawdown_seen_pct": 0.0,
+          "best_day_dollars": -1000.0,
+          "best_day_pct_of_profit": null,
+          "params": {
+            "account_size": 50000.0,
+            "profit_target_pct": 0.08,
+            "trailing_dd_pct": 0.04,
+            "daily_loss_limit_pct": 0.02,
+            "min_trading_days": 5,
+            "consistency_pct": 0.3,
+            "dd_mode": "eod"
+          }
+        },
+        "$500": {
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "fail_day": "2024-09-13",
+          "final_equity": 25.0,
+          "final_equity_pct": 0.05,
+          "days_traded": 9,
+          "max_drawdown_seen_dollars": -2003.0,
+          "max_drawdown_seen_pct": -4.006,
+          "best_day_dollars": 3000.0,
+          "best_day_pct_of_profit": 12000.0,
+          "params": {
+            "account_size": 50000.0,
+            "profit_target_pct": 0.08,
+            "trailing_dd_pct": 0.04,
+            "daily_loss_limit_pct": 0.02,
+            "min_trading_days": 5,
+            "consistency_pct": 0.3,
+            "dd_mode": "eod"
+          }
+        },
+        "$300": {
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "fail_day": "2024-10-11",
+          "final_equity": -921.6,
+          "final_equity_pct": -1.843,
+          "days_traded": 28,
+          "max_drawdown_seen_dollars": -2138.4,
+          "max_drawdown_seen_pct": -4.277,
+          "best_day_dollars": 1800.0,
+          "best_day_pct_of_profit": null,
+          "params": {
+            "account_size": 50000.0,
+            "profit_target_pct": 0.08,
+            "trailing_dd_pct": 0.04,
+            "daily_loss_limit_pct": 0.02,
+            "min_trading_days": 5,
+            "consistency_pct": 0.3,
+            "dd_mode": "eod"
+          }
+        },
+        "$200": {
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "fail_day": "2025-01-14",
+          "final_equity": -1148.2,
+          "final_equity_pct": -2.296,
+          "days_traded": 84,
+          "max_drawdown_seen_dollars": -2193.6,
+          "max_drawdown_seen_pct": -4.387,
+          "best_day_dollars": 1200.0,
+          "best_day_pct_of_profit": null,
+          "params": {
+            "account_size": 50000.0,
+            "profit_target_pct": 0.08,
+            "trailing_dd_pct": 0.04,
+            "daily_loss_limit_pct": 0.02,
+            "min_trading_days": 5,
+            "consistency_pct": 0.3,
+            "dd_mode": "eod"
+          }
+        },
+        "$100": {
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "fail_day": "2026-08-03",
+          "final_equity": 1600.6,
+          "final_equity_pct": 3.201,
+          "days_traded": 426,
+          "max_drawdown_seen_dollars": -2041.5,
+          "max_drawdown_seen_pct": -4.083,
+          "best_day_dollars": 600.0,
+          "best_day_pct_of_profit": 37.49,
+          "params": {
+            "account_size": 50000.0,
+            "profit_target_pct": 0.08,
+            "trailing_dd_pct": 0.04,
+            "daily_loss_limit_pct": 0.02,
+            "min_trading_days": 5,
+            "consistency_pct": 0.3,
+            "dd_mode": "eod"
+          }
+        },
+        "$50": {
+          "passed": false,
+          "fail_reason": "profit_target_not_reached",
+          "fail_day": "2026-09-02",
+          "final_equity": 836.3,
+          "final_equity_pct": 1.673,
+          "days_traded": 443,
+          "max_drawdown_seen_dollars": -1020.75,
+          "max_drawdown_seen_pct": -2.041,
+          "best_day_dollars": 300.0,
+          "best_day_pct_of_profit": 35.87,
+          "params": {
+            "account_size": 50000.0,
+            "profit_target_pct": 0.08,
+            "trailing_dd_pct": 0.04,
+            "daily_loss_limit_pct": 0.02,
+            "min_trading_days": 5,
+            "consistency_pct": 0.3,
+            "dd_mode": "eod"
+          }
+        }
+      }
+    },
+    "100% one target (replica, nearest rung)": {
+      "scoreboard": {
+        "ev_r": 0.0314,
+        "n": 444,
+        "n_input": 444,
+        "n_dropped_size_gate": 0,
+        "size_gate_applicable": true,
+        "win_rate": 0.5158,
+        "avg_win_R": 0.9964,
+        "avg_loss_R": 0.9966,
+        "profit_factor": 1.065,
+        "total_R": 13.9198,
+        "max_drawdown_R": -22.7582,
+        "months_green": "13/25",
+        "expectancy_per_day": 31.35,
+        "r_stability": 0.0284,
+        "yearly_R": 7.9004,
+        "risk_dollars": 1000.0,
+        "sessions_used": 444
+      },
+      "prop_eval": {
+        "$1000": {
+          "passed": false,
+          "fail_reason": "daily_loss_limit",
+          "fail_day": "2024-09-03",
+          "final_equity": 0.0,
+          "final_equity_pct": 0.0,
+          "days_traded": 1,
+          "max_drawdown_seen_dollars": 0.0,
+          "max_drawdown_seen_pct": 0.0,
+          "best_day_dollars": -1000.0,
+          "best_day_pct_of_profit": null,
+          "params": {
+            "account_size": 50000.0,
+            "profit_target_pct": 0.08,
+            "trailing_dd_pct": 0.04,
+            "daily_loss_limit_pct": 0.02,
+            "min_trading_days": 5,
+            "consistency_pct": 0.3,
+            "dd_mode": "eod"
+          }
+        },
+        "$500": {
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "fail_day": "2024-09-16",
+          "final_equity": -2203.63,
+          "final_equity_pct": -4.407,
+          "days_traded": 10,
+          "max_drawdown_seen_dollars": -2500.0,
+          "max_drawdown_seen_pct": -5.0,
+          "best_day_dollars": 906.25,
+          "best_day_pct_of_profit": null,
+          "params": {
+            "account_size": 50000.0,
+            "profit_target_pct": 0.08,
+            "trailing_dd_pct": 0.04,
+            "daily_loss_limit_pct": 0.02,
+            "min_trading_days": 5,
+            "consistency_pct": 0.3,
+            "dd_mode": "eod"
+          }
+        },
+        "$300": {
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "fail_day": "2024-11-01",
+          "final_equity": -1731.89,
+          "final_equity_pct": -3.464,
+          "days_traded": 42,
+          "max_drawdown_seen_dollars": -2126.78,
+          "max_drawdown_seen_pct": -4.254,
+          "best_day_dollars": 600.0,
+          "best_day_pct_of_profit": null,
+          "params": {
+            "account_size": 50000.0,
+            "profit_target_pct": 0.08,
+            "trailing_dd_pct": 0.04,
+            "daily_loss_limit_pct": 0.02,
+            "min_trading_days": 5,
+            "consistency_pct": 0.3,
+            "dd_mode": "eod"
+          }
+        },
+        "$200": {
+          "passed": true,
+          "fail_reason": null,
+          "fail_day": null,
+          "final_equity": 4181.97,
+          "final_equity_pct": 8.364,
+          "days_traded": 196,
+          "max_drawdown_seen_dollars": -1938.66,
+          "max_drawdown_seen_pct": -3.877,
+          "best_day_dollars": 430.14,
+          "best_day_pct_of_profit": 10.29,
+          "params": {
+            "account_size": 50000.0,
+            "profit_target_pct": 0.08,
+            "trailing_dd_pct": 0.04,
+            "daily_loss_limit_pct": 0.02,
+            "min_trading_days": 5,
+            "consistency_pct": 0.3,
+            "dd_mode": "eod"
+          }
+        },
+        "$100": {
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "fail_day": "2026-06-24",
+          "final_equity": 1428.8,
+          "final_equity_pct": 2.858,
+          "days_traded": 402,
+          "max_drawdown_seen_dollars": -2006.35,
+          "max_drawdown_seen_pct": -4.013,
+          "best_day_dollars": 223.53,
+          "best_day_pct_of_profit": 15.64,
+          "params": {
+            "account_size": 50000.0,
+            "profit_target_pct": 0.08,
+            "trailing_dd_pct": 0.04,
+            "daily_loss_limit_pct": 0.02,
+            "min_trading_days": 5,
+            "consistency_pct": 0.3,
+            "dd_mode": "eod"
+          }
+        },
+        "$50": {
+          "passed": false,
+          "fail_reason": "profit_target_not_reached",
+          "fail_day": "2026-09-02",
+          "final_equity": 695.99,
+          "final_equity_pct": 1.392,
+          "days_traded": 444,
+          "max_drawdown_seen_dollars": -1137.91,
+          "max_drawdown_seen_pct": -2.276,
+          "best_day_dollars": 111.76,
+          "best_day_pct_of_profit": 16.06,
+          "params": {
+            "account_size": 50000.0,
+            "profit_target_pct": 0.08,
+            "trailing_dd_pct": 0.04,
+            "daily_loss_limit_pct": 0.02,
+            "min_trading_days": 5,
+            "consistency_pct": 0.3,
+            "dd_mode": "eod"
+          }
+        }
+      }
+    },
+    "50/50": {
+      "scoreboard": {
+        "ev_r": 0.0485,
+        "n": 444,
+        "n_input": 444,
+        "n_dropped_size_gate": 0,
+        "size_gate_applicable": true,
+        "win_rate": 0.455,
+        "avg_win_R": 1.1825,
+        "avg_loss_R": 0.9018,
+        "profit_factor": 1.099,
+        "total_R": 21.5174,
+        "max_drawdown_R": -20.0156,
+        "months_green": "12/25",
+        "expectancy_per_day": 48.46,
+        "r_stability": 0.0401,
+        "yearly_R": 12.2126,
+        "risk_dollars": 1000.0,
+        "sessions_used": 444
+      },
+      "prop_eval": {
+        "$1000": {
+          "passed": false,
+          "fail_reason": "daily_loss_limit",
+          "fail_day": "2024-09-03",
+          "final_equity": 0.0,
+          "final_equity_pct": 0.0,
+          "days_traded": 1,
+          "max_drawdown_seen_dollars": 0.0,
+          "max_drawdown_seen_pct": 0.0,
+          "best_day_dollars": -1000.0,
+          "best_day_pct_of_profit": null,
+          "params": {
+            "account_size": 50000.0,
+            "profit_target_pct": 0.08,
+            "trailing_dd_pct": 0.04,
+            "daily_loss_limit_pct": 0.02,
+            "min_trading_days": 5,
+            "consistency_pct": 0.3,
+            "dd_mode": "eod"
+          }
+        },
+        "$500": {
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "fail_day": "2024-09-13",
+          "final_equity": -1311.84,
+          "final_equity_pct": -2.624,
+          "days_traded": 9,
+          "max_drawdown_seen_dollars": -2003.25,
+          "max_drawdown_seen_pct": -4.006,
+          "best_day_dollars": 1671.88,
+          "best_day_pct_of_profit": null,
+          "params": {
+            "account_size": 50000.0,
+            "profit_target_pct": 0.08,
+            "trailing_dd_pct": 0.04,
+            "daily_loss_limit_pct": 0.02,
+            "min_trading_days": 5,
+            "consistency_pct": 0.3,
+            "dd_mode": "eod"
+          }
+        },
+        "$300": {
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "fail_day": "2024-10-29",
+          "final_equity": -1795.9,
+          "final_equity_pct": -3.592,
+          "days_traded": 40,
+          "max_drawdown_seen_dollars": -2210.75,
+          "max_drawdown_seen_pct": -4.421,
+          "best_day_dollars": 1003.13,
+          "best_day_pct_of_profit": null,
+          "params": {
+            "account_size": 50000.0,
+            "profit_target_pct": 0.08,
+            "trailing_dd_pct": 0.04,
+            "daily_loss_limit_pct": 0.02,
+            "min_trading_days": 5,
+            "consistency_pct": 0.3,
+            "dd_mode": "eod"
+          }
+        },
+        "$200": {
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "fail_day": "2025-01-24",
+          "final_equity": -1059.7,
+          "final_equity_pct": -2.119,
+          "days_traded": 90,
+          "max_drawdown_seen_dollars": -2137.2,
+          "max_drawdown_seen_pct": -4.274,
+          "best_day_dollars": 668.75,
+          "best_day_pct_of_profit": null,
+          "params": {
+            "account_size": 50000.0,
+            "profit_target_pct": 0.08,
+            "trailing_dd_pct": 0.04,
+            "daily_loss_limit_pct": 0.02,
+            "min_trading_days": 5,
+            "consistency_pct": 0.3,
+            "dd_mode": "eod"
+          }
+        },
+        "$100": {
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "fail_day": "2026-07-02",
+          "final_equity": 1694.56,
+          "final_equity_pct": 3.389,
+          "days_traded": 407,
+          "max_drawdown_seen_dollars": -2001.56,
+          "max_drawdown_seen_pct": -4.003,
+          "best_day_dollars": 334.38,
+          "best_day_pct_of_profit": 19.73,
+          "params": {
+            "account_size": 50000.0,
+            "profit_target_pct": 0.08,
+            "trailing_dd_pct": 0.04,
+            "daily_loss_limit_pct": 0.02,
+            "min_trading_days": 5,
+            "consistency_pct": 0.3,
+            "dd_mode": "eod"
+          }
+        },
+        "$50": {
+          "passed": false,
+          "fail_reason": "profit_target_not_reached",
+          "fail_day": "2026-09-02",
+          "final_equity": 1075.87,
+          "final_equity_pct": 2.152,
+          "days_traded": 443,
+          "max_drawdown_seen_dollars": -1000.78,
+          "max_drawdown_seen_pct": -2.002,
+          "best_day_dollars": 167.19,
+          "best_day_pct_of_profit": 15.54,
+          "params": {
+            "account_size": 50000.0,
+            "profit_target_pct": 0.08,
+            "trailing_dd_pct": 0.04,
+            "daily_loss_limit_pct": 0.02,
+            "min_trading_days": 5,
+            "consistency_pct": 0.3,
+            "dd_mode": "eod"
+          }
+        }
+      }
+    },
+    "30/30/30/10": {
+      "scoreboard": {
+        "ev_r": 0.0917,
+        "n": 444,
+        "n_input": 444,
+        "n_dropped_size_gate": 0,
+        "size_gate_applicable": true,
+        "win_rate": 0.4077,
+        "avg_win_R": 1.4589,
+        "avg_loss_R": 0.8493,
+        "profit_factor": 1.1822,
+        "total_R": 40.6962,
+        "max_drawdown_R": -16.98,
+        "months_green": "12/25",
+        "expectancy_per_day": 91.66,
+        "r_stability": 0.0673,
+        "yearly_R": 23.0978,
+        "risk_dollars": 1000.0,
+        "sessions_used": 444
+      },
+      "prop_eval": {
+        "$1000": {
+          "passed": false,
+          "fail_reason": "daily_loss_limit",
+          "fail_day": "2024-09-03",
+          "final_equity": 0.0,
+          "final_equity_pct": 0.0,
+          "days_traded": 1,
+          "max_drawdown_seen_dollars": 0.0,
+          "max_drawdown_seen_pct": 0.0,
+          "best_day_dollars": -1000.0,
+          "best_day_pct_of_profit": null,
+          "params": {
+            "account_size": 50000.0,
+            "profit_target_pct": 0.08,
+            "trailing_dd_pct": 0.04,
+            "daily_loss_limit_pct": 0.02,
+            "min_trading_days": 5,
+            "consistency_pct": 0.3,
+            "dd_mode": "eod"
+          }
+        },
+        "$500": {
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "fail_day": "2024-09-13",
+          "final_equity": -1100.7,
+          "final_equity_pct": -2.201,
+          "days_traded": 9,
+          "max_drawdown_seen_dollars": -2082.47,
+          "max_drawdown_seen_pct": -4.165,
+          "best_day_dollars": 2020.83,
+          "best_day_pct_of_profit": null,
+          "params": {
+            "account_size": 50000.0,
+            "profit_target_pct": 0.08,
+            "trailing_dd_pct": 0.04,
+            "daily_loss_limit_pct": 0.02,
+            "min_trading_days": 5,
+            "consistency_pct": 0.3,
+            "dd_mode": "eod"
+          }
+        },
+        "$300": {
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "fail_day": "2024-09-24",
+          "final_equity": -1539.83,
+          "final_equity_pct": -3.08,
+          "days_traded": 15,
+          "max_drawdown_seen_dollars": -2128.89,
+          "max_drawdown_seen_pct": -4.258,
+          "best_day_dollars": 1212.5,
+          "best_day_pct_of_profit": null,
+          "params": {
+            "account_size": 50000.0,
+            "profit_target_pct": 0.08,
+            "trailing_dd_pct": 0.04,
+            "daily_loss_limit_pct": 0.02,
+            "min_trading_days": 5,
+            "consistency_pct": 0.3,
+            "dd_mode": "eod"
+          }
+        },
+        "$200": {
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "fail_day": "2025-01-14",
+          "final_equity": -626.52,
+          "final_equity_pct": -1.253,
+          "days_traded": 84,
+          "max_drawdown_seen_dollars": -2071.02,
+          "max_drawdown_seen_pct": -4.142,
+          "best_day_dollars": 808.33,
+          "best_day_pct_of_profit": null,
+          "params": {
+            "account_size": 50000.0,
+            "profit_target_pct": 0.08,
+            "trailing_dd_pct": 0.04,
+            "daily_loss_limit_pct": 0.02,
+            "min_trading_days": 5,
+            "consistency_pct": 0.3,
+            "dd_mode": "eod"
+          }
+        },
+        "$100": {
+          "passed": true,
+          "fail_reason": null,
+          "fail_day": null,
+          "final_equity": 4014.74,
+          "final_equity_pct": 8.029,
+          "days_traded": 203,
+          "max_drawdown_seen_dollars": -1446.51,
+          "max_drawdown_seen_pct": -2.893,
+          "best_day_dollars": 652.5,
+          "best_day_pct_of_profit": 16.25,
+          "params": {
+            "account_size": 50000.0,
+            "profit_target_pct": 0.08,
+            "trailing_dd_pct": 0.04,
+            "daily_loss_limit_pct": 0.02,
+            "min_trading_days": 5,
+            "consistency_pct": 0.3,
+            "dd_mode": "eod"
+          }
+        },
+        "$50": {
+          "passed": false,
+          "fail_reason": "profit_target_not_reached",
+          "fail_day": "2026-09-02",
+          "final_equity": 2034.81,
+          "final_equity_pct": 4.07,
+          "days_traded": 444,
+          "max_drawdown_seen_dollars": -849.0,
+          "max_drawdown_seen_pct": -1.698,
+          "best_day_dollars": 326.25,
+          "best_day_pct_of_profit": 16.03,
+          "params": {
+            "account_size": 50000.0,
+            "profit_target_pct": 0.08,
+            "trailing_dd_pct": 0.04,
+            "daily_loss_limit_pct": 0.02,
+            "min_trading_days": 5,
+            "consistency_pct": 0.3,
+            "dd_mode": "eod"
+          }
+        }
+      }
+    },
+    "50/20/20/10": {
+      "scoreboard": {
+        "ev_r": 0.0728,
+        "n": 444,
+        "n_input": 444,
+        "n_dropped_size_gate": 0,
+        "size_gate_applicable": true,
+        "win_rate": 0.4685,
+        "avg_win_R": 1.1955,
+        "avg_loss_R": 0.9167,
+        "profit_factor": 1.1495,
+        "total_R": 32.338,
+        "max_drawdown_R": -17.8044,
+        "months_green": "13/25",
+        "expectancy_per_day": 72.83,
+        "r_stability": 0.0587,
+        "yearly_R": 18.354,
+        "risk_dollars": 1000.0,
+        "sessions_used": 444
+      },
+      "prop_eval": {
+        "$1000": {
+          "passed": false,
+          "fail_reason": "daily_loss_limit",
+          "fail_day": "2024-09-03",
+          "final_equity": 0.0,
+          "final_equity_pct": 0.0,
+          "days_traded": 1,
+          "max_drawdown_seen_dollars": 0.0,
+          "max_drawdown_seen_pct": 0.0,
+          "best_day_dollars": -1000.0,
+          "best_day_pct_of_profit": null,
+          "params": {
+            "account_size": 50000.0,
+            "profit_target_pct": 0.08,
+            "trailing_dd_pct": 0.04,
+            "daily_loss_limit_pct": 0.02,
+            "min_trading_days": 5,
+            "consistency_pct": 0.3,
+            "dd_mode": "eod"
+          }
+        },
+        "$500": {
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "fail_day": "2024-09-13",
+          "final_equity": -1314.88,
+          "final_equity_pct": -2.63,
+          "days_traded": 9,
+          "max_drawdown_seen_dollars": -2003.25,
+          "max_drawdown_seen_pct": -4.006,
+          "best_day_dollars": 1649.31,
+          "best_day_pct_of_profit": null,
+          "params": {
+            "account_size": 50000.0,
+            "profit_target_pct": 0.08,
+            "trailing_dd_pct": 0.04,
+            "daily_loss_limit_pct": 0.02,
+            "min_trading_days": 5,
+            "consistency_pct": 0.3,
+            "dd_mode": "eod"
+          }
+        },
+        "$300": {
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "fail_day": "2024-10-31",
+          "final_equity": -1627.86,
+          "final_equity_pct": -3.256,
+          "days_traded": 41,
+          "max_drawdown_seen_dollars": -2078.47,
+          "max_drawdown_seen_pct": -4.157,
+          "best_day_dollars": 989.58,
+          "best_day_pct_of_profit": null,
+          "params": {
+            "account_size": 50000.0,
+            "profit_target_pct": 0.08,
+            "trailing_dd_pct": 0.04,
+            "daily_loss_limit_pct": 0.02,
+            "min_trading_days": 5,
+            "consistency_pct": 0.3,
+            "dd_mode": "eod"
+          }
+        },
+        "$200": {
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "fail_day": "2025-01-23",
+          "final_equity": -661.41,
+          "final_equity_pct": -1.323,
+          "days_traded": 90,
+          "max_drawdown_seen_dollars": -2044.93,
+          "max_drawdown_seen_pct": -4.09,
+          "best_day_dollars": 659.72,
+          "best_day_pct_of_profit": null,
+          "params": {
+            "account_size": 50000.0,
+            "profit_target_pct": 0.08,
+            "trailing_dd_pct": 0.04,
+            "daily_loss_limit_pct": 0.02,
+            "min_trading_days": 5,
+            "consistency_pct": 0.3,
+            "dd_mode": "eod"
+          }
+        },
+        "$100": {
+          "passed": true,
+          "fail_reason": null,
+          "fail_day": null,
+          "final_equity": 4097.35,
+          "final_equity_pct": 8.195,
+          "days_traded": 226,
+          "max_drawdown_seen_dollars": -1285.94,
+          "max_drawdown_seen_pct": -2.572,
+          "best_day_dollars": 501.67,
+          "best_day_pct_of_profit": 12.24,
+          "params": {
+            "account_size": 50000.0,
+            "profit_target_pct": 0.08,
+            "trailing_dd_pct": 0.04,
+            "daily_loss_limit_pct": 0.02,
+            "min_trading_days": 5,
+            "consistency_pct": 0.3,
+            "dd_mode": "eod"
+          }
+        },
+        "$50": {
+          "passed": false,
+          "fail_reason": "profit_target_not_reached",
+          "fail_day": "2026-09-02",
+          "final_equity": 1616.9,
+          "final_equity_pct": 3.234,
+          "days_traded": 444,
+          "max_drawdown_seen_dollars": -890.22,
+          "max_drawdown_seen_pct": -1.78,
+          "best_day_dollars": 250.83,
+          "best_day_pct_of_profit": 15.51,
+          "params": {
+            "account_size": 50000.0,
+            "profit_target_pct": 0.08,
+            "trailing_dd_pct": 0.04,
+            "daily_loss_limit_pct": 0.02,
+            "min_trading_days": 5,
+            "consistency_pct": 0.3,
+            "dd_mode": "eod"
+          }
+        }
+      }
+    },
+    "25/25/25/25": {
+      "scoreboard": {
+        "ev_r": 0.0929,
+        "n": 444,
+        "n_input": 444,
+        "n_dropped_size_gate": 0,
+        "size_gate_applicable": true,
+        "win_rate": 0.4054,
+        "avg_win_R": 1.4725,
+        "avg_loss_R": 0.8477,
+        "profit_factor": 1.1844,
+        "total_R": 41.2606,
+        "max_drawdown_R": -17.0453,
+        "months_green": "12/25",
+        "expectancy_per_day": 92.93,
+        "r_stability": 0.0679,
+        "yearly_R": 23.4182,
+        "risk_dollars": 1000.0,
+        "sessions_used": 444
+      },
+      "prop_eval": {
+        "$1000": {
+          "passed": false,
+          "fail_reason": "daily_loss_limit",
+          "fail_day": "2024-09-03",
+          "final_equity": 0.0,
+          "final_equity_pct": 0.0,
+          "days_traded": 1,
+          "max_drawdown_seen_dollars": 0.0,
+          "max_drawdown_seen_pct": 0.0,
+          "best_day_dollars": -1000.0,
+          "best_day_pct_of_profit": null,
+          "params": {
+            "account_size": 50000.0,
+            "profit_target_pct": 0.08,
+            "trailing_dd_pct": 0.04,
+            "daily_loss_limit_pct": 0.02,
+            "min_trading_days": 5,
+            "consistency_pct": 0.3,
+            "dd_mode": "eod"
+          }
+        },
+        "$500": {
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "fail_day": "2024-09-13",
+          "final_equity": -1120.5,
+          "final_equity_pct": -2.241,
+          "days_traded": 9,
+          "max_drawdown_seen_dollars": -2102.27,
+          "max_drawdown_seen_pct": -4.205,
+          "best_day_dollars": 2020.83,
+          "best_day_pct_of_profit": null,
+          "params": {
+            "account_size": 50000.0,
+            "profit_target_pct": 0.08,
+            "trailing_dd_pct": 0.04,
+            "daily_loss_limit_pct": 0.02,
+            "min_trading_days": 5,
+            "consistency_pct": 0.3,
+            "dd_mode": "eod"
+          }
+        },
+        "$300": {
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "fail_day": "2024-09-24",
+          "final_equity": -1551.71,
+          "final_equity_pct": -3.103,
+          "days_traded": 15,
+          "max_drawdown_seen_dollars": -2140.78,
+          "max_drawdown_seen_pct": -4.282,
+          "best_day_dollars": 1212.5,
+          "best_day_pct_of_profit": null,
+          "params": {
+            "account_size": 50000.0,
+            "profit_target_pct": 0.08,
+            "trailing_dd_pct": 0.04,
+            "daily_loss_limit_pct": 0.02,
+            "min_trading_days": 5,
+            "consistency_pct": 0.3,
+            "dd_mode": "eod"
+          }
+        },
+        "$200": {
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "fail_day": "2025-01-14",
+          "final_equity": -605.03,
+          "final_equity_pct": -1.21,
+          "days_traded": 84,
+          "max_drawdown_seen_dollars": -2075.79,
+          "max_drawdown_seen_pct": -4.152,
+          "best_day_dollars": 808.33,
+          "best_day_pct_of_profit": null,
+          "params": {
+            "account_size": 50000.0,
+            "profit_target_pct": 0.08,
+            "trailing_dd_pct": 0.04,
+            "daily_loss_limit_pct": 0.02,
+            "min_trading_days": 5,
+            "consistency_pct": 0.3,
+            "dd_mode": "eod"
+          }
+        },
+        "$100": {
+          "passed": true,
+          "fail_reason": null,
+          "fail_day": null,
+          "final_equity": 4027.13,
+          "final_equity_pct": 8.054,
+          "days_traded": 203,
+          "max_drawdown_seen_dollars": -1453.97,
+          "max_drawdown_seen_pct": -2.908,
+          "best_day_dollars": 652.5,
+          "best_day_pct_of_profit": 16.2,
+          "params": {
+            "account_size": 50000.0,
+            "profit_target_pct": 0.08,
+            "trailing_dd_pct": 0.04,
+            "daily_loss_limit_pct": 0.02,
+            "min_trading_days": 5,
+            "consistency_pct": 0.3,
+            "dd_mode": "eod"
+          }
+        },
+        "$50": {
+          "passed": false,
+          "fail_reason": "profit_target_not_reached",
+          "fail_day": "2026-09-02",
+          "final_equity": 2063.03,
+          "final_equity_pct": 4.126,
+          "days_traded": 444,
+          "max_drawdown_seen_dollars": -852.26,
+          "max_drawdown_seen_pct": -1.705,
+          "best_day_dollars": 326.25,
+          "best_day_pct_of_profit": 15.81,
+          "params": {
+            "account_size": 50000.0,
+            "profit_target_pct": 0.08,
+            "trailing_dd_pct": 0.04,
+            "daily_loss_limit_pct": 0.02,
+            "min_trading_days": 5,
+            "consistency_pct": 0.3,
+            "dd_mode": "eod"
+          }
+        }
+      }
+    },
+    "20/20/20/40 runner-heavy (PRICED PT4)": {
+      "scoreboard": {
+        "ev_r": 0.0942,
+        "n": 444,
+        "n_input": 444,
+        "n_dropped_size_gate": 0,
+        "size_gate_applicable": true,
+        "win_rate": 0.4032,
+        "avg_win_R": 1.4864,
+        "avg_loss_R": 0.8462,
+        "profit_factor": 1.1865,
+        "total_R": 41.825,
+        "max_drawdown_R": -17.2978,
+        "months_green": "12/25",
+        "expectancy_per_day": 94.2,
+        "r_stability": 0.0684,
+        "yearly_R": 23.7385,
+        "risk_dollars": 1000.0,
+        "sessions_used": 444
+      },
+      "prop_eval": {
+        "$1000": {
+          "passed": false,
+          "fail_reason": "daily_loss_limit",
+          "fail_day": "2024-09-03",
+          "final_equity": 0.0,
+          "final_equity_pct": 0.0,
+          "days_traded": 1,
+          "max_drawdown_seen_dollars": 0.0,
+          "max_drawdown_seen_pct": 0.0,
+          "best_day_dollars": -1000.0,
+          "best_day_pct_of_profit": null,
+          "params": {
+            "account_size": 50000.0,
+            "profit_target_pct": 0.08,
+            "trailing_dd_pct": 0.04,
+            "daily_loss_limit_pct": 0.02,
+            "min_trading_days": 5,
+            "consistency_pct": 0.3,
+            "dd_mode": "eod"
+          }
+        },
+        "$500": {
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "fail_day": "2024-09-13",
+          "final_equity": -1140.31,
+          "final_equity_pct": -2.281,
+          "days_traded": 9,
+          "max_drawdown_seen_dollars": -2122.08,
+          "max_drawdown_seen_pct": -4.244,
+          "best_day_dollars": 2020.83,
+          "best_day_pct_of_profit": null,
+          "params": {
+            "account_size": 50000.0,
+            "profit_target_pct": 0.08,
+            "trailing_dd_pct": 0.04,
+            "daily_loss_limit_pct": 0.02,
+            "min_trading_days": 5,
+            "consistency_pct": 0.3,
+            "dd_mode": "eod"
+          }
+        },
+        "$300": {
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "fail_day": "2024-09-24",
+          "final_equity": -1563.6,
+          "final_equity_pct": -3.127,
+          "days_traded": 15,
+          "max_drawdown_seen_dollars": -2152.66,
+          "max_drawdown_seen_pct": -4.305,
+          "best_day_dollars": 1212.5,
+          "best_day_pct_of_profit": null,
+          "params": {
+            "account_size": 50000.0,
+            "profit_target_pct": 0.08,
+            "trailing_dd_pct": 0.04,
+            "daily_loss_limit_pct": 0.02,
+            "min_trading_days": 5,
+            "consistency_pct": 0.3,
+            "dd_mode": "eod"
+          }
+        },
+        "$200": {
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "fail_day": "2025-01-14",
+          "final_equity": -583.55,
+          "final_equity_pct": -1.167,
+          "days_traded": 84,
+          "max_drawdown_seen_dollars": -2080.56,
+          "max_drawdown_seen_pct": -4.161,
+          "best_day_dollars": 808.33,
+          "best_day_pct_of_profit": null,
+          "params": {
+            "account_size": 50000.0,
+            "profit_target_pct": 0.08,
+            "trailing_dd_pct": 0.04,
+            "daily_loss_limit_pct": 0.02,
+            "min_trading_days": 5,
+            "consistency_pct": 0.3,
+            "dd_mode": "eod"
+          }
+        },
+        "$100": {
+          "passed": true,
+          "fail_reason": null,
+          "fail_day": null,
+          "final_equity": 4039.53,
+          "final_equity_pct": 8.079,
+          "days_traded": 203,
+          "max_drawdown_seen_dollars": -1461.42,
+          "max_drawdown_seen_pct": -2.923,
+          "best_day_dollars": 652.5,
+          "best_day_pct_of_profit": 16.15,
+          "params": {
+            "account_size": 50000.0,
+            "profit_target_pct": 0.08,
+            "trailing_dd_pct": 0.04,
+            "daily_loss_limit_pct": 0.02,
+            "min_trading_days": 5,
+            "consistency_pct": 0.3,
+            "dd_mode": "eod"
+          }
+        },
+        "$50": {
+          "passed": false,
+          "fail_reason": "profit_target_not_reached",
+          "fail_day": "2026-09-02",
+          "final_equity": 2091.25,
+          "final_equity_pct": 4.182,
+          "days_traded": 444,
+          "max_drawdown_seen_dollars": -864.89,
+          "max_drawdown_seen_pct": -1.73,
+          "best_day_dollars": 326.25,
+          "best_day_pct_of_profit": 15.6,
+          "params": {
+            "account_size": 50000.0,
+            "profit_target_pct": 0.08,
+            "trailing_dd_pct": 0.04,
+            "daily_loss_limit_pct": 0.02,
+            "min_trading_days": 5,
+            "consistency_pct": 0.3,
+            "dd_mode": "eod"
+          }
+        }
+      }
+    },
+    "20/20/20 + 40% free runner (TRAILING)": {
+      "scoreboard": {
+        "ev_r": 0.1374,
+        "n": 444,
+        "n_input": 444,
+        "n_dropped_size_gate": 0,
+        "size_gate_applicable": true,
+        "win_rate": 0.3739,
+        "avg_win_R": 1.7482,
+        "avg_loss_R": 0.8244,
+        "profit_factor": 1.2661,
+        "total_R": 60.9986,
+        "max_drawdown_R": -18.8734,
+        "months_green": "13/25",
+        "expectancy_per_day": 137.38,
+        "r_stability": 0.0798,
+        "yearly_R": 34.6208,
+        "risk_dollars": 1000.0,
+        "sessions_used": 444
+      },
+      "prop_eval": {
+        "$1000": {
+          "passed": false,
+          "fail_reason": "daily_loss_limit",
+          "fail_day": "2024-09-03",
+          "final_equity": 0.0,
+          "final_equity_pct": 0.0,
+          "days_traded": 1,
+          "max_drawdown_seen_dollars": 0.0,
+          "max_drawdown_seen_pct": 0.0,
+          "best_day_dollars": -1000.0,
+          "best_day_pct_of_profit": null,
+          "params": {
+            "account_size": 50000.0,
+            "profit_target_pct": 0.08,
+            "trailing_dd_pct": 0.04,
+            "daily_loss_limit_pct": 0.02,
+            "min_trading_days": 5,
+            "consistency_pct": 0.3,
+            "dd_mode": "eod"
+          }
+        },
+        "$500": {
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "fail_day": "2024-09-13",
+          "final_equity": -183.02,
+          "final_equity_pct": -0.366,
+          "days_traded": 9,
+          "max_drawdown_seen_dollars": -2122.08,
+          "max_drawdown_seen_pct": -4.244,
+          "best_day_dollars": 3025.0,
+          "best_day_pct_of_profit": null,
+          "params": {
+            "account_size": 50000.0,
+            "profit_target_pct": 0.08,
+            "trailing_dd_pct": 0.04,
+            "daily_loss_limit_pct": 0.02,
+            "min_trading_days": 5,
+            "consistency_pct": 0.3,
+            "dd_mode": "eod"
+          }
+        },
+        "$300": {
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "fail_day": "2024-09-24",
+          "final_equity": -1102.72,
+          "final_equity_pct": -2.205,
+          "days_traded": 15,
+          "max_drawdown_seen_dollars": -2266.16,
+          "max_drawdown_seen_pct": -4.532,
+          "best_day_dollars": 1815.0,
+          "best_day_pct_of_profit": null,
+          "params": {
+            "account_size": 50000.0,
+            "profit_target_pct": 0.08,
+            "trailing_dd_pct": 0.04,
+            "daily_loss_limit_pct": 0.02,
+            "min_trading_days": 5,
+            "consistency_pct": 0.3,
+            "dd_mode": "eod"
+          }
+        },
+        "$200": {
+          "passed": false,
+          "fail_reason": "trailing_drawdown",
+          "fail_day": "2025-01-02",
+          "final_equity": 520.54,
+          "final_equity_pct": 1.041,
+          "days_traded": 79,
+          "max_drawdown_seen_dollars": -2029.75,
+          "max_drawdown_seen_pct": -4.059,
+          "best_day_dollars": 1711.99,
+          "best_day_pct_of_profit": 328.89,
+          "params": {
+            "account_size": 50000.0,
+            "profit_target_pct": 0.08,
+            "trailing_dd_pct": 0.04,
+            "daily_loss_limit_pct": 0.02,
+            "min_trading_days": 5,
+            "consistency_pct": 0.3,
+            "dd_mode": "eod"
+          }
+        },
+        "$100": {
+          "passed": true,
+          "fail_reason": null,
+          "fail_day": null,
+          "final_equity": 4436.86,
+          "final_equity_pct": 8.874,
+          "days_traded": 173,
+          "max_drawdown_seen_dollars": -1424.53,
+          "max_drawdown_seen_pct": -2.849,
+          "best_day_dollars": 855.99,
+          "best_day_pct_of_profit": 19.29,
+          "params": {
+            "account_size": 50000.0,
+            "profit_target_pct": 0.08,
+            "trailing_dd_pct": 0.04,
+            "daily_loss_limit_pct": 0.02,
+            "min_trading_days": 5,
+            "consistency_pct": 0.3,
+            "dd_mode": "eod"
+          }
+        },
+        "$50": {
+          "passed": false,
+          "fail_reason": "profit_target_not_reached",
+          "fail_day": "2026-09-02",
+          "final_equity": 3049.93,
+          "final_equity_pct": 6.1,
+          "days_traded": 444,
+          "max_drawdown_seen_dollars": -943.67,
+          "max_drawdown_seen_pct": -1.887,
+          "best_day_dollars": 485.75,
+          "best_day_pct_of_profit": 15.93,
+          "params": {
+            "account_size": 50000.0,
+            "profit_target_pct": 0.08,
+            "trailing_dd_pct": 0.04,
+            "daily_loss_limit_pct": 0.02,
+            "min_trading_days": 5,
+            "consistency_pct": 0.3,
+            "dd_mode": "eod"
+          }
+        }
+      }
+    }
+  }
+}
