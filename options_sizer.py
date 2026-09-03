@@ -17,7 +17,31 @@ from typing import Optional, Literal, List
 CONTRACT_MULTIPLIER = 100
 DEFAULT_MAX_LOSS = 1000.0
 DEFAULT_RR = 2.0
-DEFAULT_DELTA = 0.5  # ATM ≈ 0.5
+# OMEN 8.0 R6 (2026-09-03). Was 0.5 ("ATM ~= 0.5") -- assumed at-the-money,
+# never measured. The spec's own citation (omen-rulebook.md:1574) doesn't
+# exist -- the rulebook is 995 lines -- and `research/sizing.py`'s docstring
+# says outright why: "this repo has 1-minute underlying bars and no options
+# chain, so there is no way to reconstruct an actual option fill from the
+# archive." There is no data in this repo to independently re-derive 0.42
+# from, or to refute it with; it is applied here as Austin's own stated
+# measurement (the spec: "measured delta is 0.42"), the same way a rulebook
+# ruling is trusted elsewhere when its supporting citation has been lost but
+# the ruling itself hasn't been contradicted by anything reproducible.
+#
+# Why 0.5 was wrong in a specific, priceable direction, not just "off": this
+# constant sizes contracts via `premium_risk = stock_risk * delta_estimate`,
+# so a HIGHER assumed delta makes each contract look riskier per dollar of
+# stock stop distance, and `contracts = max_loss // per_contract_risk` buys
+# FEWER of them to stay under budget. At the true (lower) delta, the option's
+# real premium move on a stop-out is smaller than the model assumed, so the
+# position that was undersized for the (wrong, higher) delta realizes LESS
+# real dollar risk than the budget it was sized against -- $840 realized on a
+# $1,000 budget at delta 0.5 vs a true 0.42 (stock_risk cancels: the ratio is
+# exactly 0.42/0.5 = 0.84, independent of stock_risk or max_loss). Setting
+# DEFAULT_DELTA to the true value removes the gap by construction -- reported
+# and actual converge to the same number because they become the same
+# formula, not two competing estimates. See research/g95_delta_fix.md.
+DEFAULT_DELTA = 0.42
 
 # Grade → fraction of max loss to risk (SPEC2). C = alert-only, D = filtered upstream.
 # "X" is the skip grade (T5 rename); "D" kept as its old letter — both 0%.

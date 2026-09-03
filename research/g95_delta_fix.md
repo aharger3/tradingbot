@@ -1,0 +1,28 @@
+# OMEN 8.0 R6 -- re-pricing the options sample under the old and new delta
+
+925 trades, reused from `research/g90_fill_arms_rows.json` (R1's committed two-year book) -- entry/stop/direction only, re-priced through `options_sizer.build_options_plan` at `$1,000` max_loss. "Actual" is the same contract count re-priced at delta 0.42 (the only delta this repo has any citation for); "reported" is `OptionsPlan.max_loss` as the sizer itself would report it under that arm's `delta_estimate`.
+
+## Result
+
+| arm | delta_estimate | reported total | actual total | mean gap | max gap | within 2% |
+|---|---:|---:|---:|---:|---:|---:|
+| old (pre-R6) | 0.5 | $912,124 | $775,251 | 15.869% | 216.055% | 24/925 |
+| new (fixed) | 0.42 | $913,763 | $917,527 | 0.446% | 216.055% | 922/925 |
+
+**Verdict.** At the old default, reported risk overstated actual risk by 15.869% on average -- close to the exact 16% the delta ratio predicts (1 - 0.42/0.5 = 0.16), the gap this row exists to close -- and only 24/925 trades landed within the 2% the row's verify asks for. At the fixed default, 922/925 do: reported and actual are the same formula now, not two estimates that happen to agree.
+
+## The 3 that still miss 2% at the fixed delta -- a different, pre-existing bug
+
+Not delta. All 3 have identical gaps in BOTH the `old` and `new` arms (e.g. AVGO 2025-03-03: 134.043% either way), which rules out delta as the cause -- the fix changes nothing for them. All 3 have very wide stock stops ($5.24-$32.80) against this script's fallback premium ESTIMATE (`max(stock_entry * 0.005, 0.50)`, `options_sizer.py`'s no-live-quote path -- this measurement has no market access, so every row uses it). `premium_risk = stock_risk * delta` then exceeds the estimated premium itself, `stop_premium` floors at $0.05, `per_contract_risk` shrinks to `entry_premium - 0.05` -- far below the true premium_risk -- and the sizer buys more contracts than the true delta would support. This is `research/sizing.py`'s own documented limitation of the premium-ESTIMATE mode ("no gamma, no theta, no IV... confidence: low"), not something `DEFAULT_DELTA` controls, and out of this row's scope -- a live Tastytrade quote replaces the whole estimate path and would not hit this.
+
+## Other places the same wrong delta is still hardcoded (found by adversarial review, not fixed here)
+
+This row's scope is `options_sizer.DEFAULT_DELTA` specifically -- that is what the spec names. A repo-wide grep for the same `stock_risk * 0.5` / `delta ~= 0.5` assumption turned up two more sites, neither touched by this commit:
+
+- **`signal_runner.py`'s `_min_viable_stop` (line ~1059): `premium_risk = stock_risk * 0.5`.** This one is LIVE -- called from `_route` (~line 1365) on every signal, backtest and live scanner alike, to decide whether a tight-stop candidate is viable at all (`risk_pct >= 0.005 or premium_risk >= 0.20`). Overstating delta here makes MORE tight-stop signals pass than the true 0.42 would allow -- the identical conceptual bug this row exists to fix, in a grading gate rather than a position-sizing calculation. Not fixed here: doing so would change which signals are graded viable at all, retroactively affecting every prior row's signal counts (R1 through R5 all ran against the shipped 0.5-based gate), which is a different and much larger blast radius than a pure sizing constant. Flagged for its own row.
+- **`position_sizer.py`'s `compute_plan(..., assumed_delta: float = 0.5, ...)`.** A second, older sizing function with the same stale default. Traced its only caller: `SignalRunner.process_candles`, which nothing in the live path, the backtest path, or any committed research script calls -- it is a manual/CLI utility, not reachable from anywhere this spec's rows have measured. Lower stakes than the above, but stale and worth a follow-up cleanup regardless.
+- **`spec1_stop_check.py`'s `DELTA = 0.5`** -- a standalone spec-verification script, same value, lowest stakes of the three.
+
+## What could not be reconstructed
+
+The row cites `options_sizer.py:38` (the constant is at line 20, now under a longer comment -- pre-fix it was also not 38) and `omen-rulebook.md:1574` for "measured delta is 0.42" (the rulebook is 995 lines; no such line, and no mention of 0.42 or a measured delta anywhere in the vault outside the spec's own citation of it). The "204-trade options sample" the verify asks to re-price exists nowhere in this repo either. Same lost-work situation as R1/R3/R4/R5's sources. `research/sizing.py`'s own docstring explains why none of this is reconstructable even in principle: "this repo has 1-minute underlying bars and no options chain, so there is no way to reconstruct an actual option fill from the archive." 0.42 is applied here as Austin's stated measurement, not independently re-derived or independently confirmed -- there is no data in this repo to do either. What this script DOES verify, mechanically, is the CONSEQUENCE: once `DEFAULT_DELTA` matches whatever value is asserted as true, reported and actual risk stop disagreeing, by construction. That holds regardless of whether 0.42 itself is exactly right -- if a better-measured delta ever replaces it, the same convergence property holds at the new number too.
