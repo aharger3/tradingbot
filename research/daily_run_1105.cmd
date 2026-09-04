@@ -32,7 +32,9 @@ if errorlevel 1 (
   exit /b 1
 )
 
-python research\daily_homework.py --day %DAY% --mode s-blind >> "%LOG%" 2>&1
+REM Austin, 2026-09-04: every S signal, main 10 stocks (+SPY), one card per S
+REM bar, 60 max. Projects/AUGUR.md: "Deck = all S from the top-10, under 60".
+python research\daily_homework.py --day %DAY% --mode s-blind --pool core --per-signal >> "%LOG%" 2>&1
 if errorlevel 1 (
   echo BUILD FAILED -- nothing sent >> "%LOG%"
   type "%LOG%"

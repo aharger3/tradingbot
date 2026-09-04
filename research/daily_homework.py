@@ -429,8 +429,27 @@ def match_silent(fires, pool):
     return out
 
 
-def sblind_collect(day: str, symbols) -> tuple:
-    """(cards, stats). Kind 3: fire-bar cut, matched silent cards, engine held out."""
+def s_bars(sigs) -> list:
+    """Every distinct bar an S candidate landed on, with whether that bar fired.
+
+    Austin, 2026-09-04: "all s cards ... only care about the main 10 stocks".
+    One card per symbol shows him the FIRST S and cuts the tape there, so a
+    second S at 10:33 on the same symbol is never on any chart. Per-signal decks
+    make each S bar its own card. Same-minute duplicates (two candidates on one
+    bar, different levels) collapse to one card -- the chart would be identical.
+    """
+    out = {}
+    for s in sigs:
+        if s["tier"] == "S" and s["i"] is not None:
+            out[s["i"]] = out.get(s["i"], False) or s["fired"]
+    return sorted(out.items())
+
+
+def sblind_collect(day: str, symbols, per_signal: bool = False) -> tuple:
+    """(cards, stats). Kind 3: fire-bar cut, matched silent cards, engine held out.
+
+    ``per_signal`` = one card per S bar instead of one per symbol (see `s_bars`).
+    """
     marked = deck.marked_card_ids()
     scan, repeats, nobars = {}, [], []
     for sym in symbols:
@@ -455,6 +474,12 @@ def sblind_collect(day: str, symbols) -> tuple:
 
     fires, pool = [], []
     for sym, d in scan.items():
+        if per_signal:
+            hits = [(sym, "S fired" if f else "S gated", i)
+                    for i, f in s_bars(d["sigs"]) if i + 1 >= SBLIND_MIN_BARS]
+            if hits:
+                fires.extend(hits)
+                continue
         kind, i = classify(d["sigs"])
         if kind is None:
             pool.append((sym, i))
@@ -477,6 +502,11 @@ def sblind_collect(day: str, symbols) -> tuple:
         d = scan[sym]
         cards.append({
             "symbol": sym, "day": day, "kind": kind, "silent": silent,
+            # Per-signal decks hold several cards for one symbol-day, and the
+            # page keys its saves on data-cid, so the cut bar joins the id.
+            # `build_deck._judgement_key` already strips a `_bNN` suffix.
+            "cid": "%s_%s_b%d" % (sym, day, cut) if per_signal
+                   else "%s_%s" % (sym, day),
             "cut_i": cut, "cut_t": d["bars"][cut]["t"][:5],
             # WHAT HE SEES.
             "bars": d["bars"][:cut + 1],
@@ -492,6 +522,14 @@ def sblind_collect(day: str, symbols) -> tuple:
     # and the whole point of kind 3 is that a card carries no tell. Seeded on the
     # session, so rebuilding the same day gives the same deck.
     random.Random("augur-%s" % day).shuffle(cards)
+    if per_signal:
+        # A longer tape of the same symbol shows how the shorter one resolved,
+        # so within a symbol the cuts must run short to long. Symbol order stays
+        # the shuffle; only the tapes inside a symbol are sorted.
+        pos = {}
+        for c in cards:
+            pos.setdefault(c["symbol"], len(pos))
+        cards.sort(key=lambda c: (pos[c["symbol"]], c["cut_i"]))
 
     n_silent = sum(1 for c in cards if c["silent"])
     stats = {"repeats": repeats, "nobars": nobars, "fires": len(fires),
@@ -696,9 +734,10 @@ def sblind_card_html(card, n, total) -> str:
             '<span class="done-dot"></span></span></header>'
             % (n, total, sym, day))
     return "".join([
-        '<article class="card" data-cid="%s_%s" data-n="%d" data-grade="" '
+        '<article class="card" data-cid="%s" data-n="%d" data-grade="" '
         'data-done="0" data-g="" data-nbars="%d" data-closes=\'%s\' '
-        'data-export=\'%s\'>' % (sym, day, n, len(card["bars"]), closes, export),
+        'data-export=\'%s\'>' % (card.get("cid") or "%s_%s" % (sym, day), n,
+                                 len(card["bars"]), closes, export),
         head,
         '<div class="chartwrap">%s</div>' % chart, SBLIND_LEGEND,
         sblind_questions(card),
@@ -742,8 +781,8 @@ SBLIND_JS = r"""
 """
 
 
-def sblind_build(day: str, symbols) -> tuple:
-    cards, stats = sblind_collect(day, symbols)
+def sblind_build(day: str, symbols, per_signal: bool = False) -> tuple:
+    cards, stats = sblind_collect(day, symbols, per_signal)
     if not cards:
         raise SystemExit("no cards for %s -- nothing to send" % day)
     total = len(cards)
@@ -947,9 +986,24 @@ def demo_sblind(day: str | None = None):
                 c["symbol"], len(early))
         html = sblind_card_html(c, 1, 1)
         leak_check(c, html)
+
+    # Per-signal: one card per S bar, ids unique, short tape before long.
+    ps, _ = sblind_collect(day, universe.CORE_SYMBOLS, per_signal=True)
+    cids = [c["cid"] for c in ps]
+    assert len(cids) == len(set(cids)), "per-signal deck repeats a card id"
+    by_sym = collections.defaultdict(list)
+    for c in ps:
+        by_sym[c["symbol"]].append(c["cut_i"])
+    for sym, cuts in by_sym.items():
+        assert cuts == sorted(cuts), "%s: longer tape before shorter" % sym
+    for c in ps:
+        assert any(s["tier"] == "S" and s["i"] == c["cut_i"] for s in c["signals"]) \
+            or c["silent"] or c["kind"] == "OCR / 84%", \
+            "%s cut at %d is not an S bar" % (c["cid"], c["cut_i"])
+        assert "_b%d" % c["cut_i"] in sblind_card_html(c, 1, 1), c["cid"]
     print("demo OK -- s-blind %s: %d cards, %d silent, every card cut at its own "
-          "bar, no engine field on any card"
-          % (day, len(cards), sum(1 for c in cards if c["silent"])))
+          "bar, no engine field on any card; per-signal core deck %d cards"
+          % (day, len(cards), sum(1 for c in cards if c["silent"]), len(ps)))
 
 
 def main():
@@ -959,6 +1013,12 @@ def main():
     ap.add_argument("--mode", choices=("full", "s-blind"), default="full",
                     help="full (default, the 16:15 reveal, one card per symbol) "
                          "or s-blind (AUGUR's 11:05 deck)")
+    ap.add_argument("--pool", choices=("all", "core"), default="all",
+                    help="all = the 29-symbol universe; core = the main 10 "
+                         "plus SPY (universe.CORE_SYMBOLS)")
+    ap.add_argument("--per-signal", action="store_true",
+                    help="s-blind only: one card per S bar, not one per symbol "
+                         "(Projects/AUGUR.md: 'every S signal from the top-10')")
     ap.add_argument("--demo", action="store_true")
     a = ap.parse_args()
 
@@ -967,20 +1027,23 @@ def main():
         return
 
     day = a.day or latest_archived_day()
-    syms = [a.sym] if a.sym else universe.ALL_SYMS
+    syms = ([a.sym] if a.sym
+            else universe.CORE_SYMBOLS if a.pool == "core"
+            else universe.ALL_SYMS)
 
     if a.mode == "s-blind":
-        print("building the 11:05 blind deck for %s over %d symbols"
-              % (day, len(syms)))
-        cards, html, st = sblind_build(day, syms)
+        print("building the 11:05 blind deck for %s over %d symbols%s"
+              % (day, len(syms), ", one card per S signal" if a.per_signal else ""))
+        cards, html, st = sblind_build(day, syms, a.per_signal)
         DECKS.mkdir(parents=True, exist_ok=True)
-        out = DECKS / ("omen-daily-%s-s.html" % day)
+        tag = "-s10" if (a.pool == "core" and a.per_signal) else "-s"
+        out = DECKS / ("omen-daily-%s%s.html" % (day, tag))
         out.write_text(html, encoding="utf-8")
         # THE SIDECAR IS THE ANSWER KEY. It carries everything the card holds
         # back -- kind, cut bar, and every candidate with its tier, gate verdict,
         # entry, stop, target and reason -- for the evening reveal and for
         # scoring his marks. It is never served to him.
-        js = ROOT / "research" / ("daily_%s_s.json" % day)
+        js = ROOT / "research" / ("daily_%s%s.json" % (day, tag.replace("-", "_")))
         js.write_text(json.dumps({"day": day, "mode": "s-blind",
                                   "cards": cards}, indent=1), encoding="utf-8")
         print()

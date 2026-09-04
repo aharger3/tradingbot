@@ -48,8 +48,14 @@ MIRROR = Path.home() / "Desktop" / "AI-Outputs" / "omen-daily"
 
 
 def deck_paths(day: str) -> tuple[Path, Path]:
-    return (DECKS / ("omen-daily-%s-s.html" % day),
-            ROOT / "research" / ("daily_%s_s.json" % day))
+    # -s10 = the per-signal core deck daily_run_1105.cmd builds since
+    # 2026-09-04; -s is the older one-card-per-symbol shape, kept as fallback.
+    for tag in ("s10", "s"):
+        html = DECKS / ("omen-daily-%s-%s.html" % (day, tag))
+        if html.exists():
+            return html, ROOT / "research" / ("daily_%s_%s.json" % (day, tag))
+    return (DECKS / ("omen-daily-%s-s10.html" % day),
+            ROOT / "research" / ("daily_%s_s10.json" % day))
 
 
 def summarise(data_path: Path) -> int:
