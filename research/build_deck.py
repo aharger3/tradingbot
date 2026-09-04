@@ -48,6 +48,24 @@ DECKS_DIR = os.path.join(HERE, "decks")
 SESSION_START = "09:30"
 SESSION_END = "11:00"
 
+# The card itself must stop at the same bar every time, fire or silent. Detection
+# still runs on the full SESSION_START-SESSION_END window (day_fires, the T21
+# pre-filter, OR) -- only what reaches Austin is cut here. A card that runs past
+# 09:50 would otherwise be the tell: only a fire day has anything worth showing
+# beyond it. g114, Austin 2026-09-04.
+CARD_CUTOFF = "09:50"
+
+
+def truncate_to_reference_bar(candles: list) -> list:
+    """Cut a card's candles at the fixed CARD_CUTOFF bar, inclusive."""
+    out = []
+    for c in candles:
+        t = c.timestamp[11:16] if "T" in c.timestamp else c.timestamp[:5]
+        if t > CARD_CUTOFF:
+            break
+        out.append(c)
+    return out
+
 
 # Every artifact carrying a human judgement, per research/marks/LEDGER.md (OMEN 6
 # ticket 01). research/marks/*.jsonl is globbed on top of this, so new deck
@@ -380,7 +398,8 @@ def pick(n: int, seed: int, max_probe: int, own_manifest: str | None = None,
         # backtest_12mo.py:144 and backtest_30d_report.py:40 all use.
         orh = max(c.high for c in candles[:5]) if len(candles) >= 5 else None
         orl = min(c.low for c in candles[:5]) if len(candles) >= 5 else None
-        bucket.append({"symbol": sym, "day": day, "candles": candles,
+        bucket.append({"symbol": sym, "day": day,
+                       "candles": truncate_to_reference_bar(candles),
                        "pdh": pdh, "pdl": pdl, "pmh": pmh, "pml": pml,
                        "orh": orh, "orl": orl, "fires": n_fires,
                        "prefilter": verdict})
@@ -461,7 +480,10 @@ def main():
     if a.n > 60:
         raise SystemExit("deck standard caps a deck at 60 cards (asked for %d)" % a.n)
 
-    cards, nf, ns, probed, nseen = pick(a.n, a.seed, a.max_probe,
+    # This build's own manifest: it must not read as "already served" -- neither
+    # in pick() nor in the repeat check below, which runs AFTER write_deck().
+    man = os.path.join(DECKS_DIR, a.name + "-manifest.jsonl")
+    cards, nf, ns, probed, nseen = pick(a.n, a.seed, a.max_probe, own_manifest=man,
                                         prefilter=not a.no_prefilter)
     label = a.label or ("mixed — %d cards, engine-fire days and silent days shuffled" % len(cards))
     path = write_deck(cards, a.name, label)
@@ -469,7 +491,7 @@ def main():
     ids = ["%s_%s" % (c["symbol"], c["day"]) for c in cards]
     assert len(set(ids)) == len(ids), "duplicate card_id inside the deck"
     # Checked against EVERY mark corpus, not just research/marks/ -- ticket 15.
-    repeats = set(ids) & seen_card_ids()
+    repeats = set(ids) & seen_card_ids(exclude=man)
     assert not repeats, "deck repeats already-judged days: %s" % sorted(repeats)
 
     print("Wrote %s" % path)
