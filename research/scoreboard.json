@@ -1,0 +1,133 @@
+{
+ "book": "bt2y_trades_retest_on.json",
+ "delta": -0.2219,
+ "getting_better": false,
+ "kill_triggered_raw": true,
+ "last20": {
+  "avg_loss_R": 0.8571,
+  "avg_win_R": 1.0006,
+  "ev_r": -0.114,
+  "expectancy_per_day": -114.0,
+  "max_drawdown_R": -4.662,
+  "months_green": "0/3",
+  "n": 20,
+  "n_dropped_size_gate": 0,
+  "n_input": 20,
+  "profit_factor": 0.7783,
+  "r_stability": -0.0978,
+  "risk_dollars": 1000.0,
+  "sessions_used": 20,
+  "size_gate_applicable": true,
+  "total_R": -2.28,
+  "win_rate": 0.4,
+  "yearly_R": -28.728
+ },
+ "last60": {
+  "avg_loss_R": 0.8009,
+  "avg_win_R": 0.7634,
+  "ev_r": -0.1491,
+  "expectancy_per_day": -149.1,
+  "max_drawdown_R": -10.926,
+  "months_green": "1/4",
+  "n": 60,
+  "n_dropped_size_gate": 0,
+  "n_input": 60,
+  "profit_factor": 0.6809,
+  "r_stability": -0.1561,
+  "risk_dollars": 1000.0,
+  "sessions_used": 60,
+  "size_gate_applicable": true,
+  "total_R": -8.946,
+  "win_rate": 0.4167,
+  "yearly_R": -37.5732
+ },
+ "n_picks": 498,
+ "prior20": {
+  "avg_loss_R": 0.7073,
+  "avg_win_R": 0.6514,
+  "ev_r": 0.1079,
+  "expectancy_per_day": 107.95,
+  "max_drawdown_R": -3.238,
+  "months_green": "1/1",
+  "n": 20,
+  "n_dropped_size_gate": 0,
+  "n_input": 20,
+  "profit_factor": 1.3816,
+  "r_stability": 0.1228,
+  "risk_dollars": 1000.0,
+  "sessions_used": 20,
+  "size_gate_applicable": true,
+  "total_R": 2.159,
+  "win_rate": 0.6,
+  "yearly_R": 27.2034
+ },
+ "quarterly": [
+  {
+   "ev_r": 0.0093,
+   "n": 20,
+   "quarter": "2024 Q3"
+  },
+  {
+   "ev_r": -0.0409,
+   "n": 64,
+   "quarter": "2024 Q4"
+  },
+  {
+   "ev_r": 0.2032,
+   "n": 60,
+   "quarter": "2025 Q1"
+  },
+  {
+   "ev_r": 0.2689,
+   "n": 62,
+   "quarter": "2025 Q2"
+  },
+  {
+   "ev_r": 0.1325,
+   "n": 64,
+   "quarter": "2025 Q3"
+  },
+  {
+   "ev_r": -0.1075,
+   "n": 64,
+   "quarter": "2025 Q4"
+  },
+  {
+   "ev_r": 0.062,
+   "n": 61,
+   "quarter": "2026 Q1"
+  },
+  {
+   "ev_r": -0.2224,
+   "n": 62,
+   "quarter": "2026 Q2"
+  },
+  {
+   "ev_r": -0.0273,
+   "n": 41,
+   "quarter": "2026 Q3"
+  }
+ ],
+ "rolling_20v20_context": {
+  "current_abs_delta_percentile": 41.830065359477125,
+  "n_deltas": 459,
+  "pct_red": 48.6
+ },
+ "rolling_60_context": {
+  "current_percentile": 12.072892938496583,
+  "current_vs_mean_stderr": -1.131348017911255,
+  "distinguishable_from_chance": false,
+  "n_windows": 439,
+  "pct_at_or_below_zero": 42.4
+ },
+ "trailing_250": {
+  "current_streak_sessions": 61,
+  "current_streak_start_day": "2026-06-02",
+  "first_negative_day": "2026-05-28",
+  "first_negative_value": -0.0068,
+  "longest_streak_ever": 61,
+  "still_negative_at_book_end": true,
+  "trailing_now": -0.066,
+  "width": 250
+ }
+}
