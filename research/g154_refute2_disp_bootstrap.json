@@ -54,6 +54,8 @@
     "drop_rate_matched_to_T2.0": 0.6712,
     "survivor_gate_pass_rate": 0.497,
     "precision_up_rate": 0.759,
+    "joint_prec_ge_38.3_and_recall_ge_14.7": 0.011,
+    "expected_such_hits_in_25_rules_x_4_thresholds": 1.1,
     "precision_pctl": {
       "p05": 25.0,
       "p50": 34.5,
@@ -72,6 +74,12 @@
       "p95": 55.89,
       "frac_le_claim_-36.03": 0.308
     }
+  },
+  "exact_tests": {
+    "precision_fisher_p": 0.4171,
+    "precision_note": "arm 18/47 vs baseline 18/59 -- S numerator identical, only non-S graded days were removed",
+    "recall100_fisher_p": 0.4275,
+    "recall100_note": "arm 5/34 vs baseline 2/34 S cards"
   },
   "multiplicity": {
     "thresholds_swept_in_script": [
