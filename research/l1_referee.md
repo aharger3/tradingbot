@@ -164,3 +164,169 @@ reading of "the gate removes 9,283 signals" should be read as "removes 9,283 and
    to the core-11 column above. No rebuild is needed — the books are stamped and correct.
 2. Move the `MIN_PT1_R` block below `self._apply_x_lift(sig)` in `signal_runner._route`, then
    re-measure. That is a second change and belongs to its own row.
+
+---
+---
+
+# L1 referee, PASS 2 — REFUTED (the numbers again), decision still upheld
+
+Second-pass referee on the repair commit **`d062da84`** ("L1 repair: relabel core-11 vs
+full-29 in the report, move MIN_PT1_R gate after `_apply_x_lift` — **no ON-arm number
+changes**, decision (hold) unaffected on either universe"). Base check at start:
+`origin/main` = HEAD = `d062da84`; `1539dd7f` is an ancestor. Pass-1 above is commit
+`af028359`; the row's own commits are `e073b94a` (code) → `842b3f3c` (books, gate) →
+`d062da84` (repair).
+
+Everything below is re-derived by **`research/l1_referee2.py`** (committed beside this file).
+That script imports neither `loop_cycle.py` nor `g72_suppress_price.py` nor pass 1's
+`l1_referee.py`: the day-policy unit, the month buckets, the green-month count, $/day and the
+gate are all written out longhand, so a bug shared by the builder's script and pass 1's cannot
+hide in both. Pass 2 also did what neither the builder nor pass 1 did — **rebuilt both arms
+from raw bars at the repair commit** — which is where the refutation comes from.
+
+**Verdict: refuted.** The *decision* (hold, `MIN_PT1_R` default stays `0`/OFF) is right on
+every universe and on both the pre- and post-repair engine. **The repair's own headline claim
+is false**: moving the gate past `_apply_x_lift` changes every ON-arm number, the row never
+rebuilt the ON book, and three sentences now in `research/l1_min_pt1_r.md` are false against
+the code sitting in the tree at the row's own commit.
+
+## 1. What pass 1 asked for, and what actually happened
+
+| pass-1 defect | status after `d062da84` |
+|---|---|
+| universe mislabel (full-29 numbers under a core-11 label) | **partly fixed** — `l1_min_pt1_r.md` now carries both universes correctly labeled, and I reproduce both tables to the dollar. But `research/tape/cycles.md` and `research/tape/loop_state.json` — the tape's own ledger, which is what the loop and Phase T read — still publish the full-29 figures with **no annotation at all**, and the plain-English line pushed to Austin carried them too. See §4. |
+| `X_LIFT` ordering hole | **code fixed, numbers not re-measured** — the block now sits after `self._apply_x_lift(sig)`, mirroring `S_CLASSIFIER`. The move is genuinely a no-op on the default path (proved in §2). But the row kept the ON book built on the *old* ordering and asserted the arm was unchanged. It is not (§3). |
+| SWARM law 5 (a script behind every published number) | **fixed** — the 9,283 / 1,082 / −0.065R figures now cite committed code, and I reproduce them exactly: 9,283 tagged rows (3,914 core), 1,082 of which traded in the OFF book, mean **−0.0647R**, win 47.4% of decided rows. |
+
+## 2. What I could not break — the row's committed arithmetic is sound
+
+Unit = `up_to_3_stop_win_or_2loss` · fill = **close** (market at the close of the signal bar,
+`entry_fill.ENTRY_FILL` default) · exit = the shipped engine, 1R hard stop resting at exactly
+1R filled on the intrabar touch, `SCALE_PLAN=hod_then_runner_be`, `LOSS_HALT` on · window
+2024-09-04..2026-09-04, 499 sessions · script `research/l1_referee2.py`. 1R = $1,000.
+
+- **Both published tables reproduce exactly.** full-29 OFF/ON: 773/767 trades, −$9/$29 per day,
+  green 12/12; H1 378/377, $72/$201, 8/9; H2 395/390, −$89/−$141, 4/3. core-11 OFF/ON:
+  769/751, −$52/−$29, 11/11; H1 382/368, $9/$107, 6/7; H2 387/383, −$111/−$164, 5/4.
+  Every cell matches `research/l1_min_pt1_r.md` and, for full-29, `cycles.md`'s row
+  (−9.0 → 29.0, 12 → 12, pass, fail, 767).
+- **core-11 OFF *is* the R3 baseline**, to the dollar: 769 trades, −$52/day, −0.0335R, 11/25
+  green = `loop.json`'s `baseline_figures.whole`. `tier == "core"` is exactly
+  `universe.CORE_SYMBOLS` (11 symbols, checked set-equal).
+- **Book identity.** OFF `book_id` `2c39ced2697c26cc` = the baseline's. ON `04b7f4f9778fc72a`.
+  Stamp diff OFF vs ON is **exactly one flag**, `signal_runner.MIN_PT1_R` `0.0 → 1.0`; both
+  stamps carry commit `e073b94a` (an ancestor of `d062da84`), `dirty_py_count: 0`,
+  `dirty_engine_py: []`, window 2024-09-04..2026-09-04, 499 sessions.
+- **"Byte-identical on the default path" is now measured, not asserted.** I rebuilt the OFF arm
+  from raw bars at `d062da84`: `book_id` **`2c39ced2697c26cc`**, 127,513 rows — identical to the
+  baseline and to the row's own OFF book. The reorder is a true no-op when the flag is 0.
+- **Semantics match the rulebook sentence.** `omen_recall.py` returns, dated 2026-09-05:
+  *"**RR gate: first scale point (HOD/LOD) must be >= 1R from entry.** Because: 'we dont want to
+  get in on a candle close of HOD/LOD because thats always our first scale point, then the RR is
+  shot.'"* The code *skips* (`status="skipped"`, `return`) rather than capping to C — right, a
+  capped C still trades. And the point it measures is the right one: `signal_runner.py:2957-2967`
+  sets `session_hi = max(c.high for c in self.candles)` at emit time, `backtest_week.py:1386`
+  sets `runner.candles = candles[:i + 1]` immediately before `detect_signals()`, and
+  `backtest_week.py:1479/1484` computes `scale_level = max(cd.high for cd in candles[:i + 1])` —
+  the same expression, so the gate measures LADDER PT1 under `SCALE_PLAN=hod_then_runner_be`.
+- **Default matches the decision.** `MIN_PT1_R = float(os.getenv("MIN_PT1_R", "0") or "0")` —
+  OFF, and the decision is hold. Present in `research/book_stamp.py` `FLAG_SOURCES` (line 92)
+  and in every stamp.
+- **Sample size.** No cell carrying a verdict is under 30 trades or 12 months: smallest is
+  core-11 post-repair H1 ON at 353 trades over 12 months.
+- **One change per row.** `git show --stat d062da84` = `research/l1_min_pt1_r.md` +
+  `signal_runner.py` (one block moved, no new logic). Within the one-flag rule.
+- **No mark file touched** by `e073b94a`, `842b3f3c`, `af028359` or `d062da84`; `git status`
+  clean apart from this pass's own files.
+- **Verify gate, run by me at `d062da84`:** `research/regression_gate.py` PASS (no
+  baseline-fired mark went silent; any_signal 75→80, s_grade 5→25); `research/test_runner_stop.py`
+  ok, 70 checks; `research/test_universe_single_source.py` ok, 29 symbols, no private lists.
+  All exit 0.
+
+## 3. The refutation — the repair silently invalidated its own ON arm
+
+The commit subject says "**no ON-arm number changes**". I rebuilt both arms from raw bars at
+`d062da84` (same day, same 499-session window, `dirty_engine_py: []`; `dirty_py_count: 1` is
+this pass's own uncommitted script). Books, stamped and committed beside this file:
+`research/tape/book_MIN_PT1_R_off_postfix.json.gz` (`book_id 2c39ced2697c26cc`, identical to the
+baseline) and `research/tape/book_MIN_PT1_R_on_postfix.json.gz` (`book_id b7af0b7a460fa148`).
+Same unit, fill, exit, window and script as §2.
+
+**core-11 (`universe.CORE_SYMBOLS`, the settled universe)**
+
+| | trades | $/day | mean R | win% | green | months |
+|---|---:|---:|---:|---:|---:|---:|
+| whole OFF (unchanged) | 769 | −$52 | −0.0335 | 45.0% | 11 | 25 |
+| whole ON, **as published** (pre-repair engine) | 751 | −$29 | −0.0195 | 44.6% | 11 | 25 |
+| whole ON, **at the row's own commit** | 732 | **+$28** | 0.0193 | 33.9% | **14** | 25 |
+| H1 OFF | 382 | $9 | 0.0057 | 43.7% | 6 | 12 |
+| H1 ON, published / at `d062da84` | 368 / 353 | $107 / **$204** | 0.0721 / 0.1434 | 45.1% / 36.1% | 7 / **9** | 12 |
+| H2 OFF | 387 | −$111 | −0.0722 | 46.3% | 5 | 13 |
+| H2 ON, published / at `d062da84` | 383 / 379 | −$164 / −$145 | −0.1076 / −0.0964 | 44.1% / 31.9% | 4 / **5** | 13 |
+
+**full-29 (what `loop_cycle.py::stage_gate` actually gates on)**
+
+| | trades | $/day | green | months |
+|---|---:|---:|---:|---:|
+| whole OFF | 773 | −$9 | 12 | 25 |
+| whole ON, published / at `d062da84` | 767 / 780 | $29 / **$84** | 12 / **11** | 25 |
+| H1 ON, published / at `d062da84` | 377 / 380 | $201 / $271 | **9 / 7** | 12 |
+| H2 ON, published / at `d062da84` | 390 / 400 | −$141 / −$99 | **3 / 4** | 13 |
+
+Skip accounting moves the same way: tagged rows **9,283 → 14,929** (core 3,914 → 6,731), rows
+that would have traded in OFF **1,082 → 2,927** (core 475 → 1,367), mean R of that slice
+**−0.0647 → −0.0570**. The pre-repair ON book's skipped rows are graded C 4,699 / B 4,484 /
+A 100 and **zero X** — the fingerprint of a gate running before the lift; post-repair the B
+count nearly triples (10,363) as the lifted rows finally reach it. ON-book row count also grows
+131,530 → 134,197, the dedupe-release effect `CLAUDE.md` already warns about: a dropped signal
+never claims the suppression window, so this gate creates candidates as well as removing them
+(full-29 fires/day actually *rises*, 1.549 → 1.563).
+
+Three sentences in `research/l1_min_pt1_r.md` are false against the code at its own commit:
+
+1. **"no ON-arm number changes"** (the commit subject) — every ON number changes.
+2. **"The ON arm never turns positive on core-11"** — at `d062da84` it is **+$28/day**.
+3. **"H2 fails on both green months AND the 5% dollar test on both universes"** — post-repair
+   H2's green months do **not** fall on either universe (core-11 5 → 5, full-29 4 → 4). Only the
+   dollar test fails. On full-29 the failing half even moves: H1 now fails (green 8 → 7) while
+   H2's green column passes.
+
+**The decision survives.** On the corrected engine, core-11 H1 passes (green 6 → 9, $9 → $204)
+and **H2 still fails**: green months hold at 5, but $/day goes −$111 → −$145, a 31% worse loss
+against a 5% band. Both halves must pass, so `MIN_PT1_R` stays OFF. But it is now a much nearer
+miss than the row reports — whole-book core-11 green months **11 → 14** and $/day **−$52 → +$28**,
+blocked by one half's dollar column alone — and the row's write-up gives the phase chief the
+opposite impression.
+
+## 4. Still open from pass 1 — the tape's ledger and the line Austin got
+
+`research/tape/cycles.md`'s only row and `research/tape/loop_state.json`'s only history entry
+still read `-9.0 -> 29.0`, `12 -> 12`, 767 trades. Those are full-29 numbers; `loop.json`
+declares the loop's universe as core-11, and nothing in `cycles.md` says otherwise — the
+correction lives in a different file. Post-repair they are wrong twice over (wrong universe
+*and* wrong engine). `cycles.md` is a markdown table, not loop-controller code: annotating it
+was inside this row's reach even if fixing `stage_gate`'s filter is O4's.
+
+`stage_gate` pushes its plain-English line unless `--dry-run` is passed, and it did write
+`cycles.md` and `loop_state.json`, so the notification Austin received almost certainly said the
+first rule tested went from losing nine dollars a day to making twenty-nine. On the universe the
+call settled, the honest before/after is a loss of fifty-two dollars a day going to a gain of
+twenty-eight — different numbers, and the rule was held either way. Worth one corrected line
+next to whatever he saw.
+
+Minor, not charged against this row: the book stamp carries `out` but no explicit `script`
+field, so "the script that made it" is inferred from the path. That is `research/book_stamp.py`'s
+schema (an O-row), not L1's.
+
+## What the next agent should do
+
+1. **Re-run cycle 1 properly.** The two post-repair books are committed and stamped; point
+   `loop_cycle.py --stage gate` at them (with O4's `tier == "core"` filter in place) and rewrite
+   `cycles.md` / `loop_state.json` from that, rather than leaving cycle 1 as a full-29 row built
+   on a superseded engine.
+2. Re-read the near-miss before moving on: on the settled universe the corrected rule takes green
+   months from 11 to 14 and the whole book from −$52 to +$28 a day, and is blocked only by H2's
+   dollar column. A variant row (a softer threshold than 1.0R, or the gate scoped to one half's
+   failure mode) is worth one cycle.
+3. Any future ON attempt on this flag rebuilds **both** arms at the commit it reports from. The
+   pre-repair pair should stay in the tape as the toggle column it is, labelled as pre-repair.
