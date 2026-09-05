@@ -3,9 +3,14 @@
 Rebuilds the 2026-09-03 s-blind deck (research core pool) with the current
 default (``per_signal=False``) and checks:
   - one card per symbol, never more than one per symbol (no per-signal splits)
-  - 6 of the 11 CORE_SYMBOLS are already marked/served for 2026-09-03 (he
-    graded the -s10 deck), so exactly 5 symbols remain eligible and the
-    rebuild produces exactly those 5 cards
+  - all 11 CORE_SYMBOLS are already marked/served for 2026-09-03: 6 were
+    graded on the -s10 deck, and the other 5 (AAPL, AMD, AMZN, MSFT, QQQ)
+    were SERVED on that same deck and never graded back -- this is the exact
+    hole the H1 referee found (defect 3, OMEN 10.0): the s-blind builder wrote
+    no manifest, so served_card_ids() could not see them. The backfilled
+    ``research/decks/omen-daily-2026-09-03-s10-manifest.jsonl`` plus the
+    manifest daily_homework.py now writes on every build close it: 0 symbols
+    remain eligible and the rebuild produces 0 cards.
   - no card id collides with anything Austin has already judged or been
     served (``build_deck.marked_card_ids() | build_deck.served_card_ids()``)
 
@@ -38,17 +43,18 @@ def main():
         already = {sym for sym in universe.CORE_SYMBOLS
                    if "%s_%s" % (sym, DAY) in seen}
         eligible = len(universe.CORE_SYMBOLS) - len(already)
-        assert eligible == 5, (
-            "expected 6 of the 11 CORE_SYMBOLS already marked/served for %s "
-            "(leaving 5 eligible), got %d already-seen: %r"
+        assert eligible == 0, (
+            "expected all 11 CORE_SYMBOLS already marked/served for %s "
+            "(the -s10 deck's manifest now records the 5 served-not-graded "
+            "symbols too), got %d already-seen: %r"
             % (DAY, len(already), sorted(already)))
 
         cards, stats = dh.sblind_collect(DAY, universe.CORE_SYMBOLS,
                                           per_signal=False)
 
-        assert len(cards) == eligible, (
-            "expected one card per eligible symbol (%d) for %s, got %d"
-            % (eligible, DAY, len(cards)))
+        assert len(cards) == eligible == 0, (
+            "expected 0 cards for %s (every CORE_SYMBOLS symbol already "
+            "marked or served that day), got %d" % (DAY, len(cards)))
 
         cids = [c["cid"] for c in cards]
         assert len(cids) == len(set(cids)), "deck repeats a card id: %r" % cids
@@ -63,13 +69,34 @@ def main():
         real_deck = ROOT / "research" / "decks" / (
             "omen-daily-%s-s10.html" % DAY)
         assert real_deck.exists(), "sanity check missing: %s" % real_deck
+        real_manifest = ROOT / "research" / "decks" / (
+            "omen-daily-%s-s10-manifest.jsonl" % DAY)
+        assert real_manifest.exists(), (
+            "sanity check missing backfilled manifest: %s" % real_manifest)
 
-        html = dh.sblind_card_html(cards[0], 1, len(cards))
-        (scratch / "sample_card.html").write_text(html, encoding="utf-8")
+        # A day with eligible symbols still deals one card per symbol, no
+        # repeats -- checked on the six-symbol demo pool (2026-09-04, none of
+        # it marked/served) rather than 09-03, which is now fully closed.
+        demo_day = "2026-09-04"
+        demo_syms = ["TSLA", "AMZN", "QQQ", "SPY", "NVDA", "MU"]
+        demo_seen = {sym for sym in demo_syms
+                     if "%s_%s" % (sym, demo_day) in seen}
+        demo_cards, _ = dh.sblind_collect(demo_day, demo_syms, per_signal=False)
+        demo_syms_out = [c["symbol"] for c in demo_cards]
+        assert len(demo_syms_out) == len(set(demo_syms_out)), (
+            "per-symbol deck dealt a symbol more than once: %r" % demo_syms_out)
+        assert not (set(demo_syms_out) & demo_seen), (
+            "demo deck re-served an already-seen symbol: %r"
+            % (set(demo_syms_out) & demo_seen))
+        if demo_cards:
+            html = dh.sblind_card_html(demo_cards[0], 1, len(demo_cards))
+            (scratch / "sample_card.html").write_text(html, encoding="utf-8")
 
-        print("PASS -- %s s-blind deck (per_signal=False): %d cards (one per "
-              "eligible symbol), 0 repeats against marked_card_ids() | "
-              "served_card_ids()" % (DAY, len(cards)))
+        print("PASS -- %s s-blind deck (per_signal=False): 0 eligible symbols "
+              "(all 11 CORE_SYMBOLS marked or served), 0 repeats; %s demo "
+              "deck: %d cards, one per symbol, 0 repeats against "
+              "marked_card_ids() | served_card_ids()"
+              % (DAY, demo_day, len(demo_cards)))
     finally:
         shutil.rmtree(scratch, ignore_errors=True)
 

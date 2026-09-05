@@ -453,9 +453,10 @@ def sblind_collect(day: str, symbols, per_signal: bool = False) -> tuple:
     On 2026-09-03 the per-signal path dealt AMD five times, AMZN four, META
     three -- Austin: "so many repeats", four of his answers literally say
     "same trade" (H1, OMEN 10.0). A symbol with several S bars in one session
-    still gets exactly one card; its tape runs through the LAST S bar so every
-    one of them is on screen, and each gets a plain cut line (see
-    ``sblind_card_html``).
+    still gets exactly one card, cut at the FIRST S bar (``classify()``); later
+    S bars on that symbol-day are not on the tape shown and carry no cut line.
+    Showing every S bar on one chart is unimplemented (H1 referee, OMEN 10.0,
+    defect 2) -- do not claim otherwise here or in ``sblind_card_html``.
     """
     seen = deck.marked_card_ids() | deck.served_card_ids()
     scan, repeats, nobars = {}, [], []
@@ -1056,6 +1057,16 @@ def main():
         js = ROOT / "research" / ("daily_%s%s.json" % (day, tag.replace("-", "_")))
         js.write_text(json.dumps({"day": day, "mode": "s-blind",
                                   "cards": cards}, indent=1), encoding="utf-8")
+        # THE SERVED RECORD. build_deck.served_card_ids() reads every
+        # *-manifest.jsonl beside a deck's HTML; without one here, a symbol-day
+        # shown on this deck and never graded back stays eligible forever
+        # (H1 referee, OMEN 10.0, defect 3).
+        man = DECKS / ("omen-daily-%s%s-manifest.jsonl" % (day, tag))
+        with open(man, "w", encoding="utf-8") as f:
+            for c in cards:
+                f.write(json.dumps({"card_id": "%s_%s" % (c["symbol"], c["day"]),
+                                    "symbol": c["symbol"], "date": c["day"],
+                                    "deck": out.stem}, sort_keys=True) + "\n")
         print()
         print("%s blind deck: %d cards" % (day, st["total"]))
         for k in ("S fired", "S gated", "OCR / 84%", "silent"):
@@ -1079,6 +1090,12 @@ def main():
     js = ROOT / "research" / ("daily_%s.json" % day)
     js.write_text(json.dumps({"day": day, "cards": cards}, indent=1),
                   encoding="utf-8")
+    man = DECKS / ("omen-daily-%s-manifest.jsonl" % day)
+    with open(man, "w", encoding="utf-8") as f:
+        for c in cards:
+            f.write(json.dumps({"card_id": "%s_%s" % (c["symbol"], day),
+                                "symbol": c["symbol"], "date": day,
+                                "deck": out.stem}, sort_keys=True) + "\n")
 
     print("\n%s: %d symbols, %d candidates, %d fired"
           % (day, len(cards), n_c, n_f))
