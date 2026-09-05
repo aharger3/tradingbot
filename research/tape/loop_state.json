@@ -1,6 +1,6 @@
 {
-  "cycle_count": 1,
-  "consecutive_holds": 1,
+  "cycle_count": 3,
+  "consecutive_holds": 3,
   "target_met": false,
   "history": [
     {
@@ -10,6 +10,26 @@
       "decision": "hold",
       "dollars_per_day_before": -9.0,
       "dollars_per_day_after": 29.0,
+      "green_before": 12,
+      "green_after": 12
+    },
+    {
+      "cycle": 2,
+      "flag": "RULE84_DECIDED",
+      "label": "the 84% re-entry as decided on the call",
+      "decision": "hold",
+      "dollars_per_day_before": -9.0,
+      "dollars_per_day_after": -16.0,
+      "green_before": 12,
+      "green_after": 12
+    },
+    {
+      "cycle": 3,
+      "flag": "RULE84_DECIDED",
+      "label": "the 84% re-entry as decided on the call",
+      "decision": "hold",
+      "dollars_per_day_before": -9.0,
+      "dollars_per_day_after": -16.0,
       "green_before": 12,
       "green_after": 12
     }
