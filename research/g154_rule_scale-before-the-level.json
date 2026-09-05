@@ -1,0 +1,193 @@
+{
+  "meta": {
+    "book": "bt2y_trades_retest_on.json",
+    "sessions": 498,
+    "candidate": "scale-before-the-level",
+    "candidates_per_day": 16.52,
+    "fires_per_day": 1.0
+  },
+  "recall_precision_identical_every_arm": {
+    "recall_100": {
+      "hit": 2,
+      "n": 34,
+      "pct": 5.9
+    },
+    "recall_all": {
+      "hit": 18,
+      "n": 345,
+      "pct": 5.2
+    },
+    "precision": {
+      "graded_s": 18,
+      "graded_any": 59,
+      "pct": 30.5
+    },
+    "note": "This rule is exit-only: selection (first_of_day_arm) is untouched, so recall/precision/candidates-per-day/fires-per-day cannot differ between baseline and any candidate arm here."
+  },
+  "baseline_single_stage_walker": {
+    "full": {
+      "trades": 498,
+      "per_day": 50.09,
+      "mean_r": 0.05,
+      "win_pct": 35.1,
+      "months_green": 12,
+      "months": 25,
+      "max_dd": 28418.92,
+      "total_dollars": 24946.38
+    },
+    "h1": {
+      "trades": 249,
+      "per_day": 145.44,
+      "mean_r": 0.145,
+      "win_pct": 38.2,
+      "months_green": 7,
+      "months": 12,
+      "max_dd": 14986.67,
+      "total_dollars": 36215.03
+    },
+    "h2": {
+      "trades": 249,
+      "per_day": -45.26,
+      "mean_r": -0.045,
+      "win_pct": 32.1,
+      "months_green": 5,
+      "months": 13,
+      "max_dd": 28418.92,
+      "total_dollars": -11268.65
+    },
+    "target_hit_rate_pct": 34.7,
+    "r_on_hit_only": 2.001
+  },
+  "arms": {
+    "cents_002": {
+      "kind": "cents",
+      "size": 0.02,
+      "n_fallback_to_cents_005": 0,
+      "full": {
+        "trades": 498,
+        "per_day": 76.09,
+        "mean_r": 0.076,
+        "win_pct": 36.5,
+        "months_green": 13,
+        "months": 25,
+        "max_dd": 23548.69,
+        "total_dollars": 37894.02
+      },
+      "h1": {
+        "trades": 249,
+        "per_day": 161.77,
+        "mean_r": 0.162,
+        "win_pct": 39.4,
+        "months_green": 7,
+        "months": 12,
+        "max_dd": 15464.31,
+        "total_dollars": 40280.48
+      },
+      "h2": {
+        "trades": 249,
+        "per_day": -9.58,
+        "mean_r": -0.01,
+        "win_pct": 33.7,
+        "months_green": 6,
+        "months": 13,
+        "max_dd": 23548.69,
+        "total_dollars": -2386.46
+      },
+      "target_hit_rate_pct": 36.1,
+      "target_hit_rate_delta_pts": 1.4,
+      "r_on_hit_only": 1.956,
+      "r_on_hit_only_delta": -0.045,
+      "mean_r_delta": 0.026,
+      "h1_delta_usd_day": 16.33,
+      "h2_delta_usd_day": 35.68,
+      "survivor": true
+    },
+    "cents_005": {
+      "kind": "cents",
+      "size": 0.05,
+      "n_fallback_to_cents_005": 0,
+      "full": {
+        "trades": 498,
+        "per_day": 93.04,
+        "mean_r": 0.093,
+        "win_pct": 38.0,
+        "months_green": 13,
+        "months": 25,
+        "max_dd": 21524.59,
+        "total_dollars": 46333.1
+      },
+      "h1": {
+        "trades": 249,
+        "per_day": 154.84,
+        "mean_r": 0.155,
+        "win_pct": 40.2,
+        "months_green": 7,
+        "months": 12,
+        "max_dd": 16180.78,
+        "total_dollars": 38555.0
+      },
+      "h2": {
+        "trades": 249,
+        "per_day": 31.24,
+        "mean_r": 0.031,
+        "win_pct": 35.7,
+        "months_green": 6,
+        "months": 13,
+        "max_dd": 21524.59,
+        "total_dollars": 7778.1
+      },
+      "target_hit_rate_pct": 37.8,
+      "target_hit_rate_delta_pts": 3.1,
+      "r_on_hit_only": 1.884,
+      "r_on_hit_only_delta": -0.117,
+      "mean_r_delta": 0.043,
+      "h1_delta_usd_day": 9.4,
+      "h2_delta_usd_day": 76.5,
+      "survivor": true
+    },
+    "atr_005": {
+      "kind": "atr",
+      "size": 0.05,
+      "n_fallback_to_cents_005": 0,
+      "full": {
+        "trades": 498,
+        "per_day": 63.24,
+        "mean_r": 0.063,
+        "win_pct": 36.3,
+        "months_green": 12,
+        "months": 25,
+        "max_dd": 23166.59,
+        "total_dollars": 31491.57
+      },
+      "h1": {
+        "trades": 249,
+        "per_day": 156.16,
+        "mean_r": 0.156,
+        "win_pct": 39.4,
+        "months_green": 7,
+        "months": 12,
+        "max_dd": 15519.05,
+        "total_dollars": 38884.73
+      },
+      "h2": {
+        "trades": 249,
+        "per_day": -29.69,
+        "mean_r": -0.03,
+        "win_pct": 33.3,
+        "months_green": 5,
+        "months": 13,
+        "max_dd": 23166.59,
+        "total_dollars": -7393.16
+      },
+      "target_hit_rate_pct": 35.9,
+      "target_hit_rate_delta_pts": 1.2,
+      "r_on_hit_only": 1.937,
+      "r_on_hit_only_delta": -0.064,
+      "mean_r_delta": 0.013,
+      "h1_delta_usd_day": 10.72,
+      "h2_delta_usd_day": 15.57,
+      "survivor": true
+    }
+  },
+  "any_survivor": true
+}
