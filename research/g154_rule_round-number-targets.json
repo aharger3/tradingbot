@@ -1,0 +1,127 @@
+{
+ "book": "bt2y_trades_retest_on.json",
+ "book_meta_sessions": 498,
+ "rule": "round-number-targets",
+ "polarity": "S-indicator (exit-side)",
+ "predicate": {
+  "round_grid": "whole dollars; half dollars when entry < 20",
+  "cand": "nearest round_grid price strictly between entry and target, nearest to entry, in the trade direction",
+  "action": "where cand exists: target -> cand, replay exit from data_archive (disaster stop touch, level stop close via stop_rule.stop_fill_price floored at DISASTER_STOP_R=1.0, new target touch); else leave row untouched"
+ },
+ "substitution": {
+  "candidates_total": 8227,
+  "touched": 6669,
+  "touched_pct": 81.06
+ },
+ "candidates_per_day": 16.52,
+ "baseline": {
+  "all": {
+   "trades": 498,
+   "sessions": 498,
+   "fires_per_day": 1.0,
+   "usd_day": 33.93,
+   "mean_r": 0.0339,
+   "win_pct": 46.5,
+   "months_green": "13/25",
+   "months_green_n": 13,
+   "months_total": 25,
+   "max_dd_usd": 21404.68,
+   "pct_of_bar": 8.5
+  },
+  "h1": {
+   "trades": 249,
+   "sessions": 249,
+   "fires_per_day": 1.0,
+   "usd_day": 135.71,
+   "mean_r": 0.1357,
+   "win_pct": 49.6,
+   "months_green": "9/12",
+   "months_green_n": 9,
+   "months_total": 12,
+   "max_dd_usd": 13978.64,
+   "pct_of_bar": 34.2
+  },
+  "h2": {
+   "trades": 249,
+   "sessions": 249,
+   "fires_per_day": 1.0,
+   "usd_day": -67.85,
+   "mean_r": -0.0678,
+   "win_pct": 43.4,
+   "months_green": "4/13",
+   "months_green_n": 4,
+   "months_total": 13,
+   "max_dd_usd": 21404.68,
+   "pct_of_bar": -17.1
+  }
+ },
+ "candidate": {
+  "all": {
+   "trades": 498,
+   "sessions": 498,
+   "fires_per_day": 1.0,
+   "usd_day": -32.15,
+   "mean_r": -0.0321,
+   "win_pct": 57.6,
+   "months_green": "12/25",
+   "months_green_n": 12,
+   "months_total": 25,
+   "max_dd_usd": 32802.37,
+   "pct_of_bar": -8.1
+  },
+  "h1": {
+   "trades": 249,
+   "sessions": 249,
+   "fires_per_day": 1.0,
+   "usd_day": 45.53,
+   "mean_r": 0.0455,
+   "win_pct": 59.4,
+   "months_green": "6/12",
+   "months_green_n": 6,
+   "months_total": 12,
+   "max_dd_usd": 9606.74,
+   "pct_of_bar": 11.5
+  },
+  "h2": {
+   "trades": 249,
+   "sessions": 249,
+   "fires_per_day": 1.0,
+   "usd_day": -109.83,
+   "mean_r": -0.1098,
+   "win_pct": 55.8,
+   "months_green": "6/13",
+   "months_green_n": 6,
+   "months_total": 13,
+   "max_dd_usd": 32802.37,
+   "pct_of_bar": -27.7
+  }
+ },
+ "h1_delta_usd_day": -90.18,
+ "h2_delta_usd_day": -41.98,
+ "recall": {
+  "probe_s_sweep_34": {
+   "n": 34,
+   "baseline_pct": 44.1,
+   "candidate_pct": 44.1
+  },
+  "bar_backed_s_days_canonical_pool": {
+   "n": 345,
+   "baseline_pct": 49.0,
+   "candidate_pct": 49.0
+  }
+ },
+ "precision": {
+  "baseline": {
+   "pct": 30.5,
+   "s": 18,
+   "graded": 59
+  },
+  "candidate": {
+   "pct": 30.5,
+   "s": 18,
+   "graded": 59
+  }
+ },
+ "survivor": false,
+ "survivor_rule": "H1 and H2 both improve $/day or precision, and recall_100 (both recall panels) not below baseline"
+}
