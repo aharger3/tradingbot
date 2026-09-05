@@ -847,6 +847,11 @@ OMEN_LIVE_1D_VETO = os.getenv("OMEN_LIVE_1D_VETO", "0") == "1"
 # past it. Not tied to ENTRY_CUTOFF: that one gates NEW ENTRIES and Austin has
 # moved it before; this is when he reads the day.
 SESSION_SUMMARY_AT = os.getenv("OMEN_SUMMARY_AT", "11:00")
+# OMEN 10.0 V1, 2026-09-05: Phase R (the fill reconcile) has not landed yet, so
+# every live S push is tagged pre-reconcile until R3 ships. Flag, default ON,
+# so the loop can drop it with one env var once R3 lands. Alpaca paper is not
+# touched by this -- ntfy text only.
+PUSH_TAG_PRERECONCILE = os.getenv("PUSH_TAG_PRERECONCILE", "1") == "1"
 
 
 def _level_tf(level_name: str) -> str:
@@ -937,6 +942,9 @@ def _push_s_signal(rec: dict) -> bool:
         + (" (prior day)" if rec["level_tf"] == "1D" else "")
         + f"\nAlpaca  {order_id}"
     )
+    if PUSH_TAG_PRERECONCILE:
+        body += ("\n\nfills: pre-reconcile (the tape is being re-checked; "
+                 "follow by hand, size small)")
     return notify_ntfy.push(title, body, priority="high", tags="rocket")
 
 
