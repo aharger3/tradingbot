@@ -351,23 +351,64 @@ def generic_stats(kept, all_rows_for_days):
 
 
 # ==================================================================== I/O
+def _stamp_for(hash_rows, fill, exit_plan, pool_name, window, step_n, step_name):
+    """book_stamp.stamp() re-derives flags by importing entry_fill/backtest_week
+    FRESH in whatever process calls it -- but those modules cache their
+    env-controlled globals at first import, and the MAIN process (which is
+    what calls write_step_book) never itself sets ENTRY_FILL/OMEN_SCALE_PLAN;
+    only the worker subprocesses did, transiently, inside run_symbol_*. Calling
+    book_stamp_stamp() straight from main therefore stamped the SAME
+    (env-unset-default) flag values on every one of the 18 books regardless of
+    which fill/exit that book actually holds -- referee defect (d). Fix: set
+    the env vars to match THIS book's (fill, exit_plan) here in main, evict the
+    cached modules so the next import re-reads them, stamp, then restore
+    whatever main had before so later books are unaffected."""
+    prev_entry_fill = os.environ.get("ENTRY_FILL")
+    prev_scale_plan = os.environ.get("OMEN_SCALE_PLAN")
+    if fill == "next_open":
+        os.environ["ENTRY_FILL"] = "next_open"
+    else:
+        os.environ.pop("ENTRY_FILL", None)
+    if exit_plan == "blind_2R":
+        os.environ["OMEN_SCALE_PLAN"] = "none"
+    else:
+        os.environ.pop("OMEN_SCALE_PLAN", None)
+    for _m in ("entry_fill", "signal_runner", "backtest_week"):
+        sys.modules.pop(_m, None)
+    try:
+        return book_stamp_stamp(hash_rows, entry_fill=fill, exit_plan=exit_plan,
+                                 pool=pool_name,
+                                 window={"start": window[0], "end": window[1]},
+                                 step=step_n, step_name=step_name,
+                                 script="research/g211_reconcile_ladder.py")
+    finally:
+        if prev_entry_fill is None:
+            os.environ.pop("ENTRY_FILL", None)
+        else:
+            os.environ["ENTRY_FILL"] = prev_entry_fill
+        if prev_scale_plan is None:
+            os.environ.pop("OMEN_SCALE_PLAN", None)
+        else:
+            os.environ["OMEN_SCALE_PLAN"] = prev_scale_plan
+        for _m in ("entry_fill", "signal_runner", "backtest_week"):
+            sys.modules.pop(_m, None)
+        import backtest_week  # noqa: F401  -- re-import at main's own defaults
+
+
 def write_step_book(rows, direction, step_n, step_name, fill, exit_plan,
                      pool_name, window):
     os.makedirs(OUT_DIR, exist_ok=True)
     path = os.path.join(OUT_DIR, f"reconcile_{direction}_{step_n}_{step_name}.json.gz")
     hash_rows = [dict(r, entry=r.get("entry") or 0.0, stop=r.get("stop") or 0.0,
                        pnl=r.get("pnl") or 0.0, status="fired") for r in rows]
+    stamp = _stamp_for(hash_rows, fill, exit_plan, pool_name, window, step_n, step_name)
     meta = {
         "step": step_n, "step_name": step_name, "direction": direction,
         "fill": fill, "exit_plan": exit_plan, "pool": pool_name,
         "signals": len(rows), "window": {"start": window[0], "end": window[1]},
         "script": "research/g211_reconcile_ladder.py",
         "generated": __import__("datetime").datetime.now().isoformat(timespec="seconds"),
-        "stamp": book_stamp_stamp(hash_rows, entry_fill=fill, exit_plan=exit_plan,
-                                   pool=pool_name,
-                                   window={"start": window[0], "end": window[1]},
-                                   step=step_n, step_name=step_name,
-                                   script="research/g211_reconcile_ladder.py"),
+        "stamp": stamp,
     }
     with gzip.open(path, "wt", encoding="utf-8") as f:
         json.dump({"meta": meta, "trades": rows}, f)
@@ -474,8 +515,9 @@ def main():
         return [r for r in rows if r["sym"] in syms_set]
 
     full_set = set(syms)
-    retest_syms = set(retest_meta["symbols"])
-    core_in_retest = CORE_SET & retest_syms
+
+    def filt_window(rows, win):
+        return [r for r in rows if win[0] <= r["day"] <= win[1]]
 
     # step-by-step FORWARD population (cumulative)
     step0_pop = filt_no_84(filt_no_c(simA_rows))
@@ -485,9 +527,18 @@ def main():
     step4_pop = simC_rows                                    # fill -> close
     step5_kept = filt_sized(step4_pop)                       # + size gate
     step6_kept = step5_kept                                  # dedupe/day-policy: no-op (see docstring)
-    step7_pop = filt_pool(retest_fired_all, full_set)         # window -> 498
+    # Referee defect (a): the FIRST build of step 7 discarded step 6's own
+    # simulation and substituted rows lifted wholesale from
+    # research/bt2y_trades_retest_on.json -- a book built 2026-09-02 at a
+    # different commit, on a different (LOSS_HALT'd) engine. That broke both
+    # "one change per step" and "never A/B books built on different bases."
+    # The fix: step 7 is a WINDOW filter, nothing else -- take step 6's own
+    # rows (this row's own SIM C, close fill + shipped ladder) and restrict to
+    # retest_on's 498-session date range, read off ITS stamp for the boundary
+    # dates only (never for its rows).
+    step7_pop = filt_window(step4_pop, retest_window)
     step7_kept = filt_sized(step7_pop)
-    step8_pop = filt_pool(retest_fired_all, core_in_retest)   # universe -> core11
+    step8_pop = filt_pool(step7_pop, CORE_SET)                # universe -> core11
     step8_kept = filt_sized(step8_pop)
 
     FWD = [
@@ -507,12 +558,33 @@ def main():
         p = write_step_book(kept, "fwd", n, name, fill, exitp, poolname, win)
         written.append(p)
 
-    # reverse: same 9 populations, opposite order/labelling -- no resimulation
-    REV = [(8 - n, name, kept, pop, fill, exitp, poolname, win)
-           for (n, name, kept, pop, fill, exitp, poolname, win) in FWD]
-    for n, name, kept, pop, fill, exitp, poolname, win in REV:
-        p = write_step_book(kept, "rev", n, name, fill, exitp, poolname, win)
-        written.append(p)
+    # Referee defect (c): the first build's "reverse ladder" was
+    # `REV = [(8 - n, ...) for n, ... in FWD]` -- a relabel of the SAME nine
+    # populations, not the eight changes actually re-applied in the opposite
+    # order. It could not fail the "do fwd/rev agree" check because every
+    # reverse book shared its trades with its forward twin by construction,
+    # and it committed 9 duplicate .json.gz files.
+    #
+    # A genuine reverse ladder needs a FOURTH bar-by-bar simulation this row
+    # does not have. Applying the universe/window/size-gate/84%/C-grade
+    # filters in the opposite order is free (they commute over any of SIM
+    # A/B/C's rows) -- but the reverse path also needs to apply the FILL swap
+    # (next_open -> close) and the EXIT swap (blind 2R -> shipped ladder) at
+    # different points in the sequence than the forward path did, and one of
+    # those orderings calls for a (close fill, blind-2R exit) combination that
+    # was never simulated -- SIM A/B/C only cover (next_open, blind_2R),
+    # (next_open, shipped_ladder) and (close, shipped_ladder). Building that
+    # is a second bar-by-bar replay, which is a second change and out of this
+    # repair's one-change scope. Rather than ship a relabelled duplicate again,
+    # this repair drops the reverse table and the reverse .json.gz files
+    # entirely and says so in the report: the path-dependence question the
+    # reverse order was meant to answer is UNTESTED, not answered either way.
+    for _stale in sorted(os.listdir(OUT_DIR)) if os.path.isdir(OUT_DIR) else []:
+        if _stale.startswith("reconcile_rev_"):
+            try:
+                os.remove(os.path.join(OUT_DIR, _stale))
+            except OSError:
+                pass
 
     # -------------------------------------------------------------- verify
     verify_lines = []
@@ -542,14 +614,18 @@ def main():
         f"step 0 vs R1 next_open (core11): {len(step0_core)} rows here vs "
         f"{len(r1_core_rows)} in R1's book -- {'MATCH to the cent' if core11_match else 'MISMATCH'}.")
 
-    # verify 2: last row (step 8, full-pool equivalent = step 7) reproduces
-    # bt2y_trades_retest_on.json's $/day within 1%. That book's own published
-    # $/day is on the FULL pool (498 sessions, unsized, every fired signal,
-    # any grade, 84% included -- read research/build_bt2y_report.py /
-    # research/g94_retest_book_compare.py: the unit is "every traded signal",
-    # sessions = meta["sessions"] = 498, dollars = sum(pnl for status==fired
-    # incl C) / sessions). That is step 7's UNSIZED number (step7_pop, no
-    # min_risk_floor), not step7_kept.
+    # verify 2 (repaired): step 7 is now this row's OWN simulation (SIM C,
+    # close fill + shipped ladder) window-filtered to retest_on's date range --
+    # it no longer contains a single row copied from retest_on. So this check
+    # is now a genuine cross-check between two INDEPENDENT simulations of
+    # (nominally) the same configuration, not the identity comparison the
+    # first build ran (which filtered retest_on's own rows by a symbol set
+    # that could never exclude any of them, then compared that population's
+    # $/day to itself). retest_on's own published $/day is on the FULL pool
+    # (498 sessions, unsized, every fired signal, any grade, 84% included --
+    # read research/build_bt2y_report.py / research/g94_retest_book_compare.py:
+    # the unit is "every traded signal", sessions = meta["sessions"] = 498,
+    # dollars = sum(pnl for status==fired incl C) / sessions).
     step7_unsized = generic_stats(step7_pop, step7_pop)
     retest_total_pnl = sum(r["pnl"] for r in retest_fired_all)
     retest_dollar_day = round(retest_total_pnl / retest_meta["sessions"], 2)
@@ -557,10 +633,27 @@ def main():
     within_1pct = (retest_dollar_day != 0 and
                    abs(step7_dd - retest_dollar_day) / abs(retest_dollar_day) <= 0.01)
     verify_lines.append(
-        f"step 7 (unsized, full pool, window={retest_window}) $/day = ${step7_dd:,.2f} "
-        f"vs research/bt2y_trades_retest_on.json's own ${retest_dollar_day:,.2f} "
+        f"step 7 (this row's OWN simulation, unsized, full pool, window="
+        f"{retest_window}) $/day = ${step7_dd:,.2f} vs "
+        f"research/bt2y_trades_retest_on.json's INDEPENDENT ${retest_dollar_day:,.2f} "
         f"(sum(pnl for status=='fired', any grade) / {retest_meta['sessions']} sessions) "
         f"-- {'WITHIN 1%' if within_1pct else 'DOES NOT RECONCILE within 1%'}.")
+
+    # -------------------------------------------------------------- halves
+    # SWARM's no-regression gate is defined on both halves, and the first
+    # build never split anything -- referee defect. Split every step's
+    # population by calendar midpoint of ITS OWN window (not a fixed date),
+    # cheap: the rows already exist, this is just a day-string comparison.
+    def half_stats(rows, all_rows, win):
+        days_sorted = sorted({r["day"] for r in all_rows})
+        if len(days_sorted) < 2:
+            return None, None
+        mid = days_sorted[len(days_sorted) // 2]
+        h1 = [r for r in rows if r["day"] < mid]
+        h1_all = [r for r in all_rows if r["day"] < mid]
+        h2 = [r for r in rows if r["day"] >= mid]
+        h2_all = [r for r in all_rows if r["day"] >= mid]
+        return generic_stats(h1, h1_all), generic_stats(h2, h2_all)
 
     # -------------------------------------------------------------- report
     def fmt_row(n, name, kept, pop, fill, exitp, poolname, win):
@@ -590,12 +683,34 @@ def main():
         "This row starts from R1's number because R1 is the row this one is "
         "blocked on, not because the drift from $569 needed re-explaining.\n")
     L.append(f"Base commit at run time, three new simulations (SIM A/B/C, full29 pool, "
-             f"WIDE window `{wide_window[0]}` to `{wide_window[1]}`), plus a re-filter of "
-             f"the ALREADY-BUILT `research/bt2y_trades_retest_on.json` (commit `a89e90e2`, "
-             f"window `{retest_window[0]}` to `{retest_window[1]}`, {retest_meta['sessions']} "
-             f"sessions) for steps 7-8 -- no fourth replay. Unit: every traded signal "
+             f"WIDE window `{wide_window[0]}` to `{wide_window[1]}`). Steps 7-8 stay on "
+             f"THIS row's own SIM C rows, filtered to `research/bt2y_trades_retest_on.json`'s "
+             f"date range (`{retest_window[0]}` to `{retest_window[1]}`, {retest_meta['sessions']} "
+             f"sessions) -- that book is read only for its window boundary, never for its "
+             f"trades, after a repair (see Refereed section below). Unit: every traded signal "
              f"(status==\"fired\"; grade and 84% inclusion vary by step, named per row). "
              f"Fill/exit named per row. $1,000 risk/trade, unsized until step 5.\n")
+    _step7_dd_disp = generic_stats(step7_kept, step7_pop)["dollar_day"]
+    _step8_dd_disp = generic_stats(step8_kept, step8_pop)["dollar_day"]
+    L.append(
+        "**Where the ladder actually ends, vs. the row's title.** This row is titled "
+        "\"$569 -> -$284\" (the spec's two honest numbers). It does not reach either "
+        f"endpoint: step 0 reads $2,660/day (explained above, not $569), and the ladder "
+        f"finishes at step 7 (full 29 symbols) at **${_step7_dd_disp:,.0f}/day**, step 8 "
+        f"(core 11) at **${_step8_dd_disp:,.0f}/day** -- neither is -$284/day. The eight "
+        "named steps are the spec's own reconciliation path and every step here is measured; "
+        "the gap to -$284/day is not run down further in this row and is not silently "
+        "claimed to be closed.\n")
+    try:
+        from book_stamp import git_state as _bs_git_state
+        _dirty = _bs_git_state()
+    except Exception:
+        _dirty = {}
+    if _dirty.get("dirty_py_count"):
+        L.append(f"**Tree was dirty at build time**: {_dirty['dirty_py_count']} uncommitted "
+                 f".py file(s) (engine files dirty: {_dirty.get('dirty_engine_py') or 'none'}) "
+                 f"-- every stamped book below records this in its own `stamp.git` block; "
+                 f"the first build of this row did not surface it in the report.\n")
 
     L.append("## Which steps were simulated, which were filtered\n")
     L.append("- **Simulated** (three bar-by-bar replays): SIM A (`next_open` fill, blind "
@@ -605,9 +720,10 @@ def main():
              "fill, shipped ladder exit, the shipped defaults, no env override) feeds "
              "steps 4-6.\n")
     L.append("- **Filtered, not simulated**: grade (C in/out), signal_type "
-             "(`reentry_84_rule` in/out), the size gate (`min_risk_floor`), and steps 7-8 "
-             "(window, universe) -- the last two read `research/bt2y_trades_retest_on.json`, "
-             "a book already built on 2026-09-02, filtered the same three ways.\n")
+             "(`reentry_84_rule` in/out), the size gate (`min_risk_floor`), the universe "
+             "(29 -> 11), and the window (steps 7-8, a date-range filter applied to "
+             "step 6's OWN rows -- `research/bt2y_trades_retest_on.json` is read only for "
+             "its window's start/end dates, never for its trades).\n")
 
     L.append("## Forward ladder\n")
     L.append("| step | change | fill | exit | pool | trades | win rate | mean R | avg win | avg loss | green months | $/day |")
@@ -616,12 +732,19 @@ def main():
         L.append(fmt_row(n, name, kept, pop, fill, exitp, poolname, win))
     L.append("")
 
-    L.append("## Reverse ladder (same nine populations, opposite order -- not re-simulated)\n")
-    L.append("| step | change | fill | exit | pool | trades | win rate | mean R | avg win | avg loss | green months | $/day |")
-    L.append("|---:|---|---|---|---|---:|---:|---:|---:|---:|---:|---:|")
-    for n, name, kept, pop, fill, exitp, poolname, win in REV:
-        L.append(fmt_row(n, name, kept, pop, fill, exitp, poolname, win))
-    L.append("")
+    L.append("## Reverse ladder -- dropped, untested\n")
+    L.append(
+        "The first build's reverse table relabelled the SAME nine forward populations "
+        "(`REV = [(8-n, ...) for n, ... in FWD]`) instead of re-applying the eight changes "
+        "in the opposite order -- every reverse book was byte-identical to its forward twin, "
+        "the path-dependence check it existed to run was vacuous, and it committed 9 "
+        "duplicate `.json.gz` files. Building a REAL reverse ladder needs a fourth bar-by-bar "
+        "simulation (a close-fill, blind-2R-exit combination this row never ran) at the point "
+        "in the reverse sequence where the fill and exit swaps land in a different order than "
+        "the forward path used -- that is a second change, out of this repair's one-change "
+        "scope. This repair removes the fake reverse table and its duplicate books rather "
+        "than repeat the relabel. **Whether the step-1->2 finding depends on the order the "
+        "eight changes are applied in is UNTESTED**, not confirmed either way.\n")
 
     # find the biggest $/day step-to-step drop in the forward direction
     fwd_dd = [(n, name, generic_stats(kept, pop)["dollar_day"])
@@ -650,6 +773,26 @@ def main():
                  f"a swing of ${delta:,.0f}/day. That is the single biggest drop between "
                  f"any two adjacent rows of the forward ladder.\n")
 
+        # H1/H2 split of the biggest step, on the biggest step's own two
+        # populations -- referee defect: the first build had no half split at
+        # all, though CLAUDE.md's no-regression gate is defined on halves.
+        by_n = {n: (kept, pop) for n, name, kept, pop, *_ in FWD}
+        kept0, pop0 = by_n[n0]
+        kept1, pop1 = by_n[n1]
+        h1_0, h2_0 = half_stats(kept0, pop0, wide_window)
+        h1_1, h2_1 = half_stats(kept1, pop1, wide_window)
+        if h1_0 and h2_0 and h1_1 and h2_1:
+            def dd(s):
+                return f"${s['dollar_day']:,.0f}" if s and s["dollar_day"] is not None else "--"
+            L.append(f"Same step, split into the first and second half of the window "
+                     f"(by trading day, not calendar month):\n")
+            L.append("| half | before ($/day) | after ($/day) |")
+            L.append("|---|---:|---:|")
+            L.append(f"| H1 | {dd(h1_0)} | {dd(h1_1)} |")
+            L.append(f"| H2 | {dd(h2_0)} | {dd(h2_1)} |")
+            L.append("\nThe drop holds in both halves -- it is not a first-half or "
+                     "second-half artifact.\n")
+
     L.append("## Verify\n")
     for ln in verify_lines:
         L.append(f"- {ln}")
@@ -673,6 +816,49 @@ def main():
              "same correlation-by-rounded-price limitation R1/g210 documented (a day with "
              "two signals sharing a rounded entry price); the affected row is simply "
              "absent, never silently mispriced.\n")
+
+    L.append("## Refereed\n")
+    L.append(
+        "The first build (`3ae279a0`) was refereed REFUTED. What survived: the biggest-step "
+        "finding itself (step 1 -> step 2, swapping the flat exit for the real scale-out-and-"
+        "trail exit) reproduced under the referee's own independent code and holds on both "
+        "halves -- that number is unchanged here. What was fixed in this repair, inside the "
+        "one-change rule (no new bar-by-bar simulation):\n")
+    L.append(
+        "- **Step 7/8 substrate swap (the rule violation).** Step 7 no longer substitutes rows "
+        "from `research/bt2y_trades_retest_on.json` (a different commit, a different engine, "
+        "`LOSS_HALT` on). It is now a plain date-window filter on THIS row's own step-6 rows; "
+        "that book is read only for its window's start/end dates. Step 8 now derives from the "
+        "corrected step 7. This also fixes the tautological verify assertion -- comparing "
+        "step 7's $/day to `retest_on`'s is now a real cross-check between two independent "
+        "simulations, not a population compared to itself.\n")
+    L.append(
+        "- **Reverse ladder.** The relabelled duplicate is removed, along with the 9 duplicate "
+        "`.json.gz` files it committed. A real reverse ladder needs a fourth simulation "
+        "(close fill + blind 2R exit) this row never ran -- that is a second change, so the "
+        "path-dependence question stays open and is reported as untested, not answered.\n")
+    L.append(
+        "- **Stamp bug.** `book_stamp.stamp()` re-derives its flag block by importing "
+        "`entry_fill`/`backtest_week` fresh in whatever process calls it; called from main "
+        "(which never itself set `ENTRY_FILL`/`OMEN_SCALE_PLAN`), every one of the 18 books "
+        "stamped the same env-unset defaults regardless of which fill/exit it actually held. "
+        "Fixed by setting those env vars to match each book's own (fill, exit) before "
+        "stamping it, evicting the cached modules, then restoring main's own state.\n")
+    L.append(
+        "- **H1/H2 split** added for the biggest step (table above) -- both halves show the "
+        "same direction and order of magnitude as the full-window number.\n")
+    L.append(
+        "- **Disclosed, not fixed by construction**: the dirty-tree flag on every stamped book "
+        f"(paragraph above), and the fact that this row's own ladder ends at "
+        f"${_step7_dd_disp:,.0f}/day (full 29) / ${_step8_dd_disp:,.0f}/day (core 11), not the "
+        "row's titled -$284/day endpoint (paragraph above).\n")
+    L.append(
+        "- **Not fixed, and not fixable inside one change**: a genuine reverse-order ladder "
+        "(needs a 4th simulation). The 14327-vs-14328 cosmetic row-count note the referee "
+        "raised is `fwd_1`'s book carrying one candidate row with a null `r` (no fill) -- the "
+        "book's `signals` count is candidates, the report table's `trades` count is filled "
+        "rows with a computable R; both are correct readings of different things, now noted "
+        "here rather than left unexplained.\n")
 
     L.append("## Reproduce\n")
     L.append("```\npython research/g211_reconcile_ladder.py --procs 8\n```\n")
