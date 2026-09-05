@@ -427,3 +427,72 @@ module was touched).
 - `python research/regression_gate.py` and `python research/test_runner_stop.py`: both pass,
   unaffected — no live signal count or trade behaviour moved (display-only estimate, no
   live-order caller of this module).
+
+---
+
+# g182 — B3 (bug B-07): `_min_viable_stop`'s hardcoded 0.5 delta on the live fire gate
+
+What is different now: nothing shipped to `signal_runner.py` — confirmed the bug, wrote a
+failing-before test proving it, then measured that the correct fix moves which signals fire on
+the regression corpus, so per this row's instruction it is **deferred**, not shipped.
+
+## Confirmed: the exact failing input from the ticket
+
+`signal_runner.py`'s `_min_viable_stop` (the hard gate on the fire path, called at the two sites
+inside `_route`'s x-lift check and its C-grade tight-stop check) estimated premium risk with a
+second, un-synced copy of the same stale constant B-06 above already fixed in `position_sizer.py`:
+
+```
+premium_risk = stock_risk * 0.5  # ATM delta ~= 0.5 estimate
+```
+
+against `options_sizer.DEFAULT_DELTA = 0.42` (measured at OMEN 8.0 R6, `research/g95_delta_fix.py`).
+Reproduced the ticket's exact input, entry=100.00, stop=99.58 (stock_risk=0.42, risk_pct=0.0042,
+below the 0.005 arm so the premium-risk branch alone decides it): at 0.5, premium_risk=$0.21 >=
+$0.20 -> the gate says viable and the signal fires; at the measured 0.42, premium_risk=$0.1764 <
+$0.20 -> not viable, correctly rejected. Every caller checked (`grep -n "_min_viable_stop"
+signal_runner.py`): exactly two call sites, both inside `signal_runner.py` itself (the x-lift
+stop guard and the C-grade tight-stop check in `_route`) — no other module calls this function.
+
+## Test: `research/test_min_viable_stop_delta.py` (new)
+
+Constructs a `SignalRunner` with empty `self.candles` (so the STOP_RANGE_MULT human-proof guard
+no-ops and the premium-risk branch alone decides), calls `_min_viable_stop(100.00, 99.58, "long")`
+and asserts it returns `False`. Before the fix: fails (`AssertionError`, returns `True` — the
+hardcoded 0.5 admits the signal the gate exists to reject). Confirmed failing pre-fix by running
+it against the current shipped code.
+
+## Measured: applying the fix changes which signals fire — deferred per this row's instruction
+
+Applied the one-line fix (`premium_risk = stock_risk * options_sizer.DEFAULT_DELTA`, plus the
+matching `import options_sizer`) and re-ran `research/regression_gate.py` (159 marks,
+`austin_marks_v2.jsonl`) before and after, same commit otherwise:
+
+| | S fired | A fired | any_signal |
+|---|---:|---:|---:|
+| shipped (0.5, current) | 25 | 17 | 80 |
+| fixed (0.42) | 23 | 15 | 80 |
+
+No baseline-fired mark went silent either way (gate still PASSes both times), but 2 fewer S
+fires and 2 fewer A fires on this 159-mark corpus is a real change to which signals the live fire
+path admits — not confined to the ticket's single synthetic input. This is the tight-stop gate
+tightening exactly as intended (fewer marginal, under-priced-risk signals get through), but it is
+a change to live signal counts and trade behaviour beyond the bug itself, which this row's
+instruction says not to ship without pricing the recall change on the full book first. Reverted
+`signal_runner.py` to the shipped 0.5 (`git checkout -- signal_runner.py`); confirmed
+`regression_gate.py` reads back to the pre-fix baseline (any_signal 80, s_grade 25, A 17).
+
+**Next step for whoever re-runs this:** re-run `research/g154_rule_*`-style selection-arm pricing
+(H1/H2 split, S recall on the 100-card deck, precision, $/day one-trade-a-day) with the 0.42 fix
+applied, the same way F5/O1 price a selection change, before shipping it — this is a gate-strictness
+change, not a display-only fix like B-06's twin.
+
+## Status: partial
+
+- `signal_runner.py`: **not changed** — fix confirmed correct but deferred (changes live signal
+  counts: S 25->23, A 17->15 on the 159-mark regression corpus).
+- `research/test_min_viable_stop_delta.py`: new, fails against the shipped (unfixed) code by
+  design — documents the confirmed bug and its exact failing input for whoever prices and ships
+  the fix.
+- `python research/regression_gate.py` and `python research/test_runner_stop.py`: both pass on
+  the unmodified, shipped `signal_runner.py` — no engine behaviour moved by this entry.
