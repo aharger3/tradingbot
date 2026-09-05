@@ -262,6 +262,76 @@ def _yf_recent_bars(symbol: str, lookback_minutes: int = 60):
             for ts, r in zip(df.index, df.itertuples())]
 
 
+# ---- L1: one batched bar fetch per scan (2026-09-05) ----
+# The per-symbol yfinance fallback (_yf_recent_bars, still used by the single-
+# symbol QQQ break check above) meant a bad Tastytrade session made N separate
+# HTTP round trips per cycle -- on 2026-09-04 that path returned 0 bars for all
+# 29 symbols (journal/scanner-2026-09-04.log, scanner_status.json.bars_fetched
+# == 0). This does ONE yf.download() for every symbol that needs the fallback
+# this cycle, cached 55s so a scan loop faster than that reuses the same pull.
+_YF_BATCH_CACHE: dict = {"ts": 0.0, "frames": None, "symbols": frozenset()}
+
+
+def _yf_batch_recent_bars(symbols, lookback_minutes: int = 60) -> dict:
+    """One yf.download() for all `symbols`, cached 55s. Returns
+    {symbol: [Candle...]} -- a symbol yfinance has no data for maps to []."""
+    from omen_bot import Candle
+    import time as _time
+    symbols = list(symbols)
+    now = _time.time()
+    cached = _YF_BATCH_CACHE["frames"]
+    if cached is not None and (now - _YF_BATCH_CACHE["ts"]) < 55 \
+            and set(symbols) <= _YF_BATCH_CACHE["symbols"]:
+        data = cached
+    else:
+        import yfinance as yf
+        data = None
+        for attempt in range(2):
+            try:
+                data = yf.download(symbols, period="1d", interval="1m",
+                                    group_by="ticker", threads=False,
+                                    progress=False, prepost=False)
+                break
+            except Exception as e:
+                if attempt == 0 and "Too Many Requests" in str(e):
+                    _time.sleep(5)
+                    continue
+                print(f"[batch] yf.download failed: {str(e)[:160]}")
+                data = None
+                break
+        _YF_BATCH_CACHE["frames"] = data
+        _YF_BATCH_CACHE["ts"] = now
+        _YF_BATCH_CACHE["symbols"] = frozenset(symbols)
+        cached = data
+
+    out: dict = {}
+    if cached is None or cached.empty:
+        return {s: [] for s in symbols}
+    multi = isinstance(cached.columns, __import__("pandas").MultiIndex)
+    for s in symbols:
+        try:
+            df = cached[s] if multi else cached
+        except KeyError:
+            out[s] = []
+            continue
+        if df is None or df.empty:
+            out[s] = []
+            continue
+        df = df.dropna(how="all")
+        if df.empty:
+            out[s] = []
+            continue
+        if df.index.tz is None:
+            df = df.tz_localize("UTC")
+        df = df.tz_convert("America/New_York").tail(lookback_minutes)
+        out[s] = [Candle(timestamp=ts.strftime("%H:%M:%S"), open=float(r.Open),
+                         high=float(r.High), low=float(r.Low), close=float(r.Close),
+                         volume=int(r.Volume or 0))
+                  for ts, r in zip(df.index, df.itertuples())
+                  if r.Open == r.Open]  # drop NaN rows (holes in the frame)
+    return out
+
+
 def _yf_daily_context(symbol: str):
     """(pdh, pdl, bias, pmh, pml, pdo, pdc) — bias None (PA-only grading on fallback)."""
     pdh = pdl = pmh = pml = pdo = pdc = None
@@ -500,17 +570,33 @@ def scan_once(
 
     last_error = None
     bars_fetched = 0  # T13: symbols that returned >=1 candle this cycle
+
+    # L1: try Tastytrade per symbol first (unchanged); collect the failures
+    # into ONE batched yfinance call per scan instead of one per symbol.
+    tasty_candles: dict = {}
+    yf_needed: list = []
     for symbol in symbols:
         try:
-            candles = tasty_feed.fetch_recent_bars(symbol, lookback_minutes=60)
+            tasty_candles[symbol] = tasty_feed.fetch_recent_bars(symbol, lookback_minutes=60)
         except Exception as e:
-            print(f"[{symbol}] tasty fetch failed ({str(e)[:80]}), trying yfinance")
-            try:
-                candles = _yf_recent_bars(symbol)
-            except Exception as e2:
-                print(f"[{symbol}] yfinance fallback failed: {e2}")
-                last_error = f"{symbol}: {str(e2)[:120]}"
-                continue
+            print(f"[{symbol}] tasty fetch failed ({str(e)[:80]}), queued for yfinance batch")
+            yf_needed.append(symbol)
+
+    yf_candles: dict = {}
+    if yf_needed:
+        try:
+            yf_candles = _yf_batch_recent_bars(yf_needed)
+        except Exception as e2:
+            print(f"[batch] yfinance batch fetch failed: {str(e2)[:160]}")
+            yf_candles = {s: [] for s in yf_needed}
+
+    for symbol in symbols:
+        if symbol in tasty_candles:
+            candles = tasty_candles[symbol]
+        else:
+            candles = yf_candles.get(symbol, [])
+            if not candles:
+                last_error = f"{symbol}: yfinance batch returned no bars"
 
         if candles:
             bars_fetched += 1
