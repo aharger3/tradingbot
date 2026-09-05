@@ -1,3 +1,5 @@
+**UNBLOCKED 2026-09-05 01:55 ET.** Austin pasted a fresh OAuth grant (refresh token, client id, client secret) into `.env` and the keys vault; the remaining 401 was a header bug — `_headers()` sent the OAuth access token as `Token <t>` instead of `Bearer <t>`. Fixed in `tastytrade_feed.py` (test `research/test_tasty_bearer.py`). `validate_credentials()` → True, 2 accounts, `fetch_daily_levels('SPY')` answers. HTF bias is live again. No human task remains.
+
 BLOCKED: Tastytrade OAuth refresh grant returns a token, but every resource-server call made with that token 401s — HTF bias is still dead.
 
 ## What was tried live tonight

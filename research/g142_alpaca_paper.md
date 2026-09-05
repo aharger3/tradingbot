@@ -1,3 +1,5 @@
+**UNBLOCKED 2026-09-05 01:55 ET.** Austin generated new paper keys; they are in `.env` and the keys vault. `broker/test_alpaca_paper.py` → PASS (placed, read back, cancelled on the PAPER endpoint). Note: a stale copy of the old keys in the desktop session's environment shadowed `.env` on the first run (python-dotenv does not override existing env vars) — cleared. The paper account shows cash −$55,569.61, i.e. it carries old positions/margin; a 'Reset paper account' in the Alpaca dashboard is a 1-click human task before Monday if a clean $100k book is wanted. No blocker remains on wiring.
+
 BLOCKED: both Alpaca key pairs in `.env` (`ALPACA_PAPER_KEY`/`ALPACA_PAPER_SECRET` and
 `ALPACA_API_KEY_ID`/`ALPACA_API_SECRET`) return `401 {"message": "unauthorized."}` from
 Alpaca's own paper-trading API — confirmed over the SDK and over a raw `requests` HTTP call
