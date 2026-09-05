@@ -87,7 +87,9 @@ FLAG_SOURCES = (
         # 2026-09-02: the three C-cap gates in _route were all missing from this
         # list, so a book built with any of them on was indistinguishable from
         # one built without — the exact confusion the stamp exists to end.
-        "RETEST_REQUIRED", "S_GATE", "RULE_710_ENABLED")),
+        "RETEST_REQUIRED", "S_GATE", "RULE_710_ENABLED",
+        # 2026-09-05, L1: the RR gate on the first scale point (HOD/LOD).
+        "MIN_PT1_R")),
 )
 
 # The figures a report is allowed to assert on, and how far each may drift

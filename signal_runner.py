@@ -238,6 +238,16 @@ S_CLASSIFIER = os.getenv("S_CLASSIFIER", "0").strip().lower() \
     in ("1", "true", "yes", "on")
 _S_CLASSIFIER_OR_LEVELS = ("OR high", "OR low")
 
+# OMEN 10.0 L1 (2026-09-05), decided in the /call 60: "we dont want to get in
+# on a candle close of HOD/LOD because thats always our first scale point,
+# then the RR is shot." MIN_PT1_R=0 (default, OFF): no signal is skipped by
+# this gate. Set to 1.0 to skip any signal whose first scale point (session
+# HOD for a call, session LOD for a put -- the same as-of-entry-bar extremes
+# backtest_week's `hod_then_runner[_be]` scales the first rung at, i.e. LADDER
+# PT1) sits less than MIN_PT1_R * R from the entry. This DROPS the signal
+# (status="skipped"), it does not cap it to C -- a capped C still trades.
+MIN_PT1_R = float(os.getenv("MIN_PT1_R", "0") or "0")
+
 # Austin trade-notes review 2026-07-06 (91 trades): "middle of a bunch of levels,
 # probability goes down significantly"; likes trades where new HOD/LOD can be hit.
 # R25 (Austin, probe_master_2026-08-29, fact_level_block -> `target`):
@@ -2805,6 +2815,26 @@ class SignalRunner:
                 return
             if bar - last >= LEVEL_RETIRE_COOLDOWN:
                 self._level_br_count[lv_key] = (done + 1, bar)
+        # OMEN 10.0 L1 MIN_PT1_R (default 0 -> OFF, byte-identical): "we dont
+        # want to get in on a candle close of HOD/LOD because thats always our
+        # first scale point, then the RR is shot" -- Austin, the /call 60
+        # (2026-09-05). Skips (does not merely cap) any signal that would still
+        # trade whose first scale point -- session HOD for a call / session LOD
+        # for a put, the same as-of-entry-bar extreme `hod_then_runner[_be]`
+        # scales its first rung at -- sits less than MIN_PT1_R * R from entry.
+        if MIN_PT1_R > 0 and sig.get("grade") not in _SKIP_GRADES:
+            entry = sig.get("entry")
+            stop = sig.get("stop")
+            hi = sig.get("session_hi")
+            lo = sig.get("session_lo")
+            if entry is not None and stop is not None and hi is not None and lo is not None:
+                risk = abs(entry - stop)
+                pt1_dist = (hi - entry) if sig.get("direction") == "call" else (entry - lo)
+                if risk > 0 and pt1_dist < MIN_PT1_R * risk:
+                    sig["reason"] = sig.get("reason", "") + \
+                        " [skip: MIN_PT1_R first scale point < %.2fR from entry]" % MIN_PT1_R
+                    self._log_record(sig, status="skipped", skip_reason="MIN_PT1_R RR gate")
+                    return
         self._apply_x_lift(sig)
         # OMEN 9.0 F7 / g156 S_CLASSIFIER (default OFF): DROP, not cap, an
         # OR high/OR low break that never retested the level. Same no_retest
@@ -2922,6 +2952,16 @@ class SignalRunner:
         # Session extremes (HOD/LOD) — used by 84% rule RR checks
         hod = max(c.high for c in self.candles)
         lod = min(c.low for c in self.candles)
+
+        # L1 MIN_PT1_R: every _emit call below is inside this method, so hod/lod
+        # (as-of-current-bar session extremes, the same values LADDER PT1 scales
+        # off of) are captured on every signal here rather than threaded through
+        # each detection site's own dict literal. `_emit` never sees them
+        # otherwise -- it is a plain method, not nested in detect_signals.
+        def _emit(sig: dict) -> None:
+            sig["session_hi"] = hod
+            sig["session_lo"] = lod
+            self._emit(signals, sig)
         # True prior-day levels when live_scanner provided them, else session proxy
         pdh = self.pdh if self.pdh is not None else hod
         pdl = self.pdl if self.pdl is not None else lod
@@ -3075,7 +3115,7 @@ class SignalRunner:
                       # F4 Rule 4 S-input (2026-07-11): QQQ-aligned +1. Tier
                       # 12mo: 90 tr 44.4%W $30k/yr vs 83/43.4%/$25k without.
                       + (1 if self._qqq_aligned(current.timestamp, True) else 0))
-                self._emit(signals, {
+                _emit({
                         "signal_type": SignalType.BREAK_AND_RETEST,
                         "reason": (f"B&R long — prior breakout above {hi_name} ${level_hi:.2f}, "
                                    f"retest with {grade.value} PA"
@@ -3130,7 +3170,7 @@ class SignalRunner:
                                               is_long=True, htf_bias=self.htf_bias)
                     if stock_risk < 0.50:
                         grade = TradeGrade.D
-                    self._emit(signals, {
+                    _emit({
                             "signal_type": SignalType.FAIR_VALUE_GAP,
                             "reason": f"B&R long — FVG retest ${fvg[0]:.2f}-${fvg[1]:.2f} above {hi_name} ${level_hi:.2f}, {grade.value} PA",
                             "entry": entry,
@@ -3175,7 +3215,7 @@ class SignalRunner:
             # answer -- T2 owns it.
             if stock_risk / current.close > 0.004:  # stop wider than 0.4% = 2R unreachable
                 grade = TradeGrade.D
-            self._emit(signals, {
+            _emit({
                     "signal_type": SignalType.ONE_CANDLE_RULE,
                     "reason": f"Order block long — block ${block.low:.2f}-${block.high:.2f} (at {block.timestamp}), {retest} retest, {grade.value} PA",
                     "entry": entry,
@@ -3199,7 +3239,7 @@ class SignalRunner:
                                       is_long=True, htf_bias=self.htf_bias)
             if stock_risk < 0.50:
                 grade = TradeGrade.D
-            self._emit(signals, {
+            _emit({
                     "signal_type": SignalType.FLAG,
                     "reason": f"Flag long — {fnote}, breakout ${flag['flag_hi']:.2f}, {grade.value} PA",
                     "entry": entry,
@@ -3262,7 +3302,7 @@ class SignalRunner:
                 # this floor grants a free B to plain reclaims. GRADE_FIX drops it.
                 if grade == TradeGrade.C and not GRADE_FIX:
                     grade = TradeGrade.B
-                self._emit(signals, {
+                _emit({
                         "signal_type": SignalType.REENTRY_84_RULE,
                         # [hammer] tag: sources demand strong PA on the reclaim
                         # (audit #32) — measure before gating
@@ -3346,7 +3386,7 @@ class SignalRunner:
                       + (2 if hammer else 0)
                       # F4 Rule 4 S-input — mirror of call side
                       + (1 if self._qqq_aligned(current.timestamp, False) else 0))
-                self._emit(signals, {
+                _emit({
                         "signal_type": SignalType.BREAK_AND_RETEST,
                         "reason": (f"B&R short — prior breakdown below {lo_name} ${level_lo:.2f}, "
                                    f"retest with {grade.value} PA"
@@ -3392,7 +3432,7 @@ class SignalRunner:
                                               is_long=False, htf_bias=self.htf_bias)
                     if stock_risk < 0.50:
                         grade = TradeGrade.D
-                    self._emit(signals, {
+                    _emit({
                             "signal_type": SignalType.FAIR_VALUE_GAP,
                             "reason": f"B&R short — FVG retest ${fvg[0]:.2f}-${fvg[1]:.2f} below {lo_name} ${level_lo:.2f}, {grade.value} PA",
                             "entry": entry,
@@ -3426,7 +3466,7 @@ class SignalRunner:
             # both deleted. "Ther is no B" / "size to the stop".
             if stock_risk / current.close > 0.004:
                 grade = TradeGrade.D
-            self._emit(signals, {
+            _emit({
                     "signal_type": SignalType.ONE_CANDLE_RULE,
                     "reason": f"Order block short — block ${block.low:.2f}-${block.high:.2f} (at {block.timestamp}), {retest} retest, {grade.value} PA",
                     "entry": entry,
@@ -3447,7 +3487,7 @@ class SignalRunner:
                                       is_long=False, htf_bias=self.htf_bias)
             if stock_risk < 0.50:
                 grade = TradeGrade.D
-            self._emit(signals, {
+            _emit({
                     "signal_type": SignalType.FLAG,
                     "reason": f"Flag short — {fnote}, breakdown ${flag['flag_lo']:.2f}, {grade.value} PA",
                     "entry": entry,
@@ -3505,7 +3545,7 @@ class SignalRunner:
                 # stale comment / free-B floor — see call side; GRADE_FIX drops it
                 if grade == TradeGrade.C and not GRADE_FIX:
                     grade = TradeGrade.B
-                self._emit(signals, {
+                _emit({
                         "signal_type": SignalType.REENTRY_84_RULE,
                         "reason": (f"84% short — prior entry ${self.session.entry_price:.2f} "
                                    f"rejected ({grade.value} PA)"
