@@ -67,5 +67,11 @@ if errorlevel 1 (
 ) else (
   echo UNIVERSE SINGLE-SOURCE: PASS >> "%LOG%"
 )
+
+REM O2 (2026-09-05): keep the recall index fresh so every agent's first move
+REM can be a search instead of a re-ask (research/omen_recall.py).
+echo --- omen recall rebuild --- >> "%LOG%"
+python research\omen_recall.py --rebuild >> "%LOG%" 2>&1
+
 type "%LOG%"
 endlocal
