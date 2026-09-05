@@ -872,18 +872,31 @@ def _note_s_trade(rec: dict) -> bool:
 
 
 def _push_s_signal(rec: dict) -> bool:
-    """The one trade alert. Plain English, no ticket ids, no jargon."""
+    """The one trade alert -- the WHOLE order, since no venue in
+    `research/execution_prep_2026-09.md` has a pre-fillable deep link. Plain
+    English, but every field a human needs to place the contract by hand
+    without looking anything up: underlying, expiry, strike, right, the OCC
+    symbol when Tastytrade resolved one, contracts, entry/stop/target, the
+    1R dollar risk, and the Alpaca paper order id once L3 unblocks."""
     side = "CALL" if rec["direction"] == "call" else "PUT"
     title = f"OMEN S {rec['symbol']} {side}"
+    strike = rec.get("strike") or 0.0
+    expiration = rec.get("expiration") or "?"
+    occ = rec.get("occ_symbol") or "(no listed contract resolved)"
+    order_id = rec.get("alpaca_order_id") or "not placed (Alpaca paper unwired -- L3 blocked, keys 401)"
     body = (
         f"{rec['ts']} ET  ·  {rec['setup'].replace('_', ' ')}\n"
+        f"Contract  {rec['symbol']} {expiration} ${strike:g} {side}\n"
+        f"OCC       {occ}\n"
         f"Entry   {rec['entry']:.2f}\n"
         f"Stop    {rec['stop']:.2f}\n"
         f"Target  {rec['target']:.2f}\n"
         f"Size    {rec['contracts']} contracts\n"
+        f"1R      ${rec.get('max_loss', 0.0):,.0f}\n"
         f"Tier    {rec['tier']} (his S)\n"
         f"Level   {rec['level']}"
         + (" (prior day)" if rec["level_tf"] == "1D" else "")
+        + f"\nAlpaca  {order_id}"
     )
     return notify_ntfy.push(title, body, priority="high", tags="rocket")
 
@@ -1199,6 +1212,20 @@ def _emit_signal(runner: SignalRunner, tasty_feed: TastytradeFeed, symbol: str, 
             # The risk this card was sized against, carried so the exit can
             # report a real R instead of dividing by a hardcoded 1R.
             "max_loss": DEFAULT_MAX_LOSS * size_pct,
+            # G145 (L6, 2026-09-05): no venue has a deep link
+            # (`research/execution_prep_2026-09.md`), so the push is the only
+            # place the whole order ever appears -- these carry the contract
+            # itself, not just the stock-side numbers above.
+            "expiration": getattr(plan, "expiration", ""),
+            "strike": getattr(plan, "strike", 0.0),
+            "occ_symbol": getattr(plan, "occ_symbol", "") or "",
+            # Alpaca paper order id (spec L3): L3 shipped BLOCKED -- both
+            # Alpaca paper key pairs return 401, so `broker/alpaca.py` was
+            # never wired into this scanner and no order is ever placed here.
+            # `paper` (the internal book, see `paper_trader.py`) carries no
+            # such id either. This stays None until L3 unblocks; the push
+            # renders that honestly rather than inventing one.
+            "alpaca_order_id": getattr(paper, "alpaca_order_id", None),
         }
         if _note_s_trade(rec):
             _push_s_signal(rec)
