@@ -1,0 +1,239 @@
+{
+ "book": "bt2y_trades_retest_on.json",
+ "book_meta_sessions": 498,
+ "rule": "standalone-ocr-no-br",
+ "polarity": "s-indicator",
+ "predicate": {
+  "s_indicator_arm": "KEEP only, per day, the first arrival-order sizeable candidate with setup=='one_candle_rule'",
+  "refusal_indicator_arm": "SKIP any sizeable one_candle_rule candidate, take the first surviving non-OCR candidate"
+ },
+ "raw_row_counts": {
+  "one_candle_rule_total": 6803,
+  "break_and_retest_total": 119806,
+  "denominator": "all 127152 rows, not one-a-day"
+ },
+ "candidates_per_day_mixed_stream": 16.52,
+ "baseline_mixed": {
+  "all": {
+   "label": "baseline (whole book)",
+   "sessions": 498,
+   "trades": 498,
+   "fires_per_day": 1.0,
+   "usd_day": 33.93,
+   "mean_r": 0.0339,
+   "win_pct": 46.5,
+   "months_green": "13/25",
+   "months_green_n": 13,
+   "months_total": 25,
+   "max_dd_usd": 21404.68,
+   "pct_of_bar": 8.5
+  },
+  "h1": {
+   "label": "baseline H1",
+   "sessions": 249,
+   "trades": 249,
+   "fires_per_day": 1.0,
+   "usd_day": 135.71,
+   "mean_r": 0.1357,
+   "win_pct": 49.6,
+   "months_green": "9/12",
+   "months_green_n": 9,
+   "months_total": 12,
+   "max_dd_usd": 13978.64,
+   "pct_of_bar": 34.2
+  },
+  "h2": {
+   "label": "baseline H2",
+   "sessions": 249,
+   "trades": 249,
+   "fires_per_day": 1.0,
+   "usd_day": -67.85,
+   "mean_r": -0.0678,
+   "win_pct": 43.4,
+   "months_green": "4/13",
+   "months_green_n": 4,
+   "months_total": 13,
+   "max_dd_usd": 21404.68,
+   "pct_of_bar": -17.1
+  }
+ },
+ "s_indicator_ocr_only": {
+  "all": {
+   "label": "S-indicator (OCR-only)",
+   "sessions": 498,
+   "trades": 265,
+   "fires_per_day": 0.5321,
+   "usd_day": -124.6,
+   "mean_r": -0.2342,
+   "win_pct": 28.3,
+   "months_green": "7/25",
+   "months_green_n": 7,
+   "months_total": 25,
+   "max_dd_usd": 62404.04,
+   "pct_of_bar": -31.4
+  },
+  "h1": {
+   "label": "S-indicator H1",
+   "sessions": 249,
+   "trades": 128,
+   "fires_per_day": 0.5141,
+   "usd_day": -66.62,
+   "mean_r": -0.1296,
+   "win_pct": 32.0,
+   "months_green": "5/12",
+   "months_green_n": 5,
+   "months_total": 12,
+   "max_dd_usd": 24417.63,
+   "pct_of_bar": -16.8
+  },
+  "h2": {
+   "label": "S-indicator H2",
+   "sessions": 249,
+   "trades": 137,
+   "fires_per_day": 0.5502,
+   "usd_day": -182.58,
+   "mean_r": -0.3318,
+   "win_pct": 24.8,
+   "months_green": "2/13",
+   "months_green_n": 2,
+   "months_total": 13,
+   "max_dd_usd": 45815.88,
+   "pct_of_bar": -46.0
+  }
+ },
+ "refusal_indicator_skip_ocr": {
+  "all": {
+   "label": "refusal-indicator (skip OCR)",
+   "sessions": 498,
+   "trades": 498,
+   "fires_per_day": 1.0,
+   "usd_day": 33.19,
+   "mean_r": 0.0332,
+   "win_pct": 46.3,
+   "months_green": "11/25",
+   "months_green_n": 11,
+   "months_total": 25,
+   "max_dd_usd": 21404.68,
+   "pct_of_bar": 8.4
+  },
+  "h1": {
+   "label": "refusal-indicator H1",
+   "sessions": 249,
+   "trades": 249,
+   "fires_per_day": 1.0,
+   "usd_day": 134.23,
+   "mean_r": 0.1342,
+   "win_pct": 49.2,
+   "months_green": "7/12",
+   "months_green_n": 7,
+   "months_total": 12,
+   "max_dd_usd": 12861.4,
+   "pct_of_bar": 33.8
+  },
+  "h2": {
+   "label": "refusal-indicator H2",
+   "sessions": 249,
+   "trades": 249,
+   "fires_per_day": 1.0,
+   "usd_day": -67.85,
+   "mean_r": -0.0678,
+   "win_pct": 43.4,
+   "months_green": "4/13",
+   "months_green_n": 4,
+   "months_total": 13,
+   "max_dd_usd": 21404.68,
+   "pct_of_bar": -17.1
+  }
+ },
+ "br_only_stream": {
+  "all": {
+   "label": "BR-only stream",
+   "sessions": 498,
+   "trades": 498,
+   "fires_per_day": 1.0,
+   "usd_day": 33.19,
+   "mean_r": 0.0332,
+   "win_pct": 46.3,
+   "months_green": "11/25",
+   "months_green_n": 11,
+   "months_total": 25,
+   "max_dd_usd": 21404.68,
+   "pct_of_bar": 8.4
+  },
+  "h1": {
+   "label": "BR-only H1",
+   "sessions": 249,
+   "trades": 249,
+   "fires_per_day": 1.0,
+   "usd_day": 134.23,
+   "mean_r": 0.1342,
+   "win_pct": 49.2,
+   "months_green": "7/12",
+   "months_green_n": 7,
+   "months_total": 12,
+   "max_dd_usd": 12861.4,
+   "pct_of_bar": 33.8
+  },
+  "h2": {
+   "label": "BR-only H2",
+   "sessions": 249,
+   "trades": 249,
+   "fires_per_day": 1.0,
+   "usd_day": -67.85,
+   "mean_r": -0.0678,
+   "win_pct": 43.4,
+   "months_green": "4/13",
+   "months_green_n": 4,
+   "months_total": 13,
+   "max_dd_usd": 21404.68,
+   "pct_of_bar": -17.1
+  }
+ },
+ "h1_delta_usd_day": -202.33,
+ "h2_delta_usd_day": -114.73,
+ "recall": {
+  "probe_s_sweep_34": {
+   "n": 34,
+   "baseline_pct": 44.1,
+   "s_indicator_pct": 2.9,
+   "refusal_indicator_pct": 44.1
+  },
+  "bar_backed_s_days_canonical_pool": {
+   "n": 345,
+   "baseline_pct": 49.0,
+   "s_indicator_pct": 4.3,
+   "refusal_indicator_pct": 47.2
+  }
+ },
+ "precision": {
+  "baseline": {
+   "pct": 30.5,
+   "s": 18,
+   "graded": 59
+  },
+  "s_indicator_ocr_only": {
+   "pct": 20.8,
+   "s": 11,
+   "graded": 53
+  },
+  "refusal_indicator_skip_ocr": {
+   "pct": 32.8,
+   "s": 19,
+   "graded": 58
+  },
+  "br_only_stream": {
+   "pct": 32.8,
+   "s": 19,
+   "graded": 58
+  }
+ },
+ "standalone_scan": {
+  "definition": "status=='fired' rows only (regardless of traded); a symbol-day counts as standalone if it fired an OCR level and fired NO break_and_retest level that same day",
+  "ocr_fired_symdays": 368,
+  "br_fired_symdays": 5225,
+  "standalone_ocr_symdays": 199,
+  "pct_of_ocr_fired_symdays_standalone": 54.1
+ },
+ "survivor": false,
+ "survivor_rule": "H1 and H2 both improve $/day or precision, and recall_100 (both recall panels) not below baseline (measured on the S-indicator OCR-only arm vs baseline mixed arm)"
+}
