@@ -423,3 +423,20 @@ guard survives the file being moved.
 **Provenance:** written in-session from his own answers, JSON-validated row by row,
 `git status` checked by eye. `.gitignore` line 97 (`!research/marks/**`) un-ignores
 it, so no `git add -f` was needed — confirmed with `git check-ignore -v`.
+
+## `probe_daily_2026-09-03_s10_2026-09-05.jsonl` — 10 rows, the 09-03 S deck, pasted in a call
+
+**What it is:** Austin's 10 of 22 answers on `decks/omen-daily-2026-09-03-s10.html`,
+pasted verbatim into a `/call 60` card on 2026-09-05 (the page's Export -> Copy all).
+The other 12 cards were never answered. Grades: S x2 (NVDA, SPY), A x3, C x1, X x4.
+
+**Why it counts:** first marks on a live-session deck (2026-09-03) and the first with
+his scale-out ladder typed per trade. Card ids carry `_b<cut>` suffixes because that
+deck dealt one card per S BAR (`daily_homework.py:991 per_signal=True`) — that is
+the repeat he felt (AMD x5, AMZN x4 on one day); four rows literally say "same trade".
+`SPY_2026-09-03_b86` has `stop_p: 936` from typing a time (9:36) into the stop
+field; his note says the stop belongs at the bottom of the 09:36 red wick — read
+`notes.stop`, not `stop_p`, for that row. Nothing rewritten.
+
+**Provenance:** written in-session from his pasted lines, `git add -f`, `git status`
+checked by eye (staged, `A`). Inside the `research/marks/*.jsonl` glob.
