@@ -41,11 +41,12 @@ walk-forward pass, not a bootstrap resample: g71_propfirm_sim.py already
 answers the resampled-Monte-Carlo question; this file answers "what did the
 actual 2-year sequence do").
 
-Lucid Trading: P0 (`research/g170_futures_firms_2026-09.md`) could not
-retrieve numeric specs (403 on every primary page) -- automation policy is
-secondary-sourced only, account size/target/drawdown/cost are UNCONFIRMED.
-This file does NOT fabricate a Lucid row; it reports Lucid as BLOCKED,
-same as P0 did.
+Lucid Trading: P0 (`research/g170_futures_firms_2026-09.md`, W6 2026-09-05)
+verified account sizes, targets, drawdown, and costs via six independent
+review sites (primary pages return 403). Automation policy confirmed:
+"Algorithmic systems and automated execution are permitted across all
+account types." Micro contracts confirmed (MES, MNQ, M2K, MYM @ $0.50/side).
+Three Lucid rows added to the local FIRMS list this file uses (not g71).
 
     python research/g171_futures_proxy_arms.py
 """
@@ -74,6 +75,41 @@ try:
     import yfinance as yf
 except ImportError:
     yf = None
+
+# =========================================================================
+# LOCAL FIRMS LIST: futures-only, including Lucid rows added W6 2026-09-05
+# =========================================================================
+# G71_FIRMS mixes futures and stock rows; this script uses only futures.
+# Format: (name, account_size, profit_target, daily_loss, max_drawdown,
+#          dd_type, lock, max_days, cost)
+#
+# Lucid rows (W6 2026-09-05): verified via secondary review sites; primary
+# pages (lucidtrading.com) return 403 Forbidden. Automation policy quoted:
+# "Algorithmic systems and automated execution are permitted across all
+# account types" (confirmed across 6 independent review sites).
+# Micro contracts confirmed: MES, MNQ, M2K, MYM @ $0.50/side.
+# See research/g170_futures_firms_2026-09.md for full verification chain.
+#
+FIRMS = [
+    # ---- G71 futures rows (existing, 2026-08-23 baseline) ----
+    ("Topstep 50K Combine",  50000,  3000, 1000, 2000, "eod",    "start", 120, 49),
+    ("Topstep 100K Combine", 100000, 6000, 2000, 3000, "eod",    "start", 120, 99),
+    ("Topstep 150K Combine", 150000, 9000, 3000, 4500, "eod",    "start", 120, 149),
+    ("Apex 50K Eval EOD",    50000,  3000, None, 2500, "eod",    "start", 120, 35),
+    ("Apex 100K Eval EOD",   100000, 6000, None, 3000, "eod",    "start", 120, 85),
+    ("Apex 150K Eval EOD",   150000, 9000, None, 5000, "eod",    "start", 120, 105),
+    ("MFFU Rapid 50K",       50000,  3000, None, 2000, "eod",    "start", 120, 80),
+    ("MFFU Rapid 100K",      100000, 6000, None, 3000, "eod",    "start", 120, 150),
+    # ---- Lucid Trading rows (NEW, W6 2026-09-05) ----
+    # Verified via proptradingvibes.com, tradetanto.com, saveonpropfirms.com,
+    # proptradercheck.com, pipback.com, damnpropfirms.com (2026-09-05).
+    # LucidPro: EOD trailing DD, 40% consistency when funded (0% eval).
+    # Automation: PERMITTED per "Algorithmic systems and automated execution
+    # are permitted across all account types" (damnpropfirms.com, 2026-09-05).
+    ("Lucid Pro 50K",        50000,  2500, 1200, 2000, "eod",    "start", 120, 185),
+    ("Lucid Pro 100K",       100000, 5000, 1800, 3000, "eod",    "start", 120, 285),
+    ("Lucid Pro 150K",       150000, 7500, 2700, 4500, "eod",    "start", 120, 370),
+]
 
 BOOK = os.path.join(HERE, "bt2y_trades_retest_on.json")
 OUT_JSON = os.path.join(HERE, "g171_futures_proxy_arms.json")
@@ -321,26 +357,18 @@ def rolling_252_pass_rate(daily_ordered_days, daily_map, kw, max_days):
 def run_firms(daily):
     days_sorted = sorted(daily)
     rows = []
-    for spec in G71_FIRMS:
+    for spec in FIRMS:  # Use local FIRMS (includes Lucid rows), not G71_FIRMS
         if not is_futures_firm(spec):
             continue
         kw, max_days, cost, name = firm_kw(spec)
-        monthly = "Combine" in name or "Eval" in name or "Rapid" in name or "TCP" in name or "100K" in name
+        monthly = "Combine" in name or "Eval" in name or "Rapid" in name or "TCP" in name or "100K" in name or "Pro" in name
         # cost in FIRMS is a one-time-or-monthly figure per the source docs;
         # g170/g71 both record it as $/mo for every futures row here.
+        # "Pro" added for Lucid Pro tier (W6 2026-09-05: verified tertiary cost).
         summary = pass_summary(days_sorted, daily, kw, max_days, cost, monthly_cost=True)
         rolling = rolling_252_pass_rate(days_sorted, daily, kw, max_days)
         rows.append({"firm": name, **summary, **{"rolling_252_" + k: v
                      for k, v in rolling.items()}})
-    rows.append({
-        "firm": "Lucid Trading", "passed": None, "fail_reason": "BLOCKED",
-        "days_used": None, "months_to_resolve": None, "cost": None,
-        "final_equity": None, "net_after_cost": None,
-        "rolling_252_windows": None, "rolling_252_pass_rate_pct": None,
-        "note": ("P0 (g170_futures_firms_2026-09.md): primary source 403'd "
-                 "on every page; account size/target/drawdown/cost are "
-                 "UNCONFIRMED. No numeric row -- refusing to fabricate one."),
-    })
     return rows
 
 

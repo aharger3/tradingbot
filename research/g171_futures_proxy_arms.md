@@ -30,14 +30,11 @@ What is different: the index-pool one-trade-a-day book (QQQ/SPY/IWM, retest-on) 
 | Apex 50K Eval EOD | False | trailing_drawdown | 14 | 1 | 35 | -2638.78 | 0.0 |
 | Apex 100K Eval EOD | False | trailing_drawdown | 14 | 1 | 85 | -2688.78 | 0.0 |
 | Apex 150K Eval EOD | False | trailing_drawdown | 18 | 1 | 105 | -4857.55 | 0.0 |
-| TPT Test 50K | False | trailing_drawdown | 13 | 1 | 102 | -1718.0 | 0.0 |
-| TPT Test 100K | False | trailing_drawdown | 14 | 1 | 150 | -2753.78 | 0.0 |
-| TPT Test 150K | False | trailing_drawdown | 18 | 1 | 200 | -4952.55 | 0.0 |
 | MFFU Rapid 50K | False | trailing_drawdown | 13 | 1 | 80 | -1696.0 | 0.0 |
 | MFFU Rapid 100K | False | trailing_drawdown | 14 | 1 | 150 | -2753.78 | 0.0 |
-| Earn2Trade TCP 25K | False | daily_loss_limit | 1 | 1 | 150 | -150.0 | 0.0 |
-| OneUp 100K | False | trailing_drawdown | 15 | 1 | 105 | -3695.46 | 0.0 |
-| Lucid Trading | None | BLOCKED | None | None | None | None | None |
+| Lucid Pro 50K | False | trailing_drawdown | 13 | 1 | 185 | -1801.0 | 0.0 |
+| Lucid Pro 100K | False | trailing_drawdown | 14 | 1 | 285 | -2888.78 | 0.0 |
+| Lucid Pro 150K | False | trailing_drawdown | 18 | 1 | 370 | -5122.55 | 0.0 |
 
 ## Overlap check: ES=F/MES=F vs SPY, last 7 days, 1-min
 

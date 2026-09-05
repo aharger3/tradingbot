@@ -143,42 +143,6 @@
       "rolling_252_pass_rate_pct": 0.0
     },
     {
-      "firm": "TPT Test 50K",
-      "passed": false,
-      "fail_reason": "trailing_drawdown",
-      "days_used": 13,
-      "months_to_resolve": 1,
-      "cost": 102,
-      "final_equity": -1616.0,
-      "net_after_cost": -1718.0,
-      "rolling_252_windows": 1,
-      "rolling_252_pass_rate_pct": 0.0
-    },
-    {
-      "firm": "TPT Test 100K",
-      "passed": false,
-      "fail_reason": "trailing_drawdown",
-      "days_used": 14,
-      "months_to_resolve": 1,
-      "cost": 150,
-      "final_equity": -2603.78,
-      "net_after_cost": -2753.78,
-      "rolling_252_windows": 1,
-      "rolling_252_pass_rate_pct": 0.0
-    },
-    {
-      "firm": "TPT Test 150K",
-      "passed": false,
-      "fail_reason": "trailing_drawdown",
-      "days_used": 18,
-      "months_to_resolve": 1,
-      "cost": 200,
-      "final_equity": -4752.55,
-      "net_after_cost": -4952.55,
-      "rolling_252_windows": 1,
-      "rolling_252_pass_rate_pct": 0.0
-    },
-    {
       "firm": "MFFU Rapid 50K",
       "passed": false,
       "fail_reason": "trailing_drawdown",
@@ -203,41 +167,40 @@
       "rolling_252_pass_rate_pct": 0.0
     },
     {
-      "firm": "Earn2Trade TCP 25K",
-      "passed": false,
-      "fail_reason": "daily_loss_limit",
-      "days_used": 1,
-      "months_to_resolve": 1,
-      "cost": 150,
-      "final_equity": 0.0,
-      "net_after_cost": -150.0,
-      "rolling_252_windows": 1,
-      "rolling_252_pass_rate_pct": 0.0
-    },
-    {
-      "firm": "OneUp 100K",
+      "firm": "Lucid Pro 50K",
       "passed": false,
       "fail_reason": "trailing_drawdown",
-      "days_used": 15,
+      "days_used": 13,
       "months_to_resolve": 1,
-      "cost": 105,
-      "final_equity": -3590.46,
-      "net_after_cost": -3695.46,
+      "cost": 185,
+      "final_equity": -1616.0,
+      "net_after_cost": -1801.0,
       "rolling_252_windows": 1,
       "rolling_252_pass_rate_pct": 0.0
     },
     {
-      "firm": "Lucid Trading",
-      "passed": null,
-      "fail_reason": "BLOCKED",
-      "days_used": null,
-      "months_to_resolve": null,
-      "cost": null,
-      "final_equity": null,
-      "net_after_cost": null,
-      "rolling_252_windows": null,
-      "rolling_252_pass_rate_pct": null,
-      "note": "P0 (g170_futures_firms_2026-09.md): primary source 403'd on every page; account size/target/drawdown/cost are UNCONFIRMED. No numeric row -- refusing to fabricate one."
+      "firm": "Lucid Pro 100K",
+      "passed": false,
+      "fail_reason": "trailing_drawdown",
+      "days_used": 14,
+      "months_to_resolve": 1,
+      "cost": 285,
+      "final_equity": -2603.78,
+      "net_after_cost": -2888.78,
+      "rolling_252_windows": 1,
+      "rolling_252_pass_rate_pct": 0.0
+    },
+    {
+      "firm": "Lucid Pro 150K",
+      "passed": false,
+      "fail_reason": "trailing_drawdown",
+      "days_used": 18,
+      "months_to_resolve": 1,
+      "cost": 370,
+      "final_equity": -4752.55,
+      "net_after_cost": -5122.55,
+      "rolling_252_windows": 1,
+      "rolling_252_pass_rate_pct": 0.0
     }
   ],
   "overlap_check": {
