@@ -30,8 +30,10 @@ $log = Join-Path $logDir ("scanner-" + (Get-Date -Format "yyyy-MM-dd") + ".log")
 # stray em-dash that didn't parse; scanner and archiver both died silently.)
 & $python pull_guard.py $python 2>&1 | Tee-Object -FilePath $log -Append
 
-# Run with paper trading enabled (logs paper trades alongside live signals)
-& $python live_scanner.py --paper 2>&1 | Tee-Object -FilePath $log -Append
+# Run with paper trading enabled (logs paper trades alongside live signals).
+# --paper-broker alpaca additionally submits each fired S to Alpaca's PAPER
+# endpoint (journal/alpaca-paper.jsonl) -- OMEN 9.0 W3, 2026-09-05.
+& $python live_scanner.py --paper --paper-broker alpaca 2>&1 | Tee-Object -FilePath $log -Append
 
 # Bank today's 1-min bars via Polygon.io (was yfinance — socket timeouts) for longer backtests
 & $python archive_1m.py --back 1 2>&1 | Tee-Object -FilePath $log -Append

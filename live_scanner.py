@@ -520,6 +520,7 @@ def scan_once(
     max_trades: int = 3,
     max_consecutive_losses: int = 2,
     regime_detector: RegimeDetector = None,
+    broker=None,
 ) -> int:
     """Scan each symbol once, post novel signals, return count fired."""
     fired = 0
@@ -647,6 +648,12 @@ def scan_once(
                                  close=last.close, ts=last.timestamp):
                 print(f"   📕 PAPER CLOSE {ev['symbol']} {ev['direction'].upper()} "
                       f"{ev['outcome'].upper()} P&L ${ev['pnl']:.2f}")
+                if broker is not None and ev.get("event") == "CLOSE":
+                    xrec = _alpaca_submit_exit(broker, runner, ev)
+                    if xrec is not None:
+                        print(f"   🔶 ALPACA CLOSE {xrec['side'].upper()} "
+                              f"{xrec['quantity']}x {xrec['order_symbol']} -> "
+                              f"{xrec['broker_order_id']}")
                 _on_paper_exit(runner, ev)
                 if ev["outcome"] == "stop":
                     runner.session.record_loss()
@@ -709,7 +716,7 @@ def scan_once(
                 continue
             seen_signal_keys.add(key)
             sig["reason"] = f"[{symbol}] {sig['reason']}"
-            executed = _emit_signal(runner, tasty_feed, symbol, candles[-1], sig, paper)
+            executed = _emit_signal(runner, tasty_feed, symbol, candles[-1], sig, paper, broker)
             fired += 1
             if executed:  # C-grade alerts don't count toward the daily trade cap
                 runner.session.signals_today += 1
@@ -1119,7 +1126,144 @@ def _cooled_down(symbol: str, direction: str, ts: str) -> bool:
     return True
 
 
-def _emit_signal(runner: SignalRunner, tasty_feed: TastytradeFeed, symbol: str, candle, sig: dict, paper=None) -> bool:
+# ===========================================================================
+# ALPACA PAPER-BROKER SUBMISSION (OMEN 9.0 W3, 2026-09-05)
+# ===========================================================================
+# `broker/alpaca.py` (L3) is hard-coded to Alpaca's PAPER endpoint; this block
+# is the only place that ever calls `broker.place_order`. It piggybacks on the
+# EXISTING paper book (`paper_trader.PaperBook`) rather than replacing it: the
+# simulated book is still what the marking loop, the governor and the phone
+# push read from. This is an additional, best-effort submission of the same
+# trade to Alpaca's paper account, so Monday's book can be compared against a
+# real (paper) fill. If a submission fails, the simulated book is unaffected
+# -- see the try/except around `broker.place_order` below.
+#
+# Idempotency key / matching key: `f"{symbol}|{ts}"`, where `ts` is the same
+# `candle.timestamp` PaperBook.open_from_plan stores as `PaperPosition.opened_at`
+# and echoes back on every close event it returns from `.mark()`. That is the
+# only link between an entry submission and its matching exit -- paper_trader.py
+# is not on this row's edit list, so nothing was added to PaperPosition itself.
+_ALPACA_LEDGER = Path(__file__).parent / "journal" / "alpaca-paper.jsonl"
+_alpaca_open_orders: dict = {}  # f"{symbol}|{opened_at}" -> last entry record
+
+
+def _alpaca_log(event: dict) -> None:
+    _ALPACA_LEDGER.parent.mkdir(parents=True, exist_ok=True)
+    with _ALPACA_LEDGER.open("a", encoding="utf-8") as f:
+        f.write(json.dumps(event) + "\n")
+
+
+def _alpaca_submit_entry(broker, runner: SignalRunner, symbol: str, sig: dict,
+                          plan, ts: str, size_pct: float):
+    """Submit the opening order for one fired S onto the Alpaca paper broker.
+
+    Options first (`broker.resolve_option_contract` against Alpaca's own
+    listed chain, NOT the Tastytrade-derived `plan.occ_symbol` -- Alpaca may
+    not list the same contract); on `OptionsNotAvailable`, falls back to a
+    share order sized so `shares * |entry - stop| == 1R` (`DEFAULT_MAX_LOSS *
+    size_pct`), floored the same way the engine floors risk everywhere else
+    (`signal_runner.min_risk_floor`) so a razor-thin stop can't blow the size
+    up. Never called under replay -- see the assert, THE LAW's own words."""
+    assert not getattr(runner, "replay", False), (
+        "Alpaca submit attempted with runner.replay=True -- replay must "
+        "never place an order, this is a bug at the call site, not here.")
+    from broker.base import Order, OrderSide, OrderType
+    from broker.alpaca import OptionsNotAvailable
+    from options_sizer import DEFAULT_MAX_LOSS
+    from signal_runner import min_risk_floor
+
+    direction = sig["direction"]
+    idem = f"{symbol}-{ts}-{direction}-entry"
+    fallback = None
+    order = None
+    try:
+        occ = broker.resolve_option_contract(
+            underlying=symbol,
+            expiration=plan.expiration,
+            strike=plan.strike,
+            direction=direction,
+        )
+        qty = int(getattr(plan, "contracts", 0) or 0)
+        if qty > 0:
+            order = Order(symbol=occ, side=OrderSide.BUY, quantity=qty,
+                          order_type=OrderType.MARKET, idempotency_key=idem)
+    except OptionsNotAvailable:
+        fallback = "shares"
+        risk_per_share = max(abs(sig["entry"] - sig["stop"]),
+                              min_risk_floor(sig["entry"]))
+        max_loss = DEFAULT_MAX_LOSS * size_pct
+        qty = int(max_loss / risk_per_share) if risk_per_share > 0 else 0
+        if qty > 0:
+            side = OrderSide.BUY if direction == "call" else OrderSide.SELL
+            order = Order(symbol=symbol, side=side, quantity=qty,
+                          order_type=OrderType.MARKET, idempotency_key=idem)
+
+    if order is None:
+        _alpaca_log({"event": "entry_skip", "ts": ts, "symbol": symbol,
+                     "direction": direction, "reason": "zero-quantity after sizing",
+                     "fallback": fallback})
+        return None
+
+    try:
+        handle = broker.place_order(order)
+    except Exception as e:  # noqa: BLE001 - log and let the sim book stand alone
+        _alpaca_log({"event": "entry_error", "ts": ts, "symbol": symbol,
+                     "direction": direction, "order_symbol": order.symbol,
+                     "error": str(e)[:200]})
+        return None
+
+    rec = {
+        "event": "entry", "ts": ts, "symbol": symbol, "direction": direction,
+        "order_symbol": order.symbol, "side": order.side.value,
+        "quantity": order.quantity, "fallback": fallback,
+        "broker_order_id": handle.broker_order_id,
+        "status": handle.status.value, "idempotency_key": idem,
+    }
+    _alpaca_log(rec)
+    _alpaca_open_orders[f"{symbol}|{ts}"] = rec
+    return rec
+
+
+def _alpaca_submit_exit(broker, runner: SignalRunner, ev: dict):
+    """Submit the closing order that matches an entry the marking loop just
+    booked a stop or target on. Looked up by the same `symbol|opened_at` key
+    the entry was logged under; if no matching entry was submitted (e.g. the
+    entry was WATCH-only, or Alpaca submission was off then), this is a no-op.
+    Never called under replay -- see the assert."""
+    assert not getattr(runner, "replay", False), (
+        "Alpaca submit attempted with runner.replay=True -- replay must "
+        "never place an order, this is a bug at the call site, not here.")
+    key = f"{ev.get('symbol')}|{ev.get('opened_at')}"
+    entry_rec = _alpaca_open_orders.pop(key, None)
+    if entry_rec is None:
+        return None
+    from broker.base import Order, OrderSide, OrderType
+
+    close_side = OrderSide.SELL if entry_rec["side"] == "buy" else OrderSide.BUY
+    idem = f"{ev.get('symbol')}-{ev.get('opened_at')}-{ev.get('direction')}-exit"
+    order = Order(symbol=entry_rec["order_symbol"], side=close_side,
+                  quantity=entry_rec["quantity"], order_type=OrderType.MARKET,
+                  idempotency_key=idem)
+    try:
+        handle = broker.place_order(order)
+    except Exception as e:  # noqa: BLE001
+        _alpaca_log({"event": "exit_error", "ts": ev.get("ts"),
+                     "symbol": ev.get("symbol"), "order_symbol": order.symbol,
+                     "error": str(e)[:200]})
+        return None
+
+    rec = {
+        "event": "exit", "ts": ev.get("ts"), "symbol": ev.get("symbol"),
+        "order_symbol": order.symbol, "side": close_side.value,
+        "quantity": order.quantity, "outcome": ev.get("outcome"),
+        "broker_order_id": handle.broker_order_id,
+        "status": handle.status.value, "idempotency_key": idem,
+    }
+    _alpaca_log(rec)
+    return rec
+
+
+def _emit_signal(runner: SignalRunner, tasty_feed: TastytradeFeed, symbol: str, candle, sig: dict, paper=None, broker=None) -> bool:
     """Build OptionsPlan (Tastytrade real-time premium, fallback delta estimate) and post.
 
     Returns True for TRADE-tier signals (counted against the daily governor,
@@ -1220,6 +1364,18 @@ def _emit_signal(runner: SignalRunner, tasty_feed: TastytradeFeed, symbol: str, 
                                    setup=signal_type_val)
         print(f"   📗 PAPER OPEN {pos.contracts}x {pos.symbol} ${pos.strike:g} "
               f"{pos.direction.upper()} @ ${pos.entry_premium:.2f}")
+        if broker is not None:
+            _alpaca_entry_rec = _alpaca_submit_entry(broker, runner, symbol, sig, plan,
+                                                      candle.timestamp, size_pct)
+            if _alpaca_entry_rec is not None:
+                print(f"   🔷 ALPACA {_alpaca_entry_rec['side'].upper()} "
+                      f"{_alpaca_entry_rec['quantity']}x "
+                      f"{_alpaca_entry_rec['order_symbol']} -> "
+                      f"{_alpaca_entry_rec['broker_order_id']}")
+        else:
+            _alpaca_entry_rec = None
+    else:
+        _alpaca_entry_rec = None
     if runner.post_to_discord and runner.discord:
         ok = runner.discord.post_signal(sig["signal_type"], candle, sig["reason"], plan,
                                          grade=display_grade, stop_level_name=stop_level, stop_width_pct=stop_width)
@@ -1251,13 +1407,10 @@ def _emit_signal(runner: SignalRunner, tasty_feed: TastytradeFeed, symbol: str, 
             "expiration": getattr(plan, "expiration", ""),
             "strike": getattr(plan, "strike", 0.0),
             "occ_symbol": getattr(plan, "occ_symbol", "") or "",
-            # Alpaca paper order id (spec L3): L3 shipped BLOCKED -- both
-            # Alpaca paper key pairs return 401, so `broker/alpaca.py` was
-            # never wired into this scanner and no order is ever placed here.
-            # `paper` (the internal book, see `paper_trader.py`) carries no
-            # such id either. This stays None until L3 unblocks; the push
-            # renders that honestly rather than inventing one.
-            "alpaca_order_id": getattr(paper, "alpaca_order_id", None),
+            # Alpaca paper order id (W3, 2026-09-05): the real submission's
+            # broker_order_id when `--paper-broker alpaca` is on and the
+            # submit succeeded; None otherwise (no invented id).
+            "alpaca_order_id": (_alpaca_entry_rec or {}).get("broker_order_id"),
         }
         if _note_s_trade(rec):
             _push_s_signal(rec)
@@ -1366,6 +1519,12 @@ def run_replay(day: str, symbols, paper_on: bool = True,
           f"({', '.join(feed.symbols[:12])}{' ...' if len(feed.symbols) > 12 else ''})")
 
     runner = SignalRunner(post_to_discord=False)
+    # W3 (2026-09-05): replay is a simulation of a day that already happened
+    # -- it must NEVER place a real (even paper) order. `_alpaca_submit_entry`
+    # / `_alpaca_submit_exit` assert this is False before calling
+    # `broker.place_order`; run_replay never receives or constructs a broker,
+    # so this is belt-and-suspenders, not the only guard.
+    runner.replay = True
     paper = None
     if paper_on:
         from paper_trader import PaperBook
@@ -1412,6 +1571,10 @@ def main():
     parser.add_argument("--no-discord", action="store_true", help="Skip Discord posting")
     parser.add_argument("--paper", action="store_true",
                         help="Paper-trade simulation: log fired signals + mark to stop/target in journal/paper-trades.jsonl")
+    parser.add_argument("--paper-broker", default=None, choices=["alpaca"],
+                        help="Additionally submit each fired S to a real paper broker "
+                             "(logs journal/alpaca-paper.jsonl). Requires --paper. "
+                             "PAPER endpoint only -- see broker/alpaca.py.")
     parser.add_argument("--futures", nargs="?", const="ES", default=None, metavar="CONTRACT",
                         help="Futures mode (SPEC15): trade ES/NQ/RTY via yfinance feed instead of stock options")
     parser.add_argument("--replay", metavar="YYYY-MM-DD", default=None,
@@ -1432,6 +1595,7 @@ def main():
         sys.exit(run_replay(args.replay, args.symbols, paper_on=True))
     start, end = parse_window(args.window)
     runner = SignalRunner(post_to_discord=not args.no_discord)
+    runner.replay = False  # W3: the live/once path may submit; run_replay() never does.
     if args.futures:
         runner.futures_mode = True
         args.symbols = [args.futures.upper()]
@@ -1477,6 +1641,15 @@ def main():
         paper = PaperBook()
         print(f"📝 Paper mode ON → {paper.ledger_path}")
 
+    broker = None
+    if args.paper_broker == "alpaca":
+        if not args.paper:
+            print("--paper-broker alpaca requires --paper. Exiting.")
+            sys.exit(1)
+        from broker.alpaca import AlpacaBroker
+        broker = AlpacaBroker()
+        print(f"🔷 Alpaca paper broker ON → {_ALPACA_LEDGER}")
+
     print(f"Scanner armed. Symbols: {args.symbols}  Window (ET): {args.window}")
 
     # News-day warning (12mo: news days 30.6%W −$12k vs clean 37.2%W; tier
@@ -1520,7 +1693,7 @@ def main():
         print(f"Single scan @ {now_et().strftime('%H:%M:%S')} ET")
         fired = scan_once(runner, tasty_feed, args.symbols, seen, paper,
                             max_trades=max_trades, max_consecutive_losses=max_losses,
-                            regime_detector=regime_det)
+                            regime_detector=regime_det, broker=broker)
         print(f"Done. {fired} signals fired.")
         return
 
@@ -1545,7 +1718,7 @@ def main():
         print(f"\n=== {now.strftime('%H:%M:%S')} ET scan ===")
         fired = scan_once(runner, tasty_feed, args.symbols, seen, paper,
                             max_trades=max_trades, max_consecutive_losses=max_losses,
-                            regime_detector=regime_det)
+                            regime_detector=regime_det, broker=broker)
         if fired == 0:
             print("  no new signals")
         time.sleep(POLL_INTERVAL_SECONDS)
