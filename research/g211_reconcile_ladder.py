@@ -579,6 +579,16 @@ def main():
 
     L = []
     L.append("# OMEN 10.0 R2 -- reconcile R1's next_open book against the shipped full book\n")
+    L.append(
+        "**Why step 0 reads $2,660/day, not the spec's headline $569/day.** "
+        "$569/day is `g90_fill_arms.py`'s ORIGINAL published `next_open` number "
+        "(2024-08-12 to 2026-08-11, the pre-R1 engine). Step 0 here is R1's "
+        "re-run of the SAME arm on the current engine and window -- already "
+        "measured and explained in `research/g210_fill_arms_v2.md`'s \"Differences "
+        "from g90\" section (a different window, plus every engine change "
+        "landed between g90's run and R1's, `RETEST_REQUIRED` named explicitly). "
+        "This row starts from R1's number because R1 is the row this one is "
+        "blocked on, not because the drift from $569 needed re-explaining.\n")
     L.append(f"Base commit at run time, three new simulations (SIM A/B/C, full29 pool, "
              f"WIDE window `{wide_window[0]}` to `{wide_window[1]}`), plus a re-filter of "
              f"the ALREADY-BUILT `research/bt2y_trades_retest_on.json` (commit `a89e90e2`, "
