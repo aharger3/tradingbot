@@ -1,22 +1,48 @@
-"""g202 refuter #2 -- multiplicity / sampling-error attack on P3
-(research/g173_shares_personal_refresh.md).
+"""g202 -- REFUTER #2 of P3 (research/g173_shares_personal_refresh.md).
 
-Lens: how many arms were tried, paired bootstrap over sessions, one-day
-dominance, H1-to-select vs H1-to-validate.
+Lens: multiplicity and sampling error. Four attacks:
 
-Same fill as P3: signal bar CLOSE entry, stop_rule.stop_fill_price stops,
-size-gated on signal_runner.min_risk_floor, 1R = $1,000, one-trade-a-day unit
-research/omen_metrics.first_of_day_arm (via g116 build_arm A_base), book
-research/bt2y_trades_retest_on.json. H1 = day < 2025-09-01.
+  A. START-DATE MULTIPLICITY. g173 evaluates each Trade The Pool row from
+     exactly ONE start date -- day 0 of the book. n=1 per row. "Never
+     passes on any of 8 rows" is then 8 correlated draws of a single
+     sample, which is the same class of error that sank P1 ("window =
+     min(252, n)" evaluated exactly one window). This re-runs every row
+     from EVERY tradable start date, with each plan's own max_days
+     evaluation window enforced as a real clock (g173 states it does not
+     enforce it), and reports the all-starts pass rate.
 
-Run: python research/g202_p3_refute2.py
+  B. A DROPPED SIZING CAP. g173's `pool_series_for_account` calls
+     `shares_for(entry, stop, account=account)` WITHOUT
+     `daily_loss_limit_pct`, so g120's "ADVERSARIAL FIX #2" -- cap the
+     share count so one trade's max loss cannot exceed the firm's own
+     daily loss limit -- is silently not applied. The headline fail reason
+     on 4 of 8 rows is `daily_loss_limit`. This re-runs every row with the
+     cap restored, using each row's OWN stated limit.
+
+  C. PERSONAL ARM SAMPLING ERROR. $3.56/day and $35.56/day are point
+     estimates off 495 sessions. Paired bootstrap over sessions (the same
+     resampled session set drives both sizings, so they stay paired),
+     10,000 draws, plus leave-one-day-out dominance and the H1/H2 split.
+
+  D. IN-SAMPLE HALF. The $35.56/day headline is the full book. H1/H2 are
+     reported here as select-vs-validate, not as a footnote.
+
+Fill: unchanged from g173 -- signal bar CLOSE entry, `stop_rule.stop_fill_price`
+stops, size-gated on `signal_runner.min_risk_floor`, 1R = $1,000 on the
+personal arm, book `research/bt2y_trades_retest_on.json` (RETEST_REQUIRED=1),
+one-trade-a-day unit `research/omen_metrics.first_of_day_arm` via
+g116 `build_arm(keep=lambda r: True)` (A_base).
+
+Run:  python research/g202_p3_refute2.py
 """
 from __future__ import annotations
+
 import json
 import math
 import os
 import random
 import sys
+from datetime import date
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
@@ -24,177 +50,206 @@ for _p in (ROOT, HERE):
     if _p not in sys.path:
         sys.path.insert(0, _p)
 
-from g116_sizing_kelly_options import load_rows, build_arm
-from g120_prop_arms import shares_for
 from omen_metrics import evaluate_prop_challenge
+from g116_sizing_kelly_options import load_rows, build_arm, months_between
+from g120_prop_arms import shares_for, pass_day_series, personal_arm_result
+from g173_shares_personal_refresh import TTP_ROWS, TTP_KW_BASE, H_SPLIT_DAY
 
-OUT = os.path.join(HERE, "g202_p3_refute2.json")
-SPLIT = "2025-09-01"
+OUT_JSON = os.path.join(HERE, "g202_p3_refute2.json")
 SEED = 20260905
-
-TTP_ROWS = [
-    ("TTP 25K MAX day",   25000,  1500, 250,  750,  60,  97),
-    ("TTP 50K MAX day",   50000,  3000, 500,  1500, 60,  230),
-    ("TTP 100K MAX day",  100000, 6000, 1000, 3000, 60,  435),
-    ("TTP 200K MAX day",  200000, 12000, 2000, 6000, 60,  1100),
-    ("TTP 25K FLEX day",  25000,  1500, 500,  1000, 120, 97),
-    ("TTP 50K FLEX day",  50000,  3000, 1000, 2000, 120, 230),
-    ("TTP 100K FLEX day", 100000, 6000, 2000, 4000, 120, 435),
-    ("TTP 200K FLEX day", 200000, 12000, 4000, 8000, 120, 1100),
-]
-KW_BASE = dict(consistency_pct=1.0, dd_mode="eod", min_trading_days=0)
+N_BOOT = 10000
 
 
-def series_for(arm, account, dll_cap_pct=None):
-    """dll_cap_pct=None reproduces g173 exactly (no daily-loss-limit share
-    cap). dll_cap_pct=<pct> restores g120 arm 2's ADVERSARIAL FIX #2, which
-    g173's own report claims is carried over unchanged."""
+# ---------------------------------------------------------------- sizing
+def series_for(arm, account, dll_dollars=None):
+    """g173's own series builder. dll_dollars=None reproduces g173 exactly
+    (no daily-loss-limit share cap). Passing the row's own limit restores
+    g120's ADVERSARIAL FIX #2."""
     out = []
     for r in arm:
-        sh = shares_for(r["entry"], r["stop"], account=account,
-                        daily_loss_limit_pct=dll_cap_pct)
+        kw = {}
+        if dll_dollars is not None:
+            kw["daily_loss_limit_pct"] = dll_dollars / account
+        sh = shares_for(r["entry"], r["stop"], account=account, **kw)
         risk = sh * abs(r["entry"] - r["stop"])
-        out.append(dict(day=r["day"], pnl=r["r"] * risk, risk=risk, r=r["r"]))
+        out.append(dict(day=r["day"], sym=r["sym"], shares=sh,
+                        risk_dollars=risk, pnl=r["r"] * risk, r=r["r"]))
     return out
 
 
-def verdict(series, account, target, dll, mdd):
-    kw = dict(profit_target_pct=target / account, daily_loss_limit_pct=dll / account,
-              trailing_dd_pct=mdd / account, account_size=account, **KW_BASE)
-    res = evaluate_prop_challenge([(s["day"], s["pnl"]) for s in series], **kw)
-    return bool(res["passed"]), res["fail_reason"], res["fail_day"]
+def eval_row(series, account, target, dll, mdd):
+    kw = dict(profit_target_pct=target / account,
+              daily_loss_limit_pct=dll / account,
+              trailing_dd_pct=mdd / account, **TTP_KW_BASE)
+    pd_, pi, res = pass_day_series(series, account_size=account, **kw)
+    return bool(res["passed"]), res["fail_reason"], pd_, pi
+
+
+def cal_days(d0, d1):
+    a = date(*map(int, d0.split("-")))
+    b = date(*map(int, d1.split("-")))
+    return (b - a).days
+
+
+# ------------------------------------------------ A: all start dates
+def all_starts(series, account, target, dll, mdd, max_days):
+    """Every tradable start date. The plan's max_days is enforced as a real
+    calendar-day evaluation clock: a start that has not passed within
+    max_days of its first trade is a FAIL (window expired), which is the
+    STRICTER reading -- g173 enforces no clock at all."""
+    kw = dict(profit_target_pct=target / account,
+              daily_loss_limit_pct=dll / account,
+              trailing_dd_pct=mdd / account, **TTP_KW_BASE)
+    n = len(series)
+    passes, fails = 0, {}
+    pass_starts = []
+    for s in range(n):
+        d0 = series[s]["day"]
+        # trades inside this start's evaluation window
+        win = [row for row in series[s:] if cal_days(d0, row["day"]) <= max_days]
+        if not win:
+            continue
+        outcome, reason = None, None
+        for i in range(1, len(win) + 1):
+            res = evaluate_prop_challenge(
+                [(row["day"], row["pnl"]) for row in win[:i]],
+                account_size=account, **kw)
+            if res["passed"]:
+                outcome = "pass"
+                break
+            if res["fail_reason"] in ("daily_loss_limit", "trailing_drawdown"):
+                outcome, reason = "fail", res["fail_reason"]
+                break
+        if outcome is None:
+            outcome, reason = "fail", "window_expired"
+        if outcome == "pass":
+            passes += 1
+            pass_starts.append(d0)
+        else:
+            fails[reason] = fails.get(reason, 0) + 1
+    tried = passes + sum(fails.values())
+    return dict(starts_tried=tried, passes=passes,
+                pass_rate_pct=round(100.0 * passes / tried, 2) if tried else None,
+                fail_breakdown=fails, first_pass_starts=pass_starts[:8])
+
+
+# --------------------------------------------- C/D: personal sampling
+def personal_boot(arm, risk, n_boot=N_BOOT, seed=SEED):
+    rng = random.Random(seed)
+    rs = [r["r"] for r in arm]
+    n = len(rs)
+    per_day = []
+    for _ in range(n_boot):
+        s = 0.0
+        for _ in range(n):
+            s += rs[rng.randrange(n)]
+        per_day.append(s * risk / n)
+    per_day.sort()
+    lo = per_day[int(0.025 * n_boot)]
+    hi = per_day[int(0.975 * n_boot)]
+    p_le0 = sum(1 for v in per_day if v <= 0) / n_boot
+    return dict(point=round(sum(rs) * risk / n, 2),
+                ci95=[round(lo, 2), round(hi, 2)],
+                p_le_zero=round(p_le0, 4))
+
+
+def leave_one_day_out(arm, risk):
+    tot = sum(r["r"] for r in arm) * risk
+    n = len(arm)
+    worst = None
+    for r in arm:
+        without = (tot - r["r"] * risk)
+        share = (r["r"] * risk / tot) if tot else None
+        if worst is None or (share is not None and share > worst[1]):
+            worst = (r, share, without)
+    r, share, without = worst
+    return dict(top_day=r["day"], top_sym=r["sym"], top_r=round(r["r"], 3),
+                top_day_dollars=round(r["r"] * risk, 2),
+                pct_of_total=round(100 * share, 2) if share is not None else None,
+                total_with=round(tot, 2), total_without=round(without, 2),
+                per_day_with=round(tot / n, 2), per_day_without=round(without / (n - 1), 2))
 
 
 def main():
-    rnd = random.Random(SEED)
     rows = load_rows()
     arm = build_arm(rows, keep=lambda r: True)
-    h1 = [r for r in arm if r["day"] < SPLIT]
-    h2 = [r for r in arm if r["day"] >= SPLIT]
+    h1 = [r for r in arm if r["day"] < H_SPLIT_DAY]
+    h2 = [r for r in arm if r["day"] >= H_SPLIT_DAY]
     out = {"meta": dict(n_full=len(arm), n_h1=len(h1), n_h2=len(h2),
-                        d0=arm[0]["day"], dN=arm[-1]["day"], seed=SEED)}
+                        book="bt2y_trades_retest_on.json", seed=SEED, n_boot=N_BOOT,
+                        span=[arm[0]["day"], arm[-1]["day"]])}
+    print("arm n=%d  %s..%s  H1=%d H2=%d" % (len(arm), arm[0]["day"], arm[-1]["day"],
+                                             len(h1), len(h2)))
 
-    # ---- A. the fee identity: is "net -$97..-$1,100" a measurement? -------
-    g173 = json.load(open(os.path.join(HERE, "g173_shares_personal_refresh.json")))
-    fee_identity = all(r["net_dollars_after_cost"] == -r["eval_fee"]
-                       for sl in ("full", "H1", "H2") for r in g173["ttp_shares"][sl])
-    out["A_fee_identity"] = dict(
-        every_reported_net_equals_minus_the_eval_fee=fee_identity,
-        fees=[r[6] for r in TTP_ROWS],
-        distinct_nets=sorted({r["net_dollars_after_cost"]
-                              for sl in ("full", "H1", "H2")
-                              for r in g173["ttp_shares"][sl]}))
+    # ---- B: reproduce vs cap-restored, full book
+    print("\n=== B: g173 sizing (no daily-loss-limit share cap) vs cap restored ===")
+    b_rows = []
+    for (name, acct, target, dll, mdd, max_days, fee) in TTP_ROWS:
+        s_nocap = series_for(arm, acct, dll_dollars=None)
+        s_cap = series_for(arm, acct, dll_dollars=dll)
+        p0, r0, d0_, i0 = eval_row(s_nocap, acct, target, dll, mdd)
+        p1, r1, d1_, i1 = eval_row(s_cap, acct, target, dll, mdd)
+        over = sum(1 for x in s_nocap if x["risk_dollars"] > dll)
+        b_rows.append(dict(name=name, account=acct, dll=dll,
+                           g173_passed=p0, g173_fail_reason=r0,
+                           capped_passed=p1, capped_fail_reason=r1,
+                           trades_oversized_vs_dll=over, n=len(s_nocap),
+                           mean_risk_nocap=round(sum(x["risk_dollars"] for x in s_nocap) / len(s_nocap), 2),
+                           mean_risk_cap=round(sum(x["risk_dollars"] for x in s_cap) / len(s_cap), 2)))
+        print("  %-17s g173=%-4s(%s)  capped=%-4s(%s)  oversized %d/%d"
+              % (name, "PASS" if p0 else "FAIL", r0, "PASS" if p1 else "FAIL", r1,
+                 over, len(s_nocap)))
+    out["B_sizing_cap"] = b_rows
 
-    # ---- B. the missing daily-loss-limit share cap ------------------------
-    B = []
-    for name, acct, tgt, dll, mdd, maxd, fee in TTP_ROWS:
-        s_g173 = series_for(arm, acct, None)
-        s_fix = series_for(arm, acct, dll / acct)
-        p0, f0, d0_ = verdict(s_g173, acct, tgt, dll, mdd)
-        p1, f1, d1_ = verdict(s_fix, acct, tgt, dll, mdd)
-        over = sum(1 for s in s_g173 if s["risk"] > dll)
-        B.append(dict(name=name, dll=dll,
-                      g173_max_risk=round(max(s["risk"] for s in s_g173), 2),
-                      trades_sized_over_the_daily_loss_limit=over,
-                      pct_over=round(100.0 * over / len(s_g173), 1),
-                      g173_verdict=("PASS" if p0 else "FAIL(%s)" % f0),
-                      dll_capped_verdict=("PASS" if p1 else "FAIL(%s)" % f1),
-                      dll_capped_fail_day=d1_))
-    out["B_dll_share_cap"] = B
+    # ---- A: all start dates, both sizings
+    print("\n=== A: all-start-date sweep (max_days enforced as a real clock) ===")
+    a_rows = []
+    for (name, acct, target, dll, mdd, max_days, fee) in TTP_ROWS:
+        rec = dict(name=name, account=acct, max_days=max_days)
+        for tag, dllc in (("g173_sizing", None), ("capped_sizing", dll)):
+            s = series_for(arm, acct, dll_dollars=dllc)
+            rec[tag] = all_starts(s, acct, target, dll, mdd, max_days)
+        a_rows.append(rec)
+        print("  %-17s g173 %s/%s (%s%%)   capped %s/%s (%s%%)"
+              % (name, rec["g173_sizing"]["passes"], rec["g173_sizing"]["starts_tried"],
+                 rec["g173_sizing"]["pass_rate_pct"],
+                 rec["capped_sizing"]["passes"], rec["capped_sizing"]["starts_tried"],
+                 rec["capped_sizing"]["pass_rate_pct"]))
+    out["A_all_starts"] = a_rows
 
-    # ---- C. rolling start dates (P3 evaluates exactly ONE start) ----------
-    C = []
-    for name, acct, tgt, dll, mdd, maxd, fee in TTP_ROWS:
-        for tag, cap_pct in (("g173_uncapped", None), ("dll_capped", dll / acct)):
-            ser = series_for(arm, acct, cap_pct)
-            for enforce in (False, True):
-                npass = ntot = 0
-                for i in range(len(ser)):
-                    sub = ser[i:i + maxd] if enforce else ser[i:]
-                    if enforce and len(sub) < maxd:
-                        break
-                    if not sub:
-                        break
-                    p, _, _ = verdict(sub, acct, tgt, dll, mdd)
-                    ntot += 1
-                    npass += int(p)
-                C.append(dict(name=name, sizing=tag,
-                              window=("plan max_days=%d" % maxd) if enforce else "to book end",
-                              starts=ntot, passes=npass,
-                              pass_rate_pct=round(100.0 * npass / ntot, 1) if ntot else None))
-    out["C_rolling_starts"] = C
+    # ---- C/D: personal arm
+    print("\n=== C/D: personal $10k -- bootstrap, dominance, halves ===")
+    pers = {}
+    for tag, sl in (("full", arm), ("H1", h1), ("H2", h2)):
+        d = {}
+        for key, risk in (("book_native_1000", 1000.0), ("conservative_1pct", 100.0)):
+            d[key] = personal_boot(sl, risk)
+            d[key]["n_sessions"] = len(sl)
+        d["dominance_1000"] = leave_one_day_out(sl, 1000.0)
+        pers[tag] = d
+        print("  %-5s $1000/trade %s/day CI95 %s  P(<=0)=%.3f | $100/trade %s/day CI95 %s"
+              % (tag, d["book_native_1000"]["point"], d["book_native_1000"]["ci95"],
+                 d["book_native_1000"]["p_le_zero"],
+                 d["conservative_1pct"]["point"], d["conservative_1pct"]["ci95"]))
+        dm = d["dominance_1000"]
+        print("        top day %s %s = %s%% of the total; without it %s/day"
+              % (dm["top_day"], dm["top_sym"], dm["pct_of_total"], dm["per_day_without"]))
+    out["CD_personal"] = pers
 
-    # ---- D. personal $10k: sampling error on $/day ------------------------
-    Rs = [r["r"] for r in arm]
-    n = len(Rs)
-    mean_r = sum(Rs) / n
-    sd = math.sqrt(sum((x - mean_r) ** 2 for x in Rs) / (n - 1))
-    per_day_1000 = mean_r * 1000.0
-    B_ITER = 20000
-    boots = []
-    for _ in range(B_ITER):
-        s = 0.0
-        for _ in range(n):
-            s += Rs[rnd.randrange(n)]
-        boots.append(s / n * 1000.0)
-    boots.sort()
-    lo, hi = boots[int(0.025 * B_ITER)], boots[int(0.975 * B_ITER)]
-    p_le_zero = sum(1 for b in boots if b <= 0) / B_ITER
-    order = sorted(range(n), key=lambda i: -Rs[i])
-    tot = sum(Rs) * 1000.0
-    top1 = Rs[order[0]] * 1000.0
-    top5 = sum(Rs[i] for i in order[:5]) * 1000.0
-    out["D_personal_sampling"] = dict(
-        n_sessions=n, mean_R=round(mean_r, 5), sd_R=round(sd, 4),
-        dollars_per_day_at_1000=round(per_day_1000, 2),
-        dollars_per_day_at_100=round(per_day_1000 / 10.0, 2),
-        se_dollars_per_day=round(sd / math.sqrt(n) * 1000.0, 2),
-        boot_ci95=[round(lo, 2), round(hi, 2)],
-        boot_p_le_zero=round(p_le_zero, 4),
-        total_dollars_at_1000=round(tot, 2),
-        best_single_day_dollars=round(top1, 2),
-        best_day_pct_of_total=round(100.0 * top1 / tot, 1) if tot else None,
-        top5_pct_of_total=round(100.0 * top5 / tot, 1) if tot else None,
-        total_without_best_day=round(tot - top1, 2),
-        per_day_without_best_day=round((tot - top1) / (n - 1), 2))
+    # solvency detail g173's md dropped
+    out["personal_solvency_full"] = {k: dict(min_equity_ever=v["min_equity_ever"],
+                                             min_equity_pct=v["min_equity_pct_of_account"],
+                                             min_equity_day=v["min_equity_day"],
+                                             max_dd=v["max_drawdown_dollars"],
+                                             wiped=v["wiped"])
+                                     for k, v in personal_arm_result(arm).items()}
+    print("\n  solvency (full book, g120 fields g173's md omitted):")
+    for k, v in out["personal_solvency_full"].items():
+        print("    %-18s min equity ever $%.0f (%.1f%% of acct) on %s"
+              % (k, v["min_equity_ever"], v["min_equity_pct"], v["min_equity_day"]))
 
-    # ---- E. the 216% drawdown is one ordering -----------------------------
-    def maxdd(seq, risk=1000.0, acct=10000.0):
-        eq = acct
-        peak = acct
-        mdd_ = 0.0
-        for r in seq:
-            eq += r * risk
-            peak = max(peak, eq)
-            mdd_ = max(mdd_, peak - eq)
-        return mdd_
-    actual = maxdd(Rs)
-    shuf = []
-    for _ in range(2000):
-        c = Rs[:]
-        rnd.shuffle(c)
-        shuf.append(maxdd(c))
-    shuf.sort()
-    out["E_drawdown_order"] = dict(
-        actual_maxdd=round(actual, 2), actual_pct_of_10k=round(actual / 100.0, 1),
-        shuffle_median=round(shuf[1000], 2),
-        shuffle_p05=round(shuf[100], 2), shuffle_p95=round(shuf[1900], 2),
-        pct_of_shuffles_worse=round(100.0 * sum(1 for x in shuf if x > actual) / len(shuf), 1))
-
-    # ---- F. H1 as replication? -------------------------------------------
-    same_start = all(g173["ttp_shares"]["H1"][i]["months_to_event"] ==
-                     g173["ttp_shares"]["full"][i]["months_to_event"]
-                     for i in range(8))
-    out["F_h1_is_a_prefix"] = dict(
-        h1_first_day=h1[0]["day"], full_first_day=arm[0]["day"],
-        h1_starts_on_the_same_day_as_full=(h1[0]["day"] == arm[0]["day"]),
-        h1_and_full_identical_months_to_event_on_all_8_rows=same_start,
-        cells_reported=8 * 3 + 2 * 3,
-        independent_start_dates_evaluated=1)
-
-    json.dump(out, open(OUT, "w"), indent=1)
-    print(json.dumps(out, indent=1))
-    print("\nwrote", OUT)
+    json.dump(out, open(OUT_JSON, "w"), indent=1)
+    print("\nwrote", OUT_JSON)
     return out
 
 
