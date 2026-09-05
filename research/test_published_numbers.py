@@ -82,6 +82,12 @@ def find_corresponding_script(md_path: Path) -> bool:
         'research/test_runner_stop.md',
         'research/test_universe_single_source.md',
 
+        # 2026-09-05 wave-2 referee write-ups: every number in them is
+        # produced by a committed script with a different stem, named inline.
+        'research/g201_mid_candle_referee.md',   # g201_refute{1,2,3}.py, g201_refute3b.py
+        'research/g203_alpaca_referee.md',       # g203_referee_probe.py
+        'research/g211_referee_leak.md',         # g211_referee_check.py
+
         # T19 — commit hygiene report (not a lane finding, a meta-report)
         'research/t19_commit_hygiene.md',
 
