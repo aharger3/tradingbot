@@ -3,6 +3,34 @@
  "book_sessions": 498,
  "split": "2025-09-01",
  "r_dollars": 1000.0,
+ "denominator_reconciliation": {
+  "canonical_498_size_gated": {
+   "label": "first_of_day_arm(allrows), size_gate=True",
+   "n": 498,
+   "first_day": "2024-09-03",
+   "last_day": "2026-09-02",
+   "total_dollars": 16901.0,
+   "per_day": 33.94,
+   "mean_r": 0.0339,
+   "win_pct": 46.4,
+   "months": 25,
+   "green_months": 13,
+   "max_dd_dollars": 21403.0
+  },
+  "legacy_pick_then_gate": {
+   "label": "first_of_day_arm(allrows), size_gate=False (pre-fix)",
+   "n": 498,
+   "first_day": "2024-09-03",
+   "last_day": "2026-09-02",
+   "total_dollars": 12603.0,
+   "per_day": 25.31,
+   "mean_r": 0.0253,
+   "win_pct": 45.6,
+   "months": 25,
+   "green_months": 13,
+   "max_dd_dollars": 21708.0
+  }
+ },
  "streams": {
   "IDX_first_of_day": {
    "full": {

@@ -206,6 +206,21 @@ def main():
     s_arm = first_of_day(rows, lambda r: r.get("sgrade") == "S")
     a_arm = first_of_day_arm(rows)
 
+    # Denominator reconciliation. `omen_metrics.first_of_day_arm` on the
+    # UNFILTERED book is the canonical one-trade-a-day unit (498 days). g173
+    # loads traded-only rows first and so reports 495. CLAUDE.md's "$25/day,
+    # full pool, retest ON" is the same arm with the pre-2026-09-03
+    # pick-then-gate bug (size_gate=False).
+    canon = {
+        "canonical_498_size_gated": edge(
+            [r for r in first_of_day_arm(allrows) if r.get("r") is not None],
+            "first_of_day_arm(allrows), size_gate=True"),
+        "legacy_pick_then_gate": edge(
+            [r for r in first_of_day_arm(allrows, size_gate=False)
+             if r.get("r") is not None],
+            "first_of_day_arm(allrows), size_gate=False (pre-fix)"),
+    }
+
     streams = {
         "IDX_first_of_day": split_edge(idx_arm,
                                        "index pool QQQ/SPY/IWM, first of day"),
@@ -243,6 +258,7 @@ def main():
         "book_sessions": meta.get("sessions"),
         "split": SPLIT,
         "r_dollars": R_DOLLARS,
+        "denominator_reconciliation": canon,
         "streams": streams,
         "all_starts_pass_rates": starts,
         "drift_to_50pct": drift,
@@ -258,6 +274,9 @@ def main():
                   "green %2d/%-2d  maxDD $%s"
                   % (k, w, e["n"], e["per_day"], e["mean_r"], e["win_pct"],
                      e["green_months"], e["months"], e["max_dd_dollars"]))
+    for k, e in canon.items():
+        print("%-26s n=%-4d $/day %8.2f  meanR %+7.4f  green %2d/%-2d"
+              % (k, e["n"], e["per_day"], e["mean_r"], e["green_months"], e["months"]))
     print()
     for s in starts:
         print("all-starts pass  %-22s n=%-4d %5.1f%%"
