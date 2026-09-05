@@ -142,3 +142,93 @@ re-run it as a multi-order arm with an explicit cancel time, and fix the fill-ba
 first.
 
 **Verdict: REFUTED.** Do not quote $100/day, and do not quote "MID25 beats CLOSE".
+
+---
+
+# Second independent pass (same row, different agent, 2026-09-05 ~06:00)
+
+**Same verdict, reached without reading the above until after the numbers were in: REFUTED.**
+This pass built its own harness (`research/g201_refute1.py`, data `research/g201_refute1.json`)
+over the same book, same 8,227 candidates, same size gate, 1R = $1,000. It confirms sections 2,
+4 and 6 independently, tightens the selection-leak number, adds a fill-price census, and finds one
+arithmetic error in F9's published table. It does **not** re-derive section 3's fill-bar leak —
+that finding is the other pass's, and this pass had wrongly assumed the unmanaged fill bar was
+symmetric between arms. It is not; section 3 stands and is the stronger of the two mechanical
+attacks.
+
+## A. Harness control — confirmed, and it exonerates F9 here
+
+Independently re-derived: CLOSE routed through the identical `g80.run_trade` at
+`fill_i = entry_i`, `entry_px = r["entry"]` pays **$37/day** against the book's own **$34**.
+Same $3 as section 2. The two-exit-engine confound is real but is not the story.
+
+## B. The selection leak is bigger than section 4 measured
+
+Section 4 counted 34 sessions where the day's first sizeable candidate never filled. Scoring
+every arm on the **same** candidate — the day's first *close*-sizeable candidate, so the arms are
+answering for one identical trade — the pick diverges far more often, because F9's picker also
+rolls forward on `filled_on_last_bar` and `risk_collapsed`:
+
+| arm | sessions where F9's picker took a different candidate than CLOSE |
+|---|---:|
+| MID25 | **129 of 498** (26%) |
+| MID50 | 268 of 498 |
+| MID75 | 333 of 498 |
+
+Forcing the identical pick, unfilled day books $0:
+
+| arm | F9's picker | **matched pick** | H1 | **H2** | mean R | trades | green |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| CLOSE_RT (control) | $37 | $37 | $140 | −$65 | +0.037 | 498 | 12/25 |
+| **MID25** | $100 | **$39** | $146 | **−$68** | +0.053 | 368 | 13/25 |
+| MID50 | $90 | $6 | $80 | −$68 | +0.013 | 222 | 12/25 |
+| MID75 | −$47 | −$8 | $35 | −$50 | −0.034 | 116 | 10/25 |
+
+**+$66/day becomes +$2/day on the selection leak alone**, and MID25's H2 goes from +$35 to
+−$68 — the exact −$68 the shipped CLOSE arm books. The one credential that made MID25 look like
+a live edge rather than an H1 artifact is entirely the picker. Matched MID25 also trades on only
+368 of 498 sessions: **130 days (26%) end with a resting order that never filled and no trade at
+all** — g90's reachability objection, measured on the shipped ladder instead of a blind 2R exit.
+
+## C. Fill-price census — penny-exact and sub-cent fills exist but are not load-bearing
+
+`g80.limit_touch` fills on `low <= lvl + EPS`, `EPS = $0.005`. So a bar whose low never reached a
+buy limit can still fill, and a bar that kisses the limit to the penny and turns fills in full —
+the class that killed `scale-before-the-level` in the morning report.
+
+| arm | fills | traded a full cent through | touched to the penny, no further | **never reached the limit (EPS only)** |
+|---|---:|---:|---:|---:|
+| MID25 | 7,610 | 6,853 | 489 | **268** |
+| MID50 | 7,096 | 6,228 | 606 | 262 |
+| MID75 | 6,539 | 5,693 | 538 | 308 |
+
+Requiring a full cent through the limit moves matched MID25 to $36/day (H1 $182, H2 −$110). Real,
+but it is not what produced the $100.
+
+## D. One arithmetic error in F9's published table
+
+F9's category table reports `ALL` never-returns = **578**, but its own H1 (286) + H2 (331) =
+**617**, and 578 + 514 + 7,096 = 8,188 against 8,227 candidates. `cat_counts["ALL"]` is not
+incremented in the `if rng <= 0 or i + 1 >= min(cutoff, len(bars) - 1)` branch of
+`g158_mid_candle_arms.py`, so 39 rows are missing from that row only. The 86% mid-fillable figure
+(7,096 of 8,227) itself reproduces exactly, as section 1 says.
+
+## E. Where the two passes disagree, and why it does not matter
+
+Conditioning on the same candidate filling in both arms, this pass measures F9's MID25 paying
+**+0.1218R MORE** than CLOSE_RT (95% CI [+0.0923, +0.1503], n = 4,733) — the opposite sign to
+g90's −0.2458R. That is not a contradiction of g90: F9 rests at a fraction of the bar's range
+measured back from the **close**, g90 rests at the **midpoint of the bar's range**; different
+exits (shipped ladder vs blind 2R), different books, different windows. Section 3's fill-bar leak
+also inflates exactly this statistic, since it is computed on F9's own unfixed rows. Whichever way
+that paired number lands, it is conditioned on a fill you cannot know you will get, and the unit
+that pays — one trade a day — says **$39 against $37**, or **$27 against $34** with both
+mechanical leaks fixed. Two independent harnesses, same conclusion.
+
+**Verdict, second pass: REFUTED.** The vault lines in `Projects/omen-blockers.md` (line 95) and
+`Projects/omen-brief-2026-09-03.md` (line 45) — *"mid-candle … never happens for ~20% of signals
+… R2 mid-candle entry: Dead"* — should be closed as **correct again**, with a pointer to this row
+for the shipped-ladder measurement.
+
+Nothing shipped. `signal_runner.py`, `entry_fill.py`, `g80_ordertype_grid.py` and
+`g158_mid_candle_arms.py` were read, never edited. No mark corpus was touched.
