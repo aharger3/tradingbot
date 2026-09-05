@@ -620,3 +620,82 @@ Verify gate: `python research/regression_gate.py && python research/test_runner_
   reproduced above; passes after).
 - `python research/regression_gate.py` and `python research/test_runner_stop.py`: both
   pass, unaffected — no engine module's runtime behaviour moved.
+
+---
+
+# g182 — B3 (bug B-10): the daily run no longer trusts a pull it hasn't smoke-tested
+
+What is different now: `run_daily.ps1` pulls, then smoke-tests that
+`live_scanner` still imports, and only proceeds to launch it if that passes;
+a pull that breaks the tree is rolled back to the previous commit so the day
+scans on yesterday's known-good code instead of dying silently. Root-caused
+in a single new function, `pull_guard.run_guarded_pull`, which is the one
+place the pull-then-run logic now lives (only caller today: `run_daily.ps1`
+line 26).
+
+## Root cause
+
+`run_daily.ps1` ran `git pull --rebase --autostash` at line 26 and
+`live_scanner.py` at line 29 with nothing between them. On 2026-09-03 the
+pull brought in an `omen_bot.py` with a stray U+2014 em-dash that Python
+can't parse; the entire daily pass died — scanner and archiver both
+(`journal/scanner-2026-09-03.log`, 80 lines against ~8,000 on a normal day):
+
+```
+File "…\omen_bot.py", line 219
+    opposed trend — D when HTF_BIAS_VETO=1 (default 0 — P16/W3, the veto
+SyntaxError: invalid character '—' (U+2014)
+```
+
+An unattended job that self-updates from `main` with no syntax check between
+the pull and the run has no floor under it.
+
+## Fix
+
+New `pull_guard.py` at repo root, `run_guarded_pull(python_exe, smoke_module,
+cwd)`: records `HEAD` before pulling, runs `git pull --rebase --autostash`,
+then `python -c "import live_scanner"`. If that import fails, `git reset
+--hard` back to the pre-pull commit and report the rollback; otherwise leave
+the pull in place. `run_daily.ps1:26` now calls `& $python pull_guard.py
+$python` instead of running `git pull` directly.
+
+## Test: `research/test_pull_guard.py`
+
+Builds a throwaway local git remote + clone, reproduces the exact failure
+mode (a second commit with invalid, unparseable Python landing via pull),
+and asserts:
+- `test_guarded_pull_rolls_back_a_broken_commit` — after the guard runs,
+  `HEAD` is back at the last good commit and `import live_scanner` succeeds.
+- `test_guarded_pull_leaves_a_good_pull_alone` — a pull that stays valid
+  Python is left in place, `HEAD` at the new commit.
+
+Both fail without `pull_guard.py` (the module doesn't exist — reproducing
+the pre-fix state, no guard at all) and both pass with it:
+
+```
+$ python research/test_pull_guard.py
+...
+OK: pull_guard rolls back a broken pull, leaves a good one alone
+```
+
+## Scope check: ops-only, no engine module touched
+
+`pull_guard.py` only shells out to `git` and does an import smoke test; it
+never imports `signal_runner`, `omen_bot`, or `live_scanner`'s internals, and
+changes no signal-generation or trade logic. `run_daily.ps1` is not on the
+do-not-edit list (`live_scanner.py`, `signal_runner.py`, `omen_bot.py`,
+`paper_trader.py`, `broker/*`, `notify_ntfy.py`,
+`research/daily_fetch.py`, `research/daily_homework.py`).
+
+Verify gate: `python research/regression_gate.py && python
+research/test_runner_stop.py` — both PASS, unaffected.
+
+## Status: done
+
+- `pull_guard.py`: new, root-cause fix.
+- `run_daily.ps1`: line 26 now routes through `pull_guard.py` instead of a
+  bare `git pull`.
+- `research/test_pull_guard.py`: 2 tests, both fail before (`pull_guard`
+  doesn't exist) and pass after.
+- `python research/regression_gate.py` and `python research/test_runner_stop.py`:
+  both pass, unaffected — no engine module's runtime behaviour moved.

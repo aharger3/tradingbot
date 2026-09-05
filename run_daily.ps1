@@ -22,8 +22,13 @@ $log = Join-Path $logDir ("scanner-" + (Get-Date -Format "yyyy-MM-dd") + ".log")
 
 "=== $(Get-Date -Format o) starting daily run ===" | Tee-Object -FilePath $log -Append
 
-# Pull latest rules from GitHub (Hermes commits here). Non-fatal on failure.
-git pull --rebase --autostash 2>&1 | Tee-Object -FilePath $log -Append
+# Pull latest rules from GitHub (Hermes commits here), then smoke-test that
+# live_scanner still imports before betting the whole day on it. If the pull
+# broke the tree, pull_guard.py rolls back to yesterday's commit and we scan
+# on known-good code instead of not scanning at all.
+# (B3 B-10, 2026-09-05: 2026-09-03's pull brought in an omen_bot.py with a
+# stray em-dash that didn't parse; scanner and archiver both died silently.)
+& $python pull_guard.py $python 2>&1 | Tee-Object -FilePath $log -Append
 
 # Run with paper trading enabled (logs paper trades alongside live signals)
 & $python live_scanner.py --paper 2>&1 | Tee-Object -FilePath $log -Append
