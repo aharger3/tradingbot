@@ -28,38 +28,45 @@ The target: **fire 1–3 times a day, and be right about them.**
 
 ## Where the project actually stands
 
-| honest fill, one trade a day | $/day | win | green months |
-|---|---:|---:|---:|
-| the engine's first setup of the day | **$28** | 45.5% | 11/25 |
-| the same day's best setup (oracle ceiling) | **$2,948** | 99.6% | **25/25** |
-| a coin flip among the day's setups | −$25 | | |
-| **his bar** | **$397** | | |
+**Reconciled 2026-09-05** (`research/g212_baseline_verdict.md`; every cell asserted by
+`python research/g212_trace.py`). Both books: `python backtest_2y.py --days 730` at commit
+`29e4abc6`, built the same minute, 499 sessions 2024-09-04 → 2026-09-04, engine at its shipped
+defaults (1R hard stop resting on the level and filled on the intrabar touch, `SCALE_PLAN=
+hod_then_runner_be`, `LOSS_HALT` on, `RETEST_REQUIRED` on). **Unit = his day policy**: up to 3
+fires a day, stop after the first win or the second loss, arrival order, `universe.CORE_SYMBOLS`
+(11). The loop's gate reads this unit on this book (`research/tape/loop.json`).
 
-The oracle row is **not a plan** — it is proof the setups are there, every month, in the book we
-already have. The engine surfaces ~18.6 candidates a day and he takes 1–3. It currently trades a
-day he refused **62 times out of every 100** it trades (precision 39.5%). That gap is the project.
+| his day policy, core 11, 25 months | fill | exit | $/day | mean R | win | avg win / avg loss | green |
+|---|---|---|---:|---:|---:|---:|---:|
+| **the baseline** `research/tape/baseline_2026-09-05.json.gz` | close of the signal bar (honest) | shipped | **−$52** | −0.034R | 45.0% | $801 / $716 (1.12×) | **11/25** |
+| the phantom column `baseline_2026-09-05_published.json.gz` | `ENTRY_FILL=published` — the level, even when the bar never traded there | shipped | $850 | +0.657R | 63.9% | $1,583 / $980 (1.62×) | 23/25 |
+| first fire of the day, honest (reported beside) | close | shipped | −$39 | −0.039R | 45.7% | $731 / $687 | 9/25 |
+| the ceiling: the day's best fire, chosen after the fact, honest | close | shipped | $1,760 | +1.763R | 95.0% | $1,880 / $454 | 25/25 |
+| **his bar** | | | **$500** | | | **2.0×** | **25/25** |
 
-`research/g86_honest_ceiling.py` prints the table. Run it rather than quoting it.
+Baseline halves: H1 (before 2025-09-01) 382 trades, +$9/day, 6/12 green; H2 (2025-09-01 on)
+387 trades, −$111/day, 5/13 green. 769 trades, 1.54 fires/day. **Target not met.** The ceiling
+row is proof the setups are in the honest book every month; it is not a plan. Every signal on all
+29 symbols reads −$334/day, 8/25 (honest) against $5,167/day, 25/25 and $2,578,552 total
+(phantom) — the $2.6M he remembers is the fill, rebuilt on today's code.
 
-**Precision footnote (2026-09-05, full stats in `research/g215_precision.md`).** Austin,
-2026-09-05: *"precision 18/59 does not have all the stats."* The 39.5% above is
-candidate-level precision — fired signals ÷ graded signals across the whole fired pool —
-and the spec's `>39.5%` target was never testable as written against a classifier that
-fires 1–3 times a day, because that classifier is scored on a different unit:
-**graded-day precision on the one-trade-a-day pick** (fired days he graded S ÷ fired days
-he graded), whose measured baseline is **30.5% (18/59, 95% Wilson interval 20.3–43.1)**
-(`research/g215_precision.py`, superseding the bare fraction first reported in
-`research/g156_s_classifier_v0.md`). Widened to every symbol-day the engine actually
-fired on rather than collapsing to the day's one pick, precision reads **28.5% (169/592,
-25.1–32.3)** and recall — did the engine fire on the S day at all, any symbol — reads
-**48.7% (169/347 bar-backed S days)**; the one-trade-a-day pick's own recall is a
-structurally low **5.2% (18/347)**, since one trade a day can only ever land on one
-symbol. Per-symbol, per-setup, per-engine-grade and per-his-grade tables, and the count
-of 72 contested symbol-days (graded twice with disagreeing grades), are in the full
-report — run `python research/g215_precision.py` to regenerate it; it also runs nightly
-in `research/daily_run.cmd`. **Lane precision is the pick-level number — the bar is
-materially above 30.5% on the pick** — until Austin restates it. The 39.5%
-candidate-level figure stays in this file as the secondary read, not the gate.
+**Where the money is lost.** The reconciliation ladder (`research/g211_reconcile_ladder.md`,
+`research/r2_referee.md`) walked the lab rig's $4,569/day (next-open fill, flat 2R, 14,327
+trades, 29 symbols) down to the shipped book. The money is lost at step 2 — where the lab's exit
+is replaced by the real engine's trade management — because the lab's stop only fired on a
+candle close, so every wick through the level and back was a free pass; the real engine's 1R
+hard stop rests on the level and fills on that wick, which turns about one trade in twenty from
+a +2R win into a −1R loss (win rate 38.8% → 33.6%, avg win and avg loss unchanged) and takes
+$4,420 of the $5,550/day; the scale-out ladder takes the remaining $1,131 (both halves,
+`research/r2_referee_pass2.py`, books `reconcile_fwd_1_add_C_grades`,
+`r2ref_simd_next_open_blind2r_real_engine`, `reconcile_fwd_2_swap_exit_shipped_ladder`).
+Consequence: with `DISASTER_STOP_R = 1.0` the close-trigger stop rule never acts — the wick is
+the stop. That is his 2026-09-03 ruling; moving it is a rule change that goes through the gate.
+
+**Precision.** The pick-level bar is **30.5% (18/59)** — fired days he graded S ÷ fired days he
+graded, on the one-trade-a-day pick — and the full statistics (Wilson intervals, recall, per
+symbol / setup / grade) are `research/g215_precision.md`, regenerated nightly by
+`research/g215_precision.py`.
 
 ## Why every dollar figure before 2026-08-30 was wrong
 
