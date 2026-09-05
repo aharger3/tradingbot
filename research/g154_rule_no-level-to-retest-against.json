@@ -1,0 +1,219 @@
+{
+ "book": "bt2y_trades_retest_on.json",
+ "book_meta_sessions": 498,
+ "rule": "no-level-to-retest-against",
+ "polarity": "refusal-indicator",
+ "predicate": {
+  "book_proxy": "DROP r if r['level']=='other' or r['level_name'].startswith('not-his:')",
+  "bars_form": "DROP r if the nearest of PDH/PDL/PMH/PML/ORH/ORL/HOD/LOD (causal, as of entry_i) is farther than 0.5xATR14 from Close[entry_i]",
+  "notes": "Both read the ENTRY level (the level being retested), never the TARGET level -- see qqq_falsifier_check."
+ },
+ "qqq_falsifier_check": {
+  "found": true,
+  "dropped_by_book_proxy": false,
+  "level": "PML",
+  "level_name": "PML",
+  "et": "09:39"
+ },
+ "fired_base_rates": {
+  "fired_all": 10830,
+  "no_level_book_proxy": 8035,
+  "denominator": "status=='fired', all rows (not one-a-day)"
+ },
+ "candidates_per_day": 16.52,
+ "baseline": {
+  "all": {
+   "label": "baseline (whole book)",
+   "sessions": 498,
+   "trades": 498,
+   "fires_per_day": 1.0,
+   "usd_day": 33.93,
+   "mean_r": 0.0339,
+   "win_pct": 46.5,
+   "months_green": "13/25",
+   "months_green_n": 13,
+   "months_total": 25,
+   "max_dd_usd": 21404.68,
+   "pct_of_bar": 8.5
+  },
+  "h1": {
+   "label": "baseline H1",
+   "sessions": 249,
+   "trades": 249,
+   "fires_per_day": 1.0,
+   "usd_day": 135.71,
+   "mean_r": 0.1357,
+   "win_pct": 49.6,
+   "months_green": "9/12",
+   "months_green_n": 9,
+   "months_total": 12,
+   "max_dd_usd": 13978.64,
+   "pct_of_bar": 34.2
+  },
+  "h2": {
+   "label": "baseline H2",
+   "sessions": 249,
+   "trades": 249,
+   "fires_per_day": 1.0,
+   "usd_day": -67.85,
+   "mean_r": -0.0678,
+   "win_pct": 43.4,
+   "months_green": "4/13",
+   "months_green_n": 4,
+   "months_total": 13,
+   "max_dd_usd": 21404.68,
+   "pct_of_bar": -17.1
+  }
+ },
+ "arms": {
+  "book_proxy": {
+   "candidate": {
+    "all": {
+     "label": "candidate (whole book)",
+     "sessions": 498,
+     "trades": 476,
+     "fires_per_day": 0.9558,
+     "usd_day": 14.44,
+     "mean_r": 0.0151,
+     "win_pct": 46.3,
+     "months_green": "10/25",
+     "months_green_n": 10,
+     "months_total": 25,
+     "max_dd_usd": 22719.96,
+     "pct_of_bar": 3.6
+    },
+    "h1": {
+     "label": "candidate H1",
+     "sessions": 249,
+     "trades": 230,
+     "fires_per_day": 0.9237,
+     "usd_day": 107.38,
+     "mean_r": 0.1163,
+     "win_pct": 50.7,
+     "months_green": "9/12",
+     "months_green_n": 9,
+     "months_total": 12,
+     "max_dd_usd": 10575.31,
+     "pct_of_bar": 27.0
+    },
+    "h2": {
+     "label": "candidate H2",
+     "sessions": 249,
+     "trades": 246,
+     "fires_per_day": 0.988,
+     "usd_day": -78.5,
+     "mean_r": -0.0795,
+     "win_pct": 42.3,
+     "months_green": "1/13",
+     "months_green_n": 1,
+     "months_total": 13,
+     "max_dd_usd": 22719.96,
+     "pct_of_bar": -19.8
+    }
+   },
+   "h1_delta_usd_day": -28.33,
+   "h2_delta_usd_day": -10.65,
+   "recall": {
+    "probe_s_sweep_34": {
+     "n": 34,
+     "baseline_pct": 44.1,
+     "candidate_pct": 14.7
+    },
+    "bar_backed_s_days_canonical_pool": {
+     "n": 345,
+     "baseline_pct": 49.0,
+     "candidate_pct": 18.3
+    }
+   },
+   "precision": {
+    "baseline": {
+     "pct": 30.5,
+     "s": 18,
+     "graded": 59
+    },
+    "candidate": {
+     "pct": 33.3,
+     "s": 17,
+     "graded": 51
+    }
+   },
+   "survivor": false
+  },
+  "bars_form": {
+   "candidate": {
+    "all": {
+     "label": "candidate (whole book)",
+     "sessions": 498,
+     "trades": 495,
+     "fires_per_day": 0.994,
+     "usd_day": -29.12,
+     "mean_r": -0.0293,
+     "win_pct": 44.5,
+     "months_green": "11/25",
+     "months_green_n": 11,
+     "months_total": 25,
+     "max_dd_usd": 36683.57,
+     "pct_of_bar": -7.3
+    },
+    "h1": {
+     "label": "candidate H1",
+     "sessions": 249,
+     "trades": 247,
+     "fires_per_day": 0.992,
+     "usd_day": 73.44,
+     "mean_r": 0.074,
+     "win_pct": 48.4,
+     "months_green": "7/12",
+     "months_green_n": 7,
+     "months_total": 12,
+     "max_dd_usd": 18988.27,
+     "pct_of_bar": 18.5
+    },
+    "h2": {
+     "label": "candidate H2",
+     "sessions": 249,
+     "trades": 248,
+     "fires_per_day": 0.996,
+     "usd_day": -131.68,
+     "mean_r": -0.1322,
+     "win_pct": 40.7,
+     "months_green": "4/13",
+     "months_green_n": 4,
+     "months_total": 13,
+     "max_dd_usd": 36683.57,
+     "pct_of_bar": -33.2
+    }
+   },
+   "h1_delta_usd_day": -62.27,
+   "h2_delta_usd_day": -63.83,
+   "recall": {
+    "probe_s_sweep_34": {
+     "n": 34,
+     "baseline_pct": 44.1,
+     "candidate_pct": 32.4
+    },
+    "bar_backed_s_days_canonical_pool": {
+     "n": 345,
+     "baseline_pct": 49.0,
+     "candidate_pct": 34.5
+    }
+   },
+   "precision": {
+    "baseline": {
+     "pct": 30.5,
+     "s": 18,
+     "graded": 59
+    },
+    "candidate": {
+     "pct": 34.0,
+     "s": 18,
+     "graded": 53
+    }
+   },
+   "survivor": false
+  }
+ },
+ "survivor": false,
+ "survivor_basis": "book_proxy arm (the row's specced predicate); bars_form is the causal cross-check, reported not averaged in",
+ "survivor_rule": "H1 and H2 both improve $/day or precision, and recall_100 (both recall panels) not below baseline"
+}
