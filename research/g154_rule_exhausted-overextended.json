@@ -1,0 +1,249 @@
+{
+  "candidate": "exhausted-overextended",
+  "row": "F5",
+  "polarity": "refusal-indicator",
+  "predicate_arm1": "drop fired candidate if 'exhausted' in downgrades (downgrade.exhausted @ EXHAUSTED_ATR=10.0)",
+  "predicate_arm2": "drop fired candidate if recomputed extension (data_archive, signal bar only) >= threshold; sweep over (1.5, 2.0, 2.5, 3.0) ATR",
+  "book": "bt2y_trades_retest_on.json",
+  "sessions_total": 498,
+  "fired_rows_total": 10830,
+  "fired_rows_exhausted_flagged": 1066,
+  "candidates_per_day_flagged": 2.1406,
+  "extension_missing_bars": 0,
+  "results": {
+    "baseline": {
+      "overall": {
+        "usd_day": 33.94,
+        "mean_r": 0.0339,
+        "win_rate": 0.4639,
+        "n_trades": 498,
+        "months_green": "13/25",
+        "max_dd_usd": -21404.68
+      },
+      "H1": {
+        "usd_day": 135.71,
+        "mean_r": 0.1357,
+        "win_rate": 0.494,
+        "n_trades": 249,
+        "months_green": "9/12",
+        "max_dd_usd": -13978.64
+      },
+      "H2": {
+        "usd_day": -67.84,
+        "mean_r": -0.0678,
+        "win_rate": 0.4337,
+        "n_trades": 249,
+        "months_green": "4/13",
+        "max_dd_usd": -21404.68
+      },
+      "fires_per_day": 1.0,
+      "recall_100": 0.0588,
+      "recall_all_s_days": 0.0519,
+      "precision": 0.3051,
+      "fired_days": 498,
+      "fired_days_judged": 59,
+      "fired_days_graded_s": 18
+    },
+    "arm1_flag_drop": {
+      "overall": {
+        "usd_day": 33.94,
+        "mean_r": 0.0339,
+        "win_rate": 0.4639,
+        "n_trades": 498,
+        "months_green": "13/25",
+        "max_dd_usd": -21404.68
+      },
+      "H1": {
+        "usd_day": 135.71,
+        "mean_r": 0.1357,
+        "win_rate": 0.494,
+        "n_trades": 249,
+        "months_green": "9/12",
+        "max_dd_usd": -13978.64
+      },
+      "H2": {
+        "usd_day": -67.84,
+        "mean_r": -0.0678,
+        "win_rate": 0.4337,
+        "n_trades": 249,
+        "months_green": "4/13",
+        "max_dd_usd": -21404.68
+      },
+      "fires_per_day": 1.0,
+      "recall_100": 0.0588,
+      "recall_all_s_days": 0.0519,
+      "precision": 0.3051,
+      "fired_days": 498,
+      "fired_days_judged": 59,
+      "fired_days_graded_s": 18
+    },
+    "sweep_1.5": {
+      "overall": {
+        "usd_day": 18.87,
+        "mean_r": 0.0225,
+        "win_rate": 0.4197,
+        "n_trades": 417,
+        "months_green": "15/25",
+        "max_dd_usd": -30465.86
+      },
+      "H1": {
+        "usd_day": 87.59,
+        "mean_r": 0.1085,
+        "win_rate": 0.4428,
+        "n_trades": 201,
+        "months_green": "8/12",
+        "max_dd_usd": -8865.83
+      },
+      "H2": {
+        "usd_day": -49.86,
+        "mean_r": -0.0575,
+        "win_rate": 0.3981,
+        "n_trades": 216,
+        "months_green": "7/13",
+        "max_dd_usd": -30465.86
+      },
+      "fires_per_day": 0.8373,
+      "recall_100": 0.0294,
+      "recall_all_s_days": 0.0403,
+      "precision": 0.2642,
+      "fired_days": 417,
+      "fired_days_judged": 53,
+      "fired_days_graded_s": 14
+    },
+    "sweep_2.0": {
+      "overall": {
+        "usd_day": 35.24,
+        "mean_r": 0.0383,
+        "win_rate": 0.4498,
+        "n_trades": 458,
+        "months_green": "13/25",
+        "max_dd_usd": -22473.17
+      },
+      "H1": {
+        "usd_day": 99.41,
+        "mean_r": 0.1086,
+        "win_rate": 0.4649,
+        "n_trades": 228,
+        "months_green": "6/12",
+        "max_dd_usd": -13779.85
+      },
+      "H2": {
+        "usd_day": -28.93,
+        "mean_r": -0.0313,
+        "win_rate": 0.4348,
+        "n_trades": 230,
+        "months_green": "7/13",
+        "max_dd_usd": -22473.17
+      },
+      "fires_per_day": 0.9197,
+      "recall_100": 0.0588,
+      "recall_all_s_days": 0.0548,
+      "precision": 0.322,
+      "fired_days": 458,
+      "fired_days_judged": 59,
+      "fired_days_graded_s": 19
+    },
+    "sweep_2.5": {
+      "overall": {
+        "usd_day": -11.14,
+        "mean_r": -0.0114,
+        "win_rate": 0.4303,
+        "n_trades": 488,
+        "months_green": "11/25",
+        "max_dd_usd": -27943.83
+      },
+      "H1": {
+        "usd_day": 48.87,
+        "mean_r": 0.0499,
+        "win_rate": 0.4385,
+        "n_trades": 244,
+        "months_green": "6/12",
+        "max_dd_usd": -15876.23
+      },
+      "H2": {
+        "usd_day": -71.15,
+        "mean_r": -0.0726,
+        "win_rate": 0.4221,
+        "n_trades": 244,
+        "months_green": "5/13",
+        "max_dd_usd": -25815.82
+      },
+      "fires_per_day": 0.9799,
+      "recall_100": 0.0882,
+      "recall_all_s_days": 0.0634,
+      "precision": 0.386,
+      "fired_days": 488,
+      "fired_days_judged": 57,
+      "fired_days_graded_s": 22
+    },
+    "sweep_3.0": {
+      "overall": {
+        "usd_day": 22.8,
+        "mean_r": 0.0231,
+        "win_rate": 0.446,
+        "n_trades": 491,
+        "months_green": "13/25",
+        "max_dd_usd": -21994.25
+      },
+      "H1": {
+        "usd_day": 98.97,
+        "mean_r": 0.1002,
+        "win_rate": 0.4715,
+        "n_trades": 246,
+        "months_green": "8/12",
+        "max_dd_usd": -15842.75
+      },
+      "H2": {
+        "usd_day": -53.37,
+        "mean_r": -0.0542,
+        "win_rate": 0.4204,
+        "n_trades": 245,
+        "months_green": "5/13",
+        "max_dd_usd": -21994.25
+      },
+      "fires_per_day": 0.9859,
+      "recall_100": 0.1176,
+      "recall_all_s_days": 0.0778,
+      "precision": 0.4219,
+      "fired_days": 491,
+      "fired_days_judged": 64,
+      "fired_days_graded_s": 27
+    }
+  },
+  "arm1": {
+    "h1_delta_usd_day": 0.0,
+    "h2_delta_usd_day": 0.0,
+    "survivor": false,
+    "days_pick_changed": 0,
+    "days_total": 498
+  },
+  "sweep": {
+    "sweep_1.5": {
+      "survivor": false,
+      "h1_delta_usd_day": -48.120000000000005,
+      "h2_delta_usd_day": 17.980000000000004
+    },
+    "sweep_2.0": {
+      "survivor": true,
+      "h1_delta_usd_day": -36.30000000000001,
+      "h2_delta_usd_day": 38.910000000000004
+    },
+    "sweep_2.5": {
+      "survivor": true,
+      "h1_delta_usd_day": -86.84,
+      "h2_delta_usd_day": -3.3100000000000023
+    },
+    "sweep_3.0": {
+      "survivor": true,
+      "h1_delta_usd_day": -36.74000000000001,
+      "h2_delta_usd_day": 14.470000000000006
+    }
+  },
+  "best_sweep_threshold": "2.0",
+  "best_sweep": {
+    "h1_delta_usd_day": -36.3,
+    "h2_delta_usd_day": 38.91,
+    "survivor": true
+  },
+  "survivor": true
+}
