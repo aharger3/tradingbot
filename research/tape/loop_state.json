@@ -1,0 +1,19 @@
+{
+  "cycle_count": 1,
+  "consecutive_holds": 1,
+  "target_met": false,
+  "history": [
+    {
+      "cycle": 1,
+      "flag": "MIN_PT1_R",
+      "label": "the 1R first-target rule",
+      "decision": "hold",
+      "dollars_per_day_before": -9.0,
+      "dollars_per_day_after": 29.0,
+      "green_before": 12,
+      "green_after": 12
+    }
+  ],
+  "stop": false,
+  "stop_reason": null
+}
