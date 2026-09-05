@@ -1,0 +1,215 @@
+{
+ "book": "bt2y_trades_retest_on.json",
+ "sessions": 498,
+ "candidates": 8227,
+ "split_day": "2025-09-01",
+ "bar_per_day": 397.0,
+ "arms": {
+  "CLOSE": {
+   "combined": {
+    "trades": 498,
+    "win_pct": 46.5,
+    "total_dollars": 16899.0,
+    "mean_r": 0.0339,
+    "per_day": 34.0,
+    "per_month": 679.0,
+    "months_green": 13,
+    "months": 25,
+    "weeks_green": 46,
+    "weeks": 105,
+    "worst_drawdown": 21405.0
+   },
+   "H1": {
+    "trades": 249,
+    "win_pct": 49.6,
+    "total_dollars": 33793.0,
+    "mean_r": 0.1357,
+    "per_day": 136.0,
+    "per_month": 2714.0,
+    "months_green": 9,
+    "months": 12,
+    "weeks_green": 29,
+    "weeks": 52,
+    "worst_drawdown": 13979.0
+   },
+   "H2": {
+    "trades": 249,
+    "win_pct": 43.4,
+    "total_dollars": -16894.0,
+    "mean_r": -0.0678,
+    "per_day": -68.0,
+    "per_month": -1357.0,
+    "months_green": 4,
+    "months": 13,
+    "weeks_green": 17,
+    "weeks": 53,
+    "worst_drawdown": 21405.0
+   },
+   "pct_of_bar_combined": 8.6,
+   "rows_priced": 8227
+  },
+  "MID25": {
+   "combined": {
+    "trades": 497,
+    "win_pct": 47.2,
+    "total_dollars": 49665.0,
+    "mean_r": 0.0999,
+    "per_day": 100.0,
+    "per_month": 1995.0,
+    "months_green": 16,
+    "months": 25,
+    "weeks_green": 54,
+    "weeks": 105,
+    "worst_drawdown": 27488.0
+   },
+   "H1": {
+    "trades": 249,
+    "win_pct": 47.6,
+    "total_dollars": 40899.0,
+    "mean_r": 0.1643,
+    "per_day": 164.0,
+    "per_month": 3285.0,
+    "months_green": 8,
+    "months": 12,
+    "weeks_green": 28,
+    "weeks": 52,
+    "worst_drawdown": 18395.0
+   },
+   "H2": {
+    "trades": 248,
+    "win_pct": 46.8,
+    "total_dollars": 8766.0,
+    "mean_r": 0.0353,
+    "per_day": 35.0,
+    "per_month": 704.0,
+    "months_green": 8,
+    "months": 13,
+    "weeks_green": 26,
+    "weeks": 53,
+    "worst_drawdown": 27488.0
+   },
+   "pct_of_bar_combined": 25.2,
+   "rows_priced": 7609
+  },
+  "MID50": {
+   "combined": {
+    "trades": 490,
+    "win_pct": 36.5,
+    "total_dollars": 44973.0,
+    "mean_r": 0.0918,
+    "per_day": 90.0,
+    "per_month": 1806.0,
+    "months_green": 15,
+    "months": 25,
+    "weeks_green": 52,
+    "weeks": 105,
+    "worst_drawdown": 23116.0
+   },
+   "H1": {
+    "trades": 244,
+    "win_pct": 38.9,
+    "total_dollars": 44780.0,
+    "mean_r": 0.1835,
+    "per_day": 180.0,
+    "per_month": 3597.0,
+    "months_green": 9,
+    "months": 12,
+    "weeks_green": 26,
+    "weeks": 52,
+    "worst_drawdown": 16475.0
+   },
+   "H2": {
+    "trades": 246,
+    "win_pct": 34.1,
+    "total_dollars": 194.0,
+    "mean_r": 0.0008,
+    "per_day": 1.0,
+    "per_month": 16.0,
+    "months_green": 6,
+    "months": 13,
+    "weeks_green": 26,
+    "weeks": 53,
+    "worst_drawdown": 23116.0
+   },
+   "pct_of_bar_combined": 22.7,
+   "rows_priced": 7076
+  },
+  "MID75": {
+   "combined": {
+    "trades": 449,
+    "win_pct": 28.1,
+    "total_dollars": -23351.0,
+    "mean_r": -0.052,
+    "per_day": -47.0,
+    "per_month": -938.0,
+    "months_green": 8,
+    "months": 25,
+    "weeks_green": 41,
+    "weeks": 105,
+    "worst_drawdown": 54989.0
+   },
+   "H1": {
+    "trades": 212,
+    "win_pct": 33.5,
+    "total_dollars": 5597.0,
+    "mean_r": 0.0264,
+    "per_day": 22.0,
+    "per_month": 450.0,
+    "months_green": 5,
+    "months": 12,
+    "weeks_green": 20,
+    "weeks": 52,
+    "worst_drawdown": 26655.0
+   },
+   "H2": {
+    "trades": 237,
+    "win_pct": 23.2,
+    "total_dollars": -28948.0,
+    "mean_r": -0.1221,
+    "per_day": -116.0,
+    "per_month": -2325.0,
+    "months_green": 3,
+    "months": 13,
+    "weeks_green": 21,
+    "weeks": 53,
+    "worst_drawdown": 54039.0
+   },
+   "pct_of_bar_combined": -11.8,
+   "rows_priced": 6397
+  }
+ },
+ "categories": {
+  "H1": {
+   "mid-fillable": 2954,
+   "never-returns": 286,
+   "close-only": 220
+  },
+  "ALL": {
+   "mid-fillable": 7096,
+   "never-returns": 578,
+   "close-only": 514
+  },
+  "H2": {
+   "mid-fillable": 4142,
+   "close-only": 294,
+   "never-returns": 331
+  }
+ },
+ "nofill": {
+  "MID25": {
+   "limit_never_touched": 578,
+   "no_bars_after_signal": 39,
+   "risk_collapsed": 1
+  },
+  "MID50": {
+   "limit_never_touched": 1092,
+   "no_bars_after_signal": 39,
+   "risk_collapsed": 20
+  },
+  "MID75": {
+   "limit_never_touched": 1649,
+   "risk_collapsed": 142,
+   "no_bars_after_signal": 39
+  }
+ }
+}
