@@ -1,0 +1,259 @@
+{
+  "meta": {
+    "book": "bt2y_trades_retest_on.json",
+    "index_pool": [
+      "IWM",
+      "QQQ",
+      "SPY"
+    ],
+    "candidates_pre_map": 234,
+    "mapped_days": 234,
+    "dropped": {},
+    "h1_h2_split": "2025-09-01"
+  },
+  "ratio": {
+    "SPY": {
+      "n_days": 626,
+      "mean": 10.073,
+      "stdev": 0.0379,
+      "min": 9.8795,
+      "max": 10.168,
+      "latest": 10.0261
+    },
+    "QQQ": {
+      "n_days": 626,
+      "mean": 41.3024,
+      "stdev": 0.1578,
+      "min": 40.3887,
+      "max": 41.7342,
+      "latest": 41.1222
+    },
+    "IWM": {
+      "n_days": 626,
+      "mean": 10.1163,
+      "stdev": 0.0379,
+      "min": 9.8867,
+      "max": 10.3063,
+      "latest": 10.0557
+    }
+  },
+  "money": {
+    "full": {
+      "days": 234,
+      "total": -2768.58,
+      "per_day": -11.83,
+      "win_pct": 48.3,
+      "green_months": 12,
+      "months": 24,
+      "first_day": "2024-09-03",
+      "last_day": "2026-08-21"
+    },
+    "H1_before_2025-09-01": {
+      "days": 112,
+      "total": 5413.78,
+      "per_day": 48.34,
+      "win_pct": 49.1,
+      "green_months": 7,
+      "months": 12,
+      "first_day": "2024-09-03",
+      "last_day": "2025-08-29"
+    },
+    "H2_from_2025-09-01": {
+      "days": 122,
+      "total": -8182.35,
+      "per_day": -67.07,
+      "win_pct": 47.5,
+      "green_months": 5,
+      "months": 12,
+      "first_day": "2025-09-04",
+      "last_day": "2026-08-21"
+    }
+  },
+  "firms": [
+    {
+      "firm": "Topstep 50K Combine",
+      "passed": false,
+      "fail_reason": "trailing_drawdown",
+      "days_used": 13,
+      "months_to_resolve": 1,
+      "cost": 49,
+      "final_equity": -1616.0,
+      "net_after_cost": -1665.0,
+      "rolling_252_windows": 1,
+      "rolling_252_pass_rate_pct": 0.0
+    },
+    {
+      "firm": "Topstep 100K Combine",
+      "passed": false,
+      "fail_reason": "trailing_drawdown",
+      "days_used": 14,
+      "months_to_resolve": 1,
+      "cost": 99,
+      "final_equity": -2603.78,
+      "net_after_cost": -2702.78,
+      "rolling_252_windows": 1,
+      "rolling_252_pass_rate_pct": 0.0
+    },
+    {
+      "firm": "Topstep 150K Combine",
+      "passed": false,
+      "fail_reason": "trailing_drawdown",
+      "days_used": 18,
+      "months_to_resolve": 1,
+      "cost": 149,
+      "final_equity": -4752.55,
+      "net_after_cost": -4901.55,
+      "rolling_252_windows": 1,
+      "rolling_252_pass_rate_pct": 0.0
+    },
+    {
+      "firm": "Apex 50K Eval EOD",
+      "passed": false,
+      "fail_reason": "trailing_drawdown",
+      "days_used": 14,
+      "months_to_resolve": 1,
+      "cost": 35,
+      "final_equity": -2603.78,
+      "net_after_cost": -2638.78,
+      "rolling_252_windows": 1,
+      "rolling_252_pass_rate_pct": 0.0
+    },
+    {
+      "firm": "Apex 100K Eval EOD",
+      "passed": false,
+      "fail_reason": "trailing_drawdown",
+      "days_used": 14,
+      "months_to_resolve": 1,
+      "cost": 85,
+      "final_equity": -2603.78,
+      "net_after_cost": -2688.78,
+      "rolling_252_windows": 1,
+      "rolling_252_pass_rate_pct": 0.0
+    },
+    {
+      "firm": "Apex 150K Eval EOD",
+      "passed": false,
+      "fail_reason": "trailing_drawdown",
+      "days_used": 18,
+      "months_to_resolve": 1,
+      "cost": 105,
+      "final_equity": -4752.55,
+      "net_after_cost": -4857.55,
+      "rolling_252_windows": 1,
+      "rolling_252_pass_rate_pct": 0.0
+    },
+    {
+      "firm": "TPT Test 50K",
+      "passed": false,
+      "fail_reason": "trailing_drawdown",
+      "days_used": 13,
+      "months_to_resolve": 1,
+      "cost": 102,
+      "final_equity": -1616.0,
+      "net_after_cost": -1718.0,
+      "rolling_252_windows": 1,
+      "rolling_252_pass_rate_pct": 0.0
+    },
+    {
+      "firm": "TPT Test 100K",
+      "passed": false,
+      "fail_reason": "trailing_drawdown",
+      "days_used": 14,
+      "months_to_resolve": 1,
+      "cost": 150,
+      "final_equity": -2603.78,
+      "net_after_cost": -2753.78,
+      "rolling_252_windows": 1,
+      "rolling_252_pass_rate_pct": 0.0
+    },
+    {
+      "firm": "TPT Test 150K",
+      "passed": false,
+      "fail_reason": "trailing_drawdown",
+      "days_used": 18,
+      "months_to_resolve": 1,
+      "cost": 200,
+      "final_equity": -4752.55,
+      "net_after_cost": -4952.55,
+      "rolling_252_windows": 1,
+      "rolling_252_pass_rate_pct": 0.0
+    },
+    {
+      "firm": "MFFU Rapid 50K",
+      "passed": false,
+      "fail_reason": "trailing_drawdown",
+      "days_used": 13,
+      "months_to_resolve": 1,
+      "cost": 80,
+      "final_equity": -1616.0,
+      "net_after_cost": -1696.0,
+      "rolling_252_windows": 1,
+      "rolling_252_pass_rate_pct": 0.0
+    },
+    {
+      "firm": "MFFU Rapid 100K",
+      "passed": false,
+      "fail_reason": "trailing_drawdown",
+      "days_used": 14,
+      "months_to_resolve": 1,
+      "cost": 150,
+      "final_equity": -2603.78,
+      "net_after_cost": -2753.78,
+      "rolling_252_windows": 1,
+      "rolling_252_pass_rate_pct": 0.0
+    },
+    {
+      "firm": "Earn2Trade TCP 25K",
+      "passed": false,
+      "fail_reason": "daily_loss_limit",
+      "days_used": 1,
+      "months_to_resolve": 1,
+      "cost": 150,
+      "final_equity": 0.0,
+      "net_after_cost": -150.0,
+      "rolling_252_windows": 1,
+      "rolling_252_pass_rate_pct": 0.0
+    },
+    {
+      "firm": "OneUp 100K",
+      "passed": false,
+      "fail_reason": "trailing_drawdown",
+      "days_used": 15,
+      "months_to_resolve": 1,
+      "cost": 105,
+      "final_equity": -3590.46,
+      "net_after_cost": -3695.46,
+      "rolling_252_windows": 1,
+      "rolling_252_pass_rate_pct": 0.0
+    },
+    {
+      "firm": "Lucid Trading",
+      "passed": null,
+      "fail_reason": "BLOCKED",
+      "days_used": null,
+      "months_to_resolve": null,
+      "cost": null,
+      "final_equity": null,
+      "net_after_cost": null,
+      "rolling_252_windows": null,
+      "rolling_252_pass_rate_pct": null,
+      "note": "P0 (g170_futures_firms_2026-09.md): primary source 403'd on every page; account size/target/drawdown/cost are UNCONFIRMED. No numeric row -- refusing to fabricate one."
+    }
+  ],
+  "overlap_check": {
+    "status": "OK",
+    "es_signals": 3,
+    "spy_signals": 4,
+    "matched_pairs": 2,
+    "unmatched_es_only": 1,
+    "unmatched_spy_only": 2,
+    "mes_series_fetched": true,
+    "intrabar_ratio_at_match": {
+      "n": 2,
+      "mean": 10.0367,
+      "stdev": 0.0012,
+      "min": 10.0355,
+      "max": 10.0379
+    }
+  }
+}
