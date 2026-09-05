@@ -43,6 +43,8 @@ Judged (graded) days touched by the repick - this is the entire basis for the pr
 
 Precision moves 18/59 -> 19/60. That is **+1 S day and +1 graded day**. A single card is the whole survivor verdict.
 
+And that card is `COIN_2025-06-26`. On that day the rule dropped NFLX@09:44 (**+$37.84**) and took COIN@09:49 instead, which booked the **full -1R, -$1,000.00**. The precision gain is the arm trading one more day Austin graded S and losing the maximum on it. Precision here counts the label, not the outcome - the rule bought +1.2 precision points for -$1,038 on that one day.
+
 ## 4. The $/day delta is noise, and it points the wrong way
 
 Paired day-level bootstrap, 4000 resamples over the 498 sessions: point **$-4.0/day**, 95% CI **[$-14.1, $7.39]**, P(delta > 0) = **0.2162**.
