@@ -67,21 +67,34 @@ TRADED = frozenset(BACKTEST_SYMBOLS)
 # So the mapping below is a REPORTING CONVENTION, declared out loud, not a claim
 # that the two scales measure the same thing:
 #
-#   engine A+  -> his S    both are the ladder's top: zero downgrades, full size
-#   engine A   -> his A    \  his ladder has ONE rung between top and bottom and
-#   engine B   -> his A    /  the engine has two; both collapse onto his A
-#   engine C   -> his C    both are the bottom tradeable rung
+#   engine A+  -> his S    kept for OLD data only -- pre-2026-08-30 runs/logs
+#                          still carry this letter; nothing produces it now
+#   engine A   -> his S    the ladder's top: zero downgrades, full size
+#   engine B   -> his A    the one rung between top and bottom
+#   engine C   -> his C    the bottom tradeable rung
 #   engine (silent) -> his X   it did not fire, which is its refusal
+#
+# 2026-08-30 (394bcfe0, "Retire A+ and route the live path on his S grade
+# instead"): `_grade_pa` stopped emitting the string "A+" -- `CLEAR_FOR_APLUS`'s
+# full-stack promotion now writes `TradeGrade.A` (the new top grade) where it
+# used to write `TradeGrade.A_PLUS`, and the old `TradeGrade.A` rung (his A)
+# shifted to nothing but `TradeGrade.B`. This mapping did not move with it
+# until B3 (bug B-01): `A -> his A` was left stale, so scoring the CURRENT
+# engine's own output read every `S`-grade day (which fires the engine's `A`)
+# as his `A`, and `research/test_downgrade_grader.py`'s round trip against
+# `signal_runner.DOWNGRADE_TIER` (`S -> A, A -> B`, unchanged and correct)
+# failed on exactly this. `A+` stays in the table for old data; `A` now joins
+# it as his `S`, and `B` alone is his `A`.
 #
 # Every table below prints the engine's own letter in the header next to his, so
 # the two ladders are never silently merged into one column.
-LADDER = {"A+": "S", "A": "A", "B": "A", "C": "C", None: "X"}
+LADDER = {"A+": "S", "A": "S", "B": "A", "C": "C", None: "X"}
 ENGINE_TIER_RANK = {"A+": 4, "A": 3, "B": 2, "C": 1}
 HIS_GRADES = ["S", "A", "C"]            # the 58 he graded as tradeable
 COLS = ["S", "A", "C", "X"]             # his ladder, as the engine's tiers map onto it
 COL_LABEL = {
-    "S": "A+ (his S)",
-    "A": "A / B (his A)",
+    "S": "A+/A (his S)",
+    "A": "B (his A)",
     "C": "C (his C)",
     "X": "silent (his X)",
 }
