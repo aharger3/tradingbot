@@ -221,6 +221,23 @@ BNR_DISPLACEMENT_GATE = os.getenv("BNR_DISPLACEMENT_GATE", "1").strip().lower() 
 RETEST_REQUIRED = os.getenv("RETEST_REQUIRED", "1").strip().lower() \
     in ("1", "true", "yes", "on")
 
+# OMEN 9.0 F7, g156 (2026-09-05): the S classifier v0, selection-time gate on
+# the fired candidate. DEFAULT OFF. Zero of the 25 candidates mined from
+# Austin's marks (research/g154_rule_*.py) survived F6 refutation
+# (research/g155_rule_verdicts.md, all 8 survivors refuted 3x each). This flag
+# ships the single best NON-refuted candidate anyway, per the row's own
+# fallback instruction: research/g154_rule_or-break-without-retest.py --
+# an OR high/OR low break that never retested the level is DROPPED from the
+# candidate stream (not merely capped to C, which RETEST_REQUIRED already
+# does and which still trades). Both H1 and H2 improve $/day
+# (+$8.56 / +$18.46), precision is flat (30.5%->30.5%), but bar-backed S
+# recall dips 49.0%->48.7% -- 0.3pp below baseline, which is why F5's own
+# criterion marked it NOT a survivor. See research/g156_s_classifier_v0.md
+# for the honest read: this does not clear the 39.5% precision bar.
+S_CLASSIFIER = os.getenv("S_CLASSIFIER", "0").strip().lower() \
+    in ("1", "true", "yes", "on")
+_S_CLASSIFIER_OR_LEVELS = ("OR high", "OR low")
+
 # Austin trade-notes review 2026-07-06 (91 trades): "middle of a bunch of levels,
 # probability goes down significantly"; likes trades where new HOD/LOD can be hit.
 # R25 (Austin, probe_master_2026-08-29, fact_level_block -> `target`):
@@ -2705,6 +2722,25 @@ class SignalRunner:
             if bar - last >= LEVEL_RETIRE_COOLDOWN:
                 self._level_br_count[lv_key] = (done + 1, bar)
         self._apply_x_lift(sig)
+        # OMEN 9.0 F7 / g156 S_CLASSIFIER (default OFF): DROP, not cap, an
+        # OR high/OR low break that never retested the level. Same no_retest
+        # check as RETEST_REQUIRED above, scoped to the two OR levels and
+        # acting on any non-skip grade (RETEST_REQUIRED may have already
+        # capped this same row to C -- a C still trades, so the drop below
+        # is the part RETEST_REQUIRED does not do). Placed AFTER
+        # _apply_x_lift on purpose: X_LIFT exists to rescue X-graded rows,
+        # and a drop applied before it would just get lifted straight back
+        # to B, which is exactly what the first version of this gate did.
+        # See flag docstring above and research/g156_s_classifier_v0.md.
+        if S_CLASSIFIER and sig["grade"] not in _SKIP_GRADES \
+                and sig.get("stop_level_name") in _S_CLASSIFIER_OR_LEVELS:
+            from research import downgrade as dg   # never caught, see above
+            level = sig.get("stop")
+            bars = self._dg_bars() if self.candles else []
+            if bars and level is not None and dg.no_retest(
+                    bars, len(bars) - 1, level, sig.get("direction") == "call"):
+                sig["grade"] = TradeGrade.X.value
+                sig["reason"] += " [drop: S_CLASSIFIER OR-break no retest]"
         if sig["grade"] not in _SKIP_GRADES:
             # omen-3.9 T5: enforce clause 3 as a routing rule. Once an idea
             # (symbol, direction, level NAME) has been accepted this session, a
