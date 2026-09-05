@@ -1,0 +1,89 @@
+{
+  "base": {
+    "overall": {
+      "n": 498,
+      "usd_day": 33.93,
+      "mean_r": 0.0339,
+      "win_pct": 46.5,
+      "green_months": 13,
+      "months": 25,
+      "max_dd": -21404.68
+    },
+    "H1": {
+      "n": 249,
+      "usd_day": 135.71,
+      "mean_r": 0.1357,
+      "win_pct": 49.6,
+      "green_months": 9,
+      "months": 12,
+      "max_dd": -13978.64
+    },
+    "H2": {
+      "n": 249,
+      "usd_day": -67.85,
+      "mean_r": -0.0678,
+      "win_pct": 43.4,
+      "green_months": 4,
+      "months": 13,
+      "max_dd": -21404.68
+    }
+  },
+  "routed": {
+    "overall": {
+      "n": 498,
+      "usd_day": 46.93,
+      "mean_r": 0.0469,
+      "win_pct": 35.1,
+      "green_months": 12,
+      "months": 25,
+      "max_dd": -28793.94
+    },
+    "H1": {
+      "n": 249,
+      "usd_day": 145.44,
+      "mean_r": 0.1454,
+      "win_pct": 38.2,
+      "green_months": 7,
+      "months": 12,
+      "max_dd": -14986.67
+    },
+    "H2": {
+      "n": 249,
+      "usd_day": -51.58,
+      "mean_r": -0.0516,
+      "win_pct": 32.1,
+      "green_months": 5,
+      "months": 13,
+      "max_dd": -28793.94
+    }
+  },
+  "placebo": {
+    "overall": {
+      "n": 498,
+      "usd_day": 46.93,
+      "mean_r": 0.0469,
+      "win_pct": 35.1,
+      "green_months": 12,
+      "months": 25,
+      "max_dd": -28793.94
+    },
+    "H1": {
+      "n": 249,
+      "usd_day": 145.44,
+      "mean_r": 0.1454,
+      "win_pct": 38.2,
+      "green_months": 7,
+      "months": 12,
+      "max_dd": -14986.67
+    },
+    "H2": {
+      "n": 249,
+      "usd_day": -51.58,
+      "mean_r": -0.0516,
+      "win_pct": 32.1,
+      "green_months": 5,
+      "months": 13,
+      "max_dd": -28793.94
+    }
+  }
+}
