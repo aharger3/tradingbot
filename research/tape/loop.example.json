@@ -1,0 +1,24 @@
+{
+  "_comment": "Template for research/loop_cycle.py's --config. R3 (the baseline verdict, blocked_by nothing else in O4) fills in the real values once it lands -- do not guess its answer here. Copy this file to research/tape/loop.json and edit the fields below; every field is documented in research/tape/README.md's 'loop_cycle' section.",
+
+  "baseline_book": "research/tape/CHANGE_ME_r3_baseline.json.gz",
+
+  "unit": "first_of_day",
+
+  "rebuild": {
+    "script": "backtest_2y.py",
+    "args": ["--days", "730"],
+    "env": {}
+  },
+
+  "halves_boundary": "2025-09-01",
+
+  "targets": {
+    "dollars_per_day": 500,
+    "avg_win_over_avg_loss": 2.0
+  },
+
+  "gate": {
+    "max_dollar_drop_pct": 5.0
+  }
+}

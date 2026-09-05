@@ -54,6 +54,12 @@ research/.corpus_status_mark
 # logs and scratch
 *.log
 *.err
+
+# O4: research/loop_cycle.py's per-rebuild subprocess logs -- one per book, per
+# cycle. *.log above already covers these; named explicitly because the
+# stamped books beside them (research/tape/book_<flag>_<on|off>.json.gz) and
+# the cycle ledger (research/tape/cycles.md) ARE the record and stay tracked.
+research/tape/logs/
 *.bak
 full_backtest_output.txt
 _alp*.py
