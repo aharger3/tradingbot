@@ -81,11 +81,19 @@ import argparse
 #    exception. The backtest computes a real bias on 126,198 of 127,152 rows
 #    (99.2%) via polygon_feed — there is no live yfinance equivalent for the
 #    1h/4h HTF trend read at all; this is a missing capability, not a flag
-#    divergence. `HTF_BIAS_GATE` defaults OFF in both paths, so today this
-#    changes nothing on its own, but it means live can never be tightened by
-#    it and any future HTF-conditioned rule is silently blind live. See the
-#    fetch diagnosis near `main()` for WHY the fallback is being hit on every
-#    symbol right now.
+#    divergence. The gate this starves is `omen_bot.HTF_BIAS_VETO` (default
+#    ON), not `HTF_BIAS_GATE` (a different, unrelated flag in
+#    signal_runner.py, default OFF) — the name this note used to give was
+#    wrong. HTF_BIAS_VETO's `opposed` check (omen_bot.py:255) requires
+#    `htf_bias in ('bullish', 'bearish')`, so a hardcoded `None` forecloses it
+#    unconditionally: today this changes nothing live, same conclusion as
+#    before, but for the reason above, not because the veto defaults off — it
+#    does not. In the 2-year backtest, where a real bias is computed, this
+#    same veto grades 1,699 of 4,022 traded rows (42.2%, aligned=='against')
+#    down to D (research/bt2y_trades_retest_on.json). It means live can never
+#    be tightened by it and any future HTF-conditioned rule is silently blind
+#    live. See the fetch diagnosis near `main()` for WHY the fallback is
+#    being hit on every symbol right now.
 #    STATUS: cannot be fixed inside this file — needs either a Tastytrade
 #    fetch_htf_bias that returns, or a real yfinance-sourced HTF computation,
 #    which exists nowhere in this repo today. BLOCKER.

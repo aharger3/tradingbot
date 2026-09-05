@@ -179,3 +179,49 @@ which this row says not to ship. No change made to `signal_runner.py`.
   not shipped.
 - `python research/regression_gate.py` and `python research/test_runner_stop.py`: both pass,
   unaffected.
+
+---
+
+# g182 — B3 (bug B-03): HTF_BIAS_VETO blocker note named the wrong flag
+
+What is different now: `live_scanner.py`'s item-4 blocker note (lines ~79-91) names
+`omen_bot.HTF_BIAS_VETO` (default ON — the flag that actually grades traded backtest rows
+down to D) instead of `HTF_BIAS_GATE` (an unrelated flag in `signal_runner.py`, default
+OFF, that has nothing to do with this veto). No runtime code changed.
+
+## Confirmed and fixed: stale/wrong flag name in the blocker note
+
+Failing input: the note said `` `HTF_BIAS_GATE` defaults OFF in both paths, so today this
+changes nothing on its own``. `HTF_BIAS_GATE` is real but lives in `signal_runner.py`
+(a daily-candle trend cap on counter-trend signals, default OFF) — a different mechanism
+from the one this note is actually about. The veto that gates the top grades off `htf_bias`
+is `omen_bot.HTF_BIAS_VETO` (`omen_bot.py:29`, default ON), and in the 2-year backtest,
+where a real bias is computed (99.2% of rows via polygon_feed), it grades 1,699 of 4,022
+traded rows (42.2%, `aligned=='against'`) down to D
+(`research/bt2y_trades_retest_on.json`). The note's *conclusion* — that this changes nothing
+live today — was still correct, but for the wrong reason: it is because live_scanner's
+yfinance fallback hardcodes `htf_bias=None` on every symbol, and `HTF_BIAS_VETO`'s `opposed`
+check (`omen_bot.py:255`) requires `htf_bias in ('bullish', 'bearish')`, not because
+`HTF_BIAS_GATE` defaults off (that flag was never in the loop here at all).
+
+Fix: corrected the note to name `HTF_BIAS_VETO`, state the 42.2% traded-row figure, and
+attribute the live no-op to the hardcoded `None` bias and the `opposed` check's guard.
+`HTF_BIAS_VETO`'s default (ON) and `omen_bot.py:255`'s guard are untouched — this is a
+doc-only correction inside a comment block. Live signal counts and backtest grades are
+byte-identical before and after.
+
+Test: `research/test_g182_b3_htf_bias_veto_note.py` (new) — asserts `omen_bot.HTF_BIAS_VETO`
+defaults `True`, and that the item-4 note names `HTF_BIAS_VETO` and states the 42.2% figure
+(and, if it mentions `HTF_BIAS_GATE` at all, that it is flagged as a different/unrelated
+flag). Fails on the pre-fix note (wrong flag name, no 42.2% figure), passes on the
+corrected one — 2 passed.
+
+Verify gate: `python research/regression_gate.py && python research/test_runner_stop.py` —
+both PASS, unaffected (comment-only change, no engine module's runtime behaviour moved).
+
+## Status: done
+
+- `live_scanner.py` blocker note: fixed, names the correct flag and figure.
+- `research/test_g182_b3_htf_bias_veto_note.py`: 2 passed.
+- `python research/regression_gate.py` and `python research/test_runner_stop.py`: both
+  pass, unaffected — no behaviour change shipped.
