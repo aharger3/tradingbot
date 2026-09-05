@@ -1,0 +1,270 @@
+{
+  "row": "F5",
+  "slug": "displacement-graded-not-boolean",
+  "predicate": "break_bar = last bar at index<=entry_i whose close crossed level_px in dir direction; disp_ratio = |close-open| of break_bar / mean(|close-open| over 10 bars before it); KEEP disp_ratio >= T",
+  "polarity": "S-indicator",
+  "shipped_boolean": "downgrade.DISP_BODY_MULT = 1.5 -- IS disp_ratio>=1.5, not a separate rule: it is the T=1.5 point below",
+  "thresholds_swept": [
+    1.0,
+    1.5,
+    2.0,
+    2.5
+  ],
+  "shipped_boolean_threshold": 1.5,
+  "default_threshold": 2.0,
+  "n_days_total": 498,
+  "candidates_per_day": 16.52,
+  "baseline": {
+    "overall": {
+      "n": 498,
+      "usd_day": 33.93,
+      "mean_r": 0.0339,
+      "win_pct": 46.5,
+      "green_months": 13,
+      "months": 25,
+      "max_dd": -21404.68
+    },
+    "H1": {
+      "n": 249,
+      "usd_day": 135.71,
+      "mean_r": 0.1357,
+      "win_pct": 49.6,
+      "green_months": 9,
+      "months": 12,
+      "max_dd": -13978.64
+    },
+    "H2": {
+      "n": 249,
+      "usd_day": -67.85,
+      "mean_r": -0.0678,
+      "win_pct": 43.4,
+      "green_months": 4,
+      "months": 13,
+      "max_dd": -21404.68
+    },
+    "fires_per_day": 1.0,
+    "s_recall_100": {
+      "pct": 5.9,
+      "hit": 2,
+      "n": 34
+    },
+    "s_recall_all_bar_backed": {
+      "pct": 5.2,
+      "hit": 18,
+      "n": 347
+    },
+    "precision": {
+      "pct": 30.5,
+      "graded_s": 18,
+      "graded_any": 59
+    }
+  },
+  "arms": {
+    "1.0": {
+      "threshold": 1.0,
+      "is_shipped_boolean": false,
+      "candidates_dropped_pct": 26.82,
+      "overall": {
+        "n": 497,
+        "usd_day": 9.34,
+        "mean_r": 0.0093,
+        "win_pct": 45.3,
+        "green_months": 13,
+        "months": 25,
+        "max_dd": -20985.49
+      },
+      "H1": {
+        "n": 249,
+        "usd_day": 78.26,
+        "mean_r": 0.0783,
+        "win_pct": 46.2,
+        "green_months": 9,
+        "months": 12,
+        "max_dd": -18663.14
+      },
+      "H2": {
+        "n": 248,
+        "usd_day": -59.86,
+        "mean_r": -0.0599,
+        "win_pct": 44.4,
+        "green_months": 4,
+        "months": 13,
+        "max_dd": -19714.8
+      },
+      "fires_per_day": 0.998,
+      "s_recall_100": {
+        "pct": 8.8,
+        "hit": 3,
+        "n": 34
+      },
+      "s_recall_all_bar_backed": {
+        "pct": 6.3,
+        "hit": 22,
+        "n": 347
+      },
+      "precision": {
+        "pct": 36.1,
+        "graded_s": 22,
+        "graded_any": 61
+      }
+    },
+    "1.5": {
+      "threshold": 1.5,
+      "is_shipped_boolean": true,
+      "candidates_dropped_pct": 49.03,
+      "overall": {
+        "n": 495,
+        "usd_day": 7.41,
+        "mean_r": 0.0074,
+        "win_pct": 44.0,
+        "green_months": 12,
+        "months": 25,
+        "max_dd": -34369.24
+      },
+      "H1": {
+        "n": 248,
+        "usd_day": 89.03,
+        "mean_r": 0.089,
+        "win_pct": 45.2,
+        "green_months": 8,
+        "months": 12,
+        "max_dd": -13968.2
+      },
+      "H2": {
+        "n": 247,
+        "usd_day": -74.54,
+        "mean_r": -0.0745,
+        "win_pct": 42.9,
+        "green_months": 4,
+        "months": 13,
+        "max_dd": -22284.95
+      },
+      "fires_per_day": 0.994,
+      "s_recall_100": {
+        "pct": 8.8,
+        "hit": 3,
+        "n": 34
+      },
+      "s_recall_all_bar_backed": {
+        "pct": 4.9,
+        "hit": 17,
+        "n": 347
+      },
+      "precision": {
+        "pct": 34.0,
+        "graded_s": 17,
+        "graded_any": 50
+      }
+    },
+    "2.0": {
+      "threshold": 2.0,
+      "is_shipped_boolean": false,
+      "candidates_dropped_pct": 67.12,
+      "overall": {
+        "n": 482,
+        "usd_day": -36.03,
+        "mean_r": -0.036,
+        "win_pct": 44.4,
+        "green_months": 9,
+        "months": 25,
+        "max_dd": -38420.62
+      },
+      "H1": {
+        "n": 240,
+        "usd_day": 44.24,
+        "mean_r": 0.0442,
+        "win_pct": 46.2,
+        "green_months": 5,
+        "months": 12,
+        "max_dd": -12592.99
+      },
+      "H2": {
+        "n": 242,
+        "usd_day": -115.63,
+        "mean_r": -0.1156,
+        "win_pct": 42.6,
+        "green_months": 4,
+        "months": 13,
+        "max_dd": -33017.26
+      },
+      "fires_per_day": 0.968,
+      "s_recall_100": {
+        "pct": 14.7,
+        "hit": 5,
+        "n": 34
+      },
+      "s_recall_all_bar_backed": {
+        "pct": 5.2,
+        "hit": 18,
+        "n": 347
+      },
+      "precision": {
+        "pct": 38.3,
+        "graded_s": 18,
+        "graded_any": 47
+      }
+    },
+    "2.5": {
+      "threshold": 2.5,
+      "is_shipped_boolean": false,
+      "candidates_dropped_pct": 79.66,
+      "overall": {
+        "n": 438,
+        "usd_day": -100.46,
+        "mean_r": -0.1005,
+        "win_pct": 42.0,
+        "green_months": 8,
+        "months": 25,
+        "max_dd": -50356.71
+      },
+      "H1": {
+        "n": 214,
+        "usd_day": -43.9,
+        "mean_r": -0.0439,
+        "win_pct": 42.5,
+        "green_months": 6,
+        "months": 12,
+        "max_dd": -15309.85
+      },
+      "H2": {
+        "n": 224,
+        "usd_day": -154.5,
+        "mean_r": -0.1545,
+        "win_pct": 41.5,
+        "green_months": 2,
+        "months": 13,
+        "max_dd": -38234.58
+      },
+      "fires_per_day": 0.88,
+      "s_recall_100": {
+        "pct": 8.8,
+        "hit": 3,
+        "n": 34
+      },
+      "s_recall_all_bar_backed": {
+        "pct": 4.3,
+        "hit": 15,
+        "n": 347
+      },
+      "precision": {
+        "pct": 31.2,
+        "graded_s": 15,
+        "graded_any": 48
+      }
+    }
+  },
+  "primary_arm": "2.0",
+  "shipped_boolean_arm": "1.5",
+  "h1_delta_usd_day": -91.47,
+  "h2_delta_usd_day": -47.78,
+  "shipped_h1_delta_usd_day": -46.68,
+  "shipped_h2_delta_usd_day": -6.69,
+  "survivor": true,
+  "candidates_dropped_pct_all_thresholds": {
+    "1.0": 26.82,
+    "1.5": 49.03,
+    "2.0": 67.12,
+    "2.5": 79.66
+  },
+  "notes": "survivor = True only if H1 AND H2 both improve $/day (or precision) and S-recall-100 does not fall below baseline. 'graded beats boolean' is read off this table by comparing the T=1.5 row (the shipped on/off gate, unchanged) against the other three T values on the SAME ratio -- if a different T does better than 1.5, grading beats the boolean; if 1.5 is already best or all four are indistinguishable inside the book's error bar, the boolean was fine and 'graded' buys nothing measurable here."
+}
