@@ -225,3 +225,77 @@ both PASS, unaffected (comment-only change, no engine module's runtime behaviour
 - `research/test_g182_b3_htf_bias_veto_note.py`: 2 passed.
 - `python research/regression_gate.py` and `python research/test_runner_stop.py`: both
   pass, unaffected — no behaviour change shipped.
+
+---
+
+# g182 — B3 (bug B-04): ticket 23's true HTF-flag timeline
+
+What is different now: `spec0b_levels_check.py`'s line-60 assertion (and its comment block)
+matches the shipped `HTF_BIAS_VETO` default (ON) instead of a default that only ever shipped
+for part of one day; `Projects/omen-rulebook.md` in the vault carries a dated correction that
+reconciles ticket 23. No engine module changed.
+
+## Confirmed: the timeline in the ticket
+
+- Unflagged, unconditional D-veto before 2026-08-27.
+- `fdc8e090` (08-27): introduces `HTF_BIAS_VETO` with default `'0'`.
+- `71f39851` (08-27): flips the default to `'1'` (measured: lifting it buys 1.7%, not
+  3,525 — not worth the cost).
+- `f959cff5` (08-28): corrects the docstring to say "SHIPPED DEFAULT" (it had been
+  misreporting the opposite).
+- `d0a38dc9` (09-03, "OMEN 8.0 R4"): adds `HTF_GRADE_VETO`, default OFF, in `omen_bot.py` /
+  `signal_runner.py`, plus `test_htf_grade_veto_default.py`.
+- `git merge-base --is-ancestor d0a38dc9 HEAD` -> yes, it IS an ancestor of the current tree.
+- But `grep -c HTF_GRADE_VETO omen_bot.py` -> `0`, `grep -c HTF_GRADE_VETO signal_runner.py`
+  -> `0`, and `test_htf_grade_veto_default.py` does not exist in the working tree.
+- `python test_htf_bias_veto_default.py` -> all checks pass, asserting the ON default.
+- `omen-rulebook.md:855` says "Deleted 2026-08-28" for `HTF_BIAS_VETO` (true for the earlier,
+  pre-veto-existing episode it describes), but the R4 paragraph directly under it (dated
+  2026-09-03) and the AUGUR paragraph under that already flagged the same contradiction and
+  filed it as ticket 23 rather than resolve it.
+
+Conclusion: `d0a38dc9`'s fix genuinely landed and is a real ancestor commit, but its
+`omen_bot.py`/`signal_runner.py` hunks and its test are not in the working tree today — dropped
+by the 2026-09-03 history rewrite that CLAUDE.md documents for a different reason (the
+`>100MB` books being stripped from history). It was not "never reached main" (it did) and it
+was not a deliberate revert (no revert commit exists) — the rewrite dropped it as a side effect.
+The flag shipping today, and correct as shipped, is `HTF_BIAS_VETO`, default ON
+(`os.getenv("HTF_BIAS_VETO", "1")`, `omen_bot.py:29`), matching the W12 (`f959cff5`) docstring.
+
+## Fixed: `spec0b_levels_check.py`
+
+Line 60 asserted `g_opp == TradeGrade.A_PLUS` under the comment "veto OFF by default" — that
+comment described `d0a38dc9`'s vanished default, not the shipped one, and the assertion crashed
+every run (`AssertionError: TradeGrade.X`) since `d0a38dc9` never took effect in this tree.
+Corrected to assert `g_opp == TradeGrade.D` (the ON-default hard veto), added the mirror check
+that `HTF_BIAS_VETO=0` lifts it back to PA-alone grading, and rewrote the section's comment
+block to name the real timeline instead of the vanished one. Section 4's comment was also
+inaccurate independent of ON/OFF (detect_signals() never filters rows by grade — a D-graded row
+still appears with its downgraded grade, or gets rescued back up by the separate, already-
+shipped T10 `X_LIFT` arm; nothing removes the row); corrected without changing the assertion,
+which already held.
+
+Test: this file's own failing-before/passing-after run. Before: `python spec0b_levels_check.py`
+-> `AssertionError: TradeGrade.X` at line 60. After: `python spec0b_levels_check.py` -> "All
+SPEC0-gap checks passed."
+
+## Deferred: not re-adding `HTF_GRADE_VETO`'s default-OFF behavior
+
+Restoring `d0a38dc9`'s fix (flipping the veto's shipped default to OFF) would change live
+signal counts and trade behaviour beyond this bug: `HTF_BIAS_VETO` grades 1,699 of 4,022 traded
+rows (42.2%) down to D in the 2-year backtest (`research/bt2y_trades_retest_on.json`, cited in
+this same file's B-03 entry). Per this row's instruction, that is out of scope here — this
+entry is a documentation/test reconciliation only, and ships no behaviour change.
+
+Vault: `Projects/omen-rulebook.md`'s "Higher-timeframe bias is not a rule, so it is not a veto"
+section gets a dated correction (2026-09-05) reconciling the W12-vs-R4 conflict its own AUGUR
+paragraph had already flagged and filed as ticket 23 — filed there, not resolved here, per this
+same row's earlier convention.
+
+## Status: done
+
+- `spec0b_levels_check.py`: fixed, `python spec0b_levels_check.py` -> "All SPEC0-gap checks
+  passed."
+- `omen-rulebook.md` (vault): ticket 23 reconciled with a dated correction, no ruling changed.
+- `python research/regression_gate.py` and `python research/test_runner_stop.py`: both pass,
+  unaffected — no engine module's runtime behaviour moved.

@@ -53,25 +53,40 @@ def main():
     g_opp = PriceActionAnalyzer.grade_trade(hammer, lookback, 101.0, 97.0, True, htf_bias="bearish")
     assert g_none == g_up == TradeGrade.A_PLUS, (g_none, g_up)
     assert g_neut == TradeGrade.B, g_neut          # A+/A capped at B when HTF neutral
-    # P16/W3 (2026-08-27): the opposed-bias veto has no author (rule ballot
-    # batch 02 c6: "we dont have any higher timeframe bias yet") and now
-    # defaults OFF -- an opposed hour no longer forces D, it grades on PA
-    # alone. HTF_BIAS_VETO=1 restores the old hard veto.
-    assert g_opp == TradeGrade.A_PLUS, g_opp       # veto OFF by default: graded on PA alone
+    # B-04 / ticket 23 (2026-09-05): the opposed-bias veto has no author (rule
+    # ballot batch 02 c6: "we dont have any higher timeframe bias yet") but the
+    # shipped default is ON -- os.getenv("HTF_BIAS_VETO", "1") -- and has been
+    # since P16/W3 (71f39851, 2026-08-27); the docstring correction f959cff5
+    # (2026-08-28) already says so ("SHIPPED DEFAULT"). An opposed hour hard-
+    # vetoes to D by default; HTF_BIAS_VETO=0 lifts it back to PA-alone
+    # grading. This assertion previously asserted the opposite (veto OFF by
+    # default) and crashed -- see omen-rulebook.md's dated correction under
+    # "Higher-timeframe bias is not a rule, so it is not a veto" for why: an
+    # ancestor commit (d0a38dc9, OMEN 8.0 R4) shipped a default-OFF
+    # HTF_GRADE_VETO for part of one day, but its omen_bot.py/signal_runner.py
+    # hunks are not in this tree (grep -c HTF_GRADE_VETO omen_bot.py == 0) --
+    # dropped by the 2026-09-03 history rewrite. test_htf_bias_veto_default.py
+    # asserts the same ON default and passes; this file now agrees with it.
+    assert g_opp == TradeGrade.D, g_opp            # veto ON by default: opposed hour vetoes to D
     orig_veto = omen_bot.HTF_BIAS_VETO
-    omen_bot.HTF_BIAS_VETO = True
+    omen_bot.HTF_BIAS_VETO = False
     try:
-        g_opp_veto = PriceActionAnalyzer.grade_trade(hammer, lookback, 101.0, 97.0, True, htf_bias="bearish")
+        g_opp_novet = PriceActionAnalyzer.grade_trade(hammer, lookback, 101.0, 97.0, True, htf_bias="bearish")
     finally:
         omen_bot.HTF_BIAS_VETO = orig_veto
-    assert g_opp_veto == TradeGrade.D, g_opp_veto  # HTF_BIAS_VETO=1 restores the old veto
+    assert g_opp_novet == TradeGrade.A_PLUS, g_opp_novet  # HTF_BIAS_VETO=0 lifts the veto, grades on PA alone
     print(f"HTF gating: aligned {g_up.value} / unknown {g_none.value} / neutral {g_neut.value} / "
-          f"opposed (veto off, default) {g_opp.value} / opposed (HTF_BIAS_VETO=1) {g_opp_veto.value}")
+          f"opposed (veto on, default) {g_opp.value} / opposed (HTF_BIAS_VETO=0) {g_opp_novet.value}")
 
-    # 4. Opposed-bias signal is NOT filtered end-to-end by default (veto off)
+    # 4. An opposed-bias signal is still a row in detect_signals()'s output
+    # even when it hard-vetoes to D -- the veto downgrades the grade, it does
+    # not remove the row (nothing in detect_signals() filters by grade; T10
+    # X_LIFT, default "clean", can independently rescue an X-graded row's
+    # grade back up, which is a separate, already-shipped mechanism this file
+    # does not test).
     sigs = br_signals(make_runner(pdh=101.0, pdl=97.0, bias="bearish"))
-    assert any(s["stop_level_name"] == "PDH" for s in sigs), "counter-trend signal unexpectedly filtered with veto off"
-    print("Counter-trend PDH signal NOT filtered end-to-end (HTF_BIAS_VETO=0 default)")
+    assert any(s["stop_level_name"] == "PDH" for s in sigs), "counter-trend signal unexpectedly absent from detect_signals()"
+    print("Counter-trend PDH signal still present in detect_signals() (grade reflects the veto, row is not dropped)")
 
     print("\nAll SPEC0-gap checks passed.")
 
