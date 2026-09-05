@@ -1,0 +1,214 @@
+{
+ "book": "bt2y_trades_retest_on.json",
+ "book_meta_sessions": 498,
+ "rule": "cheap-stock-refusal",
+ "polarity": "refusal-indicator",
+ "evidence_caveat": "One outright refusal card cannot establish a price floor. The corpus behind this claim is exactly one symbol-day refusal (IREN_2025-08-22, graded X, \"just are hard one to trade, cheap stock 20 dollars and a lot of weird things happened here\"); the other two quotes are a downgrade note on a card still graded A (t1_ACHR_2026-03-30) and a general rule-ballot comment, neither of which is a symbol-day refusal. This script reports an effect size, not a rule.",
+ "predicate": {
+  "under_$10": "DROP r if r['entry'] < 10.0",
+  "under_$20": "DROP r if r['entry'] < 20.0",
+  "notes": "No S-indicator/KEEP half exists for this row -- both arms are pure refusal filters over the arrival-order first-of-day stream."
+ },
+ "fired_base_rates": {
+  "fired_all": 10830,
+  "entry_under_10": 217,
+  "entry_under_20": 539,
+  "denominator": "status=='fired', all rows (not one-a-day)"
+ },
+ "candidates_per_day": 16.52,
+ "baseline": {
+  "all": {
+   "label": "baseline (whole book)",
+   "sessions": 498,
+   "trades": 498,
+   "fires_per_day": 1.0,
+   "usd_day": 33.93,
+   "mean_r": 0.0339,
+   "win_pct": 46.5,
+   "months_green": "13/25",
+   "months_green_n": 13,
+   "months_total": 25,
+   "max_dd_usd": 21404.68,
+   "pct_of_bar": 8.5
+  },
+  "h1": {
+   "label": "baseline H1",
+   "sessions": 249,
+   "trades": 249,
+   "fires_per_day": 1.0,
+   "usd_day": 135.71,
+   "mean_r": 0.1357,
+   "win_pct": 49.6,
+   "months_green": "9/12",
+   "months_green_n": 9,
+   "months_total": 12,
+   "max_dd_usd": 13978.64,
+   "pct_of_bar": 34.2
+  },
+  "h2": {
+   "label": "baseline H2",
+   "sessions": 249,
+   "trades": 249,
+   "fires_per_day": 1.0,
+   "usd_day": -67.85,
+   "mean_r": -0.0678,
+   "win_pct": 43.4,
+   "months_green": "4/13",
+   "months_green_n": 4,
+   "months_total": 13,
+   "max_dd_usd": 21404.68,
+   "pct_of_bar": -17.1
+  }
+ },
+ "arms": {
+  "under_$10": {
+   "candidate": {
+    "all": {
+     "label": "candidate (whole book)",
+     "sessions": 498,
+     "trades": 498,
+     "fires_per_day": 1.0,
+     "usd_day": 36.19,
+     "mean_r": 0.0362,
+     "win_pct": 46.9,
+     "months_green": "13/25",
+     "months_green_n": 13,
+     "months_total": 25,
+     "max_dd_usd": 22633.84,
+     "pct_of_bar": 9.1
+    },
+    "h1": {
+     "label": "candidate H1",
+     "sessions": 249,
+     "trades": 249,
+     "fires_per_day": 1.0,
+     "usd_day": 143.74,
+     "mean_r": 0.1437,
+     "win_pct": 50.0,
+     "months_green": "9/12",
+     "months_green_n": 9,
+     "months_total": 12,
+     "max_dd_usd": 13186.13,
+     "pct_of_bar": 36.2
+    },
+    "h2": {
+     "label": "candidate H2",
+     "sessions": 249,
+     "trades": 249,
+     "fires_per_day": 1.0,
+     "usd_day": -71.36,
+     "mean_r": -0.0714,
+     "win_pct": 43.8,
+     "months_green": "4/13",
+     "months_green_n": 4,
+     "months_total": 13,
+     "max_dd_usd": 22633.84,
+     "pct_of_bar": -18.0
+    }
+   },
+   "h1_delta_usd_day": 8.03,
+   "h2_delta_usd_day": -3.51,
+   "recall": {
+    "probe_s_sweep_34": {
+     "n": 34,
+     "baseline_pct": 44.1,
+     "candidate_pct": 44.1
+    },
+    "bar_backed_s_days_canonical_pool": {
+     "n": 345,
+     "baseline_pct": 49.0,
+     "candidate_pct": 49.0
+    }
+   },
+   "precision": {
+    "baseline": {
+     "pct": 30.5,
+     "s": 18,
+     "graded": 59
+    },
+    "candidate": {
+     "pct": 30.5,
+     "s": 18,
+     "graded": 59
+    }
+   },
+   "survivor": false
+  },
+  "under_$20": {
+   "candidate": {
+    "all": {
+     "label": "candidate (whole book)",
+     "sessions": 498,
+     "trades": 498,
+     "fires_per_day": 1.0,
+     "usd_day": 36.95,
+     "mean_r": 0.037,
+     "win_pct": 47.5,
+     "months_green": "13/25",
+     "months_green_n": 13,
+     "months_total": 25,
+     "max_dd_usd": 21928.65,
+     "pct_of_bar": 9.3
+    },
+    "h1": {
+     "label": "candidate H1",
+     "sessions": 249,
+     "trades": 249,
+     "fires_per_day": 1.0,
+     "usd_day": 146.31,
+     "mean_r": 0.1463,
+     "win_pct": 49.6,
+     "months_green": "9/12",
+     "months_green_n": 9,
+     "months_total": 12,
+     "max_dd_usd": 12339.98,
+     "pct_of_bar": 36.9
+    },
+    "h2": {
+     "label": "candidate H2",
+     "sessions": 249,
+     "trades": 249,
+     "fires_per_day": 1.0,
+     "usd_day": -72.42,
+     "mean_r": -0.0724,
+     "win_pct": 45.4,
+     "months_green": "4/13",
+     "months_green_n": 4,
+     "months_total": 13,
+     "max_dd_usd": 21928.65,
+     "pct_of_bar": -18.2
+    }
+   },
+   "h1_delta_usd_day": 10.6,
+   "h2_delta_usd_day": -4.57,
+   "recall": {
+    "probe_s_sweep_34": {
+     "n": 34,
+     "baseline_pct": 44.1,
+     "candidate_pct": 44.1
+    },
+    "bar_backed_s_days_canonical_pool": {
+     "n": 345,
+     "baseline_pct": 49.0,
+     "candidate_pct": 48.4
+    }
+   },
+   "precision": {
+    "baseline": {
+     "pct": 30.5,
+     "s": 18,
+     "graded": 59
+    },
+    "candidate": {
+     "pct": 30.4,
+     "s": 17,
+     "graded": 56
+    }
+   },
+   "survivor": false
+  }
+ },
+ "survivor": false,
+ "survivor_basis": "both price arms must independently pass",
+ "survivor_rule": "H1 and H2 both improve $/day or precision, and recall_100 (both recall panels) not below baseline"
+}

@@ -1,0 +1,212 @@
+{
+  "row": "F5",
+  "slug": "forming-candle-entry-not-extreme",
+  "predicate": "extreme_frac = (entry-low)/rng [call] or (high-entry)/rng [put], bars[entry_i] from data_archive; DROP extreme_frac <= threshold",
+  "polarity": "S-indicator",
+  "thresholds_swept": [
+    0.15,
+    0.25,
+    0.35
+  ],
+  "default_threshold": 0.25,
+  "n_days_total": 498,
+  "candidates_per_day": 16.52,
+  "baseline": {
+    "overall": {
+      "n": 498,
+      "usd_day": 33.93,
+      "mean_r": 0.0339,
+      "win_pct": 46.5,
+      "green_months": 13,
+      "months": 25,
+      "max_dd": -21404.68
+    },
+    "H1": {
+      "n": 249,
+      "usd_day": 135.71,
+      "mean_r": 0.1357,
+      "win_pct": 49.6,
+      "green_months": 9,
+      "months": 12,
+      "max_dd": -13978.64
+    },
+    "H2": {
+      "n": 249,
+      "usd_day": -67.85,
+      "mean_r": -0.0678,
+      "win_pct": 43.4,
+      "green_months": 4,
+      "months": 13,
+      "max_dd": -21404.68
+    },
+    "fires_per_day": 1.0,
+    "s_recall_100": {
+      "pct": 5.9,
+      "hit": 2,
+      "n": 34
+    },
+    "s_recall_all_bar_backed": {
+      "pct": 5.2,
+      "hit": 18,
+      "n": 347
+    },
+    "precision": {
+      "pct": 30.5,
+      "graded_s": 18,
+      "graded_any": 59
+    }
+  },
+  "arms": {
+    "0.15": {
+      "threshold": 0.15,
+      "candidates_dropped_pct": 0.38,
+      "overall": {
+        "n": 498,
+        "usd_day": 33.93,
+        "mean_r": 0.0339,
+        "win_pct": 46.5,
+        "green_months": 13,
+        "months": 25,
+        "max_dd": -21404.68
+      },
+      "H1": {
+        "n": 249,
+        "usd_day": 135.71,
+        "mean_r": 0.1357,
+        "win_pct": 49.6,
+        "green_months": 9,
+        "months": 12,
+        "max_dd": -13978.64
+      },
+      "H2": {
+        "n": 249,
+        "usd_day": -67.85,
+        "mean_r": -0.0678,
+        "win_pct": 43.4,
+        "green_months": 4,
+        "months": 13,
+        "max_dd": -21404.68
+      },
+      "fires_per_day": 1.0,
+      "s_recall_100": {
+        "pct": 5.9,
+        "hit": 2,
+        "n": 34
+      },
+      "s_recall_all_bar_backed": {
+        "pct": 5.2,
+        "hit": 18,
+        "n": 347
+      },
+      "precision": {
+        "pct": 30.5,
+        "graded_s": 18,
+        "graded_any": 59
+      }
+    },
+    "0.25": {
+      "threshold": 0.25,
+      "candidates_dropped_pct": 0.67,
+      "overall": {
+        "n": 498,
+        "usd_day": 33.93,
+        "mean_r": 0.0339,
+        "win_pct": 46.5,
+        "green_months": 13,
+        "months": 25,
+        "max_dd": -21404.68
+      },
+      "H1": {
+        "n": 249,
+        "usd_day": 135.71,
+        "mean_r": 0.1357,
+        "win_pct": 49.6,
+        "green_months": 9,
+        "months": 12,
+        "max_dd": -13978.64
+      },
+      "H2": {
+        "n": 249,
+        "usd_day": -67.85,
+        "mean_r": -0.0678,
+        "win_pct": 43.4,
+        "green_months": 4,
+        "months": 13,
+        "max_dd": -21404.68
+      },
+      "fires_per_day": 1.0,
+      "s_recall_100": {
+        "pct": 5.9,
+        "hit": 2,
+        "n": 34
+      },
+      "s_recall_all_bar_backed": {
+        "pct": 5.2,
+        "hit": 18,
+        "n": 347
+      },
+      "precision": {
+        "pct": 30.5,
+        "graded_s": 18,
+        "graded_any": 59
+      }
+    },
+    "0.35": {
+      "threshold": 0.35,
+      "candidates_dropped_pct": 1.28,
+      "overall": {
+        "n": 498,
+        "usd_day": 33.93,
+        "mean_r": 0.0339,
+        "win_pct": 46.5,
+        "green_months": 13,
+        "months": 25,
+        "max_dd": -21404.68
+      },
+      "H1": {
+        "n": 249,
+        "usd_day": 135.71,
+        "mean_r": 0.1357,
+        "win_pct": 49.6,
+        "green_months": 9,
+        "months": 12,
+        "max_dd": -13978.64
+      },
+      "H2": {
+        "n": 249,
+        "usd_day": -67.85,
+        "mean_r": -0.0678,
+        "win_pct": 43.4,
+        "green_months": 4,
+        "months": 13,
+        "max_dd": -21404.68
+      },
+      "fires_per_day": 1.0,
+      "s_recall_100": {
+        "pct": 5.9,
+        "hit": 2,
+        "n": 34
+      },
+      "s_recall_all_bar_backed": {
+        "pct": 5.2,
+        "hit": 18,
+        "n": 347
+      },
+      "precision": {
+        "pct": 30.5,
+        "graded_s": 18,
+        "graded_any": 59
+      }
+    }
+  },
+  "primary_arm": "0.25",
+  "h1_delta_usd_day": 0.0,
+  "h2_delta_usd_day": 0.0,
+  "survivor": false,
+  "candidates_dropped_pct_all_thresholds": {
+    "0.15": 0.38,
+    "0.25": 0.67,
+    "0.35": 1.28
+  },
+  "notes": "survivor = True only if H1 AND H2 both improve $/day (or precision) and S-recall-100 does not fall below baseline. Precision is compared overall (not split H1/H2 -- the row asked for $/day split, precision/recall are asked for once). MEASURED, NOT A BUG: at every swept threshold (0.15/0.25/0.35) the extreme_frac filter drops well under 1.3% of all book candidates (median extreme_frac across 8,227 candidates is 0.875 -- most fills already sit near the FAVORABLE extreme, not the adverse one), and it never touches the FIRST candidate of any of the 498 days, so the one-trade-a-day arm is byte-identical to baseline at all three thresholds. The rule is real but the shipped book almost never trips it."
+}

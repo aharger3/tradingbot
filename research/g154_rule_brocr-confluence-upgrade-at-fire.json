@@ -1,0 +1,129 @@
+{
+  "candidate": "brocr-confluence-upgrade-at-fire",
+  "row": "F5",
+  "predicate": "confluence == 'yes' (== 'brocr' in tags)",
+  "book": "bt2y_trades_retest_on.json",
+  "sessions_total": 498,
+  "fired_rows_total": 10830,
+  "fired_rows_confluence_yes": 8369,
+  "sanity_confluence_matches_brocr_tag_pct": 0.9929,
+  "candidates_per_day_confluence_yes": 16.8052,
+  "results": {
+    "baseline": {
+      "overall": {
+        "usd_day": 33.94,
+        "mean_r": 0.0339,
+        "win_rate": 0.4639,
+        "n_trades": 498,
+        "months_green": "13/25",
+        "max_dd_usd": -21404.68
+      },
+      "H1": {
+        "usd_day": 135.71,
+        "mean_r": 0.1357,
+        "win_rate": 0.494,
+        "n_trades": 249,
+        "months_green": "9/12",
+        "max_dd_usd": -13978.64
+      },
+      "H2": {
+        "usd_day": -67.84,
+        "mean_r": -0.0678,
+        "win_rate": 0.4337,
+        "n_trades": 249,
+        "months_green": "4/13",
+        "max_dd_usd": -21404.68
+      },
+      "fires_per_day": 1.0,
+      "recall_100": 0.0588,
+      "recall_all_s_days": 0.0519,
+      "precision": 0.3051,
+      "fired_days": 498,
+      "fired_days_judged": 59,
+      "fired_days_graded_s": 18
+    },
+    "arm_s_indicator": {
+      "overall": {
+        "usd_day": 30.83,
+        "mean_r": 0.0309,
+        "win_rate": 0.4829,
+        "n_trades": 497,
+        "months_green": "12/25",
+        "max_dd_usd": -16993.59
+      },
+      "H1": {
+        "usd_day": 91.06,
+        "mean_r": 0.0911,
+        "win_rate": 0.49,
+        "n_trades": 249,
+        "months_green": "7/12",
+        "max_dd_usd": -14322.86
+      },
+      "H2": {
+        "usd_day": -29.41,
+        "mean_r": -0.0295,
+        "win_rate": 0.4758,
+        "n_trades": 248,
+        "months_green": "5/13",
+        "max_dd_usd": -16993.59
+      },
+      "fires_per_day": 0.998,
+      "recall_100": 0.1471,
+      "recall_all_s_days": 0.049,
+      "precision": 0.3036,
+      "fired_days": 497,
+      "fired_days_judged": 56,
+      "fired_days_graded_s": 17
+    },
+    "arm_inverse": {
+      "overall": {
+        "usd_day": -1.78,
+        "mean_r": -0.0019,
+        "win_rate": 0.4292,
+        "n_trades": 459,
+        "months_green": "13/25",
+        "max_dd_usd": -37210.77
+      },
+      "H1": {
+        "usd_day": 80.05,
+        "mean_r": 0.0882,
+        "win_rate": 0.4469,
+        "n_trades": 226,
+        "months_green": "8/12",
+        "max_dd_usd": -19351.04
+      },
+      "H2": {
+        "usd_day": -83.61,
+        "mean_r": -0.0893,
+        "win_rate": 0.412,
+        "n_trades": 233,
+        "months_green": "5/13",
+        "max_dd_usd": -36267.3
+      },
+      "fires_per_day": 0.9217,
+      "recall_100": 0.0294,
+      "recall_all_s_days": 0.0548,
+      "precision": 0.3333,
+      "fired_days": 459,
+      "fired_days_judged": 57,
+      "fired_days_graded_s": 19
+    }
+  },
+  "ladder_fold": {
+    "note": "engine A+/A/B/C/X ladder on fired rows where confluence=='yes', before vs after a +1-capped (never-downgrade) upgrade -- reporting only, not wired into selection",
+    "before": {
+      "B": 3959,
+      "C": 6808,
+      "A": 63
+    },
+    "after": {
+      "B": 6300,
+      "C": 1481,
+      "A": 2993,
+      "A+": 56
+    }
+  },
+  "h1_delta_usd_day": -44.65,
+  "h2_delta_usd_day": 38.43,
+  "survivor": false
+}

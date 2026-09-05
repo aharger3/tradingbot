@@ -1,0 +1,134 @@
+{
+ "book": "bt2y_trades_retest_on.json",
+ "book_meta_sessions": 498,
+ "rule": "displacement-forgiven-unless-exempt",
+ "polarity": "S-indicator",
+ "predicate": {
+  "keep": "('disp' in tags) or (confluence=='yes') or (et<='09:45')",
+  "drop": "(('nodisp' in tags) or ('no_displacement' in downgrades)) and confluence=='no' and et>'09:45'",
+  "notes": "et<='09:45' is the flag-at-open exemption's TIME PROXY, not a pattern match -- no flag-at-open field exists in the book. The HTF-thesis exemption has NO field anywhere in the book (bias_tf names a timeframe, not a thesis judgement) and is OMITTED -- this measurement is blind to it."
+ },
+ "fired_base_rates": {
+  "nodisp_tag": 8014,
+  "disp_tag": 2285,
+  "confluence_yes": 8369,
+  "denominator": "status=='fired', all 10830 rows (not one-a-day)"
+ },
+ "candidates_per_day": 16.52,
+ "baseline": {
+  "all": {
+   "label": "baseline (whole book)",
+   "sessions": 498,
+   "trades": 498,
+   "fires_per_day": 1.0,
+   "usd_day": 33.93,
+   "mean_r": 0.0339,
+   "win_pct": 46.5,
+   "months_green": "13/25",
+   "months_green_n": 13,
+   "months_total": 25,
+   "max_dd_usd": 21404.68,
+   "pct_of_bar": 8.5
+  },
+  "h1": {
+   "label": "baseline H1",
+   "sessions": 249,
+   "trades": 249,
+   "fires_per_day": 1.0,
+   "usd_day": 135.71,
+   "mean_r": 0.1357,
+   "win_pct": 49.6,
+   "months_green": "9/12",
+   "months_green_n": 9,
+   "months_total": 12,
+   "max_dd_usd": 13978.64,
+   "pct_of_bar": 34.2
+  },
+  "h2": {
+   "label": "baseline H2",
+   "sessions": 249,
+   "trades": 249,
+   "fires_per_day": 1.0,
+   "usd_day": -67.85,
+   "mean_r": -0.0678,
+   "win_pct": 43.4,
+   "months_green": "4/13",
+   "months_green_n": 4,
+   "months_total": 13,
+   "max_dd_usd": 21404.68,
+   "pct_of_bar": -17.1
+  }
+ },
+ "candidate": {
+  "all": {
+   "label": "candidate (whole book)",
+   "sessions": 498,
+   "trades": 497,
+   "fires_per_day": 0.998,
+   "usd_day": 22.86,
+   "mean_r": 0.0229,
+   "win_pct": 45.8,
+   "months_green": "13/25",
+   "months_green_n": 13,
+   "months_total": 25,
+   "max_dd_usd": 22949.9,
+   "pct_of_bar": 5.8
+  },
+  "h1": {
+   "label": "candidate H1",
+   "sessions": 249,
+   "trades": 249,
+   "fires_per_day": 1.0,
+   "usd_day": 124.68,
+   "mean_r": 0.1247,
+   "win_pct": 49.2,
+   "months_green": "9/12",
+   "months_green_n": 9,
+   "months_total": 12,
+   "max_dd_usd": 13978.64,
+   "pct_of_bar": 31.4
+  },
+  "h2": {
+   "label": "candidate H2",
+   "sessions": 249,
+   "trades": 248,
+   "fires_per_day": 0.996,
+   "usd_day": -78.95,
+   "mean_r": -0.0793,
+   "win_pct": 42.3,
+   "months_green": "4/13",
+   "months_green_n": 4,
+   "months_total": 13,
+   "max_dd_usd": 22949.9,
+   "pct_of_bar": -19.9
+  }
+ },
+ "h1_delta_usd_day": -11.03,
+ "h2_delta_usd_day": -11.1,
+ "recall": {
+  "probe_s_sweep_34": {
+   "n": 34,
+   "baseline_pct": 44.1,
+   "candidate_pct": 44.1
+  },
+  "bar_backed_s_days_canonical_pool": {
+   "n": 341,
+   "baseline_pct": 49.6,
+   "candidate_pct": 46.0
+  }
+ },
+ "precision": {
+  "baseline": {
+   "pct": 30.5,
+   "s": 18,
+   "graded": 59
+  },
+  "candidate": {
+   "pct": 30.0,
+   "s": 18,
+   "graded": 60
+  }
+ },
+ "survivor": false,
+ "survivor_rule": "H1 and H2 both improve $/day or precision, and recall_100 (both recall panels) not below baseline"
+}

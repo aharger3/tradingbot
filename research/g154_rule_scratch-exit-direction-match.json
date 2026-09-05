@@ -1,0 +1,123 @@
+{
+  "row": "F5",
+  "slug": "scratch-exit-direction-match",
+  "predicate": "entry_dir = sign(Close[entry_i]-Open[entry_i]) vs trend_dir = +1 call/-1 put; match = entry_dir==trend_dir. DESCRIPTIVE SPLIT ONLY -- no scratch exit exists in the codebase to gate; source is a conditional ballot yes on an unbuilt feature.",
+  "polarity": "S-indicator",
+  "predicate_is_moot_if_flat": true,
+  "n_days_total": 498,
+  "candidates_per_day": 16.52,
+  "n_candidates_total": 8227,
+  "matched_pct_of_candidates": 97.22,
+  "descriptive_split": {
+    "match": {
+      "n": 7995,
+      "mean_r": -0.0228,
+      "s_rate_pct": 29.9,
+      "graded_s": 285,
+      "graded_any": 952
+    },
+    "mismatch": {
+      "n": 229,
+      "mean_r": -0.1497,
+      "s_rate_pct": 50.0,
+      "graded_s": 10,
+      "graded_any": 20
+    },
+    "unreadable_or_doji": 3
+  },
+  "descriptive_split_flat": false,
+  "baseline": {
+    "overall": {
+      "n": 498,
+      "usd_day": 33.93,
+      "mean_r": 0.0339,
+      "win_pct": 46.5,
+      "green_months": 13,
+      "months": 25,
+      "max_dd": -21404.68
+    },
+    "H1": {
+      "n": 249,
+      "usd_day": 135.71,
+      "mean_r": 0.1357,
+      "win_pct": 49.6,
+      "green_months": 9,
+      "months": 12,
+      "max_dd": -13978.64
+    },
+    "H2": {
+      "n": 249,
+      "usd_day": -67.85,
+      "mean_r": -0.0678,
+      "win_pct": 43.4,
+      "green_months": 4,
+      "months": 13,
+      "max_dd": -21404.68
+    },
+    "fires_per_day": 1.0,
+    "s_recall_100": {
+      "pct": 5.9,
+      "hit": 2,
+      "n": 34
+    },
+    "s_recall_all_bar_backed": {
+      "pct": 5.2,
+      "hit": 18,
+      "n": 347
+    },
+    "precision": {
+      "pct": 30.5,
+      "graded_s": 18,
+      "graded_any": 59
+    }
+  },
+  "arm_keep_match_only": {
+    "overall": {
+      "n": 498,
+      "usd_day": 35.09,
+      "mean_r": 0.0351,
+      "win_pct": 46.7,
+      "green_months": 12,
+      "months": 25,
+      "max_dd": -21404.68
+    },
+    "H1": {
+      "n": 249,
+      "usd_day": 137.6,
+      "mean_r": 0.1376,
+      "win_pct": 50.0,
+      "green_months": 8,
+      "months": 12,
+      "max_dd": -13512.28
+    },
+    "H2": {
+      "n": 249,
+      "usd_day": -67.43,
+      "mean_r": -0.0674,
+      "win_pct": 43.4,
+      "green_months": 4,
+      "months": 13,
+      "max_dd": -21404.68
+    },
+    "fires_per_day": 1.0,
+    "s_recall_100": {
+      "pct": 5.9,
+      "hit": 2,
+      "n": 34
+    },
+    "s_recall_all_bar_backed": {
+      "pct": 5.2,
+      "hit": 18,
+      "n": 347
+    },
+    "precision": {
+      "pct": 30.0,
+      "graded_s": 18,
+      "graded_any": 60
+    }
+  },
+  "h1_delta_usd_day": 1.89,
+  "h2_delta_usd_day": 0.42,
+  "survivor": true,
+  "notes": "There is no scratch exit anywhere in backtest_week.py / stop_rule.py / signal_runner.py -- the source is one rule-ballot row, a CONDITIONAL yes ('im ok with implementing scratch'), not a built feature to gate. This measures only the stated precondition: does the entry candle's own color agreeing with the trade direction separate anything in the book we already have. 97.22% of all book candidates print an entry candle matching the trade direction. The descriptive split is NOT flat (mean-R gap 0.1269, S-rate gap 20.1pp) -- not ruling out the precondition the ballot's conditional yes rested on. The selection arm (S-indicator: drop mismatched candidates, fall through to the next) is reported for comparability with every other g154 script, not because a scratch-exit feature exists to attach it to. CAVEAT ON THE survivor FLAG: the arm drops only 2.78% of candidates, so its H1/H2 $/day deltas (1.89 / 0.42) are noise-sized, not a substantive improvement -- the survivor test passes technically but proves almost nothing on its own; the descriptive split above is the load-bearing result."
+}

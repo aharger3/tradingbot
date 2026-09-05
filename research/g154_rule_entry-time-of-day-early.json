@@ -1,0 +1,376 @@
+{
+ "book": "bt2y_trades_retest_on.json",
+ "sessions": 498,
+ "sessions_h1": 249,
+ "sessions_h2": 249,
+ "baseline": {
+  "full": {
+   "trades": 498,
+   "win_pct": 46.5,
+   "total_dollars": 16899,
+   "per_trade": 34,
+   "mean_r": 0.034,
+   "per_day": 34,
+   "pct_of_bar": 8.5,
+   "months_green": 13,
+   "months": 25,
+   "weeks_green": 46,
+   "weeks": 105,
+   "worst_drawdown": -21405
+  },
+  "h1": {
+   "trades": 249,
+   "win_pct": 49.6,
+   "total_dollars": 33793,
+   "per_trade": 136,
+   "mean_r": 0.136,
+   "per_day": 136,
+   "pct_of_bar": 34.2,
+   "months_green": 9,
+   "months": 12,
+   "weeks_green": 29,
+   "weeks": 52,
+   "worst_drawdown": -13979
+  },
+  "h2": {
+   "trades": 249,
+   "win_pct": 43.4,
+   "total_dollars": -16894,
+   "per_trade": -68,
+   "mean_r": -0.068,
+   "per_day": -68,
+   "pct_of_bar": -17.1,
+   "months_green": 4,
+   "months": 13,
+   "weeks_green": 17,
+   "weeks": 53,
+   "worst_drawdown": -21405
+  },
+  "candidates_per_day": 16.52,
+  "fires_per_day": 1.0,
+  "recall_precision": {
+   "recall_100": 0.4412,
+   "recall_100_n": 34,
+   "recall_100_hits": 15,
+   "recall_all": 0.4956,
+   "recall_all_n": 341,
+   "recall_all_hits": 169,
+   "precision": 0.3051,
+   "precision_num": 18,
+   "precision_den": 59
+  }
+ },
+ "thresholds": {
+  "09:45": {
+   "T": "09:45",
+   "inert_control": false,
+   "s_indicator": {
+    "full": {
+     "trades": 458,
+     "win_pct": 45.7,
+     "total_dollars": 6799,
+     "per_trade": 15,
+     "mean_r": 0.015,
+     "per_day": 14,
+     "pct_of_bar": 3.4,
+     "months_green": 13,
+     "months": 25,
+     "weeks_green": 46,
+     "weeks": 105,
+     "worst_drawdown": -21583
+    },
+    "h1": {
+     "trades": 222,
+     "win_pct": 48.9,
+     "total_dollars": 24636,
+     "per_trade": 111,
+     "mean_r": 0.111,
+     "per_day": 99,
+     "pct_of_bar": 24.9,
+     "months_green": 9,
+     "months": 12,
+     "weeks_green": 29,
+     "weeks": 52,
+     "worst_drawdown": -16670
+    },
+    "h2": {
+     "trades": 236,
+     "win_pct": 42.8,
+     "total_dollars": -17838,
+     "per_trade": -76,
+     "mean_r": -0.076,
+     "per_day": -72,
+     "pct_of_bar": -18.0,
+     "months_green": 4,
+     "months": 13,
+     "weeks_green": 17,
+     "weeks": 53,
+     "worst_drawdown": -21583
+    }
+   },
+   "refusal_indicator": {
+    "full": {
+     "trades": 498,
+     "win_pct": 46.1,
+     "total_dollars": -32313,
+     "per_trade": -65,
+     "mean_r": -0.065,
+     "per_day": -65,
+     "pct_of_bar": -16.3,
+     "months_green": 10,
+     "months": 25,
+     "weeks_green": 36,
+     "weeks": 105,
+     "worst_drawdown": -51355
+    }
+   },
+   "candidates_per_day": 3.36,
+   "fires_per_day": 0.92,
+   "recall_precision": {
+    "recall_100": 0.1471,
+    "recall_100_n": 34,
+    "recall_100_hits": 5,
+    "recall_all": 0.1848,
+    "recall_all_n": 341,
+    "recall_all_hits": 63,
+    "precision": 0.3091,
+    "precision_num": 17,
+    "precision_den": 55
+   },
+   "h1_delta_usd_day": -37,
+   "h2_delta_usd_day": -4,
+   "survivor": false
+  },
+  "10:00": {
+   "T": "10:00",
+   "inert_control": false,
+   "s_indicator": {
+    "full": {
+     "trades": 496,
+     "win_pct": 46.7,
+     "total_dollars": 18899,
+     "per_trade": 38,
+     "mean_r": 0.038,
+     "per_day": 38,
+     "pct_of_bar": 9.6,
+     "months_green": 13,
+     "months": 25,
+     "weeks_green": 46,
+     "weeks": 105,
+     "worst_drawdown": -21405
+    },
+    "h1": {
+     "trades": 247,
+     "win_pct": 50.0,
+     "total_dollars": 35793,
+     "per_trade": 145,
+     "mean_r": 0.145,
+     "per_day": 144,
+     "pct_of_bar": 36.2,
+     "months_green": 9,
+     "months": 12,
+     "weeks_green": 29,
+     "weeks": 52,
+     "worst_drawdown": -12979
+    },
+    "h2": {
+     "trades": 249,
+     "win_pct": 43.4,
+     "total_dollars": -16894,
+     "per_trade": -68,
+     "mean_r": -0.068,
+     "per_day": -68,
+     "pct_of_bar": -17.1,
+     "months_green": 4,
+     "months": 13,
+     "weeks_green": 17,
+     "weeks": 53,
+     "worst_drawdown": -21405
+    }
+   },
+   "refusal_indicator": {
+    "full": {
+     "trades": 492,
+     "win_pct": 37.1,
+     "total_dollars": -40083,
+     "per_trade": -81,
+     "mean_r": -0.081,
+     "per_day": -80,
+     "pct_of_bar": -20.3,
+     "months_green": 13,
+     "months": 25,
+     "weeks_green": 36,
+     "weeks": 105,
+     "worst_drawdown": -62545
+    }
+   },
+   "candidates_per_day": 7.84,
+   "fires_per_day": 0.996,
+   "recall_precision": {
+    "recall_100": 0.2941,
+    "recall_100_n": 34,
+    "recall_100_hits": 10,
+    "recall_all": 0.3431,
+    "recall_all_n": 341,
+    "recall_all_hits": 117,
+    "precision": 0.3051,
+    "precision_num": 18,
+    "precision_den": 59
+   },
+   "h1_delta_usd_day": 8,
+   "h2_delta_usd_day": 0,
+   "survivor": false
+  },
+  "10:30": {
+   "T": "10:30",
+   "inert_control": false,
+   "s_indicator": {
+    "full": {
+     "trades": 498,
+     "win_pct": 46.5,
+     "total_dollars": 16899,
+     "per_trade": 34,
+     "mean_r": 0.034,
+     "per_day": 34,
+     "pct_of_bar": 8.5,
+     "months_green": 13,
+     "months": 25,
+     "weeks_green": 46,
+     "weeks": 105,
+     "worst_drawdown": -21405
+    },
+    "h1": {
+     "trades": 249,
+     "win_pct": 49.6,
+     "total_dollars": 33793,
+     "per_trade": 136,
+     "mean_r": 0.136,
+     "per_day": 136,
+     "pct_of_bar": 34.2,
+     "months_green": 9,
+     "months": 12,
+     "weeks_green": 29,
+     "weeks": 52,
+     "worst_drawdown": -13979
+    },
+    "h2": {
+     "trades": 249,
+     "win_pct": 43.4,
+     "total_dollars": -16894,
+     "per_trade": -68,
+     "mean_r": -0.068,
+     "per_day": -68,
+     "pct_of_bar": -17.1,
+     "months_green": 4,
+     "months": 13,
+     "weeks_green": 17,
+     "weeks": 53,
+     "worst_drawdown": -21405
+    }
+   },
+   "refusal_indicator": {
+    "full": {
+     "trades": 414,
+     "win_pct": 34.9,
+     "total_dollars": -34018,
+     "per_trade": -82,
+     "mean_r": -0.082,
+     "per_day": -68,
+     "pct_of_bar": -17.2,
+     "months_green": 9,
+     "months": 25,
+     "weeks_green": 36,
+     "weeks": 104,
+     "worst_drawdown": -52492
+    }
+   },
+   "candidates_per_day": 13.5,
+   "fires_per_day": 1.0,
+   "recall_precision": {
+    "recall_100": 0.4118,
+    "recall_100_n": 34,
+    "recall_100_hits": 14,
+    "recall_all": 0.4516,
+    "recall_all_n": 341,
+    "recall_all_hits": 154,
+    "precision": 0.3051,
+    "precision_num": 18,
+    "precision_den": 59
+   },
+   "h1_delta_usd_day": 0,
+   "h2_delta_usd_day": 0,
+   "survivor": false
+  },
+  "11:00": {
+   "T": "11:00",
+   "inert_control": true,
+   "s_indicator": {
+    "full": {
+     "trades": 498,
+     "win_pct": 46.5,
+     "total_dollars": 16899,
+     "per_trade": 34,
+     "mean_r": 0.034,
+     "per_day": 34,
+     "pct_of_bar": 8.5,
+     "months_green": 13,
+     "months": 25,
+     "weeks_green": 46,
+     "weeks": 105,
+     "worst_drawdown": -21405
+    },
+    "h1": {
+     "trades": 249,
+     "win_pct": 49.6,
+     "total_dollars": 33793,
+     "per_trade": 136,
+     "mean_r": 0.136,
+     "per_day": 136,
+     "pct_of_bar": 34.2,
+     "months_green": 9,
+     "months": 12,
+     "weeks_green": 29,
+     "weeks": 52,
+     "worst_drawdown": -13979
+    },
+    "h2": {
+     "trades": 249,
+     "win_pct": 43.4,
+     "total_dollars": -16894,
+     "per_trade": -68,
+     "mean_r": -0.068,
+     "per_day": -68,
+     "pct_of_bar": -17.1,
+     "months_green": 4,
+     "months": 13,
+     "weeks_green": 17,
+     "weeks": 53,
+     "worst_drawdown": -21405
+    }
+   },
+   "refusal_indicator": {
+    "full": {
+     "trades": 0
+    }
+   },
+   "candidates_per_day": 16.52,
+   "fires_per_day": 1.0,
+   "recall_precision": {
+    "recall_100": 0.4412,
+    "recall_100_n": 34,
+    "recall_100_hits": 15,
+    "recall_all": 0.4956,
+    "recall_all_n": 341,
+    "recall_all_hits": 169,
+    "precision": 0.3051,
+    "precision_num": 18,
+    "precision_den": 59
+   },
+   "h1_delta_usd_day": 0,
+   "h2_delta_usd_day": 0,
+   "survivor": false
+  }
+ },
+ "best_T": "10:00",
+ "survivor": false
+}
