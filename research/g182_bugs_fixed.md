@@ -365,3 +365,65 @@ CLAUDE.md are documentation-only).
   reproduced above; passes after).
 - `python research/regression_gate.py` and `python research/test_runner_stop.py`: both pass,
   unaffected — no engine module's runtime behaviour moved.
+
+---
+
+# g182 — B3 (bug B-06): position_sizer's local, unmeasured 0.5 delta default
+
+What is different now: `position_sizer.compute_plan`'s `assumed_delta` default now imports
+`options_sizer.DEFAULT_DELTA` (0.42, the measured value) instead of a separate, local, never-
+measured `0.5` — the same "ATM ~= 0.5, assumed, never measured" constant `options_sizer.py`
+already fixed for itself at OMEN 8.0 R6 (`research/g95_delta_fix.py`), left un-synced in this
+second module.
+
+## Confirmed
+
+Failing input, reproduced before editing:
+```
+python -c "import position_sizer as p; print(p.compute_plan(stock_entry=100.0, stock_stop=99.58, direction='call').contracts_estimated, p.compute_plan(stock_entry=100.0, stock_stop=99.58, direction='call', assumed_delta=0.42).contracts_estimated)"
+47 56
+```
+Every caller (`grep -rn "compute_plan(" .` across `signal_runner.py`, `position_sizer.py`'s own
+`__main__`, and every worktree copy) calls `compute_plan` with no `assumed_delta` argument, so
+every one of them was silently taking the wrong default — the same 0.42/0.5 = 0.84 under-sizing
+ratio `options_sizer.py`'s R6 comment already prices, reproduced here in a second module.
+
+**Scope check before fixing:** `grep -rn "position_sizer\|contracts_estimated"` shows
+`position_sizer.compute_plan` has no live-order caller — `paper_trader.py` and `broker/base.py`
+both route sizing through `options_sizer.py` (already correct at 0.42 since R6). `compute_plan`
+is called only from `signal_runner.py`'s `process_candles` (a console-print path) and
+`discord_bot.py` (a Discord embed's "~Contracts" field). Fixing the default therefore corrects a
+**displayed estimate only** — it does not change which signals fire, which orders `paper_trader`
+places, or any sizing an actual position is opened at. This is in scope to ship per this row's
+instruction (no live signal count or trade behaviour moves).
+
+## Fixed: `position_sizer.py`
+
+- Added `from options_sizer import DEFAULT_DELTA` (one-way import; `options_sizer.py` imports
+  nothing from `position_sizer.py`, so no circular import).
+- `compute_plan(..., assumed_delta: float = 0.5, ...)` -> `assumed_delta: float = DEFAULT_DELTA`.
+- Updated the two remaining "ATM ~0.5" mentions (the `format_discord()` embed string and the
+  `compute_plan` docstring) to name the shared constant instead of a hardcoded 0.5, so the
+  printed/embedded text and the actual default stay in sync going forward.
+- Added a dated comment (B-06, OMEN 9.0 B3, 2026-09-05) at the constants block recording why the
+  import exists and that this module has no live-order path.
+
+## Test: `test_position_sizer_delta.py` (new, repo root — matches `test_options_sizer_delta.py`'s
+existing sibling convention, plain asserts, no pytest)
+
+Before: `compute_plan.__signature__`'s `assumed_delta` default is `0.5`; the ticket's exact
+failing input prints `47 56` (default and explicit-0.42 disagree). After: default is `0.42`
+(`inspect.signature` check); the same failing input's default call now equals the explicit-0.42
+call, both `56`; and the default no longer reproduces the stale `47`-contract figure. 3 passed.
+
+Verify gate: `python research/regression_gate.py && python research/test_runner_stop.py` — both
+PASS, unaffected (`position_sizer.py` is not imported by either gate script, and no gated engine
+module was touched).
+
+## Status: done
+
+- `position_sizer.py`: fixed, default `assumed_delta` now `options_sizer.DEFAULT_DELTA` (0.42).
+- `test_position_sizer_delta.py`: 3 passed (47/56 mismatch reproduced pre-fix, matches post-fix).
+- `python research/regression_gate.py` and `python research/test_runner_stop.py`: both pass,
+  unaffected — no live signal count or trade behaviour moved (display-only estimate, no
+  live-order caller of this module).
