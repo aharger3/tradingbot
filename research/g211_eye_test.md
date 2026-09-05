@@ -1,66 +1,62 @@
-# W9 score — vision-classifier eye test
+# W9 -- vision eye-test (g211)
 
-No: neither Claude Haiku nor Claude Sonnet, reading the same 100 chart cards blind, reproduces Austin's S marks above the 30.5% graded-day baseline by a margin that survives their own bootstrap error bars — Haiku's point estimate clears it (43.6% vs 30.5%) but its 95% band runs 28.6%–60.0%, straddling the baseline; Sonnet's point estimate barely clears it (38.5%) with a band of 14.3%–66.7% that sits mostly below it.
+No -- reading the blind, level-annotated chart alone does not reproduce his S marks materially above the 30.5% baseline: both readers land near or only marginally above it, and neither model's bootstrap band clears the baseline.
 
-Produced by `research/g211_eye_test.py`, reading `research/g210_cards/index.json` (his grades, 100 cards, this deck's own S rate is 34.0%) against `research/g211_reads_haiku.json` and `research/g211_reads_sonnet.json` (each model's independent grade for the same 100 cards, S/A/C/none plus a prose reason). No trade money, no market data, no fill — this is a label-agreement measurement only.
+Inputs: `research/g210_cards/index.json` (his grades, 100 cards, 34 marked S = 34.0% of the deck) against two independent readers -- Claude Haiku and Claude Sonnet -- each grading S/A/C/none off the same blind PNG chart cut at the entry bar plus the rulebook digest, with no access to his answer. Script: `research/g211_eye_test.py`. Reader outputs: `research/g211_reads_haiku.json`, `research/g211_reads_sonnet.json`.
+
+Note: the S base rate in this 100-card deck is 34%, not 30.5% -- the 30.5% figure is the graded-day precision baseline named in the W9 spec row (`omen-9-0-spec.md`), used here as-given, not re-derived.
 
 ## Confusion matrices (S vs not-S)
 
-**Haiku**
-
-| | model S | model not-S |
+| | his S | his not-S |
 |---|---:|---:|
-| **his S** | 17 | 17 |
-| **his not-S** | 22 | 44 |
+| **Haiku says S** | 10 | 16 |
+| **Haiku says not-S** | 24 | 50 |
 
-Precision (S) = 0.436, Recall (S) = 0.500
-
-**Sonnet**
-
-| | model S | model not-S |
+| | his S | his not-S |
 |---|---:|---:|
-| **his S** | 5 | 29 |
-| **his not-S** | 8 | 58 |
+| **Sonnet says S** | 4 | 6 |
+| **Sonnet says not-S** | 30 | 60 |
 
-Precision (S) = 0.385, Recall (S) = 0.147
+## Precision / recall / agreement
 
-## Precision, recall, agreement, baseline, bootstrap band
+| model | precision (S) | recall (S) | exact S/A/C/none agreement | bootstrap 95% band | clears 30.5% baseline? |
+|---|---:|---:|---:|---:|---:|
+| Haiku | 38.5% | 29.4% | 45/100 (45.0%) | [20.0%, 58.3%] | False |
+| Sonnet | 40.0% | 11.8% | 45/100 (45.0%) | [10.0%, 72.7%] | False |
 
-| model | precision (S) | recall (S) | raw S/A/C/none agreement | vs 30.5% baseline | bootstrap 95% band (n=2000) |
-|---|---:|---:|---:|---|---|
-| Haiku | 0.436 | 0.500 | 36/100 = 0.360 | above | [0.286, 0.600] |
-| Sonnet | 0.385 | 0.147 | 32/100 = 0.320 | above | [0.143, 0.667] |
+Baseline: 30.5% (30.5% graded-day precision, per the W9 spec row). Bootstrap: 10,000 resamples of the 100 cards with replacement, 95% percentile interval on precision-for-S.
 
-Both point-estimate precisions clear the 30.5% baseline, but at n=100 cards (Haiku fires S on 39 of them, Sonnet on 13) the bootstrap bands are wide enough that neither result is distinguishable from the baseline with confidence — Sonnet's band in particular puts a large share of its mass *below* 30.5%. Haiku also has 2x Sonnet's recall (0.500 vs 0.147): Sonnet is far more conservative about calling S and misses most of what Austin actually marked S.
+Both readers land a few points above the point-estimate baseline (38.5% and 40.0% vs 30.5%), but each is built on a small number of S calls (26 for Haiku, 10 for Sonnet) and the bootstrap band on both spans well below and well above the baseline -- the point estimate is not distinguishable from the baseline at this sample size.
 
-## Both models said S, he said none (false positives)
+## 2 of 2 false positives -- both models said S, he said none
 
-Only 4 cards met this condition (not 10 — the two models rarely both fire S on the same card, let alone on one Austin refused):
+### HOOD_2025-07-01
+- **Haiku:** ORH break with OCR retest confluence; strong displacement and bull progression with immediate buyback of the retest candle. Early-window trade with clear level respect.
+- **Sonnet:** The 09:51-09:52 displacement candles break the PDH/ORH confluence level clean, and the 09:53 candle retests it in one bar, wicking under but closing back on the correct side — no stale retest, no rejection, level respected. Confluence of the two stacked levels plus bull PA sitting above 5 of the 6 levels I watch each earn a +1, so with zero downgrades tripped this floors at S, long.
 
-| card | haiku reason (truncated) | sonnet reason (truncated) |
-|---|---|---|
-| AMD_2025-04-24 | Clean break above ORH with tight retest; small red OCR candle at the level respected as stop, price confirms higher by 09:55. | Sweeps below ORL, reversal candle reclaims and closes back above ORL by 09:37, every candle after respects it — clean BR+OCR confluence. |
-| ORCL_2024-09-25 | Break of ORH at 09:39 + 09:40 displacement candle generates OCR confluence; retest holds above 167 through cut. | Displacement through ORL then ORH; retest is a one-candle-rule bar respected (bought back, no close through) — BR+OCR confluence. |
-| ARM_2026-04-29 | ORL breaks below at 09:46–09:47, retests 09:48–09:50 with green OCR candles in a downtrend; confluence cancels the light displacement downgrade. | Displacement through PML into PDL; 09:48 wick below PDL closes back above; 09:49 green candle is the one-candle-rule reversal. |
-| IREN_2025-09-25 | BR of ORL/PDL at 44.00 with OCR confluence from 09:36 red candle; displacement confirmed by sustained green candles with higher lows. | Sweeps below ORL into 09:38–09:39 low, one up-close candle against the down-move, reclaims and closes back above ORL with force. |
+### IREN_2025-09-25
+- **Haiku:** Displacement break above 46.00 at 09:50 rallies to 46.80; retest at 09:56 respects level close without chop. Entry on retest close; stop on broken level, clean setup, no downgrades.
+- **Sonnet:** Displacement candle at 09:49-09:50 clears ORH (~46.00) with force out of a clean uptrend off the 09:39 low, then the 09:55 candle retests back into the level (low ~46.10, within tolerance) and closes back above without ever closing through it — level respected, retest not stale. No downgrade variable trips: no exhaustion, no chop on the level, counter-trend candles are small and bought back, so this grades S.
 
-Both models independently reach S on these four via textbook BR+OCR structure; Austin refused all four. Four cards is a hint that the models' notion of "clean confluence" is more permissive than his, not a diagnosis — no rule can be inferred from four.
+## 3 of 3 misses -- he said S, both models said none
 
-## He said S, both models said none (misses)
+### MSTR_2025-08-26
+- **Haiku:** The 09:32 displacement candle peaked below ORH without breaking a defined level. Counter-trend candles (five consecutive reds) are not respected and lack OCR confluence or a clear retest hold pattern by the cut.
+- **Sonnet:** No level has broken yet — price wicked up toward PMH/ORH (~345.3-345.7) at 09:34-09:36 but never closed through, so there is no BR and no retest to trade; it's chopping between ORH/PMH above and ORL/PML below with no displacement candle establishing a level. No level, no BR — refuse the trade at this cut.
 
-Only 3 cards met this condition (not 10):
+### MSTR_2026-03-13
+- **Haiku:** Exhaustion filter (3-point HOD-to-LOD move before cut) disqualifies. Counter-trend bounce candles (09:36–09:38) rejected immediately with no BR+OCR confluence at the cut.
+- **Sonnet:** Price broke PMH (~144.6) and then ORL (~143.65) and ran straight down without ever coming back to retest either level — variable 7, no retest — so there is no confirmation-regime close at a level to trigger on. The 09:37–09:41 chop sits below both broken levels, not on them, so this is a refusal at the cut, not a C: wait for price to reclaim back up to ORL or PMH and close there before there's anything to trade.
 
-| card | haiku reason (truncated) | sonnet reason (truncated) |
-|---|---|---|
-| QQQ_2025-09-23 | No displacement behind the early drop below ORH; drifting price action without level commitment. | Chopping around ORL with repeated closes through the level instead of a clean break and reaction. |
-| MARA_2025-07-18 | Breaks PDH at 09:32, runs without retesting; subsequent chop closes through price rather than respecting support. | Only wicked down near ORL/PML and rallied to chop directly under PDH/ORH — no level has actually broken. |
-| BABA_2026-06-12 | Chops through ORH without breaking decisively; candles close through levels repeatedly instead of reacting. | Broke ORH toward 09:33, reversed hard through ORL by 09:34, chopping right on ORL — refusal case. |
-
-On all three, both models read the price action as unresolved chop with no respected level — exactly the condition the rulebook calls a refusal — while Austin still marked S. This is the same pattern the project CLAUDE.md already names from his own 2026-08-30 marks: entries he takes read as "close but didn't actually touch" rather than the clean textbook shape either model is pattern-matching for.
+### BABA_2026-06-12
+- **Haiku:** ORH break-and-retest at 09:32-09:33 is stale; price trades much lower without displaced break structure. No fresh level respected at cut; price action choppy through opening range.
+- **Sonnet:** Price is chopping inside its own opening range (ORH ~112.65 / ORL ~112.1), closing on and around ORL repeatedly with no clean break of any of the six levels — that's disrespect/chop, not a setup. No level has broken and retested, so there's no BR to grade and nothing OCR has manufactured either.
 
 ## What this means for a vision classifier
 
-- **Not ready to gate anything.** At n=100 with only 34 true S cards, both models' precision estimates carry error bars wide enough to overlap the 30.5% baseline (Sonnet's band mostly sits below it). Neither model beats the baseline with statistical confidence on this sample.
-- **The two models disagree with each other more than either agrees with him.** Haiku fires S on 39/100 cards, Sonnet on 13/100 — a >3x gap in willingness to call S — and their agreement with his full S/A/C/none ladder (36% and 32%) is barely better than chance among two collapsed classes.
-- **The false positives and misses point the same direction as the human marks already on file.** Where the models disagree with Austin, it looks structural: they call S on textbook BR+OCR shapes he refuses, and call none on chop where he still saw a trade — consistent with the recorded finding that his entries are "close but didn't actually touch," a unit narrower than either model is reading off the chart.
-- **Before this becomes a candidate classifier**, it needs a much larger graded sample (100 cards, 34 positives, is too small to separate signal from noise at these precision gaps) and a prompt/rubric change aimed specifically at his tighter retest tolerance rather than the textbook BR+OCR shape both models default to.
+- Neither reader's precision-for-S clears the 30.5% baseline with statistical confidence at n=100 -- the bootstrap lower bound sits below the baseline for both (Haiku 20.0%, Sonnet 10.0%). A 100-card sample cannot settle this; it can only say the signal is not obviously present, not that it is absent.
+- Recall for S is low for both models (29.4% for Haiku, 11.8% for Sonnet) -- most of his S cards read as A or none from the chart alone. Sonnet in particular grades conservatively (fewer S calls, higher bar for 'no downgrades'), trading recall for a marginally higher precision.
+- The false positives read as textbook clean break-and-retests by rulebook mechanics -- both models describe zero downgrade variables tripped. What they miss is whatever he sees beyond the rulebook: the qualitative chart judgement (candle force, how a level *feels* respected) that the eight-variable digest does not capture in words.
+- The misses lean toward exhaustion/no-clean-level reads where he apparently still saw an S -- consistent with the project's standing finding that his time buys the eye test and his calls are not fully reducible to the rulebook.
+- Bottom line: this single-pass read (no examples, no fine-tuning, first-look grading) does not by itself justify building a vision classifier. It also does not rule one out -- the signal-to-noise here could reflect prompt/rubric quality rather than the modality. A larger sample, and/or a few-shot or fine-tuned reader, would be needed before spending build time on this lane.
