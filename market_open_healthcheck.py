@@ -50,158 +50,182 @@ def post_to_discord(payload: dict) -> bool:
         return False
 
 
-# ── 1. Python 3.13 ──────────────────────────────────────────────
-PY313 = Path(r"C:\Users\aharg\AppData\Local\Programs\Python\Python313\python.exe")
-pv_ok = False
-if PY313.exists():
-    try:
-        out = subprocess.run([str(PY313), "--version"], capture_output=True, text=True, timeout=10)
-        pv_ok = "3.13" in out.stdout
-        check("python313-exists", pv_ok, out.stdout.strip() or out.stderr.strip())
-    except Exception as e:
-        check("python313-exists", False, str(e))
-else:
-    check("python313-exists", False, f"Not found at {PY313}")
+def cred_files_for(base: Path):
+    """Every credential file this healthcheck reads. B-13: this repo has one
+    working copy, so the main .env under BASE is the only place Tastytrade
+    credentials actually live — there is no separate `projects\\tradingbot`
+    checkout."""
+    return [("main .env", base / ".env")]
 
-# ── 2. yfinance (fallback) ──────────────────────────────────────
-if pv_ok:
-    try:
-        out = subprocess.run(
-            [str(PY313), "-c", "import yfinance; print(yfinance.__version__)"],
-            capture_output=True, text=True, timeout=15,
-        )
-        check("yfinance-works", out.returncode == 0, out.stderr.strip() or out.stdout.strip())
-    except Exception as e:
-        check("yfinance-works", False, str(e))
-else:
-    check("yfinance-works", False, "Python313 not available")
 
-# ── 3. Core trading deps ────────────────────────────────────────
-if pv_ok:
-    deps = ["requests", "websocket", "yfinance"]
-    missing = []
-    for d in deps:
-        r = subprocess.run(
-            [str(PY313), "-c", f"import {d.split('.')[0]}"],
-            capture_output=True, text=True, timeout=10,
-        )
-        if r.returncode != 0:
-            missing.append(d)
-    check("trading-deps", len(missing) == 0, f"Missing: {', '.join(missing)}" if missing else "")
-else:
-    check("trading-deps", False, "Python313 not available")
+def find_tastytrade_creds(base: Path):
+    """Returns (ok, checked_files) — ok is True if any cred file under `base`
+    has an id + secret + (token or account number)."""
+    cred_files = cred_files_for(base)
+    ok = False
+    for _label, path in cred_files:
+        if path.exists():
+            content = path.read_text(encoding="utf-8")
+            has_id = "CLIENT_ID" in content or "TASTYTRADE_USERNAME" in content
+            has_secret = "CLIENT_SECRET" in content or "TASTYTRADE_PASSWORD" in content
+            has_token = "REFRESH_TOKEN" in content or "TASTYTRADE_REMEMBER_TOKEN" in content
+            has_acct = "ACCOUNT_NUMBER" in content
+            if has_id and has_secret and (has_token or has_acct):
+                ok = True
+    return ok, cred_files
 
-# ── 4. Tastytrade credentials ───────────────────────────────────
-CRED_FILES = [
-    ("main .env", BASE / ".env"),
-    ("projects .env.tastytrade",
-     Path(r"C:\Users\aharg\projects\tradingbot\.env.tastytrade")),
-    ("project .env", Path(r"C:\Users\aharg\projects\tradingbot\.env")),
-]
-tt_ok = False
-for label, path in CRED_FILES:
-    if path.exists():
-        content = path.read_text(encoding="utf-8")
-        has_id = "CLIENT_ID" in content or "TASTYTRADE_USERNAME" in content
-        has_secret = "CLIENT_SECRET" in content or "TASTYTRADE_PASSWORD" in content
-        has_token = "REFRESH_TOKEN" in content or "TASTYTRADE_REMEMBER_TOKEN" in content
-        has_acct = "ACCOUNT_NUMBER" in content
-        if has_id and has_secret and (has_token or has_acct):
-            tt_ok = True
-check("tastytrade-creds-exist", tt_ok, f"No valid cred file found")
 
-# Check refresh token format (JWT should start with eyJ)
-if tt_ok:
-    tt_env = Path(r"C:\Users\aharg\projects\tradingbot\.env.tastytrade")
+def check_refresh_token(base: Path):
+    """Returns (label, ok, detail) for the refresh/remember token format check.
+    Reads the same main .env the cred-exist check found (B-13: not a separate
+    dead `.env.tastytrade` path)."""
+    env_main = base / ".env"
     refresh_token = None
-    if tt_env.exists():
-        for line in tt_env.read_text().splitlines():
+    if env_main.exists():
+        for line in env_main.read_text().splitlines():
             if line.startswith("REFRESH_TOKEN="):
                 refresh_token = line.split("=", 1)[1].strip()
                 break
     if refresh_token:
-        check("tastytrade-refresh-token-format",
-              refresh_token.startswith("eyJ"),
-              f"Token starts with {refresh_token[:10]}...")
-    else:
-        env_main = BASE / ".env"
-        remember_token = None
-        if env_main.exists():
-            for line in env_main.read_text().splitlines():
-                if line.startswith("TASTYTRADE_REMEMBER_TOKEN="):
-                    remember_token = line.split("=", 1)[1].strip()
-                    break
-        check("tastytrade-remember-token-exists",
-              bool(remember_token),
-              "No TASTYTRADE_REMEMBER_TOKEN or REFRESH_TOKEN found")
-
-# ── 5. Task Scheduler task exists and enabled ───────────────────
-try:
-    out = subprocess.run(
-        ["schtasks", "/query", "/tn", "run_daily", "/fo", "LIST", "/v"],
-        capture_output=True, text=True, timeout=10,
+        return (
+            "tastytrade-refresh-token-format",
+            refresh_token.startswith("eyJ"),
+            f"Token starts with {refresh_token[:10]}...",
+        )
+    remember_token = None
+    if env_main.exists():
+        for line in env_main.read_text().splitlines():
+            if line.startswith("TASTYTRADE_REMEMBER_TOKEN="):
+                remember_token = line.split("=", 1)[1].strip()
+                break
+    return (
+        "tastytrade-remember-token-exists",
+        bool(remember_token),
+        "No TASTYTRADE_REMEMBER_TOKEN or REFRESH_TOKEN found",
     )
-    if out.returncode == 0 and "run_daily" in out.stdout:
-        enabled = "Enabled" in out.stdout
-        check("scheduler-task-exists", enabled,
-              "Task found but status may not be Enabled" if not enabled else "Enabled")
+
+
+def main() -> int:
+    # ── 1. Python 3.13 ──────────────────────────────────────────────
+    PY313 = Path(r"C:\Users\aharg\AppData\Local\Programs\Python\Python313\python.exe")
+    pv_ok = False
+    if PY313.exists():
+        try:
+            out = subprocess.run([str(PY313), "--version"], capture_output=True, text=True, timeout=10)
+            pv_ok = "3.13" in out.stdout
+            check("python313-exists", pv_ok, out.stdout.strip() or out.stderr.strip())
+        except Exception as e:
+            check("python313-exists", False, str(e))
     else:
-        # Broader search
-        out2 = subprocess.run(
-            ["schtasks", "/query", "/fo", "LIST", "/v"],
+        check("python313-exists", False, f"Not found at {PY313}")
+
+    # ── 2. yfinance (fallback) ──────────────────────────────────────
+    if pv_ok:
+        try:
+            out = subprocess.run(
+                [str(PY313), "-c", "import yfinance; print(yfinance.__version__)"],
+                capture_output=True, text=True, timeout=15,
+            )
+            check("yfinance-works", out.returncode == 0, out.stderr.strip() or out.stdout.strip())
+        except Exception as e:
+            check("yfinance-works", False, str(e))
+    else:
+        check("yfinance-works", False, "Python313 not available")
+
+    # ── 3. Core trading deps ────────────────────────────────────────
+    if pv_ok:
+        deps = ["requests", "websocket", "yfinance"]
+        missing = []
+        for d in deps:
+            r = subprocess.run(
+                [str(PY313), "-c", f"import {d.split('.')[0]}"],
+                capture_output=True, text=True, timeout=10,
+            )
+            if r.returncode != 0:
+                missing.append(d)
+        check("trading-deps", len(missing) == 0, f"Missing: {', '.join(missing)}" if missing else "")
+    else:
+        check("trading-deps", False, "Python313 not available")
+
+    # ── 4. Tastytrade credentials ───────────────────────────────────
+    tt_ok, _cred_files = find_tastytrade_creds(BASE)
+    check("tastytrade-creds-exist", tt_ok, "No valid cred file found")
+
+    # Check refresh token format (JWT should start with eyJ)
+    if tt_ok:
+        label, ok, detail = check_refresh_token(BASE)
+        check(label, ok, detail)
+
+    # ── 5. Task Scheduler task exists and enabled ───────────────────
+    try:
+        out = subprocess.run(
+            ["schtasks", "/query", "/tn", "run_daily", "/fo", "LIST", "/v"],
             capture_output=True, text=True, timeout=10,
         )
-        if "run_daily" in out2.stdout.lower():
-            check("scheduler-task-exists", True, "Found in task list via broad search")
+        if out.returncode == 0 and "run_daily" in out.stdout:
+            enabled = "Enabled" in out.stdout
+            check("scheduler-task-exists", enabled,
+                  "Task found but status may not be Enabled" if not enabled else "Enabled")
         else:
-            check("scheduler-task-exists", False, "No 'run_daily' task found")
-except Exception as e:
-    check("scheduler-task-exists", False, str(e))
+            # Broader search
+            out2 = subprocess.run(
+                ["schtasks", "/query", "/fo", "LIST", "/v"],
+                capture_output=True, text=True, timeout=10,
+            )
+            if "run_daily" in out2.stdout.lower():
+                check("scheduler-task-exists", True, "Found in task list via broad search")
+            else:
+                check("scheduler-task-exists", False, "No 'run_daily' task found")
+    except Exception as e:
+        check("scheduler-task-exists", False, str(e))
+
+    # ── Results ─────────────────────────────────────────────────────
+    pass_count = len(RESULTS["pass"])
+    fail_count = len(RESULTS["fail"])
+    total = pass_count + fail_count
+
+    timestamp = datetime.now(timezone.utc).astimezone().strftime("%Y-%m-%d %I:%M:%S %p ET")
+    overall = "PASS" if fail_count == 0 else "FAIL"
+
+    summary_parts = [f"**{overall}** — {pass_count}/{total} checks passed"]
+    for p in RESULTS["pass"]:
+        summary_parts.append(f"✓ {p}")
+    for f in RESULTS["fail"]:
+        summary_parts.append(f"✗ {f}")
+
+    description = "\n".join(summary_parts)
+
+    color = 3066993  # green
+    if fail_count > 0:
+        color = 15158332  # red
+
+    payload = {
+        "embeds": [{
+            "title": f"📊 Pre-Market Health Check — {overall}",
+            "description": description,
+            "color": color,
+            "footer": {"text": f"Market Open Health Check · {timestamp}"},
+        }]
+    }
+
+    # Also print to stdout for logs
+    print(f"\n{'='*50}")
+    print(f"  MARKET OPEN HEALTH CHECK  —  {overall}")
+    print(f"{'='*50}")
+    print(f"  Time:     {timestamp}")
+    print(f"  Passed:   {pass_count}/{total}")
+    print()
+    for p in RESULTS["pass"]:
+        print(f"  ✓  {p}")
+    for f in RESULTS["fail"]:
+        print(f"  ✗  {f}")
+    print(f"{'='*50}\n")
+
+    post_ok = post_to_discord(payload)
+    print(f"Discord post: {'✓ sent' if post_ok else '✗ failed'}")
+
+    return 0 if fail_count == 0 else 1
 
 
-# ── Results ─────────────────────────────────────────────────────
-pass_count = len(RESULTS["pass"])
-fail_count = len(RESULTS["fail"])
-total = pass_count + fail_count
-
-timestamp = datetime.now(timezone.utc).astimezone().strftime("%Y-%m-%d %I:%M:%S %p ET")
-overall = "PASS" if fail_count == 0 else "FAIL"
-
-summary_parts = [f"**{overall}** — {pass_count}/{total} checks passed"]
-for p in RESULTS["pass"]:
-    summary_parts.append(f"✓ {p}")
-for f in RESULTS["fail"]:
-    summary_parts.append(f"✗ {f}")
-
-description = "\n".join(summary_parts)
-
-color = 3066993  # green
-if fail_count > 0:
-    color = 15158332  # red
-
-payload = {
-    "embeds": [{
-        "title": f"📊 Pre-Market Health Check — {overall}",
-        "description": description,
-        "color": color,
-        "footer": {"text": f"Market Open Health Check · {timestamp}"},
-    }]
-}
-
-# Also print to stdout for logs
-print(f"\n{'='*50}")
-print(f"  MARKET OPEN HEALTH CHECK  —  {overall}")
-print(f"{'='*50}")
-print(f"  Time:     {timestamp}")
-print(f"  Passed:   {pass_count}/{total}")
-print()
-for p in RESULTS["pass"]:
-    print(f"  ✓  {p}")
-for f in RESULTS["fail"]:
-    print(f"  ✗  {f}")
-print(f"{'='*50}\n")
-
-post_ok = post_to_discord(payload)
-print(f"Discord post: {'✓ sent' if post_ok else '✗ failed'}")
-
-sys.exit(0 if fail_count == 0 else 1)
+if __name__ == "__main__":
+    sys.exit(main())

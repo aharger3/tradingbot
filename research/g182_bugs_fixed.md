@@ -778,3 +778,51 @@ updated this script when it was.
 Live status unchanged by design: `OmenA6PaperLog` was already `Disabled`
 before this fix (a latent trap, not an outage) and stays `Disabled` after —
 B-12 was that the committed script was wrong, not that the task was firing.
+
+# g182 — B3 (bug B-13): market_open_healthcheck's dead `projects\tradingbot` path
+
+What is different now: the healthcheck's Tastytrade refresh-token format
+check reads the repo's real `.env` instead of a `C:\Users\aharg\projects\
+tradingbot\.env.tastytrade` path that has never existed on this box (the
+working copy has only `Desktop\Projects\tradingbot`, no `aharg\projects\...`
+tree) — so it now actually validates the JWT it claims to check, instead of
+silently falling back to a weaker "does TASTYTRADE_REMEMBER_TOKEN exist"
+check every single run.
+
+## Root cause
+
+`market_open_healthcheck.py`'s `CRED_FILES` list (old lines 95-100) carried
+three entries; two (`.env.tastytrade` and `.env` under `projects\tradingbot`)
+pointed at a path that does not exist in this repo — only `.env` under
+`BASE` (the script's own directory) is real. The cred-*exists* check still
+passed, because the first `CRED_FILES` entry already pointed at the real
+`BASE / ".env"`. But the separate refresh-token-*format* check (old line
+115) hardcoded the same dead path directly, with no fallback to `BASE`, so
+`tt_env.exists()` was always `False` and the JWT-format assertion
+(`refresh_token.startswith("eyJ")`) never ran — it silently substituted a
+weaker check (`TASTYTRADE_REMEMBER_TOKEN` present) every single run, while
+Tastytrade itself has been 401ing 3,551 times/day.
+
+## Fixed: `market_open_healthcheck.py`
+
+Extracted `find_tastytrade_creds(base)` and `check_refresh_token(base)` as
+testable functions, both reading only `base / ".env"` (no more
+`projects\tradingbot` reference anywhere in the file); the whole script body
+moved into `main()` behind `if __name__ == "__main__":` so the new functions
+are importable without running subprocess/network side effects — no other
+module imports this script, so this is not a behavior change for the
+scheduled run.
+
+Test: `research/g_b13_test_healthcheck_creds.py` — 3 checks: no `CRED_FILES`
+entry resolves outside a given `base`, `find_tastytrade_creds` finds real
+creds written to a temp `.env`, and `check_refresh_token` reads and validates
+the JWT from that same temp `.env`. Confirmed the bug existed pre-fix via
+`git show HEAD:market_open_healthcheck.py | grep projects` (lines 97-99,
+115). Live run of the fixed script:
+`tastytrade-creds-exist` and `tastytrade-refresh-token-format` both now PASS
+against the real repo `.env` (previously the format check silently ran
+`tastytrade-remember-token-exists` instead).
+
+Live status unchanged by design: the fix only changes which file the check
+reads, not the Tastytrade 401 itself (separate, tracked elsewhere in this
+session — `journal/scanner-2026-09-01.log`).
