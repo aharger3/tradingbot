@@ -177,6 +177,12 @@ changes**, decision (hold) unaffected on either universe"). Base check at start:
 `af028359`; the row's own commits are `e073b94a` (code) → `842b3f3c` (books, gate) →
 `d062da84` (repair).
 
+*Provenance note: the repo's `wip: auto-commit` hook swept this pass's four files (this
+write-up, `research/l1_referee2.py` and the two post-repair books) into commit `ba639df0`
+before the referee could commit them under its own message. Nothing else is in that commit and
+no mark file is touched by it; the referee's own commit follows immediately and carries the
+verdict in its message.*
+
 Everything below is re-derived by **`research/l1_referee2.py`** (committed beside this file).
 That script imports neither `loop_cycle.py` nor `g72_suppress_price.py` nor pass 1's
 `l1_referee.py`: the day-policy unit, the month buckets, the green-month count, $/day and the
