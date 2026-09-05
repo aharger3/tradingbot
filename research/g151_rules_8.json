@@ -1,0 +1,71 @@
+{
+  "theme": "management and targets",
+  "source": "research/g150_marks_comments.jsonl",
+  "checked_against": "Projects/omen-rulebook.md (vault)",
+  "claims": [
+    {
+      "rule": "The blind-mark management tag itself splits by grade: cards tagged 'Hold to 2R' are mostly S (9 of 12 unique symbol-days), cards tagged 'Scale 1R + runner' are evenly S/A (14 of 28). This is a new observation, not present anywhere in omen-rulebook.md.",
+      "polarity": "S-indicator",
+      "n_rows": 40,
+      "quotes": ["Hold to 2R", "Scale 1R + runner"],
+      "testable_as": "not-testable",
+      "predicate_sketch": "Not a pre-entry feature — the management label is assigned after grading/entry, so it cannot gate whether to fire. Descriptive only: could motivate looking at whatever pre-entry feature predicts which management style he picks (e.g. tighter structure -> hold-to-2R), but the tag itself is not computable at signal time."
+    },
+    {
+      "rule": "The scale-out ladder fraction should vary with day/trend regime: on a trending day, run a smaller first scale and let more ride (50/20/10/10); on a choppy/non-trending day take profit earlier and heavier (30/30/30/10, or 'more money quicker' HOD exits).",
+      "polarity": "S-indicator",
+      "n_rows": 1,
+      "quotes": ["maybe we decide 30/30/30/10 and 50/20/10/10 based on how well the day is going to run or trend. if day is not trending, we want those HOD exits more money quicker"],
+      "testable_as": "bars-feature",
+      "predicate_sketch": "omen-rulebook.md ratifies a single fixed 30/30/30/10 scale ladder (lines ~1065-1083) with no trend-conditional variant, and paper_trader.py's G7.2 runner-leg ladder plans (LIVE_LADDER_PLAN) are default OFF, not wired to a trend regime. Feature: an HTF-trend/regime flag at entry (e.g. daily/60m bias direction and strength) used to pick which ladder split applies. Not ratified, not wired -- keep."
+    },
+    {
+      "rule": "Moving the stop to breakeven should only happen after price has moved 'enough' past PT1 -- Austin flags this himself as unresolved and wants it measured with stats, not assumed.",
+      "polarity": "S-indicator",
+      "n_rows": 4,
+      "quotes": [
+        "9:42 if we dont hit price target 1, we dont raise the stop to BE, but we need to run stats on with enough movement raising to BE",
+        "after scale out the rest is break even stop unless you really think it makes sense to get a better MFE. maybe the stats will tell us",
+        "prob one we wanna hold really strong and pretty looking red order block extra confluence tight stop, always move to be after a big move and when scaled some out",
+        "reenter as it claims the same price, this would've been a double 84 percent loss but scaling out would've helped"
+      ],
+      "testable_as": "bars-feature",
+      "predicate_sketch": "omen-rulebook.md (lines 806-811) quotes this exact comment and states 'He is asking whether \"enough\" movement...' -- explicitly measured-only/unresolved, not a ratified+wired rule. Keep. Feature: distance past PT1 in R at the bar where BE-arm would trigger, swept against realized MFE to find the threshold he's asking for."
+    },
+    {
+      "rule": "Targets should include whole psychological round numbers (e.g. 188, 189), not only chart levels (HOD/LOD/PDH/PDL/pivots).",
+      "polarity": "S-indicator",
+      "n_rows": 3,
+      "quotes": [
+        "we can target longer timeframe levels but also whole psychological numbers like 188, 189, etc.",
+        "try to not have lod but break and two displacement candles and below levels and target whole psych numbers",
+        "Whole psych number, scale out at top of candles level"
+      ],
+      "testable_as": "bars-feature",
+      "predicate_sketch": "No mention of 'psych' anywhere in omen-rulebook.md -- unratified and unwired. Feature: distance from the signal-bar close (or projected target) to the nearest whole-dollar (or half-dollar, for lower-priced names) round number, as an additional candidate target/level alongside the six chart levels."
+    },
+    {
+      "rule": "Scale-out orders should sit slightly before the exact level (HOD/LOD), not resting exactly at it, because price tends to stall/consolidate right at the level before tagging it.",
+      "polarity": "S-indicator",
+      "n_rows": 3,
+      "quotes": [
+        "took a while to tap hod so maybe scale out slightly before? or get a better entry of that strong green candle",
+        "this one woulve had trouble with the scale out LOD since its close to that even with better entry",
+        "i would scale out HOD and stop either BE, and/or stop held so maybe a 2nd scale of taking profit when it came back to the HOD area"
+      ],
+      "testable_as": "bars-feature",
+      "predicate_sketch": "Not ratified anywhere in omen-rulebook.md (the only 'few cents' quote there, line 1437, is about the entry retest tolerance, a different mechanism). Mirror-image of the ratified zero-tolerance retest finding but for exits: feature = number of bars/time spent consolidating within N cents of the target level before it is finally tagged, used to test an exit-fill offset (target minus a small buffer) against a fill-at-touch assumption."
+    },
+    {
+      "rule": "A multi-tier target ladder (PT1 = nearer HOD/LOD, PT2 = the nearest structural level, PT3 = 2R, PT4 = a runner target chosen from HTF bias or a median-move average) rather than a flat single target.",
+      "polarity": "S-indicator",
+      "n_rows": 2,
+      "quotes": [
+        "PT 3 2r PT 4 runner target of choice based on HTF or medium average and those two never hit. 2r maybe hit because you had a bad RR entry",
+        "runner always the last one why is it in between 2 r? 2r level is trumped by HTF levels and whole psych number if one is close"
+      ],
+      "testable_as": "not-testable",
+      "predicate_sketch": "omen-rulebook.md ratifies the fraction split (30/30/30/10) and 'target = nearest structural level, not fixed 2R' (lines 946-1083), so the base ladder is already ratified. Kept only for the piece that is NOT ratified: choosing the final runner leg's target from HTF bias / a median-move average, rather than simply letting it run uncapped -- there is no book field for 'HTF-selected runner target' to test against, so this stays not-testable until such a feature exists."
+    }
+  ]
+}

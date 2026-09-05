@@ -1079,7 +1079,7 @@ def _emit_signal(runner: SignalRunner, tasty_feed: TastytradeFeed, symbol: str, 
 
     Returns True for TRADE-tier signals (counted against the daily governor,
     paper-traded); False for WATCH dings and skips."""
-    from options_sizer import build_options_plan, GRADE_SIZE_PCT, DEFAULT_MAX_LOSS
+    from options_sizer import build_options_plan, DEFAULT_MAX_LOSS
     if sig["entry"] == sig["stop"]:
         return False
     if getattr(sig["signal_type"], "value", "") != "reentry_84_rule" and \
@@ -1093,9 +1093,22 @@ def _emit_signal(runner: SignalRunner, tasty_feed: TastytradeFeed, symbol: str, 
     # see the SAC_TIER comment in signal_runner.py. his_grade() needs it, not
     # the engine letter, or a true S now displays as "A" like his A does.
     display_grade = sig.get("sac_grade", grade)
-    size_pct = GRADE_SIZE_PCT.get(grade, 0.6)
+    # G144 (2026-09-05): size_pct used to come off GRADE_SIZE_PCT[grade] --
+    # the legacy A+/A/B/C/X ladder -- but SAC_TIER maps BOTH "S" and "A" to
+    # the engine letter "A" (signal_runner.py SAC_TIER), so a real S signal
+    # sized at 0.8 (80% of RISK_DOLLARS = $800), never the full $1,000 R.
+    # His 2026-09-01 call: only S trades live; A and C are watch-only and
+    # carry no real budget. Sizing now keys off his ladder directly: S risks
+    # exactly RISK_DOLLARS, everything else sizes at 0 (never reaches the
+    # paper-trade branch below, since `_tier` already gates TRADE on
+    # sac_grade == "S").
+    # 84% re-entries are exempt from the grade check entirely (see the WATCH
+    # cap block below) -- they always risk full size, so they are exempt from
+    # the S-only sizing gate too, same as before this change.
+    is_reentry = getattr(sig["signal_type"], "value", "") == "reentry_84_rule"
+    size_pct = 1.0 if (display_grade == "S" or is_reentry) else 0.0
     # 84% re-entries run 2x size (Austin: double to recover first stop-out + profit)
-    if getattr(sig["signal_type"], "value", "") == "reentry_84_rule":
+    if is_reentry:
         size_pct *= 2.0
     tier = _tier(runner, sig, grade, candle.timestamp, symbol)
     alert_only = tier != "TRADE"

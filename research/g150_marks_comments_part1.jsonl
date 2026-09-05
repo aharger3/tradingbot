@@ -1,0 +1,479 @@
+{"symbol": "TSLA", "day": "2024-01-08", "source_file": "marks_clean", "card_id": "TSLA_2024-01-08_33", "grade": "A", "comment": ""}
+{"symbol": "SPY", "day": "2024-02-23", "source_file": "marks_clean", "card_id": "SPY_2024-02-23_17", "grade": "A", "comment": "potentially a double fakeout here, trade to the downside too last 10m, usually dont trade spy and qq unless they are very bullish/bearish"}
+{"symbol": "NVDA", "day": "2024-02-26", "source_file": "marks_clean", "card_id": "NVDA_2024-02-26_12", "grade": "S", "comment": "no displacement but 2 green candles to respectt off of"}
+{"symbol": "TSLA", "day": "2024-04-22", "source_file": "marks_clean", "card_id": "TSLA_2024-04-22_13", "grade": "S", "comment": ""}
+{"symbol": "SPY", "day": "2024-05-14", "source_file": "marks_clean", "card_id": "SPY_2024-05-14_28", "grade": "A", "comment": "could've been a reenter and take profit but this would've been a mess would've been faced out from the consolidation"}
+{"symbol": "IWM", "day": "2024-06-21", "source_file": "marks_clean", "card_id": "IWM_2024-06-21_21", "grade": "A", "comment": ""}
+{"symbol": "SPY", "day": "2024-07-11", "source_file": "marks_clean", "card_id": "SPY_2024-07-11_44", "grade": "A", "comment": "break and next candle is weak displacement so not even an a but something to notice if you have higher timeframe thesis"}
+{"symbol": "QQQ", "day": "2024-07-24", "source_file": "marks_clean", "card_id": "QQQ_2024-07-24_23", "grade": "A", "comment": "candles barely wicking away from pivot and 1 candle rule so took time for entry and a lot of consolidation"}
+{"symbol": "MARA", "day": "2024-08-02", "source_file": "marks_clean", "card_id": "MARA_2024-08-02_19", "grade": "S", "comment": ""}
+{"symbol": "SOFI", "day": "2024-08-05", "source_file": "marks_clean", "card_id": "SOFI_2024-08-05_13", "grade": "S", "comment": ""}
+{"symbol": "AVGO", "day": "2024-08-07", "source_file": "marks_clean", "card_id": "AVGO_2024-08-07_15", "grade": "S", "comment": "couple entries couple candles later or way later when it goes down and all the way up"}
+{"symbol": "QQQ", "day": "2024-08-08", "source_file": "marks_clean", "card_id": "QQQ_2024-08-08_37", "grade": "S", "comment": ""}
+{"symbol": "PLTR", "day": "2024-08-20", "source_file": "marks_clean", "card_id": "PLTR_2024-08-20_40", "grade": "S", "comment": ""}
+{"symbol": "META", "day": "2024-08-27", "source_file": "marks_clean", "card_id": "META_2024-08-27_28", "grade": "S", "comment": "first red candle at 930 it respects"}
+{"symbol": "PLTR", "day": "2024-08-28", "source_file": "marks_clean", "card_id": "PLTR_2024-08-28_18", "grade": "A", "comment": ""}
+{"symbol": "SPY", "day": "2024-08-30", "source_file": "marks_clean", "card_id": "SPY_2024-08-30_11", "grade": "A", "comment": "reenter as it claims the same price, this would've been a double 84 percent loss but scaling out would've helped"}
+{"symbol": "DIA", "day": "2024-09-06", "source_file": "marks_clean", "card_id": "DIA_2024-09-06_53", "grade": "S", "comment": ""}
+{"symbol": "NVDA", "day": "2024-09-06", "source_file": "marks_clean", "card_id": "NVDA_2024-09-06_53", "grade": "A", "comment": "no clean break it just respect pivot structures so maybe higher timeframe thesis"}
+{"symbol": "SOFI", "day": "2024-09-06", "source_file": "marks_clean", "card_id": "SOFI_2024-09-06_34", "grade": "A", "comment": "when a major price is near like that you want to try to hit it. but I also dont like the way the candles look as much here so thats why im going with A"}
+{"symbol": "UBER", "day": "2024-09-10", "source_file": "marks_clean", "card_id": "UBER_2024-09-10_17", "grade": "S", "comment": "could be entry slightly earlier I just didn't like that the entry was above pml"}
+{"symbol": "NFLX", "day": "2024-09-11", "source_file": "marks_clean", "card_id": "NFLX_2024-09-11_9", "grade": "A", "comment": "maybe entry here but the price action meaning the candles look really ugly"}
+{"symbol": "GOOG", "day": "2024-10-03", "source_file": "marks_clean", "card_id": "GOOG_2024-10-03_34", "grade": "A", "comment": "after scale out the rest is break even stop unless you really think it makes sense to get a better MFE. maybe the stats will tell us"}
+{"symbol": "HOOD", "day": "2024-10-31", "source_file": "marks_clean", "card_id": "HOOD_2024-10-31_13", "grade": "S", "comment": "one candle rule, misses by a cent or two but thats the perfect place for stop and its higher probability"}
+{"symbol": "GOOGL", "day": "2024-11-07", "source_file": "marks_clean", "card_id": "GOOGL_2024-11-07_10", "grade": "A", "comment": "might've been not enough strength on entry candle so probably blew it here"}
+{"symbol": "CRM", "day": "2024-11-11", "source_file": "marks_clean", "card_id": "CRM_2024-11-11_14", "grade": "A", "comment": "would've taken 3 tries instead of 2 which is usual for 84 percent rule, unless you decide to change the stop to the pivot structure that was created, then it would've been 2 entries. 1015 was a one candle rule essentially that was respected too"}
+{"symbol": "NVDA", "day": "2024-11-13", "source_file": "marks_clean", "card_id": "NVDA_2024-11-13_17", "grade": "A", "comment": "held pivot but too choppy and taking too long I dont like this really"}
+{"symbol": "QQQ", "day": "2024-11-15", "source_file": "marks_clean", "card_id": "QQQ_2024-11-15_31", "grade": "A", "comment": "not that much displacement enter as the candle closing could enter earlier possibly"}
+{"symbol": "GOOGL", "day": "2024-11-20", "source_file": "marks_clean", "card_id": "GOOGL_2024-11-20_6", "grade": "S", "comment": ""}
+{"symbol": "MARA", "day": "2024-11-21", "source_file": "marks_clean", "card_id": "MARA_2024-11-21_27", "grade": "A", "comment": "10:19 maybe an entry as well"}
+{"symbol": "MSFT", "day": "2024-12-02", "source_file": "marks_clean", "card_id": "MSFT_2024-12-02_15", "grade": "S", "comment": "prob one we wanna hold really strong and pretty looking red order block extra confluence tight stop, always move to be after a big move and when scaled some out"}
+{"symbol": "SPY", "day": "2024-12-03", "source_file": "marks_clean", "card_id": "SPY_2024-12-03_10", "grade": "A", "comment": "later entry in the day would've lowered the stop to fit the pivot structure better, but realistically you want something more s to find"}
+{"symbol": "BABA", "day": "2024-12-17", "source_file": "marks_clean", "card_id": "BABA_2024-12-17_53", "grade": "S", "comment": ""}
+{"symbol": "AAPL", "day": "2024-12-20", "source_file": "marks_clean", "card_id": "AAPL_2024-12-20_47", "grade": "S", "comment": "I like break and retests where there was one fast candle and one rejection at 931 and 932 but can pay attention to other pivots instead like 930 and the 1010 pivot area or just the order block 2 before entry"}
+{"symbol": "NVDA", "day": "2024-12-20", "source_file": "marks_clean", "card_id": "NVDA_2024-12-20_41", "grade": "S", "comment": ""}
+{"symbol": "AAPL", "day": "2025-01-10", "source_file": "marks_clean", "card_id": "AAPL_2025-01-10_30", "grade": "S", "comment": "as candle is forming you dont want to get an entry all the way at the bottom, this should kind of signal you that your should be getting ready to get into the trade"}
+{"symbol": "QQQ", "day": "2025-01-14", "source_file": "marks_clean", "card_id": "QQQ_2025-01-14_26", "grade": "A", "comment": "trade may have been hard to work out, above orh earlier lowers probability"}
+{"symbol": "AMZN", "day": "2025-01-22", "source_file": "marks_clean", "card_id": "AMZN_2025-01-22_37", "grade": "S", "comment": ""}
+{"symbol": "AVGO", "day": "2025-02-07", "source_file": "marks_clean", "card_id": "AVGO_2025-02-07_7", "grade": "S", "comment": ""}
+{"symbol": "AAPL", "day": "2025-02-19", "source_file": "marks_clean", "card_id": "AAPL_2025-02-19_62", "grade": "A", "comment": "a green candle that could've been respected for break even if necessary as well, just late in the day you always want earlier trades"}
+{"symbol": "COIN", "day": "2025-02-28", "source_file": "marks_clean", "card_id": "COIN_2025-02-28_34", "grade": "A", "comment": "lots of consolidation but clear stop"}
+{"symbol": "QQQ", "day": "2025-03-03", "source_file": "marks_clean", "card_id": "QQQ_2025-03-03_22", "grade": "A", "comment": "no displacement enter as candle forming dont want to be at low of day"}
+{"symbol": "COIN", "day": "2025-03-06", "source_file": "marks_clean", "card_id": "COIN_2025-03-06_27", "grade": "S", "comment": "respects red candles, quite strong , clear levels to target"}
+{"symbol": "SOFI", "day": "2025-03-12", "source_file": "marks_clean", "card_id": "SOFI_2025-03-12_17", "grade": "S", "comment": ""}
+{"symbol": "UBER", "day": "2025-03-12", "source_file": "marks_clean", "card_id": "UBER_2025-03-12_21", "grade": "S", "comment": "stock respected green candle rest of the way, break ant retest displacement"}
+{"symbol": "AMZN", "day": "2025-03-14", "source_file": "marks_clean", "card_id": "AMZN_2025-03-14_37", "grade": "A", "comment": "tough pa when stock breaks above orh the other way lower probability"}
+{"symbol": "MU", "day": "2025-03-28", "source_file": "marks_clean", "card_id": "MU_2025-03-28_33", "grade": "S", "comment": "can come back up to that green candle and thats where u want it to hold"}
+{"symbol": "AVGO", "day": "2025-04-10", "source_file": "marks_clean", "card_id": "AVGO_2025-04-10_34", "grade": "A", "comment": "fits our system but very choppy so not what we like to see, want to get the day done early with the cleanest setup out there"}
+{"symbol": "META", "day": "2025-04-10", "source_file": "marks_clean", "card_id": "META_2025-04-10_21", "grade": "A", "comment": "holds green candle but not pretty setup"}
+{"symbol": "INTC", "day": "2025-04-14", "source_file": "marks_clean", "card_id": "INTC_2025-04-14_15", "grade": "A", "comment": ""}
+{"symbol": "META", "day": "2025-05-01", "source_file": "marks_clean", "card_id": "META_2025-05-01_11", "grade": "S", "comment": ""}
+{"symbol": "ORCL", "day": "2025-05-06", "source_file": "marks_clean", "card_id": "ORCL_2025-05-06_18", "grade": "S", "comment": "deep in the one candle but 84 percent reclaim would've worked out just took some time"}
+{"symbol": "AVGO", "day": "2025-05-14", "source_file": "marks_clean", "card_id": "AVGO_2025-05-14_23", "grade": "A", "comment": "no clear break, kind of dips into candle, marking a because I think no trade doesn't save comments"}
+{"symbol": "TSM", "day": "2025-05-27", "source_file": "marks_clean", "card_id": "TSM_2025-05-27_24", "grade": "A", "comment": "nothing that clean try to enter not right at hod"}
+{"symbol": "IWM", "day": "2025-06-10", "source_file": "marks_clean", "card_id": "IWM_2025-06-10_32", "grade": "S", "comment": ""}
+{"symbol": "SOFI", "day": "2025-06-18", "source_file": "marks_clean", "card_id": "SOFI_2025-06-18_20", "grade": "S", "comment": ""}
+{"symbol": "AMD", "day": "2025-06-25", "source_file": "marks_clean", "card_id": "AMD_2025-06-25_59", "grade": "A", "comment": ""}
+{"symbol": "TSLA", "day": "2025-06-27", "source_file": "marks_clean", "card_id": "TSLA_2025-06-27_22", "grade": "S", "comment": ""}
+{"symbol": "MU", "day": "2025-07-09", "source_file": "marks_clean", "card_id": "MU_2025-07-09_50", "grade": "A", "comment": "bearish higher timeframe thesis maybe no trade"}
+{"symbol": "NVDA", "day": "2025-07-10", "source_file": "marks_clean", "card_id": "NVDA_2025-07-10_30", "grade": "A", "comment": ""}
+{"symbol": "PLTR", "day": "2025-07-15", "source_file": "marks_clean", "card_id": "PLTR_2025-07-15_45", "grade": "A", "comment": "stalled out at HOD ew, can't win them all it happens but you look for s trades to happen early you will notice most s trades happen very early, too much chop leading into this trade"}
+{"symbol": "NVDA", "day": "2025-07-16", "source_file": "marks_clean", "card_id": "NVDA_2025-07-16_24", "grade": "A", "comment": ""}
+{"symbol": "META", "day": "2025-07-17", "source_file": "marks_clean", "card_id": "META_2025-07-17_39", "grade": "A", "comment": ""}
+{"symbol": "NFLX", "day": "2025-07-25", "source_file": "marks_clean", "card_id": "NFLX_2025-07-25_37", "grade": "S", "comment": "might as well target 2r since it correlates to pmh"}
+{"symbol": "PLTR", "day": "2025-08-06", "source_file": "marks_clean", "card_id": "PLTR_2025-08-06_38", "grade": "A", "comment": "choppy here maybe"}
+{"symbol": "QQQ", "day": "2025-08-08", "source_file": "marks_clean", "card_id": "QQQ_2025-08-08_27", "grade": "S", "comment": "see how some of these are based on if we get a good fill for good risk to reward"}
+{"symbol": "IWM", "day": "2025-08-20", "source_file": "marks_clean", "card_id": "IWM_2025-08-20_34", "grade": "S", "comment": "want to retarget LOD here"}
+{"symbol": "MARA", "day": "2025-08-22", "source_file": "marks_clean", "card_id": "MARA_2025-08-22_53", "grade": "S", "comment": "took a while to tap hod so maybe scale out slightly before? or get a better entry of that strong green candle"}
+{"symbol": "ORCL", "day": "2025-08-28", "source_file": "marks_clean", "card_id": "ORCL_2025-08-28_24", "grade": "A", "comment": "this is a hard move to catch I would love to catch 9:34 if it didn't move so far and fast"}
+{"symbol": "TSLA", "day": "2025-08-28", "source_file": "marks_clean", "card_id": "TSLA_2025-08-28_46", "grade": "A", "comment": ""}
+{"symbol": "DIA", "day": "2025-09-16", "source_file": "marks_clean", "card_id": "DIA_2025-09-16_9", "grade": "A", "comment": "respects pdl could be good entry but dia I dont like price action probably better higher timeframe"}
+{"symbol": "AMD", "day": "2025-09-19", "source_file": "marks_clean", "card_id": "AMD_2025-09-19_19", "grade": "A", "comment": "1 takeout happened here but the second one would've worked out, but I usually dont like when It takes so long to get into an 84 percent rule"}
+{"symbol": "IWM", "day": "2025-09-25", "source_file": "marks_clean", "card_id": "IWM_2025-09-25_19", "grade": "A", "comment": "possibly a double takeout here, reversed then consolidated about orh"}
+{"symbol": "NFLX", "day": "2025-09-29", "source_file": "marks_clean", "card_id": "NFLX_2025-09-29_28", "grade": "A", "comment": ""}
+{"symbol": "BABA", "day": "2025-10-02", "source_file": "marks_clean", "card_id": "BABA_2025-10-02_23", "grade": "A", "comment": "double loss here, candles look a little Sus, usually s trades fit within those top 10 stocks with the higher options volume, but we will see what stats tell us"}
+{"symbol": "DIA", "day": "2025-10-06", "source_file": "marks_clean", "card_id": "DIA_2025-10-06_18", "grade": "A", "comment": "no trade, look at the tuff opportunities it never retraced into green candles. but with a higher timeframe thesis, surely you can look for an aggressive entry"}
+{"symbol": "CRM", "day": "2025-10-16", "source_file": "marks_clean", "card_id": "CRM_2025-10-16_8", "grade": "S", "comment": ""}
+{"symbol": "ORCL", "day": "2025-10-23", "source_file": "marks_clean", "card_id": "ORCL_2025-10-23_49", "grade": "A", "comment": "you like when it holds these its like a double one candle since there the same size but just takes too long and im sure it looks cleaner on the 5 minute or 15m or 1h timeframe and better for swing trades"}
+{"symbol": "GOOGL", "day": "2025-11-24", "source_file": "marks_clean", "card_id": "GOOGL_2025-11-24_9", "grade": "S", "comment": ""}
+{"symbol": "NFLX", "day": "2025-11-25", "source_file": "marks_clean", "card_id": "NFLX_2025-11-25_15", "grade": "A", "comment": "I wouldn't take this just too tight and no displacement"}
+{"symbol": "INTC", "day": "2025-12-04", "source_file": "marks_clean", "card_id": "INTC_2025-12-04_12", "grade": "A", "comment": ""}
+{"symbol": "GOOG", "day": "2025-12-10", "source_file": "marks_clean", "card_id": "GOOG_2025-12-10_38", "grade": "A", "comment": "lower probability after break of orh and no retest"}
+{"symbol": "TSLA", "day": "2025-12-18", "source_file": "marks_clean", "card_id": "TSLA_2025-12-18_59", "grade": "A", "comment": "never like hod entries lower probability and when it goes below orl with no break and retest. there was actually that would've been a fakeout loser"}
+{"symbol": "GOOGL", "day": "2025-12-24", "source_file": "marks_clean", "card_id": "GOOGL_2025-12-24_14", "grade": "A", "comment": "I might've been faked out here"}
+{"symbol": "MSFT", "day": "2025-12-24", "source_file": "marks_clean", "card_id": "MSFT_2025-12-24_31", "grade": "A", "comment": "choppy so not even an a trade really just like to mark these and put comments when it holds levels like this"}
+{"symbol": "MSFT", "day": "2026-01-02", "source_file": "marks_clean", "card_id": "MSFT_2026-01-02_9", "grade": "S", "comment": "home run s"}
+{"symbol": "PLTR", "day": "2026-01-06", "source_file": "marks_clean", "card_id": "PLTR_2026-01-06_20", "grade": "S", "comment": "HOD pop, stop out, never though about 84 percent rule going for it after a winner? I think its pretty rare but ill mark it just because"}
+{"symbol": "MARA", "day": "2026-01-15", "source_file": "marks_clean", "card_id": "MARA_2026-01-15_37", "grade": "A", "comment": "might be on ban list because of price action this one could've or might've been loser"}
+{"symbol": "PLTR", "day": "2026-01-16", "source_file": "marks_clean", "card_id": "PLTR_2026-01-16_17", "grade": "A", "comment": "no displacement but stock respected those green candles. enter as candle is bearish forming with strength"}
+{"symbol": "AVGO", "day": "2026-01-28", "source_file": "marks_clean", "card_id": "AVGO_2026-01-28_26", "grade": "A", "comment": "not one of my s or a trades but could've made sense and would target lod . reason I dont like as much is because its a long break and retest and it breaks a couple of levels and doesn't retest them"}
+{"symbol": "INTC", "day": "2026-02-02", "source_file": "marks_clean", "card_id": "INTC_2026-02-02_15", "grade": "S", "comment": ""}
+{"symbol": "MSFT", "day": "2026-02-09", "source_file": "marks_clean", "card_id": "MSFT_2026-02-09_7", "grade": "A", "comment": "no displacement"}
+{"symbol": "SOFI", "day": "2026-02-10", "source_file": "marks_clean", "card_id": "SOFI_2026-02-10_25", "grade": "S", "comment": ""}
+{"symbol": "GOOGL", "day": "2026-03-13", "source_file": "marks_clean", "card_id": "GOOGL_2026-03-13_9", "grade": "S", "comment": ""}
+{"symbol": "NFLX", "day": "2026-03-16", "source_file": "marks_clean", "card_id": "NFLX_2026-03-16_35", "grade": "A", "comment": "dont like that large red to start the day, and we broke below orl earlier"}
+{"symbol": "HOOD", "day": "2026-03-23", "source_file": "marks_clean", "card_id": "HOOD_2026-03-23_39", "grade": "S", "comment": ""}
+{"symbol": "AVGO", "day": "2026-03-24", "source_file": "marks_clean", "card_id": "AVGO_2026-03-24_13", "grade": "A", "comment": "this stock loved its levels here, no trade just wanted you to see"}
+{"symbol": "DIA", "day": "2026-04-06", "source_file": "marks_clean", "card_id": "DIA_2026-04-06_48", "grade": "S", "comment": ""}
+{"symbol": "IREN", "day": "2026-04-08", "source_file": "marks_clean", "card_id": "IREN_2026-04-08_20", "grade": "A", "comment": ""}
+{"symbol": "MU", "day": "2026-04-16", "source_file": "marks_clean", "card_id": "MU_2026-04-16_32", "grade": "S", "comment": ""}
+{"symbol": "SOFI", "day": "2026-04-16", "source_file": "marks_clean", "card_id": "SOFI_2026-04-16_20", "grade": "A", "comment": "no displacement but I like this better then entry6 candles earlier, thats a one candle rule and orl break and retest, but it has to get past pml and a pivot structure"}
+{"symbol": "TSLA", "day": "2026-04-22", "source_file": "marks_clean", "card_id": "TSLA_2026-04-22_14", "grade": "S", "comment": "84 percent rule would've been activated here, see how my stop just wasn't in the right place, not a big move but you can see it respect a pivot structure"}
+{"symbol": "META", "day": "2026-04-29", "source_file": "marks_clean", "card_id": "META_2026-04-29_34", "grade": "S", "comment": "ask candle is nearing high of day, when you know the clear stop your on watch to go for an entry"}
+{"symbol": "GOOG", "day": "2026-05-01", "source_file": "marks_clean", "card_id": "GOOG_2026-05-01_44", "grade": "A", "comment": ""}
+{"symbol": "ORCL", "day": "2026-05-04", "source_file": "marks_clean", "card_id": "ORCL_2026-05-04_15", "grade": "A", "comment": ""}
+{"symbol": "AAPL", "day": "2026-05-06", "source_file": "marks_clean", "card_id": "AAPL_2026-05-06_28", "grade": "A", "comment": ""}
+{"symbol": "DIA", "day": "2026-05-07", "source_file": "marks_clean", "card_id": "DIA_2026-05-07_16", "grade": "S", "comment": "I like the double red candle confirmation here. also where price target was where a one candle rule and pml hold to the downside confirmed the bearish PA"}
+{"symbol": "BABA", "day": "2026-05-08", "source_file": "marks_clean", "card_id": "BABA_2026-05-08_45", "grade": "S", "comment": ""}
+{"symbol": "NVDA", "day": "2026-05-08", "source_file": "marks_clean", "card_id": "NVDA_2026-05-08_11", "grade": "S", "comment": ""}
+{"symbol": "AMZN", "day": "2026-05-11", "source_file": "marks_clean", "card_id": "AMZN_2026-05-11_6", "grade": "S", "comment": "scale at hod"}
+{"symbol": "MARA", "day": "2026-05-11", "source_file": "marks_clean", "card_id": "MARA_2026-05-11_45", "grade": "A", "comment": "bullish stock but dont see any clean entry criteria"}
+{"symbol": "MSFT", "day": "2026-05-12", "source_file": "marks_clean", "card_id": "MSFT_2026-05-12_8", "grade": "A", "comment": "holds green candle at 934"}
+{"symbol": "COIN", "day": "2026-05-18", "source_file": "marks_clean", "card_id": "COIN_2026-05-18_20", "grade": "A", "comment": "difficult entry want as candle is forming not all the way at hod"}
+{"symbol": "IREN", "day": "2026-05-21", "source_file": "marks_clean", "card_id": "IREN_2026-05-21_9", "grade": "A", "comment": ""}
+{"symbol": "COIN", "day": "2026-06-12", "source_file": "marks_clean", "card_id": "COIN_2026-06-12_62", "grade": "S", "comment": ""}
+{"symbol": "AVGO", "day": "2026-06-29", "source_file": "marks_clean", "card_id": "AVGO_2026-06-29_29", "grade": "S", "comment": ""}
+{"symbol": "AVGO", "day": "2026-07-16", "source_file": "marks_clean", "card_id": "AVGO_2026-07-16_13", "grade": "A", "comment": "LOD scalp"}
+{"symbol": "AVGO", "day": "2026-07-27", "source_file": "marks_clean", "card_id": "AVGO_2026-07-27_39", "grade": "A", "comment": ""}
+{"symbol": "HOOD", "day": "2025-08-04", "source_file": "v2", "card_id": "HOOD_2025-08-04_40", "grade": "A", "comment": ""}
+{"symbol": "SOFI", "day": "2026-03-11", "source_file": "v2", "card_id": "SOFI_2026-03-11_63", "grade": "A", "comment": ""}
+{"symbol": "QQQ", "day": "2025-06-25", "source_file": "v2", "card_id": "QQQ_2025-06-25_48", "grade": "A", "comment": ""}
+{"symbol": "SPY", "day": "2026-01-08", "source_file": "v2", "card_id": "SPY_2026-01-08_42", "grade": "X", "comment": ""}
+{"symbol": "MSFT", "day": "2026-02-11", "source_file": "v2", "card_id": "MSFT_2026-02-11_20", "grade": "A", "comment": ""}
+{"symbol": "QQQ", "day": "2025-02-26", "source_file": "v2", "card_id": "QQQ_2025-02-26_28", "grade": "S", "comment": ""}
+{"symbol": "SPY", "day": "2026-02-09", "source_file": "v2", "card_id": "SPY_2026-02-09_24", "grade": "A", "comment": ""}
+{"symbol": "HOOD", "day": "2026-05-19", "source_file": "v2", "card_id": "HOOD_2026-05-19_19", "grade": "A", "comment": ""}
+{"symbol": "META", "day": "2025-09-23", "source_file": "v2", "card_id": "META_2025-09-23_9", "grade": "A", "comment": ""}
+{"symbol": "NVDA", "day": "2024-11-19", "source_file": "v2", "card_id": "NVDA_2024-11-19_18", "grade": "A", "comment": ""}
+{"symbol": "COIN", "day": "2025-10-21", "source_file": "v2", "card_id": "COIN_2025-10-21_8", "grade": "S", "comment": "my mark is a better entry by far yes and s quality. blue line entry is C because between tight levels and a consolidation pivot it would have to break for low of day, and red mark is a c as well | but earlier entry 5 candles earlier as the candle is closing weak not at low of day | my mark is a better entry by far yes and s quality. blue line entry is C because between tight levels and a consolidation pivot it would have to break for low of day, and red mark is a c as well"}
+{"symbol": "IWM", "day": "2026-07-24", "source_file": "v2", "card_id": "IWM_2026-07-24_29", "grade": "A", "comment": "never broke that PML earlier"}
+{"symbol": "QQQ", "day": "2025-06-24", "source_file": "v2", "card_id": "QQQ_2025-06-24_15", "grade": "A", "comment": "because the red candle before is no displacement"}
+{"symbol": "META", "day": "2026-06-10", "source_file": "v2", "card_id": "META_2026-06-10_18", "grade": "X", "comment": ""}
+{"symbol": "SPY", "day": "2024-10-22", "source_file": "v2", "card_id": "SPY_2024-10-22_41", "grade": "A", "comment": ""}
+{"symbol": "MARA", "day": "2025-08-18", "source_file": "v2", "card_id": "MARA_2025-08-18_23", "grade": "X", "comment": ""}
+{"symbol": "IWM", "day": "2024-04-03", "source_file": "v2", "card_id": "IWM_2024-04-03_13", "grade": "S", "comment": "large wick before candle entry gives confidence even though it's not the absolute strongest green candle"}
+{"symbol": "IWM", "day": "2024-04-03", "source_file": "v2", "card_id": "IWM_2024-04-03_73", "grade": "S", "comment": "candle before is the entry actually, because it's enough strength and only taps into the wick of the order block"}
+{"symbol": "AMZN", "day": "2025-08-14", "source_file": "v2", "card_id": "AMZN_2025-08-14_18", "grade": "X", "comment": ""}
+{"symbol": "CRM", "day": "2025-07-02", "source_file": "v2", "card_id": "CRM_2025-07-02_17", "grade": "A", "comment": ""}
+{"symbol": "MARA", "day": "2025-04-02", "source_file": "v2", "card_id": "MARA_2025-04-02_14", "grade": "A", "comment": ""}
+{"symbol": "BABA", "day": "2025-07-22", "source_file": "v2", "card_id": "BABA_2025-07-22_20", "grade": "S", "comment": ""}
+{"symbol": "TSM", "day": "2025-10-07", "source_file": "v2", "card_id": "TSM_2025-10-07_74", "grade": "A", "comment": ""}
+{"symbol": "QQQ", "day": "2024-12-23", "source_file": "v2", "card_id": "QQQ_2024-12-23_47", "grade": "A", "comment": ""}
+{"symbol": "CRM", "day": "2026-05-07", "source_file": "v2", "card_id": "CRM_2026-05-07_18", "grade": "X", "comment": ""}
+{"symbol": "IWM", "day": "2025-12-01", "source_file": "v2", "card_id": "IWM_2025-12-01_11", "grade": "S", "comment": ""}
+{"symbol": "SPY", "day": "2026-03-25", "source_file": "v2", "card_id": "SPY_2026-03-25_10", "grade": "X", "comment": ""}
+{"symbol": "AMD", "day": "2026-04-21", "source_file": "v2", "card_id": "AMD_2026-04-21_35", "grade": "A", "comment": ""}
+{"symbol": "GOOGL", "day": "2025-08-07", "source_file": "v2", "card_id": "GOOGL_2025-08-07_18", "grade": "S", "comment": "enter as candle is forming not at low of day"}
+{"symbol": "QQQ", "day": "2024-05-08", "source_file": "v2", "card_id": "QQQ_2024-05-08_8", "grade": "A", "comment": "no displacement"}
+{"symbol": "HOOD", "day": "2025-03-04", "source_file": "v2", "card_id": "HOOD_2025-03-04_44", "grade": "S", "comment": ""}
+{"symbol": "INTC", "day": "2025-06-05", "source_file": "v2", "card_id": "INTC_2025-06-05_10", "grade": "X", "comment": ""}
+{"symbol": "QQQ", "day": "2024-03-05", "source_file": "v2", "card_id": "QQQ_2024-03-05_11", "grade": "A", "comment": ""}
+{"symbol": "QQQ", "day": "2024-03-05", "source_file": "v2", "card_id": "QQQ_2024-03-05_21", "grade": "S", "comment": ""}
+{"symbol": "QQQ", "day": "2025-03-17", "source_file": "v2", "card_id": "QQQ_2025-03-17_16", "grade": "S", "comment": ""}
+{"symbol": "SPY", "day": "2024-04-03", "source_file": "v2", "card_id": "SPY_2024-04-03_9", "grade": "A", "comment": "candle after is your entry because nothing touched, stop is bottom of red order block"}
+{"symbol": "GOOG", "day": "2025-06-10", "source_file": "v2", "card_id": "GOOG_2025-06-10_21", "grade": "A", "comment": ""}
+{"symbol": "QQQ", "day": "2026-02-11", "source_file": "v2", "card_id": "QQQ_2026-02-11_32", "grade": "X", "comment": "if it actually retested the pivot structure and if you get an entry thats not all the way at low of day"}
+{"symbol": "QQQ", "day": "2026-02-11", "source_file": "v2", "card_id": "QQQ_2026-02-11_45", "grade": "A", "comment": "little overextended the stock, and didn't get past pml"}
+{"symbol": "SPY", "day": "2025-02-21", "source_file": "v2", "card_id": "SPY_2025-02-21_18", "grade": "X", "comment": ""}
+{"symbol": "IWM", "day": "2025-09-05", "source_file": "v2", "card_id": "IWM_2025-09-05_12", "grade": "S", "comment": ""}
+{"symbol": "IWM", "day": "2025-09-05", "source_file": "v2", "card_id": "IWM_2025-09-05_51", "grade": "A", "comment": ""}
+{"symbol": "QQQ", "day": "2025-12-05", "source_file": "v2", "card_id": "QQQ_2025-12-05_27", "grade": "S", "comment": ""}
+{"symbol": "QQQ", "day": "2025-12-05", "source_file": "v2", "card_id": "QQQ_2025-12-05_35", "grade": "X", "comment": ""}
+{"symbol": "CRM", "day": "2025-06-02", "source_file": "v2", "card_id": "CRM_2025-06-02_27", "grade": "S", "comment": ""}
+{"symbol": "QQQ", "day": "2025-03-18", "source_file": "v2", "card_id": "QQQ_2025-03-18_13", "grade": "A", "comment": ""}
+{"symbol": "SPY", "day": "2025-06-02", "source_file": "v2", "card_id": "SPY_2025-06-02_40", "grade": "A", "comment": ""}
+{"symbol": "QQQ", "day": "2024-01-04", "source_file": "v2", "card_id": "QQQ_2024-01-04_41", "grade": "C", "comment": "4 candles earlier is an A trade (break and retest no displacement); this one has good price action but lower probability because of the earlier almost-setup. Changed mind slightly: this = C, earlier entry = A"}
+{"symbol": "MSFT", "day": "2026-01-20", "source_file": "v2", "card_id": "MSFT_2026-01-20_12", "grade": "S", "comment": "if get a good fill not at high of day"}
+{"symbol": "IWM", "day": "2024-02-28", "source_file": "v2", "card_id": "IWM_2024-02-28_9", "grade": "S", "comment": ""}
+{"symbol": "IWM", "day": "2024-02-28", "source_file": "v2", "card_id": "IWM_2024-02-28_18", "grade": "A", "comment": ""}
+{"symbol": "AMZN", "day": "2026-07-17", "source_file": "v2", "card_id": "AMZN_2026-07-17_7", "grade": "A", "comment": ""}
+{"symbol": "COIN", "day": "2026-03-04", "source_file": "v2", "card_id": "COIN_2026-03-04_43", "grade": "A", "comment": ""}
+{"symbol": "MU", "day": "2025-11-07", "source_file": "v2", "card_id": "MU_2025-11-07_22", "grade": "S", "comment": ""}
+{"symbol": "QQQ", "day": "2025-01-16", "source_file": "v2", "card_id": "QQQ_2025-01-16_23", "grade": "S", "comment": ""}
+{"symbol": "QQQ", "day": "2025-12-30", "source_file": "v2", "card_id": "QQQ_2025-12-30_24", "grade": "S", "comment": ""}
+{"symbol": "GOOG", "day": "2025-12-08", "source_file": "v2", "card_id": "GOOG_2025-12-08_58", "grade": "X", "comment": ""}
+{"symbol": "TSLA", "day": "2026-02-18", "source_file": "v2", "card_id": "TSLA_2026-02-18_42", "grade": "S", "comment": ""}
+{"symbol": "QQQ", "day": "2024-10-03", "source_file": "v2", "card_id": "QQQ_2024-10-03_18", "grade": "S", "comment": ""}
+{"symbol": "UBER", "day": "2026-06-09", "source_file": "v2", "card_id": "UBER_2026-06-09_11", "grade": "A", "comment": ""}
+{"symbol": "NVDA", "day": "2024-11-18", "source_file": "v2", "card_id": "NVDA_2024-11-18_10", "grade": "C", "comment": "6 candles earlier is a break and retest no displacement, so that would've been A and this one C"}
+{"symbol": "QQQ", "day": "2025-05-16", "source_file": "v2", "card_id": "QQQ_2025-05-16_63", "grade": "A", "comment": ""}
+{"symbol": "IWM", "day": "2025-04-10", "source_file": "v2", "card_id": "IWM_2025-04-10_16", "grade": "S", "comment": ""}
+{"symbol": "MARA", "day": "2025-05-14", "source_file": "v2", "card_id": "MARA_2025-05-14_23", "grade": "X", "comment": ""}
+{"symbol": "GOOGL", "day": "2024-09-03", "source_file": "v2", "card_id": "GOOGL_2024-09-03_10", "grade": "A", "comment": ""}
+{"symbol": "ORCL", "day": "2025-11-03", "source_file": "v2", "card_id": "ORCL_2025-11-03_17", "grade": "A", "comment": "my entry s criteria but late entry, because earlier one existed with less displacement"}
+{"symbol": "ORCL", "day": "2025-03-28", "source_file": "v2", "card_id": "ORCL_2025-03-28_12", "grade": "A", "comment": "here to be s you draw a trend link would like a second confirmation candle with strength to break that line"}
+{"symbol": "IWM", "day": "2025-10-21", "source_file": "v2", "card_id": "IWM_2025-10-21_9", "grade": "A", "comment": "1 candle earlier is the entry, marking A because 4 candles before the mark is a bullish candle and price never got close below those levels, so it looks riskier not knowing if it's gonna run"}
+{"symbol": "HOOD", "day": "2025-02-24", "source_file": "v2", "card_id": "HOOD_2025-02-24_16", "grade": "A", "comment": ""}
+{"symbol": "QQQ", "day": "2024-08-23", "source_file": "v2", "card_id": "QQQ_2024-08-23_36", "grade": "S", "comment": ""}
+{"symbol": "UBER", "day": "2025-09-11", "source_file": "v2", "card_id": "UBER_2025-09-11_15", "grade": "S", "comment": ""}
+{"symbol": "GOOGL", "day": "2024-10-15", "source_file": "v2", "card_id": "GOOGL_2024-10-15_32", "grade": "S", "comment": ""}
+{"symbol": "NVDA", "day": "2024-12-16", "source_file": "v2", "card_id": "NVDA_2024-12-16_12", "grade": "S", "comment": ""}
+{"symbol": "MSFT", "day": "2025-03-04", "source_file": "v2", "card_id": "MSFT_2025-03-04_13", "grade": "S", "comment": ""}
+{"symbol": "QQQ", "day": "2025-01-10", "source_file": "v2", "card_id": "QQQ_2025-01-10_13", "grade": "S", "comment": ""}
+{"symbol": "TSLA", "day": "2024-03-27", "source_file": "v2", "card_id": "TSLA_2024-03-27_13", "grade": "S", "comment": ""}
+{"symbol": "QQQ", "day": "2026-03-04", "source_file": "v2", "card_id": "QQQ_2026-03-04_42", "grade": "S", "comment": ""}
+{"symbol": "MARA", "day": "2026-07-09", "source_file": "v2", "card_id": "MARA_2026-07-09_19", "grade": "S", "comment": ""}
+{"symbol": "CRM", "day": "2025-11-18", "source_file": "v2", "card_id": "CRM_2025-11-18_16", "grade": "A", "comment": ""}
+{"symbol": "NVDA", "day": "2024-12-30", "source_file": "v2", "card_id": "NVDA_2024-12-30_34", "grade": "A", "comment": ""}
+{"symbol": "MU", "day": "2026-01-28", "source_file": "v2", "card_id": "MU_2026-01-28_13", "grade": "X", "comment": "but your trade was an x, you missed the entry 9 candles earlier perfect break and retest one candle rule hammer stick"}
+{"symbol": "SPY", "day": "2025-09-25", "source_file": "v2", "card_id": "SPY_2025-09-25_45", "grade": "A", "comment": ""}
+{"symbol": "HOOD", "day": "2026-04-13", "source_file": "v2", "card_id": "HOOD_2026-04-13_16", "grade": "S", "comment": ""}
+{"symbol": "SPY", "day": "2025-02-20", "source_file": "v2", "card_id": "SPY_2025-02-20_35", "grade": "A", "comment": ""}
+{"symbol": "TSM", "day": "2026-05-29", "source_file": "v2", "card_id": "TSM_2026-05-29_23", "grade": "S", "comment": "entry 5 candles earlier but not at high of day"}
+{"symbol": "GOOG", "day": "2026-02-23", "source_file": "v2", "card_id": "GOOG_2026-02-23_19", "grade": "X", "comment": ""}
+{"symbol": "MARA", "day": "2026-07-17", "source_file": "v2", "card_id": "MARA_2026-07-17_13", "grade": "A", "comment": ""}
+{"symbol": "SPY", "day": "2024-02-22", "source_file": "v2", "card_id": "SPY_2024-02-22_25", "grade": "A", "comment": ""}
+{"symbol": "UBER", "day": "2026-01-06", "source_file": "v2", "card_id": "UBER_2026-01-06_22", "grade": "A", "comment": ""}
+{"symbol": "SPY", "day": "2025-11-05", "source_file": "v2", "card_id": "SPY_2025-11-05_52", "grade": "A", "comment": ""}
+{"symbol": "QQQ", "day": "2024-02-01", "source_file": "v2", "card_id": "QQQ_2024-02-01_44", "grade": "X", "comment": ""}
+{"symbol": "SPY", "day": "2026-03-03", "source_file": "v2", "card_id": "SPY_2026-03-03_17", "grade": "S", "comment": ""}
+{"symbol": "IWM", "day": "2024-03-22", "source_file": "v2", "card_id": "IWM_2024-03-22_24", "grade": "S", "comment": ""}
+{"symbol": "SPY", "day": "2025-03-18", "source_file": "v2", "card_id": "SPY_2025-03-18_13", "grade": "S", "comment": ""}
+{"symbol": "PLTR", "day": "2024-10-23", "source_file": "v2", "card_id": "PLTR_2024-10-23_21", "grade": "", "comment": ""}
+{"symbol": "QQQ", "day": "2026-07-09", "source_file": "v2", "card_id": "QQQ_2026-07-09_11", "grade": "S", "comment": ""}
+{"symbol": "ORCL", "day": "2026-06-09", "source_file": "v2", "card_id": "ORCL_2026-06-09_8", "grade": "A", "comment": ""}
+{"symbol": "SPY", "day": "2026-05-05", "source_file": "v2", "card_id": "SPY_2026-05-05_10", "grade": "A", "comment": ""}
+{"symbol": "AMD", "day": "2026-05-14", "source_file": "v2", "card_id": "AMD_2026-05-14_25", "grade": "S", "comment": ""}
+{"symbol": "HOOD", "day": "2026-02-05", "source_file": "v2", "card_id": "HOOD_2026-02-05_40", "grade": "S", "comment": ""}
+{"symbol": "TSLA", "day": "2024-12-03", "source_file": "v2", "card_id": "TSLA_2024-12-03_8", "grade": "A", "comment": ""}
+{"symbol": "IWM", "day": "2024-08-22", "source_file": "v2", "card_id": "IWM_2024-08-22_27", "grade": "S", "comment": ""}
+{"symbol": "COIN", "day": "2025-12-01", "source_file": "v2", "card_id": "COIN_2025-12-01_11", "grade": "A", "comment": ""}
+{"symbol": "QQQ", "day": "2024-01-30", "source_file": "v2", "card_id": "QQQ_2024-01-30_35", "grade": "X", "comment": ""}
+{"symbol": "ORCL", "day": "2025-07-08", "source_file": "v2", "card_id": "ORCL_2025-07-08_7", "grade": "S", "comment": ""}
+{"symbol": "TSLA", "day": "2024-06-24", "source_file": "v2", "card_id": "TSLA_2024-06-24_9", "grade": "A", "comment": "large upper wick to target didn't materialize no displacement, your red mark is a c trade and the blue mark is an x trade"}
+{"symbol": "UBER", "day": "2026-07-06", "source_file": "v2", "card_id": "UBER_2026-07-06_12", "grade": "S", "comment": ""}
+{"symbol": "QQQ", "day": "2026-03-06", "source_file": "v2", "card_id": "QQQ_2026-03-06_47", "grade": "X", "comment": ""}
+{"symbol": "MARA", "day": "2025-07-30", "source_file": "v2", "card_id": "MARA_2025-07-30_30", "grade": "A", "comment": ""}
+{"symbol": "MARA", "day": "2024-09-09", "source_file": "v2", "card_id": "MARA_2024-09-09_38", "grade": "X", "comment": ""}
+{"symbol": "IWM", "day": "2026-06-24", "source_file": "v2", "card_id": "IWM_2026-06-24_28", "grade": "A", "comment": ""}
+{"symbol": "MARA", "day": "2024-10-18", "source_file": "v2", "card_id": "MARA_2024-10-18_11", "grade": "S", "comment": ""}
+{"symbol": "HOOD", "day": "2026-07-07", "source_file": "v2", "card_id": "HOOD_2026-07-07_37", "grade": "A", "comment": ""}
+{"symbol": "TSLA", "day": "2024-02-05", "source_file": "v2", "card_id": "TSLA_2024-02-05_16", "grade": "A", "comment": ""}
+{"symbol": "MU", "day": "2025-12-08", "source_file": "v2", "card_id": "MU_2025-12-08_12", "grade": "X", "comment": ""}
+{"symbol": "UBER", "day": "2025-07-31", "source_file": "v2", "card_id": "UBER_2025-07-31_48", "grade": "A", "comment": ""}
+{"symbol": "PLTR", "day": "2026-03-31", "source_file": "v2", "card_id": "PLTR_2026-03-31_23", "grade": "S", "comment": ""}
+{"symbol": "IWM", "day": "2026-05-28", "source_file": "v2", "card_id": "IWM_2026-05-28_46", "grade": "S", "comment": ""}
+{"symbol": "MARA", "day": "2024-12-17", "source_file": "v2", "card_id": "MARA_2024-12-17_49", "grade": "S", "comment": "as candle is forming on my entry yes, stop out and 84 percent rule, your entries x"}
+{"symbol": "SPY", "day": "2025-12-02", "source_file": "v2", "card_id": "SPY_2025-12-02_14", "grade": "X", "comment": ""}
+{"symbol": "AMD", "day": "2025-06-05", "source_file": "v2", "card_id": "AMD_2025-06-05_6", "grade": "S", "comment": ""}
+{"symbol": "IWM", "day": "2024-08-01", "source_file": "v2", "card_id": "IWM_2024-08-01_44", "grade": "A", "comment": ""}
+{"symbol": "QQQ", "day": "2024-03-15", "source_file": "v2", "card_id": "QQQ_2024-03-15_11", "grade": "S", "comment": ""}
+{"symbol": "MSFT", "day": "2026-06-10", "source_file": "v2", "card_id": "MSFT_2026-06-10_17", "grade": "A", "comment": ""}
+{"symbol": "UBER", "day": "2025-02-07", "source_file": "v2", "card_id": "UBER_2025-02-07_22", "grade": "S", "comment": ""}
+{"symbol": "CRM", "day": "2025-09-26", "source_file": "v2", "card_id": "CRM_2025-09-26_12", "grade": "A", "comment": ""}
+{"symbol": "PLTR", "day": "2025-09-18", "source_file": "v2", "card_id": "PLTR_2025-09-18_14", "grade": "S", "comment": "I candle earlier entry"}
+{"symbol": "SOFI", "day": "2024-10-30", "source_file": "v2", "card_id": "SOFI_2024-10-30_16", "grade": "S", "comment": ""}
+{"symbol": "QQQ", "day": "2025-01-28", "source_file": "v2", "card_id": "QQQ_2025-01-28_40", "grade": "A", "comment": ""}
+{"symbol": "QQQ", "day": "2024-12-16", "source_file": "v2", "card_id": "QQQ_2024-12-16_28", "grade": "C", "comment": "same as previous \u00e2\u20ac\u201d break and retest no displacement entry 7 candles before, price action good on this mark but lower probability because of the earlier looking setup. Changed mind slightly: this = C, earlier entry = A"}
+{"symbol": "MARA", "day": "2026-07-20", "source_file": "v2", "card_id": "MARA_2026-07-20_11", "grade": "A", "comment": ""}
+{"symbol": "SOFI", "day": "2026-05-20", "source_file": "v2", "card_id": "SOFI_2026-05-20_55", "grade": "A", "comment": ""}
+{"symbol": "NVDA", "day": "2025-03-25", "source_file": "v2", "card_id": "NVDA_2025-03-25_25", "grade": "A", "comment": ""}
+{"symbol": "COIN", "day": "2025-06-26", "source_file": "v2", "card_id": "COIN_2025-06-26_18", "grade": "S", "comment": ""}
+{"symbol": "TSLA", "day": "2024-01-12", "source_file": "v2", "card_id": "TSLA_2024-01-12_18", "grade": "X", "comment": ""}
+{"symbol": "QQQ", "day": "2025-05-07", "source_file": "v2", "card_id": "QQQ_2025-05-07_31", "grade": "A", "comment": ""}
+{"symbol": "HOOD", "day": "2025-12-29", "source_file": "v2", "card_id": "HOOD_2025-12-29_12", "grade": "X", "comment": ""}
+{"symbol": "ORCL", "day": "2025-09-17", "source_file": "v2", "card_id": "ORCL_2025-09-17_11", "grade": "A", "comment": ""}
+{"symbol": "AMD", "day": "2026-03-04", "source_file": "v2", "card_id": "AMD_2026-03-04_9", "grade": "A", "comment": ""}
+{"symbol": "AMZN", "day": "2026-04-10", "source_file": "v2", "card_id": "AMZN_2026-04-10_74", "grade": "A", "comment": ""}
+{"symbol": "UBER", "day": "2025-08-13", "source_file": "v2", "card_id": "UBER_2025-08-13_25", "grade": "S", "comment": ""}
+{"symbol": "IWM", "day": "2025-12-04", "source_file": "v2", "card_id": "IWM_2025-12-04_56", "grade": "S", "comment": ""}
+{"symbol": "IWM", "day": "2024-09-24", "source_file": "v2", "card_id": "IWM_2024-09-24_35", "grade": "X", "comment": ""}
+{"symbol": "IWM", "day": "2024-09-24", "source_file": "v2", "card_id": "IWM_2024-09-24_53", "grade": "X", "comment": ""}
+{"symbol": "HOOD", "day": "2026-07-10", "source_file": "v2", "card_id": "HOOD_2026-07-10_23", "grade": "S", "comment": "4 candles earlier is entry"}
+{"symbol": "SPY", "day": "2025-07-01", "source_file": "v2", "card_id": "SPY_2025-07-01_41", "grade": "A", "comment": ""}
+{"symbol": "GOOG", "day": "2025-04-04", "source_file": "v2", "card_id": "GOOG_2025-04-04_26", "grade": "A", "comment": ""}
+{"symbol": "SPY", "day": "2024-06-11", "source_file": "v2", "card_id": "SPY_2024-06-11_23", "grade": "X", "comment": "dont see any levels, unless some were forgot to be marked"}
+{"symbol": "SPY", "day": "2026-03-02", "source_file": "v2", "card_id": "SPY_2026-03-02_24", "grade": "A", "comment": "candles look a little choppier wicks on both sides"}
+{"symbol": "COIN", "day": "2026-04-09", "source_file": "v2", "card_id": "COIN_2026-04-09_30", "grade": "A", "comment": ""}
+{"symbol": "SPY", "day": "2026-03-05", "source_file": "v2", "card_id": "SPY_2026-03-05_56", "grade": "S", "comment": ""}
+{"symbol": "NVDA", "day": "2026-05-21", "source_file": "v2", "card_id": "NVDA_2026-05-21_10", "grade": "A", "comment": ""}
+{"symbol": "MSFT", "day": "2025-03-20", "source_file": "v2", "card_id": "MSFT_2025-03-20_28", "grade": "A", "comment": "too much consolidation before entry and the candle before entry is where you would've liked to see strength"}
+{"symbol": "BABA", "day": "2025-12-26", "source_file": "v2", "card_id": "BABA_2025-12-26_36", "grade": "A", "comment": ""}
+{"symbol": "QQQ", "day": "2025-07-01", "source_file": "v2", "card_id": "QQQ_2025-07-01_72", "grade": "X", "comment": ""}
+{"symbol": "SPY", "day": "2025-11-19", "source_file": "v2", "card_id": "SPY_2025-11-19_9", "grade": "S", "comment": ""}
+{"symbol": "SPY", "day": "2024-09-19", "source_file": "v2", "card_id": "SPY_2024-09-19_19", "grade": "X", "comment": "doesn't approach any one candle rule or pivot or level for retest"}
+{"symbol": "QQQ", "day": "2025-02-25", "source_file": "v2", "card_id": "QQQ_2025-02-25_16", "grade": "S", "comment": ""}
+{"symbol": "QQQ", "day": "2025-02-25", "source_file": "v2", "card_id": "QQQ_2025-02-25_53", "grade": "A", "comment": ""}
+{"symbol": "IWM", "day": "2026-05-28", "source_file": "v3", "card_id": "IWM_2026-05-28_40", "grade": "S", "comment": ""}
+{"symbol": "SPY", "day": "2026-03-05", "source_file": "v3", "card_id": "SPY_2026-03-05_40", "grade": "S", "comment": ""}
+{"symbol": "QQQ", "day": "2026-03-04", "source_file": "v3", "card_id": "QQQ_2026-03-04_40", "grade": "S", "comment": ""}
+{"symbol": "TSLA", "day": "2026-02-18", "source_file": "v3", "card_id": "TSLA_2026-02-18_40", "grade": "S", "comment": ""}
+{"symbol": "QQQ", "day": "2026-02-11", "source_file": "v3", "card_id": "QQQ_2026-02-11_40", "grade": "A", "comment": "because earlier entry 9-10 candles earlier because thats a one candle rule, but the b and r is clean PA"}
+{"symbol": "AMD", "day": "2026-05-14", "source_file": "v3", "card_id": "AMD_2026-05-14_30", "grade": "A", "comment": "(repeat setup as previous)"}
+{"symbol": "AMZN", "day": "2026-04-10", "source_file": "v3", "card_id": "AMZN_2026-04-10_27", "grade": "A", "comment": "entry 5 candles earlier"}
+{"symbol": "COIN", "day": "2025-10-21", "source_file": "v3", "card_id": "COIN_2025-10-21_31", "grade": "X", "comment": ""}
+{"symbol": "COIN", "day": "2025-10-21", "source_file": "v3", "card_id": "COIN_2025-10-21_40", "grade": "X", "comment": ""}
+{"symbol": "COIN", "day": "2026-03-04", "source_file": "v3", "card_id": "COIN_2026-03-04_40", "grade": "X", "comment": ""}
+{"symbol": "COIN", "day": "2026-04-09", "source_file": "v3", "card_id": "COIN_2026-04-09_8", "grade": "S", "comment": "enter not at hod"}
+{"symbol": "GOOGL", "day": "2024-10-15", "source_file": "v3", "card_id": "GOOGL_2024-10-15_40", "grade": "S", "comment": ""}
+{"symbol": "HOOD", "day": "2025-12-29", "source_file": "v3", "card_id": "HOOD_2025-12-29_29", "grade": "X", "comment": ""}
+{"symbol": "HOOD", "day": "2026-05-19", "source_file": "v3", "card_id": "HOOD_2026-05-19_30", "grade": "X", "comment": ""}
+{"symbol": "META", "day": "2025-09-23", "source_file": "v3", "card_id": "META_2025-09-23_40", "grade": "X", "comment": ""}
+{"symbol": "MSFT", "day": "2025-03-04", "source_file": "v3", "card_id": "MSFT_2025-03-04_20", "grade": "A", "comment": "reclaim 84 percent rule did happen for another trade but everextended possible earlier entry"}
+{"symbol": "MSFT", "day": "2026-01-20", "source_file": "v3", "card_id": "MSFT_2026-01-20_37", "grade": "X", "comment": ""}
+{"symbol": "MU", "day": "2025-12-08", "source_file": "v3", "card_id": "MU_2025-12-08_8", "grade": "X", "comment": ""}
+{"symbol": "NVDA", "day": "2024-12-16", "source_file": "v3", "card_id": "NVDA_2024-12-16_35", "grade": "X", "comment": ""}
+{"symbol": "ORCL", "day": "2025-11-03", "source_file": "v3", "card_id": "ORCL_2025-11-03_30", "grade": "X", "comment": ""}
+{"symbol": "PLTR", "day": "2024-10-23", "source_file": "v3", "card_id": "PLTR_2024-10-23_15", "grade": "A", "comment": ""}
+{"symbol": "QQQ", "day": "2024-10-03", "source_file": "v3", "card_id": "QQQ_2024-10-03_40", "grade": "X", "comment": ""}
+{"symbol": "QQQ", "day": "2025-01-10", "source_file": "v3", "card_id": "QQQ_2025-01-10_16", "grade": "S", "comment": "as candle is closing to lod"}
+{"symbol": "QQQ", "day": "2025-01-10", "source_file": "v3", "card_id": "QQQ_2025-01-10_30", "grade": "A", "comment": "same stock but earlier entry better"}
+{"symbol": "QQQ", "day": "2025-01-10", "source_file": "v3", "card_id": "QQQ_2025-01-10_40", "grade": "X", "comment": ""}
+{"symbol": "AMD", "day": "2026-05-14", "source_file": "v5", "card_id": "AMD_2026-05-14_17", "grade": "X", "comment": "later s entry 8 candles later OCR"}
+{"symbol": "AMD", "day": "2026-05-14", "source_file": "v5", "card_id": "AMD_2026-05-14_43", "grade": "C", "comment": "earlier s entry, this one took longer to develop, 2 candles earlier is entry"}
+{"symbol": "AMD", "day": "2026-05-14", "source_file": "v5", "card_id": "AMD_2026-05-14_67", "grade": "A", "comment": "two candles earlier is your s entry because its a reclaim of the earlier entry, I count it as A because you were a little late and took longer to develop"}
+{"symbol": "AMZN", "day": "2026-04-10", "source_file": "v5", "card_id": "AMZN_2026-04-10_10", "grade": "X", "comment": ""}
+{"symbol": "AMZN", "day": "2026-07-17", "source_file": "v5", "card_id": "AMZN_2026-07-17_34", "grade": "C", "comment": "pivot structure break stronger then level break, earlier entry hold of one candle rule 12 bars earlier"}
+{"symbol": "GOOGL", "day": "2024-10-15", "source_file": "v5", "card_id": "GOOGL_2024-10-15_24", "grade": "X", "comment": ""}
+{"symbol": "GOOGL", "day": "2024-10-15", "source_file": "v5", "card_id": "GOOGL_2024-10-15_47", "grade": "X", "comment": "2 earlier entry opportunities that were S, first one 9:43, second 10:02"}
+{"symbol": "GOOGL", "day": "2025-08-07", "source_file": "v5", "card_id": "GOOGL_2025-08-07_62", "grade": "X", "comment": ""}
+{"symbol": "INTC", "day": "2025-06-05", "source_file": "v5", "card_id": "INTC_2025-06-05_22", "grade": "X", "comment": "on candle earlier is your entry and then it would've been A, because earlier trade opportunity of OCR was at 9:45 as candle forming not all the way at LOD"}
+{"symbol": "META", "day": "2025-09-23", "source_file": "v5", "card_id": "META_2025-09-23_74", "grade": "X", "comment": "late in day, not above key levels, slow mover"}
+{"symbol": "MSFT", "day": "2026-02-11", "source_file": "v5", "card_id": "MSFT_2026-02-11_6", "grade": "X", "comment": ""}
+{"symbol": "MSFT", "day": "2026-02-11", "source_file": "v5", "card_id": "MSFT_2026-02-11_9", "grade": "X", "comment": ""}
+{"symbol": "MU", "day": "2026-01-28", "source_file": "v5", "card_id": "MU_2026-01-28_10", "grade": "X", "comment": "earlier S entry 9:35 OCR perfect setup"}
+{"symbol": "MU", "day": "2026-01-28", "source_file": "v5", "card_id": "MU_2026-01-28_71", "grade": "X", "comment": "s trades come early, sometime a and c can fire later, this is nothing"}
+{"symbol": "NVDA", "day": "2024-11-18", "source_file": "v5", "card_id": "NVDA_2024-11-18_66", "grade": "X", "comment": ""}
+{"symbol": "NVDA", "day": "2024-12-16", "source_file": "v5", "card_id": "NVDA_2024-12-16_7", "grade": "X", "comment": ""}
+{"symbol": "NVDA", "day": "2024-12-16", "source_file": "v5", "card_id": "NVDA_2024-12-16_14", "grade": "X", "comment": "your trade never, two candles earlier is your S entry OCR and BR confluence"}
+{"symbol": "NVDA", "day": "2024-12-16", "source_file": "v5", "card_id": "NVDA_2024-12-16_76", "grade": "X", "comment": ""}
+{"symbol": "PLTR", "day": "2024-10-23", "source_file": "v5", "card_id": "PLTR_2024-10-23_10", "grade": "X", "comment": "wick not touching a level, later entry 9:51 OCR, S trade"}
+{"symbol": "PLTR", "day": "2024-10-23", "source_file": "v5", "card_id": "PLTR_2024-10-23_50", "grade": "X", "comment": ""}
+{"symbol": "PLTR", "day": "2025-09-18", "source_file": "v5", "card_id": "PLTR_2025-09-18_5", "grade": "X", "comment": ""}
+{"symbol": "PLTR", "day": "2025-09-18", "source_file": "v5", "card_id": "PLTR_2025-09-18_28", "grade": "X", "comment": ""}
+{"symbol": "TSLA", "day": "2024-01-12", "source_file": "v5", "card_id": "TSLA_2024-01-12_27", "grade": "X", "comment": ""}
+{"symbol": "TSLA", "day": "2024-02-05", "source_file": "v5", "card_id": "TSLA_2024-02-05_8", "grade": "X", "comment": ""}
+{"symbol": "TSLA", "day": "2024-02-05", "source_file": "v5", "card_id": "TSLA_2024-02-05_10", "grade": "X", "comment": ""}
+{"symbol": "TSLA", "day": "2024-03-27", "source_file": "v5", "card_id": "TSLA_2024-03-27_9", "grade": "S", "comment": ""}
+{"symbol": "TSLA", "day": "2024-03-27", "source_file": "v5", "card_id": "TSLA_2024-03-27_10", "grade": "X", "comment": ""}
+{"symbol": "TSLA", "day": "2024-03-27", "source_file": "v5", "card_id": "TSLA_2024-03-27_85", "grade": "X", "comment": ""}
+{"symbol": "TSLA", "day": "2024-06-24", "source_file": "v5", "card_id": "TSLA_2024-06-24_14", "grade": "X", "comment": "too choppy no displacement"}
+{"symbol": "TSLA", "day": "2024-12-03", "source_file": "v5", "card_id": "TSLA_2024-12-03_17", "grade": "C", "comment": "break and retest of not a large pivot structure just two candles and no displacement"}
+{"symbol": "AMD", "day": "2026-05-14", "source_file": "v6", "card_id": "AMD_2026-05-14_41", "grade": "S", "comment": ""}
+{"symbol": "AMD", "day": "2026-05-14", "source_file": "v6", "card_id": "AMD_2026-05-14_65", "grade": "S", "comment": ""}
+{"symbol": "GOOGL", "day": "2024-10-15", "source_file": "v6", "card_id": "GOOGL_2024-10-15_13", "grade": "S", "comment": ""}
+{"symbol": "INTC", "day": "2025-06-05", "source_file": "v6", "card_id": "INTC_2025-06-05_21", "grade": "A", "comment": ""}
+{"symbol": "MU", "day": "2026-01-28", "source_file": "v6", "card_id": "MU_2026-01-28_5", "grade": "S", "comment": ""}
+{"symbol": "COIN", "day": "2025-10-21", "source_file": "v6", "card_id": "COIN_2025-10-21_23", "grade": "C", "comment": ""}
+{"symbol": "MARA", "day": "2024-12-17", "source_file": "v6", "card_id": "MARA_2024-12-17_76", "grade": "X", "comment": ""}
+{"symbol": "MARA", "day": "2024-12-17", "source_file": "v6", "card_id": "MARA_2024-12-17_78", "grade": "X", "comment": ""}
+{"symbol": "TSLA", "day": "2024-06-24", "source_file": "v6", "card_id": "TSLA_2024-06-24_13", "grade": "X", "comment": ""}
+{"symbol": "MSTR", "day": "2026-01-27", "source_file": "batch05", "card_id": "MSTR_2026-01-27_35_48", "grade": "X", "comment": ""}
+{"symbol": "MSTR", "day": "2024-08-08", "source_file": "batch05", "card_id": "MSTR_2024-08-08_23_27", "grade": "A", "comment": "3 candles earlier is also an A entry, 84 percent rule same stop is ok"}
+{"symbol": "MSTR", "day": "2024-09-26", "source_file": "batch05", "card_id": "MSTR_2024-09-26_11_14", "grade": "X", "comment": "I dont see the stop out until later, stop out happens when candle CLOSES below the level "}
+{"symbol": "MSTR", "day": "2024-04-24", "source_file": "batch05", "card_id": "MSTR_2024-04-24_33_52", "grade": "X", "comment": "candle PA ugly, would even trade this stock not apart of our top 14"}
+{"symbol": "MSTR", "day": "2026-04-22", "source_file": "batch05", "card_id": "MSTR_2026-04-22_79_87", "grade": "X", "comment": ""}
+{"symbol": "AAPL", "day": "2026-07-06", "source_file": "batch05", "card_id": "AAPL_2026-07-06_14_25", "grade": "X", "comment": ""}
+{"symbol": "AAPL", "day": "2024-03-28", "source_file": "batch05", "card_id": "AAPL_2024-03-28_7_61", "grade": "X", "comment": "4 candles after is an S entry OCR"}
+{"symbol": "AAPL", "day": "2025-01-13", "source_file": "batch05", "card_id": "AAPL_2025-01-13_18_28", "grade": "A", "comment": "3 candles earlier is an S entry, reclaim if you would've taken my s entry would've been two candles earlier, but yours is correct for the a trade"}
+{"symbol": "SPCX", "day": "2026-06-30", "source_file": "batch05", "card_id": "SPCX_2026-06-30_33_55", "grade": "X", "comment": "one candle earlier s entry, two candles earlier is the reclaim but could've taken off HOD earlier and stoped out on the rest and thats that. ill mark it x because your entry is wrong one candle late"}
+{"symbol": "MSTR", "day": "2026-05-21", "source_file": "batch05", "card_id": "MSTR_2026-05-21_70_77", "grade": "X", "comment": ""}
+{"symbol": "AAPL", "day": "2025-04-01", "source_file": "batch05", "card_id": "AAPL_2025-04-01_62_277", "grade": "X", "comment": "cans see what first two candles look like for the entry "}
+{"symbol": "AAPL", "day": "2025-03-28", "source_file": "batch05", "card_id": "AAPL_2025-03-28_55_91", "grade": "X", "comment": "break and retest straddling the line"}
+{"symbol": "TSLA", "day": "2024-01-24", "source_file": "batch05", "card_id": "TSLA_2024-01-24_59_246", "grade": "X", "comment": ""}
+{"symbol": "PLTR", "day": "2026-05-06", "source_file": "batch05", "card_id": "PLTR_2026-05-06_15_18", "grade": "X", "comment": ""}
+{"symbol": "AMD", "day": "2024-10-22", "source_file": "batch05", "card_id": "AMD_2024-10-22_26_87", "grade": "X", "comment": "can't see what happens earlier"}
+{"symbol": "MSTR", "day": "2025-12-05", "source_file": "batch05", "card_id": "MSTR_2025-12-05_17_102", "grade": "X", "comment": "can't see what happens earlier"}
+{"symbol": "MSTR", "day": "2024-03-20", "source_file": "batch05", "card_id": "MSTR_2024-03-20_73_78", "grade": "X", "comment": "stop outs only happen when candle closes by the way"}
+{"symbol": "TSLA", "day": "2026-02-12", "source_file": "batch05", "card_id": "TSLA_2026-02-12_38_71", "grade": "X", "comment": ""}
+{"symbol": "INTC", "day": "2025-02-27", "source_file": "batch05", "card_id": "INTC_2025-02-27_72_153", "grade": "X", "comment": "I see an entry 14 candles later an S entry, your I would need to see what happened earlier, and I dont trade past 11 am remember"}
+{"symbol": "MU", "day": "2026-07-24", "source_file": "batch05", "card_id": "MU_2026-07-24_16_20", "grade": "A", "comment": "another a entry 6 candles earlier, I dont see a stop out because you would've held a OCR green candle wick"}
+{"symbol": "NVDA", "day": "2025-05-21", "source_file": "batch05", "card_id": "NVDA_2025-05-21_18_80", "grade": "X", "comment": "dont know what earlier candles look like"}
+{"symbol": "MSFT", "day": "2025-04-17", "source_file": "batch05", "card_id": "MSFT_2025-04-17_16_36", "grade": "X", "comment": "3 candles earlier is an S our entry, wouldn't need 84 percent becasse you would have gotten LOD, but your trade was wrong"}
+{"symbol": "MU", "day": "2026-02-09", "source_file": "batch05", "card_id": "MU_2026-02-09_24_36", "grade": "S", "comment": "first well understanding ive seen, however stop out would've been 5 candles later because thats when the close below happened"}
+{"symbol": "MU", "day": "2026-03-24", "source_file": "batch05", "card_id": "MU_2026-03-24_40_41", "grade": "X", "comment": ""}
+{"symbol": "TSLA", "day": "2025-06-12", "source_file": "batch05", "card_id": "TSLA_2025-06-12_56_61", "grade": "X", "comment": ""}
+{"symbol": "MSFT", "day": "2026-04-17", "source_file": "batch05", "card_id": "MSFT_2026-04-17_21_60", "grade": "X", "comment": ""}
+{"symbol": "PLTR", "day": "2025-12-10", "source_file": "batch05", "card_id": "PLTR_2025-12-10_45_52", "grade": "X", "comment": "perfect S entry orc BR confluence, however because the candle didn't close BELOW the stop, there is no 84 percent rule, you would've taken off at HOD and stopped out BE"}
+{"symbol": "MU", "day": "2025-07-17", "source_file": "batch05", "card_id": "MU_2025-07-17_6_8", "grade": "X", "comment": "your trades was wrong. S BR entry, LOD hit so no need for 84 percent rule here"}
+{"symbol": "INTC", "day": "2024-11-22", "source_file": "batch05", "card_id": "INTC_2024-11-22_18_137", "grade": "X", "comment": "can't see what happens before"}
+{"symbol": "NVDA", "day": "2026-02-05", "source_file": "batch05", "card_id": "NVDA_2026-02-05_48_52", "grade": "X", "comment": "1 candle earlier is your  A entry, stop out doesn't happen until 10:37, so dont see an 84 percent rule occur"}
+{"symbol": "NVDA", "day": "2025-09-29", "source_file": "batch05", "card_id": "NVDA_2025-09-29_13_23", "grade": "X", "comment": "1 candle earlier is S entry, no stop out occurs "}
+{"symbol": "AAPL", "day": "2025-10-01", "source_file": "batch05", "card_id": "AAPL_2025-10-01_26_48", "grade": "X", "comment": ""}
+{"symbol": "AAPL", "day": "2025-06-11", "source_file": "batch05", "card_id": "AAPL_2025-06-11_20_37", "grade": "X", "comment": ""}
+{"symbol": "MSFT", "day": "2024-01-25", "source_file": "batch05", "card_id": "MSFT_2024-01-25_52_70", "grade": "X", "comment": "your entry never closed below the stop so no need 84 percent rule, but get a better fill not at HOD"}
+{"symbol": "META", "day": "2025-09-18", "source_file": "batch05", "card_id": "META_2025-09-18_45_58", "grade": "X", "comment": "1 candle earlier A entry, 6 candles earlier then that is an A entry too"}
+{"symbol": "AMD", "day": "2025-10-14", "source_file": "batch05", "card_id": "AMD_2025-10-14_75_137", "grade": "X", "comment": "dont know what happened before and its late in the day"}
+{"symbol": "AMD", "day": "2024-11-11", "source_file": "batch05", "card_id": "AMD_2024-11-11_22_29", "grade": "A", "comment": "s entry 4 candles earlier, still decent entry and reclaim would've been the same"}
+{"symbol": "AMD", "day": "2025-08-27", "source_file": "batch05", "card_id": "AMD_2025-08-27_7_64", "grade": "X", "comment": "dont know what happens earlier"}
+{"symbol": "MSTR", "day": "2026-04-02", "source_file": "batch05", "card_id": "MSTR_2026-04-02_77_91", "grade": "X", "comment": ""}
+{"symbol": "NVDA", "day": "2025-11-28", "source_file": "batch05", "card_id": "NVDA_2025-11-28_14_22", "grade": "S", "comment": "I would raise the stop after the second time to the higher piece of the pivot structure"}
+{"symbol": "AAPL", "day": "2025-03-12", "source_file": "batch05", "card_id": "AAPL_2025-03-12_329", "grade": "X", "comment": ""}
+{"symbol": "AAPL", "day": "2025-03-24", "source_file": "batch05", "card_id": "AAPL_2025-03-24_244", "grade": "X", "comment": ""}
+{"symbol": "AAPL", "day": "2025-06-12", "source_file": "batch05", "card_id": "AAPL_2025-06-12_162", "grade": "X", "comment": ""}
+{"symbol": "AAPL", "day": "2025-09-09", "source_file": "batch05", "card_id": "AAPL_2025-09-09_123", "grade": "X", "comment": ""}
+{"symbol": "AAPL", "day": "2025-12-22", "source_file": "batch05", "card_id": "AAPL_2025-12-22_290", "grade": "X", "comment": ""}
+{"symbol": "AMD", "day": "2025-03-28", "source_file": "batch05", "card_id": "AMD_2025-03-28_31", "grade": "X", "comment": "earlier entry at 9:39 as candle forming not at HOD was s trade, yours a fail"}
+{"symbol": "AMZN", "day": "2025-12-09", "source_file": "batch05", "card_id": "AMZN_2025-12-09_370", "grade": "X", "comment": ""}
+{"symbol": "GOOGL", "day": "2026-01-20", "source_file": "batch05", "card_id": "GOOGL_2026-01-20_67", "grade": "X", "comment": "I see way to Many break and retests with no displacement and red candles respected earlier, way too late"}
+{"symbol": "INTC", "day": "2024-01-23", "source_file": "batch05", "card_id": "INTC_2024-01-23_219", "grade": "X", "comment": ""}
+{"symbol": "META", "day": "2025-03-05", "source_file": "batch05", "card_id": "META_2025-03-05_335", "grade": "X", "comment": ""}
+{"symbol": "MSFT", "day": "2024-06-07", "source_file": "batch05", "card_id": "MSFT_2024-06-07_327", "grade": "X", "comment": ""}
+{"symbol": "MSTR", "day": "2024-10-16", "source_file": "batch05", "card_id": "MSTR_2024-10-16_188", "grade": "X", "comment": ""}
+{"symbol": "MSTR", "day": "2024-12-17", "source_file": "batch05", "card_id": "MSTR_2024-12-17_89", "grade": "X", "comment": "chop"}
+{"symbol": "MSTR", "day": "2026-01-13", "source_file": "batch05", "card_id": "MSTR_2026-01-13_307", "grade": "X", "comment": ""}
+{"symbol": "MSTR", "day": "2026-04-02", "source_file": "batch05", "card_id": "MSTR_2026-04-02_285", "grade": "X", "comment": ""}
+{"symbol": "MSTR", "day": "2026-06-12", "source_file": "batch05", "card_id": "MSTR_2026-06-12_362", "grade": "X", "comment": ""}
+{"symbol": "MU", "day": "2024-01-05", "source_file": "batch05", "card_id": "MU_2024-01-05_151", "grade": "X", "comment": ""}
+{"symbol": "NVDA", "day": "2024-10-31", "source_file": "batch05", "card_id": "NVDA_2024-10-31_276", "grade": "X", "comment": ""}
+{"symbol": "PLTR", "day": "2025-06-04", "source_file": "batch05", "card_id": "PLTR_2025-06-04_311", "grade": "X", "comment": ""}
+{"symbol": "SPCX", "day": "2026-06-15", "source_file": "batch05", "card_id": "SPCX_2026-06-15_226", "grade": "X", "comment": ""}
+{"symbol": "SPCX", "day": "2026-06-24", "source_file": "batch05", "card_id": "SPCX_2026-06-24_271", "grade": "X", "comment": ""}
+{"symbol": "SPCX", "day": "2026-07-01", "source_file": "batch05", "card_id": "SPCX_2026-07-01_306", "grade": "X", "comment": ""}
+{"symbol": "SPCX", "day": "2026-07-13", "source_file": "batch05", "card_id": "SPCX_2026-07-13_272", "grade": "X", "comment": ""}
+{"symbol": "SPCX", "day": "2026-08-04", "source_file": "batch05", "card_id": "SPCX_2026-08-04_107", "grade": "X", "comment": ""}
+{"symbol": "TSLA", "day": "2025-05-22", "source_file": "batch05", "card_id": "TSLA_2025-05-22_379", "grade": "X", "comment": ""}
+{"symbol": "AAPL", "day": "2024-01-02", "source_file": "batch05", "card_id": "AAPL_2024-01-02_19", "grade": "A", "comment": "1 candle earlier is your entry"}
+{"symbol": "AAPL", "day": "2024-10-28", "source_file": "batch05", "card_id": "AAPL_2024-10-28_162", "grade": "X", "comment": "tight and chop in-between channels"}
+{"symbol": "AAPL", "day": "2025-09-09", "source_file": "batch05", "card_id": "AAPL_2025-09-09_279", "grade": "C", "comment": "never retested any kind of level or green candle with displacement, but below all the levels and with a good thesis I can see it but its risky"}
+{"symbol": "MSTR", "day": "2024-01-02", "source_file": "batch05", "card_id": "MSTR_2024-01-02_244", "grade": "X", "comment": ""}
+{"symbol": "MSTR", "day": "2024-08-14", "source_file": "batch05", "card_id": "MSTR_2024-08-14_66", "grade": "X", "comment": ""}
+{"symbol": "MSTR", "day": "2025-04-14", "source_file": "batch05", "card_id": "MSTR_2025-04-14_183", "grade": "X", "comment": "analyzing if this was from 9:30-11: displacement on entry but a couple candles exist from earlier in the day but they are volitale and lengthy so its not as big of a issue"}
+{"symbol": "MSTR", "day": "2025-12-12", "source_file": "batch05", "card_id": "MSTR_2025-12-12_11", "grade": "A", "comment": "5 candles earlier is your s entry"}
+{"symbol": "MU", "day": "2024-01-02", "source_file": "batch05", "card_id": "MU_2024-01-02_26", "grade": "X", "comment": ""}
+{"symbol": "NVDA", "day": "2024-01-03", "source_file": "batch05", "card_id": "NVDA_2024-01-03_98", "grade": "A", "comment": "outside timeframe I trade but if it was its an A because there were nearly earlier entries"}
+{"symbol": "PLTR", "day": "2024-01-02", "source_file": "batch05", "card_id": "PLTR_2024-01-02_196", "grade": "X", "comment": "wrong timeframe"}
+{"symbol": "SPCX", "day": "2024-01-30", "source_file": "batch05", "card_id": "SPCX_2024-01-30_7", "grade": "A", "comment": "hard to tell how great the candles look for the b and r"}
+{"symbol": "SPCX", "day": "2026-06-29", "source_file": "batch05", "card_id": "SPCX_2026-06-29_47", "grade": "X", "comment": "overextended and no great entry presented itself"}
+{"symbol": "SPCX", "day": "2026-07-15", "source_file": "batch05", "card_id": "SPCX_2026-07-15_55", "grade": "X", "comment": ""}
+{"symbol": "SPCX", "day": "2026-07-30", "source_file": "batch05", "card_id": "SPCX_2026-07-30_215", "grade": "X", "comment": ""}
+{"symbol": "TSLA", "day": "2024-01-03", "source_file": "batch05", "card_id": "TSLA_2024-01-03_16", "grade": "X", "comment": "2 or 3 candles later is a S BR for puts"}
+{"symbol": "QQQ", "day": "2024-01-04", "source_file": "", "card_id": "QQQ_2024-01-04_37", "grade": "A", "comment": "4 candles earlier is an A trade (break and retest no displacement)"}
+{"symbol": "NVDA", "day": "2024-11-18", "source_file": "", "card_id": "NVDA_2024-11-18_4", "grade": "A", "comment": "6 candles earlier is a break and retest no displacement, so that would've been A"}
+{"symbol": "QQQ", "day": "2024-12-16", "source_file": "", "card_id": "QQQ_2024-12-16_21", "grade": "A", "comment": "break and retest no displacement entry 7 candles before ... earlier entry = A"}
+{"symbol": "MSTR", "day": "2024-08-08", "source_file": "", "card_id": "MSTR_2024-08-08_20", "grade": "A", "comment": "3 candles earlier is also an A entry, 84 percent rule same stop is ok"}
+{"symbol": "AAPL", "day": "2024-03-28", "source_file": "", "card_id": "AAPL_2024-03-28_11", "grade": "S", "comment": "4 candles after is an S entry OCR"}
+{"symbol": "AAPL", "day": "2025-01-13", "source_file": "", "card_id": "AAPL_2025-01-13_15", "grade": "S", "comment": "3 candles earlier is an S entry, reclaim"}
+{"symbol": "AAPL", "day": "2025-01-13", "source_file": "", "card_id": "AAPL_2025-01-13_16", "grade": "S", "comment": "my s entry would've been two candles earlier"}
+{"symbol": "SPCX", "day": "2026-06-30", "source_file": "", "card_id": "SPCX_2026-06-30_32", "grade": "S", "comment": "one candle earlier s entry"}
+{"symbol": "INTC", "day": "2025-02-27", "source_file": "", "card_id": "INTC_2025-02-27_86", "grade": "S", "comment": "I see an entry 14 candles later an S entry"}
+{"symbol": "MU", "day": "2026-07-24", "source_file": "", "card_id": "MU_2026-07-24_10", "grade": "A", "comment": "another a entry 6 candles earlier, I dont see a stop out because you would've held a OCR green candle wick"}
+{"symbol": "MSFT", "day": "2025-04-17", "source_file": "", "card_id": "MSFT_2025-04-17_13", "grade": "S", "comment": "3 candles earlier is an S our entry"}
+{"symbol": "NVDA", "day": "2026-02-05", "source_file": "", "card_id": "NVDA_2026-02-05_47", "grade": "A", "comment": "1 candle earlier is your A entry"}
+{"symbol": "NVDA", "day": "2025-09-29", "source_file": "", "card_id": "NVDA_2025-09-29_12", "grade": "S", "comment": "1 candle earlier is S entry"}
+{"symbol": "META", "day": "2025-09-18", "source_file": "", "card_id": "META_2025-09-18_44", "grade": "A", "comment": "1 candle earlier A entry"}
+{"symbol": "META", "day": "2025-09-18", "source_file": "", "card_id": "META_2025-09-18_39", "grade": "A", "comment": "6 candles earlier then that is an A entry too"}
+{"symbol": "AMD", "day": "2024-11-11", "source_file": "", "card_id": "AMD_2024-11-11_18", "grade": "S", "comment": "s entry 4 candles earlier, still decent entry and reclaim would've been the same"}
+{"symbol": "MSTR", "day": "2025-12-12", "source_file": "", "card_id": "MSTR_2025-12-12_6", "grade": "S", "comment": "5 candles earlier is your s entry"}
+{"symbol": "TSLA", "day": "2024-01-03", "source_file": "", "card_id": "TSLA_2024-01-03_19", "grade": "S", "comment": "2 or 3 candles later is a S BR for puts"}
+{"symbol": "AVGO", "day": "2026-04-23", "source_file": "recovered_reviews.jsonl", "card_id": "AVGO_2026-04-23_12", "grade": "C", "comment": "2 candles before is your entry and a clean break and retest! which would be an S"}
+{"symbol": "CRM", "day": "2026-05-04", "source_file": "recovered_reviews.jsonl", "card_id": "CRM_2026-05-04_24", "grade": "C", "comment": "scarface teacher this strategy recently and ive talked about it twice or 3 times, strong bear bull movement, and after that happens a stock needs a break, this looked like what is happening, but here id like the candle before to be the order block and it get retested, then it would also be above the orh. another piece of info, we can target longer timeframe levels but also whole psychological numbers like 188, 189, etc."}
+{"symbol": "IREN", "day": "2026-06-02", "source_file": "recovered_reviews.jsonl", "card_id": "IREN_2026-06-02_11", "grade": "A", "comment": "stop loss at the bottom of the wick you entered, target hod good lower probability because of the risk to reward, but like its above all the levels"}
+{"symbol": "NFLX", "day": "2026-07-17", "source_file": "recovered_reviews.jsonl", "card_id": "NFLX_2026-07-17_30", "grade": "A", "comment": "hod hard to enter at but 1 candle break next candle displacement next candle strong pa, but tight options trades like this won't work, spread has to be larger then 20 cents can easily be wicked out"}
+{"symbol": "ORCL", "day": "2025-12-08", "source_file": "recovered_reviews.jsonl", "card_id": "ORCL_2025-12-08_8", "grade": "X", "comment": "too consolidative"}
+{"symbol": "PLTR", "day": "2025-08-06", "source_file": "recovered_reviews.jsonl", "card_id": "PLTR_2025-08-06_30", "grade": "C", "comment": "mini higher highs so makes the stop muddled"}
+{"symbol": "SOFI", "day": "2025-08-08", "source_file": "recovered_reviews.jsonl", "card_id": "SOFI_2025-08-08_48", "grade": "A", "comment": "feel like ive seen this before, but confluence there somewhat because about two levels that are practically the same, just little more consolidation then we would like"}
+{"symbol": "TSLA", "day": "2026-02-04", "source_file": "recovered_reviews.jsonl", "card_id": "TSLA_2026-02-04_35", "grade": "C", "comment": "if I only saw the 10 candles before you entered, looks good but your in a channel so have to break that channel of support"}
+{"symbol": "TSM", "day": "2026-02-23", "source_file": "recovered_reviews.jsonl", "card_id": "TSM_2026-02-23_23", "grade": "S", "comment": "little overextended because higher highs but clean break and retest happens up there make sure to save somehow. im going to try not to type much because i need your opinion, were really not oging anywhere. the grading is hard because if i type s, somethimes your trade wasnt an s and mine was, but it gets graded as a loss, when couldve been a win, or couldve been a no trade if i know all the context of the candles. so audits can come from me but they need to be way more specific. i think i need a diagram to complete or artifact of all the questions to optimize the system, i did that a while ago at the beginning maybe it will help. but this project is taking so much time and the problem is its not running untill i brainstorm a big loop which finishes in 45 minutes. not great use of my time. brainstormed agent who learns the system and knows it and can actively improve. hard to build and i dropped hermes, but if thats the easiest agents to set up maybe we need it. and i probably need to invest more into this project money wise to save time, but i also want to be efficient with tokens. thats why i break projects into specs. but efficient with time is this project needs to run somehow 24/7 even when im brainstorming or you give me a artifact or different human task. what do you estimate how long this project should take at least this heavy lifting until its profatable and need less insane monitering? even with breaking updates into master specs, the projects so complicated that we are not making progress. once again all the data extraction. i need a difinitive answer of how we can use it to improve the trading? if something can run without my attention 24 hours, surely its all the data we have about scarface and jdub, from servers i paid a lot of money to get acess to. when its me brainstorming and one session master speccing, fine but loop finishes in 1h and i brainstorm 5 hours, and some things should be running always somehow. i probably need to invest more money, and claude max is probably the best way to go. im so stupid with money ill save and wont spend anything but ill buy expensive services, not a materialist, a minimalist who wants to have a bunch of money, so i can start taking more acting classes dance classes have agentic agents managing my acting career so i can do what i love and not live lavish, but be a secret millionare. part of me thinks i should switch to futures and tastytrade doesent work so we would have to find something else, because futures can scale and copy trade. only vanquish is there for options and can only buy 1 account at a time. or maybe i can buy 10 and copy trade them right before passing challenge as some kind of loophole for leverage but probably not. problem is i learned the options system my expertiese is not in futures. and they dont trade futures so we would be backtesting coming up with our own attempts of sucess. lots here, what are your thoughts?"}
+{"symbol": "AAPL", "day": "2026-06-25", "source_file": "recovered_reviews.jsonl", "card_id": "AAPL_2026-06-25_27", "grade": "X", "comment": "13 | AMD | 2025-10-29 | one_candle_rule | call | engine=B | loss | you=X |"}
+{"symbol": "COIN", "day": "2025-08-06", "source_file": "recovered_reviews.jsonl", "card_id": "COIN_2025-08-06_50", "grade": "B", "comment": "green candle before came above levels before entry"}
+{"symbol": "COIN", "day": "2025-09-15", "source_file": "recovered_reviews.jsonl", "card_id": "COIN_2025-09-15_10", "grade": "X", "comment": "choppy holds red candles but no small movement"}
+{"symbol": "COIN", "day": "2025-10-09", "source_file": "recovered_reviews.jsonl", "card_id": "COIN_2025-10-09_39", "grade": "A", "comment": "I hate when there's noise and candles and can't target HOD LOD but break and retest with displacement"}
+{"symbol": "GOOGL", "day": "2026-05-27", "source_file": "recovered_reviews.jsonl", "card_id": "GOOGL_2026-05-27_11", "grade": "C", "comment": "maybe 12 or 13 candles after is an entry. hard to grade this one we need better grading rules, because bias kicks in when I see a green trade but this doesn't look like my system"}
+{"symbol": "INTC", "day": "2026-06-26", "source_file": "recovered_reviews.jsonl", "card_id": "INTC_2026-06-26_42", "grade": "B", "comment": "could have taken off high of day, stop could've been 1 candle rule 5 candles earlier"}
+{"symbol": "IREN", "day": "2026-01-05", "source_file": "recovered_reviews.jsonl", "card_id": "IREN_2026-01-05_19", "grade": "C", "comment": "no real breaks, very consolidative"}
+{"symbol": "META", "day": "2026-01-16", "source_file": "recovered_reviews.jsonl", "card_id": "META_2026-01-16_81", "grade": "A", "comment": "I see earlier entry 5 candles before if it holds and of those green candles from the pivot strucuture"}
+{"symbol": "MSFT", "day": "2025-10-21", "source_file": "recovered_reviews.jsonl", "card_id": "MSFT_2025-10-21_26", "grade": "X", "comment": "chop"}
+{"symbol": "MSFT", "day": "2026-03-30", "source_file": "recovered_reviews.jsonl", "card_id": "MSFT_2026-03-30_34", "grade": "X", "comment": "yes it holds the candle but so much chop around it, you can't anticipate these in my opinion"}
+{"symbol": "NVDA", "day": "2026-06-25", "source_file": "recovered_reviews.jsonl", "card_id": "NVDA_2026-06-25_65", "grade": "X", "comment": "two green candles at the start looks less like a one candle rule, usually the candle is isolated in a down/uptrend"}
+{"symbol": "PLTR", "day": "2026-03-18", "source_file": "recovered_reviews.jsonl", "card_id": "PLTR_2026-03-18_28", "grade": "B", "comment": "consolidation leg up consolidation leg up not big movements scary to trade, especially when you could enter earlier, I never like to enter late"}
+{"symbol": "AMD", "day": "2025-11-21", "source_file": "recovered_reviews.jsonl", "card_id": "AMD_2025-11-21_12", "grade": "S", "comment": "almost earlier entry 5 candles earlier,"}
+{"symbol": "BABA", "day": "2026-05-14", "source_file": "recovered_reviews.jsonl", "card_id": "BABA_2026-05-14_69", "grade": "A", "comment": "looks pretty clean, away from all the tight levels below and clean few candle break retest strong PA, hard to see the candles they are tight so the packs of 10 are respecting each other not sure how much overlap there is or if earlier entry possilble"}
+{"symbol": "COIN", "day": "2025-11-07", "source_file": "recovered_reviews.jsonl", "card_id": "COIN_2025-11-07_16", "grade": "C", "comment": "avoid mostly get trapped here at 9:35 I almost see an entry but the candle 2 before taps level makes me nervous , your entry way later in chop and consolidation"}
+{"symbol": "COIN", "day": "2025-12-18", "source_file": "recovered_reviews.jsonl", "card_id": "COIN_2025-12-18_11", "grade": "S", "comment": "6 candles before might've been an entry, hard to tell, with 930 respected as one candle rule if it was touched but your entry is clean too"}
+{"symbol": "HOOD", "day": "2026-04-20", "source_file": "recovered_reviews.jsonl", "card_id": "HOOD_2026-04-20_12", "grade": "X", "comment": "trading between chop"}
+{"symbol": "IREN", "day": "2026-06-03", "source_file": "recovered_reviews.jsonl", "card_id": "IREN_2026-06-03_9", "grade": "C", "comment": "in between so many levels, one candle before maybe entry your stop is the 9:30 candle"}
+{"symbol": "MU", "day": "2026-01-20", "source_file": "recovered_reviews.jsonl", "card_id": "MU_2026-01-20_18", "grade": "A", "comment": "tight stop scalp, we like a little more spread on trades generally because then its harder to be stopped out"}
+{"symbol": "MU", "day": "2026-06-16", "source_file": "recovered_reviews.jsonl", "card_id": "MU_2026-06-16_11", "grade": "A", "comment": "nearly perfect green candle before closes with, the break and retest takes a little chop but you go t a good bull flag and I agree with the stop"}
+{"symbol": "QQQ", "day": "2025-10-29", "source_file": "recovered_reviews.jsonl", "card_id": "QQQ_2025-10-29_84", "grade": "X", "comment": "reversal, 2 candles before I see a break and retest entry to downside"}
+{"symbol": "TSLA", "day": "2025-11-21", "source_file": "recovered_reviews.jsonl", "card_id": "TSLA_2025-11-21_50", "grade": "S", "comment": "below levels, slow mover but risk makes sense"}
+{"symbol": "TSLA", "day": "2026-07-09", "source_file": "recovered_reviews.jsonl", "card_id": "TSLA_2026-07-09_49", "grade": "S", "comment": "stop loss good at pivot and where the candles respect and wick at, clear couple candle break retest"}
+{"symbol": "GOOGL", "day": "2025-09-05", "source_file": "recovered_reviews.jsonl", "card_id": "GOOGL_2025-09-05_5", "grade": "S", "comment": "i think the stop needs to be a couple cents lower if im not mistaken"}
+{"symbol": "META", "day": "2025-08-11", "source_file": "recovered_reviews.jsonl", "card_id": "META_2025-08-11_43", "grade": "S", "comment": "stop loss a little higher top of the body of 9:48 or upper body of one candle"}
+{"symbol": "META", "day": "2025-11-07", "source_file": "recovered_reviews.jsonl", "card_id": "META_2025-11-07_67", "grade": "A", "comment": "lower the stop a couple cents maybe? and you want weaker price action on the entry"}
+{"symbol": "MSFT", "day": "2026-06-02", "source_file": "recovered_reviews.jsonl", "card_id": "MSFT_2026-06-02_48", "grade": "A", "comment": "i see the stop loss, too much of an upper wick on the entry so maybe a little more strength?"}
+{"symbol": "MSFT", "day": "2026-07-07", "source_file": "recovered_reviews.jsonl", "card_id": "MSFT_2026-07-07_42", "grade": "X", "comment": "were inbetween all the levels, and  pretty tight price action, i see the referance candle which makes it easy for low risk but low probablility trade"}
+{"symbol": "PLTR", "day": "2025-12-08", "source_file": "recovered_reviews.jsonl", "card_id": "PLTR_2025-12-08_19", "grade": "X", "comment": "chop"}
+{"symbol": "QQQ", "day": "2025-12-17", "source_file": "recovered_reviews.jsonl", "card_id": "QQQ_2025-12-17_60", "grade": "X", "comment": "chop"}
+{"symbol": "TSLA", "day": "2025-10-08", "source_file": "recovered_reviews.jsonl", "card_id": "TSLA_2025-10-08_37", "grade": "X", "comment": "noisy, hard to get through the chop, then again maybe scarface likes these but HOD and LOW i think is what they strive for"}
+{"symbol": "TSLA", "day": "2026-01-14", "source_file": "recovered_reviews.jsonl", "card_id": "TSLA_2026-01-14_85", "grade": "S", "comment": "stop a little lower at the lower body of the green one candle rule"}

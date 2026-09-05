@@ -1,0 +1,69 @@
+{
+  "theme": "displacement and candle shape",
+  "row": "F2",
+  "source": "research/g150_marks_comments.jsonl",
+  "rulebook_checked": "C:/Users/aharg/Austin's Vault/Projects/omen-rulebook.md",
+  "claims": [
+    {
+      "rule": "A break-and-retest with no displacement on the break leg is forgiven ~90% of the time when grading S; the other 10% is forgiven only under three named exemptions: BR+OCR confluence, a bull/bear flag at the start of the day, or a longer-timeframe thesis.",
+      "polarity": "S-indicator",
+      "n_rows": 87,
+      "quotes": [
+        "This is true for 90 percent of S trades. for the other 10 percent, no displacement is forgiven if: BR OCR confluence, bull/bear flag to start the day, longer timeframe thesis tweak",
+        "BR OCR confluence, not perfect because no displacement, but you get a +1",
+        "a, but this is rare, i see it happening if a c put trade fails and then theres a clear BR OCR of 5MOR with strong PA and displacement for calls as an example",
+        "no displacement but holding ocr at 9:56 and strong PA above the candles earlier and in the wick of those levels s",
+        "could be considered as an S 9:43 even though no displacement because its early and there could be HTF bias. no"
+      ],
+      "testable_as": "book-field",
+      "predicate_sketch": "SKIP-WITH-CAVEAT: this is ballot q18, already ratified in omen-rulebook.md (lines 40-44) and downgrade.py::no_displacement already exists as one of the eight variables. BUT the rulebook's own 2026-08-30 session note says explicitly 'Displacement gets measured, and wired only if it separates... This reopens the eight-variable list' (section 9) -- i.e. displacement is measured-only per the S/A/C ladder contract (per project CLAUDE.md, that whole ladder is measured, not wired into detection). Keeping this claim per the row instruction ('measured-only' exception). The concrete gap: downgrade.py::no_displacement(bars,i,level,is_long) has ZERO exemption logic -- it returns a bare bool with no BR+OCR-confluence check, no flag-day check, no HTF-thesis check. If displacement is ever promoted from measured-only to wired, the three exemptions must be coded as an override that suppresses the no_displacement downgrade before it ever reaches score/confluence arithmetic, not folded into the confluence +1 alone (rulebook line ~295 already warns the two are 'neither' the same thing)."
+    },
+    {
+      "rule": "Displacement strength is graded, not boolean -- a 'weak' displacement candle still fails to earn even an A grade, and a borderline case is explicitly hard to call between A and S on displacement strength alone.",
+      "polarity": "S-indicator",
+      "n_rows": 3,
+      "quotes": [
+        "break and next candle is weak displacement so not even an a but something to notice if you have higher timeframe thesis",
+        "1 2 3 breakout displacement weak price action",
+        "9:38 or 9:41 its really close hard to tell if displacement for an A or S trade"
+      ],
+      "testable_as": "bars-feature",
+      "predicate_sketch": "NOT wired anywhere. downgrade.py::no_displacement is strictly Boolean (body < DISP_BODY_MULT * avg_body). No graded threshold (e.g. <0.5x=none / 0.5-1.0x=weak-caps-at-A / >=1.5x=strong-S-eligible) exists in downgrade.py or signal_runner.py. Candidate feature: displacement_ratio = body(break_bar) / avg_body(prior 10), reported continuous, with a second cut threshold above DISP_BODY_MULT to separate 'weak' from 'strong'."
+    },
+    {
+      "rule": "A candle with a visible wick is read as more predictable / better-respected support-resistance in a trending market than a full solid-body candle, independent of whether it is tagged as an OCR/order-block.",
+      "polarity": "S-indicator",
+      "n_rows": 2,
+      "quotes": [
+        "its not risk too wide but risk less predictable because i find trends respect candles with wicks better predictability",
+        "candles are still in range of previous ones so you can anticipate this but it doesn't break those full body candles and come back to retest"
+      ],
+      "testable_as": "bars-feature",
+      "predicate_sketch": "NOT ratified, NOT wired. One quote is a rule-ballot answer (his rules, not a graded symbol-day -- source_file rule_ballot_batch02.jsonl), the other a single symbol-day (INTC_2026-06-30). This is thin (n=2, one of which isn't even a mark) -- flag as a hint, not a rule. The omen-rulebook OCR section (line ~334 onward) defines the order-block stop-usability test but never scores a standalone wick-ratio quality signal separate from the OCR tag. Candidate feature: wick_ratio = (high-max(o,c))/(high-low) or similar on the level-generating candle, reported as a continuous confluence input, distinct from has_confluence's BR+OCR flag.",
+      "note": "one of the two supporting rows is a rule-ballot answer, not a graded symbol-day; do not count it toward n_rows if a stricter symbol-day-only count is needed downstream (true symbol-day n=1)."
+    },
+    {
+      "rule": "A scratch-exit rule should require the entry candle's direction (bullish/bearish) to match the prevailing trend direction before it can fire.",
+      "polarity": "S-indicator",
+      "n_rows": 1,
+      "quotes": [
+        "the candle has to match the trend bullish or bearish candle. but im ok with implementing scratch, just concered on how often it will fire. the goal of scratch is to miss less near HOD/LOD entries, but if its firing to much or too buggy, that defeats the purpose"
+      ],
+      "testable_as": "bars-feature",
+      "predicate_sketch": "NOT wired -- this is a single rule-ballot answer (rule_ballot_batch01.jsonl q15), not a symbol-day mark, and describes a feature ('scratch') that does not exist in the codebase yet; he is answering hypothetically ('im ok with implementing scratch'). Do not treat as ratified: it is a conditional yes on a feature that has not been built, gated on fire-rate risk he flags himself. Candidate feature: candle_direction(entry_bar) == trend_direction, as a precondition on a not-yet-built scratch-exit."
+    },
+    {
+      "rule": "A run of multiple consecutive same-colored candles (2-3 green, or 2-3 red) before/at entry reads as extra strength/confluence in its own right, separate from and additive to break-leg displacement -- it can partially compensate for a no-displacement break.",
+      "polarity": "S-indicator",
+      "n_rows": 4,
+      "quotes": [
+        "no displacement but 2 green candles to respectt off of",
+        "lots of green, 2 red candle pullback, strong pa next, so pretty",
+        "no displacement but stock respected those green candles. enter as candle is bearish forming with strength",
+        "two green candles at the start looks less like a one candle rule, usually the candle is isolated in a down/uptrend"
+      ],
+      "testable_as": "bars-feature",
+      "predicate_sketch": "NOT wired. has_confluence in downgrade.py tracks exactly one thing per rulebook (line ~522: 'has_confluence knows exactly one'), which is BR+OCR co-occurrence -- a same-color-candle-run confluence is a distinct, unimplemented signal that is NOT the same as displacement or OCR. Note the fourth quote (NVDA_2026-06-25) cuts the other way -- two green candles at the day's start reads as LESS like a clean one-candle-rule setup (an isolated candle in trend is preferred), so this is a two-sided signal, not purely additive; a naive 'count same-color candles, add points' feature would get NVDA_2026-06-25 backwards. Candidate feature: same_color_run_len(bars, entry_idx) as a confluence input, with the isolation-vs-run distinction reported separately, not conflated into one score."
+    }
+  ]
+}

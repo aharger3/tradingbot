@@ -1,0 +1,52 @@
+{
+  "theme": "entries and timing",
+  "source": "research/g150_marks_comments.jsonl",
+  "row": "F2 (theme 1 of 8)",
+  "n_source_rows_total": 2675,
+  "n_nonempty_comments": 1521,
+  "note": "Only claims quotable verbatim from g150_marks_comments.jsonl are listed. Two related mechanics that are heavily discussed in Projects/omen-rulebook.md -- the ON WATCH decision-clock (T-15s) and the explicit 'no chase, limit at the level' order-type ruling -- are NOT sourced here because no matching quote exists in g150 (they come from other corpora / the ballot); they are treated as already ratified+wired per the rulebook and are skipped from this file.",
+  "claims": [
+    {
+      "rule": "The engine's fired entry sits systematically later (often several 1-min candles, sometimes 10+ minutes) than the entry Austin says he would have taken -- an 'entry N candles earlier' correction is the single most repeated comment type in the corpus.",
+      "polarity": "S-indicator",
+      "n_rows": 84,
+      "quotes": [
+        "but your trade was an x, you missed the entry 9 candles earlier perfect break and retest one candle rule hammer stick",
+        "2 earlier entry opportunities that were S, first one 9:43, second 10:02",
+        "on candle earlier is your entry and then it would've been A, because earlier trade opportunity of OCR was at 9:45 as candle forming not all the way at LOD",
+        "earlier s entry, this one took longer to develop, 2 candles earlier is entry",
+        "one candle earlier s entry, two candles earlier is the reclaim but could've taken off HOD earlier and stoped out on the rest and thats that. ill mark it x because your entry is wrong one candle late"
+      ],
+      "testable_as": "bars-feature",
+      "predicate_sketch": "RATIFIED-BUT-NOT-WIRED. omen-rulebook.md ('An earlier entry mark is a bug report', q10) already treats every earlier-entry mark as a detection miss to count -- that is a scoring/interpretation convention, not a fix to when the engine fires. No mechanism in signal_runner.py currently pulls the fire earlier when a break-and-retest condition was already satisfiable N bars sooner. Feature to compute per book candidate: re-scan the signal bar's preceding window for the earliest bar at which the same break-and-retest / one-candle-rule condition already held (same level, same direction), and measure the offset in bars/minutes between that bar and the bar the engine actually fired on. Distribution of that offset across the 2-year book is the thing to report; a selection/earlier-fire arm keyed on it is the testable predicate."
+    },
+    {
+      "rule": "He wants the entry taken while the candle is still forming (mid-candle), not after it closes at the low/high of day -- 'enter as candle is forming, not at LOD/HOD' -- because a close at the extreme kills the risk:reward.",
+      "polarity": "S-indicator",
+      "n_rows": 56,
+      "quotes": [
+        "as candle is forming you dont want to get an entry all the way at the bottom, this should kind of signal you that your should be getting ready to get into the trade",
+        "no displacement enter as candle forming dont want to be at low of day",
+        "difficult entry want as candle is forming not all the way at hod",
+        "enter as candle is forming not at low of day",
+        "as the candle is forming so get a better entry, stop a little higher to the 10:33 candle, but holy crap, if I can't see all the candles from 9:30-11, then I dont even know if this is something that can be taken"
+      ],
+      "testable_as": "bars-feature",
+      "predicate_sketch": "RATIFIED-BUT-NOT-FULLY-WIRED. omen-rulebook.md ('The forming-candle entry -- NOT new') confirms this is a years-old, repeatedly-stated rule and ties the one tolerance unit (BAR_EXTREME_FRAC=0.25, signal_runner.py:410) to it, but the rulebook itself flags the anchor question as still open: 'whether the engine anchors the entry on LOD/HOD where he anchors on the forming candle' is unresolved. Feature to compute: for each book candidate, the fraction of the signal bar's completed range consumed at the moment BAR_EXTREME_FRAC-based trigger would have fired vs. the fraction consumed at the bar's actual close (proxy for 'entered near the extreme'); an arm that fires at the trigger point rather than waiting for bar close is the testable predicate."
+    },
+    {
+      "rule": "Earlier in the day is better -- more volatility, cleaner trends, higher probability -- and he does not want new entries very late in the window (past ~11:00, management only from then on).",
+      "polarity": "S-indicator",
+      "n_rows": 23,
+      "quotes": [
+        "yes the earlier a trade the better because more volitility and easier to see these trends yes",
+        "I see an entry 14 candles later an S entry, your I would need to see what happened earlier, and I dont trade past 11 am remember",
+        "earlier entry at 9:39 as candle forming not at HOD was s trade, yours a fail",
+        "same stock but earlier entry better",
+        "avoid mostly get trapped here at 9:35 I almost see an entry but the candle 2 before taps level makes me nervous , your entry way later in chop and consolidation"
+      ],
+      "testable_as": "book-field",
+      "predicate_sketch": "RATIFIED-BUT-WIRED-BACKWARDS. omen-rulebook.md documents the '09:30-09:45 carrying 55.4% of entries is the system working, not a clustering bug' finding and a corroborating measurement (9 of 15 held-out S entries in 09:30-09:45), yet the live TRADE_FLOOR sits at 09:40 and the rulebook's own 'Timing -- the 09:40 floor is against him' section says that floor removes 10 of his 34 S days (29% recall cut) -- i.e. the wired parameter currently fights this ratified preference rather than embracing it. Predicate: bt2y_trades_retest_on.json field for signal-bar time-of-day; arm = lowering/removing TRADE_FLOOR (or re-testing candidates it currently excludes) vs. a hard entry cutoff at 11:00, measured for $/day, S recall and precision, H1 vs H2."
+    }
+  ]
+}

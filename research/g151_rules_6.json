@@ -1,0 +1,71 @@
+{
+  "theme": "HTF bias and trend",
+  "source": "research/g150_marks_comments.jsonl (1341 distinct symbol-days after dedupe)",
+  "note": "n_rows = distinct symbol-days (deduped by symbol+day, keeping the longest comment variant) whose comment matches the claim's keyword pattern, not raw row count (which double-counts the same card across marks_clean/blind_marks_all re-exports).",
+  "claims": [
+    {
+      "rule": "A higher-timeframe thesis (a bias from a daily/weekly chart, or 'HTF levels', drawn separately from the six intraday levels) can forgive an otherwise-downgraded setup (e.g. missing displacement) and push it back to S, especially on early trades.",
+      "polarity": "S-indicator",
+      "n_rows": 6,
+      "quotes": [
+        "break and next candle is weak displacement so not even an a but something to notice if you have higher timeframe thesis",
+        "could be considered as an S 9:43 even though no displacement because its early and there could be HTF bias.",
+        "barely missed no displacement but can be forgiven with such an early trade like this and/or HTF thesis",
+        "no clear break retest, break come back higher timeframe thesis maybe but I never enter on breaks, I enter on retests with strong price confirmation",
+        "2r level is trumped by HTF levels and whole psych number if one is close."
+      ],
+      "testable_as": "not-testable",
+      "predicate_sketch": "Ratified in principle but NOT wired: omen-rulebook.md 2026-08-29/08-30 settles that 'we dont have any higher timeframe bias yet' (c6) and later that when it exists it is 'a RANK rule, not a wait or a veto' -- it selects among the day's candidates, does not forgive/veto a single one, and explicitly 'does not touch HTF_BIAS_VETO, which remains authorless and separate.' No HTF-thesis feature exists in the codebase (the only committed HTF flag, HTF_BIAS_VETO/HTF_GRADE_VETO, is an SMA20-of-hourly formula nobody authored and is default-off/deleted per rulebook). Keeping this claim per the F2 instruction: ratified direction, unwired mechanism. Not testable today -- there is no bars-derivable proxy for 'his HTF thesis'; the corpus (Scarface/Jdub charts) is the only source he named for it, and marking those charts is explicitly delegated but not yet done (F4/corpus-confirm territory, not a book field)."
+    },
+    {
+      "rule": "A directionally-opposed HTF thesis (e.g. a bearish higher-timeframe read against a long setup) is grounds to refuse the trade even when the intraday setup looks fine.",
+      "polarity": "refusal-indicator",
+      "n_rows": 3,
+      "quotes": [
+        "bearish higher timeframe thesis maybe no trade",
+        "respects pdl could be good entry but dia I dont like price action probably better higher timeframe",
+        "no trade, look at the tuff opportunities it never retraced into green candles. but with a higher timeframe thesis, surely you can look for an aggressive entry"
+      ],
+      "testable_as": "not-testable",
+      "predicate_sketch": "Same unwired mechanism as above (HTF is a selector/rank concept, not a formalized veto, per rulebook 2026-08-30) -- and the DIA 2025-10-06 quote shows he uses 'higher timeframe thesis' in both directions on the same theme (here as a reason to still take an aggressive entry despite a clean refusal), so this is not a clean veto rule either. No book field or bars feature captures 'his HTF read'; low n (3) on top of that. Kept as a hint per F2 instructions, not shippable."
+    },
+    {
+      "rule": "'Overextended' / 'exhausted' -- a stock that has already made a large move -- downgrades a setup or is grounds to skip it outright.",
+      "polarity": "refusal-indicator",
+      "n_rows": 14,
+      "quotes": [
+        "overextended and no great entry presented itself",
+        "dont want hod really stock overextended a little",
+        "stock overextended, slowing down, no clear break displacement and retest of the one candle rule its just holding it for the moment",
+        "stock overextended downgrades to a",
+        "overextended, earlier trades that should've but didn't happen"
+      ],
+      "testable_as": "bars-feature",
+      "predicate_sketch": "This is already ratified AS a downgrade variable in omen-rulebook.md ('#4 stock exhausted -- already made a large move; the setup is real but the move is spent', Austin's own wording, 2026-08-23) and is implemented in research/downgrade.py -- but per CLAUDE.md's two-grade-ladders rule, downgrade.py is 'measured only, not wired into detection': it never gates a live or backtest fire. Kept per the F2 instruction (ratified, not wired). Testable feature sketch: distance of the signal-bar close from a recent swing/HOD-LOD as a fraction of the prior N-session range, or run-up since premarket open, computed at the signal bar only (no lookahead)."
+    },
+    {
+      "rule": "A choppy / noisy session (candles chopping around a level or channel instead of trending cleanly) is grounds to skip or downgrade a trade, and cleaner/trendier days correlate with his S verdicts.",
+      "polarity": "refusal-indicator",
+      "n_rows": 95,
+      "quotes": [
+        "too choppy no displacement",
+        "held pivot but too choppy and taking too long I dont like this really",
+        "fits our system but very choppy so not what we like to see, want to get the day done early with the cleanest setup out there",
+        "yes it holds the candle but so much chop around it, you can't anticipate these in my opinion",
+        "noisy, hard to get through the chop, then again maybe scarface likes these but HOD and LOW i think is what they strive for"
+      ],
+      "testable_as": "not-testable",
+      "predicate_sketch": "This is the rulebook's 'trendiness' finding, already run to a conclusion 2026-08-29: measured on the FINISHED chart, session trendiness (first-close-to-last-close divided by summed 1-min absolute moves) separates his yes/no at p=0.014 and holds on the full 812-day corpus (0.133 vs 0.101, p<0.0001), and his own 'chop' tag scores 0.072 against a 0.123 average -- but it is explicitly NOT tradeable: nine causal (pre-09:30-observable) proxies were tried and 'every one is a coin flip, and two lean backwards'; the best honest filter is +$46/day with an error bar of -$41 to +$140 and costs 39 of 163 S-days. Ratified as real and explicitly killed as a shippable filter (measured-only, by design, per rulebook). Kept per F2 instruction since it is measured but not wired -- flagging so no one re-derives a causal chop filter without re-reading that finding first."
+    },
+    {
+      "rule": "A trendline break needs a second confirmation candle with strength to count as an S-worthy break.",
+      "polarity": "S-indicator",
+      "n_rows": 1,
+      "quotes": [
+        "here to be s you draw a trend link would like a second confirmation candle with strength to break that line"
+      ],
+      "testable_as": "not-testable",
+      "predicate_sketch": "Single symbol-day (ORCL 2025-03-28). Not in omen-rulebook.md at all -- trendlines are not one of his stated six levels (PDH/PDL/PMH/PML/HOD or ORH/ORL, the two competing 'sixes' both settled 2026-08-29) and are not otherwise mentioned as a setup family. n=1 is a hint, not a rule; flagging it for a future ballot question rather than proposing a predicate."
+    }
+  ]
+}

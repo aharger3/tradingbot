@@ -1,0 +1,66 @@
+{
+  "theme": "F2 — stops, wick vs level, disaster stop",
+  "source": "research/g150_marks_comments.jsonl",
+  "note": "Skips claims already ratified AND wired per Projects/omen-rulebook.md: (1) level stop triggers on candle CLOSE, wicks stop nothing (stop_rule.stop_hit_on_close, shipped) — quotes like 'stop out happens when candle CLOSES below the level' and 'stop outs only happen when candle closes' are the ratified rule, not new claims; (2) the disaster stop as a resting order at a fixed R from entry, touch-triggered, sitting under the level stop (stop_rule.disaster_stop_price/disaster_stop_hit, DISASTER_STOP_R=1.0, shipped); (3) the 84%-rule reclaim keeps the original stop unless the reclaim bar's own extreme is tighter (signal_runner.rule84_source_stop, shipped) — 'fact_rule84_arm_setups' quote is this rule; (4) the tight-stop tradability gate (signal_runner._min_viable_stop, 'lose the $1,000 in a second', already live). Kept below only claims that are either measured-only, wired only behind a default-off flag, or not wired at all.",
+  "claims": [
+    {
+      "rule": "The stop is not a single derived point but one of several structure candidates (the entry candle's own extreme / wick-of-OCR / the broken level or pivot structure), and which one is 'the' stop should be picked per-trade for the best tradable risk, not always the entry-bar default.",
+      "polarity": "S-indicator",
+      "n_rows": 5,
+      "quotes": [
+        "stop loss at the bottom of the wick you entered, target hod good lower probability because of the risk to reward",
+        "stop loss top of wick of candle you entered, 3 candles before entry close is within pivot structure so thats the 1 off",
+        "stop instead top of wick of candle entered on. no displacement",
+        "later entry in the day would've lowered the stop to fit the pivot structure better, but realistically you want something more s to find",
+        "would've taken 3 tries instead of 2 which is usual for 84 percent rule, unless you decide to change the stop to the pivot structure that was created"
+      ],
+      "testable_as": "book-field",
+      "predicate_sketch": "MEASURED, NOT WIRED AS DEFAULT: signal_runner.py already implements this exact selector as `placed_stop()` with modes STOP_PLACEMENT in {entry_bar, candle_entered, broken_level, ocr_wick, routed}, but `STOP_PLACEMENT` (os.getenv, line 1192) defaults to 'entry_bar' — the flag-off, byte-identical-to-legacy path. Predicate: re-run bt2y_trades_retest_on.json's signal-bar set with STOP_PLACEMENT='routed' (OCR->ocr_wick, B&R->broken_level) vs the shipped 'entry_bar' default and diff $/day, mean R, green months on omen_metrics.first_of_day_arm, H1/H2 split. Nothing forces the flag on today."
+    },
+    {
+      "rule": "When the stop is tight and there are two plausible stop candidates (the wick vs. the broken level), Austin takes the wick, not the level, as the stop.",
+      "polarity": "S-indicator",
+      "n_rows": 1,
+      "quotes": [
+        "yes thank you you good ones in a row, stop a little higher, if its tight and you have to chose the wick or the level, choose the wick. its a candle close above the stop, but if its gonna run like crazy dont let it slip then we will lost like 1.6k instead of 1k"
+      ],
+      "testable_as": "bars-feature",
+      "predicate_sketch": "NOT WIRED. Single symbol-day (AMZN_2026-01-14) — a hint, not a rule on its own; folds into the placed_stop() candidate set above as a tie-break when |level-stop| and |wick-stop| are both valid but the level would put risk above some threshold. Feature: compute both candidate stop distances from data_archive bars for the book's signal bars and flag rows where they disagree materially (>X%) to see how often the tie-break would fire before building it."
+    },
+    {
+      "rule": "A stop that is ambiguous — two live stop-loss candidates that don't clearly agree, or a 'muddled' structure with multiple recent highs/lows — is a downgrade signal, independent of the entry criteria otherwise being clean.",
+      "polarity": "refusal-indicator",
+      "n_rows": 3,
+      "quotes": [
+        "AS CANDLE FORMING, see on that candle close you get a bad entry? and its hard to enter a stock when there 2 stop loss options and you wouldve stayed in the trade if you went with the OCR entry 6 candles later",
+        "not respecting level, 2 stop losses to choose from no other",
+        "mini higher highs so makes the stop muddled"
+      ],
+      "testable_as": "bars-feature",
+      "predicate_sketch": "NOT WIRED anywhere in downgrade.py or signal_runner.py — no variable counts competing stop candidates today. Feature: for each signal bar, compute the OCR-wick stop, the broken-level stop, and the structural (entry-bar) stop from data_archive; flag as 'ambiguous' when at least two of the three differ by more than one average-candle-range (STOP_RANGE_MULT unit already used by _min_viable_stop) and neither is clearly nested inside the other. Then check ambiguous-stop rate against his S/A/C/none grades on the 100-card deck and all bar-backed S days."
+    },
+    {
+      "rule": "Once a trade has moved favorably (e.g. the second push after an initial hold), the stop should be raised to the newly-formed, tighter pivot-structure level rather than left at the original structural stop.",
+      "polarity": "S-indicator",
+      "n_rows": 2,
+      "quotes": [
+        "I would raise the stop after the second time to the higher piece of the pivot structure",
+        "closes at level previous candle and raise stop a little to the top of pivot structure at 1028"
+      ],
+      "testable_as": "bars-feature",
+      "predicate_sketch": "NOT WIRED. This is a mid-trade stop-management rule (trailing to a new pivot), distinct from the ratified break-even trail after tranche 1 (rulebook 'Break-even stop', shipped) — this one names a specific tighter structural level, not just BE. Feature: after the first higher-high/higher-low pivot forms post-entry (long case), recompute the stop at that pivot's low and re-run the exit/mean-R math for that arm on the book's winning trades only (loses no downside since it can only tighten, never widen, a stop already validated by _min_viable_stop)."
+    },
+    {
+      "rule": "Preference for stop width is genuinely unsettled: some marks want the stop tighter ('tighter stops are better... your stop is crystal clear'), others explicitly want more room ('we like a little more spread on trades generally because then its harder to be stopped out'), and a stop judged 'too tight' is itself a downgrade reason.",
+      "polarity": "refusal-indicator",
+      "n_rows": 3,
+      "quotes": [
+        "c but ususally lower risk is better, tighter stops are better. if BR OCR confluence, your stop is crystal clear",
+        "tight stop scalp, we like a little more spread on trades generally because then its harder to be stopped out",
+        "maybe would've worked out but too tight of stop needs to be top wick of candle you entered, bearish momentum"
+      ],
+      "testable_as": "not-testable",
+      "predicate_sketch": "UNRESOLVED, flagged rather than smoothed over: these three quotes point opposite directions on stop width and cannot be turned into one predicate without picking a side he hasn't picked. Do not build a 'prefer tight' or 'prefer wide' rule from this; at most it strengthens the case for the existing _min_viable_stop tradability floor (already wired) as the only settled boundary, and the ambiguous-stop feature above as the real signal buried in the 'muddled' complaints."
+    }
+  ]
+}

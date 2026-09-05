@@ -1,0 +1,362 @@
+{"symbol": "IWM", "day": "2026-07-24", "source_file": "mark_batch_02_grades.jsonl", "card_id": "1", "grade": "S", "comment": "", "entry_t": "09:59"}
+{"symbol": "HOOD", "day": "2026-07-10", "source_file": "mark_batch_02_grades.jsonl", "card_id": "2", "grade": "S", "comment": "4 candles earlier is entry", "entry_t": "09:53"}
+{"symbol": "MARA", "day": "2026-07-09", "source_file": "mark_batch_02_grades.jsonl", "card_id": "3", "grade": "S", "comment": "", "entry_t": "09:49"}
+{"symbol": "QQQ", "day": "2026-07-09", "source_file": "mark_batch_02_grades.jsonl", "card_id": "4", "grade": "S", "comment": "", "entry_t": "09:41"}
+{"symbol": "UBER", "day": "2026-07-06", "source_file": "mark_batch_02_grades.jsonl", "card_id": "5", "grade": "S", "comment": "", "entry_t": "09:42"}
+{"symbol": "TSM", "day": "2026-05-29", "source_file": "mark_batch_02_grades.jsonl", "card_id": "6", "grade": "S", "comment": "entry 5 candles earlier but not at high of day", "entry_t": "09:53"}
+{"symbol": "IWM", "day": "2026-05-28", "source_file": "mark_batch_02_grades.jsonl", "card_id": "7", "grade": "S", "comment": "", "entry_t": "10:16"}
+{"symbol": "HOOD", "day": "2026-04-13", "source_file": "mark_batch_02_grades.jsonl", "card_id": "8", "grade": "S", "comment": "", "entry_t": "09:46"}
+{"symbol": "COIN", "day": "2026-04-09", "source_file": "mark_batch_02_grades.jsonl", "card_id": "9", "grade": "A", "comment": "", "entry_t": "10:00"}
+{"symbol": "PLTR", "day": "2026-03-31", "source_file": "mark_batch_02_grades.jsonl", "card_id": "10", "grade": "S", "comment": "", "entry_t": "09:53"}
+{"symbol": "SPY", "day": "2026-03-05", "source_file": "mark_batch_02_grades.jsonl", "card_id": "11", "grade": "S", "comment": "", "entry_t": "10:26"}
+{"symbol": "QQQ", "day": "2026-03-04", "source_file": "mark_batch_02_grades.jsonl", "card_id": "12", "grade": "S", "comment": "", "entry_t": "10:12"}
+{"symbol": "SPY", "day": "2026-03-03", "source_file": "mark_batch_02_grades.jsonl", "card_id": "13", "grade": "S", "comment": "", "entry_t": "09:47"}
+{"symbol": "SPY", "day": "2026-03-02", "source_file": "mark_batch_02_grades.jsonl", "card_id": "14", "grade": "S", "comment": "", "entry_t": "09:54"}
+{"symbol": "TSLA", "day": "2026-02-18", "source_file": "mark_batch_02_grades.jsonl", "card_id": "15", "grade": "S", "comment": "", "entry_t": "10:12"}
+{"symbol": "QQQ", "day": "2026-02-11", "source_file": "mark_batch_02_grades.jsonl", "card_id": "16", "grade": "S", "comment": "if it actually retested the pivot structure and if you get an entry thats not all the way at low of day", "entry_t": "10:02"}
+{"symbol": "QQQ", "day": "2026-02-11", "source_file": "mark_batch_02_grades.jsonl", "card_id": "17", "grade": "A", "comment": "because earlier entry 9-10 candles earlier because thats a one candle rule, but the b and r is clean PA", "entry_t": "10:15"}
+{"symbol": "HOOD", "day": "2026-02-05", "source_file": "mark_batch_02_grades.jsonl", "card_id": "18", "grade": "S", "comment": "", "entry_t": "10:10"}
+{"symbol": "MU", "day": "2026-01-28", "source_file": "mark_batch_02_grades.jsonl", "card_id": "19", "grade": "S", "comment": "but your trade was an x, you missed the entry 9 candles earlier perfect break and retest one candle rule hammer stick", "entry_t": "09:43"}
+{"symbol": "MSFT", "day": "2026-01-20", "source_file": "mark_batch_02_grades.jsonl", "card_id": "20", "grade": "S", "comment": "if get a good fill not at high of day", "entry_t": "09:42"}
+{"symbol": "QQQ", "day": "2025-12-30", "source_file": "mark_batch_02_grades.jsonl", "card_id": "21", "grade": "S", "comment": "", "entry_t": "09:54"}
+{"symbol": "QQQ", "day": "2025-12-05", "source_file": "mark_batch_02_grades.jsonl", "card_id": "22", "grade": "S", "comment": "", "entry_t": "09:57"}
+{"symbol": "QQQ", "day": "2025-12-05", "source_file": "mark_batch_02_grades.jsonl", "card_id": "23", "grade": "X", "comment": "", "entry_t": "10:05"}
+{"symbol": "SPY", "day": "2025-11-19", "source_file": "mark_batch_02_grades.jsonl", "card_id": "24", "grade": "S", "comment": "", "entry_t": "09:39"}
+{"symbol": "MU", "day": "2025-11-07", "source_file": "mark_batch_02_grades.jsonl", "card_id": "25", "grade": "S", "comment": "", "entry_t": "09:52"}
+{"symbol": "ORCL", "day": "2025-11-03", "source_file": "mark_batch_02_grades.jsonl", "card_id": "26", "grade": "S", "comment": "", "entry_t": "09:47"}
+{"symbol": "COIN", "day": "2025-10-21", "source_file": "mark_batch_02_grades.jsonl", "card_id": "27", "grade": "S", "comment": "but earlier entry 5 candles earlier as the candle is closing weak not at low of day", "entry_t": "09:38"}
+{"symbol": "IWM", "day": "2025-10-21", "source_file": "mark_batch_02_grades.jsonl", "card_id": "28", "grade": "S", "comment": "", "entry_t": "09:39"}
+{"symbol": "PLTR", "day": "2025-09-18", "source_file": "mark_batch_02_grades.jsonl", "card_id": "29", "grade": "S", "comment": "I candle earlier entry", "entry_t": "09:44"}
+{"symbol": "UBER", "day": "2025-08-13", "source_file": "mark_batch_02_grades.jsonl", "card_id": "30", "grade": "S", "comment": "", "entry_t": "09:55"}
+{"symbol": "GOOGL", "day": "2025-08-07", "source_file": "mark_batch_02_grades.jsonl", "card_id": "31", "grade": "S", "comment": "enter as candle is forming not at low of day", "entry_t": "09:48"}
+{"symbol": "BABA", "day": "2025-07-22", "source_file": "mark_batch_02_grades.jsonl", "card_id": "32", "grade": "S", "comment": "", "entry_t": "09:50"}
+{"symbol": "ORCL", "day": "2025-07-08", "source_file": "mark_batch_02_grades.jsonl", "card_id": "33", "grade": "S", "comment": "", "entry_t": "09:37"}
+{"symbol": "QQQ", "day": "2025-06-24", "source_file": "mark_batch_02_grades.jsonl", "card_id": "34", "grade": "A", "comment": "because the red candle before is no displacement", "entry_t": "09:45"}
+{"symbol": "AMD", "day": "2025-06-05", "source_file": "mark_batch_02_grades.jsonl", "card_id": "35", "grade": "A", "comment": "", "entry_t": "09:36"}
+{"symbol": "CRM", "day": "2025-06-02", "source_file": "mark_batch_02_grades.jsonl", "card_id": "36", "grade": "S", "comment": "", "entry_t": "09:57"}
+{"symbol": "ORCL", "day": "2025-03-28", "source_file": "mark_batch_02_grades.jsonl", "card_id": "37", "grade": "X", "comment": "", "entry_t": "09:42"}
+{"symbol": "MSFT", "day": "2025-03-20", "source_file": "mark_batch_02_grades.jsonl", "card_id": "38", "grade": "S", "comment": "", "entry_t": "09:58"}
+{"symbol": "QQQ", "day": "2025-03-18", "source_file": "mark_batch_02_grades.jsonl", "card_id": "39", "grade": "A", "comment": "", "entry_t": "09:43"}
+{"symbol": "SPY", "day": "2025-03-18", "source_file": "mark_batch_02_grades.jsonl", "card_id": "40", "grade": "A", "comment": "", "entry_t": "09:43"}
+{"symbol": "AMD", "day": "2026-05-14", "source_file": "mark_batch_02_grades.jsonl", "card_id": "41", "grade": "A", "comment": "(repeat setup as previous)", "entry_t": "10:00"}
+{"symbol": "AMZN", "day": "2026-04-10", "source_file": "mark_batch_02_grades.jsonl", "card_id": "42", "grade": "A", "comment": "entry 5 candles earlier", "entry_t": "09:57"}
+{"symbol": "COIN", "day": "2025-10-21", "source_file": "mark_batch_02_grades.jsonl", "card_id": "43", "grade": "X", "comment": "", "entry_t": "10:01"}
+{"symbol": "COIN", "day": "2025-10-21", "source_file": "mark_batch_02_grades.jsonl", "card_id": "44", "grade": "X", "comment": "", "entry_t": "10:32"}
+{"symbol": "COIN", "day": "2026-03-04", "source_file": "mark_batch_02_grades.jsonl", "card_id": "45", "grade": "X", "comment": "", "entry_t": "10:15"}
+{"symbol": "COIN", "day": "2026-04-09", "source_file": "mark_batch_02_grades.jsonl", "card_id": "46", "grade": "S", "comment": "enter not at hod", "entry_t": "09:38"}
+{"symbol": "GOOGL", "day": "2024-10-15", "source_file": "mark_batch_02_grades.jsonl", "card_id": "47", "grade": "S", "comment": "", "entry_t": "10:17"}
+{"symbol": "HOOD", "day": "2025-12-29", "source_file": "mark_batch_02_grades.jsonl", "card_id": "48", "grade": "X", "comment": "", "entry_t": "09:59"}
+{"symbol": "HOOD", "day": "2026-05-19", "source_file": "mark_batch_02_grades.jsonl", "card_id": "49", "grade": "X", "comment": "", "entry_t": "10:00"}
+{"symbol": "META", "day": "2025-09-23", "source_file": "mark_batch_02_grades.jsonl", "card_id": "50", "grade": "X", "comment": "", "entry_t": "10:44"}
+{"symbol": "MSFT", "day": "2025-03-04", "source_file": "mark_batch_02_grades.jsonl", "card_id": "51", "grade": "A", "comment": "reclaim 84 percent rule did happen for another trade but everextended possible earlier entry", "entry_t": "09:50"}
+{"symbol": "MSFT", "day": "2026-01-20", "source_file": "mark_batch_02_grades.jsonl", "card_id": "52", "grade": "X", "comment": "", "entry_t": "10:07"}
+{"symbol": "MU", "day": "2025-12-08", "source_file": "mark_batch_02_grades.jsonl", "card_id": "53", "grade": "X", "comment": "", "entry_t": "09:38"}
+{"symbol": "NVDA", "day": "2024-12-16", "source_file": "mark_batch_02_grades.jsonl", "card_id": "54", "grade": "X", "comment": "", "entry_t": "10:05"}
+{"symbol": "ORCL", "day": "2025-11-03", "source_file": "mark_batch_02_grades.jsonl", "card_id": "55", "grade": "X", "comment": "", "entry_t": "10:00"}
+{"symbol": "PLTR", "day": "2024-10-23", "source_file": "mark_batch_02_grades.jsonl", "card_id": "56", "grade": "A", "comment": "", "entry_t": "09:45"}
+{"symbol": "QQQ", "day": "2024-10-03", "source_file": "mark_batch_02_grades.jsonl", "card_id": "57", "grade": "X", "comment": "", "entry_t": "10:51"}
+{"symbol": "QQQ", "day": "2025-01-10", "source_file": "mark_batch_02_grades.jsonl", "card_id": "58", "grade": "S", "comment": "as candle is closing to lod", "entry_t": "09:46"}
+{"symbol": "QQQ", "day": "2025-01-10", "source_file": "mark_batch_02_grades.jsonl", "card_id": "59", "grade": "A", "comment": "same stock but earlier entry better", "entry_t": "10:00"}
+{"symbol": "QQQ", "day": "2025-01-10", "source_file": "mark_batch_02_grades.jsonl", "card_id": "60", "grade": "X", "comment": "", "entry_t": "10:57"}
+{"symbol": "BABA", "day": "2025-07-22", "source_file": "mark_batch_03_regrades.jsonl", "card_id": "BABA_2025-07-22_20", "grade": "S", "comment": "", "entry_t": "09:50"}
+{"symbol": "IWM", "day": "2024-02-28", "source_file": "mark_batch_03_regrades.jsonl", "card_id": "IWM_2024-02-28_9", "grade": "S", "comment": "", "entry_t": "09:39"}
+{"symbol": "IWM", "day": "2026-05-28", "source_file": "mark_batch_03_regrades.jsonl", "card_id": "IWM_2026-05-28_46", "grade": "S", "comment": "", "entry_t": "10:16"}
+{"symbol": "IWM", "day": "2026-07-24", "source_file": "mark_batch_03_regrades.jsonl", "card_id": "IWM_2026-07-24_29", "grade": "A", "comment": "never broke that PML earlier", "entry_t": "09:59"}
+{"symbol": "ORCL", "day": "2025-03-28", "source_file": "mark_batch_03_regrades.jsonl", "card_id": "ORCL_2025-03-28_12", "grade": "A", "comment": "here to be s you draw a trend link would like a second confirmation candle with strength to break that line", "entry_t": "09:42"}
+{"symbol": "QQQ", "day": "2025-02-26", "source_file": "mark_batch_03_regrades.jsonl", "card_id": "QQQ_2025-02-26_28", "grade": "S", "comment": "", "entry_t": "09:58"}
+{"symbol": "QQQ", "day": "2025-03-17", "source_file": "mark_batch_03_regrades.jsonl", "card_id": "QQQ_2025-03-17_16", "grade": "S", "comment": "", "entry_t": "09:46"}
+{"symbol": "QQQ", "day": "2025-03-18", "source_file": "mark_batch_03_regrades.jsonl", "card_id": "QQQ_2025-03-18_13", "grade": "A", "comment": "", "entry_t": "09:43"}
+{"symbol": "QQQ", "day": "2026-02-11", "source_file": "mark_batch_03_regrades.jsonl", "card_id": "QQQ_2026-02-11_32", "grade": "X", "comment": "", "entry_t": "10:02"}
+{"symbol": "QQQ", "day": "2026-02-11", "source_file": "mark_batch_03_regrades.jsonl", "card_id": "QQQ_2026-02-11_45", "grade": "A", "comment": "little overextended the stock, and didn't get past pml", "entry_t": "10:15"}
+{"symbol": "QQQ", "day": "2026-07-09", "source_file": "mark_batch_03_regrades.jsonl", "card_id": "QQQ_2026-07-09_11", "grade": "S", "comment": "", "entry_t": "09:41"}
+{"symbol": "SPY", "day": "2024-06-11", "source_file": "mark_batch_03_regrades.jsonl", "card_id": "SPY_2024-06-11_23", "grade": "X", "comment": "dont see any levels, unless some were forgot to be marked", "entry_t": "09:53"}
+{"symbol": "SPY", "day": "2024-09-19", "source_file": "mark_batch_03_regrades.jsonl", "card_id": "SPY_2024-09-19_19", "grade": "X", "comment": "doesn't approach any one candle rule or pivot or level for retest", "entry_t": "09:49"}
+{"symbol": "SPY", "day": "2025-03-18", "source_file": "mark_batch_03_regrades.jsonl", "card_id": "SPY_2025-03-18_13", "grade": "S", "comment": "", "entry_t": "09:43"}
+{"symbol": "SPY", "day": "2026-03-02", "source_file": "mark_batch_03_regrades.jsonl", "card_id": "SPY_2026-03-02_24", "grade": "A", "comment": "candles look a little choppier wicks on both sides", "entry_t": "09:54"}
+{"symbol": "SPY", "day": "2026-03-03", "source_file": "mark_batch_03_regrades.jsonl", "card_id": "SPY_2026-03-03_17", "grade": "S", "comment": "", "entry_t": "09:47"}
+{"symbol": "UBER", "day": "2026-07-06", "source_file": "mark_batch_03_regrades.jsonl", "card_id": "UBER_2026-07-06_12", "grade": "S", "comment": "", "entry_t": "09:42"}
+{"symbol": "AMD", "day": "2025-06-05", "source_file": "mark_batch_03_regrades.jsonl", "card_id": "AMD_2025-06-05_6", "grade": "S", "comment": "", "entry_t": "09:36"}
+{"symbol": "IWM", "day": "2025-10-21", "source_file": "mark_batch_03_regrades.jsonl", "card_id": "IWM_2025-10-21_9", "grade": "A", "comment": "1 candle earlier is the entry, marking A because 4 candles before the mark is a bullish candle and price never got close below those levels, so it looks riskier not knowing if it's gonna run", "entry_t": "09:39"}
+{"symbol": "MU", "day": "2026-01-28", "source_file": "mark_batch_03_regrades.jsonl", "card_id": "MU_2026-01-28_13", "grade": "X", "comment": "", "entry_t": "09:43"}
+{"symbol": "NVDA", "day": "2024-11-18", "source_file": "mark_batch_03_regrades.jsonl", "card_id": "NVDA_2024-11-18_10", "grade": "C", "comment": "6 candles earlier is a break and retest no displacement, so that would've been A and this one C", "entry_t": "09:40"}
+{"symbol": "QQQ", "day": "2024-05-08", "source_file": "mark_batch_03_regrades.jsonl", "card_id": "QQQ_2024-05-08_8", "grade": "A", "comment": "no displacement", "entry_t": "09:38"}
+{"symbol": "SPY", "day": "2024-04-03", "source_file": "mark_batch_03_regrades.jsonl", "card_id": "SPY_2024-04-03_9", "grade": "A", "comment": "candle after is your entry because nothing touched, stop is bottom of red order block", "entry_t": "09:39"}
+{"symbol": "IWM", "day": "2024-04-03", "source_file": "mark_batch_03_regrades.jsonl", "card_id": "IWM_2024-04-03_13", "grade": "S", "comment": "large wick before candle entry gives confidence even though it's not the absolute strongest green candle", "entry_t": "09:43"}
+{"symbol": "IWM", "day": "2024-04-03", "source_file": "mark_batch_03_regrades.jsonl", "card_id": "IWM_2024-04-03_73", "grade": "S", "comment": "candle before is the entry actually, because it's enough strength and only taps into the wick of the order block", "entry_t": "10:43"}
+{"symbol": "MSFT", "day": "2025-03-20", "source_file": "mark_batch_03_regrades.jsonl", "card_id": "MSFT_2025-03-20_28", "grade": "A", "comment": "too much consolidation before entry and the candle before entry is where you would've liked to see strength", "entry_t": "09:58"}
+{"symbol": "PLTR", "day": "2025-09-18", "source_file": "mark_batch_03_regrades.jsonl", "card_id": "PLTR_2025-09-18_14", "grade": "S", "comment": "", "entry_t": "09:44"}
+{"symbol": "QQQ", "day": "2024-01-04", "source_file": "mark_batch_03_regrades.jsonl", "card_id": "QQQ_2024-01-04_41", "grade": "C", "comment": "4 candles earlier is an A trade (break and retest no displacement); this one has good price action but lower probability because of the earlier almost-setup. Changed mind slightly: this = C, earlier entry = A", "entry_t": "10:11"}
+{"symbol": "QQQ", "day": "2024-12-16", "source_file": "mark_batch_03_regrades.jsonl", "card_id": "QQQ_2024-12-16_28", "grade": "C", "comment": "same as previous \u00e2\u20ac\u201d break and retest no displacement entry 7 candles before, price action good on this mark but lower probability because of the earlier looking setup. Changed mind slightly: this = C, earlier entry = A", "entry_t": "09:58"}
+{"symbol": "AMD", "day": "2026-05-14", "source_file": "mark_batch_04_grades.jsonl", "card_id": "AMD_2026-05-14_17", "grade": "X", "comment": "later s entry 8 candles later OCR"}
+{"symbol": "AMD", "day": "2026-05-14", "source_file": "mark_batch_04_grades.jsonl", "card_id": "AMD_2026-05-14_43", "grade": "C", "comment": "earlier s entry, this one took longer to develop, 2 candles earlier is entry"}
+{"symbol": "AMD", "day": "2026-05-14", "source_file": "mark_batch_04_grades.jsonl", "card_id": "AMD_2026-05-14_67", "grade": "A", "comment": "two candles earlier is your s entry because its a reclaim of the earlier entry, I count it as A because you were a little late and took longer to develop"}
+{"symbol": "AMZN", "day": "2026-04-10", "source_file": "mark_batch_04_grades.jsonl", "card_id": "AMZN_2026-04-10_10", "grade": "X", "comment": ""}
+{"symbol": "AMZN", "day": "2026-07-17", "source_file": "mark_batch_04_grades.jsonl", "card_id": "AMZN_2026-07-17_34", "grade": "C", "comment": "pivot structure break stronger then level break, earlier entry hold of one candle rule 12 bars earlier"}
+{"symbol": "GOOGL", "day": "2024-10-15", "source_file": "mark_batch_04_grades.jsonl", "card_id": "GOOGL_2024-10-15_24", "grade": "X", "comment": ""}
+{"symbol": "GOOGL", "day": "2024-10-15", "source_file": "mark_batch_04_grades.jsonl", "card_id": "GOOGL_2024-10-15_47", "grade": "X", "comment": "2 earlier entry opportunities that were S, first one 9:43, second 10:02"}
+{"symbol": "GOOGL", "day": "2025-08-07", "source_file": "mark_batch_04_grades.jsonl", "card_id": "GOOGL_2025-08-07_62", "grade": "X", "comment": ""}
+{"symbol": "INTC", "day": "2025-06-05", "source_file": "mark_batch_04_grades.jsonl", "card_id": "INTC_2025-06-05_22", "grade": "X", "comment": "on candle earlier is your entry and then it would've been A, because earlier trade opportunity of OCR was at 9:45 as candle forming not all the way at LOD"}
+{"symbol": "META", "day": "2025-09-23", "source_file": "mark_batch_04_grades.jsonl", "card_id": "META_2025-09-23_74", "grade": "X", "comment": "late in day, not above key levels, slow mover"}
+{"symbol": "MSFT", "day": "2026-02-11", "source_file": "mark_batch_04_grades.jsonl", "card_id": "MSFT_2026-02-11_6", "grade": "X", "comment": ""}
+{"symbol": "MSFT", "day": "2026-02-11", "source_file": "mark_batch_04_grades.jsonl", "card_id": "MSFT_2026-02-11_9", "grade": "X", "comment": ""}
+{"symbol": "MU", "day": "2026-01-28", "source_file": "mark_batch_04_grades.jsonl", "card_id": "MU_2026-01-28_10", "grade": "X", "comment": "earlier S entry 9:35 OCR perfect setup"}
+{"symbol": "MU", "day": "2026-01-28", "source_file": "mark_batch_04_grades.jsonl", "card_id": "MU_2026-01-28_71", "grade": "X", "comment": "s trades come early, sometime a and c can fire later, this is nothing"}
+{"symbol": "NVDA", "day": "2024-11-18", "source_file": "mark_batch_04_grades.jsonl", "card_id": "NVDA_2024-11-18_66", "grade": "X", "comment": ""}
+{"symbol": "NVDA", "day": "2024-12-16", "source_file": "mark_batch_04_grades.jsonl", "card_id": "NVDA_2024-12-16_7", "grade": "X", "comment": ""}
+{"symbol": "NVDA", "day": "2024-12-16", "source_file": "mark_batch_04_grades.jsonl", "card_id": "NVDA_2024-12-16_14", "grade": "X", "comment": "your trade never, two candles earlier is your S entry OCR and BR confluence"}
+{"symbol": "NVDA", "day": "2024-12-16", "source_file": "mark_batch_04_grades.jsonl", "card_id": "NVDA_2024-12-16_76", "grade": "X", "comment": ""}
+{"symbol": "PLTR", "day": "2024-10-23", "source_file": "mark_batch_04_grades.jsonl", "card_id": "PLTR_2024-10-23_10", "grade": "X", "comment": "wick not touching a level, later entry 9:51 OCR, S trade"}
+{"symbol": "PLTR", "day": "2024-10-23", "source_file": "mark_batch_04_grades.jsonl", "card_id": "PLTR_2024-10-23_50", "grade": "X", "comment": ""}
+{"symbol": "PLTR", "day": "2025-09-18", "source_file": "mark_batch_04_grades.jsonl", "card_id": "PLTR_2025-09-18_5", "grade": "X", "comment": ""}
+{"symbol": "PLTR", "day": "2025-09-18", "source_file": "mark_batch_04_grades.jsonl", "card_id": "PLTR_2025-09-18_28", "grade": "X", "comment": ""}
+{"symbol": "TSLA", "day": "2024-01-12", "source_file": "mark_batch_04_grades.jsonl", "card_id": "TSLA_2024-01-12_27", "grade": "X", "comment": ""}
+{"symbol": "TSLA", "day": "2024-02-05", "source_file": "mark_batch_04_grades.jsonl", "card_id": "TSLA_2024-02-05_8", "grade": "X", "comment": ""}
+{"symbol": "TSLA", "day": "2024-02-05", "source_file": "mark_batch_04_grades.jsonl", "card_id": "TSLA_2024-02-05_10", "grade": "X", "comment": ""}
+{"symbol": "TSLA", "day": "2024-03-27", "source_file": "mark_batch_04_grades.jsonl", "card_id": "TSLA_2024-03-27_9", "grade": "S", "comment": ""}
+{"symbol": "TSLA", "day": "2024-03-27", "source_file": "mark_batch_04_grades.jsonl", "card_id": "TSLA_2024-03-27_10", "grade": "X", "comment": ""}
+{"symbol": "TSLA", "day": "2024-03-27", "source_file": "mark_batch_04_grades.jsonl", "card_id": "TSLA_2024-03-27_85", "grade": "X", "comment": ""}
+{"symbol": "TSLA", "day": "2024-06-24", "source_file": "mark_batch_04_grades.jsonl", "card_id": "TSLA_2024-06-24_14", "grade": "X", "comment": "too choppy no displacement"}
+{"symbol": "TSLA", "day": "2024-12-03", "source_file": "mark_batch_04_grades.jsonl", "card_id": "TSLA_2024-12-03_17", "grade": "C", "comment": "break and retest of not a large pivot structure just two candles and no displacement"}
+{"symbol": "COIN", "day": "2025-10-21", "source_file": "mark_batch_04_grades.jsonl", "card_id": "COIN_2025-10-21_8", "grade": "S", "comment": "my mark is a better entry by far yes and s quality. blue line entry is C because between tight levels and a consolidation pivot it would have to break for low of day, and red mark is a c as well"}
+{"symbol": "MARA", "day": "2024-12-17", "source_file": "mark_batch_04_grades.jsonl", "card_id": "MARA_2024-12-17_49", "grade": "S", "comment": "as candle is forming on my entry yes, stop out and 84 percent rule, your entries x"}
+{"symbol": "ORCL", "day": "2025-11-03", "source_file": "mark_batch_04_grades.jsonl", "card_id": "ORCL_2025-11-03_17", "grade": "A", "comment": "my entry s criteria but late entry, because earlier one existed with less displacement"}
+{"symbol": "TSLA", "day": "2024-06-24", "source_file": "mark_batch_04_grades.jsonl", "card_id": "TSLA_2024-06-24_9", "grade": "A", "comment": "large upper wick to target didn't materialize no displacement, your red mark is a c trade and the blue mark is an x trade"}
+{"symbol": "SPY", "day": "2025-03-18", "source_file": "mark_batch_04_grades.jsonl", "card_id": "SPY_2025-03-18_13", "grade": "S", "comment": ""}
+{"symbol": "AMD", "day": "2026-05-14", "source_file": "derived_marks_v1.jsonl", "card_id": "AMD_2026-05-14_25", "grade": "S", "comment": "", "entry_t": "09:55"}
+{"symbol": "AMD", "day": "2026-05-14", "source_file": "derived_marks_v1.jsonl", "card_id": "AMD_2026-05-14_41", "grade": "S", "comment": "", "entry_t": "10:11"}
+{"symbol": "AMD", "day": "2026-05-14", "source_file": "derived_marks_v1.jsonl", "card_id": "AMD_2026-05-14_65", "grade": "S", "comment": "", "entry_t": "10:35"}
+{"symbol": "GOOGL", "day": "2024-10-15", "source_file": "derived_marks_v1.jsonl", "card_id": "GOOGL_2024-10-15_13", "grade": "S", "comment": "", "entry_t": "09:43"}
+{"symbol": "GOOGL", "day": "2024-10-15", "source_file": "derived_marks_v1.jsonl", "card_id": "GOOGL_2024-10-15_32", "grade": "S", "comment": "", "entry_t": "10:02"}
+{"symbol": "INTC", "day": "2025-06-05", "source_file": "derived_marks_v1.jsonl", "card_id": "INTC_2025-06-05_21", "grade": "A", "comment": "", "entry_t": "09:51"}
+{"symbol": "MU", "day": "2026-01-28", "source_file": "derived_marks_v1.jsonl", "card_id": "MU_2026-01-28_5", "grade": "S", "comment": "", "entry_t": "09:35"}
+{"symbol": "NVDA", "day": "2024-12-16", "source_file": "derived_marks_v1.jsonl", "card_id": "NVDA_2024-12-16_12", "grade": "S", "comment": "", "entry_t": "09:42"}
+{"symbol": "PLTR", "day": "2024-10-23", "source_file": "derived_marks_v1.jsonl", "card_id": "PLTR_2024-10-23_21", "grade": "S", "comment": "", "entry_t": "09:51"}
+{"symbol": "COIN", "day": "2025-10-21", "source_file": "derived_marks_v1.jsonl", "card_id": "COIN_2025-10-21_23", "grade": "C", "comment": "", "entry_t": "09:53"}
+{"symbol": "COIN", "day": "2025-10-21", "source_file": "derived_marks_v1.jsonl", "card_id": "COIN_2025-10-21_31", "grade": "C", "comment": "", "entry_t": "10:01"}
+{"symbol": "MARA", "day": "2024-12-17", "source_file": "derived_marks_v1.jsonl", "card_id": "MARA_2024-12-17_76", "grade": "X", "comment": "", "entry_t": "10:46"}
+{"symbol": "MARA", "day": "2024-12-17", "source_file": "derived_marks_v1.jsonl", "card_id": "MARA_2024-12-17_78", "grade": "X", "comment": "", "entry_t": "10:48"}
+{"symbol": "TSLA", "day": "2024-06-24", "source_file": "derived_marks_v1.jsonl", "card_id": "TSLA_2024-06-24_13", "grade": "X", "comment": "", "entry_t": "09:43"}
+{"symbol": "QQQ", "day": "2024-01-04", "source_file": "derived_marks_v2.jsonl", "card_id": "QQQ_2024-01-04_37", "grade": "none", "comment": "4 candles earlier is an A trade (break and retest no displacement)"}
+{"symbol": "NVDA", "day": "2024-11-18", "source_file": "derived_marks_v2.jsonl", "card_id": "NVDA_2024-11-18_4", "grade": "none", "comment": "6 candles earlier is a break and retest no displacement, so that would've been A"}
+{"symbol": "QQQ", "day": "2024-12-16", "source_file": "derived_marks_v2.jsonl", "card_id": "QQQ_2024-12-16_21", "grade": "none", "comment": "break and retest no displacement entry 7 candles before ... earlier entry = A"}
+{"symbol": "MSTR", "day": "2024-08-08", "source_file": "derived_marks_v2.jsonl", "card_id": "MSTR_2024-08-08_20", "grade": "none", "comment": "3 candles earlier is also an A entry, 84 percent rule same stop is ok"}
+{"symbol": "AAPL", "day": "2024-03-28", "source_file": "derived_marks_v2.jsonl", "card_id": "AAPL_2024-03-28_11", "grade": "none", "comment": "4 candles after is an S entry OCR"}
+{"symbol": "AAPL", "day": "2025-01-13", "source_file": "derived_marks_v2.jsonl", "card_id": "AAPL_2025-01-13_15", "grade": "none", "comment": "3 candles earlier is an S entry, reclaim"}
+{"symbol": "AAPL", "day": "2025-01-13", "source_file": "derived_marks_v2.jsonl", "card_id": "AAPL_2025-01-13_16", "grade": "none", "comment": "my s entry would've been two candles earlier"}
+{"symbol": "SPCX", "day": "2026-06-30", "source_file": "derived_marks_v2.jsonl", "card_id": "SPCX_2026-06-30_32", "grade": "none", "comment": "one candle earlier s entry"}
+{"symbol": "INTC", "day": "2025-02-27", "source_file": "derived_marks_v2.jsonl", "card_id": "INTC_2025-02-27_86", "grade": "none", "comment": "I see an entry 14 candles later an S entry"}
+{"symbol": "MU", "day": "2026-07-24", "source_file": "derived_marks_v2.jsonl", "card_id": "MU_2026-07-24_10", "grade": "none", "comment": "another a entry 6 candles earlier, I dont see a stop out because you would've held a OCR green candle wick"}
+{"symbol": "MSFT", "day": "2025-04-17", "source_file": "derived_marks_v2.jsonl", "card_id": "MSFT_2025-04-17_13", "grade": "none", "comment": "3 candles earlier is an S our entry"}
+{"symbol": "NVDA", "day": "2026-02-05", "source_file": "derived_marks_v2.jsonl", "card_id": "NVDA_2026-02-05_47", "grade": "none", "comment": "1 candle earlier is your A entry"}
+{"symbol": "NVDA", "day": "2025-09-29", "source_file": "derived_marks_v2.jsonl", "card_id": "NVDA_2025-09-29_12", "grade": "none", "comment": "1 candle earlier is S entry"}
+{"symbol": "META", "day": "2025-09-18", "source_file": "derived_marks_v2.jsonl", "card_id": "META_2025-09-18_44", "grade": "none", "comment": "1 candle earlier A entry"}
+{"symbol": "META", "day": "2025-09-18", "source_file": "derived_marks_v2.jsonl", "card_id": "META_2025-09-18_39", "grade": "none", "comment": "6 candles earlier then that is an A entry too"}
+{"symbol": "AMD", "day": "2024-11-11", "source_file": "derived_marks_v2.jsonl", "card_id": "AMD_2024-11-11_18", "grade": "none", "comment": "s entry 4 candles earlier, still decent entry and reclaim would've been the same"}
+{"symbol": "MSTR", "day": "2025-12-12", "source_file": "derived_marks_v2.jsonl", "card_id": "MSTR_2025-12-12_6", "grade": "none", "comment": "5 candles earlier is your s entry"}
+{"symbol": "TSLA", "day": "2024-01-03", "source_file": "derived_marks_v2.jsonl", "card_id": "TSLA_2024-01-03_19", "grade": "none", "comment": "2 or 3 candles later is a S BR for puts"}
+{"symbol": "omen-6-batch-01_q1", "day": "2026-09-05", "source_file": "rule_ballot_batch01.jsonl", "card_id": "rule_ballot_01_1", "grade": "A", "comment": "this is correct and needs to be implemented, a 1m candle close below is exit, max slippage -1.25r which is 1.25k based on current position sizing yes"}
+{"symbol": "omen-6-batch-01_q2", "day": "2026-09-05", "source_file": "rule_ballot_batch01.jsonl", "card_id": "rule_ballot_01_2", "grade": "A", "comment": "yes"}
+{"symbol": "omen-6-batch-01_q3", "day": "2026-09-05", "source_file": "rule_ballot_batch01.jsonl", "card_id": "rule_ballot_01_3", "grade": "A", "comment": "breakeven may end up being slightly higher or lower due to slippage, but if the structure doesent break you dont want to stop out, thats why you wait for candle closes for stops yes"}
+{"symbol": "omen-6-batch-01_q4", "day": "2026-09-05", "source_file": "rule_ballot_batch01.jsonl", "card_id": "rule_ballot_01_4", "grade": "A", "comment": "30 percent is when better chance stock runs, 50 for choppier. we must identify this my first recomendation was trend with qqq, but we need corpus help for long term thesis yes"}
+{"symbol": "omen-6-batch-01_q5", "day": "2026-09-05", "source_file": "rule_ballot_batch01.jsonl", "card_id": "rule_ballot_01_5", "grade": "A", "comment": "lets stick with that for now, archive the 50/20/20/10 idea maybe it will stick later yes"}
+{"symbol": "omen-6-batch-01_q6", "day": "2026-09-05", "source_file": "rule_ballot_batch01.jsonl", "card_id": "rule_ballot_01_6", "grade": "A", "comment": "90 percent of active positions will be out at this point, 10 percent runners is the only thing that could be active yes"}
+{"symbol": "omen-6-batch-01_q7", "day": "2026-09-05", "source_file": "rule_ballot_batch01.jsonl", "card_id": "rule_ballot_01_7", "grade": "A", "comment": "we miss out on entries that are near HOD, because they close too high for our entry risk to reward, since our normal scale is at HOD. my recomendation is if bot knows its on watch waiting to see how the candle closes,  tweak"}
+{"symbol": "omen-6-batch-01_q8", "day": "2026-09-05", "source_file": "rule_ballot_batch01.jsonl", "card_id": "rule_ballot_01_8", "grade": "A", "comment": "not understanding. if your on that waiting for strong Pa and theres a level there, you want it to be probable of closing above that level. dont just enter when it taps a level tweak"}
+{"symbol": "omen-6-batch-01_q9", "day": "2026-09-05", "source_file": "rule_ballot_batch01.jsonl", "card_id": "rule_ballot_01_9", "grade": "A", "comment": "if the candle closes and doesent look like it was entry criteria when your looking at 1 candle history yes"}
+{"symbol": "omen-6-batch-01_q10", "day": "2026-09-05", "source_file": "rule_ballot_batch01.jsonl", "card_id": "rule_ballot_01_10", "grade": "C", "comment": "if i said entry was earlier, that means i think the engine missed it, especially if it was an s option no"}
+{"symbol": "omen-6-batch-01_q11", "day": "2026-09-05", "source_file": "rule_ballot_batch01.jsonl", "card_id": "rule_ballot_01_11", "grade": "A", "comment": "because we are looking to enter s trades, a and c are for data, and you wouldnt ever see two s trades unless its an entry and 84 percent rule. yes"}
+{"symbol": "omen-6-batch-01_q12", "day": "2026-09-05", "source_file": "rule_ballot_batch01.jsonl", "card_id": "rule_ballot_01_12", "grade": "A", "comment": "its a reentry of the price you entered on, not just the level although it can match a level tweak"}
+{"symbol": "omen-6-batch-01_q13", "day": "2026-09-05", "source_file": "rule_ballot_batch01.jsonl", "card_id": "rule_ballot_01_13", "grade": "A", "comment": "verify with corpus and see if they have information. my instinct says candle close as long as the close is not too far away from original entry. tweak"}
+{"symbol": "omen-6-batch-01_q14", "day": "2026-09-05", "source_file": "rule_ballot_batch01.jsonl", "card_id": "rule_ballot_01_14", "grade": "A", "comment": "yes"}
+{"symbol": "omen-6-batch-01_q15", "day": "2026-09-05", "source_file": "rule_ballot_batch01.jsonl", "card_id": "rule_ballot_01_15", "grade": "A", "comment": "the candle has to match the trend bullish or bearish candle. but im ok with implementing scratch, just concered on how often it will fire. the goal of scratch is to miss less near HOD/LOD entries, but if its firing to much or too buggy, that defeats the purpose tweak"}
+{"symbol": "omen-6-batch-01_q16", "day": "2026-09-05", "source_file": "rule_ballot_batch01.jsonl", "card_id": "rule_ballot_01_16", "grade": "C", "comment": "still can be an s trade, i dont count that as downgrade criteria no"}
+{"symbol": "omen-6-batch-01_q17", "day": "2026-09-05", "source_file": "rule_ballot_batch01.jsonl", "card_id": "rule_ballot_01_17", "grade": "A", "comment": "sometimes x trades have a good thesis and understanding, but i will try to comment for my reason of rule out. yes"}
+{"symbol": "omen-6-batch-01_q18", "day": "2026-09-05", "source_file": "rule_ballot_batch01.jsonl", "card_id": "rule_ballot_01_18", "grade": "A", "comment": "This is true for 90 percent of S trades. for the other 10 percent, no displacement is forgiven if: BR OCR confluence, bull/bear flag to start the day, longer timeframe thesis tweak"}
+{"symbol": "omen-6-batch-01_q19", "day": "2026-09-05", "source_file": "rule_ballot_batch01.jsonl", "card_id": "rule_ballot_01_19", "grade": "A", "comment": "yes"}
+{"symbol": "omen-6-batch-01_q20", "day": "2026-09-05", "source_file": "rule_ballot_batch01.jsonl", "card_id": "rule_ballot_01_20", "grade": "A", "comment": "its an S miss, but im more worried about complete engine misses of S trades. Ultimately S trades are the most important because its what actual money will go to because im confident in good backtest results once we hit higher acuracy. tweak"}
+{"symbol": "omen-6-batch-02_qa1", "day": "2026-09-05", "source_file": "rule_ballot_batch02.jsonl", "card_id": "rule_ballot_02_a1", "grade": "A", "comment": "all of the above, candles closing through the level make it less clean, however it happens each instance lowers probability all"}
+{"symbol": "omen-6-batch-02_qa2", "day": "2026-09-05", "source_file": "rule_ballot_batch02.jsonl", "card_id": "rule_ballot_02_a2", "grade": "A", "comment": "if its closing above the level but still wicking around it its fine, invalidation happens as soon as close below or vise versa for calls. this category isnt as big of a knock for degration because usually theres a pivot or OCR its respecting, but if i had to put a number on it, 2 2"}
+{"symbol": "omen-6-batch-02_qa3", "day": "2026-09-05", "source_file": "rule_ballot_batch02.jsonl", "card_id": "rule_ballot_02_a3", "grade": "A", "comment": "has to hold the level or candle period. chopping around is not respecting. remember we are on the 1 minute trades happen fast hold"}
+{"symbol": "omen-6-batch-02_qa4", "day": "2026-09-05", "source_file": "rule_ballot_batch02.jsonl", "card_id": "rule_ballot_02_a4", "grade": "A", "comment": "red candles respected in uptrend and vise versa, not big deal if doesent come back to each red candle, but lowers probability each time because then the stock is more overextended graduated"}
+{"symbol": "omen-6-batch-02_qa5", "day": "2026-09-05", "source_file": "rule_ballot_batch02.jsonl", "card_id": "rule_ballot_02_a5", "grade": "A", "comment": "lets say 2 2"}
+{"symbol": "omen-6-batch-02_qa6", "day": "2026-09-05", "source_file": "rule_ballot_batch02.jsonl", "card_id": "rule_ballot_02_a6", "grade": "A", "comment": "yes yes"}
+{"symbol": "omen-6-batch-02_qa7", "day": "2026-09-05", "source_file": "rule_ballot_batch02.jsonl", "card_id": "rule_ballot_02_a7", "grade": "A", "comment": "this seems like a metric and has nothing to do with entering into trades. it sounds important to help rule out S trades automatically metric-not-entry"}
+{"symbol": "omen-6-batch-02_qa8", "day": "2026-09-05", "source_file": "rule_ballot_batch02.jsonl", "card_id": "rule_ballot_02_a8", "grade": "A", "comment": "a for now yes, and there are some +1s or no effects that we have talked about i believe you have stored a"}
+{"symbol": "omen-6-batch-02_qb1", "day": "2026-09-05", "source_file": "rule_ballot_batch02.jsonl", "card_id": "rule_ballot_02_b1", "grade": "A", "comment": "a a"}
+{"symbol": "omen-6-batch-02_qb2", "day": "2026-09-05", "source_file": "rule_ballot_batch02.jsonl", "card_id": "rule_ballot_02_b2", "grade": "A", "comment": "doesent impact other symbols, but yes anytime there was an s a or c entry, a subsequent entry thats not 84 percent rule cannot be ranked the same quality downgrade"}
+{"symbol": "omen-6-batch-02_qb3", "day": "2026-09-05", "source_file": "rule_ballot_batch02.jsonl", "card_id": "rule_ballot_02_b3", "grade": "A", "comment": "most entries work at candle close, but some that are close to hod, you want to get a good fill and not one that will have bad RR, thats what we are working on coding close-except-near-hod"}
+{"symbol": "omen-6-batch-02_qb4", "day": "2026-09-05", "source_file": "rule_ballot_batch02.jsonl", "card_id": "rule_ballot_02_b4", "grade": "A", "comment": "its about sizing for the mean 2rr, so if there are no other levels to target, or its not an s trade to begin with, harder to trade yes"}
+{"symbol": "omen-6-batch-02_qb5", "day": "2026-09-05", "source_file": "rule_ballot_batch02.jsonl", "card_id": "rule_ballot_02_b5", "grade": "A", "comment": "lets count bull/bear PA and below/above at least 5/6 levels i watch a +1 +1"}
+{"symbol": "omen-6-batch-02_qb6", "day": "2026-09-05", "source_file": "rule_ballot_batch02.jsonl", "card_id": "rule_ballot_02_b6", "grade": "A", "comment": "large 75 percent red body candles, espcially ones within range of other candles are less atractive trades downgrade"}
+{"symbol": "omen-6-batch-02_qb7", "day": "2026-09-05", "source_file": "rule_ballot_batch02.jsonl", "card_id": "rule_ballot_02_b7", "grade": "A", "comment": "BR is focusing on that one level one-level"}
+{"symbol": "omen-6-batch-02_qb8", "day": "2026-09-05", "source_file": "rule_ballot_batch02.jsonl", "card_id": "rule_ballot_02_b8", "grade": "A", "comment": "a a"}
+{"symbol": "omen-6-batch-02_qb9", "day": "2026-09-05", "source_file": "rule_ballot_batch02.jsonl", "card_id": "rule_ballot_02_b9", "grade": "A", "comment": "its not risk too wide but risk less predictable because i find trends respect candles with wicks better predictability"}
+{"symbol": "omen-6-batch-02_qb10", "day": "2026-09-05", "source_file": "rule_ballot_batch02.jsonl", "card_id": "rule_ballot_02_b10", "grade": "A", "comment": "all 3 can be true seperately all-three-separately"}
+{"symbol": "omen-6-batch-02_qb11", "day": "2026-09-05", "source_file": "rule_ballot_batch02.jsonl", "card_id": "rule_ballot_02_b11", "grade": "A", "comment": "subjective but 1m always needs fast happenstance, if you want a number ill say 10 right now 10"}
+{"symbol": "omen-6-batch-02_qb12", "day": "2026-09-05", "source_file": "rule_ballot_batch02.jsonl", "card_id": "rule_ballot_02_b12", "grade": "A", "comment": "c but ususally lower risk is better, tighter stops are better. if BR OCR confluence, your stop is crystal clear c"}
+{"symbol": "omen-6-batch-02_qb13", "day": "2026-09-05", "source_file": "rule_ballot_batch02.jsonl", "card_id": "rule_ballot_02_b13", "grade": "A", "comment": "exactly correct correct"}
+{"symbol": "omen-6-batch-02_qc1", "day": "2026-09-05", "source_file": "rule_ballot_batch02.jsonl", "card_id": "rule_ballot_02_c1", "grade": "A", "comment": "yes the earlier a trade the better because more volitility and easier to see these trends yes"}
+{"symbol": "omen-6-batch-02_qc2", "day": "2026-09-05", "source_file": "rule_ballot_batch02.jsonl", "card_id": "rule_ballot_02_c2", "grade": "A", "comment": "a, but this is rare, i see it happening if a c put trade fails and then theres a clear BR OCR of 5MOR with strong PA and displacement for calls as an example a"}
+{"symbol": "omen-6-batch-02_qc3", "day": "2026-09-05", "source_file": "rule_ballot_batch02.jsonl", "card_id": "rule_ballot_02_c3", "grade": "A", "comment": "max S trades per symbol is 2. but there can be a lot of a or c trades mixed in each symbol. flag Br OCR easier to grade then 84 percent rule right now, in my head generally the grades allign if a BR then a stop out and 84 percent happens 2"}
+{"symbol": "omen-6-batch-02_qc4", "day": "2026-09-05", "source_file": "rule_ballot_batch02.jsonl", "card_id": "rule_ballot_02_c4", "grade": "A", "comment": "max 3 s trades per symbol, but given we are at 128 trades over 2 years, that max wont be close, with my eyes, i would cap at .8 s trades a day per symbol, but dont take that percentage verbatum 3 / 0.8-per-day"}
+{"symbol": "omen-6-batch-02_qc5", "day": "2026-09-05", "source_file": "rule_ballot_batch02.jsonl", "card_id": "rule_ballot_02_c5", "grade": "A", "comment": "yes we only trade S trades and im thinking A +1 (which is technically S) yes"}
+{"symbol": "omen-6-batch-02_qc6", "day": "2026-09-05", "source_file": "rule_ballot_batch02.jsonl", "card_id": "rule_ballot_02_c6", "grade": "A", "comment": "we dont have any higher timeframe bias yet youll need to tell me what that is then undefined"}
+{"symbol": "omen-6-batch-02_qc7", "day": "2026-09-05", "source_file": "rule_ballot_batch02.jsonl", "card_id": "rule_ballot_02_c7", "grade": "A", "comment": "no more looking, only managing a 10 percent position most of the time, unless got an s entry late in the 10 o clock window manage-only"}
+{"symbol": "HOOD", "day": "2025-08-04", "source_file": "austin_verdicts.json", "card_id": "HOOD_2025-08-04_40", "grade": "A", "comment": ""}
+{"symbol": "SOFI", "day": "2026-03-11", "source_file": "austin_verdicts.json", "card_id": "SOFI_2026-03-11_63", "grade": "A", "comment": ""}
+{"symbol": "QQQ", "day": "2025-06-25", "source_file": "austin_verdicts.json", "card_id": "QQQ_2025-06-25_48", "grade": "A", "comment": ""}
+{"symbol": "SPY", "day": "2026-01-08", "source_file": "austin_verdicts.json", "card_id": "SPY_2026-01-08_42", "grade": "X", "comment": ""}
+{"symbol": "MSFT", "day": "2026-02-11", "source_file": "austin_verdicts.json", "card_id": "MSFT_2026-02-11_20", "grade": "A", "comment": ""}
+{"symbol": "QQQ", "day": "2025-02-26", "source_file": "austin_verdicts.json", "card_id": "QQQ_2025-02-26_28", "grade": "S", "comment": ""}
+{"symbol": "SPY", "day": "2026-02-09", "source_file": "austin_verdicts.json", "card_id": "SPY_2026-02-09_24", "grade": "A", "comment": ""}
+{"symbol": "HOOD", "day": "2026-05-19", "source_file": "austin_verdicts.json", "card_id": "HOOD_2026-05-19_19", "grade": "A", "comment": ""}
+{"symbol": "META", "day": "2025-09-23", "source_file": "austin_verdicts.json", "card_id": "META_2025-09-23_9", "grade": "A", "comment": ""}
+{"symbol": "NVDA", "day": "2024-11-19", "source_file": "austin_verdicts.json", "card_id": "NVDA_2024-11-19_18", "grade": "A", "comment": ""}
+{"symbol": "COIN", "day": "2025-10-21", "source_file": "austin_verdicts.json", "card_id": "COIN_2025-10-21_8", "grade": "S", "comment": ""}
+{"symbol": "IWM", "day": "2026-07-24", "source_file": "austin_verdicts.json", "card_id": "IWM_2026-07-24_29", "grade": "S", "comment": ""}
+{"symbol": "QQQ", "day": "2025-06-24", "source_file": "austin_verdicts.json", "card_id": "QQQ_2025-06-24_15", "grade": "S", "comment": ""}
+{"symbol": "META", "day": "2026-06-10", "source_file": "austin_verdicts.json", "card_id": "META_2026-06-10_18", "grade": "X", "comment": ""}
+{"symbol": "SPY", "day": "2024-10-22", "source_file": "austin_verdicts.json", "card_id": "SPY_2024-10-22_41", "grade": "A", "comment": ""}
+{"symbol": "MARA", "day": "2025-08-18", "source_file": "austin_verdicts.json", "card_id": "MARA_2025-08-18_23", "grade": "X", "comment": ""}
+{"symbol": "IWM", "day": "2024-04-03", "source_file": "austin_verdicts.json", "card_id": "IWM_2024-04-03_13", "grade": "S", "comment": ""}
+{"symbol": "IWM", "day": "2024-04-03", "source_file": "austin_verdicts.json", "card_id": "IWM_2024-04-03_73", "grade": "S", "comment": ""}
+{"symbol": "AMZN", "day": "2025-08-14", "source_file": "austin_verdicts.json", "card_id": "AMZN_2025-08-14_18", "grade": "X", "comment": ""}
+{"symbol": "CRM", "day": "2025-07-02", "source_file": "austin_verdicts.json", "card_id": "CRM_2025-07-02_17", "grade": "A", "comment": ""}
+{"symbol": "MARA", "day": "2025-04-02", "source_file": "austin_verdicts.json", "card_id": "MARA_2025-04-02_14", "grade": "A", "comment": ""}
+{"symbol": "BABA", "day": "2025-07-22", "source_file": "austin_verdicts.json", "card_id": "BABA_2025-07-22_20", "grade": "S", "comment": ""}
+{"symbol": "TSM", "day": "2025-10-07", "source_file": "austin_verdicts.json", "card_id": "TSM_2025-10-07_74", "grade": "A", "comment": ""}
+{"symbol": "QQQ", "day": "2024-12-23", "source_file": "austin_verdicts.json", "card_id": "QQQ_2024-12-23_47", "grade": "A", "comment": ""}
+{"symbol": "CRM", "day": "2026-05-07", "source_file": "austin_verdicts.json", "card_id": "CRM_2026-05-07_18", "grade": "X", "comment": ""}
+{"symbol": "IWM", "day": "2025-12-01", "source_file": "austin_verdicts.json", "card_id": "IWM_2025-12-01_11", "grade": "S", "comment": ""}
+{"symbol": "SPY", "day": "2026-03-25", "source_file": "austin_verdicts.json", "card_id": "SPY_2026-03-25_10", "grade": "X", "comment": ""}
+{"symbol": "AMD", "day": "2026-04-21", "source_file": "austin_verdicts.json", "card_id": "AMD_2026-04-21_35", "grade": "A", "comment": ""}
+{"symbol": "GOOGL", "day": "2025-08-07", "source_file": "austin_verdicts.json", "card_id": "GOOGL_2025-08-07_18", "grade": "S", "comment": ""}
+{"symbol": "QQQ", "day": "2024-05-08", "source_file": "austin_verdicts.json", "card_id": "QQQ_2024-05-08_8", "grade": "S", "comment": ""}
+{"symbol": "HOOD", "day": "2025-03-04", "source_file": "austin_verdicts.json", "card_id": "HOOD_2025-03-04_44", "grade": "S", "comment": ""}
+{"symbol": "INTC", "day": "2025-06-05", "source_file": "austin_verdicts.json", "card_id": "INTC_2025-06-05_10", "grade": "X", "comment": ""}
+{"symbol": "QQQ", "day": "2024-03-05", "source_file": "austin_verdicts.json", "card_id": "QQQ_2024-03-05_11", "grade": "A", "comment": ""}
+{"symbol": "QQQ", "day": "2024-03-05", "source_file": "austin_verdicts.json", "card_id": "QQQ_2024-03-05_21", "grade": "S", "comment": ""}
+{"symbol": "QQQ", "day": "2025-03-17", "source_file": "austin_verdicts.json", "card_id": "QQQ_2025-03-17_16", "grade": "S", "comment": ""}
+{"symbol": "SPY", "day": "2024-04-03", "source_file": "austin_verdicts.json", "card_id": "SPY_2024-04-03_9", "grade": "S", "comment": ""}
+{"symbol": "GOOG", "day": "2025-06-10", "source_file": "austin_verdicts.json", "card_id": "GOOG_2025-06-10_21", "grade": "A", "comment": ""}
+{"symbol": "QQQ", "day": "2026-02-11", "source_file": "austin_verdicts.json", "card_id": "QQQ_2026-02-11_32", "grade": "S", "comment": ""}
+{"symbol": "QQQ", "day": "2026-02-11", "source_file": "austin_verdicts.json", "card_id": "QQQ_2026-02-11_45", "grade": "S", "comment": ""}
+{"symbol": "SPY", "day": "2025-02-21", "source_file": "austin_verdicts.json", "card_id": "SPY_2025-02-21_18", "grade": "X", "comment": ""}
+{"symbol": "IWM", "day": "2025-09-05", "source_file": "austin_verdicts.json", "card_id": "IWM_2025-09-05_12", "grade": "S", "comment": ""}
+{"symbol": "IWM", "day": "2025-09-05", "source_file": "austin_verdicts.json", "card_id": "IWM_2025-09-05_51", "grade": "A", "comment": ""}
+{"symbol": "QQQ", "day": "2025-12-05", "source_file": "austin_verdicts.json", "card_id": "QQQ_2025-12-05_27", "grade": "S", "comment": ""}
+{"symbol": "QQQ", "day": "2025-12-05", "source_file": "austin_verdicts.json", "card_id": "QQQ_2025-12-05_35", "grade": "S", "comment": ""}
+{"symbol": "CRM", "day": "2025-06-02", "source_file": "austin_verdicts.json", "card_id": "CRM_2025-06-02_27", "grade": "S", "comment": ""}
+{"symbol": "QQQ", "day": "2025-03-18", "source_file": "austin_verdicts.json", "card_id": "QQQ_2025-03-18_13", "grade": "S", "comment": ""}
+{"symbol": "SPY", "day": "2025-06-02", "source_file": "austin_verdicts.json", "card_id": "SPY_2025-06-02_40", "grade": "A", "comment": ""}
+{"symbol": "QQQ", "day": "2024-01-04", "source_file": "austin_verdicts.json", "card_id": "QQQ_2024-01-04_41", "grade": "S", "comment": ""}
+{"symbol": "MSFT", "day": "2026-01-20", "source_file": "austin_verdicts.json", "card_id": "MSFT_2026-01-20_12", "grade": "S", "comment": ""}
+{"symbol": "IWM", "day": "2024-02-28", "source_file": "austin_verdicts.json", "card_id": "IWM_2024-02-28_9", "grade": "S", "comment": ""}
+{"symbol": "IWM", "day": "2024-02-28", "source_file": "austin_verdicts.json", "card_id": "IWM_2024-02-28_18", "grade": "A", "comment": ""}
+{"symbol": "AMZN", "day": "2026-07-17", "source_file": "austin_verdicts.json", "card_id": "AMZN_2026-07-17_7", "grade": "A", "comment": ""}
+{"symbol": "COIN", "day": "2026-03-04", "source_file": "austin_verdicts.json", "card_id": "COIN_2026-03-04_43", "grade": "A", "comment": ""}
+{"symbol": "MU", "day": "2025-11-07", "source_file": "austin_verdicts.json", "card_id": "MU_2025-11-07_22", "grade": "S", "comment": ""}
+{"symbol": "QQQ", "day": "2025-01-16", "source_file": "austin_verdicts.json", "card_id": "QQQ_2025-01-16_23", "grade": "S", "comment": ""}
+{"symbol": "QQQ", "day": "2025-12-30", "source_file": "austin_verdicts.json", "card_id": "QQQ_2025-12-30_24", "grade": "S", "comment": ""}
+{"symbol": "GOOG", "day": "2025-12-08", "source_file": "austin_verdicts.json", "card_id": "GOOG_2025-12-08_58", "grade": "X", "comment": ""}
+{"symbol": "TSLA", "day": "2026-02-18", "source_file": "austin_verdicts.json", "card_id": "TSLA_2026-02-18_42", "grade": "S", "comment": ""}
+{"symbol": "QQQ", "day": "2024-10-03", "source_file": "austin_verdicts.json", "card_id": "QQQ_2024-10-03_18", "grade": "S", "comment": ""}
+{"symbol": "UBER", "day": "2026-06-09", "source_file": "austin_verdicts.json", "card_id": "UBER_2026-06-09_11", "grade": "A", "comment": ""}
+{"symbol": "NVDA", "day": "2024-11-18", "source_file": "austin_verdicts.json", "card_id": "NVDA_2024-11-18_10", "grade": "S", "comment": ""}
+{"symbol": "QQQ", "day": "2025-05-16", "source_file": "austin_verdicts.json", "card_id": "QQQ_2025-05-16_63", "grade": "A", "comment": ""}
+{"symbol": "IWM", "day": "2025-04-10", "source_file": "austin_verdicts.json", "card_id": "IWM_2025-04-10_16", "grade": "S", "comment": ""}
+{"symbol": "MARA", "day": "2025-05-14", "source_file": "austin_verdicts.json", "card_id": "MARA_2025-05-14_23", "grade": "X", "comment": ""}
+{"symbol": "GOOGL", "day": "2024-09-03", "source_file": "austin_verdicts.json", "card_id": "GOOGL_2024-09-03_10", "grade": "A", "comment": ""}
+{"symbol": "ORCL", "day": "2025-11-03", "source_file": "austin_verdicts.json", "card_id": "ORCL_2025-11-03_17", "grade": "S", "comment": ""}
+{"symbol": "ORCL", "day": "2025-03-28", "source_file": "austin_verdicts.json", "card_id": "ORCL_2025-03-28_12", "grade": "S", "comment": ""}
+{"symbol": "IWM", "day": "2025-10-21", "source_file": "austin_verdicts.json", "card_id": "IWM_2025-10-21_9", "grade": "S", "comment": ""}
+{"symbol": "HOOD", "day": "2025-02-24", "source_file": "austin_verdicts.json", "card_id": "HOOD_2025-02-24_16", "grade": "A", "comment": ""}
+{"symbol": "QQQ", "day": "2024-08-23", "source_file": "austin_verdicts.json", "card_id": "QQQ_2024-08-23_36", "grade": "S", "comment": ""}
+{"symbol": "UBER", "day": "2025-09-11", "source_file": "austin_verdicts.json", "card_id": "UBER_2025-09-11_15", "grade": "S", "comment": ""}
+{"symbol": "GOOGL", "day": "2024-10-15", "source_file": "austin_verdicts.json", "card_id": "GOOGL_2024-10-15_32", "grade": "S", "comment": ""}
+{"symbol": "NVDA", "day": "2024-12-16", "source_file": "austin_verdicts.json", "card_id": "NVDA_2024-12-16_12", "grade": "A", "comment": ""}
+{"symbol": "MSFT", "day": "2025-03-04", "source_file": "austin_verdicts.json", "card_id": "MSFT_2025-03-04_13", "grade": "S", "comment": ""}
+{"symbol": "QQQ", "day": "2025-01-10", "source_file": "austin_verdicts.json", "card_id": "QQQ_2025-01-10_13", "grade": "S", "comment": ""}
+{"symbol": "TSLA", "day": "2024-03-27", "source_file": "austin_verdicts.json", "card_id": "TSLA_2024-03-27_13", "grade": "S", "comment": ""}
+{"symbol": "QQQ", "day": "2026-03-04", "source_file": "austin_verdicts.json", "card_id": "QQQ_2026-03-04_42", "grade": "S", "comment": ""}
+{"symbol": "MARA", "day": "2026-07-09", "source_file": "austin_verdicts.json", "card_id": "MARA_2026-07-09_19", "grade": "S", "comment": ""}
+{"symbol": "CRM", "day": "2025-11-18", "source_file": "austin_verdicts.json", "card_id": "CRM_2025-11-18_16", "grade": "A", "comment": ""}
+{"symbol": "NVDA", "day": "2024-12-30", "source_file": "austin_verdicts.json", "card_id": "NVDA_2024-12-30_34", "grade": "A", "comment": ""}
+{"symbol": "MU", "day": "2026-01-28", "source_file": "austin_verdicts.json", "card_id": "MU_2026-01-28_13", "grade": "S", "comment": ""}
+{"symbol": "SPY", "day": "2025-09-25", "source_file": "austin_verdicts.json", "card_id": "SPY_2025-09-25_45", "grade": "A", "comment": ""}
+{"symbol": "HOOD", "day": "2026-04-13", "source_file": "austin_verdicts.json", "card_id": "HOOD_2026-04-13_16", "grade": "S", "comment": ""}
+{"symbol": "SPY", "day": "2025-02-20", "source_file": "austin_verdicts.json", "card_id": "SPY_2025-02-20_35", "grade": "A", "comment": ""}
+{"symbol": "TSM", "day": "2026-05-29", "source_file": "austin_verdicts.json", "card_id": "TSM_2026-05-29_23", "grade": "S", "comment": ""}
+{"symbol": "GOOG", "day": "2026-02-23", "source_file": "austin_verdicts.json", "card_id": "GOOG_2026-02-23_19", "grade": "X", "comment": ""}
+{"symbol": "MARA", "day": "2026-07-17", "source_file": "austin_verdicts.json", "card_id": "MARA_2026-07-17_13", "grade": "A", "comment": ""}
+{"symbol": "SPY", "day": "2024-02-22", "source_file": "austin_verdicts.json", "card_id": "SPY_2024-02-22_25", "grade": "A", "comment": ""}
+{"symbol": "UBER", "day": "2026-01-06", "source_file": "austin_verdicts.json", "card_id": "UBER_2026-01-06_22", "grade": "A", "comment": ""}
+{"symbol": "SPY", "day": "2025-11-05", "source_file": "austin_verdicts.json", "card_id": "SPY_2025-11-05_52", "grade": "A", "comment": ""}
+{"symbol": "QQQ", "day": "2024-02-01", "source_file": "austin_verdicts.json", "card_id": "QQQ_2024-02-01_44", "grade": "X", "comment": ""}
+{"symbol": "SPY", "day": "2026-03-03", "source_file": "austin_verdicts.json", "card_id": "SPY_2026-03-03_17", "grade": "S", "comment": ""}
+{"symbol": "IWM", "day": "2024-03-22", "source_file": "austin_verdicts.json", "card_id": "IWM_2024-03-22_24", "grade": "S", "comment": ""}
+{"symbol": "PLTR", "day": "2024-10-23", "source_file": "austin_verdicts.json", "card_id": "PLTR_2024-10-23_21", "grade": "S", "comment": ""}
+{"symbol": "QQQ", "day": "2026-07-09", "source_file": "austin_verdicts.json", "card_id": "QQQ_2026-07-09_11", "grade": "S", "comment": ""}
+{"symbol": "ORCL", "day": "2026-06-09", "source_file": "austin_verdicts.json", "card_id": "ORCL_2026-06-09_8", "grade": "A", "comment": ""}
+{"symbol": "SPY", "day": "2026-05-05", "source_file": "austin_verdicts.json", "card_id": "SPY_2026-05-05_10", "grade": "A", "comment": ""}
+{"symbol": "AMD", "day": "2026-05-14", "source_file": "austin_verdicts.json", "card_id": "AMD_2026-05-14_25", "grade": "A", "comment": ""}
+{"symbol": "HOOD", "day": "2026-02-05", "source_file": "austin_verdicts.json", "card_id": "HOOD_2026-02-05_40", "grade": "S", "comment": ""}
+{"symbol": "TSLA", "day": "2024-12-03", "source_file": "austin_verdicts.json", "card_id": "TSLA_2024-12-03_8", "grade": "A", "comment": ""}
+{"symbol": "IWM", "day": "2024-08-22", "source_file": "austin_verdicts.json", "card_id": "IWM_2024-08-22_27", "grade": "S", "comment": ""}
+{"symbol": "COIN", "day": "2025-12-01", "source_file": "austin_verdicts.json", "card_id": "COIN_2025-12-01_11", "grade": "A", "comment": ""}
+{"symbol": "QQQ", "day": "2024-01-30", "source_file": "austin_verdicts.json", "card_id": "QQQ_2024-01-30_35", "grade": "X", "comment": ""}
+{"symbol": "ORCL", "day": "2025-07-08", "source_file": "austin_verdicts.json", "card_id": "ORCL_2025-07-08_7", "grade": "S", "comment": ""}
+{"symbol": "TSLA", "day": "2024-06-24", "source_file": "austin_verdicts.json", "card_id": "TSLA_2024-06-24_9", "grade": "S", "comment": ""}
+{"symbol": "UBER", "day": "2026-07-06", "source_file": "austin_verdicts.json", "card_id": "UBER_2026-07-06_12", "grade": "S", "comment": ""}
+{"symbol": "QQQ", "day": "2026-03-06", "source_file": "austin_verdicts.json", "card_id": "QQQ_2026-03-06_47", "grade": "X", "comment": ""}
+{"symbol": "MARA", "day": "2025-07-30", "source_file": "austin_verdicts.json", "card_id": "MARA_2025-07-30_30", "grade": "A", "comment": ""}
+{"symbol": "MARA", "day": "2024-09-09", "source_file": "austin_verdicts.json", "card_id": "MARA_2024-09-09_38", "grade": "X", "comment": ""}
+{"symbol": "IWM", "day": "2026-06-24", "source_file": "austin_verdicts.json", "card_id": "IWM_2026-06-24_28", "grade": "A", "comment": ""}
+{"symbol": "MARA", "day": "2024-10-18", "source_file": "austin_verdicts.json", "card_id": "MARA_2024-10-18_11", "grade": "S", "comment": ""}
+{"symbol": "HOOD", "day": "2026-07-07", "source_file": "austin_verdicts.json", "card_id": "HOOD_2026-07-07_37", "grade": "A", "comment": ""}
+{"symbol": "TSLA", "day": "2024-02-05", "source_file": "austin_verdicts.json", "card_id": "TSLA_2024-02-05_16", "grade": "A", "comment": ""}
+{"symbol": "MU", "day": "2025-12-08", "source_file": "austin_verdicts.json", "card_id": "MU_2025-12-08_12", "grade": "X", "comment": ""}
+{"symbol": "UBER", "day": "2025-07-31", "source_file": "austin_verdicts.json", "card_id": "UBER_2025-07-31_48", "grade": "A", "comment": ""}
+{"symbol": "PLTR", "day": "2026-03-31", "source_file": "austin_verdicts.json", "card_id": "PLTR_2026-03-31_23", "grade": "S", "comment": ""}
+{"symbol": "IWM", "day": "2026-05-28", "source_file": "austin_verdicts.json", "card_id": "IWM_2026-05-28_46", "grade": "S", "comment": ""}
+{"symbol": "MARA", "day": "2024-12-17", "source_file": "austin_verdicts.json", "card_id": "MARA_2024-12-17_49", "grade": "S", "comment": ""}
+{"symbol": "SPY", "day": "2025-12-02", "source_file": "austin_verdicts.json", "card_id": "SPY_2025-12-02_14", "grade": "X", "comment": ""}
+{"symbol": "AMD", "day": "2025-06-05", "source_file": "austin_verdicts.json", "card_id": "AMD_2025-06-05_6", "grade": "S", "comment": ""}
+{"symbol": "IWM", "day": "2024-08-01", "source_file": "austin_verdicts.json", "card_id": "IWM_2024-08-01_44", "grade": "A", "comment": ""}
+{"symbol": "QQQ", "day": "2024-03-15", "source_file": "austin_verdicts.json", "card_id": "QQQ_2024-03-15_11", "grade": "S", "comment": ""}
+{"symbol": "MSFT", "day": "2026-06-10", "source_file": "austin_verdicts.json", "card_id": "MSFT_2026-06-10_17", "grade": "A", "comment": ""}
+{"symbol": "UBER", "day": "2025-02-07", "source_file": "austin_verdicts.json", "card_id": "UBER_2025-02-07_22", "grade": "S", "comment": ""}
+{"symbol": "CRM", "day": "2025-09-26", "source_file": "austin_verdicts.json", "card_id": "CRM_2025-09-26_12", "grade": "A", "comment": ""}
+{"symbol": "PLTR", "day": "2025-09-18", "source_file": "austin_verdicts.json", "card_id": "PLTR_2025-09-18_14", "grade": "S", "comment": ""}
+{"symbol": "SOFI", "day": "2024-10-30", "source_file": "austin_verdicts.json", "card_id": "SOFI_2024-10-30_16", "grade": "S", "comment": ""}
+{"symbol": "QQQ", "day": "2025-01-28", "source_file": "austin_verdicts.json", "card_id": "QQQ_2025-01-28_40", "grade": "A", "comment": ""}
+{"symbol": "QQQ", "day": "2024-12-16", "source_file": "austin_verdicts.json", "card_id": "QQQ_2024-12-16_28", "grade": "S", "comment": ""}
+{"symbol": "MARA", "day": "2026-07-20", "source_file": "austin_verdicts.json", "card_id": "MARA_2026-07-20_11", "grade": "A", "comment": ""}
+{"symbol": "SOFI", "day": "2026-05-20", "source_file": "austin_verdicts.json", "card_id": "SOFI_2026-05-20_55", "grade": "A", "comment": ""}
+{"symbol": "NVDA", "day": "2025-03-25", "source_file": "austin_verdicts.json", "card_id": "NVDA_2025-03-25_25", "grade": "A", "comment": ""}
+{"symbol": "COIN", "day": "2025-06-26", "source_file": "austin_verdicts.json", "card_id": "COIN_2025-06-26_18", "grade": "S", "comment": ""}
+{"symbol": "TSLA", "day": "2024-01-12", "source_file": "austin_verdicts.json", "card_id": "TSLA_2024-01-12_18", "grade": "X", "comment": ""}
+{"symbol": "QQQ", "day": "2025-05-07", "source_file": "austin_verdicts.json", "card_id": "QQQ_2025-05-07_31", "grade": "A", "comment": ""}
+{"symbol": "HOOD", "day": "2025-12-29", "source_file": "austin_verdicts.json", "card_id": "HOOD_2025-12-29_12", "grade": "X", "comment": ""}
+{"symbol": "ORCL", "day": "2025-09-17", "source_file": "austin_verdicts.json", "card_id": "ORCL_2025-09-17_11", "grade": "A", "comment": ""}
+{"symbol": "AMD", "day": "2026-03-04", "source_file": "austin_verdicts.json", "card_id": "AMD_2026-03-04_9", "grade": "A", "comment": ""}
+{"symbol": "AMZN", "day": "2026-04-10", "source_file": "austin_verdicts.json", "card_id": "AMZN_2026-04-10_74", "grade": "A", "comment": ""}
+{"symbol": "UBER", "day": "2025-08-13", "source_file": "austin_verdicts.json", "card_id": "UBER_2025-08-13_25", "grade": "S", "comment": ""}
+{"symbol": "IWM", "day": "2025-12-04", "source_file": "austin_verdicts.json", "card_id": "IWM_2025-12-04_56", "grade": "S", "comment": ""}
+{"symbol": "IWM", "day": "2024-09-24", "source_file": "austin_verdicts.json", "card_id": "IWM_2024-09-24_35", "grade": "X", "comment": ""}
+{"symbol": "IWM", "day": "2024-09-24", "source_file": "austin_verdicts.json", "card_id": "IWM_2024-09-24_53", "grade": "X", "comment": ""}
+{"symbol": "HOOD", "day": "2026-07-10", "source_file": "austin_verdicts.json", "card_id": "HOOD_2026-07-10_23", "grade": "S", "comment": ""}
+{"symbol": "SPY", "day": "2025-07-01", "source_file": "austin_verdicts.json", "card_id": "SPY_2025-07-01_41", "grade": "A", "comment": ""}
+{"symbol": "GOOG", "day": "2025-04-04", "source_file": "austin_verdicts.json", "card_id": "GOOG_2025-04-04_26", "grade": "A", "comment": ""}
+{"symbol": "SPY", "day": "2024-06-11", "source_file": "austin_verdicts.json", "card_id": "SPY_2024-06-11_23", "grade": "S", "comment": ""}
+{"symbol": "SPY", "day": "2026-03-02", "source_file": "austin_verdicts.json", "card_id": "SPY_2026-03-02_24", "grade": "S", "comment": ""}
+{"symbol": "COIN", "day": "2026-04-09", "source_file": "austin_verdicts.json", "card_id": "COIN_2026-04-09_30", "grade": "S", "comment": ""}
+{"symbol": "SPY", "day": "2026-03-05", "source_file": "austin_verdicts.json", "card_id": "SPY_2026-03-05_56", "grade": "S", "comment": ""}
+{"symbol": "NVDA", "day": "2026-05-21", "source_file": "austin_verdicts.json", "card_id": "NVDA_2026-05-21_10", "grade": "A", "comment": ""}
+{"symbol": "MSFT", "day": "2025-03-20", "source_file": "austin_verdicts.json", "card_id": "MSFT_2025-03-20_28", "grade": "S", "comment": ""}
+{"symbol": "BABA", "day": "2025-12-26", "source_file": "austin_verdicts.json", "card_id": "BABA_2025-12-26_36", "grade": "A", "comment": ""}
+{"symbol": "QQQ", "day": "2025-07-01", "source_file": "austin_verdicts.json", "card_id": "QQQ_2025-07-01_72", "grade": "X", "comment": ""}
+{"symbol": "SPY", "day": "2025-11-19", "source_file": "austin_verdicts.json", "card_id": "SPY_2025-11-19_9", "grade": "S", "comment": ""}
+{"symbol": "SPY", "day": "2024-09-19", "source_file": "austin_verdicts.json", "card_id": "SPY_2024-09-19_19", "grade": "S", "comment": ""}
+{"symbol": "QQQ", "day": "2025-02-25", "source_file": "austin_verdicts.json", "card_id": "QQQ_2025-02-25_16", "grade": "S", "comment": ""}
+{"symbol": "QQQ", "day": "2025-02-25", "source_file": "austin_verdicts.json", "card_id": "QQQ_2025-02-25_53", "grade": "A", "comment": ""}

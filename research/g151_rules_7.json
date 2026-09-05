@@ -1,0 +1,81 @@
+{
+  "theme": "refusals: what makes him NOT trade (neither / no / none / X)",
+  "source_file": "research/g150_marks_comments.jsonl",
+  "rulebook_checked": "Projects/omen-rulebook.md (vault)",
+  "claims": [
+    {
+      "rule": "No level to break-and-retest against is a standalone refusal reason, distinct from a level being present but not respected (chop). When he cannot find any PDH/PDL/PMH/PML/pivot/OR/HOD/LOD to reference, he refuses the trade outright, even on otherwise-clean price action. Contradiction to note: he does NOT refuse a clean setup just because it lacks a level to TARGET for profit (QQQ_2025-08-01 graded S with the same complaint) -- the refusal is specific to no level to enter/retest against, not no level to exit at.",
+      "polarity": "refusal-indicator",
+      "n_rows": 3,
+      "quotes": [
+        "dont see any levels, unless some were forgot to be marked",
+        "doesn't approach any one candle rule or pivot or level for retest",
+        "nothing here, just a downtrend no levels no one candle rules nothing"
+      ],
+      "testable_as": "bars-feature",
+      "predicate_sketch": "Not ratified/wired as a distinct rule in omen-rulebook.md -- the rulebook's level_not_respected (CHOP_TOUCHES=2) covers a level that exists but is being chopped through, not the absence of any level at all. This is a different failure mode (no candidate level in the lookback window) and should be measured separately before wiring; the QQQ_2025-08-01 counterexample (no level to TARGET, still S) means any implementation must distinguish entry-level absence from target-level absence."
+    },
+    {
+      "rule": "A stock that has already made its big move for the day (overextended) is refused even when the break-and-retest mechanics look clean, because he judges there is no room left to run.",
+      "polarity": "refusal-indicator",
+      "n_rows": 3,
+      "quotes": [
+        "overextended and no great entry presented itself",
+        "overextended and stock is slowly recovering moving up. got lucky and tight stops and targets are fine if they make good sense, quick scalps, this one doesn't make sense",
+        "stock overextended, slowing down, no clear break displacement and retest of the one candle rule its just holding it for the moment"
+      ],
+      "testable_as": "bars-feature",
+      "predicate_sketch": "Not wired. Distinct from the ratified counter-trend-candle-count downgrade (a4/a5, capped at 2, rulebook notes it 'sits in the fog' as a graduated cost not a switch) -- this claim is about a session-level extension measure (e.g. % of recent ATR/day-range already covered before the setup), not a per-candle count. Would need its own feature (distance already traveled from day open or from the most recent swing) before it is testable as a book-field."
+    },
+    {
+      "rule": "Cheap, low-priced stocks are harder to trade and get refused or capped below S, independent of setup quality.",
+      "polarity": "refusal-indicator",
+      "n_rows": 1,
+      "quotes": [
+        "just are hard one to trade, cheap stock 20 dollars and a lot of weird things happened here",
+        "cheap stock, thats why I won't upgrade to s",
+        "FVG and flag we don't trade, cheap stocks suck"
+      ],
+      "testable_as": "book-field",
+      "predicate_sketch": "Thin evidence: only 1 distinct symbol-day is an outright refusal (IREN_2025-08-22, X); the other two quotes are a downgrade note (t1_ACHR_2026-03-30, still graded A) and a general rule-ballot comment, not a symbol-day card. Not ratified or wired anywhere in omen-rulebook.md. Flag as a hint, not a rule -- needs more graded cheap-stock cards before a price-floor filter is proposed."
+    },
+    {
+      "rule": "Chop / consolidation between levels is his single most common stated refusal reason, but the rulebook has already measured his own 'chop' tag against realized R and found it does not predict edge (p=0.70) -- his chop label is one of his 'standing excuses,' not a reliable signal on its own.",
+      "polarity": "refusal-indicator",
+      "n_rows": 90,
+      "quotes": [
+        "chop",
+        "trading in between channels and pivots and im not seeing the break and retest",
+        "clean b and r if take away all the candles before, not enough movement, I bet the big move in this stock already happened",
+        "trading between pivot structures, stock too tight and options contracts would get stopped out in seconds in these scenarios",
+        "consolidation no clean break of anything"
+      ],
+      "testable_as": "not-testable",
+      "predicate_sketch": "Already ratified AND measured in omen-rulebook.md: CHOP_TOUCHES=2 is wired via level_not_respected, and the rulebook separately reports his free-text 'chop' tag scores 0.072R vs a 0.123R baseline (not predictive, p=0.70). Keeping this row only to record that the raw refusal count (46 distinct symbol-days say some form of 'chop'/'consolidation'/'between levels') is the largest bucket in the corpus, (90 distinct symbol-day X/none rows contain 'chop' or 'consolidat' in the comment), so any future feature work should route through the already-wired level_not_respected mechanism rather than re-deriving a new 'chop' flag from his free text -- the free text itself is proven unreliable."
+    },
+    {
+      "rule": "Index ETFs (SPY, QQQ) are avoided by default and only traded when the higher-timeframe direction is very clearly bullish or bearish.",
+      "polarity": "refusal-indicator",
+      "n_rows": 1,
+      "quotes": [
+        "potentially a double fakeout here, trade to the downside too last 10m, usually dont trade spy and qq unless they are very bullish/bearish"
+      ],
+      "testable_as": "bars-feature",
+      "predicate_sketch": "Measured, not wired: g91_lane_slice.py already measures the index-only lane (2.3 cand/day, $51/day, 13/25 green) against the full pool and CLAUDE.md records the decision to keep the pool FULL because narrowing caps the ceiling below his $397 bar. This single quote is consistent with that decision (he already self-selects out of SPY/QQQ absent a strong HTF read) but is only 1 symbol-day of direct textual support -- a hint corroborating an existing measured decision, not a new rule to wire."
+    },
+    {
+      "rule": "When he cannot see enough candle history before the signal bar, he marks the card X/none for lack of context, not because of any trading rule -- this is a grading-tool artifact (the deck did not show enough prior bars), not a signal about what makes a real trade good or bad.",
+      "polarity": "refusal-indicator",
+      "n_rows": 6,
+      "quotes": [
+        "can't see what happens earlier",
+        "can't see what happens before",
+        "dont know what happened before and its late in the day",
+        "dont know what happens earlier",
+        "i cant tell where the original entry is, theres noise above it at the start of the day"
+      ],
+      "testable_as": "not-testable",
+      "predicate_sketch": "Explicitly not-testable: this is not a market rule to encode, it is evidence that some deck cards crop too little pre-signal history. Relevant to deck-building (research/build_deck.py / probe_page.py chart windows), not to signal_runner.py or downgrade.py. Included here only so it is not mistaken for a real refusal rule by a downstream merge step."
+    }
+  ]
+}

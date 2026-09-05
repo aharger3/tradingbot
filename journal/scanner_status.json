@@ -1,37 +1,11 @@
 {
-  "timestamp": "2026-09-04T13:24:50.919740-04:00",
+  "timestamp": "2026-09-05T01:12:23.267590-04:00",
   "symbols_scanned": [
-    "NVDA",
-    "TSLA",
     "AAPL",
-    "SPCX",
     "MSFT",
-    "MU",
-    "INTC",
-    "PLTR",
-    "AMZN",
-    "META",
-    "AMD",
-    "GOOGL",
-    "ACHR",
-    "NFLX",
-    "ORCL",
-    "QQQ",
-    "SPY",
-    "IWM",
-    "GOOG",
-    "SOFI",
-    "COIN",
-    "HOOD",
-    "IREN",
-    "AVGO",
-    "UBER",
-    "BABA",
-    "CRM",
-    "TSM",
-    "MARA"
+    "TSLA"
   ],
-  "bars_fetched": 0,
+  "bars_fetched": 3,
   "signals_fired_today": 0,
   "session_halt": {
     "halted": false,
@@ -40,8 +14,11 @@
     "max_trades": 3
   },
   "regime_state": "normal",
-  "qqq_state": null,
-  "last_error": "MARA: Too Many Requests. Rate limited. Try after a while.",
+  "qqq_state": {
+    "up": "15:59:00",
+    "dn": null
+  },
+  "last_error": null,
   "webhooks": {
     "posted": 0,
     "failed": 0

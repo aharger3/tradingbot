@@ -1,0 +1,77 @@
+{
+  "theme": "OCR and the 84% rule",
+  "source": "research/g150_marks_comments.jsonl",
+  "checked_against": "Projects/omen-rulebook.md (vault)",
+  "note": "Most OCR/84% mechanics his marks describe are already ratified AND wired live (RULE84_LESSON, RULE84_ARM_ON/NOGATE, BAR_EXTREME_FRAC as the one 25% tolerance unit, close-not-distance reclaim test) -- those are skipped per F2 instructions. Everything kept below is either (a) ratified in the rulebook but implemented only in downgrade.py, which the project's own convention keeps measured-only and NOT wired into the live A+/A/B/C/X fire gate, or (b) not ratified/not wired at all, confirmed by grep against downgrade.py / signal_runner.py.",
+  "claims": [
+    {
+      "rule": "BR+OCR confluence is a +1 upgrade (never a downgrade), capped at +1 total even when a second, independent confluence type (multi-level) also fires on the same signal.",
+      "polarity": "S-indicator",
+      "n_rows": 16,
+      "quotes": [
+        "9:45 BR OCR confluence yes",
+        "technically this has both BR OCR but the red candle is large and not very clear. the simple definition for me to count both is, would the candle be good to use as the stop? the wick is but i dont like the size of the candle. the wick ended up as the proper stop but im conflicted here and contradicting myself.",
+        "c but ususally lower risk is better, tighter stops are better. if BR OCR confluence, your stop is crystal clear c",
+        "a, but this is rare, i see it happening if a c put trade fails and then theres a clear BR OCR of 5MOR with strong PA and displacement for calls as an example a",
+        "really good a trade i wish it was an S but it didnt displace from that wick, but technically it is an OCR and BR just neither of the parts have displacement"
+      ],
+      "testable_as": "book-field",
+      "predicate_sketch": "downgrade.has_confluence() already implements exactly this (capped at one point vs has_confluence_ml, per the module docstring) -- ratified in omen-rulebook.md. But downgrade.py is the measured-only S/A/C ladder; the live A+/A/B/C/X ladder that actually fires trades (signal_runner._grade_pa) does not consult it. KEEP: not wired into detection. Predicate for F5: fold has_confluence into the fire-time grade (not just the reported ladder) and measure precision/recall delta on the honest book, H1/H2."
+    },
+    {
+      "rule": "OCR is standalone-valid: a one-candle-rule level with no break-and-retest event can still be a full, clean S setup on its own.",
+      "polarity": "S-indicator",
+      "n_rows": 1,
+      "quotes": [
+        "THIS IS ONE CANDLE RULE, NO LEVEL BR JUST OCR not sure why its not an option, but its a classic S setup."
+      ],
+      "testable_as": "bars-feature",
+      "predicate_sketch": "find_ocr() (downgrade.py) can locate a standalone OCR level with no BR precondition, but the live detectors (BreakAndRetestDetector / RuleOf84Detector in signal_runner.py) only arm off a level-break event -- no signal type fires on an OCR level alone. KEEP: not wired, single card so weak (n=1); worth a bars-feature scan of how often a clean standalone OCR appears with no accompanying BR before spending an arm on it."
+    },
+    {
+      "rule": "OCR's definition is literally 'one candle' opposite-colored to the prevailing trend, and the operational test for whether a candle counts as OCR is whether it is usable as the stop -- not its distance from entry.",
+      "polarity": "S-indicator",
+      "n_rows": 6,
+      "quotes": [
+        "i forgot my OCR definition is simple its in the name \"one candle\" so one candle thats the opposite color of the way its trending. so thats how we can try to start marking it. this is A trade because entry doesent close below level and its more of a pivot structure break and a \"two candle\" rule lol",
+        "this may not be an entry because i dont see a OCR or the level its referencing because its too far away from the PDL",
+        "this one is both, 9 candles before entry is the clear OCR wick stop confluence with the pmh break.",
+        "A trade because it breaks and doesent retest the level, instead goes to a OCR which is farther away and more of a pivot structure",
+        "9 candles before entry is the clear OCR wick stop confluence with the pmh break."
+      ],
+      "testable_as": "bars-feature",
+      "predicate_sketch": "signal_runner.OCR_STRICT (imports ocr_is_his / OCR_STRONG_PA_MULT) encodes this clause-list definition already per its own T2 code comment, but defaults OFF (OCR_STRICT='0'). Ratified, not the shipped default. KEEP: measure the book with OCR_STRICT=1 vs the current OCR_STRICT=0 default."
+    },
+    {
+      "rule": "Which candle to treat as the OCR, when more than one sits near the entry, is still an unresolved judgment call he flags himself as needing more code work -- not a codified rule yet.",
+      "polarity": "S-indicator",
+      "n_rows": 1,
+      "quotes": [
+        "THIS IS OCR AS WELL. I would actually enter one candle before i entered, even though its a green candle, there is such a large wick away from the OCR. this rule likely needs to be discussed more for your understanding. actually no the candle i entered was right, because theres a level there it didnt close below, but still a rule that can be broadened by code."
+      ],
+      "testable_as": "not-testable",
+      "predicate_sketch": "No book field or bars feature yet -- he explicitly says the rule 'needs to be discussed more' and 'can be broadened by code', i.e. not ratified and not wired. Single card (n=1): a hint that OCR-candle selection among several candidates needs a follow-up grilling round before F5 can test it, not a candidate to measure tonight."
+    },
+    {
+      "rule": "He caps how many S trades a symbol can produce (said 2, then revised to 3, with a back-of-envelope ~0.8 S-trades/day/symbol), but the engine enforces no per-symbol or per-day cap at all.",
+      "polarity": "refusal-indicator",
+      "n_rows": 2,
+      "quotes": [
+        "max S trades per symbol is 2. but there can be a lot of a or c trades mixed in each symbol. flag Br OCR easier to grade then 84 percent rule right now, in my head generally the grades allign if a BR then a stop out and 84 percent happens",
+        "max 3 s trades per symbol, but given we are at 128 trades over 2 years, that max wont be close, with my eyes, i would cap at .8 s trades a day per symbol, but dont take that percentage verbatum"
+      ],
+      "testable_as": "book-field",
+      "predicate_sketch": "omen-rulebook.md confirms directly: 'There is no per-day and no per-symbol cap.' KEEP: not wired anywhere. Predicate for F5: cap fired S signals per symbol (2-3 over the 2-year book, ~0.8/day) and measure whether it only trims duplicate re-fires on the same level (net-neutral) or changes $/day and precision -- ties into the 84%-rule re-entry exemption in downgrade.sequence_gate(), which is itself only wired when enable_sequence_gate=True is passed explicitly (ENABLE_SEQUENCE_GATE defaults False)."
+    },
+    {
+      "rule": "He identifies the OCR downgrade/grading logic itself as under-built ('wire downgrade to understand OCR better'), separate from any single rule -- a general flag that the OCR path in the ladder needs more work.",
+      "polarity": "refusal-indicator",
+      "n_rows": 1,
+      "quotes": [
+        "Ther is no B, maybe you need to wire downgrade to understand OCR better. s trades are all about being early and the most important thing is that clear break retest with displacement that happens quick and strong PA entry lift"
+      ],
+      "testable_as": "not-testable",
+      "predicate_sketch": "Not a standalone predicate -- corroborates claim 1 (confluence unwired) and claim 3 (OCR_STRICT off by default). Carried to F3 as supporting evidence for why the OCR path in downgrade.py/signal_runner.py needs its unwired pieces turned on together rather than singly."
+    }
+  ]
+}
