@@ -42,6 +42,20 @@ if errorlevel 1 (
   echo REGRESSION GATE: PASS >> "%LOG%"
 )
 
+REM W7/g207 (2026-09-05): the 14 failing tests B-08 found were never run by
+REM anything -- research/run_tests.py is the canonical selftest set (every
+REM test_*.py, minus retired ones and a short documented exclusion list).
+REM Log-only, non-fatal on purpose: this is a triage instrument, not the
+REM verify: gate in CLAUDE.md, which stays regression_gate.py +
+REM test_runner_stop.py, unchanged.
+echo --- canonical test suite (research/run_tests.py) --- >> "%LOG%"
+python research\run_tests.py >> "%LOG%" 2>&1
+if errorlevel 1 (
+  echo CANONICAL TESTS: FAIL -- see above for which ones, non-fatal >> "%LOG%"
+) else (
+  echo CANONICAL TESTS: PASS >> "%LOG%"
+)
+
 REM B3 B-08 (2026-09-05): the verify gate ran only regression_gate.py here,
 REM so a private ticker list (research/g83_*.py INDEX_POOL/INDEX_SYMS) could
 REM appear and nothing caught it -- test_universe_single_source.py existed
