@@ -1,0 +1,404 @@
+{
+ "meta": {
+  "n_full": 495,
+  "n_h1": 248,
+  "n_h2": 247,
+  "d0": "2024-09-03",
+  "dN": "2026-09-02",
+  "seed": 20260905
+ },
+ "A_fee_identity": {
+  "every_reported_net_equals_minus_the_eval_fee": true,
+  "fees": [
+   97,
+   230,
+   435,
+   1100,
+   97,
+   230,
+   435,
+   1100
+  ],
+  "distinct_nets": [
+   -1100,
+   -435,
+   -230,
+   -97
+  ]
+ },
+ "B_dll_share_cap": [
+  {
+   "name": "TTP 25K MAX day",
+   "dll": 250,
+   "g173_max_risk": 1612.26,
+   "trades_sized_over_the_daily_loss_limit": 305,
+   "pct_over": 61.6,
+   "g173_verdict": "FAIL(daily_loss_limit)",
+   "dll_capped_verdict": "FAIL(trailing_drawdown)",
+   "dll_capped_fail_day": "2024-09-13"
+  },
+  {
+   "name": "TTP 50K MAX day",
+   "dll": 500,
+   "g173_max_risk": 3224.52,
+   "trades_sized_over_the_daily_loss_limit": 243,
+   "pct_over": 49.1,
+   "g173_verdict": "FAIL(daily_loss_limit)",
+   "dll_capped_verdict": "FAIL(trailing_drawdown)",
+   "dll_capped_fail_day": "2024-09-13"
+  },
+  {
+   "name": "TTP 100K MAX day",
+   "dll": 1000,
+   "g173_max_risk": 6449.04,
+   "trades_sized_over_the_daily_loss_limit": 126,
+   "pct_over": 25.5,
+   "g173_verdict": "FAIL(daily_loss_limit)",
+   "dll_capped_verdict": "FAIL(trailing_drawdown)",
+   "dll_capped_fail_day": "2024-09-16"
+  },
+  {
+   "name": "TTP 200K MAX day",
+   "dll": 2000,
+   "g173_max_risk": 6890.0,
+   "trades_sized_over_the_daily_loss_limit": 38,
+   "pct_over": 7.7,
+   "g173_verdict": "FAIL(daily_loss_limit)",
+   "dll_capped_verdict": "FAIL(trailing_drawdown)",
+   "dll_capped_fail_day": "2024-10-02"
+  },
+  {
+   "name": "TTP 25K FLEX day",
+   "dll": 500,
+   "g173_max_risk": 1612.26,
+   "trades_sized_over_the_daily_loss_limit": 114,
+   "pct_over": 23.0,
+   "g173_verdict": "FAIL(trailing_drawdown)",
+   "dll_capped_verdict": "FAIL(trailing_drawdown)",
+   "dll_capped_fail_day": "2024-09-13"
+  },
+  {
+   "name": "TTP 50K FLEX day",
+   "dll": 1000,
+   "g173_max_risk": 3224.52,
+   "trades_sized_over_the_daily_loss_limit": 78,
+   "pct_over": 15.8,
+   "g173_verdict": "FAIL(trailing_drawdown)",
+   "dll_capped_verdict": "FAIL(trailing_drawdown)",
+   "dll_capped_fail_day": "2024-09-13"
+  },
+  {
+   "name": "TTP 100K FLEX day",
+   "dll": 2000,
+   "g173_max_risk": 6449.04,
+   "trades_sized_over_the_daily_loss_limit": 25,
+   "pct_over": 5.1,
+   "g173_verdict": "FAIL(trailing_drawdown)",
+   "dll_capped_verdict": "FAIL(trailing_drawdown)",
+   "dll_capped_fail_day": "2024-10-01"
+  },
+  {
+   "name": "TTP 200K FLEX day",
+   "dll": 4000,
+   "g173_max_risk": 6890.0,
+   "trades_sized_over_the_daily_loss_limit": 7,
+   "pct_over": 1.4,
+   "g173_verdict": "FAIL(trailing_drawdown)",
+   "dll_capped_verdict": "FAIL(trailing_drawdown)",
+   "dll_capped_fail_day": "2024-10-11"
+  }
+ ],
+ "C_rolling_starts": [
+  {
+   "name": "TTP 25K MAX day",
+   "sizing": "g173_uncapped",
+   "window": "to book end",
+   "starts": 495,
+   "passes": 67,
+   "pass_rate_pct": 13.5
+  },
+  {
+   "name": "TTP 25K MAX day",
+   "sizing": "g173_uncapped",
+   "window": "plan max_days=60",
+   "starts": 436,
+   "passes": 61,
+   "pass_rate_pct": 14.0
+  },
+  {
+   "name": "TTP 25K MAX day",
+   "sizing": "dll_capped",
+   "window": "to book end",
+   "starts": 495,
+   "passes": 114,
+   "pass_rate_pct": 23.0
+  },
+  {
+   "name": "TTP 25K MAX day",
+   "sizing": "dll_capped",
+   "window": "plan max_days=60",
+   "starts": 436,
+   "passes": 114,
+   "pass_rate_pct": 26.1
+  },
+  {
+   "name": "TTP 50K MAX day",
+   "sizing": "g173_uncapped",
+   "window": "to book end",
+   "starts": 495,
+   "passes": 52,
+   "pass_rate_pct": 10.5
+  },
+  {
+   "name": "TTP 50K MAX day",
+   "sizing": "g173_uncapped",
+   "window": "plan max_days=60",
+   "starts": 436,
+   "passes": 45,
+   "pass_rate_pct": 10.3
+  },
+  {
+   "name": "TTP 50K MAX day",
+   "sizing": "dll_capped",
+   "window": "to book end",
+   "starts": 495,
+   "passes": 96,
+   "pass_rate_pct": 19.4
+  },
+  {
+   "name": "TTP 50K MAX day",
+   "sizing": "dll_capped",
+   "window": "plan max_days=60",
+   "starts": 436,
+   "passes": 96,
+   "pass_rate_pct": 22.0
+  },
+  {
+   "name": "TTP 100K MAX day",
+   "sizing": "g173_uncapped",
+   "window": "to book end",
+   "starts": 495,
+   "passes": 81,
+   "pass_rate_pct": 16.4
+  },
+  {
+   "name": "TTP 100K MAX day",
+   "sizing": "g173_uncapped",
+   "window": "plan max_days=60",
+   "starts": 436,
+   "passes": 81,
+   "pass_rate_pct": 18.6
+  },
+  {
+   "name": "TTP 100K MAX day",
+   "sizing": "dll_capped",
+   "window": "to book end",
+   "starts": 495,
+   "passes": 144,
+   "pass_rate_pct": 29.1
+  },
+  {
+   "name": "TTP 100K MAX day",
+   "sizing": "dll_capped",
+   "window": "plan max_days=60",
+   "starts": 436,
+   "passes": 143,
+   "pass_rate_pct": 32.8
+  },
+  {
+   "name": "TTP 200K MAX day",
+   "sizing": "g173_uncapped",
+   "window": "to book end",
+   "starts": 495,
+   "passes": 81,
+   "pass_rate_pct": 16.4
+  },
+  {
+   "name": "TTP 200K MAX day",
+   "sizing": "g173_uncapped",
+   "window": "plan max_days=60",
+   "starts": 436,
+   "passes": 62,
+   "pass_rate_pct": 14.2
+  },
+  {
+   "name": "TTP 200K MAX day",
+   "sizing": "dll_capped",
+   "window": "to book end",
+   "starts": 495,
+   "passes": 81,
+   "pass_rate_pct": 16.4
+  },
+  {
+   "name": "TTP 200K MAX day",
+   "sizing": "dll_capped",
+   "window": "plan max_days=60",
+   "starts": 436,
+   "passes": 61,
+   "pass_rate_pct": 14.0
+  },
+  {
+   "name": "TTP 25K FLEX day",
+   "sizing": "g173_uncapped",
+   "window": "to book end",
+   "starts": 495,
+   "passes": 115,
+   "pass_rate_pct": 23.2
+  },
+  {
+   "name": "TTP 25K FLEX day",
+   "sizing": "g173_uncapped",
+   "window": "plan max_days=120",
+   "starts": 376,
+   "passes": 96,
+   "pass_rate_pct": 25.5
+  },
+  {
+   "name": "TTP 25K FLEX day",
+   "sizing": "dll_capped",
+   "window": "to book end",
+   "starts": 495,
+   "passes": 144,
+   "pass_rate_pct": 29.1
+  },
+  {
+   "name": "TTP 25K FLEX day",
+   "sizing": "dll_capped",
+   "window": "plan max_days=120",
+   "starts": 376,
+   "passes": 132,
+   "pass_rate_pct": 35.1
+  },
+  {
+   "name": "TTP 50K FLEX day",
+   "sizing": "g173_uncapped",
+   "window": "to book end",
+   "starts": 495,
+   "passes": 150,
+   "pass_rate_pct": 30.3
+  },
+  {
+   "name": "TTP 50K FLEX day",
+   "sizing": "g173_uncapped",
+   "window": "plan max_days=120",
+   "starts": 376,
+   "passes": 142,
+   "pass_rate_pct": 37.8
+  },
+  {
+   "name": "TTP 50K FLEX day",
+   "sizing": "dll_capped",
+   "window": "to book end",
+   "starts": 495,
+   "passes": 163,
+   "pass_rate_pct": 32.9
+  },
+  {
+   "name": "TTP 50K FLEX day",
+   "sizing": "dll_capped",
+   "window": "plan max_days=120",
+   "starts": 376,
+   "passes": 156,
+   "pass_rate_pct": 41.5
+  },
+  {
+   "name": "TTP 100K FLEX day",
+   "sizing": "g173_uncapped",
+   "window": "to book end",
+   "starts": 495,
+   "passes": 144,
+   "pass_rate_pct": 29.1
+  },
+  {
+   "name": "TTP 100K FLEX day",
+   "sizing": "g173_uncapped",
+   "window": "plan max_days=120",
+   "starts": 376,
+   "passes": 144,
+   "pass_rate_pct": 38.3
+  },
+  {
+   "name": "TTP 100K FLEX day",
+   "sizing": "dll_capped",
+   "window": "to book end",
+   "starts": 495,
+   "passes": 146,
+   "pass_rate_pct": 29.5
+  },
+  {
+   "name": "TTP 100K FLEX day",
+   "sizing": "dll_capped",
+   "window": "plan max_days=120",
+   "starts": 376,
+   "passes": 146,
+   "pass_rate_pct": 38.8
+  },
+  {
+   "name": "TTP 200K FLEX day",
+   "sizing": "g173_uncapped",
+   "window": "to book end",
+   "starts": 495,
+   "passes": 95,
+   "pass_rate_pct": 19.2
+  },
+  {
+   "name": "TTP 200K FLEX day",
+   "sizing": "g173_uncapped",
+   "window": "plan max_days=120",
+   "starts": 376,
+   "passes": 95,
+   "pass_rate_pct": 25.3
+  },
+  {
+   "name": "TTP 200K FLEX day",
+   "sizing": "dll_capped",
+   "window": "to book end",
+   "starts": 495,
+   "passes": 95,
+   "pass_rate_pct": 19.2
+  },
+  {
+   "name": "TTP 200K FLEX day",
+   "sizing": "dll_capped",
+   "window": "plan max_days=120",
+   "starts": 376,
+   "passes": 95,
+   "pass_rate_pct": 25.3
+  }
+ ],
+ "D_personal_sampling": {
+  "n_sessions": 495,
+  "mean_R": 0.03556,
+  "sd_R": 1.0838,
+  "dollars_per_day_at_1000": 35.56,
+  "dollars_per_day_at_100": 3.56,
+  "se_dollars_per_day": 48.71,
+  "boot_ci95": [
+   -59.92,
+   131.84
+  ],
+  "boot_p_le_zero": 0.2344,
+  "total_dollars_at_1000": 17601.0,
+  "best_single_day_dollars": 6000.0,
+  "best_day_pct_of_total": 34.1,
+  "top5_pct_of_total": 138.9,
+  "total_without_best_day": 11601.0,
+  "per_day_without_best_day": 23.48
+ },
+ "E_drawdown_order": {
+  "actual_maxdd": 21577.0,
+  "actual_pct_of_10k": 215.8,
+  "shuffle_median": 19370.0,
+  "shuffle_p05": 13098.0,
+  "shuffle_p95": 31436.0,
+  "pct_of_shuffles_worse": 35.5
+ },
+ "F_h1_is_a_prefix": {
+  "h1_first_day": "2024-09-03",
+  "full_first_day": "2024-09-03",
+  "h1_starts_on_the_same_day_as_full": true,
+  "h1_and_full_identical_months_to_event_on_all_8_rows": true,
+  "cells_reported": 30,
+  "independent_start_dates_evaluated": 1
+ }
+}
