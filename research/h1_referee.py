@@ -1,138 +1,151 @@
-"""H1 referee: re-derive every number in the H1 report from scratch.
+"""H1 referee, pass 2 -- re-derive every claim in the H1 repair (1f26cf73).
 
-Builder commit: 57f2fbd2 ("H1: one card per symbol -- 09-03 deck 5 eligible
-cards, 0 repeats").
-
-Checks, in order:
-  1. served_card_ids() -- how many manifest FILES it reads, how many ids, and
-     whether the 2026-09-03 s-blind deck he actually graded
-     (research/decks/omen-daily-2026-09-03-s10.html) is represented in it.
-  2. the 2026-09-03 rebuild with per_signal=False: card count, one-per-symbol,
-     overlap against marked_card_ids() | served_card_ids(), and WHICH of the
-     two sets does the excluding.
-  3. the production path: which scheduled runner builds the deck he grades and
-     what per_signal value it passes.
-  4. all S bars of a symbol on its one chart: render a real card and count the
-     cut lines in the SVG against the symbol's S bars.
+Nothing here trusts the builder's report or the builder's own test. Run:
 
     python research/h1_referee.py
+
+Checks:
+  1  served_card_ids(): manifest files vs ids, and whether the 09-03 -s10 deck's
+     own card ids are excluded.
+  2  the 2026-09-03 s-blind rebuild: cards, one-per-symbol, repeats.
+  3  all S bars on the one chart -- render the card and look at the SVG.
+  4  rerun safety: does a deck's own manifest block its own rebuild?
 """
 import glob
+import json
 import os
 import re
 import sys
+import shutil
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / "research"))
 
-import universe  # noqa: E402
+import universe            # noqa: E402
 import build_deck as deck  # noqa: E402
 import daily_homework as dh  # noqa: E402
 
 DAY = "2026-09-03"
-L = []
+DECKS = ROOT / "research" / "decks"
 
 
-def say(s=""):
-    print(s)
-    L.append(s)
-
-
-def main():
-    # ---- 1. served_card_ids coverage -------------------------------------
-    files = sorted(glob.glob(os.path.join(ROOT, "research", "**",
-                                          "*manifest*.jsonl"), recursive=True))
-    deckdir_manifests = [f for f in files
-                         if os.path.basename(os.path.dirname(f)) == "decks"]
+def check1():
+    print("=== 1. served_card_ids() coverage ===")
+    allman = sorted(glob.glob(str(ROOT / "research" / "**" / "*manifest*.jsonl"),
+                              recursive=True))
+    deckman = sorted(glob.glob(str(DECKS / "*manifest*.jsonl")))
     served = deck.served_card_ids()
-    marked = deck.marked_card_ids()
-    say("1. served_card_ids(): %d manifest files repo-wide, %d of them under "
-        "research/decks/, %d served symbol-days"
-        % (len(files), len(deckdir_manifests), len(served)))
-    say("   marked_card_ids(): %d judged symbol-days" % len(marked))
+    print("manifest files under research/      : %d" % len(allman))
+    print("manifest files under research/decks/: %d" % len(deckman))
+    for p in deckman:
+        rows = sum(1 for _ in open(p, encoding="utf-8") if _.strip())
+        print("   %-52s %4d rows" % (os.path.basename(p), rows))
+    print("served symbol-days total            : %d" % len(served))
 
-    # Is the 09-03 s-blind deck he graded in the served set at all?
-    html = (ROOT / "research" / "decks"
-            / ("omen-daily-%s-s10.html" % DAY)).read_text(encoding="utf-8",
-                                                          errors="replace")
+    # every id the -s10 deck he graded actually holds, straight out of the HTML
+    html = (DECKS / ("omen-daily-%s-s10.html" % DAY)).read_text(encoding="utf-8")
     cids = re.findall(r'data-cid="([^"]+)"', html)
-    deck_syms = sorted({c.split("_")[0] for c in cids})
-    say("   decks/omen-daily-%s-s10.html: %d cards, %d distinct symbols"
-        % (DAY, len(cids), len(deck_syms)))
-    manifest = ROOT / "research" / "decks" / ("omen-daily-%s-s10-manifest.jsonl" % DAY)
-    say("   its manifest exists: %s" % manifest.exists())
-    served_from_deck = [s for s in deck_syms if "%s_%s" % (s, DAY) in served]
-    marked_from_deck = [s for s in deck_syms if "%s_%s" % (s, DAY) in marked]
-    say("   of those %d symbols, served_card_ids() excludes %d %r"
-        % (len(deck_syms), len(served_from_deck), served_from_deck))
-    say("   of those %d symbols, marked_card_ids() excludes %d %r"
-        % (len(deck_syms), len(marked_from_deck), marked_from_deck))
-    missed = [s for s in deck_syms
-              if "%s_%s" % (s, DAY) not in (served | marked)]
-    say("   SERVED BUT STILL ELIGIBLE (the hole H1 was to close): %d %r"
-        % (len(missed), missed))
+    syms = sorted({c.split("_")[0] for c in cids})
+    print("cards in omen-daily-%s-s10.html: %d over %d symbols"
+          % (DAY, len(cids), len(syms)))
+    missing = [c for c in cids
+               if "%s_%s" % (c.split("_")[0], DAY) not in served]
+    print("card ids NOT excluded by served set : %d %s"
+          % (len(missing), sorted({m.split('_')[0] for m in missing})))
+    return len(cids), len(missing), syms
 
-    # ---- 2. the rebuild ---------------------------------------------------
-    seen = marked | served
-    core = list(universe.CORE_SYMBOLS)
-    already = sorted(s for s in core if "%s_%s" % (s, DAY) in seen)
-    cards, stats = dh.sblind_collect(DAY, core, per_signal=False)
-    syms = [c["symbol"] for c in cards]
-    ids = [c["cid"] for c in cards]
-    say()
-    say("2. rebuild %s, CORE_SYMBOLS (%d), per_signal=False" % (DAY, len(core)))
-    say("   already marked/served: %d %r" % (len(already), already))
-    say("   cards: %d %r" % (len(cards), sorted(syms)))
-    say("   one card per symbol: %s" % (len(syms) == len(set(syms))))
-    say("   repeats against marked|served: %d"
-        % len([i for i in ids if i in seen]))
-    say("   spec's verify line asks for 11 cards; got %d" % len(cards))
 
-    # ---- 3. the production path ------------------------------------------
-    say()
-    txt1615 = (ROOT / "research" / "daily_run.cmd").read_text(encoding="utf-8",
-                                                              errors="replace")
-    txt1105 = (ROOT / "research" / "daily_run_1105.cmd").read_text(
-        encoding="utf-8", errors="replace")
-    call1615 = [l.strip() for l in txt1615.splitlines()
-                if "daily_homework.py" in l]
-    call1105 = [l.strip() for l in txt1105.splitlines()
-                if "daily_homework.py" in l]
-    say("3. daily_run.cmd (16:15 reveal)  -> %r" % call1615)
-    say("   daily_run_1105.cmd (the deck he grades) -> %r" % call1105)
-    say("   11:05 runner still passes --per-signal: %s"
-        % any("--per-signal" in c for c in call1105))
+def check2(syms):
+    print()
+    print("=== 2. the %s rebuild (per_signal=False) ===" % DAY)
+    seen = deck.marked_card_ids() | deck.served_card_ids()
+    marked = {s for s in universe.CORE_SYMBOLS
+              if "%s_%s" % (s, DAY) in deck.marked_card_ids()}
+    servd = {s for s in universe.CORE_SYMBOLS
+             if "%s_%s" % (s, DAY) in deck.served_card_ids()}
+    eligible = [s for s in universe.CORE_SYMBOLS if "%s_%s" % (s, DAY) not in seen]
+    print("CORE_SYMBOLS       : %d %s" % (len(universe.CORE_SYMBOLS),
+                                          list(universe.CORE_SYMBOLS)))
+    print("graded that day    : %d %s" % (len(marked), sorted(marked)))
+    print("served that day    : %d %s" % (len(servd), sorted(servd)))
+    print("eligible           : %d %s" % (len(eligible), eligible))
+    cards, stats = dh.sblind_collect(DAY, universe.CORE_SYMBOLS, per_signal=False)
+    out = [c["symbol"] for c in cards]
+    print("rebuild cards      : %d %s" % (len(cards), out))
+    print("repeats vs seen    : %d"
+          % sum(1 for c in cards if c["cid"] in seen))
+    print("symbol dealt twice : %s" % ("yes" if len(out) != len(set(out)) else "no"))
+    return len(cards), len(eligible)
 
-    # ---- 4. all S bars on the one chart ----------------------------------
-    say()
-    hit = None
-    for c in cards:
-        sb = [i for i, _f in dh.s_bars(c["signals"])
-              if i is not None and i <= c["cut_i"]]
-        if len(sb) > 1:
-            hit = (c, sb)
-            break
-    if hit is None:
-        say("4. no rebuilt card has more than one S bar on its SHOWN tape.")
-        say("   Reason: classify() returns the FIRST S bar and sblind_collect")
-        say("   truncates bars[:cut_i+1], so later S bars are cut off screen.")
-        for c in cards:
-            allsb = [i for i, _f in dh.s_bars(c["signals"]) if i is not None]
-            if len(allsb) > 1:
-                say("   %s: S bars in the full 09:30-11:00 tape %r, card cut_i "
-                    "= %d, bars shown = %d -- %d S bar(s) NOT on the chart"
-                    % (c["symbol"], allsb, c["cut_i"], len(c["bars"]),
-                       len([i for i in allsb if i > c["cut_i"]])))
-    else:
-        c, sb = hit
-        h = dh.sblind_card_html(c, 1, len(cards))
-        cuts = re.findall(r'class="cut"', h)
-        say("4. %s: %d S bars on the shown tape %r, cut markers in the SVG: %d"
-            % (c["symbol"], len(sb), sb, len(cuts)))
-        say("   card cut_i = %d (last S bar = %d)" % (c["cut_i"], max(sb)))
+
+def check3():
+    print()
+    print("=== 3. all S bars on the one chart? ===")
+    rows = []
+    for sym in ("AMD", "AMZN", "META"):
+        bars, levels, trades = dh.day_signals(sym, DAY, cut=dh.BLIND_END)
+        if not bars:
+            print("  %s: no bars" % sym)
+            continue
+        at = {c.timestamp[:5]: i for i, c in enumerate(bars)}
+        sigs = [dict(dh._sig_row(t), i=at.get(t.entry_time[:5])) for t in trades]
+        sbars = [i for i, _f in dh.s_bars(sigs)]
+        kind, cut = dh.classify(sigs)
+        if cut is None:
+            print("  %s: no S bar" % sym)
+            continue
+        card = {"symbol": sym, "day": DAY, "kind": kind, "silent": False,
+                "cid": "%s_%s" % (sym, DAY), "cut_i": cut,
+                "cut_t": bars[cut].timestamp[:5],
+                "bars": [{"t": c.timestamp, "o": c.open, "h": c.high,
+                          "l": c.low, "c": c.close} for c in bars][:cut + 1],
+                "levels": levels, "signals": sigs}
+        html = dh.sblind_card_html(card, 1, 1)
+        on_tape = [i for i in sbars if i <= cut]
+        rows.append((sym, sbars, cut, len(on_tape), len(sbars) - len(on_tape)))
+        print("  %-5s S bars %-22s cut at %-4d on tape %d  cut off %d"
+              % (sym, sbars, cut, len(on_tape), len(sbars) - len(on_tape)))
+    # does the rendered SVG carry any per-S-bar cut mark at all?
+    if rows:
+        marks = len(re.findall(r'class="[^"]*cut[^"]*"', html))
+        print("  cut-line elements in the rendered SVG of the last card: %d" % marks)
+    return rows
+
+
+def check4():
+    print()
+    print("=== 4. rerun safety: does a deck's own manifest block its rebuild? ===")
+    tmpdir = ROOT / "research" / "_h1_referee_tmp"
+    tmpdir.mkdir(exist_ok=True)
+    man = tmpdir / "h1refereeprobe-manifest.jsonl"
+    day = "2026-09-04"
+    syms = ["TSLA", "AMZN", "QQQ", "SPY", "NVDA", "MU"]
+    try:
+        before, _ = dh.sblind_collect(day, syms, per_signal=False)
+        b = [c["symbol"] for c in before]
+        print("  first build  : %d cards %s" % (len(b), b))
+        with open(man, "w", encoding="utf-8") as f:
+            for c in before:
+                f.write(json.dumps({"card_id": "%s_%s" % (c["symbol"], day)}) + "\n")
+        after, _ = dh.sblind_collect(day, syms, per_signal=False)
+        a = [c["symbol"] for c in after]
+        print("  rebuild after its own manifest was written: %d cards %s"
+              % (len(a), a))
+        return len(b), len(a)
+    finally:
+        shutil.rmtree(tmpdir, ignore_errors=True)
 
 
 if __name__ == "__main__":
-    main()
+    n_cids, n_missing, syms = check1()
+    n_cards, n_elig = check2(syms)
+    rows = check3()
+    b, a = check4()
+    print()
+    print("SUMMARY: %d cards in the graded deck, %d of them still eligible; "
+          "rebuild %d cards (%d eligible symbols); S bars off the chart on "
+          "%d symbols; rerun %d -> %d cards"
+          % (n_cids, n_missing, n_cards, n_elig,
+             sum(1 for r in rows if r[4] > 0), b, a))
