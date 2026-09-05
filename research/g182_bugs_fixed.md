@@ -856,3 +856,66 @@ rule that swallowed them can no longer swallow a sixth.
   of this fix.
 - **Commit**: `b8acefd6` — "B3 B-14: un-ignore research/decks/**/*.html and
   recover 5 swallowed homework decks (base f8740f80)"
+
+---
+
+# B3 bug fixes — B-15
+
+Three scheduled tasks flagged as returning failure: one (OmenDailyHomework) was
+already fixed by another lane before this pass reached it; one (OmenSignalBot)
+was a Task Scheduler config bug, root-caused and fixed here; one
+(omen-corpus-harvest) lives in a different repo and is out of this row's scope.
+
+## B-15a — OmenDailyHomework (LastTaskResult 1)
+
+- **Root cause**: `research/daily_fetch.py`'s `demo()` self-check hard-asserted
+  `len(rth) >= 300` against the day's own file; on 2026-09-04 yfinance's
+  period-based pass under-delivered (90 of ~390 RTH bars) and the assert killed
+  the whole 16:15 run before a deck existed.
+- **Status**: already fixed and committed by another lane, `de6675bd` ("L4:
+  daily_fetch retries once on a short yfinance day, logs PARTIAL instead of
+  dying"), which descends from base `f8740f80`. Verified here by running
+  `research\daily_run.cmd` end to end on 2026-09-05: fetch step exits 0,
+  deck writes to `research/decks/omen-daily-2026-09-05.html`, both gates
+  (`regression_gate.py`, `test_universe_single_source.py`) PASS. No further
+  action taken — re-fixing an already-fixed bug would be a duplicate commit.
+
+## B-15b — OmenSignalBot (LastTaskResult 267014)
+
+- **Root cause**: 267014 decimal == `0x41306` == `SCHED_S_TASK_TERMINATED`,
+  Task Scheduler's own code, not an error from `run_daily.ps1` or
+  `live_scanner.py`. The task's `ExecutionTimeLimit` was `PT4H` (4 hours); the
+  script it runs starts at 09:25 ET and manages positions through
+  `live_scanner.py`'s `MANAGE_END` (default `"16:00"` ET, ~6h35m) before
+  `archive_1m.py` ever runs. Task Scheduler was killing the process mid-day,
+  every session, around 13:25 ET — before positions were managed to close and
+  before the end-of-day archive step ran. `live_scanner.py`'s `MANAGE_END` is
+  documented and intentional; the task's own time budget just never covered
+  it. No shared module was touched.
+- **Fix**: `Set-ScheduledTask` widened `OmenSignalBot`'s `ExecutionTimeLimit`
+  from `PT4H` to `PT8H` (a Task Scheduler property, not a repo file — nothing
+  under version control changes).
+- **Test**: `research/g183_signalbot_timelimit_test.py` reads the live task's
+  XML (`schtasks /query /tn OmenSignalBot /xml`) and asserts
+  `ExecutionTimeLimit` covers `StartBoundary` through `MANAGE_END` plus a
+  30-minute margin. Failed before the fix (240 min configured vs. 425 min
+  needed), passes after (480 min configured).
+- **Behaviour note**: this changes only how long the scheduled task is allowed
+  to run, not `live_scanner.py`'s logic, its signals, or its trades — the
+  script's own `MANAGE_END`/exit paths are unchanged. Not deferred.
+
+## B-15c — omen-corpus-harvest (LastTaskResult 4294967295 / 0xFFFFFFFF) — deferred, wrong repo
+
+- **Finding**: the task runs `C:\Users\aharg\Desktop\Scripts\omen-harvest.cmd`,
+  which `cd`s into `C:\Users\aharg\Desktop\Projects\omen-corpus` — a separate
+  repo with its own `CLAUDE.md`, not a tradingbot module. Its nightly log
+  (`omen-corpus\.scratch\logs\harvest.nightly.out`) shows the harvest actively
+  processing videos (`[1/121] ...`) with no fatal traceback at the point this
+  pass inspected it — consistent with either a long-running resumable job or a
+  Task Scheduler timeout/kill on that box's own schedule, not a code defect in
+  this repo.
+- **Deferred**: this row's file-writing law is scoped to `research/` in
+  `tradingbot`; diagnosing or editing `omen-corpus`'s scripts is out of scope
+  here. No fix attempted, no files touched outside this repo.
+
+- **Commit**: see below.
