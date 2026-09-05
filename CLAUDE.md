@@ -41,6 +41,15 @@ day he refused **62 times out of every 100** it trades (precision 39.5%). That g
 
 `research/g86_honest_ceiling.py` prints the table. Run it rather than quoting it.
 
+**Precision footnote (2026-09-05).** The 39.5% above is candidate-level precision — fired
+signals ÷ graded signals across the whole fired pool — and the spec's `>39.5%` target was
+never testable as written against a classifier that fires 1–3 times a day, because that
+classifier is scored on a different unit: **graded-day precision on the one-trade-a-day
+pick** (fired days he graded S ÷ fired days he graded), whose measured baseline is **30.5%
+(18/59)** (`research/g156_s_classifier_v0.md`). **Lane precision is the pick-level number —
+the bar is materially above 30.5% on the pick** — until Austin restates it. The 39.5%
+candidate-level figure stays in this file as the secondary read, not the gate.
+
 ## Why every dollar figure before 2026-08-30 was wrong
 
 The engine filled at the level even when the level sat **outside the bar** — a price that did not
