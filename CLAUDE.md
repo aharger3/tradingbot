@@ -183,7 +183,14 @@ lists; a test fails the build if a new one appears.
   fills at that close, and the **disaster stop** is a resting order at exactly 1R from
   entry that fills on an intrabar TOUCH. Because `DISASTER_STOP_R = 1.0`, the disaster
   order sits *on* the level stop, so nothing books worse than **−1.000R** — 0 of 2,216
-  losses in the two-year book do. The old "wicks stop nothing out / floored at −1.25R"
+  losses in the two-year book do, **on the blended trade-level `r` column**
+  (`backtest_week.py`'s `t.pnl / RISK_DOLLARS`, netting every scale-out fill against
+  the eventual stop-out). That is a different question from the **per-fill** column
+  (`stop_rule.per_fill_r_multiple`): on the pre-`ece08845` engine, 70 of 4,022
+  traded rows landed worse than −1.000R per fill (53 after the size gate, worst
+  −1.3333R) even though the blended column read 0 — ticket 19 (B-05), reconciled
+  2026-09-05, see `stop_rule.py`'s docstring. **Every −1R claim names its column.**
+  The old "wicks stop nothing out / floored at −1.25R"
   line described `research/exit_lab.py`, a lab model with no disaster stop that the
   shipped book never calls; the `verify:` gate was testing it instead of the real path
   until 2026-09-03. `stop_rule.py` owns the trigger, the fill and the floor.

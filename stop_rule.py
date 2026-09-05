@@ -41,6 +41,27 @@ so does Rule 6's break-even scale-out — both are limit orders that are simply
 there when price arrives. Only the STOP trigger moved to the close. Callers keep
 using the bar's high/low for those; there is deliberately no helper here for
 them, because they were never in dispute.
+
+**Ticket 19 (B-05), reconciled 2026-09-05 — two different "-1R" counts, two
+different columns, and both are right about what they measure:**
+
+* **Per-fill against original risk** (`per_fill_r_multiple` below): on the
+  pre-`ece08845` engine, 70 of 4,022 traded rows landed worse than -1.000R (53
+  after `signal_runner.min_risk_floor`'s size gate, worst -1.3333R, MARA
+  2025-12-15 put) — this was `stop_fill_price`'s own `MAX_LOSS_R = 1.25` clamp
+  firing. bbcfd5cf's "70 of 4,022" is this column.
+* **Blended trade-level R** (`backtest_week.py`'s `row["r"] = t.pnl /
+  RISK_DOLLARS`): nets every scale-out fill against the eventual stop-out, so it
+  reads 0 of 2,216 losses worse than -1.000R (1,448 sitting exactly on it) even
+  on a book where individual fills breached the clamp — an earlier leg's profit
+  absorbed the excess. ece08845's "0 rows" is this column, and CLAUDE.md's
+  "0 of 2,216" (Rules that hold everywhere) is this column too, correctly.
+
+Neither figure is wrong; neither book field lets you recover the other after
+the fact. `bt2y_trades_retest_on.json` was built 2026-09-02, before ece08845, so
+its blended "0" reflects the pre-fix engine's blended column — not a
+post-fix confirmation. **Every future -1R claim must name which of these two
+columns it read.**
 """
 
 
@@ -91,6 +112,30 @@ def stop_fill_price(close: float, entry: float, risk: float, long: bool,
     if long:
         return max(close, entry - floor_r * risk)
     return min(close, entry + floor_r * risk)
+
+
+def per_fill_r_multiple(fill_price: float, entry: float, risk: float, long: bool) -> float:
+    """The R-multiple of ONE fill against the trade's ORIGINAL risk. Ticket 19 (B-05).
+
+    This is the column that was missing everywhere, and its absence is why ticket 19
+    could not be settled by re-reading a book: `bt2y_trades_retest_on.json`'s ``"r"``
+    field is `backtest_week.py`'s ``t.pnl / RISK_DOLLARS`` -- BLENDED across every
+    fill on the trade (each scale-out's profit netted against the runner's eventual
+    stop-out, ``round(t.pnl / RISK_DOLLARS, 3)``). That column can show ``r == -1.0``
+    or better on a trade whose STOP LEG alone fired past -1.000R, because an earlier
+    scale-out's gain absorbed the excess -- it cannot be un-blended after the fact,
+    the per-leg fills are gone by the time ``"r"`` is written.
+
+    Call this per fill, at the moment you have that fill's price and the trade's
+    ORIGINAL ``entry``/``risk`` (same convention as `stop_fill_price` and
+    `disaster_stop_price` above -- never the moved stop), to get the number
+    bbcfd5cf's audit counted: "how far past -1R did THIS fill land". A caller
+    computing the blended trade-level number should keep using ``t.pnl /
+    RISK_DOLLARS``; the two are different questions and this module now has both.
+    """
+    if risk <= 0:
+        return 0.0
+    return (fill_price - entry) / risk if long else (entry - fill_price) / risk
 
 
 def stop_hit_on_wick(high: float, low: float, level: float, long: bool) -> bool:

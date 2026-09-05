@@ -299,3 +299,69 @@ same row's earlier convention.
 - `omen-rulebook.md` (vault): ticket 23 reconciled with a dated correction, no ruling changed.
 - `python research/regression_gate.py` and `python research/test_runner_stop.py`: both pass,
   unaffected — no engine module's runtime behaviour moved.
+
+---
+
+# g182 — B3 (bug B-05, ticket 19): the two "-1R" counts measure different columns
+
+What is different now: `stop_rule.py` gains `per_fill_r_multiple`, the missing per-fill
+R-multiple helper (against the trade's ORIGINAL entry/risk, same convention as
+`stop_fill_price`/`disaster_stop_price`), and its module docstring now reconciles ticket 19
+by name; `CLAUDE.md`'s "0 of 2,216 losses" line now says which column that is. No engine
+module's runtime behaviour changed — this is an additive helper plus documentation.
+
+## Confirmed: neither number was wrong, the column was undocumented
+
+- bbcfd5cf's "70 of 4,022 traded rows worse than -1.000R" (53 after
+  `signal_runner.min_risk_floor`'s size gate, worst -1.3333R, MARA 2025-12-15 put) is the
+  **per-fill** column: each fill's price against that trade's ORIGINAL `entry`/`risk`. No
+  function in the codebase computed this — it existed only as an ad hoc calculation in
+  whatever script produced bbcfd5cf's number.
+- ece08845's "0 rows worse than -1.000R" is the **blended trade-level** column,
+  `backtest_week.py`'s `row["r"] = round(t.pnl / RISK_DOLLARS, 3)` — it nets every scale-out
+  fill's P&L against the eventual stop-out's, so a trade can read >= -1.000R blended even
+  when its stop leg alone breached the clamp.
+- `bt2y_trades_retest_on.json` carries only the blended `r` column, so bbcfd5cf's 70 cannot
+  be re-derived from it after the fact — the per-leg fills are gone by the time `r` is
+  written. That book was also built 2026-09-02, before `ece08845`, so reading its blended
+  "0" as post-fix confirmation is wrong regardless of column: it is the pre-fix engine's
+  blended number, which already read 0 (the clamp firing on one leg is routinely absorbed
+  by another leg's gain in the blended sum).
+- Verified directly against `bt2y_trades_retest_on.json`: traded 4,022; blended `r < -1.0` =
+  0; `r == -1.0` = 1,448; losses (`r<0`) = 2,216 — matching CLAUDE.md's "0 of 2,216" exactly,
+  confirming it already read the blended column correctly, just without naming it.
+
+## Fixed: `stop_rule.py`
+
+Added `per_fill_r_multiple(fill_price, entry, risk, long)` — the per-fill R-multiple against
+original risk, symmetric to `stop_fill_price`/`disaster_stop_price`'s existing convention
+(risk taken from the caller, never re-based on a moved stop). It has no caller yet in any
+shipped rig (purely additive), so nothing's live signal counts or trade behaviour moved.
+Module docstring gets a dated ("Ticket 19 (B-05), reconciled 2026-09-05") section stating
+both columns' numbers side by side and which script/file produced each.
+
+`CLAUDE.md`'s "Rules that hold everywhere" bullet now says the "0 of 2,216" figure is the
+blended column, cites the 70-of-4,022 per-fill figure as the same book's other column, and
+states the rule going forward: every -1R claim names its column.
+
+## Test: `research/test_g182_b05_per_fill_r.py` (new)
+
+Before: `stop_rule.per_fill_r_multiple` does not exist -> `AttributeError`, both tests fail.
+After: 2 passed — asserts the per-fill number matches `stop_fill_price`'s own clamp math
+(a fill clamped to -1.25R per-fill reads -1.25R via the new function), and constructs a
+worked two-leg trade where the per-fill column reads worse than -1.000R while the blended
+column (computed the same way `backtest_week.py` does) reads >= -1.000R — reproducing, in
+miniature, exactly the discrepancy ticket 19 named.
+
+Verify gate: `python research/regression_gate.py && python research/test_runner_stop.py` —
+both PASS, unaffected (new helper function is unused by any existing caller; docstring/
+CLAUDE.md are documentation-only).
+
+## Status: done
+
+- `stop_rule.py`: `per_fill_r_multiple` added, docstring reconciles ticket 19.
+- `CLAUDE.md`: "0 of 2,216" line now names its column and cites the per-fill figure.
+- `research/test_g182_b05_per_fill_r.py`: 2 passed (fails before, per `AttributeError`
+  reproduced above; passes after).
+- `python research/regression_gate.py` and `python research/test_runner_stop.py`: both pass,
+  unaffected — no engine module's runtime behaviour moved.
