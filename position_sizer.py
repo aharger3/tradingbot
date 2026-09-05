@@ -3,11 +3,19 @@
 from dataclasses import dataclass
 from typing import Literal
 
+from options_sizer import DEFAULT_DELTA
+
 
 CONTRACT_MULTIPLIER = 100  # 1 option contract = 100 shares
 DEFAULT_MAX_LOSS = 1000.0  # $1K risk per trade per rules.md
 DEFAULT_RR = 2.0           # 2:1 reward:risk target
 MIN_VIABLE_STOP_PCT = 0.005  # 0.5% min stop width — tighter rejected at signal level
+# B-06 (OMEN 9.0 B3, 2026-09-05): was a local 0.5 ("ATM ~0.5"), never measured,
+# same wrong constant options_sizer.py already fixed at R6 (research/g95_delta_fix.md).
+# This module has no live-order path (paper_trader/broker route through
+# options_sizer, which already imports the true DEFAULT_DELTA) -- compute_plan
+# only feeds signal_runner's console print and discord_bot's embed, so this
+# fix corrects the DISPLAYED contract estimate, not any placed order.
 
 
 @dataclass
@@ -33,7 +41,7 @@ class SizingPlan:
             f"Entry: ${self.stock_entry:.2f}\n"
             f"Stop:  ${self.stock_stop:.2f}  (risk ${self.stock_risk_per_share:.2f}/sh)\n"
             f"Target: ${self.stock_target:.2f}  (reward ${self.stock_reward_per_share:.2f}/sh = 2R)\n"
-            f"~Contracts: {self.contracts_estimated} (ATM ~0.5 delta)\n"
+            f"~Contracts: {self.contracts_estimated} (delta ~{DEFAULT_DELTA})\n"
             f"Max loss: ${self.max_loss:.0f}  |  Max reward: ${self.max_reward:.0f}\n"
             f"Sizing formula: {self.contracts_formula}"
         )
@@ -45,14 +53,15 @@ def compute_plan(
     direction: Literal["call", "put"] = "call",
     max_loss: float = DEFAULT_MAX_LOSS,
     rr: float = DEFAULT_RR,
-    assumed_delta: float = 0.5,
+    assumed_delta: float = DEFAULT_DELTA,
 ) -> SizingPlan:
     """
     Build trade plan from signal entry + stop.
 
     Stock entry/stop come from candle data. Option contracts estimated using
-    a delta heuristic (ATM ~0.5). For exact contract count, Austin plugs the
-    real option premium into contracts_formula.
+    a delta heuristic (measured DEFAULT_DELTA, imported from options_sizer).
+    For exact contract count, Austin plugs the real option premium into
+    contracts_formula.
     """
     if direction == "call":
         if stock_stop >= stock_entry:
