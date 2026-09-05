@@ -90,6 +90,7 @@ import argparse
 import gzip
 import json
 import os
+import re
 import subprocess
 import sys
 from datetime import date
@@ -341,6 +342,24 @@ def append_cycle_row(cycle_no, label, flag, decision, before, after, h1v, h2v,
         f.write(row)
 
 
+def apply_universe_filter(rows, universe_cfg):
+    """L2 referee repair (research/l2_referee.md): the config declares
+    `universe.row_filter` (e.g. 'tier == "core"') but this script never applied
+    it -- every gate priced the full archived pool while the config, the spec
+    and every report named the filtered slice. Only an equality filter on a
+    single row field is supported (`FIELD == "VALUE"`); that is the only shape
+    any config has used so far."""
+    if not universe_cfg or not universe_cfg.get("row_filter"):
+        return rows
+    expr = universe_cfg["row_filter"]
+    m = re.match(r'^\s*(\w+)\s*==\s*"([^"]*)"\s*$', expr)
+    if not m:
+        raise SystemExit("loop.json universe.row_filter is not a supported "
+                         "expression (need FIELD == \"VALUE\"): %r" % expr)
+    field, value = m.group(1), m.group(2)
+    return [r for r in rows if r.get(field) == value]
+
+
 def load_state() -> dict:
     if STATE_JSON.exists():
         return json.loads(STATE_JSON.read_text(encoding="utf-8"))
@@ -356,6 +375,8 @@ def stage_gate(cfg: dict, flag: str, label: str, dry_run: bool) -> dict:
 
     off_meta, off_rows = load_book_any(off_path)
     on_meta, on_rows = load_book_any(on_path)
+    off_rows = apply_universe_filter(off_rows, cfg.get("universe"))
+    on_rows = apply_universe_filter(on_rows, cfg.get("universe"))
     unit, boundary = cfg["unit"], cfg["halves_boundary"]
 
     before = compute_all(off_meta, off_rows, unit, boundary)

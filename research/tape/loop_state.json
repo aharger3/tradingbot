@@ -1,6 +1,6 @@
 {
-  "cycle_count": 3,
-  "consecutive_holds": 3,
+  "cycle_count": 2,
+  "consecutive_holds": 2,
   "target_met": false,
   "history": [
     {
@@ -18,22 +18,13 @@
       "flag": "RULE84_DECIDED",
       "label": "the 84% re-entry as decided on the call",
       "decision": "hold",
-      "dollars_per_day_before": -9.0,
-      "dollars_per_day_after": -16.0,
-      "green_before": 12,
-      "green_after": 12
-    },
-    {
-      "cycle": 3,
-      "flag": "RULE84_DECIDED",
-      "label": "the 84% re-entry as decided on the call",
-      "decision": "hold",
-      "dollars_per_day_before": -9.0,
-      "dollars_per_day_after": -16.0,
-      "green_before": 12,
-      "green_after": 12
+      "dollars_per_day_before": -52.0,
+      "dollars_per_day_after": -57.0,
+      "green_before": 11,
+      "green_after": 11
     }
   ],
   "stop": false,
-  "stop_reason": null
+  "stop_reason": null,
+  "_repair_note": "L2 referee repair 2026-09-05: the two RULE84_DECIDED entries here (cycles 2 and 3) were dropped -- both were priced on the unfiltered 28-symbol pool (loop_cycle.py never applied loop.json's universe.row_filter) and the second was a byte-identical re-append of the first, double-counting one experiment as two consecutive holds. loop_cycle.py now applies the row_filter; re-running --stage gate for RULE84_DECIDED appends the corrected core-11 cycle below as the new cycle 2."
 }

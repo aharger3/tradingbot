@@ -50,32 +50,37 @@ change, not a rewrite.
 Fill = close (shipped `ENTRY_FILL` default). Exit = shipped engine: 1R hard
 stop, resting order at the level, intrabar-touch fill; `SCALE_PLAN=
 hod_then_runner_be`; account-wide two-loss halt on. Unit =
-`up_to_3_stop_win_or_2loss` on `universe.CORE_SYMBOLS` (core-11), his day
-policy — up to 3 fired-and-traded signals a day in arrival order, stop after
-the first win or the second loss. Script: `research/loop_cycle.py` ->
-`backtest_2y.py --days 730`.
+`up_to_3_stop_win_or_2loss` on `universe.CORE_SYMBOLS` (core-11, `tier ==
+"core"`), his day policy — up to 3 fired-and-traded signals a day in arrival
+order, stop after the first win or the second loss. Script:
+`research/loop_cycle.py` -> `backtest_2y.py --days 730`.
 
 | | trades | $/day before→after | mean R before→after | green months before→after | gate |
 |---|---:|---:|---:|---:|---|
-| whole (25 mo) | 773 | -$9 → -$16 | -0.0059 → -0.0103 | 12/25 → 12/25 | — |
-| H1 (12 mo) | 378 | $72 → $58 | 0.0472 → 0.0381 | 8/12 → 8/12 | **FAIL** (-19.4%, exceeds the 5% no-regression ceiling) |
-| H2 (13 mo) | 395 | -$89 → -$89 | -0.0567 → -0.0567 | 4/13 → 4/13 | pass (no change) |
+| whole (25 mo) | 769 | -$52 → -$57 | -0.0335 → -0.0371 | 11/25 → 11/25 | — |
+| H1 (12 mo) | 382 | $9 → -$8 | 0.0057 → -0.0052 | 6/12 → 6/12 | **FAIL** (sign flip, below the 5% no-regression floor) |
+| H2 (13 mo) | 387 | -$111 → -$106 | -0.0722 → -0.0686 | 5/13 → 5/13 | pass |
 
 **Decision: HOLD.** `RULE84_DECIDED` stays OFF. H1 alone fails the
-no-regression gate (a $/day drop past the 5% ceiling), so per the row's own
-rule both halves must pass and this one doesn't. `research/tape/cycles.md`
-and `research/tape/loop_state.json` both carry this cycle
-(`target_met: false`, `stop: false`, `consecutive_holds: 3`).
+no-regression gate, so per the row's own rule both halves must pass and this
+one doesn't. `research/tape/cycles.md` and `research/tape/loop_state.json`
+both carry this cycle (`target_met: false`, `stop: false`,
+`consecutive_holds: 2`).
 
-## The row readouts (all-29 book, both fired and traded, since the arm/reclaim
-mechanics live upstream of the day-policy unit)
+## The row readouts (all-28 archived book, both fired and traded, since the
+arm/reclaim mechanics live upstream of the day-policy unit)
 
-| | fired (all 29 syms) | fired/day | traded | traded/day | mean R (traded) | share of all traded rows |
+"Fired" below counts only rows with `status == "fired"` — not every row the
+84%-rule setup produced at any status, which is a larger, unrelated number
+(542 OFF / 200 ON; see Refereed).
+
+| | fired (all 28 syms) | fired/day | traded | traded/day | mean R (traded) | share of all traded rows |
 |---|---:|---:|---:|---:|---:|---:|
-| OFF | 542 | 1.086 | 56 | 0.112 | +0.061R | 1.38% |
-| ON | 200 | 0.401 | 20 | 0.040 | +0.036R | 0.50% |
+| OFF | 124 | 0.249 | 56 | 0.112 | +0.061R | 1.38% |
+| ON | 39 | 0.078 | 20 | 0.040 | +0.036R | 0.50% |
 
-Core-11 slice: OFF fires 238 (18 traded); ON fires 95 (9 traded).
+Core-11 slice (`tier == "core"`): OFF fires 53 (18 traded); ON fires 20 (9
+traded).
 
 **Sample-size rule: neither traded column clears 30 trades.** 56 (OFF) and 20
 (ON) are both under the 30-trade floor this project holds every verdict to —
@@ -86,10 +91,16 @@ to describe the funnel.
 otherwise), joined by symbol/day/level-price to the nearest prior stopped-out
 row before the re-entry's own timestamp
 
-| | S | A | C | total 84%-rule fires (all 29 syms) |
+| | S | A | C | total 84%-rule rows at any status (all 28 syms) |
 |---|---:|---:|---:|---:|
 | OFF (no arm-grade gate) | 78 | 138 | 326 | 542 |
 | ON (RULE84_DECIDED) | 69 | 116 | **15** | 200 |
+
+**Note (referee, 2026-09-05): the 542/200 denominator here is every 84%-rule
+row at any status, the same wider count the funnel table above corrected away
+from — it is not the 124/39 "fired" count. This join was not independently
+re-derived by the referee; only the funnel and gate tables above were. Read
+the S/A/C split as approximate on an approximate (unverified) denominator.
 
 This is a nearest-match join (symbol, day, level price within 2 cents, before
 the reclaim bar), not a stored foreign key — the code has no such reference,
@@ -109,12 +120,66 @@ share to about a third.
 ## Bottom line
 
 Every A/B in this repo moves less than its own error bar, and this one is no
-exception — the whole-book move (-$9 → -$16/day) is small next to the
+exception — the whole-book move (-$52 → -$57/day) is small next to the
 per-trade noise. What actually gates the decision is durability, not $/day:
 H1's $/day fell more than 5%, which is the no-regression line this loop
 enforces on every half. Held, not shipped. No number here should be read as
 "the 84% rule is bad" — only that this particular tightening does not clear
 the bar this loop was built to enforce, on this book, on this unit.
+
+## Refereed (2026-09-05, `research/l2_referee.md` / `research/l2_referee.py`)
+
+The referee refuted the original version of this report on three points.
+**The hold survives on both pools** — that verdict did not change. Fixed:
+
+1. **Wrong lane priced as core-11.** `research/loop_cycle.py` never applied
+   `research/tape/loop.json`'s `universe.row_filter` (`tier == "core"`), so
+   the gate table above priced the whole 28-symbol archived pool while every
+   line of this report, `cycles.md` and the ntfy push named core-11.
+   **Fixed**: added `apply_universe_filter()` to `loop_cycle.py`, called from
+   `stage_gate` on both arms before any figures are computed. Re-ran
+   `--stage gate` on the same two books (`book_RULE84_DECIDED_{off,on}
+   .json.gz`, unchanged, still stamped at `7fb977f7`) — the gate table above
+   is that corrected run. The old full-pool numbers were 773 trades, -$9 →
+   -$16/day whole, H1 $72 → $58 (a false pass reading — the halves table
+   above is the one that governs the decision), H2 -$89 → -$89, 12/25 → 12/25
+   green. The correct core-11 numbers (used above) are 769/-$52→-$57,
+   H1 $9→-$8 (**fails**, not the old "pass"), H2 -$111→-$106, 11/25→11/25
+   green. `research/loop_cycle.py`'s `apply_universe_filter` is a generic
+   `FIELD == "VALUE"` reader, not a special case for this row's flag, so
+   every future L-row's gate is filtered correctly by default now.
+2. **"Fired" column was every 84%-rule row at any status, not fires.** The
+   row-readouts table above now reads `status == "fired"` only (124 → 39
+   all-28, 53 → 20 core-11), replacing the old 542 → 200, which were total
+   rows the setup produced (fired, skipped, everything). Fires/day corrected
+   from the old 1.086 → 0.401 (4.4x high) to 0.249 → 0.078, which now agrees
+   with this report's own 1.14% → 0.36% share-of-fired line (that line was
+   already computed from the correct counts, which is how the referee caught
+   the mismatch).
+3. **Cycle double-counted.** An earlier `--stage gate` run had appended the
+   (wrong, full-pool) cycle to `research/tape/cycles.md` and
+   `research/tape/loop_state.json` twice — `loop_state.json` read
+   `consecutive_holds: 3` off two experiments (MIN_PT1_R + one RULE84_DECIDED
+   run counted as two). Removed both stale rows/history entries, re-ran
+   `--stage gate` once with the fixed script; `cycles.md` and
+   `loop_state.json` now carry exactly one (corrected) RULE84_DECIDED cycle
+   (`cycle: 2`, `consecutive_holds: 2`).
+
+Not fixed, and not fixable inside this row's one-change budget — kept as
+named limitations:
+
+- **Stale rulebook citation.** `omen_recall.py` on "84% rule arming" also
+  surfaces `omen-rulebook.md`'s 2026-08-28 Batch 03 line ("The 84% rule arms
+  on any grade ... No grade gate at arming"), which conflicts with the
+  implemented S/A arm gate. The 2026-09-05 call superseded that line (this
+  row's implementation matches the call, which is law per the spec), but
+  `omen-rulebook.md` itself is not marked superseded. That is a documentation
+  edit to a file this row does not own — flagging it, not fixing it.
+- **One flag, two mechanisms, one H1 failure.** `RULE84_DECIDED` bundles the
+  S/A arm gate and the candle-range reclaim tolerance (both named in the same
+  spec sentence, one composite flag by the row's own instruction). H1's
+  failure cannot be attributed to one or the other from this book alone —
+  isolating them would be a second flag, which is out of scope for this row.
 
 ## What this does NOT establish
 
