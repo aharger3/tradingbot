@@ -33,8 +33,9 @@ sys.path.insert(0, ROOT)
 
 import grade_read
 import build_deck
+from universe import INDEX_POOL
 
-INDEX_SYMBOLS = {"QQQ", "SPY", "IWM"}
+INDEX_SYMBOLS = frozenset(INDEX_POOL)
 PERFECT_KEYWORDS = {"perfect", "clean", "textbook", "beautiful", "great"}
 
 
