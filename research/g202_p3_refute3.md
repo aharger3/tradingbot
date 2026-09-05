@@ -181,3 +181,30 @@ is both reproducible and executable, and it is 0.9% of the $397/day bar.
 
 Direction unchanged: **no Trade The Pool row is fundable, and $10k is not fundable.** The reasons
 in the P3 report and in the morning report's funding table are wrong and should be restated.
+
+---
+
+## 6. Independent second pass, 2026-09-05 (wave 2 re-dispatch of refuter #3)
+
+This row was re-dispatched and re-run from scratch on HEAD `d19e5fcf` by a second agent that had
+not read the section above. It reached the same three conclusions independently, which is the
+reason this section exists rather than a rewrite — the findings below are confirmation, not new
+claims.
+
+| check | second pass | agrees with above |
+|---|---|---|
+| `g173_shares_personal_refresh.py` re-run, md5 of both outputs | `4113849f…` / `f9e82c81…`, `diff` empty | yes |
+| zero-edge placebo (r = 0), 8 TTP rows | `profit_target_not_reached` on 8/8, **0/8 breach a loss limit**; personal $0.00/day, DD $0 | yes |
+| `daily_loss_limit_pct` dropped in `g173.pool_series_for_account` | confirmed; 61.6% of trades on 25K MAX risk more than the whole $250 daily limit (mean risk $372) | yes |
+| DLL share cap re-armed per plan row | 8/8 still FAIL, all on `trailing_drawdown`, earliest 0.329 mo; 25K MAX 0.0 → 0.329, 100K MAX 0.23 → 0.427 | yes |
+| personal $1,000/trade by half | H1 +$140.29/day · H2 −$69.60/day, **H2 wipes** (min equity −$8,071) | yes |
+| order-shuffle wipe rate, $1,000/trade | **686 / 2,000 orderings wipe (34.3%)**, max DD p50 $19,195 / p95 $30,739, min equity p05 −$10,964 (independent seed 20260905, 2,000 draws vs the 1,000 above) | yes — 34.3% vs 37.7% is the same finding at a different draw count |
+
+One point the second pass adds explicitly: **"net −$97 to −$1,100" is not a measurement.** On every
+FAIL row `net_after_cost = −eval_fee`, so that range is Trade The Pool's own fee schedule copied out
+of `g71_propfirm_sim.py::FIRMS`. It contains no information about this engine and must not be read
+as a P&L result in the morning report or the funding-ladder table.
+
+Verdict unchanged: **REFUTED as stated, direction upheld** — no TTP row is fundable and $10k is not
+fundable, but the stated failure mechanism ("daily loss limit"), the stated timing ("0.0 months"),
+the "net" range, and the personal $35.56/day headline are each wrong for a different reason.
