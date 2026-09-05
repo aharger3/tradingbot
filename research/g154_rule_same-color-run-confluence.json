@@ -1,0 +1,132 @@
+{
+  "row": "F5",
+  "slug": "same-color-run-confluence",
+  "predicate": "run_len = count of consecutive bars ending at entry_i-1 with the same sign(close-open), walking backward, index <= entry_i-1 only. Buckets: isolated {0,1}, short_run {2,3}, long_run >=4.",
+  "polarity": "S-indicator (spec's stated default reading), but flagged two-sided by the row itself -- NVDA_2026-06-25 grades two green candles at the open as LESS clean, the opposite of this arm's hypothesis. NOT summed into any score.",
+  "n_days_total": 498,
+  "candidates_per_day": 16.52,
+  "buckets": {
+    "isolated": {
+      "n": 4709,
+      "share_pct": 57.2,
+      "mean_r": -0.032,
+      "s_rate_pct": 30.9,
+      "graded_s": 171,
+      "graded_any": 553
+    },
+    "short_run": {
+      "n": 3063,
+      "share_pct": 37.2,
+      "mean_r": -0.0209,
+      "s_rate_pct": 29.1,
+      "graded_s": 104,
+      "graded_any": 357
+    },
+    "long_run": {
+      "n": 455,
+      "share_pct": 5.5,
+      "mean_r": -0.001,
+      "s_rate_pct": 32.3,
+      "graded_s": 20,
+      "graded_any": 62
+    },
+    "_unreadable": 0,
+    "_total_readable": 8227
+  },
+  "baseline": {
+    "overall": {
+      "n": 498,
+      "usd_day": 33.93,
+      "mean_r": 0.0339,
+      "win_pct": 46.5,
+      "green_months": 13,
+      "months": 25,
+      "max_dd": -21404.68
+    },
+    "H1": {
+      "n": 249,
+      "usd_day": 135.71,
+      "mean_r": 0.1357,
+      "win_pct": 49.6,
+      "green_months": 9,
+      "months": 12,
+      "max_dd": -13978.64
+    },
+    "H2": {
+      "n": 249,
+      "usd_day": -67.85,
+      "mean_r": -0.0678,
+      "win_pct": 43.4,
+      "green_months": 4,
+      "months": 13,
+      "max_dd": -21404.68
+    },
+    "fires_per_day": 1.0,
+    "s_recall_100": {
+      "pct": 5.9,
+      "hit": 2,
+      "n": 34
+    },
+    "s_recall_all_bar_backed": {
+      "pct": 5.2,
+      "hit": 18,
+      "n": 347
+    },
+    "precision": {
+      "pct": 30.5,
+      "graded_s": 18,
+      "graded_any": 59
+    }
+  },
+  "primary_arm": {
+    "keep": "short_run (run_len in {2,3})",
+    "candidates_dropped_pct": 62.77,
+    "overall": {
+      "n": 486,
+      "usd_day": 39.13,
+      "mean_r": 0.0391,
+      "win_pct": 47.6,
+      "green_months": 14,
+      "months": 25,
+      "max_dd": -17592.74
+    },
+    "H1": {
+      "n": 242,
+      "usd_day": 26.44,
+      "mean_r": 0.0264,
+      "win_pct": 46.9,
+      "green_months": 5,
+      "months": 12,
+      "max_dd": -16512.78
+    },
+    "H2": {
+      "n": 244,
+      "usd_day": 51.72,
+      "mean_r": 0.0517,
+      "win_pct": 48.4,
+      "green_months": 9,
+      "months": 13,
+      "max_dd": -17592.74
+    },
+    "fires_per_day": 0.976,
+    "s_recall_100": {
+      "pct": 0.0,
+      "hit": 0,
+      "n": 34
+    },
+    "s_recall_all_bar_backed": {
+      "pct": 6.1,
+      "hit": 21,
+      "n": 347
+    },
+    "precision": {
+      "pct": 35.6,
+      "graded_s": 21,
+      "graded_any": 59
+    }
+  },
+  "h1_delta_usd_day": -109.27,
+  "h2_delta_usd_day": 119.57,
+  "survivor": false,
+  "notes": "Three buckets reported separately (isolated / short_run / long_run), never summed into a score -- see 'buckets' above for S rate and mean R per bucket. The candidate arm tests only the spec's stated default reading: keep the day's first candidate only if it falls in short_run (run_len 2-3), i.e. the 'additive to displacement' hypothesis, else fall through to the next candidate that day (same pick-then-gate logic as omen_metrics.first_of_day_arm). survivor = True only if H1 AND H2 both improve $/day (or precision improves) and S-recall-100 does not fall below baseline. The isolated-candle counter-reading from NVDA_2026-06-25 is NOT separately armed here -- one card is a hint, not a rule, per the no-oversell instruction -- but the bucket table lets that counter-reading be checked against the whole book's S rate and realized R."
+}
