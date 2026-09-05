@@ -46,6 +46,7 @@ research/*.bak
 research/*.backup
 research/*.raw
 research/*.html
+research/g215_precision.json
 research/worklists.bak-*/
 research/research/
 research/.corpus_status_mark
