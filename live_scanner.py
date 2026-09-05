@@ -143,6 +143,14 @@ from signal_runner import SignalRunner
 # nothing below changes what trades.
 from signal_runner import ENABLE_SAC_LADDER as _LIVE_ENABLE_SAC_LADDER
 from signal_runner import SAC_LADDER_VARSET as _LIVE_SAC_LADDER_VARSET
+# OMEN 9.0 O2: same read-only pattern as the SAC ladder flags above.
+# DAY_POLICY/ENTRY_WINDOW_END genuinely change what fires (wired below);
+# FIRE_A_WHEN_NO_S/VETO_1D are stamped for reporting only -- see
+# signal_runner.py's flag block for why they do not gate live entries.
+from signal_runner import DAY_POLICY as _LIVE_DAY_POLICY
+from signal_runner import ENTRY_WINDOW_END as _LIVE_ENTRY_WINDOW_END
+from signal_runner import FIRE_A_WHEN_NO_S as _LIVE_FIRE_A_WHEN_NO_S
+from signal_runner import VETO_1D as _LIVE_VETO_1D
 from tastytrade_feed import TastytradeFeed
 import notify_ntfy                     # the phone lane; never raises (ticket 01)
 from signal_tracker import log_signal
@@ -478,6 +486,15 @@ def _write_scanner_status(symbols, signals_today, session, regime_action,
             "enable_sac_ladder": _LIVE_ENABLE_SAC_LADDER,
             "sac_ladder_varset": _LIVE_SAC_LADDER_VARSET,
             "book_default_enable_sac_ladder": False,  # backtest_2y.py never sets it
+            # OMEN 9.0 O2: day_policy/entry_window_end are live-effective
+            # (wired via MAX_TRADES_PER_DAY/CONSECUTIVE_LOSS_HALT and the
+            # entry-cutoff check below). fire_a_when_no_s/veto_1d are
+            # stamped as read but do not gate live entries -- see
+            # signal_runner.py's flag block.
+            "day_policy": _LIVE_DAY_POLICY,
+            "entry_window_end": _LIVE_ENTRY_WINDOW_END,
+            "fire_a_when_no_s": _LIVE_FIRE_A_WHEN_NO_S,
+            "veto_1d": _LIVE_VETO_1D,
         },
     }
     SCANNER_STATUS_PATH.parent.mkdir(parents=True, exist_ok=True)
@@ -552,10 +569,17 @@ def scan_once(
     if NEWS_HALT["active"]:
         entries_ok = False
         print("  News-day halt (skip-news ON) — marking only, no new entries")
-    elif ENTRY_CUTOFF and not getattr(runner, "futures_mode", False) \
-            and now_et().strftime("%H:%M") >= ENTRY_CUTOFF:
-        entries_ok = False
-        print(f"  Entry cutoff {ENTRY_CUTOFF} passed — marking only, no new entries")
+    else:
+        # OMEN 9.0 O2: ENTRY_WINDOW_END can only tighten the cutoff, never
+        # loosen it -- the effective cutoff is whichever fires first.
+        # Default "11:00" == ENTRY_CUTOFF's own default, so this changes
+        # nothing unless ENTRY_WINDOW_END=09:45 is set explicitly.
+        _effective_cutoff = min(ENTRY_CUTOFF, _LIVE_ENTRY_WINDOW_END) \
+            if ENTRY_CUTOFF else _LIVE_ENTRY_WINDOW_END
+        if _effective_cutoff and not getattr(runner, "futures_mode", False) \
+                and now_et().strftime("%H:%M") >= _effective_cutoff:
+            entries_ok = False
+            print(f"  Entry cutoff {_effective_cutoff} passed — marking only, no new entries")
 
     # F4 Rule 4: QQQ key-level break state, once per cycle, shared across the
     # watchlist (skip in futures mode — QQQ context irrelevant there).
@@ -1409,6 +1433,17 @@ def main():
     seen: Set[str] = set()
     max_trades = int(os.getenv("MAX_TRADES_PER_DAY", "3"))
     max_losses = int(os.getenv("CONSECUTIVE_LOSS_HALT", "2"))
+    # OMEN 9.0 O2: DAY_POLICY=one_and_done overrides both to 1 outright.
+    # It cannot merely change what "unset" means the way ENTRY_WINDOW_END
+    # does below (min() against ENTRY_CUTOFF) -- .env pins MAX_TRADES_PER_DAY
+    # /CONSECUTIVE_LOSS_HALT to 3/2 unconditionally (`_load_env_file` only
+    # fills a key that is not already in os.environ), so an "if unset"
+    # override would never fire against a real deployment's .env. DAY_POLICY
+    # =first3 (the default) leaves max_trades/max_losses exactly as they
+    # were before this flag existed.
+    if _LIVE_DAY_POLICY == "one_and_done":
+        max_trades = 1
+        max_losses = 1
     runner.session.max_signals_per_day = max_trades
 
     # Feed: futures (yfinance) or Tastytrade (candles + real-time option quotes).

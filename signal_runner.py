@@ -689,6 +689,90 @@ MIN_RISK_ATR_MULT = 0.05
 ENABLE_DOWNGRADE_GRADER = os.getenv(
     "ENABLE_DOWNGRADE_GRADER", "0").strip().lower() in ("1", "true", "yes", "on")
 
+# OMEN 9.0 O2 (2026-09-05): the four selection-arm flags swept by O1's
+# 16-arm grid (research/g160_tweak_grid.py) over the shipped
+# RETEST_REQUIRED book. O1's adversarial pass REFUTED shipping any grid
+# arm as a new default -- no arm, baseline included, was positive in both
+# H1 and H2 (research/g161_tweaks_shipped.md) -- so every default below
+# reproduces TODAY'S shipped behavior. Flipping one is a measurement
+# experiment, not a rollout.
+#
+#   DAY_POLICY        "first3" (default, matches omen_bot.Session's shipped
+#                      max_signals_per_day=3 / CONSECUTIVE_LOSS_HALT=2) or
+#                      "one_and_done" (stop after the day's first trade,
+#                      win or lose).
+#   ENTRY_WINDOW_END   "11:00" (default, matches live_scanner's ENTRY_CUTOFF
+#                      and SESSION_END) or "09:45".
+#   FIRE_A_WHEN_NO_S   0 (default) or 1 -- read and reported only. compute_
+#                      austin_tier's S/A/C ladder is measured, not wired to
+#                      what trades ("compute_austin_tier is reported only"
+#                      per CLAUDE.md, and gating on it was already priced
+#                      negative -- research/r3_downgrade_grader_ab.md). This
+#                      flag does not gate live entries; it exists so a live
+#                      run can be stamped with the same arm label g160 uses.
+#   VETO_1D            0 (default) or 1 -- read and reported only, same
+#                      reason: g160's VETO_1D is a documented PROXY (spy_trend
+#                      vs candidate direction), not a real daily-timeframe
+#                      filter, and never won both halves.
+DAY_POLICY = os.getenv("DAY_POLICY", "first3").strip().lower()
+if DAY_POLICY not in ("first3", "one_and_done"):
+    raise ValueError("DAY_POLICY must be 'first3' or 'one_and_done', got %r" % DAY_POLICY)
+
+ENTRY_WINDOW_END = os.getenv("ENTRY_WINDOW_END", "11:00").strip()
+if ENTRY_WINDOW_END not in ("09:45", "11:00"):
+    raise ValueError("ENTRY_WINDOW_END must be '09:45' or '11:00', got %r" % ENTRY_WINDOW_END)
+
+FIRE_A_WHEN_NO_S = os.getenv(
+    "FIRE_A_WHEN_NO_S", "0").strip().lower() in ("1", "true", "yes", "on")
+
+VETO_1D = os.getenv("VETO_1D", "0").strip().lower() in ("1", "true", "yes", "on")
+
+
+def select_day_trades(candidates, *, day_policy=None, entry_window_end=None,
+                       fire_a_when_no_s=None, veto_1d=None,
+                       halt_after_consecutive_losses=2):
+    """Pure selection-arm function, same semantics as
+    `research/g160_tweak_grid.py::build_arm`'s per-day filter/pick loop, so a
+    live or backtest caller can reproduce that script's arm instead of
+    re-implementing it. `candidates` is one day's chronologically-ordered
+    list of dicts, each carrying at least `et` ("HH:MM"), `austin_tier`
+    ("S"/"A"/"C"/None), `dir` ("call"/"put"), `spy_trend` ("bull"/"bear"/
+    None), and, once known, an `r` outcome for loss-halt bookkeeping.
+    Returns the picks this policy actually takes, in order.
+
+    Not called anywhere in the live entry path by default -- see the flag
+    block above for why FIRE_A_WHEN_NO_S/VETO_1D stay reporting-only there.
+    This function exists so that stays true without the selection logic
+    itself living in two places."""
+    day_policy = DAY_POLICY if day_policy is None else day_policy
+    entry_window_end = ENTRY_WINDOW_END if entry_window_end is None else entry_window_end
+    fire_a_when_no_s = FIRE_A_WHEN_NO_S if fire_a_when_no_s is None else fire_a_when_no_s
+    veto_1d = VETO_1D if veto_1d is None else veto_1d
+
+    picks = []
+    consec_losses = 0
+    for c in candidates:
+        if c.get("et", "") > entry_window_end:
+            continue
+        if veto_1d:
+            d, trend = c.get("dir"), c.get("spy_trend")
+            if (d == "call" and trend == "bear") or (d == "put" and trend == "bull"):
+                continue
+        tier = c.get("austin_tier")
+        already_s = any(p.get("austin_tier") == "S" for p in picks)
+        takeable = (tier == "S") or (
+            fire_a_when_no_s and tier == "A" and c.get("et", "") >= "10:00" and not already_s
+        )
+        if not takeable:
+            continue
+        picks.append(c)
+        if day_policy == "one_and_done":
+            break
+        consec_losses = consec_losses + 1 if c.get("r", 0) < 0 else 0
+        if len(picks) >= 3 or consec_losses >= halt_after_consecutive_losses:
+            break
+    return picks
+
 # His S/A/C onto the engine's ladder. This is the exact inverse of the mapping
 # `research/t70_test1_score.py` already declares in the other direction (engine
 # A+ -> his S, engine A/B -> his A, engine C -> his C), so a grade round-trips:
