@@ -1,0 +1,147 @@
+{
+  "row": "F5",
+  "slug": "ambiguous-stop-candidates",
+  "predicate": "3 stop candidates from data_archive at index <= entry_i: ocr_wick (order-block candle extreme via omen_bot.detect_order_block_setup), broken_level (r['level_px']), entry_bar (signal bar's adverse extreme). avg_rng = mean(High-Low) over prior 10 bars. AMBIGUOUS when >=2 candidates are on the adverse side of entry AND pairwise farther apart than 1x avg_rng.",
+  "polarity": "refusal-indicator (DROP ambiguous rows, take next candidate)",
+  "n_days_total": 498,
+  "candidates_per_day": 16.52,
+  "n_candidates_all": 8227,
+  "n_candidates_ambiguity_computable": 8176,
+  "ambiguous_rate_pct_of_all_candidates": 9.19,
+  "ambiguous_by_his_grade": {
+    "A": {
+      "n": 205,
+      "n_ambiguous": 25,
+      "pct": 12.2
+    },
+    "ungraded": {
+      "n": 7255,
+      "n_ambiguous": 659,
+      "pct": 9.1
+    },
+    "S": {
+      "n": 295,
+      "n_ambiguous": 31,
+      "pct": 10.5
+    },
+    "C": {
+      "n": 54,
+      "n_ambiguous": 2,
+      "pct": 3.7
+    },
+    "none": {
+      "n": 405,
+      "n_ambiguous": 38,
+      "pct": 9.4
+    },
+    "B": {
+      "n": 13,
+      "n_ambiguous": 1,
+      "pct": 7.7
+    }
+  },
+  "realized_r_ambiguous_vs_clean": {
+    "ambiguous": {
+      "n": 756,
+      "mean_r": -0.057
+    },
+    "clean": {
+      "n": 7471,
+      "mean_r": -0.023
+    }
+  },
+  "baseline": {
+    "overall": {
+      "n": 498,
+      "usd_day": 33.93,
+      "mean_r": 0.0339,
+      "win_pct": 46.5,
+      "green_months": 13,
+      "months": 25,
+      "max_dd": -21404.68
+    },
+    "H1": {
+      "n": 249,
+      "usd_day": 135.71,
+      "mean_r": 0.1357,
+      "win_pct": 49.6,
+      "green_months": 9,
+      "months": 12,
+      "max_dd": -13978.64
+    },
+    "H2": {
+      "n": 249,
+      "usd_day": -67.85,
+      "mean_r": -0.0678,
+      "win_pct": 43.4,
+      "green_months": 4,
+      "months": 13,
+      "max_dd": -21404.68
+    },
+    "fires_per_day": 1.0,
+    "s_recall_100": {
+      "pct": 5.9,
+      "hit": 2,
+      "n": 34
+    },
+    "s_recall_all_bar_backed": {
+      "pct": 5.2,
+      "hit": 18,
+      "n": 347
+    },
+    "precision": {
+      "pct": 30.5,
+      "graded_s": 18,
+      "graded_any": 59
+    }
+  },
+  "arm": {
+    "overall": {
+      "n": 498,
+      "usd_day": 29.94,
+      "mean_r": 0.0299,
+      "win_pct": 45.9,
+      "green_months": 12,
+      "months": 25,
+      "max_dd": -21468.32
+    },
+    "H1": {
+      "n": 249,
+      "usd_day": 131.35,
+      "mean_r": 0.1313,
+      "win_pct": 48.8,
+      "green_months": 8,
+      "months": 12,
+      "max_dd": -13978.64
+    },
+    "H2": {
+      "n": 249,
+      "usd_day": -71.47,
+      "mean_r": -0.0715,
+      "win_pct": 43.0,
+      "green_months": 4,
+      "months": 13,
+      "max_dd": -21468.32
+    },
+    "fires_per_day": 1.0,
+    "s_recall_100": {
+      "pct": 5.9,
+      "hit": 2,
+      "n": 34
+    },
+    "s_recall_all_bar_backed": {
+      "pct": 5.5,
+      "hit": 19,
+      "n": 347
+    },
+    "precision": {
+      "pct": 31.7,
+      "graded_s": 19,
+      "graded_any": 60
+    }
+  },
+  "h1_delta_usd_day": -4.36,
+  "h2_delta_usd_day": -3.62,
+  "survivor": true,
+  "notes": "survivor = True only if (H1 AND H2 both improve $/day) OR precision improves, AND S-recall-100 does not fall below baseline. 'On the adverse side of entry with a gap between' is read as: exclude a candidate that sits on the WRONG side of entry (not a live competing stop) before testing the >1x avg_rng gap -- this is how 'neither nests inside the other' is operationalized here, since two same-side points on a line can't nest, they can only be near or far. Ambiguity is scored over the FULL candidate population (not just first-of-day picks) for the rate-vs-his-grades and rate-vs-realized-R reads; the $/day arm applies the drop only inside first-of-day selection, per the row's arm instruction."
+}
