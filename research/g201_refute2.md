@@ -1,220 +1,186 @@
-# g201 refuter #2 — F9 / MID25: the arithmetic reproduces, the headline does not survive
+# g201 refuter #2 — F9's mid-candle $100/day is 92% candidate re-selection, and the rest is noise
 
-**What is different now:** MID25's numbers reproduce to the dollar, but a paired bootstrap over the
-498 sessions puts the MID25-minus-CLOSE gap at **+$62.4/day with a 95% interval of
-[−$46.8, +$170.4]** — an interval that contains zero — and once you account for MID25 being the
-**best of 3 arms in this row and the best of ~53 entry/fill arms priced on this same book**, and
-for the fact that **no half was held out** (H1 on its own picks MID50, not MID25), the claim
-"MID25 pays $100/day vs the shipped $34/day" is a point estimate with no confidence behind it, not
-a measured $66/day improvement. **Verdict: REFUTED as stated.** A weaker claim survives and is
-stated at the bottom.
+**Verdict: REFUTED.**
 
-Fill: signal-bar CLOSE for the CLOSE arms; a strictly-after-signal resting-limit touch
-(`g80_ordertype_grid.limit_touch`, fill at the limit unless the bar opened through it) for MID25 /
-MID50 / MID75; exits through `G.run_trade` → `backtest_week._ladder_bar` → `stop_rule`; size-gated
-on `signal_runner.min_risk_floor`; 1R = $1,000; book `research/bt2y_trades_retest_on.json`
-(498 sessions, 8,227 candidates); one-trade-a-day = first sizeable candidate of the day.
-Script: `research/g201_refute2.py` → `research/g201_refute2.json`.
+**What is different now:** F9's arithmetic reproduces to the dollar, but the $100/day is not an
+entry-price result — hold the day's trade fixed and let *only* the entry price change, and MID25
+pays **+$5.3/day over CLOSE with a 95% paired-bootstrap interval of [−$95.5, +$105.7]**, and the
+"+3 green months" goes to **zero (13/25 both)**. $60.5 of the $65.8/day headline gap comes from the
+arm silently rolling to a *different* candidate on 129 of 497 days, using information — that the
+first candidate's resting order will never fill — that is not available at the moment it rolls.
+Fill: signal-bar CLOSE for CLOSE, strictly-after-signal resting-limit touch for the MID arms, exits
+through `g80_ordertype_grid.run_trade` (`stop_rule`-consistent), size-gated on
+`signal_runner.min_risk_floor`, 1R = $1,000, book `research/bt2y_trades_retest_on.json` (498
+sessions), one-trade-a-day pick. Script: `research/g201_refute2.py`, data
+`research/g201_refute2.json`.
 
 ---
 
-## 1. The claim reproduces exactly — that is not in dispute
+## 1. F9 reproduces exactly — the attack is not on the arithmetic
 
-| arm | $/day | H1 | H2 | days traded |
-|---|---:|---:|---:|---:|
-| CLOSE (g158's control: the book's own recorded pnl) | **$33.9** | $135.7 | −$67.8 | 498 |
-| **CLOSE_RT** (same control, re-priced through `G.run_trade`) | $37.3 | $139.5 | −$64.9 | 498 |
-| MID25 | **$99.7** | $164.3 | $35.2 | 497 |
-| MID50 | $90.3 | $179.8 | $0.8 | 490 |
-| MID75 | −$46.9 | $22.5 | −$116.3 | 449 |
+| arm | g158 published $/day | g201 re-run $/day |
+|---|---:|---:|
+| CLOSE | $34 | $33.9 |
+| MID25 | $100 | $99.7 |
+| MID50 | $90 | $90.3 |
+| MID75 | −$47 | −$46.9 |
 
-g158's $100 / $34 / $90 all reproduce. The 86% mid-fillable figure (7,096 / 8,227) reproduces.
-Nothing below is a coding objection.
+Same book, same helpers, same size gate. Nothing below is a coding disagreement.
 
-**One small book-keeping fault:** g158's CLOSE arm reads each row's pnl straight out of the book,
-while its MID arms are re-priced through `G.run_trade`. Those are two different replays. Running
-CLOSE through the same replay as the MID arms moves it $33.9 → $37.3/day (+$3.4/day, 95% CI
-[+$1.3, +$5.8]). Small, but it means the published table did not compare like with like. Every
-number below uses **CLOSE_RT**, the like-for-like control.
+## 2. Paired bootstrap over sessions: every arm's interval covers zero
 
----
+F9 compares two unpaired totals. Paired by session (20,000 resamples, seed 20260905):
 
-## 2. Sampling error: the interval on the gap contains zero
-
-Paired bootstrap, 10,000 resamples of whole sessions (a session with no pick contributes $0 and
-stays in the draw — `g80.day_ci`'s convention):
-
-| comparison | mean gap $/day | 95% CI | P(gap ≤ 0) |
+| arm vs CLOSE | obs $/day | 95% CI | P(diff ≤ 0) |
 |---|---:|---|---:|
-| MID25 − CLOSE (g158's own headline pair) | +$65.8 | **[−$43.4, +$174.3]** | **11.8%** |
-| MID25 − CLOSE_RT (like-for-like) | +$62.4 | **[−$46.8, +$170.4]** | **12.9%** |
-| MID50 − CLOSE_RT | +$53.0 | [−$103.9, +$209.4] | 25.0% |
-| CLOSE_RT − CLOSE (the book-keeping fault above) | +$3.4 | [+$1.3, +$5.8] | 0.06% |
+| MID25 | **+$65.8** | **[−$43.0, +$174.0]** | 0.114 |
+| MID50 | +$56.4 | [−$97.4, +$213.5] | 0.245 |
+| MID75 | −$80.8 | [−$250.2, +$96.2] | 0.823 |
+| **MATCHED25** (same trade, better entry) | **+$5.3** | **[−$95.5, +$105.7]** | 0.460 |
+| **MATCHED50** (same trade, better entry) | **−$28.2** | [−$146.3, +$87.7] | 0.683 |
 
-The one difference in that table that is statistically distinguishable from zero is the accounting
-artifact. The headline is not. This is the same error-bar problem `CLAUDE.md` already names:
-every A/B in this engine moves less than the day-level noise.
+Not one interval excludes zero. The headline is inside the error bar of a 498-session sample.
 
----
+## 3. Multiplicity: the headline is the max of three correlated arms, and the null max is bigger
 
-## 3. Multiplicity: MID25 is the best of 3 here and the best of ~53 on this book
-
-Within this row, three fractions were tried and the best was published. Bootstrapping the
-**maximum** of the three arms' gaps over CLOSE_RT — the statistic that was actually reported —
-gives **+$62.4/day, 95% CI [−$29.7, +$206.8], P(max ≤ 0) = 7.1%**. Selecting the winner of three
-and quoting its unadjusted number overstates it.
-
-The family is much larger than three. Entry/fill arms priced on this same 2-year book before F9:
-
-| row | arms |
-|---|---:|
-| `g80_ordertype_grid.py` (BOOK, A, A2, B, C, D, E) | 7 |
-| `g87_retest_tol.py` (`g87_retest_tol.json` arm list) | 31 |
-| `g88_level_limit.py` | 5 |
-| `g90_fill_arms.py` (5 arms + close control, `RETEST_WINDOW` swept 6/12/24) | 6 |
-| `g158_mid_candle_arms.py` | 4 |
-| **total** | **~53** |
-
-At ~53 arms on 498 sessions with a per-arm P(gap ≤ 0) around 12%, finding one arm at this
-magnitude is what the search itself produces. The morning report already drew this exact
-conclusion for the rule-mining family — *"with 25 candidates tried the expected number of noise
-winners is ~5.6"* — and F9 sits in a family twice that size.
-
----
-
-## 4. H1 selected the arm; no half validated it
-
-MID25 was chosen after both halves were on screen. Run the split honestly — let **H1 alone** pick
-the fraction, then read H2 as the held-out half:
-
-| arm | H1 gap vs CLOSE_RT | H2 gap vs CLOSE_RT | P(H2 gap ≤ 0) |
-|---|---:|---:|---:|
-| MID25 | +$24.7 [−$140.6, +$191.7] | +$100.1 [−$33.8, +$239.2] | 7.2% |
-| MID50 | +$40.3 [−$183.0, +$272.4] | +$65.6 [−$144.2, +$278.9] | 27.3% |
-| MID75 | −$117.1 [−$340.1, +$112.7] | −$51.4 [−$307.9, +$224.0] | 84.2% |
-
-**H1 on its own picks MID50** ($179.8/day on H1, against MID25's $164.3). Its held-out H2 gap is
-+$65.6/day with a 27% chance of being ≤ 0 — no validation. MID25 only becomes the winner once H2
-is read, so **MID25's "both halves positive" is a selection credential, not a validation** — the
-identical fault the morning report caught in the S_CLASSIFIER v0 refutation.
-
-Note also that on H1 alone — 250 sessions — MID25's advantage is **+$24.7/day**, not $66. The
-headline is carried by H2.
-
----
-
-## 5. Concentration: the mean is a tail statistic, though the direction is not
-
-Daily gap (MID25 − CLOSE_RT), 498 sessions, 355 of them differing:
+F9's report text takes `best_mid = max(FRACS, ...)` — the winner of three arms chosen on the
+**combined** number. Sign-flip null (flip the sign of each session's paired diff jointly across all
+three arms, preserving their correlation; 20,000 draws):
 
 | statistic | value |
 |---|---:|
-| net gap | $31,068 (+$62.4/day) |
-| positive / negative differing days | 208 / 147 |
-| median gap on differing days | +$246 |
-| largest single day | 2025-02-06, +$5,521 (17.8% of the net gap) |
-| top 5 positive days' share of the net gap | **72.2%** |
-| top 20 positive days' share of the net gap | **208%** |
-| net gap after dropping the top 5 positive days | +$17.5/day |
-| net gap after dropping the top 20 positive days | **−$70.2/day** |
+| observed max-arm gap | +$65.8/day |
+| **P(null max ≥ observed)** | **0.389** |
+| null 95th percentile of the max | +$161.4/day |
+| null median of the max | +$47.9/day |
 
-Twenty sessions out of 498 — 4% of the book — flip the sign of the whole result. **In fairness to
-the claim, a symmetric trim does not:** trimming both tails equally leaves +$66.3/day (1% each
-tail), +$65.4 (2.5%), **+$61.5 (5%)**, and a two-sided sign test on the 355 differing days is
-p = 0.0014. So the *direction* is broad-based; it is the *magnitude* — the thing the claim is
-about — that lives in a handful of sessions and in an interval that contains zero.
+Under the null that no MID arm differs from CLOSE, the best of three beats +$65.8/day **39% of the
+time**, and its median is +$47.9/day. F9's headline is smaller than the noise this family routinely
+produces. And this counts only g158's own three arms — the entry-fill axis on this same book has
+now been swept by `g80_ordertype_grid` (6 order-type policies), `g87_retest_tol`, `g88_level_limit`,
+`g90_fill_arms` (6 arms including `mid_candle`) and `g158` (3). At that arm count, one $100/day
+reading is the expected outcome, not a finding.
 
----
+## 4. H1 was not held out — and the arm that wins H1 is worth $0.8/day in H2
 
-## 6. Where the gain comes from, and why the row's own family contradicts itself
+F9 picked MID25 on the **combined** number, so both halves were used to select.
 
-Splitting the gap by whether the two arms picked the **same** candidate that day:
+| selection | winner | its H2 $/day |
+|---|---|---:|
+| best on H1 alone (honest, H2 held out) | **MID50** ($179.8/day H1) | **$0.8/day** |
+| best on combined (F9's choice) | MID25 | $35.2/day |
 
-| component | days | $/day |
-|---|---:|---:|
-| **fill** (same candidate, better price) | 368 | **+$97.4** (95% CI [+$23.4, +$173.1]) |
-| **selection** (MID25 skipped an unfilled candidate, day's pick moved) | 129 | **−$35.6** |
-| MID25's fillability filter applied to CLOSE prices ("SELECT_ONLY" arm) | — | **−$24.8/day**, vs CLOSE_RT's +$37.3 |
+The arm you would have picked in September 2025 knowing only H1 pays **$0.8/day** in the twelve
+months that followed. The ranking is unstable across the split: MID50 wins H1, MID25 wins combined.
 
-So the reshuffle is a **cost**, not the source of the gain — and a matched null (drop candidates at
-random at MID25's own 7.5% skip rate, book CLOSE prices; 1,000 draws) never reaches $100/day
-(mean $34.0, p95 $60.8, max $85.0, P(null ≥ MID25) = 0.000). **The gain is not manufactured by the
-day-picking mechanism.** That part of g158 stands — but see §8: the gain is not the *price* either.
-It is the **later entry bar**, which drags `intrabar_stop` onto that bar's extreme. Refuter #3's
-0%-back placebo (a limit resting at the close price itself, filled strictly after the signal bar)
-pays **$105/day** — more than MID25.
+## 5. One-day dominance
 
-What does not stand is that the fill gain is a stable quantity. Priced per candidate, paired on the
-signals where both arms filled:
+Paired MID25 − CLOSE, total gap $32,767 over 498 sessions:
 
-| arm | n | arm mean R | CLOSE_RT mean R | paired diff | one-trade-a-day $/day |
-|---|---:|---:|---:|---:|---:|
-| MID25 | 7,609 | +0.0287 | −0.1247 | **+0.1534R** [+0.128, +0.181] | **+$99.7** |
-| MID50 | 7,076 | +0.3704 | −0.2118 | **+0.5822R** [+0.403, +0.824] | +$90.3 |
-| MID75 | 6,397 | +0.8672 | −0.2883 | **+1.1555R** [+0.845, +1.541] | **−$46.9** |
+| day | gap | share of total gap | cumulative |
+|---|---:|---:|---:|
+| 2025-02-06 | $5,521 | 16.8% | 16.8% |
+| 2024-10-31 | $4,828 | 14.7% | 31.6% |
+| 2025-07-02 | $4,090 | 12.5% | 44.1% |
+| 2026-03-02 | $4,032 | 12.3% | 56.4% |
+| 2026-06-02 | $3,962 | 12.1% | 68.5% |
 
-**Per-trade R rises monotonically with depth while money goes negative.** The arm with by far the
-biggest per-trade edge (MID75, +1.16R) is the arm that loses $47/day. Two metrics on the same
-family pointing in opposite directions means neither is measuring an edge. The mechanism is the one
-`CLAUDE.md` already names: resting deeper toward the level with the structural stop unchanged
-**shrinks the risk denominator** — MID25's median risk is **$0.406 against CLOSE_RT's $0.540**
-(−25%), and 9.1% of MID25 fills sit under a 10-cent risk against CLOSE_RT's 4.9% — so the 2R target
-moves 25% closer and R inflates without the trade being better. `min_risk_floor` gates the worst of
-it; it does not remove the tilt.
+**Five days are 68.5% of the gap.** Drop the single best day and MID25 falls to +$54.7/day. MID50
+is worse: **four days are 93.2% of its gap**, and the top three alone are 73.6%. The paired diff is
+zero on 143 of 498 sessions and *negative* on 146.
 
----
+## 6. The real mechanism — the arm re-picks which trade the day takes
 
-## 7. "One of the two is wrong" is a false dichotomy
+`oneaday_for` walks the day's candidates in arrival order and takes **the first one that has a
+priced row**. For the MID arms, a candidate has no priced row when its limit was never touched. So
+when the day's first candidate does not fill, the arm quietly rolls to the second or third.
 
-The claim asserts F9 contradicts g90's R2 ruling. It does not. They are different arms measured
-different ways:
+**MID25's day-pick differs from CLOSE's on 129 of 497 days (26%).**
 
-| | g90 R2 `mid_candle` | g158 MID25/50/75 |
+Holding the candidate fixed (MATCHED25 / MATCHED50: the same trade CLOSE picked, only the entry
+price changes, no trade at all if that limit never fills) decomposes the headline:
+
+| component | $/day |
+|---|---:|
+| MID25 headline gap over CLOSE | **+$65.8** |
+| ├ entry price only (MATCHED25 − CLOSE) | **+$5.3** |
+| └ candidate re-selection (MID25 − MATCHED25) | **+$60.5 = 92%** |
+
+Green months tell the same story:
+
+| arm | green months |
+|---|---:|
+| CLOSE | 13/25 |
+| MID25 | 16/25 |
+| **MATCHED25** | **13/25** |
+| MATCHED50 | 12/25 |
+
+**F9's "+3 green months" is entirely the re-selection. On the entry price alone it is +0.**
+
+### The roll is not implementable at the moment it happens
+
+`G.limit_touch(bars, px, long, i + 1, cutoff)` scans to the 11:00 cutoff, so the abandoned
+candidate's resting order is **live and unresolved for the entire window in which the rolled-to
+candidate fills**. On all 129 re-picked days the arm decides to abandon candidate 1 at a moment when
+candidate 1's order might still fill. It is also ordered by *arrival*, not by *fill time*: if
+candidate 1 fills at 10:40 and candidate 2 at 10:15, the arm books candidate 1, which is not what a
+resting order does in wall-clock time. This is a day-selection rule dressed as a fill rule, and it
+is not one a trader can execute.
+
+## 7. Why the fill-conditional subsample looks so good — and why it nets to nothing
+
+On the 368 days where the mid-limit *did* fill CLOSE's own pick, MATCHED25 beats CLOSE by
+**+$134.8/day (95% CI [+$34.8, +$236.3], P ≤ 0 = 0.004)** — a genuinely significant subsample. It
+does not survive because the arm has to sit out the days it cannot fill:
+
+| slice | days | CLOSE | MATCHED25 |
+|---|---:|---:|---:|
+| mid-limit filled CLOSE's pick | 368 | **−$30,038** | +$19,554 |
+| mid-limit never filled it | 130 | **+$46,937** | $0 (no trade) |
+| all sessions | 498 | +$16,899 | +$19,554 |
+
+The limit fills when price comes back to the level — which is what a failing trade does. **CLOSE
+makes $46,937 on exactly the 130 days the mid-limit is unreachable, and loses $30,038 on the 368
+where it is.** The arm's whole subsample edge is spent buying back the winners it sat out. Net over
+all sessions: +$5.3/day, interval covering zero.
+
+The mechanism inside the subsample is also not new edge but leverage. Mean risk per share falls
+$0.8704 (CLOSE) → $0.7367 (MID25) → $0.6283 (MID50) → $0.5765 (MID75), so a 2R target sits closer to
+a smaller R while a stop-out still books exactly −$1,000. Win rate walks straight down the sweep:
+46.5% → 47.2% → 36.5% → 28.1%. This is `CLAUDE.md`'s own size-gate warning (g87's collapsing risk
+denominator) in a milder form; `min_risk_floor` bounds it but does not remove it.
+
+## 8. Does this settle the F9 / g90 conflict?
+
+**No, and neither side should be promoted.** They are not the same statistic:
+
+| | g90 R2 | g158 F9 |
 |---|---|---|
-| price | the confirm bar's **geometric midpoint** — above the close as often as below, so a **worse** price roughly half the time | 25/50/75% of the bar's range **back from the close toward the level** — better than the close **by construction** |
+| price | confirm bar's **midpoint** (50%) | 25/50/75% of the signal bar's range |
 | window | 12 bars | to the 11:00 cutoff |
-| stop | book stop, **no `intrabar_stop`** | `intrabar_stop` applied |
-| exits | blind 2R, `LADDER_MODE=None` | shipped ladder (`hod_then_runner_be`) |
-| book | `bt2y_trades.json` (stale, different commit) | `bt2y_trades_retest_on.json` |
-| set | 925 traded signals, grade ≠ C, reentry excluded | 8,227 candidates incl. 4,205 halted rows |
-| unit | **paired per-trade mean R** | **unpaired one-trade-a-day $/day** |
+| exits | blind 2R, `LADDER_MODE=None` | shipped ladder via `run_trade` |
+| signals | 925, 2024-08-12 → 2026-08-11 | 8,227 candidates, 498 sessions |
+| unit | mean R per trade | $/day, one-trade-a-day |
+| "reachability" | 80% of 925 traded signals hit the midpoint | 86% of 8,227 candidates hit 50% **or** 75% |
 
-g90's finding ("mid pays 0.2458R less than close on the 80% where it is reachable") and g158's
-finding ("a limit strictly better than the close pays more") are both what you would expect from
-their own definitions. **Neither is wrong; the two were never measuring the same arm.** The
-reconciliation is arithmetic, not a contradiction to be adjudicated — and it is worth noting that
-g90's 20%-never-returns and g158's 7.5%-never-fills differ for the same reason (a 12-bar window
-against a full session, and a midpoint against a below-the-close limit).
+The 80% and 86% are different numerators over different denominators with a looser test; neither
+refutes the other. On the closest matched comparison I can run — MATCHED50, the same trade, a limit
+at 50% of the bar's own range — the all-sessions sign **agrees with g90** (mid pays less, −$28.2/day)
+and the fill-conditional sign disagrees (+$111.3/day, CI [−$68.2, +$301.0], P ≤ 0 = 0.115). Every
+interval covers zero.
 
----
+**The vault line should not be flipped.** `Projects/omen-blockers.md`:95 and
+`Projects/omen-brief-2026-09-03.md`:45 say mid-candle is dead. F9 is not evidence to reverse that;
+its practical conclusion (mid-candle is not a shippable improvement over the close) is what this
+refutation also lands on. What is *not* established either way is g90's specific 0.2458R magnitude,
+which was measured on a different book, exit model and unit. Record the vault line as **upheld in
+direction, magnitude unverified**, and F9 as **refuted**.
 
-## 8. Verdict
+## 9. What survives
 
-**REFUTED as stated.** Specifically:
-
-1. **"MID25 pays $100/day vs the shipped $34/day"** — reproduces as a point estimate, but the gap's
-   95% interval is [−$47, +$170] and P(gap ≤ 0) = 12.9%. It is not a measured improvement.
-2. **"Best of the mid-candle arms"** — it is the best of 3 here and the best of ~53 entry/fill arms
-   on this book; the best-of-3 statistic's own interval, [−$30, +$207], contains zero.
-3. **Both halves positive** — H1 alone picks MID50, not MID25. Nothing was held out.
-4. **"This contradicts g90 R2; one of the two is wrong"** — false. Different price, window, stop,
-   exits, book, signal set and metric.
-
-**The one thing that looked like it survived, and does not.** On the 368 sessions where both arms
-pick the same candidate, MID25 beats CLOSE_RT by +$97.4/day, 95% CI [+$23.4, +$173.1], sign test
-p = 0.0014 — a broad-based, sign-stable difference that my own matched null cannot manufacture. I
-had that written down as a surviving directional finding about entry price. **It is not one.** That
-comparison confounds the price with the *bar*: MID25 enters on a **later** bar than CLOSE, and
-`intrabar_stop` then re-anchors the stop to that later bar's extreme. Refuter #3's placebo isolates
-it — a limit resting at **0%** of the bar's range, i.e. at the very close price CLOSE already pays,
-scored the same strictly-after-signal way, pays **$105/day, more than MID25's $100**, and the "25%
-back toward the level" price improvement is worth **−$4.8/day, 95% CI [−$107.8, +$95.8]**
-(`research/g201_refute3.md`). The deferred entry bar is the whole effect; the price is nothing.
-That is the same mechanism my §6 reads off the risk denominator (median risk $0.406 vs $0.540) from
-the other side, and it is consistent with refuter #1's finding that $73 of the $100 is leakage
-(`research/g201_refute1.md`). **All three refuters land on REFUTED independently. Nothing here is
-shippable, and no weaker version of the claim stands.**
-
----
-
-Reads only. No engine file edited, no mark file opened, nothing shipped.
+- Mid-candle limits are reachable on most candidates. That count is real.
+- On the trades where the limit fills, a better entry is worth a lot (+$134.8/day, CI excludes zero).
+- **Nothing shippable.** Over all 498 sessions the entry-price effect is +$5.3/day with an interval
+  from −$95.5 to +$105.7, +0 green months, and the days the arm cannot reach are the days that pay.
+- Any future version of this arm must (a) hold the day's candidate fixed, (b) be selected on H1 and
+  read on H2, and (c) report the paired session bootstrap, not two unpaired totals.
