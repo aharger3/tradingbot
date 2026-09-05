@@ -1,109 +1,137 @@
-# g202 — independent leakage referee for F8 (`research/g157_ml_ceiling.py`)
-**One sentence: F8 has no lookahead — every feature survives having the entire future of the day overwritten with garbage — but its label column and its feature list are both not what the report says they are, and the "AUC at chance" headline survives every correction I could make to them, because at 120 rows and 28 positives the null band alone is 0.501 ± 0.161.**
+# g202 -- independent leakage referee for F8 (`research/g157_ml_ceiling.py`)
 
-Reproduction: `python research/g157_ml_ceiling.py` rewrote `research/g157_ml_ceiling.md` **byte-identically** (no git diff). AUC 0.492 / 0.426, 120 rows, 28 S, engine recall 17.9%.
+**One sentence: F8 is clean where it was challenged -- not one feature reads a bar past the entry, no judged day crosses a CV fold, and a 22-feature stronger set still cannot beat a coin flip -- so the 'ML ceiling is at chance' finding is UPHELD; what the report got wrong is smaller: 5 of its 120 labels are days Austin graded twice and differently (2 of them flipping S), and the CV it calls 5-fold is 4-fold.**
 
-## 1. Leakage — clean
-Two attacks on every one of the 120 rows, plus a replay check and a source check.
+## 0. Reproduction
 
-| attack | rows | failures |
+- `python research/g157_ml_ceiling.py` re-run on this box: 120 rows, 28 S -- matches the published 120 rows / 28 S / AUC 0.492 / 0.426 exactly.
+- this referee rebuilds the row set independently: identical (symbol,date) set = **True**, identical label vector = **True**.
+
+## 1. Leakage -- is every feature computable at the entry bar?
+
+Test, not inspection: recompute every feature from `bars[:i+1]` -- the bar list physically truncated at the entry bar -- and diff cell-by-cell against the value computed from the whole day. A feature that reads forward MUST differ.
+
+| feature | rows differing under truncation |
+|---|---:|
+| `no_displacement` | 0 |
+| `stale_retest` | 0 |
+| `level_not_respected` | 0 |
+| `exhausted` | 0 |
+| `counter_trend_not_respected` | 0 |
+| `break_then_rejection` | 0 |
+| `no_retest` | 0 |
+| `ocr_not_respected` | 0 |
+| `confluence` | 0 |
+| `n_tripped` | 0 |
+| `net` | 0 |
+| `bar` | 0 |
+| `displacement` | 0 |
+| `x_atr_pct` | 0 |
+| `x_dist_level_atr` | 0 |
+| `x_dist_level_pct` | 0 |
+| `x_bar_rng_atr` | 0 |
+| `x_body_frac` | 0 |
+| `x_wick_with` | 0 |
+| `x_wick_against` | 0 |
+| `x_bars_since_break` | 0 |
+| `x_break_seen` | 0 |
+| `x_bars_since_retest` | 0 |
+| `x_retest_seen` | 0 |
+| `x_break_to_retest` | 0 |
+| `x_ocr_age` | 0 |
+| `x_ocr_seen` | 0 |
+| `x_ocr_dist_atr` | 0 |
+| `x_day_extension_atr` | 0 |
+| `x_pos_in_day_range` | 0 |
+| `x_day_range_atr` | 0 |
+| `x_vol_ratio` | 0 |
+| `x_break_body_atr` | 0 |
+| `x_risk_atr` | 0 |
+| `x_risk_pct` | 0 |
+
+**0 of 35 features differ over 120 rows. No feature reads past the entry bar.**
+
+The four categoricals (`stop_level_name`, `signal_type`, `grade`, `htf_bias`) are not in that table because they come out of the engine replay rather than out of `downgrade.py`. They are causal for a different reason: `research/t66_downgrade_measure.py::replay` sets `r.candles = candles[:i+1]` before every `detect_signals()` call, so the engine physically cannot see bar i+1; and `htf_bias` is close-vs-SMA20 over `names[max(0,i-40):i]` -- **strictly prior archived days, the slice ends before today**. That is the opposite of the `spy_trend` defect the O1 referee found last night, where today's close sat inside its own SMA.
+
+One thing the report mis-describes but which is not a leak: `n_tripped` and `net` include the `chase` downgrade (`ENABLE_CHASE_DOWNGRADE` is ON), so the model sees a ninth variable that has no column of its own. `chase` reads `bars[i]` and the level only.
+
+## 2. CV grouping -- can a card cross folds?
+
+- duplicate (symbol,date) rows: **0**. One row per judged day, so no card can be in train and test at once.
+- CV groups (calendar months): **4**. The code runs `n_splits = min(5, n_groups)`, so it is a **4-fold** CV. The report's headings say '5-fold GroupKFold'. Cosmetic, but wrong.
+
+| month | rows | S rows |
 |---|---:|---:|
-| truncate bars to `[:i+1]`, re-score | 120 | **0** |
-| overwrite every bar after `i` with x1000 garbage, re-score | 120 | **0** |
-| re-run the full engine replay, compare first candidate's bar/stop/grade | 15 | **0** |
+| 2026-05 | 11 | 2 |
+| 2026-06 | 25 | 7 |
+| 2026-07 | 66 | 15 |
+| 2026-08 | 18 | 4 |
 
-- `research/downgrade.py`: every loop is bounded at `i` or `min(..., i+1)`. `find_ocr` reads `bars[j+1]` but starts at `j = i-1`, so `j+1 <= i`. `large_counter_body` clamps `hi = min(i, ...)`. Verified by the corruption attack, not by reading.
-- `research/t66_downgrade_measure.replay()` feeds the runner `candles[:i+1]` and nothing else; `pdh/pdl/pmh/pml` are prior-session, `htf_bias` is prior-session.
-- `t4_engine_recall.htf_bias()` slices `names[max(0, i - 40):i]` — the day being graded is **excluded** (source check: True). This is the field O1 was refuted on tonight (`spy_trend` reading today's close); F8 does **not** have that bug.
+| fold | test months | test rows | test S | train rows | train S |
+|---:|---|---:|---:|---:|---:|
+| 0 | 2026-07 | 66 | 15 | 54 | 13 |
+| 1 | 2026-06 | 25 | 7 | 95 | 21 |
+| 2 | 2026-08 | 18 | 4 | 102 | 24 |
+| 3 | 2026-05 | 11 | 2 | 109 | 26 |
 
-**Verdict on the leakage question the row asked: no leak. F8's numbers are honestly out-of-sample.**
+Every month lands in exactly one fold, so **no card leaks across folds**. The fragility is elsewhere: one fold is 2026-07 alone, 55% of the whole row set, and when it is held out the model trains on 54 rows. That is why the pooled out-of-fold AUC needs the null band in section 4 rather than a bare comparison to 0.500.
 
-## 2. CV grouping — sound, but it is 4 folds, not 5, and they are lopsided
+## 3. Labels -- do the 120 rows and the 28 S come from his marks?
 
-- `GroupKFold(n_splits=min(5, n_groups))` with **4 month groups** ⇒ **4 folds**, one month each. Both section headings in `g157_ml_ceiling.md` say "5-fold GroupKFold CV by month"; it ran **4**. Cosmetic, but it is the kind of mislabel that hides a real fold problem.
-- month appears on both sides of a fold: **0** folds
-- calendar date appears on both sides of a fold: **0** folds
-- a (symbol, date) card appears on both sides of a fold: **0** folds
+- source of the 120: `research/t60_baseline.load_day_cards()` -> `research/exit_lab.MARKS_FILES` = `research/marks/deck_marks_tsla_2026-08-20.jsonl` + `research/marks/deck_marks_index_2026-08-19.jsonl`. Both are human deck exports (60 TSLA, 30 QQQ, 30 SPY); neither is engine output. Grades read 28 S / 27 A / 3 C / 61 none / 1 blank.
+- cross-checked against the canonical cross-corpus view `research/marks_pool.py` (1263 symbol-days, nine grade spellings): **115 agree, 5 disagree, 0 missing**.
 
-| fold | test month | test rows | test S | train rows |
-|---:|---|---:|---:|---:|
-| 0 | 2026-07 | 66 | 15 | 54 |
-| 1 | 2026-06 | 25 | 7 | 95 |
-| 2 | 2026-08 | 18 | 4 | 102 |
-| 3 | 2026-05 | 11 | 2 | 109 |
+| symbol-day | F8 label | marks_pool canonical | all his opinions | corpora |
+|---|---|---|---|---:|
+| QQQ_2026-07-02 | `none` | `A` | ['A', 'none'] | 2 |
+| QQQ_2026-07-21 | `none` | `C` | ['C', 'none'] | 2 |
+| QQQ_2026-07-31 | `none` | `S` | ['S', 'none'] | 2 |
+| SPY_2026-08-03 | `(blank)` | `none` | ['none'] | 1 |
+| TSLA_2026-07-09 | `A` | `S` | ['A', 'S'] | 3 |
 
-Grouping by month is *coarser* than grouping by date, so the QQQ/SPY pairs that share a calendar day — 30 QQQ and 30 SPY cards against 60 TSLA — can never straddle a fold. That is the one grouping risk this design had and it is closed.
+**5 of 120 rows are days Austin graded more than once and graded DIFFERENTLY**, in a different session. 2 of them flip the S bit: F8 scores them 0, cross-corpus resolution scores them 1. So the honest positive count on these 120 days is **28 under the two deck files, 30 under `marks_pool`** -- a 7% swing in the positive class.
 
-**But the folds are not usable as a variance estimate.** One fold is 66 of 120 rows and trains on only 54. The pooled OOF AUC is the only readable number here, and it needs the null band in section 4.
+This is label noise, not a label error: neither reading is wrong, he just answered twice. F8 did not disclose it. It also puts a hard floor under any achievable AUC -- 2 of the ~29 positives are contested by the labeller himself.
 
-## 3. Labels — three defects, none of them fatal to the headline
+## 4. A stronger feature set the F8 agent did not try
 
-- 120 cards, 28 S. That count is right **for the two deck files `load_day_cards()` reads** (`research/marks/deck_marks_tsla_2026-08-20.jsonl` 9 S + `research/marks/deck_marks_index_2026-08-19.jsonl` 19 S = 28).
-- It does **not** come from `research/marks_pool.py`, the repo's canonical cross-corpus grade. Against the pool, **5 of 120 cards disagree** and the S count would be **30, not 28**:
+22 continuous predicates on top of F8's set, every one verified truncation-identical in section 1: level distance in ATR and in %, bars since the break, bars since the retest, the break->retest gap, OCR age and OCR-edge distance in ATR, entry-bar range / body / with-wick / against-wick geometry, position in the day's range so far, day extension in ATR, volume against the prior 20 bars, break-candle body in ATR, and risk (|entry - level|) in ATR and in %. These are the continuous forms of the g154 rule predicates -- displacement size, staleness, chase distance, exhaustion -- which F8 only saw as the eight booleans.
 
-| card | F8 label | marks_pool canonical | opinions |
-|---|---|---|---:|
-| `QQQ_2026-07-02` | `none` | `A` | 2 |
-| `QQQ_2026-07-21` | `none` | `C` | 2 |
-| `QQQ_2026-07-31` | `none` | `S` | 2 |
-| `SPY_2026-08-03` | `(blank)` | `none` | 1 |
-| `TSLA_2026-07-09` | `A` | `S` | 3 |
+The null is a label permutation **within month groups**, 200 draws, same pipeline. On 120 rows with 28 positives and 4 folds, chance is not 0.500 with a tight band around it.
 
-**Defect 1 — a blank grade is scored as a hard negative.** 1 card (`SPY_2026-08-03`) carries `grade: ""`. `SPY_2026-08-03` also carries a `type:"trade"` row with `source:"taken"` and `r_multiple: 1.75` — he took a trade that day and left the day grade empty. F8 counts it as *not S*. An ungraded card is not a negative; it should be dropped.
+| feature set | model | out-of-fold ROC AUC | permutation null mean | null 5th-95th | p |
+|---|---|---:|---:|---|---:|
+| F8 as shipped | logistic | **0.496** | 0.493 | 0.356 - 0.620 | 0.49 |
+| F8 as shipped | grad boost | **0.430** | 0.492 | 0.377 - 0.627 | 0.79 |
+| F8 + 22 engineered | logistic | **0.428** | 0.496 | 0.369 - 0.626 | 0.80 |
+| F8 + 22 engineered | grad boost | **0.534** | 0.492 | 0.387 - 0.608 | 0.24 |
+| engineered only | logistic | **0.355** | 0.492 | 0.377 - 0.609 | 0.97 |
+| engineered only | grad boost | **0.526** | 0.498 | 0.389 - 0.614 | 0.34 |
 
-**Defect 2 — two days he graded S elsewhere are labelled 0.** `TSLA_2026-07-09` is `A` on the deck card and `S` in `austin_marks_v7.jsonl` + `recovered_reviews.jsonl` (3 opinions). `QQQ_2026-07-31` is `none — "missed it"` on the deck card, and in `probe_master_homework_2026-08-26.jsonl` he graded that day's candidate `your_grade: ["S"]` with the note *"large wicks like that are scary but I like the weakness in the day"*. **"Missed it" is not "not an S setup"** — and an S classifier's target is whether the setup was there, not whether he was at the desk.
+**Best arm anywhere: F8 + 22 engineered / grad boost, AUC 0.534, p = 0.24.** Not one arm clears its own permutation null. Adding 22 engineered predicates moved the logistic arm from 0.496 to 0.428 and the boosted arm from 0.430 to 0.534 -- inside the noise either way, and the engineered set alone is worse than a coin flip.
 
-**Defect 3 — the feature list is not the one the spec ordered.** The row required level type, setup, tier, displacement, HTF bias, time of first candidate.
+The 'F8 as shipped' row here reads 0.496 / 0.430 against the published 0.492 / 0.426 because of a third small defect: `g157.build_rows()` computes a `displacement` column -- a feature the spec row explicitly named -- and `g157.make_xy()` then leaves it out of `X`. This referee puts it back. It is worth +0.004 AUC. Mentioned for the record, not because it matters.
 
-| feature | in the report | actually seen by the model |
-|---|---|---|
-| level type (`stop_level_name`) | claimed | **constant `"unknown"` on 120/120 rows** — `replay()`'s output dict has no `stop_level_name` key at all, so `first.get(...)` is always `None` |
-| displacement | claimed | **dropped** — `make_xy()` never lists it; and as built it was the exact complement of `no_displacement`, so it carried zero new information anyway |
-| `stale_retest`, `break_then_rejection` | 2 of the 8 downgrade variables | **constant 0 on 120/120 rows** |
-| column count | 25 | 18 non-constant |
+### The same, with the two contested days relabelled S (30 positives)
 
-So the honest description of F8 is: *18 live columns, not 25, and two of the six spec-named features were missing or dead.* That is a real reason to distrust "these features do not contain the answer" **as written** — the sentence should be "the eight downgrade booleans, setup, tier, HTF bias and entry minute do not contain the answer."
+| feature set | model | out-of-fold ROC AUC |
+|---|---|---:|
+| F8 as shipped | logistic | 0.501 |
+| F8 as shipped | grad boost | 0.463 |
+| F8 + 22 engineered | logistic | 0.440 |
+| F8 + 22 engineered | grad boost | 0.587 |
 
-## 4. One stronger feature set — AUC does not move
+The label question does not rescue it either.
 
-I added 34 columns the F8 agent did not try, all computed at the entry bar and all put through the same corruption attack: level distance in ATR, signed and absolute; ATR as a fraction of price; entry-bar range/body/wick geometry; bars since break, bars since retest, break→retest gap, bars since OCR; a continuous displacement ratio in place of the boolean; move from the open in ATR; distance to the session high and low; the level's position inside the session range; volume z-score and ratio; same-colour run length; the level's distance to the $1 / $5 / $10 round numbers; and the entry-bar-computable g154 predicates (`or-break-without-retest`, `standalone-ocr-no-br`, `ocr-strict-definition`, `hammer-wick-level-candle`, `entry-time-of-day-early`, `index-etf`, `cheap-stock-refusal`, `forming-candle-entry-not-extreme`, `exhausted-overextended` as a continuous ratio, `chase`, `large_counter_body`, `level-not-respected-refusal`).
+## Verdict
 
-| feature set | model | ROC AUC (out-of-fold) | precision at engine recall (17.9%) |
-|---|---|---:|---:|
-| F8's own (25 cols) | logistic regression | **0.492** | 32.0% |
-| F8's own (25 cols) | gradient boosting | **0.426** | 24.7% |
-| F8's own (25 cols) | random forest | **0.516** | 41.7% |
-| g202 stronger (59 cols) | logistic regression | **0.446** | 24.1% |
-| g202 stronger (59 cols) | gradient boosting | **0.504** | 45.5% |
-| g202 stronger (59 cols) | random forest | **0.529** | 29.7% |
-| — | predict-everything baseline | 0.500 | 23.3% |
+| check | result |
+|---|---|
+| every feature computable at the entry bar | **PASS** -- 35 numeric features x 120 rows, 0 differ under truncation; the 4 categoricals are causal by the replay's `candles[:i+1]` slice and a prior-days-only HTF bias |
+| CV grouped by month, no card across folds | **PASS** -- 0 duplicate days, 4 disjoint month groups |
+| the 120-card set and 28 S labels match his marks | **PARTIAL** -- 115/120 agree with `marks_pool`; 5 are days he graded twice and differently, 2 of which flip S (28 vs 30) |
+| a stronger feature set moves AUC | **NO** -- best 0.534, p = 0.24 |
 
-### The number that makes all of the above moot
-400 label permutations *within month groups*, same models, same folds — what AUC looks like when there is provably nothing to learn:
+**F8's headline stands and is NOT refuted: on these features, over these 120 judged days, there is no learnable S signal.** It survives 22 extra engineered predicates and survives relabelling the contested days. Three corrections belong in the record and none changes the answer -- the CV is 4-fold, not 5-fold (`min(5, n_groups)` with 4 month groups); 5 of the 120 labels are days he graded twice and differently, 2 of them flipping S; and `displacement`, a feature the spec row named, is computed and then dropped before `X` is built.
 
-| feature set | null-AUC mean | null-AUC sd | 95% null band |
-|---|---:|---:|---|
-| F8's own | 0.501 | 0.082 | 0.347 – 0.656 |
-| g202 stronger | 0.501 | 0.081 | 0.335 – 0.660 |
-
-**At 120 rows and 28 positives, an AUC anywhere inside that band is indistinguishable from noise.** F8's 0.492 and 0.426 sit inside it; so does every arm in the table above. The honest statement is not "these features contain no signal" — it is **"this sample cannot detect a signal of any size that would matter, in these features or in thirty more."** Those are different claims and only the second one is supported.
-
-### Labels corrected to `marks_pool` (rich features)
-
-| model | AUC, F8 labels (28 S) | AUC, pool labels (30 S) |
-|---|---:|---:|
-| logistic regression | 0.446 | 0.503 |
-| gradient boosting | 0.504 | 0.515 |
-| random forest | 0.529 | 0.538 |
-
-Fixing the labels does not rescue it either.
-
-## 5. Verdict
-
-- **Leakage: none.** 120 rows, two independent attacks each, zero failures. The row's primary question comes back clean.
-- **CV grouping: sound.** No month, date or card straddles a fold. The "5-fold" label is wrong — it ran 4 — and one fold holds 66 of 120 rows, so per-fold numbers are meaningless; the pooled OOF AUC is fine.
-- **Labels: three defects.** 1 blank grade scored as a negative, 2 cards graded S in another corpus scored as negatives, and the set never touches `marks_pool`.
-- **Features: two of the six the spec named were absent or dead** — `stop_level_name` is constant, `displacement` never reaches the model.
-- **Stronger features: AUC does not move.** Best arm across six model/feature combinations is 0.529, inside the null band.
-
-**Refuted: yes — the report's method claims, not its direction.** "AUC at chance" is correct and, if anything, understated. What is not correct is *the reason given for it*: the strongest single result of the night was published as "these features do not contain the answer" when the honest reading is "120 rows and 28 positives cannot tell a real effect from noise, and two of the features named were never actually there." **Do not use g157 to close the door on a learned classifier.** It is not evidence that one is impossible; it is evidence that the judged corpus is too small to test one. The thing that would change this is more marks, which is exactly what the completeness critic already said.
+**What none of this establishes.** 120 rows, 28 positives, 4 month groups, one of them 55% of the data. The permutation null itself spans 0.36-0.62, so this rig could not detect a modest real edge if one existed. 'These features do not contain the answer' is well supported. 'No features could' is not tested by anything here, and the morning report should not be read as saying it.
