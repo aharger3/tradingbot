@@ -1,0 +1,107 @@
+=== 1. INDEPENDENT RE-DERIVATION, FORWARD LADDER ===
+unit: every traded signal in the book (status=='fired'), $1,000 risk/trade,
+$/day = sum(pnl) / unique days present in the book.
+  step 0 start_next_open_blind2r_noC_no84 [next_open/blind_2R/full29] : n=7857 wr=38.9% meanR=+0.1690 (+/-0.0322) aw=+1.9817 al=-0.9973 green=23/25 days=499 $/day=2,660.29
+  step 1 add_C_grades [next_open/blind_2R/full29] : n=14327 wr=38.6% meanR=+0.1592 (+/-0.0238) aw=+1.9835 al=-0.9965 green=24/25 days=499 $/day=4,569.49
+  step 2 swap_exit_shipped_ladder [next_open/shipped_ladder/full29] : n=14332 wr=42.4% meanR=-0.0342 (+/-0.0217) aw=+1.0312 al=-0.8274 green=7/25 days=499 $/day=-980.93
+  step 3 add_84_reentries [next_open/shipped_ladder/full29] : n=14731 wr=42.1% meanR=-0.0328 (+/-0.0216) aw=+1.0549 al=-0.8329 green=7/25 days=499 $/day=-966.93
+  step 4 switch_fill_close [close/shipped_ladder/full29] : n=14718 wr=41.9% meanR=-0.0257 (+/-0.0207) aw=+1.0154 al=-0.7844 green=7/25 days=499 $/day=-758.42
+  step 5 apply_size_gate [close/shipped_ladder/full29] : n=13374 wr=41.8% meanR=-0.0303 (+/-0.0218) aw=+1.0192 al=-0.7926 green=7/25 days=499 $/day=-811.56
+  step 6 dedupe_day_policy_shipped_noop [close/shipped_ladder/full29] : n=13374 wr=41.8% meanR=-0.0303 (+/-0.0218) aw=+1.0192 al=-0.7926 green=7/25 days=499 $/day=-811.56
+  step 7 window_500_to_498 [close/shipped_ladder/full29] : n=10156 wr=41.2% meanR=-0.0283 (+/-0.0255) aw=+1.0559 al=-0.7992 green=11/25 days=498 $/day=-577.85
+  step 8 universe_29_to_11 [close/shipped_ladder/core11] : n=4660 wr=43.1% meanR=-0.0008 (+/-0.0377) aw=+1.0599 al=-0.8146 green=11/25 days=498 $/day=-7.77
+
+=== 1b. HALVES (H1 day < 2025-09-01, H2 day >= 2025-09-01) ===
+  step 0 start_next_open_blind2r_noC_no84
+    H1: n=3213 wr=39.1% meanR=+0.1766 (+/-0.0504) aw=+1.9734 al=-0.9978 green=11/12 days=248 $/day=2,287.84
+    H2: n=4644 wr=38.7% meanR=+0.1637 (+/-0.0419) aw=+1.9875 al=-0.9969 green=12/13 days=251 $/day=3,028.29
+  step 1 add_C_grades
+    H1: n=5766 wr=39.1% meanR=+0.1756 (+/-0.0377) aw=+1.9799 al=-0.9969 green=11/12 days=248 $/day=4,082.42
+    H2: n=8561 wr=38.2% meanR=+0.1481 (+/-0.0308) aw=+1.9859 al=-0.9962 green=13/13 days=251 $/day=5,050.73
+  step 2 swap_exit_shipped_ladder
+    H1: n=5769 wr=44.0% meanR=-0.0083 (+/-0.0335) aw=+1.0036 al=-0.8105 green=5/12 days=248 $/day=-193.31
+    H2: n=8563 wr=41.4% meanR=-0.0516 (+/-0.0285) aw=+1.0510 al=-0.8384 green=2/13 days=251 $/day=-1,759.14
+  step 3 add_84_reentries
+    H1: n=5926 wr=43.6% meanR=-0.0052 (+/-0.0337) aw=+1.0319 al=-0.8166 green=5/12 days=248 $/day=-125.13
+    H2: n=8805 wr=41.1% meanR=-0.0513 (+/-0.0282) aw=+1.0712 al=-0.8434 green=2/13 days=251 $/day=-1,798.66
+  step 4 switch_fill_close
+    H1: n=5930 wr=43.5% meanR=-0.0003 (+/-0.0318) aw=+0.9822 al=-0.7627 green=5/12 days=248 $/day=-6.63
+    H2: n=8788 wr=40.9% meanR=-0.0429 (+/-0.0272) aw=+1.0392 al=-0.7984 green=2/13 days=251 $/day=-1,501.22
+  step 5 apply_size_gate
+    H1: n=5341 wr=43.4% meanR=-0.0040 (+/-0.0336) aw=+0.9830 al=-0.7683 green=5/12 days=248 $/day=-85.43
+    H2: n=8033 wr=40.8% meanR=-0.0478 (+/-0.0286) aw=+1.0448 al=-0.8080 green=2/13 days=251 $/day=-1,529.01
+  step 6 dedupe_day_policy_shipped_noop
+    H1: n=5341 wr=43.4% meanR=-0.0040 (+/-0.0336) aw=+0.9830 al=-0.7683 green=5/12 days=248 $/day=-85.43
+    H2: n=8033 wr=40.8% meanR=-0.0478 (+/-0.0286) aw=+1.0448 al=-0.8080 green=2/13 days=251 $/day=-1,529.01
+  step 7 window_500_to_498
+    H1: n=4105 wr=42.9% meanR=-0.0012 (+/-0.0396) aw=+1.0203 al=-0.7771 green=8/12 days=249 $/day=-20.03
+    H2: n=6051 wr=40.1% meanR=-0.0467 (+/-0.0333) aw=+1.0817 al=-0.8134 green=3/13 days=249 $/day=-1,135.68
+  step 8 universe_29_to_11
+    H1: n=2133 wr=45.0% meanR=+0.0073 (+/-0.0536) aw=+0.9817 al=-0.7961 green=6/12 days=249 $/day=62.73
+    H2: n=2527 wr=41.5% meanR=-0.0077 (+/-0.0529) aw=+1.1312 al=-0.8293 green=5/13 days=249 $/day=-78.26
+
+=== 2. THE BIGGEST-STEP CLAIM, RE-RUN ALONE (step 1 -> step 2) ===
+  step1 (next_open / blind_2R): n=14327 wr=38.6% meanR=+0.1592 (+/-0.0238) aw=+1.9835 al=-0.9965 green=24/25 days=499 $/day=4,569.49
+  step2 (next_open / shipped_ladder): n=14332 wr=42.4% meanR=-0.0342 (+/-0.0217) aw=+1.0312 al=-0.8274 green=7/25 days=499 $/day=-980.93
+  delta $/day = -5,550.42  (report claims -5,550)
+  delta meanR = -0.1933
+  delta green = 24/25 -> 7/25
+
+  adjacent $/day deltas across the whole forward ladder:
+    0 -> 1: 2,660 -> 4,569  delta +1,909
+    1 -> 2: 4,569 -> -981  delta -5,550
+    2 -> 3: -981 -> -967  delta +14
+    3 -> 4: -967 -> -758  delta +209
+    4 -> 5: -758 -> -812  delta -53
+    5 -> 6: -812 -> -812  delta +0
+    6 -> 7: -812 -> -578  delta +234
+    7 -> 8: -578 -> -8  delta +570
+
+  keys (sym,day,minute+1,dir,setup): step1=13228 step2=13231 shared=13227 only-in-1=1 only-in-2=4
+  entry price identical on shared keys: 13227 same / 0 different  -> FILL UNCHANGED
+  stop  price identical on shared keys: 13226 same / 1 different
+  paired mean R change over 13227 matched trades: -0.1972R/trade
+    trades the flat 2R exit WON  (5164): mean +1.9853R -> +0.8583R  (contributes -0.4400R/trade)
+    trades the flat 2R exit LOST (8063): mean -0.9969R -> -0.5987R  (contributes +0.2428R/trade)
+    per-fill R worse than -1.000R: step1=1 step2=1
+
+=== 3. STAMP DIFF, step 1 vs step 2 (only the changed variable may differ) ===
+  NO stamped flag differs between the two books -- the stamps cannot
+  distinguish them. Both stamps were written in the MAIN process, which
+  never set ENTRY_FILL or OMEN_SCALE_PLAN; the worker processes did.
+  stamp claims ENTRY_FILL='close' for a book whose meta.fill='next_open'
+  stamp claims SCALE_PLAN='hod_then_runner_be' for a book whose meta.exit_plan='blind_2R'
+  stamp git commit = 2ccd43f6, dirty_py_count = 1
+
+=== 4. IS THE REVERSE LADDER INDEPENDENT EVIDENCE? ===
+  fwd_0 book_id ca2a7f95a906  ==  rev_8 book_id ca2a7f95a906  -> IDENTICAL ROWS
+  fwd_1 book_id a0c2e0f9f537  ==  rev_7 book_id a0c2e0f9f537  -> IDENTICAL ROWS
+  fwd_2 book_id e8f9f1bee16b  ==  rev_6 book_id e8f9f1bee16b  -> IDENTICAL ROWS
+  fwd_3 book_id ebdf4483e9ac  ==  rev_5 book_id ebdf4483e9ac  -> IDENTICAL ROWS
+  fwd_4 book_id b975a54b71ed  ==  rev_4 book_id b975a54b71ed  -> IDENTICAL ROWS
+  fwd_5 book_id 448a93ca7b75  ==  rev_3 book_id 448a93ca7b75  -> IDENTICAL ROWS
+  fwd_6 book_id 448a93ca7b75  ==  rev_2 book_id 448a93ca7b75  -> IDENTICAL ROWS
+  fwd_7 book_id 54087d55b549  ==  rev_1 book_id 54087d55b549  -> IDENTICAL ROWS
+  fwd_8 book_id 11dfaafa44e4  ==  rev_0 book_id 11dfaafa44e4  -> IDENTICAL ROWS
+  9/9 reverse books hold byte-identical trade sets to their forward twin.
+
+=== 5. IS STEP 7 A WINDOW CHANGE? ===
+  step 6 window {'start': '2024-09-04', 'end': '2026-09-04'}  ->  step 7 window {'start': '2024-09-03', 'end': '2026-09-02'}
+  step 4 (same fill/exit/pool, own simulation) restricted to step 7's window: 14647 rows
+  step 7's book itself: 10156 rows  -> NOT THE SAME POPULATION
+    step4 restricted to step7 window: n=14647 wr=42.0% meanR=-0.0255 (+/-0.0208) aw=+1.0160 al=-0.7837 green=7/25 days=497 $/day=-750.17
+    step7 as published: n=10156 wr=41.2% meanR=-0.0283 (+/-0.0255) aw=+1.0559 al=-0.7992 green=11/25 days=498 $/day=-577.85
+    shared keys 7265, only in step4-restricted 6285, only in step7 2028
+    -> 78.2% of step 7's trades also exist in step 6/4's own simulation over the same days.
+    days: step4-restricted 497, step7 498
+    A PURE window change, applied to step 6's own book (the only honest reading of 'window 500 -> 498'):
+      step6 restricted to step7's window: n=13307 wr=41.8% meanR=-0.0300 (+/-0.0219) aw=+1.0196 al=-0.7919 green=7/25 days=497 $/day=-802.96
+      i.e. the window alone is worth +8.61/day, not +233.71/day.
+  NOTE: step 7's rows come from research/bt2y_trades_retest_on.json --
+  a DIFFERENT book, built 2026-09-02 at a different commit. Its stamp of
+  record is not the one written into this step's meta.
+
+=== 6. STEP 5/6 $/day DENOMINATOR ===
+  the builder divides step 5/6 pnl by step 4's day count, not step 5's.
+  step5 pnl -404,970; days-in-step5=499, days-in-step4=499
+  $/day on step5's own days = -811.56; on step4's days = -811.56  (report prints -812)
