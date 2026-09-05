@@ -1,0 +1,187 @@
+{
+  "row": "F6 refuter #3 (reproduce from the script)",
+  "slug": "ambiguous-stop-candidates",
+  "base_commit": "f8740f80",
+  "fill": "signal-bar CLOSE entry as booked in bt2y_trades_retest_on.json; stop_rule.stop_fill_price stops; size-gated on signal_runner.min_risk_floor via omen_metrics._row_is_sizeable; one-trade-a-day first-of-day pick-then-gate; 1R=$1,000; H1/H2 split 2025-09-01",
+  "reproduction": {
+    "baseline_usd_day": 33.93,
+    "arm_usd_day": 29.94,
+    "h1_delta": -4.36,
+    "h2_delta": -3.62,
+    "precision_base": {
+      "pct": 30.5,
+      "graded_s": 18,
+      "graded_any": 59
+    },
+    "precision_arm": {
+      "pct": 31.7,
+      "graded_s": 19,
+      "graded_any": 60
+    },
+    "recall100_base": 5.9,
+    "recall100_arm": 5.9,
+    "green_base": 13,
+    "green_arm": 12,
+    "maxdd_base": -21404.68,
+    "maxdd_arm": -21468.32,
+    "n_candidates_all": 8227,
+    "n_ambiguous_candidates": 756
+  },
+  "reproduction_exact": true,
+  "what_changed": {
+    "n_days_repicked": 6,
+    "n_days_worse": 5,
+    "n_days_better": 1,
+    "total_dollar_delta": -1990.19,
+    "dollar_per_day_delta": -4.0,
+    "worst_5": [
+      {
+        "day": "2024-09-18",
+        "kind": "repicked",
+        "base": "IWM@09:39",
+        "arm": "AVGO@09:42",
+        "base_pnl": 274.47,
+        "arm_pnl": -1000.0,
+        "delta": -1274.47
+      },
+      {
+        "day": "2025-06-26",
+        "kind": "repicked",
+        "base": "NFLX@09:44",
+        "arm": "COIN@09:49",
+        "base_pnl": 37.84,
+        "arm_pnl": -1000.0,
+        "delta": -1037.84
+      },
+      {
+        "day": "2026-08-04",
+        "kind": "repicked",
+        "base": "PLTR@09:39",
+        "arm": "INTC@09:41",
+        "base_pnl": 760.5,
+        "arm_pnl": -141.67,
+        "delta": -902.17
+      },
+      {
+        "day": "2025-05-16",
+        "kind": "repicked",
+        "base": "COIN@09:41",
+        "arm": "NVDA@09:41",
+        "base_pnl": 368.36,
+        "arm_pnl": -58.61,
+        "delta": -426.97
+      },
+      {
+        "day": "2024-09-23",
+        "kind": "repicked",
+        "base": "HOOD@09:37",
+        "arm": "PLTR@09:43",
+        "base_pnl": -8.82,
+        "arm_pnl": -310.18,
+        "delta": -301.36
+      }
+    ],
+    "best_5": [
+      {
+        "day": "2025-06-26",
+        "kind": "repicked",
+        "base": "NFLX@09:44",
+        "arm": "COIN@09:49",
+        "base_pnl": 37.84,
+        "arm_pnl": -1000.0,
+        "delta": -1037.84
+      },
+      {
+        "day": "2026-08-04",
+        "kind": "repicked",
+        "base": "PLTR@09:39",
+        "arm": "INTC@09:41",
+        "base_pnl": 760.5,
+        "arm_pnl": -141.67,
+        "delta": -902.17
+      },
+      {
+        "day": "2025-05-16",
+        "kind": "repicked",
+        "base": "COIN@09:41",
+        "arm": "NVDA@09:41",
+        "base_pnl": 368.36,
+        "arm_pnl": -58.61,
+        "delta": -426.97
+      },
+      {
+        "day": "2024-09-23",
+        "kind": "repicked",
+        "base": "HOOD@09:37",
+        "arm": "PLTR@09:43",
+        "base_pnl": -8.82,
+        "arm_pnl": -310.18,
+        "delta": -301.36
+      },
+      {
+        "day": "2025-06-17",
+        "kind": "repicked",
+        "base": "PLTR@09:44",
+        "arm": "AMD@09:46",
+        "base_pnl": -1000.0,
+        "arm_pnl": 952.62,
+        "delta": 1952.62
+      }
+    ],
+    "graded_days_touched": [
+      {
+        "day": "2024-09-18",
+        "side": "base",
+        "id": "IWM_2024-09-18",
+        "grade": "none"
+      },
+      {
+        "day": "2024-09-18",
+        "side": "arm",
+        "id": "AVGO_2024-09-18",
+        "grade": "none"
+      },
+      {
+        "day": "2025-06-26",
+        "side": "arm",
+        "id": "COIN_2025-06-26",
+        "grade": "S"
+      }
+    ]
+  },
+  "bootstrap_delta_usd_day": {
+    "point": -4.0,
+    "ci95": [
+      -14.1,
+      7.39
+    ],
+    "p_delta_positive": 0.2162,
+    "n_resamples": 4000
+  },
+  "placebo": {
+    "drop_rate_on_walked_candidates": 0.0119,
+    "k_dropped_per_placebo": 82,
+    "n_placebos": 4000,
+    "null_pass_rate_survivor_gate": 0.4788,
+    "null_pass_rate_precision_only": 0.2828,
+    "null_pass_rate_usd_both_halves": 0.196,
+    "candidates_tried": 25,
+    "expected_null_survivors_over_25": 11.97,
+    "fwer_at_least_one_null_survivor": 1.0,
+    "placebo_median_usd_day": 33.48,
+    "arm_percentile_among_placebos": 27.7
+  },
+  "sign_flip_drop_clean_instead": {
+    "usd_day": 26.19,
+    "h1": 131.99,
+    "h2": -79.61,
+    "precision": {
+      "pct": 31.7,
+      "graded_s": 19,
+      "graded_any": 60
+    },
+    "recall_100": 5.9,
+    "survivor": true
+  },
+  "verdict": "REFUTED"
+}

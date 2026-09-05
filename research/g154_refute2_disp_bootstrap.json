@@ -1,0 +1,99 @@
+{
+  "row": "F6 refuter#2",
+  "target": "g154 displacement-graded-not-boolean",
+  "book": "bt2y_trades_retest_on.json",
+  "fill": "signal-bar CLOSE entry, stop_rule.stop_fill_price stops, size-gated on signal_runner.min_risk_floor, 1R=$1,000",
+  "reproduced": {
+    "baseline_usd_day": 33.93,
+    "arm_usd_day": -36.03,
+    "h1_delta": -91.47,
+    "h2_delta": -47.78,
+    "baseline_precision": [
+      30.5,
+      18,
+      59
+    ],
+    "arm_precision": [
+      38.3,
+      18,
+      47
+    ],
+    "baseline_recall100": [
+      5.9,
+      2,
+      34
+    ],
+    "arm_recall100": [
+      14.7,
+      5,
+      34
+    ]
+  },
+  "paired_session_bootstrap_usd_day_delta": {
+    "all": {
+      "mean": -69.73,
+      "lo95": -172.79,
+      "hi95": 30.75,
+      "p_arm_better_than_baseline": 0.0925
+    },
+    "H1": {
+      "mean": -95.08,
+      "lo95": -246.37,
+      "hi95": 53.89,
+      "p_arm_better_than_baseline": 0.1035
+    },
+    "H2": {
+      "mean": -42.9,
+      "lo95": -185.9,
+      "hi95": 98.36,
+      "p_arm_better_than_baseline": 0.28
+    }
+  },
+  "placebo_random_drop": {
+    "n": 1000,
+    "drop_rate_matched_to_T2.0": 0.6712,
+    "survivor_gate_pass_rate": 0.497,
+    "precision_up_rate": 0.759,
+    "precision_pctl": {
+      "p05": 25.0,
+      "p50": 34.5,
+      "p95": 44.4,
+      "frac_ge_claim_38.3": 0.254
+    },
+    "recall100_pctl": {
+      "p05": 0.0,
+      "p50": 5.9,
+      "p95": 11.8,
+      "frac_ge_claim_14.7": 0.02
+    },
+    "usd_day_pctl": {
+      "p05": -84.48,
+      "p50": -14.13,
+      "p95": 55.89,
+      "frac_le_claim_-36.03": 0.308
+    }
+  },
+  "multiplicity": {
+    "thresholds_swept_in_script": [
+      1.0,
+      1.5,
+      2.0,
+      2.5
+    ],
+    "headline_threshold": 2.0,
+    "headline_is_argmax_precision_of_the_4": true,
+    "precision_by_threshold": {
+      "1.0": 36.1,
+      "1.5": 34.0,
+      "2.0": 38.3,
+      "2.5": 31.2
+    },
+    "rule_candidates_in_batch": 25
+  },
+  "precision_numerator": {
+    "baseline_S_over_graded": "18/59",
+    "arm_S_over_graded": "18/47",
+    "S_numerator_unchanged": true
+  },
+  "n_days_total": 498
+}

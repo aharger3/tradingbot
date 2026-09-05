@@ -1,0 +1,167 @@
+{
+ "fill": "signal-bar CLOSE entry; stop_rule.stop_fill_price; disaster 1.0R; size-gated omen_metrics.first_of_day_arm; 1R=$1000",
+ "book": "bt2y_trades_retest_on.json",
+ "sessions": 498,
+ "fallbacks": 2,
+ "fine_k_grid": {
+  "0.125": {
+   "usd_day": 40.58,
+   "h1": 143.51,
+   "h2": -62.36,
+   "d_h1": -1.93,
+   "d_h2": -10.78,
+   "gate_pass": false
+  },
+  "0.25": {
+   "usd_day": 50.7,
+   "h1": 141.6,
+   "h2": -40.19,
+   "d_h1": -3.85,
+   "d_h2": 11.39,
+   "gate_pass": false
+  },
+  "0.375": {
+   "usd_day": 72.21,
+   "h1": 167.35,
+   "h2": -22.92,
+   "d_h1": 21.91,
+   "d_h2": 28.66,
+   "gate_pass": true
+  },
+  "0.5": {
+   "usd_day": 65.18,
+   "h1": 164.32,
+   "h2": -33.96,
+   "d_h1": 18.88,
+   "d_h2": 17.63,
+   "gate_pass": true
+  },
+  "0.625": {
+   "usd_day": 65.17,
+   "h1": 166.87,
+   "h2": -36.52,
+   "d_h1": 21.43,
+   "d_h2": 15.06,
+   "gate_pass": true
+  },
+  "0.75": {
+   "usd_day": 54.15,
+   "h1": 162.1,
+   "h2": -53.81,
+   "d_h1": 16.66,
+   "d_h2": -2.22,
+   "gate_pass": false
+  },
+  "0.875": {
+   "usd_day": 59.17,
+   "h1": 166.47,
+   "h2": -48.12,
+   "d_h1": 21.02,
+   "d_h2": 3.46,
+   "gate_pass": true
+  },
+  "1.0": {
+   "usd_day": 48.8,
+   "h1": 149.19,
+   "h2": -51.58,
+   "d_h1": 3.75,
+   "d_h2": 0.0,
+   "gate_pass": false
+  },
+  "1.125": {
+   "usd_day": 46.93,
+   "h1": 145.44,
+   "h2": -51.58,
+   "d_h1": 0.0,
+   "d_h2": 0.0,
+   "gate_pass": false
+  },
+  "1.25": {
+   "usd_day": 46.93,
+   "h1": 145.44,
+   "h2": -51.58,
+   "d_h1": 0.0,
+   "d_h2": 0.0,
+   "gate_pass": false
+  },
+  "1.375": {
+   "usd_day": 46.93,
+   "h1": 145.44,
+   "h2": -51.58,
+   "d_h1": 0.0,
+   "d_h2": 0.0,
+   "gate_pass": false
+  },
+  "1.5": {
+   "usd_day": 46.93,
+   "h1": 145.44,
+   "h2": -51.58,
+   "d_h1": 0.0,
+   "d_h2": 0.0,
+   "gate_pass": false
+  },
+  "1.625": {
+   "usd_day": 46.93,
+   "h1": 145.44,
+   "h2": -51.58,
+   "d_h1": 0.0,
+   "d_h2": 0.0,
+   "gate_pass": false
+  },
+  "1.75": {
+   "usd_day": 46.93,
+   "h1": 145.44,
+   "h2": -51.58,
+   "d_h1": 0.0,
+   "d_h2": 0.0,
+   "gate_pass": false
+  },
+  "1.875": {
+   "usd_day": 46.93,
+   "h1": 145.44,
+   "h2": -51.58,
+   "d_h1": 0.0,
+   "d_h2": 0.0,
+   "gate_pass": false
+  },
+  "2.0": {
+   "usd_day": 46.93,
+   "h1": 145.44,
+   "h2": -51.58,
+   "d_h1": 0.0,
+   "d_h2": 0.0,
+   "gate_pass": false
+  }
+ },
+ "bootstrap_k0.5": {
+  "all": {
+   "obs_usd_day": 18.25,
+   "ci2.5": -15.0,
+   "ci97.5": 49.8,
+   "p_delta_le_0": 0.1328
+  },
+  "h1": {
+   "obs_usd_day": 18.88,
+   "ci2.5": -32.13,
+   "ci97.5": 64.92,
+   "p_delta_le_0": 0.2191
+  },
+  "h2": {
+   "obs_usd_day": 17.63,
+   "ci2.5": -26.12,
+   "ci97.5": 56.97,
+   "p_delta_le_0": 0.2044
+  }
+ },
+ "p_joint_h1h2_positive": 0.6219,
+ "picks_changed": 45,
+ "picks": 498,
+ "selection_win_share": {
+  "0.25": 0.138,
+  "0.5": 0.67,
+  "0.75": 0.073,
+  "1.0": 0.119
+ },
+ "gate_fpr_centered_null_single_arm": 0.259,
+ "gate_fwer_centered_null_any_of_4": 0.4153
+}
