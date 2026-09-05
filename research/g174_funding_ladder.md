@@ -1,5 +1,12 @@
 # g174 — rank the funding ladder
 
+**What is different now (wave 2, W4):** the core-10 lane Austin asked for is now measured
+alongside full/index on the identical one-trade-a-day unit, H1/H2 — `universe.CORE_SYMBOLS`
+(11 symbols today, not 10: SPY was re-added 2026-08-11 and overlaps `INDEX_POOL`). It changes no
+ladder verdict: core is **−$0.34/day** full 2y (H1 +$34.46, H2 **−$35.00**), between the index and
+full-pool streams and still negative in H2. Everything below this paragraph is the standing
+wave-1 ladder, unchanged except the new stream row in the table under "The three streams".
+
 **What is different now:** every funding arm measured tonight sits in one table, in Austin's own
 ladder order, and the answer is that **no rung is fundable** — not because of the account type, but
 because all three candidate streams lose money in the last twelve months (H2: −$68/day index,
@@ -81,6 +88,9 @@ all three, at a common $1,000/R price, so the rungs are comparable at all
 | index pool QQQ/SPY/IWM, first of day (**rung 1**) | full 2y | 234 | **−$13.50** | −0.0135 | 48.3% | 12/24 | $12,529 |
 | | H1 | 112 | +$46.15 | +0.0462 | 49.1% | 7/12 | $7,855 |
 | | H2 | 122 | **−$68.27** | −0.0683 | 47.5% | 5/12 | $11,797 |
+| core 11, `universe.CORE_SYMBOLS`, first of day (**not on the ladder — his explicit ask, W4**) | full 2y | 495 | **−$0.34** | −0.0003 | 46.5% | 12/25 | $23,687 |
+| | H1 | 247 | +$34.46 | +0.0345 | 45.3% | 6/12 | $18,243 |
+| | H2 | 248 | **−$35.00** | −0.0350 | 47.6% | 6/13 | $19,424 |
 | full pool, first of day / A_base (**rungs 2 & 4**) | full 2y | 495 | **+$35.56** | +0.0356 | 46.3% | 13/25 | $21,577 |
 | | H1 | 248 | +$140.29 | +0.1403 | 49.6% | 9/12 | $13,980 |
 | | H2 | 247 | **−$69.60** | −0.0696 | 42.9% | 4/13 | $21,577 |
@@ -88,8 +98,9 @@ all three, at a common $1,000/R price, so the rungs are comparable at all
 | | H1 | 161 | +$19.46 | +0.0195 | 44.1% | 7/12 | $13,619 |
 | | H2 | 152 | **−$121.66** | −0.1217 | 41.4% | 5/13 | $19,236 |
 
-**Every stream's H2 is negative, and the S-only stream — the one the live engine actually sizes — is
-the worst of the three.** That is the finding the whole ladder rests on. It also means the ladder
+**Every stream's H2 is negative, including the core-10 slice added in wave 2, and the S-only stream
+— the one the live engine actually sizes — is the worst of the four.** That is the finding the whole
+ladder rests on. It also means the ladder
 cannot be reordered into a pass: there is no rung whose rulebook is loose enough to survive a
 −0.07R-per-trade stream for 120 sessions.
 

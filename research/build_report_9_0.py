@@ -346,31 +346,54 @@ def render_phase_p(fd):
     """
 
 
+def lane_row(label, half):
+    return (
+        f"<tr><td>{esc(label)}</td><td>{half.get('n','—')}</td>"
+        f"<td>{usd(half.get('per_day'))}</td><td>{half.get('mean_r','—')}</td>"
+        f"<td>{pct(half.get('win_pct'))}</td>"
+        f"<td>{half.get('green_months','—')}/{half.get('months','—')}</td></tr>"
+    )
+
+
 def render_lanes():
+    """Three symbol-pool slices of the one-trade-a-day unit, side by side.
+    Added in OMEN 9.0 wave 2 (W4, Austin's explicit ask): the core-10 slice
+    is now measured by research/g174_funding_ladder.py alongside full/index
+    on the identical unit, so this table is no longer missing a lane."""
     d = load("g174_funding_ladder.json") or {}
     streams = d.get("streams", {})
-    idx = streams.get("IDX_first_of_day", {}).get("full", {})
-    full = streams.get("A_base_first_of_day", {}).get("full", {})
+    core_syms = d.get("core_symbols", [])
+    idx_syms = d.get("index_symbols", [])
+    idx = streams.get("IDX_first_of_day", {})
+    core = streams.get("CORE_first_of_day", {})
+    full = streams.get("A_base_first_of_day", {})
+    full_lbl = "full pool (29 symbols, universe.ALL_SYMS)"
+    core_lbl = f"core {len(core_syms)} (universe.CORE_SYMBOLS)"
+    idx_lbl = f"index {len(idx_syms)} (universe.INDEX_POOL)"
+    rows = []
+    for lbl, s in ((full_lbl, full), (core_lbl, core), (idx_lbl, idx)):
+        for half_key, half_lbl in (("full", "full 2y"), ("H1", "H1"), ("H2", "H2")):
+            rows.append(lane_row(f"{lbl} — {half_lbl}" if half_key != "full" else lbl,
+                                  s.get(half_key, {})))
     return f"""
     <section id="lanes">
       <h2>Lane slices — one-trade-a-day unit</h2>
-      <p class="deflabel">"Full 28" = the whole pool, first-of-day pick
-      (research.omen_metrics.first_of_day_arm). "Index 3" = QQQ/SPY/IWM only.
-      "Core 10" is not separately measured tonight — no script this session
-      produced that slice; listed for completeness, not fabricated.
-      script: research/g174_funding_ladder.py.</p>
-      <div class="tablewrap"><table><thead><tr><th>lane</th><th>n</th>
+      <p class="deflabel">Three symbol-pool slices of the same
+      first-of-day-arm construction (research.omen_metrics.first_of_day_arm),
+      same fill, same H1/H2 split. Each is one definition, no overlap counted
+      twice within a row: "full pool" = every symbol in universe.ALL_SYMS
+      (29); "core {len(core_syms)}" = universe.CORE_SYMBOLS
+      ({esc(', '.join(core_syms))} — his own watchlist split, historically
+      called "core-10" though SPY's 2026-08-11 re-inclusion makes it
+      {len(core_syms)}); "index {len(idx_syms)}" = universe.INDEX_POOL
+      ({esc(', '.join(idx_syms))}). Core and index overlap on
+      {esc(', '.join(sorted(set(core_syms) & set(idx_syms))) or 'none')} by
+      construction — both pools are read straight off universe.py, not
+      de-duplicated against each other. script: research/g174_funding_ladder.py.</p>
+      <div class="tablewrap"><table><thead><tr><th>lane / period</th><th>n</th>
         <th>$/day</th><th>mean R</th><th>win%</th><th>green months</th>
         </tr></thead><tbody>
-        <tr><td>full pool (28+ symbols)</td><td>{full.get('n','498*')}</td>
-        <td>{usd(full.get('per_day', 33.94))}</td>
-        <td>{full.get('mean_r', 0.0339)}</td><td>{pct(full.get('win_pct',46.4))}</td>
-        <td>{full.get('green_months',13)}/25</td></tr>
-        <tr><td>index 3 (QQQ/SPY/IWM)</td><td>{idx.get('n','—')}</td>
-        <td>{usd(idx.get('per_day'))}</td><td>{idx.get('mean_r','—')}</td>
-        <td>{pct(idx.get('win_pct'))}</td>
-        <td>{idx.get('green_months','—')}/{idx.get('months','—')}</td></tr>
-        <tr><td>core 10</td><td colspan="5">not measured this session</td></tr>
+        {''.join(rows)}
       </tbody></table></div>
     </section>
     """

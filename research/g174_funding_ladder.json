@@ -3,6 +3,24 @@
  "book_sessions": 498,
  "split": "2025-09-01",
  "r_dollars": 1000.0,
+ "core_symbols": [
+  "TSLA",
+  "NVDA",
+  "AAPL",
+  "AMD",
+  "META",
+  "GOOGL",
+  "AMZN",
+  "MSFT",
+  "PLTR",
+  "QQQ",
+  "SPY"
+ ],
+ "index_symbols": [
+  "QQQ",
+  "SPY",
+  "IWM"
+ ],
  "denominator_reconciliation": {
   "canonical_498_size_gated": {
    "label": "first_of_day_arm(allrows), size_gate=True",
@@ -71,6 +89,47 @@
     "months": 12,
     "green_months": 5,
     "max_dd_dollars": 11797.0
+   }
+  },
+  "CORE_first_of_day": {
+   "full": {
+    "label": "core 11 (universe.CORE_SYMBOLS), first of day",
+    "n": 495,
+    "first_day": "2024-09-03",
+    "last_day": "2026-09-02",
+    "total_dollars": -169.0,
+    "per_day": -0.34,
+    "mean_r": -0.0003,
+    "win_pct": 46.5,
+    "months": 25,
+    "green_months": 12,
+    "max_dd_dollars": 23687.0
+   },
+   "H1": {
+    "label": "core 11 (universe.CORE_SYMBOLS), first of day H1",
+    "n": 247,
+    "first_day": "2024-09-03",
+    "last_day": "2025-08-29",
+    "total_dollars": 8511.0,
+    "per_day": 34.46,
+    "mean_r": 0.0345,
+    "win_pct": 45.3,
+    "months": 12,
+    "green_months": 6,
+    "max_dd_dollars": 18243.0
+   },
+   "H2": {
+    "label": "core 11 (universe.CORE_SYMBOLS), first of day H2",
+    "n": 248,
+    "first_day": "2025-09-03",
+    "last_day": "2026-09-02",
+    "total_dollars": -8680.0,
+    "per_day": -35.0,
+    "mean_r": -0.035,
+    "win_pct": 47.6,
+    "months": 13,
+    "green_months": 6,
+    "max_dd_dollars": 19424.0
    }
   },
   "S_only_first_of_day": {

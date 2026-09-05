@@ -49,7 +49,7 @@ for _p in (ROOT, HERE):
 from omen_metrics import (evaluate_prop_challenge, first_of_day_arm,  # noqa: E402
                           min_risk_floor)
 from g71_propfirm_sim import FIRMS as G71_FIRMS               # noqa: E402
-from universe import INDEX_POOL                               # noqa: E402
+from universe import INDEX_POOL, CORE_SYMBOLS                 # noqa: E402
 
 BOOK = os.path.join(HERE, "bt2y_trades_retest_on.json")
 OUT_JSON = os.path.join(HERE, "g174_funding_ladder.json")
@@ -194,6 +194,7 @@ def firm_by_name(name):
 def main():
     rows, allrows, meta = load_rows()
     idx_set = set(INDEX_POOL)
+    core_set = set(CORE_SYMBOLS)
 
     # g171's index stream is `first_of_day_arm` restricted to INDEX_POOL --
     # which includes loss-halted rows (under one-trade-a-day the halt cannot
@@ -203,6 +204,16 @@ def main():
     idx_arm = [r for r in first_of_day_arm([r for r in allrows
                                             if r["sym"] in idx_set])
                if r.get("r") is not None]
+    # W4 (OMEN 9.0 wave 2): the core-10 slice Austin explicitly asked for,
+    # `universe.CORE_SYMBOLS` -- built the identical way as the index arm
+    # (restrict allrows to the pool, then first_of_day_arm, then drop
+    # r==None). CORE_SYMBOLS currently carries 11 symbols, not 10: SPY was
+    # re-added 2026-08-11 (`INCLUDE_SPY_IN_BACKTEST=True`), overlapping
+    # INDEX_POOL. The label below names the real count so no one re-derives
+    # a different n by assuming the literal "10".
+    core_arm = [r for r in first_of_day_arm([r for r in allrows
+                                             if r["sym"] in core_set])
+                if r.get("r") is not None]
     s_arm = first_of_day(rows, lambda r: r.get("sgrade") == "S")
     a_arm = first_of_day_arm(rows)
 
@@ -224,6 +235,9 @@ def main():
     streams = {
         "IDX_first_of_day": split_edge(idx_arm,
                                        "index pool QQQ/SPY/IWM, first of day"),
+        "CORE_first_of_day": split_edge(
+            core_arm,
+            "core %d (universe.CORE_SYMBOLS), first of day" % len(CORE_SYMBOLS)),
         "S_only_first_of_day": split_edge(s_arm, "S-graded only, first of day"),
         "A_base_first_of_day": split_edge(a_arm,
                                           "full pool, first of day (A_base)"),
@@ -258,6 +272,8 @@ def main():
         "book_sessions": meta.get("sessions"),
         "split": SPLIT,
         "r_dollars": R_DOLLARS,
+        "core_symbols": list(CORE_SYMBOLS),
+        "index_symbols": list(INDEX_POOL),
         "denominator_reconciliation": canon,
         "streams": streams,
         "all_starts_pass_rates": starts,
