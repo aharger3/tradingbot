@@ -1,0 +1,144 @@
+{
+  "role": "refuter2_multiplicity_sampling",
+  "claim": "scratch-exit-direction-match survives: baseline $33.93/day -> $35.09/day, H1 delta 1.89, H2 delta 0.42, precision 30.5 -> 30.0, recall_100 5.9 -> 5.9",
+  "fill": "signal bar CLOSE entry, stop_rule.stop_fill_price stops, size-gated on signal_runner.min_risk_floor, 1R = $1,000; one-trade-a-day unit = the claim script's pick_first_of_day (== omen_metrics.first_of_day_arm)",
+  "book": "bt2y_trades_retest_on.json",
+  "sessions": 498,
+  "ekey_note": {
+    "candidate_rows": 8227,
+    "distinct_ekeys": 7920,
+    "mismatch_rows": 229,
+    "mismatch_distinct_ekeys": 208,
+    "why": "(day, et, sym) is not unique in the book -- 8227 rows collapse to 7920 keys -- so this refuter's drop set is keyed and the null draws the same number of KEYS. Reproduction is exact on every published field, so the collapse changes no pick."
+  },
+  "reproduction": {
+    "baseline_usd_day": [
+      33.93,
+      33.93
+    ],
+    "arm_usd_day": [
+      35.09,
+      35.09
+    ],
+    "h1_delta": [
+      1.89,
+      1.89
+    ],
+    "h2_delta": [
+      0.42,
+      0.42
+    ],
+    "precision_base": [
+      30.5,
+      30.5
+    ],
+    "precision_arm": [
+      30.0,
+      30.0
+    ],
+    "recall100_base": [
+      5.9,
+      5.9
+    ],
+    "recall100_arm": [
+      5.9,
+      5.9
+    ],
+    "survivor": [
+      true,
+      true
+    ]
+  },
+  "reproduces_exactly": true,
+  "footprint": {
+    "sessions_changed": 5,
+    "pct_sessions_changed": 1.0,
+    "total_delta_usd": 573.94,
+    "top1_session_delta_usd": 466.36,
+    "top1_share_of_total_pct": 81.3,
+    "top3_share_of_total_pct": 81.8,
+    "changed_sessions": [
+      {
+        "day": "2024-12-20",
+        "delta_usd": 466.36,
+        "base": "MSFT 09:36",
+        "arm": "INTC 09:37"
+      },
+      {
+        "day": "2025-08-13",
+        "delta_usd": 304.39,
+        "base": "AMD 09:49",
+        "arm": "GOOGL 09:52"
+      },
+      {
+        "day": "2024-09-23",
+        "delta_usd": -301.36,
+        "base": "HOOD 09:37",
+        "arm": "PLTR 09:43"
+      },
+      {
+        "day": "2025-11-19",
+        "delta_usd": 104.09,
+        "base": "NFLX 09:41",
+        "arm": "QQQ 09:41"
+      },
+      {
+        "day": "2025-10-16",
+        "delta_usd": 0.46,
+        "base": "ACHR 09:37",
+        "arm": "AMZN 09:48"
+      }
+    ]
+  },
+  "paired_bootstrap": {
+    "overall_delta_usd_day": 1.15,
+    "overall_ci95": [
+      -1.2,
+      3.92
+    ],
+    "overall_p_gt0": 0.8286,
+    "h1_delta": 1.89,
+    "h1_ci95": [
+      -2.42,
+      7.41
+    ],
+    "h1_p_gt0": 0.7729,
+    "h2_delta": 0.42,
+    "h2_ci95": [
+      0.0,
+      1.26
+    ],
+    "h2_p_gt0": 0.8642,
+    "joint_p_both_halves_positive": 0.6648
+  },
+  "label_permutation_null": {
+    "n_null": 2000,
+    "n_dropped_per_draw": 208,
+    "survivor_rate": 0.601,
+    "usd_gate_rate": 0.235,
+    "precision_gate_rate": 0.51,
+    "h1_delta_null_ci95": [
+      -34.09,
+      27.48
+    ],
+    "h2_delta_null_ci95": [
+      -24.44,
+      30.26
+    ],
+    "h1_delta_null_pctile_of_observed": 0.6385,
+    "h2_delta_null_pctile_of_observed": 0.4585,
+    "expected_spurious_survivors_over_25_tried": 15.02,
+    "p_at_least_one_spurious_over_25_tried": 1.0
+  },
+  "descriptive_split_significance": {
+    "match_n": 7995,
+    "mismatch_n": 229,
+    "match_graded": "285/952",
+    "mismatch_graded": "10/20",
+    "s_rate_gap_pp": -20.1,
+    "fisher_exact_p": 0.0816,
+    "mean_r_gap": 0.1269,
+    "mean_r_welch_t": 1.702,
+    "mean_r_welch_p": 0.0887
+  }
+}
