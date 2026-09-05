@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-09-05T01:12:23.267590-04:00",
+  "timestamp": "2026-09-05T05:28:13.201094-04:00",
   "symbols_scanned": [
     "AAPL",
     "MSFT",
@@ -26,6 +26,10 @@
   "grading_arm": {
     "enable_sac_ladder": true,
     "sac_ladder_varset": "shipped",
-    "book_default_enable_sac_ladder": false
+    "book_default_enable_sac_ladder": false,
+    "day_policy": "first3",
+    "entry_window_end": "11:00",
+    "fire_a_when_no_s": false,
+    "veto_1d": false
   }
 }
