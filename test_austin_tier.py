@@ -16,6 +16,7 @@ import sys
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 
 import signal_runner as sr
+import entry_fill
 from omen_bot import Candle, SignalType, TradeGrade
 
 FAILS = []
@@ -237,16 +238,30 @@ check(late.detect_signals() == [],
       "(a) the SAME setup on a bar timestamped 11:30 is not emitted at all")
 
 # (b) intrabar fill on an extreme close
+#
+# 2026-08-30: `fill_price`'s DEFAULT mode ("close") always books the signal
+# minute's close and never reads `close_is_bad_fill` -- only
+# ENTRY_FILL=published (the retired, unobtainable-fill reproduction) still
+# clamps to the bar's own extreme via `entry_fill.entry_fill_price`. Under the
+# shipped default this clamp is dead code, on purpose (research/g80_lookahead_
+# refute.md). These checks now exercise "published" mode directly, the one
+# path left that still implements the clamp.
+def _published_fill(level, candle, is_long):
+    bad = sr.close_is_bad_fill(candle, is_long)
+    return entry_fill.entry_fill_price(level, candle, is_long, mode="published",
+                                        close_is_bad_fill=bad).price
+
+
 check(sr.fill_price(100.00, MID, is_long=True) == MID.close,
       "(b) a mid-bar close fills at the close")
-check(sr.fill_price(100.00, TOP, is_long=True) == 100.00,
-      "(b) a long closing in the top 25% fills INTRABAR at the level instead")
-check(sr.fill_price(99.00, TOP, is_long=True) == TOP.low,
-      "(b) a level below the bar is clamped into the bar's own range")
-check(sr.fill_price(100.90, BOT, is_long=False) == 100.90,
-      "(b) a short closing in the bottom 25% fills at the level")
-check(sr.fill_price(102.00, BOT, is_long=False) == BOT.high,
-      "(b) a level above the bar is clamped to its high")
+check(_published_fill(100.00, TOP, is_long=True) == 100.00,
+      "(b) a long closing in the top 25% fills INTRABAR at the level instead (published mode)")
+check(_published_fill(99.00, TOP, is_long=True) == TOP.low,
+      "(b) a level below the bar is clamped into the bar's own range (published mode)")
+check(_published_fill(100.90, BOT, is_long=False) == 100.90,
+      "(b) a short closing in the bottom 25% fills at the level (published mode)")
+check(_published_fill(102.00, BOT, is_long=False) == BOT.high,
+      "(b) a level above the bar is clamped to its high (published mode)")
 check(callable(sr.fill_price) and '"entry": current.close' not in src,
       "(b) no detection site fills at the close unconditionally any more")
 

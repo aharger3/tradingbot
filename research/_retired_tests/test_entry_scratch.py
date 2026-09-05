@@ -145,12 +145,15 @@ print("\nshipped default")
 check(os.getenv("ENTRY_SCRATCH") is not None or bw.ENTRY_SCRATCH == "",
       "ENTRY_SCRATCH is OFF unless the env var asks for it")
 t = only(run(long_day(BAND["thru_stop"]), mode="")[0])
-# T11 (2026-08-28): that bar closes 1.8R below entry, so the stop-out books its
-# own close floored at -1.25R, not the flat -1.00R the old fill-at-the-level
-# convention produced. What this check owns is that ENTRY_SCRATCH OFF still
-# takes the ordinary stop-out path -- see research/t11_stop_fill_fix.md.
-check(t.outcome == "loss" and abs(t.pnl / 1000 + 1.25) < EPS,
-      "OFF: the close-back bar is an ordinary stop-out, floored at -1.25R "
+# T11 (2026-08-28) floored this at -1.25R (the stop-out's own close). That
+# floor is gone: the 2026-09-03 fix (CLAUDE.md "Rules that hold everywhere")
+# made the disaster stop a resting order at exactly 1R that fills on an
+# intrabar TOUCH, so nothing books worse than -1.000R any more -- see
+# stop_rule.stop_fill_price and research/t11_stop_fill_fix.md for the old
+# number's origin. What this check owns is that ENTRY_SCRATCH OFF still
+# takes the ordinary stop-out path.
+check(t.outcome == "loss" and abs(t.pnl / 1000 + 1.00) < EPS,
+      "OFF: the close-back bar is an ordinary stop-out, floored at -1.000R hard "
       "(%s %.3fR)" % (t.outcome, t.pnl / 1000))
 
 # --------------------------------------------- 3. ON, the band that moves money

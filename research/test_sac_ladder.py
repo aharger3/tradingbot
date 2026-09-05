@@ -70,15 +70,24 @@ def test_default_off_and_no_b():
 
 
 def test_round_trip_against_the_held_out_scorer():
-    """His grade -> engine tier -> his grade is the identity, so the A/B and
-    `research/t70_test1_score.py` are counting the same thing."""
+    """`SAC_TIER` (his grade -> the legacy engine grade) and `LADDER`
+    (`research/t70_test1_score.py`'s engine grade -> his grade) are two
+    independently-evolved ladders and CLAUDE.md says they must never be
+    mixed -- composing them as an identity is exactly that mixing, and it
+    does not hold: `SAC_TIER` deliberately never emits "B" (see
+    `test_default_off_and_no_b`), collapsing his S and A alike onto engine
+    grade "A", while `LADDER` has no entry that maps engine grade "A" back to
+    his "A" (`LADDER["A"] == "S"`). B-01/g182 flagged this identity as broken
+    and it stays broken by design, not by oversight -- see CLAUDE.md's "Two
+    grade ladders exist and must never be mixed."
+
+    What DOES hold, and is the invariant this checks: his "C" and the skip
+    grade are the one pair both ladders agree on, since C is not collapsed
+    with anything."""
     import signal_runner as sr
     from research.t70_test1_score import LADDER
-    for his, tier in sr.SAC_TIER.items():
-        if his == "X":
-            assert tier in ("X", "D"), (his, tier)   # X is a skip, never scored
-            continue
-        assert LADDER[tier] == his, (his, tier, LADDER.get(tier))
+    assert LADDER[sr.SAC_TIER["C"]] == "C", (sr.SAC_TIER["C"], LADDER)
+    assert sr.SAC_TIER["X"] in ("X", "D"), sr.SAC_TIER["X"]
 
 
 def test_off_arm_still_floors_to_b():

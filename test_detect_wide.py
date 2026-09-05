@@ -181,7 +181,8 @@ check(SignalType.FAIR_VALUE_GAP.value == "fair_value_gap"
       and SignalType.FLAG.value == "flag",
       "the new types serialise under their own names")
 
-src = (pathlib.Path(__file__).resolve().parent / "signal_runner.py").read_text()
+src = (pathlib.Path(__file__).resolve().parent / "signal_runner.py").read_text(
+    encoding="utf-8")
 check("Flag long" in src and 'SignalType.FLAG,\n                    "reason": f"Flag long' in src,
       "the flag long branch routes to SignalType.FLAG")
 check('SignalType.FAIR_VALUE_GAP,\n                            "reason": f"B&R long — FVG retest' in src,

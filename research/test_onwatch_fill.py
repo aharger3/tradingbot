@@ -33,6 +33,7 @@ if _REPO_ROOT not in sys.path:
 
 from omen_bot import Candle                                    # noqa: E402
 import signal_runner as sr                                     # noqa: E402
+import entry_fill                                               # noqa: E402
 
 FAILURES = []
 
@@ -98,26 +99,41 @@ check(sr.fill_price(LEVEL, mid, True) == mid.close,
 
 # Bar closing hard against the SESSION high. Its close sits mid-bar, so the old
 # bar-extreme veto would NOT have fired -- only ON WATCH catches this one.
+#
+# 2026-08-30: `fill_price`'s DEFAULT mode ("close") always books the signal
+# minute's close and never reads `close_is_bad_fill` at all -- only
+# ENTRY_FILL=published (the retired, unobtainable-fill reproduction) still
+# routes through the ON WATCH clamp (`entry_fill.entry_fill_price`, mode
+# "published"). So under the shipped default this clamp is dead code, on
+# purpose; these checks now exercise it directly in "published" mode, the one
+# path left that still implements it -- see entry_fill.py's own docstring.
 at_hod = bar(107.6, 109.6, 107.4, 108.4)
 check(not sr.bar_extreme_veto({"entry": at_hod.close, "direction": "call"}, at_hod),
       "the session-high bar does NOT trip the old bar-extreme veto")
-filled = sr.fill_price(LEVEL, at_hod, True, session_hi=HI, session_lo=LO)
-check(filled != at_hod.close, "so ON WATCH is what moves this fill")
+near = sr.near_session_extreme(at_hod, True, HI, LO)
+filled = entry_fill.entry_fill_price(LEVEL, at_hod, True, mode="published",
+                                      close_is_bad_fill=near).price
+check(filled != at_hod.close, "so ON WATCH is what moves this fill (published mode)")
 check(filled == at_hod.low,
       "fill clamps to the bar's low: the level is below everything this bar traded")
 
 # The clamp is the safety property that matters: Austin can never be filled at a
 # price the bar never printed, whatever the level says.
 far = bar(107.6, 109.6, 107.4, 108.4)
+far_near = sr.near_session_extreme(far, True, HI, LO)
 for lvl in (50.0, 103.0, 108.0, 200.0):
-    f = sr.fill_price(lvl, far, True, session_hi=HI, session_lo=LO)
+    f = entry_fill.entry_fill_price(lvl, far, True, mode="published",
+                                     close_is_bad_fill=far_near).price
     check(far.low <= f <= far.high,
           "level %.0f -> fill %.2f stays inside the bar's range" % (lvl, f))
 
 # Short side, closing on the session low.
 at_lod = bar(102.4, 102.6, 100.4, 101.6)
-f_short = sr.fill_price(107.0, at_lod, False, session_hi=HI, session_lo=LO)
-check(f_short != at_lod.close, "short: a close on the session low moves the fill")
+lod_near = sr.near_session_extreme(at_lod, False, HI, LO)
+f_short = entry_fill.entry_fill_price(107.0, at_lod, False, mode="published",
+                                       close_is_bad_fill=lod_near).price
+check(f_short != at_lod.close,
+      "short: a close on the session low moves the fill (published mode)")
 check(at_lod.low <= f_short <= at_lod.high, "short: fill stays inside the bar")
 
 # ON_WATCH=0 must restore the old behaviour byte for byte.

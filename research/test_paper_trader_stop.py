@@ -1,9 +1,12 @@
 """Live-path stop selftest for paper_trader.py (G11's wick bug).
 
-CLAUDE.md, "Rules that hold everywhere":
+CLAUDE.md, "Rules that hold everywhere" (updated 2026-09-03 -- max loss is
+-1R hard, no -1.25R clamp; the level stop triggers on CLOSE and the disaster
+stop rests at exactly 1R and fills on an intrabar TOUCH):
 
-    Stops trigger on the candle CLOSE, fill at that close, floored at -1.25R.
-    Wicks stop nothing out. Austin settled this five times in one batch of marks.
+    Stops trigger on the candle CLOSE, fill at that close, floored at -1.000R.
+    Wicks stop nothing out on the LEVEL stop; the disaster stop is the one
+    order that reacts to a touch, and it sits exactly on the level stop here.
 
 `backtest_week.py` has obeyed that since omen-5.0 T4(a) (`STOP_ON_CLOSE`).
 `paper_trader.py` did not: `PaperPosition._check_stop` tested the bar's WICK
@@ -21,7 +24,7 @@ What this file pins, on synthetic bars, no market and no archive needed:
      exactly as backtest_week does it. Only the stop moved to the close.
   4. Rule 6's runner stop is close-based too, and its break-even scale-out is
      still a touch (backtest_week.py:593-602 draws the same line)
-  5. a stop-out never books worse than -1.25R
+  5. a stop-out never books worse than -1.000R (DISASTER_STOP_R)
 
   6. the live path calls the SHARED predicate in `stop_rule.py`, not a private
      second copy of the rule -- the copy is how the divergence happened
@@ -48,7 +51,13 @@ from paper_trader import PaperBook                            # noqa: E402
 
 import stop_rule                                              # noqa: E402
 
-MAX_LOSS_R = stop_rule.MAX_LOSS_R      # 1.25, and it must not fork
+# Austin, 2026-09-03: -1R hard, no -1.25R clamp. `stop_rule.MAX_LOSS_R` (1.25)
+# only survives for `research/exit_lab.py`, a lab module with no disaster
+# stop; the live path (`paper_trader._stop_fill_premium`) passes
+# `DISASTER_STOP_R` as the floor, not `MAX_LOSS_R` -- this test must match
+# that call, not the old constant, or every "close mapped through delta"
+# expectation below is computed against the wrong floor.
+MAX_LOSS_R = stop_rule.DISASTER_STOP_R  # 1.0, matches paper_trader's real floor
 EPS = 1e-9
 
 # A call: entry 440.00, stop 439.30 (risk 0.70), target 441.40.
@@ -138,8 +147,12 @@ def check_cases(failures, rows):
                 f"stop={plan.stock_stop})")
             continue
         if got == "stop":
-            # 5. the -1.25R floor. T11 (2026-08-28): the fill is the triggering
-            #    CLOSE mapped through the plan's own delta, floored at -1.25R --
+            # 5. the -1.000R floor (DISASTER_STOP_R). T11 (2026-08-28) introduced
+            #    the close-mapped fill; the 2026-09-03 ruling then dropped the
+            #    floor `paper_trader._stop_fill_premium` passes from MAX_LOSS_R
+            #    (1.25, exit_lab-only) to DISASTER_STOP_R (1.0). The fill is the
+            #    triggering CLOSE mapped through the plan's own delta, floored
+            #    at -1.000R --
             #    it is no longer the plan's precomputed stop_premium, which was
             #    exactly -1.000R however far the bar had already run past the
             #    level. So the floor now BINDS on the premium side; assert both
@@ -153,7 +166,7 @@ def check_cases(failures, rows):
             srisk = abs(plan.stock_entry - plan.stock_stop)
             prem_risk = plan.entry_premium - plan.stop_premium
             fill_stock = stop_rule.stop_fill_price(
-                close, plan.stock_entry, srisk, long)
+                close, plan.stock_entry, srisk, long, MAX_LOSS_R)
             moved = ((plan.stock_entry - fill_stock) if long
                      else (fill_stock - plan.stock_entry))
             want_prem = max(plan.entry_premium - moved / srisk * prem_risk, 0.05)

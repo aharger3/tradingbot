@@ -114,7 +114,17 @@ def route_once():
     return sig
 
 
-off = route_once()
+# RETEST_REQUIRED (default ON since 2026-09-02) is an UNRELATED gate that also
+# caps to C on a break that never retested the level -- exactly what the SLOW
+# fixture is, since it is built to fail rule 7's retest-timing check too. Turn
+# it off here so this isolates RULE_710_ENABLED alone, the thing this row
+# tests; RETEST_REQUIRED has its own test coverage elsewhere.
+_prev_retest_required = sr.RETEST_REQUIRED
+sr.RETEST_REQUIRED = False
+try:
+    off = route_once()
+finally:
+    sr.RETEST_REQUIRED = _prev_retest_required
 check(off["grade"] == "B" and "capped C" not in off["reason"],
       "flag OFF: a rule-7-failing signal is untouched (byte-identical to today)")
 

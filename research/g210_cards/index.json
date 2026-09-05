@@ -1,0 +1,902 @@
+[
+  {
+    "card_id": "CRM_2025-09-19",
+    "symbol": "CRM",
+    "day": "2025-09-19",
+    "png_path": "research/g210_cards/CRM_2025-09-19.png",
+    "his_grade": "S",
+    "entry_t": "09:40:00",
+    "cut_bar_time": "09:40:00"
+  },
+  {
+    "card_id": "AMD_2025-04-24",
+    "symbol": "AMD",
+    "day": "2025-04-24",
+    "png_path": "research/g210_cards/AMD_2025-04-24.png",
+    "his_grade": "none",
+    "entry_t": null,
+    "cut_bar_time": "10:00:00"
+  },
+  {
+    "card_id": "AMD_2026-02-13",
+    "symbol": "AMD",
+    "day": "2026-02-13",
+    "png_path": "research/g210_cards/AMD_2026-02-13.png",
+    "his_grade": "none",
+    "entry_t": null,
+    "cut_bar_time": "10:00:00"
+  },
+  {
+    "card_id": "IWM_2024-03-04",
+    "symbol": "IWM",
+    "day": "2024-03-04",
+    "png_path": "research/g210_cards/IWM_2024-03-04.png",
+    "his_grade": "none",
+    "entry_t": null,
+    "cut_bar_time": "10:00:00"
+  },
+  {
+    "card_id": "AMD_2025-01-28",
+    "symbol": "AMD",
+    "day": "2025-01-28",
+    "png_path": "research/g210_cards/AMD_2025-01-28.png",
+    "his_grade": "none",
+    "entry_t": null,
+    "cut_bar_time": "10:00:00"
+  },
+  {
+    "card_id": "ARM_2024-10-28",
+    "symbol": "ARM",
+    "day": "2024-10-28",
+    "png_path": "research/g210_cards/ARM_2024-10-28.png",
+    "his_grade": "S",
+    "entry_t": "09:39:00",
+    "cut_bar_time": "09:39:00"
+  },
+  {
+    "card_id": "NVDA_2025-11-24",
+    "symbol": "NVDA",
+    "day": "2025-11-24",
+    "png_path": "research/g210_cards/NVDA_2025-11-24.png",
+    "his_grade": "none",
+    "entry_t": null,
+    "cut_bar_time": "10:00:00"
+  },
+  {
+    "card_id": "MSTR_2025-01-27",
+    "symbol": "MSTR",
+    "day": "2025-01-27",
+    "png_path": "research/g210_cards/MSTR_2025-01-27.png",
+    "his_grade": "S",
+    "entry_t": "09:52:00",
+    "cut_bar_time": "09:52:00"
+  },
+  {
+    "card_id": "ACHR_2024-12-02",
+    "symbol": "ACHR",
+    "day": "2024-12-02",
+    "png_path": "research/g210_cards/ACHR_2024-12-02.png",
+    "his_grade": "none",
+    "entry_t": null,
+    "cut_bar_time": "10:00:00"
+  },
+  {
+    "card_id": "HOOD_2025-09-16",
+    "symbol": "HOOD",
+    "day": "2025-09-16",
+    "png_path": "research/g210_cards/HOOD_2025-09-16.png",
+    "his_grade": "none",
+    "entry_t": null,
+    "cut_bar_time": "10:00:00"
+  },
+  {
+    "card_id": "SMCI_2025-11-17",
+    "symbol": "SMCI",
+    "day": "2025-11-17",
+    "png_path": "research/g210_cards/SMCI_2025-11-17.png",
+    "his_grade": "S",
+    "entry_t": "10:06:00",
+    "cut_bar_time": "10:06:00"
+  },
+  {
+    "card_id": "COIN_2024-06-05",
+    "symbol": "COIN",
+    "day": "2024-06-05",
+    "png_path": "research/g210_cards/COIN_2024-06-05.png",
+    "his_grade": "none",
+    "entry_t": null,
+    "cut_bar_time": "10:00:00"
+  },
+  {
+    "card_id": "ARM_2024-11-11",
+    "symbol": "ARM",
+    "day": "2024-11-11",
+    "png_path": "research/g210_cards/ARM_2024-11-11.png",
+    "his_grade": "S",
+    "entry_t": "10:12:00",
+    "cut_bar_time": "10:12:00"
+  },
+  {
+    "card_id": "INTC_2025-06-09",
+    "symbol": "INTC",
+    "day": "2025-06-09",
+    "png_path": "research/g210_cards/INTC_2025-06-09.png",
+    "his_grade": "none",
+    "entry_t": null,
+    "cut_bar_time": "10:00:00"
+  },
+  {
+    "card_id": "MARA_2026-04-20",
+    "symbol": "MARA",
+    "day": "2026-04-20",
+    "png_path": "research/g210_cards/MARA_2026-04-20.png",
+    "his_grade": "none",
+    "entry_t": null,
+    "cut_bar_time": "10:00:00"
+  },
+  {
+    "card_id": "UBER_2026-06-08",
+    "symbol": "UBER",
+    "day": "2026-06-08",
+    "png_path": "research/g210_cards/UBER_2026-06-08.png",
+    "his_grade": "none",
+    "entry_t": null,
+    "cut_bar_time": "10:00:00"
+  },
+  {
+    "card_id": "QQQ_2024-02-22",
+    "symbol": "QQQ",
+    "day": "2024-02-22",
+    "png_path": "research/g210_cards/QQQ_2024-02-22.png",
+    "his_grade": "none",
+    "entry_t": null,
+    "cut_bar_time": "10:00:00"
+  },
+  {
+    "card_id": "BABA_2025-08-28",
+    "symbol": "BABA",
+    "day": "2025-08-28",
+    "png_path": "research/g210_cards/BABA_2025-08-28.png",
+    "his_grade": "S",
+    "entry_t": "09:44:00",
+    "cut_bar_time": "09:44:00"
+  },
+  {
+    "card_id": "COIN_2026-05-06",
+    "symbol": "COIN",
+    "day": "2026-05-06",
+    "png_path": "research/g210_cards/COIN_2026-05-06.png",
+    "his_grade": "none",
+    "entry_t": null,
+    "cut_bar_time": "10:00:00"
+  },
+  {
+    "card_id": "ACHR_2025-03-17",
+    "symbol": "ACHR",
+    "day": "2025-03-17",
+    "png_path": "research/g210_cards/ACHR_2025-03-17.png",
+    "his_grade": "none",
+    "entry_t": null,
+    "cut_bar_time": "10:00:00"
+  },
+  {
+    "card_id": "BABA_2024-12-12",
+    "symbol": "BABA",
+    "day": "2024-12-12",
+    "png_path": "research/g210_cards/BABA_2024-12-12.png",
+    "his_grade": "none",
+    "entry_t": null,
+    "cut_bar_time": "10:00:00"
+  },
+  {
+    "card_id": "CRM_2026-02-11",
+    "symbol": "CRM",
+    "day": "2026-02-11",
+    "png_path": "research/g210_cards/CRM_2026-02-11.png",
+    "his_grade": "S",
+    "entry_t": "09:42:00",
+    "cut_bar_time": "09:42:00"
+  },
+  {
+    "card_id": "MSTR_2026-06-01",
+    "symbol": "MSTR",
+    "day": "2026-06-01",
+    "png_path": "research/g210_cards/MSTR_2026-06-01.png",
+    "his_grade": "none",
+    "entry_t": null,
+    "cut_bar_time": "10:00:00"
+  },
+  {
+    "card_id": "TSM_2026-02-02",
+    "symbol": "TSM",
+    "day": "2026-02-02",
+    "png_path": "research/g210_cards/TSM_2026-02-02.png",
+    "his_grade": "S",
+    "entry_t": "09:36:00",
+    "cut_bar_time": "09:36:00"
+  },
+  {
+    "card_id": "MU_2026-01-23",
+    "symbol": "MU",
+    "day": "2026-01-23",
+    "png_path": "research/g210_cards/MU_2026-01-23.png",
+    "his_grade": "none",
+    "entry_t": null,
+    "cut_bar_time": "10:00:00"
+  },
+  {
+    "card_id": "HOOD_2025-07-01",
+    "symbol": "HOOD",
+    "day": "2025-07-01",
+    "png_path": "research/g210_cards/HOOD_2025-07-01.png",
+    "his_grade": "none",
+    "entry_t": null,
+    "cut_bar_time": "10:00:00"
+  },
+  {
+    "card_id": "MSTR_2025-04-22",
+    "symbol": "MSTR",
+    "day": "2025-04-22",
+    "png_path": "research/g210_cards/MSTR_2025-04-22.png",
+    "his_grade": "none",
+    "entry_t": null,
+    "cut_bar_time": "10:00:00"
+  },
+  {
+    "card_id": "BABA_2025-02-05",
+    "symbol": "BABA",
+    "day": "2025-02-05",
+    "png_path": "research/g210_cards/BABA_2025-02-05.png",
+    "his_grade": "S",
+    "entry_t": "09:41:00",
+    "cut_bar_time": "09:41:00"
+  },
+  {
+    "card_id": "INTC_2024-08-30",
+    "symbol": "INTC",
+    "day": "2024-08-30",
+    "png_path": "research/g210_cards/INTC_2024-08-30.png",
+    "his_grade": "none",
+    "entry_t": null,
+    "cut_bar_time": "10:00:00"
+  },
+  {
+    "card_id": "MSFT_2025-12-30",
+    "symbol": "MSFT",
+    "day": "2025-12-30",
+    "png_path": "research/g210_cards/MSFT_2025-12-30.png",
+    "his_grade": "S",
+    "entry_t": "09:44:00",
+    "cut_bar_time": "09:44:00"
+  },
+  {
+    "card_id": "AMZN_2026-03-13",
+    "symbol": "AMZN",
+    "day": "2026-03-13",
+    "png_path": "research/g210_cards/AMZN_2026-03-13.png",
+    "his_grade": "none",
+    "entry_t": null,
+    "cut_bar_time": "10:00:00"
+  },
+  {
+    "card_id": "PLTR_2024-03-11",
+    "symbol": "PLTR",
+    "day": "2024-03-11",
+    "png_path": "research/g210_cards/PLTR_2024-03-11.png",
+    "his_grade": "S",
+    "entry_t": "09:43:00",
+    "cut_bar_time": "09:43:00"
+  },
+  {
+    "card_id": "ORCL_2024-09-25",
+    "symbol": "ORCL",
+    "day": "2024-09-25",
+    "png_path": "research/g210_cards/ORCL_2024-09-25.png",
+    "his_grade": "none",
+    "entry_t": null,
+    "cut_bar_time": "10:00:00"
+  },
+  {
+    "card_id": "PLTR_2025-10-01",
+    "symbol": "PLTR",
+    "day": "2025-10-01",
+    "png_path": "research/g210_cards/PLTR_2025-10-01.png",
+    "his_grade": "none",
+    "entry_t": null,
+    "cut_bar_time": "10:00:00"
+  },
+  {
+    "card_id": "IWM_2026-05-01",
+    "symbol": "IWM",
+    "day": "2026-05-01",
+    "png_path": "research/g210_cards/IWM_2026-05-01.png",
+    "his_grade": "S",
+    "entry_t": "09:43:00",
+    "cut_bar_time": "09:43:00"
+  },
+  {
+    "card_id": "QQQ_2025-09-16",
+    "symbol": "QQQ",
+    "day": "2025-09-16",
+    "png_path": "research/g210_cards/QQQ_2025-09-16.png",
+    "his_grade": "S",
+    "entry_t": "09:36:00",
+    "cut_bar_time": "09:36:00"
+  },
+  {
+    "card_id": "IREN_2026-03-19",
+    "symbol": "IREN",
+    "day": "2026-03-19",
+    "png_path": "research/g210_cards/IREN_2026-03-19.png",
+    "his_grade": "none",
+    "entry_t": null,
+    "cut_bar_time": "10:00:00"
+  },
+  {
+    "card_id": "BABA_2025-04-07",
+    "symbol": "BABA",
+    "day": "2025-04-07",
+    "png_path": "research/g210_cards/BABA_2025-04-07.png",
+    "his_grade": "S",
+    "entry_t": "10:10:00",
+    "cut_bar_time": "10:10:00"
+  },
+  {
+    "card_id": "NVDA_2025-04-10",
+    "symbol": "NVDA",
+    "day": "2025-04-10",
+    "png_path": "research/g210_cards/NVDA_2025-04-10.png",
+    "his_grade": "none",
+    "entry_t": null,
+    "cut_bar_time": "10:00:00"
+  },
+  {
+    "card_id": "ACHR_2026-02-05",
+    "symbol": "ACHR",
+    "day": "2026-02-05",
+    "png_path": "research/g210_cards/ACHR_2026-02-05.png",
+    "his_grade": "S",
+    "entry_t": "09:59:00",
+    "cut_bar_time": "09:59:00"
+  },
+  {
+    "card_id": "BABA_2024-11-22",
+    "symbol": "BABA",
+    "day": "2024-11-22",
+    "png_path": "research/g210_cards/BABA_2024-11-22.png",
+    "his_grade": "none",
+    "entry_t": null,
+    "cut_bar_time": "10:00:00"
+  },
+  {
+    "card_id": "AVGO_2025-05-02",
+    "symbol": "AVGO",
+    "day": "2025-05-02",
+    "png_path": "research/g210_cards/AVGO_2025-05-02.png",
+    "his_grade": "S",
+    "entry_t": "09:42:00",
+    "cut_bar_time": "09:42:00"
+  },
+  {
+    "card_id": "HOOD_2024-11-06",
+    "symbol": "HOOD",
+    "day": "2024-11-06",
+    "png_path": "research/g210_cards/HOOD_2024-11-06.png",
+    "his_grade": "S",
+    "entry_t": "10:19:00",
+    "cut_bar_time": "10:19:00"
+  },
+  {
+    "card_id": "AMZN_2025-06-12",
+    "symbol": "AMZN",
+    "day": "2025-06-12",
+    "png_path": "research/g210_cards/AMZN_2025-06-12.png",
+    "his_grade": "none",
+    "entry_t": null,
+    "cut_bar_time": "10:00:00"
+  },
+  {
+    "card_id": "COIN_2024-04-29",
+    "symbol": "COIN",
+    "day": "2024-04-29",
+    "png_path": "research/g210_cards/COIN_2024-04-29.png",
+    "his_grade": "none",
+    "entry_t": null,
+    "cut_bar_time": "10:00:00"
+  },
+  {
+    "card_id": "AVGO_2025-12-23",
+    "symbol": "AVGO",
+    "day": "2025-12-23",
+    "png_path": "research/g210_cards/AVGO_2025-12-23.png",
+    "his_grade": "none",
+    "entry_t": null,
+    "cut_bar_time": "10:00:00"
+  },
+  {
+    "card_id": "MSTR_2025-08-26",
+    "symbol": "MSTR",
+    "day": "2025-08-26",
+    "png_path": "research/g210_cards/MSTR_2025-08-26.png",
+    "his_grade": "S",
+    "entry_t": "09:38:00",
+    "cut_bar_time": "09:38:00"
+  },
+  {
+    "card_id": "SOFI_2024-11-07",
+    "symbol": "SOFI",
+    "day": "2024-11-07",
+    "png_path": "research/g210_cards/SOFI_2024-11-07.png",
+    "his_grade": "none",
+    "entry_t": null,
+    "cut_bar_time": "10:00:00"
+  },
+  {
+    "card_id": "SMCI_2026-02-09",
+    "symbol": "SMCI",
+    "day": "2026-02-09",
+    "png_path": "research/g210_cards/SMCI_2026-02-09.png",
+    "his_grade": "none",
+    "entry_t": null,
+    "cut_bar_time": "10:00:00"
+  },
+  {
+    "card_id": "ARM_2026-04-29",
+    "symbol": "ARM",
+    "day": "2026-04-29",
+    "png_path": "research/g210_cards/ARM_2026-04-29.png",
+    "his_grade": "none",
+    "entry_t": null,
+    "cut_bar_time": "10:00:00"
+  },
+  {
+    "card_id": "IREN_2025-09-25",
+    "symbol": "IREN",
+    "day": "2025-09-25",
+    "png_path": "research/g210_cards/IREN_2025-09-25.png",
+    "his_grade": "none",
+    "entry_t": null,
+    "cut_bar_time": "10:00:00"
+  },
+  {
+    "card_id": "IWM_2024-03-27",
+    "symbol": "IWM",
+    "day": "2024-03-27",
+    "png_path": "research/g210_cards/IWM_2024-03-27.png",
+    "his_grade": "none",
+    "entry_t": null,
+    "cut_bar_time": "10:00:00"
+  },
+  {
+    "card_id": "PLTR_2025-01-06",
+    "symbol": "PLTR",
+    "day": "2025-01-06",
+    "png_path": "research/g210_cards/PLTR_2025-01-06.png",
+    "his_grade": "none",
+    "entry_t": null,
+    "cut_bar_time": "10:00:00"
+  },
+  {
+    "card_id": "NFLX_2024-08-05",
+    "symbol": "NFLX",
+    "day": "2024-08-05",
+    "png_path": "research/g210_cards/NFLX_2024-08-05.png",
+    "his_grade": "S",
+    "entry_t": "09:52:00",
+    "cut_bar_time": "09:52:00"
+  },
+  {
+    "card_id": "AMD_2025-06-23",
+    "symbol": "AMD",
+    "day": "2025-06-23",
+    "png_path": "research/g210_cards/AMD_2025-06-23.png",
+    "his_grade": "none",
+    "entry_t": null,
+    "cut_bar_time": "10:00:00"
+  },
+  {
+    "card_id": "PLTR_2024-02-02",
+    "symbol": "PLTR",
+    "day": "2024-02-02",
+    "png_path": "research/g210_cards/PLTR_2024-02-02.png",
+    "his_grade": "none",
+    "entry_t": null,
+    "cut_bar_time": "10:00:00"
+  },
+  {
+    "card_id": "MSFT_2025-03-13",
+    "symbol": "MSFT",
+    "day": "2025-03-13",
+    "png_path": "research/g210_cards/MSFT_2025-03-13.png",
+    "his_grade": "S",
+    "entry_t": "09:49:00",
+    "cut_bar_time": "09:49:00"
+  },
+  {
+    "card_id": "HOOD_2024-07-31",
+    "symbol": "HOOD",
+    "day": "2024-07-31",
+    "png_path": "research/g210_cards/HOOD_2024-07-31.png",
+    "his_grade": "none",
+    "entry_t": null,
+    "cut_bar_time": "10:00:00"
+  },
+  {
+    "card_id": "SPCX_2026-06-25",
+    "symbol": "SPCX",
+    "day": "2026-06-25",
+    "png_path": "research/g210_cards/SPCX_2026-06-25.png",
+    "his_grade": "S",
+    "entry_t": "09:48:00",
+    "cut_bar_time": "09:48:00"
+  },
+  {
+    "card_id": "AVGO_2025-10-10",
+    "symbol": "AVGO",
+    "day": "2025-10-10",
+    "png_path": "research/g210_cards/AVGO_2025-10-10.png",
+    "his_grade": "S",
+    "entry_t": "09:47:00",
+    "cut_bar_time": "09:47:00"
+  },
+  {
+    "card_id": "AVGO_2024-08-15",
+    "symbol": "AVGO",
+    "day": "2024-08-15",
+    "png_path": "research/g210_cards/AVGO_2024-08-15.png",
+    "his_grade": "none",
+    "entry_t": null,
+    "cut_bar_time": "10:00:00"
+  },
+  {
+    "card_id": "MSFT_2025-06-04",
+    "symbol": "MSFT",
+    "day": "2025-06-04",
+    "png_path": "research/g210_cards/MSFT_2025-06-04.png",
+    "his_grade": "none",
+    "entry_t": null,
+    "cut_bar_time": "10:00:00"
+  },
+  {
+    "card_id": "BABA_2026-07-27",
+    "symbol": "BABA",
+    "day": "2026-07-27",
+    "png_path": "research/g210_cards/BABA_2026-07-27.png",
+    "his_grade": "none",
+    "entry_t": null,
+    "cut_bar_time": "10:00:00"
+  },
+  {
+    "card_id": "ORCL_2025-08-21",
+    "symbol": "ORCL",
+    "day": "2025-08-21",
+    "png_path": "research/g210_cards/ORCL_2025-08-21.png",
+    "his_grade": "none",
+    "entry_t": null,
+    "cut_bar_time": "10:00:00"
+  },
+  {
+    "card_id": "NFLX_2026-07-02",
+    "symbol": "NFLX",
+    "day": "2026-07-02",
+    "png_path": "research/g210_cards/NFLX_2026-07-02.png",
+    "his_grade": "none",
+    "entry_t": null,
+    "cut_bar_time": "10:00:00"
+  },
+  {
+    "card_id": "MU_2025-06-25",
+    "symbol": "MU",
+    "day": "2025-06-25",
+    "png_path": "research/g210_cards/MU_2025-06-25.png",
+    "his_grade": "S",
+    "entry_t": "09:38:00",
+    "cut_bar_time": "09:38:00"
+  },
+  {
+    "card_id": "AMD_2024-10-24",
+    "symbol": "AMD",
+    "day": "2024-10-24",
+    "png_path": "research/g210_cards/AMD_2024-10-24.png",
+    "his_grade": "none",
+    "entry_t": null,
+    "cut_bar_time": "10:00:00"
+  },
+  {
+    "card_id": "PLTR_2025-07-01",
+    "symbol": "PLTR",
+    "day": "2025-07-01",
+    "png_path": "research/g210_cards/PLTR_2025-07-01.png",
+    "his_grade": "S",
+    "entry_t": "09:34:00",
+    "cut_bar_time": "09:34:00"
+  },
+  {
+    "card_id": "AAPL_2025-10-06",
+    "symbol": "AAPL",
+    "day": "2025-10-06",
+    "png_path": "research/g210_cards/AAPL_2025-10-06.png",
+    "his_grade": "none",
+    "entry_t": null,
+    "cut_bar_time": "10:00:00"
+  },
+  {
+    "card_id": "MSTR_2025-01-14",
+    "symbol": "MSTR",
+    "day": "2025-01-14",
+    "png_path": "research/g210_cards/MSTR_2025-01-14.png",
+    "his_grade": "none",
+    "entry_t": null,
+    "cut_bar_time": "10:00:00"
+  },
+  {
+    "card_id": "ORCL_2026-07-28",
+    "symbol": "ORCL",
+    "day": "2026-07-28",
+    "png_path": "research/g210_cards/ORCL_2026-07-28.png",
+    "his_grade": "none",
+    "entry_t": null,
+    "cut_bar_time": "10:00:00"
+  },
+  {
+    "card_id": "ARM_2025-05-01",
+    "symbol": "ARM",
+    "day": "2025-05-01",
+    "png_path": "research/g210_cards/ARM_2025-05-01.png",
+    "his_grade": "none",
+    "entry_t": null,
+    "cut_bar_time": "10:00:00"
+  },
+  {
+    "card_id": "INTC_2024-06-13",
+    "symbol": "INTC",
+    "day": "2024-06-13",
+    "png_path": "research/g210_cards/INTC_2024-06-13.png",
+    "his_grade": "none",
+    "entry_t": null,
+    "cut_bar_time": "10:00:00"
+  },
+  {
+    "card_id": "NVDA_2025-04-29",
+    "symbol": "NVDA",
+    "day": "2025-04-29",
+    "png_path": "research/g210_cards/NVDA_2025-04-29.png",
+    "his_grade": "S",
+    "entry_t": "09:56:00",
+    "cut_bar_time": "09:56:00"
+  },
+  {
+    "card_id": "SPY_2024-11-19",
+    "symbol": "SPY",
+    "day": "2024-11-19",
+    "png_path": "research/g210_cards/SPY_2024-11-19.png",
+    "his_grade": "none",
+    "entry_t": null,
+    "cut_bar_time": "10:00:00"
+  },
+  {
+    "card_id": "MARA_2026-06-02",
+    "symbol": "MARA",
+    "day": "2026-06-02",
+    "png_path": "research/g210_cards/MARA_2026-06-02.png",
+    "his_grade": "none",
+    "entry_t": null,
+    "cut_bar_time": "10:00:00"
+  },
+  {
+    "card_id": "HOOD_2024-07-15",
+    "symbol": "HOOD",
+    "day": "2024-07-15",
+    "png_path": "research/g210_cards/HOOD_2024-07-15.png",
+    "his_grade": "none",
+    "entry_t": null,
+    "cut_bar_time": "10:00:00"
+  },
+  {
+    "card_id": "RIVN_2025-12-29",
+    "symbol": "RIVN",
+    "day": "2025-12-29",
+    "png_path": "research/g210_cards/RIVN_2025-12-29.png",
+    "his_grade": "none",
+    "entry_t": null,
+    "cut_bar_time": "10:00:00"
+  },
+  {
+    "card_id": "PLTR_2025-05-08",
+    "symbol": "PLTR",
+    "day": "2025-05-08",
+    "png_path": "research/g210_cards/PLTR_2025-05-08.png",
+    "his_grade": "none",
+    "entry_t": null,
+    "cut_bar_time": "10:00:00"
+  },
+  {
+    "card_id": "META_2024-05-09",
+    "symbol": "META",
+    "day": "2024-05-09",
+    "png_path": "research/g210_cards/META_2024-05-09.png",
+    "his_grade": "none",
+    "entry_t": null,
+    "cut_bar_time": "10:00:00"
+  },
+  {
+    "card_id": "QQQ_2025-09-23",
+    "symbol": "QQQ",
+    "day": "2025-09-23",
+    "png_path": "research/g210_cards/QQQ_2025-09-23.png",
+    "his_grade": "S",
+    "entry_t": "09:39:00",
+    "cut_bar_time": "09:39:00"
+  },
+  {
+    "card_id": "MSTR_2026-03-13",
+    "symbol": "MSTR",
+    "day": "2026-03-13",
+    "png_path": "research/g210_cards/MSTR_2026-03-13.png",
+    "his_grade": "S",
+    "entry_t": "09:41:00",
+    "cut_bar_time": "09:41:00"
+  },
+  {
+    "card_id": "COIN_2026-07-27",
+    "symbol": "COIN",
+    "day": "2026-07-27",
+    "png_path": "research/g210_cards/COIN_2026-07-27.png",
+    "his_grade": "none",
+    "entry_t": null,
+    "cut_bar_time": "10:00:00"
+  },
+  {
+    "card_id": "PLTR_2025-12-11",
+    "symbol": "PLTR",
+    "day": "2025-12-11",
+    "png_path": "research/g210_cards/PLTR_2025-12-11.png",
+    "his_grade": "S",
+    "entry_t": "09:52:00",
+    "cut_bar_time": "09:52:00"
+  },
+  {
+    "card_id": "GOOGL_2025-10-16",
+    "symbol": "GOOGL",
+    "day": "2025-10-16",
+    "png_path": "research/g210_cards/GOOGL_2025-10-16.png",
+    "his_grade": "none",
+    "entry_t": null,
+    "cut_bar_time": "10:00:00"
+  },
+  {
+    "card_id": "NVDA_2025-01-23",
+    "symbol": "NVDA",
+    "day": "2025-01-23",
+    "png_path": "research/g210_cards/NVDA_2025-01-23.png",
+    "his_grade": "none",
+    "entry_t": null,
+    "cut_bar_time": "10:00:00"
+  },
+  {
+    "card_id": "COIN_2026-04-07",
+    "symbol": "COIN",
+    "day": "2026-04-07",
+    "png_path": "research/g210_cards/COIN_2026-04-07.png",
+    "his_grade": "S",
+    "entry_t": "09:42:00",
+    "cut_bar_time": "09:42:00"
+  },
+  {
+    "card_id": "TSLA_2024-01-29",
+    "symbol": "TSLA",
+    "day": "2024-01-29",
+    "png_path": "research/g210_cards/TSLA_2024-01-29.png",
+    "his_grade": "none",
+    "entry_t": null,
+    "cut_bar_time": "10:00:00"
+  },
+  {
+    "card_id": "MARA_2025-07-18",
+    "symbol": "MARA",
+    "day": "2025-07-18",
+    "png_path": "research/g210_cards/MARA_2025-07-18.png",
+    "his_grade": "S",
+    "entry_t": "09:38:00",
+    "cut_bar_time": "09:38:00"
+  },
+  {
+    "card_id": "TSLA_2025-10-28",
+    "symbol": "TSLA",
+    "day": "2025-10-28",
+    "png_path": "research/g210_cards/TSLA_2025-10-28.png",
+    "his_grade": "none",
+    "entry_t": null,
+    "cut_bar_time": "10:00:00"
+  },
+  {
+    "card_id": "AMZN_2025-09-10",
+    "symbol": "AMZN",
+    "day": "2025-09-10",
+    "png_path": "research/g210_cards/AMZN_2025-09-10.png",
+    "his_grade": "S",
+    "entry_t": "09:38:00",
+    "cut_bar_time": "09:38:00"
+  },
+  {
+    "card_id": "BABA_2026-06-12",
+    "symbol": "BABA",
+    "day": "2026-06-12",
+    "png_path": "research/g210_cards/BABA_2026-06-12.png",
+    "his_grade": "S",
+    "entry_t": "09:39:00",
+    "cut_bar_time": "09:39:00"
+  },
+  {
+    "card_id": "META_2025-02-05",
+    "symbol": "META",
+    "day": "2025-02-05",
+    "png_path": "research/g210_cards/META_2025-02-05.png",
+    "his_grade": "none",
+    "entry_t": null,
+    "cut_bar_time": "10:00:00"
+  },
+  {
+    "card_id": "AAPL_2024-11-04",
+    "symbol": "AAPL",
+    "day": "2024-11-04",
+    "png_path": "research/g210_cards/AAPL_2024-11-04.png",
+    "his_grade": "none",
+    "entry_t": null,
+    "cut_bar_time": "10:00:00"
+  },
+  {
+    "card_id": "PLTR_2024-09-20",
+    "symbol": "PLTR",
+    "day": "2024-09-20",
+    "png_path": "research/g210_cards/PLTR_2024-09-20.png",
+    "his_grade": "S",
+    "entry_t": "09:41:00",
+    "cut_bar_time": "09:41:00"
+  },
+  {
+    "card_id": "PLTR_2024-06-06",
+    "symbol": "PLTR",
+    "day": "2024-06-06",
+    "png_path": "research/g210_cards/PLTR_2024-06-06.png",
+    "his_grade": "none",
+    "entry_t": null,
+    "cut_bar_time": "10:00:00"
+  },
+  {
+    "card_id": "AAPL_2025-07-21",
+    "symbol": "AAPL",
+    "day": "2025-07-21",
+    "png_path": "research/g210_cards/AAPL_2025-07-21.png",
+    "his_grade": "none",
+    "entry_t": null,
+    "cut_bar_time": "10:00:00"
+  },
+  {
+    "card_id": "INTC_2024-02-07",
+    "symbol": "INTC",
+    "day": "2024-02-07",
+    "png_path": "research/g210_cards/INTC_2024-02-07.png",
+    "his_grade": "none",
+    "entry_t": null,
+    "cut_bar_time": "10:00:00"
+  },
+  {
+    "card_id": "NVDA_2026-05-19",
+    "symbol": "NVDA",
+    "day": "2026-05-19",
+    "png_path": "research/g210_cards/NVDA_2026-05-19.png",
+    "his_grade": "none",
+    "entry_t": null,
+    "cut_bar_time": "10:00:00"
+  },
+  {
+    "card_id": "MSTR_2026-07-17",
+    "symbol": "MSTR",
+    "day": "2026-07-17",
+    "png_path": "research/g210_cards/MSTR_2026-07-17.png",
+    "his_grade": "S",
+    "entry_t": "09:42:00",
+    "cut_bar_time": "09:42:00"
+  }
+]

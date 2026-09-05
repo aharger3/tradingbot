@@ -101,10 +101,20 @@ def _fire(reclaim: Candle, entry_price=100.0, entry_stop=99.0,
     runner.session.entry_target = entry_target
     old_log = sr2.log_signal
     sr2.log_signal = lambda *a, **k: None
+    # RETEST_REQUIRED (default ON since 2026-09-02) is an UNRELATED gate that
+    # also caps B/A to C on this fixture's re-entry stop (it reads no retest
+    # on `sig["stop"]`, which for a REENTRY_84_RULE is the reclaim-bar stop,
+    # not a break-and-retest level) -- and once capped to C, the tight-stop
+    # skip-for-C-only rule then drops the signal entirely on this fixture's
+    # ~0.35%-of-price stop. Neither is what T3/RULE84_SOURCE tests, so hold
+    # it at the module's own shipped default off for this row's isolation.
+    old_retest_required = sr2.RETEST_REQUIRED
+    sr2.RETEST_REQUIRED = False
     try:
         out = runner.detect_signals()
     finally:
         sr2.log_signal = old_log
+        sr2.RETEST_REQUIRED = old_retest_required
     return [s for s in out if s["signal_type"] is sr2.SignalType.REENTRY_84_RULE]
 
 
@@ -162,11 +172,21 @@ if fired:
 # settle that. Until he does, the floor governs here and this asserts it.
 print("")
 print("T23 interaction: MIN_STOP_PCT vs the 84% stop qualifier")
-sub_floor_reclaim = Candle(timestamp="09:39:00", open=99.90, high=100.25,
-                           low=99.95, close=100.20, volume=1000)  # $0.05 = 0.05%
-fired = _fire(sub_floor_reclaim, entry_stop=99.00, source_flag="1")
+# 2026-08-30's entry_fill refactor made `fill_price`'s default mode always
+# book the signal minute's CLOSE (never the level) -- this fixture predates
+# that by a day and originally relied on a near-own-high close filling at the
+# LEVEL instead. Rebuilt so the tight stop comes from the ORIGINAL-stop
+# fallback (not the "natural" reclaim-bar extreme, which `rule84_source_stop`
+# only accepts when it sits below the ORIGINAL entry price, structurally
+# incompatible with a close-filled entry above that price): a barely-positive
+# reclaim (close 100.03, low 99.80 -- wider than the original, so the natural
+# extreme loses) with an original stop of 99.99 is a $0.04 stop on a ~$100.03
+# fill = 0.04%, still under the 0.08% floor.
+sub_floor_reclaim = Candle(timestamp="09:39:00", open=99.90, high=100.10,
+                           low=99.80, close=100.03, volume=1000)
+fired = _fire(sub_floor_reclaim, entry_stop=99.99, source_flag="1")
 check(len(fired) == 0,
-      "a $0.05 stop on a $100 entry (0.05% < MIN_STOP_PCT 0.08%) is SKIPPED, "
+      "a $0.04 stop on a ~$100 entry (0.04% < MIN_STOP_PCT 0.08%) is SKIPPED, "
       "not traded at a fictional risk")
 
 # --- unit-level: rule84_source_stop directly, both directions -------------
