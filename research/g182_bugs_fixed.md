@@ -739,3 +739,42 @@ fails if an enabled task's `-File` target is missing.
 - `python research/regression_gate.py` and `python research/test_runner_stop.py`:
   both pass, unaffected — this is an ops/Task Scheduler change with no code
   path in the signal engine touched.
+
+---
+
+# g182 — B3 (bug B-12): a6_dispatch.ps1 repointed off the dissolved junction tree
+
+What is different now: `a6_dispatch.ps1` lines 5, 9 and 10 point at
+`C:\Users\aharg\Desktop\Projects\tradingbot` instead of the dissolved
+junction path `C:\Users\aharg\aharg\Desktop\projects\tradingbot`; a new test
+(`research/test_g182_b12_a6_dispatch_paths.py`) fails if the dead path ever
+comes back or if the script's `Set-Location`, prompt file, or log directory
+targets stop existing on disk.
+
+## Root cause
+
+No shared function to route through — `a6_dispatch.ps1` is a standalone
+PowerShell dispatch script for the scheduled task `OmenA6PaperLog`, not
+called from any Python module, so the fix is a direct edit of the three
+literal path strings. The junction tree they pointed at
+(`aharg\aharg\Desktop\projects\...`) was dissolved 2026-08-06; nothing
+updated this script when it was.
+
+## Fix
+
+`Set-Location`, the `$prompt` read, and the `$log` path all repointed at
+`C:\Users\aharg\Desktop\Projects\tradingbot`.
+
+## Test: `research/test_g182_b12_a6_dispatch_paths.py`
+
+- Before the fix: `FAIL: a6_dispatch.ps1 still references the dissolved
+  junction path ...` (2 failures — dead path present, real path absent).
+- After the fix: `PASS: a6_dispatch.ps1 points at the real working copy and
+  every referenced path exists.`
+- `python research/regression_gate.py` and `python research/test_runner_stop.py`:
+  both pass, unaffected — `OmenA6PaperLog` stays `Disabled`; this changes no
+  code path in the signal engine.
+
+Live status unchanged by design: `OmenA6PaperLog` was already `Disabled`
+before this fix (a latent trap, not an outage) and stays `Disabled` after —
+B-12 was that the committed script was wrong, not that the task was firing.
