@@ -1,0 +1,125 @@
+{
+  "book": "bt2y_trades_retest_on.json",
+  "entry_fill": "close",
+  "sessions": 498,
+  "n_candidates": 8227,
+  "lookahead": {
+    "close_equals_entry_ok": 8187,
+    "mismatch": 40,
+    "entry_i_out_of_range": 0,
+    "max_abs_diff": 0.005,
+    "verdict": "CLEAN -- the feature reads only bars[entry_i].open and .close; .close is the fill price itself, so nothing past the entry bar is read."
+  },
+  "reproduce": {
+    "baseline_H1_usd_day": 135.71,
+    "baseline_H2_usd_day": -67.85,
+    "arm_H1_usd_day": 137.6,
+    "arm_H2_usd_day": -67.43,
+    "h1_delta": 1.89,
+    "h2_delta": 0.42,
+    "mismatch_candidates_dropped": 229,
+    "mismatch_pct": 2.78,
+    "days_differing": 5,
+    "days_differing_list": [
+      "2024-09-23",
+      "2024-12-20",
+      "2025-08-13",
+      "2025-10-16",
+      "2025-11-19"
+    ],
+    "h1_per_day_deltas": [
+      -301,
+      466,
+      304
+    ],
+    "h2_per_day_deltas": [
+      0,
+      104
+    ]
+  },
+  "significance": {
+    "h1_paired": {
+      "mean": 1.89,
+      "se": 2.55,
+      "ci95": [
+        -3.1,
+        6.87
+      ],
+      "t": 0.74
+    },
+    "h2_paired": {
+      "mean": 0.42,
+      "se": 0.42,
+      "ci95": [
+        -0.4,
+        1.24
+      ],
+      "t": 1.0
+    },
+    "signflip_nonzero_days": 5,
+    "signflip_pass_rate": 0.25
+  },
+  "placebo": {
+    "n_trials": 500,
+    "seed": 20260905,
+    "drop_n": 229,
+    "gate_pass_rate": 0.222,
+    "h1_delta_pctiles": {
+      "p5": -31.76,
+      "p50": -3.92,
+      "p95": 20.74
+    },
+    "h2_delta_pctiles": {
+      "p5": -21.45,
+      "p50": 1.51,
+      "p95": 21.57
+    },
+    "frac_placebos_beating_h1_claim": 0.338,
+    "frac_placebos_beating_h2_claim": 0.542
+  },
+  "descriptive_split": {
+    "match": {
+      "label": "entry_dir == trend_dir",
+      "n": 7995,
+      "mean_r": -0.0228,
+      "mean_r_se": 0.0135,
+      "mean_r_ci95": [
+        -0.0492,
+        0.0035
+      ],
+      "graded_s": 285,
+      "graded_any": 952,
+      "s_rate_pct": 29.9,
+      "s_rate_ci95": [
+        27.1,
+        32.9
+      ]
+    },
+    "mismatch": {
+      "label": "entry_dir != trend_dir",
+      "n": 229,
+      "mean_r": -0.1497,
+      "mean_r_se": 0.0733,
+      "mean_r_ci95": [
+        -0.2934,
+        -0.006
+      ],
+      "graded_s": 10,
+      "graded_any": 20,
+      "s_rate_pct": 50.0,
+      "s_rate_ci95": [
+        29.9,
+        70.1
+      ]
+    },
+    "mean_r_gap": 0.1269,
+    "mean_r_gap_se": 0.0745,
+    "mean_r_gap_t": 1.7,
+    "mean_r_gap_ci95": [
+      -0.0192,
+      0.273
+    ],
+    "s_rate_cis_overlap": true
+  },
+  "verdict": "REFUTED"
+}
