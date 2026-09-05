@@ -1,0 +1,101 @@
+[
+  {
+    "file": "signal_runner.py",
+    "line": 134,
+    "claim": "RULE84_ARM_BNR_ONLY constant is always False and never consulted by any code",
+    "evidence": "Line 133: RULE84_ARM_ON = frozenset(SignalType) [all types]. Line 134: RULE84_ARM_BNR_ONLY = RULE84_ARM_ON == frozenset({SignalType.BREAK_AND_RETEST}). Grep shows zero references to RULE84_ARM_BNR_ONLY in live or backtest paths.",
+    "severity": "low",
+    "fix_sketch": "Delete lines 133-134 and the comment block 119-132 explaining the deprecated alias. The variable was retained for backward compatibility but is unused.",
+    "test_sketch": "Verify no Python file imports or references RULE84_ARM_BNR_ONLY; verify existing tests pass."
+  },
+  {
+    "file": "signal_runner.py",
+    "line": 2832,
+    "claim": "Entire if-block (lines 2832-2851) unreachable: HODLOD_PAIR is always False",
+    "evidence": "Line 151: HODLOD_PAIR = False. Line 2832: if HODLOD_PAIR and ...: block starts. Comment at line 151 confirms F3 measured and found no edge (19 tr/yr 33.3%W −$228). Flag is never set to True in any path (grep shows only one assignment).",
+    "severity": "medium",
+    "fix_sketch": "Delete the entire if-block at 2832-2851 (HOD/LOD level detection). Keep the HODLOD_PAIR constant definition with comment for historical reference, or mark it explicitly as disabled/retired.",
+    "test_sketch": "Run backtest_2y.py and verify no change in trade count or P&L. Verify no reference to HODLOD_PAIR in level-building logic."
+  },
+  {
+    "file": "signal_runner.py",
+    "line": 2880,
+    "claim": "if BNR_STOP_MODE == 'retest': branch unreachable; BNR_STOP_MODE is always 'level'",
+    "evidence": "Line 143: BNR_STOP_MODE = 'level'. Line 2880: if BNR_STOP_MODE == 'retest': and line 2882: elif BNR_STOP_MODE == 'buffer': both can never execute. Comment at line 143-144 confirms F2 A/B tested both alternatives, both lost, kept at level.",
+    "severity": "medium",
+    "fix_sketch": "Delete lines 2880-2885 (the two unreachable elif branches). Keep only line 2879 which sets stop = level_hi and the comment explaining why.",
+    "test_sketch": "Verify stop placement on break-and-retest long signals unchanged after deletion."
+  },
+  {
+    "file": "signal_runner.py",
+    "line": 2994,
+    "claim": "if FVG_RETEST: block (lines 2994-3013) unreachable; FVG_RETEST is always False",
+    "evidence": "Line 75: FVG_RETEST = False. Line 2994: if FVG_RETEST: block detects FVG retest zones. Comment at lines 64-74 confirms spec asked for True but 07-05 A/B evidence (FVG diluted B&R) stands, default stays False.",
+    "severity": "medium",
+    "fix_sketch": "Delete lines 2994-3013 (FVG long retest detection). Blocks are never entered and represent abandoned experimental logic.",
+    "test_sketch": "Run backtest on 2-year book, verify trade count and P&L identical."
+  },
+  {
+    "file": "signal_runner.py",
+    "line": 3074,
+    "claim": "if flag is not None: condition at line 3075 is always False; flag forced to None on line 3074 when FLAG_ENABLED is False",
+    "evidence": "Line 79: FLAG_ENABLED = False. Line 3074: flag, fnote = detect_flag_setup(...) if FLAG_ENABLED else (None, ''); when FLAG_ENABLED is False, flag is always (None, ''). Line 3075: if flag is not None ... can never be true. Lines 3075-3090 (flag long signal block) are unreachable.",
+    "severity": "high",
+    "fix_sketch": "Delete lines 3075-3090 (flag long signal creation). Keep the flag assignment on 3074 with the comment. If flag detection is re-enabled, uncomment and fix the conditional.",
+    "test_sketch": "Verify trade count on 2-year book unchanged; no flag-type signals fire."
+  },
+  {
+    "file": "signal_runner.py",
+    "line": 3182,
+    "claim": "if BNR_STOP_MODE == 'retest': branch unreachable (short side mirror of line 2880)",
+    "evidence": "Line 143: BNR_STOP_MODE = 'level'. Line 3182: if BNR_STOP_MODE == 'retest': and line 3184: elif BNR_STOP_MODE == 'buffer': both unreachable mirrors of the long side dead code.",
+    "severity": "medium",
+    "fix_sketch": "Delete lines 3182-3187 (unreachable elif branches for short side stop placement).",
+    "test_sketch": "Verify stop placement on break-and-retest short signals unchanged."
+  },
+  {
+    "file": "signal_runner.py",
+    "line": 3256,
+    "claim": "if FVG_RETEST: block (lines 3256-3275) unreachable; FVG_RETEST is always False (short side mirror)",
+    "evidence": "Line 75: FVG_RETEST = False. Line 3256: if FVG_RETEST: block detects FVG retest zones for short. Mirror of the long side dead code at line 2994.",
+    "severity": "medium",
+    "fix_sketch": "Delete lines 3256-3275 (FVG short retest detection).",
+    "test_sketch": "Run backtest, verify short-side trade count and P&L identical."
+  },
+  {
+    "file": "signal_runner.py",
+    "line": 3322,
+    "claim": "if flag is not None: condition at line 3323 is always False; flag forced to None when FLAG_ENABLED is False (short side mirror)",
+    "evidence": "Line 79: FLAG_ENABLED = False. Line 3322: flag, fnote = detect_flag_setup(...) if FLAG_ENABLED else (None, ''); forces flag to None. Line 3323: if flag is not None ... unreachable. Lines 3323-3338 (flag short signal block) are unreachable.",
+    "severity": "high",
+    "fix_sketch": "Delete lines 3323-3338 (flag short signal creation). Mirror of the long side fix at line 3075.",
+    "test_sketch": "Verify no flag-type short signals fire; trade count unchanged."
+  },
+  {
+    "file": "signal_runner.py",
+    "line": 2113,
+    "claim": "if LEVEL_BLOCK_CAP and blocking and ...: block (lines 2113-2116) unreachable; LEVEL_BLOCK_CAP is always False",
+    "evidence": "Line 235: LEVEL_BLOCK_CAP = False. Line 2113: if LEVEL_BLOCK_CAP and blocking and _GRADE_RANK.get(grade, 0) > _GRADE_RANK['C']: the entire cap-to-C block is unreachable. Comment at line 235 confirms cap disabled; levels now recorded as scale targets instead.",
+    "severity": "medium",
+    "fix_sketch": "Delete lines 2113-2116. Keep the preceding else-block (lines 2110-2112) which records path targets (now the default behavior).",
+    "test_sketch": "Verify signal grades and path_target values unchanged; no spurious C-caps applied."
+  },
+  {
+    "file": "signal_runner.py",
+    "line": 2645,
+    "claim": "if RULE_710_ENABLED and ...: block (lines 2645-2649) unreachable; RULE_710_ENABLED is always False",
+    "evidence": "Line 516: RULE_710_ENABLED = False. Line 2645: if RULE_710_ENABLED and sig['grade'] in ('A', 'B'): the entire rules-7-and-10 cap block is unreachable. Comment at lines 467-510 explains this gate was DEFAULT OFF pending A/B measurement and stays OFF.",
+    "severity": "medium",
+    "fix_sketch": "Delete lines 2645-2649 (rule7/rule10 rejection gate). Rules 7 and 10 are computed but not gated on by default.",
+    "test_sketch": "Verify signal grades unchanged and no [capped C: Rule 7/10] reasons appear in fired signals."
+  },
+  {
+    "file": "signal_runner.py",
+    "line": 2685,
+    "claim": "else block (lines 2685-2686) is unreachable: AUSTIN_TIER_ENABLED is always True, so if-block always executes",
+    "evidence": "Line 544: AUSTIN_TIER_ENABLED = True. Line 2676: if AUSTIN_TIER_ENABLED: ... else: (lines 2685-2686). Since AUSTIN_TIER_ENABLED is a constant True, the else block and its return to None are never executed. The setter sig.setdefault('austin_tier', None) is dead code.",
+    "severity": "low",
+    "fix_sketch": "Delete lines 2685-2686 (the unreachable else-block that sets austin_tier to None). Keep the if-block (2676-2684) since AUSTIN_TIER_ENABLED is always True by design.",
+    "test_sketch": "Verify every fired signal carries a computed austin_tier (S/A/C, never None). Verify sig['s_rank'] is set only for S-tier signals."
+  }
+]

@@ -1,0 +1,47 @@
+[
+  {
+    "file": ".gitignore",
+    "line": 83,
+    "claim": "research/decks/**/*.html ignores all deck HTML files in subdirectories but no un-ignore rule protects them; 13 existing deck files with localStorage judgement data are silently ignored",
+    "evidence": "git check-ignore -v research/decks/omen-5.2-index-day-deck.html returns '.gitignore:83:research/decks/**/*.html' and file exists but is not tracked. Files contain 'localStorage' and 'answers' fields for homework grading. No line 98+ rule un-ignores research/decks/**/*.html patterns.",
+    "severity": "high",
+    "fix_sketch": "Add un-ignore rule after line 98: '!research/decks/**/*.html' to protect all deck pages that may contain judgement data (grades saved in localStorage)",
+    "test_sketch": "After fix, run 'git check-ignore -v research/decks/omen-5.2-index-day-deck.html' and verify output shows the file is UN-IGNORED (contains '!' line). Verify 'git status -s' shows these files as untracked (??), then 'git add -A' and confirm they stage."
+  },
+  {
+    "file": ".gitignore",
+    "line": 44,
+    "claim": "research/*.html ignores all HTML files in research/ root with no comprehensive un-ignore rules; 6 existing homework/report files with localStorage judgement data are silently ignored",
+    "evidence": "Files research/g71_homework.html, research/g72_qqq_tiebreak.html, research/g75_deck2.html, research/g83_sizing.html, research/omen-2y-backtest.html, research/omen-h2-tape.html all exist and contain 'localStorage' and 'answers'/'ballot' fields but are not tracked. git check-ignore shows they match line 44. Only research/h2_summary.html is un-ignored by line 155.",
+    "severity": "high",
+    "fix_sketch": "Add un-ignore rule for homework/deck files: '!research/g*_*.html' (covers g71_homework, g72_*, g75_*, g83_*) and '!research/omen-*-homework.html' for future patterns, OR explicitly un-ignore each pattern separately after line 155.",
+    "test_sketch": "Run 'git check-ignore -v research/g71_homework.html' and verify it shows un-ignored (contains '!' on last matching line). Then verify 'git status -s research/g*.html' shows these files can be staged."
+  },
+  {
+    "file": ".gitignore",
+    "line": 40,
+    "claim": "research/*.jsonl ignores all JSONL files in research/ root; the un-ignore rules at lines 90-96 are specific patterns that would miss a new judgement file with a different naming convention (e.g. 'research/scored_days.jsonl' or 'research/graded_setups.jsonl')",
+    "evidence": "git check-ignore -v research/scored_days.jsonl returns '.gitignore:40:research/*.jsonl' (would be ignored). Git check-ignore -v research/graded_trades.jsonl returns same (would be ignored). The un-ignore patterns require specific keywords: *marks*, mark_batch_*, *verdicts*, *reviews*, rule_ballot_*, probe_*, t60_silent_days. Files like 'scored_days.jsonl' holding grade/tier fields would slip through unprotected.",
+    "severity": "medium",
+    "fix_sketch": "Add a catch-all un-ignore rule after line 96: '!research/*grade*.jsonl' and '!research/*score*.jsonl' and '!research/*tier*.jsonl' to cover common judgement naming patterns. OR add a broader comment stating that any new judgement file must be explicitly added with 'git add -f' and a corresponding un-ignore rule.",
+    "test_sketch": "Create a test file 'research/test_scored.jsonl' with {'grade': 'S', 'note': 'test'}. Run 'git check-ignore research/test_scored.jsonl' - if after fix it returns un-ignored status (or no match), the fix works. Verify via 'git add' can include the file without -f."
+  },
+  {
+    "file": ".gitignore",
+    "line": 90,
+    "claim": "The un-ignore rule '!research/*marks*.jsonl' at line 90 is matched by 'research/derived_marks_v2.jsonl' but only because the filename includes 'marks'; if a future version is named 'research/derived_v3.jsonl' or 'research/austin_tiers_v7.jsonl' (without 'marks' in name) it would be silently ignored despite holding grades",
+    "evidence": "CLAUDE.md lists 'research/derived_marks_v{1,2}.jsonl' as held-out low-confidence marks. The un-ignore depends on the word 'marks' being in the filename. A file named 'derived_tiers_v3.jsonl' or 'Austin_judgement_v8.jsonl' with grade/tier fields would be caught by line 40 and not un-ignored by any rule at lines 90+.",
+    "severity": "medium",
+    "fix_sketch": "Add to the vault note (CLAUDE.md) a rule: 'Any new file in research/ holding grade, tier, or judgement fields MUST be named with one of the protected keywords (*marks*, mark_batch_, *verdicts*, *reviews*, rule_ballot_, probe_, *grade*, *tier*, *judgment*) OR explicitly added with git add -f and a corresponding un-ignore rule in .gitignore.' This makes the naming constraint explicit.",
+    "test_sketch": "Verify CLAUDE.md contains the rule. Test by creating 'research/test_new_tiers.jsonl' and running 'git check-ignore' - it should show as ignored. After documenting the rule, the file must be either renamed to include a protected keyword or a new un-ignore rule must be added."
+  },
+  {
+    "file": ".gitignore",
+    "line": 40,
+    "claim": "research/*.jsonl does not protect files in research/ subdirectories (research/marks/, research/probes/, research/corpus_sf/, etc) by the root-level ignore rule, BUT the trap can still fire if a new subdirectory is created with JSONL files and no un-ignore rule is written for that directory pattern",
+    "evidence": "research/marks/** is protected by line 97. research/probes/ files are not ignored because line 40 uses * not ** (only matches research root, not subdirs). However, if someone creates research/newdir/*.jsonl with judgement data and no line 97-style un-ignore for it, those files would be ignored. Current directories are safe but pattern is fragile.",
+    "severity": "low",
+    "fix_sketch": "Add a comment after line 85 explicitly stating: 'Ignore rule research/*.jsonl does NOT match subdirectories (research/marks/, etc). New subdirectories holding judgement data MUST have a corresponding !research/newdir/** un-ignore rule or files will be silently ignored.'",
+    "test_sketch": "Create test directory 'research/test_judgement/' and add 'research/test_judgement/grades.jsonl'. Run git check-ignore - it should show as ignored (exit 0). This confirms the trap exists for new subdirectories. After adding !research/test_judgement/** to .gitignore, re-run and verify it's un-ignored."
+  }
+]

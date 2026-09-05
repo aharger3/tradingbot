@@ -1,0 +1,11 @@
+[
+  {
+    "file": "backtest_week.py",
+    "line": 773,
+    "claim": "floor_r computed with wrong condition, leading to two different -1R counts (70 vs 0) in bbcfd5cf vs ece08845",
+    "evidence": "bbcfd5cf (commit 2026-09-03 02:04) claims 70 of 4,022 traded rows fill worse than -1.000R (53 after size gate), all with scaled=True. ece08845 (commit 2026-09-03 14:22) claims 0 rows worse than -1.000R. bt2y_trades_retest_on.json confirms 0 rows with r < -1.0 (1,448 rows exactly = -1.0R). The discrepancy arises from measuring different units: bbcfd5cf analyzed per-fill R (unclamped close), while ece08845 measures blended R (after netting first partial's profit). The 70 are runner legs with per-fill fills at -1.25R or worse, but blended r around -0.50 to -0.65R. This script found 33 scaled rows with -1.0 < r <= -0.5, representing the runner legs with losses approaching -1R after blending.",
+    "severity": "high",
+    "fix_sketch": "The two commits are both correct, but conflicting in measurement unit. bbcfd5cf was analyzing what-if scenario (unclamped per-fill R), while ece08845 fixed the code to floor at -1.0R and verified the blended r never goes below -1.0R. The bug is not in the code, but in the original claim/measurement unit. Reconcile by documenting that: (1) per-fill R: 70 runner legs would clamp at -1.25R without the disaster stop; (2) blended R: 0 rows reach -1.0R or worse; (3) the 1,448 rows exactly at -1.0R are trades stopped by the disaster order.",
+    "test_sketch": "research/g180_minus1r_reconcile.py verifies: (1) Count rows with r < -1.0 = 0 (ece08845's claim) vs bbcfd5cf's 70 (which refer to unclamped per-fill); (2) Count rows with r = -1.0 = 1,448 (ece08845's disaster count); (3) Analyze scaled rows with losses to locate the 70 runner legs; (4) Verify they have blended r around -0.50 to -0.65R (ece08845's statement). All tests pass on current book."
+  }
+]

@@ -1,0 +1,47 @@
+[
+  {
+    "file": "omen_bot.py",
+    "line": 29,
+    "claim": "HTF_BIAS_VETO defaults to 1 (ON), but rulebook says it should be deleted or replaced with HTF_GRADE_VETO (OFF)",
+    "evidence": "omen_bot.py:29 reads `HTF_BIAS_VETO = os.getenv(\"HTF_BIAS_VETO\", \"1\")...` but omen-rulebook.md:855-870 says 'Higher-timeframe bias does not exist' and 'Deleted 2026-08-28' and omen-blockers.md:872 states 'The live, default-ON flag is HTF_BIAS_VETO...the record was wrong, not the code.' Ticket 23 is still open to reconcile.",
+    "severity": "high",
+    "fix_sketch": "Reconcile git history: check if HTF_GRADE_VETO was ever committed and later reverted, or if the R4 fix from 2026-09-03 (omen-blockers.md:102-110) never reached main. The vault expects HTF_GRADE_VETO default OFF; code has HTF_BIAS_VETO default ON. Either revert to the intended state or update the vault documentation to match shipped code.",
+    "test_sketch": "git log --all --grep='HTF_GRADE_VETO' to verify whether the R4 fix ever existed. Run `grep -c 'HTF_GRADE_VETO' omen_bot.py` (should be 0 on main, not 0 if R4 landed). Compare omen_bot.py at commit f8740f80 vs. the R4-stated commit to identify whether the fix was reverted or never landed."
+  },
+  {
+    "file": "signal_runner.py",
+    "line": 221,
+    "claim": "RETEST_REQUIRED defaults to 1 (ON), but omen-rulebook.md section on higher-timeframe bias says higher-timeframe bias should be deleted and left unmeasured",
+    "evidence": "signal_runner.py:221 reads `RETEST_REQUIRED = os.getenv(\"RETEST_REQUIRED\", \"1\")...`. Lines 173-220 document this as a ratified variable with measured edge (+3 green months, -15% max DD on full pool, trade-neutral to +38 on index lane). However, the flag's comment does not cite which vault document ratifies this default, and omen-rulebook.md:855-870 does not mention RETEST_REQUIRED at all. The CLAUDE.md project note says it shipped ON in 2026-09-02 for durability, not edge, which is not the same as being ratified in the rulebook.",
+    "severity": "low",
+    "fix_sketch": "Add an explicit note to signal_runner.py RETEST_REQUIRED section citing omen-rulebook.md or omen-blockers.md where this gate was ratified, or if it was not ratified there, note that it is a measurement-driven default not mentioned in the rulebook yet. This is not a code bug, just a documentation gap.",
+    "test_sketch": "Search omen-rulebook.md for 'RETEST' to confirm whether it is mentioned. Search omen-blockers.md for 'retest' to find the ratification source. If found, cite it in the code comment; if not found, flag as needing vault update."
+  },
+  {
+    "file": "signal_runner.py",
+    "line": 558,
+    "claim": "ON_WATCH defaults to 1 (ON), but vault documentation does not specify a shipped default",
+    "evidence": "signal_runner.py:558 reads `ON_WATCH = os.getenv(\"ON_WATCH\", \"1\")...` with comment 'Off by env if it has to be A/B'd'. omen-rulebook.md lines 381-415 describe the ON WATCH mechanic as a decision clock, not a price trigger, but do not state whether the shipped default should be ON or OFF. omen-blockers.md does not mention ON_WATCH default either.",
+    "severity": "low",
+    "fix_sketch": "Search vault notes for any statement of whether ON_WATCH should default ON or OFF at ship. If not found, this default is implementation-driven, not spec-driven. Add a citation in the code comment showing whether it is ON because it works better (with evidence), or OFF because it is still experimental.",
+    "test_sketch": "Search omen-rulebook.md and omen-blockers.md for 'ON WATCH' and 'ON_WATCH'. If a shipped default is mentioned, add a git blame link and citation to signal_runner.py:558. If not mentioned, verify that the ON default is supported by measurement (git log for the commit that set it to 1)."
+  },
+  {
+    "file": "omen_bot.py",
+    "line": 29,
+    "claim": "HTF_BIAS_VETO flag exists and gates a D return, but the constant name contradicts omen-rulebook.md's 2026-08-28 decision to 'delete HTF_BIAS_VETO'",
+    "evidence": "omen-rulebook.md lines 855-870: 'Deleted 2026-08-28. The value is still computed and reported, so it can be re-gated on the day he defines the rule.' But omen_bot.py:29 shows the flag still shipping ON and gating a D return inside _grade_pa (line 205: `if opposed and HTF_BIAS_VETO: return TradeGrade.D`). omen-blockers.md:872 documents the contradiction: 'Measured, 2026-09-03 night (AUGUR): the code on main does not match this correction... The live, default-ON flag is HTF_BIAS_VETO...' This is Ticket 23.",
+    "severity": "high",
+    "fix_sketch": "Resolve ticket 23: either (1) implement the intended fix per R4 (replace HTF_BIAS_VETO with HTF_GRADE_VETO default OFF, keep the value computed but unvoted), or (2) update omen-rulebook.md to document that HTF_BIAS_VETO shipped ON and is still the gate, contradicting the 2026-08-28 decision, pending Austin's definition of what higher-timeframe bias means.",
+    "test_sketch": "Run `git log --all --oneline -- omen_bot.py | grep -i 'HTF_GRADE_VETO'` to check whether R4 was ever committed. If found, check if it was reverted. If not found, create HTF_GRADE_VETO per omen-blockers.md:102-110 (default OFF, gates the return, same return statement). Add test_htf_grade_veto_default.py asserting the shipped default."
+  },
+  {
+    "file": "signal_runner.py",
+    "line": 271,
+    "claim": "HTF_BIAS_GATE defaults to 0 (OFF), which differs from the module's HTF_BIAS_VETO in omen_bot.py that defaults to 1 (ON)",
+    "evidence": "signal_runner.py:271 defines `HTF_BIAS_GATE = os.getenv(\"HTF_BIAS_GATE\", \"0\")...` for daily-candle trend bias gating (cap counter-trend signals to C). omen_bot.py:29 defines `HTF_BIAS_VETO = os.getenv(\"HTF_BIAS_VETO\", \"1\")...` for opposed-bias D return. These are TWO different gates on the same concept (HTF bias), with opposite defaults (GATE OFF, VETO ON). omen_bot.py imports from omen_bot but signal_runner.py uses both HTF_BIAS_VETO (from omen_bot) and its own HTF_BIAS_GATE. This creates two independent switches on the same bias calculation, never coordinated.",
+    "severity": "medium",
+    "fix_sketch": "Audit whether HTF_BIAS_GATE is used live (grep signal_runner.py line 3413 for the consumer). If it is unused or redundant with HTF_BIAS_VETO, delete it and consolidate to one gate. If both are needed, document why and ensure they ship with consistent defaults OR document that they are independent levers with different tuning goals.",
+    "test_sketch": "Search for all uses of HTF_BIAS_GATE in signal_runner.py. Count the number of branches that read it (line 3413 shows one). If count is 1 and that branch is never executed under normal conditions (e.g., only in research arms), flag as dead code. Otherwise, create a test that shows HTF_BIAS_GATE ON/OFF produces different trade lists than the default."
+  }
+]

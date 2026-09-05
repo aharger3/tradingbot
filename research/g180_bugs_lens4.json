@@ -1,0 +1,83 @@
+[
+  {
+    "file": "live_scanner.py",
+    "line": 364,
+    "claim": "bare except silently swallows Tastytrade fetch_daily_levels exception with no logging",
+    "evidence": "Line 364: except Exception: (no log, silently falls back to yfinance). A Tastytrade auth or network failure goes unreported and the scan continues with degraded data source.",
+    "severity": "medium",
+    "fix_sketch": "Add logging: except Exception as e: print(f'[{symbol}] fetch_daily_levels failed: {e}'); then fallback",
+    "test_sketch": "Mock fetch_daily_levels to raise Exception; assert log output contains symbol and error"
+  },
+  {
+    "file": "live_scanner.py",
+    "line": 375,
+    "claim": "bare except silently swallows Tastytrade fetch_premarket_levels with no logging or status update",
+    "evidence": "Line 375: except Exception: pm=None. No logging, no status indication. Missing premarket levels silently degrades signal fidelity.",
+    "severity": "medium",
+    "fix_sketch": "Add logging before assignment: except Exception as e: print(f'[{symbol}] fetch_premarket_levels failed: {e}'); pm=None",
+    "test_sketch": "Mock fetch_premarket_levels to raise; verify log appears and pm is None"
+  },
+  {
+    "file": "live_scanner.py",
+    "line": 387,
+    "claim": "bare except silently swallows fetch_htf_bias exception with no logging, leaving bias as None",
+    "evidence": "Line 387: except Exception: ctx['bias']=None. No logging. HTF bias unavailability is invisible to caller and to logs.",
+    "severity": "medium",
+    "fix_sketch": "Add logging: except Exception as e: print(f'[{symbol}] fetch_htf_bias failed: {e}'); ctx['bias']=None",
+    "test_sketch": "Mock fetch_htf_bias to raise; assert log and ctx['bias'] is None"
+  },
+  {
+    "file": "live_scanner.py",
+    "line": 424,
+    "claim": "bare except silently falls back to yfinance on Tastytrade fetch_recent_bars failure with no logging",
+    "evidence": "Line 424: except Exception: bars=[] (no logging). Tasty source failure is silent; scan continues without knowing data source switched.",
+    "severity": "medium",
+    "fix_sketch": "Add logging: except Exception as e: print(f'[batch] tasty fetch_recent_bars failed: {e}'); bars=[]",
+    "test_sketch": "Mock tasty_feed.fetch_recent_bars to raise; verify fallback to yfinance log appears"
+  },
+  {
+    "file": "live_scanner.py",
+    "line": 1224,
+    "claim": "bare except silently returns empty bars list in FuturesFeed.__init__ with no logging",
+    "evidence": "Line 1224: except Exception: allb=[]. No logging. Replay of futures data on a day silently produces zero bars without error indication.",
+    "severity": "high",
+    "fix_sketch": "Add logging: except Exception as e: print(f'[{sym}] fetch_day failed: {e}'); allb=[]",
+    "test_sketch": "Mock pf.fetch_day to raise on a symbol; verify log and self.bars is empty for that symbol"
+  },
+  {
+    "file": "live_scanner.py",
+    "line": 1256,
+    "claim": "bare except silently returns empty list in FuturesFeed.fetch_recent_bars with no logging",
+    "evidence": "Line 1256: except Exception: return []. No logging. Called from _get_daily_context on line 372; missing prior-day bars fails silently.",
+    "severity": "high",
+    "fix_sketch": "Add logging: except Exception as e: print(f'[{symbol}] fetch_day (replay) failed: {e}'); return []",
+    "test_sketch": "Mock pf.fetch_day to raise; verify log appears before empty return"
+  },
+  {
+    "file": "tastytrade_feed.py",
+    "line": 156,
+    "claim": "bare except silently passes on get_accounts() failure during session auth, leaving account_number None",
+    "evidence": "Lines 152-157: try: accts=self.get_accounts() ... except Exception: pass. No logging. Missing account setup is invisible but may cause later fills to fail.",
+    "severity": "low",
+    "fix_sketch": "Add logging: except Exception as e: print(f'[init] get_accounts failed: {e}')",
+    "test_sketch": "Mock get_accounts to raise; verify log and account_number remains None"
+  },
+  {
+    "file": "dxlink.py",
+    "line": 65,
+    "claim": "bare except silently breaks on ws.recv() JSON parse failure with no logging, aborting quote collection",
+    "evidence": "Line 65: except Exception: break. No logging. Any JSON parse or websocket error silently exits the event loop, returning partial quotes.",
+    "severity": "high",
+    "fix_sketch": "Add logging before break: except Exception as e: print(f'[dxlink quote] ws.recv parse failed: {e}'); break",
+    "test_sketch": "Mock ws.recv to return malformed JSON; verify log and quotes dict has partial results"
+  },
+  {
+    "file": "dxlink.py",
+    "line": 196,
+    "claim": "bare except silently breaks on ws.recv() JSON parse in candle fetch with no logging, aborting bar collection",
+    "evidence": "Line 196: except Exception: break. No logging. JSON parse failure on candles silently exits loop, returning incomplete or zero bars.",
+    "severity": "high",
+    "fix_sketch": "Add logging before break: except Exception as e: print(f'[dxlink candle] ws.recv parse failed: {e}'); break",
+    "test_sketch": "Mock ws.recv to return invalid JSON; verify log and out list is partial or empty"
+  }
+]

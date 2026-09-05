@@ -1,0 +1,83 @@
+[
+  {
+    "file": "signal_runner.py",
+    "line": 2057,
+    "claim": "Hardcoded delta 0.5 disagrees with options_sizer.py DEFAULT_DELTA 0.42",
+    "evidence": "Line 2057: premium_risk = stock_risk * 0.5  # ATM delta ≈ 0.5 estimate; but options_sizer.py line 62 has DEFAULT_DELTA = 0.42",
+    "severity": "high",
+    "fix_sketch": "Import DEFAULT_DELTA from options_sizer in signal_runner._min_viable_stop(), or use a single constant source",
+    "test_sketch": "Test that signal_runner._min_viable_stop() uses the same delta value as options_sizer.DEFAULT_DELTA for consistency"
+  },
+  {
+    "file": "position_sizer.py",
+    "line": 48,
+    "claim": "Hardcoded delta 0.5 parameter default disagrees with options_sizer.py DEFAULT_DELTA 0.42",
+    "evidence": "Line 48: assumed_delta: float = 0.5; but options_sizer.py line 62 has DEFAULT_DELTA = 0.42 (measured)",
+    "severity": "high",
+    "fix_sketch": "Import DEFAULT_DELTA from options_sizer or use a single source for all delta assumptions",
+    "test_sketch": "Verify that position_sizer.compute_plan() defaults to the correct delta value when called without explicit assumed_delta"
+  },
+  {
+    "file": "research/sizing.py",
+    "line": 67,
+    "claim": "Hardcoded OPTIONS_DEFAULT_DELTA 0.5 disagrees with options_sizer.py DEFAULT_DELTA 0.42",
+    "evidence": "Line 67: OPTIONS_DEFAULT_DELTA = 0.5 with comment 'placeholder Austin can override'; but options_sizer.py line 62 has DEFAULT_DELTA = 0.42 (measured)",
+    "severity": "high",
+    "fix_sketch": "Import DEFAULT_DELTA from options_sizer instead of defining a separate constant",
+    "test_sketch": "Verify dollars_options() uses the correct delta when called; test that research/sizing.py reflects options_sizer.py's value"
+  },
+  {
+    "file": "research/a2_bt2y_summary.py",
+    "line": 32,
+    "claim": "Hardcoded RISK_DOLLARS 1000.0 instead of importing from source (backtest_week or research/sizing.py)",
+    "evidence": "Line 32: RISK_DOLLARS = 1000.0; same value in backtest_week.py:64 and research/sizing.py:55 (R_DOLLARS)",
+    "severity": "medium",
+    "fix_sketch": "Import RISK_DOLLARS from backtest_week instead of redefining it locally",
+    "test_sketch": "Verify book() function produces correct ann_dollars by checking it against backtest_week.RISK_DOLLARS"
+  },
+  {
+    "file": "research/g71_instrument_spread.py",
+    "line": 85,
+    "claim": "Hardcoded R_DOLLARS 1000.0 instead of importing from source",
+    "evidence": "Line 85: R_DOLLARS = 1000.0; same value defined in backtest_week.py:64 (RISK_DOLLARS) and research/sizing.py:55 (R_DOLLARS)",
+    "severity": "medium",
+    "fix_sketch": "Import from research/sizing.py as R_DOLLARS or from backtest_week as RISK_DOLLARS",
+    "test_sketch": "Verify share_spread_R() and other methods produce correct R-scaled values"
+  },
+  {
+    "file": "research/g71_standard_report.py",
+    "line": 48,
+    "claim": "Hardcoded RISK_DOLLARS 1000.0 instead of importing from source",
+    "evidence": "Line 48: RISK_DOLLARS = 1000.0; same value in backtest_week.py:64 and research/sizing.py:55",
+    "severity": "medium",
+    "fix_sketch": "Import RISK_DOLLARS from backtest_week or R_DOLLARS from research/sizing.py",
+    "test_sketch": "Verify dollars calculation in book summary uses the correct value"
+  },
+  {
+    "file": "research/p2_threshold_sweep.py",
+    "line": 145,
+    "claim": "Hardcoded EPS_FRAC 0.25 instead of importing BAR_EXTREME_FRAC from signal_runner",
+    "evidence": "Line 145: EPS_FRAC = 0.25; signal_runner.py line 554 defines BAR_EXTREME_FRAC = 0.25; memory note p26_intrabar_ambiguity.py line 139 imports it",
+    "severity": "low",
+    "fix_sketch": "Import BAR_EXTREME_FRAC from signal_runner as EPS_FRAC or rename to use imported constant",
+    "test_sketch": "Verify threshold values match BAR_EXTREME_FRAC; check that any change to signal_runner.BAR_EXTREME_FRAC updates sweep"
+  },
+  {
+    "file": "research/downgrade.py",
+    "line": 152,
+    "claim": "Hardcoded CHASE_PCT 0.005 duplicates signal_runner.py CHASE_PCT instead of importing",
+    "evidence": "Line 152: CHASE_PCT = 0.005; signal_runner.py line 110 also defines CHASE_PCT = 0.005",
+    "severity": "medium",
+    "fix_sketch": "Import CHASE_PCT from signal_runner instead of redefining",
+    "test_sketch": "Verify downgrade calculations use the same CHASE_PCT value as signal_runner"
+  },
+  {
+    "file": "signal_runner.py",
+    "line": 2058,
+    "claim": "Hardcoded minimum stop percentage 0.005 not imported from position_sizer.MIN_VIABLE_STOP_PCT",
+    "evidence": "Line 2058: return risk_pct >= 0.005 or premium_risk >= 0.20; position_sizer.py line 10 defines MIN_VIABLE_STOP_PCT = 0.005",
+    "severity": "medium",
+    "fix_sketch": "Import MIN_VIABLE_STOP_PCT from position_sizer and use it in _min_viable_stop() method",
+    "test_sketch": "Verify _min_viable_stop() uses the same threshold as position_sizer.MIN_VIABLE_STOP_PCT"
+  }
+]

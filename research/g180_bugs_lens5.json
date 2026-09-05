@@ -1,0 +1,200 @@
+[
+  {
+    "file": "CLAUDE.md",
+    "line": 1,
+    "claim": "55 test files exist but are never run by the verify gate",
+    "evidence": "verify gate runs only 'python research/regression_gate.py && python research/test_runner_stop.py' per CLAUDE.md. Test discovery found 57 test_*.py files total: 55 are not in this list. Failing tests include: test_austin_tier.py (4 failures), test_downgrade_grader.py (1 failure), test_entry_scratch.py (8 failures), test_onwatch_fill.py, test_paper_trader_stop.py, test_published_numbers.py, test_rule84_source.py, test_sac_ladder.py, test_structural_floor.py, test_universe_single_source.py, test_rule_710.py, test_detect_wide.py (13 total failures); 7 timeout: test_build_s_sweep.py, test_deck_selection.py, test_field_distinctness.py, test_live_batch_fetch.py, test_master_homework_page.py, test_omen_test1_page.py, test_t14_arrival_ladder.py, test_t21_card_filter.py",
+    "severity": "high",
+    "fix_sketch": "Extend verify gate to run all test_*.py files under research/ and repo root. Add a discovery step that collects all test_*.py, runs each with timeout and return code checking. Fail gate if any test fails or times out. Example: find . -name 'test_*.py' -type f | xargs -I{} python {} with 5s timeout per file.",
+    "test_sketch": "Gate discovery: python -c 'import glob; tests=[...]; print(len(tests), \"tests found\"); for t in tests: subprocess.run([python, t], timeout=5)' should list all 57 tests and report pass/fail for each."
+  },
+  {
+    "file": "./test_austin_tier.py",
+    "line": 240,
+    "claim": "fill_price function has incorrect intrabar fill logic for extreme closes",
+    "evidence": "4 consecutive test failures in section (b): (1) sr.fill_price(100.00, TOP, is_long=True) expects 100.00 but got different value; (2) sr.fill_price(99.00, TOP, is_long=True) expects TOP.low but got different; (3) sr.fill_price(100.90, BOT, is_long=False) expects 100.90 but got different; (4) sr.fill_price(102.00, BOT, is_long=False) expects BOT.high but got different. TOP=Candle(100,101,100,100.90), BOT=Candle(101,101,100,100.10).",
+    "severity": "high",
+    "fix_sketch": "Review signal_runner.fill_price() function logic for the extreme-close intrabar handling. The function should: (1) return close when mid-bar; (2) return the level price when close is in top/bottom 25% of range on long/short; (3) clamp levels outside bar range to bar high/low. Check lines implementing the 25% threshold calculation and level clamping.",
+    "test_sketch": "python test_austin_tier.py should pass all 4 section (b) checks. Add unit test for fill_price with MID/TOP/BOT Candles testing all 5 assertions at lines 240-249."
+  },
+  {
+    "file": "./research/test_downgrade_grader.py",
+    "line": 133,
+    "claim": "DOWNGRADE_TIER ladder does not match t70_test1_score.LADDER mapping",
+    "evidence": "Assertion at line 133: 'DOWNGRADE_TIER must be the inverse of t70_test1_score.LADDER, or the A/B and the held-out scorer are counting different things: his S -> engine A -> his A'. The test imports LADDER from t70 and checks that DOWNGRADE_TIER inverts it correctly. Mismatch detected in S->A->S mapping.",
+    "severity": "high",
+    "fix_sketch": "Compare DOWNGRADE_TIER definition in signal_runner.py or downgrade.py against the LADDER in research/t70_test1_score.py. Ensure bidirectional correctness: if LADDER maps S->A, then DOWNGRADE_TIER must map A->S. Verify the full chain: his S, engine grade, his tier after downgrade.",
+    "test_sketch": "python research/test_downgrade_grader.py should pass. Add assertion: for each tier in LADDER, verify DOWNGRADE_TIER[LADDER[tier]] == tier. Run on current book state."
+  },
+  {
+    "file": "./research/test_entry_scratch.py",
+    "line": 1,
+    "claim": "ENTRY_SCRATCH feature has 8 failing test cases out of ~15",
+    "evidence": "Test output shows 8 FAIL lines: (1) OFF: close-back bar floored wrong; (2-5) ON: long case failures in scratch detection, exit pricing, and value comparison; (6-8) short case counterparts. All failures compare expected vs actual loss values (-1.000R vs -1.000R precision issue or logic error).",
+    "severity": "high",
+    "fix_sketch": "Check ENTRY_SCRATCH branching in backtest_week.py or paper_trader.py. Verify that (1) scratch detection correctly identifies close-back-through-level bars; (2) scratch exit price uses the level, not the close; (3) scratch value clamping at level is applied correctly; (4) both long and short directions handle symmetrically.",
+    "test_sketch": "python research/test_entry_scratch.py should show all PASS. Create minimal repro with fixed 100.50 long entry, 100.00 stop, bar closing back through entry, verify trade scratches at level on next signal."
+  },
+  {
+    "file": "./research/test_onwatch_fill.py",
+    "line": 1,
+    "claim": "test_onwatch_fill.py fails (reason not captured, rc=1)",
+    "evidence": "test_onwatch_fill.py exits with rc=1 when run. Not run by verify gate.",
+    "severity": "medium",
+    "fix_sketch": "Run python research/test_onwatch_fill.py and capture full stderr to identify the failure. Review ON_WATCH or mid-candle fill logic in signal_runner.py.",
+    "test_sketch": "python research/test_onwatch_fill.py with full output capture should PASS."
+  },
+  {
+    "file": "./research/test_paper_trader_stop.py",
+    "line": 1,
+    "claim": "test_paper_trader_stop.py fails (reason not captured, rc=1)",
+    "evidence": "test_paper_trader_stop.py exits with rc=1 when run. Not run by verify gate.",
+    "severity": "medium",
+    "fix_sketch": "Run python research/test_paper_trader_stop.py and capture full stderr. Review stop_rule or disaster_stop logic in paper_trader.py.",
+    "test_sketch": "python research/test_paper_trader_stop.py with full output should PASS."
+  },
+  {
+    "file": "./research/test_published_numbers.py",
+    "line": 1,
+    "claim": "test_published_numbers.py fails (reason not captured, rc=1)",
+    "evidence": "test_published_numbers.py exits with rc=1 when run. Not run by verify gate.",
+    "severity": "medium",
+    "fix_sketch": "Run python research/test_published_numbers.py and capture full stderr. This likely checks bt2y_trades* JSONs against known baselines.",
+    "test_sketch": "python research/test_published_numbers.py should PASS."
+  },
+  {
+    "file": "./research/test_rule84_source.py",
+    "line": 1,
+    "claim": "test_rule84_source.py fails (reason not captured, rc=1)",
+    "evidence": "test_rule84_source.py exits with rc=1 when run. Not run by verify gate.",
+    "severity": "medium",
+    "fix_sketch": "Run python research/test_rule84_source.py and capture full stderr. Review 84% rule detection logic.",
+    "test_sketch": "python research/test_rule84_source.py should PASS."
+  },
+  {
+    "file": "./research/test_sac_ladder.py",
+    "line": 1,
+    "claim": "test_sac_ladder.py fails (reason not captured, rc=1)",
+    "evidence": "test_sac_ladder.py exits with rc=1 when run. Not run by verify gate.",
+    "severity": "medium",
+    "fix_sketch": "Run python research/test_sac_ladder.py and capture full stderr. Review S/A/C grading ladder.",
+    "test_sketch": "python research/test_sac_ladder.py should PASS."
+  },
+  {
+    "file": "./research/test_structural_floor.py",
+    "line": 1,
+    "claim": "test_structural_floor.py fails (reason not captured, rc=1)",
+    "evidence": "test_structural_floor.py exits with rc=1 when run. Not run by verify gate.",
+    "severity": "medium",
+    "fix_sketch": "Run python research/test_structural_floor.py and capture full stderr. Review structural floor (likely -1R or -1.25R logic).",
+    "test_sketch": "python research/test_structural_floor.py should PASS."
+  },
+  {
+    "file": "./research/test_universe_single_source.py",
+    "line": 1,
+    "claim": "test_universe_single_source.py fails (reason not captured, rc=1)",
+    "evidence": "test_universe_single_source.py exits with rc=1 when run. Not run by verify gate.",
+    "severity": "medium",
+    "fix_sketch": "Run python research/test_universe_single_source.py and capture full stderr. This checks that no module keeps a private ticker list (per CLAUDE.md section 'Measurement rigs').",
+    "test_sketch": "python research/test_universe_single_source.py should PASS."
+  },
+  {
+    "file": "./test_rule_710.py",
+    "line": 1,
+    "claim": "test_rule_710.py fails (reason not captured, rc=1)",
+    "evidence": "test_rule_710.py exits with rc=1 when run. Not run by verify gate.",
+    "severity": "medium",
+    "fix_sketch": "Run python test_rule_710.py and capture full stderr. Review rule 710 logic (displacement-related).",
+    "test_sketch": "python test_rule_710.py should PASS."
+  },
+  {
+    "file": "./test_detect_wide.py",
+    "line": 1,
+    "claim": "test_detect_wide.py fails (reason not captured, rc=1)",
+    "evidence": "test_detect_wide.py exits with rc=1 when run. Not run by verify gate.",
+    "severity": "medium",
+    "fix_sketch": "Run python test_detect_wide.py and capture full stderr. Review wide-setup detection logic.",
+    "test_sketch": "python test_detect_wide.py should PASS."
+  },
+  {
+    "file": "./research/test_build_s_sweep.py",
+    "line": 1,
+    "claim": "test_build_s_sweep.py hangs (timeout after 5s)",
+    "evidence": "test_build_s_sweep.py does not complete within 5s timeout. Likely blocked on I/O or waiting for external data.",
+    "severity": "medium",
+    "fix_sketch": "Add timeout or async/concurrent handling. Check if test fetches network data or reads large files synchronously. Refactor to mock external calls or add explicit timeout.",
+    "test_sketch": "python research/test_build_s_sweep.py should complete within 2s."
+  },
+  {
+    "file": "./research/test_deck_selection.py",
+    "line": 1,
+    "claim": "test_deck_selection.py hangs (timeout after 5s)",
+    "evidence": "test_deck_selection.py does not complete within 5s timeout.",
+    "severity": "medium",
+    "fix_sketch": "Investigate blocking operations (likely data loading or deck building). Add explicit timeout or refactor.",
+    "test_sketch": "python research/test_deck_selection.py should complete within 2s."
+  },
+  {
+    "file": "./research/test_field_distinctness.py",
+    "line": 1,
+    "claim": "test_field_distinctness.py hangs (timeout after 5s)",
+    "evidence": "test_field_distinctness.py does not complete within 5s timeout.",
+    "severity": "medium",
+    "fix_sketch": "Investigate blocking operations. Likely data processing or schema validation.",
+    "test_sketch": "python research/test_field_distinctness.py should complete within 2s."
+  },
+  {
+    "file": "./research/test_live_batch_fetch.py",
+    "line": 1,
+    "claim": "test_live_batch_fetch.py hangs (timeout after 5s)",
+    "evidence": "test_live_batch_fetch.py does not complete within 5s timeout. Likely network call or data fetch.",
+    "severity": "medium",
+    "fix_sketch": "Mock yfinance or network calls. Add timeout in test or refactor to use fixtures.",
+    "test_sketch": "python research/test_live_batch_fetch.py should complete within 2s with mocked network."
+  },
+  {
+    "file": "./research/test_master_homework_page.py",
+    "line": 1,
+    "claim": "test_master_homework_page.py hangs (timeout after 5s)",
+    "evidence": "test_master_homework_page.py does not complete within 5s timeout.",
+    "severity": "medium",
+    "fix_sketch": "Likely generates large HTML or deck. Add timeout or refactor to test pieces separately.",
+    "test_sketch": "python research/test_master_homework_page.py should complete within 2s."
+  },
+  {
+    "file": "./research/test_omen_test1_page.py",
+    "line": 1,
+    "claim": "test_omen_test1_page.py hangs (timeout after 5s)",
+    "evidence": "test_omen_test1_page.py does not complete within 5s timeout.",
+    "severity": "medium",
+    "fix_sketch": "Likely large page generation. Add timeout or refactor.",
+    "test_sketch": "python research/test_omen_test1_page.py should complete within 2s."
+  },
+  {
+    "file": "./research/test_t14_arrival_ladder.py",
+    "line": 1,
+    "claim": "test_t14_arrival_ladder.py hangs (timeout after 5s)",
+    "evidence": "test_t14_arrival_ladder.py does not complete within 5s timeout.",
+    "severity": "medium",
+    "fix_sketch": "Investigate arrival ladder computation. Add timeout or refactor.",
+    "test_sketch": "python research/test_t14_arrival_ladder.py should complete within 2s."
+  },
+  {
+    "file": "./research/test_t21_card_filter.py",
+    "line": 1,
+    "claim": "test_t21_card_filter.py hangs (timeout after 5s)",
+    "evidence": "test_t21_card_filter.py does not complete within 5s timeout.",
+    "severity": "medium",
+    "fix_sketch": "Investigate card filtering logic. Likely iterates over large corpus. Add timeout or refactor.",
+    "test_sketch": "python research/test_t21_card_filter.py should complete within 2s."
+  },
+  {
+    "file": "research/daily_run.cmd",
+    "line": 18,
+    "claim": "Daily pass runs only 2 of 57 tests: daily_fetch, daily_homework, and regression_gate (which is already in verify gate)",
+    "evidence": "research/daily_run.cmd lines 18, 24, 38 run daily_fetch.py, daily_homework.py, and regression_gate.py. No other test_*.py files are called. 55 test files exist but daily pass never runs them.",
+    "severity": "high",
+    "fix_sketch": "Extend daily_run.cmd to run all test_*.py discovery after the gate check. Or create a separate test_all.py that collects and runs all tests, and call it from daily_run.cmd.",
+    "test_sketch": "daily_run.cmd should log test discovery and results. Verify each test runs and reports PASS/FAIL/TIMEOUT."
+  }
+]

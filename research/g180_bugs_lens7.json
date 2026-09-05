@@ -1,0 +1,92 @@
+[
+  {
+    "file": "run_daily.ps1",
+    "line": 32,
+    "claim": "archive_1m.py is called without --back flag, so it fails on current day due to Polygon 403 NOT_AUTHORIZED",
+    "evidence": "run_daily.ps1 line 32: '& $python archive_1m.py 2>&1 | Tee-Object -FilePath $log -Append'. archive_1m.py docstring (line 28-30) states: 'Polygon returns 403 for the CURRENT day on this plan (no real-time entitlement), so an unattended job must ask for completed sessions -- see --back.' CLAUDE.md confirms: 'Polygon: 403 NOT_AUTHORIZED on recent timeframes. data_archive stopped at 2026-08-27 and cannot reach today on this plan.'",
+    "severity": "high",
+    "fix_sketch": "Pass --back flag to archive_1m.py in run_daily.ps1 line 32 to fetch completed sessions instead of today: '& $python archive_1m.py --back 5 2>&1 | Tee-Object -FilePath $log -Append'",
+    "test_sketch": "Run run_daily.ps1 manually; verify that archive_1m.py completes without 403 errors and journal/scanner-YYYY-MM-DD.log shows fetched counts > 0 for at least some symbols"
+  },
+  {
+    "file": "a6_dispatch.ps1",
+    "line": 5,
+    "claim": "Hardcoded path uses C:\\Users\\aharg\\aharg\\Desktop\\projects\\tradingbot (double 'aharg', lowercase 'projects') instead of actual C:\\Users\\aharg\\Desktop\\Projects\\tradingbot",
+    "evidence": "a6_dispatch.ps1 line 5: 'Set-Location C:\\Users\\aharg\\aharg\\Desktop\\projects\\tradingbot'. The correct project path per CLAUDE.md is C:\\Users\\aharg\\Desktop\\Projects\\tradingbot (confirmed in run_omen6_forward.ps1 line 13). The duplicated 'aharg' and lowercase 'projects' are incorrect.",
+    "severity": "high",
+    "fix_sketch": "Replace all occurrences of 'C:\\Users\\aharg\\aharg\\Desktop\\projects\\tradingbot' with 'C:\\Users\\aharg\\Desktop\\Projects\\tradingbot' in a6_dispatch.ps1 (lines 5, 9, 10)",
+    "test_sketch": "Run Get-ScheduledTask OmenA6PaperLog manually or wait for next scheduled run (weekdays 16:20 ET); verify task completes without 'path not found' errors and journal\\a6-YYYY-MM-DD.log is created in correct location"
+  },
+  {
+    "file": "a6_dispatch.ps1",
+    "line": 9,
+    "claim": "Same hardcoded path issue with lowercase 'projects' directory",
+    "evidence": "a6_dispatch.ps1 line 9: '$prompt = Get-Content C:\\Users\\aharg\\aharg\\Desktop\\projects\\tradingbot\\a6-prompt.txt -Raw'",
+    "severity": "high",
+    "fix_sketch": "Replace with correct path: 'C:\\Users\\aharg\\Desktop\\Projects\\tradingbot\\a6-prompt.txt'",
+    "test_sketch": "Verify journal\\a6-YYYY-MM-DD.log is created successfully after task runs"
+  },
+  {
+    "file": "a6_dispatch.ps1",
+    "line": 10,
+    "claim": "Same hardcoded path issue with lowercase 'projects' directory",
+    "evidence": "a6_dispatch.ps1 line 10: '$log = \"C:\\Users\\aharg\\aharg\\Desktop\\projects\\tradingbot\\journal\\a6-$(Get-Date -Format yyyy-MM-dd).log\"'",
+    "severity": "high",
+    "fix_sketch": "Replace with correct path: 'C:\\Users\\aharg\\Desktop\\Projects\\tradingbot\\journal\\a6-$(Get-Date -Format yyyy-MM-dd).log'",
+    "test_sketch": "Verify journal\\a6-YYYY-MM-DD.log is created in correct location"
+  },
+  {
+    "file": "run_omen6_forward.ps1",
+    "line": 1,
+    "claim": "OmenForwardClock scheduled task runs this script but the forward book was retired 2026-08-28; task should be disabled per spec L4",
+    "evidence": "run_omen6_forward.ps1 line 32 runs 'research\\omen6_forward.py score'. CLAUDE.md notes: 'forward book retired 2026-08-28' and 'do not re-freeze without him saying so'. Spec L4 (Disable... `OmenForwardClock` (forward book retired 2026-08-28))'. OmenForwardClock task status is 'Ready' when it should be 'Disabled'.",
+    "severity": "high",
+    "fix_sketch": "Run PowerShell: Get-ScheduledTask OmenForwardClock | Disable-ScheduledTask",
+    "test_sketch": "Verify Get-ScheduledTask OmenForwardClock shows State=Disabled"
+  },
+  {
+    "file": "market_open_healthcheck.py",
+    "line": 98,
+    "claim": "Hardcoded path references C:\\Users\\aharg\\projects\\tradingbot (wrong directory) instead of C:\\Users\\aharg\\Desktop\\Projects\\tradingbot",
+    "evidence": "market_open_healthcheck.py line 98: 'Path(r\"C:\\Users\\aharg\\projects\\tradingbot\\.env.tastytrade\")'. The correct path per CLAUDE.md is C:\\Users\\aharg\\Desktop\\Projects\\tradingbot. Test: 'Test-Path \"C:\\Users\\aharg\\projects\\tradingbot\\.env.tastytrade\"' returns False; this path does not exist.",
+    "severity": "medium",
+    "fix_sketch": "Replace 'C:\\Users\\aharg\\projects\\tradingbot' with 'C:\\Users\\aharg\\Desktop\\Projects\\tradingbot' on lines 98, 99, 115",
+    "test_sketch": "Run market_open_healthcheck.py with --dry-run; verify it finds tastytrade credentials by reading from correct Desktop path"
+  },
+  {
+    "file": "market_open_healthcheck.py",
+    "line": 99,
+    "claim": "Same hardcoded path issue with wrong directory",
+    "evidence": "market_open_healthcheck.py line 99: 'Path(r\"C:\\Users\\aharg\\projects\\tradingbot\\.env\")'",
+    "severity": "medium",
+    "fix_sketch": "Replace with 'C:\\Users\\aharg\\Desktop\\Projects\\tradingbot\\.env'",
+    "test_sketch": "Run market_open_healthcheck.py; verify all path lookups succeed"
+  },
+  {
+    "file": "market_open_healthcheck.py",
+    "line": 115,
+    "claim": "Same hardcoded path issue with wrong directory",
+    "evidence": "market_open_healthcheck.py line 115: 'tt_env = Path(r\"C:\\Users\\aharg\\projects\\tradingbot\\.env.tastytrade\")'",
+    "severity": "medium",
+    "fix_sketch": "Replace with 'C:\\Users\\aharg\\Desktop\\Projects\\tradingbot\\.env.tastytrade'",
+    "test_sketch": "Run market_open_healthcheck.py; verify it reads refresh token from correct location"
+  },
+  {
+    "file": "run_weekly_digest.ps1",
+    "line": 0,
+    "claim": "Script does not exist but OmenWeeklyDigest scheduled task points to it; task will fail on execution",
+    "evidence": "Get-ScheduledTask OmenWeeklyDigest shows Arguments: '-NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -File C:\\Users\\aharg\\Desktop\\Projects\\tradingbot\\run_weekly_digest.ps1'. Test-Path \"C:\\Users\\aharg\\Desktop\\Projects\\tradingbot\\run_weekly_digest.ps1\" returns False. OmenWeeklyDigest task LastRunTime 2026-08-30 with LastTaskResult 4294770688 (0xFFFFFFFF = error code).",
+    "severity": "high",
+    "fix_sketch": "Either: (A) Create run_weekly_digest.ps1 based on what a weekly digest should do (similar to sunday_backtest.py pattern), or (B) Disable the OmenWeeklyDigest task if no weekly digest is needed",
+    "test_sketch": "If (A): create script and run it to verify it completes successfully. If (B): Run Get-ScheduledTask OmenWeeklyDigest | Disable-ScheduledTask and verify State=Disabled"
+  },
+  {
+    "file": "OmenA6PaperLog scheduled task",
+    "line": 0,
+    "claim": "Scheduled task runs a6_dispatch.ps1 which has hardcoded paths that will fail; also per spec L4 this task should be disabled (script missing / rc 0x80070002)",
+    "evidence": "Spec L4 states: 'Disable (do not delete) scheduled tasks whose script is gone or whose book was retired: `OmenA6PaperLog` (script missing, rc 0x80070002)'. OmenA6PaperLog task is currently in 'Ready' state. The a6_dispatch.ps1 has hardcoded path errors on lines 5, 9, 10 which match the error pattern (file not found).",
+    "severity": "high",
+    "fix_sketch": "Run PowerShell: Get-ScheduledTask OmenA6PaperLog | Disable-ScheduledTask",
+    "test_sketch": "Verify Get-ScheduledTask OmenA6PaperLog shows State=Disabled"
+  }
+]
