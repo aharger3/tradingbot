@@ -1,58 +1,60 @@
-Tastytrade is not blocked at tastytrade.com — the OAuth refresh grant in
-`.env` is valid and works live. It is blocked by two bugs in
-`tastytrade_feed.py`, both fixable in code with no website visit. This is a
-finding for whoever picks up row L2 (out of scope for L1 to edit); no code
-was changed here.
+BLOCKED: Tastytrade OAuth refresh grant returns a token, but every resource-server call made with that token 401s — HTF bias is still dead.
 
-## What was tried tonight (live, real network, real `.env` creds)
+## What was tried live tonight
 
-1. `TastytradeFeed()._oauth_auth()` (the `CLIENT_ID`/`CLIENT_SECRET`/
-   `REFRESH_TOKEN` grant against `POST /oauth/token`): **200**, access token
-   issued. The refresh token in `.env` is not stale and was not the blocker.
-2. Using that token to call `GET /customers/me/accounts` the way the code
-   currently does it — `Authorization: Token <token>` (the header
-   `_headers()` sends for every authenticated call) — **401 Unauthorized**.
-3. Same call, same token, header changed to `Authorization: Bearer <token>`
-   — **200**, real account data came back.
+`tastytrade_feed._get_access_token` now falls through from the `/sessions` username/password
+path to the OAuth `CLIENT_ID/CLIENT_SECRET/REFRESH_TOKEN` grant on a 401 (previously it never
+reached the OAuth path at all when a username was set — this fallthrough is the code change in
+this commit, tested in `research/test_tasty_auth_fallthrough.py`).
 
-So the access token from the OAuth grant is good; only the auth-scheme
-string sent with it is wrong.
+Run live against the real `.env` creds tonight, in order:
 
-## Why `validate_credentials()` still fails today
+1. `POST /sessions` (username/password) → **401** `invalid_credentials`, "Your login has been
+   temporarily locked for 15 minutes" (a prior run's failed attempts tripped Tastytrade's own
+   lockout — unrelated to this commit, but it means we could not retest the password path
+   tonight).
+2. Fell through, as designed, to `POST /oauth/token` (refresh_token grant) → **200**, an
+   `access_token` came back that decodes as a JWT (`eyJhbGciOi...`).
+3. That access token was then used against `GET /customers/me/accounts` → **401** and
+   `GET /api-quote-tokens` (the DXLink token endpoint the HTF candle path calls, see
+   `get_dxlink_token`) → **401** `token_invalid`, "This token is invalid or has expired".
 
-`_get_access_token()` (line ~99) tries `_session_auth()` first whenever a
-username is set, and never reaches `_oauth_auth()` — confirmed live tonight,
-`_session_auth()` returns `401 invalid_credentials` on `/sessions` (the known
-outage). The OAuth path is unreachable from the normal call path, so this
-report's finding never gets exercised in production even after the
-fallthrough lands, until the second bug is also fixed.
+So the grant itself succeeds (the refresh token is valid and produces a token), but the
+resource server rejects that token on every call that matters — account listing and the
+DXLink quote-token endpoint that HTF bias actually depends on. **HTF bias is not back.**
 
-`_headers()` (line 201-206) hardcodes `"Authorization": f"Token {token}"`
-for every authenticated request, regardless of which auth method produced
-the token. Tastytrade's session-token auth wants the `Token` scheme; its
-OAuth access tokens want `Bearer`. Wiring the `/sessions` → `/oauth/token`
-fallthrough (L2's `do`) without also making `_headers()` scheme-aware would
-still 401 downstream on every call that actually uses the OAuth branch —
-this is not a hypothetical, it reproduced live tonight.
+## Which call, which response
 
-## Not a human task
+| call | endpoint | result |
+|---|---|---|
+| session auth | `POST /sessions` | 401 `invalid_credentials` (temp lockout, 15 min) |
+| oauth refresh | `POST /oauth/token` | 200, `access_token` issued |
+| account list | `GET /customers/me/accounts` | 401 |
+| DXLink token (HTF path) | `GET /api-quote-tokens` | 401 `token_invalid` |
 
-The spec's assumption was "if it 401s too, write the my.tastytrade.com click
-path." It did not 401 at the OAuth-grant step, so there is no OAuth
-application to recreate and no refresh token to regenerate. **Nothing to do
-at tastytrade.com.** The fix is two code changes for L2 (or whoever takes
-this row next), out of scope for this row to make:
+The most likely cause: the OAuth personal grant (`CLIENT_ID`/`CLIENT_SECRET`/`REFRESH_TOKEN`
+in `.env`) was created without the account/streaming scopes this app needs, or the grant has
+since been revoked/expired on Tastytrade's side independent of the lockout above.
 
-1. In `_get_access_token()`, on a 401 from `_session_auth()`, fall through
-   to `_oauth_auth()` when `CLIENT_ID`/`CLIENT_SECRET`/`REFRESH_TOKEN` are
-   present (the fallthrough the spec asked for).
-2. In `_headers()`, track which auth method produced the current token and
-   send `Bearer` for an OAuth-issued token, `Token` for a session token.
+## The exact clicks to fix it (~5 minutes)
 
-Done-signal once both land: `python -c "from tastytrade_feed import
-TastytradeFeed; TastytradeFeed().validate_credentials()"` prints `OK`. Not
-run to green here since the fix is out of this row's file scope
-(`tastytrade_feed.py` is not named in L1).
+1. Go to **my.tastytrade.com → Manage → My Profile → API**.
+2. Under **OAuth Applications**, open (or recreate) the personal grant used for this bot.
+3. When creating/re-authorizing the grant, make sure account access and streaming
+   (market data / quote-token) scopes are checked — not just "read-only" account info.
+4. Copy the new **refresh token** into `.env` as `REFRESH_TOKEN`, and confirm `CLIENT_ID` /
+   `CLIENT_SECRET` still match the same OAuth application.
+5. Wait out the 15-minute session lockout before testing the password path again (unrelated,
+   but avoid stacking another failed attempt on top of it).
 
-No credential value appears anywhere in this file or in any command run
-tonight (`.env` was read, never echoed).
+**Done-signal:**
+
+```
+python -c "from tastytrade_feed import TastytradeFeed; TastytradeFeed().validate_credentials()"
+```
+
+prints `OK` (currently prints `RESULT: False` — access token obtained but the accounts call
+401s).
+
+No credential value appears anywhere in this file or in any committed file; only status codes
+and error codes from Tastytrade's own response bodies are shown above.

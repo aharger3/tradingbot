@@ -61,6 +61,16 @@ TOKEN_ENDPOINT = f"{API_BASE}/oauth/token"
 USER_AGENT = "omen-trading-bot/1.0"
 
 
+class _SessionAuthError(RuntimeError):
+    """Raised by _session_auth on a non-201 /sessions response; carries the
+    HTTP status code so _get_access_token can decide whether to fall
+    through to the OAuth refresh_token grant (401 only)."""
+
+    def __init__(self, status_code: int, message: str):
+        super().__init__(message)
+        self.status_code = status_code
+
+
 class TastytradeFeed:
     """Tastytrade market data + account info. Throws on auth failure.
 
@@ -103,9 +113,16 @@ class TastytradeFeed:
             if datetime.now(timezone.utc) < self._access_token_expiry - timedelta(minutes=2):
                 return self._access_token
 
-        # Username/password session auth
+        # Username/password session auth, falling through to the OAuth
+        # refresh_token grant on a 401 (expired/invalid password, e.g. after
+        # a 2FA re-enrollment) rather than raising straight away.
         if self.username and self.password:
-            return self._session_auth()
+            try:
+                return self._session_auth()
+            except _SessionAuthError as e:
+                if e.status_code == 401 and self.refresh_token and self.client_id and self.client_secret:
+                    return self._oauth_auth()
+                raise
 
         # Fallback: OAuth refresh_token
         if self.refresh_token and self.client_id and self.client_secret:
@@ -157,8 +174,9 @@ class TastytradeFeed:
                     pass
             return self._access_token or ""
 
-        raise RuntimeError(
-            f"Tastytrade session auth failed: HTTP {resp.status_code} {resp.text[:200]}"
+        raise _SessionAuthError(
+            resp.status_code,
+            f"Tastytrade session auth failed: HTTP {resp.status_code} {resp.text[:200]}",
         )
 
     @staticmethod
