@@ -139,7 +139,10 @@ Splitting the gap by whether the two arms picked the **same** candidate that day
 So the reshuffle is a **cost**, not the source of the gain — and a matched null (drop candidates at
 random at MID25's own 7.5% skip rate, book CLOSE prices; 1,000 draws) never reaches $100/day
 (mean $34.0, p95 $60.8, max $85.0, P(null ≥ MID25) = 0.000). **The gain is not manufactured by the
-day-picking mechanism.** That part of g158 stands.
+day-picking mechanism.** That part of g158 stands — but see §8: the gain is not the *price* either.
+It is the **later entry bar**, which drags `intrabar_stop` onto that bar's extreme. Refuter #3's
+0%-back placebo (a limit resting at the close price itself, filled strictly after the signal bar)
+pays **$105/day** — more than MID25.
 
 What does not stand is that the fill gain is a stable quantity. Priced per candidate, paired on the
 signals where both arms filled:
@@ -197,13 +200,20 @@ against a full session, and a midpoint against a below-the-close limit).
 4. **"This contradicts g90 R2; one of the two is wrong"** — false. Different price, window, stop,
    exits, book, signal set and metric.
 
-**What survives, and should be recorded as surviving:** on the 368 sessions where both arms pick the
-same candidate, resting a limit strictly after the signal bar at 25% of that bar's range back toward
-the level pays more than taking the close — +$97.4/day, 95% CI [+$23.4, +$173.1], sign test on all
-355 differing days p = 0.0014. That is a real directional signal about entry price, and it is not an
-artifact of the day-picking mechanism. It is **not** a $66/day edge, it is **not** validated
-out-of-sample, and the monotone R-versus-money contradiction across MID25/50/75 says the size of it
-is being read off a shrinking risk denominator. Nothing here is shippable.
+**The one thing that looked like it survived, and does not.** On the 368 sessions where both arms
+pick the same candidate, MID25 beats CLOSE_RT by +$97.4/day, 95% CI [+$23.4, +$173.1], sign test
+p = 0.0014 — a broad-based, sign-stable difference that my own matched null cannot manufacture. I
+had that written down as a surviving directional finding about entry price. **It is not one.** That
+comparison confounds the price with the *bar*: MID25 enters on a **later** bar than CLOSE, and
+`intrabar_stop` then re-anchors the stop to that later bar's extreme. Refuter #3's placebo isolates
+it — a limit resting at **0%** of the bar's range, i.e. at the very close price CLOSE already pays,
+scored the same strictly-after-signal way, pays **$105/day, more than MID25's $100**, and the "25%
+back toward the level" price improvement is worth **−$4.8/day, 95% CI [−$107.8, +$95.8]**
+(`research/g201_refute3.md`). The deferred entry bar is the whole effect; the price is nothing.
+That is the same mechanism my §6 reads off the risk denominator (median risk $0.406 vs $0.540) from
+the other side, and it is consistent with refuter #1's finding that $73 of the $100 is leakage
+(`research/g201_refute1.md`). **All three refuters land on REFUTED independently. Nothing here is
+shippable, and no weaker version of the claim stands.**
 
 ---
 
