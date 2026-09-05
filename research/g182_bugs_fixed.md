@@ -699,3 +699,43 @@ research/test_runner_stop.py` — both PASS, unaffected.
   doesn't exist) and pass after.
 - `python research/regression_gate.py` and `python research/test_runner_stop.py`:
   both pass, unaffected — no engine module's runtime behaviour moved.
+
+---
+
+# g182 — B3 (bug B-11): OmenWeeklyDigest scheduled task disabled, script never existed
+
+What is different now: `OmenWeeklyDigest` is `Disabled` instead of `Ready` and
+silently failing every week; a new general check
+(`research/test_g182_b11_weekly_digest_task.py`) fails if *any* enabled
+`Omen*` scheduled task points at a `-File` script that is not on disk.
+
+## Root cause
+
+`run_weekly_digest.ps1` and the `weekly_digest.py` it called were both deleted
+at `ce2a98d6` (v2.8 loose-work commit); the Task Scheduler entry for
+`OmenWeeklyDigest` was never removed or disabled alongside it, so it kept
+firing every Sunday 18:00 ET against a target that no longer existed
+(`LastTaskResult 4294770688` since 2026-08-30).
+
+## Fix
+
+Chose **disable, not restore**. Restoring the script means resurrecting
+`weekly_digest.py`'s reporting logic from scratch against the current
+(different) journal/log schema — that is new feature work, not a bug fix, and
+out of scope for B3. `Disable-ScheduledTask -TaskName OmenWeeklyDigest` — task
+kept (not deleted) per the fix sketch, state now `Disabled`.
+
+## Test: `research/test_g182_b11_weekly_digest_task.py`
+
+Not a one-off assertion on `OmenWeeklyDigest` alone — it enumerates every
+`Omen*` scheduled task, skips any already `Disabled` (so `OmenA6PaperLog`,
+`OmenForwardClock`, `OmenHealthDaily`, `OmenSignalDigest` stay green), and
+fails if an enabled task's `-File` target is missing.
+
+- Before the fix: `FAIL: OmenWeeklyDigest: State=Ready, missing target
+  ...\run_weekly_digest.ps1` (the only failure among 14 `Omen*` tasks).
+- After `Disable-ScheduledTask`: `PASS: every enabled Omen* scheduled task's
+  -File target exists on disk.`
+- `python research/regression_gate.py` and `python research/test_runner_stop.py`:
+  both pass, unaffected — this is an ops/Task Scheduler change with no code
+  path in the signal engine touched.
