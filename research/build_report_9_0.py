@@ -196,9 +196,14 @@ def render_phase_f(rows, f7, f9, f8):
     if f9:
         parts.append("""
       <h3>F9 — mid-candle resting-limit arms (research/g158_mid_candle_arms.py)</h3>
-      <p class="deflabel">Nothing here is shipped — read-only measurement of
-      resting a limit at a fraction of the signal bar's own range, strictly
-      after the signal bar, vs the shipped CLOSE fill.</p>
+      <p class="deflabel"><strong>REFUTED 3/3 in wave 2 — these cells are
+      the superseded record, kept so the collapse is checkable. Read the
+      mid-candle referee section below for the honest numbers.</strong>
+      Nothing here is shipped — read-only measurement of resting a limit at a
+      fraction of the signal bar's own range, strictly after the signal bar,
+      vs the shipped CLOSE fill. The $/day column below is inflated by a
+      day-pick that silently changes candidate on 26% of sessions and by a
+      fill bar that is never risk-managed.</p>
       <div class="tablewrap"><table><thead><tr><th>arm</th><th>$/day</th>
         <th>H1 $/day</th><th>H2 $/day</th><th>mean R</th>
         <th>green mo.</th></tr></thead><tbody>
@@ -309,8 +314,19 @@ def render_phase_p(fd):
       the "fails every firm at 0.0%" headline does not.
       P2 Vanquish (S-only stream): not refuted — every risk level fails on
       trailing drawdown, classifier on/off identical.
-      P3 Trade The Pool: all 8 real account/plan rows fail on daily-loss-limit
-      or trailing-drawdown. Lucid: automation permission confirmed live but
+      P3 Trade The Pool: REFUTED 3/3 in wave 2 (research/g202_p3_refute{1,2,3}.md)
+      — the conclusion holds (all 8 rows fail) but the published mechanism does
+      not: pool_series_for_account() dropped g120's daily-loss-limit share cap,
+      so 305 of 495 trades on the 25K MAX row were sized above the firm's own
+      $250 daily limit and the arm was then failed for breaching it. Cap
+      restored, 0 of 8 fail on the daily limit and all 8 fail on trailing
+      drawdown (0.3-1.2 months). "Never passes" is one start date; the
+      all-starts pass rate is 5.7-32.9%. The personal $10k arm's $35.56/day is
+      not buyable — risking $1,000 at the book's stop distances needs a mean
+      $299,319 notional against $40,000 of buying power at 4:1, so 99.8% of
+      those trades are un-buyable and the honest figure is -$5.75/day
+      (+$2.38/day at 1% risk). Its "216% of account" drawdown is 44.7% of the
+      peak it drew down from, and 34.3% of trade orderings wipe the account. Lucid: automation permission confirmed live but
       every primary spec page 403s — BLOCKED, not ranked.
       No rung on the ladder is fundable on tonight's book: the blocker is the
       edge (near-zero or negative mean R every stream, every half), not the
@@ -399,6 +415,179 @@ def render_lanes():
     """
 
 
+def render_mid_candle_referee():
+    """Wave 2 (W1/g201): F9's mid-candle arms refereed by three independent
+    agents and REFUTED 3/3. Published vs matched-day-pick arms are read
+    straight out of research/g201_refute1.json so the collapse is visible in
+    one table rather than asserted."""
+    d = load("g201_refute1.json")
+    if d is None:
+        return ""
+    arms = d.get("arms", {})
+    pairs = [
+        ("shipped CLOSE (book pnl)", "CLOSE (book pnl)", "M:CLOSE (book pnl)"),
+        ("CLOSE via the same harness", "CLOSE_RT (harness)", "M:CLOSE_RT (harness)"),
+        ("MID25 — F9's headline", "MID25", "M:MID25"),
+        ("MID50", "MID50", "M:MID50"),
+        ("MID75", "MID75", "M:MID75"),
+    ]
+    rows = []
+    for label, pub_key, m_key in pairs:
+        p = arms.get(pub_key, {})
+        m = arms.get(m_key, {})
+        pc, ph2 = p.get("combined", {}), p.get("H2", {})
+        mc, mh2 = m.get("combined", {}), m.get("H2", {})
+        rows.append(
+            f"<tr><td>{esc(label)}</td>"
+            f"<td>{usd(pc.get('per_day'))}</td><td>{usd(ph2.get('per_day'))}</td>"
+            f"<td>{pc.get('months_green','—')}/{pc.get('months','—')}</td>"
+            f"<td>{usd(mc.get('per_day'))}</td><td>{usd(mh2.get('per_day'))}</td>"
+            f"<td>{mc.get('months_green','—')}/{mc.get('months','—')}</td>"
+            f"<td>{mc.get('trades','—')}</td></tr>"
+        )
+    div = d.get("diverge_days", {})
+    div_txt = ", ".join(
+        f"{esc(k)} {v}/{d.get('n_days','—')}" for k, v in div.items()
+    ) if isinstance(div, dict) else "—"
+    return f"""
+    <section id="mid-candle">
+      <h2>Mid-candle entry — the referee verdict (W1 / g201)</h2>
+      <p class="deflabel"><strong>F9 REFUTED 3/3. R2's 2026-09-03 ruling
+      stands. No <code>ENTRY_FILL</code> flag ships.</strong> Three
+      independent referees each reproduced F9's arithmetic to the dollar (one
+      regenerated research/g158_mid_candle_arms.json byte-identically) and
+      each found the same two harness leaks from a different angle.
+      (1) <em>The day-pick moved.</em> F9's one-trade-a-day picker takes the
+      first candidate that HAS a priced result, and a mid arm has no result
+      exactly when its limit never traded before 11:00 — a fact about the
+      future of that session. Divergent day-picks vs the CLOSE arm:
+      {div_txt}. (2) <em>The fill bar is never risk-managed:</em> run_trade
+      manages from fill_i+1, so a disaster stop already touched inside the
+      fill bar is invisible — 944 of 7,609 MID25 fills (12.4%), worth
+      -$38/day. Fix both and MID25 pays <strong>$27/day, below the shipped
+      close</strong>, paired 95% interval [-$112, +$95]. A zero-depth placebo
+      (limit resting at the signal bar's own close) pays $105/day, MORE than
+      MID25 — so the variable F9 names has the wrong sign. Under a joint
+      sign-flip null the best of three arms beats +$65.8/day 38.9% of the
+      time. Scripts: research/g201_refute{{1,2,3}}.py, ruling
+      research/g201_mid_candle_referee.md. Same fill contract as the page
+      header for the CLOSE arms; MID arms rest a limit strictly after the
+      signal bar (g80_ordertype_grid.limit_touch) and exit through the same
+      shipped ladder.</p>
+      <div class="tablewrap"><table>
+        <thead><tr><th rowspan="2">arm</th>
+          <th colspan="3">as F9 published it (picker free to change candidate)</th>
+          <th colspan="4">matched day-pick (same candidate every arm, no-fill books $0)</th></tr>
+        <tr><th>$/day</th><th>H2 $/day</th><th>green mo.</th>
+            <th>$/day</th><th>H2 $/day</th><th>green mo.</th><th>trades</th></tr>
+        </thead><tbody>{''.join(rows)}</tbody></table></div>
+      <p class="deflabel">F9 reporting bug for the record: its category
+      table's ALL row sums to 8,188 against 8,227 candidates — never-returns
+      is printed as 578 and is actually 617 (cat_counts["ALL"] is not
+      incremented in the no_bars_after_signal branch). The 86.3%
+      mid-fillable headline reproduces exactly and is unaffected.</p>
+    </section>
+    """
+
+
+def render_eye_test():
+    """Wave 2 (W9 / g210+g211): 100 blind chart PNGs graded by Haiku and
+    Sonnet against Austin's own S marks. Scores are recomputed here from the
+    committed reader JSONs rather than transcribed — and the leak that voids
+    them is recomputed too, from the same index."""
+    idx = load("g210_cards/index.json")
+    if idx is None:
+        return ""
+    reads = {}
+    for name, path in (("Haiku", "g211_reads_haiku.json"),
+                       ("Sonnet", "g211_reads_sonnet.json")):
+        r = load(path)
+        if r:
+            reads[name] = {row["card_id"]: row for row in r}
+    his = {c["card_id"]: (c.get("his_grade") or "").upper() for c in idx}
+    n = len(idx)
+    n_s = sum(1 for g in his.values() if g == "S")
+    rows = []
+    for name, rd in reads.items():
+        tp = fp = fn = agree = 0
+        for cid, hg in his.items():
+            mg = (rd.get(cid, {}).get("grade") or "").upper()
+            if mg == hg or (mg in ("NONE", "") and hg in ("NONE", "")):
+                agree += 1
+            if mg == "S" and hg == "S":
+                tp += 1
+            elif mg == "S":
+                fp += 1
+            elif hg == "S":
+                fn += 1
+        prec = 100.0 * tp / (tp + fp) if (tp + fp) else None
+        rec = 100.0 * tp / (tp + fn) if (tp + fn) else None
+        rows.append(
+            f"<tr><td>{esc(name)}</td><td>{tp + fp}</td>"
+            f"<td>{pct(prec)}</td><td>{pct(rec)}</td>"
+            f"<td>{agree}/{n}</td></tr>"
+        )
+    # The leak: his grade is a perfect function of the chart's cut time.
+    cuts_s = {c.get("cut_bar_time") for c in idx if (c.get("his_grade") or "").upper() == "S"}
+    cuts_no = {c.get("cut_bar_time") for c in idx if (c.get("his_grade") or "").upper() != "S"}
+    triv_tp = sum(1 for c in idx
+                  if c.get("cut_bar_time") != "10:00:00"
+                  and (c.get("his_grade") or "").upper() == "S")
+    triv_calls = sum(1 for c in idx if c.get("cut_bar_time") != "10:00:00")
+    triv_prec = 100.0 * triv_tp / triv_calls if triv_calls else None
+    triv_rec = 100.0 * triv_tp / n_s if n_s else None
+    return f"""
+    <section id="eye-test">
+      <h2>The eye-test — can a model read his S off the chart? (W9)</h2>
+      <p class="deflabel"><strong>Unanswerable as run — the deck leaked his
+      answer in {n} of {n} cards.</strong> 100 blind PNGs rendered by
+      research/g210_render_cards.py from probe_s_sweep_2026-08-28.jsonl
+      ({n_s} graded S = {100.0*n_s/n:.1f}% of the deck), cut at the entry bar,
+      levels drawn, no grade or engine text on the image; graded S/A/C/none by
+      Claude Haiku and Claude Sonnet off the picture plus the rulebook digest.
+      Scores below are recomputed at build time from
+      research/g211_reads_{{haiku,sonnet}}.json against
+      research/g210_cards/index.json — no dollar or R figure is involved, this
+      is label agreement only.</p>
+      <div class="tablewrap"><table><thead><tr><th>reader</th>
+        <th>S calls</th><th>precision (S)</th><th>recall (S)</th>
+        <th>exact S/A/C/none agreement</th></tr></thead><tbody>
+        {''.join(rows)}
+        <tr><td>his deck's own S rate (the honest null)</td><td>—</td>
+        <td>{pct(100.0*n_s/n)}</td><td>—</td><td>—</td></tr>
+        <tr><td><strong>trivial clock-reader: "S iff the cut is not
+        10:00"</strong> — never looks at a candle</td><td>{triv_calls}</td>
+        <td><strong>{pct(triv_prec)}</strong></td>
+        <td><strong>{pct(triv_rec)}</strong></td><td>—</td></tr>
+      </tbody></table></div>
+      <p class="deflabel">The renderer cuts each chart at
+      <code>notes.min</code> — <em>his own entry minute</em> — when that field
+      exists, and at a blind 10:00 when it does not. The field exists on
+      {n_s} of {n_s} cards he graded S and 0 of {n - n_s} he refused, so the
+      cut times partition perfectly: S cards use
+      {len(cuts_s)} distinct cuts, none of them 10:00:00; every refused card
+      is cut at exactly 10:00:00 ({len(cuts_no)} distinct value). The cut is
+      printed in every title and encoded in the candle count (refused cards
+      draw exactly 31 bars, S cards 5-50, zero overlap). Neither model
+      actually rode the leak (Haiku took 10 of 26 S-calls on leaked cards vs
+      8.8 expected by chance; Sonnet 4 of 10 vs 3.4), so the scores above are
+      not inflated — but the test cannot separate reading price action from
+      reading a clock. Two further defects: the 30.5% baseline the run scored
+      against is graded-day precision on the one-trade-a-day pick, a
+      different unit from card-level S-precision on a
+      {100.0*n_s/n:.1f}%-S deck (against the honest null, Haiku p=0.385 and
+      Sonnet p=0.459, and a trivial "always S" reader beats both on F1); and
+      the reader datasets were swapped between two commits, moving grades on
+      59 of 100 Haiku cards, with no committed harness that opens a PNG and
+      calls a model. Referees: research/g211_referee_leak.md,
+      research/g211_referee_score.md. <strong>Verdict: REFUTED 2/2 — the
+      question is still open, and the fix is known (fixed cut for every card,
+      symbol/date stripped, score against the deck's own base rate, commit
+      the harness).</strong></p>
+    </section>
+    """
+
+
 def render_bugs():
     n_confirmed = 15
     n_raw = 71
@@ -422,11 +611,15 @@ def build(out_path):
     body = f"""
     <header>
       <h1>OMEN 9.0 — overnight swarm report</h1>
-      <p class="deflabel">Base f8740f80. Built by research/build_report_9_0.py.
+      <p class="deflabel">Wave 1 base f8740f80, wave 2 base 2b463bf6. Built
+      by research/build_report_9_0.py (rows R1 and W10). Narrative report:
+      research/MORNING_REPORT_2026-09-05.md.
       {FILL_NOTE}</p>
     </header>
     {render_lanes()}
     {render_phase_f(rows, f7, f9, None)}
+    {render_mid_candle_referee()}
+    {render_eye_test()}
     {render_phase_o(o1)}
     {render_phase_p(fd)}
     {render_bugs()}
