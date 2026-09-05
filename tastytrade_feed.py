@@ -163,6 +163,7 @@ class TastytradeFeed:
             if new_remember:  # remember-tokens are single-use; rotate into .env
                 self._save_remember_token(new_remember)
             self._access_token = data.get("session-token")
+            self._token_scheme = "Token"
             self._access_token_expiry = datetime.now(timezone.utc) + timedelta(hours=12)
             if not self.account_number:
                 # Try to grab first account from /customers/me/accounts
@@ -207,6 +208,7 @@ class TastytradeFeed:
         if resp.status_code == 200:
             data = resp.json()
             self._access_token = data["access_token"]
+            self._token_scheme = "Bearer"  # OAuth access tokens are Bearer; session tokens are Token
             self._access_token_expiry = datetime.now(timezone.utc) + timedelta(
                 seconds=data.get("expires_in", 900)
             )
@@ -217,8 +219,13 @@ class TastytradeFeed:
         )
 
     def _headers(self) -> dict:
+        # The session path returns a session-token sent as "Token <t>"; the
+        # OAuth refresh grant returns an access token that the resource server
+        # only accepts as "Bearer <t>". Until 2026-09-05 both were sent as
+        # "Token", so every OAuth-authenticated call 401'd (L2's finding).
+        tok = self._get_access_token()
         return {
-            "Authorization": f"Token {self._get_access_token()}",
+            "Authorization": f"{getattr(self, '_token_scheme', 'Token')} {tok}",
             "User-Agent": USER_AGENT,
             "Content-Type": "application/json",
         }
