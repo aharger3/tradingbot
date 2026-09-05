@@ -1,0 +1,176 @@
+{
+ "book": "bt2y_trades_retest_on.json",
+ "book_sessions": 498,
+ "split": "2025-09-01",
+ "r_dollars": 1000.0,
+ "streams": {
+  "IDX_first_of_day": {
+   "full": {
+    "label": "index pool QQQ/SPY/IWM, first of day",
+    "n": 234,
+    "first_day": "2024-09-03",
+    "last_day": "2026-08-21",
+    "total_dollars": -3160.0,
+    "per_day": -13.5,
+    "mean_r": -0.0135,
+    "win_pct": 48.3,
+    "months": 24,
+    "green_months": 12,
+    "max_dd_dollars": 12529.0
+   },
+   "H1": {
+    "label": "index pool QQQ/SPY/IWM, first of day H1",
+    "n": 112,
+    "first_day": "2024-09-03",
+    "last_day": "2025-08-29",
+    "total_dollars": 5169.0,
+    "per_day": 46.15,
+    "mean_r": 0.0462,
+    "win_pct": 49.1,
+    "months": 12,
+    "green_months": 7,
+    "max_dd_dollars": 7855.0
+   },
+   "H2": {
+    "label": "index pool QQQ/SPY/IWM, first of day H2",
+    "n": 122,
+    "first_day": "2025-09-04",
+    "last_day": "2026-08-21",
+    "total_dollars": -8329.0,
+    "per_day": -68.27,
+    "mean_r": -0.0683,
+    "win_pct": 47.5,
+    "months": 12,
+    "green_months": 5,
+    "max_dd_dollars": 11797.0
+   }
+  },
+  "S_only_first_of_day": {
+   "full": {
+    "label": "S-graded only, first of day",
+    "n": 313,
+    "first_day": "2024-09-03",
+    "last_day": "2026-09-01",
+    "total_dollars": -15360.0,
+    "per_day": -49.07,
+    "mean_r": -0.0491,
+    "win_pct": 42.8,
+    "months": 25,
+    "green_months": 12,
+    "max_dd_dollars": 32346.0
+   },
+   "H1": {
+    "label": "S-graded only, first of day H1",
+    "n": 161,
+    "first_day": "2024-09-03",
+    "last_day": "2025-08-29",
+    "total_dollars": 3133.0,
+    "per_day": 19.46,
+    "mean_r": 0.0195,
+    "win_pct": 44.1,
+    "months": 12,
+    "green_months": 7,
+    "max_dd_dollars": 13619.0
+   },
+   "H2": {
+    "label": "S-graded only, first of day H2",
+    "n": 152,
+    "first_day": "2025-09-04",
+    "last_day": "2026-09-01",
+    "total_dollars": -18493.0,
+    "per_day": -121.66,
+    "mean_r": -0.1217,
+    "win_pct": 41.4,
+    "months": 13,
+    "green_months": 5,
+    "max_dd_dollars": 19236.0
+   }
+  },
+  "A_base_first_of_day": {
+   "full": {
+    "label": "full pool, first of day (A_base)",
+    "n": 495,
+    "first_day": "2024-09-03",
+    "last_day": "2026-09-02",
+    "total_dollars": 17601.0,
+    "per_day": 35.56,
+    "mean_r": 0.0356,
+    "win_pct": 46.3,
+    "months": 25,
+    "green_months": 13,
+    "max_dd_dollars": 21577.0
+   },
+   "H1": {
+    "label": "full pool, first of day (A_base) H1",
+    "n": 248,
+    "first_day": "2024-09-03",
+    "last_day": "2025-08-29",
+    "total_dollars": 34793.0,
+    "per_day": 140.29,
+    "mean_r": 0.1403,
+    "win_pct": 49.6,
+    "months": 12,
+    "green_months": 9,
+    "max_dd_dollars": 13980.0
+   },
+   "H2": {
+    "label": "full pool, first of day (A_base) H2",
+    "n": 247,
+    "first_day": "2025-09-02",
+    "last_day": "2026-09-02",
+    "total_dollars": -17192.0,
+    "per_day": -69.6,
+    "mean_r": -0.0696,
+    "win_pct": 42.9,
+    "months": 13,
+    "green_months": 4,
+    "max_dd_dollars": 21577.0
+   }
+  }
+ },
+ "all_starts_pass_rates": [
+  {
+   "rung": "rung 1 - auto futures prop",
+   "firm": "Apex 50K Eval EOD",
+   "stream_n": 234,
+   "all_starts_pass_pct": 26.9
+  },
+  {
+   "rung": "rung 1 - auto futures prop",
+   "firm": "Topstep 50K Combine",
+   "stream_n": 234,
+   "all_starts_pass_pct": 12.0
+  },
+  {
+   "rung": "rung 2 - manual shares prop",
+   "firm": "TTP 25K FLEX day",
+   "stream_n": 495,
+   "all_starts_pass_pct": 26.1
+  },
+  {
+   "rung": "rung 2 - manual shares prop",
+   "firm": "TTP 50K FLEX day",
+   "stream_n": 495,
+   "all_starts_pass_pct": 14.5
+  }
+ ],
+ "drift_to_50pct": {
+  "Apex 50K Eval EOD / index stream": {
+   "offset_r": 0.07,
+   "mean_r_now": -0.0135,
+   "mean_r_needed": 0.0565,
+   "pass_pct_there": 51.7
+  },
+  "TTP 25K FLEX day / full-pool stream": {
+   "offset_r": 0.51,
+   "mean_r_now": 0.0356,
+   "mean_r_needed": 0.5456,
+   "pass_pct_there": 82.4
+  }
+ },
+ "arm_jsons_read": [
+  "P1",
+  "P2",
+  "P3"
+ ]
+}
