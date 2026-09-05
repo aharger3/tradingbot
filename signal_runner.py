@@ -2815,6 +2815,7 @@ class SignalRunner:
                 return
             if bar - last >= LEVEL_RETIRE_COOLDOWN:
                 self._level_br_count[lv_key] = (done + 1, bar)
+        self._apply_x_lift(sig)
         # OMEN 10.0 L1 MIN_PT1_R (default 0 -> OFF, byte-identical): "we dont
         # want to get in on a candle close of HOD/LOD because thats always our
         # first scale point, then the RR is shot" -- Austin, the /call 60
@@ -2822,6 +2823,10 @@ class SignalRunner:
         # trade whose first scale point -- session HOD for a call / session LOD
         # for a put, the same as-of-entry-bar extreme `hod_then_runner[_be]`
         # scales its first rung at -- sits less than MIN_PT1_R * R from entry.
+        # Placed AFTER _apply_x_lift (referee finding, L1 repair 2026-09-05):
+        # X_LIFT rescues X-graded rows back to B, and a gate checked before the
+        # lift never sees the lifted grade, so it silently skips 0 of them --
+        # the same ordering hazard S_CLASSIFIER's comment below already names.
         if MIN_PT1_R > 0 and sig.get("grade") not in _SKIP_GRADES:
             entry = sig.get("entry")
             stop = sig.get("stop")
@@ -2835,7 +2840,6 @@ class SignalRunner:
                         " [skip: MIN_PT1_R first scale point < %.2fR from entry]" % MIN_PT1_R
                     self._log_record(sig, status="skipped", skip_reason="MIN_PT1_R RR gate")
                     return
-        self._apply_x_lift(sig)
         # OMEN 9.0 F7 / g156 S_CLASSIFIER (default OFF): DROP, not cap, an
         # OR high/OR low break that never retested the level. Same no_retest
         # check as RETEST_REQUIRED above, scoped to the two OR levels and
