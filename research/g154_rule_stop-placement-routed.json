@@ -1,0 +1,120 @@
+{
+  "row": "F5",
+  "slug": "stop-placement-routed",
+  "predicate": "one_candle_rule -> OCR block wick (detect_order_block_setup on bars[<=entry_i]); break_and_retest -> level_px; else unchanged. risk = |entry - routed_stop|, gated on min_risk_floor(entry). Exits replayed via stop_rule (disaster touch at DISASTER_STOP_R, close fallback via stop_fill_price); target unchanged.",
+  "polarity": "S-indicator",
+  "n_days_total": 498,
+  "candidates_per_day": 16.52,
+  "routed_source_counts": {
+    "broken_level": 7302,
+    "unchanged": 312,
+    "ocr_wick": 613
+  },
+  "stop_disagree": {
+    "all_candidates": {
+      "n": 8227,
+      "mean": 0.0002,
+      "median": 0.0
+    },
+    "tight_risk_only": {
+      "n": 5295,
+      "mean": 0.0003,
+      "median": 0.0
+    },
+    "tight_definition": "original risk <= 2.0x min_risk_floor(entry)"
+  },
+  "baseline": {
+    "overall": {
+      "n": 498,
+      "usd_day": 33.93,
+      "mean_r": 0.0339,
+      "win_pct": 46.5,
+      "green_months": 13,
+      "months": 25,
+      "max_dd": -21404.68
+    },
+    "H1": {
+      "n": 249,
+      "usd_day": 135.71,
+      "mean_r": 0.1357,
+      "win_pct": 49.6,
+      "green_months": 9,
+      "months": 12,
+      "max_dd": -13978.64
+    },
+    "H2": {
+      "n": 249,
+      "usd_day": -67.85,
+      "mean_r": -0.0678,
+      "win_pct": 43.4,
+      "green_months": 4,
+      "months": 13,
+      "max_dd": -21404.68
+    },
+    "fires_per_day": 1.0,
+    "s_recall_100": {
+      "pct": 5.9,
+      "hit": 2,
+      "n": 34
+    },
+    "s_recall_all_bar_backed": {
+      "pct": 5.2,
+      "hit": 18,
+      "n": 347
+    },
+    "precision": {
+      "pct": 30.5,
+      "graded_s": 18,
+      "graded_any": 59
+    }
+  },
+  "candidate": {
+    "overall": {
+      "n": 498,
+      "usd_day": 46.93,
+      "mean_r": 0.0469,
+      "win_pct": 35.1,
+      "green_months": 12,
+      "months": 25,
+      "max_dd": -28793.94
+    },
+    "H1": {
+      "n": 249,
+      "usd_day": 145.44,
+      "mean_r": 0.1454,
+      "win_pct": 38.2,
+      "green_months": 7,
+      "months": 12,
+      "max_dd": -14986.67
+    },
+    "H2": {
+      "n": 249,
+      "usd_day": -51.58,
+      "mean_r": -0.0516,
+      "win_pct": 32.1,
+      "green_months": 5,
+      "months": 13,
+      "max_dd": -28793.94
+    },
+    "fires_per_day": 1.0,
+    "s_recall_100": {
+      "pct": 5.9,
+      "hit": 2,
+      "n": 34
+    },
+    "s_recall_all_bar_backed": {
+      "pct": 5.2,
+      "hit": 18,
+      "n": 347
+    },
+    "precision": {
+      "pct": 30.5,
+      "graded_s": 18,
+      "graded_any": 59
+    }
+  },
+  "h1_delta_usd_day": 9.73,
+  "h2_delta_usd_day": 16.27,
+  "survivor": true,
+  "notes": "survivor = True only if (H1 AND H2 both improve $/day, OR precision improves) AND S-recall-100 does not fall below baseline. `routed_source_counts` shows how many candidates actually got a routed stop vs fell back unchanged (no OCR block found / wrong side of close / reentry_84_rule setup) -- a rule can be real and still rarely trip on this book."
+}
