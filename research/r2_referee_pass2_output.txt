@@ -1,0 +1,80 @@
+==============================================================================
+1. FORWARD LADDER RE-DERIVED FROM THE COMMITTED BOOKS (own stats code)
+==============================================================================
+step 0 start_next_open_blind2r_noC_no84       fill=next_open exit=blind_2R       pool=full29  n=  7857 wr=38.9% meanR=+0.1690 (+/-0.0322) aw=1.9817 al=-0.9973 green=23/25 days=499 $/day=$2,660.29 worstR=-1.0
+step 1 add_C_grades                           fill=next_open exit=blind_2R       pool=full29  n= 14327 wr=38.6% meanR=+0.1592 (+/-0.0238) aw=1.9835 al=-0.9965 green=24/25 days=499 $/day=$4,569.49 worstR=-1.2235
+step 2 swap_exit_shipped_ladder               fill=next_open exit=shipped_ladder pool=full29  n= 14332 wr=42.4% meanR=-0.0342 (+/-0.0217) aw=1.0312 al=-0.8274 green=7/25 days=499 $/day=$-980.93 worstR=-1.2235
+step 3 add_84_reentries                       fill=next_open exit=shipped_ladder pool=full29  n= 14731 wr=42.1% meanR=-0.0328 (+/-0.0216) aw=1.0549 al=-0.8329 green=7/25 days=499 $/day=$-966.93 worstR=-1.2235
+step 4 switch_fill_close                      fill=close     exit=shipped_ladder pool=full29  n= 14718 wr=41.9% meanR=-0.0257 (+/-0.0207) aw=1.0154 al=-0.7844 green=7/25 days=499 $/day=$-758.42 worstR=-1.0
+step 5 apply_size_gate                        fill=close     exit=shipped_ladder pool=full29  n= 13374 wr=41.8% meanR=-0.0303 (+/-0.0218) aw=1.0192 al=-0.7926 green=7/25 days=499 $/day=$-811.56 worstR=-1.0
+step 6 dedupe_day_policy_shipped_noop         fill=close     exit=shipped_ladder pool=full29  n= 13374 wr=41.8% meanR=-0.0303 (+/-0.0218) aw=1.0192 al=-0.7926 green=7/25 days=499 $/day=$-811.56 worstR=-1.0
+step 7 window_500_to_498                      fill=close     exit=shipped_ladder pool=full29  n= 13307 wr=41.8% meanR=-0.0300 (+/-0.0219) aw=1.0196 al=-0.7919 green=7/25 days=497 $/day=$-802.96 worstR=-1.0
+step 8 universe_29_to_11                      fill=close     exit=shipped_ladder pool=core11  n=  5788 wr=43.7% meanR=-0.0075 (+/-0.0327) aw=1.0063 al=-0.8015 green=12/25 days=496 $/day=$-87.65 worstR=-1.0
+
+==============================================================================
+2. STAMP DIFF fwd_1 -> fwd_2 (the biggest step's two endpoints)
+==============================================================================
+  FLAG DIFFERS  backtest_week.SCALE_PLAN: None -> 'hod_then_runner_be'
+  stamp commit fwd_1=b746e45e fwd_2=b746e45e dirty_py=1 engine_dirty=[]
+  CAVEAT: the stamp records env-derived flags only. fwd_0/fwd_1's rows were
+  not produced by backtest_week at all -- g90_fill_arms._walk made them.
+  The stamp still prints DISASTER_STOP=True / STOP_ON_CLOSE=True /
+  PESSIMISTIC_FILL=True for those books; none of the three ran.
+
+==============================================================================
+3. BIGGEST-STEP CLAIM AND THE REPAIR'S NEW H1/H2 TABLE
+==============================================================================
+  step1 $4,569.49/day  step2 $-980.93/day  delta $-5,550.42/day
+    step 0->1 add_C_grades                              +1,909.20 $/day
+    step 1->2 swap_exit_shipped_ladder                  -5,550.42 $/day
+    step 2->3 add_84_reentries                             +14.00 $/day
+    step 3->4 switch_fill_close                           +208.51 $/day
+    step 4->5 apply_size_gate                              -53.14 $/day
+    step 5->6 dedupe_day_policy_shipped_noop                +0.00 $/day
+    step 6->7 window_500_to_498                             +8.60 $/day
+    step 7->8 universe_29_to_11                           +715.31 $/day
+  biggest drop: step 1->2 (swap_exit_shipped_ladder)
+
+  halves, computed per step from its own book (midpoint of its own window):
+    step 1 (mid 2025-09-03): H1 $4,062.01 (n=5794, 13mo)  H2 $5,074.93 (n=8533, 13mo)
+    step 2 (mid 2025-09-03): H1 $-219.07 (n=5797, 13mo)  H2 $-1,739.75 (n=8535, 13mo)
+    step 7 (mid 2025-09-02): H1 $-85.43 (n=5341, 12mo)  H2 $-1,517.59 (n=7966, 13mo)
+  The repaired report prints, for the biggest step, 'before' = H1 $-85 /
+  H2 $-1,518. Compare step 7's halves above, and step 1's.
+
+==============================================================================
+4. VERIFY ASSERTIONS, RE-RUN INDEPENDENTLY
+==============================================================================
+  verify 1 full29: step0 7857 vs R1 7857 -- MATCH
+  verify 1 core11: step0 3629 vs R1 3629 -- MATCH
+  verify 2: step7 unsized $-750.17/day (14647 rows) vs retest_on $-675.25/day (10830 fired / 498 sessions) -- gap 11.1% -- DOES NOT RECONCILE
+    retest_on meta: commit=None halted=4205 of signals=127152
+
+==============================================================================
+5. SIM D -- real engine, next_open fill, blind 2R target, NO ladder
+==============================================================================
+  window 2024-09-04 -> 2026-09-04, 29 symbols
+  SIM D: n=14332 wr=33.4% meanR=+0.0052 (+/-0.0231) aw=1.9837 al=-0.9973 green=12/25 days=499 $/day=$149.80 worstR=-1.2235
+  wrote C:\Users\aharg\Desktop\Projects\tradingbot\research\tape\r2ref_simd_next_open_blind2r_real_engine.json.gz
+  SIM D stamp: ENTRY_FILL='close' SCALE_PLAN='hod_then_runner_be' commit=15a729ce dirty_py=1
+
+  DECOMPOSITION of the row's headline -$5,550/day step:
+    fwd_1 custom _walk + blind 2R        $  4,569.49/day  n=14327 wr=38.6% green=24/25
+    SIM D real engine + blind 2R         $    149.80/day  n=14332 wr=33.4% green=12/25   SUBSTRATE leg $-4,419.69 (79.6% of the step)
+    fwd_2 real engine + shipped ladder   $   -980.93/day  n=14332 wr=42.4% green=7/25   LADDER leg    $-1,130.73 (20.4% of the step)
+    SIM D halves (mid 2025-09-03): H1 $775.11 (n=5797, 13mo)  H2 $-473.02 (n=8535, 13mo)
+    LADDER leg by half: H1 $-994.18  H2 $-1,266.73
+
+==============================================================================
+6. DEDUPE REPLAY -- could the FILTERED 'add C grades' step have needed
+   re-simulation? (backtest_week ~1400: the suppression claim is
+   grade-blind; DEDUPE_MODE='level' -> window = DEDUPE_CONTIG = 2 bars)
+==============================================================================
+  C fires claim the window (as simulated): survivors 14826, of which non-C 8266
+  C fires gated off (a real no-C run)    : survivors 8648, of which non-C 8648
+  NON-C signals a real C-gated run would release that a post-hoc row filter cannot produce: 382 (4.6% more non-C fires)
+
+[after this run, the SIM D book was re-stamped with `python research/r2_referee_pass2.py --restamp`
+so its stamp flag block reports the run it actually holds:
+  ENTRY_FILL='next_open' SCALE_PLAN=None commit=15a729ce dirty_py=1 dirty_engine=[]
+the line above under section 5 shows the pre-restamp (main-process default) values.]
