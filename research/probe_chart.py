@@ -6,10 +6,18 @@ IN the served HTML is the document, and only DOM changes made by a viewer gestur
 saved. A chart painted by JS on load is not part of the document. So the chart is
 rendered to SVG here, in Python, and the page ships it as markup.
 
-Also: no chart-click interaction. Austin's homework contract (OMEN 6 map, 2026-08-22)
-requires these work on a phone, and entry-marking by pointer does not.
+Chart-click interaction (H2, 2026-09-05): `tappable=True` adds pointer/touch tap
+marking directly on the served SVG -- entry, stop and up to three price targets --
+for decks where a chip-based capture (OMEN Test 1's block+minute chips) is the
+wrong shape for the question. The 2026-08-22 note above ("entry-marking by
+pointer does not work on a phone") was about `<canvas>`-style drag interaction;
+plain `pointerdown` on markup that is already in the served SVG works fine on a
+phone and is what `tappable` uses. It stays off by default so every existing
+caller's SVG is byte-identical.
 """
 from __future__ import annotations
+
+import json
 
 W, H = 720, 330
 PAD_L, PAD_R, PAD_T, PAD_B = 4, 56, 10, 24
@@ -42,7 +50,7 @@ def _esc(s):
 
 
 def render(candles, levels, marks=None, label="", interactive=False,
-           hlines=None, vlines=None, dots=None, xfmt=None):
+           hlines=None, vlines=None, dots=None, xfmt=None, tappable=False):
     """candles: [{t,o,h,l,c,v}]  levels: {pdh:..}  marks: [{i,price,stop,side,tag}]
 
     ``hlines`` / ``vlines`` (H2 three-lane deck, 2026-08-28) are optional
@@ -84,6 +92,17 @@ def render(candles, levels, marks=None, label="", interactive=False,
     The frame (lo/hi) is computed from the bars and the levels, so a mark placed
     later can fall outside it. The page clamps rather than rescaling: rescaling
     would move every candle under his finger mid-tap.
+
+    ``tappable=True`` (H2, 2026-09-05) is the pointer-driven sibling of
+    ``interactive``: it emits the same scale attributes (so it also sets
+    ``data-w``/``data-h``, needed either way), plus ``data-ohlc`` -- a compact
+    JSON array of ``[o,h,l,c]`` per bar, which is how the page turns a stop tap
+    on a candle into "that candle's extreme in the trade direction" without a
+    second fetch -- a transparent ``<rect class="taphit">`` over the plot and a
+    ``<rect class="railhit">`` over the price-rail gutter to catch taps, and a
+    ``<g class="tapmark">`` of hidden entry/stop/PT1-3 placeholders the page
+    moves. Nothing here decides what a tap means; that state machine lives in
+    probe_page.py so every tappable chart shares it.
     """
     marks = marks or []
     hlines = hlines or []
@@ -130,10 +149,16 @@ def render(candles, levels, marks=None, label="", interactive=False,
 
     bw = max(1.6, plot_w / n * 0.62)
     scale = ""
-    if interactive:
+    if interactive or tappable:
         scale = (' data-n="%d" data-padl="%d" data-padt="%d" data-plotw="%.2f"'
                  ' data-ploth="%.2f" data-lo="%.4f" data-hi="%.4f" data-w="%d"'
-                 % (n, PAD_L, PAD_T, plot_w, plot_h, lo, hi, W))
+                 ' data-h="%d"'
+                 % (n, PAD_L, PAD_T, plot_w, plot_h, lo, hi, W, H))
+    if tappable:
+        ohlc = [[round(c["o"], 4), round(c["h"], 4), round(c["l"], 4), round(c["c"], 4)]
+                for c in candles]
+        scale += ' data-ohlc="%s"' % _esc(json.dumps(ohlc, separators=(",", ":")))
+        scale += ' data-tappable="1"'
     out = ['<svg class="chart" viewBox="0 0 %d %d" role="img" aria-label="%s" '
            'preserveAspectRatio="xMidYMid meet"%s>'
            % (W, H, _esc(label or "session chart"), scale)]
@@ -250,5 +275,32 @@ def render(candles, levels, marks=None, label="", interactive=False,
                PAD_L + plot_w + 4,
                PAD_L, PAD_L + plot_w,
                PAD_L + plot_w + 4))
+
+    if tappable:
+        # Hit areas on top of the candles/rail, transparent so nothing visual
+        # changes; pointer-events="all" because an unpainted fill ("transparent",
+        # same as "none") does not receive pointer events under the default
+        # visiblePainted behaviour. The rail is the plot's own right gutter --
+        # same y-to-price mapping as the plot, just past PAD_L + plot_w.
+        out.append(
+            '<rect class="taphit" x="%.1f" y="%d" width="%.1f" height="%.1f" '
+            'fill="transparent" pointer-events="all"></rect>'
+            '<rect class="railhit" x="%.1f" y="%d" width="%d" height="%.1f" '
+            'fill="transparent" pointer-events="all"></rect>'
+            '<g class="tapmark">'
+            '<line class="tap-entry" x1="0" y1="0" x2="0" y2="0" hidden></line>'
+            '<text class="tap-entry-t" x="0" y="0" hidden></text>'
+            '<line class="tap-stop" x1="0" y1="0" x2="0" y2="0" hidden></line>'
+            '<text class="tap-stop-t" x="0" y="0" hidden></text>'
+            '<line class="tap-pt0" x1="0" y1="0" x2="0" y2="0" hidden></line>'
+            '<text class="tap-pt0-t" x="0" y="0" hidden></text>'
+            '<line class="tap-pt1" x1="0" y1="0" x2="0" y2="0" hidden></line>'
+            '<text class="tap-pt1-t" x="0" y="0" hidden></text>'
+            '<line class="tap-pt2" x1="0" y1="0" x2="0" y2="0" hidden></line>'
+            '<text class="tap-pt2-t" x="0" y="0" hidden></text>'
+            '</g>'
+            % (PAD_L, PAD_T, plot_w, plot_h,
+               PAD_L + plot_w, PAD_T, PAD_R, plot_h))
+
     out.append("</svg>")
     return "".join(out)

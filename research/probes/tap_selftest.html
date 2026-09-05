@@ -1,25 +1,4 @@
-"""probe_page.py -- shared shell for the OMEN 6 elicitation probes.
-
-One visual identity across the ballot, the autopsy and the head-to-head: IBM Plex
-(Serif display / Sans UI / Mono for anything numeric), a grey ground biased toward
-the teal accent, and the market's own semantics -- green/red candles, amber for
-Austin's entry, red-brown for a stop -- kept separate from that accent.
-
-Persistence, 2026-08-23: these pages carry their own localStorage save and their
-own JSONL export, the same contract the decks have had since 5.1. They were built
-relying on the claude.ai `artifact` capability to save DOM gestures; on Austin's
-first pass nothing persisted, so the page no longer depends on it. Answers survive
-a refresh, and Copy all / Download hands them back with no round trip.
-"""
-from __future__ import annotations
-
-FONTS = ('<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
-         '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?'
-         'family=IBM+Plex+Mono:wght@400;500;600&'
-         'family=IBM+Plex+Sans:wght@400;500;600;700&'
-         'family=IBM+Plex+Serif:wght@500;600&display=swap">')
-
-CSS = """
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>tap self-test</title><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:wght@500;600&display=swap">
 <style>
 :root{
   --bg:#f3f5f4; --surface:#ffffff; --surface-2:#eceff0;
@@ -250,9 +229,7 @@ textarea.note:focus-visible{outline:2px solid var(--accent); outline-offset:1px}
   .card > header{padding:11px 12px}
 }
 </style>
-"""
-
-JS = r"""
+<div class="wrap"><div class="mast"><p class="eyebrow">H2 self-test</p><h1>Tap-on-chart self-test</h1><p class="lede">Drives entry / stop / 3 PTs / runner through the real handlers, exports, reloads, and checks it all comes back.</p></div><div class="bar" data-deck="tap-selftest"><span class="count" id="count">0 / 0</span><span class="track"><span class="fill" id="fill"></span></span><span class="saved" id="saved">saved</span><button class="jump" type="button">Next unanswered</button><button class="jump alt" type="button" id="exportbtn">Export</button></div><div class="drawer" id="drawer" hidden><p class="hint"><b>Select all the text in the box below and copy it</b> (the box is editable, so ctrl/cmd+A then ctrl/cmd+C works even where the Copy button is blocked), then paste it into the chat. Download works too when the browser allows it.</p><div class="drawer-btns"><button class="jump" type="button" id="copybtn">Copy all</button><button class="jump alt" type="button" id="dlbtn">Download .jsonl</button><span class="hint" id="copymsg"></span></div><textarea id="out" spellcheck="false"></textarea></div><div class="card" data-cid="selftest-1" data-export='{"symbol":"TEST","date":"2026-01-05"}'><header><span class="idx">1</span><span class="tick">TEST</span><span class="when">2026-01-05</span></header><div class="chartwrap"><svg class="chart" viewBox="0 0 720 330" role="img" aria-label="tap self-test" preserveAspectRatio="xMidYMid meet" data-n="20" data-padl="4" data-padt="10" data-plotw="660.00" data-ploth="296.00" data-lo="99.3252" data-hi="101.3448" data-w="720" data-h="330" data-ohlc="[[100.0,100.6,99.4,100.22],[100.22,100.82,99.62,100.05],[100.05,100.65,99.45,100.27],[100.27,100.87,99.67,100.1],[100.1,100.7,99.5,100.32],[100.32,100.92,99.72,100.15],[100.15,100.75,99.55,100.37],[100.37,100.97,99.77,100.2],[100.2,100.8,99.6,100.42],[100.42,101.02,99.82,100.25],[100.25,100.85,99.65,100.47],[100.47,101.07,99.87,100.3],[100.3,100.9,99.7,100.52],[100.52,101.12,99.92,100.35],[100.35,100.95,99.75,100.57],[100.57,101.17,99.97,100.4],[100.4,101.0,99.8,100.62],[100.62,101.22,100.02,100.45],[100.45,101.05,99.85,100.67],[100.67,101.27,100.07,100.5]]" data-tappable="1"><line class="grid" x1="20.5" y1="10" x2="20.5" y2="306.0"/><text class="axis" x="20.5" y="322.0">09:30</text><line class="grid" x1="515.5" y1="10" x2="515.5" y2="306.0"/><text class="axis" x="515.5" y="322.0">09:45</text><line class="wk up" x1="20.5" y1="119.2" x2="20.5" y2="295.0"/><rect class="bd up" x="10.3" y="174.9" width="20.5" height="32.2"/><line class="wk dn" x1="53.5" y1="86.9" x2="53.5" y2="262.8"/><rect class="bd dn" x="43.3" y="174.9" width="20.5" height="24.9"/><line class="wk up" x1="86.5" y1="111.8" x2="86.5" y2="287.7"/><rect class="bd up" x="76.3" y="167.5" width="20.5" height="32.2"/><line class="wk dn" x1="119.5" y1="79.6" x2="119.5" y2="255.5"/><rect class="bd dn" x="109.3" y="167.5" width="20.5" height="24.9"/><line class="wk up" x1="152.5" y1="104.5" x2="152.5" y2="280.4"/><rect class="bd up" x="142.3" y="160.2" width="20.5" height="32.2"/><line class="wk dn" x1="185.5" y1="72.3" x2="185.5" y2="248.1"/><rect class="bd dn" x="175.3" y="160.2" width="20.5" height="24.9"/><line class="wk up" x1="218.5" y1="97.2" x2="218.5" y2="273.1"/><rect class="bd up" x="208.3" y="152.9" width="20.5" height="32.2"/><line class="wk dn" x1="251.5" y1="64.9" x2="251.5" y2="240.8"/><rect class="bd dn" x="241.3" y="152.9" width="20.5" height="24.9"/><line class="wk up" x1="284.5" y1="89.8" x2="284.5" y2="265.7"/><rect class="bd up" x="274.3" y="145.5" width="20.5" height="32.2"/><line class="wk dn" x1="317.5" y1="57.6" x2="317.5" y2="233.5"/><rect class="bd dn" x="307.3" y="145.5" width="20.5" height="24.9"/><line class="wk up" x1="350.5" y1="82.5" x2="350.5" y2="258.4"/><rect class="bd up" x="340.3" y="138.2" width="20.5" height="32.2"/><line class="wk dn" x1="383.5" y1="50.3" x2="383.5" y2="226.2"/><rect class="bd dn" x="373.3" y="138.2" width="20.5" height="24.9"/><line class="wk up" x1="416.5" y1="75.2" x2="416.5" y2="251.1"/><rect class="bd up" x="406.3" y="130.9" width="20.5" height="32.2"/><line class="wk dn" x1="449.5" y1="42.9" x2="449.5" y2="218.8"/><rect class="bd dn" x="439.3" y="130.9" width="20.5" height="24.9"/><line class="wk up" x1="482.5" y1="67.9" x2="482.5" y2="243.7"/><rect class="bd up" x="472.3" y="123.6" width="20.5" height="32.2"/><line class="wk dn" x1="515.5" y1="35.6" x2="515.5" y2="211.5"/><rect class="bd dn" x="505.3" y="123.6" width="20.5" height="24.9"/><line class="wk up" x1="548.5" y1="60.5" x2="548.5" y2="236.4"/><rect class="bd up" x="538.3" y="116.2" width="20.5" height="32.2"/><line class="wk dn" x1="581.5" y1="28.3" x2="581.5" y2="204.2"/><rect class="bd dn" x="571.3" y="116.2" width="20.5" height="24.9"/><line class="wk up" x1="614.5" y1="53.2" x2="614.5" y2="229.1"/><rect class="bd up" x="604.3" y="108.9" width="20.5" height="32.2"/><line class="wk dn" x1="647.5" y1="21.0" x2="647.5" y2="196.8"/><rect class="bd dn" x="637.3" y="108.9" width="20.5" height="24.9"/><rect class="taphit" x="4.0" y="10" width="660.0" height="296.0" fill="transparent" pointer-events="all"></rect><rect class="railhit" x="664.0" y="10" width="56" height="296.0" fill="transparent" pointer-events="all"></rect><g class="tapmark"><line class="tap-entry" x1="0" y1="0" x2="0" y2="0" hidden></line><text class="tap-entry-t" x="0" y="0" hidden></text><line class="tap-stop" x1="0" y1="0" x2="0" y2="0" hidden></line><text class="tap-stop-t" x="0" y="0" hidden></text><line class="tap-pt0" x1="0" y1="0" x2="0" y2="0" hidden></line><text class="tap-pt0-t" x="0" y="0" hidden></text><line class="tap-pt1" x1="0" y1="0" x2="0" y2="0" hidden></line><text class="tap-pt1-t" x="0" y="0" hidden></text><line class="tap-pt2" x1="0" y1="0" x2="0" y2="0" hidden></line><text class="tap-pt2-t" x="0" y="0" hidden></text></g></svg></div><div class="tapout" data-role="tapout">tap a candle for entry</div><div class="runnerrow"><label for="runner-1">runner</label><input id="runner-1" type="range" class="runner" min="0" max="100" value="10"><span class="runnerval" data-role="runnerval">10%</span></div></div><div class="foot"><h2>Self-test</h2><p>This page marks itself on load, reloads once, and reports PASS/FAIL below -- nothing to tap by hand.</p><pre id="result" style="white-space:pre-wrap">running…</pre></div></div>
 <script>
 (function(){
   /* In the claude.ai artifact viewer a plain <a download> is inert and the async
@@ -714,48 +691,168 @@ JS = r"""
   if (!storeOk) flag('fail', 'no local save - export before closing');
 })();
 </script>
-"""
 
+<script>
+(function(){
+  var PHASE_KEY = 'omen-tap-selftest:phase';
+  var out = document.getElementById('result');
+  var results = [];
+  function check(name, cond, detail){
+    results.push({name: name, ok: !!cond, detail: detail});
+  }
 
-def shell(title, eyebrow, h1, lede, cards_html, footer_html, deck_id):
-    return "".join([
-        # Austin does homework on a phone. Without the viewport tag a mobile browser
-        # lays the page out at ~980px and he has to pinch-zoom every card; charset
-        # keeps the em-dashes readable when the file is opened straight off disk.
-        '<meta charset="utf-8">'
-        '<meta name="viewport" content="width=device-width, initial-scale=1">',
-        "<title>%s</title>" % title, FONTS, CSS,
-        '<div class="wrap">',
-        '<div class="mast"><p class="eyebrow">%s</p><h1>%s</h1><p class="lede">%s</p></div>'
-        % (eyebrow, h1, lede),
-        '<div class="bar" data-deck="%s"><span class="count" id="count">0 / 0</span>'
-        '<span class="track"><span class="fill" id="fill"></span></span>'
-        '<span class="saved" id="saved">saved</span>'
-        '<button class="jump" type="button">Next unanswered</button>'
-        '<button class="jump alt" type="button" id="exportbtn">Export</button></div>' % deck_id,
-        '<div class="drawer" id="drawer" hidden>'
-        '<p class="hint"><b>Select all the text in the box below and copy it</b> (the box is editable, so ctrl/cmd+A then ctrl/cmd+C works even where the Copy button is blocked), then paste it into the chat. Download works too when the browser allows it.</p>'
-        '<div class="drawer-btns">'
-        '<button class="jump" type="button" id="copybtn">Copy all</button>'
-        '<button class="jump alt" type="button" id="dlbtn">Download .jsonl</button>'
-        '<span class="hint" id="copymsg"></span></div>'
-        '<textarea id="out" spellcheck="false"></textarea></div>',
-        cards_html,
-        '<div class="foot">%s</div>' % footer_html,
-        "</div>", JS,
-    ])
+  function svgOf(){ return document.querySelector('svg.chart[data-tappable="1"]'); }
+  function geom(svg){
+    return {
+      n: +svg.getAttribute('data-n'), padl: +svg.getAttribute('data-padl'),
+      padt: +svg.getAttribute('data-padt'), plotw: +svg.getAttribute('data-plotw'),
+      ploth: +svg.getAttribute('data-ploth'), lo: +svg.getAttribute('data-lo'),
+      hi: +svg.getAttribute('data-hi')
+    };
+  }
+  function X(g, i){ return g.padl + (i + 0.5) * g.plotw / g.n; }
+  function Y(g, p){
+    var span = (g.hi - g.lo) || 1;
+    return g.padt + (g.hi - p) * g.ploth / span;
+  }
+  /* exact inverse of probe_page.js's localXY(): given a desired viewBox point,
+     produce the clientX/clientY that will map back to it -- whether the chart
+     has real on-screen layout (a browser) or none at all (jsdom, no rect). */
+  function toClient(svg, vx, vy){
+    var rect = svg.getBoundingClientRect();
+    var vbw = +svg.getAttribute('data-w'), vbh = +svg.getAttribute('data-h');
+    if (!rect || !rect.width || !rect.height) return {x: vx, y: vy};
+    return {x: rect.left + vx * (rect.width / vbw), y: rect.top + vy * (rect.height / vbh)};
+  }
+  function tap(el, cx, cy){
+    var Evt = window.PointerEvent || window.MouseEvent;
+    el.dispatchEvent(new Evt('pointerdown', {clientX: cx, clientY: cy,
+                                              bubbles: true, cancelable: true}));
+  }
 
+  function readMarks(svg){
+    function txt(sel){
+      var el = svg.querySelector(sel);
+      return el && !el.hasAttribute('hidden') ? el.textContent : null;
+    }
+    var card = svg.closest('.card');
+    var slider = card.querySelector('input.runner');
+    return {
+      entry: txt('.tap-entry-t'), stop: txt('.tap-stop-t'),
+      pt0: txt('.tap-pt0-t'), pt1: txt('.tap-pt1-t'), pt2: txt('.tap-pt2-t'),
+      runner: slider ? slider.value : null
+    };
+  }
 
-def question(key, heading, hint, options, multi=False, required=True, tone="",
-             note_placeholder=None):
-    chips = "".join(
-        '<button class="chip" type="button" data-v="%s" aria-pressed="false">%s</button>'
-        % (v.replace('"', "&quot;"), lab) for v, lab in options)
-    note = ""
-    if note_placeholder:
-        note = ('<textarea class="note" data-note="%s" placeholder="%s"></textarea>'
-                % (key, note_placeholder.replace('"', "&quot;")))
-    return ('<section class="q" data-q="%s" data-multi="%s" data-required="%s"%s>'
-            '<h3>%s</h3><p class="hint">%s</p><div class="chips">%s</div>%s</section>'
-            % (key, "1" if multi else "0", "1" if required else "0",
-               ' data-tone="%s"' % tone if tone else "", heading, hint, chips, note))
+  function driveMarks(){
+    var svg = svgOf(), ohlc = JSON.parse(svg.getAttribute('data-ohlc'));
+    var g = geom(svg);
+    var taphit = svg.querySelector('.taphit'), railhit = svg.querySelector('.railhit');
+
+    // 1: entry on bar 5
+    var p = toClient(svg, X(g, 5), g.padt + 5);
+    tap(taphit, p.x, p.y);
+
+    // 2: stop on bar 12, tapped near the bottom of the plot -> "long", so
+    //    stop_p should land on bar 12's LOW (index 2 of [o,h,l,c]).
+    p = toClient(svg, X(g, 12), g.padt + g.ploth - 2);
+    tap(taphit, p.x, p.y);
+
+    // 3-5: three rail taps for PT1/PT2/PT3, at three distinct prices
+    var prices = [g.lo + (g.hi - g.lo) * 0.75,
+                  g.lo + (g.hi - g.lo) * 0.85,
+                  g.lo + (g.hi - g.lo) * 0.95];
+    prices.forEach(function(pr){
+      var q = toClient(svg, g.padl + g.plotw + 2, Y(g, pr));
+      tap(railhit, q.x, q.y);
+    });
+
+    // runner slider -> 35%
+    var card = svg.closest('.card');
+    var slider = card.querySelector('input.runner');
+    slider.value = '35';
+    slider.dispatchEvent(new Event('input', {bubbles: true}));
+
+    return {expect_stop: ohlc[12][2], expect_pts: prices};
+  }
+
+  function run(){
+    var svg = svgOf();
+    var exp = driveMarks();
+    var before = readMarks(svg);
+
+    check('entry mark drawn', before.entry === 'ENTRY i=5', before.entry);
+    check('stop mark uses tapped candle low',
+          before.stop && Math.abs(parseFloat(before.stop.split(' ')[1])
+                                   - exp.expect_stop) < 0.005,
+          before.stop);
+    check('three PT marks drawn', before.pt0 && before.pt1 && before.pt2,
+          [before.pt0, before.pt1, before.pt2].join(' | '));
+    check('runner slider reads 35', before.runner === '35', before.runner);
+
+    document.getElementById('exportbtn').click();
+    var text = document.getElementById('out').value;
+    var lines = text.split('\n').filter(function(l){ return l.trim(); });
+    check('export is exactly one row', lines.length === 1, lines.length);
+    var row = {};
+    try { row = JSON.parse(lines[0]); } catch (e) {}
+    check('row.entry_i is an int', Number.isInteger(row.entry_i), row.entry_i);
+    check('row.entry_i == 5', row.entry_i === 5, row.entry_i);
+    check('row.stop_p is a float near the tapped low',
+          typeof row.stop_p === 'number' && Math.abs(row.stop_p - exp.expect_stop) < 0.005,
+          row.stop_p);
+    check('row.pt has 3 entries', Array.isArray(row.pt) && row.pt.length === 3,
+          row.pt);
+    check('row.runner_pct == 35', row.runner_pct === 35, row.runner_pct);
+
+    sessionStorage.setItem(PHASE_KEY, JSON.stringify({before: before, row: row}));
+    location.reload();
+  }
+
+  function verifyReload(){
+    var prev;
+    try { prev = JSON.parse(sessionStorage.getItem(PHASE_KEY) || 'null'); }
+    catch (e) { prev = null; }
+    if (!prev){ check('reload phase found a prior pass', false, 'no sessionStorage'); }
+    else {
+      var svg = svgOf();
+      var after = readMarks(svg);
+      check('reload restores entry mark', after.entry === prev.before.entry, after.entry);
+      check('reload restores stop mark', after.stop === prev.before.stop, after.stop);
+      check('reload restores all 3 PTs',
+            after.pt0 === prev.before.pt0 && after.pt1 === prev.before.pt1
+            && after.pt2 === prev.before.pt2,
+            [after.pt0, after.pt1, after.pt2].join(' | '));
+      check('reload restores runner slider', after.runner === prev.before.runner,
+            after.runner);
+      document.getElementById('exportbtn').click();
+      var text2 = document.getElementById('out').value;
+      check('export identical after reload',
+            JSON.parse(text2.trim()).entry_i === prev.row.entry_i
+            && JSON.parse(text2.trim()).stop_p === prev.row.stop_p
+            && JSON.stringify(JSON.parse(text2.trim()).pt) === JSON.stringify(prev.row.pt)
+            && JSON.parse(text2.trim()).runner_pct === prev.row.runner_pct,
+            text2.trim());
+    }
+    sessionStorage.removeItem(PHASE_KEY);
+    report();
+  }
+
+  function report(){
+    var fails = results.filter(function(r){ return !r.ok; });
+    var lines = results.map(function(r){
+      return (r.ok ? 'PASS' : 'FAIL') + '  ' + r.name
+             + (r.detail != null ? '  (' + JSON.stringify(r.detail) + ')' : '');
+    });
+    var verdict = fails.length ? 'FAIL' : 'PASS';
+    out.textContent = verdict + '\n\n' + lines.join('\n');
+    document.title = verdict + ' -- tap self-test';
+  }
+
+  if (sessionStorage.getItem(PHASE_KEY)){
+    verifyReload();
+  } else {
+    run();
+  }
+})();
+</script>
