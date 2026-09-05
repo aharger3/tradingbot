@@ -121,3 +121,106 @@ The **categorization** — 578 never-returns, 514 close-only, 7,096 mid-fillable
 reproduces exactly and is descriptive, not a money claim. Keep it. The `near_session_extreme` /
 ON WATCH paragraph is a code reading and is unaffected. Delete the arms table's headline from
 circulation: **MID25 does not pay $100/day against the shipped close.**
+
+
+---
+
+# Second pass — an independent re-derivation (2026-09-05, wave 2)
+
+Everything above was re-derived from scratch by a second script,
+`research/g201_refute3b.py` (output `research/g201_refute3b.json`), written without reusing
+`g201_refute3.py`. Same book, same fill statement as the header. **It lands on the same verdict
+and the same numbers**, and adds four things the first pass did not measure.
+
+## 7. Corroboration — the independent script agrees to the dollar
+
+| arm | first pass | **second pass** |
+|---|---:|---:|
+| CLOSE (book rows, F9's control) | $34/day | **$34/day** |
+| CLOSE_RT (same entry, `run_trade`) | $37/day | **$37/day** |
+| MID00 placebo (0% back) | $105/day | **$105/day** |
+| MID25 (F9's headline) | $100/day | **$100/day** |
+| MID25, day-pick held fixed | $39/day | **$39/day** |
+
+The second pass also confirms the whole depth ladder is **monotonically backwards**: with the
+day's pick held fixed and a no-fill booked at $0, **MID00 $79 → MID25 $39 → MID50 $6**. More
+"mid-candle" is strictly worse. A variable whose claimed effect reverses sign when you turn it up
+is not the mechanism.
+
+## 8. Where MID25's $100 physically comes from — the substitution ledger
+
+Counting, day by day, how often each arm abandons the book's first sizeable candidate because its
+own limit never filled, and how many dollars it books on exactly those days:
+
+| arm | days it kept the same pick | **days it substituted** | $ booked on substituted days | share of the arm's total |
+|---|---:|---:|---:|---:|
+| MID00 | 484 | 14 | +$12,806 | $26/day of $105 |
+| **MID25** | 368 | **129 of 498 (26%)** | **+$30,111** | **$60/day of its $100** |
+| MID50 | 222 | **268 of 498 (54%)** | +$42,129 | $85/day of its $90 |
+
+MID50 changes the day's trade on **more than half of all sessions**. These arms are day filters
+wearing an entry rule's clothes. And the rule is not even self-consistent: candidate 1's limit is
+still working to the 11:00 cutoff when candidate 2 fires, so on every one of those 129 days the
+policy holds **two** positions, not the one the unit is defined on.
+
+## 9. The residue after the substitution is removed is a handful of sessions
+
+Delta versus CLOSE_RT on the fixed-pick walk, by session:
+
+| arm | delta, 2 years | delta $/day | top-1 session's share of it | top-5 |
+|---|---:|---:|---:|---:|
+| MID00 | +$20,654 | +$41 | 24.2% | **106.7%** (5 of 498 sessions are the entire effect) |
+| **MID25** | **+$957** | **+$2** | **627.3%** (2024-09-06 alone) | 2,637.6% |
+| **MID50** | **−$15,753** | **−$32** | 38.1% | 160.8% |
+
+**MID25's honest edge over the shipped close is $957 across two years**, and one session is 627%
+of it — the rest of the book is net negative against it. This is the same concentration test that
+killed F7's classifier (one day = 50.1% of the gain), applied here and failed worse.
+
+## 10. Two things this pass adds against F9, and one correction to the first pass
+
+**(a) MID50 — the depth closest to R2's midpoint — is NEGATIVE, so F9's own harness reproduces
+R2's sign.** −$32/day against the close, H1 $80 / H2 −$68, 12/25 green. R2 said mid-candle pays
+less than the close; run F9's machinery at R2's depth with an honest day rule and it says the
+same thing. **There was never a contradiction to referee.**
+
+**(b) The risk denominator shrinks by construction, and it is what inflates the paired R.** Mean
+risk per share falls **$0.7289 → $0.5488** (median $0.54 → $0.41) from CLOSE_RT to MID25, and
+`run_trade` re-derives the 2R target off that smaller risk — a mechanically closer target on a
+fixed $1,000 R, exactly the arithmetic `CLAUDE.md` warns about. Paired per-trade R over the
+candidates both arms priced, before and after the size gate:
+
+| pair | ungated | n | **size-gated** | n |
+|---|---:|---:|---:|---:|
+| MID25 − CLOSE_RT | +0.1534R | 7,609 | **+0.1218R** | 4,733 |
+| MID50 − CLOSE_RT | **+0.5822R** | 7,076 | **+0.1664R** | 2,756 |
+| MID00 − CLOSE_RT (placebo) | +0.0511R | 8,150 | +0.0392R | 6,642 |
+
+71% of MID50's ungated per-trade "edge" is rows `min_risk_floor` exists to throw out. And note
+the placebo carries a third of the gated effect at **zero** price improvement — the same tell as
+section 2, in R rather than dollars. These paired numbers are also conditioned on "the limit
+filled", which is only knowable after the fact; MID50 is positive here and **−$32/day** in
+section 9 on the same rows. A positive paired R beside a negative $/day is the signature of that
+conditioning, not of an edge.
+
+**(c) Correction to section 4(b) above.** The first pass reported CLOSE_RT − CLOSE at +$3.4/day,
+CI [+1.3, +5.8], and called F9's control "mismeasured". Measured per-candidate rather than on the
+498 one-a-day picks, **CLOSE_RT − BOOK = −0.0012R, CI95 [−0.0031, +0.0008] over all 8,227
+candidates — indistinguishable from zero** (size-gated: +0.0005R, CI [−0.0007, +0.0018]). So
+F9's book-rows-vs-`run_trade` asymmetry is real bookkeeping sloppiness but it is **not** a
+`stop-placement-routed`-class defect and it explains none of the $66 gap. F9's control was fair.
+The claim dies on the placebo and the substitution, not on the harness.
+
+**(d) A minor reporting defect, for the record.** `g158_mid_candle_arms.py` increments
+`cat_counts["ALL"]` in every branch except `no_bars_after_signal`, so its category table's ALL row
+sums to 8,188 rather than 8,227 and understates never-returns by 39 (**578 printed, 617 actual**).
+The 7,096 / 8,227 = 86.3% mid-fillable headline is unaffected and still stands.
+
+## 11. Second-pass verdict
+
+**REFUTED, independently and by a different route.** The vault is already correct: retire the
+"reopened until someone referees it" line against `Projects/omen-blockers.md` line 95 and
+`Projects/omen-brief-2026-09-03.md` line 45, and mark mid-candle entry **dead** again. F9's
+categorization survives; F9's arms table does not.
+
+Reads only. No engine file and no mark corpus was opened for writing.
