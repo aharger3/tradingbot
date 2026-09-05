@@ -29,4 +29,4 @@ git pull --rebase --autostash 2>&1 | Tee-Object -FilePath $log -Append
 & $python live_scanner.py --paper 2>&1 | Tee-Object -FilePath $log -Append
 
 # Bank today's 1-min bars via Polygon.io (was yfinance — socket timeouts) for longer backtests
-& $python archive_1m.py 2>&1 | Tee-Object -FilePath $log -Append
+& $python archive_1m.py --back 1 2>&1 | Tee-Object -FilePath $log -Append

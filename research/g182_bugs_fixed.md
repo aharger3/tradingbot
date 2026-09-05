@@ -557,3 +557,66 @@ closed at "13 red tests, gate runs 3".
 - The other 13 named test files: still red, still ungated — deferred, see above.
 - `python research/regression_gate.py` and `python research/test_runner_stop.py`: both
   pass, unaffected.
+
+---
+
+# g182 — B3 (bug B-09): `run_daily.ps1` never passes `--back` to `archive_1m.py`
+
+What is different now: `run_daily.ps1`'s nightly `archive_1m.py` call now asks for
+`--back 1` (today plus yesterday) instead of the bare default — `data_archive/`
+growth is no longer structurally impossible on this Polygon plan.
+
+## Confirmed
+
+`archive_1m.py:57` defaults `end = date.today()` when `--date` is omitted, and
+`--back` (also omitted) is `0`, so the day list is exactly `[today]`. The module's own
+docstring on `archive_day` says Polygon 403s the CURRENT day on this plan ("an
+unattended job must ask for completed sessions"). `run_daily.ps1:32` called
+`archive_1m.py` with no flags at all, so every nightly run since the plan changed
+asked for the one day guaranteed to fail:
+
+```
+python -c "import polygon_feed; print(len(polygon_feed.fetch_day('AAPL','2026-09-04')))"
+959 bars
+python -c "import polygon_feed; polygon_feed.fetch_day('AAPL','2026-09-05')"
+HTTPError: 403 Client Error: Forbidden.
+```
+
+Yesterday (a completed session) fetches fine; today 403s exactly as the docstring
+predicts. `grep -rn "archive_1m.py"` across the repo (excluding worktrees) shows only
+two callers: `run_daily.ps1` (the broken one) and `run_omen6_forward.ps1`, which
+already passes `--back 5` and was never bitten by this. The bug is entirely in the
+caller, not in `archive_1m.py` — the function all callers route through
+(`archive_day`, called from `main()`'s day loop) already handles `--back` correctly.
+
+## Fixed: `run_daily.ps1`
+
+Line 32: `archive_1m.py` -> `archive_1m.py --back 1`. This asks for today (still
+403s, logged and skipped per-symbol, harmless) plus yesterday's now-completed
+session, so the nightly run actually banks one new day into `data_archive/` per
+run instead of zero.
+
+## Test: `research/test_g182_b09_archive_back.py` (new)
+
+Parses `run_daily.ps1`'s `archive_1m.py` invocation line and asserts a `--back N`
+flag with `N >= 1` is present. Before: no `--back` flag at all -> `AssertionError`
+(reproduced above, confirmed failing pre-fix). After: 2 passed.
+
+## Scope check: data-archiving pipeline only, no engine module touched
+
+`archive_1m.py` writes CSVs into `data_archive/` for later backtests; it is not
+imported by `live_scanner.py`, `signal_runner.py`, `omen_bot.py`, or any live-fire
+path. Changing how many days it is asked to fetch cannot move a live signal count
+or a trade decision — it only changes how much historical data gets banked for
+future backtests. No shared module edited (only `run_daily.ps1` and this new test).
+
+Verify gate: `python research/regression_gate.py && python research/test_runner_stop.py`
+— both PASS, unaffected.
+
+## Status: done
+
+- `run_daily.ps1`: fixed, now calls `archive_1m.py --back 1`.
+- `research/test_g182_b09_archive_back.py`: 2 passed (fails before, `AssertionError`
+  reproduced above; passes after).
+- `python research/regression_gate.py` and `python research/test_runner_stop.py`: both
+  pass, unaffected — no engine module's runtime behaviour moved.
