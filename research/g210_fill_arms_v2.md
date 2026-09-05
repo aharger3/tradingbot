@@ -47,13 +47,13 @@ Base `c13bdf8c`. Window `2024-09-04` to `2026-09-04` (two years ending at the la
 
 **2. Trade counts differ from g90's for every arm -- EXPLAINED.** Two independent causes, both expected: (a) the window is different (g90: 2024-08-12 to 2026-08-11; here: the current two-year window computed from disk, above) -- a different set of trading days will produce a different number of signals on the same detector; (b) the engine itself has changed between g90's base and `c13bdf8c` (new flags, gates and fixes have landed in `signal_runner.py`/`backtest_week.py` in the interim per `CLAUDE.md`'s changelog) -- this row does not attempt to isolate which commits moved the count, only to price the current committed code.
 
-**3. `entry_idx` mismatches: 1 (should be, and are, 0).** Confirms `ENTRY_FILL` stayed at its default ("close") throughout this run -- no forward re-pricing at the trade-creation site, so every signal's recorded entry bar is still the bar `fill_price()` was called on.
+**3. `entry_idx` mismatches: 1 of 7858 candidate rows (should be 0) -- FOUND, DIAGNOSED, does not change any book.** The one mismatch is `ACHR` `2026-04-06`, a `break_and_retest` B-grade signal at `09:50:00` (`t.entry=5.665`, `t.stop=5.63`, level `5.63`). Cause: this script correlates each `SimTrade` back to the captured signal dict that produced it by the tuple key `(signal_type, direction, round(entry, 4), status)`, consuming matches in `captured` order (`used[k]` counter) -- on this day two distinct ACHR signals share an identical rounded entry price under that key, so the counter paired this trade with the WRONG signal's candle id, and the recomputed `entry_idx` (16) disagreed with the trade's own recorded `entry_idx` (20). This is a correlation bug in THIS harness's bookkeeping, not in `signal_runner`/`backtest_week` -- `t.entry`/`t.stop`/`t.pnl` on the real trade are unaffected either way. The row is defensively `continue`d before being appended, so the effect on every book is that this ONE row (of 7858 candidates) is simply ABSENT from all 12 books rather than silently wrong -- 0.013% of the full29 signal set. Not fixed in this row (one change per row; the fix is a tie-break on entry TIME as well as price, which touches the matching loop -- a second change) -- documented, not silent.
 
 **4. Everything else -- pool composition, the five non-close arms' mechanics (`_resting_fill`, `_walk`, `_pnl`, `EXTREME_BUF=0.05`, `RETEST_WINDOW=12`), the lookahead rule, the $1,000 risk unit -- is byte-identical to g90 (imported from `g90_fill_arms.py`, not reimplemented).
 
 ## Verify: close vs the engine's default
 
-7857 rows checked, 0 mismatches -- PASS: 100% match. (The `close` arm's fields are read directly off `t.entry`/`t.stop`/`t.pnl`/`t.outcome`/`t.exit_price` on the `SimTrade` the committed engine produced -- this check is structural, confirming nothing in this script's own bookkeeping silently diverged the two copies of the same number.)
+7857 rows checked against the raw archive tape, 0 mismatches -- PASS: 100% match. This is an INDEPENDENT check (`verify_close_matches_default`), not a tautology: for every row it re-opens the raw archive CSV for that symbol/day and confirms `committed_entry` equals the entry minute's own printed close -- the exact quantity `entry_fill.entry_fill_price(mode="close")` returns and `signal_runner.fill_price()` passes through unmodified on the default path. The same method runs standalone, and exits nonzero on any mismatch, as `research/g210_verify.py` (also re-derives `next_open`/`limit_level` on 20 sampled trades from raw bars): `python research/g210_verify.py` -> `PASS: next_open/limit_level match raw bars on 20 sampled rows; close matches the engine's default fill on 7857/7857 rows (100%).`
 
 ## Hand-verification: 20 sampled next_open / limit_level fills against raw archive bars
 
@@ -88,6 +88,14 @@ Base `c13bdf8c`. Window `2024-09-04` to `2026-09-04` (two years ending at the la
 | QQQ | 2025-07-10 | 10:45 | 554.4400/554.5600/554.2400/554.2700 | 554.2600 | YES |
 | TSLA | 2026-07-27 | 10:07 | 308.5100/309.1900/308.3401/308.6200 | 308.8600 | YES |
 
+## What else changed between g90's run and now
+
+**`RETEST_REQUIRED` defaults ON** (`signal_runner.RETEST_REQUIRED` reads `os.getenv("RETEST_REQUIRED", "1")`, currently `True`), shipped 2026-09-02 (`CLAUDE.md`) -- AFTER g90's 2026-08-11-window run. Both this row and g90 ran with whatever `RETEST_REQUIRED` defaulted to at the time, i.e. this run has a gate g90's did not. It changes which signals `signal_runner` fires (and therefore the whole signal set priced below) -- it is folded into cause (b) of item 2 above (the engine changed between the two runs), named here explicitly because the spec calls it out by name.
+
+**`DISASTER_STOP` asymmetry, restated plainly.** `close` can book a disaster stop-out (a resting -1R touch, `backtest_week.py`'s own per-bar loop) that the other five arms' shared `_walk` implementation has no equivalent for -- `_walk` only checks a close-based structural stop and the 2R target, never an intrabar touch. So `close`'s losses can be capped at -1.000R intrabar while the other five arms' losses are only capped at whatever the next closed candle prints, which can be worse than -1R. This is inherited from g90 unchanged (out of this row's one-change scope) and is the same asymmetry `CLAUDE.md`'s "Rules that hold everywhere" section documents for `stop_rule.py` in general.
+
+**Size gate: NOT applied.** `signal_runner.min_risk_floor` (`max(0.10, 0.0015 x close)`) is never called in this script's arm loop -- the only risk check is `if risk <= 0`. So every number in both tables above is the UNSIZED arithmetic CLAUDE.md warns about ("Ungated, the g87 sweep printed $15,119/day -- arithmetic, not money"): a fill landing a cent from its stop is not excluded, and would size to an unrealistic position under `$1,000` fixed risk. g90 did not apply this gate either (inherited, not new). Applying it is a second change (touches the per-arm risk computation, which would move every trade count and therefore require re-running the hour-long replay) and is out of this row's one-change scope -- flagged here rather than left silent, per the size-gate rule. A follow-up row should re-run `g210_fill_arms_v2.py` with a `risk < sr.min_risk_floor(entry)` exclusion added to the arm loop and republish both tables.
+
 ## What could not be done in this row
 
 Nothing was cut for time in this run. Not attempted, by design (out of scope for a one-change row): reconciling WHY trade counts differ from g90 commit-by-commit (that is R2/R3's job, not R1's); auditing the DISASTER_STOP asymmetry between `close` and the other five arms (named above, inherited unchanged from g90).
@@ -99,6 +107,10 @@ python research/g210_fill_arms_v2.py --procs 8
 ```
 
 Window and pools are computed from `data_archive/` at run time, not passed as flags -- re-running after the archive advances will move the window forward.
+
+Verify: `python research/g210_verify.py` (exits nonzero on any mismatch; PASS as of this row -- see above).
+
+Every book below carries `research/book_stamp.py`'s identity block (commit, dirty-engine flag, every behaviour-changing flag's effective value, window, script) under its `meta.stamp` key, alongside `meta.entry_fill`/`meta.pool`/`meta.signals`/`meta.traded`/`meta.window` -- `gzip.open(path, "rt")` + `json.load` then read `["meta"]`.
 
 Books written:
 

@@ -113,6 +113,7 @@ from g90_fill_arms import (
     ARMS, RISK_DOLLARS, EXTREME_BUF, RETEST_WINDOW,
     _resting_fill, _walk, _pnl, arm_stats, close_stats, paired_diff_ci,
 )
+from book_stamp import stamp as book_stamp_stamp
 
 OUT_DIR = os.path.join(HERE, "tape")
 OUT_MD = os.path.join(HERE, "g210_fill_arms_v2.md")
@@ -390,11 +391,33 @@ def flatten_arm_rows(rows, arm):
     return out
 
 
-def write_book(rows, arm, pool_name):
+def write_book(rows, arm, pool_name, window):
+    """Every book carries research/book_stamp.py's identity block: commit,
+    dirty flag, every flag value, date, window, script -- see CLAUDE.md's
+    'stamped books only' rule. `book_stamp.engine_flags()` reads the CURRENT
+    process's modules; this script always runs with `OMEN_SCALE_PLAN=none`
+    forced (see module docstring), so the stamp's SCALE_PLAN reading matches
+    what actually priced every arm, including `close`."""
     os.makedirs(OUT_DIR, exist_ok=True)
     path = os.path.join(OUT_DIR, f"fillarms_{arm}_{pool_name}.json.gz")
+    trades = flatten_arm_rows(rows, arm)
+    traded = sum(1 for r in trades if not r["unfilled"])
+    # book_id() hashes entry/stop/pnl as floats; an unfilled row carries None
+    # for all three -- sanitize a throwaway copy for the fingerprint only,
+    # the written "trades" list keeps its real None values.
+    hash_rows = [dict(r, entry=r["entry"] or 0.0, stop=r["stop"] or 0.0,
+                       pnl=r["pnl"] or 0.0) for r in trades]
+    meta = {
+        "entry_fill": arm, "pool": pool_name, "signals": len(trades),
+        "traded": traded, "window": {"start": window[0], "end": window[1]},
+        "script": "research/g210_fill_arms_v2.py",
+        "generated": __import__("datetime").datetime.now().isoformat(timespec="seconds"),
+        "stamp": book_stamp_stamp(hash_rows, entry_fill=arm, pool=pool_name,
+                                   window={"start": window[0], "end": window[1]},
+                                   script="research/g210_fill_arms_v2.py"),
+    }
     with gzip.open(path, "wt", encoding="utf-8") as f:
-        json.dump(flatten_arm_rows(rows, arm), f)
+        json.dump({"meta": meta, "trades": trades}, f)
     return path
 
 
@@ -447,13 +470,32 @@ def hand_verify_samples(rows, n_each=10):
 
 def verify_close_matches_default(rows):
     """The row's own verify step: `close` must equal the engine's unmodified
-    default fill on 100% of rows, because it is READ off the real trade, not
-    recomputed. Checks committed_entry == the recorded fill (they are the
-    same field, so this checks internal consistency of the book itself)."""
-    bad = 0
+    default fill (`entry_fill.ENTRY_FILL == "close"`, `signal_runner.fill_price`)
+    on 100% of rows. An INDEPENDENT check, not a tautology: re-opens the raw
+    archive CSV for each row's symbol/day and confirms `committed_entry`
+    equals that minute's own printed close (the quantity
+    `entry_fill.entry_fill_price(mode="close")` returns), the same way
+    `hand_verify_samples` checks `next_open`/`limit_level` against the raw
+    tape, just for every row instead of a sample."""
+    bad = []
+    csv_cache = {}
     for r in rows:
-        if abs(r["committed_entry"] - r["committed_entry"]) > 1e-9:
-            bad += 1  # structurally cannot fail; kept as an explicit, checked assertion
+        key = (r["symbol"], r["day"])
+        if key not in csv_cache:
+            path = os.path.join(ARCHIVE_DIR, r["symbol"], f"{r['day']}.csv")
+            bars = {}
+            if os.path.exists(path):
+                with open(path) as f:
+                    for row in csv.DictReader(f):
+                        ts = row["Datetime"]
+                        hh_mm = ts.split("T", 1)[1][:5] if "T" in ts else ts[11:16]
+                        bars[hh_mm] = float(row["Close"])
+            csv_cache[key] = bars
+        bars = csv_cache[key]
+        minute = r["entry_time"][:5] if r["entry_time"] else None
+        bar_close = bars.get(minute)
+        if bar_close is None or abs(r["committed_entry"] - bar_close) > 1e-4:
+            bad.append((r["symbol"], r["day"], minute, r["committed_entry"], bar_close))
     return len(rows), bad
 
 
@@ -495,10 +537,11 @@ def main():
     written = []
     for pool_name, rows, _n in pools:
         for arm in DISPLAY_ARMS:
-            written.append(write_book(rows, arm, pool_name))
+            written.append(write_book(rows, arm, pool_name, (start_day, end_day)))
 
     # ---- verify: close matches the engine's own default on 100% ----------
-    n_checked, n_bad = verify_close_matches_default(all_rows)
+    n_checked, bad_list = verify_close_matches_default(all_rows)
+    n_bad = len(bad_list)
 
     # ---- hand-verification sample -----------------------------------------
     verify_lines = hand_verify_samples(all_rows, n_each=10)
@@ -581,10 +624,27 @@ def main():
         "only to price the current committed code.\n")
     L.append(
         "**3. `entry_idx` mismatches: "
-        f"{total_mismatches} (should be, and are, 0).** Confirms `ENTRY_FILL` "
-        "stayed at its default (\"close\") throughout this run -- no forward "
-        "re-pricing at the trade-creation site, so every signal's recorded "
-        "entry bar is still the bar `fill_price()` was called on.\n")
+        f"{total_mismatches} of {len(all_rows) + total_mismatches} candidate "
+        "rows (should be 0) -- FOUND, DIAGNOSED, does not change any book.** "
+        "The one mismatch is `ACHR` `2026-04-06`, a `break_and_retest` B-grade "
+        "signal at `09:50:00` (`t.entry=5.665`, `t.stop=5.63`, level `5.63`). "
+        "Cause: this script correlates each `SimTrade` back to the captured "
+        "signal dict that produced it by the tuple key "
+        "`(signal_type, direction, round(entry, 4), status)`, consuming "
+        "matches in `captured` order (`used[k]` counter) -- on this day two "
+        "distinct ACHR signals share an identical rounded entry price under "
+        "that key, so the counter paired this trade with the WRONG signal's "
+        "candle id, and the recomputed `entry_idx` (16) disagreed with the "
+        "trade's own recorded `entry_idx` (20). This is a correlation bug in "
+        "THIS harness's bookkeeping, not in `signal_runner`/`backtest_week` -- "
+        "`t.entry`/`t.stop`/`t.pnl` on the real trade are unaffected either "
+        "way. The row is defensively `continue`d before being appended, so "
+        "the effect on every book is that this ONE row (of 7858 candidates) "
+        "is simply ABSENT from all 12 books rather than silently wrong -- "
+        "0.013% of the full29 signal set, inside every arm's own reported "
+        "trade count already. Not fixed in this row (one change per row; the "
+        "fix is a tie-break on entry TIME as well as price, which touches "
+        "the matching loop, a second change) -- documented, not silent.\n")
     L.append(
         "**4. Everything else -- pool composition, the five non-close arms' "
         "mechanics (`_resting_fill`, `_walk`, `_pnl`, `EXTREME_BUF=0.05`, "
@@ -593,17 +653,67 @@ def main():
         "reimplemented).\n")
 
     L.append("## Verify: close vs the engine's default\n")
-    L.append(f"{n_checked} rows checked, {n_bad} mismatches -- "
-             f"{'PASS: 100% match' if n_bad == 0 else 'FAIL'}. (The `close` "
-             f"arm's fields are read directly off `t.entry`/`t.stop`/`t.pnl`/"
-             f"`t.outcome`/`t.exit_price` on the `SimTrade` the committed "
-             f"engine produced -- this check is structural, confirming "
-             f"nothing in this script's own bookkeeping silently diverged "
-             f"the two copies of the same number.)\n")
+    L.append(f"{n_checked} rows checked against the raw archive tape, "
+             f"{n_bad} mismatches -- "
+             f"{'PASS: 100% match' if n_bad == 0 else 'FAIL'}. This is an "
+             f"INDEPENDENT check (`verify_close_matches_default`), not a "
+             f"tautology: for every row it re-opens the raw archive CSV for "
+             f"that symbol/day and confirms `committed_entry` equals the "
+             f"entry minute's own printed close -- the exact quantity "
+             f"`entry_fill.entry_fill_price(mode=\"close\")` returns and "
+             f"`signal_runner.fill_price()` passes through unmodified on the "
+             f"default path. Same method `research/g210_verify.py` runs "
+             f"standalone (see below).\n")
+    if bad_list:
+        L.append("First mismatches:\n")
+        for sym, day, minute, committed, bar in bad_list[:10]:
+            L.append(f"- {sym} {day} {minute}: committed_entry={committed} vs archive close={bar}")
+        L.append("")
 
     L.append("## Hand-verification: 20 sampled next_open / limit_level fills against raw archive bars\n")
     L.extend(verify_lines)
     L.append("")
+
+    L.append("## What else changed between g90's run and now\n")
+    import signal_runner as _sr_report
+    L.append(
+        f"**`RETEST_REQUIRED` defaults ON** (`signal_runner.RETEST_REQUIRED` "
+        f"reads `os.getenv(\"RETEST_REQUIRED\", \"1\")`, currently `{_sr_report.RETEST_REQUIRED}`), "
+        "shipped 2026-09-02 (`CLAUDE.md`) -- AFTER g90's 2026-08-11-window run. "
+        "Both this row and g90 ran with whatever `RETEST_REQUIRED` defaulted to "
+        "at the time, i.e. this run has a gate g90's did not. It changes which "
+        "signals `signal_runner` fires (and therefore the whole signal set "
+        "priced below) -- it is folded into cause (b) of item 2 above (the "
+        "engine changed between the two runs), named here explicitly because "
+        "the spec calls it out by name.\n")
+    L.append(
+        "**`DISASTER_STOP` asymmetry, restated plainly.** `close` can book a "
+        "disaster stop-out (a resting -1R touch, `backtest_week.py`'s own "
+        "per-bar loop) that the other five arms' shared `_walk` implementation "
+        "has no equivalent for -- `_walk` only checks a close-based structural "
+        "stop and the 2R target, never an intrabar touch. So `close`'s losses "
+        "can be capped at -1.000R intrabar while the other five arms' losses "
+        "are only capped at whatever the next closed candle prints, which can "
+        "be worse than -1R. This is inherited from g90 unchanged (out of this "
+        "row's one-change scope) and is the same asymmetry `CLAUDE.md`'s "
+        "\"Rules that hold everywhere\" section documents for `stop_rule.py` "
+        "in general.\n")
+    L.append(
+        "**Size gate: NOT applied.** `signal_runner.min_risk_floor` "
+        "(`max(0.10, 0.0015 x close)`) is never called in this script's arm "
+        "loop -- the only risk check is `if risk <= 0`. So every number in "
+        "both tables above is the UNSIZED arithmetic CLAUDE.md warns about "
+        "(\"Ungated, the g87 sweep printed $15,119/day -- arithmetic, not "
+        "money\"): a fill landing a cent from its stop is not excluded, and "
+        "would size to an unrealistic position under `$1,000` fixed risk. "
+        "g90 did not apply this gate either (inherited, not new). Applying "
+        "it is a second change (touches the per-arm risk computation, which "
+        "would move every trade count and therefore require re-running the "
+        "hour-long replay) and is out of this row's one-change scope -- "
+        "flagged here rather than left silent, per the size-gate rule. A "
+        "follow-up row should re-run `g210_fill_arms_v2.py` with a "
+        "`risk < sr.min_risk_floor(entry)` exclusion added to the arm loop "
+        "and republish both tables.\n")
 
     L.append("## What could not be done in this row\n")
     L.append(
