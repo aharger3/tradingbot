@@ -450,6 +450,62 @@ def _reclaim_tol_ok(close: float, entry_price: float, entry_stop) -> bool:
         return True
     return abs(close - entry_price) / r <= RULE84_RECLAIM_TOL
 
+# OMEN 10.0 L2 (RULE84_DECIDED, 2026-09-05, the /call 60) -- one composite flag
+# for the 84% rule "as the call decided it", replacing the guesswork every
+# other RULE84_* flag above was doing at three separate readings of the same
+# rulebook sentence. Recall (research/omen_recall.py) confirms the settled
+# text verbatim: "84 is a name only (the lesson's stat), no threshold. Arms
+# only after a stopped S or A original. Reclaim = close back at the original
+# entry within 25% of the previous candle's range; two attempts; same
+# session, before 11:00." (omen-10-0-spec.md "What the call settled").
+#
+# FLAG-GATED, DEFAULT OFF -- shipped behaviour byte-identical until this row's
+# gate passes and the default is flipped (step 6). When ON, this flag settles
+# exactly two open questions and every other RULE84_* flag (RULE84_STRICT,
+# RULE84_ARM_SGRADE, RULE84_ARM_NOGATE, RULE84_RECLAIM_TOL) is IGNORED for
+# those two questions -- they are earlier, superseded readings of the same
+# sentence, not stacked gates:
+#   (1) ARM GATE: the original stopped-out trade must grade S OR A on
+#       Austin's own ladder (downgrade.score, the same call _sgrade_84 already
+#       makes) -- not S alone (RULE84_ARM_SGRADE's reading) and not the legacy
+#       A+/A ladder (RULE84_STRICT's reading). Implemented in
+#       backtest_week._arm_84.
+#   (2) RECLAIM TOLERANCE: the reclaim close must land within 25% of the
+#       PREVIOUS candle's range of the original entry price -- a NEW,
+#       DIFFERENT unit from RULE84_RECLAIM_TOL, which is in R (entry-to-stop)
+#       units and is NOT reused here per this row's own instruction. Uses
+#       BAR_EXTREME_FRAC, the one 25% tolerance constant this file already
+#       uses everywhere else (ON WATCH, stop slippage) -- same number, new
+#       denominator. See _reclaim_gate_ok below.
+# Two attempts is RULE84_MAX_ATTEMPTS's existing default (2) -- unchanged, no
+# new flag needed. Same-session-before-11:00 is already enforced by every
+# 84% block's own `caps_ok` (bar_time(current.timestamp) < SESSION_END) --
+# unchanged, no new flag needed. Everything else about the reclaim clause
+# (no-pattern-required vs strong-PA, the RR floor, the near-HOD/LOD veto, stop
+# placement) is untouched -- this row is the arm grade and the reclaim
+# tolerance, ONE composite change, not a rewrite of the whole block.
+RULE84_DECIDED = os.getenv("RULE84_DECIDED", "0").strip().lower() in ("1", "true", "yes", "on")
+
+
+def _reclaim_gate_ok(close: float, entry_price: float, entry_stop,
+                     prev_candle: Optional[Candle]) -> bool:
+    """L2: the reclaim-tolerance test at the arming point. When RULE84_DECIDED
+    is OFF this is byte-identical to calling `_reclaim_tol_ok` directly (the
+    R-unit gate, default unbounded). When ON, ignores RULE84_RECLAIM_TOL and
+    tests instead whether the reclaim close sits within
+    BAR_EXTREME_FRAC (25%) of the PREVIOUS candle's own high-low range of the
+    original entry price -- the unit the call settled on, distinct from R.
+    Falls back to True (unbounded) with no previous candle or a zero-range
+    one -- never invents a denominator, same convention as _reclaim_tol_ok."""
+    if not RULE84_DECIDED:
+        return _reclaim_tol_ok(close, entry_price, entry_stop)
+    if prev_candle is None:
+        return True
+    rng = prev_candle.high - prev_candle.low
+    if rng <= 0:
+        return True
+    return abs(close - entry_price) <= BAR_EXTREME_FRAC * rng
+
 # omen-3.6 (S_GATE, 2026-08-06) -- the S gate fit from Austin's S/A/X verdicts,
 # FLAG-GATED, DEFAULT OFF. The gate (research/s_gate_spec.md, pre-registered in
 # T5 before any backtest) keeps only entries whose entry-bar displacement clears
@@ -3260,7 +3316,9 @@ class SignalRunner:
         if (self.session.entry_price is not None
                 and self.session.entry_direction in (None, "call")
                 and current.close >= self.session.entry_price
-                and _reclaim_tol_ok(current.close, self.session.entry_price, self.session.entry_stop)
+                and _reclaim_gate_ok(current.close, self.session.entry_price,
+                                     self.session.entry_stop,
+                                     self.candles[-2] if len(self.candles) >= 2 else None)
                 and (RULE84_SOURCE or current.is_bullish)
                 and (RULE84_LESSON or RULE84_SOURCE or self._strong_pa(current))):
             # Skip if close near high of day (risk/reward gone) -- T3: this
@@ -3507,7 +3565,9 @@ class SignalRunner:
         if (self.session.entry_price is not None
                 and self.session.entry_direction in (None, "put")
                 and current.close <= self.session.entry_price
-                and _reclaim_tol_ok(current.close, self.session.entry_price, self.session.entry_stop)
+                and _reclaim_gate_ok(current.close, self.session.entry_price,
+                                     self.session.entry_stop,
+                                     self.candles[-2] if len(self.candles) >= 2 else None)
                 and (RULE84_SOURCE or current.is_bearish)
                 and (RULE84_LESSON or RULE84_SOURCE or self._strong_pa(current))):
             day_range = hod - lod

@@ -89,7 +89,9 @@ FLAG_SOURCES = (
         # one built without — the exact confusion the stamp exists to end.
         "RETEST_REQUIRED", "S_GATE", "RULE_710_ENABLED",
         # 2026-09-05, L1: the RR gate on the first scale point (HOD/LOD).
-        "MIN_PT1_R")),
+        "MIN_PT1_R",
+        # 2026-09-05, L2: the 84% rule composite, as the call decided it.
+        "RULE84_DECIDED")),
 )
 
 # The figures a report is allowed to assert on, and how far each may drift

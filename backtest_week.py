@@ -830,7 +830,8 @@ def _arm_84(t: "SimTrade", runner: "BacktestRunner", c: Optional[Candle] = None)
     AND grade gate AND before 11:00 — so with every flag at its default this arms
     exactly the same stop-outs it always did."""
     from signal_runner import (RULE84_ARM_ON, RULE84_STRICT, RULE84_OFF,
-                               RULE84_ARM_SGRADE, RULE84_ARM_NOGATE, SESSION_END, bar_time)
+                               RULE84_ARM_SGRADE, RULE84_ARM_NOGATE, RULE84_DECIDED,
+                               SESSION_END, bar_time)
     if RULE84_OFF:  # C9: detector fully disabled
         return
     if t.outcome != "loss":       # scratches never arm the 84% rule
@@ -841,7 +842,11 @@ def _arm_84(t: "SimTrade", runner: "BacktestRunner", c: Optional[Candle] = None)
     # Austin 2026-08-09: arm when the stopped trade's setup is in RULE84_ARM_ON
     # (B&R or the one candle rule). FVG / flag losers do NOT arm it.
     setup_ok = SignalType(t.signal_type) in RULE84_ARM_ON
-    # The grade gate, in whichever of its four readings is active.
+    # The grade gate, in whichever of its five readings is active.
+    #   RULE84_DECIDED (L2, the /call 60, 2026-09-05): the settled composite --
+    #     arm only off an original that graded S OR A on Austin's own ladder.
+    #     Takes priority over every other reading below: they are earlier,
+    #     superseded guesses at the same rulebook sentence, not stacked gates.
     #   RULE84_ARM_NOGATE (T-84, 2026-08-28): Austin — "84 percent rule can fire
     #     on S A or C, but we only will trade S of course." No grade gate at the
     #     arm point at all; takes priority over the other two readings for the
@@ -850,8 +855,10 @@ def _arm_84(t: "SimTrade", runner: "BacktestRunner", c: Optional[Candle] = None)
     #   RULE84_ARM_SGRADE (P7/G1): Austin's ladder — the original must be S.
     #   RULE84_STRICT (C9, shipped): rulebook "you need an A+ entry", read against
     #     the legacy ladder — arm only off an A+/A original.
-    #   none of the three: arm off any counted stop-out on an arming setup.
-    if RULE84_ARM_NOGATE:
+    #   none of the above: arm off any counted stop-out on an arming setup.
+    if RULE84_DECIDED:
+        grade_ok = _sgrade_84(t, runner) in ("S", "A")
+    elif RULE84_ARM_NOGATE:
         grade_ok = True
     elif RULE84_ARM_SGRADE:
         grade_ok = _sgrade_84(t, runner) == "S"
