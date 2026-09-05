@@ -1,0 +1,32 @@
+{
+ "reproduces": true,
+ "observed": {
+  "all": 13.51,
+  "h1": 8.55,
+  "h2": 18.46
+ },
+ "sessions_changed": 13,
+ "sessions": 498,
+ "top1_share_of_delta": 50.1,
+ "bootstrap": {
+  "all_ci": [
+   -3.49,
+   33.78
+  ],
+  "all_p_le0": 0.067,
+  "h1_p_le0": 0.244,
+  "h2_p_le0": 0.083,
+  "p_both_halves_positive": 0.697
+ },
+ "placebo": {
+  "n_drop": 175,
+  "n_sizeable": 6889,
+  "rate_pct": 2.54,
+  "p_ge_observed": 0.069,
+  "p_both_halves_positive": 0.22
+ },
+ "multiplicity": {
+  "k": 25,
+  "p_best_of_25_ge_observed": 0.849
+ }
+}
