@@ -81,6 +81,11 @@ research/_g82_books/
 
 # generated decks: rebuild with research/build_deck.py, never commit the HTML
 research/decks/**/*.html
+# ...but a deck is a homework instrument, not a regenerable artifact -- his
+# answers live in localStorage/.jsonl, but the HTML is what re-serves the same
+# cards and lets us audit what he was shown. B-14, 2026-09-05: 5 built decks
+# were silently swallowed by the rule above, same class of loss as 5.2's T6.
+!research/decks/**/*.html
 
 # --- NEVER IGNORE A HUMAN JUDGEMENT -------------------------------------
 # research/*.jsonl above exists for the tens of thousands of regenerable corpus
