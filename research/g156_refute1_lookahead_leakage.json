@@ -1,0 +1,147 @@
+{
+ "base_commit": "f8740f80",
+ "book": "bt2y_trades_retest_on.json",
+ "sessions": 498,
+ "fill": "signal bar CLOSE entry, stop_rule.stop_fill_price stops, size-gated on omen_metrics._row_is_sizeable, 1R=$1000",
+ "t0_lookahead_audit": {
+  "signal_bar_i": 40,
+  "max_bar_index_read": 40,
+  "reads_past_entry_bar": false
+ },
+ "t1_reproduce": {
+  "baseline_usd_day": 33.93,
+  "arm_usd_day": 47.44,
+  "delta_usd_day": 13.51,
+  "h1": {
+   "baseline": 135.71,
+   "arm": 144.27,
+   "delta": 8.55
+  },
+  "h2": {
+   "baseline": -67.85,
+   "arm": -49.39,
+   "delta": 18.46
+  },
+  "matches_claim": true
+ },
+ "t2_concentration": {
+  "days_changed": 12,
+  "days_total": 498,
+  "pct_days_changed": 2.41,
+  "total_delta_usd": 6729.3,
+  "top1_day_share_pct": 50.1,
+  "top3_day_share_pct": 55.7,
+  "top5_changed_days": [
+   {
+    "day": "2025-11-20",
+    "delta": 3370.37,
+    "base": [
+     "META",
+     "09:43",
+     -1000.0
+    ],
+    "arm": [
+     "IWM",
+     "09:46",
+     2370.37
+    ]
+   },
+   {
+    "day": "2025-06-17",
+    "delta": 1952.62,
+    "base": [
+     "PLTR",
+     "09:44",
+     -1000.0
+    ],
+    "arm": [
+     "AMD",
+     "09:46",
+     952.62
+    ]
+   },
+   {
+    "day": "2025-06-30",
+    "delta": -1573.64,
+    "base": [
+     "GOOGL",
+     "09:44",
+     573.64
+    ],
+    "arm": [
+     "COIN",
+     "10:20",
+     -1000.0
+    ]
+   },
+   {
+    "day": "2024-10-01",
+    "delta": 1094.62,
+    "base": [
+     "IWM",
+     "09:40",
+     -184.78
+    ],
+    "arm": [
+     "BABA",
+     "09:45",
+     909.84
+    ]
+   },
+   {
+    "day": "2026-02-27",
+    "delta": 1070.93,
+    "base": [
+     "IWM",
+     "09:40",
+     8.62
+    ],
+    "arm": [
+     "BABA",
+     "09:47",
+     1079.55
+    ]
+   }
+  ],
+  "delta_usd_day_without_top_day": 6.75,
+  "bootstrap_ci95_usd_day": [
+   -3.34,
+   34.68
+  ],
+  "bootstrap_p_delta_le_0": 0.0595
+ },
+ "t3_placebo_matched_count_random_drop": {
+  "trials": 2000,
+  "p_delta_ge_claim": 0.0695,
+  "p_both_halves_positive": 0.222,
+  "p_h1_positive": 0.4185,
+  "p_h2_positive": 0.5275,
+  "placebo_median_delta": -1.48,
+  "placebo_p95_delta": 15.4
+ },
+ "t4_multiplicity": {
+  "candidates_with_both_deltas_reported": 14,
+  "candidates_total_measured_in_f5": 25,
+  "both_halves_positive": [
+   [
+    "or-break-without-retest",
+    8.56,
+    18.46,
+    false
+   ],
+   [
+    "scratch-exit-direction-match",
+    1.89,
+    0.42,
+    true
+   ],
+   [
+    "stop-placement-routed",
+    9.73,
+    16.27,
+    true
+   ]
+  ],
+  "n_both_halves_positive": 3
+ }
+}
