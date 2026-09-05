@@ -1,0 +1,183 @@
+{
+  "reproduction": "byte-identical to committed g154 json/md",
+  "n_days_total": 498,
+  "baseline": {
+    "overall": {
+      "n": 498,
+      "usd_day": 33.93,
+      "green_months": 13,
+      "months": 25,
+      "max_dd": -21404.68,
+      "total": 16898.72
+    },
+    "H1": {
+      "n": 249,
+      "usd_day": 135.71,
+      "green_months": 9,
+      "months": 12,
+      "max_dd": -13978.64,
+      "total": 33792.93
+    },
+    "H2": {
+      "n": 249,
+      "usd_day": -67.85,
+      "green_months": 4,
+      "months": 13,
+      "max_dd": -21404.68,
+      "total": -16894.21
+    },
+    "precision_pct": 30.5,
+    "precision": "18/59",
+    "recall100": 2
+  },
+  "arm": {
+    "overall": {
+      "n": 498,
+      "usd_day": 35.09,
+      "green_months": 12,
+      "months": 25,
+      "max_dd": -21404.68,
+      "total": 17472.66
+    },
+    "H1": {
+      "n": 249,
+      "usd_day": 137.6,
+      "green_months": 8,
+      "months": 12,
+      "max_dd": -13512.28,
+      "total": 34262.32
+    },
+    "H2": {
+      "n": 249,
+      "usd_day": -67.43,
+      "green_months": 4,
+      "months": 13,
+      "max_dd": -21404.68,
+      "total": -16789.66
+    },
+    "precision_pct": 30.0,
+    "precision": "18/60",
+    "recall100": 2
+  },
+  "days_changed": 5,
+  "changed_detail": [
+    {
+      "day": "2024-12-20",
+      "base": {
+        "sym": "MSFT",
+        "et": "09:36",
+        "pnl": -447.13
+      },
+      "arm": {
+        "sym": "INTC",
+        "et": "09:37",
+        "pnl": 19.23
+      },
+      "delta": 466.36
+    },
+    {
+      "day": "2025-08-13",
+      "base": {
+        "sym": "AMD",
+        "et": "09:49",
+        "pnl": 175.77
+      },
+      "arm": {
+        "sym": "GOOGL",
+        "et": "09:52",
+        "pnl": 480.16
+      },
+      "delta": 304.39
+    },
+    {
+      "day": "2024-09-23",
+      "base": {
+        "sym": "HOOD",
+        "et": "09:37",
+        "pnl": -8.82
+      },
+      "arm": {
+        "sym": "PLTR",
+        "et": "09:43",
+        "pnl": -310.18
+      },
+      "delta": -301.36
+    },
+    {
+      "day": "2025-11-19",
+      "base": {
+        "sym": "NFLX",
+        "et": "09:41",
+        "pnl": 291.56
+      },
+      "arm": {
+        "sym": "QQQ",
+        "et": "09:41",
+        "pnl": 395.65
+      },
+      "delta": 104.09
+    },
+    {
+      "day": "2025-10-16",
+      "base": {
+        "sym": "ACHR",
+        "et": "09:37",
+        "pnl": -283.68
+      },
+      "arm": {
+        "sym": "AMZN",
+        "et": "09:48",
+        "pnl": -283.22
+      },
+      "delta": 0.46
+    }
+  ],
+  "total_pnl_delta": 573.94,
+  "entry_price_audit": {
+    "checked": 8227,
+    "close_eq_entry": 4972,
+    "maxdiff": 0.005,
+    "examples": [
+      {
+        "sym": "GOOGL",
+        "day": "2024-09-03",
+        "entry": 160.13,
+        "bar_close": 160.135,
+        "bar_open": 160.3625
+      },
+      {
+        "sym": "ACHR",
+        "day": "2025-01-22",
+        "entry": 9.96,
+        "bar_close": 9.955,
+        "bar_open": 9.905
+      },
+      {
+        "sym": "HOOD",
+        "day": "2025-02-03",
+        "entry": 50.55,
+        "bar_close": 50.555,
+        "bar_open": 50.46
+      }
+    ]
+  },
+  "largest_single_day_delta": 466.36,
+  "pct_of_delta_from_one_day": 81.3,
+  "placebo": {
+    "n_trials": 400,
+    "n_dropped_each": 229,
+    "pass_usd_both_halves_pct": 21.2,
+    "pass_precision_pct": 51.0,
+    "pass_g154_survivor_test_pct": 61.0,
+    "placebo_usd_day_delta_mean": -1.78,
+    "placebo_usd_day_delta_p95": 15.49,
+    "arm_usd_day_delta": 1.16,
+    "arm_percentile_vs_placebo": 61.3
+  },
+  "paired_delta_usd_day": 1.15,
+  "paired_delta_ci95": [
+    -1.21,
+    3.84
+  ],
+  "ci_straddles_zero": true
+}
