@@ -1,0 +1,773 @@
+{
+ "meta": {
+  "n": 495,
+  "n_h1": 248,
+  "n_h2": 247,
+  "d0": "2024-09-03",
+  "d1": "2026-09-02"
+ },
+ "A_reproduce": [
+  {
+   "n": 495,
+   "passed": false,
+   "fail_reason": "daily_loss_limit",
+   "fail_day": "2024-09-03",
+   "months": 0.0,
+   "net_after_cost": -97,
+   "risk_mean": 372.16,
+   "risk_max": 1612.26,
+   "risk_over_dll_frac": 0.6162,
+   "dll": 250,
+   "name": "TTP 25K MAX day"
+  },
+  {
+   "n": 495,
+   "passed": false,
+   "fail_reason": "daily_loss_limit",
+   "fail_day": "2024-09-10",
+   "months": 0.23,
+   "net_after_cost": -230,
+   "risk_mean": 611.14,
+   "risk_max": 3224.52,
+   "risk_over_dll_frac": 0.4909,
+   "dll": 500,
+   "name": "TTP 50K MAX day"
+  },
+  {
+   "n": 495,
+   "passed": false,
+   "fail_reason": "daily_loss_limit",
+   "fail_day": "2024-09-10",
+   "months": 0.23,
+   "net_after_cost": -435,
+   "risk_mean": 799.71,
+   "risk_max": 6449.04,
+   "risk_over_dll_frac": 0.2545,
+   "dll": 1000,
+   "name": "TTP 100K MAX day"
+  },
+  {
+   "n": 495,
+   "passed": false,
+   "fail_reason": "daily_loss_limit",
+   "fail_day": "2024-10-02",
+   "months": 0.953,
+   "net_after_cost": -1100,
+   "risk_mean": 867.23,
+   "risk_max": 6890.0,
+   "risk_over_dll_frac": 0.0768,
+   "dll": 2000,
+   "name": "TTP 200K MAX day"
+  },
+  {
+   "n": 495,
+   "passed": false,
+   "fail_reason": "trailing_drawdown",
+   "fail_day": "2024-09-13",
+   "months": 0.329,
+   "net_after_cost": -97,
+   "risk_mean": 372.16,
+   "risk_max": 1612.26,
+   "risk_over_dll_frac": 0.2303,
+   "dll": 500,
+   "name": "TTP 25K FLEX day"
+  },
+  {
+   "n": 495,
+   "passed": false,
+   "fail_reason": "trailing_drawdown",
+   "fail_day": "2024-09-13",
+   "months": 0.329,
+   "net_after_cost": -230,
+   "risk_mean": 611.14,
+   "risk_max": 3224.52,
+   "risk_over_dll_frac": 0.1576,
+   "dll": 1000,
+   "name": "TTP 50K FLEX day"
+  },
+  {
+   "n": 495,
+   "passed": false,
+   "fail_reason": "trailing_drawdown",
+   "fail_day": "2024-10-01",
+   "months": 0.92,
+   "net_after_cost": -435,
+   "risk_mean": 799.71,
+   "risk_max": 6449.04,
+   "risk_over_dll_frac": 0.0505,
+   "dll": 2000,
+   "name": "TTP 100K FLEX day"
+  },
+  {
+   "n": 495,
+   "passed": false,
+   "fail_reason": "trailing_drawdown",
+   "fail_day": "2024-10-11",
+   "months": 1.248,
+   "net_after_cost": -1100,
+   "risk_mean": 867.23,
+   "risk_max": 6890.0,
+   "risk_over_dll_frac": 0.0141,
+   "dll": 4000,
+   "name": "TTP 200K FLEX day"
+  }
+ ],
+ "B_null_zero": [
+  {
+   "n": 495,
+   "passed": false,
+   "fail_reason": "profit_target_not_reached",
+   "fail_day": "2026-09-02",
+   "months": 23.951,
+   "net_after_cost": -97,
+   "risk_mean": 372.16,
+   "risk_max": 1612.26,
+   "risk_over_dll_frac": 0.6162,
+   "dll": 250,
+   "name": "TTP 25K MAX day"
+  },
+  {
+   "n": 495,
+   "passed": false,
+   "fail_reason": "profit_target_not_reached",
+   "fail_day": "2026-09-02",
+   "months": 23.951,
+   "net_after_cost": -230,
+   "risk_mean": 611.14,
+   "risk_max": 3224.52,
+   "risk_over_dll_frac": 0.4909,
+   "dll": 500,
+   "name": "TTP 50K MAX day"
+  },
+  {
+   "n": 495,
+   "passed": false,
+   "fail_reason": "profit_target_not_reached",
+   "fail_day": "2026-09-02",
+   "months": 23.951,
+   "net_after_cost": -435,
+   "risk_mean": 799.71,
+   "risk_max": 6449.04,
+   "risk_over_dll_frac": 0.2545,
+   "dll": 1000,
+   "name": "TTP 100K MAX day"
+  },
+  {
+   "n": 495,
+   "passed": false,
+   "fail_reason": "profit_target_not_reached",
+   "fail_day": "2026-09-02",
+   "months": 23.951,
+   "net_after_cost": -1100,
+   "risk_mean": 867.23,
+   "risk_max": 6890.0,
+   "risk_over_dll_frac": 0.0768,
+   "dll": 2000,
+   "name": "TTP 200K MAX day"
+  },
+  {
+   "n": 495,
+   "passed": false,
+   "fail_reason": "profit_target_not_reached",
+   "fail_day": "2026-09-02",
+   "months": 23.951,
+   "net_after_cost": -97,
+   "risk_mean": 372.16,
+   "risk_max": 1612.26,
+   "risk_over_dll_frac": 0.2303,
+   "dll": 500,
+   "name": "TTP 25K FLEX day"
+  },
+  {
+   "n": 495,
+   "passed": false,
+   "fail_reason": "profit_target_not_reached",
+   "fail_day": "2026-09-02",
+   "months": 23.951,
+   "net_after_cost": -230,
+   "risk_mean": 611.14,
+   "risk_max": 3224.52,
+   "risk_over_dll_frac": 0.1576,
+   "dll": 1000,
+   "name": "TTP 50K FLEX day"
+  },
+  {
+   "n": 495,
+   "passed": false,
+   "fail_reason": "profit_target_not_reached",
+   "fail_day": "2026-09-02",
+   "months": 23.951,
+   "net_after_cost": -435,
+   "risk_mean": 799.71,
+   "risk_max": 6449.04,
+   "risk_over_dll_frac": 0.0505,
+   "dll": 2000,
+   "name": "TTP 100K FLEX day"
+  },
+  {
+   "n": 495,
+   "passed": false,
+   "fail_reason": "profit_target_not_reached",
+   "fail_day": "2026-09-02",
+   "months": 23.951,
+   "net_after_cost": -1100,
+   "risk_mean": 867.23,
+   "risk_max": 6890.0,
+   "risk_over_dll_frac": 0.0141,
+   "dll": 4000,
+   "name": "TTP 200K FLEX day"
+  }
+ ],
+ "B_null_zero_personal": {
+  "book_native_1000": {
+   "risk_per_trade": 1000.0,
+   "note": "10% of $10k per trade at max loss -- the book's own native $1,000 unit, AGGRESSIVE: more than most professional risk budgets (typical professional risk is 0.5-2% of account per trade).",
+   "account_size": 10000.0,
+   "n_trades": 495,
+   "total_dollars": 0.0,
+   "final_equity": 10000.0,
+   "max_drawdown_dollars": 0.0,
+   "max_drawdown_pct_of_account": 0.0,
+   "min_equity_ever": 10000.0,
+   "min_equity_day": null,
+   "min_equity_pct_of_account": 100.0,
+   "wiped": false,
+   "wipe_day": null,
+   "order_dependent_caveat": "never wiped in THIS book's own trade order -- profitable early trades built a cushion before the drawdown; a different ordering of the same trades could wipe the account even though the total P&L is identical"
+  },
+  "conservative_1pct": {
+   "risk_per_trade": 100.0,
+   "note": "1% of $10k per trade at max loss -- a conservative sizing for comparison.",
+   "account_size": 10000.0,
+   "n_trades": 495,
+   "total_dollars": 0.0,
+   "final_equity": 10000.0,
+   "max_drawdown_dollars": 0.0,
+   "max_drawdown_pct_of_account": 0.0,
+   "min_equity_ever": 10000.0,
+   "min_equity_day": null,
+   "min_equity_pct_of_account": 100.0,
+   "wiped": false,
+   "wipe_day": null,
+   "order_dependent_caveat": "never wiped in THIS book's own trade order -- profitable early trades built a cushion before the drawdown; a different ordering of the same trades could wipe the account even though the total P&L is identical"
+  }
+ },
+ "C_coinflip_200seeds": {
+  "TTP 25K MAX day": {
+   "daily_loss_limit": 186,
+   "PASS": 9,
+   "trailing_drawdown": 5
+  },
+  "TTP 50K MAX day": {
+   "daily_loss_limit": 182,
+   "trailing_drawdown": 6,
+   "PASS": 12
+  },
+  "TTP 100K MAX day": {
+   "daily_loss_limit": 180,
+   "PASS": 9,
+   "trailing_drawdown": 11
+  },
+  "TTP 200K MAX day": {
+   "daily_loss_limit": 157,
+   "trailing_drawdown": 30,
+   "PASS": 13
+  },
+  "TTP 25K FLEX day": {
+   "daily_loss_limit": 108,
+   "trailing_drawdown": 54,
+   "PASS": 38
+  },
+  "TTP 50K FLEX day": {
+   "daily_loss_limit": 49,
+   "trailing_drawdown": 102,
+   "PASS": 49
+  },
+  "TTP 100K FLEX day": {
+   "trailing_drawdown": 123,
+   "PASS": 59,
+   "daily_loss_limit": 18
+  },
+  "TTP 200K FLEX day": {
+   "trailing_drawdown": 111,
+   "daily_loss_limit": 38,
+   "PASS": 51
+  }
+ },
+ "D_perfect": [
+  {
+   "n": 495,
+   "passed": true,
+   "fail_reason": null,
+   "fail_day": null,
+   "months": 0.099,
+   "net_after_cost": 1562.18,
+   "risk_mean": 372.16,
+   "risk_max": 1612.26,
+   "risk_over_dll_frac": 0.6162,
+   "dll": 250,
+   "name": "TTP 25K MAX day"
+  },
+  {
+   "n": 495,
+   "passed": true,
+   "fail_reason": null,
+   "fail_day": null,
+   "months": 0.197,
+   "net_after_cost": 2823.06,
+   "risk_mean": 611.14,
+   "risk_max": 3224.52,
+   "risk_over_dll_frac": 0.4909,
+   "dll": 500,
+   "name": "TTP 50K MAX day"
+  },
+  {
+   "n": 495,
+   "passed": true,
+   "fail_reason": null,
+   "fail_day": null,
+   "months": 0.23,
+   "net_after_cost": 5818.72,
+   "risk_mean": 799.71,
+   "risk_max": 6449.04,
+   "risk_over_dll_frac": 0.2545,
+   "dll": 1000,
+   "name": "TTP 100K MAX day"
+  },
+  {
+   "n": 495,
+   "passed": true,
+   "fail_reason": null,
+   "fail_day": null,
+   "months": 0.46,
+   "net_after_cost": 10980.0,
+   "risk_mean": 867.23,
+   "risk_max": 6890.0,
+   "risk_over_dll_frac": 0.0768,
+   "dll": 2000,
+   "name": "TTP 200K MAX day"
+  },
+  {
+   "n": 495,
+   "passed": true,
+   "fail_reason": null,
+   "fail_day": null,
+   "months": 0.099,
+   "net_after_cost": 1562.18,
+   "risk_mean": 372.16,
+   "risk_max": 1612.26,
+   "risk_over_dll_frac": 0.2303,
+   "dll": 500,
+   "name": "TTP 25K FLEX day"
+  },
+  {
+   "n": 495,
+   "passed": true,
+   "fail_reason": null,
+   "fail_day": null,
+   "months": 0.197,
+   "net_after_cost": 2823.06,
+   "risk_mean": 611.14,
+   "risk_max": 3224.52,
+   "risk_over_dll_frac": 0.1576,
+   "dll": 1000,
+   "name": "TTP 50K FLEX day"
+  },
+  {
+   "n": 495,
+   "passed": true,
+   "fail_reason": null,
+   "fail_day": null,
+   "months": 0.23,
+   "net_after_cost": 5818.72,
+   "risk_mean": 799.71,
+   "risk_max": 6449.04,
+   "risk_over_dll_frac": 0.0505,
+   "dll": 2000,
+   "name": "TTP 100K FLEX day"
+  },
+  {
+   "n": 495,
+   "passed": true,
+   "fail_reason": null,
+   "fail_day": null,
+   "months": 0.46,
+   "net_after_cost": 10980.0,
+   "risk_mean": 867.23,
+   "risk_max": 6890.0,
+   "risk_over_dll_frac": 0.0141,
+   "dll": 4000,
+   "name": "TTP 200K FLEX day"
+  }
+ ],
+ "E_dll_capped": [
+  {
+   "n": 495,
+   "passed": false,
+   "fail_reason": "trailing_drawdown",
+   "fail_day": "2024-09-13",
+   "months": 0.329,
+   "net_after_cost": -97,
+   "risk_mean": 226.69,
+   "risk_max": 250.0,
+   "risk_over_dll_frac": 0.0,
+   "dll": 250,
+   "name": "TTP 25K MAX day"
+  },
+  {
+   "n": 495,
+   "passed": false,
+   "fail_reason": "trailing_drawdown",
+   "fail_day": "2024-09-13",
+   "months": 0.329,
+   "net_after_cost": -230,
+   "risk_mean": 411.96,
+   "risk_max": 500.0,
+   "risk_over_dll_frac": 0.0,
+   "dll": 500,
+   "name": "TTP 50K MAX day"
+  },
+  {
+   "n": 495,
+   "passed": false,
+   "fail_reason": "trailing_drawdown",
+   "fail_day": "2024-09-16",
+   "months": 0.427,
+   "net_after_cost": -435,
+   "risk_mean": 631.38,
+   "risk_max": 1000.0,
+   "risk_over_dll_frac": 0.0,
+   "dll": 1000,
+   "name": "TTP 100K MAX day"
+  },
+  {
+   "n": 495,
+   "passed": false,
+   "fail_reason": "trailing_drawdown",
+   "fail_day": "2024-10-02",
+   "months": 0.953,
+   "net_after_cost": -1100,
+   "risk_mean": 788.3,
+   "risk_max": 2000.0,
+   "risk_over_dll_frac": 0.0,
+   "dll": 2000,
+   "name": "TTP 200K MAX day"
+  },
+  {
+   "n": 495,
+   "passed": false,
+   "fail_reason": "trailing_drawdown",
+   "fail_day": "2024-09-13",
+   "months": 0.329,
+   "net_after_cost": -97,
+   "risk_mean": 327.67,
+   "risk_max": 500.0,
+   "risk_over_dll_frac": 0.0,
+   "dll": 500,
+   "name": "TTP 25K FLEX day"
+  },
+  {
+   "n": 495,
+   "passed": false,
+   "fail_reason": "trailing_drawdown",
+   "fail_day": "2024-09-13",
+   "months": 0.329,
+   "net_after_cost": -230,
+   "risk_mean": 557.63,
+   "risk_max": 1000.0,
+   "risk_over_dll_frac": 0.0,
+   "dll": 1000,
+   "name": "TTP 50K FLEX day"
+  },
+  {
+   "n": 495,
+   "passed": false,
+   "fail_reason": "trailing_drawdown",
+   "fail_day": "2024-10-01",
+   "months": 0.92,
+   "net_after_cost": -435,
+   "risk_mean": 757.55,
+   "risk_max": 2000.0,
+   "risk_over_dll_frac": 0.0,
+   "dll": 2000,
+   "name": "TTP 100K FLEX day"
+  },
+  {
+   "n": 495,
+   "passed": false,
+   "fail_reason": "trailing_drawdown",
+   "fail_day": "2024-10-11",
+   "months": 1.248,
+   "net_after_cost": -1100,
+   "risk_mean": 854.94,
+   "risk_max": 3997.96,
+   "risk_over_dll_frac": 0.0,
+   "dll": 4000,
+   "name": "TTP 200K FLEX day"
+  }
+ ],
+ "E_dll_capped_H1": [
+  {
+   "n": 248,
+   "passed": false,
+   "fail_reason": "trailing_drawdown",
+   "fail_day": "2024-09-13",
+   "months": 0.329,
+   "net_after_cost": -97,
+   "risk_mean": 226.55,
+   "risk_max": 250.0,
+   "risk_over_dll_frac": 0.0,
+   "dll": 250,
+   "name": "TTP 25K MAX day"
+  },
+  {
+   "n": 248,
+   "passed": false,
+   "fail_reason": "trailing_drawdown",
+   "fail_day": "2024-09-13",
+   "months": 0.329,
+   "net_after_cost": -230,
+   "risk_mean": 407.65,
+   "risk_max": 500.0,
+   "risk_over_dll_frac": 0.0,
+   "dll": 500,
+   "name": "TTP 50K MAX day"
+  },
+  {
+   "n": 248,
+   "passed": false,
+   "fail_reason": "trailing_drawdown",
+   "fail_day": "2024-09-16",
+   "months": 0.427,
+   "net_after_cost": -435,
+   "risk_mean": 583.34,
+   "risk_max": 1000.0,
+   "risk_over_dll_frac": 0.0,
+   "dll": 1000,
+   "name": "TTP 100K MAX day"
+  },
+  {
+   "n": 248,
+   "passed": false,
+   "fail_reason": "trailing_drawdown",
+   "fail_day": "2024-10-02",
+   "months": 0.953,
+   "net_after_cost": -1100,
+   "risk_mean": 707.23,
+   "risk_max": 2000.0,
+   "risk_over_dll_frac": 0.0,
+   "dll": 2000,
+   "name": "TTP 200K MAX day"
+  },
+  {
+   "n": 248,
+   "passed": false,
+   "fail_reason": "trailing_drawdown",
+   "fail_day": "2024-09-13",
+   "months": 0.329,
+   "net_after_cost": -97,
+   "risk_mean": 317.63,
+   "risk_max": 500.0,
+   "risk_over_dll_frac": 0.0,
+   "dll": 500,
+   "name": "TTP 25K FLEX day"
+  },
+  {
+   "n": 248,
+   "passed": false,
+   "fail_reason": "trailing_drawdown",
+   "fail_day": "2024-09-13",
+   "months": 0.329,
+   "net_after_cost": -230,
+   "risk_mean": 525.6,
+   "risk_max": 1000.0,
+   "risk_over_dll_frac": 0.0,
+   "dll": 1000,
+   "name": "TTP 50K FLEX day"
+  },
+  {
+   "n": 248,
+   "passed": false,
+   "fail_reason": "trailing_drawdown",
+   "fail_day": "2024-10-01",
+   "months": 0.92,
+   "net_after_cost": -435,
+   "risk_mean": 678.35,
+   "risk_max": 2000.0,
+   "risk_over_dll_frac": 0.0,
+   "dll": 2000,
+   "name": "TTP 100K FLEX day"
+  },
+  {
+   "n": 248,
+   "passed": false,
+   "fail_reason": "trailing_drawdown",
+   "fail_day": "2024-10-11",
+   "months": 1.248,
+   "net_after_cost": -1100,
+   "risk_mean": 746.2,
+   "risk_max": 3996.72,
+   "risk_over_dll_frac": 0.0,
+   "dll": 4000,
+   "name": "TTP 200K FLEX day"
+  }
+ ],
+ "E_dll_capped_H2": [
+  {
+   "n": 247,
+   "passed": false,
+   "fail_reason": "trailing_drawdown",
+   "fail_day": "2025-10-03",
+   "months": 1.018,
+   "net_after_cost": -97,
+   "risk_mean": 226.83,
+   "risk_max": 250.0,
+   "risk_over_dll_frac": 0.0,
+   "dll": 250,
+   "name": "TTP 25K MAX day"
+  },
+  {
+   "n": 247,
+   "passed": false,
+   "fail_reason": "trailing_drawdown",
+   "fail_day": "2025-10-03",
+   "months": 1.018,
+   "net_after_cost": -230,
+   "risk_mean": 416.29,
+   "risk_max": 500.0,
+   "risk_over_dll_frac": 0.0,
+   "dll": 500,
+   "name": "TTP 50K MAX day"
+  },
+  {
+   "n": 247,
+   "passed": false,
+   "fail_reason": "trailing_drawdown",
+   "fail_day": "2025-10-07",
+   "months": 1.15,
+   "net_after_cost": -435,
+   "risk_mean": 679.62,
+   "risk_max": 1000.0,
+   "risk_over_dll_frac": 0.0,
+   "dll": 1000,
+   "name": "TTP 100K MAX day"
+  },
+  {
+   "n": 247,
+   "passed": false,
+   "fail_reason": "trailing_drawdown",
+   "fail_day": "2025-11-13",
+   "months": 2.366,
+   "net_after_cost": -1100,
+   "risk_mean": 869.7,
+   "risk_max": 1999.98,
+   "risk_over_dll_frac": 0.0,
+   "dll": 2000,
+   "name": "TTP 200K MAX day"
+  },
+  {
+   "n": 247,
+   "passed": false,
+   "fail_reason": "trailing_drawdown",
+   "fail_day": "2025-10-02",
+   "months": 0.986,
+   "net_after_cost": -97,
+   "risk_mean": 337.76,
+   "risk_max": 499.96,
+   "risk_over_dll_frac": 0.0,
+   "dll": 500,
+   "name": "TTP 25K FLEX day"
+  },
+  {
+   "n": 247,
+   "passed": false,
+   "fail_reason": "trailing_drawdown",
+   "fail_day": "2025-10-06",
+   "months": 1.117,
+   "net_after_cost": -230,
+   "risk_mean": 589.8,
+   "risk_max": 999.99,
+   "risk_over_dll_frac": 0.0,
+   "dll": 1000,
+   "name": "TTP 50K FLEX day"
+  },
+  {
+   "n": 247,
+   "passed": false,
+   "fail_reason": "trailing_drawdown",
+   "fail_day": "2025-10-07",
+   "months": 1.15,
+   "net_after_cost": -435,
+   "risk_mean": 837.06,
+   "risk_max": 1999.98,
+   "risk_over_dll_frac": 0.0,
+   "dll": 2000,
+   "name": "TTP 100K FLEX day"
+  },
+  {
+   "n": 247,
+   "passed": false,
+   "fail_reason": "trailing_drawdown",
+   "fail_day": "2025-12-08",
+   "months": 3.187,
+   "net_after_cost": -1100,
+   "risk_mean": 964.13,
+   "risk_max": 3997.96,
+   "risk_over_dll_frac": 0.0,
+   "dll": 4000,
+   "name": "TTP 200K FLEX day"
+  }
+ ],
+ "F_shuffle": {
+  "book_native_1000": {
+   "wiped_of_1000": 377,
+   "dd_median": 19501.0,
+   "dd_p95": 31137.0,
+   "dd_shipped": 21577.0
+  },
+  "conservative_1pct": {
+   "wiped_of_1000": 0,
+   "dd_median": 1950.1,
+   "dd_p95": 3113.7,
+   "dd_shipped": 2157.7
+  }
+ },
+ "G_equity_aware": {
+  "full/flat_1000_equity_capped": {
+   "final": 27601.0,
+   "total": 17601.0,
+   "maxDD": 21577.0,
+   "wiped": false
+  },
+  "full/fixed_10pct_of_equity": {
+   "final": 4159.49,
+   "total": -5840.51,
+   "maxDD": 84495.91,
+   "wiped": false
+  },
+  "H1/flat_1000_equity_capped": {
+   "final": 44793.0,
+   "total": 34793.0,
+   "maxDD": 13980.0,
+   "wiped": false
+  },
+  "H1/fixed_10pct_of_equity": {
+   "final": 66549.55,
+   "total": 56549.55,
+   "maxDD": 31487.53,
+   "wiped": false
+  },
+  "H2/flat_1000_equity_capped": {
+   "final": 0.0,
+   "total": -10000.0,
+   "maxDD": 13220.0,
+   "wiped": true
+  },
+  "H2/fixed_10pct_of_equity": {
+   "final": 625.02,
+   "total": -9374.98,
+   "maxDD": 12696.69,
+   "wiped": false
+  }
+ }
+}
