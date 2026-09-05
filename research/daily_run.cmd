@@ -73,5 +73,17 @@ REM can be a search instead of a re-ask (research/omen_recall.py).
 echo --- omen recall rebuild --- >> "%LOG%"
 python research\omen_recall.py --rebuild >> "%LOG%" 2>&1
 
+REM V3 (2026-09-05): replaces the bare "precision 18/59" line (CLAUDE.md's
+REM Precision footnote) with the full report -- numerator/denominator,
+REM Wilson intervals, both units, every breakdown. Log-only, non-fatal:
+REM this is a measurement, not a gate.
+echo --- precision report (research/g215_precision.py) --- >> "%LOG%"
+python research\g215_precision.py >> "%LOG%" 2>&1
+if errorlevel 1 (
+  echo PRECISION REPORT: FAILED TO BUILD, see above >> "%LOG%"
+) else (
+  echo PRECISION REPORT: research\g215_precision.md >> "%LOG%"
+)
+
 type "%LOG%"
 endlocal

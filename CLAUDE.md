@@ -41,13 +41,24 @@ day he refused **62 times out of every 100** it trades (precision 39.5%). That g
 
 `research/g86_honest_ceiling.py` prints the table. Run it rather than quoting it.
 
-**Precision footnote (2026-09-05).** The 39.5% above is candidate-level precision — fired
-signals ÷ graded signals across the whole fired pool — and the spec's `>39.5%` target was
-never testable as written against a classifier that fires 1–3 times a day, because that
-classifier is scored on a different unit: **graded-day precision on the one-trade-a-day
-pick** (fired days he graded S ÷ fired days he graded), whose measured baseline is **30.5%
-(18/59)** (`research/g156_s_classifier_v0.md`). **Lane precision is the pick-level number —
-the bar is materially above 30.5% on the pick** — until Austin restates it. The 39.5%
+**Precision footnote (2026-09-05, full stats in `research/g215_precision.md`).** Austin,
+2026-09-05: *"precision 18/59 does not have all the stats."* The 39.5% above is
+candidate-level precision — fired signals ÷ graded signals across the whole fired pool —
+and the spec's `>39.5%` target was never testable as written against a classifier that
+fires 1–3 times a day, because that classifier is scored on a different unit:
+**graded-day precision on the one-trade-a-day pick** (fired days he graded S ÷ fired days
+he graded), whose measured baseline is **30.5% (18/59, 95% Wilson interval 20.3–43.1)**
+(`research/g215_precision.py`, superseding the bare fraction first reported in
+`research/g156_s_classifier_v0.md`). Widened to every symbol-day the engine actually
+fired on rather than collapsing to the day's one pick, precision reads **28.5% (169/592,
+25.1–32.3)** and recall — did the engine fire on the S day at all, any symbol — reads
+**48.7% (169/347 bar-backed S days)**; the one-trade-a-day pick's own recall is a
+structurally low **5.2% (18/347)**, since one trade a day can only ever land on one
+symbol. Per-symbol, per-setup, per-engine-grade and per-his-grade tables, and the count
+of 72 contested symbol-days (graded twice with disagreeing grades), are in the full
+report — run `python research/g215_precision.py` to regenerate it; it also runs nightly
+in `research/daily_run.cmd`. **Lane precision is the pick-level number — the bar is
+materially above 30.5% on the pick** — until Austin restates it. The 39.5%
 candidate-level figure stays in this file as the secondary read, not the gate.
 
 ## Why every dollar figure before 2026-08-30 was wrong

@@ -449,14 +449,24 @@ def sblind_collect(day: str, symbols, per_signal: bool = False) -> tuple:
     """(cards, stats). Kind 3: fire-bar cut, matched silent cards, engine held out.
 
     ``per_signal`` = one card per S bar instead of one per symbol (see `s_bars`).
+    Default (``per_signal=False``): one card per symbol-day, CLAUDE.md's rule.
+    On 2026-09-03 the per-signal path dealt AMD five times, AMZN four, META
+    three -- Austin: "so many repeats", four of his answers literally say
+    "same trade" (H1, OMEN 10.0). A symbol with several S bars in one session
+    still gets exactly one card; its tape runs through the LAST S bar so every
+    one of them is on screen, and each gets a plain cut line (see
+    ``sblind_card_html``).
     """
-    marked = deck.marked_card_ids()
+    seen = deck.marked_card_ids() | deck.served_card_ids()
     scan, repeats, nobars = {}, [], []
     for sym in symbols:
-        if "%s_%s" % (sym, day) in marked:
+        if "%s_%s" % (sym, day) in seen:
             # THE NO-REPEAT GUARANTEE (CLAUDE.md). A symbol-day he has already
-            # judged -- in ANY corpus, `grade: "none"` included -- never comes
-            # back. His felt sense of a repeat has beaten this code three times.
+            # judged OR ever been SERVED -- shown on any deck, graded or not,
+            # per `build_deck.served_card_ids()` -- never comes back. His felt
+            # sense of a repeat has beaten this code three times; a card he
+            # only looked at and never graded was the fourth way it slipped
+            # through (H1, OMEN 10.0).
             repeats.append("%s_%s" % (sym, day))
             continue
         bars, levels, trades = day_signals(sym, day, cut=BLIND_END)
