@@ -1,0 +1,261 @@
+{
+ "book": "bt2y_trades_retest_on.json",
+ "sessions": 498,
+ "split_day": "2025-09-01",
+ "cands_per_day": 16.52,
+ "lag_prevalence_pct_le": {
+  "0": 2.1,
+  "1": 7.9,
+  "2": 15.1,
+  "3": 23.3
+ },
+ "baseline": {
+  "label": "baseline (first_of_day_arm, size-gated)",
+  "full": {
+   "trades": 498,
+   "per_day": 33.93,
+   "mean_r": 0.034,
+   "win_pct": 46.5,
+   "months_green": 13,
+   "months": 25,
+   "max_dd": 21404.68,
+   "total_dollars": 16898.72
+  },
+  "H1": {
+   "trades": 249,
+   "per_day": 135.71,
+   "mean_r": 0.136,
+   "win_pct": 49.6,
+   "months_green": 9,
+   "months": 12,
+   "max_dd": 13978.64,
+   "total_dollars": 33792.93
+  },
+  "H2": {
+   "trades": 249,
+   "per_day": -67.85,
+   "mean_r": -0.068,
+   "win_pct": 43.4,
+   "months_green": 4,
+   "months": 13,
+   "max_dd": 21404.68,
+   "total_dollars": -16894.21
+  },
+  "fires_per_day": 1.0,
+  "recall_100": {
+   "hit": 2,
+   "n": 34,
+   "pct": 5.9
+  },
+  "recall_bar_backed": {
+   "hit": 18,
+   "n": 345,
+   "pct": 5.2
+  },
+  "precision": {
+   "graded_s": 18,
+   "graded_any": 59,
+   "pct": 30.5
+  }
+ },
+ "arms": {
+  "0": {
+   "label": "KEEP lag_bars<=0",
+   "full": {
+    "trades": 99,
+    "per_day": -35.98,
+    "mean_r": -0.181,
+    "win_pct": 44.4,
+    "months_green": 9,
+    "months": 25,
+    "max_dd": 19548.74,
+    "total_dollars": -17916.68
+   },
+   "H1": {
+    "trades": 34,
+    "per_day": -44.77,
+    "mean_r": -0.328,
+    "win_pct": 44.1,
+    "months_green": 3,
+    "months": 12,
+    "max_dd": 12017.21,
+    "total_dollars": -11148.68
+   },
+   "H2": {
+    "trades": 65,
+    "per_day": -27.18,
+    "mean_r": -0.104,
+    "win_pct": 44.6,
+    "months_green": 6,
+    "months": 13,
+    "max_dd": 11499.62,
+    "total_dollars": -6768.0
+   },
+   "fires_per_day": 0.199,
+   "recall_100": {
+    "hit": 1,
+    "n": 34,
+    "pct": 2.9
+   },
+   "recall_bar_backed": {
+    "hit": 9,
+    "n": 345,
+    "pct": 2.6
+   },
+   "precision": {
+    "graded_s": 9,
+    "graded_any": 15,
+    "pct": 60.0
+   }
+  },
+  "1": {
+   "label": "KEEP lag_bars<=1",
+   "full": {
+    "trades": 303,
+    "per_day": -30.35,
+    "mean_r": -0.05,
+    "win_pct": 45.9,
+    "months_green": 9,
+    "months": 25,
+    "max_dd": 15931.06,
+    "total_dollars": -15114.36
+   },
+   "H1": {
+    "trades": 131,
+    "per_day": -21.1,
+    "mean_r": -0.04,
+    "win_pct": 48.9,
+    "months_green": 4,
+    "months": 12,
+    "max_dd": 12680.84,
+    "total_dollars": -5254.89
+   },
+   "H2": {
+    "trades": 172,
+    "per_day": -39.6,
+    "mean_r": -0.057,
+    "win_pct": 43.6,
+    "months_green": 5,
+    "months": 13,
+    "max_dd": 11495.44,
+    "total_dollars": -9859.47
+   },
+   "fires_per_day": 0.608,
+   "recall_100": {
+    "hit": 1,
+    "n": 34,
+    "pct": 2.9
+   },
+   "recall_bar_backed": {
+    "hit": 17,
+    "n": 345,
+    "pct": 4.9
+   },
+   "precision": {
+    "graded_s": 17,
+    "graded_any": 39,
+    "pct": 43.6
+   }
+  },
+  "2": {
+   "label": "KEEP lag_bars<=2",
+   "full": {
+    "trades": 407,
+    "per_day": -38.59,
+    "mean_r": -0.047,
+    "win_pct": 46.1,
+    "months_green": 10,
+    "months": 25,
+    "max_dd": 22492.69,
+    "total_dollars": -19219.91
+   },
+   "H1": {
+    "trades": 189,
+    "per_day": -9.62,
+    "mean_r": -0.013,
+    "win_pct": 48.4,
+    "months_green": 5,
+    "months": 12,
+    "max_dd": 14406.41,
+    "total_dollars": -2396.41
+   },
+   "H2": {
+    "trades": 218,
+    "per_day": -67.56,
+    "mean_r": -0.077,
+    "win_pct": 44.0,
+    "months_green": 5,
+    "months": 13,
+    "max_dd": 22492.69,
+    "total_dollars": -16823.5
+   },
+   "fires_per_day": 0.817,
+   "recall_100": {
+    "hit": 2,
+    "n": 34,
+    "pct": 5.9
+   },
+   "recall_bar_backed": {
+    "hit": 26,
+    "n": 345,
+    "pct": 7.5
+   },
+   "precision": {
+    "graded_s": 26,
+    "graded_any": 56,
+    "pct": 46.4
+   }
+  },
+  "3": {
+   "label": "KEEP lag_bars<=3",
+   "full": {
+    "trades": 463,
+    "per_day": -51.29,
+    "mean_r": -0.055,
+    "win_pct": 45.0,
+    "months_green": 8,
+    "months": 25,
+    "max_dd": 27079.75,
+    "total_dollars": -25544.09
+   },
+   "H1": {
+    "trades": 226,
+    "per_day": -29.76,
+    "mean_r": -0.033,
+    "win_pct": 45.3,
+    "months_green": 5,
+    "months": 12,
+    "max_dd": 11981.38,
+    "total_dollars": -7410.22
+   },
+   "H2": {
+    "trades": 237,
+    "per_day": -72.83,
+    "mean_r": -0.077,
+    "win_pct": 44.7,
+    "months_green": 3,
+    "months": 13,
+    "max_dd": 21486.1,
+    "total_dollars": -18133.87
+   },
+   "fires_per_day": 0.93,
+   "recall_100": {
+    "hit": 3,
+    "n": 34,
+    "pct": 8.8
+   },
+   "recall_bar_backed": {
+    "hit": 27,
+    "n": 345,
+    "pct": 7.8
+   },
+   "precision": {
+    "graded_s": 27,
+    "graded_any": 60,
+    "pct": 45.0
+   }
+  }
+ },
+ "chosen_L": 2,
+ "survivor": true
+}
