@@ -27,6 +27,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import datetime as dt
 import sys
 from pathlib import Path
 
@@ -57,11 +58,21 @@ def last_minute(path: Path) -> str:
     return ""
 
 
-def _frame(symbol: str, period: str):
-    """yfinance 1-minute frame including premarket, columns flattened."""
+def _frame(symbol: str, period: str = None, start: str = None, end: str = None):
+    """yfinance 1-minute frame including premarket, columns flattened.
+
+    Either `period` (relative lookback, e.g. "5d") or an explicit `start`/`end`
+    (YYYY-MM-DD, end exclusive) selects the window -- the explicit form is the
+    retry path for a day yfinance under-delivered on the first, period-based
+    pass (2026-09-04 came back with 90 of ~390 RTH bars).
+    """
     import yfinance as yf
-    df = yf.download(symbol, period=period, interval="1m", prepost=True,
-                     progress=False, auto_adjust=False, threads=False)
+    kw = dict(interval="1m", prepost=True, progress=False, auto_adjust=False,
+               threads=False)
+    if start or end:
+        df = yf.download(symbol, start=start, end=end, **kw)
+    else:
+        df = yf.download(symbol, period=period or "5d", **kw)
     if df is None or df.empty:
         return None
     if hasattr(df.columns, "nlevels") and df.columns.nlevels > 1:
@@ -126,11 +137,12 @@ def write_day(symbol: str, day_iso: str, df, force: bool = False,
     return n
 
 
-def fill(symbols, period="5d", day=None, force=False, until=None) -> dict:
+def fill(symbols, period="5d", day=None, force=False, until=None,
+         start=None, end=None) -> dict:
     got = {}
     for i, sym in enumerate(symbols, 1):
         try:
-            df = _frame(sym, period)
+            df = _frame(sym, period, start=start, end=end)
         except Exception as e:
             print(f"  [{sym}] fetch failed: {type(e).__name__}: {e}")
             continue
@@ -146,6 +158,35 @@ def fill(symbols, period="5d", day=None, force=False, until=None) -> dict:
         if i % 10 == 0:
             print(f"  ... {i}/{len(symbols)}")
     return got
+
+
+def rth_bar_count(symbol: str, day_iso: str) -> int:
+    """RTH bar count for one archived symbol-day, 0 if unreadable/absent."""
+    import polygon_feed as pf
+    try:
+        return len(pf.rth(pf.fetch_day(symbol, day_iso)))
+    except Exception:
+        return 0
+
+
+def ensure_day_complete(day_iso: str, syms, min_bars: int = 300) -> int:
+    """Retry `day_iso` once with an explicit start/end window if short.
+
+    Returns the RTH bar count of the canary symbol (TSLA if present, else the
+    first symbol) after the retry. Callers print a PARTIAL line themselves --
+    this only fetches, it never raises. The 16:15 pass must finish the day's
+    deck even on a day yfinance can only partly deliver.
+    """
+    canary = "TSLA" if "TSLA" in syms else syms[0]
+    n = rth_bar_count(canary, day_iso)
+    if n >= min_bars:
+        return n
+    print(f"  [{canary}] {day_iso}: only {n} RTH bars on the period-based pass "
+          f"-- retrying with explicit start/end")
+    start = day_iso
+    end = (dt.date.fromisoformat(day_iso) + dt.timedelta(days=1)).isoformat()
+    fill(syms, day=day_iso, force=True, start=start, end=end)
+    return rth_bar_count(canary, day_iso)
 
 
 def demo():
@@ -206,6 +247,18 @@ def main():
     if a.until:
         print(f"demo skipped -- --until {a.until} writes a partial session "
               f"by design")
+    elif a.day:
+        # 09-04: the period-based pass came back with 90 of ~390 RTH bars and
+        # demo()'s hard assert killed the whole 16:15 run. Retry once with an
+        # explicit start/end window; if still short, log PARTIAL and exit 0 --
+        # daily_homework.py builds the deck from whatever is on disk rather
+        # than the pass dying before a deck exists at all.
+        n = ensure_day_complete(a.day, syms)
+        if n < 300:
+            print(f"PARTIAL {n} bars -- {a.day} still short after retry, "
+                  f"keeping archive as-is")
+        else:
+            print(f"{a.day}: {n} RTH bars (canary) -- full archive")
     else:
         demo()
 
