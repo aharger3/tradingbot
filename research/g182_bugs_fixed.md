@@ -115,3 +115,67 @@ gates' semantics, which is Austin's call, not a bug fix.
   deferred, see above.
 - `python research/regression_gate.py` and
   `python research/test_runner_stop.py`: both pass, unaffected.
+
+---
+
+# g182 — B3 (bug B-02): the r3 report's stale, retired third mapping
+
+What is different now: `research/r3_downgrade_grader_ab.py`'s generated report text no longer
+claims a THIRD, retired ladder mapping for `signal_runner.DOWNGRADE_TIER` (`` `S -> A+` ``); the
+two real ladders (`SAC_TIER`, `DOWNGRADE_TIER`) are untouched. This bug's headline symptom is the
+same design conflict B-01 above already found and left deferred (`SAC_TIER['A']` vs
+`DOWNGRADE_TIER['A']`) — this entry does not re-litigate that; it fixes the one genuinely stale,
+zero-risk piece B-01 did not touch, and confirms the collapse itself is still correctly refused.
+
+## Confirmed and fixed: stale third mapping in r3 prose
+
+Failing input (before, confirmed by grep before editing):
+`research/r3_downgrade_grader_ab.py` stated in its report body that
+`signal_runner.DOWNGRADE_TIER` is `` `S -> A+`, `A -> B`, `C -> C` `` and that `_grade_pa` "can
+only ever emit `A+/B/C/X`". Both describe the pre-2026-08-30 alphabet. `signal_runner.py`'s own
+dated comment (line ~784) records A+ retired 2026-08-30; the real, current `DOWNGRADE_TIER` is
+`{"S": "A", "A": "B", "C": "C"}` and `_grade_pa`'s alphabet is `A/B/C/X`. This stale prose is
+exactly the "third version (S -> A+) that no longer exists" the ticket named.
+
+Fix: updated the two prose lines in `research/r3_downgrade_grader_ab.py` (docstring line ~17,
+report body lines ~462-466) to state the real mapping and alphabet, with the retirement date
+noted inline. Zero behaviour change — the file only builds a Markdown report string; it is not
+imported by any engine or backtest path.
+
+Test: `research/test_g182_b02_ladder_prose.py` (new) — asserts the stale substrings (`"S -> A+"`,
+`"A+/B/C"`) are gone and the prose states the real `DOWNGRADE_TIER` mapping verbatim. Verified
+failing before this edit by inspection (`grep -n "A+/B/C\|S -> A+" research/r3_downgrade_grader_ab.py`
+matched three lines pre-edit), passing after.
+
+Verify gate: `python research/regression_gate.py && python research/test_runner_stop.py` — both
+exit 0 (no engine module touched).
+
+## Reconfirmed deferred: do not collapse `SAC_TIER` and `DOWNGRADE_TIER`
+
+Reproduces exactly as the ticket states:
+
+```
+python -c "import signal_runner as sr; print(sr.SAC_TIER['A'], sr.DOWNGRADE_TIER['A'])"
+A B
+```
+
+B-01 above already priced both directions of "fixing" this (giving `SAC_TIER` a `DOWNGRADE_TIER`-
+shaped mapping un-kills `B`, contradicting `test_sac_ladder.py`'s no-`B` assertion; giving `S` a
+synthetic top letter silently stops three live gates from applying to S-graded signals under
+`ENABLE_SAC_LADDER=1`) and left it unshipped. Independently re-checked here from the
+`DOWNGRADE_TIER` side: `_grade_trade`'s neutral-hour cap (`if htf_bias == "neutral" and base ==
+TradeGrade.A: return TradeGrade.B`, signal_runner.py ~2608) only fires because
+`DOWNGRADE_TIER["A"]` is NOT `"A"` — collapsing the two ladders would silently disable that cap
+too. Both flags (`ENABLE_SAC_LADDER`, `ENABLE_DOWNGRADE_GRADER`) ship `False` by default and
+neither is flipped by this ticket, so today's live signal counts and trade behaviour are
+unaffected — but a unification would change what either flag does the moment it is turned on,
+which this row says not to ship. No change made to `signal_runner.py`.
+
+## Status: partial
+
+- `research/r3_downgrade_grader_ab.py` stale prose: fixed, `research/test_g182_b02_ladder_prose.py`
+  passes.
+- Ladder collapse (`SAC_TIER` vs `DOWNGRADE_TIER`): reconfirmed deferred, same conclusion as B-01,
+  not shipped.
+- `python research/regression_gate.py` and `python research/test_runner_stop.py`: both pass,
+  unaffected.

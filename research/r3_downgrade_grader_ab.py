@@ -14,7 +14,7 @@ This ticket wires it in behind `signal_runner.ENABLE_DOWNGRADE_GRADER`
 
     OFF (default, == HEAD)   base grade from `_grade_pa` -- candle shape
     ON                       base grade from `downgrade.score()` -- S/A/C, mapped
-                             through `signal_runner.DOWNGRADE_TIER` onto A+/B/C
+                             through `signal_runner.DOWNGRADE_TIER` onto A/B/C
 
 Only the BASE moves. The veto and the neutral cap `grade_trade` wraps around
 `_grade_pa` are reapplied identically in both arms, so this is a swap of the
@@ -459,11 +459,12 @@ def build_md(t1, gate, st) -> str:
              "cap, the fill, the stop, the R denominator |")
     L.append("")
     L.append("**His ladder onto the engine's, stated out loud.** "
-             "`signal_runner.DOWNGRADE_TIER` is `S -> A+`, `A -> B`, `C -> C` -- the "
+             "`signal_runner.DOWNGRADE_TIER` is `S -> A`, `A -> B`, `C -> C` -- the "
              "exact inverse of the mapping `research/t70_test1_score.py` already "
              "declares in the other direction, so a grade round-trips and the A/B and "
              "the held-out scorer count the same thing. His `A` maps onto the engine's "
-             "`B` and not its `A` because `_grade_pa` can only ever emit `A+/B/C/X`: "
+             "`B` and not its `A` because `_grade_pa` can only ever emit `A/B/C/X` "
+             "(A+ retired 2026-08-30): "
              "the ON arm emits from the SAME alphabet as the OFF arm, so no downstream "
              "`grade.value in (\"A+\", \"A\")` cap sees a tier the shipped grader never "
              "makes. `research/test_downgrade_grader.py` asserts the round trip.")
