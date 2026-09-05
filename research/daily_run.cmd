@@ -41,5 +41,17 @@ if errorlevel 1 (
 ) else (
   echo REGRESSION GATE: PASS >> "%LOG%"
 )
+
+REM B3 B-08 (2026-09-05): the verify gate ran only regression_gate.py here,
+REM so a private ticker list (research/g83_*.py INDEX_POOL/INDEX_SYMS) could
+REM appear and nothing caught it -- test_universe_single_source.py existed
+REM but was never wired into either gate. Now run alongside regression_gate.
+echo --- universe single-source gate --- >> "%LOG%"
+python research\test_universe_single_source.py >> "%LOG%" 2>&1
+if errorlevel 1 (
+  echo UNIVERSE SINGLE-SOURCE: FAIL -- a module defined a private symbol list, see above >> "%LOG%"
+) else (
+  echo UNIVERSE SINGLE-SOURCE: PASS >> "%LOG%"
+)
 type "%LOG%"
 endlocal

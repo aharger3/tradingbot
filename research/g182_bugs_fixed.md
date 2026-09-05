@@ -496,3 +496,64 @@ change, not a display-only fix like B-06's twin.
   the fix.
 - `python research/regression_gate.py` and `python research/test_runner_stop.py`: both pass on
   the unmodified, shipped `signal_runner.py` — no engine behaviour moved by this entry.
+
+---
+
+# g182 — B3 (bug B-08): the verify gate runs 2 of 59 tracked tests
+
+What is different now: `test_universe_single_source.py` now passes and is wired into
+both gates (`CLAUDE.md`'s `verify:` line and `research/daily_run.cmd`). Root cause was
+three private ticker-list literals duplicating `universe.INDEX_POOL`
+(`["QQQ","SPY","IWM"]`) instead of importing it — `research/g83_futures_arm.py:68
+INDEX_POOL`, `research/g83_sizing.py:91 INDEX_SYMS`, `research/g83_verify_2.py:43
+INDEX_POOL` — exactly the drift class this test exists to catch, and exactly the
+evidence the bug ticket named.
+
+## Fixed
+
+All three now `from universe import INDEX_POOL` (`g83_sizing.py` aliases it `as
+INDEX_SYMS` so its call sites are untouched; `g83_verify_2.py` gained `sys.path.insert(0,
+str(ROOT))` since it had none before). The values were already identical to
+`universe.INDEX_POOL` (list order matched in `g83_futures_arm.py`, set membership
+matched in the other two), so this is a pure source-of-truth fix with no behaviour
+change: confirmed by an import smoke test on all three files (no module-level code runs
+beyond imports — each guards its work behind `if __name__ == "__main__"`).
+
+Verified: `python research/test_universe_single_source.py` -> rc=0 (was rc=1, "3 private
+symbol list(s)"). `python research/regression_gate.py` and `python
+research/test_runner_stop.py` both still rc=0 — untouched by this change.
+
+Added `python research/test_universe_single_source.py` to `CLAUDE.md`'s `verify:` line
+and a new "universe single-source gate" section to `research/daily_run.cmd` (runs
+alongside `regression_gate.py`, non-fatal to the deck build, same pattern) so this
+specific drift class cannot reappear silently.
+
+## Deferred: the other 13 red test files — changes behaviour, not shipped
+
+The bug ticket lists 14 red test files and says the gate should run them all. This entry
+fixes and gates the one test whose failure was itself named as B-08's evidence and whose
+fix is a pure import swap. The other 13
+(`test_austin_tier.py`, `test_rule_710.py`, `test_detect_wide.py`,
+`research/test_downgrade_grader.py`, `research/test_sac_ladder.py`,
+`research/test_entry_scratch.py`, `research/test_onwatch_fill.py`,
+`research/test_paper_trader_stop.py`, `research/test_published_numbers.py`,
+`research/test_rule84_source.py`, `research/test_structural_floor.py`,
+`research/test_master_homework_page.py`, `research/test_omen_test1_page.py`) each fail on
+a distinct behavioural claim (a stop-fill floor, a flag's OFF-arm byte-identity, an
+FVG/FLAG routing branch, a ladder round-trip, a silent-day fixture, two browser-driven
+page tests) rather than sharing B-08's root cause. Several look like they still assert a
+retired `-1.25R` floor CLAUDE.md already says the shipped path does not have; others may
+be real, unfixed bugs. Deciding "shipped vs. retired" for each is exactly the judgement
+call this row's own fix sketch asks to make one at a time, and several of those calls
+change what the live engine asserts (stop floor, retest default, FVG/FLAG routing) —
+outside B-08's scope and risking the "changes behaviour beyond the bug itself" case this
+batch is told to defer. They stay red and un-gated pending their own root-cause
+diagnosis; naming them here means "14 red tests, gate runs 2" is not silently called
+closed at "13 red tests, gate runs 3".
+
+## Status: partial
+
+- `research/test_universe_single_source.py`: fixed, rc=0, now gated.
+- The other 13 named test files: still red, still ungated — deferred, see above.
+- `python research/regression_gate.py` and `python research/test_runner_stop.py`: both
+  pass, unaffected.

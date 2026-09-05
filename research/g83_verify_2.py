@@ -29,9 +29,13 @@ from __future__ import annotations
 import csv
 import json
 import math
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ROOT))
+from universe import INDEX_POOL  # noqa: E402
+
 BOOK = ROOT / "research" / "bt2y_trades.json"
 ARCHIVE = ROOT / "data_archive"
 CLAIM = ROOT / "research" / "g83_futures_arm.json"
@@ -40,7 +44,7 @@ SESSIONS = 500
 RISK_DOLLARS = 1000.0
 FLOOR_R = 1.25
 DAILY_BAR = 397.0
-INDEX_POOL = {"SPY", "QQQ", "IWM"}
+INDEX_POOL = set(INDEX_POOL)
 
 FUT = {
     "SPY": ("MES", 5.0, 0.25, 1.25, 10.0),

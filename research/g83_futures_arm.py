@@ -51,6 +51,7 @@ sys.path.insert(0, str(ROOT / "research"))
 
 import black_scholes as bs                                       # noqa: E402
 from sizing import dollars_futures                                # noqa: E402
+from universe import INDEX_POOL                                   # noqa: E402
 from g80_options_honest import (                                  # noqa: E402
     bars, prior_session_range, entry_for, simulate, price_contract,
     drawdown, IV_MULT, RISK,
@@ -64,8 +65,6 @@ MONTHLY_BAR = 397.0 * 252.0 / 12.0    # $397/day * 252 sessions/yr / 12 -> $8,33
 DAILY_BAR = 397.0       # Austin, 2026-08-30: $100,000 / 252 = $397/day
 SEED = 20260830
 BOOTS = 10000
-
-INDEX_POOL = ["QQQ", "SPY", "IWM"]   # universe.py -- the only symbol list
 
 # ---------------------------------------------------------------------------
 # CONTRACT SPECS -- sourced 2026-08-30, dated below. CME's own contract-spec

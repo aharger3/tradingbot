@@ -73,6 +73,7 @@ sys.path.insert(0, str(ROOT))
 
 from research import g80_options_honest as oh     # noqa: E402
 from research import g71_propfirm_sim as pf       # noqa: E402
+from universe import INDEX_POOL as INDEX_SYMS     # noqa: E402
 
 BOOK = ROOT / "research" / "bt2y_trades.json"
 SERIES_OUT = ROOT / "research" / "g83_series.json"
@@ -88,8 +89,6 @@ BOOTS = 20000
 
 # index futures translate only for the index ETFs; NVDA and TSLA have no future.
 # MES/MNQ/M2K against SPY/QQQ/IWM (research/g71_propfirm.md section 2).
-INDEX_SYMS = {"SPY", "QQQ", "IWM"}
-
 # spread, a PARAMETER not a measurement: nobody in this repo has read a real
 # bid/ask on a same-day contract on these names. g80_options_honest.md calls
 # this "the single number most likely to flip the answer". A nickel round trip
