@@ -11,6 +11,19 @@ otherwise: entry = **signal bar CLOSE**, stops via `stop_rule.stop_fill_price()`
 (RETEST_REQUIRED=1, 498 sessions 2024-09-03 → 2026-09-02), one-trade-a-day unit
 `research/omen_metrics.first_of_day_arm`. **H1** = before 2025-09-01, **H2** = 2025-09-01 onward.
 
+
+> **Update 05:10 ET, after the swarm finished.** Sections 2 and 6 are stale on two points.
+> Austin pasted fresh Alpaca paper keys and a fresh Tastytrade OAuth grant at 01:45.
+> **Alpaca paper: working** -- `broker/test_alpaca_paper.py` placed, read back and cancelled a
+> paper order (keys in `.env`, the keys vault, and the desktop settings env). **Tastytrade:
+> working** -- the header bug (`Token` vs `Bearer`) was fixed in `f720ad9e`;
+> `validate_credentials()` returns True with both accounts and daily levels answer, so the
+> higher-timeframe bias is back on the live path. Human tasks 1 and 2 in section 6 are DONE;
+> only the Vanquish support email remains. A second wave (referee F9, wire the Alpaca paper
+> submit, the core-10 slice, Polygon probe, the 14 failing tests, the vault corrections, and a
+> vision eye-test of the 100-card deck) is running until about 08:30 ET and rewrites this file
+> as v2 when it lands.
+
 ---
 
 ## 1. THE ANSWER — is there an S classifier?
