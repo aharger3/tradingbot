@@ -1,0 +1,261 @@
+{
+  "A_construct": {
+    "picks_with_target": 498,
+    "target_is_exactly_2R": 334,
+    "target_is_exactly_2R_pct": 67.1,
+    "picks_with_level_px": 498,
+    "target_equals_level_px": 0,
+    "target_equals_level_px_pct": 0.0,
+    "median_target_R": 2.0
+  },
+  "B_paired_significance": {
+    "full": {
+      "n": 498,
+      "mean_dR": 0.0429,
+      "usd_day": 42.95,
+      "ci95_R": [
+        0.0052,
+        0.0862
+      ],
+      "ci95_usd_day": [
+        5.2,
+        86.2
+      ],
+      "p_boot_le_0": 0.013
+    },
+    "h1": {
+      "n": 249,
+      "mean_dR": 0.0094,
+      "usd_day": 9.4,
+      "ci95_R": [
+        -0.0354,
+        0.064
+      ],
+      "ci95_usd_day": [
+        -35.4,
+        64.0
+      ],
+      "p_boot_le_0": 0.3794
+    },
+    "h2": {
+      "n": 249,
+      "mean_dR": 0.0765,
+      "usd_day": 76.49,
+      "ci95_R": [
+        0.0171,
+        0.1438
+      ],
+      "ci95_usd_day": [
+        17.1,
+        143.8
+      ],
+      "p_boot_le_0": 0.004
+    }
+  },
+  "C_intrabar": {
+    "converted_to_target": 15,
+    "lost_target": 0,
+    "converted_where_same_bar_closed_past_stop": 0,
+    "converted_same_bar_stop_pct": 0.0,
+    "converted_from": {
+      "stop_close": 0,
+      "disaster": 14,
+      "eod": 1,
+      "no_bars": 0
+    },
+    "book_total_R_delta": 21.39,
+    "exact_touch_conversions": 7,
+    "exact_touch_R": 19.3,
+    "exact_touch_share_of_total_pct": 90.2,
+    "within_1c_touch_conversions": 11,
+    "within_1c_touch_R": 28.25,
+    "within_1c_share_of_total_pct": 132.1
+  },
+  "C_converted_detail": [
+    {
+      "day": "2026-05-12",
+      "sym": "MSFT",
+      "overshoot_cents": 0.0,
+      "same_bar_stop_close": false,
+      "base_reason": "disaster",
+      "dR": 2.946
+    },
+    {
+      "day": "2025-04-04",
+      "sym": "AAPL",
+      "overshoot_cents": 3.0,
+      "same_bar_stop_close": false,
+      "base_reason": "disaster",
+      "dR": 2.945
+    },
+    {
+      "day": "2025-03-11",
+      "sym": "IWM",
+      "overshoot_cents": 0.0,
+      "same_bar_stop_close": false,
+      "base_reason": "disaster",
+      "dR": 2.875
+    },
+    {
+      "day": "2025-10-24",
+      "sym": "NFLX",
+      "overshoot_cents": 0.0,
+      "same_bar_stop_close": false,
+      "base_reason": "disaster",
+      "dR": 2.8
+    },
+    {
+      "day": "2024-10-25",
+      "sym": "MU",
+      "overshoot_cents": 0.0,
+      "same_bar_stop_close": false,
+      "base_reason": "disaster",
+      "dR": 2.783
+    },
+    {
+      "day": "2025-11-24",
+      "sym": "UBER",
+      "overshoot_cents": 1.5,
+      "same_bar_stop_close": false,
+      "base_reason": "disaster",
+      "dR": 2.76
+    },
+    {
+      "day": "2025-10-01",
+      "sym": "SOFI",
+      "overshoot_cents": 0.0,
+      "same_bar_stop_close": false,
+      "base_reason": "disaster",
+      "dR": 2.722
+    },
+    {
+      "day": "2025-03-19",
+      "sym": "INTC",
+      "overshoot_cents": 4.1,
+      "same_bar_stop_close": false,
+      "base_reason": "disaster",
+      "dR": 2.714
+    },
+    {
+      "day": "2026-01-15",
+      "sym": "SOFI",
+      "overshoot_cents": 0.0,
+      "same_bar_stop_close": false,
+      "base_reason": "disaster",
+      "dR": 2.636
+    },
+    {
+      "day": "2026-07-20",
+      "sym": "MARA",
+      "overshoot_cents": 0.5,
+      "same_bar_stop_close": false,
+      "base_reason": "disaster",
+      "dR": 2.636
+    },
+    {
+      "day": "2025-10-21",
+      "sym": "ACHR",
+      "overshoot_cents": 1.0,
+      "same_bar_stop_close": false,
+      "base_reason": "disaster",
+      "dR": 2.583
+    },
+    {
+      "day": "2025-10-31",
+      "sym": "INTC",
+      "overshoot_cents": 4.0,
+      "same_bar_stop_close": false,
+      "base_reason": "disaster",
+      "dR": 2.571
+    },
+    {
+      "day": "2026-07-16",
+      "sym": "SOFI",
+      "overshoot_cents": 1.0,
+      "same_bar_stop_close": false,
+      "base_reason": "disaster",
+      "dR": 2.545
+    },
+    {
+      "day": "2024-09-17",
+      "sym": "INTC",
+      "overshoot_cents": 0.0,
+      "same_bar_stop_close": false,
+      "base_reason": "disaster",
+      "dR": 2.538
+    },
+    {
+      "day": "2026-03-03",
+      "sym": "ACHR",
+      "overshoot_cents": 1.0,
+      "same_bar_stop_close": false,
+      "base_reason": "eod",
+      "dR": 1.187
+    }
+  ],
+  "D_concentration_multiplicity": {
+    "h2_days": 249,
+    "h2_days_where_pnl_moved": 88,
+    "h2_total_R_delta": 19.047,
+    "h2_top5_R_delta": 13.865,
+    "h2_top5_share_pct": 72.8,
+    "h2_top10_share_pct": 133.3,
+    "h2_top10": [
+      {
+        "day": "2026-05-12",
+        "sym": "MSFT",
+        "dR": 2.946
+      },
+      {
+        "day": "2025-10-24",
+        "sym": "NFLX",
+        "dR": 2.8
+      },
+      {
+        "day": "2025-11-24",
+        "sym": "UBER",
+        "dR": 2.76
+      },
+      {
+        "day": "2025-10-01",
+        "sym": "SOFI",
+        "dR": 2.722
+      },
+      {
+        "day": "2026-01-15",
+        "sym": "SOFI",
+        "dR": 2.636
+      },
+      {
+        "day": "2026-07-20",
+        "sym": "MARA",
+        "dR": 2.636
+      },
+      {
+        "day": "2025-10-21",
+        "sym": "ACHR",
+        "dR": 2.583
+      },
+      {
+        "day": "2025-10-31",
+        "sym": "INTC",
+        "dR": 2.571
+      },
+      {
+        "day": "2026-07-16",
+        "sym": "SOFI",
+        "dR": 2.545
+      },
+      {
+        "day": "2026-03-03",
+        "sym": "ACHR",
+        "dR": 1.187
+      }
+    ],
+    "arms_in_this_script": 3,
+    "candidates_in_swarm": 25,
+    "null_p_both_halves_positive_one_arm": 0.25,
+    "null_p_any_of_3_arms": 0.578,
+    "null_expected_survivors_of_25_candidates": 14.5
+  }
+}
