@@ -1,0 +1,144 @@
+{
+ "book": "bt2y_trades_retest_on.json",
+ "book_meta_sessions": 498,
+ "rule": "index-etf-avoid-unless-clear-htf",
+ "polarity": "refusal-indicator",
+ "predicate": {
+  "candidate": "DROP r if r['sym'] in ('SPY','QQQ') and not (r['aligned']=='with' and r['bias'] in ('bullish','bearish'))",
+  "notes": "Only touches SPY/QQQ rows; IWM and every equity is untouched. No S-indicator/KEEP half exists for this row -- a pure refusal filter over the arrival-order first-of-day stream."
+ },
+ "base_rates": {
+  "cls_etf_rows": 13316,
+  "cls_etf_rows_expected": 13316,
+  "spy_qqq_rows": 8544,
+  "spy_qqq_dropped_by_predicate": 4587,
+  "fired_all": 10830,
+  "fired_spy_qqq": 517,
+  "fired_spy_qqq_dropped": 207,
+  "denominator": "status=='fired', all rows (not one-a-day)"
+ },
+ "candidates_per_day": 16.52,
+ "baseline": {
+  "all": {
+   "label": "baseline (whole book)",
+   "sessions": 498,
+   "trades": 498,
+   "fires_per_day": 1.0,
+   "usd_day": 33.93,
+   "mean_r": 0.0339,
+   "win_pct": 46.5,
+   "months_green": "13/25",
+   "months_green_n": 13,
+   "months_total": 25,
+   "max_dd_usd": 21404.68,
+   "pct_of_bar": 8.5
+  },
+  "h1": {
+   "label": "baseline H1",
+   "sessions": 249,
+   "trades": 249,
+   "fires_per_day": 1.0,
+   "usd_day": 135.71,
+   "mean_r": 0.1357,
+   "win_pct": 49.6,
+   "months_green": "9/12",
+   "months_green_n": 9,
+   "months_total": 12,
+   "max_dd_usd": 13978.64,
+   "pct_of_bar": 34.2
+  },
+  "h2": {
+   "label": "baseline H2",
+   "sessions": 249,
+   "trades": 249,
+   "fires_per_day": 1.0,
+   "usd_day": -67.85,
+   "mean_r": -0.0678,
+   "win_pct": 43.4,
+   "months_green": "4/13",
+   "months_green_n": 4,
+   "months_total": 13,
+   "max_dd_usd": 21404.68,
+   "pct_of_bar": -17.1
+  }
+ },
+ "arms": {
+  "candidate": {
+   "candidate": {
+    "all": {
+     "label": "candidate (whole book)",
+     "sessions": 498,
+     "trades": 498,
+     "fires_per_day": 1.0,
+     "usd_day": 33.17,
+     "mean_r": 0.0332,
+     "win_pct": 46.5,
+     "months_green": "13/25",
+     "months_green_n": 13,
+     "months_total": 25,
+     "max_dd_usd": 21404.68,
+     "pct_of_bar": 8.4
+    },
+    "h1": {
+     "label": "candidate H1",
+     "sessions": 249,
+     "trades": 249,
+     "fires_per_day": 1.0,
+     "usd_day": 134.2,
+     "mean_r": 0.1342,
+     "win_pct": 49.6,
+     "months_green": "9/12",
+     "months_green_n": 9,
+     "months_total": 12,
+     "max_dd_usd": 13978.64,
+     "pct_of_bar": 33.8
+    },
+    "h2": {
+     "label": "candidate H2",
+     "sessions": 249,
+     "trades": 249,
+     "fires_per_day": 1.0,
+     "usd_day": -67.85,
+     "mean_r": -0.0678,
+     "win_pct": 43.4,
+     "months_green": "4/13",
+     "months_green_n": 4,
+     "months_total": 13,
+     "max_dd_usd": 21404.68,
+     "pct_of_bar": -17.1
+    }
+   },
+   "h1_delta_usd_day": -1.51,
+   "h2_delta_usd_day": 0.0,
+   "recall": {
+    "probe_s_sweep_34": {
+     "n": 34,
+     "baseline_pct": 44.1,
+     "candidate_pct": 44.1
+    },
+    "bar_backed_s_days_canonical_pool": {
+     "n": 345,
+     "baseline_pct": 49.0,
+     "candidate_pct": 47.5
+    }
+   },
+   "precision": {
+    "baseline": {
+     "pct": 30.5,
+     "s": 18,
+     "graded": 59
+    },
+    "candidate": {
+     "pct": 31.0,
+     "s": 18,
+     "graded": 58
+    }
+   },
+   "survivor": false
+  }
+ },
+ "survivor": false,
+ "moved_nothing": false,
+ "survivor_rule": "H1 and H2 both improve $/day or precision, and recall_100 (both recall panels) not below baseline",
+ "prior_art": "research/g91_lane_slice.py measured the index lane wholesale (2.3 cand/day, $51/day) and research/g86_honest_ceiling.py established the honest-fill unit this script reuses without re-deriving; this row is a corroboration check on the already-decided call to keep the pool FULL, not a new pool-narrowing proposal."
+}
