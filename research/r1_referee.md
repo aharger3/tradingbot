@@ -475,3 +475,277 @@ python research/r1_referee2.py sized
 python research/r1_referee2.py achr
 ```
 
+
+
+---
+---
+
+# R1 referee — THIRD PASS — **REFUTED** (the ranking, and now the winner's own headline), on the builder's commit `738e856d`
+
+Referee: third pass, told to refute, dispatched against the ORIGINAL builder
+report at **`738e856d`**. Referee code for this pass: **`research/r1_referee3.py`**
+— a third independent implementation that imports neither `g90_fill_arms`, nor
+`g210_fill_arms_v2`, nor `r1_repair`, nor pass 1's `r1_referee.py`, nor pass 2's
+`r1_referee2.py`. It has its own CSV bar loader, its own resting-fill, its own
+walk and its own statistics. The only project modules it touches are
+`signal_runner` (for `CHASE_PCT`), `entry_fill` (to read the shipped fill mode)
+and `backtest_week`/`t8_two_year` (for the single-day ACHR replay).
+
+Passes 1 and 2 above are left untouched; this section is additive.
+
+Base check: `git fetch origin`; `HEAD` = `origin/main` = **`ccd7fa06`**;
+`git merge-base --is-ancestor 1539dd7f HEAD` passes; `HEAD` is an ancestor of or
+equal to `origin/main`. OK. The row has since been repaired (`3676a230`) and
+refereed twice (`e5a9ed7f`, `cb45ffa2`); this pass re-derives everything from
+scratch rather than reading those two verdicts as evidence.
+
+---
+
+## Verdict in one sentence
+
+**Every mechanic in the row is sound and every published cell reproduces exactly
+under a third independent implementation — and the row is still refuted, on a
+larger point than either earlier pass made: the exit-model confound does not only
+under-price `close`, it over-prices the arm the row crowned. Put every arm on the
+stop trigger the shipped engine actually uses, and `next_open` — the arm R2 was
+told to start from — falls from `+0.1690R / $2,660/day / 23-of-25 green` to
+`+0.0088R / $138/day / 13-of-25 green` (full29, every traded signal, blind 2R
+target, `research/r1_referee3.py uniform`).**
+
+---
+
+## What reproduced, cell for cell (`r1_referee3.py stats`)
+
+All twelve stamped books, re-derived from the flat rows with my own arithmetic.
+Trades, unfilled, mean R, months, green months, `$/day` and the report's win-rate
+column match **12 books × 7 columns, 84 of 84 cells**. The two the brief named:
+
+| cell | report | third-pass referee |
+|---|---|---|
+| next_open core11 | 3629/0, +0.1718R, 22/25 green, $1,250/day | 3629/0, +0.1718R, 22/25, $1,250/day |
+| next_open full29 | 7857/0, +0.1690R, 23/25 green, $2,660/day | 7857/0, +0.1690R, 23/25, $2,660/day |
+| close core11 | 3629/0, −0.0063R, 13/25 green, −$46/day | 3629/0, −0.0063R, 13/25, −$46/day |
+| close full29 | 7857/0, −0.0141R, 11/25 green, −$221/day | 7857/0, −0.0141R, 11/25, −$221/day |
+
+`avg win / avg loss` does **not** reproduce, exactly as passes 1 and 2 found: the
+report's `+2.0000 / −1.0000` on all twelve rows is a construction artifact of
+dropping `scratch`. Sign-based over the same books: `next_open` full29
+**+1.9817 / −0.9973**, `close` full29 **+1.9823 / −0.9980**, `limit_level` full29
+**+2.0000 / −1.0469**, `mid_candle` full29 **+1.9942 / −1.1467**. Independently
+confirmed.
+
+---
+
+## The refutation, extended: one exit model, all six arms, both directions
+
+Passes 1 and 2 repriced **`close` upward** onto the five arms' close-only stop.
+Neither repriced **the five arms downward** onto the intrabar-touch stop the
+engine gives `close`. Both directions are single-exit-model comparisons and only
+one of them is the exit the shipped engine runs. `r1_referee3.py uniform` does
+both, from the raw bars, with my own walk:
+
+**Model A — stop triggers only on a candle CLOSE through the level, fills at the
+level** (what `g90_fill_arms._walk` gives the five arms):
+
+| arm (full29) | trades | mean R | $/day | green |
+|---|---:|---:|---:|---:|
+| as_booked | 551 | +0.7532 | $832 | 24/25 |
+| next_open | 7857 | +0.1690 | $2,660 | 23/25 |
+| **close** | 7857 | **+0.1547** | **$2,437** | **22/25** |
+| limit_level | 443 | +0.1499 | $133 | 17/25 |
+| mid_candle | 6376 | +0.0867 | $1,108 | 17/25 |
+| chase_once | 5421 | −0.0695 | −$756 | 8/25 |
+
+**Model B — stop is a resting order at the level, filled on an intrabar TOUCH**
+(the engine's `DISASTER_STOP` at `DISASTER_STOP_R = 1.0`, which for every arm sits
+exactly on the structural stop because risk is defined as `|entry − stop|`):
+
+| arm (full29) | trades | mean R | $/day | green |
+|---|---:|---:|---:|---:|
+| as_booked | 551 | +0.6171 | $681 | 24/25 |
+| **next_open** | 7857 | **+0.0088** | **$138** | **13/25** |
+| close | 7857 | −0.0141 | −$221 | 11/25 |
+| limit_level | 443 | −0.0668 | −$59 | 8/25 |
+| mid_candle | 6376 | −0.1460 | −$1,865 | 5/25 |
+| chase_once | 5421 | −0.2450 | −$2,661 | 1/25 |
+
+Core 11 reads the same way: `next_open` **+0.1718R / $1,250/day / 22-of-25** under
+model A, **+0.0060R / $44/day / 12-of-25** under model B.
+
+**Why the walker can be trusted.** It is validated in both directions on books it
+did not build. Under model A it reproduces the five `_walk` arms' published cells
+(`as_booked` +0.7532, `limit_level` +0.1499, `next_open` +0.1690, `chase_once`
+−0.0695, `mid_candle` +0.0867 vs the published +0.0863 — 4e-4, rounding). Under
+model B it reproduces the `close` arm the real `simulate_day` produced, to four
+decimals in both pools (**−0.0141** full29, **−0.0063** core11). A walk that
+reproduces both sides of the confound from opposite directions is measuring the
+confound, not adding one.
+
+**What this changes.** The published headline is `next_open $2,660/day` against
+the shipped `close` fill's `−$221/day`. Neither figure survives holding the exit
+constant:
+
+- On model A both are large and close together (`$2,660` vs `$2,437`).
+- On model B both are small (`$138` vs `−$221`), and `next_open`'s green months
+  fall from **23/25 to 13/25**.
+
+So the entire "next_open makes $2,660/day" result — the one R2's spec line says to
+start from — is priced on an exit trigger the engine does not use. The `$2,660`
+is not a fill number and not an engine number; it is a `_walk` number.
+
+**Paired CI on the one thing that does survive** (`r1_referee3.py pairci`, paired
+on 7,538 rows where both arms have a value, full29):
+
+| exit model | mean(next_open − close) | 95% CI |
+|---|---:|---|
+| A close-only stop | +0.0140R | [+0.0047, +0.0234] |
+| B intrabar-touch stop | +0.0239R | [+0.0136, +0.0341] |
+
+The **direction** of the ranking (next_open over close) does survive holding the
+exit constant, and the paired interval separates from zero in both models — which
+is a sharper statement than passes 1 and 2's "inside the ±1.58R error bar",
+because that bar is an unpaired per-book figure. But the **magnitude** collapses
+from the published +0.1831R to +0.014R–+0.024R per trade: roughly a
+seventh-to-a-thirteenth of what the table shows, and at model B's absolute level
+($138/day on 15.7 trades a day) it is not a result anyone should build on.
+
+Per the brief, a plausible ranking change makes the ranking `not_enough`; a
+measured one makes it refuted. This is measured. **Refuted.**
+
+---
+
+## Row-specific checks, all run here
+
+**Lookahead — clean** (`r1_referee3.py lookahead --n 30`, 120 rows). For every
+sampled row I rebuilt the day from the raw `data_archive/*.csv`, located the
+signal bar by its timestamp, **deleted every bar at or before it** (`bs[si+1:]`)
+and re-derived the fill from the truncated list alone:
+
+| arm | sampled | re-derivation matches the book (price and fill minute) | fill bar at or before the signal bar |
+|---|---:|---:|---:|
+| next_open | 30 | 30 | 0 |
+| limit_level | 30 | 30 | 0 |
+| chase_once | 30 | 30 | 0 |
+| mid_candle | 30 | 30 | 0 |
+
+`mid_candle`'s price reference — the midpoint of the completed signal bar's own
+high/low — is captured as a scalar *before* truncation and the fill scan then sees
+only bars strictly after the signal bar, so the signal bar is never scanned for a
+resting fill. One honest caveat on `chase_once`, which no pass has named: its
+fill *price* is `max(next.open, next.close)` for a long, so the decision whether
+to chase at all uses a bar that has not finished when the order would be sent.
+It is the worse-for-the-trade of the two, so it is pessimistic rather than
+optimistic, and it never reaches back to or before the signal bar — it does not
+meet the brief's refutation condition, but it is not a causally clean rule
+either, and `chase_once` is last in every table anyway.
+
+**The one `entry_idx` mismatch — reproduced exactly** (`r1_referee3.py achr`).
+Re-running ACHR 2026-04-06 from raw bars: 390 bars, 15 captured signals, 11
+trades. The key `('break_and_retest', 'call', 5.665, 'fired')` holds **two**
+signals, at candle **16** and candle **20**; the counted trade carries
+`entry_idx = 20` and the harness's `used[k]` counter hands it the bar-16 signal.
+Builder's diagnosis is right: a signal↔trade correlation ambiguity in this
+harness's own matching key, not in `signal_runner`/`backtest_week`, and the row is
+dropped rather than mis-priced. I also independently reproduce pass 2's defect 11:
+the same day carries a **second** colliding key,
+`('break_and_retest', 'put', 5.605, 'skipped_d')`, whose two signals sit on the
+**same** candle (40) — a collision the counter cannot see, so "1 of 7858" is a
+lower bound on the class, not a count of it. That instance is `skipped_d` and
+never reaches a book.
+
+**`close` is the engine's own fill on 100% of rows — my code** (`r1_referee3.py
+closecheck`). `entry_fill.ENTRY_FILL == 'close'`, `needs_future_bars()` is
+`False`, and **7,857 of 7,857** rows in `fillarms_close_full29.json.gz` equal that
+minute's own printed close in the raw archive CSV; 0 mismatches, 0 bars missing.
+`as_booked`'s entry equals `close`'s on **0** of 7,857 rows, so the two arms are
+genuinely different prices.
+
+**`SCALE_PLAN` inside the worker — confirmed** (`r1_referee3.py scaleplan`). Start
+method on this box is `spawn`. A real `multiprocessing.Pool(2)` running a worker
+that sets `OMEN_SCALE_PLAN=none` before importing reports, from its own pid,
+`SCALE_PLAN = None`, `DISASTER_STOP = True`, `DISASTER_R = 1.0`, and
+`hasattr(bw, 'LADDER_MODE') is False`. The same pool without the env var reports
+`'hod_then_runner_be'` from both workers, and so does the parent. So:
+`g90_fill_arms.py`'s `bw.LADDER_MODE = None` created a dead attribute on a module
+that has no such name and changed nothing, and **g90's published `close` column
+(+0.7382R, $1,645/day, 25-of-25 green) was the shipped `hod_then_runner_be`
+scale-out book with `DISASTER_STOP` on — not blind 2R.** It must never be read as
+a 2R column. Builder's central diagnosis: upheld.
+
+**`DISASTER_STOP` asymmetry and the ranking** — measured above. It does change the
+ranking's meaning in both directions, so the ranking is refuted, not upheld.
+
+**`research/g210_verify.py` exits 0 and really reads raw bars.** It opens
+`data_archive/<SYM>/<day>.csv` with `csv.DictReader` (lines 41–52) and prints
+`PASS: next_open/limit_level match raw bars on 20 sampled rows; close matches the
+engine's default fill on 7857/7857 rows (100%)`, exit code 0. Pass 2's defect 9
+stands: its `limit_level` assertion (booked fill inside the fill bar's
+`[low, high]`) is true by construction of `_resting_fill` and cannot fail. My
+truncation test is the version that can, and it passes 30/30.
+
+---
+
+## New defect (third pass)
+
+**14. The books' `SCALE_PLAN = None` stamp was produced by the operator's shell,
+not by the script — so the documented reproduce command stamps a book that
+contradicts itself.** `g210_fill_arms_v2.py` sets `OMEN_SCALE_PLAN=none` inside
+each **worker**, which is where it must be set for the arms to be priced right.
+But `write_book` → `book_stamp.stamp` → `engine_flags()` imports `backtest_week`
+in the **parent**, which never sets it. Measured in a clean shell here:
+`book_stamp.engine_flags()['backtest_week.SCALE_PLAN']` is `'hod_then_runner_be'`,
+and `OMEN_SCALE_PLAN` is absent from the environment. The twelve committed books
+all stamp `None`, so the run that produced them had the variable exported in the
+operator's shell — an input the report's **Reproduce** section
+(`python research/g210_fill_arms_v2.py --procs 8`) does not mention. Run that
+command as written on a clean box and you get books whose arms are priced with
+`SCALE_PLAN = None` and whose stamp says `'hod_then_runner_be'`: exactly the
+"a book built with the ladder on was indistinguishable from one built without it"
+failure `research/book_stamp.py`'s own docstring exists to end. **No published
+number moves** — the committed books' stamps are correct for the run that made
+them. The fix is one line: set the env var at the top of `main()` as well as in
+the worker. Filed, not fixed (not this referee's row).
+
+---
+
+## Standard checks (third pass)
+
+| check | result |
+|---|---|
+| sample size | smallest cell 252 trades (`limit_level` core11) over 25 months; every cell ≥ 30 trades and ≥ 12 months. No under-sized cell carries a verdict here. OK |
+| every dollar names fill / exit / unit / script | in **this section**: yes, on every figure. In the row's own report the `close` row's exit was mis-named "blind 2R" at `738e856d` and is now corrected in a paragraph two lines below a header that still says "Blind 2R exit". Partially fixed, as pass 2 found |
+| stamps | 12/12 books carry `book_stamp.stamp`: commit, `dirty_engine_py` (empty on all 12), `dirty_py_count` 5–6 non-engine files, ~70 flag values, window `2024-09-04`→`2026-09-04`, script. 11 stamp `57f2fbd2`, `fillarms_mid_candle_full29.json.gz` stamps `c7d52853`; **both are ancestors of `738e856d`**, so the rule passes. The tree WAS dirty at build time (non-engine `.py` only); the report at `738e856d` did not say so, the repaired report does. See new defect 14 for the flag the stamp cannot vouch for |
+| build base vs stated base | the report at `738e856d` says "Base `c13bdf8c`"; the books were built at `57f2fbd2`. `git diff c13bdf8c 57f2fbd2` over the engine files is empty, so no number moves. Disclosed only after the repair |
+| one change per row | `git show --stat 738e856d`: 3 research files + 12 books, **no engine file**. OK |
+| mark files | none in `git show --name-only 738e856d`, none in `git status`. OK |
+| verify gate | run here at `HEAD = ccd7fa06`: `regression_gate.py` **PASS** (no baseline-fired mark went silent) · `test_runner_stop.py` **PASS** (70 checks) · `test_universe_single_source.py` **PASS** (29 symbols, no private lists). Green. I could not run it at `738e856d` itself without checking out another commit, which this swarm forbids; pass 1 ran it there and reported green |
+| plain English | nothing in this row reaches Austin. OK |
+
+---
+
+## What R2 and R3 should take from this pass
+
+1. **Do not start from R1's `next_open` book.** Its `$2,660/day, 23-of-25 green`
+   is priced on a close-only stop the engine does not run. On the engine's own
+   intrabar-touch stop the same book is `$138/day, 13-of-25 green`.
+2. **The fill question is still unanswered, and it is small.** Held to one exit
+   model, `next_open` beats `close` by +0.014R (model A) to +0.024R (model B) per
+   trade — a real, paired, separated difference, and an economically tiny one.
+   Whatever R3 picks as the baseline fill, it should not claim the fill is where
+   the money is.
+3. **The money in this row is in the exit trigger, not the fill.** Moving all six
+   arms from a close-only stop to an intrabar-touch stop costs the full-29 book
+   `$2,522/day` on `next_open` and ten green months. That is the largest single
+   effect anywhere in R1, and it is an exit variable, which is R2's ladder.
+
+## Reproduce (third pass)
+
+```
+python research/r1_referee3.py stats
+python research/r1_referee3.py lookahead --n 30
+python research/r1_referee3.py closecheck
+python research/r1_referee3.py scaleplan
+python research/r1_referee3.py achr
+python research/r1_referee3.py uniform
+python research/r1_referee3.py pairci
+```
