@@ -1,6 +1,6 @@
 {
-  "cycle_count": 4,
-  "consecutive_holds": 4,
+  "cycle_count": 5,
+  "consecutive_holds": 0,
   "target_met": false,
   "history": [
     {
@@ -42,6 +42,16 @@
       "dollars_per_day_after": -61.0,
       "green_before": 11,
       "green_after": 10
+    },
+    {
+      "cycle": 5,
+      "flag": "DAY_POLICY",
+      "label": "up to three trades a day, stop after a win or two losses (repair)",
+      "decision": "ship",
+      "dollars_per_day_before": -52.0,
+      "dollars_per_day_after": -52.0,
+      "green_before": 11,
+      "green_after": 11
     }
   ],
   "stop": false,

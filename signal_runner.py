@@ -816,19 +816,29 @@ ENABLE_DOWNGRADE_GRADER = os.getenv(
 # reproduces TODAY'S shipped behavior. Flipping one is a measurement
 # experiment, not a rollout.
 #
-#   DAY_POLICY        "first3" (default, matches omen_bot.Session's shipped
-#                      max_signals_per_day=3 / CONSECUTIVE_LOSS_HALT=2),
+#   DAY_POLICY        "3fires_stop_win_or_2loss" (DEFAULT since L5 shipped,
+#                      2026-09-05: up to 3 fires a day, the day ends the
+#                      moment a taken trade CLOSES a winner, or on the
+#                      second closed loss -- Austin's ratified day policy,
+#                      unlike "first3" which only resets the loss counter
+#                      on a win and keeps firing to 3), "first3" (the prior
+#                      default, matches omen_bot.Session's shipped
+#                      max_signals_per_day=3 / CONSECUTIVE_LOSS_HALT=2), or
 #                      "one_and_done" (stop after the day's first trade,
-#                      win or lose), or "3fires_stop_win_or_2loss" (L5,
-#                      2026-09-05: up to 3 fires a day, but unlike "first3"
-#                      the day also ends the moment a taken trade CLOSES a
-#                      winner -- "first3" only resets the loss counter on a
-#                      win and keeps firing to 3. This is the engine-side
-#                      flag for Austin's ratified day policy; the causal
-#                      book-level enforcement of it lives in day_policy.py,
-#                      applied the same way loss_halt.py applies R31 --
-#                      this value alone does not change backtest_2y.py's
-#                      book by itself.)
+#                      win or lose). This is the engine-side flag; the
+#                      causal book-level enforcement lives in day_policy.py
+#                      (applied the same way loss_halt.py applies R31,
+#                      scoped to `tier=="core"` rows -- referee repair,
+#                      research/l5_referee.md), and this value alone does
+#                      not change backtest_2y.py's book by itself. On the
+#                      settled core-11 lane the flip is a MEASURED NO-OP:
+#                      the loop's own baseline unit (up_to_3_stop_win_or_
+#                      2loss) already applies the same rule with hindsight,
+#                      which is strictly stricter than this causal pass --
+#                      every row it blocks was already excluded by the
+#                      lens. Shipped because it costs nothing and keeps the
+#                      engine's behavior honest with the measurement's own
+#                      rule, not because it moved a number.
 #   ENTRY_WINDOW_END   "11:00" (default, matches live_scanner's ENTRY_CUTOFF
 #                      and SESSION_END) or "09:45".
 #   FIRE_A_WHEN_NO_S   0 (default) or 1 -- read and reported only. compute_
@@ -842,7 +852,7 @@ ENABLE_DOWNGRADE_GRADER = os.getenv(
 #                      reason: g160's VETO_1D is a documented PROXY (spy_trend
 #                      vs candidate direction), not a real daily-timeframe
 #                      filter, and never won both halves.
-DAY_POLICY = os.getenv("DAY_POLICY", "first3").strip().lower()
+DAY_POLICY = os.getenv("DAY_POLICY", "3fires_stop_win_or_2loss").strip().lower()
 if DAY_POLICY not in ("first3", "one_and_done", "3fires_stop_win_or_2loss"):
     raise ValueError(
         "DAY_POLICY must be 'first3', 'one_and_done' or "
