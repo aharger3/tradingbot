@@ -56,6 +56,7 @@ ROOT = Path(__file__).resolve().parent.parent
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
+from research import build_bt2y_report as bt2y_mod        # noqa: E402
 from research.build_bt2y_report import (              # noqa: E402
     encode as base_encode, FACETS as BASE_FACETS, MULTI as BASE_MULTI,
     NUMS, STRS, book_of, TEMPLATE as BASE_TEMPLATE,
@@ -86,6 +87,23 @@ EXTRA_FACETS = [
 EXTRA_MULTI = ["lane", "policy"]
 FACETS = BASE_FACETS + EXTRA_FACETS
 MULTI_FIELDS = BASE_MULTI + EXTRA_MULTI
+
+
+def encode_extended(trades):
+    """base_encode() dict/list-encodes whatever FACETS/MULTI it finds in its
+    OWN module globals -- calling it directly silently drops every facet
+    this file adds (source, fillmode, lane, policy, wk, exitmodel,
+    instrument), because those live only in build_tape.FACETS/MULTI_FIELDS.
+    Rebind the base module's globals for the duration of the call so its one
+    encoder (not a fork of it) sees the extended field list, then restore
+    them -- this file's own module state (FACETS/MULTI_FIELDS above) is
+    untouched either way."""
+    saved = bt2y_mod.FACETS, bt2y_mod.MULTI
+    bt2y_mod.FACETS, bt2y_mod.MULTI = FACETS, MULTI_FIELDS
+    try:
+        return bt2y_mod.encode(trades)
+    finally:
+        bt2y_mod.FACETS, bt2y_mod.MULTI = saved
 
 # One row per (source, fillmode, sym, day, entry minute) among TRADED rows --
 # the no-repeat guarantee this page's own self-check enforces before it ever
@@ -163,6 +181,23 @@ def load_gz(path):
     return b["meta"], b["trades"]
 
 
+def flag_decision(flag):
+    """The real cycles.md verdict for a Phase-L flag ('hold' or 'ship') --
+    read, not assumed. Referee (T1 v1): the provenance note hardcoded 'hold'
+    for every Phase-L book though cycles.md records DAY_POLICY as 'ship'."""
+    path = TAPE / "cycles.md"
+    try:
+        text = path.read_text(encoding="utf-8")
+    except OSError:
+        return "unknown (cycles.md not found)"
+    decision = None
+    for line in text.splitlines():
+        cells = [c.strip() for c in line.split("|")]
+        if len(cells) > 4 and cells[3] == flag:
+            decision = cells[4]        # last matching row wins (repairs append)
+    return decision or "unknown (not found in cycles.md)"
+
+
 # ------------------------------------------------------------- rich sources
 
 def load_rich_sources():
@@ -198,15 +233,17 @@ def load_rich_sources():
                  % (meta_p["stamp"]["book_id"], len(phantom_rows)))
 
     phase_l = [
-        ("L1_on (the 1R first-target rule, MIN_PT1_R)", "book_MIN_PT1_R_on.json.gz"),
-        ("L2_on (the 84% re-entry as decided, RULE84_DECIDED)", "book_RULE84_DECIDED_on.json.gz"),
+        ("L1_on (the 1R first-target rule, MIN_PT1_R)", "MIN_PT1_R", "book_MIN_PT1_R_on.json.gz"),
+        ("L2_on (the 84% re-entry as decided, RULE84_DECIDED)", "RULE84_DECIDED",
+         "book_RULE84_DECIDED_on.json.gz"),
         ("L3_on (one-candle-rule needs a strong retest candle, OCR_RETEST_DISPLACEMENT)",
-         "book_OCR_RETEST_DISPLACEMENT_on.json.gz"),
-        ("L4_on (the 15-minute structure trend test, TREND_DEF)", "book_TREND_DEF_on.json.gz"),
+         "OCR_RETEST_DISPLACEMENT", "book_OCR_RETEST_DISPLACEMENT_on.json.gz"),
+        ("L4_on (the 15-minute structure trend test, TREND_DEF)", "TREND_DEF",
+         "book_TREND_DEF_on.json.gz"),
         ("L5_on (up to 3 trades a day, stop after a win or 2 losses, DAY_POLICY)",
-         "book_DAY_POLICY_on.json.gz"),
+         "DAY_POLICY", "book_DAY_POLICY_on.json.gz"),
     ]
-    for label, fname in phase_l:
+    for label, flag, fname in phase_l:
         meta_l, lrows = load_gz(TAPE / fname)
         lrows = [r for r in lrows if r.get("traded") or r.get("status") == "halted"]
         for r in lrows:
@@ -215,9 +252,10 @@ def load_rich_sources():
         tag_common(lrows, source=src, fillmode="close")
         tag_policy(lrows)
         rows.extend(lrows)
-        notes.append("%s -- research/tape/%s (book_id %s), all held --> hold "
-                     "(cycles.md); traded+halted only (%d rows kept)."
-                     % (label, fname, meta_l["stamp"]["book_id"], len(lrows)))
+        notes.append("%s -- research/tape/%s (book_id %s), cycles.md decision: %s; "
+                     "traded+halted only (%d rows kept)."
+                     % (label, fname, meta_l["stamp"]["book_id"], flag_decision(flag),
+                        len(lrows)))
 
     return rows, notes
 
@@ -342,8 +380,116 @@ TEMPLATE = (BASE_TEMPLATE
         '  pick("policy", "up_to_3");\n'
         '}')
     .replace(
+        # drawEquity(): the curve was R-only -- label each gridline and the
+        # endpoint with the dollar figure too (R * RISK), no second axis or
+        # toggle needed. Referee (T1 v1): equity curve and max drawdown were
+        # R-only, no dollar curve.
+        '  [0,.25,.5,.75,1].forEach(function(t){\n'
+        '    var v=mn+(mx-mn)*t;\n'
+        '    svg.appendChild(svgEl("line",{x1:P,x2:W-8,y1:y(v),y2:y(v),"class":"gridline"}));\n'
+        '    svg.appendChild(svgEl("text",{x:4,y:y(v)+3,"class":"axlab"},v.toFixed(0)+"R"));\n'
+        '  });',
+        '  [0,.25,.5,.75,1].forEach(function(t){\n'
+        '    var v=mn+(mx-mn)*t;\n'
+        '    svg.appendChild(svgEl("line",{x1:P,x2:W-8,y1:y(v),y2:y(v),"class":"gridline"}));\n'
+        '    svg.appendChild(svgEl("text",{x:4,y:y(v)+3,"class":"axlab"},\n'
+        '      v.toFixed(0)+"R ("+money(v*RISK)+")"));\n'
+        '  });')
+    .replace(
+        '  svg.appendChild(svgEl("circle",{cx:x(eq.length-1),cy:y(eq[eq.length-1]),r:3.2,\n'
+        '    fill:up?"var(--win)":"var(--loss)"}));',
+        '  svg.appendChild(svgEl("circle",{cx:x(eq.length-1),cy:y(eq[eq.length-1]),r:3.2,\n'
+        '    fill:up?"var(--win)":"var(--loss)"}));\n'
+        '  svg.appendChild(svgEl("text",{x:x(eq.length-1)-4,y:y(eq[eq.length-1])-8,\n'
+        '    "class":"axlab","text-anchor":"end"},\n'
+        '    fmt(eq[eq.length-1],1)+"R = "+money(eq[eq.length-1]*RISK)));')
+    .replace(
         'var MULTI = {tags:1, downgrades:1};       // fields holding a list per signal',
         'var MULTI = {tags:1, downgrades:1, lane:1, policy:1};  // fields holding a list per signal')
+    .replace(
+        # stats(): add $/day, avg win/avg loss (dollars), fires/day and a
+        # weeks-green count using the `wk` facet this row adds -- the
+        # scoreboard patch below reads these. Referee (T1 v1): none of
+        # $/day, avg win/avg loss, weeks green, fires/day were on the
+        # scoreboard.
+        'function stats(idxs){\n'
+        '  var n=idxs.length, w=0,l=0,sc=0, sumR=0, gp=0, gl=0, bars=0, dec=0;\n'
+        '  var eq=0, peak=0, dd=0, streak=0, worstStreak=0;\n'
+        '  var byMonth = {}, days = {};\n'
+        '  for(var k=0;k<n;k++){\n'
+        '    var i=idxs[k], r=cols.r[i], o=val("out",i);\n'
+        '    sumR+=r; bars+=cols.bars[i];\n'
+        '    if(o==="win"){w++;dec++;} else if(o==="loss"){l++;dec++;} else sc++;\n'
+        '    if(r>0) gp+=r; else gl+=-r;\n'
+        '    eq+=r; if(eq>peak) peak=eq; if(peak-eq>dd) dd=peak-eq;\n'
+        '    if(r<0){ streak++; if(streak>worstStreak) worstStreak=streak; } else streak=0;\n'
+        '    var m=val("ym",i); byMonth[m]=(byMonth[m]||0)+r;\n'
+        '    days[val("day",i)]=1;\n'
+        '  }\n'
+        '  var months=Object.keys(byMonth).sort();\n'
+        '  var green=0; months.forEach(function(m){ if(byMonth[m]>0) green++; });\n'
+        '  return {n:n, w:w, l:l, sc:sc, dec:dec,\n'
+        '    wr: dec? w/dec*100 : 0,\n'
+        '    meanR: n? sumR/n : 0, sumR: sumR,\n'
+        '    pf: gl? gp/gl : (gp?Infinity:0),\n'
+        '    dd: dd, worstStreak: worstStreak,\n'
+        '    bars: n? bars/n : 0,\n'
+        '    months: months, byMonth: byMonth,\n'
+        '    greenPct: months.length? green/months.length*100 : 0,\n'
+        '    days: Object.keys(days).length};\n'
+        '}',
+        'function stats(idxs){\n'
+        '  var n=idxs.length, w=0,l=0,sc=0, sumR=0, gp=0, gl=0, bars=0, dec=0;\n'
+        '  var eq=0, peak=0, dd=0, streak=0, worstStreak=0;\n'
+        '  var winPnl=0, lossPnl=0, winN=0, lossN=0;\n'
+        '  var byMonth = {}, byWeek = {}, days = {};\n'
+        '  for(var k=0;k<n;k++){\n'
+        '    var i=idxs[k], r=cols.r[i], o=val("out",i);\n'
+        '    sumR+=r; bars+=cols.bars[i];\n'
+        '    if(o==="win"){w++;dec++;} else if(o==="loss"){l++;dec++;} else sc++;\n'
+        '    if(r>0) gp+=r; else gl+=-r;\n'
+        '    var pnl = r*RISK;\n'
+        '    if(pnl>0){ winPnl+=pnl; winN++; } else if(pnl<0){ lossPnl+=pnl; lossN++; }\n'
+        '    eq+=r; if(eq>peak) peak=eq; if(peak-eq>dd) dd=peak-eq;\n'
+        '    if(r<0){ streak++; if(streak>worstStreak) worstStreak=streak; } else streak=0;\n'
+        '    var m=val("ym",i); byMonth[m]=(byMonth[m]||0)+r;\n'
+        '    var wkv=val("wk",i); byWeek[wkv]=(byWeek[wkv]||0)+r;\n'
+        '    days[val("day",i)]=1;\n'
+        '  }\n'
+        '  var months=Object.keys(byMonth).sort();\n'
+        '  var green=0; months.forEach(function(m){ if(byMonth[m]>0) green++; });\n'
+        '  var weeks=Object.keys(byWeek).sort();\n'
+        '  var weekGreen=0; weeks.forEach(function(w2){ if(byWeek[w2]>0) weekGreen++; });\n'
+        '  var nDays=Object.keys(days).length;\n'
+        '  return {n:n, w:w, l:l, sc:sc, dec:dec,\n'
+        '    wr: dec? w/dec*100 : 0,\n'
+        '    meanR: n? sumR/n : 0, sumR: sumR,\n'
+        '    pf: gl? gp/gl : (gp?Infinity:0),\n'
+        '    dd: dd, worstStreak: worstStreak,\n'
+        '    bars: n? bars/n : 0,\n'
+        '    months: months, byMonth: byMonth,\n'
+        '    greenPct: months.length? green/months.length*100 : 0,\n'
+        '    weeks: weeks, weeksGreenPct: weeks.length? weekGreen/weeks.length*100 : 0,\n'
+        '    perDay: nDays? (sumR*RISK)/nDays : 0, firesPerDay: nDays? n/nDays : 0,\n'
+        '    avgWin: winN? winPnl/winN : 0, avgLoss: lossN? lossPnl/lossN : 0,\n'
+        '    days: nDays};\n'
+        '}')
+    .replace(
+        # renderKPIs(): surface the four dollar/durability reads the row asks
+        # for. Inherited card layout unchanged for the rest.
+        '    ["Months green", fmt(s.greenPct,0)+"%",\n'
+        '      \'<span class="gate \'+durable+\'">\'+s.months.length+" months</span>", cls(s.greenPct-50)],\n'
+        '    ["Avg hold", fmt(s.bars,0)+" min", "entry bar to exit bar", "neu"]\n'
+        '  ];',
+        '    ["Months green", fmt(s.greenPct,0)+"%",\n'
+        '      \'<span class="gate \'+durable+\'">\'+s.months.length+" months</span>", cls(s.greenPct-50)],\n'
+        '    ["Weeks green", fmt(s.weeksGreenPct,0)+"%", s.weeks.length+" weeks", cls(s.weeksGreenPct-50)],\n'
+        '    ["$/day", money(s.perDay), s.days+" trading days", cls(s.perDay)],\n'
+        '    ["Avg win / avg loss", money(s.avgWin)+" / "+money(s.avgLoss),\n'
+        '      "per-trade dollars at $"+RISK+"/R", "neu"],\n'
+        '    ["Fires/day", fmt(s.firesPerDay,2), "rows in selection per traded day", "neu"],\n'
+        '    ["Avg hold", fmt(s.bars,0)+" min", "entry bar to exit bar", "neu"]\n'
+        '  ];')
     .replace(
         '<div class="panel scroll"><table id="trades"></table></div>\n'
         '    <div class="pager">',
@@ -403,7 +549,7 @@ def main():
     default_stats = compute_default_selection_stats(rows)
     print("default selection (R3 baseline unit): %s" % default_stats)
 
-    dicts, cols = base_encode(rows)
+    dicts, cols = encode_extended(rows)
     meta = {
         "generated": __import__("datetime").datetime.now().isoformat(timespec="seconds"),
         "first": min(r["day"] for r in rows),

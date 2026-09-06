@@ -6,6 +6,7 @@ Run: python research/test_tape.py
 """
 from __future__ import annotations
 
+import json
 import re
 import sys
 from pathlib import Path
@@ -16,7 +17,14 @@ if str(ROOT) not in sys.path:
 
 from research.build_tape import (           # noqa: E402
     load_rich_sources, check_no_repeats, compute_default_selection_stats,
+    FACETS as TAPE_FACETS,
 )
+
+# the exact picks research/build_tape.py's patched defaultSel() makes --
+# every one of these must resolve to a real dict entry, or the page throws
+# TypeError on load before it ever draws the rail (referee finding, T1 v1).
+DEFAULT_PICKS = {"source": "baseline", "fillmode": "close",
+                 "lane": "core11", "policy": "up_to_3"}
 
 TAPE = ROOT / "research" / "tape"
 HTML = TAPE / "omen-tape.html"
@@ -57,6 +65,33 @@ def main():
     for m in re.finditer(r'<script[^>]*\bsrc=', html, re.IGNORECASE):
         fail("the page loads an external script: %s" % html[m.start():m.start() + 120])
     print("PASS: no external <script src>")
+
+    # Open the embedded payload and check every declared facet actually has
+    # data, and that the page's own default picks resolve -- catches the
+    # v1 defect (facets declared, never encoded; defaultSel() throws).
+    m = re.search(
+        r'<script id="data" type="application/json">(.*?)</script>',
+        html, re.DOTALL)
+    if not m:
+        fail("no embedded data payload found (script#data)")
+    payload = json.loads(m.group(1))
+    dicts = payload.get("dicts", {})
+    cols = payload.get("cols", {})
+    declared = [f for f, _ in TAPE_FACETS]
+    for f in declared:
+        if f not in dicts or f not in cols:
+            fail("facet %r is declared in FACETS but missing from the "
+                 "embedded dicts/cols -- the page will throw on load" % f)
+        if len(dicts[f]) == 0:
+            fail("facet %r has an empty dict -- no values were ever encoded" % f)
+    print("PASS: all %d declared facets have dicts/cols with data" % len(declared))
+
+    for field, value in DEFAULT_PICKS.items():
+        if value not in dicts.get(field, []):
+            fail("default pick %s=%r does not resolve in dicts[%r]=%r -- "
+                 "defaultSel() will silently (or loudly) fail to select it"
+                 % (field, value, field, dicts.get(field)))
+    print("PASS: all %d default picks resolve: %s" % (len(DEFAULT_PICKS), DEFAULT_PICKS))
 
     print("\nALL PASS")
 

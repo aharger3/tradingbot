@@ -55,15 +55,93 @@ unit; nothing else changes the default.
   identical price in the same minute (e.g. ACHR 2025-01-07 10:39, "pivot low
   @10:18" and "pivot low @10:24", both $11.13, priced identically) — a real
   arrival-order property of `signal_runner.py` (a level's identity is its
-  name, not the price it converges to), not a page defect. 127 such pairs
-  exist across the merged sources. This page's own "no repeats" self-check
-  (`research/build_tape.check_no_repeats`, run at build time and asserted by
-  `research/test_tape.py`) treats them as distinct rows — they differ in
-  `level_name`, a real recorded field — because collapsing them would change
-  which candidate a day's 2nd/3rd arrival is under his day policy, silently
-  moving R3's already-published $-52/day number. Fixing the underlying
-  engine dedupe is a second change this row does not own; flagged
-  separately, not fixed here.
+  name, not the price it converges to), not a page defect. This page's own
+  "no repeats" self-check (`research/build_tape.check_no_repeats`, run at
+  build time and asserted by `research/test_tape.py`) treats them as
+  distinct rows — they differ in `level_name`, a real recorded field —
+  because collapsing them would change which candidate a day's 2nd/3rd
+  arrival is under his day policy, silently moving R3's already-published
+  $-52/day number. Fixing the underlying engine dedupe is a second change
+  this row does not own; flagged separately, not fixed here.
+  **Correction (T1 repair, refereed):** the original "127 pairs" figure
+  undercounted this even on the row's own stated key (symbol, day, entry
+  minute). Under that literal 3-field key, the referee's independent script
+  (`research/t1_referee.py`) counted 151 dupe keys / 160 extra rows inside
+  `baseline`/`close` alone, and 963 dupe keys / 1,020 extra rows across all
+  7 merged sources; 5 keys still survive inside the published 769-row
+  default `up_to_3` selection. All of this is the same disclosed, not-fixed
+  arrival-order property above — the count was simply wrong, not the
+  decision to leave it.
+
+### Refereed (T1 repair, 2026-09-05)
+
+The first version of this row was **refuted**: `research/build_tape.py`'s
+`main()` called `build_bt2y_report.encode()` directly, which resolves its
+field list in its OWN module globals (`build_bt2y_report.FACETS`/`MULTI`) --
+so the seven facets this row exists to add (`source`, `fillmode`, `lane`,
+`policy`, `wk`, `exitmodel`, `instrument`) were declared in the payload's
+`facets` array and never actually encoded into `dicts`/`cols`. The patched
+`defaultSel()` then called `dicts.source.indexOf(...)` etc at page load and
+threw `TypeError` before `buildRail()` ever ran: no rail, no scoreboard, no
+equity curve, no trade table. The referee proved this by running the page's
+own JS under a DOM shim (`research/t1_referee_pagejs.js`) and by rebuilding
+from the committed script.
+
+**Fixed:** added `encode_extended()` to `build_tape.py` — it temporarily
+rebinds `build_bt2y_report.FACETS`/`MULTI` to this row's extended lists for
+the duration of one call into the base module's own `encode()` (not a fork
+of it), then restores them. `main()` now calls `encode_extended()` instead of
+`base_encode()` directly. Re-running the referee's page-JS shim confirms
+`defaultSel()` no longer throws and execution proceeds through
+`renderKPIs()`, `drawEquity()`, `drawHist()`, `drawMonths()` and
+`renderScan()` before hitting an unrelated limitation in the referee's own
+minimal shim (`document.createElementNS`/`querySelector` are stubs, not a
+real DOM) inside `renderDim()` — a pre-existing property of the inherited
+render pipeline, not something this row's patches touch.
+`research/test_tape.py` now opens the embedded payload directly and fails
+the build if any declared facet is missing from `dicts`/`cols`, or if any of
+the page's own four default picks (`source=baseline`, `fillmode=close`,
+`lane=core11`, `policy=up_to_3`) fail to resolve — the exact class of defect
+that shipped silently the first time, since the old test only asserted on
+builder-side Python and grepped the HTML text.
+
+**Also fixed:**
+- The Phase-L provenance note hardcoded `"all held --> hold"` for every
+  book, though `cycles.md` records `DAY_POLICY`'s decision as `ship`. Added
+  `flag_decision()`, which reads the real decision per flag out of
+  `cycles.md` instead of assuming one for all five.
+- The disclosed near-duplicate count ("127 pairs") undercounted the
+  referee's independent recount even on this row's own stated key (symbol,
+  day, entry minute): 151 dupe keys / 160 extra rows in `baseline`/`close`
+  alone, 963 / 1,020 across all 7 merged sources, 5 surviving inside the
+  published 769-row default selection. Corrected in the "What is scoped
+  out" section above. The underlying decision — not collapsing them,
+  because collapsing would move the already-published $-52/day number — is
+  unchanged; only the count was wrong.
+- The scoreboard had no `$/day`, no avg win / avg loss, no weeks green, no
+  fires/day. Patched `stats()` (client-side JS) to compute a weekly green
+  count off the `wk` facet, per-trade dollar win/loss, `$/day`, and
+  fires/day, and patched `renderKPIs()` to show all four.
+- The equity curve and drawdown were R-only. The gridlines and the
+  endpoint marker on the equity curve now also print the dollar figure
+  (`R * $1,000`) next to the R value — no second axis or mode toggle, since
+  the underlying series is still R (the money gate is R, not dollars).
+
+**Not fixed, kept as originally flagged (not a defect introduced by this
+repair):** the near-duplicate same-price/different-pivot-name rows
+themselves. Collapsing `signal_runner.py`'s per-pivot naming into a single
+row per (symbol, day, minute) would change which candidate a day's 2nd/3rd
+arrival is under the up-to-3 day policy and move the already-published
+$-52/day baseline — a second change this row does not own. Filed separately
+via `spawn_task` in the original submission; the referee's finding here was
+about the disclosed *count* being wrong, not about the decision to leave it,
+and that count is now corrected above.
+
+The referee's independent re-derivation of the headline number (769 trades,
+-$52/day, mean R -0.0335, 11/25 green months, `research/t1_referee.py`)
+matched this build exactly and is unaffected by any of the fixes above —
+none of them touch `compute_default_selection_stats()` or the books
+themselves.
 
 ### No-repeat guarantee
 
