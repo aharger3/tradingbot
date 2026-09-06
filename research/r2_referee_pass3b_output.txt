@@ -1,0 +1,31 @@
+====================================================================================================
+1. CROSS-COMMIT IDENTITY -- SIM D (15a729ce, 2026-09-05) vs fwd_2 (5f8b554e, 2026-09-06)
+====================================================================================================
+   SIM D rows 14332 -> 13218 unique keys
+   fwd_2 rows 14332 -> 13218 unique keys
+   keys only in SIM D: 0   only in fwd_2: 0   common: 13218
+   identical entry price on 13218/13218; identical stop on 13218/13218
+   => the two commits emit the SAME signals at the SAME prices: the engine
+      change between 15a729ce and 5f8b554e is EMPIRICALLY INERT for this book.
+
+====================================================================================================
+2. RAW-BAR REPLAY of the substrate leg's flips (fwd_1 win -> SIM D loss)
+====================================================================================================
+   matched pairs 13214; flips to loss 697; wins held 4435
+   sampled 200 flips:
+      INTRABAR_WICK_FIRST        183   (91.5%)
+      close_beyond_first          15   (7.5%)
+      target_first                 2   (1.0%)
+   explained by the report's named mechanism (wick first, or same-bar touch+target ambiguity the engine resolves pessimistically): 183/200 = 91.5%
+      NOT the named mechanism: ('META', '2025-11-14', 636, 'call') close_beyond_first
+      NOT the named mechanism: ('AMZN', '2025-02-25', 599, 'put') close_beyond_first
+      NOT the named mechanism: ('MU', '2025-10-24', 602, 'call') close_beyond_first
+      NOT the named mechanism: ('AMD', '2026-01-15', 614, 'call') close_beyond_first
+      NOT the named mechanism: ('AMD', '2024-11-13', 636, 'put') close_beyond_first
+      NOT the named mechanism: ('SPCX', '2026-06-30', 621, 'call') close_beyond_first
+      NOT the named mechanism: ('COIN', '2026-04-20', 615, 'call') close_beyond_first
+      NOT the named mechanism: ('HOOD', '2025-11-17', 601, 'put') target_first
+      NOT the named mechanism: ('AAPL', '2026-08-03', 645, 'put') close_beyond_first
+      NOT the named mechanism: ('SPY', '2025-09-12', 651, 'call') close_beyond_first
+      NOT the named mechanism: ('QQQ', '2025-03-07', 607, 'put') close_beyond_first
+      NOT the named mechanism: ('HOOD', '2025-09-03', 587, 'put') close_beyond_first

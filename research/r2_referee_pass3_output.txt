@@ -1,0 +1,122 @@
+======================================================================================================================
+A. FORWARD LADDER -- recomputed from the committed books, my own code
+======================================================================================================================
+fwd_0 tart_next_open_blind2r_noC_no84          n=  7857  wr= 38.9%  meanR=+0.1690 +-0.0322  aw=+1.9817 al=-0.9973  green=23/25  days=499  $/day=  2,660.29
+fwd_1 dd_C_grades                              n= 14327  wr= 38.6%  meanR=+0.1592 +-0.0238  aw=+1.9835 al=-0.9965  green=24/25  days=499  $/day=  4,569.49
+fwd_2 wap_exit_shipped_ladder                  n= 14332  wr= 42.4%  meanR=-0.0342 +-0.0217  aw=+1.0312 al=-0.8274  green=7/25  days=499  $/day=   -980.93
+fwd_3 dd_84_reentries                          n= 14731  wr= 42.1%  meanR=-0.0328 +-0.0216  aw=+1.0549 al=-0.8329  green=7/25  days=499  $/day=   -966.93
+fwd_4 witch_fill_close                         n= 14718  wr= 41.9%  meanR=-0.0257 +-0.0207  aw=+1.0154 al=-0.7844  green=7/25  days=499  $/day=   -758.42
+fwd_5 pply_size_gate                           n= 13374  wr= 41.8%  meanR=-0.0303 +-0.0218  aw=+1.0192 al=-0.7926  green=7/25  days=499  $/day=   -811.56
+fwd_6 edupe_day_policy_shipped_noop            n= 13374  wr= 41.8%  meanR=-0.0303 +-0.0218  aw=+1.0192 al=-0.7926  green=7/25  days=499  $/day=   -811.56
+fwd_7 indow_500_to_498                         n= 13307  wr= 41.8%  meanR=-0.0300 +-0.0219  aw=+1.0196 al=-0.7919  green=7/25  days=497  $/day=   -802.96
+fwd_8 niverse_29_to_11                         n=  5788  wr= 43.7%  meanR=-0.0075 +-0.0327  aw=+1.0063 al=-0.8015  green=12/25  days=496  $/day=    -87.65
+SIM_D real_engine blind_2R                     n= 14332  wr= 33.4%  meanR=+0.0052 +-0.0231  aw=+1.9837 al=-0.9973  green=12/25  days=499  $/day=    149.80
+
+B. ADJACENT DELTAS ($/day) -- which step is biggest
+   0->1 dd_C_grades                                   2,660 ->      4,569   delta     +1,909
+   1->2 wap_exit_shipped_ladder                       4,569 ->       -981   delta     -5,550
+   2->3 dd_84_reentries                                -981 ->       -967   delta        +14
+   3->4 witch_fill_close                               -967 ->       -758   delta       +209
+   4->5 pply_size_gate                                 -758 ->       -812   delta        -53
+   5->6 edupe_day_policy_shipped_noop                  -812 ->       -812   delta         +0
+   6->7 indow_500_to_498                               -812 ->       -803   delta         +9
+   7->8 niverse_29_to_11                               -803 ->        -88   delta       +715
+
+C. THE HEADLINE SPLIT (fwd_1 -> SIM D -> fwd_2)
+   total swing step1->step2          -5,550.42/day
+   substrate leg fwd_1 -> SIM D      -4,419.69/day  (79.6%)
+   ladder    leg SIM D -> fwd_2      -1,130.73/day  (20.4%)
+
+D. HALVES -- two split rules
+   [own-median mid=2025-09-03] fwd_1  H1 n= 5794 13mo $    4,062   H2 n= 8533 13mo $    5,075
+   [own-median mid=2025-09-03] SIM_D  H1 n= 5797 13mo $      775   H2 n= 8535 13mo $     -473
+   [own-median mid=2025-09-03] fwd_2  H1 n= 5797 13mo $     -219   H2 n= 8535 13mo $   -1,740
+   [own-median mid=2025-09-02] fwd_7  H1 n= 5341 12mo $      -85   H2 n= 7966 13mo $   -1,518
+
+   [SWARM  mid=2025-09-01] fwd_1  H1 n= 5766 12mo $    4,082   H2 n= 8561 13mo $    5,051
+   [SWARM  mid=2025-09-01] SIM_D  H1 n= 5769 12mo $      794   H2 n= 8563 13mo $     -487
+   [SWARM  mid=2025-09-01] fwd_2  H1 n= 5769 12mo $     -193   H2 n= 8563 13mo $   -1,759
+
+E. STAMP DIFFS
+   fwd_1 vs fwd_2: 7 differing stamp key(s)
+      book_id: 'd3b7151c374a9f7f' -> 'a2ff837493e9a7d2'
+      built_at: '2026-09-06T00:43:44' -> '2026-09-06T00:43:45'
+      exit_plan: 'blind_2R' -> 'shipped_ladder'
+      flags.backtest_week.SCALE_PLAN: None -> 'hod_then_runner_be'
+      rows: 14328 -> 14332
+      step: 1 -> 2
+      step_name: 'add_C_grades' -> 'swap_exit_shipped_ladder'
+   fwd_1 vs SIM_D: 16 differing stamp key(s)
+      book_id: 'd3b7151c374a9f7f' -> '6b3b862ce4ffebe0'
+      built_at: '2026-09-06T00:43:44' -> '2026-09-05T18:05:24'
+      exit_plan: 'blind_2R' -> 'blind_2R_engine'
+      flags.day_policy.LOSS_STOP: 2 -> None
+      flags.day_policy.MAX_FIRES: 3 -> None
+      flags.signal_runner.DAY_POLICY: '3fires_stop_win_or_2loss' -> None
+      flags.signal_runner.MIN_PT1_R: 0.0 -> None
+      flags.signal_runner.OCR_RETEST_DISPLACEMENT: False -> None
+      flags.signal_runner.RULE84_DECIDED: False -> None
+      flags.signal_runner.TREND_DEF: 'off' -> None
+      git.commit: '5f8b554ee80b60895e06861aa2365d587c79d3f3' -> '15a729ce116aa24bb0bda8fd98f28333fca17031'
+      git.commit_subject: "R1 referee (pass 4): refuted -- all three pass-3 repairs verified and every cell reproduces under a fourth implementation, but the report generator still emits the refuted 'Blind 2R exit' header and the backwards DISASTER_STOP paragraph, and the documented reproduce command overwrites the corrected report with them" -> 'R2 repair: fix step-7/8 substrate swap, drop fake reverse ladder, fix stamp bug, add H1/H2 split -- biggest step unchanged ($4,569 -> -$981/day)'
+      rows: 14328 -> 14332
+      script: 'research/g211_reconcile_ladder.py' -> 'research/r2_referee_pass2.py'
+      step: 1 -> 'D'
+      step_name: 'add_C_grades' -> 'referee_next_open_blind2r_REAL_ENGINE'
+   SIM_D vs fwd_2: 16 differing stamp key(s)
+      book_id: '6b3b862ce4ffebe0' -> 'a2ff837493e9a7d2'
+      built_at: '2026-09-05T18:05:24' -> '2026-09-06T00:43:45'
+      exit_plan: 'blind_2R_engine' -> 'shipped_ladder'
+      flags.backtest_week.SCALE_PLAN: None -> 'hod_then_runner_be'
+      flags.day_policy.LOSS_STOP: None -> 2
+      flags.day_policy.MAX_FIRES: None -> 3
+      flags.signal_runner.DAY_POLICY: None -> '3fires_stop_win_or_2loss'
+      flags.signal_runner.MIN_PT1_R: None -> 0.0
+      flags.signal_runner.OCR_RETEST_DISPLACEMENT: None -> False
+      flags.signal_runner.RULE84_DECIDED: None -> False
+      flags.signal_runner.TREND_DEF: None -> 'off'
+      git.commit: '15a729ce116aa24bb0bda8fd98f28333fca17031' -> '5f8b554ee80b60895e06861aa2365d587c79d3f3'
+      git.commit_subject: 'R2 repair: fix step-7/8 substrate swap, drop fake reverse ladder, fix stamp bug, add H1/H2 split -- biggest step unchanged ($4,569 -> -$981/day)' -> "R1 referee (pass 4): refuted -- all three pass-3 repairs verified and every cell reproduces under a fourth implementation, but the report generator still emits the refuted 'Blind 2R exit' header and the backwards DISASTER_STOP paragraph, and the documented reproduce command overwrites the corrected report with them"
+      script: 'research/r2_referee_pass2.py' -> 'research/g211_reconcile_ladder.py'
+      step: 'D' -> 2
+      step_name: 'referee_next_open_blind2r_REAL_ENGINE' -> 'swap_exit_shipped_ladder'
+   fwd_1 stamp commit: 5f8b554ee80b60895e06861aa2365d587c79d3f3 dirty_py: 1
+   SIM_D stamp commit: 15a729ce116aa24bb0bda8fd98f28333fca17031 dirty_py: 1
+
+F. PAIRING fwd_1 <-> SIM_D (substrate leg) -- is it one variable?
+   fwd_1 keys 13228  SIM_D keys 13231  matched 13227
+   identical entry price: 13227/13227   identical stop: 13227/13227
+   outcome transition  fwd_1 -> SIM_D   (count, total $ change)
+      win      -> loss         674       -2,022,000
+      scratch  -> loss          24          -30,179
+      loss     -> loss        8004               +0
+      win      -> win         4437               +0
+      scratch  -> scratch       88               +0
+   fwd_1: n=14327  r~+2R:5476  r~-1R:8715  worse than -1R:1  other:136
+   SIM_D: n=14332  r~+2R:4754  r~-1R:9468  worse than -1R:1  other:110
+
+G. VERIFY ASSERTION 1 -- step 0 vs R1's next_open book, tuple for tuple
+   step0 rows 7857   R1 next_open full29 rows 7857   identical tuples: True
+   core11: step0-filtered 3629 vs R1 3629 identical: True
+
+H. VERIFY ASSERTION 2 -- step 7 vs research/bt2y_trades_retest_on.json
+   retest_on: sessions=498 fired=10830 window=2024-09-03..2026-09-02  $/day=-675.25
+   step-4 rows in that window (unsized) n=14647 $/day=-750.17
+   gap = 11.1%  -> DOES NOT RECONCILE
+   published step 7 (sized) $/day=-802.96  gap 18.9%
+
+I. SAMPLE SIZES per step and per half (SWARM split 2025-09-01)
+   step 0: whole n= 7857 25mo | H1 n= 3213 12mo | H2 n= 4644 13mo
+   step 1: whole n=14327 25mo | H1 n= 5766 12mo | H2 n= 8561 13mo
+   step 2: whole n=14332 25mo | H1 n= 5769 12mo | H2 n= 8563 13mo
+   step 3: whole n=14731 25mo | H1 n= 5926 12mo | H2 n= 8805 13mo
+   step 4: whole n=14718 25mo | H1 n= 5930 12mo | H2 n= 8788 13mo
+   step 5: whole n=13374 25mo | H1 n= 5341 12mo | H2 n= 8033 13mo
+   step 6: whole n=13374 25mo | H1 n= 5341 12mo | H2 n= 8033 13mo
+   step 7: whole n=13307 25mo | H1 n= 5341 12mo | H2 n= 7966 13mo
+   step 8: whole n= 5788 25mo | H1 n= 2692 12mo | H2 n= 3096 13mo
+
+J. STEP 8 pool check -- is fwd_8 really core11?
+   symbols in fwd_8: ['AAPL', 'AMD', 'AMZN', 'GOOGL', 'META', 'MSFT', 'NVDA', 'PLTR', 'QQQ', 'SPY', 'TSLA']
+   universe.CORE_SYMBOLS: ['AAPL', 'AMD', 'AMZN', 'GOOGL', 'META', 'MSFT', 'NVDA', 'PLTR', 'QQQ', 'SPY', 'TSLA']
+   equal: True

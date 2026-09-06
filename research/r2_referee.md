@@ -460,3 +460,256 @@ not precisely −$1,131").
 
 Nothing is deleted. Every book from `15a729ce` stays in `research/tape/`, and SIM D is
 added beside them as the control that was missing.
+
+---
+
+# R2 referee — PASS 3 — UPHELD (four defects filed, none of them a number)
+
+**Builder commit under review: `fed8d97f`** ("R2 repair (pass 3): fix headline
+two-changes-in-one-label and a leaked loop variable — biggest single-variable cost
+$4,569 -> $150/day (substrate: real engine's intrabar stop vs the lab's close-only
+stop), ladder alone $150 -> $-981/day"), repairing `15a729ce` after pass 2 (above).
+Script `research/g211_reconcile_ladder.py`, report `research/g211_reconcile_ladder.md`.
+
+Referee code, all new, nothing imported from the builder's script:
+`research/r2_referee_pass3.py` (books → statistics, stamps, both verify assertions,
+sample sizes), `research/r2_referee_pass3b.py` (cross-commit identity + the raw
+1-minute-bar replay), `research/r2_referee_pass3c.py` (report provenance). Raw output:
+`research/r2_referee_pass3_output.txt`, `..._pass3b_output.txt`, `..._pass3c_output.txt`.
+Pass 1's and pass 2's code and pages are untouched.
+
+Base check: `git merge-base --is-ancestor 1539dd7f HEAD` OK; HEAD = `origin/main` =
+`fed8d97f`. Verify gate re-run by me at that commit — `regression_gate.py` PASS
+(no baseline-fired mark went silent), `test_runner_stop.py` PASS (70 checks),
+`test_universe_single_source.py` PASS (29 symbols, 25 backtested, no private lists),
+all exit 0. `git show --stat fed8d97f`: script, report, nine books; **no mark corpus,
+no engine file**; one repair scope.
+
+## Verdict
+
+**UPHELD.** Every published cell reproduces to the cent under a third independent
+implementation; the two defects pass 2 raised are genuinely repaired; and the causal
+mechanism the repaired headline names — a stop that fires on an intrabar wick rather
+than only on a candle close — **survives a raw-bar replay**, which no prior pass ran.
+Four defects remain, all in how the page is built and disclosed rather than in any
+number it prints, and none of them moves a figure R3 already published.
+
+Plain English, one line: *the row's answer is right, and I checked it against the raw
+price bars, not just against its own books.*
+
+---
+
+## 1. Every ladder cell — CONFIRMED
+
+Recomputed from the committed `.json.gz` books with `stats()` in
+`research/r2_referee_pass3.py`. Unit for every row: **every traded signal**
+(`filled` and `r` not null), **$1,000 risk per trade**, **$/day = sum(pnl) ÷ distinct
+trading days in the population**, script `research/g211_reconcile_ladder.py`. Fill and
+exit named per row.
+
+| step | fill | exit | pool | trades | win | mean R (95% CI) | green | $/day (mine) | report |
+|---:|---|---|---|---:|---:|---:|---:|---:|---:|
+| 0 | next_open | blind 2R | full29 | 7,857 | 38.9% | +0.1690 ±0.0322 | 23/25 | $2,660.29 | $2,660 |
+| 1 | next_open | blind 2R | full29 | 14,327 | 38.6% | +0.1592 ±0.0238 | 24/25 | $4,569.49 | $4,569 |
+| 2 | next_open | shipped ladder | full29 | 14,332 | 42.4% | −0.0342 ±0.0217 | 7/25 | −$980.93 | −$981 |
+| 3 | next_open | shipped ladder | full29 | 14,731 | 42.1% | −0.0328 ±0.0216 | 7/25 | −$966.93 | −$967 |
+| 4 | close | shipped ladder | full29 | 14,718 | 41.9% | −0.0257 ±0.0207 | 7/25 | −$758.42 | −$758 |
+| 5 | close | shipped ladder | full29 | 13,374 | 41.8% | −0.0303 ±0.0218 | 7/25 | −$811.56 | −$812 |
+| 6 | close | shipped ladder | full29 | 13,374 | 41.8% | −0.0303 ±0.0218 | 7/25 | −$811.56 | −$812 |
+| 7 | close | shipped ladder | full29 | 13,307 | 41.8% | −0.0300 ±0.0219 | 7/25 | −$802.96 | −$803 |
+| 8 | close | shipped ladder | core11 | 5,788 | 43.7% | −0.0075 ±0.0327 | 12/25 | −$87.65 | −$87 |
+| D | next_open | blind 2R (real engine) | full29 | 14,332 | 33.4% | +0.0052 ±0.0231 | 12/25 | $149.80 | $150 |
+
+Adjacent deltas: **+$1,909 · −$5,550 · +$14 · +$209 · −$53 · $0 · +$9 · +$715**. Step
+1 → 2 is the biggest move by two orders of magnitude over the next-largest *drop*
+(−$53). Step 8's pool is exactly `universe.CORE_SYMBOLS` — checked against the module,
+11 for 11.
+
+## 2. The repaired headline split — CONFIRMED, and its mechanism verified on raw bars
+
+| leg | change | $/day before | $/day after | delta | share |
+|---|---|---:|---:|---:|---:|
+| trade-management substrate | close-only lab stop → real engine's intrabar disaster stop | $4,569.49 | $149.80 | **−$4,419.69** | 79.6% |
+| exit target | flat 2R → scale-out-and-trail ladder, same substrate | $149.80 | −$980.93 | **−$1,130.73** | 20.4% |
+
+The report prints −$4,420 / −$1,131 / 80% / 20%. Reproduces.
+
+Pairing `fwd_1` against SIM D on (symbol, day, minute+1, side, setup): **13,227 matched,
+entry price identical on 13,227 of 13,227, stop price identical on 13,227 of 13,227.**
+The outcome transitions are strictly one-directional — 674 win→loss, 24 scratch→loss,
+**zero** loss→win and zero win→scratch. Avg win +1.9835 → +1.9837 and avg loss −0.9965
+→ −0.9973 are unchanged; the whole leg is the win rate, 38.6% → 33.4%.
+
+**The mechanism check no earlier pass ran.** I took 200 of the 697 flipped trades at
+random (seed 7) and replayed the raw 1-minute bars from `data_archive/`, asking what
+happened first after the fill: a wick through the stop on a candle that closed back on
+the right side (the report's named mechanism, and the one thing the lab rig gives away
+for free), a close beyond the stop (both rigs stop there, so it cannot explain a flip),
+or the 2R target.
+
+| what came first | count | share |
+|---|---:|---:|
+| **intrabar wick through the stop, candle closed back** | **183** | **91.5%** |
+| close beyond the stop first | 15 | 7.5% |
+| 2R target first | 2 | 1.0% |
+
+91.5%, Wilson 95% interval **86.8%–94.6%**. The report's sentence — *"most of the drop
+is switching from a lab stop that only reacts at the end of a candle to the real
+engine's stop, which reacts the instant price touches it"* — is the right diagnosis of
+the right trades. The 8.5% residue (a close beyond the stop, or the target reached
+first, on a trade the lab rig still booked as a win) is a real but small second effect
+inside the substrate leg that neither rig's book explains on its own; it does not
+change the attribution's direction or order of magnitude.
+
+## 3. The two pass-2 defects — both genuinely repaired
+
+- **The leaked loop variable is fixed.** The published halves are now step 1's and step
+  2's own. Recomputed under the script's split rule (median trading day of the
+  population, 2025-09-03): step 1 **H1 $4,062 (n=5,794, 13mo) / H2 $5,075 (n=8,533,
+  13mo)**, step 2 **H1 −$219 (n=5,797) / H2 −$1,740 (n=8,535)** — the report's four
+  cells to the dollar. Step 7's halves (−$85 / −$1,518), which the broken version
+  published under step 1's label, no longer appear anywhere.
+- **The headline no longer names the smaller leg.** It names the substrate, the split
+  table sits under it, and the conflated $-5,550 pair is kept only as the ladder's own
+  titled rung with "two changes, not one" stated in the same paragraph.
+
+## 4. Both verify assertions — re-run by me, exit codes read
+
+- **Assertion 1 (first row reproduces R1 to the cent).** Not a row count: I compared
+  step 0's book against `research/tape/fillarms_next_open_full29.json.gz`
+  tuple-for-tuple on (sym, day, entry_time, entry, r) — **7,857/7,857 identical on
+  full29, 3,629/3,629 identical on core11.** PASSES.
+- **Assertion 2 (last row reproduces `research/bt2y_trades_retest_on.json` within 1%).**
+  Step 4's own rows inside that book's window: **−$750.17/day over 14,647 rows** against
+  that book's **−$675.25/day** (10,830 fired ÷ 498 sessions) — **11.1% apart, FAILS.**
+  Exactly the builder's figure. The spec's fallback ("say which step will not reconcile
+  and why") is met, and the named cause holds mechanically: `loss_halt.apply_to_book` is
+  reachable only from `backtest_2y.py`, never from `simulate_day`, so this row's
+  simulations genuinely never apply it. It stays an unmeasured attribution.
+  Separately: the *published* step 7 is sized and reads −$802.96/day, 18.9% from the
+  shipped book — the verify line correctly says it is quoting the unsized population.
+
+## 5. Filtered vs simulated — the one place re-simulation was needed is disclosed
+
+Simulated: SIM A (steps 0–1), SIM B (2–3), SIM C (4–6), plus the referee's SIM D.
+Filtered: grade, `reentry_84_rule`, the size gate, the universe, the window.
+
+The filter that could have needed re-simulation is **add-C-grades**, for the reason
+`CLAUDE.md` names by hand: `backtest_week`'s dedupe claim is grade-blind
+(`claims = sig.get("status") == "fired" or not DEDUPE_FIRES_ONLY`), so a C fire
+suppresses a later non-C candidate that a genuine C-gated run would release. Pass 2
+measured it at **+4.6% more non-C signals**, and `fed8d97f` now carries that as a named
+disclosure in the report's own "Filtered, not simulated" section, calling step 0→1 a
+**ceiling** on "remove C grades" rather than the engine's answer. Correct handling: the
+fourth replay it would take is a second change.
+
+## 6. Sample sizes — every cell clears the floor
+
+Whole steps: 5,788–14,731 trades over 25 months. Halves on the gate's own split
+(2025-09-01): H1 2,692–5,930 trades over 12 months, H2 3,096–8,805 over 13 months. No
+cell in the report is under 30 trades or 12 months, so no "not enough" is owed and none
+is claimed.
+
+---
+
+## Defects filed — four, none of them a number
+
+### D1 — the headline table A/Bs three books built on two days from two commits, undisclosed
+
+`fwd_1` and `fwd_2` were built **2026-09-06 00:43 at commit `5f8b554e`**. SIM D was
+built **2026-09-05 18:05 at commit `15a729ce`**. Diffing the two stamp blocks:
+**16 keys differ**, including `git.commit` and five `signal_runner` flags that did not
+exist when SIM D ran — among them `DAY_POLICY`, whose **default changed from `"first3"`
+to `"3fires_stop_win_or_2loss"`** in between. SWARM law 5 says in as many words: never
+A/B two books built on different days or bases. The report never mentions that its
+headline table crosses that line.
+
+I ran the check the row should have. `signal_runner.DAY_POLICY` has **no consumer in
+`backtest_week`** (only `backtest_2y.py`, `day_policy.py` and `live_scanner.py` read
+it), and `backtest_week`'s only diff across the two commits is behind `RULE84_DECIDED`,
+default off, on 84% rows this book excludes. Empirically: SIM D and `fwd_2` hold the
+**same 13,218 keys, identical entry price on 13,218 of 13,218, identical stop on 13,218
+of 13,218** — the two commits emit the same signals at the same prices.
+
+**So the number survives.** But it survives because a referee ran a fourth check, not
+because the page said it was safe. The fix is one disclosed sentence in the report
+naming both build commits and the identity check.
+
+### D2 — the split labelled "H1/H2" is not the gate's H1/H2
+
+SWARM law 2 fixes H1 as before **2025-09-01** and H2 as 2025-09-01 onward. `half_stats`
+splits at the **median trading day of each step's own population** — 2025-09-03 for
+steps 1 and 2, 2025-09-02 for step 7 — so two steps' halves are different periods and
+neither is the gate's. Disclosed only as "by trading day, not calendar month," which
+does not say the boundary moves per step.
+
+Immaterial here, and I checked rather than assumed. On the gate's own split: step 1
+**H1 $4,082 (n=5,766, 12mo) / H2 $5,051 (n=8,561, 13mo)**, step 2 **H1 −$193 (n=5,769)
+/ H2 −$1,759 (n=8,563)**, SIM D **H1 $794 / H2 −$487**. Same direction, same order of
+magnitude, both legs still negative in both halves. Fix: either use 2025-09-01 or stop
+calling the columns H1/H2.
+
+### D3 — the generator silently republishes the refuted headline if one book is missing
+
+`load_simd()` returns `(None, None)` when
+`research/tape/r2ref_simd_next_open_blind2r_real_engine.json.gz` is absent, and both
+repaired blocks are guarded by `if ... and simd_rows is not None`. With that one file
+missing, the documented reproduce command —
+`python research/g211_reconcile_ladder.py --procs 8` — regenerates the page with pass
+2's **refuted** sentence back in the headline ("switching from a flat double-your-money
+exit … a swing of $-5,550/day"), no split table, and **no warning in the report**. The
+book is committed, so this is latent; on a fresh clone that has not gunzipped, or after
+any tidy-up of `research/tape/`, it is live. This is the same failure class R1's pass-4
+referee filed. Fix: raise, or print the fallback loudly in the page itself.
+
+### D4 — two numbers in the corrected paragraph are typed, not computed
+
+Inside the same sentence that interpolates `simd_stats['wr']`, the *before* win rate
+**"38.6%"** is a string literal, and the substrate/ladder ratio is the literal **"about
+four times"** (the books say 3.91×). Both are correct today and both go stale in
+silence. Fix: interpolate them.
+
+### Observed, not R2's — a stale cell downstream
+
+`CLAUDE.md`'s "Where the money is lost" paragraph publishes **"win rate 38.8% → 33.6%"**
+for this same pair. The books read **38.59% → 33.43%** (wins ÷ decided) or **38.22% →
+33.17%** (wins ÷ all trades) — off by about 0.2 points in both cells under either
+reading. R2's own report prints 38.6% correctly. That line belongs to R3 (`af238bb5`),
+not to `fed8d97f`; filed here so it is not lost.
+
+---
+
+## Carried forward, still true, and correctly disclosed by the page
+
+The ladder does not reach the row's titled −$284/day endpoint (it ends at −$803/day
+full 29, −$87/day core 11); the tree held one uncommitted non-engine `.py` at build
+time; path-dependence of the ladder is **untested**, not answered, because the reverse
+table was correctly deleted rather than faked; and the `fwd_1` 14,327-vs-14,328 row
+count is one candidate row with a null `r`. All four are stated in the report in the
+report's own words.
+
+## Report provenance
+
+`research/r2_referee_pass3c.py` checks that the page is machine-generated and has not
+drifted from its generator. **All 10 section headings are emitted by
+`g211_reconcile_ladder.py`**, and every prose line traces to a literal in it (the
+15 the crude matcher flags are the generated book list, the generated verify lines, and
+sentences the regex could not rejoin across source-line breaks — inspected by hand, all
+generated). There is no hand-edited paragraph in the committed report, so re-running
+the reproduce command rebuilds the page as committed — subject to D3.
+
+## What R3 can use, unchanged
+
+1. **The substrate leg: −$4,420/day**, `fwd_1` → SIM D, 14,327 → 14,332 trades, next_open
+   fill both sides, 25 months, both halves negative, mechanism verified on the raw bars
+   at 91.5% (86.8–94.6%).
+2. **The ladder leg: −$1,131/day**, SIM D → `fwd_2`, one flag (`SCALE_PLAN`), same 14,332
+   rows, both halves negative. Read it as "about −$1,100/day": the leg moves −0.0394R
+   per trade against a ±0.023R interval.
+3. **The full forward ladder, steps 0–8**, as arithmetic.
+4. **Not** the claim that the ladder reconciles to `bt2y_trades_retest_on.json` — 11.1%
+   apart and open — and **not** step 0→1's +$1,909/day as the engine's answer to
+   removing C grades; it is a ceiling, ~4.6% high.
+
+Nothing is deleted. Every book stays in `research/tape/`, and the three referee scripts
+and their raw output are committed beside this page.

@@ -1,0 +1,45 @@
+report lines: 72  table rows: 19  prose lines: 50
+
+A. PROSE PROVENANCE -- each prose line's longest literal fragment must appear in the .py
+   prose lines checked: 50   NOT found in the generator: 15
+   ORPHAN LINE: Base commit at run time, three new simulations (SIM A/B/C, full29 pool, WIDE window `2024-09-04` to `2026-09-04`). Steps 7-8 stay on THIS row's own SI
+      fragment: sessions) -- that book is read only for its window boundary, never for its trades, after a repair (see Refereed section 
+   ORPHAN LINE: **Tree was dirty at build time**: 1 uncommitted .py file(s) (engine files dirty: none) -- every stamped book below records this in its own `stamp.git`
+      fragment: uncommitted .py file(s) (engine files dirty: none) -- every stamped book below records this in its own `stamp.git` block
+   ORPHAN LINE: - step 0 vs R1 next_open (full29): 7857 rows here vs 7857 in R1's book -- MATCH to the cent.
+      fragment: 's book -- MATCH to the cent.
+   ORPHAN LINE: - step 0 vs R1 next_open (core11): 3629 rows here vs 3629 in R1's book -- MATCH to the cent.
+      fragment: 's book -- MATCH to the cent.
+   ORPHAN LINE: - step 7 (this row's OWN simulation, unsized, full pool, window=('2024-09-03', '2026-09-02')) $/day = $-750.17 vs research/bt2y_trades_retest_on.json'
+      fragment: (this row's OWN simulation, unsized, full pool, window=('
+   ORPHAN LINE: - **The headline step was two changes wearing one label.** Section 2 above (read from the referee's own SIM D book) is the fix: the step-1->2 swing sp
+      fragment: swing splits into a trade-management-substrate leg and an exit-ladder leg, and the substrate leg is the bigger one. "The
+   ORPHAN LINE: - `research\tape\reconcile_fwd_0_start_next_open_blind2r_noC_no84.json.gz`
+      fragment: - `research\tape\reconcile_fwd_
+   ORPHAN LINE: - `research\tape\reconcile_fwd_1_add_C_grades.json.gz`
+      fragment: - `research\tape\reconcile_fwd_
+   ORPHAN LINE: - `research\tape\reconcile_fwd_2_swap_exit_shipped_ladder.json.gz`
+      fragment: _swap_exit_shipped_ladder.json.gz`
+   ORPHAN LINE: - `research\tape\reconcile_fwd_3_add_84_reentries.json.gz`
+      fragment: - `research\tape\reconcile_fwd_
+   ORPHAN LINE: - `research\tape\reconcile_fwd_4_switch_fill_close.json.gz`
+      fragment: - `research\tape\reconcile_fwd_
+   ORPHAN LINE: - `research\tape\reconcile_fwd_5_apply_size_gate.json.gz`
+      fragment: - `research\tape\reconcile_fwd_
+   ORPHAN LINE: - `research\tape\reconcile_fwd_6_dedupe_day_policy_shipped_noop.json.gz`
+      fragment: _dedupe_day_policy_shipped_noop.json.gz`
+   ORPHAN LINE: - `research\tape\reconcile_fwd_7_window_500_to_498.json.gz`
+      fragment: - `research\tape\reconcile_fwd_
+   ORPHAN LINE: - `research\tape\reconcile_fwd_8_universe_29_to_11.json.gz`
+      fragment: - `research\tape\reconcile_fwd_
+
+B. HARD-CODED NUMBERS inside the generator's report literals
+   10.0         in: # OMEN 10.0 R2 -- reconcile R1's next_open book against the shipped full book\n
+   2,660/day    in: **Why step 0 reads $2,660/day, not the spec's headline $569/day.** 
+   569/day      in: **Why step 0 reads $2,660/day, not the spec's headline $569/day.** 
+   569/day      in: $569/day is `g90_fill_arms.py`'s ORIGINAL published `next_open` number 
+   2024         in: (2024-08-12 to 2026-08-11, the pre-R1 engine). Step 0 here is R1's 
+   08           in: (2024-08-12 to 2026-08-11, the pre-R1 engine). Step 0 here is R1's 
+   12           in: (2024-08-12 to 2026-08-11, the pre-R1 engine). Step 0 here is R1's 
+   2026         in: (2024-08-12 to 2026-08-11, the pre-R1 engine). Step 0 here is R1's 
+   11,          in: (2024-08-12 to 2026-08-11, the pre-R1 engine). Step 0 here is R1's 
