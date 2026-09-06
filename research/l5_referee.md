@@ -198,3 +198,209 @@ stop after a win or after two losses" is already how we score every result, so s
 it on inside the engine changes nothing on your eleven main stocks. The only reason it
 looked like it changed something is that the engine was spending the three daily trades
 across twenty-eight symbols, then we were only counting eleven of them.
+
+---
+---
+
+# L5 referee — PASS 2 (after the repair) — **refuted**
+
+**Builder's commit under review:** `350b02fc` ("L5 repair: day_policy scoped to
+core-11 lane + shared candidate pool (referee Defect-1/2) — $/day -52 -> -52,
+green 11 -> 11, measured no-op both halves; ships as new default"), on top of
+`5e8b5b89` (the `day_policy.py` repair itself).
+**Builder's filed decision:** `ship`, default flipped to
+`DAY_POLICY=3fires_stop_win_or_2loss`.
+**Pass-2 verdict: refuted — the measurement, not the decision.** Every number the
+builder published reproduces under independent arithmetic, both pass-1 defects are
+genuinely fixed, and the flag is exactly the measured no-op it claims to be. **The
+ship is what fails.** Flipping the default turns `backtest_2y.py`'s *default* book
+into a different book, and the loop's own guard — "the OFF arm must fingerprint to
+the baseline" — will now block every remaining L-row.
+
+Everything below is re-derived by `research/l5_referee_pass2.py` (committed beside
+this page; pass 1's `research/l5_referee.py` is left untouched as evidence). The
+pass-2 script deliberately re-implements the unit rather than importing
+`research/loop_cycle.py`, so the gate figures are independent of the code that
+produced them.
+
+**Terms, once:** fill = honest close (`backtest_2y.py` default `ENTRY_FILL=close`);
+exit = shipped engine, 1R hard stop filled on the intrabar touch
+(`DISASTER_STOP_R=1.0`), `SCALE_PLAN=hod_then_runner_be`, account-wide `LOSS_HALT`
+on; unit = `up_to_3_stop_win_or_2loss` on the 11 core symbols (`research/tape/loop.json`)
+unless a line names another; window 2024-09-04 → 2026-09-04, 499 sessions, 498 of
+them with a fire; script = `research/l5_referee_pass2.py`.
+
+---
+
+## What the repair got right (re-derived, all of it)
+
+| check | result |
+|---|---|
+| pass-1 Defect 1 (universe) fixed | **yes** — all **1,095** blocked rows are `tier=="core"`; 0 non-core rows touched |
+| pass-1 Defect 2 (candidate pool) fixed | **yes** — pool is `(fired and traded) or halted`, byte-identical wording to `loop_cycle.up_to_3_rows`; halted rows occupy a slot and are never relabelled |
+| OFF book == baseline | **yes** — `book_id 2c39ced2697c26cc` = `loop.json: baseline_book_id` |
+| stamps differ in exactly one flag | **yes** — 77 flags stamped, 1 differs: `signal_runner.DAY_POLICY 'first3' -> '3fires_stop_win_or_2loss'` |
+| stamp provenance | both books: `commit 5e8b5b89` (an ancestor of `350b02fc`), `dirty_py_count 0`, `dirty_engine_py []`, `built_at` 21:34 / 21:37, `entry_fill "close"`, 127,513 rows. `script` is `null` on both — a pre-existing `book_stamp.stamp()` gap the builder names |
+| ON book is OFF + one post-pass | **yes** — applying `day_policy.apply_to_book` to the stamped baseline rows in memory fingerprints to **`205d3dcee96c5282`**, the ON book's stamped id, bit for bit |
+| flag semantics vs the rulebook | **match** (quoted below) |
+| `DAY_POLICY` in `book_stamp.FLAG_SOURCES` | **yes** |
+| mark files | **none touched** in `5e8b5b89`, `350b02fc`, or the working tree |
+| verify gate at `350b02fc` | **green** — I ran all three: `regression_gate.py` exit 0, `test_runner_stop.py` exit 0 (70 checks), `test_universe_single_source.py` exit 0 |
+
+`omen_recall.py "day policy up to 3 S fires stop after a win or 2 losses"` returns,
+verbatim:
+
+> **2026-09-05: day policy: up to 3 S fires; stop after a win or 2 losses.**
+> First-S-only reported beside it. — `omen-rulebook.md`, "Decided 2026-09-05
+> (the /call 60, afternoon) — omen-10.0"
+
+and the spec's settled row: *"day policy — up to 3 S fires; stop after a win or
+after 2 losses; 'first S only' reported beside it."* `day_policy.py`'s rule — up to
+3 taken trades, day over on the first **closed** win or the second **closed** loss —
+is that sentence read causally. Not adjacent; faithful.
+
+### The gate, recomputed with my own arithmetic
+
+| arm | half | trades | $/day | green | months | avg win ÷ avg loss | fires/day |
+|---|---|---:|---:|---:|---:|---:|---:|
+| OFF | whole | 769 | **−51.59** | 11 | 25 | 1.119 | 1.541 |
+| OFF | H1 | 382 | +8.84 | 6 | 12 | 1.308 | 1.540 |
+| OFF | H2 | 387 | −111.30 | 5 | 13 | 0.949 | 1.542 |
+| ON | whole | 769 | **−51.59** | 11 | 25 | 1.119 | 1.541 |
+| ON | H1 | 382 | +8.84 | 6 | 12 | 1.308 | 1.540 |
+| ON | H2 | 387 | −111.30 | 5 | 13 | 0.949 | 1.542 |
+
+`research/tape/cycles.md`'s L5 row reads `-52.0 -> -52.0`, `11 -> 11`, H1 pass, H2
+pass, 769 trades. Mine agrees in every cell (the row rounds −51.59 to −52). H1 and H2
+drops are **0.00%**. Sample sizes clear both floors everywhere a verdict is given:
+whole 769 trades / 25 months, H1 382 / 12, H2 387 / 13.
+
+Daily P&L, core-11 baseline unit, 498 traded days: p5 −$2,000, p25 −$1,025, median
+**+$99**, p75 +$627, p95 +$1,792, worst −$2,000, best +$9,732. Breaches: 132 days at
+or below −$1,000 (73.5% pass), 70 at or below −$2,000 (85.9%), **0 below −$2,500
+(100% pass)**. Fires histogram: 0 fires on 1 day, 1 on 229, 2 on 267, 3 on 2. Every
+one of these reproduces the builder's table.
+
+`first_of_day`, the unit the spec asks to be reported beside: **498 trades,
+−$39.12/day, 9/25 green**, identical on both books. The builder's −$39 / 9-of-25 /
+498 is right.
+
+---
+
+## Defect 1 (decisive) — the default flip breaks the loop's own baseline guard
+
+`backtest_2y.py:293` calls `day_policy.apply_to_book(rows)` **unconditionally**; the
+only gate is `signal_runner.DAY_POLICY`, whose default `350b02fc` changed. So a
+plain `python backtest_2y.py` now produces a *different book*. Run at HEAD, 12-day
+window:
+
+    R31 loss halt: 75 trades blocked (ON)
+    L5 day policy: 24 trades blocked (3fires_stop_win_or_2loss)
+    book id 990d563cc3e06c05 from commit 350b02fc
+
+`DAY_POLICY` is not set in `.env`, not in the process environment, and
+`loop.json: rebuild.env` is `{}`. `loop_cycle.stage_build` builds the OFF arm with
+`build_book({}, off_path, …)` — **no override** — then:
+
+> `if base_id != off_id: decision = "blocked" … "the OFF arm's book_id does not
+> match the configured baseline's — the code landing changed the book even with the
+> flag at its default"`
+
+At HEAD that comparison is `2c39ced2697c26cc` vs `205d3dcee96c5282` — proven by
+re-derivation, not forecast: applying `day_policy.apply_to_book` at the HEAD default
+to the stamped baseline's own rows blocks 1,095 rows and fingerprints to
+`205d3dcee96c5282`. **L6, L7, L8 and every future cycle return `blocked` on the build
+stage.** `loop.json` is untouched by `350b02fc` (`git show --stat`), so the baseline
+was never re-pinned. L5 is the loop's first *ship*, and the loop has no re-baseline
+step; the ship needed one and did not get it.
+
+## Defect 2 (decisive) — "it costs nothing" is false for every reader but the gate
+
+The gate measures one unit. The **default book** is read by all of them. Same two
+books, core 11, same fill and exit:
+
+| unit | OFF (baseline) | ON (the new default) |
+|---|---|---|
+| `up_to_3_stop_win_or_2loss` (the gate's unit) | 769 trades, −$51.59/day, 11/25 green | 769, −$51.59/day, 11/25 |
+| `first_of_day` (the "reported beside" unit) | 498 trades, −$39.12/day, 9/25 | 498, −$39.12/day, 9/25 |
+| **`every_signal`** | **1,909 trades, −$132.47/day, 10/25** | **814 trades, −$3.81/day, 12/25** |
+
+`every_signal` loses **57% of its traded rows** and moves **+$129/day** on the
+default book. That is not a no-op; it is a no-op *only through the one lens the gate
+looks through*. Anything reading the default book on the whole-book unit — T1's tape,
+the per-symbol tables, any future row that quotes "every traded signal" — silently
+changes meaning at `350b02fc`. The builder's sentence in `signal_runner.py`,
+"Shipped because it costs nothing," is not supported.
+
+## Defect 3 — the gate that authorised the ship is vacuous
+
+Of the 1,095 rows the flag blocks, **0** are rows the OFF arm's unit ever counted
+(re-derived: `blocked rows that the OFF arm's unit actually counted: 0`). The gate
+therefore compared the arm against itself. `pass / pass` here carries no information
+about the flag. SWARM.md's law 2 makes the no-regression gate a **veto** on shipping,
+not a warrant for it; "the gate mechanically returned decision=ship" is not a reason
+to change a default. A no-op flag's correct landing is **hold on a zero** — which is
+exactly what pass 1 recommended, and the builder agreed with the physics and shipped
+anyway.
+
+## Defect 4 — the live lane, now live and wrong
+
+`live_scanner.py` contains no occurrence of the string `3fires_stop_win_or_2loss`
+(checked); its only branch is `if _LIVE_DAY_POLICY == "one_and_done"` (line 1624), so
+the third value falls through to `MAX_TRADES_PER_DAY=3` / `CONSECUTIVE_LOSS_HALT=2`,
+i.e. `first3` — which keeps firing after a win. Meanwhile `live_scanner.py:502`
+writes `"day_policy": "3fires_stop_win_or_2loss"` into the session record. Pass 1
+filed this as harmless-while-OFF; the ship makes it **a live mislabel today**. The
+builder named it and filed it as a follow-up task instead of blocking on it. A
+default the live engine does not implement should not have gone in ahead of that fix.
+
+## Defect 5 — two comments now assert the opposite of the shipped default
+
+- `day_policy.py` module docstring: *"OFF unless `signal_runner.DAY_POLICY ==
+  "3fires_stop_win_or_2loss"` (default stays `"first3"`, unchanged — L5 lands this
+  OFF)."* — false at HEAD.
+- `backtest_2y.py:292`: *"No-op unless DAY_POLICY=3fires_stop_win_or_2loss; OFF by
+  default."* — false at HEAD.
+
+`signal_runner.py`'s block was updated; these two were not. The next agent reading
+either file will believe the flag is off.
+
+## Defect 6 (minor, arithmetic) — a denominator
+
+The report's prop-firm line reads "132/499 days breach (73.5% pass)". There are 499
+sessions but **498** traded days (one session has no fire). 132/498 = 26.5% breach,
+73.5% pass — the percentage quoted is right, the denominator printed beside it is
+not.
+
+## Carried over, still open (the builder named all three)
+
+- Pass-1 Defect 3's substance — the **causal-own-picks** unit reads **+$16/day** on
+  this book against the lens's −$52/day, and its prop-firm profile is worse
+  (worst day −$3,000, 10 of 498 days breaching $2,500, 98.0% pass, against the lens's
+  0 and 100%). That is an R3-level question about the loop's baseline unit, correctly
+  ruled out of an L-row.
+- `script: null` on every book stamp — a `book_stamp.stamp()` gap, not this row's.
+- `live_scanner.py` needs the third branch (Defect 4).
+
+---
+
+## What the dispatcher should do
+
+1. **Revert the default to `first3`** — one line, `signal_runner.py`. Keep
+   `day_policy.py`'s repair (it is correct and now proven), keep both stamped books,
+   keep the cycles row, and change its decision to **hold on a zero**. Without this
+   the loop's next build stage returns `blocked`.
+2. If a future call decides the default really should flip, the ship needs three
+   companion steps in the same landing: re-pin `loop.json`'s `baseline_book`/
+   `baseline_book_id` to the new default book, add the `live_scanner.py` branch, and
+   correct the two comments in Defect 5.
+3. The genuinely valuable finding remains the causal-unit question (+$16/day, worse
+   daily-loss tail), and it is an R3 row, not an L row.
+
+**Plain English, if a line of this reaches Austin:** the rule "take up to three a day,
+stop after a win or after two losses" is already how we score every backtest, so
+switching it on inside the engine changes nothing on your eleven main stocks — the
+result is the same to the dollar. The problem is that switching it on also quietly
+changed the standard two-year book everything else is measured against, and the live
+scanner does not actually know how to follow the new setting. So the right move is to
+leave the setting where it was and keep the fix.
