@@ -1,4 +1,14 @@
-# V1 referee — upheld on substance, one reporting defect
+# V1 referee
+
+**Pass 1 (below, kept verbatim): upheld, one reporting defect.**
+**Pass 2 (a second referee, different model, at the end of this page): REFUTED —
+the premarket half of the row silently publishes the previous session's numbers
+under today's date, and its first scheduled fire is on a market holiday.**
+The standing verdict for the row is **pass 2's: refuted.**
+
+---
+
+## Pass 1 — upheld on substance, one reporting defect
 
 **Row:** V1 (omen-10.0, Phase V) — Monday's push carries the pre-reconcile line, and a
 09:25 premarket list goes to ntfy for the core 11.
@@ -85,3 +95,93 @@ character-for-character the pattern already in the working `research/daily_run.c
 `wmic os get localdatetime` was confirmed present and returning on this box
 (`C:\WINDOWS\System32\Wbem\WMIC.exe`), so the log filename will resolve. The first live
 09:25 push on Monday is the real test of that path.
+
+---
+
+# Pass 2 — REFUTED
+
+**Referee:** a second, different model, instructed to refute. Nothing below is taken from
+the builder's report or from pass 1; every claim was re-derived here. Reproduce with
+`python research/v1_referee_pass2.py` (4 checks, **0 pass, 4 fail**).
+
+**Builder's commit, as reported:** `3c8e586df098862d13df1a28285ec5b6042c2d72`
+(pass 1 already established this is Austin's `wip: auto-commit Sat 09/05/2026 16:23`, not
+V1's code). **V1's actual code commit:** `c59abe88dd5d2ca58773550f08680cce9d9dbabb`.
+
+**Base.** `git fetch origin`; HEAD = `origin/main` = `ccd7fa06`; `1539dd7f` is an ancestor
+of HEAD; HEAD equals `origin/main`. Base check passes.
+
+## What pass 1 confirmed and pass 2 re-confirmed
+
+| check | result |
+|---|---|
+| dry-run lists the 11 core symbols, each with all four levels | pass — TSLA NVDA AAPL AMD META GOOGL AMZN MSFT PLTR QQQ SPY, 11 rows, no `n/a` |
+| dry-run exits 0, no traceback | pass — Polygon 403 on 5 symbols, 429 on 6, all fell through to yfinance |
+| the API key never appears in the output | pass — `_scrub`'s `apiKey=[^&\s]+` substitution fires on every printed error; the 11 diagnostic lines show truncated URLs with no key |
+| the pushed body is plain English | pass — the body is the level block only; the fetch diagnostics go to stdout and the log, never into the push |
+| scheduled task, weekdays 09:25 | pass — `\OmenPremarketList`, Schedule Type Weekly, Days `MON, TUE, WED, THU, FRI`, Start Time 9:25:00 AM, Status Ready |
+| task command path exists and is tracked | pass — Task To Run = `…\research\premarket_list_run.cmd`; `git ls-files` returns it and `research/premarket_list.py` |
+| `c59abe88`'s `live_scanner.py` diff is ntfy text only, Alpaca untouched | pass — +8 lines, 0 removed: the `PUSH_TAG_PRERECONCILE` env flag plus three lines appending the sentence to `_push_s_signal`'s body. No `place_order`, no `submit_order`, no broker call added or moved |
+| verify gate green at HEAD (`ccd7fa06`) | pass — `regression_gate.py` PASS (no baseline-fired mark went silent); `test_runner_stop.py` ok, 70 checks; `test_universe_single_source.py` ok, 29 symbols, no private lists |
+| no mark file changed | pass — `git show --stat` on `c59abe88` and `3c8e586d` and `git status` list nothing under `research/marks/`, no `*marks*.jsonl`, no `mark_batch_*`, no `recovered_reviews.jsonl`, no `marks_clean.jsonl`, no `derived_marks_v*`, no `rule_ballot_*`, no `austin_verdicts.json`, no deck manifest |
+| sample size / dollar figures / stamped books | n/a — V1 produced no trade cells, no dollar figure and no book. Nothing to gate, nothing to stamp |
+
+## The defect pass 1 missed
+
+Pass 1 checked that the dry-run *printed eleven rows of numbers*. It did not check whether
+those numbers are **today's**. They are not.
+
+`research/premarket_list.py::_yf_batch_premarket_today` downloads with
+`yf.download(symbols, period="1d", interval="1m", prepost=True, …)` and then selects
+premarket bars with a single line:
+
+    pm = df[df.index.time < dt.time(9, 30)]
+
+That is a **clock filter with no date filter**. `period="1d"` returns the most recent
+session that *has* data, which is not necessarily today. Nothing downstream re-checks it:
+`fetch_levels` assigns `yf_pm.get(s, …)` straight into the message, and `format_message`
+prints `n/a` only when a value is `None` — a stale-but-present number is printed exactly
+like a fresh one.
+
+**Demonstrated, not argued.** The dry-run I ran on 2026-09-06 printed the title
+`OMEN premarket 2026-09-06` and, for TSLA, `PMH 376.37  PML 361.65`. Fetching the same
+frame directly, `yf.download(period="1d", prepost=True)` returned bars spanning
+**2026-09-04 04:00 → 19:59 ET**, 330 of them premarket, **every one dated 2026-09-04**.
+`max(High) = 376.365`, `min(Low) = 361.65` — the printed numbers, two sessions stale, with
+nothing on the card saying so. `research/v1_referee_pass2.py` reproduces the same
+substitution offline against a synthetic frame that contains only the prior session: the
+selector returns real numbers where it should return `None`.
+
+**It fires in production on the first run.** `schtasks` reports Next Run Time
+**2026-09-07 09:25**. 2026-09-07 is the first Monday of September 2026 — **Labor Day**, US
+markets closed. There is no premarket session that morning, so the first live push of this
+row will carry Friday's premarket range labelled as Monday's, and nothing in the message
+distinguishes it. The task is a plain weekly Mon–Fri trigger with no holiday calendar, so
+this recurs on every weekday holiday.
+
+**Why it matters for this row specifically.** The 2026-09-05 call gave Austin exactly one
+job in the reconcile era: HTF levels premarket. This push is the input to that job. A stale
+premarket range that looks fresh is worse than a missing one — he would pencil levels off a
+range that never happened, and `PMH`/`PML` are two of the six levels the spec locks as the
+scale-point ladder.
+
+## Scope of the refutation
+
+The **push-tag half of V1 is clean** and stands: 8 lines, ntfy text only, Alpaca paper path
+untouched, flag defaults ON, plain English. The refutation is confined to the **premarket
+list half**.
+
+## The one change that fixes it
+
+Filter the premarket frame by date as well as clock — `pm = df[(df.index.date == today) &
+(df.index.time < dt.time(9, 30))]` — and let the existing `None` path print `n/a`, so a
+holiday or a not-yet-populated feed shows `PMH n/a  PML n/a` instead of last session's
+range. That is one function, one line, and it needs its own row: pass 2 changed no
+production code.
+
+## Not checked in pass 2 either
+
+The `.cmd` was still not executed end to end, for pass 1's reason — without `--dry-run` it
+sends Austin a real push. Whether yfinance reliably serves the *current* partial session at
+09:25 on an ordinary trading day was not established; the defect above does not depend on
+it, because the holiday case alone is deterministic.
