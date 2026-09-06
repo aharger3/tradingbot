@@ -4,7 +4,9 @@
 **Pass 2 (a second referee, different model, at the end of this page): REFUTED —
 the premarket half of the row silently publishes the previous session's numbers
 under today's date, and its first scheduled fire is on a market holiday.**
-The standing verdict for the row is **pass 2's: refuted.**
+**Pass 3 (a third referee, told to refute the repair): UPHELD with two residuals — the
+repair (c84d0bd3) is real, independently re-derived, and does not disable the live path.**
+The standing verdict for the row is **pass 3's: upheld**.
 
 ---
 
@@ -185,3 +187,114 @@ The `.cmd` was still not executed end to end, for pass 1's reason — without `-
 sends Austin a real push. Whether yfinance reliably serves the *current* partial session at
 09:25 on an ordinary trading day was not established; the defect above does not depend on
 it, because the holiday case alone is deterministic.
+
+---
+
+# Pass 3 — the repair, refereed. UPHELD, two residuals.
+
+**Builder's repair commit:** `c84d0bd3135a48d40b6b1abaa505e8530860eca2`
+("V1 repair: date-scope yfinance premarket fallback so stale prior-session PMH/PML never
+render as today's"). Original row commit `c59abe88`. Referee: a third model, instructed to
+refute the repair. Every number below was re-derived here with
+`research/v1_referee_pass3.py`; nothing is read out of the builder's report.
+
+**Base:** `1539dd7f` is an ancestor of HEAD; HEAD (`3ace41cb` at referee time) equals
+`origin/main`. `research/premarket_list.py` and `live_scanner.py` are byte-identical between
+`c84d0bd3` and HEAD, so every check below is a check on the row's own commit.
+
+## Pass 2's defect is real, and it is gone
+
+Pass 2 claimed the premarket mask filtered by clock only, so a prior session's range would
+publish under today's title. Re-derived on today's live yfinance frame (2026-09-06, Sunday;
+the frame's only session is Friday 2026-09-04):
+
+| symbol | pre-fix mask (clock only) | fixed mask, `today=2026-09-06` | fixed mask, `today=2026-09-04` |
+|---|---|---|---|
+| TSLA | **376.365 / 361.65** | `None / None` | 376.365 / 361.65 |
+| NVDA | **232.49 / 228.45** | `None / None` | 232.49 / 228.45 |
+| SPY  | **774.27 / 770.50** | `None / None` | 774.27 / 770.50 |
+
+The middle column is the fix. The right-hand column is the check that separates *fixed* from
+*disabled*: a mask that returned nothing on every day would also produce the Sunday `n/a`
+the builder verified, so the Sunday run alone proves nothing. With `today` set to the frame's
+own session the same function still returns a real range — **the live path is intact**.
+
+The left column is also the size of what pass 2 caught. TSLA's PDH today prints **364.69**;
+the stale PMH would have printed **376.37**, ~$11.7 *above* the prior day's high. On Austin's
+phone at 09:25 that reads as a large gap-up premarket and is a level he would have drawn.
+Not a cosmetic staleness bug.
+
+## Dry-run, re-run here, not quoted
+
+`python research/premarket_list.py --dry-run`, 2026-09-06: 11 symbols
+(TSLA NVDA AAPL AMD META GOOGL AMZN MSFT PLTR QQQ SPY), all with PDH/PDL populated and
+`PMH n/a  PML n/a`. Polygon returned 403 on 5 symbols and 429 on 6 — every error line is
+truncated at 80 chars *after* `_scrub()` has already rewritten `apiKey=…`; **the key does not
+appear**, checked with and without a `grep -v apiKey` filter. No traceback. The message body
+is plain English plus the four level abbreviations, which are Austin's own names for them
+(rulebook, 2026-08-29) — no flag names, no ticket ids.
+
+## Scheduled task
+
+`\OmenPremarketList`: Schedule Type Weekly, Days **MON TUE WED THU FRI**, Start Time
+**09:25:00**, State Enabled, next run 2026-09-07 09:25. Task To Run
+`C:\Users\aharg\Desktop\Projects\tradingbot\research\premarket_list_run.cmd` — the file
+exists and is tracked (`git ls-files` returns it; added in `3c8e586d`, which is a real
+commit, contrary to my expectation from pass 1's hash mix-up). Last Result `267011` =
+0x41303, "has not yet run".
+
+## The push-tag half, re-checked at c59abe88
+
+The `live_scanner.py` diff is 8 lines: one module constant `PUSH_TAG_PRERECONCILE` and one
+`body += …` inside `_push_s_signal`. `_push_s_signal` **places no order** — it reads
+`rec.get("alpaca_order_id")` that some earlier caller already set, and returns
+`notify_ntfy.push(...)`. Nothing in the diff is upstream of, or conditions, the Alpaca path.
+Confirmed: ntfy text only.
+
+## Residual 1 — the same defect class is still live in the sibling leg (not confirmed, dated)
+
+`_yf_batch_prevday` ends with an **unconditional** fallback:
+
+    row = df.iloc[-1]      # last close before today -- holiday-safe
+
+The comment is an assertion, not a check. That line fires only when `prev_iso` is missing
+from the daily frame, i.e. when `_prev_trading_day` lands on a market holiday — first
+occurrence **Tuesday 2026-09-08**, the session after Labor Day, when Polygon will also miss
+09-07 and all 11 symbols fall through to it. If Yahoo has published a partial current-day
+daily bar by 09:25 ET, `iloc[-1]` is *today's own* premarket range published as PDH/PDL —
+exactly the bug just fixed one leg over. I could **not** confirm this: it needs a live 09:25
+run on a trading day, and Sunday's frame ends at Friday either way. Reported as a dated risk,
+not a defect. It is a second function and therefore a second row.
+
+## Residual 2 — process
+
+The builder committed `research/v1_referee_pass3.md` as part of `c84d0bd3`. Its content is an
+honest repair note, but a builder must not author a file in the referee's namespace
+(SWARM.md law 4: a builder never grades its own number). Left in place — nothing is deleted
+here — but this page, `research/v1_referee.md`, is the referee record for V1.
+
+## Verify gate, run here at this tree
+
+- `research/regression_gate.py` → PASS, no baseline-fired mark went silent
+  (any_signal 75→80, s_grade 5→25, all additions).
+- `research/test_runner_stop.py` → ok, 70 checks across 3 sections.
+- `research/test_universe_single_source.py` → ok, 29 symbols, 25 backtested, no private lists.
+
+## Standard checks
+
+- **Sample size:** V1 publishes no trade cell and no month cell — nothing to gate.
+- **Dollar figures:** V1 publishes none. The prices in the table above are quoted levels from
+  a live yfinance 1-minute frame, not P&L, and name their source and session.
+- **Books:** V1 wrote no book, so there is no stamp to check.
+- **One change per row:** `git show --stat c84d0bd3` = `research/premarket_list.py` (6 lines,
+  one function plus its one call site) and one markdown note. Respected.
+- **Mark files:** neither `c84d0bd3` nor `c59abe88` touches any mark corpus; `git status`
+  shows none modified.
+
+## Verdict
+
+**Upheld.** The repair does what the builder says, the pass-2 defect no longer reproduces,
+the live path survives the fix, the task is scheduled correctly at weekdays 09:25 with a
+tracked command file, the push-tag diff never reaches the order path, and the gate is green.
+Two residuals, both filed above, neither blocking: `_yf_batch_prevday`'s undated `iloc[-1]`
+fallback (first exposure 2026-09-08) and the builder authoring a referee-named file.
