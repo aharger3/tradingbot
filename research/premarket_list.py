@@ -98,7 +98,7 @@ def _polygon_today_candles(symbol: str, day_iso: str) -> list:
     return out
 
 
-def _yf_batch_premarket_today(symbols: list) -> dict:
+def _yf_batch_premarket_today(symbols: list, today: dt.date) -> dict:
     """One yf.download() for every symbol still needing today's PMH/PML.
 
     Mirrors live_scanner._yf_batch_recent_bars's shape, with prepost=True --
@@ -131,7 +131,7 @@ def _yf_batch_premarket_today(symbols: list) -> dict:
         if df.index.tz is None:
             df = df.tz_localize("UTC")
         df = df.tz_convert(ET)
-        pm = df[df.index.time < dt.time(9, 30)]
+        pm = df[(df.index.time < dt.time(9, 30)) & (df.index.date == today)]
         if pm.empty:
             continue
         out[s] = (float(pm["High"].max()), float(pm["Low"].min()))
@@ -222,7 +222,7 @@ def fetch_levels(symbols: list, today: dt.date | None = None) -> dict:
                   f"queued for yfinance")
             need_pm.append(s)
     if need_pm:
-        yf_pm = _yf_batch_premarket_today(need_pm)
+        yf_pm = _yf_batch_premarket_today(need_pm, today)
         for s in need_pm:
             levels[s]["pmh"], levels[s]["pml"] = yf_pm.get(s, (None, None))
 
