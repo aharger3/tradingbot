@@ -33,13 +33,24 @@ OFF_VALUES = {
     "RULE84_DECIDED": "0",
     "OCR_RETEST_DISPLACEMENT": "0",
     "TREND_DEF": "off",
+    # DAY_POLICY is a string-valued flag, not a boolean -- "first3" was the
+    # prior default (signal_runner.py's comment above the DAY_POLICY line)
+    # and is what a "hold" decision means for this flag.
+    "DAY_POLICY": "first3",
 }
+
+DAY_POLICY_SHIP_VALUE = "3fires_stop_win_or_2loss"
 
 
 def parse_cycles_md(text: str) -> dict:
     """Return {flag: decision} for the LAST row of each flag in the table
     (a flag can appear more than once across cycles; the most recent row
-    wins, matching how loop_state.json's history is read elsewhere)."""
+    wins, matching how loop_state.json's history is read elsewhere).
+
+    Returns EVERY flag row found, including ones this test does not yet
+    know how to check -- the caller must fail loudly on those rather than
+    silently drop them, or a newly-shipped flag would pass this test by
+    never being looked at."""
     decisions = {}
     for line in text.splitlines():
         if not line.startswith("|") or line.startswith("|---") or "flag" in line.lower() and "decision" in line.lower():
@@ -48,17 +59,18 @@ def parse_cycles_md(text: str) -> dict:
         if len(cells) < 4:
             continue
         flag, decision = cells[2], cells[3]
-        if flag in FLAG_ENV:
-            decisions[flag] = decision
+        if not flag or flag == "n/a":
+            continue
+        decisions[flag] = decision
     return decisions
 
 
 def expected_env_value(flag: str, decision: str) -> str:
     if flag == "DAY_POLICY":
-        # DAY_POLICY's shipped value is a value, not an on/off switch --
-        # cycles.md's decision for it is "ship", meaning: carry the shipped
-        # policy string, which signal_runner.py itself defaults to.
-        return "3fires_stop_win_or_2loss"
+        # DAY_POLICY's value is a string, not an on/off switch -- follow
+        # the tape's decision like every other flag: "ship" carries the
+        # shipped policy string, "hold" carries the prior default.
+        return DAY_POLICY_SHIP_VALUE if decision == "ship" else OFF_VALUES[flag]
     if decision == "ship":
         return "1"
     return OFF_VALUES[flag]
@@ -87,6 +99,14 @@ def test_live_flags_match_cycles_md_shipped_set():
     assert CYCLES_MD.exists(), "research/tape/cycles.md is missing"
     decisions = parse_cycles_md(CYCLES_MD.read_text(encoding="utf-8"))
     assert decisions, "parsed zero flag rows out of cycles.md -- table format changed"
+
+    unknown_flags = sorted(f for f in decisions if f not in FLAG_ENV)
+    assert not unknown_flags, (
+        "research/tape/cycles.md ships/holds flag(s) this test does not "
+        "know how to check against the live lane -- add them to FLAG_ENV "
+        "(and OFF_VALUES / expected_env_value if needed) before trusting "
+        "this test again: %r" % unknown_flags
+    )
 
     mismatches = []
     for flag, decision in decisions.items():
