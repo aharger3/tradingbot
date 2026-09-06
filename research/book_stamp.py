@@ -91,7 +91,9 @@ FLAG_SOURCES = (
         # 2026-09-05, L1: the RR gate on the first scale point (HOD/LOD).
         "MIN_PT1_R",
         # 2026-09-05, L2: the 84% rule composite, as the call decided it.
-        "RULE84_DECIDED")),
+        "RULE84_DECIDED",
+        # 2026-09-05, L4: the 15-min structure trend, OCR/84% direction test.
+        "TREND_DEF")),
 )
 
 # The figures a report is allowed to assert on, and how far each may drift

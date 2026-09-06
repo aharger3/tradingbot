@@ -515,6 +515,50 @@ def _reclaim_gate_ok(close: float, entry_price: float, entry_stop,
         return True
     return abs(close - entry_price) <= BAR_EXTREME_FRAC * rng
 
+# L4 (TREND_DEF, 2026-09-05, the /call 60, omen-10.0 spec Phase L) -- the trend
+# reading for the OCR / 84% direction test, as the call settled it: "trend =
+# 15-minute structure (higher highs / higher lows, or the reverse) on the 1m
+# chart -- no indicator" (omen-rulebook.md, Decided 2026-09-05). Neither
+# detector ever computed a real trend before this: `find_ocr`
+# (research/downgrade.py) and both 84%-rule blocks below simply ASSUME the
+# trade direction IS the trend (an uptrend's OCR is its down-candle; a
+# stopped-out call reclaims "with the trend" only because it is a call). This
+# flag, when armed, replaces that assumption with an actual read.
+#
+# DEFAULT OFF ("off"): byte-identical to today -- no gate is added anywhere.
+# ON ("structure15"): the OCR and 84%-rule long/short blocks in `_route`
+# additionally require the 15-minute structure trend to agree with the trade
+# direction (a call needs 'bullish', a put needs 'bearish'); an unresolved
+# trend (None -- inside/outside bar, or under 30 minutes of candles) is a
+# no-op, same convention as `daily_trend_bias`/`HTF_BIAS_GATE` -- absence of a
+# read is not evidence against the trade.
+TREND_DEF = os.getenv("TREND_DEF", "off").strip().lower()
+
+
+def structure15_trend(candles) -> Optional[str]:
+    """15-minute market structure trend read off the 1-minute chart -- no
+    indicator, per the call's own words. Aggregates completed 1m candles into
+    consecutive 15-candle buckets from the session start (a partial final
+    bucket -- still forming -- is dropped), then compares the last two
+    buckets' own high/low: a higher high AND a higher low is 'bullish', a
+    lower high AND a lower low is 'bearish'. An inside bar, an outside bar, or
+    fewer than two completed 15-candle buckets returns None -- an abstain,
+    not a guess."""
+    if not candles:
+        return None
+    n_full = len(candles) // 15
+    if n_full < 2:
+        return None
+    last = candles[(n_full - 1) * 15:n_full * 15]
+    prev = candles[(n_full - 2) * 15:(n_full - 1) * 15]
+    last_hi, last_lo = max(c.high for c in last), min(c.low for c in last)
+    prev_hi, prev_lo = max(c.high for c in prev), min(c.low for c in prev)
+    if last_hi > prev_hi and last_lo > prev_lo:
+        return "bullish"
+    if last_hi < prev_hi and last_lo < prev_lo:
+        return "bearish"
+    return None
+
 # omen-3.6 (S_GATE, 2026-08-06) -- the S gate fit from Austin's S/A/X verdicts,
 # FLAG-GATED, DEFAULT OFF. The gate (research/s_gate_spec.md, pre-registered in
 # T5 before any backtest) keeps only entries whose entry-bar displacement clears
@@ -2558,6 +2602,17 @@ class SignalRunner:
             tags += " [qqqA]" if aligned else " [qqqX]"
         return tags
 
+    def _trend_ok(self, is_long: bool) -> bool:
+        """L4 (TREND_DEF): the OCR / 84% direction test. No-op (always True)
+        unless TREND_DEF == 'structure15'; also no-op when the 15-minute
+        structure trend can't be read (None) -- see structure15_trend."""
+        if TREND_DEF != "structure15":
+            return True
+        trend = structure15_trend(self.candles)
+        if trend is None:
+            return True
+        return (trend == "bullish") == is_long
+
     def _strong_pa(self, current: Candle) -> bool:
         """84% reclaim gate: candle body >= STRONG_PA_MULT x avg body of prior 10."""
         prior = self.candles[-11:-1]
@@ -3263,7 +3318,8 @@ class SignalRunner:
                 and current.close > block.high and _volume_ok(self.candles)
                 and (not OCR_RETEST_DISPLACEMENT
                      or ocr_has_strong_pa(self.candles, block, _ob["block_idx"],
-                                          _ob["break_idx"], "bullish"))):
+                                          _ob["break_idx"], "bullish"))
+                and self._trend_ok(True)):
             entry = order_fill(block.high, current, is_long=True)  # T3(b)
             # T24: the OCR candle's far wick is placement (a) and is what this
             # detector already books; the flag can route it elsewhere. No-op on
@@ -3351,7 +3407,7 @@ class SignalRunner:
             attempts = self._attempts_84.get(key_84, 1)   # the original entry is attempt 1
             caps_ok = (attempts < RULE84_MAX_ATTEMPTS
                        and bar_time(current.timestamp) < SESSION_END)
-            if (RULE84_SOURCE or not near_hod) and rr_ok and caps_ok:
+            if (RULE84_SOURCE or not near_hod) and rr_ok and caps_ok and self._trend_ok(True):
                 # T24: `routed` leaves the 84% re-entry on its shipped stop --
                 # it is neither an OCR nor a break-and-retest. The three
                 # uniform arms do move it. No-op on the default.
@@ -3530,7 +3586,8 @@ class SignalRunner:
                 and current.close < block.low and _volume_ok(self.candles)
                 and (not OCR_RETEST_DISPLACEMENT
                      or ocr_has_strong_pa(self.candles, block, _ob["block_idx"],
-                                          _ob["break_idx"], "bearish"))):
+                                          _ob["break_idx"], "bearish"))
+                and self._trend_ok(False)):
             entry = order_fill(block.low, current, is_long=False)  # T3(b)
             # T24: mirror of the call side. No-op on the default.
             ob_stop = placed_stop(SignalType.ONE_CANDLE_RULE, block.high, current, False,
@@ -3603,7 +3660,7 @@ class SignalRunner:
             attempts = self._attempts_84.get(key_84, 1)
             caps_ok = (attempts < RULE84_MAX_ATTEMPTS
                        and bar_time(current.timestamp) < SESSION_END)
-            if (RULE84_SOURCE or not near_lod) and rr_ok and caps_ok:
+            if (RULE84_SOURCE or not near_lod) and rr_ok and caps_ok and self._trend_ok(False):
                 # T24: mirror of the call side. No-op on the default.
                 # T3: RULE84_SOURCE reads his own qualifier literally — see
                 # the call side.
