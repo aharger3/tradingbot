@@ -340,8 +340,10 @@ def main():
         results[unit]["picked_added"] = len(pb - pa)
 
     print("\n== daily loss distribution, baseline unit, core 11 (the row asked for this) ==")
-    for label, rows in (("off", off_c), ("on", on_c)):
-        t = loss_table(daily_pnl(rows, "up_to_3_stop_win_or_2loss"))
+    for label, rows, unit in (("off (lens unit)", off_c, "up_to_3_stop_win_or_2loss"),
+                              ("on  (lens unit)", on_c, "up_to_3_stop_win_or_2loss"),
+                              ("off (causal unit)", off_c, "up_to_3_causal")):
+        t = loss_table(daily_pnl(rows, unit))
         print("  %s: %s" % (label, json.dumps(t)))
 
     print("\n== cross-check against research/loop_cycle.py's own arithmetic ==")
