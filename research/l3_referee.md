@@ -614,3 +614,201 @@ It stays switched off. Too few trades survive to say anything about them either 
 three books, the stamp diff, the nine gate cells, the denominator check, the one-candle-rule
 slice on core 11 and on the full pool, and the entry-delay counts. Re-run it rather than
 quoting this page.
+
+---
+
+# L3 referee, PASS 4 — refuted (the prose again; the number and the HOLD stand)
+
+Reviewing builder commit **`5a1e010f`** ("L3 repair: fix refuted prose …", prose-only), on
+top of `90dce640` (flag lands OFF), `03b2810c` (delegate refactor + test), and referee passes
+`aac84fda` / `84608fb0` / `040a2a6f`. Base check: `git fetch origin`, HEAD = `origin/main` =
+`5a1e010f`, `1539dd7f` is an ancestor. 0 ahead before this commit.
+
+Everything below was re-derived by **`research/l3_referee4.py`** (fourth independent
+implementation — it imports nothing from `loop_cycle.py`, `g72_suppress_price.py`,
+`book_stamp.py` or the three earlier referee scripts; the book fingerprint, the unit, the
+statistics and the gate are all re-typed from their written definitions) and
+**`research/l3_referee4_added.py`** (the follow-on that broke the row's causal claim).
+
+**Verdict: refuted.** Not the number, not the decision, not the semantics, not the identity
+checks — all four reproduce exactly for the fourth time. What is refuted is, for the third
+consecutive pass, a **causal sentence** in the published write-up: the repair states that the
+11 break-and-retest rows that enter the ON arm's unit are rows "the dedupe-release mechanism
+lets in", and calls that mechanism "a minor contributor" at 6%. It is not a minor
+contributor; it is **zero**. All 11 rows are already in the OFF book, at identical P&L, and 8
+of them with an identical `status` and `traded` flag. Nothing was released; the day-policy
+unit simply reached further down a day it already had.
+
+## 1 — The gate, re-derived a fourth time
+
+Unit **`up_to_3_stop_win_or_2loss`** · fill **honest close** (`meta.entry_fill == "close"`,
+asserted off the stamp) · exit **the shipped engine** (`DISASTER_STOP_R = 1.0` intrabar,
+`SCALE_PLAN = hod_then_runner_be`, loss halt on — all asserted off the stamp) · slice
+**core 11** (`tier == "core"`) · window 2024-09-04 → 2026-09-04, 499 sessions · 1R = $1,000 ·
+script `research/l3_referee4.py`.
+
+| slice | $/day off → on | floor | green off → on | trades off → on | gate |
+|---|---|---:|---|---|---|
+| whole (25 months) | −$52 → −$58 (−51.59 → −57.79) | −54.60 | 11 → 10 | 769 → 764 | **fail** |
+| H1 (12 months, before 2025-09-01) | +$9 → −$47 (8.84 → −47.33) | +8.55 | 6 → 5 | 382 → 380 | **fail** |
+| H2 (13 months) | −$111 → −$68 (−111.30 → −68.12) | −116.55 | 5 → 5 | 387 → 384 | **pass** |
+
+**Decision: HOLD** (H1 fails on both columns; one failing half holds the change). Identical to
+the report, to `research/tape/cycles.md`'s L3 row and to passes 2 and 3 — every cell to the
+dollar.
+
+`research/tape/cycles.md`'s L3 row agrees on all six published cells (`$/day −52.0 → −58.0`,
+`green 11 → 10`, `H1 fail`, `H2 pass`, `trades 764`, `decision hold`) — checked by parsing the
+row out of the file, not by eye.
+
+**Sample size.** Every gate cell clears the floor on the BEFORE side (769/382/387 trades;
+25/12/13 months), so all three carry a verdict. Every one-candle-rule cell (17, 16, 11, 6, 1)
+is under 30 trades and carries none; the report says so.
+
+## 2 — Identity and provenance (upheld)
+
+| check | result |
+|---|---|
+| OFF book_id (re-typed hash, not imported) | `2c39ced2697c26cc` = baseline = `loop.json.baseline_book_id` |
+| OFF vs baseline, deep row equality (127,513 rows) | identical |
+| OFF vs baseline, a WIDER fingerprint over every row field | `9e053ba25ed981f6` both — so they do not merely agree on the eight columns `book_stamp` hashes |
+| ON book_id | `c29a7dd5902cf457`, 120,979 rows |
+| stamp flag diff, OFF vs ON | exactly one key: `signal_runner.OCR_RETEST_DISPLACEMENT: false → true` |
+| stamp commit | `90dce640` on both arms — an ancestor of the row's commit |
+| dirty tree at build | `dirty_engine_py: []`, `dirty_py_count: 1` on **all three** books (baseline included); now disclosed in the report |
+| code default | `os.getenv("OCR_RETEST_DISPLACEMENT", "0")` → OFF, matching the HOLD |
+| `research/book_stamp.py` `FLAG_SOURCES` | contains the flag (under `signal_runner`) |
+| `.env` (the live lane) | `OCR_RETEST_DISPLACEMENT=0` — live matches the tape's hold |
+
+The books predate `03b2810c`'s refactor (pass 2's defect). I did not take pass 2's rebuild on
+trust: read side by side, the old `ocr_has_strong_pa` and `ocr_quality`'s `strong_pa` compute
+the same three quantities from the same slices — `cur = candles[-1]`, `prior =
+candles[max(0, len-1-10):len-1]`, `body_ratio = cur.body_size / avg_body` (`inf` when
+`avg_body == 0`), `dir_ok = cur.is_bullish if bull else cur.is_bearish`, test
+`dir_ok and body_ratio >= 1.5`. The refactor is an arithmetic no-op by inspection, so the
+books are valid for the shipped code.
+
+## 3 — Semantics (upheld)
+
+`python research/omen_recall.py` returns, dated 2026-09-05, from `omen-rulebook.md`:
+
+> **OCR entry = retest of the OCR extreme after the break, with strong PA and displacement.**
+
+and the spec's settled table row (law): *"OCR — entry on the **retest** of the OCR candle's
+extreme after the break, **with strong PA and displacement** (body ≥ `STRONG_PA_MULT` × avg
+body of prior 10, closing in the trade direction)."*
+
+Clause by clause against the code at HEAD: **retest** is `detect_order_block_setup`'s
+`check_retest_type` plus `retest in OB_RETEST_TYPES` (`("wick_only",)`) at both call sites,
+unconditional; **displacement** is `_has_displacement` inside `detect_order_block_setup`,
+unconditional; **strong PA** is what the flag adds —
+`ocr_quality(...)["strong_pa"] = dir_ok and body_ratio >= OCR_STRONG_PA_MULT`, and
+`OCR_STRONG_PA_MULT == signal_runner.STRONG_PA_MULT == 1.5` (checked at runtime, not from the
+comment). That is the settled parenthetical exactly, and nothing else. `OCR_STRICT` (which
+also demands `clear_break` and `quick`) is untouched, still OFF.
+
+## 4 — Were pass 3's defects actually fixed?
+
+| pass-3 defect | fixed? | my check |
+|---|---|---|
+| 1. "no later-bar case to time" was false | **yes**, corrected in the report | reproduces exactly: 174 symbol-days kept, **109 later, 65 unchanged, 0 earlier, median +3 min, max +65** — but see §6, it is a detection statistic, not an entry one |
+| 2. "the lost money is not in the OCR rows themselves" was disproved | **yes as arithmetic**, no as cause | the identity reproduces to the dollar: −$3,090 = +$2,899 (16 removed one-candle-rule rows, all `one_candle_rule`) + −$191 (11 added `break_and_retest` rows); `one_candle_rule` in the unit goes 17 / +$3,209 → 1 / +$310. The **attribution** of the 11 is false — §5 |
+| 3. `dirty_py_count: 1` never disclosed | **yes** | present in the report beside `dirty_engine_py: []`, and correct against all three stamps |
+
+## 5 — DEFECT (why this pass is refuted): the 11 added rows are not a dedupe release
+
+The repair publishes, as the second half of its decomposition:
+
+> | added: break-and-retest rows the dedupe-release mechanism lets in | 11 | −$191 (6%) |
+>
+> "The dedupe-release mechanism the original report leaned on is real but is a minor
+> contributor, not the story."
+
+Pass 3 wrote the same sentence ("The dedupe-release mechanism pass 1 named is real, and it is
+the other 6%"). Both are false. `research/l3_referee4_added.py` looks up every one of the 11
+added rows **in the OFF book**:
+
+| what the 11 added rows are, in the OFF book | count |
+|---|---:|
+| present in the OFF book at all | **11 of 11** (exactly one twin each) |
+| present with **identical P&L** | **11 of 11** |
+| `fired` + `traded` in OFF too, same status, same P&L — simply never selected by the unit | 4 |
+| `halted` in OFF and `halted` in ON — same status both arms, never selected by the unit in OFF | 4 |
+| `fired`/not-traded in OFF → `halted` in ON (grade floored C→B by "first with-trend signal of the day", then blocked by the two-loss halt) | 2 |
+| `halted` in OFF → `fired` + `traded` in ON (the account-wide halt lands on a different row once the one-candle-rule loss is gone) | 1 |
+| **absent from the OFF book — i.e. an actual release** | **0** |
+
+CLAUDE.md's dedupe-release mechanism is a *suppressed candidate becoming a row*: "only a fired
+signal claims the dedupe suppression window, so capping one to C releases it and
+previously-suppressed candidates on the same level become rows." Nothing of the kind happens
+here. 8 of the 11 are byte-identical rows in both books that the OFF arm's unit never reached,
+because the day's three-fire / stop-after-a-win-or-two-losses budget was spent on the
+one-candle-rule row the flag deletes. The remaining 3 move because of two *different*
+mechanisms: the **"first with-trend signal of the day" grade floor** (C→B on 2 rows once the
+earlier signal is gone) and the **account-wide two-loss halt** landing on a different row.
+
+Worked example, 2026-02-24, core 11, same unit: OFF picks 09:45 AMZN B&R −$180 then 10:03 AMZN
+one-candle-rule −$1,000 and stops on two losses; ON picks 09:45 AMZN B&R −$180 then 10:24 NVDA
+B&R **+$2,053** and stops on a win. The NVDA row exists in the OFF book too — as a `halted`
+row the unit never reached.
+
+This does not move a dollar: the −$3,090 = +$2,899 − $191 identity is exact and I reproduce it.
+It is a **false statement of cause in a published report**, the same defect class pass 1 and
+pass 3 were refuted for, and the correct sentence is shorter: *the flag's damage is 94% the
+profitable one-candle-rule trades it deletes, and the other 6% is the day-policy unit picking
+different rows it already had.* Every cell involved (16, 11, 8, 4, 2, 1) is far under the
+30-trade floor — this is an arithmetic identity and a row-by-row provenance check, not a
+verdict on either sub-slice.
+
+## 6 — DEFECT (minor): the delay is measured on detections, and reads as entries
+
+The repair's bolded correction is "**the flag does delay the OCR entry**", supported by 109 of
+174 symbol-days moving later, median +3 min. That count is over **every one-candle-rule row
+whatever its status** — detections, the overwhelming majority of which are never entered
+(3,098 detections → 108 traded in the OFF arm). Re-run under the two filters that actually
+correspond to an entry:
+
+| population | symbol-days compared | later | unchanged | earlier | median | max |
+|---|---:|---:|---:|---:|---:|---:|
+| any status (the repair's figure) | 174 | 109 | 65 | 0 | +3 min | +65 min |
+| `status == "fired"` | 44 | **6** | 37 | 0 | +8 min | +25 min |
+| fired **and** traded | 6 | **1** | 5 | 0 | +8 min | +8 min |
+
+The body of the report says "signal", which is right; the bold sentence says "entry", which is
+not — and pass 3's own plain-English paragraph (§8, written for a push Austin reads) says the
+flag "pushes most of the ones it keeps about three minutes later", which is true of detections
+(63%) and false of fires (14%) and of trades (1 of 6). Direction is real and the sign is right
+(0 move earlier, in every population). Nothing here carries a verdict: 6 traded symbol-days.
+
+## 7 — Nitpick
+
+The report gives H1's floor as **+$8.6** in the headline table and **+$8.5** in the "Refereed a
+second time" section; H2's as **−$116.5** then **−$116.6**. The exact floors off the rounded
+baselines are **+8.55** and **−116.55**. No cell changes; pick one rounding.
+
+## 8 — What pass 4 upholds
+
+- The nine gate cells and the whole/H1/H2 verdicts, fourth independent implementation, to the dollar.
+- **The decision: HOLD, flag OFF** — H1 fails on both green months and dollars.
+- The semantics: strong PA and nothing else, on top of an unconditional retest and displacement; `1.5` confirmed at runtime on both constants.
+- Every identity check, including deep row equality with the baseline and a wider-than-`book_stamp` fingerprint.
+- The −$3,090 = +$2,899 − $191 decomposition **as arithmetic**, and 17/+$3,209 → 1/+$310.
+- The delay direction: 0 symbol-days move earlier, in any population.
+- Sample-size discipline: gate cells carry verdicts, one-candle-rule cells do not.
+- The verify gate, green at `5a1e010f`, run by this referee: `research/regression_gate.py`, `research/test_runner_stop.py`, `research/test_universe_single_source.py` all exit 0 (plus the row's own `research/test_t2_ocr.py`).
+- No mark corpus touched by any commit in the L3 chain (`git show --stat` over all six).
+
+## 9 — Plain English, corrected, for anything he reads
+
+Making the one-candle-rule entry wait for a strong candle throws away 94 of every 100 of those
+setups. On his eleven stocks over two years the few it deletes were the profitable ones, so the
+book gets worse — from losing $52 a day to losing $58, with one more red month — and it stays
+switched off. The handful of trades that survive is far too small to say anything about them.
+
+## Appendix — pass-4 scripts
+
+`python research/l3_referee4.py` prints the provenance of all three books, two fingerprints
+each, the stamp diff, the nine gate cells, the `cycles.md` comparison, the one-candle-rule
+slices on core 11 and the full pool, the delta decomposition and the delay counts under three
+filters. `python research/l3_referee4_added.py` prints the row-by-row provenance of the 11
+added rows and the two strong-PA constants. Re-run them rather than quoting this page.
