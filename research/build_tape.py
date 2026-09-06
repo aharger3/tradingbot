@@ -303,39 +303,48 @@ def fillarm_summary():
 # ------------------------------------------------------------- self-check
 
 def check_no_repeats(rows):
-    """A construction-integrity check on THIS page's own book-merging: did
-    build_tape.py ever insert the identical physical trade twice (e.g. a book
-    loaded and appended twice by a bug in this script)?
+    """The spec's own no-repeat key: one row per (symbol, day, entry minute)
+    -- scoped per (source, fillmode), because each source IS a different
+    stamped book covering the same 499 sessions on purpose (baseline vs.
+    phantom-fill vs. each Phase-L "on" book); merging across sources is
+    this page's whole point, not a repeat.
 
-    Not an audit of the replay engine's own behavior. Two trades count as
-    the SAME row only if every field the engine recorded about them agrees
-    -- symbol, day, entry minute, direction, entry, stop, pnl, status AND
-    which named level was retested. That last field matters: the replay can
-    legitimately fire two DIFFERENT named pivots that happen to sit at the
-    same price in the same minute (e.g. ACHR 2025-01-07 10:39, "pivot low
-    @10:18" and "pivot low @10:24" both at $11.13, priced identically) --
-    that is a real, pre-existing arrival-order property of the shipped
-    engine (`signal_runner.py` names a level by which pivot it is, not by
-    the price it converges to), not a row this page invented, and collapsing
-    it here would change which candidate the day-policy unit sees as the
-    day's 2nd/3rd arrival -- silently moving R3's already-published $-52/day
-    baseline number, which is exactly the failure this file's docstring
-    exists to prevent. Confirmed zero duplicates under this identity for
-    every source merged as of 2026-09-05; the near-duplicate phenomenon
-    itself (127 pairs across the merged sources, same price/pnl, different
-    level name) is a genuine engine finding, flagged separately, not fixed
-    here (one change per row)."""
+    Referee (pass 2 + pass 3, upheld both passes): the prior key added
+    dir/entry/stop/pnl/status/level_name on top of (sym, day, et), and
+    level_name in particular always differs between the two rows of a real
+    duplicate (the replay can legitimately fire two DIFFERENTLY NAMED
+    pivots at the same price in the same minute -- signal_runner.py names a
+    level by which pivot it is, not by the price it converges to), so that
+    key could never report anything but zero. Keying on the spec's own
+    (source, fillmode, sym, day, et) instead finds real duplicates: 5 keys
+    inside the published up_to_3/core11/baseline/close unit (worth -$2,514,
+    9.8% of that unit's -$25,746 loss, and a fifth of these 5 consume a
+    2nd/3rd day-policy slot a different signal would otherwise have taken),
+    151 keys / 160 extra rows in the full baseline/close book, 963 keys /
+    1,020 extra rows across all 7 merged sources (research/t1_referee.md
+    pass 3, research/t1_referee_pass3.py). Only 50 of those 160 extra rows
+    in baseline/close share an identical P&L with their twin (110 differ);
+    only 24 share a stop -- so these are not render-time double-counts of
+    one trade, they are the replay firing two distinct signals that landed
+    in the same (symbol, day, minute).
+
+    This is a genuine property of the shipped engine's arrival order, not a
+    bug this page's book-merging introduced (confirmed: fixing it would
+    mean deciding which of the two same-minute pivots the day-policy unit
+    should see, which moves which candidate is R3's baseline 2nd/3rd
+    arrival -- a second change, out of scope for this row; see the repair's
+    Refereed section). The build reports the real, nonzero count rather
+    than the false zero the old key produced; it does not hard-fail on it,
+    because that specific fix is not made here."""
     seen = Counter()
     for r in rows:
         if not r.get("traded"):
             continue
-        key = (r.get("source"), r.get("fillmode"), r.get("sym"), r.get("day"),
-               r.get("et"), r.get("dir"), round(r.get("entry", 0.0) or 0.0, 4),
-               round(r.get("stop", 0.0) or 0.0, 4), round(r.get("pnl", 0.0) or 0.0, 4),
-               r.get("status"), r.get("level_name"))
+        key = (r.get("source"), r.get("fillmode"), r.get("sym"), r.get("day"), r.get("et"))
         seen[key] += 1
     dupes = {k: n for k, n in seen.items() if n > 1}
-    return len(dupes), list(dupes.items())[:10]
+    extra_rows = sum(n - 1 for n in dupes.values())
+    return len(dupes), extra_rows, list(dupes.items())[:10]
 
 
 # ------------------------------------------------------------------ README
@@ -357,6 +366,25 @@ def compute_default_selection_stats(rows):
 TEMPLATE = (BASE_TEMPLATE
     .replace("<title>OMEN Two-Year Tape</title>",
              "<title>OMEN Two-Year Tape</title>")
+    .replace(
+        # Referee (pass 2 + pass 3, upheld both passes): the word "phantom"
+        # appeared 0 times anywhere in the static page shell -- a reader
+        # who picks the "phantom" chip under Fill mode meets an unlabelled
+        # word with no warning that it prices a fill that never existed
+        # (the same fill the rest of this repo calls out as the reason
+        # every pre-2026-08-30 dollar figure was wrong). Say so in plain
+        # text next to the filter rail, where the chip lives.
+        '  <div class="railhead">\n'
+        '    <h2>Filters</h2>',
+        '<p class="note" style="margin:0 0 10px">\n'
+        '    <b>Fill mode &mdash; phantom is a warning, not a choice.</b>\n'
+        '    &ldquo;phantom&rdquo; fill means <span class="mono">ENTRY_FILL=published</span>:\n'
+        '    the price used before 2026-08-30, obtainable at 105 of 4,508 trades\n'
+        '    (2.3%). It is on this page so it stays visible beside the honest\n'
+        '    &ldquo;close&rdquo; fill, never to be picked as the default reading.\n'
+        '  </p>\n'
+        '  <div class="railhead">\n'
+        '    <h2>Filters</h2>')
     .replace('<h1>OMEN <em>Two-Year Tape</em></h1>',
              '<h1>OMEN <em>Two-Year Tape</em></h1>')
     .replace(
@@ -491,6 +519,48 @@ TEMPLATE = (BASE_TEMPLATE
         '    ["Avg hold", fmt(s.bars,0)+" min", "entry bar to exit bar", "neu"]\n'
         '  ];')
     .replace(
+        # Referee (pass 3, defect 1): "source" and "fillmode" are book/fill
+        # VARIANTS of the same underlying two-year window, not independent
+        # dimensions like symbol or month -- picking two chips in either
+        # field silently UNIONS two different books into one KPI row (e.g.
+        # baseline+phantom, or baseline+every Phase-L "on" book at once),
+        # which is exactly how the refuted "+$799.6/day, 21/25 green"
+        # (2 fillmode chips) and "+$3,531/day, 17/25 green, 64,788 rows"
+        # (Clear -> zero filters -> all 7 sources at once) numbers got
+        # printed. Make these two fields EXCLUSIVE-select (radio, not
+        # checkbox): clicking a chip in "source" or "fillmode" replaces
+        # whatever was selected there instead of adding to it. Every other
+        # facet (symbol, month, setup, ...) keeps its normal multi-chip OR
+        # behavior -- this is scoped to the two fields that name a book.
+        '  rail.addEventListener("click", function(e){\n'
+        '    var c = e.target.closest(".chip"); if(!c) return;\n'
+        '    var field = c.parentNode.getAttribute("data-field"), code = +c.getAttribute("data-code");\n'
+        '    var s = sel[field];\n'
+        '    if(s.has(code)) s.delete(code); else s.add(code);\n'
+        '    render();\n'
+        '  });',
+        '  var EXCLUSIVE_SELECT = {source:1, fillmode:1};   // book/fill variants, not independent facets\n'
+        '  rail.addEventListener("click", function(e){\n'
+        '    var c = e.target.closest(".chip"); if(!c) return;\n'
+        '    var field = c.parentNode.getAttribute("data-field"), code = +c.getAttribute("data-code");\n'
+        '    var s = sel[field];\n'
+        '    if(EXCLUSIVE_SELECT[field]){\n'
+        '      if(s.has(code) && s.size===1) s.clear(); else { s.clear(); s.add(code); }\n'
+        '    } else if(s.has(code)) s.delete(code); else s.add(code);\n'
+        '    render();\n'
+        '  });')
+    .replace(
+        # Referee (pass 3, defect 1): the "Clear" button called clearSel()
+        # then render(), so one click summed all 7 merged sources over the
+        # same 499 sessions (+$3,531/day, 17/25 green, 64,788 rows) with no
+        # warning -- a reader's most obvious next click after "R3 default"
+        # produced the least meaningful number on the page. Clear now falls
+        # back to the R3 default selection instead of the raw union; a
+        # reader who genuinely wants a single wide-open facet can still
+        # empty just that one field by re-clicking its lone active chip.
+        'document.getElementById("clear").onclick=function(){ clearSel(); page=0; render(); };',
+        'document.getElementById("clear").onclick=function(){ defaultSel(); page=0; render(); };')
+    .replace(
         '<div class="panel scroll"><table id="trades"></table></div>\n'
         '    <div class="pager">',
         '<div class="panel scroll"><table id="trades"></table></div>\n'
@@ -538,13 +608,13 @@ def main():
 
     rows, notes = load_rich_sources()
 
-    ndupe, examples = check_no_repeats(rows)
-    if ndupe:
-        print("DUPLICATE CHECK FAILED: %d duplicate (source, fillmode, sym, day, et) "
-              "keys among traded rows. Examples: %s" % (ndupe, examples), file=sys.stderr)
-        sys.exit(1)
-    print("duplicate check: 0 duplicates among %d traded rows" %
-          sum(1 for r in rows if r.get("traded")))
+    nkeys, nextra, examples = check_no_repeats(rows)
+    print("duplicate check on (source, fillmode, sym, day, et): %d duplicate keys, "
+          "%d extra rows, among %d traded rows -- known engine arrival-order "
+          "property (two differently-named pivots, same symbol/day/minute), "
+          "NOT a page-construction bug; see check_no_repeats() docstring and "
+          "the T1 repair's Refereed section. Examples: %s"
+          % (nkeys, nextra, sum(1 for r in rows if r.get("traded")), examples))
 
     default_stats = compute_default_selection_stats(rows)
     print("default selection (R3 baseline unit): %s" % default_stats)

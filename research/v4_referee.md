@@ -341,3 +341,133 @@ above with a correction banner rather than deleted, per the repo's convention.
 1. Rewrite the two stale docstrings in `research/test_live_follows_loop.py` (D1, D2).
 2. Add `python research/test_live_follows_loop.py` to `CLAUDE.md`'s `verify:` line, or call it
    from `research/regression_gate.py` (D3) — this is the one that changes behaviour.
+
+---
+
+# V4 referee — pass 4 (2026-09-06) — **refuted**
+
+**Builder commit under review:** `de3cceb6` ("V4 repair: fix stale docstring …"), the repair
+of pass 3's four defects. Prior row commits: `79d6f57f`, `76d6e4ad`, `dc0f77bb`.
+**Referee script:** `research/v4_referee_pass4.py` (committed beside this file). It does not
+reuse the row's parser or its subprocess helper: the tape is parsed by **header name** (not
+hardcoded column indices 2/3), the live values come out of a fresh interpreter, and the
+guard's teeth are proved by mutating **copies** of the tape in a temp directory.
+**Base / HEAD:** `git fetch origin`; `git merge-base --is-ancestor 1539dd7f HEAD` OK;
+HEAD == origin/main == `04b6db1d` (T2's referee landed after `de3cceb6`); `de3cceb6` is an
+ancestor of HEAD. Working tree carried four other agents' uncommitted files at check time;
+none of mine.
+
+**Verdict: refuted** — narrower than pass 3. **15 of my 16 checks pass.** Pass-3 D2 is
+genuinely fixed and pass-3 D1 is **half** fixed. **D3 is unfixed, and the reason the commit
+gives for leaving it is itself wrong.** No dollar figure, no book, no trade count anywhere in
+this row, so there is nothing to size-gate and no stamp is owed.
+
+## What I re-derived and it holds (15 checks)
+
+`research/tape/cycles.md` has **6 flag rows / 5 distinct flags** after last-row-wins (the
+MIN_PT1_R correction row supersedes the original). My parse and the live lane agree:
+
+| flag | tape (my parse) | live lane (my read) |
+|---|---|---|
+| MIN_PT1_R | hold | `0.0` |
+| RULE84_DECIDED | hold | `False` |
+| OCR_RETEST_DISPLACEMENT | hold | `False` |
+| TREND_DEF | hold | `off` |
+| DAY_POLICY | hold | `first3` |
+
+- **C1** every tape decision is `hold`, five flags — so the repaired docstring's new sentence
+  ("as of 2026-09-06 all five rows … read `hold`") is now **true**. Pass-3 D1's DAY_POLICY
+  half: fixed.
+- **C2** the live lane carries the off/default value for all five. **C3** the shipped test
+  exits 0.
+- **C4–C7 the guard still has teeth**, proved on copies, with a control: unmutated sandbox
+  copy GREEN; `DAY_POLICY` exported into the environment → RED; tape flipped back to `ship` →
+  RED; a synthetic sixth `BRAND_NEW_FLAG | ship` row → RED, message naming the flag.
+- **C8–C10 Alpaca is paper-only.** All **five** `paper=` occurrences in `broker/alpaca.py` are
+  the literal `True`; the only `ALPACA_*` names the file reads are `ALPACA_PAPER_KEY` and
+  `ALPACA_PAPER_SECRET`; no `api.alpaca.markets` literal. Grepping the whole tree for
+  `ALPACA_API_KEY` / `ALPACA_SECRET` / `ALPACA_LIVE` / `api.alpaca.markets` in `*.py` returns
+  nothing.
+- **C11–C12 replay still cannot submit.** Both `_alpaca_submit_entry` (`live_scanner.py:1175`)
+  and `_alpaca_submit_exit` (`:1241`) open with `assert not getattr(runner, "replay", False)`;
+  `run_replay` sets `runner.replay = True` (`:1535`).
+- **C13–C15 the morning report survives a missing ledger.** `journal/alpaca-paper.jsonl` does
+  not exist on this box; `research/morning_report.py` with no argument **and** with
+  `--ledger journal/__no_such_file__.jsonl` both exit 0 and print `No paper trades logged for
+  2026-09-05. Nothing to report.` Plain English, no flag names.
+- **Verify gate at HEAD `04b6db1d`** (contains `de3cceb6`), run by me, all three exit 0:
+  `regression_gate.py` PASS (any_signal 75→80, s_grade 5→25, no baseline-fired mark went
+  silent); `test_runner_stop.py` 70 checks; `test_universe_single_source.py` ok, 29 symbols,
+  25 backtested.
+- **One change per row.** `git show --stat de3cceb6` = 1 file,
+  `research/test_live_follows_loop.py`, +8/−3, both hunks docstring prose. No engine file.
+- **Mark files.** `de3cceb6` touches none; `git status` shows no mark corpus modified.
+
+## Pass-3 D2 — FIXED
+
+`read_live_value`'s docstring no longer claims "a clean env". It now states that no `env=` is
+passed and the subprocess inherits the parent environment on purpose. That matches the code
+(`subprocess.run` at line 92 has no `env=`), and C4 proves the inheritance is what gives the
+test its env-drift teeth. Correct as written.
+
+## Pass-3 D1 — HALF FIXED. The remedy the docstring names is still the wrong one.
+
+The repair fixed the DAY_POLICY sentence. The **next** sentence, untouched, still says:
+
+> *"a future cycle that ships a new flag fails this test until `live_scanner.py` /
+> `signal_runner.py` are updated to match"*
+
+That is false, and it is false in the direction that matters. The failure a new flag causes is
+the `unknown_flags` assert (line 108), which reads `FLAG_ENV` — a five-key literal **inside
+this test file**. Editing `live_scanner.py` or `signal_runner.py` cannot clear it; only adding
+the flag to `FLAG_ENV` (and `OFF_VALUES`) can. C7's RED is that assert firing, and its own
+message says so: *"add them to FLAG_ENV … before trusting this test again"*. So the file's
+docstring and the file's error message name two different remedies, and the docstring names
+one that does not work. Same false-sentence class pass 3 charged; the repair fixed the
+sentence above it and left this one.
+
+## Pass-3 D3 — UNFIXED, and the stated reason is wrong (C16, the one failing check)
+
+Nothing executes the guard. `CLAUDE.md:9`'s `verify:` line is still
+`regression_gate.py && test_runner_stop.py && test_universe_single_source.py`;
+`research/regression_gate.py` does not call the test. `git grep -l test_live_follows_loop`
+returns only referee artifacts: `research/l3_referee.md`, `research/l5_referee.md`,
+`research/l5_referee_pass3.py` and the pass-1/2/3/4 referee files. Zero gates, hooks or
+scheduled jobs. The docstring's *"the live lane can never silently drift from the loop"*
+remains a promise about a test nobody runs — the one defect with an operational cost, exactly
+as pass 3 said.
+
+The commit message gives the reason as *"wiring into verify gate not authorized under this
+row's CLAUDE.md restriction"*, and the report repeats it. That is true **only** for the
+`CLAUDE.md` route. Pass 3 named **two** routes and the builder's own report names the second:
+adding the call inside `research/regression_gate.py`. `regression_gate.py` is not engine code
+and is not on the row's do-not-edit list, so that route was in scope and was not taken. The
+honest framing under the swarm rules is *"this is a second change; status blocked, the second
+change is a call to `test_live_follows_loop` inside `regression_gate.py`"* — not *"not
+authorized"*. As committed, the commit message states a restriction that does not cover the
+available fix.
+
+## Pass-3 D4 — resolved by convention, not charged
+
+Passes 1–2's stale DAY_POLICY sentences are covered by the `STALE ABOVE` correction banner the
+pass-3 write-up inserted. Per the repo's never-delete-evidence rule that is the right
+treatment; I left it alone. The builder was right that `research/v4_referee.md` and its own
+superseded prose report are not its files to rewrite.
+
+## What a repair row would do
+
+1. One sentence in `research/test_live_follows_loop.py`: a new shipped flag fails until
+   **`FLAG_ENV` in this test** is updated (not `live_scanner.py` / `signal_runner.py`), and
+   soften *"can never silently drift"* to what the test actually guarantees while no gate runs
+   it.
+2. Separately, with explicit authorization: call `research/test_live_follows_loop.py` from
+   `research/regression_gate.py` (no `CLAUDE.md` edit needed). That is a behaviour change and
+   its own row.
+
+## Standard checks
+
+- **Sample size.** No cell, no trade count, no month count in this row. No verdict on one. N/A.
+- **Dollars name their fill / exit / unit / script.** The row publishes no dollar figure. N/A.
+- **Stamped books.** The row wrote no book, so no stamp is owed. N/A.
+- **Plain English.** `research/morning_report.py` is the only V4 output Austin reads; its
+  missing-ledger path prints one plain sentence, no ticket ids, no flag names.

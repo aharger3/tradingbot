@@ -1,5 +1,7 @@
-"""test_tape.py -- T1 verify: the tape's unfiltered default equals R3's
-baseline to the dollar, the page has 0 duplicate rows, and it opens on a
+"""test_tape.py -- T1 verify: the tape's R3-default selection equals R3's
+baseline to the dollar, the duplicate self-check reports the real count on
+the spec's own (source, fillmode, sym, day, et) key (not a false zero), the
+word "phantom" is labelled in the static page shell, and it opens on a
 phone (no <canvas>, no external <script src>).
 
 Run: python research/test_tape.py
@@ -43,10 +45,15 @@ def fail(msg):
 def main():
     rows, _notes = load_rich_sources()
 
-    n_dupes, examples = check_no_repeats(rows)
-    if n_dupes != 0:
-        fail("duplicate count is %d, not 0. Examples: %s" % (n_dupes, examples))
-    print("PASS: duplicate count 0")
+    # Referee (pass 2 + 3): a self-check keyed to always report 0 cannot
+    # fail, so it isn't one. Report the real count on the spec's key
+    # (source, fillmode, sym, day, et) -- non-zero and documented, not
+    # silently swept -- rather than asserting a number this file cannot
+    # honestly claim.
+    n_keys, n_extra, examples = check_no_repeats(rows)
+    print("PASS (informational, not a hard gate -- see check_no_repeats() "
+          "docstring): %d duplicate keys / %d extra rows on (source, "
+          "fillmode, sym, day, et). Examples: %s" % (n_keys, n_extra, examples))
 
     got = compute_default_selection_stats(rows)
     for field, want in R3_BASELINE.items():
@@ -54,7 +61,9 @@ def main():
         tol = 0.001 if field == "mean_r" else 0
         if g is None or abs(g - want) > tol:
             fail("default selection %s: got %r, R3 baseline says %r" % (field, g, want))
-    print("PASS: unfiltered honest selection matches R3 baseline exactly: %s" % R3_BASELINE)
+    print("PASS: R3-default selection (source=baseline, fillmode=close, "
+          "lane=core11, policy=up_to_3) matches R3 baseline exactly: %s"
+          % R3_BASELINE)
 
     if not HTML.exists():
         fail("%s does not exist -- run python research/build_tape.py first" % HTML)
@@ -65,6 +74,22 @@ def main():
     for m in re.finditer(r'<script[^>]*\bsrc=', html, re.IGNORECASE):
         fail("the page loads an external script: %s" % html[m.start():m.start() + 120])
     print("PASS: no external <script src>")
+
+    shell = html.split('<script id="data"', 1)[0]
+    if "phantom" not in shell.lower():
+        fail("the static page shell (before the data payload) never says "
+             "'phantom' -- a reader meets the phantom fill mode unlabelled")
+    print("PASS: 'phantom' is labelled in the static page shell")
+
+    if "EXCLUSIVE_SELECT" not in html:
+        fail("source/fillmode are not exclusive-select -- picking two book "
+             "variant chips would silently union two different books")
+    print("PASS: source/fillmode are exclusive-select (no cross-book union)")
+
+    if 'getElementById("clear").onclick=function(){ defaultSel();' not in html:
+        fail("Clear does not fall back to the R3 default -- one click would "
+             "sum every merged source into one meaningless KPI row")
+    print("PASS: Clear falls back to the R3 default selection")
 
     # Open the embedded payload and check every declared facet actually has
     # data, and that the page's own default picks resolve -- catches the

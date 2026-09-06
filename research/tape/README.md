@@ -143,6 +143,81 @@ matched this build exactly and is unaffected by any of the fixes above —
 none of them touch `compute_default_selection_stats()` or the books
 themselves.
 
+### Refereed (T1 repair, pass 3, 2026-09-06)
+
+Pass 3 **refuted again**: nothing above had actually shipped by 380667a6 —
+`git diff` against it was empty, so every pass-2 defect was still live.
+Fixed in this pass:
+
+- **`source` and `fillmode` are now exclusive-select, not multi-chip OR.**
+  Both name a *book variant* of the same 499-session window (baseline vs.
+  phantom-fill vs. each Phase-L "on" book), not an independent dimension
+  like symbol or month. Picking two chips there used to UNION two different
+  books into one KPI row — the refuted +$799.6/day / 21-of-25 (two fillmode
+  chips) and +$858.1/day / +0.6572R / 23-of-25 (phantom alone, reachable
+  the same way) numbers. Clicking a chip in either field now clears the
+  other selection in that field first (a small `EXCLUSIVE_SELECT` set in
+  the client JS); every other facet keeps normal multi-chip OR behavior.
+- **`Clear` now falls back to the R3 default, not a raw union of all 7
+  sources.** It previously called `clearSel()`, which — combined with the
+  exclusive-select fix above having nothing to constrain when *nothing* is
+  selected — reproduced as +$3,531.0/day, 17-of-25 green, 64,788 rows: every
+  merged source, every fill mode, summed over the same sessions at once.
+  `Clear` now calls the same `defaultSel()` the "R3 default" button does.
+- **The duplicate self-check now reports the real number.** The prior key
+  (11 fields including `level_name`) could never report anything but 0,
+  because `level_name` is the one field that by construction always
+  differs on a real duplicate — so `test_tape.py`'s "PASS: duplicate count
+  0" was true of the key, not of the data. `check_no_repeats()` is now
+  keyed on the spec's own (`source`, `fillmode`, `sym`, `day`, `et`) and
+  reports the honest count: 963 duplicate keys / 1,020 extra rows across
+  all merged sources, 151 keys / 160 extra rows inside `baseline`/`close`
+  alone, 5 keys inside the published 769-row default unit (worth -$2,514,
+  9.8% of that unit's -$25,746 loss). This is **reported, not hard-failed**
+  — collapsing it would change which candidate a day's 2nd/3rd arrival is
+  under the up-to-3 day policy and move the already-published $-52/day
+  baseline, which remains a second change this row does not own (see "Not
+  fixed" above, now also true of this recount). `test_tape.py` asserts the
+  count is *printed honestly*, not that it is zero.
+- **`build_tape.py`'s own docstring still said "127 pairs, same
+  price/pnl"** (line ~325) even after the README above was corrected in
+  the previous repair — the two had drifted apart. The docstring now
+  states the same recount as the README (151/160, 963/1,020, 5) and adds
+  that only 50 of the 160 extra rows in `baseline`/`close` share an
+  identical P&L with their twin (110 differ), so this is not a
+  render-time double-count of one trade.
+- **The word "phantom" now appears in the static page shell**, not only
+  inside the embedded JSON payload. A note above the filter rail explains
+  what the phantom fill mode is (`ENTRY_FILL=published`, obtainable at 105
+  of 4,508 trades historically) and that it is on the page to stay visible
+  beside the honest fill, never to be read as the default.
+- Two false sentences in the prior repair's own report are corrected here:
+  "0 duplicate (symbol, day, entry-minute) rows" (it is 5, in the published
+  unit) and "unfiltered honest selection" (the default cell is a four-chip
+  selection — source, fillmode, lane, policy — not the page's unfiltered
+  state, which is the `Clear` mega-sum above). `test_tape.py`'s own PASS
+  strings are corrected to say "R3-default selection", not "unfiltered".
+
+**Not fixed, kept (same reason as pass 2, restated because pass 3 asked
+again):** the underlying near-duplicate rows themselves — two differently
+named pivots at the same symbol/day/minute — are a real property of
+`signal_runner.py`'s per-pivot level naming, not something this page's
+merging invented. Deciding which of a same-minute pair the day-policy unit
+should see is a second change (it would move R3's own published number)
+and is out of scope for this row.
+
+**Not fixed, kept (new in pass 3, genuinely out of scope for a one-row
+repair):** external `<link>` requests to `fonts.googleapis.com` /
+`fonts.gstatic.com` in the page `<head>` (inherited unmodified from
+`build_bt2y_report.py`'s shared template) — nothing breaks offline, and the
+page is not a script tag, but "opens on a phone" is currently unverified
+against a network-denied phone. Flagged, not touched, since the shared
+template belongs to `build_bt2y_report.py`, not this row.
+
+Verify: `python research/test_tape.py` → `ALL PASS`, including new checks
+that `EXCLUSIVE_SELECT` and the `Clear`→`defaultSel()` fallback are present
+in the built HTML and that `phantom` appears in the static shell.
+
 ### No-repeat guarantee
 
 One row per (source, fill mode, symbol, day, entry minute, direction,
