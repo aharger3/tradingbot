@@ -195,3 +195,191 @@ One line: give `encode()` the extended field list — either rebind
 `test_tape.py` an assertion that every facet in the payload has a `dicts`/`cols` entry and
 that the four default picks resolve to a code, and re-measure. Defects 4–7 stand on their own
 after that.
+
+---
+---
+
+# T1 referee, PASS 2 — REFUTED (a different, smaller defect)
+
+**Row:** T1 — `research/build_tape.py` → `research/tape/omen-tape.html`
+**Builder commit under review:** `380667a6293b380bb7c539798a956c011e6461ab` ("T1 repair"),
+the answer to the pass-1 refutation above (builder's first commit was `a94948d9`).
+**Referee base check:** `git fetch origin`; HEAD = `380667a6` = `origin/main`;
+`1539dd7f` is an ancestor of HEAD; HEAD is an ancestor of `origin/main`. Passes.
+**Referee script (committed beside this note):** `research/t1_referee_pass2.py` — it imports
+nothing from `build_tape.py`. Every number below is derived twice: once by re-implementing
+the page's own client-side `passes()` and patched `stats()` in Python against the JSON
+physically embedded in the shipped HTML, and once by loading the stamped `.json.gz` books
+directly and re-tagging lane / week / day-policy with this file's own code (the up-to-3 rule
+re-implemented from the spec sentence, not imported). The two must agree or it is a page defect.
+
+## Verdict in one line
+
+The pass-1 fatal defect is genuinely fixed — the page renders, all 33 facets encode, and the
+headline reproduces to four decimals — but **the phantom fill was never put beside the honest
+one; it was put in the same union, and one click from the default view the page prints
++$799.6/day, mean R +0.2816, 21 of 25 months green** from the honest and phantom books added
+together. That is the exact number SWARM.md's "the fill, said once, so nobody re-argues it"
+section exists to keep off a page, and nothing on the page warns about it.
+
+---
+
+## What pass 1 said, and whether it is fixed
+
+| pass-1 defect | fixed? | evidence |
+|---|---|---|
+| 1 (fatal) — the 7 new facets are declared but never encoded | **yes** | `encode_extended()` rebinds `build_bt2y_report.FACETS/MULTI` for one call. The embedded payload now carries `dicts`/`cols` for all 33 facets: `source` (6 values), `fillmode` (2), `lane` (3), `policy` (3), `wk` (105), `exitmodel` (1), `instrument` (1). |
+| 2 (fatal) — `defaultSel()` throws on load | **yes** | all four default picks resolve; re-implementing `passes()` against the payload selects 769 rows, i.e. the rail and scoreboard have something to render. |
+| 3 — the test could not catch it | **yes** | `test_tape.py` now parses the embedded payload, asserts every declared facet has non-empty `dicts`/`cols`, and asserts the four default picks resolve. Run at `380667a6`: `ALL PASS`. |
+| 4 — "duplicate count 0" holds only under a redefined key | **no — disclosed, and the disclosure is still wrong** (see Defect A) | count corrected in the README; characterisation still false; self-check key unchanged. |
+| 5 — every Phase-L book labelled "hold" though `DAY_POLICY` shipped | **yes** | `flag_decision()` parses `cycles.md`; `DAY_POLICY` now prints `ship`, the other four `hold`. Matches `cycles.md`. |
+| 6 — no $/day, avg win / avg loss, weeks green, fires/day | **yes** | all four are in the patched `stats()`/`renderKPIs()`. Re-implemented here they give, on the default view: $/day −51.7, avg win $801.2 / avg loss −$716.0, 45 of 105 weeks green, 1.544 fires/day. |
+| 7 — the README describes a page that does not exist | **yes for the page**, **no for two of its sentences** (Defects A and B) | |
+
+---
+
+## Defect A (the refutation) — the phantom fill is summed with the honest one, not shown beside it
+
+The spec's `do:` clause for T1 ends: *"The phantom-fill column is always visible beside the
+honest one."* What shipped is a two-value `fillmode` facet in the filter rail. Filter chips in
+this engine are a **set union** (`passes()`: `if(!s.has(cols[k][i])) return false` — selecting
+two codes admits rows matching *either*), so selecting both fill modes does not put two columns
+beside each other, it concatenates two books of the same 498 sessions into one total.
+
+Measured on the shipped page, `research/t1_referee_pass2.py` ("ONE CHIP AWAY FROM THE DEFAULT"),
+unit = the page's own scoreboard, core-11, `up_to_3` day policy, shipped ladder exit,
+$/day = selection R × $1,000 ÷ days in selection:
+
+| what the reader did | trades | $/day | mean R | months green |
+|---|---:|---:|---:|---:|
+| the default view (honest close fill) | 769 | **−$51.7** | −0.0335 | 11/25 |
+| added the second `Fill mode` chip | 1,414 | **+$799.6** | +0.2816 | **21/25** |
+| cleared the one `source` chip | 4,590 | −$309.0 | −0.0335 | 10/25 |
+| `fillmode = close`, nothing else | 59,186 | −$2,901.2 | −0.0245 | 8/25 |
+
+Row 2 is the honest book plus the void-fill book, added. It reads as a strategy clearing most of
+Austin's $500/day bar with 21 green months. Rows 3 and 4 are the same 498 sessions counted up to
+six times, once per merged book.
+
+The word **"phantom" appears zero times in the page shell** — 1 occurrence in the whole 10.41 MB
+file, and that one is the string inside the JSON payload. There is no side-by-side column, no
+label, no legend, no warning; a reader meets the word as a bare chip. The README's own sentence
+— *"Clear a filter and you widen the pool or switch unit; nothing else changes the default"* —
+is false: clearing `source` does not widen the pool, it stacks six overlapping books.
+
+Pass 1 raised the stacking hazard and it was not addressed. The repair round made it worse in one
+respect: `$/day` was added to the scoreboard, so the stacked arithmetic now prints as a dollar
+figure rather than only as an R.
+
+**Smallest fix:** make `fillmode` and `source` single-select (radio, not chip), or render the
+phantom as its own second column computed on its own selection. Either is one function.
+
+## Defect B — the near-duplicate disclosure is still wrong, and the committed script still carries the refuted number
+
+The count *was* corrected in the README (151 keys / 160 extra rows in `baseline`/`close`,
+963 / 1,020 across the 7 merged sources, 5 inside the 769-row default) — I re-derived all four
+independently and they match exactly. Two things did not get corrected:
+
+1. **`research/build_tape.py:325`, the committed script, still says** *"127 pairs across the
+   merged sources, same price/pnl, different level name."* Both halves are wrong and the
+   correction landed only in the README. The rule here is that the script that made a number
+   carries it.
+2. **"same price/pnl … priced identically" is false for most of them.** Of the 151 duplicate
+   keys in `baseline`/`close`: 151 share an entry price, but only **50 share a pnl** and only
+   **24 share a stop**. Two thirds are the same entry at the same minute with a *different risk
+   denominator* and a different result — not a cosmetic naming artefact.
+
+The five that survive inside the published 769-row unit:
+
+| key | the two rows (entry, stop, pnl, his grade, level) |
+|---|---|
+| AMZN 2024-11-04 09:45 | 197.20 / 196.47 / −$183 / S / pivot high @09:35 · 197.20 / 196.38 / −$162 / A / pivot high @09:39 |
+| GOOGL 2025-12-30 09:37 | 314.62 / 314.02 / −$1,000 / C / **PDH** · 314.62 / 314.07 / −$1,000 / C / **PMH** |
+| META 2025-10-29 09:41 | 749.08 / 751.20 / −$333 / S / **OR low** · 749.08 / 751.30 / −$340 / S / **PML** |
+| NVDA 2026-02-19 09:40 | 186.05 / 186.51 / −$18 / S / **OR low** · 186.05 / 186.76 / −$12 / A / **PDL** |
+| QQQ 2025-01-24 09:54 | 533.63 / 533.17 / −$1,000 / C / **OR high** · 533.63 / 533.20 / −$1,000 / C / **PMH** |
+
+Three of the five pair one of Austin's six named levels against an opening-range level — the
+level family Phase L6 exists to remove from the ladder — and two pair two of his six against each
+other. The extra rows carry **−$2,514 of the book's −$25,746**, i.e. **9.8% of the published
+loss**, and they consume a second day-policy slot on 5 of 498 days.
+
+Leaving the underlying engine behaviour alone is the right call under one-change-per-row, and I
+am not asking for it here. What is not right is that the spec's verify line for T1 —
+*"duplicate count = 0"* on (symbol, day, entry minute) — is reported as **PASS** by
+`test_tape.py` while the literal count on that key is 5 in the published unit and 963 across the
+page, because `check_no_repeats()` keys on 11 fields including `level_name`, the one field that
+by construction always differs. A check that cannot fail is not a check.
+
+## Defect C — the dirty-tree disclosure
+
+`research/tape/README.md` distinguishes the fill-mode study as built off *"a different, **dirty**
+commit lineage … never the baseline's `29e4abc6`"*. Both baseline books (`baseline_2026-09-05`
+and its phantom twin) were themselves built with **`dirty_py_count: 1`**, as was
+`book_OCR_RETEST_DISPLACEMENT_on`. `dirty_engine_py` is empty in all three, so no engine file was
+modified and the books are usable — but the README's sentence implies a clean baseline lineage
+and no page or note says otherwise.
+
+## Defect D (minor, inherited) — three external stylesheet requests
+
+The spec's verify is *"no canvas, no external scripts"*, and both hold (0 and 0). The page does
+still issue **three external `<link>` requests** to `fonts.googleapis.com` / `fonts.gstatic.com`,
+inherited unchanged from `build_bt2y_report.py`'s template. Nothing breaks offline — the font
+stack falls back — but "opens on a phone" is not the same as "opens on a phone with no network",
+and `test_tape.py` does not check it.
+
+---
+
+## What is upheld (re-derived, not taken from the report)
+
+- **The headline reproduces exactly.** Default selection = `source=baseline`, `fillmode=close`,
+  `lane=core11`, `policy=up_to_3`; unit = up-to-3 fires a day stopping after a win or the second
+  loss; fill = honest close (`entry_fill.ENTRY_FILL=close`); exit = the shipped ladder
+  (`SCALE_PLAN=hod_then_runner_be`); script = `research/t1_referee_pass2.py`:
+  **769 trades, sum −25.739R, mean R −0.0335, win 45.0%, 11 of 25 months green, 45 of 105 weeks
+  green, avg win $801.2 / avg loss −$716.0, 1.544 fires/day, max drawdown 54.5R.**
+  $/day = **−$51.7** dividing by the 498 days in the selection (the page's definition) and
+  **−$51.6** dividing by the book's 499 sessions (`g72_suppress_price.stats`' definition); both
+  round to the published −$52. Page-side and book-side agree on every field.
+- **Five random filter combinations** (seed 20260905, each ≥ 30 rows), page filter vs stamped
+  books, **all five agree on all 13 metrics**:
+
+  | # | filter | trades | mean R | months | page $/day |
+  |---|---|---:|---:|---:|---:|
+  | 1 | `lane=full29, out=loss, yr=2026` | 14,356 | −0.8196 | 9 | −$71,310.7 |
+  | 2 | `fillmode=close, dow=Tue, dir=put` | 6,018 | +0.0453 | 25 | +$2,728.0 |
+  | 3 | `source∈{L5_on,L4_on}, dir=put` | 7,431 | −0.0273 | 25 | −$427.0 |
+  | 4 | `yr=2025, fillmode=close, policy=first_of_day` | 1,493 | +0.0403 | 12 | +$241.5 |
+  | 5 | `out=loss, lane=full29, fillmode=phantom` | 2,391 | −0.9764 | 25 | −$4,754.5 |
+
+  **No trading verdict attaches to any of these cells.** Combos 1, 2 and 5 are outcome-filtered
+  or source-stacked and are arithmetic, not edges; combo 1 spans 9 months, under the 12-month
+  floor. They are here to prove the page's filter agrees with the books, nothing else.
+- **The README's "every OFF arm equals the baseline exactly" claim is true.** I re-priced all six
+  OFF books (`MIN_PT1_R`, its postfix rebuild, `RULE84_DECIDED`, `OCR_RETEST_DISPLACEMENT`,
+  `TREND_DEF`, `DAY_POLICY`) on the default unit with my own day-policy code: every one is
+  769 trades, −25.739R, 11/25 green — identical to `source=baseline`. (`cycles.md`'s
+  `MIN_PT1_R` row reads −$9/day on 767 trades because that cycle predates the L5 core-11 scoping
+  repair; the book itself agrees with the baseline.)
+- **Stamps.** All seven merged books carry a `book_stamp` with commit, dirty flags, book id and
+  every engine flag value, and every stamp commit (`29e4abc6`, `e073b94a`, `7fb977f7`,
+  `90dce640`, `355d7cc0`, `5e8b5b89`) is an ancestor of `380667a6`.
+- **Phantom vs baseline provenance.** Both come from `29e4abc6`, both built `2026-09-05T18:16:19`,
+  differing only in `entry_fill.ENTRY_FILL` (`close` vs `published`). Same day, same base —
+  the comparison is legitimate; only its presentation is not (Defect A).
+- **Hygiene.** 0 `<canvas>`; 0 external `<script src>`; no hard-coded forecast numbers in
+  `build_tape.py` (every figure it prints is computed from a loaded book; the only literals are
+  the `$1,000` risk unit and prose in comments). One change per row respected: `380667a6` touches
+  4 files, all T1's own. No mark corpus appears in either T1 commit. `git status` clean.
+- **Verify gate, run by me at `380667a6`:** `regression_gate.py` PASS ("no baseline-fired mark
+  went silent"), `test_runner_stop.py` PASS (70 checks), `test_universe_single_source.py` PASS
+  (29 symbols, no private lists), `test_tape.py` ALL PASS.
+
+## Why this is refuted rather than upheld
+
+Two of the row's own acceptance clauses are unmet: the phantom column is not beside the honest
+one (it is inside the same sum, and the sum reads +$799.6/day), and the duplicate count on the
+key the spec names is 5 in the published unit, not 0, while the test reports PASS. The
+engineering underneath — the merge, the encoding, the filter, the arithmetic — is sound and
+reproduces exactly; this is a presentation-and-checking refutation, not a numbers one. Both
+fixes are small and neither touches a book.
