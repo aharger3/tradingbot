@@ -660,3 +660,255 @@ everything else gets compared against. What they did not do is update the three
 scoreboards, so the notes still say the rule shipped when it did not, and one of our
 own automatic checks is now failing because of it. Nothing about your money changed;
 the paperwork is wrong and needs ten minutes.
+
+---
+
+# L5 referee — PASS 4 — **refuted**
+
+**Row:** L5, `DAY_POLICY`.
+**Builder's commit under review:** `58c00a7b` — "L5 repair: complete pass-2's
+instruction -- flip cycles.md/loop_state.json decision to hold, set
+consecutive_holds=5 and stop=true, fix loop.json rebuild pin, correct
+l5_day_policy.md's false headline sentences, disclose win-definition and
+S-grade-scope gaps (referee pass 3)".
+**Builder's filed decision:** `hold`.
+**Referee verdict (pass 4): refuted — on the write-up again, not on the decision
+and not on a single number.**
+
+Five of pass 3's six findings are genuinely closed: the committed parity test is
+green, all three ledgers now say `hold`, the stop counter is honest, and both
+semantics gaps are disclosed. The hold is right and I could not break it — every
+cell reproduces to the dollar under a **fifth** independent implementation, and
+this time even pass 1's `causal-own-picks` figures reproduce exactly, which no
+earlier pass had re-derived. What is refuted is that the commit did what its own
+message says it did. It claims to have fixed "l5_day_policy.md's three false
+headline sentences"; there were **four**, and the one still standing is inside the
+section headed *"What holds for the referee to re-derive"* — the checklist the
+next referee is pointed at. And the disclosure this commit **added** publishes a
+ceiling that is 40% below the real one.
+
+Re-derived by `research/l5_referee_pass4.py` (committed beside this page). It
+imports nothing from `research/loop_cycle.py`, `research/g72_suppress_price.py`,
+`research/day_policy.py` or the three earlier referee scripts: the universe
+filter, the unit walk, the monthly buckets, the halves split and the gate
+arithmetic are re-implemented from `research/tape/loop.json` and SWARM.md.
+
+**Every dollar on this page names its terms once:** fill = honest close
+(`backtest_2y.py` default `ENTRY_FILL=close`); exit = shipped engine, 1R hard stop
+filled on the intrabar touch (`DISASTER_STOP_R=1.0`), `SCALE_PLAN=hod_then_runner_be`,
+`LOSS_HALT` on; unit = `up_to_3_stop_win_or_2loss` on the 11 core symbols
+(`loop.json`, `universe.row_filter = tier == "core"`); window 2024-09-04 →
+2026-09-04, 499 sessions (H1 248, H2 251); books
+`research/tape/book_DAY_POLICY_{off,on}.json.gz`; script
+`research/l5_referee_pass4.py`.
+
+---
+
+## 1. Pass 3's defects — what is actually fixed
+
+| pass-3 defect | status at `58c00a7b` | how I checked |
+|---|---|---|
+| D1 `research/test_live_follows_loop.py` RED at HEAD | **fixed** — exit 0, "OK: live lane matches research/tape/cycles.md's shipped defaults." | ran it |
+| D2 three ledgers assert a ship | **fixed** — `cycles.md` L5 decision cell `hold`; `loop_state.json` cycle 5 `"decision": "hold"`; `loop.json` REBUILD PIN rewritten and now correct (a bare `backtest_2y.py --days 730` at HEAD does reproduce `2c39ced2697c26cc`, because `signal_runner.DAY_POLICY` imports as `first3`) | read all three; imported the module |
+| D2b `consecutive_holds` stuck at 0 | **fixed** — `5`, and `loop_state.json` history reads `['hold','hold','hold','hold','hold']`; `stop: true`, `stop_reason: "5 consecutive holds"`, byte-identical to `loop_cycle.py:421`'s own string with `MAX_CONSECUTIVE_HOLDS = 5` | read both files |
+| D3 three false sentences in `l5_day_policy.md` | **partly fixed — see DEFECT A** | grepped the file |
+| D4 "stop after a win" has two definitions | **disclosed — but with a false bound, see DEFECT B** | re-derived all 12 rows |
+| D5 "up to 3 **S** fires" implemented with no grade test | **fixed (disclosed)** — my own count of the 769 unit rows: `C` 434 (56.4%), `A` 187 (24.3%), `S` 148 (19.2%), exactly as published | independent `Counter` over the unit |
+
+## 2. The numbers — every cell reproduces (upheld)
+
+My arithmetic, both stamped books, boundary 2025-09-01:
+
+| slice | sessions | OFF $/day | OFF green | OFF trades | ON $/day | ON green | ON trades | aw÷al |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| whole | 499 | −52 | 11/25 | 769 | −52 | 11/25 | 769 | 1.119 / 1.119 |
+| H1 (< 2025-09-01) | 248 | +9 | 6/12 | 382 | +9 | 6/12 | 382 | 1.308 / 1.308 |
+| H2 (≥ 2025-09-01) | 251 | −111 | 5/13 | 387 | −111 | 5/13 | 387 | 0.949 / 0.949 |
+
+fires/day **1.541** both arms. My gate: H1 `{enough: true, pass: true}`, H2
+`{enough: true, pass: true}` → the gate itself returns `ship` on a delta of
+exactly zero, and the row is nonetheless correctly **held** for the separate
+reason pass 2 established (shipping it moves the default book away from the
+pinned baseline). This matches `research/tape/cycles.md`'s L5 row **cell for
+cell**: `hold | -52.0 -> -52.0 | 11 -> 11 | pass | pass | 769`.
+
+Stronger than matching aggregates: the two unit row-sets are **identical, 769
+for 769**, on the key `(day, et, sym, pnl)`. The ON book carries **1,095**
+`status="day_policy_halt"` rows, **all core-tier**, and **0 of the 1,095** were
+ever picked by the OFF unit. A true no-op, mechanism confirmed.
+
+**Sample size, per cell and per half:** whole 769 trades / 25 months; H1 382 / 12;
+H2 387 / 13. Every cell clears the 30-trade and 12-month floor, so every verdict
+here is allowed. No cell needed "not enough".
+
+**Also reproduced, and no earlier pass had done this:** pass 1's `causal-own-picks`
+unit — the time-aware walk where a stop condition only counts once the trade has
+actually closed (`research/l5_referee.py::unit_up_to_3_causal`) — re-implemented
+from scratch gives **1,031 trades, +$16/day, 11/25 green, worst day −$3,000,
+10 of 498 traded days breaching a $2,500 daily-loss limit (98.0% pass)**, exactly
+as `research/l5_day_policy.md` publishes. I first tried three simpler readings of
+"day_policy's own picks" and got 769 / 814 / 2,766 rows; the published figures are
+right and the simpler readings were mine, not the report's. `first_of_day` on the
+same book: **498 trades, −$39/day, 9/25 green** — also exact.
+
+The whole-window distribution and the prop-firm cells reproduce from the committed
+`research/l5_day_policy_stats.py`: p5 −2,000 / p25 −1,024 / median +99 / p75 +624 /
+p95 +1,793 / worst −2,000; `$1,000 limit → 132/499 breach (73.5% pass)`,
+`$2,500 limit → 0/499 (100% pass)`; fires histogram 1/229/267/2. Both readings
+identical, as published.
+
+## 3. The stamps and the baseline pin (upheld)
+
+- The OFF book is the baseline **row for row**, not merely by hash: all 127,513
+  rows agree on `(day, sym, et, status, traded, pnl, out, entry, stop)`.
+  Recomputed `book_id` OFF = baseline = **2c39ced2697c26cc** =
+  `loop.json: baseline_book_id`. ON = **205d3dcee96c5282**.
+- The two flag stamps differ in **exactly one** key:
+  `signal_runner.DAY_POLICY: 'first3' → '3fires_stop_win_or_2loss'`. Nothing else.
+- Both built at commit `5e8b5b89`, `dirty_py_count = 0`, `dirty_engine_py = []`,
+  and `git merge-base --is-ancestor 5e8b5b89 58c00a7b` succeeds — the stamp's
+  commit is an ancestor of the row's commit, and the tree was clean.
+- Both stamps still carry **no `script` and no `window` field** — the
+  pre-existing `book_stamp.stamp()` gap, correctly disclosed by the builder and
+  not this row's to fix. `meta` carries `first`/`last`/`sessions`
+  (2024-09-04 / 2026-09-04 / 499), so the window is recoverable.
+
+## 4. Semantics, default and plumbing (upheld)
+
+`omen_recall.py "day policy up to 3 S fires stop after a win or 2 losses"`
+returns, verbatim, the sentence this row must implement:
+
+> 2026-09-05: **day policy: up to 3 S fires; stop after a win or 2 losses.**
+> First-S-only reported beside it.
+> — `omen-rulebook.md`, "Decided 2026-09-05 (the /call 60, afternoon) — omen-10.0"
+
+and the spec's settled table row, verbatim:
+
+> | day policy | **up to 3 S fires; stop after a win or after 2 losses**; "first S only" reported beside it |
+
+`day_policy.py`'s rule is that sentence with its subject widened from "S fires"
+to "fires" — the report now says so instead of claiming an exact match, which is
+the correction pass 3 asked for. The widening is the R3 baseline unit's own scope
+(`loop_cycle.up_to_3_rows`), settled repo-wide, not an L5 invention.
+
+- **Default matches the decision.** `signal_runner.py` line reads
+  `DAY_POLICY = os.getenv("DAY_POLICY", "first3").strip().lower()`; importing the
+  module gives `'first3'`. A held research arm does not default ON. ✔
+- **`DAY_POLICY` is in `research/book_stamp.py` `FLAG_SOURCES`**, in the
+  `signal_runner` group (line 50 of the tuple). ✔
+- **One change per row.** `git show --stat 58c00a7b` = four files, all ledgers and
+  prose (`research/l5_day_policy.md`, `research/tape/cycles.md`,
+  `research/tape/loop.json`, `research/tape/loop_state.json`). No engine code, no
+  rebuild, no number moved. ✔
+- **No mark file touched**, in the commit or in the working tree. ✔
+- **Verify gate green at `58c00a7b`, run by me:** `research/regression_gate.py`
+  PASS (exit 0), `research/test_runner_stop.py` exit 0 (70 checks),
+  `research/test_universe_single_source.py` exit 0. Plus
+  `research/test_live_follows_loop.py` exit 0. ✔
+- **`cycles.md`'s push line is plain English** — "up to three trades a day, stop
+  after a win or two losses" — apart from the trailing "(repair)", which pass 3
+  already flagged and which survives. Minor.
+
+## 5. DEFECT A (blocking) — the fourth false sentence, in the section a referee is sent to
+
+The commit message says it "correct[ed] `l5_day_policy.md`'s **three** false
+headline sentences". There were four. `research/l5_day_policy.md`, lines 216–218,
+untouched by this commit, still reads:
+
+> - `signal_runner.DAY_POLICY` default flipped `first3 → 3fires_stop_win_or_2loss`
+>   in this same landing (commit named below), consistent with the row's step
+>   6 ("gate passes on both halves → flip default, verify, commit").
+
+Every clause is false at HEAD. The default was **not** flipped — it was flipped at
+`350b02fc` and reverted at `99b2bf0b`; `signal_runner.DAY_POLICY` imports as
+`'first3'`. Step 6 did **not** execute. And "(commit named below)" names no
+commit: the file ends two bullets later.
+
+This is worse than the three the repair did fix, for two reasons. First, it sits
+under the heading **"What holds for the referee to re-derive"** — a list whose
+whole purpose is to tell the next reader which facts are load-bearing, and it
+asserts the single fact this entire three-pass repair sequence exists to correct.
+Second, it flatly contradicts the same file's own header seven lines from the top
+("the **default stays `first3`**"), so the report now argues with itself and a
+reader has no way to tell which half is current.
+
+Same defect class that refuted L1, L2, L3 and L4 in this swarm, on its fourth
+consecutive appearance in this row: the decision is fine, the arithmetic is fine,
+and the published prose describes an engine that does not exist.
+
+## 6. DEFECT B (material) — the disclosure this commit added publishes a false ceiling
+
+New in `58c00a7b`, the Refereed section's win-definition disclosure:
+
+> They disagree on 12 of 3,861 core-11 causal-pool rows, all `out=="scratch"`
+> with positive P&L (**up to +$6,713.75**, NVDA 2025-07-15 10:47)
+
+The pool size (3,861) and the count (12) are right; I get both. The ceiling is
+not. All 12, re-derived, sorted by P&L:
+
+| day | et | sym | out | status | pnl |
+|---|---|---|---|---|---:|
+| 2025-12-23 | 10:30 | AMZN | scratch | halted | **+$9,428.57** |
+| 2026-05-22 | 10:41 | PLTR | scratch | halted | **+$8,603.96** |
+| 2025-07-15 | 10:47 | NVDA | scratch | halted | +$6,713.75 |
+| 2025-07-15 | 10:42 | NVDA | scratch | halted | +$4,824.56 |
+| 2024-10-16 | 10:03 | AAPL | scratch | halted | +$4,787.88 |
+| 2025-09-18 | 10:52 | MSFT | scratch | halted | +$4,779.41 |
+| 2026-05-13 | 10:40 | NVDA | scratch | halted | +$3,324.81 |
+| 2026-09-01 | 10:43 | MSFT | scratch | halted | +$2,880.06 |
+| 2026-08-27 | 09:49 | AMZN | scratch | halted | +$1,720.93 |
+| 2026-08-11 | 10:34 | MSFT | scratch | halted | +$1,552.08 |
+| 2024-11-22 | 10:46 | GOOGL | scratch | halted | +$1,459.46 |
+| 2026-05-22 | 10:21 | META | scratch | halted | +$1,259.45 |
+
+The true maximum is **+$9,428.57**, 40.4% above the published bound, and two rows
+exceed it. The repair copied pass 3's illustrative top-five list — which was
+labelled "several of them large", not a maximum — and reprinted its largest entry
+as "up to". A disclosure whose whole point is *how big the divergence can get*
+understates the divergence.
+
+One thing the table adds that no pass has said: **all 12 are `status == "halted"`**
+— they are R31 account-halt rows carried into the pool, never `fired and traded`.
+So the divergence lives entirely in the halted arm of the candidate pool, which
+narrows where it could ever bite if the causal unit is promoted (the +$16/day R3
+question). Worth a sentence in the report; there is none.
+
+## 7. What is clean, in one list
+
+Books stamped and clean; OFF = baseline row-for-row; one-flag stamp diff; commit
+`5e8b5b89` an ancestor of `58c00a7b`; gate reproduces cell-for-cell; unit row-set
+identical 769-for-769; every sample size clears the floor; default is `first3`;
+`DAY_POLICY` in `FLAG_SOURCES`; one change per row; no mark file touched; all four
+tests green at HEAD; `causal-own-picks`, `first_of_day` and the prop-firm cells all
+re-derive exactly.
+
+## 8. What the dispatcher should do
+
+One more bookkeeping edit, no code, no rebuild, no number:
+
+1. `research/l5_day_policy.md`, the bullet at lines 216–218 — delete it or replace
+   it with the truth: the default was flipped at `350b02fc`, refuted at pass 2
+   (`34c1546e`) and **reverted at `99b2bf0b`**; the shipped default is `first3` and
+   step 6 did not run. While there, name the commit that "(commit named below)"
+   promises, or drop the phrase.
+2. Same file, the win-definition disclosure — change "up to +$6,713.75, NVDA
+   2025-07-15 10:47" to "**up to +$9,428.57** (AMZN 2025-12-23 10:30; PLTR
+   2026-05-22 10:41 at +$8,603.96 is second)", and add that all 12 divergent rows
+   are `status == "halted"`.
+3. Optional, carried from pass 3 and still open: the cycle-5 ntfy push told Austin
+   the rule shipped. No correction has been sent.
+
+Nothing here should be deleted. Both books, all four referee passes and both
+referee scripts stay as the evidence trail.
+
+**Plain English, if a line of this reaches Austin:** the rule "take up to three
+trades a day, stop after a win or after two losses" is already exactly how we
+score every backtest, so switching it on inside the engine changes nothing on your
+eleven main stocks — same result to the dollar, 769 trades either way, and it is
+correctly switched off. Last night's fix repaired the three scoreboards that were
+wrong, and the automatic check that was failing is green again. Two things in the
+write-up are still wrong: one paragraph still tells the next reader the rule was
+switched on when it was not, and a footnote that measures how far two definitions
+of "a winning trade" can drift apart quotes the third-largest gap instead of the
+largest ($6,714 instead of $9,429). Neither changes a dollar of your results. Ten
+more minutes of paperwork.
