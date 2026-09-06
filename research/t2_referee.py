@@ -1,32 +1,29 @@
-"""t2_referee.py -- referee for row T2 (research/g213_instruments.py).
+"""t2_referee.py -- independent re-derivation of T2 (row commit c1261604).
 
-Builder commit: ccd7fa0683ef7ebf10a539228d8a4a5b8a571d64
-(the T2 files actually landed across 07c35df8 + ccd7fa06, both
- "wip: auto-commit" messages, not a T2-named commit).
-
-Everything here is re-derived from research/tape/instruments_2026-09-05.json.gz
-and research/tape/baseline_2026-09-05.json.gz with this file's own arithmetic --
-no import of g72_suppress_price.stats, no import of g213_instruments' pricing.
+Refutation pass. Nothing here imports g213_instruments; every number is
+recomputed from research/tape/instruments_2026-09-05.json.gz and from the
+baseline book, with this file's own arithmetic, so a bug in the builder's
+aggregation cannot reproduce itself here.
 
 Sections
-  A  independent recompute of the three published instrument tables
-  B  matched comparison: shares vs futures on the SAME 99 futures-eligible rows
-  C  contract rounding: the realised-R distribution vs 1.0 (futures + options)
-  D  futures basis sensitivity: perturb the ETF->index ratio and re-price
-  E  options: instrument_source census, spread-cost asymmetry real vs model
-  F  options: does the "real" row price the same trade the shares row booked?
+  A  per-instrument $/day, mean R, win%, green months, recomputed
+  B  contract rounding: the realised-R distribution vs 1.0
+  C  basis shock: re-price the futures column at +/- ratio shocks
+  D  instrument_source labelling and the real-bar share
+  E  the futures-vs-shares delta, decomposed
+  F  Polygon coverage forensics: how many rows were ever attempted
+  G  option commission asymmetry
 
 Run: python research/t2_referee.py            (offline, no network)
-     python research/t2_referee.py --polygon  (adds the 10-row live re-pull)
+     python research/t2_referee.py --refetch  (adds section H: 10 live re-prices)
 """
 from __future__ import annotations
 
 import argparse
 import gzip
 import json
-import random
-import statistics
 import sys
+from collections import defaultdict
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -34,323 +31,404 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 BOOK = ROOT / "research" / "tape" / "instruments_2026-09-05.json.gz"
-BASE = ROOT / "research" / "tape" / "baseline_2026-09-05.json.gz"
+BASELINE = ROOT / "research" / "tape" / "baseline_2026-09-05.json.gz"
+CACHE = ROOT / "data_archive" / "options"
 BOUNDARY = "2025-09-01"
 RISK = 1000.0
 
-
-def load(p):
-    b = json.loads(gzip.open(p, "rt", encoding="utf-8").read())
-    return b["meta"], b["trades"]
-
-
-def iso_week(day):
-    import datetime as dt
-    y, w, _ = dt.date(int(day[:4]), int(day[5:7]), int(day[8:10])).isocalendar()
-    return "%04d-W%02d" % (y, w)
+FUT_MAP = {"SPY": "MES", "QQQ": "MNQ", "IWM": "M2K"}
+FUT_RATIO = {"SPY": 10.0, "QQQ": 41.35, "IWM": 10.0}
+FUT_TICK = {"MES": 0.25, "MNQ": 0.25, "M2K": 0.10}
+FUT_MULT = {"MES": 5.0, "MNQ": 2.0, "M2K": 5.0}
+FUT_COMM_SIDE = 0.62
 
 
-def stats(rows, n_days):
-    """rows: [{day, pnl}]. Independent of g72_suppress_price."""
-    if not rows or not n_days:
+def load():
+    d = json.load(gzip.open(BOOK, "rt", encoding="utf-8"))
+    return d["meta"], d["trades"]
+
+
+def agg(rows, n_days):
+    """rows: [(day, pnl)]. Independent of g72_suppress_price."""
+    if not rows:
         return None
-    pnls = [r["pnl"] for r in rows]
+    pnls = [p for _, p in rows]
     total = sum(pnls)
-    w = sum(1 for p in pnls if p > 0)
-    l = sum(1 for p in pnls if p < 0)
-    by_m, by_w = {}, {}
-    for r in rows:
-        by_m[r["day"][:7]] = by_m.get(r["day"][:7], 0.0) + r["pnl"]
-        by_w[iso_week(r["day"])] = by_w.get(iso_week(r["day"]), 0.0) + r["pnl"]
+    wins = sum(1 for p in pnls if p > 0)
+    losses = sum(1 for p in pnls if p < 0)
+    by_m = defaultdict(float)
+    for day, p in rows:
+        by_m[day[:7]] += p
     return {
-        "trades": len(rows),
-        "total": round(total, 0),
-        "per_day": round(total / n_days, 0),
-        "mean_r": round(total / len(rows) / RISK, 4),
-        "win_pct": round(w / (w + l) * 100, 1) if (w + l) else 0.0,
+        "n": len(rows),
+        "total": round(total, 2),
+        "per_day": round(total / n_days, 2),
+        "mean_r_vs_1000": round(total / len(rows) / RISK, 4),
+        "win_pct": round(wins / (wins + losses) * 100, 1) if wins + losses else 0.0,
         "months_green": sum(1 for v in by_m.values() if v > 0),
         "months": len(by_m),
-        "weeks_green": sum(1 for v in by_w.values() if v > 0),
-        "weeks": len(by_w),
     }
 
 
-def fmt(s, label):
-    if s is None:
-        return "%-34s no rows" % label
-    flag = "" if (s["trades"] >= 30 and s["months"] >= 12) else \
-        "   NOT ENOUGH (%d trades, %d months)" % (s["trades"], s["months"])
-    return ("%-34s $%s/day  meanR %+.3f  win %4.1f%%  %2d/%-2d green  n=%d%s"
-            % (label, ("%d" % s["per_day"]).rjust(5), s["mean_r"], s["win_pct"],
-               s["months_green"], s["months"], s["trades"], flag))
+def section_a(trades):
+    print("== A. per-instrument, recomputed independently ==")
+    days_all = {t["day"] for t in trades}
+    days_h1 = {t["day"] for t in trades if t["day"] < BOUNDARY}
+    days_h2 = {t["day"] for t in trades if t["day"] >= BOUNDARY}
+    print("day counts: all=%d h1=%d h2=%d" % (len(days_all), len(days_h1), len(days_h2)))
+    out = {}
+    for key in ("shares", "futures", "options"):
+        rows = [(t["day"], t[key]["pnl"]) for t in trades if "pnl" in t.get(key, {})]
+        h1 = [r for r in rows if r[0] < BOUNDARY]
+        h2 = [r for r in rows if r[0] >= BOUNDARY]
+        out[key] = {
+            "whole": agg(rows, len(days_all)),
+            "h1": agg(h1, len(days_h1)),
+            "h2": agg(h2, len(days_h2)),
+        }
+        for lab, sl in (("whole", out[key]["whole"]), ("h1", out[key]["h1"]), ("h2", out[key]["h2"])):
+            if sl:
+                print("  %-8s %-5s n=%-4d $/day=%8.2f meanR=%7.4f win=%5.1f%% green=%d/%d"
+                      % (key, lab, sl["n"], sl["per_day"], sl["mean_r_vs_1000"],
+                         sl["win_pct"], sl["months_green"], sl["months"]))
+    # matched shares on the futures-eligible rows
+    fut_ids = {t["id"] for t in trades if "pnl" in t.get("futures", {})}
+    rows = [(t["day"], t["shares"]["pnl"]) for t in trades if t["id"] in fut_ids]
+    m = agg(rows, len(days_all))
+    print("  %-8s %-5s n=%-4d $/day=%8.2f meanR=%7.4f win=%5.1f%% green=%d/%d"
+          % ("sh-match", "whole", m["n"], m["per_day"], m["mean_r_vs_1000"],
+             m["win_pct"], m["months_green"], m["months"]))
+    # matched shares split by half, for the sample-size rule
+    for lab, sl in (("h1", [r for r in rows if r[0] < BOUNDARY]),
+                    ("h2", [r for r in rows if r[0] >= BOUNDARY])):
+        a = agg(sl, len(days_h1) if lab == "h1" else len(days_h2))
+        if a:
+            print("  %-8s %-5s n=%-4d $/day=%8.2f green=%d/%d"
+                  % ("sh-match", lab, a["n"], a["per_day"], a["months_green"], a["months"]))
+    # futures halves trade counts (sample-size rule)
+    fr = [(t["day"], t["futures"]["pnl"]) for t in trades if "pnl" in t.get("futures", {})]
+    print("  futures h1 n=%d, h2 n=%d  (30-trade floor)"
+          % (len([r for r in fr if r[0] < BOUNDARY]), len([r for r in fr if r[0] >= BOUNDARY])))
+    return out
 
 
-# --------------------------------------------------------- futures re-pricing
-FUT_MAP = {"SPY": "MES", "QQQ": "MNQ", "IWM": "M2K"}
-FUT_TICK = {"MES": 0.25, "MNQ": 0.25, "M2K": 0.10}
-FUT_MULT = {"MES": 5.0, "MNQ": 2.0, "M2K": 5.0}
-COMM = 0.62
+def section_b(trades):
+    print("\n== B. contract rounding: realised R vs 1.0 ==")
+    for key in ("futures", "options"):
+        vals = [t[key]["actual_r_dollars"] for t in trades
+                if "actual_r_dollars" in t.get(key, {})]
+        if not vals:
+            continue
+        vals_s = sorted(vals)
+        n = len(vals_s)
+        rr = [v / RISK for v in vals_s]
+        def pct(p):
+            return rr[min(n - 1, int(p * n))]
+        off5 = sum(1 for v in rr if abs(v - 1.0) > 0.05)
+        off10 = sum(1 for v in rr if abs(v - 1.0) > 0.10)
+        print("  %-8s n=%d  realised R: min=%.4f p05=%.4f p50=%.4f p95=%.4f max=%.4f"
+              % (key, n, rr[0], pct(0.05), pct(0.50), pct(0.95), rr[-1]))
+        print("           mean=%.4f  |R-1|>5%%: %d (%.1f%%)  |R-1|>10%%: %d (%.1f%%)"
+              % (sum(rr) / n, off5, off5 / n * 100, off10, off10 / n * 100))
+        c = [t[key]["contracts"] for t in trades if "contracts" in t.get(key, {})]
+        c.sort()
+        print("           contracts: min=%d p50=%d max=%d ; contracts==1: %d"
+              % (c[0], c[len(c) // 2], c[-1], sum(1 for x in c if x == 1)))
+        if key == "futures":
+            nm = sorted(t["futures"]["notional"] for t in trades
+                        if "notional" in t.get("futures", {}))
+            dm = sorted(t["futures"]["day_margin"] for t in trades
+                        if "day_margin" in t.get("futures", {}))
+            print("           notional: p50=$%s max=$%s ; day margin: p50=$%s max=$%s"
+                  % (format(nm[len(nm) // 2], ",.0f"), format(nm[-1], ",.0f"),
+                     format(dm[len(dm) // 2], ",.0f"), format(dm[-1], ",.0f")))
 
 
-def round_tick(px, tick):
-    return round(round(px / tick) * tick, 4)
+def base_rows():
+    b = json.load(gzip.open(BASELINE, "rt", encoding="utf-8"))
+    return {r.get("id") or "": r for r in b["trades"]}, b["trades"]
 
 
-def price_fut(entry, stop, r, sym, ratio):
-    fut = FUT_MAP[sym]
-    tick, mult = FUT_TICK[fut], FUT_MULT[fut]
-    ie, isx = round_tick(entry * ratio, tick), round_tick(stop * ratio, tick)
-    pts = abs(ie - isx) or tick
-    rpc = pts * mult
-    n = max(1, round(RISK / rpc))
-    actual = n * rpc
-    return r * actual - 2 * COMM * n, actual, n
+def section_c(trades):
+    """Re-price futures at ratio shocks, using entry/stop from the baseline book."""
+    print("\n== C. basis shock on the futures column ==")
+    _, brows = base_rows()
+    # index the baseline by (sym, day, et, entry, stop) fragments of the id
+    byk = {}
+    for r in brows:
+        byk[(r["sym"], r["day"], r["et"], round(float(r["entry"]), 4))] = r
+    days_all = len({t["day"] for t in trades})
+    matched = 0
+    shocks = [-0.10, -0.05, -0.02, -0.01, 0.0, 0.01, 0.02, 0.05, 0.10]
+    results = {}
+    for sh in shocks:
+        rows = []
+        for t in trades:
+            if "pnl" not in t.get("futures", {}):
+                continue
+            k = (t["sym"], t["day"], t["et"], round(float(t["id"].split("|")[3]), 4))
+            br = byk.get(k)
+            if br is None:
+                continue
+            sym = t["sym"]
+            fut = FUT_MAP[sym]
+            ratio = FUT_RATIO[sym] * (1.0 + sh)
+            tick, mult = FUT_TICK[fut], FUT_MULT[fut]
+            ie = round(round(br["entry"] * ratio / tick) * tick, 4)
+            istop = round(round(br["stop"] * ratio / tick) * tick, 4)
+            rpts = abs(ie - istop) or tick
+            rpc = rpts * mult
+            ctr = max(1, round(RISK / rpc))
+            ard = ctr * rpc
+            pnl = t["r"] * ard - 2 * FUT_COMM_SIDE * ctr
+            rows.append((t["day"], pnl))
+        if sh == 0.0:
+            matched = len(rows)
+        a = agg(rows, days_all)
+        results[sh] = a
+        print("  ratio %+5.1f%%  n=%-4d $/day=%7.2f  meanR=%7.4f  green=%d/%d"
+              % (sh * 100, a["n"], a["per_day"], a["mean_r_vs_1000"],
+                 a["months_green"], a["months"]))
+    print("  rows matched back to the baseline at shock 0: %d" % matched)
+    # does the reproduction at shock 0 match the book?
+    book_fut = agg([(t["day"], t["futures"]["pnl"]) for t in trades
+                    if "pnl" in t.get("futures", {})], days_all)
+    print("  book futures whole: $%.2f/day green=%d/%d ; my shock-0 rebuild: $%.2f/day green=%d/%d"
+          % (book_fut["per_day"], book_fut["months_green"], book_fut["months"],
+             results[0.0]["per_day"], results[0.0]["months_green"], results[0.0]["months"]))
+    spread = max(a["per_day"] for a in results.values()) - min(a["per_day"] for a in results.values())
+    gm = {a["months_green"] for a in results.values()}
+    print("  $/day range across +/-10%% basis: $%.2f ; green-month values seen: %s"
+          % (spread, sorted(gm)))
+    # additive basis (cost of carry) -- cancels exactly in a difference
+    print("  additive basis (futures = index + carry) cancels exactly: entry-stop is a difference")
+
+
+def section_d(trades):
+    print("\n== D. instrument_source labelling and the real-bar share ==")
+    src = defaultdict(int)
+    missing = 0
+    for t in trades:
+        o = t.get("options")
+        if not o:
+            missing += 1
+            continue
+        s = o.get("instrument_source")
+        if s is None:
+            missing += 1
+        else:
+            src[s] += 1
+    print("  options rows: %d ; sources: %s ; rows with no instrument_source: %d"
+          % (len(trades), dict(src), missing))
+    real = src.get("real", 0)
+    print("  real share computed from instrument_source: %d/%d = %.2f%%"
+          % (real, len(trades), real / len(trades) * 100))
+    # fields present on real vs model
+    rf = set()
+    mf = set()
+    for t in trades:
+        o = t["options"]
+        (rf if o["instrument_source"] == "real" else mf).update(o.keys())
+    print("  real-row fields:  %s" % sorted(rf))
+    print("  model-row fields: %s" % sorted(mf))
+    # futures labelling
+    fs = defaultdict(int)
+    for t in trades:
+        fs[t["futures"].get("instrument", "MISSING")] += 1
+    print("  futures instrument field: %s" % dict(fs))
+
+
+def section_e(trades):
+    print("\n== E. futures-vs-shares delta, decomposed ==")
+    fut = [t for t in trades if "pnl" in t.get("futures", {})]
+    d_total = sum(t["shares"]["pnl"] - t["futures"]["pnl"] for t in fut)
+    comm = sum(t["futures"]["commission"] for t in fut)
+    sizing = sum(t["r"] * (RISK - t["futures"]["actual_r_dollars"]) for t in fut)
+    days_all = len({t["day"] for t in trades})
+    print("  n=%d  shares-minus-futures total = $%.2f" % (len(fut), d_total))
+    print("    of which commission            = $%.2f" % comm)
+    print("    of which integer-sizing residual= $%.2f" % sizing)
+    print("    unexplained                    = $%.2f" % (d_total - comm - sizing))
+    print("  that delta is $%.2f/day on the %d-day denominator" % (d_total / days_all, days_all))
+    # month-by-month: which month flips
+    bm_f, bm_s = defaultdict(float), defaultdict(float)
+    for t in fut:
+        bm_f[t["day"][:7]] += t["futures"]["pnl"]
+        bm_s[t["day"][:7]] += t["shares"]["pnl"]
+    flips = [(m, bm_s[m], bm_f[m]) for m in bm_s if (bm_s[m] > 0) != (bm_f[m] > 0)]
+    print("  months where the sign differs between shares and futures on the same rows: %d" % len(flips))
+    for m, s, f in flips:
+        print("    %s shares=$%.2f futures=$%.2f (gap $%.2f)" % (m, s, f, s - f))
+
+
+def section_f(trades):
+    print("\n== F. Polygon coverage forensics ==")
+    aggs = sorted((CACHE / "aggs").glob("*.json"))
+    cats = sorted((CACHE / "catalog").glob("*.json"))
+    ok = err = 0
+    errs = []
+    for f in aggs:
+        j = json.loads(f.read_text(encoding="utf-8"))
+        if j.get("_status"):
+            err += 1
+            errs.append((f.name, j["_status"]))
+        else:
+            ok += 1
+    print("  aggs cache files: %d (ok=%d, status-error=%d)" % (len(aggs), ok, err))
+    for n, s in errs:
+        print("    error: %s -> %s" % (n, s))
+    print("  catalog cache files: %d" % len(cats))
+    print("  progress checkpoint exists: %s" % (CACHE / "g213_progress.json").exists())
+    print("  => rows ever ATTEMPTED against Polygon aggs: %d of %d (%.1f%%)"
+          % (len(aggs), len(trades), len(aggs) / len(trades) * 100))
+    print("  => rows NEVER attempted: %d (%.1f%%)"
+          % (len(trades) - len(aggs), (len(trades) - len(aggs)) / len(trades) * 100))
+    # how many rows are outside a rolling 2-year lookback from the build date?
+    cutoff = "2024-09-06"   # meta.built_at 2026-09-06 minus 2 years
+    old = [t for t in trades if t["day"] < cutoff]
+    print("  rows older than a rolling 2y lookback (%s): %d (%.1f%%) -- the report's"
+          % (cutoff, len(old), len(old) / len(trades) * 100))
+    print("     stated cause (a) can account for at most this many missing rows")
+    days = sorted({t["day"] for t in trades})
+    print("  book window: %s .. %s" % (days[0], days[-1]))
+    # spread of the 20 real rows across the window
+    realdays = sorted(t["day"] for t in trades if t["options"]["instrument_source"] == "real")
+    print("  real rows span %s .. %s (%d rows) -- consistent with a shuffled prefix, not a date cut"
+          % (realdays[0], realdays[-1], len(realdays)))
+
+
+def section_g(trades):
+    print("\n== G. option commission asymmetry ==")
+    has_comm = sum(1 for t in trades if "commission" in t["options"])
+    print("  option rows carrying a commission field: %d of %d" % (has_comm, len(trades)))
+    ctr = sum(t["options"]["contracts"] for t in trades)
+    days_all = len({t["day"] for t in trades})
+    for rate in (0.65, 1.00):
+        cost = ctr * 2 * rate
+        print("  at $%.2f/contract/side a round trip on %d contracts costs $%s = $%.2f/day"
+              % (rate, ctr, format(cost, ",.0f"), cost / days_all))
+    print("  the futures column IS charged $0.62/side; the options column is charged none.")
+    # real rows also pay no spread
+    real = [t for t in trades if t["options"]["instrument_source"] == "real"]
+    print("  real option rows carrying a spread_cost field: %d of %d"
+          % (sum(1 for t in real if "spread_cost" in t["options"]), len(real)))
+
+
+def section_i(trades):
+    """What is actually IN the options headline."""
+    print("\n== I. the options headline, decomposed ==")
+    days = len({t["day"] for t in trades})
+    sh = sum(t["shares"]["pnl"] for t in trades)
+    op = sum(t["options"]["pnl"] for t in trades)
+    spread = sum(t["options"].get("spread_cost", 0.0) for t in trades)
+    model = [t for t in trades if t["options"]["instrument_source"] == "model"]
+    real = [t for t in trades if t["options"]["instrument_source"] == "real"]
+    sizing = sum(t["r"] * (t["options"]["actual_r_dollars"] - RISK) for t in model)
+    realgap = sum(t["options"]["pnl"] - (t["r"] * t["options"]["actual_r_dollars"]) for t in real)
+    print("  shares total  $%s = $%.2f/day" % (format(sh, ",.0f"), sh / days))
+    print("  options total $%s = $%.2f/day" % (format(op, ",.0f"), op / days))
+    print("  difference    $%s = $%.2f/day, of which:" % (format(op - sh, ",.0f"), (op - sh) / days))
+    print("    the flat $0.05 spread on model rows  $%s = $%.2f/day  (%.0f%% of the gap)"
+          % (format(-spread, ",.0f"), -spread / days, spread / abs(op - sh) * 100))
+    print("    delta-sizing residual on model rows  $%s = $%.2f/day"
+          % (format(sizing, ",.0f"), sizing / days))
+    print("    the 20 real bars vs their linear R    $%s = $%.2f/day"
+          % (format(realgap, ",.0f"), realgap / days))
+    print("  SPREAD SENSITIVITY (model rows only; real rows keep their real prices):")
+    mc = sum(t["options"]["contracts"] for t in model)
+    for w in (0.00, 0.01, 0.02, 0.05, 0.10, 0.20):
+        tot = op + spread - w * 100 * mc
+        bym = defaultdict(float)
+        for t in trades:
+            adj = t["options"]["pnl"]
+            if t["options"]["instrument_source"] == "model":
+                adj = t["options"]["pnl"] + t["options"]["spread_cost"] - w * 100 * t["options"]["contracts"]
+            bym[t["day"][:7]] += adj
+        print("    width $%.2f -> $%7.2f/day, green %d/%d" %
+              (w, tot / days, sum(1 for v in bym.values() if v > 0), len(bym)))
+    print("  model contracts total = %s ; every $0.01 of assumed width = $%.2f/day"
+          % (format(mc, ","), 0.01 * 100 * mc / days))
+    print("  no Polygon QUOTE data was pulled anywhere in this row: the width is an assumption,")
+    print("  and the 20 rows priced from real trades are the only rows exempt from it.")
+    # max loss per row
+    worst_opt = min(t["options"]["pnl"] / t["options"]["actual_r_dollars"] for t in trades)
+    worst_real = min((t["options"]["pnl"] / t["options"]["actual_r_dollars"] for t in real), default=None)
+    n_below = sum(1 for t in trades if t["options"]["pnl"] / t["options"]["actual_r_dollars"] < -1.0)
+    print("  worst option row = %.3fR (real rows worst %.3fR); rows below -1.000R: %d of %d"
+          % (worst_opt, worst_real, n_below, len(trades)))
+
+
+def section_h(trades, n=10):
+    """Live re-price: refetch aggs straight from Polygon, bypassing the cache."""
+    print("\n== H. live re-price of real option rows (cache bypassed) ==")
+    from research.g73_polygon_fetch import _get
+    import datetime as dt
+    from zoneinfo import ZoneInfo
+    ET = ZoneInfo("America/New_York")
+    real = [t for t in trades if t["options"]["instrument_source"] == "real"]
+    real.sort(key=lambda t: t["day"], reverse=True)   # newest first: inside the lookback
+    picked = real[:n]
+    npass = nfail = nerr = 0
+    for t in picked:
+        o = t["options"]
+        tk, day = o["contract"], t["day"]
+        j = _get("/v2/aggs/ticker/%s/range/1/minute/%s/%s" % (tk, day, day),
+                 adjusted="true", sort="asc", limit=50000)
+        if "_status" in j:
+            print("  %-6s %s %s %-28s FETCH ERROR %s" % (t["sym"], day, t["et"], tk, j["_status"]))
+            nerr += 1
+            continue
+        bars = {}
+        for b in (j.get("results") or []):
+            ts = dt.datetime.fromtimestamp(b["t"] / 1000, tz=dt.timezone.utc).astimezone(ET)
+            bars[ts.strftime("%H:%M")] = b["c"]
+
+        def near(hhmm):
+            if hhmm in bars:
+                return bars[hhmm]
+            h, m = int(hhmm[:2]), int(hhmm[3:])
+            tot = h * 60 + m
+            best, bd = None, 6
+            for k, v in bars.items():
+                d = abs(int(k[:2]) * 60 + int(k[3:]) - tot)
+                if d < bd:
+                    bd, best = d, v
+            return best
+        h, m = int(t["et"][:2]), int(t["et"][3:])
+        tot = h * 60 + m + int(t.get("bars", 1) or 1)
+        ex = "%02d:%02d" % (tot // 60, tot % 60)
+        e2, x2 = near(t["et"]), near(ex)
+        okp = (e2 == o["entry_opt"] and x2 == o["exit_opt"])
+        pnl2 = None if e2 is None or x2 is None else round((x2 - e2) * 100 * o["contracts"], 2)
+        print("  %-6s %s %s %-28s stored %.2f/%.2f pnl %s | fresh %s/%s pnl %s -- %s"
+              % (t["sym"], day, t["et"], tk, o["entry_opt"], o["exit_opt"], o["pnl"],
+                 e2, x2, pnl2, "PASS" if okp else "MISMATCH"))
+        if okp:
+            npass += 1
+        else:
+            nfail += 1
+    print("  %d pass, %d mismatch, %d fetch error, of %d" % (npass, nfail, nerr, len(picked)))
 
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--polygon", action="store_true")
-    args = ap.parse_args()
-
-    meta, T = load(BOOK)
-    bmeta, brows = load(BASE)
-    bx = {}
-    for r in brows:
-        k = (r["sym"], r["day"], r["et"], round(r["entry"], 2), round(r["stop"], 2),
-             r["dir"], r["setup"])
-        bx["|".join(str(x) for x in k)] = r
-
-    out = []
-    P = out.append
-    P("T2 REFEREE -- independent recompute")
-    P("book   : research/tape/instruments_2026-09-05.json.gz")
-    P("stamp  : commit %s  dirty_py_count=%s  dirty_engine_py=%s  built %s"
-      % (meta["git"]["commit"][:8], meta["git"]["dirty_py_count"],
-         meta["git"]["dirty_engine_py"], meta["built_at"]))
-    P("rows   : %d" % len(T))
-    P("")
-
-    days_all = sorted({t["day"] for t in T})
-    nd_all = len(days_all)
-    nd_h1 = len({d for d in days_all if d < BOUNDARY})
-    nd_h2 = len({d for d in days_all if d >= BOUNDARY})
-    P("A. INDEPENDENT RECOMPUTE (denominator = every day in the unit book: "
-      "all %d, H1 %d, H2 %d)" % (nd_all, nd_h1, nd_h2))
-    for key in ("shares", "futures", "options"):
-        rows = [{"day": t["day"], "pnl": t[key]["pnl"]} for t in T if "pnl" in t[key]]
-        h1 = [r for r in rows if r["day"] < BOUNDARY]
-        h2 = [r for r in rows if r["day"] >= BOUNDARY]
-        P("  " + fmt(stats(rows, nd_all), key + " whole"))
-        P("  " + fmt(stats(h1, nd_h1), key + " H1 <2025-09-01"))
-        P("  " + fmt(stats(h2, nd_h2), key + " H2 >=2025-09-01"))
-    P("")
-
-    # --------------------------------------------------------------- B matched
-    fut_rows = [t for t in T if "pnl" in t["futures"]]
-    fut_days = sorted({t["day"] for t in fut_rows})
-    P("B. MATCHED SUBSET -- the %d futures-eligible rows (SPY/QQQ only), "
-      "on %d distinct days" % (len(fut_rows), len(fut_days)))
-    P("   the published table compares 99 futures rows against 769 shares rows.")
-    P("   same-rows comparison, both denominators shown:")
-    for key in ("shares", "futures", "options"):
-        rows = [{"day": t["day"], "pnl": t[key]["pnl"]} for t in fut_rows]
-        h1 = [r for r in rows if r["day"] < BOUNDARY]
-        h2 = [r for r in rows if r["day"] >= BOUNDARY]
-        P("  " + fmt(stats(rows, nd_all), key + " on the 99 /all-days"))
-        P("  " + fmt(stats(rows, len(fut_days)), key + " on the 99 /its-own-days"))
-        P("  " + fmt(stats(h1, nd_h1), key + " on the 99, H1"))
-        P("  " + fmt(stats(h2, nd_h2), key + " on the 99, H2"))
-    P("")
-
-    # -------------------------------------------------------------- C rounding
-    P("C. CONTRACT ROUNDING -- realised 1R in dollars vs the nominal $1,000")
-    for key in ("futures", "options"):
-        a = [t[key]["actual_r_dollars"] for t in T if "actual_r_dollars" in t[key]]
-        if not a:
-            continue
-        ratio = [x / RISK for x in a]
-        P("  %-8s n=%d  min %.3f  p05 %.3f  median %.3f  p95 %.3f  max %.3f  "
-          "mean %.4f  sd %.4f" % (key, len(a), min(ratio),
-                                  statistics.quantiles(ratio, n=20)[0],
-                                  statistics.median(ratio),
-                                  statistics.quantiles(ratio, n=20)[18],
-                                  max(ratio), statistics.mean(ratio),
-                                  statistics.pstdev(ratio)))
-        P("           |realised R - 1.0| > 5%%: %d rows (%.1f%%);  > 20%%: %d rows"
-          % (sum(1 for x in ratio if abs(x - 1) > .05),
-             100 * sum(1 for x in ratio if abs(x - 1) > .05) / len(ratio),
-             sum(1 for x in ratio if abs(x - 1) > .20)))
-    nc = [t["futures"]["contracts"] for t in T if "contracts" in t["futures"]]
-    if nc:
-        P("  futures contract counts: min %d median %d max %d; rows sized to 1 "
-          "contract (rounding floor bites hardest): %d"
-          % (min(nc), int(statistics.median(nc)), max(nc), sum(1 for x in nc if x == 1)))
-    P("")
-
-    # ------------------------------------------------------- D basis sensitivity
-    P("D. FUTURES BASIS SENSITIVITY -- re-price the 99 rows at perturbed ratios")
-    P("   (basis + carry - dividends on a 2y ETF/index ratio is order 1-2%%; "
-      "5%% and 10%% are stress rows)")
-    base_ratio = {"SPY": 10.0, "QQQ": 41.35}
-    P("   %-8s %-9s %-9s %-8s %-7s %-6s" % ("shock", "$/day", "total", "meanR", "win%", "green"))
-    for pct in (0.0, -0.005, 0.005, -0.01, 0.01, -0.02, 0.02, -0.05, 0.05, -0.10, 0.10):
-        rows = []
-        for t in fut_rows:
-            b = bx[t["id"]]
-            ratio = base_ratio[t["sym"]] * (1 + pct)
-            pnl, _, _ = price_fut(b["entry"], b["stop"], b["r"], t["sym"], ratio)
-            rows.append({"day": t["day"], "pnl": pnl})
-        s = stats(rows, nd_all)
-        P("   %-8s %-9s %-9s %-8.4f %-7.1f %d/%d"
-          % ("%+.1f%%" % (pct * 100), "$%d" % s["per_day"], "$%d" % s["total"],
-             s["mean_r"], s["win_pct"], s["months_green"], s["months"]))
-    # how far does the ratio have to move to flip the sign of futures $/day?
-    P("   sign of futures $/day across the whole shock range above: "
-      + ("UNCHANGED" if len({1 if stats([{"day": t["day"], "pnl":
-            price_fut(bx[t["id"]]["entry"], bx[t["id"]]["stop"], bx[t["id"]]["r"],
-                      t["sym"], base_ratio[t["sym"]] * (1 + p))[0]}
-            for t in fut_rows], nd_all)["per_day"] > 0 else 0
-            for p in (-.10, -.05, -.02, 0, .02, .05, .10)}) == 1 else "FLIPS"))
-    P("")
-
-    # ------------------------------------------------------------- E options
-    P("E. OPTIONS -- instrument_source census, read off the book, not assumed")
-    src = {}
-    for t in T:
-        src[t["options"]["instrument_source"]] = src.get(t["options"]["instrument_source"], 0) + 1
-    P("   %s   -> real share %.2f%% of %d" % (src, 100 * src.get("real", 0) / len(T), len(T)))
-    P("   every row carries instrument_source: %s"
-      % all("instrument_source" in t["options"] for t in T))
-    real = [t for t in T if t["options"]["instrument_source"] == "real"]
-    model = [t for t in T if t["options"]["instrument_source"] == "model"]
-    P("   spread cost charged: real rows with a spread_cost field = %d of %d; "
-      "model rows = %d of %d" % (sum(1 for t in real if "spread_cost" in t["options"]),
-                                  len(real),
-                                  sum(1 for t in model if "spread_cost" in t["options"]),
-                                  len(model)))
-    sc = [t["options"]["spread_cost"] for t in model]
-    P("   model spread cost per trade: median $%d, mean $%d, total $%d over %d rows"
-      % (statistics.median(sc), statistics.mean(sc), sum(sc), len(sc)))
-    P("   model total pnl $%d, of which spread is $%d (%.0f%% of the loss)"
-      % (sum(t["options"]["pnl"] for t in model), -sum(sc),
-         100 * sum(sc) / abs(sum(t["options"]["pnl"] for t in model))))
-    # what the model column looks like with the SAME zero-spread treatment
-    # the real rows got
-    nos = [{"day": t["day"], "pnl": t["options"]["pnl"] + t["options"].get("spread_cost", 0.0)}
-           for t in T]
-    P("   " + fmt(stats(nos, nd_all), "options, spread removed"))
-    half = [{"day": t["day"], "pnl": t["options"]["pnl"] + t["options"].get("spread_cost", 0.0) / 2}
-            for t in T]
-    P("   " + fmt(stats(half, nd_all), "options, half the spread"))
-    P("   the script charges 2 x $0.05 x 100 x contracts = $10/contract round")
-    P("   trip, i.e. the FULL quoted width twice. Crossing a $0.05 wide market")
-    P("   from mid costs $0.025 each way = $5/contract round trip. The 'half")
-    P("   the spread' row is that convention.")
-    P("   -> the real rows are priced with NO spread (a 1-min aggregate close is")
-    P("      a traded print) and the model rows with two full widths; the two")
-    P("      sources are not on one ruler.")
-    P("")
-
-    # ------------------------------------------------------------- F same trade
-    P("F. DOES A 'real' OPTION ROW PRICE THE SAME TRADE THE SHARES ROW BOOKED?")
-    dis = 0
-    lad = 0
-    for t in real:
-        b = bx[t["id"]]
-        if b.get("scaled"):
-            lad += 1
-        if (t["shares"]["pnl"] > 0) != (t["options"]["pnl"] > 0):
-            dis += 1
-    P("   real rows: %d;  of those the shares book scaled out of: %d" % (len(real), lad))
-    P("   real rows where the option P&L sign DISAGREES with the shares P&L sign: "
-      "%d of %d (%.0f%%)" % (dis, len(real), 100 * dis / len(real)))
-    P("   the option leg is priced entry-close -> (entry+bars)-close on ONE")
-    P("   contract; the shares row is a 30/30/30/10 ladder with up to four")
-    P("   exits. `bars` is backtest_2y.py:244 `exit_idx - entry_idx`, i.e. the")
-    P("   LAST leg. Examples:")
-    for t in real[:6]:
-        b = bx[t["id"]]
-        P("     %-6s %s %s  shares r %+.3f pnl $%-8.0f  scaled=%-5s  "
-          "opt %.2f->%.2f x%d pnl $%.0f"
-          % (t["sym"], t["day"], t["et"], b["r"], t["shares"]["pnl"],
-             bool(b.get("scaled")), t["options"]["entry_opt"], t["options"]["exit_opt"],
-             t["options"]["contracts"], t["options"]["pnl"]))
-    P("")
-
-    # ------------------------------------------------------------ G cache truth
-    P("G. WHY THE REAL SHARE IS 2.6%% -- what is actually on disk")
-    cat = sorted((ROOT / "data_archive" / "options" / "catalog").glob("*.json"))
-    agg = sorted((ROOT / "data_archive" / "options" / "aggs").glob("*.json"))
-    n403 = sum(1 for f in agg if json.loads(f.read_text()).get("_status") == 403)
-    P("   catalog files cached: %d ; aggregate files cached: %d (of which 403: %d)"
-      % (len(cat), len(agg), n403))
-    P("   distinct unit rows ever ATTEMPTED for a real fetch: <= %d of %d (%.1f%%)"
-      % (len(agg), len(T), 100 * len(agg) / len(T)))
-    prog = ROOT / "data_archive" / "options" / "g213_progress.json"
-    P("   checkpoint file g213_progress.json exists: %s" % prog.exists())
-    P("   403 contracts on disk: %s"
-      % [f.name for f in agg if json.loads(f.read_text()).get("_status") == 403])
-    P("")
-
-    if args.polygon:
-        P("H. LIVE POLYGON RE-PULL (referee's own fetch, 10 rows)")
-        from research.g73_polygon_fetch import _get
-        import datetime as dt
-        from zoneinfo import ZoneInfo
-        ET = ZoneInfo("America/New_York")
-        rnd = random.Random(777)
-        pick = rnd.sample(real, min(10, len(real)))
-        npass = nfail = 0
-        for t in pick:
-            tk = t["options"]["contract"]
-            j = _get("/v2/aggs/ticker/%s/range/1/minute/%s/%s" % (tk, t["day"], t["day"]),
-                     adjusted="true", sort="asc", limit=50000)
-            if "_status" in j:
-                P("   %-6s %s %-24s FETCH %s" % (t["sym"], t["day"], tk, j["_status"]))
-                nfail += 1
-                continue
-            bars = {}
-            for b in (j.get("results") or []):
-                ts = dt.datetime.fromtimestamp(b["t"] / 1000, tz=dt.timezone.utc).astimezone(ET)
-                bars[ts.strftime("%H:%M")] = b["c"]
-
-            def near(hhmm):
-                if hhmm in bars:
-                    return bars[hhmm], 0
-                tot = int(hhmm[:2]) * 60 + int(hhmm[3:])
-                best, bd = None, 6
-                for k, v in bars.items():
-                    d = abs(int(k[:2]) * 60 + int(k[3:]) - tot)
-                    if d < bd:
-                        bd, best = d, v
-                return best, bd
-
-            ex = "%02d:%02d" % divmod(int(t["et"][:2]) * 60 + int(t["et"][3:]) + t["bars"], 60)
-            e, de = near(t["et"])
-            x, dx = near(ex)
-            ok = (e == t["options"]["entry_opt"]) and (x == t["options"]["exit_opt"])
-            npass += ok
-            nfail += (not ok)
-            P("   %-6s %s %-24s stored %.2f->%.2f | fresh %s->%s (offset %dm/%dm) %s"
-              % (t["sym"], t["day"], tk, t["options"]["entry_opt"],
-                 t["options"]["exit_opt"], e, x, de, dx, "PASS" if ok else "FAIL"))
-        P("   %d pass / %d fail of %d re-pulled" % (npass, nfail, len(pick)))
-        P("")
-        P("I. IS THE 403 A LOOKBACK BOUNDARY? (the fetch loop breaks on the first")
-        P("   403 -- g213_instruments.py:341-343 -- so one boundary day ends the pass)")
-        for tk, day in (("O:SPY240904C00552000", "2024-09-04"),
-                        ("O:MSFT240906C00407500", "2024-09-04"),
-                        ("O:TSLA240906C00230000", "2024-09-05"),
-                        ("O:SPY250130C00605000", "2025-01-30")):
-            j = _get("/v2/aggs/ticker/%s/range/1/minute/%s/%s" % (tk, day, day),
-                     adjusted="true", sort="asc", limit=50000)
-            P("   %-24s %s -> %s" % (tk, day,
-                                      j.get("_status", "200, %d bars" % len(j.get("results") or []))))
-        P("")
-
-    txt = "\n".join(out)
-    print(txt)
-    (ROOT / "research" / "t2_referee_out.txt").write_text(txt, encoding="utf-8")
+    ap.add_argument("--refetch", action="store_true")
+    ap.add_argument("--n", type=int, default=10)
+    a = ap.parse_args()
+    meta, trades = load()
+    print("book=%s rows=%d book_id=%s stamp_commit=%s dirty_py=%s"
+          % (BOOK.name, len(trades), meta["book_id"], meta["git"]["commit"][:8],
+             meta["git"].get("dirty_py_count")))
+    section_a(trades)
+    section_b(trades)
+    section_c(trades)
+    section_d(trades)
+    section_e(trades)
+    section_f(trades)
+    section_g(trades)
+    section_i(trades)
+    if a.refetch:
+        section_h(trades, a.n)
 
 
 if __name__ == "__main__":
