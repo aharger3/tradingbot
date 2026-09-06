@@ -1,6 +1,10 @@
 # H1 referee
 
 Two passes. Pass 2 is the live verdict; pass 1 is kept below as evidence.
+A third, independent pass (`research/h1_referee_pass3.md`, script
+`research/h1_referee_pass3.py`, commit `b94ec50e`) re-derived both of pass 2's open
+defects on later HEAD and also refuted the builder's `held` report; it changes no
+conclusion here.
 
 ---
 

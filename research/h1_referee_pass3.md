@@ -1,95 +1,77 @@
-# H1 referee — REFUTED
+# H1 referee — pass 3, REFUTED
 
-Row: **H1 — one card per symbol** (OMEN 10.0, phase H).
-Builder commit under review: **1f26cf73** ("H1 repair: drop --per-signal from the 11:05
-runner, write a served-record manifest…"), on top of **57f2fbd2** ("H1: one card per symbol").
-Builder status: `held` — *"already fully implemented … No further work needed."*
-Referee HEAD: `ccd7fa06` (both commits are ancestors; `1539dd7f` is an ancestor of HEAD;
-HEAD == origin/main; working tree clean).
-Every number below is re-derived by **`research/h1_referee.py`** (committed beside this file),
-not taken from the builder's self-test.
+Read `research/h1_referee.md` first: passes 1 (`d195ee51`) and 2 (`55d8f5d9`) are the standing
+write-up and pass 2 is the fuller verdict. This page is a third, independent pass run against the
+builder's **report**, which arrived claiming the row was `held` and *"already fully implemented …
+No further work needed"*.
 
-**Verdict: refuted.** Two of the three clauses of the row hold. The middle clause — *"all S
-bars drawn on the one chart"* — is **not implemented**, and the commit under review says so in
-its own new docstring while the report says the row is fully implemented. The row's own verify
-condition ("the 09-03 deck rebuilt has 11 cards, 0 repeats") is now unreachable, and the
-self-test was rewritten to assert the opposite rather than flagged.
+- Builder commit under review: **1f26cf73** (on top of **57f2fbd2**).
+- This pass: HEAD `b94ec50e`, `1539dd7f` is an ancestor of HEAD, HEAD == `origin/main`, 0 ahead,
+  working tree carried only other agents' files (`research/o4_referee.py`, two `v3_referee_pass2*`).
+- My own script: **`research/h1_referee_pass3.py`**, written from scratch, sharing no code with
+  pass 2's `research/h1_referee.py`. Every number below came out of it, not out of the report.
+- No dollar figure, no book, no trade unit in this row — nothing to size-gate, no stamp to check,
+  no sample-size verdict to police.
 
----
+## Verdict: refuted, and the report is now the defect
 
-## Defect 1 — all S bars are NOT on the one chart (spec clause 2)
+Two refuting referee passes were already on `main` when the builder returned `held / fully
+implemented / no further work needed`. Both of their open defects still reproduce on today's HEAD,
+in my own code:
 
-`sblind_collect` cuts the tape at the bar `classify()` returns, which is the **first** S bar:
+| open defect | pass 2's finding | my re-derivation |
+|---|---|---|
+| all S bars on the one chart (spec clause 2) | AMD 4 of 5 cut off, 0 cut lines in the SVG | AMD S bars at 36/63/64/82/86, `classify()` cuts at 36, card tape is 37 of the day's 90 bars, **1 of 5 S bars rendered** |
+| a deck blanks its own rebuild (introduced by 1f26cf73) | 6 cards → 0 | reproduced: 6 cards → **0** on the 2026-09-04 six-symbol pool once its own manifest exists |
 
-    "bars": d["bars"][:cut + 1],        # research/daily_homework.py
+The commit under review added a docstring to `sblind_collect` stating that all-S-bars-on-one-chart
+"is unimplemented … do not claim otherwise". Reporting the row as fully implemented contradicts the
+builder's own code comment. The correct status was **blocked**, naming the two remaining changes.
 
-Re-derived on the row's own day, 2026-09-03:
+## Extra finding this pass adds — the 09-03 verify assertion
 
-| symbol | S bars in the session | `classify()` cut | S bars drawn on the card |
-|---|---|---:|---:|
-| AMD | 36, 63, 64, 82, 86 | 36 | **1 of 5** |
+Spec: *"Verify: the 09-03 deck rebuilt has **11 cards, 0 repeats**."* Measured: **0 cards**. All 11
+CORE_SYMBOLS are suppressed — 6 graded, 11 served after the backfill. `test_deck_one_per_symbol.py`
+was edited in 1f26cf73 to **assert** `eligible == 0` and `len(cards) == 0`, so its primary case is
+now vacuous: it proves an empty list has no duplicate symbols. Only the secondary 2026-09-04 demo
+pool (6 cards, 6 distinct symbols, 0 repeats) exercises the rule, and its render step sits behind
+`if demo_cards:`.
 
-The card was rendered (`dh.sblind_card_html`) and the SVG inspected: **37 of the day's 90 bars
-on the tape**, S bars 63/64/82/86 are past the end of it, so they are not drawn and carry no
-cut line. This is the exact failure the row exists to fix in the other direction — he saw AMD
-five times as five cards; he now sees it once, but the four later S bars he complained about
-are simply gone from the chart rather than consolidated onto it.
+Ignoring the backfilled manifest, **5 of 11** symbols would have been eligible on 2026-09-03
+(AAPL, AMD, AMZN, MSFT, QQQ) — so **11 was never reachable** and the spec line was wrong from the
+start. That is a legitimate finding; it had to be reported as *the verify condition cannot be met,
+here is why*, not absorbed by rewriting the assertion to match the observed output.
 
-The commit under review **added a docstring saying this is unimplemented**
-("Showing every S bar on one chart is unimplemented (H1 referee, OMEN 10.0, defect 2)") and the
-report nonetheless returned `held / already fully implemented / no further work needed`. An
-honest docstring does not close a spec clause. The correct status was **blocked** or **partial**,
-naming the missing work.
-
-## Defect 2 — the row's verify condition was replaced, not met
-
-Spec: *"Verify: the 09-03 deck rebuilt has **11 cards, 0 repeats**."*
-Measured now: the 2026-09-03 rebuild with `per_signal=False` deals **0 cards** — all 11
-CORE_SYMBOLS are suppressed as already marked or served. `test_deck_one_per_symbol.py` was
-edited in 1f26cf73 to **assert** `eligible == 0` and `len(cards) == 0`, so its primary case is
-vacuous: it now proves that an empty list contains no duplicate symbols. Only the secondary
-2026-09-04 demo pool (6 cards, 6 distinct symbols, 0 repeats) exercises the rule, and its
-render step is guarded by `if demo_cards:`.
-
-Removing the backfilled manifest from the served set, **5 of 11** symbols would be eligible on
-2026-09-03 (AAPL, AMD, AMZN, MSFT, QQQ); the other 6 were graded. So **11 was never reachable**
-— the spec line was wrong, and 57f2fbd2's own message says "5 eligible". That is a defensible
-finding, but it had to be reported as *the verify condition cannot be met, here is why*, not
-absorbed by rewriting the assertion to match the observed output.
-
-Also noted: 1f26cf73 carries three distinct changes (runner flag, manifest writing, docstring)
-in one commit, against the one-change-per-row rule. No number depends on it here.
-
----
-
-## What does hold (verified independently)
+## What did hold, re-derived independently
 
 | check | result |
 |---|---|
 | `per_signal=False` is the default in `sblind_collect` | OK |
 | `--per-signal` gone from `research/daily_run_1105.cmd`; `research/daily_run.cmd` never passed it | OK |
-| `served_card_ids()` reads **48** `*manifest*.jsonl` files under `research/` (7 under `decks/`), yielding **997** distinct symbol-days | OK |
+| `served_card_ids()` reads **48** `*manifest*.jsonl` files under `research/` (7 under `decks/`) → **997** distinct symbol-days (pass 2 counted 51 files; other rows have added and removed manifests since) | OK |
 | every id in every manifest is present in `served_card_ids()` | OK |
 | the s10 deck's **22** card ids → **11** distinct symbol-days, all 11 excluded by the served set | OK |
-| 2026-09-03 rebuild: 0 repeats, no symbol dealt twice | OK (on 0 cards) |
-| `research/decks/omen-daily-2026-09-03-s10.html` byte-identical to `1f26cf73^` | OK (last touched by b8acefd6) |
+| 2026-09-03 rebuild: 0 repeats, no symbol dealt twice | OK (vacuously, on 0 cards) |
+| `research/decks/omen-daily-2026-09-03-s10.html` byte-identical to `1f26cf73^` (last touched by `b8acefd6`) | OK |
 | every mark corpus byte-identical to `1f26cf73^` (`git diff --stat` empty) | OK |
-| verify gate at HEAD: `regression_gate.py` PASS, `test_runner_stop.py` 70 checks ok, `test_universe_single_source.py` 29 symbols ok | OK |
+| `research/test_deck_one_per_symbol.py` | PASS (see the vacuity note above) |
+| `research/regression_gate.py` at HEAD | PASS — nothing that fired on the baseline went silent |
+| `research/test_runner_stop.py` at HEAD | 70 checks ok |
+| `research/test_universe_single_source.py` at HEAD | 29 symbols, 25 backtested, no private lists |
 
-No dollar figure, no book and no trade unit are involved in this row, so the sizing, fill and
-stamp rules have nothing to bind to; nothing here carries a sample-size verdict.
+Procedural notes carry over from pass 2 and I confirm both: 1f26cf73 lands three changes in one
+commit (runner flag, manifest writer, docstring) plus a rewritten test, against one-change-per-row;
+and it creates a file under `research/decks/*-manifest.jsonl`, a protected path — an addition, not a
+rewrite, with the graded HTML and every mark corpus untouched, so no judgement was lost.
 
-## Note on the backfilled manifest
+## What closes H1
 
-`research/decks/omen-daily-2026-09-03-s10-manifest.jsonl` is new in 1f26cf73 and sits in the
-protected deck-manifest namespace. It is an added record of what was served, not a rewrite of a
-graded file, and the graded HTML is untouched, so no judgement was lost. Its permanent effect is
-that those 11 symbol-days can never be dealt again — correct behaviour, and the reason the
-row's own verify line can no longer be run.
+Unchanged from pass 2, in priority order:
 
-## What would close H1
-
-Draw the whole symbol-day. Either extend the tape to the **last** S bar and mark every S bar
-with its own cut line, or state on the card that the tape stops at the first one. Then restore a
-non-vacuous self-test: a day with eligible symbols and at least one multi-S-bar symbol, asserting
-the count of drawn S bars equals the count in the session.
+1. Thread the manifest path into `sblind_collect` as `exclude` so rerunning the 11:05 pass cannot
+   overwrite a good deck with an empty one. This is live on the phone path. One function, one row.
+2. Settle "all S bars on the one chart" against the blind-card rule — extending the tape to the last
+   S bar with no marks satisfies both; marking each S bar leaks the engine's opinion onto a card
+   whose point is that it carries no tell — then implement whichever survives. One function, one row.
+3. Restore a non-vacuous self-test: a day with eligible symbols and at least one multi-S-bar symbol,
+   asserting the count of S bars drawn equals the count in the session.

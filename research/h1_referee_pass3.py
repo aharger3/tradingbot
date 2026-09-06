@@ -1,9 +1,11 @@
-"""H1 referee checks. Independent re-derivation -- does not trust the builder's
-self-test (research/test_deck_one_per_symbol.py) or its printed line.
+"""H1 referee, PASS 3. Independent re-derivation -- shares no code with pass 2's
+research/h1_referee.py, and trusts neither the builder's report nor its self-test
+(research/test_deck_one_per_symbol.py).
 
 Builder commit under review: 1f26cf73 (on top of 57f2fbd2).
+Write-up: research/h1_referee_pass3.md. Passes 1-2: research/h1_referee.md.
 
-Run:  python research/h1_referee.py
+Run:  python research/h1_referee_pass3.py
 """
 import glob
 import json
