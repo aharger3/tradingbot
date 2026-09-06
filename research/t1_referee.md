@@ -558,3 +558,250 @@ single-select (or render phantom as its own second column), have `Clear` fall ba
 default instead of an empty selection, key `check_no_repeats` on `(sym, day, et)` and let it
 report the real count rather than assert zero, and correct the "127 pairs" sentence in
 `build_tape.py:325`.
+
+---
+
+# T1 referee — PASS 4 — REFUTED
+
+**Builder commit under review:** `fc2372a1076214dea94e7d7c9f3f01963e61b0c4` ("T1 repair:
+exclusive-select source/fillmode, Clear falls back to R3 default, honest duplicate
+self-check …").
+**Referee base:** `git fetch origin`; HEAD = `fc2372a1` = `origin/main`; `1539dd7f` is an
+ancestor of HEAD. Base check passes.
+**Referee script (committed beside this note):** `research/t1_referee_pass4.py` — a sixth
+independent implementation. It imports nothing from `research/build_tape.py`. Its only
+shared imports are `universe` (the single symbol source, guarded by its own test) and R3's
+own day-policy helpers `research.loop_cycle.up_to_3_rows` / `research.g72_suppress_price.oneaday_rows`
+plus `research.build_bt2y_report.book_of`, which define the **unit** and the `book` facet —
+re-implementing those would measure something else. Everything else — the merge, the
+tagging, the page's `passes()`/`stats()`, the filtering, the aggregation — is written fresh
+in that file.
+**Verdict: refuted.** Two of the repair's three headline claims are false, the row's own
+verify clause is still unmet, and the repair introduced a new false sentence in two places.
+
+---
+
+## What the builder claimed, and what is actually true
+
+> "Exclusive-select fix means the previously-reachable +$799.6/day (21/25 green, two
+> fillmode chips), +$858.1/day / +0.6572R (23/25 green, phantom alone), and +$3,531.0/day
+> (17/25 green, 64,788 rows, Clear button) readings are **no longer reachable through the
+> rail's normal chip-click interaction**."
+
+| claim | measured |
+|---|---|
+| +$799.6/day no longer reachable | **false — one click** |
+| +$858.1/day (phantom alone) no longer reachable | **false — one click, and the repair is what makes it one click** |
+| +$3,531/day via `Clear` no longer reachable | **true** (but a one-click-each equivalent, +$542.3/day, replaces it) |
+
+### Defect 1 (fatal to the repair) — the cross-book union is one click away
+
+`research/build_tape.py:547-548`, the exclusive-select handler the repair added:
+
+    if(EXCLUSIVE_SELECT[field]){
+      if(s.has(code) && s.size===1) s.clear(); else { s.clear(); s.add(code); }
+    } else if(s.has(code)) s.delete(code); else s.add(code);
+
+and the page's unchanged filter, `passes()`:
+
+    for(var k in sel){ var s = sel[k]; if(!s.size) continue; …
+
+An **empty** selection set means *no filter on that field*, i.e. the union of every value.
+Exclusive-select gives each of `source` and `fillmode` exactly one selected chip — so
+clicking that one chip hits the `s.has(code) && s.size===1` branch and **empties the field**,
+which is the union. The builder's own comment says so out loud: *"a reader who genuinely
+wants a single wide-open facet can still empty just that one field by re-clicking its lone
+active chip."* The report then says the union is unreachable.
+
+Measured from the R3 default view (`source=baseline, fillmode=close, lane=core11,
+policy=up_to_3`), page-side and book-side agreeing exactly on all 17 metrics
+(`research/t1_referee_pass4.py`, check B):
+
+| click, starting from the R3 default | trades | $/day | mean R | green months |
+|---|---:|---:|---:|---:|
+| — (the default, honest) | 769 | **−$51.7** | −0.0335 | 11/25 |
+| one click on the active **close** chip → fill mode empty | 1,414 | **+$799.6** | +0.2816 | 21/25 |
+| one click on the active **baseline** chip → source empty | 4,590 | **−$309.0** | −0.0335 | 10/25 |
+| both of the above | 5,235 | **+$542.3** | +0.0516 | 14/25 |
+| one click on the **phantom** chip | 645 | **+$858.1** | +0.6572 | 23/25 |
+
+**None of those five rows is an edge.** They are the same 498 sessions counted two to seven
+times over, from books that differ only in a fill model or a flag. They are on this page
+only as a demonstration that the rail still prints them. Fill = mixed (that is the defect);
+exit = shipped ladder; unit = up-to-3 fires a day, core-11; script
+`research/t1_referee_pass4.py`; books `research/tape/*.json.gz`.
+
+The +$3,531/day `Clear` mega-sum is genuinely gone — `Clear` now calls `defaultSel()`
+(confirmed in the built HTML). It has been replaced by a two-click +$542.3/day.
+
+### Defect 2 — the spec clause is still unmet, and the repair moved away from it
+
+T1's spec: *"The phantom-fill column is **always visible beside** the honest one."*
+
+The shipped page has no such column. Its section headings are: Filters, Scoreboard, Curve &
+distribution, Monthly durability, Edge scanner, Breakdown, Trades, Fill-mode study. The
+"Fill-mode study" table covers R1's `as_booked / close / next_open / limit_level /
+mid_candle / chase_once` arms and **does not contain the phantom book at all**. The word
+"phantom" now appears twice in the 38 KB static shell — both occurrences inside the same
+new warning note beside the rail, which is real progress on labelling but is not a column.
+
+Exclusive-select makes side-by-side *structurally impossible* through the rail: the two fill
+modes can no longer both be on screen in one scoreboard. The repair improved the warning and
+regressed the comparison.
+
+### Defect 3 — the row's own verify clause is unmet, and the row was reported "landed"
+
+T1's spec: *"a self-check counts duplicates and **fails the build above zero**"*; verify:
+*"duplicate count = 0"*. The repair makes the count honest (good) but explicitly declines to
+gate on it. `research/test_tape.py` now prints:
+
+    PASS (informational, not a hard gate -- see check_no_repeats() docstring): 963
+    duplicate keys / 1020 extra rows on (source, fillmode, sym, day, et).
+
+The builder's reasoning — collapsing the duplicates would change which candidate is the
+day's 2nd/3rd arrival and move R3's published −$52/day, therefore a second change — is
+**correct and is exactly the case SWARM.md law 1 covers**. Law 1's instruction in that case
+is *"stop and say so in your report (status blocked, name the second change)."* The row was
+reported `landed`. Its verify clause is not met, so `landed` overstates it.
+
+### Defect 4 (new, introduced by this repair) — a false sentence in two places
+
+`research/build_tape.py`'s new `check_no_repeats()` docstring, and
+`research/tape/README.md`'s pass-3 section, both now assert:
+
+> `level_name` is the one field that by construction **always differs** on a real duplicate
+> … so that key could never report anything but zero.
+
+Measured (`research/t1_referee_pass4.py`, check C2), on the 151 duplicate groups in
+`baseline`/`close`:
+
+| | groups |
+|---|---:|
+| duplicate groups on (sym, day, entry minute) | 151 |
+| groups where **every row shares the same level name** | **53** (35%) |
+| groups where every row shares the same R | 56 |
+
+One of them sits inside the published 769-row unit: `AMZN 2024-11-04 09:45`, two rows, both
+named `pivot high`, R −0.183 and −0.162. The old 11-field key returned zero because of
+`entry`/`stop`/`pnl`, not because of `level_name`. Pass 3 refuted the sentence "127 pairs,
+same price/pnl"; this repair deleted it and wrote a different false sentence in its place.
+
+### Defect 5 — the README contradicts itself inside the same commit
+
+`research/tape/README.md:222-226`, the "No-repeat guarantee" section, still reads:
+
+> One row per (source, fill mode, symbol, day, entry minute, direction, entry, stop, pnl,
+> status, level name) among traded rows … `research/test_tape.py` **fails the build above
+> zero**.
+
+Both halves are false as of this same commit: the key is now the five-field
+`(source, fillmode, sym, day, et)`, and `test_tape.py` explicitly does **not** fail above
+zero. The section 100 lines above it, added by this commit, says the opposite. A reader who
+lands on the "No-repeat guarantee" heading gets the superseded key and a guarantee that does
+not exist.
+
+### Defect 6 — the new test's PASS line asserts something it does not test
+
+`research/test_tape.py`:
+
+    if "EXCLUSIVE_SELECT" not in html:
+        fail("source/fillmode are not exclusive-select …")
+    print("PASS: source/fillmode are exclusive-select (no cross-book union)")
+
+It greps for a literal string. The parenthetical it prints — *no cross-book union* — is
+false (defect 1). This is the same class of defect pass 3 named: a check whose PASS message
+claims a property the check cannot see. The `Clear`→`defaultSel()` and `phantom`-in-shell
+checks are also string greps, but those two greps do fully establish their claims.
+
+### Defect 7 (process, disclosed by the builder) — foreign files in the commit
+
+`git show --stat fc2372a1` carries six files: T1's four, plus `research/v4_referee.md`
+(+130) and `research/v4_referee_pass4.py` (+206), which belong to the V4 agent. The builder
+disclosed this. Content is not otherwise implicated; **no mark corpus appears in the commit**
+(`git show --name-only fc2372a1` matched nothing in the mark file list, and `git status`
+shows no mark file modified).
+
+---
+
+## What is upheld — re-derived this pass, not read from the report
+
+- **The default cell reproduces exactly, page-side and book-side, under a sixth independent
+  implementation, and rebuilds from the committed script.**
+  **769 trades, sum −25.739R, mean R −0.0335, win 45.0%, avg win $801 / avg loss −$716,
+  11 of 25 months green, 45 of 105 weeks green, 498 trading days, 1.544 fires/day,
+  max drawdown 54.54R, profit factor 0.915, −$51.7/day → −$52.**
+  Fill = honest close (`entry_fill.ENTRY_FILL=close`); exit = shipped ladder
+  (`SCALE_PLAN=hod_then_runner_be`); unit = up to 3 fires a day, stop after a win or the
+  second loss, core-11; book `research/tape/baseline_2026-09-05.json.gz`
+  (`book_id 2c39ced2697c26cc`, commit `29e4abc632`, 499 sessions 2024-09-04 → 2026-09-04);
+  scripts `research/t1_referee_pass4.py` and `research/build_tape.py`.
+  A fresh `python research/build_tape.py --out <scratch>` printed the same
+  `{'trades': 769, 'per_day': -52.0, 'mean_r': -0.0335, 'months_green': 11, 'months': 25,
+  'weeks_green': 45, 'weeks': 105, 'days_traded': 498}`.
+
+- **Five random filter combinations, page logic vs books: 5 of 5 agree on all 17 metrics.**
+  Chosen with `random.Random(202609064)`, recorded verbatim:
+  1. `out=scratch, lane=index3, fillmode=close, source=L1_on` → 8 trades, +$298.7/day.
+  2. `sym=BABA, lane=full29, out=loss, dir=call` → 486 trades, −$4,158.4/day.
+  3. `grade=B, dir=call, out=scratch, sym=QQQ` → 5 trades, $0/day.
+  4. `setup=one_candle_rule, fillmode=close, out=win, yr=2026` → 264 trades, +$6,684.4/day.
+  5. `book=filtered (X), source=L5_on, fillmode=close, sym=TSM` → 127 trades, +$9.6/day.
+  **No verdict attaches to any of these five.** Combos 1 and 3 are under the 30-trade floor
+  (8 and 5 trades). Combos 2 and 4 are outcome-conditioned slices (`out=loss`, `out=win`) and
+  are arithmetic, not edges. They establish one thing only: the page's filter agrees with the
+  stamped books.
+
+- **Duplicate counts reproduce, and the builder's −$2,514 is correct.**
+  963 duplicate keys / 1,020 extra rows across all 7 merged sources on
+  `(source, fillmode, sym, day, et)` among 26,803 traded rows; 151 keys / 160 extra rows in
+  `baseline`/`close` on `(sym, day, et)`; **5 keys / 5 extra rows inside the published
+  769-row unit**. The 5 extra rows are worth **−2.514R = −$2,514** (the builder's figure,
+  confirmed); both rows of all five pairs together are −5.048R = −$5,048. The five:
+  `NVDA 2026-02-19 09:40` (OR low / PDL), `AMZN 2024-11-04 09:45` (pivot high / pivot high),
+  `META 2025-10-29 09:41` (OR low / PML), `GOOGL 2025-12-30 09:37` (PDH / PMH),
+  `QQQ 2025-01-24 09:54` (OR high / PMH). Three of the five involve an opening-range level,
+  which the spec's L6 row says should not be in the ladder at all — worth a look there, not
+  here.
+
+- **The phantom book is a legitimate same-day, same-base comparison.**
+  `baseline_2026-09-05_published.json.gz` and `baseline_2026-09-05.json.gz` both stamp commit
+  `29e4abc632`, both built `2026-09-05T18:16:19`, same 2024-09-04 → 2026-09-04 window,
+  differing only in `ENTRY_FILL` (`published` vs `close`). The basis is sound; only the
+  presentation is not (defect 2).
+
+- **Stamps.** All seven merged books carry a full `book_stamp` (book id, commit, dirty count,
+  build timestamp, window, every engine flag). All six distinct stamp commits — `29e4abc632`,
+  `e073b94a2c`, `7fb977f7af`, `90dce64080`, `355d7cc024`, `5e8b5b896d` — are ancestors of
+  `fc2372a1`, checked with `git merge-base --is-ancestor`. **This row wrote no book**; it
+  merges books other rows built. Three of the seven stamp `dirty_py_count: 1` (both baseline
+  books and `book_OCR_RETEST_DISPLACEMENT_on`); that is still disclosed nowhere on the page.
+
+- **Hygiene.** 0 `<canvas>`; 0 external `<script src>`; no hard-coded forecast dollars in
+  `build_tape.py` — its only four `$` literals (`$2,514`, `$25,746`, `$3,531`, `$799.6`) are
+  in comments describing referee findings, none reaches a computation. Three external font
+  `<link>`s to `fonts.googleapis.com` / `fonts.gstatic.com` remain, inherited from
+  `build_bt2y_report.py`'s shared template and disclosed by the builder; stylesheets, not
+  scripts, so the spec's "no external scripts" clause holds on its letter.
+
+- **Verify gate green at `fc2372a1`, run by me this pass:** `research/regression_gate.py`
+  PASS ("no baseline-fired mark went silent"), `research/test_runner_stop.py` PASS (70 checks),
+  `research/test_universe_single_source.py` PASS (29 symbols, no private lists),
+  `research/test_tape.py` ALL PASS.
+
+---
+
+## The smallest honest fix, if a pass 5 happens
+
+Three lines and two sentences, none of them touching a book:
+
+1. In the exclusive-select handler, drop the `s.clear()` branch — a click on the lone active
+   chip should be a no-op, so `source` and `fillmode` can never be empty. Then seed both in
+   `clearSel()` as well, so no code path can reach the union.
+2. Render the phantom book as its **own second scoreboard column** next to the honest one,
+   so the spec clause is met without a chip that swaps the whole page.
+3. Delete the "level_name always differs" sentence from `build_tape.py`'s docstring and
+   `README.md`, and rewrite `README.md:222-226` to the five-field key with "reported, not
+   gated" — matching the section the same file already carries.
+4. Either gate the build on the duplicate count, or file the row as **blocked on one named
+   second change** (deciding which of two same-minute pivots the day-policy unit sees) rather
+   than landed.
