@@ -1,8 +1,15 @@
 # L3 referee — `OCR_RETEST_DISPLACEMENT` — **REFUTED** (pass 1)
 
-> **Pass 2 is at the bottom of this file** and reaches **upheld** on the repair commit
+> **Pass 2 is in the middle of this file** and reaches **upheld** on the repair commit
 > `03b2810c`: every number here reproduces under independent arithmetic, the repair is proven
-> a no-op by rebuilding the ON arm, and two new defects are named. Read both.
+> a no-op by rebuilding the ON arm, and two new defects are named.
+>
+> **Pass 3 is at the bottom of this file** and reaches **refuted** on the standing tree
+> (`d38f72d4`). Every number and the HOLD reproduce a third time, to the dollar, but two
+> published sentences in this row's own artifacts are false and still stand: the report's
+> "the flag does not delay an OCR entry" (pass 2 named it, nobody fixed it), and pass 1's
+> section 2 claim that the lost money is *not* in the one-candle-rule rows — 94% of it is.
+> Read all three.
 
 Builder commit under review: **`90dce640`** ("L3: OCR_RETEST_DISPLACEMENT lands OFF -- no
 number yet"). Referee: a different model, told to refute. Referee script:
@@ -404,3 +411,206 @@ re-running that script; the figures it prints are the table in section 1, the id
 section 2 and the one-candle-rule slice (core 11: 3,098 → 180 rows, 108 → 6 traded, mean R
 −0.286 → +0.5995; full 29-symbol pool for reference: 6,835 → 386 rows, 192 → 11 traded, mean R
 −0.3149 → +0.0925 — also far under the floor, no verdict).
+
+---
+---
+
+# L3 referee, PASS 3 — **REFUTED** (the write-up; the number and the HOLD are upheld)
+
+Builder commit under review: **`90dce640`** (the flag) plus its repair **`03b2810c`** and the
+pass-2 referee **`84608fb0`**. Standing tree at review time: **`d38f72d4`** (= `origin/main`,
+0 ahead). Pass-3 referee: a different model, told to refute, importing nothing from
+`research/loop_cycle.py`, `research/g72_suppress_price.py`, `research/l3_referee.py` or
+`research/l3_referee2.py`. Pass-3 script: **`research/l3_referee3.py`**, committed beside this
+page — the unit, the halves, months-green, $/day, the gate arithmetic and a home-made
+row fingerprint are all re-typed from the spec's wording.
+
+**Verdict: refuted.** Not the number and not the decision — both reproduce exactly for the
+third time. What is refuted is the row's published prose: **two false sentences sit in this
+row's own committed artifacts at HEAD**, one of them already named by pass 2 and never
+repaired, and the builder's closing report to the dispatcher says *"No further action needed
+for this row."*
+
+## 1. Everything reproduces — third independent implementation
+
+Unit **`up_to_3_stop_win_or_2loss`** (up to 3 fired-and-traded rows a day plus the
+account-wide halt's own rows, sorted by time then symbol, stop after the first winner or the
+second loser). Fill: honest **close** — `entry_fill: "close"` read back out of both books'
+meta, not taken from the report. Exit: the **shipped engine** — `DISASTER_STOP_R = 1.0`
+resting on the level and filled on the intrabar touch, `SCALE_PLAN = hod_then_runner_be`,
+`LOSS_HALT = true`, all three asserted off the stamps. Universe **core 11**
+(`tier == "core"`). Window 2024-09-04 → 2026-09-04, 499 sessions. 1R = $1,000.
+Script: **`research/l3_referee3.py`**.
+
+| slice | $/day off → on | green months off → on | trades off → on | gate |
+|---|---|---|---|---|
+| whole (25 months) | −$52 → −$58 (floor −54.6) | 11 → 10 | 769 → 764 | fail |
+| H1 (12 months, before 2025-09-01) | +$9 → −$47 (floor +8.5) | 6 → 5 | 382 → 380 | fail |
+| H2 (13 months) | −$111 → −$68 (floor −116.6) | 5 → 5 | 387 → 384 | **pass** |
+
+Cell for cell identical to the builder's table, to pass 1's and to pass 2's. The only
+disagreement anywhere is win-rate rounding (44.9% vs 45.0% whole, 43.5% vs 43.7% H1) — a
+half-cent of rounding, not a difference.
+
+**The HOLD is robust to rounding.** Re-run on unrounded dollars rather than the rounded
+`per_day` the gate uses: whole −$51.595 → −$57.788 against a −$54.175 floor (fail, and green
+falls 11 → 10 regardless of dollars); H1 +$8.835 → −$47.327 against a +$8.393 floor (fail on
+both columns); H2 −$111.303 → −$68.124 against a −$116.868 floor (pass, green 5 → 5). No cell
+is close enough to its floor for the rounding convention to decide it.
+
+## 2. Identity — re-derived, not read
+
+| check | pass-3 result |
+|---|---|
+| OFF `book_id`, recomputed with `book_stamp.book_id` off the rows | `2c39ced2697c26cc` |
+| baseline `book_id`, recomputed the same way | `2c39ced2697c26cc` — equal ✔ |
+| `loop.json` `baseline_book_id` as configured | `2c39ced2697c26cc` — equal ✔ |
+| OFF trades vs baseline trades, deep Python equality of all 127,513 rows | **identical** ✔ |
+| my own fingerprint (sha256 over day/sym/et/dir/setup/status/traded/entry/stop/exit/pnl/r), baseline vs OFF | `1b07e5c2e0b2c7f3` == `1b07e5c2e0b2c7f3` ✔ |
+| ON `book_id` recomputed / as stamped | `c29a7dd5902cf457` / `c29a7dd5902cf457` ✔, 120,979 rows, fingerprint `f4303c69313baae5` |
+| stamp flag keys that differ between the arms | **exactly one**: `signal_runner.OCR_RETEST_DISPLACEMENT`, `false` → `true` ✔ |
+| non-flag stamp keys that differ | `book_id`, `built_at` (20:15:10 vs 20:18:42, same day), `out`, `rows` — nothing substantive ✔ |
+| stamp commit on both arms | `90dce640`, an ancestor of `03b2810c`, of `84608fb0` and of `d38f72d4` ✔ |
+| whole-window denominator | `loop_cycle` divides by `meta.sessions` = 499, a **full-pool** count, while the rows are core-11 filtered. Checked: the core 11 have rows on all 499 distinct days (248 + 251 = 499), so the denominator is right here. It will not be on a narrower slice ✔ |
+| default in code matches the decision (hold ⇒ OFF) | `signal_runner.py:72`, `os.getenv("OCR_RETEST_DISPLACEMENT", "0")` → `False`; `research/test_t2_ocr.py:100` asserts it; `research/test_live_follows_loop.py` expects `"0"`; nothing in the repo sets it ✔ |
+| flag in `research/book_stamp.py` `FLAG_SOURCES` | line 77 ✔, and present in both stamps |
+| verify gate at `d38f72d4`, run by this referee | **green** — `regression_gate.py` PASS ("no baseline-fired mark went silent", any_signal 75 → 80, s_grade 5 → 25), `test_runner_stop.py` ok (70 checks), `test_universe_single_source.py` ok (29 symbols, no private lists), `test_t2_ocr.py` all checks passed ✔ |
+| one change per row | `git show --stat 90dce640` = 3 files, 39 insertions: one flag, one function, one FLAG_SOURCES entry ✔ |
+| no mark file touched | the four L3 commits name only `omen_bot.py`, `signal_runner.py`, `research/book_stamp.py`, `research/test_t2_ocr.py`, the two reports, the two referee scripts, the two books, `cycles.md`, `loop_state.json` ✔ |
+| ledger row is a real append, not a hand-edit | `git show 03b2810c -- research/tape/loop_state.json` is a clean `cycle: 3` append with `cycle_count` 2 → 3; L4 and L5 appended after it ✔ |
+
+## 3. Semantics — checked against the sentence, in the code
+
+`python research/omen_recall.py "OCR one candle rule entry retest displacement strong PA"`
+returns, as the two governing lines:
+
+> `omen-10-0-spec.md` — What the call settled (do not re-ask): **OCR — entry on the retest of
+> the OCR candle's extreme after the break, with strong PA and displacement (body ≥
+> `STRONG_PA_MULT` × avg body of prior 10, closing in the trade direction).**
+>
+> `omen-rulebook.md`, 2026-09-05: **OCR entry = retest of the OCR extreme after the break,
+> with strong PA and displacement.**
+
+Read out of the code at `d38f72d4`, not out of the report:
+
+- **retest** — `omen_bot.detect_order_block_setup` returns `None, None, "Price not at order
+  block"` on `retest == "not_retesting"`, and both call sites
+  (`signal_runner.py:3338`, `:3606`) additionally require `retest in OB_RETEST_TYPES`
+  (`("wick_only",)`, `signal_runner.py:54`). No flag guards either. ✔
+- **displacement** — `omen_bot._has_displacement` is called at `omen_bot.py:442` inside
+  `detect_order_block_setup`, unguarded; failure returns `None`. `DISPLACEMENT_MULT = 1.5`.
+  ✔ (`BNR_DISPLACEMENT_GATE` is the break-and-retest path's own gate and is not this path.)
+- **strong PA** — the only clause not already enforced, and the only thing the flag adds:
+  `ocr_has_strong_pa` (`omen_bot.py:531`) returns
+  `ocr_quality(...)["strong_pa"]` = `dir_ok and body_ratio >= OCR_STRONG_PA_MULT`, i.e. the
+  entry candle closes in the trade direction and its body is ≥ 1.5 × the average body of the
+  prior 10. That is the spec's parenthetical, operator for operator. ✔
+- **not something adjacent** — `OCR_STRICT` / `ocr_is_his` additionally requires
+  `clear_break` and `quick`; it is untouched and still OFF. The audit the spec asked for
+  ("if the flag means something else, a new flag") was done and reached the right answer. ✔
+
+The spec's L3 row asks for **"OCR count and mean R before/after"** and nothing else. The row
+delivers it.
+
+## 4. Defect 1 — a false sentence in the row's report, named by pass 2, still standing
+
+`research/l3_ocr_retest_displacement.md`, lines 40–43, at HEAD:
+
+> "Median shift to a later bar for OCR signals the flag keeps but delays: not separately
+> measured this row (**the flag does not delay an OCR entry, it either admits or rejects the
+> same bar — there is no 'later bar' case to time**, so this readout does not apply to this
+> flag; noted rather than fabricated)."
+
+Measured independently by `research/l3_referee3.py` on the two committed books, core 11,
+first one-candle-rule row per symbol-day: **174 symbol-days keep an OCR row under the flag;
+on 109 of them (63%) that first row is at a later minute than the OFF arm's, median +3
+minutes, max +65; 65 are the same minute; 0 are earlier; 0 have no OFF twin.** Rejecting a
+bar does not retire the setup — the retest is re-evaluated on the next bar, so the entry
+moves later. The sentence is false.
+
+Pass 2 (`84608fb0`) named this as its defect 2 with the same 109/174 and the same +3-minute
+median. The report was never edited. `git log -- research/l3_ocr_retest_displacement.md`
+shows exactly one commit, `03b2810c`, the repair that predates pass 2. The builder's report
+to the dispatcher nevertheless closes with *"No further action needed for this row."* This is
+the same failure the L1 and L2 pass-3/pass-4 referees found in this wave: a repair lands, a
+referee names a false sentence, and the false sentence stays in the artifact the next agent
+will read.
+
+These are counts of rows, not a P&L claim, and carry no verdict of their own — but entry
+timing is the second of the three things `CLAUDE.md` records his own marks as calling broken
+("b candle right but entry is 3 candles earlier"), so a flag that pushes 63% of the setups it
+keeps a median 3 minutes later is worth stating truthfully.
+
+## 5. Defect 2 — pass 1's explanation of where the money went is disproved
+
+`research/l3_referee.md` section 2 (pass 1, commit `aac84fda`, carried forward unchallenged
+by pass 2) says:
+
+> "The lost money is **not** in the OCR rows themselves — it is in what their removal does to
+> the day sequence and the dedupe suppression windows."
+
+Decomposed exactly, on the same two books, same unit, same core-11 slice
+(`research/l3_referee3.py`, `delta_decomposition`). Whole-window unit total moves −$25,746 → −$28,836, a change of **−$3,090**. Splitting
+the unit's rows by key:
+
+| | off | on |
+|---|---:|---:|
+| break-and-retest rows in the unit | 748, −$29,131 | 759, −$29,322 |
+| 84% re-entry rows | 4, +$176 | 4, +$176 |
+| **one-candle-rule rows** | **17, +$3,209** | **1, +$310** |
+| unit total | 769, −$25,746 | 764, −$28,836 |
+
+Rows present in both arms are identical trades at identical prices, so the whole change is
+the 16 one-candle-rule rows the flag removes (together **+$2,899**) and the 11
+break-and-retest rows it releases in their place (together **−$191**). −2,899 − 191 = −3,090,
+the observed delta to the dollar.
+
+So **94% of the damage is the one-candle-rule rows themselves** — the flag deleted the
+profitable ones out of the day's pick list. The dedupe-release mechanism pass 1 named is
+real, and it is the other 6%.
+
+This also reframes the OCR-slice table the row reports. Across every detected row the flag
+keeps, the survivors look better (108 traded at −0.286R → 6 at +0.5995R). Among the rows that
+actually reach the gate's unit the sign flips: 17 trades worth +$3,209 become 1 worth +$310.
+**Both cells are under the 30-trade floor — 17, 16, 11, 6, 1 — so neither carries a verdict.**
+Direction only, on both. What is not in doubt is the arithmetic identity above, and it says
+the report's framing invites the wrong inference about why the gate failed.
+
+## 6. Defect 3 (minor) — the report does not disclose the dirty tree
+
+`research/l3_ocr_retest_displacement.md` says the books are "stamped, commit `90dce640`,
+2026-09-05, `dirty_engine_py: []`". Both stamps also carry `dirty_py_count: 1`. Pass 1
+discloses it (its own uncommitted `research/l3_referee.py`, which the engine never imports)
+and the books are unaffected — but the row's own report is the artifact the tape reader
+opens, and the standard check asks the report to say the tree was dirty or say it was not.
+
+## 7. What is upheld
+
+- The number, all nine gate cells, third implementation, to the dollar.
+- **The decision: HOLD.** H1 fails on both columns; one failing half holds the change. The
+  flag's default stays OFF, which is what the code does.
+- The semantics: the flag is the settled sentence's strong-PA clause and nothing else, on top
+  of a retest and a displacement that are already unconditional.
+- Every identity check, including deep row-level equality of the OFF arm with the baseline.
+- The verify gate, green at `d38f72d4`.
+- Sample sizes: every gate cell carries ≥ 380 trades and ≥ 12 months and gets a verdict; every
+  one-candle-rule cell is under 30 trades and gets none.
+
+Pre-existing, not L3's to fix: `research/build_tape.py`'s Phase-L labels carry ticket ids and
+flag names ("L3_on … OCR_RETEST_DISPLACEMENT") in a tape Austin reads; that convention is
+shared by all five L rows and belongs to whoever owns `build_tape.py`.
+
+## 8. Plain English, for the push line
+
+Making the one-candle-rule entry wait for a strong candle throws away 94 of every 100 of those
+setups, and pushes most of the ones it keeps about three minutes later. On his eleven stocks
+over two years, the handful of one-candle-rule trades it deletes were the profitable ones — so
+the whole book gets worse, from losing $52 a day to losing $58, and one more month turns red.
+It stays switched off. Too few trades survive to say anything about them either way.
+
+## Appendix — pass-3 output
+
+`python research/l3_referee3.py` prints the whole JSON: provenance and fingerprints for all
+three books, the stamp diff, the nine gate cells, the denominator check, the one-candle-rule
+slice on core 11 and on the full pool, and the entry-delay counts. Re-run it rather than
+quoting this page.
