@@ -336,3 +336,200 @@ schema (an O-row), not L1's.
    failure mode) is worth one cycle.
 3. Any future ON attempt on this flag rebuilds **both** arms at the commit it reports from. The
    pre-repair pair should stay in the tape as the toggle column it is, labelled as pre-repair.
+
+---
+---
+
+# L1 referee, PASS 3 — REFUTED (the report), decision upheld
+
+Third-pass referee. **Builder's reported commit: `dc76f9b5`** ("bookkeeping: L1-L5 rows"),
+citing the chain `e073b94a` (code) → `842b3f3c` (books, gate) → `af028359` (referee pass 1)
+→ `d062da84` (repair) → `236b9f69` (referee pass 2) → `3d168491`. Base check at start:
+`git fetch origin`; HEAD = `origin/main` = **`5e25270c`**; `1539dd7f` is an ancestor; tree
+clean. Everything below is re-derived by **`research/l1_referee3.py`** (committed beside this
+file), which imports neither `loop_cycle.py`, `g72_suppress_price.py`, `l1_referee.py` nor
+`l1_referee2.py` — the day-policy unit, the month buckets, the green count, $/day, the
+`book_id` fingerprint and the gate are all written out longhand, and the flag's *semantics*
+are checked against raw archived bars rather than against any book.
+
+**Verdict: refuted.** The decision (hold, `MIN_PT1_R` default `0`/OFF) is right on every
+universe and on both engines, and I could not break it. **The builder's report is refuted on
+three counts**: it reports the row as *upheld* by citing another row's referee commit, it
+republishes the superseded pre-repair ON numbers as the row's result, and three of its
+headline claims are false against the code that is actually in the tree.
+
+## 1. The row was never upheld — the cited commit is L2's referee
+
+The builder's report says the row was "refereed twice … then **upheld** on re-derivation
+(`3d168491` referee pass 2 upheld)". `3d168491` is **row L2's** referee:
+
+    3d168491  L2 referee (pass 2): upheld -- the repair's core-11 numbers reproduce to the
+              dollar under independent code (-$52 -> -$57/day whole, H1 +$9 -> -$8 fail, …)
+
+L1's referee pass 2 is **`236b9f69`**, and its subject reads:
+
+    236b9f69  L1 referee (pass 2): refuted -- the repair's "no ON-arm number changes" is
+              false; rebuilt at d062da84 the core-11 ON arm goes -$52 -> +$28/day and
+              11 -> 14 green, H2 dollar column still holds it OFF
+
+Both L1 referee passes on record are **refuted**. The row's own TASKS.md line (`dc76f9b5`)
+correctly says "L1 refuted"; the report to the dispatcher says upheld. A refuted row reported
+as upheld is the one failure mode the different-model referee rule exists to catch, so this
+alone is a refutation.
+
+## 2. The published numbers describe code that is no longer in the tree
+
+`d062da84` moved the gate below `self._apply_x_lift(sig)` — the fix pass 1 asked for — and
+that move is in the shipped engine at HEAD (`signal_runner.py:2959-2983`). The books the
+report cites (`book_MIN_PT1_R_{off,on}.json.gz`, stamped commit `e073b94a`) were built
+**before** that move. Pass 2 rebuilt both arms at `d062da84`
+(`book_MIN_PT1_R_{off,on}_postfix.json.gz`); the report ignores them and republishes the
+pre-move pair.
+
+Unit = `up_to_3_stop_win_or_2loss` · fill = **close** (market at the close of the signal bar,
+`entry_fill.ENTRY_FILL`) · exit = shipped engine, 1R hard stop resting exactly 1R from entry
+filled on the intrabar touch, `SCALE_PLAN=hod_then_runner_be`, `LOSS_HALT` on · window
+2024-09-04..2026-09-04, 499 sessions · 1R = $1,000 · script `research/l1_referee3.py`.
+
+**core-11 (`universe.CORE_SYMBOLS`, the settled universe)**
+
+| | trades | $/day | mean R | win% | green | months | fires/day |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| OFF (= R3 baseline, both engines) | 769 | −$52 | −0.0335 | 45.0% | 11 | 25 | 1.541 |
+| ON **as the report publishes it** (pre-move) | 751 | −$29 | −0.0195 | 44.6% | 11 | 25 | 1.505 |
+| ON **at the shipped code** (post-move) | 732 | **+$28** | 0.0193 | 33.9% | **14** | 25 | 1.467 |
+| H1 OFF | 382 | $9 | 0.0057 | 43.7% | 6 | 12 | 1.540 |
+| H1 ON, published / shipped | 368 / 353 | $107 / **$204** | 0.0721 / 0.1434 | 45.1% / 36.1% | 7 / **9** | 12 | 1.484 / 1.423 |
+| H2 OFF | 387 | −$111 | −0.0722 | 46.3% | 5 | 13 | 1.542 |
+| H2 ON, published / shipped | 383 / 379 | −$164 / −$145 | −0.1076 / −0.0964 | 44.1% / 31.9% | **4 / 5** | 13 | 1.526 / 1.510 |
+
+**full-29 (what `cycles.md`'s L1 row still prices)**
+
+| | trades | $/day | green | months |
+|---|---:|---:|---:|---:|
+| OFF (both engines) | 773 | −$9 | 12 | 25 |
+| ON, published / shipped | 767 / 780 | $29 / **$84** | 12 / **11** | 25 |
+| H1 ON, published / shipped | 377 / 380 | $201 / $271 | **9 / 7** | 12 |
+| H2 ON, published / shipped | 390 / 400 | −$141 / −$99 | **3 / 4** | 13 |
+
+Every published cell reproduces exactly under this third implementation — pre-move core-11
+769/751, −$52/−$29, 11/11; full-29 773/767, −$9/$29, 12/12; and pass 2's post-move figures
+reproduce exactly too. **The arithmetic is sound in all three implementations; it is the
+engine the ON book describes that is out of date.**
+
+Three sentences in the builder's report are therefore false against the tree at HEAD:
+
+1. **"The ON arm never turns positive on core-11."** At the shipped code it is **+$28/day**,
+   and whole-book green months go **11 → 14**.
+2. **"H2 fails on both green-months and >5% dollar regression."** At the shipped code H2's
+   green months **hold at 5 → 5** on core-11 and **4 → 4** on full-29. Only the dollar column
+   fails. The report's own strengthening of this line ("the dollar test fails on its own too")
+   is the half that survives; the green-months half does not.
+3. **"H1 passes on both universes."** At the shipped code full-29 **H1 fails** (green 8 → 7)
+   while H2's green column passes — the failing half swaps universes.
+
+Also wrong in direction, not only in size: **"the gate removes almost no fired candidates"
+(fires/day 1.549 → 1.537)**. At the shipped code, full-29 fires/day **rises**, 1.549 → 1.563.
+Dropping a signal releases the dedupe suppression window (`DEDUPE_FIRES_ONLY`: only a *fired*
+signal claims it), so this gate creates candidates as well as removing them — ON-book rows
+131,530 → 134,197, the effect `CLAUDE.md` already warns about for any C-cap gate here.
+
+Skip accounting moves the same way and re-derives exactly: tagged rows **9,283 → 14,929**
+(core 3,914 → 6,731), of which would-have-traded-in-OFF **1,082 → 2,927** (core 475 → 1,367),
+mean R of that slice −0.0647 → −0.0570. The pre-move tagged set is graded C 4,699 / B 4,484 /
+A 100 and **zero X** — the fingerprint of a gate running before the lift; post-move B nearly
+triples (10,363).
+
+**The decision survives all four gate evaluations.** pre-move core-11 hold (H2 fails both),
+pre-move full-29 hold (H2 fails both), post-move core-11 hold (H2 dollar −$111 → −$145, a 31%
+deeper loss against a 5% band), post-move full-29 hold (H1 green 8 → 7). `MIN_PT1_R` stays
+OFF. But at the shipped code it is a **much nearer miss than the row reports** — core-11
+−$52 → +$28/day and 11 → 14 green, blocked by one half's dollar column alone — and the report
+hands the phase chief the opposite impression.
+
+## 3. The tape still publishes the wrong row for L1
+
+`research/tape/cycles.md`'s L1 row and `loop_state.json`'s cycle 1 are unchanged since
+`842b3f3c`:
+
+    | 2026-09-05 | the 1R first-target rule | MIN_PT1_R | hold | -9.0 -> 29.0 | 12 -> 12 |
+      pass | fail | 767 | book_MIN_PT1_R_off.json.gz | book_MIN_PT1_R_on.json.gz |
+
+Those are full-29, pre-move numbers. `loop_cycle.py::apply_universe_filter` has since landed
+(L2's referee repair), and **every other row in the same table is core-11** — L1 is now the
+only row in the ledger measured on a different universe and a superseded engine, with no
+annotation in the file itself. `research/tape/README.md` and Phase T read this table. Two
+lines of annotation, or a `--stage gate --dry-run` re-run against the postfix books, closes it;
+neither is loop-controller code and both were inside this row's reach.
+
+## 4. What I checked and could NOT break
+
+- **OFF book identity.** `book_MIN_PT1_R_off.json.gz` `book_id` **`2c39ced2697c26cc`** —
+  byte-for-byte the R3 baseline's (`loop.json baseline_book_id`, `baseline_2026-09-05.json.gz`),
+  fingerprint recomputed here rather than read from the stamp. The postfix OFF book is the
+  same id, so the `_apply_x_lift` reorder is a true no-op when the flag is `0`.
+- **Stamp diff is exactly one flag.** OFF → ON and OFFPOST → ONPOST both differ in
+  `signal_runner.MIN_PT1_R` `0.0 → 1.0` and nothing else. OFF → OFFPOST differ in **no** flag.
+  Windows, sessions (499) and `entry_fill` (`close`) match across all five books;
+  `dirty_engine_py: []` on every one; stamp commits `e073b94a` / `d062da84` are both ancestors
+  of HEAD.
+- **Semantics against raw bars, not against a book.** For 20 rows the ON book tagged skipped
+  and 20 it fired, I reloaded `data_archive/<SYM>/<DAY>.csv`, took the RTH bars up to and
+  including the entry minute, and recomputed the session extreme: **20/20 skipped rows have
+  first-scale-point < 1R from entry, 20/20 fired rows have ≥ 1R**, no exceptions. This is the
+  rulebook sentence `omen_recall.py` returns, dated 2026-09-05: *"**RR gate: first scale point
+  (HOD/LOD) must be >= 1R from entry.** Because: 'we dont want to get in on a candle close of
+  HOD/LOD because thats always our first scale point, then the RR is shot.'"* — and the spec's
+  settled row, *"skip the signal unless the first scale point (HOD/LOD) is ≥ 1R from the
+  entry"*. The code **skips** (`status="skipped"`, `return`), it does not cap to C; correct,
+  a capped C still trades. The measured point is LADDER PT1: `signal_runner.py:3098-3108` sets
+  `session_hi/lo = max/min` over `self.candles`, `backtest_week.py:1393` sets
+  `runner.candles = candles[:i+1]` immediately before `detect_signals()`, and
+  `backtest_week.py:1486/1491` computes `scale_level` as the identical expression under
+  `SCALE_PLAN=hod_then_runner_be`. The `direction` key the gate reads is the one
+  `signal_runner` actually sets (`"direction"`, not the book's exported `"dir"`) — checked,
+  because reading the wrong key would silently treat every call as a put.
+- **Default matches the decision.** `MIN_PT1_R = float(os.getenv("MIN_PT1_R", "0") or "0")`
+  (`signal_runner.py:258`) — OFF, and the decision is hold. Listed in
+  `research/book_stamp.py` `FLAG_SOURCES` (line 92) and present in all five stamps.
+- **Gate placement is genuinely fixed.** The block sits at `signal_runner.py:2971`, after
+  `self._apply_x_lift(sig)` at 2959, mirroring `S_CLASSIFIER` below it.
+- **Sample size.** No cell carrying a verdict is under 30 trades or 12 months; the smallest is
+  core-11 post-move H1 ON at 353 trades over 12 months. Whole-book cells run 732–780 trades
+  over 25 months. The whole-book move is still well inside the ±1.58R error bar this project
+  measures on nearly every A/B — the decision rests on the half-gate, not on the headline.
+- **One change per row.** `e073b94a` = `signal_runner.py` + `research/book_stamp.py` (one
+  flag); `d062da84` = `research/l1_min_pt1_r.md` + `signal_runner.py` (one block moved, no new
+  logic); `842b3f3c` = the write-up, two books, the ledger. No engine file outside scope.
+- **No mark file touched** by any commit in the chain (`e073b94a`, `842b3f3c`, `af028359`,
+  `d062da84`, `236b9f69`, `ba639df0`, `dc76f9b5`) — checked by name against every corpus in
+  `CLAUDE.md`'s list. `git status` clean apart from this pass's own two files.
+- **Verify gate, run by me at HEAD `5e25270c`:** `research/regression_gate.py` PASS (no
+  baseline-fired mark went silent; any_signal 75→80, s_grade 5→25);
+  `research/test_runner_stop.py` ok, 70 checks; `research/test_universe_single_source.py` ok,
+  29 symbols, no private lists. All exit 0.
+- **Plain English.** `cycles.md`'s label reads "the 1R first-target rule" and the pushed line
+  carries no flag names or ticket ids. The wording is fine; the numbers in it are not.
+
+## 5. Residual defects, ranked
+
+1. The report claims the row was upheld; both L1 referee passes on record are refuted, and the
+   commit cited as the upholding pass belongs to row L2. (§1)
+2. The report's ON numbers, and `TASKS.md`'s L1 line under commit `d062da84`, describe an
+   engine that commit changed. The three false sentences in §2 follow from that. (§2)
+3. `cycles.md` / `loop_state.json` cycle 1 still publish full-29 pre-move numbers under a
+   core-11 loop config, unannotated, while every sibling row is core-11. (§3)
+4. Not charged against this row: the book stamp carries `out` but no explicit `script` field,
+   so "the script that made it" is inferred from the path — a `book_stamp.py` schema gap.
+
+## What the next agent should do
+
+1. Re-run cycle 1 against `book_MIN_PT1_R_{off,on}_postfix.json.gz` with the now-fixed
+   `apply_universe_filter`, and rewrite `cycles.md` / `loop_state.json`'s L1 row from that.
+   No rebuild is needed; both books are stamped and committed.
+2. Correct `research/l1_min_pt1_r.md` and `TASKS.md`'s L1 line to the post-move figures, or
+   label the existing ones "pre-reorder engine" beside them.
+3. Read the near-miss before moving on: at the shipped code, on the settled universe, this rule
+   takes the whole book from −$52 to +$28 a day and green months from 11 to 14, held OFF by one
+   half's dollar column alone. A softer threshold than 1.0R is worth one cycle — and that cycle
+   must rebuild **both** arms at its own commit.
