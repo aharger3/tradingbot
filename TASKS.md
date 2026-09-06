@@ -152,7 +152,7 @@ it contradicts the LOOSE arm, not the shipped one. Next bottleneck is the detect
 | 2026-09-05 | **L5 refuted:** day policy DAY_POLICY=3fires_stop_win_or_2loss. (`research/l5_*.md`) | `350b02fc` | core-11: whole −$52→−$52 (held); H1 +$9→+$9, 6→6/12 (PASS); H2 −$111→−$111, 5→5/13 (PASS); prop-firm $2500 limit 100% pass (0/499 breach). |
 | 2026-09-05 | **O4 upheld:** smoke-test plumbing for loop + regression gate. (no report; dry-run only) | `8ecb043e` | no dollar figures; rehearsal 2 books 10 trades $22/day (expected no-op). |
 | 2026-09-05 | **V3 upheld:** precision gate on honest-fill book (`research/g215_precision.py`). | `b5267e46` | unit1 (one-trade-a-day pick) 30.5% (18/59); unit2 (all fires) 28.5% (169/592). |
-| 2026-09-05 | **V1 upheld:** premarket list infrastructure (`research/premarket_list.py`). | `3c8e586d` | 11 symbols PDH/PDL/PMH/PML; no dollar figures, infra-only. |
+| 2026-09-05 | **V1 upheld:** premarket list infrastructure (`research/premarket_list.py`). | `c59abe88` | 11 symbols PDH/PDL/PMH/PML; no dollar figures, infra-only. |
 | 2026-09-05 | **H2 upheld:** homework driver & marks save. Jsdom phase1 (drive+export) + phase2 (reload) both PASS; 3 entry taps, 3 PT rails, 1 runner move self-test. | `7eb6aec7` | no dollar figures; build-only row. |
 | 2026-09-05 | **H1 refuted:** repeat-guard manifest backfill. `daily_homework.py` build missing manifest write; fixed via backfilled manifest + new writer. (`research/h1_referee.md`) | `1f26cf73` | eligible=5 -> 0; demo 6 cards, 0 repeats vs 1,723 seen symbol-days. |
 | 2026-09-05 | **R3 upheld:** baseline verdict on honest-fill book. (`research/g212_baseline_verdict.md`) | `747a2617` | held: verdict affirmed; no money rerun in this row. |
