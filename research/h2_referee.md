@@ -237,3 +237,131 @@ happen when it is.
 A handset. Everything above is jsdom and Python. Defects 1 and 3 both need someone to open
 `research/probes/tap_selftest.html` on Austin's phone: try to scroll past the chart, then
 deliberately tap the wrong candle and try to fix it.
+
+---
+
+# H2 referee — pass 3 (the repair round, third model, told to refute)
+
+**Repair commit under review:** `a32eacd8867bbecbe5610bedeeab83e28d46f917`
+("H2 repair: one-click undo/clear control on the tap readout, restore() merges stored
+tap blobs over defaultTap() instead of assigning verbatim, touch-action:none on tap
+hit surfaces"). It answers pass 2 (`90a3f9dd`), which refuted the original build
+`7eb6aec7`.
+**Base at check time:** HEAD `2eaa50bd`; `a32eacd8` and `1539dd7f` are both ancestors;
+HEAD is an ancestor of `origin/main`.
+**Pass-3 script:** `research/h2_referee_pass3.py` — a new jsdom harness that **strips the
+self-test page's own driver script** and drives only the shared shell as served. It shares
+no code with `build_tap_selftest.py`'s driver, with the builder's `h2_repair_verify.py`, or
+with either earlier referee script. Every expected value (entry bar, stop price, the three
+rail prices) is computed in Python from the served SVG's `data-ohlc` / `data-lo` / `data-hi`
+before the browser runs. **34 of 34 checks pass.**
+
+## Verdict: **upheld** — all three pass-2 defects are genuinely repaired; 4 open defects, none blocking
+
+## The three pass-2 defects, re-tested from scratch
+
+| pass-2 defect | pass-3 result |
+|---|---|
+| **1 (blocking)** no undo — a mis-tapped entry cost 5 taps and 3 fabricated price targets | **fixed.** One click on the readout clears the card: overlay all hidden, readout back to `tap a candle for entry`, stored `entry_i`/`stop_p` null and `pt` empty **in the same tick**, a second click on an already-clear card is a byte-for-byte no-op, and the card is immediately markable again (re-tapped bar 3 straight after, `entry bar 3`). |
+| **2 (latent)** a partial stored blob threw inside `restore()` and killed every later card | **fixed, and I tested the blast radius pass 2 could only infer.** I cloned the card into a genuine **two-card** deck, seeded card 1 with `{"tap":{"entry_i":2}}` and card 2 with a complete blob. No jsdom error; card 1 renders `entry bar 2`; **card 2 still restores in full** — `ENTRY i=5`, `STOP 99.70`, `PT1 101.00`, runner slider back to 33. On the pre-repair code that second card was dead. |
+| **3** no `touch-action` on the hit surfaces | **fixed.** The served rule is `.chart .taphit, .chart .railhit{cursor:crosshair; touch-action:none}`. Still unobservable without a handset — the CSS is now correct, the gesture is not proven. |
+
+## The rest of the row, independently re-derived (nothing read off the builder's test)
+
+| check | result |
+|---|---|
+| one tap writes `localStorage` synchronously, no timer | holds — exactly 1 key exists the instant `dispatchEvent` returns, already carrying `entry_i: 7` |
+| entry bar index from the tap's x | holds — tapped bar 7, drew `ENTRY i=7` |
+| stop = the tapped candle's **low** when the tap sits below the entry close | holds — bar 3's low, hand-computed **99.67** in Python, page drew `STOP 99.67` |
+| three rail taps → PT1/PT2/PT3 at the tapped prices | holds — 100.5370 / 100.7793 / 101.1024, stored values match to 1e-6 |
+| restore rebuilds the **SVG overlay**, not only the data | holds — a fresh document over the same storage returns the five `<text>` nodes identical; a data-only restore would fail this |
+| second export byte-identical to the first | holds |
+| runner slider restores (42) | holds |
+| export keeps every pre-H2 field **and** adds the new ones | holds — `type, probe, card_id, grade, answers, notes, symbol, date` plus `entry_i, stop_p, pt, runner_pct` |
+| a pre-H2 blob with no `tap` key loads without throwing and draws no overlay | holds |
+| no `<canvas>`, no external `<script src>`, pointer events present | holds — 0 canvas, 0 script src, 3 `pointerdown` |
+| the served page is exactly what its generator produces | holds — re-ran `build_tap_selftest.build()` in memory: byte-identical to the committed 42,591-byte page, so nothing was hand-edited into the HTML |
+
+**"asserts equality after a clear + re-import" is still untestable, and correctly so.** Pass 2
+established there is no import path anywhere in the shell; I re-confirmed it (`type="file"`
+occurrences in the served page: **0**). The spec never asked for import. The strongest
+available equivalents — a real cleared-storage load, a real pre-H2 blob, and now a real
+one-click clear followed by a re-mark — all hold.
+
+## Verify gate, run by me at HEAD `2eaa50bd` (`a32eacd8` is an ancestor)
+
+- `research/regression_gate.py` — **PASS**, no baseline-fired mark went silent
+- `research/test_runner_stop.py` — **PASS**, 70 checks
+- `research/test_universe_single_source.py` — **PASS**, 29 symbols, 25 backtested
+- `research/test_tap_marks.py` — **PASS**, 15 checks
+- `research/h2_repair_verify.py` (the builder's) — **PASS**, 8/8
+- `research/h2_referee_pass2.py` (pass 2's, rerun unmodified) — all blocking checks pass; its
+  two prose notes ("no clear control", "3 rail taps to escape") are **stale** — that script
+  looks for a button and never simulates the new click, and my phase C proves the control works
+- `research/h2_referee_pass3.py` (mine) — **34/34**
+
+## Defects (4, none blocking)
+
+**1. Nothing in the test suite guards the undo.** `a32eacd8` touched three files and
+`research/test_tap_marks.py` is not one of them — it still runs the same 15 checks it ran
+before the repair, none of which exercise the clear path. The only committed coverage is
+`h2_repair_verify.py` and this file's `h2_referee_pass3.py`, neither of which is in the
+`verify:` line. The next edit to the shell's JS can silently remove the one-click undo and
+every gate stays green. The fix is three lines in `test_tap_marks.py`.
+
+**2. Clearing the marks also silently resets the runner percentage.** Measured: with the
+slider at 42%, one click on the readout puts it back to 10%. `defaultTap()` owns
+`runner_pct`, so the clear takes it with everything else. The runner % is a *separate*
+judgement from where the entry and stop go, and the control's own label — "(tap here to
+clear)" — reads as clearing the marks, not the slider. Small, but it is a silent loss of an
+answer he gave, in a repo whose first rule is never to lose one.
+
+**3. The clear control's markup lives outside the shared shell.** `probe_page.py` owns the
+CSS and the click handler, both keyed to `[data-role="tapout"]`, but the
+`<div class="tapout" data-role="tapout">` itself is emitted only by
+`build_tap_selftest.py:232`. A future deck that turns on `tappable=True` and does not
+hand-write that div gets tap marking with **no undo at all** — pass-2 defect 1, reintroduced
+silently, with nothing to catch it. Either the shell should emit the readout whenever a card
+has a tappable chart, or a test should assert its presence.
+
+**4. The undo is all-or-nothing, and is itself a small target.** Correcting only a wrong
+entry destroys a correct stop and three correct targets. And the recovery affordance for a
+fat finger is a single line of 12.5px monospace text with `padding:8px 16px 0`, no
+`min-height`, no `role="button"` and no keyboard focus. Reasoned from the CSS, not observed
+on a handset.
+
+**Two pass-1 defects are still open and were not in scope for this repair round.**
+`research/probe_chart.py:16` still claims `tappable` "stays off by default so every existing
+caller's SVG is byte-identical" — re-confirmed false: `data-h="%d"` sits in the shared
+`if interactive or tappable:` branch at `:152-155`, so `build_omen_test1.py` and
+`daily_homework.py` both emit an attribute they did not before (harmless, the sentence is
+wrong). And `build_tap_selftest.py` still drops its phase-1 `results` array across the
+reload (`:169` carries only `{before, row}`), so the standalone HTML page can print PASS with
+a completely broken first phase; the Python test is not exposed to this.
+
+**Pass-2's scope note still stands and is not a defect of this row:** `tappable=True` has
+exactly one caller in the tree, the self-test page itself. No deck Austin opens uses it yet.
+
+## The required standard checks
+
+- **Sample size:** nothing to apply it to. This row trades nothing and measures nothing; the
+  only counts are instrument counts (1 synthetic 20-bar card, 2 cards in my cloned deck, 34
+  checks). No cell anywhere in the row or in this write-up carries a verdict about money.
+- **Dollars:** the row publishes none — correctly, since nothing here fills. There is no
+  figure to name a fill, an exit or a unit for. The repair commit message contains zero `$`.
+- **Stamped books:** the row wrote none. `git show --name-only a32eacd8` touches nothing under
+  `research/tape/`.
+- **One change per row:** `a32eacd8` = 3 files, all under `research/`, no engine file, no flag.
+  It does carry three code edits rather than one — but they are exactly the three defects pass 2
+  named, in one instrument, and the rule exists so that a *book* cannot move for two reasons.
+  This row has no book, so there is nothing to confound. Noted, not charged.
+- **No mark file changed:** none of the mark corpora appear in `git show --name-only a32eacd8`
+  or in `git status`.
+- **Plain English:** the one string this row puts in front of Austin is the readout's
+  "(tap here to clear)". Plain English, no jargon, no flag name.
+
+## What I could not check
+
+A phone. Everything above is jsdom and Python. Defect 4 and the `touch-action` fix both need
+someone to open `research/probes/tap_selftest.html` on Austin's handset: try to scroll past the
+chart, then deliberately tap the wrong candle and tap the line of text underneath to undo it.
