@@ -1,10 +1,12 @@
 # L5 — day policy: up to 3 S fires a day, stop after a win or 2 losses
 
-**Flag:** `signal_runner.DAY_POLICY=3fires_stop_win_or_2loss` (now the **default**,
-`day_policy.py` enforces it causally, scoped to `tier=="core"` rows, on the built book).
-**Decision: ship** (loop controller, cycle 5) — but read the numbers section before
-treating "ship" as "this moved something": on the settled core-11 lane it is a
-**measured no-op**. Every cell of the gate below is identical before/after.
+**Flag:** `signal_runner.DAY_POLICY=3fires_stop_win_or_2loss` (available via env
+var; the **default stays `first3`** — see Referee pass 3 and the Refereed
+section below. `day_policy.py` enforces the causal rule when the flag is set
+explicitly, scoped to `tier=="core"` rows, on the built book).
+**Decision: hold** (loop controller, cycle 5, corrected by referee pass 3) —
+on the settled core-11 lane the flag is a **measured no-op**. Every cell of
+the gate below is identical before/after.
 
 **Recall (`research/omen_recall.py "day policy up to 3 S fires stop after a win or
 after 2 losses"`)**, quoted verbatim:
@@ -95,17 +97,50 @@ different row):**
 - **Defect 4** (`live_scanner.py` has no branch for
   `3fires_stop_win_or_2loss`, so a live session would silently run `first3`
   behavior) is untouched — `live_scanner.py` is not in this row's authorized
-  edit and the flag's default was `first3` when the referee found this;
-  now that the default is `3fires_stop_win_or_2loss`, **this is live**, not
-  theoretical: a real session today would silently mismatch its own
-  configured day policy. This needs a live_scanner.py fix before the next
-  live run and is flagged here as a blocking follow-up, not resolved.
+  edit. Now moot for a default live session: the default reverted to
+  `first3` (referee pass 3 / this repair), so `live_scanner.py`'s behavior
+  matches the shipped default again. It would still mismatch if `.env` or a
+  live launch pinned `DAY_POLICY=3fires_stop_win_or_2loss` explicitly — that
+  remains a real gap, just not a live one today. Flagged for whichever row
+  next touches `live_scanner.py`.
 - **`script: null`** on both book stamps (Defect 6, second half) is a
   pre-existing gap in `research/book_stamp.py::stamp()` — no book of any kind
   stamps which script built it; `backtest_2y.py`'s call site never passes a
   `script=` kwarg. Out of this row's one-function budget (fixing it means
   editing `backtest_2y.py`, engine code, for a second unrelated reason).
   Flagging for a future row.
+
+## Refereed (pass 3, `research/l5_referee.md`)
+
+Reproduced to the dollar under a fourth independent implementation
+(`research/l5_referee_pass3.py`, imports none of `loop_cycle`/`g72_suppress_price`/
+earlier referee scripts). The hold decision and every number stand. Two things
+were wrong and are fixed in this repair:
+
+1. **This report and the loop's own ledgers still said "ship."** Pass 2
+   (`34c1546e`) instructed reverting the code default AND flipping the
+   cycle-5 decision cell to hold; only the code revert landed. Fixed here:
+   this file's header now reads "Decision: hold"; `research/tape/cycles.md`'s
+   L5 row decision cell now reads `hold`; `research/tape/loop_state.json`
+   cycle 5's `decision` is now `"hold"` and `consecutive_holds` is `5`
+   (L1–L5 are five holds in a row — the loop's own stop condition);
+   `research/tape/loop.json`'s REBUILD PIN paragraph now says a bare
+   `python backtest_2y.py --days 730` at HEAD reproduces the baseline book
+   (`2c39ced2697c26cc`), not `205d3dcee96c5282`.
+2. **Two undisclosed semantics gaps**, not grounds to change the decision
+   (both inherited from the upheld R3 unit), disclosed here instead:
+   - **"Stop after a win" has two live definitions.** `day_policy.py` tests
+     `out == "win"`; the measurement unit (`loop_cycle.up_to_3_rows`) tests
+     `pnl > 0`. They disagree on 12 of 3,861 core-11 causal-pool rows, all
+     `out=="scratch"` with positive P&L (up to +$6,713.75, NVDA
+     2025-07-15 10:47) — invisible on this book only because the unit's
+     lens is strictly stricter than the causal pass.
+   - **"Up to 3 S fires" is implemented as "up to 3 fires," no grade test.**
+     Of the 769 unit rows: `sgrade` is `C` on 434 (56.4%), `A` on 187
+     (24.3%), `S` on 148 (19.2%). This is the R3 baseline unit's own scope,
+     not something this row introduced — but the sentence above ("that
+     sentence, read causally") overstated the match to the rulebook's "up
+     to 3 **S** fires" and is corrected here rather than repeated.
 
 ## Numbers (loop gate, cycle 5, `research/tape/cycles.md`)
 

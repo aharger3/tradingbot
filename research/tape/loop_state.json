@@ -1,6 +1,6 @@
 {
   "cycle_count": 5,
-  "consecutive_holds": 0,
+  "consecutive_holds": 5,
   "target_met": false,
   "history": [
     {
@@ -60,14 +60,15 @@
       "cycle": 5,
       "flag": "DAY_POLICY",
       "label": "up to three trades a day, stop after a win or two losses (repair)",
-      "decision": "ship",
+      "decision": "hold",
       "dollars_per_day_before": -52.0,
       "dollars_per_day_after": -52.0,
       "green_before": 11,
-      "green_after": 11
+      "green_after": 11,
+      "_l5_repair_2026_09_06": "referee pass 3 (research/l5_referee.md): decision corrected from 'ship' to 'hold' -- pass 2 (34c1546e) instructed both the code-default revert and this cell's flip; only the revert landed. Numbers unchanged (always a no-op, both arms identical)."
     }
   ],
-  "stop": false,
-  "stop_reason": null,
-  "_repair_note": "L2 referee repair 2026-09-05: the two RULE84_DECIDED entries here (cycles 2 and 3) were dropped -- both were priced on the unfiltered 28-symbol pool (loop_cycle.py never applied loop.json's universe.row_filter) and the second was a byte-identical re-append of the first, double-counting one experiment as two consecutive holds. loop_cycle.py now applies the row_filter; re-running --stage gate for RULE84_DECIDED appends the corrected core-11 cycle below as the new cycle 2. L4 repair 2026-09-05: a second, byte-identical TREND_DEF gate row was appended as cycle 5 (a redundant --dry-run re-run of the same gate to re-inspect output, not a second experiment) and pushed consecutive_holds to 5, tripping a false 'stop' the loop dispatcher would have read as real. Dropped; cycle 4's TREND_DEF row is the only real one."
+  "stop": true,
+  "stop_reason": "5 consecutive holds",
+  "_repair_note": "L2 referee repair 2026-09-05: the two RULE84_DECIDED entries here (cycles 2 and 3) were dropped -- both were priced on the unfiltered 28-symbol pool (loop_cycle.py never applied loop.json's universe.row_filter) and the second was a byte-identical re-append of the first, double-counting one experiment as two consecutive holds. loop_cycle.py now applies the row_filter; re-running --stage gate for RULE84_DECIDED appends the corrected core-11 cycle below as the new cycle 2. L4 repair 2026-09-05: a second, byte-identical TREND_DEF gate row was appended as cycle 5 (a redundant --dry-run re-run of the same gate to re-inspect output, not a second experiment) and pushed consecutive_holds to 5, tripping a false 'stop' the loop dispatcher would have read as real. Dropped; cycle 4's TREND_DEF row is the only real one. L5 repair 2026-09-06 (referee pass 3): cycle 5's decision cell was 'ship' while the shipped code (signal_runner.DAY_POLICY default) is 'first3' (hold) -- corrected to 'hold', and consecutive_holds is now genuinely 5 (L1 through L5 all held), which is the loop's real stop condition this time, not a double-count artifact like the dropped L4 duplicate."
 }
