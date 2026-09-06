@@ -466,3 +466,193 @@ unsupported sentences in `research/l4_trend_def.md`, uncorrected since pass 1 na
 five more errors found here — two of them (defects 8 and 9) in pass 1's own note, which was
 committed as "upheld". Nothing is deleted: this is evidence, and the next agent should not
 re-run it.
+
+---
+
+# L4 referee — pass 3 (after the repair round; a different model, told to refute)
+
+**Builder's commits:** `355d7cc0` (the flag lands OFF), `f81db426` (the held result and both
+stamped books), **`746ccc2a`** (the report-only repair this pass grades).
+**Pass 1:** `5369601c`. **Pass 2:** `6e51cf72`.
+**Pass 3's script:** `research/l4_referee3.py` — a fourth independent implementation. It
+imports neither `research/loop_cycle.py`, `research/g72_suppress_price.py`,
+`research/l4_referee.py` nor `research/l4_referee2*.py`: the unit, the monthly buckets, the
+`$/day` denominators, the gate and **the 15-minute structure read itself** are re-typed from
+their written definitions. Run it as `python research/l4_referee3.py` (books only) and
+`python research/l4_referee3.py --bars` (the raw-bar pass).
+
+## Verdict: **REFUTED** — the hold stands, the repair's replacement mechanism sentence is false
+
+Everything the repair was asked to fix, it fixed. But it kept a narrowed version of the very
+sentence pass 1 and pass 2 both refuted, and that narrowed version is **also false** — this
+time provably on 16 of 16 rows. It also carries a published count (`3,695`) that reproduces
+under no slice of either book.
+
+Unit `up_to_3_stop_win_or_2loss` on `tier == "core"` (11 names), **close fill**, **shipped
+engine exit** (1R hard stop, intrabar-touch fill, `SCALE_PLAN=hod_then_runner_be`,
+account-wide two-loss halt on), 499 sessions 2024-09-04 → 2026-09-04, books
+`research/tape/book_TREND_DEF_{off,on}.json.gz`, script `research/l4_referee3.py`.
+
+## The gate — reproduces to the dollar, fourth implementation
+
+| slice | arm | trades | total $ | $/day | mean R | win% | avg win | avg loss | green | months |
+|---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| whole | OFF | 769 | −25,746 | **−52** | −0.0335 | 45.0 | 801 | 716 | **11** | 25 |
+| whole | ON | 768 | −30,384 | **−61** | −0.0396 | 45.2 | 780 | 715 | **10** | 25 |
+| H1 | OFF | 382 | +2,191 | **+9** | +0.0057 | 43.7 | 917 | 701 | **6** | 12 |
+| H1 | ON | 381 | −7,559 | **−30** | −0.0198 | 43.5 | 863 | 701 | **5** | 12 |
+| H2 | OFF | 387 | −27,937 | **−111** | −0.0722 | 46.3 | 694 | 732 | **5** | 13 |
+| H2 | ON | 387 | −22,825 | **−91** | −0.0590 | 46.8 | 704 | 729 | **5** | 13 |
+
+`half_verdict` re-derived: **H1 `green_ok: False` and `dollar_ok: False`** (both columns fail,
+as the repair now says); **H2 passes**; **decision = hold**. Identical to
+`research/tape/cycles.md`'s TREND_DEF row (`-52.0 -> -61.0`, `11 -> 10`, fail/pass, 768) and to
+`loop_state.json` cycle 4. Both halves clear the 30-trade / 12-month floor on the BEFORE side
+(382/12, 387/13), so the halves themselves carry a verdict legitimately.
+
+## Identity, stamps, hygiene — all clean
+
+- OFF `book_id` **`2c39ced2697c26cc`** = `research/tape/baseline_2026-09-05.json.gz`'s stamp
+  = `research/tape/loop.json`'s `baseline_book_id`. ON `book_id` `bc7889b0cfc5ec67`.
+- The two stamps' flag dicts differ in **exactly one key**:
+  `signal_runner.TREND_DEF: "off" → "structure15"`. Nothing else, checked as a set difference
+  over both dicts.
+- Both stamps: commit `355d7cc0` (an ancestor of `f81db426` and of `746ccc2a`),
+  `dirty_engine_py: []`, `dirty_py_count: 0`, window 2024-09-04..2026-09-04, 499 sessions,
+  built 3½ minutes apart on 2026-09-05.
+- **Default in code is `"off"`** (`signal_runner.py:535`, `os.getenv("TREND_DEF", "off")`) —
+  matches the `hold`. A research arm never defaults on. `TREND_DEF` is in
+  `research/book_stamp.py`'s `FLAG_SOURCES` under `signal_runner`.
+- **One change per row:** `git show --stat 746ccc2a` = `research/l4_trend_def.md` only
+  (109 insertions, 15 deletions). No code, no flag, no book, no ledger row touched — exactly
+  what a report-only repair should be.
+- **No mark file touched** by `355d7cc0`, `f81db426` or `746ccc2a` (`git show --name-only`
+  over all three, filtered against every corpus named in CLAUDE.md's "THE ONE RULE").
+- **Verify gate green, run by me at HEAD `746ccc2a`:** `regression_gate.py` **PASS** (no
+  baseline-fired mark went silent), `test_runner_stop.py` ok (70 checks),
+  `test_universe_single_source.py` ok (29 symbols, no private lists).
+- The ntfy line `loop_cycle.py` emits is plain English and names no flag: *"cycle 4: the
+  15-minute structure trend test -- held. $/day -52.0 -> -61.0, green months 11 -> 10."* The
+  `cycles.md` label column reads the same way.
+
+## Semantics — verified against the rulebook sentence and against raw bars
+
+`python research/omen_recall.py "trend 15-minute structure higher highs higher lows OCR direction test"`:
+
+> *"trend — **15-minute structure** (higher highs / higher lows, or the reverse) on the 1m
+> chart — no indicator"* (`omen-10-0-spec.md`, "What the call settled"), and
+> `omen-rulebook.md`, 2026-09-05: *"trend = 15-minute structure (HH/HL) on the 1m chart."*
+> Spec Phase-L row: *"**L4 — trend = 15-min structure** for the OCR/84% direction test
+> (`TREND_DEF=structure15`). Report how many signals flip direction-eligibility."*
+
+I re-typed the read (`l4_referee3.my_structure15`) from that sentence and ran it against
+`signal_runner.structure15_trend` on all 312 fired gated rows, truncated bar lists:
+**0 mismatches**. The four wired call sites are the OCR long/short order-block blocks
+(`signal_runner.py:3343, 3611`) and the two 84%-rule reclaim blocks (`:3431, :3684`) — the
+two setups the spec row names, and no others. Raw-bar pass (own code, bars physically
+truncated at the signal bar, `research/l4_referee3.py --bars`):
+
+- **277 of 277** touched sessions have their first RTH bar at exactly `09:30:00` — the
+  15-candle buckets really are clock-aligned 15-minute bars.
+- **Reach over the 312 fired gated core rows: 123 abstain (39%) / 102 allowed (33%) /
+  87 blocked (28%)** — the repair's numbers exactly.
+- **4 cascade removals**, the same four rows the repair names (NVDA 2026-02-10 10:25,
+  TSLA 2026-04-17 10:30, AAPL 2025-10-23 10:53, AMZN 2025-05-02 10:26), and **0** kept rows
+  that the trend blocks. So the direction test itself removes **14** of the 18 84%-rule rows,
+  as repaired.
+- **Staleness: 112 of 312 (36%) read a bucket pair ≥10 minutes old, maximum 14** — exact.
+
+## Pass 2's defects: fixed
+
+| pass-2 defect | fixed in `746ccc2a`? |
+|---|---|
+| whole-book "it's dedupe-release" mechanism claim | **yes** — withdrawn, no mechanism now claimed for the whole-book move |
+| verdict drawn from the n=27 cell | **yes** — both n=27 and n=3 labelled "not enough", the conclusion removed |
+| "exactly the population the gate can remove" | **yes** — corrected, `break_and_retest` added as a reference row plus a scope note |
+| the 4 cascade removals undisclosed | **yes** — disclosed and correct |
+| the 39% abstain rate undisclosed | **yes** — disclosed and correct |
+| the ≥10-minute staleness undisclosed | **yes** — disclosed and correct |
+| H1 phrased so only green months looked responsible | **yes** — both columns now named, and both do fail |
+| pass 1's own row-join arithmetic and counterfactual | declined as out of scope — **correct call**, they are pass 1's document, not the row's |
+
+## Defect 10 (new, decisive) — the replacement mechanism sentence is false too
+
+The repair kept a narrowed dedupe-release claim. `research/l4_trend_def.md` now says the
+`break_and_retest` diff is *"purely from dedupe-release on the gated setups' neighbouring
+levels"*, that the four ON-only 84% fires are *"the same dedupe-release mechanism … a
+capped/gated candidate is not `fired`, so it releases `backtest_week`'s dedupe suppression
+window"*, and that *"this dedupe-release effect explains the ON-only rows."*
+
+It does not. A dedupe-suppressed candidate is booked `skipped_d`; a released one would appear
+in the OFF book as `skipped_d` and in the ON book as `fired`. I looked every changed fired row
+up in the *other* book by `(day, minute, symbol, direction, setup)`
+(`research/l4_referee3.py` section 4):
+
+| the flag's fired-row changes | rows | what the OFF book already holds at the same key |
+|---|---:|---|
+| `break_and_retest` gained (ON only) | 8 | **8 of 8 present as `halted`, identical P&L** |
+| `break_and_retest` lost (OFF only) | 5 | **5 of 5 present in ON as `halted`**, identical P&L |
+| `reentry_84_rule` gained (ON only) | 4 | **3 of 4 present as `halted`, identical P&L**; 1 absent |
+| **dedupe-released rows (`skipped_d` → `fired`)** | **0** | **none, at any setup** |
+
+The one genuinely new row — `PLTR 2025-11-18 10:59 put`, absent from the OFF book at any
+status — is a new *84%-rule arming* (the rule arms off a stopped original, and the ON arm
+stopped a different original), not a released dedupe slot. **Zero of the sixteen gained fired
+rows are dedupe-release.** The real mechanism for fifteen of them is the **account-wide
+two-loss halt**: removing an OCR fire earlier in the day moves where the halt bites, so a row
+already detected and booked `halted` in one arm is booked `fired` in the other, at exactly the
+same P&L. That is the same error class the L3 referee's pass 4 found (`5f2e3fdc`: "11 of 11
+are already in the OFF book at identical P&L") — asserted, in three successive L-rows now,
+without opening the other book's statuses.
+
+The whole-book `$`-move is unaffected (0 of these rows reach the traded unit — I confirmed it
+independently), and the decision is unaffected. What is refuted is the published explanation,
+for the third pass running.
+
+## Defect 11 (new) — the `3,695` count reproduces under no slice of either book
+
+The repair prints *"`break_and_retest` (`setup_label` `BR+OCR`, 3,695 fired core rows in the
+OFF book, 14x the size of the two gated setups combined)"* in the flip-table preamble and
+again in the scope note. Counted from the OFF book:
+
+| what | rows | distinct `(day, minute, sym, dir, setup)` keys |
+|---|---:|---:|
+| `setup == break_and_retest`, `status == fired`, `tier == core` | **4,746** | **4,329** |
+| `setup_label == "BR+OCR"`, `status == fired`, `tier == core` | **3,856** | 3,525 |
+| the two gated setups (`one_candle_rule` + `reentry_84_rule`) | **312** | 312 |
+
+**3,695 is none of them**, under any combination of tier / label / setup / status / traded I
+swept. It was carried across from pass 2's note without re-derivation. The `14x` is right only
+against 4,329 (13.9x) — against the 3,695 it is printed beside, it would be 11.8x. And
+`break_and_retest` is not `setup_label BR+OCR`: BR+OCR covers 3,856 of that setup's 4,746
+fired core rows, the other 1,051 carrying the label `break-and-retest`.
+
+## Defect 12 (new, minor) — two different things are both called "fired rows"
+
+The flip table's `break_and_retest` "fired OFF 4,329 → ON 4,332" is a count of **distinct
+keys**; the prose's "fired core rows" is a count of **rows**, and the two differ by 417 at that
+setup alone (4,746 rows collapse to 4,329 keys). The gated setups have no collisions
+(259 + 53 = 312 both ways), so nothing in the gate or the flip counts is wrong — but the
+report uses one label for two units. Pass 2 raised the same collision class against pass 1's
+unit join (5 rows); it is still nowhere in the builder's report.
+
+## Defect 13 (standing, wave-level, now two repairs old) — `test_published_numbers.py` is red
+
+`python research/test_published_numbers.py` fails at HEAD on **6** files, `l4_trend_def.md`
+among them (`l5_day_policy.md` has joined since pass 1 named the first five). The test wants a
+same-stem `.py` beside the markdown or a literal `Run: research/<x>.py` line; L4's report names
+`research/loop_cycle.py --flag TREND_DEF …` in prose only. It is not in the `verify:` line, so
+it does not block, and it is genuinely wave-level — but it is a one-line fix that a report-only
+repair could have made, and two repair rounds have now passed it by.
+
+## Verdict, restated
+
+**REFUTED.** The decision — **hold**, `TREND_DEF` **off** — is right, and every number that
+matters reproduces to the dollar under a fourth independent implementation: the gate, both
+halves, the flip counts, the bucket alignment, the reach split, the cascade set, the staleness
+split, the stamps and the identity of the OFF arm with the baseline. The six pass-2 defects are
+genuinely fixed. What is refuted is the published record, again: the repair's replacement
+mechanism sentence is false on 16 of 16 rows (the account-wide two-loss halt, not
+dedupe-release, and 0 released rows exist), and a headline count it publishes twice (3,695)
+matches no slice of either book. Nothing is deleted — this is evidence; the next agent should
+fix the two sentences and the count, and must not re-run the books.
