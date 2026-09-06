@@ -34,7 +34,14 @@ The target: **fire 1–3 times a day, and be right about them.**
 defaults (1R hard stop resting on the level and filled on the intrabar touch, `SCALE_PLAN=
 hod_then_runner_be`, `LOSS_HALT` on, `RETEST_REQUIRED` on). **Unit = his day policy**: up to 3
 fires a day, stop after the first win or the second loss, arrival order, `universe.CORE_SYMBOLS`
-(11). The loop's gate reads this unit on this book (`research/tape/loop.json`).
+(11). The loop's gate reads this unit on this book (`research/tape/loop.json`). **Rebuild it
+with `DAY_POLICY=first3 PYTHONIOENCODING=utf-8 python backtest_2y.py --days 730`** — L5 flipped
+`signal_runner.DAY_POLICY`'s default (350b02fc), so a bare run at HEAD builds id
+`205d3dcee96c5282` (same −$52/day on the unit, different fingerprint); with the pin the baseline
+id `2c39ced2697c26cc` reproduced at `5e8b5b89` and again at `24b009e5` (2026-09-06). `--days 730`
+counts back from the last archived session (2026-09-04); once `daily_fetch.py` advances the
+archive (2026-09-08 16:15 ET at the earliest) the window moves and no rebuild can match this id
+until `backtest_2y.py` takes a fixed start/end date — an engine change no row has landed.
 
 | his day policy, core 11, 25 months | fill | exit | $/day | mean R | win | avg win / avg loss | green |
 |---|---|---|---:|---:|---:|---:|---:|
@@ -56,10 +63,17 @@ trades, 29 symbols) down to the shipped book. The money is lost at step 2 — wh
 is replaced by the real engine's trade management — because the lab's stop only fired on a
 candle close, so every wick through the level and back was a free pass; the real engine's 1R
 hard stop rests on the level and fills on that wick, which turns about one trade in twenty from
-a +2R win into a −1R loss (win rate 38.8% → 33.6%, avg win and avg loss unchanged) and takes
+a +2R win into a −1R loss (win rate 38.8% → 33.6% as winners ÷ all filled trades, 5,556/14,327
+→ 4,820/14,332, no scratches; avg win and avg loss unchanged) and takes
 $4,420 of the $5,550/day; the scale-out ladder takes the remaining $1,131 (both halves,
-`research/r2_referee_pass2.py`, books `reconcile_fwd_1_add_C_grades`,
-`r2ref_simd_next_open_blind2r_real_engine`, `reconcile_fwd_2_swap_exit_shipped_ladder`).
+`research/r2_referee_pass2.py`; raw-bar replay of 200 flipped trades, 91.5% the named wick,
+`research/r2_referee_pass3.py`; books `reconcile_fwd_1_add_C_grades` id `d3b7151c374a9f7f`,
+`r2ref_simd_next_open_blind2r_real_engine` id `6b3b862ce4ffebe0`,
+`reconcile_fwd_2_swap_exit_shipped_ladder` id `a2ff837493e9a7d2`). The fill study agrees once
+every arm is held to the engine's intrabar stop (`research/r1_referee3.py` uniform, core 11,
+every traded signal, flat 2R): next open $44/day 12/25, close −$46 13/25, as booked $395 22/25
+— the same next-open column reads $1,250 under a close-only stop. The fill was never the
+edge; the stop model was.
 Consequence: with `DISASTER_STOP_R = 1.0` the close-trigger stop rule never acts — the wick is
 the stop. That is his 2026-09-03 ruling; moving it is a rule change that goes through the gate.
 
