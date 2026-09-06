@@ -1,6 +1,6 @@
 {
-  "cycle_count": 3,
-  "consecutive_holds": 3,
+  "cycle_count": 4,
+  "consecutive_holds": 4,
   "target_met": false,
   "history": [
     {
@@ -32,9 +32,19 @@
       "dollars_per_day_after": -58.0,
       "green_before": 11,
       "green_after": 10
+    },
+    {
+      "cycle": 4,
+      "flag": "TREND_DEF",
+      "label": "the 15-minute structure trend test",
+      "decision": "hold",
+      "dollars_per_day_before": -52.0,
+      "dollars_per_day_after": -61.0,
+      "green_before": 11,
+      "green_after": 10
     }
   ],
   "stop": false,
   "stop_reason": null,
-  "_repair_note": "L2 referee repair 2026-09-05: the two RULE84_DECIDED entries here (cycles 2 and 3) were dropped -- both were priced on the unfiltered 28-symbol pool (loop_cycle.py never applied loop.json's universe.row_filter) and the second was a byte-identical re-append of the first, double-counting one experiment as two consecutive holds. loop_cycle.py now applies the row_filter; re-running --stage gate for RULE84_DECIDED appends the corrected core-11 cycle below as the new cycle 2."
+  "_repair_note": "L2 referee repair 2026-09-05: the two RULE84_DECIDED entries here (cycles 2 and 3) were dropped -- both were priced on the unfiltered 28-symbol pool (loop_cycle.py never applied loop.json's universe.row_filter) and the second was a byte-identical re-append of the first, double-counting one experiment as two consecutive holds. loop_cycle.py now applies the row_filter; re-running --stage gate for RULE84_DECIDED appends the corrected core-11 cycle below as the new cycle 2. L4 repair 2026-09-05: a second, byte-identical TREND_DEF gate row was appended as cycle 5 (a redundant --dry-run re-run of the same gate to re-inspect output, not a second experiment) and pushed consecutive_holds to 5, tripping a false 'stop' the loop dispatcher would have read as real. Dropped; cycle 4's TREND_DEF row is the only real one."
 }
