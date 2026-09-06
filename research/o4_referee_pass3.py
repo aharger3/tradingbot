@@ -418,9 +418,19 @@ def check_real_pair():
        % (sum(1 for r in core if r.get("traded")), sum(1 for r in coren if r.get("traded"))))
     for tag, meta in (("off", om), ("on", nm)):
         st = meta.get("stamp", {})
+        g = st.get("git", {})
         ok("stamp: DAY_POLICY %s book carries commit/flags/date/window" % tag,
-           bool(st.get("commit")) and bool(st.get("flags")) and bool(st.get("built_at") or st.get("date")),
-           "commit=%s dirty_engine=%s" % (st.get("commit"), st.get("dirty_engine_py")))
+           bool(g.get("commit")) and bool(st.get("flags")) and bool(st.get("built_at"))
+           and bool(meta.get("first")) and bool(meta.get("last")) and bool(meta.get("sessions")),
+           "commit=%s dirty_py=%s window=%s..%s/%s" % (
+               (g.get("commit") or "")[:8], g.get("dirty_py_count"),
+               meta.get("first"), meta.get("last"), meta.get("sessions")))
+        ok("stamp: DAY_POLICY %s book was built on a clean engine tree" % tag,
+           g.get("dirty_engine_py") == [] and g.get("dirty_py_count") == 0,
+           str(g.get("dirty_engine_py")))
+        ok("stamp: DAY_POLICY %s book stamps the flag under test" % tag,
+           "signal_runner.DAY_POLICY" in (st.get("flags") or {}),
+           str((st.get("flags") or {}).get("signal_runner.DAY_POLICY")))
 
 
 # -------------------------------------------------------- 8. docstring truth
