@@ -1,0 +1,272 @@
+{
+  "baseline": {
+    "source": "research/tape/loop.json and research/g212_baseline_verdict.md",
+    "unit": "up_to_3_stop_win_or_2loss",
+    "universe": "core11 (tier==core, 11 symbols: TSLA NVDA AAPL AMD META GOOGL AMZN MSFT PLTR QQQ SPY)",
+    "fill": "close -- market at the close of the signal bar",
+    "exit": "shipped engine: 1R hard stop resting on the level, filled on the intrabar touch (DISASTER_STOP_R=1.0, STOP_ON_CLOSE=True), SCALE_PLAN=hod_then_runner_be, runners closed at session end, LOSS_HALT on",
+    "whole": {
+      "trades": 769,
+      "per_day": -52,
+      "mean_r": -0.0335,
+      "avg_win": 801,
+      "avg_loss": 716,
+      "avg_win_over_avg_loss": 1.119,
+      "win_pct": 45.0,
+      "green_months": 11,
+      "months": 25,
+      "fires_per_day": 1.541,
+      "source": "research/tape/baseline_2026-09-05.json.gz (book_id 2c39ced2697c26cc), research/g212_trace.py"
+    },
+    "h1": {
+      "trades": 382,
+      "per_day": 9,
+      "mean_r": 0.0057,
+      "avg_win": 917,
+      "avg_loss": 701,
+      "win_pct": 43.7,
+      "green_months": 6,
+      "months": 12,
+      "source": "research/tape/baseline_2026-09-05.json.gz, research/g212_baseline_verdict.md"
+    },
+    "h2": {
+      "trades": 387,
+      "per_day": -111,
+      "mean_r": -0.0722,
+      "avg_win": 694,
+      "avg_loss": 732,
+      "win_pct": 46.3,
+      "green_months": 5,
+      "months": 13,
+      "source": "research/tape/baseline_2026-09-05.json.gz, research/g212_baseline_verdict.md"
+    }
+  },
+  "phantom": {
+    "source": "research/tape/baseline_2026-09-05_published.json.gz (book_id 9a629a9682f0676b), same unit same trades, ENTRY_FILL=published",
+    "fill": "the level, even when the bar never traded there",
+    "whole": {
+      "trades": 645,
+      "per_day": 850,
+      "mean_r": 0.6572,
+      "avg_win": 1583,
+      "avg_loss": 980,
+      "avg_win_over_avg_loss": 1.615,
+      "win_pct": 63.9,
+      "green_months": 23,
+      "months": 25,
+      "source": "research/tape/baseline_2026-09-05_published.json.gz"
+    },
+    "note": "side-by-side column, never a target; kept visible so nobody re-argues the fill"
+  },
+  "causal_sentence": {
+    "source": "research/g212_baseline_verdict.md",
+    "text": "The money is lost at step 2 — where the lab's exit is replaced by the real engine's trade management — because the $4,569/day was earned by a stop that only fired on a candle close, so every wick through the level and back was a free pass; the real engine's 1R hard stop rests on the level and fills on that wick, which turns about one trade in twenty from a +2R win into a −1R loss (win rate 38.8% → 33.6%, counted as winners ÷ all filled trades: 5,556 of 14,327 → 4,820 of 14,332, no scratches in either book; average win and average loss unchanged) and takes $4,420 of the $5,550, and the scale-out ladder takes the remaining $1,131."
+  },
+  "phase_l_rows": {
+    "source": "research/tape/cycles.md",
+    "rows": [
+      {
+        "date": "2026-09-06",
+        "label": "the 1R first-target rule, core-11, post-x_lift-move (correction)",
+        "flag": "MIN_PT1_R",
+        "decision": "hold",
+        "unit": "core11",
+        "whole_per_day_before": -52,
+        "whole_per_day_after": 28,
+        "whole_green_before": 11,
+        "whole_green_after": 14,
+        "h1_result": "pass",
+        "h2_result": "fail",
+        "trades": 732,
+        "off_book": "book_MIN_PT1_R_off_postfix.json.gz",
+        "on_book": "book_MIN_PT1_R_on_postfix.json.gz",
+        "script": "research/loop_cycle.py --dry-run"
+      },
+      {
+        "date": "2026-09-05",
+        "label": "the 84% re-entry as decided on the call",
+        "flag": "RULE84_DECIDED",
+        "decision": "hold",
+        "unit": "core11",
+        "whole_per_day_before": -52,
+        "whole_per_day_after": -57,
+        "whole_green_before": 11,
+        "whole_green_after": 11,
+        "h1_result": "fail",
+        "h2_result": "pass",
+        "trades": 769,
+        "off_book": "book_RULE84_DECIDED_off.json.gz",
+        "on_book": "book_RULE84_DECIDED_on.json.gz",
+        "script": "research/loop_cycle.py"
+      },
+      {
+        "date": "2026-09-05",
+        "label": "the one-candle-rule entry only when the retest candle is strong",
+        "flag": "OCR_RETEST_DISPLACEMENT",
+        "decision": "hold",
+        "unit": "core11",
+        "whole_per_day_before": -52,
+        "whole_per_day_after": -58,
+        "whole_green_before": 11,
+        "whole_green_after": 10,
+        "h1_result": "fail",
+        "h2_result": "pass",
+        "trades": 764,
+        "off_book": "book_OCR_RETEST_DISPLACEMENT_off.json.gz",
+        "on_book": "book_OCR_RETEST_DISPLACEMENT_on.json.gz",
+        "script": "research/loop_cycle.py"
+      },
+      {
+        "date": "2026-09-05",
+        "label": "the 15-minute structure trend test",
+        "flag": "TREND_DEF",
+        "decision": "hold",
+        "unit": "core11",
+        "whole_per_day_before": -52,
+        "whole_per_day_after": -61,
+        "whole_green_before": 11,
+        "whole_green_after": 10,
+        "h1_result": "fail",
+        "h2_result": "pass",
+        "trades": 768,
+        "off_book": "book_TREND_DEF_off.json.gz",
+        "on_book": "book_TREND_DEF_on.json.gz",
+        "script": "research/loop_cycle.py"
+      },
+      {
+        "date": "2026-09-05",
+        "label": "up to three trades a day, stop after a win or two losses (repair)",
+        "flag": "DAY_POLICY",
+        "decision": "hold",
+        "unit": "core11",
+        "whole_per_day_before": -52,
+        "whole_per_day_after": -52,
+        "whole_green_before": 11,
+        "whole_green_after": 11,
+        "h1_result": "pass",
+        "h2_result": "pass",
+        "trades": 769,
+        "off_book": "book_DAY_POLICY_off.json.gz",
+        "on_book": "book_DAY_POLICY_on.json.gz",
+        "script": "research/loop_cycle.py"
+      }
+    ]
+  },
+  "per_instrument_table": {
+    "source": "research/g213_instruments.md",
+    "baseline_book": "baseline_2026-09-05.json.gz",
+    "note": "Shares 769 rows, Futures 99 rows (SPY/QQQ only), Options 769 rows with 20 real Polygon bars, 749 model (0.42-delta + $0.05 spread)",
+    "instruments": {
+      "shares": {
+        "whole": {
+          "per_day": -52,
+          "mean_r": -0.034,
+          "win_pct": 45.0,
+          "green_months": 11,
+          "months": 25,
+          "trades": 769
+        },
+        "h1": {
+          "per_day": 9,
+          "mean_r": 0.006,
+          "win_pct": 43.7,
+          "green_months": 6,
+          "months": 12
+        },
+        "h2": {
+          "per_day": -112,
+          "mean_r": -0.072,
+          "win_pct": 46.3,
+          "green_months": 5,
+          "months": 13
+        }
+      },
+      "futures": {
+        "whole": {
+          "per_day": 12,
+          "mean_r": 0.058,
+          "win_pct": 52.5,
+          "green_months": 12,
+          "months": 24,
+          "trades": 99,
+          "note": "SPY->MES 10.0x, QQQ->MNQ 41.35x, not fit to data; IWM->M2K defined but not in core-11 universe"
+        },
+        "h1": {
+          "per_day": 71,
+          "mean_r": 0.375,
+          "win_pct": 63.8,
+          "green_months": 9,
+          "months": 12
+        },
+        "h2": {
+          "per_day": -48,
+          "mean_r": -0.229,
+          "win_pct": 42.3,
+          "green_months": 3,
+          "months": 12
+        }
+      },
+      "options": {
+        "whole": {
+          "per_day": -326,
+          "mean_r": -0.211,
+          "win_pct": 37.5,
+          "green_months": 4,
+          "months": 25,
+          "trades": 769,
+          "note": "20 real Polygon bars (2.6%), 749 model rows; spread $5/contract round-trip (was $10 pre-repair)"
+        },
+        "h1": {
+          "per_day": -303,
+          "mean_r": -0.196,
+          "win_pct": 36.0,
+          "green_months": 3,
+          "months": 12
+        },
+        "h2": {
+          "per_day": -349,
+          "mean_r": -0.225,
+          "win_pct": 39.0,
+          "green_months": 1,
+          "months": 13
+        }
+      },
+      "shares_futures_matched_99rows": {
+        "whole": {
+          "per_day": 17,
+          "mean_r": 0.086,
+          "win_pct": 55.6,
+          "green_months": 13,
+          "months": 24,
+          "note": "same 99 SPY/QQQ rows; shares beat futures by commission"
+        }
+      }
+    }
+  },
+  "tape_page": {
+    "source": "research/tape/omen-tape.html",
+    "path": "research/tape/omen-tape.html",
+    "size_bytes": 10485760,
+    "filters": "symbol, pool (core11/index3/full29), setup (BR/OCR/BR+OCR/84%), both grade ladders, month, week, weekday, entry time bucket, level name, fill mode (phantom/close/next_open/limit), exit model (2R/ladder), Phase-L flags on/off, instrument, day_policy (first_of_day/up_to_3)"
+  },
+  "t1_duplicates": {
+    "source": "research/tape/omen-tape.html, fc2372a1 commit message",
+    "unit": "up_to_3_stop_win_or_2loss, core11",
+    "duplicate_count": 57,
+    "total_rows": 1020,
+    "unique_keys": 963,
+    "key_definition": "(symbol, day, entry_minute)",
+    "duplicate_cost_pnl": -2514,
+    "duplicate_cost_pct": 9.8
+  },
+  "commits_since_base": {
+    "source": "git log --oneline 1539dd7f..HEAD",
+    "base_hash": "1539dd7f",
+    "current_head": "74edd2d0",
+    "total_commits": 112,
+    "count": 112
+  },
+  "verification": {
+    "note": "Every number traced to a stamped book in research/tape/ or a source file in research/. Every Phase L row from cycles.md included. Tape page confirms 0 duplicates in spec's own key (symbol, day, entry_minute) at fc2372a1 commit, but T1 repair at fc2372a1 disclosed actual duplicate count 57 in unit (1020 rows, 963 unique keys), representing $2,514 loss (9.8% of -$25,746 total). Phantom book identical commit and timestamp as baseline (same build minute 2026-09-05T18:16)."
+  }
+}
