@@ -1,0 +1,63 @@
+=== Section A: baseline day-policy unit, independent recompute ===
+sessions=499
+whole (25mo): trades=769 $/day=-51.59 mean_r=-0.0335 win=44.9% avg_win=801.16 avg_loss=-715.98 green=11/25
+H1 sessions_with_candidate=248
+H1: trades=382 $/day=8.84 mean_r=0.0057 win=43.5% avg_win=916.67 avg_loss=-700.82 green=6/12
+H2 sessions_with_candidate=250
+H2: trades=387 $/day=-111.75 mean_r=-0.0722 win=46.3% avg_win=694.04 avg_loss=-731.58 green=5/13
+
+=== Section B: stamp check ===
+entry_fill.ENTRY_FILL: expect=close got=close OK
+signal_runner.RETEST_REQUIRED: expect=True got=True OK
+signal_runner.ON_WATCH: expect=True got=True OK
+signal_runner.RULE84_OFF: expect=False got=False OK
+loss_halt.LOSS_HALT: expect=True got=True OK
+commit=29e4abc6 (verdict claims 29e4abc6)
+window=2024-09-04..2026-09-04 sessions=499
+ALL STAMP CHECKS OK
+
+=== Section C: R2 substrate/ladder split, both directions, own code ===
+fwd_1 (lab close-only stop, blind 2R): n=14327 days=499 $/day=4569.49 win=38.8% mean_r=0.1592 avg_win=1983.4679 avg_loss=-996.4626
+SIM D (real engine intrabar stop, blind 2R): n=14332 days=499 $/day=149.80 win=33.6% mean_r=0.0052 avg_win=1983.7189 avg_loss=-997.3483
+fwd_2 (real engine, shipped ladder): n=14332 days=499 $/day=-980.93 win=42.7% mean_r=-0.0342 avg_win=1031.2244 avg_loss=-831.4966
+substrate leg (fwd_1 -> SIM D): delta=$-4419.69/day
+ladder leg (SIM D -> fwd_2): delta=$-1130.73/day
+total step1->2 delta=$-5550.42/day
+substrate share=79.6%  ladder share=20.4%
+
+Reverse-direction (same legs, computed from the other endpoint):
+  ladder leg via (fwd_2 - SIM D) = $-1130.73 (same computation, sanity only -- one path exists, no true reverse ladder available)
+
+=== Section D: stamp diff between fwd_1, SIM D, fwd_2 -- what else differs? ===
+fwd_1 -> SIM D: 7 flag(s) differ:
+   day_policy.LOSS_STOP: 2 -> None
+   day_policy.MAX_FIRES: 3 -> None
+   signal_runner.DAY_POLICY: 3fires_stop_win_or_2loss -> None
+   signal_runner.MIN_PT1_R: 0.0 -> None
+   signal_runner.OCR_RETEST_DISPLACEMENT: False -> None
+   signal_runner.RULE84_DECIDED: False -> None
+   signal_runner.TREND_DEF: off -> None
+SIM D -> fwd_2: 8 flag(s) differ:
+   backtest_week.SCALE_PLAN: None -> hod_then_runner_be
+   day_policy.LOSS_STOP: None -> 2
+   day_policy.MAX_FIRES: None -> 3
+   signal_runner.DAY_POLICY: None -> 3fires_stop_win_or_2loss
+   signal_runner.MIN_PT1_R: None -> 0.0
+   signal_runner.OCR_RETEST_DISPLACEMENT: None -> False
+   signal_runner.RULE84_DECIDED: None -> False
+   signal_runner.TREND_DEF: None -> off
+
+=== Section E: win-rate denominator check (CLAUDE.md's 38.8% -> 33.6%) ===
+fwd_1: wins=5556/14327 = 38.78%
+SIM D: wins=4820/14332 = 33.63%
+scratches: fwd_1=0 SIM D=0
+
+=== Section F: filtered-vs-simulated check for THIS step ===
+fwd_1 source: SIM A (bar-by-bar replay, g90 arm)
+SIM D source: bar-by-bar replay, real engine, blind 2R
+fwd_2 source: SIM B (bar-by-bar replay, real engine, shipped ladder)
+All three of fwd_1, SIM D, fwd_2 are SIMULATED (not filtered) populations --
+the add-C-grades filtered-vs-simulated defect (R2 referee pass 2/3, section on
+dedupe_replay) applies to step 0->1 (a row-deletion on top of SIM A), not to the
+step this row is being asked to refute (fwd_1 -> SIM D -> fwd_2), which never
+crosses a filtered/simulated boundary.
