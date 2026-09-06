@@ -93,7 +93,12 @@ FLAG_SOURCES = (
         # 2026-09-05, L2: the 84% rule composite, as the call decided it.
         "RULE84_DECIDED",
         # 2026-09-05, L4: the 15-min structure trend, OCR/84% direction test.
-        "TREND_DEF")),
+        "TREND_DEF",
+        # 2026-09-05, L5: the day policy (up to 3 fires, stop after a win
+        # or 2 losses). The value alone does not change a book -- see
+        # day_policy.py, called from backtest_2y.py, for the enforcement.
+        "DAY_POLICY")),
+    ("day_policy", ("MAX_FIRES", "LOSS_STOP")),
 )
 
 # The figures a report is allowed to assert on, and how far each may drift

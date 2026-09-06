@@ -817,9 +817,18 @@ ENABLE_DOWNGRADE_GRADER = os.getenv(
 # experiment, not a rollout.
 #
 #   DAY_POLICY        "first3" (default, matches omen_bot.Session's shipped
-#                      max_signals_per_day=3 / CONSECUTIVE_LOSS_HALT=2) or
+#                      max_signals_per_day=3 / CONSECUTIVE_LOSS_HALT=2),
 #                      "one_and_done" (stop after the day's first trade,
-#                      win or lose).
+#                      win or lose), or "3fires_stop_win_or_2loss" (L5,
+#                      2026-09-05: up to 3 fires a day, but unlike "first3"
+#                      the day also ends the moment a taken trade CLOSES a
+#                      winner -- "first3" only resets the loss counter on a
+#                      win and keeps firing to 3. This is the engine-side
+#                      flag for Austin's ratified day policy; the causal
+#                      book-level enforcement of it lives in day_policy.py,
+#                      applied the same way loss_halt.py applies R31 --
+#                      this value alone does not change backtest_2y.py's
+#                      book by itself.)
 #   ENTRY_WINDOW_END   "11:00" (default, matches live_scanner's ENTRY_CUTOFF
 #                      and SESSION_END) or "09:45".
 #   FIRE_A_WHEN_NO_S   0 (default) or 1 -- read and reported only. compute_
@@ -834,8 +843,10 @@ ENABLE_DOWNGRADE_GRADER = os.getenv(
 #                      vs candidate direction), not a real daily-timeframe
 #                      filter, and never won both halves.
 DAY_POLICY = os.getenv("DAY_POLICY", "first3").strip().lower()
-if DAY_POLICY not in ("first3", "one_and_done"):
-    raise ValueError("DAY_POLICY must be 'first3' or 'one_and_done', got %r" % DAY_POLICY)
+if DAY_POLICY not in ("first3", "one_and_done", "3fires_stop_win_or_2loss"):
+    raise ValueError(
+        "DAY_POLICY must be 'first3', 'one_and_done' or "
+        "'3fires_stop_win_or_2loss', got %r" % DAY_POLICY)
 
 ENTRY_WINDOW_END = os.getenv("ENTRY_WINDOW_END", "11:00").strip()
 if ENTRY_WINDOW_END not in ("09:45", "11:00"):

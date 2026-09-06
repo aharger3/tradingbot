@@ -12,8 +12,10 @@ from collections import defaultdict
 from datetime import date, datetime, timedelta
 from pathlib import Path
 
+import day_policy
 import loss_halt
 import polygon_feed as pf
+import signal_runner
 from research import downgrade as dg
 import backtest_week as bw
 from backtest_week import simulate_day, htf_bias_for, RISK_DOLLARS
@@ -284,6 +286,13 @@ def main():
     halted = loss_halt.apply_to_book(rows)
     print("R31 loss halt: %d trades blocked (%s)"
           % (halted, "ON" if loss_halt.LOSS_HALT else "OFF"))
+
+    # L5 (2026-09-05): the day policy (up to 3 fires, stop after a win or
+    # 2 losses), enforced causally on the built book -- see day_policy.py.
+    # No-op unless DAY_POLICY=3fires_stop_win_or_2loss; OFF by default.
+    day_policy_blocked = day_policy.apply_to_book(rows)
+    print("L5 day policy: %d trades blocked (%s)"
+          % (day_policy_blocked, signal_runner.DAY_POLICY))
 
     out = ROOT / args.out
     out.parent.mkdir(parents=True, exist_ok=True)
