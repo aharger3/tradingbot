@@ -1,10 +1,134 @@
 # H1 referee
 
-Two passes. Pass 2 is the live verdict; pass 1 is kept below as evidence.
-A third, independent pass (`research/h1_referee_pass3.md`, script
-`research/h1_referee_pass3.py`, commit `b94ec50e`) re-derived both of pass 2's open
-defects on later HEAD and also refuted the builder's `held` report; it changes no
-conclusion here.
+Four passes. **Pass 4 (below) is the live verdict.** Pass 2 and pass 1 are kept
+underneath as evidence; pass 3 lives in `research/h1_referee_pass3.md` (script
+`research/h1_referee_pass3.py`, commit `b94ec50e`).
+
+---
+
+# Pass 4 — REFUTED (second repair round)
+
+**Row:** H1, one card per symbol (OMEN 10.0, Phase H).
+**Builder commit under review:** `a4461e0c3d6de4088750eb184868ee403e42ba53` — "H1 repair:
+cut s-blind cards at the LAST S bar (all S bars on tape) and exclude a deck's own manifest
+on rebuild; test now checks the real 5-symbol eligible set instead of asserting 0 cards".
+**Referee script:** `research/h1_referee_pass4.py`, committed beside this file. Every number
+below is re-derived by it or by the one-off snippets quoted here — none is taken from the
+builder's report or from the builder's own test.
+**Referee run:** 2026-09-06 on HEAD = `a4461e0c` = `origin/main`, 0 ahead. `1539dd7f` is an
+ancestor of HEAD.
+
+No dollar figures, no book, no trade cell, no stamped tape in this row — nothing to size-gate
+and no stamp to check. Nothing in this write-up is shown to Austin.
+
+## Verdict
+
+**Refuted.** Defect 1 is genuinely fixed and I reproduced the fix independently. **Defect 2 is
+not fixed on any path a person can actually run** — the exclusion is wired to a manifest name
+the default build never produces — and the builder's new test passes only because it hand-feeds
+`sblind_collect` a `exclude_manifest` argument that `daily_homework.main()` cannot generate for
+that deck. The test therefore still does not test the shipped path.
+
+## Defect 1 — all S bars on the one chart: FIXED (confirmed)
+
+Re-derived per card from `s_bars()` against each card's own `cut_i`, on the 2026-09-03
+rebuild (5 cards):
+
+| card | kind | first S bar (`classify`) | cut bar | every S bar | S bars past the cut |
+|---|---|---:|---:|---|---:|
+| AAPL | S fired | 14 | 14 | 14 | 0 |
+| AMD | S gated | 36 | **86** | 36, 63, 64, 82, 86 | 0 |
+| AMZN | S gated | 37 | **75** | 37, 53, 73, 75 | 0 |
+| QQQ | S gated | 86 | 86 | 86 | 0 |
+| MSFT | silent | — | 14 | (none) | 0 |
+
+Rendering AMD's card confirms the tape: 87 bars, 09:30:00 → 10:56:00, 88 `<rect>` elements in
+the SVG, and 0 occurrences of any engine token (`tier`, `fired`, `S fired`, `S gated`, `A+`).
+Pass 2's worked example — AMD showing 1 of 5 S bars — no longer reproduces: all five are on
+the tape. Nothing is *marked* at the S bars, correctly: deck kind 3 is blind by design
+("THE ENGINE IS NOT ON IT"), so "drawn on its one chart" can only mean the tape reaches them,
+and it does.
+
+## Defect 2 — a deck blocking its own rebuild: NOT FIXED on the production path
+
+`main()` derives the manifest name it passes as `exclude_manifest` from a tag:
+
+    tag = "-s10" if (a.pool == "core" and a.per_signal) else "-s"
+
+`--per-signal` is opt-in and the row's whole point is that the default is now per-symbol, so a
+default rebuild of the 2026-09-03 core deck tags `-s`, and excludes
+`omen-daily-2026-09-03-s-manifest.jsonl`, **which does not exist**. The manifest that actually
+blocks the pool — `omen-daily-2026-09-03-s10-manifest.jsonl`, 11 rows, all 11 `CORE_SYMBOLS` at
+symbol-day granularity — is not excluded. Measured (`h1_referee_pass4.py`, check C3), exactly
+reproducing what `main()` computes:
+
+| pool | `per_signal` | tag | manifest excluded | exists | cards |
+|---|---|---|---|---|---:|
+| core | **False (the new default)** | `-s` | `omen-daily-2026-09-03-s-manifest.jsonl` | **no** | **0** |
+| core | True (the old per-signal deck) | `-s10` | `omen-daily-2026-09-03-s10-manifest.jsonl` | yes | 12 |
+
+So the failing case pass 3 named — "a rerun blanks the deck, 6 cards → 0" — still reaches
+`raise SystemExit("no cards for 2026-09-03 -- nothing to send")` on the default path. The
+exclusion plumbing does work for a *same-name* rerun (build day X under tag `-s`, then rebuild
+day X under tag `-s`), which is the common forward case; it does not work for the one case the
+row and the test are about, which is replacing the `-s10` deck with a per-symbol one.
+
+## The new test does not test the shipped path
+
+`research/test_deck_one_per_symbol.py` runs, and passes:
+
+    PASS -- 2026-09-03 s-blind deck rebuild (per_signal=False, own manifest excluded):
+    5 eligible symbols ['AAPL','AMD','AMZN','MSFT','QQQ'], 0 repeats,
+    AMD cut at its last S bar (86); 2026-09-04 demo deck: 6 cards, one per symbol, 0 repeats
+
+Every cell of that line reproduces under my own code (check C4): 11 `CORE_SYMBOLS`, 6 already
+judged/served for 2026-09-03 independent of the s10 manifest (GOOGL, META, NVDA, PLTR, SPY,
+TSLA), 5 eligible, 5 cards, 0 symbol repeats, 0 card-id repeats, 0 collisions with
+`marked_card_ids() | served_card_ids()`. The builder's correction of the row's "11 cards"
+target to 5 is right, and I verified it rather than accepting it.
+
+But the test reaches that state by passing `exclude_manifest=<the s10 manifest>` by hand — a
+value `main()` produces **only** with `--per-signal`, i.e. only in the mode the row exists to
+turn off. Drop that argument, as the shipped path does, and the same call returns 0 cards. The
+test asserts a configuration the program cannot enter, which is the same failure mode pass 2
+recorded ("the assertion was rewritten to 0 cards") in a new shape.
+
+## Secondary observations (no verdict — 4 cards is far under the 30 floor)
+
+- The card's `kind` is still set by `classify()` from the **first** S bar while the cut is now
+  the **last**, so a symbol whose first S bar fired and whose last S bar was gated would be
+  labelled "S fired" on a tape ending at a gated bar. Not exercised here: on all 4 S cards of
+  2026-09-03 every S bar carries the same fired flag, so no card is mislabelled today. Latent,
+  not confirmed.
+- Moving the cut later also lengthens the tape a silent card is matched to (`match_silent`
+  pairs on `f > cut`), and shows Austin the forward outcome of the earlier S bars on the same
+  chart. That is inherent to one-card-per-symbol and is not a defect of this commit, but it is
+  a real change to what a "blind" card withholds and nothing in the row priced it.
+- `research/daily_run.cmd` calls `daily_homework.py --day <day>` with no `--mode`, so the
+  scheduled 16:15 pass builds the **full reveal** deck, not the s-blind deck. Nothing scheduled
+  builds the 11:05 blind deck at all; the new per-symbol default reaches Austin only when
+  someone runs it by hand. Pre-existing, outside this row, recorded so the next pass does not
+  re-derive it.
+
+## Standard checks
+
+| check | result |
+|---|---|
+| base | `1539dd7f` is an ancestor of HEAD; HEAD = `a4461e0c` = `origin/main` |
+| one change per row | `git show --stat a4461e0c`: 2 files, `research/daily_homework.py` (+32/−…), `research/test_deck_one_per_symbol.py`. No engine file touched. Passes |
+| mark files | `git diff --stat a4461e0c~1 a4461e0c -- research/decks/ research/marks/` is empty; no `*marks*.jsonl`, no `mark_batch_*`, no `austin_verdicts.json`, no manifest in the commit. `research/decks/omen-daily-2026-09-03-s10.html` and its manifest are byte-identical to `HEAD~` |
+| `served_card_ids()` coverage | reads `research/**/*manifest*.jsonl` recursively — 51 manifest files under `research/`, 7 under `research/decks/`; my hand-parse of every file gives the identical id set to `served_card_ids()`. All 11 s10 card ids are in the served set, and 0 of them survive `exclude=<s10 manifest>` via any other manifest |
+| verify gate at `a4461e0c` | `regression_gate.py` PASS (no baseline-fired mark went silent); `test_runner_stop.py` PASS (70 checks); `test_universe_single_source.py` PASS (29 symbols, 25 backtested) — all three run by me at this commit |
+| stamped books | none written by this row; nothing to stamp |
+| dollars | none in this row |
+| sample size | no cell in this write-up carries a verdict on fewer than 30 trades; the per-card tables above are described as counts, not verdicts |
+| plain English | nothing here is shown to Austin |
+
+## What would actually close defect 2
+
+One change: make `main()` pass the manifest of the deck it is **replacing** rather than the one
+it is about to write — or write the per-symbol core deck under the same `-s10` name so the tag
+matches. Either is one line and belongs in the next H1 repair, not in this referee pass.
 
 ---
 
