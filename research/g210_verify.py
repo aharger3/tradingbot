@@ -82,6 +82,17 @@ def verify_next_open_and_limit_level():
                 detail = f"booked={booked} vs raw range=[{l},{h}]"
             if not ok:
                 fails.append(f"{arm}: {r['sym']} {r['day']} {minute}: MISMATCH {detail}")
+            # Referee (pass 3): the range check above passes by construction
+            # for any bar in the book (_resting_fill only ever writes a fill
+            # bar it already picked) -- it does not prove the fill bar is
+            # strictly AFTER the signal bar, which is the actual no-lookahead
+            # claim. Check it here, on the same sample, against the signal's
+            # own entry_time.
+            sig_minute = (r.get("entry_time") or "")[:5]
+            if sig_minute and minute and not (minute > sig_minute):
+                fails.append(
+                    f"{arm}: {r['sym']} {r['day']}: fill minute {minute} is "
+                    f"not strictly after signal minute {sig_minute} (lookahead)")
     return checked, fails
 
 

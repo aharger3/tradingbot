@@ -345,13 +345,22 @@ def run_symbol(args):
 
 
 def avg_win_loss(rows, arm):
+    """Referee (pass 3): the original version only looked at outcome=="win"/
+    "loss", which excludes every "scratch" row -- and under blind 2R, `_walk`
+    returns exactly the target or exactly the stop for a real win/loss, so
+    both columns read a tautological +2.0000/-1.0000 on every arm by
+    construction, hiding the scratch rows that CAN land far past -1R
+    (`limit_level` worst -3.9865R, `mid_candle` worst -75.5491R). Fixed by
+    bucketing every filled row's real R multiple by its own sign (positive
+    scratches, if any, into avg win; the rest into avg loss) instead of by
+    outcome label -- matching `research/r1_repair.py`'s already-published
+    honest table."""
     if arm == "close":
-        wins = [r["committed_r"] for r in rows if r["committed_outcome"] == "win"]
-        losses = [r["committed_r"] for r in rows if r["committed_outcome"] == "loss"]
+        rs = [r["committed_r"] for r in rows]
     else:
-        filled = [r for r in rows if r[arm].get("filled")]
-        wins = [r[arm]["r"] for r in filled if r[arm]["outcome"] == "win"]
-        losses = [r[arm]["r"] for r in filled if r[arm]["outcome"] == "loss"]
+        rs = [r[arm]["r"] for r in rows if r[arm].get("filled")]
+    wins = [v for v in rs if v > 0]
+    losses = [v for v in rs if v <= 0]
     aw = round(sum(wins) / len(wins), 4) if wins else None
     al = round(sum(losses) / len(losses), 4) if losses else None
     return aw, al
@@ -504,6 +513,19 @@ def main():
     ap.add_argument("--procs", type=int, default=8)
     ap.add_argument("--out-md", default=OUT_MD)
     a = ap.parse_args()
+
+    # Referee (pass 3): OMEN_SCALE_PLAN=none is set inside each spawned WORKER
+    # (run_symbol, above) -- it forces blind 2R there, which is what actually
+    # prices every arm. But write_book() below runs in THIS (parent) process,
+    # and book_stamp.engine_flags() reads backtest_week.SCALE_PLAN off
+    # whatever is already imported HERE -- which is `g90_fill_arms`'s
+    # module-level `import backtest_week as bw`, computed before this
+    # process ever set the env var, so it reads the real default
+    # ("hod_then_runner_be"), not None. The books were priced correctly by
+    # the workers; only the PARENT's stamp read the wrong flag. Force it so
+    # the stamp matches what actually ran, same as the worker's own assert.
+    import backtest_week as _bw_parent
+    _bw_parent.SCALE_PLAN = None
 
     syms = [s for s in FULL_POOL if os.path.isdir(os.path.join(ARCHIVE_DIR, s))]
     missing = [s for s in FULL_POOL if not os.path.isdir(os.path.join(ARCHIVE_DIR, s))]
