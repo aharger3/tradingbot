@@ -36,7 +36,15 @@ which are all ignored while `RULE84_DECIDED` is on:
    (`BAR_EXTREME_FRAC`, the one 25% constant this file already uses everywhere
    else) of the original entry price — a different unit from the existing
    `RULE84_RECLAIM_TOL`, which is in R (entry-to-stop) units and was left
-   alone, per this row's own instruction not to reuse it.
+   alone. Both existing flags were unusable for the settled meaning:
+   `RULE84_ARM_SGRADE` already means "S-only" (not "S or A") and
+   `RULE84_RECLAIM_TOL` already means R units (not the previous candle's
+   range) — reusing either would silently redefine a shipped flag, so a
+   third, composite flag was the right call. (Correction, referee pass 3:
+   this is not "per this row's own instruction" — no such instruction exists
+   in the spec. The spec's Phase-L bullet names the two existing flags
+   directly; the justification above is the actual reason a third flag was
+   still correct.)
 3. Two attempts and same-session-before-11:00 are already the shipped
    defaults (`RULE84_MAX_ATTEMPTS=2`, `SESSION_END`/`ENTRY_CUTOFF="11:00"`) —
    no new flag needed for either.
@@ -82,32 +90,41 @@ arm/reclaim mechanics live upstream of the day-policy unit)
 Core-11 slice (`tier == "core"`): OFF fires 53 (18 traded); ON fires 20 (9
 traded).
 
-**Sample-size rule: neither traded column clears 30 trades.** 56 (OFF) and 20
-(ON) are both under the 30-trade floor this project holds every verdict to —
-**not enough** to call a winner or a loser on the re-entries' own mean R, only
-to describe the funnel.
+**Sample-size rule: the ON cell (20 trades) is under the 30-trade floor, so
+the comparison carries no verdict; the OFF cell's 56 does clear it.** Because
+the comparison needs both cells and one of them (ON) is short, the funnel
+still carries **not enough** to call a winner or a loser on the re-entries'
+own mean R — only to describe the funnel.
 
 ## Originals: S vs A vs C (engine ladder, `sgrade` where present, `grade`
 otherwise), joined by symbol/day/level-price to the nearest prior stopped-out
 row before the re-entry's own timestamp
 
-| | S | A | C | total 84%-rule rows at any status (all 28 syms) |
+| | S | A | C | total resolved |
 |---|---:|---:|---:|---:|
-| OFF (no arm-grade gate) | 78 | 138 | 326 | 542 |
-| ON (RULE84_DECIDED) | 69 | 116 | **15** | 200 |
+| OFF, all statuses | 80 | 129 | 316 | 525 of 542 |
+| ON, all statuses | 72 | 111 | **15** | 198 of 200 |
+| OFF, fired only | 18 | 27 | 74 | 119 |
+| ON, fired only | 16 | 21 | **2** | 39 |
 
-**Note (referee, 2026-09-05): the 542/200 denominator here is every 84%-rule
-row at any status, the same wider count the funnel table above corrected away
-from — it is not the 124/39 "fired" count. This join was not independently
-re-derived by the referee; only the funnel and gate tables above were. Read
-the S/A/C split as approximate on an approximate (unverified) denominator.
+**Corrected (referee pass 3, 2026-09-05).** This is now an exact key: the
+84%-rule row carries `level_name = "not-his: prior entry (84%)"` and
+`level_px` equal to the original's own entry price, so the original is the
+same-symbol, same-day, earlier row whose own `entry` equals that `level_px`.
+On that key (`research/l2_referee3_join.py`), 525 of 542 OFF rows and 198 of
+200 ON rows resolve with **zero ambiguity**, replacing the earlier
+approximate nearest-match join and its 78/138/326 → 69/116/15 counts.
 
-This is a nearest-match join (symbol, day, level price within 2 cents, before
-the reclaim bar), not a stored foreign key — the code has no such reference,
-so treat exact counts as approximate. The direction is unambiguous either
-way: the arm gate did what it says — C-graded originals collapsed from 326 to
-15 (the residue is join slop, not a gate failure; the code path used at the
-arm point is `_sgrade_84(t, runner) in ("S", "A")` and admits nothing else).
+The arm gate does what it says — C-graded originals collapse 316 → 15 at any
+status (74 → 2 on fires) — but the surviving 15 are **not join slop**. The
+book's `sgrade` column is `downgrade.score` evaluated at the original row's
+own entry; `backtest_week._sgrade_84` re-scores the stopped trade at **arm
+time**, using the runner's then-current `htf_bias`. Those are two different
+calls on the same trade, and they can disagree on a handful of borderline
+originals — that is the real cause of the residue, not join error. The code
+path used at the arm point is `_sgrade_84(t, runner) in ("S", "A")` and
+admits nothing else; the 15 pass that check at arm time even though the
+book's own `sgrade` column reads C for them.
 
 ## The 84% share of the book
 
@@ -116,6 +133,32 @@ signals: 1.38% (OFF) → 0.50% (ON). The rule is a small slice of the book in
 both arms; tightening the arm gate to S/A-only and the reclaim tolerance to
 the candle-range unit roughly halves the re-entry count and cuts the traded
 share to about a third.
+
+**The flag is not purely subtractive (referee pass 3).** Two of the 39
+ON-arm fires do not exist in the OFF arm at all: ORCL 2025-01-02 10:59 and
+ACHR 2026-02-02 10:15. Mechanism, verified on raw archived bars: refusing an
+early reclaim leaves the two-attempt budget intact, so the next qualifying
+bar fires instead. At ORCL's OFF-arm attempt (10:58) the reclaim gap is
+0.035 against 25% of the 10:57 candle's range (0.030) — refused — and 10:59
+fires in its place. In the core-11 day-policy candidate pool the flag
+removes 84 rows worth +$1,792 and **adds 3**, all three −$1,000 (MSFT
+2025-04-29 10:52, AMD 2026-04-06 10:55, QQQ 2026-08-21 10:29). A tightening
+that can add a losing trade is a real side effect, not just "roughly
+halves" — noted here so the next agent has it.
+
+**A downstream, inert-here side effect (referee pass 3).** Comparing the two
+books row for row, 28 rows that are **not** 84%-rule rows flip
+`status`/`traded` between `halted` and `fired`, on 9 days (2024-09-12,
+2025-06-09, 2025-07-11, 2025-09-29, 2025-10-14, 2026-03-02, 2026-04-10,
+2026-06-08, 2026-08-07) — every one of those days also carries an 84%-rule
+traded row that differs between arms, on a different symbol: the
+account-wide two-loss halt cascading off the one change. It is **inert for
+this row's headline**: the core-11 day-policy pool differs by exactly 84
+removed and 3 added, all of them 84%-rule rows, zero pnl differences on
+shared keys, so 100% of the −$5/day delta is the 84% path. It is **not**
+inert for the `every_signal` unit reported beside this one elsewhere in this
+project, where `traded` is the membership test — flagging it for whoever
+uses that unit next.
 
 ## Bottom line
 
@@ -180,6 +223,47 @@ named limitations:
   spec sentence, one composite flag by the row's own instruction). H1's
   failure cannot be attributed to one or the other from this book alone —
   isolating them would be a second flag, which is out of scope for this row.
+
+## Refereed (pass 3, 2026-09-05/06, `research/l2_referee.md` / `l2_referee3.py`
+/ `l2_referee3_join.py` / `l2_referee3_probe.py`)
+
+Pass 3 independently re-derived every headline number under a **third**
+implementation that imports neither `loop_cycle.py` nor
+`g72_suppress_price.py` — core-11, `up_to_3_stop_win_or_2loss`, close fill,
+shipped 1R stop + `hod_then_runner_be` exit, 499 sessions. Every cell
+reproduced to the dollar (769 trades, -$52 → -$57/day, 11/25 → 11/25 green,
+H1 fail, H2 pass), the stamps and book_ids matched, the semantics checked out
+clause by clause against raw archived bars (39/39 ON fires satisfy the
+tolerance once ORCL 2025-01-02 is read unrounded), and the verify gate was
+green with no mark file touched. **The decision and every number stand.**
+What was refuted was the prose around them — five defects, all fixed above:
+
+- **D9 (sample-size sentence false).** Fixed — see the corrected sentence in
+  "The row readouts."
+- **D10 ("join slop" disproved).** Fixed — the originals table now uses the
+  exact `level_px` key (525/542 OFF, 198/200 ON resolve with zero ambiguity)
+  and the real cause (two different `sgrade` evaluations — at-entry vs.
+  at-arm-time with `htf_bias`), not join error.
+- **D11 (flag can add a fire, undisclosed).** Fixed — see "The 84% share of
+  the book": 2 of 39 ON fires don't exist OFF, one traded (-$1,000); the
+  core-11 candidate pool gains 3 rows, all -$1,000.
+- **D12 (28 non-84% rows moving, undisclosed).** Fixed — same section: the
+  account-wide two-loss halt cascades onto 28 non-84% rows across 9 days,
+  inert for this row's own unit but not for the `every_signal` unit reported
+  beside it elsewhere.
+- **D13 (false citation).** Fixed — the reclaim-tolerance rationale now cites
+  the actual reason (both existing flags already carry a different meaning)
+  instead of a nonexistent instruction.
+
+**D14, still open, not fixed here.** `omen_recall.py`'s top hit for "84% rule
+arming grade gate" is still `omen-rulebook.md`'s 2026-08-28 Batch 03 line
+("No grade gate at arming") plus Austin's quote backing it — the direct
+negation of the S/A arm gate this row ships. The 2026-09-05 "What the call
+settled" table supersedes it and is law, so the code is correct, but the
+rulebook file carries no marker saying so, and it is the first thing every
+agent in this swarm reads. This report does not own `omen-rulebook.md` and
+does not edit it inside this row's one-change budget. Flagging for a
+dedicated one-line-note row rather than fixing here.
 
 ## What this does NOT establish
 
