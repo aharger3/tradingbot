@@ -35,7 +35,7 @@ from omen_bot import (
     Candle, SignalType, TradeGrade, OpeningRangeAnalyzer, TradingSession,
     BreakAndRetestDetector, RuleOf84Detector, PriceActionAnalyzer,
     detect_order_block_setup, find_fvg, detect_flag_setup, detect_break_retest,
-    HTF_BIAS_VETO, ocr_is_his, OCR_STRONG_PA_MULT
+    HTF_BIAS_VETO, ocr_is_his, OCR_STRONG_PA_MULT, ocr_has_strong_pa
 )
 from discord_bot import DiscordSignalBot
 # The ONE entry fill, the way `stop_rule` is the one stop fill. `fill_price`
@@ -61,6 +61,15 @@ OB_VOLUME_MULT = 0.0  # entry candle volume >= mult x avg(prior 10); 0 = gate of
 # ON, it takes the OCR slice from 5,394 detections to ~139 and rejects 19 of the
 # 20 killed setups he refused. See omen_bot.ocr_quality for the clause list.
 OCR_STRICT = os.getenv("OCR_STRICT", "0").strip().lower() in ("1", "true", "yes", "on")
+# L3 (omen-10.0, 2026-09-05 call, spec Phase L). Audited against OCR_STRICT: that
+# flag ADDITIONALLY requires clear_break and quick, clauses the rulebook sentence
+# never names -- "OCR entry = retest of the OCR extreme after the break, with
+# strong PA and displacement" (2026-09-05 call; omen-rulebook.md). Retest
+# (OB_RETEST_TYPES) and displacement (omen_bot._has_displacement) are already
+# enforced unconditionally upstream of both flags. This flag adds only the
+# remaining clause -- strong PA -- via omen_bot.ocr_has_strong_pa. OFF by
+# default; OCR_STRICT is untouched.
+OCR_RETEST_DISPLACEMENT = os.getenv("OCR_RETEST_DISPLACEMENT", "0").strip().lower() in ("1", "true", "yes", "on")
 # 30d A/B 2026-07-05: FVG retests diluted B&R badly (206 trades @33% -$216 vs
 # 28 @50% +$1400 raw-level only; 0.1%-min-gap variant still +$277).
 # OPUS-SPEC #2: FVG retest zones (2026-07-12)
@@ -3251,7 +3260,9 @@ class SignalRunner:
                                    _ob["break_idx"], "bullish")):
             block = None
         if (block is not None and retest in OB_RETEST_TYPES
-                and current.close > block.high and _volume_ok(self.candles)):
+                and current.close > block.high and _volume_ok(self.candles)
+                and (not OCR_RETEST_DISPLACEMENT
+                     or ocr_has_strong_pa(self.candles, "bullish"))):
             entry = order_fill(block.high, current, is_long=True)  # T3(b)
             # T24: the OCR candle's far wick is placement (a) and is what this
             # detector already books; the flag can route it elsewhere. No-op on
@@ -3515,7 +3526,9 @@ class SignalRunner:
                                    _ob["break_idx"], "bearish")):
             block = None
         if (block is not None and retest in OB_RETEST_TYPES
-                and current.close < block.low and _volume_ok(self.candles)):
+                and current.close < block.low and _volume_ok(self.candles)
+                and (not OCR_RETEST_DISPLACEMENT
+                     or ocr_has_strong_pa(self.candles, "bearish"))):
             entry = order_fill(block.low, current, is_long=False)  # T3(b)
             # T24: mirror of the call side. No-op on the default.
             ob_stop = placed_stop(SignalType.ONE_CANDLE_RULE, block.high, current, False,

@@ -74,7 +74,7 @@ FLAG_SOURCES = (
         # anything derived from it -- depend on how much of the book had been
         # simulated when it was read, which is the opposite of a fingerprint.
     ("signal_runner", (
-        "ON_WATCH", "OCR_STRICT", "BNR_DISPLACEMENT_GATE", "COUNTER_TREND_CAP",
+        "ON_WATCH", "OCR_STRICT", "OCR_RETEST_DISPLACEMENT", "BNR_DISPLACEMENT_GATE", "COUNTER_TREND_CAP",
         "GRADE_FIX", "HTF_BIAS_GATE", "RULE84_OFF", "RULE84_STRICT",
         "RULE84_ARM_SGRADE", "RULE84_ARM_NOGATE", "RULE84_SOURCE",
         "RULE84_MAX_ATTEMPTS", "X_LIFT", "MIN_STOP_PCT", "NO_REPEAT_ENTRIES",

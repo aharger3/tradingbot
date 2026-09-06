@@ -528,6 +528,28 @@ def ocr_is_his(candles: List[Candle], block: Candle, block_idx: int,
     return q["clear_break"] and q["quick"] and q["strong_pa"]
 
 
+def ocr_has_strong_pa(candles: List[Candle], direction: str) -> bool:
+    """L3 (omen-10.0, 2026-09-05): just the strong-PA clause of the rulebook
+    sentence -- "OCR entry = retest of the OCR extreme after the break, with
+    strong PA and displacement". Retest and displacement are already enforced
+    unconditionally upstream by detect_order_block_setup + OB_RETEST_TYPES;
+    this is the entry candle closing in the trade direction with body >=
+    OCR_STRONG_PA_MULT x avg body of the prior 10.
+
+    Deliberately NOT the same test as OCR_STRICT/ocr_is_his: that flag also
+    requires clear_break and quick, clauses the rulebook sentence never names.
+    OCR_RETEST_DISPLACEMENT wants only this clause, so it gets its own
+    function rather than reusing ocr_is_his's stricter, different sentence.
+    """
+    bull = direction == "bullish"
+    cur = candles[-1]
+    prior = candles[max(0, len(candles) - 1 - 10):len(candles) - 1]
+    avg_body = (sum(c.body_size for c in prior) / len(prior)) if prior else 0.0
+    body_ratio = (cur.body_size / avg_body) if avg_body > 0 else float("inf")
+    dir_ok = cur.is_bullish if bull else cur.is_bearish
+    return bool(dir_ok and body_ratio >= OCR_STRONG_PA_MULT)
+
+
 def find_fvg(candles: List[Candle], direction: str = "bullish", lookback: int = 15):
     """Most recent Fair Value Gap in the last `lookback` candles, or None.
 
