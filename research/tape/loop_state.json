@@ -1,6 +1,6 @@
 {
-  "cycle_count": 2,
-  "consecutive_holds": 2,
+  "cycle_count": 3,
+  "consecutive_holds": 3,
   "target_met": false,
   "history": [
     {
@@ -22,6 +22,16 @@
       "dollars_per_day_after": -57.0,
       "green_before": 11,
       "green_after": 11
+    },
+    {
+      "cycle": 3,
+      "flag": "OCR_RETEST_DISPLACEMENT",
+      "label": "the one-candle-rule entry only when the retest candle is strong",
+      "decision": "hold",
+      "dollars_per_day_before": -52.0,
+      "dollars_per_day_after": -58.0,
+      "green_before": 11,
+      "green_after": 10
     }
   ],
   "stop": false,

@@ -528,26 +528,26 @@ def ocr_is_his(candles: List[Candle], block: Candle, block_idx: int,
     return q["clear_break"] and q["quick"] and q["strong_pa"]
 
 
-def ocr_has_strong_pa(candles: List[Candle], direction: str) -> bool:
+def ocr_has_strong_pa(candles: List[Candle], block: Candle, block_idx: int,
+                      break_idx: int, direction: str) -> bool:
     """L3 (omen-10.0, 2026-09-05): just the strong-PA clause of the rulebook
     sentence -- "OCR entry = retest of the OCR extreme after the break, with
     strong PA and displacement". Retest and displacement are already enforced
     unconditionally upstream by detect_order_block_setup + OB_RETEST_TYPES;
     this is the entry candle closing in the trade direction with body >=
-    OCR_STRONG_PA_MULT x avg body of the prior 10.
+    OCR_STRONG_PA_MULT x avg body of the prior 10 -- exactly ocr_quality's
+    "strong_pa" clause, delegated to rather than re-derived here.
 
     Deliberately NOT the same test as OCR_STRICT/ocr_is_his: that flag also
-    requires clear_break and quick, clauses the rulebook sentence never names.
-    OCR_RETEST_DISPLACEMENT wants only this clause, so it gets its own
-    function rather than reusing ocr_is_his's stricter, different sentence.
+    requires clear_break ("after the break" in the rulebook sentence, and the
+    clause his own marks name -- probe_master_2026-08-29#fact_ocr_demote,
+    recovered_reviews#TSLA_2026-01-23, recovered_reviews#PLTR_2026-02-18) and
+    quick. OCR_RETEST_DISPLACEMENT wants only strong PA on top of the retest
+    and displacement already enforced upstream, per the spec's settled table
+    row; whether clear_break belongs in this flag too is a follow-on question
+    (referee, research/l3_referee.md section 6 defect 5), not decided here.
     """
-    bull = direction == "bullish"
-    cur = candles[-1]
-    prior = candles[max(0, len(candles) - 1 - 10):len(candles) - 1]
-    avg_body = (sum(c.body_size for c in prior) / len(prior)) if prior else 0.0
-    body_ratio = (cur.body_size / avg_body) if avg_body > 0 else float("inf")
-    dir_ok = cur.is_bullish if bull else cur.is_bearish
-    return bool(dir_ok and body_ratio >= OCR_STRONG_PA_MULT)
+    return ocr_quality(candles, block, block_idx, break_idx, direction)["strong_pa"]
 
 
 def find_fvg(candles: List[Candle], direction: str = "bullish", lookback: int = 15):

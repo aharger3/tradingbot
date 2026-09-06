@@ -3262,7 +3262,8 @@ class SignalRunner:
         if (block is not None and retest in OB_RETEST_TYPES
                 and current.close > block.high and _volume_ok(self.candles)
                 and (not OCR_RETEST_DISPLACEMENT
-                     or ocr_has_strong_pa(self.candles, "bullish"))):
+                     or ocr_has_strong_pa(self.candles, block, _ob["block_idx"],
+                                          _ob["break_idx"], "bullish"))):
             entry = order_fill(block.high, current, is_long=True)  # T3(b)
             # T24: the OCR candle's far wick is placement (a) and is what this
             # detector already books; the flag can route it elsewhere. No-op on
@@ -3528,7 +3529,8 @@ class SignalRunner:
         if (block is not None and retest in OB_RETEST_TYPES
                 and current.close < block.low and _volume_ok(self.candles)
                 and (not OCR_RETEST_DISPLACEMENT
-                     or ocr_has_strong_pa(self.candles, "bearish"))):
+                     or ocr_has_strong_pa(self.candles, block, _ob["block_idx"],
+                                          _ob["break_idx"], "bearish"))):
             entry = order_fill(block.low, current, is_long=False)  # T3(b)
             # T24: mirror of the call side. No-op on the default.
             ob_stop = placed_stop(SignalType.ONE_CANDLE_RULE, block.high, current, False,

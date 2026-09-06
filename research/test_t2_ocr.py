@@ -25,7 +25,7 @@ ROOT = os.path.dirname(HERE)
 sys.path.insert(0, ROOT)
 os.environ.setdefault("POLYGON_API_KEY", "unset")
 
-from omen_bot import (Candle, ocr_quality, ocr_is_his,        # noqa: E402
+from omen_bot import (Candle, ocr_quality, ocr_is_his, ocr_has_strong_pa,  # noqa: E402
                       OCR_STRONG_PA_MULT, OCR_QUICK_BLOCK_TO_BREAK,
                       OCR_QUICK_BREAK_TO_ENTRY)
 import signal_runner as sr                                    # noqa: E402
@@ -97,6 +97,23 @@ def main():
           OCR_STRONG_PA_MULT == sr.STRONG_PA_MULT)
     check("OCR_STRICT is OFF by default (R3 ships ON, this lever ships behind a flag)",
           sr.OCR_STRICT is False)
+    check("OCR_RETEST_DISPLACEMENT is OFF by default (L3 ships behind a flag)",
+          sr.OCR_RETEST_DISPLACEMENT is False)
+
+    # --- L3: ocr_has_strong_pa delegates to ocr_quality, does not re-derive --
+    # (referee, research/l3_referee.md section 6 defect 6/7): guard against the
+    # two clauses drifting apart, across every case above that varies strong_pa.
+    for label, kwargs in [
+        ("clean setup", dict(entry_body=3.0, leave=True, break_to_entry=3, block_to_break=2)),
+        ("doji entry", dict(entry_body=0.5, leave=True, break_to_entry=3)),
+        ("red entry on a long", dict(entry_body=3.0, leave=True, break_to_entry=3,
+                                     entry_bullish=False)),
+    ]:
+        cs, bi, ki, blk = build(**kwargs)
+        q = ocr_quality(cs, blk, bi, ki, "bullish")
+        got = ocr_has_strong_pa(cs, blk, bi, ki, "bullish")
+        check("ocr_has_strong_pa == ocr_quality['strong_pa'] (%s)" % label,
+              got == q["strong_pa"])
 
     # --- the happy path --------------------------------------------------
     cs, bi, ki, blk = build(entry_body=3.0, leave=True, break_to_entry=3,
