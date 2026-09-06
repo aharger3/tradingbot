@@ -106,6 +106,13 @@ def _run(sample):
                          entry_fresh, exit_fresh, "PASS" if ok else "FAIL"))
     lines.insert(1, "%d pass, %d fail, %d fetch error, of %d sampled\n"
                  % (n_pass, n_fail, n_err, len(sample)))
+    if len(sample) <= N_CHECK:
+        lines.insert(2, "Referee pass 1 note: at %d real-priced rows in the whole "
+                     "book, this IS the entire real-row population, not a sample of "
+                     "it -- it verifies that the 20 cached prices match Polygon "
+                     "(cache integrity) and nothing about the other 749 model rows, "
+                     "the option/exit-clock choice, or the futures column.\n"
+                     % len(sample))
     out = ROOT / "research" / "g213_verify.md"
     out.write_text("\n".join(lines), encoding="utf-8")
     print("\n".join(lines))

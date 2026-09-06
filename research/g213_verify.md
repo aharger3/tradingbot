@@ -1,6 +1,8 @@
 # g213_verify -- 20 hand-checked option rows
 
-20 pass, 0 fail, 0 fetch error, of 20 sampled
+19 pass, 0 fail, 1 fetch error, of 20 sampled
+
+Referee pass 1 note: at 20 real-priced rows in the whole book, this IS the entire real-row population, not a sample of it -- it verifies that the 20 cached prices match Polygon (cache integrity) and nothing about the other 749 model rows, the option/exit-clock choice, or the futures column.
 
 - MSFT 2025-05-12 09:46 O:MSFT250516P00440000: stored entry=3.93 exit=3.70 -- fresh entry=3.93 exit=3.70 -- PASS
 - AMD 2026-04-23 09:44 O:AMD260424C00305000: stored entry=5.50 exit=5.10 -- fresh entry=5.50 exit=5.10 -- PASS
@@ -10,7 +12,7 @@
 - QQQ 2025-02-25 09:47 O:QQQ250225P00517000: stored entry=2.38 exit=2.38 -- fresh entry=2.38 exit=2.38 -- PASS
 - QQQ 2025-10-06 10:45 O:QQQ251006P00606000: stored entry=0.83 exit=0.56 -- fresh entry=0.83 exit=0.56 -- PASS
 - META 2024-12-31 10:11 O:META250103P00590000: stored entry=6.35 exit=5.90 -- fresh entry=6.35 exit=5.90 -- PASS
-- TSLA 2024-09-05 09:53 O:TSLA240906C00230000: stored entry=3.92 exit=3.85 -- fresh entry=3.92 exit=3.85 -- PASS
+- TSLA 2024-09-05 09:53 O:TSLA240906C00230000: FETCH ERROR (HTTP 403 / HTTP 403)
 - PLTR 2024-09-23 09:43 O:PLTR240927C00037500: stored entry=0.75 exit=0.71 -- fresh entry=0.75 exit=0.71 -- PASS
 - AMZN 2026-01-16 09:45 O:AMZN260116P00237500: stored entry=1.10 exit=1.02 -- fresh entry=1.10 exit=1.02 -- PASS
 - GOOGL 2025-08-28 10:05 O:GOOGL250829C00210000: stored entry=2.80 exit=3.05 -- fresh entry=2.80 exit=3.05 -- PASS

@@ -122,6 +122,11 @@ FUT_RATIO_SOURCE = ("standard SPX~=10xSPY and NDX~=41.35xQQQ rules of thumb "
 FUT_TICK = {"MES": 0.25, "MNQ": 0.25, "M2K": 0.10}
 FUT_MULT = {"MES": 5.0, "MNQ": 2.0, "M2K": 5.0}
 FUT_COMMISSION_PER_SIDE = 0.62
+# Approximate day-session (intraday) margins, broker-published rule-of-thumb
+# figures as of 2026-09, NOT fit to any specific broker/date -- referee
+# defect: this row's spec required a margin figure and none was in the file.
+# These are for capital-requirement DISCLOSURE only; they do not change pnl.
+FUT_DAY_MARGIN = {"MES": 50.0, "MNQ": 100.0, "M2K": 50.0}
 
 
 def round_tick(px, tick):
@@ -146,11 +151,14 @@ def price_futures(r):
     actual_r_dollars = contracts * risk_per_contract
     commission = 2 * FUT_COMMISSION_PER_SIDE * contracts
     pnl = r["r"] * actual_r_dollars - commission
+    notional = idx_entry * mult * contracts
+    day_margin = FUT_DAY_MARGIN[fut] * contracts
     return {"instrument": fut, "ratio": ratio, "contracts": contracts,
             "risk_per_contract": round(risk_per_contract, 2),
             "actual_r_dollars": round(actual_r_dollars, 2),
             "commission": round(commission, 2), "pnl": round(pnl, 2),
-            "r_effective": round(pnl / actual_r_dollars, 4)}
+            "r_effective": round(pnl / actual_r_dollars, 4),
+            "notional": round(notional, 2), "day_margin": round(day_margin, 2)}
 
 
 # -------------------------------------------------------------- options model
@@ -299,7 +307,11 @@ def price_options(r, cache_only=True):
                 "contracts": contracts, "actual_r_dollars": actual_r_dollars,
                 "entry_opt": real["entry_opt"], "exit_opt": real["exit_opt"],
                 "pnl": round(pnl, 2), "r_effective": round(pnl / actual_r_dollars, 4)}
-    spread_cost = 2 * SPREAD * MULT * contracts
+    # Referee defect (T2 pass 1): this used to charge 2 x SPREAD, i.e. two
+    # full quoted widths ($10/contract) round trip. Standard convention is
+    # ONE full width from mid ($5/contract): half the spread lost on entry,
+    # half on exit. Fixed to the standard convention.
+    spread_cost = SPREAD * MULT * contracts
     pnl = r["r"] * actual_r_dollars - spread_cost
     return {"instrument_source": "model", "contracts": contracts,
             "actual_r_dollars": actual_r_dollars, "spread_cost": round(spread_cost, 2),
@@ -338,9 +350,14 @@ def stage_fetch(cap_minutes=110):
         done.add(rid)
         n_new += 1
         if err == "403":
-            print("g213_instruments: 403 on %s %s -- stopping the fetch pass early" % (r["sym"], r["day"]), flush=True)
-            stopped_early = True
-            break
+            # Referee defect (T2 pass 1): this used to `break`, so ONE
+            # out-of-window row (Polygon Options Basic has a rolling ~2-year
+            # lookback) ended the entire fetch pass. A 403 is cached
+            # permanently on that row's catalog/agg file (see catalog() /
+            # option_minutes()), so it never re-spends a call -- `continue`
+            # to the next row instead of aborting the whole pass.
+            print("g213_instruments: 403 on %s %s -- that row falls back to the model, continuing" % (r["sym"], r["day"]), flush=True)
+            continue
         if n_new % 25 == 0:
             PROGRESS.write_text(json.dumps({"done_ids": sorted(done)}))
             print("g213_instruments: fetched %d/%d, %.1fm elapsed" %
@@ -395,6 +412,24 @@ def stage_report():
             "h2": g72_stats(h2, n_days_h2) if h2 and n_days_h2 else {},
         }
 
+    # Referee defect (T2 pass 1): the published report set futures' $/day
+    # (99 SPY/QQQ rows) beside shares' whole-window $/day (all 769 rows) as
+    # though matched. Add the SAME 99 rows priced as shares, so futures is
+    # judged against its own subset, not the whole book.
+    # Same denominator convention the "futures" section itself uses
+    # (n_days_all, the whole-window trading-day count) -- otherwise the
+    # $/day comparison mismatches on the denominator instead of matching on
+    # the row set.
+    fut_rows_full = [t for t in trades_out if "pnl" in t.get("futures", {})]
+    matched_shares_rows = [{"day": t["day"], "pnl": t["shares"]["pnl"]} for t in fut_rows_full]
+    sections["shares_matched_to_futures"] = {
+        "n": len(matched_shares_rows),
+        "whole": g72_stats(matched_shares_rows, n_days_all) if matched_shares_rows and n_days_all else {},
+    }
+    if fut_rows_full:
+        notionals = sorted(t["futures"]["notional"] for t in fut_rows_full)
+        sections["futures"]["median_notional"] = notionals[len(notionals) // 2]
+
     out_meta = book_stamp.stamp(unit, unit="up_to_3_stop_win_or_2loss",
                                  baseline_book=str(BASELINE.relative_to(ROOT)),
                                  baseline_book_id=meta["stamp"]["book_id"],
@@ -422,25 +457,58 @@ def cell(s, min_trades=30, min_months=12):
 
 def write_report(sections, n_real, n_model, n_unit, out_meta):
     pct_real = round(100 * n_real / n_unit, 1) if n_unit else 0.0
+    dirty = out_meta.get("git", {}).get("dirty_py_count")
     lines = []
     lines.append("# g213 -- instrument columns, T2\n")
     lines.append("Baseline: `%s` (book_id %s), unit `up_to_3_stop_win_or_2loss`, "
                   "universe.CORE_SYMBOLS (tier=='core', 11 symbols), fill=close. "
                   "%d unit rows priced. Script: `research/g213_instruments.py`.\n"
                   % (BASELINE.name, out_meta["baseline_book_id"], n_unit))
+    if dirty:
+        lines.append("**Tree was dirty at build time (%d .py file(s) uncommitted).** "
+                      "Rebuild after committing this repair to get a clean-tree stamp "
+                      "if that matters for your use of this book.\n" % dirty)
     lines.append("Options priced from real Polygon 1-minute option aggregates for "
                   "**%d of %d rows (%.1f%%)**; the rest (%d rows) fall back to the "
-                  "0.42-delta + $0.05-spread model because the wall-clock fetch cap "
-                  "(110 min) was reached, a contract/expiry was not listed, or Polygon "
-                  "returned 403/no data for that leg. `instrument_source` on every "
-                  "row in `research/tape/instruments_2026-09-05.json.gz` says which.\n"
-                  % (n_real, n_unit, pct_real, n_unit - n_real))
+                  "0.42-delta + $0.05-spread model. Referee pass 1 found the real "
+                  "coverage this low mainly because (a) Polygon Options Basic has a "
+                  "rolling ~2-year lookback -- a live probe got a 403 on a contract "
+                  "that returned 200 the night before -- and (b) the fetch loop used "
+                  "to `break` on the FIRST 403 instead of `continue`, so one "
+                  "out-of-window row ended the whole pass; both are now fixed "
+                  "(`continue`, permanently cached per-row so it never re-spends a "
+                  "call), but this report was NOT re-fetched against live Polygon as "
+                  "part of this repair, so the %d/%d coverage number itself is "
+                  "unchanged from before the fix. `instrument_source` on every row in "
+                  "`research/tape/instruments_2026-09-05.json.gz` says which.\n"
+                  % (n_real, n_unit, pct_real, n_unit - n_real, n_real, n_unit))
     lines.append("Futures ratio (SPY->MES 10.0x, QQQ->MNQ 41.35x) is a rule-of-thumb, "
                   "**not fit to data** -- no ES/MES or NQ/MNQ 1-minute bars exist under "
                   "`data_archive/` on this box, so `research/g213_verify.py` reports "
                   "this UNVERIFIED rather than checked against a 7-day overlap "
                   "(the row's own fallback clause). IWM->M2K is defined but never "
-                  "exercised: IWM is not in `universe.CORE_SYMBOLS`.\n")
+                  "exercised on this book: IWM is in `universe.INDEX_POOL` but not in "
+                  "`universe.CORE_SYMBOLS`, the tier this baseline trades.\n")
+    lines.append("**What the futures column actually measures (referee pass 1).** "
+                  "Integer-contract sizing pins `actual_r_dollars` to within about "
+                  "+-2 pct of $1,000 no matter what the SPY->MES / QQQ->MNQ ratio is, so "
+                  "`pnl = r * actual_r_dollars - commission` is barely more than "
+                  "shares-R minus $1.24/contract commission -- re-pricing all 99 rows "
+                  "at ratio shocks of +-0.5/1/2/5/10 pct moves $/day by about $1 and "
+                  "green months not at all. **This column cannot tell you anything "
+                  "about the SPY:SPX or QQQ:NDX basis; it tells you what commission "
+                  "does to the shares number.** Day margin (required by this row's "
+                  "spec, missing before this repair) is now reported per trade as an "
+                  "approximate, not-fit-to-any-broker figure "
+                  "(MES $50/contract, MNQ $100/contract) -- median notional on the "
+                  "futures-eligible rows is roughly $%s.\n"
+                  % "{:,.0f}".format(sections["futures"].get("median_notional", 0)))
+    lines.append("**Futures is worse than shares on the same rows, not better "
+                  "(referee pass 1).** The published version set futures' $/day "
+                  "beside shares' whole-window $/day (99 rows vs all 769) as though "
+                  "matched. On the SAME 99 SPY/QQQ rows: shares %s vs futures %s -- "
+                  "futures loses to shares by commission alone.\n"
+                  % (cell(sections["shares_matched_to_futures"]["whole"]), cell(sections["futures"]["whole"])))
     lines.append("Sample-size rule (SWARM.md): a cell under 30 trades or 12 months "
                   "gets no verdict, just the count -- marked inline below. Only %d "
                   "rows are real-priced, so the real-vs-model split itself has no "
@@ -448,23 +516,99 @@ def write_report(sections, n_real, n_model, n_unit, out_meta):
     lines.append("Why the options model column is this negative: at this engine's "
                   "typical stop distance, a delta-sized position needs dozens of "
                   "contracts to reach $1,000 of risk (median ~34 contracts across the "
-                  "model-priced rows here), and the flat $0.05 round-trip spread cost "
-                  "scales with contract count -- median spread cost per trade is "
-                  "**$340**, before the option has moved at all. That is a real "
-                  "structural cost of trading tight-stop setups as options, not a "
-                  "modeling artifact; the 15 real-bar rows above show the same-shaped "
-                  "trades landing both ways (wins to +$4,895, losses to -$1,700) but "
-                  "are too few to say whether the model's spread drag overstates or "
-                  "understates the real cost.\n")
+                  "model-priced rows here), and the round-trip spread cost scales with "
+                  "contract count. **Spread convention fixed this repair** (referee "
+                  "pass 1): it used to charge TWO full quoted widths ($10/contract "
+                  "round trip) on model rows and zero on the 20 real rows -- the only "
+                  "verified rows were the only rows exempt from the assumption that "
+                  "drove the headline. It now charges the standard ONE full width from "
+                  "mid ($5/contract). The %d real-bar rows above are ladder-scale-out "
+                  "trades priced at a single entry-to-last-exit-leg option price, which "
+                  "does not price the same trade the shares row booked for scaled "
+                  "exits (most of the 20) -- this is a known, unfixed divergence "
+                  "between the option pricing and the shares pricing for scaled "
+                  "trades, not evidence about option convexity.\n" % n_real)
     for name in ("shares", "futures", "options"):
         s = sections[name]
         lines.append("## %s (%d trades)\n" % (name.capitalize(), s["n"]))
         lines.append("- whole window: %s" % cell(s["whole"]))
         lines.append("- H1 (before 2025-09-01): %s" % cell(s["h1"]))
         lines.append("- H2 (2025-09-01 on): %s\n" % cell(s["h2"]))
+    lines.append("## Shares, matched to the futures-eligible subset (%d trades)\n"
+                  % sections["shares_matched_to_futures"]["n"])
+    lines.append("- whole window: %s\n" % cell(sections["shares_matched_to_futures"]["whole"]))
     lines.append("Single names (AAPL AMD AMZN GOOGL META MSFT NVDA PLTR TSLA) have no "
                   "futures column (`instrument: \"n/a\"` on those rows) -- only "
                   "SPY and QQQ trade as futures micros in this universe.\n")
+    lines.append("## Refereed (T2 repair, referee pass 1)\n")
+    lines.append("**Fixed in this repair:**\n")
+    lines.append("1. Spread convention: was charging two full quoted widths "
+                  "($10/contract round trip); now charges the standard one full "
+                  "width from mid ($5/contract). Options headline moved from "
+                  "-$607/day 2/25 green to -$326/day 4/25 green.")
+    lines.append("2. Futures-vs-shares comparison: was comparing futures' 99-row "
+                  "$/day against shares' all-769-row $/day as though matched. Added "
+                  "the \"Shares, matched to the futures-eligible subset\" section "
+                  "above (same 99 rows, same denominator convention) -- shares "
+                  "$17/day beats futures $12/day on the identical rows; futures is "
+                  "worse by commission, not better.")
+    lines.append("3. Day margin (required by this row's spec, absent before this "
+                  "repair): added as an approximate, not-fit-to-any-broker figure "
+                  "per contract (MES $50, MNQ $100), plus notional, on every "
+                  "futures-priced row.")
+    lines.append("4. Fetch loop broke on the FIRST 403 instead of continuing; one "
+                  "out-of-window row ended the whole two-year pass. Now `continue`s "
+                  "(the 403 is cached permanently on that row so it never re-spends "
+                  "a call). Confirmed live during this repair's verify re-run: the "
+                  "TSLA 2024-09-05 row, real-priced when the original book was "
+                  "built, now returns a fresh HTTP 403 from Polygon -- direct "
+                  "evidence of the rolling ~2-year lookback the referee named as "
+                  "the real cause, not the 110-minute wall-clock cap.")
+    lines.append("5. \"the 15 real-bar rows above\" corrected to the actual real-bar "
+                  "count (computed, not a hardcoded number).")
+    lines.append("6. IWM->M2K wording corrected: IWM IS in `universe.INDEX_POOL`, "
+                  "just not in `universe.CORE_SYMBOLS` (the tier this baseline "
+                  "trades) -- the prior wording implied IWM was absent from "
+                  "universe.py entirely.")
+    lines.append("7. Dirty-tree-at-build-time is now disclosed in this report when "
+                  "`meta.git.dirty_py_count` is nonzero.")
+    lines.append("8. `g213_verify.py` now states explicitly that its 20-row check "
+                  "is the entire real-row population, not a sample of it, and "
+                  "verifies cache integrity only.\n")
+    lines.append("**Refuted, kept as a disclosed limitation (not fixable inside "
+                  "this row without a second change):**\n")
+    lines.append("1. The futures column is fundamentally insensitive to the "
+                  "SPY:SPX / QQQ:NDX basis it claims to model: integer-contract "
+                  "sizing pins `actual_r_dollars` within about +-2 pct of $1,000 "
+                  "regardless of the ratio used (re-priced at +-0.5/1/2/5/10 pct "
+                  "ratio shocks: $/day moves ~$1, green months unchanged). This is "
+                  "a structural property of integer sizing on a fixed-R book, not a "
+                  "bug this repair can code its way out of -- the report above now "
+                  "says plainly that this column reads as \"shares R minus "
+                  "commission,\" not a futures venue simulation. Fixing it for real "
+                  "would mean pricing risk in index points directly rather than "
+                  "converting a shares-R figure, which is a second, larger change "
+                  "outside this row's scope.")
+    lines.append("2. 14 of the 20 real-bar option rows are ladder scale-out trades "
+                  "(30/30/30/10) priced as a single entry-close to last-exit-leg "
+                  "close, which does not price the same trade the shares row "
+                  "booked for scaled exits, and 4 of 20 flip P&L sign against "
+                  "shares on that account. Pricing each leg separately needs the "
+                  "per-leg exit clocks that `backtest_2y.py`'s ladder produces "
+                  "internally but does not export on this row's trade record -- a "
+                  "second change to what the baseline book carries, not something "
+                  "fixable inside `g213_instruments.py` alone.")
+    lines.append("3. Real-bar coverage remains 20/769 (2.6%) in this repair's "
+                  "output: the break-on-403 bug is fixed (see item 4 above), but a "
+                  "live 2-year re-fetch was not re-run as part of this repair (would "
+                  "cost a fresh ~110-minute background pass against Polygon's "
+                  "5-calls/min limit); a future `--stage fetch` run will pick up "
+                  "more real coverage than this book has today.")
+    lines.append("4. Commits `07c35df8` and `ccd7fa06` (T2's original build) are "
+                  "both `wip: auto-commit` messages that do not name the row or "
+                  "number -- history cannot be rewritten under this project's "
+                  "never-rebase rule, so they stand uncorrected; this repair's own "
+                  "commit names the row and the number that moved.\n")
     REPORT_MD.write_text("\n".join(lines), encoding="utf-8")
 
 
