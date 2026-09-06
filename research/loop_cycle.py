@@ -271,7 +271,15 @@ def build_book(env_overrides: dict, out_gz: Path, rebuild_cfg: dict, smoke: bool
     cmd += ["--out", str(tmp_json)]
     env = dict(os.environ)
     env.update(rebuild_cfg.get("env", {}))
-    env.update({str(k): str(v) for k, v in env_overrides.items()})
+    for k, v in env_overrides.items():
+        # O4 repair (referee pass 2, DEFECT-2): a value of None means "make sure
+        # this key is ABSENT" -- used by the OFF arm to strip an ambient env var
+        # so the OFF book always reflects the flag's true code default, never
+        # whatever happened to be exported in the shell that launched the loop.
+        if v is None:
+            env.pop(str(k), None)
+        else:
+            env[str(k)] = str(v)
     env["PYTHONIOENCODING"] = "utf-8"
     log_path = LOGS / (tag + ".log")
     print("  $ %s -> %s (log: %s)" % (" ".join(cmd), out_gz.name, log_path))
@@ -293,7 +301,11 @@ def stage_build(cfg: dict, flag: str, on_value: str, smoke: bool) -> dict:
     rebuild = cfg["rebuild"]
 
     print("building OFF arm (%s left at its default) -> %s" % (flag, off_path))
-    build_book({}, off_path, rebuild, smoke)
+    # O4 repair (referee pass 2, DEFECT-2): pass {flag: None} rather than {} --
+    # None tells build_book to pop the key from the subprocess env outright, so
+    # an ambient value equal to --on's value (or any other stray export) cannot
+    # leak into the arm meant to prove "the code changed nothing".
+    build_book({flag: None}, off_path, rebuild, smoke)
     off_meta, off_rows = load_book_any(off_path)
 
     if smoke:
@@ -390,6 +402,16 @@ def stage_gate(cfg: dict, flag: str, label: str, dry_run: bool) -> dict:
     active_whole = after["whole"] if decision == "ship" else before["whole"]
     met = target_met(active_whole, cfg["targets"])
 
+    # O4 repair (referee pass 2, DEFECT-1): everything in this block MUTATES
+    # persistent state -- loop_state.json's cycle_count/consecutive_holds (the
+    # counter MAX_CONSECUTIVE_HOLDS stops the loop on) and the cycles.md
+    # ledger. --dry-run means "show me the decision, change nothing", so the
+    # whole block is computed on a disposable copy of the state and none of it
+    # is written when dry_run is set. Previously STATE_JSON.write_text and
+    # append_cycle_row ran unconditionally and only the ntfy push was guarded,
+    # so re-inspecting a gate with --dry-run silently advanced the stop
+    # counter -- loop_state.json's own _repair_note records this firing twice
+    # in production, both patched by hand after the fact.
     state = load_state()
     state["cycle_count"] += 1
     state["consecutive_holds"] = 0 if decision == "ship" else state["consecutive_holds"] + 1
@@ -406,12 +428,13 @@ def stage_gate(cfg: dict, flag: str, label: str, dry_run: bool) -> dict:
         "green_before": before["whole"].get("months_green"),
         "green_after": after["whole"].get("months_green"),
     })
-    STATE_JSON.write_text(json.dumps(state, indent=2), encoding="utf-8")
-
-    append_cycle_row(state["cycle_count"], label, flag, decision, before, after,
-                     h1v, h2v, off_path, on_path, "research/loop_cycle.py")
 
     if not dry_run:
+        STATE_JSON.write_text(json.dumps(state, indent=2), encoding="utf-8")
+
+        append_cycle_row(state["cycle_count"], label, flag, decision, before, after,
+                         h1v, h2v, off_path, on_path, "research/loop_cycle.py")
+
         line = ("[OMEN] cycle %d: %s -- %s. $/day %s -> %s, green months %s -> %s"
                 % (state["cycle_count"], label, "shipped" if decision == "ship" else "held",
                    before["whole"].get("per_day"), after["whole"].get("per_day"),
