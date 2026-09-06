@@ -749,3 +749,298 @@ python research/r1_referee3.py achr
 python research/r1_referee3.py uniform
 python research/r1_referee3.py pairci
 ```
+
+---
+---
+
+# R1 referee — FOURTH PASS, post pass-3 repair — **REFUTED** (the published headline), on the builder's commit `0f6a826a`
+
+Referee: fourth pass, told to refute. Builder's repair landed inside commit
+**`0f6a826a`** (see standard checks — it is an unattended auto-commit, not a
+row commit). Report `research/g210_fill_arms_v2.md`; changed code
+`research/g210_fill_arms_v2.py`, `research/g210_verify.py`. Referee code for
+this pass: **`research/r1_referee4.py`** — a fourth independent
+implementation with its own CSV bar loader, its own resting-fill, its own two
+exit walks and its own statistics. It imports nothing from `g90_fill_arms`,
+`g210_fill_arms_v2`, `r1_repair`, `r1_referee`, `r1_referee2` or
+`r1_referee3` for any arithmetic. The two deliberate exceptions are *tests of
+builder code*, each isolated in its own subcommand: `avgwl` imports the
+repaired `avg_win_loss` in order to run it, and `scaleplan`/`achr` import
+`backtest_week`/`t8_two_year` because those modules are the question.
+
+Base check: `git fetch origin`; `HEAD` = `origin/main` = `0f6a826a`;
+`git merge-base --is-ancestor 1539dd7f HEAD` passes. OK.
+
+Passes 1–3 above are left untouched; this section is additive.
+
+---
+
+## Verdict in one sentence
+
+**All three claimed repairs are real and reproduce, and every one of the 12
+books' 84 cells plus the whole uniform-exit table re-derives exactly under a
+fourth independent implementation — but the row is still REFUTED, because the
+answer it publishes first is still the refuted one and its own script will put
+that answer back**: `research/g210_fill_arms_v2.py` still generates the
+unqualified "Blind 2R exit" header (line 581) and the measured-backwards
+`DISASTER_STOP` paragraph (lines 712–720), and `main()` writes that text over
+`research/g210_fill_arms_v2.md` (line 756) — the exact command the report's
+own **Reproduce** section tells the next agent to run.
+
+---
+
+## The three claimed repairs, each checked by running it
+
+**1. `avg_win_loss()` now buckets by the sign of the row's own R multiple — CONFIRMED.**
+`r1_referee4.py avgwl` calls the repaired function on rows rebuilt from the 12
+committed books and compares against this file's own sign-bucketed recompute:
+**24 of 24 cells match, 0 mismatches.** The function no longer prints the
+tautological `+2.0000 / −1.0000`; `limit_level` full29 reads `+2.0000 /
+−1.0469` and `mid_candle` full29 `+1.9942 / −1.1467`, i.e. the scratch rows it
+used to drop are now inside the average loss. Its `> 0` / `<= 0` split matches
+`research/r1_repair.py:72–73` exactly, so the "matches the already-published
+honest table" claim holds. Affects future runs only; the 12 books are
+untouched, as claimed.
+
+**2. `book_stamp`'s `SCALE_PLAN` misread — CONFIRMED fixed, and the diagnosis is right.**
+`r1_referee4.py scaleplan`, in fresh subprocesses:
+
+| process | reading |
+|---|---|
+| clean parent, no env var | `backtest_week.SCALE_PLAN = 'hod_then_runner_be'` |
+| `book_stamp.engine_flags()` before the fix | `'hod_then_runner_be'` |
+| `book_stamp.engine_flags()` after `bw.SCALE_PLAN = None` (the one-line repair) | `None` |
+| real spawned worker with `OMEN_SCALE_PLAN=none` set before import | `SCALE_PLAN = None`, `DISASTER_STOP = True`, `DISASTER_STOP_R = 1.0`, `hasattr(bw,'LADDER_MODE') = False` |
+
+Start method on this box is `spawn`, so the assertion at
+`research/g210_fill_arms_v2.py:174` runs **inside the worker**, not the
+parent — confirmed by a worker printing from its own pid. No published number
+moves: the workers priced every arm under `SCALE_PLAN=None` all along, only
+the parent's self-description was wrong.
+
+**What g90's `close` column really was.** `research/g90_fill_arms.py:111` sets
+`bw.LADDER_MODE = None`, and `backtest_week` has no such attribute
+(`hasattr` is `False` in every process tested here); g90 never sets
+`OMEN_SCALE_PLAN` anywhere in the file. So g90's `close` row
+(+0.7382R, $1,645/day, 25-of-25 green) was the **shipped
+`hod_then_runner_be` scale-out ladder book with `DISASTER_STOP` on**, read off
+`t.pnl` — not a blind-2R column, and not comparable to any 2R column in this
+row or in R2.
+
+**3. `research/g210_verify.py`'s new no-lookahead assertion — CONFIRMED live, and it can fail.**
+The added check compares the fill minute to the signal's own `entry_time`
+minute. It is guarded by `if sig_minute and minute`, so it would silently skip
+on a blank `entry_time`: checked, **0 of the 20 sampled rows carry a blank**,
+and the real gaps run 1 minute (`next_open`) to 12 minutes (`limit_level`,
+e.g. IWM 2024-10-14 signal 10:07 → fill 10:19). `python research/g210_verify.py`
+run here: **exit 0**, `20` sampled rows, `7857/7857` close rows, 0 mismatches,
+and it reads `data_archive/<SYM>/<day>.csv` with `csv.DictReader` (lines
+41–52), not the book.
+
+---
+
+## Everything reproduced, with a fourth implementation
+
+**All 12 books, all cells** (`r1_referee4.py stats`) — trades, unfilled, mean R,
+sign-bucketed avg win / avg loss, per-trade win %, months, green months,
+$/day, worst row and the count worse than −1R. Every published cell matches,
+including the four the brief named:
+
+| cell | report | fourth-pass referee |
+|---|---|---|
+| next_open core11 | 3629/0, +0.1718R, avgW/L +1.9888/−0.9989, 22/25, $1,250/day | identical |
+| next_open full29 | 7857/0, +0.1690R, +1.9817/−0.9973, 23/25, $2,660/day | identical |
+| close core11 | 3629/0, −0.0063R, +1.9881/−0.9990, 13/25, −$46/day | identical |
+| close full29 | 7857/0, −0.0141R, +1.9823/−0.9980, 11/25, −$221/day | identical |
+
+Unit: every traded signal (fired, legacy engine grade ≠ C, `reentry_84_rule`
+excluded), 499 signal-days, 1R = $1,000. Fill: as named per arm. Exit: as each
+book priced it. Script: `research/r1_referee4.py stats`. The `$/day`
+denominator is **days with at least one signal (499)**, not calendar sessions —
+inherited from `g90_fill_arms.arm_stats`, correct but worth stating.
+
+**The uniform-exit table reproduces cell for cell** (`r1_referee4.py uniform`),
+independently of pass 3:
+
+| pool | exit model | as_booked | limit_level | next_open | chase_once | close | mid_candle |
+|---|---|---:|---:|---:|---:|---:|---:|
+| core11 | A close-only stop | $479 24/25 | $98 16/25 | $1,250 22/25 | −$397 10/25 | $1,139 20/25 | $627 20/25 |
+| core11 | B intrabar touch | $395 22/25 | −$23 8/25 | $44 12/25 | −$1,457 3/25 | −$46 13/25 | −$720 7/25 |
+| full29 | A close-only stop | $832 24/25 | $133 17/25 | $2,660 23/25 | −$756 8/25 | $2,437 22/25 | $1,108 17/25 |
+| full29 | B intrabar touch | $681 24/25 | −$59 8/25 | $138 13/25 | −$2,661 1/25 | −$221 11/25 | −$1,865 5/25 |
+
+Every cell equals the builder's republished table. The walk is validated at
+both anchors from opposite directions: under model A it reproduces the five
+`_walk` arms' own booked cells (`mid_candle` core11 +0.1056 vs booked +0.1057,
+1e-4 rounding; the other four exact), and under model B it reproduces the
+`close` arm the real `simulate_day` produced (−0.0063 core11, −0.0141 full29,
+exact). Unit and fill as above; exit as labelled; script
+`research/r1_referee4.py uniform`.
+
+**Lookahead — clean, 120 rows, physically truncated** (`r1_referee4.py lookahead --n 30`).
+For each sampled row the day is rebuilt from the raw CSV, the signal bar
+located by its timestamp, and **every bar at or before it deleted**
+(`bs[si+1:]`) before the fill is re-derived from what is left:
+
+| arm | sampled | price re-derived | fill minute re-derived | fill at or before the signal bar |
+|---|---:|---:|---:|---:|
+| next_open | 30 | 30 | 30 | 0 |
+| limit_level | 30 | 30 | 30 | 0 |
+| chase_once | 30 | 30 | 30 | 0 |
+| mid_candle | 30 | 30 | 30 | 0 |
+
+`mid_candle`'s price reference (the midpoint of the completed signal bar's own
+high/low) is taken as a scalar before truncation; the resting scan then sees
+only bars strictly after it, so the signal bar is never scanned for a resting
+fill. `chase_once` re-derived with `signal_runner.CHASE_PCT = 0.005`.
+
+**`close` is the engine's own fill on 100% of rows, both pools**
+(`r1_referee4.py closecheck`): `entry_fill.ENTRY_FILL == 'close'`,
+`needs_future_bars()` is `False`, and the booked entry equals that minute's own
+printed close in the raw archive on **7,857/7,857** (full29) and
+**3,629/3,629** (core11) rows — 0 mismatches, 0 bars missing.
+`as_booked`'s entry equals `close`'s on **0** of 7,857 rows.
+
+**The one `entry_idx` mismatch, re-derived** (`r1_referee4.py achr`). ACHR
+2026-04-06: 390 bars, 15 captured signals, 11 trades. The key
+`('break_and_retest','call',5.665,'fired')` holds **two** signals, at candles
+**16 and 20**; the counted trade carries `entry_idx = 20`, and the harness's
+`used[k]` counter hands it the candle-16 signal, so the row is counted as a
+mismatch and dropped. The builder's explanation is correct in every particular:
+it is a correlation-key ambiguity in this harness's own bookkeeping, not in
+`signal_runner`/`backtest_week`, and the row is absent from the books rather
+than wrong. I also reproduce pass 2's caveat: the same day carries a second
+colliding key, `('break_and_retest','put',5.605,'skipped_d')`, whose two
+signals sit on the **same** candle (40) — a collision the counter cannot see,
+so "1 of 7,858" is a lower bound on the class. That instance never reaches a
+book.
+
+**The `DISASTER_STOP` asymmetry does change the ranking — measured, not
+plausible.** Holding the exit constant moves `close` from 5th to 3rd on full29
+(model A, $2,437 against `next_open`'s $2,660) and collapses `next_open` from
+$2,660/day, 23-of-25 green to **$138/day, 13-of-25 green** on the engine's own
+intrabar-touch stop. Per the brief a *plausible* ranking change is
+`not_enough`; this one is measured, so the ranking is **refuted**, exactly as
+the builder now labels it.
+
+**Paired next_open − close, held to one exit model** (`r1_referee4.py pairci`):
+
+| pool | model A close-only | model B intrabar touch |
+|---|---|---|
+| full29 (n=7,538) | +0.0140R [+0.0047, +0.0234] | +0.0239R [+0.0136, +0.0341] |
+| core11 (n=3,479) | +0.0141R [+0.0022, +0.0261] | **+0.0128R [+0.0001, +0.0256]** |
+
+Both full29 figures match the builder's exactly. See new defect 17 for the
+core11 cell the builder did not publish.
+
+---
+
+## New defects (fourth pass)
+
+**15. The report generator still emits the refuted text, and the documented
+Reproduce command overwrites the report with it.** `research/g210_fill_arms_v2.py:581`
+still writes the header "Blind 2R exit" with no qualifier — over a table one of
+whose six rows (`close`) is not on a blind 2R exit at all — and lines 712–720
+still compose the `DISASTER_STOP` paragraph in the direction three referee
+passes have now measured to be backwards ("`close`'s losses can be capped at
+−1.000R intrabar while the other five arms' … can be worse than −1R"; measured:
+`as_booked`, `next_open`, `chase_once` and `close` have **zero** rows worse than
+−1R, `limit_level` has 28 and `mid_candle` 573). `main()` writes `a.out_md`
+(line 756), whose default is the committed report. So
+`python research/g210_fill_arms_v2.py --procs 8` — the command the report's own
+**Reproduce** section gives — deletes the correction banner, both honest
+tables, the size-gated table and both Refereed sections, and republishes the
+refuted prose as if current. This is pass-2 defect 8, unfixed. It is also
+**not listed** in the repair's own "Not fixed" section, which names only
+`chase_once` and the stamp mismatch — so a repair pass whose job was disclosure
+left its largest open item undisclosed. No published number moves today; the
+next agent who re-runs the row inherits the refuted report.
+
+**16. The refuted tables are still the report's first answer.** The two
+six-arm headline tables (with `next_open` $1,250/$2,660 and `close`
+−$46/−$221) sit at the top under a correction paragraph; the operative
+uniform-exit table sits ~150 lines below, under "Refereed (pass 3)". A reader
+going top-down reads the refuted ranking first. Presentation, not arithmetic —
+but combined with defect 15 it means the row's committed deliverable still
+leads with the wrong answer and its script can only regenerate that one.
+
+**17. The published paired CI does not name its pool, and the claim
+"separates from zero both ways" is a full29-only claim.** The builder's
+numbers block gives model A `+0.0140R [+0.0047, +0.0234]` and model B
+`+0.0239R [+0.0136, +0.0341]` with no pool label; both are full29. On
+**core11 under model B — the engine's own exit** — the same statistic is
+`+0.0128R [+0.0001, +0.0256]`: the lower bound is one ten-thousandth of an R
+above zero, i.e. indistinguishable from zero at 95%. The direction survives on
+full29; on the 11-symbol pool the spec actually names as the universe, under
+the engine's real stop, it does not. Script: `research/r1_referee4.py pairci`.
+
+**18. `g210_verify.py`'s `limit_level` *price* assertion is still
+true-by-construction.** The new strictly-after check (repair 3) is a different
+assertion and a good one, but the price check remains "the booked fill lies
+inside the fill bar's `[low, high]`" — which `_resting_fill` guarantees, since
+it only ever selects a bar whose range already brackets the price. The book
+carries `level_price`; one comparison (`entry == level_price`) would make the
+`limit_level` arm's actual claim falsifiable. Pass-2 defect 9 is half-fixed.
+No number moves — my truncation test is the falsifiable version and it passes
+30/30.
+
+**19. The row landed inside an unrelated unattended auto-commit, so "one change
+per row" cannot be read off the history.** `git show --stat 0f6a826a` is
+`wip: auto-commit Sun 09/06/2026 0:23` over four files: the three R1 files and
+**`research/o4_referee_pass3.py` (458 lines), which belongs to another agent's
+row**. SWARM's commit protocol ("stage only files you own, by name";
+`"<ROW>: <what> -- <the number that moved>"`) was not met, and the R1 repair is
+not identifiable in the log. The builder disclosed this and correctly did not
+rewrite the commit. Separately, the repair itself is three code changes
+(`avg_win_loss` bucketing, a parent-process flag assignment in `main()`, a new
+assertion in `g210_verify.py`) rather than one function; each is small and
+**none moves a published number**, so this is named, not a reason to refute.
+
+---
+
+## Standard checks (fourth pass, all run here)
+
+| check | result |
+|---|---|
+| sample size | smallest cell 252 trades (`limit_level` core11) over 25 months; smallest cell anywhere in the row 78 trades / 24 months (`limit_level` core11, size-gated table). Every cell ≥ 30 trades and ≥ 12 months. No under-sized cell carries a verdict. OK |
+| every dollar names fill / exit / unit / script | in **this section**, yes on every figure. In the row's report: fill, unit and script yes; **exit still mis-named in the generated header** ("Blind 2R exit", defect 15). Partially fixed |
+| stamps | 12/12 books carry `book_stamp`: `built_at` 2026-09-05T16:34:03–07, `git.commit`, `git.dirty_engine_py = []` on all 12, `dirty_py_count` 5–6 (non-engine), **70 flag values incl. `SCALE_PLAN: None`**, window `2024-09-04`→`2026-09-04`, script `research/g210_fill_arms_v2.py`. 11 stamp `57f2fbd2`, `fillarms_mid_candle_full29.json.gz` stamps `c7d52853`; **both are ancestors of `0f6a826a`** (checked). The tree was dirty at build time in non-engine `.py` only, and the report says so. OK |
+| no book rewritten by this repair | confirmed — `0f6a826a` touches no file under `research/tape/` |
+| one change per row | `git show --stat 0f6a826a`: 3 R1 research files + 1 file belonging to another row, no engine file, no book. See defect 19 |
+| mark files | none in `git show --name-only 0f6a826a`; `git status --porcelain` shows only this pass's own untracked `research/r1_referee4.py`. No mark corpus touched. OK |
+| verify gate at `0f6a826a` | run here: `regression_gate.py` **PASS** ("no baseline-fired mark went silent") · `test_runner_stop.py` **PASS** (70 checks) · `test_universe_single_source.py` **PASS** (29 symbols, no private lists). **Green** |
+| `g210_verify.py` | exit **0**, reads raw `data_archive` CSVs, 20 sampled rows + 7857/7857 close rows |
+| plain English | nothing in this row reaches Austin. OK |
+
+---
+
+## What R2 and R3 are handed, after four passes
+
+1. **The mechanics of R1 are sound.** Fills, lookahead, the engine-fill
+   identity, the `SCALE_PLAN` diagnosis and every book cell have now
+   reproduced under four independent implementations. Nothing in the arm
+   arithmetic needs re-running.
+2. **Do not start R2 from `next_open`'s $2,660/day book.** On the engine's own
+   intrabar-touch stop the same book is $138/day, 13-of-25 green.
+3. **The fill question is real but tiny, and pool-dependent.** Held to one
+   exit model, `next_open` beats `close` by +0.014R (A) to +0.024R (B) per
+   trade on full29; on core 11 under the engine's exit the interval is
+   [+0.0001, +0.0256] and should be read as no difference.
+4. **Fix the generator before anyone re-runs `g210_fill_arms_v2.py`** — as it
+   stands, that command deletes the row's corrected report and restores text
+   three referee passes have refuted.
+
+## Reproduce (fourth pass)
+
+```
+python research/r1_referee4.py stats
+python research/r1_referee4.py avgwl
+python research/r1_referee4.py closecheck
+python research/r1_referee4.py lookahead --n 30
+python research/r1_referee4.py uniform
+python research/r1_referee4.py pairci
+python research/r1_referee4.py scaleplan
+python research/r1_referee4.py achr
+python research/r1_referee4.py stamps
+python research/g210_verify.py
+```
