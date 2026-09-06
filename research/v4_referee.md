@@ -208,3 +208,136 @@ divergence into the tape.
 - **Plain English.** `research/morning_report.py` is the only thing here Austin reads. Its
   output is plain English ("bought a call, 2 contracts", "Still open at end of day") — no
   ticket ids, no flag names.
+
+<!-- STALE ABOVE, corrected by pass 3 below (2026-09-06): every sentence above that calls
+DAY_POLICY the shipped row (lines 19, 56, 59, 88, 137, 154, 178) was true when passes 1 and 2
+ran on 2026-09-05 and is FALSE at HEAD b4491963. L5 referee pass 2 (34c1546e) ordered the
+default reverted and pass 3 (09dd3e24 / repair 58c00a7b) flipped the tape cell, so all five
+loop rows now read `hold` and the live DAY_POLICY is `first3`. Passes 1-2 are left intact as
+the record of what they actually found. -->
+
+---
+
+# V4 referee — pass 3 (2026-09-06) — **refuted**
+
+**Builder report refereed:** the pass-3 builder reported `status: held, commit: none` — it
+made no code change, ran the parity test, and asserted the row was already complete.
+**Builder commits under review (the row's actual code):** `79d6f57f` (V4), `76d6e4ad` (V4
+repair), `dc0f77bb` (pass-2 write-up).
+**Referee script:** `research/v4_referee_pass3.py` (committed beside this file).
+**Base / HEAD:** `git merge-base --is-ancestor 1539dd7f HEAD` OK; HEAD == origin/main ==
+`b4491963`; HEAD is an ancestor of origin/main. Tree carried only other agents' untracked
+files at check time.
+
+**Verdict: refuted.** Every *substantive* claim reproduces — I re-derived all of them under a
+third, independent implementation, and I additionally proved the guard has teeth, which no
+earlier pass did. What fails is the paperwork: **four false or unenforced statements in
+committed artifacts at HEAD**, three of them in the row's own two files.
+
+## What I re-derived myself, and it holds
+
+I did not reuse the parity test's parser. `research/v4_referee_pass3.py` finds the flag and
+decision columns from the table header instead of hardcoding indices 2/3, keeps the last row
+per flag, and reads the live values out of a fresh `live_scanner` import in a subprocess.
+
+| flag | `research/tape/cycles.md` (my parse) | live lane (my read) | agrees |
+|---|---|---|---|
+| MIN_PT1_R | hold | `0.0` | yes |
+| RULE84_DECIDED | hold | `False` | yes |
+| OCR_RETEST_DISPLACEMENT | hold | `False` | yes |
+| TREND_DEF | hold | `off` | yes |
+| DAY_POLICY | hold | `first3` | yes |
+
+Five flags in the tape, five in the live lane, same set, no extras either way.
+`research/test_live_follows_loop.py` exits 0 at HEAD.
+
+**The guard has teeth — three injected drifts, each turns it RED (exit 1):**
+
+| injected drift | result |
+|---|---|
+| A: `DAY_POLICY=3fires_stop_win_or_2loss` exported into the environment | RED |
+| B: the tape's DAY_POLICY row flipped from `hold` to `ship` | RED |
+| C: a brand-new sixth flag row (`BRAND_NEW_FLAG`, `ship`) appended to the tape | RED |
+
+Sanity control: the unmutated tape run through the same harness is GREEN, so the three REDs
+are the injections, not the harness. Teeth C is the specific hole pass 1 raised and `76d6e4ad`
+claimed to close — it is genuinely closed.
+
+**Alpaca, replay, morning report — all three row-specific checks hold.**
+
+- `broker/alpaca.py`: all five `paper=` occurrences are the literal `True`; the only Alpaca
+  environment names it reads are `ALPACA_PAPER_KEY` / `ALPACA_PAPER_SECRET`; no live trading
+  host literal in the file. `live_scanner.py` reads no non-paper Alpaca credential name
+  (`_ALPACA_LEDGER` is a `Path`, not a credential).
+- Replay still cannot submit: both `_alpaca_submit_entry` and `_alpaca_submit_exit` open with
+  `assert not getattr(runner, "replay", False)`; `run_replay` sets `runner.replay = True` and
+  neither constructs nor is passed a broker.
+- `journal/alpaca-paper.jsonl` does not exist on this box. `research/morning_report.py
+  --ledger <missing>` exits 0 and prints `No paper trades logged for 2026-09-05. Nothing to
+  report.` — no crash, no flag names, no jargon.
+
+## The four defects
+
+**D1 — `research/test_live_follows_loop.py`'s docstring is false at HEAD.** It says *"the one
+row that is `ship` (DAY_POLICY) must load with its shipped value."* No row in
+`research/tape/cycles.md` is `ship` at HEAD; all five read `hold`. The code below it is
+correct (`76d6e4ad` made `expected_env_value` follow the decision), only the prose is stale —
+but this is the exact false-sentence class the L1/L4/L5 referees charged, and it sits in the
+row's headline file.
+
+**D2 — `read_live_value`'s docstring is false about its own mechanics.** It says it imports
+*"with a clean env"*. `subprocess.run` there passes no `env=` argument, so it inherits
+`os.environ` in full. The inherited env is arguably the *better* behaviour (it is what makes
+teeth-test A work at all), which makes the comment the thing to fix, not the code — but as
+written the file documents an isolation it does not have.
+
+**D3 — nothing runs the guard.** `CLAUDE.md`'s `verify:` line is
+`regression_gate.py && test_runner_stop.py && test_universe_single_source.py`;
+`research/regression_gate.py` does not invoke `test_live_follows_loop.py`, and neither does
+`CLAUDE.md`. Grepped the tree: the only callers are referee scripts. The docstring's promise —
+*"the live lane can never silently drift from the loop"* — is a promise about a test that no
+gate, hook or scheduled job executes. It caught L5's `ship`/`first3` mismatch only because
+the L5 referee ran it by hand. This is the one defect with an operational cost.
+
+**D4 — this write-up's own passes 1–2 publish a value that is now wrong.** Seven lines above
+still name `DAY_POLICY = 3fires_stop_win_or_2loss` as shipped, including a "shipped set" table
+and a whole section on the `STOP_AFTER_WIN` divergence that the L5 revert made moot. Flagged
+above with a correction banner rather than deleted, per the repo's convention.
+
+## Two claims in the pass-3 builder's report that do not survive contact
+
+- *"live_scanner.py imports DAY_POLICY from signal_runner and reads it live."* It does not
+  read it live. `live_scanner.py:158` is `from signal_runner import DAY_POLICY as
+  _LIVE_DAY_POLICY` — a one-time binding at import, snapshotted from the environment
+  `signal_runner` saw at *its* import. Changing the variable afterwards changes nothing.
+- *".env carries the loop's shipped defaults ... pinning them."* True on this box and I read
+  the five lines. But `.env` is matched by `.gitignore:1` and is untracked, so the pin exists
+  in no commit and does not reach a fresh clone. What actually holds the live lane at the held
+  values in a clean checkout is `signal_runner.py`'s own code defaults (lines 72, 258, 496,
+  535, 858), which happen to equal the off-values. The `.env` pin is belt-and-braces, not the
+  mechanism. Pass 1 raised this; it is still true and the builder's report restates the pin as
+  if it were the guarantee.
+
+## Standard checks
+
+- **Sample size.** The row produces no cell, no trade count and no month count. No verdict on
+  one. N/A.
+- **Dollars name their fill / exit / unit / script.** The row publishes no dollar figure. N/A.
+- **Stamped books.** The row wrote no book. N/A.
+- **One change per row.** `git show --stat 79d6f57f` = 2 new files under `research/`;
+  `76d6e4ad` = 1 file, +27/−7; `dc0f77bb` = 2 new files under `research/`. No engine file in
+  any of the three. Pass-3 builder: no commit at all.
+- **Mark files.** None of the three commits touches any mark corpus, and `git status` shows
+  no mark file modified. (The only match for "jsonl" in the commit output is the text
+  `journal/alpaca-paper.jsonl` inside a commit message.)
+- **Verify gate at HEAD `b4491963`.** Run by me, all three exit 0: `regression_gate.py` PASS
+  (any_signal 75→80, s_grade 5→25, no baseline-fired mark went silent); `test_runner_stop.py`
+  70 checks across 3 sections; `test_universe_single_source.py` ok, 29 symbols, 25 backtested.
+- **Plain English.** `research/morning_report.py` is the only V4 output Austin reads; checked
+  its missing-ledger path for flag names and jargon — none.
+
+## What a repair row would do (one change each, not this row's to make)
+
+1. Rewrite the two stale docstrings in `research/test_live_follows_loop.py` (D1, D2).
+2. Add `python research/test_live_follows_loop.py` to `CLAUDE.md`'s `verify:` line, or call it
+   from `research/regression_gate.py` (D3) — this is the one that changes behaviour.
