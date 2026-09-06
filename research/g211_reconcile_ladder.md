@@ -14,6 +14,8 @@ Base commit at run time, three new simulations (SIM A/B/C, full29 pool, WIDE win
 
 - **Filtered, not simulated**: grade (C in/out), signal_type (`reentry_84_rule` in/out), the size gate (`min_risk_floor`), the universe (29 -> 11), and the window (steps 7-8, a date-range filter applied to step 6's OWN rows -- `research/bt2y_trades_retest_on.json` is read only for its window's start/end dates, never for its trades).
 
+- **Disclosed limitation of the C-grade filter (referee pass 2, section 4, not fixed here).** Step 0 -> step 1 deletes C-grade rows from an already-run simulation rather than re-running the engine's own suppression window without them. Because that window is grade-blind, a C-grade signal can suppress a later non-C candidate on the same level -- so a real no-C run releases candidates a post-hoc deletion cannot. Measured by replaying the suppression logic offline (`research/r2_referee_pass2.py::dedupe_replay`): about 4.6% more non-C signals fire in a genuine C-gated run than survive in this row's step 1. The step 0->1 step is a **ceiling** on "remove C grades," not the engine's actual answer to it; fixing it needs a fourth bar-by-bar replay, which is a second change and out of this repair's scope.
+
 ## Forward ladder
 
 | step | change | fill | exit | pool | trades | win rate | mean R | avg win | avg loss | green months | $/day |
@@ -34,16 +36,25 @@ The first build's reverse table relabelled the SAME nine forward populations (`R
 
 ## The step that costs the most money
 
-**switching from a flat double-your-money exit to the real scale-out-and-trail exit** -- $4,569/day before, $-981/day after, a swing of $-5,550/day. That is the single biggest drop between any two adjacent rows of the forward ladder.
+**Trading against a stop that reacts the instant price touches it, instead of one that only reacts once the candle closes, is what costs the most money -- not the profit-taking rule.** That single mechanical change costs about four times what changing how the position is scaled out and trailed costs (breakdown below). Together they turn $4,569/day into $-981/day, a swing of $-5,550/day -- the single biggest drop between any two adjacent rows of the forward ladder, but two changes, not one; see the split immediately below.
 
 Same step, split into the first and second half of the window (by trading day, not calendar month):
 
 | half | before ($/day) | after ($/day) |
 |---|---:|---:|
-| H1 | $-85 | $-219 |
-| H2 | $-1,518 | $-1,740 |
+| H1 | $4,062 | $-219 |
+| H2 | $5,075 | $-1,740 |
 
 The drop holds in both halves -- it is not a first-half or second-half artifact.
+
+**That swing is two changes, not one** (referee pass 2, `research/r2_referee.md` section 2). Step 1's rows come from a lab stop rule that only ever exits on a candle close; step 2's come from the real engine, which also exits on a wick touching the stop intrabar. Holding the real engine's stop and management fixed while swapping only the exit target (SIM D, `research/tape/r2ref_simd_next_open_blind2r_real_engine.json.gz`, same 14,332 trades, same next_open fill) splits the $-5,550/day drop into:
+
+| leg | change | $/day before | $/day after | delta |
+|---|---|---:|---:|---:|
+| trade-management substrate | close-only lab stop -> real engine's intrabar disaster stop | $4,569 | $150 | $-4,420 |
+| exit target | flat 2R -> scale-out-and-trail ladder | $150 | $-981 | $-1,131 |
+
+**In plain English: most of the drop is switching from a lab stop that only reacts at the end of a candle to the real engine's stop, which reacts the instant price touches it (80% of the swing); swapping the profit target for the scale-out exit is the smaller piece (20%).** Both legs lose money on their own (avg win and avg loss are essentially unchanged between step 1 and SIM D -- what moves is the win rate, 38.6% -> 33.4%, i.e. the real stop converts roughly one trade in twenty from a win into a loss). The step-1->2 header above is kept as the ladder's own titled step; this table is the honest single-variable attribution underneath it, and it is what CLAUDE.md quotes.
 
 ## Verify
 
@@ -72,6 +83,18 @@ The first build (`3ae279a0`) was refereed REFUTED. What survived: the biggest-st
 - **Disclosed, not fixed by construction**: the dirty-tree flag on every stamped book (paragraph above), and the fact that this row's own ladder ends at $-803/day (full 29) / $-87/day (core 11), not the row's titled -$284/day endpoint (paragraph above).
 
 - **Not fixed, and not fixable inside one change**: a genuine reverse-order ladder (needs a 4th simulation). The 14327-vs-14328 cosmetic row-count note the referee raised is `fwd_1`'s book carrying one candidate row with a null `r` (no fill) -- the book's `signals` count is candidates, the report table's `trades` count is filled rows with a computable R; both are correct readings of different things, now noted here rather than left unexplained.
+
+## Refereed (pass 3)
+
+The repair above (`15a729ce`) was refereed REFUTED a second time (`research/r2_referee.md`, pass 2). What survived unchanged: steps 0-6 as populations, the step 7/8 window fix, the reverse-ladder removal, and the stamp fix all reproduced under the referee's own independent code. Two real defects remained and are fixed in this pass (no new bar-by-bar simulation -- both draw on books already committed):
+
+- **The headline step was two changes wearing one label.** Section 2 above (read from the referee's own SIM D book) is the fix: the step-1->2 swing splits into a trade-management-substrate leg and an exit-ladder leg, and the substrate leg is the bigger one. "The step that costs the most money" now names the real biggest single-variable cost instead of the conflated pair.
+
+- **The H1/H2 halves table was reading a leaked loop variable.** The loop that found the biggest step never stored its own `n0`; Python left that name bound to the *last* pair the loop ever looked at (7 -> 8), so the halves table printed step 7's before-numbers under step 1's label -- wrong by roughly 32x in H1. Fixed by storing `n0` in the winning tuple itself, alongside `n1`.
+
+- **Disclosed, not fixed by construction (referee pass 2, section 4)**: the add-C-grades step is a post-hoc row deletion, not a re-run of the engine's own grade-blind suppression window without C fires, so it undercounts what a real no-C run would release by about 4.6% (see the disclosure above). Fixing it needs a fourth bar-by-bar replay -- a second change, out of scope here.
+
+- **Still unreconciled, unchanged**: verify assertion 2 (step 7 vs `research/bt2y_trades_retest_on.json`) still does not close within 1% (11.1% apart, per the referee's independent re-check) -- the two books differ by engine feature (`loss_halt`) as well as by commit, and closing it needs a fourth run this repair does not make. The report already states this and the likely cause; nothing here changes that.
 
 ## Reproduce
 

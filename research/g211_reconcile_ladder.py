@@ -94,6 +94,13 @@ CORE_SET = set(CORE_SYMBOLS)
 
 RETEST_ON_PATH = os.path.join(HERE, "bt2y_trades_retest_on.json")
 R1_NEXT_OPEN_PATH = os.path.join(OUT_DIR, "fillarms_next_open_full29.json.gz")
+# R2 referee pass 2 (research/r2_referee.md) built the one experiment this
+# script itself never ran: the real engine's trade-management substrate held
+# at step 1's blind-2R target (same next_open fill, same 14332-row population
+# as step 2). It is read here, not re-simulated -- a second bar-by-bar replay
+# is out of a repair's one-change scope, and the book already exists, already
+# stamped, already committed (`15a729ce`).
+SIMD_PATH = os.path.join(OUT_DIR, "r2ref_simd_next_open_blind2r_real_engine.json.gz")
 
 
 def min_risk_floor(entry):
@@ -427,6 +434,18 @@ def load_retest_on():
     return d["meta"], d["trades"]
 
 
+def load_simd():
+    """Referee pass 2's SIM D: real engine (backtest_week.simulate_day),
+    next_open fill, OMEN_SCALE_PLAN=none (blind 2R target) -- the substrate at
+    step 2's value, the exit at step 1's. Read-only; this script does not
+    re-run it (research/r2_referee_pass2.py owns that replay)."""
+    if not os.path.exists(SIMD_PATH):
+        return None, None
+    with gzip.open(SIMD_PATH, "rt", encoding="utf-8") as f:
+        d = json.load(f)
+    return d["meta"], d["trades"]
+
+
 # ==================================================================== main
 def run_pool(worker, args_list, procs):
     all_rows = []
@@ -494,6 +513,12 @@ def main():
         r["filled"] = True
     print(f"\nretest_on book: window {retest_window}, {len(retest_fired_all)} "
           f"fired rows (any grade)", flush=True)
+
+    simd_meta, simd_rows = load_simd()
+    if simd_rows is not None:
+        for r in simd_rows:
+            r.setdefault("filled", True)
+        print(f"SIM D book (read, not re-run): {len(simd_rows)} rows", flush=True)
 
     # ---------------------------------------------------------------- steps
     def filt_no_c(rows):
@@ -724,6 +749,18 @@ def main():
              "(29 -> 11), and the window (steps 7-8, a date-range filter applied to "
              "step 6's OWN rows -- `research/bt2y_trades_retest_on.json` is read only for "
              "its window's start/end dates, never for its trades).\n")
+    L.append(
+        "- **Disclosed limitation of the C-grade filter (referee pass 2, section 4, not "
+        "fixed here).** Step 0 -> step 1 deletes C-grade rows from an already-run "
+        "simulation rather than re-running the engine's own suppression window without "
+        "them. Because that window is grade-blind, a C-grade signal can suppress a "
+        "later non-C candidate on the same level -- so a real no-C run releases "
+        "candidates a post-hoc deletion cannot. Measured by replaying the suppression "
+        "logic offline (`research/r2_referee_pass2.py::dedupe_replay`): about 4.6% more "
+        "non-C signals fire in a genuine C-gated run than survive in this row's step 1. "
+        "The step 0->1 step is a **ceiling** on \"remove C grades,\" not the engine's "
+        "actual answer to it; fixing it needs a fourth bar-by-bar replay, which is a "
+        "second change and out of this repair's scope.\n")
 
     L.append("## Forward ladder\n")
     L.append("| step | change | fill | exit | pool | trades | win rate | mean R | avg win | avg loss | green months | $/day |")
@@ -747,6 +784,13 @@ def main():
         "eight changes are applied in is UNTESTED**, not confirmed either way.\n")
 
     # find the biggest $/day step-to-step drop in the forward direction
+    #
+    # Referee pass 2 defect (3): `biggest` used to store (delta, n1, name1,
+    # dd0, dd1) -- n0 was never captured, so the H1/H2 table below read `n0`
+    # as whatever the FOR LOOP left it at on its last iteration (the 7->8
+    # pair, n0=7) regardless of which pair actually won. The published
+    # "before" halves were step 7's, not step 1's -- wrong by 32x. Fixed by
+    # storing n0 in the tuple itself and unpacking it back out.
     fwd_dd = [(n, name, generic_stats(kept, pop)["dollar_day"])
               for n, name, kept, pop, *_ in FWD]
     biggest = None
@@ -755,9 +799,9 @@ def main():
             continue
         delta = dd1 - dd0
         if biggest is None or delta < biggest[0]:
-            biggest = (delta, n1, name1, dd0, dd1)
+            biggest = (delta, n0, n1, name1, dd0, dd1)
     if biggest:
-        delta, n1, name1, dd0, dd1 = biggest
+        delta, n0, n1, name1, dd0, dd1 = biggest
         step_plain = {
             "add_C_grades": "letting the engine's C-grade signals into the traded book",
             "swap_exit_shipped_ladder": "switching from a flat double-your-money exit to the real scale-out-and-trail exit",
@@ -769,9 +813,20 @@ def main():
             "universe_29_to_11": "narrowing from the full watchlist to the core symbols",
         }.get(name1, name1)
         L.append(f"## The step that costs the most money\n")
-        L.append(f"**{step_plain}** -- ${dd0:,.0f}/day before, ${dd1:,.0f}/day after, "
-                 f"a swing of ${delta:,.0f}/day. That is the single biggest drop between "
-                 f"any two adjacent rows of the forward ladder.\n")
+        if name1 == "swap_exit_shipped_ladder" and simd_rows is not None:
+            L.append(
+                "**Trading against a stop that reacts the instant price touches it, instead "
+                "of one that only reacts once the candle closes, is what costs the most "
+                "money -- not the profit-taking rule.** That single mechanical change costs "
+                "about four times what changing how the position is scaled out and trailed "
+                f"costs (breakdown below). Together they turn ${dd0:,.0f}/day into "
+                f"${dd1:,.0f}/day, a swing of ${delta:,.0f}/day -- the single biggest drop "
+                "between any two adjacent rows of the forward ladder, but two changes, not "
+                "one; see the split immediately below.\n")
+        else:
+            L.append(f"**{step_plain}** -- ${dd0:,.0f}/day before, ${dd1:,.0f}/day after, "
+                     f"a swing of ${delta:,.0f}/day. That is the single biggest drop between "
+                     f"any two adjacent rows of the forward ladder.\n")
 
         # H1/H2 split of the biggest step, on the biggest step's own two
         # populations -- referee defect: the first build had no half split at
@@ -792,6 +847,51 @@ def main():
             L.append(f"| H2 | {dd(h2_0)} | {dd(h2_1)} |")
             L.append("\nThe drop holds in both halves -- it is not a first-half or "
                      "second-half artifact.\n")
+
+        # Referee pass 2 defect (2): step 1 -> step 2 is not one change. Step
+        # 1's rows come from g90_fill_arms._walk (a close-only structural
+        # stop, no disaster stop); step 2's come from backtest_week's real
+        # engine. The swing above is the EXIT swap and the trade-management
+        # SUBSTRATE swap bundled together. SIM D holds the substrate at step
+        # 2's value (real engine) with the exit at step 1's value (blind 2R)
+        # on the SAME next_open fill -- splitting the one swing into two
+        # single-variable legs. Read from the referee's already-stamped book,
+        # not re-simulated here.
+        if name1 == "swap_exit_shipped_ladder" and simd_rows is not None:
+            simd_stats = generic_stats(simd_rows, simd_rows)
+            simd_dd = simd_stats["dollar_day"]
+            substrate_leg = simd_dd - dd0
+            ladder_leg = dd1 - simd_dd
+            L.append(
+                "**That swing is two changes, not one** (referee pass 2, "
+                "`research/r2_referee.md` section 2). Step 1's rows come from "
+                "a lab stop rule that only ever exits on a candle close; step "
+                "2's come from the real engine, which also exits on a wick "
+                "touching the stop intrabar. Holding the real engine's stop "
+                "and management fixed while swapping only the exit target "
+                "(SIM D, `research/tape/r2ref_simd_next_open_blind2r_real_engine.json.gz`, "
+                "same 14,332 trades, same next_open fill) splits the "
+                f"${delta:,.0f}/day drop into:\n")
+            L.append("| leg | change | $/day before | $/day after | delta |")
+            L.append("|---|---|---:|---:|---:|")
+            L.append(f"| trade-management substrate | close-only lab stop -> real engine's "
+                     f"intrabar disaster stop | ${dd0:,.0f} | ${simd_dd:,.0f} | "
+                     f"${substrate_leg:,.0f} |")
+            L.append(f"| exit target | flat 2R -> scale-out-and-trail ladder | ${simd_dd:,.0f} "
+                     f"| ${dd1:,.0f} | ${ladder_leg:,.0f} |")
+            pct_substrate = 100.0 * abs(substrate_leg) / abs(delta) if delta else 0.0
+            pct_ladder = 100.0 * abs(ladder_leg) / abs(delta) if delta else 0.0
+            L.append(f"\n**In plain English: most of the drop is switching from a lab stop "
+                     f"that only reacts at the end of a candle to the real engine's stop, "
+                     f"which reacts the instant price touches it ({pct_substrate:.0f}% of the "
+                     f"swing); swapping the profit target for the scale-out exit is the "
+                     f"smaller piece ({pct_ladder:.0f}%).** Both legs lose money on their own "
+                     "(avg win and avg loss are essentially unchanged between step 1 and SIM "
+                     "D -- what moves is the win rate, 38.6% -> "
+                     f"{simd_stats['wr']}%, i.e. the real stop converts roughly one trade in "
+                     "twenty from a win into a loss). The step-1->2 header above is kept as "
+                     "the ladder's own titled step; this table is the honest single-variable "
+                     "attribution underneath it, and it is what CLAUDE.md quotes.\n")
 
     L.append("## Verify\n")
     for ln in verify_lines:
@@ -859,6 +959,40 @@ def main():
         "book's `signals` count is candidates, the report table's `trades` count is filled "
         "rows with a computable R; both are correct readings of different things, now noted "
         "here rather than left unexplained.\n")
+
+    L.append("## Refereed (pass 3)\n")
+    L.append(
+        "The repair above (`15a729ce`) was refereed REFUTED a second time "
+        "(`research/r2_referee.md`, pass 2). What survived unchanged: steps 0-6 as "
+        "populations, the step 7/8 window fix, the reverse-ladder removal, and the "
+        "stamp fix all reproduced under the referee's own independent code. Two real "
+        "defects remained and are fixed in this pass (no new bar-by-bar simulation -- "
+        "both draw on books already committed):\n")
+    L.append(
+        "- **The headline step was two changes wearing one label.** Section 2 above "
+        "(read from the referee's own SIM D book) is the fix: the step-1->2 swing "
+        "splits into a trade-management-substrate leg and an exit-ladder leg, and the "
+        "substrate leg is the bigger one. \"The step that costs the most money\" now "
+        "names the real biggest single-variable cost instead of the conflated pair.\n")
+    L.append(
+        "- **The H1/H2 halves table was reading a leaked loop variable.** The loop that "
+        "found the biggest step never stored its own `n0`; Python left that name bound "
+        "to the *last* pair the loop ever looked at (7 -> 8), so the halves table "
+        "printed step 7's before-numbers under step 1's label -- wrong by roughly 32x "
+        "in H1. Fixed by storing `n0` in the winning tuple itself, alongside `n1`.\n")
+    L.append(
+        "- **Disclosed, not fixed by construction (referee pass 2, section 4)**: the "
+        "add-C-grades step is a post-hoc row deletion, not a re-run of the engine's own "
+        "grade-blind suppression window without C fires, so it undercounts what a real "
+        "no-C run would release by about 4.6% (see the disclosure above). Fixing it "
+        "needs a fourth bar-by-bar replay -- a second change, out of scope here.\n")
+    L.append(
+        "- **Still unreconciled, unchanged**: verify assertion 2 (step 7 vs "
+        "`research/bt2y_trades_retest_on.json`) still does not close within 1% "
+        "(11.1% apart, per the referee's independent re-check) -- the two books differ "
+        "by engine feature (`loss_halt`) as well as by commit, and closing it needs a "
+        "fourth run this repair does not make. The report already states this and the "
+        "likely cause; nothing here changes that.\n")
 
     L.append("## Reproduce\n")
     L.append("```\npython research/g211_reconcile_ladder.py --procs 8\n```\n")
