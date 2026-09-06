@@ -1,4 +1,8 @@
-# L3 referee — `OCR_RETEST_DISPLACEMENT` — **REFUTED**
+# L3 referee — `OCR_RETEST_DISPLACEMENT` — **REFUTED** (pass 1)
+
+> **Pass 2 is at the bottom of this file** and reaches **upheld** on the repair commit
+> `03b2810c`: every number here reproduces under independent arithmetic, the repair is proven
+> a no-op by rebuilding the ON arm, and two new defects are named. Read both.
 
 Builder commit under review: **`90dce640`** ("L3: OCR_RETEST_DISPLACEMENT lands OFF -- no
 number yet"). Referee: a different model, told to refute. Referee script:
@@ -230,3 +234,173 @@ Produced by `python research/l3_referee.py` on 2026-09-05 at commit `90dce640`, 
   "decision": "hold"
 }
 ```
+
+---
+---
+
+# L3 referee, PASS 2 — **UPHELD** (the decision and every number; two defects named)
+
+Repair commit under review: **`03b2810c`** ("L3 repair: delegate ocr_has_strong_pa to
+ocr_quality, add equality test, fix clear_break docstring, land ledger row -- HOLD confirmed").
+Builder's first commit: `90dce640`. Pass-2 referee: a third model, told to refute, importing
+nothing from `research/loop_cycle.py`, `research/g72_suppress_price.py` or
+`research/l3_referee.py`. Pass-2 script: **`research/l3_referee2.py`** (committed beside this
+page) — the unit, the halves split, months-green, $/day, avg win/avg loss and the gate are all
+re-typed from the spec's wording, and the book fingerprint is a SHA-256 of every fired row's
+(day, symbol, entry minute, side, P&L), deliberately not `book_stamp.book_id`.
+
+**Verdict: upheld.** Every figure in `research/l3_ocr_retest_displacement.md` reproduces to the
+dollar and to the trade under independent arithmetic. The decision (**hold**) is correct. Two
+defects are named below; neither changes a number or the decision.
+
+## 1. The gate, re-derived from scratch
+
+Unit **`up_to_3_stop_win_or_2loss`** (up to 3 fired-and-traded signals a day, stop after the
+first win or the second loss). Fill: honest **close** (`entry_fill: "close"` read back out of
+both books' meta). Exit: shipped engine — 1R hard stop on the intrabar touch
+(`DISASTER_STOP_R=1.0`), `SCALE_PLAN=hod_then_runner_be`, loss halt on (`R31 loss halt: ON`
+in the build log). Universe **core 11** (`tier == "core"`). Window 2024-09-04 → 2026-09-04,
+499 sessions. 1R = $1,000. Script: **`research/l3_referee2.py`**.
+
+| slice | $/day off → on | green off → on | trades off → on | pass-2 gate |
+|---|---|---|---|---|
+| whole (25 months) | −$52 → −$58 (floor −54.6) | 11 → 10 | 769 → 764 | fail |
+| H1 (12 months, before 2025-09-01) | +$9 → −$47 (floor +8.5) | 6 → 5 | 382 → 380 | fail |
+| H2 (13 months) | −$111 → −$68 (floor −116.6) | 5 → 5 | 387 → 384 | **pass** |
+
+Identical to the builder's table and to pass 1's, cell for cell (the only difference anywhere
+is win-rate rounding, 44.9% vs 45.0%, and the H1 floor at 8.5 vs 8.6 — 9 × 0.95 = 8.55).
+**Decision: hold.** One failing half holds the change; the flag stays OFF.
+
+A counting trap that turns out not to bite: `loop_cycle.py` divides the *whole* window by
+`meta["sessions"]` = 499, which is the **full-pool** session count, while the rows have been
+filtered to core 11. Re-priced with the core-filtered distinct-day count instead, the answer is
+the same — the core 11 trade on all 499 sessions (248 + 251), so both ways of counting give
+−$52 → −$58. Recorded because the next L-row on a narrower slice will not be so lucky.
+
+## 2. Identity — stronger than pass 1 checked
+
+| check | result |
+|---|---|
+| OFF book's trade list vs the baseline's, deep equality of all 127,513 rows | **identical** (not just an equal `book_id`) |
+| my own fingerprint, baseline / OFF / ON | `81c317bbf09e9890` / `81c317bbf09e9890` / `76a67888d8752779` |
+| stamped `book_id`, baseline / OFF / ON | `2c39ced2697c26cc` / `2c39ced2697c26cc` / `c29a7dd5902cf457` |
+| stamps differ in exactly one flag | ✔ only `signal_runner.OCR_RETEST_DISPLACEMENT`, `false` → `true` |
+| stamps differ in nothing else | ✔ the only other differing key is `built_at` (20:15:10 vs 20:18:42, same day, 3 minutes apart) |
+| stamp commit is the row's commit or an ancestor | ✔ both books stamped `90dce640`, an ancestor of `03b2810c` |
+| tree dirty at build time | `dirty_engine_py: []`, `dirty_py_count: 1` (pass 1's own uncommitted `research/l3_referee.py`) |
+| **ON arm rebuilt at the repair commit `03b2810c`** | **`book_id c29a7dd5902cf457`, 120,979 rows, trade list byte-identical to the committed ON book** — see defect 1 |
+| flag registered in `research/book_stamp.py` `FLAG_SOURCES` | ✔ and present in both stamps |
+| default in code matches the decision (hold ⇒ OFF) | ✔ `os.getenv("OCR_RETEST_DISPLACEMENT", "0")`; nothing in the repo sets it — the only references are the two engine call sites, `book_stamp.py`, the test, the reports and the ledger |
+| no mark file touched by either commit | ✔ `90dce640` + `03b2810c` name only `omen_bot.py`, `signal_runner.py`, `research/book_stamp.py`, `research/test_t2_ocr.py`, `research/l3_ocr_retest_displacement.md`, `research/tape/cycles.md`, `research/tape/loop_state.json` |
+| verify gate at `03b2810c`, run by this referee | **green** — `regression_gate.py` PASS (any_signal 75→80, s_grade 5→25, no baseline-fired mark went silent), `test_runner_stop.py` ok (70 checks), `test_universe_single_source.py` ok (29 symbols), and `test_t2_ocr.py` ok including the three new equality checks and the default-OFF check |
+
+## 3. Semantics — the flag against the settled sentence
+
+`research/omen_recall.py "OCR entry retest displacement"` returns, top hit, the spec's settled
+table row (law) and the rulebook line of the same date:
+
+> **2026-09-05: OCR entry = retest of the OCR extreme after the break, with strong PA and
+> displacement.**
+> OCR — entry on the **retest** of the OCR candle's extreme after the break, **with strong PA
+> and displacement** (body ≥ `STRONG_PA_MULT` × avg body of prior 10, closing in the trade
+> direction).
+
+Re-verified against the code at `03b2810c`, not against the report:
+
+- **retest** — `detect_order_block_setup` returns `None` on `"not_retesting"`; both call sites
+  additionally require `retest in OB_RETEST_TYPES` (`("wick_only",)`). Unconditional. ✔
+- **after the break** — `break_idx` is the structure break (`structure.last_hh` / `last_ll`) and
+  the entry candle is `candles[-1]`, always after it. ✔
+- **displacement** — `omen_bot._has_displacement`, called unguarded inside
+  `detect_order_block_setup` (`omen_bot.py:442`); failure returns `None`. Unconditional. ✔
+- **strong PA** — the one clause that was missing, and the only thing the flag adds:
+  `ocr_has_strong_pa` → `ocr_quality(...)["strong_pa"]` = entry candle closes in the trade
+  direction **and** body ≥ `OCR_STRONG_PA_MULT` (1.5, asserted equal to
+  `signal_runner.STRONG_PA_MULT` by the test) × avg body of the prior 10. Exactly the spec's
+  parenthetical, operator for operator. ✔
+
+The flag is the settled sentence, not something adjacent. `OCR_STRICT` (which additionally
+requires `clear_break` and `quick`) is untouched and still OFF.
+
+Pass 1's `clear_break` caveat is answered correctly in the repair: the docstring no longer
+claims the sentence "never names" it, it records that "after the break" is in the sentence and
+that three of his marks name a clear break, and it defers whether `clear_break` belongs in a
+*second* flag to a follow-on row. That is the right call — the spec's parenthetical is law and
+it defines the added test as body-and-direction only. **A follow-on L-row measuring
+`clear_break` on top of this flag is still owed** and is not written up anywhere but here.
+
+The new call sites do not guard on `"block_idx" in _ob` the way the `OCR_STRICT` branch above
+them does. Checked: `detect_order_block_setup` writes both keys at `omen_bot.py:438-439`
+*before* every return path that can hand back a non-`None` block, so the guard is redundant and
+its absence cannot raise. Not a defect.
+
+## 4. Defects
+
+1. **The published books predate the repair, and were never rebuilt.** Both arms were built at
+   `90dce640`; commit `03b2810c` then changed `omen_bot.py` and `signal_runner.py` — engine
+   files — and shipped the same numbers on the strength of an argument that the refactor is
+   behaviour-preserving. That argument is sound (the deleted lines and `ocr_quality`'s
+   `strong_pa` lines are character-identical, `float("inf")` edge case included), but "the code
+   that produced the number no longer exists in the tree" is the exact shape of the
+   reproducibility failure `CLAUDE.md` records for 5.2. **Settled by measurement, not by
+   reading**: this referee rebuilt the ON arm at `03b2810c`
+   (`OCR_RETEST_DISPLACEMENT=1 python backtest_2y.py --days 730`), got
+   `book id c29a7dd5902cf457 from commit 03b2810c`, 120,979 rows, and a trade list equal to the
+   committed ON book element for element. The numbers stand at the row's commit. The rule for
+   the next row: if the repair touches an engine file, rebuild the arm.
+2. **"The flag does not delay an OCR entry" is false, and it is the one readout the row skipped.**
+   The report writes: *"the flag does not delay an OCR entry, it either admits or rejects the
+   same bar — there is no 'later bar' case to time"*. Rejecting a bar does not retire the setup;
+   the retest is re-evaluated on the next bar, so the entry moves later. Measured on the two
+   committed books, core 11, one-candle-rule rows: 174 symbol-days keep an OCR row under the
+   flag, and on **109 of them (63%) the first OCR row is at a later minute** than the OFF arm's
+   — median **+3 minutes**, mean +8.5, max +65; 65 are the same minute; **0 are earlier**. Nine
+   ON rows have no (symbol, day, minute) twin in the OFF arm at all — bars that only become rows
+   once a fire ahead of them is suppressed, the dedupe-release mechanism `CLAUDE.md` already
+   records for `research/g93_retest_gate_ab.py`. Entry timing is the second of the three things
+   his own marks say is broken ("b candle right but entry is 3 candles earlier"), so a flag that
+   pushes 63% of the setups it keeps a median 3 minutes later is exactly the readout that was
+   owed. It does not change the gate — the gate prices the whole book, delays included — and it
+   does not change the decision.
+
+Smaller, recorded, not held against the row:
+
+- The new equality assertion in `research/test_t2_ocr.py` is **tautological today**:
+  `ocr_has_strong_pa` now literally returns `ocr_quality(...)["strong_pa"]`, so the check cannot
+  fail until someone re-derives the arithmetic. That is its stated purpose (a drift guard) and
+  it is worth keeping, but it is not independent evidence about the ON book's semantics.
+- `research/book_stamp.py`'s stamp carries commit, dirty flags, every flag value and the build
+  timestamp, but **no explicit `script` or `window` field** — the window has to be read from
+  `meta.first/last/sessions` and the script inferred from the `out` path. Pre-existing, applies
+  to every stamped book in `research/tape/`, not L3's to fix.
+- `research/tape/cycles.md`'s **cycle 1 (`MIN_PT1_R`, −$9 → +$29) is still priced on the full
+  28-symbol pool** while cycles 2 and 3 are core 11. Three rows now sit in one table on two
+  different units. Named by the L1 and L2 referees, still unfixed; a reader comparing rows top
+  to bottom is comparing different books.
+
+## 5. Sample sizes
+
+Every gate cell carries ≥ 380 trades and ≥ 12 months, so the gate itself gets a verdict on the
+whole window and on both halves. The one-candle-rule slice does not: 108 traded rows off, **6
+on**. Six is a fifth of the 30-trade floor and the interval spans both signs — **not enough**,
+direction only, exactly as the report says. The delay figures in defect 2 are counts of rows
+(174 symbol-days, 109 delayed), not a P&L verdict, and carry none.
+
+## 6. Plain English, for the push line (checked)
+
+The ledger's cycle-3 row and the ntfy line read *"the one-candle-rule entry only when the
+retest candle is strong … held. $/day −52 → −58, green months 11 → 10"* — plain English, no
+flag name, no ticket id. ✔ In his words: making this entry wait for a strong candle throws away
+94 of every 100 of those setups, and pushes most of the ones it keeps about three minutes later.
+The few that survive look better on their own, but there are only six of them in two years on
+his eleven stocks — too few to call. Across the whole book it loses money on the first year, so
+it stays switched off.
+
+## Appendix — pass-2 output
+
+Produced by `python research/l3_referee2.py` at commit `03b2810c`. Full JSON is reproduced by
+re-running that script; the figures it prints are the table in section 1, the identity block in
+section 2 and the one-candle-rule slice (core 11: 3,098 → 180 rows, 108 → 6 traded, mean R
+−0.286 → +0.5995; full 29-symbol pool for reference: 6,835 → 386 rows, 192 → 11 traded, mean R
+−0.3149 → +0.0925 — also far under the floor, no verdict).
