@@ -243,3 +243,226 @@ default, the one-change rule, the mark files and the verify gate are all clean. 
 stand against the write-up, not the result: the dedupe-release explanation is false (the move
 is three days and one $9,750 trade), an n=27 cell carries a verdict it is not allowed to carry,
 and the "real verdict" framing hides that the whole gate outcome turns on a single row.
+
+---
+
+# L4 referee — pass 2 (a different model, told to refute)
+
+**Builder's commits:** `355d7cc0` (the flag lands OFF) and **`f81db426`** (the held result,
+`research/l4_trend_def.md`, both stamped books, the cycle ledger).
+**Pass 1's commit:** `5369601c` (everything above this line).
+**Pass 2's scripts:** `research/l4_referee2.py` (books, unit, gate, causal decomposition,
+the flag's own function) and `research/l4_referee2_bars.py` (the semantics and the bucket
+alignment, re-computed from the archived 1-minute bars with the bar list physically
+truncated at the signal bar). Neither imports `research/loop_cycle.py`,
+`research/g72_suppress_price.py` or `research/l4_referee.py`: the unit, the monthly buckets,
+the `$/day` denominators and the gate are re-typed from their written definitions.
+
+## Verdict: **REFUTED** — the decision survives, the write-ups do not
+
+`TREND_DEF` stays **off**, and that is the right call. Every headline number in
+`research/l4_trend_def.md` reproduces to the dollar under a third independent
+implementation. But the row was published, and left standing after pass 1 named them, with
+**three false or unsupported sentences in the builder's report** — and pass 1's own note,
+committed as "upheld", added **two more false sentences of its own**. No repair commit
+followed `5369601c`. A result whose published explanation is wrong is refuted, whatever its
+arithmetic does.
+
+---
+
+## What reproduced exactly (third implementation)
+
+Unit `up_to_3_stop_win_or_2loss` on `tier == "core"` (CORE_SYMBOLS, 11 names), **close fill**
+(`entry_fill.ENTRY_FILL="close"`, stamped in both books), **shipped engine exit** (1R hard
+stop resting on the level, intrabar-touch fill, `SCALE_PLAN=hod_then_runner_be`, account-wide
+two-loss halt on), 499 sessions 2024-09-04 → 2026-09-04.
+Script: `research/l4_referee2.py`, books `research/tape/book_TREND_DEF_{off,on}.json.gz`.
+
+| slice | n_days | arm | trades | total $ | $/day | mean R | win% | avg win | avg loss | W/L | green |
+|---|---:|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| whole | 499 | OFF | 769 | −25,746 | **−52** | −0.0335 | 45.0 | 801 | 716 | 1.119 | **11/25** |
+| whole | 499 | ON | 768 | −30,384 | **−61** | −0.0396 | 45.2 | 780 | 715 | 1.091 | **10/25** |
+| H1 | 248 | OFF | 382 | +2,191 | **+9** | +0.0057 | 43.7 | 917 | 701 | 1.308 | **6/12** |
+| H1 | 248 | ON | 381 | −7,559 | **−30** | −0.0198 | 43.5 | 863 | 701 | 1.232 | **5/12** |
+| H2 | 251 | OFF | 387 | −27,937 | **−111** | −0.0722 | 46.3 | 694 | 732 | 0.949 | **5/13** |
+| H2 | 251 | ON | 387 | −22,825 | **−91** | −0.0590 | 46.8 | 704 | 729 | 0.965 | **5/13** |
+
+Gate re-derived: **H1 fails on both columns** (green 6 → 5 *and* $/day +9 → −30);
+**H2 passes** (green 5 → 5, −111 → −91). **Decision = hold** — identical to the builder's,
+to `research/tape/cycles.md`'s row and to `loop_state.json`'s cycle-4 history entry.
+Both halves clear the 30-trade / 12-month floor on the BEFORE side.
+
+Stamps and hygiene, all re-checked and all clean:
+
+- OFF `book_id` **`2c39ced2697c26cc`** = `research/tape/loop.json`'s `baseline_book_id`
+  = `research/tape/baseline_2026-09-05.json.gz`'s own stamp, and the two books have the
+  identical row count (127,513). ON `book_id` `bc7889b0cfc5ec67`.
+- The two stamps' flag dicts differ in **exactly one key**:
+  `signal_runner.TREND_DEF: "off" → "structure15"`. Nothing else.
+- Both built at `355d7cc0` (ancestor of `f81db426`), `dirty_engine_py: []`,
+  `dirty_py_count: 0`, same window, same session count, 3½ minutes apart.
+- `TREND_DEF` default in code is `"off"`; `TREND_DEF` is in `research/book_stamp.py`
+  `FLAG_SOURCES`. A held research arm never defaults on — correct.
+- **One change per row:** `355d7cc0` = `signal_runner.py` + `research/book_stamp.py`;
+  `f81db426` = report, two books, `cycles.md`, `loop_state.json`. No second behaviour change.
+- **No mark file touched** by `355d7cc0`, `f81db426` or `5369601c`.
+- **Verify gate green, run by me at HEAD `5f2e3fdc`** (which has `f81db426` as an ancestor;
+  no agent may check out an older commit here): `regression_gate.py` PASS,
+  `test_runner_stop.py` ok (70 checks), `test_universe_single_source.py` ok (29 symbols).
+- The ntfy line the ledger row generates is plain English and names no flag:
+  *"cycle 4: the 15-minute structure trend test — held. $/day −52.0 → −61.0, green months
+  11 → 10."*
+
+## Semantics — checked against raw bars, not against the docstring
+
+`research/omen_recall.py "trend 15-minute structure higher highs higher lows OCR direction"`
+returns, verbatim:
+
+> **trend** — *"15-minute structure (higher highs / higher lows, or the reverse) on the 1m
+> chart — no indicator"* (`omen-10-0-spec.md`, "What the call settled"), and
+> `omen-rulebook.md`, Decided 2026-09-05: *"trend = 15-minute structure (HH/HL) on the 1m
+> chart."*
+
+`structure15_trend` exercised directly (`l4_referee2.py` section 9): 29 bars → `None`,
+30 rising → `bullish`, 30 falling → `bearish`, flat → `None`, empty → `None`, inside bucket
+→ `None`, outside bucket → `None`, 44 bars → `bullish` and 45 → `bearish` (the trailing
+partial bucket really is dropped). `_trend_ok` is `return True` unless
+`TREND_DEF == "structure15"` and `return True` on `None`.
+
+Against the archived bars (`research/l4_referee2_bars.py`), on the 91 fired core rows the
+gate removes at its two wired setups:
+
+- **Bucket alignment is genuinely clock-aligned.** Every one of the 277 archived sessions
+  the flip set touches has its first RTH bar at exactly `09:30:00` (`polygon_feed.rth`
+  filters `09:30:00 <= ts < 16:00:00`), so bucket 1 is 09:30–09:44, bucket 2 is 09:45–09:59.
+  This is a real 15-minute chart, not an off-grid rolling window.
+- **No look-ahead.** `backtest_week.simulate_day` sets `runner.candles = candles[:i+1]`;
+  I recomputed the trend from a physically truncated bar list and matched.
+- **87 of the 91 removals are direct trend disagreements.** The other 4 (all
+  `reentry_84_rule`) are allowed by the trend read at their own signal bar — they vanish
+  because the 84% rule only arms after a stopped S/A original, and the original the gate
+  removed was itself an OCR. That is a cascade, not a direction test.
+- **221 of 221 kept rows** are correctly not blocked.
+
+## Defect 5 (new) — the report's 84% flip count is not what the report says it is
+
+`research/l4_trend_def.md` presents its flip table as *"exactly the population the new
+`_trend_ok` gate can remove"* and prints **18** removed `reentry_84_rule` rows. Four of
+those eighteen (22%) are the cascade above: `AAPL 2025-10-23 10:53`, `AMZN 2025-05-02 10:26`,
+`TSLA 2026-04-17 10:30`, `NVDA 2026-02-10 10:25`. Their own trend read allows them. The
+direction test removed 14 of them, not 18. (Pass 1 recounted the same 18 and did not
+separate them either.)
+
+## Defect 6 (new) — the flag has no opinion on two rows in five, and neither write-up says so
+
+Over all **312** fired gated core rows in the OFF book (259 `one_candle_rule` + 53
+`reentry_84_rule`), recomputed from raw bars:
+
+| the trend read at the signal bar | rows | share |
+|---|---:|---:|
+| abstains (`None` — inside/outside bucket, or under 30 minutes of session) | **123** | **39%** |
+| agrees with the trade direction → allowed | 102 | 33% |
+| disagrees → blocked | 87 | 28% |
+
+Pass 1 reported the *blind window* (14% of OCR fires land before 09:59, when two full
+buckets do not yet exist). That is a third of the abstentions. The other two thirds are
+inside and outside buckets in the middle of the session. A rule that declines to have an
+opinion on 39% of the population it is wired to judge is a materially weaker rule than
+either write-up describes.
+
+## Defect 7 (new) — the read is up to 14 minutes stale, by construction
+
+Dropping the forming bucket is the only way to avoid look-ahead, and it is the right choice —
+but it means the trend the engine consults at the signal bar is the comparison of two buckets
+that both closed *before* the current one began. Measured over the same 312 rows:
+**112 (36%) are read from a bucket pair that is 10 or more minutes old**, and the maximum is
+14. A human reading a 15-minute chart at 10:29 sees the forming 10:15 bar; this engine sees
+09:45 vs 10:00 and nothing since. Defensible, and it is what "no look-ahead" costs — but it
+is an implementation choice the rulebook sentence does not make, and no write-up names it.
+
+## Defect 8 (new) — pass 1's own row-join table does not add up
+
+`research/l4_referee.md`'s decomposition prints "only in OFF 3 / only in ON 2 / shared 764".
+3 + 764 = 767, against the 769 trades the same document reports two tables earlier. The join
+key `(day, et, sym, dir, setup)` **collides on 5 unit rows in each arm** — five cases where
+the same symbol, same minute, same direction and same setup is booked twice and both copies
+are inside the day walk (`AMZN 2024-11-04 09:45`, `QQQ 2025-01-24 09:54`,
+`META 2025-10-29 09:41`, `GOOGL 2025-12-30 09:37`, `NVDA 2026-02-19 09:40`). The collisions
+are identical in both arms, so the *conclusion* is unaffected — and my day-level
+decomposition, which uses every row and no join at all, sums to the total exactly — but the
+published counts are wrong, and this is precisely the duplicate class T1's "no repeats"
+self-check is supposed to fail the build on.
+
+## Defect 9 (new) — pass 1's counterfactual is wrong in both directions
+
+Pass 1 wrote: *"Remove that single 2024-10-25 SPY one-candle-rule put (+$9,750) and October
+2024 stays green, H1's green count does not fall, and H1's dollar column goes from +$9 to
+roughly break-even rather than −$30."* Recomputed (`l4_referee2.py` section 12), the answer
+depends on a counterfactual pass 1 never named, and neither reading matches its sentence:
+
+| counterfactual | 2024-10 OFF | 2024-10 ON | H1 green | H1 $/day | gate |
+|---|---:|---:|---|---:|---|
+| **A — the row never existed** (drop it from the pool; the day walk re-fills its slot) | **+4,070 green** | −4,703 red | **6 → 5, still falls** | +5 → −30 | **hold** |
+| **B — delete it from the OFF unit after the walk** | −4,703 red | −4,703 red | 5 → 5 | −30 → −30 | **ship** |
+
+Under A — the only counterfactual that respects the unit's own day walk — October stays
+green (pass 1 right), but H1's green count still falls and the decision is still hold
+(pass 1 wrong), and H1's OFF dollars are +$5/day, not "roughly break-even" against −$30
+(pass 1 conflated the arms: the ON arm never had the row and does not move at all).
+Under B the whole gate flips to ship. Pass 1 asserted A's month result and B's gate
+implication in one sentence, which is true of neither.
+
+The honest version: **the day walk absorbs most of that trade.** Removing it costs the OFF
+arm only $977 of the $9,750 in October, because the walk then reaches the next candidate.
+The gate's outcome is robust to deleting the single largest row — the opposite of pass 1's
+"decided by one trade".
+
+## The three defects pass 1 found, re-verified and still standing in the report
+
+No repair commit followed `5369601c`. All three sentences are still in
+`research/l4_trend_def.md` as committed at `f81db426`:
+
+1. **"the mechanism is not 'worse trades kept,' it's dedupe-release" — false.** Confirmed
+   independently: **0** of the unit's changed rows are absent from the OFF book. The two
+   only-in-ON unit rows (`MSFT 2025-11-05 10:25`, `NVDA 2026-02-24 10:24`) are in the OFF
+   book at the identical status (`halted`) and identical P&L; the day walk simply reaches
+   them once the OCR loss ahead of them is gone. The whole move is three days:
+
+   | day | OFF | ON | delta |
+   |---|---:|---:|---:|
+   | 2024-10-25 | +9,732 | −18 | **−9,750** |
+   | 2025-11-05 | −2,000 | +58 | +2,058 |
+   | 2026-02-24 | −1,180 | +1,874 | +3,053 |
+   | | | | **−4,639** = the whole-window move, to the dollar |
+
+2. **A verdict on an n=27 cell.** The report prints −0.1219R (n=27) unlabelled and then
+   concludes *"the gate is removing losing trades on average."* 27 < 30; SWARM.md law 3 says
+   count, interval, "not enough", no verdict.
+
+3. **"exactly the population the new `_trend_ok` gate can remove" — false.** The gate is
+   wired at `one_candle_rule` and `reentry_84_rule` only, yet `break_and_retest` loses 5
+   fired rows and gains 8. Confirmed: OFF 4,329 → ON 4,332.
+
+## One more the report gets subtly wrong
+
+*"H1 fails … (a green-month drop is an automatic fail regardless of the ±5% dollar-drop
+tolerance)"* reads as though the dollar column was fine. It was not: +$9/day → −$30/day is a
+fall, and `half_verdict` returns `dollar_ok: False` as well. H1 fails on **both** columns.
+
+## Scope note (not a defect, but it should have been written down)
+
+The call names four setups. `_trend_ok` is wired at two. A **BR+OCR** signal is emitted at
+the break-and-retest site with `setup_label = "BR+OCR"` — **3,695 fired core rows in the OFF
+book** — and the gate never runs on it. That is arguably right (a BR+OCR takes its direction
+from the break, not from an assumed trend), but it is a silent scope decision on a population
+14× larger than the one the flag does touch.
+
+## Verdict, restated
+
+**REFUTED.** The decision — hold, `TREND_DEF` off — is upheld and reproduces under a third
+independent implementation, and the flag implements the sentence the call settled (87 of 91
+removals verified against raw bars). What is refuted is the published record: three false or
+unsupported sentences in `research/l4_trend_def.md`, uncorrected since pass 1 named them, and
+five more errors found here — two of them (defects 8 and 9) in pass 1's own note, which was
+committed as "upheld". Nothing is deleted: this is evidence, and the next agent should not
+re-run it.
