@@ -145,6 +145,11 @@ it contradicts the LOOSE arm, not the shipped one. Next bottleneck is the detect
 
 | date | task | commit | number that moved |
 |---|---|---|---|
+| 2026-09-05 | **L1 refuted:** RR gate MIN_PT1_R=1.0. (`research/l1_*.md`) | `d062da84` | Full-29: whole 773→767 trades, $/day −9→29, green 12→12/25 (FAIL); H1 $/day 72→201 (PASS); H2 $/day −89→−141 (FAIL). Core-11: whole 769→751 trades, $/day −52→−29, green 11→11/25 (never positive). |
+| 2026-09-05 | **L2 upheld:** 84% arming RULE84_ARM_SGRADE=1. (`research/l2_*.md`) | `d317ff43` | core-11: whole −$52→−$57/day, green 11→11/25 (FAIL); H1 $9→−$8/day (FAIL); H2 −$111→−$106/day (PASS). |
+| 2026-09-05 | **L3 upheld:** OCR entry on retest with displacement. (`research/l3_*.md`) | `03b2810c` | core-11: whole −$52→−$58/day, green 11→10 (FAIL); H1 +$9→−$47/day (FAIL); H2 −$111→−$68/day, green 5→5 (PASS). |
+| 2026-09-05 | **L4 upheld:** trend = 15-min structure TREND_DEF=structure15. (`research/l4_*.md`) | `f81db426` | core-11: whole −$52→−$61/day, green 11→10/25 (FAIL); H1 $9→−$30/day (FAIL); H2 −$111→−$91/day, green 5→5/13 (PASS). |
+| 2026-09-05 | **L5 refuted:** day policy DAY_POLICY=3fires_stop_win_or_2loss. (`research/l5_*.md`) | `350b02fc` | core-11: whole −$52→−$52 (held); H1 +$9→+$9, 6→6/12 (PASS); H2 −$111→−$111, 5→5/13 (PASS); prop-firm $2500 limit 100% pass (0/499 breach). |
 | 2026-09-05 | **O4 upheld:** smoke-test plumbing for loop + regression gate. (no report; dry-run only) | `8ecb043e` | no dollar figures; rehearsal 2 books 10 trades $22/day (expected no-op). |
 | 2026-09-05 | **V3 upheld:** precision gate on honest-fill book (`research/g215_precision.py`). | `b5267e46` | unit1 (one-trade-a-day pick) 30.5% (18/59); unit2 (all fires) 28.5% (169/592). |
 | 2026-09-05 | **V1 upheld:** premarket list infrastructure (`research/premarket_list.py`). | `3c8e586d` | 11 symbols PDH/PDL/PMH/PML; no dollar figures, infra-only. |
