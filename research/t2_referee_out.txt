@@ -1,0 +1,110 @@
+T2 REFEREE -- independent recompute
+book   : research/tape/instruments_2026-09-05.json.gz
+stamp  : commit 380667a6  dirty_py_count=3  dirty_engine_py=[]  built 2026-09-05T22:41:36
+rows   : 769
+
+A. INDEPENDENT RECOMPUTE (denominator = every day in the unit book: all 498, H1 248, H2 250)
+  shares whole                       $  -52/day  meanR -0.034  win 45.0%  11/25 green  n=769
+  shares H1 <2025-09-01              $    9/day  meanR +0.006  win 43.7%   6/12 green  n=382
+  shares H2 >=2025-09-01             $ -112/day  meanR -0.072  win 46.3%   5/13 green  n=387
+  futures whole                      $   12/day  meanR +0.058  win 52.5%  12/24 green  n=99
+  futures H1 <2025-09-01             $   71/day  meanR +0.375  win 63.8%   9/12 green  n=47
+  futures H2 >=2025-09-01            $  -48/day  meanR -0.229  win 42.3%   3/12 green  n=52
+  options whole                      $ -607/day  meanR -0.393  win 31.8%   2/25 green  n=769
+  options H1 <2025-09-01             $ -632/day  meanR -0.410  win 28.9%   1/12 green  n=382
+  options H2 >=2025-09-01            $ -583/day  meanR -0.377  win 34.6%   1/13 green  n=387
+
+B. MATCHED SUBSET -- the 99 futures-eligible rows (SPY/QQQ only), on 93 distinct days
+   the published table compares 99 futures rows against 769 shares rows.
+   same-rows comparison, both denominators shown:
+  shares on the 99 /all-days         $   17/day  meanR +0.086  win 55.6%  13/24 green  n=99
+  shares on the 99 /its-own-days     $   92/day  meanR +0.086  win 55.6%  13/24 green  n=99
+  shares on the 99, H1               $   76/day  meanR +0.404  win 66.0%   9/12 green  n=47
+  shares on the 99, H2               $  -42/day  meanR -0.201  win 46.2%   4/12 green  n=52
+  futures on the 99 /all-days        $   12/day  meanR +0.058  win 52.5%  12/24 green  n=99
+  futures on the 99 /its-own-days    $   62/day  meanR +0.058  win 52.5%  12/24 green  n=99
+  futures on the 99, H1              $   71/day  meanR +0.375  win 63.8%   9/12 green  n=47
+  futures on the 99, H2              $  -48/day  meanR -0.229  win 42.3%   3/12 green  n=52
+  options on the 99 /all-days        $  -50/day  meanR -0.254  win 34.7%   5/24 green  n=99
+  options on the 99 /its-own-days    $ -270/day  meanR -0.254  win 34.7%   5/24 green  n=99
+  options on the 99, H1              $    8/day  meanR +0.042  win 45.7%   4/12 green  n=47
+  options on the 99, H2              $ -109/day  meanR -0.522  win 25.0%   1/12 green  n=52
+
+C. CONTRACT ROUNDING -- realised 1R in dollars vs the nominal $1,000
+  futures  n=99  min 0.917  p05 0.954  median 1.000  p95 1.022  max 1.064  mean 0.9975  sd 0.0202
+           |realised R - 1.0| > 5%: 5 rows (5.1%);  > 20%: 0 rows
+  options  n=769  min 0.904  p05 0.979  median 1.003  p95 1.023  max 1.076  mean 1.0021  sd 0.0145
+           |realised R - 1.0| > 5%: 8 rows (1.0%);  > 20%: 0 rows
+  futures contract counts: min 5 median 21 max 67; rows sized to 1 contract (rounding floor bites hardest): 0
+
+D. FUTURES BASIS SENSITIVITY -- re-price the 99 rows at perturbed ratios
+   (basis + carry - dividends on a 2y ETF/index ratio is order 1-2%%; 5%% and 10%% are stress rows)
+   shock    $/day     total     meanR    win%    green 
+   +0.0%    $12       $5731     0.0579   52.5    12/24
+   -0.5%    $12       $5746     0.0580   52.5    12/24
+   +0.5%    $12       $5790     0.0585   52.5    12/24
+   -1.0%    $12       $5940     0.0600   52.5    12/24
+   +1.0%    $12       $5797     0.0586   52.5    12/24
+   -2.0%    $12       $5935     0.0599   52.5    12/24
+   +2.0%    $12       $5915     0.0598   52.5    12/24
+   -5.0%    $12       $5759     0.0582   51.5    12/24
+   +5.0%    $12       $5876     0.0594   52.5    12/24
+   -10.0%   $11       $5478     0.0553   51.5    12/24
+   +10.0%   $13       $6250     0.0631   52.5    12/24
+   sign of futures $/day across the whole shock range above: UNCHANGED
+
+E. OPTIONS -- instrument_source census, read off the book, not assumed
+   {'model': 749, 'real': 20}   -> real share 2.60% of 769
+   every row carries instrument_source: True
+   spread cost charged: real rows with a spread_cost field = 0 of 20; model rows = 749 of 749
+   model spread cost per trade: median $340, mean $374, total $280620 over 749 rows
+   model total pnl $-310248, of which spread is $-280620 (90% of the loss)
+   options, spread removed            $  -44/day  meanR -0.028  win 44.5%  11/25 green  n=769
+   options, half the spread           $ -326/day  meanR -0.211  win 37.5%   4/25 green  n=769
+   the script charges 2 x $0.05 x 100 x contracts = $10/contract round
+   trip, i.e. the FULL quoted width twice. Crossing a $0.05 wide market
+   from mid costs $0.025 each way = $5/contract round trip. The 'half
+   the spread' row is that convention.
+   -> the real rows are priced with NO spread (a 1-min aggregate close is
+      a traded print) and the model rows with two full widths; the two
+      sources are not on one ruler.
+
+F. DOES A 'real' OPTION ROW PRICE THE SAME TRADE THE SHARES ROW BOOKED?
+   real rows: 20;  of those the shares book scaled out of: 14
+   real rows where the option P&L sign DISAGREES with the shares P&L sign: 4 of 20 (20%)
+   the option leg is priced entry-close -> (entry+bars)-close on ONE
+   contract; the shares row is a 30/30/30/10 ladder with up to four
+   exits. `bars` is backtest_2y.py:244 `exit_idx - entry_idx`, i.e. the
+   LAST leg. Examples:
+     TSLA   2024-09-05 09:53  shares r +0.272 pnl $272       scaled=True   opt 3.92->3.85 x38 pnl $-266
+     MSFT   2024-09-06 09:46  shares r -1.000 pnl $-1000     scaled=False  opt 1.90->1.40 x34 pnl $-1700
+     MSFT   2024-09-13 09:47  shares r -1.000 pnl $-1000     scaled=False  opt 1.95->1.51 x36 pnl $-1584
+     PLTR   2024-09-23 09:43  shares r -0.310 pnl $-310      scaled=True   opt 0.75->0.71 x113 pnl $-452
+     META   2024-12-31 10:11  shares r -1.000 pnl $-1000     scaled=False  opt 6.35->5.90 x20 pnl $-900
+     SPY    2025-01-30 09:46  shares r +0.230 pnl $230       scaled=True   opt 1.40->1.67 x48 pnl $1296
+
+G. WHY THE REAL SHARE IS 2.6%% -- what is actually on disk
+   catalog files cached: 23 ; aggregate files cached: 22 (of which 403: 2)
+   distinct unit rows ever ATTEMPTED for a real fetch: <= 22 of 769 (2.9%)
+   checkpoint file g213_progress.json exists: False
+   403 contracts on disk: ['O_MSFT240906C00407500_2024-09-04.json', 'O_SPY240904C00552000_2024-09-04.json']
+
+H. LIVE POLYGON RE-PULL (referee's own fetch, 10 rows)
+   PLTR   2025-03-07 O:PLTR250307C00082000    stored 1.79->2.38 | fresh 1.79->2.38 (offset 0m/0m) PASS
+   MSFT   2025-12-15 O:MSFT251219P00477500    stored 4.84->5.00 | fresh 4.84->5 (offset 0m/0m) PASS
+   TSLA   2026-07-20 O:TSLA260720P00380000    stored 2.85->3.15 | fresh 2.85->3.15 (offset 0m/0m) PASS
+   GOOGL  2025-08-28 O:GOOGL250829C00210000   stored 2.80->3.05 | fresh 2.8->3.05 (offset 0m/0m) PASS
+   PLTR   2025-05-02 O:PLTR250502C00121000    stored 1.43->2.04 | fresh 1.43->2.04 (offset 0m/0m) PASS
+   META   2025-11-21 O:META251121C00592500    stored 5.00->3.96 | fresh 5->3.96 (offset 0m/0m) PASS
+   SPY    2025-01-30 O:SPY250130C00605000     stored 1.40->1.67 | fresh 1.4->1.67 (offset 0m/0m) PASS
+   AMZN   2026-01-16 O:AMZN260116P00237500    stored 1.10->1.02 | fresh 1.1->1.02 (offset 0m/0m) PASS
+   TSLA   2024-09-05 O:TSLA240906C00230000    FETCH 403
+   PLTR   2026-08-05 O:PLTR260807C00165000    stored 4.01->4.90 | fresh 4.01->4.9 (offset 1m/1m) PASS
+   9 pass / 1 fail of 10 re-pulled
+
+I. IS THE 403 A LOOKBACK BOUNDARY? (the fetch loop breaks on the first
+   403 -- g213_instruments.py:341-343 -- so one boundary day ends the pass)
+   O:SPY240904C00552000     2024-09-04 -> 403
+   O:MSFT240906C00407500    2024-09-04 -> 403
+   O:TSLA240906C00230000    2024-09-05 -> 403
+   O:SPY250130C00605000     2025-01-30 -> 200, 405 bars
