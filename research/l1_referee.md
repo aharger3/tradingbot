@@ -533,3 +533,142 @@ neither is loop-controller code and both were inside this row's reach.
    takes the whole book from −$52 to +$28 a day and green months from 11 to 14, held OFF by one
    half's dollar column alone. A softer threshold than 1.0R is worth one cycle — and that cycle
    must rebuild **both** arms at its own commit.
+
+---
+
+# L1 referee, pass 4 — REFUTED (decision upheld, the write-up is not)
+
+**Builder commit under review: `f298369f`** ("L1 repair: fix pass-3 referee defects"),
+HEAD and `origin/main` at the time of this pass. Base check: `1539dd7f` is an ancestor of
+HEAD, HEAD equals `origin/main`. Referee code: **`research/l1_referee4.py`** (committed
+beside this file; the earlier passes' `l1_referee.py`, `l1_referee2.py`, `l1_referee3.py`
+are left untouched as evidence). Nothing in `l1_referee4.py` imports `loop_cycle.py` or
+`g72_suppress_price.py` — the unit, the halves split, the month-green count, the $/day
+divisor and the gate are re-implemented from their written definitions, so an arithmetic
+bug shared by the builder and the controller cannot hide.
+
+**Verdict: refuted.** The decision — *hold, `MIN_PT1_R` stays OFF* — reproduces on all four
+gate evaluations and is correct. But the repair, which existed only to remove false
+sentences, published a new one, built its numbers on a tree it did not disclose was dirty,
+and left the one program that renders the L1 arm reading the superseded book without
+flagging it.
+
+## Everything that reproduces
+
+Unit `up_to_3_stop_win_or_2loss` (up to 3 fired-and-traded signals a day in arrival order,
+stop after the first win or the second loss; candidate pool = fired-and-traded plus the
+two-loss halt's own rows). Fill **close**. Exit **the shipped engine** — 1R hard stop as a
+resting order filled on the intrabar touch, `SCALE_PLAN=hod_then_runner_be`, loss halt on.
+Universe **core 11** (`loop.json` `universe.row_filter`, `tier == "core"`), full 29 shown
+beside it. 499 sessions, 2024-09-04..2026-09-04. 1R = $1,000. Script
+`research/l1_referee4.py`.
+
+| engine · universe | OFF $/day · green | ON $/day · green | ON trades | H1 | H2 |
+|---|---:|---:|---:|---|---|
+| post-move (`d062da84`) · core 11 | −$52 · 11/25 | **+$28 · 14/25** | 732 | pass (6→9 green, $9→$204) | **fail** (green 5→5, $−111→$−145) |
+| post-move (`d062da84`) · full 29 | −$9 · 12/25 | +$84 · 11/25 | 780 | **fail** (green 8→7) | **fail** (green 4→4, $−89→$−99) |
+| pre-move (`e073b94a`) · core 11 | −$52 · 11/25 | −$29 · 11/25 | 751 | pass | fail (green 5→4, $−111→$−164) |
+| pre-move (`e073b94a`) · full 29 | −$9 · 12/25 | +$29 · 12/25 | 767 | pass | fail (green 4→3, $−89→$−141) |
+
+Every cell above matches the builder's corrected tables to the dollar. Also confirmed:
+
+- **The OFF book is the baseline.** `book_MIN_PT1_R_off.json.gz` and
+  `book_MIN_PT1_R_off_postfix.json.gz` both recompute to `book_id 2c39ced2697c26cc`, equal
+  to `research/tape/loop.json`'s `baseline_book_id` and to the baseline book itself. Every
+  stamped `book_id` recomputes to its stamped value (5 of 5).
+- **One flag apart.** The ON stamp differs from its OFF stamp in exactly one entry, both
+  pairs: `signal_runner.MIN_PT1_R` `0.0 → 1.0`. Nothing else moved.
+- **The semantics are the rulebook's.** Austin, 2026-09-05 (`omen-rulebook.md`, via
+  `omen_recall.py`): *"RR gate: first scale point (HOD/LOD) must be >= 1R from entry"*,
+  from *"we dont want to get in on a candle close of HOD/LOD because thats always our first
+  scale point, then the RR is shot."* The spec's settled row says the same. The code
+  (`signal_runner.py:2971-2983`) skips — does not cap — a signal whose session HOD (call) /
+  LOD (put) as of the signal bar sits under `MIN_PT1_R × |entry − stop|`, and
+  `hod_then_runner_be` really does scale its first rung at that extreme
+  (`backtest_week.py:149-158`). Candles are RTH-only (`polygon_feed.rth`, premarket
+  excluded), so "session" means the session. Re-derived straight from
+  `data_archive/<sym>/<day>.csv` on 40 tagged and 40 fired rows: **80/80 agree**, 0 disagree.
+- **The default matches the decision.** `signal_runner.MIN_PT1_R` imports as `0.0` at HEAD;
+  `.env` carries `MIN_PT1_R=0`. A held research arm does not default on, and this one does
+  not. `MIN_PT1_R` is in `research/book_stamp.py` `FLAG_SOURCES`.
+- **Sample size.** Every cell clears the floor: whole 769/732 trades over 25 months, H1
+  382/353 over 12, H2 387/379 over 13. No verdict rests on a thin cell.
+- **The verify gate is green at `f298369f`** — `regression_gate.py`, `test_runner_stop.py`
+  (70 checks), `test_universe_single_source.py` (29 symbols, no private lists), run by me.
+- **No mark file was touched** by any L1-era commit (`e073b94a`, `d062da84`, `ba639df0`,
+  `529ca50b`, `f298369f`).
+- **The two deleted scratch books were duplicates, not content.**
+  `book_MIN_PT1_R_POSTFIX_{off,on}.json.gz` at `529ca50b` are blobs `1967f487…` / `da497c58…`
+  — byte-identical to `book_MIN_PT1_R_{off,on}_postfix.json.gz` still at HEAD. Nothing lost.
+- **The line Austin would see is plain English.** `loop_cycle.py`'s ntfy push uses the row's
+  label ("the 1R first-target rule"), never the flag name.
+
+## DEFECT 1 — a new false sentence, in the repair that existed to remove false sentences
+
+`research/l1_min_pt1_r.md:167-169`:
+
+> full-29 goes -$9 -> +$84/day, 12->11 green, but there **H1 fails** (8->7 green) while H2
+> passes -- the failing half swaps universes between the two engines.
+
+**H2 does not pass on full-29 at the post-move engine.** Its green column holds (4 → 4), but
+the gate is green months *and* the 5% dollar band, and $/day goes **−$89.19 → −$99.35**, an
+11.4% deeper loss. Rounded or unrounded, that fails. On full-29 post-move **both halves
+fail**; the failing half does not swap universes, and the claim that it does is the whole
+point of the sentence.
+
+Pass 3's own wording was narrower and correct — "H2's **green column** passes"
+(`research/l1_referee.md:296-298`). The repair widened a statement about one column into a
+statement about the gate verdict. That is the same error class pass 3 charged (a headline
+that outruns what was measured), reintroduced in the fix for it, which is why this pass is
+refuted rather than upheld on a technicality.
+
+## DEFECT 2 — the shipped-code numbers were built on an undisclosed dirty tree
+
+Both post-move books stamp `git.dirty_py_count: 1` (`dirty_engine_py: []`). Neither
+`research/l1_min_pt1_r.md` nor the dispatcher report says so; they are presented as the
+shipped-code figures full stop. The stamp records the count but not *which* file, so the
+disclosure cannot be reconstructed after the fact — it had to be written down at the time.
+The pre-move books are clean (`dirty_py_count: 0`), which makes the omission louder, not
+quieter: the arm the row now leads with is the one built dirty.
+
+## DEFECT 3 — the tape still renders the superseded ON book, and this repair did not flag it
+
+`research/build_tape.py:236` feeds `book_MIN_PT1_R_on.json.gz` — the **pre-move** arm,
+`book_id 04b7f4f9778fc72a` — as the tape's `L1_on` source, and stamps it with
+`flag_decision("MIN_PT1_R")`, which now reads the *corrected* row. So `omen-tape.html`
+labels the superseded book with the corrected verdict. The repair fixed `cycles.md` and
+`loop_state.json` and correctly declined to edit `TASKS.md` **while naming it**; it did not
+name this one, and this one is the page Phase T and the summary artifact are built from.
+Editing `build_tape.py` belongs to T1, not to L1. Disclosing it belonged here.
+
+## Three things the row measured and did not say
+
+Not charged as defects — the row's claims are not wrong about them, it is silent — but the
+phase chief needs all three before deciding whether to spend a cycle on a softer threshold.
+
+1. **The headline swing is indistinguishable from zero.** Paired by calendar day over the
+   499 sessions, core-11 post-move: observed **+$79.8/day**, bootstrap 95% CI
+   **−$83 to +$245**, 16% of 4,000 resamples at or below zero. "−$52 → +$28" is one draw
+   from that interval. This is the project's usual result and it should be stated beside the
+   number, not left for the referee.
+2. **The ON arm hits the 2:1 target and loses the win rate to do it.** Post-move core 11:
+   avg win **$2,004** / avg loss **$1,000** = **2.004** against OFF's 1.119, with the win
+   rate falling **45.0% → 33.9%** (248 wins, 483 losses of 732). One of the call's three
+   targets is "average winner = 2× average loser"; this arm is the first thing in the tape
+   to reach it, and the row does not mention it.
+3. **The skip is invisible in the book's own status column.** All 14,929 `MIN_PT1_R` rows
+   land in `status: "skipped_tight_stop"`; only the free-text `reason` distinguishes them
+   from a genuine tight-stop skip. Any downstream count of tight-stop skips on the ON book
+   is really two causes added together.
+
+## What the next agent should do
+
+1. Fix the sentence at `research/l1_min_pt1_r.md:167-169`: on full-29 post-move **both**
+   halves fail the gate (H1 on green 8→7, H2 on the dollar column −$89 → −$99). Nothing else
+   in that section needs to move.
+2. Add the dirty-tree disclosure for `book_MIN_PT1_R_{off,on}_postfix.json.gz`, and — since
+   the stamp does not record which file — rebuild both arms clean before any *new* L1 number
+   is published. The hold stands on the books as they are; a ship never could.
+3. Hand T1 the `build_tape.py:236` line. One-line change, not L1's to make.
+4. If a softer threshold gets a cycle, it must rebuild both arms at its own commit, on a
+   clean tree, and report the interval with the point estimate.
