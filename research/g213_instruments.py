@@ -364,6 +364,9 @@ def stage_report():
             n_model += 1
         trades_out.append({
             "id": rid, "sym": r["sym"], "day": r["day"], "et": r["et"], "r": r["r"],
+            "bars": r.get("bars", 1),   # carried so g213_verify.py never has to
+                                        # re-derive the exit clock via a (sym,day,et)
+                                        # lookup that is not itself a unique key
             "shares": {"pnl": r["pnl"]},
             "futures": fut,
             "options": opt,

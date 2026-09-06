@@ -77,27 +77,16 @@ def main():
         return 0
     random.Random(SEED).shuffle(real_rows)
     sample = real_rows[:N_CHECK]
-    # The instrument row's own `et` anchors entry; exit was priced at the
-    # SAME contract's bar nearest et+bars minutes, and `bars` lives on the
-    # baseline book (not carried onto the instrument row), so it is re-read
-    # from there rather than guessed.
-    return _run_with_baseline(sample)
+    return _run(sample)
 
 
-def _run_with_baseline(sample):
-    import gzip as _gz
-    baseline_path = ROOT / "research" / "tape" / "baseline_2026-09-05.json.gz"
-    with _gz.open(baseline_path, "rt", encoding="utf-8") as f:
-        base = json.load(f)
-    bars_by_key = {(r["sym"], r["day"], r["et"]): r.get("bars", 1) for r in base["trades"]}
-
+def _run(sample):
     n_pass, n_fail, n_err = 0, 0, 0
     lines = ["# g213_verify -- 20 hand-checked option rows\n"]
     for t in sample:
         opt = t["options"]
         ticker = opt["contract"]
-        key = (t["sym"], t["day"], t["et"])
-        bars = bars_by_key.get(key, 1) or 1
+        bars = t.get("bars", 1) or 1
         exit_clock = add_minutes(t["et"], bars)
         entry_fresh, e1 = fetch_fresh(ticker, t["day"], t["et"])
         exit_fresh, e2 = fetch_fresh(ticker, t["day"], exit_clock)
