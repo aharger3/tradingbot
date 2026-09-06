@@ -11,7 +11,20 @@
       "dollars_per_day_before": -9.0,
       "dollars_per_day_after": 29.0,
       "green_before": 12,
-      "green_after": 12
+      "green_after": 12,
+      "_superseded_note": "full-29, priced before apply_universe_filter landed and before d062da84 moved the gate below _apply_x_lift. Decision unchanged (hold) on the corrected core-11/post-move engine, but the numbers are not this project's current book: see _l1_repair_2026_09_06 below and research/tape/cycles.md.",
+      "_l1_repair_2026_09_06": {
+        "universe": "core-11 (universe.CORE_SYMBOLS)",
+        "books": ["book_MIN_PT1_R_off_postfix.json.gz", "book_MIN_PT1_R_on_postfix.json.gz"],
+        "dollars_per_day_before": -52.0,
+        "dollars_per_day_after": 28.0,
+        "green_before": 11,
+        "green_after": 14,
+        "h1_pass": true,
+        "h2_pass": false,
+        "decision": "hold",
+        "source": "research/l1_referee.md pass 3 (commit 2dc6902d); re-verified this repair via research/loop_cycle.py --stage gate --dry-run against the already-committed postfix books, no rebuild"
+      }
     },
     {
       "cycle": 2,

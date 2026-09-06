@@ -145,3 +145,55 @@ numbers while upholding the decision. Two defects, both addressed:
 3. **SWARM law-5 (script every published number).** The 9,283/1,082/-0.065R figures were
    published from an ad hoc, uncommitted query. Now cite `research/l1_referee.py`
    (committed by the referee, reruns against the same two stamped `.json.gz` books).
+
+## Refereed (pass 3, refuted -- research/l1_referee.md, commit 2dc6902d)
+
+The dispatcher report for this row was **refuted on three counts**, all now fixed here:
+
+1. **Misattributed upheld status.** The report cited `3d168491` as "L1 referee pass 2:
+   upheld" -- that commit is **row L2's** referee. L1's own pass 2 is `236b9f69`,
+   subject "L1 referee (pass 2): **refuted**". Both L1 referee passes on record are
+   refuted. Corrected: this row has never been upheld by a referee; the decision (hold)
+   has survived every gate re-derivation, which is a different claim.
+2. **Stale ON numbers.** Everything above this section describes the **pre-move** engine
+   -- books stamped `e073b94a`, built before `d062da84` moved the `MIN_PT1_R` gate below
+   `self._apply_x_lift(sig)`. That move is in the shipped engine at HEAD
+   (`signal_runner.py:2959-2983`). Post-move books already existed
+   (`book_MIN_PT1_R_{off,on}_postfix.json.gz`, stamped `d062da84`) and were not used above.
+   **At the shipped code, core-11 whole-book reads OFF -$52/day, 11/25 green -> ON
+   +$28/day, 14/25 green (732 trades)** -- not the "-$52 -> -$29, never positive" figure
+   two sections up. H1 6->9 green, $9->$204/day (PASS). H2 **green months hold, 5->5**;
+   only the dollar column fails (-$111 -> -$145, a 31% deeper loss against the 5% band).
+   full-29 goes -$9 -> +$84/day, 12->11 green, but there **H1 fails** (8->7 green) while H2
+   passes -- the failing half swaps universes between the two engines. Fires/day on
+   full-29 **rises** 1.549 -> 1.563 (ON-book rows 131,530 -> 134,197): dropping a signal
+   releases the `DEDUPE_FIRES_ONLY` suppression window, so this gate creates candidates as
+   well as removing them -- the opposite of what the earlier "removes almost no fired
+   candidates" line claimed. Three headline sentences in the sections above this one are
+   therefore **false against the code now in the tree**: "the ON arm never turns positive
+   on core-11", "H2 fails on both green months and the dollar test on both universes", and
+   "H1 passes the no-regression gate on both universes". **The decision is unchanged --
+   hold, `MIN_PT1_R` stays OFF -- on all four gate evaluations (pre/post-move x
+   core-11/full-29), but it is a far nearer miss than this file reported**, blocked by one
+   half's dollar column alone on the settled universe.
+3. **cycles.md / loop_state.json.** L1's row there still published the full-29,
+   pre-move numbers unannotated while every sibling row is core-11. Fixed in this repair:
+   `research/tape/cycles.md` carries an annotation plus a corrected core-11/post-move row
+   (re-derived via `--stage gate --dry-run` against the postfix books, no rebuild, no
+   `cycle_count` increment since this is a correction of cycle 1's own numbers, not a new
+   experiment); `research/tape/loop_state.json`'s cycle-1 entry now carries a
+   `_l1_repair_2026_09_06` block with the same corrected figures.
+
+**Not fixed in this repair, out of scope:** `TASKS.md` line 148 still publishes the
+pre-move figures under commit `d062da84` (the very commit whose engine does not reproduce
+them). `TASKS.md` is off-limits to this row per SWARM.md unless the row explicitly says to
+edit it; flagging it here for whichever row is authorized to touch it. Also unfixed: the
+`book_stamp.py` schema gap (stamps carry `out` but no explicit `script` field) -- not
+charged to this row by the referee, and a schema change is a second change beyond this
+row's one flag.
+
+**Sample size on the corrected numbers:** core-11 whole-book post-move ON is 732 trades
+over 25 months (H1 353, H2 379) -- all cells clear the 30-trade/12-month floor for a
+verdict. The whole-book move (-$52 -> +$28/day) is still inside the ±1.58R error bar this
+project measures on nearly every A/B; the decision rests on H2's dollar column, not the
+headline swing.
