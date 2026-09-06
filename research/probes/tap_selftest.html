@@ -148,7 +148,8 @@ h1{
   font-family:"IBM Plex Mono",monospace; font-size:9px; font-weight:600; fill:var(--stop);
 }
 /* tap-on-chart marking (H2, 2026-09-05) */
-.chart .taphit, .chart .railhit{cursor:crosshair}
+.chart .taphit, .chart .railhit{cursor:crosshair; touch-action:none}
+.tapout[data-role="tapout"]{cursor:pointer}
 .chart .tap-entry{stroke:var(--entry); stroke-width:1.3; stroke-dasharray:2 2}
 .chart .tap-entry-t{
   font-family:"IBM Plex Mono",monospace; font-size:9px; font-weight:600; fill:var(--entry);
@@ -357,6 +358,7 @@ textarea.note:focus-visible{outline:2px solid var(--accent); outline-offset:1px}
       if (st.pt.length) parts.push('PT ' + st.pt.map(function(p){
         return p.toFixed(2);
       }).join(' / '));
+      if (showE || showS || st.pt.length) parts.push('(tap here to clear)');
       readout.textContent = parts.join('  ·  ');
     }
     var slider = card.querySelector('input.runner');
@@ -459,7 +461,12 @@ textarea.note:focus-visible{outline:2px solid var(--accent); outline-offset:1px}
         var t = q.querySelector('textarea.note');
         if (t && (st.notes || {})[k]) t.value = st.notes[k];
       });
-      if (st.tap) tapState[card.getAttribute('data-cid')] = st.tap;
+      if (st.tap){
+        var merged = defaultTap();
+        for (var k in st.tap) if (st.tap[k] !== undefined) merged[k] = st.tap[k];
+        if (!Array.isArray(merged.pt)) merged.pt = [];
+        tapState[card.getAttribute('data-cid')] = merged;
+      }
     });
     cards().forEach(function(card){ if (tapChart(card)) paintTap(card); });
   }
@@ -668,6 +675,20 @@ textarea.note:focus-visible{outline:2px solid var(--accent); outline-offset:1px}
     e.preventDefault();
     handleTap(card, svg, hit.classList.contains('railhit'), e);
   }, {passive: false});
+  /* Fat-finger recovery: the tap readout itself is the undo control -- tap it
+     to clear the card's marks and start over, no junk price targets needed. */
+  document.addEventListener('click', function(e){
+    var out = e.target.closest && e.target.closest('[data-role="tapout"]');
+    if (!out) return;
+    var card = out.closest('.card');
+    if (!card) return;
+    var cid = card.getAttribute('data-cid');
+    var st = tapState[cid];
+    if (!st || (st.entry_i == null && st.stop_p == null && !st.pt.length)) return;
+    tapState[cid] = defaultTap();
+    paintTap(card);
+    save(card);
+  });
   document.addEventListener('blur', function(e){
     var t = e.target;
     if (t && t.classList && t.classList.contains('note')) flush();
