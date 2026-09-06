@@ -404,3 +404,259 @@ result is the same to the dollar. The problem is that switching it on also quiet
 changed the standard two-year book everything else is measured against, and the live
 scanner does not actually know how to follow the new setting. So the right move is to
 leave the setting where it was and keep the fix.
+
+
+---
+
+# L5 referee — PASS 3 — **refuted**
+
+**Row:** L5, `DAY_POLICY`.
+**Builder's commit under review:** `99b2bf0b` — "L5 repair (referee pass 2, 34c1546e):
+DAY_POLICY default reverted to first3 (OFF)".
+**Builder's filed decision:** `hold`.
+**Referee verdict (pass 3): refuted — on the write-up and the ledgers, not on the
+decision or the numbers.**
+
+The decision is right and I could not break it. Every published number reproduces to
+the dollar under a fourth independent implementation, the no-op is exact row-for-row,
+the two stamps differ in exactly the one flag, and the OFF book is the baseline
+bit-for-bit. What is refuted is the claim that this repair closed pass 2. Pass 2 asked
+for **two** things in one landing — revert the default **and** "change its decision to
+**hold on a zero**" in the cycles row. The builder did the first and explicitly
+declined the second, and that omission is not cosmetic: it leaves a **committed test
+failing at HEAD**, three ledgers asserting a ship that did not happen, and the row's
+own report still telling the next reader that `3fires_stop_win_or_2loss` is the
+default and is live.
+
+Re-derived by `research/l5_referee_pass3.py` (committed beside this page). Nothing in
+it imports `research/loop_cycle.py`, `research/g72_suppress_price.py` or the two
+earlier referee scripts — the unit walk, the monthly buckets, the halves split and the
+gate arithmetic are all re-implemented from the `loop.json` / SWARM.md definitions, so
+a shared bug cannot make the builder's number and mine agree.
+
+**Every dollar on this page names its terms once:** fill = honest close
+(`backtest_2y.py` default `ENTRY_FILL=close`); exit = shipped engine, 1R hard stop
+filled on the intrabar touch (`DISASTER_STOP_R=1.0`), `SCALE_PLAN=hod_then_runner_be`,
+`LOSS_HALT` on; unit = `up_to_3_stop_win_or_2loss` on the 11 core symbols
+(`research/tape/loop.json`, `universe.row_filter = tier == "core"`); window
+2024-09-04 → 2026-09-04, 499 sessions (H1 248, H2 251); books
+`research/tape/book_DAY_POLICY_{off,on}.json.gz`; script `research/l5_referee_pass3.py`.
+
+---
+
+## 1. The numbers — every cell reproduces (upheld)
+
+My own gate, my own arithmetic, both books, boundary 2025-09-01:
+
+| slice | sessions | OFF $/day | OFF green | OFF trades | ON $/day | ON green | ON trades |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| whole | 499 | −52 | 11/25 | 769 | −52 | 11/25 | 769 |
+| H1 (< 2025-09-01) | 248 | +9 | 6/12 | 382 | +9 | 6/12 | 382 |
+| H2 (≥ 2025-09-01) | 251 | −111 | 5/13 | 387 | −111 | 5/13 | 387 |
+
+avg win ÷ avg loss **1.119** both arms; fires/day **1.541** both arms. Identical to
+the published table in `research/l5_day_policy.md` and to `research/tape/cycles.md`'s
+L5 row in every cell.
+
+Stronger than "the summary statistics match": I compared the two unit row-sets key by
+key — `(day, et, sym, pnl)` — and they are **identical, 769 for 769**. This is a true
+no-op on the measured lane, not a coincidence of aggregates.
+
+**The mechanism is confirmed, not just the total.** The ON book carries **1,095**
+`status="day_policy_halt"` rows, all core-tier, and **0 of the 1,095** are rows the
+OFF book's unit had picked. That is exactly the report's stated cause: the measurement
+lens already applies the same rule with hindsight, which is strictly stricter than the
+causal pass, so every row the causal pass can block was already outside the lens's
+top-3 window.
+
+**Sample size, per cell and per half:** whole 769 trades / 25 months; H1 382 / 12;
+H2 387 / 13. Every cell clears the 30-trade and 12-month floor, so every verdict on
+this page is allowed. No cell needed "not enough".
+
+**The gate itself, re-derived, returns `ship`** (H1 pass, H2 pass — both arms
+identical, so nothing can fall). The row is nonetheless correctly **held**, for a
+reason that is *not* the no-regression gate: see §2.
+
+## 2. The stamps and the baseline pin (upheld)
+
+- OFF `book_id` **2c39ced2697c26cc** = `baseline_2026-09-05.json.gz` = `loop.json`'s
+  `baseline_book_id`. The OFF-arm-equals-baseline guard holds.
+- ON `book_id` **205d3dcee96c5282**.
+- The two stamps differ in **exactly one** flag: `signal_runner.DAY_POLICY`
+  `"first3"` → `"3fires_stop_win_or_2loss"`. Nothing else moved.
+- Both built at commit `5e8b5b89`, `dirty_py_count = 0`, `dirty_engine_py = []`, and
+  `5e8b5b89` is an ancestor of `99b2bf0b`.
+- Both stamps carry **no `script` field and no `window` field** — the disclosed
+  `book_stamp.stamp()` gap. `meta` carries `first/last/sessions`
+  (2024-09-04 / 2026-09-04 / 499), so the window is recoverable, but the stamp itself
+  does not satisfy "commit, dirty flag, every flag value, date, window, script" as
+  written. Pre-existing, correctly flagged by the builder, not this row's to fix.
+
+**The builder's headline reason for the hold checks out without a rebuild.**
+`book_stamp.book_id` hashes `status` and `traded` per row; `backtest_2y.py:293` calls
+`day_policy.apply_to_book(rows)` unconditionally and that call is a no-op only while
+`signal_runner.DAY_POLICY != "3fires_stop_win_or_2loss"`. With the default flipped, a
+bare `python backtest_2y.py --days 730` flips 1,095 rows to `day_policy_halt` and
+therefore *must* produce `205d3dcee96c5282`, not the baseline. The claim is
+mechanically forced by the two committed books at the same commit; it needed no
+730-day rebuild to confirm, and I confirm it.
+
+## 3. DEFECT 1 (blocking) — a committed test fails at HEAD
+
+`research/test_live_follows_loop.py` (V4's parity test, refereed **upheld** at
+`dc0f77bb` two commits before this landing) reads `research/tape/cycles.md` and
+requires the live lane to carry whatever the tape says. At `99b2bf0b`:
+
+```
+AssertionError: live lane does not carry the loop's shipped defaults:
+  DAY_POLICY: cycles.md says 'ship' (want '3fires_stop_win_or_2loss'),
+              live_scanner has 'first3'
+```
+
+Exit code **1**. This is a test another row landed specifically so that "the live lane
+can never silently drift from the loop", and this landing put it red. It is not in the
+`verify:` line, which is why the builder's three green scripts did not catch it — but
+it is committed, it is runnable, and it fails.
+
+The fix is the half of pass 2's instruction the builder skipped: set the cycles.md
+decision cell to `hold`. Then the test's `expected_env_value` returns `first3` and the
+row goes green with no further code change.
+
+## 4. DEFECT 2 (blocking) — three ledgers still assert a ship that did not happen
+
+| ledger | says | truth at HEAD |
+|---|---|---|
+| `research/tape/cycles.md`, L5 row, decision cell | `ship` | held, default `first3` |
+| `research/tape/loop_state.json`, cycle 5 | `"decision": "ship"` | held |
+| `research/tape/loop.json`, `_comment` REBUILD PIN | "L5 (350b02fc) flipped … so a bare `python backtest_2y.py --days 730` at HEAD builds book_id 205d3dcee96c5282, not this baseline" | false since `99b2bf0b`; a bare build reproduces the baseline again |
+
+`loop_state.json`'s `consecutive_holds` is also **0** on the strength of that ship.
+Corrected to `hold` it becomes 1 — which matters, because the loop stops after five
+consecutive holds and this project has already had that counter mis-set twice (its own
+`_repair_note` records both). L1–L4 are four holds; recording L5 honestly makes the
+next hold the fifth and triggers the card the spec asks for. Leaving it as `ship`
+silently resets the loop's own stop condition.
+
+The `loop.json` line is the least harmful (its pin is now conservative rather than
+wrong-in-the-dangerous-direction), but it is the file every future L-row reads to
+learn how to rebuild the baseline, and it currently tells them the opposite of the
+truth.
+
+## 5. DEFECT 3 (blocking) — the row's own report is now false in three sentences
+
+`research/l5_day_policy.md` is untouched by this landing and still publishes:
+
+1. "`signal_runner.DAY_POLICY=3fires_stop_win_or_2loss` (now the **default**…)"
+2. "**Decision: ship** (loop controller, cycle 5)"
+3. "…the flag's default was `first3` when the referee found this; **now that the
+   default is `3fires_stop_win_or_2loss`, this is live**, not theoretical: a real
+   session today would silently mismatch its own configured day policy."
+
+All three are false at `99b2bf0b`. Sentence 3 is the worst kind of false — it is a
+**safety warning that the revert actually resolved**, still standing as an open alarm.
+A reader of this repo's own report cannot tell from it what the engine does.
+
+This is the same defect class that refuted L1, L2, L3 and L4 in this swarm: the
+decision is fine, the arithmetic is fine, and the published prose describes an engine
+that no longer exists.
+
+## 6. DEFECT 4 (material, undisclosed) — "stop after a win" has two definitions
+
+`day_policy.py` decides a day is over on `is_win_key = out == "win"`.
+`loop_cycle.up_to_3_rows` — the measurement unit this row is priced against, and the
+R3 baseline — decides on `pnl > 0`. On the core-11 causal pool (3,861 rows) those two
+disagree on **12 rows**, all of them `out == "scratch"` with a **positive** P&L,
+several of them large: NVDA 2025-07-15 10:42 **+$4,825**, NVDA 2025-07-15 10:47
+**+$6,714**, AAPL 2024-10-16 10:03 **+$4,788**, MSFT 2025-09-18 10:52 **+$4,779**,
+NVDA 2026-05-13 10:40 **+$3,325**.
+
+The lens calls those a win and ends the day; the causal flag does not and keeps firing.
+On this book the divergence is invisible because the lens is strictly stricter
+everywhere, so the totals still match to the cent — but the flag as written does **not**
+enforce the same sentence the unit measures, and no report says so. If the causal unit
+is ever promoted (the +$16/day R3 question pass 1 raised), this is a live discrepancy,
+not a footnote.
+
+`out == "loss"` and `pnl < 0` agree on 3,861 of 3,861 rows; only the win half diverges.
+
+## 7. DEFECT 5 (semantics, inherited not invented) — "up to 3 **S** fires"
+
+`omen_recall.py "day policy up to 3 S fires stop after a win or after 2 losses"`
+returns, verbatim, the sentence this row must implement:
+
+> 2026-09-05: **day policy: up to 3 S fires; stop after a win or 2 losses.**
+> First-S-only reported beside it.
+> — `omen-rulebook.md`, "Decided 2026-09-05 (the /call 60, afternoon) — omen-10.0"
+
+and the spec's settled table row, verbatim:
+
+> **day policy** — **up to 3 S fires; stop after a win or after 2 losses**;
+> "first S only" reported beside it.
+
+`day_policy.py` counts **every** fired-and-traded core row toward the three slots and
+the win/loss stop, with no grade test at all. Of the 769 rows the unit actually books,
+`sgrade` is **C on 434 (56.4%)**, **A on 187 (24.3%)** and **S on only 148 (19.2%)**.
+So "up to 3 S fires" is implemented as "up to 3 fires".
+
+I am **not** refuting the row on this. The same is true of `loop_cycle.up_to_3_rows`,
+i.e. of the R3 baseline unit itself (upheld at `b601e54a`), and `CLAUDE.md` records
+that gating on `sgrade == "S"` was already priced at **−$29/day** and that
+`compute_austin_tier` is reported-only. This is a settled repo-wide design, not an L5
+invention. What *is* a defect is the report's sentence "`day_policy.py`'s rule … **is
+that sentence**, read causally" — it is that sentence with its subject silently
+widened, and the report should say so rather than claim an exact match.
+
+## 8. What is clean
+
+- One change per row: `git show --stat 99b2bf0b` = `signal_runner.py` only, and inside
+  it only the `DAY_POLICY` default line and its comment block.
+- No mark file touched, in the commit or in the tree.
+- `verify:` gate green at `99b2bf0b`, run by me: `research/regression_gate.py` PASS,
+  `research/test_runner_stop.py` exit 0, `research/test_universe_single_source.py`
+  exit 0.
+- The default matches the decision: a research arm does not default ON, and
+  `DAY_POLICY` now defaults to `first3`.
+- `DAY_POLICY` is in `research/book_stamp.py` `FLAG_SOURCES`, and so are
+  `day_policy.MAX_FIRES` / `day_policy.LOSS_STOP`.
+- The revert genuinely removes pass-1 Defect 4's live risk: with the default back at
+  `first3`, `live_scanner.py`'s missing third branch is theoretical again.
+
+## 9. The push line
+
+Cycle 5's ntfy push read, in effect:
+
+> `[OMEN] cycle 5: up to three trades a day, stop after a win or two losses (repair)
+> -- shipped. $/day -52.0 -> -52.0, green months 11 -> 11`
+
+Plain English, apart from the bare "(repair)". But it told Austin the rule **shipped**,
+and it did not. Whoever fixes the cycles row should send the correction in the same
+plain language.
+
+## 10. What the dispatcher should do
+
+One bookkeeping row, no engine code, no rebuild:
+
+1. `research/tape/cycles.md` — L5 decision cell `ship` → `hold`, with an HTML comment
+   beside it saying the gate passed on a delta of exactly zero and the row is held
+   because shipping it moves the default book away from the baseline. That single edit
+   turns `research/test_live_follows_loop.py` green.
+2. `research/tape/loop_state.json` — cycle 5 `"decision": "hold"`, and
+   `consecutive_holds` recomputed (it becomes 5 across L1–L5, which is the loop's own
+   stop condition and should be allowed to fire, not suppressed).
+3. `research/tape/loop.json` — replace the REBUILD PIN paragraph; a bare build
+   reproduces the baseline again as of `99b2bf0b`.
+4. `research/l5_day_policy.md` — the three false sentences in §5 above, plus the
+   semantics qualifier in §7 and the two-definitions-of-a-win disclosure in §6.
+
+None of that changes a number. Nothing here should be deleted: both books, both
+earlier referee passes and this one stay as the evidence trail.
+
+**Plain English, if a line of this reaches Austin:** the rule "take up to three a day,
+stop after a win or after two losses" is already exactly how we score every backtest,
+so switching it on inside the engine changes nothing on your eleven main stocks — same
+result to the dollar, 769 trades either way. Somebody correctly switched it back off
+last night, because leaving it on quietly changed the standard two-year book that
+everything else gets compared against. What they did not do is update the three
+scoreboards, so the notes still say the rule shipped when it did not, and one of our
+own automatic checks is now failing because of it. Nothing about your money changed;
+the paperwork is wrong and needs ten minutes.
