@@ -36,6 +36,22 @@ OFF unless `signal_runner.DAY_POLICY == "3fires_stop_win_or_2loss"` (default
 stays `"first3"`, unchanged -- L5 lands this OFF). `apply_to_book` is the
 one call site, invoked from `backtest_2y.py` right after
 `loss_halt.apply_to_book(rows)`, same pattern, same place.
+
+L5 REFEREE REPAIR (2026-09-05, research/l5_referee.md Defect-1): the
+settled unit (research/loop_cycle.py's `up_to_3_rows`, driven by
+`loop.json`'s `universe.row_filter = tier == "core"`) counts "up to 3 a
+day" against the CORE-11 lane only -- a non-core fire is invisible to it.
+This module used to walk EVERY symbol's rows for a day (all 28 archived
+tickers) before the gate ever filtered to core, so a non-core fire could
+occupy one of the "3 slots" or trigger the win/loss stop for a day the
+core-only gate would count completely differently. That made the flag a
+near no-op on the core-11 lane (it was blocking rows the gate does not
+even count) while silently reshuffling which core rows survive. `_TIER
+_KEY` below restricts the causal walk to `tier == "core"` rows per day,
+the same slice the settled unit measures, so a symbol day_policy blocks
+or allows is always one the gate can see. Non-core rows are left alone
+entirely (this flag does not police them) -- consistent with "measured
+inside the core-11 lane," the unit this row was priced against.
 """
 from __future__ import annotations
 
@@ -82,9 +98,24 @@ def apply_to_book(rows, *, day_key=lambda r: r["day"]):
     if signal_runner.DAY_POLICY != "3fires_stop_win_or_2loss":
         return 0
 
+    # Referee repair (Defect-1): only police the core-11 lane (loop.json's
+    # `universe.row_filter = tier == "core"`) -- the unit this flag is
+    # measured against. A non-core row is left untouched and never
+    # occupies one of the day's 3 slots or trips its win/loss stop.
+    #
+    # Referee repair (Defect-2): the candidate pool must match
+    # `research/loop_cycle.py::up_to_3_rows`'s own pool -- fired+traded
+    # PLUS rows R31's account-wide two-loss halt already flipped to
+    # `status=="halted"` (they keep every measured field, including
+    # `out`/`pnl`, per `loss_halt.py`'s own contract). Counting only
+    # `fired`+`traded` here while the measurement's pool also includes
+    # halted rows would silently disagree about which candidates existed
+    # on a day, even inside the core-11 slice.
     by_day = {}
     for r in rows:
-        if r.get("status") == "fired" and r.get("traded"):
+        if r.get("tier") != "core":
+            continue
+        if (r.get("status") == "fired" and r.get("traded")) or r.get("status") == "halted":
             by_day.setdefault(day_key(r), []).append(r)
 
     n = 0
@@ -96,6 +127,13 @@ def apply_to_book(rows, *, day_key=lambda r: r["day"]):
                                      x.get("et", ""), x.get("sym", "")),
                 is_win_key=lambda x: x.get("out") == "win",
                 is_loss_key=lambda x: x.get("out") == "loss"):
+            # A row R31 already halted was never actually taken -- it is in
+            # this pool only so its outcome counts toward the day's 3-slot
+            # and win/loss bookkeeping (Defect-2). Don't relabel it away
+            # from `status=="halted"`; that would erase the R31 halt count
+            # for a row that was blocked by that rule, not this one.
+            if r.get("status") == "halted":
+                continue
             r["traded"] = False
             r["status"] = "day_policy_halt"
             r["day_policy_halt"] = True
