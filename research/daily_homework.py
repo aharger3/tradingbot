@@ -445,7 +445,8 @@ def s_bars(sigs) -> list:
     return sorted(out.items())
 
 
-def sblind_collect(day: str, symbols, per_signal: bool = False) -> tuple:
+def sblind_collect(day: str, symbols, per_signal: bool = False,
+                    exclude_manifest: str | None = None) -> tuple:
     """(cards, stats). Kind 3: fire-bar cut, matched silent cards, engine held out.
 
     ``per_signal`` = one card per S bar instead of one per symbol (see `s_bars`).
@@ -453,12 +454,17 @@ def sblind_collect(day: str, symbols, per_signal: bool = False) -> tuple:
     On 2026-09-03 the per-signal path dealt AMD five times, AMZN four, META
     three -- Austin: "so many repeats", four of his answers literally say
     "same trade" (H1, OMEN 10.0). A symbol with several S bars in one session
-    still gets exactly one card, cut at the FIRST S bar (``classify()``); later
-    S bars on that symbol-day are not on the tape shown and carry no cut line.
-    Showing every S bar on one chart is unimplemented (H1 referee, OMEN 10.0,
-    defect 2) -- do not claim otherwise here or in ``sblind_card_html``.
+    now gets exactly one card, but the cut moves to the LAST S bar
+    (``classify()`` finds the first; ``s_bars()`` supplies the rest), so every
+    S bar for that symbol-day sits on the tape shown, not just the first
+    (H1 referee, OMEN 10.0, defect 1 -- fixed).
+
+    ``exclude_manifest`` is this call's OWN output manifest path, if any --
+    passed straight to ``build_deck.served_card_ids(exclude=...)`` so a rebuild
+    of the same deck does not read the manifest it is about to overwrite and
+    empty its own pool (H1 referee, OMEN 10.0, defect 2 -- fixed).
     """
-    seen = deck.marked_card_ids() | deck.served_card_ids()
+    seen = deck.marked_card_ids() | deck.served_card_ids(exclude=exclude_manifest)
     scan, repeats, nobars = {}, [], []
     for sym in symbols:
         if "%s_%s" % (sym, day) in seen:
@@ -495,6 +501,10 @@ def sblind_collect(day: str, symbols, per_signal: bool = False) -> tuple:
         if kind is None:
             pool.append((sym, i))
         elif i is not None and i + 1 >= SBLIND_MIN_BARS:
+            if kind in ("S fired", "S gated"):
+                sb = s_bars(d["sigs"])
+                if sb:
+                    i = sb[-1][0]  # last S bar: every S bar lands on the tape
             fires.append((sym, kind, i))
 
     picked = [(sym, kind, cut, False) for sym, kind, cut in fires]
@@ -792,8 +802,9 @@ SBLIND_JS = r"""
 """
 
 
-def sblind_build(day: str, symbols, per_signal: bool = False) -> tuple:
-    cards, stats = sblind_collect(day, symbols, per_signal)
+def sblind_build(day: str, symbols, per_signal: bool = False,
+                  exclude_manifest: str | None = None) -> tuple:
+    cards, stats = sblind_collect(day, symbols, per_signal, exclude_manifest)
     if not cards:
         raise SystemExit("no cards for %s -- nothing to send" % day)
     total = len(cards)
@@ -1045,9 +1056,10 @@ def main():
     if a.mode == "s-blind":
         print("building the 11:05 blind deck for %s over %d symbols%s"
               % (day, len(syms), ", one card per S signal" if a.per_signal else ""))
-        cards, html, st = sblind_build(day, syms, a.per_signal)
-        DECKS.mkdir(parents=True, exist_ok=True)
         tag = "-s10" if (a.pool == "core" and a.per_signal) else "-s"
+        man = DECKS / ("omen-daily-%s%s-manifest.jsonl" % (day, tag))
+        cards, html, st = sblind_build(day, syms, a.per_signal, str(man))
+        DECKS.mkdir(parents=True, exist_ok=True)
         out = DECKS / ("omen-daily-%s%s.html" % (day, tag))
         out.write_text(html, encoding="utf-8")
         # THE SIDECAR IS THE ANSWER KEY. It carries everything the card holds
