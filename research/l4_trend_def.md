@@ -32,8 +32,10 @@ to today; landed and verified OFF first (commit `355d7cc0`).
 | H2 (2025-09-01..2026-09-04) | -$111 | -$91 | 5/13 | 5/13 | pass |
 | whole | -$52 | -$61 | 11/25 | 10/25 | (informational; the gate is per-half) |
 
-Decision: **hold**, because H1 fails the no-regression gate (a green-month drop is an
-automatic fail regardless of the ±5% dollar-drop tolerance). `TREND_DEF` stays at its
+Decision: **hold**, because H1 fails the no-regression gate on **both** columns: the
+green-month count drops (6→5/12, an automatic fail on its own) and the dollar column also
+misses its tolerance (+$9/day → -$30/day). Neither column passed; this is not a case where
+the dollar column would have passed absent the green-month rule. `TREND_DEF` stays at its
 current default (`"off"`). `research/tape/loop_state.json` cycle 4, `consecutive_holds`: 4,
 `target_met`: false, `stop`: false.
 
@@ -66,23 +68,67 @@ for completeness only — the gate ran, and failed, on the halves.
 ## How many signals flip direction-eligibility
 
 Counted on the **fired** rows of the two stamped books (`status=='fired'`, `tier=='core'`,
-same symbol/day/entry-minute/direction key), OFF vs ON — i.e. exactly the population the
-new `_trend_ok` gate can remove:
+same symbol/day/entry-minute/direction key), OFF vs ON. This is **not** exactly the
+population the gate can remove — `_trend_ok` is wired only at the OCR and 84%-rule
+emission sites (`signal_runner.py`), never at `break_and_retest` (`setup_label` `BR+OCR`,
+3,695 fired core rows in the OFF book, 14x the size of the two gated setups combined) — but
+`break_and_retest` still changes row-for-row between the two books (OFF 4,329 → ON 4,332
+fired, -5/+8) purely from dedupe-release on the gated setups' neighbouring levels; it is
+reported below for completeness, not as something the flag directly touches:
 
 | setup | fired OFF | fired ON | flipped ineligible (lost, OFF only) | of which traded | mean R of the flipped-and-traded set (OFF's own fill/exit) |
 |---|---:|---:|---:|---:|---:|
-| OCR (`one_candle_rule`) | 259 | 186 | **73** | 27 | **-0.1219R** (n=27) |
+| OCR (`one_candle_rule`) | 259 | 186 | **73** | 27 | **-0.1219R** (n=27, under the 30-trade floor — not enough for a verdict) |
 | 84% rule (`reentry_84_rule`) | 53 | 39 | **18** | 3 | **-0.3947R** (n=3, not enough for a verdict) |
+| `break_and_retest` (ungated, for reference) | 4,329 | 4,332 | -5/+8 (net) | — | not a direction-eligibility flip; dedupe-release only |
 
-Both flipped-and-traded means are negative — the gate is removing losing trades on average,
-which is consistent with (but does not by itself explain) the whole-book $/day *falling*
-$9/day: the mechanism is not "worse trades kept," it's dedupe-release. The 84% row also shows
-**4 signals fired ON that never fired OFF** — this is the same release mechanism
-`research/g94_retest_book_compare.py` and `research/g119_htf_bias_veto_ab.py` already
-documented for `RETEST_REQUIRED` and `HTF_BIAS_GATE`: a capped/gated candidate is not
-`fired`, so it releases `backtest_week`'s dedupe suppression window on that (symbol, day,
-level), and a different candidate can then claim the slot. It is a real, structural
-consequence of this class of gate, not a bug in this row's code.
+**Neither flipped-and-traded mean clears the 30-trade floor.** Per this row's own
+sample-size rule, "the gate is removing losing trades on average" is not a supported
+reading of either row — both are reported as **not enough**, not as evidence for or against
+the mechanism.
+
+**The 18 `reentry_84_rule` removals are not all direction-test removals.** Re-derived
+against the raw archived 1-minute bars, bar list truncated at the signal bar
+(`research/l4_referee2_bars.py`, re-run in this repair): of the 91 fired-gated rows the
+gate actually removes (73 OCR + 18 84%-rule), only **87 of 91** have a trend read that
+disagrees with the trade direction at the signal bar; the other **4 — all 84%-rule**
+(TSLA 2026-04-17 10:30, AMZN 2025-05-02 10:26, NVDA 2026-02-10 10:25, AAPL 2025-10-23
+10:53) — have a trend read that *allows* the trade (bullish call, or abstain) and are
+removed only because the OCR signal that would have armed the 84%-rule setup was itself
+removed by the direction test upstream. So the direction test itself removes **14** of the
+18 84%-rule rows, not 18; the other 4 are cascade removals.
+
+**The trend read abstains (`None`) on 123 of the 312 fired gated rows (39%)** — it allows
+102 (33%) and blocks 87 (28%). An abstention never blocks a trade (per `_trend_ok`'s design,
+absence of a read is not evidence against it), so more than a third of the population this
+gate could touch, it does not touch at all.
+
+**The read is stale by construction.** Because the trailing partial 15-candle bucket is
+dropped to avoid look-ahead, the trend used at the signal bar is as old as the last
+*completed* bucket — 112 of the 312 gated rows (36%) are judged on a bucket pair 10 or more
+minutes old, maximum 14. This is a correct engineering choice (no look-ahead), not a defect,
+but it is an implementation detail the rulebook sentence does not specify and this report
+did not previously disclose.
+
+All four counts above (bucket alignment on 277 touched sessions, 87/91 direction agreement,
+the 123/102/87 reach split, and the 112/312 staleness split) are re-derived directly from
+raw archived bars in this repair, independent of the two stamped books —
+`research/l4_referee2_bars.py`, confirmed 0 of 277 touched sessions have an off-grid first
+bar (the 15-candle buckets are genuinely clock-aligned 15-minute bars).
+
+The 84%-rule row also shows **4 signals fired ON that never fired OFF** — this is the same
+dedupe-release mechanism `research/g94_retest_book_compare.py` and
+`research/g119_htf_bias_veto_ab.py` already documented for `RETEST_REQUIRED` and
+`HTF_BIAS_GATE`: a capped/gated candidate is not `fired`, so it releases `backtest_week`'s
+dedupe suppression window on that (symbol, day, level), and a different candidate can then
+claim the slot — visible on `break_and_retest` above too, a setup this flag never gates
+directly. **This dedupe-release effect explains the ON-only rows, not the whole-book
+$/day move.** The whole-book -$52 → -$61 ($9/day drop, informational, inside the project's
+own error bar) has not been decomposed to individual days in this row; a prior L4 report
+version claimed a specific ("worse trades kept") mechanism for a similarly-sized whole-book
+change and that mechanism was refuted (the referee found the change concentrated in three
+specific days, not a broad quality effect) — this report now makes no mechanism claim for
+the whole-book number beyond "informational, inside the error bar."
 
 ## Note on this row's own process
 
@@ -96,3 +142,51 @@ Lesson for the next L-row: never re-run `--stage gate` to re-inspect output; rea
 
 The referee should re-derive every number above directly from `book_TREND_DEF_off.json.gz`
 and `book_TREND_DEF_on.json.gz` — nothing here is forecast.
+
+## Scope note
+
+`_trend_ok` is wired only at the OCR (`one_candle_rule`) and 84%-rule (`reentry_84_rule`)
+emission sites. `break_and_retest` (`setup_label` `BR+OCR`, 3,695 fired core rows in the OFF
+book) is emitted at a separate site and the gate never runs on it — a silent scope decision
+on a population 14x larger than the one this flag touches. Not a defect in the H1/H2 gate
+result (the gate's decision is unaffected either way), but material to any reading of "how
+much of the book this flag governs."
+
+## Refereed
+
+Pass 2 (`research/l4_referee.md`) refuted the published record while upholding the
+**decision** (hold). Fixed in this repair, all inside this row (report-only; no code or flag
+semantics changed, both books unchanged):
+
+1. **Removed the false mechanism claim.** "The mechanism is not 'worse trades kept,' it's
+   dedupe-release" is dropped. Dedupe-release is real and explains the ON-only rows (shown
+   above); it was never shown to explain the whole-book $/day change, and a similar claim on
+   a similarly-sized change was independently refuted (three-day concentration, not a broad
+   quality effect). The report now states no mechanism for the whole-book move.
+2. **Labelled the n=27 cell "not enough."** -0.1219R (n=27) is under this row's own 30-trade
+   floor; the report no longer draws "the gate is removing losing trades on average" from
+   it or from the n=3 cell.
+3. **Corrected "exactly the population the gate can remove."** `break_and_retest` — ungated,
+   3,695 fired core rows — still moves (-5/+8) via dedupe-release; the fired-row diff table
+   is not scoped to only what `_trend_ok` touches. Added the `break_and_retest` reference row
+   and the scope note above.
+4. **Added the cascade-removal correction.** 4 of the 18 removed 84%-rule rows have a trend
+   read that itself allows the trade; they vanish because the OCR that would have armed them
+   was removed upstream. The direction test itself removes 14, not 18. (`research/l4_referee2_bars.py`, re-run in this repair, confirmed: 87 of 91 gated removals are direct
+   trend disagreements, 4 are cascades, all on `reentry_84_rule`.)
+5. **Disclosed the abstain rate and staleness.** 123/312 (39%) fired gated rows get no trend
+   opinion at all (abstain, never blocks); 112/312 (36%) get a read 10+ minutes stale
+   (maximum 14) because the forming bucket is dropped to avoid look-ahead. Neither was in the
+   original report.
+6. **Made the H1 fail explicit on both columns**, not phrased so the dollar column reads as
+   passed.
+
+Not fixed here, out of this row's scope (pass 2's own defects, in *its* document, not this
+one — `research/l4_referee.md`'s row-join arithmetic and its "remove the $9,750 trade"
+counterfactual): those are the referee's report, not `l4_trend_def.md`, and are not this
+row's to repair.
+
+Decision, `TREND_DEF` default, and both stamped books are **unchanged** by this repair —
+only the report's prose and disclosed diagnostics changed. Verify gate re-run green; no
+python under `research/regression_gate.py` / `test_runner_stop.py` /
+`test_universe_single_source.py` touched.
