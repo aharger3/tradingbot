@@ -95,3 +95,145 @@ A real phone. Everything above ran under jsdom and Python; defect 2 is reasoned 
 pointer-events spec and the absence of `touch-action`, not observed on a handset. Before
 this goes in front of Austin, someone should open `research/probes/tap_selftest.html` on
 his phone and try to scroll past the chart.
+
+---
+
+# H2 referee — pass 2 (second model, told to refute)
+
+**Builder commit under review:** `7eb6aec7e3096918d5ea57a67581a9d140d9eef0`
+("H2: tap-on-chart marks -- self-test 3 marks round-trip").
+**Pass-1 referee:** `7a9defa4` (upheld, 3 defects). Nothing of pass 1 is reused below.
+**Base at check time:** HEAD `ccd7fa0683ef7ebf10a539228d8a4a5b8a571d64` == `origin/main`;
+`1539dd7f` and both H2 commits are ancestors.
+**Pass-2 script:** `research/h2_referee_pass2.py`.
+
+## Verdict: **refuted** — narrowly, and the code should be kept
+
+The spec's own verify condition (`omen-10-0-spec.md`, H2: *"a self-test page round-trips
+3 marks"*) **holds and reproduces independently.** What is refuted is (a) a factual claim
+in the builder's report about what its test does, and (b) the row's fitness for the one
+thing it exists for — Austin marking a chart on a phone. Nothing here says revert.
+
+### Why pass 2 exists at all
+
+`build_tap_selftest.py` drives itself, and `test_tap_marks.py` drives that page. Both
+therefore inherit one script's idea of what a tap means, and pass 1 read the same pair.
+`h2_referee_pass2.py` strips the self-driver off the built page — keeping the real shell
+CSS/JS and the real `tappable=True` SVG byte-for-byte — and drives the handlers from
+outside, so nothing the builder wrote decides what "correct" is.
+
+### What reproduces (independently re-derived, not read off the page)
+
+Candles re-derived from `build_tap_selftest.make_candles()` in Python; expected stop
+computed by hand before the browser ran.
+
+| check | result |
+|---|---|
+| one tap writes `localStorage` **in the same tick** as the dispatch (no timer) | holds — 1 key, already carrying `entry_i` |
+| stop from a candle tap = that candle's low when the tap sits below the entry close | holds — tapped bar 3, hand-derived low **99.67**, page drew `STOP 99.67` |
+| entry bar index from the x of the tap | holds — tapped bar 7 centre, exported `entry_i: 7` |
+| three rail taps fill PT1/PT2/PT3 in order | holds |
+| a 4th rail tap resets the card | holds |
+| a fresh document over the same storage rebuilds the **SVG overlay**, not just the data | holds — the five `<text>` nodes inside the chart come back identical |
+| second export byte-identical to the first | holds |
+| runner slider restores its value (42) | holds |
+| export keeps every pre-H2 field | holds — `type, probe, card_id, grade, answers, notes, symbol, date` all still present |
+| export adds `entry_i, stop_p, pt[], runner_pct` | holds |
+| cleared storage → no overlay, no data row, slider back to its 10 default | holds |
+| a pre-H2 blob with **no `tap` key** restores without throwing and draws no overlay | holds |
+| no `<canvas>`, no external `<script src>`, `pointerdown` present | holds |
+
+Verify gate re-run by me at `ccd7fa06`: `regression_gate.py` PASS (no baseline-fired mark
+went silent), `test_runner_stop.py` PASS (70 checks), `test_universe_single_source.py`
+PASS (29 symbols, 25 backtested), `test_tap_marks.py` PASS (15 checks). No mark corpus
+appears in either commit's `--name-only` (`test_tap_marks.py` matches a naive `marks`
+grep and is not a corpus). The row wrote no book, correctly — it measures nothing, and
+there is no dollar figure anywhere in it to name a fill for.
+
+## Defect 1 (blocking the "works on a phone" claim) — a mis-tap cannot be corrected
+
+`probe_page.py:410` and `:417-420`. The state machine has no undo, no clear control, and
+no way back to a wrong first tap. Measured, not argued (phase F of the pass-2 script):
+
+- tap the wrong candle → `ENTRY i=9`, committed;
+- tap the *right* candle → does not fix the entry, it becomes the **stop** (`STOP 100.85`);
+- tap the rail to escape → becomes **PT1**;
+- further candle taps are explicit no-ops (`:410`);
+- the only reset is the 4th-rail-tap branch at `:417`, which requires `pt.length >= 3` —
+  **3 more junk rail taps** before the card clears.
+
+So one fat-finger costs five taps and three fabricated price targets to undo. Austin does
+this homework on a phone, away from this machine; the row's stated purpose is that he can
+mark a chart there. `research/probes/README.md`-grade instruments are judged on whether he
+can actually use them, and this one punishes the most likely gesture on the device it was
+built for. Fix is small and local: a per-card clear control, or make the reset branch
+unconditional on a long-press / a second tap on an already-set mark.
+
+## Defect 2 (real, latent) — a partial `tap` blob throws and aborts the whole restore
+
+`probe_page.py:485` assigns a stored blob verbatim with no merge against `defaultTap()`;
+`:367` then reads `st.pt.length`. Seed storage with `{"tap": {"entry_i": 2}}` and the load
+throws `TypeError: Cannot read properties of undefined (reading 'length')` **inside
+`restore()`**, caught here off jsdom's `jsdomError` sink (a `window` `error` listener
+cannot see it — `restore()` runs during parse). Observed consequences: the entry line
+draws, the readout never updates (still reads `tap a candle for entry`), and because the
+throw escapes `restore()`'s `forEach`, **every card after the bad one on a multi-card deck
+never restores at all** — chips and notes included. The exported row then omits `stop_p`,
+`pt` and `runner_pct` entirely, silently violating the contract `test_tap_marks.py`
+asserts.
+
+Today's writer always emits a complete blob, so this is reachable only via a corrupted or
+truncated `localStorage` entry or a future schema change — but the blast radius is a whole
+deck of Austin's answers, which is the one thing this repo is not allowed to lose. One
+line fixes it: merge over `defaultTap()` at `:485`.
+
+## Defect 3 (confirms pass 1) — no `touch-action` on the hit surfaces
+
+`probe_page.py:172` sets only `cursor:crosshair`. Grepping the served page finds
+**zero** occurrences of `touch-action`. `preventDefault()` on `pointerdown` does not
+reliably cancel a touch scroll; `touch-action` is the mechanism that does. A scroll gesture
+begun on the chart can therefore both pan the page and drop a mark. Independently
+confirmed, still unfixed, still one line.
+
+## Defect 4 — the builder's report describes a test that does not exist
+
+The report states the self-test *"exports, **clears state, re-imports**, asserts
+equality"*. It does neither. `build_tap_selftest.py` reloads with `localStorage`
+**intact** and asserts the restore; nothing is cleared, and **the shell has no import path
+at all** — the export drawer is one-way copy/download (`probe_page.py:737`), there is no
+`type="file"` input and no import button anywhere in `probe_page.py`. Two of the four
+row-specific referee checks handed to this pass ("asserts equality after a clear +
+re-import", "an old export without the new fields still imports") are therefore not
+merely unmet, they are untestable against this design. Pass 2 substituted the strongest
+available equivalents — a genuine cleared-storage load (phase C) and a genuine pre-H2 blob
+with no `tap` key (phase D) — and both hold. The spec never asked for import, so the code
+is not at fault; the report is.
+
+## What is NOT a defect (two pass-2 false starts, recorded so nobody re-runs them)
+
+- Cleared storage exports the literal string `(nothing answered yet)` rather than nothing.
+  That is the shell's pre-H2 placeholder (`probe_page.py:574`), not an H2 regression.
+- `d.scrollIntoView is not a function` appears on every export click. That is jsdom's
+  missing `Element.scrollIntoView` (`probe_page.py:576`), a harness artifact, discounted.
+
+## Scope and sample size
+
+One change per row respected: `git show --stat 7eb6aec7` = `probe_chart.py`,
+`probe_page.py` and three new files, all one feature, and the spec row names both shell
+files explicitly. No trades, no book, no month — the sample-size rule has nothing to bite
+on here and no cell in this write-up carries a verdict about money.
+
+## The thing neither pass caught until now
+
+`tappable=True` has exactly **one caller in the whole tree** — the self-test page itself.
+No deck, no daily homework page, nothing Austin is ever served, calls it. The instrument
+is built and proven in a lab and is currently unreachable by the person it was built for.
+That is arguably the next row rather than this one's failure, but "works on a phone" has
+not been demonstrated on any page he will actually open, and defect 1 says what will
+happen when it is.
+
+## What I could not check
+
+A handset. Everything above is jsdom and Python. Defects 1 and 3 both need someone to open
+`research/probes/tap_selftest.html` on Austin's phone: try to scroll past the chart, then
+deliberately tap the wrong candle and try to fix it.
