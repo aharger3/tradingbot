@@ -1,0 +1,251 @@
+<title>OMEN Tape Summary</title>
+<style>
+  :root {
+    --bg: #f4f6f5;
+    --paper: #ffffff;
+    --ink: #1b2226;
+    --muted: #5b6b72;
+    --rule: #d5dcdb;
+    --accent: #1f5f7a;
+    --accent-soft: #e3eef3;
+    --neg: #b0403a;
+    --pos: #2e7d4f;
+    --quote-bg: #eef2f1;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #14181a;
+      --paper: #1b2124;
+      --ink: #e6eae8;
+      --muted: #9aa7aa;
+      --rule: #2c3538;
+      --accent: #6fb3d0;
+      --accent-soft: #1e2f38;
+      --neg: #e0736b;
+      --pos: #6cc48f;
+      --quote-bg: #1f272a;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #14181a;
+    --paper: #1b2124;
+    --ink: #e6eae8;
+    --muted: #9aa7aa;
+    --rule: #2c3538;
+    --accent: #6fb3d0;
+    --accent-soft: #1e2f38;
+    --neg: #e0736b;
+    --pos: #6cc48f;
+    --quote-bg: #1f272a;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font: 16px/1.55 -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    -webkit-text-size-adjust: 100%;
+  }
+  main {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 28px 18px 56px;
+    display: flex;
+    flex-direction: column;
+    gap: 34px;
+  }
+  header { display: flex; flex-direction: column; gap: 10px; }
+  .eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  h1 {
+    font-size: 26px;
+    line-height: 1.2;
+    margin: 0;
+    text-wrap: balance;
+    font-weight: 700;
+  }
+  h2 {
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 10px;
+    font-weight: 700;
+  }
+  section { display: flex; flex-direction: column; gap: 10px; }
+  p { margin: 0; max-width: 62ch; }
+  .answer {
+    font-size: 20px;
+    line-height: 1.4;
+    font-weight: 600;
+    text-wrap: balance;
+    padding: 16px 18px;
+    background: var(--paper);
+    border-left: 4px solid var(--accent);
+  }
+  .num { font-variant-numeric: tabular-nums; font-family: ui-monospace, "SF Mono", Consolas, Menlo, monospace; font-size: 0.94em; }
+  .neg { color: var(--neg); }
+  .pos { color: var(--pos); }
+  .scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 520px;
+    font-size: 14px;
+    background: var(--paper);
+  }
+  th, td {
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--rule);
+    text-align: left;
+    vertical-align: top;
+  }
+  th {
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 600;
+  }
+  td.r, th.r { text-align: right; white-space: nowrap; }
+  td.r { font-variant-numeric: tabular-nums; font-family: ui-monospace, "SF Mono", Consolas, Menlo, monospace; font-size: 13px; }
+  tr.lead td { font-weight: 700; }
+  .caption { font-size: 13px; color: var(--muted); max-width: 62ch; }
+  blockquote {
+    margin: 0;
+    padding: 14px 18px;
+    background: var(--quote-bg);
+    border-left: 4px solid var(--neg);
+    font-size: 15px;
+    line-height: 1.55;
+  }
+  ul { margin: 0; padding-left: 0; list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  li { display: grid; grid-template-columns: 56px 1fr; gap: 10px; align-items: start; }
+  .pill {
+    display: inline-block;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 3px;
+    font-weight: 700;
+    background: var(--accent-soft);
+    color: var(--accent);
+    margin-top: 3px;
+    text-align: center;
+  }
+  .next {
+    padding: 16px 18px;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    font-size: 17px;
+    font-weight: 600;
+    text-wrap: balance;
+  }
+  code { font-family: ui-monospace, "SF Mono", Consolas, Menlo, monospace; font-size: 0.9em; color: var(--accent); }
+  footer { font-size: 12px; color: var(--muted); border-top: 1px solid var(--rule); padding-top: 12px; }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<main>
+  <header>
+    <div class="eyebrow">OMEN 10.0 &middot; the two-year tape &middot; 2026-09-05</div>
+    <h1>Where the honest tape stands</h1>
+    <p class="caption">Eleven core names, one to three trades a day, two years of one-minute bars. Every number below is read from a stamped book in the repo, not remembered.</p>
+  </header>
+
+  <section>
+    <h2>The answer</h2>
+    <p class="answer">At an honest fill the engine loses <span class="num neg">$52</span> a day and is green in <span class="num">11 of 25</span> months, against his bar of <span class="num">$500</span> a day, a winner twice the size of a loser, and every month green: the setups are on the tape, the edge is not yet.</p>
+  </section>
+
+  <section>
+    <h2>Both fills, same trades</h2>
+    <div class="scroll">
+      <table>
+        <thead>
+          <tr><th>his day policy, 11 core names, 25 months</th><th>fill</th><th class="r">$/day</th><th class="r">win</th><th class="r">avg win / avg loss</th><th class="r">green months</th><th class="r">trades</th></tr>
+        </thead>
+        <tbody>
+          <tr class="lead"><td>the baseline (honest)</td><td>market at the close of the signal candle</td><td class="r neg">-$52</td><td class="r">45.0%</td><td class="r">$801 / $716 (1.12x)</td><td class="r">11 / 25</td><td class="r">769</td></tr>
+          <tr><td>the phantom column</td><td>the level, even when the candle never traded there</td><td class="r">$850</td><td class="r">63.9%</td><td class="r">$1,583 / $980 (1.62x)</td><td class="r">23 / 25</td><td class="r">645</td></tr>
+          <tr><td>his bar</td><td></td><td class="r">$500</td><td class="r"></td><td class="r">2.0x</td><td class="r">25 / 25</td><td class="r"></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="caption">Same command, same minute, same commit, same sessions. Exit is the shipped engine: 1R hard stop resting on the level and filled on the touch, scale out at the day's high or low, runner to break-even, stop the day after a win or two losses. The phantom row is the old ruler, kept visible so nobody argues from memory; it is never a target.</p>
+  </section>
+
+  <section>
+    <h2>Where the money went</h2>
+    <p class="caption">The reconcile walked from the lab rig's $4,569 a day down to the shipped book one change at a time. From the verdict, verbatim:</p>
+    <blockquote>The money is lost at step 2 — where the lab's exit is replaced by the real engine's trade management — because the $4,569/day was earned by a stop that only fired on a candle close, so every wick through the level and back was a free pass; the real engine's 1R hard stop rests on the level and fills on that wick, which turns about one trade in twenty from a +2R win into a −1R loss (win rate 38.8% → 33.6%, counted as winners ÷ all filled trades: 5,556 of 14,327 → 4,820 of 14,332, no scratches in either book; average win and average loss unchanged) and takes $4,420 of the $5,550, and the scale-out ladder takes the remaining $1,131.</blockquote>
+    <p class="caption">In trading terms: the stop that governs this book is the wick, not the close. That is his 1R ruling and it stands; it is also where most of the lab book's money went.</p>
+  </section>
+
+  <section>
+    <h2>Same trades, three instruments</h2>
+    <div class="scroll">
+      <table>
+        <thead>
+          <tr><th>instrument</th><th class="r">trades</th><th class="r">$/day</th><th class="r">win</th><th class="r">green months</th><th>read</th></tr>
+        </thead>
+        <tbody>
+          <tr class="lead"><td>shares</td><td class="r">769</td><td class="r neg">-$52</td><td class="r">45.0%</td><td class="r">11 / 25</td><td>the baseline</td></tr>
+          <tr><td>futures micro (SPY and QQQ only)</td><td class="r">99</td><td class="r">$12</td><td class="r">52.5%</td><td class="r">12 / 24</td><td>shares on the same 99 trades read $17 a day, 13 of 24 green: futures loses to shares by commission, nothing more. Single names have no futures column.</td></tr>
+          <tr><td>options</td><td class="r">769</td><td class="r neg">-$326</td><td class="r">37.5%</td><td class="r">4 / 25</td><td>20 of 769 priced from real option bars (2.6%); the other 749 are a model with a $0.05 spread. The real-bar slice is 20 trades: not enough for a verdict, and the model number is mostly that spread.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="caption">Both halves of the options column are red (-$303 a day then -$349 a day). The futures column is 99 trades over 24 months, above the floor for a count, but it measures commission, not the futures venue.</p>
+  </section>
+
+  <section>
+    <h2>Five rules measured, none shipped</h2>
+    <p class="caption">A rule ships only if green months do not fall and $/day falls no more than 5%, on both halves of the tape. Holding is a normal outcome.</p>
+    <ul>
+      <li><span class="pill">held</span><span>The 1R first-target rule (skip the trade when the day's high or low is less than 1R away): <span class="num">-$52 to $28</span> a day, <span class="num">11 to 14</span> green on 732 trades, but the second half of the tape fell more than the rule allows.</span></li>
+      <li><span class="pill">held</span><span>The 84% re-entry as decided on the call: <span class="num">-$52 to -$57</span> a day, <span class="num">11 to 11</span> green on 769 trades; the first half fell.</span></li>
+      <li><span class="pill">held</span><span>The one-candle-rule entry only when the retest candle is strong: <span class="num">-$52 to -$58</span> a day, <span class="num">11 to 10</span> green on 764 trades; the first half fell.</span></li>
+      <li><span class="pill">held</span><span>The 15-minute structure trend test: <span class="num">-$52 to -$61</span> a day, <span class="num">11 to 10</span> green on 768 trades; the first half fell.</span></li>
+      <li><span class="pill">held</span><span>Up to three trades a day, stop after a win or two losses: <span class="num">-$52 to -$52</span>, <span class="num">11 to 11</span>; it is already the unit the tape is scored on, so it changes nothing.</span></li>
+    </ul>
+    <p class="caption">Every one of these moved less than its own error bar. None is a winner or a loser; each is a count.</p>
+  </section>
+
+  <section>
+    <h2>The two halves</h2>
+    <div class="scroll">
+      <table>
+        <thead>
+          <tr><th>baseline, shares</th><th class="r">trades</th><th class="r">$/day</th><th class="r">win</th><th class="r">avg win / avg loss</th><th class="r">green months</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>first half (before 2025-09-01)</td><td class="r">382</td><td class="r pos">$9</td><td class="r">43.7%</td><td class="r">$917 / $701</td><td class="r">6 / 12</td></tr>
+          <tr><td>second half (2025-09-01 on)</td><td class="r">387</td><td class="r neg">-$111</td><td class="r">46.3%</td><td class="r">$694 / $732</td><td class="r">5 / 13</td></tr>
+          <tr class="lead"><td>whole, 25 months</td><td class="r">769</td><td class="r neg">-$52</td><td class="r">45.0%</td><td class="r">$801 / $716</td><td class="r">11 / 25</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="caption">Neither half is green and neither half is a verdict on the other; the gap between them sits inside the noise on 382 and 387 trades.</p>
+  </section>
+
+  <section>
+    <h2>Next</h2>
+    <p class="next">Pin the backtest's date window before the data archive moves on Tuesday 2026-09-08, so the loop's next "before" still matches this baseline to the dollar.</p>
+  </section>
+
+  <section>
+    <h2>How to read the tape</h2>
+    <p>Open <code>research/tape/omen-tape.html</code> in the repo. It opens on this exact baseline: core-11 pool, honest close fill, his day policy, 769 trades, -$52 a day, 11 of 25 green. Clear a filter to widen the pool or change the unit; the phantom fill column is always beside the honest one. Filters: symbol, pool, setup, both grade ladders, month, week, weekday, entry time, level, fill mode, exit model, each measured rule on or off, instrument, day policy.</p>
+    <p class="caption">One known wrinkle: the engine can fire the same price under two level names in the same minute, so the tape carries 57 repeated rows inside this unit (1,020 rows, 963 unique by symbol, day and entry minute), worth -$2,514 of the total. It is disclosed, not fixed; fixing it is an engine change that goes through the gate like any other.</p>
+  </section>
+
+  <footer>
+    Books: research/tape/baseline_2026-09-05.json.gz (honest), baseline_2026-09-05_published.json.gz (phantom), book_&lt;rule&gt;_on/off.json.gz (the five rules), instruments_2026-09-05.json.gz. Sources: research/g212_baseline_verdict.md, research/tape/cycles.md, research/g213_instruments.md, research/tape/summary_data.json. 112 commits since base 1539dd7f.
+  </footer>
+</main>
