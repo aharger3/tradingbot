@@ -1,8 +1,10 @@
 """OMEN 10.0 V4: the live lane must always carry the loop's shipped defaults.
 
 research/tape/cycles.md is the loop's ledger of every gate it has run. Every
-row that is still `hold` must load with its off/default value; the one row
-that is `ship` (DAY_POLICY) must load with its shipped value. This test reads
+row that is still `hold` must load with its off/default value; a row that
+turns `ship` must load with its shipped value (as of 2026-09-06 all five
+rows, including DAY_POLICY since L5's revert 58c00a7b, read `hold`). This
+test reads
 research/tape/cycles.md itself (not a hardcoded copy of it) so a future cycle
 that ships a new flag fails this test until live_scanner.py / signal_runner.py
 are updated to match -- the live lane can never silently drift from the loop.
@@ -78,7 +80,10 @@ def expected_env_value(flag: str, decision: str) -> str:
 
 def read_live_value(flag: str) -> str:
     """Import live_scanner in a fresh subprocess (it has side effects at
-    import time) with a clean env and read the flag's runtime value back."""
+    import time) and read the flag's runtime value back. No env= is passed,
+    so the subprocess inherits the parent's full environment on purpose --
+    that inheritance is what lets this test catch env-based drift; it is
+    not isolation."""
     code = (
         "import os, sys; sys.path.insert(0, r'%s'); "
         "import live_scanner as ls; "
