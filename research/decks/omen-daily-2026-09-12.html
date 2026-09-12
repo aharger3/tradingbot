@@ -1,0 +1,733 @@
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>OMEN daily - 2026-09-12</title><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:wght@500;600&display=swap">
+<style>
+:root{
+  --bg:#f3f5f4; --surface:#ffffff; --surface-2:#eceff0;
+  --ink:#131e1c; --ink-2:#4c5b58; --ink-3:#7b8b87;
+  --rule:#dbe2e0; --rule-2:#c3cecb;
+  --accent:#0d6961; --accent-ink:#ffffff; --accent-soft:#dcece9;
+  --up:#1d7a4c; --dn:#a63229; --entry:#a86a06; --stop:#8d3b33;
+  --lvl-pd:#5b6ea8; --lvl-pm:#8a5ea3; --lvl-or:#3f7f76; --lvl-hl:#a8632f;
+  --shadow:0 1px 2px rgba(19,30,28,.06),0 8px 24px -14px rgba(19,30,28,.28);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0d1211; --surface:#151d1c; --surface-2:#1d2726;
+    --ink:#e7edeb; --ink-2:#a3b3af; --ink-3:#7d8d89;
+    --rule:#25322f; --rule-2:#33433f;
+    --accent:#54cfbe; --accent-ink:#07201d; --accent-soft:#16332f;
+    --up:#48b57c; --dn:#e07068; --entry:#e0a340; --stop:#d47a70;
+    --lvl-pd:#8fa2dc; --lvl-pm:#bb92d1; --lvl-or:#6dbcb0; --lvl-hl:#e09a5c;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 28px -16px rgba(0,0,0,.7);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0d1211; --surface:#151d1c; --surface-2:#1d2726;
+  --ink:#e7edeb; --ink-2:#a3b3af; --ink-3:#7d8d89;
+  --rule:#25322f; --rule-2:#33433f;
+  --accent:#54cfbe; --accent-ink:#07201d; --accent-soft:#16332f;
+  --up:#48b57c; --dn:#e07068; --entry:#e0a340; --stop:#d47a70;
+  --lvl-pd:#8fa2dc; --lvl-pm:#bb92d1; --lvl-or:#6dbcb0; --lvl-hl:#e09a5c;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 28px -16px rgba(0,0,0,.7);
+}
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:"IBM Plex Sans",system-ui,-apple-system,Segoe UI,sans-serif;
+  font-size:16px; line-height:1.5; -webkit-text-size-adjust:100%;
+}
+.wrap{max-width:800px; margin:0 auto; padding:0 14px 96px}
+
+/* masthead */
+.mast{padding:28px 0 18px; border-bottom:1px solid var(--rule)}
+.eyebrow{
+  font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:11px; font-weight:500;
+  letter-spacing:.14em; text-transform:uppercase; color:var(--accent); margin:0 0 8px;
+}
+h1{
+  font-family:"IBM Plex Serif",Georgia,serif; font-weight:600;
+  font-size:clamp(26px,6vw,36px); line-height:1.15; margin:0 0 10px; text-wrap:balance;
+}
+.lede{margin:0; color:var(--ink-2); font-size:15px; max-width:62ch}
+.lede strong{color:var(--ink); font-weight:600}
+
+/* sticky progress */
+.bar{
+  position:sticky; top:0; z-index:20; background:var(--bg);
+  border-bottom:1px solid var(--rule); margin:0 -14px 20px; padding:9px 14px;
+  display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+}
+.bar .count{
+  font-family:"IBM Plex Mono",monospace; font-size:13px; font-weight:600;
+  font-variant-numeric:tabular-nums; color:var(--ink); white-space:nowrap;
+}
+.track{flex:1 1 60px; height:4px; background:var(--rule); border-radius:2px; overflow:hidden}
+.fill{height:100%; width:0%; background:var(--accent); transition:width .25s ease}
+.saved{
+  font-family:"IBM Plex Mono",monospace; font-size:10px; font-weight:600;
+  letter-spacing:.08em; text-transform:uppercase; color:var(--ink-3);
+  white-space:nowrap; transition:color .2s;
+}
+.saved[data-state="just"]{color:var(--accent)}
+.saved[data-state="fail"]{color:var(--stop)}
+.jump{
+  font:600 12px/1 "IBM Plex Sans",sans-serif; letter-spacing:.03em;
+  background:var(--accent); color:var(--accent-ink); border:0; border-radius:999px;
+  padding:9px 14px; cursor:pointer; white-space:nowrap;
+}
+.jump:hover{filter:brightness(1.08)}
+.jump:focus-visible{outline:2px solid var(--ink); outline-offset:2px}
+.jump.alt{background:transparent; color:var(--accent); box-shadow:inset 0 0 0 1px var(--accent)}
+
+/* export drawer */
+.drawer{
+  background:var(--surface); border:1px solid var(--rule); border-radius:10px;
+  padding:14px 16px; margin:0 0 18px; box-shadow:var(--shadow);
+}
+.drawer-btns{display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin:10px 0}
+.drawer textarea{
+  width:100%; min-height:200px; resize:vertical;
+  font:400 12px/1.45 "IBM Plex Mono",ui-monospace,monospace; color:var(--ink);
+  background:var(--surface-2); border:1px solid var(--rule-2); border-radius:8px;
+  padding:10px; white-space:pre; overflow-x:auto;
+}
+
+/* cards */
+.card{
+  background:var(--surface); border:1px solid var(--rule); border-radius:10px;
+  box-shadow:var(--shadow); margin:0 0 18px; overflow:hidden; scroll-margin-top:64px;
+}
+.card[data-done="1"]{border-color:var(--accent)}
+.card > header{
+  display:flex; align-items:baseline; gap:10px; flex-wrap:wrap;
+  padding:13px 16px; border-bottom:1px solid var(--rule); background:var(--surface-2);
+}
+.idx{
+  font-family:"IBM Plex Mono",monospace; font-size:11px; font-weight:600;
+  color:var(--ink-3); font-variant-numeric:tabular-nums;
+}
+.tick{
+  font-family:"IBM Plex Mono",monospace; font-size:16px; font-weight:600;
+  letter-spacing:.02em;
+}
+.when{font-family:"IBM Plex Mono",monospace; font-size:13px; color:var(--ink-2)}
+.tags{margin-left:auto; display:flex; gap:6px; flex-wrap:wrap; align-items:center}
+.tag{
+  font-family:"IBM Plex Mono",monospace; font-size:10px; font-weight:600;
+  letter-spacing:.08em; text-transform:uppercase; padding:3px 7px; border-radius:4px;
+  background:var(--accent-soft); color:var(--accent); border:1px solid transparent;
+}
+.tag.warn{background:transparent; color:var(--stop); border-color:var(--stop)}
+.done-dot{width:8px; height:8px; border-radius:50%; background:var(--rule-2); flex:none}
+.card[data-done="1"] .done-dot{background:var(--accent)}
+
+/* chart */
+.chartwrap{padding:10px 6px 4px; background:var(--surface)}
+.chart{width:100%; height:auto; display:block}
+.chart .grid{stroke:var(--rule); stroke-width:.6}
+.chart .axis{
+  font-family:"IBM Plex Mono",monospace; font-size:9px; fill:var(--ink-3);
+  text-anchor:middle;
+}
+.chart .wk{stroke-width:1}
+.chart .bd{stroke-width:.5}
+.chart .up{stroke:var(--up); fill:var(--up)}
+.chart .dn{stroke:var(--dn); fill:var(--dn)}
+.chart .lvl{stroke-width:1; stroke-dasharray:5 4; opacity:.85}
+.chart .lvl-t{font-family:"IBM Plex Mono",monospace; font-size:9px; font-weight:500}
+.chart .lvl-pd{stroke:var(--lvl-pd); fill:var(--lvl-pd)}
+.chart .lvl-pm{stroke:var(--lvl-pm); fill:var(--lvl-pm)}
+.chart .lvl-or{stroke:var(--lvl-or); fill:var(--lvl-or)}
+.chart .lvl-hl{stroke:var(--lvl-hl); fill:var(--lvl-hl)}
+.chart .entry{stroke:var(--entry); stroke-width:1.3}
+.chart .entry-t{
+  font-family:"IBM Plex Mono",monospace; font-size:9px; font-weight:600; fill:var(--entry);
+}
+.chart .arrow{fill:var(--entry)}
+.chart .stopl{stroke:var(--stop); stroke-width:1; stroke-dasharray:2 3}
+.chart .stop-t{
+  font-family:"IBM Plex Mono",monospace; font-size:9px; font-weight:600; fill:var(--stop);
+}
+/* tap-on-chart marking (H2, 2026-09-05) */
+.chart .taphit, .chart .railhit{cursor:crosshair; touch-action:none}
+.tapout[data-role="tapout"]{cursor:pointer}
+.chart .tap-entry{stroke:var(--entry); stroke-width:1.3; stroke-dasharray:2 2}
+.chart .tap-entry-t{
+  font-family:"IBM Plex Mono",monospace; font-size:9px; font-weight:600; fill:var(--entry);
+}
+.chart .tap-stop{stroke:var(--stop); stroke-width:1.3; stroke-dasharray:4 3}
+.chart .tap-stop-t{
+  font-family:"IBM Plex Mono",monospace; font-size:9px; font-weight:600; fill:var(--stop);
+}
+.chart .tap-pt0,.chart .tap-pt1,.chart .tap-pt2{
+  stroke:var(--accent); stroke-width:1; stroke-dasharray:1 3;
+}
+.chart .tap-pt0-t,.chart .tap-pt1-t,.chart .tap-pt2-t{
+  font-family:"IBM Plex Mono",monospace; font-size:9px; font-weight:600; fill:var(--accent);
+}
+.tapout{
+  font-family:"IBM Plex Mono",monospace; font-size:12.5px; color:var(--ink-2);
+  padding:8px 16px 0;
+}
+.runnerrow{
+  display:flex; align-items:center; gap:10px; padding:8px 16px 12px;
+  font-family:"IBM Plex Mono",monospace; font-size:12px; color:var(--ink-2);
+}
+.runnerrow input.runner{flex:1 1 auto}
+.runnerrow .runnerval{min-width:3.5em; text-align:right; font-weight:600; color:var(--ink)}
+.legend{
+  display:flex; gap:14px; flex-wrap:wrap; padding:2px 16px 12px;
+  font-family:"IBM Plex Mono",monospace; font-size:10px; color:var(--ink-3);
+}
+.legend b{font-weight:600}
+
+/* questions */
+.q{padding:14px 16px; border-top:1px solid var(--rule)}
+.q h3{margin:0 0 3px; font-size:14px; font-weight:600; line-height:1.35; color:var(--ink)}
+.q .hint{margin:0 0 10px; font-size:12.5px; color:var(--ink-3)}
+.chips{display:flex; flex-wrap:wrap; gap:7px}
+.chip{
+  font:500 13.5px/1.2 "IBM Plex Sans",sans-serif; color:var(--ink-2);
+  background:var(--surface); border:1px solid var(--rule-2); border-radius:8px;
+  padding:10px 12px; min-height:42px; cursor:pointer; text-align:left;
+  transition:background .12s,border-color .12s,color .12s;
+}
+.chip:hover{border-color:var(--accent)}
+.chip:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+.chip[aria-pressed="true"]{
+  background:var(--accent); border-color:var(--accent); color:var(--accent-ink);
+  font-weight:600;
+}
+.q[data-tone="veto"] .chip[aria-pressed="true"]{
+  background:var(--stop); border-color:var(--stop); color:#fff;
+}
+textarea.note{
+  width:100%; margin-top:8px; min-height:56px; resize:vertical;
+  font:400 14px/1.5 "IBM Plex Sans",sans-serif; color:var(--ink);
+  background:var(--surface-2); border:1px solid var(--rule-2); border-radius:8px;
+  padding:9px 11px;
+}
+textarea.note:focus-visible{outline:2px solid var(--accent); outline-offset:1px}
+
+/* footer */
+.foot{
+  margin-top:26px; padding:16px; border:1px dashed var(--rule-2); border-radius:10px;
+  font-size:13.5px; color:var(--ink-2);
+}
+.foot h2{
+  font-family:"IBM Plex Serif",Georgia,serif; font-size:16px; font-weight:600;
+  margin:0 0 6px; color:var(--ink);
+}
+.foot code{
+  font-family:"IBM Plex Mono",monospace; font-size:12.5px; background:var(--surface-2);
+  padding:1px 5px; border-radius:4px;
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+@media (max-width:520px){
+  .wrap{padding:0 10px 96px}
+  .bar{margin:0 -10px 16px; padding:8px 10px}
+  .chip{flex:1 1 calc(50% - 4px); min-width:0}
+  .q{padding:13px 12px}
+  .card > header{padding:11px 12px}
+}
+</style>
+<div class="wrap"><div class="mast"><p class="eyebrow">daily pass - 2026-09-12</p><h1>What the engine saw today</h1><p class="lede">0 symbols, <b>0 candidates</b>, <b>0 fired</b>. You take 1-3. Mark where the S actually was - and where it wasn't. Every card saves as you go; Export when you are done.</p></div><div class="bar" data-deck="omen-daily-2026-09-12"><span class="count" id="count">0 / 0</span><span class="track"><span class="fill" id="fill"></span></span><span class="saved" id="saved">saved</span><button class="jump" type="button">Next unanswered</button><button class="jump alt" type="button" id="exportbtn">Export</button></div><div class="drawer" id="drawer" hidden><p class="hint"><b>Select all the text in the box below and copy it</b> (the box is editable, so ctrl/cmd+A then ctrl/cmd+C works even where the Copy button is blocked), then paste it into the chat. Download works too when the browser allows it.</p><div class="drawer-btns"><button class="jump" type="button" id="copybtn">Copy all</button><button class="jump alt" type="button" id="dlbtn">Download .jsonl</button><span class="hint" id="copymsg"></span></div><textarea id="out" spellcheck="false"></textarea></div>
+<style>
+.tape{display:flex;flex-wrap:wrap;gap:7px;margin:9px 0 3px}
+.tape span{background:var(--chipbg);border:1px solid var(--line);border-radius:6px;
+  padding:3px 8px;font-size:11.5px;font-variant-numeric:tabular-nums}
+.tape span.fired{border-color:var(--warn)}
+.tape span.quiet{opacity:.55}
+.sigs{width:100%;border-collapse:collapse;margin:10px 0 2px;font-size:12.5px}
+.sigs th{text-align:left;font-weight:600;opacity:.6;padding:4px 7px;
+  border-bottom:1px solid var(--line);font-size:10.5px;letter-spacing:.05em;
+  text-transform:uppercase}
+.sigs td{padding:5px 7px;border-bottom:1px solid var(--line);
+  font-variant-numeric:tabular-nums}
+.sigs td.k{white-space:nowrap;font-weight:600}
+.sigs tr.fired td.k{color:var(--warn)}
+.sigs tr.skip td{opacity:.5}
+.chart .dot.f{fill:var(--warn)}   .chart text.dot-t.f{fill:var(--warn)}
+.chart .dot.s{fill:#7a7a7a}       .chart text.dot-t.s{fill:#7a7a7a}
+</style>
+<div class="foot">Bars: yfinance 1-min via research/daily_fetch.py. Signals: backtest_week.simulate_day, shipped fill. Grades are the engine's A+/A/B/C/X ladder - X means it should not have fired.</div></div>
+<script>
+(function(){
+  /* In the claude.ai artifact viewer a plain <a download> is inert and the async
+     clipboard is blocked. Ask for the downloads capability if it is there; the
+     editable textarea is the fallback that always works. */
+  var DL = null;
+  try {
+    if (window.claude && typeof window.claude.use === 'function'){
+      window.claude.use('downloads').then(function(d){ DL = d; }, function(){});
+    }
+  } catch (e) {}
+
+  var bar = document.querySelector('.bar');
+  var DECK = (bar && bar.getAttribute('data-deck')) || 'probe';
+  var KEY = 'omen-probe:' + DECK + ':';
+
+  function cards(){ return Array.prototype.slice.call(document.querySelectorAll('.card')); }
+  function qs(card){ return Array.prototype.slice.call(card.querySelectorAll('.q[data-q]')); }
+
+  /* ---- tap-on-chart marking (H2, 2026-09-05) --------------------------------
+     Entry (tap 1) and stop (tap 2, or tap the rail) land on the SVG probe_chart
+     serves with tappable=True; PT1/PT2/PT3 (rail taps 3-5) come after; a rail
+     tap once all three PTs are set resets the card so he can redo it. State
+     lives beside the chip/note state in the same per-card localStorage blob
+     (key 'tap'), so save/restore/export need only read and write one more
+     field -- the debounce-free save, the phone-lifecycle flushes and the
+     JSONL contract above are untouched. */
+  var tapState = {};                          // cid -> {entry_i, stop_p, pt, runner_pct}
+
+  function defaultTap(){ return {entry_i: null, stop_p: null, pt: [], runner_pct: 10}; }
+
+  function tapChart(card){ return card.querySelector('.chart[data-tappable="1"]'); }
+
+  function chartGeom(svg){
+    return {
+      n: +svg.getAttribute('data-n'), padl: +svg.getAttribute('data-padl'),
+      padt: +svg.getAttribute('data-padt'), plotw: +svg.getAttribute('data-plotw'),
+      ploth: +svg.getAttribute('data-ploth'), lo: +svg.getAttribute('data-lo'),
+      hi: +svg.getAttribute('data-hi')
+    };
+  }
+
+  /* getBoundingClientRect, not createSVGPoint/getScreenCTM -- the latter pair
+     is unimplemented in jsdom (and in some phone webviews), and the former is
+     all a responsive `viewBox` chart needs: scale the event's page position by
+     the ratio of viewBox units to on-screen CSS pixels. When the chart has no
+     real layout yet (a zero-size rect -- jsdom, or a hidden ancestor) fall
+     back to treating client coordinates as viewBox coordinates directly, 1:1;
+     a test can then dispatch a pointer event at the exact viewBox point it
+     wants without stubbing anything. */
+  function localXY(svg, evt){
+    var rect = svg.getBoundingClientRect();
+    var vbw = +svg.getAttribute('data-w'), vbh = +svg.getAttribute('data-h');
+    var rw = rect && rect.width, rh = rect && rect.height;
+    var left = rect ? rect.left : 0, top = rect ? rect.top : 0;
+    if (!rw || !rh){ rw = vbw; rh = vbh; left = 0; top = 0; }
+    return {
+      x: (evt.clientX - left) * (vbw / rw),
+      y: (evt.clientY - top) * (vbh / rh)
+    };
+  }
+
+  function barAt(g, x){
+    var i = Math.floor((x - g.padl) / (g.plotw / g.n));
+    return Math.max(0, Math.min(g.n - 1, i));
+  }
+  function priceAt(g, y){
+    var span = (g.hi - g.lo) || 1;
+    var p = g.hi - (y - g.padt) * span / g.ploth;
+    return Math.max(g.lo, Math.min(g.hi, p));
+  }
+  function ohlcOf(svg){
+    try { return JSON.parse(svg.getAttribute('data-ohlc') || '[]'); }
+    catch (e) { return []; }
+  }
+
+  function paintTap(card){
+    var svg = tapChart(card);
+    if (!svg) return;
+    var g = chartGeom(svg);
+    var st = tapState[card.getAttribute('data-cid')] || defaultTap();
+
+    function X(i){ return g.padl + (i + 0.5) * g.plotw / g.n; }
+    function Y(p){
+      var span = (g.hi - g.lo) || 1;
+      var y = g.padt + (g.hi - p) * g.ploth / span;
+      return Math.max(g.padt, Math.min(g.padt + g.ploth, y));
+    }
+    function set(el, on, attrs){
+      if (!el) return;
+      if (!on){ el.setAttribute('hidden', ''); return; }
+      el.removeAttribute('hidden');
+      for (var k in attrs) el.setAttribute(k, attrs[k]);
+    }
+
+    var showE = st.entry_i != null;
+    set(svg.querySelector('.tap-entry'), showE,
+        {x1: X(st.entry_i), x2: X(st.entry_i), y1: g.padt, y2: g.padt + g.ploth});
+    var et = svg.querySelector('.tap-entry-t');
+    set(et, showE, {x: X(showE ? st.entry_i : 0), y: g.padt + 10});
+    if (showE && et) et.textContent = 'ENTRY i=' + st.entry_i;
+
+    var showS = st.stop_p != null;
+    set(svg.querySelector('.tap-stop'), showS,
+        {x1: g.padl, x2: g.padl + g.plotw,
+         y1: showS ? Y(st.stop_p) : 0, y2: showS ? Y(st.stop_p) : 0});
+    var stt = svg.querySelector('.tap-stop-t');
+    set(stt, showS, {x: g.padl + g.plotw + 4, y: (showS ? Y(st.stop_p) : 0) + 3.4});
+    if (showS && stt) stt.textContent = 'STOP ' + st.stop_p.toFixed(2);
+
+    for (var idx = 0; idx < 3; idx++){
+      var on = st.pt.length > idx;
+      var yy = on ? Y(st.pt[idx]) : 0;
+      set(svg.querySelector('.tap-pt' + idx), on,
+          {x1: g.padl, x2: g.padl + g.plotw, y1: yy, y2: yy});
+      var lt = svg.querySelector('.tap-pt' + idx + '-t');
+      set(lt, on, {x: g.padl + g.plotw + 4, y: yy + 3.4});
+      if (on && lt) lt.textContent = 'PT' + (idx + 1) + ' ' + st.pt[idx].toFixed(2);
+    }
+
+    var readout = card.querySelector('[data-role="tapout"]');
+    if (readout){
+      var parts = [showE ? ('entry bar ' + st.entry_i) : 'tap a candle for entry'];
+      if (showS) parts.push('stop ' + st.stop_p.toFixed(2));
+      if (st.pt.length) parts.push('PT ' + st.pt.map(function(p){
+        return p.toFixed(2);
+      }).join(' / '));
+      if (showE || showS || st.pt.length) parts.push('(tap here to clear)');
+      readout.textContent = parts.join('  ·  ');
+    }
+    var slider = card.querySelector('input.runner');
+    if (slider && document.activeElement !== slider) slider.value = st.runner_pct;
+    var rlabel = card.querySelector('[data-role="runnerval"]');
+    if (rlabel) rlabel.textContent = st.runner_pct + '%';
+  }
+
+  function handleTap(card, svg, isRail, evt){
+    var cid = card.getAttribute('data-cid');
+    var st = tapState[cid] || (tapState[cid] = defaultTap());
+    var xy = localXY(svg, evt);
+    if (!xy) return;
+    var g = chartGeom(svg);
+
+    if (!isRail){
+      if (st.entry_i == null){
+        st.entry_i = barAt(g, xy.x);
+      } else if (st.stop_p == null){
+        var ohlc = ohlcOf(svg), j = barAt(g, xy.x), bar = ohlc[j];
+        if (bar){
+          var refClose = (ohlc[st.entry_i] || [])[3];
+          var tapPrice = priceAt(g, xy.y);
+          var long = refClose == null ? true : tapPrice < refClose;
+          st.stop_p = long ? bar[2] : bar[1];        // low if long, high if short
+        }
+      }
+      /* candle taps once entry+stop are both set are no-ops -- PT is rail-only */
+    } else {
+      var railPrice = priceAt(g, xy.y);
+      if (st.entry_i == null){
+        /* nothing to attach a stop/PT to yet */
+      } else if (st.stop_p == null){
+        st.stop_p = railPrice;
+      } else if (st.pt.length >= 3){
+        tapState[cid] = defaultTap();           // 4th rail tap resets the card
+      } else {
+        st.pt.push(railPrice);
+      }
+    }
+    paintTap(card);
+    save(card);
+  }
+
+  /* localStorage throws in private mode. Say so loudly rather than losing answers. */
+  var storeOk = true;
+  try { localStorage.setItem(KEY + '_probe', '1'); localStorage.removeItem(KEY + '_probe'); }
+  catch (e) { storeOk = false; }
+
+  function cardState(card){
+    var picked = {}, notes = {};
+    qs(card).forEach(function(q){
+      var k = q.getAttribute('data-q'), vals = [];
+      q.querySelectorAll('.chip[aria-pressed="true"]').forEach(function(c){
+        vals.push(c.getAttribute('data-v'));
+      });
+      if (vals.length) picked[k] = vals;
+      var t = q.querySelector('textarea.note');
+      if (t && t.value.trim()) notes[k] = t.value.trim();
+    });
+    var state = {picked: picked, notes: notes};
+    if (tapChart(card)) state.tap = tapState[card.getAttribute('data-cid')] || defaultTap();
+    return state;
+  }
+
+  var flagTimer = null;
+  function flag(state, text){
+    var el = document.getElementById('saved');
+    if (!el) return;
+    el.setAttribute('data-state', state);
+    el.textContent = text;
+    if (state === 'just'){
+      clearTimeout(flagTimer);
+      flagTimer = setTimeout(function(){ el.setAttribute('data-state', ''); }, 1400);
+    }
+  }
+
+  function save(card){
+    if (!storeOk){ flag('fail', 'no local save - export before closing'); return; }
+    try {
+      localStorage.setItem(KEY + card.getAttribute('data-cid'),
+                           JSON.stringify(cardState(card)));
+      flag('just', 'saved');
+    } catch (e) { flag('fail', 'save failed - export now'); }
+  }
+
+  function restore(){
+    if (!storeOk) return;
+    cards().forEach(function(card){
+      var raw = localStorage.getItem(KEY + card.getAttribute('data-cid'));
+      if (!raw) return;
+      var st;
+      try { st = JSON.parse(raw); } catch (e) { return; }
+      qs(card).forEach(function(q){
+        var k = q.getAttribute('data-q');
+        (((st.picked || {})[k]) || []).forEach(function(v){
+          var chip = q.querySelector('.chip[data-v="' + v + '"]');
+          if (chip) chip.setAttribute('aria-pressed', 'true');
+        });
+        var t = q.querySelector('textarea.note');
+        if (t && (st.notes || {})[k]) t.value = st.notes[k];
+      });
+      if (st.tap){
+        var merged = defaultTap();
+        for (var k in st.tap) if (st.tap[k] !== undefined) merged[k] = st.tap[k];
+        if (!Array.isArray(merged.pt)) merged.pt = [];
+        tapState[card.getAttribute('data-cid')] = merged;
+      }
+    });
+    cards().forEach(function(card){ if (tapChart(card)) paintTap(card); });
+  }
+
+  function answered(card){
+    var req = card.querySelectorAll('.q[data-required="1"]');
+    for (var i = 0; i < req.length; i++){
+      if (!req[i].querySelector('.chip[aria-pressed="true"]')) return false;
+    }
+    return req.length > 0;
+  }
+
+  function refresh(){
+    var cs = cards(), done = 0;
+    cs.forEach(function(c){
+      var d = answered(c) ? '1' : '0';
+      c.setAttribute('data-done', d);
+      if (d === '1') done++;
+    });
+    var cnt = document.getElementById('count');
+    if (cnt) cnt.textContent = done + ' / ' + cs.length;
+    var fill = document.getElementById('fill');
+    if (fill) fill.style.width = (cs.length ? (done * 100 / cs.length) : 0) + '%';
+  }
+
+  /* Export row shape is a contract: research/marks/probe_*.jsonl must all parse
+     with one reader. These two extension points ADD keys to a row and never
+     rename or drop one, so a page that uses neither exports exactly what it
+     always did.
+       data-export  static JSON merged into the row (symbol, date, ...)
+       window.probeRow(card, row)  page hook for values derived from the taps
+                                   (OMEN Test 1 uses it for entry_i/_t/_p, stop_p)
+       window.probeRows(card, row) page hook that SPLITS one card into several
+                                   rows -- return an array and those rows are
+                                   written instead of the single card row. The
+                                   master homework asks seven different questions
+                                   on one page and wants one row per answer, not
+                                   one row per card. Return nothing (or an empty
+                                   array) and the single-row shape is unchanged. */
+  function jsonl(){
+    var lines = [];
+    cards().forEach(function(card){
+      var st = cardState(card);
+      var tap = st.tap;
+      var tapTouched = !!tap && (tap.entry_i != null || tap.stop_p != null
+                                  || tap.pt.length > 0 || tap.runner_pct !== 10);
+      if (!Object.keys(st.picked).length && !Object.keys(st.notes).length
+          && !tapTouched) return;
+      var row = {
+        type: 'probe', probe: DECK, card_id: card.getAttribute('data-cid'),
+        grade: card.getAttribute('data-grade') || null,
+        answers: st.picked, notes: st.notes
+      };
+      if (tap){
+        row.entry_i = tap.entry_i;
+        row.stop_p = tap.stop_p;
+        row.pt = tap.pt;
+        row.runner_pct = tap.runner_pct;
+      }
+      var stat = card.getAttribute('data-export');
+      if (stat){
+        try {
+          var ex = JSON.parse(stat);
+          for (var k in ex) if (Object.prototype.hasOwnProperty.call(ex, k)) row[k] = ex[k];
+        } catch (e) {}
+      }
+      if (typeof window.probeRow === 'function'){
+        try { window.probeRow(card, row); } catch (e) {}
+      }
+      if (typeof window.probeRows === 'function'){
+        var many = null;
+        try { many = window.probeRows(card, row); } catch (e) {}
+        if (many && many.length){
+          many.forEach(function(r){ lines.push(JSON.stringify(r)); });
+          return;
+        }
+      }
+      lines.push(JSON.stringify(row));
+    });
+    return lines.join('\n');
+  }
+
+  document.addEventListener('click', function(e){
+    if (!e.target.closest) return;
+
+    if (e.target.closest('#exportbtn')){
+      var d = document.getElementById('drawer'), o = document.getElementById('out');
+      var text = jsonl();
+      o.value = text || '(nothing answered yet)';
+      d.hidden = false;
+      d.scrollIntoView({behavior: 'smooth', block: 'start'});
+      o.focus(); o.select();
+      return;
+    }
+
+    if (e.target.closest('#copybtn')){
+      var box = document.getElementById('out'), msg = document.getElementById('copymsg');
+      box.select(); box.setSelectionRange(0, 999999);
+      var say = function(ok){ msg.textContent = ok ? 'copied' : 'select the text and copy'; };
+      if (navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(box.value).then(function(){ say(true); },
+                                                      function(){ say(false); });
+      } else {
+        try { say(document.execCommand('copy')); } catch (err) { say(false); }
+      }
+      return;
+    }
+
+    if (e.target.closest('#dlbtn')){
+      var m2 = document.getElementById('copymsg');
+      var text = jsonl() + '\n';
+      var name = 'probe_' + DECK + '.jsonl';
+      /* In the artifact viewer an <a download> click succeeds silently and saves
+         nothing, so the old path reported "downloaded" when it had not. Route
+         through the downloads capability when the viewer grants it (the artifact
+         must declare capabilities: {downloads: true}); the viewer may still
+         decline, which is a real outcome and is reported as one. */
+      if (DL && typeof DL.save === 'function'){
+        m2.textContent = 'saving…';
+        DL.save({filename: name, data: text}).then(
+          function(){ m2.textContent = 'downloaded'; },
+          function(){ m2.textContent = 'save declined — use Copy all'; });
+        return;
+      }
+      try {
+        var blob = new Blob([text], {type: 'application/x-ndjson'});
+        var a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = name;
+        document.body.appendChild(a); a.click(); a.remove();
+        m2.textContent = 'downloaded';
+      } catch (err) {
+        m2.textContent = 'download blocked here - use Copy all';
+      }
+      return;
+    }
+
+    var chip = e.target.closest('.chip');
+    if (!chip){
+      if (e.target.closest('.jump')){
+        var next = cards().filter(function(c){
+          return c.getAttribute('data-done') !== '1';
+        })[0];
+        if (next) next.scrollIntoView({behavior: 'smooth', block: 'start'});
+      }
+      return;
+    }
+    var q = chip.closest('.q');
+    var on = chip.getAttribute('aria-pressed') === 'true';
+    if (q.getAttribute('data-multi') !== '1'){
+      q.querySelectorAll('.chip').forEach(function(o){
+        o.setAttribute('aria-pressed', 'false');
+      });
+    }
+    chip.setAttribute('aria-pressed', on ? 'false' : 'true');
+    refresh();
+    save(chip.closest('.card'));
+  });
+
+  /* Typed notes are debounced 400ms so every keystroke is not a write. That
+     debounce is a hole on a phone: iOS and Android fire neither `beforeunload`
+     nor, reliably, anything else when the browser is backgrounded by a call, a
+     notification or the home button -- so a note typed and then interrupted
+     inside 400ms was gone. `visibilitychange` and `pagehide` ARE reliable on
+     mobile, and blur covers tapping straight from one field to another. Flush
+     on all of them, and on the debounce as before. Verified 2026-08-28 in
+     Chrome against the served page, not assumed. */
+  var pendingCards = [];
+  function queue(card){
+    if (pendingCards.indexOf(card) < 0) pendingCards.push(card);
+  }
+  function flush(){
+    var q = pendingCards.slice();
+    pendingCards.length = 0;
+    q.forEach(function(card){
+      clearTimeout(card._saveTimer);
+      save(card);
+    });
+  }
+  document.addEventListener('input', function(e){
+    var t = e.target;
+    if (t && t.classList && t.classList.contains('runner')){
+      var card = t.closest('.card');
+      if (!card) return;
+      var cid = card.getAttribute('data-cid');
+      var st = tapState[cid] || (tapState[cid] = defaultTap());
+      st.runner_pct = parseInt(t.value, 10) || 0;
+      paintTap(card);
+      save(card);
+      return;
+    }
+    if (!t || !t.classList || !t.classList.contains('note')) return;
+    var card = t.closest('.card');
+    queue(card);
+    clearTimeout(card._saveTimer);
+    card._saveTimer = setTimeout(function(){ save(card); }, 400);
+  });
+  /* pointerdown (touch and mouse both fire it) beats click for taps -- no
+     300ms mobile delay and no accidental drag-then-click. */
+  document.addEventListener('pointerdown', function(e){
+    if (!e.target.closest) return;
+    var hit = e.target.closest('.taphit') || e.target.closest('.railhit');
+    if (!hit) return;
+    var svg = hit.closest('svg.chart'), card = hit.closest('.card');
+    if (!svg || !card) return;
+    e.preventDefault();
+    handleTap(card, svg, hit.classList.contains('railhit'), e);
+  }, {passive: false});
+  /* Fat-finger recovery: the tap readout itself is the undo control -- tap it
+     to clear the card's marks and start over, no junk price targets needed. */
+  document.addEventListener('click', function(e){
+    var out = e.target.closest && e.target.closest('[data-role="tapout"]');
+    if (!out) return;
+    var card = out.closest('.card');
+    if (!card) return;
+    var cid = card.getAttribute('data-cid');
+    var st = tapState[cid];
+    if (!st || (st.entry_i == null && st.stop_p == null && !st.pt.length)) return;
+    tapState[cid] = defaultTap();
+    paintTap(card);
+    save(card);
+  });
+  document.addEventListener('blur', function(e){
+    var t = e.target;
+    if (t && t.classList && t.classList.contains('note')) flush();
+  }, true);
+  document.addEventListener('visibilitychange', function(){
+    if (document.visibilityState === 'hidden') flush();
+  });
+  window.addEventListener('pagehide', flush);
+
+  var exported = false;
+  document.addEventListener('click', function(e){
+    if (e.target.closest && e.target.closest('#exportbtn')) exported = true;
+  }, true);
+  window.addEventListener('beforeunload', function(e){
+    if (exported || !jsonl()) return;
+    e.preventDefault(); e.returnValue = '';
+  });
+
+  restore();
+  refresh();
+  if (!storeOk) flag('fail', 'no local save - export before closing');
+})();
+</script>

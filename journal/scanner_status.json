@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-09-07T16:17:08.142916-04:00",
+  "timestamp": "2026-09-12T11:08:39.209153-04:00",
   "symbols_scanned": [
     "AAPL",
     "MSFT",
@@ -14,10 +14,7 @@
     "max_trades": 3
   },
   "regime_state": "normal",
-  "qqq_state": {
-    "up": "09:31:00",
-    "dn": "11:21:00"
-  },
+  "qqq_state": null,
   "last_error": null,
   "webhooks": {
     "posted": 0,
