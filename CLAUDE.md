@@ -41,7 +41,9 @@ the archive is now **frozen** (`research/tape/archive_manifest_2026-09-13.json` 
 first/last session, count and a content hash; `backtest_2y.py --manifest PATH` refuses to build
 on any further drift unless `--allow-drift`) and neither `backtest_2y.py` (read-only for its
 whole run, `ARCHIVE_READONLY=1`) nor `research/daily_fetch.py` (skips entirely while
-`research/tape/.rebuild_lock` is held) can write into `data_archive/` during a rebuild again.
+`research/tape/.rebuild_lock` is held — unless that lock is over 6h old, in which case it warns
+loudly and fetches, so a killed rebuild cannot mute the scheduled fetch forever) can write into
+`data_archive/` during a rebuild again.
 **The new baseline is economically identical to the old one** — this was drift, not edge:
 
 | his day policy, core 11, 25 months | book_id | window | trades | $/day | mean R | win | avg win / avg loss | green |

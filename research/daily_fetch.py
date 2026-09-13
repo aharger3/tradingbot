@@ -29,6 +29,7 @@ import argparse
 import csv
 import datetime as dt
 import sys
+import time
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -45,6 +46,7 @@ HEADER = ["Datetime", "Open", "High", "Low", "Close", "Adj Close", "Volume"]
 # mid-rebuild is exactly the kind of archive write that grows a pinned window's
 # session count out from under the baseline it's being measured against).
 REBUILD_LOCK = ROOT / "research" / "tape" / ".rebuild_lock"
+STALE_LOCK_HOURS = 6.0
 
 
 def last_minute(path: Path) -> str:
@@ -146,9 +148,23 @@ def write_day(symbol: str, day_iso: str, df, force: bool = False,
 def fill(symbols, period="5d", day=None, force=False, until=None,
          start=None, end=None) -> dict:
     if REBUILD_LOCK.exists():
-        print(f"loop rebuild in progress ({REBUILD_LOCK.read_text().strip()}) "
-              f"-- skipping archive fetch")
-        return {}
+        age_h = (time.time() - REBUILD_LOCK.stat().st_mtime) / 3600.0
+        try:
+            held_since = REBUILD_LOCK.read_text(encoding="utf-8").strip()
+        except OSError:
+            held_since = "unreadable"
+        if age_h < STALE_LOCK_HOURS:
+            print(f"loop rebuild in progress ({held_since}) "
+                  f"-- skipping archive fetch")
+            return {}
+        # Referee, cycle P: backtest_2y.py drops the lock in a `finally`, but a
+        # killed process (a background backtest terminated with its session,
+        # a reboot) never runs it. Without this the scheduled 16:15 ET fetch
+        # would skip forever and nobody would be told -- the archive would just
+        # quietly stop moving. A rebuild takes ~10 minutes; hours is stale.
+        print(f"WARNING: stale rebuild lock ({held_since}, {age_h:.1f}h old) "
+              f"-- assuming a killed rebuild, fetching anyway. "
+              f"Delete {REBUILD_LOCK} if this is wrong.")
     got = {}
     for i, sym in enumerate(symbols, 1):
         try:
