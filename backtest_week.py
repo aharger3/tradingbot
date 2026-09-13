@@ -27,7 +27,7 @@ except ModuleNotFoundError:   # data_archive replay the research rows run on.
     yf = None
 
 from omen_bot import Candle, SignalType, TradeGrade
-from signal_runner import SignalRunner
+from signal_runner import SignalRunner, min_risk_floor
 from stop_rule import (stop_hit_on_close, stop_hit_on_wick, stop_fill_price,
                        disaster_stop_price, disaster_stop_hit, DISASTER_STOP_R,
                        MAX_LOSS_R)
@@ -38,6 +38,31 @@ from stop_rule import (stop_hit_on_close, stop_hit_on_wick, stop_fill_price,
 # re-priced through the SAME function at the trade-creation site below.
 import entry_fill
 from entry_fill import ENTRY_FILL
+
+# g88 POST_floor stop policy, behind a flag, default OFF (nothing ships). When ON,
+# a resting-limit entry whose fill collapses the structural risk (a limit resting
+# on a break-and-retest level IS the stop) has its stop WIDENED to clear
+# signal_runner.min_risk_floor instead of the trade being DROPPED -- which is the
+# shipped default at the fill site below. Mirrors
+# research/g88_level_limit.floored_row, the arm that measured +$256/day on
+# bt2y_trades_retest_on vs the shipped entry's $31 (research/g88_level_limit_retest_on.md).
+# Adopting it as the default is Austin's call (R-lane); this only lets the shipped
+# engine reproduce the arm behind ENTRY_FILL=limit_level + ENTRY_FLOOR_STOP=1.
+ENTRY_FLOOR_STOP = os.getenv("ENTRY_FLOOR_STOP", "0").strip().lower() in (
+    "1", "true", "yes", "on")
+
+
+def _floor_widened_stop(entry, stop, ref_close, fill_close, long):
+    """Push the structural stop out until risk clears min_risk_floor; never drop.
+
+    A copy of research/g88_level_limit.floored_row's rule for the shipped engine.
+    Causal: ``ref_close`` is the last bar CLOSED before the fill, never the fill
+    bar's own completed extreme. Taking the wider of the two floor references can
+    only widen the stop, so it cannot flatter the arm."""
+    floor = max(min_risk_floor(ref_close), min_risk_floor(fill_close)) * 1.001
+    struct = (entry - stop) if long else (stop - entry)
+    risk = max(struct, floor)
+    return (entry - risk) if long else (entry + risk)
 
 # The exit ladder (MASTER SPEC, lane: exits). `build_rungs` is the one pure
 # function that turns entry/stop/direction + a causal level pool into 1-4
@@ -1438,10 +1463,17 @@ def simulate_day(symbol: str, day_iso: str, candles: List[Candle],
                 sig["entry"] = fill.price
                 fill_i = i + fill.bar_offset
                 fill_c = candles[fill_i]
+                if ENTRY_FLOOR_STOP:
+                    # POST_floor: widen the stop to clear the size floor instead of
+                    # dropping a risk-collapsed fill. Causal ref = last CLOSED bar.
+                    ref_close = (candles[fill_i - 1].close if fill_i > 0
+                                 else fill_c.open)
+                    sig["stop"] = _floor_widened_stop(
+                        sig["entry"], sig["stop"], ref_close, fill_c.close, long_)
                 # The fill landed at or through the stop: there is no trade left
                 # in it (a limit resting ON a break-and-retest's level IS the
                 # stop). Counted as a miss rather than booked at zero risk.
-                if (sig["entry"] <= sig["stop"]) if long_ else (sig["entry"] >= sig["stop"]):
+                elif (sig["entry"] <= sig["stop"]) if long_ else (sig["entry"] >= sig["stop"]):
                     misses.append({"sym": symbol, "day": day_iso,
                                    "et": c.timestamp[:5], "mode": ENTRY_FILL,
                                    "setup": sig["signal_type"].value,
