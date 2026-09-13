@@ -1,10 +1,15 @@
 {
-  "_comment": "The loop's baseline, decided by R3 on 2026-09-05 and re-affirmed 2026-09-06 on the refereed R1 pass-4 / R2 pass-3 inputs (research/g212_baseline_verdict.md; every figure asserted by research/g212_trace.py). Fields documented in research/tape/README.md. REBUILD PIN (corrected 2026-09-06, referee pass 3 / L5 repair): L5 (350b02fc) briefly flipped signal_runner.DAY_POLICY's default to 3fires_stop_win_or_2loss, but that ship was refuted (referee pass 2, 34c1546e) and reverted at 99b2bf0b -- the shipped default is `first3` again. A bare `python backtest_2y.py --days 730` at HEAD reproduces THIS baseline, book_id 2c39ced2697c26cc, not 205d3dcee96c5282. rebuild.env still pins DAY_POLICY=first3 explicitly (belt and suspenders with the code default), reproducing book_id 2c39ced2697c26cc byte-identically at 5e8b5b89 (book_DAY_POLICY_off) and again at 24b009e5 on 2026-09-06 (rebuild.reproduced_at). loop_cycle.py's OFF arm strips only the flag under test, so the pin survives every cycle; DAY_POLICY was tested as cycle 5 and held (not shipped) and must not be re-run through this config. WINDOW: backtest_2y.py --days counts back from the LAST ARCHIVED session and research/daily_fetch.py advances data_archive/ every weekday at 16:15 ET; the archive's last session is 2026-09-04, so the rebuild reproduces this window until the archive next advances (2026-09-08 16:15 ET at the earliest, 09-07 is a holiday). After that the OFF arm cannot match this book_id without a --start/--end pin in backtest_2y.py, an engine change no R3 pass owns.",
+  "_comment": "Cycle P (research/tape/cycles.md, 2026-09-13, Fable's ruling): the 2026-09-05 baseline (book_id 2c39ced2697c26cc) could not be reproduced even after pinning the window explicitly (backtest_2y.py --start 2024-09-04 --end 2026-09-04) -- the archive had backfilled INSIDE the pinned window since the 2026-09-05 build (PLTR/QQQ/SPY/CRM/AMZN gained 2026-08-12, 08-13, 08-24, 08-25 that AAPL and the original build still lack), widening it from 499 to 501 distinct sessions and the book from 769 to 770 trades. Per the ruling: the archive is now FROZEN as of 2026-09-13 (research/tape/archive_manifest_2026-09-13.json -- every symbol's first/last session, count and a content hash; backtest_2y.py --manifest that path refuses to run on any further drift unless --allow-drift), backtest_2y.py never writes into data_archive during a rebuild (ARCHIVE_READONLY=1, set unconditionally by backtest_2y.py's own main()) and neither does research/daily_fetch.py while research/tape/.rebuild_lock is held. The loop's ACTIVE baseline is now baseline_2026-09-13 (book_id d5ba41a41d65e1e4, commit 03ffa90a) -- economically identical to the old one (per_day -52 -> -52, mean_r -0.0335 -> -0.0335, 11/25 -> 11/25 green, both halves unchanged to the dollar) but reproducible going forward because the archive under it no longer moves silently. The old 2026-09-05 baseline stays below as baseline_2026-09-05 / baseline_figures_2026-09-05 -- never delete a superseded baseline, same rule as a mark file. research/g212_trace.py's assertions now correctly FAIL: they trace the 2026-09-05 verdict specifically (rebuild.args == ['--days','730'], baseline_book == baseline_2026-09-05.json.gz) and were never updated to the new one -- that is expected, not a regression, see its own docstring note. research/p_pin_trace.py reads book_id and the loop's own unit/slice off any book path, imported from research/loop_cycle rather than re-derived, and is how both baselines above were read.",
 
-  "baseline_book": "research/tape/baseline_2026-09-05.json.gz",
-  "baseline_book_id": "2c39ced2697c26cc",
+  "baseline_book": "research/tape/baseline_2026-09-13.json.gz",
+  "baseline_book_id": "d5ba41a41d65e1e4",
   "phantom_book": "research/tape/baseline_2026-09-05_published.json.gz",
   "phantom_book_id": "9a629a9682f0676b",
+
+  "baseline_book_2026_09_05": "research/tape/baseline_2026-09-05.json.gz",
+  "baseline_book_id_2026_09_05": "2c39ced2697c26cc",
+
+  "archive_manifest": "research/tape/archive_manifest_2026-09-13.json",
 
   "unit": "up_to_3_stop_win_or_2loss",
   "report_beside": ["first_of_day", "every_signal", "causal_day_policy (book_DAY_POLICY_on.json.gz, core-11 fired+traded rows)"],
@@ -19,6 +24,22 @@
 
   "rebuild": {
     "script": "backtest_2y.py",
+    "args": ["--start", "2024-09-04", "--end", "2026-09-04", "--manifest", "research/tape/archive_manifest_2026-09-13.json"],
+    "env": {"DAY_POLICY": "first3"},
+    "command": "DAY_POLICY=first3 PYTHONIOENCODING=utf-8 python backtest_2y.py --start 2024-09-04 --end 2026-09-04 --manifest research/tape/archive_manifest_2026-09-13.json --out research/tape/baseline_2026-09-13.json",
+    "engine_env_at_build": "none set at 03ffa90a; every other flag at its shipped default",
+    "commit": "03ffa90a",
+    "built_at": "2026-09-13T16:14:05",
+    "reproduced_at": null,
+    "window": {"first": "2024-09-04", "last": "2026-09-04", "sessions": 501},
+    "archive_manifest_at_build": "research/tape/archive_manifest_2026-09-13.json",
+    "dirty_py_count": 0,
+    "dirty_engine_py": [],
+    "note": "the window is now pinned by --start/--end (not derived from the archive's current last session) and the run is read-only (ARCHIVE_READONLY=1) and manifest-checked -- see rebuild_2026_09_05 below for the superseded --days 730 form."
+  },
+
+  "rebuild_2026_09_05": {
+    "script": "backtest_2y.py",
     "args": ["--days", "730"],
     "env": {"DAY_POLICY": "first3"},
     "command": "DAY_POLICY=first3 PYTHONIOENCODING=utf-8 python backtest_2y.py --days 730 --out research/tape/baseline_2026-09-05.json",
@@ -29,7 +50,8 @@
     "window": {"first": "2024-09-04", "last": "2026-09-04", "sessions": 499},
     "archive_last_session_at_build": "2026-09-04",
     "dirty_py_count": 1,
-    "dirty_engine_py": []
+    "dirty_engine_py": [],
+    "note": "superseded 2026-09-13 -- --days 730 counts back from the archive's current last session, which is exactly what let AMZN/QQQ/CRM drift the window out from under this id. Kept for provenance, never used as an active rebuild config again."
   },
 
   "halves_boundary": "2025-09-01",
@@ -44,7 +66,15 @@
   },
 
   "baseline_figures": {
-    "_unit": "up_to_3_stop_win_or_2loss on core11, honest close fill, research/g212_trace.py",
+    "_unit": "up_to_3_stop_win_or_2loss on core11, honest close fill, research/p_pin_trace.py, ACTIVE baseline (2026-09-13, book_id d5ba41a41d65e1e4)",
+    "whole": {"trades": 770, "per_day": -52, "mean_r": -0.0335, "win_pct": 44.9, "months_green": 11, "months": 25, "avg_win": 801, "avg_loss": 714, "avg_win_over_avg_loss": 1.122, "fires_per_day": 1.537},
+    "h1": {"trades": 382, "per_day": 9, "mean_r": 0.0057, "months_green": 6, "months": 12, "avg_win": 917, "avg_loss": 701},
+    "h2": {"trades": 388, "per_day": -111, "mean_r": -0.0722, "months_green": 5, "months": 13, "avg_win": 694, "avg_loss": 728},
+    "target_met": false
+  },
+
+  "baseline_figures_2026_09_05": {
+    "_unit": "up_to_3_stop_win_or_2loss on core11, honest close fill, research/g212_trace.py -- SUPERSEDED 2026-09-13, kept for provenance, book_id 2c39ced2697c26cc",
     "whole": {"trades": 769, "per_day": -52, "mean_r": -0.0335, "win_pct": 45.0, "months_green": 11, "months": 25, "avg_win": 801, "avg_loss": 716, "avg_win_over_avg_loss": 1.119, "fires_per_day": 1.541},
     "h1": {"trades": 382, "per_day": 9, "mean_r": 0.0057, "months_green": 6, "months": 12, "avg_win": 917, "avg_loss": 701},
     "h2": {"trades": 387, "per_day": -111, "mean_r": -0.0722, "months_green": 5, "months": 13, "avg_win": 694, "avg_loss": 732},

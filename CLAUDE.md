@@ -28,34 +28,37 @@ The target: **fire 1–3 times a day, and be right about them.**
 
 ## Where the project actually stands
 
-**Reconciled 2026-09-05** (`research/g212_baseline_verdict.md`; every cell asserted by
-`python research/g212_trace.py`). Both books: `python backtest_2y.py --days 730` at commit
-`29e4abc6`, built the same minute, 499 sessions 2024-09-04 → 2026-09-04, engine at its shipped
-defaults (1R hard stop resting on the level and filled on the intrabar touch, `SCALE_PLAN=
-hod_then_runner_be`, `LOSS_HALT` on, `RETEST_REQUIRED` on). **Unit = his day policy**: up to 3
-fires a day, stop after the first win or the second loss, arrival order, `universe.CORE_SYMBOLS`
-(11). The loop's gate reads this unit on this book (`research/tape/loop.json`). **Rebuild it
-with `DAY_POLICY=first3 PYTHONIOENCODING=utf-8 python backtest_2y.py --days 730`** — L5 flipped
-`signal_runner.DAY_POLICY`'s default (350b02fc), so a bare run at HEAD builds id
-`205d3dcee96c5282` (same −$52/day on the unit, different fingerprint); with the pin the baseline
-id `2c39ced2697c26cc` reproduced at `5e8b5b89` and again at `24b009e5` (2026-09-06). `--days 730`
-counts back from the last archived session (2026-09-04); once `daily_fetch.py` advances the
-archive (2026-09-08 16:15 ET at the earliest) the window moves and no rebuild can match this id
-until `backtest_2y.py` takes a fixed start/end date — an engine change no row has landed.
+**Re-baselined 2026-09-13** (cycle P, `research/tape/cycles.md`; Fable's ruling same day —
+`research/tape/loop.json` is the live source, `research/p_pin_trace.py` reads any book the same
+way). The 2026-09-05 id (`2c39ced2697c26cc`) stopped reproducing: `backtest_2y.py --days 730`
+counts back from the archive's current last session, and by 2026-09-13 AMZN/QQQ had drifted to
+2026-09-10 and CRM to 2026-09-09. Pinning the window explicitly (`--start 2024-09-04 --end
+2026-09-04`, now a real flag) still did not reproduce it — the archive had also **backfilled
+inside the pinned window**: PLTR/QQQ/SPY/CRM/AMZN gained 2026-08-12, 08-13, 08-24 and 08-25,
+which AAPL (and the original 2026-09-05 build) still lack, widening 499 sessions to 501 and 769
+trades to 770. Chasing a fingerprint the archive can no longer produce is not reproducibility, so
+the archive is now **frozen** (`research/tape/archive_manifest_2026-09-13.json` — every symbol's
+first/last session, count and a content hash; `backtest_2y.py --manifest PATH` refuses to build
+on any further drift unless `--allow-drift`) and neither `backtest_2y.py` (read-only for its
+whole run, `ARCHIVE_READONLY=1`) nor `research/daily_fetch.py` (skips entirely while
+`research/tape/.rebuild_lock` is held) can write into `data_archive/` during a rebuild again.
+**The new baseline is economically identical to the old one** — this was drift, not edge:
 
-| his day policy, core 11, 25 months | fill | exit | $/day | mean R | win | avg win / avg loss | green |
-|---|---|---|---:|---:|---:|---:|---:|
-| **the baseline** `research/tape/baseline_2026-09-05.json.gz` | close of the signal bar (honest) | shipped | **−$52** | −0.034R | 45.0% | $801 / $716 (1.12×) | **11/25** |
-| the phantom column `baseline_2026-09-05_published.json.gz` | `ENTRY_FILL=published` — the level, even when the bar never traded there | shipped | $850 | +0.657R | 63.9% | $1,583 / $980 (1.62×) | 23/25 |
-| first fire of the day, honest (reported beside) | close | shipped | −$39 | −0.039R | 45.7% | $731 / $687 | 9/25 |
-| the ceiling: the day's best fire, chosen after the fact, honest | close | shipped | $1,760 | +1.763R | 95.0% | $1,880 / $454 | 25/25 |
-| **his bar** | | | **$500** | | | **2.0×** | **25/25** |
+| his day policy, core 11, 25 months | book_id | window | trades | $/day | mean R | win | avg win / avg loss | green |
+|---|---|---|---:|---:|---:|---:|---:|---:|
+| **active baseline (2026-09-13)** `baseline_2026-09-13.json.gz` | `d5ba41a41d65e1e4` | 501 sessions, 2024-09-04→2026-09-04 (frozen) | 770 | **−$52** | −0.034R | 44.9% | $801 / $714 (1.12×) | **11/25** |
+| superseded baseline (2026-09-05) `baseline_2026-09-05.json.gz` | `2c39ced2697c26cc` | 499 sessions, 2024-09-04→2026-09-04 (drifted since) | 769 | −$52 | −0.034R | 45.0% | $801 / $716 (1.12×) | 11/25 |
+| the phantom column `baseline_2026-09-05_published.json.gz` | `9a629a9682f0676b` | | 645 | $850 | +0.657R | 63.9% | $1,583 / $980 (1.62×) | 23/25 |
+| first fire of the day, honest (reported beside) | | | | −$39 | −0.039R | 45.7% | $731 / $687 | 9/25 |
+| the ceiling: the day's best fire, chosen after the fact, honest | | | | $1,760 | +1.763R | 95.0% | $1,880 / $454 | 25/25 |
+| **his bar** | | | | **$500** | | | **2.0×** | **25/25** |
 
-Baseline halves: H1 (before 2025-09-01) 382 trades, +$9/day, 6/12 green; H2 (2025-09-01 on)
-387 trades, −$111/day, 5/13 green. 769 trades, 1.54 fires/day. **Target not met.** The ceiling
-row is proof the setups are in the honest book every month; it is not a plan. Every signal on all
-29 symbols reads −$334/day, 8/25 (honest) against $5,167/day, 25/25 and $2,578,552 total
-(phantom) — the $2.6M he remembers is the fill, rebuilt on today's code.
+Active baseline halves: H1 (before 2025-09-01) 382 trades, +$9/day, 6/12 green; H2 (2025-09-01 on)
+388 trades, −$111/day, 5/13 green — both unchanged from the superseded baseline to the dollar and
+the green-month count. 1.54 fires/day. **Target not met.** The ceiling row is proof the setups
+are in the honest book every month; it is not a plan. Every signal on all 29 symbols reads
+−$334/day, 8/25 (honest) against $5,167/day, 25/25 and $2,578,552 total (phantom) — the $2.6M he
+remembers is the fill, rebuilt on today's code.
 
 **Where the money is lost.** The reconciliation ladder (`research/g211_reconcile_ladder.md`,
 `research/r2_referee.md`) walked the lab rig's $4,569/day (next-open fill, flat 2R, 14,327

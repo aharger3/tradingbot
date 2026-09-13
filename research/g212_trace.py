@@ -1,6 +1,17 @@
 """g212_trace.py -- every number on research/g212_baseline_verdict.md, asserted
 against a stamped book in research/tape/. Exits non-zero on drift.
 
+SUPERSEDED 2026-09-13 (cycle P, research/tape/cycles.md; Fable's ruling same
+day): loop.json's baseline_book/rebuild.args now point at baseline_2026-09-13
+(book_id d5ba41a41d65e1e4, --start/--end pinned, archive frozen and manifest-
+checked) because the 2026-09-05 id (2c39ced2697c26cc) stopped reproducing --
+the archive backfilled sessions inside the pinned window after the R3 build.
+This file still asserts the OLD verdict on purpose (loop.json's baseline_book
+== baseline_2026-09-05.json.gz, rebuild.args == ["--days","730"]) and will now
+correctly FAIL every time it is run -- that is the record of supersession, not
+a live regression. Do not "fix" it to pass; research/p_pin_trace.py is the
+live equivalent for whichever book loop.json names as baseline_book today.
+
 OMEN 10.0 row R3 (the baseline verdict). The page is prose Austin reads; this
 file is the proof underneath it. Nothing here re-types arithmetic:
 
