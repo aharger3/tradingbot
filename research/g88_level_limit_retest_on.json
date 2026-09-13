@@ -1,0 +1,244 @@
+{
+ "bar_per_day": 397.0,
+ "book": "bt2y_trades_retest_on.json",
+ "sessions": 498,
+ "candidates": 8227,
+ "arms": {
+  "BOOK": {
+   "entry": "book",
+   "stop": "intrabar",
+   "oneaday": {
+    "trades": 498,
+    "win_pct": 46.4,
+    "total_dollars": 18598.0,
+    "mean_r": 0.0373,
+    "per_day": 37.0,
+    "per_month": 747.0,
+    "months_green": 12,
+    "months": 25,
+    "weeks_green": 48,
+    "weeks": 105,
+    "worst_drawdown": 21446.0
+   },
+   "oneaday_ci": {
+    "per_day": 37.0,
+    "ci95_low": -55.0,
+    "ci95_high": 135.0
+   },
+   "pct_of_bar": 9.3,
+   "days_traded": 498,
+   "day_rate_pct": 100.0,
+   "rows_priced": 8227,
+   "rows_dropped_for_size": 1338,
+   "dropped_pct": 16.3,
+   "every_trade": {
+    "trades": 6889,
+    "win_pct": 43.2,
+    "total_dollars": -238547.0,
+    "mean_r": -0.0346,
+    "per_day": -479.0,
+    "per_month": -9580.0,
+    "months_green": 6,
+    "months": 25,
+    "weeks_green": 45,
+    "weeks": 105,
+    "worst_drawdown": 265375.0
+   },
+   "median_bars_early": null,
+   "pct_before_signal": null,
+   "median_risk": 0.54,
+   "nofill": {}
+  },
+  "BOOK_floor": {
+   "entry": "book",
+   "stop": "floor",
+   "oneaday": {
+    "trades": 498,
+    "win_pct": 46.3,
+    "total_dollars": 15531.0,
+    "mean_r": 0.0312,
+    "per_day": 31.0,
+    "per_month": 624.0,
+    "months_green": 14,
+    "months": 25,
+    "weeks_green": 49,
+    "weeks": 105,
+    "worst_drawdown": 21713.0
+   },
+   "oneaday_ci": {
+    "per_day": 31.0,
+    "ci95_low": -60.0,
+    "ci95_high": 126.0
+   },
+   "pct_of_bar": 7.8,
+   "days_traded": 498,
+   "day_rate_pct": 100.0,
+   "rows_priced": 8227,
+   "rows_dropped_for_size": 0,
+   "dropped_pct": 0.0,
+   "every_trade": {
+    "trades": 8227,
+    "win_pct": 44.1,
+    "total_dollars": -224263.0,
+    "mean_r": -0.0273,
+    "per_day": -450.0,
+    "per_month": -9007.0,
+    "months_green": 7,
+    "months": 25,
+    "weeks_green": 45,
+    "weeks": 105,
+    "worst_drawdown": 274314.0
+   },
+   "median_bars_early": null,
+   "pct_before_signal": null,
+   "median_risk": 0.57,
+   "nofill": {}
+  },
+  "LEVEL": {
+   "entry": "level",
+   "stop": "intrabar",
+   "oneaday": {
+    "trades": 378,
+    "win_pct": 42.3,
+    "total_dollars": 285833.0,
+    "mean_r": 0.7562,
+    "per_day": 574.0,
+    "per_month": 11479.0,
+    "months_green": 20,
+    "months": 25,
+    "weeks_green": 69,
+    "weeks": 105,
+    "worst_drawdown": 14080.0
+   },
+   "oneaday_ci": {
+    "per_day": 574.0,
+    "ci95_low": 379.0,
+    "ci95_high": 776.0
+   },
+   "pct_of_bar": 144.6,
+   "days_traded": 378,
+   "day_rate_pct": 75.9,
+   "rows_priced": 7256,
+   "rows_dropped_for_size": 6299,
+   "dropped_pct": 86.8,
+   "every_trade": {
+    "trades": 957,
+    "win_pct": 43.6,
+    "total_dollars": 584625.0,
+    "mean_r": 0.6109,
+    "per_day": 1174.0,
+    "per_month": 23479.0,
+    "months_green": 19,
+    "months": 25,
+    "weeks_green": 67,
+    "weeks": 105,
+    "worst_drawdown": 23217.0
+   },
+   "median_bars_early": 2,
+   "pct_before_signal": 88.2,
+   "median_risk": 0.1,
+   "nofill": {
+    "risk_collapsed": 829,
+    "arming_bar_untraced": 140,
+    "limit_never_touched": 2
+   }
+  },
+  "LEVEL_floor": {
+   "entry": "level",
+   "stop": "floor",
+   "oneaday": {
+    "trades": 498,
+    "win_pct": 65.6,
+    "total_dollars": 845905.0,
+    "mean_r": 1.6986,
+    "per_day": 1699.0,
+    "per_month": 33972.0,
+    "months_green": 25,
+    "months": 25,
+    "weeks_green": 97,
+    "weeks": 105,
+    "worst_drawdown": 5000.0
+   },
+   "oneaday_ci": {
+    "per_day": 1699.0,
+    "ci95_low": 1455.0,
+    "ci95_high": 1951.0
+   },
+   "pct_of_bar": 428.0,
+   "days_traded": 498,
+   "day_rate_pct": 100.0,
+   "rows_priced": 8085,
+   "rows_dropped_for_size": 0,
+   "dropped_pct": 0.0,
+   "every_trade": {
+    "trades": 8085,
+    "win_pct": 61.6,
+    "total_dollars": 10001967.0,
+    "mean_r": 1.2371,
+    "per_day": 20084.0,
+    "per_month": 401685.0,
+    "months_green": 25,
+    "months": 25,
+    "weeks_green": 105,
+    "weeks": 105,
+    "worst_drawdown": 18244.0
+   },
+   "median_bars_early": 2,
+   "pct_before_signal": 87.8,
+   "median_risk": 0.31,
+   "nofill": {
+    "arming_bar_untraced": 140,
+    "limit_never_touched": 2
+   }
+  },
+  "POST_floor": {
+   "entry": "post",
+   "stop": "floor",
+   "oneaday": {
+    "trades": 498,
+    "win_pct": 27.5,
+    "total_dollars": 127531.0,
+    "mean_r": 0.2561,
+    "per_day": 256.0,
+    "per_month": 5122.0,
+    "months_green": 16,
+    "months": 25,
+    "weeks_green": 46,
+    "weeks": 105,
+    "worst_drawdown": 31352.0
+   },
+   "oneaday_ci": {
+    "per_day": 256.0,
+    "ci95_low": 40.0,
+    "ci95_high": 488.0
+   },
+   "pct_of_bar": 64.5,
+   "days_traded": 498,
+   "day_rate_pct": 100.0,
+   "rows_priced": 6014,
+   "rows_dropped_for_size": 0,
+   "dropped_pct": 0.0,
+   "every_trade": {
+    "trades": 6014,
+    "win_pct": 25.7,
+    "total_dollars": 380949.0,
+    "mean_r": 0.0633,
+    "per_day": 765.0,
+    "per_month": 15299.0,
+    "months_green": 16,
+    "months": 25,
+    "weeks_green": 53,
+    "weeks": 105,
+    "worst_drawdown": 138971.0
+   },
+   "median_bars_early": -4,
+   "pct_before_signal": 0.0,
+   "median_risk": 0.319,
+   "nofill": {
+    "limit_never_touched": 2174,
+    "no_bars_after_signal": 39
+   }
+  }
+ },
+ "verdict": "ORDER TYPE IS REAL -- resting the limit STRICTLY AFTER the signal bar, with nothing dropped for size, still earns $256/day against the shipped entry's $31/day. (Resting it from the arming bar earns $1699, but that uses the knowledge that the setup would fire.)"
+}

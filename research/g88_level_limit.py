@@ -58,9 +58,20 @@ if str(ROOT) not in sys.path:
 from research import g80_ordertype_grid as G      # noqa: E402
 import signal_runner as sr                        # noqa: E402
 
-BOOK = ROOT / "research" / "bt2y_trades.json"
-OUT_JSON = ROOT / "research" / "g88_level_limit.json"
-OUT_MD = ROOT / "research" / "g88_level_limit.md"
+# ponytail: defaults unchanged (stale bt2y_trades.json reproduces the published g88
+# number). G88_BOOK points a measurement at the current book (e.g.
+# bt2y_trades_retest_on.json) and G88_TAG suffixes the outputs so the original
+# artifact is never clobbered. Measurement infra only — nothing here is applied.
+BOOK = ROOT / "research" / os.getenv("G88_BOOK", "bt2y_trades.json")
+_TAG = os.getenv("G88_TAG", "")
+OUT_JSON = ROOT / "research" / ("g88_level_limit%s.json" % _TAG)
+OUT_MD = ROOT / "research" / ("g88_level_limit%s.md" % _TAG)
+
+# ponytail: default "" prices every candidate (unchanged). Set G88_SGRADE_ONLY=S to
+# restrict the one-a-day pick to Austin-tier-S candidates only — the entry-lever ×
+# S-selection bridge measurement. sgrade is the book's reported Austin tier
+# (downgrade/compute_austin_tier), a proxy for his marks, not the marks themselves.
+SGRADE_ONLY = os.getenv("G88_SGRADE_ONLY", "").strip().upper()
 
 BAR_PER_DAY = 397.0
 
@@ -109,7 +120,10 @@ def main():
     all_days = sorted({r["day"] for r in allrows})
 
     universe = {i: r for i, r in enumerate(allrows)
-                if r.get("traded") or r["status"] == "halted"}
+                if (r.get("traded") or r["status"] == "halted")
+                and (not SGRADE_ONLY or str(r.get("sgrade", "")).upper() == SGRADE_ONLY)}
+    if SGRADE_ONLY:
+        print("FILTER: sgrade == %r only" % SGRADE_ONLY, flush=True)
     keys = sorted(universe, key=lambda i: (allrows[i]["day"], allrows[i]["et"],
                                            allrows[i]["sym"], i))
     print("book %s: %d candidates, %d sessions, %d arms"
