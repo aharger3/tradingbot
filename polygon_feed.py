@@ -42,6 +42,13 @@ def fetch_day(symbol: str, day_iso: str) -> list:
     cached = ARCHIVE / symbol / f"{day_iso}.csv"
     if cached.exists():
         return _read_csv(cached)
+    if os.environ.get("ARCHIVE_READONLY") == "1":
+        # A backtest rebuild must never mutate the archive it is measuring
+        # against -- a cache miss here is "no data for this symbol-day", not
+        # a fetch (research/tape/cycles.md, C1/C4/C5, 2026-09-13: qqq_level_
+        # breaks() walking the whole window's dates, not just QQQ's own, is
+        # what backfilled QQQ/CRM days mid-diagnosis and widened the drift).
+        return []
     _throttle()
     url = (f"https://api.polygon.io/v2/aggs/ticker/{symbol}/range/1/minute/"
            f"{day_iso}/{day_iso}")

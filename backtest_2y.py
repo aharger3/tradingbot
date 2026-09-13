@@ -149,14 +149,62 @@ def bucket(x, edges, names):
 def main():
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--days", type=int, default=730)
+    ap.add_argument("--start", default=None,
+                    help="YYYY-MM-DD, explicit window start (overrides --days)")
+    ap.add_argument("--end", default=None,
+                    help="YYYY-MM-DD, explicit window end (overrides the "
+                         "archive's last session -- pin this so a rebuild's "
+                         "window can't drift when daily_fetch.py or a stray "
+                         "fetch_day call advances a symbol's archive)")
+    ap.add_argument("--manifest", default=None,
+                    help="research/tape/archive_manifest_*.json to verify the "
+                         "archive against before building anything -- refuses "
+                         "to run on a mismatch unless --allow-drift")
+    ap.add_argument("--allow-drift", action="store_true",
+                    help="run even if --manifest no longer matches the archive")
     ap.add_argument("--out", default="research/bt2y_trades.json")
     args = ap.parse_args()
 
-    syms = [s for s in ALL_SYMS if has_archive(s, 100)]
-    last = max((archive_days(s) or ["1970-01-01"])[-1] for s in syms)
-    start = (date.fromisoformat(last) - timedelta(days=args.days)).isoformat()
-    window = sorted({d for s in syms for d in archive_days(s) if d >= start})
-    print("%d symbols, %d sessions %s..%s" % (len(syms), len(window), window[0], window[-1]))
+    if args.manifest:
+        from research import build_archive_manifest as bam
+        problems = bam.check(args.manifest)
+        if problems and not args.allow_drift:
+            print("archive manifest mismatch -- %s no longer matches the archive:"
+                  % args.manifest)
+            for p in problems:
+                print("  " + p)
+            print("re-run with --allow-drift to build anyway, or re-freeze the "
+                  "manifest (python research/build_archive_manifest.py) if this "
+                  "drift is expected.")
+            raise SystemExit(2)
+        if problems:
+            print("archive manifest mismatch (--allow-drift set, running anyway):")
+            for p in problems:
+                print("  " + p)
+
+    # C1/C4/C5 (research/tape/cycles.md, 2026-09-13): a bare rebuild's window
+    # is derived from whichever symbol's archive is furthest along, and every
+    # backtest run risks fetching (and writing) a day it doesn't have -- both
+    # let the window drift out from under the pinned baseline. Read-only for
+    # the whole run; a rebuild is a measurement, never an archive write.
+    import os as _os
+    _os.environ["ARCHIVE_READONLY"] = "1"
+    lock = ROOT / "research" / "tape" / ".rebuild_lock"
+    lock.parent.mkdir(parents=True, exist_ok=True)
+    lock.write_text(datetime.now().isoformat(timespec="seconds"), encoding="utf-8")
+
+    try:
+        syms = [s for s in ALL_SYMS if has_archive(s, 100)]
+        end = args.end or max((archive_days(s) or ["1970-01-01"])[-1] for s in syms)
+        start = args.start or (date.fromisoformat(end) - timedelta(days=args.days)).isoformat()
+        window = sorted({d for s in syms for d in archive_days(s) if start <= d <= end})
+        print("%d symbols, %d sessions %s..%s" % (len(syms), len(window), window[0], window[-1]))
+        _run(syms, start, end, window, args)
+    finally:
+        lock.unlink(missing_ok=True)
+
+
+def _run(syms, start, end, window, args):
 
     ctx = spy_context()
     qqq_brk = qqq_level_breaks(window)
@@ -164,7 +212,7 @@ def main():
 
     rows, sessions = [], set()
     for sym in syms:
-        days = [d for d in archive_days(sym) if d >= start]
+        days = [d for d in archive_days(sym) if start <= d <= end]
         day_bars, hourly = {}, []
         for d in days:
             try:

@@ -40,6 +40,12 @@ from polygon_feed import ARCHIVE                   # noqa: E402
 
 HEADER = ["Datetime", "Open", "High", "Low", "Close", "Adj Close", "Volume"]
 
+# backtest_2y.py holds this lock for the duration of a loop rebuild (research/
+# tape/cycles.md, C1/C4/C5, 2026-09-13: the scheduled 16:15 ET fetch landing
+# mid-rebuild is exactly the kind of archive write that grows a pinned window's
+# session count out from under the baseline it's being measured against).
+REBUILD_LOCK = ROOT / "research" / "tape" / ".rebuild_lock"
+
 
 def last_minute(path: Path) -> str:
     """"HH:MM" of the last bar in an archive file, or "" if unreadable.
@@ -139,6 +145,10 @@ def write_day(symbol: str, day_iso: str, df, force: bool = False,
 
 def fill(symbols, period="5d", day=None, force=False, until=None,
          start=None, end=None) -> dict:
+    if REBUILD_LOCK.exists():
+        print(f"loop rebuild in progress ({REBUILD_LOCK.read_text().strip()}) "
+              f"-- skipping archive fetch")
+        return {}
     got = {}
     for i, sym in enumerate(symbols, 1):
         try:

@@ -1,0 +1,179 @@
+{
+  "generated": "2026-09-13",
+  "symbols": {
+    "AAPL": {
+      "first": "2024-01-02",
+      "hash": "bfe9ec8fb7bc8e4df593b027654845bca561ff45e7d22fd27b4104ee75d8f0dc",
+      "last": "2026-09-04",
+      "sessions": 666
+    },
+    "ACHR": {
+      "first": "2024-01-02",
+      "hash": "c9059392cd6c2d23ec4b65d0c80ee1101a8b2359ac03cb90a36af02391956e79",
+      "last": "2026-09-04",
+      "sessions": 661
+    },
+    "AMD": {
+      "first": "2024-01-02",
+      "hash": "20661d3175019b0158040168e5ba2b5144fa34ce5c87978586ebf43c8526ec0a",
+      "last": "2026-09-04",
+      "sessions": 662
+    },
+    "AMZN": {
+      "first": "2024-01-02",
+      "hash": "1bcad686651eda49bbce3143f637a026b35ae29e89e2d6d96a03cdbc3e9792ee",
+      "last": "2026-09-10",
+      "sessions": 667
+    },
+    "AVGO": {
+      "first": "2024-08-05",
+      "hash": "65faa015ce45534f994f1cfe83377b55c42545e2b433ad0cd798d6aace1e64b4",
+      "last": "2026-09-04",
+      "sessions": 514
+    },
+    "BABA": {
+      "first": "2024-08-19",
+      "hash": "3b1f4f7f3299e922cb34fdff87d67aaee8db91fdc1721f68bd07b826c878a288",
+      "last": "2026-09-04",
+      "sessions": 445
+    },
+    "COIN": {
+      "first": "2024-02-20",
+      "hash": "659a86163a305ac352d122c85e56876aba0db9ee78e41fd39e1d3cecc66a6da5",
+      "last": "2026-09-04",
+      "sessions": 629
+    },
+    "CRM": {
+      "first": "2025-05-02",
+      "hash": "1d8246fa83b8d7ac01c827782bfbe1eda861e976358312e6651ca91cfa56fa62",
+      "last": "2026-09-09",
+      "sessions": 288
+    },
+    "GOOG": {
+      "first": "2025-04-04",
+      "hash": "ea0958a58070b0fb4901ca2843bba7fde30c9b1e777afe885652bd0c87f318a4",
+      "last": "2026-09-04",
+      "sessions": 12
+    },
+    "GOOGL": {
+      "first": "2024-01-02",
+      "hash": "9dee8c25f614dd9dbb37f4fe2d17aea593d70b7f78fbae70e3f4ec90a31d84e6",
+      "last": "2026-09-04",
+      "sessions": 662
+    },
+    "HOOD": {
+      "first": "2024-07-01",
+      "hash": "e7b84291fcb23bad9af3827fe4593db1fb0ce74ca54e6fa871a0b0eb4a58b945",
+      "last": "2026-09-04",
+      "sessions": 538
+    },
+    "INTC": {
+      "first": "2024-01-02",
+      "hash": "371af2d4f24fca6f898f46004001dab5b7fba10ab36ae1267d40018a6ac94dc3",
+      "last": "2026-09-04",
+      "sessions": 663
+    },
+    "IREN": {
+      "first": "2025-07-11",
+      "hash": "d79a501eb5dff1151f3f3abf840c38026ded7e369e35dd42aaf573a743700c6b",
+      "last": "2026-09-04",
+      "sessions": 281
+    },
+    "IWM": {
+      "first": "2024-01-02",
+      "hash": "f57d774b114e379198cd0e9c1d77dbd493308be0e977df59924103ed263b0493",
+      "last": "2026-09-04",
+      "sessions": 661
+    },
+    "MARA": {
+      "first": "2024-09-09",
+      "hash": "0cf873e273fff0e2dd2e1abd56ab535fd195e254627965d9925a0d52d43a5469",
+      "last": "2026-09-04",
+      "sessions": 286
+    },
+    "META": {
+      "first": "2024-01-02",
+      "hash": "056ab4390f3a2cdd45eed4622e93dc9e67ee4d2c8ef34dff83a60f74d6d7aa88",
+      "last": "2026-09-04",
+      "sessions": 663
+    },
+    "MSFT": {
+      "first": "2024-01-02",
+      "hash": "cadd24d49411a6a2929843621ea0e4fe513793ba7ff82cb661f5a69776383a1f",
+      "last": "2026-09-04",
+      "sessions": 666
+    },
+    "MU": {
+      "first": "2024-01-02",
+      "hash": "46ca7f2dd29428fefce107b56e9b06b3ce7fc0d44de833b919ba84c5a4806da0",
+      "last": "2026-09-04",
+      "sessions": 665
+    },
+    "NFLX": {
+      "first": "2024-07-02",
+      "hash": "1328dcb77a093d79aafe4a070bb0c4cb3e3b79b62e710d4dcb571970bb719a22",
+      "last": "2026-09-04",
+      "sessions": 537
+    },
+    "NVDA": {
+      "first": "2024-01-02",
+      "hash": "de59a6add69adb1fcb515d89da2e22ca05b6bc3e9b20597400b085e7e59608f7",
+      "last": "2026-09-04",
+      "sessions": 666
+    },
+    "ORCL": {
+      "first": "2024-01-02",
+      "hash": "a758484e3c958b2766e10fe4139326702bcbfbad2aabd906151fae9102c68c50",
+      "last": "2026-09-04",
+      "sessions": 662
+    },
+    "PLTR": {
+      "first": "2024-01-02",
+      "hash": "5d79d0800863f468147446a85d68079bbf93262eae729872e8a05a51c1e2a1a2",
+      "last": "2026-09-04",
+      "sessions": 665
+    },
+    "QQQ": {
+      "first": "2024-01-02",
+      "hash": "5e0e4a303e690f9c0bff82dd7993e915c66405c16ff8967bf8a40f68e90930ad",
+      "last": "2026-09-10",
+      "sessions": 673
+    },
+    "SOFI": {
+      "first": "2024-10-30",
+      "hash": "faf70f3e82301ebb87269a72010d96154b924fe9faa484b2e898f022296fa324",
+      "last": "2026-09-04",
+      "sessions": 291
+    },
+    "SPCX": {
+      "first": "2024-01-02",
+      "hash": "313310c583e838fb3dfed47eded398da3aa6ba823aa0c2f4adf91a62acfea2ec",
+      "last": "2026-09-04",
+      "sessions": 539
+    },
+    "SPY": {
+      "first": "2024-01-02",
+      "hash": "dfcdffdd496a812a9049e5daca2577cfa3920f7976e36dd3c5fa518bf7e7af05",
+      "last": "2026-09-04",
+      "sessions": 667
+    },
+    "TSLA": {
+      "first": "2024-01-02",
+      "hash": "5413a71d121cff374806c4d900eb33fb5337ae44955fa5bd95e420da317aa3d9",
+      "last": "2026-09-04",
+      "sessions": 666
+    },
+    "TSM": {
+      "first": "2024-09-16",
+      "hash": "281c64723e9987b12bbaf8abeefa6d053f814705f8668b2024cceb9262e8c6da",
+      "last": "2026-09-04",
+      "sessions": 305
+    },
+    "UBER": {
+      "first": "2024-09-10",
+      "hash": "7ac5b14093e86cee97de0c490da7a274829d501a7393ee5503b34cdbd9e2a9e6",
+      "last": "2026-09-04",
+      "sessions": 284
+    }
+  }
+}
