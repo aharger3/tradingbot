@@ -693,37 +693,6 @@ BAR_EXTREME_FRAC = 0.25
 # be A/B'd: ON_WATCH=0. It is a FILL rule -- see near_session_extreme().
 ON_WATCH = os.getenv("ON_WATCH", "1").strip().lower() in ("1", "true", "yes", "on")
 
-# L7 (2026-09-13) -- "enter while the 1-minute candle is still forming, scratch
-# if it closes back through the level." Cycle C3 (research/tape/cycles.md) was
-# REFUTED for lookahead: it picked the entry price off the completed bar's own
-# high/low as if that were known mid-formation, and every detector already
-# requires the bar's CLOSE to confirm selection -- so "selection" there was
-# reading the future of the very bar it claimed to be reacting to mid-tick.
-#
-# The honest version changes nothing about SELECTION (still the existing
-# close-confirmed break-and-retest / OCR detectors -- this flag reads nowhere
-# near them) and only changes the PRICE PAID on the bar those detectors already
-# picked: not the close (fill_price's default), but the level itself plus one
-# tick of slippage, on the same bar the close-fill would have used, IF that
-# bar's own range actually traded through the level in the trade direction
-# (candle.low reaching down to it for a long, candle.high reaching up to it for
-# a short). That is a fair description of "I saw price cross the line and sent
-# the order right there" -- it needs no bar after this one and reads no field
-# of this bar that fill_price's `close` mode does not already have in hand.
-#
-# The scratch half ("closes back through the level, scratch flat") is NOT
-# separately wired: research/p8_scratch.md already proved the identical
-# condition unreachable on this engine -- every detector's own selection
-# already requires the CONFIRMING bar's close to be on the trade's side of
-# this exact level (`current.close > level_hi` and mirror), so a bar this
-# flag fires on can never also close back through that same level. Building a
-# branch that cannot execute would be the same dead code P8 deleted; this
-# comment is the record instead.
-#
-# OFF by default -- a flag, not a shipped change. research/loop_cycle.py A/Bs it.
-ENTRY_FORMING_CANDLE = os.getenv(
-    "ENTRY_FORMING_CANDLE", "0").strip().lower() in ("1", "true", "yes", "on")
-
 # G13 (2026-08-27) -- WHICH GEOMETRY the minimum-risk floor at :1657 / :1892 is
 # measured on. Today: the POST-fill geometry. T3(b)'s fill_price() back-dates a
 # break-and-retest entry onto the broken level, and for B&R the level IS the
@@ -1734,20 +1703,7 @@ def fill_price(level: float, candle, is_long: bool,
     what makes look-ahead structurally impossible inside it. So they book the
     close PROVISIONALLY — that is the geometry the stop clamp, the minimum-risk
     floor and the grade are computed on — and `backtest_week` re-prices the
-    entry once, at the trade-creation site, with the bars that come after.
-
-    ENTRY_FORMING_CANDLE (L7, OFF by default): if the signal bar's own range
-    actually traded through `level` in the trade's direction, price the fill
-    there plus one tick of slippage instead of at the close -- "I entered as
-    the candle crossed the line, not after it closed." Reads only this same
-    bar's high/low, which `close` mode already has; no bar after it, no lookahead.
-    Falls through to the normal (close) fill when there is no level or the bar
-    never reached it."""
-    if ENTRY_FORMING_CANDLE and level is not None and candle is not None:
-        crossed = (candle.low <= level) if is_long else (candle.high >= level)
-        if crossed:
-            tick = 0.01
-            return level + tick if is_long else level - tick
+    entry once, at the trade-creation site, with the bars that come after."""
     mode = "close" if entry_fill.needs_future_bars() else None
     return entry_fill.entry_fill_price(
         level, candle, is_long, mode=mode,
