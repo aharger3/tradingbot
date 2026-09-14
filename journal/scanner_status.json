@@ -1,11 +1,37 @@
 {
-  "timestamp": "2026-09-12T11:08:39.209153-04:00",
+  "timestamp": "2026-09-14T10:23:08.330959-04:00",
   "symbols_scanned": [
+    "NVDA",
+    "TSLA",
     "AAPL",
+    "SPCX",
     "MSFT",
-    "TSLA"
+    "MU",
+    "INTC",
+    "PLTR",
+    "AMZN",
+    "META",
+    "AMD",
+    "GOOGL",
+    "ACHR",
+    "NFLX",
+    "ORCL",
+    "QQQ",
+    "SPY",
+    "IWM",
+    "GOOG",
+    "SOFI",
+    "COIN",
+    "HOOD",
+    "IREN",
+    "AVGO",
+    "UBER",
+    "BABA",
+    "CRM",
+    "TSM",
+    "MARA"
   ],
-  "bars_fetched": 3,
+  "bars_fetched": 29,
   "signals_fired_today": 0,
   "session_halt": {
     "halted": false,
@@ -14,7 +40,10 @@
     "max_trades": 3
   },
   "regime_state": "normal",
-  "qqq_state": null,
+  "qqq_state": {
+    "up": "09:42:00",
+    "dn": "09:30:00"
+  },
   "last_error": null,
   "webhooks": {
     "posted": 0,
