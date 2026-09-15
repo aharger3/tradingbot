@@ -1,53 +1,53 @@
 {
-  "generated": "2026-09-13",
+  "generated": "2026-09-14",
   "symbols": {
     "AAPL": {
-      "first": "2024-01-02",
-      "hash": "bfe9ec8fb7bc8e4df593b027654845bca561ff45e7d22fd27b4104ee75d8f0dc",
+      "first": "2024-09-04",
+      "hash": "dcbf15028ab75b3161dcf602aa24397b682ddff21d3044bd9adebc9645202d5e",
       "last": "2026-09-04",
-      "sessions": 666
+      "sessions": 497
     },
     "ACHR": {
-      "first": "2024-01-02",
-      "hash": "c9059392cd6c2d23ec4b65d0c80ee1101a8b2359ac03cb90a36af02391956e79",
+      "first": "2024-09-04",
+      "hash": "257da399573243043d4904dd0ea4f5cdd7999a18a44c4d9dc2b21a8a8aa079f4",
       "last": "2026-09-04",
-      "sessions": 661
+      "sessions": 492
     },
     "AMD": {
-      "first": "2024-01-02",
-      "hash": "20661d3175019b0158040168e5ba2b5144fa34ce5c87978586ebf43c8526ec0a",
+      "first": "2024-09-04",
+      "hash": "f2afa2b67ff7c49063da0fda9993a54414d1d85b4f71e7c5e94a79504f7daf98",
       "last": "2026-09-04",
-      "sessions": 662
+      "sessions": 493
     },
     "AMZN": {
-      "first": "2024-01-02",
-      "hash": "1bcad686651eda49bbce3143f637a026b35ae29e89e2d6d96a03cdbc3e9792ee",
-      "last": "2026-09-10",
-      "sessions": 667
+      "first": "2024-09-04",
+      "hash": "05b98385f8841e4c5417db50789dad6e0c8f3f27400e61aa38edb84f180535f1",
+      "last": "2026-09-04",
+      "sessions": 495
     },
     "AVGO": {
-      "first": "2024-08-05",
-      "hash": "65faa015ce45534f994f1cfe83377b55c42545e2b433ad0cd798d6aace1e64b4",
+      "first": "2024-09-04",
+      "hash": "836576c13ebaf3454ecb91259fb278adb077ce4314c647ec4146f0fcbd18eb30",
       "last": "2026-09-04",
-      "sessions": 514
+      "sessions": 493
     },
     "BABA": {
-      "first": "2024-08-19",
-      "hash": "3b1f4f7f3299e922cb34fdff87d67aaee8db91fdc1721f68bd07b826c878a288",
+      "first": "2024-09-04",
+      "hash": "14b01c7a49c82984ba4d312ff8674e5c24257b308c5defd4b82a27f1ed39234a",
       "last": "2026-09-04",
-      "sessions": 445
+      "sessions": 434
     },
     "COIN": {
-      "first": "2024-02-20",
-      "hash": "659a86163a305ac352d122c85e56876aba0db9ee78e41fd39e1d3cecc66a6da5",
+      "first": "2024-09-04",
+      "hash": "25c67967910ebe13696512f166acc3502eb587c73c8998b6a64f72e9e4a2a394",
       "last": "2026-09-04",
-      "sessions": 629
+      "sessions": 493
     },
     "CRM": {
       "first": "2025-05-02",
-      "hash": "1d8246fa83b8d7ac01c827782bfbe1eda861e976358312e6651ca91cfa56fa62",
-      "last": "2026-09-09",
-      "sessions": 288
+      "hash": "f658551aff81da3c0fd9df4e937765015181cc6d2a7ae3c6bc3e876a144b0b27",
+      "last": "2026-09-04",
+      "sessions": 286
     },
     "GOOG": {
       "first": "2025-04-04",
@@ -56,22 +56,22 @@
       "sessions": 12
     },
     "GOOGL": {
-      "first": "2024-01-02",
-      "hash": "9dee8c25f614dd9dbb37f4fe2d17aea593d70b7f78fbae70e3f4ec90a31d84e6",
+      "first": "2024-09-04",
+      "hash": "56413b1574b59749b3f27ee4ab6e036d1f7785a5f07c2469d96ce860d542c948",
       "last": "2026-09-04",
-      "sessions": 662
+      "sessions": 493
     },
     "HOOD": {
-      "first": "2024-07-01",
-      "hash": "e7b84291fcb23bad9af3827fe4593db1fb0ce74ca54e6fa871a0b0eb4a58b945",
+      "first": "2024-09-04",
+      "hash": "5373e619f8c34cc977f47f7c6c2f60264d4ee86415aca3dadd54814e0f73499a",
       "last": "2026-09-04",
-      "sessions": 538
+      "sessions": 493
     },
     "INTC": {
-      "first": "2024-01-02",
-      "hash": "371af2d4f24fca6f898f46004001dab5b7fba10ab36ae1267d40018a6ac94dc3",
+      "first": "2024-09-04",
+      "hash": "664327492ae847a1754463b7bc1e4076b7d91386723495b69d0813cf0e517261",
       "last": "2026-09-04",
-      "sessions": 663
+      "sessions": 494
     },
     "IREN": {
       "first": "2025-07-11",
@@ -80,10 +80,10 @@
       "sessions": 281
     },
     "IWM": {
-      "first": "2024-01-02",
-      "hash": "f57d774b114e379198cd0e9c1d77dbd493308be0e977df59924103ed263b0493",
+      "first": "2024-09-04",
+      "hash": "fe9cb14a7371aad963eddd0bc7bd4dd4931bc273d6826d060025d14c600d3af9",
       "last": "2026-09-04",
-      "sessions": 661
+      "sessions": 492
     },
     "MARA": {
       "first": "2024-09-09",
@@ -92,52 +92,52 @@
       "sessions": 286
     },
     "META": {
-      "first": "2024-01-02",
-      "hash": "056ab4390f3a2cdd45eed4622e93dc9e67ee4d2c8ef34dff83a60f74d6d7aa88",
+      "first": "2024-09-04",
+      "hash": "2c232fe1bd454690b8c3e85a519ef0817675722de76e09365d357704439713ba",
       "last": "2026-09-04",
-      "sessions": 663
+      "sessions": 494
     },
     "MSFT": {
-      "first": "2024-01-02",
-      "hash": "cadd24d49411a6a2929843621ea0e4fe513793ba7ff82cb661f5a69776383a1f",
+      "first": "2024-09-04",
+      "hash": "b9668f7cd389a207fb5105289754e5d653824be52a4de95cff09f34790371656",
       "last": "2026-09-04",
-      "sessions": 666
+      "sessions": 497
     },
     "MU": {
-      "first": "2024-01-02",
-      "hash": "46ca7f2dd29428fefce107b56e9b06b3ce7fc0d44de833b919ba84c5a4806da0",
+      "first": "2024-09-04",
+      "hash": "6303870b2ac41c91adcbf22c8512982cd9450d98e879b35716adeff665e35b0c",
       "last": "2026-09-04",
-      "sessions": 665
+      "sessions": 496
     },
     "NFLX": {
-      "first": "2024-07-02",
-      "hash": "1328dcb77a093d79aafe4a070bb0c4cb3e3b79b62e710d4dcb571970bb719a22",
+      "first": "2024-09-04",
+      "hash": "f0fd156016d155722c48d53920c27a7326f127aa683e200b2c577dbbc949a76b",
       "last": "2026-09-04",
-      "sessions": 537
+      "sessions": 493
     },
     "NVDA": {
-      "first": "2024-01-02",
-      "hash": "de59a6add69adb1fcb515d89da2e22ca05b6bc3e9b20597400b085e7e59608f7",
+      "first": "2024-09-04",
+      "hash": "6b8bbd815c0c80993c44cef2b071198e4300eeecdcc7095738b16165bcd65c5d",
       "last": "2026-09-04",
-      "sessions": 666
+      "sessions": 497
     },
     "ORCL": {
-      "first": "2024-01-02",
-      "hash": "a758484e3c958b2766e10fe4139326702bcbfbad2aabd906151fae9102c68c50",
+      "first": "2024-09-04",
+      "hash": "e3535320a843818f7193f7e6adc4e2a2d9a853b713b66a0c0021baf70211d9b9",
       "last": "2026-09-04",
-      "sessions": 662
+      "sessions": 493
     },
     "PLTR": {
-      "first": "2024-01-02",
-      "hash": "5d79d0800863f468147446a85d68079bbf93262eae729872e8a05a51c1e2a1a2",
+      "first": "2024-09-04",
+      "hash": "3886455afd2cd3ede24b94d79d8b8e24b477d61e3ec8aa128631cafbf8fb73ba",
       "last": "2026-09-04",
-      "sessions": 665
+      "sessions": 496
     },
     "QQQ": {
-      "first": "2024-01-02",
-      "hash": "5e0e4a303e690f9c0bff82dd7993e915c66405c16ff8967bf8a40f68e90930ad",
-      "last": "2026-09-10",
-      "sessions": 673
+      "first": "2024-09-04",
+      "hash": "cb6dfaf4e80d631c890cf99c6c55b7962915e73a9a5ec9ef9fde7546c41df996",
+      "last": "2026-09-04",
+      "sessions": 501
     },
     "SOFI": {
       "first": "2024-10-30",
@@ -146,22 +146,22 @@
       "sessions": 291
     },
     "SPCX": {
-      "first": "2024-01-02",
-      "hash": "313310c583e838fb3dfed47eded398da3aa6ba823aa0c2f4adf91a62acfea2ec",
+      "first": "2024-09-04",
+      "hash": "f6e21bdb95a5f46a602c582eaca21ad358f4aaacb90680e898a4a0c4777cb753",
       "last": "2026-09-04",
-      "sessions": 539
+      "sessions": 384
     },
     "SPY": {
-      "first": "2024-01-02",
-      "hash": "dfcdffdd496a812a9049e5daca2577cfa3920f7976e36dd3c5fa518bf7e7af05",
+      "first": "2024-09-04",
+      "hash": "ab5ba931553b1c883a0669f6bff93ccfc4e7ca25fd0c296a54db0421d0d69942",
       "last": "2026-09-04",
-      "sessions": 667
+      "sessions": 498
     },
     "TSLA": {
-      "first": "2024-01-02",
-      "hash": "5413a71d121cff374806c4d900eb33fb5337ae44955fa5bd95e420da317aa3d9",
+      "first": "2024-09-04",
+      "hash": "2ce51b5404100b9bb57c879081f183951188c88b3e0e182215883a734db787a0",
       "last": "2026-09-04",
-      "sessions": 666
+      "sessions": 497
     },
     "TSM": {
       "first": "2024-09-16",
@@ -175,5 +175,9 @@
       "last": "2026-09-04",
       "sessions": 284
     }
+  },
+  "window": {
+    "end": "2026-09-04",
+    "start": "2024-09-04"
   }
 }
