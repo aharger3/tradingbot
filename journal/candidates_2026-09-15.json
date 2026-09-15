@@ -1,0 +1,47 @@
+{
+  "day": "2026-09-15",
+  "candidates": [
+    {
+      "id": "TSLA_2026-09-15_0945",
+      "symbol": "TSLA",
+      "day": "2026-09-15",
+      "ts": "09:45:00",
+      "setup": "break_and_retest",
+      "level": "test level",
+      "direction": "call",
+      "entry": 100.0,
+      "stop": 99.0,
+      "pt1": 0.0,
+      "grade": "S",
+      "chart_png": "journal/candidate_charts/TSLA_2026-09-15_0945.png"
+    },
+    {
+      "id": "NVDA_2026-09-15_0945",
+      "symbol": "NVDA",
+      "day": "2026-09-15",
+      "ts": "09:45:00",
+      "setup": "break_and_retest",
+      "level": "test level",
+      "direction": "call",
+      "entry": 100.0,
+      "stop": 99.0,
+      "pt1": 0.0,
+      "grade": "A",
+      "chart_png": "journal/candidate_charts/NVDA_2026-09-15_0945.png"
+    },
+    {
+      "id": "AAPL_2026-09-15_0945",
+      "symbol": "AAPL",
+      "day": "2026-09-15",
+      "ts": "09:45:00",
+      "setup": "reentry_84_rule",
+      "level": "test level",
+      "direction": "call",
+      "entry": 100.0,
+      "stop": 99.0,
+      "pt1": 0.0,
+      "grade": "A",
+      "chart_png": "journal/candidate_charts/AAPL_2026-09-15_0945.png"
+    }
+  ]
+}
