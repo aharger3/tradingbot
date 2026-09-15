@@ -1,0 +1,26 @@
+[
+ {
+  "id": "INTC_2026-09-04",
+  "symbol": "INTC",
+  "day": "2026-09-04",
+  "png": "research/decks/sm_2026-09-15/1_INTC_2026-09-04.png",
+  "engine_grade": "S",
+  "bars": {
+   "C": "09:51",
+   "A": "09:48",
+   "B": "09:51"
+  }
+ },
+ {
+  "id": "IWM_2026-09-04",
+  "symbol": "IWM",
+  "day": "2026-09-04",
+  "png": "research/decks/sm_2026-09-15/2_IWM_2026-09-04.png",
+  "engine_grade": "A",
+  "bars": {
+   "C": "10:52",
+   "A": "10:47",
+   "B": "10:52"
+  }
+ }
+]
