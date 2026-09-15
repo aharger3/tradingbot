@@ -1,0 +1,58 @@
+[
+ {
+  "id": "AAPL_2026-09-04",
+  "symbol": "AAPL",
+  "day": "2026-09-04",
+  "png": "research/decks/sm_2026-09-14/1_AAPL_2026-09-04.png",
+  "engine_grade": "S"
+ },
+ {
+  "id": "ACHR_2026-09-04",
+  "symbol": "ACHR",
+  "day": "2026-09-04",
+  "png": "research/decks/sm_2026-09-14/2_ACHR_2026-09-04.png",
+  "engine_grade": "S"
+ },
+ {
+  "id": "AMD_2026-09-04",
+  "symbol": "AMD",
+  "day": "2026-09-04",
+  "png": "research/decks/sm_2026-09-14/3_AMD_2026-09-04.png",
+  "engine_grade": "S"
+ },
+ {
+  "id": "AMZN_2026-09-04",
+  "symbol": "AMZN",
+  "day": "2026-09-04",
+  "png": "research/decks/sm_2026-09-14/4_AMZN_2026-09-04.png",
+  "engine_grade": "A"
+ },
+ {
+  "id": "AVGO_2026-09-04",
+  "symbol": "AVGO",
+  "day": "2026-09-04",
+  "png": "research/decks/sm_2026-09-14/5_AVGO_2026-09-04.png",
+  "engine_grade": "S"
+ },
+ {
+  "id": "BABA_2026-09-04",
+  "symbol": "BABA",
+  "day": "2026-09-04",
+  "png": "research/decks/sm_2026-09-14/6_BABA_2026-09-04.png",
+  "engine_grade": "S"
+ },
+ {
+  "id": "CRM_2026-09-04",
+  "symbol": "CRM",
+  "day": "2026-09-04",
+  "png": "research/decks/sm_2026-09-14/7_CRM_2026-09-04.png",
+  "engine_grade": "A"
+ },
+ {
+  "id": "GOOGL_2026-09-04",
+  "symbol": "GOOGL",
+  "day": "2026-09-04",
+  "png": "research/decks/sm_2026-09-14/8_GOOGL_2026-09-04.png",
+  "engine_grade": "A"
+ }
+]
