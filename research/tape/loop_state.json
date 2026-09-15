@@ -1,6 +1,6 @@
 {
-  "cycle_count": 8,
-  "consecutive_holds": 0,
+  "cycle_count": 9,
+  "consecutive_holds": 1,
   "target_met": false,
   "history": [
     {
@@ -97,6 +97,16 @@
       "decision": "hold",
       "dollars_per_day_before": -52.0,
       "dollars_per_day_after": -52.0,
+      "green_before": 11,
+      "green_after": 11
+    },
+    {
+      "cycle": 9,
+      "flag": "RETEST_REQUIRED",
+      "label": "take the first break, no retest wait",
+      "decision": "hold",
+      "dollars_per_day_before": -52.0,
+      "dollars_per_day_after": -87.0,
       "green_before": 11,
       "green_after": 11
     }
