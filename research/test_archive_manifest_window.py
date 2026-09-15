@@ -96,6 +96,15 @@ def main():
             _write_bar(tmp / SYM / "2026-09-12.csv", "t,o,h,l,c,v\n4,4,4,4,4,4\n")
             check("appending a post-window session does not trip the guard",
                   bam.check(str(manifest_path)) == [])
+
+            # 3. DELETE an in-window session -> guard refuses. The docstring
+            # claims added/removed/rewritten all move the hash; only
+            # "rewritten" was covered above.
+            (tmp / SYM / "2025-06-02.csv").unlink()
+            problems = bam.check(str(manifest_path))
+            check("deleting an in-window session trips the guard",
+                  len(problems) == 1 and SYM in problems[0] and "3 in-window sessions" in problems[0])
+            _write_bar(tmp / SYM / "2025-06-02.csv", "t,o,h,l,c,v\n2,2,2,2,2,2\n")
         finally:
             bam.ARCHIVE = saved_archive
             bam.universe.ALL_SYMS = saved_all_syms
