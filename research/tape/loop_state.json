@@ -1,5 +1,5 @@
 {
-  "cycle_count": 7,
+  "cycle_count": 8,
   "consecutive_holds": 0,
   "target_met": false,
   "history": [
@@ -89,6 +89,16 @@
       "dollars_per_day_after": null,
       "green_before": null,
       "green_after": null
+    },
+    {
+      "cycle": 8,
+      "flag": "HODLOD_DEF",
+      "label": "HOD/LOD as the prior bar's session extremes",
+      "decision": "hold",
+      "dollars_per_day_before": -52.0,
+      "dollars_per_day_after": -52.0,
+      "green_before": 11,
+      "green_after": 11
     }
   ],
   "stop": false,

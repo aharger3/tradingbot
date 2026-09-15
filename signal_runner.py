@@ -257,6 +257,17 @@ _S_CLASSIFIER_OR_LEVELS = ("OR high", "OR low")
 # (status="skipped"), it does not cap it to C -- a capped C still trades.
 MIN_PT1_R = float(os.getenv("MIN_PT1_R", "0") or "0")
 
+# OMEN 10.0 V6 (2026-09-14 addendum, row V6): the six-levels audit
+# (research/tape/cycles.md, LAND C5) found session HOD/LOD dead code -- the
+# running-session max/min computed over ALL candles including the current
+# (setup) bar can never be broken by that same bar, since the bar's own high/
+# low already contributed to the max/min being tested against. HODLOD_DEF
+# controls how `hod`/`lod` are computed in SignalRunner.detect_signals:
+# "off" (default, current behaviour) keeps them inclusive of the current bar.
+# "prior_bar" computes them over every candle BEFORE the setup candle, so a
+# close through them is a real break, not an impossibility by construction.
+HODLOD_DEF = os.getenv("HODLOD_DEF", "off").strip().lower()
+
 # Austin trade-notes review 2026-07-06 (91 trades): "middle of a bunch of levels,
 # probability goes down significantly"; likes trades where new HOD/LOD can be hit.
 # R25 (Austin, probe_master_2026-08-29, fact_level_block -> `target`):
@@ -3097,9 +3108,17 @@ class SignalRunner:
         self._bar_setups = {}      # T11(d): S-eligible setups seen on THIS bar
         current = self.candles[-1]
         or_high, or_low = OpeningRangeAnalyzer.get_opening_range(self.candles)
-        # Session extremes (HOD/LOD) — used by 84% rule RR checks
-        hod = max(c.high for c in self.candles)
-        lod = min(c.low for c in self.candles)
+        # Session extremes (HOD/LOD) — used by 84% rule RR checks. V6: when
+        # HODLOD_DEF="prior_bar", these are the extremes as of the bar BEFORE
+        # the setup candle (current), not inclusive of it -- see HODLOD_DEF's
+        # docstring above. Default "off" is the original, dead-by-construction
+        # inclusive computation, byte-identical to pre-V6 behaviour.
+        if HODLOD_DEF == "prior_bar" and len(self.candles) >= 2:
+            hod = max(c.high for c in self.candles[:-1])
+            lod = min(c.low for c in self.candles[:-1])
+        else:
+            hod = max(c.high for c in self.candles)
+            lod = min(c.low for c in self.candles)
 
         # L1 MIN_PT1_R: every _emit call below is inside this method, so hod/lod
         # (as-of-current-bar session extremes, the same values LADDER PT1 scales

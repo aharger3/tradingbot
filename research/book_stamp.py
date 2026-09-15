@@ -90,6 +90,11 @@ FLAG_SOURCES = (
         "RETEST_REQUIRED", "S_GATE", "RULE_710_ENABLED",
         # 2026-09-05, L1: the RR gate on the first scale point (HOD/LOD).
         "MIN_PT1_R",
+        # 2026-09-14, V6: HOD/LOD dead-code fix -- "off" (default) computes
+        # session HOD/LOD inclusive of the current bar (unbreakable by
+        # construction); "prior_bar" computes them over every candle before
+        # the setup candle.
+        "HODLOD_DEF",
         # 2026-09-05, L2: the 84% rule composite, as the call decided it.
         "RULE84_DECIDED",
         # 2026-09-05, L4: the 15-min structure trend, OCR/84% direction test.
