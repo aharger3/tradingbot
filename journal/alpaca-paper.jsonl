@@ -1,0 +1,1 @@
+{"event": "entry_error", "ts": "2026-09-12T11:07:37.201444-DRYFIRE", "symbol": "AAPL", "direction": "put", "order_symbol": "AAPL", "error": "AlpacaBroker.place_order failed: {\"buying_power\":\"114117.99\",\"code\":40310000,\"cost_basis\":\"560962.02\",\"message\":\"insufficient buying power\"}"}
