@@ -1162,54 +1162,37 @@ def _alpaca_log(event: dict) -> None:
 
 
 def _alpaca_submit_entry(broker, runner: SignalRunner, symbol: str, sig: dict,
-                          plan, ts: str, size_pct: float):
+                          ts: str, size_pct: float):
     """Submit the opening order for one fired S onto the Alpaca paper broker.
 
-    Options first (`broker.resolve_option_contract` against Alpaca's own
-    listed chain, NOT the Tastytrade-derived `plan.occ_symbol` -- Alpaca may
-    not list the same contract); on `OptionsNotAvailable`, falls back to a
-    share order sized so `shares * |entry - stop| == 1R` (`DEFAULT_MAX_LOSS *
-    size_pct`), floored the same way the engine floors risk everywhere else
-    (`signal_runner.min_risk_floor`) so a razor-thin stop can't blow the size
-    up. Never called under replay -- see the assert, THE LAW's own words."""
+    V5b (docs/rows/v5-contract.md, referee hold on V5, 2026-09-14): shares of
+    the underlying only, never an option contract -- Arm B
+    (`research/paper_order.py`) never could resolve one on this paper
+    account, so the two arms weren't the same instrument. Sized by
+    `options_sizer.size_share_qty` (`DEFAULT_MAX_LOSS * size_pct`, capped at
+    25% of paper equity so a razor-thin stop can't blow the size past the
+    account's own buying power). Never called under replay -- see the
+    assert, THE LAW's own words."""
     assert not getattr(runner, "replay", False), (
         "Alpaca submit attempted with runner.replay=True -- replay must "
         "never place an order, this is a bug at the call site, not here.")
     from broker.base import Order, OrderSide, OrderType
-    from broker.alpaca import OptionsNotAvailable
-    from options_sizer import DEFAULT_MAX_LOSS
-    from signal_runner import min_risk_floor
+    from options_sizer import DEFAULT_MAX_LOSS, size_share_qty
 
     direction = sig["direction"]
     idem = f"{symbol}-{ts}-{direction}-entry"
-    fallback = None
+    max_loss = DEFAULT_MAX_LOSS * size_pct
+    account = broker.account()
+    qty = size_share_qty(sig["entry"], sig["stop"], account.equity, max_loss=max_loss)
     order = None
-    try:
-        occ = broker.resolve_option_contract(
-            underlying=symbol,
-            expiration=plan.expiration,
-            strike=plan.strike,
-            direction=direction,
-        )
-        qty = int(getattr(plan, "contracts", 0) or 0)
-        if qty > 0:
-            order = Order(symbol=occ, side=OrderSide.BUY, quantity=qty,
-                          order_type=OrderType.MARKET, idempotency_key=idem)
-    except OptionsNotAvailable:
-        fallback = "shares"
-        risk_per_share = max(abs(sig["entry"] - sig["stop"]),
-                              min_risk_floor(sig["entry"]))
-        max_loss = DEFAULT_MAX_LOSS * size_pct
-        qty = int(max_loss / risk_per_share) if risk_per_share > 0 else 0
-        if qty > 0:
-            side = OrderSide.BUY if direction == "call" else OrderSide.SELL
-            order = Order(symbol=symbol, side=side, quantity=qty,
-                          order_type=OrderType.MARKET, idempotency_key=idem)
+    if qty > 0:
+        side = OrderSide.BUY if direction == "call" else OrderSide.SELL
+        order = Order(symbol=symbol, side=side, quantity=qty,
+                      order_type=OrderType.MARKET, idempotency_key=idem)
 
     if order is None:
         _alpaca_log({"event": "entry_skip", "ts": ts, "symbol": symbol,
-                     "direction": direction, "reason": "zero-quantity after sizing",
-                     "fallback": fallback})
+                     "direction": direction, "reason": "zero-quantity after sizing"})
         return None
 
     try:
@@ -1223,14 +1206,14 @@ def _alpaca_submit_entry(broker, runner: SignalRunner, symbol: str, sig: dict,
     rec = {
         "event": "entry", "ts": ts, "symbol": symbol, "direction": direction,
         "order_symbol": order.symbol, "side": order.side.value,
-        "quantity": order.quantity, "fallback": fallback,
+        "quantity": order.quantity,
         "broker_order_id": handle.broker_order_id,
         "status": handle.status.value, "idempotency_key": idem,
         # V5 (2026-09-14): arm=engine on every entry this file books, so the
         # morning report's two-column (engine vs austin) read can group
         # journal/alpaca-paper.jsonl by who fired the trade.
         "arm": "engine",
-        "max_loss": DEFAULT_MAX_LOSS * size_pct,
+        "max_loss": max_loss,
     }
     _alpaca_log(rec)
     _alpaca_open_orders[f"{symbol}|{ts}"] = rec
@@ -1411,7 +1394,7 @@ def _emit_signal(runner: SignalRunner, tasty_feed: TastytradeFeed, symbol: str, 
         print(f"   📗 PAPER OPEN {pos.contracts}x {pos.symbol} ${pos.strike:g} "
               f"{pos.direction.upper()} @ ${pos.entry_premium:.2f}")
         if broker is not None:
-            _alpaca_entry_rec = _alpaca_submit_entry(broker, runner, symbol, sig, plan,
+            _alpaca_entry_rec = _alpaca_submit_entry(broker, runner, symbol, sig,
                                                       candle.timestamp, size_pct)
             if _alpaca_entry_rec is not None:
                 print(f"   🔷 ALPACA {_alpaca_entry_rec['side'].upper()} "

@@ -229,4 +229,5 @@ class AlpacaBroker(BrokerInterface):
             account_number=str(acct.account_number),
             cash_balance=float(acct.cash),
             buying_power=float(acct.buying_power),
+            equity=float(acct.equity),
         )

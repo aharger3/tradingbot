@@ -162,6 +162,13 @@ class AccountSnapshot:
     account_number: str
     cash_balance: float
     buying_power: float
+    # V5b (docs/rows/v5-contract.md, 2026-09-14): paper-order sizing caps
+    # notional at a fraction of equity (options_sizer.size_share_qty), not
+    # buying_power -- buying_power already reflects margin, which understates
+    # the account for a straight cash cap. Defaulted so the two adapters that
+    # don't populate it (simulator, tastytrade) are unchanged; only
+    # AlpacaBroker's account() sets a real value today.
+    equity: float = 0.0
 
 
 class BrokerInterface(abc.ABC):

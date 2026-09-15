@@ -128,6 +128,30 @@ LIVE_LADDER_PLAN = os.getenv("OMEN_LIVE_LADDER_PLAN", "hod_then_runner_be").stri
 LIVE_LADDER_SCALE_PCT = 0.5
 
 
+def size_share_qty(entry: float, stop: float, equity: float,
+                    max_loss: float = DEFAULT_MAX_LOSS,
+                    max_notional_frac: float = 0.25) -> int:
+    """V5b (docs/rows/v5-contract.md, referee hold on V5, 2026-09-14): the one
+    share-sizing formula both paper arms use (`live_scanner._alpaca_submit_entry`
+    and `research/paper_order.py::book_order`), so engine and Austin book the
+    same instrument -- shares of the underlying, never an option or future.
+
+    `shares = floor(max_loss / (entry - stop))`, then capped so
+    `shares * entry` never exceeds `max_notional_frac` (25%) of the paper
+    account's own equity. Without the cap, a razor-thin stop inflates shares
+    without bound: the 2026-09-12 AAPL row sized a $560,962 order against
+    $114,118 of paper buying power and was rejected outright, so Arm B never
+    booked a single trade."""
+    risk_per_share = abs(entry - stop)
+    if risk_per_share <= 0 or entry <= 0:
+        return 0
+    qty = math.floor(max_loss / risk_per_share)
+    if equity > 0:
+        cap_qty = math.floor((max_notional_frac * equity) / entry)
+        qty = min(qty, cap_qty)
+    return max(qty, 0)
+
+
 def premium_at(stock_price: float, stock_entry: float, entry_premium: float,
                stock_risk: float, premium_risk: float, long: bool) -> float:
     """The ONE stock-price -> premium map. Every leg of the card goes through it.

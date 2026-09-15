@@ -1,10 +1,14 @@
-"""research/test_alpaca_wiring.py — OMEN 9.0 W3.
+"""research/test_alpaca_wiring.py — OMEN 9.0 W3, resized V5b (2026-09-14).
 
 Unit tests for `live_scanner._alpaca_submit_entry` / `_alpaca_submit_exit`
 against a FakeBroker (no network, no real Alpaca SDK import). Asserts:
 
-  1. one submit per fired S (options path, resolve_option_contract succeeds)
-  2. the shares fallback fires and sizes to 1R when OptionsNotAvailable
+  1. one submit per fired S, sized to 1R in shares of the underlying --
+     V5b (docs/rows/v5-contract.md): both paper arms book shares only, never
+     an option contract, so this file no longer has an options-path test.
+  2. the notional cap fires when 1R-in-shares would exceed 25% of the paper
+     account's own equity (`options_sizer.size_share_qty`) -- the referee's
+     hold on V5: an uncapped share order can exceed paper buying power.
   3. one closing submit when the marking loop books an exit
   4. ZERO submits under replay -- `runner.replay is True` must raise, never
      silently skip, so a call-site regression that forgets the guard is
@@ -27,23 +31,17 @@ from broker.base import (
     AccountSnapshot, BrokerInterface, Fill, Order, OrderHandle, OrderSide,
     OrderStatus, OrderType, Position,
 )
-from broker.alpaca import OptionsNotAvailable
 import live_scanner
 
 
 class FakeBroker(BrokerInterface):
-    """Records every place_order call; resolve_option_contract is
-    controllable per-test (`options_available`) the way AlpacaBroker's would
-    behave against a real listed/unlisted chain."""
+    """Records every place_order call; `equity` is controllable per-test so
+    the notional cap (`options_sizer.size_share_qty`) can be exercised the
+    way a real paper account's shrinking buying power would."""
 
-    def __init__(self, options_available: bool = True):
-        self.options_available = options_available
+    def __init__(self, equity: float = 1_000_000.0):
+        self.equity = equity
         self.orders = []  # list of Order
-
-    def resolve_option_contract(self, underlying, expiration, strike, direction):
-        if not self.options_available:
-            raise OptionsNotAvailable(f"no listed contract for {underlying}")
-        return f"{underlying}{expiration.replace('-', '')}{direction[0].upper()}{int(strike*1000):08d}"
 
     def place_order(self, order: Order) -> OrderHandle:
         self.orders.append(order)
@@ -61,8 +59,8 @@ class FakeBroker(BrokerInterface):
         return []
 
     def account(self) -> AccountSnapshot:
-        return AccountSnapshot(account_number="FAKE", cash_balance=100000.0,
-                                buying_power=100000.0)
+        return AccountSnapshot(account_number="FAKE", cash_balance=self.equity,
+                                buying_power=self.equity, equity=self.equity)
 
 
 def _fresh_runner(replay: bool):
@@ -71,62 +69,50 @@ def _fresh_runner(replay: bool):
     return r
 
 
-def _plan(occ="TSLA260101C00250000"):
-    return SimpleNamespace(
-        symbol="TSLA", direction="call", expiration="2026-01-01", strike=250.0,
-        contracts=3, occ_symbol=occ,
-        stock_entry=248.0, stock_stop=246.0, stock_target=252.0,
-    )
-
-
-def test_one_submit_per_fired_s_options_path(tmp_path, monkeypatch):
+def test_one_submit_per_fired_s_sized_to_1r(tmp_path, monkeypatch):
     monkeypatch.setattr(live_scanner, "_ALPACA_LEDGER", tmp_path / "alpaca-paper.jsonl")
     live_scanner._alpaca_open_orders.clear()
-    broker = FakeBroker(options_available=True)
-    runner = _fresh_runner(replay=False)
-    sig = {"direction": "call", "entry": 248.0, "stop": 246.0}
-    rec = live_scanner._alpaca_submit_entry(broker, runner, "TSLA", sig, _plan(),
-                                            "09:41:00", size_pct=1.0)
-    assert rec is not None
-    assert len(broker.orders) == 1
-    assert broker.orders[0].side == OrderSide.BUY
-    assert broker.orders[0].order_type == OrderType.MARKET
-    assert broker.orders[0].quantity == 3
-    assert broker.orders[0].symbol.startswith("TSLA")
-    # logged
-    lines = (tmp_path / "alpaca-paper.jsonl").read_text().strip().splitlines()
-    assert len(lines) == 1
-    logged = json.loads(lines[0])
-    assert logged["event"] == "entry"
-    assert logged["fallback"] is None
-
-
-def test_shares_fallback_sizes_to_1r(tmp_path, monkeypatch):
-    monkeypatch.setattr(live_scanner, "_ALPACA_LEDGER", tmp_path / "alpaca-paper.jsonl")
-    live_scanner._alpaca_open_orders.clear()
-    broker = FakeBroker(options_available=False)
+    broker = FakeBroker()
     runner = _fresh_runner(replay=False)
     sig = {"direction": "call", "entry": 248.0, "stop": 246.0}  # $2/share risk
-    rec = live_scanner._alpaca_submit_entry(broker, runner, "TSLA", sig, _plan(),
+    rec = live_scanner._alpaca_submit_entry(broker, runner, "TSLA", sig,
                                             "09:41:00", size_pct=1.0)
     assert rec is not None
     assert len(broker.orders) == 1
     order = broker.orders[0]
-    assert order.symbol == "TSLA"  # underlying, not an OCC symbol
+    assert order.symbol == "TSLA"  # underlying, never an OCC symbol
     assert order.side == OrderSide.BUY
+    assert order.order_type == OrderType.MARKET
     # 1R = $1000 / $2 risk-per-share = 500 shares
     assert order.quantity == 500
     logged = json.loads((tmp_path / "alpaca-paper.jsonl").read_text().strip())
-    assert logged["fallback"] == "shares"
+    assert logged["event"] == "entry"
+    assert logged["arm"] == "engine"
+
+
+def test_notional_cap_fires_below_25pct_equity(tmp_path, monkeypatch):
+    monkeypatch.setattr(live_scanner, "_ALPACA_LEDGER", tmp_path / "alpaca-paper.jsonl")
+    live_scanner._alpaca_open_orders.clear()
+    # 500 shares @ $248 = $124,000 notional; cap it below that with a small
+    # paper account so the cap -- not the 1R formula -- decides quantity.
+    broker = FakeBroker(equity=10_000.0)  # 25% = $2,500 -> floor(2500/248) = 10
+    runner = _fresh_runner(replay=False)
+    sig = {"direction": "call", "entry": 248.0, "stop": 246.0}
+    rec = live_scanner._alpaca_submit_entry(broker, runner, "TSLA", sig,
+                                            "09:41:00", size_pct=1.0)
+    assert rec is not None
+    order = broker.orders[0]
+    assert order.quantity == 10
+    assert order.quantity * sig["entry"] <= 0.25 * broker.equity
 
 
 def test_one_close_per_exit(tmp_path, monkeypatch):
     monkeypatch.setattr(live_scanner, "_ALPACA_LEDGER", tmp_path / "alpaca-paper.jsonl")
     live_scanner._alpaca_open_orders.clear()
-    broker = FakeBroker(options_available=True)
+    broker = FakeBroker()
     runner = _fresh_runner(replay=False)
     sig = {"direction": "call", "entry": 248.0, "stop": 246.0}
-    entry = live_scanner._alpaca_submit_entry(broker, runner, "TSLA", sig, _plan(),
+    entry = live_scanner._alpaca_submit_entry(broker, runner, "TSLA", sig,
                                               "09:41:00", size_pct=1.0)
     assert entry is not None
     assert len(broker.orders) == 1
@@ -153,11 +139,11 @@ def test_one_close_per_exit(tmp_path, monkeypatch):
 def test_zero_submits_under_replay(tmp_path, monkeypatch):
     monkeypatch.setattr(live_scanner, "_ALPACA_LEDGER", tmp_path / "alpaca-paper.jsonl")
     live_scanner._alpaca_open_orders.clear()
-    broker = FakeBroker(options_available=True)
+    broker = FakeBroker()
     runner = _fresh_runner(replay=True)
     sig = {"direction": "call", "entry": 248.0, "stop": 246.0}
     try:
-        live_scanner._alpaca_submit_entry(broker, runner, "TSLA", sig, _plan(),
+        live_scanner._alpaca_submit_entry(broker, runner, "TSLA", sig,
                                           "09:41:00", size_pct=1.0)
         raised = False
     except AssertionError:

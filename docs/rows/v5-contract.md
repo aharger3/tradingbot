@@ -49,6 +49,18 @@ stage-manager should poll it, not assume it is final until 10:30.
   unavailable, e.g. mid-session on a day not yet archived) — the
   stage-manager should deal the card without an image rather than fail.
 
+## 1a. Sizing (V5b, docs/rows/v5-contract.md, 2026-09-14)
+
+Both arms size a paper order the same way: `options_sizer.size_share_qty` —
+`shares = floor(max_loss / (entry - stop))`, then capped so
+`shares * entry` never exceeds 25% of the paper account's own equity
+(`broker.account().equity`). V5 shipped without the cap and was held by the
+referee: a razor-thin stop could size a share order past the account's own
+buying power (the 2026-09-12 AAPL row: $560,962 notional against $114,118
+available, rejected outright). Both arms trade shares of the underlying
+only — no options, no futures — so the engine and Austin columns are now
+the same instrument.
+
 ## 2. The two CLI calls
 
 Both live in `research/paper_order.py`, invoked by the stage-manager when
@@ -119,12 +131,12 @@ matched exit yet reports `-` rather than a fabricated number).
   job, out of this repo. Invoke both CLIs with the repo root as the working
   directory (`cd C:\Users\aharg\Desktop\Projects\tradingbot`); every
   path in this contract is repo-relative.
-- **Arm B books the underlying, not an option.** `paper_order.py` sends a
-  share order (a `put` candidate books a SHORT of the underlying). The
-  engine arm tries an Alpaca option contract first and only falls back to
-  shares. Until that is reconciled the two columns share a direction and a
-  1R but not an instrument -- do not read the two `$/day` figures as a
-  like-for-like score.
+- **Both arms book the underlying, not an option** (V5b, §1a). `paper_order.py`
+  sends a share order (a `put` candidate books a SHORT of the underlying);
+  `live_scanner.py`'s engine path no longer tries an Alpaca option contract
+  first -- V5 did, which meant the two columns shared a direction and a 1R
+  but not an instrument, and is why the referee held it. The two `$/day`
+  figures are now a like-for-like score.
 - No automatic exit management for Arm B: `research/paper_order.py` books
   the entry only. Until a matching exit path exists for Austin's own paper
   trades, the morning report's `austin` column may show entries with no

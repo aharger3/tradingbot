@@ -102,10 +102,11 @@ def record_pass(candidate_id: str, arm: str = "austin") -> dict:
 def book_order(candidate_id: str, arm: str = "austin") -> dict:
     """Book a paper order for `candidate_id` on Alpaca's paper endpoint,
     sized to the candidate's own risk (1R = its max_loss, falling back to
-    DEFAULT_MAX_LOSS -- same floor rule as live_scanner's fallback branch:
-    `shares * |entry - stop| == 1R`, floored by `signal_runner.min_risk_floor`
-    so a razor-thin stop can't blow the size up). Raises on failure; the
-    caller (the stage-manager's shell-out) sees a nonzero exit."""
+    DEFAULT_MAX_LOSS) by `options_sizer.size_share_qty` -- the same formula
+    `live_scanner._alpaca_submit_entry` uses for Arm A, capped at 25% of the
+    paper account's own equity, shares of the underlying only (V5b,
+    docs/rows/v5-contract.md). Raises on failure; the caller (the
+    stage-manager's shell-out) sees a nonzero exit."""
     cand = _find_candidate(candidate_id)
     if cand is None:
         raise RuntimeError(f"no candidate {candidate_id!r} in "
@@ -113,16 +114,15 @@ def book_order(candidate_id: str, arm: str = "austin") -> dict:
 
     from broker.alpaca import AlpacaBroker
     from broker.base import Order, OrderSide, OrderType
-    from options_sizer import DEFAULT_MAX_LOSS
-    from signal_runner import min_risk_floor
+    from options_sizer import DEFAULT_MAX_LOSS, size_share_qty
 
     broker = AlpacaBroker()
     _assert_paper_endpoint(broker)
 
     entry, stop = cand["entry"], cand["stop"]
     max_loss = cand.get("max_loss") or DEFAULT_MAX_LOSS
-    risk_per_share = max(abs(entry - stop), min_risk_floor(entry))
-    qty = int(max_loss / risk_per_share) if risk_per_share > 0 else 0
+    account = broker.account()
+    qty = size_share_qty(entry, stop, account.equity, max_loss=max_loss)
     if qty <= 0:
         rec = {"event": "entry_skip", "candidate_id": candidate_id, "arm": arm,
                "symbol": cand["symbol"], "reason": "zero-quantity after sizing"}
