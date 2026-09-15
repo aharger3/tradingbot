@@ -1226,6 +1226,11 @@ def _alpaca_submit_entry(broker, runner: SignalRunner, symbol: str, sig: dict,
         "quantity": order.quantity, "fallback": fallback,
         "broker_order_id": handle.broker_order_id,
         "status": handle.status.value, "idempotency_key": idem,
+        # V5 (2026-09-14): arm=engine on every entry this file books, so the
+        # morning report's two-column (engine vs austin) read can group
+        # journal/alpaca-paper.jsonl by who fired the trade.
+        "arm": "engine",
+        "max_loss": DEFAULT_MAX_LOSS * size_pct,
     }
     _alpaca_log(rec)
     _alpaca_open_orders[f"{symbol}|{ts}"] = rec
@@ -1266,6 +1271,16 @@ def _alpaca_submit_exit(broker, runner: SignalRunner, ev: dict):
         "quantity": order.quantity, "outcome": ev.get("outcome"),
         "broker_order_id": handle.broker_order_id,
         "status": handle.status.value, "idempotency_key": idem,
+        # V5: arm carried through from the matching entry; pnl/max_loss let
+        # the morning report compute a real R (pnl / max_loss) instead of
+        # guessing at 1R.
+        "arm": entry_rec.get("arm", "engine"),
+        # `trade_pnl` is BOTH legs of a scaled trade; `pnl` on a CLOSE event is
+        # the runner leg alone (paper_trader.py says so in its own comment).
+        # The morning report divides this by max_loss to get R, so it must be
+        # the whole trade or every scaled winner reads short by the scale leg.
+        "pnl": ev["trade_pnl"] if ev.get("trade_pnl") is not None else ev.get("pnl"),
+        "max_loss": entry_rec.get("max_loss"),
     }
     _alpaca_log(rec)
     return rec
@@ -1335,6 +1350,29 @@ def _emit_signal(runner: SignalRunner, tasty_feed: TastytradeFeed, symbol: str, 
     stop_level = sig.get("stop_level_name", "")
     stop_width = sig.get("stop_width_pct", 0.0)
     signal_type_val = sig["signal_type"].value if hasattr(sig["signal_type"], "value") else str(sig["signal_type"])
+
+    # V5 (2026-09-14): every S/A candidate in the 09:30-10:30 window becomes
+    # a row in journal/candidates_<day>.json for the stage-manager's
+    # tap-to-fire cards -- docs/rows/v5-contract.md is the file-shape
+    # contract. Independent of TRADE/WATCH tier and of --paper-broker: this
+    # writes even when Alpaca submission is off, because Arm B (Austin's
+    # tap) is what books the paper order for an A-grade candidate the
+    # engine itself never trades.
+    if display_grade in ("S", "A"):
+        try:
+            from research import candidates_writer
+            # Replay (dry run) supplies its own session day via ReplayFeed.day;
+            # the live path has no such attribute and uses the wall clock.
+            day = getattr(tasty_feed, "day", None) or now_et().strftime("%Y-%m-%d")
+            pt1 = getattr(plan, "scale_level", 0.0) or getattr(plan, "stock_target", 0.0)
+            candidates_writer.record_candidate(
+                day=day, symbol=symbol, ts=candle.timestamp,
+                setup=signal_type_val, level_name=stop_level,
+                direction=sig["direction"], entry=sig["entry"],
+                stop=sig["stop"], pt1=pt1, grade=display_grade,
+            )
+        except Exception as e:  # noqa: BLE001 - candidate logging never blocks a fire
+            print(f"  candidates_writer skipped: {str(e)[:120]}")
 
     tag = "[PAPER] " if paper is not None else ""
     icon = "🎯" if tier == "TRADE" else "👀"

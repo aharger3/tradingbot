@@ -1,0 +1,19 @@
+{
+  "day": "2026-09-11",
+  "candidates": [
+    {
+      "id": "AAPL_2026-09-11_0952",
+      "symbol": "AAPL",
+      "day": "2026-09-11",
+      "ts": "09:52:00",
+      "setup": "break_and_retest",
+      "level": "pivot low @09:41",
+      "direction": "put",
+      "entry": 331.44,
+      "stop": 332.7,
+      "pt1": 328.29,
+      "grade": "A",
+      "chart_png": "journal/candidate_charts/AAPL_2026-09-11_0952.png"
+    }
+  ]
+}
