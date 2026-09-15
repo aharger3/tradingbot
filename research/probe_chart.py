@@ -50,7 +50,8 @@ def _esc(s):
 
 
 def render(candles, levels, marks=None, label="", interactive=False,
-           hlines=None, vlines=None, dots=None, xfmt=None, tappable=False):
+           hlines=None, vlines=None, dots=None, xfmt=None, tappable=False,
+           shade_i=None, notes=None):
     """candles: [{t,o,h,l,c,v}]  levels: {pdh:..}  marks: [{i,price,stop,side,tag}]
 
     ``hlines`` / ``vlines`` (H2 three-lane deck, 2026-08-28) are optional
@@ -93,6 +94,18 @@ def render(candles, levels, marks=None, label="", interactive=False,
     later can fall outside it. The page clamps rather than rescaling: rescaling
     would move every candle under his finger mid-tap.
 
+    ``shade_i`` (G7.3, 2026-09-15, Austin on NVDA: "wick, not strong PA") picks
+    out one bar index whose body gets an outlined highlight and whose wick gets
+    dimmed, so body-vs-wick proportion on that one bar -- typically the break
+    bar of a break-and-retest -- reads at a glance instead of looking identical
+    to every other candle. Defaults to ``None``, so every existing caller's SVG
+    is byte-identical.
+
+    ``notes`` (G7.3) is a small caller-computed text label pinned above a bar,
+    e.g. ``[{"i": 14, "text": "body 1.4x avg"}]`` for a body/avg-body ratio at
+    the entry bar. Like ``dots``/``hlines`` it draws whatever text the caller
+    hands it and derives nothing itself. Defaults to ``None``.
+
     ``tappable=True`` (H2, 2026-09-05) is the pointer-driven sibling of
     ``interactive``: it emits the same scale attributes (so it also sets
     ``data-w``/``data-h``, needed either way), plus ``data-ohlc`` -- a compact
@@ -108,6 +121,7 @@ def render(candles, levels, marks=None, label="", interactive=False,
     hlines = hlines or []
     vlines = vlines or []
     dots = dots or []
+    notes = notes or []
     n = len(candles)
     if not n:
         return '<div class="chart-missing">no bars</div>'
@@ -197,11 +211,13 @@ def render(candles, levels, marks=None, label="", interactive=False,
         up = c["c"] >= c["o"]
         cls = "up" if up else "dn"
         cx = x(i)
+        wk_cls = cls + (" shade-wk" if i == shade_i else "")
+        bd_cls = cls + (" shade-bd" if i == shade_i else "")
         out.append('<line class="wk %s" x1="%.1f" y1="%.1f" x2="%.1f" y2="%.1f"/>'
-                   % (cls, cx, y(c["h"]), cx, y(c["l"])))
+                   % (wk_cls, cx, y(c["h"]), cx, y(c["l"])))
         top, bot = y(max(c["o"], c["c"])), y(min(c["o"], c["c"]))
         out.append('<rect class="bd %s" x="%.1f" y="%.1f" width="%.1f" height="%.1f"/>'
-                   % (cls, cx - bw / 2, top, bw, max(1.0, bot - top)))
+                   % (bd_cls, cx - bw / 2, top, bw, max(1.0, bot - top)))
 
     for h in hlines:
         p = h.get("price")
@@ -256,6 +272,14 @@ def render(candles, levels, marks=None, label="", interactive=False,
                        'text-anchor="middle">%s</text>'
                        % (_esc(d.get("cls", "")), cx, cy - 9 if up else cy + 15,
                           _esc(d["label"])))
+
+    for nt in notes:
+        i = nt.get("i")
+        if i is None or not (0 <= i < n) or not nt.get("text"):
+            continue
+        out.append('<text class="note %s" x="%.1f" y="%.1f" text-anchor="middle">%s</text>'
+                   % (_esc(nt.get("cls", "")), x(i), y(candles[i]["h"]) - 8,
+                      _esc(nt["text"])))
 
     if interactive:
         # Placeholders only. Every one of these is in the served markup; the page

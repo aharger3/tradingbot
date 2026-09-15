@@ -203,10 +203,14 @@ def build_card(t, idx):
     side = t["side"]
     level_px = t["level_px"]
 
-    # No PDH/PDL/PMH/PML/ORH/ORL context lines -- not asked for, and on all 3
-    # of these trades one or more sits within cents of entry/stop/level,
-    # which collides label text on a 1200x800 phone card. Only what was
-    # asked for: the level, PT1, entry, stop, break, retest.
+    # Austin, 2026-09-15, couldn't grade GOOGL_2026-03-11: "I can't see the
+    # levels." The six he watches (2026-08-29: "you know the 6 levels i watch
+    # thats it") now draw on every card -- PDH/PDL/PMH/PML plus HOD/LOD as of
+    # the entry bar, same causal "as of entry_i" convention as
+    # p21_target_availability.levels_for_entry.
+    levels = {"pdh": pdh, "pdl": pdl, "pmh": pmh, "pml": pml,
+              "hod": max(c.high for c in bars[:entry_i + 1]),
+              "lod": min(c.low for c in bars[:entry_i + 1])}
     marks = [{"i": entry_i, "price": t["entry"], "side": side, "tag": "ENTRY"}]
     hlines = [{"price": t["target"], "label": "PT1", "cls": "tgt"}]
 
@@ -224,7 +228,20 @@ def build_card(t, idx):
          "label": "RETEST", "cls": "rt"},
     ]
 
-    svg = pc.render(candles, {}, marks=marks, hlines=hlines, dots=dots,
+    # Body/avg-body ratio at the entry bar -- same "wick, not strong PA" fix
+    # as sm_deck.py's chart, against the pre-entry average so the ratio never
+    # looks at a bar that hadn't printed yet.
+    notes = []
+    if entry_i > 0:
+        prior = bars[:entry_i]
+        avg_body = sum(abs(c.close - c.open) for c in prior) / len(prior)
+        if avg_body > 0:
+            entry_body = abs(bars[entry_i].close - bars[entry_i].open)
+            notes.append({"i": entry_i,
+                          "text": "body %.1fx avg" % (entry_body / avg_body)})
+
+    svg = pc.render(candles, levels, marks=marks, hlines=hlines, dots=dots,
+                    shade_i=break_i, notes=notes,
                     label="%s %s  09:30-11:00" % (sym, day))
     return svg
 
@@ -259,6 +276,10 @@ html,body{margin:0}
 .chart .dot-t.rt{font-family:"IBM Plex Mono",monospace;font-size:11px;
   font-weight:700;fill:var(--rt);paint-order:stroke;stroke:var(--surface);
   stroke-width:3px}
+.chart .bd.shade-bd{stroke:var(--brk);stroke-width:2}
+.chart .wk.shade-wk{opacity:.35}
+.chart .note{font-family:"IBM Plex Mono",monospace;font-size:9px;
+  font-weight:600;fill:var(--ink-3)}
 .pflegend{font-family:"IBM Plex Mono",monospace;font-size:13px;color:var(--ink-3);
   margin-top:14px;display:flex;gap:16px;flex-wrap:wrap}
 </style>
@@ -270,7 +291,11 @@ _LEGEND = (
     '<span style="color:var(--brk)">&#9679; break bar</span>'
     '<span style="color:var(--rt)">&#9679; retest bar</span>'
     '<span>amber line = entry</span>'
-    '<span style="color:var(--tgt)">&#9644; PT1</span></div>')
+    '<span style="color:var(--tgt)">&#9644; PT1</span>'
+    '<span>PDH/PDL/PMH/PML/HOD/LOD -- HOD/LOD as of entry</span>'
+    '<span style="color:var(--brk)">amber outline = break bar body vs '
+    'dimmed wick</span>'
+    '<span>body Nx avg = entry body vs pre-entry average</span></div>')
 
 
 def _esc(s):

@@ -58,10 +58,11 @@ if ROOT not in sys.path:
 if HERE not in sys.path:
     sys.path.insert(0, HERE)
 
-from research import build_deck as deck           # noqa: E402
-from research import g80_ordertype_grid as G       # noqa: E402
-from research import probe_chart as pc             # noqa: E402
-from research import probe_page as pp              # noqa: E402
+from research import build_deck as deck                # noqa: E402
+from research import g80_lookahead_refute as rf         # noqa: E402
+from research import g80_ordertype_grid as G            # noqa: E402
+from research import probe_chart as pc                  # noqa: E402
+from research import probe_page as pp                   # noqa: E402
 
 DECKS_DIR = os.path.join(HERE, "decks")
 MARKS_DIR = os.path.join(HERE, "marks")
@@ -120,8 +121,64 @@ def _orh_orl(bars):
     return max(c.high for c in orb), min(c.low for c in orb)
 
 
+def _primary_signal(signals: list) -> dict:
+    """The signal whose level/direction anchors the day's A/B/C candidate bars
+    -- earliest fired signal, else earliest signal overall (a gated-only day
+    has nothing that 'fired' but still has a level worth tracing).
+    """
+    fired = [t for t in signals if t.get("traded")]
+    pool = fired or signals
+    return min(pool, key=lambda t: t.get("et") or "99:99")
+
+
+def _candidate_bars(bars_full: list, signal: dict) -> dict:
+    """{"A": idx, "B": idx, "C": idx} -- up to three candidate bars, indices
+    into ``bars_full``, for one signal's level/direction.
+
+    C is the signal's own ``entry_i``, the bar the engine actually fired on.
+    A and B come from g80_lookahead_refute.br_trace's read-only replay of the
+    shipped break-and-retest state machine: A = break_i, the first 1-minute
+    close through the level; B = retest_i, the first retest. Austin's first
+    three sm_deck marks (research/marks/sm_deck_2026-09-14_comments.jsonl) all
+    say the engine's C bar is late and his real entry was earlier -- A or B is
+    meant to be that earlier bar. Any candidate the replay can't find (setup
+    isn't break-and-retest, or the state machine never arms) is simply
+    omitted -- up to three, not always three.
+    """
+    out = {}
+    entry_i = signal.get("entry_i")
+    if entry_i is None or not (0 <= entry_i < len(bars_full)):
+        return out
+    out["C"] = entry_i
+    level, is_long = signal.get("level_px"), signal.get("dir") == "call"
+    if level is None:
+        return out
+    tr = rf.br_trace(bars_full[:entry_i + 1], level, is_long)
+    if tr:
+        if tr.get("break_i") is not None:
+            out["A"] = tr["break_i"]
+        if tr.get("retest_i") is not None:
+            out["B"] = tr["retest_i"]
+    return out
+
+
+def _fire_lag(sym: str, day: str, signals: list):
+    """Bars between the day's A candidate and the engine's own C fire for its
+    primary signal, or None when either can't be found. Drives --build's
+    queue order only -- every candidate still gets its own chart and its own
+    bars found when it is picked, this just decides who goes first.
+    """
+    bars_full, *_ = G.day_pack(sym, day)
+    if not bars_full:
+        return None
+    cand = _candidate_bars(bars_full, _primary_signal(signals))
+    if "A" in cand and "C" in cand:
+        return cand["C"] - cand["A"]
+    return None
+
+
 def _build_chart(sym: str, day: str, signals: list):
-    """(svg, engine_grade) for one symbol-day, or None if the archive has no bars.
+    """(svg, engine_grade, bars) for one symbol-day, or None if the archive has no bars.
 
     Reads archived bars and levels only (``G.day_pack`` -- "data preparation
     only", never a fill or a grade) and draws straight off the baseline's own
@@ -140,6 +197,15 @@ def _build_chart(sym: str, day: str, signals: list):
     levels = {"pdh": pdh, "pdl": pdl, "pmh": pmh, "pml": pml,
               "orh": orh, "orl": orl}
 
+    # HOD/LOD as of the setup (entry) bar -- causal, same "as of entry_i"
+    # convention as p21_target_availability.levels_for_entry -- so a card never
+    # shows a running high/low the bar it drew hadn't printed yet.
+    cand = _candidate_bars(bars_full, _primary_signal(signals))
+    setup_bi = cand.get("C")
+    if setup_bi is not None:
+        levels["hod"] = max(c.high for c in bars_full[:setup_bi + 1])
+        levels["lod"] = min(c.low for c in bars_full[:setup_bi + 1])
+
     # All S bars of the day on the one chart (H1 referee fix, OMEN 10.0). A
     # day whose only candidate is A falls back to that so the card is never
     # blank.
@@ -157,9 +223,37 @@ def _build_chart(sym: str, day: str, signals: list):
         if t.get("sgrade") == "S":
             engine_grade = "S"
 
-    svg = pc.render(candles, levels, marks=marks, hlines=hlines,
+    # up to three candidate entry bars, letter-marked (A/B/C) so a graded card
+    # can name which one Austin would actually have taken -- see
+    # _candidate_bars.
+    dots, bars_out, letter_ci = [], {}, {}
+    for letter, bi in cand.items():
+        ts = bars_full[bi].timestamp[:5]
+        bars_out[letter] = ts
+        ci = at.get(ts)
+        letter_ci[letter] = ci
+        if ci is not None:
+            dots.append({"i": ci, "price": bars_full[bi].close, "label": letter})
+
+    # G7.3 (2026-09-15), Austin on NVDA: "wick, not strong PA" -- shade the
+    # break bar (A) so its body-vs-wick split is legible, and note the entry
+    # bar's (C) body size against the pre-entry average so a wick posing as a
+    # strong break stands out instead of reading like any other green candle.
+    shade_i = letter_ci.get("A")
+    notes = []
+    entry_ci = letter_ci.get("C")
+    if entry_ci is not None and entry_ci > 0:
+        prior = candles[:entry_ci]
+        avg_body = sum(abs(c["c"] - c["o"]) for c in prior) / len(prior)
+        if avg_body > 0:
+            entry_body = abs(candles[entry_ci]["c"] - candles[entry_ci]["o"])
+            notes.append({"i": entry_ci,
+                          "text": "body %.1fx avg" % (entry_body / avg_body)})
+
+    svg = pc.render(candles, levels, marks=marks, hlines=hlines, dots=dots,
+                    shade_i=shade_i, notes=notes,
                     label="%s %s  09:30-11:00" % (sym, day))
-    return svg, engine_grade
+    return svg, engine_grade, bars_out
 
 
 def _esc(s) -> str:
@@ -180,9 +274,9 @@ def _esc(s) -> str:
 # probe_chart's PAD_R still renders instead of clipping.
 _PNG_CSS = """
 <style>
-:root{--tgt:#0d6961}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--tgt:#54cfbe}}
-:root[data-theme="dark"]{--tgt:#54cfbe}
+:root{--tgt:#0d6961;--brk:#a86a06}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--tgt:#54cfbe;--brk:#e0a340}}
+:root[data-theme="dark"]{--tgt:#54cfbe;--brk:#e0a340}
 html,body{margin:0}
 .smpage{width:%dpx;height:%dpx;box-sizing:border-box;padding:22px 26px;
   background:var(--bg);display:flex;flex-direction:column}
@@ -196,6 +290,10 @@ html,body{margin:0}
 .chart .hrail{stroke:var(--tgt);stroke-width:1.1;stroke-dasharray:7 4}
 .chart .hrail-t{font-family:"IBM Plex Mono",monospace;font-size:9px;
   font-weight:600;fill:var(--tgt)}
+.chart .bd.shade-bd{stroke:var(--brk);stroke-width:2}
+.chart .wk.shade-wk{opacity:.35}
+.chart .note{font-family:"IBM Plex Mono",monospace;font-size:9px;
+  font-weight:600;fill:var(--ink-3)}
 .smlegend{font-family:"IBM Plex Mono",monospace;font-size:14px;color:var(--ink-3);
   margin-top:14px;display:flex;gap:20px;flex-wrap:wrap}
 </style>
@@ -204,8 +302,11 @@ html,body{margin:0}
 _SMLEGEND = (
     '<div class="smlegend"><span>PDH/PDL prior day</span>'
     '<span>PMH/PML premarket</span><span>ORH/ORL first 5 min</span>'
+    '<span>HOD/LOD as of setup bar</span>'
     '<span>amber = entry &middot; red = stop</span>'
-    '<span>teal dashed = PT1</span></div>')
+    '<span>teal dashed = PT1</span>'
+    '<span>amber outline = break bar body vs dimmed wick</span>'
+    '<span>body Nx avg = entry body vs pre-entry average</span></div>')
 
 
 def _page_html(sym: str, day: str, svg: str) -> str:
@@ -251,6 +352,11 @@ def cmd_build(args) -> int:
     candidates = sorted(pool.keys(), key=lambda k: k[0])
     candidates.sort(key=lambda k: k[1], reverse=True)
     candidates = [k for k in candidates if _card_id(*k) not in already]
+    # THE LANE: Austin's first three sm_deck marks all say the engine's fire
+    # is late. Push days where it fired >=3 bars after the first close through
+    # the level to the front of the queue (stable -- ties keep the order
+    # above); a day with no A/C candidate at all just sorts as if lag were 0.
+    candidates.sort(key=lambda k: (_fire_lag(*k, pool[k]) or 0) < 3)
 
     entries, jsonl_rows, to_render = [], [], []
     for sym, day in candidates:
@@ -259,7 +365,7 @@ def cmd_build(args) -> int:
         built = _build_chart(sym, day, pool[(sym, day)])
         if built is None:
             continue
-        svg, engine_grade = built
+        svg, engine_grade, bars_out = built
         idx = len(entries) + 1
         png_name = "%d_%s_%s.png" % (idx, sym, day)
         png_path = os.path.join(out_dir, png_name)
@@ -267,7 +373,7 @@ def cmd_build(args) -> int:
         cid = _card_id(sym, day)
         entries.append({"id": cid, "symbol": sym, "day": day,
                         "png": os.path.relpath(png_path, ROOT).replace("\\", "/"),
-                        "engine_grade": engine_grade})
+                        "engine_grade": engine_grade, "bars": bars_out})
         jsonl_rows.append({"card_id": cid, "symbol": sym, "date": day,
                            "deck": "sm_%s" % deck_date})
 
@@ -331,6 +437,61 @@ def cmd_mark(args) -> int:
     return 0
 
 
+# ------------------------------------------------------------------- mark-bar
+
+def _minutes(ts: str) -> int:
+    h, m = ts.split(":")[:2]
+    return int(h) * 60 + int(m)
+
+
+def cmd_mark_bar(args) -> int:
+    """--picks 'id:A,id:B' -- his bar per card vs the engine's C, minutes early."""
+    deck_date = args.mark_bar
+    out_dir = os.path.join(DECKS_DIR, "sm_%s" % deck_date)
+    man_json = os.path.join(out_dir, "manifest.json")
+    if not os.path.exists(man_json):
+        print("no sm deck for %s -- build it first (%s)" % (deck_date, man_json))
+        return 1
+    with open(man_json, encoding="utf-8") as f:
+        entries = {e["id"]: e for e in json.load(f)}
+
+    picks = {}
+    for pair in (args.picks or "").split(","):
+        pair = pair.strip()
+        if not pair or ":" not in pair:
+            continue
+        cid, letter = pair.split(":", 1)
+        picks[cid.strip()] = letter.strip().upper()
+
+    os.makedirs(MARKS_DIR, exist_ok=True)
+    out_path = os.path.join(MARKS_DIR, "sm_deck_%s_bars.jsonl" % deck_date)
+    rows = []
+    for cid, letter in picks.items():
+        e = entries.get(cid)
+        if e is None:
+            print("skip %s -- not on this deck" % cid)
+            continue
+        bars = e.get("bars") or {}
+        his_bar, eng_bar = bars.get(letter), bars.get("C")
+        if his_bar is None or eng_bar is None:
+            print("skip %s -- letter %s or engine bar missing" % (cid, letter))
+            continue
+        rows.append({"type": "sm_deck_bars", "card_id": cid, "symbol": e["symbol"],
+                    "date": e["day"], "deck": "sm_%s" % deck_date,
+                    "his_letter": letter, "his_bar": his_bar, "engine_bar": eng_bar,
+                    "minutes_early": _minutes(eng_bar) - _minutes(his_bar)})
+    with open(out_path, "w", encoding="utf-8") as f:
+        for row in rows:
+            f.write(json.dumps(row, sort_keys=True) + "\n")
+
+    print("sm mark-bar %s: %d picks -> %s" % (deck_date, len(rows), out_path))
+    for r in rows:
+        print("  %-18s  his %s (%s) vs engine %s  -> %d min early"
+             % (r["card_id"], r["his_bar"], r["his_letter"], r["engine_bar"],
+                r["minutes_early"]))
+    return 0
+
+
 # -------------------------------------------------------------------------- report
 
 def cmd_report(_args) -> int:
@@ -374,6 +535,9 @@ def main() -> int:
     ap.add_argument("--c", default="", help="comma ids he tapped C")
     ap.add_argument("--default-c", action="store_true",
                     help="unlisted ids grade C instead of 'ungraded'")
+    ap.add_argument("--mark-bar", metavar="DECK_DATE",
+                    help="write his A/B/C bar pick per card for that deck date")
+    ap.add_argument("--picks", default="", help="comma 'id:LETTER' pairs for --mark-bar")
     ap.add_argument("--report", action="store_true", help="running tally across all sm_deck marks")
     args = ap.parse_args()
 
@@ -381,6 +545,8 @@ def main() -> int:
         return cmd_build(args)
     if args.mark:
         return cmd_mark(args)
+    if args.mark_bar:
+        return cmd_mark_bar(args)
     if args.report:
         return cmd_report(args)
     ap.print_help()
