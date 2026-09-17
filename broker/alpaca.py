@@ -12,8 +12,12 @@ is exactly what `broker/test_alpaca_paper.py` and the L3 verify gate check
 for (a zero-count grep for that hostname's literal text in this file).
 
 Credentials: `ALPACA_PAPER_KEY` / `ALPACA_PAPER_SECRET` from `.env`, read once
-in `__init__`. Never logged, never printed, never included in an exception
-message (`_redact` strips them out of anything that might echo a key back).
+in `__init__`. Because python-dotenv never overrides a variable already set
+in the process environment, `_load_paper_credentials_from_dotenv` force-loads
+just these two keys from `.env` (`override`) so a stale Machine-level env var
+can't shadow `.env`, and prints which source won. Values are never logged,
+never printed, never included in an exception message (`_redact` strips them
+out of anything that might echo a key back).
 
 Reads `broker/base.py`'s five-call BrokerInterface (place/cancel/positions/
 fills/account) exactly like `broker/tastytrade.py` does. `place_order`
@@ -30,6 +34,8 @@ from __future__ import annotations
 import os
 from datetime import datetime, timezone
 from typing import List, Optional
+
+from dotenv import dotenv_values, find_dotenv
 
 from broker.base import (
     AccountSnapshot,
@@ -48,6 +54,30 @@ class OptionsNotAvailable(Exception):
     """Raised by resolve_option_contract when no contract can be resolved,
     or the paper account has no options trading level. Callers (live_scanner)
     catch this and fall back to a share order sized to 1R."""
+
+
+_ENV_OVERRIDE_KEYS = ("ALPACA_PAPER_KEY", "ALPACA_PAPER_SECRET")
+
+
+def _load_paper_credentials_from_dotenv(dotenv_path: Optional[str] = None) -> None:
+    """python-dotenv's load_dotenv() never overrides a variable that is
+    already set in the process environment, so a stale Machine-level
+    ALPACA_PAPER_KEY/SECRET on Windows silently shadows .env for every
+    process (found via omen-v4-paper-check / g88). Force just these two
+    keys to come from .env when it defines them, and log which source won.
+    """
+    if dotenv_path is None:
+        dotenv_path = find_dotenv()
+    dotenv_vals = dotenv_values(dotenv_path) if dotenv_path else {}
+    for key in _ENV_OVERRIDE_KEYS:
+        dotenv_value = dotenv_vals.get(key)
+        if dotenv_value:
+            os.environ[key] = dotenv_value
+            print(f"AlpacaBroker: {key} loaded from .env (override)")
+        elif os.environ.get(key):
+            print(f"AlpacaBroker: {key} loaded from process/machine environment (not in .env)")
+        else:
+            print(f"AlpacaBroker: {key} not set in .env or environment")
 
 
 def _redact(msg: str) -> str:
@@ -86,6 +116,7 @@ class AlpacaBroker(BrokerInterface):
     def __init__(self, api_key: Optional[str] = None, secret_key: Optional[str] = None):
         from alpaca.trading.client import TradingClient
 
+        _load_paper_credentials_from_dotenv()
         key = api_key or os.environ.get("ALPACA_PAPER_KEY")
         secret = secret_key or os.environ.get("ALPACA_PAPER_SECRET")
         if not key or not secret:
