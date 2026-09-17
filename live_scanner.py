@@ -205,7 +205,7 @@ ENTRY_CUTOFF = os.getenv("ENTRY_CUTOFF", "11:00")
 # warn-only; now blocks new entries all day (marking continues).
 # SKIP_NEWS=0 reverts to warn-only.
 SKIP_NEWS = os.getenv("SKIP_NEWS", "1") == "1"
-NEWS_HALT = {"active": False}  # set at startup from news_days.json
+NEWS_HALT = {"active": False, "kind": None}  # set at startup from news_days.json
 
 POLL_INTERVAL_SECONDS = 60
 
@@ -737,6 +737,11 @@ def scan_once(
                           failed=discord.failed if discord else 0,
                           qqq_breaks=getattr(runner, "qqq_breaks", None),
                           bars_fetched=bars_fetched)
+    # T13/referee-check-4: so the 11:00 summary can say WHY nothing traded
+    # instead of always blaming "no S setup" (news halt and a dead bar feed
+    # look identical to that text otherwise).
+    _session_push["bars_fetched"] = bars_fetched
+    _session_push["bars_total"] = len(symbols)
     return fired
 
 
@@ -895,6 +900,8 @@ _session_push: dict = {
     "trades": [],             # every size-gated S promotion today, in order
     "exits": [],              # every closed paper leg today
     "last_close": {},         # symbol -> most recent close seen this session
+    "bars_fetched": None,     # T13: symbols with >=1 candle, most recent cycle
+    "bars_total": None,       # symbols scanned that cycle (denominator)
 }
 
 
@@ -1011,7 +1018,18 @@ def build_summary_text(paper=None) -> str:
 
     trades = _session_push["trades"]
     if not trades:
-        out.append("No S setup today. Nothing traded.")
+        # Referee check 4: don't say "no S setup" when the real reason is a
+        # news-day halt or a dead bar feed -- those look identical otherwise.
+        bars_total = _session_push["bars_total"]
+        bars_fetched = _session_push["bars_fetched"]
+        if NEWS_HALT["active"]:
+            kind = NEWS_HALT["kind"] or "red-folder"
+            out.append(f"NEWS DAY ({kind}) — skip-news ON, no entries taken.")
+        elif bars_total and bars_fetched == 0:
+            out.append(f"Bars failed to fetch (0/{bars_total} symbols) — "
+                       "the scanner could not look today.")
+        else:
+            out.append("No S setup today. Nothing traded.")
     else:
         out.append(f"{len(trades)} S setup(s) fired:")
         for rec in trades:
@@ -1803,6 +1821,7 @@ def main():
             kind = _nd.get("by_date", {}).get(_today, "red-folder")
             if SKIP_NEWS:
                 NEWS_HALT["active"] = True
+                NEWS_HALT["kind"] = kind
                 msg = (f"⚠ NEWS DAY ({kind}) — skip-news ON: no new entries today "
                        f"(12mo: 30.6%W on these days). SKIP_NEWS=0 to override.")
             else:
