@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-09-17T10:15:24.307860-04:00",
+  "timestamp": "2026-09-17T11:22:18.593948-04:00",
   "symbols_scanned": [
     "NVDA",
     "TSLA",
@@ -32,16 +32,16 @@
     "MARA"
   ],
   "bars_fetched": 29,
-  "signals_fired_today": 0,
+  "signals_fired_today": 1,
   "session_halt": {
     "halted": false,
-    "consecutive_losses": 0,
-    "signals_today": 0,
+    "consecutive_losses": 1,
+    "signals_today": 1,
     "max_trades": 3
   },
   "regime_state": "normal",
   "qqq_state": {
-    "up": null,
+    "up": "10:27:00",
     "dn": "09:30:00"
   },
   "last_error": null,
