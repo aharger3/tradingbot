@@ -1,0 +1,9 @@
+[
+  {
+    "_example": true,
+    "_comment": "SHAPE ONLY -- not a real candidate. nightly_loop.py skips any entry that carries an '_example' key, so this queue is functionally empty until a real one is added below it. To queue a real cycle, append an object with no '_example' key: {\"flag\": \"THE_ENV_VAR\", \"on\": \"1\", \"label\": \"plain-English name, goes in cycles.md and nightly.md\"}. nightly_loop.py pops the first non-example entry, runs it through loop_cycle.py --stage all, and removes it from this file.",
+    "flag": "EXAMPLE_FLAG",
+    "on": "1",
+    "label": "example only -- not a real trading rule, do not run as-is"
+  }
+]
