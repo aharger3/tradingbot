@@ -590,6 +590,12 @@ def scan_once(
             entries_ok = False
             print(f"  Entry cutoff {_effective_cutoff} passed — marking only, no new entries")
 
+    # V6 (2026-09-16): a resting g88 limit that never touched dies at the same
+    # cutoff new entries do -- see _alpaca_cancel_stale_g88_entries. Cheap
+    # no-op most cycles (nothing pending, or pending but not yet due).
+    if broker is not None:
+        _alpaca_cancel_stale_g88_entries(broker)
+
     # F4 Rule 4: QQQ key-level break state, once per cycle, shared across the
     # watchlist (skip in futures mode — QQQ context irrelevant there).
     if not getattr(runner, "futures_mode", False):
@@ -1154,6 +1160,15 @@ def _cooled_down(symbol: str, direction: str, ts: str) -> bool:
 _ALPACA_LEDGER = Path(__file__).parent / "journal" / "alpaca-paper.jsonl"
 _alpaca_open_orders: dict = {}  # f"{symbol}|{opened_at}" -> last entry record
 
+# V6 (docs/rows/v5-contract.md addendum, Austin 2026-09-16): which order the
+# paper arms use to get in. "close" is the pre-V6 behaviour (MARKET, filled
+# at whatever price is live when the S is detected -- effectively the signal
+# bar's own close). "g88" is the new default for the paper arms ONLY -- see
+# `_g88_level_price` below for the exact measured rule and its source.
+# PAPER_ENTRY_RULE= to override; never consulted by replay or backtest (both
+# are barred from this function entirely, see the assert below).
+PAPER_ENTRY_RULE = os.getenv("PAPER_ENTRY_RULE", "g88")
+
 
 def _alpaca_log(event: dict) -> None:
     _ALPACA_LEDGER.parent.mkdir(parents=True, exist_ok=True)
@@ -1161,8 +1176,78 @@ def _alpaca_log(event: dict) -> None:
         f.write(json.dumps(event) + "\n")
 
 
+def _g88_level_price(sig: dict) -> float:
+    """The g88 resting-limit price for one fired signal.
+
+    research/g88_level_limit.py (POST_floor arm) / research/g88_level_limit.md:
+    "ORDER TYPE IS REAL -- resting the limit STRICTLY AFTER the signal bar,
+    with nothing dropped for size, still earns $275/day against the shipped
+    entry's $33/day." The limit rests at the setup's own keyed level
+    (`level_px` in the research book), not at the shipped clamped-fill
+    price -- `research/g80_ordertype_grid.py`'s `resolve_entry` policy "post"
+    and `limit_touch()` are the exact mechanics this mirrors live.
+
+    `sig["level_price"]` is that same field on the live signal (set at every
+    `_emit_signal` call site in signal_runner.py, e.g. `level_price: level_hi`
+    for break-and-retest); it is only absent for setups that never recorded
+    one (some flag entries), and the shipped book-builder's own fallback for
+    exactly that case is `t.level_price or t.stop` (backtest_2y.py) -- so this
+    mirrors that, not a new convention.
+    """
+    return sig.get("level_price") or sig["stop"]
+
+
+def _alpaca_cancel_stale_g88_entries(broker) -> None:
+    """Cancel any still-resting g88 limit entry once the entry cutoff has
+    passed unfilled.
+
+    research/g88_level_limit.py / research/g80_ordertype_grid.py: the limit
+    rests from the bar after the signal through `cutoff_idx(bars)` --
+    "First bar index at or after 11:00 - the bar an entry order is dead on"
+    (g80's own docstring for `CUTOFF = "11:00:00"`, the same constant
+    `ENTRY_CUTOFF` already gates new entries with here). Never touched by
+    that time is not a free option in the research either -- it is a no-fill,
+    counted, not chased with a market order (never a market order, per the
+    row). Only the always-running scan loop can enforce a wall-clock cutoff
+    on a resting order; `research/paper_order.py`'s one-shot `--arm austin`
+    CLI has no later moment to do this from, so it relies on the order's own
+    DAY time-in-force as the broker-side backstop instead (see that file's
+    docstring).
+
+    A no-op called once per `scan_once` cycle: cheap before the cutoff
+    (nothing pending, or pending but not yet due), and `AlpacaBroker.cancel_
+    order` itself swallows an already-filled/already-cancelled order rather
+    than raising, so a race with a fill that lands the same minute is safe.
+    """
+    if now_et().strftime("%H:%M") < ENTRY_CUTOFF:
+        return
+    from broker.base import OrderHandle, OrderStatus
+
+    for key, rec in list(_alpaca_open_orders.items()):
+        if rec.get("entry_rule") != "g88":
+            continue
+        handle = OrderHandle(broker_order_id=rec["broker_order_id"],
+                              idempotency_key=rec["idempotency_key"],
+                              status=OrderStatus.WORKING)
+        try:
+            cancelled = broker.cancel_order(handle)
+        except Exception as e:  # noqa: BLE001 - log and move on, next cycle retries
+            _alpaca_log({"event": "entry_cancel_error", "ts": rec.get("ts"),
+                         "symbol": rec.get("symbol"), "entry_rule": "g88",
+                         "candidate_id": rec.get("candidate_id"),
+                         "error": str(e)[:200]})
+            continue
+        _alpaca_open_orders.pop(key, None)
+        _alpaca_log({"event": "entry_cancelled" if cancelled else "entry_cancel_noop",
+                     "ts": rec.get("ts"), "symbol": rec.get("symbol"),
+                     "direction": rec.get("direction"), "entry_rule": "g88",
+                     "arm": rec.get("arm", "engine"),
+                     "broker_order_id": rec["broker_order_id"],
+                     "reason": f"unfilled at entry cutoff {ENTRY_CUTOFF} ET"})
+
+
 def _alpaca_submit_entry(broker, runner: SignalRunner, symbol: str, sig: dict,
-                          ts: str, size_pct: float):
+                          ts: str, size_pct: float, entry_rule: Optional[str] = None):
     """Submit the opening order for one fired S onto the Alpaca paper broker.
 
     V5b (docs/rows/v5-contract.md, referee hold on V5, 2026-09-14): shares of
@@ -1172,12 +1257,24 @@ def _alpaca_submit_entry(broker, runner: SignalRunner, symbol: str, sig: dict,
     `options_sizer.size_share_qty` (`DEFAULT_MAX_LOSS * size_pct`, capped at
     25% of paper equity so a razor-thin stop can't blow the size past the
     account's own buying power). Never called under replay -- see the
-    assert, THE LAW's own words."""
+    assert, THE LAW's own words.
+
+    V6 (docs/rows/v5-contract.md addendum, 2026-09-16): `entry_rule` picks
+    how the order gets in -- "close" (pre-V6: MARKET, the shipped fill) or
+    "g88" (default for this paper arm, see `_g88_level_price`: a LIMIT at the
+    setup's own level, never a market order). Sizing is unchanged either way
+    -- `size_share_qty` always prices risk off `sig["entry"]`/`sig["stop"]`,
+    the shipped values, because those describe the SIMULATED book's own
+    trade; only what gets sent to Alpaca as the entry order differs.
+    """
     assert not getattr(runner, "replay", False), (
         "Alpaca submit attempted with runner.replay=True -- replay must "
         "never place an order, this is a bug at the call site, not here.")
     from broker.base import Order, OrderSide, OrderType
     from options_sizer import DEFAULT_MAX_LOSS, size_share_qty
+
+    entry_rule = entry_rule or PAPER_ENTRY_RULE
+    assert entry_rule in ("close", "g88"), f"unknown entry_rule {entry_rule!r}"
 
     direction = sig["direction"]
     idem = f"{symbol}-{ts}-{direction}-entry"
@@ -1187,12 +1284,19 @@ def _alpaca_submit_entry(broker, runner: SignalRunner, symbol: str, sig: dict,
     order = None
     if qty > 0:
         side = OrderSide.BUY if direction == "call" else OrderSide.SELL
-        order = Order(symbol=symbol, side=side, quantity=qty,
-                      order_type=OrderType.MARKET, idempotency_key=idem)
+        if entry_rule == "g88":
+            order = Order(symbol=symbol, side=side, quantity=qty,
+                          order_type=OrderType.LIMIT,
+                          limit_price=_g88_level_price(sig),
+                          idempotency_key=idem)
+        else:
+            order = Order(symbol=symbol, side=side, quantity=qty,
+                          order_type=OrderType.MARKET, idempotency_key=idem)
 
     if order is None:
         _alpaca_log({"event": "entry_skip", "ts": ts, "symbol": symbol,
-                     "direction": direction, "reason": "zero-quantity after sizing"})
+                     "direction": direction, "entry_rule": entry_rule,
+                     "reason": "zero-quantity after sizing"})
         return None
 
     try:
@@ -1200,7 +1304,7 @@ def _alpaca_submit_entry(broker, runner: SignalRunner, symbol: str, sig: dict,
     except Exception as e:  # noqa: BLE001 - log and let the sim book stand alone
         _alpaca_log({"event": "entry_error", "ts": ts, "symbol": symbol,
                      "direction": direction, "order_symbol": order.symbol,
-                     "error": str(e)[:200]})
+                     "entry_rule": entry_rule, "error": str(e)[:200]})
         return None
 
     rec = {
@@ -1214,6 +1318,8 @@ def _alpaca_submit_entry(broker, runner: SignalRunner, symbol: str, sig: dict,
         # journal/alpaca-paper.jsonl by who fired the trade.
         "arm": "engine",
         "max_loss": max_loss,
+        # V6 (2026-09-16): which order got us in -- see PAPER_ENTRY_RULE.
+        "entry_rule": entry_rule,
     }
     _alpaca_log(rec)
     _alpaca_open_orders[f"{symbol}|{ts}"] = rec
@@ -1264,6 +1370,11 @@ def _alpaca_submit_exit(broker, runner: SignalRunner, ev: dict):
         # the whole trade or every scaled winner reads short by the scale leg.
         "pnl": ev["trade_pnl"] if ev.get("trade_pnl") is not None else ev.get("pnl"),
         "max_loss": entry_rec.get("max_loss"),
+        # V6 (2026-09-16): carried through from the matching entry, same
+        # pattern as "arm" above -- the exit's own order is always a MARKET
+        # close regardless of how the entry got in (this row only changes
+        # entry mechanics), but the record says which rule opened the trade.
+        "entry_rule": entry_rec.get("entry_rule", "close"),
     }
     _alpaca_log(rec)
     return rec

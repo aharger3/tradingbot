@@ -70,13 +70,16 @@ def _fresh_runner(replay: bool):
 
 
 def test_one_submit_per_fired_s_sized_to_1r(tmp_path, monkeypatch):
+    """entry_rule="close" (pre-V6 default, still available): MARKET, sized to
+    1R. See test_g88_is_the_default_and_submits_a_limit_at_the_level below for
+    the paper arm's actual default."""
     monkeypatch.setattr(live_scanner, "_ALPACA_LEDGER", tmp_path / "alpaca-paper.jsonl")
     live_scanner._alpaca_open_orders.clear()
     broker = FakeBroker()
     runner = _fresh_runner(replay=False)
     sig = {"direction": "call", "entry": 248.0, "stop": 246.0}  # $2/share risk
     rec = live_scanner._alpaca_submit_entry(broker, runner, "TSLA", sig,
-                                            "09:41:00", size_pct=1.0)
+                                            "09:41:00", size_pct=1.0, entry_rule="close")
     assert rec is not None
     assert len(broker.orders) == 1
     order = broker.orders[0]
@@ -88,6 +91,7 @@ def test_one_submit_per_fired_s_sized_to_1r(tmp_path, monkeypatch):
     logged = json.loads((tmp_path / "alpaca-paper.jsonl").read_text().strip())
     assert logged["event"] == "entry"
     assert logged["arm"] == "engine"
+    assert logged["entry_rule"] == "close"
 
 
 def test_notional_cap_fires_below_25pct_equity(tmp_path, monkeypatch):
@@ -99,11 +103,84 @@ def test_notional_cap_fires_below_25pct_equity(tmp_path, monkeypatch):
     runner = _fresh_runner(replay=False)
     sig = {"direction": "call", "entry": 248.0, "stop": 246.0}
     rec = live_scanner._alpaca_submit_entry(broker, runner, "TSLA", sig,
-                                            "09:41:00", size_pct=1.0)
+                                            "09:41:00", size_pct=1.0, entry_rule="close")
     assert rec is not None
     order = broker.orders[0]
     assert order.quantity == 10
     assert order.quantity * sig["entry"] <= 0.25 * broker.equity
+
+
+def test_g88_is_the_default_and_submits_a_limit_at_the_level(tmp_path, monkeypatch):
+    """V6 (docs/rows/v5-contract.md addendum, 2026-09-16): the paper arm's
+    default flipped to g88 -- a resting LIMIT at the signal's own level,
+    never a MARKET order, and the level is `sig["level_price"]` when the
+    signal carried one (research/g88_level_limit.py's POST_floor arm)."""
+    monkeypatch.setattr(live_scanner, "_ALPACA_LEDGER", tmp_path / "alpaca-paper.jsonl")
+    live_scanner._alpaca_open_orders.clear()
+    broker = FakeBroker()
+    runner = _fresh_runner(replay=False)
+    sig = {"direction": "call", "entry": 248.0, "stop": 246.0, "level_price": 247.10}
+    rec = live_scanner._alpaca_submit_entry(broker, runner, "TSLA", sig,
+                                            "09:41:00", size_pct=1.0)  # no entry_rule -> default
+    assert rec is not None
+    order = broker.orders[0]
+    assert order.order_type == OrderType.LIMIT
+    assert order.limit_price == 247.10
+    # sizing is unaffected by which order type gets us in -- still 1R off the
+    # signal's own entry/stop, not off the limit price.
+    assert order.quantity == 500
+    assert rec["entry_rule"] == "g88"
+    logged = json.loads((tmp_path / "alpaca-paper.jsonl").read_text().strip())
+    assert logged["entry_rule"] == "g88"
+
+
+def test_g88_falls_back_to_stop_when_no_level_price(tmp_path, monkeypatch):
+    """Some setups (a few flag entries) never record a distinct level_price;
+    the shipped book-builder's own fallback for that case is
+    `t.level_price or t.stop` (backtest_2y.py) -- this mirrors it."""
+    monkeypatch.setattr(live_scanner, "_ALPACA_LEDGER", tmp_path / "alpaca-paper.jsonl")
+    live_scanner._alpaca_open_orders.clear()
+    broker = FakeBroker()
+    runner = _fresh_runner(replay=False)
+    sig = {"direction": "call", "entry": 248.0, "stop": 246.0}  # no level_price
+    rec = live_scanner._alpaca_submit_entry(broker, runner, "TSLA", sig,
+                                            "09:41:00", size_pct=1.0, entry_rule="g88")
+    assert rec is not None
+    order = broker.orders[0]
+    assert order.order_type == OrderType.LIMIT
+    assert order.limit_price == 246.0  # sig["stop"]
+
+
+def test_stale_g88_entry_cancelled_after_entry_cutoff(tmp_path, monkeypatch):
+    """A g88 limit that never touched dies at the entry cutoff -- never
+    chased with a market order. Uses the module's real ENTRY_CUTOFF default
+    (11:00) via monkeypatched now_et() rather than duplicating the constant."""
+    import datetime as dt
+
+    monkeypatch.setattr(live_scanner, "_ALPACA_LEDGER", tmp_path / "alpaca-paper.jsonl")
+    live_scanner._alpaca_open_orders.clear()
+    broker = FakeBroker()
+    runner = _fresh_runner(replay=False)
+    sig = {"direction": "call", "entry": 248.0, "stop": 246.0, "level_price": 247.10}
+
+    monkeypatch.setattr(live_scanner, "now_et", lambda: dt.datetime(2026, 9, 16, 10, 45))
+    entry = live_scanner._alpaca_submit_entry(broker, runner, "TSLA", sig,
+                                              "09:41:00", size_pct=1.0, entry_rule="g88")
+    assert entry is not None
+    key = "TSLA|09:41:00"
+    assert key in live_scanner._alpaca_open_orders
+
+    # Before the cutoff: still resting, nothing cancelled.
+    live_scanner._alpaca_cancel_stale_g88_entries(broker)
+    assert key in live_scanner._alpaca_open_orders
+
+    # At/after the cutoff: cancelled and popped.
+    monkeypatch.setattr(live_scanner, "now_et", lambda: dt.datetime(2026, 9, 16, 11, 0))
+    live_scanner._alpaca_cancel_stale_g88_entries(broker)
+    assert key not in live_scanner._alpaca_open_orders
+    lines = [json.loads(l) for l in (tmp_path / "alpaca-paper.jsonl").read_text().strip().splitlines()]
+    assert lines[-1]["event"] == "entry_cancelled"
+    assert lines[-1]["entry_rule"] == "g88"
 
 
 def test_one_close_per_exit(tmp_path, monkeypatch):
@@ -133,7 +210,11 @@ def test_one_close_per_exit(tmp_path, monkeypatch):
 
     lines = (tmp_path / "alpaca-paper.jsonl").read_text().strip().splitlines()
     assert len(lines) == 2
-    assert json.loads(lines[1])["event"] == "exit"
+    exit_logged = json.loads(lines[1])
+    assert exit_logged["event"] == "exit"
+    # V6: entry_rule carries through from the matching entry (default g88
+    # here, since this test doesn't pass one), same pattern as "arm".
+    assert exit_logged["entry_rule"] == "g88"
 
 
 def test_zero_submits_under_replay(tmp_path, monkeypatch):
