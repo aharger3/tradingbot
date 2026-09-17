@@ -7,7 +7,8 @@
   "entry_time": "09:47 ET",
   "r": 2.759,
   "why_perfect": "gap-fade pivot high @09:40 breaks, one clean hammer retest bar at 09:46 within 11% of 1R of the level, entry 09:47, straight to +2.76R with no whipsaw.",
-  "png": "research/decks/perfect_2026-09-15/1_NVDA_2024-10-17.png"
+  "png": "research/decks/perfect_2026-09-15/1_NVDA_2024-10-17.png",
+  "levels_drawn": true
  },
  {
   "id": "AMD_2025-05-07",
@@ -17,7 +18,8 @@
   "entry_time": "09:58 ET",
   "r": 4.994,
   "why_perfect": "OR low breaks at 09:49, an 8-bar orderly pullback closes within 6% of 1R of the level at 09:57 and never re-crosses it, entry 09:58 for +4.99R -- the cleanest R of the nine candidates.",
-  "png": "research/decks/perfect_2026-09-15/2_AMD_2025-05-07.png"
+  "png": "research/decks/perfect_2026-09-15/2_AMD_2025-05-07.png",
+  "levels_drawn": true
  },
  {
   "id": "GOOGL_2026-03-11",
@@ -27,6 +29,7 @@
   "entry_time": "10:03 ET",
   "r": 3.029,
   "why_perfect": "pivot high @09:53 breaks at 09:58, an immediate one-bar retest at 09:59 holds 13% of 1R above the level, a 3-bar base, entry 10:03 for +3.03R.",
-  "png": "research/decks/perfect_2026-09-15/3_GOOGL_2026-03-11.png"
+  "png": "research/decks/perfect_2026-09-15/3_GOOGL_2026-03-11.png",
+  "levels_drawn": true
  }
 ]

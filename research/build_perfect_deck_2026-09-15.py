@@ -243,7 +243,7 @@ def build_card(t, idx):
     svg = pc.render(candles, levels, marks=marks, hlines=hlines, dots=dots,
                     shade_i=break_i, notes=notes,
                     label="%s %s  09:30-11:00" % (sym, day))
-    return svg
+    return svg, levels
 
 
 _CARD_CSS = """
@@ -355,10 +355,16 @@ def main():
         t = by_key.get((sym, day, et, side))
         if t is None:
             raise SystemExit("pick not found in clean survivors: %s" % ((sym, day, et, side),))
-        svg = build_card(t, i)
+        svg, levels = build_card(t, i)
         png_name = "%d_%s_%s.png" % (i, sym, day)
         png_path = os.path.join(OUT_DIR, png_name)
         to_render.append((t, svg, png_path))
+        # The six levels Austin watches (2026-08-29: "you know the 6 levels i
+        # watch thats it") -- true only when every one of them actually has a
+        # value to draw, so a card missing PDH/PMH (thin pre-market data) is
+        # never silently claimed as fixed.
+        levels_drawn = all(levels.get(k) is not None
+                           for k in ("pdh", "pdl", "pmh", "pml", "hod", "lod"))
         entries.append({
             "id": "%s_%s" % (sym, day),
             "symbol": sym,
@@ -368,6 +374,7 @@ def main():
             "r": round(t["r"], 3),
             "why_perfect": why[(sym, day)],
             "png": "research/decks/perfect_2026-09-15/%s" % png_name,
+            "levels_drawn": levels_drawn,
         })
 
     render_pngs(to_render)
