@@ -47,6 +47,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import re
 import sys
 from collections import Counter, defaultdict, namedtuple
 
@@ -80,7 +81,7 @@ _IS_S_NO = {"no", "n", "false", "0"}
 # order grade_read.py checks them, plus the ninth appended at the end. This
 # is the full spelling list the report enumerates -- NOT "five" (the board
 # note), NOT "eight" (grade_read.py before tonight): nine.
-SPELLINGS = tuple(gr.ALL_FIELDS) + ("answers.is_s",)
+SPELLINGS = tuple(gr.ALL_FIELDS) + ("answers.is_s", "his_grade", "his_letter")
 
 # Austin's four-value ladder, plus the two things that are NOT a grade of the
 # day: "B" (17 legacy rows, kept, never invented -- grade_read.py's own words)
@@ -115,12 +116,86 @@ def _is_s_opinion(row):
 
 def row_opinions(row):
     """Every grade opinion ONE row carries -- the eight known spellings from
-    grade_read.py, plus the ninth. (field, grade) tuples, precedence order."""
+    grade_read.py, the ninth, plus the two shape-matched schemas below.
+    (field, grade) tuples, precedence order."""
+    if "his_grade" in row:
+        g = _comments_opinion(row)
+        return [("his_grade", g)] if g else []
+    if "his_letter" in row:
+        return [("his_letter", _bars_opinion(row))]
     ops = list(gr.grade_opinions(row))
     extra = _is_s_opinion(row)
     if extra is not None:
         ops.append(extra)
     return ops
+
+
+# ------------------------------------------------------- comments and bar-pick schemas
+
+# Two schemas neither grade_read.py's nine spellings nor build_deck.py's key
+# normaliser has ever read -- both are sm_deck.py exports (research/sm_deck.py,
+# shipped 2026-09-15) and are recognised by shape, not filename, so a future
+# export using the same fields is picked up without another edit here. Before
+# this: research/marks/*_comments.jsonl and *_bars.jsonl sat in mark_sources()
+# (already globbed by build_deck.mark_sources()) but contributed zero opinions
+# -- grade_read.has_judgement() doesn't know "his_grade" or "his_letter", so
+# build_deck._judgement_key() returned None for every row and they were
+# silently skipped.
+_COMMENTS_ID_RE = re.compile(r"^([A-Z][A-Z0-9.\-]{0,7})_(\d{4}-\d{2}-\d{2})$")
+
+
+def _comments_key(row):
+    """research/marks/*_comments.jsonl -- {id, his_grade, his_note}, a chat
+    export with no symbol/date fields at all; the pair lives inside `id`."""
+    ident = row.get("id")
+    if "his_grade" not in row or not isinstance(ident, str):
+        return None
+    m = _COMMENTS_ID_RE.match(ident.strip())
+    return "%s_%s" % m.groups() if m else None
+
+
+def _comments_opinion(row):
+    """`his_grade` is free text off a chat export, not a ladder field -- 'A',
+    'S@09:50 (served bar A/C, late)', 'not S', 'S', 'ungraded' all appear in
+    the two files on disk tonight. Only a clean leading S/A/C is trusted:
+    'not S' says the read was wrong, not what the right grade is, and
+    'ungraded' means he never actually answered -- both are left as no
+    opinion rather than guessed at.
+    """
+    text = str(row.get("his_grade") or "").strip().upper()
+    if not text or text.startswith("NOT ") or text == "UNGRADED":
+        return None
+    return text[0] if text[0] in "SAC" else None
+
+
+def _bars_key(row):
+    """research/marks/*_bars.jsonl -- sm_deck.py cmd_mark_bar's own output,
+    {symbol, date, his_letter, his_bar, engine_bar, minutes_early, ...}."""
+    if "his_letter" not in row:
+        return None
+    symbol, day = row.get("symbol"), row.get("date")
+    return "%s_%s" % (symbol, day) if symbol and day else None
+
+
+def _bars_opinion(_row):
+    """A bar pick (his_letter vs the engine's C bar) is entry-timing feedback,
+    not a S/A/C verdict. sm_deck's own candidate pool
+    (sm_deck.py:_candidate_pool) only ever offers cards the baseline already
+    scored S or A, so tapping a bar at all is at minimum his engagement with
+    an A-grade candidate -- never read as S, which he never actually tapped
+    here.
+    """
+    return "A"
+
+
+def _judgement_key(row):
+    """Same job as build_deck._judgement_key, extended for the two schemas
+    that normaliser has never seen (see row_opinions above)."""
+    if "his_grade" in row:
+        return _comments_key(row)
+    if "his_letter" in row:
+        return _bars_key(row)
+    return bd._judgement_key(row)
 
 
 def row_grade(row):
@@ -175,7 +250,7 @@ def build_pool():
         n_rows_with_key = 0
         n_rows_with_grade = 0
         for row in bd._rows(path):
-            key = bd._judgement_key(row)
+            key = _judgement_key(row)
             if not key:
                 continue
             n_rows_with_key += 1
