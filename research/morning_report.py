@@ -100,9 +100,14 @@ def _arm_stats(rows: list[dict], arm: str) -> dict:
     when a row predates the max_loss field). Only exit rows with a `pnl`
     count as closed trades; an arm with entries but no matched exits yet
     reports 0 closed trades rather than guessing."""
+    # omen-v5-undry (2026-09-19): legacy-grade (non-S) engine fires are a
+    # separate fill-mechanics experiment tagged "legacy": True -- excluded
+    # here so they never dilute the honest S-vs-Austin verdict this function
+    # exists to report ("keep the honest ruler", Austin's own words).
     exits = [r for r in rows if r.get("event") == "exit" and r.get("arm") == arm
-             and r.get("pnl") is not None]
-    entries = [r for r in rows if r.get("event") == "entry" and r.get("arm") == arm]
+             and r.get("pnl") is not None and not r.get("legacy")]
+    entries = [r for r in rows if r.get("event") == "entry" and r.get("arm") == arm
+               and not r.get("legacy")]
     if not exits:
         return {"trades": len(entries), "closed": 0, "wins": 0, "mean_r": None, "per_day": None}
     r_values = []

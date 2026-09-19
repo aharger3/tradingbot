@@ -1187,6 +1187,19 @@ _alpaca_open_orders: dict = {}  # f"{symbol}|{opened_at}" -> last entry record
 # are barred from this function entirely, see the assert below).
 PAPER_ENTRY_RULE = os.getenv("PAPER_ENTRY_RULE", "g88")
 
+# omen-v5-undry (2026-09-19, "keep the honest ruler; un-dry the V5 engine
+# arm"): every legacy-grade (non-S) fire also rests a small g88 paper limit
+# beside the S-only arm above, purely to learn whether a real fill ever
+# lands at the level -- CLAUDE.md's 2026-09-01 rule ("S fires, A does
+# nothing, pending promotion") governs the SIMULATED PaperBook / the honest
+# edge verdict, not this. ENGINE_LEGACY_PAPER=0 is the kill switch (no code
+# change needed). LEGACY_GRADE_MAX_LOSS is deliberately small (0.1R) so this
+# experiment never competes with the S-only arm's buying power on the same
+# paper account -- see the WATCH_DAILY_CAP gate at the call site for the
+# volume governor (5/day, same cap WATCH dings already use).
+ENGINE_LEGACY_PAPER = os.getenv("ENGINE_LEGACY_PAPER", "1") != "0"
+LEGACY_GRADE_MAX_LOSS = float(os.getenv("LEGACY_GRADE_MAX_LOSS", "100"))
+
 
 def _alpaca_log(event: dict) -> None:
     _ALPACA_LEDGER.parent.mkdir(parents=True, exist_ok=True)
@@ -1256,16 +1269,46 @@ def _alpaca_cancel_stale_g88_entries(broker) -> None:
                          "error": str(e)[:200]})
             continue
         _alpaca_open_orders.pop(key, None)
+        # omen-v5-undry: `cancelled=False` means "not cancelled -- probably
+        # already filled" (broker/base.py's own contract), not necessarily
+        # "unfilled" -- the reason text below is inherited as-is (pre-existing
+        # wording, out of scope for this row) but the "legacy" tag at least
+        # lets a future read of the ledger separate the two experiments.
         _alpaca_log({"event": "entry_cancelled" if cancelled else "entry_cancel_noop",
                      "ts": rec.get("ts"), "symbol": rec.get("symbol"),
                      "direction": rec.get("direction"), "entry_rule": "g88",
-                     "arm": rec.get("arm", "engine"),
+                     "arm": rec.get("arm", "engine"), "legacy": rec.get("legacy", False),
                      "broker_order_id": rec["broker_order_id"],
                      "reason": f"unfilled at entry cutoff {ENTRY_CUTOFF} ET"})
 
 
+def _assert_paper_endpoint(broker) -> None:
+    """Belt-and-suspenders, same check `research/paper_order.py` runs at its
+    own call site (that file's own docstring: "SWARM.md: NEVER a live
+    order") -- `broker/alpaca.py` already hard-codes `paper=True` as the
+    only thing that can construct a client there, so this should never
+    trip, but omen-v5-undry (2026-09-19) adds a second, independent gate
+    right before the newly-widened call site ever reaches place_order.
+
+    A test double (e.g. research/test_alpaca_wiring.py's FakeBroker) has no
+    `_client` at all -- it is not an Alpaca client, so the live-vs-paper
+    question does not apply to it and this is a no-op, same as it would be
+    for any other BrokerInterface implementation that never touches Alpaca.
+    """
+    client = getattr(broker, "_client", None)
+    if client is None:
+        return
+    base_url = str(getattr(client, "_base_url", ""))
+    if "paper" not in base_url.lower():
+        raise RuntimeError(
+            f"refusing to submit: Alpaca client base URL does not name "
+            f"paper ({base_url!r}). This must never place a live order."
+        )
+
+
 def _alpaca_submit_entry(broker, runner: SignalRunner, symbol: str, sig: dict,
-                          ts: str, size_pct: float, entry_rule: Optional[str] = None):
+                          ts: str, size_pct: float, entry_rule: Optional[str] = None,
+                          extra: Optional[dict] = None):
     """Submit the opening order for one fired S onto the Alpaca paper broker.
 
     V5b (docs/rows/v5-contract.md, referee hold on V5, 2026-09-14): shares of
@@ -1317,6 +1360,7 @@ def _alpaca_submit_entry(broker, runner: SignalRunner, symbol: str, sig: dict,
                      "reason": "zero-quantity after sizing"})
         return None
 
+    _assert_paper_endpoint(broker)
     try:
         handle = broker.place_order(order)
     except Exception as e:  # noqa: BLE001 - log and let the sim book stand alone
@@ -1338,7 +1382,20 @@ def _alpaca_submit_entry(broker, runner: SignalRunner, symbol: str, sig: dict,
         "max_loss": max_loss,
         # V6 (2026-09-16): which order got us in -- see PAPER_ENTRY_RULE.
         "entry_rule": entry_rule,
+        # omen-v5-undry (2026-09-19): unambiguous "this is a real broker
+        # call" stamp, distinct from the manual dry_fire self-checks
+        # (dry: true) already in this ledger.
+        "dry": False,
     }
+    if entry_rule == "g88":
+        # The resting price IS the level and the target fill price by
+        # construction (g88: a limit resting exactly at the level) -- see
+        # research/g88_level_limit.py. A realized fill price that differs
+        # from this (partial/slipped fill) still needs broker.fills()
+        # polling, not wired here.
+        rec["level_price"] = order.limit_price
+    if extra:
+        rec.update(extra)
     _alpaca_log(rec)
     _alpaca_open_orders[f"{symbol}|{ts}"] = rec
     return rec
@@ -1522,18 +1579,30 @@ def _emit_signal(runner: SignalRunner, tasty_feed: TastytradeFeed, symbol: str, 
                                    setup=signal_type_val)
         print(f"   📗 PAPER OPEN {pos.contracts}x {pos.symbol} ${pos.strike:g} "
               f"{pos.direction.upper()} @ ${pos.entry_premium:.2f}")
-        if broker is not None:
-            _alpaca_entry_rec = _alpaca_submit_entry(broker, runner, symbol, sig,
-                                                      candle.timestamp, size_pct)
-            if _alpaca_entry_rec is not None:
-                print(f"   🔷 ALPACA {_alpaca_entry_rec['side'].upper()} "
-                      f"{_alpaca_entry_rec['quantity']}x "
-                      f"{_alpaca_entry_rec['order_symbol']} -> "
-                      f"{_alpaca_entry_rec['broker_order_id']}")
-        else:
-            _alpaca_entry_rec = None
+        _alpaca_entry_rec = (_alpaca_submit_entry(broker, runner, symbol, sig,
+                                                   candle.timestamp, size_pct)
+                             if broker is not None else None)
+    elif alert_only and broker is not None and ENGINE_LEGACY_PAPER:
+        # omen-v5-undry (2026-09-19, Austin: "keep the honest ruler; un-dry
+        # the V5 engine arm ... so we learn whether real fills ever get the
+        # level price"): legacy-grade (non-S) fires now ALSO rest a small
+        # g88 paper limit, tagged legacy=True so morning_report.py's honest
+        # S-vs-Austin verdict never mixes them in. Never opens the simulated
+        # PaperBook position above (S-only, unchanged) -- this is a parallel,
+        # small (LEGACY_GRADE_MAX_LOSS), independently-gated fill-mechanics
+        # experiment on the same paper account. Bounded by the same
+        # WATCH_DAILY_CAP already governing WATCH dings.
+        _alpaca_entry_rec = _alpaca_submit_entry(
+            broker, runner, symbol, sig, candle.timestamp,
+            size_pct=LEGACY_GRADE_MAX_LOSS / DEFAULT_MAX_LOSS,
+            entry_rule="g88", extra={"legacy": True, "grade": display_grade})
     else:
         _alpaca_entry_rec = None
+    if _alpaca_entry_rec is not None:
+        print(f"   🔷 ALPACA {_alpaca_entry_rec['side'].upper()} "
+              f"{_alpaca_entry_rec['quantity']}x "
+              f"{_alpaca_entry_rec['order_symbol']} -> "
+              f"{_alpaca_entry_rec['broker_order_id']}")
     if runner.post_to_discord and runner.discord:
         ok = runner.discord.post_signal(sig["signal_type"], candle, sig["reason"], plan,
                                          grade=display_grade, stop_level_name=stop_level, stop_width_pct=stop_width)
