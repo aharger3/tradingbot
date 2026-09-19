@@ -5,5 +5,20 @@
     "flag": "EXAMPLE_FLAG",
     "on": "1",
     "label": "example only -- not a real trading rule, do not run as-is"
+  },
+  {
+    "flag": "BNR_DISPLACEMENT_GATE",
+    "on": "0",
+    "label": "drop the no-touch displacement gate on break-and-retest setups"
+  },
+  {
+    "flag": "HTF_BIAS_GATE",
+    "on": "1",
+    "label": "only trade with the daily-candle trend"
+  },
+  {
+    "flag": "OCR_STRICT",
+    "on": "1",
+    "label": "the full one-candle-rule clause list, not just the retest-displacement clause"
   }
 ]
