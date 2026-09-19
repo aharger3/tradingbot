@@ -376,10 +376,37 @@ def build_report(pool, per_source, field_counts, field_s_counts):
 
 # ------------------------------------------------------------------------ CLI
 
+def selftest() -> None:
+    """omen-bar-deck-nightly's own guarantee: fail loud if *_comments.jsonl
+    (his_grade chat exports) or *_bars.jsonl (sm_deck.py --mark-bar's own
+    output) ever stop reaching canonical_pool() -- the exact failure mode
+    2026-09-17 found (both files sat in mark_sources() for weeks contributing
+    zero opinions because neither schema matched grade_read.py's spellings).
+    Same two conditions the pending-row verify line already runs by hand,
+    here as one flag: ``python research/marks_pool.py --selftest``.
+    """
+    pool = canonical_pool()
+    sources = {s for e in pool.values() for s in e.sources}
+    hit = sorted(s for s in sources if "comments" in s or "_bars" in s)
+    assert hit, ("no *_comments.jsonl or *_bars.jsonl source reached "
+                 "canonical_pool() -- sources seen: %s" % sorted(sources))
+    assert len(pool) >= 1272, \
+        "pool shrank: %d < 1272 -- a mark file went missing?" % len(pool)
+    print("ok   selftest: comments/bars source(s) feed the pool -- %s"
+          % ", ".join(hit))
+    print("ok   selftest: pool size %d (>= 1272 floor)" % len(pool))
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", default=os.path.join(HERE, "marks_pool.json"))
+    ap.add_argument("--selftest", action="store_true",
+                    help="assert *_comments.jsonl/*_bars.jsonl feed the pool, "
+                         "then exit (omen-bar-deck-nightly's guarantee)")
     a = ap.parse_args()
+
+    if a.selftest:
+        return selftest()
 
     pool, per_source, field_counts, field_s_counts = build_pool()
     report = build_report(pool, per_source, field_counts, field_s_counts)

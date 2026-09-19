@@ -1,0 +1,38 @@
+[
+ {
+  "id": "MU_2026-09-04",
+  "symbol": "MU",
+  "day": "2026-09-04",
+  "png": "research/decks/sm_2026-09-19/1_MU_2026-09-04.png",
+  "engine_grade": "A",
+  "bars": {
+   "C": "10:01",
+   "A": "09:58",
+   "B": "10:01"
+  }
+ },
+ {
+  "id": "NFLX_2026-09-04",
+  "symbol": "NFLX",
+  "day": "2026-09-04",
+  "png": "research/decks/sm_2026-09-19/2_NFLX_2026-09-04.png",
+  "engine_grade": "S",
+  "bars": {
+   "C": "09:47",
+   "A": "09:42",
+   "B": "09:46"
+  }
+ },
+ {
+  "id": "ORCL_2026-09-04",
+  "symbol": "ORCL",
+  "day": "2026-09-04",
+  "png": "research/decks/sm_2026-09-19/3_ORCL_2026-09-04.png",
+  "engine_grade": "S",
+  "bars": {
+   "C": "10:06",
+   "A": "10:03",
+   "B": "10:06"
+  }
+ }
+]
