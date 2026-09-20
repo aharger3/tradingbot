@@ -34,6 +34,7 @@ TAPE = ROOT / "research" / "tape"
 QUEUE = TAPE / "loop_queue.json"
 NIGHTLY = TAPE / "nightly.md"
 LOOP_CONFIG = TAPE / "loop.json"
+CYCLES_MD = TAPE / "cycles.md"
 
 HEADER = ("| date | flag | decision | $/day a->b | green a->b | off_book_id -> on_book_id |\n"
           "|---|---|---|---|---|---|\n")
@@ -82,15 +83,51 @@ def book_id_for(path_str: str | None) -> str:
 
 
 def parse_result(stdout: str) -> dict:
-    """loop_cycle.py's last stdout line is always one json.dumps(...) block
-    (the blocked dict on a build-stage block, the full gate dict otherwise);
-    nothing else it prints contains a '{'."""
-    if "{" not in stdout:
+    """loop_cycle.py prints exactly one pretty-printed json.dumps(..., indent=2)
+    block as its last output (the blocked dict on a build-stage block, the
+    full gate dict otherwise). Pretty-printing means every nested dict inside
+    it (before_whole, after_whole, h1, h2, ...) opens with its own '{', so
+    anchoring on `stdout.rfind("{")` (the previous approach) lands on the
+    LAST nested brace instead of the block's own -- slicing from there yields
+    a truncated fragment (e.g. just the "h2" sub-dict) that either fails to
+    parse or parses "successfully" without "decision"/"before_whole"/
+    "after_whole", silently producing an empty-looking result. Anchor on the
+    FIRST '{' instead and let raw_decode stop at that object's own matching
+    close brace, ignoring whatever text (if any) follows it."""
+    start = stdout.find("{")
+    if start == -1:
         return {}
     try:
-        return json.loads(stdout[stdout.rfind("{"):])
+        obj, _ = json.JSONDecoder().raw_decode(stdout, start)
+        return obj if isinstance(obj, dict) else {}
     except json.JSONDecodeError:
         return {}
+
+
+def cycles_md_row(flag: str, today: str) -> dict | None:
+    """Fallback source of truth for run_candidate(). research/tape/cycles.md
+    is the file research/loop_cycle.py's append_cycle_row() writes the real
+    verdict to -- unconditionally, and before it ever prints the summary JSON
+    parse_result() above reads. If that JSON still comes back unusable (a
+    future loop_cycle.py change breaks its stdout contract, a crash between
+    the two writes, whatever), re-derive tonight's line from the newest
+    cycles.md row for this flag+date instead of falling back to an empty
+    receipt while the real numbers sit one file over."""
+    if not CYCLES_MD.exists():
+        return None
+    match = None
+    for line in CYCLES_MD.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if not line.startswith("|") or line.startswith("|---"):
+            continue
+        parts = [p.strip() for p in line.strip("|").split("|")]
+        if len(parts) != 12:
+            continue
+        row_date, _label, row_flag, decision = parts[0], parts[1], parts[2], parts[3]
+        if row_flag == flag and row_date == today and decision in ("ship", "hold"):
+            match = {"decision": decision, "per_day": parts[4], "green": parts[5],
+                     "off_book": parts[9], "on_book": parts[10]}
+    return match
 
 
 def run_candidate(candidate: dict) -> str:
@@ -109,7 +146,13 @@ def run_candidate(candidate: dict) -> str:
 
     decision = result.get("decision")
     if decision not in ("ship", "hold"):
-        return "| %s | %s | hold | - | - | - -> - |\n" % (today, flag)
+        row = cycles_md_row(flag, today)
+        if row is None:
+            return "| %s | %s | hold | - | - | - -> - |\n" % (today, flag)
+        off_id = book_id_for(str(TAPE / row["off_book"])) if row["off_book"] not in ("-", "") else "-"
+        on_id = book_id_for(str(TAPE / row["on_book"])) if row["on_book"] not in ("-", "") else "-"
+        return "| %s | %s | %s | %s | %s | %s -> %s |\n" % (
+            today, flag, row["decision"], row["per_day"], row["green"], off_id, on_id)
 
     before, after = result.get("before_whole", {}), result.get("after_whole", {})
     off_id = book_id_for(result.get("off_book"))
