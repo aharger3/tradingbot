@@ -1,0 +1,98 @@
+[
+ {
+  "id": "PLTR_2026-09-04",
+  "symbol": "PLTR",
+  "day": "2026-09-04",
+  "png": "research/decks/sm_2026-09-19b/1_PLTR_2026-09-04.png",
+  "engine_grade": "S",
+  "bars": {
+   "C": "09:48",
+   "A": "09:42",
+   "B": "09:46"
+  }
+ },
+ {
+  "id": "SOFI_2026-09-04",
+  "symbol": "SOFI",
+  "day": "2026-09-04",
+  "png": "research/decks/sm_2026-09-19b/2_SOFI_2026-09-04.png",
+  "engine_grade": "A",
+  "bars": {
+   "C": "10:30",
+   "A": "10:22",
+   "B": "10:30"
+  }
+ },
+ {
+  "id": "TSLA_2026-09-04",
+  "symbol": "TSLA",
+  "day": "2026-09-04",
+  "png": "research/decks/sm_2026-09-19b/3_TSLA_2026-09-04.png",
+  "engine_grade": "A",
+  "bars": {
+   "C": "09:35",
+   "A": "09:31",
+   "B": "09:35"
+  }
+ },
+ {
+  "id": "TSM_2026-09-04",
+  "symbol": "TSM",
+  "day": "2026-09-04",
+  "png": "research/decks/sm_2026-09-19b/4_TSM_2026-09-04.png",
+  "engine_grade": "A",
+  "bars": {
+   "C": "10:40",
+   "A": "10:31",
+   "B": "10:39"
+  }
+ },
+ {
+  "id": "ACHR_2026-09-03",
+  "symbol": "ACHR",
+  "day": "2026-09-03",
+  "png": "research/decks/sm_2026-09-19b/5_ACHR_2026-09-03.png",
+  "engine_grade": "A",
+  "bars": {
+   "C": "10:09",
+   "A": "10:06",
+   "B": "10:09"
+  }
+ },
+ {
+  "id": "AVGO_2026-09-03",
+  "symbol": "AVGO",
+  "day": "2026-09-03",
+  "png": "research/decks/sm_2026-09-19b/6_AVGO_2026-09-03.png",
+  "engine_grade": "A",
+  "bars": {
+   "C": "10:59",
+   "A": "10:53",
+   "B": "10:56"
+  }
+ },
+ {
+  "id": "CRM_2026-09-03",
+  "symbol": "CRM",
+  "day": "2026-09-03",
+  "png": "research/decks/sm_2026-09-19b/7_CRM_2026-09-03.png",
+  "engine_grade": "A",
+  "bars": {
+   "C": "10:01",
+   "A": "09:58",
+   "B": "10:01"
+  }
+ },
+ {
+  "id": "INTC_2026-09-03",
+  "symbol": "INTC",
+  "day": "2026-09-03",
+  "png": "research/decks/sm_2026-09-19b/8_INTC_2026-09-03.png",
+  "engine_grade": "A",
+  "bars": {
+   "C": "09:35",
+   "A": "09:31",
+   "B": "09:34"
+  }
+ }
+]
