@@ -51,6 +51,7 @@ OFF_VALUES = {
     # "take the first break, no retest wait") is the prior default of "1",
     # not "0".
     "RETEST_REQUIRED": "1",
+    "BNR_DISPLACEMENT_GATE": "1",
 }
 
 DAY_POLICY_SHIP_VALUE = "3fires_stop_win_or_2loss"
