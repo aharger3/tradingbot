@@ -67,7 +67,13 @@ FLAG_SOURCES = (
         "LADDER_RUNNER_GUARD", "LADDER_WEIGHTS", "LADDER_PSYCH_TOL",
         "LADDER_PSYCH_STEP", "LADDER_PT4_MODE", "LADDER_PT4_R",
         "LADDER_MIN_RUNG_GAP", "LADDER_TREND_TEST",
-        "LADDER_TRAIL", "LADDER_HTF_PIVOTS")),
+        "LADDER_TRAIL", "LADDER_HTF_PIVOTS",
+        # 2026-09-20, g88 option A (forensics verdict R6, his pick "g88 entry
+        # first"): widen a resting-limit fill's collapsed stop to the causal
+        # size floor instead of dropping the trade. Default OFF; ported to the
+        # shipped engine 2026-09-13 but never stamped until now -- the same
+        # hole this list exists to close.
+        "ENTRY_FLOOR_STOP")),
         # NOT stamped, deliberately: backtest_week.LADDER_TREND_FUNNEL is a
         # Counter that ACCUMULATES during a run (backtest_week.py:266, 335, 343).
         # It is a diagnostic, not a flag. Stamping it would make the stamp -- and
