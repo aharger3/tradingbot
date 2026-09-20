@@ -7,11 +7,6 @@
     "label": "example only -- not a real trading rule, do not run as-is"
   },
   {
-    "flag": "OMEN_SCALE_PLAN",
-    "on": "none",
-    "label": "flat 2R exit (correct flags; 09-20 run was a no-op)"
-  },
-  {
     "flag": "ENTRY_FLOOR_STOP",
     "on": "1",
     "label": "g88 option A: widen stop to floor (his pick 2026-09-20)"
