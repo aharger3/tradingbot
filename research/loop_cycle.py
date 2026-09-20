@@ -400,6 +400,18 @@ def stage_gate(cfg: dict, flag: str, on_value: str, label: str, dry_run: bool) -
     h2v = half_verdict(before["h2"], after["h2"], max_drop)
     decision = "ship" if (h1v["enough"] and h1v["pass"] and h2v["enough"] and h2v["pass"]) else "hold"
 
+    # O4 guard (2026-09-20, SCALE_PLAN incident, research/tape/scale_plan_noop.md):
+    # loop_queue.json queued {"flag": "SCALE_PLAN", "on": "blind_2r"} -- the env
+    # var build_book() actually exported -- but backtest_week.py reads
+    # OMEN_SCALE_PLAN (legacy OMEN_LADDER_MODE), never bare SCALE_PLAN, so the ON
+    # arm silently rebuilt the OFF arm's book and the gate above priced two
+    # byte-identical books as a real "ship". stage_build's OFF-vs-baseline check
+    # cannot catch this -- it never compares ON against OFF. Any ON book_id equal
+    # to OFF's book_id means the flag changed nothing; that is not a measurement
+    # and must never record ship or hold.
+    if on_meta.get("stamp", {}).get("book_id") == off_meta.get("stamp", {}).get("book_id"):
+        decision = "noop"
+
     active_whole = after["whole"] if decision == "ship" else before["whole"]
     met = target_met(active_whole, cfg["targets"])
 
@@ -450,8 +462,10 @@ def stage_gate(cfg: dict, flag: str, on_value: str, label: str, dry_run: bool) -
                 before["whole"].get("per_day"), after["whole"].get("per_day"),
                 before["whole"].get("months_green"), after["whole"].get("months_green"))
 
+        verb = {"ship": "shipped", "noop": "NO-OP (ON book == OFF book -- flag not wired)"}.get(
+            decision, "held")
         line = ("[OMEN] cycle %d: %s -- %s. $/day %s -> %s, green months %s -> %s"
-                % (state["cycle_count"], label, "shipped" if decision == "ship" else "held",
+                % (state["cycle_count"], label, verb,
                    before["whole"].get("per_day"), after["whole"].get("per_day"),
                    before["whole"].get("months_green"), after["whole"].get("months_green")))
         if ship_entry is not None:
