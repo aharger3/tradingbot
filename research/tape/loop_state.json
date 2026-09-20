@@ -1,6 +1,6 @@
 {
-  "cycle_count": 9,
-  "consecutive_holds": 1,
+  "cycle_count": 10,
+  "consecutive_holds": 0,
   "target_met": false,
   "history": [
     {
@@ -107,6 +107,16 @@
       "decision": "hold",
       "dollars_per_day_before": -52.0,
       "dollars_per_day_after": -87.0,
+      "green_before": 11,
+      "green_after": 11
+    },
+    {
+      "cycle": 10,
+      "flag": "BNR_DISPLACEMENT_GATE",
+      "label": "drop the no-touch displacement gate on break-and-retest setups",
+      "decision": "ship",
+      "dollars_per_day_before": -52.0,
+      "dollars_per_day_after": -54.0,
       "green_before": 11,
       "green_after": 11
     }
