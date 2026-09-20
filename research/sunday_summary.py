@@ -260,6 +260,7 @@ def main() -> int:
 
         print(row.strip())
         rebuild_status_page()
+        run_paper_pnl_report()
         return 0
     except Exception as exc:
         print(f"sunday_summary.py: {exc}", file=sys.stderr)
@@ -276,6 +277,18 @@ def rebuild_status_page() -> None:
         build_status.build()
     except Exception as exc:
         print(f"sunday_summary.py: status page rebuild failed: {exc!r}", file=sys.stderr)
+
+
+def run_paper_pnl_report() -> None:
+    """Append the weekly paper P&L attribution block (research/paper_pnl.py)
+    to research/tape/paper_pnl.md, same swallow-on-failure pattern as
+    rebuild_status_page() -- read-only ledger analysis, never lets a broken
+    report turn a good weekly summary into a failed task."""
+    try:
+        from research import paper_pnl
+        paper_pnl.run(paper_pnl.LEDGER, write=True)
+    except Exception as exc:
+        print(f"sunday_summary.py: paper P&L report failed: {exc!r}", file=sys.stderr)
 
 
 if __name__ == "__main__":
