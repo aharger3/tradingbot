@@ -123,6 +123,30 @@ import argparse
 # it was never produced by importing live_scanner.py in the first place.
 os.environ.setdefault("ENABLE_SAC_LADDER", "1")
 
+# Austin, 2026-09-20 card: "Adopt shipped flags into the PAPER engine
+# automatically -- only when $/day improves AND green months hold."
+# research/loop_cycle.py's ship stage writes research/tape/shipped_flags.json
+# with an `adopt` verdict per flag (research/shipped_flags.decide_adopt: $/day
+# strictly better AND green months held). Same rule as ENABLE_SAC_LADDER just
+# above: this MUST run before `from signal_runner import ...` below, because
+# signal_runner.py reads every one of its flags off os.environ once, at its
+# own module import time -- setting them any later is a no-op.
+# `os.environ` (not setdefault per key) so an explicit override -- a real
+# .env line, an exported shell var -- always wins; load_and_apply() itself
+# only ever sets a key that is not already present. This is a live-process-
+# only construct with no backtest analog: backtest_2y.py imports
+# signal_runner directly and never imports research.shipped_flags (see
+# research/test_shipped_flags.py's baseline-never-reads-shipped-flags
+# check), so the honest backtest baseline this file is not on the import
+# path for is untouched by any flag adopted here.
+try:
+    from research.shipped_flags import load_and_apply as _load_shipped_flags
+    _adopted = _load_shipped_flags(os.environ)
+except Exception as _exc:                      # never block the scan on this
+    _adopted = []
+    print("shipped_flags: load failed, adopting nothing (%r)" % _exc)
+print("adopted flags: %s" % (", ".join(_adopted) if _adopted else "none"))
+
 # 2026-07-10: a stalled yfinance read hung the 10:59 scan for 26 min until the
 # schtask 2h limit killed the process — archive_1m never ran. Hard-cap every
 # socket so a dead feed raises instead of hanging the scan loop.

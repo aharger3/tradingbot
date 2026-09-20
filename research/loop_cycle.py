@@ -104,6 +104,7 @@ from research import book_stamp                                    # noqa: E402
 from research.g72_suppress_price import (                          # noqa: E402
     stats as g72_stats, shipped_rows, oneaday_rows,
 )
+from research import shipped_flags                                 # noqa: E402
 import notify_ntfy                                                 # noqa: E402
 
 TAPE = ROOT / "research" / "tape"
@@ -378,7 +379,7 @@ def load_state() -> dict:
     return {"cycle_count": 0, "consecutive_holds": 0, "target_met": False, "history": []}
 
 
-def stage_gate(cfg: dict, flag: str, label: str, dry_run: bool) -> dict:
+def stage_gate(cfg: dict, flag: str, on_value: str, label: str, dry_run: bool) -> dict:
     off_path = TAPE / ("book_%s_off.json.gz" % flag)
     on_path = TAPE / ("book_%s_on.json.gz" % flag)
     if not off_path.exists() or not on_path.exists():
@@ -429,16 +430,32 @@ def stage_gate(cfg: dict, flag: str, label: str, dry_run: bool) -> dict:
         "green_after": after["whole"].get("months_green"),
     })
 
+    ship_entry = None
     if not dry_run:
         STATE_JSON.write_text(json.dumps(state, indent=2), encoding="utf-8")
 
         append_cycle_row(state["cycle_count"], label, flag, decision, before, after,
                          h1v, h2v, off_path, on_path, "research/loop_cycle.py")
 
+        if decision == "ship":
+            # Austin, 2026-09-20 card: "Adopt shipped flags into the PAPER
+            # engine automatically -- only when $/day improves AND green
+            # months hold." A "ship" here only means loop_cycle's own
+            # no-regression gate passed (up to a 5% $/day drop tolerated);
+            # record_ship() applies the STRICTER improvement test and writes
+            # the verdict either way, so a ship that is flat/worse on $/day
+            # is recorded (adopt: False) rather than silently adopted.
+            ship_entry = shipped_flags.record_ship(
+                flag, on_value,
+                before["whole"].get("per_day"), after["whole"].get("per_day"),
+                before["whole"].get("months_green"), after["whole"].get("months_green"))
+
         line = ("[OMEN] cycle %d: %s -- %s. $/day %s -> %s, green months %s -> %s"
                 % (state["cycle_count"], label, "shipped" if decision == "ship" else "held",
                    before["whole"].get("per_day"), after["whole"].get("per_day"),
                    before["whole"].get("months_green"), after["whole"].get("months_green")))
+        if ship_entry is not None:
+            line += " (paper-engine adopt: %s)" % ("yes" if ship_entry["adopt"] else "no")
         notify_ntfy.push("OMEN loop", line)
 
     out = {"decision": decision, "flag": flag, "label": label, "unit": unit,
@@ -448,7 +465,8 @@ def stage_gate(cfg: dict, flag: str, label: str, dry_run: bool) -> dict:
            "before_h1": before["h1"], "after_h1": after["h1"],
            "before_h2": before["h2"], "after_h2": after["h2"],
            "h1": h1v, "h2": h2v,
-           "off_book": str(off_path), "on_book": str(on_path)}
+           "off_book": str(off_path), "on_book": str(on_path),
+           "adopt": ship_entry.get("adopt") if ship_entry is not None else None}
     print(json.dumps(out, indent=2, default=str))
     return out
 
@@ -477,7 +495,7 @@ def main():
             sys.exit(1)
 
     if args.stage in ("gate", "all"):
-        stage_gate(cfg, args.flag, args.label, args.dry_run)
+        stage_gate(cfg, args.flag, args.on, args.label, args.dry_run)
 
 
 if __name__ == "__main__":

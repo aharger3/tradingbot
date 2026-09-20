@@ -1,0 +1,12 @@
+[
+  {
+    "flag": "BNR_DISPLACEMENT_GATE",
+    "value": "0",
+    "date": "2026-09-19",
+    "per_day_before": -52.0,
+    "per_day_after": -54.0,
+    "green_before": 11,
+    "green_after": 11,
+    "adopt": false
+  }
+]
