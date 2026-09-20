@@ -296,10 +296,15 @@ def build_book(env_overrides: dict, out_gz: Path, rebuild_cfg: dict, smoke: bool
     return out_gz
 
 
-def stage_build(cfg: dict, flag: str, on_value: str, smoke: bool) -> dict:
+def stage_build(cfg: dict, flag: str, on_value: str, smoke: bool, on_env: dict | None = None) -> dict:
+    """on_env: extra env vars applied to the ON arm's build ONLY (e.g. the g88
+    option-A combo, ENTRY_FILL=limit_level riding along with ENTRY_FLOOR_STOP=1)
+    -- the OFF arm never sees them, so it still proves the code landing changed
+    nothing with the flag at its default."""
     off_path = TAPE / ("book_%s_off.json.gz" % flag)
     on_path = TAPE / ("book_%s_on.json.gz" % flag)
     rebuild = cfg["rebuild"]
+    on_env = on_env or {}
 
     print("building OFF arm (%s left at its default) -> %s" % (flag, off_path))
     # O4 repair (referee pass 2, DEFECT-2): pass {flag: None} rather than {} --
@@ -327,9 +332,14 @@ def stage_build(cfg: dict, flag: str, on_value: str, smoke: bool) -> dict:
             }
             return decision
 
-    print("building ON arm (%s=%s) -> %s" % (flag, on_value, on_path))
-    build_book({flag: on_value}, on_path, rebuild, smoke)
-    return {"decision": "built", "off_book": str(off_path), "on_book": str(on_path)}
+    on_overrides = {flag: on_value}
+    on_overrides.update(on_env)
+    combo = "" if not on_env else " + " + ", ".join(
+        "%s=%s" % (k, v) for k, v in sorted(on_env.items()))
+    print("building ON arm (%s=%s%s) -> %s" % (flag, on_value, combo, on_path))
+    build_book(on_overrides, on_path, rebuild, smoke)
+    return {"decision": "built", "off_book": str(off_path), "on_book": str(on_path),
+           "on_env": on_env}
 
 
 # ----------------------------------------------------------------------- gate
@@ -494,6 +504,10 @@ def main():
     ap.add_argument("--on", required=True, help="value to set --flag to for the ON arm")
     ap.add_argument("--label", required=True, help="plain English name Austin reads")
     ap.add_argument("--stage", choices=["build", "gate", "all"], required=True)
+    ap.add_argument("--on-env", default="{}",
+                    help="JSON object of extra env vars applied to the ON arm's "
+                         "build only (e.g. the g88 option-A combo); the OFF arm "
+                         "never sees them")
     ap.add_argument("--dry-run", action="store_true", help="suppress the ntfy push")
     ap.add_argument("--smoke", action="store_true",
                     help="both arms at --days 15, never a full 2-year book")
@@ -502,8 +516,12 @@ def main():
     cfg = json.loads(Path(args.config).read_text(encoding="utf-8"))
     TAPE.mkdir(parents=True, exist_ok=True)
 
+    on_env = json.loads(args.on_env)
+    if not isinstance(on_env, dict):
+        raise SystemExit("--on-env must be a JSON object, got %r" % args.on_env)
+
     if args.stage in ("build", "all"):
-        result = stage_build(cfg, args.flag, args.on, args.smoke)
+        result = stage_build(cfg, args.flag, args.on, args.smoke, on_env=on_env)
         if result.get("decision") == "blocked":
             print(json.dumps(result, indent=2))
             sys.exit(1)

@@ -133,9 +133,25 @@ def cycles_md_row(flag: str, today: str) -> dict | None:
 def run_candidate(candidate: dict) -> str:
     flag, on, label = candidate["flag"], str(candidate["on"]), candidate["label"]
     today = date.today().isoformat()
+    # Optional per-entry "env": extra env vars applied to the ON arm's build
+    # ONLY (research/loop_cycle.py's --on-env) -- the OFF arm keeps whatever
+    # the flag's code default is. Needed for combos like g88 option A
+    # (ENTRY_FLOOR_STOP=1 alone is a no-op with the shipped ENTRY_FILL=close
+    # default; it has to ride alongside ENTRY_FILL=limit_level -- see
+    # backtest_week.py's ENTRY_FLOOR_STOP docstring). Stamped into the label
+    # that flows into cycles.md/nightly.md so the referee sees the real combo
+    # a flag+on alone would hide, not just whatever prose the label happens
+    # to say.
+    env = candidate.get("env") or {}
+    label_for_run = label
+    if env:
+        combo = ", ".join("%s=%s" % (k, v) for k, v in sorted(env.items()))
+        label_for_run = "%s [env: %s]" % (label, combo)
     cmd = [sys.executable, str(ROOT / "research" / "loop_cycle.py"),
            "--config", str(LOOP_CONFIG), "--flag", flag, "--on", on,
-           "--label", label, "--stage", "all"]
+           "--label", label_for_run, "--stage", "all"]
+    if env:
+        cmd += ["--on-env", json.dumps(env)]
     proc = subprocess.run(cmd, cwd=str(ROOT), capture_output=True, text=True)
     result = parse_result(proc.stdout)
 
