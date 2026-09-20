@@ -142,7 +142,21 @@ def main() -> int:
         f.write(line)
 
     print(line.strip())
+    rebuild_tape_page()
     return 0
+
+
+def rebuild_tape_page() -> None:
+    """Regenerate research/tape/omen-tape.html so its Nightly receipts
+    section shows tonight's row without waiting for someone to run
+    build_tape.py by hand. MUST NOT FAIL THE TASK -- same rule as the rest
+    of this file: a broken/slow tape-page rebuild is logged and swallowed,
+    never allowed to turn a good night's receipt into a bad exit code."""
+    try:
+        from research import build_tape
+        build_tape.build()
+    except Exception as exc:
+        print("nightly_loop.py: tape page rebuild failed: %r" % exc, file=sys.stderr)
 
 
 if __name__ == "__main__":

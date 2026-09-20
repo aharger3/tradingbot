@@ -48,6 +48,7 @@ import argparse
 import gzip
 import json
 import sys
+from html import escape as esc
 from collections import Counter, defaultdict
 from datetime import date
 from pathlib import Path
@@ -598,14 +599,76 @@ TEMPLATE = (BASE_TEMPLATE
         "  document.getElementById('fillarms').innerHTML = head+'<tbody>'+body+'</tbody>';\n"
         "})();\n"
         "})();")
+    .replace(
+        "<footer>\n  Replay engine:",
+        "__NIGHTLY__\n<footer>\n  Replay engine:")
 )
 
 
-def main():
-    ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    ap.add_argument("--out", default="research/tape/omen-tape.html")
-    args = ap.parse_args()
+# --------------------------------------------------------- nightly receipts
+# Static (server-rendered, no JS) section: the honest tally of what the
+# scheduled OmenNightlyLoop task has actually done, so a reader does not have
+# to go find research/tape/nightly.md and loop_queue.json by hand. Kept out
+# of the facet engine on purpose -- these are receipts, not signal rows.
+def _nightly_rows() -> list[list[str]]:
+    """Every data row of research/tape/nightly.md's table, newest first."""
+    path = TAPE / "nightly.md"
+    if not path.exists():
+        return []
+    rows = []
+    for line in path.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if not line.startswith("|"):
+            continue
+        cells = [c.strip() for c in line.strip("|").split("|")]
+        if not cells or cells[0].lower() == "date" or set(cells[0]) <= {"-", ""}:
+            continue  # header row or |---|---|... separator
+        rows.append(cells)
+    rows.reverse()
+    return rows
 
+
+def _queue_remaining_labels() -> list[str]:
+    """Labels of every real (non-'_example') candidate still queued, in the
+    order nightly_loop.py will pop them."""
+    path = TAPE / "loop_queue.json"
+    if not path.exists():
+        return []
+    data = json.loads(path.read_text(encoding="utf-8"))
+    if not isinstance(data, list):
+        return []
+    from research.nightly_loop import is_real
+    return [c["label"] for c in data if is_real(c)]
+
+
+def nightly_receipts_html() -> str:
+    rows = _nightly_rows()
+    labels = _queue_remaining_labels()
+    head = ("<thead><tr><th>Date</th><th>Flag</th><th>Decision</th>"
+            "<th>$/day a&rarr;b</th><th>Green a&rarr;b</th><th>Book ids</th></tr></thead>")
+    body = "".join(
+        "<tr>" + "".join("<td>%s</td>" % esc(c) for c in r) + "</tr>" for r in rows
+    ) or '<tr><td colspan="6">no nightly runs yet</td></tr>'
+    queue_html = (
+        "<ul>" + "".join("<li>%s</li>" % esc(label) for label in labels) + "</ul>"
+        if labels else '<p class="note">queue empty</p>'
+    )
+    return (
+        '<section id="nightlysec">\n'
+        '  <h2>Nightly receipts <span class="hint">one row per scheduled run of '
+        '<span class="mono">nightly_loop.py</span>, newest first '
+        '&mdash; research/tape/nightly.md</span></h2>\n'
+        '  <div class="panel scroll"><table id="nightly">%s<tbody>%s</tbody></table></div>\n'
+        '  <p class="note" style="margin-top:9px"><b>Queue remaining</b> '
+        '(<span class="mono">research/tape/loop_queue.json</span>): %s</p>\n'
+        '</section>\n' % (head, body, queue_html)
+    )
+
+
+def build(out: str = "research/tape/omen-tape.html") -> Path:
+    """Rebuild the tape page and write it to `out`. Pulled out of main() so
+    nightly_loop.py can call this in-process (no argv, no subprocess) at the
+    end of every run."""
     rows, notes = load_rich_sources()
 
     nkeys, nextra, examples = check_no_repeats(rows)
@@ -645,15 +708,24 @@ def main():
             .replace("__NTRADED__", "{:,}".format(meta["traded"]))
             .replace("__RISK__", str(int(meta["risk_dollars"])))
             .replace("__MIN_SAMPLE_N__", str(MIN_SAMPLE_N))
+            .replace("__NIGHTLY__", nightly_receipts_html())
             .replace("__SUMMARY__", ""))
 
-    out = ROOT / args.out
-    out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(html, encoding="utf-8")
-    print("wrote %s (%.2f MB)" % (out, out.stat().st_size / 1e6))
+    out_path = ROOT / out
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(html, encoding="utf-8")
+    print("wrote %s (%.2f MB)" % (out_path, out_path.stat().st_size / 1e6))
     print("\nsources merged:")
     for n in notes:
         print("  - " + n)
+    return out_path
+
+
+def main():
+    ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    ap.add_argument("--out", default="research/tape/omen-tape.html")
+    args = ap.parse_args()
+    build(args.out)
 
 
 if __name__ == "__main__":
