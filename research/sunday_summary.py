@@ -111,15 +111,29 @@ def make_summary_row(nightly_lines: list[str], baseline: dict) -> str:
 def append_to_summary(row: str) -> bool:
     """Append the row to omen-tape-summary.md, creating the table if needed.
 
-    Returns True if successful, False otherwise.
+    Skips (returns True, no write) if a row for the same "week of ..." label
+    is already present -- the task's first-ever run can land the same day a
+    manual run already wrote that week's row, and re-running later the same
+    Sunday (before any new nightly receipts land) recomputes the same week
+    label. Append-only must also mean no-duplicate.
+
+    Returns True if successful (including a no-op skip), False otherwise.
     """
     if not SUMMARY.parent.exists():
         print(f"sunday_summary.py: vault path does not exist: {SUMMARY.parent}", file=sys.stderr)
         return False
 
+    week_label = row.split("|")[1].strip()  # "week of YYYY-MM-DD"
+
     heading = "## Weekly receipts"
     header = "| week of YYYY-MM-DD | tried N | shipped N | held N | $/day | green months |"
     separator = "|---|---|---|---|---|---|"
+
+    if SUMMARY.exists():
+        existing = SUMMARY.read_text(encoding="utf-8")
+        if f"| {week_label} |" in existing:
+            print(f"sunday_summary.py: row for '{week_label}' already present, skipping duplicate", file=sys.stderr)
+            return True
 
     if not SUMMARY.exists():
         # Create the file with heading, header, separator, and first row
