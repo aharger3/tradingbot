@@ -42,8 +42,18 @@ FAILURES: list[str] = []
 
 
 def check(name: str, cond: bool, detail: str = "") -> None:
-    if not cond:
-        FAILURES.append(f"{name}: {detail}")
+    assert cond, f"{name}: {detail}"
+
+
+def _run(fn, *args) -> None:
+    """Call a test function, catching check()'s AssertionError into FAILURES
+    so main()'s direct-run summary still lists every failing test. Under
+    pytest, fn is called directly instead (not through _run), so check()'s
+    assert fails that test for real."""
+    try:
+        fn(*args)
+    except AssertionError as exc:
+        FAILURES.append(str(exc))
 
 
 def fake_gate_stdout() -> str:
@@ -138,17 +148,17 @@ class _Monkeypatch:
 
 
 def main() -> None:
-    test_parse_result_survives_nested_pretty_json()
+    _run(test_parse_result_survives_nested_pretty_json)
 
     mp = _Monkeypatch()
     try:
-        test_run_candidate_uses_real_loop_cycle_result(mp)
+        _run(test_run_candidate_uses_real_loop_cycle_result, mp)
     finally:
         mp.undo()
 
     mp = _Monkeypatch()
     try:
-        test_run_candidate_falls_back_to_cycles_md(mp)
+        _run(test_run_candidate_falls_back_to_cycles_md, mp)
     finally:
         mp.undo()
 

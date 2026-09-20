@@ -31,8 +31,18 @@ FAILURES: list[str] = []
 
 
 def check(name: str, cond: bool, detail: object = "") -> None:
-    if not cond:
-        FAILURES.append("%s: %r" % (name, detail))
+    assert cond, "%s: %r" % (name, detail)
+
+
+def _run(fn, *args) -> None:
+    """Call a test function, catching check()'s AssertionError into FAILURES
+    so main()'s direct-run summary still lists every failing test. Under
+    pytest, fn is called directly instead (not through _run), so check()'s
+    assert fails that test for real."""
+    try:
+        fn(*args)
+    except AssertionError as exc:
+        FAILURES.append(str(exc))
 
 
 # --------------------------------------------------------- decide_adopt()
@@ -142,22 +152,22 @@ def test_baseline_builder_never_reads_shipped_flags():
 
 
 def main() -> None:
-    test_decide_adopt_strict_improvement_is_true()
-    test_decide_adopt_within_5pct_worse_is_false()
-    test_decide_adopt_false_when_green_falls_even_if_dollars_improve()
-    test_decide_adopt_flat_dollars_is_not_strict_improvement()
-    test_decide_adopt_never_raises_on_bad_input()
+    _run(test_decide_adopt_strict_improvement_is_true)
+    _run(test_decide_adopt_within_5pct_worse_is_false)
+    _run(test_decide_adopt_false_when_green_falls_even_if_dollars_improve)
+    _run(test_decide_adopt_flat_dollars_is_not_strict_improvement)
+    _run(test_decide_adopt_never_raises_on_bad_input)
 
     with tempfile.TemporaryDirectory() as d:
-        test_record_ship_writes_adopt_field_and_appends(Path(d))
+        _run(test_record_ship_writes_adopt_field_and_appends, Path(d))
     with tempfile.TemporaryDirectory() as d:
-        test_load_and_apply_sets_env_only_for_adopt_true(Path(d))
+        _run(test_load_and_apply_sets_env_only_for_adopt_true, Path(d))
     with tempfile.TemporaryDirectory() as d:
-        test_load_and_apply_respects_existing_env_value(Path(d))
+        _run(test_load_and_apply_respects_existing_env_value, Path(d))
     with tempfile.TemporaryDirectory() as d:
-        test_load_and_apply_missing_file_applies_nothing(Path(d))
+        _run(test_load_and_apply_missing_file_applies_nothing, Path(d))
 
-    test_baseline_builder_never_reads_shipped_flags()
+    _run(test_baseline_builder_never_reads_shipped_flags)
 
     if FAILURES:
         print("SHIPPED FLAGS TEST FAILED: %d check(s)" % len(FAILURES))

@@ -35,8 +35,18 @@ FAILURES: list[str] = []
 
 
 def check(name: str, cond: bool, detail: str = "") -> None:
-    if not cond:
-        FAILURES.append(f"{name}: {detail}")
+    assert cond, f"{name}: {detail}"
+
+
+def _run(fn, *args) -> None:
+    """Call a test function, catching check()'s AssertionError into FAILURES
+    so main()'s direct-run summary still lists every failing test. Under
+    pytest, fn is called directly instead (not through _run), so check()'s
+    assert fails that test for real."""
+    try:
+        fn(*args)
+    except AssertionError as exc:
+        FAILURES.append(str(exc))
 
 
 def _write(path: Path, text: str) -> None:
@@ -170,9 +180,9 @@ def test_build_writes_file_and_skips_dispatch_copy_when_asked() -> None:
 
 
 def main() -> None:
-    test_page_shows_dollar_per_day_and_newest_nightly_date()
-    test_adopted_status_shapes()
-    test_build_writes_file_and_skips_dispatch_copy_when_asked()
+    _run(test_page_shows_dollar_per_day_and_newest_nightly_date)
+    _run(test_adopted_status_shapes)
+    _run(test_build_writes_file_and_skips_dispatch_copy_when_asked)
 
     if FAILURES:
         print("STATUS PAGE TEST FAILED: %d check(s)" % len(FAILURES))
