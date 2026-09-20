@@ -5,3 +5,4 @@
 | 2026-09-17 | - | empty | - | - | - |
 | 2026-09-19 | - | empty | - | - | - |
 | 2026-09-19 | BNR_DISPLACEMENT_GATE | ship | -52.0 -> -54.0 | 11 -> 11 | d5ba41a41d65e1e4 -> baafa4455388dedb |
+| 2026-09-20 | SCALE_PLAN | ship | -52.0 -> -52.0 | 11 -> 11 | d5ba41a41d65e1e4 -> d5ba41a41d65e1e4 |

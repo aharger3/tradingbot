@@ -7,11 +7,6 @@
     "label": "example only -- not a real trading rule, do not run as-is"
   },
   {
-    "flag": "SCALE_PLAN",
-    "on": "blind_2r",
-    "label": "flat 2R target vs shipped ladder (3rd attempt; runs 1-2 were terminated, not failed)"
-  },
-  {
     "flag": "ENTRY_FLOOR_STOP",
     "on": "1",
     "label": "g88 option A: widen stop to floor (his pick 2026-09-20)"

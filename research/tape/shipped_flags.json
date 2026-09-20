@@ -8,5 +8,15 @@
     "green_before": 11,
     "green_after": 11,
     "adopt": false
+  },
+  {
+    "flag": "SCALE_PLAN",
+    "value": "blind_2r",
+    "date": "2026-09-20",
+    "per_day_before": -52.0,
+    "per_day_after": -52.0,
+    "green_before": 11,
+    "green_after": 11,
+    "adopt": false
   }
 ]
