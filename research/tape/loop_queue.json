@@ -15,10 +15,5 @@
     "flag": "OCR_STRICT",
     "on": "1",
     "label": "the full one-candle-rule clause list, not just the retest-displacement clause"
-  },
-  {
-    "flag": "BNR_DISPLACEMENT_GATE",
-    "on": "0",
-    "label": "corpus: reclaim with strength above 128 (H8NxRPIx1V8)"
   }
 ]
