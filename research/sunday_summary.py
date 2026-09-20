@@ -245,10 +245,23 @@ def main() -> int:
             return 0
 
         print(row.strip())
+        rebuild_status_page()
         return 0
     except Exception as exc:
         print(f"sunday_summary.py: {exc}", file=sys.stderr)
         return 0
+
+
+def rebuild_status_page() -> None:
+    """Regenerate the phone status page (research/build_status.py) as part
+    of the weekly run too, same as nightly_loop.py does every night --
+    swallowed on failure so a broken rebuild never turns a good weekly
+    summary into a failed task."""
+    try:
+        from research import build_status
+        build_status.build()
+    except Exception as exc:
+        print(f"sunday_summary.py: status page rebuild failed: {exc!r}", file=sys.stderr)
 
 
 if __name__ == "__main__":

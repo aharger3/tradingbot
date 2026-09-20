@@ -186,6 +186,7 @@ def main() -> int:
 
     print(line.strip())
     rebuild_tape_page()
+    rebuild_status_page()
     return 0
 
 
@@ -200,6 +201,18 @@ def rebuild_tape_page() -> None:
         build_tape.build()
     except Exception as exc:
         print("nightly_loop.py: tape page rebuild failed: %r" % exc, file=sys.stderr)
+
+
+def rebuild_status_page() -> None:
+    """Regenerate the small phone status page (research/build_status.py) so
+    tonight's receipt, queue and V5/bar-deck numbers are on it without
+    waiting for someone to run it by hand. Same MUST NOT FAIL THE TASK rule
+    as rebuild_tape_page() above."""
+    try:
+        from research import build_status
+        build_status.build()
+    except Exception as exc:
+        print("nightly_loop.py: status page rebuild failed: %r" % exc, file=sys.stderr)
 
 
 if __name__ == "__main__":
