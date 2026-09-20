@@ -187,6 +187,7 @@ def main() -> int:
     print(line.strip())
     rebuild_tape_page()
     rebuild_status_page()
+    run_v5_session_counter()
     return 0
 
 
@@ -213,6 +214,20 @@ def rebuild_status_page() -> None:
         build_status.build()
     except Exception as exc:
         print("nightly_loop.py: status page rebuild failed: %r" % exc, file=sys.stderr)
+
+
+def run_v5_session_counter() -> None:
+    """omen-session-count-check (2026-09-20): run v5_session_counter.run()
+    as part of OmenNightlyLoop's own nightly run, instead of the separate
+    OmenV5SessionCounter scheduled task (retired same day this was wired
+    in). Read-only against journal files, idempotent per calendar day --
+    same MUST NOT FAIL THE TASK rule as the rebuild_*_page() calls above."""
+    try:
+        from research import v5_session_counter
+        result = v5_session_counter.run()
+        print("nightly_loop.py: v5 session count: %r" % result)
+    except Exception as exc:
+        print("nightly_loop.py: v5 session counter failed: %r" % exc, file=sys.stderr)
 
 
 if __name__ == "__main__":
