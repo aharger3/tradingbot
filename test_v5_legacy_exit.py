@@ -63,6 +63,37 @@ def test_every_filled_legacy_entry_has_a_close_or_cancel():
         f"filled legacy entries with no session_end close/cancel: {missing}")
 
 
+MONDAY = "2026-09-21"
+
+
+def test_mondays_first_legacy_fill_has_a_flatten():
+    rows = _read_ledger(LEDGER)
+
+    monday_fills = sorted(
+        (r for r in rows
+         if r.get("event") == "entry" and r.get("arm") == "engine"
+         and r.get("legacy") is True and r.get("status") == "filled"
+         and str(r.get("ts", "")).startswith(MONDAY)),
+        key=lambda r: r.get("ts"),
+    )
+
+    if not monday_fills:
+        # No legacy fill logged for Monday yet -- nothing to check.
+        assert True
+        return
+
+    first = monday_fills[0]
+    flattened = {
+        (r.get("symbol"), r.get("ts"))
+        for r in rows
+        if r.get("event") == "session_end" and r.get("legacy") is True
+        and r.get("action") == "flatten"
+    }
+    assert (first.get("symbol"), first.get("ts")) in flattened, (
+        f"Monday's first legacy fill has no matching flatten row: {first}")
+
+
 if __name__ == "__main__":
     test_every_filled_legacy_entry_has_a_close_or_cancel()
+    test_mondays_first_legacy_fill_has_a_flatten()
     print("PASS: every filled legacy entry has a matching close/cancel (or none are filled yet)")
