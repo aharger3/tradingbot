@@ -36,11 +36,10 @@ NIGHTLY = TAPE / "nightly.md"
 LOOP_CONFIG = TAPE / "loop.json"
 CYCLES_MD = TAPE / "cycles.md"
 
-HEADER = ("| date | flag | decision | $/day a->b | green a->b | off_book_id -> on_book_id | "
-          "adopt (paper) |\n"
-          "|---|---|---|---|---|---|---|\n")
+HEADER = ("| date | flag | decision | $/day a->b | green a->b | off_book_id -> on_book_id |\n"
+          "|---|---|---|---|---|---|\n")
 
-EMPTY_ROW = "| %s | - | empty | - | - | - | - |\n"
+EMPTY_ROW = "| %s | - | empty | - | - | - |\n"
 
 
 def load_queue() -> list:

@@ -642,13 +642,31 @@ def _queue_remaining_labels() -> list[str]:
 
 
 def nightly_receipts_html() -> str:
+    """Austin, 2026-09-20 card: "Adopt shipped flags into the PAPER engine
+    automatically -- only when $/day improves AND green months hold." The
+    tape page shows that verdict beside every "ship" row -- computed here
+    from research/tape/shipped_flags.json via build_status.adopted_status()
+    (imported, not retyped: it already handles a missing/unrecognized file
+    by reporting "unknown" rather than guessing), never stored back into
+    nightly.md's own row shape -- research/build_status.py's last_night_row()
+    parses that file expecting exactly 6 columns, and this page's own
+    _nightly_rows() reads it the same generic way, so nightly.md's schema is
+    left alone and both readers keep working."""
     rows = _nightly_rows()
     labels = _queue_remaining_labels()
+    from research.build_status import adopted_status
     head = ("<thead><tr><th>Date</th><th>Flag</th><th>Decision</th>"
-            "<th>$/day a&rarr;b</th><th>Green a&rarr;b</th><th>Book ids</th></tr></thead>")
-    body = "".join(
-        "<tr>" + "".join("<td>%s</td>" % esc(c) for c in r) + "</tr>" for r in rows
-    ) or '<tr><td colspan="6">no nightly runs yet</td></tr>'
+            "<th>$/day a&rarr;b</th><th>Green a&rarr;b</th><th>Book ids</th>"
+            "<th>Adopt (paper engine)</th></tr></thead>")
+
+    def row_html(cells):
+        flag = cells[1] if len(cells) > 1 else ""
+        decision = cells[2] if len(cells) > 2 else ""
+        adopt = adopted_status(flag, decision) if flag and flag != "-" else "n/a"
+        tds = "".join("<td>%s</td>" % esc(c) for c in cells)
+        return "<tr>%s<td>%s</td></tr>" % (tds, esc(adopt))
+
+    body = "".join(row_html(r) for r in rows) or '<tr><td colspan="7">no nightly runs yet</td></tr>'
     queue_html = (
         "<ul>" + "".join("<li>%s</li>" % esc(label) for label in labels) + "</ul>"
         if labels else '<p class="note">queue empty</p>'
