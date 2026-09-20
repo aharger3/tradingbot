@@ -1,6 +1,6 @@
 {
-  "cycle_count": 11,
-  "consecutive_holds": 0,
+  "cycle_count": 13,
+  "consecutive_holds": 2,
   "target_met": false,
   "history": [
     {
@@ -129,6 +129,26 @@
       "dollars_per_day_after": -52.0,
       "green_before": 11,
       "green_after": 11
+    },
+    {
+      "cycle": 12,
+      "flag": "OMEN_SCALE_PLAN",
+      "label": "flat 2R exit (correct flags; 09-20 run was a no-op)",
+      "decision": "hold",
+      "dollars_per_day_before": -52.0,
+      "dollars_per_day_after": -21.0,
+      "green_before": 11,
+      "green_after": 12
+    },
+    {
+      "cycle": 13,
+      "flag": "ENTRY_FLOOR_STOP",
+      "label": "g88 option A: limit at level + widen stop to floor (his pick 2026-09-20) [env: ENTRY_FILL=limit_level]",
+      "decision": "hold",
+      "dollars_per_day_before": -52.0,
+      "dollars_per_day_after": -59.0,
+      "green_before": 11,
+      "green_after": 13
     }
   ],
   "stop": false,

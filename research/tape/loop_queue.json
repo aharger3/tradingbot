@@ -7,14 +7,6 @@
     "label": "example only -- not a real trading rule, do not run as-is"
   },
   {
-    "flag": "ENTRY_FLOOR_STOP",
-    "on": "1",
-    "label": "g88 option A: limit at level + widen stop to floor (his pick 2026-09-20)",
-    "env": {
-      "ENTRY_FILL": "limit_level"
-    }
-  },
-  {
     "flag": "HTF_BIAS_GATE",
     "on": "1",
     "env": {

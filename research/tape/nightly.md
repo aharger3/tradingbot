@@ -8,3 +8,5 @@
 | 2026-09-20 | SCALE_PLAN | ship | -52.0 -> -52.0 | 11 -> 11 | d5ba41a41d65e1e4 -> d5ba41a41d65e1e4 |
 <!-- O4 repair 2026-09-20: the row above is corrected below, not edited in place (research/tape/scale_plan_noop.md). off_book_id == on_book_id was the tell -- SCALE_PLAN never reached backtest_week.py (it reads OMEN_SCALE_PLAN); the ON arm rebuilt the OFF arm's book. stage_gate() now records this shape as "noop", never "ship". -->
 | 2026-09-20 | SCALE_PLAN | noop (correction: ON book_id == OFF book_id, flag not wired -- see comment above) | -52.0 -> -52.0 | 11 -> 11 | d5ba41a41d65e1e4 -> d5ba41a41d65e1e4 |
+| 2026-09-20 | OMEN_SCALE_PLAN | hold | -52.0 -> -21.0 | 11 -> 12 | d5ba41a41d65e1e4 -> f479f81c27ed69e4 |
+| 2026-09-20 | ENTRY_FLOOR_STOP | hold | -52.0 -> -59.0 | 11 -> 13 | d5ba41a41d65e1e4 -> 2c17b38389bcd992 |
