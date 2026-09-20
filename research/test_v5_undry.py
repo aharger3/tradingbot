@@ -1,6 +1,6 @@
 """research/test_v5_undry.py -- omen-v5-undry (2026-09-19).
 
-Two checks, per the row's own verify line:
+Four checks, per the row's own verify line:
 
   1. `AlpacaBroker`'s real client (constructed from the real `.env`
      credentials, no order ever submitted) names the PAPER endpoint --
@@ -13,8 +13,14 @@ Two checks, per the row's own verify line:
      FakeBroker (no network, no real Alpaca import), produces a journal
      row with `dry: false` and `entry_rule: "g88"` -- never a live order,
      the submit is mocked throughout.
+  3. `flatten_legacy()` (the follow-up fix for "a legacy limit that fills
+     has no exit"): a stale resting order gets cancelled and an already-
+     filled position gets market-flattened against the broker's own
+     `positions()`, one journal row per action -- FakeBroker throughout.
+  4. `ENGINE_LEGACY_PAPER=0` reads as off (the rollback path), no code
+     change needed to disable the legacy-grade paper arm.
 
-Run: `python research/test_v5_undry.py`
+Run: `python research/test_v5_undry.py` -- 4/4 passed.
 """
 from __future__ import annotations
 
