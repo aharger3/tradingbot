@@ -1,0 +1,22 @@
+omen nightly loop queue readiness check (2026-09-20)
+
+source: corpus-candidates-map.md, loop_queue.json, queue-plan.md, cycles.md, loop_state.json
+
+queue_count: 3
+entries (non-example):
+  1. HTF_BIAS_GATE=1   - only trade with the daily-candle trend
+  2. OCR_STRICT=1       - full one-candle-rule clause list
+  3. COUNTER_TREND_CAP=1 - cap counter-day-trend setups to C grade (added this pass)
+
+gates found: none
+  - all three flags are registered in book_stamp.FLAG_SOURCES (signal_runner block)
+  - none appear in queue-plan.md's "Excluded" list (no hardcoded constants, no
+    fill/exit-honesty flags, no book_stamp.FLAG_SOURCES gap)
+  - none blocked in cycles.md's landed/blocked history
+
+note: corpus-candidates-map.md's suggested addition, BNR_DISPLACEMENT_GATE=0,
+was NOT re-added -- it already ran and shipped as cycle 10 tonight
+(cycles.md 2026-09-19, loop_state.json cycle 10, nightly.md). Re-queueing a
+shipped flag would be a duplicate cycle, not a new candidate, so
+COUNTER_TREND_CAP=1 (next in queue-plan.md's pick order, untested, ungated)
+was appended instead to reach the 3-entry floor.

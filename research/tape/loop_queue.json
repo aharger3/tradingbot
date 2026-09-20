@@ -15,5 +15,10 @@
     "flag": "OCR_STRICT",
     "on": "1",
     "label": "the full one-candle-rule clause list, not just the retest-displacement clause"
+  },
+  {
+    "flag": "COUNTER_TREND_CAP",
+    "on": "1",
+    "label": "cap counter-day-trend setups to C grade"
   }
 ]
