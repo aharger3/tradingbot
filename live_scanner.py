@@ -1178,6 +1178,17 @@ def _cooled_down(symbol: str, direction: str, ts: str) -> bool:
 _ALPACA_LEDGER = Path(__file__).parent / "journal" / "alpaca-paper.jsonl"
 _alpaca_open_orders: dict = {}  # f"{symbol}|{opened_at}" -> last entry record
 
+# omen-v5-undry follow-up (2026-09-19): legacy-grade g88 entries only, kept
+# separately from `_alpaca_open_orders` because `_alpaca_cancel_stale_g88_
+# entries` pops EVERY g88 record (legacy or not) out of that dict at
+# ENTRY_CUTOFF (11:00 default) whether the cancel actually landed or the
+# order had already filled -- see that function's own "cancelled=False"
+# comment. A legacy limit that filled there would otherwise be forgotten
+# for the rest of the session. This dict survives that sweep so
+# `flatten_legacy()` (called once from main()'s loop at MANAGE_END) can
+# still find it and close it out.
+_legacy_positions: dict = {}  # f"{symbol}|{opened_at}" -> entry record
+
 # V6 (docs/rows/v5-contract.md addendum, Austin 2026-09-16): which order the
 # paper arms use to get in. "close" is the pre-V6 behaviour (MARKET, filled
 # at whatever price is live when the S is detected -- effectively the signal
@@ -1398,6 +1409,8 @@ def _alpaca_submit_entry(broker, runner: SignalRunner, symbol: str, sig: dict,
         rec.update(extra)
     _alpaca_log(rec)
     _alpaca_open_orders[f"{symbol}|{ts}"] = rec
+    if rec.get("legacy"):
+        _legacy_positions[f"{symbol}|{ts}"] = rec
     return rec
 
 
@@ -1453,6 +1466,114 @@ def _alpaca_submit_exit(broker, runner: SignalRunner, ev: dict):
     }
     _alpaca_log(rec)
     return rec
+
+
+def flatten_legacy(broker) -> list:
+    """Session-end safety net for the legacy-grade (WATCH-tier) g88 paper
+    arm (omen-v5-undry follow-up, 2026-09-19).
+
+    The legacy arm has no marking loop and no simulated PaperBook position
+    behind it (`_emit_signal`'s alert_only branch never calls
+    `paper.open_from_plan`) -- unlike the S-only arm, nothing else in this
+    file ever revisits a legacy g88 order again after `_alpaca_cancel_
+    stale_g88_entries` sweeps it out of `_alpaca_open_orders` at
+    ENTRY_CUTOFF. If that sweep's cancel didn't land because the limit had
+    already filled, the resulting position sits open on the paper account
+    forever. This closes the loop once, at MANAGE_END, called from main().
+
+    For every legacy entry this process still remembers (`_legacy_
+    positions`, which -- unlike `_alpaca_open_orders` -- the ENTRY_CUTOFF
+    sweep never touches):
+      1. try to cancel its resting order (idempotent / harmless no-op if it
+         already filled or was already cancelled, same contract
+         `_alpaca_cancel_stale_g88_entries` already relies on);
+      2. if the cancel didn't land (`cancel_order` returns False --
+         broker/base.py's own "not cancelled, probably filled" contract),
+         confirm against the broker's own `positions()` (never a local
+         guess) and, if still open, flatten it with a MARKET order in the
+         opposite direction -- never a new resting order.
+
+    One journal row per action (`action: "cancel"` or `"flatten"`). Never
+    called under replay (no call site does; `broker` is None there).
+    """
+    from broker.base import Order, OrderHandle, OrderSide, OrderStatus, OrderType
+
+    results = []
+    for key, rec in list(_legacy_positions.items()):
+        _legacy_positions.pop(key, None)
+        symbol = rec["order_symbol"]
+        handle = OrderHandle(broker_order_id=rec["broker_order_id"],
+                              idempotency_key=rec["idempotency_key"],
+                              status=OrderStatus.WORKING)
+        try:
+            cancelled = broker.cancel_order(handle)
+        except Exception as e:  # noqa: BLE001 - log and move on to the next one
+            _alpaca_log({"event": "session_end_error", "ts": rec.get("ts"),
+                         "symbol": rec.get("symbol"), "legacy": True,
+                         "error": str(e)[:200]})
+            continue
+
+        if cancelled:
+            row = {"event": "session_end", "action": "cancel", "legacy": True,
+                   "ts": rec.get("ts"), "symbol": rec.get("symbol"),
+                   "direction": rec.get("direction"),
+                   "broker_order_id": rec["broker_order_id"],
+                   "entry_rule": rec.get("entry_rule"),
+                   "reason": f"unfilled g88 limit cancelled at session end "
+                             f"(MANAGE_END {MANAGE_END} ET)"}
+            _alpaca_log(row)
+            results.append(row)
+            continue
+
+        # Not cancelled -- "probably filled" per cancel_order's own
+        # contract (broker/base.py). Confirm against the broker's own
+        # ground truth before flattening anything.
+        pos = next((p for p in broker.positions() if p.symbol == symbol), None)
+        if pos is None or pos.quantity == 0:
+            continue  # already flat by some other path -- nothing to do
+
+        close_side = OrderSide.SELL if pos.quantity > 0 else OrderSide.BUY
+        qty = abs(pos.quantity)
+        idem = f"{symbol}-{rec.get('ts')}-session-end-flatten"
+        order = Order(symbol=symbol, side=close_side, quantity=qty,
+                      order_type=OrderType.MARKET, idempotency_key=idem)
+        try:
+            close_handle = broker.place_order(order)
+        except Exception as e:  # noqa: BLE001
+            _alpaca_log({"event": "session_end_error", "ts": rec.get("ts"),
+                         "symbol": rec.get("symbol"), "legacy": True,
+                         "error": str(e)[:200]})
+            continue
+
+        # Best-effort realized fill price via the existing fills() call
+        # (broker/base.py) -- never invented, never polled/retried (same
+        # "not wired here" caveat _g88_level_price's own docstring already
+        # carries for the entry side). None here just means the ledger row
+        # for this flatten has no closing price yet, not that nothing
+        # happened -- position/order state at the broker is already flat.
+        try:
+            fill = next((f for f in broker.fills()
+                         if f.broker_order_id == close_handle.broker_order_id), None)
+        except Exception:  # noqa: BLE001 - fills() lookup is best-effort only
+            fill = None
+        fill_price = fill.price if fill else None
+        pnl = (fill_price - pos.avg_price) * pos.quantity if fill_price is not None else None
+        max_loss = rec.get("max_loss")
+        r_multiple = (pnl / max_loss) if (pnl is not None and max_loss) else None
+
+        row = {"event": "session_end", "action": "flatten", "legacy": True,
+               "ts": rec.get("ts"), "symbol": rec.get("symbol"),
+               "direction": rec.get("direction"),
+               "broker_order_id": close_handle.broker_order_id,
+               "quantity": qty, "fill_price": fill_price,
+               "level_price": rec.get("level_price"), "stop": rec.get("stop"),
+               "pnl": pnl, "r_multiple": r_multiple,
+               "entry_rule": rec.get("entry_rule"),
+               "reason": f"legacy g88 fill flattened at session end "
+                         f"(MANAGE_END {MANAGE_END} ET)"}
+        _alpaca_log(row)
+        results.append(row)
+    return results
 
 
 def _emit_signal(runner: SignalRunner, tasty_feed: TastytradeFeed, symbol: str, candle, sig: dict, paper=None, broker=None) -> bool:
@@ -1595,7 +1716,12 @@ def _emit_signal(runner: SignalRunner, tasty_feed: TastytradeFeed, symbol: str, 
         _alpaca_entry_rec = _alpaca_submit_entry(
             broker, runner, symbol, sig, candle.timestamp,
             size_pct=LEGACY_GRADE_MAX_LOSS / DEFAULT_MAX_LOSS,
-            entry_rule="g88", extra={"legacy": True, "grade": display_grade})
+            entry_rule="g88", extra={"legacy": True, "grade": display_grade,
+                                      # carried through to flatten_legacy()'s
+                                      # journal row so a filled-and-flattened
+                                      # legacy position's P&L can be read
+                                      # against the level/stop by eye.
+                                      "stop": sig["stop"]})
     else:
         _alpaca_entry_rec = None
     if _alpaca_entry_rec is not None:
@@ -1925,6 +2051,11 @@ def main():
         print(f"Done. {fired} signals fired.")
         return
 
+    # omen-v5-undry follow-up (2026-09-19): the day flatten_legacy() last ran
+    # for, so it fires exactly once per session (at MANAGE_END, below) rather
+    # than every 60s sleep tick for the rest of the day.
+    legacy_flattened_date = None
+
     while True:
         now = now_et()
         if now.weekday() >= 5:  # Sat=5, Sun=6
@@ -1937,6 +2068,15 @@ def main():
         # scan_once, so this widens management only.
         manage_end = max(end, parse_window("00:00-" + MANAGE_END)[1]) if MANAGE_END else end
         if not in_window(now, start, manage_end):
+            # Session-end flatten: only once, and only once the clock has
+            # actually reached MANAGE_END (not the same "outside window"
+            # branch pre-market takes before `start`). Guards the legacy g88
+            # arm the same way `_alpaca_cancel_stale_g88_entries` already
+            # guards the entry side, just at the other end of the day.
+            if (broker is not None and now.time() >= manage_end
+                    and legacy_flattened_date != now.date()):
+                flatten_legacy(broker)
+                legacy_flattened_date = now.date()
             # Sleep until next window open
             print(f"{now.strftime('%H:%M:%S')} ET outside window {args.window}"
                   f" (managing to {MANAGE_END}), sleeping 60s")

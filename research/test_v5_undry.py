@@ -26,7 +26,8 @@ from types import SimpleNamespace
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from broker.base import (  # noqa: E402
-    AccountSnapshot, BrokerInterface, Order, OrderHandle, OrderStatus, OrderType,
+    AccountSnapshot, BrokerInterface, Fill, Order, OrderHandle, OrderSide,
+    OrderStatus, OrderType, Position,
 )
 import live_scanner  # noqa: E402
 
@@ -108,6 +109,97 @@ def test_legacy_grade_fire_books_dry_false_g88_on_fake_broker(tmp_path, monkeypa
     print(f"PASS: legacy-grade fire logged dry:false entry_rule:g88 -- {logged}")
 
 
+def test_flatten_legacy_cancels_stale_order_and_flattens_filled_position(tmp_path, monkeypatch):
+    """omen-v5-undry follow-up (2026-09-19): the flagged risk was 'a legacy
+    limit that fills has no exit -- it sits as an open paper position
+    forever'. Seeds one still-resting legacy g88 order and one already-
+    filled one (an open position with no other exit path), then asserts
+    `flatten_legacy()` cancels the first, market-flattens the second against
+    the broker's own positions() (never a local guess), and writes exactly
+    one journal row per action. FakeBroker throughout -- no real order."""
+    monkeypatch.setattr(live_scanner, "_ALPACA_LEDGER", tmp_path / "alpaca-paper.jsonl")
+    live_scanner._alpaca_open_orders.clear()
+    live_scanner._legacy_positions.clear()
+
+    class _SessionEndBroker(BrokerInterface):
+        """order-1 is still resting (cancel succeeds, order-side.py contract);
+        order-2 already filled (cancel returns False, 'probably filled'),
+        leaving an open MSFT position this function must flatten."""
+
+        def __init__(self):
+            self.orders = []
+            self.cancelled = []
+
+        def place_order(self, order: Order) -> OrderHandle:
+            self.orders.append(order)
+            return OrderHandle(broker_order_id=f"close-{len(self.orders)}",
+                                idempotency_key=order.idempotency_key,
+                                status=OrderStatus.FILLED, filled_quantity=order.quantity)
+
+        def cancel_order(self, handle: OrderHandle) -> bool:
+            self.cancelled.append(handle.broker_order_id)
+            return handle.broker_order_id == "order-1"  # order-2: already filled
+
+        def positions(self):
+            return [Position(symbol="MSFT", quantity=10, avg_price=300.0)]
+
+        def fills(self, since=None):
+            if not self.orders:
+                return []
+            last = self.orders[-1]
+            import datetime as _dt
+            return [Fill(fill_id="f1", broker_order_id=f"close-{len(self.orders)}",
+                         symbol=last.symbol, side=last.side, quantity=last.quantity,
+                         price=305.0, timestamp=_dt.datetime.now())]
+
+        def account(self) -> AccountSnapshot:
+            return AccountSnapshot(account_number="FAKE", cash_balance=100_000.0,
+                                    buying_power=100_000.0, equity=100_000.0)
+
+    broker = _SessionEndBroker()
+
+    # Seed directly -- mirrors what _alpaca_submit_entry(..., extra={"legacy":
+    # True, ...}) would have written into _legacy_positions, without a full
+    # sig/plan round-trip.
+    live_scanner._legacy_positions["TSLA|09:41:00"] = {
+        "symbol": "TSLA", "order_symbol": "TSLA", "direction": "call",
+        "ts": "09:41:00", "broker_order_id": "order-1",
+        "idempotency_key": "TSLA-09:41:00-call-entry", "entry_rule": "g88",
+        "level_price": 247.10, "stop": 246.0, "max_loss": 100.0, "legacy": True,
+    }
+    live_scanner._legacy_positions["MSFT|09:45:00"] = {
+        "symbol": "MSFT", "order_symbol": "MSFT", "direction": "call",
+        "ts": "09:45:00", "broker_order_id": "order-2",
+        "idempotency_key": "MSFT-09:45:00-call-entry", "entry_rule": "g88",
+        "level_price": 300.0, "stop": 298.0, "max_loss": 100.0, "legacy": True,
+    }
+
+    results = live_scanner.flatten_legacy(broker)
+
+    assert live_scanner._legacy_positions == {}, "flatten_legacy must clear every record it handled"
+    assert broker.cancelled == ["order-1", "order-2"]
+    assert len(broker.orders) == 1, "only the filled (MSFT) leg needs a real flatten order"
+    assert broker.orders[0].symbol == "MSFT"
+    assert broker.orders[0].order_type == OrderType.MARKET
+    assert broker.orders[0].side == OrderSide.SELL  # long 10 MSFT -> sell to flatten
+    assert broker.orders[0].quantity == 10
+
+    actions = {r["symbol"]: r["action"] for r in results}
+    assert actions == {"TSLA": "cancel", "MSFT": "flatten"}
+    assert all(r["legacy"] is True for r in results)
+
+    lines = [json.loads(l) for l in (tmp_path / "alpaca-paper.jsonl").read_text().strip().splitlines()]
+    assert len(lines) == 2, "one journal row per action"
+    cancel_row = next(l for l in lines if l["symbol"] == "TSLA")
+    flatten_row = next(l for l in lines if l["symbol"] == "MSFT")
+    assert cancel_row["action"] == "cancel" and cancel_row["legacy"] is True
+    assert flatten_row["action"] == "flatten" and flatten_row["legacy"] is True
+    assert flatten_row["fill_price"] == 305.0
+    assert flatten_row["pnl"] == (305.0 - 300.0) * 10  # $50
+    assert flatten_row["r_multiple"] == 50.0 / 100.0
+    print(f"PASS: flatten_legacy cancelled 1 stale order + flattened 1 filled position -- {actions}")
+
+
 def test_engine_legacy_paper_kill_switch_reads_env(monkeypatch):
     """ENGINE_LEGACY_PAPER=0 must read as off -- the rollback path named in
     the plan (Projects/omen-v5-undry-plan.md), no code change needed."""
@@ -145,11 +237,15 @@ if __name__ == "__main__":
     tests = [
         ("test_alpaca_broker_client_names_paper_endpoint", test_alpaca_broker_client_names_paper_endpoint, {}),
     ]
-    with tempfile.TemporaryDirectory() as d:
-        tmp_path = Path(d)
+    # Each test that touches the ledger gets its own tmp dir so one test's
+    # journal rows never leak into another's line-count assertions.
+    with tempfile.TemporaryDirectory() as d1, tempfile.TemporaryDirectory() as d2:
         tests.append(("test_legacy_grade_fire_books_dry_false_g88_on_fake_broker",
                       test_legacy_grade_fire_books_dry_false_g88_on_fake_broker,
-                      {"tmp_path": tmp_path, "monkeypatch": _MP()}))
+                      {"tmp_path": Path(d1), "monkeypatch": _MP()}))
+        tests.append(("test_flatten_legacy_cancels_stale_order_and_flattens_filled_position",
+                      test_flatten_legacy_cancels_stale_order_and_flattens_filled_position,
+                      {"tmp_path": Path(d2), "monkeypatch": _MP()}))
         tests.append(("test_engine_legacy_paper_kill_switch_reads_env",
                       test_engine_legacy_paper_kill_switch_reads_env,
                       {"monkeypatch": _MP()}))
