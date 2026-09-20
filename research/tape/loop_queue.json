@@ -20,5 +20,10 @@
     "flag": "COUNTER_TREND_CAP",
     "on": "1",
     "label": "cap counter-day-trend setups to C grade"
+  },
+  {
+    "flag": "SCALE_PLAN",
+    "on": "blind_2r",
+    "label": "flat 2R target vs shipped ladder (forensics 2026-09-20: +$1,131/day on the full-29 control; never priced on this unit)"
   }
 ]
