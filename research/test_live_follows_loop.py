@@ -28,6 +28,8 @@ FLAG_ENV = {
     "OCR_RETEST_DISPLACEMENT": "OCR_RETEST_DISPLACEMENT",
     "TREND_DEF": "TREND_DEF",
     "DAY_POLICY": "DAY_POLICY",
+    "HODLOD_DEF": "HODLOD_DEF",
+    "RETEST_REQUIRED": "RETEST_REQUIRED",
 }
 
 OFF_VALUES = {
@@ -39,9 +41,19 @@ OFF_VALUES = {
     # prior default (signal_runner.py's comment above the DAY_POLICY line)
     # and is what a "hold" decision means for this flag.
     "DAY_POLICY": "first3",
+    # HODLOD_DEF is also string-valued (signal_runner.py: os.getenv("HODLOD_DEF",
+    # "off")). cycles.md 2026-09-14 held "prior_bar", so "off" is still the
+    # live default.
+    "HODLOD_DEF": "off",
+    # RETEST_REQUIRED already defaults ON ("1", g93 2026-09-02) -- unlike the
+    # other booleans here, its "hold" value (cycles.md 2026-09-14: holding
+    # "take the first break, no retest wait") is the prior default of "1",
+    # not "0".
+    "RETEST_REQUIRED": "1",
 }
 
 DAY_POLICY_SHIP_VALUE = "3fires_stop_win_or_2loss"
+HODLOD_DEF_SHIP_VALUE = "prior_bar"
 
 
 def parse_cycles_md(text: str) -> dict:
@@ -73,6 +85,8 @@ def expected_env_value(flag: str, decision: str) -> str:
         # the tape's decision like every other flag: "ship" carries the
         # shipped policy string, "hold" carries the prior default.
         return DAY_POLICY_SHIP_VALUE if decision == "ship" else OFF_VALUES[flag]
+    if flag == "HODLOD_DEF":
+        return HODLOD_DEF_SHIP_VALUE if decision == "ship" else OFF_VALUES[flag]
     if decision == "ship":
         return "1"
     return OFF_VALUES[flag]

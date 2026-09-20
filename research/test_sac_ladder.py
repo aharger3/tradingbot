@@ -16,6 +16,7 @@ Four claims, none of which needs the archive or the engine:
 from __future__ import annotations
 
 import os
+import subprocess
 import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -23,6 +24,39 @@ ROOT = os.path.dirname(HERE)
 for _p in (HERE, ROOT):
     if _p not in sys.path:
         sys.path.insert(0, _p)
+
+
+def _fresh_signal_runner_defaults():
+    """Read ENABLE_SAC_LADDER / SAC_LADDER_REGRADE_ALL's true baked-in
+    defaults from a subprocess with a clean environment, bypassing this
+    process's own (possibly already-polluted) `signal_runner` module.
+
+    Several other test files import `live_scanner` at collection time,
+    which forces `os.environ["ENABLE_SAC_LADDER"] = "1"` as a deliberate,
+    live-process-only side effect (live_scanner.py, ~line 124). If anything
+    later in the suite does `importlib.reload(signal_runner)` for an
+    unrelated flag (test_retest_gate.py, test_s_classifier.py), that reload
+    re-reads the leaked env var and bakes `ENABLE_SAC_LADDER = True` into
+    the shared module object for the rest of the session -- so a plain
+    `sr.ENABLE_SAC_LADDER is False` here passes standalone but fails only
+    when the full suite runs. Importing fresh, with the leaked vars
+    stripped, tests the actual shipped default instead of this process's
+    incidental history."""
+    env = dict(os.environ)
+    env.pop("ENABLE_SAC_LADDER", None)
+    env.pop("SAC_LADDER_REGRADE_ALL", None)
+    code = (
+        "import sys; sys.path.insert(0, %r); import signal_runner as sr; "
+        "print(sr.ENABLE_SAC_LADDER, sr.SAC_LADDER_REGRADE_ALL)" % ROOT
+    )
+    result = subprocess.run(
+        [sys.executable, "-c", code],
+        cwd=ROOT, env=env, capture_output=True, text=True, timeout=60,
+    )
+    assert result.returncode == 0, (
+        "importing signal_runner failed:\n%s" % result.stderr[-4000:])
+    ladder, regrade = result.stdout.split()
+    return ladder == "True", regrade == "True"
 
 
 class _Bar:
@@ -63,8 +97,9 @@ def _sig(grade="C", direction="call", stop=101.0):
 
 def test_default_off_and_no_b():
     import signal_runner as sr
-    assert sr.ENABLE_SAC_LADDER is False, "W1 must ship OFF"
-    assert sr.SAC_LADDER_REGRADE_ALL is False, "the second arm must ship OFF too"
+    ladder_default, regrade_default = _fresh_signal_runner_defaults()
+    assert ladder_default is False, "W1 must ship OFF"
+    assert regrade_default is False, "the second arm must ship OFF too"
     assert "B" not in set(sr.SAC_TIER.values()), sr.SAC_TIER
     assert set(sr.SAC_TIER) == {"S", "A", "C", "X"}, sr.SAC_TIER
 
@@ -91,14 +126,23 @@ def test_round_trip_against_the_held_out_scorer():
 
 
 def test_off_arm_still_floors_to_b():
-    """The behaviour the byte-identity claim rests on."""
+    """The behaviour the byte-identity claim rests on.
+
+    Sets ENABLE_SAC_LADDER explicitly (like every ON-arm test below does for
+    True) instead of trusting the ambient default -- see
+    `_fresh_signal_runner_defaults`'s docstring for why the module-level
+    attribute is not reliable once other test files have run."""
     import signal_runner as sr
-    assert sr.ENABLE_SAC_LADDER is False
-    r = _runner(_bars())
-    s = _sig(grade="C")
-    r._calibration_grade(s)
-    assert s["grade"] == "B", s
-    assert "floor B" in s["reason"], s
+    saved = sr.ENABLE_SAC_LADDER
+    sr.ENABLE_SAC_LADDER = False
+    try:
+        r = _runner(_bars())
+        s = _sig(grade="C")
+        r._calibration_grade(s)
+        assert s["grade"] == "B", s
+        assert "floor B" in s["reason"], s
+    finally:
+        sr.ENABLE_SAC_LADDER = saved
 
 
 def test_on_arm_kills_the_floor_and_grades_off_the_net():
