@@ -11,6 +11,7 @@ are updated to match -- the live lane can never silently drift from the loop.
 
 Run directly (no pytest needed): python research/test_live_follows_loop.py
 """
+import json
 import re
 import subprocess
 import sys
@@ -18,6 +19,12 @@ from pathlib import Path
 
 ROOT = Path(__file__).parent.parent
 CYCLES_MD = ROOT / "research" / "tape" / "cycles.md"
+SHIPPED_FLAGS_JSON = ROOT / "research" / "tape" / "shipped_flags.json"
+
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from research.shipped_flags import latest_by_flag  # noqa: E402
 
 # Every flag the loop has gated so far, and how to read its live-lane value.
 # (flag name -> env var read by signal_runner.py, which live_scanner.py
@@ -81,7 +88,36 @@ def parse_cycles_md(text: str) -> dict:
     return decisions
 
 
+def _shipped_adopt_map() -> dict:
+    """flag -> latest research/tape/shipped_flags.json entry. Austin's
+    2026-09-20 card ("Adopt shipped flags into the PAPER engine
+    automatically -- only when $/day improves AND green months hold") made
+    adoption STRICTER than cycles.md's own ship gate (research/shipped_flags.py
+    docstring): a row can read `ship` in cycles.md while shipped_flags.json
+    records adopt:False for it (worse $/day under the stricter rule), and the
+    live lane must keep that row at its hold/off value -- never at the
+    shipped value -- until it actually adopts. Missing/unparseable file
+    returns {} (no shipped row overrides anything), matching
+    shipped_flags.load_and_apply()'s own never-raise contract."""
+    if not SHIPPED_FLAGS_JSON.exists():
+        return {}
+    try:
+        entries = json.loads(SHIPPED_FLAGS_JSON.read_text(encoding="utf-8"))
+    except (json.JSONDecodeError, OSError):
+        return {}
+    if not isinstance(entries, list):
+        return {}
+    return latest_by_flag(entries)
+
+
 def expected_env_value(flag: str, decision: str) -> str:
+    if decision == "ship":
+        shipped = _shipped_adopt_map().get(flag)
+        if shipped is not None and shipped.get("adopt") is False:
+            # Shipped under cycles.md's looser gate but rejected by the
+            # stricter auto-adopt rule -- the live paper engine never got
+            # this flag, so it must still be checked against its hold value.
+            decision = "hold"
     if flag == "DAY_POLICY":
         # DAY_POLICY's value is a string, not an on/off switch -- follow
         # the tape's decision like every other flag: "ship" carries the
@@ -94,26 +130,39 @@ def expected_env_value(flag: str, decision: str) -> str:
     return OFF_VALUES[flag]
 
 
+_VALUE_MARKER = "OMEN_FLAG_VALUE="
+
+
 def read_live_value(flag: str) -> str:
     """Import live_scanner in a fresh subprocess (it has side effects at
-    import time) and read the flag's runtime value back. No env= is passed,
-    so the subprocess inherits the parent's full environment on purpose --
-    that inheritance is what lets this test catch env-based drift; it is
-    not isolation."""
+    import time -- e.g. its own "adopted flags: ..." startup line from
+    research/shipped_flags.load_and_apply()) and read the flag's runtime
+    value back. No env= is passed, so the subprocess inherits the parent's
+    full environment on purpose -- that inheritance is what lets this test
+    catch env-based drift; it is not isolation. The value is printed behind
+    a marker prefix so import-time stdout noise can never be mistaken for
+    the flag's value."""
     code = (
         "import os, sys; sys.path.insert(0, r'%s'); "
         "import live_scanner as ls; "
         "import signal_runner as sr; "
-        "print(getattr(ls, '_LIVE_%s', None) if hasattr(ls, '_LIVE_%s') "
-        "else getattr(sr, '%s'))"
-    ) % (str(ROOT), flag, flag, flag)
+        "v = getattr(ls, '_LIVE_%s', None) if hasattr(ls, '_LIVE_%s') "
+        "else getattr(sr, '%s'); "
+        "print('%s' + str(v))"
+    ) % (str(ROOT), flag, flag, flag, _VALUE_MARKER)
     result = subprocess.run(
         [sys.executable, "-c", code],
         cwd=str(ROOT), capture_output=True, text=True, timeout=60,
     )
     assert result.returncode == 0, (
         "importing live_scanner failed:\n%s" % result.stderr[-4000:])
-    return result.stdout.strip()
+    marked = [line for line in result.stdout.splitlines()
+              if line.startswith(_VALUE_MARKER)]
+    assert marked, (
+        "read_live_value(%r): no %r line in subprocess stdout -- "
+        "live_scanner/signal_runner import side effects changed:\n%s"
+        % (flag, _VALUE_MARKER, result.stdout))
+    return marked[-1][len(_VALUE_MARKER):].strip()
 
 
 def test_live_flags_match_cycles_md_shipped_set():
