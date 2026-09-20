@@ -7,11 +7,6 @@
     "label": "example only -- not a real trading rule, do not run as-is"
   },
   {
-    "flag": "SCALE_PLAN",
-    "on": "blind_2r",
-    "label": "flat 2R target vs shipped ladder (forensics 2026-09-20: +$1,131/day on the full-29 control; never priced on this unit)"
-  },
-  {
     "flag": "HTF_BIAS_GATE",
     "on": "1",
     "label": "only trade with the daily-candle trend"
