@@ -54,6 +54,10 @@ def _write(path: Path, text: str) -> None:
     path.write_text(text, encoding="utf-8")
 
 
+def _write_book(path: Path, rows: list[dict]) -> None:
+    _write(path, json.dumps({"meta": {"sessions": len(rows)}, "trades": rows}))
+
+
 def _fixture(tmp: Path) -> dict:
     """A minimal, self-consistent set of input files under tmp, and the
     `sources` dict build_status.render() needs to read them instead of the
@@ -106,6 +110,22 @@ def _fixture(tmp: Path) -> dict:
         "sm deck 2026-09-19: 3 cards, from somewhere\n"
     ))
 
+    _write(tape / "loop.json", json.dumps({
+        "unit": "every_signal", "halves_boundary": "2025-09-01",
+    }))
+    def _trade(day, pnl):
+        return {"day": day, "pnl": pnl, "traded": True, "et": "09:35:00", "sym": "AAPL"}
+
+    # cycles.md's newest row above stamps its off/on book columns as the
+    # literal placeholders "off"/"on" (not real filenames) -- match that
+    # here so cycle_half_dollars() resolves to these fixture books.
+    _write_book(tape / "off", [
+        _trade("2025-01-01", 100.0), _trade("2025-10-01", -50.0),
+    ])
+    _write_book(tape / "on", [
+        _trade("2025-01-01", 200.0), _trade("2025-10-01", -25.0),
+    ])
+
     sources = {
         "summary_data": tape / "summary_data.json",
         "cycles_md": tape / "cycles.md",
@@ -114,6 +134,7 @@ def _fixture(tmp: Path) -> dict:
         "shipped_flags": tape / "shipped_flags.json",
         "alpaca_paper": journal / "alpaca-paper.jsonl",
         "bar_deck_glob": str(journal / "bar-deck-*.log"),
+        "loop_json": tape / "loop.json",
     }
     return {"sources": sources, "newest_date": newest_date}
 
@@ -132,6 +153,40 @@ def test_page_shows_dollar_per_day_and_newest_nightly_date() -> None:
               "queue line should show plain-English labels, not flag names: %s" % html)
         check("page has v5 sessions/fills", "2 sessions, 2 fills" in html, html)
         check("page has bar deck count", "3 cards last night" in html, html)
+        check("page has H1/H2 pass status for the newest cycle",
+              "H1 pass" in html and "H2 pass" in html, html)
+        check("page has computed H1/H2 $/day a->b from the cycle's own books",
+              "100 -&gt; 200" in html and "-50 -&gt; -25" in html, html)
+        check("ship row has no hold reason", "hold:" not in html, html)
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
+def test_cycle_halves_line_hold_reason_and_missing_books() -> None:
+    tmp = Path(tempfile.mkdtemp(prefix="build_status_halves_test_"))
+    try:
+        tape = tmp / "tape"
+        cycles_md = tape / "cycles.md"
+        _write(cycles_md, "\n".join([
+            "# loop cycles",
+            "| date | label | flag | decision | $/day a->b | green months a->b | H1 | H2 | trades | off book | on book | script |",
+            "|---|---|---|---|---|---|---|---|---|---|---|---|",
+            "| 2026-09-14 | some rule | RETEST_REQUIRED | hold | -52.0 -> -87.0 | 11 -> 11 | fail | fail | 773 "
+            "| book_RETEST_REQUIRED_off.json.gz | book_RETEST_REQUIRED_on.json.gz | research/loop_cycle.py |",
+        ]))
+
+        row = bs.newest_cycle_row(cycles_md)
+        check("newest_cycle_row reads the last real row", row is not None and row["flag"] == "RETEST_REQUIRED", row)
+        check("hold_reason names the first failing half", bs.hold_reason(row) == "H1 fail", bs.hold_reason(row))
+
+        # books referenced by the row don't exist under this tmp dir -- degrades
+        # to pass/fail-only text instead of raising or inventing dollar figures.
+        line = bs.cycle_halves_line(cycles_md, tape / "loop.json")
+        check("missing books/loop.json -> no dollar figures, still shows status + reason",
+              line == "H1 fail, H2 fail -- hold: H1 fail", line)
+
+        check("empty cycles.md -> no cycle yet placeholder",
+              bs.cycle_halves_line(tape / "does_not_exist.md", tape / "loop.json") == "no cycle yet")
     finally:
         shutil.rmtree(tmp, ignore_errors=True)
 
@@ -181,6 +236,7 @@ def test_build_writes_file_and_skips_dispatch_copy_when_asked() -> None:
 
 def main() -> None:
     _run(test_page_shows_dollar_per_day_and_newest_nightly_date)
+    _run(test_cycle_halves_line_hold_reason_and_missing_books)
     _run(test_adopted_status_shapes)
     _run(test_build_writes_file_and_skips_dispatch_copy_when_asked)
 

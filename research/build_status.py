@@ -18,6 +18,12 @@ placeholder, it never raises):
                                        this file -- schema not yet known, so
                                        this reads it defensively and reports
                                        "unknown" rather than guessing wrong.
+  research/tape/loop.json + the newest cycle's off/on book -- H1/H2 $/day
+                                       via research/loop_cycle.py's own
+                                       compute_all(), reused rather than
+                                       reparsed; falls back to cycles.md's
+                                       plain pass/fail cells alone if the
+                                       books are gone or loop.json is absent.
   journal/alpaca-paper.jsonl       -- V5 paper arm: unique sessions + fills
   journal/bar-deck-*.log           -- last night's homework-deck card count
 
@@ -53,6 +59,7 @@ CYCLES_MD = TAPE / "cycles.md"
 NIGHTLY_MD = TAPE / "nightly.md"
 LOOP_QUEUE = TAPE / "loop_queue.json"
 SHIPPED_FLAGS = TAPE / "shipped_flags.json"
+LOOP_JSON = TAPE / "loop.json"
 ALPACA_PAPER = JOURNAL / "alpaca-paper.jsonl"
 BAR_DECK_GLOB = str(JOURNAL / "bar-deck-*.log")
 
@@ -150,6 +157,90 @@ def sparkline_svg(values: list[float], width: int = 320, height: int = 48) -> st
         '<polyline points="%s" fill="none" class="spark-%s" stroke-width="2" '
         'stroke-linejoin="round" stroke-linecap="round"/></svg>'
     ) % (width, height, n, lo, hi, " ".join(pts), trend)
+
+
+# ---- newest cycle's H1/H2: cycles.md's pass/fail + loop_cycle's own books -
+
+def newest_cycle_row(cycles_path: Path = CYCLES_MD) -> dict | None:
+    """The most recent real (12-column) row of cycles.md, parsed -- same row
+    filter as cycle_dollars_after() (skip the header/separator/HTML-comment
+    repair notes), kept as a dict instead of just the $/day cell."""
+    text = _read_text(cycles_path)
+    if not text:
+        return None
+    row = None
+    for line in text.splitlines():
+        line = line.strip()
+        if not line.startswith("|") or line.startswith("|---"):
+            continue
+        parts = [p.strip() for p in line.strip("|").split("|")]
+        if len(parts) != 12 or parts[0].lower() == "date":
+            continue
+        row = {"date": parts[0], "label": parts[1], "flag": parts[2], "decision": parts[3],
+               "h1": parts[6], "h2": parts[7], "off_book": parts[9], "on_book": parts[10]}
+    return row
+
+
+def cycle_half_dollars(row: dict, loop_json_path: Path = LOOP_JSON,
+                       books_dir: Path = TAPE) -> tuple[str | None, str | None]:
+    """(h1 "a -> b", h2 "a -> b") $/day for the newest cycle's own off/on
+    books (cycles.md stores them as bare filenames next to it, so
+    `books_dir` defaults to TAPE but the test fixture points it at its own
+    tmp dir), computed with research/loop_cycle.py's own compute_all() (unit
+    + halves_boundary read off loop.json) rather than re-deriving the
+    arithmetic here -- (None, None) if the books or loop.json are gone (an
+    old cycle's books get cleaned up eventually) or the import fails."""
+    try:
+        from research import loop_cycle as lc
+    except ImportError:
+        return None, None
+    cfg = _read_json(loop_json_path)
+    if not cfg or "unit" not in cfg or "halves_boundary" not in cfg:
+        return None, None
+    off_path = Path(books_dir) / row["off_book"]
+    on_path = Path(books_dir) / row["on_book"]
+    if not off_path.exists() or not on_path.exists():
+        return None, None
+    try:
+        off_meta, off_rows = lc.load_book_any(off_path)
+        on_meta, on_rows = lc.load_book_any(on_path)
+        off_all = lc.compute_all(off_meta, off_rows, cfg["unit"], cfg["halves_boundary"])
+        on_all = lc.compute_all(on_meta, on_rows, cfg["unit"], cfg["halves_boundary"])
+    except (OSError, KeyError, ValueError):
+        return None, None
+
+    def pair(before, after):
+        b, a = before.get("per_day"), after.get("per_day")
+        return "%.0f -> %.0f" % (b, a) if b is not None and a is not None else None
+
+    return pair(off_all["h1"], on_all["h1"]), pair(off_all["h2"], on_all["h2"])
+
+
+def hold_reason(row: dict) -> str | None:
+    """One-word-ish reason a hold held, e.g. 'H1 fail' -- the first half
+    whose cycles.md cell isn't 'pass'. None for a ship/noop or when both
+    halves passed (should not happen for a hold, but don't guess)."""
+    if row["decision"] != "hold":
+        return None
+    if row["h1"] != "pass":
+        return "H1 %s" % row["h1"]
+    if row["h2"] != "pass":
+        return "H2 %s" % row["h2"]
+    return None
+
+
+def cycle_halves_line(cycles_path: Path = CYCLES_MD, loop_json_path: Path = LOOP_JSON) -> str:
+    row = newest_cycle_row(cycles_path)
+    if row is None:
+        return "no cycle yet"
+    h1_dollars, h2_dollars = cycle_half_dollars(row, loop_json_path, Path(cycles_path).parent)
+    h1 = "H1 %s (%s)" % (row["h1"], h1_dollars) if h1_dollars else "H1 %s" % row["h1"]
+    h2 = "H2 %s (%s)" % (row["h2"], h2_dollars) if h2_dollars else "H2 %s" % row["h2"]
+    line = "%s, %s" % (h1, h2)
+    reason = hold_reason(row)
+    if reason:
+        line += " -- hold: %s" % reason
+    return line
 
 
 # ---- last night: nightly.md's most recent row + shipped_flags.json --------
@@ -341,7 +432,8 @@ _TEMPLATE = """<!doctype html>
   <h1>OMEN loop</h1>
   <div class="headline">$/day honest: <b>__PER_DAY__</b> (<span class="green">__GREEN__/__MONTHS__ green</span>)</div>
   <div class="card">__SPARKLINE__</div>
-  <div class="card"><div class="label">Last night</div><div class="value">__LAST_NIGHT__</div></div>
+  <div class="card"><div class="label">Last night</div><div class="value">__LAST_NIGHT__</div>
+    <div class="value">__CYCLE_HALVES__</div></div>
   <div class="card"><div class="label">Queue</div><div class="value">__QUEUE__</div></div>
   <div class="card"><div class="label">V5 paper</div><div class="value">__V5_PAPER__</div></div>
   <div class="card"><div class="label">Bar deck</div><div class="value">__BAR_DECK__</div></div>
@@ -360,6 +452,7 @@ def render(sources: dict | None = None) -> str:
     per_day, green, months = honest_baseline(s.get("summary_data", SUMMARY_DATA))
     spark = sparkline_svg(cycle_dollars_after(s.get("cycles_md", CYCLES_MD)))
     last_night = esc(last_night_line(s.get("nightly_md", NIGHTLY_MD), s.get("shipped_flags", SHIPPED_FLAGS)))
+    cycle_halves = esc(cycle_halves_line(s.get("cycles_md", CYCLES_MD), s.get("loop_json", LOOP_JSON)))
     queue = esc(queue_line(s.get("loop_queue", LOOP_QUEUE)))
     v5 = esc(v5_paper_line(s.get("alpaca_paper", ALPACA_PAPER)))
     bar_deck = esc(bar_deck_line(s.get("bar_deck_glob", BAR_DECK_GLOB)))
@@ -371,6 +464,7 @@ def render(sources: dict | None = None) -> str:
             .replace("__MONTHS__", str(months))
             .replace("__SPARKLINE__", spark)
             .replace("__LAST_NIGHT__", last_night)
+            .replace("__CYCLE_HALVES__", cycle_halves)
             .replace("__QUEUE__", queue)
             .replace("__V5_PAPER__", v5)
             .replace("__BAR_DECK__", bar_deck)
