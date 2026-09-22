@@ -1,6 +1,6 @@
 {
-  "cycle_count": 13,
-  "consecutive_holds": 2,
+  "cycle_count": 14,
+  "consecutive_holds": 3,
   "target_met": false,
   "history": [
     {
@@ -149,6 +149,16 @@
       "dollars_per_day_after": -59.0,
       "green_before": 11,
       "green_after": 13
+    },
+    {
+      "cycle": 14,
+      "flag": "HTF_BIAS_GATE",
+      "label": "2R exit + daily-trend gate (can year 1 stop bleeding? follow-up to cycle 12) [env: OMEN_SCALE_PLAN=none]",
+      "decision": "hold",
+      "dollars_per_day_before": -52.0,
+      "dollars_per_day_after": -21.0,
+      "green_before": 11,
+      "green_after": 12
     }
   ],
   "stop": false,

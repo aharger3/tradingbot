@@ -9,14 +9,6 @@
   {
     "flag": "HTF_BIAS_GATE",
     "on": "1",
-    "env": {
-      "OMEN_SCALE_PLAN": "none"
-    },
-    "label": "2R exit + daily-trend gate (can year 1 stop bleeding? follow-up to cycle 12)"
-  },
-  {
-    "flag": "HTF_BIAS_GATE",
-    "on": "1",
     "label": "only trade with the daily-candle trend"
   },
   {

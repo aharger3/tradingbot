@@ -1,0 +1,38 @@
+[
+ {
+  "id": "IREN_2026-09-03",
+  "symbol": "IREN",
+  "day": "2026-09-03",
+  "png": "research/decks/sm_2026-09-21/1_IREN_2026-09-03.png",
+  "engine_grade": "S",
+  "bars": {
+   "C": "10:15",
+   "A": "10:11",
+   "B": "10:14"
+  }
+ },
+ {
+  "id": "IWM_2026-09-03",
+  "symbol": "IWM",
+  "day": "2026-09-03",
+  "png": "research/decks/sm_2026-09-21/2_IWM_2026-09-03.png",
+  "engine_grade": "S",
+  "bars": {
+   "C": "09:42",
+   "A": "09:39",
+   "B": "09:42"
+  }
+ },
+ {
+  "id": "MU_2026-09-03",
+  "symbol": "MU",
+  "day": "2026-09-03",
+  "png": "research/decks/sm_2026-09-21/3_MU_2026-09-03.png",
+  "engine_grade": "A",
+  "bars": {
+   "C": "10:06",
+   "A": "10:01",
+   "B": "10:06"
+  }
+ }
+]
