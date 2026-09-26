@@ -35,5 +35,11 @@ $log = Join-Path $logDir ("scanner-" + (Get-Date -Format "yyyy-MM-dd") + ".log")
 # endpoint (journal/alpaca-paper.jsonl) -- OMEN 9.0 W3, 2026-09-05.
 & $python live_scanner.py --paper --paper-broker alpaca 2>&1 | Tee-Object -FilePath $log -Append
 
+# EXPERIMENTAL -- PAPER ONLY, no confirmed edge (OMEN-SHIP-PLAN.md B1/Sec.3
+# gates still open). NQ break-and-retest paper signal, beside the stock
+# scanner. `live` is a no-op until Q5 (live 1-min NQ feed) is answered --
+# see research/futures_signal.py. Never places an order; ntfy push only.
+& $python research\futures_signal.py live 2>&1 | Tee-Object -FilePath $log -Append
+
 # Bank today's 1-min bars via Polygon.io (was yfinance — socket timeouts) for longer backtests
 & $python archive_1m.py --back 1 2>&1 | Tee-Object -FilePath $log -Append

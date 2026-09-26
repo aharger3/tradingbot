@@ -1,0 +1,2265 @@
+{
+ "top": [
+  "MNQ|retest|S2|10R",
+  "MNQ|za|S2|10R",
+  "MNQ|retest|S1|3R"
+ ],
+ "gate": {
+  "proxy|MNQ|retest|S2|10R|1ct": {
+   "n_days": 453,
+   "total": 3856.406572126957,
+   "firms": {
+    "Vanquish Trader Advanced Options 50K": {
+     "passed": false,
+     "fail_reason": "profit_target_not_reached",
+     "fail_day": "2026-09-18",
+     "all_starts_pct": 0.4,
+     "eval_ready": false,
+     "luck": {
+      "h1": {
+       "real_pass_pct": 0.0,
+       "n_windows": 163,
+       "shuffled_pass_pct": 0.0,
+       "zero_edge_pass_pct": 0.0
+      },
+      "h2": {
+       "real_pass_pct": 0.0,
+       "n_windows": 52,
+       "shuffled_pass_pct": 0.0,
+       "zero_edge_pass_pct": 0.0
+      },
+      "n_shuffles": 100,
+      "seed": 1337,
+      "margin_pts": 20.0,
+      "horizon_sessions": 120,
+      "error": null
+     }
+    },
+    "Topstep 50K Combine": {
+     "passed": true,
+     "fail_reason": null,
+     "fail_day": null,
+     "all_starts_pct": 5.7,
+     "eval_ready": false,
+     "luck": {
+      "h1": {
+       "real_pass_pct": 2.5,
+       "n_windows": 163,
+       "shuffled_pass_pct": 1.6,
+       "zero_edge_pass_pct": 0.1
+      },
+      "h2": {
+       "real_pass_pct": 42.3,
+       "n_windows": 52,
+       "shuffled_pass_pct": 11.4,
+       "zero_edge_pass_pct": 0.7
+      },
+      "n_shuffles": 100,
+      "seed": 1337,
+      "margin_pts": 20.0,
+      "horizon_sessions": 120,
+      "error": null
+     }
+    },
+    "Apex 50K Eval EOD": {
+     "passed": true,
+     "fail_reason": null,
+     "fail_day": null,
+     "all_starts_pct": 5.7,
+     "eval_ready": false,
+     "luck": {
+      "h1": {
+       "real_pass_pct": 2.5,
+       "n_windows": 163,
+       "shuffled_pass_pct": 1.6,
+       "zero_edge_pass_pct": 0.1
+      },
+      "h2": {
+       "real_pass_pct": 42.3,
+       "n_windows": 52,
+       "shuffled_pass_pct": 11.4,
+       "zero_edge_pass_pct": 0.7
+      },
+      "n_shuffles": 100,
+      "seed": 1337,
+      "margin_pts": 20.0,
+      "horizon_sessions": 120,
+      "error": null
+     }
+    },
+    "MyFundedFutures Rapid 50K": {
+     "passed": true,
+     "fail_reason": null,
+     "fail_day": null,
+     "all_starts_pct": 5.7,
+     "eval_ready": false,
+     "luck": {
+      "h1": {
+       "real_pass_pct": 2.5,
+       "n_windows": 163,
+       "shuffled_pass_pct": 1.6,
+       "zero_edge_pass_pct": 0.1
+      },
+      "h2": {
+       "real_pass_pct": 42.3,
+       "n_windows": 52,
+       "shuffled_pass_pct": 11.4,
+       "zero_edge_pass_pct": 0.7
+      },
+      "n_shuffles": 100,
+      "seed": 1337,
+      "margin_pts": 20.0,
+      "horizon_sessions": 120,
+      "error": null
+     }
+    },
+    "Alpha Futures 50K Standard": {
+     "passed": true,
+     "fail_reason": null,
+     "fail_day": null,
+     "all_starts_pct": 43.5,
+     "eval_ready": false,
+     "luck": {
+      "h1": {
+       "real_pass_pct": 2.5,
+       "n_windows": 163,
+       "shuffled_pass_pct": 1.6,
+       "zero_edge_pass_pct": 0.1
+      },
+      "h2": {
+       "real_pass_pct": 42.3,
+       "n_windows": 52,
+       "shuffled_pass_pct": 11.4,
+       "zero_edge_pass_pct": 0.7
+      },
+      "n_shuffles": 100,
+      "seed": 1337,
+      "margin_pts": 20.0,
+      "horizon_sessions": 120,
+      "error": null
+     }
+    },
+    "Take Profit Trader 50K Test": {
+     "passed": true,
+     "fail_reason": null,
+     "fail_day": null,
+     "all_starts_pct": 43.5,
+     "eval_ready": false,
+     "luck": {
+      "h1": {
+       "real_pass_pct": 2.5,
+       "n_windows": 163,
+       "shuffled_pass_pct": 1.6,
+       "zero_edge_pass_pct": 0.1
+      },
+      "h2": {
+       "real_pass_pct": 42.3,
+       "n_windows": 52,
+       "shuffled_pass_pct": 11.4,
+       "zero_edge_pass_pct": 0.7
+      },
+      "n_shuffles": 100,
+      "seed": 1337,
+      "margin_pts": 20.0,
+      "horizon_sessions": 120,
+      "error": null
+     }
+    },
+    "LucidFlex 50K (u06, agg-sourced)": {
+     "passed": true,
+     "fail_reason": null,
+     "fail_day": null,
+     "all_starts_pct": 43.5,
+     "eval_ready": false,
+     "luck": {
+      "h1": {
+       "real_pass_pct": 2.5,
+       "n_windows": 163,
+       "shuffled_pass_pct": 1.6,
+       "zero_edge_pass_pct": 0.1
+      },
+      "h2": {
+       "real_pass_pct": 42.3,
+       "n_windows": 52,
+       "shuffled_pass_pct": 11.4,
+       "zero_edge_pass_pct": 0.7
+      },
+      "n_shuffles": 100,
+      "seed": 1337,
+      "margin_pts": 20.0,
+      "horizon_sessions": 120,
+      "error": null
+     }
+    }
+   }
+  },
+  "proxy|MNQ|retest|S2|10R|L1_$200": {
+   "n_days": 453,
+   "total": 14289.57793607269,
+   "firms": {
+    "Vanquish Trader Advanced Options 50K": {
+     "passed": false,
+     "fail_reason": "trailing_drawdown",
+     "fail_day": "2024-03-21",
+     "all_starts_pct": 15.5,
+     "eval_ready": false,
+     "luck": {
+      "h1": {
+       "real_pass_pct": 34.4,
+       "n_windows": 163,
+       "shuffled_pass_pct": 16.9,
+       "zero_edge_pass_pct": 10.7
+      },
+      "h2": {
+       "real_pass_pct": 11.5,
+       "n_windows": 52,
+       "shuffled_pass_pct": 14.9,
+       "zero_edge_pass_pct": 12.2
+      },
+      "n_shuffles": 100,
+      "seed": 1337,
+      "margin_pts": 20.0,
+      "horizon_sessions": 120,
+      "error": null
+     }
+    },
+    "Topstep 50K Combine": {
+     "passed": false,
+     "fail_reason": "trailing_drawdown",
+     "fail_day": "2024-03-21",
+     "all_starts_pct": 42.2,
+     "eval_ready": false,
+     "luck": {
+      "h1": {
+       "real_pass_pct": 67.5,
+       "n_windows": 163,
+       "shuffled_pass_pct": 35.6,
+       "zero_edge_pass_pct": 26.8
+      },
+      "h2": {
+       "real_pass_pct": 42.3,
+       "n_windows": 52,
+       "shuffled_pass_pct": 35.5,
+       "zero_edge_pass_pct": 28.3
+      },
+      "n_shuffles": 100,
+      "seed": 1337,
+      "margin_pts": 20.0,
+      "horizon_sessions": 120,
+      "error": null
+     }
+    },
+    "Apex 50K Eval EOD": {
+     "passed": false,
+     "fail_reason": "trailing_drawdown",
+     "fail_day": "2024-03-21",
+     "all_starts_pct": 46.1,
+     "eval_ready": false,
+     "luck": {
+      "h1": {
+       "real_pass_pct": 69.9,
+       "n_windows": 163,
+       "shuffled_pass_pct": 41.4,
+       "zero_edge_pass_pct": 32.0
+      },
+      "h2": {
+       "real_pass_pct": 48.1,
+       "n_windows": 52,
+       "shuffled_pass_pct": 40.8,
+       "zero_edge_pass_pct": 35.9
+      },
+      "n_shuffles": 100,
+      "seed": 1337,
+      "margin_pts": 20.0,
+      "horizon_sessions": 120,
+      "error": null
+     }
+    },
+    "MyFundedFutures Rapid 50K": {
+     "passed": false,
+     "fail_reason": "trailing_drawdown",
+     "fail_day": "2024-03-18",
+     "all_starts_pct": 41.9,
+     "eval_ready": false,
+     "luck": {
+      "h1": {
+       "real_pass_pct": 67.5,
+       "n_windows": 163,
+       "shuffled_pass_pct": 33.9,
+       "zero_edge_pass_pct": 25.2
+      },
+      "h2": {
+       "real_pass_pct": 42.3,
+       "n_windows": 52,
+       "shuffled_pass_pct": 33.3,
+       "zero_edge_pass_pct": 26.5
+      },
+      "n_shuffles": 100,
+      "seed": 1337,
+      "margin_pts": 20.0,
+      "horizon_sessions": 120,
+      "error": null
+     }
+    },
+    "Alpha Futures 50K Standard": {
+     "passed": false,
+     "fail_reason": "trailing_drawdown",
+     "fail_day": "2024-03-18",
+     "all_starts_pct": 36.0,
+     "eval_ready": false,
+     "luck": {
+      "h1": {
+       "real_pass_pct": 58.9,
+       "n_windows": 163,
+       "shuffled_pass_pct": 27.0,
+       "zero_edge_pass_pct": 19.7
+      },
+      "h2": {
+       "real_pass_pct": 36.5,
+       "n_windows": 52,
+       "shuffled_pass_pct": 26.8,
+       "zero_edge_pass_pct": 20.9
+      },
+      "n_shuffles": 100,
+      "seed": 1337,
+      "margin_pts": 20.0,
+      "horizon_sessions": 120,
+      "error": null
+     }
+    },
+    "Take Profit Trader 50K Test": {
+     "passed": false,
+     "fail_reason": "trailing_drawdown",
+     "fail_day": "2024-03-21",
+     "all_starts_pct": 39.3,
+     "eval_ready": false,
+     "luck": {
+      "h1": {
+       "real_pass_pct": 60.1,
+       "n_windows": 163,
+       "shuffled_pass_pct": 36.2,
+       "zero_edge_pass_pct": 27.3
+      },
+      "h2": {
+       "real_pass_pct": 42.3,
+       "n_windows": 52,
+       "shuffled_pass_pct": 36.2,
+       "zero_edge_pass_pct": 31.8
+      },
+      "n_shuffles": 100,
+      "seed": 1337,
+      "margin_pts": 20.0,
+      "horizon_sessions": 120,
+      "error": null
+     }
+    },
+    "LucidFlex 50K (u06, agg-sourced)": {
+     "passed": false,
+     "fail_reason": "trailing_drawdown",
+     "fail_day": "2024-03-18",
+     "all_starts_pct": 36.0,
+     "eval_ready": false,
+     "luck": {
+      "h1": {
+       "real_pass_pct": 58.9,
+       "n_windows": 163,
+       "shuffled_pass_pct": 27.0,
+       "zero_edge_pass_pct": 19.7
+      },
+      "h2": {
+       "real_pass_pct": 36.5,
+       "n_windows": 52,
+       "shuffled_pass_pct": 26.8,
+       "zero_edge_pass_pct": 20.9
+      },
+      "n_shuffles": 100,
+      "seed": 1337,
+      "margin_pts": 20.0,
+      "horizon_sessions": 120,
+      "error": null
+     }
+    }
+   }
+  },
+  "proxy|MNQ|za|S2|10R|1ct": {
+   "n_days": 662,
+   "total": 4439.448412798638,
+   "firms": {
+    "Vanquish Trader Advanced Options 50K": {
+     "passed": true,
+     "fail_reason": null,
+     "fail_day": null,
+     "all_starts_pct": 33.7,
+     "eval_ready": false,
+     "luck": {
+      "h1": {
+       "real_pass_pct": 0.0,
+       "n_windows": 282,
+       "shuffled_pass_pct": 3.2,
+       "zero_edge_pass_pct": 0.7
+      },
+      "h2": {
+       "real_pass_pct": 0.0,
+       "n_windows": 142,
+       "shuffled_pass_pct": 0.8,
+       "zero_edge_pass_pct": 1.8
+      },
+      "n_shuffles": 100,
+      "seed": 1337,
+      "margin_pts": 20.0,
+      "horizon_sessions": 120,
+      "error": null
+     }
+    },
+    "Topstep 50K Combine": {
+     "passed": true,
+     "fail_reason": null,
+     "fail_day": null,
+     "all_starts_pct": 14.4,
+     "eval_ready": false,
+     "luck": {
+      "h1": {
+       "real_pass_pct": 29.8,
+       "n_windows": 282,
+       "shuffled_pass_pct": 24.6,
+       "zero_edge_pass_pct": 10.9
+      },
+      "h2": {
+       "real_pass_pct": 0.0,
+       "n_windows": 142,
+       "shuffled_pass_pct": 13.2,
+       "zero_edge_pass_pct": 15.5
+      },
+      "n_shuffles": 100,
+      "seed": 1337,
+      "margin_pts": 20.0,
+      "horizon_sessions": 120,
+      "error": null
+     }
+    },
+    "Apex 50K Eval EOD": {
+     "passed": true,
+     "fail_reason": null,
+     "fail_day": null,
+     "all_starts_pct": 14.4,
+     "eval_ready": false,
+     "luck": {
+      "h1": {
+       "real_pass_pct": 29.8,
+       "n_windows": 282,
+       "shuffled_pass_pct": 24.8,
+       "zero_edge_pass_pct": 11.2
+      },
+      "h2": {
+       "real_pass_pct": 0.0,
+       "n_windows": 142,
+       "shuffled_pass_pct": 13.6,
+       "zero_edge_pass_pct": 16.6
+      },
+      "n_shuffles": 100,
+      "seed": 1337,
+      "margin_pts": 20.0,
+      "horizon_sessions": 120,
+      "error": null
+     }
+    },
+    "MyFundedFutures Rapid 50K": {
+     "passed": true,
+     "fail_reason": null,
+     "fail_day": null,
+     "all_starts_pct": 14.4,
+     "eval_ready": false,
+     "luck": {
+      "h1": {
+       "real_pass_pct": 29.8,
+       "n_windows": 282,
+       "shuffled_pass_pct": 24.6,
+       "zero_edge_pass_pct": 10.9
+      },
+      "h2": {
+       "real_pass_pct": 0.0,
+       "n_windows": 142,
+       "shuffled_pass_pct": 13.1,
+       "zero_edge_pass_pct": 15.4
+      },
+      "n_shuffles": 100,
+      "seed": 1337,
+      "margin_pts": 20.0,
+      "horizon_sessions": 120,
+      "error": null
+     }
+    },
+    "Alpha Futures 50K Standard": {
+     "passed": true,
+     "fail_reason": null,
+     "fail_day": null,
+     "all_starts_pct": 48.2,
+     "eval_ready": false,
+     "luck": {
+      "h1": {
+       "real_pass_pct": 29.8,
+       "n_windows": 282,
+       "shuffled_pass_pct": 24.6,
+       "zero_edge_pass_pct": 10.9
+      },
+      "h2": {
+       "real_pass_pct": 0.0,
+       "n_windows": 142,
+       "shuffled_pass_pct": 13.1,
+       "zero_edge_pass_pct": 15.4
+      },
+      "n_shuffles": 100,
+      "seed": 1337,
+      "margin_pts": 20.0,
+      "horizon_sessions": 120,
+      "error": null
+     }
+    },
+    "Take Profit Trader 50K Test": {
+     "passed": true,
+     "fail_reason": null,
+     "fail_day": null,
+     "all_starts_pct": 48.2,
+     "eval_ready": false,
+     "luck": {
+      "h1": {
+       "real_pass_pct": 29.8,
+       "n_windows": 282,
+       "shuffled_pass_pct": 24.8,
+       "zero_edge_pass_pct": 11.2
+      },
+      "h2": {
+       "real_pass_pct": 0.0,
+       "n_windows": 142,
+       "shuffled_pass_pct": 13.6,
+       "zero_edge_pass_pct": 16.6
+      },
+      "n_shuffles": 100,
+      "seed": 1337,
+      "margin_pts": 20.0,
+      "horizon_sessions": 120,
+      "error": null
+     }
+    },
+    "LucidFlex 50K (u06, agg-sourced)": {
+     "passed": true,
+     "fail_reason": null,
+     "fail_day": null,
+     "all_starts_pct": 48.2,
+     "eval_ready": false,
+     "luck": {
+      "h1": {
+       "real_pass_pct": 29.8,
+       "n_windows": 282,
+       "shuffled_pass_pct": 24.6,
+       "zero_edge_pass_pct": 10.9
+      },
+      "h2": {
+       "real_pass_pct": 0.0,
+       "n_windows": 142,
+       "shuffled_pass_pct": 13.1,
+       "zero_edge_pass_pct": 15.4
+      },
+      "n_shuffles": 100,
+      "seed": 1337,
+      "margin_pts": 20.0,
+      "horizon_sessions": 120,
+      "error": null
+     }
+    }
+   }
+  },
+  "proxy|MNQ|za|S2|10R|L1_$200": {
+   "n_days": 662,
+   "total": 17839.75545068376,
+   "firms": {
+    "Vanquish Trader Advanced Options 50K": {
+     "passed": false,
+     "fail_reason": "trailing_drawdown",
+     "fail_day": "2024-04-16",
+     "all_starts_pct": 18.1,
+     "eval_ready": false,
+     "luck": {
+      "h1": {
+       "real_pass_pct": 16.0,
+       "n_windows": 282,
+       "shuffled_pass_pct": 26.4,
+       "zero_edge_pass_pct": 9.8
+      },
+      "h2": {
+       "real_pass_pct": 8.5,
+       "n_windows": 142,
+       "shuffled_pass_pct": 21.5,
+       "zero_edge_pass_pct": 9.9
+      },
+      "n_shuffles": 100,
+      "seed": 1337,
+      "margin_pts": 20.0,
+      "horizon_sessions": 120,
+      "error": null
+     }
+    },
+    "Topstep 50K Combine": {
+     "passed": false,
+     "fail_reason": "trailing_drawdown",
+     "fail_day": "2024-04-11",
+     "all_starts_pct": 37.0,
+     "eval_ready": false,
+     "luck": {
+      "h1": {
+       "real_pass_pct": 50.0,
+       "n_windows": 282,
+       "shuffled_pass_pct": 42.4,
+       "zero_edge_pass_pct": 27.1
+      },
+      "h2": {
+       "real_pass_pct": 35.9,
+       "n_windows": 142,
+       "shuffled_pass_pct": 42.0,
+       "zero_edge_pass_pct": 28.1
+      },
+      "n_shuffles": 100,
+      "seed": 1337,
+      "margin_pts": 20.0,
+      "horizon_sessions": 120,
+      "error": null
+     }
+    },
+    "Apex 50K Eval EOD": {
+     "passed": false,
+     "fail_reason": "trailing_drawdown",
+     "fail_day": "2024-04-16",
+     "all_starts_pct": 42.1,
+     "eval_ready": false,
+     "luck": {
+      "h1": {
+       "real_pass_pct": 53.9,
+       "n_windows": 282,
+       "shuffled_pass_pct": 50.1,
+       "zero_edge_pass_pct": 32.2
+      },
+      "h2": {
+       "real_pass_pct": 35.9,
+       "n_windows": 142,
+       "shuffled_pass_pct": 50.3,
+       "zero_edge_pass_pct": 32.9
+      },
+      "n_shuffles": 100,
+      "seed": 1337,
+      "margin_pts": 20.0,
+      "horizon_sessions": 120,
+      "error": null
+     }
+    },
+    "MyFundedFutures Rapid 50K": {
+     "passed": false,
+     "fail_reason": "trailing_drawdown",
+     "fail_day": "2024-04-11",
+     "all_starts_pct": 32.9,
+     "eval_ready": false,
+     "luck": {
+      "h1": {
+       "real_pass_pct": 46.5,
+       "n_windows": 282,
+       "shuffled_pass_pct": 39.9,
+       "zero_edge_pass_pct": 25.6
+      },
+      "h2": {
+       "real_pass_pct": 23.9,
+       "n_windows": 142,
+       "shuffled_pass_pct": 38.6,
+       "zero_edge_pass_pct": 26.2
+      },
+      "n_shuffles": 100,
+      "seed": 1337,
+      "margin_pts": 20.0,
+      "horizon_sessions": 120,
+      "error": null
+     }
+    },
+    "Alpha Futures 50K Standard": {
+     "passed": false,
+     "fail_reason": "trailing_drawdown",
+     "fail_day": "2024-04-11",
+     "all_starts_pct": 23.7,
+     "eval_ready": false,
+     "luck": {
+      "h1": {
+       "real_pass_pct": 30.5,
+       "n_windows": 282,
+       "shuffled_pass_pct": 35.0,
+       "zero_edge_pass_pct": 20.9
+      },
+      "h2": {
+       "real_pass_pct": 21.1,
+       "n_windows": 142,
+       "shuffled_pass_pct": 33.7,
+       "zero_edge_pass_pct": 22.2
+      },
+      "n_shuffles": 100,
+      "seed": 1337,
+      "margin_pts": 20.0,
+      "horizon_sessions": 120,
+      "error": null
+     }
+    },
+    "Take Profit Trader 50K Test": {
+     "passed": false,
+     "fail_reason": "trailing_drawdown",
+     "fail_day": "2024-04-16",
+     "all_starts_pct": 38.1,
+     "eval_ready": false,
+     "luck": {
+      "h1": {
+       "real_pass_pct": 48.6,
+       "n_windows": 282,
+       "shuffled_pass_pct": 46.8,
+       "zero_edge_pass_pct": 28.2
+      },
+      "h2": {
+       "real_pass_pct": 31.7,
+       "n_windows": 142,
+       "shuffled_pass_pct": 46.8,
+       "zero_edge_pass_pct": 29.6
+      },
+      "n_shuffles": 100,
+      "seed": 1337,
+      "margin_pts": 20.0,
+      "horizon_sessions": 120,
+      "error": null
+     }
+    },
+    "LucidFlex 50K (u06, agg-sourced)": {
+     "passed": false,
+     "fail_reason": "trailing_drawdown",
+     "fail_day": "2024-04-11",
+     "all_starts_pct": 23.7,
+     "eval_ready": false,
+     "luck": {
+      "h1": {
+       "real_pass_pct": 30.5,
+       "n_windows": 282,
+       "shuffled_pass_pct": 35.0,
+       "zero_edge_pass_pct": 20.9
+      },
+      "h2": {
+       "real_pass_pct": 21.1,
+       "n_windows": 142,
+       "shuffled_pass_pct": 33.7,
+       "zero_edge_pass_pct": 22.2
+      },
+      "n_shuffles": 100,
+      "seed": 1337,
+      "margin_pts": 20.0,
+      "horizon_sessions": 120,
+      "error": null
+     }
+    }
+   }
+  },
+  "proxy|MNQ|retest|S1|3R|1ct": {
+   "n_days": 453,
+   "total": 2868.4376276149824,
+   "firms": {
+    "Vanquish Trader Advanced Options 50K": {
+     "passed": true,
+     "fail_reason": null,
+     "fail_day": null,
+     "all_starts_pct": 22.1,
+     "eval_ready": false,
+     "luck": {
+      "h1": {
+       "real_pass_pct": 9.2,
+       "n_windows": 163,
+       "shuffled_pass_pct": 10.9,
+       "zero_edge_pass_pct": 0.1
+      },
+      "h2": {
+       "real_pass_pct": 0.0,
+       "n_windows": 52,
+       "shuffled_pass_pct": 0.0,
+       "zero_edge_pass_pct": 0.1
+      },
+      "n_shuffles": 100,
+      "seed": 1337,
+      "margin_pts": 20.0,
+      "horizon_sessions": 120,
+      "error": null
+     }
+    },
+    "Topstep 50K Combine": {
+     "passed": true,
+     "fail_reason": null,
+     "fail_day": null,
+     "all_starts_pct": 36.6,
+     "eval_ready": false,
+     "luck": {
+      "h1": {
+       "real_pass_pct": 82.8,
+       "n_windows": 163,
+       "shuffled_pass_pct": 58.1,
+       "zero_edge_pass_pct": 7.1
+      },
+      "h2": {
+       "real_pass_pct": 0.0,
+       "n_windows": 52,
+       "shuffled_pass_pct": 0.5,
+       "zero_edge_pass_pct": 10.2
+      },
+      "n_shuffles": 100,
+      "seed": 1337,
+      "margin_pts": 20.0,
+      "horizon_sessions": 120,
+      "error": null
+     }
+    },
+    "Apex 50K Eval EOD": {
+     "passed": true,
+     "fail_reason": null,
+     "fail_day": null,
+     "all_starts_pct": 36.6,
+     "eval_ready": false,
+     "luck": {
+      "h1": {
+       "real_pass_pct": 82.8,
+       "n_windows": 163,
+       "shuffled_pass_pct": 58.6,
+       "zero_edge_pass_pct": 7.1
+      },
+      "h2": {
+       "real_pass_pct": 0.0,
+       "n_windows": 52,
+       "shuffled_pass_pct": 0.5,
+       "zero_edge_pass_pct": 10.2
+      },
+      "n_shuffles": 100,
+      "seed": 1337,
+      "margin_pts": 20.0,
+      "horizon_sessions": 120,
+      "error": null
+     }
+    },
+    "MyFundedFutures Rapid 50K": {
+     "passed": true,
+     "fail_reason": null,
+     "fail_day": null,
+     "all_starts_pct": 36.6,
+     "eval_ready": false,
+     "luck": {
+      "h1": {
+       "real_pass_pct": 82.8,
+       "n_windows": 163,
+       "shuffled_pass_pct": 58.1,
+       "zero_edge_pass_pct": 7.1
+      },
+      "h2": {
+       "real_pass_pct": 0.0,
+       "n_windows": 52,
+       "shuffled_pass_pct": 0.5,
+       "zero_edge_pass_pct": 10.0
+      },
+      "n_shuffles": 100,
+      "seed": 1337,
+      "margin_pts": 20.0,
+      "horizon_sessions": 120,
+      "error": null
+     }
+    },
+    "Alpha Futures 50K Standard": {
+     "passed": true,
+     "fail_reason": null,
+     "fail_day": null,
+     "all_starts_pct": 43.5,
+     "eval_ready": false,
+     "luck": {
+      "h1": {
+       "real_pass_pct": 82.8,
+       "n_windows": 163,
+       "shuffled_pass_pct": 58.1,
+       "zero_edge_pass_pct": 7.1
+      },
+      "h2": {
+       "real_pass_pct": 0.0,
+       "n_windows": 52,
+       "shuffled_pass_pct": 0.5,
+       "zero_edge_pass_pct": 10.0
+      },
+      "n_shuffles": 100,
+      "seed": 1337,
+      "margin_pts": 20.0,
+      "horizon_sessions": 120,
+      "error": null
+     }
+    },
+    "Take Profit Trader 50K Test": {
+     "passed": true,
+     "fail_reason": null,
+     "fail_day": null,
+     "all_starts_pct": 44.4,
+     "eval_ready": false,
+     "luck": {
+      "h1": {
+       "real_pass_pct": 82.8,
+       "n_windows": 163,
+       "shuffled_pass_pct": 58.6,
+       "zero_edge_pass_pct": 7.1
+      },
+      "h2": {
+       "real_pass_pct": 0.0,
+       "n_windows": 52,
+       "shuffled_pass_pct": 0.5,
+       "zero_edge_pass_pct": 10.3
+      },
+      "n_shuffles": 100,
+      "seed": 1337,
+      "margin_pts": 20.0,
+      "horizon_sessions": 120,
+      "error": null
+     }
+    },
+    "LucidFlex 50K (u06, agg-sourced)": {
+     "passed": true,
+     "fail_reason": null,
+     "fail_day": null,
+     "all_starts_pct": 43.5,
+     "eval_ready": false,
+     "luck": {
+      "h1": {
+       "real_pass_pct": 82.8,
+       "n_windows": 163,
+       "shuffled_pass_pct": 58.1,
+       "zero_edge_pass_pct": 7.1
+      },
+      "h2": {
+       "real_pass_pct": 0.0,
+       "n_windows": 52,
+       "shuffled_pass_pct": 0.5,
+       "zero_edge_pass_pct": 10.0
+      },
+      "n_shuffles": 100,
+      "seed": 1337,
+      "margin_pts": 20.0,
+      "horizon_sessions": 120,
+      "error": null
+     }
+    }
+   }
+  },
+  "proxy|MNQ|retest|S1|3R|L1_$200": {
+   "n_days": 323,
+   "total": 9616.939490739485,
+   "firms": {
+    "Vanquish Trader Advanced Options 50K": {
+     "passed": true,
+     "fail_reason": null,
+     "fail_day": null,
+     "all_starts_pct": 49.2,
+     "eval_ready": false,
+     "luck": {
+      "h1": {
+       "real_pass_pct": 69.6,
+       "n_windows": 125,
+       "shuffled_pass_pct": 51.1,
+       "zero_edge_pass_pct": 0.3
+      },
+      "h2": {
+       "real_pass_pct": null,
+       "n_windows": 0,
+       "shuffled_pass_pct": null,
+       "zero_edge_pass_pct": null
+      },
+      "n_shuffles": 100,
+      "seed": 1337,
+      "margin_pts": 20.0,
+      "horizon_sessions": 120,
+      "error": null
+     }
+    },
+    "Topstep 50K Combine": {
+     "passed": true,
+     "fail_reason": null,
+     "fail_day": null,
+     "all_starts_pct": 60.7,
+     "eval_ready": false,
+     "luck": {
+      "h1": {
+       "real_pass_pct": 100.0,
+       "n_windows": 125,
+       "shuffled_pass_pct": 93.0,
+       "zero_edge_pass_pct": 7.1
+      },
+      "h2": {
+       "real_pass_pct": null,
+       "n_windows": 0,
+       "shuffled_pass_pct": null,
+       "zero_edge_pass_pct": null
+      },
+      "n_shuffles": 100,
+      "seed": 1337,
+      "margin_pts": 20.0,
+      "horizon_sessions": 120,
+      "error": null
+     }
+    },
+    "Apex 50K Eval EOD": {
+     "passed": true,
+     "fail_reason": null,
+     "fail_day": null,
+     "all_starts_pct": 63.2,
+     "eval_ready": false,
+     "luck": {
+      "h1": {
+       "real_pass_pct": 100.0,
+       "n_windows": 125,
+       "shuffled_pass_pct": 93.0,
+       "zero_edge_pass_pct": 7.2
+      },
+      "h2": {
+       "real_pass_pct": null,
+       "n_windows": 0,
+       "shuffled_pass_pct": null,
+       "zero_edge_pass_pct": null
+      },
+      "n_shuffles": 100,
+      "seed": 1337,
+      "margin_pts": 20.0,
+      "horizon_sessions": 120,
+      "error": null
+     }
+    },
+    "MyFundedFutures Rapid 50K": {
+     "passed": true,
+     "fail_reason": null,
+     "fail_day": null,
+     "all_starts_pct": 57.6,
+     "eval_ready": false,
+     "luck": {
+      "h1": {
+       "real_pass_pct": 100.0,
+       "n_windows": 125,
+       "shuffled_pass_pct": 92.8,
+       "zero_edge_pass_pct": 7.0
+      },
+      "h2": {
+       "real_pass_pct": null,
+       "n_windows": 0,
+       "shuffled_pass_pct": null,
+       "zero_edge_pass_pct": null
+      },
+      "n_shuffles": 100,
+      "seed": 1337,
+      "margin_pts": 20.0,
+      "horizon_sessions": 120,
+      "error": null
+     }
+    },
+    "Alpha Futures 50K Standard": {
+     "passed": true,
+     "fail_reason": null,
+     "fail_day": null,
+     "all_starts_pct": 57.6,
+     "eval_ready": false,
+     "luck": {
+      "h1": {
+       "real_pass_pct": 100.0,
+       "n_windows": 125,
+       "shuffled_pass_pct": 92.8,
+       "zero_edge_pass_pct": 7.0
+      },
+      "h2": {
+       "real_pass_pct": null,
+       "n_windows": 0,
+       "shuffled_pass_pct": null,
+       "zero_edge_pass_pct": null
+      },
+      "n_shuffles": 100,
+      "seed": 1337,
+      "margin_pts": 20.0,
+      "horizon_sessions": 120,
+      "error": null
+     }
+    },
+    "Take Profit Trader 50K Test": {
+     "passed": true,
+     "fail_reason": null,
+     "fail_day": null,
+     "all_starts_pct": 63.2,
+     "eval_ready": false,
+     "luck": {
+      "h1": {
+       "real_pass_pct": 100.0,
+       "n_windows": 125,
+       "shuffled_pass_pct": 93.0,
+       "zero_edge_pass_pct": 7.2
+      },
+      "h2": {
+       "real_pass_pct": null,
+       "n_windows": 0,
+       "shuffled_pass_pct": null,
+       "zero_edge_pass_pct": null
+      },
+      "n_shuffles": 100,
+      "seed": 1337,
+      "margin_pts": 20.0,
+      "horizon_sessions": 120,
+      "error": null
+     }
+    },
+    "LucidFlex 50K (u06, agg-sourced)": {
+     "passed": true,
+     "fail_reason": null,
+     "fail_day": null,
+     "all_starts_pct": 57.6,
+     "eval_ready": false,
+     "luck": {
+      "h1": {
+       "real_pass_pct": 100.0,
+       "n_windows": 125,
+       "shuffled_pass_pct": 92.8,
+       "zero_edge_pass_pct": 7.0
+      },
+      "h2": {
+       "real_pass_pct": null,
+       "n_windows": 0,
+       "shuffled_pass_pct": null,
+       "zero_edge_pass_pct": null
+      },
+      "n_shuffles": 100,
+      "seed": 1337,
+      "margin_pts": 20.0,
+      "horizon_sessions": 120,
+      "error": null
+     }
+    }
+   }
+  },
+  "fut|MNQ|retest|S2|10R|1ct": {
+   "n_days": 338,
+   "total": 2406.380000000017,
+   "firms": {
+    "Vanquish Trader Advanced Options 50K": {
+     "passed": false,
+     "fail_reason": "profit_target_not_reached",
+     "fail_day": "2026-09-25",
+     "all_starts_pct": 0.0,
+     "eval_ready": false,
+     "luck": {
+      "h1": {
+       "real_pass_pct": 0.0,
+       "n_windows": 36,
+       "shuffled_pass_pct": 0.0,
+       "zero_edge_pass_pct": 0.0
+      },
+      "h2": {
+       "real_pass_pct": 0.0,
+       "n_windows": 64,
+       "shuffled_pass_pct": 0.0,
+       "zero_edge_pass_pct": 0.0
+      },
+      "n_shuffles": 100,
+      "seed": 1337,
+      "margin_pts": 20.0,
+      "horizon_sessions": 120,
+      "error": null
+     }
+    },
+    "Topstep 50K Combine": {
+     "passed": false,
+     "fail_reason": "trailing_drawdown",
+     "fail_day": "2025-09-09",
+     "all_starts_pct": 22.5,
+     "eval_ready": false,
+     "luck": {
+      "h1": {
+       "real_pass_pct": 0.0,
+       "n_windows": 36,
+       "shuffled_pass_pct": 0.0,
+       "zero_edge_pass_pct": 0.0
+      },
+      "h2": {
+       "real_pass_pct": 56.2,
+       "n_windows": 64,
+       "shuffled_pass_pct": 33.1,
+       "zero_edge_pass_pct": 1.1
+      },
+      "n_shuffles": 100,
+      "seed": 1337,
+      "margin_pts": 20.0,
+      "horizon_sessions": 120,
+      "error": null
+     }
+    },
+    "Apex 50K Eval EOD": {
+     "passed": true,
+     "fail_reason": null,
+     "fail_day": null,
+     "all_starts_pct": 22.5,
+     "eval_ready": false,
+     "luck": {
+      "h1": {
+       "real_pass_pct": 0.0,
+       "n_windows": 36,
+       "shuffled_pass_pct": 0.0,
+       "zero_edge_pass_pct": 0.0
+      },
+      "h2": {
+       "real_pass_pct": 56.2,
+       "n_windows": 64,
+       "shuffled_pass_pct": 33.1,
+       "zero_edge_pass_pct": 1.1
+      },
+      "n_shuffles": 100,
+      "seed": 1337,
+      "margin_pts": 20.0,
+      "horizon_sessions": 120,
+      "error": null
+     }
+    },
+    "MyFundedFutures Rapid 50K": {
+     "passed": false,
+     "fail_reason": "trailing_drawdown",
+     "fail_day": "2025-09-09",
+     "all_starts_pct": 22.5,
+     "eval_ready": false,
+     "luck": {
+      "h1": {
+       "real_pass_pct": 0.0,
+       "n_windows": 36,
+       "shuffled_pass_pct": 0.0,
+       "zero_edge_pass_pct": 0.0
+      },
+      "h2": {
+       "real_pass_pct": 56.2,
+       "n_windows": 64,
+       "shuffled_pass_pct": 33.1,
+       "zero_edge_pass_pct": 1.1
+      },
+      "n_shuffles": 100,
+      "seed": 1337,
+      "margin_pts": 20.0,
+      "horizon_sessions": 120,
+      "error": null
+     }
+    },
+    "Alpha Futures 50K Standard": {
+     "passed": false,
+     "fail_reason": "trailing_drawdown",
+     "fail_day": "2025-09-09",
+     "all_starts_pct": 25.4,
+     "eval_ready": false,
+     "luck": {
+      "h1": {
+       "real_pass_pct": 0.0,
+       "n_windows": 36,
+       "shuffled_pass_pct": 0.0,
+       "zero_edge_pass_pct": 0.0
+      },
+      "h2": {
+       "real_pass_pct": 56.2,
+       "n_windows": 64,
+       "shuffled_pass_pct": 33.1,
+       "zero_edge_pass_pct": 1.1
+      },
+      "n_shuffles": 100,
+      "seed": 1337,
+      "margin_pts": 20.0,
+      "horizon_sessions": 120,
+      "error": null
+     }
+    },
+    "Take Profit Trader 50K Test": {
+     "passed": true,
+     "fail_reason": null,
+     "fail_day": null,
+     "all_starts_pct": 27.8,
+     "eval_ready": false,
+     "luck": {
+      "h1": {
+       "real_pass_pct": 0.0,
+       "n_windows": 36,
+       "shuffled_pass_pct": 0.0,
+       "zero_edge_pass_pct": 0.0
+      },
+      "h2": {
+       "real_pass_pct": 56.2,
+       "n_windows": 64,
+       "shuffled_pass_pct": 33.1,
+       "zero_edge_pass_pct": 1.1
+      },
+      "n_shuffles": 100,
+      "seed": 1337,
+      "margin_pts": 20.0,
+      "horizon_sessions": 120,
+      "error": null
+     }
+    },
+    "LucidFlex 50K (u06, agg-sourced)": {
+     "passed": false,
+     "fail_reason": "trailing_drawdown",
+     "fail_day": "2025-09-09",
+     "all_starts_pct": 25.4,
+     "eval_ready": false,
+     "luck": {
+      "h1": {
+       "real_pass_pct": 0.0,
+       "n_windows": 36,
+       "shuffled_pass_pct": 0.0,
+       "zero_edge_pass_pct": 0.0
+      },
+      "h2": {
+       "real_pass_pct": 56.2,
+       "n_windows": 64,
+       "shuffled_pass_pct": 33.1,
+       "zero_edge_pass_pct": 1.1
+      },
+      "n_shuffles": 100,
+      "seed": 1337,
+      "margin_pts": 20.0,
+      "horizon_sessions": 120,
+      "error": null
+     }
+    }
+   }
+  },
+  "fut|MNQ|retest|S2|10R|L1_$200": {
+   "n_days": 338,
+   "total": 4057.5200000000077,
+   "firms": {
+    "Vanquish Trader Advanced Options 50K": {
+     "passed": true,
+     "fail_reason": null,
+     "fail_day": null,
+     "all_starts_pct": 5.6,
+     "eval_ready": false,
+     "luck": {
+      "h1": {
+       "real_pass_pct": 19.4,
+       "n_windows": 36,
+       "shuffled_pass_pct": 2.4,
+       "zero_edge_pass_pct": 5.5
+      },
+      "h2": {
+       "real_pass_pct": 15.6,
+       "n_windows": 64,
+       "shuffled_pass_pct": 27.6,
+       "zero_edge_pass_pct": 6.5
+      },
+      "n_shuffles": 100,
+      "seed": 1337,
+      "margin_pts": 20.0,
+      "horizon_sessions": 120,
+      "error": null
+     }
+    },
+    "Topstep 50K Combine": {
+     "passed": true,
+     "fail_reason": null,
+     "fail_day": null,
+     "all_starts_pct": 31.1,
+     "eval_ready": false,
+     "luck": {
+      "h1": {
+       "real_pass_pct": 66.7,
+       "n_windows": 36,
+       "shuffled_pass_pct": 15.5,
+       "zero_edge_pass_pct": 27.5
+      },
+      "h2": {
+       "real_pass_pct": 62.5,
+       "n_windows": 64,
+       "shuffled_pass_pct": 47.0,
+       "zero_edge_pass_pct": 26.1
+      },
+      "n_shuffles": 100,
+      "seed": 1337,
+      "margin_pts": 20.0,
+      "horizon_sessions": 120,
+      "error": null
+     }
+    },
+    "Apex 50K Eval EOD": {
+     "passed": true,
+     "fail_reason": null,
+     "fail_day": null,
+     "all_starts_pct": 33.7,
+     "eval_ready": false,
+     "luck": {
+      "h1": {
+       "real_pass_pct": 66.7,
+       "n_windows": 36,
+       "shuffled_pass_pct": 17.3,
+       "zero_edge_pass_pct": 32.5
+      },
+      "h2": {
+       "real_pass_pct": 68.8,
+       "n_windows": 64,
+       "shuffled_pass_pct": 56.1,
+       "zero_edge_pass_pct": 30.4
+      },
+      "n_shuffles": 100,
+      "seed": 1337,
+      "margin_pts": 20.0,
+      "horizon_sessions": 120,
+      "error": null
+     }
+    },
+    "MyFundedFutures Rapid 50K": {
+     "passed": true,
+     "fail_reason": null,
+     "fail_day": null,
+     "all_starts_pct": 31.1,
+     "eval_ready": false,
+     "luck": {
+      "h1": {
+       "real_pass_pct": 66.7,
+       "n_windows": 36,
+       "shuffled_pass_pct": 15.2,
+       "zero_edge_pass_pct": 26.2
+      },
+      "h2": {
+       "real_pass_pct": 62.5,
+       "n_windows": 64,
+       "shuffled_pass_pct": 44.0,
+       "zero_edge_pass_pct": 24.6
+      },
+      "n_shuffles": 100,
+      "seed": 1337,
+      "margin_pts": 20.0,
+      "horizon_sessions": 120,
+      "error": null
+     }
+    },
+    "Alpha Futures 50K Standard": {
+     "passed": true,
+     "fail_reason": null,
+     "fail_day": null,
+     "all_starts_pct": 26.9,
+     "eval_ready": false,
+     "luck": {
+      "h1": {
+       "real_pass_pct": 63.9,
+       "n_windows": 36,
+       "shuffled_pass_pct": 10.8,
+       "zero_edge_pass_pct": 18.3
+      },
+      "h2": {
+       "real_pass_pct": 57.8,
+       "n_windows": 64,
+       "shuffled_pass_pct": 36.0,
+       "zero_edge_pass_pct": 17.4
+      },
+      "n_shuffles": 100,
+      "seed": 1337,
+      "margin_pts": 20.0,
+      "horizon_sessions": 120,
+      "error": null
+     }
+    },
+    "Take Profit Trader 50K Test": {
+     "passed": true,
+     "fail_reason": null,
+     "fail_day": null,
+     "all_starts_pct": 29.0,
+     "eval_ready": false,
+     "luck": {
+      "h1": {
+       "real_pass_pct": 63.9,
+       "n_windows": 36,
+       "shuffled_pass_pct": 12.4,
+       "zero_edge_pass_pct": 25.4
+      },
+      "h2": {
+       "real_pass_pct": 64.1,
+       "n_windows": 64,
+       "shuffled_pass_pct": 52.6,
+       "zero_edge_pass_pct": 24.1
+      },
+      "n_shuffles": 100,
+      "seed": 1337,
+      "margin_pts": 20.0,
+      "horizon_sessions": 120,
+      "error": null
+     }
+    },
+    "LucidFlex 50K (u06, agg-sourced)": {
+     "passed": true,
+     "fail_reason": null,
+     "fail_day": null,
+     "all_starts_pct": 26.9,
+     "eval_ready": false,
+     "luck": {
+      "h1": {
+       "real_pass_pct": 63.9,
+       "n_windows": 36,
+       "shuffled_pass_pct": 10.8,
+       "zero_edge_pass_pct": 18.3
+      },
+      "h2": {
+       "real_pass_pct": 57.8,
+       "n_windows": 64,
+       "shuffled_pass_pct": 36.0,
+       "zero_edge_pass_pct": 17.4
+      },
+      "n_shuffles": 100,
+      "seed": 1337,
+      "margin_pts": 20.0,
+      "horizon_sessions": 120,
+      "error": null
+     }
+    }
+   }
+  },
+  "fut|MNQ|za|S2|10R|1ct": {
+   "n_days": 476,
+   "total": 2584.1850000001596,
+   "firms": {
+    "Vanquish Trader Advanced Options 50K": {
+     "passed": false,
+     "fail_reason": "trailing_drawdown",
+     "fail_day": "2026-07-24",
+     "all_starts_pct": 0.0,
+     "eval_ready": false,
+     "luck": {
+      "h1": {
+       "real_pass_pct": 0.0,
+       "n_windows": 99,
+       "shuffled_pass_pct": 0.3,
+       "zero_edge_pass_pct": 0.0
+      },
+      "h2": {
+       "real_pass_pct": 0.0,
+       "n_windows": 139,
+       "shuffled_pass_pct": 1.8,
+       "zero_edge_pass_pct": 0.6
+      },
+      "n_shuffles": 100,
+      "seed": 1337,
+      "margin_pts": 20.0,
+      "horizon_sessions": 120,
+      "error": null
+     }
+    },
+    "Topstep 50K Combine": {
+     "passed": true,
+     "fail_reason": null,
+     "fail_day": null,
+     "all_starts_pct": 1.1,
+     "eval_ready": false,
+     "luck": {
+      "h1": {
+       "real_pass_pct": 5.1,
+       "n_windows": 99,
+       "shuffled_pass_pct": 15.8,
+       "zero_edge_pass_pct": 6.2
+      },
+      "h2": {
+       "real_pass_pct": 0.0,
+       "n_windows": 139,
+       "shuffled_pass_pct": 16.3,
+       "zero_edge_pass_pct": 13.6
+      },
+      "n_shuffles": 100,
+      "seed": 1337,
+      "margin_pts": 20.0,
+      "horizon_sessions": 120,
+      "error": null
+     }
+    },
+    "Apex 50K Eval EOD": {
+     "passed": true,
+     "fail_reason": null,
+     "fail_day": null,
+     "all_starts_pct": 1.1,
+     "eval_ready": false,
+     "luck": {
+      "h1": {
+       "real_pass_pct": 5.1,
+       "n_windows": 99,
+       "shuffled_pass_pct": 15.9,
+       "zero_edge_pass_pct": 6.2
+      },
+      "h2": {
+       "real_pass_pct": 0.0,
+       "n_windows": 139,
+       "shuffled_pass_pct": 17.2,
+       "zero_edge_pass_pct": 14.0
+      },
+      "n_shuffles": 100,
+      "seed": 1337,
+      "margin_pts": 20.0,
+      "horizon_sessions": 120,
+      "error": null
+     }
+    },
+    "MyFundedFutures Rapid 50K": {
+     "passed": true,
+     "fail_reason": null,
+     "fail_day": null,
+     "all_starts_pct": 1.1,
+     "eval_ready": false,
+     "luck": {
+      "h1": {
+       "real_pass_pct": 5.1,
+       "n_windows": 99,
+       "shuffled_pass_pct": 15.8,
+       "zero_edge_pass_pct": 6.2
+      },
+      "h2": {
+       "real_pass_pct": 0.0,
+       "n_windows": 139,
+       "shuffled_pass_pct": 16.1,
+       "zero_edge_pass_pct": 13.2
+      },
+      "n_shuffles": 100,
+      "seed": 1337,
+      "margin_pts": 20.0,
+      "horizon_sessions": 120,
+      "error": null
+     }
+    },
+    "Alpha Futures 50K Standard": {
+     "passed": true,
+     "fail_reason": null,
+     "fail_day": null,
+     "all_starts_pct": 5.0,
+     "eval_ready": false,
+     "luck": {
+      "h1": {
+       "real_pass_pct": 5.1,
+       "n_windows": 99,
+       "shuffled_pass_pct": 15.8,
+       "zero_edge_pass_pct": 6.2
+      },
+      "h2": {
+       "real_pass_pct": 0.0,
+       "n_windows": 139,
+       "shuffled_pass_pct": 16.1,
+       "zero_edge_pass_pct": 13.2
+      },
+      "n_shuffles": 100,
+      "seed": 1337,
+      "margin_pts": 20.0,
+      "horizon_sessions": 120,
+      "error": null
+     }
+    },
+    "Take Profit Trader 50K Test": {
+     "passed": true,
+     "fail_reason": null,
+     "fail_day": null,
+     "all_starts_pct": 14.3,
+     "eval_ready": false,
+     "luck": {
+      "h1": {
+       "real_pass_pct": 5.1,
+       "n_windows": 99,
+       "shuffled_pass_pct": 15.9,
+       "zero_edge_pass_pct": 6.2
+      },
+      "h2": {
+       "real_pass_pct": 0.0,
+       "n_windows": 139,
+       "shuffled_pass_pct": 17.2,
+       "zero_edge_pass_pct": 14.1
+      },
+      "n_shuffles": 100,
+      "seed": 1337,
+      "margin_pts": 20.0,
+      "horizon_sessions": 120,
+      "error": null
+     }
+    },
+    "LucidFlex 50K (u06, agg-sourced)": {
+     "passed": true,
+     "fail_reason": null,
+     "fail_day": null,
+     "all_starts_pct": 5.0,
+     "eval_ready": false,
+     "luck": {
+      "h1": {
+       "real_pass_pct": 5.1,
+       "n_windows": 99,
+       "shuffled_pass_pct": 15.8,
+       "zero_edge_pass_pct": 6.2
+      },
+      "h2": {
+       "real_pass_pct": 0.0,
+       "n_windows": 139,
+       "shuffled_pass_pct": 16.1,
+       "zero_edge_pass_pct": 13.2
+      },
+      "n_shuffles": 100,
+      "seed": 1337,
+      "margin_pts": 20.0,
+      "horizon_sessions": 120,
+      "error": null
+     }
+    }
+   }
+  },
+  "fut|MNQ|za|S2|10R|L1_$200": {
+   "n_days": 476,
+   "total": 13088.825714286184,
+   "firms": {
+    "Vanquish Trader Advanced Options 50K": {
+     "passed": true,
+     "fail_reason": null,
+     "fail_day": null,
+     "all_starts_pct": 16.4,
+     "eval_ready": false,
+     "luck": {
+      "h1": {
+       "real_pass_pct": 26.3,
+       "n_windows": 99,
+       "shuffled_pass_pct": 28.2,
+       "zero_edge_pass_pct": 10.1
+      },
+      "h2": {
+       "real_pass_pct": 12.2,
+       "n_windows": 139,
+       "shuffled_pass_pct": 21.0,
+       "zero_edge_pass_pct": 7.7
+      },
+      "n_shuffles": 100,
+      "seed": 1337,
+      "margin_pts": 20.0,
+      "horizon_sessions": 120,
+      "error": null
+     }
+    },
+    "Topstep 50K Combine": {
+     "passed": true,
+     "fail_reason": null,
+     "fail_day": null,
+     "all_starts_pct": 38.0,
+     "eval_ready": false,
+     "luck": {
+      "h1": {
+       "real_pass_pct": 68.7,
+       "n_windows": 99,
+       "shuffled_pass_pct": 44.2,
+       "zero_edge_pass_pct": 27.5
+      },
+      "h2": {
+       "real_pass_pct": 47.5,
+       "n_windows": 139,
+       "shuffled_pass_pct": 40.1,
+       "zero_edge_pass_pct": 23.9
+      },
+      "n_shuffles": 100,
+      "seed": 1337,
+      "margin_pts": 20.0,
+      "horizon_sessions": 120,
+      "error": null
+     }
+    },
+    "Apex 50K Eval EOD": {
+     "passed": true,
+     "fail_reason": null,
+     "fail_day": null,
+     "all_starts_pct": 42.6,
+     "eval_ready": false,
+     "luck": {
+      "h1": {
+       "real_pass_pct": 75.8,
+       "n_windows": 99,
+       "shuffled_pass_pct": 52.1,
+       "zero_edge_pass_pct": 31.8
+      },
+      "h2": {
+       "real_pass_pct": 49.6,
+       "n_windows": 139,
+       "shuffled_pass_pct": 47.4,
+       "zero_edge_pass_pct": 29.0
+      },
+      "n_shuffles": 100,
+      "seed": 1337,
+      "margin_pts": 20.0,
+      "horizon_sessions": 120,
+      "error": null
+     }
+    },
+    "MyFundedFutures Rapid 50K": {
+     "passed": true,
+     "fail_reason": null,
+     "fail_day": null,
+     "all_starts_pct": 36.8,
+     "eval_ready": false,
+     "luck": {
+      "h1": {
+       "real_pass_pct": 62.6,
+       "n_windows": 99,
+       "shuffled_pass_pct": 41.4,
+       "zero_edge_pass_pct": 25.4
+      },
+      "h2": {
+       "real_pass_pct": 47.5,
+       "n_windows": 139,
+       "shuffled_pass_pct": 37.9,
+       "zero_edge_pass_pct": 22.5
+      },
+      "n_shuffles": 100,
+      "seed": 1337,
+      "margin_pts": 20.0,
+      "horizon_sessions": 120,
+      "error": null
+     }
+    },
+    "Alpha Futures 50K Standard": {
+     "passed": true,
+     "fail_reason": null,
+     "fail_day": null,
+     "all_starts_pct": 31.5,
+     "eval_ready": false,
+     "luck": {
+      "h1": {
+       "real_pass_pct": 44.4,
+       "n_windows": 99,
+       "shuffled_pass_pct": 37.1,
+       "zero_edge_pass_pct": 22.0
+      },
+      "h2": {
+       "real_pass_pct": 47.5,
+       "n_windows": 139,
+       "shuffled_pass_pct": 34.8,
+       "zero_edge_pass_pct": 19.9
+      },
+      "n_shuffles": 100,
+      "seed": 1337,
+      "margin_pts": 20.0,
+      "horizon_sessions": 120,
+      "error": null
+     }
+    },
+    "Take Profit Trader 50K Test": {
+     "passed": true,
+     "fail_reason": null,
+     "fail_day": null,
+     "all_starts_pct": 37.2,
+     "eval_ready": false,
+     "luck": {
+      "h1": {
+       "real_pass_pct": 58.6,
+       "n_windows": 99,
+       "shuffled_pass_pct": 50.3,
+       "zero_edge_pass_pct": 29.3
+      },
+      "h2": {
+       "real_pass_pct": 49.6,
+       "n_windows": 139,
+       "shuffled_pass_pct": 45.1,
+       "zero_edge_pass_pct": 26.4
+      },
+      "n_shuffles": 100,
+      "seed": 1337,
+      "margin_pts": 20.0,
+      "horizon_sessions": 120,
+      "error": null
+     }
+    },
+    "LucidFlex 50K (u06, agg-sourced)": {
+     "passed": true,
+     "fail_reason": null,
+     "fail_day": null,
+     "all_starts_pct": 31.5,
+     "eval_ready": false,
+     "luck": {
+      "h1": {
+       "real_pass_pct": 44.4,
+       "n_windows": 99,
+       "shuffled_pass_pct": 37.1,
+       "zero_edge_pass_pct": 22.0
+      },
+      "h2": {
+       "real_pass_pct": 47.5,
+       "n_windows": 139,
+       "shuffled_pass_pct": 34.8,
+       "zero_edge_pass_pct": 19.9
+      },
+      "n_shuffles": 100,
+      "seed": 1337,
+      "margin_pts": 20.0,
+      "horizon_sessions": 120,
+      "error": null
+     }
+    }
+   }
+  },
+  "fut|MNQ|retest|S1|3R|1ct": {
+   "n_days": 338,
+   "total": -745.1199999999583,
+   "firms": {
+    "Vanquish Trader Advanced Options 50K": {
+     "passed": false,
+     "fail_reason": "trailing_drawdown",
+     "fail_day": "2025-06-04",
+     "all_starts_pct": 0.0,
+     "eval_ready": false,
+     "luck": {
+      "h1": {
+       "real_pass_pct": 0.0,
+       "n_windows": 36,
+       "shuffled_pass_pct": 2.4,
+       "zero_edge_pass_pct": 0.0
+      },
+      "h2": {
+       "real_pass_pct": 0.0,
+       "n_windows": 64,
+       "shuffled_pass_pct": 0.0,
+       "zero_edge_pass_pct": 0.4
+      },
+      "n_shuffles": 100,
+      "seed": 1337,
+      "margin_pts": 20.0,
+      "horizon_sessions": 120,
+      "error": null
+     }
+    },
+    "Topstep 50K Combine": {
+     "passed": true,
+     "fail_reason": null,
+     "fail_day": null,
+     "all_starts_pct": 25.7,
+     "eval_ready": false,
+     "luck": {
+      "h1": {
+       "real_pass_pct": 94.4,
+       "n_windows": 36,
+       "shuffled_pass_pct": 58.5,
+       "zero_edge_pass_pct": 1.6
+      },
+      "h2": {
+       "real_pass_pct": 0.0,
+       "n_windows": 64,
+       "shuffled_pass_pct": 1.5,
+       "zero_edge_pass_pct": 9.6
+      },
+      "n_shuffles": 100,
+      "seed": 1337,
+      "margin_pts": 20.0,
+      "horizon_sessions": 120,
+      "error": null
+     }
+    },
+    "Apex 50K Eval EOD": {
+     "passed": true,
+     "fail_reason": null,
+     "fail_day": null,
+     "all_starts_pct": 25.7,
+     "eval_ready": false,
+     "luck": {
+      "h1": {
+       "real_pass_pct": 94.4,
+       "n_windows": 36,
+       "shuffled_pass_pct": 58.6,
+       "zero_edge_pass_pct": 1.6
+      },
+      "h2": {
+       "real_pass_pct": 0.0,
+       "n_windows": 64,
+       "shuffled_pass_pct": 1.5,
+       "zero_edge_pass_pct": 10.2
+      },
+      "n_shuffles": 100,
+      "seed": 1337,
+      "margin_pts": 20.0,
+      "horizon_sessions": 120,
+      "error": null
+     }
+    },
+    "MyFundedFutures Rapid 50K": {
+     "passed": true,
+     "fail_reason": null,
+     "fail_day": null,
+     "all_starts_pct": 25.7,
+     "eval_ready": false,
+     "luck": {
+      "h1": {
+       "real_pass_pct": 94.4,
+       "n_windows": 36,
+       "shuffled_pass_pct": 57.8,
+       "zero_edge_pass_pct": 1.6
+      },
+      "h2": {
+       "real_pass_pct": 0.0,
+       "n_windows": 64,
+       "shuffled_pass_pct": 1.5,
+       "zero_edge_pass_pct": 9.6
+      },
+      "n_shuffles": 100,
+      "seed": 1337,
+      "margin_pts": 20.0,
+      "horizon_sessions": 120,
+      "error": null
+     }
+    },
+    "Alpha Futures 50K Standard": {
+     "passed": true,
+     "fail_reason": null,
+     "fail_day": null,
+     "all_starts_pct": 28.7,
+     "eval_ready": false,
+     "luck": {
+      "h1": {
+       "real_pass_pct": 94.4,
+       "n_windows": 36,
+       "shuffled_pass_pct": 57.8,
+       "zero_edge_pass_pct": 1.6
+      },
+      "h2": {
+       "real_pass_pct": 0.0,
+       "n_windows": 64,
+       "shuffled_pass_pct": 1.5,
+       "zero_edge_pass_pct": 9.6
+      },
+      "n_shuffles": 100,
+      "seed": 1337,
+      "margin_pts": 20.0,
+      "horizon_sessions": 120,
+      "error": null
+     }
+    },
+    "Take Profit Trader 50K Test": {
+     "passed": true,
+     "fail_reason": null,
+     "fail_day": null,
+     "all_starts_pct": 28.7,
+     "eval_ready": false,
+     "luck": {
+      "h1": {
+       "real_pass_pct": 94.4,
+       "n_windows": 36,
+       "shuffled_pass_pct": 58.6,
+       "zero_edge_pass_pct": 1.6
+      },
+      "h2": {
+       "real_pass_pct": 0.0,
+       "n_windows": 64,
+       "shuffled_pass_pct": 1.5,
+       "zero_edge_pass_pct": 10.2
+      },
+      "n_shuffles": 100,
+      "seed": 1337,
+      "margin_pts": 20.0,
+      "horizon_sessions": 120,
+      "error": null
+     }
+    },
+    "LucidFlex 50K (u06, agg-sourced)": {
+     "passed": true,
+     "fail_reason": null,
+     "fail_day": null,
+     "all_starts_pct": 28.7,
+     "eval_ready": false,
+     "luck": {
+      "h1": {
+       "real_pass_pct": 94.4,
+       "n_windows": 36,
+       "shuffled_pass_pct": 57.8,
+       "zero_edge_pass_pct": 1.6
+      },
+      "h2": {
+       "real_pass_pct": 0.0,
+       "n_windows": 64,
+       "shuffled_pass_pct": 1.5,
+       "zero_edge_pass_pct": 9.6
+      },
+      "n_shuffles": 100,
+      "seed": 1337,
+      "margin_pts": 20.0,
+      "horizon_sessions": 120,
+      "error": null
+     }
+    }
+   }
+  },
+  "fut|MNQ|retest|S1|3R|L1_$200": {
+   "n_days": 208,
+   "total": 4572.400000000034,
+   "firms": {
+    "Vanquish Trader Advanced Options 50K": {
+     "passed": true,
+     "fail_reason": null,
+     "fail_day": null,
+     "all_starts_pct": 11.5,
+     "eval_ready": false,
+     "luck": {
+      "h1": {
+       "real_pass_pct": 100.0,
+       "n_windows": 5,
+       "shuffled_pass_pct": 67.0,
+       "zero_edge_pass_pct": 0.0
+      },
+      "h2": {
+       "real_pass_pct": null,
+       "n_windows": 0,
+       "shuffled_pass_pct": null,
+       "zero_edge_pass_pct": null
+      },
+      "n_shuffles": 100,
+      "seed": 1337,
+      "margin_pts": 20.0,
+      "horizon_sessions": 120,
+      "error": null
+     }
+    },
+    "Topstep 50K Combine": {
+     "passed": true,
+     "fail_reason": null,
+     "fail_day": null,
+     "all_starts_pct": 26.0,
+     "eval_ready": false,
+     "luck": {
+      "h1": {
+       "real_pass_pct": 100.0,
+       "n_windows": 5,
+       "shuffled_pass_pct": 99.0,
+       "zero_edge_pass_pct": 1.8
+      },
+      "h2": {
+       "real_pass_pct": null,
+       "n_windows": 0,
+       "shuffled_pass_pct": null,
+       "zero_edge_pass_pct": null
+      },
+      "n_shuffles": 100,
+      "seed": 1337,
+      "margin_pts": 20.0,
+      "horizon_sessions": 120,
+      "error": null
+     }
+    },
+    "Apex 50K Eval EOD": {
+     "passed": true,
+     "fail_reason": null,
+     "fail_day": null,
+     "all_starts_pct": 26.0,
+     "eval_ready": false,
+     "luck": {
+      "h1": {
+       "real_pass_pct": 100.0,
+       "n_windows": 5,
+       "shuffled_pass_pct": 100.0,
+       "zero_edge_pass_pct": 1.8
+      },
+      "h2": {
+       "real_pass_pct": null,
+       "n_windows": 0,
+       "shuffled_pass_pct": null,
+       "zero_edge_pass_pct": null
+      },
+      "n_shuffles": 100,
+      "seed": 1337,
+      "margin_pts": 20.0,
+      "horizon_sessions": 120,
+      "error": null
+     }
+    },
+    "MyFundedFutures Rapid 50K": {
+     "passed": true,
+     "fail_reason": null,
+     "fail_day": null,
+     "all_starts_pct": 21.2,
+     "eval_ready": false,
+     "luck": {
+      "h1": {
+       "real_pass_pct": 100.0,
+       "n_windows": 5,
+       "shuffled_pass_pct": 99.0,
+       "zero_edge_pass_pct": 1.8
+      },
+      "h2": {
+       "real_pass_pct": null,
+       "n_windows": 0,
+       "shuffled_pass_pct": null,
+       "zero_edge_pass_pct": null
+      },
+      "n_shuffles": 100,
+      "seed": 1337,
+      "margin_pts": 20.0,
+      "horizon_sessions": 120,
+      "error": null
+     }
+    },
+    "Alpha Futures 50K Standard": {
+     "passed": true,
+     "fail_reason": null,
+     "fail_day": null,
+     "all_starts_pct": 21.2,
+     "eval_ready": false,
+     "luck": {
+      "h1": {
+       "real_pass_pct": 100.0,
+       "n_windows": 5,
+       "shuffled_pass_pct": 99.0,
+       "zero_edge_pass_pct": 1.8
+      },
+      "h2": {
+       "real_pass_pct": null,
+       "n_windows": 0,
+       "shuffled_pass_pct": null,
+       "zero_edge_pass_pct": null
+      },
+      "n_shuffles": 100,
+      "seed": 1337,
+      "margin_pts": 20.0,
+      "horizon_sessions": 120,
+      "error": null
+     }
+    },
+    "Take Profit Trader 50K Test": {
+     "passed": true,
+     "fail_reason": null,
+     "fail_day": null,
+     "all_starts_pct": 26.0,
+     "eval_ready": false,
+     "luck": {
+      "h1": {
+       "real_pass_pct": 100.0,
+       "n_windows": 5,
+       "shuffled_pass_pct": 100.0,
+       "zero_edge_pass_pct": 1.8
+      },
+      "h2": {
+       "real_pass_pct": null,
+       "n_windows": 0,
+       "shuffled_pass_pct": null,
+       "zero_edge_pass_pct": null
+      },
+      "n_shuffles": 100,
+      "seed": 1337,
+      "margin_pts": 20.0,
+      "horizon_sessions": 120,
+      "error": null
+     }
+    },
+    "LucidFlex 50K (u06, agg-sourced)": {
+     "passed": true,
+     "fail_reason": null,
+     "fail_day": null,
+     "all_starts_pct": 21.2,
+     "eval_ready": false,
+     "luck": {
+      "h1": {
+       "real_pass_pct": 100.0,
+       "n_windows": 5,
+       "shuffled_pass_pct": 99.0,
+       "zero_edge_pass_pct": 1.8
+      },
+      "h2": {
+       "real_pass_pct": null,
+       "n_windows": 0,
+       "shuffled_pass_pct": null,
+       "zero_edge_pass_pct": null
+      },
+      "n_shuffles": 100,
+      "seed": 1337,
+      "margin_pts": 20.0,
+      "horizon_sessions": 120,
+      "error": null
+     }
+    }
+   }
+  }
+ }
+}

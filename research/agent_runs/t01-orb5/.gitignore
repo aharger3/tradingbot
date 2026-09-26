@@ -1,0 +1,4 @@
+fut/
+trades_*.json
+*.log
+*.err

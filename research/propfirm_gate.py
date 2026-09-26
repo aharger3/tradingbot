@@ -156,6 +156,26 @@ FIRM_RULES = {
                 "help.alpha-futures.com for exact $50K numbers (not fetched); "
                 "$1,000 here is interpolated, not read off a page."),
     ),
+    "LucidFlex 50K": dict(
+        account_size=50_000.0,
+        profit_target_pct=0.06,       # $3,000 (u06: matches the eval-stage table)
+        trailing_dd_pct=0.04,         # $2,000 EOD trail
+        dd_mode="eod",
+        dd_lock_at_breakeven=False,   # not documented as locking; treated as trails forever
+        daily_loss_limit_pct=1.0,     # Lucid publishes no daily loss limit (u06: "none (optional)")
+        min_trading_days=0,
+        consistency_pct=0.50,         # 50% eval consistency; funded stage is 0% (not modeled here)
+        max_days=None,
+        cost_dollars=146.0,           # one-time (u06, ticket 2's own reason to ship this row)
+        source=("Resources/omen-prop-firms-2026-09.md (u06) 50K comparison row + "
+                "https://proptradingvibes.com/blog/lucid-trading-50k-account-rules (9/16); "
+                "matches research/agent_runs/t02-break-retest/bt.py's ad hoc "
+                "LucidFlex definition (main(), 2026-09-26)"),
+        verify=("funded-stage consistency is 0% per u06, not modeled separately here "
+                "(the gate's consistency_pct is an eval-stage concept); DD lock at "
+                "breakeven is not documented on any fetched page and is NOT "
+                "independently confirmed either way."),
+    ),
     "Take Profit Trader 50K Test": dict(
         account_size=50_000.0,
         profit_target_pct=0.06,       # $3,000
