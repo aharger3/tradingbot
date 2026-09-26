@@ -6,7 +6,15 @@
   "n_days": 498,
   "n_firms": 6,
   "n_passing": 0,
-  "headline": "0/6 firms would pass this book on paper (risk $1000/trade, 498 trading days, first-of-day arm)",
+  "n_eval_ready": 0,
+  "luck_check_params": {
+    "n_shuffles": 500,
+    "seed": 1337,
+    "margin_pts": 20.0,
+    "horizon_sessions": 120,
+    "split_day": "2025-09-01"
+  },
+  "headline": "0/6 firms would pass this book on paper (risk $1000/trade, 498 trading days, first-of-day arm); 0/6 eval_ready (day-shuffle luck check)",
   "firms": {
     "Vanquish Trader Advanced Options 50K": {
       "passed": false,
@@ -32,7 +40,27 @@
       "all_starts_pass_pct": 11.2,
       "all_starts_n": 498,
       "source": "research/g172_vanquish_refresh.py::VANQUISH_KW (reused as-is); https://www.vanquishtrader.com/how-vanquish-trader-evaluations-work-and-how-to-pass-them",
-      "verify": null
+      "verify": null,
+      "eval_ready": false,
+      "luck_check": {
+        "h1": {
+          "real_pass_pct": 14.6,
+          "n_windows": 130,
+          "shuffled_pass_pct": 10.0,
+          "zero_edge_pass_pct": 2.5
+        },
+        "h2": {
+          "real_pass_pct": 6.9,
+          "n_windows": 130,
+          "shuffled_pass_pct": 1.9,
+          "zero_edge_pass_pct": 5.3
+        },
+        "n_shuffles": 500,
+        "seed": 1337,
+        "margin_pts": 20.0,
+        "horizon_sessions": 120,
+        "error": null
+      }
     },
     "Topstep 50K Combine": {
       "passed": false,
@@ -58,7 +86,27 @@
       "all_starts_pass_pct": 14.5,
       "all_starts_n": 498,
       "source": "https://www.topstep.com/topstep-prop, verified 2026-09-05 (research/g170_futures_firms_2026-09.md); matches research/g71_propfirm_sim.py FIRMS row",
-      "verify": null
+      "verify": null,
+      "eval_ready": false,
+      "luck_check": {
+        "h1": {
+          "real_pass_pct": 18.5,
+          "n_windows": 130,
+          "shuffled_pass_pct": 17.1,
+          "zero_edge_pass_pct": 13.9
+        },
+        "h2": {
+          "real_pass_pct": 11.5,
+          "n_windows": 130,
+          "shuffled_pass_pct": 8.3,
+          "zero_edge_pass_pct": 30.0
+        },
+        "n_shuffles": 500,
+        "seed": 1337,
+        "margin_pts": 20.0,
+        "horizon_sessions": 120,
+        "error": null
+      }
     },
     "Apex 50K Eval EOD": {
       "passed": false,
@@ -84,7 +132,27 @@
       "all_starts_pass_pct": 38.2,
       "all_starts_n": 498,
       "source": "research/g71_propfirm_sim.py FIRMS row (committed 2026-08-23)",
-      "verify": "apexfunded.com returned 403 Forbidden on both 2026-08-23 and 2026-09-05 (research/g170_futures_firms_2026-09.md) -- these numbers are NOT independently re-verified against a live official page."
+      "verify": "apexfunded.com returned 403 Forbidden on both 2026-08-23 and 2026-09-05 (research/g170_futures_firms_2026-09.md) -- these numbers are NOT independently re-verified against a live official page.",
+      "eval_ready": false,
+      "luck_check": {
+        "h1": {
+          "real_pass_pct": 34.6,
+          "n_windows": 130,
+          "shuffled_pass_pct": 49.3,
+          "zero_edge_pass_pct": 32.2
+        },
+        "h2": {
+          "real_pass_pct": 26.9,
+          "n_windows": 130,
+          "shuffled_pass_pct": 24.1,
+          "zero_edge_pass_pct": 33.1
+        },
+        "n_shuffles": 500,
+        "seed": 1337,
+        "margin_pts": 20.0,
+        "horizon_sessions": 120,
+        "error": null
+      }
     },
     "MyFundedFutures Rapid 50K": {
       "passed": false,
@@ -110,7 +178,27 @@
       "all_starts_pass_pct": 29.5,
       "all_starts_n": 498,
       "source": "research/g71_propfirm_sim.py FIRMS row (committed 2026-08-23)",
-      "verify": "help.myfundedfutures.com did not resolve on 2026-09-05 (research/g170_futures_firms_2026-09.md) -- min trading days and consistency rule were never found on any public page; these numbers are NOT independently re-verified."
+      "verify": "help.myfundedfutures.com did not resolve on 2026-09-05 (research/g170_futures_firms_2026-09.md) -- min trading days and consistency rule were never found on any public page; these numbers are NOT independently re-verified.",
+      "eval_ready": false,
+      "luck_check": {
+        "h1": {
+          "real_pass_pct": 33.1,
+          "n_windows": 130,
+          "shuffled_pass_pct": 42.6,
+          "zero_edge_pass_pct": 26.9
+        },
+        "h2": {
+          "real_pass_pct": 23.1,
+          "n_windows": 130,
+          "shuffled_pass_pct": 20.9,
+          "zero_edge_pass_pct": 28.7
+        },
+        "n_shuffles": 500,
+        "seed": 1337,
+        "margin_pts": 20.0,
+        "horizon_sessions": 120,
+        "error": null
+      }
     },
     "Alpha Futures 50K Standard": {
       "passed": false,
@@ -136,7 +224,27 @@
       "all_starts_pass_pct": 6.4,
       "all_starts_n": 498,
       "source": "https://alpha-futures.com/posts/futures-prop-firm-rules-explained-2026, fetched 2026-09-26",
-      "verify": "the article gives the Daily Loss Guard as '$500 / $1K / $2K by size' without naming which size gets which figure, and points to help.alpha-futures.com for exact $50K numbers (not fetched); $1,000 here is interpolated, not read off a page."
+      "verify": "the article gives the Daily Loss Guard as '$500 / $1K / $2K by size' without naming which size gets which figure, and points to help.alpha-futures.com for exact $50K numbers (not fetched); $1,000 here is interpolated, not read off a page.",
+      "eval_ready": false,
+      "luck_check": {
+        "h1": {
+          "real_pass_pct": 7.7,
+          "n_windows": 130,
+          "shuffled_pass_pct": 6.5,
+          "zero_edge_pass_pct": 4.0
+        },
+        "h2": {
+          "real_pass_pct": 6.9,
+          "n_windows": 130,
+          "shuffled_pass_pct": 3.4,
+          "zero_edge_pass_pct": 17.2
+        },
+        "n_shuffles": 500,
+        "seed": 1337,
+        "margin_pts": 20.0,
+        "horizon_sessions": 120,
+        "error": null
+      }
     },
     "Take Profit Trader 50K Test": {
       "passed": false,
@@ -162,7 +270,27 @@
       "all_starts_pass_pct": 27.5,
       "all_starts_n": 498,
       "source": "https://takeprofittrader.com/blog/what-is-a-trailing-drawdown, fetched 2026-09-26",
-      "verify": "takeprofittrader.com/blog/prop-firm-rules (the firm's own rules index) returned 403 Forbidden on 2026-09-26. research/g71_propfirm_sim.py's older 'TPT Test 50K' row carries a $2,000 trailing DD, not $2,500 -- the two committed sources disagree and neither is the firm's live pricing page; re-verify before using this row for a real eval purchase."
+      "verify": "takeprofittrader.com/blog/prop-firm-rules (the firm's own rules index) returned 403 Forbidden on 2026-09-26. research/g71_propfirm_sim.py's older 'TPT Test 50K' row carries a $2,000 trailing DD, not $2,500 -- the two committed sources disagree and neither is the firm's live pricing page; re-verify before using this row for a real eval purchase.",
+      "eval_ready": false,
+      "luck_check": {
+        "h1": {
+          "real_pass_pct": 26.9,
+          "n_windows": 130,
+          "shuffled_pass_pct": 40.6,
+          "zero_edge_pass_pct": 18.8
+        },
+        "h2": {
+          "real_pass_pct": 22.3,
+          "n_windows": 130,
+          "shuffled_pass_pct": 13.6,
+          "zero_edge_pass_pct": 23.6
+        },
+        "n_shuffles": 500,
+        "seed": 1337,
+        "margin_pts": 20.0,
+        "horizon_sessions": 120,
+        "error": null
+      }
     }
   }
 }

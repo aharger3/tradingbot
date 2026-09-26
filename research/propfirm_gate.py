@@ -29,7 +29,17 @@ already trust for this. This file adds two things that did not exist yet:
      dates that pass" statistic `g174_funding_ladder.py::all_starts_pass_rate`
      already established and the 09-05 finding reported for Trade The Pool).
 
+Idea-bank BUILD NEXT #4 (2026-09-26): "add the shuffled-day luck check to the
+prop-firm gate." write_gate_report() now also runs
+`propfirm_luck_check.compute()` (PR #27's day-shuffle luck check, ported off
+its one-off overlay-search script and wired into every nightly run here) and
+writes each firm's `eval_ready` bool plus its `luck_check` detail into the
+same report -- report-only, same MUST NOT FAIL THE TASK guard as the rest of
+this file: a bad luck check costs the night eval_ready=False everywhere, not
+the PASS/FAIL row this file already produced.
+
 Run: python research/propfirm_gate.py [--book PATH] [--out PATH] [--risk N]
+    [--luck-shuffles N] [--luck-seed N] [--luck-margin PTS]
 """
 from __future__ import annotations
 
@@ -47,6 +57,7 @@ for _p in (ROOT, HERE):
         sys.path.insert(0, _p)
 
 from omen_metrics import evaluate_prop_challenge, first_of_day_arm  # noqa: E402
+import propfirm_luck_check  # noqa: E402
 
 DEFAULT_BOOK = os.path.join(HERE, "bt2y_trades_retest_on.json")
 DEFAULT_OUT = os.path.join(ROOT, "logs", "propfirm_gate_latest.json")
@@ -258,13 +269,18 @@ def _load_book(path) -> tuple[list, dict]:
 
 
 def write_gate_report(book_path=None, out_path=None, risk_dollars=DEFAULT_RISK_DOLLARS,
-                      firms: dict | None = None) -> dict:
+                      firms: dict | None = None,
+                      luck_n_shuffles=propfirm_luck_check.N_SHUFFLES_DEFAULT,
+                      luck_seed=propfirm_luck_check.LUCK_SEED_DEFAULT,
+                      luck_margin_pts=propfirm_luck_check.EVAL_READY_MARGIN_PTS) -> dict:
     """The nightly-loop entry point (called from research/nightly_loop.py's
     run_propfirm_gate()). Loads `book_path` (default the committed
     bt2y_trades_retest_on book), builds the one-trade-a-day arm with
     `omen_metrics.first_of_day_arm` (imported, not reimplemented), gates
     every firm in `firms` (default FIRM_RULES) against it at `risk_dollars`
-    per R, and writes the report to `out_path`
+    per R, runs the day-shuffle luck check (propfirm_luck_check.compute(),
+    `luck_n_shuffles`/`luck_seed`/`luck_margin_pts` configurable, defaults
+    500/1337/20.0) on top of it, and writes the report to `out_path`
     (default logs/propfirm_gate_latest.json at the repo root).
 
     If `book_path` needs live market data this Mac does not have (a fresh
@@ -281,6 +297,29 @@ def write_gate_report(book_path=None, out_path=None, risk_dollars=DEFAULT_RISK_D
     n_pass = sum(1 for v in results.values() if v["passed"])
     n_firms = len(results)
 
+    # Day-shuffle luck check (idea-bank BUILD NEXT #4, 2026-09-26) -- same
+    # MUST NOT FAIL THE TASK contract as the rest of this file. A bad luck
+    # check must never cost the night its PASS/FAIL row above; it only ever
+    # costs eval_ready=False everywhere.
+    n_eval_ready = 0
+    try:
+        firms_used = firms if firms is not None else FIRM_RULES
+        luck = propfirm_luck_check.compute(daily, firms_used, n_shuffles=luck_n_shuffles,
+                                           seed=luck_seed, margin_pts=luck_margin_pts)
+        for name, fields in luck.items():
+            if name not in results:
+                continue
+            results[name]["eval_ready"] = fields["eval_ready"]
+            results[name]["luck_check"] = {k: v for k, v in fields.items()
+                                          if k != "eval_ready"}
+            if fields["eval_ready"]:
+                n_eval_ready += 1
+    except Exception as exc:
+        print("propfirm_gate.py: luck check failed: %r" % exc, file=sys.stderr)
+        for name in results:
+            results[name].setdefault("eval_ready", False)
+            results[name].setdefault("luck_check", {"error": repr(exc)})
+
     try:
         book_display = str(Path(book_path).resolve().relative_to(Path(ROOT).resolve()))
     except ValueError:
@@ -294,9 +333,15 @@ def write_gate_report(book_path=None, out_path=None, risk_dollars=DEFAULT_RISK_D
         "n_days": len(daily),
         "n_firms": n_firms,
         "n_passing": n_pass,
+        "n_eval_ready": n_eval_ready,
+        "luck_check_params": dict(n_shuffles=luck_n_shuffles, seed=luck_seed,
+                                  margin_pts=luck_margin_pts,
+                                  horizon_sessions=propfirm_luck_check.HORIZON,
+                                  split_day=propfirm_luck_check.SPLIT_DAY),
         "headline": ("%d/%d firms would pass this book on paper (risk $%.0f/trade, "
-                    "%d trading days, first-of-day arm)"
-                    % (n_pass, n_firms, risk_dollars, len(daily))),
+                    "%d trading days, first-of-day arm); %d/%d eval_ready "
+                    "(day-shuffle luck check)"
+                    % (n_pass, n_firms, risk_dollars, len(daily), n_eval_ready, n_firms)),
         "firms": results,
     }
 
@@ -313,19 +358,29 @@ def main():
     ap.add_argument("--book", default=DEFAULT_BOOK)
     ap.add_argument("--out", default=DEFAULT_OUT)
     ap.add_argument("--risk", type=float, default=DEFAULT_RISK_DOLLARS)
+    ap.add_argument("--luck-shuffles", type=int,
+                    default=propfirm_luck_check.N_SHUFFLES_DEFAULT)
+    ap.add_argument("--luck-seed", type=int,
+                    default=propfirm_luck_check.LUCK_SEED_DEFAULT)
+    ap.add_argument("--luck-margin", type=float,
+                    default=propfirm_luck_check.EVAL_READY_MARGIN_PTS)
     args = ap.parse_args()
 
-    report = write_gate_report(args.book, args.out, args.risk)
+    report = write_gate_report(args.book, args.out, args.risk,
+                               luck_n_shuffles=args.luck_shuffles,
+                               luck_seed=args.luck_seed,
+                               luck_margin_pts=args.luck_margin)
     print(report["headline"])
     print("-" * len(report["headline"]))
-    h = "%-38s %-6s %-20s %-12s %10s %10s" % (
-        "firm", "PASS?", "fail_reason", "fail_day", "maxDD%", "all-starts%")
+    h = "%-38s %-6s %-20s %-12s %10s %10s %11s" % (
+        "firm", "PASS?", "fail_reason", "fail_day", "maxDD%", "all-starts%", "eval_ready")
     print(h)
     for name, r in report["firms"].items():
-        print("%-38s %-6s %-20s %-12s %10s %10s" % (
+        print("%-38s %-6s %-20s %-12s %10s %10s %11s" % (
             name, "PASS" if r["passed"] else "FAIL", r["fail_reason"] or "-",
             r["fail_day"] or "-", "%.1f" % r["max_drawdown_seen_pct"],
-            "%.1f" % r["all_starts_pass_pct"] if r["all_starts_pass_pct"] is not None else "-"))
+            "%.1f" % r["all_starts_pass_pct"] if r["all_starts_pass_pct"] is not None else "-",
+            r.get("eval_ready")))
     print("\nwrote", report["out_path"])
 
 
