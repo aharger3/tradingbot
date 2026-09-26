@@ -87,7 +87,10 @@ FIRM_RULES = {
         cost_dollars=499.0,           # monthly subscription (VANQUISH_MONTHLY_FEE)
         source=("research/g172_vanquish_refresh.py::VANQUISH_KW (reused as-is); "
                 "https://www.vanquishtrader.com/how-vanquish-trader-evaluations-work-and-how-to-pass-them"),
-        verify=None,
+        verify=("u06 (2026-09-26): Vanquish DD is actually INTRADAY from unrealized "
+                "peak, not EOD -- this row is too lenient on DD mechanics. It is also "
+                "options-only (no CME futures) -- EXCLUDED from the futures scaling "
+                "ladder (b3-scaling.md); kept only for the options-track comparison."),
     ),
     "Topstep 50K Combine": dict(
         account_size=50_000.0,
@@ -97,27 +100,37 @@ FIRM_RULES = {
         dd_lock_at_breakeven=True,    # Topstep: trailing DD stops trailing at breakeven
         daily_loss_limit_pct=0.02,    # $1,000
         min_trading_days=0,           # no published minimum for the Combine
-        consistency_pct=1.0,          # no consistency rule at the eval stage
+        consistency_pct=0.55,         # u06 (9/26): best day <=55% of target (Topstep help)
         max_days=120,
         cost_dollars=49.0,
         source=("https://www.topstep.com/topstep-prop, verified 2026-09-05 "
                 "(research/g170_futures_firms_2026-09.md); "
                 "matches research/g71_propfirm_sim.py FIRMS row"),
-        verify=None,
+        verify=("u06 (2026-09-26): DLL is a SOFT PAUSE (rest of day), not a hard fail -- "
+                "the gate has no soft-DLL concept, so modeling it as a hard "
+                "daily_loss_limit_pct is too harsh; left at the pre-existing value "
+                "pending a soft-pause parameter (out of scope for b3). Cost is "
+                "$49/mo eval + $149 one-time activation, not $49 flat."),
     ),
     "Apex 50K Eval EOD": dict(
         account_size=50_000.0,
         profit_target_pct=0.06,       # $3,000
-        trailing_dd_pct=0.05,         # $2,500
+        trailing_dd_pct=0.04,         # $2,000 (u06 9/26: Apex 4.0 since 3/1/26, was $2,500)
         dd_mode="eod",
         dd_lock_at_breakeven=False,   # matches g71's lock=None; NOT independently confirmed
         daily_loss_limit_pct=1.0,     # Apex publishes no daily loss limit
         min_trading_days=0,
         consistency_pct=1.0,
-        max_days=120,
-        cost_dollars=35.0,
+        max_days=30,                  # u06 (9/26): 30 calendar days, not a 120-day window
+        cost_dollars=139.0,           # u06 (9/26): $139 activation floor; list $490, promos 80-90% off
         source="research/g71_propfirm_sim.py FIRMS row (committed 2026-08-23)",
-        verify=("apexfunded.com returned 403 Forbidden on both 2026-08-23 and "
+        verify=("Corrected per u06 (2026-09-26) vs the 9-26 code review: DD was $2,500, "
+                "should be $2,000; max_days was 120, should be 30. DLL is a $1,000 soft "
+                "pause (not modeled -- gate has no soft-DLL concept, current daily_loss_"
+                "limit_pct=1.0 i.e. 'none' is the correct approximation for a hard-fail-"
+                "only simulator). Eval cost is promo-dependent ($490 list, often 80-90% "
+                "off) -- $139 here is the activation-fee floor, NOT the eval price; "
+                "apexfunded.com returned 403 Forbidden on both 2026-08-23 and "
                 "2026-09-05 (research/g170_futures_firms_2026-09.md) -- these numbers "
                 "are NOT independently re-verified against a live official page."),
     ),
@@ -128,12 +141,16 @@ FIRM_RULES = {
         dd_mode="eod",
         dd_lock_at_breakeven=False,   # matches g71's lock=None; NOT independently confirmed
         daily_loss_limit_pct=1.0,     # MFFU publishes no daily loss limit
-        min_trading_days=0,
-        consistency_pct=1.0,
+        min_trading_days=2,           # u06 (9/26): 2 min days (official help, 8/24)
+        consistency_pct=0.50,         # u06 (9/26): 50% eval consistency (official help, 8/24)
         max_days=120,
-        cost_dollars=80.0,
+        cost_dollars=125.0,           # u06 (9/26): ~$125 w/ promo, since 8/25 ($209 list one-time)
         source="research/g71_propfirm_sim.py FIRMS row (committed 2026-08-23)",
-        verify=("help.myfundedfutures.com did not resolve on 2026-09-05 "
+        verify=("Corrected per u06 (2026-09-26): min_trading_days was 0, should be 2; "
+                "consistency_pct was 1.0 (none), should be 0.50. Funded stage switches "
+                "to an INTRADAY trail (locks +$100) -- not modeled, this row is EOD "
+                "throughout and is therefore too lenient once funded. "
+                "help.myfundedfutures.com did not resolve on 2026-09-05 "
                 "(research/g170_futures_firms_2026-09.md) -- min trading days and "
                 "consistency rule were never found on any public page; these numbers "
                 "are NOT independently re-verified."),
@@ -144,31 +161,59 @@ FIRM_RULES = {
         trailing_dd_pct=0.04,         # $2,000 (4% EOD trailing MLL, all plans)
         dd_mode="eod",
         dd_lock_at_breakeven=False,   # not documented as locking; treated as trails forever
-        daily_loss_limit_pct=0.02,    # ~$1,000 Daily Loss Guard, interpolated for 50K
-        min_trading_days=0,           # not stated on the fetched page
+        daily_loss_limit_pct=1.0,     # u06 (9/26): Standard has NO Daily Loss Guard (Zero plan only)
+        min_trading_days=2,           # u06 (9/26): 2 min days (official homepage)
         consistency_pct=0.50,         # Standard plan: 50% during eval, 40% once qualified
         max_days=None,
-        cost_dollars=None,
+        cost_dollars=129.0,           # u06 (9/26): $129/mo, no activation fee (official homepage)
         source=("https://alpha-futures.com/posts/futures-prop-firm-rules-explained-2026, "
                 "fetched 2026-09-26"),
-        verify=("the article gives the Daily Loss Guard as '$500 / $1K / $2K by size' "
+        verify=("Corrected per u06 (2026-09-26): the prior $1,000 interpolated DLL was "
+                "wrong and too harsh -- Standard has no Daily Loss Guard at all (that "
+                "is a Zero-plan-only feature); min_trading_days and cost were unfilled, "
+                "now 2 days / $129mo per the official homepage. "
+                "the article gives the Daily Loss Guard as '$500 / $1K / $2K by size' "
                 "without naming which size gets which figure, and points to "
                 "help.alpha-futures.com for exact $50K numbers (not fetched); "
                 "$1,000 here is interpolated, not read off a page."),
     ),
+    "LucidFlex 50K": dict(
+        account_size=50_000.0,
+        profit_target_pct=0.06,       # $3,000 (u06: matches the eval-stage table)
+        trailing_dd_pct=0.04,         # $2,000 EOD trail
+        dd_mode="eod",
+        dd_lock_at_breakeven=False,   # not documented as locking; treated as trails forever
+        daily_loss_limit_pct=1.0,     # Lucid publishes no daily loss limit (u06: "none (optional)")
+        min_trading_days=0,
+        consistency_pct=0.50,         # 50% eval consistency; funded stage is 0% (not modeled here)
+        max_days=None,
+        cost_dollars=146.0,           # one-time (u06, ticket 2's own reason to ship this row)
+        source=("Resources/omen-prop-firms-2026-09.md (u06) 50K comparison row + "
+                "https://proptradingvibes.com/blog/lucid-trading-50k-account-rules (9/16); "
+                "matches research/agent_runs/t02-break-retest/bt.py's ad hoc "
+                "LucidFlex definition (main(), 2026-09-26)"),
+        verify=("funded-stage consistency is 0% per u06, not modeled separately here "
+                "(the gate's consistency_pct is an eval-stage concept); DD lock at "
+                "breakeven is not documented on any fetched page and is NOT "
+                "independently confirmed either way."),
+    ),
     "Take Profit Trader 50K Test": dict(
         account_size=50_000.0,
         profit_target_pct=0.06,       # $3,000
-        trailing_dd_pct=0.05,         # $2,500 (official blog's own worked example)
+        trailing_dd_pct=0.04,         # $2,000 (u06 9/26 corrects the $2,500 blog example)
         dd_mode="eod",                # Test/Evaluation + PRO+ are EOD; PRO is intraday
         dd_lock_at_breakeven=True,    # "stops trailing once it reaches your starting balance"
         daily_loss_limit_pct=1.0,     # no daily loss limit on Test/PRO accounts as of Jan 2025
-        min_trading_days=5,
+        min_trading_days=3,           # u06 (9/26): homepage says 3 days to PRO, not 5
         consistency_pct=0.50,         # no single day >= 50% of total net profit
         max_days=None,
-        cost_dollars=None,
+        cost_dollars=170.0,           # u06 (9/26): $170/mo eval + $130 one-time activation
         source="https://takeprofittrader.com/blog/what-is-a-trailing-drawdown, fetched 2026-09-26",
-        verify=("takeprofittrader.com/blog/prop-firm-rules (the firm's own rules index) "
+        verify=("Corrected per u06 (2026-09-26): DD was $2,500 (blog worked example), the "
+                "gate's own prior note already flagged $2,000 as the g71 value -- u06's "
+                "aggregator sources confirm $2,000. min_trading_days was 5, homepage "
+                "says 3. Cost was unfilled, now $170/mo + $130 one-time activation. "
+                "takeprofittrader.com/blog/prop-firm-rules (the firm's own rules index) "
                 "returned 403 Forbidden on 2026-09-26. research/g71_propfirm_sim.py's "
                 "older 'TPT Test 50K' row carries a $2,000 trailing DD, not $2,500 -- "
                 "the two committed sources disagree and neither is the firm's live "
