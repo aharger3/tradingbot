@@ -1,0 +1,1073 @@
+{
+ "book": "research/bt2y_trades_retest_on.json",
+ "book_sessions": 498,
+ "book_first": "2024-09-03",
+ "book_last": "2026-09-02",
+ "split_day": "2025-09-01",
+ "horizon": 120,
+ "count_bar_pct": 50.0,
+ "grid": {
+  "risks": [
+   100,
+   150,
+   200,
+   250,
+   300,
+   400,
+   500,
+   750,
+   1000
+  ],
+  "grades": [
+   "all",
+   "S+A",
+   "S"
+  ],
+  "max_trades": [
+   1,
+   2,
+   3,
+   5
+  ],
+  "loss_stops": [
+   null,
+   1.0,
+   2.0,
+   3.0
+  ],
+  "profit_stops": [
+   null,
+   1.0,
+   2.0,
+   3.0
+  ],
+  "skips": [
+   "none",
+   "red1",
+   "red2"
+  ],
+  "sat_token": 0.1
+ },
+ "n_specs": 441,
+ "n_distinct_series": 333,
+ "n_configs": 23976,
+ "baseline_1000_first_of_day": {
+  "Vanquish Trader Advanced Options 50K": {
+   "h1_pass": 14.6,
+   "h2_pass": 6.9
+  },
+  "Topstep 50K Combine": {
+   "h1_pass": 18.5,
+   "h2_pass": 11.5
+  },
+  "Apex 50K Eval EOD": {
+   "h1_pass": 34.6,
+   "h2_pass": 26.9
+  },
+  "MyFundedFutures Rapid 50K": {
+   "h1_pass": 33.1,
+   "h2_pass": 23.1
+  },
+  "Alpha Futures 50K Standard": {
+   "h1_pass": 7.7,
+   "h2_pass": 6.9
+  },
+  "Take Profit Trader 50K Test": {
+   "h1_pass": 26.9,
+   "h2_pass": 22.3
+  }
+ },
+ "firms": {
+  "Vanquish Trader Advanced Options 50K": {
+   "best": {
+    "firm": "Vanquish Trader Advanced Options 50K",
+    "spec": [
+     "all",
+     2,
+     null,
+     null,
+     "red2"
+    ],
+    "risk": 250,
+    "sat": false,
+    "h1_pass": 32.3,
+    "h2_pass": 33.8,
+    "h1_starts": 130,
+    "h2_starts": 130,
+    "h1_med_sessions": 66.0,
+    "h2_med_sessions": 77.5,
+    "h1_per_day": 12.06,
+    "h2_per_day": -2.55,
+    "min_pass": 32.3,
+    "counts": false,
+    "overlay": "grade=all, max2/day, sit out after 2 red days, $250/R",
+    "full_per_day": 4.75,
+    "trades_per_session": 1.68,
+    "trades_total": 838,
+    "gate_all_starts_pass": 17.3,
+    "gate_all_starts_n": 498,
+    "gate_first_day_pass": false,
+    "h2_shuffled": {
+     "mean": 4.8,
+     "p10": 0.0,
+     "p90": 19.2
+    },
+    "h1_zero_drift": {
+     "mean": 6.8,
+     "p10": 0.0,
+     "p90": 24.6
+    },
+    "h1_shuffled": {
+     "mean": 10.6,
+     "p10": 0.0,
+     "p90": 34.6
+    },
+    "h2_zero_drift": {
+     "mean": 4.7,
+     "p10": 0.0,
+     "p90": 20.0
+    },
+    "robust": false
+   },
+   "n_configs": 5994,
+   "n_counting": 0,
+   "n_h1_only": 46,
+   "n_h2_only": 24,
+   "top5": [
+    {
+     "spec": [
+      "all",
+      2,
+      null,
+      null,
+      "red2"
+     ],
+     "risk": 250,
+     "sat": false,
+     "h1_pass": 32.3,
+     "h2_pass": 33.8,
+     "h1_per_day": 12.06,
+     "h2_per_day": -2.55
+    },
+    {
+     "spec": [
+      "all",
+      2,
+      null,
+      null,
+      "red2"
+     ],
+     "risk": 250,
+     "sat": true,
+     "h1_pass": 32.3,
+     "h2_pass": 33.8,
+     "h1_per_day": 12.06,
+     "h2_per_day": -2.55
+    },
+    {
+     "spec": [
+      "all",
+      2,
+      null,
+      1.0,
+      "red2"
+     ],
+     "risk": 300,
+     "sat": false,
+     "h1_pass": 30.0,
+     "h2_pass": 66.9,
+     "h1_per_day": 28.21,
+     "h2_per_day": -4.49
+    },
+    {
+     "spec": [
+      "all",
+      2,
+      null,
+      1.0,
+      "red2"
+     ],
+     "risk": 300,
+     "sat": true,
+     "h1_pass": 30.0,
+     "h2_pass": 66.9,
+     "h1_per_day": 28.21,
+     "h2_per_day": -4.49
+    },
+    {
+     "spec": [
+      "all",
+      2,
+      null,
+      3.0,
+      "red2"
+     ],
+     "risk": 300,
+     "sat": false,
+     "h1_pass": 30.0,
+     "h2_pass": 66.2,
+     "h1_per_day": 16.4,
+     "h2_per_day": -2.52
+    }
+   ],
+   "best_h1": 70.0,
+   "best_h2": 66.9
+  },
+  "Topstep 50K Combine": {
+   "best": {
+    "firm": "Topstep 50K Combine",
+    "spec": [
+     "S+A",
+     3,
+     1.0,
+     null,
+     "red2"
+    ],
+    "risk": 200,
+    "sat": false,
+    "h1_pass": 65.4,
+    "h2_pass": 57.7,
+    "h1_starts": 130,
+    "h2_starts": 130,
+    "h1_med_sessions": 41,
+    "h2_med_sessions": 39,
+    "h1_per_day": 13.81,
+    "h2_per_day": 1.53,
+    "min_pass": 57.7,
+    "counts": true,
+    "overlay": "grade=S+A, max3/day, stop -1R/day, sit out after 2 red days, $200/R",
+    "full_per_day": 7.67,
+    "trades_per_session": 1.69,
+    "trades_total": 842,
+    "gate_all_starts_pass": 45.0,
+    "gate_all_starts_n": 498,
+    "gate_first_day_pass": false,
+    "h2_shuffled": {
+     "mean": 14.5,
+     "p10": 0.0,
+     "p90": 36.9
+    },
+    "h2_zero_drift": {
+     "mean": 21.7,
+     "p10": 0.0,
+     "p90": 47.7
+    },
+    "h1_shuffled": {
+     "mean": 20.8,
+     "p10": 0.0,
+     "p90": 51.5
+    },
+    "h1_zero_drift": {
+     "mean": 18.8,
+     "p10": 0.0,
+     "p90": 50.0
+    },
+    "robust": false
+   },
+   "n_configs": 2997,
+   "n_counting": 11,
+   "n_h1_only": 83,
+   "n_h2_only": 80,
+   "top5": [
+    {
+     "spec": [
+      "S+A",
+      3,
+      1.0,
+      null,
+      "red2"
+     ],
+     "risk": 200,
+     "sat": false,
+     "h1_pass": 65.4,
+     "h2_pass": 57.7,
+     "h1_per_day": 13.81,
+     "h2_per_day": 1.53
+    },
+    {
+     "spec": [
+      "all",
+      2,
+      1.0,
+      1.0,
+      "red2"
+     ],
+     "risk": 300,
+     "sat": false,
+     "h1_pass": 56.9,
+     "h2_pass": 70.8,
+     "h1_per_day": 29.01,
+     "h2_per_day": -10.29
+    },
+    {
+     "spec": [
+      "S+A",
+      3,
+      1.0,
+      3.0,
+      "red2"
+     ],
+     "risk": 200,
+     "sat": false,
+     "h1_pass": 65.4,
+     "h2_pass": 56.2,
+     "h1_per_day": 10.82,
+     "h2_per_day": 1.6
+    },
+    {
+     "spec": [
+      "all",
+      2,
+      1.0,
+      3.0,
+      "red2"
+     ],
+     "risk": 250,
+     "sat": false,
+     "h1_pass": 55.4,
+     "h2_pass": 60.8,
+     "h1_per_day": 15.52,
+     "h2_per_day": -6.77
+    },
+    {
+     "spec": [
+      "all",
+      2,
+      1.0,
+      2.0,
+      "red2"
+     ],
+     "risk": 250,
+     "sat": false,
+     "h1_pass": 55.4,
+     "h2_pass": 60.0,
+     "h1_per_day": 15.45,
+     "h2_per_day": -7.02
+    }
+   ],
+   "best_h1": 74.6,
+   "best_h2": 82.3
+  },
+  "Apex 50K Eval EOD": {
+   "best": {
+    "firm": "Apex 50K Eval EOD",
+    "spec": [
+     "all",
+     2,
+     1.0,
+     1.0,
+     "red2"
+    ],
+    "risk": 300,
+    "sat": false,
+    "h1_pass": 66.9,
+    "h2_pass": 70.8,
+    "h1_starts": 130,
+    "h2_starts": 130,
+    "h1_med_sessions": 34,
+    "h2_med_sessions": 57.5,
+    "h1_per_day": 29.01,
+    "h2_per_day": -10.29,
+    "min_pass": 66.9,
+    "counts": true,
+    "overlay": "grade=all, max2/day, stop -1R/day, stop +1R/day, sit out after 2 red days, $300/R",
+    "full_per_day": 9.36,
+    "trades_per_session": 1.26,
+    "trades_total": 625,
+    "gate_all_starts_pass": 41.6,
+    "gate_all_starts_n": 498,
+    "gate_first_day_pass": false,
+    "h1_shuffled": {
+     "mean": 53.6,
+     "p10": 20.0,
+     "p90": 85.4
+    },
+    "h1_zero_drift": {
+     "mean": 31.1,
+     "p10": 4.6,
+     "p90": 59.2
+    },
+    "h2_shuffled": {
+     "mean": 9.3,
+     "p10": 0.0,
+     "p90": 31.5
+    },
+    "h2_zero_drift": {
+     "mean": 28.0,
+     "p10": 2.3,
+     "p90": 63.1
+    },
+    "robust": false
+   },
+   "n_configs": 2997,
+   "n_counting": 33,
+   "n_h1_only": 178,
+   "n_h2_only": 209,
+   "top5": [
+    {
+     "spec": [
+      "all",
+      2,
+      1.0,
+      1.0,
+      "red2"
+     ],
+     "risk": 300,
+     "sat": false,
+     "h1_pass": 66.9,
+     "h2_pass": 70.8,
+     "h1_per_day": 29.01,
+     "h2_per_day": -10.29
+    },
+    {
+     "spec": [
+      "S+A",
+      3,
+      1.0,
+      null,
+      "red2"
+     ],
+     "risk": 250,
+     "sat": false,
+     "h1_pass": 65.4,
+     "h2_pass": 68.5,
+     "h1_per_day": 17.26,
+     "h2_per_day": 1.91
+    },
+    {
+     "spec": [
+      "S+A",
+      3,
+      1.0,
+      3.0,
+      "red2"
+     ],
+     "risk": 250,
+     "sat": false,
+     "h1_pass": 65.4,
+     "h2_pass": 65.4,
+     "h1_per_day": 13.53,
+     "h2_per_day": 2.0
+    },
+    {
+     "spec": [
+      "all",
+      2,
+      1.0,
+      2.0,
+      "red2"
+     ],
+     "risk": 300,
+     "sat": false,
+     "h1_pass": 63.1,
+     "h2_pass": 71.5,
+     "h1_per_day": 18.55,
+     "h2_per_day": -8.43
+    },
+    {
+     "spec": [
+      "all",
+      2,
+      1.0,
+      3.0,
+      "red2"
+     ],
+     "risk": 300,
+     "sat": false,
+     "h1_pass": 61.5,
+     "h2_pass": 71.5,
+     "h1_per_day": 18.62,
+     "h2_per_day": -8.13
+    }
+   ],
+   "best_h1": 92.3,
+   "best_h2": 83.1
+  },
+  "MyFundedFutures Rapid 50K": {
+   "best": {
+    "firm": "MyFundedFutures Rapid 50K",
+    "spec": [
+     "S+A",
+     3,
+     1.0,
+     null,
+     "red2"
+    ],
+    "risk": 200,
+    "sat": false,
+    "h1_pass": 65.4,
+    "h2_pass": 57.7,
+    "h1_starts": 130,
+    "h2_starts": 130,
+    "h1_med_sessions": 41,
+    "h2_med_sessions": 39,
+    "h1_per_day": 13.81,
+    "h2_per_day": 1.53,
+    "min_pass": 57.7,
+    "counts": true,
+    "overlay": "grade=S+A, max3/day, stop -1R/day, sit out after 2 red days, $200/R",
+    "full_per_day": 7.67,
+    "trades_per_session": 1.69,
+    "trades_total": 842,
+    "gate_all_starts_pass": 45.0,
+    "gate_all_starts_n": 498,
+    "gate_first_day_pass": false,
+    "h2_shuffled": {
+     "mean": 13.4,
+     "p10": 0.0,
+     "p90": 42.3
+    },
+    "h1_shuffled": {
+     "mean": 22.3,
+     "p10": 0.0,
+     "p90": 56.9
+    },
+    "h2_zero_drift": {
+     "mean": 20.4,
+     "p10": 0.0,
+     "p90": 51.5
+    },
+    "h1_zero_drift": {
+     "mean": 21.4,
+     "p10": 0.0,
+     "p90": 54.6
+    },
+    "robust": false
+   },
+   "n_configs": 2997,
+   "n_counting": 8,
+   "n_h1_only": 79,
+   "n_h2_only": 68,
+   "top5": [
+    {
+     "spec": [
+      "S+A",
+      3,
+      1.0,
+      null,
+      "red2"
+     ],
+     "risk": 200,
+     "sat": false,
+     "h1_pass": 65.4,
+     "h2_pass": 57.7,
+     "h1_per_day": 13.81,
+     "h2_per_day": 1.53
+    },
+    {
+     "spec": [
+      "all",
+      2,
+      1.0,
+      1.0,
+      "red2"
+     ],
+     "risk": 300,
+     "sat": false,
+     "h1_pass": 56.9,
+     "h2_pass": 70.8,
+     "h1_per_day": 29.01,
+     "h2_per_day": -10.29
+    },
+    {
+     "spec": [
+      "S+A",
+      3,
+      1.0,
+      3.0,
+      "red2"
+     ],
+     "risk": 200,
+     "sat": false,
+     "h1_pass": 65.4,
+     "h2_pass": 56.2,
+     "h1_per_day": 10.82,
+     "h2_per_day": 1.6
+    },
+    {
+     "spec": [
+      "all",
+      2,
+      1.0,
+      3.0,
+      "red2"
+     ],
+     "risk": 250,
+     "sat": false,
+     "h1_pass": 55.4,
+     "h2_pass": 60.8,
+     "h1_per_day": 15.52,
+     "h2_per_day": -6.77
+    },
+    {
+     "spec": [
+      "all",
+      2,
+      1.0,
+      2.0,
+      "red2"
+     ],
+     "risk": 250,
+     "sat": false,
+     "h1_pass": 55.4,
+     "h2_pass": 60.0,
+     "h1_per_day": 15.45,
+     "h2_per_day": -7.02
+    }
+   ],
+   "best_h1": 74.6,
+   "best_h2": 82.3
+  },
+  "Alpha Futures 50K Standard": {
+   "best": {
+    "firm": "Alpha Futures 50K Standard",
+    "spec": [
+     "S+A",
+     3,
+     1.0,
+     null,
+     "red2"
+    ],
+    "risk": 200,
+    "sat": false,
+    "h1_pass": 65.4,
+    "h2_pass": 56.9,
+    "h1_starts": 130,
+    "h2_starts": 130,
+    "h1_med_sessions": 41,
+    "h2_med_sessions": 39.5,
+    "h1_per_day": 13.81,
+    "h2_per_day": 1.53,
+    "min_pass": 56.9,
+    "counts": true,
+    "overlay": "grade=S+A, max3/day, stop -1R/day, sit out after 2 red days, $200/R",
+    "full_per_day": 7.67,
+    "trades_per_session": 1.69,
+    "trades_total": 842,
+    "gate_all_starts_pass": 44.8,
+    "gate_all_starts_n": 498,
+    "gate_first_day_pass": false,
+    "h2_shuffled": {
+     "mean": 12.2,
+     "p10": 0.0,
+     "p90": 36.2
+    },
+    "h1_shuffled": {
+     "mean": 22.1,
+     "p10": 0.0,
+     "p90": 54.6
+    },
+    "h1_zero_drift": {
+     "mean": 19.7,
+     "p10": 0.0,
+     "p90": 46.9
+    },
+    "h2_zero_drift": {
+     "mean": 19.2,
+     "p10": 0.0,
+     "p90": 47.7
+    },
+    "robust": false
+   },
+   "n_configs": 2997,
+   "n_counting": 7,
+   "n_h1_only": 65,
+   "n_h2_only": 33,
+   "top5": [
+    {
+     "spec": [
+      "S+A",
+      3,
+      1.0,
+      null,
+      "red2"
+     ],
+     "risk": 200,
+     "sat": false,
+     "h1_pass": 65.4,
+     "h2_pass": 56.9,
+     "h1_per_day": 13.81,
+     "h2_per_day": 1.53
+    },
+    {
+     "spec": [
+      "all",
+      2,
+      1.0,
+      1.0,
+      "red2"
+     ],
+     "risk": 300,
+     "sat": false,
+     "h1_pass": 56.2,
+     "h2_pass": 70.8,
+     "h1_per_day": 29.01,
+     "h2_per_day": -10.29
+    },
+    {
+     "spec": [
+      "S+A",
+      3,
+      1.0,
+      3.0,
+      "red2"
+     ],
+     "risk": 200,
+     "sat": false,
+     "h1_pass": 65.4,
+     "h2_pass": 55.4,
+     "h1_per_day": 10.82,
+     "h2_per_day": 1.6
+    },
+    {
+     "spec": [
+      "all",
+      2,
+      1.0,
+      3.0,
+      "red2"
+     ],
+     "risk": 250,
+     "sat": false,
+     "h1_pass": 55.4,
+     "h2_pass": 60.8,
+     "h1_per_day": 15.52,
+     "h2_per_day": -6.77
+    },
+    {
+     "spec": [
+      "all",
+      2,
+      1.0,
+      2.0,
+      "red2"
+     ],
+     "risk": 250,
+     "sat": false,
+     "h1_pass": 55.4,
+     "h2_pass": 60.0,
+     "h1_per_day": 15.45,
+     "h2_per_day": -7.02
+    }
+   ],
+   "best_h1": 74.6,
+   "best_h2": 82.3
+  },
+  "Take Profit Trader 50K Test": {
+   "best": {
+    "firm": "Take Profit Trader 50K Test",
+    "spec": [
+     "all",
+     2,
+     1.0,
+     1.0,
+     "red2"
+    ],
+    "risk": 300,
+    "sat": false,
+    "h1_pass": 64.6,
+    "h2_pass": 70.8,
+    "h1_starts": 130,
+    "h2_starts": 130,
+    "h1_med_sessions": 35.5,
+    "h2_med_sessions": 57.5,
+    "h1_per_day": 29.01,
+    "h2_per_day": -10.29,
+    "min_pass": 64.6,
+    "counts": true,
+    "overlay": "grade=all, max2/day, stop -1R/day, stop +1R/day, sit out after 2 red days, $300/R",
+    "full_per_day": 9.36,
+    "trades_per_session": 1.26,
+    "trades_total": 625,
+    "gate_all_starts_pass": 41.0,
+    "gate_all_starts_n": 498,
+    "gate_first_day_pass": false,
+    "h1_zero_drift": {
+     "mean": 28.2,
+     "p10": 1.5,
+     "p90": 57.7
+    },
+    "h2_shuffled": {
+     "mean": 10.2,
+     "p10": 0.0,
+     "p90": 31.5
+    },
+    "h1_shuffled": {
+     "mean": 49.1,
+     "p10": 16.2,
+     "p90": 83.8
+    },
+    "h2_zero_drift": {
+     "mean": 27.5,
+     "p10": 1.5,
+     "p90": 57.7
+    },
+    "robust": false
+   },
+   "n_configs": 5994,
+   "n_counting": 34,
+   "n_h1_only": 274,
+   "n_h2_only": 192,
+   "top5": [
+    {
+     "spec": [
+      "all",
+      2,
+      1.0,
+      1.0,
+      "red2"
+     ],
+     "risk": 300,
+     "sat": false,
+     "h1_pass": 64.6,
+     "h2_pass": 70.8,
+     "h1_per_day": 29.01,
+     "h2_per_day": -10.29
+    },
+    {
+     "spec": [
+      "all",
+      2,
+      1.0,
+      1.0,
+      "red2"
+     ],
+     "risk": 300,
+     "sat": true,
+     "h1_pass": 64.6,
+     "h2_pass": 70.8,
+     "h1_per_day": 29.01,
+     "h2_per_day": -10.29
+    },
+    {
+     "spec": [
+      "all",
+      2,
+      1.0,
+      2.0,
+      "red2"
+     ],
+     "risk": 300,
+     "sat": false,
+     "h1_pass": 60.8,
+     "h2_pass": 70.8,
+     "h1_per_day": 18.55,
+     "h2_per_day": -8.43
+    },
+    {
+     "spec": [
+      "all",
+      2,
+      1.0,
+      2.0,
+      "red2"
+     ],
+     "risk": 300,
+     "sat": true,
+     "h1_pass": 60.8,
+     "h2_pass": 70.8,
+     "h1_per_day": 18.55,
+     "h2_per_day": -8.43
+    },
+    {
+     "spec": [
+      "all",
+      2,
+      1.0,
+      3.0,
+      "red2"
+     ],
+     "risk": 250,
+     "sat": false,
+     "h1_pass": 63.1,
+     "h2_pass": 60.8,
+     "h1_per_day": 15.52,
+     "h2_per_day": -6.77
+    }
+   ],
+   "best_h1": 92.3,
+   "best_h2": 83.1
+  }
+ },
+ "stage2_iid": {
+  "n_positive_drift_series": 9,
+  "risks": [
+   150,
+   200,
+   250,
+   300,
+   400,
+   500
+  ],
+  "n_perm": 40,
+  "positive_drift_series": [
+   {
+    "overlay": "grade=S+A, max1/day, sit out after a red day",
+    "h1_r_per_session": 0.044,
+    "h2_r_per_session": 0.0126
+   },
+   {
+    "overlay": "grade=all, max5/day, stop -1R/day, stop +2R/day, sit out after 2 red days",
+    "h1_r_per_session": 0.0725,
+    "h2_r_per_session": 0.0135
+   },
+   {
+    "overlay": "grade=S+A, max3/day, stop -1R/day, sit out after 2 red days",
+    "h1_r_per_session": 0.0691,
+    "h2_r_per_session": 0.0076
+   },
+   {
+    "overlay": "grade=S+A, max3/day, stop -1R/day, stop +2R/day, sit out after 2 red days",
+    "h1_r_per_session": 0.0457,
+    "h2_r_per_session": 0.006
+   },
+   {
+    "overlay": "grade=S+A, max3/day, stop -1R/day, stop +3R/day, sit out after 2 red days",
+    "h1_r_per_session": 0.0541,
+    "h2_r_per_session": 0.008
+   },
+   {
+    "overlay": "grade=S+A, max5/day, stop -1R/day, sit out after 2 red days",
+    "h1_r_per_session": 0.0795,
+    "h2_r_per_session": 0.039
+   },
+   {
+    "overlay": "grade=S+A, max5/day, stop -1R/day, stop +1R/day, sit out after 2 red days",
+    "h1_r_per_session": 0.0837,
+    "h2_r_per_session": 0.0645
+   },
+   {
+    "overlay": "grade=S+A, max5/day, stop -1R/day, stop +2R/day, sit out after 2 red days",
+    "h1_r_per_session": 0.0832,
+    "h2_r_per_session": 0.0717
+   },
+   {
+    "overlay": "grade=S+A, max5/day, stop -1R/day, stop +3R/day, sit out after 2 red days",
+    "h1_r_per_session": 0.0607,
+    "h2_r_per_session": 0.072
+   }
+  ],
+  "best_per_firm": {
+   "Vanquish Trader Advanced Options 50K": {
+    "overlay": "grade=all, max5/day, stop -1R/day, stop +2R/day, sit out after 2 red days, $250/R",
+    "spec": [
+     "all",
+     5,
+     1.0,
+     2.0,
+     "red2"
+    ],
+    "risk": 250,
+    "h1_shuffled": 25.6,
+    "h2_shuffled": 4.3,
+    "clears_bar": false,
+    "h1_pass": 23.1,
+    "h2_pass": 0.0,
+    "h1_med_sessions": 81.5,
+    "h2_med_sessions": null,
+    "h1_per_day": 18.12,
+    "h2_per_day": 3.36
+   },
+   "Topstep 50K Combine": {
+    "overlay": "grade=S+A, max5/day, stop -1R/day, stop +2R/day, sit out after 2 red days, $500/R",
+    "spec": [
+     "S+A",
+     5,
+     1.0,
+     2.0,
+     "red2"
+    ],
+    "risk": 500,
+    "h1_shuffled": 28.0,
+    "h2_shuffled": 26.3,
+    "clears_bar": false,
+    "h1_pass": 39.2,
+    "h2_pass": 32.3,
+    "h1_med_sessions": 11,
+    "h2_med_sessions": 6.5,
+    "h1_per_day": 41.61,
+    "h2_per_day": 35.85
+   },
+   "Apex 50K Eval EOD": {
+    "overlay": "grade=S+A, max5/day, stop -1R/day, stop +1R/day, sit out after 2 red days, $250/R",
+    "spec": [
+     "S+A",
+     5,
+     1.0,
+     1.0,
+     "red2"
+    ],
+    "risk": 250,
+    "h1_shuffled": 36.0,
+    "h2_shuffled": 29.4,
+    "clears_bar": false,
+    "h1_pass": 40.0,
+    "h2_pass": 60.8,
+    "h1_med_sessions": 29.5,
+    "h2_med_sessions": 39,
+    "h1_per_day": 20.92,
+    "h2_per_day": 16.12
+   },
+   "MyFundedFutures Rapid 50K": {
+    "overlay": "grade=S+A, max5/day, stop -1R/day, stop +1R/day, sit out after 2 red days, $500/R",
+    "spec": [
+     "S+A",
+     5,
+     1.0,
+     1.0,
+     "red2"
+    ],
+    "risk": 500,
+    "h1_shuffled": 27.0,
+    "h2_shuffled": 24.9,
+    "clears_bar": false,
+    "h1_pass": 39.2,
+    "h2_pass": 30.8,
+    "h1_med_sessions": 11,
+    "h2_med_sessions": 6.5,
+    "h1_per_day": 41.85,
+    "h2_per_day": 32.24
+   },
+   "Alpha Futures 50K Standard": {
+    "overlay": "grade=all, max5/day, stop -1R/day, stop +2R/day, sit out after 2 red days, $300/R",
+    "spec": [
+     "all",
+     5,
+     1.0,
+     2.0,
+     "red2"
+    ],
+    "risk": 300,
+    "h1_shuffled": 32.3,
+    "h2_shuffled": 15.3,
+    "clears_bar": false,
+    "h1_pass": 31.5,
+    "h2_pass": 31.5,
+    "h1_med_sessions": 36,
+    "h2_med_sessions": 20,
+    "h1_per_day": 21.75,
+    "h2_per_day": 4.04
+   },
+   "Take Profit Trader 50K Test": {
+    "overlay": "grade=all, max5/day, stop -1R/day, stop +2R/day, sit out after 2 red days, $400/R",
+    "spec": [
+     "all",
+     5,
+     1.0,
+     2.0,
+     "red2"
+    ],
+    "risk": 400,
+    "h1_shuffled": 34.1,
+    "h2_shuffled": 18.8,
+    "clears_bar": false,
+    "h1_pass": 48.5,
+    "h2_pass": 34.6,
+    "h1_med_sessions": 33,
+    "h2_med_sessions": 19,
+    "h1_per_day": 28.99,
+    "h2_per_day": 5.38
+   }
+  }
+ }
+}
