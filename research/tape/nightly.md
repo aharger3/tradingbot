@@ -11,3 +11,4 @@
 | 2026-09-20 | OMEN_SCALE_PLAN | hold | -52.0 -> -21.0 | 11 -> 12 | d5ba41a41d65e1e4 -> f479f81c27ed69e4 |
 | 2026-09-20 | ENTRY_FLOOR_STOP | hold | -52.0 -> -59.0 | 11 -> 13 | d5ba41a41d65e1e4 -> 2c17b38389bcd992 |
 | 2026-09-21 | HTF_BIAS_GATE | hold | -52.0 -> -21.0 | 11 -> 12 | d5ba41a41d65e1e4 -> f479f81c27ed69e4 |
+| 2026-09-26 | HTF_BIAS_GATE | hold | - | - | - -> - |
