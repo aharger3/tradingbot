@@ -1,0 +1,149 @@
+{
+ "tz_as_logged_R": {
+  "n": 349,
+  "win": 51.3,
+  "meanR": 0.589,
+  "sumR": 205.5
+ },
+ "tz_as_logged_netpnl": 227045.0,
+ "tz_honest": {
+  "n": 350,
+  "win": 41.4,
+  "meanR": 0.115,
+  "sumR": 40.2
+ },
+ "tz_honest_eod": {
+  "n": 350,
+  "win": 40.3,
+  "meanR": 0.149,
+  "sumR": 52.3
+ },
+ "tz_split_fixed_rows": 110,
+ "tz_honest_excl_stop_through_fill": {
+  "n": 336,
+  "win": 43.2,
+  "meanR": 0.161,
+  "sumR": 54.2
+ },
+ "tz_exit_mix": {
+  "stop": 181,
+  "stop_through_fill": 14,
+  "tgt": 120,
+  "time": 35
+ },
+ "tz_honest_first_per_day": {
+  "n": 271,
+  "win": 37.6,
+  "meanR": 0.028,
+  "sumR": 7.5
+ },
+ "tz_by_time": {
+  "0930-0944": {
+   "n": 117,
+   "win": 38.5,
+   "meanR": 0.068,
+   "sumR": 8.0
+  },
+  "0945-0959": {
+   "n": 98,
+   "win": 40.8,
+   "meanR": 0.092,
+   "sumR": 9.0
+  },
+  "1000-1029": {
+   "n": 98,
+   "win": 46.9,
+   "meanR": 0.295,
+   "sumR": 28.9
+  },
+  "1030+": {
+   "n": 37,
+   "win": 37.8,
+   "meanR": -0.153,
+   "sumR": -5.7
+  }
+ },
+ "tz_split_half": {
+  "H1<2024-05-22": {
+   "n": 177,
+   "win": 41.2,
+   "meanR": 0.07,
+   "sumR": 12.4
+  },
+  "H2>=2024-05-22": {
+   "n": 173,
+   "win": 41.6,
+   "meanR": 0.161,
+   "sumR": 27.8
+  }
+ },
+ "tz_by_symbol": {
+  "NVDA": {
+   "n": 186,
+   "win": 38.2,
+   "meanR": 0.025,
+   "sumR": 4.7
+  },
+  "TSLA": {
+   "n": 164,
+   "win": 45.1,
+   "meanR": 0.217,
+   "sumR": 35.5
+  }
+ },
+ "tz_by_side": {
+  "long": {
+   "n": 202,
+   "win": 40.6,
+   "meanR": 0.1,
+   "sumR": 20.1
+  },
+  "short": {
+   "n": 148,
+   "win": 42.6,
+   "meanR": 0.136,
+   "sumR": 20.1
+  }
+ },
+ "tz_day_shuffle": {
+  "iters": 200,
+  "shuffle_meanR_mean": -0.079,
+  "shuffle_p95": 0.057,
+  "real_meanR": 0.115,
+  "p_shuffle_ge_real": 0.005
+ },
+ "tz_opposite_side_control": {
+  "n": 350,
+  "win": 26.9,
+  "meanR": -0.282,
+  "sumR": -98.5
+ },
+ "tz_day_bootstrap_meanR_95": [
+  -0.029,
+  0.263
+ ],
+ "tz_sd_R": 1.4,
+ "tz_span": [
+  "2024-01-03",
+  "2025-01-30",
+  184
+ ],
+ "deck_marks_honest": {
+  "n": 63,
+  "win": 60.3,
+  "meanR": 0.785,
+  "sumR": 49.4
+ },
+ "deck_marks_honest_excl_through": {
+  "n": 62,
+  "win": 61.3,
+  "meanR": 0.814,
+  "sumR": 50.4
+ },
+ "deck_marks_logged_tranche1": {
+  "n": 61,
+  "win": 90.2,
+  "meanR": 1.242,
+  "sumR": 75.7
+ }
+}
