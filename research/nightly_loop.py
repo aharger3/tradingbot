@@ -204,6 +204,7 @@ def main() -> int:
     rebuild_tape_page()
     rebuild_status_page()
     run_v5_session_counter()
+    run_propfirm_gate(candidate)
     return 0
 
 
@@ -244,6 +245,36 @@ def run_v5_session_counter() -> None:
         print("nightly_loop.py: v5 session count: %r" % result)
     except Exception as exc:
         print("nightly_loop.py: v5 session counter failed: %r" % exc, file=sys.stderr)
+
+
+def run_propfirm_gate(candidate) -> None:
+    """OMEN funding-ladder card, 2026-09-26: "Agents hunt a strategy that
+    passes" -- every candidate strategy this loop tests must ALSO report
+    whether it would pass specific prop-firm rules, on paper, before
+    anything is bought (known fact, 2026-09-05: 16/16 futures firms tested
+    failed OMEN's trailing drawdown -- research/g174_funding_ladder.py,
+    Projects/open-loops.md::omen-funding-ladder). Runs
+    research/propfirm_gate.py (which reuses omen_metrics.evaluate_prop_
+    challenge, the same simulator g174 already trusts) against tonight's
+    ON book -- the one this cycle just gated above -- so the gate always
+    grades the candidate this run actually measured, not a stale one. On an
+    empty-queue night (no candidate ran) it falls back to the committed
+    bt2y_trades_retest_on book (propfirm_gate.DEFAULT_BOOK) so the gate
+    still reports something every night. Writes
+    logs/propfirm_gate_latest.json at the repo root. Same MUST NOT FAIL THE
+    TASK rule as the rebuild_*_page() calls above -- a bad prop-firm read
+    must never turn a good night's receipt into a bad exit code."""
+    try:
+        from research import propfirm_gate
+        book = None
+        if candidate is not None:
+            on_path = TAPE / ("book_%s_on.json.gz" % candidate["flag"])
+            if on_path.exists():
+                book = on_path
+        report = propfirm_gate.write_gate_report(book)  # None -> DEFAULT_BOOK
+        print("nightly_loop.py: propfirm gate -> %s" % report["headline"])
+    except Exception as exc:
+        print("nightly_loop.py: propfirm gate failed: %r" % exc, file=sys.stderr)
 
 
 if __name__ == "__main__":
