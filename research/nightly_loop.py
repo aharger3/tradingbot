@@ -36,6 +36,21 @@ NIGHTLY = TAPE / "nightly.md"
 LOOP_CONFIG = TAPE / "loop.json"
 CYCLES_MD = TAPE / "cycles.md"
 
+RESEARCH = ROOT / "research"
+LOGS = ROOT / "logs"
+
+# omen-nightly-robustness-recheck (2026-09-26): both scripts are grid
+# searches with their own multiprocessing.Pool + day-shuffle permutation
+# checks -- PR #27's and #28's own test plans clocked them at ~100s and ~80s
+# with 8 procs on the committed book. Cheap once, not cheap every night
+# forever, so they only run on ROBUSTNESS_RECHECK_WEEKDAY (default Sunday)
+# and are a no-op skip every other night. ROBUSTNESS_RECHECK_TIMEOUT_SEC is
+# a hard subprocess wall-clock cap, generous headroom over the ~100s
+# observed so a slower box still finishes, but never lets a hung search
+# block the rest of the nightly loop.
+ROBUSTNESS_RECHECK_WEEKDAY = 6  # Monday=0 .. Sunday=6
+ROBUSTNESS_RECHECK_TIMEOUT_SEC = 900
+
 HEADER = ("| date | flag | decision | $/day a->b | green a->b | off_book_id -> on_book_id |\n"
           "|---|---|---|---|---|---|\n")
 
@@ -205,6 +220,8 @@ def main() -> int:
     rebuild_status_page()
     run_v5_session_counter()
     run_propfirm_gate(candidate)
+    run_propfirm_overlay_search()
+    run_edge_slices()
     return 0
 
 
@@ -275,6 +292,109 @@ def run_propfirm_gate(candidate) -> None:
         print("nightly_loop.py: propfirm gate -> %s" % report["headline"])
     except Exception as exc:
         print("nightly_loop.py: propfirm gate failed: %r" % exc, file=sys.stderr)
+
+
+def _run_research_script(script_name: str, raw_out_path: Path, timeout_sec: int) -> dict:
+    """Shared plumbing for run_propfirm_overlay_search()/run_edge_slices()
+    below. Runs research/<script_name> as a SUBPROCESS, not an in-process
+    import + call -- both scripts parse sys.argv in their own main() and
+    spin up their own multiprocessing.Pool, neither of which should touch
+    this process's argv or fork from inside an already-running loop. Raises
+    on a non-zero exit, a timeout, or unparsable output; the caller (which
+    has the MUST NOT FAIL THE TASK contract) is what turns that into a
+    report-only, never-raise result."""
+    proc = subprocess.run(
+        [sys.executable, str(RESEARCH / script_name)],
+        cwd=str(ROOT), capture_output=True, text=True, timeout=timeout_sec,
+    )
+    if proc.returncode != 0:
+        raise RuntimeError("%s exited %d: %s" % (
+            script_name, proc.returncode, proc.stderr[-2000:]))
+    return json.loads(raw_out_path.read_text(encoding="utf-8"))
+
+
+def run_propfirm_overlay_search() -> None:
+    """omen-nightly-robustness-recheck (2026-09-26): PR #27's own body says
+    "Re-run the script on any new book" -- that re-run was manual until now.
+    Runs research/propfirm_overlay_search.py once a week
+    (ROBUSTNESS_RECHECK_WEEKDAY) against the committed book, bounded by
+    ROBUSTNESS_RECHECK_TIMEOUT_SEC, and writes a COMPACT summary (not the
+    full 23,976-config grid PR #27 already writes to
+    research/propfirm_overlay_search.json) to
+    logs/propfirm_overlay_search_latest.json, next to
+    logs/propfirm_gate_latest.json. Report-only: never touches live keys or
+    trading logic, only reads the committed book and writes a log. Same MUST
+    NOT FAIL THE TASK rule as run_propfirm_gate() above -- a weekday skip, a
+    timeout, a non-zero exit, or a malformed result all land as a
+    ok:false/skipped row in the log, never a bad exit code for the loop."""
+    out_path = LOGS / "propfirm_overlay_search_latest.json"
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    today = date.today()
+    if today.weekday() != ROBUSTNESS_RECHECK_WEEKDAY:
+        out_path.write_text(json.dumps(
+            {"generated": today.isoformat(), "ok": True, "skipped": "weekly cadence",
+             "weekday": ROBUSTNESS_RECHECK_WEEKDAY}, indent=2), encoding="utf-8")
+        return
+    try:
+        raw = _run_research_script(
+            "propfirm_overlay_search.py", RESEARCH / "propfirm_overlay_search.json",
+            ROBUSTNESS_RECHECK_TIMEOUT_SEC)
+        firms = {firm: {"overlay": v["best"]["overlay"],
+                        "min_pass": v["best"]["min_pass"],
+                        "robust": v["best"]["robust"]}
+                for firm, v in raw.get("firms", {}).items()}
+        summary = {"generated": today.isoformat(), "ok": True,
+                   "book": raw.get("book"), "book_sessions": raw.get("book_sessions"),
+                   "n_configs": raw.get("n_configs"),
+                   "n_robust": sum(1 for v in firms.values() if v["robust"]),
+                   "n_firms": len(firms), "firms": firms}
+        out_path.write_text(json.dumps(summary, indent=2, default=str), encoding="utf-8")
+        print("nightly_loop.py: propfirm overlay search -> %d/%d firms robust"
+              % (summary["n_robust"], summary["n_firms"]))
+    except Exception as exc:
+        print("nightly_loop.py: propfirm overlay search failed: %r" % exc, file=sys.stderr)
+        out_path.write_text(json.dumps(
+            {"generated": today.isoformat(), "ok": False, "error": repr(exc)},
+            indent=2), encoding="utf-8")
+
+
+def run_edge_slices() -> None:
+    """omen-nightly-robustness-recheck (2026-09-26): companion to
+    run_propfirm_overlay_search() above -- same weekly cadence
+    (ROBUSTNESS_RECHECK_WEEKDAY), same subprocess + timeout
+    (ROBUSTNESS_RECHECK_TIMEOUT_SEC) shape, same MUST NOT FAIL THE TASK
+    contract. Runs research/edge_slices.py (PR #28, "no subset of the book
+    survives correction") against the committed book and writes a COMPACT
+    summary -- counts and the top slice, not all 1,105 tested slices -- to
+    logs/edge_slices_latest.json, next to logs/propfirm_gate_latest.json.
+    Report-only, reads the committed book only, never trading logic."""
+    out_path = LOGS / "edge_slices_latest.json"
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    today = date.today()
+    if today.weekday() != ROBUSTNESS_RECHECK_WEEKDAY:
+        out_path.write_text(json.dumps(
+            {"generated": today.isoformat(), "ok": True, "skipped": "weekly cadence",
+             "weekday": ROBUSTNESS_RECHECK_WEEKDAY}, indent=2), encoding="utf-8")
+        return
+    try:
+        raw = _run_research_script(
+            "edge_slices.py", RESEARCH / "edge_slices.json",
+            ROBUSTNESS_RECHECK_TIMEOUT_SEC)
+        top = raw.get("slices", [{}])[0] if raw.get("slices") else {}
+        summary = {"generated": today.isoformat(), "ok": True,
+                   "book": raw.get("book"), "n_trades": raw.get("n_trades"),
+                   "n_slices": raw.get("n_slices"), "n_bh_q05": raw.get("n_bh_q05"),
+                   "n_bh_q10": raw.get("n_bh_q10"), "n_survivors": raw.get("n_survivors"),
+                   "top_slice": {"slice": top.get("slice"), "bh_q": top.get("bh_q"),
+                                "avg_r": top.get("avg_r"), "survives": top.get("survives")}}
+        out_path.write_text(json.dumps(summary, indent=2, default=str), encoding="utf-8")
+        print("nightly_loop.py: edge slices -> %d/%d slices survive BH q<=.05"
+              % (summary["n_survivors"] or 0, summary["n_slices"] or 0))
+    except Exception as exc:
+        print("nightly_loop.py: edge slices failed: %r" % exc, file=sys.stderr)
+        out_path.write_text(json.dumps(
+            {"generated": today.isoformat(), "ok": False, "error": repr(exc)},
+            indent=2), encoding="utf-8")
 
 
 if __name__ == "__main__":
