@@ -253,7 +253,8 @@ def _normalize_daily(daily_pnls):
 def evaluate_prop_challenge(daily_pnls, account_size=50000.0,
                              profit_target_pct=0.08, trailing_dd_pct=0.04,
                              daily_loss_limit_pct=0.02, min_trading_days=5,
-                             consistency_pct=0.30, dd_mode="eod"):
+                             consistency_pct=0.30, dd_mode="eod",
+                             dd_lock_at_breakeven=False):
     """PASS/FAIL a daily equity curve against a modern prop-firm evaluation.
 
     `daily_pnls` -- chronological. Each entry is one of:
@@ -288,6 +289,26 @@ def evaluate_prop_challenge(daily_pnls, account_size=50000.0,
                                   day can breach and fail even if it closes
                                   green. Falls back to EOD-only behavior for
                                   any day missing intraday_min.
+        dd_lock_at_breakeven  -- False (default) reproduces the original
+                                  behavior: the trailing floor is always
+                                  peak_equity - trailing_dd, so it keeps
+                                  rising for as long as new peaks are made
+                                  (a firm that trails forever, e.g. how
+                                  Apex's eval is currently modeled here).
+                                  True freezes the floor at breakeven (0,
+                                  i.e. the starting balance) the moment
+                                  peak_equity would push it above 0, and
+                                  never lets it rise past that again --
+                                  the documented Topstep/Take Profit Trader
+                                  behavior ("the trailing drawdown stops
+                                  trailing once it reaches your starting
+                                  balance"). This is the "lock" column
+                                  research/g71_propfirm_sim.py's FIRMS table
+                                  already carries per firm but never
+                                  enforced (`simulate()` reads `_lock` and
+                                  discards it) -- this parameter is the real
+                                  implementation, reused by
+                                  research/propfirm_gate.py per firm.
 
     Order of evaluation per day: daily loss limit first (a single day can
     kill the eval outright), then trailing drawdown, then the pass
@@ -312,7 +333,8 @@ def evaluate_prop_challenge(daily_pnls, account_size=50000.0,
                   trailing_dd_pct=trailing_dd_pct,
                   daily_loss_limit_pct=daily_loss_limit_pct,
                   min_trading_days=min_trading_days,
-                  consistency_pct=consistency_pct, dd_mode=dd_mode)
+                  consistency_pct=consistency_pct, dd_mode=dd_mode,
+                  dd_lock_at_breakeven=dd_lock_at_breakeven)
 
     equity = 0.0
     peak_equity = 0.0
@@ -349,13 +371,17 @@ def evaluate_prop_challenge(daily_pnls, account_size=50000.0,
         if dd_mode == "intraday" and intraday_min is not None:
             intraday_low = equity + intraday_min
             worst_dd_seen = min(worst_dd_seen, intraday_low - peak_equity)
-            if intraday_low < peak_equity - trailing_dd:
+            floor_i = min(peak_equity - trailing_dd, 0.0) if dd_lock_at_breakeven \
+                else peak_equity - trailing_dd
+            if intraday_low < floor_i:
                 return finalize(False, "trailing_drawdown", day_label)
 
         equity += pnl
         peak_equity = max(peak_equity, equity)
         worst_dd_seen = min(worst_dd_seen, equity - peak_equity)
-        if equity < peak_equity - trailing_dd:
+        floor = min(peak_equity - trailing_dd, 0.0) if dd_lock_at_breakeven \
+            else peak_equity - trailing_dd
+        if equity < floor:
             return finalize(False, "trailing_drawdown", day_label)
 
         if equity >= profit_target and days_traded >= min_trading_days:
@@ -419,6 +445,24 @@ def demo():
     r_intra = evaluate_prop_challenge(curve_id, account_size=acct, dd_mode="intraday")
     check("intraday trailing_dd catches a mid-day breach an EOD-only day misses",
           r_intra["fail_reason"] == "trailing_drawdown" and r_eod["fail_reason"] != "trailing_drawdown")
+
+    # 2c. dd_lock_at_breakeven: run the account up past breakeven+trail (so an
+    # unlocked floor would keep rising with it), THEN give back more than the
+    # trailing_dd amount off the NEW peak -- unlocked, that breaches (the
+    # floor trailed up with the new high); locked, the floor freezes at
+    # breakeven (0) once crossed, so the same pullback survives. Profit
+    # target is pushed out of reach (100%) so the curve cannot pass early on
+    # its way up and never even reach the pullback day.
+    acct2 = 50000.0  # trailing_dd_pct=0.04 -> $2,000
+    curve_lock = ([("d%d" % i, 1000) for i in range(1, 5)]   # peak = +4,000
+                  + [("d5", -2100)])                          # -2,100 off the new peak
+    kw2 = dict(account_size=acct2, trailing_dd_pct=0.04, profit_target_pct=1.0,
+              daily_loss_limit_pct=1.0, min_trading_days=1)
+    r_unlocked = evaluate_prop_challenge(curve_lock, dd_lock_at_breakeven=False, **kw2)
+    r_locked = evaluate_prop_challenge(curve_lock, dd_lock_at_breakeven=True, **kw2)
+    check("dd_lock_at_breakeven freezes the floor at 0 once crossed "
+          "(unlocked still trails and can breach, locked survives)",
+          r_unlocked["fail_reason"] == "trailing_drawdown" and r_locked["fail_reason"] != "trailing_drawdown")
 
     # 3. minimum trading days: hits the profit target in one day, cleanly
     # distributed, but never trades again
