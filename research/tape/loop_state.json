@@ -1,6 +1,6 @@
 {
-  "cycle_count": 14,
-  "consecutive_holds": 3,
+  "cycle_count": 15,
+  "consecutive_holds": 4,
   "target_met": false,
   "history": [
     {
@@ -159,6 +159,16 @@
       "dollars_per_day_after": -21.0,
       "green_before": 11,
       "green_after": 12
+    },
+    {
+      "cycle": 15,
+      "flag": "HTF_BIAS_GATE",
+      "label": "only trade with the daily-candle trend",
+      "decision": "noop",
+      "dollars_per_day_before": -52.0,
+      "dollars_per_day_after": -52.0,
+      "green_before": 11,
+      "green_after": 11
     }
   ],
   "stop": false,
