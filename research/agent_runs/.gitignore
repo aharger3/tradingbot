@@ -1,0 +1,14 @@
+# research/agent_runs: commit code + small JSON results only. Market data stays local.
+**/bars/
+**/fut/
+**/cache/
+**/prelim/
+__pycache__/
+*.pyc
+*.csv
+*.csv.gz
+*.gz
+*.parquet
+*.log
+*.err
+*.out
