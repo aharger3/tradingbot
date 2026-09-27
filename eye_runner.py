@@ -23,6 +23,11 @@ frozen config; this runner only consumes it. Every confirmed+journaled fill
 carries the config's hash (PREREG_SLICE_A.config_hash()) so any forward-test
 row can be traced back to the exact rule set that produced it.
 
+Prop guard (2026-09-27): before every card, research/prop_guard.py checks the
+LucidFlex 50K paper account (config/accounts.json) against today's journal:
+BLOCK -> card suppressed + one 'GUARD: <reason>' ntfy line; OK -> card footer
+'GUARD OK'. Paper only.
+
 Usage:
     python eye_runner.py --title-prefix "OMEN REPLAY TEST"
     python eye_runner.py --date 2026-09-17 --speed 60 --title-prefix "OMEN TEST -- ignore"
@@ -43,12 +48,14 @@ REPO = Path(__file__).resolve().parent
 sys.path.insert(0, str(REPO / "research" / "agent_runs" / "v3-eye2-candidates"))
 sys.path.insert(0, str(REPO / "research" / "agent_runs" / "v3-eye4-paper"))
 sys.path.insert(0, str(REPO / "research" / "agent_runs" / "v2-s07-data"))
+sys.path.insert(0, str(REPO / "research"))
 sys.path.insert(0, str(REPO))
 
 import candidates as eye2          # noqa: E402
 import eye_paper                   # noqa: E402
 from eye_card.chart import Candidate as ChartCandidate, render_candidate_chart  # noqa: E402
-from eye_card.notify import send_card                                           # noqa: E402
+from eye_card.notify import send_card, send_line                                # noqa: E402
+import prop_guard                                                               # noqa: E402
 from omen_data import load_fut                                                  # noqa: E402
 from prereg_slice_a import (                                                    # noqa: E402
     PREREG_SLICE_A,
@@ -150,6 +157,7 @@ def main(argv=None):
     ap.add_argument("--labels-csv", default=os.environ.get("EYE_LABELS_CSV", str(REPO / "eye_card" / "labels.csv")))
     ap.add_argument("--token", default=os.environ.get("EYE_LABEL_TOKEN", "dev-local-only"))
     ap.add_argument("--max-wall-minutes", type=float, default=95.0, help="hard stop regardless of pacing")
+    ap.add_argument("--account", default="lucidflex_50k_paper", help="config/accounts.json entry for prop_guard")
     args = ap.parse_args(argv)
 
     journal_path = Path(args.journal_path)
@@ -179,6 +187,10 @@ def main(argv=None):
     confirmed_count = 0
     daily_r = 0.0
     seq_by_grade: dict[str, int] = {}
+    guard = prop_guard.CardGate(
+        prop_guard.load_account(args.account), date, journal_path,
+        notify=lambda line: send_line(line, test_title_prefix=args.title_prefix),
+        since=run_start.isoformat())
 
     def sweep_labels():
         nonlocal confirmed_count, daily_r
@@ -242,6 +254,11 @@ def main(argv=None):
             log(f"SKIP {cand.instrument} minute={minute}: prereg one-at-a-time slot busy ({list(pending)})")
             continue
 
+        footer = guard.allow()
+        if footer is None:
+            log(f"GUARD suppressed {cand.instrument} minute={minute}: {guard.last.reason}")
+            continue
+
         grade = cand.grade_hint
         seq_by_grade[grade] = seq_by_grade.get(grade, 0) + 1
         cid = f"{grade[0].upper()}{minute:02d}-{seq_by_grade[grade]}-{date.replace('-', '')}"
@@ -252,7 +269,8 @@ def main(argv=None):
         render_candidate_chart(chart_cand, bars, png_path)
         sent_wall = datetime.now(ET)
         card_sent_ts = sent_wall  # replay: card_sent_ts anchors the confirm window
-        result = send_card(chart_cand, png_path, args.token, test_title_prefix=args.title_prefix)
+        result = send_card(chart_cand, png_path, args.token, test_title_prefix=args.title_prefix,
+                           footer=footer)
         log(f"sent {cid} grade={grade} dir={chart_cand.direction} "
             f"entry={chart_cand.entry} stop={chart_cand.stop} -> ntfy ok={result.ok} status={result.status_code}")
         paper_cand = to_paper_candidate(cand, cid, date, card_sent_ts)

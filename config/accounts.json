@@ -1,0 +1,18 @@
+{
+  "lucidflex_50k_paper": {
+    "_note": "PAPER stub. LucidFlex 50K eval rules per life-plan u06 (aggregator-sourced 9/16, not live-checked) + g/sizing-mc ladder + mentor 2-loss stop. No account has been bought.",
+    "firm": "LucidFlex",
+    "phase": "eval",
+    "paper": true,
+    "start_balance": 50000,
+    "profit_target": 3000,
+    "eod_trail": 2000,
+    "trail_lock_profit": 100,
+    "consistency_cap": 0.5,
+    "max_micros": 40,
+    "max_trades_per_day": 1,
+    "max_losses_per_day": 2,
+    "ladder": [[0, 12], [1000, 10], [2000, 6]],
+    "journal": "research/paper_journal/acks_replay.jsonl"
+  }
+}
