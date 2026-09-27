@@ -1,6 +1,6 @@
-"""eye_runner.py -- wires the OMEN "eye loop" end to end:
-
-  candidate generator (v3-eye2-candidates/candidates.py)
+"""
+eye_runner.py -- the eye loop, end to end:
+    candidate generator (v3-eye2-candidates/candidates.py)
     -> phone card (eye_card: chart PNG + ntfy S/Not-S buttons)
     -> S-confirmation gate, 120s window (v3-eye4-paper/eye_paper.py)
     -> paper trade simulation -> journal (research/paper_journal/*.jsonl)
@@ -14,6 +14,14 @@ practice -- but every card title carries the caller's --title-prefix (e.g.
 "OMEN REPLAY TEST") and every journal row lands in a REPLAY-only file
 (research/paper_journal/acks_replay.jsonl), never the live acks.jsonl that a
 real feed would write to. No orders are ever placed. See eye-live.md.
+
+R06 (2026-09-27): candidates are filtered through the frozen pre-registered
+slice A (life-plan/07-money/omen-paper-trade-prereg.md, decision A5) --
+S+A grades only, one trade at a time, max 5/day, +-1R day stop. See
+research/agent_runs/v3-eye4-paper/prereg_slice_a.py -- that file is the
+frozen config; this runner only consumes it. Every confirmed+journaled fill
+carries the config's hash (PREREG_SLICE_A.config_hash()) so any forward-test
+row can be traced back to the exact rule set that produced it.
 
 Usage:
     python eye_runner.py --title-prefix "OMEN REPLAY TEST"
@@ -42,9 +50,14 @@ import eye_paper                   # noqa: E402
 from eye_card.chart import Candidate as ChartCandidate, render_candidate_chart  # noqa: E402
 from eye_card.notify import send_card                                           # noqa: E402
 from omen_data import load_fut                                                  # noqa: E402
+from prereg_slice_a import (                                                    # noqa: E402
+    PREREG_SLICE_A,
+    allowed as prereg_allowed,
+    concurrent_slot_free,
+    should_halt_day,
+)
 
 ET = ZoneInfo("America/New_York")
-GRADES_TO_SEND = ("S", "one-off", "two-off")
 REPLAY_JOURNAL = REPO / "research" / "paper_journal" / "acks_replay.jsonl"
 CHART_DIR = REPO / "eye_card" / "sent_charts"
 
@@ -142,6 +155,10 @@ def main(argv=None):
     journal_path = Path(args.journal_path)
     labels_csv = Path(args.labels_csv)
 
+    log(f"prereg slice={PREREG_SLICE_A.slice_id} config_hash={PREREG_SLICE_A.config_hash()} "
+        f"grades={PREREG_SLICE_A.allowed_grades} max_concurrent={PREREG_SLICE_A.max_concurrent_trades} "
+        f"max_per_day={PREREG_SLICE_A.max_trades_per_day} day_stop_r={PREREG_SLICE_A.day_stop_r}")
+
     date = pick_replay_date(args.instrument, args.date)
     df = load_fut(args.instrument, "09:30", "11:01")
     g = df[df["date"].astype(str) == date]
@@ -150,7 +167,7 @@ def main(argv=None):
         return 2
     A = eye2.day_arrays(g)
     raw_cands = eye2.detect_candidates(A, date, args.instrument)
-    cands = [c for c in raw_cands if c.grade_hint in GRADES_TO_SEND]
+    cands = [c for c in raw_cands if prereg_allowed(c.grade_hint)]
     cands.sort(key=lambda c: c.features["minutes_after_open"])
     log(f"REPLAY {date} {args.instrument}: {len(raw_cands)} raw candidates, "
         f"{len(cands)} sendable ({[c.grade_hint for c in cands]})")
@@ -160,10 +177,11 @@ def main(argv=None):
     seen_labels: set = set()
     pending: dict[str, dict] = {}   # id -> {paper_cand, sent_wall}
     confirmed_count = 0
+    daily_r = 0.0
     seq_by_grade: dict[str, int] = {}
 
     def sweep_labels():
-        nonlocal confirmed_count
+        nonlocal confirmed_count, daily_r
         for row in read_new_labels(labels_csv, seen_labels):
             cid = row["candidate_id"]
             if cid not in pending:
@@ -173,11 +191,14 @@ def main(argv=None):
             paper_cand = pending[cid]["paper_cand"]
             result = eye_paper.run_confirmed(paper_cand, tap, management=args.management,
                                               confirm_window_s=args.confirm_window_s)
+            if result.get("confirmed"):
+                result["config_hash"] = PREREG_SLICE_A.config_hash()
             n = eye_paper.append_journal([result], path=journal_path)
             log(f"tap {cid}: label={row['label']} confirmed={result['confirmed']} "
                 f"reason={result.get('reason')} r={result.get('r')} journaled={n}")
             if result["confirmed"]:
                 confirmed_count += n
+                daily_r += float(result.get("r") or 0.0)
             del pending[cid]
 
     def expire_pending():
@@ -193,18 +214,33 @@ def main(argv=None):
                 del pending[cid]
 
     for cand in cands:
+        if should_halt_day(confirmed_count, daily_r):
+            log(f"HALT: prereg day limit reached (trades={confirmed_count}, r={daily_r:.2f}) "
+                f"-- no more candidates sent")
+            break
+
         minute = cand.features["minutes_after_open"]
         target_wall = run_start + timedelta(seconds=(minute * 60) / args.speed)
         while True:
             now = datetime.now(ET)
-            if now >= target_wall or now >= hard_stop:
+            slot_free = concurrent_slot_free(len(pending))
+            if (now >= target_wall and slot_free) or now >= hard_stop:
                 break
             sweep_labels()
             expire_pending()
+            if should_halt_day(confirmed_count, daily_r):
+                break
             time.sleep(min(2.0, max(0.05, (target_wall - now).total_seconds())) / max(args.speed, 1.0))
         if datetime.now(ET) >= hard_stop:
             log("hard stop reached before all candidates sent")
             break
+        if should_halt_day(confirmed_count, daily_r):
+            log(f"HALT: prereg day limit reached (trades={confirmed_count}, r={daily_r:.2f}) "
+                f"-- no more candidates sent")
+            break
+        if not concurrent_slot_free(len(pending)):
+            log(f"SKIP {cand.instrument} minute={minute}: prereg one-at-a-time slot busy ({list(pending)})")
+            continue
 
         grade = cand.grade_hint
         seq_by_grade[grade] = seq_by_grade.get(grade, 0) + 1
@@ -231,7 +267,8 @@ def main(argv=None):
     expire_pending()
 
     summary = eye_paper.daily_summary(date, path=journal_path)
-    log(f"DONE {date}: {len(cands)} sent, {confirmed_count} confirmed+journaled, summary={summary}")
+    log(f"DONE {date}: {len(cands)} sent, {confirmed_count} confirmed+journaled, "
+        f"daily_r={daily_r:.2f}, summary={summary}")
     return 0
 
 
