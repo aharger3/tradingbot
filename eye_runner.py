@@ -254,7 +254,9 @@ def main(argv=None):
         card_sent_ts = sent_wall  # replay: card_sent_ts anchors the confirm window
         result = send_card(chart_cand, png_path, args.token, test_title_prefix=args.title_prefix)
         log(f"sent {cid} grade={grade} dir={chart_cand.direction} "
-            f"entry={chart_cand.entry} stop={chart_cand.stop} -> ntfy ok={result.ok} status={result.status_code}")
+            f"entry={chart_cand.entry} stop={chart_cand.stop} -> channel={result.channel} "
+            f"ok={result.ok} status={result.status_code}"
+            + (f" err={result.error}" if result.error else ""))
         paper_cand = to_paper_candidate(cand, cid, date, card_sent_ts)
         pending[cid] = {"paper_cand": paper_cand, "sent_wall": sent_wall}
 
