@@ -1,265 +1,123 @@
-# tradingbot — OMEN
+# tradingbot — CLAUDE.md
 
-**New here? Read `SWARM.md` first** — the base-hash rule, the done rule, and the
-never-lose-a-mark rule, in one page. This file is the detail underneath it.
+How this repo works: the `verify:` line, the production/worktree rule, security, and the
+one rule that overrides everything else here. `README.md` has the current architecture map
+(eye loop, gates, reports, scheduled tasks, data locations) — read it first for "what's
+running today". `SWARM.md` is the shorter agent-onboarding page that points here.
 
-Intraday signal engine. Break-and-retest / one-candle-rule setups on the 09:30–11:00 window.
-Repo `aharger3/tradingbot`, working copy `C:\Users\aharg\Desktop\Projects\tradingbot`.
-
+```
 verify: python research/regression_gate.py && python research/test_runner_stop.py && python research/test_universe_single_source.py && python research/test_propfirm_gate.py && python research/test_propfirm_luck_check.py
+```
+
+## Current reality (2026-09-27)
+
+- **The v3 engine (`signal_runner.py`) does not survive out-of-sample.** MNQ −0.17R, n=46
+  proxy book. Nothing routes it to a live order; paper only, everywhere.
+- **The eye loop is the active build** (shipped 2026-09-26/27, PRs #39–#43): a phone card
+  asks Austin S/Not-S on each candidate, a 120s gate on his answer, then a paper trade and a
+  4:30pm ntfy report. **Replay mode only** — no live 1-minute feed is wired in; every card and
+  journal row from it is clearly marked replay/test. No orders are ever placed, full stop.
+- **eye1 classifier can't copy his eye**: AUC 0.54 against his marks, out-of-sample by date.
+  Measured and negative — do not re-propose it as a fire gate without new evidence.
+- Production checkout (`C:\Users\aharg\Desktop\Projects\tradingbot`) stays on `main`. See
+  the worktree rule below before touching anything experimental.
+
+## Production vs experiments — the worktree rule (Austin, 2026-09-26)
+
+`C:\Users\aharg\Desktop\Projects\tradingbot` is **production**: stays on `main`, stays clean,
+every scheduled task on the box runs from it. **Never `git checkout` a branch inside it.**
+
+Anything experimental — a new signal idea, an S-accuracy chase, a classifier retrain — goes
+in a separate worktree:
+
+```
+git worktree add ..\tradingbot-lab <branch>
+```
+
+Docs-only or any other change that must land in production goes on its own short-lived
+branch/worktree too; only a fast-forward merge back to `main` touches the production folder,
+and only after `main` is confirmed clean.
+
+**After any build that switched branches anywhere on the box**, confirm production is back
+before 19:30 ET (`OmenNightlyLoop` runs at 20:00):
+
+```
+cd C:\Users\aharg\Desktop\Projects\tradingbot; git checkout main; git status
+```
+
+`git status` must read clean. A dirty or off-`main` production folder at 20:00 is a broken
+nightly run, not a future cleanup task.
 
 ---
 
-# THE LANE — read this before starting anything (set 2026-08-30)
-
-**One lane at a time. Nothing else gets worked on until the lane closes.**
-
-## What we are building, in his words
-
-> *"S trades are something — if I see it, I trade it every time. But obviously too many trades is
-> bad. So the goal is S trade accuracy be good, backtest numbers will continue to go up, and engine
-> is better at identifying the 1-3 S setups to take each day."* — Austin, 2026-08-30
-
-**This is a classifier, not a ranker.** Do not build anything that picks the best of the day's
-candidates, scores them against each other, or asks him which of two dots was better. He does not
-work that way and asking him to is wasting the only scarce input this project has.
-
-The target: **fire 1–3 times a day, and be right about them.**
-
-## Where the project actually stands
-
-**Re-baselined 2026-09-13** (cycle P, `research/tape/cycles.md`; Fable's ruling same day —
-`research/tape/loop.json` is the live source, `research/p_pin_trace.py` reads any book the same
-way). The 2026-09-05 id (`2c39ced2697c26cc`) stopped reproducing: `backtest_2y.py --days 730`
-counts back from the archive's current last session, and by 2026-09-13 AMZN/QQQ had drifted to
-2026-09-10 and CRM to 2026-09-09. Pinning the window explicitly (`--start 2024-09-04 --end
-2026-09-04`, now a real flag) still did not reproduce it — the archive had also **backfilled
-inside the pinned window**: PLTR/QQQ/SPY/CRM/AMZN gained 2026-08-12, 08-13, 08-24 and 08-25,
-which AAPL (and the original 2026-09-05 build) still lack, widening 499 sessions to 501 and 769
-trades to 770. Chasing a fingerprint the archive can no longer produce is not reproducibility, so
-the archive is now **frozen** (`research/tape/archive_manifest_2026-09-13.json` — every symbol's
-first/last session, count and a content hash; `backtest_2y.py --manifest PATH` refuses to build
-on any further drift unless `--allow-drift`) and neither `backtest_2y.py` (read-only for its
-whole run, `ARCHIVE_READONLY=1`) nor `research/daily_fetch.py` (skips entirely while
-`research/tape/.rebuild_lock` is held — unless that lock is over 6h old, in which case it warns
-loudly and fetches, so a killed rebuild cannot mute the scheduled fetch forever) can write into
-`data_archive/` during a rebuild again.
-**The new baseline is economically identical to the old one** — this was drift, not edge:
-
-| his day policy, core 11, 25 months | book_id | window | trades | $/day | mean R | win | avg win / avg loss | green |
-|---|---|---|---:|---:|---:|---:|---:|---:|
-| **active baseline (2026-09-13)** `baseline_2026-09-13.json.gz` | `d5ba41a41d65e1e4` | 501 sessions, 2024-09-04→2026-09-04 (frozen) | 770 | **−$52** | −0.034R | 44.9% | $801 / $714 (1.12×) | **11/25** |
-| superseded baseline (2026-09-05) `baseline_2026-09-05.json.gz` | `2c39ced2697c26cc` | 499 sessions, 2024-09-04→2026-09-04 (drifted since) | 769 | −$52 | −0.034R | 45.0% | $801 / $716 (1.12×) | 11/25 |
-| the phantom column `baseline_2026-09-05_published.json.gz` | `9a629a9682f0676b` | | 645 | $850 | +0.657R | 63.9% | $1,583 / $980 (1.62×) | 23/25 |
-| first fire of the day, honest (reported beside) | | | | −$39 | −0.039R | 45.7% | $731 / $687 | 9/25 |
-| the ceiling: the day's best fire, chosen after the fact, honest | | | | $1,760 | +1.763R | 95.0% | $1,880 / $454 | 25/25 |
-| **his bar** | | | | **$500** | | | **2.0×** | **25/25** |
-
-Active baseline halves: H1 (before 2025-09-01) 382 trades, +$9/day, 6/12 green; H2 (2025-09-01 on)
-388 trades, −$111/day, 5/13 green — both unchanged from the superseded baseline to the dollar and
-the green-month count. 1.54 fires/day. **Target not met.** The ceiling row is proof the setups
-are in the honest book every month; it is not a plan. Every signal on all 29 symbols reads
-−$334/day, 8/25 (honest) against $5,167/day, 25/25 and $2,578,552 total (phantom) — the $2.6M he
-remembers is the fill, rebuilt on today's code.
-
-**Where the money is lost.** The reconciliation ladder (`research/g211_reconcile_ladder.md`,
-`research/r2_referee.md`) walked the lab rig's $4,569/day (next-open fill, flat 2R, 14,327
-trades, 29 symbols) down to the shipped book. The money is lost at step 2 — where the lab's exit
-is replaced by the real engine's trade management — because the lab's stop only fired on a
-candle close, so every wick through the level and back was a free pass; the real engine's 1R
-hard stop rests on the level and fills on that wick, which turns about one trade in twenty from
-a +2R win into a −1R loss (win rate 38.8% → 33.6% as winners ÷ all filled trades, 5,556/14,327
-→ 4,820/14,332, no scratches; avg win and avg loss unchanged) and takes
-$4,420 of the $5,550/day; the scale-out ladder takes the remaining $1,131 (both halves,
-`research/r2_referee_pass2.py`; raw-bar replay of 200 flipped trades, 91.5% the named wick,
-`research/r2_referee_pass3.py`; books `reconcile_fwd_1_add_C_grades` id `d3b7151c374a9f7f`,
-`r2ref_simd_next_open_blind2r_real_engine` id `6b3b862ce4ffebe0`,
-`reconcile_fwd_2_swap_exit_shipped_ladder` id `a2ff837493e9a7d2`). The fill study agrees once
-every arm is held to the engine's intrabar stop (`research/r1_referee3.py` uniform, core 11,
-every traded signal, flat 2R): next open $44/day 12/25, close −$46 13/25, as booked $395 22/25
-— the same next-open column reads $1,250 under a close-only stop. The fill was never the
-edge; the stop model was.
-Consequence: with `DISASTER_STOP_R = 1.0` the close-trigger stop rule never acts — the wick is
-the stop. That is his 2026-09-03 ruling; moving it is a rule change that goes through the gate.
-
-**Precision.** The pick-level bar is **30.5% (18/59)** — fired days he graded S ÷ fired days he
-graded, on the one-trade-a-day pick — and the full statistics (Wilson intervals, recall, per
-symbol / setup / grade) are `research/g215_precision.md`, regenerated nightly by
-`research/g215_precision.py`.
-
-## Why every dollar figure before 2026-08-30 was wrong
-
-The engine filled at the level even when the level sat **outside the bar** — a price that did not
-exist. Only **105 of 4,508 trades** were obtainable at the book's own price. That is where
-"$721/day, 66.7% win, +0.8R" came from, and it is why the honest rebuild reads $28/day. The number
-did not get worse; the ruler got honest. **Kill any figure that does not name its fill.**
-
-## The three things his own marks say are broken
-
-From `research/marks/probe_g84_all_in_one_2026-08-30.jsonl`, 2026-08-30:
-
-1. **Precision.** On 3 of 6 cards he answered "neither" — both engine candidates were wrong.
-2. **Entry timing, even when the candle is right.** *"b candle right but entry is 3 candles
-   earlier."* *"9:44 S entry as candle forming."* The engine is a median 24 minutes behind him.
-3. **The retest tolerance is the wrong unit.** *"it doesn't follow the 25 percent candle unit, its
-   just if its close but didnt actually touch, within a few cents give or take."*
-   `BAR_EXTREME_FRAC` does not govern the retest. **Swept and answered 2026-08-30**
-   (`research/g87_retest_tol.py`): the best tolerance is **zero** — a limit resting exactly at the
-   level. Every widened tolerance loses money, because `intrabar_stop` collapses the risk
-   denominator to the tolerance itself. The follow-on `research/g88_level_limit.py` then killed
-   that arm's headline: 89.6% of its fills landed **before the signal bar**. Honest version —
-   limit resting strictly after the signal — is **$275/day against the shipped entry's $33**.
-   Real direction, not shippable: 69% of the bar, 27% win, 15/25 green.
-
-## The working agreement
-
-- **Decide once, then build it until it works.** A report is not a deliverable. Working code with
-  a passing test is. Debug it to confidence before bringing it back.
-- **Think like a premier trader, not like Austin.** His words: *"you encapsulate my brain too much
-  … my thoughts and ideas are not gold, I'm just a regular guy trying to make some money."* Bring
-  trading judgement. His time buys the eye test on charts — nothing else.
-- **One lane at a time.** No parallel fan-out across unrelated questions.
-- **Every claim routes through a committed script**, and every dollar figure names its fill.
-- **Size-gate every money number.** 1R is a fixed $1,000, so a fill landing a cent from its stop is
-  a 100,000-share position and an R-multiple with a one-cent denominator. Ungated, the g87 sweep
-  printed **$15,119/day** — arithmetic, not money. `signal_runner.min_risk_floor` is the gate.
-
-## What closes this lane
-
-An S classifier that, on the honest book, fires **1–3 times a day**, lifts precision above 39.5%
-without losing S-day recall, and carries one-trade-a-day past **$397/day with every month green** —
-shipped in `signal_runner.py` behind a flag, with a test, re-measured end to end. Nothing else
-counts as done.
-
-
-
----
-
-## THE ONE RULE: never lose a mark
+# THE ONE RULE: never lose a mark
 
 Austin's judgements are the only scarce input in this project. Bars can be re-pulled,
 backtests re-run, engines rewritten. **A grading session cannot be recreated.** What exists
-is **1,057 distinct judged symbol-days** built over months (count it with
+is **1,057+ distinct judged symbol-days** built over months (count with
 `research/build_deck.py::marked_card_ids()`, never by hand), and the number only goes up by
-him sitting down and doing more.
-
-### Where they live
-
-| file | rows | what it is |
-|---|---:|---|
-| `research/austin_marks_v7.jsonl` | 479 | the terminal mark file; v2–v6 are fully contained in it |
-| `research/blind_marks_all.jsonl` | 260 | blind grading pass |
-| `research/recovered_reviews.jsonl` | 176 | prose reviews mined back out of chat |
-| `research/marks_clean.jsonl` | 117 | cleaned early corpus |
-| `research/marks/*.jsonl` | 518 | deck + probe exports, one file per grading session |
-| `research/mark_batch_0{2,3,4}_*.jsonl` | 123 | standalone batches |
-| `research/derived_marks_v{1,2}.jsonl` | 31 | derived, low confidence |
-| `research/rule_ballot_batch0{1,2}.jsonl` | 48 | rule ballots — his rules, not his grades |
-| `research/austin_verdicts.json` | — | a JSON list, not jsonl |
-
-`research/marks/LEDGER.md` is the provenance record: how human marks were separated from
-engine output, and why each file counts. Read it before touching any of them.
+him sitting down and doing more. Full inventory and provenance: `research/marks/LEDGER.md`.
 
 ### The trap, and it has already fired twice
 
-`.gitignore` carries `research/*.jsonl` and `research/*.html`. Those rules exist for the
-tens of thousands of regenerable corpus artifacts, and they are **wider than they look**:
+`.gitignore` carries `research/*.jsonl` and `research/*.html` for the tens of thousands of
+regenerable corpus artifacts — and it is wider than it looks. 5.2's T6 decks were written,
+ignored, and silently discarded; two mark files needed `git add -f` with no warning.
 
-- 5.2's T6 decks were written, ignored, and silently discarded.
-- `research/t60_silent_days.jsonl` and `research/rule_ballot_batch01.jsonl` both needed
-  `git add -f`, and nothing warned.
-
-Explicit un-ignore rules for judgement files are now in `.gitignore`. Even so:
-
-1. **After writing any file holding a human judgement, run `git status` and confirm it is
-   staged.** Not "assume the add worked" — look.
-2. If it is ignored, `git add -f` it AND add an un-ignore rule so the next one is safe.
+1. **After writing any file holding a human judgement, run `git status` and look** that it
+   staged. Assuming the add worked is how marks get lost.
+2. If it is ignored, `git add -f` it AND add an un-ignore rule in the same commit.
 3. Never `git clean -fdx` in this repo.
-4. Never delete or rewrite a mark file. Superseded corpora stay; `LEDGER.md` records that
-   they are superseded.
+4. Never delete or rewrite a mark file. A new corpus goes into `LEGACY_MARK_FILES`
+   (`research/build_deck.py`) and `research/marks/LEDGER.md` in the same commit.
 
-### The no-repeat guarantee
-
-`research/build_deck.py::marked_card_ids()` reads **every** corpus above and refuses to put
-a symbol-day in a new deck if Austin has already judged it — including `grade: "none"`,
-which is a judgement (an explicit refusal to trade), not a blank. Until 2026-08-22 it read
-only `research/marks/` and was blind to 386 symbol-days; a deck he was about to grade held
-4 repeats. If you add a mark corpus, add it to `LEGACY_MARK_FILES` in the same commit.
+`research/build_deck.py::marked_card_ids()` reads every corpus and refuses to put a
+symbol-day in a new deck if Austin has already judged it — including `grade: "none"`, which
+is a judgement, not a blank.
 
 ---
 
 ## Homework instruments
 
-Anything put in front of Austin must **save as he works and export without a round trip**.
-He does homework away from this machine.
+Anything put in front of Austin must **save as he works and export without a round trip** —
+he does homework away from this machine.
 
 - `research/build_deck.py` — the 60-card deck. Standard lives in `Projects/omen-decks.md`.
-- `research/build_probes.py` — silent-day autopsy (09), head-to-head (10).
+- `research/build_probes.py` — silent-day autopsy, head-to-head.
 - `research/build_qa.py` — the open-questions page.
 - `research/probe_page.py` / `probe_chart.py` — shared shell: localStorage save, restore on
   load, visible save indicator, Export → Copy all / Download `.jsonl`.
+- `eye_card/` — the eye-loop phone card: chart PNG + ntfy S/Not-S buttons, tap logged
+  immediately to `eye_card/labels.csv` via the local label server (port 9135).
 
-Charts render to **static SVG in Python**, not canvas: these also publish as claude.ai
-Artifacts, and a phone cannot mark a chart with a pointer.
-
-**Do not rely on the claude.ai `artifact` capability to save answers.** It was tried
-2026-08-22 and nothing persisted — the pages own their persistence now.
+Charts render to **static SVG/PNG in Python**, not canvas — these publish as claude.ai
+Artifacts too, and a phone can't mark a canvas chart with a pointer. **Do not rely on the
+claude.ai `artifact` capability to save answers** — tried 2026-08-22, nothing persisted; the
+pages own their own persistence now.
 
 ---
 
-## Measurement rigs
+## The five laws of a change (Austin's gate, unchanged since 2026-09-05)
 
-| script | question |
-|---|---|
-| `research/t60_baseline.py` | the baseline: money gate, durability slices, recall |
-| `research/t61_onwatch_ab.py` | A/B any detection flag over the 120 graded day-cards |
-| `research/test_runner_stop.py` | stops fire on closes, floor at −1.25R, wicks stop nothing |
-| `research/test_universe_single_source.py` | no module keeps a private ticker list |
-| `backtest_2y.py` + `research/build_bt2y_report.py` | the 2-year book and its interactive report — **this is the money/durability rig** |
-| ~~`research/omen6_forward.py`~~ | **retired 2026-08-28.** Austin: *"no freezing, version snapshots for rollback."* The book has 0 trades booked; do not re-freeze without him saying so |
+1. **One change per row.** One flag or one function. Two changes = two rows, two numbers.
+2. **The no-regression gate.** A change ships as a default only if, on the current baseline,
+   green months don't fall and $/day falls no more than 5% — checked on both halves (H1
+   before 2025-09-01, H2 after). Enforced by `research/regression_gate.py`. Fail either half
+   and the change stays behind its flag, OFF. Holding a change is a normal, good outcome.
+3. **Sample size before a verdict.** Under 30 trades or 12 months gets no verdict — report
+   the count and interval and say "not enough."
+4. **A different model referees.** A Sonnet build is refereed by an Opus told to refute it;
+   an Opus verdict by a Sonnet told to refute it. A builder never grades its own number. A
+   refuted result is written up as refuted and kept, never deleted.
+5. **Stamped books only.** Every book records every flag value, the base hash, the date, the
+   session window and the script that made it. A/B pairs come from the same day, same base.
 
-`universe.py` is the single source of truth for symbols. Six modules used to keep private
-lists; a test fails the build if a new one appears.
+**The done rule.** A row is done when its `verify:` exits 0 *on the pinned base* AND the push
+landed. Green on a stale base is not done. Never claim done on code you did not run.
 
-### Rules that hold everywhere
-
-- **Max loss is −1R hard. There is no −1.25R clamp.** Austin, 2026-09-03: *"1R is
-  simpler so why not go with that? no stocks should be running to −10R."* Two stops,
-  both his (R1/R2, 2026-08-29): the **level stop** triggers on the candle CLOSE and
-  fills at that close, and the **disaster stop** is a resting order at exactly 1R from
-  entry that fills on an intrabar TOUCH. Because `DISASTER_STOP_R = 1.0`, the disaster
-  order sits *on* the level stop, so nothing books worse than **−1.000R** — 0 of 2,216
-  losses in the two-year book do, **on the blended trade-level `r` column**
-  (`backtest_week.py`'s `t.pnl / RISK_DOLLARS`, netting every scale-out fill against
-  the eventual stop-out). That is a different question from the **per-fill** column
-  (`stop_rule.per_fill_r_multiple`): on the pre-`ece08845` engine, 70 of 4,022
-  traded rows landed worse than −1.000R per fill (53 after the size gate, worst
-  −1.3333R) even though the blended column read 0 — ticket 19 (B-05), reconciled
-  2026-09-05, see `stop_rule.py`'s docstring. **Every −1R claim names its column.**
-  The old "wicks stop nothing out / floored at −1.25R"
-  line described `research/exit_lab.py`, a lab model with no disaster stop that the
-  shipped book never calls; the `verify:` gate was testing it instead of the real path
-  until 2026-09-03. `stop_rule.py` owns the trigger, the fill and the floor.
-  **`stop_rule.stop_fill_price()` is the one fill definition** — every rig routes through it.
-  Before 2026-08-28 `backtest_week` triggered on the close and then filled at `t.stop`, so
-  every loss was −1.000R by construction and the floor was unreachable code; 458 of 474
-  stop-outs had already closed past 1R (`research/t11_stop_fill_fix.md`). Never re-implement
-  a fill locally.
-- **One tolerance unit: 25% of the previous candle's range** (`BAR_EXTREME_FRAC`). It
-  governs the ON WATCH entry trigger, the 84% reclaim window, and stop slippage.
-- **The money gate is mean R = 2.0.** Win rate is a secondary read. Durability = **every
-  month green**.
-- **R-multiples are the result; dollars are a sizing skin.** 1R = $1,000, and the instrument
-  is options, not shares.
-- **Two grade ladders exist and must never be mixed.** Austin's is `S`/`A`/`C`/`none`
-  (`research/downgrade.py`, measured only, **not wired into detection**). The engine's legacy
-  ladder is `A+`/`A`/`B`/`C`/`X` (`signal_runner.py::_grade_pa`) and it is the one that gates
-  trades. `A+` fires twice in two years; `B` is 98% of the book; **`X` is not a grade**, it
-  means the engine should not have fired. Every new measurement carries both side by side.
-- **A = one downgrade, C = two**, off the eight variables in `omen-rulebook.md`.
-  `score = tripped − confluence`, floored at C.
-- Reproducibility is not assumed: 5.2's committed scale-out table could not be regenerated
-  from committed code. **If you publish a number, commit the script that made it.**
+**Commit and push every landed piece.** No branches, no worktrees *inside production* — a
+post-commit hook pushes `main` there; still run `git status -sb` and confirm 0 ahead.
+Experimental branches/worktrees exist outside production only (see the rule above).
 
 ---
 
@@ -267,101 +125,41 @@ lists; a test fails the build if a new one appears.
 
 `POLYGON_API_KEY` is interpolated into request URLs and **appears in full in any traceback**.
 Filter tool output (`grep -v apiKey`) before showing it. `youtube_oauth_token.json`,
-`client_secret.json` and `*.credentials.json` are credentials and are never committed.
+`client_secret.json`, `.env` and any `*.credentials.json` are credentials and are never
+committed, never printed, never pasted into a report.
+
+**Paper only, always.** Nothing in this repo places a real order. The eye loop, the v3
+engine, the classifier — every execution path here is paper or replay. Wiring a live order
+is a decision Austin makes explicitly, not a refactor an agent lands quietly.
 
 ---
 
-# Session 2026-09-01/02 — what changed
+## Who does what
 
-**The g84 marks were 4.5% saved.** `probe_g84_all_in_one_2026-08-30.jsonl` held
-7 rows; Austin had answered **154**. The other 147 lived only in the page's
-localStorage. Every read of "the g84 marks" between 2026-08-30 and 2026-09-01 was
-a read of seven cards. Recovered verbatim as
-`research/marks/probe_g84_all_in_one_STANDING154_2026-09-01.jsonl`, verified a
-strict superset. **The page is not storage. Export the standing set at the end of
-every grading session and check `git status` by eye.**
+One **Opus chief** per phase owns the row list and the merges. **Sonnet builders** write the
+code and produce the books. **Haiku researchers** do the reading and bulk mechanical work.
+**Fable** writes the reconcile verdict and spec text only. **A different model referees every
+number**, and a builder never grades its own. Pick the cheapest model that can do the row.
 
-**Every dollar figure before 2026-08-30 was the fill, not the edge.** Isolated
-this session on the same trades, same count:
+**One namespace.** Spec rows are letters+numbers (R1, T8, g117). Austin's rulings are dated
+("Austin, 2026-09-05"). Don't mix them or invent a third scheme.
 
-| book | trades | total | $/day | mean R | win |
-|---|---:|---:|---:|---:|---:|
-| published (unobtainable fill) | 4,508 | **+$2,633,850** | $5,278 | +0.584R | 59.4% |
-| honest (obtainable fill) | 4,329 | **−$141,561** | −$283 | −0.033R | 44.1% |
+**One ticket per session.** Take ONE ticket from the current map's Frontier (open, unblocked,
+unclaimed — `C:\Users\aharg\Austin's Vault\.scratch\omen-8\map.md`). Claim it by editing its
+issue file to `Status: claimed — <who>, <YYYY-MM-DD>` and committing that before starting.
+When done, set it done with the commit hash and move it out of Frontier.
 
-The $2.6M he remembers is real and it is in `bt2y_trades_published_fill.json`.
-It is also entirely the fill. When he points at the old artifacts, show him this
-table rather than arguing.
+**Plain English for Austin.** Anything he reads — a push, a brief, a homework card, a
+summary — is plain English: no ticket ids, no flag names, no jargon. His time is for charts
+and comments. **Never re-ask anything already settled** — the live spec's "What the call
+settled" table, `Projects/AUGUR.md`, `omen-blockers.md` ("Already settled"). Run
+`python research/omen_recall.py "<question>"` before asking him anything.
 
-**The lane is measured, not argued** (`research/g91_lane_slice.py`). Index
-QQQ/SPY/IWM: 2.3 cand/day, $51/day, 13/25 green. Full pool: 18.6 cand/day,
-$28/day, 11/25 green. **Pool stays FULL** — the index oracle ceiling is $437/day
-against his $397 bar, so narrowing caps the project at its own target even with a
-perfect classifier; the full pool's $2,948/day ceiling is the only one with room.
-At a $2,500 funded trailing drawdown every lane sizes to 1R ≈ $77–187. **No lane
-is fundable yet; the account type is not the blocker, the edge is.** Prop firms
-are futures desks and do not fund equity-options traders — that fork is real and
-premature.
+## Gaps
 
-**`RETEST_REQUIRED` is ON by default** (`signal_runner.py`, 2026-09-02).
-`downgrade.no_retest` was a ratified variable with no consumer; it trips on **99
-of the 500 days' first picks**. Priced on a MATCHED book pair — same commit, same
-498 sessions, only the flag differs
-(`research/bt2y_trades_retest_{off,on}.json`, `research/g94_retest_book_compare.py`):
-
-| lane | cand/day | $/day | green months | max DD |
-|---|---:|---:|---:|---:|
-| full pool | 18.8 → 16.5 | $27 → **$25** | 10 → **13**/25 | $25.6k → **$21.7k** |
-| index QQQ/SPY/IWM | 2.3 → 2.2 | $49 → **$65** | 13 → **15**/25 | $19.4k → **$15.7k** |
-
-**Shipped for durability, not $/day.** −$2/day on the full pool is inside the
-±1.58R error bar; +3 green months and −15% drawdown is the gate this file names.
-
-**`research/g93_retest_gate_ab.py` is a superseded FORECAST — do not quote it.**
-It predicted $36/day and 14.2 cand/day; the real book says $25 and 16.5. A
-selection arm cannot model `backtest_week.DEDUPE_FIRES_ONLY`: only a *fired*
-signal claims the dedupe suppression window, so capping one to C **releases** it
-and previously-suppressed candidates on the same level become rows. Any C-cap
-gate in this engine adds candidates as well as removing them.
-
-**`research/bt2y_trades.json` is stale** — built 2026-08-30, different commit,
-`downgrade.py` dirty, 500-session window, `RETEST_REQUIRED` not stamped. It is
-the OFF-arm book for the pre-2026-09-02 figures only. The current-default book is
-`research/bt2y_trades_retest_on.json`. Never A/B against a book built on a
-different day: `--days 730` counts back from today. All four books travel as `research/bt2y_trades*.json.gz`
-(7 MB each, 18x); after a clone run `gzip -dk research/bt2y_trades*.json.gz`.
-
-**Do not re-propose wiring `research/downgrade.py` as the fire gate.** It is
-measured and negative: gating on `sgrade=='S'` is **−$29/day**, and
-`research/r3_downgrade_grader_ab.md` had already priced it (S recall +0, false
-fires 29%→33%, traded signals 1,017→1,310). `ENABLE_DOWNGRADE_GRADER=0` is a
-decision, not an oversight.
-
-**`compute_austin_tier` is reported only** — "nothing below branches on it". Its
-T11(a) no-displacement→C cap therefore costs no recall today, but it contradicts
-his marks: `NVDA_2025-06-03` and `PLTR_2025-07-17` are both graded **S** with "no
-displacement" in the note, rescued by OCR confluence. Two cards is a hint, not a
-rule — but it falsifies a hard cap.
-
-**His scope call, 2026-09-01:** *"I want signals only. A does nothing. Just A
-signals, then we're going to turn A into actually fire for money."* S fires. A is
-recorded and does not trade, pending promotion later.
-
-## The daily pass
-
-`research/daily_run.cmd`, scheduled task **OmenDailyHomework**, weekdays 16:15
-ET → `research/daily_fetch.py` then `research/daily_homework.py`, deck to
-`research/decks/omen-daily-<day>.html`, log to `journal/daily-<day>.log`.
-One card per **symbol**, not per signal: 2026-09-01 produced 269 candidates and
-fired 50 across 29 symbols against the 1–3 he takes.
-
-## Data sources, as of 2026-09-01
-
-- **Polygon: 403 NOT_AUTHORIZED** on recent timeframes. `data_archive` stopped at
-  2026-08-27 and cannot reach today on this plan.
-- **Tastytrade: HTTP 401 invalid_credentials.** The live scanner does not fail on
-  this — it falls through to yfinance and logs `HTF unknown` on every symbol, so
-  live runs currently have **no higher-timeframe bias at all**
-  (`journal/scanner-2026-09-01.log`). Unfixed.
-- **yfinance** is the only source reaching the current session. ~30 days of
-  1-minute history, premarket included.
+- Nightly-loop gate coverage for `eye_runner.py` specifically (beyond the five engine gates
+  above, which target `signal_runner.py`) is not confirmed in this pass — check
+  `OmenNightlyLoop`'s script list before assuming the eye loop is gated the same way.
+- `eye1` (PR #39) and `eye4` (PR #42) are unmerged branches that `main`'s `eye_runner.py`
+  (PR #43) already imports by path — a fresh `main`-only clone's runnability is
+  [unverified] this pass.
