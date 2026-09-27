@@ -1,0 +1,62 @@
+{
+ "window": [
+  "2024-01-02",
+  "2024-09-25"
+ ],
+ "sessions": 184,
+ "bar_rows": 155027,
+ "split": "2024-05-14",
+ "scale": 41.35,
+ "cell": "NQ925/slip1",
+ "nshuf": 5000,
+ "frozen": "research/zarattini@a93d2dfb",
+ "variants": {
+  "1559": {
+   "n": 88,
+   "R_trade": 0.22410696195743726,
+   "h1_n": 47,
+   "h1_R_trade": -0.06194443811880837,
+   "h2_n": 41,
+   "h2_R_trade": 0.5520195425326455,
+   "h1_R_day": -0.03164552816939121,
+   "h2_R_day": 0.24600870917215725,
+   "p_shuffle": 0.609,
+   "p_signflip": 0.2485,
+   "win": 0.20454545454545456,
+   "usd_day_1mnq": 10.896086956521739,
+   "usd_total_1mnq": 2004.8799999999999,
+   "med_stop_pts": 37.125,
+   "exits": {
+    "close": 0.182,
+    "stop": 0.795,
+    "tgt": 0.023
+   },
+   "green": "5/9",
+   "verdict": "FAIL"
+  },
+  "1100": {
+   "n": 88,
+   "R_trade": 0.015722261969345744,
+   "h1_n": 47,
+   "h1_R_trade": -0.2592656018856395,
+   "h2_n": 41,
+   "h2_R_trade": 0.33095225224213376,
+   "h1_R_day": -0.1324509053111419,
+   "h2_R_day": 0.1474895906731248,
+   "p_shuffle": 0.5738,
+   "p_signflip": 0.4895,
+   "win": 0.29545454545454547,
+   "usd_day_1mnq": 4.208586956521735,
+   "usd_total_1mnq": 774.3799999999993,
+   "med_stop_pts": 37.125,
+   "exits": {
+    "close": 0.318,
+    "stop": 0.67,
+    "tgt": 0.011
+   },
+   "green": "3/9",
+   "verdict": "FAIL"
+  }
+ },
+ "verdict": "FAIL vs v3 sec2 bar (n>=20, R>=+0.15, both halves>0, p<.05) on primary 15:59 cell; 11:00 variant FAIL"
+}
