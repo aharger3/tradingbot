@@ -1,0 +1,80 @@
+{
+ "import_s": 2.02,
+ "load_fut_s": 23.569,
+ "pick_replay_date_s": 17.408,
+ "S1_detect_per_bar": {
+  "n": 1700,
+  "p50_ms": 1.6,
+  "p95_ms": 3.5,
+  "max_ms": 7.8
+ },
+ "candidates_total": 621,
+ "S2_render": {
+  "n": 15,
+  "p50_ms": 254.9,
+  "p95_ms": 296.4,
+  "max_ms": 314.1
+ },
+ "png_kb": 51.5,
+ "S3_ntfy_post_png": null,
+ "S3_attempts": [
+  "ConnectTimeout@5.0s",
+  "ConnectTimeout@5.0s",
+  "ConnectTimeout@5.0s",
+  "ConnectTimeout@5.0s",
+  "ConnectTimeout@5.0s",
+  "ConnectTimeout@5.0s"
+ ],
+ "S3_health_s": "ConnectTimeout",
+ "S4_label_http_localhost": {
+  "n": 20,
+  "p50_ms": 3.7,
+  "p95_ms": 9.1,
+  "max_ms": 22.9
+ },
+ "S4_label_http_tailscale_ip": {
+  "n": 10,
+  "p50_ms": 3.4,
+  "p95_ms": 4.2,
+  "max_ms": 14.5
+ },
+ "S5_poll_worst_s": 2.0,
+ "tap_ts_resolution_s": 1.0,
+ "S6_fill_cold_s": 28.725,
+ "S6_fill_warm_ms": 0.04,
+ "S_trades_R_by_delay_min": {
+  "0": {
+   "n": 36,
+   "meanR": -0.151,
+   "H1": -0.037,
+   "H2": -0.264,
+   "delta_vs_k0": 0.0,
+   "perm_p": null
+  },
+  "1": {
+   "n": 35,
+   "meanR": 0.152,
+   "H1": 0.461,
+   "H2": -0.139,
+   "delta_vs_k0": 0.3,
+   "perm_p": 0.9294
+  },
+  "2": {
+   "n": 35,
+   "meanR": 0.119,
+   "H1": 0.423,
+   "H2": -0.167,
+   "delta_vs_k0": 0.267,
+   "perm_p": 0.9494
+  },
+  "3": {
+   "n": 34,
+   "meanR": 0.104,
+   "H1": 0.592,
+   "H2": -0.329,
+   "delta_vs_k0": 0.226,
+   "perm_p": 0.803
+  }
+ },
+ "split_date": "2025-10-16"
+}

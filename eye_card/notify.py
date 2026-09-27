@@ -7,6 +7,7 @@ Every message is PAPER. Nothing here places a live order.
 from __future__ import annotations
 
 import os
+import time
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -82,7 +83,8 @@ class SendResult:
 
 def send_card(candidate: Candidate, chart_path: str | Path, token: str,
               *, session: requests.Session | None = None, test_title_prefix: str | None = None,
-              timeout: float = 10.0) -> SendResult:
+              timeout: float = 10.0, connect_timeout: float = 3.05, retries: int = 3,
+              backoff_s: float = 1.0) -> SendResult:
     """POST the chart PNG to ntfy with the card headers. Always PAPER."""
     sess = session or requests
     topic = _ntfy_topic()
@@ -99,6 +101,19 @@ def send_card(candidate: Candidate, chart_path: str | Path, token: str,
         "Actions": build_actions(candidate, token),
     }
     chart_path = Path(chart_path)
-    with open(chart_path, "rb") as fh:
-        resp = sess.post(url, data=fh.read(), headers=headers, timeout=timeout)
-    return SendResult(ok=resp.ok, status_code=resp.status_code, url=url)
+    body = Path(chart_path).read_bytes()
+    # ntfy.sh was unreachable from the PC and the Mac on 2026-09-27 (connect timeouts);
+    # a raised ConnectTimeout used to crash eye_runner. Short connect timeout, 3 tries,
+    # never raise -- the caller logs ok=False and the candidate simply expires.
+    last = None
+    for attempt in range(retries):
+        try:
+            resp = sess.post(url, data=body, headers=headers, timeout=(connect_timeout, timeout))
+            if resp.ok or resp.status_code < 500:
+                return SendResult(ok=resp.ok, status_code=resp.status_code, url=url)
+            last = resp.status_code
+        except requests.RequestException as e:
+            last = None
+        if attempt + 1 < retries:
+            time.sleep(backoff_s * (attempt + 1))
+    return SendResult(ok=False, status_code=last, url=url)

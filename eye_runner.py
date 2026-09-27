@@ -171,8 +171,11 @@ def main(argv=None):
             tap = {"candidate_id": cid, "grade": "S" if row["label"] == "S" else "not_s",
                    "tap_ts": row["logged_at"]}
             paper_cand = pending[cid]["paper_cand"]
+            # day_array=A: the runner already holds today's bars; without it the first S tap
+            # made eye_paper load full history (28.7 s cold on the PC, g/latency.md).
             result = eye_paper.run_confirmed(paper_cand, tap, management=args.management,
-                                              confirm_window_s=args.confirm_window_s)
+                                              confirm_window_s=args.confirm_window_s,
+                                              day_array=A, honest_tap_entry=True)
             n = eye_paper.append_journal([result], path=journal_path)
             log(f"tap {cid}: label={row['label']} confirmed={result['confirmed']} "
                 f"reason={result.get('reason')} r={result.get('r')} journaled={n}")
@@ -187,14 +190,19 @@ def main(argv=None):
             if (now - sent).total_seconds() > args.confirm_window_s + 2:
                 paper_cand = pending[cid]["paper_cand"]
                 result = eye_paper.run_confirmed(paper_cand, None, management=args.management,
-                                                  confirm_window_s=args.confirm_window_s)
+                                                  confirm_window_s=args.confirm_window_s, day_array=A)
                 eye_paper.append_journal([result], path=journal_path)  # no-op (unconfirmed)
                 log(f"expire {cid}: no S tap within {args.confirm_window_s}s -- skipped, not traded")
                 del pending[cid]
 
+    # Pace to the real bar clock: a card for signal bar j can only exist once bar j has
+    # closed and bar j+1 has opened (entry = O[j+1]), i.e. 09:30 + (j+1) min. The old
+    # anchor was run_start (~09:28:45 after data load) + j min -> cards 2-3 min early.
+    open_wall = run_start.replace(hour=9, minute=30, second=0, microsecond=0)
+    anchor = open_wall if (args.speed == 1.0 and run_start < open_wall + timedelta(minutes=90)) else run_start
     for cand in cands:
         minute = cand.features["minutes_after_open"]
-        target_wall = run_start + timedelta(seconds=(minute * 60) / args.speed)
+        target_wall = anchor + timedelta(seconds=((minute + 1) * 60) / args.speed)
         while True:
             now = datetime.now(ET)
             if now >= target_wall or now >= hard_stop:
