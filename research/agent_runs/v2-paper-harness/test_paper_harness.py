@@ -32,6 +32,16 @@ def test_engine_lock_matches_real_content():
     print("test_engine_lock_matches_real_content OK")
 
 
+def test_engine_lock_ignores_crlf_checkout():
+    with tempfile.TemporaryDirectory() as d:
+        lf, crlf = Path(d) / "lf.py", Path(d) / "crlf.py"
+        lf.write_bytes(b"x = 1\ny = 2\n")
+        crlf.write_bytes(b"x = 1\r\ny = 2\r\n")
+        assert engine_lock.engine_sha256(lf) == engine_lock.engine_sha256(crlf)
+        assert engine_lock.engine_sha256(lf) == hashlib.sha256(b"x = 1\ny = 2\n").hexdigest()
+    print("test_engine_lock_ignores_crlf_checkout OK")
+
+
 def test_engine_lock_refuses_on_drift():
     with tempfile.NamedTemporaryFile(suffix=".py", delete=False) as f:
         f.write(b"print('frozen engine v1')\n")
@@ -181,6 +191,7 @@ def test_oos_command_runs_and_writes_json():
 
 if __name__ == "__main__":
     test_engine_lock_matches_real_content()
+    test_engine_lock_ignores_crlf_checkout()
     test_engine_lock_refuses_on_drift()
     test_engine_lock_refuses_when_unset()
     test_engine_lock_points_at_ship_plan_strategy()

@@ -31,8 +31,8 @@ import pandas as pd
 
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
-sys.path.insert(0, r"C:\Users\aharg\Desktop\Projects\tradingbot\research\agent_runs\v2-t01-orb-1m")
-sys.path.insert(0, r"C:\Users\aharg\Desktop\Projects\tradingbot\research\agent_runs\v2-s07-data")
+sys.path.insert(0, str(HERE.parent / "v2-t01-orb-1m"))  # repo-relative: worktree uses its own copies
+sys.path.insert(0, str(HERE.parent / "v2-s07-data"))
 
 from engine_lock import assert_frozen, EngineDriftError, ENGINE_PATH  # noqa: E402
 
