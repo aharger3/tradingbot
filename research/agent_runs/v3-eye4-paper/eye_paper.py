@@ -241,7 +241,8 @@ def _day_array(symbol: str, date: str):
 
 def run_confirmed(candidate: dict, tap: Optional[dict], management: str = "flat_2r",
                    confirm_window_s: int = DEFAULT_CONFIRM_WINDOW_S,
-                   ladder_weights=(0.30, 0.30, 0.30, 0.10), day_array=None) -> dict:
+                   ladder_weights=(0.30, 0.30, 0.30, 0.10), day_array=None,
+                   honest_tap_entry: bool = False) -> dict:
     """Full pipeline for one candidate: confirm, then simulate if confirmed.
     `day_array` lets callers/tests inject synthetic bars instead of `load_fut`.
     Returns a dict ready to append to the journal (confirmed or not)."""
@@ -266,6 +267,15 @@ def run_confirmed(candidate: dict, tap: Optional[dict], management: str = "flat_
 
     i = candidate["signal_minute"] + 1
     side = candidate["side"]
+    if honest_tap_entry and latency:
+        # The card goes out at bar (signal+1)'s open; a human tap `latency` s later can
+        # only fill at the first bar open AFTER the tap -- not the signal+1 open.
+        i += int(np.ceil(latency / 60.0))
+        stop_px = candidate["stop"]
+        for j in range(candidate["signal_minute"] + 1, min(i, len(A["open"]))):
+            if (side > 0 and A["low"][j] <= stop_px) or (side < 0 and A["high"][j] >= stop_px):
+                row.update(confirmed=False, reason="stopped_before_tap_fill")
+                return row
     entry = _entry_price(A, i, side)
     if entry is None:
         row.update(confirmed=False, reason="no_entry_bar")
