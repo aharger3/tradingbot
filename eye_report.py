@@ -23,6 +23,7 @@ sys.path.insert(0, str(REPO / "research" / "agent_runs" / "v2-s07-data"))
 sys.path.insert(0, str(REPO))
 
 import eye_paper  # noqa: E402
+from research.challenge_tracker import status_line as challenge_status  # noqa: E402
 
 ET = ZoneInfo("America/New_York")
 REPLAY_JOURNAL = REPO / "research" / "paper_journal" / "acks_replay.jsonl"
@@ -51,6 +52,7 @@ def main(argv=None):
     else:
         msg = (f"{date}: {summary['n']} confirmed  mean_r={summary['mean_r']}  "
                f"hit_rate={summary['hit_rate']}  usd={summary['usd']} (paper $)")
+    msg += "\n" + challenge_status()
     title = f"{args.title_prefix} - daily report"
     ok, status = push(title, msg)
     print(f"report {date}: {msg} -> ntfy ok={ok} status={status}")
