@@ -70,6 +70,25 @@ def binom_sigma_flag(observed_fire, expected_p, n_days=1):
     return (observed_fire - expected_p) / sd
 
 
+
+CORPUS_HEALTH = Path(os.environ.get("OMEN_CORPUS_HEALTH", r"C:\Users\aharg\Desktop\ops\corpus-health.json"))
+
+
+def corpus_health_line(path=CORPUS_HEALTH):
+    """One line on the nightly corpus scrape (Discord/YouTube/Circle) + harvest tasks.
+    Written by Desktop\\Scripts\\corpus-scrape.ps1 (task omen-corpus-scrape)."""
+    try:
+        h = json.loads(Path(path).read_text(encoding="utf-8-sig"))
+    except Exception as e:
+        return f"Corpus health: NO STATUS ({type(e).__name__}) - omen-corpus-scrape has not written {path}"
+    steps = " ".join(f"{k}={v.get('rc')}" for k, v in (h.get("steps") or {}).items())
+    tasks = " ".join(f"{k}={v.get('result')}" for k, v in (h.get("tasks") or {}).items())
+    f = h.get("fresh") or {}
+    return (f"Corpus health: {'OK' if h.get('ok') else 'FAIL'} @ {h.get('run_at')} | {steps} | "
+            f"tasks {tasks} | scarface {f.get('discord_scarface')} jdub {f.get('discord_jdub')} "
+            f"yt {f.get('youtube_count')} transcripts")
+
+
 def main():
     now_et = datetime.now(ET)
     today_str = now_et.strftime("%Y-%m-%d")
@@ -115,6 +134,8 @@ def main():
         report_md.extend(f"- {f}" for f in flags)
     else:
         report_md.append("Nothing >2 sigma off baseline. No push sent.")
+    report_md.append("")
+    report_md.append(corpus_health_line())
 
     REPORTS_DIR.mkdir(parents=True, exist_ok=True)
     (REPORTS_DIR / f"daily_{today_str}.md").write_text("\n".join(report_md) + "\n")
