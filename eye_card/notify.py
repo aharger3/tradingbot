@@ -36,7 +36,7 @@ def build_title(candidate: Candidate) -> str:
     return f"eye-check: {candidate.symbol} {arrow} {candidate.direction}"
 
 
-def build_message(candidate: Candidate) -> str:
+def build_message(candidate: Candidate, footer: str | None = None) -> str:
     """Plain-ASCII, newline-joined body. Callers that put this in an HTTP
     header (ntfy's Message header) must escape real newlines first -- see
     `_header_safe`. The body form (real '\\n') is what tests assert on.
@@ -54,6 +54,8 @@ def build_message(candidate: Candidate) -> str:
     if candidate.reason:
         lines.append(f"WATCH - {candidate.reason}")
     lines.append(f"OMEN - eye-loop - PAPER - #{candidate.candidate_id}")
+    if footer:
+        lines.append(footer)
     return "\n".join(lines)
 
 
@@ -82,7 +84,7 @@ class SendResult:
 
 def send_card(candidate: Candidate, chart_path: str | Path, token: str,
               *, session: requests.Session | None = None, test_title_prefix: str | None = None,
-              timeout: float = 10.0) -> SendResult:
+              timeout: float = 10.0, footer: str | None = None) -> SendResult:
     """POST the chart PNG to ntfy with the card headers. Always PAPER."""
     sess = session or requests
     topic = _ntfy_topic()
@@ -92,7 +94,7 @@ def send_card(candidate: Candidate, chart_path: str | Path, token: str,
         title = f"{test_title_prefix} {title}"
     headers = {
         "Title": _header_safe(title) or "eye-check",
-        "Message": _header_safe(build_message(candidate)),
+        "Message": _header_safe(build_message(candidate, footer)),
         "Priority": "default",
         "Tags": "eyes,paper",
         "Filename": f"{candidate.candidate_id}.png",
@@ -101,4 +103,15 @@ def send_card(candidate: Candidate, chart_path: str | Path, token: str,
     chart_path = Path(chart_path)
     with open(chart_path, "rb") as fh:
         resp = sess.post(url, data=fh.read(), headers=headers, timeout=timeout)
+    return SendResult(ok=resp.ok, status_code=resp.status_code, url=url)
+
+
+def send_line(text: str, *, session: requests.Session | None = None,
+              test_title_prefix: str | None = None, timeout: float = 10.0) -> SendResult:
+    """One plain-text ntfy line (e.g. 'GUARD: 2-loss day stop'). No chart, no buttons."""
+    sess = session or requests
+    url = f"{_ntfy_base().rstrip('/')}/{_ntfy_topic()}"
+    title = f"{test_title_prefix} eye-loop" if test_title_prefix else "eye-loop"
+    resp = sess.post(url, data=text.encode("ascii", "ignore"),
+                     headers={"Title": _header_safe(title), "Tags": "no_entry,paper"}, timeout=timeout)
     return SendResult(ok=resp.ok, status_code=resp.status_code, url=url)
