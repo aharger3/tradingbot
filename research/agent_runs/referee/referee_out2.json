@@ -1,0 +1,74 @@
+{
+ "t04_post_1100": "{\"S\": {\"n\": 100, \"meanR\": -0.234, \"win\": 30.0}, \"A\": {\"n\": 85, \"meanR\": -0.111, \"win\": 32.9}, \"C\": {\"n\": 18, \"meanR\": -0.112, \"win\": 33.3}, \"none\": {\"n\": 134, \"meanR\": -0.037, \"win\": 35.1}, \"unmarked_sample\": {\"n\": 3646, \"meanR\": -0.315}, \"S_minus_unmarked\": 0.081, \"p\": 0.2929}",
+ "t01_q_hits": [],
+ "g88": "{\"bar_per_day\": 397.0, \"book\": \"bt2y_trades_retest_on.json\", \"sessions\": 498, \"candidates\": 8227, \"arms\": {\"BOOK\": {\"entry\": \"book\", \"stop\": \"intrabar\", \"oneaday\": {\"trades\": 498, \"win_pct\": 46.4, \"total_dollars\": 18598.0, \"mean_r\": 0.0373, \"per_day\": 37.0, \"per_month\": 747.0, \"months_green\": 12, \"months\": 25, \"weeks_green\": 48, \"weeks\": 105, \"worst_drawdown\": 21446.0}, \"oneaday_ci\": {\"per_day\": 37.0, \"ci95_low\": -55.0, \"ci95_high\": 135.0}, \"pct_of_bar\": 9.3, \"days_traded\": 498, \"day_rate_pct\": 100.0, \"rows_priced\": 8227, \"rows_dropped_for_size\": 1338, \"dropped_pct\": 16.3, \"every_trade\": {\"trades\": 6889, \"win_pct\": 43.2, \"total_dollars\": -238547.0, \"mean_r\": -0.0346, \"per_day\": -479.0, \"per_month\": -9580.0, \"months_green\": 6, \"months\": 25, \"weeks_green\": 45, \"weeks\": 105, \"worst_drawdown\": 265375.0}, \"median_bars_early\": null, \"pct_before_signal\": null, \"median_risk\": 0.54, \"nofill\": {}}",
+ "slices_files": [
+  "edge_slices.json",
+  "edge_slices.py",
+  "edge_slices_2026-09-26.md",
+  "edge_slices.json",
+  "edge_slices.py",
+  "edge_slices_2026-09-26.md"
+ ],
+ "slices_edge_slices.json": "{\"book\": \"research/bt2y_trades_retest_on.json\", \"book_sessions\": 498, \"book_first\": \"2024-09-03\", \"book_last\": \"2026-09-02\", \"split_day\": \"2025-09-01\", \"n_trades\": 6889, \"n_min\": 50, \"n_perm\": 100000, \"seed\": 20260926, \"bh_fdr\": 0.05, \"dims\": 11, \"n_slices\": 1105, \"n_singles\": 60, \"n_pairs\": 1045, \"book_row\": 11, \"n_nominal_p05\": 47, \"n_nominal_p05_positive\": 47, \"n_bh_q05\": 0, \"n_bh_q10\": 0, \"n_s",
+ "order_scan": {
+  "\\research\\futures_signal.py": [],
+  "\\research\\scaling_ladder.py": [],
+  "\\research\\propfirm_gate.py": [],
+  "\\run_daily.ps1": [],
+  "\\research\\agent_runs\\omen-scaling-0926\\build_nq_br_trades.py": [],
+  "\\.claude\\worktrees\\omen-signal-0926\\research\\futures_signal.py": [],
+  "\\.claude\\worktrees\\omen-signal-0926\\run_daily.ps1": []
+ },
+ "alpaca_url_keys": [
+  "ALPACA_PAPER_BASE_URL -> paper"
+ ],
+ "run_daily_futures_lines": [
+  "# see research/futures_signal.py. Never places an order; ntfy push only.",
+  "& $python research\\futures_signal.py live 2>&1 | Tee-Object -FilePath $log -Append"
+ ],
+ "tests_main_checkout": {
+  "test_futures_signal.py": {
+   "rc": 0,
+   "tail": [
+    "  futures_signal: NO LIVE FEED CONFIGURED -- Sec.5 (Q5) of OMEN-SHIP-PLAN.md is still open. Not sending any push, not writing to the paper journal. Run `replay` against Massive bars instead until a feed is chosen.",
+    "ok   live() with no feed configured is a clean no-op (no push, no crash)",
+    "ALL OK"
+   ]
+  },
+  "test_scaling_ladder.py": {
+   "rc": 0,
+   "tail": [
+    "ok   real NQ B&R book (150 trades): walk-forward day-by-day funding date matches a single whole-series evaluate_firm() call (2025-03-18)",
+    "",
+    "PASS: all scaling_ladder checks held."
+   ]
+  },
+  "test_propfirm_gate.py": {
+   "rc": 0,
+   "tail": [
+    "ok   gate_series() runs cleanly across all 7 FIRM_RULES entries",
+    "",
+    "PASS: all propfirm_gate checks held."
+   ]
+  },
+  "test_propfirm_luck_check.py": {
+   "rc": 0,
+   "tail": [
+    "ok   a broken rule dict is caught inside firm_luck_check (KeyError('trailing_dd_pct')), never raised",
+    "",
+    "PASS: all propfirm_luck_check checks held."
+   ]
+  }
+ },
+ "tests_pr31_worktree": {
+  "test_futures_signal.py": {
+   "rc": 0,
+   "tail": [
+    "  futures_signal: NO LIVE FEED CONFIGURED -- Sec.5 (Q5) of OMEN-SHIP-PLAN.md is still open. Not sending any push, not writing to the paper journal. Run `replay` against Massive bars instead until a feed is chosen.",
+    "ok   live() with no feed configured is a clean no-op (no push, no crash)",
+    "ALL OK"
+   ]
+  }
+ }
+}

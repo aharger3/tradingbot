@@ -1,0 +1,86 @@
+{
+ "book": "bt2y_trades_retest_on.json",
+ "sessions": 498,
+ "candidates": 8227,
+ "arms": {
+  "POST_floor": {
+   "gross": {
+    "trades": 498,
+    "per_day": 256.1,
+    "win%": 27.5,
+    "meanR": 0.256,
+    "green": "16/25",
+    "H1": 161.6,
+    "H2": 350.6,
+    "p_signflip": 0.013
+   },
+   "net": {
+    "trades": 498,
+    "per_day": 114.0,
+    "win%": 26.7,
+    "meanR": 0.114,
+    "green": "13/25",
+    "H1": 25.7,
+    "H2": 202.3,
+    "p_signflip": 0.161
+   },
+   "median_cost": 107.3,
+   "nofill": {
+    "nofill": 2174
+   }
+  },
+  "POST_tradethru": {
+   "gross": {
+    "trades": 498,
+    "per_day": 180.4,
+    "win%": 24.9,
+    "meanR": 0.18,
+    "green": "14/25",
+    "H1": 86.5,
+    "H2": 274.3,
+    "p_signflip": 0.058
+   },
+   "net": {
+    "trades": 498,
+    "per_day": 39.5,
+    "win%": 24.5,
+    "meanR": 0.04,
+    "green": "12/25",
+    "H1": -48.7,
+    "H2": 127.8,
+    "p_signflip": 0.367
+   },
+   "median_cost": 106.8,
+   "nofill": {
+    "nofill": 2256
+   }
+  },
+  "POST_nextopen": {
+   "gross": {
+    "trades": 496,
+    "per_day": 25.9,
+    "win%": 31.2,
+    "meanR": 0.026,
+    "green": "12/25",
+    "H1": -23.1,
+    "H2": 74.9,
+    "p_signflip": 0.374
+   },
+   "net": {
+    "trades": 496,
+    "per_day": -105.5,
+    "win%": 29.8,
+    "meanR": -0.106,
+    "green": "9/25",
+    "H1": -149.5,
+    "H2": -61.5,
+    "p_signflip": 0.868
+   },
+   "median_cost": 101.9,
+   "nofill": {
+    "opened_thru_stop": 2603,
+    "nofill": 2212
+   }
+  }
+ }
+}
