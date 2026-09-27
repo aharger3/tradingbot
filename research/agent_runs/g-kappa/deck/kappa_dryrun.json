@@ -1,0 +1,21 @@
+{
+  "n": 40,
+  "agreement": 1.0,
+  "kappa": 1.0,
+  "kappa_ci95": [
+    1.0,
+    1.0
+  ],
+  "eta": 0.0,
+  "eta_ci95": [
+    0.0,
+    0.0
+  ],
+  "table": {
+    "S->S": 20,
+    "S->notS": 0,
+    "notS->S": 0,
+    "notS->notS": 20
+  },
+  "verdict": "eta<=.15: tap on - QBC order, ~190 taps (g/label-efficiency step 2)"
+}
