@@ -1,0 +1,286 @@
+{
+ "sessions": 495,
+ "first": "2024-09-26",
+ "last": "2026-09-25",
+ "perm": {
+  "1559": {
+   "n": 261,
+   "R_trade": 0.335,
+   "p_randdir": 0.0002,
+   "p_signflip": 0.01975
+  },
+  "1100": {
+   "n": 261,
+   "R_trade": 0.199,
+   "p_randdir": 0.001,
+   "p_signflip": 0.057
+  }
+ },
+ "quarters": [
+  {
+   "q": "2024Q3",
+   "n": 3,
+   "R": 6.16,
+   "R_trade": 2.055,
+   "usd_B400": 2254.0,
+   "R_1100": 4.53,
+   "gated": false
+  },
+  {
+   "q": "2024Q4",
+   "n": 36,
+   "R": 16.2,
+   "R_trade": 0.45,
+   "usd_B400": 5909.0,
+   "R_1100": 6.15,
+   "gated": true
+  },
+  {
+   "q": "2025Q1",
+   "n": 27,
+   "R": 16.67,
+   "R_trade": 0.617,
+   "usd_B400": 6453.0,
+   "R_1100": 17.14,
+   "gated": true
+  },
+  {
+   "q": "2025Q2",
+   "n": 40,
+   "R": -17.21,
+   "R_trade": -0.43,
+   "usd_B400": -6199.0,
+   "R_1100": -19.94,
+   "gated": true
+  },
+  {
+   "q": "2025Q3",
+   "n": 33,
+   "R": 36.14,
+   "R_trade": 1.095,
+   "usd_B400": 13480.0,
+   "R_1100": 21.44,
+   "gated": true
+  },
+  {
+   "q": "2025Q4",
+   "n": 24,
+   "R": 24.04,
+   "R_trade": 1.002,
+   "usd_B400": 8920.0,
+   "R_1100": 19.82,
+   "gated": true
+  },
+  {
+   "q": "2026Q1",
+   "n": 35,
+   "R": 3.47,
+   "R_trade": 0.099,
+   "usd_B400": 487.0,
+   "R_1100": 3.98,
+   "gated": true
+  },
+  {
+   "q": "2026Q2",
+   "n": 32,
+   "R": -4.44,
+   "R_trade": -0.139,
+   "usd_B400": -2118.0,
+   "R_1100": -4.79,
+   "gated": true
+  },
+  {
+   "q": "2026Q3",
+   "n": 31,
+   "R": 6.41,
+   "R_trade": 0.207,
+   "usd_B400": 3209.0,
+   "R_1100": 3.67,
+   "gated": true
+  }
+ ],
+ "q_pos": "7/9",
+ "gated_R": 81.28,
+ "lucid": {
+  "1559 B200 hist": {
+   "pass_": 0.877,
+   "bust": 0.089,
+   "med_sess": 58.0,
+   "payout_rate": 0.741,
+   "EV": 334.0
+  },
+  "1559 B200 boot": {
+   "pass_": 0.789,
+   "bust": 0.186,
+   "med_sess": 66.0,
+   "payout_rate": 0.697,
+   "EV": 411.0
+  },
+  "1559 B200 null": {
+   "pass_": 0.41,
+   "bust": 0.568,
+   "med_sess": 72.0,
+   "payout_rate": 0.266,
+   "EV": 8.0
+  },
+  "1559 B200 boot_MonThu": {
+   "pass_": 0.818,
+   "bust": 0.129,
+   "med_sess": 86.0,
+   "payout_rate": 0.745,
+   "EV": 409.0
+  },
+  "1559 B200 usd_day": 35.1,
+  "1559 B200 traded": 222,
+  "1559 B400 hist": {
+   "pass_": 0.408,
+   "bust": 0.564,
+   "med_sess": 40.0,
+   "payout_rate": 0.184,
+   "EV": 26.0
+  },
+  "1559 B400 boot": {
+   "pass_": 0.426,
+   "bust": 0.573,
+   "med_sess": 43.0,
+   "payout_rate": 0.22,
+   "EV": 142.0
+  },
+  "1559 B400 null": {
+   "pass_": 0.184,
+   "bust": 0.815,
+   "med_sess": 42.0,
+   "payout_rate": 0.033,
+   "EV": -100.0
+  },
+  "1559 B400 boot_MonThu": {
+   "pass_": 0.433,
+   "bust": 0.557,
+   "med_sess": 53.0,
+   "payout_rate": 0.223,
+   "EV": 137.0
+  },
+  "1559 B400 usd_day": 65.4,
+  "1559 B400 traded": 260,
+  "1559 B800 hist": {
+   "pass_": 0.293,
+   "bust": 0.707,
+   "med_sess": 37.0,
+   "payout_rate": 0.071,
+   "EV": -35.0
+  },
+  "1559 B800 boot": {
+   "pass_": 0.26,
+   "bust": 0.739,
+   "med_sess": 33.0,
+   "payout_rate": 0.073,
+   "EV": -21.0
+  },
+  "1559 B800 null": {
+   "pass_": 0.101,
+   "bust": 0.899,
+   "med_sess": 25.0,
+   "payout_rate": 0.012,
+   "EV": -127.0
+  },
+  "1559 B800 boot_MonThu": {
+   "pass_": 0.246,
+   "bust": 0.751,
+   "med_sess": 41.0,
+   "payout_rate": 0.061,
+   "EV": -44.0
+  },
+  "1559 B800 usd_day": 134.7,
+  "1559 B800 traded": 261,
+  "1100 B200 hist": {
+   "pass_": 0.731,
+   "bust": 0.18,
+   "med_sess": 78.0,
+   "payout_rate": 0.531,
+   "EV": 63.0
+  },
+  "1100 B200 boot": {
+   "pass_": 0.664,
+   "bust": 0.254,
+   "med_sess": 86.0,
+   "payout_rate": 0.586,
+   "EV": 176.0
+  },
+  "1100 B200 null": {
+   "pass_": 0.353,
+   "bust": 0.57,
+   "med_sess": 91.0,
+   "payout_rate": 0.24,
+   "EV": -38.0
+  },
+  "1100 B200 boot_MonThu": {
+   "pass_": 0.637,
+   "bust": 0.208,
+   "med_sess": 100.0,
+   "payout_rate": 0.567,
+   "EV": 169.0
+  },
+  "1100 B200 usd_day": 20.5,
+  "1100 B200 traded": 222,
+  "1100 B400 hist": {
+   "pass_": 0.489,
+   "bust": 0.511,
+   "med_sess": 45.0,
+   "payout_rate": 0.313,
+   "EV": 112.0
+  },
+  "1100 B400 boot": {
+   "pass_": 0.43,
+   "bust": 0.566,
+   "med_sess": 46.0,
+   "payout_rate": 0.282,
+   "EV": 144.0
+  },
+  "1100 B400 null": {
+   "pass_": 0.227,
+   "bust": 0.769,
+   "med_sess": 43.0,
+   "payout_rate": 0.09,
+   "EV": -55.0
+  },
+  "1100 B400 boot_MonThu": {
+   "pass_": 0.422,
+   "bust": 0.565,
+   "med_sess": 53.0,
+   "payout_rate": 0.243,
+   "EV": 114.0
+  },
+  "1100 B400 usd_day": 38.7,
+  "1100 B400 traded": 260,
+  "1100 B800 hist": {
+   "pass_": 0.285,
+   "bust": 0.715,
+   "med_sess": 29.0,
+   "payout_rate": 0.077,
+   "EV": -8.0
+  },
+  "1100 B800 boot": {
+   "pass_": 0.26,
+   "bust": 0.74,
+   "med_sess": 29.0,
+   "payout_rate": 0.086,
+   "EV": 0.0
+  },
+  "1100 B800 null": {
+   "pass_": 0.137,
+   "bust": 0.862,
+   "med_sess": 23.5,
+   "payout_rate": 0.037,
+   "EV": -83.0
+  },
+  "1100 B800 boot_MonThu": {
+   "pass_": 0.258,
+   "bust": 0.738,
+   "med_sess": 30.0,
+   "payout_rate": 0.06,
+   "EV": -51.0
+  },
+  "1100 B800 usd_day": 81.4,
+  "1100 B800 traded": 261
+ }
+}
