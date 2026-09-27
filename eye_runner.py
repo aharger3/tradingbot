@@ -43,6 +43,32 @@ from eye_card.chart import Candidate as ChartCandidate, render_candidate_chart  
 from eye_card.notify import send_card                                           # noqa: E402
 from omen_data import load_fut                                                  # noqa: E402
 
+SKIP_DATES_PATH = REPO / "skip_dates.txt"
+
+
+def load_skip_dates(path: Path = SKIP_DATES_PATH) -> set[str]:
+    """Read ISO dates (YYYY-MM-DD) from a skip-dates file. Blank lines and
+    lines starting with # are ignored. Missing file -> empty set."""
+    if not path.exists():
+        return set()
+    out: set[str] = set()
+    for line in path.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if not line or line.startswith("#"):
+            continue
+        out.add(line)
+    return out
+
+
+def check_skip_date(path: Path = SKIP_DATES_PATH, now: "datetime | None" = None) -> str | None:
+    """Return today's ET date string if it's listed in the skip-dates file
+    (a LEGOLAND work day), else None. `now` is injectable for tests."""
+    now = now or datetime.now(ET)
+    today = now.strftime("%Y-%m-%d")
+    if today in load_skip_dates(path):
+        return today
+    return None
+
 ET = ZoneInfo("America/New_York")
 GRADES_TO_SEND = ("S", "one-off", "two-off")
 REPLAY_JOURNAL = REPO / "research" / "paper_journal" / "acks_replay.jsonl"
@@ -138,6 +164,11 @@ def main(argv=None):
     ap.add_argument("--token", default=os.environ.get("EYE_LABEL_TOKEN", "dev-local-only"))
     ap.add_argument("--max-wall-minutes", type=float, default=95.0, help="hard stop regardless of pacing")
     args = ap.parse_args(argv)
+
+    skip_today = check_skip_date()
+    if skip_today:
+        log("skipped: work day")
+        return 0
 
     journal_path = Path(args.journal_path)
     labels_csv = Path(args.labels_csv)

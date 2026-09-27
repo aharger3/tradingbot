@@ -1,0 +1,4 @@
+# ISO dates (YYYY-MM-DD) when eye_runner.py should skip: LEGOLAND work days
+# that fall on a Mon-Thu (the OmenEyeLoopReplay schedule). One per line, # comments ok.
+# Source: 03-career/current-booking-legoland.md (LEGOLAND dates), IDEAS.md omen-strategy.
+2026-10-12
