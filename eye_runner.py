@@ -42,6 +42,7 @@ import eye_paper                   # noqa: E402
 from eye_card.chart import Candidate as ChartCandidate, render_candidate_chart  # noqa: E402
 from eye_card.notify import send_card                                           # noqa: E402
 from omen_data import load_fut                                                  # noqa: E402
+from trade_journal import journal as trade_journal                              # noqa: E402
 
 ET = ZoneInfo("America/New_York")
 GRADES_TO_SEND = ("S", "one-off", "two-off")
@@ -121,6 +122,31 @@ def read_new_labels(labels_csv: Path, seen: set) -> list[dict]:
     return rows
 
 
+def journal_card(con, pend: dict, result: dict, austin_grade: str, management: str,
+                 confirm_window_s: int, mode: str):
+    """One row per sent card in trade_journal (taken or passed). For passed
+    cards, shadow R = the same honest-fill sim as if he had tapped S at send
+    time, so the weekly review can measure what his eye added. Never raises:
+    a journal failure must not break the replay loop."""
+    try:
+        pc = pend["paper_cand"]
+        shadow = None
+        if not result.get("confirmed"):
+            sh = eye_paper.run_confirmed(pc, {"candidate_id": pc["id"], "grade": "S",
+                                              "tap_ts": pc["card_sent_ts"]},
+                                         management=management, confirm_window_s=confirm_window_s)
+            shadow = sh.get("r")
+        cand = pend["cand"]
+        trade_journal.record(
+            con, cid=pc["id"], mode=mode, session_date=pc["date"], instrument=pc["symbol"],
+            direction=cand.direction, setup="orb-retest", engine_grade=cand.grade_hint,
+            austin_grade=austin_grade, paper_row=result, shadow_r=shadow,
+            minutes_after_open=pc["signal_minute"], screenshot_png=pend["png"],
+            extra_tags=[f"missing:{m}" for m in (cand.missing or [])])
+    except Exception as exc:  # noqa: BLE001
+        log(f"journal_card {pend['paper_cand']['id']} FAILED: {exc!r}")
+
+
 def log(msg: str):
     print(f"[{datetime.now(ET).isoformat(timespec='seconds')}] {msg}", flush=True)
 
@@ -136,11 +162,14 @@ def main(argv=None):
     ap.add_argument("--journal-path", default=str(REPLAY_JOURNAL))
     ap.add_argument("--labels-csv", default=os.environ.get("EYE_LABELS_CSV", str(REPO / "eye_card" / "labels.csv")))
     ap.add_argument("--token", default=os.environ.get("EYE_LABEL_TOKEN", "dev-local-only"))
+    ap.add_argument("--journal-db", default=str(trade_journal.DB_PATH), help="trade journal SQLite table")
     ap.add_argument("--max-wall-minutes", type=float, default=95.0, help="hard stop regardless of pacing")
     args = ap.parse_args(argv)
 
     journal_path = Path(args.journal_path)
     labels_csv = Path(args.labels_csv)
+    journal_mode = "REPLAY" if journal_path.resolve() == REPLAY_JOURNAL.resolve() else "PAPER"
+    jcon = trade_journal.connect(Path(args.journal_db))
 
     date = pick_replay_date(args.instrument, args.date)
     df = load_fut(args.instrument, "09:30", "11:01")
@@ -178,6 +207,8 @@ def main(argv=None):
                 f"reason={result.get('reason')} r={result.get('r')} journaled={n}")
             if result["confirmed"]:
                 confirmed_count += n
+            journal_card(jcon, pending[cid], result, "S" if row["label"] == "S" else "not_s",
+                         args.management, args.confirm_window_s, journal_mode)
             del pending[cid]
 
     def expire_pending():
@@ -190,6 +221,8 @@ def main(argv=None):
                                                   confirm_window_s=args.confirm_window_s)
                 eye_paper.append_journal([result], path=journal_path)  # no-op (unconfirmed)
                 log(f"expire {cid}: no S tap within {args.confirm_window_s}s -- skipped, not traded")
+                journal_card(jcon, pending[cid], result, "none", args.management,
+                             args.confirm_window_s, journal_mode)
                 del pending[cid]
 
     for cand in cands:
@@ -220,7 +253,7 @@ def main(argv=None):
         log(f"sent {cid} grade={grade} dir={chart_cand.direction} "
             f"entry={chart_cand.entry} stop={chart_cand.stop} -> ntfy ok={result.ok} status={result.status_code}")
         paper_cand = to_paper_candidate(cand, cid, date, card_sent_ts)
-        pending[cid] = {"paper_cand": paper_cand, "sent_wall": sent_wall}
+        pending[cid] = {"paper_cand": paper_cand, "sent_wall": sent_wall, "cand": cand, "png": png_path}
 
     # drain remaining confirmation windows
     while pending and datetime.now(ET) < hard_stop:
@@ -230,6 +263,7 @@ def main(argv=None):
     sweep_labels()
     expire_pending()
 
+    jcon.close()
     summary = eye_paper.daily_summary(date, path=journal_path)
     log(f"DONE {date}: {len(cands)} sent, {confirmed_count} confirmed+journaled, summary={summary}")
     return 0
