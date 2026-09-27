@@ -32,7 +32,9 @@ def label():
         return jsonify(ok=False, error="bad token"), 403
     if not candidate_id or lbl not in ("S", "notS"):
         return jsonify(ok=False, error="need id + label=S|notS"), 400
-    row = append_label(LABELS_CSV, candidate_id, lbl, source_ip=request.remote_addr or "")
+    channel = request.values.get("channel", "ntfy")
+    row = append_label(LABELS_CSV, candidate_id, lbl, source_ip=request.remote_addr or "",
+                       channel=channel)
     return jsonify(ok=True, row=row)
 
 
