@@ -1,0 +1,376 @@
+{
+ "sessions": 495,
+ "first": "2024-09-26",
+ "last": "2026-09-25",
+ "base": {
+  "NONE": {
+   "n": 494,
+   "R_trade": 0.120419071211151,
+   "R_day": 0.12017580036021938,
+   "t": 1.1325075530105584
+  },
+  "NQ925": {
+   "n": 261,
+   "R_trade": 0.334998470645371,
+   "R_day": 0.17663555724937746,
+   "t": 2.0721076676480674
+  },
+  "ES925": {
+   "n": 249,
+   "R_trade": 0.13545372907185066,
+   "R_day": 0.06813733038159761,
+   "t": 0.8786702611452791
+  }
+ },
+ "quarters": {
+  "2024Q3": {
+   "NONE": 6.16,
+   "NQ925": 6.16,
+   "ES925": 0.58
+  },
+  "2024Q4": {
+   "NONE": 15.5,
+   "NQ925": 16.2,
+   "ES925": 1.64
+  },
+  "2025Q1": {
+   "NONE": 10.21,
+   "NQ925": 16.67,
+   "ES925": 6.41
+  },
+  "2025Q2": {
+   "NONE": -4.34,
+   "NQ925": -17.21,
+   "ES925": -21.87
+  },
+  "2025Q3": {
+   "NONE": 30.16,
+   "NQ925": 36.14,
+   "ES925": 25.59
+  },
+  "2025Q4": {
+   "NONE": 14.54,
+   "NQ925": 24.04,
+   "ES925": 27.3
+  },
+  "2026Q1": {
+   "NONE": 0.08,
+   "NQ925": 3.47,
+   "ES925": -2.16
+  },
+  "2026Q2": {
+   "NONE": -19.07,
+   "NQ925": -4.44,
+   "ES925": -3.04
+  },
+  "2026Q3": {
+   "NONE": 6.25,
+   "NQ925": 6.41,
+   "ES925": -0.72
+  }
+ },
+ "walk_forward": [
+  {
+   "q": "2025Q1",
+   "pick": "NQ925 m4 p5 T12 k1.0",
+   "oos_R": 11.41,
+   "fixed_NQ925": 16.67,
+   "days": 60
+  },
+  {
+   "q": "2025Q2",
+   "pick": "NONE m4 p4 T12 k1.2",
+   "oos_R": -14.17,
+   "fixed_NQ925": -17.21,
+   "days": 62
+  },
+  {
+   "q": "2025Q3",
+   "pick": "NONE m5 p4 T12 k1.2",
+   "oos_R": 22.82,
+   "fixed_NQ925": 36.14,
+   "days": 63
+  },
+  {
+   "q": "2025Q4",
+   "pick": "NONE m5 p4 T12 k1.2",
+   "oos_R": 7.68,
+   "fixed_NQ925": 24.04,
+   "days": 62
+  },
+  {
+   "q": "2026Q1",
+   "pick": "NQ925 m5 p5 T12 k1.2",
+   "oos_R": 3.27,
+   "fixed_NQ925": 3.47,
+   "days": 61
+  },
+  {
+   "q": "2026Q2",
+   "pick": "NQ925 m5 p5 T12 k1.2",
+   "oos_R": -7.37,
+   "fixed_NQ925": -4.44,
+   "days": 62
+  },
+  {
+   "q": "2026Q3",
+   "pick": "NONE m4 p4 T8 k0.8",
+   "oos_R": -10.23,
+   "fixed_NQ925": 6.41,
+   "days": 60
+  }
+ ],
+ "wf_total": {
+  "picked": 13.41,
+  "fixed": 65.08,
+  "days": 430
+ },
+ "neighborhood": {
+  "n": 81,
+  "pos_R_trade": 81,
+  "pct_R_trade": [
+   0.151,
+   0.196,
+   0.288,
+   0.339,
+   0.407
+  ],
+  "pct_R_day": [
+   0.0789,
+   0.1034,
+   0.1517,
+   0.1791,
+   0.2147
+  ],
+  "t_ge_2": 15,
+  "nq925_minus_none": 0.036691226949811
+ },
+ "one_at_a_time": {
+  "m=4": {
+   "n": 259,
+   "R_trade": 0.3385,
+   "R_day": 0.1771,
+   "t": 2.0396
+  },
+  "m=5": {
+   "n": 261,
+   "R_trade": 0.335,
+   "R_day": 0.1766,
+   "t": 2.0721
+  },
+  "m=6": {
+   "n": 260,
+   "R_trade": 0.2732,
+   "R_day": 0.1435,
+   "t": 1.863
+  },
+  "p=4": {
+   "n": 260,
+   "R_trade": 0.2998,
+   "R_day": 0.1575,
+   "t": 1.8488
+  },
+  "p=5": {
+   "n": 261,
+   "R_trade": 0.335,
+   "R_day": 0.1766,
+   "t": 2.0721
+  },
+  "p=6": {
+   "n": 261,
+   "R_trade": 0.3033,
+   "R_day": 0.1599,
+   "t": 1.8781
+  },
+  "T=8": {
+   "n": 261,
+   "R_trade": 0.3422,
+   "R_day": 0.1804,
+   "t": 2.2124
+  },
+  "T=10": {
+   "n": 261,
+   "R_trade": 0.335,
+   "R_day": 0.1766,
+   "t": 2.0721
+  },
+  "T=12": {
+   "n": 261,
+   "R_trade": 0.3632,
+   "R_day": 0.1915,
+   "t": 2.1515
+  },
+  "k=0.8": {
+   "n": 261,
+   "R_trade": 0.3262,
+   "R_day": 0.172,
+   "t": 1.8932
+  },
+  "k=1.0": {
+   "n": 261,
+   "R_trade": 0.335,
+   "R_day": 0.1766,
+   "t": 2.0721
+  },
+  "k=1.2": {
+   "n": 261,
+   "R_trade": 0.3725,
+   "R_day": 0.1964,
+   "t": 2.407
+  }
+ },
+ "mnq_cost": {
+  "NONE s1 c1x": {
+   "trades": 419,
+   "skipped_wide": 75,
+   "usd_day": 22.3,
+   "usd_trade": 26.3,
+   "med_contracts": 1.0
+  },
+  "NONE s1 c2x": {
+   "trades": 418,
+   "skipped_wide": 76,
+   "usd_day": 21.5,
+   "usd_trade": 25.5,
+   "med_contracts": 1.0
+  },
+  "NONE s1 c3x": {
+   "trades": 415,
+   "skipped_wide": 79,
+   "usd_day": 21.1,
+   "usd_trade": 25.2,
+   "med_contracts": 1.0
+  },
+  "NONE s2 c1x": {
+   "trades": 418,
+   "skipped_wide": 76,
+   "usd_day": 20.9,
+   "usd_trade": 24.7,
+   "med_contracts": 1.0
+  },
+  "NONE s2 c2x": {
+   "trades": 418,
+   "skipped_wide": 76,
+   "usd_day": 20.2,
+   "usd_trade": 23.9,
+   "med_contracts": 1.0
+  },
+  "NONE s2 c3x": {
+   "trades": 414,
+   "skipped_wide": 80,
+   "usd_day": 20.6,
+   "usd_trade": 24.6,
+   "med_contracts": 1.0
+  },
+  "NONE s4 c1x": {
+   "trades": 418,
+   "skipped_wide": 76,
+   "usd_day": 18.8,
+   "usd_trade": 22.3,
+   "med_contracts": 1.0
+  },
+  "NONE s4 c2x": {
+   "trades": 415,
+   "skipped_wide": 79,
+   "usd_day": 18.1,
+   "usd_trade": 21.5,
+   "med_contracts": 1.0
+  },
+  "NONE s4 c3x": {
+   "trades": 412,
+   "skipped_wide": 82,
+   "usd_day": 16.4,
+   "usd_trade": 19.7,
+   "med_contracts": 1.0
+  },
+  "NQ925 s1 c1x": {
+   "trades": 222,
+   "skipped_wide": 39,
+   "usd_day": 35.1,
+   "usd_trade": 78.2,
+   "med_contracts": 1.0
+  },
+  "NQ925 s1 c2x": {
+   "trades": 221,
+   "skipped_wide": 40,
+   "usd_day": 34.0,
+   "usd_trade": 76.2,
+   "med_contracts": 1.0
+  },
+  "NQ925 s1 c3x": {
+   "trades": 220,
+   "skipped_wide": 41,
+   "usd_day": 32.9,
+   "usd_trade": 74.0,
+   "med_contracts": 1.0
+  },
+  "NQ925 s2 c1x": {
+   "trades": 221,
+   "skipped_wide": 40,
+   "usd_day": 34.1,
+   "usd_trade": 76.5,
+   "med_contracts": 1.0
+  },
+  "NQ925 s2 c2x": {
+   "trades": 221,
+   "skipped_wide": 40,
+   "usd_day": 33.8,
+   "usd_trade": 75.8,
+   "med_contracts": 1.0
+  },
+  "NQ925 s2 c3x": {
+   "trades": 219,
+   "skipped_wide": 42,
+   "usd_day": 33.2,
+   "usd_trade": 75.0,
+   "med_contracts": 1.0
+  },
+  "NQ925 s4 c1x": {
+   "trades": 221,
+   "skipped_wide": 40,
+   "usd_day": 33.3,
+   "usd_trade": 74.7,
+   "med_contracts": 1.0
+  },
+  "NQ925 s4 c2x": {
+   "trades": 220,
+   "skipped_wide": 41,
+   "usd_day": 31.6,
+   "usd_trade": 71.2,
+   "med_contracts": 1.0
+  },
+  "NQ925 s4 c3x": {
+   "trades": 219,
+   "skipped_wide": 42,
+   "usd_day": 29.9,
+   "usd_trade": 67.6,
+   "med_contracts": 1.0
+  }
+ },
+ "prop": {
+  "NONE": {
+   "starts": 495,
+   "resolved": 475,
+   "pass_rate": 0.535,
+   "med_days_to_pass": 59.0,
+   "worst_eod_dd": -5371.0
+  },
+  "NQ925": {
+   "starts": 495,
+   "resolved": 304,
+   "pass_rate": 0.855,
+   "med_days_to_pass": 21.0,
+   "worst_eod_dd": -2891.0
+  }
+ },
+ "luck": {
+  "subset_p": 0.01655,
+  "boot_ci90": [
+   0.079,
+   0.604
+  ],
+  "boot_p_le0": 0.01425,
+  "drop_top5_R_trade": 0.147,
+  "top5_share": 0.57
+ }
+}
