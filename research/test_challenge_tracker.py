@@ -70,7 +70,10 @@ def test_breach_uses_prior_floor_and_intraday_min():
 
 
 def test_pass_at_target():
-    r = ct.step(None, "A", "2026-09-14", 3000.00)
+    # one $3K day = 100% best day -> consistency breach, stays active (50% cap)
+    one = ct.step(None, "A", "2026-09-14", 3000.00)
+    assert one["status"] == "active" and one["consistency_breach"]
+    r = ct.step(ct.step(None, "A", "2026-09-14", 1500.00), "A", "2026-09-15", 1500.00)
     assert (r["status"], r["to_target"]) == ("passed", 0.0)
     try:
         ct.step(r, "A", "2026-09-15", 10.0)
@@ -130,3 +133,57 @@ if __name__ == "__main__":
         fn()
         print("ok", fn.__name__)
     print(f"{len(fns)} passed")
+
+
+# --------------------------------------------------------------------------- #
+# fixture ledgers (paper-journal format: per-1-MNQ usd, sized 12/10/6)
+# --------------------------------------------------------------------------- #
+FIX = Path(HERE) / "fixtures" / "challenge"
+
+
+def _seed(name, firm="lucid_flex_50k"):
+    return ct.seed_paper([FIX / f"{name}.jsonl"], path=_tmp(), firm_key=firm)
+
+
+def test_fixture_pass():
+    rows = _seed("pass")
+    last = rows[-1]
+    assert last["status"] == "passed" and last["to_target"] == 0
+    assert last["best_day_pct"] <= 0.5 and not last["consistency_breach"]
+    assert last["payout_eligible"] and last["profit_days_150"] >= 5
+    assert last["cushion"] == round(last["balance"] - last["floor"], 2)
+
+
+def test_fixture_trail_breach():
+    rows = _seed("trail_breach")
+    assert [r["status"] for r in rows] == ["active", "failed"]
+    assert rows[-1]["balance"] == 47480.0 and rows[0]["floor"] == 48480.0
+    assert rows[-1]["payout_eligible"] is False
+
+
+def test_fixture_consistency_breach():
+    rows = _seed("consistency_breach")
+    last = rows[-1]
+    assert last["balance"] >= 53000 and last["status"] == "active"
+    assert last["consistency_breach"] and last["best_day_pct"] > 0.5
+    assert last["payout_eligible"] is False
+
+
+def test_firm_switch_tradeify_topstep():
+    # Tradeify 40% cap: pass fixture best day 16% still passes; Topstep floor locks at start.
+    assert _seed("pass", "tradeify_select_50k")[-1]["status"] == "passed"
+    top = _seed("pass", "topstep_50k")[-1]
+    assert top["floor"] == 50000.0 and top["plan"] == "Topstep 50K"
+
+
+def test_state_line_fields():
+    line = ct.state_line(_seed("pass")[-1])
+    for k in ("bal", "trail", "cushion", "best-day", "to-target", "payout Y", "passed"):
+        assert k in line, k
+
+
+def test_cli_firm_alias():
+    j = _tmp()
+    assert ct.main(["--seed-paper", "--paper", str(FIX / "pass.jsonl"), "--journal", str(j),
+                    "--firm", "topstep"]) == 0
+    assert ct.load_rows(j)[-1]["firm_key"] == "topstep_50k"
