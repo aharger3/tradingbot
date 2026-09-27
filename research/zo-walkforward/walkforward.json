@@ -1,0 +1,235 @@
+{
+ "days": 496,
+ "first": "2024-09-26",
+ "last": "2026-09-25",
+ "bar": ">=6/9 quarters positive and top-5 tail share < 50%",
+ "R_day": {
+  "Z": 0.1762794371742779,
+  "O": 0.06546988432362665,
+  "ZO": 0.24174932149790454
+ },
+ "quarters": {
+  "24Q3": {
+   "days": 3,
+   "n_Z": 3,
+   "n_O": 1,
+   "Z": 6.16,
+   "O": 1.96,
+   "ZO": 8.12,
+   "ZO_R_day": 2.707,
+   "maxDD": 1.02
+  },
+  "24Q4": {
+   "days": 62,
+   "n_Z": 36,
+   "n_O": 8,
+   "Z": 16.2,
+   "O": 9.65,
+   "ZO": 25.85,
+   "ZO_R_day": 0.417,
+   "maxDD": 3.4
+  },
+  "25Q1": {
+   "days": 60,
+   "n_Z": 27,
+   "n_O": 19,
+   "Z": 16.67,
+   "O": 7.95,
+   "ZO": 24.62,
+   "ZO_R_day": 0.41,
+   "maxDD": 7.2
+  },
+  "25Q2": {
+   "days": 62,
+   "n_Z": 40,
+   "n_O": 15,
+   "Z": -17.21,
+   "O": 2.4,
+   "ZO": -14.81,
+   "ZO_R_day": -0.239,
+   "maxDD": 23.58
+  },
+  "25Q3": {
+   "days": 63,
+   "n_Z": 33,
+   "n_O": 13,
+   "Z": 36.14,
+   "O": -0.59,
+   "ZO": 35.55,
+   "ZO_R_day": 0.564,
+   "maxDD": 5.91
+  },
+  "25Q4": {
+   "days": 62,
+   "n_Z": 24,
+   "n_O": 10,
+   "Z": 24.04,
+   "O": -2.9,
+   "ZO": 21.14,
+   "ZO_R_day": 0.341,
+   "maxDD": 7.22
+  },
+  "26Q1": {
+   "days": 61,
+   "n_Z": 35,
+   "n_O": 16,
+   "Z": 3.47,
+   "O": 1.84,
+   "ZO": 5.31,
+   "ZO_R_day": 0.087,
+   "maxDD": 7.79
+  },
+  "26Q2": {
+   "days": 62,
+   "n_Z": 32,
+   "n_O": 13,
+   "Z": -4.44,
+   "O": 6.37,
+   "ZO": 1.93,
+   "ZO_R_day": 0.031,
+   "maxDD": 5.56
+  },
+  "26Q3": {
+   "days": 61,
+   "n_Z": 31,
+   "n_O": 10,
+   "Z": 6.41,
+   "O": 5.78,
+   "ZO": 12.19,
+   "ZO_R_day": 0.2,
+   "maxDD": 6.72
+  }
+ },
+ "years": {
+  "2024": {
+   "days": 65,
+   "n_Z": 39,
+   "n_O": 9,
+   "Z": 22.36,
+   "O": 11.61,
+   "ZO": 33.97,
+   "ZO_R_day": 0.523,
+   "maxDD": 3.4
+  },
+  "2025": {
+   "days": 247,
+   "n_Z": 124,
+   "n_O": 57,
+   "Z": 59.63,
+   "O": 6.87,
+   "ZO": 66.5,
+   "ZO_R_day": 0.269,
+   "maxDD": 23.58
+  },
+  "2026": {
+   "days": 184,
+   "n_Z": 98,
+   "n_O": 39,
+   "Z": 5.44,
+   "O": 13.99,
+   "ZO": 19.43,
+   "ZO_R_day": 0.106,
+   "maxDD": 8.33
+  }
+ },
+ "q_positive": {
+  "Z": "7/9",
+  "O": "7/9",
+  "ZO": "8/9"
+ },
+ "worst_quarter": {
+  "q": "25Q2",
+  "R": -14.81
+ },
+ "best2_quarter_share": 0.512,
+ "tail5_share": {
+  "Z": 0.571,
+  "O": 0.305,
+  "ZO": 0.416
+ },
+ "tail5_share_days": 0.433,
+ "ZO_ex_top5_R_day": 0.141,
+ "paper_month": {
+  "rolling": {
+   "month_R_p5": -5.25,
+   "month_R_p50": 3.06,
+   "month_R_p95": 16.64,
+   "maxDD_p90": 9.15,
+   "p_month_negative": 0.292
+  },
+  "bootstrap": {
+   "month_R_p5": -8.52,
+   "month_R_p50": 4.15,
+   "month_R_p95": 21.55,
+   "maxDD_p90": 9.21,
+   "p_month_negative": 0.316
+  }
+ },
+ "prop_by_quarter": {
+  "24Q4": {
+   "Lucid": 0.968,
+   "Topstep": 0.978
+  },
+  "25Q1": {
+   "Lucid": 0.682,
+   "Topstep": 0.728
+  },
+  "25Q2": {
+   "Lucid": 0.02,
+   "Topstep": 0.085
+  },
+  "25Q3": {
+   "Lucid": 0.985,
+   "Topstep": 0.983
+  },
+  "25Q4": {
+   "Lucid": 0.763,
+   "Topstep": 0.755
+  },
+  "26Q1": {
+   "Lucid": 0.418,
+   "Topstep": 0.418
+  },
+  "26Q2": {
+   "Lucid": 0.237,
+   "Topstep": 0.242
+  },
+  "26Q3": {
+   "Lucid": 0.582,
+   "Topstep": 0.627
+  }
+ },
+ "prop_summary": {
+  "Lucid": {
+   "median_q": 0.632,
+   "min_q": 0.02,
+   "max_q": 0.985,
+   "quarter_block_boot": 0.665,
+   "full_boot": 0.615,
+   "zero_edge": 0.225
+  },
+  "Topstep": {
+   "median_q": 0.6775,
+   "min_q": 0.085,
+   "max_q": 0.983,
+   "quarter_block_boot": 0.702,
+   "full_boot": 0.664,
+   "zero_edge": 0.259
+  }
+ },
+ "prop_ex_best2": {
+  "dropped": [
+   "25Q3",
+   "24Q4"
+  ],
+  "R_day": 0.158,
+  "Lucid": 0.461,
+  "Topstep": 0.521
+ },
+ "verdict": {
+  "quarters_positive": 8,
+  "n_quarters": 9,
+  "tail5": 0.416,
+  "passes_bar": true
+ }
+}
