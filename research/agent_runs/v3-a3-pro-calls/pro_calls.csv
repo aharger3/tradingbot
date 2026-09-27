@@ -1,0 +1,116 @@
+source,time,instrument,direction,entry,stop,target,strike,R,orb_retest,S_match,text
+scarface,2024-07-05 09:56,AMD,long,167.89,167.09,,167.5,1.9875358344758811,0,0,TOOK AMD 167.50 CALLS
+scarface,2024-07-15 10:01,TSLA,long,261.9,260.72,,5.0,-1.0169276343630904,1,0,"TOOK TSLA 262,5 CALLS HERE"
+scarface,2024-07-25 09:50,TSLA,long,222.08,220.19,,225.0,-1.0105820105820058,0,0,TOOK TSLA 225 CALLS <@&1219020123218645102>
+scarface,2024-08-07 10:10,AAPL,long,212.43,211.5,,212.5,-1.0408163265305954,0,0,Took AAPL 212.5 CALLS HERE
+scarface,2024-08-14 10:07,QQQ,short,460.73,461.53,,461.0,1.9874999999999996,1,0,Took 461 puts on qqq retest @everyone
+scarface,2024-09-10 10:22,NVDA,short,106.36,106.66,,106.0,-1.0666666666666813,0,0,TOOK NVDA 106 PUTS
+scarface,2024-11-15 09:52,TSLA,long,317.91,316.81,,320.0,-1.0181818181818103,1,0,Took TSLA 320 calls @everyone
+scarface,2024-11-22 10:06,TSLA,long,344.05,342.2,HOD,345.0,1.9967741935483871,0,0,TSLA took 345 calls for hod and then continuation @everyone
+scarface,2025-01-14 10:06,AAPL,long,235.44,235.29,HOD,237.5,1.930555555555558,0,0,TAKING AAPL 237.5 CALLS. /  / RISK BELOW 1 MIN RANGE  /  / TARGET HOD @everyone
+scarface,2025-01-17 09:57,TSLA,long,425.4,423.99,HOD,427.5,1.992925362575168,0,0,Took TSLA 427.50 calls /  / Target HOD /  / Risk pivot low  /  / @everyone
+scarface,2025-01-21 09:52,AMD,long,123.26,84.0,PDH,124.0,-1.0333333333333414,0,0,TOOK 124 CALLS amd Stop below PDH target above hod @everyone
+scarface,2025-01-27 09:40,AAPL,long,227.23,225.36,,227.5,-1.0106951871657708,0,0,TOOK AAPL 227.5 calls @everyone
+scarface,2025-01-31 09:45,GOOGL,long,203.71,203.37,,205.0,1.9705882352941155,0,0,Took GOOGL 205 calls @everyone
+scarface,2025-02-05 09:43,NVDA,long,122.35,120.98,,122.0,0.2554744525547302,0,0,Took NVDA 122 CALLS here low risk @everyone
+scarface,2025-02-11 10:02,AAPL,long,231.13,231.47,HOD,232.5,1.983821388124898,0,0,TOOK 232.50 calls on AAPL for HOD push on 84% reclaim @everyone
+scarface,2025-02-19 09:39,TSLA,long,358.98,357.3,,360.0,1.9940476190476195,0,0,TOOK 360 CALLS ON TSLA @everyone
+scarface,2025-02-25 09:36,AAPL,long,248.8,247.53,,250.0,-1.015748031496056,0,0,TOOK AAPL 250 calls here @everyone
+scarface,2025-03-07 09:44,AAPL,long,238.39,237.87,HOD,240.0,1.980765531833044,1,0,Very quick took 240 calls on AAPL but in same candle got to hod @everyone
+scarface,2025-03-21 09:47,TSLA,long,241.88,240.9,243,240.0,1.9897435897435896,0,0,TOOK TSLA 240 CALLS @everyone
+scarface,2025-03-28 10:05,TSLA,short,270.38,272.39,,270.0,1.9950124688279305,0,0,TOOK TSLA 270 PUTS AGAIN @everyone
+scarface,2025-05-13 09:56,TSLA,long,321.27,319.8,,325.0,1.99319681610994,0,0,TOOK TSLA 325 CALLS HERE @everyone
+scarface,2025-06-03 10:01,TSLA,long,348.87,346.76,HOD,350.0,-1.0094786729857774,0,0,Took TSLA 350 calls for hod & continuation @everyone
+scarface,2025-06-04 10:01,AAPL,long,205.35,204.59,,205.0,-1.0263157894736723,0,0,Took AAPL 205 CALLS @everyone
+scarface,2025-06-25 10:05,NVDA,long,151.61,151.11,HOD,152.5,1.980392156862744,0,0,Took NVDA 152.50 calls for HOD AND ATH @everyone
+scarface,2025-07-08 09:35,TSLA,long,299.99,298.0,HOD,300.0,-1.010063905801837,0,0,TSLA TOOK 300 CALLS FOR HOD @everyone
+scarface,2025-07-11 09:40,NVDA,long,164.9,164.47,HOD,165.0,1.9765753103771369,0,0,TOOK NVDA 165 calls for hod & continuation @everyone
+scarface,2025-07-15 09:38,AMD,long,157.6,156.15,158,157.5,-1.013761783527139,1,0,TOOK AMD 157.50 calls @everyone target 158 for first scales
+scarface,2025-07-18 09:42,TSLA,long,325.27,323.2,HOD,325.0,1.995165578921924,0,0,TOOK TSLA 325 calls for hod & continuation @everyone
+scarface,2025-07-21 09:56,QQQ,long,565.25,564.72,,565.0,-1.052631578947345,0,0,TOOK QQQ 565 CALLS @everyone
+scarface,2025-07-25 10:06,TSLA,long,313.69,312.58,,312.5,-1.0180180180180096,0,0,Took 312.50 calls @everyone
+scarface,2025-07-28 09:49,AMD,long,173.22,171.82,HOD,172.5,0.4641992882562458,1,1,TOOK 172.50 calls for hod @everyone
+scarface,2025-07-31 09:45,META,long,782.96,779.76,HOD,782.5,-1.006241807627486,0,0,TOOK META 782.50 calls for HOD @everyone
+scarface,2025-07-31 10:09,META,long,783.02,782.0,,782.5,-1.01958863858961,0,0,RE ENTERED META 782.50 calls @everyone
+scarface,2025-08-06 09:35,AAPL,long,208.82,207.84,,210.0,1.9896907216494848,0,0,BOUGHT AAPL 210 CALLS @everyone
+scarface,2025-08-08 09:47,TSLA,long,329.36,328.29,HOD,327.5,1.9906550789645827,1,0,TOOK TSLA 327.50 calls for hod and continuation @everyone
+scarface,2025-08-14 09:48,NVDA,long,182.24,181.5,,182.5,-1.0268456375838804,1,1,TOOK NVDA 182.50 calls @everyone
+scarface,2025-08-19 09:54,TSLA,long,337.49,336.09,HOD,337.5,1.9928571428571429,0,0,Took 337.50 calls on TSLA here @everyone for hod & continuation
+scarface,2025-08-22 09:49,TSLA,long,325.78,324.49,,325.0,1.9922576649117376,1,1,TOOK TSLA 325 calls here @everyone
+scarface,2025-08-26 09:48,TSLA,long,347.18,346.2,HOD,347.5,1.98974358974359,0,0,Took 347.50 calls on TSLA for hod @everyone
+scarface,2025-08-29 10:05,NVDA,short,174.07,174.74,,172.5,-1.0300751879699128,0,0,Took 172.50 puts on NVDA @everyone
+scarface,2025-09-03 09:43,NVDA,short,169.87,170.43,,170.0,-1.0357142857142712,0,0,Took 170 PUTS NVDA @everyone
+scarface,2025-09-03 10:06,AMD,long,163.18,162.83,HOD,165.0,-1.0568666477110973,1,0,Took 165 calls for hod & 163.48 @everyone
+scarface,2025-09-05 09:40,TSLA,long,350.15,349.33,HOD,350.0,1.9877345762296084,0,0,Took TSLA 350 calls for hod @everyone
+scarface,2025-09-12 09:46,TSLA,long,378.62,377.67,,377.5,1.989485858479655,1,0,TOOK THE 377.50 calls on TSLA @everyone
+scarface,2025-09-16 09:44,AAPL,long,238.3,237.32,HOD,237.5,1.9897435897435891,0,0,Took 237.50 calls on aapl for hod & continuation @everyone
+scarface,2025-09-18 10:08,PLTR,long,175.46,174.85,HOD,177.5,-1.032786885245889,0,0,TOOK 177.5 calls on PLTR for hod @everyone
+scarface,2025-09-29 09:42,NVDA,long,183.0,182.39,,182.5,0.959349593496002,0,0,TOOK 182.50 calls for NVDA @everyone
+scarface,2025-10-03 09:50,AAPL,long,258.46,258.21,,260.0,1.9599999999999909,1,0,Took 260 calls on AAPL @everyone
+scarface,2025-10-03 10:07,AAPL,long,258.55,258.0,HOD,260.0,-1.0360360360360192,1,0,Took AAPL 260 calls for hod again @everyone
+scarface,2025-10-10 10:05,NVDA,long,194.24,193.98,HOD,195.0,-1.0759013282732204,1,0,Took NVDA 195 calls for hod @everyone
+scarface,2025-10-14 10:24,AMD,long,219.94,218.28,HOD,247.5,-0.6978851963746109,0,0,Took 247.5 calls for hod & continuation @everyone
+scarface,2025-10-16 09:56,AMD,long,238.73,237.95,HOD,240.0,-1.0256541816315947,0,0,TOOK AMD 240 calls for hod @everyone
+scarface,2025-10-16 10:15,TSLA,long,436.5,435.92,HOD,437.5,-1.034488704949113,0,0,TOOK 437.50 calls on TSLA for hod @everyone
+scarface,2025-10-17 09:51,TSLA,long,430.97,427.81,,430.0,1.9968354430379749,0,0,TOOK TSLA 430 calls @everyone
+scarface,2025-10-22 09:50,GOOGL,long,255.78,255.0,HOD,255.0,-1.0258064516128913,1,1,TOOK 255 CALLS GOOGL FOR HOD @everyone
+scarface,2025-10-24 09:46,NVDA,long,185.61,185.51,HOD,187.5,-1.1999999999999773,1,0,TOOK 187.5 calls on NVDA FOR HOD @everyone
+scarface,2025-10-24 10:08,AMD,long,250.92,250.6,HOD,252.5,-1.0615384615384411,0,0,TOOK AMD 252.5 calls for hod @everyone
+scarface,2025-10-29 09:44,NVDA,long,210.89,210.29,HOD,210.0,-1.03333333333332,0,0,TOOK 210 calls on NVDA for hod @everyone
+scarface,2025-10-29 09:46,AMD,long,265.56,264.92,HOD,267.5,-1.0317460317460176,0,0,ALSO AMD 267.5 calls reclaim for hod from PDH setup is there for anyone who took that first trade @everyone
+scarface,2025-10-31 09:41,TSLA,long,449.32,448.88,HOD,450.0,-1.0449438202246994,0,0,TOOK 450 calls on TSLA for hod @everyone
+scarface,2025-10-31 09:59,TSLA,long,449.86,448.69,HOD,450.0,1.991452991452992,0,0,TOOK TSLA 450 calls for hod @everyone
+scarface,2025-11-05 09:49,AMD,long,249.66,245.43,,250.0,0.4137115839243555,0,0,TOOK 250 calls AMD @everyone
+scarface,2025-11-07 09:46,TSLA,short,425.75,429.9,LOD,425.0,-1.0048192771084314,0,0,TOOK TSLA 425 puts for lod @everyone
+scarface,2025-11-12 09:58,AAPL,short,272.12,272.53,LOD,270.0,-1.0481927710843195,0,0,TOOK AAPL 270 PUTS FOR LOD @everyone
+scarface,2025-11-12 10:08,AMD,long,257.53,256.5,HOD,260.0,1.99033442876474,0,0,Took 260 calls for hod here @everyone
+scarface,2025-11-14 09:45,TSLA,long,393.44,390.76,HOD,395.0,1.996268656716418,0,0,TOOK TSLA 395 calls for hod @everyone
+scarface,2025-11-19 10:03,GOOGL,long,301.87,300.39,HOD,302.5,-1.0135135135135072,0,0,TOOK GOOOGL 302.50 calls for HOD @everyone
+scarface,2025-11-19 10:13,TSLA,long,410.88,409.37,HOD,412.5,-1.0132450331125769,1,0,TOOK TSLA 412.5 calls for hod @everyone
+scarface,2025-12-03 09:38,AAPL,long,288.24,287.09,HOD,287.5,-1.0173160173160098,0,0,TOOK AAPL 287.50 calls for HOD @everyone
+scarface,2025-12-05 09:36,TSLA,long,456.51,454.99,HOD,455.0,-1.0131578947368365,0,0,TOOK TSLA 455 calls for hod @everyone
+scarface,2025-12-08 09:39,NVDA,long,185.18,184.65,HOD,185.0,-1.0378859632505992,0,0,Took NVDA 185 calls for hod @everyone
+scarface,2025-12-12 09:42,TSLA,long,459.34,456.49,HOD,457.5,-1.007017543859646,0,0,TOOK TSLA 457.50 calls for hod @everyone
+scarface,2025-12-24 09:51,SPY,long,688.6,688.35,HOD,689.0,1.96,0,0,Took 689 calls on spy for hod @everyone
+scarface,2025-12-26 09:38,NVDA,long,191.9,191.23,HOD,192.5,-1.0296384113811377,0,0,Took 192.50 calls on NVDA for hod @everyone
+scarface,2025-12-31 09:35,NVDA,long,190.11,189.76,HOD,190.0,-1.0571428571428367,0,0,Took NVDA 190 calls for hod @everyone
+scarface,2026-01-02 09:44,NVDA,long,191.81,191.18,HOD,192.5,-1.0317510715986524,0,0,Took 192.5 calls for hod @everyone
+scarface,2026-01-07 09:46,AMZN,long,243.14,242.14,HOD,245.0,1.1012000000000564,1,1,AMZN TOOK 245 calls for hod @everyone
+scarface,2026-01-09 09:41,GOOGL,long,329.03,327.93,HOD,327.5,-1.0181818181818103,1,0,TAKING 327.50 calls for HOD GOOOGL @everyone
+scarface,2026-01-13 09:35,GOOGL,long,337.7,335.94,HOD,340.0,-1.0113636363636314,0,0,TOOK 340 calls on GOOGL @everyone for HOD
+scarface,2026-01-16 09:38,NVDA,long,190.24,189.99,HOD,425.0,-1.0799999999999728,1,1,TOOK SNDK 425 calls for hod @everyone
+scarface,2026-01-16 09:46,NVDA,long,190.02,189.83,HOD,190.0,-1.1077586206896264,1,0,TOOK 190 calls on NVDA too @everyone for hod
+scarface,2026-01-23 09:56,MU,long,399.4,397.56,HOD,400.0,1.9945652173913044,0,0,MU took 400 calls for HOD @everyone
+scarface,2026-01-28 09:39,NVDA,long,191.78,191.22,HOD,192.5,-1.0353481795687365,0,0,Bought 192.5 calls on NVDA for hod @everyone
+scarface,2026-01-30 09:39,MU,long,451.59,446.93,,455.0,-1.0042880727257115,0,0,Took MU 455 calls @everyone
+scarface,2026-02-06 09:51,AMD,long,205.42,204.09,,205.0,-1.014981273408233,1,1,AMD TOOK 205 calls @everyone
+scarface,2026-02-13 09:37,NVDA,short,184.34,186.13,,190.0,-1.011162583021706,1,1,Took 190 puts on NVDA for next Friday cons @everyone
+scarface,2026-03-06 09:47,TSLA,short,394.89,395.93,LOD,395.0,-1.01923076923076,0,0,I took the 395 puts on TSLA for LOD & continuation @everyone
+scarface,2026-03-12 09:53,SPY,short,669.17,670.21,,670.0,-1.0192307692307592,0,0,TOOK 670 PUTS ON SPY @everyone
+scarface,2026-03-27 09:40,TSLA,short,364.78,365.16,,362.5,1.9736842105263117,1,0,TOOK TSLA 362.50 puts @everyone
+scarface,2026-04-02 09:35,AMD,short,203.15,205.77,PDL,205.0,-1.007633587786256,0,0,AMD I’m taking the 205 puts off PDL low risk for a move into low of day @everyone
+scarface,2026-04-10 09:38,NVDA,long,185.7,185.46,,185.0,-1.0833333333333022,0,0,TOOK NVDA 185 CALLS @everyone
+scarface,2026-04-17 09:37,NVDA,long,200.34,199.46,HOD,202.59,-0.0455681818181871,0,0,TOOK NVDA 202.59 calls for hod @everyone
+scarface,2026-04-20 15:12,NVDA,long,200.98,200.78,,205.0,1.947368421052631,0,0,Taking NVDA 205 CALLS here. /  / @everyone
+scarface,2026-04-22 10:21,MU,long,470.42,465.58,,465.0,0.9411157024793322,0,0,RE ENTERED 465 CALLS ON MU looked really good to miss @everyone
+scarface,2026-04-24 09:39,NVDA,long,202.92,202.03,HOD,202.5,-1.0224719101123496,0,0,Took NVDA 202.5 calls for HOD @everyone
+scarface,2026-05-01 09:40,PLTR,long,146.26,144.79,HOD,145.0,-1.0136054421768648,0,0,Took the 145 calls for PLTR personally for hod @everyone
+scarface,2026-05-08 09:45,INTC,long,115.13,114.47,HOD,115.0,-1.0303030303030376,1,0,I personally took 115 calls for hod on INTC here @everyone
+scarface,2026-05-08 09:52,TSLA,long,426.06,423.24,HOD,425.0,-1.007111616826082,1,1,Took TSLA 425 calls for hod & continuation @everyone
+scarface,2026-05-15 09:38,TSLA,short,427.94,430.51,PDL,430.0,0.9027237354085564,0,0,TOOK TSLA 430 PUTS @everyone with PDL retest
+scarface,2026-05-22 09:59,AAPL,long,308.7,308.19,HOD,310.0,-1.0392156862744928,0,0,Taking AAPL 310 calls here for hod @everyone
+scarface,2026-06-05 09:37,AAPL,long,314.09,313.22,HOD,315.0,-1.023105360443613,0,0,TOOK AAPL 315 calls for HOD @everyone
+scarface,2026-06-12 09:36,TSLA,long,403.51,399.68,,405.0,-1.00522193211488,0,0,TOOK THE 405 CALLS TSLA @everyone
+scarface,2026-06-12 09:47,AMD,long,507.31,500.49,,510.0,0.8607038123167241,0,0,Took 510 calls on AMD @everyone
+scarface,2026-06-12 09:49,INTC,long,119.72,119.28,,120.0,1.9775280898876408,0,0,Took 120 calls intc @everyone
+scarface,2026-06-26 10:13,MU,long,1192.27,1182.19,,1190.0,-1.0019841466681207,0,0,Took MU 1190 calls @everyone
+scarface,2026-07-17 10:16,NVDA,long,205.74,204.19,,205.0,-1.0129449838187643,1,1,Took NVDA 205 calls @everyone
+scarface,2026-07-23 09:45,TSLA,short,333.47,335.63,LOD,330.0,1.995362856480408,0,0,TSLA TAKING 330 PUTS FOR LOD @everyone
+scarface,2026-07-24 09:35,AAPL,long,325.16,324.34,,325.0,1.9877315666789344,0,0,Taking aapl 325 calls here @everyone
+scarface,2026-07-27 09:47,AAPL,long,336.28,335.46,,335.0,-1.02439024390243,0,0,Taking AAPL 335 calls @everyone
+scarface,2026-08-07 09:39,TSLA,long,324.04,322.4,HOD,325.0,1.99390243902439,0,0,TOOK TSLA 325 calls for hod @everyone
+jdub,2025-05-20 15:58,AVGO,long,231.38,231.16,,235.0,-0.1363636363635544,0,0,Bought some AVGO 235 Calls here @everyone
+jdub,2025-07-25 10:16,QQQ,long,565.95,565.88,,312.5,-1.2857142857139516,0,0,Took the 312.5 calls @everyone
+jdub,2025-09-17 15:00,TSLA,long,420.42,418.49,,430.0,1.9948186528497407,0,0,Taking TSLA 430 Calls here @everyone
+jdub,2026-01-30 10:48,NVDA,long,194.4,193.69,,192.5,-1.0281729821101444,0,0,NVDA I bought the 192.5 Calls here @everyone
+jdub,2026-08-21 09:42,TSLA,long,349.58,348.49,,350.0,-1.0183553597650428,0,0,Buying TSLA 350 Calls here @everyone
