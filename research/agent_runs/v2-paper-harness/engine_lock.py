@@ -20,7 +20,8 @@ import hashlib
 import sys
 from pathlib import Path
 
-ENGINE_PATH = Path(r"C:\Users\aharg\Desktop\Projects\tradingbot\research\agent_runs\v2-t01-orb-1m\orb1m.py")
+# Repo-relative so a worktree checks its own copy, not production's (k/lane-r parity).
+ENGINE_PATH = Path(__file__).resolve().parent.parent / "v2-t01-orb-1m" / "orb1m.py"
 
 # Frozen 2026-09-26 (v3 b1), matches the file as committed in
 # research/agent_runs/v2-t01-orb-1m/orb1m.py -- this is the sha OMEN-SHIP-PLAN-v3.md
@@ -33,7 +34,9 @@ class EngineDriftError(RuntimeError):
 
 
 def engine_sha256(path: Path = ENGINE_PATH) -> str:
-    return hashlib.sha256(path.read_bytes()).hexdigest()
+    # Hash LF-normalized bytes (= the git blob): a CRLF checkout of the same code is
+    # not drift. The 9/26 recovery restored orb1m.py as CRLF and the raw hash broke.
+    return hashlib.sha256(path.read_bytes().replace(b"\r\n", b"\n")).hexdigest()
 
 
 def assert_frozen(path: Path = ENGINE_PATH, frozen: str = FROZEN_SHA256) -> str:
