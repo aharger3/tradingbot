@@ -1,0 +1,1009 @@
+{
+ "deck": "regrade-v7-2026-09-27",
+ "seed": 20260927,
+ "n": 40,
+ "source": "research/agent_runs/v3-s-dataset/s_trades.csv (mark_src=austin_marks_v7.jsonl)",
+ "note": "HIDDEN: grade_orig is the answer key. Never put it on a card.",
+ "cards": [
+  {
+   "card_id": "RG0927-01",
+   "n": 1,
+   "png": "cards/RG0927-01.png",
+   "sig_id": "AMD_2025-11-21_0942_S",
+   "grade_orig": "S",
+   "orig_bin": "S",
+   "mark_src": "austin_marks_v7.jsonl",
+   "candidate": {
+    "symbol": "AMD",
+    "direction": "SHORT",
+    "trigger_time": "09:42:00",
+    "entry": 202.925,
+    "stop": 204.69,
+    "targets": [
+     199.395
+    ],
+    "level": 204.69,
+    "level_label": "Level",
+    "setup": "regrade",
+    "reason": "",
+    "or_high": 208.83,
+    "or_low": 202.05
+   }
+  },
+  {
+   "card_id": "RG0927-02",
+   "n": 2,
+   "png": "cards/RG0927-02.png",
+   "sig_id": "TSLA_2026-02-04_1005_S",
+   "grade_orig": "two-off",
+   "orig_bin": "notS",
+   "mark_src": "austin_marks_v7.jsonl",
+   "candidate": {
+    "symbol": "TSLA",
+    "direction": "SHORT",
+    "trigger_time": "10:05:00",
+    "entry": 417.66,
+    "stop": 418.09,
+    "targets": [
+     416.8
+    ],
+    "level": 418.09,
+    "level_label": "Level",
+    "setup": "regrade",
+    "reason": "",
+    "or_high": 423.73,
+    "or_low": 417.51
+   }
+  },
+  {
+   "card_id": "RG0927-03",
+   "n": 3,
+   "png": "cards/RG0927-03.png",
+   "sig_id": "GOOGL_2024-10-15_1002_L",
+   "grade_orig": "S",
+   "orig_bin": "S",
+   "mark_src": "austin_marks_v7.jsonl",
+   "candidate": {
+    "symbol": "GOOGL",
+    "direction": "LONG",
+    "trigger_time": "10:02:00",
+    "entry": 166.825,
+    "stop": 166.4,
+    "targets": [
+     167.675
+    ],
+    "level": 166.4,
+    "level_label": "Level",
+    "setup": "regrade",
+    "reason": "",
+    "or_high": 166.52,
+    "or_low": 165.23
+   }
+  },
+  {
+   "card_id": "RG0927-04",
+   "n": 4,
+   "png": "cards/RG0927-04.png",
+   "sig_id": "AAPL_2025-01-13_0945_S",
+   "grade_orig": "S",
+   "orig_bin": "S",
+   "mark_src": "austin_marks_v7.jsonl",
+   "candidate": {
+    "symbol": "AAPL",
+    "direction": "SHORT",
+    "trigger_time": "09:45:00",
+    "entry": 231.04,
+    "stop": 231.09,
+    "targets": [
+     230.94
+    ],
+    "level": 231.09,
+    "level_label": "Level",
+    "setup": "regrade",
+    "reason": "",
+    "or_high": 233.65,
+    "or_low": 230.2
+   }
+  },
+  {
+   "card_id": "RG0927-05",
+   "n": 5,
+   "png": "cards/RG0927-05.png",
+   "sig_id": "AMD_2024-11-11_0952_S",
+   "grade_orig": "one-off",
+   "orig_bin": "notS",
+   "mark_src": "austin_marks_v7.jsonl",
+   "candidate": {
+    "symbol": "AMD",
+    "direction": "SHORT",
+    "trigger_time": "09:52:00",
+    "entry": 145.4,
+    "stop": 145.7,
+    "targets": [
+     144.8
+    ],
+    "level": 145.7,
+    "level_label": "Level",
+    "setup": "regrade",
+    "reason": "",
+    "or_high": 147.41,
+    "or_low": 145.7
+   }
+  },
+  {
+   "card_id": "RG0927-06",
+   "n": 6,
+   "png": "cards/RG0927-06.png",
+   "sig_id": "PLTR_2026-01-06_0950_L",
+   "grade_orig": "S",
+   "orig_bin": "S",
+   "mark_src": "austin_marks_v7.jsonl",
+   "candidate": {
+    "symbol": "PLTR",
+    "direction": "LONG",
+    "trigger_time": "09:50:00",
+    "entry": 177.1106,
+    "stop": 176.98,
+    "targets": [
+     177.3718
+    ],
+    "level": 176.98,
+    "level_label": "Level",
+    "setup": "regrade",
+    "reason": "",
+    "or_high": 177.17,
+    "or_low": 174.7701
+   }
+  },
+  {
+   "card_id": "RG0927-07",
+   "n": 7,
+   "png": "cards/RG0927-07.png",
+   "sig_id": "MSFT_2026-05-12_0938_S",
+   "grade_orig": "one-off",
+   "orig_bin": "notS",
+   "mark_src": "austin_marks_v7.jsonl",
+   "candidate": {
+    "symbol": "MSFT",
+    "direction": "SHORT",
+    "trigger_time": "09:38:00",
+    "entry": 408.45,
+    "stop": 409.38,
+    "targets": [
+     406.59
+    ],
+    "level": 409.38,
+    "level_label": "Level",
+    "setup": "regrade",
+    "reason": "",
+    "or_high": 415.5,
+    "or_low": 407.21
+   }
+  },
+  {
+   "card_id": "RG0927-08",
+   "n": 8,
+   "png": "cards/RG0927-08.png",
+   "sig_id": "SPCX_2026-06-30_1002_L",
+   "grade_orig": "S",
+   "orig_bin": "S",
+   "mark_src": "austin_marks_v7.jsonl",
+   "candidate": {
+    "symbol": "SPCX",
+    "direction": "LONG",
+    "trigger_time": "10:02:00",
+    "entry": 164.85,
+    "stop": 164.74,
+    "targets": [
+     165.07
+    ],
+    "level": 164.74,
+    "level_label": "Level",
+    "setup": "regrade",
+    "reason": "",
+    "or_high": 166.0,
+    "or_low": 161.64
+   }
+  },
+  {
+   "card_id": "RG0927-09",
+   "n": 9,
+   "png": "cards/RG0927-09.png",
+   "sig_id": "NVDA_2024-12-16_0942_S",
+   "grade_orig": "S",
+   "orig_bin": "S",
+   "mark_src": "austin_marks_v7.jsonl",
+   "candidate": {
+    "symbol": "NVDA",
+    "direction": "SHORT",
+    "trigger_time": "09:42:00",
+    "entry": 131.84,
+    "stop": 132.27,
+    "targets": [
+     130.98
+    ],
+    "level": 132.27,
+    "level_label": "Level",
+    "setup": "regrade",
+    "reason": "",
+    "or_high": 134.4,
+    "or_low": 130.45
+   }
+  },
+  {
+   "card_id": "RG0927-10",
+   "n": 10,
+   "png": "cards/RG0927-10.png",
+   "sig_id": "INTC_2025-06-05_0951_S",
+   "grade_orig": "one-off",
+   "orig_bin": "notS",
+   "mark_src": "austin_marks_v7.jsonl",
+   "candidate": {
+    "symbol": "INTC",
+    "direction": "SHORT",
+    "trigger_time": "09:51:00",
+    "entry": 20.205,
+    "stop": 20.25,
+    "targets": [
+     20.115
+    ],
+    "level": 20.25,
+    "level_label": "Level",
+    "setup": "regrade",
+    "reason": "",
+    "or_high": 20.54,
+    "or_low": 20.25
+   }
+  },
+  {
+   "card_id": "RG0927-11",
+   "n": 11,
+   "png": "cards/RG0927-11.png",
+   "sig_id": "MU_2026-06-16_0941_L",
+   "grade_orig": "one-off",
+   "orig_bin": "notS",
+   "mark_src": "austin_marks_v7.jsonl",
+   "candidate": {
+    "symbol": "MU",
+    "direction": "LONG",
+    "trigger_time": "09:41:00",
+    "entry": 1106.0201,
+    "stop": 1100.0,
+    "targets": [
+     1118.0603
+    ],
+    "level": 1100.0,
+    "level_label": "Level",
+    "setup": "regrade",
+    "reason": "",
+    "or_high": 1110.3999,
+    "or_low": 1084.5
+   }
+  },
+  {
+   "card_id": "RG0927-12",
+   "n": 12,
+   "png": "cards/RG0927-12.png",
+   "sig_id": "MARA_2026-07-20_0941_L",
+   "grade_orig": "one-off",
+   "orig_bin": "notS",
+   "mark_src": "austin_marks_v7.jsonl",
+   "candidate": {
+    "symbol": "MARA",
+    "direction": "LONG",
+    "trigger_time": "09:41:00",
+    "entry": 11.495,
+    "stop": 11.38,
+    "targets": [
+     11.725
+    ],
+    "level": 11.38,
+    "level_label": "Level",
+    "setup": "regrade",
+    "reason": "",
+    "or_high": 11.62,
+    "or_low": 11.07
+   }
+  },
+  {
+   "card_id": "RG0927-13",
+   "n": 13,
+   "png": "cards/RG0927-13.png",
+   "sig_id": "HOOD_2026-05-19_0950_S",
+   "grade_orig": "one-off",
+   "orig_bin": "notS",
+   "mark_src": "austin_marks_v7.jsonl",
+   "candidate": {
+    "symbol": "HOOD",
+    "direction": "SHORT",
+    "trigger_time": "09:50:00",
+    "entry": 74.8297,
+    "stop": 74.9,
+    "targets": [
+     74.6891
+    ],
+    "level": 74.9,
+    "level_label": "Level",
+    "setup": "regrade",
+    "reason": "",
+    "or_high": 76.37,
+    "or_low": 74.4
+   }
+  },
+  {
+   "card_id": "RG0927-14",
+   "n": 14,
+   "png": "cards/RG0927-14.png",
+   "sig_id": "AVGO_2026-07-16_0943_S",
+   "grade_orig": "one-off",
+   "orig_bin": "notS",
+   "mark_src": "austin_marks_v7.jsonl",
+   "candidate": {
+    "symbol": "AVGO",
+    "direction": "SHORT",
+    "trigger_time": "09:43:00",
+    "entry": 380.19,
+    "stop": 381.36,
+    "targets": [
+     377.85
+    ],
+    "level": 381.36,
+    "level_label": "Level",
+    "setup": "regrade",
+    "reason": "",
+    "or_high": 386.74,
+    "or_low": 378.36
+   }
+  },
+  {
+   "card_id": "RG0927-15",
+   "n": 15,
+   "png": "cards/RG0927-15.png",
+   "sig_id": "UBER_2025-07-31_1018_L",
+   "grade_orig": "one-off",
+   "orig_bin": "notS",
+   "mark_src": "austin_marks_v7.jsonl",
+   "candidate": {
+    "symbol": "UBER",
+    "direction": "LONG",
+    "trigger_time": "10:18:00",
+    "entry": 88.015,
+    "stop": 87.92,
+    "targets": [
+     88.205
+    ],
+    "level": 87.92,
+    "level_label": "Level",
+    "setup": "regrade",
+    "reason": "",
+    "or_high": 87.62,
+    "or_low": 86.61
+   }
+  },
+  {
+   "card_id": "RG0927-16",
+   "n": 16,
+   "png": "cards/RG0927-16.png",
+   "sig_id": "SOFI_2025-08-08_1018_L",
+   "grade_orig": "one-off",
+   "orig_bin": "notS",
+   "mark_src": "austin_marks_v7.jsonl",
+   "candidate": {
+    "symbol": "SOFI",
+    "direction": "LONG",
+    "trigger_time": "10:18:00",
+    "entry": 22.53,
+    "stop": 22.43,
+    "targets": [
+     22.73
+    ],
+    "level": 22.43,
+    "level_label": "Level",
+    "setup": "regrade",
+    "reason": "",
+    "or_high": 22.39,
+    "or_low": 22.045
+   }
+  },
+  {
+   "card_id": "RG0927-17",
+   "n": 17,
+   "png": "cards/RG0927-17.png",
+   "sig_id": "MSFT_2024-12-02_0945_L",
+   "grade_orig": "S",
+   "orig_bin": "S",
+   "mark_src": "austin_marks_v7.jsonl",
+   "candidate": {
+    "symbol": "MSFT",
+    "direction": "LONG",
+    "trigger_time": "09:45:00",
+    "entry": 425.3,
+    "stop": 424.73,
+    "targets": [
+     426.44
+    ],
+    "level": 424.73,
+    "level_label": "Level",
+    "setup": "regrade",
+    "reason": "",
+    "or_high": 425.536,
+    "or_low": 421.31
+   }
+  },
+  {
+   "card_id": "RG0927-18",
+   "n": 18,
+   "png": "cards/RG0927-18.png",
+   "sig_id": "QQQ_2025-01-14_0956_S",
+   "grade_orig": "one-off",
+   "orig_bin": "notS",
+   "mark_src": "austin_marks_v7.jsonl",
+   "candidate": {
+    "symbol": "QQQ",
+    "direction": "SHORT",
+    "trigger_time": "09:56:00",
+    "entry": 507.4,
+    "stop": 507.5,
+    "targets": [
+     507.2
+    ],
+    "level": 507.5,
+    "level_label": "Level",
+    "setup": "regrade",
+    "reason": "",
+    "or_high": 510.155,
+    "or_low": 507.5
+   }
+  },
+  {
+   "card_id": "RG0927-19",
+   "n": 19,
+   "png": "cards/RG0927-19.png",
+   "sig_id": "AAPL_2025-01-13_0948_S",
+   "grade_orig": "one-off",
+   "orig_bin": "notS",
+   "mark_src": "austin_marks_v7.jsonl",
+   "candidate": {
+    "symbol": "AAPL",
+    "direction": "SHORT",
+    "trigger_time": "09:48:00",
+    "entry": 230.54,
+    "stop": 231.09,
+    "targets": [
+     229.44
+    ],
+    "level": 231.09,
+    "level_label": "Level",
+    "setup": "regrade",
+    "reason": "",
+    "or_high": 233.65,
+    "or_low": 230.2
+   }
+  },
+  {
+   "card_id": "RG0927-20",
+   "n": 20,
+   "png": "cards/RG0927-20.png",
+   "sig_id": "TSLA_2026-02-18_1012_L",
+   "grade_orig": "S",
+   "orig_bin": "S",
+   "mark_src": "austin_marks_v7.jsonl",
+   "candidate": {
+    "symbol": "TSLA",
+    "direction": "LONG",
+    "trigger_time": "10:12:00",
+    "entry": 414.7,
+    "stop": 414.1,
+    "targets": [
+     415.9
+    ],
+    "level": 414.1,
+    "level_label": "Level",
+    "setup": "regrade",
+    "reason": "",
+    "or_high": 414.0972,
+    "or_low": 409.58
+   }
+  },
+  {
+   "card_id": "RG0927-21",
+   "n": 21,
+   "png": "cards/RG0927-21.png",
+   "sig_id": "MARA_2024-10-18_0941_L",
+   "grade_orig": "S",
+   "orig_bin": "S",
+   "mark_src": "austin_marks_v7.jsonl",
+   "candidate": {
+    "symbol": "MARA",
+    "direction": "LONG",
+    "trigger_time": "09:41:00",
+    "entry": 18.51,
+    "stop": 18.5,
+    "targets": [
+     18.53
+    ],
+    "level": 18.5,
+    "level_label": "Level",
+    "setup": "regrade",
+    "reason": "",
+    "or_high": 18.79,
+    "or_low": 18.26
+   }
+  },
+  {
+   "card_id": "RG0927-22",
+   "n": 22,
+   "png": "cards/RG0927-22.png",
+   "sig_id": "MU_2026-02-09_0954_L",
+   "grade_orig": "S",
+   "orig_bin": "S",
+   "mark_src": "austin_marks_v7.jsonl",
+   "candidate": {
+    "symbol": "MU",
+    "direction": "LONG",
+    "trigger_time": "09:54:00",
+    "entry": 384.2565,
+    "stop": 382.53,
+    "targets": [
+     387.7095
+    ],
+    "level": 382.53,
+    "level_label": "Level",
+    "setup": "regrade",
+    "reason": "",
+    "or_high": 383.0,
+    "or_low": 370.68
+   }
+  },
+  {
+   "card_id": "RG0927-23",
+   "n": 23,
+   "png": "cards/RG0927-23.png",
+   "sig_id": "IREN_2026-04-08_0950_S",
+   "grade_orig": "one-off",
+   "orig_bin": "notS",
+   "mark_src": "austin_marks_v7.jsonl",
+   "candidate": {
+    "symbol": "IREN",
+    "direction": "SHORT",
+    "trigger_time": "09:50:00",
+    "entry": 37.74,
+    "stop": 37.76,
+    "targets": [
+     37.7
+    ],
+    "level": 37.76,
+    "level_label": "Level",
+    "setup": "regrade",
+    "reason": "",
+    "or_high": 38.9,
+    "or_low": 37.6101
+   }
+  },
+  {
+   "card_id": "RG0927-24",
+   "n": 24,
+   "png": "cards/RG0927-24.png",
+   "sig_id": "HOOD_2025-03-04_1014_S",
+   "grade_orig": "S",
+   "orig_bin": "S",
+   "mark_src": "austin_marks_v7.jsonl",
+   "candidate": {
+    "symbol": "HOOD",
+    "direction": "SHORT",
+    "trigger_time": "10:14:00",
+    "entry": 43.4681,
+    "stop": 43.71,
+    "targets": [
+     42.9843
+    ],
+    "level": 43.71,
+    "level_label": "Level",
+    "setup": "regrade",
+    "reason": "",
+    "or_high": 45.91,
+    "or_low": 43.71
+   }
+  },
+  {
+   "card_id": "RG0927-25",
+   "n": 25,
+   "png": "cards/RG0927-25.png",
+   "sig_id": "CRM_2025-10-16_0938_L",
+   "grade_orig": "S",
+   "orig_bin": "S",
+   "mark_src": "austin_marks_v7.jsonl",
+   "candidate": {
+    "symbol": "CRM",
+    "direction": "LONG",
+    "trigger_time": "09:38:00",
+    "entry": 255.835,
+    "stop": 254.4,
+    "targets": [
+     258.705
+    ],
+    "level": 254.4,
+    "level_label": "Level",
+    "setup": "regrade",
+    "reason": "",
+    "or_high": 256.74,
+    "or_low": 250.7818
+   }
+  },
+  {
+   "card_id": "RG0927-26",
+   "n": 26,
+   "png": "cards/RG0927-26.png",
+   "sig_id": "TSM_2025-10-07_1043_S",
+   "grade_orig": "one-off",
+   "orig_bin": "notS",
+   "mark_src": "austin_marks_v7.jsonl",
+   "candidate": {
+    "symbol": "TSM",
+    "direction": "SHORT",
+    "trigger_time": "10:43:00",
+    "entry": 301.66,
+    "stop": 302.4,
+    "targets": [
+     300.18
+    ],
+    "level": 302.4,
+    "level_label": "Level",
+    "setup": "regrade",
+    "reason": "",
+    "or_high": 307.1,
+    "or_low": 303.35
+   }
+  },
+  {
+   "card_id": "RG0927-27",
+   "n": 27,
+   "png": "cards/RG0927-27.png",
+   "sig_id": "META_2026-01-16_1051_S",
+   "grade_orig": "one-off",
+   "orig_bin": "notS",
+   "mark_src": "austin_marks_v7.jsonl",
+   "candidate": {
+    "symbol": "META",
+    "direction": "SHORT",
+    "trigger_time": "10:51:00",
+    "entry": 622.08,
+    "stop": 623.38,
+    "targets": [
+     619.48
+    ],
+    "level": 622.8,
+    "level_label": "Level",
+    "setup": "regrade",
+    "reason": "",
+    "or_high": 627.3099,
+    "or_low": 621.24
+   }
+  },
+  {
+   "card_id": "RG0927-28",
+   "n": 28,
+   "png": "cards/RG0927-28.png",
+   "sig_id": "INTC_2025-02-27_1057_L",
+   "grade_orig": "S",
+   "orig_bin": "S",
+   "mark_src": "austin_marks_v7.jsonl",
+   "candidate": {
+    "symbol": "INTC",
+    "direction": "LONG",
+    "trigger_time": "10:57:00",
+    "entry": 24.0069,
+    "stop": 23.97,
+    "targets": [
+     24.0807
+    ],
+    "level": 23.97,
+    "level_label": "Level",
+    "setup": "regrade",
+    "reason": "",
+    "or_high": 24.2636,
+    "or_low": 23.6401
+   }
+  },
+  {
+   "card_id": "RG0927-29",
+   "n": 29,
+   "png": "cards/RG0927-29.png",
+   "sig_id": "SPY_2025-11-19_0939_L",
+   "grade_orig": "S",
+   "orig_bin": "S",
+   "mark_src": "austin_marks_v7.jsonl",
+   "candidate": {
+    "symbol": "SPY",
+    "direction": "LONG",
+    "trigger_time": "09:39:00",
+    "entry": 662.1994,
+    "stop": 661.61,
+    "targets": [
+     663.3782
+    ],
+    "level": 661.61,
+    "level_label": "Level",
+    "setup": "regrade",
+    "reason": "",
+    "or_high": 663.32,
+    "or_low": 660.11
+   }
+  },
+  {
+   "card_id": "RG0927-30",
+   "n": 30,
+   "png": "cards/RG0927-30.png",
+   "sig_id": "META_2025-08-11_1013_L",
+   "grade_orig": "S",
+   "orig_bin": "S",
+   "mark_src": "austin_marks_v7.jsonl",
+   "candidate": {
+    "symbol": "META",
+    "direction": "LONG",
+    "trigger_time": "10:13:00",
+    "entry": 770.3031,
+    "stop": 768.82,
+    "targets": [
+     773.2693
+    ],
+    "level": 769.62,
+    "level_label": "Level",
+    "setup": "regrade",
+    "reason": "",
+    "or_high": 773.4584,
+    "or_low": 769.0
+   }
+  },
+  {
+   "card_id": "RG0927-31",
+   "n": 31,
+   "png": "cards/RG0927-31.png",
+   "sig_id": "NFLX_2025-07-25_1007_L",
+   "grade_orig": "S",
+   "orig_bin": "S",
+   "mark_src": "austin_marks_v7.jsonl",
+   "candidate": {
+    "symbol": "NFLX",
+    "direction": "LONG",
+    "trigger_time": "10:07:00",
+    "entry": 118.163,
+    "stop": 117.99,
+    "targets": [
+     118.509
+    ],
+    "level": 117.99,
+    "level_label": "Level",
+    "setup": "regrade",
+    "reason": "",
+    "or_high": 118.057,
+    "or_low": 117.4383
+   }
+  },
+  {
+   "card_id": "RG0927-32",
+   "n": 32,
+   "png": "cards/RG0927-32.png",
+   "sig_id": "PLTR_2024-10-23_0945_L",
+   "grade_orig": "one-off",
+   "orig_bin": "notS",
+   "mark_src": "austin_marks_v7.jsonl",
+   "candidate": {
+    "symbol": "PLTR",
+    "direction": "LONG",
+    "trigger_time": "09:45:00",
+    "entry": 43.265,
+    "stop": 43.05,
+    "targets": [
+     43.695
+    ],
+    "level": 43.05,
+    "level_label": "Level",
+    "setup": "regrade",
+    "reason": "",
+    "or_high": 43.3,
+    "or_low": 42.41
+   }
+  },
+  {
+   "card_id": "RG0927-33",
+   "n": 33,
+   "png": "cards/RG0927-33.png",
+   "sig_id": "CRM_2026-05-04_0954_L",
+   "grade_orig": "two-off",
+   "orig_bin": "notS",
+   "mark_src": "austin_marks_v7.jsonl",
+   "candidate": {
+    "symbol": "CRM",
+    "direction": "LONG",
+    "trigger_time": "09:54:00",
+    "entry": 187.395,
+    "stop": 187.21,
+    "targets": [
+     187.765
+    ],
+    "level": 187.21,
+    "level_label": "Level",
+    "setup": "regrade",
+    "reason": "",
+    "or_high": 187.21,
+    "or_low": 183.97
+   }
+  },
+  {
+   "card_id": "RG0927-34",
+   "n": 34,
+   "png": "cards/RG0927-34.png",
+   "sig_id": "NFLX_2025-09-29_0956_L",
+   "grade_orig": "one-off",
+   "orig_bin": "notS",
+   "mark_src": "austin_marks_v7.jsonl",
+   "candidate": {
+    "symbol": "NFLX",
+    "direction": "LONG",
+    "trigger_time": "09:56:00",
+    "entry": 121.5125,
+    "stop": 121.4,
+    "targets": [
+     121.7375
+    ],
+    "level": 121.4,
+    "level_label": "Level",
+    "setup": "regrade",
+    "reason": "",
+    "or_high": 120.902,
+    "or_low": 118.754
+   }
+  },
+  {
+   "card_id": "RG0927-35",
+   "n": 35,
+   "png": "cards/RG0927-35.png",
+   "sig_id": "TSM_2026-02-23_0953_L",
+   "grade_orig": "S",
+   "orig_bin": "S",
+   "mark_src": "austin_marks_v7.jsonl",
+   "candidate": {
+    "symbol": "TSM",
+    "direction": "LONG",
+    "trigger_time": "09:53:00",
+    "entry": 372.95,
+    "stop": 372.2,
+    "targets": [
+     374.45
+    ],
+    "level": 372.2,
+    "level_label": "Level",
+    "setup": "regrade",
+    "reason": "",
+    "or_high": 370.2587,
+    "or_low": 366.46
+   }
+  },
+  {
+   "card_id": "RG0927-36",
+   "n": 36,
+   "png": "cards/RG0927-36.png",
+   "sig_id": "SOFI_2025-06-18_0950_L",
+   "grade_orig": "S",
+   "orig_bin": "S",
+   "mark_src": "austin_marks_v7.jsonl",
+   "candidate": {
+    "symbol": "SOFI",
+    "direction": "LONG",
+    "trigger_time": "09:50:00",
+    "entry": 14.659,
+    "stop": 14.63,
+    "targets": [
+     14.717
+    ],
+    "level": 14.63,
+    "level_label": "Level",
+    "setup": "regrade",
+    "reason": "",
+    "or_high": 14.66,
+    "or_low": 14.36
+   }
+  },
+  {
+   "card_id": "RG0927-37",
+   "n": 37,
+   "png": "cards/RG0927-37.png",
+   "sig_id": "NVDA_2025-07-10_1002_S",
+   "grade_orig": "one-off",
+   "orig_bin": "notS",
+   "mark_src": "austin_marks_v7.jsonl",
+   "candidate": {
+    "symbol": "NVDA",
+    "direction": "SHORT",
+    "trigger_time": "10:02:00",
+    "entry": 162.865,
+    "stop": 162.9,
+    "targets": [
+     162.795
+    ],
+    "level": 162.9,
+    "level_label": "Level",
+    "setup": "regrade",
+    "reason": "",
+    "or_high": 164.4,
+    "or_low": 163.19
+   }
+  },
+  {
+   "card_id": "RG0927-38",
+   "n": 38,
+   "png": "cards/RG0927-38.png",
+   "sig_id": "COIN_2026-06-12_1032_L",
+   "grade_orig": "S",
+   "orig_bin": "S",
+   "mark_src": "austin_marks_v7.jsonl",
+   "candidate": {
+    "symbol": "COIN",
+    "direction": "LONG",
+    "trigger_time": "10:32:00",
+    "entry": 162.005,
+    "stop": 161.74,
+    "targets": [
+     162.535
+    ],
+    "level": 161.74,
+    "level_label": "Level",
+    "setup": "regrade",
+    "reason": "",
+    "or_high": 160.6,
+    "or_low": 155.42
+   }
+  },
+  {
+   "card_id": "RG0927-39",
+   "n": 39,
+   "png": "cards/RG0927-39.png",
+   "sig_id": "UBER_2026-07-06_0942_S",
+   "grade_orig": "S",
+   "orig_bin": "S",
+   "mark_src": "austin_marks_v7.jsonl",
+   "candidate": {
+    "symbol": "UBER",
+    "direction": "SHORT",
+    "trigger_time": "09:42:00",
+    "entry": 73.36,
+    "stop": 73.48,
+    "targets": [
+     73.12
+    ],
+    "level": 73.48,
+    "level_label": "Level",
+    "setup": "regrade",
+    "reason": "",
+    "or_high": 74.56,
+    "or_low": 73.04
+   }
+  },
+  {
+   "card_id": "RG0927-40",
+   "n": 40,
+   "png": "cards/RG0927-40.png",
+   "sig_id": "GOOGL_2026-05-27_0941_L",
+   "grade_orig": "two-off",
+   "orig_bin": "notS",
+   "mark_src": "austin_marks_v7.jsonl",
+   "candidate": {
+    "symbol": "GOOGL",
+    "direction": "LONG",
+    "trigger_time": "09:41:00",
+    "entry": 389.12,
+    "stop": 389.0,
+    "targets": [
+     389.36
+    ],
+    "level": 389.0,
+    "level_label": "Level",
+    "setup": "regrade",
+    "reason": "",
+    "or_high": 390.69,
+    "or_low": 385.9
+   }
+  }
+ ]
+}
