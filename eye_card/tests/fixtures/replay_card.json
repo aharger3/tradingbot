@@ -1,0 +1,15 @@
+{
+  "candidate_id": "REPLAY-20251103-0949",
+  "symbol": "NQ",
+  "direction": "SHORT",
+  "trigger_time": "09:49:00",
+  "entry": 26154.00,
+  "stop": 26172.75,
+  "targets": [26126.00, 26107.00],
+  "level": 26155.00,
+  "level_label": "OR low",
+  "setup": "ORB break + retest",
+  "reason": "OR low break at 09:42, wick-only retest, rejected at 09:47",
+  "or_high": 26266.00,
+  "or_low": 26155.00
+}
