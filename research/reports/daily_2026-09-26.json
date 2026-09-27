@@ -1,0 +1,12 @@
+{
+  "date": "2026-09-26",
+  "baseline": {
+    "n": 105,
+    "hit_rate": 0.467,
+    "mean_r": 0.309,
+    "sigma_r": 1.4
+  },
+  "today_signals": [],
+  "z_fire": -0.5423261445466404,
+  "flags": []
+}

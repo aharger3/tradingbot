@@ -1,0 +1,25 @@
+{
+ "why_dropped": {
+  "no_time_S": 93,
+  "no_time_A": 72,
+  "no_time_C": 28
+ },
+ "match": {
+  "unmatched_S": 296,
+  "matched_C": 44,
+  "matched_A": 218,
+  "matched_S": 260,
+  "unmatched_C": 24,
+  "unmatched_A": 242
+ },
+ "signals": {
+  "one-off": 97,
+  "S": 144,
+  "two-off": 25
+ },
+ "with_features": {
+  "one-off": 97,
+  "S": 144,
+  "two-off": 25
+ }
+}
