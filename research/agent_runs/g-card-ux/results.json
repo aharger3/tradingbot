@@ -1,0 +1,102 @@
+{
+ "min_after_open": {
+  "auc": 0.37,
+  "n": 266,
+  "p": 0.0005
+ },
+ "bars_break_to_sig": {
+  "auc": 0.369,
+  "n": 266,
+  "p": 0.0005
+ },
+ "retest_depth_atr_abs": {
+  "auc": 0.371,
+  "n": 266,
+  "p": 0.0005
+ },
+ "closed_thru": {
+  "auc": 0.404,
+  "n": 266,
+  "p": 0.003
+ },
+ "trig_close_vs_lvl_atr": {
+  "auc": 0.595,
+  "n": 266,
+  "p": 0.009
+ },
+ "gap_with": {
+  "auc": 0.568,
+  "n": 265,
+  "p": 0.0355
+ },
+ "disp_atr": {
+  "auc": 0.475,
+  "n": 266,
+  "p": 0.4708
+ },
+ "vs_vwap_atr": {
+  "auc": 0.451,
+  "n": 266,
+  "p": 0.1684
+ },
+ "day_move_with": {
+  "auc": 0.505,
+  "n": 266,
+  "p": 0.6522
+ },
+ "level_is_OR": {
+  "auc": 0.544,
+  "n": 266,
+  "p": 0.1674
+ },
+ "level_is_prior_day": {
+  "auc": 0.459,
+  "n": 266,
+  "p": 0.0285
+ },
+ "checklist_score": {
+  "auc": 0.683,
+  "n": 266,
+  "p": 0.0005
+ },
+ "checklist_score_H2": {
+  "auc": 0.687,
+  "n": 137,
+  "p": 0.0005
+ },
+ "notes": {
+  "n": {
+   "S": 35,
+   "not_S": 51
+  },
+  "hits": {
+   "S": {
+    "time": 3,
+    "levels": 8,
+    "prior_bars": 24,
+    "htf": 0
+   },
+   "not_S": {
+    "time": 5,
+    "levels": 7,
+    "prior_bars": 38,
+    "htf": 3
+   }
+  }
+ },
+ "counts": {
+  "S": 144,
+  "not_S": 122
+ },
+ "layouts": [
+  "A_current_2026-09-25_0944_one-off.png",
+  "B_context_2026-09-25_0944_one-off.png",
+  "C_grade_2026-09-25_0944_one-off.png",
+  "A_current_2026-09-17_0941_one-off.png",
+  "B_context_2026-09-17_0941_one-off.png",
+  "C_grade_2026-09-17_0941_one-off.png",
+  "A_current_2026-09-16_1013_S.png",
+  "B_context_2026-09-16_1013_S.png",
+  "C_grade_2026-09-16_1013_S.png"
+ ]
+}

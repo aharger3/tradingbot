@@ -39,7 +39,8 @@ sys.path.insert(0, str(REPO))
 
 import candidates as eye2          # noqa: E402
 import eye_paper                   # noqa: E402
-from eye_card.chart import Candidate as ChartCandidate, render_candidate_chart  # noqa: E402
+from eye_card.chart import Candidate as ChartCandidate  # noqa: E402
+from eye_card.grade_card import render_grade_card  # noqa: E402
 from eye_card.notify import send_card                                           # noqa: E402
 from omen_data import load_fut                                                  # noqa: E402
 
@@ -90,6 +91,7 @@ def to_chart_candidate(cand: eye2.Candidate, cid: str) -> ChartCandidate:
         reason=f"missing={cand.missing}" if cand.missing else "S-gate clean",
         or_high=cand.features.get("or_high"),
         or_low=cand.features.get("or_low"),
+        extra=dict(cand.features),
     )
 
 
@@ -213,7 +215,7 @@ def main(argv=None):
         bars = bars_from_day_array(A, minute)
         CHART_DIR.mkdir(parents=True, exist_ok=True)
         png_path = CHART_DIR / f"{cid}.png"
-        render_candidate_chart(chart_cand, bars, png_path)
+        render_grade_card(chart_cand, bars, png_path)
         sent_wall = datetime.now(ET)
         card_sent_ts = sent_wall  # replay: card_sent_ts anchors the confirm window
         result = send_card(chart_cand, png_path, args.token, test_title_prefix=args.title_prefix)
