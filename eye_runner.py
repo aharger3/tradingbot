@@ -23,6 +23,12 @@ frozen config; this runner only consumes it. Every confirmed+journaled fill
 carries the config's hash (PREREG_SLICE_A.config_hash()) so any forward-test
 row can be traced back to the exact rule set that produced it.
 
+Roll guard (2026-09-27): before any card is sent, the card's contract (the
+session's volume-front contract from the bars, e.g. NQZ6 -> MNQZ6) must equal
+research/front_month.py's calendar front month for the carded session date
+(today, once a live feed exists; the replayed date in replay mode). On a
+mismatch the runner pushes one ntfy "ROLL MISMATCH" and exits 3 -- no cards.
+
 Usage:
     python eye_runner.py --title-prefix "OMEN REPLAY TEST"
     python eye_runner.py --date 2026-09-17 --speed 60 --title-prefix "OMEN TEST -- ignore"
@@ -43,12 +49,15 @@ REPO = Path(__file__).resolve().parent
 sys.path.insert(0, str(REPO / "research" / "agent_runs" / "v3-eye2-candidates"))
 sys.path.insert(0, str(REPO / "research" / "agent_runs" / "v3-eye4-paper"))
 sys.path.insert(0, str(REPO / "research" / "agent_runs" / "v2-s07-data"))
+sys.path.insert(0, str(REPO / "research"))
 sys.path.insert(0, str(REPO))
 
 import candidates as eye2          # noqa: E402
 import eye_paper                   # noqa: E402
 from eye_card.chart import Candidate as ChartCandidate, render_candidate_chart  # noqa: E402
-from eye_card.notify import send_card                                           # noqa: E402
+from eye_card.notify import _ntfy_topic, send_card                              # noqa: E402
+import front_month as fm                                                         # noqa: E402
+import notify_ntfy                                                               # noqa: E402
 from omen_data import load_fut                                                  # noqa: E402
 from prereg_slice_a import (                                                    # noqa: E402
     PREREG_SLICE_A,
@@ -138,6 +147,24 @@ def log(msg: str):
     print(f"[{datetime.now(ET).isoformat(timespec='seconds')}] {msg}", flush=True)
 
 
+ROLL_MISMATCH_RC = 3
+
+
+def roll_guard(card_contract: str, root: str, as_of, push=None) -> bool:
+    """True when card_contract == front_month(root, as_of). Otherwise push one
+    ntfy 'ROLL MISMATCH' (same topic as the cards) and return False."""
+    expected = fm.front_month(root, as_of)
+    if card_contract == expected:
+        log(f"roll guard ok: card contract {card_contract} == front_month({root}, {as_of})")
+        return True
+    body = (f"card contract {card_contract} != front month {expected} for {as_of}. "
+            f"Eye runner refused to send cards. PAPER ONLY.")
+    log(f"ROLL MISMATCH: {body}")
+    (push or notify_ntfy.push)("ROLL MISMATCH", body, priority="high", tags="warning",
+                               topic=_ntfy_topic())
+    return False
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser()
     ap.add_argument("--instrument", default="MNQ")
@@ -165,6 +192,9 @@ def main(argv=None):
     if g.empty:
         log(f"ERROR: no bars for {args.instrument} on {date}")
         return 2
+    card_contract = fm.to_root(str(g["contract"].iloc[-1]), args.instrument)
+    if not roll_guard(card_contract, args.instrument, date):
+        return ROLL_MISMATCH_RC
     A = eye2.day_arrays(g)
     raw_cands = eye2.detect_candidates(A, date, args.instrument)
     cands = [c for c in raw_cands if prereg_allowed(c.grade_hint)]
