@@ -5,10 +5,17 @@ Usage: python youtube_scraper.py
 Saves youtube_data/<video_id>_transcript.txt + _thumbnail.webp
 """
 from pathlib import Path
+import socket
 import subprocess
 from youtube_transcript_api import YouTubeTranscriptApi
 
 DATA_DIR = Path("youtube_data")
+
+# Global socket timeout so a dead/slow DNS or connection cannot stall the
+# scraper indefinitely (youtube_transcript_api/requests defer to this when
+# no explicit per-call timeout is given). Confirmed root cause 2026-09-26:
+# a bad DNS window stalled the run for 12+ min with near-zero CPU.
+socket.setdefaulttimeout(30)
 
 # === JDUB TRADES (@jdubtrades) ===
 JDUB = [
