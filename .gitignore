@@ -306,3 +306,4 @@ eye_card/labels.csv
 eye_card/sent_charts/
 research/paper_journal/
 *.pid
+journal/challenge.jsonl
