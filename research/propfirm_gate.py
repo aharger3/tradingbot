@@ -15,10 +15,18 @@ already trust for this. This file adds two things that did not exist yet:
 
   1. FIRM_RULES -- a per-firm data table (account size, profit target,
      trailing drawdown pct + EOD/intraday mode + lock-at-breakeven, daily
-     loss limit, consistency rule, minimum trading days) for the firms in
-     `Resources/omen-prop-firms-2026-09.md` (Vanquish, Topstep, Apex,
-     MyFundedFutures, Alpha Futures, Take Profit Trader), each a $50k
-     account so every row is comparable. `dd_lock_at_breakeven` is new --
+     loss limit, consistency rule, minimum trading days) for the futures
+     firms in `07-money/omen/u06-prop-firms.md` (Topstep, Apex,
+     MyFundedFutures, Alpha Futures, Take Profit Trader, LucidFlex,
+     Tradeify Select, Bulenox Opt 2 EOD), each a $50k account so every row
+     is comparable. Vanquish is deliberately NOT a row here (2026-09-27):
+     it is options-only with an intraday-from-peak trail, not a futures
+     firm this gate's EOD model fits (u06 "Avoid for OMEN"). Rows were
+     re-verified and several fixed 2026-09-27 against u06's per-firm diff
+     table (Apex DD/max_days, Alpha's nonexistent Standard-plan DLL,
+     Topstep's DLL soft-pause + 55% consistency, MFFU consistency/min-days,
+     TPT DD/min-days; LucidFlex/Tradeify/Bulenox added). `dd_lock_at_breakeven`
+     is new --
      `research/g71_propfirm_sim.py`'s FIRMS table carries a `lock` column
      but its own `simulate()` reads and discards it (`_lock` is unused);
      `omen_metrics.evaluate_prop_challenge`'s new `dd_lock_at_breakeven`
@@ -74,69 +82,74 @@ DEFAULT_RISK_DOLLARS = 1000.0  # CLAUDE.md: 1R = $1,000 unless a row says otherw
 # ==========================================================================
 
 FIRM_RULES = {
-    "Vanquish Trader Advanced Options 50K": dict(
-        account_size=50_000.0,
-        profit_target_pct=0.10,
-        trailing_dd_pct=0.05,
-        dd_mode="eod",
-        dd_lock_at_breakeven=False,   # not documented; treated as trails forever
-        daily_loss_limit_pct=1.0,     # Vanquish publishes no daily loss limit
-        min_trading_days=4,
-        consistency_pct=0.30,
-        max_days=None,                # subscription eval, no day cap
-        cost_dollars=499.0,           # monthly subscription (VANQUISH_MONTHLY_FEE)
-        source=("research/g172_vanquish_refresh.py::VANQUISH_KW (reused as-is); "
-                "https://www.vanquishtrader.com/how-vanquish-trader-evaluations-work-and-how-to-pass-them"),
-        verify=None,
-    ),
+    # Vanquish DROPPED 2026-09-27 (u06-prop-firms.md "Gate row differences"):
+    # Vanquish's official site is options-only on DXtrade with no CME futures
+    # mentioned, and its real drawdown is an INTRADAY trail off unrealized
+    # peak equity, not the EOD trail this gate models -- it does not fit a
+    # futures plan at all. Kept out rather than mis-modeled; see u06 "Avoid
+    # for OMEN" and the removed test_propfirm_gate.py::VANQUISH fixture,
+    # replaced there with a rule-shaped consistency probe.
     "Topstep 50K Combine": dict(
         account_size=50_000.0,
         profit_target_pct=0.06,       # $3,000
         trailing_dd_pct=0.04,         # $2,000
         dd_mode="eod",
         dd_lock_at_breakeven=True,    # Topstep: trailing DD stops trailing at breakeven
-        daily_loss_limit_pct=0.02,    # $1,000
+        daily_loss_limit_pct=1.0,     # $1,000 DLL is a SOFT PAUSE for the rest of the
+                                       # day, not a fail (u06 O: help.topstep.com DLL
+                                       # article) -- modeled as non-binding, same
+                                       # convention as every other firm's "no DLL" row
         min_trading_days=0,           # no published minimum for the Combine
-        consistency_pct=1.0,          # no consistency rule at the eval stage
-        max_days=120,
-        cost_dollars=49.0,
+        consistency_pct=0.55,         # best day <= 55% of profit target (u06 O help
+                                       # center; some A sources say 50%) -- was 1.0
+                                       # (no consistency), too lenient
+        max_days=None,                # monthly subscription, no deadline (was 120)
+        cost_dollars=49.0,            # + $149 one-time activation fee (u06 O)
         source=("https://www.topstep.com/topstep-prop, verified 2026-09-05 "
                 "(research/g170_futures_firms_2026-09.md); "
-                "matches research/g71_propfirm_sim.py FIRMS row"),
+                "matches research/g71_propfirm_sim.py FIRMS row; "
+                "gate fixes 2026-09-27 per 07-money/omen/u06-prop-firms.md"),
         verify=None,
     ),
     "Apex 50K Eval EOD": dict(
         account_size=50_000.0,
         profit_target_pct=0.06,       # $3,000
-        trailing_dd_pct=0.05,         # $2,500
+        trailing_dd_pct=0.04,         # $2,000 EOD trail, Apex 4.0 since 3/1/2026 (u06 A) --
+                                       # was 0.05/$2,500, the pre-4.0 figure
         dd_mode="eod",
         dd_lock_at_breakeven=False,   # matches g71's lock=None; NOT independently confirmed
-        daily_loss_limit_pct=1.0,     # Apex publishes no daily loss limit
+        daily_loss_limit_pct=1.0,     # $1,000 DLL is a soft pause, non-binding (u06)
         min_trading_days=0,
         consistency_pct=1.0,
-        max_days=120,
-        cost_dollars=35.0,
+        max_days=30,                  # 30 calendar days to pass (u06 O) -- was 120
+        cost_dollars=490.0,           # $490 list one-time + $139 activation (u06 O);
+                                       # often 80-90% off via promo -- was $35, understated
         source="research/g71_propfirm_sim.py FIRMS row (committed 2026-08-23)",
         verify=("apexfunded.com returned 403 Forbidden on both 2026-08-23 and "
                 "2026-09-05 (research/g170_futures_firms_2026-09.md) -- these numbers "
-                "are NOT independently re-verified against a live official page."),
+                "are NOT independently re-verified against a live official page. "
+                "DD/max_days/cost updated 2026-09-27 per u06's aggregator rows (A)."),
     ),
     "MyFundedFutures Rapid 50K": dict(
         account_size=50_000.0,
         profit_target_pct=0.06,       # $3,000
         trailing_dd_pct=0.04,         # $2,000
-        dd_mode="eod",
+        dd_mode="eod",                # eval stage only -- funded MFFU switches to an
+                                       # INTRADAY trail (u06); not modeled here, flagged
+                                       # in `verify` rather than silently assumed away
         dd_lock_at_breakeven=False,   # matches g71's lock=None; NOT independently confirmed
         daily_loss_limit_pct=1.0,     # MFFU publishes no daily loss limit
-        min_trading_days=0,
-        consistency_pct=1.0,
+        min_trading_days=2,           # was 0 -- u06 O (help.myfundedfutures.com Rapid 50K)
+        consistency_pct=0.50,         # 50% eval consistency -- was 1.0 (none), too lenient
         max_days=120,
-        cost_dollars=80.0,
+        cost_dollars=209.0,           # $209 list one-time since 8/25 (~$125 w/ promo) --
+                                       # was $80, understated
         source="research/g71_propfirm_sim.py FIRMS row (committed 2026-08-23)",
-        verify=("help.myfundedfutures.com did not resolve on 2026-09-05 "
-                "(research/g170_futures_firms_2026-09.md) -- min trading days and "
-                "consistency rule were never found on any public page; these numbers "
-                "are NOT independently re-verified."),
+        verify=("help.myfundedfutures.com Rapid 50K page (O) fetched 2026-09-26 gives "
+                "50% eval consistency and 2 min trading days; the funded-stage switch "
+                "to an intraday trail is NOT modeled by this row (dd_mode stays 'eod') "
+                "-- treat a funded_blown verdict from this row as optimistic. "
+                "Cost is list price; promo pricing is NOT independently re-verified."),
     ),
     "Alpha Futures 50K Standard": dict(
         account_size=50_000.0,
@@ -144,35 +157,108 @@ FIRM_RULES = {
         trailing_dd_pct=0.04,         # $2,000 (4% EOD trailing MLL, all plans)
         dd_mode="eod",
         dd_lock_at_breakeven=False,   # not documented as locking; treated as trails forever
-        daily_loss_limit_pct=0.02,    # ~$1,000 Daily Loss Guard, interpolated for 50K
-        min_trading_days=0,           # not stated on the fetched page
+        daily_loss_limit_pct=1.0,     # NO Daily Loss Guard on the Standard plan -- it is
+                                       # a Zero-plan-only feature (u06 O: help.alpha-
+                                       # futures.com prohibited-practices article). Was
+                                       # 0.02/$1,000 interpolated; gate was failing Alpha
+                                       # on a rule that doesn't exist for this plan.
+        min_trading_days=2,           # u06 O homepage -- was 0
         consistency_pct=0.50,         # Standard plan: 50% during eval, 40% once qualified
         max_days=None,
-        cost_dollars=None,
+        cost_dollars=129.0,           # $129/mo, no activation (u06 O homepage) -- was None
         source=("https://alpha-futures.com/posts/futures-prop-firm-rules-explained-2026, "
-                "fetched 2026-09-26"),
-        verify=("the article gives the Daily Loss Guard as '$500 / $1K / $2K by size' "
-                "without naming which size gets which figure, and points to "
-                "help.alpha-futures.com for exact $50K numbers (not fetched); "
-                "$1,000 here is interpolated, not read off a page."),
+                "fetched 2026-09-26; DLL/min-days/cost fixed 2026-09-27 per "
+                "https://help.alpha-futures.com/en/articles/9508585-prohibited-trading-practices "
+                "and the Alpha homepage (both O)"),
+        verify=("earlier row interpolated a $1,000 Daily Loss Guard onto Standard from "
+                "an article that only names the Zero plan's guard sizes; the prohibited-"
+                "practices page (O) confirms Standard carries no Daily Loss Guard at all."),
     ),
     "Take Profit Trader 50K Test": dict(
         account_size=50_000.0,
         profit_target_pct=0.06,       # $3,000
-        trailing_dd_pct=0.05,         # $2,500 (official blog's own worked example)
+        trailing_dd_pct=0.04,         # $2,000 (u06 A; the gate's own prior `verify` note
+                                       # already flagged the $2,500 figure as disputed) --
+                                       # was 0.05/$2,500
         dd_mode="eod",                # Test/Evaluation + PRO+ are EOD; PRO is intraday
         dd_lock_at_breakeven=True,    # "stops trailing once it reaches your starting balance"
         daily_loss_limit_pct=1.0,     # no daily loss limit on Test/PRO accounts as of Jan 2025
-        min_trading_days=5,
+        min_trading_days=3,           # TPT homepage: 3 days to PRO -- was 5
         consistency_pct=0.50,         # no single day >= 50% of total net profit
         max_days=None,
-        cost_dollars=None,
+        cost_dollars=170.0,           # $170/mo + $130 one-time activation (u06 A + O
+                                       # homepage) -- was None
         source="https://takeprofittrader.com/blog/what-is-a-trailing-drawdown, fetched 2026-09-26",
         verify=("takeprofittrader.com/blog/prop-firm-rules (the firm's own rules index) "
                 "returned 403 Forbidden on 2026-09-26. research/g71_propfirm_sim.py's "
-                "older 'TPT Test 50K' row carries a $2,000 trailing DD, not $2,500 -- "
-                "the two committed sources disagree and neither is the firm's live "
-                "pricing page; re-verify before using this row for a real eval purchase."),
+                "older 'TPT Test 50K' row carried a $2,000 trailing DD, not $2,500 -- "
+                "the two committed sources disagreed and neither was the firm's live "
+                "pricing page; DD reset to $2,000 2026-09-27 per u06's aggregator row, "
+                "still NOT the firm's own page -- re-verify before a real eval purchase."),
+    ),
+    # Added 2026-09-27 (u06-prop-firms.md: "(missing) LucidFlex 50K"). This
+    # is the recommended FIRST BUY (u06 Recommendation #2): no DLL at all,
+    # a $2,000 EOD trail, funded accounts carry no consistency rule, and
+    # its own support article says bots and copiers are officially
+    # permitted -- required by scaling_ladder.py's DEFAULT_LADDER.
+    "LucidFlex 50K": dict(
+        account_size=50_000.0,
+        profit_target_pct=0.06,       # $3,000 (u06 A, proptradingvibes 9/16)
+        trailing_dd_pct=0.04,         # $2,000 EOD trail
+        dd_mode="eod",
+        dd_lock_at_breakeven=False,   # not documented as locking
+        daily_loss_limit_pct=1.0,     # Lucid Flex has NO daily loss limit (optional only)
+        min_trading_days=0,
+        consistency_pct=0.50,         # 50% eval consistency; funded accounts have NONE
+                                       # (not modeled separately -- eval-stage rule used
+                                       # throughout, matching every other row's convention)
+        max_days=None,
+        cost_dollars=146.0,           # one-time (matches scaling_ladder.py's eval_cost)
+        source=("https://proptradingvibes.com/blog/lucid-trading-50k-account-rules, "
+                "9/16/2026 (A); https://support.lucidtrading.com/en/articles/"
+                "11404728-other-activities (O, automation permitted)"),
+        verify=("Lucid's own help center returns 403 on its main rules pages; the "
+                "50% eval consistency and $2,000 EOD trail are from the aggregator row "
+                "only, not independently re-verified against Lucid's own pricing page."),
+    ),
+    # Added 2026-09-27 (u06-prop-firms.md: "(missing) Tradeify Select 50K").
+    "Tradeify Select 50K": dict(
+        account_size=50_000.0,
+        profit_target_pct=0.06,       # not published in u06's table; same 6% convention
+                                       # used for every other 50K row here -- unconfirmed
+        trailing_dd_pct=0.04,         # $2,000 EOD trail, enforced real-time (u06 A)
+        dd_mode="eod",
+        dd_lock_at_breakeven=False,   # not documented
+        daily_loss_limit_pct=1.0,     # none published
+        min_trading_days=3,
+        consistency_pct=0.40,
+        max_days=None,
+        cost_dollars=165.0,           # one-time, no activation (u06 A); $109 reset
+        source="https://propdatalab.com/firms/tradeify/, 8/26/2026 (A)",
+        verify=("Tradeify's own guidelines page (help.tradeify.co) returned 403 on "
+                "2026-09-26; profit_target_pct is NOT published anywhere seen and is "
+                "assumed at the same 6% every other 50K row uses -- re-verify before "
+                "a real eval purchase."),
+    ),
+    # Added 2026-09-27 (u06-prop-firms.md: "(missing) Bulenox 50K Opt 2").
+    "Bulenox 50K Opt 2 EOD": dict(
+        account_size=50_000.0,
+        profit_target_pct=0.06,       # not published for Opt 2 specifically; same 6%
+                                       # convention as every other 50K row -- unconfirmed
+        trailing_dd_pct=0.05,         # $2,500 EOD (u06 O pricing page)
+        dd_mode="eod",
+        dd_lock_at_breakeven=False,   # not documented
+        daily_loss_limit_pct=0.024,   # $1,200 (u06 O)
+        min_trading_days=0,
+        consistency_pct=1.0,          # no eval consistency rule published (Master
+                                       # payout has a 40% best-day rule, but that is a
+                                       # payout condition, not an eval-consistency gate)
+        max_days=None,
+        cost_dollars=175.0,           # one-time, 30-day access (u06 O pricing)
+        source="https://bulenox.com/accounts-pricing + https://bulenox.com/help-center/qualification (O)",
+        verify=("Opt 1 (the other Bulenox eval option) is an intraday trail including "
+                "open P&L and is deliberately NOT added here -- u06 flags it as a firm "
+                "to avoid for OMEN. profit_target_pct for Opt 2 is unconfirmed."),
     ),
 }
 
