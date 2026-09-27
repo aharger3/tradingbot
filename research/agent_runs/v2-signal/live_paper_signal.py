@@ -152,7 +152,8 @@ def run(source: BarSource, symbol: str = "MNQ", cutoff: str = "10:30",
         )
         card = build_card(card_src)
         assert PAPER_LABEL in card["title"], "every OMEN v2 push must be labeled PAPER / EXPERIMENTAL"
-        ntfy_push(card["title"], card["body"], priority=card["priority"], tags=card["tags"], topic=topic)
+        ntfy_push(card["title"], card["body"], priority=card["priority"], tags=card["tags"],
+                  click=card.get("click"), topic=topic)
         sent.append(card)
     return sent
 

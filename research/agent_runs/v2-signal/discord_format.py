@@ -35,32 +35,59 @@ class SizedCard:
     signal_id: str = ""
 
 
+# Grade drives color/priority in the example card (message 1550153955668004945,
+# #signals 2026-09-17: S = green 3066993), not trade direction.
+GRADE_PRIORITY = {"S": "urgent", "A": "high", "C": "default", "X": "low"}
+GRADE_TAG = {"S": "green_circle", "A": "large_blue_circle", "C": "yellow_circle", "X": "red_circle"}
+TV_SYMBOL = {"MNQ": "CME_MINI:MNQ1!", "MES": "CME_MINI:MES1!"}
+
+
 def build_card(c: SizedCard) -> dict:
+    """Field order = example card: title | Setup/Grade/Time | Expiration(contract)/
+    Contracts | Entry/Stop/Target (xR) | Stop level | Max Loss / Reward | Reason |
+    (Stock ref slot -> Valid until) | footer. Max Loss / Reward is the POSITION
+    total (example: 50 cons -> -$1000 / +$1600), net of round-trip fees."""
     direction = "LONG" if c.side > 0 else "SHORT"
     arrow = "↑" if c.side > 0 else "↓"
     pv = POINT_VALUE.get(c.symbol, 2.0)
     dist = abs(c.entry - c.stop)
-    max_loss = -(dist * pv + RT_COMMISSION)
-    max_reward = abs(c.target - c.entry) * pv - RT_COMMISSION
+    reward_pts = abs(c.target - c.entry)
+    r_mult = reward_pts / dist if dist else float("nan")
+    r_label = f"{r_mult:g}R" if r_mult == r_mult else "?R"
+
+    def _money(n: int) -> str:
+        loss = n * (dist * pv + RT_COMMISSION)
+        reward = n * (reward_pts * pv - RT_COMMISSION)
+        return f"-${loss:,.0f} / +${reward:,.0f}"
+
+    counts = sorted(set(c.contracts.values()))
+    if len(counts) == 1:
+        money = f"{_money(counts[0])} ({counts[0]} cons, net {RT_COMMISSION:.2f} RT)"
+    else:
+        money = " · ".join(f"{k} {_money(v)}" for k, v in c.contracts.items()) + \
+            f" (net {RT_COMMISSION:.2f} RT)"
 
     title = f"\U0001F680 {c.symbol} {arrow} {direction} · {c.setup_grade} · {PAPER_LABEL}"
 
-    contracts_line = "Contracts: " + " · ".join(f"{k} {v}" for k, v in c.contracts.items())
+    contracts_line = f"Contract: {c.contract} | Contracts: " + \
+        " · ".join(f"{k} {v}" for k, v in c.contracts.items())
     body_lines = [
         f"Setup: ORB5 break+disp+retest | Grade: {c.setup_grade} | Time: {c.time_et} ET",
         contracts_line,
         f"Entry: {c.entry:,.2f} (next-bar open) | Stop: {c.stop:,.2f} ({dist:.2f} pt) | "
-        f"Target (2R): {c.target:,.2f}",
+        f"Target ({r_label}): {c.target:,.2f}",
         f"Stop level: {c.stop_level_desc}",
-        f"Max Loss / Reward: -${abs(max_loss):,.0f} / +${max_reward:,.0f} (net {RT_COMMISSION:.2f} RT)",
+        f"Max Loss / Reward: {money}",
         f"TRADE · {c.reason}",
         f"Valid until: {c.valid_until_et} · Cutoff {c.cutoff_et} flat · 1 trade/day",
         f"Omen Signal Bot · Grade {c.setup_grade} · {PAPER_LABEL} · #{c.signal_id}",
     ]
     body = "\n".join(body_lines)
+    tv = TV_SYMBOL.get(c.symbol, f"CME_MINI:{c.symbol}1!")
     return {
         "title": title,
         "body": body,
-        "priority": "high",
-        "tags": ["rocket", "green_circle"] if c.side > 0 else ["rocket", "red_circle"],
+        "priority": GRADE_PRIORITY.get(c.setup_grade, "default"),
+        "tags": ["rocket", GRADE_TAG.get(c.setup_grade, "white_circle")],
+        "click": f"https://www.tradingview.com/chart/?symbol={tv}",
     }

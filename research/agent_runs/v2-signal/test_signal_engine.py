@@ -63,7 +63,15 @@ def test_card_always_labeled_paper():
     assert "Setup: ORB5" in card["body"]
     assert "Cutoff 10:30 flat" in card["body"]
     assert "Max Loss / Reward" in card["body"]
-    print("PASS: card always carries PAPER / EXPERIMENTAL label")
+    # parity with example card msg 1550153955668004945 (#signals 2026-09-17 ORCL S)
+    lines = card["body"].splitlines()
+    order = ["Setup:", "Contract:", "Entry:", "Stop level:", "Max Loss / Reward:", "TRADE ·",
+             "Valid until:", "Omen Signal Bot · Grade S"]
+    assert [next(i for i, ln in enumerate(lines) if ln.startswith(k)) for k in order] == list(range(8)), lines
+    assert "MNQZ6" in lines[1] and "Target (2R)" in lines[2]
+    assert card["priority"] == "urgent" and "green_circle" in card["tags"]
+    assert card["click"].endswith("CME_MINI:MNQ1!")
+    print("PASS: card always carries PAPER / EXPERIMENTAL label + example field order")
 
 
 def test_short_side_max_loss_positive_sign():
@@ -75,13 +83,16 @@ def test_short_side_max_loss_positive_sign():
     )
     card = build_card(card_src)
     assert "Max Loss / Reward: -$" in card["body"]
+    # position total, like the example card: 12 x (4pt x $2 + 1.24) = $111; 12 x (8pt x $2 - 1.24) = $177
+    assert "Max Loss / Reward: -$111 / +$177 (12 cons" in card["body"], card["body"]
+    assert "green_circle" in card["tags"]  # color by grade, not side
     print("PASS: short-side sizing formats cleanly")
 
 
 def test_end_to_end_demo_run_sends_exactly_one_paper_push():
     sent_calls = []
 
-    def fake_push(title, body, priority="default", tags=None, topic=None):
+    def fake_push(title, body, priority="default", tags=None, click=None, topic=None):
         sent_calls.append((title, body))
         return True
 
