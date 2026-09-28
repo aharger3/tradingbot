@@ -11,6 +11,8 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
+# OMEN-SHIP-PLAN-v3.md §2: MNQ OOS -0.17R n=46 p=.60, gate not met.
+GATE_MET = False
 PAPER_LABEL = "PAPER / EXPERIMENTAL"
 
 POINT_VALUE = {"MNQ": 2.0, "MES": 5.0}   # $/point, micro contract
