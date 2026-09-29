@@ -1,0 +1,38 @@
+[
+ {
+  "id": "NFLX_2026-09-03",
+  "symbol": "NFLX",
+  "day": "2026-09-03",
+  "png": "research/decks/sm_2026-09-28/1_NFLX_2026-09-03.png",
+  "engine_grade": "S",
+  "bars": {
+   "C": "09:35",
+   "A": "09:32",
+   "B": "09:35"
+  }
+ },
+ {
+  "id": "ORCL_2026-09-03",
+  "symbol": "ORCL",
+  "day": "2026-09-03",
+  "png": "research/decks/sm_2026-09-28/2_ORCL_2026-09-03.png",
+  "engine_grade": "S",
+  "bars": {
+   "C": "10:18",
+   "A": "10:14",
+   "B": "10:18"
+  }
+ },
+ {
+  "id": "SPCX_2026-09-03",
+  "symbol": "SPCX",
+  "day": "2026-09-03",
+  "png": "research/decks/sm_2026-09-28/3_SPCX_2026-09-03.png",
+  "engine_grade": "A",
+  "bars": {
+   "C": "10:46",
+   "A": "10:38",
+   "B": "10:43"
+  }
+ }
+]
