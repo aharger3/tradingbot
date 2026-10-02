@@ -1,0 +1,38 @@
+[
+ {
+  "id": "TSM_2026-09-03",
+  "symbol": "TSM",
+  "day": "2026-09-03",
+  "png": "research/decks/sm_2026-10-02/1_TSM_2026-09-03.png",
+  "engine_grade": "S",
+  "bars": {
+   "C": "10:47",
+   "A": "10:41",
+   "B": "10:47"
+  }
+ },
+ {
+  "id": "UBER_2026-09-03",
+  "symbol": "UBER",
+  "day": "2026-09-03",
+  "png": "research/decks/sm_2026-10-02/2_UBER_2026-09-03.png",
+  "engine_grade": "A",
+  "bars": {
+   "C": "09:41",
+   "A": "09:31",
+   "B": "09:41"
+  }
+ },
+ {
+  "id": "AAPL_2026-09-02",
+  "symbol": "AAPL",
+  "day": "2026-09-02",
+  "png": "research/decks/sm_2026-10-02/3_AAPL_2026-09-02.png",
+  "engine_grade": "S",
+  "bars": {
+   "C": "10:08",
+   "A": "10:03",
+   "B": "10:08"
+  }
+ }
+]

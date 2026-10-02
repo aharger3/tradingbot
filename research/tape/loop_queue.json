@@ -5,10 +5,5 @@
     "flag": "EXAMPLE_FLAG",
     "on": "1",
     "label": "example only -- not a real trading rule, do not run as-is"
-  },
-  {
-    "flag": "COUNTER_TREND_CAP",
-    "on": "1",
-    "label": "cap counter-day-trend setups to C grade"
   }
 ]

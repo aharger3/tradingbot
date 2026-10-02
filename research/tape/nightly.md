@@ -13,3 +13,4 @@
 | 2026-09-21 | HTF_BIAS_GATE | hold | -52.0 -> -21.0 | 11 -> 12 | d5ba41a41d65e1e4 -> f479f81c27ed69e4 |
 | 2026-09-26 | HTF_BIAS_GATE | hold | - | - | - -> - |
 | 2026-09-28 | OCR_STRICT | hold | - | - | - -> - |
+| 2026-10-02 | COUNTER_TREND_CAP | hold | - | - | - -> - |
