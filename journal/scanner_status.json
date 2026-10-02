@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-10-02T11:22:30.362516-04:00",
+  "timestamp": "2026-10-02T12:18:51.774187-04:00",
   "symbols_scanned": [
     "NVDA",
     "TSLA",
@@ -31,7 +31,7 @@
     "TSM",
     "MARA"
   ],
-  "bars_fetched": 0,
+  "bars_fetched": 29,
   "signals_fired_today": 0,
   "session_halt": {
     "halted": false,
@@ -41,7 +41,7 @@
   },
   "regime_state": "normal",
   "qqq_state": null,
-  "last_error": "MARA: yfinance batch returned no bars",
+  "last_error": null,
   "webhooks": {
     "posted": 0,
     "failed": 0
