@@ -99,6 +99,34 @@ class MessageTests(unittest.TestCase):
         self.assertIn("Entry", msg)
         self.assertIn("Stop", msg)
 
+    def test_message_matches_signals_card_field_order(self):
+        # Order/labels of the #signals S card (msg 1550153955668004945) plus
+        # mentor level wording ("Stop above 18233"): v2/s06, corpus note.
+        cand = _candidate(extra={"contract": "MNQZ6", "contracts": 2,
+                                 "point_value": 2.0, "target_label": "LOD"})
+        lines = build_message(cand).split("\n")
+        self.assertEqual(lines, [
+            "Setup: ORB+OCR | Grade: ? | Time: 09:37:00 ET",
+            "Contract: MNQZ6 | Contracts: 2",
+            "Entry: 99.55 | Stop: 100.4 | Target (0.9R): 98.8 (LOD)",
+            "Scale: T1 98.8 | T2 98.2",
+            "Stop level: above OR low 100 (0.85%)",
+            "Max Loss / Reward: -$3 / +$3",
+            "Reason: WATCH | [MNQ] ORB break, wick-only retest",
+            "Omen Signal Bot | Grade ? | PAPER | #T20260926-0937",
+        ])
+
+    def test_title_is_mentor_entry_order(self):
+        self.assertEqual(build_title(_candidate()), "SHORT MNQ 99.55")
+
+    def test_long_stop_is_below_and_optional_lines_drop(self):
+        cand = _candidate(direction="LONG", entry=100.0, stop=99.0,
+                          targets=[102.0], level_label="OR high", level=99.5)
+        lines = build_message(cand).split("\n")
+        self.assertIn("Stop level: below OR high 99.5 (1.00%)", lines)
+        self.assertIn("Entry: 100 | Stop: 99 | Target (2.0R): 102", lines)
+        self.assertFalse(any(l.startswith(("Contract", "Scale", "Max Loss")) for l in lines))
+
     def test_actions_wire_s_and_not_s_to_label_endpoint(self):
         cand = _candidate()
         actions = build_actions(cand, token="tok123")

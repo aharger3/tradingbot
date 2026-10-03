@@ -33,28 +33,62 @@ def _label_base_url() -> str:
 
 
 def build_title(candidate: Candidate) -> str:
-    arrow = "UP" if candidate.direction.upper() == "LONG" else "DOWN"
-    return f"eye-check: {candidate.symbol} {arrow} {candidate.direction}"
+    """Title in the mentors' entry order: side, instrument, price.
+    J-Dub's own futures alerts read "Short NQ 18210"; the #signals S card
+    title is "{SYM} ... {CALL|PUT}". The rocket emoji comes from the ntfy
+    `rocket` tag (headers stay ASCII)."""
+    return f"{candidate.direction.upper()} {candidate.symbol} {candidate.entry:g}"
+
+
+def _side_word(candidate: Candidate) -> str:
+    # Mentor wording: "Stop above 18233" on shorts, "risk below PDH" on longs.
+    return "above" if candidate.direction.upper() == "SHORT" else "below"
 
 
 def build_message(candidate: Candidate) -> str:
     """Plain-ASCII, newline-joined body. Callers that put this in an HTTP
     header (ntfy's Message header) must escape real newlines first -- see
     `_header_safe`. The body form (real '\\n') is what tests assert on.
+
+    Field order and labels copy Austin's #signals S card (discord_bot.py
+    `_format_options_embed`, msg 1550153955668004945): Setup | Grade | Time,
+    Contracts, Entry | Stop | Target (xR), Stop level, Max Loss / Reward,
+    Reason, footer. Stop and target are also named by their level, the way
+    Scarface / J-Dub word them ("Stop above 18233", "targets hod").
+    Optional `extra` keys: grade, contract, contracts, point_value,
+    target_label.
     """
-    targets = " | ".join(f"T{i} {t:g}" for i, t in enumerate(candidate.targets, 1))
-    risk = candidate.entry - candidate.stop
-    reward1 = (candidate.targets[0] - candidate.entry) if candidate.targets else 0.0
-    r_mult = abs(reward1 / risk) if risk else 0.0
-    lines = [
-        f"{candidate.setup} - {candidate.trigger_time} ET",
-        f"Entry {candidate.entry:g} - Stop {candidate.stop:g} "
-        f"({abs(risk):g} pt) - {targets} ({r_mult:.1f}R)",
-        f"{candidate.level_label}: {candidate.level:g}",
-    ]
-    if candidate.reason:
-        lines.append(f"WATCH - {candidate.reason}")
-    lines.append(f"OMEN - eye-loop - PAPER - #{candidate.candidate_id}")
+    x = candidate.extra or {}
+    risk = abs(candidate.entry - candidate.stop)
+    t1 = candidate.targets[0] if candidate.targets else None
+    reward = abs(t1 - candidate.entry) if t1 is not None else 0.0
+    r_mult = reward / risk if risk else 0.0
+    grade = x.get("grade") or "?"
+    lines = [f"Setup: {candidate.setup} | Grade: {grade} | Time: {candidate.trigger_time} ET"]
+    contract_bits = []
+    if x.get("contract"):
+        contract_bits.append(f"Contract: {x['contract']}")
+    if x.get("contracts"):
+        contract_bits.append(f"Contracts: {x['contracts']}")
+    if contract_bits:
+        lines.append(" | ".join(contract_bits))
+    tgt = f"{t1:g}" if t1 is not None else "-"
+    if x.get("target_label") and t1 is not None:
+        tgt = f"{t1:g} ({x['target_label']})"
+    lines.append(f"Entry: {candidate.entry:g} | Stop: {candidate.stop:g} | "
+                 f"Target ({r_mult:.1f}R): {tgt}")
+    if len(candidate.targets) > 1:
+        lines.append("Scale: " + " | ".join(
+            f"T{i} {t:g}" for i, t in enumerate(candidate.targets, 1)))
+    pct = (risk / candidate.entry * 100) if candidate.entry else 0.0
+    lines.append(f"Stop level: {_side_word(candidate)} {candidate.level_label} "
+                 f"{candidate.level:g} ({pct:.2f}%)")
+    if x.get("contracts") and x.get("point_value"):
+        n, pv = float(x["contracts"]), float(x["point_value"])
+        lines.append(f"Max Loss / Reward: -${risk * pv * n:,.0f} / +${reward * pv * n:,.0f}")
+    reason = f" {candidate.reason}" if candidate.reason else ""
+    lines.append(f"Reason: WATCH | [{candidate.symbol}]{reason}")
+    lines.append(f"Omen Signal Bot | Grade {grade} | PAPER | #{candidate.candidate_id}")
     return "\n".join(lines)
 
 
@@ -92,10 +126,10 @@ def send_card(candidate: Candidate, chart_path: str | Path, token: str,
     if test_title_prefix:
         title = f"{test_title_prefix} {title}"
     headers = {
-        "Title": _header_safe(title) or "eye-check",
+        "Title": _header_safe(title) or "OMEN",
         "Message": _header_safe(build_message(candidate)),
         "Priority": "default",
-        "Tags": "eyes,paper",
+        "Tags": "rocket,paper",
         "Filename": f"{candidate.candidate_id}.png",
         "Actions": build_actions(candidate, token),
     }
