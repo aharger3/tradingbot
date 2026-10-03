@@ -255,8 +255,8 @@ def main() -> int:
 
         if not git_commit_vault():
             print("Failed to commit to vault (but row was written)", file=sys.stderr)
-            # Don't fail the task -- the row exists locally
-            return 0
+            # Don't fail the task -- the row exists locally. Fall through:
+            # the status page and paper P&L report don't depend on git.
 
         print(row.strip())
         rebuild_status_page()
