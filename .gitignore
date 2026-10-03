@@ -306,3 +306,7 @@ eye_card/labels.csv
 eye_card/sent_charts/
 research/paper_journal/
 *.pid
+
+# E5 blind test: pool holds session dates, taps are Austin's private log
+research/paper_journal/blind_pool.json
+research/paper_journal/acks_blind.jsonl

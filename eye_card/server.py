@@ -18,6 +18,10 @@ LABELS_CSV = Path(os.environ.get("EYE_LABELS_CSV", BASE / "labels.csv"))
 
 app = Flask(__name__)
 
+if os.environ.get("EYE_BLIND") == "1":  # E5 blind test; off unless explicitly enabled
+    from eye_blind.app import blind_bp
+    app.register_blueprint(blind_bp)
+
 
 def _token() -> str:
     return os.environ.get("EYE_LABEL_TOKEN", "dev-local-only")
