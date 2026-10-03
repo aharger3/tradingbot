@@ -1,0 +1,96 @@
+{
+ "candidate": "N2",
+ "sessions": 490,
+ "split": "2025-09-30",
+ "first_last": [
+  "2024-09-27",
+  "2026-09-25"
+ ],
+ "variants": {
+  "op_rej_any": {
+   "n": 341,
+   "skipped_min_dist": 0,
+   "win": 0.3812316715542522,
+   "meanR": 0.030944717601645307,
+   "h1_n": 172,
+   "h1_meanR": 0.10241473749543512,
+   "h2_n": 169,
+   "h2_meanR": -0.04179400087014077,
+   "long_share": 0.4897360703812317,
+   "median_stop_pct": 0.0017313054244214722,
+   "top5_days_share": 0.9454114145515023,
+   "trade_days": 341,
+   "shuffle_p": 0.2433783108445777,
+   "shuffle_mean_R": -0.015835547050088005,
+   "clears_std_bar": false
+  },
+  "op_rej_near": {
+   "n": 142,
+   "skipped_min_dist": 0,
+   "win": 0.4225352112676056,
+   "meanR": 0.152319490634146,
+   "h1_n": 72,
+   "h1_meanR": 0.2577414121170509,
+   "h2_n": 70,
+   "h2_meanR": 0.04388551425172941,
+   "long_share": 0.528169014084507,
+   "median_stop_pct": 0.0015843204662206675,
+   "top5_days_share": 0.4607567091159853,
+   "trade_days": 142,
+   "shuffle_p": 0.063968015992004,
+   "shuffle_mean_R": -0.021401506943209782,
+   "clears_std_bar": false
+  },
+  "op_rec_any": {
+   "n": 365,
+   "skipped_min_dist": 0,
+   "win": 0.3452054794520548,
+   "meanR": -0.0817928620052354,
+   "h1_n": 180,
+   "h1_meanR": -0.06939792104464995,
+   "h2_n": 185,
+   "h2_meanR": -0.09385280456148071,
+   "long_share": 0.5013698630136987,
+   "median_stop_pct": 0.002241940067573968,
+   "top5_days_share": null,
+   "trade_days": 365,
+   "shuffle_p": 0.8460769615192404,
+   "shuffle_mean_R": -0.013225003043935393,
+   "clears_std_bar": false
+  },
+  "op_rec_near": {
+   "n": 157,
+   "skipped_min_dist": 0,
+   "win": 0.3885350318471338,
+   "meanR": 0.0383989678804496,
+   "h1_n": 79,
+   "h1_meanR": 0.04018300417317824,
+   "h2_n": 78,
+   "h2_meanR": 0.03659205932755781,
+   "long_share": 0.43312101910828027,
+   "median_stop_pct": 0.0019391042905130792,
+   "top5_days_share": 1.6532998224597624,
+   "trade_days": 157,
+   "shuffle_p": 0.3168415792103948,
+   "shuffle_mean_R": -0.008087454542632095,
+   "clears_std_bar": false
+  }
+ },
+ "primary": "op_rej_near",
+ "primary_clears_std_bar": false,
+ "family_wise_p_primary": 0.12543728135932034,
+ "family_wise_p_primary_both_candidates": 0.17891054472763618,
+ "ndraw": 2000,
+ "seed": 7,
+ "diag": {
+  "N1_ON": {
+   "days_with_trigger": 221,
+   "first_bar_conflicts": 0
+  },
+  "N1_PD": {
+   "days_with_trigger": 146,
+   "first_bar_conflicts": 0
+  },
+  "days_near_key_level": 206
+ }
+}
