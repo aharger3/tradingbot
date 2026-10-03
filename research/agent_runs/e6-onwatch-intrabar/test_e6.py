@@ -110,6 +110,31 @@ def test_onwatch_allows_close_far_from_extreme():
     assert on is not None and n1 == 0           # close 102.5 is 0.5 under the 103.0 day high; U = 0.25 x 1.4 = 0.35
 
 
+def test_onwatch_entry_bar_fills_then_closes_at_day_high_is_never_dropped():
+    # amendment_2: ON WATCH is decided at the ARMING close. Retest bar 7 closes 102.3, far enough under the 103.0 day high
+    # (U = 0.25 x 1.0 = 0.25) so the order is armed; bar 8 fills intrabar (T=101.85) and then CLOSES AT THE DAY HIGH 104.0.
+    # That close was unknowable at fill time: the trade must be booked exactly as with ON WATCH off, never silently dropped.
+    A = long_case((102.0, 102.4, 101.0, 102.3), {8: (102.3, 104.0, 102.2, 104.0), 9: (104.0, 104.1, 103.9, 104.0)})
+    off, n0 = e6.e6_day(A, 0.25, False)
+    on, n1 = e6.e6_day(A, 0.25, True)
+    assert off is not None and off["k"] == 8 and off["how"] == "rest" and off["e"] == 102.55
+    assert A["close"][8] >= np.nanmax(A["high"][:9])                      # entry bar really closes at the day high
+    assert on is not None, "entry-bar close at the day high silently dropped the trade (post-fill look-ahead)"
+    assert n1 == 0 and on == off
+
+
+def test_onwatch_decision_is_made_at_arming_and_ignores_later_bars():
+    # retest closes AT the day high -> refused at bar 7 whatever bar 8 does; retest far from the high -> armed whatever bar 8 does
+    for entry in [(103.5, 103.6, 103.55, 103.6), (103.5, 105.0, 101.2, 103.0), (103.5, 103.6, 100.0, 100.2)]:
+        _, nr = e6.e6_day(long_case((101.1, 103.5, 101.0, 103.5), {8: entry}), 0.25, True)
+        assert nr == 1
+        _, na = e6.e6_day(long_case((102.0, 102.4, 101.0, 102.3), {8: (102.3, entry[1] + 1, entry[2], entry[3])}), 0.25, True)
+        assert na == 0
+    tr = []
+    t, nr = e6.e6_day(long_case((101.1, 103.5, 101.0, 103.5), {8: (103.5, 103.6, 103.55, 103.6)}), 0.25, True, trace=tr)
+    assert t is None and nr == 1 and tr and tr[0][0] == 7                  # refusal at the retest (arming) bar, not bar 8
+
+
 def test_strict_never_fills_inside_the_retest_bar():
     A = long_case((102.0, 102.4, 101.0, 102.3), {8: (102.3, 102.5, 102.25, 102.4), 9: (102.4, 105.0, 102.3, 104.9)})
     t, _ = e6.e6_day(A, 0.25, False)

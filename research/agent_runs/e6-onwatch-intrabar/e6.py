@@ -24,8 +24,10 @@ Intrabar entry model (1-minute bars; strict = primary, M1 = first run kept for t
   * M1 (first run, optimistic, NOT the primary): fill allowed inside the touch bar itself under the path convention
     close >= open -> O,L,H,C ; close < open -> O,H,L,C (long), U from the candle before the touch bar. It assumes the
     touch low is final before the cross, i.e. a stop placed with knowledge of the final low. Kept only as a record.
-  * ON WATCH = on: after an entry triggers, if that bar CLOSES within one tolerance unit (tol x range of the prior
-    candle) of the running RTH day extreme in the trade direction, the trade is refused (never taken).
+  * ON WATCH = on (amendment_2, option a): decided at the ARMING close. If the retest bar j closes within one
+    tolerance unit (tol x range of candle j-1) of the running RTH day extreme in the trade direction, nothing is
+    armed (setup stays alive for a later touch). The earlier version judged the ENTRY bar's close after the fill,
+    which is look-ahead; it survives only in the legacy M1 path (strict=False) so M1's record does not move.
   * Exit identical to the baseline: 2R target (needs 1 tick through), same-bar stop wins, flat at 10:30 bar open less
     1 tick, 1 tick entry slip, $1.24 round trip per micro, R = pts/dist - comm/(dist x $2).
 """
@@ -125,6 +127,16 @@ def _exit_from(A, side, k, e, stop, tgt, cut, reach_k):
 
 
 # ---------------------------------------------------------------- E6 intrabar entry
+def _on_watch_at_arming(C, H, L, rngs, j, side, tol):
+    """ON WATCH decided when the retest bar j CLOSES (all inputs known then): refuse to arm if C[j] is within
+    tol x range of the previous candle of the running RTH day extreme in the trade direction (long: day high)."""
+    prior = rngs[j - 1] if j >= 1 else np.nan
+    u = tol * prior if not np.isnan(prior) else 0.0
+    if side > 0:
+        return bool(C[j] >= np.nanmax(H[:j + 1]) - u)
+    return bool(C[j] <= np.nanmin(L[:j + 1]) + u)
+
+
 def e6_day(A, tol, onwatch, cut=CUT, trace=None, strict=True):
     """Returns (trade_dict | None, n_refused). trade_dict: date,k(entry bar),side,e,stop,dist,x,R,how."""
     O, H, L, C = A["open"], A["high"], A["low"], A["close"]
@@ -144,7 +156,7 @@ def e6_day(A, tol, onwatch, cut=CUT, trace=None, strict=True):
     def finish(j, side, e, stop, how, reach):
         """Build the trade for an entry in bar j. Applies ON WATCH. Returns trade dict, or 'refused'."""
         dist = (e - stop) * side
-        if onwatch:
+        if onwatch and not strict:      # legacy M1 only: post-fill close check = look-ahead, superseded (amendment_2)
             prior = rngs[j - 1] if j >= 1 else np.nan
             u = tol * prior if not np.isnan(prior) else 0.0
             if side > 0:
@@ -203,9 +215,13 @@ def e6_day(A, tol, onwatch, cut=CUT, trace=None, strict=True):
             pend = None
             continue
         touched = (L[j] <= lvl + TICK) if side > 0 else (H[j] >= lvl - TICK)
-        if touched and disp and j > bi and pend is None and j <= cut - 2 and no_arm != j:
-            if trace is not None:
-                trace.append((j, side))
+        arm = touched and disp and j > bi and pend is None and j <= cut - 2 and no_arm != j
+        if arm and trace is not None:
+            trace.append((j, side))
+        if arm and strict and onwatch and _on_watch_at_arming(C, H, L, rngs, j, side, tol):
+            refused += 1                    # refusal decided at the ARMING close (known then); nothing is armed
+            arm = False
+        if arm:
             prior = rngs[j] if strict else rngs[j - 1]
             u = max(tol * prior, 2 * TICK) if not np.isnan(prior) else 2 * TICK
             if side > 0:
