@@ -11,7 +11,7 @@ from pathlib import Path
 
 from eye_card.chart import Candidate, render_candidate_chart
 from eye_card.labels import append_label
-from eye_card.notify import build_actions, build_message, build_title, send_card
+from eye_card.notify import build_actions, build_message, build_title, send_card, ticket_line
 from eye_card.server import app as label_app
 
 FIXTURES = Path(__file__).parent / "fixtures"
@@ -185,6 +185,37 @@ class LabelsCsvTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as td:
             with self.assertRaises(ValueError):
                 append_label(Path(td) / "labels.csv", "c1", "maybe")
+
+
+class TicketLineTests(unittest.TestCase):
+    """u07 sizing: n = floor(200 / (stop_pt*2 + 2.25)), risk net of $1.24 RT."""
+
+    def _mnq(self, direction, stop):
+        return _candidate(symbol="MNQ", direction=direction, entry=24850.00, stop=stop,
+                          extra={"bar_symbol": "NQZ6"})
+
+    def test_15pt_stop_sizes_6(self):
+        cand = self._mnq("LONG", 24835.00)
+        self.assertEqual(
+            ticket_line(cand),
+            "TICKET: BUY 6 MNQZ6 MKT \u00b7 SL 24835.00 STP-MKT \u00b7 TP 24880.00 LMT"
+            " \u00b7 OCO \u00b7 FLAT 10:30 \u00b7 risk $187")
+
+    def test_27_5pt_stop_sizes_3_and_is_last_line_before_paper_footer(self):
+        cand = self._mnq("LONG", 24822.50)
+        line = ("TICKET: BUY 3 MNQZ6 MKT \u00b7 SL 24822.50 STP-MKT \u00b7 TP 24905.00 LMT"
+                " \u00b7 OCO \u00b7 FLAT 10:30 \u00b7 risk $169")
+        self.assertEqual(ticket_line(cand), line)
+        body = build_message(cand).split("\n")
+        self.assertEqual(body[-2], line)
+        self.assertTrue(body[-1].startswith("OMEN - eye-loop - PAPER"))
+
+    def test_50pt_short_stop_sizes_1(self):
+        cand = self._mnq("SHORT", 24900.00)
+        self.assertEqual(
+            ticket_line(cand),
+            "TICKET: SELL 1 MNQZ6 MKT \u00b7 SL 24900.00 STP-MKT \u00b7 TP 24750.00 LMT"
+            " \u00b7 OCO \u00b7 FLAT 10:30 \u00b7 risk $101")
 
 
 if __name__ == "__main__":
