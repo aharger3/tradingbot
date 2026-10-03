@@ -939,7 +939,11 @@ def _roll_session_push(day: str) -> None:
 
 
 def _note_s_trade(rec: dict) -> bool:
-    """Record a size-gated S promotion; True if it is the one for the phone."""
+    """Record a size-gated S promotion; True if it is eligible for the phone.
+
+    Does NOT latch: the caller latches (`_session_push["pushed"]`, `push_rec`)
+    only after `notify_ntfy.push` returns True, so a failed send is retried by
+    the next S."""
     _session_push["trades"].append(rec)
     if _session_push["veto_first"] is None and rec["level_tf"] != "1D":
         _session_push["veto_first"] = rec
@@ -947,8 +951,6 @@ def _note_s_trade(rec: dict) -> bool:
         return False
     if OMEN_LIVE_1D_VETO and rec["level_tf"] == "1D":
         return False           # veto arm ON: wait for a non-prior-day level
-    _session_push["pushed"] = True
-    _session_push["push_rec"] = rec
     return True
 
 
@@ -1094,10 +1096,12 @@ def push_summary(paper=None) -> bool:
     """Send the 11:00 summary once per session."""
     if _session_push["summary_pushed"]:
         return False
-    _session_push["summary_pushed"] = True
-    return notify_ntfy.push(f"OMEN 11:00 — {_session_push['date'] or 'today'}",
-                            build_summary_text(paper),
-                            priority="default", tags="bar_chart")
+    ok = notify_ntfy.push(f"OMEN 11:00 — {_session_push['date'] or 'today'}",
+                          build_summary_text(paper),
+                          priority="default", tags="bar_chart")
+    if ok:                                 # latch only on a delivered push
+        _session_push["summary_pushed"] = True
+    return bool(ok)
 
 
 def _on_paper_exit(runner, ev: dict) -> None:
@@ -1142,8 +1146,8 @@ def _on_paper_exit(runner, ev: dict) -> None:
     pushed = _session_push["push_rec"]
     if (pushed and not _session_push["exit_pushed"]
             and ev.get("symbol") == pushed["symbol"]):
-        _session_push["exit_pushed"] = True
-        _push_exit(pushed, ev)
+        if _push_exit(pushed, ev):         # latch only on a delivered push
+            _session_push["exit_pushed"] = True
 
 
 def _tier(runner: SignalRunner, sig: dict, grade: str, ts: str, symbol: str) -> str:
@@ -1789,8 +1793,9 @@ def _emit_signal(runner: SignalRunner, tasty_feed: TastytradeFeed, symbol: str, 
             # submit succeeded; None otherwise (no invented id).
             "alpaca_order_id": (_alpaca_entry_rec or {}).get("broker_order_id"),
         }
-        if _note_s_trade(rec):
-            _push_s_signal(rec)
+        if _note_s_trade(rec) and _push_s_signal(rec):
+            _session_push["pushed"] = True   # latch only on a delivered push
+            _session_push["push_rec"] = rec
     return not alert_only
 
 
