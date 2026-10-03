@@ -7,10 +7,12 @@ eye_runner.py -- the eye loop, end to end:
 
 REPLAY MODE ONLY as of 2026-09-26. No live 1-min feed is wired into this repo
 (v3-eye2-candidates/README.md: "no live data feed is wired up here"). This
-script replays one historical Mon-Thu session's recovered NQ bars (sized as
-MNQ), pacing card sends to the same wall-clock offset from 09:30 ET that each
-setup actually fired at -- so a run feels like a live session for tapping
-practice -- but every card title carries the caller's --title-prefix (e.g.
+script replays historical NQ sessions' recovered bars (sized as MNQ). Default
+(pool mode, R8-1 2026-10-03): ONE card from each of several fresh, liquid sessions
+of the fit window, drawn from eye_card/session_pool.py -- a session is never shown
+twice, and the old hard-coded Labor Day (2026-09-07, ~10% volume) replay is gone.
+--date D replays one named session instead, pacing each card to the minute it fired
+at. Every card title carries the caller's --title-prefix (e.g.
 "OMEN REPLAY TEST") and every journal row lands in a REPLAY-only file
 (research/paper_journal/acks_replay.jsonl), never the live acks.jsonl that a
 real feed would write to. No orders are ever placed. See eye-live.md.
@@ -24,7 +26,7 @@ carries the config's hash (PREREG_SLICE_A.config_hash()) so any forward-test
 row can be traced back to the exact rule set that produced it.
 
 Usage:
-    python eye_runner.py --title-prefix "OMEN REPLAY TEST"
+    python eye_runner.py --title-prefix "OMEN REPLAY TEST" --blind
     python eye_runner.py --date 2026-09-17 --speed 60 --title-prefix "OMEN TEST -- ignore"
 """
 from __future__ import annotations
@@ -34,6 +36,7 @@ import csv
 import os
 import sys
 import time
+from collections import defaultdict
 from dataclasses import asdict
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -49,6 +52,8 @@ import candidates as eye2          # noqa: E402
 import eye_paper                   # noqa: E402
 from eye_card.chart import Candidate as ChartCandidate, render_candidate_chart  # noqa: E402
 from eye_card.notify import send_card                                           # noqa: E402
+from eye_card import session_pool                                               # noqa: E402
+from eye_card import tap as eyetap                                              # noqa: E402
 from omen_data import load_fut                                                  # noqa: E402
 from prereg_slice_a import (                                                    # noqa: E402
     PREREG_SLICE_A,
@@ -60,13 +65,6 @@ from prereg_slice_a import (                                                    
 ET = ZoneInfo("America/New_York")
 REPLAY_JOURNAL = REPO / "research" / "paper_journal" / "acks_replay.jsonl"
 CHART_DIR = REPO / "eye_card" / "sent_charts"
-
-
-def pick_replay_date(instrument: str, explicit: str | None) -> str:
-    if explicit:
-        return explicit
-    _, sessions_used = eye2.run(instrument, n_sessions=1)
-    return str(sessions_used[-1])
 
 
 def bars_from_day_array(A, up_to_idx: int) -> list[dict]:
@@ -138,10 +136,65 @@ def log(msg: str):
     print(f"[{datetime.now(ET).isoformat(timespec='seconds')}] {msg}", flush=True)
 
 
+def first_sendable(A, date: str, instrument: str):
+    """Earliest slice-A (S or A grade) candidate of the session, or None."""
+    cands = [c for c in eye2.detect_candidates(A, date, instrument) if prereg_allowed(c.grade_hint)]
+    cands.sort(key=lambda c: c.features["minutes_after_open"])
+    return cands[0] if cands else None
+
+
+def build_plan(args, df, labels_csv: Path, skips_csv: Path, n_cards: int) -> list[dict]:
+    """What to send, in order: [{date, A, cand, due_s}].
+
+    --date D     one session, every sendable candidate, paced at its minute after the open (old behavior).
+    default      pool mode: one card per session, each from a fresh liquid session never shown before
+                 (eye_card/session_pool.py), `card_gap_s` apart."""
+    by_date = {str(d): g for d, g in df.groupby(df["date"].astype(str))}
+
+    def arrays(date):
+        return eye2.day_arrays(by_date[date])
+
+    if args.date:
+        if args.date not in by_date:
+            return []
+        A = arrays(args.date)
+        cands = [c for c in eye2.detect_candidates(A, args.date, args.instrument) if prereg_allowed(c.grade_hint)]
+        cands.sort(key=lambda c: c.features["minutes_after_open"])
+        log(f"REPLAY {args.date} {args.instrument}: {len(cands)} sendable ({[c.grade_hint for c in cands]})")
+        return [{"date": args.date, "A": A, "cand": c, "due_s": c.features["minutes_after_open"] * 60.0}
+                for c in cands]
+
+    used = session_pool.used_days(labels_csv=labels_csv, skips_csv=skips_csv, ledger=eyetap.LEDGER,
+                                  journal=Path(args.journal_path),
+                                  marks_json=Path(args.marks_json) if args.marks_json else None)
+    pool = session_pool.liquid_sessions(df)
+    found = {}
+
+    def usable(date):
+        A = arrays(date)
+        c = first_sendable(A, date, args.instrument)
+        if c is not None:
+            found[date] = (A, c)
+        return c is not None
+
+    picked = session_pool.pick_sessions(pool, used, n_cards, usable=usable)
+    log(f"POOL {args.instrument}: {len(pool)} liquid sessions, {len(used)} already seen, "
+        f"{len(picked)} picked for {n_cards} cards")
+    return [{"date": d, "A": found[d][0], "cand": found[d][1], "due_s": i * float(args.card_gap_s)}
+            for i, d in enumerate(picked)]
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser()
     ap.add_argument("--instrument", default="MNQ")
-    ap.add_argument("--date", default=None, help="replay date YYYY-MM-DD; default = most recent session")
+    ap.add_argument("--date", default=None,
+                    help="replay ONE named session YYYY-MM-DD (dev/test). Default: one card from each of "
+                         "several fresh liquid sessions drawn from the rotating pool, none ever repeated")
+    ap.add_argument("--card-gap-s", type=float, default=180.0,
+                    help="pool mode: seconds between card sends (one-at-a-time rule still applies)")
+    ap.add_argument("--marks-json", default=os.environ.get(
+        "EYE_MARKS_JSON", str(REPO / "_omen_mark_days.json")),
+        help="Austin's blind marking set; sessions where he marked an index ETF are never replayed")
     ap.add_argument("--title-prefix", required=True, help='e.g. "OMEN REPLAY TEST" or "OMEN TEST -- ignore"')
     ap.add_argument("--speed", type=float, default=1.0, help="pacing multiplier; 1.0 = real-time, 60 = 60x fast")
     ap.add_argument("--confirm-window-s", type=int, default=120)
@@ -149,6 +202,12 @@ def main(argv=None):
     ap.add_argument("--journal-path", default=str(REPLAY_JOURNAL))
     ap.add_argument("--labels-csv", default=os.environ.get("EYE_LABELS_CSV", str(REPO / "eye_card" / "labels.csv")))
     ap.add_argument("--token", default=os.environ.get("EYE_LABEL_TOKEN", "dev-local-only"))
+    ap.add_argument("--blind", action="store_true",
+                    help="hide ticker, date, grade and absolute prices on the card and chart; opaque card id")
+    ap.add_argument("--legacy-label-server", action="store_true",
+                    help="old path: chart PNG to the old ntfy topic, buttons to the label server's GET /label")
+    ap.add_argument("--max-cards-per-day", type=int, default=eyetap.MAX_CARDS_PER_DAY)
+    ap.add_argument("--ignore-schedule", action="store_true", help="dev only: skip the Mon-Thu gate")
     ap.add_argument("--max-wall-minutes", type=float, default=95.0, help="hard stop regardless of pacing")
     args = ap.parse_args(argv)
 
@@ -159,31 +218,49 @@ def main(argv=None):
         f"grades={PREREG_SLICE_A.allowed_grades} max_concurrent={PREREG_SLICE_A.max_concurrent_trades} "
         f"max_per_day={PREREG_SLICE_A.max_trades_per_day} day_stop_r={PREREG_SLICE_A.day_stop_r}")
 
-    date = pick_replay_date(args.instrument, args.date)
+    tap_mode = not args.legacy_label_server
+    if tap_mode and not args.ignore_schedule:
+        ok, why = eyetap.may_send(datetime.now(ET), cap=args.max_cards_per_day)
+        if not ok:
+            log(f"no cards today: {why}")
+            return 0
+    if tap_mode:
+        eyetap.load_config()   # fail before any work if the tap secrets are missing
+        if not eyetap.wait_for_network():
+            log("no network (ntfy.sh does not resolve after 10 min): no cards this run")
+            return 3
+
+    sent_today = eyetap.cards_sent_on(f"{datetime.now(ET):%Y-%m-%d}") if tap_mode else 0
     df = load_fut(args.instrument, "09:30", "11:01")
-    g = df[df["date"].astype(str) == date]
-    if g.empty:
-        log(f"ERROR: no bars for {args.instrument} on {date}")
+    skips_csv = labels_csv.with_name("skips.csv")
+    plan = build_plan(args, df, labels_csv, skips_csv, max(1, args.max_cards_per_day - sent_today))
+    if not plan:
+        log("ERROR: nothing to send (no bars for --date, or no fresh liquid session left in the pool)")
         return 2
-    A = eye2.day_arrays(g)
-    raw_cands = eye2.detect_candidates(A, date, args.instrument)
-    cands = [c for c in raw_cands if prereg_allowed(c.grade_hint)]
-    cands.sort(key=lambda c: c.features["minutes_after_open"])
-    log(f"REPLAY {date} {args.instrument}: {len(raw_cands)} raw candidates, "
-        f"{len(cands)} sendable ({[c.grade_hint for c in cands]})")
 
     run_start = datetime.now(ET)
     hard_stop = run_start + timedelta(minutes=args.max_wall_minutes)
     seen_labels: set = set()
-    pending: dict[str, dict] = {}   # id -> {paper_cand, sent_wall}
-    confirmed_count = 0
-    daily_r = 0.0
+    seen_skips: set = set()
+    cid_by_card: dict[str, str] = {}   # tap card id -> candidate id (identity unless blind)
+    pending: dict[str, dict] = {}   # id -> {paper_cand, sent_wall, date}
+    # the prereg day limits (-1R/+1R stop, trades per day) apply to one replayed session, not across
+    # the unrelated sessions of a pool run
+    confirmed_count: dict[str, int] = defaultdict(int)
+    daily_r: dict[str, float] = defaultdict(float)
     seq_by_grade: dict[str, int] = {}
+    sent_dates: list[str] = []
+
+    def halted(date):
+        return should_halt_day(confirmed_count[date], daily_r[date])
 
     def sweep_labels():
-        nonlocal confirmed_count, daily_r
+        for row in read_new_labels(skips_csv, seen_skips):
+            cid = cid_by_card.get(row["candidate_id"], row["candidate_id"])
+            if pending.pop(cid, None) is not None:
+                log(f"skip {cid}: Skip tapped -- no trade, nothing journaled")
         for row in read_new_labels(labels_csv, seen_labels):
-            cid = row["candidate_id"]
+            cid = cid_by_card.get(row["candidate_id"], row["candidate_id"])
             if cid not in pending:
                 continue
             tap = {"candidate_id": cid, "grade": "S" if row["label"] == "S" else "not_s",
@@ -197,8 +274,8 @@ def main(argv=None):
             log(f"tap {cid}: label={row['label']} confirmed={result['confirmed']} "
                 f"reason={result.get('reason')} r={result.get('r')} journaled={n}")
             if result["confirmed"]:
-                confirmed_count += n
-                daily_r += float(result.get("r") or 0.0)
+                confirmed_count[pending[cid]["date"]] += n
+                daily_r[pending[cid]["date"]] += float(result.get("r") or 0.0)
             del pending[cid]
 
     def expire_pending():
@@ -213,14 +290,15 @@ def main(argv=None):
                 log(f"expire {cid}: no S tap within {args.confirm_window_s}s -- skipped, not traded")
                 del pending[cid]
 
-    for cand in cands:
-        if should_halt_day(confirmed_count, daily_r):
-            log(f"HALT: prereg day limit reached (trades={confirmed_count}, r={daily_r:.2f}) "
-                f"-- no more candidates sent")
-            break
+    for item in plan:
+        date, A, cand = item["date"], item["A"], item["cand"]
+        if halted(date):
+            log(f"HALT {date}: prereg day limit reached (trades={confirmed_count[date]}, "
+                f"r={daily_r[date]:.2f}) -- no more candidates sent")
+            continue
 
         minute = cand.features["minutes_after_open"]
-        target_wall = run_start + timedelta(seconds=(minute * 60) / args.speed)
+        target_wall = run_start + timedelta(seconds=item["due_s"] / args.speed)
         while True:
             now = datetime.now(ET)
             slot_free = concurrent_slot_free(len(pending))
@@ -228,19 +306,24 @@ def main(argv=None):
                 break
             sweep_labels()
             expire_pending()
-            if should_halt_day(confirmed_count, daily_r):
+            if halted(date):
                 break
             time.sleep(min(2.0, max(0.05, (target_wall - now).total_seconds())) / max(args.speed, 1.0))
         if datetime.now(ET) >= hard_stop:
             log("hard stop reached before all candidates sent")
             break
-        if should_halt_day(confirmed_count, daily_r):
-            log(f"HALT: prereg day limit reached (trades={confirmed_count}, r={daily_r:.2f}) "
-                f"-- no more candidates sent")
-            break
+        if halted(date):
+            log(f"HALT {date}: prereg day limit reached (trades={confirmed_count[date]}, "
+                f"r={daily_r[date]:.2f}) -- no more candidates sent")
+            continue
         if not concurrent_slot_free(len(pending)):
             log(f"SKIP {cand.instrument} minute={minute}: prereg one-at-a-time slot busy ({list(pending)})")
             continue
+
+        sent_count = eyetap.cards_sent_on(f"{datetime.now(ET):%Y-%m-%d}")
+        if tap_mode and sent_count >= args.max_cards_per_day:
+            log(f"STOP: daily card cap reached ({sent_count}/{args.max_cards_per_day})")
+            break
 
         grade = cand.grade_hint
         seq_by_grade[grade] = seq_by_grade.get(grade, 0) + 1
@@ -248,15 +331,35 @@ def main(argv=None):
         chart_cand = to_chart_candidate(cand, cid)
         bars = bars_from_day_array(A, minute)
         CHART_DIR.mkdir(parents=True, exist_ok=True)
-        png_path = CHART_DIR / f"{cid}.png"
-        render_candidate_chart(chart_cand, bars, png_path)
+        card_id = eyetap.card_id_for(cid, args.blind) if tap_mode else cid
+        # blind: the PNG name travels with the push, so it must not carry the date/grade in cid
+        png_path = CHART_DIR / f"{card_id if (tap_mode and args.blind) else cid}.png"
+        render_candidate_chart(chart_cand, bars, png_path, blind=args.blind and tap_mode)
         sent_wall = datetime.now(ET)
         card_sent_ts = sent_wall  # replay: card_sent_ts anchors the confirm window
-        result = send_card(chart_cand, png_path, args.token, test_title_prefix=args.title_prefix)
+        if tap_mode:
+            cid_by_card[card_id] = cid
+            result = eyetap.send_tap_card(chart_cand, png_path, card_id, blind=args.blind,
+                                          seq=sent_count + 1, cap=args.max_cards_per_day,
+                                          title_prefix=args.title_prefix)
+            if result.ok:
+                eyetap.record_card(card_id, cid, sent_wall, blind=args.blind, seq=sent_count + 1)
+        else:
+            result = send_card(chart_cand, png_path, args.token, test_title_prefix=args.title_prefix)
         log(f"sent {cid} grade={grade} dir={chart_cand.direction} "
-            f"entry={chart_cand.entry} stop={chart_cand.stop} -> ntfy ok={result.ok} status={result.status_code}")
+            f"entry={chart_cand.entry} stop={chart_cand.stop} -> ntfy ok={result.ok} "
+            f"status={result.status_code}" + (f" tap card={card_id} blind={args.blind}" if tap_mode else ""))
+        if not result.ok:
+            # not delivered: nothing to wait for, and the session stays unused for the next run
+            err = getattr(result, "error", "")
+            log(f"NOT SENT {cid}: {err or 'push failed'}")
+            if err == "tunnel down":
+                log("tunnel down: the buttons would lose every tap -- stopping, no more cards this run")
+                break
+            continue
+        sent_dates.append(date)
         paper_cand = to_paper_candidate(cand, cid, date, card_sent_ts)
-        pending[cid] = {"paper_cand": paper_cand, "sent_wall": sent_wall}
+        pending[cid] = {"paper_cand": paper_cand, "sent_wall": sent_wall, "date": date}
 
     # drain remaining confirmation windows
     while pending and datetime.now(ET) < hard_stop:
@@ -266,9 +369,10 @@ def main(argv=None):
     sweep_labels()
     expire_pending()
 
-    summary = eye_paper.daily_summary(date, path=journal_path)
-    log(f"DONE {date}: {len(cands)} sent, {confirmed_count} confirmed+journaled, "
-        f"daily_r={daily_r:.2f}, summary={summary}")
+    for d in dict.fromkeys(sent_dates):
+        log(f"DONE {d}: {confirmed_count[d]} confirmed+journaled, daily_r={daily_r[d]:.2f}, "
+            f"summary={eye_paper.daily_summary(d, path=journal_path)}")
+    log(f"DONE run: {len(sent_dates)} cards sent from {len(set(sent_dates))} sessions")
     return 0
 
 

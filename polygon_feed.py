@@ -15,7 +15,8 @@ import requests
 
 from omen_bot import Candle
 
-ARCHIVE = Path(__file__).parent / "data_archive"
+from omen_paths import DATA_ARCHIVE
+ARCHIVE = DATA_ARCHIVE
 ET = ZoneInfo("America/New_York")
 _last_call = [0.0]
 

@@ -1,0 +1,101 @@
+[
+ {
+  "sym": "PLTR",
+  "day": "2026-08-04",
+  "et": "09:39",
+  "dir": "call",
+  "stop": 149.85,
+  "status": "fired",
+  "tags": [
+   "clean",
+   "hammer",
+   "nodisp",
+   "chase",
+   "brocr"
+  ]
+ },
+ {
+  "sym": "PLTR",
+  "day": "2026-08-04",
+  "et": "09:39",
+  "dir": "call",
+  "stop": 147.51,
+  "status": "fired",
+  "tags": [
+   "clean",
+   "hammer",
+   "nodisp",
+   "chase",
+   "brocr"
+  ]
+ },
+ {
+  "sym": "PLTR",
+  "day": "2026-08-04",
+  "et": "09:41",
+  "dir": "call",
+  "stop": 149.85,
+  "status": "fired",
+  "tags": [
+   "clean",
+   "hammer",
+   "nodisp",
+   "chase",
+   "brocr"
+  ]
+ },
+ {
+  "sym": "PLTR",
+  "day": "2026-08-04",
+  "et": "10:04",
+  "dir": "call",
+  "stop": 152.75,
+  "status": "skipped_d",
+  "tags": [
+   "clean",
+   "nodisp",
+   "brocr"
+  ]
+ },
+ {
+  "sym": "PLTR",
+  "day": "2026-08-04",
+  "et": "10:06",
+  "dir": "call",
+  "stop": 152.75,
+  "status": "fired",
+  "tags": [
+   "clean",
+   "nodisp",
+   "chase",
+   "brocr"
+  ]
+ },
+ {
+  "sym": "PLTR",
+  "day": "2026-08-04",
+  "et": "10:15",
+  "dir": "call",
+  "stop": 154.56,
+  "status": "skipped_tight_stop",
+  "tags": [
+   "clean",
+   "nodisp",
+   "brocr"
+  ]
+ },
+ {
+  "sym": "PLTR",
+  "day": "2026-08-04",
+  "et": "10:16",
+  "dir": "call",
+  "stop": 154.56,
+  "status": "fired",
+  "tags": [
+   "clean",
+   "hammer",
+   "nodisp",
+   "brocr"
+  ]
+ }
+]

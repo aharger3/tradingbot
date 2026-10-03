@@ -140,7 +140,8 @@ MIN_SAMPLE_N = 20
 # ---------------------------------------------------------------------------
 # Archive coverage -- derived from disk, never hardcoded
 # ---------------------------------------------------------------------------
-ARCHIVE_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data_archive")
+from omen_paths import DATA_ARCHIVE
+ARCHIVE_DIR = str(DATA_ARCHIVE)
 
 
 def has_archive(symbol: str, min_days: int = 1) -> bool:

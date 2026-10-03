@@ -304,9 +304,14 @@ research/g76_livefixes_retest_head.json
 # eye-loop runtime output (v3 eye1-4): never commit generated cards/labels/journal.
 eye_card/labels.csv
 eye_card/sent_charts/
+eye_card/skips.csv
+eye_card/cards_sent.jsonl
 research/paper_journal/
 *.pid
 
 # E5 blind test: pool holds session dates, taps are Austin's private log
 research/paper_journal/blind_pool.json
 research/paper_journal/acks_blind.jsonl
+
+# runtime logs (a tracked dryrun.cmd once leaked EYE_LABEL_TOKEN)
+logs/
