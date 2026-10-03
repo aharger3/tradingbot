@@ -18,8 +18,9 @@ DEFAULT_NTFY_BASE = "https://ntfy.sh"
 
 
 def _ntfy_topic() -> str:
-    # Reuse ev-dashboard's ntfy topic (see Projects/ev-dashboard/.env NTFY_TOPIC).
-    return os.environ.get("NTFY_TOPIC", "aharg-ev-eo5zvp")
+    # The ONE place the topic is resolved: notify_ntfy (env NTFY_TOPIC, else the keys vault).
+    from notify_ntfy import resolve_topic
+    return resolve_topic() or ""
 
 
 def _ntfy_base() -> str:
@@ -86,6 +87,8 @@ def send_card(candidate: Candidate, chart_path: str | Path, token: str,
     """POST the chart PNG to ntfy with the card headers. Always PAPER."""
     sess = session or requests
     topic = _ntfy_topic()
+    if not topic:  # unconfigured: never post to the ntfy root
+        return SendResult(ok=False, status_code=0, url="")
     url = f"{_ntfy_base().rstrip('/')}/{topic}"
     title = build_title(candidate)
     if test_title_prefix:

@@ -26,7 +26,7 @@ where the deck is fetched from if he asks for yesterday's.
 THE TOPIC IS A SECRET AND LIVES IN THE ENVIRONMENT. `aharger3/tradingbot` is a
 PUBLIC repository. An ntfy topic is its own authentication -- anyone holding the
 name can read every homework deck and push anything they like to his phone -- so
-it is set once on the box (`setx OMEN_NTFY_TOPIC ...`) and read from
+it is set once on the box (the keys vault (`keys.py set NTFY_TOPIC ...`)) and read from
 `notify_ntfy.resolve_topic`. It must never be written into a file in this repo.
 """
 from __future__ import annotations
@@ -142,7 +142,7 @@ def main():
     ap = argparse.ArgumentParser(description="Send the blind deck to the phone")
     ap.add_argument("--day", required=True, help="session (YYYY-MM-DD)")
     ap.add_argument("--topic", default=None,
-                    help="ntfy topic; defaults to $OMEN_NTFY_TOPIC")
+                    help="ntfy topic; defaults to env NTFY_TOPIC, else the keys vault")
     ap.add_argument("--dry-run", action="store_true",
                     help="mirror and print, send nothing")
     ap.add_argument("--title-suffix", default="",

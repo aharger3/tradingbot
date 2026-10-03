@@ -50,7 +50,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from signal_runner import _load_env_file   # noqa: E402
-_load_env_file(ROOT / ".env")              # POLYGON_API_KEY, OMEN_NTFY_TOPIC
+_load_env_file(ROOT / ".env")              # POLYGON_API_KEY (the ntfy topic comes from notify_ntfy: env or vault)
 
 import universe                    # noqa: E402
 import notify_ntfy                 # noqa: E402

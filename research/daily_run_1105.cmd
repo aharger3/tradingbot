@@ -9,10 +9,10 @@ REM is the REVEAL: the whole session, one card per symbol. This one runs while
 REM the day is still open and is BLIND -- the fetch itself stops at 11:00, so
 REM the archive file for today physically cannot hold the answer.
 REM
-REM The ntfy topic is a SECRET and is read from %OMEN_NTFY_TOPIC%. This repo is
+REM The ntfy topic is a SECRET and is read from NTFY_TOPIC (env, else the keys vault). This repo is
 REM public; anyone holding the topic name can read every deck and push anything
 REM to his phone, so it is set once on the box with:
-REM     setx OMEN_NTFY_TOPIC <topic>
+REM     (nothing to set: notify_ntfy reads env NTFY_TOPIC, else the keys vault; rotate with keys.py set NTFY_TOPIC)
 setlocal
 cd /d "%~dp0.."
 
