@@ -308,3 +308,6 @@ eye_card/skips.csv
 eye_card/cards_sent.jsonl
 research/paper_journal/
 *.pid
+
+# runtime logs (a tracked dryrun.cmd once leaked EYE_LABEL_TOKEN)
+logs/
