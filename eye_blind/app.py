@@ -50,6 +50,9 @@ def blind_page():
     if not POOL.exists():
         return _page('<p class="m">No session pool built yet (needs window-B data).</p>')
     pool = core.load_pool(POOL)
+    if not pool.get("ready"):
+        return _page(f'<p class="m">Pool not ready: {len(pool["sessions"])} of {core.MIN_POOL} sessions. '
+                     'Taps stay closed until the pool is complete.</p>')
     taps = core.read_taps(TAPS)
     sid = core.next_session(pool, taps)
     if sid is None:
@@ -73,6 +76,8 @@ def blind_tap():
     if not POOL.exists():
         return jsonify(ok=False, error="no pool"), 404
     pool = core.load_pool(POOL)
+    if not pool.get("ready"):
+        return jsonify(ok=False, error="pool not ready"), 409
     try:
         core.append_tap(TAPS, pool, request.values.get("id", ""), request.values.get("label", ""))
     except ValueError:

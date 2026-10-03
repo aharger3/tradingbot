@@ -73,13 +73,30 @@ def orb1m_sha256() -> str:
 
 
 # --------------------------------------------------------------------- loading
-def load_bars_csv(path) -> pd.DataFrame:
-    """CSV with open/high/low/close and either ts_ns (UTC ns, Massive format) or ts."""
+_TZ_SUFFIX = r"(?:Z|[+-]\d{2}:?\d{2})\s*$"
+
+
+def load_bars_csv(path, tz: str | None = None) -> pd.DataFrame:
+    """CSV with open/high/low/close and either ts_ns (UTC ns, Massive format) or ts.
+    A `ts` column must carry a UTC offset (Z / +hh:mm); a naive `ts` raises ValueError unless an
+    explicit `tz` (e.g. "America/New_York", "UTC") says which clock it is. Never guessed."""
     d = pd.read_csv(path)
     if "ts_ns" in d:
         d["ts"] = pd.to_datetime(d["ts_ns"], unit="ns", utc=True).dt.tz_convert(ET)
     else:
-        d["ts"] = pd.to_datetime(d["ts"], utc=True).dt.tz_convert(ET)
+        raw = d["ts"].astype(str)
+        has_off = raw.str.contains(_TZ_SUFFIX, regex=True)
+        if has_off.all():
+            if tz is not None:
+                raise ValueError("ts already carries a UTC offset; do not also pass tz")
+            d["ts"] = pd.to_datetime(raw, utc=True).dt.tz_convert(ET)
+        elif has_off.any():
+            raise ValueError("ts column mixes timezone-aware and naive timestamps")
+        elif tz is None:
+            raise ValueError("ts column has no timezone; refusing to guess. Pass tz= (CLI: --tz), "
+                             "or use a ts_ns (UTC) column")
+        else:
+            d["ts"] = pd.to_datetime(raw).dt.tz_localize(tz).dt.tz_convert(ET)
     return d[["ts", "open", "high", "low", "close"]].sort_values("ts").reset_index(drop=True)
 
 
@@ -94,6 +111,10 @@ def build_pool(bars: pd.DataFrame, cfg: dict | None = None, window=WINDOW_B,
     cfg = {**DEFAULT_CFG, **(cfg or {})}
     o = load_orb1m()
     df = bars.copy()
+    dup = df["ts"].duplicated()
+    if dup.any():
+        raise ValueError(f"{int(dup.sum())} duplicate bar timestamps (first {df.loc[dup, 'ts'].iloc[0]}): "
+                         "two contracts in one session? build the CSV from one front-month contract per session")
     df["date"] = df["ts"].dt.strftime("%Y-%m-%d")
     if window is not None:
         bad = sorted(d for d in df["date"].unique() if not (window[0] <= d <= window[1]))
@@ -247,10 +268,11 @@ def _stats(rs, dates):
                 top5_share=float(top[top > 0].sum() / pos) if pos > 0 else None)
 
 
-def score(pool: dict, taps: list[dict], n_shuffles: int = N_SHUFFLES, seed: int = 7) -> dict:
+def _evaluate(pool: dict, taps: list[dict], n_shuffles: int, seed: int) -> dict:
+    """Stats for a set of taps (no verdict)."""
     cfg = pool["cfg"]
     rows = [(t["label"], trade_r(pool["sessions"][t["session_id"]], cfg), pool["sessions"][t["session_id"]]["date"])
-            for t in taps if t["session_id"] in pool["sessions"]]
+            for t in taps]
     lab = np.array([r[0] == "S" for r in rows], bool)
     R = np.array([r[1] for r in rows], float)
     D = np.array([r[2] for r in rows])
@@ -264,11 +286,51 @@ def score(pool: dict, taps: list[dict], n_shuffles: int = N_SHUFFLES, seed: int 
             p = rng.permutation(lab)
             hits += abs(R[p].mean() - R[~p].mean()) >= abs(gap) - 1e-12
         res.update(gap=float(gap), p_perm=float((hits + 1) / (n_shuffles + 1)))
-    if res["S"]["n"] >= MIN_S_TAPS:
+    return res
+
+
+def _lock_point(ordered: list[dict]):
+    """Prereg stopping point: the tap on which the 30th S lands, else the 60th session while
+    n_S < 30 (INCONCLUSIVE). Returns (n_taps_locked, kind) or (None, None) while still running."""
+    n_s = 0
+    for k, t in enumerate(ordered):
+        n_s += t["label"] == "S"
+        if n_s >= MIN_S_TAPS:
+            return k + 1, "S30"
+        if k + 1 >= MIN_POOL:
+            return k + 1, "INCONCLUSIVE"
+    return None, None
+
+
+def score(pool: dict, taps: list[dict], n_shuffles: int = N_SHUFFLES, seed: int = 7) -> dict:
+    """Verdict is frozen at the prereg stopping point; later taps are reported as post_lock
+    (descriptive, never a verdict), so extending the test or tapping on hindsight cannot flip it."""
+    ordered = [t for _, t in sorted(enumerate(taps), key=lambda x: (x[1].get("n_before", x[0]), x[0]))
+               if t["session_id"] in pool["sessions"]]
+    k, kind = _lock_point(ordered)
+    if k is None:
+        return dict(_evaluate(pool, ordered, n_shuffles, seed), verdict="IN_PROGRESS", locked_at_tap=None,
+                    post_lock=None)
+    res = _evaluate(pool, ordered[:k], n_shuffles, seed)
+    if kind == "S30":
         ok = res["S"]["mean_R"] >= PASS_MEAN_R and res["p_perm"] is not None and res["p_perm"] < ALPHA
         res["verdict"] = "PASS" if ok else "FAIL"
-    elif len(rows) >= 60:
-        res["verdict"] = "INCONCLUSIVE"
     else:
-        res["verdict"] = "IN_PROGRESS"
+        res["verdict"] = "INCONCLUSIVE"
+    res["locked_at_tap"] = k
+    post = ordered[k:]
+    if post:
+        ev = _evaluate(pool, post, 0, seed)
+        res["post_lock"] = dict(n_taps=ev["n_taps"], S=ev["S"], notS=ev["notS"], verdict=None,
+                                note="taps after the locked stopping point; descriptive only, no verdict")
+    else:
+        res["post_lock"] = None
     return res
+
+
+def public_view(res: dict) -> dict:
+    """What `score` may show Austin: nothing but progress until the verdict locks (no peeking)."""
+    if res["verdict"] != "IN_PROGRESS":
+        return res
+    return dict(verdict="IN_PROGRESS", n_taps=res["n_taps"], n_S=res["S"]["n"],
+                note=f"results hidden until the verdict locks (30th S tap, or session {MIN_POOL} with < 30 S)")

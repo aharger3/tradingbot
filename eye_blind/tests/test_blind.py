@@ -165,3 +165,92 @@ def test_blueprint_is_opt_in_on_live_label_server(monkeypatch):
     assert any(r.rule == "/label" for r in live.app.url_map.iter_rules())
     monkeypatch.delenv("EYE_BLIND")
     importlib.reload(live)
+
+
+# ---- referee fixes (E5 review) -------------------------------------------------------------
+@pytest.fixture
+def big_pool():
+    return core.build_pool(make_bars((["win", "lose"] * 60)[:120]), seed=3, salt="b")
+
+
+def numbered(taps):
+    return [dict(t, n_before=k) for k, t in enumerate(taps)]
+
+
+def test_verdict_is_frozen_at_stopping_point(big_pool):
+    """Alternate S/notS on the first 60 taps (no skill -> FAIL at the 30th S), then tap S only on
+    winners. Hindsight taps must not flip the locked FAIL."""
+    order = big_pool["order"]
+    first = [dict(session_id=sid, label="S" if k % 2 else "notS") for k, sid in enumerate(order[:60])]
+    later = [dict(session_id=sid, label="S" if core.trade_r(big_pool["sessions"][sid], big_pool["cfg"]) > 0 else "notS")
+             for sid in order[60:]]
+    r = core.score(big_pool, numbered(first + later), n_shuffles=2000)
+    assert r["verdict"] == "FAIL" and r["locked_at_tap"] == 60 and r["n_taps"] == 60 and r["S"]["n"] == 30
+    assert r["post_lock"]["n_taps"] == 60 and r["post_lock"]["verdict"] is None
+    # teeth: scored without the lock (all 120 taps pooled) the same data clears the bar
+    allv = core._evaluate(big_pool, numbered(first + later), 2000, 7)
+    assert allv["S"]["mean_R"] >= core.PASS_MEAN_R and allv["p_perm"] < core.ALPHA
+    # tap-order, not list-order, defines the lock
+    assert core.score(big_pool, list(reversed(numbered(first + later))), n_shuffles=500)["verdict"] == "FAIL"
+    # stops at the 30th S: later taps never enter even if the S count is only reached early
+    early = [dict(session_id=sid, label="S") for sid in order[:30]] +             [dict(session_id=sid, label="notS") for sid in order[30:60]]
+    assert core.score(big_pool, numbered(early), n_shuffles=500)["locked_at_tap"] == 30
+
+
+def test_inconclusive_locks_at_60th_session(big_pool):
+    order = big_pool["order"]
+    first = [dict(session_id=sid, label="S" if k < 10 else "notS") for k, sid in enumerate(order[:60])]
+    ext = [dict(session_id=sid, label="S") for sid in order[60:100]]  # extension would reach 30+ S
+    r = core.score(big_pool, numbered(first + ext), n_shuffles=500)
+    assert r["verdict"] == "INCONCLUSIVE" and r["locked_at_tap"] == 60 and r["S"]["n"] == 10
+    assert r["post_lock"]["n_taps"] == 40 and r["post_lock"]["S"]["n"] == 40 and r["post_lock"]["verdict"] is None
+
+
+def test_score_hides_running_results(pool):
+    r = core.score(pool, numbered(taps_for(pool, n=20)), n_shuffles=100)
+    assert r["verdict"] == "IN_PROGRESS"
+    v = core.public_view(r)
+    assert set(v) == {"verdict", "n_taps", "n_S", "note"} and "mean_R" not in str(v)
+    locked = core.score(pool, numbered(taps_for(pool)), n_shuffles=200)
+    assert core.public_view(locked) is locked
+
+
+def test_naive_ts_csv_is_refused_unless_tz_given(tmp_path):
+    b = make_bars(["win"])
+    d = pd.DataFrame(dict(ts=b["ts"].dt.strftime("%Y-%m-%d %H:%M:%S"),
+                          open=b.open, high=b.high, low=b.low, close=b.close))
+    p = tmp_path / "naive.csv"
+    d.to_csv(p, index=False)
+    with pytest.raises(ValueError, match="no timezone"):
+        core.load_bars_csv(p)
+    got = core.load_bars_csv(p, tz="America/New_York")
+    assert str(got["ts"].iloc[0]) == str(b["ts"].iloc[0])
+    aware = tmp_path / "aware.csv"
+    d.assign(ts=b["ts"].dt.tz_convert("UTC").dt.strftime("%Y-%m-%dT%H:%M:%S+00:00")).to_csv(aware, index=False)
+    assert str(core.load_bars_csv(aware)["ts"].iloc[0]) == str(b["ts"].iloc[0])
+    with pytest.raises(ValueError, match="already carries"):
+        core.load_bars_csv(aware, tz="UTC")
+    mixed = tmp_path / "mixed.csv"
+    d.assign(ts=[*d["ts"][:-1], "2012-01-02T10:00:00+00:00"]).to_csv(mixed, index=False)
+    with pytest.raises(ValueError, match="mixes"):
+        core.load_bars_csv(mixed)
+
+
+def test_build_pool_rejects_duplicate_timestamps():
+    b = make_bars(["win", "lose"])
+    with pytest.raises(ValueError, match="duplicate bar timestamps"):
+        core.build_pool(pd.concat([b, b.iloc[:91]]), seed=1)  # second contract for the same session
+
+
+def test_pool_not_ready_blocks_page_and_taps(tmp_path, monkeypatch):
+    small = core.build_pool(make_bars(["win", "lose"]), seed=1, salt="s")
+    assert small["ready"] is False
+    monkeypatch.setattr(appmod, "POOL", tmp_path / "pool.json")
+    monkeypatch.setattr(appmod, "TAPS", tmp_path / "taps.jsonl")
+    core.save_pool(small, appmod.POOL)
+    c = appmod.create_app().test_client()
+    html = c.get(f"/blind?token={TOKEN}").get_data(as_text=True)
+    assert "Pool not ready: 2 of 60" in html and "<svg" not in html and "<button" not in html
+    sid = small["order"][0]
+    assert c.post("/blind/tap", data=dict(token=TOKEN, id=sid, label="S")).status_code == 409
+    assert not appmod.TAPS.exists()
