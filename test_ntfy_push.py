@@ -156,13 +156,74 @@ def test_push_never_raises_when_ntfy_is_down():
         raise ConnectionError("ntfy unreachable")
 
     real_post = notify_ntfy.requests.post
+    real_sleep = notify_ntfy.time.sleep
     try:
         notify_ntfy.requests.post = boom
+        notify_ntfy.time.sleep = lambda s: None
         os.environ[notify_ntfy.TOPIC_ENV] = "test-omen-unit"
         assert notify_ntfy.push("t", "b") is False
     finally:
         notify_ntfy.requests.post = real_post
+        notify_ntfy.time.sleep = real_sleep
         os.environ.pop(notify_ntfy.TOPIC_ENV, None)
+
+
+def test_push_backs_off_between_retries():
+    """A blip that outlasts an immediate re-POST must still get through."""
+    calls, sleeps = [], []
+
+    def flaky(*a, **kw):
+        calls.append(1)
+        if len(calls) < 3:
+            raise ConnectionError("dns blip")
+        return _FakeResponse()
+
+    real_post, real_sleep = notify_ntfy.requests.post, notify_ntfy.time.sleep
+    try:
+        notify_ntfy.requests.post = flaky
+        notify_ntfy.time.sleep = sleeps.append
+        os.environ[notify_ntfy.TOPIC_ENV] = "test-omen-unit"
+        assert notify_ntfy.push("t", "b") is True
+        assert sleeps == list(notify_ntfy.RETRY_DELAYS)
+    finally:
+        notify_ntfy.requests.post, notify_ntfy.time.sleep = real_post, real_sleep
+        os.environ.pop(notify_ntfy.TOPIC_ENV, None)
+
+
+def test_failed_summary_push_does_not_latch(monkeypatch=None):
+    """A failed 11:00 summary push must be retried, not marked sent."""
+    _reset_scanner_state()
+    live_scanner._session_push["date"] = "2026-09-16"
+    real_push = notify_ntfy.push
+    try:
+        notify_ntfy.push = lambda *a, **kw: False
+        assert live_scanner.push_summary() is False
+        assert live_scanner._session_push["summary_pushed"] is False
+        notify_ntfy.push = lambda *a, **kw: True
+        assert live_scanner.push_summary() is True
+        assert live_scanner._session_push["summary_pushed"] is True
+    finally:
+        notify_ntfy.push = real_push
+        _reset_scanner_state()
+
+
+def test_failed_exit_push_does_not_latch():
+    """A failed exit push must leave exit_pushed False so it can retry."""
+    _reset_scanner_state()
+    rec = {"symbol": "AAPL"}
+    ev = {"symbol": "AAPL"}
+    live_scanner._session_push["push_rec"] = rec
+    real_exit = live_scanner._push_exit
+    try:
+        live_scanner._push_exit = lambda r, e: False
+        live_scanner._on_paper_exit(type("R", (), {})(), ev)
+        assert live_scanner._session_push["exit_pushed"] is False
+        live_scanner._push_exit = lambda r, e: True
+        live_scanner._on_paper_exit(type("R", (), {})(), ev)
+        assert live_scanner._session_push["exit_pushed"] is True
+    finally:
+        live_scanner._push_exit = real_exit
+        _reset_scanner_state()
 
 
 def test_level_tf_agrees_with_the_book():

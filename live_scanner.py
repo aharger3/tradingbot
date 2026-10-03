@@ -1094,10 +1094,13 @@ def push_summary(paper=None) -> bool:
     """Send the 11:00 summary once per session."""
     if _session_push["summary_pushed"]:
         return False
-    _session_push["summary_pushed"] = True
-    return notify_ntfy.push(f"OMEN 11:00 — {_session_push['date'] or 'today'}",
-                            build_summary_text(paper),
-                            priority="default", tags="bar_chart")
+    ok = notify_ntfy.push(f"OMEN 11:00 — {_session_push['date'] or 'today'}",
+                          build_summary_text(paper),
+                          priority="default", tags="bar_chart")
+    # Latch only on success: a failed push must be retried next cycle.
+    if ok:
+        _session_push["summary_pushed"] = True
+    return ok
 
 
 def _on_paper_exit(runner, ev: dict) -> None:
@@ -1142,8 +1145,8 @@ def _on_paper_exit(runner, ev: dict) -> None:
     pushed = _session_push["push_rec"]
     if (pushed and not _session_push["exit_pushed"]
             and ev.get("symbol") == pushed["symbol"]):
-        _session_push["exit_pushed"] = True
-        _push_exit(pushed, ev)
+        if _push_exit(pushed, ev):
+            _session_push["exit_pushed"] = True
 
 
 def _tier(runner: SignalRunner, sig: dict, grade: str, ts: str, symbol: str) -> str:
@@ -1789,8 +1792,10 @@ def _emit_signal(runner: SignalRunner, tasty_feed: TastytradeFeed, symbol: str, 
             # submit succeeded; None otherwise (no invented id).
             "alpaca_order_id": (_alpaca_entry_rec or {}).get("broker_order_id"),
         }
-        if _note_s_trade(rec):
-            _push_s_signal(rec)
+        if _note_s_trade(rec) and not _push_s_signal(rec):
+            # Push failed: re-arm so the next S signal retries the alert.
+            _session_push["pushed"] = False
+            _session_push["push_rec"] = None
     return not alert_only
 
 

@@ -27,12 +27,16 @@ from __future__ import annotations
 
 import os
 import sys
+import time
 
 import requests
 
 NTFY_BASE = "https://ntfy.sh"
 TOPIC_ENV = "OMEN_NTFY_TOPIC"
 TIMEOUT_SECONDS = 8
+# Pause before each retry. A blip that outlasts an immediate re-POST (DNS hiccup,
+# ntfy.sh restart) usually clears within seconds; total worst case ~7s.
+RETRY_DELAYS = (2, 5)
 
 
 def _log(msg: str) -> None:
@@ -58,10 +62,10 @@ def push(title: str, body: str, priority: str = "default",
     comma-separated header either way. `priority` takes ntfy's own names
     ("min", "low", "default", "high", "urgent") or "1".."5".
 
-    Retries once. Two attempts is the right number here: a single transient
-    blip is worth a retry, and anything more is an ntfy outage — in which case
-    the scanner has better things to do than sit in a backoff loop while a
-    trading window is open.
+    Retries twice with a short backoff (RETRY_DELAYS). An immediate re-POST
+    fails together with the first on a DNS/ntfy blip; anything longer than a
+    few seconds is an ntfy outage, and the caller re-arms its one-shot flag so
+    the next scan cycle tries again.
     """
     resolved = resolve_topic(topic)
     if resolved is None:
@@ -91,7 +95,8 @@ def push(title: str, body: str, priority: str = "default",
 
     url = f"{NTFY_BASE}/{resolved}"
     last = ""
-    for attempt in (1, 2):
+    attempts = len(RETRY_DELAYS) + 1
+    for attempt in range(1, attempts + 1):
         try:
             resp = requests.post(url, data=body.encode("utf-8"),
                                  headers=headers, timeout=TIMEOUT_SECONDS)
@@ -101,9 +106,11 @@ def push(title: str, body: str, priority: str = "default",
             last = f"HTTP {resp.status_code}"
         except Exception as e:                      # noqa: BLE001 — see docstring
             last = f"{type(e).__name__}: {str(e)[:120]}"
-        if attempt == 1:
-            _log(f"attempt 1 failed ({last}), retrying once")
-    _log(f"FAILED to {resolved} after 2 attempts ({last}): {title}")
+        if attempt < attempts:
+            delay = RETRY_DELAYS[attempt - 1]
+            _log(f"attempt {attempt} failed ({last}), retrying in {delay}s")
+            time.sleep(delay)
+    _log(f"FAILED to {resolved} after {attempts} attempts ({last}): {title}")
     return False
 
 
