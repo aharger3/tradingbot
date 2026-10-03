@@ -11,8 +11,14 @@ Declared BEFORE looking at any count (definitions, in order of strictness):
   OCR event   = frozen v2-t02 `detect(orb=True)` geometry: opposite-colour bar in an EMA9>EMA20 trend,
                 block high..low, break WITH displacement, retest inside the block, block straddles the OR5 level.
                 zone=any, confirm=touch (loosest), cutoff 11:00.
-  COINCIDE    = same day, same side, ORB entry bar and OCR entry bar within +-5 one-minute bars.   [primary]
-                [loose]  same day, same side, any time before 11:00.
+  COINCIDE    = CAUSAL (referee fix 2026-10-03): same day, same side, OCR entry bar e with lag = e - i in
+                [-NEAR, 0], i = ORB entry index (mnq.signal returns trigger bar + 1). An OCR that forms
+                AFTER the ORB entry could not have been known at the ORB entry, so it never counts.   [primary]
+  Causal level-based sensitivity rows (reported, not the decision count):
+                (a) OCR entry <= ORB entry, any lag;
+                (b) OCR break bar j < ORB entry;
+                (c) OCR block bar i < ORB entry, same side, block straddles OR5 (orb=True geometry).
+  Legacy rows (NOT causal, reported for the audit trail): abs(i - e) <= NEAR, and same day + side any time.
 Decision count = primary. The other rows are reported so nothing is hidden.
 Window A (2019-09-26 -> 2024-09-25) is never loaded: dates are asserted inside the fit window.
 """
@@ -49,18 +55,73 @@ def orb_entries(A, cut, dk, trig, tol, jmax, mnq):
 
 
 def ocr_entries(a, side, cutoff_min, ocr):
-    """All OCR-at-OR5-level entries for one side as 91-slot indices. side=-1 mirrors by negation (as v2-t02)."""
+    """All OCR-at-OR5-level events for one side as 91-slot indices (entry e, block bar i, break bar j).
+    side=-1 mirrors by negation (as v2-t02)."""
     o, c = a["o"] * side, a["c"] * side
     hh, ll = (a["h"], a["l"]) if side == 1 else (-a["l"], -a["h"])
-    sig = ocr.detect(o, hh, ll, c, a["m"], "any", "touch", True, cutoff_min)
-    return [int(a["m"][e]) - 570 for e, _st, _R in sig]
+    sig = detect_ij(ocr, o, hh, ll, c, a["m"], "any", "touch", True, cutoff_min)
+    m = a["m"]
+    return [(int(m[e]) - 570, int(m[bi]) - 570, int(m[bj]) - 570) for e, _st, _R, bi, bj in sig]
+
+
+def detect_ij(ocr, o, h, l, c, m, zone, confirm, orb, cutoff):
+    """Verbatim copy of frozen ocr1m.detect (v2-t02) that also returns the block bar i and break bar j.
+    Returns [(ent, st, R, i, j)]. Entries must equal ocr.detect (parity test). Uses ocr.ema / ocr.TICK."""
+    TK = ocr.TICK
+    n = len(o); e9 = ocr.ema(c, 9); e20 = ocr.ema(c, 20)
+    rng = h - l
+    atr = np.array([rng[max(0, i - 10):i].mean() if i > 0 else rng[0] for i in range(n)])
+    i930 = np.where(m >= 570)[0][0]
+    orw = [k for k in range(i930, n) if m[k] < 575]
+    if len(orw) < 3: return []
+    orh = max(h[k] for k in orw); orr = orh - min(l[k] for k in orw); tol = max(2 * TK, 0.1 * orr)
+    out = []
+    for i in range(max(i930 + 1, 1), n):
+        if m[i] < (575 if orb else 571) or m[i] >= cutoff: continue
+        if not (c[i] < o[i] and c[i - 1] > o[i - 1] and e9[i] > e20[i]): continue
+        bh, bl = h[i], l[i]; bmid = (bh + bl) / 2
+        if orb and not (bl - tol <= orh <= bh + tol): continue
+        j = None
+        for jj in range(i + 1, min(n, i + 11)):
+            if c[jj] < bl: break
+            if c[jj] > bh:
+                d1 = c[jj] - o[jj] >= atr[jj]
+                d2 = c[jj] > o[jj] and c[jj - 1] > o[jj - 1] and jj - 1 > i and (c[jj] - o[jj - 1]) >= 1.5 * atr[jj]
+                if d1 or d2: j = jj
+                break
+        if j is None: continue
+        ent = None
+        for k in range(j + 1, min(n, j + 16)):
+            if c[k] < bl: break
+            if zone == "upper" and l[k] < bmid: break
+            if l[k] <= bh:
+                if confirm == "touch":
+                    ent = k + 1
+                else:
+                    for mm in range(k, min(n, k + 4)):
+                        if c[mm] < bl or (zone == "upper" and l[mm] < bmid): break
+                        r = h[mm] - l[mm]
+                        if r <= 0: continue
+                        lw = min(o[mm], c[mm]) - l[mm]
+                        pin = lw >= 0.5 * r and c[mm] >= l[mm] + 2 * r / 3
+                        strong = c[mm] > o[mm] and (c[mm] - o[mm]) >= 0.6 * r and c[mm] > bh
+                        if pin or strong: ent = mm + 1; break
+                break
+        if ent is None or ent >= n or m[ent] >= cutoff: continue
+        e = o[ent] + TK; st = bl - TK; R = e - st
+        if R < 1.0: continue
+        out.append((ent, st, R, i, j))
+    return out
 
 
 def precheck(days, mnq, ocr, near=NEAR):
     """days: {date: v2-t02 day dict}. Returns dict of counts (+ the dates for the primary count)."""
     assert all(in_fit(d) for d in days), "window A leak: a date outside the fit window"
-    res = {k: 0 for k in ("sessions", "orb_primary", "orb_L2", "ocr_alone_events_days",
-                          "coinc_primary", "coinc_L2", "coinc_loose_primary", "coinc_loose_L2")}
+    keys = ("sessions", "orb_primary", "orb_L2", "ocr_alone_events_days",
+            "coinc_primary", "coinc_L2",                                   # causal lag in [-NEAR, 0]
+            "causal_a_entry_le_orb", "causal_b_break_lt_orb", "causal_c_block_lt_orb",
+            "legacy_abs_primary", "legacy_abs_L2", "legacy_loose_primary", "legacy_loose_L2")
+    res = {k: 0 for k in keys}
     res["sessions"] = len(days); prim = []
     for d, a in days.items():
         A = to_A(a)
@@ -72,15 +133,37 @@ def precheck(days, mnq, ocr, near=NEAR):
             if o is None: continue
             res["orb_" + tag] += 1
             i, s = o
-            if oc[s] and any(abs(i - e) <= near for e in oc[s]): res["coinc_" + tag] += 1; (prim.append(d) if tag == "primary" else None)
-            if oc[s]: res["coinc_loose_" + tag] += 1
+            ev = oc[s]
+            if any(-near <= e - i <= 0 for e, _bi, _bj in ev):
+                res["coinc_" + tag] += 1
+                if tag == "primary": prim.append(d)
+            if any(abs(i - e) <= near for e, _bi, _bj in ev): res["legacy_abs_" + tag] += 1
+            if ev: res["legacy_loose_" + tag] += 1
+            if tag == "primary":
+                res["causal_a_entry_le_orb"] += int(any(e <= i for e, _bi, _bj in ev))
+                res["causal_b_break_lt_orb"] += int(any(bj < i for _e, _bi, bj in ev))
+                res["causal_c_block_lt_orb"] += int(any(bi < i for _e, bi, _bj in ev))
     res["primary_dates"] = prim
     return res
+
+
+def parity(days, ocr):
+    """detect_ij entries must equal the frozen ocr.detect entries on every day/side (guards the copy)."""
+    bad = 0
+    for a in days.values():
+        for side in (1, -1):
+            o, c = a["o"] * side, a["c"] * side
+            hh, ll = (a["h"], a["l"]) if side == 1 else (-a["l"], -a["h"])
+            f = [(e, st, R) for e, st, R in ocr.detect(o, hh, ll, c, a["m"], "any", "touch", True, 660)]
+            g = [(e, st, R) for e, st, R, _i, _j in detect_ij(ocr, o, hh, ll, c, a["m"], "any", "touch", True, 660)]
+            bad += int(f != g)
+    return bad
 
 
 def main():
     import mnq, ocr1m
     days = {d: a for d, a in ocr1m.prep("MNQ").items() if in_fit(d)}
+    assert parity(days, ocr1m) == 0, "detect_ij diverged from frozen ocr1m.detect"
     res = precheck(days, mnq, ocr1m)
     # diff vs v2-t02: same detector, orb=True, MNQ only, same window (reproduces t02's MNQ share)
     t02 = {}
