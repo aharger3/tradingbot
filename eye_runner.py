@@ -49,6 +49,7 @@ import candidates as eye2          # noqa: E402
 import eye_paper                   # noqa: E402
 from eye_card.chart import Candidate as ChartCandidate, render_candidate_chart  # noqa: E402
 from eye_card.notify import send_card                                           # noqa: E402
+from eye_card import tap as eyetap                                              # noqa: E402
 from omen_data import load_fut                                                  # noqa: E402
 from prereg_slice_a import (                                                    # noqa: E402
     PREREG_SLICE_A,
@@ -149,6 +150,12 @@ def main(argv=None):
     ap.add_argument("--journal-path", default=str(REPLAY_JOURNAL))
     ap.add_argument("--labels-csv", default=os.environ.get("EYE_LABELS_CSV", str(REPO / "eye_card" / "labels.csv")))
     ap.add_argument("--token", default=os.environ.get("EYE_LABEL_TOKEN", "dev-local-only"))
+    ap.add_argument("--blind", action="store_true",
+                    help="hide ticker, date, grade and absolute prices on the card and chart; opaque card id")
+    ap.add_argument("--legacy-label-server", action="store_true",
+                    help="old path: chart PNG to the old ntfy topic, buttons to the Tailscale label server")
+    ap.add_argument("--max-cards-per-day", type=int, default=eyetap.MAX_CARDS_PER_DAY)
+    ap.add_argument("--ignore-schedule", action="store_true", help="dev only: skip the Mon-Thu gate")
     ap.add_argument("--max-wall-minutes", type=float, default=95.0, help="hard stop regardless of pacing")
     args = ap.parse_args(argv)
 
@@ -158,6 +165,15 @@ def main(argv=None):
     log(f"prereg slice={PREREG_SLICE_A.slice_id} config_hash={PREREG_SLICE_A.config_hash()} "
         f"grades={PREREG_SLICE_A.allowed_grades} max_concurrent={PREREG_SLICE_A.max_concurrent_trades} "
         f"max_per_day={PREREG_SLICE_A.max_trades_per_day} day_stop_r={PREREG_SLICE_A.day_stop_r}")
+
+    tap_mode = not args.legacy_label_server
+    if tap_mode and not args.ignore_schedule:
+        ok, why = eyetap.may_send(datetime.now(ET), cap=args.max_cards_per_day)
+        if not ok:
+            log(f"no cards today: {why}")
+            return 0
+    if tap_mode:
+        eyetap.load_config()   # fail before any work if the tap secrets are missing
 
     date = pick_replay_date(args.instrument, args.date)
     df = load_fut(args.instrument, "09:30", "11:01")
@@ -175,6 +191,9 @@ def main(argv=None):
     run_start = datetime.now(ET)
     hard_stop = run_start + timedelta(minutes=args.max_wall_minutes)
     seen_labels: set = set()
+    seen_skips: set = set()
+    skips_csv = labels_csv.with_name("skips.csv")
+    cid_by_card: dict[str, str] = {}   # tap card id -> candidate id (identity unless blind)
     pending: dict[str, dict] = {}   # id -> {paper_cand, sent_wall}
     confirmed_count = 0
     daily_r = 0.0
@@ -182,8 +201,12 @@ def main(argv=None):
 
     def sweep_labels():
         nonlocal confirmed_count, daily_r
+        for row in read_new_labels(skips_csv, seen_skips):
+            cid = cid_by_card.get(row["candidate_id"], row["candidate_id"])
+            if pending.pop(cid, None) is not None:
+                log(f"skip {cid}: Skip tapped -- no trade, nothing journaled")
         for row in read_new_labels(labels_csv, seen_labels):
-            cid = row["candidate_id"]
+            cid = cid_by_card.get(row["candidate_id"], row["candidate_id"])
             if cid not in pending:
                 continue
             tap = {"candidate_id": cid, "grade": "S" if row["label"] == "S" else "not_s",
@@ -242,19 +265,35 @@ def main(argv=None):
             log(f"SKIP {cand.instrument} minute={minute}: prereg one-at-a-time slot busy ({list(pending)})")
             continue
 
+        sent_today = eyetap.cards_sent_on(f"{datetime.now(ET):%Y-%m-%d}")
+        if tap_mode and sent_today >= args.max_cards_per_day:
+            log(f"STOP: daily card cap reached ({sent_today}/{args.max_cards_per_day})")
+            break
+
         grade = cand.grade_hint
         seq_by_grade[grade] = seq_by_grade.get(grade, 0) + 1
         cid = f"{grade[0].upper()}{minute:02d}-{seq_by_grade[grade]}-{date.replace('-', '')}"
         chart_cand = to_chart_candidate(cand, cid)
         bars = bars_from_day_array(A, minute)
         CHART_DIR.mkdir(parents=True, exist_ok=True)
-        png_path = CHART_DIR / f"{cid}.png"
-        render_candidate_chart(chart_cand, bars, png_path)
+        card_id = eyetap.card_id_for(cid, args.blind) if tap_mode else cid
+        # blind: the PNG name travels with the push, so it must not carry the date/grade in cid
+        png_path = CHART_DIR / f"{card_id if (tap_mode and args.blind) else cid}.png"
+        render_candidate_chart(chart_cand, bars, png_path, blind=args.blind and tap_mode)
         sent_wall = datetime.now(ET)
         card_sent_ts = sent_wall  # replay: card_sent_ts anchors the confirm window
-        result = send_card(chart_cand, png_path, args.token, test_title_prefix=args.title_prefix)
+        if tap_mode:
+            cid_by_card[card_id] = cid
+            result = eyetap.send_tap_card(chart_cand, png_path, card_id, blind=args.blind,
+                                          seq=sent_today + 1, cap=args.max_cards_per_day,
+                                          title_prefix=args.title_prefix)
+            if result.ok:
+                eyetap.record_card(card_id, cid, sent_wall, blind=args.blind, seq=sent_today + 1)
+        else:
+            result = send_card(chart_cand, png_path, args.token, test_title_prefix=args.title_prefix)
         log(f"sent {cid} grade={grade} dir={chart_cand.direction} "
-            f"entry={chart_cand.entry} stop={chart_cand.stop} -> ntfy ok={result.ok} status={result.status_code}")
+            f"entry={chart_cand.entry} stop={chart_cand.stop} -> ntfy ok={result.ok} "
+            f"status={result.status_code}" + (f" tap card={card_id} blind={args.blind}" if tap_mode else ""))
         paper_cand = to_paper_candidate(cand, cid, date, card_sent_ts)
         pending[cid] = {"paper_cand": paper_cand, "sent_wall": sent_wall}
 
