@@ -342,3 +342,77 @@ def test_grid_is_declared_and_bounded():
     names = [n for n, _ in rc.GRID]
     assert len(names) == len(set(names)) <= rc.MAX_VARIANTS == 34
     assert rc.PRIMARY in names
+
+
+# ---------------------------------------------------------------- referee fixes (E4-rubric)
+@pytest.mark.parametrize("note,his,sig_t,mark_t,expect", [
+    ("3 candles earlier is an S entry, reclaim", "A", "09:45", "09:45", True),
+    ("{'entry': '9:39 A entry no displacement, S entry at 10'}", "S", "09:39", "09:39", True),   # 9:39 is graded A, his mark says S
+    ("{'s_call': '10:04 S entry, double chop areas'}", "S", "10:04", "10:04", False),           # same time, same letter
+    ("{'s_call': '10:04  S entry'}", "S", "10:04", "10:03", False),
+    ("{'min': '9:49', 'why': 'as candle forming not lod. a entry few candles earlier'}", "S", "09:49", "09:49", True),
+    ("{'comment': \"4 candle earlier may be entry but my downgrade is entry didn't close\"}", "A", "09:40", "09:39", False),  # 'is entry' is not 's entry'
+    ("{'min': '9:44', 'why': 'A candle entry wouldve been 9:36, rare s entry after an a'}", "S", "09:44", "09:44", True),
+    ("no clean break it just respect pivot structures", "A", "10:20", "10:23", False),
+    ("", "S", "10:20", "10:20", False),
+])
+def test_note_reassigns_entry(note, his, sig_t, mark_t, expect):
+    assert rc.note_reassigns_entry(note, his, sig_t, mark_t) is expect
+
+
+def test_pick_mismatches_skips_rows_whose_note_reassigns_the_entry():
+    rows = []
+    def r(sid, date, tripped, reassigns=False):
+        rows.append(dict(sig_id=sid, date=date, his="S", rub="A", tripped=tripped, confluence=False, note="", reassigns=reassigns))
+    r("clean_but_relabelled", "2025-01-01", ["counter_trend_not_respected"], reassigns=True)
+    r("next_cleanest", "2025-01-02", ["counter_trend_not_respected"])
+    r("messier", "2025-01-03", ["counter_trend_not_respected", "exhausted"])
+    out = rc.pick_mismatches(rows, k=5)
+    assert out[0]["sig_id"] == "next_cleanest"
+    assert "clean_but_relabelled" not in {o["sig_id"] for o in out}
+    assert out[0]["group_size"] == 3            # group size still counts every mismatch
+
+
+def _mark_csv(d, note_b=""):
+    with open(os.path.join(d, "s_trades.csv"), "w", newline="") as fh:
+        w = csv.writer(fh)
+        w.writerow(["sig_id", "grade", "sym", "date", "sig_t", "side", "mark_t", "level_px", "eng_level", "half", "has_bars", "note", "R2_wick"])
+        w.writerow(["X_2025-01-02_0933_L", "S", "X", "2025-01-02", "09:33", "L", "09:31", "100", "PDH", "H1", "1", "", "1.5"])
+        w.writerow(["Z_2025-01-02_0933_L", "S", "Z", "2025-01-02", "09:33", "L", "09:33", "100", "PDH", "H1", "1", note_b, "1.5"])
+    with gzip.open(os.path.join(d, "s_bars_0930_1100.csv.gz"), "wt", newline="") as fh:
+        w = csv.writer(fh); w.writerow(["sig_id", "t", "o", "h", "l", "c", "v"])
+        for sid in ("X_2025-01-02_0933_L", "Z_2025-01-02_0933_L"):
+            for k, t in enumerate(["09:30", "09:31", "09:32", "09:33", "09:34"]):
+                w.writerow([sid, t, 99 + k, 100 + k, 98 + k, 99.5 + k, 10])
+
+
+def test_load_rows_carries_mark_index_and_reassign_flag():
+    import tempfile
+    with tempfile.TemporaryDirectory() as d:
+        _mark_csv(d, note_b="2 candles earlier is an S entry")
+        rows, _ = rc.load_rows(d)
+    by = {r["sym"]: r for r in rows}
+    assert by["X"]["i"] == 3 and by["X"]["i_mark"] == 1 and by["X"]["reassigns"] is False
+    assert by["Z"]["i_mark"] == 3 and by["Z"]["reassigns"] is True
+
+
+def test_run_spec_at_mark_scores_the_mark_bar_not_the_signal_bar():
+    import tempfile
+    with tempfile.TemporaryDirectory() as d:
+        _mark_csv(d)
+        rows, _ = rc.load_rows(d)
+    sig = rc.run_spec(rows, rc.Spec())
+    mark = rc.run_spec(rows, rc.Spec(), at="mark")
+    assert [r["sig_t"] for r in sig] == ["09:33", "09:33"]
+    assert [r["score_t"] for r in mark] == ["09:31", "09:33"]
+
+
+def test_sensitivity_drops_reassign_rows_and_reports_beside_primary():
+    rows = [dict(sig_id="a", date="d", sym="a", sig_t="09:33", half="H1", his="S", level=100.0, is_long=True, start=1,
+                 bars=clean_long(), i=15, i_mark=15, mark_t="09:33", reassigns=False, R2_wick=None, R2_eng=None, note=""),
+            dict(sig_id="b", date="d", sym="b", sig_t="09:33", half="H1", his="A", level=100.0, is_long=True, start=1,
+                 bars=clean_long(), i=15, i_mark=15, mark_t="09:33", reassigns=True, R2_wick=None, R2_eng=None, note="")]
+    s = rc.sensitivity(rows)
+    assert s["primary"]["n"] == 2 and s["mark_clean"]["n"] == 1 and s["n_reassign"] == 1
+    assert s["sig_clean"]["n"] == 1                       # same subset, signal bar: separates the two effects
+    assert set(s["mark_clean"]) >= {"n", "exact", "s_recall", "s_precision"}

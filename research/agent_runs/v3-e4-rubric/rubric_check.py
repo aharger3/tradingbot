@@ -17,7 +17,7 @@ Every other threshold is a first guess carried over unchanged from research/down
 """
 from __future__ import annotations
 
-import argparse, csv, gzip, json, os, random, statistics as st
+import argparse, csv, gzip, json, os, random, re, statistics as st
 from collections import Counter, defaultdict
 from dataclasses import dataclass, replace
 
@@ -37,6 +37,24 @@ VARIABLES = ("no_displacement", "stale_retest", "level_not_respected", "exhauste
              "counter_trend_not_respected", "break_then_rejection", "no_retest", "ocr_not_respected")
 TIER = {"S": 0, "A": 1, "C": 2}
 HIS_MAP = {"S": "S", "one-off": "A", "two-off": "C", "A": "A", "C": "C"}
+_ENTRY_RE = re.compile(r"\b([as]) (?:candle )?entry", re.I)
+_TIME_END_RE = re.compile(r"(\d{1,2}):(\d{2})\s*$")
+
+
+def _hhmm(h, m):
+    return "%02d:%s" % (int(h), m)
+
+
+def note_reassigns_entry(note, his, sig_t, mark_t):
+    """True when his note names an 'A entry' / 'S entry' somewhere other than the graded bar, or names the same
+    bar with a different letter (e.g. '9:39 A entry ... S entry at 10' on a row graded S). A mention directly after
+    the graded time ('10:04 S entry') with the same letter as his grade is a confirmation, not a reassignment."""
+    for m in _ENTRY_RE.finditer(note or ""):
+        t = _TIME_END_RE.search(note[:m.start()])
+        at_graded = t is not None and _hhmm(*t.groups()) in (sig_t, mark_t)
+        if not (at_graded and m.group(1).upper() == his):
+            return True
+    return False
 
 
 @dataclass(frozen=True)
@@ -308,7 +326,9 @@ def pick_mismatches(rows, k=5):
     """The k most informative mismatches. Group by what the rubric got wrong: each tripped variable when the
     rubric is too harsh, one 'lenient' group when it is too kind. Groups are ranked by size (a mismatch that
     crosses the S boundary counts double, because S is what money goes to). One example per group: the
-    cleanest (fewest other tripped variables), then the largest tier gap, then the earliest date."""
+    cleanest (fewest other tripped variables), then the largest tier gap, then the earliest date. Rows whose note
+    reassigns the entry grade (note_reassigns_entry) are never shown as examples: they are label noise, not rubric
+    disagreement. They still count toward group size."""
     mm = [r for r in rows if r["his"] != r["rub"]]
     groups = defaultdict(list)
     for r in mm:
@@ -321,7 +341,7 @@ def pick_mismatches(rows, k=5):
     ranked = sorted(groups, key=lambda g: (-sum(wt(r) for r in groups[g]), g))
     out, used = [], set()
     for g in ranked:
-        cands = [r for r in groups[g] if r["sig_id"] not in used]
+        cands = [r for r in groups[g] if r["sig_id"] not in used and not r.get("reassigns")]
         if not cands:
             continue
         best = min(cands, key=lambda r: (len(r["tripped"]), -abs(TIER[r["rub"]] - TIER[r["his"]]), r["date"], r["sig_id"]))
@@ -359,23 +379,49 @@ def load_rows(dirpath):
             if r["sig_t"] not in ts:
                 skipped += 1
                 continue
+            mt = (r.get("mark_t") or "").strip()
+            his = HIS_MAP[r["grade"]]
+            note = (r.get("note") or "").strip()
             rows.append(dict(sig_id=r["sig_id"], date=r["date"], sym=r["sym"], sig_t=r["sig_t"], half=r.get("half", ""),
-                             his=HIS_MAP[r["grade"]], level=lvl, is_long=(r["side"] == "L"),
+                             his=his, level=lvl, is_long=(r["side"] == "L"),
                              bars=[b for _, b in seq], i=ts.index(r["sig_t"]),
+                             mark_t=mt or r["sig_t"], i_mark=(ts.index(mt) if mt in ts else ts.index(r["sig_t"])),
+                             reassigns=note_reassigns_entry(note, his, r["sig_t"], mt or r["sig_t"]),
                              start=5 if "OR" in (r.get("eng_level") or "") else 1,
                              R2_wick=_f(r.get("R2_wick")), R2_eng=_f(r.get("R2_eng")),
                              note=(r.get("note") or "").strip(), his_setup=r.get("his_setup", "")))
     return rows, skipped
 
 
-def run_spec(rows, sp):
+def run_spec(rows, sp, at="sig"):
+    """Score every row. at="sig" (default, the declared rule) scores the engine's signal bar; at="mark" scores the
+    bar of his own mark_t (post-hoc sensitivity only)."""
     out = []
     for r in rows:
-        s = score(r["bars"], r["i"], r["level"], r["is_long"], replace(sp, start=r["start"]))
+        i = r["i_mark"] if at == "mark" else r["i"]
+        s = score(r["bars"], i, r["level"], r["is_long"], replace(sp, start=r["start"]))
         out.append(dict(sig_id=r["sig_id"], date=r["date"], sym=r["sym"], sig_t=r["sig_t"], half=r["half"], his=r["his"],
+                        score_t=(r["mark_t"] if at == "mark" else r["sig_t"]), reassigns=r.get("reassigns", False),
                         rub=s["grade"], tripped=s["tripped"], confluence=s["confluence"], net=s["net"],
                         note=r["note"], R2_wick=r["R2_wick"], R2_eng=r["R2_eng"]))
     return out
+
+
+def _mrow(sc):
+    m = metrics([r["his"] for r in sc], [r["rub"] for r in sc])
+    return dict(n=m["n"], exact=m["exact"], s_recall=m["s_recall"], s_precision=m["s_precision"])
+
+
+def sensitivity(rows):
+    """POST-HOC, outside the declared grid, not eligible for the bar. Two label-noise fixes on the primary spec:
+    (a) score at his mark_t instead of the engine's sig_t, (b) drop rows whose note puts the A/S entry at another bar.
+    Reported as primary / same-subset-at-sig_t / same-subset-at-mark_t so the two effects can be told apart."""
+    keep = [r for r in rows if not r.get("reassigns")]
+    return dict(primary=_mrow(run_spec(rows, Spec())),
+                sig_clean=_mrow(run_spec(keep, Spec())),
+                mark_clean=_mrow(run_spec(keep, Spec(), at="mark")),
+                n_reassign=len(rows) - len(keep),
+                n_mark_differs=sum(r["i_mark"] != r["i"] for r in rows))
 
 
 # ---------------------------------------------------------------------------------------------- reporting
@@ -441,6 +487,7 @@ def build_report(rows, skipped):
         m_ = metrics([r["his"] for r in sc], [r["rub"] for r in sc])
         res["ablation"].append(dict(dropped=piece, exact=m_["exact"], s_recall=m_["s_recall"], s_precision=m_["s_precision"],
                                     rub_s=sum(r["rub"] == "S" for r in sc)))
+    res["sensitivity"] = sensitivity(rows)
     res["no_break_rows"] = sum(break_bar(r["bars"], r["i"], r["level"], r["is_long"], r["start"]) is None for r in rows)
     return res, all_scored
 
@@ -480,7 +527,16 @@ def md_tables(res):
     for a in res["ablation"]:
         L.append("| %s | %s | %s | %s | %d |" % (a["dropped"], _fmt(a["exact"]), _fmt(a["s_recall"]), _fmt(a["s_precision"]), a["rub_s"]))
     L.append("\nRows with no identifiable break (variables 1, 2, 3, 6, 7 cannot judge them): %d of %d.\n" % (res["no_break_rows"], res["n_scored"]))
-    L.append("### 5 most informative mismatches (primary)\n")
+    S_ = res["sensitivity"]
+    L.append("### Label-noise sensitivity (POST-HOC, outside the bar, not part of the declared grid)\n")
+    L.append("| scoring | n | exact | S recall | S prec |\n|---|---|---|---|---|")
+    for lab, key in (("PRIMARY: all rows, scored at the engine signal bar (sig_t)", "primary"),
+                     ("same rows minus %d whose note puts the A/S entry at another bar, still scored at sig_t" % S_["n_reassign"], "sig_clean"),
+                     ("SENSITIVITY: those rows dropped AND scored at his mark_t (%d of %d rows have mark_t != sig_t)" % (S_["n_mark_differs"], res["n_scored"]), "mark_clean")):
+        x = S_[key]
+        L.append("| %s | %d | %s | %s | %s |" % (lab, x["n"], _fmt(x["exact"]), _fmt(x["s_recall"]), _fmt(x["s_precision"])))
+    L.append("")
+    L.append("### 5 most informative mismatches (primary; rows whose note reassigns the entry grade are skipped)\n")
     L.append("| # | date | symbol | his | rubric | variables tripped (confluence) | group | his note |\n|---|---|---|---|---|---|---|---|")
     for k, r in enumerate(P["mismatches"], 1):
         note = (r["note"] or "").replace("|", "/")[:110]
