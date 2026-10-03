@@ -222,6 +222,16 @@ def test_displacement_exempt_when_confluence():
     assert on["confluence"] and "no_displacement" in off["tripped"] and "no_displacement" not in on["tripped"]
 
 
+def test_drop_switches_off_a_variable_and_confluence():
+    b = clean_long()
+    b[0] = dict(o=60.0, h=99.2, l=59.0, c=99.1)
+    assert rc.trips(b, 15, LEVEL, True, rc.Spec())[0] == "exhausted"
+    assert rc.trips(b, 15, LEVEL, True, rc.Spec(drop=("exhausted",))) == []
+    o = ocr_setup()
+    assert rc.score(o, len(o) - 1, LEVEL, True, rc.Spec())["confluence"] is True
+    assert rc.score(o, len(o) - 1, LEVEL, True, rc.Spec(drop=("confluence",)))["confluence"] is False
+
+
 def test_score_is_causal():
     b = clean_long()
     r1 = rc.score(b, 15, LEVEL, True, rc.Spec())

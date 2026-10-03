@@ -51,6 +51,7 @@ class Spec:
     counter_post_break: bool = False  # variable 5 looks only at bars after the break, not the last 12
     stale: int = 10                   # STALE_BARS (Austin, b11)
     start: int = 1                    # first bar index a break may occur on (5 for OR levels: they lock at 09:35)
+    drop: tuple = ()                  # post-hoc diagnostic only: variable names (or "confluence") switched off
 
 
 def _name(sp):
@@ -224,7 +225,7 @@ _CHECKS = {"no_displacement": no_displacement, "stale_retest": stale_retest,
 
 def trips(bars, i, level, is_long, sp):
     """Names of the downgrade variables that fire on the entry bar (raw: no exemption, no weights)."""
-    out = [n for n in VARIABLES if _CHECKS[n](bars, i, level, is_long, sp)]
+    out = [n for n in VARIABLES if n not in sp.drop and _CHECKS[n](bars, i, level, is_long, sp)]
     if sp.ninth and large_counter_body(bars, i, level, is_long):
         out.append("large_counter_body")
     if sp.chase and chase(bars, i, level, is_long):
@@ -240,7 +241,7 @@ def score(bars, i, level, is_long, sp):
     if not bars or i >= len(bars) or level is None:
         return None
     t = trips(bars, i, level, is_long, sp)
-    confl = has_confluence(bars, i, level, is_long, sp)
+    confl = "confluence" not in sp.drop and has_confluence(bars, i, level, is_long, sp)
     if sp.disp_exempt and confl and "no_displacement" in t:
         t.remove("no_displacement")
     heavy = ("level_not_respected", "counter_trend_not_respected") if sp.w2 else ()
@@ -433,6 +434,13 @@ def build_report(rows, skipped):
     fit = max(res["grid"], key=lambda g: (g["exact_h1"], g["name"]))          # best on H1 only
     res["holdout"] = dict(best_on_h1=fit["name"], exact_h1=fit["exact_h1"], exact_h2=fit["exact_h2"],
                           recall_h1=fit["recall_h1"], recall_h2=fit["recall_h2"])
+    # POST-HOC diagnostic, outside the declared grid and not eligible for the bar: switch off one piece at a time
+    res["ablation"] = []
+    for piece in VARIABLES + ("confluence",):
+        sc = run_spec(rows, replace(Spec(), drop=(piece,)))
+        m_ = metrics([r["his"] for r in sc], [r["rub"] for r in sc])
+        res["ablation"].append(dict(dropped=piece, exact=m_["exact"], s_recall=m_["s_recall"], s_precision=m_["s_precision"],
+                                    rub_s=sum(r["rub"] == "S" for r in sc)))
     res["no_break_rows"] = sum(break_bar(r["bars"], r["i"], r["level"], r["is_long"], r["start"]) is None for r in rows)
     return res, all_scored
 
@@ -467,6 +475,11 @@ def md_tables(res):
     h = res["holdout"]
     L.append("\nBest variant chosen on H1 (2024-09 to 2025-09-28) only: `%s`, exact H1 %s -> H2 %s, S recall H1 %s -> H2 %s.\n" % (
         h["best_on_h1"], _fmt(h["exact_h1"]), _fmt(h["exact_h2"]), _fmt(h["recall_h1"]), _fmt(h["recall_h2"])))
+    L.append("### Post-hoc diagnostic (NOT in the declared grid, not eligible for the bar): primary with one piece switched off\n")
+    L.append("| dropped | exact | S recall | S prec | rubric S count |\n|---|---|---|---|---|")
+    for a in res["ablation"]:
+        L.append("| %s | %s | %s | %s | %d |" % (a["dropped"], _fmt(a["exact"]), _fmt(a["s_recall"]), _fmt(a["s_precision"]), a["rub_s"]))
+    L.append("\nRows with no identifiable break (variables 1, 2, 3, 6, 7 cannot judge them): %d of %d.\n" % (res["no_break_rows"], res["n_scored"]))
     L.append("### 5 most informative mismatches (primary)\n")
     L.append("| # | date | symbol | his | rubric | variables tripped (confluence) | group | his note |\n|---|---|---|---|---|---|---|---|")
     for k, r in enumerate(P["mismatches"], 1):
