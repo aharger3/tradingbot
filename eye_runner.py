@@ -226,6 +226,9 @@ def main(argv=None):
             return 0
     if tap_mode:
         eyetap.load_config()   # fail before any work if the tap secrets are missing
+        if not eyetap.wait_for_network():
+            log("no network (ntfy.sh does not resolve after 10 min): no cards this run")
+            return 3
 
     sent_today = eyetap.cards_sent_on(f"{datetime.now(ET):%Y-%m-%d}") if tap_mode else 0
     df = load_fut(args.instrument, "09:30", "11:01")

@@ -318,6 +318,29 @@ TUNNEL_CFG = {"token": TOKEN, "answer_topic": "", "base_url": "https://omen.aust
               "topic": ALERT_TOPIC}
 
 
+class NetworkWaitTests(unittest.TestCase):
+    def test_waits_until_dns_resolves(self):
+        calls, sleeps = [], []
+
+        def resolve(host):
+            calls.append(host)
+            if len(calls) < 3:
+                raise OSError("getaddrinfo failed")
+            return "1.2.3.4"
+
+        self.assertTrue(tap.wait_for_network(resolve=resolve, sleep=sleeps.append))
+        self.assertEqual((calls, len(sleeps)), (["ntfy.sh"] * 3, 2))
+
+    def test_gives_up_and_does_not_sleep_after_the_last_try(self):
+        sleeps = []
+
+        def down(host):
+            raise OSError("down")
+
+        self.assertFalse(tap.wait_for_network(tries=3, wait_s=5, resolve=down, sleep=sleeps.append))
+        self.assertEqual(sleeps, [5, 5])
+
+
 class TunnelProbeTests(unittest.TestCase):
     def test_probe_hits_healthz_on_the_tunnel_host(self):
         s = FakeSession()
