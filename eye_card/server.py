@@ -35,6 +35,10 @@ logging.getLogger("werkzeug").setLevel(logging.ERROR)
 
 _tok_cache: dict = {"v": "", "t": -1e9}
 
+if os.environ.get("EYE_BLIND") == "1":  # E5 blind test; off unless explicitly enabled
+    from eye_blind.app import blind_bp
+    app.register_blueprint(blind_bp)
+
 
 def _token() -> str:
     return os.environ.get("EYE_LABEL_TOKEN", "")

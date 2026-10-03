@@ -309,5 +309,9 @@ eye_card/cards_sent.jsonl
 research/paper_journal/
 *.pid
 
+# E5 blind test: pool holds session dates, taps are Austin's private log
+research/paper_journal/blind_pool.json
+research/paper_journal/acks_blind.jsonl
+
 # runtime logs (a tracked dryrun.cmd once leaked EYE_LABEL_TOKEN)
 logs/
