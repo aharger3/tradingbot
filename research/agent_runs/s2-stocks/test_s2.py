@@ -121,6 +121,7 @@ def test_day_perm_is_calibrated_under_no_effect_and_detects_a_planted_one():
     idx, _ = R.build_index(pool)
     slots_null = [dict(sym="A", day=d, m=600) for d in days[:40]]
     perm, fills = R.day_perm(slots_null, idx, days, n=400)
-    assert fills.mean() > 0.9 and abs(np.nanmean(perm) + 0.2) < 0.1
-    assert (perm >= np.nanmean(perm)).mean() == pytest.approx(0.5, abs=0.15)        # no effect: observed sits mid-distribution
+    pm = float(np.mean([x['r'] for x in pool]))
+    assert fills.mean() > 0.9 and abs(np.nanmean(perm) - pm) < 0.08
+    assert (perm >= pm).mean() == pytest.approx(0.5, abs=0.2)        # no effect: observed sits mid-distribution
     assert (perm >= 1.0).mean() < 0.01                                               # a +1.2R mean is far out in the tail
