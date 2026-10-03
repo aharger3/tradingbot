@@ -1,0 +1,36 @@
+{
+ "N1": {
+  "variant": "smt_PD_swing10",
+  "n": 146,
+  "skipped_min_dist": 0,
+  "win": 0.3424657534246575,
+  "meanR": -0.061522092267563964,
+  "h1_n": 65,
+  "h1_meanR": -0.021542853799944254,
+  "h2_n": 81,
+  "h2_meanR": -0.09360419721071556,
+  "long_share": 0.4246575342465753,
+  "median_stop_pct": 0.0008756945747414894,
+  "top5_days_share": null,
+  "trade_days": 146,
+  "shuffle_p": 0.1504247876061969,
+  "clears_std_bar": false
+ },
+ "N2": {
+  "variant": "op_rej_near",
+  "n": 181,
+  "skipped_min_dist": 0,
+  "win": 0.32044198895027626,
+  "meanR": -0.1855826971201726,
+  "h1_n": 97,
+  "h1_meanR": -0.24802900670104747,
+  "h2_n": 84,
+  "h2_meanR": -0.11347207772321,
+  "long_share": 0.5138121546961326,
+  "median_stop_pct": 0.0009003817618670316,
+  "top5_days_share": null,
+  "trade_days": 181,
+  "shuffle_p": 0.631184407796102,
+  "clears_std_bar": false
+ }
+}

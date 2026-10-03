@@ -1,0 +1,17 @@
+{'mentor3_sha256': 'c04551663c3dd536a89fec8c384f15d6c8c4b5dfc17dbe9e344c1a19ca249539', 'declared_sha256': '1666d4d9b6875f5d260fb6eda2d6895bd30c678f486fa1687b181162c1ea37aa', 'run_at': '2026-10-03 07:40:40'}
+NQ sessions 492, ES sessions 492, aligned with all four levels 490: 2024-09-27 .. 2026-09-25
+trading NQ
+  smt_ON_candle: n=221 meanR=-0.13677892077766152 (skip 0)
+  smt_ON_swing10: n=221 meanR=-0.09439318081011133 (skip 0)
+  smt_PD_candle: n=146 meanR=-0.07187522020577519 (skip 0)
+  smt_PD_swing10: n=146 meanR=0.055945285557364874 (skip 0)
+  op_rej_any: n=341 meanR=0.030944717601645307 (skip 0)
+  op_rej_near: n=142 meanR=0.152319490634146 (skip 0)
+  op_rec_any: n=365 meanR=-0.0817928620052354 (skip 0)
+  op_rec_near: n=157 meanR=0.0383989678804496 (skip 0)
+trading ES twin of smt_PD_swing10
+  smt_PD_swing10: n=146 meanR=-0.061522092267563964 (skip 0)
+trading ES twin of op_rej_near
+  op_rej_near: n=181 meanR=-0.1855826971201726 (skip 0)
+N1 primary smt_PD_swing10 clears False fw 0.3173413293353323 fw_both 0.6596701649175413
+N2 primary op_rej_near clears False fw 0.12543728135932034 fw_both 0.17891054472763618

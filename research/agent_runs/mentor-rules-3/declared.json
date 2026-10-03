@@ -1,0 +1,88 @@
+{
+  "declared_on": "2026-10-03 (night run, Austin asleep), BEFORE any variant was evaluated on real data. Committed together with mentor3.py, run.py and test_mentor3.py (21 synthetic-data tests) before run.py touches the real NQ/ES files.",
+  "paper_research_only": true,
+  "not_investment_advice": true,
+  "window": {
+    "fit": ["2024-09-26", "2026-09-25"],
+    "reserved_never_loaded": "NQ 2019-09-26..2024-09-25 (window A); ES held to the same rule. Rows dated on or before 2024-09-25 are dropped when each file is read, and every loaded session is asserted > 2024-09-25. First usable session is 2024-09-27 (a prior-session level needs the previous NYSE session inside the window).",
+    "window_B": "NQ 2010-06-07..2019-09-25 is not used and not on disk."
+  },
+  "data": {
+    "NQ_ES": "C:/Users/aharg/Desktop/Projects/tradingbot/research/agent_runs/t01-orb5/fut/{NQ,ES}*.csv (real 1-min futures, quarterly contracts Z4..Z6). Front contract per session = the contract with the most RTH (09:30-15:59 ET) volume. Same loader convention as round 2 cell C.",
+    "sessions": "NYSE sessions only (holidays dropped). A session is used only when NQ AND ES both have a usable session on that date with all four levels (PDH, PDL, ONH, ONL) known. A prior-session level exists only when the prior NYSE session was on the same contract (removes roll days). The shuffle universe and the half split use exactly these aligned sessions, for both candidates.",
+    "overnight_range_ON": "high and low of the traded or other instrument's front contract from the prior session's 16:00 ET to 09:29 ET today (needs >= 30 one-minute bars, else the day has no ON level and is not aligned)."
+  },
+  "source_rules": {
+    "N1": {
+      "name": "SMT divergence (ES vs NQ) at a key level",
+      "videos": {
+        "TMybdhN1azw": "mamba, 2025-03-05. 'Enter a trade when there is an SMT divergence between correlated index futures (e.g., NQ making a new low while ES does not)'; quote 01:56 'NQ was making a low while ES wasn't, that's kind of a sign for the market to potentially reverse.'",
+        "tMj4_K2eay0": "mamba, 2025-04-24. 'Enter a position when a divergence between indices (one making a low while the other makes a higher low) is confirmed and price reclaims above the opening print.' Stop 'below the opening print and the recent swing low'. Quote 00:40 'if one index makes a low or a high and another doesn't, it can signify a bottom or a top'.",
+        "w_Zn6QCkEB0": "mamba, 2025-03-25. 'Enter short when one index creates a higher high while the other fails to make a higher high ... Enter long when one index creates a lower low while the other creates a higher low ... around key levels.' 'Use a one-candle stop when entering divergence setups.' Quote 03:59 'You can basically use a one-candle stop to target the pre-market highs and then the level.'"
+      },
+      "reading_note": "Gemini's reading of each video, not audited against the video. 'Key level' is not defined in any of the three; I read it as the overnight range extreme (the videos name pre-market and overnight highs) or the prior-day extreme, and test both as a grid dimension. The videos use 1m/2m/5m charts and often a half-size first entry plus scale-outs; this test uses 1-minute bars, one entry, fixed 2R (the OMEN research baseline)."
+    },
+    "N2": {
+      "name": "Opening-print rejection / reclaim",
+      "videos": {
+        "TMybdhN1azw": "'Enter a short position when price wicks and rejects both a key level and the opening print.' Quote 04:36 'if you use levels and opening print, you can use that together to gauge where price is going to move next.'",
+        "tMj4_K2eay0": "'once I saw that and then we got over the opening print I entered' (02:42); stop 'below the opening print and the recent swing low'."
+      },
+      "reading_note": "'Opening print' is read as the 09:30 ET open of the traded instrument's first RTH 1-minute bar. 'Reject' and 'reclaim' are two readings, both tested. The short mirror of 'reclaim' (loses the print after trading above it) is my symmetry assumption; the videos only show the long reclaim and the short reject."
+    },
+    "N3": "1-2-3 / flag inside a displacement bar (GXgIy6fgZ5g, yxQ0i7JAmGQ): NOT tested. The videos give no precise definition; left in mentor-rule-candidates.md as needs-definition."
+  },
+  "shared_fills": "Round-2 harness (mentor2.py, unchanged): signal bar closes in 09:30-10:30 (bars 0..60), entry = next minute's open + 1 tick against, one trade per day, 2R target needing 1 tick through, SAME BAR = STOP WINS, a gap through the stop fills at the open one tick worse, flat at the 11:00 open one tick worse. Min stop = 2 ticks (a smaller stop skips the day, no second try).",
+  "costs": {
+    "NQ": "sized as MNQ: tick 0.25, $2 per point, $1.24 round trip",
+    "ES": "sized as MES: tick 0.25, $5 per point, $1.24 round trip (the same round trip as MNQ is an ASSUMPTION [unverified])"
+  },
+  "N1_definition": {
+    "traded_instrument": "NQ. The other instrument (ES) is only used to judge divergence.",
+    "levels": {"ON": "overnight low (ONL) / high (ONH) of each index", "PD": "prior-session RTH low (PDL) / high (PDH) of each index"},
+    "sweep": "an index has swept the level when its 1-min low is strictly below its own level L (bullish) or its high strictly above its own level (bearish), at any bar from 09:30 up to and including the current bar.",
+    "bullish_trigger_at_bar_j": "(a) exactly one index has swept its own low-level by bar j and the other has NOT (its running low since 09:30 is still >= its own level); (b) the sweeping index's first sweep was at most 15 bars before j (j - first_sweep <= 15, j >= first_sweep); (c) bar j of the sweeping index closes above its own level and closes green (close > open). Either index may be the sweeper. Bearish mirrors on highs: close under the level and red.",
+    "entry": "NQ open at bar j+1 plus one tick against (long: +1 tick, short: -1 tick). First trigger of the day (bars 0..60). If a bullish and a bearish trigger fire on the same first bar, the day is skipped.",
+    "stop": {"candle": "trigger bar's NQ extreme -/+ 1 tick (low for long, high for short), the 'one-candle stop' (w_Zn6QCkEB0)", "swing10": "lowest low (highest high) of the last 10 NQ bars including bar j, -/+ 1 tick"},
+    "target": "2R fixed",
+    "grid": {"level": ["ON", "PD"], "stop": ["candle", "swing10"]},
+    "variants": ["smt_ON_candle", "smt_ON_swing10", "smt_PD_candle", "smt_PD_swing10"],
+    "count": 4
+  },
+  "N2_definition": {
+    "traded_instrument": "NQ",
+    "OP": "open of the 09:30 bar of the traded instrument",
+    "distances_as_share_of_OP": {"tol": 0.00005, "dip": 0.0005, "near": 0.00125, "note": "0.005% = about 1 NQ point at 20,000; 0.05% = about 10 points; 0.125% = about 25 points. Shares, not points, so the ES replication scales."},
+    "reject": "short: a 1-min bar j (1..60) whose high >= OP - tol, previous close < OP, closes < OP and red. Long mirror: low <= OP + tol, previous close > OP, closes > OP and green.",
+    "reclaim": "long: a bar closes > OP and green after a previous close <= OP, and the lowest low from 09:30 to the previous bar is <= OP - dip. Short mirror: closes < OP and red after a previous close >= OP, and the highest high so far >= OP + dip.",
+    "key_level_filter": {"any": "no filter", "near": "only days when PDH, PDL, ONH or ONL of NQ lies within 0.125% of OP (the 'rejects both a key level and the opening print' reading)"},
+    "entry": "next minute open +/- 1 tick against; first signal of the day (bars 1..60)",
+    "stop": "extreme of the last 10 NQ bars including the signal bar, -/+ 1 tick (the videos put the stop beyond the recent swing)",
+    "target": "2R fixed",
+    "grid": {"mode": ["reject", "reclaim"], "key_level": ["any", "near"]},
+    "variants": ["op_rej_any", "op_rej_near", "op_rec_any", "op_rec_near"],
+    "count": 4
+  },
+  "es_replication": "After the NQ run, the primary variant of each candidate is re-run once on ES (ES traded, NQ as the other index for N1) with the same definition and SPEC_ES. Declared now, report-only: it is a replication of the chosen variant, not a member of any family, and it cannot rescue a candidate that fails on NQ. If a candidate has no variant with n >= 30 there is no primary and no ES twin.",
+  "total_variants": 8,
+  "primary_variant_rule": "per candidate: highest mean R among its 4 variants with n >= 30 (ties -> larger n), chosen on the fit window only.",
+  "std_bar": "n >= 30, mean R >= +0.15, both halves > 0, day-level shuffle p < .05 (the variant's own p). A candidate clears only if its PRIMARY variant meets all four. Other variants are reported, never promoted after the fact. Halves split at the median aligned session date.",
+  "permutation": {
+    "type": "day-level, identical to round 2 (mentor2.shuffle_means)",
+    "draws": 2000,
+    "seed": 7,
+    "how": "each draw maps every aligned session date to a different random date (one map for all variants); each trade is replayed on NQ's session at the mapped date with the same entry minute, side and stop as a share of price; if the mapped session lacks the entry minute, a random other session is used. p = (1 + draws with mean R >= real) / 2001. All 8 NQ variants are shuffled in ONE call so the draws are shared.",
+    "family_wise": "per candidate: the max over its eligible (n >= 30) variants of the shuffled mean R per draw, compared with the primary's real mean R. Also reported across both candidates (max over all 8 eligible). Reported next to the std-bar p, not instead of it.",
+    "what_it_tests": "whether these entry minutes, sides and stop sizes pay better on the real day than on a random day. It prices the day match, not the signal logic; the signal logic is tested by the real-data mean R and the halves."
+  },
+  "all_variants_reported": true,
+  "same_bar_rule": "stop wins",
+  "if_a_candidate_clears": "write a LOCKED confirm prereg for its primary variant in mentor-rule-candidates.md: fit result, frozen file hashes, the confirm data (NQ window B 2010-06-07..2019-09-25 is NOT on disk and its use needs Austin's 'window B ok'; ES window B is not on disk either), the std bar again, and the family-wise p.",
+  "if_none_clears": "report the table, write no prereg. Update the canon ledger either way.",
+  "known_limits": [
+    "1-minute bars cannot show intrabar order; same-bar stop-wins is the conservative reading.",
+    "The videos trade 2m/5m charts with scale-outs and partial sizes; fixed 2R single entry is a simplification.",
+    "Two candidates, 8 variants on one window, on top of rounds 1-2 (19 variants) and earlier t-series: the family-wise p covers only the choice inside this round.",
+    "The fit window is already mined by many other tests and cannot confirm anything on its own."
+  ]
+}
