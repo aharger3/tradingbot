@@ -149,7 +149,9 @@ def test_paper_replay_reproduces_v2_grid_cell():
         assert len(rows) == len(ref), (len(rows), len(ref))
         got_meanR = sum(r["net_R"] for r in rows) / len(rows)
         ref_meanR = sum(t["R"] for t in ref) / len(ref)
-        assert abs(got_meanR - ref_meanR) < 1e-6, (got_meanR, ref_meanR)
+        # rows store net_R rounded to 4 dp, so the mean can drift up to 5e-5 from the
+        # unrounded reference (~4.4e-6 on the real 105 trades) -- 1e-6 was unreachable.
+        assert abs(got_meanR - ref_meanR) < 1e-4, (got_meanR, ref_meanR)
         assert coverage["MNQ"] > 400  # ~2 yr of sessions
     finally:
         out.unlink(missing_ok=True)

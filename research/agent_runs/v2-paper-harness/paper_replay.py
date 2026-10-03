@@ -40,6 +40,14 @@ SYM = "MNQ"
 ORN, DISP_K, TRIG, CUTNAME, CUT = 5, 1.0, "strong", "10:30", 60  # orb1m.CUTS["10:30"]
 QQQ_SCALE = 41.35
 DATA_ARCHIVE_QQQ = Path(r"C:\Users\aharg\Desktop\Projects\tradingbot\data_archive\QQQ")
+COMMISSION_RT_USD = 1.24  # per-micro round trip; same figure as omen_data.SPEC[*]["rt_comm"] / orb1m
+MNQ_USD_PT = 2.0          # omen_data.SPEC["MNQ"]["usd_pt"]; 1 contract, so risk_usd = stop_R_pts * 2.0
+
+
+def net_R(gross_R, risk_usd, comm_usd=COMMISSION_RT_USD):
+    """R after the round-trip commission: gross_R - comm_usd / risk_usd. Mirrors orb1m.run_trade,
+    which the v2 grid reference (trades_MNQ_OR5_1030_D1_strong.json) is scored with."""
+    return gross_R - comm_usd / risk_usd
 
 
 def _exit_reason(A, side, i, cut, x, tgt):
@@ -74,6 +82,7 @@ def _one_cell(days, engine_sha, orb1m):
         tgt = e + side * 2 * dist
         x = orb1m.sim(A, side, i, stop, tgt, CUT)
         gross_R = (x - e) * side / dist
+        netR = net_R(gross_R, dist * MNQ_USD_PT)
         reason = _exit_reason(A, side, i, CUT, x, tgt)
         bar_hhmm = f"{(570 + i) // 60:02d}{(570 + i) % 60:02d}"
         signal_id = f"{SYM}_{d}_ORB5_D1.0_{TRIG}_{bar_hhmm}_{CUTNAME}"
@@ -86,8 +95,8 @@ def _one_cell(days, engine_sha, orb1m):
             entry_model_px=round(float(e), 4), tgt_px=round(float(tgt), 4),
             entry_fill_px=round(float(e), 4), entry_slip_ticks=1, fill_source="sim",
             exit_px=round(float(x), 4), exit_reason=reason,
-            gross_R=round(float(gross_R), 4), net_R=round(float(gross_R), 4),
-            comm_usd=1.24,
+            gross_R=round(float(gross_R), 4), net_R=round(float(netR), 4),
+            comm_usd=COMMISSION_RT_USD,
         ))
     return rows
 
@@ -178,7 +187,7 @@ def run_oos(out_path: Path, engine_sha: str, nshuf=200):
                 stop = e - side * dist
                 tgt = e + side * 2 * dist
                 x = orb1m.sim(Ak, side, i, stop, tgt, CUT)
-                rr.append((x - e) * side / dist)
+                rr.append(net_R((x - e) * side / dist, dist * MNQ_USD_PT))  # net, like R above
             sh.append(np.mean(rr) if rr else 0.0)
         sh = np.array(sh)
         result["shuffle_p"] = float((sh >= R.mean()).mean())
