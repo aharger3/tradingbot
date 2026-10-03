@@ -13,6 +13,7 @@ from datetime import date, datetime, timedelta
 from pathlib import Path
 
 import day_policy
+from omen_paths import DATA_ARCHIVE
 import loss_halt
 import polygon_feed as pf
 import signal_runner
@@ -91,7 +92,7 @@ def level_label(t):
 
 
 def archive_days(sym):
-    d = ROOT / "data_archive" / sym
+    d = DATA_ARCHIVE / sym
     return sorted(f.stem for f in d.glob("*.csv")) if d.is_dir() else []
 
 

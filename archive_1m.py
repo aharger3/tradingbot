@@ -17,7 +17,8 @@ sys.path.insert(0, str(Path(__file__).parent))
 import polygon_feed
 from universe import ALL_SYMS
 
-ARCHIVE = Path(__file__).parent / "data_archive"
+from omen_paths import DATA_ARCHIVE
+ARCHIVE = DATA_ARCHIVE
 # Symbols from universe.py (single source of truth, 2026-08-11)
 # ALL_SYMS combines MAJOR_15 + INDEX_POOL + OTHER_POOL
 

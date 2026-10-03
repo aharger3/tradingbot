@@ -1846,8 +1846,8 @@ class ReplayFeed:
     def _prior_day_bars(self, symbol: str):
         """The last archived session strictly before `self.day`."""
         import glob as _glob
-        d = os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                         "data_archive", symbol)
+        from omen_paths import DATA_ARCHIVE
+        d = os.path.join(str(DATA_ARCHIVE), symbol)
         days = sorted(os.path.basename(p)[:-4]
                       for p in _glob.glob(os.path.join(d, "*.csv")))
         prior = [x for x in days if x < self.day]

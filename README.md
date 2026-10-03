@@ -132,3 +132,12 @@ cd C:\Users\aharg\Desktop\Projects\tradingbot; git checkout main; git status
 - Nightly-loop gate wiring for the eye loop itself (beyond `regression_gate.py`'s engine
   scope) is not confirmed — the five gates above cover `signal_runner.py`, not `eye_runner.py`.
 - Live 1-minute feed for the eye loop: not wired. Replay-only until that lands.
+
+## Worktrees (read before `git worktree add`)
+
+A plain `git worktree add` materialises every tracked file, and this repo tracks ~2.4 GB of data
+(`data_archive/` 788 MB, plus ~1.6 GB of result JSONs directly under `research/`), so each worktree
+costs ~2.9 GB. On 2026-09-26/27 dispatched builder agents made ~95 of them (`tradingbot-<wave>-<slug>`).
+Use `.\new_worktree.ps1 <name>` instead: it sparse-checks-out without those paths (~0.5 GB), and
+`omen_paths.py` makes code read the main checkout's `data_archive/` (override: env `OMEN_DATA_DIR`).
+Never copy data into a worktree. Need a big result JSON? `git show origin/main:research/<file>`, or read it from the main checkout.
