@@ -71,6 +71,20 @@ def main():
         assert slices["ok"] is True and slices["skipped"], "edge slices should skip off-cadence: %r" % slices
         print("ok   off the cadence weekday, both hooks skip without touching the research script")
 
+        # 1b. a skip night must NOT erase a real prior result.
+        real = {"generated": "2026-01-01", "ok": True, "n_firms": 9}
+        for name in ("propfirm_overlay_search_latest.json", "edge_slices_latest.json"):
+            (tmp / name).write_text(json.dumps(real), encoding="utf-8")
+        nightly_loop.run_propfirm_overlay_search()
+        nightly_loop.run_edge_slices()
+        for name in ("propfirm_overlay_search_latest.json", "edge_slices_latest.json"):
+            assert _read(tmp / name) == real, "skip night overwrote real result in %s" % name
+        print("ok   skip nights keep an existing real result")
+
+        # 1c. the default cadence day must be a day the weekdays-only task fires.
+        assert orig_weekday < 5, "ROBUSTNESS_RECHECK_WEEKDAY=%d never fires: OmenNightlyLoop runs weekdays only" % orig_weekday
+        print("ok   default cadence day is a weekday")
+
         # 2. on the cadence day -- a synthetic report becomes a compact summary.
         nightly_loop.ROBUSTNESS_RECHECK_WEEKDAY = today_weekday
 
