@@ -132,7 +132,9 @@ def random_subset_p(R_all, k, obs_mean, n=5000):
 
 
 def strat_null_p(pick_strata, all_strata, all_R, pick_R, n=3000):
-    """null: replace each pick by a random candidate from the same stratum (time slot x side). Vectorised."""
+    """null: replace each pick by a random candidate from the same stratum (time slot x side). Vectorised.
+    Draws are independent, so picks that share a symbol-day are treated as independent: p is too small when picks
+    cluster. Use strat_null_cluster (symbol-day cluster bootstrap) for the p-values that are quoted."""
     all_strata = np.asarray(all_strata); all_R = np.asarray(all_R, float); pick_strata = np.asarray(pick_strata)
     keys, counts = np.unique(pick_strata, return_counts=True)
     obs = float(np.mean(pick_R))
@@ -144,6 +146,27 @@ def strat_null_p(pick_strata, all_strata, all_R, pick_R, n=3000):
         sims += pool[RNG.integers(0, len(pool), (n, c))].sum(axis=1)
     sims /= counts.sum()
     return round(float(sims.mean()), 3), round(float(((sims >= obs).sum() + 1) / (n + 1)), 4)
+
+
+def strat_null_cluster(pick_strata, pick_cl, pick_R, all_strata, all_R, n=3000):
+    """symbol-day cluster bootstrap of the stratum-adjusted edge. excess_i = R_i - mean R of all candidates in the
+    same stratum (time slot x side); resample the pick clusters (symbol-day) with replacement n times and take the
+    mean excess of each resample. -> (edge, [2.5, 97.5] CI, one-sided p = share of resamples with edge <= 0).
+    Picks on the same symbol-day move together, so this p is wider than strat_null_p's."""
+    all_strata = np.asarray(all_strata); all_R = np.asarray(all_R, float)
+    pick_strata = np.asarray(pick_strata); pick_R = np.asarray(pick_R, float)
+    keys = np.unique(all_strata)
+    mu = {k: float(all_R[all_strata == k].mean()) for k in keys}
+    mall = float(all_R.mean())
+    ex = pick_R - np.array([mu.get(k, mall) for k in pick_strata])
+    u, inv = np.unique(np.asarray(pick_cl), return_inverse=True)
+    sums = np.bincount(inv, weights=ex); cnt = np.bincount(inv)
+    boot = np.empty(n)
+    for i in range(n):
+        p = RNG.integers(0, len(u), len(u))
+        boot[i] = sums[p].sum() / max(cnt[p].sum(), 1)
+    return (round(float(ex.mean()), 3), [round(float(np.percentile(boot, 2.5)), 3), round(float(np.percentile(boot, 97.5)), 3)],
+            round(float(((boot <= 0).sum() + 1) / (n + 1)), 4))
 
 
 def summ(R):
@@ -159,7 +182,9 @@ def slot(tod):
 
 
 # ---------------------------------------------------------------- analysis
-def population_eval(A, nqc, do_nq):
+def population_eval(A, nqc, do_nq, exclude_marked=False):
+    """exclude_marked: models are trained exactly as before (labels included), but the evaluated candidates (picks AND
+    the pool they are compared with) drop every row he marked (S/A/B/C/none), so no row he saw with hindsight is scored."""
     A = A.copy()
     A["cl"] = A["sym"] + "_" + A["day"]
     A["sl"] = [a + b for a, b in zip(slot(A["tod"].to_numpy()), A["side"].astype(str))]
@@ -176,7 +201,8 @@ def population_eval(A, nqc, do_nq):
     for fi, (tr, te) in enumerate(folds):
         cut = cuts[fi]
         tr_df, te_df = A.iloc[tr], A.iloc[te]
-        aR.append(te_df["R"].to_numpy()); aC.append(te_df["cl"].to_numpy()); aS.append(te_df["sl"].to_numpy()); ay.append(yA[te])
+        ev = (~te_df["lab"].isin(LAB)).to_numpy() if exclude_marked else np.ones(len(te_df), bool)
+        aR.append(te_df["R"].to_numpy()[ev]); aC.append(te_df["cl"].to_numpy()[ev]); aS.append(te_df["sl"].to_numpy()[ev]); ay.append(yA[te][ev])
         lab_tr = tr_df[tr_df["lab"].isin(LAB)]
         yl = (lab_tr["lab"] == "S").astype(int).to_numpy()
         mt = make_model("l1", tr_df[["tod"]], yA[tr])
@@ -188,7 +214,7 @@ def population_eval(A, nqc, do_nq):
             mm = make_model(kind, lab_tr[FEATURES], yl)
             s_tr2, s_te2 = score(mm, tr_df[FEATURES]), score(mm, te_df[FEATURES])
             for key, st_, se_ in (("l2_" + kind, s_tr, s_te), ("l1model_on_all" if kind == "l1" else "tree_on_all", s_tr2, s_te2)):
-                take = se_ >= np.quantile(st_, 0.90)
+                take = (se_ >= np.quantile(st_, 0.90)) & ev
                 P[key]["R"].append(te_df["R"].to_numpy()[take]); P[key]["cl"].append(te_df["cl"].to_numpy()[take])
                 P[key]["sl"].append(te_df["sl"].to_numpy()[take]); P[key]["S"].append(int(yA[te][take].sum()))
             if do_nq:
@@ -207,11 +233,12 @@ def population_eval(A, nqc, do_nq):
         out["folds"].append({"cut": cut, "n_test": int(len(te))})
     aR, aC, aS, ay = (np.concatenate(x) for x in (aR, aC, aS, ay))
     out["oos_all"] = summ(aR)
-    out["oos_his_S"] = summ(aR[ay == 1])
-    for kind in ("l1", "tree", "tod"):
-        s = np.concatenate(sc[kind])
-        out[f"auc_{kind}_pooled"] = round(float(roc_auc_score(ay, s)), 3)
-        out[f"auc_{kind}_ci"] = boot_auc(ay, s, aC, n=300)
+    if not exclude_marked:      # with his marked rows removed there is no S left to score
+        out["oos_his_S"] = summ(aR[ay == 1])
+        for kind in ("l1", "tree", "tod"):
+            s = np.concatenate(sc[kind])
+            out[f"auc_{kind}_pooled"] = round(float(roc_auc_score(ay, s)), 3)
+            out[f"auc_{kind}_ci"] = boot_auc(ay, s, aC, n=300)
     out["picks"] = {}
     for key in keys:
         R = np.concatenate(P[key]["R"]); cl = np.concatenate(P[key]["cl"]); sl = np.concatenate(P[key]["sl"])
@@ -220,7 +247,9 @@ def population_eval(A, nqc, do_nq):
         if len(R) > 5:
             d["diff_vs_all_ci"] = cluster_boot_diff(R, cl, aR, aC)
             d["p_randsubset"] = random_subset_p(aR, len(R), float(R.mean()))
-            d["slot_matched_null_mean"], d["p_slot_matched"] = strat_null_p(sl, aS, aR, R)
+            d["slot_matched_null_mean"], d["p_slot_matched_iid"] = strat_null_p(sl, aS, aR, R)
+            d["slot_matched_edge"], d["slot_matched_edge_ci_cluster"], d["p_slot_matched_cluster"] = \
+                strat_null_cluster(sl, cl, R, aS, aR)
         out["picks"][key] = d
     if do_nq:
         na = np.concatenate(nqA["R"]) if nqA["R"] else None
@@ -254,7 +283,9 @@ def main(datadir, outjson):
         d = summ(s["R"])
         if g in ("S", "A", "C", "none") and len(s):
             d["ci_vs_unmarked"] = cluster_boot_diff(s["R"], s["cl"], unm["R"], unm["cl"])
-            d["null_mean"], d["p_stratified"] = strat_null_p(s["sl"], unm["sl"], unm["R"].to_numpy(), s["R"].to_numpy())
+            d["null_mean"], d["p_stratified_iid"] = strat_null_p(s["sl"], unm["sl"], unm["R"].to_numpy(), s["R"].to_numpy())
+            d["edge_cluster"], d["edge_ci_cluster"], d["p_stratified_cluster"] = \
+                strat_null_cluster(s["sl"], s["cl"], s["R"], unm["sl"], unm["R"].to_numpy())
         his[g] = d
     his["unmarked_all"] = summ(unm["R"])
     s_rows = st[st["lab"] == "S"]
@@ -304,6 +335,7 @@ def main(datadir, outjson):
     res["L2_all_candidates"] = population_eval(st.dropna(subset=["R"]).reset_index(drop=True), nqc, do_nq=True)
     judged = st[(st["lab"] != "unmarked")].dropna(subset=["R"]).reset_index(drop=True)
     res["L2_judged_days_only"] = population_eval(judged, nqc, do_nq=False)
+    res["L2_judged_days_unmarked_only"] = population_eval(judged, nqc, do_nq=False, exclude_marked=True)
 
 
     # --- final fit on all labels: the rule as it would be written down (descriptive, not a result) ------

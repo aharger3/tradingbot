@@ -105,6 +105,15 @@ def test_reserved_window_never_loaded():
     assert "2024-09-27" in nq
 
 
+def test_reserved_bars_filtered_on_read():
+    """the 2024-09-25 20:00-23:59 ET bars (they sit in NQZ4_2024.csv) are dropped by _drop_reserved, not just ignored later."""
+    def ns(t):
+        return int(pd.Timestamp(t, tz="America/New_York").tz_convert("UTC").value)
+    df = pd.DataFrame({"ts_ns": [ns("2024-09-25 09:30"), ns("2024-09-25 20:00"), ns("2024-09-25 23:59"),
+                                 ns("2024-09-26 04:00"), ns("2024-09-26 09:30")], "x": range(5)})
+    assert list(D._drop_reserved(df)["x"]) == [3, 4]
+
+
 def test_walk_forward_splits_are_strictly_forward():
     dates = pd.Series(pd.date_range("2024-10-01", periods=200, freq="D").strftime("%Y-%m-%d"))
     folds = FIT.wf_folds(dates, n_folds=4, first=0.4)

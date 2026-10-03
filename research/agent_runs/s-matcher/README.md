@@ -9,6 +9,7 @@ the rule takes. Write-up: life-plan `07-money/omen/night-1003/s-matcher.md`.
     python sm_posthoc.py OUTDIR OUT.json # hindsight check: re-enter his S at 11:00
     python -m pytest test_sm.py
 
-`nq_candidates.py` is vendored from PR #40. NQ sessions on or before 2024-09-26 (the reserved B1 window and its
-boundary day) are never loaded: see `sm_data.build_nq_days` and its test. `final_model.json` is a descriptive fit on all
+`nq_candidates.py` is vendored from PR #40. NQZ4_2024.csv holds some reserved-window bars (2024-09-25 20:00-23:59 ET);
+`sm_data._drop_reserved` filters every bar dated on or before 2024-09-25 right after each file is read, and
+`build_nq_days` also skips the first session after the window: see `sm_data` and its tests. `final_model.json` is a descriptive fit on all
 labels, not an out-of-sample result.

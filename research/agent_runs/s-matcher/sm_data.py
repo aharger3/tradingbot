@@ -1,8 +1,10 @@
 """s-matcher data loaders: stock/ETF 1-min days from data_archive, real NQ 1-min days from t01-orb5/fut.
 
 RESERVED WINDOW GUARD: real NQ bars dated <= 2024-09-25 are the pre-registered B1 out-of-sample window (2019-09-26 ..
-2024-09-25). build_nq_days() drops every session on or before B1_END (and the first session after it, whose prior day
-would sit inside the window), so nothing here can be fit or tuned on it.
+2024-09-25). NQZ4_2024.csv does hold some of those bars (2024-09-25 20:00-23:59 ET). They are filtered out right
+after each file is read (_drop_reserved), so no reserved bar survives past the read: not in a session, not a prior day,
+not in the front-month volume count. build_nq_days() also drops the first session after B1_END (its prior day would sit
+inside the window), so nothing here can be fit or tuned on the reserved window.
 """
 import os
 import numpy as np
@@ -35,6 +37,12 @@ def load_stock_day(sym, day):
     return day_from_rows(mins.to_numpy(), d["Open"], d["High"], d["Low"], d["Close"], d["Volume"])
 
 
+def _drop_reserved(df):
+    """drop every bar whose ET calendar date is <= B1_END (the reserved window). Needs ts_ns."""
+    ts = pd.to_datetime(df["ts_ns"], unit="ns", utc=True).dt.tz_convert("America/New_York")
+    return df[ts.dt.strftime("%Y-%m-%d") > B1_END]
+
+
 def build_nq_days(raw=None, root="NQ"):
     """-> {date_str: (day, prev_day_same_contract_or_None)} for sessions strictly after B1_END+1 trading day.
     `raw` = DataFrame with ts_ns/open/high/low/close/volume/contract (as written by fetch_fut); loaded from disk if None."""
@@ -42,13 +50,13 @@ def build_nq_days(raw=None, root="NQ"):
         parts = []
         for f in sorted(os.listdir(FUT_DIR)):
             if f.startswith(root) and f.endswith(".csv"):
-                d = pd.read_csv(os.path.join(FUT_DIR, f))
+                d = _drop_reserved(pd.read_csv(os.path.join(FUT_DIR, f)))
                 if d.empty:
                     continue
                 d["contract"] = f.split("_")[0]
                 parts.append(d)
         raw = pd.concat(parts, ignore_index=True)
-    raw = raw.copy()
+    raw = _drop_reserved(raw).copy()
     ts = pd.to_datetime(raw["ts_ns"], unit="ns", utc=True).dt.tz_convert("America/New_York")
     raw["date"] = ts.dt.strftime("%Y-%m-%d")
     raw["m"] = ts.dt.hour * 60 + ts.dt.minute
