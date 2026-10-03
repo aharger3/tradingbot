@@ -159,3 +159,23 @@ def test_levels_are_known_before_entry_bar_and_variants_only_change_level_days(d
     for b, r in zip(base, v):
         if r["tgt_label"] == "flat2R":
             assert b["R"] == r["R"]
+
+
+# ------------------------------------------------------------ locked confirm helpers
+def test_verdict_requires_every_clause():
+    assert e10.verdict(40, 0.06, 0.02, 0.10, 0.004)[0] == "PASS"
+    assert e10.verdict(29, 0.06, 0.02, 0.10, 0.004)[0] == "FAIL"      # n
+    assert e10.verdict(40, 0.049, 0.02, 0.10, 0.004)[0] == "FAIL"     # margin
+    assert e10.verdict(40, 0.06, -0.01, 0.10, 0.004)[0] == "FAIL"     # one half negative
+    assert e10.verdict(40, 0.06, 0.02, 0.10, 0.011)[0] == "FAIL"      # p
+
+
+def test_confirm_machinery_on_fit_window_fails_as_the_fit_numbers_say(days):
+    out = e10.confirm(days, n_flips=20_000)           # machinery check only; the fit window confirms nothing
+    assert out["n"] == 105 and out["verdict"] == "FAIL" and out["diff"] < 0
+
+
+def test_thin_session_rule_keeps_fit_window_days(days):
+    thin = e10.load_days(min_open_bars=55)
+    assert {a["date"] for a in thin} <= {a["date"] for a in days}
+    assert len(days) - len(thin) <= 3                 # drops at most a few half-day style sessions

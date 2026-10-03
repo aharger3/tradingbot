@@ -55,9 +55,11 @@ def frozen_shas():
 
 
 # ---------------------------------------------------------------- data
-def load_days(nq_dir=None):
+def load_days(nq_dir=None, min_open_bars=None):
     """Same day construction as mnq.load_real (front month by RTH volume, holiday list), plus explicit PMH/PML.
-    Each day: open/high/low/close arrays (91 one-minute bars from 09:30), date, pdh, pdl, pmh, pml."""
+    Each day: open/high/low/close arrays (91 one-minute bars from 09:30), date, pdh, pdl, pmh, pml.
+    min_open_bars: default None = fit-window behaviour (holiday list only). For window B (2010-2019, where mnq.HOL has no
+    entries) pass 55: a session counts only if >= 55 of the 60 bars 09:30-10:29 exist on the front contract."""
     nq_dir = nq_dir or os.path.join(AR, "t01-orb5", "fut")
     NY = "America/New_York"
     parts = []
@@ -82,6 +84,8 @@ def load_days(nq_dir=None):
         g = rth[(rth.date == D) & (rth.k == k)]
         A = mnq.arr91(g)
         if np.isnan(A["open"][:5]).all():
+            continue
+        if min_open_bars is not None and int((~np.isnan(A["open"][:60])).sum()) < min_open_bars:
             continue
         c = by_k[k]
         pm = c.loc[pd.Timestamp(f"{D} {PM_START}", tz=NY):pd.Timestamp(f"{D} {PM_LAST_BAR}", tz=NY)]
@@ -274,6 +278,34 @@ def run_fit(days=None, out_dir=None, n_flips=N_FLIPS, n_shuf=N_SHUF):
                     cells += [f"{r['R']:.4f}", r["tgt_label"], f"{r['tgt_R']:.3f}"]
                 f.write(f"{t['date']},{t['side']},{t['dist']:.2f},{allrows['base'][n_]['R']:.4f}," + ",".join(cells) + "\n")
     return res
+
+
+# ---------------------------------------------------------------- window B confirm (LOCKED, see prereg-E10.md)
+LOCKED_M = 1.0                                   # the pick on the fit window (largest paired diff vs flat 2R)
+BAR = dict(n_min=30, diff_min=0.05, p_max=0.01)  # E10 row of the canon, Bonferroni x5 across E6-E10
+
+
+def verdict(n, diff, diff_h1, diff_h2, p_1s, bar=BAR):
+    ok = dict(n=n >= bar["n_min"], diff=diff >= bar["diff_min"], both_halves=(diff_h1 > 0 and diff_h2 > 0), p=p_1s < bar["p_max"])
+    return ("PASS" if all(ok.values()) else "FAIL"), ok
+
+
+def confirm(days, m=LOCKED_M, n_flips=N_FLIPS):
+    """ONE-SHOT window-B confirm. `days` must already be limited to the confirm window. Halves split at the median session date."""
+    dates = [A["date"] for A in days]
+    mid = dates[len(dates) // 2]
+    T = frozen_entries(days)
+    base, var = run_variant(days, T, None), run_variant(days, T, m)
+    Rb, Rv = np.array([r["R"] for r in base]), np.array([r["R"] for r in var])
+    d = Rv - Rb
+    h1 = np.array([r["date"] < mid for r in base])
+    p1, p2 = paired_signflip(d, n_flips)
+    out = dict(n=len(T), mean_base=float(Rb.mean()), mean_var=float(Rv.mean()), diff=float(d.mean()),
+               diff_h1=float(d[h1].mean()) if h1.any() else float("nan"), diff_h2=float(d[~h1].mean()) if (~h1).any() else float("nan"),
+               p_1s=p1, p_2s=p2, n_changed=int(sum(r["tgt_label"] != "flat2R" for r in var)),
+               base=summarize(Rb, [r["date"] for r in base], mid), var=summarize(Rv, [r["date"] for r in var], mid))
+    out["verdict"], out["checks"] = verdict(out["n"], out["diff"], out["diff_h1"], out["diff_h2"], p1)
+    return out
 
 
 if __name__ == "__main__":
