@@ -27,8 +27,9 @@ def _ntfy_base() -> str:
 
 
 def _label_base_url() -> str:
-    # Where the phone reaches the label endpoint (Tailscale/Cloudflare).
-    return os.environ.get("EYE_LABEL_BASE_URL", "http://100.66.129.60:9135")
+    # Where the phone reaches the label endpoint: the Cloudflare tunnel, never the Tailscale IP
+    # (the phone is often off the tailnet, so a Tailscale button tap is lost).
+    return os.environ.get("EYE_LABEL_BASE_URL", "https://omen.austinharger.com")
 
 
 def build_title(candidate: Candidate) -> str:

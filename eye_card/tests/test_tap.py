@@ -12,7 +12,7 @@ from pathlib import Path
 from unittest import mock
 from zoneinfo import ZoneInfo
 
-from eye_card import tap
+from eye_card import tap, vault
 from eye_card.chart import Candidate, _blind_view, render_candidate_chart
 
 ET = ZoneInfo("America/New_York")
@@ -61,6 +61,14 @@ class FakeSession:
     def post(self, url, **kw):
         self.posts.append((url, kw))
         return self._post
+
+    def get(self, url, **kw):
+        self.gets = getattr(self, "gets", []) + [url]
+        if isinstance(self._get, Exception):
+            raise self._get
+        return self._get
+
+    _get = FakeResp(body={"ok": True, "mode": "PAPER"})
 
 
 class ButtonTests(unittest.TestCase):
@@ -254,9 +262,9 @@ class SendTests(unittest.TestCase):
 class ConfigTests(unittest.TestCase):
     def _env(self, **kw):
         base = {"ANSWER_TAP_TOKEN": TOKEN, "TAP_ANSWER_TOPIC": ANSWER_TOPIC, "NTFY_TOPIC": ALERT_TOPIC,
-                "TAP_BASE_URL": ""}
+                "EYE_TAP_BASE_URL": "", "EYE_TAP_RELAY": ""}
         base.update(kw)
-        return mock.patch.dict("os.environ", base, clear=False), mock.patch.object(tap, "KEYS_PY", "no-such-file")
+        return mock.patch.dict("os.environ", base, clear=False), mock.patch.object(vault, "KEYS_PY", "no-such-file")
 
     def test_loads_from_env(self):
         a, b = self._env()
@@ -269,9 +277,75 @@ class ConfigTests(unittest.TestCase):
             tap.load_config()
 
     def test_relay_mode_refuses_the_old_guessable_topic(self):
-        a, b = self._env(NTFY_TOPIC="aharg-deadlines")
+        a, b = self._env(NTFY_TOPIC="aharg-deadlines", EYE_TAP_RELAY="1")
         with a, b, self.assertRaises(tap.TapConfigError):
             tap.load_config()
+
+    def test_default_buttons_go_through_the_cloudflare_tunnel(self):
+        a, b = self._env()
+        with a, b:
+            cfg = tap.load_config()
+        self.assertEqual(cfg["base_url"], "https://omen.austinharger.com")
+        self.assertEqual(cfg["answer_topic"], "")              # relay is off unless asked for
+        acts = tap.build_tap_payload(cand(), "EYE-x", topic=ALERT_TOPIC, token=TOKEN,
+                                     answer_topic=cfg["answer_topic"], base_url=cfg["base_url"])["actions"]
+        for a_ in acts:
+            self.assertEqual(a_["url"], f"https://omen.austinharger.com/tap/{TOKEN}")
+            self.assertNotIn("token", json.loads(a_["body"]))
+
+    def test_no_button_url_names_a_tailscale_address(self):
+        a, b = self._env()
+        with a, b:
+            cfg = tap.load_config()
+        text = json.dumps(tap.build_tap_payload(cand(), "EYE-x", topic=ALERT_TOPIC, token=TOKEN,
+                                                base_url=cfg["base_url"]))
+        for bad in ("100.", "ts.net", "tailscale", ":9135"):
+            self.assertNotIn(bad, text)
+
+    def test_tunnel_base_can_be_overridden(self):
+        a, b = self._env(EYE_TAP_BASE_URL="https://tap.example.com/")
+        with a, b:
+            self.assertEqual(tap.load_config()["base_url"], "https://tap.example.com")
+
+    def test_relay_flag_switches_back_to_the_answer_topic(self):
+        a, b = self._env(EYE_TAP_RELAY="1")
+        with a, b:
+            cfg = tap.load_config()
+        self.assertEqual((cfg["base_url"], cfg["answer_topic"]), ("", ANSWER_TOPIC))
+
+
+TUNNEL_CFG = {"token": TOKEN, "answer_topic": "", "base_url": "https://omen.austinharger.com",
+              "topic": ALERT_TOPIC}
+
+
+class TunnelProbeTests(unittest.TestCase):
+    def test_probe_hits_healthz_on_the_tunnel_host(self):
+        s = FakeSession()
+        self.assertTrue(tap.tunnel_up("https://omen.austinharger.com/", session=s))
+        self.assertEqual(s.gets, ["https://omen.austinharger.com/healthz"])
+
+    def test_probe_false_on_error_status_bad_json_or_exception(self):
+        for resp in (FakeResp(ok=False, code=502), FakeResp(body={"ok": False}), FakeResp(body={}),
+                     OSError("dns")):
+            s = FakeSession()
+            s._get = resp
+            self.assertFalse(tap.tunnel_up("https://omen.austinharger.com", session=s))
+
+    def test_card_is_sent_when_the_tunnel_is_up(self):
+        s = FakeSession()
+        r = tap.send_tap_card(cand(), None, "EYE-x", session=s, config=TUNNEL_CFG)
+        self.assertTrue(r.ok)
+        self.assertEqual(len(s.posts), 1)
+        self.assertTrue(s.posts[0][1]["json"]["actions"][0]["url"].startswith("https://omen.austinharger.com/tap/"))
+
+    def test_no_card_goes_out_when_the_tunnel_is_down(self):
+        s = FakeSession()
+        s._get = OSError("tunnel down")
+        r = tap.send_tap_card(cand(), None, "EYE-x", session=s, config=TUNNEL_CFG)
+        self.assertFalse(r.ok)
+        self.assertEqual(r.error, "tunnel down")
+        self.assertEqual(s.posts, [])
+        self.assertEqual(s.puts, [])
 
 
 class BlindChartTests(unittest.TestCase):
