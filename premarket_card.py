@@ -18,6 +18,18 @@ from signal_runner import _load_env_file
 _load_env_file(Path(__file__).parent / ".env")
 
 from live_scanner import DEFAULT_SYMBOLS, _yf_daily_context, _yf_history, now_et
+from research.build_status import NIGHTLY_MD, last_night_row
+
+
+def _nightly_recap(nightly_path: Path | None = None) -> str:
+    """One-line summary of nightly.md's last row (research/build_status.py's
+    own last_night_row(), reused rather than re-parsed) -- what the
+    OmenNightlyLoop did last night, for the 9am card."""
+    row = last_night_row(nightly_path if nightly_path is not None else NIGHTLY_MD)
+    if row is None:
+        return "no nightly run logged"
+    return (f"{row['date']} {row['flag']} -> **{row['decision']}** "
+            f"($/day {row['per_day']}, green {row['green']})")
 
 
 def _premarket_last(symbol: str):
@@ -64,7 +76,8 @@ def build_card(symbols) -> dict:
             lines.append(f"{sym:<5} data error: {type(e).__name__}")
 
     # Discord field cap 1024 chars -> chunk watchlist into fields
-    fields = [{"name": "QQQ Daily Bias", "value": _qqq_bias(), "inline": False}]
+    fields = [{"name": "QQQ Daily Bias", "value": _qqq_bias(), "inline": False},
+              {"name": "Nightly Recap", "value": _nightly_recap(), "inline": False}]
     chunk, size, part = [], 0, 1
     for ln in lines:
         if size + len(ln) + 9 > 1000:  # +9 for code fences/newline
