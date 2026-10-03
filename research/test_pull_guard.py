@@ -106,7 +106,62 @@ def test_guarded_pull_leaves_a_good_pull_alone():
         shutil.rmtree(tmp, ignore_errors=True)
 
 
+def test_conflicted_rebase_is_aborted_and_local_journal_survives():
+    """Pull conflicts mid-rebase: guard must abort the rebase, keep uncommitted
+    tracked-journal appends, and leave the repo on a branch so later pulls work."""
+    tmp = tempfile.mkdtemp(prefix="pull_guard_test_conflict_")
+    try:
+        upstream = os.path.join(tmp, "upstream")
+        work = os.path.join(tmp, "work")
+        os.makedirs(upstream)
+        _git(upstream, "init", "-q", "-b", "main")
+        _git(upstream, "config", "user.email", "test@example.com")
+        _git(upstream, "config", "user.name", "test")
+        os.makedirs(os.path.join(upstream, "journal"))
+        with open(os.path.join(upstream, "live_scanner.py"), "w") as f:
+            f.write("X = 1\n")
+        with open(os.path.join(upstream, "journal", "paper-trades.jsonl"), "w") as f:
+            f.write('{"t": 1}\n')
+        _git(upstream, "add", "-A")
+        _git(upstream, "commit", "-q", "-m", "base")
+        subprocess.run(["git", "clone", "-q", upstream, work], capture_output=True, text=True, check=True)
+        _git(work, "config", "user.email", "test@example.com")
+        _git(work, "config", "user.name", "test")
+
+        # Local commit and upstream commit both change live_scanner.py -> conflict.
+        with open(os.path.join(work, "live_scanner.py"), "w") as f:
+            f.write("X = 2\n")
+        _git(work, "commit", "-q", "-am", "local change")
+        pre = _git(work, "rev-parse", "HEAD").stdout.strip()
+        with open(os.path.join(upstream, "live_scanner.py"), "w") as f:
+            f.write("X = 3\n")
+        _git(upstream, "commit", "-q", "-am", "upstream change")
+
+        # Uncommitted append to a tracked journal (autostashed by the pull).
+        journal = os.path.join(work, "journal", "paper-trades.jsonl")
+        with open(journal, "a") as f:
+            f.write('{"t": 2}\n')
+
+        ok, rolled_back, message = run_guarded_pull(
+            python_exe=sys.executable, smoke_module="live_scanner", cwd=work
+        )
+        assert ok is False and rolled_back is True, message
+
+        with open(journal) as f:
+            assert f.read() == '{"t": 1}\n{"t": 2}\n', "uncommitted journal append was wiped"
+        assert _git(work, "rev-parse", "HEAD").stdout.strip() == pre
+        branch = _git(work, "symbolic-ref", "--short", "-q", "HEAD").stdout.strip()
+        assert branch == "main", "repo left on a detached HEAD"
+        git_dir = _git(work, "rev-parse", "--git-dir").stdout.strip()
+        git_dir = git_dir if os.path.isabs(git_dir) else os.path.join(work, git_dir)
+        assert not os.path.exists(os.path.join(git_dir, "rebase-merge"))
+        assert not os.path.exists(os.path.join(git_dir, "rebase-apply"))
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
 if __name__ == "__main__":
     test_guarded_pull_rolls_back_a_broken_commit()
     test_guarded_pull_leaves_a_good_pull_alone()
+    test_conflicted_rebase_is_aborted_and_local_journal_survives()
     print("OK: pull_guard rolls back a broken pull, leaves a good one alone")
