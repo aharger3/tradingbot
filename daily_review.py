@@ -19,6 +19,7 @@ import argparse
 import json
 import re
 from datetime import date, datetime, timedelta
+from zoneinfo import ZoneInfo
 from pathlib import Path
 
 _TIER_PREFIX_RE = re.compile(r"^(TRADE|WATCH)\s*·\s*")
@@ -324,10 +325,16 @@ def build_embed(date_str: str) -> dict:
     }
 
 
+def default_review_date(now=None):
+    """Today in ET: the task runs at 16:10 ET and reviews that same session."""
+    now = now or datetime.now(ZoneInfo("America/New_York"))
+    return now.date().isoformat()
+
+
 def main():
     parser = argparse.ArgumentParser(description="Daily session review (SPEC12)")
     parser.add_argument("--date", default=None,
-                        help="review date YYYY-MM-DD (default: yesterday)")
+                        help="review date YYYY-MM-DD (default: today, ET)")
     parser.add_argument("--dry-run", action="store_true",
                         help="print the embed JSON instead of posting to Discord")
     args = parser.parse_args()
@@ -335,7 +342,7 @@ def main():
     if args.date:
         date_str = args.date
     else:
-        date_str = (date.today() - timedelta(days=1)).isoformat()
+        date_str = default_review_date()
 
     payload = build_embed(date_str)
 
