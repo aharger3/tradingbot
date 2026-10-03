@@ -171,7 +171,7 @@ def test_verdict_requires_every_clause():
 
 
 def test_confirm_machinery_on_fit_window_fails_as_the_fit_numbers_say(days):
-    out = e10.confirm(days, n_flips=20_000)           # machinery check only; the fit window confirms nothing
+    out = e10._confirm_core(days, n_flips=20_000)     # machinery check only (guard-free core); the fit window confirms nothing
     assert out["n"] == 105 and out["verdict"] == "FAIL" and out["diff"] < 0
 
 
@@ -179,3 +179,16 @@ def test_thin_session_rule_keeps_fit_window_days(days):
     thin = e10.load_days(min_open_bars=55)
     assert {a["date"] for a in thin} <= {a["date"] for a in days}
     assert len(days) - len(thin) <= 3                 # drops at most a few half-day style sessions
+
+
+def test_confirm_refuses_fit_window_and_window_a_dates():
+    ok = [{"date": "2012-03-01"}, {"date": "2019-09-25"}]
+    e10._assert_confirm_window(ok)                                          # inside window B: guard passes
+    for bad in ([{"date": "2024-10-01"}, {"date": "2025-01-02"}],           # fit window
+                [{"date": "2021-05-03"}],                                   # window A
+                [{"date": "2019-09-26"}],                                   # first window A day
+                [{"date": "2012-03-01"}, {"date": "2019-09-26"}],           # B days then one A day
+                [{"date": "2010-06-04"}, {"date": "2012-03-01"}],           # before B start
+                []):
+        with pytest.raises(ValueError):
+            e10.confirm(bad)

@@ -283,6 +283,16 @@ def run_fit(days=None, out_dir=None, n_flips=N_FLIPS, n_shuf=N_SHUF):
 # ---------------------------------------------------------------- window B confirm (LOCKED, see prereg-E10.md)
 LOCKED_M = 1.0                                   # the pick on the fit window (largest paired diff vs flat 2R)
 BAR = dict(n_min=30, diff_min=0.05, p_max=0.01)  # E10 row of the canon, Bonferroni x5 across E6-E10
+B_START, B_END = "2010-06-07", "2019-09-25"      # the ONE locked confirm window (all of window B); window A starts 2019-09-26
+
+
+def _assert_confirm_window(days):
+    """Refuse anything outside window B (fit window and window A included) before a single number is computed."""
+    if not days:
+        raise ValueError("confirm(): no days")
+    lo, hi = days[0]["date"], days[-1]["date"]
+    if lo < B_START or hi > B_END:
+        raise ValueError(f"confirm(): days {lo}..{hi} are outside the locked confirm window {B_START}..{B_END}")
 
 
 def verdict(n, diff, diff_h1, diff_h2, p_1s, bar=BAR):
@@ -291,7 +301,13 @@ def verdict(n, diff, diff_h1, diff_h2, p_1s, bar=BAR):
 
 
 def confirm(days, m=LOCKED_M, n_flips=N_FLIPS):
-    """ONE-SHOT window-B confirm. `days` must already be limited to the confirm window. Halves split at the median session date."""
+    """ONE-SHOT window-B confirm. Raises unless every day is inside B_START..B_END. Halves split at the median session date."""
+    _assert_confirm_window(days)
+    return _confirm_core(days, m, n_flips)
+
+
+def _confirm_core(days, m=LOCKED_M, n_flips=N_FLIPS):
+    """The computation only, no window guard. Tests use it on the fit window to check the machinery; never call it on real data."""
     dates = [A["date"] for A in days]
     mid = dates[len(dates) // 2]
     T = frozen_entries(days)
