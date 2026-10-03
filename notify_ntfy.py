@@ -17,8 +17,11 @@ line. Nothing in here raises, including a completely unreachable ntfy.
     push("OMEN S TSLA CALL", "entry 412.50 / stop 410.80 ...", priority="high",
          tags="rocket")
 
-Topic resolution, in order: the `topic` argument, then `OMEN_NTFY_TOPIC`. With
-neither set the call is a NO-OP that logs what it would have sent — so a dev box,
+Topic resolution, in order: the `topic` argument, then env `NTFY_TOPIC`, then the
+keys vault (key NTFY_TOPIC, skipped under pytest or NTFY_NO_VAULT=1), then the legacy
+env `OMEN_NTFY_TOPIC` (stale after a rotation, so it ranks last). This is the ONE
+place every tradingbot sender (daily report, eye cards, prove-it) gets its topic. With
+none of them set the call is a NO-OP that logs what it would have sent — so a dev box,
 a test run, and a fresh clone are all silent by default, and going live is one
 environment variable rather than a code change. Blackout dates do not apply: this
 lane is Austin's own alert, not an outward-facing post.
@@ -26,12 +29,15 @@ lane is Austin's own alert, not an outward-facing post.
 from __future__ import annotations
 
 import os
+import subprocess
 import sys
 
 import requests
 
 NTFY_BASE = "https://ntfy.sh"
-TOPIC_ENV = "OMEN_NTFY_TOPIC"
+TOPIC_ENV = "NTFY_TOPIC"
+LEGACY_TOPIC_ENV = "OMEN_NTFY_TOPIC"
+_KEYS_PY = os.path.join(os.path.expanduser("~"), ".claude", "sync-setup", "keys.py")
 TIMEOUT_SECONDS = 8
 
 
@@ -46,7 +52,22 @@ def resolve_topic(topic: str | None = None) -> str | None:
     Exposed so a caller can decide whether to bother BUILDING a push body at
     all, and so a test can assert the unset-env case without monkeypatching.
     """
-    return (topic or os.getenv(TOPIC_ENV) or "").strip() or None
+    t = (topic or os.getenv(TOPIC_ENV) or "").strip()
+    return t or _vault_topic() or (os.getenv(LEGACY_TOPIC_ENV) or "").strip() or None
+
+
+def _vault_topic() -> str:
+    """NTFY_TOPIC from the keys vault; "" when absent, unreadable, or in a test run."""
+    if os.environ.get("PYTEST_CURRENT_TEST") or os.environ.get("NTFY_NO_VAULT") == "1":
+        return ""
+    if not os.path.exists(_KEYS_PY):
+        return ""
+    try:
+        r = subprocess.run([sys.executable, _KEYS_PY, "get", "NTFY_TOPIC"],
+                           capture_output=True, text=True, timeout=15)
+    except Exception:
+        return ""
+    return r.stdout.strip() if r.returncode == 0 else ""
 
 
 def push(title: str, body: str, priority: str = "default",
@@ -65,7 +86,7 @@ def push(title: str, body: str, priority: str = "default",
     """
     resolved = resolve_topic(topic)
     if resolved is None:
-        _log(f"{TOPIC_ENV} unset — not sending. Would have been: {title!r} / "
+        _log(f"{TOPIC_ENV} unset (env and vault) — not sending. Would have been: {title!r} / "
              f"{body.splitlines()[0] if body else ''!r}")
         return False
 

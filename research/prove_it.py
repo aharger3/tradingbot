@@ -24,7 +24,6 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_REPLAY_SCRIPT = REPO_ROOT / "research" / "agent_runs" / "v2-paper-harness" / "paper_replay.py"
 DEFAULT_BASELINE = Path(__file__).resolve().parent / "prove_it_baseline.json"
-NTFY_TOPIC = "omen-prove-it"  # ntfy.sh/omen-prove-it
 R_TOLERANCE = 0.02
 
 
@@ -69,9 +68,14 @@ def run_replay(replay_script: Path) -> dict:
 
 
 def send_ntfy(message: str) -> None:
+    sys.path.insert(0, str(REPO_ROOT))
+    from notify_ntfy import resolve_topic  # the ONE place the topic is resolved
+    topic = resolve_topic()
+    if not topic:
+        return
     try:
         req = urllib.request.Request(
-            f"https://ntfy.sh/{NTFY_TOPIC}",
+            f"https://ntfy.sh/{topic}",
             data=message.encode("utf-8"),
             headers={"Title": "OMEN prove-it: drift detected", "Priority": "high"},
             method="POST",

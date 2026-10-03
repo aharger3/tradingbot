@@ -124,7 +124,7 @@ class FakeSession:
 
 class SendCardTests(unittest.TestCase):
     def test_send_card_uses_ntfy_topic_and_paper_tag_no_real_network(self):
-        os.environ["NTFY_TOPIC"] = "aharg-ev-eo5zvp"
+        os.environ["NTFY_TOPIC"] = "test-topic"
         cand = _candidate()
         bars = _load_bars("sample_bars.csv")
         with tempfile.TemporaryDirectory() as td:
@@ -132,7 +132,7 @@ class SendCardTests(unittest.TestCase):
             sess = FakeSession()
             result = send_card(cand, png, token="tok", session=sess)
         self.assertTrue(result.ok)
-        self.assertIn("aharg-ev-eo5zvp", result.url)
+        self.assertIn("test-topic", result.url)
         self.assertEqual(len(sess.calls), 1)
         _, _, headers, _ = sess.calls[0]
         self.assertIn("PAPER", headers["Message"])
@@ -141,7 +141,7 @@ class SendCardTests(unittest.TestCase):
         self.assertIn("\\n", headers["Message"])
 
     def test_test_title_prefix_marks_replay_sends(self):
-        os.environ["NTFY_TOPIC"] = "aharg-ev-eo5zvp"
+        os.environ["NTFY_TOPIC"] = "test-topic"
         cand = _candidate()
         bars = _load_bars("sample_bars.csv")
         with tempfile.TemporaryDirectory() as td:

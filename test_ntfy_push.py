@@ -20,6 +20,7 @@ modules; that is pre-existing and unrelated to this file, which is both.
 from __future__ import annotations
 
 import os
+import pytest
 import sys
 from pathlib import Path
 
@@ -127,6 +128,12 @@ def test_replay_sends_exactly_one_s_one_exit_one_summary(tmp_path):
 
     if exits:
         assert "R" in exits[0]["title"] or "STOP" in exits[0]["title"].upper()
+
+
+@pytest.fixture(autouse=True)
+def _no_legacy_topic(monkeypatch):
+    """The box has a stale OMEN_NTFY_TOPIC user env var; "unset" must really mean unset."""
+    monkeypatch.delenv(notify_ntfy.LEGACY_TOPIC_ENV, raising=False)
 
 
 def test_no_pushes_when_topic_unset(tmp_path):

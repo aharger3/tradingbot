@@ -15,7 +15,7 @@ REM where the engine fired >=3 bars after the break first (THE LANE,
 REM sm_deck.py:cmd_build) -- the one thing missing since the renderer shipped
 REM is a scheduled run.
 REM
-REM The ntfy topic is a SECRET and is read from %OMEN_NTFY_TOPIC%, same as
+REM The ntfy topic is a SECRET and is read from NTFY_TOPIC (env, else the keys vault), same as
 REM every other push in this repo -- never written into a file here.
 setlocal
 cd /d "%~dp0.."
@@ -44,7 +44,7 @@ if not exist "%DECK_DIR%\manifest.json" (
 )
 
 REM Same ntfy attach path deliver_homework.py uses for the 11:05 deck -- one
-REM PUT per file, topic resolved from %OMEN_NTFY_TOPIC% inside notify_ntfy.py
+REM PUT per file, topic resolved from NTFY_TOPIC (env, else the keys vault) inside notify_ntfy.py
 REM itself, never passed or hardcoded here. sm_deck cards are separate PNGs,
 REM not one self-contained HTML file, so each card is its own attachment
 REM instead of one combined push.
