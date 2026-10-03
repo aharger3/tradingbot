@@ -131,8 +131,12 @@ class CardIdTests(unittest.TestCase):
             self.assertNotIn("2026", i)
             self.assertNotIn("S43", i)
 
-    def test_open_id_is_readable(self):
-        self.assertEqual(tap.card_id_for("S43-1-20260907", False), "EYE-S43-1-20260907")
+    def test_open_id_is_readable_and_unique(self):
+        a = tap.card_id_for("S43-1-20260907", False)
+        b = tap.card_id_for("S43-1-20260907", False)
+        self.assertTrue(re.fullmatch(r"EYE-S43-1-20260907-[0-9a-f]{4}", a), a)
+        self.assertNotEqual(a, b)
+        self.assertTrue(SERVER_CARD_RE.fullmatch(a))
 
 
 class PayloadTests(unittest.TestCase):
