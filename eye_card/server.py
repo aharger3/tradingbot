@@ -7,6 +7,7 @@ Routes
                       <token> is ANSWER_TAP_TOKEN (env, else the keys vault). Wrong token = 403.
   /label              legacy GET/POST id+label+token (EYE_LABEL_TOKEN), S|notS only.
   /healthz            {"ok": true, "mode": "PAPER"}; the card sender probes this before every card.
+  /deck/...           W9 blind stock deck for the phone, behind a PIN cookie (eye_card/deck_gate.py).
 
 Run:  python -m eye_card.server           (port 9135)
 """
@@ -21,6 +22,7 @@ from pathlib import Path
 
 from flask import Flask, jsonify, request
 
+from .deck_gate import bp as deck_bp
 from .labels import append_label, record_tap
 from .vault import secret
 
@@ -30,6 +32,7 @@ CARD_RE = re.compile(r"EYE-[A-Za-z0-9_.-]{1,36}")        # same alphabet and 40-
 TOKEN_TTL_S = 60.0
 
 app = Flask(__name__)
+app.register_blueprint(deck_bp)
 # The tap token rides in the URL path, so the server never writes request lines.
 logging.getLogger("werkzeug").setLevel(logging.ERROR)
 
