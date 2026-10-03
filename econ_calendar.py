@@ -93,9 +93,10 @@ def fetch_fomc_dates(fetch=http_fetch) -> list:
 def stale_report(fomc_dates, news_days: dict) -> dict:
     have = set(news_days.get("by_type", {}).get("FOMC", []))
     win = news_days.get("window", "")
-    m = re.search(r"\.\.(\d{4}-\d{2}-\d{2})", win)
-    wend = m.group(1) if m else None
-    missing = [d for d in fomc_dates if d not in have and (not wend or d <= wend)]
+    m = re.search(r"(\d{4}-\d{2}-\d{2})\.\.(\d{4}-\d{2}-\d{2})", win)
+    wstart, wend = (m.group(1), m.group(2)) if m else (None, None)
+    missing = [d for d in fomc_dates if d not in have
+               and (not wstart or d >= wstart) and (not wend or d <= wend)]
     beyond = [d for d in fomc_dates if wend and d > wend]
     return {"window_end": wend, "missing_in_news_days": missing, "beyond_window": beyond}
 
