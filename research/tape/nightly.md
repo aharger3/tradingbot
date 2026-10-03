@@ -14,3 +14,4 @@
 | 2026-09-26 | HTF_BIAS_GATE | hold | - | - | - -> - |
 | 2026-09-28 | OCR_STRICT | hold | - | - | - -> - |
 | 2026-10-02 | COUNTER_TREND_CAP | hold | - | - | - -> - |
+| 2026-10-02 | - | empty | - | - | - |
