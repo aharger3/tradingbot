@@ -315,3 +315,6 @@ research/paper_journal/acks_blind.jsonl
 
 # runtime logs (a tracked dryrun.cmd once leaked EYE_LABEL_TOKEN)
 logs/
+
+# econ_calendar runtime output
+news_week.json
