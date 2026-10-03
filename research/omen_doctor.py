@@ -1,6 +1,7 @@
 """omen_doctor.py -- one-line health check for the OMEN box (row R96).
 
-Checks: scheduled-task last-run codes, journal rows today, nightly row today,
+Checks: scheduled-task last-run codes, journal rows and a nightly row for the
+last completed session day (see session_day),
 required key NAMES present (never values), disk free, dirty tree / stray
 worktrees. Returns ONE status line, e.g.
     "DOCTOR OK" or "DOCTOR 2 ISSUES: task OmenNightlyLoop rc=1; key missing DISCORD_WEBHOOK_URL"
@@ -14,7 +15,7 @@ import json
 import os
 import shutil
 import subprocess
-from datetime import datetime
+from datetime import datetime, timedelta
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -23,10 +24,35 @@ KEYS = ("ALPACA_PAPER_KEY", "ALPACA_PAPER_SECRET", "DISCORD_WEBHOOK_URL")
 MIN_FREE_GB = 5.0
 # schtasks "Last Result" values that are not failures
 OK_CODES = {0, 267009, 267011}  # success, running, never-run-yet
+# Paths the scheduled jobs write on the production checkout (nightly.md row at
+# 20:00, journal/*.json(l) during the session). Churn there is expected, not drift.
+RUNTIME_PATHS = ("journal", "research/tape")
+NIGHTLY_HOUR = 21  # OmenNightlyLoop runs weekdays 20:00; give it an hour
+
+
+def session_day(now: datetime) -> str:
+    """The last session whose journal + nightly row should already exist.
+
+    The card runs 09:00 ET, before today's trades and today's 20:00 nightly, so
+    "today" would flag both every morning. Before NIGHTLY_HOUR on a weekday the
+    expected day is the previous weekday; after it, today.
+    """
+    d = now.date()
+    if not (d.weekday() < 5 and now.hour >= NIGHTLY_HOUR):
+        d -= timedelta(days=1)
+        while d.weekday() >= 5:
+            d -= timedelta(days=1)
+    return d.isoformat()
 
 
 def probe_task_codes(tasks=TASKS) -> dict:
-    """{task: last_result int or None if unknown}. Windows schtasks."""
+    """{task: last_result int, or None if not found / unparseable}. Windows schtasks.
+
+    No schtasks binary (Linux) raises, so run_doctor reports one probe error
+    instead of a "not found" per task.
+    """
+    if shutil.which("schtasks") is None:
+        raise FileNotFoundError("schtasks")
     out = {}
     for t in tasks:
         try:
@@ -86,12 +112,16 @@ def probe_disk_free_gb(root: Path = ROOT) -> float:
 
 
 def probe_git(root: Path = ROOT) -> dict:
-    """{'dirty': bool, 'worktrees': int (linked, beyond the main one)}."""
+    """{'dirty': bool, 'worktrees': int (linked, beyond the main one)}.
+
+    dirty = tracked files modified outside RUNTIME_PATHS (code drift, not data).
+    """
     def g(*a):
         return subprocess.run(["git", "-C", str(root), *a], capture_output=True,
                               text=True, timeout=20).stdout
     try:
-        dirty = bool(g("status", "--porcelain", "--untracked-files=no").strip())
+        dirty = bool(g("status", "--porcelain", "--untracked-files=no", "--", ".",
+                       *(f":(exclude){x}" for x in RUNTIME_PATHS)).strip())
         wts = sum(1 for ln in g("worktree", "list", "--porcelain").splitlines()
                   if ln.startswith("worktree "))
         return {"dirty": dirty, "worktrees": max(wts - 1, 0)}
@@ -100,11 +130,11 @@ def probe_git(root: Path = ROOT) -> dict:
 
 
 def run_doctor(now: datetime | None = None, probes: dict | None = None) -> str:
-    today = (now or datetime.now()).strftime("%Y-%m-%d")
+    day = session_day(now or datetime.now())
     p = {
         "tasks": probe_task_codes,
-        "journal": lambda: probe_journal_rows_today(today),
-        "nightly": lambda: probe_nightly_row_today(today),
+        "journal": lambda: probe_journal_rows_today(day),
+        "nightly": lambda: probe_nightly_row_today(day),
         "keys": probe_key_names,
         "disk": probe_disk_free_gb,
         "git": probe_git,
@@ -120,12 +150,14 @@ def run_doctor(now: datetime | None = None, probes: dict | None = None) -> str:
             return default
 
     for t, rc in sorted(safe("tasks", {}).items()):
-        if rc is not None and rc not in OK_CODES:
+        if rc is None:
+            issues.append(f"task {t} not found")
+        elif rc not in OK_CODES:
             issues.append(f"task {t} rc={rc}")
     if safe("journal", 1) == 0:
-        issues.append("no journal rows today")
+        issues.append(f"no journal rows {day}")
     if not safe("nightly", True):
-        issues.append("no nightly row today")
+        issues.append(f"no nightly row {day}")
     have = safe("keys", set(KEYS))
     for k in KEYS:
         if k not in have:
