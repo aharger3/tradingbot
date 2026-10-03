@@ -24,7 +24,7 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_REPLAY_SCRIPT = REPO_ROOT / "research" / "agent_runs" / "v2-paper-harness" / "paper_replay.py"
 DEFAULT_BASELINE = Path(__file__).resolve().parent / "prove_it_baseline.json"
-NTFY_TOPIC = "omen-prove-it"  # ntfy.sh/omen-prove-it
+NTFY_TOPIC = "aharg-deadlines"  # ntfy.sh/aharg-deadlines
 R_TOLERANCE = 0.02
 
 

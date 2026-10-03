@@ -19,7 +19,7 @@ DEFAULT_NTFY_BASE = "https://ntfy.sh"
 
 def _ntfy_topic() -> str:
     # Reuse ev-dashboard's ntfy topic (see Projects/ev-dashboard/.env NTFY_TOPIC).
-    return os.environ.get("NTFY_TOPIC", "aharg-ev-eo5zvp")
+    return os.environ.get("NTFY_TOPIC", "aharg-deadlines")
 
 
 def _ntfy_base() -> str:
