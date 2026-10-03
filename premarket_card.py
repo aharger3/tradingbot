@@ -11,6 +11,7 @@ Usage:
 """
 import argparse
 import json
+import sys
 from datetime import time as dtime
 from pathlib import Path
 
@@ -86,21 +87,40 @@ def build_card(symbols) -> dict:
     }]}
 
 
-def main():
+def card_has_data(payload: dict) -> bool:
+    """False when every field is empty ('—' / unknown / data error): no digit in any value."""
+    fields = payload["embeds"][0]["fields"]
+    return any(ch.isdigit() for f in fields for ch in f["value"])
+
+
+def main(argv=None, wait=None, post=None) -> int:
     parser = argparse.ArgumentParser(description="E3 pre-market Discord card")
     parser.add_argument("--symbols", nargs="+", default=DEFAULT_SYMBOLS)
     parser.add_argument("--dry-run", action="store_true",
                         help="print embed JSON instead of posting")
-    args = parser.parse_args()
+    args = parser.parse_args(argv)
 
+    if not args.dry_run:
+        # catch-up run after a reboot can start before DNS is up
+        if wait is None:
+            from eye_card.tap import wait_for_network as wait
+        if not wait("discord.com"):
+            print("Pre-market card: FAILED (network down)")
+            return 1
     payload = build_card(args.symbols)
     if args.dry_run:
         print(json.dumps(payload, indent=2))
-        return
-    from discord_bot import DiscordSignalBot
-    ok = DiscordSignalBot()._post_with_retry(payload)
+        return 0
+    if not card_has_data(payload):
+        print("Pre-market card: FAILED (no data for any symbol, not posting)")
+        return 1
+    if post is None:
+        from discord_bot import DiscordSignalBot
+        post = DiscordSignalBot()._post_with_retry
+    ok = post(payload)
     print(f"Pre-market card: {'posted' if ok else 'FAILED'}")
+    return 0 if ok else 1
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())
