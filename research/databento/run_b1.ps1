@@ -9,3 +9,5 @@ python pull.py pull --budget 120       # priority order, stops before exceeding 
 python pull.py convert                 # -> t01 CSVs + t02 json.gz bars
 python oos_db.py --window A            # THE gate: 2019-09-26..2024-09-25 -> oos_A.json
 python oos_db.py --window B            # report-only: 2010-06-07..2019-09-25 -> oos_B.json
+
+# pre-registered cells (b1-prereg-cells): python dry.py lists them; oos wiring per cell = follow-up
