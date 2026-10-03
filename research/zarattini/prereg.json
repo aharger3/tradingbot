@@ -1,0 +1,8 @@
+{
+  "rule": "NQ925",
+  "params": {"m": 5, "p": 5, "T": 10, "k": 1.0},
+  "data": {"symbol": "NQ925", "start": "2019-01-01", "end": "2024-09-25"},
+  "pass_criteria": {"R_per_trade_gt": 0.0, "t_stat_gte": 1.5, "top5_share_lt": 0.6},
+  "frozen": "2026-09-27",
+  "source": "09-execution/burn-f/zarattini-robust.md ## Next"
+}
