@@ -47,6 +47,12 @@ def _read(path: Path) -> dict:
 
 
 def main():
+    # OmenNightlyLoop is registered weekdays only (nightly_loop.cmd), so the
+    # weekly gate must be a Mon-Fri weekday or both rechecks never run.
+    assert nightly_loop.ROBUSTNESS_RECHECK_WEEKDAY in range(5), (
+        "ROBUSTNESS_RECHECK_WEEKDAY=%r is not a weekday the weekdays-only "
+        "OmenNightlyLoop task runs" % nightly_loop.ROBUSTNESS_RECHECK_WEEKDAY)
+    print("ok   recheck weekday falls on a day the weekdays-only task runs")
     tmp = Path(tempfile.mkdtemp(prefix="nightly_robustness_recheck_test_"))
     orig_logs = nightly_loop.LOGS
     orig_weekday = nightly_loop.ROBUSTNESS_RECHECK_WEEKDAY

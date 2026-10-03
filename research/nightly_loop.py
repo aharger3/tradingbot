@@ -43,12 +43,13 @@ LOGS = ROOT / "logs"
 # searches with their own multiprocessing.Pool + day-shuffle permutation
 # checks -- PR #27's and #28's own test plans clocked them at ~100s and ~80s
 # with 8 procs on the committed book. Cheap once, not cheap every night
-# forever, so they only run on ROBUSTNESS_RECHECK_WEEKDAY (default Sunday)
+# forever, so they only run on ROBUSTNESS_RECHECK_WEEKDAY (default Friday; the task
+# is weekdays-only, so a Sunday gate would never fire)
 # and are a no-op skip every other night. ROBUSTNESS_RECHECK_TIMEOUT_SEC is
 # a hard subprocess wall-clock cap, generous headroom over the ~100s
 # observed so a slower box still finishes, but never lets a hung search
 # block the rest of the nightly loop.
-ROBUSTNESS_RECHECK_WEEKDAY = 6  # Monday=0 .. Sunday=6
+ROBUSTNESS_RECHECK_WEEKDAY = 4  # Monday=0 .. Sunday=6; Friday (task runs weekdays only)
 ROBUSTNESS_RECHECK_TIMEOUT_SEC = 900
 
 HEADER = ("| date | flag | decision | $/day a->b | green a->b | off_book_id -> on_book_id |\n"
