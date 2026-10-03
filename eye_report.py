@@ -29,7 +29,7 @@ REPLAY_JOURNAL = REPO / "research" / "paper_journal" / "acks_replay.jsonl"
 
 
 def push(title: str, message: str):
-    topic = os.environ.get("NTFY_TOPIC", "aharg-ev-eo5zvp")
+    topic = os.environ.get("NTFY_TOPIC", "aharg-deadlines")
     base = os.environ.get("NTFY_BASE_URL", "https://ntfy.sh")
     url = f"{base.rstrip('/')}/{topic}"
     resp = requests.post(url, data=message.encode(),
