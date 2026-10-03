@@ -1,11 +1,12 @@
 """Tap-to-answer eye cards: one ntfy push per candidate, S / Not S / Skip buttons on the lock screen.
 
 The push goes to the private alert topic (NTFY_TOPIC from the keys vault). Each button POSTs
-{card_id, choice, token} to the private ntfy answer topic (TAP_ANSWER_TOPIC), or to
-<TAP_BASE_URL>/tap/<token> once that tunnel exists. The pm2 service `tap-answer`
-(answer-engine/tap/server.py) turns an `EYE-...` tap into a row in eye_card/labels.csv
-(S / notS) or eye_card/skips.csv (skip), so the tap is recorded with no typing and scored
-later against the frozen fills. Every card is PAPER; nothing here places an order.
+{card_id, choice} to <tunnel>/tap/<token>: the Cloudflare tunnel hostname in front of the eye label
+server (eye_card/server.py, :9135), never the Tailscale IP. The server turns an `EYE-...` tap into a
+row in eye_card/labels.csv (S / notS) or eye_card/skips.csv (skip), so the tap is recorded with no
+typing and scored later against the frozen fills. The old ntfy relay (token in the push, answered by
+the pm2 `tap-answer` service) is still here but off unless EYE_TAP_RELAY=1.
+Every card is PAPER; nothing here places an order.
 
 Secrets come from env, then the keys vault (python keys.py get NAME). They are never logged,
 never written to a file, and `redacted()` masks them when a payload is printed.
@@ -17,18 +18,20 @@ from __future__ import annotations
 import json
 import os
 import secrets as _secrets
-import subprocess
-import sys
 from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
 from .chart import Candidate
+from .vault import secret
 
 ET = ZoneInfo("America/New_York")
-KEYS_PY = os.environ.get("TAP_KEYS_PY", r"C:\Users\aharg\.claude\sync-setup\keys.py")
 NTFY_BASE = "https://ntfy.sh"
+# Where the phone's buttons POST: the Cloudflare tunnel hostname that fronts the eye label server (:9135).
+# omen.* is the one tunnel hostname with no Access login page, so a bare button tap reaches the server.
+# Override with env/vault EYE_TAP_BASE_URL. (TAP_BASE_URL is the answer-engine's, a different server.)
+DEFAULT_TUNNEL_BASE = "https://omen.austinharger.com"
 CARD_PREFIX = "EYE-"            # the tap server routes this prefix to labels.csv / skips.csv
 LEDGER = Path(__file__).with_name("cards_sent.jsonl")   # one line per card actually sent (+ id map)
 
@@ -44,15 +47,6 @@ BUTTONS = (("S", "S"), ("Not S", "notS"), ("Skip", "skip"))
 
 class TapConfigError(RuntimeError):
     pass
-
-
-def secret(name: str) -> str:
-    """env first, then the keys vault. '' if unset."""
-    v = os.environ.get(name, "")
-    if v or not os.path.exists(KEYS_PY):
-        return v
-    r = subprocess.run([sys.executable, KEYS_PY, "get", name], capture_output=True, text=True)
-    return r.stdout.strip() if r.returncode == 0 else ""
 
 
 # ---- schedule + daily cap ---------------------------------------------------------------
@@ -204,13 +198,32 @@ class TapSendResult:
     status_code: int | None
     card_id: str
     chart_url: str
+    error: str = ""          # "tunnel down" when the pre-send probe failed (nothing was sent)
+
+
+def tunnel_base() -> str:
+    return (secret("EYE_TAP_BASE_URL") or DEFAULT_TUNNEL_BASE).rstrip("/")
+
+
+def tunnel_up(base_url: str, *, session=None, timeout: float = 6.0) -> bool:
+    """True if <base_url>/healthz answers {"ok": true} (the label server through the tunnel).
+    A card whose buttons point at a dead tunnel would lose every tap, so the sender checks first."""
+    import requests
+    try:
+        r = (session or requests).get(base_url.rstrip("/") + "/healthz", timeout=timeout)
+        return bool(r.ok and r.json().get("ok") is True)
+    except Exception:
+        return False
 
 
 def load_config() -> dict:
-    cfg = {"token": secret("ANSWER_TAP_TOKEN"), "answer_topic": secret("TAP_ANSWER_TOPIC"),
-           "base_url": secret("TAP_BASE_URL"), "topic": secret("NTFY_TOPIC")}
+    """Buttons go through the tunnel unless EYE_TAP_RELAY=1 asks for the old ntfy answer-topic relay."""
+    relay = os.environ.get("EYE_TAP_RELAY") == "1"
+    cfg = {"token": secret("ANSWER_TAP_TOKEN"), "topic": secret("NTFY_TOPIC"),
+           "answer_topic": secret("TAP_ANSWER_TOPIC") if relay else "",
+           "base_url": "" if relay else tunnel_base()}
     if not (cfg["token"] and cfg["topic"] and (cfg["base_url"] or cfg["answer_topic"])):
-        raise TapConfigError("missing ANSWER_TAP_TOKEN / NTFY_TOPIC / (TAP_BASE_URL or TAP_ANSWER_TOPIC)")
+        raise TapConfigError("missing ANSWER_TAP_TOKEN / NTFY_TOPIC (/ TAP_ANSWER_TOPIC with EYE_TAP_RELAY=1)")
     if not cfg["base_url"] and cfg["topic"] == "aharg-deadlines":
         # relay mode puts the token in the push: never on the guessable legacy topic
         raise TapConfigError("relay mode needs the private NTFY_TOPIC, not aharg-deadlines")
@@ -244,6 +257,8 @@ def send_tap_card(c: Candidate, png_path: str | Path | None, card_id: str, *, bl
     cfg = config or load_config()
     base = (ntfy_base or os.environ.get("NTFY_BASE_URL") or NTFY_BASE).rstrip("/")
     sess = session or requests
+    if cfg.get("base_url") and not tunnel_up(cfg["base_url"], session=sess):
+        return TapSendResult(ok=False, status_code=None, card_id=card_id, chart_url="", error="tunnel down")
     chart_url = upload_chart(png_path, session=sess, ntfy_base=base) if png_path else ""
     payload = build_tap_payload(c, card_id, topic=cfg["topic"], token=cfg["token"],
                                 answer_topic=cfg["answer_topic"], base_url=cfg["base_url"],
