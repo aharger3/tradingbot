@@ -27,7 +27,7 @@ def vault_secret(name: str) -> str:
     import os
     import subprocess
     import sys
-    from eye_card.tap import KEYS_PY
+    from eye_card.vault import KEYS_PY
     if not os.path.exists(KEYS_PY):
         return ""
     r = subprocess.run([sys.executable, KEYS_PY, "get", name], capture_output=True, text=True)
