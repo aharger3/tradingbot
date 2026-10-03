@@ -52,6 +52,15 @@ def _qqq_bias() -> str:
             f"PDH {_fmt(pdh)} / PDL {_fmt(pdl)} / PMH {_fmt(pmh)} / PML {_fmt(pml)}")
 
 
+def _doctor_line() -> str:
+    """R96: one-line box health, shown first on the card. Never raises."""
+    try:
+        from research.omen_doctor import run_doctor
+        return run_doctor()
+    except Exception as e:
+        return f"DOCTOR unavailable ({type(e).__name__})"
+
+
 def build_card(symbols) -> dict:
     lines = []
     for sym in symbols:
@@ -64,7 +73,8 @@ def build_card(symbols) -> dict:
             lines.append(f"{sym:<5} data error: {type(e).__name__}")
 
     # Discord field cap 1024 chars -> chunk watchlist into fields
-    fields = [{"name": "QQQ Daily Bias", "value": _qqq_bias(), "inline": False}]
+    fields = [{"name": "Doctor", "value": _doctor_line(), "inline": False},
+              {"name": "QQQ Daily Bias", "value": _qqq_bias(), "inline": False}]
     chunk, size, part = [], 0, 1
     for ln in lines:
         if size + len(ln) + 9 > 1000:  # +9 for code fences/newline
