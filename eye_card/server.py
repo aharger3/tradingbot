@@ -37,7 +37,7 @@ _tok_cache: dict = {"v": "", "t": -1e9}
 
 
 def _token() -> str:
-    return os.environ.get("EYE_LABEL_TOKEN", "dev-local-only")
+    return os.environ.get("EYE_LABEL_TOKEN", "")
 
 
 def _tap_token() -> str:
@@ -53,7 +53,8 @@ def label():
     candidate_id = request.values.get("id", "")
     lbl = request.values.get("label", "")
     token = request.values.get("token", "")
-    if token != _token():
+    want = _token()
+    if not want or want == "dev-local-only" or not hmac.compare_digest(token.encode(), want.encode()):
         return jsonify(ok=False, error="bad token"), 403
     if not candidate_id or lbl not in ("S", "notS"):
         return jsonify(ok=False, error="need id + label=S|notS"), 400
@@ -85,4 +86,6 @@ def healthz():
 
 
 if __name__ == "__main__":
+    if _token() in ("", "dev-local-only"):
+        raise SystemExit("refusing to start: EYE_LABEL_TOKEN unset or default")
     app.run(host="0.0.0.0", port=int(os.environ.get("EYE_LABEL_PORT", 9135)))
