@@ -76,10 +76,13 @@ import os
 
 ENTRY_FILLS = ("published", "close", "next_open", "chase_once", "limit_level")
 
-# THE DEFAULT FLIP. `published` was the shipped behaviour until 2026-08-30 and is
-# a price nobody can pay; leaving a default there is the failure this module
-# exists to end. One env var restores it for reproducing an old number.
-ENTRY_FILL = os.getenv("ENTRY_FILL", "close").strip().lower()
+# THE DEFAULT FLIP, TAKE TWO (2026-09-27). `published` was the shipped behaviour
+# until 2026-08-30 and is a price nobody can pay -- that flip moved the default to
+# `close`. But `close` is STILL a look-ahead-adjacent optimism: a bar-close-driven
+# engine cannot act until the bar closes, so the earliest honest fill is the NEXT
+# bar's open (u04-code-map.md's own honesty flag). `next_open` is now the default;
+# `close` and `published` both stay one env var away for reproducing an old number.
+ENTRY_FILL = os.getenv("ENTRY_FILL", "next_open").strip().lower()
 if ENTRY_FILL not in ENTRY_FILLS:
     raise ValueError("ENTRY_FILL must be one of %s, got %r"
                      % (", ".join(ENTRY_FILLS), ENTRY_FILL))

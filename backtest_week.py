@@ -88,6 +88,24 @@ from universe import (CORE_SYMBOLS, EXPERIMENTAL_SYMBOLS,  # noqa: F401
                       BACKTEST_SYMBOLS as SYMBOLS, MIN_SAMPLE_N)
 RISK_DOLLARS = 1000.0
 
+# Trading costs (v2/s12-paper-harness.md:54): $1.24 RT commission per micro
+# contract + 1 tick of slippage assumed on EACH side (entry and exit), at the
+# MNQ tick value (0.25 index points x $2/point = $0.50/tick). Env-overridable
+# so a study can ask "what if" without editing code; the defaults are the
+# paper harness's own assumed costs, not a guess. Subtracted once per trade
+# from SimTrade.pnl -- see `trading_cost_usd` below.
+COMMISSION_RT_USD = float(os.getenv("COMMISSION_RT_USD", "1.24"))
+SLIPPAGE_TICKS_PER_SIDE = float(os.getenv("SLIPPAGE_TICKS_PER_SIDE", "1"))
+MNQ_TICK_VALUE_USD = 0.50
+
+
+def trading_cost_usd() -> float:
+    """One round trip's commission + slippage, in dollars.
+
+    COMMISSION_RT_USD is already round-trip. Slippage is per SIDE, so it is
+    counted twice (entry + exit)."""
+    return COMMISSION_RT_USD + SLIPPAGE_TICKS_PER_SIDE * 2 * MNQ_TICK_VALUE_USD
+
 # ---- D2: S-score-scaled position sizing (flag-gated, default OFF) ----
 # Scale per-trade risk by the selection score printed in the signal reason
 # (" S<n>"): S=4 -> 1.0x, S=5 -> 1.25x, S>=6 -> 1.5x, on the $1k base.
@@ -638,8 +656,8 @@ class SimTrade:
         return self.status == "fired" and self.grade == "C"
 
     @property
-    def pnl(self) -> float:
-        """Dollar P&L at RISK_DOLLARS risk per trade.
+    def _pnl_gross(self) -> float:
+        """Dollar P&L at RISK_DOLLARS risk per trade, BEFORE trading costs.
 
         Rule 6 (when enabled): if BE scale was taken, the scaled portion
         locks partial profit and the runner rides to breakeven stop/target.
@@ -685,6 +703,17 @@ class SimTrade:
         # Original binary P&L (no Rule 6)
         move = (self.exit_price - self.entry) if self.direction == "call" else (self.entry - self.exit_price)
         return round(move / risk * risk_dollars * 1.0, 2)
+
+    @property
+    def pnl(self) -> float:
+        """Net $ P&L: `_pnl_gross` minus one round trip's trading costs
+        (`trading_cost_usd` -- commission + slippage). A trade that never
+        filled (risk == 0, `_pnl_gross` short-circuits to 0.0) pays no cost:
+        there was nothing to enter or exit."""
+        gross = self._pnl_gross
+        if abs(self.entry - self.stop) == 0:
+            return gross
+        return round(gross - trading_cost_usd(), 2)
 
 
 def _wick_hit(c: Candle, level: float, long: bool) -> bool:
