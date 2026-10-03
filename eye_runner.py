@@ -342,7 +342,8 @@ def main(argv=None):
             result = eyetap.send_tap_card(chart_cand, png_path, card_id, blind=args.blind,
                                           seq=sent_count + 1, cap=args.max_cards_per_day,
                                           title_prefix=args.title_prefix)
-            if result.ok:
+            if result.ok or getattr(result, "error", "").startswith(eyetap.AMBIGUOUS_ERROR):
+                # ambiguous POST failure may still have delivered: count it against the cap/session pool
                 eyetap.record_card(card_id, cid, sent_wall, blind=args.blind, seq=sent_count + 1)
         else:
             result = send_card(chart_cand, png_path, args.token, test_title_prefix=args.title_prefix)

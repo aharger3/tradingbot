@@ -194,6 +194,9 @@ def redacted(payload: dict, *secret_values: str) -> str:
 
 # ---- sending ----------------------------------------------------------------------------
 
+AMBIGUOUS_ERROR = "send failed"   # POST raised: the card may or may not have been delivered
+
+
 @dataclass
 class TapSendResult:
     ok: bool
@@ -281,7 +284,12 @@ def send_tap_card(c: Candidate, png_path: str | Path | None, card_id: str, *, bl
                                 answer_topic=cfg["answer_topic"], base_url=cfg["base_url"],
                                 blind=blind, seq=seq, cap=cap, title_prefix=title_prefix,
                                 chart_url=chart_url)
-    resp = sess.post(base + "/", json=payload, timeout=timeout)
+    try:
+        resp = sess.post(base + "/", json=payload, timeout=timeout)
+    except requests.RequestException as e:
+        # ambiguous: the server may have accepted the push before the read timed out
+        return TapSendResult(ok=False, status_code=None, card_id=card_id, chart_url=chart_url,
+                             error=f"{AMBIGUOUS_ERROR}: {e}")
     return TapSendResult(ok=resp.ok, status_code=resp.status_code, card_id=card_id, chart_url=chart_url)
 
 

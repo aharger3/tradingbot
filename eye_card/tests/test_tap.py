@@ -60,6 +60,8 @@ class FakeSession:
 
     def post(self, url, **kw):
         self.posts.append((url, kw))
+        if isinstance(self._post, Exception):
+            raise self._post
         return self._post
 
     def get(self, url, **kw):
@@ -252,6 +254,15 @@ class SendTests(unittest.TestCase):
             png.write_bytes(b"\x89PNG")
             tap.send_tap_card(cand(), png, "EYE-a1b2c3d4", blind=True, session=s, config=CFG)
         self.assertEqual(s.puts[0][1]["headers"]["Filename"], "EYE-a1b2c3d4.png")
+
+    def test_post_timeout_returns_ambiguous_failure_not_exception(self):
+        import requests
+        for exc in (requests.ReadTimeout("slow"), requests.ConnectionError("reset")):
+            s = FakeSession(post_resp=exc)
+            r = tap.send_tap_card(cand(), None, "EYE-x", session=s, config=CFG)
+            self.assertFalse(r.ok)
+            self.assertIsNone(r.status_code)
+            self.assertTrue(r.error.startswith(tap.AMBIGUOUS_ERROR))
 
     def test_no_chart_means_no_upload(self):
         s = FakeSession()
