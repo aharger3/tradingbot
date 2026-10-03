@@ -1,0 +1,99 @@
+{
+ "cell": "D_three_bar",
+ "spec": "stocks/ETFs (shares)",
+ "sessions": 481,
+ "split": "2025-09-22",
+ "variants": {
+  "tol0.001_extreme": {
+   "n": 252,
+   "skipped_min_dist": 1,
+   "win": 0.42857142857142855,
+   "meanR": -0.06478028165864953,
+   "h1_n": 132,
+   "h1_meanR": -0.08527904049189476,
+   "h2_n": 120,
+   "h2_meanR": -0.04223164694207977,
+   "long_share": 0.42063492063492064,
+   "median_stop_pct": 0.003291406667989191,
+   "top5_days_share": null,
+   "trade_days": 185,
+   "shuffle_p": 0.7276361819090454,
+   "shuffle_mean_R": -0.018516653121228726,
+   "clears_std_bar": false
+  },
+  "tol0.001_body": {
+   "n": 314,
+   "skipped_min_dist": 5,
+   "win": 0.42356687898089174,
+   "meanR": -0.04583766834450561,
+   "h1_n": 166,
+   "h1_meanR": -0.017082415337041357,
+   "h2_n": 148,
+   "h2_meanR": -0.07809018185287765,
+   "long_share": 0.4267515923566879,
+   "median_stop_pct": 0.0032118343265308087,
+   "top5_days_share": null,
+   "trade_days": 220,
+   "shuffle_p": 0.624687656171914,
+   "shuffle_mean_R": -0.023137573848871048,
+   "clears_std_bar": false
+  },
+  "tol0.0025_extreme": {
+   "n": 552,
+   "skipped_min_dist": 1,
+   "win": 0.45652173913043476,
+   "meanR": 0.011496412754096116,
+   "h1_n": 283,
+   "h1_meanR": 0.025533850207593255,
+   "h2_n": 269,
+   "h2_meanR": -0.0032715976523711152,
+   "long_share": 0.44021739130434784,
+   "median_stop_pct": 0.003690237290126956,
+   "top5_days_share": 4.0785319062776475,
+   "trade_days": 310,
+   "shuffle_p": 0.303848075962019,
+   "shuffle_mean_R": -0.016528093617434295,
+   "clears_std_bar": false
+  },
+  "tol0.0025_body": {
+   "n": 689,
+   "skipped_min_dist": 7,
+   "win": 0.4397677793904209,
+   "meanR": 0.00620529725896219,
+   "h1_n": 355,
+   "h1_meanR": 0.04368684783050014,
+   "h2_n": 334,
+   "h2_meanR": -0.0336328777497084,
+   "long_share": 0.4281567489114659,
+   "median_stop_pct": 0.003649270145970755,
+   "top5_days_share": 6.596382660327107,
+   "trade_days": 348,
+   "shuffle_p": 0.29685157421289354,
+   "shuffle_mean_R": -0.019548080351232806,
+   "clears_std_bar": false
+  }
+ },
+ "eligible": [
+  "tol0.001_extreme",
+  "tol0.001_body",
+  "tol0.0025_extreme",
+  "tol0.0025_body"
+ ],
+ "primary": "tol0.0025_extreme",
+ "primary_clears_std_bar": false,
+ "family_wise_p_primary": 0.5247376311844077,
+ "ndraw": 2000,
+ "seconds": 69,
+ "symbols": [
+  "TSLA",
+  "QQQ",
+  "AMD",
+  "NVDA",
+  "MU",
+  "SPY"
+ ],
+ "first_last": [
+  "2024-09-26",
+  "2026-09-23"
+ ]
+}

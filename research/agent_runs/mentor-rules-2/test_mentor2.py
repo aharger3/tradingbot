@@ -290,5 +290,54 @@ class Stats(unittest.TestCase):
         self.assertLess(p, 0.01)
 
 
+class NoLookahead(unittest.TestCase):
+    """overwrite every bar from the entry minute on with garbage: the signal (entry minute, side, stop) must not move"""
+
+    def walk(self, seed, tick):
+        rng = np.random.default_rng(seed)
+        A = {k: np.empty(91) for k in ("open", "high", "low", "close")}
+        px = 100.0
+        for j in range(91):
+            o = px; c = o + rng.normal(0, 0.12); h = max(o, c) + abs(rng.normal(0, 0.06)); l = min(o, c) - abs(rng.normal(0, 0.06))
+            A["open"][j], A["high"][j], A["low"][j], A["close"][j] = o, h, l, c
+            px = c
+        A.update(pdh=100.6, pdl=99.3, pdc=100.0, date="2025-03-03", sym="X", up=True)
+        return A
+
+    def scramble(self, A, i, seed):
+        B = {k: (v.copy() if isinstance(v, np.ndarray) else v) for k, v in A.items()}
+        rng = np.random.default_rng(seed)
+        n = 91 - i
+        for k in ("open", "high", "low", "close"):
+            B[k][i:] = 50 + rng.random(n) * 100
+        return B
+
+    def check(self, fn):
+        hits = 0
+        for seed in range(400):
+            A = self.walk(seed, .01)
+            s = fn(A)
+            if not s:
+                continue
+            hits += 1
+            B = self.scramble(A, s[0], seed)
+            # the entry bar's own open may be read to confirm it exists; its values are not used by the signal
+            B["open"][s[0]] = A["open"][s[0]]
+            self.assertEqual(fn(B), s)
+        self.assertGreater(hits, 10)
+
+    def test_rejection(self):
+        self.check(lambda A: m.signal_rejection(A, 4, "push5"))
+
+    def test_three_bar(self):
+        self.check(lambda A: m.signal_three_bar(A, 0.0025, "body"))
+
+    def test_pdh_retest_1m(self):
+        self.check(lambda A: m.signal_pdh_retest(A, 1, "candle", False))
+
+    def test_pdh_retest_5m(self):
+        self.check(lambda A: m.signal_pdh_retest(A, 5, "level", False))
+
+
 if __name__ == "__main__":
     unittest.main()
