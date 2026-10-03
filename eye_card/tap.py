@@ -118,10 +118,12 @@ def load_id_map(ledger: Path = LEDGER) -> dict[str, str]:
 # ---- ids, text, payload -----------------------------------------------------------------
 
 def card_id_for(candidate_id: str, blind: bool) -> str:
-    """Blind: opaque id (no date, grade or sequence in it). Otherwise the readable candidate id."""
+    """Blind: opaque id (no date, grade or sequence in it). Otherwise the readable candidate id plus a
+    random 4-hex suffix, so a replayed candidate never reuses an id and an old labels.csv row cannot
+    answer today's card. Stays under the server's 40-char CARD_RE."""
     if blind:
         return CARD_PREFIX + _secrets.token_hex(4)
-    return CARD_PREFIX + candidate_id
+    return CARD_PREFIX + candidate_id + "-" + _secrets.token_hex(2)
 
 
 def _px(x: float) -> str:
