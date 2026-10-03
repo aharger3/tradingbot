@@ -1,0 +1,40 @@
+{
+ "declared_at_local": "2026-10-03T06:06:13.773110-04:00",
+ "declared_before": "any E6 variant result was computed (only the frozen baseline n=105 reproduction and synthetic tests had run)",
+ "fit_window": "2024-09-26 -> 2026-09-25 real NQ 1-min; window A never loaded",
+ "grid": {
+  "tolerance_frac_of_prev_candle_range": [
+   0.15,
+   0.25,
+   0.35
+  ],
+  "on_watch": [
+   "off",
+   "on"
+  ],
+  "max_variants": 6
+ },
+ "baseline": "B0 = frozen v3 mantra (mnq.signal strong + mnq.trade 2R), next-open +1 tick fill, cut 10:30",
+ "control_not_selectable": "B2 = same next-open fill, trigger candle filter removed",
+ "selection_rule": "highest mean R per trade among variants with n>=30, tie -> larger n; fit window only",
+ "tests": "paired day-level sign-flip permutation (100000) on daily R difference vs B0, one-sided; also each variant vs 0",
+ "same_bar": "stop wins",
+ "e6_py_sha256": "b98c795da06b0e7b8c944350b59372c8aba6bcb8bb33786447ed13667247e4d1",
+ "amendment_1": {
+  "at_local": "2026-10-03T06:07:53.077607-04:00",
+  "what_happened": "M1 (fill allowed inside the touch bar, path convention, stop placed at the final low) was run FIRST and its 6 results were seen: best tol15/off n=245 +0.453R, paired p .0015 vs B0, but the control B2 (same setup, next-open, no trigger filter) was -0.246R. A swing that large is a look-ahead red flag.",
+  "diagnosis": "M1 assumes the retest low is final before the cross (stop placed with knowledge of the low). Not obtainable on 1-minute bars.",
+  "fix_declared_before_running_it": "M2 STRICT: order armed at the CLOSE of the retest bar, U = tol x that bar's range, live from the next bar, no in-bar fill on the bar that sets the stop. Same 6-variant grid, same selection rule. M2 is the primary; M1 is reported in full as an optimistic upper bound and is NOT used for selection or the prereg.",
+  "multiplicity_note": "two models looked at, so 12 variant-looks in total; window B p<.01 (Bonferroni x5) still applies and the fit window cannot confirm anything."
+ },
+ "e6_py_sha256_at_amendment": "4c0442128c62ed2166f1e59ad47eea66064c1abe403745d524e511e1a28e6298",
+ "amendment_2": {
+  "at_local": "2026-10-03T06:15:38.336305-04:00",
+  "referee_finding": "ON WATCH was judged on the ENTRY bar's close AFTER the intrabar fill (finish()). That close is unknowable at fill time: look-ahead. Superseded.",
+  "fix_declared_before_rerun": "Option (a): ON WATCH is decided at the ARMING close. When the retest bar j closes, refuse to arm if C[j] is within tol x rngs[j-1] of nanmax(H[:j+1]) (long) or of nanmin(L[:j+1]) (short; mirror). No post-fill check remains in the strict model. The refused bar does not arm; the setup stays alive for a later touch. Refusals counted at the arming close.",
+  "grid_unchanged": "same 6 variants, same selection rule, same seed; the 3 ON WATCH=off variants are not touched by the fix and must reproduce bit-identically.",
+  "m1": "legacy M1 (non-primary, optimistic) keeps its old post-fill check so its recorded numbers do not move; it is labelled look-ahead.",
+  "no_results_seen_yet": "no ON WATCH=on result of the fixed rule had been computed when this was written",
+  "e6_py_sha256_before_fix": "4c0442128c62ed2166f1e59ad47eea66064c1abe403745d524e511e1a28e6298"
+ }
+}
