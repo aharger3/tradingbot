@@ -1,0 +1,107 @@
+{
+ "declared_on": "2026-10-03, before any variant was evaluated on real data (commit this file with mentor2.py and test_mentor2.py first)",
+ "paper_research_only": true,
+ "window": {
+  "fit": [
+   "2024-09-26",
+   "2026-09-25"
+  ],
+  "reserved_never_loaded": "NQ 2019-09-26..2024-09-25 (window A)",
+  "note": "stock bars before the fit window (2024-01-02 on) are read only for prior-session levels and daily EMA warm-up; no trade is taken outside the fit window"
+ },
+ "fills": "frozen orb1m.py convention: entry next minute open + 1 tick adverse; stop exit = min(stop, open) - 1 tick (long); target = limit, needs 1 tick through; SAME BAR = STOP WINS; flat at the 11:00 open - 1 tick; one trade per symbol-day; signals 09:30-10:30 (entry minute index <= 61); 2R fixed target",
+ "costs": {
+  "NQ": "tick 0.25, $2/pt (MNQ), $1.24 round trip, min stop 2 ticks",
+  "stocks": "tick/slip $0.01 per side, $0.005/sh/side commission = $0.01 round trip per share, min stop max($0.03, 0.05% of entry); a smaller stop skips the symbol-day (no second try)"
+ },
+ "split_for_halves": "median session date of the cell's session list",
+ "permutation": {
+  "type": "day-level",
+  "draws": 2000,
+  "seed": 7,
+  "how": "each draw maps every session date to a different random date (same map for all symbols and variants); each trade is replayed on its own symbol's session on the mapped date with the same entry minute, side and stop as a share of price; fallback = random other date of that symbol. p = (1 + #draws with mean R >= real) / (1 + draws)",
+  "family_wise": "for each cell, max over eligible variants of the shuffled mean R per draw, compared with the best real variant; reported next to the std-bar p, not instead of it"
+ },
+ "primary_variant_rule": "highest mean R among eligible variants with n >= 30 (ties -> larger n), chosen on the fit window only. Eligible = every variant in the cell, except in cell E where the EMA-off variants are controls and only the EMA-on variants are eligible",
+ "std_bar": "n >= 30, mean R >= +0.15, both halves > 0, day-level shuffle p < .05 (own variant). A cell 'clears' only if its PRIMARY variant meets all four. Other variants are reported, never promoted after the fact",
+ "all_variants_reported": true,
+ "cells": {
+  "C_rejection": {
+   "instrument": "NQ real 1-min (sized MNQ). Why NQ: the pre-market-prep videos name NQ/ES/SPY/QQQ together with stocks, and I9f1J6DYjdI names NQ",
+   "videos": [
+    "I9f1J6DYjdI (explicit PDH rejection short, PDL bounce long)",
+    "OByLdBe9qy4",
+    "PEaV7z8lc7k",
+    "aOOUMis5SdU",
+    "b6HkDYfrnt4",
+    "i72GVQXQwHo",
+    "opHq3nz6Tdw",
+    "H8NxRPIx1V8",
+    "_McZebfqzds"
+   ],
+   "rule": "short: a 1-min bar whose high reaches PDH - tol, previous close under PDH (prior-day close for the first bar), the bar closes under PDH and closes red. long mirrors at PDL (low reaches PDL + tol, previous close over PDL, closes over PDL and green). First signal of the day, either side. Entry next open. Stop = rejection bar extreme +/- 1 tick (candle) or extreme of the last 5 bars incl. it (push5). Target 2R. Flat 11:00.",
+   "grid": {
+    "tol_ticks": [
+     4,
+     20
+    ],
+    "stop": [
+     "candle",
+     "push5"
+    ]
+   },
+   "note_tol": "tol_ticks 4 = 1.0 point, 20 = 5 points. (4 not 1: a 1-tick touch is the same as the sweep cell B; this cell is the rejection WITHOUT needing a poke)",
+   "variants": 4
+  },
+  "D_three_bar": {
+   "instrument": "stocks/ETFs from data_archive: TSLA, QQQ, AMD, NVDA, MU, SPY (the symbols named in nCXwyMkUugk and _McZebfqzds that exist in the archive; WDC is not in the archive)",
+   "videos": [
+    "nCXwyMkUugk (3-bar bearish/bullish entry model)",
+    "_McZebfqzds (three-bar pattern on the 5-minute chart)"
+   ],
+   "rule": "5-min candles aligned at 09:30. Bearish at PDH: lead candle green with its HIGH within tol_pct of PDH (either side); reaction candle red; confirm candle closes under the lead's low (extreme) or under the lead's open = body bottom (body). Bullish at PDL mirrors. Entry = open of the minute after the confirm candle closes (latest 10:30). Stop = extreme of the three candles +/- $0.01. Target 2R. Flat 11:00. First signal of the day, either side.",
+   "grid": {
+    "tol_pct": [
+     0.001,
+     0.0025
+    ],
+    "confirm": [
+     "extreme",
+     "body"
+    ]
+   },
+   "variants": 4
+  },
+  "E_ema_pdh": {
+   "instrument": "stocks/ETFs from data_archive: SPY, QQQ, NVDA, AAPL, MU, MSFT, AMZN, AMD, TSLA, GOOGL, AVGO, INTC, HOOD (13 of the 15 symbols named in FIzcNCL7zfE, Kc7947yZBgM, ZiU4HVCpo10, _McZebfqzds; GOOG and TSM dropped for archive coverage)",
+   "videos": [
+    "FIzcNCL7zfE",
+    "Kc7947yZBgM",
+    "ZiU4HVCpo10",
+    "_McZebfqzds"
+   ],
+   "rule": "long only. Daily uptrend filter = prior-session close above BOTH the daily EMA9 and EMA21 (EMAs of RTH closes through the prior session, adjust=False, seeded 2024-01-02). Break = a candle closes over PDH after the previous close (prior-day close for the first candle) was at or under it. Retest = a later candle within 30 minutes with low <= PDH + 1 tick that closes green and over PDH. A close at or under PDH voids the break. Entry next open. Stop = retest candle low - $0.01 (candle) or PDH - $0.01 (level). Target 2R. Flat 11:00.",
+   "grid": {
+    "tf_min": [
+     1,
+     5
+    ],
+    "stop": [
+     "candle",
+     "level"
+    ],
+    "ema_filter": [
+     true,
+     false
+    ]
+   },
+   "variants": 8,
+   "controls": "the four ema_filter=false variants",
+   "paired_test": "for each (tf, stop): mean R of EMA-up trades minus mean R of EMA-not-up trades in the control, EMA flag permuted across the control's trades, 5000 draws, seed 11, one-sided"
+  }
+ },
+ "total_variants": 16,
+ "if_a_cell_clears": "write a LOCKED confirm prereg for its primary variant in mentor-rule-candidates.md: fit result, frozen file hashes, the confirm data (NQ window B 2010-06-07..2019-09-25 for C; for stocks D/E the only untouched data is forward paper plus no historical window, since 2024-01-02..2024-09-25 stock bars were already scored on the QQQ proxy), the std bar again, and that spending window B needs Austin's 'window B ok'",
+ "if_none_clears": "report the table, write no prereg",
+ "sessions": "NYSE trading days only (NQ holiday sessions dropped; 21 NYSE closures in the window). A prior-session level (PDH/PDL/PDC, daily EMA) is used only when the prior archive/contract session is the previous NYSE session; otherwise that day has no signal (roll days, holes in the stock archive). Stock symbols need >= 95% archive coverage of the 501 NYSE sessions in the window; GOOG (4%) and TSM (61%) fail and are dropped before any result."
+}
