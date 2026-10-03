@@ -31,6 +31,7 @@ def _run(tmp: Path, labels: Path):
     with mock.patch.object(eye_runner.eyetap, "send_tap_card", fake_send), \
          mock.patch.object(eye_runner.eyetap, "record_card"), \
          mock.patch.object(eye_runner.eyetap, "load_config", return_value={}), \
+         mock.patch.object(eye_runner.eyetap, "wait_for_network", return_value=True), \
          mock.patch.object(eye_runner.eyetap, "cards_sent_on", return_value=0), \
          mock.patch.object(eye_runner, "render_candidate_chart"), \
          mock.patch.object(eye_runner, "CHART_DIR", tmp / "charts"):
@@ -77,7 +78,8 @@ def _pool_run(tmp: Path, ledger: Path, cards: int, error: str = ""):
         return Res()
 
     with mock.patch.object(eye_runner.eyetap, "send_tap_card", fake_send),          mock.patch.object(eye_runner.eyetap, "LEDGER", ledger),          mock.patch.object(eye_runner.eyetap, "record_card",
-                           side_effect=lambda *a, **k: real_record(*a, ledger=ledger, **k)),          mock.patch.object(eye_runner.eyetap, "load_config", return_value={}),          mock.patch.object(eye_runner.eyetap, "cards_sent_on", return_value=0),          mock.patch.object(eye_runner, "render_candidate_chart"),          mock.patch.object(eye_runner, "CHART_DIR", tmp / "charts"):
+                           side_effect=lambda *a, **k: real_record(*a, ledger=ledger, **k)),          mock.patch.object(eye_runner.eyetap, "load_config", return_value={}), \
+         mock.patch.object(eye_runner.eyetap, "wait_for_network", return_value=True),          mock.patch.object(eye_runner.eyetap, "cards_sent_on", return_value=0),          mock.patch.object(eye_runner, "render_candidate_chart"),          mock.patch.object(eye_runner, "CHART_DIR", tmp / "charts"):
         eye_runner.main(["--title-prefix", "T", "--ignore-schedule", "--speed", "100000", "--card-gap-s", "0",
                          "--confirm-window-s", "1", "--max-cards-per-day", str(cards), "--blind",
                          "--labels-csv", str(tmp / "labels.csv"), "--journal-path", str(tmp / "j.jsonl"),

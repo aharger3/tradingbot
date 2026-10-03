@@ -18,6 +18,8 @@ from __future__ import annotations
 import json
 import os
 import secrets as _secrets
+import socket
+import time
 from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
@@ -199,6 +201,21 @@ class TapSendResult:
     card_id: str
     chart_url: str
     error: str = ""          # "tunnel down" when the pre-send probe failed (nothing was sent)
+
+
+def wait_for_network(host: str = "ntfy.sh", tries: int = 20, wait_s: float = 30.0,
+                     resolve=socket.gethostbyname, sleep=time.sleep) -> bool:
+    """True once `host` resolves. The scheduler's catch-up run can start seconds after a reboot, before
+    DNS is up (10-02: 'Failed to resolve ntfy.sh'); the task itself cannot be set to wait for the network
+    without an elevated edit, so the runner waits here (up to tries x wait_s = 10 min)."""
+    for i in range(tries):
+        try:
+            resolve(host)
+            return True
+        except OSError:
+            if i < tries - 1:
+                sleep(wait_s)
+    return False
 
 
 def tunnel_base() -> str:
