@@ -72,6 +72,12 @@ Eye loop: `OmenEyeLoopReplay` (Mon–Thu 09:28 ET, replays a session and sends c
 `OmenEyeLabelServer` (always-on, the ntfy-button callback), `OmenEyeLoopReport` (Mon–Thu
 16:30 ET, above).
 
+Eye cards are tap-to-answer (`eye_card/tap.py`): one push to the vault's `NTFY_TOPIC` with S / Not S / Skip
+buttons that post to the `tap-answer` service, which writes `eye_card/labels.csv` (S/notS) or `skips.csv`.
+Mon-Thu only, max 5 cards/day (`cards_sent.jsonl`). `--blind` hides ticker, date, grade and absolute prices;
+`--legacy-label-server` restores the old Tailscale buttons. `python -m eye_card.tap sample [--blind]` prints a
+masked payload and sends nothing.
+
 Engine / homework / infra: `OmenNightlyLoop` (20:00, the no-regression loop + gates),
 `OMEN-DailyReport` (weekdays 16:30), `OmenDailyHomework` / `OmenDailyHomework1105`,
 `OmenDailyReview`, `OmenBarDeck`, `OmenPremarketCard` / `OmenPremarketList`,

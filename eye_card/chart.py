@@ -6,7 +6,7 @@ highlights the trigger candle.
 """
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from pathlib import Path
 
 import matplotlib
@@ -50,14 +50,32 @@ def _bars_up_to(bars, trigger_time: str):
     return out
 
 
-def render_candidate_chart(candidate: Candidate, bars: list[dict], out_path: str | Path) -> Path:
-    """Render the PNG and return its path. `bars` covers >= 9:30 -> trigger_time."""
+def _blind_view(candidate: Candidate, window: list[dict]) -> tuple[Candidate, list[dict]]:
+    """Prices as % from the session's first open: no absolute price, so the contract/era is not guessable."""
+    base = window[0]["open"]
+    pct = lambda p: (p / base - 1.0) * 100.0  # noqa: E731
+    bars = [{"time": b["time"], **{k: pct(b[k]) for k in ("open", "high", "low", "close")}} for b in window]
+    cand = replace(candidate, entry=pct(candidate.entry), stop=pct(candidate.stop),
+                   targets=[pct(t) for t in candidate.targets], level=pct(candidate.level),
+                   or_high=None if candidate.or_high is None else pct(candidate.or_high),
+                   or_low=None if candidate.or_low is None else pct(candidate.or_low))
+    return cand, bars
+
+
+def render_candidate_chart(candidate: Candidate, bars: list[dict], out_path: str | Path,
+                           *, blind: bool = False) -> Path:
+    """Render the PNG and return its path. `bars` covers >= 9:30 -> trigger_time.
+    blind=True hides ticker, setup/grade and absolute prices (axis and labels are % from the open)."""
     out_path = Path(out_path)
     out_path.parent.mkdir(parents=True, exist_ok=True)
 
     window = _bars_up_to(bars, candidate.trigger_time)
     if not window or window[-1]["time"] != candidate.trigger_time:
         raise ValueError(f"no bars up to trigger_time {candidate.trigger_time!r}")
+    fmt = lambda y: f"{y:.2f}".rstrip("0").rstrip(".")  # noqa: E731  (:g would round 29609.75 to 29609.8)
+    if blind:
+        candidate, window = _blind_view(candidate, window)
+        fmt = lambda y: f"{y:+.2f}%"  # noqa: E731
 
     fig, ax = plt.subplots(figsize=(7.2, 4.8), dpi=150)
     xs = range(len(window))
@@ -84,7 +102,7 @@ def render_candidate_chart(candidate: Candidate, bars: list[dict], out_path: str
 
     def hline(y, label, color, style="--"):
         ax.axhline(y, color=color, linestyle=style, linewidth=1.1, zorder=1)
-        ax.text(len(window) - 0.5, y, f" {label} {y:g}", color=color, fontsize=8,
+        ax.text(len(window) - 0.5, y, f" {label} {fmt(y)}", color=color, fontsize=8,
                 va="center", ha="left")
 
     hline(candidate.level, candidate.level_label, "#4575b4", "-")
@@ -98,9 +116,10 @@ def render_candidate_chart(candidate: Candidate, bars: list[dict], out_path: str
     ax.set_xticks(list(xs)[::step])
     ax.set_xticklabels([window[i]["time"][:5] for i in range(0, len(window), step)],
                         rotation=0, fontsize=8)
-    ax.set_title(f"{candidate.symbol} {candidate.direction} · {candidate.setup} · "
-                 f"{candidate.trigger_time} ET", fontsize=10)
-    ax.set_ylabel("price")
+    title = (f"{candidate.direction} · {candidate.trigger_time[:5]} ET" if blind else
+             f"{candidate.symbol} {candidate.direction} · {candidate.setup} · {candidate.trigger_time} ET")
+    ax.set_title(title, fontsize=10)
+    ax.set_ylabel("% from open" if blind else "price")
     ax.grid(alpha=0.15)
     fig.tight_layout()
     fig.savefig(out_path)
