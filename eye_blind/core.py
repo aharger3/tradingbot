@@ -254,6 +254,14 @@ def trade_r(sess: dict, cfg: dict) -> float:
     return float(o.run_trade(A, i, side, dist, o.CUTS[cfg["cut"]], spec["usd_pt"], spec["rt_comm"])[0])
 
 
+def scored_rows(pool: dict, taps: list[dict]) -> list[dict]:
+    """Tap-ordered ledger rows {session_id, label, R} for research/eye/passbar.py. R is the frozen
+    orb1m fill (trade_r). No date or price in the row, so it is safe to log next to the taps."""
+    return [dict(session_id=t["session_id"], label=t["label"],
+                 R=trade_r(pool["sessions"][t["session_id"]], pool["cfg"]))
+            for t in taps if t["session_id"] in pool["sessions"]]
+
+
 def _stats(rs, dates):
     r = np.array(rs, float)
     if not len(r):
