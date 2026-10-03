@@ -23,8 +23,10 @@ VAULT = Path(r"C:\Users\aharg\Austin's Vault")
 SUMMARY = VAULT / "Projects" / "omen-tape-summary.md"
 
 
-def read_nightly_lines(days: int = 7) -> list[str]:
-    """Return the last N days of receipt lines (non-empty, non-header).
+def read_nightly_lines(days: int = 7, today: date | None = None) -> list[str]:
+    """Return receipt lines dated within the last N calendar days (inclusive
+    of today), non-empty and non-header. Filters by the date in column 1, not
+    by line count, since nightly.md only gets weekday rows.
 
     Format of each line: | YYYY-MM-DD | flag | decision | ... |
     """
@@ -34,7 +36,19 @@ def read_nightly_lines(days: int = 7) -> list[str]:
     lines = NIGHTLY.read_text(encoding="utf-8").split("\n")
     # Skip header lines (comment and separator)
     receipt_lines = [l.strip() for l in lines if l.strip().startswith("|") and "date" not in l and "---|" not in l]
-    return receipt_lines[-days:] if receipt_lines else []
+    cutoff = (today or date.today()) - timedelta(days=days - 1)
+    kept = []
+    for l in receipt_lines:
+        parsed = parse_receipt_line(l)
+        if parsed is None:
+            continue
+        try:
+            d = date.fromisoformat(parsed["date"])
+        except ValueError:
+            continue
+        if cutoff <= d <= (today or date.today()):
+            kept.append(l)
+    return kept
 
 
 def parse_receipt_line(line: str) -> dict:
