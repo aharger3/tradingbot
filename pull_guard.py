@@ -34,21 +34,35 @@ def run_guarded_pull(python_exe="python", smoke_module="live_scanner", cwd=None)
     if pull.stderr:
         print(pull.stderr, end="", file=sys.stderr)
 
+    pull_failed = pull.returncode != 0
+    if pull_failed:
+        print(f"=== git pull FAILED (exit {pull.returncode}); aborting any rebase in progress ===")
+
     smoke = subprocess.run(
         [python_exe, "-c", f"import {smoke_module}"], cwd=cwd, capture_output=True, text=True
     )
-    if smoke.returncode != 0:
+    if smoke.returncode != 0 or pull_failed:
         print(f"=== pull broke the build; rolling back to {pre} ===")
         if smoke.stdout:
             print(smoke.stdout, end="")
         if smoke.stderr:
             print(smoke.stderr, end="", file=sys.stderr)
+        # A conflicted `pull --rebase` leaves the tree mid-rebase with the autostash
+        # unapplied; abort first (restores branch + autostash), ignoring "no rebase"
+        # errors. Never --hard: it would wipe uncommitted tracked-journal appends.
+        subprocess.run(["git", "rebase", "--abort"], cwd=cwd, capture_output=True, text=True)
         reset = subprocess.run(
-            ["git", "reset", "--hard", pre], cwd=cwd, capture_output=True, text=True
+            ["git", "reset", "--keep", pre], cwd=cwd, capture_output=True, text=True
         )
         if reset.stdout:
             print(reset.stdout, end="")
-        return False, True, f"rolled back to {pre}: {smoke.stderr.strip().splitlines()[-1] if smoke.stderr.strip() else 'import failed'}"
+        if reset.returncode != 0 and reset.stderr:
+            print(reset.stderr, end="", file=sys.stderr)
+        if pull_failed:
+            reason = pull.stderr.strip().splitlines()[-1] if pull.stderr.strip() else "git pull failed"
+        else:
+            reason = smoke.stderr.strip().splitlines()[-1] if smoke.stderr.strip() else "import failed"
+        return False, True, f"rolled back to {pre}: {reason}"
 
     return True, False, "pull ok, import smoke test passed"
 
